@@ -1,16 +1,14 @@
-# POI map — requested presentation correction delivered
+# POI paths and player pawn — second operator feedback
 
-READY_FOR_PC_REVIEW. Run codex-poi-ui-20261018T1903; started2026-10-18T19:03:46Z; ended2026-10-18T19:26:33.504Z. Tested source36a4199 published normally to origin/dev; final closure is the containing commit.
+IN_PROGRESS. Run codex-poi-pawn-20261018T1935, started2026-10-18T19:35:48Z, heartbeat2026-10-18T19:42:41.388Z. Clean ee252d1/no inherited WIP, owned lock/fetch/liveparity; other related chats idle.
 
-Direct operator screenshots drove optional help/details, hidden future region tabs, maximal proportional atlas and committed travel accent. Aide/Détails have modal focus/Escape restoration. Status/locked hints/menace intents and eligible fight remain outside optional help. RunSystem validates/saves before motion; no animation/V6/gameplay truth changes.
+Wait explicitly1turn stationary/threat movement; all edges quieter, legal adjacency/selected route emphasized; persistent actual-position pawn reused by saved-movement animation. No truth/loot/V6/contract edits.53currenttests/types/build/contracts8slots8PASS. Native/reviewer pending. Prior1903scoped acceptance retained in JSON.
 
-49current focused tests/4files,23QA-helper tests,TypeScript/build,8contracts8slots,immutable-workingLOCKED,syntax/whitespace PASS. First native overlap failure corrected; second premature finite-drawer measurement fixed with one minimal wait and unchanged assertions. Both remain FAILED/NOT_ACCEPTED/unseedable. Final poi-immersive-1903-settled ACCEPTED_SCOPED after independent guardian/digest/capture review:4real resolved moves,0new battles, exact earned V6 reload, responsive1366/620/390 same-page geometry, drawer focus, CSS live OS/game reduction. Native reduced travel/front-intercept/all-region/AT/globalmobile/art/balance acceptance excluded. Raw success receipt remains NOT_ACCEPTED; reviewed disposition in live.poiUi1903.
+Loot permanence is a concrete PROPOSED dedicated amendment in docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md, not implemented by this UI change. Current temporary-wallet purchases remain provisional; recovery checkpoint must stay independent of reward securing.
 
-321historical QA jobs and deferredDemoTask/pendingNarrativeTask exact;324total. Runtime3/sourceTests2/existingQA2/helperTests1/newPersistentQA0/promotedProof4/productDocs1/workflow4/inheritedWIP0/browser3(two retained failures + scoped success). Scheduler and operator preview5438 preserved.
+Next ONE action: Run one existing-driver certified2141first-refuge continuation to inspect persistent pawn, legal selected path and actual movement/reload, then finish UI checkpoint. Present dedicated permanence proposal for explicit approval without changing current loot rules.
 
-Next ONE action: On the current PC candidate at5438, review the requested enlarged POI map, optional Aide/Détails and native travel from the existing save; correct any demonstrated remaining defect. Preserve accepted proof. Rest-price/art/balance verdicts remain operator work and do not block independent authorized PC finishing. Do not replay unchanged campaigns or restore physical Traversal.
-
-GlobalPC/art/balance/hardware verdicts open; mobile deferred; Bois-Clair external nightplate isolated. See report docs/reports/poi-immersive-map-2026-10-18.md and handoff.
+GlobalPC/art/balance/hardware/mobile scope remains open, scheduler/preview5438 unchanged.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

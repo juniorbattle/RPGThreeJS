@@ -15,6 +15,33 @@ function fixture(onMove=vi.fn(async(_id:string)=>{}),prepare=(model:PoiMapModel)
 const marker=(id:string)=>document.querySelector<HTMLButtonElement>(`[data-poi-id="${id}"]`)!;
 const action=()=>document.querySelector<HTMLButtonElement>('[data-poi-action="move"]')!;
 describe('POI atlas focus and authority intentions',()=>{
+  it('keeps a distinct noninteractive player pawn at the actual POI while selecting another destination',()=>{
+    const {state,before,model}=fixture();
+    const pawn=document.querySelector<SVGGElement>('.poi-map__pawn')!;
+    expect(pawn.dataset.node).toBe(model.currentNodeId);expect(pawn.closest('svg')?.getAttribute('aria-hidden')).toBe('true');
+    expect(pawn.getAttribute('tabindex')).toBeNull();expect(pawn.querySelector('button')).toBeNull();
+    const position=pawn.getAttribute('transform');marker('lion-audience').focus();
+    expect(pawn.getAttribute('transform')).toBe(position);expect(pawn.dataset.node).toBe(model.currentNodeId);expect(state).toEqual(before);
+  });
+  it('emphasizes only selected legal adjacent paths while preserving remote and locked connections',()=>{
+    const {onMove,state,before}=fixture();
+    const all=[...document.querySelectorAll<SVGPathElement>('.poi-path')];expect(all.length).toBeGreaterThan(4);
+    marker('lion-audience').focus();
+    const selected=document.querySelector<SVGPathElement>('.poi-path--selected')!;
+    expect([selected.dataset.from,selected.dataset.to].sort()).toEqual(['lion-audience','lion-camp']);
+    expect(selected.classList.contains('poi-path--adjacent')).toBe(true);
+    marker('lion-opening-ambush').focus();expect(document.querySelector('.poi-path--selected')).toBeNull();
+    expect(document.querySelectorAll('.poi-path')).toHaveLength(all.length);expect(onMove).not.toHaveBeenCalled();expect(state).toEqual(before);
+  });
+  it('does not display a pawn at an off-region exit when browsing a previously earned region',()=>{
+    fixture(undefined,model=>{model.currentNodeId='lion-reserve-trail';});
+    expect(document.querySelector<SVGGElement>('.poi-map__pawn')!.dataset.node).toBe('lion-reserve-trail');
+    document.querySelector<HTMLButtonElement>('[data-poi-region="0"]')!.click();expect(document.querySelector('.poi-map__pawn')).toBeNull();
+  });
+  it('explains Wait in visible and accessible text without consuming a turn on focus',()=>{
+    const {state,before}=fixture();const wait=document.querySelector<HTMLButtonElement>('[data-poi-action="wait"]')!;
+    expect(wait.textContent).toContain('1 tour sur place');expect(wait.getAttribute('aria-label')).toContain('menaces actives');wait.focus();expect(state).toEqual(before);
+  });
   it('keeps the committed destination and focused action intact while hovering another point',async()=>{
     const {onMove,state,before}=fixture();marker('lion-audience').focus();
     const selectedAction=action();selectedAction.focus();
@@ -116,8 +143,9 @@ describe('POI atlas focus and authority intentions',()=>{
     let step!:(time:number)=>void;vi.stubGlobal('requestAnimationFrame',(callback:(time:number)=>void)=>{step=callback;return 1;});vi.stubGlobal('cancelAnimationFrame',vi.fn());
     const pending=view.animateTravel(reverse?'lion-audience':'lion-camp',reverse?'lion-camp':'lion-audience');
     expect(document.querySelector<HTMLElement>('.poi-map')!.inert).toBe(true);
-    step(0);expect(document.querySelector('.poi-map__traveller')!.getAttribute('cx')).toBe(reverse?'100':'0');
-    step(620);await pending;expect(document.querySelector('.poi-map__traveller')).toBeNull();
+    step(0);expect(document.querySelector('.poi-map__traveller')!.getAttribute('data-x')).toBe(reverse?'100':'0');
+    step(1500);await pending;expect(document.querySelector('.poi-map__traveller')).toBeNull();
+    expect(document.querySelector<SVGGElement>('.poi-map__pawn')!.dataset.node).toBe(reverse?'lion-camp':'lion-audience');
     expect(document.querySelector<HTMLElement>('.poi-map')!.inert).toBe(false);expect(state).toEqual(before);expect(onMove).not.toHaveBeenCalled();view.close();
   });
   it('settles an in-flight animation on close without leaving a callback or transient state behind',async()=>{

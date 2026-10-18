@@ -47,20 +47,23 @@ export class PoiMapView {
       const bends=lionPoiPathBends(e.from,e.to,phase);
       const d=bends?`M${x} ${y} ${bends.map(([px,py])=>`L${px} ${py}`).join(' ')} L${tx} ${ty}`
         :`M${x} ${y} C${x+(tx-x)*.35} ${y+bend} ${x+(tx-x)*.65} ${ty-bend} ${tx} ${ty}`;
-      return `<path class="poi-path-shadow" d="${d}"/><path class="poi-path ${e.unlocked?'poi-path--open':''}" data-from="${escape(e.from)}" data-to="${escape(e.to)}" d="${d}"/>`;
+      const neighbor=e.from===model.currentNodeId?e.to:e.to===model.currentNodeId?e.from:undefined;
+      const adjacent=e.unlocked&&model.nodes.some(n=>n.id===neighbor&&n.canMove);
+      return `<path class="poi-path-shadow" d="${d}"/><path class="poi-path ${e.unlocked?'poi-path--open':''} ${adjacent?'poi-path--adjacent':''}" data-from="${escape(e.from)}" data-to="${escape(e.to)}" d="${d}"/>`;
     }).join('');
     const element=document.createElement('section');element.className='poi-map';
     element.dataset.region=String(phase);element.dataset.reducedMotion=String(reducedMotion);
     element.setAttribute('aria-label','Carte de campagne');
-    element.innerHTML=`<header class="poi-map__header"><div class="poi-map__heading"><span>Carte de campagne</span><h1 id="poi-region-title">${region.shortTitle}</h1></div><p class="poi-map__resources">Or <b>${model.gold}</b><span>·</span> Butin <b>${model.temporaryGold}</b><span>·</span> Réputation <b>${model.reputation}</b></p><nav aria-label="Actions de campagne"><button data-poi-action="company">Compagnie</button><button data-poi-action="save">Sauvegarder</button><button data-poi-action="menu">Menu</button><button data-poi-action="motion" aria-pressed="${reducedMotion}">Mouvement réduit</button><button data-poi-action="wait">Attendre</button><button data-poi-action="help" aria-controls="poi-map-panel" aria-expanded="false">Aide</button></nav></header>
+    element.innerHTML=`<header class="poi-map__header"><div class="poi-map__heading"><span>Carte de campagne</span><h1 id="poi-region-title">${region.shortTitle}</h1></div><p class="poi-map__resources">Or <b>${model.gold}</b><span>·</span> Butin <b>${model.temporaryGold}</b><span>·</span> Réputation <b>${model.reputation}</b></p><nav aria-label="Actions de campagne"><button data-poi-action="company">Compagnie</button><button data-poi-action="save">Sauvegarder</button><button data-poi-action="menu">Menu</button><button data-poi-action="motion" aria-pressed="${reducedMotion}">Mouvement réduit</button><button data-poi-action="wait" aria-label="Attendre un tour sans déplacement. Les menaces actives peuvent avancer." title="Avance un tour sans déplacement ; les menaces actives peuvent avancer. Ne soigne pas la compagnie.">Attendre<span class="poi-map__wait-note">1 tour sur place</span></button><button data-poi-action="help" aria-controls="poi-map-panel" aria-expanded="false">Aide</button></nav></header>
       <div class="poi-map__viewport">
       <div class="poi-map__atlas-bar">${discovered.length>1?`<div class="poi-map__regions" role="tablist" aria-label="Régions découvertes">${discovered.map(({r,i})=>`<button role="tab" id="poi-region-${i}" data-poi-region="${i}" aria-selected="${i===phase}" tabindex="${i===phase?0:-1}" aria-controls="poi-atlas">${r.shortTitle}</button>`).join('')}</div>`:''}<button data-poi-action="locate">Ma position</button></div>
       <div class="poi-map__land" id="poi-atlas" role="${discovered.length>1?'tabpanel':'region'}" aria-labelledby="${discovered.length>1?`poi-region-${phase}`:'poi-region-title'}" tabindex="0" aria-label="${escape(region.title)}. Carte défilante, glisser ou utiliser les flèches."><div class="poi-map__canvas"><img class="poi-map__geography" src="${region.image}" alt="" draggable="false"/><svg viewBox="0 0 960 520" aria-hidden="true">${paths}</svg>
       ${nodes.map(n=>{const [x,y]=positions.get(n.id)!;const threat=threats.find(threat=>threat.positionId===n.id);return `<button class="poi-marker poi-marker--${n.status} poi-marker--${n.role} poi-marker--${n.kind} ${n.id===model.currentNodeId?'poi-marker--current':''} ${n.region!==phase?'poi-marker--border':''} ${n.region>phase?'poi-marker--outbound':''} ${threat?'poi-marker--occupied':''}" data-poi-id="${escape(n.id)}" data-poi-reachable="${n.canMove}" style="left:${x/9.6}%;top:${y/5.2}%" aria-label="${escape(n.label)}, ${roleLabels[n.role]}, ${kindLabels[n.kind]}, ${participationLabels[n.participation]}, ${statusLabels[n.status]}${n.id===model.currentNodeId?', position actuelle':''}${n.reusable?', services réutilisables':''}${threat?', passage occupé par '+escape(threat.label):''}"><span class="poi-marker__icon" aria-hidden="true">${icons[n.kind]}</span><span class="poi-marker__name">${escape(n.label)}</span>${n.status==='resolved'?'<span class="poi-marker__check" aria-hidden="true">✓</span>':n.status==='neutralized'?'<span class="poi-marker__check poi-marker__check--neutral" aria-hidden="true">—</span>':''}${n.id===model.currentNodeId?'<span class="poi-marker__position">Vous êtes ici</span>':''}</button>`;}).join('')}
-      ${threats.map(threat=>{const position=positions.get(threat.positionId);if(!position)return '';return `<span class="poi-threat" data-poi-elite-id="${escape(threat.id)}" style="left:${position[0]/9.6}%;top:${position[1]/5.2}%" aria-hidden="true">♜</span>`;}).join('')}</div></div>
+      ${threats.map(threat=>{const position=positions.get(threat.positionId);if(!position)return '';return `<span class="poi-threat" data-poi-elite-id="${escape(threat.id)}" style="left:${position[0]/9.6}%;top:${position[1]/5.2}%" aria-hidden="true">♜</span>`;}).join('')}
+      <svg class="poi-map__party-layer" viewBox="0 0 960 520" aria-hidden="true">${current.region===phase?(()=>{const [x,y]=positions.get(current.id)!;return `<g class="poi-map__pawn" data-node="${escape(current.id)}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y})"><g class="poi-map__pawn-piece"><ellipse class="poi-map__pawn-shadow" cx="-28" cy="-28" rx="13" ry="4"/><circle cx="-28" cy="-58" r="6"/><path d="M-33 -51 Q-37 -47 -33 -42 L-36 -34 L-20 -34 L-23 -42 Q-19 -47 -23 -51 Z"/><path d="M-37 -34 L-39 -29 Q-28 -25 -17 -29 L-19 -34 Z"/></g></g>`;})():''}</svg></div></div>
       <div class="poi-map__map-caption"><span>${escape(region.title)} · Tour ${model.turn}</span></div></div>
       <footer class="poi-map__footer"><div class="poi-map__detail" aria-live="polite"></div></footer>
-      <div class="poi-map__panel-backdrop" hidden><aside class="poi-map__panel" id="poi-map-panel" aria-labelledby="poi-panel-title" tabindex="-1"><header><h2 id="poi-panel-title">Repères de voyage</h2><button data-poi-action="close-panel" aria-label="Fermer les informations">Fermer</button></header><div class="poi-map__panel-detail"></div><section><h3>Explorer la carte</h3><p>Sélectionnez un lieu pour voir son état, puis choisissez « Se rendre ». Les chemins ouverts se parcourent dans les deux sens. Les lieux verrouillés conservent leurs conditions d’accès.</p><p>Glissez ou faites défiler la carte. Au clavier, les flèches passent entre les points d’intérêt ; Entrée sélectionne le lieu. « Ma position » recentre votre emplacement.</p><p>Les régions se découvrent en progressant. « Attendre » avance un tour sans déplacement ; les menaces mobiles peuvent alors se déplacer.</p></section><section class="poi-map__legend"><h3>Légende</h3><p><span>◆ Jalon</span> <span>◉ Structurant</span> <span>◇ Rencontre</span> <span>⚔ Combat</span> <span>▣ Coffre</span> <span>♜ Menace mobile</span> <span>⌂ Refuge</span></p><p>✓ Résolu · — Neutralisé</p></section></aside></div>`;
+      <div class="poi-map__panel-backdrop" hidden><aside class="poi-map__panel" id="poi-map-panel" aria-labelledby="poi-panel-title" tabindex="-1"><header><h2 id="poi-panel-title">Repères de voyage</h2><button data-poi-action="close-panel" aria-label="Fermer les informations">Fermer</button></header><div class="poi-map__panel-detail"></div><section><h3>Explorer la carte</h3><p>Sélectionnez un lieu pour voir son état, puis choisissez « Se rendre ». Les chemins ouverts se parcourent dans les deux sens. Les lieux verrouillés conservent leurs conditions d’accès.</p><p>Glissez ou faites défiler la carte. Au clavier, les flèches passent entre les points d’intérêt ; Entrée sélectionne le lieu. « Ma position » recentre votre emplacement.</p><p>Les régions se découvrent en progressant. « Attendre » avance un tour sans déplacement ; les menaces actives peuvent alors avancer. Cela ne soigne pas la compagnie.</p></section><section><h3>Or et butin</h3><p>« Or » désigne votre or sécurisé. Le butin de route reste provisoire jusqu’au refuge ; les achats avec cet or rejoignent aussi ce butin. Le reste non sécurisé est perdu à la défaite.</p></section><section class="poi-map__legend"><h3>Légende</h3><p><span>◆ Jalon</span> <span>◉ Structurant</span> <span>◇ Rencontre</span> <span>⚔ Combat</span> <span>▣ Coffre</span> <span>♜ Menace mobile</span> <span>⌂ Refuge</span></p><p>✓ Résolu · — Neutralisé</p></section></aside></div>`;
     this.options.root.append(element);this.element=element;
     const land=element.querySelector<HTMLElement>('.poi-map__land')!;
     const backdrop=element.querySelector<HTMLElement>('.poi-map__panel-backdrop')!;
@@ -87,6 +90,8 @@ export class PoiMapView {
       // Threat intent stays visible even with the optional explanations closed.
       if(threats.length)element.querySelector('.poi-map__detail')!.insertAdjacentHTML('beforeend',`<div class="poi-map__threat-summary">${threats.map(threat=>`<p><strong>♜ ${escape(threat.label)}${threat.contested?' · Passage contesté':''}</strong> · ${threat.mode==='cyclic_patrol'?'Patrouille':'Traque locale'} · ${escape(nodeLabel(threat.positionId))} → ${escape(nodeLabel(threat.nextPositionId))}${threat.canFight?` <button data-poi-action="elite-fight" data-elite-id="${escape(threat.id)}">Affronter la menace</button>`:''}</p>`).join('')}</div>`);
       element.querySelectorAll<HTMLButtonElement>('[data-poi-id]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.poiId===n.id)));
+      element.querySelectorAll<SVGPathElement>('.poi-path').forEach(path=>path.classList.toggle('poi-path--selected',n.canMove&&(
+        path.dataset.from===model.currentNodeId&&path.dataset.to===n.id||path.dataset.to===model.currentNodeId&&path.dataset.from===n.id)));
     };
     const select=(id:string,scroll=false)=>{
       if(this.selectedId!==id){this.selectedId=id;update();}
@@ -173,24 +178,24 @@ export class PoiMapView {
     if(!path||typeof path.getTotalLength!=='function')return;
     const length=path.getTotalLength(),reverse=path.dataset.from!==from;
     if(!Number.isFinite(length)||length<=0)return;
-    const token=document.createElementNS('http://www.w3.org/2000/svg','circle');
-    token.classList.add('poi-map__traveller');token.setAttribute('r','7');
-    const origin=path.getPointAtLength(reverse?length:0);token.setAttribute('cx',String(origin.x));token.setAttribute('cy',String(origin.y));
-    path.parentElement!.append(token);element.dataset.travelling='true';element.inert=true; // No reentrant map intent during the short handoff.
+    const token=element.querySelector<SVGGElement>('.poi-map__pawn');if(!token)return;
+    const position=(distance:number)=>{const p=path.getPointAtLength(distance);token.setAttribute('transform',`translate(${p.x} ${p.y})`);token.dataset.x=String(p.x);token.dataset.y=String(p.y);};
+    token.classList.add('poi-map__traveller');position(reverse?length:0);
+    const duration=Math.max(650,Math.min(1100,length*2));
+    element.dataset.travelling='true';element.inert=true; // No reentrant map intent during the short handoff.
     return new Promise(resolve=>{
       let frame=0,start:number|undefined;
-      const finish=()=>{cancelAnimationFrame(frame);clearTimeout(watchdog);unsubscribe();document.removeEventListener('visibilitychange',hidden);token.remove();delete element.dataset.travelling;element.inert=false;this.finishTravel=null;resolve();};
+      const finish=()=>{cancelAnimationFrame(frame);clearTimeout(watchdog);unsubscribe();document.removeEventListener('visibilitychange',hidden);position(reverse?0:length);token.dataset.node=to;token.classList.remove('poi-map__traveller');delete element.dataset.travelling;element.inert=false;this.finishTravel=null;resolve();};
       const hidden=()=>{if(document.hidden)finish();};
       const unsubscribe=onReducedMotionChange(()=>{if(prefersReducedMotion())finish();});
-      const watchdog=window.setTimeout(finish,900);
+      const watchdog=window.setTimeout(finish,1500);
       document.addEventListener('visibilitychange',hidden);
       this.finishTravel=finish;
       const step=(time:number)=>{
         start??=time;
         if(this.element!==element||prefersReducedMotion(element.dataset.reducedMotion==='true')){finish();return;}
-        const progress=Math.min(1,(time-start)/620),eased=progress*progress*(3-2*progress);
-        const p=path.getPointAtLength(length*(reverse?1-eased:eased));
-        token.setAttribute('cx',String(p.x));token.setAttribute('cy',String(p.y));
+        const progress=Math.min(1,(time-start)/duration),eased=progress*progress*(3-2*progress);
+        position(length*(reverse?1-eased:eased));
         if(progress===1)finish();else frame=requestAnimationFrame(step);
       };
       frame=requestAnimationFrame(step);

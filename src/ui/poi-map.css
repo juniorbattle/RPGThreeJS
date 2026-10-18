@@ -16,7 +16,7 @@
 .poi-map__geography{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
 .poi-map__canvas:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;box-shadow:inset 0 0 45px #08132280}
 .poi-map__canvas svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
-.poi-path-shadow{fill:none;stroke:#102225;stroke-width:9;stroke-linecap:round;opacity:.8}.poi-path{fill:none;stroke:#c2b797;stroke-width:2.8;stroke-linecap:round;stroke-dasharray:3 8;opacity:.65}.poi-path--open{stroke:#f3dba0;opacity:1;stroke-dasharray:none;stroke-width:3.6;filter:drop-shadow(0 1px 1px #000)}
+.poi-path-shadow{fill:none;stroke:#102225;stroke-width:4;stroke-linecap:round;opacity:.3}.poi-path{fill:none;stroke:#c5c1ab;stroke-width:1.2;stroke-linecap:round;stroke-dasharray:2 6;opacity:.48}.poi-path--open{stroke:#d8cb9c;opacity:.6;stroke-dasharray:none;stroke-width:1.4}.poi-path--adjacent{stroke:#efdb9b;opacity:.9;stroke-width:2}.poi-path--selected{stroke:#ffe7ab;opacity:1;stroke-width:3;filter:drop-shadow(0 0 3px #d5a64d)}
 .poi-map .poi-marker{position:absolute;z-index:2;transform:translate(-50%,-50%);padding:0 4px;background:transparent!important;border:0;display:flex;align-items:center;flex-direction:column;gap:4px;min-width:70px;max-width:142px;text-shadow:0 1px 2px #000;overflow:visible}
 .poi-marker__icon{display:grid;place-items:center;width:44px;height:44px;box-sizing:border-box;background:#10212eef;border:2px solid #baa77a;border-radius:50%;font-size:24px;color:#f2dfb1;box-shadow:0 3px 0 #07131b99,0 1px 12px #0006}
 .poi-marker--primary .poi-marker__icon{border-radius:9px;border-width:2px;width:48px;height:48px;border-color:#f3ce7e;background:#21313a;box-shadow:0 0 0 3px #182329d9,0 3px 0 #0008}
@@ -38,7 +38,12 @@
 .poi-map__panel{box-sizing:border-box;width:min(390px,100%);overflow:auto;overscroll-behavior:contain;padding:22px;background:linear-gradient(160deg,#142838,#0b1c2b);border-left:1px solid #b59a63;box-shadow:-12px 0 50px #0006;animation:poi-panel-entry .2s ease-out}
 .poi-map__panel header{display:flex;justify-content:space-between;align-items:center;gap:10px}.poi-map__panel h2{font-family:var(--font-display,serif);font-size:25px;font-weight:500;color:#f2ddb0;margin:0}.poi-map__panel h3{font-family:var(--font-display,serif);font-size:19px;font-weight:500;color:#f2ddb0;margin:5px 0 9px}.poi-map__panel section{padding-top:20px;margin-top:20px;border-top:1px solid #756445}.poi-map__panel p{font-size:14px;line-height:1.65;color:#d5d7cc}.poi-map__panel button{flex-shrink:0}
 .poi-map__threat-summary{flex-basis:100%;border-top:1px solid #735340;padding-top:4px}.poi-map__threat-summary p{color:#ffd8ba}
-.poi-map__traveller{fill:#ffe4a4;stroke:#5d461b;stroke-width:2;filter:drop-shadow(0 0 7px #ffd68a);pointer-events:none}
+.poi-map__canvas .poi-map__party-layer{z-index:3;overflow:visible}
+.poi-map__pawn{fill:#ffe4a4;stroke:#182635;stroke-width:2;stroke-linejoin:round;filter:drop-shadow(0 2px 3px #000b);pointer-events:none}
+.poi-map__pawn .poi-map__pawn-shadow{fill:#09131bc9;stroke:none}
+.poi-map__traveller .poi-map__pawn-piece{animation:poi-pawn-step .24s ease-in-out infinite}
+.poi-map__wait-note{display:block;font-size:9px;line-height:1.2;color:#d5c59e;margin-top:2px}
+@keyframes poi-pawn-step{50%{transform:translateY(-2px)}}
 .poi-map:not([data-reduced-motion=true]) .poi-marker--current .poi-marker__icon{animation:poi-position-presence 3.6s ease-in-out infinite}
 .poi-marker__icon,.poi-marker__name{transition:background-color .16s,border-color .16s,box-shadow .16s}
 @keyframes poi-position-presence{50%{box-shadow:0 0 24px #f3cf7977}}

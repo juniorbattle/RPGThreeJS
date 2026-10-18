@@ -474,9 +474,11 @@ async function poiMove(id,pointer=false){
   if(pointer){
     await activateControl(page.locator(marker));
     assert.equal(await page.locator(marker).getAttribute('aria-pressed'),'true');
+    if(jobOptions.parameters.verifyPoiPresentation)await inspectSelectedPoiPath(before.currentNodeId,id);
     await activateControl(page.locator('.poi-map [data-poi-action="move"]:not(:disabled)'));
   }else{
     await keyboardActivate(marker);
+    if(jobOptions.parameters.verifyPoiPresentation)await inspectSelectedPoiPath(before.currentNodeId,id);
     await keyboardActivate('.poi-map [data-poi-action="move"]:not(:disabled)');
   }
   await page.waitForFunction(id=>window.__demoQaApp.state.currentNodeId===id
@@ -484,7 +486,7 @@ async function poiMove(id,pointer=false){
   if(jobOptions.parameters.verifyPoiPresentation){
     const reduced=await page.evaluate(()=>matchMedia('(prefers-reduced-motion: reduce)').matches||window.__demoQaApp.state.settings.reducedGraphics);
     const sample=()=>page.evaluate(()=>{const token=document.querySelector('.poi-map__traveller');return token?{
-      x:token.getAttribute('cx'),y:token.getAttribute('cy'),inert:document.querySelector('.poi-map').inert,
+      x:token.getAttribute('data-x'),y:token.getAttribute('data-y'),inert:document.querySelector('.poi-map').inert,
       current:window.__demoQaApp.state.currentNodeId,saved:JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')).currentNodeId}:null;});
     const first=await sample();
     if(reduced)assert.equal(first,null,'Reduced motion mounted a travel token');
@@ -505,6 +507,15 @@ async function poiMove(id,pointer=false){
     economyBefore:{gold:before.gold,loot:structuredClone(before.run.temporaryLoot),reputation:before.reputation},
     previouslyResolved:before.resolvedNodeIds.includes(id)});
   report.inputs.push({action:pointer?'native POI adjacent pointer movement':'native POI adjacent movement',id});
+}
+async function inspectSelectedPoiPath(from,to){
+  const selected=await page.locator('.poi-map').evaluate(map=>({
+    pawn:map.querySelector('.poi-map__pawn')?.dataset.node,
+    paths:[...map.querySelectorAll('.poi-path--selected')].map(p=>({from:p.dataset.from,to:p.dataset.to})),
+  }));
+  assert.equal(selected.pawn,from,'Destination selection displaced the actual player pawn');
+  assert.equal(selected.paths.length,1,'Legal adjacent destination needs one clear selected path');
+  assert.deepEqual([selected.paths[0].from,selected.paths[0].to].sort(),[from,to].sort());
 }
 function assertExpeditionStep(before,after,delta,{pending=false,victories=[]}={}){
   const prior=before.run.poiExpedition,next=after.run.poiExpedition;
@@ -809,6 +820,8 @@ async function inspectPoiPresentation(){
   const before=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
   const sizes=[{width:1366,height:768},{width:620,height:780},{width:390,height:844}];
   const layouts=[];
+  assert.equal(await page.locator('.poi-map__pawn').getAttribute('data-node'),before.currentNodeId,'Resting pawn does not show actual position');
+  assert.equal(await page.locator('[data-poi-action="wait"]').getAttribute('aria-label'),'Attendre un tour sans déplacement. Les menaces actives peuvent avancer.');
   for(const size of sizes){
     await page.setViewportSize(size);await keyboardActivate('.poi-map [data-poi-action="locate"]');
     const geometry=await page.locator('.poi-map').evaluate(map=>{

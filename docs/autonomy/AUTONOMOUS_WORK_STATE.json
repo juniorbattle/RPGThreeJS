@@ -1,57 +1,39 @@
 {
-  "status": "READY_FOR_PC_REVIEW",
-  "runStartedAt": "2026-10-18T19:03:46Z",
-  "runEndedAt": "2026-10-18T19:26:33.504Z",
-  "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
-  "activePhase": "POI_PRESENTATION_COMPLETE_SCOPED_OPERATOR_REVIEW_OPEN",
-  "activeSubtask": "Requested POI map declutter and committed travel delivered; scoped technical acceptance retained",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-18T19:35:48Z",
+  "runEndedAt": null,
+  "activeTask": "POI-PATH-PAWN-CLARITY",
+  "activePhase": "SOURCE_GREEN_NATIVE_PENDING",
+  "activeSubtask": "Second operator feedback: clearer Wait, path hierarchy and persistent player pawn; separate proposed permanent-loot amendment",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "36a4199325ca20f207509d9d23c102c5f44ae481",
-  "lastPushedCommit": "36a4199325ca20f207509d9d23c102c5f44ae481",
+  "lastKnownGoodCommit": "ee252d1b856b74dfd56d779fbfcf65031710e8b0",
+  "lastPushedCommit": "ee252d1b856b74dfd56d779fbfcf65031710e8b0",
   "completedThisRun": [
-    "Optional Aide/Détails drawer with focus/Escape restoration; persistent safety/action summary",
-    "Future region tabs hidden until current/resolved campaign facts demonstrate discovery",
-    "Atlas fills viewport with shared original960:520 image/path/POI coordinates",
-    "Bounded committed travel accent, reverse paths, cleanup, independent OS/game reduced motion",
-    "ACCEPTED_SCOPED_POI_FIRST_REGION_PC1366_NORMAL_NATIVE_TRAVEL_AND_RESPONSIVE_LAYOUT"
+    "Visible/accessibly explained Wait1turn stationary, active threats may advance",
+    "All actual edges retained with quieter remote strokes and legal adjacent/selected emphasis",
+    "Persistent noninteractive pawn at actual current node, same pawn animates after saved movement",
+    "Concrete PROPOSED permanent-loot task prepared; LOCKED/current economy unchanged"
   ],
   "filesChanged": [
     "src/ui/PoiMapView.ts",
     "src/ui/poi-map.css",
     "src/ui/PoiMapView.test.ts",
-    "src/game/GameApp.ts",
-    "src/game/GameAppPoi.test.ts",
     "tools/demo-continuous-production-qa.mjs",
-    "tools/qa/qa-job.mjs",
-    "tools/qa/qa-job.test.mjs",
-    "docs/project/PC_PLAYTEST.md",
-    "docs/reports/poi-immersive-map-2026-10-18.md",
-    "docs/autonomy/handoffs/2026-10-18T1903Z-codex-poi-immersive-map.md",
+    "docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/reports/poi-immersive-map-2026-10-18/scoped-proof.json",
-    "docs/reports/poi-immersive-map-2026-10-18/poi-immersive-1366.png",
-    "docs/reports/poi-immersive-map-2026-10-18/poi-help-1366.png",
-    "docs/reports/poi-immersive-map-2026-10-18/poi-immersive-390.png"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
   ],
   "testsRun": [
-    "49current focused tests/4files PASS incl actual-source focus, cancellation, save-error and owner handoffs",
-    "23QA-helper tests PASS host; sandbox temporary Git-init restriction retained as infrastructure",
-    "TypeScript/build/contracts8slots8/immutable-workingLOCKED/whitespace/syntax PASS",
-    "Initial overlap failure corrected; one finite drawer-settle harness correction, both failed receipts preserved",
-    "Final native4resolved moves,0new battles, all6eligibility flags true, exact earned V6 reload;5captures root/3guardian inspected"
+    "53current focused tests/4files PASS",
+    "TypeScript/production build/contracts8slots8/immutable gate/whitespace/syntax PASS"
   ],
   "testsPassed": [
-    "49current focused tests/4files PASS incl actual-source focus, cancellation, save-error and owner handoffs",
-    "23QA-helper tests PASS host; sandbox temporary Git-init restriction retained as infrastructure",
-    "TypeScript/build/contracts8slots8/immutable-workingLOCKED/whitespace/syntax PASS",
-    "Initial overlap failure corrected; one finite drawer-settle harness correction, both failed receipts preserved",
-    "Final native4resolved moves,0new battles, all6eligibility flags true, exact earned V6 reload;5captures root/3guardian inspected"
+    "53current focused tests/4files PASS",
+    "TypeScript/production build/contracts8slots8/immutable gate/whitespace/syntax PASS"
   ],
   "testsRemaining": [
-    "Operator PC visual/comfort/global/art/balance/hardware verdicts",
-    "Native phasesII/III or reduced-mode travel only if an actual changed-boundary criterion requires them; no blanket acceptance",
-    "Later global mobile/actual assistive-technology acceptance remains separate"
+    "Existing earned native presentation scenario and inspected path/pawn captures",
+    "Independent actual-diff/native-proof review"
   ],
   "blockers": [
     "Operator global PC/art/felt-balance/hardware acceptance open; no autonomous economy/reward/elite adjustment",
@@ -63,7 +45,7 @@
     "Independent genuinely missing PC finishing criteria before later mobile milestone",
     "External Bois-Clair nightplate and conditional media/audio roadmap remain separate"
   ],
-  "nextAction": "On the current PC candidate at5438, review the requested enlarged POI map, optional Aide/Détails and native travel from the existing save; correct any demonstrated remaining defect. Preserve accepted proof. Rest-price/art/balance verdicts remain operator work and do not block independent authorized PC finishing. Do not replay unchanged campaigns or restore physical Traversal.",
+  "nextAction": "Run one existing-driver certified2141first-refuge continuation to inspect persistent pawn, legal selected path and actual movement/reload, then finish UI checkpoint. Present dedicated permanence proposal for explicit approval without changing current loot rules.",
   "taskQueue": [
     "POI-IMMERSIVE-MAP-UI: COMPLETE_SCOPED; direct operator review of new presentation",
     "DEMO-PC-GLOBAL-ACCEPTANCE: remaining concrete PC findings and independent finishing",
@@ -74,7 +56,7 @@
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SCOPED; independent actual-diff/native-proof guardian review; set1.4.0 and immutable baseline unchanged",
   "commitReferenceScope": "lastKnownGood/accepted/implementation/wip reference tested sourcec6b9cb8; lastPushed is verified preceding workflow commit; final closure is containing Git commit, live parity/lock release recorded in automation memory.",
-  "operatorAuthorization": "Direct operator screenshot feedback in chat01a14e6a on2026-10-18 authorizes POI UI declutter, progressive region display, maximal atlas and smooth presentation-only travel; OD17A global PC art/balance verdicts remain open.",
+  "operatorAuthorization": "Direct operator second screenshot feedback18October2026: explain Wait, declutter connecting paths, persistent animated player pawn, request immediate definitive loot. Mixed UI task implements independent presentation work; dedicated LOCKED amendment proposal for loot permanence awaits approval.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -144,19 +126,27 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-poi-ui-20261018T1903",
+  "runId": "codex-poi-pawn-20261018T1935",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-18T19:26:33.504Z",
+  "lastHeartbeat": "2026-10-18T19:42:41.388Z",
   "wip": {
     "branch": null,
-    "sha": "36a4199325ca20f207509d9d23c102c5f44ae481",
+    "sha": "ee252d1b856b74dfd56d779fbfcf65031710e8b0",
     "checkpointBranch": "dev",
-    "dirtyFiles": [],
-    "status": "GREEN",
-    "lastGreenCheck": "2026-10-18T19:26:33.504Z"
+    "dirtyFiles": [
+      "src/ui/PoiMapView.ts",
+      "src/ui/poi-map.css",
+      "src/ui/PoiMapView.test.ts",
+      "tools/demo-continuous-production-qa.mjs",
+      "docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+    ],
+    "status": "GREEN_SOURCE_NATIVE_PENDING",
+    "lastGreenCheck": "2026-10-18T19:42:41.388Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-18T19:26:33.504Z",
+    "lastHeartbeat": "2026-10-18T19:42:41.388Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -43446,6 +43436,13 @@
         "deferredDemoTask",
         "pendingNarrativeTask"
       ]
+    },
+    "poiPawn1935": {
+      "status": "IN_PROGRESS",
+      "baseline": "ee252d1b856b74dfd56d779fbfcf65031710e8b0",
+      "lootPermanence": "PROPOSED_DEDICATED_APPROVAL_PENDING",
+      "newQaTool": false,
+      "inheritedWip": 0
     }
   },
   "previousInterruptedRun": {
