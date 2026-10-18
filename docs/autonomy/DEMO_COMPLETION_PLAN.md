@@ -16,6 +16,8 @@ Conditional later order once implementation/PC readiness are established: **FF9-
 
 ## Technical scopes retained
 
+PC preparation checkpoint (2026-10-18): refuge Rest now explicitly states its existing full-health effect, including K.O., before payment. Scoped native first-refuge continuation verifies the displayed2wounded/30gold, actual75→45payment, all pre-read Clan maxHP, disabled healthy Rest/safe focus and exact earned reload. No new combat or nativeKO proof, cost/balance/art/global-PC acceptance. See [rest clarity handoff](handoffs/2026-10-18T0355Z-codex-rest-clarity.md); retain operator preparation/economy judgement as the next PC action.
+
 | Priority | Concrete result | Resume point |
 | --- | --- | --- |
 | 1. Six-hero first competences | Preserve accepted casts and exact costs; no blanket balance or six-hero acceptance inferred. | Garen novice_spear/l_long_thrust CLOSED_SCOPED by reused accepted Lot E complete-ending-0003 battle10: AP3→1, target85→57, unchanged source. Guardian reviewed exact action/receipt and capture inspected. Continue next row without a Garen replay. |

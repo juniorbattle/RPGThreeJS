@@ -1,25 +1,23 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-18T03:27:26Z",
-  "runEndedAt": "2026-10-18T03:46:35.555Z",
+  "runStartedAt": "2026-10-18T03:55:14Z",
+  "runEndedAt": "2026-10-18T04:02:35.571Z",
   "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
-  "activePhase": "RESULT_HEALTH_COMPLETE_SCOPED_OPERATOR_PC_VERDICT_OPEN",
-  "activeSubtask": "Exact final-combat health displayed; native wolves result and earned reload reviewed",
+  "activePhase": "REST_CLARITY_COMPLETE_SCOPED_OPERATOR_PC_VERDICT_OPEN",
+  "activeSubtask": "Explain full-health refuge Rest before payment; preserve owner cost and recovery rules",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
-  "lastPushedCommit": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
+  "lastKnownGoodCommit": "7e69a904f1720487773e9a8d7c50cdf49444c233",
+  "lastPushedCommit": "7e69a904f1720487773e9a8d7c50cdf49444c233",
   "completedThisRun": [
-    "Recovered stale quota-interrupted2324 lock after terminal/host-worker/live-parity verification; no inherited WIP",
-    "Retained accepted Garen/controls/Lot E scopes; catalog and CombatBridge unchanged from accepted skill source",
-    "Corrected missing final-combat HP display using existing hp/maxhp/alive only; KO/recovery/rewards/actions/V6 unchanged",
-    "ONE native wolves victory4rounds28actions from certified patrol0002; exact4health rows, focus/bounds, handoff and earned checkpoint reload",
-    "Inspected result/reload captures; independent guardian accepted scoped result; raw receipt NOT_ACCEPTED retained",
-    "PC playtest guide now distinguishes final HP from KO recovery and supplies precise Hunters preparation verdict without controlled-balance claim"
+    "Read-only preflight: no lock/WIP, prior related chats idle, live origin/dev parity and fetch verified; new atomic lock",
+    "Reused accepted Garen/controls/Lot E evidence without replay",
+    "Two source DOM failures reproduced missing full-rest effect for affordable/insufficient-gold states; compact effect copy added",
+    "66 current source tests and production TypeScript/build/8contracts8slots pass",
+    "ONE native rest: 75 to45gold, both1HP heroes fully healed, exact transaction/save/reload and inspected captures; guardian scoped acceptance"
   ],
   "filesChanged": [
-    "src/combat/combatShellPresentation.ts",
-    "src/styles/combat-shell.css",
-    "src/combat/combatShellPresentation.test.ts",
+    "src/ui/ExplorationView.ts",
+    "src/ui/ExplorationView.test.ts",
     "tools/demo-continuous-production-qa.mjs",
     "tools/qa/qa-job.mjs",
     "tools/qa/qa-job.test.mjs",
@@ -27,25 +25,20 @@
     "docs/autonomy/DEMO_COMPLETION_PLAN.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/handoffs/2026-10-18T0327Z-codex-result-health.md"
+    "docs/autonomy/handoffs/2026-10-18T0355Z-codex-rest-clarity.md"
   ],
   "testsRun": [
-    "One meaningful source red-before: KestrelDebout lacked1/90PV; initial DOM test-environment setup corrected before counting reproduction",
-    "19current presentation tests in2files PASS; unknown legacy health and frozen KO0/critical survivor covered",
-    "20QA-helper tests PASS on host, including opt-in parameter/assertion binding and unchanged defaults",
-    "Fresh npm run build PASS (TypeScript+Vite);8MP4; inherited chunk-size advisory",
-    "contracts8/slots8, immutable/workingLOCKED, whitespace and driver syntax PASS",
-    "ONE result-health-0327 production PC1366normal SUCCEEDED/exit0/errors[];4round28action native victory, all current/provenance/digest checks true",
-    "Root result+reload capture inspection and guardian final PASS_SCOPED; historical317 QA and both actual deferred objects preserved"
+    "66 current vitest tests/3 files PASS; 2 relevant red-before failures",
+    "21 QA-helper tests PASS",
+    "Production build with TypeScript PASS; immutable/working LOCKED, 8contracts/8slots, syntax and whitespace PASS"
   ],
   "testsPassed": [
-    "39distinct focused/helper tests",
-    "Types/fresh production build/8MP4/contracts8slots8/LOCKED/whitespace/syntax",
-    "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_RESULT_HEALTH"
+    "66 current source tests +21 helper tests",
+    "Production build/types/contracts8slots8/LOCKED/whitespace/syntax",
+    "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_REST_CLARITY"
   ],
   "testsRemaining": [
-    "Operator global PC, felt balance, atlas art and hardware acceptance; next precise verdict: preparation clarity/rest cost before Sceau hunters",
-    "Final mobile changed-boundary pass after PC milestone; no new OS/mobile/actual-screen-reader scope in this run"
+    "Operator global PC, felt balance, art and hardware acceptance; mobile after PC milestone"
   ],
   "blockers": [
     "Operator global PC/art/felt-balance/hardware acceptance open; no autonomous economy/reward/elite adjustment",
@@ -58,7 +51,7 @@
     "Mobile boundary after PC milestone",
     "Conditional audiovisual roadmap under OD-2026-10-17-A"
   ],
-  "nextAction": "On the current PC candidate, judge preparation clarity and felt rest cost before Chasseurs du Sceau using PC_PLAYTEST.md and retained failed/prepared Lot E examples (same hunters_a variant, different teams/health; not a controlled difficulty comparison). Correct only a demonstrated player-facing defect. Final balance/economy/elite/art/hardware/global-PC verdict stays operator-held; no autonomous rebalance, unchanged campaign/Garen/control replay or mobile micro-PASS. Mobile remains deferred until PC milestone; Bois-Clair nightplate external asset stays isolated.",
+  "nextAction": "On current PC candidate, operator judges preparation and felt rest cost before Chasseurs du Sceau using PC_PLAYTEST retained failed/prepared examples and now explicit full-rest effect. Correct only a demonstrated player defect; no autonomous economy/elite/art changes or accepted-campaign replay. Mobile deferred until PC milestone.",
   "taskQueue": [
     "DEMO-PC-GLOBAL-ACCEPTANCE: PRIORITY; demonstrated gaps and operator verdicts",
     "DEMO-PC-BALANCE-ART: PRIORITY; actual preparation/economy/atlas review",
@@ -69,8 +62,8 @@
     "COMBAT-VFX-CHOREOGRAPHY: CONDITIONAL_AFTER_MUSIC; presentation only"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SCOPED_RESULT_HEALTH_SET1.4.0; GLOBAL_PC_ACCEPTANCE_OPEN",
-  "commitReferenceScope": "Source checkpoint f0fde9a published/live verified; final workflow checkpoint is the Git commit containing this state. Final transport/parity/lock release is recorded in automation memory. Nested historical ledgers retain original source/acceptance.",
+  "contractComplianceStatus": "PASS_SCOPED_REST_CLARITY_SET1.4.0; GLOBAL_PC_ACCEPTANCE_OPEN",
+  "commitReferenceScope": "Source checkpoint 7e69a90 published/live verified; final workflow checkpoint is the Git commit containing this state. Final transport/parity/lock release is recorded in automation memory. Nested historical ledgers retain original source/acceptance.",
   "operatorAuthorization": "OD-2026-10-17-A directly prioritizes global PC acceptance, felt balance and art before mobile; conditional audiovisual roadmap. Publication OD-2026-10-12-A retained. No scheduler or LOCKED changes.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -141,18 +134,19 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "rpgthreejs-auto-dev-90m-20261017T2135",
+  "runId": "rpgthreejs-auto-dev-90m-20261018T0355",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-17T22:06:24.983Z",
+  "lastHeartbeat": "2026-10-18T04:02:35.571Z",
   "wip": {
     "branch": null,
-    "sha": null,
+    "sha": "7e69a904f1720487773e9a8d7c50cdf49444c233",
+    "checkpointBranch": "dev",
     "dirtyFiles": [],
     "status": "GREEN",
-    "lastGreenCheck": "2026-10-17T22:06:24.983Z"
+    "lastGreenCheck": "2026-10-18T04:02:35.571Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-18T03:46:35.555Z",
+    "lastHeartbeat": "2026-10-18T04:02:35.571Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -35026,17 +35020,133 @@
         "resultPath": "tmp/demo/result-health-0327/results.json",
         "resultSha256": "80c7bfbd38aabffe094ab39a3bf9d0d302c9a317dcecfb6b580e03635bed92fe",
         "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "refuge-rest-0355",
+        "runId": "rpgthreejs-auto-dev-90m-20261018T0355",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-18T03:59:55.757Z",
+        "pid": 9040,
+        "port": 5436,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 5,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "direct",
+          "checkpointPoiId": null,
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-next-turn-2141/results.json",
+          "verifySalvation": false,
+          "verifyRefugeRest": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD",
+          "EXACT_NATIVE_REFUGE_REST_CLARITY"
+        ],
+        "output": "tmp/demo/refuge-rest-0355",
+        "receiptPath": "tmp/demo/refuge-rest-0355/qa-job.json",
+        "provenance": {
+          "gitHead": "7e69a904f1720487773e9a8d7c50cdf49444c233",
+          "sourceTree": "9908ed13b6ddda9966f9d6323f7c8a54a1770fa6",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "42906bd0170ed33ec2d9c4beef9bcf26870fed35b66109d7619faf45fe4a0873"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+              "sha256": "788dc78ad6b274225261c755b2cd1e69a35a0c7579aa7938228a9d42fef8d1a1"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-next-turn-2141/results.json",
+              "sha256": "835b785fa0740d5241b8be904b8d57f729c92f37f0973c6786e8ccbc20dbfd24"
+            }
+          ],
+          "receiptToolSha256": "812b07b9f1f6b81f536e7319d191a82d585ac8c22ac3fef267e7ed64faaf50b4",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-PR9wVUT1.js",
+              "sha256": "70fc35d1c926b4c17f9fcc0370d058c804142539fa42673626b25da28f922989"
+            },
+            {
+              "path": "dist/assets/combat-BgnTtqFd.css",
+              "sha256": "dd876226810e04e18127ef93803ded1e68dcbe3acafdb0ab346f1aa557c13978"
+            },
+            {
+              "path": "dist/assets/combat-Ct5bloit.js",
+              "sha256": "b71ae181ac3b32fada292d8299a540de64d254a0376c55e429595dce42247974"
+            },
+            {
+              "path": "dist/assets/game-C8NgraHq.js",
+              "sha256": "d5999ab08da4d81f91c0b118cb132c7f61089e04422f725aef5812b1871177e8"
+            },
+            {
+              "path": "dist/assets/game-UCVpfDso.css",
+              "sha256": "3a6792bea9c0a10ef31f43a6603dff78e21628c7028007552cea653e1f4d80fa"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "5d6a1e7f7649d0ebcb527410b2a602c90ef614c661bad90d3effcbda27dcdeee"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-18T03:59:57.385Z",
+        "endedAt": "2026-10-18T04:00:07.967Z",
+        "exitCode": 0,
+        "resultPath": "tmp/demo/refuge-rest-0355/results.json",
+        "resultSha256": "ba168d6335c6ffbd7c7f248c532aa223a2b4a70bb2c92ff004e71bbb18e29b43",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": {
       "branch": null,
-      "sha": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
+      "sha": "7e69a904f1720487773e9a8d7c50cdf49444c233",
       "checkpointBranch": "dev",
       "dirtyFiles": [],
       "status": "GREEN",
-      "lastGreenCheck": "2026-10-18T03:46:35.555Z"
+      "lastGreenCheck": "2026-10-18T04:02:35.571Z"
     },
-    "nextAction": "On the current PC candidate, judge preparation clarity and felt rest cost before Chasseurs du Sceau using PC_PLAYTEST.md and retained failed/prepared Lot E examples (same hunters_a variant, different teams/health; not a controlled difficulty comparison). Correct only a demonstrated player-facing defect. Final balance/economy/elite/art/hardware/global-PC verdict stays operator-held; no autonomous rebalance, unchanged campaign/Garen/control replay or mobile micro-PASS. Mobile remains deferred until PC milestone; Bois-Clair nightplate external asset stays isolated.",
+    "nextAction": "On current PC candidate, operator judges preparation and felt rest cost before Chasseurs du Sceau using PC_PLAYTEST retained failed/prepared examples and now explicit full-rest effect. Correct only a demonstrated player defect; no autonomous economy/elite/art changes or accepted-campaign replay. Mobile deferred until PC milestone.",
     "runMetrics": {
       "runtimeSourceFilesModified": 1,
       "testFilesModified": 1,
@@ -39195,7 +39305,7 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "rpgthreejs-auto-dev-90m-20261018T0327",
+    "runId": "rpgthreejs-auto-dev-90m-20261018T0355",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-18T03:27:26Z",
@@ -42168,6 +42278,46 @@
         "QA_EVIDENCE": "PASS_SCOPED genuine changed-boundary native victory, stable provenance and inspected capture",
         "REPOSITORY_GOVERNANCE": "PASS"
       }
+    },
+    "restClarity0355": {
+      "status": "ACCEPTED_SCOPED",
+      "at": "2026-10-18T04:01:22.401Z",
+      "jobId": "refuge-rest-0355",
+      "acceptance": "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_REST_CLARITY",
+      "sourceCommit": "7e69a904f1720487773e9a8d7c50cdf49444c233",
+      "resultSha256": "ba168d6335c6ffbd7c7f248c532aa223a2b4a70bb2c92ff004e71bbb18e29b43",
+      "receiptSha256": "98f6de1b9c4acfc1b11b9769a6800aae0d7e00e3ed14946a1c20d86e544ff9f1",
+      "driverSha256": "42906bd0170ed33ec2d9c4beef9bcf26870fed35b66109d7619faf45fe4a0873",
+      "checks": {
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
+      },
+      "played": "Certified first-refuge native Clan health inspection, keyboard Rest30gold (75to45),2heroes1HPtoMax, healthy disabled Rest/Clan focus, native map exit/exact earned reload; no new combat",
+      "capturesInspected": [
+        "refuge-rest-effect-before-payment.png",
+        "refuge-rest-paid-full-health.png",
+        "refuge-rest-prepared-reloaded.png"
+      ],
+      "limits": [
+        "PC1366x768 normal only",
+        "K.O. inclusion owner-source-supported only; no new nativeKO",
+        "Pre-payment capture is dark during transition; no settled background/art acceptance",
+        "No OS/mobile/actualscreenreader/global-demo/economy/elite/art/hardware judgement"
+      ],
+      "historicalQaJobsPreserved": 318,
+      "qaJobsTotal": 319,
+      "deferredObjectsPreserved": true,
+      "rawReceiptAcceptanceUnchanged": "NOT_ACCEPTED",
+      "worker": {
+        "pid": 9040,
+        "port": 5436,
+        "status": "worker9040Absent/port5436Free host-verified 2026-10-18T04:01:33.934Z"
+      },
+      "guardian": "Independent contracts-guardian final PASS; seed/proof/diff/current hashes/6flags and all3captures inspected"
     }
   },
   "previousInterruptedRun": {
@@ -45760,6 +45910,19 @@
     "taskComplete": false,
     "newLabelBrowser": "OPEN"
   },
-  "lastSnapshotCommit": "f0fde9ada2aa75d157445e8cbc376b1f0988149c",
-  "lastSnapshotAt": "2026-10-18T03:46:35.555Z"
+  "lastSnapshotCommit": "7e69a904f1720487773e9a8d7c50cdf49444c233",
+  "lastSnapshotAt": "2026-10-18T04:02:35.571Z",
+  "runMetrics": {
+    "runtimeSourceFiles": 1,
+    "sourceTestFiles": 1,
+    "existingQaFiles": 2,
+    "qaHelperTestFiles": 1,
+    "newPersistentQaFiles": 0,
+    "promotedProofFiles": 0,
+    "productDocs": 1,
+    "workflowFiles": 4,
+    "inheritedWipFiles": 0,
+    "browserScenarios": 1,
+    "reviewers": 1
+  }
 }

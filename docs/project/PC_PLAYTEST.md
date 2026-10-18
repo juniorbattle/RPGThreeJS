@@ -34,6 +34,8 @@ Le [bilan économique Lot E](../reports/lot-e-final-2026-10-15.md) fournit des p
 
 Point de revue concret : **la préparation avant les Chasseurs du Sceau**. La tentative perdue déployait Marian, Alistair, Cedric et Elara, ces deux derniers à 1 PV. La continuation gagnée avait payé 30 or de repos et déployait Marian, Alistair, Garen et Cedric ; Garen et Cedric finissent K.O. puis récupèrent à 1 PV selon la règle existante. La variante est la même (`poi_seal_hunters_a`), mais les équipes et leur santé diffèrent : ce sont des exemples de préparation, pas une mesure contrôlée de difficulté. Juger maintenant la lisibilité des PV/soins/repos et le coût ressenti de cette préparation, avant tout ajustement proposé.
 
+Le bouton **Repos** indique désormais son effet avant paiement : « Restaure tous les PV, K.O. inclus. », à côté du nombre de blessés et du coût total existant. Consulter Clan pour comparer les PV actuels/maximaux avant de choisir. La vérification native PC au premier refuge a payé 30 or pour deux héros à 1 PV, retrouvé les PV maximaux et conservé exactement la partie après recharge ; elle ne juge pas le tarif ni la difficulté des Chasseurs.
+
 Prochaine action de revue : prendre la lignée complétiste et ses captures conservées dans le rapport Lot E, confronter préparation/rencontres/atlas à cette grille, puis ouvrir **un seul écart joueur concret** à corriger ou une décision précise à juger. Réutiliser les preuves compatibles ; ne pas rejouer la campagne pour accumuler des validations identiques.
 
 ## Acceptation encore ouverte

@@ -1,16 +1,16 @@
-# PC result health — native scoped acceptance
+# PC refuge rest clarity — native scoped acceptance
 
-READY_FOR_PC_ACCEPTANCE. Run rpgthreejs-auto-dev-90m-20261018T0327; started 2026-10-18T03:27:26Z; ended 2026-10-18T03:46:35.555Z. Source f0fde9a normally published/live verified; final state/publication closure is the containing Git commit and automation memory. Global PC/balance/art remains operator-held under OD-2026-10-17-A; mobile deferred.
+READY_FOR_PC_ACCEPTANCE. Run rpgthreejs-auto-dev-90m-20261018T0355; started 2026-10-18T03:55:14Z; ended 2026-10-18T04:02:35.571Z. OD-2026-10-17-A global PC acceptance priority; mobile deferred.
 
-Product: result now shows each participant's exact owner-provided final-combat HP/maxHP alongside Debout/K.O. Caption distinguishes later campaign1HP victory recovery; missing legacy values remain absent. No tactical rules, rewards, callbacks, wave logic, V6 or canon changed.
+Product: Rest now explicitly states “Restaure tous les PV, K.O. inclus.” while wounded, alongside existing count/total or insufficient-gold explanation. Existing management owner heals to maxHP; no cost, callback, save schema, canon, art or combat rule changed. Healthy text and enabled state retained.
 
-ONE earned result-health-0327 PC1366normal victory at opening-wolves:4rounds28actions. Alistair125/140, Marian100/100, Elara30/75, Kestrel56/90 exactly match deployed runtime; automatic visible Continue focus, bounded rows/text/control, observation owner/save bytes, native map return and exact earned checkpoint reload verified. Root2captures/guardian result inspected. ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_RESULT_HEALTH. All6current eligibility checks true; result80c7bfbd38aabffe094ab39a3bf9d0d302c9a317dcecfb6b580e03635bed92fe; raw receipt NOT_ACCEPTED untouched. Separate live.resultHealth0327 and ignored terminal-audit record reviewed scope. No fresh native KO/defeat/OS/mobile/actualscreenreader/art/balance/global-demo claim.
+Two meaningful DOM red-before failures;66 current source tests +21 helper tests, production build/types,8contracts8slots, immutable/working LOCKED, syntax and whitespace PASS. Existing runner gets a receipt-bound opt-in for certified first-refuge preparation; defaults unchanged. Guardian review and proof accepted scoped in live.restClarity0355 / handoff.
 
-One meaningful red-before;19presentation+20helper tests, types/fresh build/8MP4/contracts8slots8/immutable-workingLOCKED/whitespace/syntax PASS. Independent guardian final PASS_SCOPED. Garen/catalog/CombatBridge and accepted controls/campaign scopes retained without replay.317historical jobs and both actual deferred objects preserved;318total. Old quota-interrupted lock archived after terminal/host-worker/live-parity verification; no inherited WIP. Worker16620 absent/5435free; unrelated servers untouched.
+ONE native PC1366normal continuation from certified campaign-next-turn-2141: actual Clan pre-rest maxima,2members at1HP,30gold total,75→45, full-health exact transaction/autosave, healthy disabled Rest with safe Clan focus, native map exit/earned exact reload.3 captures inspected; no fresh combat, nativeKO, OS/mobile, actualAT, economy/art/global-demo verdict. Raw receipt NOT_ACCEPTED unchanged; separate reviewed acceptance.
 
-Counts runtime2/sourceTests1/helperTests1/existingQA2/newPersistentQA0/promotedProof0/productDocs1/workflow4/inherited0/browser1/reusedReviewer1. Constitution/campaign/combat/save/UI/QA/governance PASS scoped; art/characters/environments/narrative-presentation/navigation N/A. Set1.4.0; no LOCKED rule changed. No economy/elite/atlas/media/Traversal/scheduler change.
+Counts runtime1/sourceTest1/existingQA2/helperTest1/newPersistentQA0/promotedProof0/productDoc1/workflow4/inherited0/browser1/reviewer1. Historical318jobs and both deferred objects preserved;319jobs total. Set1.4.0 unchanged; no LOCKED rule changed.
 
-Next ONE product action: On the current PC candidate, judge preparation clarity and felt rest cost before Chasseurs du Sceau using PC_PLAYTEST.md and retained failed/prepared Lot E examples (same hunters_a variant, different teams/health; not a controlled difficulty comparison). Correct only a demonstrated player-facing defect. Final balance/economy/elite/art/hardware/global-PC verdict stays operator-held; no autonomous rebalance, unchanged campaign/Garen/control replay or mobile micro-PASS. Mobile remains deferred until PC milestone; Bois-Clair nightplate external asset stays isolated.
+Next ONE product action: On current PC candidate, operator judges preparation and felt rest cost before Chasseurs du Sceau using PC_PLAYTEST retained failed/prepared examples and now explicit full-rest effect. Correct only a demonstrated player defect; no autonomous economy/elite/art changes or accepted-campaign replay. Mobile deferred until PC milestone.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -333,6 +333,7 @@ Next ONE product action: On the current PC candidate, judge preparation clarity 
 - council-continuation-2234: SUCCEEDED; port 5433; receipt `tmp/cinematics/council-continuation-2234/qa-job.json`; NOT_ACCEPTED
 - dialogue-names-2310: SUCCEEDED; port 5434; receipt `tmp/cinematics/dialogue-names-2310/qa-job.json`; NOT_ACCEPTED
 - result-health-0327: SUCCEEDED; port 5435; receipt `tmp/demo/result-health-0327/qa-job.json`; NOT_ACCEPTED
+- refuge-rest-0355: SUCCEEDED; port 5436; receipt `tmp/demo/refuge-rest-0355/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 Closeout 2026-10-17T23:13:04.639Z: PC guide checkpoint a0ee1afafbd93ed7b1fdf118dad60894f41a781f published; final workflow commit and owned-lock retirement follow. Root/live aliases aligned;317jobs retain original receipts and316historical dispositions.
