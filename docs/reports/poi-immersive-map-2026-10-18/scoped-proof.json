@@ -1,0 +1,156 @@
+{
+  "runId": "codex-poi-ui-20261018T1903",
+  "at": "2026-10-18T19:24:40.534Z",
+  "checks": {
+    "provenanceMatches": true,
+    "provenanceStable": true,
+    "requestMatches": true,
+    "matchesCurrentExecution": true,
+    "resultDigestMatches": true,
+    "eligibleForReview": true
+  },
+  "sourceCommit": "36a4199325ca20f207509d9d23c102c5f44ae481",
+  "sourceTree": "87e7aef63c4ebb5fefe7f057fa6e436f92bad25f",
+  "resultSha256": "89cce7cc295dcd6f00501726547d3774b3667479389a71288f5443e5c9cd41b0",
+  "receiptSha256": "04cee01fcd0e16e80a2865d095cc07ee5b9b441680cc99abe030ff50644d527a",
+  "driverSha256": "60899846c976d982c837c27a4798cd7c97dad99797f844bace3dd5fe1e8d5b3d",
+  "build": [
+    {
+      "path": "dist/assets/ReducedMotion-CuFr1fl1.js",
+      "sha256": "0fa0ebe3db613f553a8b2aba99eb97fbe69e501d3dc0e339a22a3c1331a55e50"
+    },
+    {
+      "path": "dist/assets/combat-DG7ZUtBq.css",
+      "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+    },
+    {
+      "path": "dist/assets/combat-okohYAhc.js",
+      "sha256": "6a6a22aa824a2ff7178e7bc26ef8d95fcab262d73dbddbf09f47be321b74da99"
+    },
+    {
+      "path": "dist/assets/game-B-bx0n4v.css",
+      "sha256": "f10790e46a27512feff34e1d6b7b6e133958509bdf5dc309e54b20a6f55f9de5"
+    },
+    {
+      "path": "dist/assets/game-B5dQ8L-i.js",
+      "sha256": "9598abaf80ec0afbc434da0ec383e9ac2da8348dbffd0d67e24f4a12de456048"
+    },
+    {
+      "path": "dist/assets/three-core-f0ajj1rG.js",
+      "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+    },
+    {
+      "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+      "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+    },
+    {
+      "path": "dist/assets/validation-mSkvzYyn.js",
+      "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "c320500389587267eb4f3259a7101755598c2cc1c2b3fc4cfb64cfcae199c2d8"
+    }
+  ],
+  "layouts": [
+    {
+      "size": {
+        "width": 1366,
+        "height": 768
+      },
+      "land": {
+        "x": 0,
+        "y": 67,
+        "width": 1366,
+        "height": 640,
+        "right": 1366,
+        "bottom": 707
+      },
+      "canvas": {
+        "x": 0,
+        "y": 67,
+        "width": 1366,
+        "height": 739.90625,
+        "right": 1366,
+        "bottom": 806.90625
+      },
+      "panel": {
+        "x": 976,
+        "y": 0,
+        "width": 390,
+        "height": 768
+      }
+    },
+    {
+      "size": {
+        "width": 620,
+        "height": 780
+      },
+      "land": {
+        "x": 0,
+        "y": 154,
+        "width": 620,
+        "height": 520.609375,
+        "right": 620,
+        "bottom": 674.609375
+      },
+      "canvas": {
+        "x": -341,
+        "y": 154,
+        "width": 961.125,
+        "height": 520.609375,
+        "right": 620.125,
+        "bottom": 674.609375
+      },
+      "panel": {
+        "x": 230,
+        "y": 0,
+        "width": 390,
+        "height": 780
+      }
+    },
+    {
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "land": {
+        "x": 0,
+        "y": 154,
+        "width": 390,
+        "height": 584.609375,
+        "right": 390,
+        "bottom": 738.609375
+      },
+      "canvas": {
+        "x": -689,
+        "y": 154,
+        "width": 1079.265625,
+        "height": 584.59375,
+        "right": 390.265625,
+        "bottom": 738.59375
+      },
+      "panel": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "newBattles": 0,
+  "nativeMoves": 4,
+  "exactReload": true,
+  "ownerAndSaveBeforeMotion": true,
+  "fixtureStateWritten": false,
+  "runtimeMutated": false,
+  "combatOutcomeInjected": false,
+  "capturesInspected": [
+    "poi-immersive-1366.png",
+    "poi-immersive-620.png",
+    "poi-immersive-390.png",
+    "poi-help-390.png",
+    "poi-travel-committed.png"
+  ],
+  "scope": "First-region PC1366 normal native motion; responsive same-page layout and live CSS OS/game reduction; not all-region/art/balance/hardware/mobile-global/AT/native reduced-travel acceptance"
+}

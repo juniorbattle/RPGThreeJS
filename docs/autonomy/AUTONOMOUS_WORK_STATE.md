@@ -1,12 +1,16 @@
-# POI immersive map — operator screenshot correction
+# POI map — requested presentation correction delivered
 
-IN_PROGRESS. Run codex-poi-ui-20261018T1903, started 2026-10-18T19:03:46Z; heartbeat 2026-10-18T19:13:09.927Z. Owned execution lock. Clean dev9e17edf baseline, no inherited WIP; live remote parity verified, main unchanged.
+READY_FOR_PC_REVIEW. Run codex-poi-ui-20261018T1903; started2026-10-18T19:03:46Z; ended2026-10-18T19:26:33.504Z. Tested source36a4199 published normally to origin/dev; final closure is the containing commit.
 
-Direct operator request: less persistent text, optional help/details, discover regions progressively, map fills screen preserving POI geography, smooth presentation-only movement. Product implemented;49 current focused tests and types PASS. Existing driver extended, no new persistent tool. Guardian source/assertion review PASS. Initial native620label overlap failed and remains unseedable; corrective first-region label lift implemented without changing POI coordinates. Corrective native review pending.
+Direct operator screenshots drove optional help/details, hidden future region tabs, maximal proportional atlas and committed travel accent. Aide/Détails have modal focus/Escape restoration. Status/locked hints/menace intents and eligible fight remain outside optional help. RunSystem validates/saves before motion; no animation/V6/gameplay truth changes.
 
-Next ONE action: Build current POI UI and run one existing-driver earned first-refuge/backtracking scenario with explicit POI presentation assertions; inspect desktop/620/390 captures and committed movement. Preserve operator preview/save. Finish coherent dev checkpoint.
+49current focused tests/4files,23QA-helper tests,TypeScript/build,8contracts8slots,immutable-workingLOCKED,syntax/whitespace PASS. First native overlap failure corrected; second premature finite-drawer measurement fixed with one minimal wait and unchanged assertions. Both remain FAILED/NOT_ACCEPTED/unseedable. Final poi-immersive-1903-settled ACCEPTED_SCOPED after independent guardian/digest/capture review:4real resolved moves,0new battles, exact earned V6 reload, responsive1366/620/390 same-page geometry, drawer focus, CSS live OS/game reduction. Native reduced travel/front-intercept/all-region/AT/globalmobile/art/balance acceptance excluded. Raw success receipt remains NOT_ACCEPTED; reviewed disposition in live.poiUi1903.
 
-Global PC/balance/art/hardware verdict remains open; mobile deferred; external Bois-Clair nightplate isolated. Historical QA/deferred objects retained in JSON, source proof scopes unchanged. No LOCKED, canon, V6, economy, elite, media or scheduler changes.
+321historical QA jobs and deferredDemoTask/pendingNarrativeTask exact;324total. Runtime3/sourceTests2/existingQA2/helperTests1/newPersistentQA0/promotedProof4/productDocs1/workflow4/inheritedWIP0/browser3(two retained failures + scoped success). Scheduler and operator preview5438 preserved.
+
+Next ONE action: On the current PC candidate at5438, review the requested enlarged POI map, optional Aide/Détails and native travel from the existing save; correct any demonstrated remaining defect. Preserve accepted proof. Rest-price/art/balance verdicts remain operator work and do not block independent authorized PC finishing. Do not replay unchanged campaigns or restore physical Traversal.
+
+GlobalPC/art/balance/hardware verdicts open; mobile deferred; Bois-Clair external nightplate isolated. See report docs/reports/poi-immersive-map-2026-10-18.md and handoff.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -332,5 +336,7 @@ Global PC/balance/art/hardware verdict remains open; mobile deferred; external B
 - refuge-rest-0355: SUCCEEDED; port 5436; receipt `tmp/demo/refuge-rest-0355/qa-job.json`; NOT_ACCEPTED
 - deployment-health-0503: STOPPED_VISUAL_REGRESSION; port 5437; receipt `tmp/demo/deployment-health-0503/qa-job.json`; NOT_ACCEPTED
 - deployment-health-0503-fixed: SUCCEEDED; port 5437; receipt `tmp/demo/deployment-health-0503-fixed/qa-job.json`; NOT_ACCEPTED
-- poi-immersive-1903: PLANNED; port 5442; receipt `tmp/demo/poi-immersive-1903/qa-job.json`; NOT_ACCEPTED
+- poi-immersive-1903: FAILED; port 5442; receipt `tmp/demo/poi-immersive-1903/qa-job.json`; NOT_ACCEPTED
+- poi-immersive-1903-fixed: FAILED; port 5442; receipt `tmp/demo/poi-immersive-1903-fixed/qa-job.json`; NOT_ACCEPTED
+- poi-immersive-1903-settled: SUCCEEDED; port 5442; receipt `tmp/demo/poi-immersive-1903-settled/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

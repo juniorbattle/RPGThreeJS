@@ -825,6 +825,8 @@ async function inspectPoiPresentation(){
     await keyboardActivate('.poi-map [data-poi-action="help"]');
     const panel=page.locator('#poi-map-panel');assert.equal(await panel.getAttribute('role'),'dialog');
     assert.equal(await page.locator('[data-poi-action="close-panel"]').evaluate(e=>e===document.activeElement),true);
+    // Measure the settled drawer, after its finite native entrance transition.
+    await panel.evaluate(async element=>{await Promise.all(element.getAnimations().map(animation=>animation.finished));});
     const bounds=await panel.boundingBox();assert.ok(bounds.x>=0&&bounds.y>=0&&bounds.x+bounds.width<=size.width+1&&bounds.y+bounds.height<=size.height+1);
     assert.equal(await page.locator('.poi-map__viewport').evaluate(e=>e.inert),true);
     await capture(`poi-help-${size.width}`);await page.keyboard.press('Escape');

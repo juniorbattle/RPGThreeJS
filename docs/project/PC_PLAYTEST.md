@@ -1,12 +1,18 @@
 # Préparation du playtest PC
 
-État au 17 octobre 2026 : candidat de travail sur `dev`, acceptation finale opérateur ouverte. La navigation POI V2/Lot E est livrée dans les portées du [rapport Lot E](../reports/lot-e-final-2026-10-15.md). La [file de finition](../autonomy/DEMO_COMPLETION_PLAN.md) distingue les corrections vérifiées des critères encore ouverts.
+État au 18 octobre 2026 : candidat de travail sur `dev`, acceptation finale opérateur ouverte. La navigation POI V2/Lot E est livrée dans les portées du [rapport Lot E](../reports/lot-e-final-2026-10-15.md). La [file de finition](../autonomy/DEMO_COMPLETION_PLAN.md) distingue les corrections vérifiées des critères encore ouverts.
 
 ## Lancer la campagne
 
 Depuis le dépôt, exécuter `npm install` si nécessaire, puis `npm run build` et `npm run preview -- --host 127.0.0.1 --port 4173 --strictPort`. Ouvrir `http://127.0.0.1:4173/` dans un navigateur PC. Si le port est occupé, choisir un autre port libre et garder cette adresse pendant le test : les sauvegardes du navigateur dépendent aussi de l'origine et du profil utilisés.
 
 Pour un nouveau parcours, utiliser un profil de navigateur distinct afin de conserver la partie habituelle. Pour vérifier une reprise, revenir à la même adresse dans le même profil et utiliser Continuer. Le parcours normal part du menu et reste dans la campagne, y compris pendant le combat intégré.
+
+## Carte épurée : repères disponibles à la demande
+
+La carte occupe désormais l'espace entre l'en-tête compact et les actions du lieu sélectionné. **Aide** ouvre le volet de commandes et de légende ; **Détails** y affiche aussi le contexte du lieu. Fermer ou Escape rend le focus au bouton utilisé. Les avertissements de menaces, leur prochain déplacement et les actions disponibles restent visibles sans ouvrir le volet.
+
+Les onglets de région apparaissent à mesure que la compagnie atteint ces régions ; les régions acquises restent consultables en revenant sur ses pas. Le fond, les tracés et les POI gardent leurs proportions communes. Une brève lumière suit le chemin après un déplacement validé et sauvegardé ; le mouvement réduit du jeu ou du système supprime cette animation. Juger maintenant si le gain d'espace et les repères à la demande rendent la navigation plus confortable.
 
 ## Parcours et observations utiles
 
