@@ -1212,6 +1212,7 @@ async function verifyDeploymentHealth(frame,entry,phase){
       const rect=e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height};};
       return [...document.querySelectorAll('#menu .deploy-card')].map(e=>({id:e.dataset.unit,label:e.getAttribute('aria-label'),
         health:e.querySelector('.deploy-card__health')?.textContent,bounds:rect(e),
+        healthFits:[...e.querySelectorAll('.deploy-card__health')].every(h=>h.scrollWidth<=h.clientWidth&&h.scrollHeight<=h.clientHeight),
         healthBounds:e.querySelector('.deploy-card__health')?rect(e.querySelector('.deploy-card__health')):null,
         stateBounds:rect(e.querySelector('.deploy-card__state')),deployed:e.classList.contains('is-deployed')}));
     }));
@@ -1223,6 +1224,7 @@ async function verifyDeploymentHealth(frame,entry,phase){
     const unit=before.roster[index],health=`${unit.hp} / ${unit.maxhp} PV`;
     assert.ok(Number.isFinite(unit.hp)&&Number.isFinite(unit.maxhp)&&unit.hp>=0&&unit.maxhp>0);
     assert.equal(row.health,health);assert.ok(row.label.includes(health));assert.ok(row.label.includes(unit.name));
+    assert.equal(row.healthFits,true,'Deployment HP text is truncated');
     assert.equal(row.deployed,before.deployed.some(u=>u.id===row.id));
     for(const r of [row.bounds,row.healthBounds,row.stateBounds])assert.ok(r&&r.width>0&&r.height>0&&r.x>=0&&r.y>=0&&r.x+r.width<=viewport[0]+1&&r.y+r.height<=viewport[1]+1,'Deployment health or state clipped');
     const r=row.healthBounds,b=row.bounds,s=row.stateBounds;

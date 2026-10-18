@@ -7,7 +7,7 @@ body.reduced-graphics .tutorial-page.active{animation:none}
 #ui:has(#menu.deploy-roster) #hud-right-stack,
 #ui:has(#menu.deploy-roster) #help{display:none}
 #ui:has(#menu.deploy-roster) #hint{top:14px;left:50%;max-width:min(420px,35vw);font-size:11px}
-#menu.deploy-roster{left:14px;bottom:14px;width:300px;max-height:calc(100dvh - 112px);gap:8px;padding:12px;overflow:auto;border-color:var(--campaign-brass);border-radius:4px;background:linear-gradient(155deg,#112839,#061421 68%,#030b15);box-shadow:inset 0 0 0 2px #030b15,inset 0 0 0 3px #a5834c88,0 16px 38px #000b}
+#menu.deploy-roster{left:14px;bottom:14px;width:332px;max-height:calc(100dvh - 112px);gap:8px;padding:12px;overflow:auto;border-color:var(--campaign-brass);border-radius:4px;background:linear-gradient(155deg,#112839,#061421 68%,#030b15);box-shadow:inset 0 0 0 2px #030b15,inset 0 0 0 3px #a5834c88,0 16px 38px #000b}
 .deploy-head{padding:1px 1px 8px;border-bottom:1px solid #b58d5255;font:700 15px var(--campaign-title-font);letter-spacing:.1em;color:var(--campaign-ivory)}
 .deploy-head b{padding:3px 6px;border:1px solid #6eaec177;border-radius:2px;background:#12384a;color:#c4f1ff;font:700 10px var(--campaign-data-font);letter-spacing:0;text-transform:none}
 .deploy-list{gap:6px}
@@ -23,7 +23,7 @@ body.reduced-graphics .tutorial-page.active{animation:none}
 .deploy-card__copy b{font:700 13px/1.05 var(--campaign-title-font);color:var(--campaign-ivory);white-space:nowrap}
 .deploy-card__copy small{font:600 10px/1.1 var(--campaign-data-font);color:var(--campaign-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .deploy-card__state{right:8px;bottom:6px;color:#99b2bd;font:700 8px var(--campaign-data-font);letter-spacing:.05em;text-transform:uppercase}
-  .deploy-card__copy .deploy-card__health{color:var(--campaign-ivory);font-variant-numeric:tabular-nums}
+  .deploy-card__copy .deploy-card__health{color:var(--campaign-ivory);font-variant-numeric:tabular-nums;text-overflow:clip}
 .deploy-card.is-deployed .deploy-card__state{color:#9edce9}
 .deploy-pages{min-height:24px;gap:10px;color:var(--campaign-muted);font:700 10px var(--campaign-data-font)}
 .deploy-pages button{min-width:27px;height:24px;padding:0;border-color:#b9955d66;border-radius:2px;background:#0b2230;font-size:18px;line-height:20px}
