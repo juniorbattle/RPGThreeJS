@@ -5,7 +5,7 @@ RPGThreeJS is a narrative tactical RPG with an authored campaign (Vite, TypeScri
 ## Authority and reading order
 
 1. Explicit operator decisions: `docs/autonomy/OPERATOR_DECISIONS.md` and the files it links.
-2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.4.0: approved amendment `PRODUCTION-CONTRACTS-POI-LOT-E-1` / OD-2026-10-15-B, immutable baseline `f9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
+2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.5.0: approved amendment `PRODUCTION-CONTRACTS-LAST-SAVE-RELOAD-1` / OD-2026-10-18-C, immutable baseline `d1031ec02977379279a3c07eefa58edc8cab7246`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
 3. Current source: it states what is implemented today.
 4. Canonical docs (`docs/project/`, `docs/traversal/`, `docs/content/`), then dated reports in `docs/reports/`. Reports are historical evidence, never doctrine.
 
@@ -13,7 +13,7 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 
 ## Red lines
 
-- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code f9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
+- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code d1031ec02977379279a3c07eefa58edc8cab7246 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
 - Presentation never creates or changes game truth (route, outcome, resource, save). Truth owners: `RunSystem` and campaign relations, versioned saves, tactical combat. `GameApp` coordinates lifecycle and handoffs only.
 - Exactly eight video slots (`src/cinematics/ApprovedProductionVideos.ts`). No ninth slot, no enemy-reveal or routine video. A prologue or first-refuge video needs a dedicated contract task first.
 - Recurring runs never generate or poll video or keyframes (no MiniMax) and never replace an MP4. Media remaster is an external manual workstream.
