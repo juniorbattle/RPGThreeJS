@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.4.0",
+  "contractSetVersion": "1.5.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -77,6 +77,21 @@
       "successorDoctrine": "POI_MAP_LOT_E_EXPLORATION",
       "supersededRule": "Inactive V1 chest/elite proposals; content placement now explicitly approved for the exact Lot E annex",
       "implementationAcceptance": "PENDING; full E1-E5 technical/native delivery required, operator art/final balance separate"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-LAST-SAVE-RELOAD-1",
+      "operatorDecisionId": "OD-2026-10-18-C",
+      "operatorDecisionPath": "docs/autonomy/LAST_SAVE_RELOAD_OPERATOR_DECISION_2026-10-18.md",
+      "approvedAt": "2026-10-18",
+      "changedContracts": [
+        "CAMPAIGN_AND_STATE",
+        "TRAVERSAL",
+        "COMBAT_AND_VFX",
+        "AUTHORING_AND_QA"
+      ],
+      "constitutionChanged": true,
+      "supersededRule": "Unsecured loot lost at checkpoint relocation; rewards now usable immediately and defeat reloads the selected last actual save",
+      "implementationAcceptance": "PENDING; exact ordinary/elite recovery, legacy consolidation and native evidence required"
     }
   ],
   "status": "LOCKED",

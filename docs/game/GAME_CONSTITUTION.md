@@ -12,7 +12,7 @@ The final visual direction is modern pixel art / HD-2D fantasy JRPG and tactical
 
 Under OD-2026-10-13-D / `PRODUCTION-CONTRACTS-POI-NAVIGATION-1`, set 1.2.0, the illustrated connected POI map is the sole final production navigation. Playable Traversal T0/T1/T3 is superseded on navigation only. Preserve authored content, T0–T4 durable identities, required causal ordering and V6 compatibility. Temporary internal migration compatibility never becomes a permanent second player mode. Campaign and RunSystem revalidate connected movement, backtracking and activation. Resolved POIs replay no effects; neutralized is distinct from resolved; unlocked refuges reuse existing services.
 
-Tactical Combat resolves gameplay. Combat Stage and VFX present resolved events and never calculate or duplicate damage, AP, statuses, or outcomes. Refuges consolidate and prepare; route loot remains temporary until secured by the existing game rules.
+Tactical Combat resolves gameplay. Combat Stage and VFX present resolved events and never calculate or duplicate damage, AP, statuses, or outcomes. Refuges prepare the party. Gameplay owners credit earned gold and items immediately to usable holdings. On defeat, restore the last valid actual save of the selected game, including its rewards, spending and resolution facts together; only unsaved changes are undone. OD-2026-10-18-C / PRODUCTION-CONTRACTS-LAST-SAVE-RELOAD-1 supersedes the former unsecured-loot/checkpoint-loss rule.
 
 Progression currently has no level or XP. Equipment, weapon tiers, two accessory slots, skill upgrades, recruitment, and materials carry progression. Exactly one weapon is equipped. Ultimates remain outside scope pending an explicit decision.
 
