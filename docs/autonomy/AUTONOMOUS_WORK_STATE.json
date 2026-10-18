@@ -1,46 +1,41 @@
 {
-  "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-18T05:03:00Z",
-  "runEndedAt": "2026-10-18T05:23:55.037Z",
-  "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
-  "activePhase": "DEPLOYMENT_HEALTH_COMPLETE_SCOPED_OPERATOR_PC_VERDICT_OPEN",
-  "activeSubtask": "Exact visible/accessible deployment HP in reserve/deployed states accepted PC1366normal",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-18T19:03:46Z",
+  "runEndedAt": null,
+  "activeTask": "POI-IMMERSIVE-MAP-UI",
+  "activePhase": "CORRECTIVE_SOURCE_GREEN_NATIVE_PENDING",
+  "activeSubtask": "Operator screenshots: optional information drawer, discovered regions, maximal atlas and committed movement",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
   "lastPushedCommit": "b8ca368d9a0b5ead99a0ce00e92d291104ba0b7b",
   "completedThisRun": [
-    "Deployment cards now show exact authoritative current/maxHP visibly and accessibly before battle",
-    "Widened desktop roster to keep full3digit values readable; no rules or save changes",
-    "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_DEPLOYMENT_HEALTH"
+    "Optional modal help/details drawer with Escape/focus restoration",
+    "Future region tabs hidden using current/resolved facts only",
+    "Atlas fills viewport without changing authored coordinates",
+    "620ms art token follows existing edge after owner save; independent motion reduction and cancellation"
   ],
   "filesChanged": [
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-18T0503Z-codex-deployment-health.md",
-    "docs/project/PC_PLAYTEST.md",
-    "src/combat/combatShellPresentation.test.ts",
-    "src/combat/combatShellPresentation.ts",
-    "src/styles/combat-shell.css",
+    "src/ui/PoiMapView.ts",
+    "src/ui/poi-map.css",
+    "src/ui/PoiMapView.test.ts",
+    "src/game/GameApp.ts",
+    "src/game/GameAppPoi.test.ts",
     "tools/demo-continuous-production-qa.mjs",
     "tools/qa/qa-job.mjs",
-    "tools/qa/qa-job.test.mjs",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md"
+    "tools/qa/qa-job.test.mjs"
   ],
   "testsRun": [
-    "76 current vitest tests/3files PASS;2 meaningful red-before failures; ignored copies excluded",
-    "22 QA-helper tests PASS",
-    "TypeScript/fresh production build/contracts8slots8/immutable-workingLOCKED/syntax/whitespace PASS",
-    "First native attempt visual rejection/owner stop; single corrective earned scenario SUCCEEDED/exit0/errors[]/all6current flags true; inspected captures/guardian PASS"
+    "49current focused tests/4files PASS incl save-throw guard; TypeScript PASS",
+    "23QA-helper tests PASS on host (sandbox Git-init denied)",
+    "Initial native UI failed unchanged620label overlap assertion; preserved FAILED/NOT_ACCEPTED/unseedable"
   ],
   "testsPassed": [
-    "76 current vitest tests/3files PASS;2 meaningful red-before failures; ignored copies excluded",
-    "22 QA-helper tests PASS",
-    "TypeScript/fresh production build/contracts8slots8/immutable-workingLOCKED/syntax/whitespace PASS",
-    "First native attempt visual rejection/owner stop; single corrective earned scenario SUCCEEDED/exit0/errors[]/all6current flags true; inspected captures/guardian PASS",
-    "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_DEPLOYMENT_HEALTH"
+    "49current focused tests/4files PASS incl save-throw guard; TypeScript PASS",
+    "23QA-helper tests PASS on host (sandbox Git-init denied)"
   ],
   "testsRemaining": [
-    "Operator global PC/art/felt-balance/hardware judgement; mobile after PC milestone"
+    "Production build and existing-runner earned native POI presentation scenario",
+    "Guardian actual diff/evidence review"
   ],
   "blockers": [
     "Operator global PC/art/felt-balance/hardware acceptance open; no autonomous economy/reward/elite adjustment",
@@ -53,7 +48,7 @@
     "Mobile boundary after PC milestone",
     "Conditional audiovisual roadmap under OD-2026-10-17-A"
   ],
-  "nextAction": "Operator judges preparation clarity and felt rest cost before Chasseurs du Sceau on current PC candidate, using PC_PLAYTEST retained failed/prepared examples and visible deployment HP/full-rest effect. Correct only a demonstrated player defect. If no new observation/verdict, retain readiness without replaying accepted campaigns or creating another QA mission. No autonomous economy/elite/art changes; mobile deferred until PC milestone.",
+  "nextAction": "Build current POI UI and run one existing-driver earned first-refuge/backtracking scenario with explicit POI presentation assertions; inspect desktop/620/390 captures and committed movement. Preserve operator preview/save. Finish coherent dev checkpoint.",
   "taskQueue": [
     "DEMO-PC-GLOBAL-ACCEPTANCE: PRIORITY; demonstrated gaps and operator verdicts",
     "DEMO-PC-BALANCE-ART: PRIORITY; actual preparation/economy/atlas review",
@@ -66,7 +61,7 @@
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SCOPED; set1.4.0 unchanged; no LOCKED rule changed; global PC/art/balance/mobile open",
   "commitReferenceScope": "lastKnownGood/accepted/implementation/wip reference tested sourcec6b9cb8; lastPushed is verified preceding workflow commit; final closure is containing Git commit, live parity/lock release recorded in automation memory.",
-  "operatorAuthorization": "OD-2026-10-17-A directly prioritizes global PC acceptance, felt balance and art before mobile; conditional audiovisual roadmap. Publication OD-2026-10-12-A retained. No scheduler or LOCKED changes.",
+  "operatorAuthorization": "Direct operator screenshot feedback in chat01a14e6a on2026-10-18 authorizes POI UI declutter, progressive region display, maximal atlas and smooth presentation-only travel; OD17A global PC art/balance verdicts remain open.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -136,19 +131,28 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "rpgthreejs-auto-dev-90m-20261018T0503",
+  "runId": "codex-poi-ui-20261018T1903",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-18T05:23:55.037Z",
+  "lastHeartbeat": "2026-10-18T19:20:27.851Z",
   "wip": {
     "branch": null,
-    "sha": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
+    "sha": "7437890233b6d1978d158a5cea3159d0f774cc2d",
     "checkpointBranch": "dev",
-    "dirtyFiles": [],
-    "status": "GREEN",
-    "lastGreenCheck": "2026-10-18T05:23:55.037Z"
+    "dirtyFiles": [
+      "src/ui/PoiMapView.ts",
+      "src/ui/poi-map.css",
+      "src/ui/PoiMapView.test.ts",
+      "src/game/GameApp.ts",
+      "src/game/GameAppPoi.test.ts",
+      "tools/demo-continuous-production-qa.mjs",
+      "tools/qa/qa-job.mjs",
+      "tools/qa/qa-job.test.mjs"
+    ],
+    "status": "GREEN_SOURCE_TESTS_PRODUCTION_PENDING",
+    "lastGreenCheck": "2026-10-18T19:20:27.851Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-18T05:23:55.037Z",
+    "lastHeartbeat": "2026-10-18T19:20:27.851Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -35370,6 +35374,111 @@
         "resultPath": "tmp/demo/deployment-health-0503-fixed/results.json",
         "resultSha256": "1d7f859188c12ca0189165b99e1a1da6b746fbc68ab58d9460aadeda5794251f",
         "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "poi-immersive-1903",
+        "runId": "codex-poi-ui-20261018T1903",
+        "status": "PLANNED",
+        "registeredAt": "2026-10-18T19:17:13.123Z",
+        "pid": null,
+        "port": 5442,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "first-refuge",
+          "routePlan": "rescue",
+          "timeoutMinutes": 10,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "direct",
+          "checkpointPoiId": null,
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-next-turn-2141/results.json",
+          "verifySalvation": false,
+          "verifyPoiPresentation": true
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD",
+          "NATIVE_POI_PRESENTATION_AND_COMMITTED_TRAVEL"
+        ],
+        "output": "tmp/demo/poi-immersive-1903",
+        "receiptPath": "tmp/demo/poi-immersive-1903/qa-job.json",
+        "provenance": {
+          "gitHead": "9e17edf7ba0cac143a5428ce9a849c71ca96cdd2",
+          "sourceTree": "e81fe66fc65017535bda434aaff2858913c5e864",
+          "sourceDiffSha256": "acf436c5d027753768ef53889e4dff9252e371c185a3d434a9d9c92f7014fc95",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "65c069e479be002eab3c0d1cb8d93bf48f5df5c55de59e2767481b8b55ec003b"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+              "sha256": "788dc78ad6b274225261c755b2cd1e69a35a0c7579aa7938228a9d42fef8d1a1"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-next-turn-2141/results.json",
+              "sha256": "835b785fa0740d5241b8be904b8d57f729c92f37f0973c6786e8ccbc20dbfd24"
+            }
+          ],
+          "receiptToolSha256": "30f973ad37c9aa5f1954f5b1fe5e60bb8efa31041ba282b6be39edc20e805d9d",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CuFr1fl1.js",
+              "sha256": "0fa0ebe3db613f553a8b2aba99eb97fbe69e501d3dc0e339a22a3c1331a55e50"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-okohYAhc.js",
+              "sha256": "6a6a22aa824a2ff7178e7bc26ef8d95fcab262d73dbddbf09f47be321b74da99"
+            },
+            {
+              "path": "dist/assets/game-BV52-3Iq.js",
+              "sha256": "c7c7e13068975282b99c6dc98e59f6a53d0e2394c217411184dd0490d821936f"
+            },
+            {
+              "path": "dist/assets/game-V9xoKnIE.css",
+              "sha256": "3b6678cd3ce384ae65c6b2be6b937f7a65690a1c73f4735e222c26668cb344e0"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "3e2c728b85be28a1579ff031b6097c19788818e1299be39227a574363ff4d035"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED"
       }
     ],
     "wip": {
@@ -43038,7 +43147,16 @@
       "rawReceiptAcceptanceUnchanged": "NOT_ACCEPTED"
     },
     "lastAcceptedProductionCommit": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
-    "implementationCommit": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6"
+    "implementationCommit": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
+    "poiUi1903": {
+      "status": "IN_PROGRESS",
+      "preflightHead": "9e17edf7ba0cac143a5428ce9a849c71ca96cdd2",
+      "newQaTool": false,
+      "qaToolReason": "Existing campaign runner extended with explicit presentation checks; no new persistent driver.",
+      "inheritedWip": 0,
+      "failedJob": "poi-immersive-1903",
+      "correction": "Only first-region outbound label lifts above its icon; all coordinates unchanged. Initial travel token placed at path origin before RAF."
+    }
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T0011",

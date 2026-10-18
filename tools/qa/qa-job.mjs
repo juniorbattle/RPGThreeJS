@@ -165,11 +165,13 @@ export function demoJobOptions(env=process.env) {
       earnedSavePath:env.DEMO_QA_EARNED_SAVE??null,priorProofPath:env.DEMO_QA_PRIOR_PROOF??null,verifySalvation:env.DEMO_QA_VERIFY_SALVATION==='1',
       ...(env.DEMO_QA_VERIFY_RESULT_HEALTH==='1'?{verifyResultHealth:true}:{}),
       ...(env.DEMO_QA_VERIFY_DEPLOYMENT_HEALTH==='1'?{verifyDeploymentHealth:true}:{}),
-      ...(env.DEMO_QA_VERIFY_REFUGE_REST==='1'?{verifyRefugeRest:true}:{})},
+      ...(env.DEMO_QA_VERIFY_REFUGE_REST==='1'?{verifyRefugeRest:true}:{}),
+      ...(env.DEMO_QA_VERIFY_POI_PRESENTATION==='1'?{verifyPoiPresentation:true}:{})},
     requiredAssertions:[...(target==='defeat-recovery'?['EXACT_V6_CHECKPOINT_RECOVERY','NATIVE_POI_CHECKPOINT_RETURN','EXACT_RELOAD']:['EARNED_LINEAGE','NATIVE_INPUTS','EXACT_RELOAD']),
       ...(env.DEMO_QA_VERIFY_RESULT_HEALTH==='1'?['EXACT_NATIVE_RESULT_HEALTH']:[]),
       ...(env.DEMO_QA_VERIFY_DEPLOYMENT_HEALTH==='1'?['EXACT_NATIVE_DEPLOYMENT_HEALTH']:[]),
-      ...(env.DEMO_QA_VERIFY_REFUGE_REST==='1'?['EXACT_NATIVE_REFUGE_REST_CLARITY']:[])]};
+      ...(env.DEMO_QA_VERIFY_REFUGE_REST==='1'?['EXACT_NATIVE_REFUGE_REST_CLARITY']:[]),
+      ...(env.DEMO_QA_VERIFY_POI_PRESENTATION==='1'?['NATIVE_POI_PRESENTATION_AND_COMMITTED_TRAVEL']:[])]};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   const [action,...args]=process.argv.slice(2), values={};

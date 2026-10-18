@@ -194,9 +194,10 @@ export class GameApp {
       onFightElite: id => this.challengePoiElite(id),
       onBypass: id => this.ignorePoi(id),
       onCompany: () => void this.openPoiCompany(),
-      onSave: () => this.saves.saveManual(this.state),
-      onMenu: () => this.renderTitle(),
+      onSave: () => {if(!this.routeCommitInFlight)this.saves.saveManual(this.state);},
+      onMenu: () => {if(!this.routeCommitInFlight)this.renderTitle();},
       onReducedMotion: () => {
+        if(this.routeCommitInFlight)return;
         this.state.settings.reducedGraphics = !this.state.settings.reducedGraphics;
         this.showPoiMap();
         this.root.querySelector<HTMLButtonElement>('[data-poi-action="motion"]')?.focus();
@@ -711,10 +712,18 @@ export class GameApp {
   private async choosePoi(nodeId: string): Promise<void> {
     if (this.mode !== 'TRAVEL' || this.routeCommitInFlight) return;
     this.routeCommitInFlight = true;
-    const entered = enterPoi(this.state, nodeId);
-    this.routeCommitInFlight = false;
-    if (!entered) {this.showPoiMap();return;}
-    this.saves.saveAuto(this.state);
+    const origin = this.state.run.currentNodeId;
+    let entered: ReturnType<typeof enterPoi>;
+    try {
+      entered = enterPoi(this.state, nodeId);
+      if (!entered) {this.showPoiMap();return;}
+      this.saves.saveAuto(this.state);
+      const travel = this.poiMap.animateTravel(origin, this.state.run.currentNodeId);
+      if (travel) await travel;
+    } finally {
+      this.routeCommitInFlight = false;
+    }
+    if (this.disposed || this.mode !== 'TRAVEL') return;
     if (entered.interception) {await this.presentPoiElite();return;}
     if (!entered.activate) {await this.enterCampaignPresentation();return;}
     this.poiMap.close();
@@ -791,7 +800,7 @@ export class GameApp {
   }
 
   private async openPoiCompany(): Promise<void> {
-    if (this.mode !== 'TRAVEL') return;
+    if (this.mode !== 'TRAVEL' || this.routeCommitInFlight) return;
     this.poiMap.close();
     await this.openManagement('clan', undefined, 'temporary', false);
     this.showPoiMap();

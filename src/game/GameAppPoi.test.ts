@@ -5,6 +5,7 @@ import { createInitialState, SaveRepository, migrateState } from './store';
 import { sceneTransition } from '../ui/SceneTransition';
 import type { GameState, RunNode } from './types';
 import { getRunNode } from './runSystem';
+import type { PoiMapView } from '../ui/PoiMapView';
 
 afterEach(()=>{document.body.replaceChildren();localStorage.clear();vi.restoreAllMocks();});
 function fixture() {
@@ -12,6 +13,7 @@ function fixture() {
   const app=new GameApp(root,document.createElement('canvas'));
   const owner=app as unknown as {
     state:GameState; mode:string;
+    poiMap:PoiMapView;routeCommitInFlight:boolean;
     resolveRunNode(node:RunNode,initial:boolean):Promise<void>;
     choosePoi(id:string):Promise<void>;ignorePoi(id:string):void;
     enterCampaignPresentation():Promise<void>;startCombat(id:string,node:RunNode):Promise<void>;
@@ -22,6 +24,35 @@ function fixture() {
   owner.state=createInitialState();return {app,owner};
 }
 describe('GameApp POI owner handoffs',()=>{
+  it('releases the intent guard on a failed save without animating or entering content',async()=>{
+    const {app,owner}=fixture();owner.mode='TRAVEL';
+    vi.spyOn(SaveRepository.prototype,'saveAuto').mockImplementation(()=>{throw new Error('Storage unavailable');});
+    const animation=vi.spyOn(owner.poiMap,'animateTravel'),content=vi.spyOn(owner,'resolveRunNode').mockResolvedValue();
+    await expect(owner.choosePoi('lion-audience')).rejects.toThrow('Storage unavailable');
+    expect(owner.routeCommitInFlight).toBe(false);expect(animation).not.toHaveBeenCalled();expect(content).not.toHaveBeenCalled();app.dispose();
+  });
+  it('saves the owner movement before animating and prevents a second intent until the content handoff',async()=>{
+    const {app,owner}=fixture();owner.mode='TRAVEL';
+    let finish!:()=>void;
+    const animation=vi.spyOn(owner.poiMap,'animateTravel').mockImplementation((from,to)=>{
+      expect([from,to]).toEqual(['lion-camp','lion-audience']);
+      expect(new SaveRepository().loadAuto()!.currentNodeId).toBe(to);
+      return new Promise<void>(resolve=>{finish=resolve;});
+    });
+    const content=vi.spyOn(owner,'resolveRunNode').mockImplementation(async()=>{expect(owner.routeCommitInFlight).toBe(false);});
+    const pending=owner.choosePoi('lion-audience');
+    expect(owner.routeCommitInFlight).toBe(true);expect(content).not.toHaveBeenCalled();
+    await owner.choosePoi('lion-opening-ambush');expect(animation).toHaveBeenCalledOnce();
+    finish();await pending;expect(content).toHaveBeenCalledOnce();expect(owner.routeCommitInFlight).toBe(false);app.dispose();
+  });
+  it('does not resume content over a disposed app after an interrupted travel animation',async()=>{
+    const {app,owner}=fixture();owner.mode='TRAVEL';let finish!:()=>void;
+    vi.spyOn(owner.poiMap,'animateTravel').mockImplementation(()=>new Promise<void>(resolve=>{finish=resolve;}));
+    const content=vi.spyOn(owner,'resolveRunNode').mockResolvedValue();
+    const pending=owner.choosePoi('lion-audience');const saved=localStorage.getItem('rpg-threejs:autosave:v6');
+    app.dispose();finish();await pending;
+    expect(content).not.toHaveBeenCalled();expect(localStorage.getItem('rpg-threejs:autosave:v6')).toBe(saved);expect(owner.routeCommitInFlight).toBe(false);
+  });
   it.each([
     ['lion-nomad-crossroads',true],['lion-reserve-trail',true],['lion-witnesses',true],
     ['lion-refugees',false],['lion-second-trial-event',false],['lion-first-trial-combat',false],

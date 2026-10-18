@@ -9,6 +9,14 @@ import { beginJob, demoJobOptions, ignoredOutput, registerJob, sameExecution, sy
 
 const syncAsOwner=job=>{const previous=process.env.AUTONOMY_QA_WORKER;delete process.env.AUTONOMY_QA_WORKER;try{return syncJobs(job);}finally{if(previous!==undefined)process.env.AUTONOMY_QA_WORKER=previous;}};
 
+test('POI presentation review records its required native travel proof only when requested',()=>{
+  const base=demoJobOptions({}),enabled=demoJobOptions({DEMO_QA_VERIFY_POI_PRESENTATION:'1'});
+  assert.equal(Object.hasOwn(base.parameters,'verifyPoiPresentation'),false);
+  assert.deepEqual(enabled.parameters,{...base.parameters,verifyPoiPresentation:true});
+  assert.deepEqual(enabled.requiredAssertions,[...base.requiredAssertions,'NATIVE_POI_PRESENTATION_AND_COMMITTED_TRAVEL']);
+  assert.deepEqual(demoJobOptions({DEMO_QA_VERIFY_POI_PRESENTATION:'0'}),base);
+});
+
 test('deployment health verification binds its requirement without changing default scenarios',()=>{
   const base=demoJobOptions({}),enabled=demoJobOptions({DEMO_QA_VERIFY_DEPLOYMENT_HEALTH:'1'});
   assert.equal(Object.hasOwn(base.parameters,'verifyDeploymentHealth'),false);

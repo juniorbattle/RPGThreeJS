@@ -1,16 +1,12 @@
-# PC deployment health — native scoped acceptance
+# POI immersive map — operator screenshot correction
 
-READY_FOR_PC_ACCEPTANCE. Run rpgthreejs-auto-dev-90m-20261018T0503; started2026-10-18T05:03:00Z; ended2026-10-18T05:23:55.037Z. OD17A global PC priority; mobile deferred.
+IN_PROGRESS. Run codex-poi-ui-20261018T1903, started 2026-10-18T19:03:46Z; heartbeat 2026-10-18T19:13:09.927Z. Owned execution lock. Clean dev9e17edf baseline, no inherited WIP; live remote parity verified, main unchanged.
 
-Product: exact current/maxHP visible and accessible on reserve/deployed cards before Start. Desktop roster332px preserves10px numbers. Unknown legacy pairs omitted. No rules, selection, cost, V6, AP, outcome, art or media changes.
+Direct operator request: less persistent text, optional help/details, discover regions progressively, map fills screen preserving POI geography, smooth presentation-only movement. Product implemented;49 current focused tests and types PASS. Existing driver extended, no new persistent tool. Guardian source/assertion review PASS. Initial native620label overlap failed and remains unseedable; corrective first-region label lift implemented without changing POI coordinates. Corrective native review pending.
 
-76current tests/3files +22helper tests, types/fresh build,8contracts8slots, immutable/working LOCKED, whitespace/syntax PASS;2red-before failures. First native attempt rejected/stopped for observed3digit truncation, raw partial unchanged/unseedable. One corrective native scenario ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_DEPLOYMENT_HEALTH: all5cards/2pages/reserve/deployed full values and bounds, naturalElara2/Kestrel1, inspection owner/save and selected tactical invariance; real opening-wolves victory28actions and exact earned checkpoint reload. Root4captures/guardian2deployment captures inspected; raw successful receipt NOT_ACCEPTED unchanged.
+Next ONE action: Build current POI UI and run one existing-driver earned first-refuge/backtracking scenario with explicit POI presentation assertions; inspect desktop/620/390 captures and committed movement. Preserve operator preview/save. Finish coherent dev checkpoint.
 
-Counts source2/test1/existingQA2/helperTest1/newPersistentQA0/promotedProof0/productDocs1/workflow4/inherited0/browser2(firststopped+onecorrective)/reviewer1. Historical319jobs/deferred objects exact;321jobs total. Source c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6; source and prior workflow published, final closure is containing commit. Worker24136absent/5437free host-verified; other servers untouched.
-
-GlobalPC/balance/art/hardware/operator verdict remains open; externalBois-Clair nightplate isolated. No mobile/OS/actualAT/balance acceptance.
-
-Next ONE product action: Operator judges preparation clarity and felt rest cost before Chasseurs du Sceau on current PC candidate, using PC_PLAYTEST retained failed/prepared examples and visible deployment HP/full-rest effect. Correct only a demonstrated player defect. If no new observation/verdict, retain readiness without replaying accepted campaigns or creating another QA mission. No autonomous economy/elite/art changes; mobile deferred until PC milestone.
+Global PC/balance/art/hardware verdict remains open; mobile deferred; external Bois-Clair nightplate isolated. Historical QA/deferred objects retained in JSON, source proof scopes unchanged. No LOCKED, canon, V6, economy, elite, media or scheduler changes.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -336,4 +332,5 @@ Next ONE product action: Operator judges preparation clarity and felt rest cost 
 - refuge-rest-0355: SUCCEEDED; port 5436; receipt `tmp/demo/refuge-rest-0355/qa-job.json`; NOT_ACCEPTED
 - deployment-health-0503: STOPPED_VISUAL_REGRESSION; port 5437; receipt `tmp/demo/deployment-health-0503/qa-job.json`; NOT_ACCEPTED
 - deployment-health-0503-fixed: SUCCEEDED; port 5437; receipt `tmp/demo/deployment-health-0503-fixed/qa-job.json`; NOT_ACCEPTED
+- poi-immersive-1903: PLANNED; port 5442; receipt `tmp/demo/poi-immersive-1903/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

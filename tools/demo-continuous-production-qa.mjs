@@ -481,6 +481,21 @@ async function poiMove(id,pointer=false){
   }
   await page.waitForFunction(id=>window.__demoQaApp.state.currentNodeId===id
     ||window.__demoQaApp.state.run.poiExpedition?.encounter?.targetNodeId===id,id);
+  if(jobOptions.parameters.verifyPoiPresentation){
+    const reduced=await page.evaluate(()=>matchMedia('(prefers-reduced-motion: reduce)').matches||window.__demoQaApp.state.settings.reducedGraphics);
+    const sample=()=>page.evaluate(()=>{const token=document.querySelector('.poi-map__traveller');return token?{
+      x:token.getAttribute('cx'),y:token.getAttribute('cy'),inert:document.querySelector('.poi-map').inert,
+      current:window.__demoQaApp.state.currentNodeId,saved:JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')).currentNodeId}:null;});
+    const first=await sample();
+    if(reduced)assert.equal(first,null,'Reduced motion mounted a travel token');
+    else if(id!==before.currentNodeId&&!(await state()).run.poiExpedition?.encounter){
+      assert.ok(first,'Committed native movement did not animate');assert.equal(first.current,id);assert.equal(first.saved,id);assert.equal(first.inert,true);
+      await page.waitForTimeout(80);const second=await sample();assert.ok(second);assert.notDeepEqual([first.x,first.y],[second.x,second.y]);
+      report.poiTravel??=[];report.poiTravel.push({from:before.currentNodeId,to:id,first,second});
+      if(report.poiTravel.length===1)await capture('poi-travel-committed');
+    }
+    await page.waitForFunction(()=>!document.querySelector('.poi-map__traveller'));
+  }
   const after=await state();
   const intercepted=after.currentNodeId===before.currentNodeId&&after.run.poiExpedition?.encounter?.kind==='front';
   assertExpeditionStep(before,after,intercepted||id===before.currentNodeId?0:1,{pending:true});
@@ -731,11 +746,16 @@ async function inspectPoiAtlas(){
   await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
   const before=await state(),initialRegion=await page.locator('.poi-map').getAttribute('data-region');
   const regions=[];
-  for(const index of [0,1,2]){
-    await keyboardActivate(`.poi-map [data-poi-region="${index}"]`);
-    assert.equal(await page.locator(`[data-poi-region="${index}"]`).getAttribute('aria-selected'),'true');
-    assert.equal(await page.locator(`[data-poi-region="${index}"]`).evaluate(e=>e===document.activeElement),true,'Region tab lost native focus');
-    const controls=await page.locator('.poi-map button').evaluateAll(elements=>elements.map(e=>{
+  const tabs=await page.locator('[data-poi-region]').evaluateAll(elements=>elements.map(e=>Number(e.dataset.poiRegion)));
+  const discovered=tabs.length?tabs:[Number(initialRegion)];
+  if(Number(initialRegion)===0&&before.resolvedNodeIds.every(id=>!['lion-reserve-trail','lion-valmir-road','lion-second-refuge','lion-lancer-recruit','lion-witnesses','lion-final-judgement'].includes(id)))assert.deepEqual(discovered,[0],'Future campaign regions were revealed');
+  for(const index of discovered){
+    if(tabs.length){
+      await keyboardActivate(`.poi-map [data-poi-region="${index}"]`);
+      assert.equal(await page.locator(`[data-poi-region="${index}"]`).getAttribute('aria-selected'),'true');
+      assert.equal(await page.locator(`[data-poi-region="${index}"]`).evaluate(e=>e===document.activeElement),true,'Region tab lost native focus');
+    }
+    const controls=await page.locator('.poi-map button:visible').evaluateAll(elements=>elements.map(e=>{
       const r=e.getBoundingClientRect();return {label:e.getAttribute('aria-label')||e.textContent.trim(),width:r.width,height:r.height};
     }));
     assert.ok(controls.every(c=>c.width>=44&&c.height>=44),'Atlas native target below44px');
@@ -783,6 +803,45 @@ async function inspectPoiAtlas(){
   assert.deepEqual(await state(),before,'Atlas browsing/focus/pan changed canonical owner facts');
   assert.equal(await page.locator('.traversal-road,.traversal-fork-overlay').count(),0,'Retired physical surface mounted');
   report.atlas={pass:true,regions,geometry,pan,ownerUnchanged:true,nativeTouch:touchInput,viewport,initialRegion};
+  if(jobOptions.parameters.verifyPoiPresentation)await inspectPoiPresentation();
+}
+async function inspectPoiPresentation(){
+  const before=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const sizes=[{width:1366,height:768},{width:620,height:780},{width:390,height:844}];
+  const layouts=[];
+  for(const size of sizes){
+    await page.setViewportSize(size);await keyboardActivate('.poi-map [data-poi-action="locate"]');
+    const geometry=await page.locator('.poi-map').evaluate(map=>{
+      const box=e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom};};
+      const canvas=map.querySelector('.poi-map__canvas'),image=map.querySelector('.poi-map__geography'),land=map.querySelector('.poi-map__land');
+      return{land:box(land),canvas:box(canvas),image:box(image),height:innerHeight,width:innerWidth,
+        controls:[...map.querySelectorAll('button')].filter(e=>e.getClientRects().length&&!e.closest('[hidden]')).map(e=>({label:e.textContent.trim(),...box(e),marker:e.classList.contains('poi-marker')}))};
+    });
+    assert.ok(Math.abs(geometry.canvas.width/geometry.canvas.height-960/520)<.002,'Atlas aspect ratio changed');
+    assert.deepEqual(geometry.image,geometry.canvas,'Image/POI coordinate canvas diverged');
+    assert.ok(geometry.land.height>size.height*.48,'Chrome consumes more than half the viewport');
+    for(const control of geometry.controls){assert.ok(control.width>=44&&control.height>=44,'POI target below44px');if(!control.marker)assert.ok(control.x>=0&&control.y>=0&&control.right<=size.width+1&&control.bottom<=size.height+1,`Map control outside viewport: ${control.label}`);}
+    await capture(`poi-immersive-${size.width}`);
+    await keyboardActivate('.poi-map [data-poi-action="help"]');
+    const panel=page.locator('#poi-map-panel');assert.equal(await panel.getAttribute('role'),'dialog');
+    assert.equal(await page.locator('[data-poi-action="close-panel"]').evaluate(e=>e===document.activeElement),true);
+    const bounds=await panel.boundingBox();assert.ok(bounds.x>=0&&bounds.y>=0&&bounds.x+bounds.width<=size.width+1&&bounds.y+bounds.height<=size.height+1);
+    assert.equal(await page.locator('.poi-map__viewport').evaluate(e=>e.inert),true);
+    await capture(`poi-help-${size.width}`);await page.keyboard.press('Escape');
+    assert.equal(await page.locator('[data-poi-action="help"]').evaluate(e=>e===document.activeElement),true);
+    assert.equal(await panel.isVisible(),false);
+    layouts.push({size,geometry,panelBounds:bounds});
+  }
+  await page.setViewportSize({width:viewport[0],height:viewport[1]});
+  await page.emulateMedia({reducedMotion:'reduce'});
+  const osAnimation=await page.locator('.poi-marker--current .poi-marker__icon').evaluate(e=>getComputedStyle(e).animationName);assert.equal(osAnimation,'none');
+  await page.emulateMedia({reducedMotion:process.env.DEMO_QA_OS_MOTION==='1'?'reduce':'no-preference'});
+  await keyboardActivate('.poi-map [data-poi-action="motion"]');
+  const gameAnimation=await page.locator('.poi-marker--current .poi-marker__icon').evaluate(e=>getComputedStyle(e).animationName);assert.equal(gameAnimation,'none');
+  await keyboardActivate('.poi-map [data-poi-action="motion"]');
+  assert.deepEqual(await state(),before,'Drawer/layout/motion review changed unrelated owner facts');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),saved,'Drawer/layout/motion review changed saved bytes');
+  report.poiPresentation={pass:true,layouts,osAnimation,gameAnimation,ownerUnchanged:true,savedBytesUnchanged:true};
 }
 async function returnToPoiMap(){
   // Existing authored post-refuge ATE/reputation dialogue retains player agency before map return.
@@ -1980,6 +2039,7 @@ try{
     assert.ok(checks.some(c=>c.expected.some(u=>u.hp>0&&u.hp<u.maxhp)),'No naturally wounded roster member verified');
   }
   if(jobOptions.parameters.verifyRefugeRest)assert.equal(report.refugeRest?.pass,true,'No new native rest clarity was verified');
+  if(jobOptions.parameters.verifyPoiPresentation){assert.equal(report.poiPresentation?.pass,true);assert.ok(report.poiTravel?.length,'No new committed native travel observed');}
   const final=await state();
   report.expedition.economy={gold:final.gold,temporaryLoot:final.run.temporaryLoot,reputation:final.reputation,
     inventory:final.inventory,heroes:final.clan.members.map(unit=>({id:unit.definitionId,hp:unit.currentHealth})),checkpoint:final.run.checkpointNodeId};
