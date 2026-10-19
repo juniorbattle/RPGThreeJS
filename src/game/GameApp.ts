@@ -35,6 +35,8 @@ import { CombatBridge } from '../combat/CombatBridge';
 import { DialogueView, resolveDialogueBackdrop } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
 import { PoiMapView } from '../ui/PoiMapView';
+import { UiSoundPlayer } from '../ui/UiSoundPlayer';
+import { UiSoundSettings } from '../ui/UiSoundSettings';
 import { ExplorationView } from '../ui/ExplorationView';
 import { resolveRefugePresentation } from '../ui/RefugePresentation';
 import { PrologueView } from '../ui/PrologueView';
@@ -160,6 +162,8 @@ export class GameApp {
   private readonly cinematicQaEnabled = this.qaEnabled
     && new URLSearchParams(window.location.search).get('cinematic') === '1';
   private readonly saves = new SaveRepository();
+  private readonly uiSounds = new UiSoundPlayer();
+  private readonly soundSettings: UiSoundSettings;
   // Explicit DEV-only end-to-end fixture: it only exposes the existing combat QA controls while
   // the real campaign/Journey controller continues to own route, dialogue and state progression.
   private readonly cin6aGoldenQaEnabled = this.qaEnabled
@@ -171,12 +175,14 @@ export class GameApp {
     private readonly root: HTMLElement,
     private readonly canvas: HTMLCanvasElement,
   ) {
+    this.soundSettings = new UiSoundSettings(root, this.uiSounds);
     this.chrome.className = 'game-chrome';
     this.root.append(this.chrome);
     this.dialogue = new DialogueView({
       root,
       getState: () => this.state,
       applyEffects: (effects) => this.applyEffects(effects),
+      onSound: id => this.uiSounds.play(id),
     });
     this.management = new ManagementView({
       root,
@@ -184,6 +190,7 @@ export class GameApp {
       onChange: () => {
         this.saves.saveAuto(this.state);
       },
+      onSound: id => this.uiSounds.play(id),
     });
     this.combat = new CombatBridge(root);
     this.exploration = new ExplorationView({ root, statusHud: this.statusHud });
@@ -194,7 +201,9 @@ export class GameApp {
       onFightElite: id => this.challengePoiElite(id),
       onBypass: id => this.ignorePoi(id),
       onCompany: () => void this.openPoiCompany(),
-      onSave: () => {if(!this.routeCommitInFlight)this.saves.saveManual(this.state);},
+      onSave: () => {if(!this.routeCommitInFlight){this.saves.saveManual(this.state);this.uiSounds.play('saved');}},
+      onSounds: () => this.soundSettings.open(),
+      onSound: id => this.uiSounds.play(id),
       onMenu: () => {if(!this.routeCommitInFlight)this.renderTitle();},
       onReducedMotion: () => {
         if(this.routeCommitInFlight)return;
@@ -214,6 +223,8 @@ export class GameApp {
 
   dispose(): void {
     this.disposed = true;
+    this.soundSettings.close();
+    this.uiSounds.dispose();
     this.poiEncounter.close();
     this.poiMap.close();
 
@@ -246,6 +257,7 @@ export class GameApp {
         <div class="title-screen__actions">
           <button type="button" data-action="new">Nouvelle chronique</button>
           <button type="button" data-action="continue" ${this.saves.hasSave() ? '' : 'disabled'}>Continuer</button>
+          <button type="button" data-action="sounds">Sons</button>
           ${this.qaEnabled ? '<button type="button" class="title-screen__qa" data-action="qa">QA rencontres</button>' : ''}
         </div>
         <nav class="title-screen__nav">
@@ -259,6 +271,7 @@ export class GameApp {
     `;
     this.chrome.querySelector('[data-action="new"]')?.addEventListener('click', () => void this.startNewChronicle());
     this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => void this.continueChronicle());
+    this.chrome.querySelector('[data-action="sounds"]')?.addEventListener('click', () => this.soundSettings.open());
     this.chrome.querySelector('[data-action="qa"]')?.addEventListener('click', () => this.renderQaLab());
     (this.chrome.querySelector<HTMLButtonElement>('[data-action="continue"]:not(:disabled)')
       ?? this.chrome.querySelector<HTMLButtonElement>('[data-action="new"]'))?.focus();
@@ -718,6 +731,7 @@ export class GameApp {
       entered = enterPoi(this.state, nodeId);
       if (!entered) {this.showPoiMap();return;}
       this.saves.saveAuto(this.state);
+      if(this.state.run.currentNodeId !== origin) this.uiSounds.play('travel-start');
       const travel = this.poiMap.animateTravel(origin, this.state.run.currentNodeId);
       if (travel) await travel;
     } finally {
@@ -924,6 +938,7 @@ export class GameApp {
   private async handleJourneySecondary(actionId: string): Promise<boolean> {
     if (actionId === 'SAVE') {
       this.saves.saveManual(this.state);
+      this.uiSounds.play('saved');
       return true;
     }
     if (actionId === 'COMPANY') {
@@ -999,6 +1014,7 @@ export class GameApp {
       const loot=createPoiChestAdapter()(this.state,node.id);
       if(loot){
         this.setMode('RESULT');this.saves.saveAuto(this.state);
+        this.uiSounds.play('reward');
         await this.poiEncounter.reward({title:'Coffre ouvert',description:'Ces réserves rejoignent votre or et votre inventaire. Elles sont utilisables immédiatement.',
           lines:[...(loot.gold?[`${loot.gold} or`]:[]),...Object.entries(loot.items).map(([id,count])=>`${count} × ${itemById.get(id)?.name??id}`)]});
       }
@@ -1055,6 +1071,7 @@ export class GameApp {
           const costBeforeRest = getRestCost(this.state);
           const rested = restUnits(this.state);
           if (rested) this.saves.saveAuto(this.state);
+          if (rested) this.uiSounds.play('recover');
           refugeMessage = rested
             ? `Repos effectu&eacute; : ${costBeforeRest} or d&eacute;pens&eacute;.`
             : getWoundedUnitCount(this.state) === 0
@@ -1568,6 +1585,7 @@ export class GameApp {
   }
 
   private setMode(mode: AppMode): void {
+    this.soundSettings.close();
     if (mode !== 'NARRATIVE' && mode !== 'JOURNEY') this.statusHud?.hide();
     this.mode = mode;
     document.body.dataset.mode = mode.toLowerCase();

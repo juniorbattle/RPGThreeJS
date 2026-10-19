@@ -2,7 +2,7 @@
 
 Run codex-ui-fx-20261019T0259; clean dev868591b/ownedlock. Go operator OD-2026-10-18-F; set1.6.0 amendment reviewed PASS and committed 8fdc797bb52f5b501a00adb2a25b3623f4017086. This operational checkpoint establishes the immutable baseline before runtime. Only eight accepted UI FX; music/voices/ambience/combat/cinematic audio deferred. Preserve332QA jobs/deferredroots/accepted assets.
 
-Next: gesture-gated sound service and accessible volume/mute, then native audited events and focused proof.
+Runtime green: gesture-gated sound service/accessibility/settings and native event callbacks implemented,46focusedtests4files/TypeScript/gates PASS. Next: existing-driver scoped UI FX proof on earned2141first-refuge; no new campaign.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

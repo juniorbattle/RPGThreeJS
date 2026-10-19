@@ -7,11 +7,13 @@ import type { NarrativeChoiceScreenLane } from '../cinematics/NarrativeTableau';
 import { createCampaignIcon, decorateCampaignButton, decorateCampaignFrame, type CampaignIcon } from './design-system/CampaignUi';
 import { resolveDialoguePortrait } from './DialoguePortrait';
 import { prefersReducedMotion } from './ReducedMotion';
+import type { UiSoundFeedback } from './UiSoundPlayer';
 
 interface DialogueViewOptions {
   root: HTMLElement;
   getState: () => GameState;
   applyEffects: (effects: NarrativeEffect[]) => Promise<void>;
+  onSound?: UiSoundFeedback;
 }
 
 export type DialoguePresentationMode = 'default' | 'cinematic-overlay' | 'narrative-stage';
@@ -382,8 +384,9 @@ export class DialogueView {
     button.addEventListener('click', async () => {
       if (this.choiceLocked) return;
       const outcome = resolveContestOutcome(choice, this.options.getState());
-      if (outcome.type === 'blocked') return;
+      if (outcome.type === 'blocked') { this.options.onSound?.('refused'); return; }
       this.choiceLocked = true;
+      this.options.onSound?.('confirm');
       for (const candidate of this.overlay?.querySelectorAll<HTMLButtonElement>('.dialogue-choice') ?? []) candidate.disabled = true;
       await this.options.applyEffects(outcome.effects);
       await this.advance(outcome.next);
@@ -510,6 +513,7 @@ export class DialogueView {
 
   private async advancePresentation(): Promise<void> {
     if (!this.current || !this.overlay || this.stepTransitionInFlight || this.overlay.classList.contains('dialogue--choice-active')) return;
+    this.options.onSound?.('confirm');
     if (this.displaySegmentIndex < this.displaySegments.length - 1) {
       this.displaySegmentIndex += 1;
       const text = this.overlay.querySelector<HTMLElement>('.dialogue__text');

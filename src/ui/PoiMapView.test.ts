@@ -5,16 +5,23 @@ import {createInitialState} from '../game/store';
 import {selectPoiMap, type PoiMapModel} from '../game/runSystem';
 
 afterEach(()=>{document.body.replaceChildren();vi.restoreAllMocks();vi.unstubAllGlobals();});
-function fixture(onMove=vi.fn(async(_id:string)=>{}),prepare=(model:PoiMapModel)=>{void model;}){
+function fixture(onMove=vi.fn(async(_id:string)=>{}),prepare=(model:PoiMapModel)=>{void model;},onSound=vi.fn()){
   const root=document.createElement('div');document.body.append(root);
   const state=createInitialState(),model=selectPoiMap(state),before=structuredClone(state);
   prepare(model);
-  const view=new PoiMapView({root,onMove,onBypass:vi.fn(),onCompany:vi.fn(),onSave:vi.fn(),onMenu:vi.fn(),onReducedMotion:vi.fn()});
-  view.open(model);return {view,model,state,before,onMove,root};
+  const view=new PoiMapView({root,onMove,onBypass:vi.fn(),onCompany:vi.fn(),onSave:vi.fn(),onMenu:vi.fn(),onReducedMotion:vi.fn(),onSound});
+  view.open(model);return {view,model,state,before,onMove,onSound,root};
 }
 const marker=(id:string)=>document.querySelector<HTMLButtonElement>(`[data-poi-id="${id}"]`)!;
 const action=()=>document.querySelector<HTMLButtonElement>('[data-poi-action="move"]')!;
 describe('POI atlas focus and authority intentions',()=>{
+  it('keeps programmatic focus silent and emits one cue for a changed pointer selection',()=>{
+    const {onSound,onMove,state,before}=fixture();
+    marker('lion-audience').focus();expect(onSound).not.toHaveBeenCalled();
+    const camp=marker('lion-camp');camp.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,pointerType:'mouse'}));camp.focus();camp.click();
+    expect(onSound).toHaveBeenCalledExactlyOnceWith('navigate');camp.click();expect(onSound).toHaveBeenCalledTimes(1);
+    expect(onMove).not.toHaveBeenCalled();expect(state).toEqual(before);
+  });
   it('keeps a distinct noninteractive player pawn at the actual POI while selecting another destination',()=>{
     const {state,before,model}=fixture();
     const pawn=document.querySelector<SVGGElement>('.poi-map__pawn')!;

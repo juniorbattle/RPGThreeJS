@@ -3,7 +3,7 @@
   "runStartedAt": "2026-10-19T02:59:44Z",
   "runEndedAt": null,
   "activeTask": "UI-FX-APPROVED-INTEGRATION",
-  "activePhase": "REVIEWED_BASELINE_BEFORE_RUNTIME",
+  "activePhase": "RUNTIME_GREEN_BEFORE_NATIVE_PROOF",
   "activeSubtask": "Record explicit validation; next bounded audio production task",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "0b2d084eeaa49fc9395da104e61142dec8dde5eb",
@@ -23,10 +23,9 @@
     "src/render/data/bois-clair-night-watch.correction.json"
   ],
   "testsRun": [
-    "6existing environment correction tests PASS after approval-metadata update",
-    "9asset hashes remain identical to accepted versions",
-    "contracts validator8contracts8slots PASS; LOCKEDgit barrier and diff --check PASS",
-    "No build/native campaign rerun: approval metadata/copy only; historical browser proof retained at its exact source scope"
+    "46focused tests4files PASS",
+    "TypeScript PASS",
+    "LOCKED8fdc797gate EMPTY; diffcheck PASS"
   ],
   "testsPassed": [
     "6existing environment correction tests PASS after approval-metadata update",
@@ -42,7 +41,7 @@
     "Dedicated reviewed audio exception and runtime integration",
     "GlobalPC/mobile/hardware/balance acceptance retained outside this asset approval"
   ],
-  "nextAction": "Implement eight approved UI FX with separate gesture-gated player/settings and exact native events",
+  "nextAction": "Existing native driver: scoped earned-first-refuge UI FX settings/single-event playback proof; no fresh campaign",
   "taskQueue": [
     "LAST-SAVE-RELOAD: corrected target; ordinary/elite restore exact active-game save",
     "POI-PATH-PAWN-CLARITY: prior COMPLETE_SCOPED_UI retained",
@@ -124,7 +123,7 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-ui-fx-20261019T0259",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T06:06:05.429Z",
+  "lastHeartbeat": "2026-10-19T06:13:13.232Z",
   "wip": {
     "branch": null,
     "sha": "0b2d084eeaa49fc9395da104e61142dec8dde5eb",
@@ -133,7 +132,7 @@
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T06:06:05.429Z",
+    "lastHeartbeat": "2026-10-19T06:13:13.232Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -36547,7 +36546,7 @@
       "status": "NO_INHERITED_WIP_ACCEPTANCE_METADATA_ONLY",
       "inheritedWip": 0
     },
-    "nextAction": "Implement eight approved UI FX with separate gesture-gated player/settings and exact native events",
+    "nextAction": "Existing native driver: scoped earned-first-refuge UI FX settings/single-event playback proof; no fresh campaign",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "sourceMetadataFiles": 1,
@@ -40760,7 +40759,7 @@
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-19T02:59:44Z",
-    "activePhase": "REVIEWED_BASELINE_BEFORE_RUNTIME",
+    "activePhase": "RUNTIME_GREEN_BEFORE_NATIVE_PROOF",
     "heartbeat": "2026-10-19T01:26:42.662Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0255Z-codex-media-approval.md",
     "motion1617": {
@@ -43313,10 +43312,9 @@
       "src/render/data/bois-clair-night-watch.correction.json"
     ],
     "testsRun": [
-      "6existing environment correction tests PASS after approval-metadata update",
-      "9asset hashes remain identical to accepted versions",
-      "contracts validator8contracts8slots PASS; LOCKEDgit barrier and diff --check PASS",
-      "No build/native campaign rerun: approval metadata/copy only; historical browser proof retained at its exact source scope"
+      "46focused tests4files PASS",
+      "TypeScript PASS",
+      "LOCKED8fdc797gate EMPTY; diffcheck PASS"
     ],
     "testsPassed": [
       "6existing environment correction tests PASS after approval-metadata update",
@@ -44585,7 +44583,12 @@
       "amendmentReview": "PASS contracts-guardian actualdiff",
       "scope": "Eight approved byte-identical files; rest audio deferred",
       "historicalQaJobs": 332,
-      "implementation": "PENDING"
+      "implementation": "PENDING",
+      "runtime": "IMPLEMENTED_PENDING_NATIVE_PROOF",
+      "unitTests": 46,
+      "files": 4,
+      "assetHashes": "8byte-identical approved WAVs",
+      "nativePlan": "Existing demo driver, earned2141first-refuge, no new campaign"
     }
   },
   "previousInterruptedRun": {

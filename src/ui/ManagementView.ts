@@ -11,6 +11,7 @@ import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import { skills as SKILL_DEFS } from '../game/skills';
 import type { GameState, InnateGiftModifier, ItemCategory, ItemDefinition, UnitDefinition, UnitInstance, WeaponDefinition } from '../game/types';
+import type { UiSoundFeedback } from './UiSoundPlayer';
 
 type ManagementTab = 'clan' | 'inventory' | 'shop' | 'skills';
 type ControlFocusKey = { tag: string; attributes: Array<[string, string]> };
@@ -47,6 +48,7 @@ interface ManagementViewOptions {
   root: HTMLElement;
   getState: () => GameState;
   onChange: () => void;
+  onSound?: UiSoundFeedback;
 }
 
 const categoryLabels: Record<ItemCategory, string> = {
@@ -241,6 +243,7 @@ export class ManagementView {
   private handleKeydown(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
       event.preventDefault(); event.stopPropagation();
+      this.options.onSound?.('back');
       if (this.activeEquipSlot) { this.activeEquipSlot = null; this.previewItemId = null; this.render(); }
       else if (this.activeItemId) { this.activeItemId = null; this.render(); }
       else this.close();
@@ -852,15 +855,17 @@ export class ManagementView {
 
   private bind(): void {
     if (!this.overlay) return;
-    this.overlay.querySelector('[data-action="close"]')?.addEventListener('click', () => this.close());
+    this.overlay.querySelector('[data-action="close"]')?.addEventListener('click', () => { this.options.onSound?.('back'); this.close(); });
     this.overlay.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach((button) => {
       button.addEventListener('click', () => {
+        if(this.tab !== button.dataset.tab) this.options.onSound?.('navigate');
         this.tab = button.dataset.tab as ManagementTab;
         this.render();
       });
     });
     this.overlay.querySelectorAll<HTMLButtonElement>('[data-unit]').forEach((button) => {
       button.addEventListener('click', () => {
+        if(this.selectedUnitId !== button.dataset.unit) this.options.onSound?.('navigate');
         this.selectedUnitId = button.dataset.unit ?? '';
         this.render();
       });
@@ -957,6 +962,7 @@ export class ManagementView {
           ? buyItem(this.options.getState(), this.shopId, itemId, this.shopWallet === 'temporary')
           : sellItem(this.options.getState(), this.shopId, itemId, this.shopWallet === 'temporary');
         if (ok) this.changed();
+        else this.options.onSound?.('refused');
       });
     });
     this.overlay.querySelectorAll<HTMLButtonElement>('[data-craft]').forEach((button) => {
@@ -977,7 +983,7 @@ export class ManagementView {
         const select = this.overlay?.querySelector<HTMLSelectElement>(`[data-use-unit="${itemId}"]`);
         const unitId = select?.value ?? '';
         if (!unitId) return;
-        if (useConsumable(this.options.getState(), unitId, itemId)) this.changed();
+        if (useConsumable(this.options.getState(), unitId, itemId)) this.changed('recover');
       });
     });
     this.overlay.querySelectorAll<HTMLElement>('[data-item-details]').forEach((row) => {
@@ -996,8 +1002,9 @@ export class ManagementView {
     });
   }
 
-  private changed(): void {
+  private changed(sound: 'confirm' | 'recover' = 'confirm'): void {
     this.options.onChange();
     this.render();
+    this.options.onSound?.(sound);
   }
 }

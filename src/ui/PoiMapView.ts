@@ -2,11 +2,13 @@ import type { PoiMapModel } from '../game/runSystem';
 import { LION_POI_POSITIONS, LION_POI_REGIONS, LION_POI_REGION_EXITS, lionPoiMapPhase, lionPoiPathBends } from '../campaign/LionPoiMap';
 import './poi-map.css';
 import { onReducedMotionChange, prefersReducedMotion } from './ReducedMotion';
+import type { UiSoundFeedback } from './UiSoundPlayer';
 
 interface PoiMapOptions {
   root:HTMLElement;onMove:(id:string)=>Promise<void>;onBypass:(id:string)=>void;
   onCompany:()=>void;onSave:()=>void;onMenu:()=>void;onReducedMotion:()=>void;
   onWait?:()=>Promise<void>;onFightElite?:(id:string)=>Promise<void>;
+  onSounds?:()=>void;onSound?:UiSoundFeedback;
 }
 const escape=(s:string)=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
 const statusLabels={available:'Disponible',locked:'Verrouillé',resolved:'Résolu',neutralized:'Neutralisé'};
@@ -54,7 +56,7 @@ export class PoiMapView {
     const element=document.createElement('section');element.className='poi-map';
     element.dataset.region=String(phase);element.dataset.reducedMotion=String(reducedMotion);
     element.setAttribute('aria-label','Carte de campagne');
-    element.innerHTML=`<header class="poi-map__header"><div class="poi-map__heading"><span>Carte de campagne</span><h1 id="poi-region-title">${region.shortTitle}</h1></div><p class="poi-map__resources">Or <b>${model.gold}</b><span>·</span> Réputation <b>${model.reputation}</b></p><nav aria-label="Actions de campagne"><button data-poi-action="company">Compagnie</button><button data-poi-action="save">Sauvegarder</button><button data-poi-action="menu">Menu</button><button data-poi-action="motion" aria-pressed="${reducedMotion}">Mouvement réduit</button><button data-poi-action="wait" aria-label="Attendre un tour sans déplacement. Les menaces actives peuvent avancer." title="Avance un tour sans déplacement ; les menaces actives peuvent avancer. Ne soigne pas la compagnie.">Attendre<span class="poi-map__wait-note">1 tour sur place</span></button><button data-poi-action="help" aria-controls="poi-map-panel" aria-expanded="false">Aide</button></nav></header>
+    element.innerHTML=`<header class="poi-map__header"><div class="poi-map__heading"><span>Carte de campagne</span><h1 id="poi-region-title">${region.shortTitle}</h1></div><p class="poi-map__resources">Or <b>${model.gold}</b><span>·</span> Réputation <b>${model.reputation}</b></p><nav aria-label="Actions de campagne">${this.options.onSounds?'<button data-poi-action="sounds">Sons</button>':''}<button data-poi-action="company">Compagnie</button><button data-poi-action="save">Sauvegarder</button><button data-poi-action="menu">Menu</button><button data-poi-action="motion" aria-pressed="${reducedMotion}">Mouvement réduit</button><button data-poi-action="wait" aria-label="Attendre un tour sans déplacement. Les menaces actives peuvent avancer." title="Avance un tour sans déplacement ; les menaces actives peuvent avancer. Ne soigne pas la compagnie.">Attendre<span class="poi-map__wait-note">1 tour sur place</span></button><button data-poi-action="help" aria-controls="poi-map-panel" aria-expanded="false">Aide</button></nav></header>
       <div class="poi-map__viewport">
       <div class="poi-map__atlas-bar">${discovered.length>1?`<div class="poi-map__regions" role="tablist" aria-label="Régions découvertes">${discovered.map(({r,i})=>`<button role="tab" id="poi-region-${i}" data-poi-region="${i}" aria-selected="${i===phase}" tabindex="${i===phase?0:-1}" aria-controls="poi-atlas">${r.shortTitle}</button>`).join('')}</div>`:''}<button data-poi-action="locate">Ma position</button></div>
       <div class="poi-map__land" id="poi-atlas" role="${discovered.length>1?'tabpanel':'region'}" aria-labelledby="${discovered.length>1?`poi-region-${phase}`:'poi-region-title'}" tabindex="0" aria-label="${escape(region.title)}. Carte défilante, glisser ou utiliser les flèches."><div class="poi-map__canvas"><img class="poi-map__geography" src="${region.image}" alt="" draggable="false"/><svg viewBox="0 0 960 520" aria-hidden="true">${paths}</svg>
@@ -97,24 +99,31 @@ export class PoiMapView {
       if(this.selectedId!==id){this.selectedId=id;update();}
       if(scroll)element.querySelector(`[data-poi-id="${CSS.escape(id)}"]`)?.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
     };
+    let pointerSelectionChanged=false;
+    element.addEventListener('pointerdown',event=>{
+      const id=(event.target as Element).closest<HTMLElement>('[data-poi-id]')?.dataset.poiId;
+      pointerSelectionChanged=Boolean(id&&id!==this.selectedId);
+    });
     element.addEventListener('click',event=>{
       if(element.dataset.travelling==='true')return;
       const button=(event.target as Element).closest<HTMLButtonElement>('button');if(!button||button.disabled)return;
-      if(button.dataset.poiId){select(button.dataset.poiId);return;}
+      if(button.dataset.poiId){const changed=pointerSelectionChanged||button.dataset.poiId!==this.selectedId;pointerSelectionChanged=false;select(button.dataset.poiId);if(changed)this.options.onSound?.('navigate');return;}
       if(button.dataset.poiRegion!==undefined){const regionIndex=Number(button.dataset.poiRegion);
+        if(regionIndex!==phase)this.options.onSound?.('navigate');
         const target=model.nodes.find(n=>n.region===regionIndex&&n.id===model.currentNodeId)??model.nodes.find(n=>n.region===regionIndex)!;
         this.render(model,regionIndex,target.id,reducedMotion);
         this.element?.querySelector<HTMLButtonElement>(`[data-poi-region="${regionIndex}"]`)?.focus();return;}
       switch(button.dataset.poiAction){
-        case'help':case'details':openPanel(button);break;
-        case'close-panel':closePanel();break;
+        case'help':case'details':openPanel(button);this.options.onSound?.('confirm');break;
+        case'close-panel':closePanel();this.options.onSound?.('back');break;
+        case'sounds':this.options.onSounds?.();break;
         case'move':{const restoreFocus=document.activeElement===button;button.disabled=true;void this.options.onMove(this.selectedId).catch(()=>{
           if(this.element===element){const message=document.createElement('p');message.setAttribute('role','alert');
             message.textContent='Déplacement interrompu. Réessayez.';element.querySelector('.poi-map__detail')?.append(message);}
         }).finally(()=>{if(this.element===element){button.disabled=false;
           if(restoreFocus&&document.activeElement===document.body)button.focus();}});break;}
         case'bypass':this.options.onBypass(this.selectedId);break;
-        case'company':this.options.onCompany();break;case'save':this.options.onSave();break;
+        case'company':this.options.onSound?.('confirm');this.options.onCompany();break;case'save':this.options.onSave();break;
         case'menu':this.options.onMenu();break;case'motion':this.options.onReducedMotion();break;
         case'wait':button.disabled=true;void this.options.onWait?.().finally(()=>{if(button.isConnected)button.disabled=false;});break;
         case'elite-fight':if(button.dataset.eliteId){button.disabled=true;void this.options.onFightElite?.(button.dataset.eliteId).finally(()=>{if(button.isConnected)button.disabled=false;});}break;
@@ -129,7 +138,7 @@ export class PoiMapView {
     }
     element.addEventListener('keydown',event=>{
       if(!backdrop.hidden){
-        if(event.key==='Escape'){event.preventDefault();event.stopPropagation();closePanel();}
+        if(event.key==='Escape'){event.preventDefault();event.stopPropagation();closePanel();this.options.onSound?.('back');}
         if(event.key==='Tab'){
           const controls=[...backdrop.querySelectorAll<HTMLButtonElement>('button:not(:disabled)')];
           const first=controls[0],last=controls.at(-1);
@@ -142,6 +151,7 @@ export class PoiMapView {
       const active=document.activeElement as HTMLElement;
       if(active.dataset.poiRegion!==undefined){if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
         event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?reachedPhase:(phase+(event.key==='ArrowLeft'?-1:1)+discovered.length)%discovered.length;
+        if(next!==phase)this.options.onSound?.('navigate');
         this.render(model,next,model.nodes.find(n=>n.region===next)!.id,reducedMotion);
         this.element?.querySelector<HTMLButtonElement>(`[data-poi-region="${next}"]`)?.focus();return;}
       const id=active.dataset.poiId;if(!id)return;event.preventDefault();
@@ -153,7 +163,7 @@ export class PoiMapView {
         return {id:n.id,forward,score:Math.hypot(dx,dy)+Math.abs(event.key==='ArrowLeft'||event.key==='ArrowRight'?dy:dx)*1.5};
       }).filter(n=>n.forward>0).sort((a,b)=>a.score-b.score);
       const next=event.key==='Home'?model.currentNodeId:event.key==='End'?nodes.filter(n=>n.region===phase).at(-1)?.id:candidates[0]?.id;
-      if(next)element.querySelector<HTMLButtonElement>(`[data-poi-id="${CSS.escape(next)}"]`)?.focus();
+      if(next){element.querySelector<HTMLButtonElement>(`[data-poi-id="${CSS.escape(next)}"]`)?.focus();if(next!==id)this.options.onSound?.('navigate');}
     });
     let drag:{x:number;y:number;left:number;top:number;id:number}|null=null;
     land.addEventListener('pointerdown',event=>{
