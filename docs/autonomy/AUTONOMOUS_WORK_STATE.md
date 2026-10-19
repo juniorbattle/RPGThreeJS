@@ -1,12 +1,14 @@
-# Last actual save is the recovery reference
+# Last-save recovery delivered; operator PC review next
 
-PLAN_REVISED. OD-2026-10-18-B/run codex-save-rule-20261018T2049 started2026-10-18T20:49:36Z ended2026-10-18T20:50:48.045Z. Defeat reloads last valid saved state of active game, undoing only unsaved changes. Autosaves now; possible independent manual slots later. Saved gains and their resolved facts stay together, no unsaved retention/farming.
+READY_FOR_PC_ACCEPTANCE. Run codex-last-save-20261018T2052 started2026-10-18T20:52:31Z; quota pause recovered, final publication/closure pending. OD-2026-10-18-C explicitexecution. Reviewed d1031ec baseline/set1.5.0 before runtime; current product b7a40f3, accepted native07 source/build only.
 
-Supersedes mandatory separate refuge/checkpoint snapshot design from2040; do not implement it as prerequisite. Existing full saved payload is reference, both ordinary/elite defeat paths currently alter it with failRunToCheckpoint afterward. Dedicated actual amendment/review/baseline and runtime proof still pending. No new manual-slot feature implied.
+Implemented one immediately usable wallet/inventory, idempotent remaining legacy-pool consolidation without checkpoint move, shared ordinary/elite full selected actual-save restore with no loss write/relocation and explicit continuation.275distinct tests17files,23helper/currenttypes/build/8contracts8slots/gates PASS.
 
-Docs/ledger/guide/state only; no source/LOCKED/build/browser/QAjob changes.325QA/deferred objects and prior accepted pawn/path scopes unchanged. Scheduler/preview5438 untouched.
+Native07 PC1366normal: original certified2141seed, real15gold/antidote+supplies/potionuse mage1to56, wolvesrealdefeat, exactfullsave/rawslots unchanged, focused48pxcontrol, explicit samependingcombat mechanicalresume. RawSUCCEEDED/NOT_ACCEPTED separate from guardian ACCEPTED_SCOPED. Final b7 hint-only copy tested14cases/inputstate unchanged/rebuild; current execution does NOT match native07, expecteddrift recorded. No current-native-build or settledresumevisual/nativeelite/manualfallback/globalPC/mobile/art/balance claim.
 
-Next ONE action: Prepare dedicated LAST-SAVE-RELOAD amendment for OD-2026-10-18-B, then adapt both defeat paths to exact actual save restoration. Do not build mandatory separate refuge snapshots or implement retained-unsaved gains. Current autosave is reference; future manual slots remain independent scope.
+325historicalQA/deferredroots exact;328totaljobs incl2preservedfailures+finalsuccess. Source 13, tests10, existingQA3, newpersistentQA0, proof4, productdocs3, protectedamendment7, workflow15, inheritedWIP0. No QA nodeworkers/listener5442; oldPID43320reusedconhost/untouched. Preview24360/5438HTTP200 retained; scheduler/browser/save unchanged. Final report docs/reports/last-save-reload-2026-10-18.md and handoff docs/autonomy/handoffs/2026-10-19T0126Z-codex-last-save-reload.md.
+
+Next ONE action: Operator refreshes existing http://127.0.0.1:5438/ and Continue on the same browser profile; inspect the single usable wallet and, after a real loss, Recharger/Reprendre la sauvegarde. Correct one concrete remaining PC finding; no unchanged campaign replay, no new QA mission merely to accumulate evidence. Manual multi-slot support remains future scope; global PC/art/balance/hardware review open before mobile.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -336,4 +338,7 @@ Next ONE action: Prepare dedicated LAST-SAVE-RELOAD amendment for OD-2026-10-18-
 - poi-immersive-1903-fixed: FAILED; port 5442; receipt `tmp/demo/poi-immersive-1903-fixed/qa-job.json`; NOT_ACCEPTED
 - poi-immersive-1903-settled: SUCCEEDED; port 5442; receipt `tmp/demo/poi-immersive-1903-settled/qa-job.json`; NOT_ACCEPTED
 - poi-pawn-1935: SUCCEEDED; port 5442; receipt `tmp/demo/poi-pawn-1935/qa-job.json`; NOT_ACCEPTED
+- last-save-native-2052: FAILED; port 5442; receipt `tmp/demo/last-save-native-2052/qa-job.json`; NOT_ACCEPTED
+- last-save-native-2052-settled: FAILED; port 5442; receipt `tmp/demo/last-save-native-2052-settled/qa-job.json`; NOT_ACCEPTED
+- last-save-native-2052-controls: SUCCEEDED; port 5442; receipt `tmp/demo/last-save-native-2052-controls/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

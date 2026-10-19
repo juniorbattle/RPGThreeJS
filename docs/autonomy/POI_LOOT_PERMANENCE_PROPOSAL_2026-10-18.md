@@ -1,6 +1,6 @@
 # Revised dedicated scope: reload the last actual save on defeat
 
-Status: **TARGET CLARIFIED; dedicated amendment/runtime execution pending**. Revision3,18October2026, chat01a14e6a, OD-2026-10-18-B. This supersedes both the retain-gains-after-defeat proposal and the later requirement for a separate refuge/checkpoint snapshot. The operator explicitly says the reference is the last SAVE, with current autosaves and potentially multiple manual slots later. No protected contract or runtime changes are performed by this document.
+Status: **IMPLEMENTED; independently reviewed scoped native/source acceptance**. Revision4,18October2026, chat01a14e6a, OD-2026-10-18-B/C. Dedicated amendment d1031ec02977379279a3c07eefa58edc8cab7246 (set1.5.0) reviewed and committed before runtime. This supersedes both the retain-gains-after-defeat proposal and the later requirement for a separate refuge/checkpoint snapshot. The operator explicitly says the reference is the last SAVE, with current autosaves and potentially multiple manual slots later. See [execution authority](LAST_SAVE_RELOAD_OPERATOR_DECISION_2026-10-18.md). Runtime and scoped native review completed after quota reset. See [proof and exact limits](../reports/last-save-reload-2026-10-18.md); native07 and final hint-only current source/build remain explicitly separate. Manual multi-slot support and operator global acceptance remain open.
 
 ## Exact rule
 
@@ -18,7 +18,7 @@ One usable wallet/inventory during play remains the desired economy presentation
 
 ## Dedicated implementation boundaries
 
-Proposed task PRODUCTION-CONTRACTS-LAST-SAVE-RELOAD-1, proposed set1.5.0: actual amended-rule review, approved contract commit and new immutable operational baseline before runtime. Current1.4.0/f9d8fde3 remains unchanged here. Narrowly adapt defeat/temporary-loot/elite-retention rules in constitution, campaign, POI, combat and QA; preserve unrelated contracts, eight videos, canon, owners and audio deferral.
+Approved task PRODUCTION-CONTRACTS-LAST-SAVE-RELOAD-1, set1.5.0: actual amended-rule review passed; amendment d1031ec is the immutable baseline, established operationally before runtime. Original1.4.0/f9d8fde3 remains historical. Narrowly adapt defeat/temporary-loot/elite-retention rules in constitution, campaign, POI, combat and QA; preserve unrelated contracts, eight videos, canon, owners and audio deferral.
 
 Route both defeat paths through the same save-restoration owner, removing synthetic post-load relocation/partial cleanup that contradicts exact restore. Reconcile unified wallet/shop/reward attribution without price or reward changes. Do not introduce manual multi-slot UI/schema solely because the rule must remain compatible with that future feature.
 

@@ -1,0 +1,247 @@
+{
+  "task": "PRODUCTION-CONTRACTS-LAST-SAVE-RELOAD-1",
+  "runId": "codex-last-save-20261018T2052",
+  "status": "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_ORDINARY_LAST_SAVE_AND_CURRENT_COPY_UNIT",
+  "reviewedAt": "2026-10-19T01:21:57.119Z",
+  "native": {
+    "source": "07b9bdb",
+    "receipt": "tmp/demo/last-save-native-2052-controls/qa-job.json",
+    "result": "tmp/demo/last-save-native-2052-controls/results.json",
+    "resultSha256": "15a91b26b969e77366861f833e121423b337ba901909a70584d7a091de79ca2f",
+    "rawAcceptance": "NOT_ACCEPTED",
+    "receiptStatus": "SUCCEEDED",
+    "provenanceStable": true,
+    "requestMatches": true,
+    "registeredProvenanceMatches": true,
+    "resultDigestMatches": true,
+    "allSixEligibilityFlagsTrueAtOriginalReview": true,
+    "currentExecutionMatches": false,
+    "currentEligibility": false,
+    "expectedDrift": "After original reviewed native source07, final b7a40f3 changes only returned chest hint+input-invariance test and rebuild. Native original source/build retained; no current-native-build claim.",
+    "earnedInputs": [
+      {
+        "role": "earnedSavePath",
+        "path": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+        "sha256": "788dc78ad6b274225261c755b2cd1e69a35a0c7579aa7938228a9d42fef8d1a1"
+      },
+      {
+        "role": "priorProofPath",
+        "path": "tmp/demo/campaign-next-turn-2141/results.json",
+        "sha256": "835b785fa0740d5241b8be904b8d57f729c92f37f0973c6786e8ccbc20dbfd24"
+      }
+    ],
+    "driver": {
+      "path": "tools/demo-continuous-production-qa.mjs",
+      "sha256": "4b3324fcd0db5e6e19d3d2b3a3b904f1c98854937cd30aee09e1f183d74875cc"
+    },
+    "receiptHelperSha256": "bd25e58975d099952efd541f834c32f4f6498c4b2d848d9ac635352c8b4f9411",
+    "build": [
+      {
+        "path": "dist/assets/ReducedMotion-CJtqK0VO.js",
+        "sha256": "9198d747200b65d1ae9d2f413cd925bab6bded2e193390142de02c755af03d20"
+      },
+      {
+        "path": "dist/assets/combat-CMbMTbKx.js",
+        "sha256": "65db43947867b104eeb0cc12b0c1298c22a2c0d176f2845497272bdeb44ea41c"
+      },
+      {
+        "path": "dist/assets/combat-DG7ZUtBq.css",
+        "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+      },
+      {
+        "path": "dist/assets/game-DP3Uc6PC.js",
+        "sha256": "a5843e089502e3e369da76528e44388d085a3d30b7dba266b5b9854e30531181"
+      },
+      {
+        "path": "dist/assets/game-LvWyiK7-.css",
+        "sha256": "75ec2f4a02b1fffd74499b9229e8444f4d3417ba48ed9e7d55b7da52848a992e"
+      },
+      {
+        "path": "dist/assets/three-core-f0ajj1rG.js",
+        "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+      },
+      {
+        "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+        "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+      },
+      {
+        "path": "dist/assets/validation-mSkvzYyn.js",
+        "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "db4c2f461ff948e3bd1566c80d4234b163e881c40655b5acccdd9a0496a3030f"
+      }
+    ],
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "newBattles": [
+      {
+        "node": "lion-poi-opening-wolves",
+        "combatId": "poi_opening_wolves_a",
+        "outcome": "defeat",
+        "actions": [
+          "wait-for-native-defeat",
+          "wait-for-native-defeat"
+        ],
+        "allPlayerUnitsKO": true
+      }
+    ],
+    "gains": {
+      "goldBefore": 75,
+      "goldAfter": 90,
+      "chests": [
+        {
+          "id": "lion-poi-opening-cache",
+          "gold": 15,
+          "items": {
+            "antidote": 1
+          },
+          "immediatelyUsable": true,
+          "turn": 14
+        },
+        {
+          "id": "lion-poi-opening-supplies",
+          "gold": 0,
+          "items": {
+            "potion": 1
+          },
+          "immediatelyUsable": true,
+          "turn": 16
+        }
+      ]
+    },
+    "nativeItemUse": {
+      "item": "potion",
+      "unit": "dark_mage",
+      "hpBefore": 1,
+      "hpAfter": 56,
+      "quantityBefore": 7,
+      "quantityAfter": 6
+    },
+    "recovery": {
+      "exactFullState": true,
+      "savedGold": 90,
+      "recoveredGold": 90,
+      "autoBytesUnchanged": true,
+      "manualBytesUnchanged": true,
+      "explicitSamePendingCombat": true,
+      "controlBounds": {
+        "x": 482.65625,
+        "y": 421.828125,
+        "width": 229.546875,
+        "height": 48
+      },
+      "savedCurrent": "lion-poi-opening-wolves",
+      "savedCheckpoint": "lion-first-refuge",
+      "mechanicalResumeOnly": true
+    }
+  },
+  "currentCopy": {
+    "source": "b7a40f384c7b68774859adf6e46f7894fd750f36",
+    "tests": "14PASS src/game/poiNavigation.test.ts",
+    "build": "PASS tmp/last-save-current-copy-build.log",
+    "types": "PASS tmp/last-save-current-copy-types.log",
+    "inputStateUnchanged": true,
+    "truthDeltaAudit": {
+      "nativeSource": "07b9bdb",
+      "unchanged": [
+        "src/game/GameApp.ts",
+        "src/game/store.ts",
+        "src/game/management.ts",
+        "src/game/poiContentAdapters.ts",
+        "src/combat/legacyCombatRuntime.js",
+        "src/ui/PoiMapView.ts",
+        "tools/demo-continuous-production-qa.mjs",
+        "tools/qa/qa-job.mjs"
+      ],
+      "exactCopyOnlyRunSystemDelta": true,
+      "inventory": [
+        {
+          "path": "src/game/GameApp.ts",
+          "normalizedSha256": "1dca293dc10e3e2c72be125c4907418a0ae93284afdeb6618bdbafec42514437",
+          "matchesNative": true
+        },
+        {
+          "path": "src/game/store.ts",
+          "normalizedSha256": "eac0d4d10ea02a271c84028495bd061dc6a318679c1e5df88e49f8eff569fa42",
+          "matchesNative": true
+        },
+        {
+          "path": "src/game/management.ts",
+          "normalizedSha256": "bd0ace149eb6b880d8c112a1feeba24dc8c52bd712bc610dbf9f89c6e1d5e706",
+          "matchesNative": true
+        },
+        {
+          "path": "src/game/poiContentAdapters.ts",
+          "normalizedSha256": "5d943f0d20969523098fede0ec1eb74a7b3bfcd4d27e1c7f43b2538874f5f5f4",
+          "matchesNative": true
+        },
+        {
+          "path": "src/combat/legacyCombatRuntime.js",
+          "normalizedSha256": "9536b42c413156258737e5392fa5bd9ee1084120573a557581d1dc6476d30233",
+          "matchesNative": true
+        },
+        {
+          "path": "src/ui/PoiMapView.ts",
+          "normalizedSha256": "10f58b5b3a679a16a7fbc47f36fa4df2a78912b543ba622c62c2a24fb1ba3fff",
+          "matchesNative": true
+        },
+        {
+          "path": "tools/demo-continuous-production-qa.mjs",
+          "normalizedSha256": "4b3324fcd0db5e6e19d3d2b3a3b904f1c98854937cd30aee09e1f183d74875cc",
+          "matchesNative": true
+        },
+        {
+          "path": "tools/qa/qa-job.mjs",
+          "normalizedSha256": "bd25e58975d099952efd541f834c32f4f6498c4b2d848d9ac635352c8b4f9411",
+          "matchesNative": true
+        }
+      ]
+    },
+    "guardian": "PASS_ACTUAL_HINT_ONLY_DELTA; original native scope retained, no new browser required"
+  },
+  "tests": {
+    "distinctSourceTests": 275,
+    "files": 17,
+    "qaHelperTests": 23
+  },
+  "priorFailures": [
+    {
+      "job": "last-save-native-2052",
+      "reason": "Pilot did not await travel animation outside optional inspection",
+      "correction": "4cbf07c moves existing wait; assertions unchanged"
+    },
+    {
+      "job": "last-save-native-2052-settled",
+      "reason": "Demonstrated own recovery control below44px",
+      "correction": "07b9bdb recovery-only48px wrapping/readability"
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/reports/last-save-reload-2026-10-18/native-defeat-exact-last-save.png",
+      "sha256": "e916b97bf30db2371f15e349a77cdbf777755111a805ad3e867922bdda518b6f",
+      "bytes": 965937
+    },
+    {
+      "path": "docs/reports/last-save-reload-2026-10-18/last-save-immediate-inventory-use.png",
+      "sha256": "2f0c2cfc2ae985e72704d1647f539a63ca1307426b75928da0eade8b2771e851",
+      "bytes": 198803
+    },
+    {
+      "path": "docs/reports/last-save-reload-2026-10-18/chest-lion-poi-opening-cache.png",
+      "sha256": "26b6bae731b8bbf7003496fcb694f458ce8f042b00ea275417675bc8dd295c4d",
+      "bytes": 57502
+    }
+  ],
+  "limits": [
+    "Native elite defeat and manual fallback are source/unit scope only",
+    "Native pending combat resume proved mechanical identity/state/deployment, resumed capture is transition; no settled resumed visual claim",
+    "No current-source/build native match after hint-only delta",
+    "No mobile/OS/screen-reader/hardware/art/felt-balance/global acceptance",
+    "Manual multi-slot feature not implemented; economic quantities/costs unchanged"
+  ]
+}

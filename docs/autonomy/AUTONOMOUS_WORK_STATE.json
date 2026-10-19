@@ -1,56 +1,116 @@
 {
-  "status": "PLAN_REVISED",
-  "runStartedAt": "2026-10-18T20:49:36Z",
-  "runEndedAt": "2026-10-18T20:50:48.045Z",
-  "activeTask": "LAST-SAVE-RELOAD-DEDICATED-SCOPE",
-  "activePhase": "LAST_ACTUAL_SAVE_TARGET_CLARIFIED_RUNTIME_UNCHANGED",
-  "activeSubtask": "Autosave now/future manual slots; remove mandatory checkpoint-snapshot design",
+  "status": "READY_FOR_PC_ACCEPTANCE",
+  "runStartedAt": "2026-10-18T20:52:31Z",
+  "runEndedAt": null,
+  "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
+  "activePhase": "LAST_SAVE_TASK_COMPLETE_SCOPED_OPERATOR_PC_REVIEW",
+  "activeSubtask": "Unified holdings and exact saved recovery delivered; global PC acceptance open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "4f044c4f74739134a256276edf46c889826c65cf",
-  "lastPushedCommit": "4f044c4f74739134a256276edf46c889826c65cf",
+  "lastKnownGoodCommit": "b7a40f384c7b68774859adf6e46f7894fd750f36",
+  "lastPushedCommit": "6545b16",
   "completedThisRun": [
-    "OD-2026-10-18-B records last actual save as restore reference, superseding checkpoint-specific design",
-    "Revised proposal/state/guide: undo only unsaved changes, keep saved reward and once-only facts together",
-    "Future multiple manual slots stay independent/active-game-scoped; no new slot implementation implied"
+    "Approved/reviewed set1.5.0 amendment d1031ec before runtime; baseline operationally established",
+    "One usable wallet/inventory, once-only actual legacy pool consolidation, no checkpoint shift/reward/cost rebalance",
+    "Shared ordinary/elite run-bound complete last-save recovery, no loss write/relocation, explicit agency and pending context",
+    "Native07 PC1366 normal cache15gold/supplypotion/use1to56/realwolvesloss/exactstate+bytes/focused48px/explicit same pending combat mechanical resume ACCEPTED_SCOPED",
+    "Final b7 hint-only derived copy/14input-invariance tests reviewed separately; no current-build native claim",
+    "275distinct source tests17files,23receipt-helper tests, types/build/contracts/gates PASS; historical325QA/deferred roots exact; quota pause recovered without bypass"
   ],
   "filesChanged": [
-    "docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/project/PC_PLAYTEST.md",
+    ".agents/skills/autonomy-handoff/SKILL.md",
+    ".agents/skills/contracts-compliance/SKILL.md",
+    "AGENTS.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+    "docs/autonomy/LAST_SAVE_RELOAD_OPERATOR_DECISION_2026-10-18.md",
+    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md",
+    "docs/autonomy/RECURRING_RUN_PROMPT.md",
+    "docs/autonomy/handoffs/2026-10-18T2052Z-codex-last-save-recovery-wip.md",
+    "docs/autonomy/handoffs/2026-10-19T0126Z-codex-last-save-reload.md",
+    "docs/contracts/AUTHORING_AND_QA.md",
+    "docs/contracts/CAMPAIGN_AND_STATE.md",
+    "docs/contracts/COMBAT_AND_VFX.md",
+    "docs/contracts/README.md",
+    "docs/contracts/TRAVERSAL.md",
+    "docs/contracts/contracts.manifest.json",
+    "docs/game/GAME_CONSTITUTION.md",
+    "docs/project/CURRENT_STATUS.md",
+    "docs/project/PC_PLAYTEST.md",
+    "docs/project/POI_NAVIGATION.md",
+    "docs/reports/INDEX.md",
+    "docs/reports/last-save-reload-2026-10-18.md",
+    "docs/reports/last-save-reload-2026-10-18/chest-lion-poi-opening-cache.png",
+    "docs/reports/last-save-reload-2026-10-18/last-save-immediate-inventory-use.png",
+    "docs/reports/last-save-reload-2026-10-18/native-defeat-exact-last-save.png",
+    "docs/reports/last-save-reload-2026-10-18/review.json",
+    "src/combat/legacyCombatRuntime.js",
+    "src/game/GameApp.ts",
+    "src/game/GameAppPoi.test.ts",
+    "src/game/GameAppPoiExpedition.test.ts",
+    "src/game/cin67NarrativeStageIntegration.test.ts",
+    "src/game/contestResolution.ts",
+    "src/game/lastSaveRecovery.test.ts",
+    "src/game/management.test.ts",
+    "src/game/management.ts",
+    "src/game/poiContentAdapters.test.ts",
+    "src/game/poiContentAdapters.ts",
+    "src/game/poiExpedition.test.ts",
+    "src/game/poiNavigation.test.ts",
+    "src/game/runSystem.test.ts",
+    "src/game/runSystem.ts",
+    "src/game/store.ts",
+    "src/styles/app.css",
+    "src/ui/CampaignStatusHud.test.ts",
+    "src/ui/CampaignStatusHud.ts",
+    "src/ui/DialogueView.ts",
+    "src/ui/ManagementView.ts",
+    "src/ui/PoiMapView.ts",
+    "src/ui/TravelView.ts",
+    "tools/demo-continuous-production-qa.mjs",
+    "tools/qa/qa-job.mjs",
+    "tools/qa/qa-job.test.mjs"
   ],
   "testsRun": [
-    "Whitespace/immutable-workingLOCKED/8contracts8slots gates; documentation-only, no source/build/browser rerun"
+    "275distinct focused source tests17files PASS; mechanical fixtures distinguished from native evidence",
+    "23existing qa-job helper tests PASS on host",
+    "Current TypeScript/production build PASS tmp/last-save-current-copy-build.log and current-copy-types.log;8MP4",
+    "contracts:validate8contracts8slots/set1.5.0 and immutable/whitespace PASS",
+    "Native final controls receipt SUCCEEDED at07b9bdb; two retained failures; current hint-only delta independently reviewed"
   ],
   "testsPassed": [
-    "Whitespace/immutable-workingLOCKED/8contracts8slots gates; documentation-only, no source/build/browser rerun"
+    "275source tests17files",
+    "23receipt-helper tests",
+    "Types/build/contracts8slots8/immutable/whitespace",
+    "Native07 scoped exact recovery and current copy-only14tests"
   ],
   "testsRemaining": [
-    "Dedicated actual amended-rule review/baseline before runtime",
-    "Exact ordinary/elite last-save restoration/unified-wallet implementation and native proof"
+    "Global operator PC/art/felt-balance/hardware acceptance",
+    "Native elite/manual fallback/settled resumed visuals not newly accepted; future manual multi-slot feature independent",
+    "Final mobile after PC stability"
   ],
   "blockers": [
     "Operator global PC/art/felt-balance/hardware acceptance open; no autonomous economy/reward/elite adjustment",
     "Bois-Clair nightplate external asset gap retained",
-    "Audio deferred; future video generation remains dedicated non-recurring work",
-    "Exact last-save defeat restoration not implemented; current post-load failRunToCheckpoint changes the recorded save state"
+    "Audio deferred; future video generation remains dedicated non-recurring work"
   ],
   "remainingWork": [
-    "Corrected dedicated last-save restoration/unified-wallet task",
-    "Prior independent PC review and later mobile/media scopes retained"
+    "Operator refreshes existing http://127.0.0.1:5438/ and Continue on the same browser profile; inspect the single usable wallet and, after a real loss, Recharger/Reprendre la sauvegarde. Correct one concrete remaining PC finding; no unchanged campaign replay, no new QA mission merely to accumulate evidence. Manual multi-slot support remains future scope; global PC/art/balance/hardware review open before mobile.",
+    "Conditional audiovisual roadmap and external nightplate remain separate; no scheduler/media/audio activation"
   ],
-  "nextAction": "Prepare dedicated LAST-SAVE-RELOAD amendment for OD-2026-10-18-B, then adapt both defeat paths to exact actual save restoration. Do not build mandatory separate refuge snapshots or implement retained-unsaved gains. Current autosave is reference; future manual slots remain independent scope.",
+  "nextAction": "Operator refreshes existing http://127.0.0.1:5438/ and Continue on the same browser profile; inspect the single usable wallet and, after a real loss, Recharger/Reprendre la sauvegarde. Correct one concrete remaining PC finding; no unchanged campaign replay, no new QA mission merely to accumulate evidence. Manual multi-slot support remains future scope; global PC/art/balance/hardware review open before mobile.",
   "taskQueue": [
     "LAST-SAVE-RELOAD: corrected target; ordinary/elite restore exact active-game save",
     "POI-PATH-PAWN-CLARITY: prior COMPLETE_SCOPED_UI retained",
     "Independent demonstrated PC findings and operator art/balance/hardware review",
     "Later mobile and conditional media/audio retained"
   ],
-  "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_RULE_DOCUMENT_CORRECTION_ONLY; set1.4.0 unchanged. Runtime target requires dedicated amendment and is not accepted.",
-  "commitReferenceScope": "lastKnownGood/accepted/implementation/wip reference tested sourcec6b9cb8; lastPushed is verified preceding workflow commit; final closure is containing Git commit, live parity/lock release recorded in automation memory.",
-  "operatorAuthorization": "OD-2026-10-18-B explicitly clarifies last actual save, current automatic and possible future manual multi-slots. This checkpoint is target/continuity only, no runtime or LOCKED amendment.",
+  "creditStatus": "AVAILABLE_AFTER_VERIFIED_RESET",
+  "contractComplianceStatus": "PASS_REVIEWED_AUTHORIZED_AMENDMENT_AND_SPLIT_NATIVE07_CURRENT_COPY_SCOPES; protected gate empty after d1031ec",
+  "commitReferenceScope": "implementation/lastKnownGood b7a40f3 includes unit-tested read-only hint delta; lastAcceptedProduction07 is native source/build only. lastPushed is last verified preceding checkpoint; closure is containing Git commit, final live parity/lock release in automation memory.",
+  "operatorAuthorization": "OD-2026-10-18-C direct dedicated execution; reviewed d1031ec baseline before runtime. OD-2026-10-12-A permanent normal origin/dev publication.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -120,9 +180,9 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-save-rule-20261018T2049",
+  "runId": "codex-last-save-20261018T2052",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-18T20:50:48.045Z",
+  "lastHeartbeat": "2026-10-19T01:26:42.662Z",
   "wip": {
     "branch": null,
     "sha": "819644094d9e2d6f8fa759227fe5fd756f4b97e0",
@@ -132,7 +192,7 @@
     "lastGreenCheck": "2026-10-18T20:50:48.045Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-18T20:50:48.045Z",
+    "lastHeartbeat": "2026-10-19T01:26:42.662Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -35818,52 +35878,475 @@
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "last-save-native-2052",
+        "runId": "codex-last-save-20261018T2052",
+        "status": "FAILED",
+        "registeredAt": "2026-10-19T01:04:46.535Z",
+        "pid": 44324,
+        "port": 5442,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "defeat-recovery",
+          "routePlan": "rescue",
+          "timeoutMinutes": 12,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-poi-opening-wolves",
+          "nativeDefeatWait": true,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "direct",
+          "checkpointPoiId": null,
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-next-turn-2141/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_LAST_SAVE_RESTORE",
+          "NO_SAVE_OVERWRITE",
+          "EXPLICIT_PENDING_COMBAT_RESUME",
+          "NATIVE_USABLE_REWARDS_AND_MENU_USE"
+        ],
+        "output": "tmp/demo/last-save-native-2052",
+        "receiptPath": "tmp/demo/last-save-native-2052/qa-job.json",
+        "provenance": {
+          "gitHead": "878241d865dae3b82c6c02bbc1d327bd4a5de2ab",
+          "sourceTree": "e25331e635caaa1372e1774b368a653fb9cbbfd6",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "b9dc96a08156ab45088376ff2915b2b066aa13e4b19e766424ababde227c53dc"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+              "sha256": "788dc78ad6b274225261c755b2cd1e69a35a0c7579aa7938228a9d42fef8d1a1"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-next-turn-2141/results.json",
+              "sha256": "835b785fa0740d5241b8be904b8d57f729c92f37f0973c6786e8ccbc20dbfd24"
+            }
+          ],
+          "receiptToolSha256": "bd25e58975d099952efd541f834c32f4f6498c4b2d848d9ac635352c8b4f9411",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CJtqK0VO.js",
+              "sha256": "9198d747200b65d1ae9d2f413cd925bab6bded2e193390142de02c755af03d20"
+            },
+            {
+              "path": "dist/assets/combat-CMbMTbKx.js",
+              "sha256": "65db43947867b104eeb0cc12b0c1298c22a2c0d176f2845497272bdeb44ea41c"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/game-BDzc0ivW.css",
+              "sha256": "43d2987ff8b63278b19ac4dca06828c9efd619220d2ad4b0432b2e125e796a86"
+            },
+            {
+              "path": "dist/assets/game-agD7SJba.js",
+              "sha256": "9a07c1d58e90b5db29a2bb344b3a611e65c20b64d4e493706f9a30badeb1f265"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "bb98b1d41f152d8fd000efc3b491381a77679db242272b6a50e3b4334fe3f287"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-19T01:04:48.312Z",
+        "endedAt": "2026-10-19T01:04:53.662Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/last-save-native-2052/results.json",
+        "resultSha256": "435cf3c98dd96a0f1b719f4b3599b3bc15f9b8ac5d7d9fd66edb9141c0d0cd7f",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "last-save-native-2052-settled",
+        "runId": "codex-last-save-20261018T2052",
+        "status": "FAILED",
+        "registeredAt": "2026-10-19T01:06:31.101Z",
+        "pid": 43320,
+        "port": 5442,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "defeat-recovery",
+          "routePlan": "rescue",
+          "timeoutMinutes": 12,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-poi-opening-wolves",
+          "nativeDefeatWait": true,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "direct",
+          "checkpointPoiId": null,
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-next-turn-2141/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_LAST_SAVE_RESTORE",
+          "NO_SAVE_OVERWRITE",
+          "EXPLICIT_PENDING_COMBAT_RESUME",
+          "NATIVE_USABLE_REWARDS_AND_MENU_USE"
+        ],
+        "output": "tmp/demo/last-save-native-2052-settled",
+        "receiptPath": "tmp/demo/last-save-native-2052-settled/qa-job.json",
+        "provenance": {
+          "gitHead": "4cbf07ca08f2d4326cd3ecf7200b49f95efe1cf6",
+          "sourceTree": "e25331e635caaa1372e1774b368a653fb9cbbfd6",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "4b3324fcd0db5e6e19d3d2b3a3b904f1c98854937cd30aee09e1f183d74875cc"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+              "sha256": "788dc78ad6b274225261c755b2cd1e69a35a0c7579aa7938228a9d42fef8d1a1"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-next-turn-2141/results.json",
+              "sha256": "835b785fa0740d5241b8be904b8d57f729c92f37f0973c6786e8ccbc20dbfd24"
+            }
+          ],
+          "receiptToolSha256": "bd25e58975d099952efd541f834c32f4f6498c4b2d848d9ac635352c8b4f9411",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CJtqK0VO.js",
+              "sha256": "9198d747200b65d1ae9d2f413cd925bab6bded2e193390142de02c755af03d20"
+            },
+            {
+              "path": "dist/assets/combat-CMbMTbKx.js",
+              "sha256": "65db43947867b104eeb0cc12b0c1298c22a2c0d176f2845497272bdeb44ea41c"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/game-BDzc0ivW.css",
+              "sha256": "43d2987ff8b63278b19ac4dca06828c9efd619220d2ad4b0432b2e125e796a86"
+            },
+            {
+              "path": "dist/assets/game-agD7SJba.js",
+              "sha256": "9a07c1d58e90b5db29a2bb344b3a611e65c20b64d4e493706f9a30badeb1f265"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "bb98b1d41f152d8fd000efc3b491381a77679db242272b6a50e3b4334fe3f287"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-19T01:06:31.937Z",
+        "endedAt": "2026-10-19T01:08:51.785Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/last-save-native-2052-settled/results.json",
+        "resultSha256": "0bf315afc766457ec48d06ef6fedf066b4cefa367066f3c69aa16ddb47f37372",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "last-save-native-2052-controls",
+        "runId": "codex-last-save-20261018T2052",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-19T01:12:24.279Z",
+        "pid": 25056,
+        "port": 5442,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "defeat-recovery",
+          "routePlan": "rescue",
+          "timeoutMinutes": 12,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-poi-opening-wolves",
+          "nativeDefeatWait": true,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "direct",
+          "checkpointPoiId": null,
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+          "priorProofPath": "tmp/demo/campaign-next-turn-2141/results.json",
+          "verifySalvation": false
+        },
+        "requiredAssertions": [
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_LAST_SAVE_RESTORE",
+          "NO_SAVE_OVERWRITE",
+          "EXPLICIT_PENDING_COMBAT_RESUME",
+          "NATIVE_USABLE_REWARDS_AND_MENU_USE"
+        ],
+        "output": "tmp/demo/last-save-native-2052-controls",
+        "receiptPath": "tmp/demo/last-save-native-2052-controls/qa-job.json",
+        "provenance": {
+          "gitHead": "07b9bdba243ca23c8507c97b9e2f27d1a227c8e6",
+          "sourceTree": "4ce59f557268f1c613a211ca1cd64d069cfff7cc",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "4b3324fcd0db5e6e19d3d2b3a3b904f1c98854937cd30aee09e1f183d74875cc"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/campaign-next-turn-2141/earned-first-refuge-v6.json",
+              "sha256": "788dc78ad6b274225261c755b2cd1e69a35a0c7579aa7938228a9d42fef8d1a1"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/campaign-next-turn-2141/results.json",
+              "sha256": "835b785fa0740d5241b8be904b8d57f729c92f37f0973c6786e8ccbc20dbfd24"
+            }
+          ],
+          "receiptToolSha256": "bd25e58975d099952efd541f834c32f4f6498c4b2d848d9ac635352c8b4f9411",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-CJtqK0VO.js",
+              "sha256": "9198d747200b65d1ae9d2f413cd925bab6bded2e193390142de02c755af03d20"
+            },
+            {
+              "path": "dist/assets/combat-CMbMTbKx.js",
+              "sha256": "65db43947867b104eeb0cc12b0c1298c22a2c0d176f2845497272bdeb44ea41c"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/game-DP3Uc6PC.js",
+              "sha256": "a5843e089502e3e369da76528e44388d085a3d30b7dba266b5b9854e30531181"
+            },
+            {
+              "path": "dist/assets/game-LvWyiK7-.css",
+              "sha256": "75ec2f4a02b1fffd74499b9229e8444f4d3417ba48ed9e7d55b7da52848a992e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "db4c2f461ff948e3bd1566c80d4234b163e881c40655b5acccdd9a0496a3030f"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-19T01:12:25.282Z",
+        "endedAt": "2026-10-19T01:15:31.002Z",
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false,
+        "exitCode": 0,
+        "resultPath": "tmp/demo/last-save-native-2052-controls/results.json",
+        "resultSha256": "15a91b26b969e77366861f833e121423b337ba901909a70584d7a091de79ca2f",
+        "provenanceStable": true
       }
     ],
     "wip": {
       "branch": null,
-      "sha": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
+      "sha": "b7a40f384c7b68774859adf6e46f7894fd750f36",
       "checkpointBranch": "dev",
-      "dirtyFiles": [],
-      "status": "GREEN",
-      "lastGreenCheck": "2026-10-18T05:23:55.037Z"
+      "dirtyFiles": [
+        ".agents/skills/autonomy-handoff/SKILL.md",
+        ".agents/skills/contracts-compliance/SKILL.md",
+        "AGENTS.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+        "docs/autonomy/LAST_SAVE_RELOAD_OPERATOR_DECISION_2026-10-18.md",
+        "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+        "docs/autonomy/OPERATOR_DECISIONS.md",
+        "docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md",
+        "docs/autonomy/RECURRING_RUN_PROMPT.md",
+        "docs/autonomy/handoffs/2026-10-18T2052Z-codex-last-save-recovery-wip.md",
+        "docs/autonomy/handoffs/2026-10-19T0126Z-codex-last-save-reload.md",
+        "docs/project/CURRENT_STATUS.md",
+        "docs/project/PC_PLAYTEST.md",
+        "docs/project/POI_NAVIGATION.md",
+        "docs/reports/INDEX.md",
+        "docs/reports/last-save-reload-2026-10-18.md",
+        "docs/reports/last-save-reload-2026-10-18/chest-lion-poi-opening-cache.png",
+        "docs/reports/last-save-reload-2026-10-18/last-save-immediate-inventory-use.png",
+        "docs/reports/last-save-reload-2026-10-18/native-defeat-exact-last-save.png",
+        "docs/reports/last-save-reload-2026-10-18/review.json"
+      ],
+      "status": "SOURCE_GREEN_WORKFLOW_CLOSEOUT",
+      "lastGreenCheck": "2026-10-19T01:26:42.662Z",
+      "ignoredPauseBackup": "Historical only; never restore over current source"
     },
-    "nextAction": "Operator judges preparation clarity and felt rest cost before Chasseurs du Sceau on current PC candidate, using PC_PLAYTEST retained failed/prepared examples and visible deployment HP/full-rest effect. Correct only a demonstrated player defect. If no new observation/verdict, retain readiness without replaying accepted campaigns or creating another QA mission. No autonomous economy/elite/art changes; mobile deferred until PC milestone.",
+    "nextAction": "Operator refreshes existing http://127.0.0.1:5438/ and Continue on the same browser profile; inspect the single usable wallet and, after a real loss, Recharger/Reprendre la sauvegarde. Correct one concrete remaining PC finding; no unchanged campaign replay, no new QA mission merely to accumulate evidence. Manual multi-slot support remains future scope; global PC/art/balance/hardware review open before mobile.",
     "runMetrics": {
-      "runtimeSourceFiles": 2,
-      "sourceTestFiles": 1,
-      "existingQaFiles": 2,
-      "qaHelperTestFiles": 1,
+      "runtimeSourceFilesModified": 13,
+      "sourceTestFilesModified": 10,
+      "newSourceTestFiles": 1,
+      "existingQaFilesModified": 3,
       "newPersistentQaFiles": 0,
-      "promotedProofFiles": 0,
-      "productDocs": 1,
-      "workflowFiles": 4,
+      "promotedProofFiles": 4,
+      "productDocs": 3,
+      "protectedAmendmentFiles": 7,
+      "workflowFiles": 15,
       "inheritedWipFiles": 0,
-      "browserScenarios": 2,
-      "interruptedVisualAttempt": 1,
-      "acceptedCorrectiveScenario": 1,
-      "registeredJobs": 2,
+      "browserScenarios": 3,
+      "registeredJobs": 3,
+      "nativeDefeatsPlayed": 2,
+      "acceptedNativeDefeatScenarios": 1,
       "reusedReviewers": 1
     },
     "checkpointPaths": [
-      "src/ui/DialogueView.ts",
-      "src/ui/DialogueView.test.ts",
-      "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+      ".agents/skills/autonomy-handoff/SKILL.md",
+      ".agents/skills/contracts-compliance/SKILL.md",
+      "AGENTS.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/NARRATIVE_CONTEXT_COHERENCE.md",
       "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/handoffs/2026-10-17T2229Z-codex-dialogue-accessible-names.md"
+      "docs/autonomy/LAST_SAVE_RELOAD_OPERATOR_DECISION_2026-10-18.md",
+      "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md",
+      "docs/autonomy/RECURRING_RUN_PROMPT.md",
+      "docs/autonomy/handoffs/2026-10-18T2052Z-codex-last-save-recovery-wip.md",
+      "docs/autonomy/handoffs/2026-10-19T0126Z-codex-last-save-reload.md",
+      "docs/contracts/AUTHORING_AND_QA.md",
+      "docs/contracts/CAMPAIGN_AND_STATE.md",
+      "docs/contracts/COMBAT_AND_VFX.md",
+      "docs/contracts/README.md",
+      "docs/contracts/TRAVERSAL.md",
+      "docs/contracts/contracts.manifest.json",
+      "docs/game/GAME_CONSTITUTION.md",
+      "docs/project/CURRENT_STATUS.md",
+      "docs/project/PC_PLAYTEST.md",
+      "docs/project/POI_NAVIGATION.md",
+      "docs/reports/INDEX.md",
+      "docs/reports/last-save-reload-2026-10-18.md",
+      "docs/reports/last-save-reload-2026-10-18/chest-lion-poi-opening-cache.png",
+      "docs/reports/last-save-reload-2026-10-18/last-save-immediate-inventory-use.png",
+      "docs/reports/last-save-reload-2026-10-18/native-defeat-exact-last-save.png",
+      "docs/reports/last-save-reload-2026-10-18/review.json",
+      "src/combat/legacyCombatRuntime.js",
+      "src/game/GameApp.ts",
+      "src/game/GameAppPoi.test.ts",
+      "src/game/GameAppPoiExpedition.test.ts",
+      "src/game/cin67NarrativeStageIntegration.test.ts",
+      "src/game/contestResolution.ts",
+      "src/game/lastSaveRecovery.test.ts",
+      "src/game/management.test.ts",
+      "src/game/management.ts",
+      "src/game/poiContentAdapters.test.ts",
+      "src/game/poiContentAdapters.ts",
+      "src/game/poiExpedition.test.ts",
+      "src/game/poiNavigation.test.ts",
+      "src/game/runSystem.test.ts",
+      "src/game/runSystem.ts",
+      "src/game/store.ts",
+      "src/styles/app.css",
+      "src/ui/CampaignStatusHud.test.ts",
+      "src/ui/CampaignStatusHud.ts",
+      "src/ui/DialogueView.ts",
+      "src/ui/ManagementView.ts",
+      "src/ui/PoiMapView.ts",
+      "src/ui/TravelView.ts",
+      "tools/demo-continuous-production-qa.mjs",
+      "tools/qa/qa-job.mjs",
+      "tools/qa/qa-job.test.mjs"
     ],
     "publication": {
       "destination": "origin/dev",
       "authorization": "OD-2026-10-12-A",
-      "sourceCheckpoint": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
-      "precedingWorkflow": "b8ca368d9a0b5ead99a0ce00e92d291104ba0b7b",
-      "finalWorkflow": "Containing Git commit; live parity/lock release recorded in automation memory"
+      "sourceCheckpoint": "b7a40f384c7b68774859adf6e46f7894fd750f36",
+      "nativeSource": "07b9bdba243ca23c8507c97b9e2f27d1a227c8e6",
+      "finalWorkflow": "Containing Git checkpoint; verified live parity and lock release in automation memory"
     },
-    "runEndedAt": "2026-10-18T05:23:55.037Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
       "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
@@ -36660,7 +37143,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
-    "activeSubtask": "Exact visible/accessible deployment HP in reserve/deployed states accepted PC1366normal",
+    "activeSubtask": "Unified holdings and exact saved recovery delivered; global PC acceptance open",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -39992,13 +40475,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "rpgthreejs-auto-dev-90m-20261018T0503",
+    "runId": "codex-last-save-20261018T2052",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-18T05:03:00Z",
-    "activePhase": "DEPLOYMENT_HEALTH_COMPLETE_SCOPED_OPERATOR_PC_VERDICT_OPEN",
-    "heartbeat": "2026-10-18T05:23:55.037Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-18T0503Z-codex-deployment-health.md",
+    "runStartedAt": "2026-10-18T20:52:31Z",
+    "activePhase": "LAST_SAVE_TASK_COMPLETE_SCOPED_OPERATOR_PC_REVIEW",
+    "heartbeat": "2026-10-19T01:26:42.662Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0126Z-codex-last-save-reload.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -43611,6 +44094,119 @@
       "qaJobsAdded": 0,
       "scope": "Rule clarification only; no runtime acceptance",
       "withdrawn": "Mandatory separate refuge checkpoint snapshot/preparation refresh and mid-route fallback plan"
+    },
+    "lastSave2052": {
+      "amendment": "d1031ec02977379279a3c07eefa58edc8cab7246",
+      "contractSetVersion": "1.5.0",
+      "preflight": {
+        "head": "c58c1098ce7f3f1550d2e0f09d2f66c582e67c53",
+        "clean": true,
+        "lockAbsent": true,
+        "inheritedWip": [],
+        "remoteParity": true
+      },
+      "guardianAmendment": "PASS_ACTUAL_DIFF",
+      "qaToolingJustification": "Existing campaign pilot and receipt helper already cover earned navigation and native defeat; adapt exact assertions to approved last-save semantics and isolate region-I chest/use/loss. No new QA runner.",
+      "acceptance": "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE07_LAST_SAVE_AND_CURRENT_HINT_COPY_TESTED",
+      "status": "COMPLETE_SCOPED",
+      "endedAt": null,
+      "sourceCommit": "b7a40f384c7b68774859adf6e46f7894fd750f36",
+      "localHead": "fbc36520c6816ae03256e714999803137a9b1d16",
+      "published": "6545b16",
+      "gates": {
+        "focused": "275distinctPASS/17files",
+        "qaHelper": "23PASS_current",
+        "types": "PASS_current",
+        "build": "PASS_current_copy;8MP4",
+        "contracts": "8contracts8slots/set1.5.0PASS",
+        "immutable": "PASS_empty_since_d1031ec",
+        "whitespace": "PASS",
+        "native": "SUCCEEDED/exit0/errors[] at07; original6flagsTRUE; originalscopeaccepted",
+        "currentProvenance": "EXPECTED_MISMATCH_after_hint_only_copy/rebuild; no current-native-match claim"
+      },
+      "approvalFailure": "Account usage quota prevented automatic review of host helper/port/heartbeat; not a safety judgment; no action executed or bypass",
+      "guardian": "PASS_ACTUAL_AMENDMENT_RUNTIME_PILOT_NATIVE07_AND_HINT_ONLY_CURRENT_DELTA",
+      "lock": {
+        "status": "OWNED_ACTIVE",
+        "pauseArchive": ".git/codex-autonomy.quota-pause-last-save-2052.json",
+        "release": "AFTER_VERIFIED_PUBLICATION"
+      },
+      "historicalQaRecords": 325,
+      "deferredObjectsExact": true,
+      "wipCheckpoint": "tmp/autonomy/last-save-2052-checkpoint",
+      "automationMemory": "Final summary pending successful publication/lock release",
+      "scheduler": "UNTOUCHED",
+      "operatorPreview": "24360/5438 retained; local dist rebuilt; browser/save untouched",
+      "counts": {
+        "runtimeSourceFilesModified": 13,
+        "sourceTestFilesModified": 10,
+        "newSourceTestFiles": 1,
+        "existingQaFilesModified": 3,
+        "newPersistentQaFiles": 0,
+        "promotedProofFiles": 4,
+        "productDocs": 3,
+        "protectedAmendmentFiles": 7,
+        "workflowFiles": 15,
+        "inheritedWipFiles": 0,
+        "browserScenarios": 3,
+        "registeredJobs": 3,
+        "nativeDefeatsPlayed": 2,
+        "acceptedNativeDefeatScenarios": 1,
+        "reusedReviewers": 1
+      },
+      "quotaRecovered": {
+        "at": "2026-10-19T00:59:21.321Z",
+        "ordinaryUsageAllowed": true,
+        "primaryUsedPercent": 3,
+        "preflight": "same source/WIP, old PIDdead>105min, relatedworkersabsent, port5442free, devremote6545b16mainunchanged, otherchatsidle"
+      },
+      "nativeSource": "07b9bdba243ca23c8507c97b9e2f27d1a227c8e6",
+      "report": "docs/reports/last-save-reload-2026-10-18.md",
+      "audit": "docs/reports/last-save-reload-2026-10-18/review.json",
+      "resultSha256": "15a91b26b969e77366861f833e121423b337ba901909a70584d7a091de79ca2f",
+      "limits": [
+        "Native elite/manual fallback/preferences/invalid recovery source-unit only",
+        "Pending resume mechanical only; transition capture not settled visual proof",
+        "Native07 and current b7 copy/build separate",
+        "GlobalPC/mobile/OS/AT/hardware/art/balance open",
+        "No multi-slot implementation/XP/price/reward/formation change"
+      ],
+      "compliance": {
+        "GAME_CONSTITUTION": "PASS_AUTHORIZED_SET1_5_0_AMENDMENT",
+        "ART_DIRECTION": "PASS_UNCHANGED_ASSETS",
+        "CHARACTERS": "N/A",
+        "ENVIRONMENTS": "N/A",
+        "NARRATIVE_CAMPAIGN": "PASS_SAVED_TIMELINE",
+        "NARRATIVE_PRESENTATION": "PASS_EXPLICIT_PENDING_CONTINUATION",
+        "TRAVERSAL": "PASS_NO_RELOCATION_RETIRED_ENGINE",
+        "COMBAT": "PASS_SHARED_OWNER_NATIVE_ORDINARY_SCOPE",
+        "SAVE": "PASS_NATIVE07_FULL_STATE_RAW_BYTES_AND_MECHANICAL_ELITE_FALLBACK",
+        "UI_ACCESSIBILITY": "PASS_NATIVE48PX_FOCUS_CURRENT_COPY_INPUT_INVARIANCE",
+        "QA_EVIDENCE": "PASS_NATIVE07_AND_CURRENT_COPY_SEPARATE_NO_CURRENT_BUILD_MATCH_CLAIM",
+        "REPOSITORY_GOVERNANCE": "PASS_OWNED_DEV_NORMAL_PUBLICATION_PENDING"
+      },
+      "historicalQaExact": true,
+      "qaRecordsTotal": 328,
+      "quotaPause": {
+        "approvalFailure": "Account usage quota prevented automatic review of host helper/port/heartbeat; not a safety judgment; no action executed or bypass",
+        "stoppedAt": "2026-10-19T00:57:59.774Z",
+        "recovered": {
+          "at": "2026-10-19T00:59:21.321Z",
+          "ordinaryUsageAllowed": true,
+          "primaryUsedPercent": 3,
+          "preflight": "same source/WIP, old PIDdead>105min, relatedworkersabsent, port5442free, devremote6545b16mainunchanged, otherchatsidle"
+        },
+        "noBypass": true
+      },
+      "workers": "No native QA node worker remains;5442noListener. Old43320reusedbyconhost/untouched. Operator24360/5438 HTTP200 retained.",
+      "previousLivePublication": {
+        "destination": "origin/dev",
+        "authorization": "OD-2026-10-12-A",
+        "sourceCheckpoint": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
+        "precedingWorkflow": "b8ca368d9a0b5ead99a0ce00e92d291104ba0b7b",
+        "finalWorkflow": "Containing Git commit; live parity/lock release recorded in automation memory"
+      },
+      "nextAction": "Operator refreshes existing http://127.0.0.1:5438/ and Continue on the same browser profile; inspect the single usable wallet and, after a real loss, Recharger/Reprendre la sauvegarde. Correct one concrete remaining PC finding; no unchanged campaign replay, no new QA mission merely to accumulate evidence. Manual multi-slot support remains future scope; global PC/art/balance/hardware review open before mobile."
     }
   },
   "previousInterruptedRun": {
@@ -43658,7 +44254,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-18T0503Z-codex-deployment-health.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0126Z-codex-last-save-reload.md",
   "runMeasurement": {
     "runtimeSourceFiles": 2,
     "sourceTestFiles": 1,
@@ -43762,7 +44358,7 @@
     ],
     "acceptance": "INCOMPLETE; prior0520reports are not current production keyboard acceptance"
   },
-  "operatorPriority": "OD-2026-10-16-A: independent PC finishing on delivered33POI/two-mobile-elite/three-atlas production; Lot E human review isolated",
+  "operatorPriority": "Current concrete PC feedback addressed; final operator PC/art/balance/hardware acceptance before mobile",
   "reopenedAcceptance": [
     {
       "area": "TRAVERSAL T0/T1/T3",
@@ -43971,8 +44567,8 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
-  "authorizedWorkContinuation": "Standing OD-2026-10-12-A non-force dev publication and direct POI closeout request apply; product/proof/docs publishedf597e3b; final metadata/parity/owned-lock release only. No new ending job in this pass.",
+  "implementationCommit": "b7a40f384c7b68774859adf6e46f7894fd750f36",
+  "authorizedWorkContinuation": "Direct last-save task complete in scoped implementation/proof. Publish selected coherent dev checkpoint under OD-2026-10-12-A without routine confirmation; retain original native07 proof and current copy scope separately.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
     "reviewedCheckpoint": "b73f0bedf1b5c6b6ec909ed6918a35362e08339a",
@@ -44055,7 +44651,7 @@
     "preparation": "Native rest75;3KO/5wounded/300gold",
     "scope": "Scoped1366normal rescue secondrefuge on prior frozen build"
   },
-  "lastAcceptedProductionCommit": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
+  "lastAcceptedProductionCommit": "07b9bdba243ca23c8507c97b9e2f27d1a227c8e6",
   "operatorFeedback1748": {
     "previous": {
       "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
@@ -47097,7 +47693,7 @@
     "scheduler": "UNTOUCHED",
     "externalNightplateBlockerReverified": "Current dialogue:ate_bois_clair_night_watch still maps to bois_clair_tableau_burning; approved-source-manifest timeOfDay sunset. No approved night substitution established."
   },
-  "contractSetVersion": "1.4.0",
+  "contractSetVersion": "1.5.0",
   "run2229": {
     "preflight": {
       "clean": true,
@@ -47216,8 +47812,8 @@
     "taskComplete": false,
     "newLabelBrowser": "OPEN"
   },
-  "lastSnapshotCommit": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
-  "lastSnapshotAt": "2026-10-18T05:23:55.037Z",
+  "lastSnapshotCommit": "b7a40f384c7b68774859adf6e46f7894fd750f36",
+  "lastSnapshotAt": "2026-10-19T01:26:42.662Z",
   "runMetrics": {
     "runtimeSourceFiles": 2,
     "sourceTestFiles": 1,
