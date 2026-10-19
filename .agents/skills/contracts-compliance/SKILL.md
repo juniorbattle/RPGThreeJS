@@ -5,7 +5,7 @@ description: "Use before implementing and before declaring any RPGThreeJS task c
 
 # Contracts compliance
 
-Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `d1031ec02977379279a3c07eefa58edc8cab7246`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
+Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `8fdc797bb52f5b501a00adb2a25b3623f4017086`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
 
 ## Orchestration (OD-2026-10-02-C)
 
@@ -14,7 +14,7 @@ The orchestrator applies this skill before implementation and task completion. I
 ## Gates (run them, do not assume)
 
 ```
-git --no-optional-locks diff --exit-code d1031ec02977379279a3c07eefa58edc8cab7246 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md   # must print nothing
+git --no-optional-locks diff --exit-code 8fdc797bb52f5b501a00adb2a25b3623f4017086 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md   # must print nothing
 git --no-optional-locks status --short -- docs/contracts docs/game/GAME_CONSTITUTION.md                  # must print nothing
 npm run contracts:validate                                                                              # 8 contracts, 8 slots
 ```
@@ -49,7 +49,7 @@ For every changed file ask:
 - Exactly eight video slots. No ninth slot, no enemy reveal or routine video. Fallback preserves agency and never replays resolved content.
 - No invented canon: dialogue, choices, stages, outcomes, rewards. Presentation briefs may not mint canon.
 - Recurring runs: no MiniMax or other video or keyframe generation, no MP4 replacement (OD-2026-10-01-B in `docs/autonomy/OPERATOR_DECISIONS.md`).
-- Audio DEFERRED. T2 and T4 are retired as playable legs with durable IDs kept; T3 is not renumbered.
+- Audio DEFERRED except the eight approved UI FX/audited events under OD-2026-10-18-F. T2 and T4 are retired as playable legs with durable IDs kept; T3 is not renumbered.
 - A `legacy*` name is not deletion authority: first list every reference (runtime, registry, manifest, styles, tools, tests, docs, evidence).
 - Autonomous writes go to `dev` or to a temporary branch created from it.
 
@@ -65,4 +65,4 @@ Then record: contracts read, contract set version, LOCKED rules impacted, and an
 
 ## Approved contract amendment boundary
 
-Current set1.5.0 derives from PRODUCTION-CONTRACTS-LAST-SAVE-RELOAD-1 / OD-2026-10-18-C at the immutable baseline above; b1e8858 is the original historical lock. A dedicated operator-approved amendment records exact changed rules, task/decision and version, independent review, then establishes its committed baseline in a following operational commit. A normal task must not advance that baseline or edit a LOCKED contract. Its gate must remain empty. During an authorized amendment, inspect the exact approved diff rather than claim no rule changed. Read the current manifest version for every matrix. Manual visual findings reopen affected acceptance; an old PASS is historical, not a rebuttal.
+Current set1.6.0 derives from PRODUCTION-CONTRACTS-UI-FX-1 / OD-2026-10-18-F at the immutable baseline above; b1e8858 is the original historical lock. A dedicated operator-approved amendment records exact changed rules, task/decision and version, independent review, then establishes its committed baseline in a following operational commit. A normal task must not advance that baseline or edit a LOCKED contract. Its gate must remain empty. During an authorized amendment, inspect the exact approved diff rather than claim no rule changed. Read the current manifest version for every matrix. Manual visual findings reopen affected acceptance; an old PASS is historical, not a rebuttal.

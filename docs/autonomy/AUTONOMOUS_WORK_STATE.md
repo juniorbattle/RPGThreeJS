@@ -1,12 +1,8 @@
-# Operator accepted eight UI FX assets and Bois-Clair night correction
+# Eight approved UI FX integration in progress
 
-OD-2026-10-18-E: « Excellent je valide les sons et aussi la correction du fond nocturne ». Recorded 2026-10-19T02:57:28.563Z; run codex-media-approval-20261019T0255 started02:55:54Z and ended2026-10-19T02:57:28.563Z. Assets accepted; audio not yet integrated. Global PC/art/balance/hardware/mobile acceptance unchanged outside these specific assets.
+Run codex-ui-fx-20261019T0259; clean dev868591b/ownedlock. Go operator OD-2026-10-18-F; set1.6.0 amendment reviewed PASS and committed 8fdc797bb52f5b501a00adb2a25b3623f4017086. This operational checkpoint establishes the immutable baseline before runtime. Only eight accepted UI FX; music/voices/ambience/combat/cinematic audio deferred. Preserve332QA jobs/deferredroots/accepted assets.
 
-Only acceptance metadata and audition copy updated; all9asset bytes/hashes unchanged, no gameplay/LOCKED changes.6existing environment tests, asset digests, contracts8/8 and whitespace/LOCKEDgates PASS. No new build/nativeQA: previous scoped night proof remains historical5e22775, metadata-only source drift explicitly recorded. All332historicalQA records/deferredroots preserved.
-
-Next ONE action: Prepare the dedicated narrow audio production exception/review/baseline, then integrate the8operator-accepted UI FX at the audited native events with enable/mute/volume, gesture unlock and bounded nonblocking playback. Do not regenerate assets or repeat listening acceptance.
-
-Current handoff docs/autonomy/handoffs/2026-10-19T0255Z-codex-media-approval.md. Publication target origin/dev under OD-2026-10-12-A; verified preflight parity0b2d084, main00b96f1. Final checkpoint hash follows in Git/automationmemory. Source0,sourceMetadata1,assetMetadata1,auditionCopy1,decisionDocs2,workflow3,newQA0,inheritedWIP0.
+Next: gesture-gated sound service and accessible volume/mute, then native audited events and focused proof.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

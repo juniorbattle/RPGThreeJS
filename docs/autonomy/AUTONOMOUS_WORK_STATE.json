@@ -1,9 +1,9 @@
 {
-  "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-19T02:55:54.842Z",
-  "runEndedAt": "2026-10-19T02:57:28.563Z",
-  "activeTask": "UI-FX-ACCEPTED-AWAITING-RUNTIME-INTEGRATION",
-  "activePhase": "OPERATOR_ASSETS_ACCEPTED",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-19T02:59:44Z",
+  "runEndedAt": null,
+  "activeTask": "UI-FX-APPROVED-INTEGRATION",
+  "activePhase": "REVIEWED_BASELINE_BEFORE_RUNTIME",
   "activeSubtask": "Record explicit validation; next bounded audio production task",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "0b2d084eeaa49fc9395da104e61142dec8dde5eb",
@@ -42,7 +42,7 @@
     "Dedicated reviewed audio exception and runtime integration",
     "GlobalPC/mobile/hardware/balance acceptance retained outside this asset approval"
   ],
-  "nextAction": "Prepare the dedicated narrow audio production exception/review/baseline, then integrate the8operator-accepted UI FX at the audited native events with enable/mute/volume, gesture unlock and bounded nonblocking playback. Do not regenerate assets or repeat listening acceptance.",
+  "nextAction": "Implement eight approved UI FX with separate gesture-gated player/settings and exact native events",
   "taskQueue": [
     "LAST-SAVE-RELOAD: corrected target; ordinary/elite restore exact active-game save",
     "POI-PATH-PAWN-CLARITY: prior COMPLETE_SCOPED_UI retained",
@@ -122,9 +122,9 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-media-approval-20261019T0255",
+  "runId": "codex-ui-fx-20261019T0259",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T02:57:28.563Z",
+  "lastHeartbeat": "2026-10-19T06:06:05.429Z",
   "wip": {
     "branch": null,
     "sha": "0b2d084eeaa49fc9395da104e61142dec8dde5eb",
@@ -133,7 +133,7 @@
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T02:57:28.563Z",
+    "lastHeartbeat": "2026-10-19T06:06:05.429Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -36547,7 +36547,7 @@
       "status": "NO_INHERITED_WIP_ACCEPTANCE_METADATA_ONLY",
       "inheritedWip": 0
     },
-    "nextAction": "Prepare the dedicated narrow audio production exception/review/baseline, then integrate the8operator-accepted UI FX at the audited native events with enable/mute/volume, gesture unlock and bounded nonblocking playback. Do not regenerate assets or repeat listening acceptance.",
+    "nextAction": "Implement eight approved UI FX with separate gesture-gated player/settings and exact native events",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "sourceMetadataFiles": 1,
@@ -36626,8 +36626,8 @@
       "finalWorkflow": "Containing closure commit; final live parity/lock release recorded in automation memory",
       "lastVerifiedCheckpoint": "d81ffe74dff19dc045f8941958b12c059b4b9b37"
     },
-    "runEndedAt": "2026-10-19T02:57:28.563Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
       "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
@@ -37423,7 +37423,7 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "UI-FX-ACCEPTED-AWAITING-RUNTIME-INTEGRATION",
+    "activeTask": "UI-FX-APPROVED-INTEGRATION",
     "activeSubtask": "Record explicit validation; next bounded audio production task",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
@@ -40756,11 +40756,11 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-media-approval-20261019T0255",
+    "runId": "codex-ui-fx-20261019T0259",
     "agent": "codex",
-    "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-19T02:55:54.842Z",
-    "activePhase": "OPERATOR_ASSETS_ACCEPTED",
+    "status": "IN_PROGRESS",
+    "runStartedAt": "2026-10-19T02:59:44Z",
+    "activePhase": "REVIEWED_BASELINE_BEFORE_RUNTIME",
     "heartbeat": "2026-10-19T01:26:42.662Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0255Z-codex-media-approval.md",
     "motion1617": {
@@ -44579,6 +44579,13 @@
         "ambience",
         "cinematic audio"
       ]
+    },
+    "uiFx0259": {
+      "amendmentBaseline": "8fdc797bb52f5b501a00adb2a25b3623f4017086",
+      "amendmentReview": "PASS contracts-guardian actualdiff",
+      "scope": "Eight approved byte-identical files; rest audio deferred",
+      "historicalQaJobs": 332,
+      "implementation": "PENDING"
     }
   },
   "previousInterruptedRun": {
@@ -44840,37 +44847,9 @@
     "externalPursuitBlocker": "Ten authored canonical mappings missing; not retried"
   },
   "previousRun": {
-    "runId": "codex-bois-clair-night-20261019T0213",
-    "runStartedAt": "2026-10-19T02:13:35Z",
-    "runEndedAt": "2026-10-19T02:37:57.765Z",
-    "lastPushedCommit": "db3ed1aaa45820278731380544af102d4d5a5617",
-    "completedThisRun": [
-      "Outcome-neutral native nocturnal Bois-Clair backdrop with separate truthful correction provenance; all44 original pack assets/metadata and169 other mappings preserved",
-      "Night first step two native pages reviewed:4actors,decoded1672x941exacthash,textfits,liveowner/storedV6unchanged; historical failures preserved",
-      "Operator clarification: hunters were not healed with available potions; no autonomous difficulty change",
-      "Concrete source-location SFXaudit and8original locally synthesized candidates/listeningpage generated; no game audio activation or LOCKED edits"
-    ],
-    "metrics": {
-      "runtimeSourceFiles": 1,
-      "sourceMetadataFiles": 1,
-      "sourceTestFiles": 1,
-      "runtimeImageAssets": 1,
-      "existingQaFiles": 1,
-      "newPersistentQaFiles": 0,
-      "newOfflineAssetTools": 1,
-      "offlineCandidateFiles": 11,
-      "promotedProofFiles": 3,
-      "taskReports": 1,
-      "productDocs": 1,
-      "operatorLedgerFiles": 1,
-      "workflowFiles": 3,
-      "inheritedWipFiles": 0,
-      "registeredJobs": 4,
-      "acceptedCorrectiveScenario": 1,
-      "failedInfraAttempts": 1,
-      "failedNewHarnessAssertionAttempts": 2,
-      "reusedReviewers": 1
-    }
+    "runId": "codex-media-approval-20261019T0255",
+    "runEndedAt": "2026-10-19T02:57:28.563Z",
+    "lastKnownGoodCommit": "0b2d084eeaa49fc9395da104e61142dec8dde5eb"
   },
   "pendingNarrativeTask": {
     "task": "NARRATIVE-CONTEXT-COHERENCE",
@@ -48077,7 +48056,7 @@
     "scheduler": "UNTOUCHED",
     "externalNightplateBlockerReverified": "Current dialogue:ate_bois_clair_night_watch still maps to bois_clair_tableau_burning; approved-source-manifest timeOfDay sunset. No approved night substitution established."
   },
-  "contractSetVersion": "1.5.0",
+  "contractSetVersion": "1.6.0",
   "run2229": {
     "preflight": {
       "clean": true,
