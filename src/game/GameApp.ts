@@ -1515,7 +1515,7 @@ export class GameApp {
     this.disposeJourney(); this.disposeNarrativeStage(); this.exploration.close();
     this.setMode('RESULT'); this.canvas.hidden = true;
     delete document.body.dataset.campaignSurface;
-    this.chrome.innerHTML = `<section class="title-screen ui-screen" aria-labelledby="defeat-title"><h1 id="defeat-title">Défaite</h1><p>${restored ? 'La dernière sauvegarde de cette partie a été rechargée. Les changements non sauvegardés ont été annulés.' : 'Aucune sauvegarde valide de cette partie ne peut être rechargée. Les sauvegardes existantes sont conservées.'}</p><div class="title-screen__actions">${restored ? '<button type="button" data-action="resume-save">Reprendre la sauvegarde</button>' : ''}<button type="button" data-action="defeat-menu">Retour au menu</button></div></section>`;
+    this.chrome.innerHTML = `<section class="title-screen title-screen--recovery ui-screen" aria-labelledby="defeat-title"><h1 id="defeat-title">Défaite</h1><p class="title-screen__lead">${restored ? 'La dernière sauvegarde de cette partie a été rechargée. Les changements non sauvegardés ont été annulés.' : 'Aucune sauvegarde valide de cette partie ne peut être rechargée. Les sauvegardes existantes sont conservées.'}</p><div class="title-screen__actions">${restored ? '<button type="button" data-action="resume-save">Reprendre la sauvegarde</button>' : ''}<button type="button" data-action="defeat-menu">Retour au menu</button></div></section>`;
     this.chrome.querySelector<HTMLButtonElement>('[data-action="resume-save"]')?.addEventListener('click', () => {
       if (this.mode !== 'RESULT') return;
       this.setMode('TRAVEL'); this.chrome.replaceChildren();
