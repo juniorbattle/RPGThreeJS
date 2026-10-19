@@ -1,11 +1,11 @@
 {
-  "status": "OPERATOR_ACCEPTED_ASSETS_NOT_RUNTIME_INTEGRATED",
+  "status": "OPERATOR_ACCEPTED_ASSETS_INTEGRATED_UI_FX_V1",
   "generatedAt": "2026-10-19T02:28:31.907Z",
   "method": "Original deterministic modal oscillators and seeded noise, PCM16 mono 48000Hz; no model, provider, external samples or recordings",
   "generator": "tools/audio/generate-ui-fx-candidates.mjs",
   "generatorSha256": "7fdff453b4609e59f1c37588fafe977490dd227e3b749c7baf261df594542bd1",
   "authority": "Direct operator request 2026-10-18: audit concrete FX needs and locations, generate simple sounds if possible",
-  "limits": "The eight sound assets are operator accepted. Playback is not integrated in game; dedicated narrow production exception remains next. No music, voices, ambient loops or cinematic audio changes.",
+  "limits": "Eight approved UI FX integrated at audited native UI/campaign events. Native hidden/suspend proof remains open; no music, voices, ambient loops, combat-iframe sounds or cinematic audio changes.",
   "candidates": [
     {
       "id": "navigate",
@@ -101,5 +101,15 @@
     "recordedAt": "2026-10-19T02:56:33.298Z",
     "operatorQuote": "Excellent je valide les sons et aussi la correction du fond nocturne",
     "scope": "Eight existing UI FX files accepted for timbre/listening and the existing Bois-Clair night background correction accepted; no inferred global PC acceptance, new audio doctrine or implemented playback."
+  },
+  "runtimeIntegration": {
+    "operatorDecision": "OD-2026-10-18-F",
+    "contractSet": "1.6.0",
+    "contractBaseline": "8fdc797bb52f5b501a00adb2a25b3623f4017086",
+    "publicRoot": "/assets/audio/ui-fx-v1/",
+    "source": "src/ui/UiSoundPlayer.ts",
+    "controls": "Sons button on title and POI map; voluntary enable, mute and volume; default disabled",
+    "nativeProof": "docs/reports/ui-fx-integration-2026-10-19/proof.json",
+    "nativeScope": "Partial; hidden/suspend criterion remains open"
   }
 }

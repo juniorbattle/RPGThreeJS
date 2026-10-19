@@ -78,7 +78,7 @@ Codex starts subagents only when authorized. The recurring instruction authorize
 
 ## Active POI migration priority
 
-OD-2026-10-15-A retired physical Traversal; OD-2026-10-15-B delivered Lot E under set1.4.0, extended by last-save set1.6.0 at the immutable baseline above. Production is 33 fixed POIs, two independent mobile elites, Combat or retreat and three atlases. Preserve durable T0–T4/V6 facts, campaign relations, existing content, historical evidence and shared resources. `docs/project/retired-traversal/` records removal dispositions. Never restore physical-road simulation or reactivate automation.
+OD-2026-10-15-A retired physical Traversal; OD-2026-10-15-B delivered Lot E under set1.4.0, extended by last-save set1.5.0 and bounded UI FX set1.6.0 at the immutable baseline above. Production is 33 fixed POIs, two independent mobile elites, Combat or retreat and three atlases. Preserve durable T0–T4/V6 facts, campaign relations, existing content, historical evidence and shared resources. `docs/project/retired-traversal/` records removal dispositions. Never restore physical-road simulation or reactivate automation.
 
 OD-2026-10-16-A / `docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md` sets the next recurring priority: missing six-hero competence criteria, then mounted tactical keyboard/controls, narrative presentation, accessibility and PC finishing. Lot E technical delivery is retained, not replayed as a new mission. Economy, elite configurations and atlas art await operator playtest; do not rebalance or remaster them autonomously. Their human acceptance does not block independent authorized work. Configuration sessions never launch product work; operator alone activates the scheduler.
 

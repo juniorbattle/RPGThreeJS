@@ -1,8 +1,16 @@
-# Eight approved UI FX integration in progress
+# Eight approved UI FX integrated; native hidden criterion open
 
-Run codex-ui-fx-20261019T0259; clean dev868591b/ownedlock. Go operator OD-2026-10-18-F; set1.6.0 amendment reviewed PASS and committed 8fdc797bb52f5b501a00adb2a25b3623f4017086. This operational checkpoint establishes the immutable baseline before runtime. Only eight accepted UI FX; music/voices/ambience/combat/cinematic audio deferred. Preserve332QA jobs/deferredroots/accepted assets.
+IMPLEMENTED_SCOPED_NATIVE_VISIBILITY_OPEN. Run codex-ui-fx-20261019T0259; source2a8dbe8/hooksd161976/acceptedpilota37024c. Ended 2026-10-19T06:35:10.245Z; publication/metadata/ownedlockrelease remain. Dedicated set1.6.0 amendment8fdc797 independently reviewed and operational baselinef4d266c established before runtime; normal LOCKEDgate empty.
 
-Runtime green: gesture-gated sound service/accessibility/settings and native event callbacks implemented,46focusedtests4files/TypeScript/gates PASS. Next: existing-driver scoped UI FX proof on earned2141first-refuge; no new campaign.
+Sons on title/map, voluntaryenable/mute/volume, defaultsilent/separatepreference;8approvedWAVbytesidentical; boundedgestureplayer/failurecleanup/noownerV6change. 59sourcetests6files/24helperhost/types/build/8MP4/contracts8/8/gates PASS. Sandbox helper Gittempdenial distinct fromproduct.
+
+Guardian ACCEPTED_SCOPED_OTHER_BOUNDARIES job0633: earned2141firstrefuge,9nativeAudioBufferSourceNode.starts/6distinctcues,realpotion1to56,manualsaveexact,resolvedbacktrack1cue,settings/slotsunchanged,volume0/mute/reloadsilent,invalidWAVnonblocking,exactreload. Threecapturesinspected. Twofailedunloadobservationattempts preserved; synchronous QA sessionStorage logscloseinvocation, notpromisefulfillment.332historicaljobs/deferredroots exact,335totaljobs.
+
+Fullfeature/lotQA remains BLOCKED solely nativehidden/suspend: installedChromiumdocument.hiddenfalse under trueheadless/headed/tab/minimize/focus-policyprobes. No fakevisibility event; sourceunitstop/suspendPASS is distinct fromnativeacceptance; fullFeatureAcceptance:false. No native reward/refused/newcombat/global/mobile/hardware acceptance. No music/voices/ambience/combat/videoaudio.
+
+ONE next action: On the interactive PC game, enable Sons and observe real tab/window hide -> audio stops, then returns only after a new user action; retain the native hidden/suspend criterion open until observed. No new campaign replay or asset generation; other accepted UI FX boundaries are retained.
+
+Operator game http://127.0.0.1:5438/ -> refresh -> Sons -> Activer les sons. Existingpreview24360/5438 and audition43684/5444 retained;QA5443/browsercleaned, scheduler/browser/saves untouched. Handoff docs/autonomy/handoffs/2026-10-19T0635Z-codex-ui-fx-integration.md. Metrics source6/styles1/testfiles4/audioassets8/existingQA2/helpertest1/newQA0/proof4/report1/productdocs3/packmeta2/approvedprotected7/workflow8/inheritedWIP0.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -339,4 +347,7 @@ Runtime green: gesture-gated sound service/accessibility/settings and native eve
 - night-watch-host-0230: FAILED; port 5443; receipt `tmp/cinematics/bois-clair-night-host-0230/qa-job.json`; NOT_ACCEPTED
 - night-watch-fixed-0233: FAILED; port 5443; receipt `tmp/cinematics/bois-clair-night-fixed-0233/qa-job.json`; NOT_ACCEPTED
 - night-watch-final-0234: SUCCEEDED; port 5443; receipt `tmp/cinematics/bois-clair-night-final-0234/qa-job.json`; NOT_ACCEPTED
+- ui-fx-native-0630: FAILED; port 5443; receipt `tmp/demo/ui-fx-native-0630/qa-job.json`; NOT_ACCEPTED
+- ui-fx-native-0631: FAILED; port 5443; receipt `tmp/demo/ui-fx-native-0631/qa-job.json`; NOT_ACCEPTED
+- ui-fx-native-0633: SUCCEEDED; port 5443; receipt `tmp/demo/ui-fx-native-0633/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

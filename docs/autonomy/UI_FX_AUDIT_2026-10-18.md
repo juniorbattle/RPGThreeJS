@@ -53,3 +53,8 @@ Next concrete step after OD-2026-10-18-E: prepare the dedicated narrow productio
 ## Operator asset acceptance — OD-2026-10-18-E
 
 APPROVED DECISION — recorded 2026-10-19T02:56:33.298Z (2026-10-18 America/Toronto). Exact operator statement: « Excellent je valide les sons et aussi la correction du fond nocturne ». The eight existing WAVs in the manifest are accepted for this UI FX lot, and the existing nocturnal Bois-Clair correction is artistically accepted. Asset bytes/hashes are unchanged. This closes those two specific operator-review items. It does not certify all narrative/art, audio integration, balance, hardware comfort or the global demo. Historical technical/night proof and failed receipts retain their exact scope. Audio runtime still awaits the bounded dedicated exception/integration described above; music, voice, ambience and cinematic audio remain outside this decision.
+
+
+## Runtime integration — 2026-10-19
+
+CURRENT FACT: OD-2026-10-18-F / reviewed set1.6.0 baseline8fdc797 authorizes the bounded implementation now present in UiSoundPlayer, UiSoundSettings and audited view/GameApp callbacks. Eight accepted files copied byte-identically into public/assets/audio/ui-fx-v1. Sons buttons on title/map, explicit enable, mute and volume, separate local preference. Source/unit gates pass59tests6files,24helper tests. Scoped earned native proof ui-fx-native-0633 verifies settings, actual potion/manualsave/resolved backtrack with exactly one cue, exact reload and failed media containment. Native hidden/suspend remains NOT_OBSERVED_PLATFORM and full-feature acceptance is not claimed. Prior asset approval remains valid; no need for regeneration or another listening gate. See docs/reports/ui-fx-integration-2026-10-19.md.

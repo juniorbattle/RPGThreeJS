@@ -42,7 +42,7 @@ For every changed file ask:
 3. Does any save field carry visual or transient state (animation, camera, layout, Route Risk or Pursuit)?
 4. Are durable IDs, V6 compatibility and migrations preserved? A changed durable schema needs an explicit migration and resume tests.
 5. Does Combat Stage or VFX compute, duplicate or change damage, AP, status or outcome?
-6. Does a Traversal pickup change secured gold directly? It must stay temporary loot until the existing securing boundary.
+6. Do gameplay owners credit gains and restore the selected last actual save as approved under set1.5.0? Audio/presentation must never credit, debit or secure holdings; physical Traversal stays retired.
 
 ## Standing gates
 
@@ -55,7 +55,7 @@ For every changed file ask:
 
 ## Open operator decisions (never decide them)
 
-The Alistair emblem or origin; the prologue cinematic; the first-refuge first scene (a contract task must precede any slot); ultimates; audio; any extension of the eight-slot list.
+The Alistair emblem or origin; the prologue cinematic; the first-refuge first scene (a contract task must precede any slot); ultimates; remaining audio categories beyond the eight approved UI FX; any extension of the eight-slot list.
 
 ## Compliance matrix (return this)
 
