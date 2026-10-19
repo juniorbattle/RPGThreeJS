@@ -87,6 +87,12 @@ if (isAbsolute(rel) || rel.startsWith('..')) throw new Error('Output must stay i
 try { await access(output); throw new Error('Refusing to overwrite evidence'); }
 catch (error) { if (error.code !== 'ENOENT') throw error; }
 const jobOptions=demoJobOptions();
+if(jobOptions.parameters.verifyUiFx){
+  const saved=JSON.parse(earnedText);
+  assert.equal(saved.currentNodeId,'lion-first-refuge');assert.equal(saved.run.currentNodeId,saved.currentNodeId);
+  assert.ok(saved.resolvedNodeIds.includes(saved.currentNodeId));
+  await runUiFx(jobOptions);process.exit(process.exitCode??0);
+}
 if(jobOptions.parameters.verifyRefugeRest){
   const save=JSON.parse(earnedText);
   assert.equal(save.currentNodeId,'lion-first-refuge','Rest clarity starts at the earned first refuge');
@@ -2105,3 +2111,135 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
   if(qaJob.finish(report).status!=='SUCCEEDED')process.exitCode=1;
 }
 console.log(JSON.stringify({pass:report.pass,nodes:report.nodes,battles:report.battles.map(b=>({node:b.nodeId,pass:b.pass,actions:b.actions.length})),failure:report.failure},null,2));
+
+/** Narrow UI presentation proof on the already certified save; no campaign/combat replay. */
+async function runUiFx(options) {
+  const job=beginJob(options), result={schemaVersion:1,pass:false,errors:[],captures:[],events:[],lifecycle:[],
+    scope:'Earned2141 first-refuge UI FX settings, real potion/save/resolved backtrack; no new fight, native reward/refusal, subjective balance or global/mobile acceptance',
+    runtimeMutated:false,combatOutcomeInjected:false,earnedSavePath,priorProofPath,qaJobReceipt:job.receiptPath};
+  let server,browser,context,page;
+  try {
+    server=await preview({preview:{host:'127.0.0.1',port,strictPort:true}});
+    browser=await chromium.launch({headless:true});context=await browser.newContext({viewport:{width:1366,height:768}});
+    await context.exposeBinding('__uiFxLifecycle',(_source,event)=>result.lifecycle.push(event));
+    await context.addInitScript(()=>{
+      window.__uiFxStarts=[];
+      for(const method of ['close','suspend']){
+        const original=AudioContext.prototype[method];
+        AudioContext.prototype[method]=function(...args){void window.__uiFxLifecycle({method,hidden:document.hidden});return original.apply(this,args);};
+      }
+      const original=AudioBufferSourceNode.prototype.start;
+      AudioBufferSourceNode.prototype.start=function(...args){
+        const id=[...window.__demoQaApp?.uiSounds.buffers??[]].find(([,buffer])=>buffer===this.buffer)?.[0];
+        window.__uiFxStarts.push({id,at:performance.now()});return original.apply(this,args);
+      };
+    });
+    page=await context.newPage();
+    page.on('pageerror',error=>result.errors.push(error.message));
+    page.on('console',message=>{if(message.type()==='error')result.errors.push(message.text());});
+    await page.route('**/assets/game-*.js',async route=>{
+      const response=await route.fetch(),source=await response.text();
+      const pattern=/const ([A-Za-z_$][\w$]*)=new [A-Za-z_$][\w$]*\([^;]+?\);window\.addEventListener\("pagehide",\(\)=>\1\.dispose/;
+      assert.ok(pattern.test(source),'Built bootstrap observation hook missing');
+      await route.fulfill({response,body:source.replace(pattern,(match,name)=>match.replace(';window.addEventListener',`;window.__demoQaApp=${name};window.addEventListener`))});
+    });
+    const owner=()=>page.evaluate(()=>JSON.parse(JSON.stringify(window.__demoQaApp.state)));
+    const slots=()=>page.evaluate(()=>Object.fromEntries(Object.keys(localStorage).filter(k=>k!=='rpg-threejs:ui-audio:v1').sort().map(k=>[k,localStorage.getItem(k)])));
+    const count=()=>page.evaluate(()=>window.__uiFxStarts.length);
+    const press=async(selector,key='Enter')=>{await page.locator(selector).focus();await page.keyboard.press(key);};
+    const cue=async(id,action)=>{
+      await page.waitForTimeout(80);const before=await count();await action();
+      await page.waitForFunction(n=>window.__uiFxStarts.length>n,before);
+      await page.waitForTimeout(80);const events=await page.evaluate(n=>window.__uiFxStarts.slice(n),before);
+      assert.deepEqual(events.map(e=>e.id),[id],`Expected exactly one native ${id}`);result.events.push(...events);
+    };
+    const capture=async(name)=>{await page.screenshot({path:resolve(output,name)});result.captures.push(name);};
+    await page.goto(`http://127.0.0.1:${port}/`,{waitUntil:'networkidle'});
+    assert.equal(await page.evaluate(()=>window.__demoQaApp.uiSounds.context),null);
+    await page.evaluate(text=>localStorage.setItem('rpg-threejs:autosave:v6',text),earnedText);
+    await page.reload({waitUntil:'networkidle'});
+    const initialOwner=await owner(),initialSlots=await slots();
+    await page.locator('[data-action="sounds"]').click();
+    await page.getByRole('button',{name:'Activer les sons',exact:true}).click();
+    await page.waitForFunction(()=>window.__demoQaApp.uiSounds.buffers.size===8);
+    result.assets=[];
+    const approved=JSON.parse(await readFile('docs/media/audio/ui-fx-candidates-v1/manifest.json','utf8'));
+    for(const asset of approved.candidates){
+      const response=await page.request.get(`http://127.0.0.1:${port}/assets/audio/ui-fx-v1/${asset.file}`);assert.ok(response.ok());
+      const sha256=createHash('sha256').update(await response.body()).digest('hex');assert.equal(sha256,asset.sha256);
+      result.assets.push({id:asset.id,sha256});
+    }
+    assert.equal(await count(),0,'Enabling must not autoplay');
+    const range=page.getByLabel('Volume des sons');await range.focus();await page.keyboard.press('ArrowRight');
+    assert.ok(Math.abs(await page.evaluate(()=>window.__demoQaApp.uiSounds.gain.gain.value)-0.55)<0.000001);
+    for(const [width,height] of [[1366,768],[620,780],[390,844]]) {
+      await page.setViewportSize({width,height});
+      const geometry=await page.locator('.ui-sound-settings').evaluate(panel=>[...panel.querySelectorAll('button,input')].map(e=>{
+        const r=e.getBoundingClientRect();return {width:r.width,height:r.height,left:r.left,top:r.top,right:r.right,bottom:r.bottom};}));
+      assert.ok(geometry.every(r=>r.width>=44&&r.height>=44&&r.left>=0&&r.top>=0&&r.right<=width+1&&r.bottom<=height+1));
+      (result.dialogGeometry??=[]).push({width,height,geometry});await capture(`sounds-${width}.png`);
+    }
+    await page.setViewportSize({width:1366,height:768});
+    await page.getByRole('button',{name:'Couper les sons',exact:true}).click();const muted=await count();
+    await page.keyboard.press('Escape');assert.equal(await count(),muted);
+    assert.equal(await page.locator('[data-action="sounds"]').evaluate(e=>e===document.activeElement),true);
+    await press('[data-action="sounds"]');await press('[data-sound-toggle]');await page.waitForFunction(()=>window.__demoQaApp.uiSounds.context.state==='running');
+    await cue('back',()=>page.keyboard.press('Escape'));
+    await page.locator('[data-action="sounds"]').click();await cue('back',()=>page.locator('[data-sound-close]').click());
+    assert.deepEqual(await owner(),initialOwner,'Audio settings changed owner');assert.deepEqual(await slots(),initialSlots,'Audio settings changed save slots');
+    const beforeHidden=await count(),foreground=await context.newPage();await foreground.goto('about:blank');await foreground.bringToFront();
+    await page.waitForFunction(()=>document.hidden,null,{timeout:5000});
+    await page.waitForFunction(()=>window.__demoQaApp.uiSounds.context.state==='suspended'&&window.__demoQaApp.uiSounds.voices.size===0);
+    await page.bringToFront();await page.waitForFunction(()=>!document.hidden);await foreground.close();
+    assert.equal(await count(),beforeHidden,'Visibility return replayed a cue');result.hiddenSilence=true;
+    await page.reload({waitUntil:'networkidle'});assert.equal(await count(),0);
+    assert.ok(result.lifecycle.some(e=>e.method==='close'),'Reload did not dispose the audio context');
+    assert.equal(await page.evaluate(()=>window.__demoQaApp.uiSounds.context),null,'Reload restored audio without gesture');
+    await page.locator('[data-action="continue"]').click();
+    await page.locator('.poi-map:visible').waitFor();await page.waitForFunction(()=>window.__demoQaApp.uiSounds.buffers.size===8);
+    assert.equal(await count(),0,'Native resume/autosave played a sound');
+    const before=await owner();assert.equal(before.currentNodeId,'lion-first-refuge');
+    await cue('confirm',()=>press('.poi-map [data-poi-action="company"]'));
+    await cue('navigate',()=>page.locator('.management [data-tab="inventory"]').click());
+    const select=page.locator('[data-use-unit="potion"]'),option=select.locator('option[value]:not([value=""])').first();
+    const id=await option.getAttribute('value'),max=Number((await option.textContent()).match(/\/(\d+)\)/)[1]);
+    const potionBefore=await owner();await select.selectOption(id);
+    await cue('recover',()=>press('[data-use-item="potion"]'));
+    const potionAfter=await owner(),expected=structuredClone(potionBefore);
+    expected.inventory.consumables.potion--;const unit=expected.clan.members.find(u=>u.id===id);unit.currentHealth=Math.min(max,unit.currentHealth+55);
+    assert.deepEqual(potionAfter,expected,'Native potion changed more than approved consumption/heal');
+    result.nativePotion={id,before:potionBefore.clan.members.find(u=>u.id===id).currentHealth,after:unit.currentHealth,oneCue:true};
+    await cue('back',()=>page.keyboard.press('Escape'));await page.locator('.poi-map:visible').waitFor();
+    const savedOwner=await owner();await cue('saved',()=>page.locator('.poi-map [data-poi-action="save"]').click());
+    assert.deepEqual(await owner(),savedOwner);assert.deepEqual(JSON.parse((await slots())['rpg-threejs:manual:v6']),savedOwner);
+    const destinations=await page.locator('.poi-map [data-poi-reachable="true"]').evaluateAll(nodes=>nodes.map(n=>n.dataset.poiId));
+    const destination=destinations.find(id=>id!==savedOwner.currentNodeId&&savedOwner.resolvedNodeIds.includes(id));assert.ok(destination,'No earned adjacent resolved return');
+    await cue('navigate',()=>page.locator(`[data-poi-id="${destination}"]`).click());
+    await cue('travel-start',()=>press('.poi-map [data-poi-action="move"]'));
+    await page.waitForFunction(id=>window.__demoQaApp.state.currentNodeId===id,destination);
+    await page.waitForFunction(()=>document.querySelector('.poi-map')?.dataset.travelling!=='true');
+    assert.equal((await owner()).currentNodeId,destination);result.nativeTravel={origin:savedOwner.currentNodeId,destination,oneCue:true};
+    await page.locator('[data-poi-action="sounds"]').click();await range.focus();await page.keyboard.press('Home');
+    const zeroCount=await count();await page.keyboard.press('Escape');assert.equal(await count(),zeroCount);
+    await page.locator('[data-poi-action="sounds"]').click();await range.focus();await page.keyboard.press('End');await page.keyboard.press('Escape');
+    const storedBeforeReload=await slots(),resumed=await owner();
+    await page.route('**/assets/audio/ui-fx-v1/*.wav',route=>route.fulfill({status:200,contentType:'audio/wav',body:'deliberately invalid media'}));
+    await page.reload({waitUntil:'networkidle'});assert.equal(await count(),0);
+    const failedOwner=await owner();await page.locator('[data-action="sounds"]').click();
+    await page.evaluate(()=>window.__demoQaApp.uiSounds.warming);assert.equal(await page.evaluate(()=>window.__demoQaApp.uiSounds.buffers.size),0);
+    await page.keyboard.press('Escape');assert.equal(await count(),0,'Invalid audio emitted/replayed a cue');
+    assert.deepEqual(await owner(),failedOwner);assert.deepEqual(await slots(),storedBeforeReload);
+    await page.locator('[data-action="continue"]').click();await page.locator('.poi-map:visible').waitFor();
+    assert.deepEqual(await owner(),resumed,'Reload with failed optional audio changed campaign state');
+    assert.equal(await page.locator('iframe').count(),0,'Sound-only proof entered combat');
+    assert.deepEqual(result.errors,[]);result.resumed=await owner();result.failureNonblocking=true;result.exactReload=true;result.pass=true;
+    await capture('sounds-native-map.png');
+    await writeFile(resolve(output,'earned-ui-fx-v6.json'),JSON.stringify(result.resumed,null,2)+'\n');
+  } catch(error) {
+    result.errors.push(error.stack??String(error));if(page)await page.screenshot({path:resolve(output,'ui-fx-failure.png')}).catch(()=>{});process.exitCode=1;
+  } finally {
+    await context?.close();await browser?.close();if(server)await new Promise((resolveClose,reject)=>server.httpServer.close(error=>error?reject(error):resolveClose()));
+    await writeFile(resolve(output,'results.json'),JSON.stringify(result,null,2)+'\n');job.finish(result);
+  }
+  console.log(JSON.stringify({pass:result.pass,scope:result.scope,events:result.events,errors:result.errors}));
+}

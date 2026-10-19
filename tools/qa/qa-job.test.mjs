@@ -9,6 +9,16 @@ import { beginJob, demoJobOptions, ignoredOutput, registerJob, sameExecution, sy
 
 const syncAsOwner=job=>{const previous=process.env.AUTONOMY_QA_WORKER;delete process.env.AUTONOMY_QA_WORKER;try{return syncJobs(job);}finally{if(previous!==undefined)process.env.AUTONOMY_QA_WORKER=previous;}};
 
+test('UI FX mode requires certified scoped inputs and cannot silently skip another requested verification',()=>{
+  const env={DEMO_QA_VERIFY_UI_FX:'1',DEMO_QA_EARNED_SAVE:'tmp/earned.json',DEMO_QA_PRIOR_PROOF:'tmp/proof.json'};
+  assert.equal(demoJobOptions(env).parameters.verifyUiFx,true);
+  assert.ok(demoJobOptions(env).requiredAssertions.includes('UI_FX_SINGLE_NATIVE_EVENTS'));
+  assert.throws(()=>demoJobOptions({DEMO_QA_VERIFY_UI_FX:'1'}),/certified/);
+  assert.throws(()=>demoJobOptions({...env,DEMO_QA_VERIFY_REFUGE_REST:'1'}),/separate scoped/);
+  assert.throws(()=>demoJobOptions({...env,DEMO_QA_GAME_MOTION:'1'}),/separate scoped/);
+  assert.equal(Object.hasOwn(demoJobOptions({}).parameters,'verifyUiFx'),false);
+});
+
 test('POI presentation review records its required native travel proof only when requested',()=>{
   const base=demoJobOptions({}),enabled=demoJobOptions({DEMO_QA_VERIFY_POI_PRESENTATION:'1'});
   assert.equal(Object.hasOwn(base.parameters,'verifyPoiPresentation'),false);

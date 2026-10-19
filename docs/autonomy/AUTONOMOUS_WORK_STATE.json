@@ -3,7 +3,7 @@
   "runStartedAt": "2026-10-19T02:59:44Z",
   "runEndedAt": null,
   "activeTask": "UI-FX-APPROVED-INTEGRATION",
-  "activePhase": "RUNTIME_GREEN_BEFORE_NATIVE_PROOF",
+  "activePhase": "NATIVE_PROOF_PRELAUNCH",
   "activeSubtask": "Record explicit validation; next bounded audio production task",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "0b2d084eeaa49fc9395da104e61142dec8dde5eb",
@@ -23,9 +23,10 @@
     "src/render/data/bois-clair-night-watch.correction.json"
   ],
   "testsRun": [
-    "46focused tests4files PASS",
-    "TypeScript PASS",
-    "LOCKED8fdc797gate EMPTY; diffcheck PASS"
+    "48focused source tests4files PASS",
+    "TypeScript/production build PASS",
+    "qa-job tests require host Git temp permissions; rerun recorded",
+    "LOCKEDgate8fdc797/diffcheck PASS"
   ],
   "testsPassed": [
     "6existing environment correction tests PASS after approval-metadata update",
@@ -40759,7 +40760,7 @@
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-19T02:59:44Z",
-    "activePhase": "RUNTIME_GREEN_BEFORE_NATIVE_PROOF",
+    "activePhase": "NATIVE_PROOF_PRELAUNCH",
     "heartbeat": "2026-10-19T01:26:42.662Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0255Z-codex-media-approval.md",
     "motion1617": {
@@ -43312,9 +43313,10 @@
       "src/render/data/bois-clair-night-watch.correction.json"
     ],
     "testsRun": [
-      "46focused tests4files PASS",
-      "TypeScript PASS",
-      "LOCKED8fdc797gate EMPTY; diffcheck PASS"
+      "48focused source tests4files PASS",
+      "TypeScript/production build PASS",
+      "qa-job tests require host Git temp permissions; rerun recorded",
+      "LOCKEDgate8fdc797/diffcheck PASS"
     ],
     "testsPassed": [
       "6existing environment correction tests PASS after approval-metadata update",
@@ -44588,7 +44590,9 @@
       "unitTests": 46,
       "files": 4,
       "assetHashes": "8byte-identical approved WAVs",
-      "nativePlan": "Existing demo driver, earned2141first-refuge, no new campaign"
+      "nativePlan": "Existing demo driver, earned2141first-refuge, no new campaign",
+      "nativeModeReview": "Prelaunch fixes: exact HTTP WAV hashes, float32 tolerance, certified firstrefuge scope, incompatible modes rejected, real browser visibility and reload disposal observation",
+      "qaToolingJustification": "Adapt existing demo continuous driver only for a bounded certified earned UI-sound continuation; no new persistent runner and no fresh campaign"
     }
   },
   "previousInterruptedRun": {
@@ -44913,7 +44917,7 @@
     "workflowFiles": 3,
     "inheritedWipFiles": 0
   },
-  "qaToolingJustification": "Zero new QA runners/frameworks; existing campaign pilot and receipt helper extended with original owner/assertion/provenance checks; manual timeout exception scoped to the directly authorized named run",
+  "qaToolingJustification": "Adapt existing demo continuous driver only for a bounded certified earned UI-sound continuation; no new persistent runner and no fresh campaign",
   "retainedRunArtifacts": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "physicalFreeze": "tmp/autonomy/final-physical-0514.json",

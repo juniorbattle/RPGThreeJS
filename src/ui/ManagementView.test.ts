@@ -1,5 +1,5 @@
 // @vitest-environment happy-dom
-import { afterEach, expect, it } from 'vitest';
+import { afterEach, expect, it, vi } from 'vitest';
 import { createInitialState } from '../game/store';
 import { getResolvedSkills, isSkillUnlockedForHero, itemById } from '../game/catalog';
 import { equipWeapon } from '../game/management';
@@ -7,13 +7,27 @@ import { skillById } from '../game/skills';
 import { ManagementView } from './ManagementView';
 
 afterEach(() => document.body.replaceChildren());
-function setup() {
+function setup(onSound = vi.fn()) {
   const state = createInitialState();
   const root = document.createElement('div'); document.body.append(root);
   const opener = document.createElement('button'); opener.textContent = 'Compagnie'; root.append(opener); opener.focus();
-  const view = new ManagementView({ root, getState: () => state, onChange: () => undefined });
-  return { state, root, opener, view };
+  const view = new ManagementView({ root, getState: () => state, onChange: () => undefined, onSound });
+  return { state, root, opener, view, onSound };
 }
+it('sounds intentional equipment/detail open and close exactly once, with silent focus and unchanged truth', async () => {
+  const { state, root, view, onSound } = setup(); state.inventory.weapons.steel_greatsword = 1;
+  const before = JSON.stringify(state), closed = view.open();
+  const slot = root.querySelector<HTMLButtonElement>('[data-equip-slot="weapon"]')!;
+  slot.focus(); expect(onSound).not.toHaveBeenCalled(); slot.click();
+  expect(onSound.mock.calls).toEqual([['confirm']]);
+  root.querySelector<HTMLButtonElement>('[data-equip-slot-close]')!.click();
+  expect(onSound.mock.calls).toEqual([['confirm'], ['back']]);
+  root.querySelector<HTMLButtonElement>('[data-tab="inventory"]')!.click();
+  root.querySelector<HTMLButtonElement>('[data-item-details="steel_greatsword"]')!.click();
+  key('Escape');
+  expect(onSound.mock.calls.slice(2)).toEqual([['navigate'], ['confirm'], ['back']]);
+  expect(JSON.stringify(state)).toBe(before); view.close(); await closed;
+});
 function key(value: string, shiftKey = false) {
   document.activeElement!.dispatchEvent(new KeyboardEvent('keydown', { key: value, shiftKey, bubbles: true, cancelable: true }));
 }

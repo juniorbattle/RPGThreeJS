@@ -872,6 +872,7 @@ export class ManagementView {
     });
     this.overlay.querySelectorAll<HTMLButtonElement>('[data-equip-slot]').forEach((button) => {
       button.addEventListener('click', () => {
+        this.options.onSound?.('confirm');
         this.activeEquipSlot = {
           type: button.dataset.equipSlot as 'weapon' | 'accessory',
           slot: Number(button.dataset.equipSlotIndex),
@@ -883,6 +884,7 @@ export class ManagementView {
     this.overlay.querySelectorAll<HTMLElement>('[data-equip-slot-close]').forEach((el) => {
       el.addEventListener('click', (e) => {
         if (e.target === el) {
+          this.options.onSound?.('back');
           this.activeEquipSlot = null;
           this.previewItemId = null;
           this.render();
@@ -907,6 +909,7 @@ export class ManagementView {
       button.addEventListener('click', (e) => {
         e.stopPropagation();
         this.previewItemId = button.dataset.previewItem ?? null;
+        this.options.onSound?.('confirm');
         this.render();
       });
     });
@@ -914,6 +917,7 @@ export class ManagementView {
       button.addEventListener('click', (e) => {
         e.stopPropagation();
         const itemId = this.previewItemId;
+        this.options.onSound?.('back');
         this.previewItemId = null;
         this.render();
         const replacement = [...this.overlay?.querySelectorAll<HTMLButtonElement>('[data-preview-item]') ?? []]
@@ -989,12 +993,14 @@ export class ManagementView {
     this.overlay.querySelectorAll<HTMLElement>('[data-item-details]').forEach((row) => {
       row.addEventListener('click', () => {
         this.activeItemId = row.dataset.itemDetails ?? null;
+        this.options.onSound?.('confirm');
         this.render();
       });
     });
     this.overlay.querySelectorAll<HTMLElement>('[data-item-modal-close]').forEach((el) => {
       el.addEventListener('click', (e) => {
         if (e.target === el) {
+          this.options.onSound?.('back');
           this.activeItemId = null;
           this.render();
         }

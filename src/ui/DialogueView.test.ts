@@ -10,6 +10,18 @@ import { DialogueView } from './DialogueView';
 import { resolveDialoguePortrait } from './DialoguePortrait';
 
 describe('DialogueView narrative boundaries', () => {
+  it('emits one confirmation for native continuation, with no cue from reveal, focus or close', async () => {
+    const root = document.createElement('div'); document.body.append(root);
+    const state = createInitialState(), before = JSON.stringify(state), onSound = vi.fn();
+    const view = new DialogueView({ root, getState: () => state, applyEffects: async () => {}, onSound });
+    const sequence: DialogueSequence = { id: 'audio-continuation', steps: [{ id: '1', speaker: 'Alaric', actorId: 'alaric',
+      text: 'Le conseil écoute.', tag: '', portrait: '', expression: 'neutral', side: 'left', next: null, effects: [], choices: [] }] };
+    const completed = view.play(sequence, { reducedMotion: true });
+    await vi.waitFor(() => expect(root.querySelector('.dialogue__box')).not.toBeNull());
+    const box = root.querySelector<HTMLButtonElement>('.dialogue__box')!; box.focus(); expect(onSound).not.toHaveBeenCalled();
+    box.click(); await completed; expect(onSound).toHaveBeenCalledExactlyOnceWith('confirm');
+    expect(JSON.stringify(state)).toBe(before); root.remove();
+  });
   it('reveals dialogue immediately for OS reduced motion with normal graphics', () => {
     const preference = vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: true } as MediaQueryList);
     const root = document.createElement('div');
