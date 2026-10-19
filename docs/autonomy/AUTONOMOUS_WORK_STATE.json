@@ -1,20 +1,21 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-18T20:52:31Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-19T01:29:03.535Z",
   "activeTask": "DEMO-PC-GLOBAL-ACCEPTANCE",
   "activePhase": "LAST_SAVE_TASK_COMPLETE_SCOPED_OPERATOR_PC_REVIEW",
   "activeSubtask": "Unified holdings and exact saved recovery delivered; global PC acceptance open",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "b7a40f384c7b68774859adf6e46f7894fd750f36",
-  "lastPushedCommit": "6545b16",
+  "lastPushedCommit": "d81ffe74dff19dc045f8941958b12c059b4b9b37",
   "completedThisRun": [
     "Approved/reviewed set1.5.0 amendment d1031ec before runtime; baseline operationally established",
     "One usable wallet/inventory, once-only actual legacy pool consolidation, no checkpoint shift/reward/cost rebalance",
     "Shared ordinary/elite run-bound complete last-save recovery, no loss write/relocation, explicit agency and pending context",
     "Native07 PC1366 normal cache15gold/supplypotion/use1to56/realwolvesloss/exactstate+bytes/focused48px/explicit same pending combat mechanical resume ACCEPTED_SCOPED",
     "Final b7 hint-only derived copy/14input-invariance tests reviewed separately; no current-build native claim",
-    "275distinct source tests17files,23receipt-helper tests, types/build/contracts/gates PASS; historical325QA/deferred roots exact; quota pause recovered without bypass"
+    "275distinct source tests17files,23receipt-helper tests, types/build/contracts/gates PASS; historical325QA/deferred roots exact; quota pause recovered without bypass",
+    "Source/proof/handoff d81ffe7 normally published and live dev parity verified; main00b96f1 unchanged. Final metadata/lock release only."
   ],
   "filesChanged": [
     ".agents/skills/autonomy-handoff/SKILL.md",
@@ -182,7 +183,7 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-last-save-20261018T2052",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T01:26:42.662Z",
+  "lastHeartbeat": "2026-10-19T01:29:03.535Z",
   "wip": {
     "branch": null,
     "sha": "819644094d9e2d6f8fa759227fe5fd756f4b97e0",
@@ -192,7 +193,7 @@
     "lastGreenCheck": "2026-10-18T20:50:48.045Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T01:26:42.662Z",
+    "lastHeartbeat": "2026-10-19T01:29:03.535Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -36235,32 +36236,9 @@
       "branch": null,
       "sha": "b7a40f384c7b68774859adf6e46f7894fd750f36",
       "checkpointBranch": "dev",
-      "dirtyFiles": [
-        ".agents/skills/autonomy-handoff/SKILL.md",
-        ".agents/skills/contracts-compliance/SKILL.md",
-        "AGENTS.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-        "docs/autonomy/LAST_SAVE_RELOAD_OPERATOR_DECISION_2026-10-18.md",
-        "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md",
-        "docs/autonomy/RECURRING_RUN_PROMPT.md",
-        "docs/autonomy/handoffs/2026-10-18T2052Z-codex-last-save-recovery-wip.md",
-        "docs/autonomy/handoffs/2026-10-19T0126Z-codex-last-save-reload.md",
-        "docs/project/CURRENT_STATUS.md",
-        "docs/project/PC_PLAYTEST.md",
-        "docs/project/POI_NAVIGATION.md",
-        "docs/reports/INDEX.md",
-        "docs/reports/last-save-reload-2026-10-18.md",
-        "docs/reports/last-save-reload-2026-10-18/chest-lion-poi-opening-cache.png",
-        "docs/reports/last-save-reload-2026-10-18/last-save-immediate-inventory-use.png",
-        "docs/reports/last-save-reload-2026-10-18/native-defeat-exact-last-save.png",
-        "docs/reports/last-save-reload-2026-10-18/review.json"
-      ],
-      "status": "SOURCE_GREEN_WORKFLOW_CLOSEOUT",
-      "lastGreenCheck": "2026-10-19T01:26:42.662Z",
+      "dirtyFiles": [],
+      "status": "GREEN",
+      "lastGreenCheck": "2026-10-19T01:29:03.535Z",
       "ignoredPauseBackup": "Historical only; never restore over current source"
     },
     "nextAction": "Operator refreshes existing http://127.0.0.1:5438/ and Continue on the same browser profile; inspect the single usable wallet and, after a real loss, Recharger/Reprendre la sauvegarde. Correct one concrete remaining PC finding; no unchanged campaign replay, no new QA mission merely to accumulate evidence. Manual multi-slot support remains future scope; global PC/art/balance/hardware review open before mobile.",
@@ -36343,10 +36321,11 @@
       "authorization": "OD-2026-10-12-A",
       "sourceCheckpoint": "b7a40f384c7b68774859adf6e46f7894fd750f36",
       "nativeSource": "07b9bdba243ca23c8507c97b9e2f27d1a227c8e6",
-      "finalWorkflow": "Containing Git checkpoint; verified live parity and lock release in automation memory"
+      "finalWorkflow": "Containing closure commit; final live parity/lock release recorded in automation memory",
+      "lastVerifiedCheckpoint": "d81ffe74dff19dc045f8941958b12c059b4b9b37"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-19T01:29:03.535Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
       "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
@@ -41821,7 +41800,7 @@
       }
     },
     "threadId": "01a14d64-3d19-78c1-af2a-c2f212d73ce2",
-    "writerStoppedMeaning": "Product and QA stopped; final metadata publication then owned-lock release follows.",
+    "writerStoppedMeaning": "Product and QA writers stopped at runEndedAt; final metadata publication/owned lock release only.",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -42209,7 +42188,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "b8ca368d9a0b5ead99a0ce00e92d291104ba0b7b",
+    "lastPushedCommit": "d81ffe74dff19dc045f8941958b12c059b4b9b37",
     "productPreview": {
       "verifiedAt": "2026-10-16T15:27:07.4093983Z",
       "indexSha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f",
@@ -44109,10 +44088,9 @@
       "qaToolingJustification": "Existing campaign pilot and receipt helper already cover earned navigation and native defeat; adapt exact assertions to approved last-save semantics and isolate region-I chest/use/loss. No new QA runner.",
       "acceptance": "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE07_LAST_SAVE_AND_CURRENT_HINT_COPY_TESTED",
       "status": "COMPLETE_SCOPED",
-      "endedAt": null,
+      "endedAt": "2026-10-19T01:29:03.535Z",
       "sourceCommit": "b7a40f384c7b68774859adf6e46f7894fd750f36",
-      "localHead": "fbc36520c6816ae03256e714999803137a9b1d16",
-      "published": "6545b16",
+      "published": "d81ffe74dff19dc045f8941958b12c059b4b9b37",
       "gates": {
         "focused": "275distinctPASS/17files",
         "qaHelper": "23PASS_current",
@@ -44127,14 +44105,14 @@
       "approvalFailure": "Account usage quota prevented automatic review of host helper/port/heartbeat; not a safety judgment; no action executed or bypass",
       "guardian": "PASS_ACTUAL_AMENDMENT_RUNTIME_PILOT_NATIVE07_AND_HINT_ONLY_CURRENT_DELTA",
       "lock": {
-        "status": "OWNED_ACTIVE",
+        "status": "OWNED_PENDING_FINAL_METADATA_PUBLICATION",
         "pauseArchive": ".git/codex-autonomy.quota-pause-last-save-2052.json",
-        "release": "AFTER_VERIFIED_PUBLICATION"
+        "release": "AFTER_CLOSURE_PUSH_PARITY"
       },
       "historicalQaRecords": 325,
       "deferredObjectsExact": true,
       "wipCheckpoint": "tmp/autonomy/last-save-2052-checkpoint",
-      "automationMemory": "Final summary pending successful publication/lock release",
+      "automationMemory": "Final summary written after verified closure publication and owned lock release",
       "scheduler": "UNTOUCHED",
       "operatorPreview": "24360/5438 retained; local dist rebuilt; browser/save untouched",
       "counts": {
@@ -44183,7 +44161,7 @@
         "SAVE": "PASS_NATIVE07_FULL_STATE_RAW_BYTES_AND_MECHANICAL_ELITE_FALLBACK",
         "UI_ACCESSIBILITY": "PASS_NATIVE48PX_FOCUS_CURRENT_COPY_INPUT_INVARIANCE",
         "QA_EVIDENCE": "PASS_NATIVE07_AND_CURRENT_COPY_SEPARATE_NO_CURRENT_BUILD_MATCH_CLAIM",
-        "REPOSITORY_GOVERNANCE": "PASS_OWNED_DEV_NORMAL_PUBLICATION_PENDING"
+        "REPOSITORY_GOVERNANCE": "PASS_OWNED_DEV_VERIFIED_D81FFE7_PUBLICATION_FINAL_METADATA_ONLY"
       },
       "historicalQaExact": true,
       "qaRecordsTotal": 328,
@@ -44206,7 +44184,11 @@
         "precedingWorkflow": "b8ca368d9a0b5ead99a0ce00e92d291104ba0b7b",
         "finalWorkflow": "Containing Git commit; live parity/lock release recorded in automation memory"
       },
-      "nextAction": "Operator refreshes existing http://127.0.0.1:5438/ and Continue on the same browser profile; inspect the single usable wallet and, after a real loss, Recharger/Reprendre la sauvegarde. Correct one concrete remaining PC finding; no unchanged campaign replay, no new QA mission merely to accumulate evidence. Manual multi-slot support remains future scope; global PC/art/balance/hardware review open before mobile."
+      "nextAction": "Operator refreshes existing http://127.0.0.1:5438/ and Continue on the same browser profile; inspect the single usable wallet and, after a real loss, Recharger/Reprendre la sauvegarde. Correct one concrete remaining PC finding; no unchanged campaign replay, no new QA mission merely to accumulate evidence. Manual multi-slot support remains future scope; global PC/art/balance/hardware review open before mobile.",
+      "preRuntimeHead": "fbc36520c6816ae03256e714999803137a9b1d16",
+      "lastVerifiedHead": "d81ffe74dff19dc045f8941958b12c059b4b9b37",
+      "initialPublishedCheckpoint": "6545b16a2ce182e78eb7a08495c57be55fcbf4a2",
+      "finalGuardian": "PASS_REPORT_AUDIT_SCOPES; stale localHead metadata corrected into historical preRuntimeHead and lastVerifiedHead"
     }
   },
   "previousInterruptedRun": {

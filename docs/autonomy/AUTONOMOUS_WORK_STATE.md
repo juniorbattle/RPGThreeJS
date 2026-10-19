@@ -1,6 +1,6 @@
 # Last-save recovery delivered; operator PC review next
 
-READY_FOR_PC_ACCEPTANCE. Run codex-last-save-20261018T2052 started2026-10-18T20:52:31Z; quota pause recovered, final publication/closure pending. OD-2026-10-18-C explicitexecution. Reviewed d1031ec baseline/set1.5.0 before runtime; current product b7a40f3, accepted native07 source/build only.
+READY_FOR_PC_ACCEPTANCE. Run codex-last-save-20261018T2052 started2026-10-18T20:52:31Z; quota pause recovered; product/proof checkpoint d81ffe7 published and live dev parity verified, main unchanged. Ended2026-10-19T01:29:03.535Z; final metadata publication/owned-lock release only. OD-2026-10-18-C explicitexecution. Reviewed d1031ec baseline/set1.5.0 before runtime; current product b7a40f3, accepted native07 source/build only.
 
 Implemented one immediately usable wallet/inventory, idempotent remaining legacy-pool consolidation without checkpoint move, shared ordinary/elite full selected actual-save restore with no loss write/relocation and explicit continuation.275distinct tests17files,23helper/currenttypes/build/8contracts8slots/gates PASS.
 
