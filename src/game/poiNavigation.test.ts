@@ -19,6 +19,15 @@ function crossroads(): GameState {
 }
 const node=(s:GameState,id:string)=>selectPoiMap(s).nodes.find(n=>n.id===id)!;
 
+it('presents the current chest reward rule over old wording without changing saved graph or input truth',()=>{
+  const state=createInitialState();selectPoiMap(state);
+  const chest=state.run.graph.nodes.find(item=>item.type==='chest')!;
+  chest.hint='Réserves facultatives · Butin temporaire, une seule ouverture.';
+  const before=structuredClone(state),shown=selectPoiMap(state).nodes.find(item=>item.id===chest.id)!;
+  expect(shown.hint).toContain('utilisables immédiatement');expect(shown.hint).not.toContain('temporaire');
+  expect(state).toEqual(before);expect(chest.hint).toContain('Butin temporaire');
+});
+
 describe('authoritative connected POI navigation',()=>{
   it('opens three real local routes only after the mandatory corridor, with the old recovery graph intact',()=>{
     const state=createInitialState();const graph=structuredClone(state.run.graph);

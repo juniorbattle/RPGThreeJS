@@ -808,7 +808,10 @@ export function selectPoiMap(state: GameState): PoiMapModel {
       : node.type === 'story' || node.type === 'boss' ? 'primary' : 'mystery';
     const canMove = active && node.id !== state.run.currentNodeId && neighbors.has(node.id) && unlocked.has(node.id);
     const metadata=LION_POI_METADATA[node.id];
-    return { ...node, region:metadata?.region??0,role:metadata?.role??'secondary',
+    return { ...node,
+      // Saved graph copy is historical; this current rule is presentation-derived, never migrated into saves.
+      hint: node.type === 'chest' ? 'Réserves facultatives · Récompenses utilisables immédiatement, une seule ouverture.' : node.hint,
+      region:metadata?.region??0,role:metadata?.role??'secondary',
       participation:metadata?.participation??'required',status, kind, reusable, canMove,
       canActivate: active && !neutralized && unlocked.has(node.id) && node.depth > 0 && (status === 'available' || reusable),
       canBypass: active && Boolean(poiOptionalLeg(node.id)) && !neutralized && status === 'available'
