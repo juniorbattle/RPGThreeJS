@@ -1,5 +1,7 @@
 # Bois-Clair night corrected; eight UI FX listening candidates ready
 
+Verified product/proof/candidate checkpoint db3ed1aaa45820278731380544af102d4d5a5617 published to origin/dev; main unchanged. Run ended 2026-10-19T02:37:57.765Z. Final paired metadata publication and lock release only; self-referential final SHA is verified in Git/automation memory.
+
 READY_FOR_PC_ACCEPTANCE. Run codex-bois-clair-night-20261019T0213; started2026-10-19T02:13:35Z. Night product74f8669/finaldriver5e22775, set1.5.0/baselined1031ec; noLOCKEDchange. Guardian ACCEPTED_SCOPED: declared native fixture, PC1366normal, first night-watch authored step/two pages,4actors/exactdecodedPNG/textfit/owner+V6unchanged. Not earnedcampaign/steps2-4/otheroutcomes/global/mobile acceptance.
 
 40currenttests3files,types/build,8contracts/8slots,immutable/whitespace PASS. Threefailedattempts retained: sandboxbrowserabsent; two newpilotassertion issues minimallycorrected. Finaljob eligible/source-driver-build-parameters-digest exact.328historicaljobs and deferredroots byte-equivalent;332totaljobs. Original44assetpack/169othercontexts untouched.

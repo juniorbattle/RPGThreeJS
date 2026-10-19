@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-19T02:13:35Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-19T02:37:57.765Z",
   "activeTask": "BOIS-CLAIR-NIGHT-COMPLETE-UI-FX-CANDIDATES-READY",
   "activePhase": "SFX_LISTENING_BEFORE_PRODUCTION_INTEGRATION",
   "activeSubtask": "Night correction accepted scoped;8offline SFX available",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "5e22775",
-  "lastPushedCommit": "d81ffe74dff19dc045f8941958b12c059b4b9b37",
+  "lastKnownGoodCommit": "db3ed1aaa45820278731380544af102d4d5a5617",
+  "lastPushedCommit": "db3ed1aaa45820278731380544af102d4d5a5617",
   "completedThisRun": [
     "Outcome-neutral native nocturnal Bois-Clair backdrop with separate truthful correction provenance; all44 original pack assets/metadata and169 other mappings preserved",
     "Night first step two native pages reviewed:4actors,decoded1672x941exacthash,textfits,liveowner/storedV6unchanged; historical failures preserved",
@@ -73,7 +73,7 @@
   ],
   "creditStatus": "AVAILABLE_AFTER_VERIFIED_RESET",
   "contractComplianceStatus": "PASS guardian; set1.5.0/d1031ec; zeroLOCKEDedits; eightvideos; audio deferred/no runtime",
-  "commitReferenceScope": "implementation/lastKnownGood b7a40f3 includes unit-tested read-only hint delta; lastAcceptedProduction07 is native source/build only. lastPushed is last verified preceding checkpoint; closure is containing Git commit, final live parity/lock release in automation memory.",
+  "commitReferenceScope": "lastPushedCommit is the verified product/proof/candidate checkpoint before this self-referential metadata-only closeout; final dev parity checked after its commit, recorded in automation memory and Git",
   "operatorAuthorization": "OD-2026-10-18-C direct dedicated execution; reviewed d1031ec baseline before runtime. OD-2026-10-12-A permanent normal origin/dev publication.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -146,42 +146,16 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-bois-clair-night-20261019T0213",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T02:36:53.666Z",
+  "lastHeartbeat": "2026-10-19T02:37:57.765Z",
   "wip": {
-    "branch": "dev",
-    "sha": "5e22775",
-    "status": "GREEN_NIGHT_SOURCE_AND_SCOPED_PROOF",
-    "dirtyFiles": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/UI_FX_AUDIT_2026-10-18.md",
-      "docs/media/audio/ui-fx-candidates-v1/back.wav",
-      "docs/media/audio/ui-fx-candidates-v1/confirm.wav",
-      "docs/media/audio/ui-fx-candidates-v1/index.html",
-      "docs/media/audio/ui-fx-candidates-v1/manifest.json",
-      "docs/media/audio/ui-fx-candidates-v1/navigate.wav",
-      "docs/media/audio/ui-fx-candidates-v1/preview-all.wav",
-      "docs/media/audio/ui-fx-candidates-v1/recover.wav",
-      "docs/media/audio/ui-fx-candidates-v1/refused.wav",
-      "docs/media/audio/ui-fx-candidates-v1/reward.wav",
-      "docs/media/audio/ui-fx-candidates-v1/saved.wav",
-      "docs/media/audio/ui-fx-candidates-v1/travel-start.wav",
-      "docs/reports/bois-clair-night-2026-10-18.md",
-      "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-1-2.png",
-      "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-2-2.png",
-      "docs/reports/bois-clair-night-2026-10-18/proof.json",
-      "public/assets/generated/lion-phase/environments/corrections/bois-clair-night-watch-v1.png",
-      "src/render/data/bois-clair-night-watch.correction.json",
-      "src/render/demoEnvironmentPack.test.ts",
-      "tools/audio/generate-ui-fx-candidates.mjs",
-      "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
-      "docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md"
-    ],
+    "branch": null,
+    "sha": "db3ed1aaa45820278731380544af102d4d5a5617",
+    "dirtyFiles": [],
+    "status": "NO_WIP",
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T02:36:53.666Z",
+    "lastHeartbeat": "2026-10-19T02:37:57.765Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -36589,36 +36563,10 @@
       }
     ],
     "wip": {
-      "branch": "dev",
-      "sha": "5e22775",
-      "status": "GREEN_NIGHT_SOURCE_AND_SCOPED_PROOF",
-      "dirtyFiles": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/UI_FX_AUDIT_2026-10-18.md",
-        "docs/media/audio/ui-fx-candidates-v1/back.wav",
-        "docs/media/audio/ui-fx-candidates-v1/confirm.wav",
-        "docs/media/audio/ui-fx-candidates-v1/index.html",
-        "docs/media/audio/ui-fx-candidates-v1/manifest.json",
-        "docs/media/audio/ui-fx-candidates-v1/navigate.wav",
-        "docs/media/audio/ui-fx-candidates-v1/preview-all.wav",
-        "docs/media/audio/ui-fx-candidates-v1/recover.wav",
-        "docs/media/audio/ui-fx-candidates-v1/refused.wav",
-        "docs/media/audio/ui-fx-candidates-v1/reward.wav",
-        "docs/media/audio/ui-fx-candidates-v1/saved.wav",
-        "docs/media/audio/ui-fx-candidates-v1/travel-start.wav",
-        "docs/reports/bois-clair-night-2026-10-18.md",
-        "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-1-2.png",
-        "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-2-2.png",
-        "docs/reports/bois-clair-night-2026-10-18/proof.json",
-        "public/assets/generated/lion-phase/environments/corrections/bois-clair-night-watch-v1.png",
-        "src/render/data/bois-clair-night-watch.correction.json",
-        "src/render/demoEnvironmentPack.test.ts",
-        "tools/audio/generate-ui-fx-candidates.mjs",
-        "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
-        "docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md"
-      ],
+      "branch": null,
+      "sha": "db3ed1aaa45820278731380544af102d4d5a5617",
+      "dirtyFiles": [],
+      "status": "NO_WIP",
       "inheritedWip": 0
     },
     "nextAction": "Listen to the8concrete UI FX candidates at http://127.0.0.1:5444/; select/adjust timbre and level, then implement their bounded production exception/integration with mute/volume/gesture and audited owner events.",
@@ -36708,8 +36656,8 @@
       "finalWorkflow": "Containing closure commit; final live parity/lock release recorded in automation memory",
       "lastVerifiedCheckpoint": "d81ffe74dff19dc045f8941958b12c059b4b9b37"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-19T02:37:57.765Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
       "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
@@ -42184,7 +42132,7 @@
       }
     },
     "threadId": "01a14d64-3d19-78c1-af2a-c2f212d73ce2",
-    "writerStoppedMeaning": "Product and QA writers stopped at runEndedAt; final metadata publication/owned lock release only.",
+    "writerStoppedMeaning": "Product/source/QA writers stopped. Final paired metadata publication and owned-lock release only; operator game/audition previews retained.",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -42572,7 +42520,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "d81ffe74dff19dc045f8941958b12c059b4b9b37",
+    "lastPushedCommit": "db3ed1aaa45820278731380544af102d4d5a5617",
     "productPreview": {
       "verifiedAt": "2026-10-16T15:27:07.4093983Z",
       "indexSha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f",
@@ -43379,7 +43327,7 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "5e22775",
+    "lastKnownGoodCommit": "db3ed1aaa45820278731380544af102d4d5a5617",
     "completedThisRun": [
       "Outcome-neutral native nocturnal Bois-Clair backdrop with separate truthful correction provenance; all44 original pack assets/metadata and169 other mappings preserved",
       "Night first step two native pages reviewed:4actors,decoded1672x941exacthash,textfits,liveowner/storedV6unchanged; historical failures preserved",
@@ -44660,6 +44608,15 @@
         "mainUnchanged": true,
         "schedulerUnchanged": true,
         "operatorPreview5438": true
+      },
+      "publication": {
+        "verifiedCheckpoint": "db3ed1aaa45820278731380544af102d4d5a5617",
+        "remote": "https://github.com/juniorbattle/RPGThreeJS.git",
+        "branch": "dev",
+        "verifiedAt": "2026-10-19T02:37:57.765Z",
+        "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+        "authority": "OD-2026-10-12-A",
+        "finalMetadataPublication": "Normal dev push and full remote parity check after this closure commit, then release matching owned lock"
       }
     }
   },
@@ -44852,7 +44809,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Only selected current-run audit/candidates/proof/closure; source green5e22775",
+  "uncommittedWork": "NONE; final paired metadata publication only",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
