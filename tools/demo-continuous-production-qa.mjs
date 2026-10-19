@@ -2122,12 +2122,11 @@ async function runUiFx(options) {
   try {
     server=await preview({preview:{host:'127.0.0.1',port,strictPort:true}});
     browser=await chromium.launch({headless:true});context=await browser.newContext({viewport:{width:1366,height:768}});
-    await context.exposeBinding('__uiFxLifecycle',(_source,event)=>result.lifecycle.push(event));
     await context.addInitScript(()=>{
       window.__uiFxStarts=[];
       for(const method of ['close','suspend']){
         const original=AudioContext.prototype[method];
-        AudioContext.prototype[method]=function(...args){void window.__uiFxLifecycle({method,hidden:document.hidden});return original.apply(this,args);};
+        AudioContext.prototype[method]=function(...args){console.debug('__UI_FX_LIFECYCLE__'+JSON.stringify({method,hidden:document.hidden}));return original.apply(this,args);};
       }
       const original=AudioBufferSourceNode.prototype.start;
       AudioBufferSourceNode.prototype.start=function(...args){
@@ -2137,7 +2136,10 @@ async function runUiFx(options) {
     });
     page=await context.newPage();
     page.on('pageerror',error=>result.errors.push(error.message));
-    page.on('console',message=>{if(message.type()==='error')result.errors.push(message.text());});
+    page.on('console',message=>{
+      if(message.text().startsWith('__UI_FX_LIFECYCLE__'))result.lifecycle.push(JSON.parse(message.text().slice('__UI_FX_LIFECYCLE__'.length)));
+      if(message.type()==='error')result.errors.push(message.text());
+    });
     await page.route('**/assets/game-*.js',async route=>{
       const response=await route.fetch(),source=await response.text();
       const pattern=/const ([A-Za-z_$][\w$]*)=new [A-Za-z_$][\w$]*\([^;]+?\);window\.addEventListener\("pagehide",\(\)=>\1\.dispose/;
