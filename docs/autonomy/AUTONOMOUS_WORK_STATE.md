@@ -1,18 +1,8 @@
-# Audit des sons manquants termine ; combat encore sans audio
+# Combat FX — approved execution in progress
 
-Audit checkpoint f7fc776c4fdaa4cf9a6c2b45de3b15e2ed4428b6 published and origin/dev parity verified; main unchanged. runEndedAt 2026-10-19T07:07:14.284Z. Final closure metadata publication and owned lock release only; final SHA in automation memory.
+OD-2026-10-19-B direct Okay go; reviewed dedicated set1.7.0 amendment f4aae63e792025430c16153e1cd329c20745cf6b committed before this operational baseline and any runtime. Shared parent settings/gesture relay, audited UI feedback and16original candidate families authorized; artistic acceptance pending. Eight UI assets/335historicaljobs/nativehiddenOPEN preserved.
 
-AUDIT_COMPLETE_COMBAT_AUDIO_PENDING. Run codex-combat-audio-audit-20261019T0657, baseline dev@c01112e995a8e1641e8b11c8e1841fe9326caa72, set1.6.0 / LOCKED8fdc797. Source/runtime/assets inchanges. Rapport : [audit approfondi](../reports/combat-audio-audit-2026-10-19.md). Handoff : [reprise](handoffs/2026-10-19T0705Z-codex-combat-audio-audit.md).
-
-Combat iframe sans service audio, relais de gestes ou acces volume/mute. Matrice des controles, mouvements, armes/sorts, impacts/rates/critiques, soins/statuts/KO, tours et resultats ; autres trous titre/carte/refuge/choix combat-repli/gestion/reprise.16familles FX proposees, aucune generee ou acceptee. Guardian documentaire PASS ; aucune activation combat sous OD-F.
-
-Checks : contracts8/8 et8slots PASS ; LOCKEDgate vide ; diffcheck et preservation des335jobs/objets differes au checkpoint. Aucun test runtime/build/gameplay relance pour l'audit. CUA expire avant session ; aucune nouvelle preuve native ou modification de sauvegarde.
-
-Precedent lot UI conserve : huit WAV et hooks publies, job0633 ACCEPTED_SCOPED_OTHER_BOUNDARIES ; native hidden/suspend OPEN/NOT_OBSERVED_PLATFORM, fullFeatureAcceptance:false. Aucun PASS global/artistique/materiel/mobile ajoute. Preview5438 et audition5444 conserves ; scheduler/main/saves inchanges.
-
-UNE prochaine action produit : Prepare the bounded combat-audio lot from the source audit: shared audio settings, tactical UI feedback and core six-hero FX candidates; a dedicated approved exception must precede production activation. Preserve the prior native hidden/suspend criterion OPEN without repeating its diagnostic loop.
-
-Compteurs ce run : source0/assets0/tests0/QA-outils-preuves0/rapport1/workflow5/WIPherite0. Checkpoint documentaire vers origin/dev selon OD-2026-10-12-A ; SHA final et parite dans Git/automationmemory.
+Run codex-combat-audio-20261019T1537; phase REVIEWED_AMENDMENT_BASELINE_BEFORE_RUNTIME. Next: Implement parent-owned combat audio/real-gesture iframe relay,16original candidate FX and audited UI callbacks; focused tests then one compatible earned production scenario.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

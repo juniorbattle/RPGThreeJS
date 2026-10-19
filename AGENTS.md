@@ -5,7 +5,7 @@ RPGThreeJS is a narrative tactical RPG with an authored campaign (Vite, TypeScri
 ## Authority and reading order
 
 1. Explicit operator decisions: `docs/autonomy/OPERATOR_DECISIONS.md` and the files it links.
-2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.6.0: approved amendment `PRODUCTION-CONTRACTS-UI-FX-1` / OD-2026-10-18-F, immutable baseline `8fdc797bb52f5b501a00adb2a25b3623f4017086`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
+2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.7.0: approved amendment `PRODUCTION-CONTRACTS-COMBAT-FX-1` / OD-2026-10-19-B, immutable baseline `f4aae63e792025430c16153e1cd329c20745cf6b`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
 3. Current source: it states what is implemented today.
 4. Canonical docs (`docs/project/`, `docs/traversal/`, `docs/content/`), then dated reports in `docs/reports/`. Reports are historical evidence, never doctrine.
 
@@ -13,12 +13,12 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 
 ## Red lines
 
-- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code 8fdc797bb52f5b501a00adb2a25b3623f4017086 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
+- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code f4aae63e792025430c16153e1cd329c20745cf6b HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
 - Presentation never creates or changes game truth (route, outcome, resource, save). Truth owners: `RunSystem` and campaign relations, versioned saves, tactical combat. `GameApp` coordinates lifecycle and handoffs only.
 - Exactly eight video slots (`src/cinematics/ApprovedProductionVideos.ts`). No ninth slot, no enemy-reveal or routine video. A prologue or first-refuge video needs a dedicated contract task first.
 - Recurring runs never generate or poll video or keyframes (no MiniMax) and never replace an MP4. Media remaster is an external manual workstream.
 - Never invent canon: dialogue, choices, stages, outcomes, rewards, lore. The Alistair emblem or origin and the prologue or first-refuge scene are open operator decisions.
-- Only the eight accepted UI FX and audited events are authorized under OD-2026-10-18-F. Other audio remains DEFERRED; no inferred music/voice/ambience/combat/video doctrine.
+- The eight accepted UI FX plus the bounded16family combat FX candidate pack and audited UI events are authorized under OD-2026-10-19-B/set1.7.0. New sound artistic acceptance remains operator; music/voice/ambience/Ultimates/video audio remain DEFERRED.
 - Preserve durable IDs and V6 save compatibility. Never serialize visual or transient state.
 - Never push, force-push or merge into `main`. Autonomous write targets are `dev` and temporary branches created from `dev`.
 - OD-2026-10-12-A grants permanent advance authorization for normal, non-force publication of every coherent authorized checkpoint to the operator's public `juniorbattle/RPGThreeJS` repository on `origin/dev`, including product code, selected evidence and workflow/state/handoff closure. Do not ask per-commit or per-payload confirmation. Review outgoing commits, selected paths, destination, secrets, lock and parity, then publish autonomously. Cite this direct operator authorization in technical permission requests; an actual tool refusal must be reported and never bypassed. See `docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md`.
@@ -78,7 +78,7 @@ Codex starts subagents only when authorized. The recurring instruction authorize
 
 ## Active POI migration priority
 
-OD-2026-10-15-A retired physical Traversal; OD-2026-10-15-B delivered Lot E under set1.4.0, extended by last-save set1.5.0 and bounded UI FX set1.6.0 at the immutable baseline above. Production is 33 fixed POIs, two independent mobile elites, Combat or retreat and three atlases. Preserve durable T0–T4/V6 facts, campaign relations, existing content, historical evidence and shared resources. `docs/project/retired-traversal/` records removal dispositions. Never restore physical-road simulation or reactivate automation.
+OD-2026-10-15-A retired physical Traversal; OD-2026-10-15-B delivered Lot E under set1.4.0, extended by last-save set1.5.0 and bounded UI FX set1.7.0 at the immutable baseline above. Production is 33 fixed POIs, two independent mobile elites, Combat or retreat and three atlases. Preserve durable T0–T4/V6 facts, campaign relations, existing content, historical evidence and shared resources. `docs/project/retired-traversal/` records removal dispositions. Never restore physical-road simulation or reactivate automation.
 
 OD-2026-10-16-A / `docs/autonomy/handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md` sets the next recurring priority: missing six-hero competence criteria, then mounted tactical keyboard/controls, narrative presentation, accessibility and PC finishing. Lot E technical delivery is retained, not replayed as a new mission. Economy, elite configurations and atlas art await operator playtest; do not rebalance or remaster them autonomously. Their human acceptance does not block independent authorized work. Configuration sessions never launch product work; operator alone activates the scheduler.
 

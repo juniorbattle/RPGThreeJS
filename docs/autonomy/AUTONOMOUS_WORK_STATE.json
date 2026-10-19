@@ -1,13 +1,13 @@
 {
-  "status": "AUDIT_COMPLETE_COMBAT_AUDIO_PENDING",
-  "runStartedAt": "2026-10-19T06:57:12.376Z",
-  "runEndedAt": "2026-10-19T07:07:14.284Z",
-  "activeTask": "DEEP-COMBAT-AUDIO-AUDIT",
-  "activePhase": "SOURCE_AUDIT_COMPLETE",
-  "activeSubtask": "Source matrix and bounded future combat lot documented; no runtime activation",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-19T15:38:15.0959806Z",
+  "runEndedAt": null,
+  "activeTask": "COMBAT-AUDIO-BOUNDED-EXECUTION",
+  "activePhase": "REVIEWED_AMENDMENT_BASELINE_BEFORE_RUNTIME",
+  "activeSubtask": "Implement shared combat audio service, candidates and audited feedback",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "f7fc776c4fdaa4cf9a6c2b45de3b15e2ed4428b6",
-  "lastPushedCommit": "f7fc776c4fdaa4cf9a6c2b45de3b15e2ed4428b6",
+  "lastKnownGoodCommit": "f4aae63e792025430c16153e1cd329c20745cf6b",
+  "lastPushedCommit": "53bfd488028280f6f14583401d39b31a3a56f5f7",
   "completedThisRun": [
     "Deep combat and remaining campaign UI sound coverage audited against current source",
     "Root cause: iframe has no audio route, no local trusted-gesture hookup and no sound settings access",
@@ -47,7 +47,7 @@
     "Native hidden/suspend acceptance and operator hardware/art comfort",
     "Global PC/feltbalance/mobile/final handoff remain operator-scoped"
   ],
-  "nextAction": "Prepare the bounded combat-audio lot from the source audit: shared audio settings, tactical UI feedback and core six-hero FX candidates; a dedicated approved exception must precede production activation. Preserve the prior native hidden/suspend criterion OPEN without repeating its diagnostic loop.",
+  "nextAction": "Implement parent-owned combat audio/real-gesture iframe relay,16original candidate FX and audited UI callbacks; focused tests then one compatible earned production scenario.",
   "taskQueue": [
     "LAST-SAVE-RELOAD: corrected target; ordinary/elite restore exact active-game save",
     "POI-PATH-PAWN-CLARITY: prior COMPLETE_SCOPED_UI retained",
@@ -55,9 +55,9 @@
     "Later mobile and conditional media/audio retained"
   ],
   "creditStatus": "AVAILABLE_AFTER_VERIFIED_RESET",
-  "contractComplianceStatus": "PASS source audit/documentary review; protected baseline8fdc797 unchanged. Future combat activation deferred; prior UI nativehidden criterion remains OPEN.",
+  "contractComplianceStatus": "Dedicated amendment actualdiff guardianPASS; f4aae63 committed BEFORE operational baseline and runtime",
   "commitReferenceScope": "Verified published integrated-product/proof checkpoint before this self-referential metadata closure; final dev SHA verified in Git and automation memory after commit/push",
-  "operatorAuthorization": "Direct operator request OD-2026-10-19-A: deep sound-coverage audit especially combat; no new audio activation. OD-2026-10-12-A permanent normal origin/dev publication.",
+  "operatorAuthorization": "OD-2026-10-19-B direct Okay go approves dedicated bounded combat FX amendment/execution. OD-2026-10-12-A normal origin/dev publication.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -127,9 +127,9 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-combat-audio-audit-20261019T0657",
+  "runId": "codex-combat-audio-20261019T1537",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T07:07:14.284Z",
+  "lastHeartbeat": "2026-10-19T15:41:32.649Z",
   "wip": {
     "branch": null,
     "sha": "f7fc776c4fdaa4cf9a6c2b45de3b15e2ed4428b6",
@@ -138,7 +138,7 @@
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T07:07:14.284Z",
+    "lastHeartbeat": "2026-10-19T15:41:32.649Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -36915,7 +36915,7 @@
       "status": "NO_WIP_AUDIT_PUBLISHED",
       "inheritedWip": 0
     },
-    "nextAction": "Prepare the bounded combat-audio lot from the source audit: shared audio settings, tactical UI feedback and core six-hero FX candidates; a dedicated approved exception must precede production activation. Preserve the prior native hidden/suspend criterion OPEN without repeating its diagnostic loop.",
+    "nextAction": "Implement parent-owned combat audio/real-gesture iframe relay,16original candidate FX and audited UI callbacks; focused tests then one compatible earned production scenario.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "styleFiles": 0,
@@ -36945,8 +36945,8 @@
       "finalWorkflow": "Containing closure commit; final live parity/lock release recorded in automation memory",
       "lastVerifiedCheckpoint": "d81ffe74dff19dc045f8941958b12c059b4b9b37"
     },
-    "runEndedAt": "2026-10-19T07:07:14.284Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
       "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
@@ -37742,8 +37742,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "DEEP-COMBAT-AUDIO-AUDIT",
-    "activeSubtask": "Source matrix and bounded future combat lot documented; no runtime activation",
+    "activeTask": "COMBAT-AUDIO-BOUNDED-EXECUTION",
+    "activeSubtask": "Implement shared combat audio service, candidates and audited feedback",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41075,11 +41075,11 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-combat-audio-audit-20261019T0657",
+    "runId": "codex-combat-audio-20261019T1537",
     "agent": "codex",
-    "status": "AUDIT_COMPLETE_COMBAT_AUDIO_PENDING",
-    "runStartedAt": "2026-10-19T06:57:12.376Z",
-    "activePhase": "SOURCE_AUDIT_COMPLETE",
+    "status": "IN_PROGRESS",
+    "runStartedAt": "2026-10-19T15:38:15.0959806Z",
+    "activePhase": "REVIEWED_AMENDMENT_BASELINE_BEFORE_RUNTIME",
     "heartbeat": "2026-10-19T07:07:14.284Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0705Z-codex-combat-audio-audit.md",
     "motion1617": {
@@ -45075,6 +45075,15 @@
       "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "authority": "OD-2026-10-12-A",
       "closure": "Containing metadata commit published normally; final SHA/parity/lock release recorded in automation memory"
+    },
+    "combatFx": {
+      "operatorDecision": "OD-2026-10-19-B",
+      "amendmentCommit": "f4aae63e792025430c16153e1cd329c20745cf6b",
+      "amendmentReview": "PASS contracts-guardian actualdiff with two wording corrections integrated",
+      "status": "IMPLEMENTATION_PENDING",
+      "assetArtAcceptance": "PENDING_OPERATOR",
+      "nativeHidden": "OPEN/NOT_OBSERVED_PLATFORM from prior lot",
+      "historicalJobs": 335
     }
   },
   "previousInterruptedRun": {
@@ -45336,34 +45345,23 @@
     "externalPursuitBlocker": "Ten authored canonical mappings missing; not retried"
   },
   "previousRun": {
-    "runId": "codex-ui-fx-20261019T0259",
-    "runEndedAt": "2026-10-19T06:38:02.058Z",
-    "status": "IMPLEMENTED_SCOPED_NATIVE_VISIBILITY_OPEN",
-    "lastKnownGoodCommit": "513a4d53c2a0f3c1019e9e9fb2c087fa1b179229",
-    "lastPushedCommit": "513a4d53c2a0f3c1019e9e9fb2c087fa1b179229",
+    "runId": "codex-combat-audio-audit-20261019T0657",
+    "status": "AUDIT_COMPLETE_COMBAT_AUDIO_PENDING",
+    "runEndedAt": "2026-10-19T07:07:14.284Z",
+    "handoff": "docs/autonomy/handoffs/2026-10-19T0705Z-codex-combat-audio-audit.md",
     "metrics": {
-      "runtimeSourceFiles": 6,
-      "styleFiles": 1,
-      "sourceTestFiles": 4,
-      "runtimeAudioAssets": 8,
-      "existingQaFiles": 2,
-      "qaHelperTestFiles": 1,
+      "runtimeSourceFiles": 0,
+      "styleFiles": 0,
+      "sourceTestFiles": 0,
+      "runtimeAudioAssets": 0,
+      "existingQaFiles": 0,
       "newPersistentQaFiles": 0,
-      "promotedProofFiles": 4,
+      "promotedProofFiles": 0,
       "taskReports": 1,
-      "productDecisionDocs": 3,
-      "acceptedPackMetadataCopyFiles": 2,
-      "protectedAmendmentFiles": 7,
-      "workflowFiles": 8,
+      "workflowFiles": 5,
       "inheritedWipFiles": 0,
-      "registeredJobs": 3,
-      "failedUnloadObserverAttempts": 2,
-      "acceptedPartialScenario": 1,
-      "sourceTests": 59,
-      "sourceTestSuites": 6,
-      "helperHostTests": 24
-    },
-    "handoff": "docs/autonomy/handoffs/2026-10-19T0635Z-codex-ui-fx-integration.md"
+      "registeredJobs": 0
+    }
   },
   "pendingNarrativeTask": {
     "task": "NARRATIVE-CONTEXT-COHERENCE",
@@ -46716,7 +46714,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-19T07:07:14.284Z",
+  "heartbeat": "2026-10-19T15:41:32.649Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -48570,7 +48568,7 @@
     "scheduler": "UNTOUCHED",
     "externalNightplateBlockerReverified": "Current dialogue:ate_bois_clair_night_watch still maps to bois_clair_tableau_burning; approved-source-manifest timeOfDay sunset. No approved night substitution established."
   },
-  "contractSetVersion": "1.6.0",
+  "contractSetVersion": "1.7.0",
   "run2229": {
     "preflight": {
       "clean": true,
@@ -48778,5 +48776,14 @@
       "authority": "OD-2026-10-12-A",
       "closure": "Containing metadata commit published normally; final SHA/parity/lock release recorded in automation memory"
     }
+  },
+  "combatFx": {
+    "operatorDecision": "OD-2026-10-19-B",
+    "amendmentCommit": "f4aae63e792025430c16153e1cd329c20745cf6b",
+    "amendmentReview": "PASS contracts-guardian actualdiff with two wording corrections integrated",
+    "status": "IMPLEMENTATION_PENDING",
+    "assetArtAcceptance": "PENDING_OPERATOR",
+    "nativeHidden": "OPEN/NOT_OBSERVED_PLATFORM from prior lot",
+    "historicalJobs": 335
   }
 }
