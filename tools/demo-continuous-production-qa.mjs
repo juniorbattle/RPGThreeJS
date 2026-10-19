@@ -496,8 +496,9 @@ async function poiMove(id,pointer=false){
       report.poiTravel??=[];report.poiTravel.push({from:before.currentNodeId,to:id,first,second});
       if(report.poiTravel.length===1)await capture('poi-travel-committed');
     }
-    await page.waitForFunction(()=>!document.querySelector('.poi-map__traveller'));
   }
+  // Every pilot must await committed travel, not only the optional animation-inspection case.
+  await page.waitForFunction(()=>!document.querySelector('.poi-map__traveller'));
   const after=await state();
   const intercepted=after.currentNodeId===before.currentNodeId&&after.run.poiExpedition?.encounter?.kind==='front';
   assertExpeditionStep(before,after,intercepted||id===before.currentNodeId?0:1,{pending:true});
