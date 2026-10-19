@@ -1,14 +1,8 @@
-# Last-save recovery delivered; operator PC review next
+# Bois-Clair nighttime correction in progress
 
-READY_FOR_PC_ACCEPTANCE. Run codex-last-save-20261018T2052 started2026-10-18T20:52:31Z; quota pause recovered; product/proof checkpoint d81ffe7 published and live dev parity verified, main unchanged. Ended2026-10-19T01:29:03.535Z; final metadata publication/owned-lock release only. OD-2026-10-18-C explicitexecution. Reviewed d1031ec baseline/set1.5.0 before runtime; current product b7a40f3, accepted native07 source/build only.
+Run codex-bois-clair-night-20261019T0213; exclusive lock acquired after clean preflight/parity on dev f4e8d9f. Operator clarifies unhealed heroes, so no balance change. Implement an outcome-neutral nighttime tableau only; all canonical dialogue/outcomes and historical proof retained. Then audit simple SFX under the explicit operator request, before any audio runtime or doctrine change.
 
-Implemented one immediately usable wallet/inventory, idempotent remaining legacy-pool consolidation without checkpoint move, shared ordinary/elite full selected actual-save restore with no loss write/relocation and explicit continuation.275distinct tests17files,23helper/currenttypes/build/8contracts8slots/gates PASS.
-
-Native07 PC1366normal: original certified2141seed, real15gold/antidote+supplies/potionuse mage1to56, wolvesrealdefeat, exactfullsave/rawslots unchanged, focused48pxcontrol, explicit samependingcombat mechanicalresume. RawSUCCEEDED/NOT_ACCEPTED separate from guardian ACCEPTED_SCOPED. Final b7 hint-only copy tested14cases/inputstate unchanged/rebuild; current execution does NOT match native07, expecteddrift recorded. No current-native-build or settledresumevisual/nativeelite/manualfallback/globalPC/mobile/art/balance claim.
-
-325historicalQA/deferredroots exact;328totaljobs incl2preservedfailures+finalsuccess. Source 13, tests10, existingQA3, newpersistentQA0, proof4, productdocs3, protectedamendment7, workflow15, inheritedWIP0. No QA nodeworkers/listener5442; oldPID43320reusedconhost/untouched. Preview24360/5438HTTP200 retained; scheduler/browser/save unchanged. Final report docs/reports/last-save-reload-2026-10-18.md and handoff docs/autonomy/handoffs/2026-10-19T0126Z-codex-last-save-reload.md.
-
-Next ONE action: Operator refreshes existing http://127.0.0.1:5438/ and Continue on the same browser profile; inspect the single usable wallet and, after a real loss, Recharger/Reprendre la sauvegarde. Correct one concrete remaining PC finding; no unchanged campaign replay, no new QA mission merely to accumulate evidence. Manual multi-slot support remains future scope; global PC/art/balance/hardware review open before mobile.
+Next: focused environment/contextual tests and existing native contextual driver PC1366, then SFX scope.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

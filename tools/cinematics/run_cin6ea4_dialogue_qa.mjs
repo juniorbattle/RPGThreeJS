@@ -477,8 +477,12 @@ async function runContextualProduction() {
   const output = process.env.CIN6EA4_OUTPUT_DIR;
   assert.ok(output?.startsWith('tmp/'), 'Contextual production requires a unique ignored output');
   const port = Number(process.env.CIN6EA4_PORT ?? 5373);
-  const councilContinuation = process.env.CIN6EA4_COUNCIL_CONTINUATION === '1';
-  const parameters = councilContinuation ? {
+  const nightWatch = process.env.CIN6EA4_NIGHT_WATCH === '1';
+  const councilContinuation = !nightWatch && process.env.CIN6EA4_COUNCIL_CONTINUATION === '1';
+  const parameters = nightWatch ? {
+    mode: 'bois-clair-night-tableau-production', cells: ['1366x768-normal'], contexts: ['bois-clair-night-watch'], gameReducedMotion: false,
+    method: 'fixture-origin native ATE selection; first authored step pages only; corrected night plate and four actors; no earned campaign claim',
+  } : councilContinuation ? {
     mode: 'contextual-council-continuation-production',
     cells: ['1366x768-normal'], contexts: ['protected-witness-council'], gameReducedMotion: false,
     method: 'fixture-origin native owner selection; council steps 1 through 3; keyboard advancement without target refocus; static presentation only',
@@ -489,7 +493,11 @@ async function runContextualProduction() {
     gameReducedMotion: false,
     method: 'fixture-origin native owner selection; first authored step pages only; keyboard advancement; static player observations',
   };
-  const requiredAssertions = councilContinuation ? [
+  const requiredAssertions = nightWatch ? [
+    'Native night watch first-step pages concatenate to the authored contextual text at PC1366 normal',
+    'Corrected night plate is loaded byte-identically; exactly four stage-owned actors, one STATIC_TABLEAU, readable text and enabled controls',
+    'No moving media, combat or driver owner writes after fixture origin; owner and stored V6 invariant during observations; clean diagnostics',
+  ] : councilContinuation ? [
     'Council steps 1, 2 and 3 concatenate separately to their complete protected-witness text with canonical speakers',
     'Native protected witness facts are observed after the declared fixture origin; no subsequent owner, flag or outcome writes by the driver',
     'One STATIC_TABLEAU, Champion left facing Alaric right with stable reciprocal facing and look targets, at most four actors',
@@ -505,7 +513,7 @@ async function runContextualProduction() {
   ];
   const job = beginJob({ output, driver: 'tools/cinematics/run_cin6ea4_dialogue_qa.mjs', port, parameters, requiredAssertions });
   const report = { schemaVersion: 1, parameters, results: [], errors: [], pass: false,
-    scope: councilContinuation
+    scope: nightWatch ? 'Fixture-origin nighttime ATE first-step presentation only at PC1366 normal; no earned campaign, other steps, outcomes, balance, mobile or global acceptance' : councilContinuation
       ? 'Fixture-origin protected council steps 1 through 3 at PC1366 normal; no earned lineage, node completion, reload, OS/mobile or dynamic cast-transition acceptance'
       : 'Fixture-origin first-step contextual static presentation; no earned campaign, node completion, reload, autofocus or dynamic cast-transition acceptance' };
   let models, server, browser;
@@ -513,6 +521,8 @@ async function runContextualProduction() {
     models = await createServer({ server: { middlewareMode: true, hmr: false, watch: null }, appType: 'custom' });
     const { createInitialState } = await models.ssrLoadModule('/src/game/store.ts');
     const { createRunState, enterRunNode } = await models.ssrLoadModule('/src/game/runSystem.ts');
+    const { resolveGameDialogue } = await models.ssrLoadModule('/src/game/contextualDialogueContent.ts');
+    const { demoEnvironmentPlateForContext } = await models.ssrLoadModule('/src/render/demoEnvironmentPack.ts');
     server = await preview({ preview: { host: '127.0.0.1', port, strictPort: true } });
     browser = await chromium.launch({ headless: true });
     const cases = [
@@ -525,6 +535,7 @@ async function runContextualProduction() {
         flags: { lionMissionAccepted: true, lionMandateAdvance: true, exploitedRefugees: true, missionSuccess: true },
         expected: 'Vous avez vendu l’itinéraire contre les quarante dernières pièces de familles qui n’avaient déjà presque rien. Je ne demande pas que vous réécriviez la route. Je demande ce que vous faites maintenant pour leur prochain convoi.' },
     ];
+    cases.push({ id: 'bois-clair-night-watch', nodeId: 'lion-second-refuge', sequence: 'ate_bois_clair_night_watch', seed: 6101, flags: { missionSuccess: true } });
     const councilSteps = {
       '1': { actor: 'lion_champion', text: cases[0].expected },
       '2': { actor: 'alaric', text: 'Les survivants de Bois-Clair ont choisi de parler librement. Ils ne demandent ni faveur ni vengeance : ils apportent des faits. Le Lion les entendra.' },
@@ -562,6 +573,7 @@ async function runContextualProduction() {
           state.resolvedNodeIds.push(state.currentNodeId); assert.ok(enterRunNode(state.run, id));
           state.currentNodeId = id; state.visitedNodeIds = [...state.run.visitedNodeIds]; state.stepCounter++;
         }
+        if (nightWatch) scenario.expected = resolveGameDialogue(scenario.sequence, state).sequence.steps[0].text;
         await page.goto(`http://127.0.0.1:${port}/?presentation=narrative&media=video`, { waitUntil: 'domcontentloaded' });
         await page.evaluate(fixture => localStorage.setItem('rpg-threejs:autosave:v6', JSON.stringify(fixture)), state);
         await page.reload({ waitUntil: 'domcontentloaded' });
@@ -624,7 +636,7 @@ async function runContextualProduction() {
             }, null, { timeout: 15000 });
             if (sequence === scenario.sequence && (councilContinuation ? step in councilSteps : step === '1')) {
               const before = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
-              const ownerBefore = councilContinuation ? await page.evaluate(() => JSON.stringify(window.__contextualApp.state)) : null;
+              const ownerBefore = (councilContinuation || nightWatch) ? await page.evaluate(() => JSON.stringify(window.__contextualApp.state)) : null;
               assert.ok(typeof before === 'string' && before.length > 0, 'Stored save missing at observation');
               assert.equal(JSON.parse(before).version, 6, 'Observation requires an existing V6 save');
               const observation = await dialogue.evaluate(element => {
@@ -660,12 +672,22 @@ async function runContextualProduction() {
               assert.equal(observation.mediaSurface, 'STATIC_TABLEAU'); assert.equal(observation.castOwnership, 'STAGE_OWNS_CAST'); assert.notEqual(observation.primaryInvariant, 'FAIL');
               assert.ok(observation.actors >= 1 && observation.actors <= 4); assert.ok(observation.textFits && observation.boxFits && observation.boxEnabled);
               assert.equal(observation.activeVideos, 0); assert.equal(observation.osReduced, os); assert.equal(observation.gameReduced, false);
-              if (scenario.id === 'protected-witness-council') { assert.equal(observation.facts.protectedWitnesses, true); assert.notEqual(observation.facts.silencedWitnesses, true); }
+              if (nightWatch) {
+                const plate = demoEnvironmentPlateForContext('dialogue:ate_bois_clair_night_watch', 'STATIC_TABLEAU');
+                const backdrop = await dialogue.evaluate(element => getComputedStyle(element.closest('.narrative-stage').querySelector('.narrative-media-surface')).backgroundImage);
+                assert.ok(backdrop.includes(plate.publicUrl), 'Wrong nighttime backdrop');
+                const response = await page.request.get(plate.publicUrl);
+                assert.ok(response.ok(), 'Night plate load failed');
+                const { createHash } = await import('node:crypto');
+                assert.equal(createHash('sha256').update(await response.body()).digest('hex'), plate.sha256);
+                assert.equal(observation.actors, 4);
+                Object.assign(observation, { backdrop, assetId: plate.assetId, sha256: plate.sha256 });
+              } else if (scenario.id === 'protected-witness-council') { assert.equal(observation.facts.protectedWitnesses, true); assert.notEqual(observation.facts.silencedWitnesses, true); }
               else assert.equal(observation.facts.exploitedRefugees, true);
               const capture = `${cell}-${scenario.id}-${councilContinuation ? `step-${step}-` : ''}${observation.segment.replace('/', '-')}.png`;
               await page.screenshot({ path: resolve(output, capture) });
               assert.equal(await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6')), before, 'Observation changed stored save');
-              if (councilContinuation) assert.equal(await page.evaluate(() => JSON.stringify(window.__contextualApp.state)), ownerBefore, 'Observation changed live owner state');
+              if (councilContinuation || nightWatch) assert.equal(await page.evaluate(() => JSON.stringify(window.__contextualApp.state)), ownerBefore, 'Observation changed live owner state');
               assert.ok(!segments.some(entry => entry.segment === observation.segment && (!councilContinuation || entry.step === step)), 'Keyboard did not advance the observed page');
               segments.push({ ...observation, savedBytesUnchanged: true, capture });
               if (councilContinuation && step === '3' && observation.segment.split('/')[0] === observation.segment.split('/')[1]) break;
@@ -675,7 +697,7 @@ async function runContextualProduction() {
             if (!councilContinuation || sequence !== scenario.sequence) await control.focus();
             await page.keyboard.press('Enter');
           } else {
-            const leave = page.locator('.exploration-stop[data-refuge-node="lion-first-refuge"] [data-action="continue"]:visible');
+            const leave = page.locator(`.exploration-stop[data-refuge-node="${nightWatch ? 'lion-second-refuge' : 'lion-first-refuge'}"] [data-action="continue"]:visible`);
             if (await leave.count()) { await leave.focus(); await page.keyboard.press('Enter'); }
             else await page.waitForTimeout(50);
           }

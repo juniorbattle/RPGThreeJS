@@ -1,4 +1,5 @@
 import productionManifestJson from './data/demo-environment-pack-v1.production.json';
+import nightWatchCorrection from './data/bois-clair-night-watch.correction.json';
 
 export type DemoEnvironmentSurfaceRole =
   | 'CINEMATIC_SOURCE_ENVIRONMENT'
@@ -84,6 +85,11 @@ export function demoEnvironmentPlateForContext(
     : mapping.plates[0];
   if (!binding) {
     throw new Error(`No ${preferredRole ?? 'plate'} production environment binding for ${contextId}`);
+  }
+  // A separately dated correction leaves the original approved pack and its provenance intact.
+  if (contextId === nightWatchCorrection.contextId && binding.surfaceRole === 'STATIC_TABLEAU') {
+    const { assetId, visualFamily, publicUrl, sha256, width, height } = nightWatchCorrection;
+    return { contextId, assetId, visualFamily, publicUrl, sha256, width, height, surfaceRole: 'STATIC_TABLEAU' };
   }
   const asset = assetsById.get(binding.assetId);
   if (!asset) throw new Error(`Unknown production environment asset ${binding.assetId}`);

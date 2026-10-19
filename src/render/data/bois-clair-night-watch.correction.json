@@ -1,0 +1,51 @@
+{
+  "correctionId": "BOIS-CLAIR-NIGHT-WATCH-1",
+  "status": "OPERATOR_AUTHORIZED_RUNTIME_CORRECTION",
+  "artisticAcceptance": "OPERATOR_REVIEW_PENDING",
+  "contextId": "dialogue:ate_bois_clair_night_watch",
+  "assetId": "bois_clair_tableau_night_watch_v1",
+  "visualFamily": "BOIS_CLAIR",
+  "surfaceRole": "STATIC_TABLEAU",
+  "publicUrl": "/assets/generated/lion-phase/environments/corrections/bois-clair-night-watch-v1.png",
+  "sha256": "add827f09c54fa6be541ff2c465e2b39c7be8e21acf4d7011a465b4025465e41",
+  "width": 1672,
+  "height": 941,
+  "generatedAt": "2026-10-19T02:22:41.905Z",
+  "tool": "image_gen",
+  "authority": "Direct operator request 2026-10-18: corriger le fond nocturne manquant pour Bois-Clair",
+  "framing": "Shared village perimeter; roof states, supplies and inhabitants excluded so saved, sacrificed and legacy outcomes retain their existing truth.",
+  "sources": [
+    {
+      "assetId": "bois_clair_tableau_burning",
+      "sha256": "a3e69c055552b41f4c6c8f13196bb1500d6781a79533d45aab7410f6b67af7ec"
+    },
+    {
+      "assetId": "bois_clair_tableau_aftermath_saved",
+      "sha256": "09485b94cb0f4e4b56386a2fcb4e02d0ecae8fbfb0dca1a6309cb6f97cd1444b"
+    },
+    {
+      "assetId": "bois_clair_tableau_aftermath_sacrificed",
+      "sha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464"
+    }
+  ],
+  "promptBrief": "Create one 16:9 static HD-2D pixel-art nighttime dialogue background at the perimeter of Bois-Clair. Edit the night village reference, using saved and sacrificed village references only to identify their shared perimeter. Reframe toward the existing wet cobble and dirt entrance road, battered wooden palisade and fallen gate timber at the sides, trees and wooded hills. A tiny distant church tower may remain common to both outcomes. Leave the lower two thirds empty for four actors and the bottom quarter for dialogue. Occlude the village houses with the existing fence, trees and smoke; show neither intact nor destroyed rooflines. No crates, supplies, tents, survivors, guards, characters, animals, flags, new buildings or new destruction. Deep navy midnight, small crescent and stars, cool moonlit road, existing warm torch positions and faint embers. No sunset, dawn or sun. Readable midtones; modern pixel HD-2D matching the existing references, no photography, watercolor, anime or smooth 3D. 1672x941, no text, UI, logo or watermark.",
+  "directInputs": [
+    {
+      "role": "night edit intermediate",
+      "file": "exec-71474c76-95f7-4858-ab7c-fd3884ca2d4e.png",
+      "sha256": "517b205fbe57ff06e7711772476441659870695cbb26c98a98202f7a1b890e4b"
+    },
+    {
+      "assetId": "bois_clair_tableau_aftermath_saved",
+      "sha256": "09485b94cb0f4e4b56386a2fcb4e02d0ecae8fbfb0dca1a6309cb6f97cd1444b"
+    },
+    {
+      "assetId": "bois_clair_tableau_aftermath_sacrificed",
+      "sha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464"
+    }
+  ],
+  "intermediateInputs": [
+    "bois_clair_tableau_burning",
+    "second_refuge_night_tableau (palette only)"
+  ]
+}
