@@ -18,7 +18,7 @@ Progression currently has no level or XP. Equipment, weapon tiers, two accessory
 
 ## Narrative and media
 
-`STATIC_TABLEAU` is the normal interactive narrative language: staged actors with position, facing, look target, depth, focus, and restaging. Prefer readable compositions, currently up to four visible actors. Video is reserved for exactly eight major production slots named in [the media contract](../contracts/PRESENTATION_AND_MEDIA.md). `MAIN_EVENT => CINEMATIC_REQUIRED` is superseded. Audio is **DEFERRED** until narrative, presentation, cinematics, and POI navigation structure are demonstrably locked and stable.
+`STATIC_TABLEAU` is the normal interactive narrative language: staged actors with position, facing, look target, depth, focus, and restaging. Prefer readable compositions, currently up to four visible actors. Video is reserved for exactly eight major production slots named in [the media contract](../contracts/PRESENTATION_AND_MEDIA.md). `MAIN_EVENT => CINEMATIC_REQUIRED` is superseded. Audio is **DEFERRED** until narrative, presentation, cinematics, and POI navigation structure are demonstrably locked and stable, except the eight operator-accepted UI FX files and audited native events under OD-2026-10-18-F / PRODUCTION-CONTRACTS-UI-FX-1. This bounded exception requires default silence, voluntary enable/mute/volume and real gesture unlock; preferences remain outside gameplay saves, failures never block agency or write game truth. Music, voices, ambience, combat-iframe and cinematic/video audio remain DEFERRED. The exception does not infer global acceptance.
 
 ## Durable boundaries
 

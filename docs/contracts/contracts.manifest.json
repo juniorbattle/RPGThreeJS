@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.5.0",
+  "contractSetVersion": "1.6.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -92,6 +92,21 @@
       "constitutionChanged": true,
       "supersededRule": "Unsecured loot lost at checkpoint relocation; rewards now usable immediately and defeat reloads the selected last actual save",
       "implementationAcceptance": "PENDING; exact ordinary/elite recovery, legacy consolidation and native evidence required"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-UI-FX-1",
+      "operatorDecisionId": "OD-2026-10-18-F",
+      "operatorDecisionPath": "docs/autonomy/UI_FX_INTEGRATION_OPERATOR_DECISION_2026-10-18.md",
+      "approvedAt": "2026-10-18",
+      "changedContracts": [
+        "PRESENTATION_AND_MEDIA",
+        "UI_AND_ACCESSIBILITY",
+        "AUTHORING_AND_QA",
+        "AUTONOMOUS_WORK_PROTOCOL"
+      ],
+      "constitutionChanged": true,
+      "supersededRule": "General audio deferral only for eight accepted UI FX and audited native events; other audio remains deferred",
+      "implementationAcceptance": "PENDING; bounded native playback/control/failure evidence required"
     }
   ],
   "status": "LOCKED",

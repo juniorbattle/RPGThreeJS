@@ -23,3 +23,8 @@ Dedicated `PRODUCTION-CONTRACTS-POI-V2-RETIREMENT-1`, set 1.3.0. Clearly disting
 ## Preserved cast and transition readability — OD-2026-10-03-A
 
 Dedicated amendment `PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1`: verify short cast exit/breath/entry continuity, meaningful transition copy, responsive dialogue and focus retention/restoration. OS reduced motion and game reduction each request the reduced-motion alternative; explicit game false cannot suppress the OS. Use gentle fade/pause/focus continuity without large displacement, retain all dialogue/choices and avoid motion-dependent information. Production/browser evidence must include desktop, intermediate and narrow viewports with normal and OS-only reduced motion.
+
+
+## Bounded UI FX exception — OD-2026-10-18-F
+
+Dedicated `PRODUCTION-CONTRACTS-UI-FX-1`, set1.6.0, [operator execution approval](../autonomy/UI_FX_INTEGRATION_OPERATOR_DECISION_2026-10-18.md), supersedes the general audio deferral solely for the eight operator-accepted UI FX files and audited native events. No global narrative/cinematic/PC acceptance is implied. Music, voices, ambience, combat-iframe sounds and cinematic/video audio remain DEFERRED. Default disabled; explicit accessible enable/mute and volume, real gesture unlock, preferences separate from GameState/V6/video mute. No sound on load/reload/restored preference/programmatic focus. One bounded cue per actual native action with keyboard/pointer deduplication, bounded voices/rate and hidden/disposed cleanup. Optional audio failure never blocks agency or writes gameplay truth. Only actual node changes emit travel-start; autosaves, repeated reward renders and failed/no-op actions do not emit success.
