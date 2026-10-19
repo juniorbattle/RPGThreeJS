@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.6.0",
+  "contractSetVersion": "1.7.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -107,6 +107,22 @@
       "constitutionChanged": true,
       "supersededRule": "General audio deferral only for eight accepted UI FX and audited native events; other audio remains deferred",
       "implementationAcceptance": "PENDING; bounded native playback/control/failure evidence required"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-COMBAT-FX-1",
+      "operatorDecisionId": "OD-2026-10-19-B",
+      "operatorDecisionPath": "docs/autonomy/COMBAT_FX_OPERATOR_DECISION_2026-10-19.md",
+      "approvedAt": "2026-10-19",
+      "changedContracts": [
+        "PRESENTATION_AND_MEDIA",
+        "COMBAT_AND_VFX",
+        "UI_AND_ACCESSIBILITY",
+        "AUTHORING_AND_QA",
+        "AUTONOMOUS_WORK_PROTOCOL"
+      ],
+      "constitutionChanged": true,
+      "supersededRule": "Combat-iframe audio deferral only for the bounded16families and audited tactical/UI events; other audio stays deferred",
+      "implementationAcceptance": "PENDING; scoped native technical evidence and operator artistic acceptance remain separate"
     }
   ],
   "status": "LOCKED",

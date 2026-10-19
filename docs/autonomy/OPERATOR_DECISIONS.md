@@ -38,6 +38,8 @@ Append-only index of the explicit operator decisions that bind autonomous work. 
 
 | OD-2026-10-19-A | 2026-10-19 | Audit deeply the remaining silent locations, especially actual tactical combat; document current hooks and a bounded future sound lot | [Deep combat audio audit](../reports/combat-audio-audit-2026-10-19.md) | AUDIT_COMPLETE; no new audio assets, activation or contract amendment authorized by the audit |
 
+| OD-2026-10-19-B | 2026-10-19 | Execute bounded combat sound lot after deep audit: shared settings, audited UI cues and16original short combat FX families | [Combat FX execution](COMBAT_FX_OPERATOR_DECISION_2026-10-19.md) | ACTIVE; dedicated set1.7.0 reviewed baseline before runtime; new sound artistic acceptance remains operator |
+
 ## OD-2026-10-02-A details
 
 1. WIP found on 2026-10-02: snapshot only, no takeover. Snapshot `a0b75148ca55207a6b59da2f05f912b435ce2e44` on `origin/wip/rpgthreejs-auto-dev-90m-20261002T0338` (see [the handoff note](handoffs/2026-10-02-devin-wip-snapshot.md)).
