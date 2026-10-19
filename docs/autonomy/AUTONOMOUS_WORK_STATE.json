@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-19T20:09:26.5391732Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-19T20:58:45.747Z",
   "activeTask": "MANUAL-CAMP-CANDIDATE-04",
   "activePhase": "MANUAL_CAMP04_READY_FOR_PC_OPERATOR_REVIEW",
   "activeSubtask": "Candidate04 delivered separately; gait/blade artistic review and portrait composition remain open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
-  "lastPushedCommit": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
+  "lastKnownGoodCommit": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
+  "lastPushedCommit": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
   "completedThisRun": [
     "Recorded explicit manual camp cap exception OD-2026-10-19-D; scheduler/recurring prohibition preserved",
     "Prepared currentV2 moonlit source; exact-request guard61focusedtests/tsc/spec/contracts/independent guardianPASS; source checkpoint b13279d published",
@@ -67,13 +67,13 @@
   ],
   "nextAction": "Operator: watch candidate04 silent12s master at normal speed; judge gait, blade clearance and PC framing before artistic selection/integration. No additional provider task or production replacement inferred.",
   "taskQueue": [
-    "Manual camp correction handoff (not an automatic provider task)",
-    "Demonstrated independent PC defect/operator verdict when supplied",
-    "Operator combatFX listening/globalPC/art/balance/hardware;mobile after PC stability"
+    "Operator PC review of manual camp04 before selection/integration",
+    "Demonstrated independent PC finding/operator verdict when available",
+    "Global PC/art/balance/hardware and preserved audio limits; mobile after PC stability"
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS manual candidate delivery, set1.7.0/f4aae63; guardian ACCEPTED_SCOPED_ISOLATED_DEV_PLAYER_ONLY; artistic/integration/global acceptance open",
-  "commitReferenceScope": "Source baseline578dc4d;audited report checkpoint and final metadata SHA/parity recorded in Git/automation memory;no self-referential SHA",
+  "commitReferenceScope": "Source/guard b13279d; delivery a95f734; exact containing metadata SHA/remote parity in Git and automation memory",
   "operatorAuthorization": "OD-2026-10-19-D explicit manual camp cap exception; OD-2026-10-12-A normal public origin/dev checkpoint publication",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -146,41 +146,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-camp-20261019T2005",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T20:57:39.638Z",
+  "lastHeartbeat": "2026-10-19T20:58:45.747Z",
   "wip": {
     "branch": "dev",
-    "sha": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
-    "dirtyFiles": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
-      "tools/cinematics/minimax_h3_generate.mjs",
-      "tools/cinematics/minimax_task_checkpoint.mjs",
-      "tools/cinematics/minimax_task_checkpoint.test.mjs",
-      "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
-      "tools/cinematics/candidates/manual-camp-20261019/candidate-04-provenance.json",
-      "tools/cinematics/candidates/manual-camp-20261019/source-prompt.txt",
-      "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
-      "tools/cinematics/specs/manual-camp-20261019/candidate-04-authorization.json",
-      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/reports/INDEX.md",
-      "docs/reports/manual-camp-candidate-04-2026-10-19.md",
-      "docs/reports/manual-camp-candidate-04-2026-10-19/proof.json",
-      "docs/reports/manual-camp-candidate-04-2026-10-19/contact-sheet.png",
-      "docs/reports/manual-camp-candidate-04-2026-10-19/final.png",
-      "docs/reports/manual-camp-candidate-04-2026-10-19/legs-early.png",
-      "docs/reports/manual-camp-candidate-04-2026-10-19/legs-late.png",
-      "docs/reports/manual-camp-candidate-04-2026-10-19/player-pc1366-skip.png",
-      "docs/reports/manual-camp-candidate-04-2026-10-19/player-portrait390-crop.png"
-    ],
-    "status": "GREEN_CANDIDATE_DELIVERY",
+    "sha": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
+    "dirtyFiles": [],
+    "status": "PUBLISHED_DELIVERY",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-19T20:57:39.638Z"
+    "lastGreenCheck": "2026-10-19T20:58:45.747Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T20:57:39.638Z",
+    "lastHeartbeat": "2026-10-19T20:58:45.747Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37370,35 +37346,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
-      "dirtyFiles": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
-        "tools/cinematics/minimax_h3_generate.mjs",
-        "tools/cinematics/minimax_task_checkpoint.mjs",
-        "tools/cinematics/minimax_task_checkpoint.test.mjs",
-        "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
-        "tools/cinematics/candidates/manual-camp-20261019/candidate-04-provenance.json",
-        "tools/cinematics/candidates/manual-camp-20261019/source-prompt.txt",
-        "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
-        "tools/cinematics/specs/manual-camp-20261019/candidate-04-authorization.json",
-        "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-        "docs/reports/INDEX.md",
-        "docs/reports/manual-camp-candidate-04-2026-10-19.md",
-        "docs/reports/manual-camp-candidate-04-2026-10-19/proof.json",
-        "docs/reports/manual-camp-candidate-04-2026-10-19/contact-sheet.png",
-        "docs/reports/manual-camp-candidate-04-2026-10-19/final.png",
-        "docs/reports/manual-camp-candidate-04-2026-10-19/legs-early.png",
-        "docs/reports/manual-camp-candidate-04-2026-10-19/legs-late.png",
-        "docs/reports/manual-camp-candidate-04-2026-10-19/player-pc1366-skip.png",
-        "docs/reports/manual-camp-candidate-04-2026-10-19/player-portrait390-crop.png"
-      ],
-      "status": "GREEN_CANDIDATE_DELIVERY",
+      "sha": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
+      "dirtyFiles": [],
+      "status": "PUBLISHED_DELIVERY",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-19T20:57:39.638Z"
+      "lastGreenCheck": "2026-10-19T20:58:45.747Z"
     },
     "nextAction": "Operator: watch candidate04 silent12s master at normal speed; judge gait, blade clearance and PC framing before artistic selection/integration. No additional provider task or production replacement inferred.",
     "runMetrics": {
@@ -37459,15 +37411,18 @@
       "authorization": "OD-2026-10-12-A",
       "manualDecision": "OD-2026-10-19-D",
       "sourceBaseline": "671c6eebed2872dd8284b3dbe7c55e883bba0d06",
-      "lastVerifiedCheckpoint": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
-      "finalWorkflow": "Source/guard published; candidate report/proof/handoff containing checkpoint pending"
+      "lastVerifiedCheckpoint": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
+      "finalWorkflow": "Delivery a95f734 published/remote-verified; containing metadata SHA/parity and owned-lock release recorded in automation memory",
+      "remoteDevVerified": true,
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-19T20:58:45.747Z",
+    "writerStopped": true,
     "metadataPublication": {
-      "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
-      "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
-      "followup": "Normal push/live parity/owned-lock release immediately after this snapshot"
+      "scope": "Manual camp04 closure",
+      "deliveryCheckpoint": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
+      "status": "CONTAINING_METADATA_COMMIT",
+      "runEndedAt": "2026-10-19T20:58:45.747Z"
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -38202,7 +38157,7 @@
       "workerAbsent": 60012,
       "portAbsent": 5352
     },
-    "publishedCheckpoint": "a0ee1afafbd93ed7b1fdf118dad60894f41a781f",
+    "publishedCheckpoint": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
     "closeout0613": {
       "checkpoint": "babc01bf3571247b73516a740c501a88b1deb7dd",
       "runEndedAt": "2026-10-09T06:56:55.147Z",
@@ -41595,7 +41550,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-19T18:19:04.431Z",
     "activePhase": "MANUAL_CAMP04_READY_FOR_PC_OPERATOR_REVIEW",
-    "heartbeat": "2026-10-19T20:57:39.638Z",
+    "heartbeat": "2026-10-19T20:58:45.747Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-19T2100Z-codex-manual-camp04.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -43324,7 +43279,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
+    "lastPushedCommit": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -45686,6 +45641,17 @@
         "allHistoricalJobsPreserved": 337,
         "deferredRootsAndPriorAcceptancesExact": true
       }
+    },
+    "manualCamp04Closeout": {
+      "runEndedAt": "2026-10-19T20:58:45.747Z",
+      "report": "docs/reports/manual-camp-candidate-04-2026-10-19.md",
+      "deliveryCheckpoint": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
+      "qaPort5445Stopped": true,
+      "providerTasksPending": 0,
+      "original337JobsPreserved": true,
+      "portrait390": "VISUAL_FAIL",
+      "productionReplaced": false,
+      "artisticAcceptance": false
     }
   },
   "previousInterruptedRun": {
@@ -45883,7 +45849,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Selected delivery report/proof/state/handoff awaiting containing checkpoint",
+  "uncommittedWork": "NONE after containing metadata checkpoint",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -47358,7 +47324,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-19T20:57:39.638Z",
+  "heartbeat": "2026-10-19T20:58:45.747Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -49882,6 +49848,8 @@
       "Blade-tip ground clearance",
       "Portrait composition correction before integration"
     ],
-    "completedAt": "2026-10-19T20:57:39.638Z"
+    "completedAt": "2026-10-19T20:57:39.638Z",
+    "deliveryCheckpoint": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
+    "runEndedAt": "2026-10-19T20:58:45.747Z"
   }
 }

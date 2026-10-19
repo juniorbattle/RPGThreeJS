@@ -12,6 +12,8 @@ Report: [candidate04](../reports/manual-camp-candidate-04-2026-10-19.md). Handof
 
 Next: Operator: watch candidate04 silent12s master at normal speed; judge gait, blade clearance and PC framing before artistic selection/integration. No additional provider task or production replacement inferred.
 
+Delivery checkpoint a95f73460f222462b3f0d10e72a0004af6c24bb2 published and remote-verified. Run ended 2026-10-19T20:58:45.747Z; final metadata SHA/parity and owned-lock release recorded in automation memory.
+
 <!-- QA_JOBS_START -->
 ## Live QA jobs
 

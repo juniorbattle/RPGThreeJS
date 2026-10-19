@@ -8,3 +8,5 @@
 - Preserved eight shippedMP4, priorcandidates, all deferred/audio roots, globalPC/art/balance/hardware/mobile limits. Counts:24unique paths;runtime0,tooling2/test1,keyframe1/metadata2,spec2,report1/proof7,productdocs2/workflow6;inheritedWIP0;paidtask1;gameplaystages0.
 - Next: Operator: watch candidate04 silent12s master at normal speed; judge gait, blade clearance and PC framing before artistic selection/integration. No additional provider task or production replacement inferred.
 - Delivery and final metadata SHAs/parity recorded in Git/automation memory after publication; final runEndedAt follows published delivery.
+
+Delivery checkpoint a95f73460f222462b3f0d10e72a0004af6c24bb2 published/remote-verified; main00b96f1 unchanged. Run ended 2026-10-19T20:58:45.747Z. Containing metadata SHA/parity and owned-lock release in Git/automation memory.
