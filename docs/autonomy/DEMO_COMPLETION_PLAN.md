@@ -11,7 +11,7 @@ Current directives: **OD-2026-10-16-A**, [recurrence handoff](handoffs/2026-10-1
 
 - POI V2 plus Lot E:33fixedPOIs, six chests, six ordinary encounter POIs/two stable variants each, two persistent mobile elites, Combat or retreat, three atlases. Physical Traversal is definitively retired; durable IDs/V6 facts remain.
 - Campaign/finale, old/current/terminal V6, actual victory/defeat/reload and Lot E completed lineage are accepted only within the scopes of [Lot E](../reports/lot-e-final-2026-10-15.md) and [POI retirement](../reports/poi-v2-retirement-2026-10-15.md). No full-suite/global-demo/human-art/balance PASS inferred.
-- Contract set1.4.0 at f9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8. Never change LOCKED rules in a normal task.
+- Current contract set1.7.0 at f4aae63e792025430c16153e1cd329c20745cf6b; Lot E set1.4.0/f9d8fde remains its historical approved scope. Never change LOCKED rules in a normal task.
 
 ## Current operator priority — OD-2026-10-17-A
 

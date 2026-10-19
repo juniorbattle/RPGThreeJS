@@ -1,0 +1,369 @@
+{
+  "schemaVersion": 1,
+  "status": "ACCEPTED_SCOPED",
+  "recordedAt": "2026-10-19T16:24:32.755Z",
+  "task": "COMBAT-AUDIO-BOUNDED-EXECUTION",
+  "operatorDecision": "OD-2026-10-19-B",
+  "contractSet": "1.7.0",
+  "lockedBaseline": "f4aae63e792025430c16153e1cd329c20745cf6b",
+  "sourceCommit": "4d69c23405c64ff9cad5391a0f5a053f5a1aa246",
+  "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+  "sourceTreeCurrent": "391734fc92c22f7490797971aae3882bb10638cd",
+  "driver": {
+    "path": "tools/demo-continuous-production-qa.mjs",
+    "sha256": "a251be2d4eeefa33ceed09fc80f85cf39c38e68ca15b1872d79a73e930c23d50"
+  },
+  "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+  "inputs": [
+    {
+      "role": "earnedSavePath",
+      "path": "tmp/demo/lot-e-complete-patrol-0002/earned-expedition-checkpoint-v6.json",
+      "sha256": "93f7d1af6175efe39d3dbed7612ec98bd7539dfcd6ef193d0e34ee537db54b6c"
+    },
+    {
+      "role": "priorProofPath",
+      "path": "tmp/demo/lot-e-complete-patrol-0002/results.json",
+      "sha256": "78a75d4704fc5857eef81054bada061cfc2f3dd935227d39540d8fb14d1afcb1"
+    }
+  ],
+  "build": [
+    {
+      "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+      "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+    },
+    {
+      "path": "dist/assets/combat-DG7ZUtBq.css",
+      "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+    },
+    {
+      "path": "dist/assets/combat-tTV9DuEb.js",
+      "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+    },
+    {
+      "path": "dist/assets/game-CpZAzB3w.js",
+      "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+    },
+    {
+      "path": "dist/assets/game-D9rcJ1yO.css",
+      "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+    },
+    {
+      "path": "dist/assets/three-core-f0ajj1rG.js",
+      "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+    },
+    {
+      "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+      "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+    },
+    {
+      "path": "dist/assets/validation-mSkvzYyn.js",
+      "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+    },
+    {
+      "path": "dist/index.html",
+      "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+    }
+  ],
+  "receipt": {
+    "path": "tmp/demo/combat-fx-native-focus-fixed-1605/qa-job.json",
+    "sha256": "ff1e9f326974df5b27cc50ef790ed296d61cce2afb3b56ca8655076d6117fe2e",
+    "status": "SUCCEEDED",
+    "exitCode": 0,
+    "provenanceStable": true,
+    "rawAcceptance": "NOT_ACCEPTED"
+  },
+  "result": {
+    "path": "tmp/demo/combat-fx-native-focus-fixed-1605/results.json",
+    "sha256": "f598573437996b3232df18c306f0d8f026712da550244a25db931ee22929879a",
+    "pass": true,
+    "errors": [],
+    "runtimeMutated": false,
+    "combatOutcomeInjected": false
+  },
+  "requiredAssertions": [
+    "COMBAT_FX_SHARED_SETTINGS_GESTURE",
+    "COMBAT_FX_NATIVE_RESOLVED_EVENTS",
+    "COMBAT_FX_MUTE_VOLUME_SCOPE_DISPOSAL",
+    "EARNED_LINEAGE",
+    "NATIVE_INPUTS",
+    "EXACT_RELOAD"
+  ],
+  "eligibility": {
+    "requestMatches": true,
+    "provenanceMatches": true,
+    "provenanceStable": true,
+    "matchesCurrentExecution": true,
+    "resultDigestMatches": true,
+    "eligibleForReview": true
+  },
+  "scope": {
+    "earnedSeed": {
+      "savePath": "tmp/demo/lot-e-complete-patrol-0002/earned-expedition-checkpoint-v6.json",
+      "priorProofPath": "tmp/demo/lot-e-complete-patrol-0002/results.json",
+      "kind": "EXACT_VERIFIED_RESUMED_OWNER_STATE",
+      "sha256": "93f7d1af6175efe39d3dbed7612ec98bd7539dfcd6ef193d0e34ee537db54b6c",
+      "proofSha256": "78a75d4704fc5857eef81054bada061cfc2f3dd935227d39540d8fb14d1afcb1",
+      "additiveMigration": {
+        "originalNodes": 33,
+        "currentNodes": 33,
+        "canonicalFactsExact": true
+      }
+    },
+    "singleNewBattle": true,
+    "inheritedBattles": 2,
+    "newBattles": 1,
+    "combatId": "poi_opening_wolves_a",
+    "nodeId": "lion-poi-opening-wolves",
+    "rounds": 6,
+    "actions": 32,
+    "outcome": "victory",
+    "newNativeSourceStarts": 231,
+    "totalSourceStarts": 239,
+    "playedIds": [
+      "back",
+      "confirm",
+      "player-turn",
+      "refused",
+      "step",
+      "bow-release",
+      "physical-impact",
+      "light-blade",
+      "critical",
+      "knockout",
+      "status-negative",
+      "recover",
+      "heavy-weapon",
+      "miss",
+      "victory"
+    ],
+    "newFamilyIdsPlayed": [
+      "player-turn",
+      "step",
+      "bow-release",
+      "physical-impact",
+      "light-blade",
+      "critical",
+      "knockout",
+      "status-negative",
+      "heavy-weapon",
+      "miss",
+      "victory"
+    ],
+    "unplayedNewFamilyIds": [
+      "thrust",
+      "magic-cast",
+      "magic-impact",
+      "support",
+      "defeat"
+    ],
+    "cueCounts": {
+      "back": 39,
+      "navigate": 3,
+      "recover": 6,
+      "travel-start": 2,
+      "confirm": 109,
+      "player-turn": 14,
+      "refused": 2,
+      "step": 29,
+      "bow-release": 1,
+      "physical-impact": 9,
+      "light-blade": 9,
+      "critical": 4,
+      "knockout": 4,
+      "status-negative": 2,
+      "heavy-weapon": 4,
+      "miss": 1,
+      "victory": 1
+    },
+    "voicePeakObserved": 2,
+    "httpAssets": [
+      {
+        "id": "step",
+        "sha256": "04d9987d52aefb91d42b63360938bcf19b95b8bd216b1a893808d248b7a350e6",
+        "status": 200
+      },
+      {
+        "id": "light-blade",
+        "sha256": "45cdfaf2a52614b46c07c726fbd51fec4ea4e1d24009a7aef97cfcf9428df55e",
+        "status": 200
+      },
+      {
+        "id": "heavy-weapon",
+        "sha256": "723d8b73a5a44d7714b3a6935435841e492f3934c39c60fce25287fcfcd86467",
+        "status": 200
+      },
+      {
+        "id": "thrust",
+        "sha256": "db95f16572b68797fb69671be7ee75d7ed5d7ba7c5f274f56fe3762a0019a20c",
+        "status": 200
+      },
+      {
+        "id": "bow-release",
+        "sha256": "4c1fcde295d4d2738a6945b93b122966f171ba0a0985d0d900ab892455529627",
+        "status": 200
+      },
+      {
+        "id": "magic-cast",
+        "sha256": "e1ff6b24bfaed51b46686827b15e770593aefc113af459f7196c1a8d3bc4beb2",
+        "status": 200
+      },
+      {
+        "id": "magic-impact",
+        "sha256": "9ba913cdbc10d3f9e2706c1907391ca087ada1a345159615205eb5174c888b33",
+        "status": 200
+      },
+      {
+        "id": "physical-impact",
+        "sha256": "586dcbf287ad85037dd52051af85a3f6aa08eec4b0fcddf8ced61ef35a41bd3c",
+        "status": 200
+      },
+      {
+        "id": "miss",
+        "sha256": "65d727f6bd8bc4bd3712c2677d266d97cedabe3a8c5f61e186ffce6ac11fecd5",
+        "status": 200
+      },
+      {
+        "id": "critical",
+        "sha256": "6b203a97e9e836b9160612422b95c710721cb9ca64b2316c6e62c91a6feecf40",
+        "status": 200
+      },
+      {
+        "id": "status-negative",
+        "sha256": "0c7f4062f59c90f3de813b0483498e56d855fc46aa34077b553153b3f75a2f1f",
+        "status": 200
+      },
+      {
+        "id": "support",
+        "sha256": "e69fd6afc793dc28b321cb98f276fb727b87ad2dddd0e3dab6ac09b430f72ec3",
+        "status": 200
+      },
+      {
+        "id": "knockout",
+        "sha256": "7466b2ebaca0c928c6c440d02093fc5623bc27cbb6e533b2a867340640564899",
+        "status": 200
+      },
+      {
+        "id": "player-turn",
+        "sha256": "fe7a9d6a79208560bc881f53b40b5396af9790677916f9e18c66b53eaa26d471",
+        "status": 200
+      },
+      {
+        "id": "victory",
+        "sha256": "ee6c6d1061227d4639d6c426bb37e32c4fbcfed28e621bda6916e0beac6c3b65",
+        "status": 200
+      },
+      {
+        "id": "defeat",
+        "sha256": "218ed9d0d5696066a3b3e71a337afa507921b2e48e88265bdbd8991a77299b5f",
+        "status": 200
+      }
+    ],
+    "defaultSilent": true,
+    "settingsPreserveOwnerAndSave": true,
+    "trustedIframeGestureResumedContext": true,
+    "presentationOnlySuspension": true,
+    "muteAndVolumeZero": true,
+    "focusRestored": true,
+    "noSessionVoicesRemain": true,
+    "exactReloadAndSilentRestoredPreference": true,
+    "potions": [
+      {
+        "id": "dark_mage",
+        "before": 2,
+        "after": 57
+      },
+      {
+        "id": "archer",
+        "before": 1,
+        "after": 56
+      }
+    ],
+    "rewards": {
+      "temporaryGold": 80,
+      "reputation": 1,
+      "materials": {
+        "red_gem": 1,
+        "iron_ore": 1
+      },
+      "immediatelyUsable": true,
+      "pass": true
+    }
+  },
+  "captures": [
+    {
+      "path": "docs/reports/combat-fx-integration-2026-10-19/shared-combat-settings.png",
+      "source": "tmp/demo/combat-fx-native-focus-fixed-1605/combat-audio-shared-settings.png",
+      "sha256": "e4c2c0e1e8014d4f8ce6a90d7e1dfc8a65f76657fe38a61a8795865d12859315",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "inspected": true
+    },
+    {
+      "path": "docs/reports/combat-fx-integration-2026-10-19/native-tactical-controls.png",
+      "source": "tmp/demo/combat-fx-native-focus-fixed-1605/combat-2-native-keyboard-return.png",
+      "sha256": "ff479fb0cfa41c2b8b2104f530dee7b4015a02f1a11343d65cde22aa1d5210dc",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "inspected": true
+    },
+    {
+      "path": "docs/reports/combat-fx-integration-2026-10-19/native-victory.png",
+      "source": "tmp/demo/combat-fx-native-focus-fixed-1605/combat-2-result.png",
+      "sha256": "240abf869b87ea0b22e7cd60ec39f81007c1401d69d6fdcae781bf3ee1ead50c",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "inspected": true
+    }
+  ],
+  "retainedFailure": {
+    "jobId": "combat-fx-native-1559",
+    "receipt": "tmp/demo/combat-fx-native-1559/qa-job.json",
+    "reason": "Inner combat opener not restored; corrected by4d69c23; original passed seed reused"
+  },
+  "limits": {
+    "fullFeatureAcceptance": false,
+    "nativeHidden": "OPEN/NOT_OBSERVED_PLATFORM; controlled AudioContext suspension is not visibility proof",
+    "art": "PENDING_OPERATOR for16new candidates;8UI bytes unchanged",
+    "unproven": "Five new families not natively played in this scenario; no full6hero/motion/mobile/global/balance/art/hardware acceptance",
+    "blackImpactCapture": "Same limitation in baseline/current automated actual-impact captures; not promoted, no Stage visibility acceptance"
+  },
+  "review": {
+    "status": "ACCEPTED_SCOPED",
+    "reviewer": "contracts-guardian /root/poi_guardian",
+    "reviewedAt": "2026-10-19T16:32:03.146Z",
+    "evidence": "18 hashes/source tree/earned lineage/6 eligibility flags/3 captures independently inspected",
+    "acceptedScope": "PC1366 normal: one native wolves victory, shared settings/trusted iframe gesture/mute/volume0/exact opener focus/session disposal/rewards/exact silent V6 reload; 11 new families observed",
+    "compliance": {
+      "GAME_CONSTITUTION": "PASS bounded exception",
+      "ART_DIRECTION": "PASS technical; artistic OPEN",
+      "CHARACTERS": "N/A",
+      "ENVIRONMENTS": "N/A",
+      "NARRATIVE_CAMPAIGN": "PASS lineage preserved",
+      "NARRATIVE_PRESENTATION": "PASS scoped",
+      "TRAVERSAL": "PASS existing POI navigation",
+      "COMBAT": "PASS native resolution unchanged",
+      "SAVE": "PASS rewards and exact V6",
+      "UI_ACCESSIBILITY": "PASS scoped settings and focus",
+      "QA_EVIDENCE": "BLOCKED full lot: true hidden and 5 unplayed families",
+      "REPOSITORY_GOVERNANCE": "PASS gates empty/validator8of8"
+    },
+    "fullFeatureAcceptance": false,
+    "rawReceiptAcceptance": "NOT_ACCEPTED",
+    "open": [
+      "thrust",
+      "magic-cast",
+      "magic-impact",
+      "support",
+      "defeat",
+      "true native hidden/suspend",
+      "operator artistic/hardware/global PC acceptance"
+    ],
+    "firstFailure": "combat-fx-native-1559 remains FAILED/NOT_ACCEPTED; same driver/helper/parameters/assertions/earned inputs after product fix"
+  }
+}

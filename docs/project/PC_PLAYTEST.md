@@ -67,6 +67,6 @@ Prochaine action de revue : prendre la lignée complétiste et ses captures cons
 
 ## Acceptation encore ouverte
 
-L'économie, les récompenses/coûts, les formations et le rythme des élites, les atlas et le confort matériel attendent le playtest opérateur. L'image nocturne de Bois-Clair reste un blocage d'asset externe identifié. La remasterisation vidéo est un chantier manuel externe ; l'audio reste différé.
+L'économie, les récompenses/coûts, les formations et le rythme des élites, les atlas et le confort matériel attendent le playtest opérateur. Le fond nocturne de Bois-Clair est corrigé et accepté par l'opérateur sous OD-2026-10-18-E, comme les huit sons UI. Le lot16FX de combat est intégré sous OD-2026-10-19-B ; son écoute artistique et le critère natif arrière-plan restent ouverts. La remasterisation vidéo est un chantier manuel externe ; musique, voix, ambiances, Ultimates et audio vidéo restent différés.
 
 Les preuves automatisées conservées certifient leurs frontières précises, pas l'équilibre global, toutes les combinaisons de campagne ou un lecteur d'écran réel. La vérification des noms accessibles utilise les rôles et noms exposés au navigateur. La passe mobile finale et l'acceptation globale de la démo restent ouvertes.

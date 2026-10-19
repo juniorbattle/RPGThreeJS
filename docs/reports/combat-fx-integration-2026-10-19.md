@@ -7,7 +7,7 @@
 | BASELINE | `53bfd488028280f6f14583401d39b31a3a56f5f7` sur dev |
 | BRANCH | dev |
 | HEAD | Source initiale `06a59c48c86b02ff16eeb4df821c7d47a04f63c3` ; correction focus `4d69c23405c64ff9cad5391a0f5a053f5a1aa246` |
-| STATUS | IMPLEMENTED ; vérification native en cours, acceptation artistique ouverte |
+| STATUS | ACCEPTED_SCOPED_NATIVE ; QA du lot complet et acceptation artistique ouvertes |
 | MERGED_IN | NONE ; publication directe dev autorisée |
 | SUPERSEDES | NONE ; met en œuvre le lot de l'audit sans réécrire les preuves historiques |
 | SUPERSEDED_BY | NONE |
@@ -55,14 +55,32 @@ Lignée : `tmp/demo/lot-e-complete-patrol-0002/results.json`, reçu SUCCEEDED/ex
 
 Correction produit : le panneau parent libère d'abord inert puis invoque un callback qui vérifie iframe/session/document/opener encore courants et restaure le bouton exact. Fermer le combat ferme aussi ce panneau. Tests ciblés nouveaux, source `4d69c23`, assertions et pilote inchangés. Le second scénario est justifié uniquement pour cette régression propre ; il reprend la seed SUCCEEDED originale.
 
-`combat-fx-native-focus-fixed-1605` : résultat final et revue encore en cours à la rédaction initiale. Le scénario ferme/rouvre les réglages par vraies touches, change effectivement de héros sous mute puis volume0, restaure le volume, et poursuit le seul combat facultatif `lion-poi-opening-wolves`. La suspension volontaire de l'AudioContext suivie d'une vraie touche iframe vérifie le raccord de geste ; **elle ne constitue pas une preuve de visibilité hidden**. Aucune injection de PA, équipement, PV ou issue.
+`combat-fx-native-focus-fixed-1605` : SUCCEEDED/exit0/provenanceStable et six indicateurs d’éligibilité vrais ; revue contracts-guardian ACCEPTED_SCOPED. Victoire réelle en6manches/32actions à `lion-poi-opening-wolves` / `poi_opening_wolves_a`, +80or/+1réputation/+1gemme rouge/+1minerai selon les valeurs approuvées, retour carte345or et rechargement exact.239démarrages natifs AudioBufferSource, dont231 pendant la session combat ;15IDs comprenant11nouvelles familles. Pic observé2voix, limite source/unitaire4. La préparation native a consommé deux potions déjà gagnées, Elara2→57PV et Kestrel1→56PV ; la bataille a aussi produit soins, raté, critiques, K.O. et victoire réels. Le scénario ferme/rouvre les réglages par vraies touches, change effectivement de héros sous mute puis volume0, restaure le volume, et poursuit le seul combat facultatif `lion-poi-opening-wolves`. La suspension volontaire de l'AudioContext suivie d'une vraie touche iframe vérifie le raccord de geste ; **elle ne constitue pas une preuve de visibilité hidden**. Aucune injection de PA, équipement, PV ou issue.
 
 ## Limites conservées
 
 La preuve native hidden/suspend du lot UI précédent reste OPEN/NOT_OBSERVED_PLATFORM ; aucun événement de visibilité synthétique ni équivalence par disposal. Les essais actuels ne redémontrent pas toute la campagne ou tous les seize timbres avec chaque héros. La mécanique unitaire, une action native observée et l'acceptation artistique sont trois portées distinctes.
 
+Inspection des captures : le panneau partagé et le retour clavier tactique affichent bien leurs contrôles et acteurs. La capture automatique `actual-impact` est noire hors titre, comme celle de la baseline patrouille déjà conservée. Elle n'est pas promue et ne prouve pas la visibilité ou la chorégraphie Stage ; cette comparaison ne suffit pas non plus à conclure à une nouvelle régression visuelle. Aucune acceptation d'impact artistique n'est inférée de cette preuve audio. La suspension directe du contexte dans le pilote est explicitement limitée à la présentation et ne touche aucun propriétaire gameplay.
+
 L'audit reste utile pour la finition suivante : titre/prologue, certains refus de gestion, journal/aide/tutoriel combat et mouvements avancés gardent des emplacements silencieux. Aucun son continu sur survol/scroll/animation automatique n'est demandé. Pas d'acceptation globale PC, mobile, matérielle, équilibre ou cinématique inférée.
+
+## Preuve compacte et captures sélectionnées
+
+[Provenance, résultat et portée](combat-fx-integration-2026-10-19/proof.json). Les trois captures inspectées sont [réglages partagés](combat-fx-integration-2026-10-19/shared-combat-settings.png), [contrôles tactiques](combat-fx-integration-2026-10-19/native-tactical-controls.png) et [victoire](combat-fx-integration-2026-10-19/native-victory.png). Les cinq familles non jouées nativement ici sont estoc, départ/impact magique, soutien et défaite : elles ont leurs WAV/hashes et raccords source, pas une nouvelle acceptation native.
 
 ## Revue finale
 
-PENDING sélection des captures, contrôle du reçu/source/driver/build/paramètres/assertions/digest et verdict contracts-guardian. Raw SUCCEEDED n'est jamais converti automatiquement en acceptation.
+**ACCEPTED_SCOPED — contracts-guardian indépendant**. Dix-huit empreintes, arbre source, lignée gagnée, paramètres/assertions inchangés, six indicateurs d'éligibilité et trois captures inspectés. Réglages/geste iframe/mute/volume0/focus/disposal, une victoire native et rechargement exact sont acceptés dans leur portée PC1366 normale. Le reçu brut conserve NOT_ACCEPTED ; le verdict relu figure séparément dans proof.json. L'échec1559 demeure FAILED/NOT_ACCEPTED.
+
+| Domaine | Verdict |
+| --- | --- |
+| Constitution et gouvernance | PASS — exception bornée, gates vides et validator8/8 |
+| Combat / campagne / sauvegarde | PASS — résolution native, lignée et V6 exacts |
+| UI / accessibilité / présentation | PASS scoped — réglages et focus natifs |
+| ART_DIRECTION | PASS technique ; artistique opérateur ouvert |
+| CHARACTERS / ENVIRONMENTS | N/A |
+| TRAVERSAL | PASS — navigation POI existante |
+| QA_EVIDENCE | BLOCKED lot complet — hidden réel et cinq familles non jouées |
+
+fullFeatureAcceptance reste false. Aucun PASS Stage/art issu de la capture d'impact noire ; matériel, équilibre et acceptation globale PC restent ouverts.
