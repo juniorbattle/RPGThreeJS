@@ -1,5 +1,7 @@
 # Audit des sons manquants termine ; combat encore sans audio
 
+Audit checkpoint f7fc776c4fdaa4cf9a6c2b45de3b15e2ed4428b6 published and origin/dev parity verified; main unchanged. runEndedAt 2026-10-19T07:07:14.284Z. Final closure metadata publication and owned lock release only; final SHA in automation memory.
+
 AUDIT_COMPLETE_COMBAT_AUDIO_PENDING. Run codex-combat-audio-audit-20261019T0657, baseline dev@c01112e995a8e1641e8b11c8e1841fe9326caa72, set1.6.0 / LOCKED8fdc797. Source/runtime/assets inchanges. Rapport : [audit approfondi](../reports/combat-audio-audit-2026-10-19.md). Handoff : [reprise](handoffs/2026-10-19T0705Z-codex-combat-audio-audit.md).
 
 Combat iframe sans service audio, relais de gestes ou acces volume/mute. Matrice des controles, mouvements, armes/sorts, impacts/rates/critiques, soins/statuts/KO, tours et resultats ; autres trous titre/carte/refuge/choix combat-repli/gestion/reprise.16familles FX proposees, aucune generee ou acceptee. Guardian documentaire PASS ; aucune activation combat sous OD-F.

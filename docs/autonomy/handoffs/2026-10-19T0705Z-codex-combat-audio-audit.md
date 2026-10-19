@@ -15,3 +15,5 @@ Vérifications : contracts:validate8/8 et8slots, barrière LOCKED vide, diff --c
 Compteurs de ce run : source0, assets0, tests0, QA/outils/proofs0, rapport1, workflow5, WIP hérité0. Publication normale origin/dev autorisée OD-2026-10-12-A ; commit contenant ce handoff, parité finale et libération du verrou après checkpoint. main/scheduler/sauvegardes inchangés.
 
 UNE prochaine action produit : préparer le lot borné sons du combat depuis la matrice, avec réglages partagés, retours UI et socle FX des six héros ; son amendement dédié doit précéder l'activation. Conserver séparément le critère natif hidden/suspend ouvert, sans nouvelle boucle de diagnostic.
+
+Publication verifiee : f7fc776c4fdaa4cf9a6c2b45de3b15e2ed4428b6 sur origin/dev ; main00b96f1b502539618790b1c0d8d642f86d3dcf7f inchange. runEndedAt 2026-10-19T07:07:14.284Z. Cloture metadata normale et liberation du verrou ensuite ; SHA final dans Git/automationmemory.
