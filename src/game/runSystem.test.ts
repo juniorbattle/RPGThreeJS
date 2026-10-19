@@ -162,7 +162,7 @@ describe('hybrid run system', () => {
     expect(choicesAt(state, 'lion-witnesses')[0]!.contentId).toBe('mystery_shrine');
   });
 
-  it('upgrades stale saved routes while preserving conduct and temporary loot', () => {
+  it('upgrades stale saved routes while preserving conduct and consolidating only remaining legacy loot', () => {
     const stale = createInitialState();
     stale.flags.helpedRefugees = true;
     stale.run.temporaryLoot.gold = 75;
@@ -175,7 +175,8 @@ describe('hybrid run system', () => {
     expect(migrated.run.graph.nodes.filter(node=>LION_CANONICAL_POI_IDS.includes(node.id))).toHaveLength(21);
     expect(migrated.run.currentNodeId).toBe('lion-reserve-trail');
     expect(migrated.flags.helpedRefugees).toBe(true);
-    expect(migrated.run.temporaryLoot.gold).toBe(75);
+    expect(migrated.run.temporaryLoot.gold).toBe(0);
+    expect(migrated.gold).toBe(stale.gold+75);
   });
 
   it('restores shadow-signs -> final-refuge -> final-judgement in the runtime route', () => {

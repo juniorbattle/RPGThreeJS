@@ -165,7 +165,7 @@ const LION_ROUTE_TEMPLATE: readonly LionRouteNode[] = [
     reward: 1,
     difficulty: 'safe',
     moralTone: 'neutral',
-    hint: 'Sécuriser le butin, acheter, améliorer et préparer Bois-Clair.',
+    hint: 'Acheter, améliorer et préparer Bois-Clair.',
   },
   {
     id: 'lion-reserve-trail',
@@ -886,9 +886,9 @@ export function resolvePoiEliteVictory(state: GameState, encounterId: string, re
   if (!result.victory||!encounter||encounter.id!==encounterId||encounter.phase!=='combat'
     ||!def||!elite?.active||elite.defeated||result.combatId!==def.combat.id||state.run.status!=='active') return false;
   applyCombatProgress(state,result,3);
-  addTemporaryLoot(state.run,{gold:def.combat.rewards.temporaryGold});
+  creditRunReward(state,{gold:def.combat.rewards.temporaryGold});
   for(const [itemId,quantity] of Object.entries(def.combat.rewards.materials))
-    addTemporaryLoot(state.run,{category:'materials',itemId,quantity});
+    creditRunReward(state,{category:'materials',itemId,quantity});
   changeReputation(state,def.combat.rewards.reputation,`combat:${result.combatId}`);
   elite.defeated=true;elite.active=false;
   delete expedition!.encounter;
@@ -925,7 +925,8 @@ export function addTemporaryLoot(
     (run.temporaryLoot.inventory[loot.category][loot.itemId] ?? 0) + quantity;
 }
 
-export function secureRunLoot(state: GameState): RunLoot {
+/** Consolidate only remaining legacy holdings; never advance a recovery marker. */
+export function consolidateLegacyLoot(state: GameState): RunLoot {
   const secured = structuredClone(state.run.temporaryLoot);
   state.gold += secured.gold;
   for (const category of Object.keys(secured.inventory) as (keyof InventoryState)[]) {
@@ -934,10 +935,24 @@ export function secureRunLoot(state: GameState): RunLoot {
     }
   }
   state.run.temporaryLoot = { gold: 0, inventory: EMPTY_INVENTORY() };
+  return secured;
+}
+
+/** Current reward owner; the old temporary pool is only a V6 compatibility field. */
+export function creditRunReward(state: GameState, loot: {gold?: number; itemId?: string; category?: keyof InventoryState; quantity?: number}): void {
+  consolidateLegacyLoot(state);
+  if (loot.gold) state.gold += Math.max(0, loot.gold);
+  if (loot.itemId && loot.category) state.inventory[loot.category][loot.itemId] =
+    (state.inventory[loot.category][loot.itemId] ?? 0) + Math.max(0, loot.quantity ?? 1);
+}
+
+export function secureRunLoot(state: GameState): RunLoot {
+  const secured = consolidateLegacyLoot(state);
   state.run.checkpointNodeId = state.run.currentNodeId;
   return secured;
 }
 
+/** Historical directed-checkpoint compatibility helper; production defeat uses SaveRepository. */
 export function failRunToCheckpoint(state: GameState): void {
   const replayable = new Set<string>();
   const visit = (id: string) => {

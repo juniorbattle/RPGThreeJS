@@ -33,7 +33,7 @@ assert.ok(target!=='expedition-checkpoint'||lotE.fixedPoiCandidates.some(poi=>po
 assert.ok(['event','combat'].includes(trialPlan),'Unknown authored trial alternative');
 assert.ok(!(process.env.DEMO_QA_OS_MOTION==='1'&&process.env.DEMO_QA_GAME_MOTION==='1'),'OS-only and native game reduction are separate acceptance cases');
 if(target==='defeat-recovery')assert.ok(['lion-village-choice','lion-second-trial-combat','lion-final-trial-combat',
-  ...lotE.fixedPoiCandidates.filter(poi=>poi.combat&&poi.region>0).map(poi=>poi.id)].includes(defeatNodeId),'Unknown authored refuge-checkpoint defeat boundary');
+  ...lotE.fixedPoiCandidates.filter(poi=>poi.combat).map(poi=>poi.id)].includes(defeatNodeId),'Unknown authored refuge-checkpoint defeat boundary');
 assert.ok(!nativeDefeatWait||target==='defeat-recovery','Native defeat wait requires the recovery target');
 assert.ok(['rescue','sacrifice'].includes(routePlan),'Unknown authored route plan');
 assert.ok(['serpent','trial'].includes(finalePlan),'Unknown authored finale intent');
@@ -504,7 +504,7 @@ async function poiMove(id,pointer=false){
   if(!intercepted&&id!==before.currentNodeId)pendingExpeditionProof={before,battleCount:report.battles.length};
   report.expedition.intents.push({id,from:before.currentNodeId,to:after.currentNodeId,turnBefore:before.run.poiExpedition?.turn,
     turnAfter:after.run.poiExpedition?.turn,intercepted:!!after.run.poiExpedition?.encounter,
-    economyBefore:{gold:before.gold,loot:structuredClone(before.run.temporaryLoot),reputation:before.reputation},
+    economyBefore:{gold:before.gold,inventory:structuredClone(before.inventory),loot:structuredClone(before.run.temporaryLoot),reputation:before.reputation},
     previouslyResolved:before.resolvedNodeIds.includes(id)});
   report.inputs.push({action:pointer?'native POI adjacent pointer movement':'native POI adjacent movement',id});
 }
@@ -621,13 +621,13 @@ async function handleExpeditionDialog(forceRetreat=false){
     assert.ok(def&&live.resolvedNodeIds.includes(def.id),'Chest popup must follow an actual unique owner attribution');
     const intent=report.expedition.intents.findLast(intent=>intent.id===def.id);
     assert.ok(intent&&!intent.previouslyResolved,'A resolved chest must not replay its popup');
-    assert.equal(live.gold,intent.economyBefore.gold,'Chest credited secured gold');
-    assert.equal(live.run.temporaryLoot.gold,intent.economyBefore.loot.gold+def.chestLoot.temporaryGold);
-    const expected=structuredClone(intent.economyBefore.loot.inventory);
+    assert.equal(live.gold,intent.economyBefore.gold+def.chestLoot.temporaryGold,'Chest usable gold differs from approved reward');
+    assert.equal(live.run.temporaryLoot.gold,0);
+    const expected=structuredClone(intent.economyBefore.inventory);
     for(const [id,count] of Object.entries(def.chestLoot.temporaryItems))expected.consumables[id]=(expected.consumables[id]??0)+count;
-    assert.deepEqual(live.run.temporaryLoot.inventory,expected);
+    assert.deepEqual(live.inventory,expected);
     assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),live,'Chest must save before popup acknowledgement');
-    report.expedition.chests.push({id:def.id,gold:def.chestLoot.temporaryGold,items:def.chestLoot.temporaryItems,temporary:true,turn:live.run.poiExpedition.turn});
+    report.expedition.chests.push({id:def.id,gold:def.chestLoot.temporaryGold,items:def.chestLoot.temporaryItems,immediatelyUsable:true,turn:live.run.poiExpedition.turn});
     await capture(`chest-${def.id}`);
     if(explorationPlan==='complete'&&!report.expedition.chestReload){
       await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
@@ -1509,61 +1509,33 @@ async function battle(){
     assert.ok(entry.actions.length>0,'Native defeat requires actual player actions');
     const savedBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
     assert.deepEqual(savedBefore,entry.autosaveBefore,'Combat altered autosave before defeat acknowledgement');
-    assert.ok(savedBefore.run.temporaryLoot.gold>0,'Recovery must demonstrate actual positive unsecured loot loss');
-    const action=frame.getByRole('button',{name:'Revenir à la carte',exact:true});
+    const referenceBytes=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+    const manualBytes=await page.evaluate(()=>localStorage.getItem('rpg-threejs:manual:v6'));
+    const action=frame.getByRole('button',{name:'Recharger la sauvegarde',exact:true});
     await action.focus();assert.equal(await action.evaluate(e=>e===document.activeElement),true);
-    const bounds=await action.boundingBox();
-    assert.ok(bounds&&bounds.x>=0&&bounds.y>=0&&bounds.x+bounds.width<=viewport[0]&&bounds.y+bounds.height<=viewport[1],
-      'Defeat return control is clipped');
+    const bounds=await action.boundingBox();assert.ok(bounds&&bounds.x>=0&&bounds.y>=0&&bounds.x+bounds.width<=viewport[0]&&bounds.y+bounds.height<=viewport[1]);
     await capture(`combat-${entry.index}-native-defeat-return-focus`);
-    if(touchInput)await action.tap();else await action.press('Enter');report.inputs.push({action:touchInput?'native touch':'keyboard Enter',selector:'iframe #combat-result-action',outcome:'native defeat'});
+    if(touchInput)await action.tap();else await action.press('Enter');
+    report.inputs.push({action:touchInput?'native touch':'keyboard Enter',selector:'iframe #combat-result-action',outcome:'native defeat'});
     await element.waitFor({state:'detached',timeout:30000});
-    await page.waitForFunction(id=>window.__demoQaApp?.state.currentNodeId===id,savedBefore.run.checkpointNodeId);
-    const departure=page.locator('.poi-map [data-poi-action="move"]:visible');
-    await departure.waitFor({state:'visible',timeout:30000});
-    assert.equal((await departure.textContent()).trim(),'Ouvrir le refuge');
-    assert.equal(await departure.isEnabled(),true);assert.equal(await departure.evaluate(e=>!!e.closest('[inert]')),false);
-    await departure.focus();assert.equal(await departure.evaluate(e=>e===document.activeElement),true);
-    const recovered=await state();
-    const expected=structuredClone(savedBefore),downstream=new Set();
-    const nodes=new Map(expected.run.graph.nodes.map(node=>[node.id,node]));
-    const visit=id=>{if(downstream.has(id))return;downstream.add(id);for(const next of nodes.get(id)?.links??[])visit(next);};
-    for(const id of nodes.get(expected.run.checkpointNodeId)?.links??[])visit(id);
-    expected.currentNodeId=expected.run.currentNodeId=expected.run.checkpointNodeId;
-    expected.run.status='active';expected.run.temporaryLoot.gold=0;
-    for(const category of Object.keys(expected.run.temporaryLoot.inventory))expected.run.temporaryLoot.inventory[category]={};
-    if(expected.run.bypassedRouteNodeIds)expected.run.bypassedRouteNodeIds=expected.run.bypassedRouteNodeIds.filter(id=>!downstream.has(id));
-    if(expected.run.traversalBranches)expected.run.traversalBranches=Object.fromEntries(Object.entries(expected.run.traversalBranches).filter(([,id])=>!downstream.has(id)));
-    if(expected.run.poiExpedition){delete expected.run.poiExpedition.pendingStep;delete expected.run.poiExpedition.encounter;delete expected.run.poiExpedition.previousSafeNodeId;}
-    assert.deepEqual(recovered,expected,'Full recovery differs from the existing checkpoint rule');
-    assert.equal(recovered.currentNodeId,savedBefore.run.checkpointNodeId);
-    assert.equal(recovered.run.currentNodeId,savedBefore.run.checkpointNodeId);
-    assert.equal(recovered.run.status,'active');
-    assert.equal(recovered.run.temporaryLoot.gold,0);
-    for(const inventory of Object.values(recovered.run.temporaryLoot.inventory))assert.deepEqual(inventory,{});
-    for(const key of Object.keys(savedBefore).filter(key=>!['currentNodeId','run'].includes(key))){
-      assert.deepEqual(recovered[key],savedBefore[key],`Defeat changed autosaved ${key}`);
-    }
-    assert.deepEqual(recovered.run.traversalBranches,expected.run.traversalBranches,
-      'Defeat must clear only branch choices downstream of its actual checkpoint');
-    for(const key of ['checkpointNodeId','graph','visitedNodeIds','revealedNodeIds'])assert.deepEqual(recovered.run[key],savedBefore.run[key]);
-    const savedAfter=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
-    assert.deepEqual(JSON.parse(savedAfter),recovered,'Recovery agency precedes durable owner truth');
-    await writeFile(resolve(output,'earned-defeat-recovery-v6.json'),savedAfter+'\n');
-    await page.waitForTimeout(400);await capture('native-defeat-recovered');
-    await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
-    await page.waitForFunction(id=>window.__demoQaApp?.state.currentNodeId===id,recovered.currentNodeId);
-    await departure.waitFor({state:'visible',timeout:30000});
-    assert.equal((await departure.textContent()).trim(),'Ouvrir le refuge');
-    assert.equal(await departure.isEnabled(),true);assert.equal(await departure.evaluate(e=>!!e.closest('[inert]')),false);
-    await departure.focus();assert.equal(await departure.evaluate(e=>e===document.activeElement),true);
-    const resumed=await state();assert.deepEqual(resumed,recovered,'Defeat recovery reload changed V6 truth');
-    assert.equal(await page.locator('iframe.combat-frame').count(),0,'Reload replayed defeated combat');
-    await capture('native-defeat-recovered-resumed');
+    const resume=page.locator('[data-action="resume-save"]');await resume.waitFor({state:'visible'});
+    const recovered=await state();assert.deepEqual(recovered,savedBefore,'Defeat did not restore the exact full last saved timeline');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),referenceBytes,'Loss overwrote the reference autosave');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:manual:v6')),manualBytes,'Loss changed a manual slot');
+    assert.equal(await resume.evaluate(e=>e===document.activeElement),true,'Recovery action lost focus');
+    const recoveryBounds=await resume.boundingBox();assert.ok(recoveryBounds&&recoveryBounds.width>=44&&recoveryBounds.height>=44&&recoveryBounds.x>=0&&recoveryBounds.y>=0&&recoveryBounds.x+recoveryBounds.width<=viewport[0]&&recoveryBounds.y+recoveryBounds.height<=viewport[1]);
+    await capture('native-defeat-exact-last-save');
+    await keyboardActivate('[data-action="resume-save"]');
+    await page.locator('iframe.combat-frame').waitFor({state:'attached',timeout:30000});
+    const resumedFrame=await(await page.locator('iframe.combat-frame').elementHandle()).contentFrame();
+    await resumedFrame.locator('#menu [data-d="start"]').waitFor({state:'visible'});
+    const resumed=await state();assert.deepEqual(resumed,recovered,'Explicit recovery changed saved pending combat facts');
+    assert.equal(await page.evaluate(()=>window.__demoQaApp.combat.session.config.id),entry.combatId,'Recovery resumed another combat');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),referenceBytes,'Pending combat continuation overwrote reference bytes');
+    await capture('native-defeat-saved-combat-resumed');
     entry.pass=true;entry.outcome='defeat';entry.ownerAfter=recovered;
-    report.defeatRecovery={nodeId:entry.nodeId,checkpoint:recovered.currentNodeId,savedBefore,recovered,resumed,
-      returnControlBounds:bounds,mode:await page.locator('body').getAttribute('data-mode'),
-      expected,departureLabel:await departure.textContent(),pass:true};
+    report.defeatRecovery={nodeId:entry.nodeId,savedBefore,recovered,resumed,expected:savedBefore,
+      referenceBytesUnchanged:true,manualBytesUnchanged:true,explicitPendingCombatResume:true,returnControlBounds:bounds,recoveryControlBounds:recoveryBounds,pass:true};
     report.resumed=resumed;assert.deepEqual(report.errors,[]);report.pass=true;
     return;
   }
@@ -1599,15 +1571,15 @@ async function battle(){
   const lotEDef=entry.eliteId?lotE.mobileEliteActors.find(def=>def.id===entry.eliteId):lotE.fixedPoiCandidates.find(def=>def.id===entry.nodeId);
   if(lotEDef?.combat){
     const rewards=lotEDef.combat.rewards,before=entry.ownerBefore,after=entry.ownerAfter;
-    assert.equal(after.gold,before.gold,'Lot E combat credited secured gold');
-    assert.equal(after.run.temporaryLoot.gold,before.run.temporaryLoot.gold+rewards.temporaryGold);
+    assert.equal(after.gold,before.gold+rewards.temporaryGold,'Lot E usable gold differs from exact approved reward');
+    assert.equal(after.run.temporaryLoot.gold,0);
     assert.equal(after.reputation,Math.min(100,Math.max(0,before.reputation+rewards.reputation)));
-    const materials={...before.run.temporaryLoot.inventory.materials};
+    const materials={...before.inventory.materials};
     for(const [id,count] of Object.entries(rewards.materials))materials[id]=(materials[id]??0)+count;
-    assert.deepEqual(after.run.temporaryLoot.inventory.materials,materials,'Native Lot E material reward differs from the approved exact amount');
+    assert.deepEqual(after.inventory.materials,materials,'Native Lot E material reward differs from the approved exact amount');
     assert.deepEqual(after.flags,before.flags,'Lot E combat fired a canonical flag');
     assert.equal(after.run.poiExpedition.turn,before.run.poiExpedition.turn,'Combat itself advanced a threat turn');
-    entry.exactLotERewards={...rewards,temporary:true,pass:true};
+    entry.exactLotERewards={...rewards,immediatelyUsable:true,pass:true};
   }
   console.log(JSON.stringify({battle:entry.nodeId,realVictory:true,rounds:entry.result.round,actions:entry.actions.length}));
 }
@@ -1626,7 +1598,13 @@ try{
     const originalIds=new Set(original.run.graph.nodes.map(node=>node.id));
     preserved.run.graph.nodes=preserved.run.graph.nodes.filter(node=>originalIds.has(node.id));
     if(!original.run.poiExpedition)delete preserved.run.poiExpedition;
-    assert.deepEqual(preserved,original,'Additive V6 load changed an existing canonical fact');
+    const expectedMigration=structuredClone(original);
+    expectedMigration.gold+=expectedMigration.run.temporaryLoot.gold;expectedMigration.run.temporaryLoot.gold=0;
+    for(const [category,items] of Object.entries(expectedMigration.run.temporaryLoot.inventory)){
+      for(const [id,quantity] of Object.entries(items))expectedMigration.inventory[category][id]=(expectedMigration.inventory[category][id]??0)+quantity;
+      expectedMigration.run.temporaryLoot.inventory[category]={};
+    }
+    assert.deepEqual(preserved,expectedMigration,'V6 load changed more than approved additive migration and remaining-pool consolidation');
     report.earnedResume.additiveMigration={originalNodes:original.run.graph.nodes.length,currentNodes:resumed.run.graph.nodes.length,canonicalFactsExact:true};
     if(['first-refuge','second-refuge','valmir','preparation','ending','expedition-checkpoint'].includes(target)&&['lion-first-refuge','lion-second-refuge'].includes(JSON.parse(earnedText).currentNodeId)){
       await page.waitForFunction(()=>[...document.querySelectorAll('.poi-map,.exploration-stop')]
@@ -1673,7 +1651,9 @@ try{
         assert.equal(await page.locator('.narrative-cast__actor').count(),3);
         assert.deepEqual(JSON.parse(saved),before);await capture('poi-final-refuge-preparation');
         if(report.poi?.finalCombatAlternative){
-          assert.ok(before.run.temporaryLoot.gold>0,'Final preparation unexpectedly secured the earned T3 loot');
+          assert.ok(before.gold>0,'Final preparation requires a positive usable wallet');
+          const earned=report.battles.slice(report.inheritedBattleCount??0).find(b=>b.nodeId===report.poi.finalCombatAlternative.selected&&b.pass&&b.outcome==='victory');
+          assert.ok(earned&&earned.ownerAfter.gold>earned.ownerBefore.gold,'Missing newly earned native final-trial gold');
           assert.equal(before.run.checkpointNodeId,'lion-second-refuge');assert.notEqual(before.flags['refugeSecured:lion-final-refuge'],true);
         }
         await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
@@ -1803,7 +1783,9 @@ try{
           const excluded=completed.run.traversalBranches.T1.endsWith('-event')?'lion-second-trial-combat':'lion-second-trial-event';
           assert.ok((await page.locator(`.poi-map [data-poi-id="${excluded}"]`).getAttribute('class')).includes('poi-marker--neutralized'));
           assert.equal(completed.run.checkpointNodeId,nodeId);
-          report.poi??={native:true};report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternativeNeutralized:true,
+          report.poi??={native:true};
+
+report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternativeNeutralized:true,
             missionSuccess:completed.flags.missionSuccess,missionGreed:Boolean(completed.flags.missionGreed)};
           await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
           await capture('poi-second-refuge-resolved');
@@ -1955,13 +1937,38 @@ try{
         await capture('expedition-checkpoint-reloaded');assert.deepEqual(report.errors,[]);report.pass=true;break;
       }
       report.poi??={native:true};
+      if(target==='defeat-recovery'&&defeatNodeId==='lion-poi-opening-wolves'){
+        report.lastSavePreparation??={};
+        if(!report.lastSavePreparation.cache){
+          if(!live.resolvedNodeIds.includes('lion-poi-opening-cache')){await navigateExpedition('lion-poi-opening-cache');continue;}
+          assert.ok(report.expedition.chests.some(c=>c.id==='lion-poi-opening-cache'&&c.gold===15&&c.immediatelyUsable));
+          report.lastSavePreparation.cache=true;
+        }
+        if(!report.lastSavePreparation.supplies){
+          if(!live.resolvedNodeIds.includes('lion-poi-opening-supplies')){await navigateExpedition('lion-poi-opening-supplies');continue;}
+          assert.ok(report.expedition.chests.some(c=>c.id==='lion-poi-opening-supplies'&&c.items.potion===1&&c.immediatelyUsable));
+          const before=await state();await keyboardActivate('.poi-map [data-poi-action="company"]');
+          await keyboardActivate('.management [data-tab="inventory"]');
+          await page.locator('[data-use-unit="potion"]').selectOption('dark_mage');
+          await keyboardActivate('[data-use-item="potion"]');
+          const after=await state(),expected=structuredClone(before);
+          expected.inventory.consumables.potion-=1;expected.clan.members.find(u=>u.id==='dark_mage').currentHealth+=55;
+          assert.deepEqual(after,expected,'Newly gained usable potion changed unrelated facts');
+          await capture('last-save-immediate-inventory-use');await keyboardActivate('.management [data-action="close"]');
+          assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),after);
+          report.lastSavePreparation.supplies={before,after,nativeUse:true};continue;
+        }
+        await navigateExpedition(defeatNodeId);continue;
+      }
       const needsValmirPreparation=(['second-refuge','valmir'].includes(target)||explorationPlan!=='direct')
         &&live.currentNodeId==='lion-valmir-road'&&live.resolvedNodeIds.includes(live.currentNodeId)&&!report.poi.valmirRefugePreparation;
       if(!needsValmirPreparation&&await explorePoiStep(live))continue;
       if(target==='second-trial'&&live.currentNodeId==='lion-second-trial-combat'&&live.resolvedNodeIds.includes(live.currentNodeId)){
         assert.ok(report.battles.slice(report.inheritedBattleCount??0).some(b=>b.nodeId===live.currentNodeId&&b.pass&&b.outcome==='victory'));
         assert.ok(live.resolvedNodeIds.includes('lion-first-refuge'));assert.equal(live.flags['refugeSecured:lion-first-refuge'],true);
-        assert.equal(live.run.checkpointNodeId,'lion-first-refuge');assert.ok(live.run.temporaryLoot.gold>0);
+        assert.equal(live.run.checkpointNodeId,'lion-first-refuge');assert.ok(live.gold>0);
+        const earned=report.battles.slice(report.inheritedBattleCount??0).find(b=>b.nodeId===live.currentNodeId&&b.pass&&b.outcome==='victory');
+        assert.ok(earned&&earned.ownerAfter.gold>earned.ownerBefore.gold,'Missing newly earned native second-trial gold');
         assert.equal(live.run.traversalBranches.T1,live.currentNodeId);assert.ok(!live.resolvedNodeIds.includes('lion-second-trial-event'));
         assert.ok((await page.locator('.poi-map [data-poi-id="lion-second-trial-event"]').getAttribute('class')).includes('poi-marker--neutralized'));
         await capture('poi-second-trial-resolved-neutralized');
@@ -1982,7 +1989,9 @@ try{
         await preparePoiCompanyAfterValmir();
         if(target==='valmir'){
           const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),before=await state();
-          assert.ok(before.run.temporaryLoot.gold>0);assert.equal(before.run.checkpointNodeId,'lion-first-refuge');
+          assert.ok(before.gold>0);assert.equal(before.run.checkpointNodeId,'lion-first-refuge');
+          const earned=report.battles.slice(report.inheritedBattleCount??0).find(b=>b.nodeId===before.currentNodeId&&b.pass&&b.outcome==='victory');
+          assert.ok(earned&&earned.ownerAfter.gold>earned.ownerBefore.gold,'Missing newly earned native Valmir gold');
           assert.deepEqual(JSON.parse(saved),before);
           await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
           await page.locator('.poi-map:visible').waitFor();report.resumed=await state();assert.deepEqual(report.resumed,before);
@@ -2055,6 +2064,11 @@ try{
   }
   if(jobOptions.parameters.verifyRefugeRest)assert.equal(report.refugeRest?.pass,true,'No new native rest clarity was verified');
   if(jobOptions.parameters.verifyPoiPresentation){assert.equal(report.poiPresentation?.pass,true);assert.ok(report.poiTravel?.length,'No new committed native travel observed');}
+  if(target==='defeat-recovery'&&defeatNodeId==='lion-poi-opening-wolves'){
+    assert.equal(report.lastSavePreparation?.cache,true,'Missing newly gained usable15gold chest');
+    assert.equal(report.lastSavePreparation?.supplies?.nativeUse,true,'Missing new supply potion and native menu use');
+    assert.equal(report.defeatRecovery?.pass,true,'Missing exact native last-save recovery');
+  }
   const final=await state();
   report.expedition.economy={gold:final.gold,temporaryLoot:final.run.temporaryLoot,reputation:final.reputation,
     inventory:final.inventory,heroes:final.clan.members.map(unit=>({id:unit.definitionId,hp:unit.currentHealth})),checkpoint:final.run.checkpointNodeId};

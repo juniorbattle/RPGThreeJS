@@ -122,7 +122,7 @@ describe('CIN-6.7 NarrativeStage campaign integration', () => {
     expect(dialogues.get('post_opening_trail')?.steps.map((step) => step.actorId)).toEqual(['kestrel', 'alistair', 'maelor']);
     const resolveCombat = method('private async resolveCombat');
     const progress = resolveCombat.indexOf('applyCombatProgress(this.state, result, encounterLimit)');
-    const rewards = resolveCombat.indexOf('addTemporaryLoot(this.state.run, { gold: rewards.gold })');
+    const rewards = resolveCombat.indexOf('creditRunReward(this.state, { gold: rewards.gold })');
     const resolved = resolveCombat.indexOf('this.markResolved(node.id)');
     const postDialogue = resolveCombat.lastIndexOf('await this.playDialogue(combatConfig.postCombatDialogueId, node.label)');
     const nextStage = resolveCombat.lastIndexOf('await this.enterCampaignPresentation()');
@@ -135,13 +135,12 @@ describe('CIN-6.7 NarrativeStage campaign integration', () => {
     expect(resolveCombat).not.toContain('this.enterTravel()');
   });
 
-  it('keeps defeat on the authoritative checkpoint rule', () => {
+  it('keeps defeat on shared actual-save restoration without post-load checkpoint mutation', () => {
     const resolveCombat = method('private async resolveCombat');
     const defeat = resolveCombat.slice(resolveCombat.indexOf('if (!result.victory)'), resolveCombat.indexOf('const encounterLimit'));
-    expect(defeat).toContain('this.state = this.saves.loadAuto() ?? this.state');
-    expect(defeat).toContain('failRunToCheckpoint(this.state)');
-    expect(defeat).toContain('this.saves.saveAuto(this.state)');
-    expect(defeat).toContain('await this.enterCampaignPresentation()');
+    expect(defeat).toContain('this.restoreAfterDefeat()');
+    expect(defeat).not.toContain('failRunToCheckpoint');
+    expect(defeat).not.toContain('saveAuto');
     expect(defeat).not.toContain('this.enterTravel()');
   });
 

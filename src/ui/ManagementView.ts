@@ -788,13 +788,13 @@ export class ManagementView {
       const item = itemById.get(id);
       if (!item) return '';
       const price = this.shopMode === 'buy' ? getShopPrice(item.price, state.reputation) : Math.floor(item.price / 2);
-      const availableGold = this.shopWallet === 'temporary' ? state.run.temporaryLoot.gold : state.gold;
+      const availableGold = state.gold;
       const disabled = this.shopMode === 'buy' && availableGold < price;
       const action = `<button type="button" class="ui-button ui-button--secondary" data-trade="${this.shopMode}" data-item="${id}" aria-label="${escapeAttribute(`${this.shopMode === 'buy' ? 'Acheter' : 'Vendre'} ${item.name} · ${price} or`)}" ${disabled ? 'disabled' : ''}>${price} or</button>`;
       return this.itemRow(id, quantity, action);
     }).join('');
     return `<div class="shop-view">
-      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Échoppe de Valmir · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>Les achats utilisent ${this.shopWallet === 'temporary' ? 'le butin non sécurisé' : 'le coffre permanent'}.</small></div>
+      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Échoppe de Valmir · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>Les achats utilisent votre or disponible.</small></div>
         <div class="shop-toggle">
           <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
           <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>

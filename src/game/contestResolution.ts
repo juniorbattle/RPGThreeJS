@@ -6,7 +6,7 @@ export type ContestResult =
   | { type: 'blocked' };
 
 export function isChoiceBlocked(choice: DialogueChoice, state: GameState): boolean {
-  const availableGold = state.gold + state.run.temporaryLoot.gold;
+  const availableGold = state.gold;
   if (choice.requiresGold !== undefined && availableGold < choice.requiresGold) return true;
   if (choice.requiresFlag !== undefined && !state.flags[choice.requiresFlag]) return true;
   if (choice.excludesFlag !== undefined && !!state.flags[choice.excludesFlag]) return true;

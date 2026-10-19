@@ -10,14 +10,14 @@ describe('approved POI content owner adapters',()=>{
     for(const node of state.run.graph.nodes)expect(createPoiChestAdapter()(state,node.id)).toBeNull();
     expect(state).toEqual(before);
   });
-  it('attributes fixture-authored chest contents only once as temporary loot across V6 reload',()=>{
+  it('attributes fixture-authored chest contents only once as usable loot across V6 reload',()=>{
     const state=createInitialState();state.run.currentNodeId='lion-first-trial-event';state.currentNodeId=state.run.currentNodeId;
     const node=getRunNode(state.run)!;
     // Mechanical authoring fixture only; never registered in the production campaign catalogue.
     const adapter=createPoiChestAdapter([{nodeId:node.id,contentId:node.contentId,gold:7,items:{potion:1}}]);
     const gold=state.gold;expect(adapter(state,node.id)).not.toBeNull();
-    expect(state.gold).toBe(gold);expect(state.run.temporaryLoot.gold).toBe(7);
-    expect(state.run.temporaryLoot.inventory.consumables.potion).toBe(1);
+    expect(state.gold).toBe(gold+7);expect(state.run.temporaryLoot.gold).toBe(0);
+    expect(state.inventory.consumables.potion).toBe(5);
     const loaded=migrateState(JSON.parse(JSON.stringify(state))),before=structuredClone(loaded);
     expect(adapter(loaded,node.id)).toBeNull();expect(loaded).toEqual(before);
   });

@@ -61,6 +61,7 @@ describe('approved complete Lot E catalogue and additive V6',()=>{
       const old=structuredClone(state),loaded=migrateState(JSON.parse(JSON.stringify(state)));
       const comparable=structuredClone(loaded);delete comparable.run.poiExpedition;
       comparable.run.graph.nodes=comparable.run.graph.nodes.filter(node=>LION_CANONICAL_POI_IDS.includes(node.id));
+      old.gold+=71;old.run.temporaryLoot.gold=0;
       expect(comparable).toEqual(old);expect(loaded.run.graph.nodes).toHaveLength(33);
       expect(migrateState(JSON.parse(JSON.stringify(loaded)))).toEqual(loaded);
       if(state.run.status==='completed')expect(Object.values(loaded.run.poiExpedition!.elites).every(elite=>!elite.active)).toBe(true);
@@ -96,15 +97,16 @@ describe('canonical gates and one-time optional contents',()=>{
     const map=selectPoiMap(open);
     expect(map.edges.find(edge=>edge.from==='lion-poi-opening-patrol'&&edge.to==='lion-refugees')?.unlocked).toBe(true);
   });
-  it.each(LOT_E_POIS.filter(poi=>poi.chestLoot).map(poi=>poi.id))('opens %s exactly once, with temporary items/gold and stable reload',id=>{
+  it.each(LOT_E_POIS.filter(poi=>poi.chestLoot).map(poi=>poi.id))('opens %s exactly once, with usable items/gold and stable reload',id=>{
     const def=LOT_E_POIS.find(poi=>poi.id===id)!;
     const state=fixture(def.prerequisiteResolved[0]);
     state.currentNodeId=state.run.currentNodeId=id;
     const gold=state.gold,permanent=structuredClone(state.inventory);
     const payload=createPoiChestAdapter()(state,id);
     expect(payload?.gold).toBe(def.chestLoot!.temporaryGold);
-    expect(state.gold).toBe(gold);expect(state.inventory).toEqual(permanent);
-    expect(state.run.temporaryLoot.inventory.consumables).toEqual(def.chestLoot!.temporaryItems);
+    expect(state.gold).toBe(gold+def.chestLoot!.temporaryGold);
+    for(const [item,quantity] of Object.entries(def.chestLoot!.temporaryItems)) permanent.consumables[item]=(permanent.consumables[item]??0)+quantity;
+    expect(state.inventory).toEqual(permanent);expect(state.run.temporaryLoot.gold).toBe(0);
     const loaded=migrateState(state),before=structuredClone(loaded);
     expect(createPoiChestAdapter()(loaded,id)).toBeNull();expect(loaded).toEqual(before);
   });
@@ -137,7 +139,7 @@ describe('graph-mobile encounters, turns and real owner boundaries',()=>{
     enterPoi(state,'lion-poi-valley-bridge-cache');const encounterId=state.run.poiExpedition!.encounter!.id;
     const combatId=commitPoiEliteFight(state,encounterId)!;
     expect(resolvePoiEliteVictory(state,encounterId,result(combatId))).toBe(true);
-    expect(state.run.temporaryLoot.gold).toBe(120);expect(state.resolvedNodeIds).toEqual(resolved);
+    expect(state.gold).toBe(270);expect(state.run.temporaryLoot.gold).toBe(0);expect(state.resolvedNodeIds).toEqual(resolved);
     expect(state.currentNodeId).toBe('lion-valmir-road');expect(state.flags.serpentGeneralDefeated).toBeUndefined();
     expect(resolvePoiEliteVictory(state,encounterId,result(combatId))).toBe(false);
     failRunToCheckpoint(state);const loaded=migrateState(state);

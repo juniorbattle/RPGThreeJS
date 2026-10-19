@@ -165,7 +165,7 @@ function roadmapObjective(state: GameState, choices: readonly RunNode[]): string
   const current = currentRunNode(state);
   if (choices.length === 0) return current?.type === 'boss' ? 'Conclure la route du Lion.' : 'La route connue s’arrête ici.';
   if (choices.some((node) => node.type === 'boss')) return 'Atteindre la Porte du Sceau.';
-  if (choices.some((node) => node.type === 'refuge')) return 'Atteindre le refuge et sécuriser le butin.';
+  if (choices.some((node) => node.type === 'refuge')) return 'Atteindre le refuge et préparer la compagnie.';
   if (choices.some((node) => node.type === 'combat')) return 'Choisir le prochain embranchement et préparer l’affrontement.';
   return 'Choisir le prochain embranchement connu.';
 }
@@ -252,7 +252,6 @@ function renderRoadmap(state: GameState, choices: readonly RunNode[]): string {
               <div><dt>Run</dt><dd>${escapeHtml(state.run.regionId)}</dd></div>
               <div><dt>Étapes parcourues</dt><dd>${state.run.visitedNodeIds.length}</dd></div>
               <div><dt>Étapes terminées</dt><dd>${completedCount}</dd></div>
-              <div><dt>Butin</dt><dd>${state.run.temporaryLoot.gold}</dd></div>
               <div><dt>Réputation</dt><dd>${state.reputation}</dd></div>
             </dl>
           </section>

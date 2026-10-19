@@ -77,7 +77,7 @@ describe('GameApp POI owner handoffs',()=>{
     const {app,owner}=fixture();
     owner.state.run.currentNodeId=owner.state.currentNodeId='lion-final-refuge';
     owner.state.resolvedNodeIds.push('lion-final-refuge');owner.state.run.temporaryLoot.gold=17;
-    new SaveRepository().saveAuto(owner.state);const before=structuredClone(owner.state);
+    owner.state=migrateState(owner.state);new SaveRepository().saveAuto(owner.state);const before=structuredClone(owner.state);
     vi.spyOn(sceneTransition,'run').mockImplementation(async options=>{await options.task();});
     const preparation=vi.spyOn(owner,'enterJourney').mockResolvedValue();
     const resolve=vi.spyOn(owner,'resolveRunNode').mockResolvedValue();

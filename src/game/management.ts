@@ -101,27 +101,25 @@ export function upgradeSkill(state: GameState, unitId: string, skillId: string):
   return true;
 }
 
-export function buyItem(state: GameState, shopId: string, itemId: string, useTemporaryLoot = true): boolean {
+export function buyItem(state: GameState, shopId: string, itemId: string, _useTemporaryLoot = true): boolean {
   const shop = state.shops[shopId];
   const item = itemById.get(itemId);
   const price = item ? getShopPrice(item.price, state.reputation) : 0;
-  const availableGold = useTemporaryLoot ? state.run.temporaryLoot.gold : state.gold;
+  const availableGold = state.gold;
   if (!shop || !item || (shop.stock[itemId] ?? 0) < 1 || availableGold < price) return false;
-  if (useTemporaryLoot) state.run.temporaryLoot.gold -= price;
-  else state.gold -= price;
+  state.gold -= price;
   shop.stock[itemId] = (shop.stock[itemId] ?? 0) - 1;
-  adjust(useTemporaryLoot ? state.run.temporaryLoot.inventory : state.inventory, item.category, itemId, 1);
+  adjust(state.inventory, item.category, itemId, 1);
   return true;
 }
 
-export function sellItem(state: GameState, shopId: string, itemId: string, useTemporaryLoot = true): boolean {
+export function sellItem(state: GameState, shopId: string, itemId: string, _useTemporaryLoot = true): boolean {
   const shop = state.shops[shopId];
   const item = itemById.get(itemId);
   if (!shop || !item || (state.inventory[item.category][itemId] ?? 0) < 1) return false;
   adjust(state.inventory, item.category, itemId, -1);
   shop.stock[itemId] = (shop.stock[itemId] ?? 0) + 1;
-  if (useTemporaryLoot) state.run.temporaryLoot.gold += Math.floor(item.price / 2);
-  else state.gold += Math.floor(item.price / 2);
+  state.gold += Math.floor(item.price / 2);
   return true;
 }
 

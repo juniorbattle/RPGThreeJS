@@ -5,7 +5,7 @@ import { createCampaignIcon, decorateCampaignFrame } from './design-system/Campa
 export function selectCampaignStatus(state: GameState) {
   return {
     gold: state.gold,
-    routeGold: state.run.temporaryLoot.gold,
+    routeGold: 0, // V6 compatibility snapshot; rewards now enter the single wallet.
     reputation: state.reputation,
     reputationLabel: getReputationRule(state.reputation).label,
   };

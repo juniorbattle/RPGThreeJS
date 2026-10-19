@@ -1,5 +1,5 @@
 import { createUnitInstance, getFinalStats, getItemCategory } from './catalog';
-import { createRunState, enterRunNode, getAvailableRunNodes, getRunNode } from './runSystem';
+import { consolidateLegacyLoot, createRunState, enterRunNode, getAvailableRunNodes, getRunNode } from './runSystem';
 import { migratePoiExpedition } from './poiExpedition';
 import { LION_CANONICAL_POI_IDS } from '../campaign/LionPoiAuthoring';
 import {
@@ -115,6 +115,12 @@ function migrateCurrentLionRoute(previous: GameState): GameState {
 }
 
 export function migrateState(value: unknown): GameState {
+  const state = migrateSavedState(value);
+  consolidateLegacyLoot(state);
+  return state;
+}
+
+function migrateSavedState(value: unknown): GameState {
   const normalized = normalizeLegacyEquipment(value);
   const current = gameStateSchema.safeParse(normalized);
   if (current.success) return migratePoiExpedition(hasCurrentLionRoute(current.data) ? current.data : migrateCurrentLionRoute(current.data));
@@ -274,6 +280,13 @@ export class SaveRepository {
 
   loadManual(): GameState | null {
     return this.load(MANUAL_KEY) ?? this.load(V5_MANUAL_KEY) ?? this.load(V4_MANUAL_KEY) ?? this.load(V3_MANUAL_KEY) ?? this.load(V2_MANUAL_KEY) ?? this.load(LEGACY_MANUAL_KEY);
+  }
+
+  /** Read-only recovery selection: never cross the selected game identity or write a slot. */
+  loadRecovery(current: GameState): GameState | null {
+    const sameGame = (saved: GameState | null) => saved && saved.run.id === current.run.id
+      && saved.run.seed === current.run.seed ? saved : null;
+    return sameGame(this.loadAuto()) ?? sameGame(this.loadManual());
   }
 
   saveAuto(state: GameState): void {

@@ -321,7 +321,7 @@ export class DialogueView {
     button.type = 'button';
     if (screenLane) button.dataset.narrativeChoiceLane = screenLane;
     const state = this.options.getState();
-    const availableGold = state.gold + state.run.temporaryLoot.gold;
+    const availableGold = state.gold;
     const blockedByGold = choice.requiresGold !== undefined && availableGold < choice.requiresGold;
     const blockedByFlag = choice.requiresFlag !== undefined && !state.flags[choice.requiresFlag];
     const blockedByExcludesFlag = choice.excludesFlag !== undefined && !!state.flags[choice.excludesFlag];

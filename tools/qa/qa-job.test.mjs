@@ -100,7 +100,10 @@ test('sync rejects reuse after result tampering or assertions changing',t=>{
 });
 test('demo registration and worker share canonical public parameters',()=>{
   const options=demoJobOptions({DEMO_QA_TARGET:'defeat-recovery',DEMO_QA_OS_MOTION:'1',DEMO_QA_VIEWPORT:'390x844'});
-  assert.equal(options.parameters.osReducedMotion,true);assert.deepEqual(options.parameters.viewport,[390,844]);assert.ok(options.requiredAssertions.includes('EXACT_V6_CHECKPOINT_RECOVERY'));
+  assert.equal(options.parameters.osReducedMotion,true);assert.deepEqual(options.parameters.viewport,[390,844]);assert.deepEqual(options.requiredAssertions,['EARNED_LINEAGE','NATIVE_INPUTS','EXACT_LAST_SAVE_RESTORE','NO_SAVE_OVERWRITE','EXPLICIT_PENDING_COMBAT_RESUME']);
+  const opening=demoJobOptions({DEMO_QA_TARGET:'defeat-recovery',DEMO_QA_DEFEAT_NODE:'lion-poi-opening-wolves'});
+  assert.ok(opening.requiredAssertions.includes('NATIVE_USABLE_REWARDS_AND_MENU_USE'));
+  assert.ok(!options.requiredAssertions.includes('NATIVE_USABLE_REWARDS_AND_MENU_USE'));
 });
 test('bounded campaign timeout is recorded and invalid budgets are rejected',()=>{
   assert.equal(demoJobOptions({}).parameters.timeoutMinutes,25);

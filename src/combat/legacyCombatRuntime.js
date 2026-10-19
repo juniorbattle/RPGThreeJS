@@ -2337,7 +2337,7 @@ function winWave(){ if(G.over)return; restoreUnitFocus(); for(const u of G.units
     showCombatResult({tone:'wave',title:'Vague '+G.wave+' vaincue',subtitle:'La formation tient encore la ligne.',detailLabel:'Mode escarmouche',detail:'Renforts imminents',buttonLabel:'Vague '+(G.wave+1)+' ▶'},()=>{ dom.banner.className='hidden'; startNextWave(); });
   } }
 function endGame(win){ if(G.over)return; restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
-  showCombatResult({tone:win?'victory':'defeat',title:win?'Victoire':'Défaite',subtitle:win?'Élyndra est sauvée !':'Votre équipe a été vaincue…',detailLabel:win?'Issue':'Checkpoint',detail:win?'Combat terminé':'Retour au dernier refuge',buttonLabel:CAMPAIGN_MODE?'Revenir à la carte':'Rejouer'},()=>CAMPAIGN_MODE?notifyCampaignResult(Boolean(win)):location.reload());
+  showCombatResult({tone:win?'victory':'defeat',title:win?'Victoire':'Défaite',subtitle:win?'Élyndra est sauvée !':'Votre équipe a été vaincue…',detailLabel:win?'Issue':CAMPAIGN_MODE?'Sauvegarde':'Nouvel essai',detail:win?'Combat terminé':CAMPAIGN_MODE?'Recharger la dernière sauvegarde de cette partie':'Rejouer le combat',buttonLabel:CAMPAIGN_MODE?(win?'Revenir à la carte':'Recharger la sauvegarde'):'Rejouer'},()=>CAMPAIGN_MODE?notifyCampaignResult(Boolean(win)):location.reload());
   logMsg(win?'— VICTOIRE —':'— DÉFAITE —'); }
 
 // ============================= RENDER LOOP =============================

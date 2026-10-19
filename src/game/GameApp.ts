@@ -4,7 +4,7 @@ import type { CombatConfig, CombatResult, DialogueSequence, GameState, Narrative
 import { createUnitInstance, getItemCategory, toCombatant, itemById } from './catalog';
 import { applyCombatProgress } from './combatProgress';
 import {
-  addTemporaryLoot, enterRunNode, failRunToCheckpoint,
+  creditRunReward, enterRunNode,
   getAvailableRunNodes, getRunNode, secureRunLoot,
   selectPoiMap, enterPoi, bypassPoi, isPoiNeutralized, settlePoiNavigation,
   commitPoiEliteFight, resolvePoiEliteVictory,
@@ -756,7 +756,7 @@ export class GameApp {
       description:encounter.kind==='rear'?'La menace a rejoint votre position. Combattez ou regagnez le point sûr précédent.'
         :'Ce passage est occupé. Combattez ou restez à votre position sûre.',
       lines:['Combat d’élite · Déploiement : 3 unités maximum.',
-        `${def.combat.rewards.temporaryGold} or de butin temporaire à la victoire. Le lieu conserve son propre contenu.`]});
+        `${def.combat.rewards.temporaryGold} or à la victoire. Le lieu conserve son propre contenu.`]});
     if(this.disposed||this.state.run.poiExpedition?.encounter?.id!==encounter.id)return;
     if(choice==='retreat'){
       if(!retreatPoiElite(this.state,selectPoiMap(this.state)))throw new Error('Unavailable safe elite retreat');
@@ -784,7 +784,7 @@ export class GameApp {
       }});
       const result=await session!.result;
       this.combat.close();
-      if(!result.victory){this.state=this.saves.loadAuto()??this.state;failRunToCheckpoint(this.state);}
+      if(!result.victory){this.restoreAfterDefeat();return;}
       else if(!resolvePoiEliteVictory(this.state,encounterId,result))throw new Error('Stale elite combat result');
       // Durable reward and defeated fact commit together before any presentation can be interrupted.
       this.saves.saveAuto(this.state);
@@ -999,7 +999,7 @@ export class GameApp {
       const loot=createPoiChestAdapter()(this.state,node.id);
       if(loot){
         this.setMode('RESULT');this.saves.saveAuto(this.state);
-        await this.poiEncounter.reward({title:'Coffre ouvert',description:'Ces réserves rejoignent votre butin temporaire. Elles seront sécurisées au refuge.',
+        await this.poiEncounter.reward({title:'Coffre ouvert',description:'Ces réserves rejoignent votre or et votre inventaire. Elles sont utilisables immédiatement.',
           lines:[...(loot.gold?[`${loot.gold} or`]:[]),...Object.entries(loot.items).map(([id,count])=>`${count} × ${itemById.get(id)?.name??id}`)]});
       }
       await this.enterCampaignPresentation();return;
@@ -1015,7 +1015,7 @@ export class GameApp {
       let securedGold = 0;
       if (!this.state.flags[securedFlag]) {
         if (getReputationRule(this.state.reputation).min >= 60) {
-          addTemporaryLoot(this.state.run, { category: 'consumables', itemId: 'potion', quantity: 1 });
+          creditRunReward(this.state, { category: 'consumables', itemId: 'potion', quantity: 1 });
         }
         securedGold = secureRunLoot(this.state).gold;
         this.state.flags[securedFlag] = true;
@@ -1268,12 +1268,10 @@ export class GameApp {
           break;
         case 'addGold':
           if (effect.amount >= 0) {
-            addTemporaryLoot(this.state.run, { gold: effect.amount });
+            creditRunReward(this.state, { gold: effect.amount });
           } else {
             const cost = Math.abs(effect.amount);
-            const fromLoot = Math.min(cost, this.state.run.temporaryLoot.gold);
-            this.state.run.temporaryLoot.gold -= fromLoot;
-            this.state.gold = Math.max(0, this.state.gold - (cost - fromLoot));
+            this.state.gold = Math.max(0, this.state.gold - cost);
           }
           break;
         case 'addReputation':
@@ -1282,7 +1280,7 @@ export class GameApp {
         case 'addItem':
           {
             const category = getItemCategory(effect.itemId) ?? 'consumables';
-            addTemporaryLoot(this.state.run, {
+            creditRunReward(this.state, {
               category,
               itemId: effect.itemId,
               quantity: effect.quantity,
@@ -1409,23 +1407,15 @@ export class GameApp {
     await this.playStandaloneCinematic({ hook: 'afterCombat', combatId: result.combatId, outcome: result.victory ? 'victory' : 'defeat' }, result.victory ? 'Victoire' : 'Défaite');
     if (!result.victory) {
 
-      this.state = this.saves.loadAuto() ?? this.state;
-      failRunToCheckpoint(this.state);
-      this.saves.saveAuto(this.state);
-      await sceneTransition.run({
-        variant: 'result',
-        label: 'Défaite',
-        task: async () => {},
-      });
-      await this.enterCampaignPresentation();
+      this.restoreAfterDefeat();
       return;
     }
     const encounterLimit = combatConfigs.get(result.combatId)?.maxPlayerUnits ?? 4;
     applyCombatProgress(this.state, result, encounterLimit);
     this.state.currentNodeId = node.id;
-    addTemporaryLoot(this.state.run, { gold: rewards.gold });
+    creditRunReward(this.state, { gold: rewards.gold });
     for (const [itemId, quantity] of Object.entries(rewards.materials ?? {})) {
-      addTemporaryLoot(this.state.run, { category: 'materials', itemId, quantity });
+      creditRunReward(this.state, { category: 'materials', itemId, quantity });
     }
     changeReputation(this.state, rewards.reputation, `combat:${result.combatId}`);
     Object.assign(this.state.flags, lionBossVictoryFacts(result.combatId));
@@ -1516,8 +1506,26 @@ export class GameApp {
     await this.enterCampaignPresentation();
   }
 
+  private restoreAfterDefeat(): void {
+    const preference = this.state.settings.reducedGraphics;
+    const restored = this.saves.loadRecovery(this.state);
+    if (restored) { this.state = restored; this.state.settings.reducedGraphics = preference; }
+    this.pendingCombatId = null;
+    this.combat.close(); this.poiMap.close(); this.poiEncounter.close();
+    this.disposeJourney(); this.disposeNarrativeStage(); this.exploration.close();
+    this.setMode('RESULT'); this.canvas.hidden = true;
+    delete document.body.dataset.campaignSurface;
+    this.chrome.innerHTML = `<section class="title-screen ui-screen" aria-labelledby="defeat-title"><h1 id="defeat-title">Défaite</h1><p>${restored ? 'La dernière sauvegarde de cette partie a été rechargée. Les changements non sauvegardés ont été annulés.' : 'Aucune sauvegarde valide de cette partie ne peut être rechargée. Les sauvegardes existantes sont conservées.'}</p><div class="title-screen__actions">${restored ? '<button type="button" data-action="resume-save">Reprendre la sauvegarde</button>' : ''}<button type="button" data-action="defeat-menu">Retour au menu</button></div></section>`;
+    this.chrome.querySelector<HTMLButtonElement>('[data-action="resume-save"]')?.addEventListener('click', () => {
+      if (this.mode !== 'RESULT') return;
+      this.setMode('TRAVEL'); this.chrome.replaceChildren();
+      void this.resumeSavedCampaign();
+    });
+    this.chrome.querySelector('[data-action="defeat-menu"]')?.addEventListener('click', () => this.renderTitle());
+    this.chrome.querySelector<HTMLButtonElement>('button')?.focus();
+  }
+
   private async continueChronicle(): Promise<void> {
-    let current: RunNode | undefined;
     await sceneTransition.run({
       variant: 'launch',
       label: 'La chronique reprend',
@@ -1534,9 +1542,14 @@ export class GameApp {
         this.setMode('RESULT');
         this.canvas.hidden = true;
         this.chrome.replaceChildren();
-        current = getRunNode(this.state.run);
+
       },
     });
+    await this.resumeSavedCampaign();
+  }
+
+  private async resumeSavedCampaign(): Promise<void> {
+    const current = getRunNode(this.state.run);
     if(this.state.run.poiExpedition?.encounter){await this.presentPoiElite();return;}
     const pendingFinaleCombat = resolvePendingLionFinaleCombat(this.state.flags);
     if (
