@@ -1,13 +1,13 @@
 {
   "status": "NEXT_SCHEDULED_CINEMATIC_AUDIT_READY",
   "runStartedAt": "2026-10-19T18:19:04.431Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-19T18:20:47.714Z",
   "activeTask": "NEXT-RUN-CINEMATIC-AUDIT-CONFIGURATION",
   "activePhase": "PERSIST_NEXT_SESSION_ONLY",
   "activeSubtask": "Save the eight-slot existing-media audit priority; no audit/media work now",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "69e8abbd794ee11329b5d205545bdbcfa09de907",
-  "lastPushedCommit": "69e8abbd794ee11329b5d205545bdbcfa09de907",
+  "lastKnownGoodCommit": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
+  "lastPushedCommit": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
   "completedThisRun": [
     "Saved explicit operator next-session priority; existing cinematic media/candidates audit before a first concrete correction",
     "Operator combat FX listening deferred voluntarily; scoped technical/art/hidden limits remain open"
@@ -52,7 +52,7 @@
   ],
   "creditStatus": "AVAILABLE_AFTER_VERIFIED_RESET",
   "contractComplianceStatus": "PASS scoped documentation/configuration; set1.7.0 LOCKED gate empty and contracts8of8/8slots; no media/runtime changes",
-  "commitReferenceScope": "Verified published product/proof checkpoint deb5930 before this metadata closure; final metadata SHA verified in Git and automation memory",
+  "commitReferenceScope": "Verified published next-priority checkpoint3537be6; containing metadata closure SHA/parity recorded in Git and automation memory",
   "operatorAuthorization": "OD-2026-10-19-B direct Okay go approves dedicated bounded combat FX amendment/execution. OD-2026-10-12-A normal origin/dev publication.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -125,26 +125,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-cinematic-next-run-20261019T1818",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T18:19:04.431Z",
+  "lastHeartbeat": "2026-10-19T18:20:47.714Z",
   "wip": {
     "branch": "dev",
-    "sha": "69e8abbd794ee11329b5d205545bdbcfa09de907",
-    "dirtyFiles": [
-      "docs/autonomy/NEXT_CINEMATIC_AUDIT_OPERATOR_DECISION_2026-10-19.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-      "docs/autonomy/RECURRING_RUN_PROMPT.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-19T1820Z-codex-next-cinematic-audit.md"
-    ],
-    "status": "REVIEWED_CONTINUITY_CONFIGURATION_PAYLOAD",
+    "sha": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
+    "dirtyFiles": [],
+    "status": "NO_WIP_NEXT_SCHEDULED_AUDIT_READY",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-19T18:19:04.431Z"
+    "lastGreenCheck": "2026-10-19T18:20:47.714Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T18:19:04.431Z",
+    "lastHeartbeat": "2026-10-19T18:20:47.714Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37152,20 +37143,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "69e8abbd794ee11329b5d205545bdbcfa09de907",
-      "dirtyFiles": [
-        "docs/autonomy/NEXT_CINEMATIC_AUDIT_OPERATOR_DECISION_2026-10-19.md",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-        "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-        "docs/autonomy/RECURRING_RUN_PROMPT.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-19T1820Z-codex-next-cinematic-audit.md"
-      ],
-      "status": "REVIEWED_CONTINUITY_CONFIGURATION_PAYLOAD",
+      "sha": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
+      "dirtyFiles": [],
+      "status": "NO_WIP_NEXT_SCHEDULED_AUDIT_READY",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-19T18:19:04.431Z"
+      "lastGreenCheck": "2026-10-19T18:20:47.714Z"
     },
     "nextAction": "After read-only preflight and exclusive lock, audit exactly the eight existing cinematic slots and retained candidates against current manifests/source, canonical V2/environment references and prior evidence. Produce a per-slot keep/correct/manual-remaster disposition and identify ONE demonstrated first correction; reuse historical proof. Do not generate/poll/promote/replace video or keyframes in recurring runs. Operator combat-FX listening is deferred voluntarily and does not block this audit.",
     "runMetrics": {
@@ -37195,10 +37177,11 @@
       "destination": "origin/dev",
       "authorization": "OD-2026-10-12-A",
       "sourceCheckpoint": "69e8abbd794ee11329b5d205545bdbcfa09de907",
-      "finalWorkflow": "Containing configuration checkpoint; final SHA/parity/lock release recorded in automation memory"
+      "finalWorkflow": "Containing configuration checkpoint; final SHA/parity/lock release recorded in automation memory",
+      "lastVerifiedCheckpoint": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-19T18:20:47.714Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
       "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
@@ -37312,15 +37295,13 @@
       "reason": "Automatic review found insufficient trusted exact authorization to disclose internal state on public GitHub WIP branch; local concrete checkpoint in preparation"
     },
     "publicationCloseout": {
-      "runId": "codex-combat-audio-20261019T1537",
-      "sourceCommit": "4d69c23405c64ff9cad5391a0f5a053f5a1aa246",
-      "proofCheckpoint": "deb59305b9c00a483c45662b89a2062cf24c232d",
+      "runId": "codex-cinematic-next-run-20261019T1818",
+      "checkpoint": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
+      "remoteParityVerified": true,
       "destination": "origin/dev",
       "authorization": "OD-2026-10-12-A",
-      "remoteParityVerified": true,
-      "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "lockRelease": "AFTER_FINAL_METADATA_PUSH_AND_AUTOMATION_MEMORY",
-      "endedAt": "2026-10-19T16:33:04.170Z"
+      "endedAt": "2026-10-19T18:20:47.714Z",
+      "lockRelease": "AFTER_METADATA_PUBLICATION_AND_REQUESTED_MEMORY"
     },
     "run1859History": {
       "runId": "rpgthreejs-auto-dev-90m-20261008T1859",
@@ -41332,7 +41313,7 @@
     "status": "NEXT_SCHEDULED_CINEMATIC_AUDIT_READY",
     "runStartedAt": "2026-10-19T18:19:04.431Z",
     "activePhase": "PERSIST_NEXT_SESSION_ONLY",
-    "heartbeat": "2026-10-19T18:19:04.431Z",
+    "heartbeat": "2026-10-19T18:20:47.714Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-19T1820Z-codex-next-cinematic-audit.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -42673,7 +42654,7 @@
       }
     },
     "threadId": "01a14d64-3d19-78c1-af2a-c2f212d73ce2",
-    "writerStoppedMeaning": "Continuity/configuration writer only; no product/QA worker launched",
+    "writerStoppedMeaning": "No product/QA work launched; only final metadata publication, requested memory note and lock release remain",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -43061,7 +43042,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "69e8abbd794ee11329b5d205545bdbcfa09de907",
+    "lastPushedCommit": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -43867,7 +43848,7 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "69e8abbd794ee11329b5d205545bdbcfa09de907",
+    "lastKnownGoodCommit": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
     "completedThisRun": [
       "Saved explicit operator next-session priority; existing cinematic media/candidates audit before a first concrete correction",
       "Operator combat FX listening deferred voluntarily; scoped technical/art/hidden limits remain open"
@@ -45386,8 +45367,8 @@
       ]
     },
     "contractSetVersion": "1.7.0",
-    "uncommittedWork": "NONE after containing final metadata commit; product/proof checkpoint deb5930 published and remote verified",
-    "commitReferenceScope": "Verified published product/proof checkpoint deb5930 before this metadata closure; final metadata SHA verified in Git and automation memory",
+    "uncommittedWork": "NONE after containing metadata closure",
+    "commitReferenceScope": "Verified published next-priority checkpoint3537be6; containing metadata closure SHA/parity recorded in Git and automation memory",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
       "status": "SAVED_AND_CONFIGURATION_VERIFIED",
@@ -45608,7 +45589,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Only requested next-session continuity/configuration payload",
+  "uncommittedWork": "NONE after containing metadata closure",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",

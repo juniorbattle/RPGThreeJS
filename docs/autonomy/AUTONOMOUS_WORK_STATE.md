@@ -12,6 +12,8 @@ Existing automation: prompt only updated to current priority/baseline; PAUSED st
 
 Metrics: product0/tests0/media0/QAtools0/proof0/jobs0/browser0/inheritedWIP0;8workflow files. [Operator decision](NEXT_CINEMATIC_AUDIT_OPERATOR_DECISION_2026-10-19.md), [next-run handoff](handoffs/2026-10-19T1820Z-codex-next-cinematic-audit.md), [prior audio delivery](handoffs/2026-10-19T1633Z-codex-combat-fx.md).
 
+Configuration checkpoint 3537be6b8577c2dbd7938105c8fcb9ce01f2470e published/remote-verified. Run ended 2026-10-19T18:20:47.714Z; containing metadata closure follows, exact final SHA/parity/lock release in automation memory. Next audit remains NOT_STARTED.
+
 <!-- QA_JOBS_START -->
 ## Live QA jobs
 
