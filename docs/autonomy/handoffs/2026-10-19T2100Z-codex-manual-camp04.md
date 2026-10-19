@@ -1,0 +1,10 @@
+# Manual camp04 delivery — 2026-10-19T20:57:39.638Z
+
+- Run codex-manual-camp-20261019T2005; clean dev baseline671c6ee, no inherited WIP, exclusive owned lock. Direct operator cap exception recorded OD-2026-10-19-D. Scheduler unchanged; no recurring generation authorized.
+- Source/guard checkpoint b13279d218ae0f0de3a5500d37ab922da96cdffb published. Exact bound attempt04 only; default cap3 and >04 refusal retained.61focusedtests/tsc/spec/contracts/LOCKED PASS, guardian actualdiff PASS before provider.
+- One task454200539038213 downloaded. Master: tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_master.mp4; SHA 6258be9b4538ef81596e5eb6b969c62776bcb8c5c67df02c9254201660acc8c2; silent12s1920x1080/24fps. Ignored raw/master retained locally; never regenerate missing outputs by inference.
+- Report: ../../reports/manual-camp-candidate-04-2026-10-19.md; selected proof7files incl actual PC/portrait captures. CurrentV2/landmarks/equipment sampled; fullspeed gait/blade clearance still operator judgment. Portrait390 VISUAL_FAIL; no production replacement or artistic/integration acceptance.
+- Existing player driver unchanged.339QA jobs: original337exact plus wrapperFAILED and repaired-wrapperSUCCEEDED11/11cases. Guardian ACCEPTED_SCOPED_ISOLATED_DEV_PLAYER_ONLY; rawreceipt NOT_ACCEPTED unchanged. No campaign or production scenario claimed. QA5445 stopped, operator previews untouched.
+- Preserved eight shippedMP4, priorcandidates, all deferred/audio roots, globalPC/art/balance/hardware/mobile limits. Counts:24unique paths;runtime0,tooling2/test1,keyframe1/metadata2,spec2,report1/proof7,productdocs2/workflow6;inheritedWIP0;paidtask1;gameplaystages0.
+- Next: Operator: watch candidate04 silent12s master at normal speed; judge gait, blade clearance and PC framing before artistic selection/integration. No additional provider task or production replacement inferred.
+- Delivery and final metadata SHAs/parity recorded in Git/automation memory after publication; final runEndedAt follows published delivery.

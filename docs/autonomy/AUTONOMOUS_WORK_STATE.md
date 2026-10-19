@@ -1,10 +1,16 @@
-# Manual camp candidate04 — source and guard ready
+# Manual camp candidate04 — ready for PC operator review
 
-Run codex-manual-camp-20261019T2005;OD-2026-10-19-D explicit manual capexception. Old01–03 retained;recurringgeneration prohibited/scheduler unchanged. Cleanbaseline dev671c6ee/main00b96f1;ownedexclusive lock,noinheritedWIP.
+Run codex-manual-camp-20261019T2005; OD-2026-10-19-D explicitly authorizes this manual camp cap exception. Source/guard checkpoint b13279d published. One paid task454200539038213; source ee041130, raw ed202694, silent12s1080p24master6258be9b retained ignored. No production MP4/runtime change, old01–03 retained; recurring generation remains prohibited and scheduler unchanged.
 
-Source ee041130/newcurrentV2 and nightfamily independently reviewed;threefullactors/book/staff/swordvisible. Blade nearlygroundtouching:actualmotion mustcarryit clear. Source/spec validation PASS,61focusedtestsPASS,contracts8/8+8slots/LOCKED/diffgatesPASS;guardianactualdiffPASS beforeprovider.
+61focusedtests, TypeScript, source/spec, contracts8/8+8slots, LOCKED and whitespace gates PASS. Isolated DEV player11/11cases; initial wrapper FAILED retained, one minimal wrapper correction then SUCCEEDED. Guardian ACCEPTED_SCOPED_ISOLATED_DEV_PLAYER_ONLY separately from raw NOT_ACCEPTED receipts. Actual portrait390 VISUAL_FAIL clips Marian/Alistair. Fullspeed gait/blade clearance/artistic/integration acceptance remain open. Dedicated QA5445 stopped; existing operator preview untouched.
 
-Next: Checkpoint current source/guard,then submit exactlyone authorizedmanualcamp04 with existingadapter;retain taskmetadata and inspectactualmotion before any acceptance. Provider notyetcalled;no productionMP4/runtimechange. All337jobs/deferredroots/prioraudioacceptances preserved exactly;globalPC/art/balance/hardware/mobile/truehidden limits remainopen.
+All337prior jobs preserved exactly;2newjobs =>339. Deferred narrative/demo/audio roots and eight shipped videos/prior candidates preserved. Other PC/global/art/balance/hardware, five native audio families/true hidden-suspend and mobile-after-PC limits unchanged.
+
+Counts: runtime0; media tooling2+test1; keyframe1+provenance/prompt2; spec/auth2; report1/proof7; productdocs2/workflow6;24unique paths; inheritedWIP0; no gameplay stage played;2driver invocations for11distinct isolated cases.
+
+Report: [candidate04](../reports/manual-camp-candidate-04-2026-10-19.md). Handoff: [manual camp04](handoffs/2026-10-19T2100Z-codex-manual-camp04.md).
+
+Next: Operator: watch candidate04 silent12s master at normal speed; judge gait, blade clearance and PC framing before artistic selection/integration. No additional provider task or production replacement inferred.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -346,4 +352,6 @@ Next: Checkpoint current source/guard,then submit exactlyone authorizedmanualcam
 - ui-fx-native-0633: SUCCEEDED; port 5443; receipt `tmp/demo/ui-fx-native-0633/qa-job.json`; NOT_ACCEPTED
 - combat-fx-native-1559: FAILED; port 5443; receipt `tmp/demo/combat-fx-native-1559/qa-job.json`; NOT_ACCEPTED
 - combat-fx-native-focus-fixed-1605: SUCCEEDED; port 5443; receipt `tmp/demo/combat-fx-native-focus-fixed-1605/qa-job.json`; NOT_ACCEPTED
+- manual-camp04-player-20261019: FAILED; port 5445; receipt `tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job/qa-job.json`; NOT_ACCEPTED
+- manual-camp04-player-fixed-20261019: SUCCEEDED; port 5445; receipt `tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job-fixed/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

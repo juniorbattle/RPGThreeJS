@@ -1,0 +1,960 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-19T20:44:36.074Z",
+  "manualDecision": "OD-2026-10-19-D",
+  "sourceCheckpoint": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
+  "sourceProvenance": {
+    "schemaVersion": 1,
+    "recordedAt": "2026-10-19T20:19:42.065Z",
+    "slot": "camp_departure",
+    "candidateNumber": 4,
+    "manualDecision": "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
+    "originalOutput": "C:/Users/miche/.codex/generated_images/01a15567-37ce-7150-a6fc-6ad9bcd5766c/exec-8d55ee12-ee6d-4fbd-9bbc-c39ccf1575dd.png",
+    "output": "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
+    "sha256": "ee04113053ce19c88a409cf0789a8abdc1fc828a305272ee83dbe66520a33ed0",
+    "frame": {
+      "width": 1672,
+      "height": 941
+    },
+    "status": "REVIEWED_SOURCE_CANDIDATE_NOT_ARTISTIC_VIDEO_ACCEPTANCE",
+    "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+    "sourceReferences": [
+      {
+        "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+        "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32"
+      },
+      {
+        "path": "public/assets/characters/pixel/masters/white_mage.png",
+        "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+      },
+      {
+        "path": "public/assets/characters/pixel/masters/maelor.png",
+        "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+      },
+      {
+        "path": "public/assets/characters/pixel/masters/alistair.png",
+        "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219"
+      }
+    ],
+    "compositionReference": {
+      "path": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/keyframe-v1.png",
+      "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+      "historicalOnly": true
+    },
+    "promptIntent": "CurrentV2 integrated firstframe;exact environment;walkingcontactpose;threefullbodies;newsourceplainAlistairchest",
+    "sourceReview": [
+      "Moonlit camp landmarks/crescent retained",
+      "Three full bodies,current covered identities/equipment visible",
+      "Alistair obsolete large chestlion absent,reference84ff7bd retained",
+      "Pose is source preparation only;does not prove sustained walking"
+    ],
+    "specPath": "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
+    "imagePromptFile": "tools/cinematics/candidates/manual-camp-20261019/source-prompt.txt",
+    "imagePromptSha256": "ddbe21b1ead233b3da04bf8a5106d11a4da576d26ad047486784236aeef7458d",
+    "independentSourceReview": "cinematics-journey OK_WITH_CONDITIONS;threefullbodies/currentV2/nightfamily;blade-ground clearance to inspect in actualmotion"
+  },
+  "authorization": {
+    "schemaVersion": 1,
+    "manualOnly": true,
+    "operatorDecisionId": "OD-2026-10-19-D",
+    "decisionPath": "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
+    "cinematicId": "camp_departure",
+    "sequenceId": "production_manual_camp_20261019",
+    "shotId": "shot_01",
+    "model": "MiniMax-H3",
+    "attempt": 4,
+    "duration": 12,
+    "resolution": "2K",
+    "sourceSha256": "ee04113053ce19c88a409cf0789a8abdc1fc828a305272ee83dbe66520a33ed0",
+    "promptSha256": "f9f72bb82f070baca54e7c1b1c51884b5ca46853bdd295f7e8c2694826f5318f",
+    "outputCandidatePath": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_raw.mp4",
+    "decisionSha256": "5b342ae3c5adbb672f6518ff1600e7293122015accc214bcf4b293289a1a165b"
+  },
+  "rawMetadata": {
+    "cinematicId": "camp_departure",
+    "pipeline": "CIN-4",
+    "sequenceId": "production_manual_camp_20261019",
+    "shotId": "shot_01",
+    "tier": "HERO",
+    "sourceType": "ROOT_SOURCE",
+    "fromShotId": null,
+    "framing": "WIDE_GROUNDED_CAMP_COMPANY",
+    "camera": {
+      "mode": "STATIC",
+      "intent": "One grounded wide departure with a fixed world axis; physical strides, weight and environment movement provide the energy, no zoom/parallax substitute."
+    },
+    "continuityOut": "END",
+    "endIntent": "READABLE_STABLE_DEPARTURE_THEN_COVERED_STATIC_TABLEAU",
+    "staging": [
+      {
+        "id": "marian",
+        "facing": "SCREEN_RIGHT",
+        "lookTarget": "ENVIRONMENT:camp_road",
+        "depth": 30,
+        "role": "SECONDARY",
+        "action": "WALK_PURPOSEFUL",
+        "mirrorPolicy": "FORBID"
+      },
+      {
+        "id": "maelor",
+        "facing": "SCREEN_RIGHT",
+        "lookTarget": "CHARACTER:alistair",
+        "depth": 20,
+        "role": "PRIMARY",
+        "action": "WALK_PURPOSEFUL",
+        "mirrorPolicy": "FORBID"
+      },
+      {
+        "id": "alistair",
+        "facing": "SCREEN_RIGHT",
+        "lookTarget": "ENVIRONMENT:camp_road",
+        "depth": 10,
+        "role": "PRIMARY",
+        "action": "WALK_PURPOSEFUL",
+        "mirrorPolicy": "FORBID"
+      }
+    ],
+    "specPath": "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
+    "sourceFrame": {
+      "width": 1672,
+      "height": 941
+    },
+    "manualAuthorizationPath": "tools/cinematics/specs/manual-camp-20261019/candidate-04-authorization.json",
+    "manualAuthorizationSha256": "2474c65a2b05bb0e3a6ca681dd9c60d551d71a44dc363f3134a913a53c15df54",
+    "manualDecisionSha256": "5b342ae3c5adbb672f6518ff1600e7293122015accc214bcf4b293289a1a165b",
+    "sourcePath": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/source.png",
+    "sourceSha256": "ee04113053ce19c88a409cf0789a8abdc1fc828a305272ee83dbe66520a33ed0",
+    "canonicalCharacterSources": [
+      "public/assets/characters/pixel/masters/white_mage.png",
+      "public/assets/characters/pixel/masters/maelor.png",
+      "public/assets/characters/pixel/masters/alistair.png"
+    ],
+    "environmentSource": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+    "provider": "MiniMax Open Platform Direct API",
+    "apiEndpoint": "/v2/video_generation",
+    "model": "MiniMax-H3",
+    "generationMode": "image-to-video / first-frame",
+    "sourceTransport": "data:image/png;base64",
+    "resolution": "2K",
+    "duration": 12,
+    "attempt": 4,
+    "promptVersion": "manual-camp04-current-v2-grounded-departure-v1",
+    "promptSha256": "f9f72bb82f070baca54e7c1b1c51884b5ca46853bdd295f7e8c2694826f5318f",
+    "outputCandidatePath": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_raw.mp4",
+    "startedAt": "2026-10-19T20:27:11.608Z",
+    "status": "downloaded",
+    "taskId": "454200539038213",
+    "lastProviderStatus": "succeeded",
+    "usage": {
+      "total_seconds": 12,
+      "input_seconds": 0,
+      "output_seconds": 12,
+      "input_image_count": 1,
+      "total_tokens": 637956,
+      "prompt_tokens": 13020,
+      "completion_tokens": 624936
+    },
+    "completedAt": "2026-10-19T20:35:25.630Z",
+    "outputBytes": 14901521,
+    "outputSha256": "ed202694fe565915cacbbbf5fc59e7f182a3f16981d684e90a94572514dc4317"
+  },
+  "masterMetadata": {
+    "schemaVersion": 1,
+    "sequenceId": "production_manual_camp_20261019",
+    "cinematicId": "camp_departure",
+    "tier": "HERO",
+    "shotId": "shot_01",
+    "sourceCandidatePath": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_raw.mp4",
+    "sourceCandidateSha256": "ed202694fe565915cacbbbf5fc59e7f182a3f16981d684e90a94572514dc4317",
+    "outputPath": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_master.mp4",
+    "outputSha256": "6258be9b4538ef81596e5eb6b969c62776bcb8c5c67df02c9254201660acc8c2",
+    "mastering": {
+      "overscanPercent": 0
+    },
+    "report": {
+      "container": "mov,mp4,m4a,3gp,3g2,mj2",
+      "codec": "h264",
+      "profile": "High",
+      "pixelFormat": "yuv420p",
+      "width": 1920,
+      "height": 1080,
+      "sampleAspectRatio": "1:1",
+      "displayAspectRatio": "16:9",
+      "averageFrameRate": "24/1",
+      "durationSeconds": 12,
+      "audioStream": false,
+      "rotation": 0
+    }
+  },
+  "decodedEvidence": {
+    "recordedAt": "2026-10-19T20:38:02.132Z",
+    "slot": "camp_departure",
+    "shot": "shot_01",
+    "input": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_raw.mp4",
+    "sha256": "ed202694fe565915cacbbbf5fc59e7f182a3f16981d684e90a94572514dc4317",
+    "media": {
+      "container": "mov,mp4,m4a,3gp,3g2,mj2",
+      "codec": "h264",
+      "profile": "High",
+      "pixelFormat": "yuv420p",
+      "width": 2560,
+      "height": 1440,
+      "sampleAspectRatio": null,
+      "displayAspectRatio": null,
+      "averageFrameRate": "24/1",
+      "durationSeconds": 12.25,
+      "audioStream": true,
+      "rotation": 0
+    },
+    "authoredBlockDurationSeconds": 12,
+    "durationDeltaSeconds": 0.25,
+    "frames": [
+      {
+        "label": "first",
+        "seconds": 0,
+        "path": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/raw-review/first.png",
+        "sha256": "c21531b3989f6d65c30a6c69562b522317abe23f9966964ff6596c56073fe8cb"
+      },
+      {
+        "label": "initiation",
+        "seconds": 1.5,
+        "path": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/raw-review/initiation.png",
+        "sha256": "b50a0793697e01748572d4e63c7464ad186572a7638070bb7c453b11edf6fc01"
+      },
+      {
+        "label": "stride",
+        "seconds": 3,
+        "path": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/raw-review/stride.png",
+        "sha256": "eb0c99daaaff850dd256e2d7c54ae8f451515ec34759f04034d5ed054f68ea0b"
+      },
+      {
+        "label": "middle",
+        "seconds": 6,
+        "path": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/raw-review/middle.png",
+        "sha256": "0c991c23107f5eb03965f08abcee198fd8e97a98106f9a716f0b74659ea1c2ca"
+      },
+      {
+        "label": "progression",
+        "seconds": 9,
+        "path": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/raw-review/progression.png",
+        "sha256": "cac26a4f1cf890e8830323b64cb8b0b63322b99121f0293bade3117cae07b3e4"
+      },
+      {
+        "label": "final",
+        "seconds": 11.9,
+        "path": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/raw-review/final.png",
+        "sha256": "eb68047d55ce2df4de743ae6089fbd0bf019891a5de4dd4ba57d63cef1fb4e5d"
+      }
+    ],
+    "motion": [
+      {
+        "seconds": 0.5,
+        "worldMeanAbsoluteDelta": 1.189,
+        "actorsMeanAbsoluteDelta": 26.348
+      },
+      {
+        "seconds": 1,
+        "worldMeanAbsoluteDelta": 1.152,
+        "actorsMeanAbsoluteDelta": 25.842
+      },
+      {
+        "seconds": 1.5,
+        "worldMeanAbsoluteDelta": 1.531,
+        "actorsMeanAbsoluteDelta": 25.74
+      },
+      {
+        "seconds": 2,
+        "worldMeanAbsoluteDelta": 1.49,
+        "actorsMeanAbsoluteDelta": 25.613
+      },
+      {
+        "seconds": 2.5,
+        "worldMeanAbsoluteDelta": 1.143,
+        "actorsMeanAbsoluteDelta": 26.183
+      },
+      {
+        "seconds": 3,
+        "worldMeanAbsoluteDelta": 1.396,
+        "actorsMeanAbsoluteDelta": 25.272
+      },
+      {
+        "seconds": 3.5,
+        "worldMeanAbsoluteDelta": 1.371,
+        "actorsMeanAbsoluteDelta": 23.796
+      },
+      {
+        "seconds": 4,
+        "worldMeanAbsoluteDelta": 1.066,
+        "actorsMeanAbsoluteDelta": 23.699
+      },
+      {
+        "seconds": 4.5,
+        "worldMeanAbsoluteDelta": 1.635,
+        "actorsMeanAbsoluteDelta": 24.221
+      },
+      {
+        "seconds": 5,
+        "worldMeanAbsoluteDelta": 1.468,
+        "actorsMeanAbsoluteDelta": 24.332
+      },
+      {
+        "seconds": 5.5,
+        "worldMeanAbsoluteDelta": 1.174,
+        "actorsMeanAbsoluteDelta": 22.322
+      },
+      {
+        "seconds": 6,
+        "worldMeanAbsoluteDelta": 1.638,
+        "actorsMeanAbsoluteDelta": 21.63
+      },
+      {
+        "seconds": 6.5,
+        "worldMeanAbsoluteDelta": 1.425,
+        "actorsMeanAbsoluteDelta": 20.325
+      },
+      {
+        "seconds": 7,
+        "worldMeanAbsoluteDelta": 1.254,
+        "actorsMeanAbsoluteDelta": 19.323
+      },
+      {
+        "seconds": 7.5,
+        "worldMeanAbsoluteDelta": 1.595,
+        "actorsMeanAbsoluteDelta": 18.804
+      },
+      {
+        "seconds": 8,
+        "worldMeanAbsoluteDelta": 1.423,
+        "actorsMeanAbsoluteDelta": 20.622
+      },
+      {
+        "seconds": 8.5,
+        "worldMeanAbsoluteDelta": 1.541,
+        "actorsMeanAbsoluteDelta": 20.513
+      },
+      {
+        "seconds": 9,
+        "worldMeanAbsoluteDelta": 1.618,
+        "actorsMeanAbsoluteDelta": 19.221
+      },
+      {
+        "seconds": 9.5,
+        "worldMeanAbsoluteDelta": 0.943,
+        "actorsMeanAbsoluteDelta": 11.57
+      },
+      {
+        "seconds": 10,
+        "worldMeanAbsoluteDelta": 1.379,
+        "actorsMeanAbsoluteDelta": 7.63
+      },
+      {
+        "seconds": 10.5,
+        "worldMeanAbsoluteDelta": 1.189,
+        "actorsMeanAbsoluteDelta": 2.571
+      },
+      {
+        "seconds": 11,
+        "worldMeanAbsoluteDelta": 0.734,
+        "actorsMeanAbsoluteDelta": 1.941
+      },
+      {
+        "seconds": 11.5,
+        "worldMeanAbsoluteDelta": 1.025,
+        "actorsMeanAbsoluteDelta": 1.685
+      }
+    ],
+    "contactSheetPaddingTiles": 0,
+    "scope": "DECODED_FRAME_DIFFERENCES_ARE_DIAGNOSTIC_ONLY_CAMERA_MOTION_CAN_CAUSE_THEM;_ARTISTIC_REVIEW_REQUIRED"
+  },
+  "review": {
+    "status": "READY_FOR_PC_OPERATOR_REVIEW_WITH_CONDITIONS",
+    "artisticAcceptance": false,
+    "positive": [
+      "Visiblegroupadvanceagainststableworld;leg/clothchanges",
+      "CurrentV2/equipment/crescent/landmarksretained"
+    ],
+    "limits": [
+      "Bladeclearanceunverified;tipnearground",
+      "Latesafezone/portrait/fullclipUIframingunverified",
+      "Sampledframesnotfullspeedartisticacceptance;groundedcycles/slidingnotcertified",
+      "Actual390x844skipcaptureclipsMarianalmostentirelyandAlistairrightedge;portraitvisualFAILdespitemechanicalskipPASS"
+    ],
+    "reviewer": "cinematics-journey"
+  },
+  "playerQa": {
+    "status": "SUCCEEDED",
+    "jobId": "manual-camp04-player-fixed-20261019",
+    "output": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job-fixed",
+    "receipt": {
+      "schemaVersion": 1,
+      "jobId": "manual-camp04-player-fixed-20261019",
+      "runId": "codex-manual-camp-20261019T2005",
+      "status": "SUCCEEDED",
+      "startedAt": "2026-10-19T20:47:34.634Z",
+      "endedAt": "2026-10-19T20:48:20.179Z",
+      "pid": 19596,
+      "port": 5445,
+      "output": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job-fixed",
+      "command": [
+        "node",
+        "tools/cinematics/run_production_eight_slot_media_qa.mjs"
+      ],
+      "parameters": {
+        "slot": "camp_departure",
+        "candidate": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_master.mp4",
+        "candidateSha256": "6258be9b4538ef81596e5eb6b969c62776bcb8c5c67df02c9254201660acc8c2",
+        "mode": "all11existingisolatedcases",
+        "baseUrl": "http://127.0.0.1:5445",
+        "dev": true,
+        "unchangedRuntimeSource": true,
+        "campaignAcceptance": false
+      },
+      "requiredAssertions": [
+        "ISOLATED_DECODED_CANVAS_AND_CLOCK",
+        "COMPLETE_HOLD_SKIP_REDUCED_FAILURE",
+        "ISOLATED_SAVE_BYTES_UNCHANGED_AND_CLEANUP"
+      ],
+      "provenance": {
+        "gitHead": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
+        "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+        "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "driver": {
+          "path": "tools/cinematics/run_production_eight_slot_media_qa.mjs",
+          "sha256": "e792e000ac52445b10b26121e72c40460dece38595e0cecaf2f7444b01b5bc3e"
+        },
+        "inputs": [],
+        "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+        "build": [
+          {
+            "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+            "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+          },
+          {
+            "path": "dist/assets/combat-DG7ZUtBq.css",
+            "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+          },
+          {
+            "path": "dist/assets/combat-tTV9DuEb.js",
+            "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+          },
+          {
+            "path": "dist/assets/game-CpZAzB3w.js",
+            "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+          },
+          {
+            "path": "dist/assets/game-D9rcJ1yO.css",
+            "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+          },
+          {
+            "path": "dist/assets/three-core-f0ajj1rG.js",
+            "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+          },
+          {
+            "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+            "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+          },
+          {
+            "path": "dist/assets/validation-mSkvzYyn.js",
+            "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+          },
+          {
+            "path": "dist/index.html",
+            "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+          }
+        ]
+      },
+      "acceptance": "NOT_ACCEPTED",
+      "provenanceStable": true,
+      "exitCode": 0,
+      "resultPath": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job-fixed/results.json",
+      "resultSha256": "ccbe83673b5b257482082c033e45a4ab690d2eb5d4d7edd090ecb33f7dc8b71e"
+    },
+    "result": {
+      "schemaVersion": 1,
+      "recordedAt": "2026-10-19T20:47:35.078Z",
+      "scope": "ISOLATED_DEV_REAL_PLAYER_NOT_CAMPAIGN_ACCEPTANCE",
+      "candidateProof": {
+        "path": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_master.mp4",
+        "sha256": "6258be9b4538ef81596e5eb6b969c62776bcb8c5c67df02c9254201660acc8c2",
+        "bytes": 18780162,
+        "productionAssetsReplaced": false
+      },
+      "cases": [
+        {
+          "id": "camp_departure-1920x1080-natural",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "mode": "natural",
+          "measurements": {
+            "moving": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 255,
+              "mean": 49.844043209876695,
+              "currentTime": 0.049981,
+              "duration": 12,
+              "paused": false,
+              "framePump": "video-frame",
+              "inert": false,
+              "role": "dialog",
+              "staticActors": 0
+            },
+            "clockDelta": 0.266102
+          },
+          "resultText": "Résultat : ended · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5445/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-390x844-hold",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "mode": "hold",
+          "measurements": {
+            "moving": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 255,
+              "mean": 49.844043209876695,
+              "currentTime": 0.053333,
+              "duration": 12,
+              "paused": false,
+              "framePump": "video-frame",
+              "inert": false,
+              "role": "dialog",
+              "staticActors": 0
+            },
+            "clockDelta": 0.273447,
+            "held": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 254.66666666666666,
+              "mean": 51.577849794239015,
+              "currentTime": 12,
+              "duration": 12,
+              "paused": true,
+              "framePump": "stopped",
+              "freezeSurface": "canvas",
+              "inert": true,
+              "role": "presentation",
+              "staticActors": 0
+            }
+          },
+          "resultText": "Vidéo réelle camp_departure : ended · played true · résidu DOM 0.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5445/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-1920x1080-skip",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "mode": "skip",
+          "measurements": {
+            "moving": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 255,
+              "mean": 49.844043209876695,
+              "currentTime": 0.065757,
+              "duration": 12,
+              "paused": false,
+              "framePump": "video-frame",
+              "inert": false,
+              "role": "dialog",
+              "staticActors": 0
+            },
+            "clockDelta": 0.262293
+          },
+          "resultText": "Résultat : skipped · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5445/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-1920x1080-reduced",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "mode": "reduced",
+          "measurements": {},
+          "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-1366x768-skip",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "mode": "skip",
+          "measurements": {
+            "moving": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 255,
+              "mean": 49.844043209876695,
+              "currentTime": 0.048248,
+              "duration": 12,
+              "paused": false,
+              "framePump": "video-frame",
+              "inert": false,
+              "role": "dialog",
+              "staticActors": 0
+            },
+            "clockDelta": 0.261018
+          },
+          "resultText": "Résultat : skipped · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5445/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-1366x768-reduced",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "mode": "reduced",
+          "measurements": {},
+          "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-620x780-skip",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "mode": "skip",
+          "measurements": {
+            "moving": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 255,
+              "mean": 49.844043209876695,
+              "currentTime": 0.048143,
+              "duration": 12,
+              "paused": false,
+              "framePump": "video-frame",
+              "inert": false,
+              "role": "dialog",
+              "staticActors": 0
+            },
+            "clockDelta": 0.270506
+          },
+          "resultText": "Résultat : skipped · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5445/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-620x780-reduced",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 620,
+            "height": 780
+          },
+          "mode": "reduced",
+          "measurements": {},
+          "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-390x844-skip",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "mode": "skip",
+          "measurements": {
+            "moving": {
+              "width": 1920,
+              "height": 1080,
+              "hidden": false,
+              "min": 0,
+              "max": 255,
+              "mean": 49.844043209876695,
+              "currentTime": 0.046844,
+              "duration": 12,
+              "paused": false,
+              "framePump": "video-frame",
+              "inert": false,
+              "role": "dialog",
+              "staticActors": 0
+            },
+            "clockDelta": 0.267326
+          },
+          "resultText": "Résultat : skipped · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5445/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-390x844-reduced",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "mode": "reduced",
+          "measurements": {},
+          "resultText": "Résultat : reduced-motion · overlay nettoyé.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [],
+          "expectedFailedRequests": 0,
+          "errors": [],
+          "pass": true
+        },
+        {
+          "id": "camp_departure-390x844-failure",
+          "slot": "camp_departure",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "mode": "failure",
+          "measurements": {
+            "held": {
+              "width": 0,
+              "height": 0,
+              "hidden": true,
+              "min": 255,
+              "max": 0,
+              "mean": 0,
+              "currentTime": 0,
+              "duration": null,
+              "paused": true,
+              "framePump": "stopped",
+              "freezeSurface": "fallback",
+              "inert": true,
+              "role": "presentation",
+              "staticActors": 0
+            },
+            "fallbackText": "La compagnie quitte le camp et prend la route."
+          },
+          "resultText": "Vidéo réelle camp_departure : timeout · played false · résidu DOM 0.",
+          "residues": 0,
+          "saveBytesUnchanged": true,
+          "requests": [
+            "http://127.0.0.1:5445/assets/cinematics/camp_departure.mp4"
+          ],
+          "expectedFailedRequests": 1,
+          "errors": [],
+          "pass": true
+        }
+      ],
+      "pass": true,
+      "errors": []
+    },
+    "priorWrapperFailure": {
+      "receipt": {
+        "schemaVersion": 1,
+        "jobId": "manual-camp04-player-20261019",
+        "runId": "codex-manual-camp-20261019T2005",
+        "status": "FAILED",
+        "startedAt": "2026-10-19T20:42:32.103Z",
+        "endedAt": "2026-10-19T20:43:20.320Z",
+        "pid": 31548,
+        "port": 5445,
+        "output": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job",
+        "command": [
+          "node",
+          "tools/cinematics/run_production_eight_slot_media_qa.mjs"
+        ],
+        "parameters": {
+          "slot": "camp_departure",
+          "candidate": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_master.mp4",
+          "candidateSha256": "6258be9b4538ef81596e5eb6b969c62776bcb8c5c67df02c9254201660acc8c2",
+          "mode": "all11existingisolatedcases",
+          "baseUrl": "http://127.0.0.1:5445",
+          "dev": true,
+          "unchangedRuntimeSource": true,
+          "campaignAcceptance": false
+        },
+        "requiredAssertions": [
+          "ISOLATED_DECODED_CANVAS_AND_CLOCK",
+          "COMPLETE_HOLD_SKIP_REDUCED_FAILURE",
+          "ISOLATED_SAVE_BYTES_UNCHANGED_AND_CLEANUP"
+        ],
+        "provenance": {
+          "gitHead": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
+          "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_production_eight_slot_media_qa.mjs",
+            "sha256": "e792e000ac52445b10b26121e72c40460dece38595e0cecaf2f7444b01b5bc3e"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-CpZAzB3w.js",
+              "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "provenanceStable": true,
+        "exitCode": 1,
+        "resultPath": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job/results.json",
+        "resultSha256": "fd194a8259d3d3070d29e950cfcec49eca6dfa77073bd071364488ee3aba3b94"
+      },
+      "underlyingCasesPassed": 11,
+      "reason": "Existingdriver has errors percase;sharedreceipt also requires top-level errors;one ignoredwrapperaggregationfix,driver/assertions unchanged"
+    },
+    "reviewedAcceptance": "ACCEPTED_SCOPED_ISOLATED_DEV_PLAYER_ONLY"
+  },
+  "productionReplaced": false,
+  "priorAttemptsPreserved": [
+    1,
+    2,
+    3
+  ],
+  "selectedImages": [
+    {
+      "path": "docs/reports/manual-camp-candidate-04-2026-10-19/contact-sheet.png",
+      "sha256": "71977967b315a54d8ebeec543b42166db8a6fd3c6bb44f581d781557b4eb83b9"
+    },
+    {
+      "path": "docs/reports/manual-camp-candidate-04-2026-10-19/final.png",
+      "sha256": "eb68047d55ce2df4de743ae6089fbd0bf019891a5de4dd4ba57d63cef1fb4e5d"
+    },
+    {
+      "path": "docs/reports/manual-camp-candidate-04-2026-10-19/legs-early.png",
+      "sha256": "89d753a26cd90a170f580165076e6bd6081d9985f811d50bb6ef6fe0d03ba1a3"
+    },
+    {
+      "path": "docs/reports/manual-camp-candidate-04-2026-10-19/legs-late.png",
+      "sha256": "260908f06b1d44412ce1989652ac3c0712224fa2b2c02862631e3cc65196d609"
+    },
+    {
+      "path": "docs/reports/manual-camp-candidate-04-2026-10-19/player-pc1366-skip.png",
+      "sha256": "08e46d69f55a5356ba050a133e5ac7ebd1888e8cf02e187efd708cd67439f322"
+    },
+    {
+      "path": "docs/reports/manual-camp-candidate-04-2026-10-19/player-portrait390-crop.png",
+      "sha256": "077cff0adc493eb83dde62835ea95f94a003a0b7bcb88578b1a12a90db117af9"
+    }
+  ],
+  "guardianReview": {
+    "status": "PASS_SELECTED_PUBLICATION_AND_ISOLATED_PLAYER_SCOPE",
+    "reviewedArtifacts": [
+      "finalreceipt",
+      "finalresults",
+      "ignoredwrapper",
+      "pc1366skipcapture",
+      "portrait390cropcapture"
+    ],
+    "fullCandidateAcceptance": false,
+    "artisticAcceptance": false,
+    "portraitAcceptance": false,
+    "rawReceiptAcceptanceUnchanged": true
+  }
+}

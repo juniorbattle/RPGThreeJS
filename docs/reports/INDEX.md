@@ -1,5 +1,7 @@
 # Report authority index
 
+Current manual cinematic candidate: [Camp04](manual-camp-candidate-04-2026-10-19.md) — explicit OD-2026-10-19-D cap exception, current-V2 source and silent12s candidate,11isolated-player cases accepted technically. PC operator review pending; portrait crop and blade clearance remain open. No shipped-media replacement or recurring generation.
+
 Current cinematic audit: [Eight existing slots and first correction](cinematic-existing-audit-2026-10-19.md) — OD-2026-10-19-C; unchanged eight MP4s/six candidates, current Alistair provenance reconciliation and manual camp walking handoff. Audit COMPLETE_SCOPED; no runtime change or artistic acceptance.
 
 Current bounded audio implementation: [Combat FX integration](combat-fx-integration-2026-10-19.md) — set1.7.0 / OD-2026-10-19-B;16candidatefamilies, shared iframe settings, first native focus defect corrected; final scoped evidence and artistic limits in report.

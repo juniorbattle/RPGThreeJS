@@ -1,16 +1,19 @@
 {
-  "status": "MANUAL_CAMP_MEDIA_IN_PROGRESS",
+  "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-19T20:09:26.5391732Z",
   "runEndedAt": null,
   "activeTask": "MANUAL-CAMP-CANDIDATE-04",
-  "activePhase": "SOURCE_AND_BOUNDED_GUARD_GREEN_READY_TO_SUBMIT",
-  "activeSubtask": "Prepare corrected moonlit source then one camp candidate04 under explicit manual operator cap exception",
+  "activePhase": "MANUAL_CAMP04_READY_FOR_PC_OPERATOR_REVIEW",
+  "activeSubtask": "Candidate04 delivered separately; gait/blade artistic review and portrait composition remain open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "671c6eebed2872dd8284b3dbe7c55e883bba0d06",
-  "lastPushedCommit": "671c6eebed2872dd8284b3dbe7c55e883bba0d06",
+  "lastKnownGoodCommit": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
+  "lastPushedCommit": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
   "completedThisRun": [
-    "Clean read-only preflight/remoteparity/exclusive lock/fetch;manual operator explicit cap exception recorded OD-2026-10-19-D",
-    "Guardian preimplementation PASS for manual scope and bounded attempt04 guard"
+    "Recorded explicit manual camp cap exception OD-2026-10-19-D; scheduler/recurring prohibition preserved",
+    "Prepared currentV2 moonlit source; exact-request guard61focusedtests/tsc/spec/contracts/independent guardianPASS; source checkpoint b13279d published",
+    "Submitted ONE paid task454200539038213; decoded actual candidate04; silent12s1080p24master retained ignored",
+    "11/11isolatedDEVplayer cases; initial wrapperFAILED retained, one minimal wrapper fix then SUCCEEDED; guardian reviewed scoped acceptance separately",
+    "Promoted selected proof incl portrait390 VISUAL_FAIL; production8MP4/oldcandidates/337jobs/deferred/audio roots preserved"
   ],
   "filesChanged": [
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -24,37 +27,54 @@
     "tools/cinematics/candidates/manual-camp-20261019/candidate-04-provenance.json",
     "tools/cinematics/candidates/manual-camp-20261019/source-prompt.txt",
     "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
-    "tools/cinematics/specs/manual-camp-20261019/candidate-04-authorization.json"
+    "tools/cinematics/specs/manual-camp-20261019/candidate-04-authorization.json",
+    "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+    "docs/reports/INDEX.md",
+    "docs/reports/manual-camp-candidate-04-2026-10-19.md",
+    "docs/autonomy/handoffs/2026-10-19T2100Z-codex-manual-camp04.md",
+    "docs/reports/manual-camp-candidate-04-2026-10-19/proof.json",
+    "docs/reports/manual-camp-candidate-04-2026-10-19/contact-sheet.png",
+    "docs/reports/manual-camp-candidate-04-2026-10-19/final.png",
+    "docs/reports/manual-camp-candidate-04-2026-10-19/legs-early.png",
+    "docs/reports/manual-camp-candidate-04-2026-10-19/legs-late.png",
+    "docs/reports/manual-camp-candidate-04-2026-10-19/player-pc1366-skip.png",
+    "docs/reports/manual-camp-candidate-04-2026-10-19/player-portrait390-crop.png"
   ],
   "testsRun": [
     "61focused tests:43attempt/resume+18CIN4spec",
-    "Newsource/specPASS,contracts8/8+8slots,LOCKED/diffgatesempty",
-    "IndependentcurrentV2source reviewOK_WITH_CONDITIONS;guardianactualdiffPASS"
+    "TypeScript exit0;spec/sourcePASS;contracts8/8+8slots;LOCKED and diffgatesempty",
+    "11/11isolatedDEVplayer cases finalSUCCEEDED;6receipt concordance flags true; digest reviewed",
+    "Independent cinematic source/decoded review READY_FOR_PC_OPERATOR_REVIEW_WITH_CONDITIONS; guardian ACCEPTED_SCOPED_ISOLATED_DEV_PLAYER_ONLY",
+    "Continuity: original337jobs/deferred/audio roots exact; production8MP4 and prior candidate evidence SHA unchanged"
   ],
   "testsPassed": [
     "61focused tests:43attempt/resume+18CIN4spec",
-    "Newsource/specPASS,contracts8/8+8slots,LOCKED/diffgatesempty",
-    "IndependentcurrentV2source reviewOK_WITH_CONDITIONS;guardianactualdiffPASS"
+    "TypeScript exit0;spec/sourcePASS;contracts8/8+8slots;LOCKED and diffgatesempty",
+    "11/11isolatedDEVplayer cases finalSUCCEEDED;6receipt concordance flags true; digest reviewed",
+    "Independent cinematic source/decoded review READY_FOR_PC_OPERATOR_REVIEW_WITH_CONDITIONS; guardian ACCEPTED_SCOPED_ISOLATED_DEV_PLAYER_ONLY",
+    "Continuity: original337jobs/deferred/audio roots exact; production8MP4 and prior candidate evidence SHA unchanged"
   ],
   "testsRemaining": [
-    "Source art/identity review",
-    "Exact-request exception refusal/resume tests and guardian actualdiff",
-    "One candidate04 generation,decode/motion/master/isolatedplayer review"
+    "Operator fullspeed artistic gait/blade review",
+    "Candidate portrait390 VISUAL_FAIL; no integration/promotion acceptance",
+    "Other PC/global/art/balance/hardware and preserved audio/mobile limits remain open"
   ],
   "blockers": [],
   "remainingWork": [
-    "One manual camp candidate04;artisticacceptance and runtimepromotion separate"
+    "Operator candidate04 PC review before any selection/integration",
+    "Portrait composition unresolved; mobile after stable PC"
   ],
-  "nextAction": "Checkpoint current source/guard,then submit exactlyone authorizedmanualcamp04 with existingadapter;retain taskmetadata and inspectactualmotion before any acceptance",
+  "nextAction": "Operator: watch candidate04 silent12s master at normal speed; judge gait, blade clearance and PC framing before artistic selection/integration. No additional provider task or production replacement inferred.",
   "taskQueue": [
     "Manual camp correction handoff (not an automatic provider task)",
     "Demonstrated independent PC defect/operator verdict when supplied",
     "Operator combatFX listening/globalPC/art/balance/hardware;mobile after PC stability"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS scoped audit/preparation;set1.7.0/f4aae63 gates empty;independent guardianPASS;no final artistic/runtime/global acceptance inferred",
+  "contractComplianceStatus": "PASS manual candidate delivery, set1.7.0/f4aae63; guardian ACCEPTED_SCOPED_ISOLATED_DEV_PLAYER_ONLY; artistic/integration/global acceptance open",
   "commitReferenceScope": "Source baseline578dc4d;audited report checkpoint and final metadata SHA/parity recorded in Git/automation memory;no self-referential SHA",
-  "operatorAuthorization": "OD-2026-10-19-C existing cinematic audit/preparation; OD-2026-10-12-A normal origin/dev publication",
+  "operatorAuthorization": "OD-2026-10-19-D explicit manual camp cap exception; OD-2026-10-12-A normal public origin/dev checkpoint publication",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -126,22 +146,41 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-camp-20261019T2005",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T20:24:46.053Z",
+  "lastHeartbeat": "2026-10-19T20:57:39.638Z",
   "wip": {
     "branch": "dev",
-    "sha": "671c6eebed2872dd8284b3dbe7c55e883bba0d06",
+    "sha": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
     "dirtyFiles": [
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "docs/autonomy/OPERATOR_DECISIONS.md",
       "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+      "tools/cinematics/minimax_h3_generate.mjs",
+      "tools/cinematics/minimax_task_checkpoint.mjs",
+      "tools/cinematics/minimax_task_checkpoint.test.mjs",
+      "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
+      "tools/cinematics/candidates/manual-camp-20261019/candidate-04-provenance.json",
+      "tools/cinematics/candidates/manual-camp-20261019/source-prompt.txt",
+      "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
+      "tools/cinematics/specs/manual-camp-20261019/candidate-04-authorization.json",
+      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/reports/INDEX.md",
+      "docs/reports/manual-camp-candidate-04-2026-10-19.md",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/proof.json",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/contact-sheet.png",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/final.png",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/legs-early.png",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/legs-late.png",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/player-pc1366-skip.png",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/player-portrait390-crop.png"
     ],
-    "status": "MANUAL_SOURCE_PREPARATION",
+    "status": "GREEN_CANDIDATE_DELIVERY",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-19T20:14:34.555Z"
+    "lastGreenCheck": "2026-10-19T20:57:39.638Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T20:24:46.053Z",
+    "lastHeartbeat": "2026-10-19T20:57:39.638Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37145,11 +37184,193 @@
         "resultPath": "tmp/demo/combat-fx-native-focus-fixed-1605/results.json",
         "resultSha256": "f598573437996b3232df18c306f0d8f026712da550244a25db931ee22929879a",
         "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "manual-camp04-player-20261019",
+        "runId": "codex-manual-camp-20261019T2005",
+        "status": "FAILED",
+        "registeredAt": "2026-10-19T20:42:26.591Z",
+        "pid": 31548,
+        "port": 5445,
+        "command": [
+          "node",
+          "tools/cinematics/run_production_eight_slot_media_qa.mjs"
+        ],
+        "parameters": {
+          "slot": "camp_departure",
+          "candidate": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_master.mp4",
+          "candidateSha256": "6258be9b4538ef81596e5eb6b969c62776bcb8c5c67df02c9254201660acc8c2",
+          "mode": "all11existingisolatedcases",
+          "baseUrl": "http://127.0.0.1:5445",
+          "dev": true,
+          "unchangedRuntimeSource": true,
+          "campaignAcceptance": false
+        },
+        "requiredAssertions": [
+          "ISOLATED_DECODED_CANVAS_AND_CLOCK",
+          "COMPLETE_HOLD_SKIP_REDUCED_FAILURE",
+          "ISOLATED_SAVE_BYTES_UNCHANGED_AND_CLEANUP"
+        ],
+        "output": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job",
+        "receiptPath": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job/qa-job.json",
+        "provenance": {
+          "gitHead": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
+          "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_production_eight_slot_media_qa.mjs",
+            "sha256": "e792e000ac52445b10b26121e72c40460dece38595e0cecaf2f7444b01b5bc3e"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-CpZAzB3w.js",
+              "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-19T20:42:32.103Z",
+        "endedAt": "2026-10-19T20:43:20.320Z",
+        "exitCode": 1,
+        "resultPath": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job/results.json",
+        "resultSha256": "fd194a8259d3d3070d29e950cfcec49eca6dfa77073bd071364488ee3aba3b94",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "manual-camp04-player-fixed-20261019",
+        "runId": "codex-manual-camp-20261019T2005",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-19T20:47:31.997Z",
+        "pid": 19596,
+        "port": 5445,
+        "command": [
+          "node",
+          "tools/cinematics/run_production_eight_slot_media_qa.mjs"
+        ],
+        "parameters": {
+          "slot": "camp_departure",
+          "candidate": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_master.mp4",
+          "candidateSha256": "6258be9b4538ef81596e5eb6b969c62776bcb8c5c67df02c9254201660acc8c2",
+          "mode": "all11existingisolatedcases",
+          "baseUrl": "http://127.0.0.1:5445",
+          "dev": true,
+          "unchangedRuntimeSource": true,
+          "campaignAcceptance": false
+        },
+        "requiredAssertions": [
+          "ISOLATED_DECODED_CANVAS_AND_CLOCK",
+          "COMPLETE_HOLD_SKIP_REDUCED_FAILURE",
+          "ISOLATED_SAVE_BYTES_UNCHANGED_AND_CLEANUP"
+        ],
+        "output": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job-fixed",
+        "receiptPath": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job-fixed/qa-job.json",
+        "provenance": {
+          "gitHead": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
+          "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_production_eight_slot_media_qa.mjs",
+            "sha256": "e792e000ac52445b10b26121e72c40460dece38595e0cecaf2f7444b01b5bc3e"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-CpZAzB3w.js",
+              "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-19T20:47:34.634Z",
+        "endedAt": "2026-10-19T20:48:20.179Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job-fixed/results.json",
+        "resultSha256": "ccbe83673b5b257482082c033e45a4ab690d2eb5d4d7edd090ecb33f7dc8b71e",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": {
       "branch": "dev",
-      "sha": "671c6eebed2872dd8284b3dbe7c55e883bba0d06",
+      "sha": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
       "dirtyFiles": [
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
@@ -37162,52 +37383,84 @@
         "tools/cinematics/candidates/manual-camp-20261019/candidate-04-provenance.json",
         "tools/cinematics/candidates/manual-camp-20261019/source-prompt.txt",
         "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
-        "tools/cinematics/specs/manual-camp-20261019/candidate-04-authorization.json"
+        "tools/cinematics/specs/manual-camp-20261019/candidate-04-authorization.json",
+        "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+        "docs/reports/INDEX.md",
+        "docs/reports/manual-camp-candidate-04-2026-10-19.md",
+        "docs/reports/manual-camp-candidate-04-2026-10-19/proof.json",
+        "docs/reports/manual-camp-candidate-04-2026-10-19/contact-sheet.png",
+        "docs/reports/manual-camp-candidate-04-2026-10-19/final.png",
+        "docs/reports/manual-camp-candidate-04-2026-10-19/legs-early.png",
+        "docs/reports/manual-camp-candidate-04-2026-10-19/legs-late.png",
+        "docs/reports/manual-camp-candidate-04-2026-10-19/player-pc1366-skip.png",
+        "docs/reports/manual-camp-candidate-04-2026-10-19/player-portrait390-crop.png"
       ],
-      "status": "GREEN_SOURCE_GUARD",
+      "status": "GREEN_CANDIDATE_DELIVERY",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-19T20:14:34.555Z"
+      "lastGreenCheck": "2026-10-19T20:57:39.638Z"
     },
-    "nextAction": "Checkpoint current source/guard,then submit exactlyone authorizedmanualcamp04 with existingadapter;retain taskmetadata and inspectactualmotion before any acceptance",
+    "nextAction": "Operator: watch candidate04 silent12s master at normal speed; judge gait, blade clearance and PC framing before artistic selection/integration. No additional provider task or production replacement inferred.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "sourceTestFiles": 0,
       "runtimeAudioAssets": 0,
       "videoAssets": 0,
-      "keyframeAssets": 0,
+      "keyframeAssets": 1,
+      "existingMediaToolFiles": 2,
+      "mediaToolTestFiles": 1,
+      "candidateProvenanceFiles": 2,
+      "candidateSpecFiles": 2,
       "existingQaFiles": 0,
       "newQaFiles": 0,
       "persistentQaTools": 0,
-      "promotedProofFiles": 1,
+      "promotedProofFiles": 7,
       "taskReports": 1,
-      "productDocumentationFiles": 3,
-      "workflowFiles": 4,
+      "productDocumentationFiles": 2,
+      "workflowFiles": 6,
       "inheritedWipFiles": 0,
-      "registeredJobs": 0,
-      "browserScenarios": 0,
+      "registeredJobs": 2,
+      "totalQaJobs": 339,
+      "browserDriverInvocations": 2,
+      "distinctPlayerCases": 11,
       "gameplayStagesPlayed": 0,
-      "readOnlyReviewers": 2,
-      "automationPromptUpdates": 0
+      "paidProviderTasks": 1,
+      "ignoredVideoOutputs": 2,
+      "uniqueTrackedPaths": 24
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
+      "tools/cinematics/minimax_h3_generate.mjs",
+      "tools/cinematics/minimax_task_checkpoint.mjs",
+      "tools/cinematics/minimax_task_checkpoint.test.mjs",
+      "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
+      "tools/cinematics/candidates/manual-camp-20261019/candidate-04-provenance.json",
+      "tools/cinematics/candidates/manual-camp-20261019/source-prompt.txt",
+      "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
+      "tools/cinematics/specs/manual-camp-20261019/candidate-04-authorization.json",
       "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-      "docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md",
       "docs/autonomy/DEMO_COMPLETION_PLAN.md",
       "docs/reports/INDEX.md",
-      "docs/reports/cinematic-existing-audit-2026-10-19.md",
-      "docs/reports/cinematic-existing-audit-2026-10-19/inventory.json",
-      "docs/autonomy/handoffs/2026-10-19T1850Z-codex-cinematic-audit.md"
+      "docs/reports/manual-camp-candidate-04-2026-10-19.md",
+      "docs/autonomy/handoffs/2026-10-19T2100Z-codex-manual-camp04.md",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/proof.json",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/contact-sheet.png",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/final.png",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/legs-early.png",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/legs-late.png",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/player-pc1366-skip.png",
+      "docs/reports/manual-camp-candidate-04-2026-10-19/player-portrait390-crop.png"
     ],
     "publication": {
       "destination": "origin/dev",
       "authorization": "OD-2026-10-12-A",
-      "sourceBaseline": "578dc4dca39eeb1ce7818b0572c87368fc11fd2e",
-      "wipCheckpoint": "e5a371f38ebf2f03d55e98fce41902a0f8e6311f",
-      "wipRemoteVerified": true,
-      "finalWorkflow": "Audit006240d published/remote-verified;containing metadata closure final SHA/parity in automation memory",
-      "lastVerifiedCheckpoint": "006240df69442abd2020019298a40a6bcfbece07"
+      "manualDecision": "OD-2026-10-19-D",
+      "sourceBaseline": "671c6eebed2872dd8284b3dbe7c55e883bba0d06",
+      "lastVerifiedCheckpoint": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
+      "finalWorkflow": "Source/guard published; candidate report/proof/handoff containing checkpoint pending"
     },
     "runEndedAt": null,
     "writerStopped": false,
@@ -38004,8 +38257,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "NEXT-RUN-CINEMATIC-AUDIT-CONFIGURATION",
-    "activeSubtask": "Save the eight-slot existing-media audit priority; no audit/media work now",
+    "activeTask": "MANUAL-CAMP-CANDIDATE-04",
+    "activeSubtask": "Candidate04 delivered separately; gait/blade artistic review and portrait composition remain open",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41339,11 +41592,11 @@
     },
     "runId": "codex-manual-camp-20261019T2005",
     "agent": "codex",
-    "status": "NEXT_SCHEDULED_CINEMATIC_AUDIT_READY",
+    "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-19T18:19:04.431Z",
-    "activePhase": "PERSIST_NEXT_SESSION_ONLY",
-    "heartbeat": "2026-10-19T18:20:47.714Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-19T1820Z-codex-next-cinematic-audit.md",
+    "activePhase": "MANUAL_CAMP04_READY_FOR_PC_OPERATOR_REVIEW",
+    "heartbeat": "2026-10-19T20:57:39.638Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-19T2100Z-codex-manual-camp04.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -43071,7 +43324,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
+    "lastPushedCommit": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -45480,26 +45733,33 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-19T2100Z-codex-manual-camp04.md",
   "runMeasurement": {
     "runtimeSourceFiles": 0,
     "sourceTestFiles": 0,
     "runtimeAudioAssets": 0,
     "videoAssets": 0,
-    "keyframeAssets": 0,
+    "keyframeAssets": 1,
+    "existingMediaToolFiles": 2,
+    "mediaToolTestFiles": 1,
+    "candidateProvenanceFiles": 2,
+    "candidateSpecFiles": 2,
     "existingQaFiles": 0,
     "newQaFiles": 0,
     "persistentQaTools": 0,
-    "promotedProofFiles": 1,
+    "promotedProofFiles": 7,
     "taskReports": 1,
-    "productDocumentationFiles": 3,
-    "workflowFiles": 4,
+    "productDocumentationFiles": 2,
+    "workflowFiles": 6,
     "inheritedWipFiles": 0,
-    "registeredJobs": 0,
-    "browserScenarios": 0,
+    "registeredJobs": 2,
+    "totalQaJobs": 339,
+    "browserDriverInvocations": 2,
+    "distinctPlayerCases": 11,
     "gameplayStagesPlayed": 0,
-    "readOnlyReviewers": 2,
-    "automationPromptUpdates": 0
+    "paidProviderTasks": 1,
+    "ignoredVideoOutputs": 2,
+    "uniqueTrackedPaths": 24
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -45623,7 +45883,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "NONE after containing metadata checkpoint",
+  "uncommittedWork": "Selected delivery report/proof/state/handoff awaiting containing checkpoint",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -45770,22 +46030,29 @@
     "sourceTestFiles": 0,
     "runtimeAudioAssets": 0,
     "videoAssets": 0,
-    "keyframeAssets": 0,
+    "keyframeAssets": 1,
+    "existingMediaToolFiles": 2,
+    "mediaToolTestFiles": 1,
+    "candidateProvenanceFiles": 2,
+    "candidateSpecFiles": 2,
     "existingQaFiles": 0,
     "newQaFiles": 0,
     "persistentQaTools": 0,
-    "promotedProofFiles": 1,
+    "promotedProofFiles": 7,
     "taskReports": 1,
-    "productDocumentationFiles": 3,
-    "workflowFiles": 4,
+    "productDocumentationFiles": 2,
+    "workflowFiles": 6,
     "inheritedWipFiles": 0,
-    "registeredJobs": 0,
-    "browserScenarios": 0,
+    "registeredJobs": 2,
+    "totalQaJobs": 339,
+    "browserDriverInvocations": 2,
+    "distinctPlayerCases": 11,
     "gameplayStagesPlayed": 0,
-    "readOnlyReviewers": 2,
-    "automationPromptUpdates": 0
+    "paidProviderTasks": 1,
+    "ignoredVideoOutputs": 2,
+    "uniqueTrackedPaths": 24
   },
-  "qaToolingJustification": "No persistent QA tool added or changed;one-off ignored read-only hash/continuity checks and existing TypeScript/contracts commands only",
+  "qaToolingJustification": "Existing unchanged player driver/helper; ignored wrapper only, one minimal errors aggregation repair and one rerun; no persistent QA tool added",
   "retainedRunArtifacts": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "physicalFreeze": "tmp/autonomy/final-physical-0514.json",
@@ -46792,20 +47059,27 @@
     "sourceTestFiles": 0,
     "runtimeAudioAssets": 0,
     "videoAssets": 0,
-    "keyframeAssets": 0,
+    "keyframeAssets": 1,
+    "existingMediaToolFiles": 2,
+    "mediaToolTestFiles": 1,
+    "candidateProvenanceFiles": 2,
+    "candidateSpecFiles": 2,
     "existingQaFiles": 0,
     "newQaFiles": 0,
     "persistentQaTools": 0,
-    "promotedProofFiles": 1,
+    "promotedProofFiles": 7,
     "taskReports": 1,
-    "productDocumentationFiles": 3,
-    "workflowFiles": 4,
+    "productDocumentationFiles": 2,
+    "workflowFiles": 6,
     "inheritedWipFiles": 0,
-    "registeredJobs": 0,
-    "browserScenarios": 0,
+    "registeredJobs": 2,
+    "totalQaJobs": 339,
+    "browserDriverInvocations": 2,
+    "distinctPlayerCases": 11,
     "gameplayStagesPlayed": 0,
-    "readOnlyReviewers": 2,
-    "automationPromptUpdates": 0
+    "paidProviderTasks": 1,
+    "ignoredVideoOutputs": 2,
+    "uniqueTrackedPaths": 24
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -47084,7 +47358,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-19T18:53:09.896Z",
+  "heartbeat": "2026-10-19T20:57:39.638Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -49064,20 +49338,27 @@
     "sourceTestFiles": 0,
     "runtimeAudioAssets": 0,
     "videoAssets": 0,
-    "keyframeAssets": 0,
+    "keyframeAssets": 1,
+    "existingMediaToolFiles": 2,
+    "mediaToolTestFiles": 1,
+    "candidateProvenanceFiles": 2,
+    "candidateSpecFiles": 2,
     "existingQaFiles": 0,
     "newQaFiles": 0,
     "persistentQaTools": 0,
-    "promotedProofFiles": 1,
+    "promotedProofFiles": 7,
     "taskReports": 1,
-    "productDocumentationFiles": 3,
-    "workflowFiles": 4,
+    "productDocumentationFiles": 2,
+    "workflowFiles": 6,
     "inheritedWipFiles": 0,
-    "registeredJobs": 0,
-    "browserScenarios": 0,
+    "registeredJobs": 2,
+    "totalQaJobs": 339,
+    "browserDriverInvocations": 2,
+    "distinctPlayerCases": 11,
     "gameplayStagesPlayed": 0,
-    "readOnlyReviewers": 2,
-    "automationPromptUpdates": 0
+    "paidProviderTasks": 1,
+    "ignoredVideoOutputs": 2,
+    "uniqueTrackedPaths": 24
   },
   "operatorAcceptedAssets": {
     "decision": "OD-2026-10-18-E",
@@ -49564,12 +49845,43 @@
     ],
     "recurringGenerationAuthorized": false,
     "productionReplacementAuthorized": false,
-    "status": "SOURCE_AND_BOUNDED_GUARD_GREEN_READY_TO_SUBMIT",
+    "status": "CANDIDATE_DELIVERED_FOR_PC_OPERATOR_REVIEW",
     "baseline": "671c6eebed2872dd8284b3dbe7c55e883bba0d06",
     "sourceSha256": "ee04113053ce19c88a409cf0789a8abdc1fc828a305272ee83dbe66520a33ed0",
     "sourceCandidate": "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
     "spec": "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
     "sourceReview": "cinematics-journey OK_WITH_CONDITIONS;threefullbodies/currentV2/nightfamily;blade-ground clearance to inspect in actualmotion",
-    "guardian": "PASS_ACTUAL_DIFF_BEFORE_SUBMISSION"
+    "guardian": "ACCEPTED_SCOPED_ISOLATED_DEV_PLAYER_ONLY",
+    "sourceCheckpoint": "b13279d218ae0f0de3a5500d37ab922da96cdffb",
+    "taskId": "454200539038213",
+    "providerMetadata": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_raw.metadata.json",
+    "providerResult": {
+      "taskId": "454200539038213",
+      "status": "downloaded",
+      "output": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_raw.mp4",
+      "sha256": "ed202694fe565915cacbbbf5fc59e7f182a3f16981d684e90a94572514dc4317",
+      "bytes": 14901521,
+      "completedAt": "2026-10-19T20:35:25.630Z"
+    },
+    "report": "docs/reports/manual-camp-candidate-04-2026-10-19.md",
+    "proof": "docs/reports/manual-camp-candidate-04-2026-10-19/proof.json",
+    "master": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_master.mp4",
+    "masterSha256": "6258be9b4538ef81596e5eb6b969c62776bcb8c5c67df02c9254201660acc8c2",
+    "artisticAcceptance": false,
+    "productionReplaced": false,
+    "portraitAcceptance": "VISUAL_FAIL_390_CROP",
+    "playerQa": {
+      "jobId": "manual-camp04-player-fixed-20261019",
+      "reviewedAcceptance": "ACCEPTED_SCOPED_ISOLATED_DEV_PLAYER_ONLY",
+      "rawReceiptAcceptance": "NOT_ACCEPTED",
+      "casesPassed": 11,
+      "priorWrapperFailurePreserved": true
+    },
+    "remainingReview": [
+      "Normal-speed grounded gait/no sliding",
+      "Blade-tip ground clearance",
+      "Portrait composition correction before integration"
+    ],
+    "completedAt": "2026-10-19T20:57:39.638Z"
   }
 }
