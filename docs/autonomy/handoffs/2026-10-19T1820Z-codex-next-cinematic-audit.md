@@ -1,0 +1,19 @@
+# Saved next scheduled session — 2026-10-19T18:19:04.431Z
+
+Operator « ok sauvegarde cette suite pour que notre prochaine session planifie parte sur de bonnes bases ». DecisionOD-2026-10-19-C. Save only now; scheduled audit NOT_STARTED. The proposed eight-slot audit is accepted as the next priority; operator combatFX listening later is not an audit prerequisite.
+
+After read-only preflight and exclusive lock, audit exactly the eight existing cinematic slots and retained candidates against current manifests/source, canonical V2/environment references and prior evidence. Produce a per-slot keep/correct/manual-remaster disposition and identify ONE demonstrated first correction; reuse historical proof. Do not generate/poll/promote/replace video or keyframes in recurring runs. Operator combat-FX listening is deferred voluntarily and does not block this audit.
+
+Read decision NEXT_CINEMATIC_AUDIT_OPERATOR_DECISION_2026-10-19.md, AGENTS, statepair, latest operator decisions and skills autonomy-handoff/contracts-compliance/cinematics-journey before the historical remaster instructions. Inspect existing manifests/approved slots/source/candidate provenance and reuse earlier frame/runtime audits; produce one compact per-slot keep/correct disposition table and identify one demonstrated first correction. Missing ignored files, unaccepted candidates, three-attempt camp cap and incomplete Bois-Clair blocks remain explicit.
+
+Exactly8video IDs, V2/four-actor limit/Alaric climax/canon/choices/outcomes/V6 preserved. No generation or polling of video/keyframes, MiniMax, artistic remaster, MP4 promotion/replacement or candidate acceptance in recurrence. A pure media defect gets a concrete manual-workstream handoff, not unauthorized generation. Runtime defects, if demonstrated, require normal contract-sensitive review and existing QA tools. No unchanged fullcampaign replay or repeated diagnostics.
+
+Prior source69e8abb includes audio4d69c23, reviewed proofdeb5930.16newFX integrated/artpending,11families natively observed; thrust/magic-cast/magic-impact/support/defeat and truehidden remain open.8UI/nightBoisClair operatoraccepted.127source/25helper tests and native one-wolves-victory evidence retained without new test claims. Historical337jobs/deferred roots/uiFx0259 untouched. Previous delivery details remain in pairedJSON.combatFxDeliveryRun and prior1633handoff.
+
+Automation rpgthreejs-auto-dev-90m: update only prompt; preserve PAUSED/90min/gpt-6.1-sol/high/local/target/cwd/notification settings and timestamps exceptupdated_at. Do not activate, duplicate or start product work in this configuration session.
+
+Compliance: set1.7.0/f4aae63 unchanged. GAME_CONSTITUTION/NARRATIVE_PRESENTATION/REPOSITORY_GOVERNANCE: scoped documentation PASS pending gates; ART_DIRECTION/CHARACTERS/ENVIRONMENTS: direction/identity boundaries preserved, no media accepted; NARRATIVE_CAMPAIGN/TRAVERSAL/COMBAT/SAVE/UI: N/A runtime untouched; QA_EVIDENCE: configuration checks only, previous audio fullQA remains BLOCKED independently. No source/art/global acceptance inferred.
+
+Preflight: no lock/WIP, clean dev69e8abb equalremote,main00b96f1 unchanged,otherrepo threadsidle/notLoaded, only retained operatorpreview5438 plus nonproducthelper processes; exclusive atomic lock acquired thenfetchprune/parity. No stale takeover/reset/clean/checkout. Metrics8workflow/product0/QA0/jobs0/inherited0. Final scheduler digest/field verification, commit/push/endtimestamp/lock release recorded at checkpoint.
+
+Configuration verified: only prompt and updated_at changed; all other fields exactly equal, status PAUSED/cadence90min/model/effort/target/cwd/notifications preserved. Canonical prompt SHA f2197a69fd2d86340ff7d87adf45820d61407c812cfbd30cfb77f1346ffaa699 (10286characters). All337QA jobs/deferred roots/combatFx/uiFx0259 exact against69e8abb. diffcheck/LOCKED empty/contracts8of8+8slots PASS. No runtime tests/build/browser launched.

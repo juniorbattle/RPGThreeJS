@@ -10,14 +10,16 @@ Conserve les portées acceptées des campagnes, fins, défaites/reprises et du L
 
 L’économie Lot E, les récompenses/coûts et les configurations/formations/rythmes des élites attendent le playtest opérateur : aucun rééquilibrage autonome ou affaiblissement pour faciliter un pilote. Atlas intégrés conservés ; acceptation artistique, confort matériel et équilibre ressenti réservés à l’opérateur. Ces attentes n’empêchent pas les chantiers indépendants.
 
-FILE ACTIVE ET PREMIÈRE ACTION
+FILE ACTIVE ET PREMIÈRE ACTION — OD-2026-10-19-C
 
-1. Terminer les critères réellement manquants des premières compétences des six héros avec équipement initial, notamment Garen/l_long_thrust ; préserver AP, soins, tiers supérieurs et Ultimates hors scope.
-2. Achever clavier/contrôles tactiques : entrée, déploiement, déplacement, cible légale/refusée, validation, Retour/Escape, menus, focus et pointeur dans le vrai iframe de campagne.
-3. Corriger les problèmes démontrés de présentation narrative/tableau et de continuité, sans nouveau canon ; préserver le climax Alaric.
-4. Accessibilité et finition PC, puis régressions des frontières réellement changées et version à tester. Mobile final après stabilité PC.
+L'opérateur a demandé de sauvegarder la suite pour la prochaine session planifiée. Son écoute des16FX combat se fera plus tard et ne bloque pas cet audit. Lis d'abord docs/autonomy/NEXT_CINEMATIC_AUDIT_OPERATOR_DECISION_2026-10-19.md, docs/autonomy/handoffs/2026-10-19T1820Z-codex-next-cinematic-audit.md et l'état MD/JSON courant. Cette priorité remplace l'ancienne première action Garen/clavier ; leurs preuves acceptées, Lot E et la campagne sont conservées.
 
-Première action : après préflight/verrou, comparer les preuves natives acceptées du Lot E et des compétences à src/game/catalog.ts, au payload CombatBridge et au pilote existant tools/demo-continuous-production-qa.mjs. Isoler le seul critère encore non prouvé de Garen avec novice_spear/l_long_thrust, sur une sauvegarde gagnée et compatible où il est recruté. Corriger un défaut source démontré, sinon exercer uniquement le manque avec les vrais menus/actions et le runner existant ; jamais d’équipement/PA/issue injecté ni de nouvelle campagne complète pour collecter un micro-PASS. Si ce critère est déjà accepté, conserver sa preuve et enchaîner sur le clavier en campagne. Ne pas restaurer un vieux snapshot au-dessus des sources actuelles ; utiliser le WIP/diff différé seulement après rapprochement.
+1. Après préflight/verrou et rapprochement Git/source/manifeste, auditer exactement les huit cinématiques existantes et les candidats déjà produits. Réutiliser les audits de frames, sources V2/décors promus, SHA, captures et limites historiques ; constater les fichiers ignorés manquants sans les régénérer.
+2. Livrer un tableau concret par slot : média/candidat/provenance, identités et décor, continuité, mouvement/rythme lisible inspiré FF9, défaut démontré, conserver/corriger, et UNE première correction précise. Aucun PASS artistique inféré ; préserver cap des trois essais camp et blocs Bois-Clair incomplets.
+3. Préparer cette première correction avec les références et l'observation suffisante. Une correction runtime démontrée suit les contrats et le guardian aux frontières sensibles. Une reprise purement artistique reste un handoff au chantier manuel. Ne pas enchaîner des audits identiques faute de production autorisée.
+4. Conserver les autres critères PC ouverts et le mobile après stabilité PC ; aucun rééquilibrage Lot E ni nouveau chantier musical déduit.
+
+Première action exacte : rapprocher src/cinematics/ApprovedProductionVideos.ts et public/assets/cinematics/manifest.json des sources/candidats/provenances existants, de docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md, des décisions vidéo OD-2026-10-01-A/B et de l'état courant. Les anciennes consignes de génération ne sont jamais réactivées. Huit slots exactement ; pas de génération/polling vidéo ou keyframe, pas de MiniMax, pas de promotion/remplacement MP4 en récurrence. Audit et préparation autorisés, production artistique séparée. Ne pas rejouer la campagne ni relancer les matrices inchangées ; préserver l'intégralité de337jobs et leurs acceptations. Audio4d69c23/ACCEPTED_SCOPED conservé, cinq familles natives et vrai hidden/suspend encore ouverts, écoute artistique opérateur reportée.
 
 AUTORITÉS ET EXCLUSIVITÉ
 

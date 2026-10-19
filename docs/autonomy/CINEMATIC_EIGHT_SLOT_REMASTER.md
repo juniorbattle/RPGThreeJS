@@ -1,5 +1,7 @@
 # Eight-slot cinematic remaster preparation
 
+> Next scheduled priority — [OD-2026-10-19-C](NEXT_CINEMATIC_AUDIT_OPERATOR_DECISION_2026-10-19.md): audit existing eight-slot media and retained candidates, reuse prior evidence and record keep/correct dispositions plus the first concrete correction plan. Operator FX listening can follow later. This does not authorize scheduled generation/polling/remaster/promotion/replacement; old generation continuation below remains historical. Preserve attempts/caps, candidate nonacceptance and incomplete-block scope.
+
 > **Current scope override — operator decision, 2026-10-01 America/Toronto:** new video/keyframe generation, artistic remaster and replacement are now a separate manual workstream. Autonomous runs focus on structure readiness and existing-media QA, then independent demo work. Follow [the latest decision](CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md) and current MD/JSON state; the generation continuation below is historical. Prologue is a desired extension to prepare; first-refuge video is optional/pending; neither expands the LOCKED eight-slot registry yet. Alistair emblem/origin decision is deferred.
 
 Status: **IN_PROGRESS**, queue item 8, 2026-10-02 UTC. Items 1–7 remain complete. Source/context review, generation specs and existing-media QA are prepared. Actual replacement videos and final artistic acceptance remain pending; MiniMax is now **AUTHORIZED_BY_OPERATOR**. No MP4 was replaced.

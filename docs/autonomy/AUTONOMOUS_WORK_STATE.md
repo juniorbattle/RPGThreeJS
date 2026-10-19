@@ -1,16 +1,16 @@
-# Combat FX — scoped native proof accepted, operator audition open
+# Next scheduled session — existing cinematic audit ready
 
-Run codex-combat-audio-20261019T1537; status COMBAT_FX_IMPLEMENTED_SCOPED_PC_PLAYTEST_READY; phase SCOPED_NATIVE_ACCEPTED_OPERATOR_AUDITION_OPEN. Set1.7.0 / immutable baseline f4aae63; source4d69c23; published product/proof checkpoint deb59305b9c00a483c45662b89a2062cf24c232d.16original candidates integrated with existing8accepted UI WAVs byte-identical. Shared Sons preferences default off, trusted iframe unlock, scoped audio lifecycle, native focus restored.
+Run codex-cinematic-next-run-20261019T1818; OD-2026-10-19-C; status NEXT_SCHEDULED_CINEMATIC_AUDIT_READY. Current set1.7.0 / immutable f4aae63; source baseline 69e8abbd794ee11329b5d205545bdbcfa09de907. Configuration only: no audit, product source/media, QA scenario or build launched.
 
-127distinct source tests12files,25distinct helper tests across full24/25+isolated2/2, TypeScript/build8MP4/contracts8of8/8slots/gates PASS. First1559 FAILED focus before actions; corrected1605 SUCCEEDED and independent ACCEPTED_SCOPED. One new wolves victory6rounds32actions,239native starts/231combat,11new families,peak2; exact345gold/rewards/V6 reload. Raw receipt NOT_ACCEPTED remains separate from reviewed verdict.
+Next: After read-only preflight and exclusive lock, audit exactly the eight existing cinematic slots and retained candidates against current manifests/source, canonical V2/environment references and prior evidence. Produce a per-slot keep/correct/manual-remaster disposition and identify ONE demonstrated first correction; reuse historical proof. Do not generate/poll/promote/replace video or keyframes in recurring runs. Operator combat-FX listening is deferred voluntarily and does not block this audit.
 
-Full QA_EVIDENCE remains BLOCKED: true hidden/suspend OPEN/NOT_OBSERVED_PLATFORM and five unplayed families (thrust, magic-cast, magic-impact, support, defeat). New timbres/levels/hardware/global acceptance remains operator. No Stage/art PASS from black impact capture.
+Deliverable: one bounded disposition table across8slots/current candidates and a first precise correction plan, with V2/environment/canon/ownership/agency/reduced-motion/skip/resume limits. Preserve prior source frames/captures, attempts and camp3attempt cap; no inferred artistic acceptance. Missing ignored media stays missing, never regenerated in recurrence. No ninth slot or MP4 promotion/replacement.
 
-Next product action: Operator: audition the integrated combat FX in the existing PC save/next fight and judge timbres, levels and comfort. Five families and true hidden/suspend remain unobserved; no automatic campaign replay or media generation to fill counters.
+Operator combat FX listening is postponed without blocking audit. Combat implementation4d69c23, proofdeb5930/closure69e8abb and independently accepted scoped native battle remain preserved in JSON.combatFxDeliveryRun/combatFx and the previous handoff. Five families/native hidden/art/hardware/global PC remain open;8UI/nocturnalBoisClair remain operator-accepted. All337qaJobs/deferred roots/uiFx0259 acceptance preserved exactly.
 
-Preview http://127.0.0.1:5438/ PID32208 intentionally retained; QA5443 closed/workers stopped. Historical335 jobs plus2new=337, all previous records/deferred roots/uiFx0259 unchanged. Metrics:11runtime source/4source test/16audio+3audition/1generator/2existingQA+1helpertest/4proof/1report/3productdocs/1existingmedia metadata/11workflow/8dedicated protected amendment; inheritedWIP0.
+Existing automation: prompt only updated to current priority/baseline; PAUSED stays PAUSED,90min/model/effort/environment/target/notifications preserved. Verified exact prompt SHA f2197a69fd2d86340ff7d87adf45820d61407c812cfbd30cfb77f1346ffaa699; only prompt/updated_at changed. contracts8of8/8slots and empty LOCKED/diffcheck PASS;337prior jobs/deferred roots/acceptances exact. No duplicate automation/activation.
 
-Handoff: [combat FX closeout](handoffs/2026-10-19T1633Z-codex-combat-fx.md). Run ended 2026-10-19T16:33:04.170Z after verified product/proof checkpoint deb5930. Containing metadata closure follows; final Git SHA/parity and lock release recorded in automation memory. No WIP; full QA/art remain open.
+Metrics: product0/tests0/media0/QAtools0/proof0/jobs0/browser0/inheritedWIP0;8workflow files. [Operator decision](NEXT_CINEMATIC_AUDIT_OPERATOR_DECISION_2026-10-19.md), [next-run handoff](handoffs/2026-10-19T1820Z-codex-next-cinematic-audit.md), [prior audio delivery](handoffs/2026-10-19T1633Z-codex-combat-fx.md).
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

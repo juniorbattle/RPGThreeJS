@@ -1,5 +1,11 @@
 # Demo completion — delivered POI/Lot E baseline
 
+## Next scheduled priority — OD-2026-10-19-C
+
+[Operator saved continuation](NEXT_CINEMATIC_AUDIT_OPERATOR_DECISION_2026-10-19.md): audit exactly the eight existing cinematics and retained candidates; identify keep/correct dispositions and ONE demonstrated first correction. Reconcile source/media/provenance and reuse the previous frame/runtime audits. FF9-inspired readable action is the direction; no new canon or slot. New video/keyframe generation, polling, MP4 promotion/replacement and artistic acceptance stay outside recurring runs under OD-2026-10-01-B/set1.7.0. Produce a concrete manual-remaster handoff when replacement is the only remedy.
+
+The operator will listen to combat FX later; this is not a prerequisite for the cinematic audit. Preserve scoped audio evidence and all five-family/hidden/art limits. Existing Garen/controls/Lot E scopes below are retained, not reopened as the first action. Mobile remains after stable PC acceptance. This configuration session performs no audit or media production. [Exact next-run handoff](handoffs/2026-10-19T1820Z-codex-next-cinematic-audit.md).
+
 Current19October2026 audio scope: [OD-2026-10-19-B](COMBAT_FX_OPERATOR_DECISION_2026-10-19.md), set1.7.0 / immutable baseline f4aae63e792025430c16153e1cd329c20745cf6b. Shared combat settings, audited UI feedback and16short original FX candidates implemented; [current proof/remaining limits](../reports/combat-fx-integration-2026-10-19.md). The direct operator media execution supersedes audio deferral solely for this bounded lot. Artistic listening, prior native hidden/suspend and global PC verdict stay open. Other accepted campaign/economy/skills evidence is preserved, no campaign replay or silent rebalance.
 
 

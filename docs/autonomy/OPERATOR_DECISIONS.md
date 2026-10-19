@@ -54,3 +54,5 @@ Append-only index of the explicit operator decisions that bind autonomous work. 
 1. The integration was done by the lock holder only after the stale-lock conditions held (heartbeat older than 105 minutes, dead `pid`, automation paused, no Codex activity, no QA process). It adds documentation files only, overlaps none of the uncommitted work and has no consumer in `src/` or `tools/`.
 2. `origin/dev` is pushed after the integration, then the lock is released.
 3. Codex is informed through [the briefing](handoffs/2026-10-02T0533Z-devin-to-codex-briefing.md) and a short note appended to its automation memory. Changing the recurring prompt stays an operator action.
+
+| OD-2026-10-19-C | 2026-10-19 | Save next scheduled priority: bounded audit of eight existing cinematics/retained candidates, keep-or-correct dispositions and first concrete correction plan; operator FX listening later | [Next cinematic audit](NEXT_CINEMATIC_AUDIT_OPERATOR_DECISION_2026-10-19.md) | ACTIVE; configuration only now, recurrence excludes video/keyframe generation/polling/promotion/replacement; scheduler settings/status preserved |
