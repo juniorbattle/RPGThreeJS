@@ -200,3 +200,12 @@ test('detached QA worker finishes its receipt after the launching parent exits',
   while(JSON.parse(readFileSync(file)).status==='RUNNING'){assert.ok(Date.now()<deadline,'Detached worker did not finish');await new Promise(r=>setTimeout(r,20));}
   assert.equal(JSON.parse(readFileSync(file)).status,'SUCCEEDED');assert.equal(syncJobs(job)[0].eligibleForReview,true);
 });
+
+test('combat FX requires an earned bounded encounter and never silently skips another verification',()=>{
+ const env={DEMO_QA_VERIFY_COMBAT_FX:'1',DEMO_QA_TARGET:'expedition-checkpoint',DEMO_QA_CHECKPOINT_POI:'lion-poi-opening-wolves',DEMO_QA_EARNED_SAVE:'tmp/earned.json',DEMO_QA_PRIOR_PROOF:'tmp/proof.json'};
+ assert.equal(demoJobOptions(env).parameters.verifyCombatFx,true);
+ assert.ok(demoJobOptions(env).requiredAssertions.includes('COMBAT_FX_NATIVE_RESOLVED_EVENTS'));
+ assert.throws(()=>demoJobOptions({DEMO_QA_VERIFY_COMBAT_FX:'1'}),/separate earned/);
+ for(const flag of ['DEMO_QA_VERIFY_UI_FX','DEMO_QA_VERIFY_DEPLOYMENT_HEALTH','DEMO_QA_VERIFY_RESULT_HEALTH','DEMO_QA_VERIFY_REFUGE_REST','DEMO_QA_TOUCH'])assert.throws(()=>demoJobOptions({...env,[flag]:'1'}),/separate earned/);
+ assert.equal(Object.hasOwn(demoJobOptions({}).parameters,'verifyCombatFx'),false);
+});

@@ -192,9 +192,9 @@ export class GameApp {
       },
       onSound: id => this.uiSounds.play(id),
     });
-    this.combat = new CombatBridge(root);
-    this.exploration = new ExplorationView({ root, statusHud: this.statusHud });
-    this.poiEncounter = new PoiEncounterView(root);
+    this.combat = new CombatBridge(root, { player: this.uiSounds, openSettings: () => this.soundSettings.open() });
+    this.exploration = new ExplorationView({ root, statusHud: this.statusHud, onSound: id => this.uiSounds.play(id) });
+    this.poiEncounter = new PoiEncounterView(root, id => this.uiSounds.play(id));
     this.poiMap = new PoiMapView({root,
       onMove: id => this.choosePoi(id),
       onWait: () => this.waitOnPoi(),
@@ -204,10 +204,11 @@ export class GameApp {
       onSave: () => {if(!this.routeCommitInFlight){this.saves.saveManual(this.state);this.uiSounds.play('saved');}},
       onSounds: () => this.soundSettings.open(),
       onSound: id => this.uiSounds.play(id),
-      onMenu: () => {if(!this.routeCommitInFlight)this.renderTitle();},
+      onMenu: () => {if(!this.routeCommitInFlight){this.uiSounds.play('back');this.renderTitle();}},
       onReducedMotion: () => {
         if(this.routeCommitInFlight)return;
         this.state.settings.reducedGraphics = !this.state.settings.reducedGraphics;
+        this.uiSounds.play('confirm');
         this.showPoiMap();
         this.root.querySelector<HTMLButtonElement>('[data-poi-action="motion"]')?.focus();
       },
@@ -748,6 +749,7 @@ export class GameApp {
   private async waitOnPoi(): Promise<void> {
     if(this.mode!=='TRAVEL'||this.routeCommitInFlight)return;
     if(!waitPoiTurn(this.state,selectPoiMap(this.state)))return;
+    this.uiSounds.play('confirm');
     this.saves.saveAuto(this.state);
     await this.enterCampaignPresentation();
   }

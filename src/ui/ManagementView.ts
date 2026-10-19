@@ -955,6 +955,7 @@ export class ManagementView {
     });
     this.overlay.querySelectorAll<HTMLButtonElement>('[data-shop-mode]').forEach((button) => {
       button.addEventListener('click', () => {
+        if(this.shopMode !== button.dataset.shopMode) this.options.onSound?.('navigate');
         this.shopMode = button.dataset.shopMode as 'buy' | 'sell' | 'craft';
         this.render();
       });

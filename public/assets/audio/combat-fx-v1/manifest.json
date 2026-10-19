@@ -1,0 +1,187 @@
+{
+  "status": "COMBAT_CANDIDATES_ART_ACCEPTANCE_PENDING",
+  "generatedAt": "2026-10-19T15:43:10.374Z",
+  "method": "Original deterministic modal oscillators and seeded noise, PCM16 mono 48000Hz; no model, provider, external samples or recordings",
+  "generator": "tools/audio/generate-combat-fx-candidates.mjs",
+  "generatorSha256": "d971438931660db79bc6da245e89bc27ae2d8e9270190567f81a2bd55ff65ec4",
+  "authority": "OD-2026-10-19-B direct Okay go: bounded16family combat FX production candidates",
+  "limits": "Bounded combat candidates authorized for integration under set1.7.0; operator artistic acceptance pending. No music, voices, ambient loops, Ultimates or cinematic audio.",
+  "candidates": [
+    {
+      "id": "step",
+      "label": "Pas tactique",
+      "use": "Une étape animée, cadence bornée ; aucun trajet physique sur la carte.",
+      "file": "step.wav",
+      "seconds": 0.11,
+      "bytes": 10604,
+      "sha256": "04d9987d52aefb91d42b63360938bcf19b95b8bd216b1a893808d248b7a350e6",
+      "peakDbfs": -18.416728515992396,
+      "rmsDbfs": -35.13158059756308
+    },
+    {
+      "id": "light-blade",
+      "label": "Lame légère",
+      "use": "Départ réel de frappe légère, distinct du résultat.",
+      "file": "light-blade.wav",
+      "seconds": 0.18,
+      "bytes": 17324,
+      "sha256": "45cdfaf2a52614b46c07c726fbd51fec4ea4e1d24009a7aef97cfcf9428df55e",
+      "peakDbfs": -15.91740154491989,
+      "rmsDbfs": -25.304640127793597
+    },
+    {
+      "id": "heavy-weapon",
+      "label": "Arme lourde",
+      "use": "Départ de frappe lourde ; ne prouve pas une touche.",
+      "file": "heavy-weapon.wav",
+      "seconds": 0.28,
+      "bytes": 26924,
+      "sha256": "723d8b73a5a44d7714b3a6935435841e492f3934c39c60fce25287fcfcd86467",
+      "peakDbfs": -14.894903334878773,
+      "rmsDbfs": -26.821949718886245
+    },
+    {
+      "id": "thrust",
+      "label": "Estoc de lance",
+      "use": "Estoc exécuté, sans nouvelle règle de portée.",
+      "file": "thrust.wav",
+      "seconds": 0.21,
+      "bytes": 20204,
+      "sha256": "db95f16572b68797fb69671be7ee75d7ed5d7ba7c5f274f56fe3762a0019a20c",
+      "peakDbfs": -15.91740154491989,
+      "rmsDbfs": -32.04495680739289
+    },
+    {
+      "id": "bow-release",
+      "label": "Lâcher de flèche",
+      "use": "Départ de projectile existant.",
+      "file": "bow-release.wav",
+      "seconds": 0.2,
+      "bytes": 19244,
+      "sha256": "4c1fcde295d4d2738a6945b93b122966f171ba0a0985d0d900ab892455529627",
+      "peakDbfs": -16.47852825583127,
+      "rmsDbfs": -29.864331964775943
+    },
+    {
+      "id": "magic-cast",
+      "label": "Départ magique",
+      "use": "Action magique lancée ; aucune attente audio.",
+      "file": "magic-cast.wav",
+      "seconds": 0.34,
+      "bytes": 32684,
+      "sha256": "e1ff6b24bfaed51b46686827b15e770593aefc113af459f7196c1a8d3bc4beb2",
+      "peakDbfs": -15.91740154491989,
+      "rmsDbfs": -27.89822716991965
+    },
+    {
+      "id": "magic-impact",
+      "label": "Impact magique",
+      "use": "Dégâts magiques réellement appliqués.",
+      "file": "magic-impact.wav",
+      "seconds": 0.29,
+      "bytes": 27884,
+      "sha256": "9ba913cdbc10d3f9e2706c1907391ca087ada1a345159615205eb5174c888b33",
+      "peakDbfs": -14.894903334878773,
+      "rmsDbfs": -31.926003856560815
+    },
+    {
+      "id": "physical-impact",
+      "label": "Impact physique",
+      "use": "Dégâts réels ; pas un clic de ciblage.",
+      "file": "physical-impact.wav",
+      "seconds": 0.17,
+      "bytes": 16364,
+      "sha256": "586dcbf287ad85037dd52051af85a3f6aa08eec4b0fcddf8ced61ef35a41bd3c",
+      "peakDbfs": -14.894903334878773,
+      "rmsDbfs": -32.42490777652363
+    },
+    {
+      "id": "miss",
+      "label": "Raté",
+      "use": "Branche ratée existante, sans son de touche réussie.",
+      "file": "miss.wav",
+      "seconds": 0.24,
+      "bytes": 23084,
+      "sha256": "65d727f6bd8bc4bd3712c2677d266d97cedabe3a8c5f61e186ffce6ac11fecd5",
+      "peakDbfs": -17.72080671713998,
+      "rmsDbfs": -27.959552737427053
+    },
+    {
+      "id": "critical",
+      "label": "Accent critique",
+      "use": "Critique déjà résolu, prioritaire sur impact générique.",
+      "file": "critical.wav",
+      "seconds": 0.3,
+      "bytes": 28844,
+      "sha256": "6b203a97e9e836b9160612422b95c710721cb9ca64b2316c6e62c91a6feecf40",
+      "peakDbfs": -14.424816372264429,
+      "rmsDbfs": -30.821679262311726
+    },
+    {
+      "id": "status-negative",
+      "label": "Altération appliquée",
+      "use": "Présence ou durée de malus réellement changée.",
+      "file": "status-negative.wav",
+      "seconds": 0.31,
+      "bytes": 29804,
+      "sha256": "0c7f4062f59c90f3de813b0483498e56d855fc46aa34077b553153b3f75a2f1f",
+      "peakDbfs": -17.07842389655471,
+      "rmsDbfs": -31.777551764596843
+    },
+    {
+      "id": "support",
+      "label": "Soutien effectif",
+      "use": "Bonus, PA ou purification réellement appliqués.",
+      "file": "support.wav",
+      "seconds": 0.34,
+      "bytes": 32684,
+      "sha256": "e69fd6afc793dc28b321cb98f276fb727b87ad2dddd0e3dab6ac09b430f72ec3",
+      "peakDbfs": -17.07842389655471,
+      "rmsDbfs": -28.94080610230789
+    },
+    {
+      "id": "knockout",
+      "label": "K.O.",
+      "use": "Transition vivant vers K.O. ; aucune voix.",
+      "file": "knockout.wav",
+      "seconds": 0.43,
+      "bytes": 41324,
+      "sha256": "7466b2ebaca0c928c6c440d02093fc5623bc27cbb6e533b2a867340640564899",
+      "peakDbfs": -14.894903334878773,
+      "rmsDbfs": -28.522715881205333
+    },
+    {
+      "id": "player-turn",
+      "label": "À vous de jouer",
+      "use": "Main rendue au joueur, pas chaque tour ennemi.",
+      "file": "player-turn.wav",
+      "seconds": 0.18,
+      "bytes": 17324,
+      "sha256": "fe7a9d6a79208560bc881f53b40b5396af9790677916f9e18c66b53eaa26d471",
+      "peakDbfs": -19.17330305305385,
+      "rmsDbfs": -30.702618659446735
+    },
+    {
+      "id": "victory",
+      "label": "Victoire",
+      "use": "Court effet de résultat, pas une musique ni une récompense.",
+      "file": "victory.wav",
+      "seconds": 0.68,
+      "bytes": 65324,
+      "sha256": "ee6c6d1061227d4639d6c426bb37e32c4fbcfed28e621bda6916e0beac6c3b65",
+      "peakDbfs": -15.39189479571978,
+      "rmsDbfs": -28.314795313401643
+    },
+    {
+      "id": "defeat",
+      "label": "Défaite",
+      "use": "Issue réelle, sans modifier la restauration de sauvegarde.",
+      "file": "defeat.wav",
+      "seconds": 0.64,
+      "bytes": 61484,
+      "sha256": "218ed9d0d5696066a3b3e71a337afa507921b2e48e88265bdbd8991a77299b5f",
+      "peakDbfs": -15.91740154491989,
+      "rmsDbfs": -28.749628369564487
+    }
+  ]
+}

@@ -40,6 +40,7 @@ import { combatHudCameraFov, renderCombatActionDock, renderCombatActionPreview, 
 import { captureDeploymentFocus, nextCombatCursor, shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
 import { onReducedMotionChange, prefersReducedMotion } from '../ui/ReducedMotion';
 import { createCombatRandomStreams, mulberry32 } from './combatRandom';
+import { CombatAudioEmitter, combatLaunchSound } from './CombatAudio';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -67,6 +68,9 @@ let GRID_DEBUG_ENABLED=false;
 let QA_FULL_AP=false;
 let QA_DEPLOY_ALL=false;
 let COMBAT_ID='standalone';
+const combatAudio=new CombatAudioEmitter(message=>window.parent.postMessage(message,location.origin));
+let soundAction=null, soundActionSuppressed=false;
+function combatCue(id,phase='',target=''){ if(soundActionSuppressed)return; combatAudio.cue(id,soundAction?`${soundAction}:${phase}:${target}`:undefined); }
 let COMBAT_SCENE_ID='forest_route';
 let COMBAT_OBJECTIVE='Vaincre tous les ennemis.';
 let COMBAT_LABEL='Combat tactique';
@@ -1134,6 +1138,7 @@ async function moveAlong(u,path){
       const land=[tweenP(u.grp.position,{x:wX(gx),y:c.topY,z:wZ(gz)},motion.stepHalf,easeInOut,{from:{y:groundMidY},to:{y:c.topY}}),tweenP(u.spr.rotation,{z:0},motion.stepHalf,easeInOut,stillRotation),tweenP(u.spr.scale,{x:nextSign*scale,y:scale},motion.stepHalf,easeInOut,stillScale)];
       if(u.outline){ const os=spriteScaleSign(u.outline),stillOutline={from:{x:os*outlineScale,y:outlineScale},to:{x:os*outlineScale,y:outlineScale}}; land.push(tweenP(u.outline.rotation,{z:0},motion.stepHalf,easeInOut,stillRotation),tweenP(u.outline.scale,{x:os*outlineScale,y:outlineScale},motion.stepHalf,easeInOut,stillOutline)); }
       await Promise.all(land);
+      if(isUnitMotionCurrent(u,epoch))combatCue('step');
       if(sign!==nextSign)u.visualFacingX=u.facing.dx||u.visualFacingX;
     }
     if(!isUnitMotionCurrent(u,epoch))return;
@@ -1167,13 +1172,14 @@ async function beginTurn(u){ if(G.over)return; u._hasStartedTurn=true; G.active=
   const sk=statusSkips(u); if(!hasS(u,'taunt'))u._taunter=null; refreshPanel(u);
   if(sk){ if((u.boss||u.elite)&&u._ultCooldown<5){u._ultCooldown=5;clearBossIntentPresentation(u);} floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); for(const s in u.statuses){ if(STATUS[s]&&STATUS[s].skip){ u.statuses[s]--; if(u.statuses[s]<=0)delete u.statuses[s]; } } refreshPanel(u); if(G.over)return; nextTurn(); return; }
   if(u._ultCooldown>0)u._ultCooldown--;
-  if(u.team==='player'){ G.mode='menu'; setHint(u.name+' — à vous de jouer'); openActionMenu();
+  if(u.team==='player'){ combatCue('player-turn'); G.mode='menu'; setHint(u.name+' — à vous de jouer'); openActionMenu();
     if(turnReturnFocus){ turnReturnFocus=false;
       if(keyboardInput&&document.hasFocus()&&(document.activeElement===document.body||document.activeElement===renderer.domElement))dom.menu.querySelector('button:not(:disabled)')?.focus({preventScroll:true});
     } }
   else { G.mode='ai'; closeMenus(); setHint(u.name+' (ennemi)…'); await wait(0.35); await aiTurn(u); }
 }
 function endTurn(){ if(G.busy||G.over)return; const u=G.active;
+  if(u?.team==='player')combatCue('confirm');
   if(u?.team==='player')turnReturnFocus=keyboardInput&&(dom.menu.contains(document.activeElement)||document.activeElement===renderer.domElement);
   if(u&&u.alive){
     if(u.ap>=1){ u.ap=Math.min(u.maxap,u.ap+1); u._souffle=true; floatText(u,'SOUFFLE +1 AP','#7fd0ff',true); logMsg(u.name+' reprend son souffle (+1 AP).'); }
@@ -1352,7 +1358,8 @@ function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*
 function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; if(spec.weaponType==='longbow'){ const dist=Math.abs((att.size>1?bossCenterGX(att):att.gx)-tgt.gx)+Math.abs((att.size>1?bossCenterGZ(att):att.gz)-tgt.gz); if(dist>=spec.range[1])acc+=5; } return tacticalRnd()*100<cl(acc,5,95); }
 
 async function applyDamage(u,dmg,src,opts={}){
-  u.hp=Math.max(0,u.hp-dmg);
+  const hpBefore=u.hp; u.hp=Math.max(0,u.hp-dmg);
+  if(u.hp<hpBefore)combatCue(opts.critical?'critical':opts.magic?'magic-impact':'physical-impact','impact',u.id);
   const willKnockOut=u.hp<=0&&u.alive;
   if(willKnockOut)playFeedbackVfx('kill_spark',src,u);
   if(willKnockOut){ flashUnit(u,'#ff6a5a'); await knockOut(u,src); }
@@ -1368,11 +1375,11 @@ async function applyDamage(u,dmg,src,opts={}){
     checkEnd();
   }
 }
-function applyHeal(u,amt){ if(!u.alive)return; u.hp=Math.min(u.maxhp,u.hp+amt); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
-function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1?2:requestedTurns; t.statuses[st]=Math.max(t.statuses[st]||0,effectiveTurns); if(!G.stage)floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
+function applyHeal(u,amt){ if(!u.alive)return; const hpBefore=u.hp; u.hp=Math.min(u.maxhp,u.hp+amt); if(u.hp>hpBefore)combatCue('recover','heal',u.id); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
+function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1?2:requestedTurns; const before=t.statuses[st]||0; t.statuses[st]=Math.max(before,effectiveTurns); if(t.statuses[st]>before)combatCue(isNegative(st)?'status-negative':'support','status-'+st,t.id); if(!G.stage)floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
 async function knockOut(u,src){
   const baseline=motionBaseline(u),away=src?motionDirection(u,{source:src,reaction:true},true):{x:0,z:0},state=getUnitVisualState(u.team,false,true),sign=spriteScaleSign(u.spr),scale=largeUnitSpriteScale(u),outlineScale=scale*1.1;
-  killSpriteMotion(u); const epoch=beginUnitMotion(u); u.alive=false; u.downed=true; clearBossIntentPresentation(u);
+  killSpriteMotion(u); const epoch=beginUnitMotion(u); u.alive=false; u.downed=true; combatCue('knockout','ko',u.id); clearBossIntentPresentation(u);
   if(u.size>1)clearBossCells(u); else { const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; }
   if(!G.stage)floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4,true); screenFlash('#ff5a4a',0.22); refreshTurnbar();
   try{
@@ -1385,7 +1392,7 @@ async function knockOut(u,src){
   } finally { if(isUnitMotionCurrent(u,epoch)){ u.grp.position.copy(baseline.group); u.grp.visible=state.visible; u._motionPlaying=false; if(u.team==='player'&&u.mat&&u.mat.color)u.mat.color.set('#ff5a4a'); } }
 }
 async function reviveUnit(u,hp){
-  killSpriteMotion(u); u.alive=true; u.downed=false; u.hp=hp; u.statuses={}; u.grp.visible=true;
+  const wasDown=!u.alive&&u.downed; killSpriteMotion(u); u.alive=true; u.downed=false; u.hp=hp; if(wasDown&&hp>0)combatCue('recover','revive',u.id); u.statuses={}; u.grp.visible=true;
   if(u.size>1)occupyBossCells(u); else { const c=u.cell(); if(c&&c.occupant&&c.occupant!==u){ const f=freeNear(u.gx,u.gz); if(f){ u.gx=f.gx; u.gz=f.gz; } } const nc=cellAt(u.gx,u.gz); if(nc&&!nc.occupant)nc.occupant=u; }
   const baseline=motionBaseline(u),epoch=beginUnitMotion(u),scale=largeUnitSpriteScale(u),sign=u.spriteFacing*(u.visualFacingX<0?-1:1),outlineScale=scale*1.1; u._motionPlaying=true;
   u.grp.position.copy(baseline.group); u.spr.position.copy(baseline.spritePosition); u.spr.scale.set(sign*scale*1.04,.32,1); u.spr.rotation.z=(u.facing.dx<0?-1:1)*1.15; u.mat.opacity=.34; u.mat.color.set('#bfffc0'); u.blob.material.opacity=.12;
@@ -1847,6 +1854,7 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   const impactStarted=new Promise(resolve=>{signalImpact=resolve;}),impactFinished=new Promise(resolve=>{finishImpact=resolve;});
   // Align the isolated runtime-frame proof with the real attack choreography,
   // after Stage lead-in/settle rather than consuming it during the transition.
+  const launchSound=combatLaunchSound(spec); if(launchSound)combatCue(launchSound,'launch');
   const animation=attackAnim(u,spec,impactCx,impactCz,targets,{...context,onResolveImpact:async()=>{signalImpact(); await impactFinished;}});
   await Promise.race([impactStarted,animation]);
   const _preState=new Map(); _preState.set(u,{alive:u.alive,hp:u.hp,statuses:new Set(Object.keys(u.statuses))}); for(const _t of targets)_preState.set(_t,{alive:_t.alive,hp:_t.hp,statuses:new Set(Object.keys(_t.statuses))});
@@ -1860,7 +1868,7 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
       if(eff.kind==='hp_cost'){ if(eff.target==='caster'||eff.target==='self'){ const cost=Math.round(u.maxhp*(eff.hpCostPercent||0)); u.hp=Math.max(1,u.hp-cost); floatText(u,'-'+cost,'#ff5a4a',true); refreshPanel(u); } continue; }
       const etgts=effectTargets(u,spec,impactCx,impactCz,eff,context);
       if(eff.kind==='damage'){
-        for(const t of etgts){ if(!rollHit(u,t,spec)){ floatText(t,'RATÉ','#cfd6e6'); continue; }
+        for(const t of etgts){ if(!rollHit(u,t,spec)){ combatCue('miss','miss',t.id); floatText(t,'RATÉ','#cfd6e6'); continue; }
           const dmgSpec={type:eff.damageType||spec.type,power:eff.power||spec.power,penetration:eff.penetration||spec.penetration,crit:spec.crit,elanPierce:spec.elanPierce,elanMul:spec.elanMul};
           const crit=!spec.flatDmg&&tacticalRnd()<critChance(u,t,spec); let {dmg,lab}=computeDamage(u,t,dmgSpec); if(crit)dmg=Math.round(dmg*1.5);
           if(spec.damageMultiplier)dmg=Math.round(dmg*spec.damageMultiplier);
@@ -1868,7 +1876,7 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
           if(spec.bonusVsAfflicted&&Object.keys(t.statuses).some(s=>isNegative(s)))dmg=Math.round(dmg*spec.bonusVsAfflicted);
           floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':'#ffffff',lab==='DOS'||crit);
           if(crit){ if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); } logMsg('Coup critique !'); }
-          await applyDamage(t,dmg,u,{critical:crit}); totalDamageDealt+=dmg; if(G.over)break;
+          await applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag')}); totalDamageDealt+=dmg; if(G.over)break;
           if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); }
           if(t.alive&&eff.status){ applyStatus(t,eff.status,eff.statusTurns); if(eff.status==='taunt')t._taunter=u; }
         }
@@ -1879,11 +1887,11 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
       } else if(eff.kind==='revive'){
         for(const t of etgts){ if(!t.alive&&t.downed)reviveUnit(t,Math.round(t.maxhp*(spec.power||0.5))); }
       } else if(eff.kind==='dispel'){
-        for(const t of etgts){ let n=0; for(const s in t.statuses){ const neg=isNegative(s),pos=!neg; if((eff.dispelType==='negative'&&neg)||(eff.dispelType==='positive'&&pos)||(eff.dispelType==='all')){ delete t.statuses[s]; n++; } } if(!G.stage)floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); refreshPanel(t); }
+        for(const t of etgts){ let n=0; for(const s in t.statuses){ const neg=isNegative(s),pos=!neg; if((eff.dispelType==='negative'&&neg)||(eff.dispelType==='positive'&&pos)||(eff.dispelType==='all')){ delete t.statuses[s]; n++; } } if(n)combatCue('support','cleanse',t.id); if(!G.stage)floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); refreshPanel(t); }
       } else if(eff.kind==='lifesteal'){
         // processed after all damage effects
       } else if(eff.kind==='ap_restore'){
-        for(const t of etgts){ t.ap=Math.min(t.maxap,t.ap+(eff.apRestore||spec.apRestore||1)); floatText(t,'+'+(eff.apRestore||spec.apRestore||1)+' AP','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); }
+        for(const t of etgts){ const previousAp=t.ap; t.ap=Math.min(t.maxap,t.ap+(eff.apRestore||spec.apRestore||1)); if(t.ap>previousAp)combatCue('support','ap',t.id); floatText(t,'+'+(eff.apRestore||spec.apRestore||1)+' AP','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); }
       }
       await wait(0.1);
     }
@@ -1892,12 +1900,12 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
     if(lsEffect&&totalDamageDealt>0&&u.alive){ const lsPct=lsEffect.lifestealPercent||0; const healAmt=Math.round(totalDamageDealt*lsPct); if(healAmt>0){ applyHeal(u,healAmt); } }
   } else if(spec.heal){ for(const t of targets)applyHeal(t,spec.healPercent!=null?Math.round(t.maxhp*spec.healPercent):(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(u)*spec.power))+Math.floor(effCHA(u)/4)); await wait(0.25); }
   else if(spec.revive){ let revived=0; for(const t of targets){ if(!t.alive&&t.downed&&t.team===u.team){ reviveUnit(t,Math.round(t.maxhp*spec.power)); revived++; } } if(revived>0&&spec.item&&spec.itemId)G.inv[spec.itemId]=Math.max(0,(G.inv[spec.itemId]||0)-1); await wait(0.25); }
-  else if(spec.apRestore){ for(const t of targets){ t.ap=Math.min(t.maxap,t.ap+spec.apRestore); floatText(t,'+'+spec.apRestore+' AP','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); } await wait(0.25); }
-  else if(spec.cure){ for(const t of targets){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } if(!G.stage)floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); flashUnit(t,'#bfffc0'); refreshPanel(t); } await wait(0.25); }
+  else if(spec.apRestore){ for(const t of targets){ const previousAp=t.ap; t.ap=Math.min(t.maxap,t.ap+spec.apRestore); if(t.ap>previousAp)combatCue('support','ap',t.id); floatText(t,'+'+spec.apRestore+' AP','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); } await wait(0.25); }
+  else if(spec.cure){ for(const t of targets){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } if(n)combatCue('support','cleanse',t.id); if(!G.stage)floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); flashUnit(t,'#bfffc0'); refreshPanel(t); } await wait(0.25); }
   else { let basicDmg=0; for(const t of targets){ const friendly=t.team===u.team;
       if(spec.key==='attack'&&spec.weaponType==='crosier'&&friendly&&t.alive){ const healAmt=Math.max(1,Math.round(effMAG(u)*0.5)); applyHeal(t,healAmt); await wait(0.1); continue; }
-      if((spec.power||0)<=0&&!spec.flatDmg){ if(rollHit(u,t,spec)){ if(spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; const sn=(STATUS[spec.status]&&STATUS[spec.status].name)||spec.status; if(!G.stage)floatText(t,sn.toUpperCase()+' !','#ff9a4a',true); await wait(0.15); } } else { floatText(t,'RATÉ','#cfd6e6'); await wait(0.15); } continue; }
-      if(!rollHit(u,t,spec)){ floatText(t,'RATÉ','#cfd6e6'); await wait(0.15); continue; }
+      if((spec.power||0)<=0&&!spec.flatDmg){ if(rollHit(u,t,spec)){ if(spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; const sn=(STATUS[spec.status]&&STATUS[spec.status].name)||spec.status; if(!G.stage)floatText(t,sn.toUpperCase()+' !','#ff9a4a',true); await wait(0.15); } } else { combatCue('miss','miss',t.id); floatText(t,'RATÉ','#cfd6e6'); await wait(0.15); } continue; }
+      if(!rollHit(u,t,spec)){ combatCue('miss','miss',t.id); floatText(t,'RATÉ','#cfd6e6'); await wait(0.15); continue; }
       const crit=!spec.flatDmg&&tacticalRnd()<critChance(u,t,spec); let {dmg,lab}=spec.flatDmg?{dmg:Math.max(1,Math.round(spec.flatDmg*tacticalRnd(0.85,1.15))),lab:'face'}:computeDamage(u,t,spec); if(crit)dmg=Math.round(dmg*1.5);
       if(!spec.flatDmg){ if(spec.damageMultiplier)dmg=Math.round(dmg*spec.damageMultiplier); if(spec.bonusVsSize&&t.size>1)dmg=Math.round(dmg*spec.bonusVsSize); if(spec.bonusVsAfflicted&&Object.keys(t.statuses).some(s=>isNegative(s)))dmg=Math.round(dmg*spec.bonusVsAfflicted); }
       floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':(friendly?'#ffd27a':'#ffffff'),lab==='DOS'||crit);
@@ -1906,7 +1914,7 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
         logMsg('Coup critique !');
       }
       if(lab==='DOS')floatText({grp:{position:t.grp.position.clone().add(new THREE.Vector3(0,0.3,0))},gx:t.gx,gz:t.gz},'DOS !','#ff5a4a');
-      await applyDamage(t,dmg,u,{critical:crit}); basicDmg=dmg; if(G.over)break; if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } }
+      await applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag')}); basicDmg=dmg; if(G.over)break; if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.status){ applyStatus(t,spec.status,spec.statusTurns); if(spec.status==='taunt')t._taunter=u; } }
     if(spec.key==='attack'&&spec.weaponType==='scythe'&&u.alive&&basicDmg>0){ applyHeal(u,Math.max(1,Math.round(basicDmg*0.10))); }
     if(spec.key==='attack'&&spec.weaponType==='hand_cannon'){ const splashTgts=aliveUnits().filter(st=>st.team!==u.team&&st.alive&&Math.abs(st.gx-impactCx)+Math.abs(st.gz-impactCz)===1); for(const st of splashTgts){ const sd=Math.max(1,Math.round(basicDmg*0.25)); floatText(st,'-'+sd,'#ffaa6a'); await applyDamage(st,sd,u); if(G.over)break; await wait(0.06); } }
     if(spec.key==='attack'&&spec.weaponType==='greatsword'&&u.alive&&basicDmg>0&&tacticalRnd()<(0.20+(isBreakOpen(targets[0])?0.20:0))){ const t=targets[0]; if(t&&t.alive){ applyStatus(t,'curse',2); } }
@@ -1937,11 +1945,11 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   await combatStageExit(); G.busy=false; checkEnd();
 }
 async function executeAction(u,spec,cx,cz){
-  G._actionFeedbackToken='action-'+(++actionFeedbackSerial); G._actionShakeFrequency=18;
+  G._actionFeedbackToken='action-'+(++actionFeedbackSerial); soundAction=G._actionFeedbackToken; soundActionSuppressed=Boolean(getSkillPresentation(spec)?.ultimate); G._actionShakeFrequency=18;
   try { await executeActionCore(u,spec,cx,cz); }
   finally {
     try { if(G.stage)await combatStageExit(); else restoreUnitFocus(); }
-    finally { if(u&&u.alive)restoreUnitVisualBaseline(u); G.busy=false; }
+    finally { soundAction=null; soundActionSuppressed=false; if(u&&u.alive)restoreUnitVisualBaseline(u); G.busy=false; }
   }
 }
 
@@ -2090,7 +2098,7 @@ function pickCell(ev){ ndc.x=(ev.clientX/innerWidth)*2-1; ndc.y=-(ev.clientY/inn
 function pickUnit(ev){ const c=pickCell(ev); return (c&&c.occupant&&c.occupant.alive)?c.occupant:null; }
 
 function drawReach(){ clearHL(); const keys=new Set(G.reach.list.map(t=>cellKey(t.gx,t.gz))); addInvalidTiles(keys,true); for(const t of G.reach.list){ if(t.gx===G.active.gx&&t.gz===G.active.gz)continue; addHL(t.gx,t.gz,CFG.COL.move,COMBAT_PRESENTATION.arena.moveTileOpacity,'move'); } }
-function enterMove(){ if(G.movedThisTurn||G.busy)return; if(G.active.immobile){ toast('Immobile — deplacement impossible'); return; } if(hasS(G.active,'root')){ toast('Entravé — déplacement impossible'); return; } G.mode='move'; G.reach=reachableStand(G.active); unitFocus.focus(G.units,G.active); closeMenus(true); drawReach(); setHint('Déplacement — choisissez une case'); focusBattlefield('move',G.active); }
+function enterMove(){ if(G.movedThisTurn||G.busy)return; if(G.active.immobile){ toast('Immobile — deplacement impossible'); combatCue('refused'); return; } if(hasS(G.active,'root')){ toast('Entravé — déplacement impossible'); combatCue('refused'); return; } combatCue('confirm'); G.mode='move'; G.reach=reachableStand(G.active); unitFocus.focus(G.units,G.active); closeMenus(true); drawReach(); setHint('Déplacement — choisissez une case'); focusBattlefield('move',G.active); }
 function drawRange(){ hideActionPreview(); clearHL(); const sp=G.pending.spec,keys=new Set(G.pending.centers.map(c=>cellKey(c.gx,c.gz))); addInvalidTiles(keys,false); const helpful=Boolean(sp.heal||sp.support||sp.revive||sp.cure); const rangeCol=helpful?0x6aff7a:0xff6a5a; const maxR=sp.range[1]||0; const ux=G.active.size>1?bossCenterGX(G.active):G.active.gx, uz=G.active.size>1?bossCenterGZ(G.active):G.active.gz; for(const c of G.pending.centers){ const md=Math.abs(c.gx-ux)+Math.abs(c.gz-uz); if(maxR>0&&md===maxR){ addHL(c.gx,c.gz,0xffd84a,COMBAT_PRESENTATION.arena.rangeTileOpacity,'range_max'); } else { addHL(c.gx,c.gz,rangeCol,COMBAT_PRESENTATION.arena.rangeTileOpacity,'range'); } }
   for(const c of G.pending.centers){ const occ=cellAt(c.gx,c.gz)?.occupant; if(!occ||!occ.alive||!G.active)continue; const isAlly=occ.team===G.active.team; if(helpful&&!isAlly)continue; if(!helpful&&isAlly)continue;
     const tk=helpful?'target_ally':'target',tc=helpful?0x7edf7a:CFG.COL.foe; addHL(c.gx,c.gz,tc,COMBAT_PRESENTATION.arena.targetTileOpacity,tk);
@@ -2103,16 +2111,16 @@ function previewAt(cx,cz){ drawRange(); const sp=G.pending.spec,hoverCell=cellAt
     else if(sp.revive){ const ko=G.units.find(x=>!x.alive&&x.downed&&x.gx===gx&&x.gz===gz); if(ko){col=0x7edf7a;op=COMBAT_PRESENTATION.arena.targetTileOpacity;kind='target_ally';} }
     addHL(gx,gz,col,op,kind); if(occ&&occ.alive&&G.active&&occ.team!==G.active.team&&!helpful)addRingHL(gx,gz,CFG.COL.foe,COMBAT_PRESENTATION.arena.targetTileOpacity+.18); if(occ&&occ.alive&&G.active&&occ.team===G.active.team&&helpful)addRingHL(gx,gz,0x7edf7a,COMBAT_PRESENTATION.arena.targetTileOpacity+.18); } }
 function enterTarget(spec){ if(G.busy)return;
-  if(spec.ap>G.active.ap){ toast('AP insuffisants'); return; }
-  const centers=rangeCells(G.active,spec); if(!centers.length){ toast('Aucune cible à portée'); return; }
-  G.mode='target'; G._targetPreviewKey=null; G.pending={spec,centers,keys:new Set(centers.map(c=>c.gx+','+c.gz))}; closeMenus(true);
+  if(spec.ap>G.active.ap){ toast('AP insuffisants'); combatCue('refused'); return; }
+  const centers=rangeCells(G.active,spec); if(!centers.length){ toast('Aucune cible à portée'); combatCue('refused'); return; }
+  combatCue('confirm'); G.mode='target'; G._targetPreviewKey=null; G.pending={spec,centers,keys:new Set(centers.map(c=>c.gx+','+c.gz))}; closeMenus(true);
   const validTargets=[...new Set(centers.flatMap(c=>affectedUnits(G.active,spec,c.gx,c.gz)))];
   unitFocus.focus(G.units,G.active,validTargets);
   if(spec.self) previewAt(G.active.gx,G.active.gz); else drawRange();
   setHint((spec.self?'Action':(spec.type==='move'?'Déplacement':'Ciblage'))+' — '+spec.name); focusBattlefield(selectedCombatAction(G.mode,spec.key),spec.self?G.active:centers[0],spec.wi); }
 function cancelToMenu(){ if(G.busy)return;
   if(G.mode==='menu'&&!dom.skillmenu.classList.contains('hidden')){ closeSubmenu(); return; }
-  if(G.mode==='move'||G.mode==='target'){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKey=null; G.pending=null; clearHL(); G.mode='menu'; openActionMenu(); setHint(G.active.name+' — à vous de jouer'); restoreBattlefieldFocus(); } }
+  if(G.mode==='move'||G.mode==='target'){ combatCue('back'); restoreUnitFocus(); hideActionPreview(); G._targetPreviewKey=null; G.pending=null; clearHL(); G.mode='menu'; openActionMenu(); setHint(G.active.name+' — à vous de jouer'); restoreBattlefieldFocus(); } }
 
 async function doExecute(spec,cx,cz){ await executeAction(G.active,spec,cx,cz); afterSub(); }
 function afterSub(){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKey=null; if(G.over)return; G.mode='menu'; selectUnit(G.active); openActionMenu();
@@ -2122,7 +2130,7 @@ function afterSub(){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKe
   if(!canAct && G.movedThisTurn) setHint('Tour terminé — Entrée pour attendre'); else setHint(u.name+' — choisissez une action'); restoreBattlefieldFocus(); }
 function undoMove(){ if(G.busy||!G.movedThisTurn||G.movedBeforeAct||G.startGX==null)return;
   const returnFocus=keyboardInput&&(dom.menu.contains(document.activeElement)||document.activeElement===renderer.domElement);
-  restoreUnitFocus(); const u=G.active; placeUnit(u,G.startGX,G.startGZ,true); G.movedThisTurn=false; clearHL(); G.mode='menu'; selectUnit(u); openActionMenu(); setHint(u.name+' — déplacement annulé');
+  combatCue('back'); restoreUnitFocus(); const u=G.active; placeUnit(u,G.startGX,G.startGZ,true); G.movedThisTurn=false; clearHL(); G.mode='menu'; selectUnit(u); openActionMenu(); setHint(u.name+' — déplacement annulé');
   if(returnFocus&&(document.activeElement===document.body||document.activeElement===renderer.domElement)){
     const button=dom.menu.querySelector('button[data-a="move"]:not(:disabled)')||dom.menu.querySelector('button:not(:disabled)'); button?.focus({preventScroll:true});
   } }
@@ -2161,22 +2169,25 @@ function hoverBattlefieldCell(c){ const hoveredUnit=(c&&c.occupant&&c.occupant.a
 function onPointerMove(ev){ if(G.busy||G.over)return; const c=pickCell(ev); if(c)keyboardCell={gx:c.gx,gz:c.gz}; hoverBattlefieldCell(c); }
 async function onClick(ev){ if(G.over)return; if(ev.button!==0){ cancelToMenu(); return; } if(G.busy)return; await activateBattlefieldCell(pickCell(ev)); }
 function announceBattlefieldRejection(action,c){
-  if(!keyboardInput)return;
+  combatCue('refused');
+  setHint(action+' refusé — choisissez une case disponible');
   const status=byId('combat-cell-status');
   if(status)status.textContent=(c?'Case '+(c.gx+1)+', '+(c.gz+1)+' — ':'')+action+' refusé — choisissez une case disponible';
 }
 async function activateBattlefieldCell(c){ if(G.over||G.busy||G.stage)return;
   if(G.mode==='deploy'){ if(c&&inZone(c.gx,c.gz)){
+    const wasPlaced=c.occupant?.team==='player',beforeIds=deployedIds();
     if(c.occupant&&c.occupant.team==='player'){
       const occupant=c.occupant,occupantId=occupant.campaignId||occupant.name;
       if(G.selectedDeployId&&G.selectedDeployId!==occupantId){ removeUnit(occupant); const nu=deployUnit(c.gx,c.gz); if(nu)selectUnit(nu); }
       else { G.selectedDeployId=occupantId; removeUnit(occupant); const def=deployDefById(occupantId); if(def)selectUnitData(def); }
     } else if(!c.occupant&&G.selectedDeployId){ const nu=deployUnit(c.gx,c.gz); if(nu)selectUnit(nu); }
+    if(wasPlaced||deployedIds().size!==beforeIds.size)combatCue(wasPlaced&&!c.occupant?'back':'confirm');
     drawDeployZone(); openDeployMenu(); setHint(G.deployedUnits.length+' / '+playerDeployLimit()+' unités placées');
   } return; }
   if(G.mode==='move'){ if(c&&(c.gx!==G.active.gx||c.gz!==G.active.gz)&&G.reach.list.some(t=>t.gx===c.gx&&t.gz===c.gz)){ G.movedThisTurn=true; await moveAlong(G.active,buildPath(G.reach.prev,G.active,c.gx,c.gz)); afterSub(); } else announceBattlefieldRejection('Déplacement',c); return; }
   if(G.mode==='target'){ const sp=G.pending.spec; if(sp.self){ await doExecute(sp,G.active.gx,G.active.gz); return; } if(c&&G.pending.keys.has(c.gx+','+c.gz)) await doExecute(sp,c.gx,c.gz); else announceBattlefieldRejection('Ciblage',c); return; }
-  if((G.mode==='menu'||G.mode==='idle')&&c&&c.occupant){ G.pinnedUnit=c.occupant.alive?c.occupant:null; selectUnit(c.occupant); }
+  if((G.mode==='menu'||G.mode==='idle')&&c&&c.occupant){ if(G.selected!==c.occupant)combatCue('navigate'); G.pinnedUnit=c.occupant.alive?c.occupant:null; selectUnit(c.occupant); }
 }
 
 function bindInput(){ const el=renderer.domElement;
@@ -2218,8 +2229,10 @@ function applyGraphics(){ REDUCED_GRAPHICS=prefersReducedMotion(REQUESTED_REDUCE
 function renderSettings(){ if(!dom.settings)return;
   dom.settings.innerHTML='<div class="settings__ttl">Réglages</div>'+
     '<button class="settings__row" type="button" data-s="fxhd" role="menuitemcheckbox" aria-checked="'+(!REQUESTED_REDUCED_GRAPHICS)+'"><span>Effets HD</span><i class="settings__sw'+(!REQUESTED_REDUCED_GRAPHICS?' on':'')+'"></i></button>'+
+    (CAMPAIGN_MODE?'<button class="settings__row" type="button" data-s="sounds"><span>Sons</span><i class="settings__hint">♪</i></button>':'')+
     '<button class="settings__row" type="button" data-s="help" role="menuitem"><span>Aide & commandes</span><i class="settings__hint">?</i></button>';
   dom.settings.querySelector('[data-s="fxhd"]').onclick=()=>{ REQUESTED_REDUCED_GRAPHICS=!REQUESTED_REDUCED_GRAPHICS; applyGraphics(); renderSettings(); };
+  dom.settings.querySelector('[data-s="sounds"]')?.addEventListener('click',()=>combatAudio.settings());
   dom.settings.querySelector('[data-s="help"]').onclick=()=>{ const d=dom.help&&dom.help.querySelector('details'); if(d)d.open=true; toggleSettings(false); };
 }
 function toggleSettings(show){ if(!dom.settings)return; const open=(show==null)?dom.settings.classList.contains('hidden'):show;
@@ -2258,7 +2271,7 @@ function refreshTurnbar(){ dom.turnbar.classList.remove('hidden'); renderObjecti
 function syncActionDockState(){ const selected=selectedCombatAction(G.mode,G.pending?.spec?.key,dom.skillmenu.dataset.kind);
   dom.menu.querySelectorAll('.ico').forEach(button=>{ const active=button.dataset.a===selected; button.classList.toggle('is-selected',active); button.classList.toggle('is-locked',(G.mode==='move'||G.mode==='target')&&!active); button.setAttribute('aria-pressed',active?'true':'false'); }); }
 function closeMenus(retainDock=false){ if(!retainDock)dom.menu.classList.add('hidden'); dom.skillmenu.classList.add('hidden'); dom.skillmenu.dataset.kind=''; syncActionDockState(); }
-function closeSubmenu(){ const action=dom.skillmenu.dataset.kind,hadFocus=dom.skillmenu.contains(document.activeElement); dom.skillmenu.classList.add('hidden'); dom.skillmenu.dataset.kind=''; syncActionDockState(); if(keyboardInput&&hadFocus){ const button=[...dom.menu.querySelectorAll('button:not(:disabled)')].find(b=>b.dataset.a===action)||dom.menu.querySelector('button:not(:disabled)'); button?.focus({preventScroll:true}); } }
+function closeSubmenu(){ if(!dom.skillmenu.classList.contains('hidden'))combatCue('back'); const action=dom.skillmenu.dataset.kind,hadFocus=dom.skillmenu.contains(document.activeElement); dom.skillmenu.classList.add('hidden'); dom.skillmenu.dataset.kind=''; syncActionDockState(); if(keyboardInput&&hadFocus){ const button=[...dom.menu.querySelectorAll('button:not(:disabled)')].find(b=>b.dataset.a===action)||dom.menu.querySelector('button:not(:disabled)'); button?.focus({preventScroll:true}); } }
 function tipFor(u,b){ const a=b.dataset.a;
   if(a==='move')return 'Déplacer · MOV '+u.mov;
   if(a==='undo')return 'Annuler le déplacement (U)';
@@ -2284,14 +2297,14 @@ function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ 
     b.onmouseleave=()=>{ lbl.classList.remove('on'); }; }); syncActionDockState(); }
 function onMenu(a,b){ if(G.mode==='move'||G.mode==='target'){ if(b.classList.contains('is-selected'))cancelToMenu(); return; } if(b.disabled)return; const u=G.active; selectUnit(u);
   if(a==='move')enterMove(); else if(a==='undo')undoMove(); else if(a==='attack')openElanMenu(+b.dataset.wi||0); else if(a==='skill')openSkillMenu(); else if(a==='item')openItemMenu(); else if(a==='wait')endTurn(); }
-function openElanMenu(wi){ const u=G.active; if(!u)return; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='attack'; syncActionDockState(); const n=G.basicAttacksThisTurn;
+function openElanMenu(wi){ const u=G.active; if(!u)return; combatCue('confirm'); dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='attack'; syncActionDockState(); const n=G.basicAttacksThisTurn;
   let h='<div class="ttl">Élan — '+u.ap+' AP'+(n>0?' · escalade +'+n+' PA':'')+'</div>';
   for(let ch=0;ch<3;ch++){ const sp=getSpec(u,'attack',wi,ch); const dis=sp.ap>u.ap?'dis':'';
     const info='×'+sp.elanMul.toFixed(1)+(sp.elanPierce?' · perce '+Math.round(sp.elanPierce*100)+'% END':'')+(ch>=2?' · préc +10%':'');
     h+='<button type="button" class="btn '+dis+'" data-ch="'+ch+'" title="Coût '+sp.ap+' AP · dégâts '+info+'"'+(dis?' disabled':'')+'>'+sp.name+' <small>'+sp.ap+' AP · '+info+'</small></button>'; }
   h+='<button type="button" class="btn" data-ch="_back">Retour</button>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const ch=b.dataset.ch; if(ch==='_back'){ closeSubmenu(); return; } enterTarget(getSpec(u,'attack',wi,+ch)); }); }
-function openSkillMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='skill'; syncActionDockState();
+function openSkillMenu(){ combatCue('confirm'); const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='skill'; syncActionDockState();
   const skills=u.skills.map(id=>{ const s=SKILLS[id],sp=getSpec(u,id),isRevive=sp.revive||(s.type==='revive'); return {id,name:sp.name,cost:sp.ap,description:s.desc||sp.desc||'',icon:sp.icon||s.icon,upgradeLevel:sp.upgradeLevel,disabled:sp.ap>u.ap||(isRevive&&!G.units.some(x=>!x.alive&&x.downed&&x.team===u.team))}; });
   dom.skillmenu.innerHTML='<div class="ttl">Compétences <small>'+u.ap+' PA</small></div>'+renderCombatSkillRows(skills)+'<button type="button" class="btn combat-menu-back" data-s="_back">Retour</button>';
   dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const id=b.dataset.s; if(id==='_back'){ closeSubmenu(); return; } enterTarget(getSpec(u,id)); }); }
@@ -2304,7 +2317,7 @@ function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name
   if(it.effect==='grenade') return Object.assign(base,{type:'mag', power:0,offensive:true,acc:1,flatDmg:it.flatDmg,status:it.status,statusTurns:it.statusTurns,targetMode:'enemy'});
   return base; }
 function invCount(){ let n=0; for(const k in G.inv)n+=G.inv[k]; return n; }
-function openItemMenu(){ const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='item'; syncActionDockState(); const nextCost=G.itemsUsedThisTurn+1; let h='<div class="ttl">Objets — sac commun · '+u.ap+' AP</div>'; let any=false;
+function openItemMenu(){ combatCue('confirm'); const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='item'; syncActionDockState(); const nextCost=G.itemsUsedThisTurn+1; let h='<div class="ttl">Objets — sac commun · '+u.ap+' AP</div>'; let any=false;
   for(const id in ITEMS){ const n=G.inv[id]||0; const it=ITEMS[id]; const hasKoAlly=it.effect!=='revive'||G.units.some(x=>!x.alive&&x.downed&&x.team===u.team); const dis=n<=0||u.ap<nextCost||!hasKoAlly; if(n>0)any=true; h+='<button type="button" class="btn '+(dis?'dis':'')+'" data-i="'+id+'" title="'+escHTML(it.desc)+'"'+(dis?' disabled':'')+'>'+escHTML(it.name)+' <small>×'+n+' · '+nextCost+' AP</small></button>'; }
   if(!any)h+='<div class="btn dis">Sac vide</div>';
   h+='<button type="button" class="btn" data-i="_back">Retour</button>';
@@ -2326,17 +2339,17 @@ function showCombatResult(presentation,onClick){
   dom.banner.className='combat-result-overlay combat-result-overlay--'+presentation.tone;
   dom.banner.innerHTML=renderCombatResult({...presentation,participants:G.deployedUnits});
   const action=byId('combat-result-action');
-  action.onclick=()=>{ if(action.disabled)return; action.disabled=true; onClick(); };
+  action.onclick=()=>{ if(action.disabled)return; action.disabled=true; combatCue('confirm'); onClick(); };
   action.focus();
 }
 function winWave(){ if(G.over)return; restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
-  logMsg('— Vague '+G.wave+' vaincue ! —');
+  combatCue('victory'); logMsg('— Vague '+G.wave+' vaincue ! —');
   if(CAMPAIGN_MODE){
     showCombatResult({tone:'victory',title:'Victoire',subtitle:COMBAT_LABEL,detailLabel:'Objectif sécurisé',detail:COMBAT_OBJECTIVE,buttonLabel:'Continuer la chronique',rewards:COMBAT_REWARDS},()=>notifyCampaignResult(true));
   } else {
     showCombatResult({tone:'wave',title:'Vague '+G.wave+' vaincue',subtitle:'La formation tient encore la ligne.',detailLabel:'Mode escarmouche',detail:'Renforts imminents',buttonLabel:'Vague '+(G.wave+1)+' ▶'},()=>{ dom.banner.className='hidden'; startNextWave(); });
   } }
-function endGame(win){ if(G.over)return; restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
+function endGame(win){ if(G.over)return; combatCue(win?'victory':'defeat'); restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
   showCombatResult({tone:win?'victory':'defeat',title:win?'Victoire':'Défaite',subtitle:win?'Élyndra est sauvée !':'Votre équipe a été vaincue…',detailLabel:win?'Issue':CAMPAIGN_MODE?'Sauvegarde':'Nouvel essai',detail:win?'Combat terminé':CAMPAIGN_MODE?'Recharger la dernière sauvegarde de cette partie':'Rejouer le combat',buttonLabel:CAMPAIGN_MODE?(win?'Revenir à la carte':'Recharger la sauvegarde'):'Rejouer'},()=>CAMPAIGN_MODE?notifyCampaignResult(Boolean(win)):location.reload());
   logMsg(win?'— VICTOIRE —':'— DÉFAITE —'); }
 
@@ -2418,7 +2431,7 @@ function autoDeploy(){
   for(const def of picks){ const c=formation.find(z=>!z.occupant)||G.deployZone.find(z=>!z.occupant); if(!c)break; deployUnit(c.gx,c.gz,def.campaignId||def.name); }
   drawDeployZone(); openDeployMenu(); setHint(G.deployedUnits.length+' / '+limit+' unités prêtes');
 }
-function beginBattle(){ if(!canStartDeployment(G.deployedUnits.length,playerDeployLimit()))return; G.mode='idle'; syncCombatHudCamera(); dom.menu.classList.remove('deploy-roster'); dom.panel.classList.remove('deploy-preview'); if(dom.objective.querySelector('details'))dom.objective.querySelector('details').open=false; clearHL(); closeMenus(); refreshTurnbar(); startRound(); }
+function beginBattle(){ if(!canStartDeployment(G.deployedUnits.length,playerDeployLimit()))return; combatCue('confirm'); G.mode='idle'; syncCombatHudCamera(); dom.menu.classList.remove('deploy-roster'); dom.panel.classList.remove('deploy-preview'); if(dom.objective.querySelector('details'))dom.objective.querySelector('details').open=false; clearHL(); closeMenus(); refreshTurnbar(); startRound(); }
 function deploymentCard(def){
   const id=def.campaignId||def.name,active=G.selectedDeployId===id,deployed=deployedIds().has(id);
   return renderDeploymentCard({...def,portrait:uiPortraitFor(def.portrait)},id,active,deployed);
@@ -2433,13 +2446,13 @@ function openDeployMenu(){
     '<div class="deploy-pages"><button type="button" aria-label="Page précédente" data-d="prev" '+(G.deployPage===0?'disabled':'')+'>‹</button><span>'+(G.deployPage+1)+' / '+pages+'</span><button type="button" aria-label="Page suivante" data-d="next" '+(G.deployPage>=pages-1?'disabled':'')+'>›</button></div>'+
     '<div class="deploy-actions"><button type="button" data-d="auto">Auto</button><button type="button" data-d="reset" '+(!G.deployedUnits.length?'disabled':'')+'>Retirer tout</button>'+
     '<button type="button" class="deploy-start" data-d="start" '+(!canStartDeployment(G.deployedUnits.length,playerDeployLimit())?'disabled':'')+'>Lancer le combat</button></div>';
-  dom.menu.querySelectorAll('[data-unit]').forEach(b=>b.onclick=()=>{ G.selectedDeployId=b.dataset.unit; openDeployMenu(); const d=deployDefById(G.selectedDeployId); if(d)selectUnitData(d); setHint('Placez « '+(d?.name||'unité')+' » sur une case disponible'); });
+  dom.menu.querySelectorAll('[data-unit]').forEach(b=>b.onclick=()=>{ if(G.selectedDeployId!==b.dataset.unit)combatCue('navigate'); G.selectedDeployId=b.dataset.unit; openDeployMenu(); const d=deployDefById(G.selectedDeployId); if(d)selectUnitData(d); setHint('Placez « '+(d?.name||'unité')+' » sur une case disponible'); });
   dom.menu.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>onDeploy(b.dataset.d,b));
   restoreFocus();
 }
 function renderDefinitionPanel(def,deployed=false){ dom.panel.dataset.team='player'; dom.panel.classList.remove('hidden'); dom.panel.classList.add('deploy-preview'); dom.panel.innerHTML=renderDeploymentPreview(def,deployed); }
 function selectUnitData(def){ const deployed=deployedById(def.campaignId||def.name); G.selected=deployed||null; renderDefinitionPanel(deployed||def,Boolean(deployed)); }
-function onDeploy(a,b){ if(b.disabled)return; if(a==='auto')autoDeploy(); else if(a==='reset')resetDeploy(); else if(a==='start')beginBattle(); else if(a==='prev'){G.deployPage--;openDeployMenu();}else if(a==='next'){G.deployPage++;openDeployMenu();} }
+function onDeploy(a,b){ if(b.disabled)return; if(a==='auto'){autoDeploy();combatCue('confirm');} else if(a==='reset'){resetDeploy();combatCue('back');} else if(a==='start')beginBattle(); else if(a==='prev'){G.deployPage--;combatCue('navigate');openDeployMenu();}else if(a==='next'){G.deployPage++;combatCue('navigate');openDeployMenu();} }
 function startDeployment(){
   G.mode='deploy'; G.deployedUnits=[]; G.rosterDefs=playerDefinitions(); G.deployPage=0;
   syncCombatHudCamera();
@@ -2863,11 +2876,12 @@ async function main(){ applyGraphics(); disposeMotionPreference=onReducedMotionC
   Object.assign(window,{__publishedVfx:{isActionPublished,getPublishedDraft,getActiveRegistry,__devUpdateOverlay,__devClearOverlay},
     __qaHelpers:_qaHelpers});
 }
-function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; disposeMotionPreference(); if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); disposeVfxComposerPanel(); combatVfxSystem.dispose(); combatStage.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
+function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; combatAudio.dispose(); disposeMotionPreference(); if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); disposeVfxComposerPanel(); combatVfxSystem.dispose(); combatStage.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
 window.addEventListener('pagehide',disposeCombatRuntime,{once:true});
 window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!=='none') dom.loading.innerHTML='<div style="color:#ff8a7a;max-width:540px;text-align:center;line-height:26px">Échec du chargement de Three.js.<br>Vérifiez votre connexion internet puis rechargez la page.<br><span style="color:#9fb0d0">La page doit être servie via un serveur local (http://), pas ouverte directement depuis le disque.</span></div>'; });
 window.addEventListener('unhandledrejection',e=>console.error(e.reason));
 function bootCampaign(message){
+  combatAudio.initialize(message.presentationSessionId);
   COMBAT_ID=message.config.id; COMBAT_SCENE_ID=message.config.sceneId||'forest_route'; COMBAT_OBJECTIVE=message.config.objective; COMBAT_LABEL=message.config.encounterLabel;
   COMBAT_REWARDS=message.config.rewards;
   MAX_PLAYER_UNITS=normalizeDeploymentLimit(message.config.maxPlayerUnits); CAMPAIGN_SQUAD=message.clan; CAMPAIGN_INVENTORY=message.inventory;

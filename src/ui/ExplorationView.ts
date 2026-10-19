@@ -1,4 +1,5 @@
 import type { CampaignStatusHud } from './CampaignStatusHud';
+import type { UiSoundFeedback } from './UiSoundPlayer';
 import { createCampaignIcon, type CampaignIcon } from './design-system/CampaignUi';
 import type { RefugePresentation } from './RefugePresentation';
 import { preloadRefugeBackground, type RefugeBackgroundReadiness } from './RefugeBackgroundReadiness';
@@ -6,6 +7,7 @@ import { preloadRefugeBackground, type RefugeBackgroundReadiness } from './Refug
 interface ExplorationViewOptions {
   root: HTMLElement;
   statusHud: CampaignStatusHud;
+  onSound?: UiSoundFeedback;
   backgroundPreloader?: (backgroundUrl: string) => Promise<RefugeBackgroundReadiness>;
 }
 
@@ -103,6 +105,7 @@ export class ExplorationView {
           if (section.dataset.backgroundReady === 'pending') return;
           const action = button.dataset.action as ExplorationAction;
           this.preferredFocusAction = action;
+          if (action !== 'rest') this.options.onSound?.(action === 'continue' ? 'back' : 'confirm');
           this.close();
           resolve(action);
         });

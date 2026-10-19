@@ -122,6 +122,17 @@ Object.assign(report,{target,routePlan,finalePlan,trialPlan,defeatNodeId,nativeD
 report.nativeTacticalPolicy='Salvation and skill targets prioritize lowest-health eligible native targets; novice crosier uses lowest-charge ally attacks and follows wounded allies; potions below75% for Champion/Raid and50% elsewhere; read-only rejection telemetry; existing native controls only';
 report.nativePreparationPolicy='Existing native equipment/shop and paid refuge rest; complete+equipment buys steel, then at Second refuge forges the existing Espadon de Braise recipe for80 permanent gold/2iron; explicit prepared routes may sell existing supplies to fund paid rest; exact native transactions and temporary-loot invariance';
 report.nativeNavigationPolicy='Production native adjacent POI intentions; no physical engine or driving fallback';
+if(jobOptions.parameters.verifyCombatFx){
+  report.combatFx={scope:'One earned native optional fight, shared settings and actual source starts; not artistic/all16families/global acceptance; prior native hidden remains OPEN',fullFeatureAcceptance:false,nativeHidden:'OPEN/NOT_OBSERVED_PLATFORM'};
+  await context.addInitScript(()=>{
+    window.__combatFxNative=[];
+    const original=AudioBufferSourceNode.prototype.start;
+    AudioBufferSourceNode.prototype.start=function(...args){
+      const player=window.__demoQaApp?.uiSounds,id=[...player?.buffers??[]].find(([,buffer])=>buffer===this.buffer)?.[0];
+      window.__combatFxNative.push({id,at:performance.now(),voices:player?.voices.size,scope:player?.combatScope??null});return original.apply(this,args);
+    };
+  });
+}
 report.driverSha256=createHash('sha256').update(await readFile('tools/demo-continuous-production-qa.mjs')).digest('hex');
 report.productionBundles=await Promise.all((await readdir('dist/assets')).filter(name=>/^(game|combat)-.*\.js$/.test(name))
   .map(async name=>({path:`dist/assets/${name}`,sha256:createHash('sha256').update(await readFile(`dist/assets/${name}`)).digest('hex')})));
@@ -1330,6 +1341,7 @@ async function battle(){
   for(const selector of ['#tutorial:not(.hidden) [data-action="skip"]','#boss-tutorial:not(.hidden) [data-action="start"]']){
     if(await frame.locator(selector).isVisible().catch(()=>false))await activateControl(frame.locator(selector));
   }
+  if(jobOptions.parameters.verifyCombatFx)await verifyCombatSoundSettings(frame,entry);
   const mountedKeyboard=!touchInput&&!priorProof&&entry.nodeId==='lion-opening-ambush';
   if(jobOptions.parameters.verifyDeploymentHealth)await verifyDeploymentHealth(frame,entry,'reserve');
   if(mountedKeyboard)await campaignDeploymentKeyboard(frame,entry);
@@ -1595,6 +1607,11 @@ try{
     const pattern=/const ([A-Za-z_$][\w$]*)=new [A-Za-z_$][\w$]*\([^;]+?\);window\.addEventListener\("pagehide",\(\)=>\1\.dispose/;
     if(!pattern.test(source))throw new Error('Built bootstrap observation hook missing');
     await route.fulfill({response,body:source.replace(pattern,(match,name)=>match.replace(';window.addEventListener',`;window.__demoQaApp=${name};window.addEventListener`))});});
+  if(jobOptions.parameters.verifyCombatFx){
+    const manifest=JSON.parse(await readFile('public/assets/audio/combat-fx-v1/manifest.json','utf8'));report.combatFx.httpAssets=[];
+    assert.equal(manifest.candidates.length,16);
+    for(const asset of manifest.candidates){const response=await page.request.get(`http://127.0.0.1:${port}/assets/audio/combat-fx-v1/${asset.file}`);assert.equal(response.status(),200);const digest=createHash('sha256').update(await response.body()).digest('hex');assert.equal(digest,asset.sha256);report.combatFx.httpAssets.push({id:asset.id,sha256:digest,status:200});}
+  }
   await page.goto(`http://127.0.0.1:${port}/`,{waitUntil:'networkidle'});
   assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),null);
   if(earnedText){
@@ -1926,7 +1943,7 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
       await capture(`ending-${live.endingId}-native-menu`);
       assert.deepEqual(report.errors,[]);report.pass=true;break;
     }
-    if(await page.locator('iframe.combat-frame').count()){await battle();if(report.defeatRecovery?.pass||report.pass)break;continue;}
+    if(await page.locator('iframe.combat-frame').count()){await battle();if(jobOptions.parameters.verifyCombatFx){await finishCombatSoundProof();break;}if(report.defeatRecovery?.pass||report.pass)break;continue;}
     if(await page.locator('.poi-map:visible').count()){
       await inspectPoiAtlas();
       live=await state();
@@ -1969,6 +1986,7 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
       }
       const needsValmirPreparation=(['second-refuge','valmir'].includes(target)||explorationPlan!=='direct')
         &&live.currentNodeId==='lion-valmir-road'&&live.resolvedNodeIds.includes(live.currentNodeId)&&!report.poi.valmirRefugePreparation;
+      if(jobOptions.parameters.verifyCombatFx){if(!report.combatFx.prepared)await prepareCombatSoundProof();await navigateExpedition(checkpointPoiId);continue;}
       if(!needsValmirPreparation&&await explorePoiStep(live))continue;
       if(target==='second-trial'&&live.currentNodeId==='lion-second-trial-combat'&&live.resolvedNodeIds.includes(live.currentNodeId)){
         assert.ok(report.battles.slice(report.inheritedBattleCount??0).some(b=>b.nodeId===live.currentNodeId&&b.pass&&b.outcome==='victory'));
@@ -2246,4 +2264,81 @@ async function runUiFx(options) {
     await writeFile(resolve(output,'results.json'),JSON.stringify(result,null,2)+'\n');job.finish(result);
   }
   console.log(JSON.stringify({pass:result.pass,scope:result.scope,events:result.events,errors:result.errors}));
+}
+
+/** Scoped opt-in on the existing native pilot; all game actions still use its real controls. */
+async function prepareCombatSoundProof(){
+  const fx=report.combatFx,before=await state(),save=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  assert.equal(await page.evaluate(()=>window.__combatFxNative.length),0,'Default-disabled combat lot played on resume');
+  await keyboardActivate('.poi-map [data-poi-action="sounds"]');
+  await keyboardActivate('[data-sound-toggle]');
+  await page.waitForFunction(()=>window.__demoQaApp.uiSounds.buffers.size===8);
+  assert.equal(await page.evaluate(()=>window.__combatFxNative.length),0,'Enabling queued an automatic cue');
+  await page.keyboard.press('Escape');assert.deepEqual(await state(),before);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),save);
+  fx.settingsPreserveOwnerAndSave=true;fx.defaultSilent=true;
+  // Use already-earned potions through the real inventory, no manufactured HP/AP/equipment.
+  await keyboardActivate('.poi-map [data-poi-action="company"]');
+  const health=await page.locator('.management .roster-card').evaluateAll(cards=>cards.map(c=>({id:c.dataset.unit,max:Number(c.querySelector('.roster-card__hp').textContent.split('/')[1])})));
+  await keyboardActivate('.management [data-tab="inventory"]');fx.potions=[];
+  for(const id of ['dark_mage','archer']){
+    const owner=await state(),unit=owner.clan.members.find(u=>u.id===id);if(!unit||unit.currentHealth>=50)continue;
+    assert.ok(owner.inventory.consumables.potion>0,'Earned preparation needs an existing potion');
+    await page.locator('[data-use-unit="potion"]').selectOption(id);await keyboardActivate('[data-use-item="potion"]');
+    const after=await state(),expected=structuredClone(owner);expected.inventory.consumables.potion--;
+    expected.clan.members.find(u=>u.id===id).currentHealth=Math.min(health.find(row=>row.id===id).max,unit.currentHealth+55);
+    assert.ok(expected.clan.members.find(u=>u.id===id).currentHealth>unit.currentHealth);assert.deepEqual(after,expected);
+    fx.potions.push({id,before:unit.currentHealth,after:expected.clan.members.find(u=>u.id===id).currentHealth});
+  }
+  await keyboardActivate('.management [data-action="close"]');fx.prepared=true;
+}
+async function verifyCombatSoundSettings(frame,entry){
+  const fx=report.combatFx,before=await state(),save=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  await page.waitForFunction(()=>window.__demoQaApp.uiSounds.buffers.size===24);
+  // Controlled presentation-only suspension, followed by a REAL native iframe key gesture.
+  // This proves gesture relay, not hidden/suspend visibility acceptance.
+  await page.evaluate(()=>window.__demoQaApp.uiSounds.context.suspend());
+  const open=async()=>{
+    if(!await frame.locator('#settings:not(.hidden)').count()) {await frame.locator('#settings-btn').focus();await page.keyboard.press('Enter');}
+    await frame.locator('[data-s="sounds"]').focus();await page.keyboard.press('Enter');await page.locator('.ui-sound-settings').waitFor();
+  };
+  await open();await page.waitForFunction(()=>window.__demoQaApp.uiSounds.context.state==='running');
+  fx.trustedIframeGestureResumedContext=true;fx.presentationOnlySuspension=true;
+  await capture('combat-audio-shared-settings');await keyboardActivate('[data-sound-toggle]');await page.keyboard.press('Escape');
+  assert.equal(await page.evaluate(()=>document.activeElement===document.querySelector('iframe.combat-frame')),true,'Settings did not return focus to iframe');
+  assert.equal(await frame.locator('[data-s="sounds"]').evaluate(e=>document.activeElement===e),true,'Settings did not restore the native combat opener');
+  const chooseOther=async()=>{const previous=await frame.evaluate(()=>G.selectedDeployId);const cards=frame.locator('#menu [data-unit]');let picked;for(const card of await cards.all()){const id=await card.getAttribute('data-unit');if(id!==previous){await activateControl(card);picked=id;break;}}assert.ok(picked);assert.equal(await frame.evaluate(()=>G.selectedDeployId),picked);assert.notEqual(picked,previous);};
+  let n=await page.evaluate(()=>window.__combatFxNative.length);
+  await chooseOther();await page.waitForTimeout(100);
+  assert.equal(await page.evaluate(()=>window.__combatFxNative.length),n,'Mute did not silence native iframe selection');
+  await open();await page.locator('#ui-sound-volume').focus();await page.keyboard.press('Home');await keyboardActivate('[data-sound-toggle]');await page.keyboard.press('Escape');
+  n=await page.evaluate(()=>window.__combatFxNative.length);
+  await chooseOther();await page.waitForTimeout(100);
+  assert.equal(await page.evaluate(()=>window.__combatFxNative.length),n,'Volume0 did not silence native iframe selection');
+  await open();await page.locator('#ui-sound-volume').focus();await page.keyboard.press('Home');for(let i=0;i<10;i++)await page.keyboard.press('ArrowRight');
+  assert.equal(await page.evaluate(()=>window.__demoQaApp.uiSounds.volume),.5);await page.keyboard.press('Escape');
+  fx.muteAndVolumeZero=true;fx.focusRestored=true;assert.deepEqual(await state(),before);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),save);
+  // Close settings using the same combat control before the standard deployment pilot.
+  if(await frame.locator('#settings:not(.hidden)').count())await activateControl(frame.locator('#settings-btn'));
+  entry.audioSettingsVerified=true;
+}
+async function finishCombatSoundProof(){
+  const fx=report.combatFx;await page.locator('.poi-map:visible').waitFor();
+  const entries=await page.evaluate(()=>window.__combatFxNative);fx.events=entries;
+  const battleEvents=entries.filter(e=>e.scope);fx.playedIds=[...new Set(battleEvents.map(e=>e.id))];
+  assert.ok(battleEvents.length>=6,'Missing actual native combat source starts');
+  assert.ok(fx.playedIds.includes('victory'),'Native victory cue not played');
+  assert.ok(fx.playedIds.some(id=>['physical-impact','magic-impact','critical'].includes(id)),'No resolved impact cue played');
+  assert.ok(fx.playedIds.some(id=>['light-blade','heavy-weapon','thrust','bow-release','magic-cast'].includes(id)),'No action launch cue played');
+  assert.ok(battleEvents.every(e=>e.voices<=4),'Combat voice cap exceeded');
+  assert.equal(await page.evaluate(()=>window.__demoQaApp.uiSounds.voices.size),0,'Closing combat left session voices');
+  const live=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  assert.equal(live.currentNodeId,checkpointPoiId);assert.deepEqual(JSON.parse(saved),live);await capture('combat-audio-earned-return');
+  await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');await page.locator('.poi-map:visible').waitFor();
+  assert.deepEqual(await state(),live,'Audio lot altered exact V6 reload');await page.waitForTimeout(150);
+  assert.equal(await page.evaluate(()=>window.__combatFxNative.length),0,'Restored sound preference replayed audio');
+  report.resumed=await state();report.expeditionCheckpoint={id:checkpointPoiId,pass:true,native:true,exactReload:true};
+  await writeFile(resolve(output,'earned-expedition-checkpoint-v6.json'),saved+'\n');fx.exactReloadAndSilentRestoredPreference=true;fx.noSessionVoicesRemain=true;
+  assert.deepEqual(report.errors,[]);report.pass=true;
 }

@@ -1,8 +1,10 @@
-# Combat FX — approved execution in progress
+# Combat FX implemented — native proof pending
 
-OD-2026-10-19-B direct Okay go; reviewed dedicated set1.7.0 amendment f4aae63e792025430c16153e1cd329c20745cf6b committed before this operational baseline and any runtime. Shared parent settings/gesture relay, audited UI feedback and16original candidate families authorized; artistic acceptance pending. Eight UI assets/335historicaljobs/nativehiddenOPEN preserved.
+Run codex-combat-audio-20261019T1537; reviewed set1.7.0/f4aae63 operational782e834 before runtime. Shared parent audio, trusted iframe gestures, same mute/volume,16original short combat candidates and audited UI feedback implemented. New art acceptance pending;8UIbytes unchanged,335historicaljobs preserved.
 
-Run codex-combat-audio-20261019T1537; phase REVIEWED_AMENDMENT_BASELINE_BEFORE_RUNTIME. Next: Implement parent-owned combat audio/real-gesture iframe relay,16original candidate FX and audited UI callbacks; focused tests then one compatible earned production scenario.
+101distinctsource tests10files passed across focused runs; helper25distinct pass across24/25full+isolatedflakyworker2/2. SandboxGittempdenial is environment-only. Build finalization/review and one native optional fight next; nativehiddenOPEN unchanged. No gameplay/PA/equipment/outcome injected.
+
+Next: Freeze reviewed source/build/driver, register native combat-FX proof from certified optional-patrol earned save, use existing potions and fight optional wolves once; inspect actual sources/settings/return/reload.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

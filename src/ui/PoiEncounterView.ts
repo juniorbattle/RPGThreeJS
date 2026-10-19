@@ -1,10 +1,11 @@
+import type { UiSoundFeedback } from './UiSoundPlayer';
 export interface PoiDialogContent {title: string; description: string; lines?: string[]}
 
 /** Accessible presentation only. Resolves native intentions; it never receives writable run state. */
 export class PoiEncounterView {
   private element: HTMLElement|null=null;
   private release: (()=>void)|null=null;
-  constructor(private readonly root: HTMLElement) {}
+  constructor(private readonly root: HTMLElement, private readonly onSound?: UiSoundFeedback) {}
 
   choose(content: PoiDialogContent): Promise<'fight'|'retreat'> {
     return this.open(content,[{id:'fight',label:'Combattre'},{id:'retreat',label:'Se replier'}],'retreat');
@@ -33,12 +34,13 @@ export class PoiEncounterView {
       if(previous?.isConnected&&!previous.closest('[inert]'))previous.focus({preventScroll:true});};
     return new Promise<T>(resolve=>{
       let completed=false;
-      const finish=(id:T)=>{if(completed)return;completed=true;for(const button of buttons)button.disabled=true;
+      const finish=(id:T,native=false)=>{if(completed)return;completed=true;for(const button of buttons)button.disabled=true;
+        if(native)this.onSound?.(id==='retreat'?'back':'confirm');
         this.release=null;backdrop.remove();this.element=null;finishFocus();resolve(id);};
       this.release=()=>finish(cancel);
-      controls.addEventListener('click',event=>{const id=(event.target as HTMLElement).closest<HTMLButtonElement>('button')?.dataset.poiDialogAction as T|undefined;if(id)finish(id);});
+      controls.addEventListener('click',event=>{const id=(event.target as HTMLElement).closest<HTMLButtonElement>('button')?.dataset.poiDialogAction as T|undefined;if(id)finish(id,true);});
       backdrop.addEventListener('keydown',event=>{
-        if(event.key==='Escape'){event.preventDefault();finish(cancel);}
+        if(event.key==='Escape'){event.preventDefault();finish(cancel,true);}
         if(event.key==='Tab'){event.preventDefault();const index=buttons.indexOf(document.activeElement as HTMLButtonElement);
           buttons[(index+(event.shiftKey?-1:1)+buttons.length)%buttons.length]?.focus();}
       });

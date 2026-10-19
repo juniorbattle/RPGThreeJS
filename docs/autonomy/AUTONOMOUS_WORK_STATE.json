@@ -3,16 +3,16 @@
   "runStartedAt": "2026-10-19T15:38:15.0959806Z",
   "runEndedAt": null,
   "activeTask": "COMBAT-AUDIO-BOUNDED-EXECUTION",
-  "activePhase": "REVIEWED_AMENDMENT_BASELINE_BEFORE_RUNTIME",
-  "activeSubtask": "Implement shared combat audio service, candidates and audited feedback",
+  "activePhase": "PRODUCT_IMPLEMENTED_QA_PENDING",
+  "activeSubtask": "Shared combat audio and16FX candidates implemented; one earned optional fight verification next",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "f4aae63e792025430c16153e1cd329c20745cf6b",
   "lastPushedCommit": "53bfd488028280f6f14583401d39b31a3a56f5f7",
   "completedThisRun": [
-    "Deep combat and remaining campaign UI sound coverage audited against current source",
-    "Root cause: iframe has no audio route, no local trusted-gesture hookup and no sound settings access",
-    "Source-linked event matrix and proposed16families; no assets generated or gameplay changed",
-    "Guardian documentary review PASS after two wording corrections; set1.6.0 unchanged"
+    "Dedicated amendment f4aae63 actualdiff guardianPASS and operational782e834 before runtime",
+    "Parent audio + shared iframe settings/trusted gestures/session allowlist;16original PCM candidate families; audited refuge/dialog/shop/map feedback",
+    "101distinct source tests10files PASS across focused runs;25distinct helper tests pass across full24/25+isolated flakyworker rerun",
+    "TypeScript/productionbuild PASS before final reviewed lifecycle corrections; current rebuild follows"
   ],
   "filesChanged": [
     "docs/reports/combat-audio-audit-2026-10-19.md",
@@ -23,20 +23,18 @@
     "docs/autonomy/handoffs/2026-10-19T0705Z-codex-combat-audio-audit.md"
   ],
   "testsRun": [
-    "contracts:validate PASS8contracts/8slots",
-    "LOCKED Git barrier8fdc797 EMPTY",
-    "Source inventory and read-only guardian documentary review PASS",
-    "No runtime tests/build/browser gameplay run for documentation-only audit"
+    "100/100 source tests10files; final new lifecycle test2/2 and neighboring16/16 after fix =101distinct passed",
+    "Helper sandboxGitconfig denial; host24/25 then isolated detached-worker +newmode2/2 PASS; no assertion weakening",
+    "contracts8/8+8slots;8UIbytesexact;16candidateSHA/PCMdurations/peaks valid"
   ],
   "testsPassed": [
-    "contracts:validate PASS8contracts/8slots",
-    "LOCKED Git barrier8fdc797 EMPTY",
-    "Read-only guardian documentary review PASS",
-    "git diff --check PASS;335historical jobs/MD block/deferred roots/prior UI acceptance exact"
+    "100/100 source tests10files; final new lifecycle test2/2 and neighboring16/16 after fix =101distinct passed",
+    "Helper sandboxGitconfig denial; host24/25 then isolated detached-worker +newmode2/2 PASS; no assertion weakening",
+    "contracts8/8+8slots;8UIbytesexact;16candidateSHA/PCMdurations/peaks valid"
   ],
   "testsRemaining": [
-    "Prior UI FX native real hidden/suspend observation remains OPEN; no full-lot acceptance inferred",
-    "Future combat audio requires scoped implementation and native verification after dedicated authorization"
+    "Final build from frozen reviewed source; one earned optional native combat scenario",
+    "Native hidden criterion retained OPEN; operator art/hardware/global acceptance separate"
   ],
   "blockers": [
     "Combat audio activation is explicitly deferred by OD-F/set1.6.0; the audit identifies the bounded future exception, not a runtime failure",
@@ -47,7 +45,7 @@
     "Native hidden/suspend acceptance and operator hardware/art comfort",
     "Global PC/feltbalance/mobile/final handoff remain operator-scoped"
   ],
-  "nextAction": "Implement parent-owned combat audio/real-gesture iframe relay,16original candidate FX and audited UI callbacks; focused tests then one compatible earned production scenario.",
+  "nextAction": "Freeze reviewed source/build/driver, register native combat-FX proof from certified optional-patrol earned save, use existing potions and fight optional wolves once; inspect actual sources/settings/return/reload.",
   "taskQueue": [
     "LAST-SAVE-RELOAD: corrected target; ordinary/elite restore exact active-game save",
     "POI-PATH-PAWN-CLARITY: prior COMPLETE_SCOPED_UI retained",
@@ -129,7 +127,7 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-combat-audio-20261019T1537",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T15:41:32.649Z",
+  "lastHeartbeat": "2026-10-19T15:56:21.119Z",
   "wip": {
     "branch": null,
     "sha": "f7fc776c4fdaa4cf9a6c2b45de3b15e2ed4428b6",
@@ -138,7 +136,7 @@
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T15:41:32.649Z",
+    "lastHeartbeat": "2026-10-19T15:56:21.119Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -36915,7 +36913,7 @@
       "status": "NO_WIP_AUDIT_PUBLISHED",
       "inheritedWip": 0
     },
-    "nextAction": "Implement parent-owned combat audio/real-gesture iframe relay,16original candidate FX and audited UI callbacks; focused tests then one compatible earned production scenario.",
+    "nextAction": "Freeze reviewed source/build/driver, register native combat-FX proof from certified optional-patrol earned save, use existing potions and fight optional wolves once; inspect actual sources/settings/return/reload.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "styleFiles": 0,
@@ -37743,7 +37741,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "COMBAT-AUDIO-BOUNDED-EXECUTION",
-    "activeSubtask": "Implement shared combat audio service, candidates and audited feedback",
+    "activeSubtask": "Shared combat audio and16FX candidates implemented; one earned optional fight verification next",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41079,7 +41077,7 @@
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-19T15:38:15.0959806Z",
-    "activePhase": "REVIEWED_AMENDMENT_BASELINE_BEFORE_RUNTIME",
+    "activePhase": "PRODUCT_IMPLEMENTED_QA_PENDING",
     "heartbeat": "2026-10-19T07:07:14.284Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0705Z-codex-combat-audio-audit.md",
     "motion1617": {
@@ -45080,10 +45078,16 @@
       "operatorDecision": "OD-2026-10-19-B",
       "amendmentCommit": "f4aae63e792025430c16153e1cd329c20745cf6b",
       "amendmentReview": "PASS contracts-guardian actualdiff with two wording corrections integrated",
-      "status": "IMPLEMENTATION_PENDING",
+      "status": "IMPLEMENTED_NATIVE_PENDING",
       "assetArtAcceptance": "PENDING_OPERATOR",
       "nativeHidden": "OPEN/NOT_OBSERVED_PLATFORM from prior lot",
-      "historicalJobs": 335
+      "historicalJobs": 335,
+      "tests": [
+        "100/100 source tests10files; final new lifecycle test2/2 and neighboring16/16 after fix =101distinct passed",
+        "Helper sandboxGitconfig denial; host24/25 then isolated detached-worker +newmode2/2 PASS; no assertion weakening",
+        "contracts8/8+8slots;8UIbytesexact;16candidateSHA/PCMdurations/peaks valid"
+      ],
+      "qaToolingJustification": "Existing continuous native pilot extended with one opt-in combat-audio observer/settings prelude and existing battle/navigation methods; prior driver had no audio observer in its combat path. No new persistent runner, no new campaign."
     }
   },
   "previousInterruptedRun": {
@@ -45422,7 +45426,7 @@
     "inheritedWipFiles": 0,
     "registeredJobs": 0
   },
-  "qaToolingJustification": "Adapt existing demo continuous driver only for a bounded certified earned UI-sound continuation; no new persistent runner and no fresh campaign",
+  "qaToolingJustification": "Existing continuous native pilot extended with one opt-in combat-audio observer/settings prelude and existing battle/navigation methods; prior driver had no audio observer in its combat path. No new persistent runner, no new campaign.",
   "retainedRunArtifacts": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "physicalFreeze": "tmp/autonomy/final-physical-0514.json",
@@ -48781,9 +48785,15 @@
     "operatorDecision": "OD-2026-10-19-B",
     "amendmentCommit": "f4aae63e792025430c16153e1cd329c20745cf6b",
     "amendmentReview": "PASS contracts-guardian actualdiff with two wording corrections integrated",
-    "status": "IMPLEMENTATION_PENDING",
+    "status": "IMPLEMENTED_NATIVE_PENDING",
     "assetArtAcceptance": "PENDING_OPERATOR",
     "nativeHidden": "OPEN/NOT_OBSERVED_PLATFORM from prior lot",
-    "historicalJobs": 335
+    "historicalJobs": 335,
+    "tests": [
+      "100/100 source tests10files; final new lifecycle test2/2 and neighboring16/16 after fix =101distinct passed",
+      "Helper sandboxGitconfig denial; host24/25 then isolated detached-worker +newmode2/2 PASS; no assertion weakening",
+      "contracts8/8+8slots;8UIbytesexact;16candidateSHA/PCMdurations/peaks valid"
+    ],
+    "qaToolingJustification": "Existing continuous native pilot extended with one opt-in combat-audio observer/settings prelude and existing battle/navigation methods; prior driver had no audio observer in its combat path. No new persistent runner, no new campaign."
   }
 }

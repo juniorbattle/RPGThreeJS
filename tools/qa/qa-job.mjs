@@ -152,6 +152,7 @@ export function beginJob({root=process.cwd(),runId=process.env.AUTONOMY_RUN_ID??
   }};
 }
 export function demoJobOptions(env=process.env) {
+  if(env.DEMO_QA_VERIFY_COMBAT_FX==='1')assert.ok(env.DEMO_QA_TARGET==='expedition-checkpoint'&&env.DEMO_QA_CHECKPOINT_POI==='lion-poi-opening-wolves'&&env.DEMO_QA_EARNED_SAVE&&env.DEMO_QA_PRIOR_PROOF&&!['DEMO_QA_VERIFY_UI_FX','DEMO_QA_VERIFY_SALVATION','DEMO_QA_VERIFY_RESULT_HEALTH','DEMO_QA_VERIFY_DEPLOYMENT_HEALTH','DEMO_QA_VERIFY_REFUGE_REST','DEMO_QA_VERIFY_POI_PRESENTATION','DEMO_QA_TOUCH','DEMO_QA_OS_MOTION','DEMO_QA_GAME_MOTION'].some(key=>env[key]==='1'),'Combat FX requires a separate earned normal-PC single optional encounter');
   if(env.DEMO_QA_VERIFY_UI_FX==='1')assert.ok((env.DEMO_QA_TARGET??'first-refuge')==='first-refuge'&&env.DEMO_QA_EARNED_SAVE&&env.DEMO_QA_PRIOR_PROOF,'UI FX proof requires the certified earned first refuge');
   if(env.DEMO_QA_VERIFY_UI_FX==='1')assert.ok(!['DEMO_QA_VERIFY_SALVATION','DEMO_QA_VERIFY_RESULT_HEALTH','DEMO_QA_VERIFY_DEPLOYMENT_HEALTH','DEMO_QA_VERIFY_REFUGE_REST','DEMO_QA_VERIFY_POI_PRESENTATION','DEMO_QA_OS_MOTION','DEMO_QA_GAME_MOTION','DEMO_QA_TOUCH'].some(key=>env[key]==='1')&&(!env.DEMO_QA_VIEWPORT||env.DEMO_QA_VIEWPORT==='1366x768'),'UI FX is a separate scoped normal-PC scenario');
   const target=env.DEMO_QA_TARGET??'first-refuge',routePlan=env.DEMO_QA_ROUTE??'rescue';
@@ -169,8 +170,9 @@ export function demoJobOptions(env=process.env) {
       ...(env.DEMO_QA_VERIFY_DEPLOYMENT_HEALTH==='1'?{verifyDeploymentHealth:true}:{}),
       ...(env.DEMO_QA_VERIFY_REFUGE_REST==='1'?{verifyRefugeRest:true}:{}),
       ...(env.DEMO_QA_VERIFY_POI_PRESENTATION==='1'?{verifyPoiPresentation:true}:{}),
+      ...(env.DEMO_QA_VERIFY_COMBAT_FX==='1'?{verifyCombatFx:true}:{}),
       ...(env.DEMO_QA_VERIFY_UI_FX==='1'?{verifyUiFx:true,nativeVisibility:'NOT_OBSERVED_PLATFORM'}:{})},
-    requiredAssertions:[...(target==='defeat-recovery'?['EARNED_LINEAGE','NATIVE_INPUTS','EXACT_LAST_SAVE_RESTORE','NO_SAVE_OVERWRITE','EXPLICIT_PENDING_COMBAT_RESUME']:['EARNED_LINEAGE','NATIVE_INPUTS','EXACT_RELOAD']),
+    requiredAssertions:[...(env.DEMO_QA_VERIFY_COMBAT_FX==='1'?['COMBAT_FX_SHARED_SETTINGS_GESTURE','COMBAT_FX_NATIVE_RESOLVED_EVENTS','COMBAT_FX_MUTE_VOLUME_SCOPE_DISPOSAL']:[]),...(target==='defeat-recovery'?['EARNED_LINEAGE','NATIVE_INPUTS','EXACT_LAST_SAVE_RESTORE','NO_SAVE_OVERWRITE','EXPLICIT_PENDING_COMBAT_RESUME']:['EARNED_LINEAGE','NATIVE_INPUTS','EXACT_RELOAD']),
       ...(target==='defeat-recovery'&&env.DEMO_QA_DEFEAT_NODE==='lion-poi-opening-wolves'?['NATIVE_USABLE_REWARDS_AND_MENU_USE']:[]),
       ...(env.DEMO_QA_VERIFY_RESULT_HEALTH==='1'?['EXACT_NATIVE_RESULT_HEALTH']:[]),
       ...(env.DEMO_QA_VERIFY_DEPLOYMENT_HEALTH==='1'?['EXACT_NATIVE_DEPLOYMENT_HEALTH']:[]),

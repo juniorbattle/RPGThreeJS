@@ -1,10 +1,14 @@
 import type { CombatantPayload, CombatConfig, CombatResult } from '../game/types';
+import { combatAudioMessageSchema } from './CombatAudio';
+import type { UiSoundPlayer } from '../ui/UiSoundPlayer';
 import {
   combatInitializedMessageSchema,
   combatReadyMessageSchema,
   toCombatResult,
   type CombatInitializeMessage,
 } from './protocol';
+
+let audioSessionSerial = 0;
 
 interface CombatSession {
   config: CombatConfig;
@@ -28,8 +32,10 @@ export class CombatBridge {
   private resolveReady: (() => void) | null = null;
   private readyTimeout: number | null = null;
   private session: CombatSession | null = null;
+  private audioSession: string | null = null;
+  private detachGestures: (() => void) | null = null;
 
-  constructor(private readonly root: HTMLElement) {
+  constructor(private readonly root: HTMLElement, private readonly audio?: { player: UiSoundPlayer; openSettings: () => void }) {
     window.addEventListener('message', this.onMessage);
   }
 
@@ -45,6 +51,9 @@ export class CombatBridge {
   start(session: CombatSession): CombatStart {
     this.close();
     this.session = session;
+    this.audioSession = `combat-${++audioSessionSerial}`;
+    try { this.audioSession = globalThis.crypto?.randomUUID?.() ?? this.audioSession; } catch { /* Optional nonce API; mandatory source/origin/frame guards remain. */ }
+    try { this.audio?.player.beginCombat(this.audioSession); } catch { /* Audio never prevents mounting combat. */ }
     const iframe = document.createElement('iframe');
     iframe.className = 'combat-frame';
     iframe.title = session.config.encounterLabel;
@@ -58,8 +67,13 @@ export class CombatBridge {
     const devVfxLab = devQa && params.get('vfxlab') === '1';
     const devStageQa = devQa && params.get('stageqa') === '1';
     iframe.src = `/legacy-combat.html?campaign=1${devQa ? '&qa=1' : ''}${devVfx ? '&vfx=1' : ''}${devMotion ? '&motion=1' : ''}${devGrid ? '&grid=1' : ''}${devR2ca ? '&r2ca=1' : ''}${devVfxLab ? '&vfxlab=1' : ''}${devStageQa ? '&stageqa=1' : ''}`;
-    this.root.append(iframe);
     this.iframe = iframe;
+    iframe.addEventListener('load', () => {
+      if (this.iframe !== iframe) return;
+      this.detachGestures?.(); this.detachGestures = null;
+      try { if (iframe.contentDocument) this.detachGestures = this.audio?.player.observeGestures(iframe.contentDocument) ?? null; } catch { /* same-origin optional audio */ }
+    });
+    this.root.append(iframe);
     const ready = new Promise<void>((resolve) => {
       this.resolveReady = resolve;
     });
@@ -74,6 +88,9 @@ export class CombatBridge {
   }
 
   close(): void {
+    this.detachGestures?.(); this.detachGestures = null;
+    if (this.audioSession) this.audio?.player.endCombat(this.audioSession);
+    this.audioSession = null;
     this.iframe?.remove();
     this.iframe = null;
     this.resolveResult = null;
@@ -89,6 +106,16 @@ export class CombatBridge {
   private onMessage = (event: MessageEvent): void => {
     if (event.source !== this.iframe?.contentWindow || event.origin !== window.location.origin) return;
 
+    const sound = combatAudioMessageSchema.safeParse(event.data);
+    if (sound.success) {
+      if (sound.data.sessionId !== this.audioSession) return;
+      try {
+        if (sound.data.type === 'rpg-threejs:combat-sound-settings') this.audio?.openSettings();
+        else this.audio?.player.playCombat(sound.data.id, sound.data.sessionId, sound.data.eventId);
+      } catch { /* Audio must never escape into combat result handling. */ }
+      return;
+    }
+
     if (combatReadyMessageSchema.safeParse(event.data).success && this.session) {
       const message: CombatInitializeMessage = {
         type: 'rpg-threejs:combat-initialize',
@@ -97,6 +124,7 @@ export class CombatBridge {
         inventory: this.session.inventory,
         preferredUnitIds: this.session.preferredUnitIds,
         reducedGraphics: this.session.reducedGraphics,
+        presentationSessionId: this.audioSession ?? undefined,
         devQa: Boolean(this.session.devQa && import.meta.env.DEV),
         qaFullAp: Boolean(this.session.qaFullAp && import.meta.env.DEV),
         qaDeployAll: Boolean(this.session.qaDeployAll && import.meta.env.DEV),

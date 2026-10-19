@@ -13,7 +13,7 @@ export class UiSoundSettings {
     const siblings = [...this.root.children].map(child => ({ child: child as HTMLElement, inert: (child as HTMLElement).inert }));
     for (const { child } of siblings) child.inert = true;
     const element = document.createElement('div'); element.className = 'ui-sound-backdrop';
-    element.innerHTML = `<section class="ui-sound-settings" role="dialog" aria-modal="true" aria-labelledby="ui-sound-title"><h2 id="ui-sound-title">Sons du jeu</h2><p>Sons des menus et des actions de campagne. Vous pouvez jouer entièrement sans son.</p><button type="button" data-sound-toggle aria-pressed="${this.player.enabled}"></button><label for="ui-sound-volume">Volume des sons <output id="ui-sound-value"></output></label><input id="ui-sound-volume" type="range" min="0" max="100" step="5" value="${Math.round(this.player.volume * 100)}"><button type="button" data-sound-close>Fermer</button></section>`;
+    element.innerHTML = `<section class="ui-sound-settings" role="dialog" aria-modal="true" aria-labelledby="ui-sound-title"><h2 id="ui-sound-title">Sons du jeu</h2><p>Sons des menus, de la campagne et des combats. Vous pouvez jouer entièrement sans son.</p><button type="button" data-sound-toggle aria-pressed="${this.player.enabled}"></button><label for="ui-sound-volume">Volume des sons <output id="ui-sound-value"></output></label><input id="ui-sound-volume" type="range" min="0" max="100" step="5" value="${Math.round(this.player.volume * 100)}"><button type="button" data-sound-close>Fermer</button></section>`;
     this.root.append(element); this.element = element;
     this.restore = () => {
       for (const { child, inert } of siblings) if (child.isConnected) child.inert = inert;

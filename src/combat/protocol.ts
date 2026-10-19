@@ -51,6 +51,7 @@ export const combatInitializeMessageSchema = z.object({
   inventory: z.record(z.number().int().nonnegative()),
   preferredUnitIds: z.array(z.string()).max(5),
   reducedGraphics: z.boolean(),
+  presentationSessionId: z.string().max(80).optional(),
   devQa: z.boolean().default(false),
   qaFullAp: z.boolean().default(false),
   qaDeployAll: z.boolean().default(false),

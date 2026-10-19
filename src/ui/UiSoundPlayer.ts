@@ -1,16 +1,21 @@
-export const UI_SOUND_IDS = ['navigate', 'confirm', 'back', 'refused', 'saved', 'reward', 'recover', 'travel-start'] as const;
-export type UiSoundId = typeof UI_SOUND_IDS[number];
+import { COMBAT_SOUND_IDS, UI_SOUND_IDS, isCombatSound, soundPriority, type GameSoundId, type TacticalSoundId, type UiSoundId } from './GameSoundCatalog';
+export { UI_SOUND_IDS } from './GameSoundCatalog';
+export type { UiSoundId } from './GameSoundCatalog';
 export type UiSoundFeedback = (id: UiSoundId) => void;
 const PREFERENCE_KEY = 'rpg-threejs:ui-audio:v1';
 
-/** Optional presentation. No gameplay state, save repository, delayed cue queue or combat bridge. */
+/** Optional parent-owned presentation. No gameplay state, resolution or delayed cue queue. */
 export class UiSoundPlayer {
   enabled = false;
   volume = 0.5;
   private context: AudioContext | null = null;
   private gain: GainNode | null = null;
-  private readonly buffers = new Map<UiSoundId, AudioBuffer>();
-  private readonly voices = new Set<AudioBufferSourceNode>();
+  private readonly buffers = new Map<GameSoundId, AudioBuffer>();
+  private readonly voices = new Map<AudioBufferSourceNode, { id: GameSoundId; scope?: string }>();
+  private combatScope: string | null = null;
+  private readonly combatEvents = new Set<string>();
+  private readonly combatCadence = new Map<GameSoundId, number>();
+  private combatWarming: Promise<void> | null = null;
   private readonly abort = new AbortController();
   private warming: Promise<void> | null = null;
   private disposed = false;
@@ -33,6 +38,35 @@ export class UiSoundPlayer {
     window.addEventListener('pointerdown', this.gesture, true);
     window.addEventListener('keydown', this.gesture, true);
     document.addEventListener('visibilitychange', this.visibility);
+  }
+
+  /** The caller owns this same-origin document's lifecycle; synthetic events never unlock. */
+  observeGestures(owner: Document): () => void {
+    owner.addEventListener('pointerdown', this.gesture, true);
+    owner.addEventListener('keydown', this.gesture, true);
+    return () => {
+      owner.removeEventListener('pointerdown', this.gesture, true);
+      owner.removeEventListener('keydown', this.gesture, true);
+    };
+  }
+
+  beginCombat(scope: string): void {
+    if (this.combatScope) this.endCombat(this.combatScope);
+    this.stop(); this.combatScope = scope;
+    // Decoding may begin for an already unlocked context, but never creates/resumes one.
+    if (this.context && !this.combatWarming) this.combatWarming = this.warm(COMBAT_SOUND_IDS);
+  }
+
+  endCombat(scope: string): void {
+    if (scope !== this.combatScope) return;
+    this.stop(); this.combatScope = null; this.combatEvents.clear(); this.combatCadence.clear();
+  }
+
+  playCombat(id: TacticalSoundId, scope: string, eventId: string): void {
+    if (scope !== this.combatScope || this.combatEvents.has(eventId)) return;
+    this.combatEvents.add(eventId);
+    if (this.combatEvents.size > 512) this.combatEvents.delete(this.combatEvents.values().next().value!);
+    this.playSound(id, scope);
   }
 
   setEnabled(enabled: boolean, event: Event): void {
@@ -68,42 +102,57 @@ export class UiSoundPlayer {
       }
       if (this.context.state === 'suspended') await this.context.resume();
       if (!this.warming) this.warming = this.warm();
+      if (this.combatScope && !this.combatWarming) this.combatWarming = this.warm(COMBAT_SOUND_IDS);
       await this.warming;
     } catch { /* Unsupported/blocked audio is silent, with no gameplay dependency. */ }
   }
 
-  private async warm(): Promise<void> {
-    await Promise.all(UI_SOUND_IDS.map(async id => {
+  private async warm(ids: readonly GameSoundId[] = UI_SOUND_IDS): Promise<void> {
+    await Promise.all(ids.map(async id => {
       try {
-        const response = await fetch(`/assets/audio/ui-fx-v1/${id}.wav`, { signal: this.abort.signal });
+        const response = await fetch(`/assets/audio/${isCombatSound(id) ? 'combat-fx-v1' : 'ui-fx-v1'}/${id}.wav`, { signal: this.abort.signal });
         if (!response.ok) return;
         const buffer = await this.context!.decodeAudioData(await response.arrayBuffer());
-        if (!this.disposed && buffer.duration > 0 && buffer.duration <= 0.6) this.buffers.set(id, buffer);
+        if (!this.disposed && buffer.duration > 0 && buffer.duration <= (isCombatSound(id) ? 1 : 0.6)) this.buffers.set(id, buffer);
       } catch { /* No retry/polling, delayed cue or blocking fallback. */ }
     }));
   }
 
   play(id: UiSoundId): void {
+    this.playSound(id);
+  }
+
+  private playSound(id: GameSoundId, scope?: string): void {
     if (this.disposed || !this.enabled || this.volume === 0 || document.hidden || this.context?.state !== 'running') return;
     const buffer = this.buffers.get(id), now = performance.now();
-    if (!buffer || now - this.lastPlayedAt < 50) return;
+    if (!buffer) return;
+    if (scope) {
+      if (now - (this.combatCadence.get(id) ?? -Infinity) < (id === 'step' ? 120 : 45)) return;
+    } else if (now - this.lastPlayedAt < 50) return;
     try {
-      if (this.voices.size >= 2) {
-        const oldest = this.voices.values().next().value!;
+      const ui = !isCombatSound(id), uiVoices = [...this.voices].filter(([, voice]) => !isCombatSound(voice.id));
+      const candidates = ui && uiVoices.length >= 2 ? uiVoices : [...this.voices];
+      if (candidates.length && (this.voices.size >= (this.combatScope ? 4 : 2) || ui && uiVoices.length >= 2)) {
+        const [oldest, voice] = candidates.reduce((lowest, candidate) => soundPriority(candidate[1].id) < soundPriority(lowest[1].id) ? candidate : lowest);
+        if (this.combatScope && soundPriority(voice.id) > soundPriority(id)) return;
         oldest.stop(); oldest.disconnect(); this.voices.delete(oldest);
       }
       const source = this.context.createBufferSource();
       source.buffer = buffer;
-      source.connect(this.gain!);
-      source.onended = () => { this.voices.delete(source); source.disconnect(); };
-      this.voices.add(source);
+      // Candidate PCM peaks <=0.2; 4 voices *0.55*0.2 <=0.44 before master volume.
+      const voiceGain = this.combatScope ? this.context!.createGain() : null;
+      if (voiceGain) { voiceGain.gain.value = 0.55; voiceGain.connect(this.gain!); }
+      source.connect(voiceGain ?? this.gain!);
+      source.onended = () => { this.voices.delete(source); source.disconnect(); voiceGain?.disconnect(); };
+      this.voices.set(source, { id, scope });
       this.lastPlayedAt = now;
+      if (scope) this.combatCadence.set(id, now);
       source.start();
     } catch { /* No sound failure may escape into an owner callback. */ }
   }
 
   stop(): void {
-    for (const voice of this.voices) { try { voice.stop(); voice.disconnect(); } catch { /* already ended */ } }
+    for (const voice of this.voices.keys()) { try { voice.stop(); voice.disconnect(); } catch { /* already ended */ } }
     this.voices.clear();
   }
 

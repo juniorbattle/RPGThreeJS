@@ -72,7 +72,7 @@ describe('V10F final hotfix runtime contracts', () => {
   });
 
   it('passes critical flag from attack code to applyDamage (V10G-R2A.4)', () => {
-    expect(runtimeSource).toContain('applyDamage(t,dmg,u,{critical:crit})');
+    expect(runtimeSource).toContain("applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag')})");
   });
 
   it('does not trigger hit reaction for healing (V10G-R2A.4)', () => {

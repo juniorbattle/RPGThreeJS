@@ -9,7 +9,7 @@ let player: UiSoundPlayer;
 class Context {
   state = 'running';
   destination = {};
-  gain = { gain: { value: 0 }, connect: vi.fn() };
+  gain = { gain: { value: 0 }, connect: vi.fn(), disconnect: vi.fn() };
   sources: Array<{ buffer: unknown; connect: ReturnType<typeof vi.fn>; disconnect: ReturnType<typeof vi.fn>; start: ReturnType<typeof vi.fn>; stop: ReturnType<typeof vi.fn>; onended: (() => void) | null }> = [];
   createGain() { return this.gain; }
   createBufferSource() { const source = { buffer: null as unknown, connect: vi.fn(), disconnect: vi.fn(), start: vi.fn(), stop: vi.fn(), onended: null }; this.sources.push(source); return source; }
@@ -88,4 +88,41 @@ it('settings contain focus, support Escape, and restore prior inert/focus state'
   expect(document.activeElement?.textContent).toBe('Fermer');
   document.activeElement!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
   expect(root.querySelector('[role="dialog"]')).toBeNull(); expect(opener.inert).toBe(false); expect(document.activeElement).toBe(opener);
+});
+
+it('combat uses the same consent but no automatic playback or context on mount', async () => {
+  player = new UiSoundPlayer(); player.beginCombat('one'); player.playCombat('thrust', 'one', 'a:launch');
+  expect(contexts).toHaveLength(0);
+  player.setEnabled(true, trusted);
+  await vi.waitFor(() => expect(contexts[0]?.decodeAudioData).toHaveBeenCalledTimes(24));
+  expect(contexts[0]!.sources).toHaveLength(0);
+  player.playCombat('thrust', 'old', 'b:launch'); expect(contexts[0]!.sources).toHaveLength(0);
+  player.playCombat('thrust', 'one', 'b:launch'); expect(contexts[0]!.sources).toHaveLength(1);
+  now += 100; player.playCombat('thrust', 'one', 'b:launch'); expect(contexts[0]!.sources).toHaveLength(1);
+  player.endCombat('one'); expect(contexts[0]!.sources[0]!.stop).toHaveBeenCalled();
+  player.playCombat('critical', 'one', 'c'); expect(contexts[0]!.sources).toHaveLength(1);
+});
+
+it('combat has independent cue cadence and bounded priority voices without a delayed queue', async () => {
+  player = new UiSoundPlayer(); await enable(); player.beginCombat('one');
+  await vi.waitFor(() => expect(contexts[0]?.decodeAudioData).toHaveBeenCalledTimes(24));
+  player.playCombat('light-blade', 'one', 'a'); player.playCombat('physical-impact', 'one', 'b');
+  player.playCombat('step', 'one', 'c'); player.playCombat('magic-cast', 'one', 'd');
+  expect(contexts[0]!.sources).toHaveLength(4);
+  player.playCombat('victory', 'one', 'e'); expect(contexts[0]!.sources).toHaveLength(5);
+  expect(contexts[0]!.sources[2]!.stop).toHaveBeenCalledOnce();
+  player.playCombat('step', 'one', 'f'); expect(contexts[0]!.sources).toHaveLength(5);
+  now += 100; player.playCombat('step', 'one', 'g'); expect(contexts[0]!.sources).toHaveLength(5);
+  player.setVolume(0); now += 200; player.playCombat('critical', 'one', 'h');
+  expect(contexts[0]!.sources).toHaveLength(5);
+});
+
+it('iframe gesture observation attaches and detaches real DOM listeners; synthetic input is silent', () => {
+  localStorage.setItem('rpg-threejs:ui-audio:v1', JSON.stringify({ enabled: true }));
+  player = new UiSoundPlayer(); const owner = document.implementation.createHTMLDocument();
+  const add = vi.spyOn(owner, 'addEventListener'), remove = vi.spyOn(owner, 'removeEventListener');
+  const detach = player.observeGestures(owner);
+  owner.dispatchEvent(new Event('pointerdown')); expect(contexts).toHaveLength(0);
+  expect(add.mock.calls.map(c => c[0])).toEqual(['pointerdown', 'keydown']);
+  detach(); expect(remove.mock.calls.map(c => c[0])).toEqual(['pointerdown', 'keydown']);
 });
