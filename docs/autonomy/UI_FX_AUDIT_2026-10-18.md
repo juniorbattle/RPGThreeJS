@@ -47,4 +47,9 @@ Before mounting sounds in the game, turn the reviewed concrete lot into a dedica
 - Cleanup on hidden/disposed state, normal and reduced-motion parity; silence remains fully playable and accessible. Sound is supplemental to current text/status.
 - Existing production QA adapted narrowly for enable/mute/volume, pointer/keyboard deduplication, failed playback, iframe separation and unchanged owner/save state. Do not replay a campaign to collect an audio micro-PASS.
 
-Next concrete step: listen to this first pack and select or adjust its timbre/level before the bounded production exception and integration. No further generation provider or music decision is required to listen.
+Next concrete step after OD-2026-10-18-E: prepare the dedicated narrow production exception/review/baseline, then integrate these eight accepted files at the audited events with volume/mute and non-blocking gesture-gated playback. Do not repeat the completed listening or regenerate accepted assets.
+
+
+## Operator asset acceptance — OD-2026-10-18-E
+
+APPROVED DECISION — recorded 2026-10-19T02:56:33.298Z (2026-10-18 America/Toronto). Exact operator statement: « Excellent je valide les sons et aussi la correction du fond nocturne ». The eight existing WAVs in the manifest are accepted for this UI FX lot, and the existing nocturnal Bois-Clair correction is artistically accepted. Asset bytes/hashes are unchanged. This closes those two specific operator-review items. It does not certify all narrative/art, audio integration, balance, hardware comfort or the global demo. Historical technical/night proof and failed receipts retain their exact scope. Audio runtime still awaits the bounded dedicated exception/integration described above; music, voice, ambience and cinematic audio remain outside this decision.

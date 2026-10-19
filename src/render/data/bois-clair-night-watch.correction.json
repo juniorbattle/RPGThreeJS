@@ -1,7 +1,7 @@
 {
   "correctionId": "BOIS-CLAIR-NIGHT-WATCH-1",
   "status": "OPERATOR_AUTHORIZED_RUNTIME_CORRECTION",
-  "artisticAcceptance": "OPERATOR_REVIEW_PENDING",
+  "artisticAcceptance": "OPERATOR_ACCEPTED",
   "contextId": "dialogue:ate_bois_clair_night_watch",
   "assetId": "bois_clair_tableau_night_watch_v1",
   "visualFamily": "BOIS_CLAIR",
@@ -47,5 +47,11 @@
   "intermediateInputs": [
     "bois_clair_tableau_burning",
     "second_refuge_night_tableau (palette only)"
-  ]
+  ],
+  "operatorAcceptance": {
+    "operatorDecision": "OD-2026-10-18-E",
+    "recordedAt": "2026-10-19T02:56:33.298Z",
+    "operatorQuote": "Excellent je valide les sons et aussi la correction du fond nocturne",
+    "scope": "Eight existing UI FX files accepted for timbre/listening and the existing Bois-Clair night background correction accepted; no inferred global PC acceptance, new audio doctrine or implemented playback."
+  }
 }

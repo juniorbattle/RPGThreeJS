@@ -1,0 +1,11 @@
+# Specific operator media approval
+
+Run codex-media-approval-20261019T0255; clean dev0b2d084 with live remote parity, no competing writer or inherited WIP; exclusive atomic lock acquired. OD-2026-10-18-E records the direct statement « Excellent je valide les sons et aussi la correction du fond nocturne ».
+
+The eight UI FX sound files and the Bois-Clair night background correction are now operator accepted. Their bytes and digests remain unchanged. Updated correction metadata, audio manifest, audition copy, decision audit and paired state only. This does not imply audio playback is integrated or that all demo/art/balance/hardware/mobile acceptance has passed. Prior scoped native night proof retains its original source5e22775 and scope; metadata-only source drift is declared, no new native proof. All332historical QA records and deferred task roots preserved exactly.
+
+ONE next action: prepare/review/commit the dedicated narrow audio exception and baseline, then integrate these eight accepted sounds at the existing audited events with enable/mute/volume, real gesture unlock, keyboard/pointer deduplication, bounded nonblocking playback and hidden/disposal cleanup. No regeneration or repeated asset listening gate. Music, voices, ambient loops and cinematic audio are excluded. Actual map movement cue requires changed currentNodeId; interception without displacement is silent.
+
+6existing environment tests PASS,9asset digests identical, contracts8/8, LOCKEDgit/whitespace gates empty. No runtime type/behavior change requiring build or browser scenario. Compliance: GAME_CONSTITUTION PASS unchanged; ART_DIRECTION PASS operator-approved exact assets; CHARACTERS N/A; ENVIRONMENTS PASS approval metadata only; NARRATIVE/CAMPAIGN N/A; NARRATIVE_PRESENTATION PASS no behavioral change; TRAVERSAL/COMBAT/SAVE N/A; UI/ACCESSIBILITY PASS audition text only; QA_EVIDENCE PASS prior receipts unmodified and correctly scoped; REPOSITORY_GOVERNANCE PASS dev-only owned checkpoint. Set1.5.0 baseline d1031ec remains immutable; Audio DEFERRED not amended in this normal task.
+
+Publication normal origin/dev under OD-2026-10-12-A after selected path review; main unchanged. Existing game/audition previews and scheduler untouched. End timestamp paired MD/JSON; final full checkpoint SHA/parity and lock release in Git/automationmemory.

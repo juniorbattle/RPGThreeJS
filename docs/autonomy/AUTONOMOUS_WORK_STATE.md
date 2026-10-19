@@ -1,16 +1,12 @@
-# Bois-Clair night corrected; eight UI FX listening candidates ready
+# Operator accepted eight UI FX assets and Bois-Clair night correction
 
-Verified product/proof/candidate checkpoint db3ed1aaa45820278731380544af102d4d5a5617 published to origin/dev; main unchanged. Run ended 2026-10-19T02:37:57.765Z. Final paired metadata publication and lock release only; self-referential final SHA is verified in Git/automation memory.
+OD-2026-10-18-E: « Excellent je valide les sons et aussi la correction du fond nocturne ». Recorded 2026-10-19T02:57:28.563Z; run codex-media-approval-20261019T0255 started02:55:54Z and ended2026-10-19T02:57:28.563Z. Assets accepted; audio not yet integrated. Global PC/art/balance/hardware/mobile acceptance unchanged outside these specific assets.
 
-READY_FOR_PC_ACCEPTANCE. Run codex-bois-clair-night-20261019T0213; started2026-10-19T02:13:35Z. Night product74f8669/finaldriver5e22775, set1.5.0/baselined1031ec; noLOCKEDchange. Guardian ACCEPTED_SCOPED: declared native fixture, PC1366normal, first night-watch authored step/two pages,4actors/exactdecodedPNG/textfit/owner+V6unchanged. Not earnedcampaign/steps2-4/otheroutcomes/global/mobile acceptance.
+Only acceptance metadata and audition copy updated; all9asset bytes/hashes unchanged, no gameplay/LOCKED changes.6existing environment tests, asset digests, contracts8/8 and whitespace/LOCKEDgates PASS. No new build/nativeQA: previous scoped night proof remains historical5e22775, metadata-only source drift explicitly recorded. All332historicalQA records/deferredroots preserved.
 
-40currenttests3files,types/build,8contracts/8slots,immutable/whitespace PASS. Threefailedattempts retained: sandboxbrowserabsent; two newpilotassertion issues minimallycorrected. Finaljob eligible/source-driver-build-parameters-digest exact.328historicaljobs and deferredroots byte-equivalent;332totaljobs. Original44assetpack/169othercontexts untouched.
+Next ONE action: Prepare the dedicated narrow audio production exception/review/baseline, then integrate the8operator-accepted UI FX at the audited native events with enable/mute/volume, gesture unlock and bounded nonblocking playback. Do not regenerate assets or repeat listening acceptance.
 
-Operator confirms Hunters heroes had not used available healing potions; no rebalance justified. Concrete8-eventSFXaudit +8originalsyntheticPCM WAVs/listeningpage generated under docs/media/audio/ui-fx-candidates-v1; technical integrity reviewed, subjective quality open. Audio runtime remains DEFERRED; no music/voices/ambience/combat/cinematic audio change.
-
-Next ONE action: Listen to the8concrete UI FX candidates at http://127.0.0.1:5444/; select/adjust timbre and level, then implement their bounded production exception/integration with mute/volume/gesture and audited owner events.
-
-Metrics: runtime source1,metadata1,image1,test1,existingQA1,newpersistentQA0,offlinegenerator1,candidatefiles11,selectedproof3,taskreport1,audit1,ledger1,workflow3,inheritedWIP0. Existing preview24360/5438 retained; audition43684/5444 retained for listening; QA5443cleaned. Handoff docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md.
+Current handoff docs/autonomy/handoffs/2026-10-19T0255Z-codex-media-approval.md. Publication target origin/dev under OD-2026-10-12-A; verified preflight parity0b2d084, main00b96f1. Final checkpoint hash follows in Git/automationmemory. Source0,sourceMetadata1,assetMetadata1,auditionCopy1,decisionDocs2,workflow3,newQA0,inheritedWIP0.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

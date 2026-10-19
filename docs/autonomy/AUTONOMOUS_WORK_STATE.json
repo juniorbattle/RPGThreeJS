@@ -1,70 +1,48 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-19T02:13:35Z",
-  "runEndedAt": "2026-10-19T02:37:57.765Z",
-  "activeTask": "BOIS-CLAIR-NIGHT-COMPLETE-UI-FX-CANDIDATES-READY",
-  "activePhase": "SFX_LISTENING_BEFORE_PRODUCTION_INTEGRATION",
-  "activeSubtask": "Night correction accepted scoped;8offline SFX available",
+  "runStartedAt": "2026-10-19T02:55:54.842Z",
+  "runEndedAt": "2026-10-19T02:57:28.563Z",
+  "activeTask": "UI-FX-ACCEPTED-AWAITING-RUNTIME-INTEGRATION",
+  "activePhase": "OPERATOR_ASSETS_ACCEPTED",
+  "activeSubtask": "Record explicit validation; next bounded audio production task",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "db3ed1aaa45820278731380544af102d4d5a5617",
-  "lastPushedCommit": "db3ed1aaa45820278731380544af102d4d5a5617",
+  "lastKnownGoodCommit": "0b2d084eeaa49fc9395da104e61142dec8dde5eb",
+  "lastPushedCommit": "0b2d084eeaa49fc9395da104e61142dec8dde5eb",
   "completedThisRun": [
-    "Outcome-neutral native nocturnal Bois-Clair backdrop with separate truthful correction provenance; all44 original pack assets/metadata and169 other mappings preserved",
-    "Night first step two native pages reviewed:4actors,decoded1672x941exacthash,textfits,liveowner/storedV6unchanged; historical failures preserved",
-    "Operator clarification: hunters were not healed with available potions; no autonomous difficulty change",
-    "Concrete source-location SFXaudit and8original locally synthesized candidates/listeningpage generated; no game audio activation or LOCKED edits"
+    "Recorded direct operator acceptance of the8UI FX sound assets and the Bois-Clair nighttime correction as OD-2026-10-18-E",
+    "Updated acceptance metadata, listening-page copy and exact next action without changing media bytes or game behavior"
   ],
   "filesChanged": [
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/OPERATOR_DECISIONS.md",
     "docs/autonomy/UI_FX_AUDIT_2026-10-18.md",
-    "docs/media/audio/ui-fx-candidates-v1/back.wav",
-    "docs/media/audio/ui-fx-candidates-v1/confirm.wav",
+    "docs/autonomy/handoffs/2026-10-19T0255Z-codex-media-approval.md",
     "docs/media/audio/ui-fx-candidates-v1/index.html",
     "docs/media/audio/ui-fx-candidates-v1/manifest.json",
-    "docs/media/audio/ui-fx-candidates-v1/navigate.wav",
-    "docs/media/audio/ui-fx-candidates-v1/preview-all.wav",
-    "docs/media/audio/ui-fx-candidates-v1/recover.wav",
-    "docs/media/audio/ui-fx-candidates-v1/refused.wav",
-    "docs/media/audio/ui-fx-candidates-v1/reward.wav",
-    "docs/media/audio/ui-fx-candidates-v1/saved.wav",
-    "docs/media/audio/ui-fx-candidates-v1/travel-start.wav",
-    "docs/reports/bois-clair-night-2026-10-18.md",
-    "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-1-2.png",
-    "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-2-2.png",
-    "docs/reports/bois-clair-night-2026-10-18/proof.json",
-    "public/assets/generated/lion-phase/environments/corrections/bois-clair-night-watch-v1.png",
-    "src/render/data/bois-clair-night-watch.correction.json",
-    "src/render/demoEnvironmentPack.test.ts",
-    "src/render/demoEnvironmentPack.ts",
-    "tools/audio/generate-ui-fx-candidates.mjs",
-    "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
-    "docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md"
+    "src/render/data/bois-clair-night-watch.correction.json"
   ],
   "testsRun": [
-    "40current focused tests3files PASS (environment6/contextual31/refuge3); historical tmp duplicates excluded",
-    "TypeScript and production build PASS;8MP4",
-    "contracts:validate8contracts8slots/set1.5.0; immutable baseline d1031ec gate EMPTY; diff --check PASS",
-    "night-watch-final-0234 SUCCEEDED/eligible; guardian ACCEPTED_SCOPED first-step2pages PC1366normal fixture only",
-    "8original offline WAVs binary/digest/PCM/peak/RMS/edge integrity independently PASS; manual audition page play/stop/no-autoplay check PASS"
+    "6existing environment correction tests PASS after approval-metadata update",
+    "9asset hashes remain identical to accepted versions",
+    "contracts validator8contracts8slots PASS; LOCKEDgit barrier and diff --check PASS",
+    "No build/native campaign rerun: approval metadata/copy only; historical browser proof retained at its exact source scope"
   ],
   "testsPassed": [
-    "40current focused tests3files PASS (environment6/contextual31/refuge3); historical tmp duplicates excluded",
-    "TypeScript and production build PASS;8MP4",
-    "contracts:validate8contracts8slots/set1.5.0; immutable baseline d1031ec gate EMPTY; diff --check PASS",
-    "night-watch-final-0234 SUCCEEDED/eligible; guardian ACCEPTED_SCOPED first-step2pages PC1366normal fixture only",
-    "8original offline WAVs binary/digest/PCM/peak/RMS/edge integrity independently PASS; manual audition page play/stop/no-autoplay check PASS"
+    "6existing environment correction tests PASS after approval-metadata update",
+    "9asset hashes remain identical to accepted versions",
+    "contracts validator8contracts8slots PASS; LOCKEDgit barrier and diff --check PASS",
+    "No build/native campaign rerun: approval metadata/copy only; historical browser proof retained at its exact source scope"
   ],
   "testsRemaining": [
-    "No further mechanical gate required for unchanged night scope; audio runtime not implemented or accepted"
+    "Future audio integration tests belong to the dedicated implementation task"
   ],
   "blockers": [],
   "remainingWork": [
-    "Listen/select/adjust candidate FX then dedicated narrow reviewed production activation",
-    "Global PC/art/felt balance/hardware acceptance remains operator; mobile after PC stability"
+    "Dedicated reviewed audio exception and runtime integration",
+    "GlobalPC/mobile/hardware/balance acceptance retained outside this asset approval"
   ],
-  "nextAction": "Listen to the8concrete UI FX candidates at http://127.0.0.1:5444/; select/adjust timbre and level, then implement their bounded production exception/integration with mute/volume/gesture and audited owner events.",
+  "nextAction": "Prepare the dedicated narrow audio production exception/review/baseline, then integrate the8operator-accepted UI FX at the audited native events with enable/mute/volume, gesture unlock and bounded nonblocking playback. Do not regenerate assets or repeat listening acceptance.",
   "taskQueue": [
     "LAST-SAVE-RELOAD: corrected target; ordinary/elite restore exact active-game save",
     "POI-PATH-PAWN-CLARITY: prior COMPLETE_SCOPED_UI retained",
@@ -72,8 +50,8 @@
     "Later mobile and conditional media/audio retained"
   ],
   "creditStatus": "AVAILABLE_AFTER_VERIFIED_RESET",
-  "contractComplianceStatus": "PASS guardian; set1.5.0/d1031ec; zeroLOCKEDedits; eightvideos; audio deferred/no runtime",
-  "commitReferenceScope": "lastPushedCommit is the verified product/proof/candidate checkpoint before this self-referential metadata-only closeout; final dev parity checked after its commit, recorded in automation memory and Git",
+  "contractComplianceStatus": "PASS metadata-only; set1.5.0/d1031ec untouched; no runtime audio or truth change",
+  "commitReferenceScope": "Verified starting checkpoint before this metadata-only operator approval; final published self-referential SHA verified in Git and automation memory.",
   "operatorAuthorization": "OD-2026-10-18-C direct dedicated execution; reviewed d1031ec baseline before runtime. OD-2026-10-12-A permanent normal origin/dev publication.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -144,18 +122,18 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-bois-clair-night-20261019T0213",
+  "runId": "codex-media-approval-20261019T0255",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T02:37:57.765Z",
+  "lastHeartbeat": "2026-10-19T02:57:28.563Z",
   "wip": {
     "branch": null,
-    "sha": "db3ed1aaa45820278731380544af102d4d5a5617",
+    "sha": "0b2d084eeaa49fc9395da104e61142dec8dde5eb",
     "dirtyFiles": [],
-    "status": "NO_WIP",
+    "status": "NO_INHERITED_WIP_ACCEPTANCE_METADATA_ONLY",
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T02:37:57.765Z",
+    "lastHeartbeat": "2026-10-19T02:57:28.563Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -36564,32 +36542,24 @@
     ],
     "wip": {
       "branch": null,
-      "sha": "db3ed1aaa45820278731380544af102d4d5a5617",
+      "sha": "0b2d084eeaa49fc9395da104e61142dec8dde5eb",
       "dirtyFiles": [],
-      "status": "NO_WIP",
+      "status": "NO_INHERITED_WIP_ACCEPTANCE_METADATA_ONLY",
       "inheritedWip": 0
     },
-    "nextAction": "Listen to the8concrete UI FX candidates at http://127.0.0.1:5444/; select/adjust timbre and level, then implement their bounded production exception/integration with mute/volume/gesture and audited owner events.",
+    "nextAction": "Prepare the dedicated narrow audio production exception/review/baseline, then integrate the8operator-accepted UI FX at the audited native events with enable/mute/volume, gesture unlock and bounded nonblocking playback. Do not regenerate assets or repeat listening acceptance.",
     "runMetrics": {
-      "runtimeSourceFiles": 1,
+      "runtimeSourceFiles": 0,
       "sourceMetadataFiles": 1,
-      "sourceTestFiles": 1,
-      "runtimeImageAssets": 1,
-      "existingQaFiles": 1,
-      "newPersistentQaFiles": 0,
-      "newOfflineAssetTools": 1,
-      "offlineCandidateFiles": 11,
-      "promotedProofFiles": 3,
-      "taskReports": 1,
-      "productDocs": 1,
-      "operatorLedgerFiles": 1,
+      "sourceTests": 0,
+      "qaTools": 0,
+      "newQaJobs": 0,
+      "assetBytesChanged": 0,
+      "assetMetadataFiles": 1,
+      "auditionCopyFiles": 1,
+      "productDecisionDocs": 2,
       "workflowFiles": 3,
-      "inheritedWipFiles": 0,
-      "registeredJobs": 4,
-      "acceptedCorrectiveScenario": 1,
-      "failedInfraAttempts": 1,
-      "failedNewHarnessAssertionAttempts": 2,
-      "reusedReviewers": 1
+      "inheritedWipFiles": 0
     },
     "checkpointPaths": [
       ".agents/skills/autonomy-handoff/SKILL.md",
@@ -36656,7 +36626,7 @@
       "finalWorkflow": "Containing closure commit; final live parity/lock release recorded in automation memory",
       "lastVerifiedCheckpoint": "d81ffe74dff19dc045f8941958b12c059b4b9b37"
     },
-    "runEndedAt": "2026-10-19T02:37:57.765Z",
+    "runEndedAt": "2026-10-19T02:57:28.563Z",
     "writerStopped": true,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
@@ -37453,8 +37423,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "BOIS-CLAIR-NIGHT-COMPLETE-UI-FX-CANDIDATES-READY",
-    "activeSubtask": "Night correction accepted scoped;8offline SFX available",
+    "activeTask": "UI-FX-ACCEPTED-AWAITING-RUNTIME-INTEGRATION",
+    "activeSubtask": "Record explicit validation; next bounded audio production task",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -40786,13 +40756,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-bois-clair-night-20261019T0213",
+    "runId": "codex-media-approval-20261019T0255",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-19T02:13:35Z",
-    "activePhase": "SFX_LISTENING_BEFORE_PRODUCTION_INTEGRATION",
+    "runStartedAt": "2026-10-19T02:55:54.842Z",
+    "activePhase": "OPERATOR_ASSETS_ACCEPTED",
     "heartbeat": "2026-10-19T01:26:42.662Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0255Z-codex-media-approval.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -42132,7 +42102,7 @@
       }
     },
     "threadId": "01a14d64-3d19-78c1-af2a-c2f212d73ce2",
-    "writerStoppedMeaning": "Product/source/QA writers stopped. Final paired metadata publication and owned-lock release only; operator game/audition previews retained.",
+    "writerStoppedMeaning": "Acceptance metadata complete; only selected checkpoint publication and owned-lock release remain.",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -42520,7 +42490,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "db3ed1aaa45820278731380544af102d4d5a5617",
+    "lastPushedCommit": "0b2d084eeaa49fc9395da104e61142dec8dde5eb",
     "productPreview": {
       "verifiedAt": "2026-10-16T15:27:07.4093983Z",
       "indexSha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f",
@@ -43327,62 +43297,40 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "db3ed1aaa45820278731380544af102d4d5a5617",
+    "lastKnownGoodCommit": "0b2d084eeaa49fc9395da104e61142dec8dde5eb",
     "completedThisRun": [
-      "Outcome-neutral native nocturnal Bois-Clair backdrop with separate truthful correction provenance; all44 original pack assets/metadata and169 other mappings preserved",
-      "Night first step two native pages reviewed:4actors,decoded1672x941exacthash,textfits,liveowner/storedV6unchanged; historical failures preserved",
-      "Operator clarification: hunters were not healed with available potions; no autonomous difficulty change",
-      "Concrete source-location SFXaudit and8original locally synthesized candidates/listeningpage generated; no game audio activation or LOCKED edits"
+      "Recorded direct operator acceptance of the8UI FX sound assets and the Bois-Clair nighttime correction as OD-2026-10-18-E",
+      "Updated acceptance metadata, listening-page copy and exact next action without changing media bytes or game behavior"
     ],
     "filesChanged": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/OPERATOR_DECISIONS.md",
       "docs/autonomy/UI_FX_AUDIT_2026-10-18.md",
-      "docs/media/audio/ui-fx-candidates-v1/back.wav",
-      "docs/media/audio/ui-fx-candidates-v1/confirm.wav",
+      "docs/autonomy/handoffs/2026-10-19T0255Z-codex-media-approval.md",
       "docs/media/audio/ui-fx-candidates-v1/index.html",
       "docs/media/audio/ui-fx-candidates-v1/manifest.json",
-      "docs/media/audio/ui-fx-candidates-v1/navigate.wav",
-      "docs/media/audio/ui-fx-candidates-v1/preview-all.wav",
-      "docs/media/audio/ui-fx-candidates-v1/recover.wav",
-      "docs/media/audio/ui-fx-candidates-v1/refused.wav",
-      "docs/media/audio/ui-fx-candidates-v1/reward.wav",
-      "docs/media/audio/ui-fx-candidates-v1/saved.wav",
-      "docs/media/audio/ui-fx-candidates-v1/travel-start.wav",
-      "docs/reports/bois-clair-night-2026-10-18.md",
-      "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-1-2.png",
-      "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-2-2.png",
-      "docs/reports/bois-clair-night-2026-10-18/proof.json",
-      "public/assets/generated/lion-phase/environments/corrections/bois-clair-night-watch-v1.png",
-      "src/render/data/bois-clair-night-watch.correction.json",
-      "src/render/demoEnvironmentPack.test.ts",
-      "src/render/demoEnvironmentPack.ts",
-      "tools/audio/generate-ui-fx-candidates.mjs",
-      "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
-      "docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md"
+      "src/render/data/bois-clair-night-watch.correction.json"
     ],
     "testsRun": [
-      "40current focused tests3files PASS (environment6/contextual31/refuge3); historical tmp duplicates excluded",
-      "TypeScript and production build PASS;8MP4",
-      "contracts:validate8contracts8slots/set1.5.0; immutable baseline d1031ec gate EMPTY; diff --check PASS",
-      "night-watch-final-0234 SUCCEEDED/eligible; guardian ACCEPTED_SCOPED first-step2pages PC1366normal fixture only",
-      "8original offline WAVs binary/digest/PCM/peak/RMS/edge integrity independently PASS; manual audition page play/stop/no-autoplay check PASS"
+      "6existing environment correction tests PASS after approval-metadata update",
+      "9asset hashes remain identical to accepted versions",
+      "contracts validator8contracts8slots PASS; LOCKEDgit barrier and diff --check PASS",
+      "No build/native campaign rerun: approval metadata/copy only; historical browser proof retained at its exact source scope"
     ],
     "testsPassed": [
-      "40current focused tests3files PASS (environment6/contextual31/refuge3); historical tmp duplicates excluded",
-      "TypeScript and production build PASS;8MP4",
-      "contracts:validate8contracts8slots/set1.5.0; immutable baseline d1031ec gate EMPTY; diff --check PASS",
-      "night-watch-final-0234 SUCCEEDED/eligible; guardian ACCEPTED_SCOPED first-step2pages PC1366normal fixture only",
-      "8original offline WAVs binary/digest/PCM/peak/RMS/edge integrity independently PASS; manual audition page play/stop/no-autoplay check PASS"
+      "6existing environment correction tests PASS after approval-metadata update",
+      "9asset hashes remain identical to accepted versions",
+      "contracts validator8contracts8slots PASS; LOCKEDgit barrier and diff --check PASS",
+      "No build/native campaign rerun: approval metadata/copy only; historical browser proof retained at its exact source scope"
     ],
     "testsRemaining": [
-      "No further mechanical gate required for unchanged night scope; audio runtime not implemented or accepted"
+      "Future audio integration tests belong to the dedicated implementation task"
     ],
     "blockers": [],
     "remainingWork": [
-      "Listen/select/adjust candidate FX then dedicated narrow reviewed production activation",
-      "Global PC/art/felt balance/hardware acceptance remains operator; mobile after PC stability"
+      "Dedicated reviewed audio exception and runtime integration",
+      "GlobalPC/mobile/hardware/balance acceptance retained outside this asset approval"
     ],
     "taskQueue": [
       "DEMO-PC-GLOBAL-ACCEPTANCE: PRIORITY; demonstrated gaps and operator verdicts",
@@ -43393,7 +43341,7 @@
       "GAME-MUSIC: CONDITIONAL_AFTER_UI_SOUNDS",
       "COMBAT-VFX-CHOREOGRAPHY: CONDITIONAL_AFTER_MUSIC; presentation only"
     ],
-    "contractComplianceStatus": "PASS guardian; set1.5.0/d1031ec; zeroLOCKEDedits; eightvideos; audio deferred/no runtime",
+    "contractComplianceStatus": "PASS metadata-only; set1.5.0/d1031ec untouched; no runtime audio or truth change",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -43807,67 +43755,43 @@
       "guardian": "Independent contracts-guardian final PASS; seed/proof/diff/current hashes/6flags and all3captures inspected"
     },
     "runStatistics": {
-      "runtimeSourceFiles": 1,
+      "runtimeSourceFiles": 0,
       "sourceMetadataFiles": 1,
-      "sourceTestFiles": 1,
-      "runtimeImageAssets": 1,
-      "existingQaFiles": 1,
-      "newPersistentQaFiles": 0,
-      "newOfflineAssetTools": 1,
-      "offlineCandidateFiles": 11,
-      "promotedProofFiles": 3,
-      "taskReports": 1,
-      "productDocs": 1,
-      "operatorLedgerFiles": 1,
+      "sourceTests": 0,
+      "qaTools": 0,
+      "newQaJobs": 0,
+      "assetBytesChanged": 0,
+      "assetMetadataFiles": 1,
+      "auditionCopyFiles": 1,
+      "productDecisionDocs": 2,
       "workflowFiles": 3,
-      "inheritedWipFiles": 0,
-      "registeredJobs": 4,
-      "acceptedCorrectiveScenario": 1,
-      "failedInfraAttempts": 1,
-      "failedNewHarnessAssertionAttempts": 2,
-      "reusedReviewers": 1
+      "inheritedWipFiles": 0
     },
     "currentRunMeasurement": {
-      "runtimeSourceFiles": 1,
+      "runtimeSourceFiles": 0,
       "sourceMetadataFiles": 1,
-      "sourceTestFiles": 1,
-      "runtimeImageAssets": 1,
-      "existingQaFiles": 1,
-      "newPersistentQaFiles": 0,
-      "newOfflineAssetTools": 1,
-      "offlineCandidateFiles": 11,
-      "promotedProofFiles": 3,
-      "taskReports": 1,
-      "productDocs": 1,
-      "operatorLedgerFiles": 1,
+      "sourceTests": 0,
+      "qaTools": 0,
+      "newQaJobs": 0,
+      "assetBytesChanged": 0,
+      "assetMetadataFiles": 1,
+      "auditionCopyFiles": 1,
+      "productDecisionDocs": 2,
       "workflowFiles": 3,
-      "inheritedWipFiles": 0,
-      "registeredJobs": 4,
-      "acceptedCorrectiveScenario": 1,
-      "failedInfraAttempts": 1,
-      "failedNewHarnessAssertionAttempts": 2,
-      "reusedReviewers": 1
+      "inheritedWipFiles": 0
     },
     "runMeasurement": {
-      "runtimeSourceFiles": 1,
+      "runtimeSourceFiles": 0,
       "sourceMetadataFiles": 1,
-      "sourceTestFiles": 1,
-      "runtimeImageAssets": 1,
-      "existingQaFiles": 1,
-      "newPersistentQaFiles": 0,
-      "newOfflineAssetTools": 1,
-      "offlineCandidateFiles": 11,
-      "promotedProofFiles": 3,
-      "taskReports": 1,
-      "productDocs": 1,
-      "operatorLedgerFiles": 1,
+      "sourceTests": 0,
+      "qaTools": 0,
+      "newQaJobs": 0,
+      "assetBytesChanged": 0,
+      "assetMetadataFiles": 1,
+      "auditionCopyFiles": 1,
+      "productDecisionDocs": 2,
       "workflowFiles": 3,
-      "inheritedWipFiles": 0,
-      "registeredJobs": 4,
-      "acceptedCorrectiveScenario": 1,
-      "failedInfraAttempts": 1,
-      "failedNewHarnessAssertionAttempts": 2,
-      "reusedReviewers": 1
+      "inheritedWipFiles": 0
     },
     "deploymentHealth0503": {
       "problem": "Retained Hunters failed deployment hides Cedric/Elara1HP behind En jeu cards; same omission in current renderer",
@@ -44618,6 +44542,43 @@
         "authority": "OD-2026-10-12-A",
         "finalMetadataPublication": "Normal dev push and full remote parity check after this closure commit, then release matching owned lock"
       }
+    },
+    "mediaApproval0255": {
+      "decision": "OD-2026-10-18-E",
+      "quote": "Excellent je valide les sons et aussi la correction du fond nocturne",
+      "recordedAt": "2026-10-19T02:57:28.563Z",
+      "night": {
+        "assetId": "bois_clair_tableau_night_watch_v1",
+        "sha256": "add827f09c54fa6be541ff2c465e2b39c7be8e21acf4d7011a465b4025465e41",
+        "artisticAcceptance": "OPERATOR_ACCEPTED"
+      },
+      "sounds": {
+        "manifest": "docs/media/audio/ui-fx-candidates-v1/manifest.json",
+        "count": 8,
+        "assetAcceptance": "OPERATOR_ACCEPTED",
+        "runtime": "NOT_INTEGRATED"
+      },
+      "unchanged": [
+        "9asset bytes/hashes",
+        "all332historicalQA records/acceptance",
+        "deferred task roots",
+        "gameplay code",
+        "8videos",
+        "LOCKED set1.5.0 baseline d1031ec",
+        "scheduler",
+        "main"
+      ],
+      "nativeProofReuse": "Prior5e22775 scoped native proof preserved; current diff changes metadata/art-acceptance only. No new native/current-source proof claimed.",
+      "scopeExclusions": [
+        "globalPC/demo acceptance",
+        "allcampaignart",
+        "balance",
+        "audio runtime acceptance",
+        "music",
+        "voices",
+        "ambience",
+        "cinematic audio"
+      ]
     }
   },
   "previousInterruptedRun": {
@@ -44665,27 +44626,19 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0255Z-codex-media-approval.md",
   "runMeasurement": {
-    "runtimeSourceFiles": 1,
+    "runtimeSourceFiles": 0,
     "sourceMetadataFiles": 1,
-    "sourceTestFiles": 1,
-    "runtimeImageAssets": 1,
-    "existingQaFiles": 1,
-    "newPersistentQaFiles": 0,
-    "newOfflineAssetTools": 1,
-    "offlineCandidateFiles": 11,
-    "promotedProofFiles": 3,
-    "taskReports": 1,
-    "productDocs": 1,
-    "operatorLedgerFiles": 1,
+    "sourceTests": 0,
+    "qaTools": 0,
+    "newQaJobs": 0,
+    "assetBytesChanged": 0,
+    "assetMetadataFiles": 1,
+    "auditionCopyFiles": 1,
+    "productDecisionDocs": 2,
     "workflowFiles": 3,
-    "inheritedWipFiles": 0,
-    "registeredJobs": 4,
-    "acceptedCorrectiveScenario": 1,
-    "failedInfraAttempts": 1,
-    "failedNewHarnessAssertionAttempts": 2,
-    "reusedReviewers": 1
+    "inheritedWipFiles": 0
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -44809,7 +44762,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "NONE; final paired metadata publication only",
+  "uncommittedWork": "Selected acceptance metadata only; checkpoint pending",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -44887,10 +44840,37 @@
     "externalPursuitBlocker": "Ten authored canonical mappings missing; not retried"
   },
   "previousRun": {
-    "runId": "codex-last-save-20261018T2052",
-    "status": "READY_FOR_PC_ACCEPTANCE",
-    "runEndedAt": "2026-10-19T01:29:03.535Z",
-    "lastKnownGoodCommit": "b7a40f384c7b68774859adf6e46f7894fd750f36"
+    "runId": "codex-bois-clair-night-20261019T0213",
+    "runStartedAt": "2026-10-19T02:13:35Z",
+    "runEndedAt": "2026-10-19T02:37:57.765Z",
+    "lastPushedCommit": "db3ed1aaa45820278731380544af102d4d5a5617",
+    "completedThisRun": [
+      "Outcome-neutral native nocturnal Bois-Clair backdrop with separate truthful correction provenance; all44 original pack assets/metadata and169 other mappings preserved",
+      "Night first step two native pages reviewed:4actors,decoded1672x941exacthash,textfits,liveowner/storedV6unchanged; historical failures preserved",
+      "Operator clarification: hunters were not healed with available potions; no autonomous difficulty change",
+      "Concrete source-location SFXaudit and8original locally synthesized candidates/listeningpage generated; no game audio activation or LOCKED edits"
+    ],
+    "metrics": {
+      "runtimeSourceFiles": 1,
+      "sourceMetadataFiles": 1,
+      "sourceTestFiles": 1,
+      "runtimeImageAssets": 1,
+      "existingQaFiles": 1,
+      "newPersistentQaFiles": 0,
+      "newOfflineAssetTools": 1,
+      "offlineCandidateFiles": 11,
+      "promotedProofFiles": 3,
+      "taskReports": 1,
+      "productDocs": 1,
+      "operatorLedgerFiles": 1,
+      "workflowFiles": 3,
+      "inheritedWipFiles": 0,
+      "registeredJobs": 4,
+      "acceptedCorrectiveScenario": 1,
+      "failedInfraAttempts": 1,
+      "failedNewHarnessAssertionAttempts": 2,
+      "reusedReviewers": 1
+    }
   },
   "pendingNarrativeTask": {
     "task": "NARRATIVE-CONTEXT-COHERENCE",
@@ -44939,25 +44919,17 @@
     }
   },
   "runStatistics": {
-    "runtimeSourceFiles": 1,
+    "runtimeSourceFiles": 0,
     "sourceMetadataFiles": 1,
-    "sourceTestFiles": 1,
-    "runtimeImageAssets": 1,
-    "existingQaFiles": 1,
-    "newPersistentQaFiles": 0,
-    "newOfflineAssetTools": 1,
-    "offlineCandidateFiles": 11,
-    "promotedProofFiles": 3,
-    "taskReports": 1,
-    "productDocs": 1,
-    "operatorLedgerFiles": 1,
+    "sourceTests": 0,
+    "qaTools": 0,
+    "newQaJobs": 0,
+    "assetBytesChanged": 0,
+    "assetMetadataFiles": 1,
+    "auditionCopyFiles": 1,
+    "productDecisionDocs": 2,
     "workflowFiles": 3,
-    "inheritedWipFiles": 0,
-    "registeredJobs": 4,
-    "acceptedCorrectiveScenario": 1,
-    "failedInfraAttempts": 1,
-    "failedNewHarnessAssertionAttempts": 2,
-    "reusedReviewers": 1
+    "inheritedWipFiles": 0
   },
   "qaToolingJustification": "Zero new QA runners/frameworks; existing campaign pilot and receipt helper extended with original owner/assertion/provenance checks; manual timeout exception scoped to the directly authorized named run",
   "retainedRunArtifacts": {
@@ -45962,25 +45934,17 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runtimeSourceFiles": 1,
+    "runtimeSourceFiles": 0,
     "sourceMetadataFiles": 1,
-    "sourceTestFiles": 1,
-    "runtimeImageAssets": 1,
-    "existingQaFiles": 1,
-    "newPersistentQaFiles": 0,
-    "newOfflineAssetTools": 1,
-    "offlineCandidateFiles": 11,
-    "promotedProofFiles": 3,
-    "taskReports": 1,
-    "productDocs": 1,
-    "operatorLedgerFiles": 1,
+    "sourceTests": 0,
+    "qaTools": 0,
+    "newQaJobs": 0,
+    "assetBytesChanged": 0,
+    "assetMetadataFiles": 1,
+    "auditionCopyFiles": 1,
+    "productDecisionDocs": 2,
     "workflowFiles": 3,
-    "inheritedWipFiles": 0,
-    "registeredJobs": 4,
-    "acceptedCorrectiveScenario": 1,
-    "failedInfraAttempts": 1,
-    "failedNewHarnessAssertionAttempts": 2,
-    "reusedReviewers": 1
+    "inheritedWipFiles": 0
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -48235,24 +48199,53 @@
   "lastSnapshotCommit": "b7a40f384c7b68774859adf6e46f7894fd750f36",
   "lastSnapshotAt": "2026-10-19T01:26:42.662Z",
   "runMetrics": {
-    "runtimeSourceFiles": 1,
+    "runtimeSourceFiles": 0,
     "sourceMetadataFiles": 1,
-    "sourceTestFiles": 1,
-    "runtimeImageAssets": 1,
-    "existingQaFiles": 1,
-    "newPersistentQaFiles": 0,
-    "newOfflineAssetTools": 1,
-    "offlineCandidateFiles": 11,
-    "promotedProofFiles": 3,
-    "taskReports": 1,
-    "productDocs": 1,
-    "operatorLedgerFiles": 1,
+    "sourceTests": 0,
+    "qaTools": 0,
+    "newQaJobs": 0,
+    "assetBytesChanged": 0,
+    "assetMetadataFiles": 1,
+    "auditionCopyFiles": 1,
+    "productDecisionDocs": 2,
     "workflowFiles": 3,
-    "inheritedWipFiles": 0,
-    "registeredJobs": 4,
-    "acceptedCorrectiveScenario": 1,
-    "failedInfraAttempts": 1,
-    "failedNewHarnessAssertionAttempts": 2,
-    "reusedReviewers": 1
+    "inheritedWipFiles": 0
+  },
+  "operatorAcceptedAssets": {
+    "decision": "OD-2026-10-18-E",
+    "quote": "Excellent je valide les sons et aussi la correction du fond nocturne",
+    "recordedAt": "2026-10-19T02:57:28.563Z",
+    "night": {
+      "assetId": "bois_clair_tableau_night_watch_v1",
+      "sha256": "add827f09c54fa6be541ff2c465e2b39c7be8e21acf4d7011a465b4025465e41",
+      "artisticAcceptance": "OPERATOR_ACCEPTED"
+    },
+    "sounds": {
+      "manifest": "docs/media/audio/ui-fx-candidates-v1/manifest.json",
+      "count": 8,
+      "assetAcceptance": "OPERATOR_ACCEPTED",
+      "runtime": "NOT_INTEGRATED"
+    },
+    "unchanged": [
+      "9asset bytes/hashes",
+      "all332historicalQA records/acceptance",
+      "deferred task roots",
+      "gameplay code",
+      "8videos",
+      "LOCKED set1.5.0 baseline d1031ec",
+      "scheduler",
+      "main"
+    ],
+    "nativeProofReuse": "Prior5e22775 scoped native proof preserved; current diff changes metadata/art-acceptance only. No new native/current-source proof claimed.",
+    "scopeExclusions": [
+      "globalPC/demo acceptance",
+      "allcampaignart",
+      "balance",
+      "audio runtime acceptance",
+      "music",
+      "voices",
+      "ambience",
+      "cinematic audio"
+    ]
   }
 }
