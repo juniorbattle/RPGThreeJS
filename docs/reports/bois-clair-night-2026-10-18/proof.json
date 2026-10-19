@@ -1,0 +1,175 @@
+{
+  "task": "BOIS-CLAIR-NIGHT-TABLEAU",
+  "scope": "Fixture-origin nighttime ATE first-step presentation only at PC1366 normal; no earned campaign, other steps, outcomes, balance, mobile or global acceptance",
+  "review": {
+    "status": "ACCEPTED_SCOPED",
+    "reviewer": "contracts-guardian /root/poi_guardian",
+    "sourceCommit": "5e22775",
+    "scope": "Declared fixture origin, first night-watch step, two pages, PC1366 normal only",
+    "rawReceiptAcceptance": "NOT_ACCEPTED"
+  },
+  "result": {
+    "schemaVersion": 1,
+    "parameters": {
+      "mode": "bois-clair-night-tableau-production",
+      "cells": [
+        "1366x768-normal"
+      ],
+      "contexts": [
+        "bois-clair-night-watch"
+      ],
+      "gameReducedMotion": false,
+      "method": "fixture-origin native ATE selection; first authored step pages only; corrected night plate and four actors; no earned campaign claim"
+    },
+    "results": [
+      {
+        "cell": "1366x768-normal",
+        "context": "bois-clair-night-watch",
+        "origin": "lion-second-refuge",
+        "seed": 6101,
+        "segments": [
+          {
+            "segment": "1/2",
+            "text": "La nuit est tombée, mais personne ne dort. Les familles ramenées du vieux pont dressent la liste des absents tandis que les réserves brûlent encore au sud.",
+            "mode": "STATIC_TABLEAU",
+            "surfaces": 1,
+            "mediaSurface": "STATIC_TABLEAU",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "primaryInvariant": "PASS",
+            "actors": 4,
+            "textFits": true,
+            "boxFits": true,
+            "boxEnabled": true,
+            "activeVideos": 0,
+            "osReduced": false,
+            "gameReduced": false,
+            "facts": {},
+            "backdrop": "url(\"http://127.0.0.1:5443/assets/generated/lion-phase/environments/corrections/bois-clair-night-watch-v1.png\")",
+            "assetId": "bois_clair_tableau_night_watch_v1",
+            "sha256": "add827f09c54fa6be541ff2c465e2b39c7be8e21acf4d7011a465b4025465e41",
+            "savedBytesUnchanged": true,
+            "capture": "1366x768-normal-bois-clair-night-watch-1-2.png"
+          },
+          {
+            "segment": "2/2",
+            "text": "Le village tient, et le coût du secours reste visible.",
+            "mode": "STATIC_TABLEAU",
+            "surfaces": 1,
+            "mediaSurface": "STATIC_TABLEAU",
+            "castOwnership": "STAGE_OWNS_CAST",
+            "primaryInvariant": "PASS",
+            "actors": 4,
+            "textFits": true,
+            "boxFits": true,
+            "boxEnabled": true,
+            "activeVideos": 0,
+            "osReduced": false,
+            "gameReduced": false,
+            "facts": {},
+            "backdrop": "url(\"http://127.0.0.1:5443/assets/generated/lion-phase/environments/corrections/bois-clair-night-watch-v1.png\")",
+            "assetId": "bois_clair_tableau_night_watch_v1",
+            "sha256": "add827f09c54fa6be541ff2c465e2b39c7be8e21acf4d7011a465b4025465e41",
+            "savedBytesUnchanged": true,
+            "capture": "1366x768-normal-bois-clair-night-watch-2-2.png"
+          }
+        ],
+        "choiceControls": null,
+        "motion": [
+          {
+            "id": "dialogue-tableau:ATE_BOIS_CLAIR_NIGHT_WATCH_TABLEAU",
+            "played": false,
+            "reason": "unavailable",
+            "osReduced": false,
+            "gameReduced": false
+          }
+        ],
+        "keyboardAdvancement": true,
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "pass": true,
+    "scope": "Fixture-origin nighttime ATE first-step presentation only at PC1366 normal; no earned campaign, other steps, outcomes, balance, mobile or global acceptance"
+  },
+  "receipt": {
+    "jobId": "night-watch-final-0234",
+    "status": "SUCCEEDED",
+    "acceptance": "NOT_ACCEPTED",
+    "provenanceStable": true,
+    "provenance": {
+      "gitHead": "5e227755b9b3d4928a62ecb1e215f9da436d94c2",
+      "sourceTree": "68e2717eb37dc648c4dc248cd32ecadf4f75a3c4",
+      "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "driver": {
+        "path": "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+        "sha256": "c2537a3671c13e7615ec8c15297953cd4b25416aa9a65dc2e149e7db02f4a856"
+      },
+      "inputs": [],
+      "receiptToolSha256": "bd25e58975d099952efd541f834c32f4f6498c4b2d848d9ac635352c8b4f9411",
+      "build": [
+        {
+          "path": "dist/assets/ReducedMotion-C1cGYbDF.js",
+          "sha256": "ea5cf7b255e46ac48376d584fb6722268cfbbe3f7df1277c32314a7769074e7c"
+        },
+        {
+          "path": "dist/assets/combat-BBa5nZ_v.js",
+          "sha256": "ac28b325f03c87bce99423f1d80bbe941287fd75dc57211e246e0b04bab92dfd"
+        },
+        {
+          "path": "dist/assets/combat-DG7ZUtBq.css",
+          "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+        },
+        {
+          "path": "dist/assets/game-DyItaOZH.js",
+          "sha256": "10670bd490b1ab134a77273e871f008f4b87dd8a9b6452b962af7475e863268b"
+        },
+        {
+          "path": "dist/assets/game-LvWyiK7-.css",
+          "sha256": "75ec2f4a02b1fffd74499b9229e8444f4d3417ba48ed9e7d55b7da52848a992e"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "c4291113709ca14fc127c077b7e939f7cb07ddfa9730f35f9a300697964dd503"
+        }
+      ]
+    },
+    "resultSha256": "e3b3bd99b87f5a0de9e452e97b70bbba0e339074a211003415f7c1215a716a00",
+    "receiptSha256": "9caccce6a69ca83451260fa8cc01600d5ed24f24caadafe33a4b2a1f56825779"
+  },
+  "gates": {
+    "focusedTests": 40,
+    "focusedFiles": 3,
+    "types": true,
+    "productionBuild": true,
+    "lockedGitGate": "EMPTY",
+    "contracts": 8,
+    "videoSlots": 8
+  },
+  "retainedFailures": [
+    "night-watch-0230: sandbox browser absent",
+    "night-watch-host-0230: added assertion read wrong container",
+    "night-watch-fixed-0233: added HTTP assertion used relative URL"
+  ],
+  "notAccepted": [
+    "earned campaign lineage",
+    "dialogue steps2-4",
+    "alternate outcomes native",
+    "balance",
+    "global PC",
+    "mobile",
+    "subjective audio quality",
+    "game audio activation"
+  ]
+}

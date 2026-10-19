@@ -1,8 +1,14 @@
-# Bois-Clair nighttime correction in progress
+# Bois-Clair night corrected; eight UI FX listening candidates ready
 
-Run codex-bois-clair-night-20261019T0213; exclusive lock acquired after clean preflight/parity on dev f4e8d9f. Operator clarifies unhealed heroes, so no balance change. Implement an outcome-neutral nighttime tableau only; all canonical dialogue/outcomes and historical proof retained. Then audit simple SFX under the explicit operator request, before any audio runtime or doctrine change.
+READY_FOR_PC_ACCEPTANCE. Run codex-bois-clair-night-20261019T0213; started2026-10-19T02:13:35Z. Night product74f8669/finaldriver5e22775, set1.5.0/baselined1031ec; noLOCKEDchange. Guardian ACCEPTED_SCOPED: declared native fixture, PC1366normal, first night-watch authored step/two pages,4actors/exactdecodedPNG/textfit/owner+V6unchanged. Not earnedcampaign/steps2-4/otheroutcomes/global/mobile acceptance.
 
-Next: focused environment/contextual tests and existing native contextual driver PC1366, then SFX scope.
+40currenttests3files,types/build,8contracts/8slots,immutable/whitespace PASS. Threefailedattempts retained: sandboxbrowserabsent; two newpilotassertion issues minimallycorrected. Finaljob eligible/source-driver-build-parameters-digest exact.328historicaljobs and deferredroots byte-equivalent;332totaljobs. Original44assetpack/169othercontexts untouched.
+
+Operator confirms Hunters heroes had not used available healing potions; no rebalance justified. Concrete8-eventSFXaudit +8originalsyntheticPCM WAVs/listeningpage generated under docs/media/audio/ui-fx-candidates-v1; technical integrity reviewed, subjective quality open. Audio runtime remains DEFERRED; no music/voices/ambience/combat/cinematic audio change.
+
+Next ONE action: Listen to the8concrete UI FX candidates at http://127.0.0.1:5444/; select/adjust timbre and level, then implement their bounded production exception/integration with mute/volume/gesture and audited owner events.
+
+Metrics: runtime source1,metadata1,image1,test1,existingQA1,newpersistentQA0,offlinegenerator1,candidatefiles11,selectedproof3,taskreport1,audit1,ledger1,workflow3,inheritedWIP0. Existing preview24360/5438 retained; audition43684/5444 retained for listening; QA5443cleaned. Handoff docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -335,4 +341,8 @@ Next: focused environment/contextual tests and existing native contextual driver
 - last-save-native-2052: FAILED; port 5442; receipt `tmp/demo/last-save-native-2052/qa-job.json`; NOT_ACCEPTED
 - last-save-native-2052-settled: FAILED; port 5442; receipt `tmp/demo/last-save-native-2052-settled/qa-job.json`; NOT_ACCEPTED
 - last-save-native-2052-controls: SUCCEEDED; port 5442; receipt `tmp/demo/last-save-native-2052-controls/qa-job.json`; NOT_ACCEPTED
+- night-watch-0230: FAILED; port 5443; receipt `tmp/cinematics/bois-clair-night-0230/qa-job.json`; NOT_ACCEPTED
+- night-watch-host-0230: FAILED; port 5443; receipt `tmp/cinematics/bois-clair-night-host-0230/qa-job.json`; NOT_ACCEPTED
+- night-watch-fixed-0233: FAILED; port 5443; receipt `tmp/cinematics/bois-clair-night-fixed-0233/qa-job.json`; NOT_ACCEPTED
+- night-watch-final-0234: SUCCEEDED; port 5443; receipt `tmp/cinematics/bois-clair-night-final-0234/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

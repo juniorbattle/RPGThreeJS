@@ -1,0 +1,99 @@
+{
+  "status": "OFFLINE_CANDIDATES_NOT_RUNTIME_ACCEPTANCE",
+  "generatedAt": "2026-10-19T02:28:31.907Z",
+  "method": "Original deterministic modal oscillators and seeded noise, PCM16 mono 48000Hz; no model, provider, external samples or recordings",
+  "generator": "tools/audio/generate-ui-fx-candidates.mjs",
+  "generatorSha256": "7fdff453b4609e59f1c37588fafe977490dd227e3b749c7baf261df594542bd1",
+  "authority": "Direct operator request 2026-10-18: audit concrete FX needs and locations, generate simple sounds if possible",
+  "limits": "Candidate listening only. Audio remains DEFERRED in game pending dedicated production exception. No music, voices, ambient loops or cinematic audio changes.",
+  "candidates": [
+    {
+      "id": "navigate",
+      "label": "Sélection",
+      "use": "Changement explicite de POI ou onglet ; aucun survol ni focus automatique.",
+      "file": "navigate.wav",
+      "seconds": 0.075,
+      "bytes": 7244,
+      "sha256": "0ce2a7c8bf581fc3c7589fbcf15a2d475634914637240c3b4383f18d26b25f8d",
+      "peakDbfs": -18.416728515992396,
+      "rmsDbfs": -32.25251027400763
+    },
+    {
+      "id": "confirm",
+      "label": "Confirmer",
+      "use": "Action acceptée et ouverture volontaire ; pas une promesse de sauvegarde.",
+      "file": "confirm.wav",
+      "seconds": 0.19,
+      "bytes": 18284,
+      "sha256": "6c96817bf9b71ed2b0cf981cd8032296acd8737f580929620e57ad90ad50f9a7",
+      "peakDbfs": -13.980195340071585,
+      "rmsDbfs": -26.599473056838285
+    },
+    {
+      "id": "back",
+      "label": "Retour",
+      "use": "Fermeture volontaire, Échap ou retour ; pas une annulation de faits déjà validés.",
+      "file": "back.wav",
+      "seconds": 0.15,
+      "bytes": 14444,
+      "sha256": "f565f7b9c3f5edc652437012722fd2a64439c1196cc6b24ccb0aba772dff538d",
+      "peakDbfs": -15.91740154491989,
+      "rmsDbfs": -28.87945978877235
+    },
+    {
+      "id": "refused",
+      "label": "Action refusée",
+      "use": "Refus explicite avec message visible ; jamais une simple arrivée du focus sur un bouton désactivé.",
+      "file": "refused.wav",
+      "seconds": 0.22,
+      "bytes": 21164,
+      "sha256": "84c1afc4b9a05270f620429227f74ae8d9c1b36094a267f06e088d7f06d42d52",
+      "peakDbfs": -14.894903334878773,
+      "rmsDbfs": -27.80552542833986
+    },
+    {
+      "id": "saved",
+      "label": "Sauvegarde réussie",
+      "use": "Confirmation manuelle après écriture réellement réussie ; autosauvegardes silencieuses.",
+      "file": "saved.wav",
+      "seconds": 0.34,
+      "bytes": 32684,
+      "sha256": "076a49a3104ce4c64dd8c0484c7043b7ae45eb10cd1cac938bb79d79926d9b50",
+      "peakDbfs": -14.424816372264429,
+      "rmsDbfs": -27.009269508055624
+    },
+    {
+      "id": "reward",
+      "label": "Butin reçu",
+      "use": "Affichage initial du résultat déjà accordé ; pas au rendu, à la fermeture ou au rechargement.",
+      "file": "reward.wav",
+      "seconds": 0.46,
+      "bytes": 44204,
+      "sha256": "e2ade9e377460d90da609a9ae712cd14c1574c92e09f85e17327afcc50ee7fcb",
+      "peakDbfs": -13.55596754226651,
+      "rmsDbfs": -25.997987418076956
+    },
+    {
+      "id": "recover",
+      "label": "Soins effectués",
+      "use": "Potion ou repos réellement réussi ; ne déclenche aucun soin.",
+      "file": "recover.wav",
+      "seconds": 0.43,
+      "bytes": 41324,
+      "sha256": "0f1d70a91b0e0a9aecde458a7f07b9cf65a11444ccd204c47fb3453b8f873d85",
+      "peakDbfs": -14.894903334878773,
+      "rmsDbfs": -27.303277123107875
+    },
+    {
+      "id": "travel-start",
+      "label": "Départ sur la carte",
+      "use": "Déplacement accepté, une seule fois au départ ; pas de boucle ni son simulant une route physique.",
+      "file": "travel-start.wav",
+      "seconds": 0.23,
+      "bytes": 22124,
+      "sha256": "c58405881d306f6843ec453979c49b713f08e814cdb540f88c5c9ce4462a7674",
+      "peakDbfs": -15.39189479571978,
+      "rmsDbfs": -30.587528717338994
+    }
+  ]
+}

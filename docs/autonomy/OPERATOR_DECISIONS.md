@@ -30,6 +30,8 @@ Append-only index of the explicit operator decisions that bind autonomous work. 
 | OD-2026-10-18-B | 2026-10-18 | Defeat reloads the last actual save of the active game; autosaves now, possible manual multi-slots later; no separate mandatory checkpoint snapshot | [Last-save recovery scope](POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md) | TARGET CLARIFIED; supersedes OD-2026-10-18-A checkpoint-specific design; amendment/runtime pending |
 | OD-2026-10-18-C | 2026-10-18 | Explicitly execute dedicated last-actual-save amendment and implementation: immediately usable gains, ordinary/elite defeat restores the selected saved timeline | [Last-save execution approval](LAST_SAVE_RELOAD_OPERATOR_DECISION_2026-10-18.md) | ACTIVE; executes OD-2026-10-18-B, narrow set1.5.0 amendment review before runtime |
 
+| OD-2026-10-18-D | 2026-10-18 | Clarify Hunters loss as unhealed preparation; correct Bois-Clair night background, then audit concrete simple SFX locations and generate listening candidates if feasible | [Night correction and SFX audit](UI_FX_AUDIT_2026-10-18.md) | ACTIVE; no autonomous rebalance or global acceptance; offline SFX candidates authorized, production Audio DEFERRED exception remains dedicated |
+
 ## OD-2026-10-02-A details
 
 1. WIP found on 2026-10-02: snapshot only, no takeover. Snapshot `a0b75148ca55207a6b59da2f05f912b435ce2e44` on `origin/wip/rpgthreejs-auto-dev-90m-20261002T0338` (see [the handoff note](handoffs/2026-10-02-devin-wip-snapshot.md)).

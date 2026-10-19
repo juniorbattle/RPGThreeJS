@@ -1,107 +1,70 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-19T02:13:35Z",
   "runEndedAt": null,
-  "activeTask": "BOIS-CLAIR-NIGHT-TABLEAU",
-  "activePhase": "NIGHT_ASSET_IMPLEMENTATION",
-  "activeSubtask": "Outcome-neutral nocturnal perimeter; preserve original environment pack",
+  "activeTask": "BOIS-CLAIR-NIGHT-COMPLETE-UI-FX-CANDIDATES-READY",
+  "activePhase": "SFX_LISTENING_BEFORE_PRODUCTION_INTEGRATION",
+  "activeSubtask": "Night correction accepted scoped;8offline SFX available",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "b7a40f384c7b68774859adf6e46f7894fd750f36",
+  "lastKnownGoodCommit": "5e22775",
   "lastPushedCommit": "d81ffe74dff19dc045f8941958b12c059b4b9b37",
   "completedThisRun": [
-    "Approved/reviewed set1.5.0 amendment d1031ec before runtime; baseline operationally established",
-    "One usable wallet/inventory, once-only actual legacy pool consolidation, no checkpoint shift/reward/cost rebalance",
-    "Shared ordinary/elite run-bound complete last-save recovery, no loss write/relocation, explicit agency and pending context",
-    "Native07 PC1366 normal cache15gold/supplypotion/use1to56/realwolvesloss/exactstate+bytes/focused48px/explicit same pending combat mechanical resume ACCEPTED_SCOPED",
-    "Final b7 hint-only derived copy/14input-invariance tests reviewed separately; no current-build native claim",
-    "275distinct source tests17files,23receipt-helper tests, types/build/contracts/gates PASS; historical325QA/deferred roots exact; quota pause recovered without bypass",
-    "Source/proof/handoff d81ffe7 normally published and live dev parity verified; main00b96f1 unchanged. Final metadata/lock release only."
+    "Outcome-neutral native nocturnal Bois-Clair backdrop with separate truthful correction provenance; all44 original pack assets/metadata and169 other mappings preserved",
+    "Night first step two native pages reviewed:4actors,decoded1672x941exacthash,textfits,liveowner/storedV6unchanged; historical failures preserved",
+    "Operator clarification: hunters were not healed with available potions; no autonomous difficulty change",
+    "Concrete source-location SFXaudit and8original locally synthesized candidates/listeningpage generated; no game audio activation or LOCKED edits"
   ],
   "filesChanged": [
-    ".agents/skills/autonomy-handoff/SKILL.md",
-    ".agents/skills/contracts-compliance/SKILL.md",
-    "AGENTS.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-    "docs/autonomy/LAST_SAVE_RELOAD_OPERATOR_DECISION_2026-10-18.md",
-    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
     "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/POI_LOOT_PERMANENCE_PROPOSAL_2026-10-18.md",
-    "docs/autonomy/RECURRING_RUN_PROMPT.md",
-    "docs/autonomy/handoffs/2026-10-18T2052Z-codex-last-save-recovery-wip.md",
-    "docs/autonomy/handoffs/2026-10-19T0126Z-codex-last-save-reload.md",
-    "docs/contracts/AUTHORING_AND_QA.md",
-    "docs/contracts/CAMPAIGN_AND_STATE.md",
-    "docs/contracts/COMBAT_AND_VFX.md",
-    "docs/contracts/README.md",
-    "docs/contracts/TRAVERSAL.md",
-    "docs/contracts/contracts.manifest.json",
-    "docs/game/GAME_CONSTITUTION.md",
-    "docs/project/CURRENT_STATUS.md",
-    "docs/project/PC_PLAYTEST.md",
-    "docs/project/POI_NAVIGATION.md",
-    "docs/reports/INDEX.md",
-    "docs/reports/last-save-reload-2026-10-18.md",
-    "docs/reports/last-save-reload-2026-10-18/chest-lion-poi-opening-cache.png",
-    "docs/reports/last-save-reload-2026-10-18/last-save-immediate-inventory-use.png",
-    "docs/reports/last-save-reload-2026-10-18/native-defeat-exact-last-save.png",
-    "docs/reports/last-save-reload-2026-10-18/review.json",
-    "src/combat/legacyCombatRuntime.js",
-    "src/game/GameApp.ts",
-    "src/game/GameAppPoi.test.ts",
-    "src/game/GameAppPoiExpedition.test.ts",
-    "src/game/cin67NarrativeStageIntegration.test.ts",
-    "src/game/contestResolution.ts",
-    "src/game/lastSaveRecovery.test.ts",
-    "src/game/management.test.ts",
-    "src/game/management.ts",
-    "src/game/poiContentAdapters.test.ts",
-    "src/game/poiContentAdapters.ts",
-    "src/game/poiExpedition.test.ts",
-    "src/game/poiNavigation.test.ts",
-    "src/game/runSystem.test.ts",
-    "src/game/runSystem.ts",
-    "src/game/store.ts",
-    "src/styles/app.css",
-    "src/ui/CampaignStatusHud.test.ts",
-    "src/ui/CampaignStatusHud.ts",
-    "src/ui/DialogueView.ts",
-    "src/ui/ManagementView.ts",
-    "src/ui/PoiMapView.ts",
-    "src/ui/TravelView.ts",
-    "tools/demo-continuous-production-qa.mjs",
-    "tools/qa/qa-job.mjs",
-    "tools/qa/qa-job.test.mjs"
+    "docs/autonomy/UI_FX_AUDIT_2026-10-18.md",
+    "docs/media/audio/ui-fx-candidates-v1/back.wav",
+    "docs/media/audio/ui-fx-candidates-v1/confirm.wav",
+    "docs/media/audio/ui-fx-candidates-v1/index.html",
+    "docs/media/audio/ui-fx-candidates-v1/manifest.json",
+    "docs/media/audio/ui-fx-candidates-v1/navigate.wav",
+    "docs/media/audio/ui-fx-candidates-v1/preview-all.wav",
+    "docs/media/audio/ui-fx-candidates-v1/recover.wav",
+    "docs/media/audio/ui-fx-candidates-v1/refused.wav",
+    "docs/media/audio/ui-fx-candidates-v1/reward.wav",
+    "docs/media/audio/ui-fx-candidates-v1/saved.wav",
+    "docs/media/audio/ui-fx-candidates-v1/travel-start.wav",
+    "docs/reports/bois-clair-night-2026-10-18.md",
+    "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-1-2.png",
+    "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-2-2.png",
+    "docs/reports/bois-clair-night-2026-10-18/proof.json",
+    "public/assets/generated/lion-phase/environments/corrections/bois-clair-night-watch-v1.png",
+    "src/render/data/bois-clair-night-watch.correction.json",
+    "src/render/demoEnvironmentPack.test.ts",
+    "src/render/demoEnvironmentPack.ts",
+    "tools/audio/generate-ui-fx-candidates.mjs",
+    "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+    "docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md"
   ],
   "testsRun": [
-    "275distinct focused source tests17files PASS; mechanical fixtures distinguished from native evidence",
-    "23existing qa-job helper tests PASS on host",
-    "Current TypeScript/production build PASS tmp/last-save-current-copy-build.log and current-copy-types.log;8MP4",
-    "contracts:validate8contracts8slots/set1.5.0 and immutable/whitespace PASS",
-    "Native final controls receipt SUCCEEDED at07b9bdb; two retained failures; current hint-only delta independently reviewed"
+    "40current focused tests3files PASS (environment6/contextual31/refuge3); historical tmp duplicates excluded",
+    "TypeScript and production build PASS;8MP4",
+    "contracts:validate8contracts8slots/set1.5.0; immutable baseline d1031ec gate EMPTY; diff --check PASS",
+    "night-watch-final-0234 SUCCEEDED/eligible; guardian ACCEPTED_SCOPED first-step2pages PC1366normal fixture only",
+    "8original offline WAVs binary/digest/PCM/peak/RMS/edge integrity independently PASS; manual audition page play/stop/no-autoplay check PASS"
   ],
   "testsPassed": [
-    "275source tests17files",
-    "23receipt-helper tests",
-    "Types/build/contracts8slots8/immutable/whitespace",
-    "Native07 scoped exact recovery and current copy-only14tests"
+    "40current focused tests3files PASS (environment6/contextual31/refuge3); historical tmp duplicates excluded",
+    "TypeScript and production build PASS;8MP4",
+    "contracts:validate8contracts8slots/set1.5.0; immutable baseline d1031ec gate EMPTY; diff --check PASS",
+    "night-watch-final-0234 SUCCEEDED/eligible; guardian ACCEPTED_SCOPED first-step2pages PC1366normal fixture only",
+    "8original offline WAVs binary/digest/PCM/peak/RMS/edge integrity independently PASS; manual audition page play/stop/no-autoplay check PASS"
   ],
   "testsRemaining": [
-    "Global operator PC/art/felt-balance/hardware acceptance",
-    "Native elite/manual fallback/settled resumed visuals not newly accepted; future manual multi-slot feature independent",
-    "Final mobile after PC stability"
+    "No further mechanical gate required for unchanged night scope; audio runtime not implemented or accepted"
   ],
-  "blockers": [
-    "Operator global PC/art/felt-balance/hardware acceptance open; no autonomous economy/reward/elite adjustment",
-    "Bois-Clair nightplate external asset gap retained",
-    "Audio deferred; future video generation remains dedicated non-recurring work"
-  ],
+  "blockers": [],
   "remainingWork": [
-    "Operator refreshes existing http://127.0.0.1:5438/ and Continue on the same browser profile; inspect the single usable wallet and, after a real loss, Recharger/Reprendre la sauvegarde. Correct one concrete remaining PC finding; no unchanged campaign replay, no new QA mission merely to accumulate evidence. Manual multi-slot support remains future scope; global PC/art/balance/hardware review open before mobile.",
-    "Conditional audiovisual roadmap and external nightplate remain separate; no scheduler/media/audio activation"
+    "Listen/select/adjust candidate FX then dedicated narrow reviewed production activation",
+    "Global PC/art/felt balance/hardware acceptance remains operator; mobile after PC stability"
   ],
-  "nextAction": "Finish native nighttime tableau proof, then concrete simple SFX audit authorized by operator.",
+  "nextAction": "Listen to the8concrete UI FX candidates at http://127.0.0.1:5444/; select/adjust timbre and level, then implement their bounded production exception/integration with mute/volume/gesture and audited owner events.",
   "taskQueue": [
     "LAST-SAVE-RELOAD: corrected target; ordinary/elite restore exact active-game save",
     "POI-PATH-PAWN-CLARITY: prior COMPLETE_SCOPED_UI retained",
@@ -109,7 +72,7 @@
     "Later mobile and conditional media/audio retained"
   ],
   "creditStatus": "AVAILABLE_AFTER_VERIFIED_RESET",
-  "contractComplianceStatus": "PASS_REVIEWED_AUTHORIZED_AMENDMENT_AND_SPLIT_NATIVE07_CURRENT_COPY_SCOPES; protected gate empty after d1031ec",
+  "contractComplianceStatus": "PASS guardian; set1.5.0/d1031ec; zeroLOCKEDedits; eightvideos; audio deferred/no runtime",
   "commitReferenceScope": "implementation/lastKnownGood b7a40f3 includes unit-tested read-only hint delta; lastAcceptedProduction07 is native source/build only. lastPushed is last verified preceding checkpoint; closure is containing Git commit, final live parity/lock release in automation memory.",
   "operatorAuthorization": "OD-2026-10-18-C direct dedicated execution; reviewed d1031ec baseline before runtime. OD-2026-10-12-A permanent normal origin/dev publication.",
   "creativeDirection": {
@@ -183,17 +146,42 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-bois-clair-night-20261019T0213",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T02:23:04.032Z",
+  "lastHeartbeat": "2026-10-19T02:36:53.666Z",
   "wip": {
-    "branch": null,
-    "sha": "819644094d9e2d6f8fa759227fe5fd756f4b97e0",
-    "checkpointBranch": "dev",
-    "dirtyFiles": [],
-    "status": "GREEN_DOCS_ONLY",
-    "lastGreenCheck": "2026-10-18T20:50:48.045Z"
+    "branch": "dev",
+    "sha": "5e22775",
+    "status": "GREEN_NIGHT_SOURCE_AND_SCOPED_PROOF",
+    "dirtyFiles": [
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/UI_FX_AUDIT_2026-10-18.md",
+      "docs/media/audio/ui-fx-candidates-v1/back.wav",
+      "docs/media/audio/ui-fx-candidates-v1/confirm.wav",
+      "docs/media/audio/ui-fx-candidates-v1/index.html",
+      "docs/media/audio/ui-fx-candidates-v1/manifest.json",
+      "docs/media/audio/ui-fx-candidates-v1/navigate.wav",
+      "docs/media/audio/ui-fx-candidates-v1/preview-all.wav",
+      "docs/media/audio/ui-fx-candidates-v1/recover.wav",
+      "docs/media/audio/ui-fx-candidates-v1/refused.wav",
+      "docs/media/audio/ui-fx-candidates-v1/reward.wav",
+      "docs/media/audio/ui-fx-candidates-v1/saved.wav",
+      "docs/media/audio/ui-fx-candidates-v1/travel-start.wav",
+      "docs/reports/bois-clair-night-2026-10-18.md",
+      "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-1-2.png",
+      "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-2-2.png",
+      "docs/reports/bois-clair-night-2026-10-18/proof.json",
+      "public/assets/generated/lion-phase/environments/corrections/bois-clair-night-watch-v1.png",
+      "src/render/data/bois-clair-night-watch.correction.json",
+      "src/render/demoEnvironmentPack.test.ts",
+      "tools/audio/generate-ui-fx-candidates.mjs",
+      "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+      "docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md"
+    ],
+    "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T02:23:04.032Z",
+    "lastHeartbeat": "2026-10-19T02:36:53.666Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -36230,33 +36218,429 @@
         "resultPath": "tmp/demo/last-save-native-2052-controls/results.json",
         "resultSha256": "15a91b26b969e77366861f833e121423b337ba901909a70584d7a091de79ca2f",
         "provenanceStable": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "night-watch-0230",
+        "runId": "codex-bois-clair-night-20261019T0213",
+        "status": "FAILED",
+        "registeredAt": "2026-10-19T02:27:03.173Z",
+        "pid": 19140,
+        "port": 5443,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6ea4_dialogue_qa.mjs"
+        ],
+        "parameters": {
+          "mode": "bois-clair-night-tableau-production",
+          "cells": [
+            "1366x768-normal"
+          ],
+          "contexts": [
+            "bois-clair-night-watch"
+          ],
+          "gameReducedMotion": false,
+          "method": "fixture-origin native ATE selection; first authored step pages only; corrected night plate and four actors; no earned campaign claim"
+        },
+        "requiredAssertions": [
+          "Native night watch first-step pages concatenate to the authored contextual text at PC1366 normal",
+          "Corrected night plate is loaded byte-identically; exactly four stage-owned actors, one STATIC_TABLEAU, readable text and enabled controls",
+          "No moving media, combat or driver owner writes after fixture origin; owner and stored V6 invariant during observations; clean diagnostics"
+        ],
+        "output": "tmp/cinematics/bois-clair-night-0230",
+        "receiptPath": "tmp/cinematics/bois-clair-night-0230/qa-job.json",
+        "provenance": {
+          "gitHead": "74f8669befac550de0a411cff90eebabb84d086f",
+          "sourceTree": "68e2717eb37dc648c4dc248cd32ecadf4f75a3c4",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+            "sha256": "a1507d271e0dfa1b0345151db307cedd1eb15785ff9945452ec286dcc4a59ef2"
+          },
+          "inputs": [],
+          "receiptToolSha256": "bd25e58975d099952efd541f834c32f4f6498c4b2d848d9ac635352c8b4f9411",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-C1cGYbDF.js",
+              "sha256": "ea5cf7b255e46ac48376d584fb6722268cfbbe3f7df1277c32314a7769074e7c"
+            },
+            {
+              "path": "dist/assets/combat-BBa5nZ_v.js",
+              "sha256": "ac28b325f03c87bce99423f1d80bbe941287fd75dc57211e246e0b04bab92dfd"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/game-DyItaOZH.js",
+              "sha256": "10670bd490b1ab134a77273e871f008f4b87dd8a9b6452b962af7475e863268b"
+            },
+            {
+              "path": "dist/assets/game-LvWyiK7-.css",
+              "sha256": "75ec2f4a02b1fffd74499b9229e8444f4d3417ba48ed9e7d55b7da52848a992e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "c4291113709ca14fc127c077b7e939f7cb07ddfa9730f35f9a300697964dd503"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-19T02:27:04.921Z",
+        "endedAt": "2026-10-19T02:27:36.874Z",
+        "exitCode": 1,
+        "resultPath": "tmp/cinematics/bois-clair-night-0230/results.json",
+        "resultSha256": "01ea44c1d8d0b0a210a314562e1d73f9b1393fc0f85418d300ee07defd3635ad",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "night-watch-host-0230",
+        "runId": "codex-bois-clair-night-20261019T0213",
+        "status": "FAILED",
+        "registeredAt": "2026-10-19T02:29:03.322Z",
+        "pid": 39928,
+        "port": 5443,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6ea4_dialogue_qa.mjs"
+        ],
+        "parameters": {
+          "mode": "bois-clair-night-tableau-production",
+          "cells": [
+            "1366x768-normal"
+          ],
+          "contexts": [
+            "bois-clair-night-watch"
+          ],
+          "gameReducedMotion": false,
+          "method": "fixture-origin native ATE selection; first authored step pages only; corrected night plate and four actors; no earned campaign claim"
+        },
+        "requiredAssertions": [
+          "Native night watch first-step pages concatenate to the authored contextual text at PC1366 normal",
+          "Corrected night plate is loaded byte-identically; exactly four stage-owned actors, one STATIC_TABLEAU, readable text and enabled controls",
+          "No moving media, combat or driver owner writes after fixture origin; owner and stored V6 invariant during observations; clean diagnostics"
+        ],
+        "output": "tmp/cinematics/bois-clair-night-host-0230",
+        "receiptPath": "tmp/cinematics/bois-clair-night-host-0230/qa-job.json",
+        "provenance": {
+          "gitHead": "74f8669befac550de0a411cff90eebabb84d086f",
+          "sourceTree": "68e2717eb37dc648c4dc248cd32ecadf4f75a3c4",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+            "sha256": "a1507d271e0dfa1b0345151db307cedd1eb15785ff9945452ec286dcc4a59ef2"
+          },
+          "inputs": [],
+          "receiptToolSha256": "bd25e58975d099952efd541f834c32f4f6498c4b2d848d9ac635352c8b4f9411",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-C1cGYbDF.js",
+              "sha256": "ea5cf7b255e46ac48376d584fb6722268cfbbe3f7df1277c32314a7769074e7c"
+            },
+            {
+              "path": "dist/assets/combat-BBa5nZ_v.js",
+              "sha256": "ac28b325f03c87bce99423f1d80bbe941287fd75dc57211e246e0b04bab92dfd"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/game-DyItaOZH.js",
+              "sha256": "10670bd490b1ab134a77273e871f008f4b87dd8a9b6452b962af7475e863268b"
+            },
+            {
+              "path": "dist/assets/game-LvWyiK7-.css",
+              "sha256": "75ec2f4a02b1fffd74499b9229e8444f4d3417ba48ed9e7d55b7da52848a992e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "c4291113709ca14fc127c077b7e939f7cb07ddfa9730f35f9a300697964dd503"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-19T02:29:04.134Z",
+        "endedAt": "2026-10-19T02:29:26.143Z",
+        "exitCode": 1,
+        "resultPath": "tmp/cinematics/bois-clair-night-host-0230/results.json",
+        "resultSha256": "645cb21cc8c721e6b479369c6516396caecca8898adc5400a0599f73affc5822",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "night-watch-fixed-0233",
+        "runId": "codex-bois-clair-night-20261019T0213",
+        "status": "FAILED",
+        "registeredAt": "2026-10-19T02:31:29.225Z",
+        "pid": 31388,
+        "port": 5443,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6ea4_dialogue_qa.mjs"
+        ],
+        "parameters": {
+          "mode": "bois-clair-night-tableau-production",
+          "cells": [
+            "1366x768-normal"
+          ],
+          "contexts": [
+            "bois-clair-night-watch"
+          ],
+          "gameReducedMotion": false,
+          "method": "fixture-origin native ATE selection; first authored step pages only; corrected night plate and four actors; no earned campaign claim"
+        },
+        "requiredAssertions": [
+          "Native night watch first-step pages concatenate to the authored contextual text at PC1366 normal",
+          "Corrected night plate is loaded byte-identically; exactly four stage-owned actors, one STATIC_TABLEAU, readable text and enabled controls",
+          "No moving media, combat or driver owner writes after fixture origin; owner and stored V6 invariant during observations; clean diagnostics"
+        ],
+        "output": "tmp/cinematics/bois-clair-night-fixed-0233",
+        "receiptPath": "tmp/cinematics/bois-clair-night-fixed-0233/qa-job.json",
+        "provenance": {
+          "gitHead": "0e44f4527883e3482ee60369a924fa3940620b28",
+          "sourceTree": "68e2717eb37dc648c4dc248cd32ecadf4f75a3c4",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+            "sha256": "d92f8e43c62aec3a88e032f17c19d44a3ef65f4f1191290731c0cd15b63f6196"
+          },
+          "inputs": [],
+          "receiptToolSha256": "bd25e58975d099952efd541f834c32f4f6498c4b2d848d9ac635352c8b4f9411",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-C1cGYbDF.js",
+              "sha256": "ea5cf7b255e46ac48376d584fb6722268cfbbe3f7df1277c32314a7769074e7c"
+            },
+            {
+              "path": "dist/assets/combat-BBa5nZ_v.js",
+              "sha256": "ac28b325f03c87bce99423f1d80bbe941287fd75dc57211e246e0b04bab92dfd"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/game-DyItaOZH.js",
+              "sha256": "10670bd490b1ab134a77273e871f008f4b87dd8a9b6452b962af7475e863268b"
+            },
+            {
+              "path": "dist/assets/game-LvWyiK7-.css",
+              "sha256": "75ec2f4a02b1fffd74499b9229e8444f4d3417ba48ed9e7d55b7da52848a992e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "c4291113709ca14fc127c077b7e939f7cb07ddfa9730f35f9a300697964dd503"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-19T02:31:30.058Z",
+        "endedAt": "2026-10-19T02:31:52.667Z",
+        "exitCode": 1,
+        "resultPath": "tmp/cinematics/bois-clair-night-fixed-0233/results.json",
+        "resultSha256": "3347935596ae57c31ba3f657f7bb7ecb53157e0a1804c8c3811707f4fe365ab0",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "night-watch-final-0234",
+        "runId": "codex-bois-clair-night-20261019T0213",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-19T02:32:45.881Z",
+        "pid": 47076,
+        "port": 5443,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6ea4_dialogue_qa.mjs"
+        ],
+        "parameters": {
+          "mode": "bois-clair-night-tableau-production",
+          "cells": [
+            "1366x768-normal"
+          ],
+          "contexts": [
+            "bois-clair-night-watch"
+          ],
+          "gameReducedMotion": false,
+          "method": "fixture-origin native ATE selection; first authored step pages only; corrected night plate and four actors; no earned campaign claim"
+        },
+        "requiredAssertions": [
+          "Native night watch first-step pages concatenate to the authored contextual text at PC1366 normal",
+          "Corrected night plate is loaded byte-identically; exactly four stage-owned actors, one STATIC_TABLEAU, readable text and enabled controls",
+          "No moving media, combat or driver owner writes after fixture origin; owner and stored V6 invariant during observations; clean diagnostics"
+        ],
+        "output": "tmp/cinematics/bois-clair-night-final-0234",
+        "receiptPath": "tmp/cinematics/bois-clair-night-final-0234/qa-job.json",
+        "provenance": {
+          "gitHead": "5e227755b9b3d4928a62ecb1e215f9da436d94c2",
+          "sourceTree": "68e2717eb37dc648c4dc248cd32ecadf4f75a3c4",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+            "sha256": "c2537a3671c13e7615ec8c15297953cd4b25416aa9a65dc2e149e7db02f4a856"
+          },
+          "inputs": [],
+          "receiptToolSha256": "bd25e58975d099952efd541f834c32f4f6498c4b2d848d9ac635352c8b4f9411",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-C1cGYbDF.js",
+              "sha256": "ea5cf7b255e46ac48376d584fb6722268cfbbe3f7df1277c32314a7769074e7c"
+            },
+            {
+              "path": "dist/assets/combat-BBa5nZ_v.js",
+              "sha256": "ac28b325f03c87bce99423f1d80bbe941287fd75dc57211e246e0b04bab92dfd"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/game-DyItaOZH.js",
+              "sha256": "10670bd490b1ab134a77273e871f008f4b87dd8a9b6452b962af7475e863268b"
+            },
+            {
+              "path": "dist/assets/game-LvWyiK7-.css",
+              "sha256": "75ec2f4a02b1fffd74499b9229e8444f4d3417ba48ed9e7d55b7da52848a992e"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "c4291113709ca14fc127c077b7e939f7cb07ddfa9730f35f9a300697964dd503"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-19T02:32:46.758Z",
+        "endedAt": "2026-10-19T02:33:17.308Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/bois-clair-night-final-0234/results.json",
+        "resultSha256": "e3b3bd99b87f5a0de9e452e97b70bbba0e339074a211003415f7c1215a716a00",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": {
-      "branch": null,
-      "sha": "b7a40f384c7b68774859adf6e46f7894fd750f36",
-      "checkpointBranch": "dev",
-      "dirtyFiles": [],
-      "status": "GREEN",
-      "lastGreenCheck": "2026-10-19T01:29:03.535Z",
-      "ignoredPauseBackup": "Historical only; never restore over current source"
+      "branch": "dev",
+      "sha": "5e22775",
+      "status": "GREEN_NIGHT_SOURCE_AND_SCOPED_PROOF",
+      "dirtyFiles": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/OPERATOR_DECISIONS.md",
+        "docs/autonomy/UI_FX_AUDIT_2026-10-18.md",
+        "docs/media/audio/ui-fx-candidates-v1/back.wav",
+        "docs/media/audio/ui-fx-candidates-v1/confirm.wav",
+        "docs/media/audio/ui-fx-candidates-v1/index.html",
+        "docs/media/audio/ui-fx-candidates-v1/manifest.json",
+        "docs/media/audio/ui-fx-candidates-v1/navigate.wav",
+        "docs/media/audio/ui-fx-candidates-v1/preview-all.wav",
+        "docs/media/audio/ui-fx-candidates-v1/recover.wav",
+        "docs/media/audio/ui-fx-candidates-v1/refused.wav",
+        "docs/media/audio/ui-fx-candidates-v1/reward.wav",
+        "docs/media/audio/ui-fx-candidates-v1/saved.wav",
+        "docs/media/audio/ui-fx-candidates-v1/travel-start.wav",
+        "docs/reports/bois-clair-night-2026-10-18.md",
+        "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-1-2.png",
+        "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-2-2.png",
+        "docs/reports/bois-clair-night-2026-10-18/proof.json",
+        "public/assets/generated/lion-phase/environments/corrections/bois-clair-night-watch-v1.png",
+        "src/render/data/bois-clair-night-watch.correction.json",
+        "src/render/demoEnvironmentPack.test.ts",
+        "tools/audio/generate-ui-fx-candidates.mjs",
+        "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+        "docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md"
+      ],
+      "inheritedWip": 0
     },
-    "nextAction": "Finish native nighttime tableau proof, then concrete simple SFX audit authorized by operator.",
+    "nextAction": "Listen to the8concrete UI FX candidates at http://127.0.0.1:5444/; select/adjust timbre and level, then implement their bounded production exception/integration with mute/volume/gesture and audited owner events.",
     "runMetrics": {
-      "runtimeSourceFilesModified": 13,
-      "sourceTestFilesModified": 10,
-      "newSourceTestFiles": 1,
-      "existingQaFilesModified": 3,
+      "runtimeSourceFiles": 1,
+      "sourceMetadataFiles": 1,
+      "sourceTestFiles": 1,
+      "runtimeImageAssets": 1,
+      "existingQaFiles": 1,
       "newPersistentQaFiles": 0,
-      "promotedProofFiles": 4,
-      "productDocs": 3,
-      "protectedAmendmentFiles": 7,
-      "workflowFiles": 15,
+      "newOfflineAssetTools": 1,
+      "offlineCandidateFiles": 11,
+      "promotedProofFiles": 3,
+      "taskReports": 1,
+      "productDocs": 1,
+      "operatorLedgerFiles": 1,
+      "workflowFiles": 3,
       "inheritedWipFiles": 0,
-      "browserScenarios": 3,
-      "registeredJobs": 3,
-      "nativeDefeatsPlayed": 2,
-      "acceptedNativeDefeatScenarios": 1,
+      "registeredJobs": 4,
+      "acceptedCorrectiveScenario": 1,
+      "failedInfraAttempts": 1,
+      "failedNewHarnessAssertionAttempts": 2,
       "reusedReviewers": 1
     },
     "checkpointPaths": [
@@ -37121,8 +37505,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "BOIS-CLAIR-NIGHT-TABLEAU",
-    "activeSubtask": "Outcome-neutral nocturnal perimeter; preserve original environment pack",
+    "activeTask": "BOIS-CLAIR-NIGHT-COMPLETE-UI-FX-CANDIDATES-READY",
+    "activeSubtask": "Night correction accepted scoped;8offline SFX available",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -40456,11 +40840,11 @@
     },
     "runId": "codex-bois-clair-night-20261019T0213",
     "agent": "codex",
-    "status": "IN_PROGRESS",
+    "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-19T02:13:35Z",
-    "activePhase": "NIGHT_ASSET_IMPLEMENTATION",
+    "activePhase": "SFX_LISTENING_BEFORE_PRODUCTION_INTEGRATION",
     "heartbeat": "2026-10-19T01:26:42.662Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0126Z-codex-last-save-reload.md",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -42995,51 +43379,62 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
+    "lastKnownGoodCommit": "5e22775",
     "completedThisRun": [
-      "Deployment cards now show exact authoritative current/maxHP visibly and accessibly before battle",
-      "Widened desktop roster to keep full3digit values readable; no rules or save changes",
-      "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_DEPLOYMENT_HEALTH"
+      "Outcome-neutral native nocturnal Bois-Clair backdrop with separate truthful correction provenance; all44 original pack assets/metadata and169 other mappings preserved",
+      "Night first step two native pages reviewed:4actors,decoded1672x941exacthash,textfits,liveowner/storedV6unchanged; historical failures preserved",
+      "Operator clarification: hunters were not healed with available potions; no autonomous difficulty change",
+      "Concrete source-location SFXaudit and8original locally synthesized candidates/listeningpage generated; no game audio activation or LOCKED edits"
     ],
     "filesChanged": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-18T0503Z-codex-deployment-health.md",
-      "docs/project/PC_PLAYTEST.md",
-      "src/combat/combatShellPresentation.test.ts",
-      "src/combat/combatShellPresentation.ts",
-      "src/styles/combat-shell.css",
-      "tools/demo-continuous-production-qa.mjs",
-      "tools/qa/qa-job.mjs",
-      "tools/qa/qa-job.test.mjs",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md"
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/UI_FX_AUDIT_2026-10-18.md",
+      "docs/media/audio/ui-fx-candidates-v1/back.wav",
+      "docs/media/audio/ui-fx-candidates-v1/confirm.wav",
+      "docs/media/audio/ui-fx-candidates-v1/index.html",
+      "docs/media/audio/ui-fx-candidates-v1/manifest.json",
+      "docs/media/audio/ui-fx-candidates-v1/navigate.wav",
+      "docs/media/audio/ui-fx-candidates-v1/preview-all.wav",
+      "docs/media/audio/ui-fx-candidates-v1/recover.wav",
+      "docs/media/audio/ui-fx-candidates-v1/refused.wav",
+      "docs/media/audio/ui-fx-candidates-v1/reward.wav",
+      "docs/media/audio/ui-fx-candidates-v1/saved.wav",
+      "docs/media/audio/ui-fx-candidates-v1/travel-start.wav",
+      "docs/reports/bois-clair-night-2026-10-18.md",
+      "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-1-2.png",
+      "docs/reports/bois-clair-night-2026-10-18/1366x768-normal-bois-clair-night-watch-2-2.png",
+      "docs/reports/bois-clair-night-2026-10-18/proof.json",
+      "public/assets/generated/lion-phase/environments/corrections/bois-clair-night-watch-v1.png",
+      "src/render/data/bois-clair-night-watch.correction.json",
+      "src/render/demoEnvironmentPack.test.ts",
+      "src/render/demoEnvironmentPack.ts",
+      "tools/audio/generate-ui-fx-candidates.mjs",
+      "tools/cinematics/run_cin6ea4_dialogue_qa.mjs",
+      "docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md"
     ],
     "testsRun": [
-      "76 current vitest tests/3files PASS;2 meaningful red-before failures; ignored copies excluded",
-      "22 QA-helper tests PASS",
-      "TypeScript/fresh production build/contracts8slots8/immutable-workingLOCKED/syntax/whitespace PASS",
-      "First native attempt visual rejection/owner stop; single corrective earned scenario SUCCEEDED/exit0/errors[]/all6current flags true; inspected captures/guardian PASS"
+      "40current focused tests3files PASS (environment6/contextual31/refuge3); historical tmp duplicates excluded",
+      "TypeScript and production build PASS;8MP4",
+      "contracts:validate8contracts8slots/set1.5.0; immutable baseline d1031ec gate EMPTY; diff --check PASS",
+      "night-watch-final-0234 SUCCEEDED/eligible; guardian ACCEPTED_SCOPED first-step2pages PC1366normal fixture only",
+      "8original offline WAVs binary/digest/PCM/peak/RMS/edge integrity independently PASS; manual audition page play/stop/no-autoplay check PASS"
     ],
     "testsPassed": [
-      "76 current vitest tests/3files PASS;2 meaningful red-before failures; ignored copies excluded",
-      "22 QA-helper tests PASS",
-      "TypeScript/fresh production build/contracts8slots8/immutable-workingLOCKED/syntax/whitespace PASS",
-      "First native attempt visual rejection/owner stop; single corrective earned scenario SUCCEEDED/exit0/errors[]/all6current flags true; inspected captures/guardian PASS",
-      "ACCEPTED_SCOPED_PC1366_NORMAL_NATIVE_DEPLOYMENT_HEALTH"
+      "40current focused tests3files PASS (environment6/contextual31/refuge3); historical tmp duplicates excluded",
+      "TypeScript and production build PASS;8MP4",
+      "contracts:validate8contracts8slots/set1.5.0; immutable baseline d1031ec gate EMPTY; diff --check PASS",
+      "night-watch-final-0234 SUCCEEDED/eligible; guardian ACCEPTED_SCOPED first-step2pages PC1366normal fixture only",
+      "8original offline WAVs binary/digest/PCM/peak/RMS/edge integrity independently PASS; manual audition page play/stop/no-autoplay check PASS"
     ],
     "testsRemaining": [
-      "Operator global PC/art/felt-balance/hardware judgement; mobile after PC milestone"
+      "No further mechanical gate required for unchanged night scope; audio runtime not implemented or accepted"
     ],
-    "blockers": [
-      "Operator global PC/art/felt-balance/hardware acceptance open; no autonomous economy/reward/elite adjustment",
-      "Bois-Clair nightplate external asset gap retained",
-      "Audio deferred; future video generation remains dedicated non-recurring work"
-    ],
+    "blockers": [],
     "remainingWork": [
-      "Global PC player-experience acceptance and demonstrated corrections",
-      "Operator felt-balance/art review with preparation context",
-      "Mobile boundary after PC milestone",
-      "Conditional audiovisual roadmap under OD-2026-10-17-A"
+      "Listen/select/adjust candidate FX then dedicated narrow reviewed production activation",
+      "Global PC/art/felt balance/hardware acceptance remains operator; mobile after PC stability"
     ],
     "taskQueue": [
       "DEMO-PC-GLOBAL-ACCEPTANCE: PRIORITY; demonstrated gaps and operator verdicts",
@@ -43050,7 +43445,7 @@
       "GAME-MUSIC: CONDITIONAL_AFTER_UI_SOUNDS",
       "COMBAT-VFX-CHOREOGRAPHY: CONDITIONAL_AFTER_MUSIC; presentation only"
     ],
-    "contractComplianceStatus": "PASS_SCOPED; set1.4.0 unchanged; no LOCKED rule changed; global PC/art/balance/mobile open",
+    "contractComplianceStatus": "PASS guardian; set1.5.0/d1031ec; zeroLOCKEDedits; eightvideos; audio deferred/no runtime",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -43464,51 +43859,66 @@
       "guardian": "Independent contracts-guardian final PASS; seed/proof/diff/current hashes/6flags and all3captures inspected"
     },
     "runStatistics": {
-      "runtimeSourceFiles": 2,
+      "runtimeSourceFiles": 1,
+      "sourceMetadataFiles": 1,
       "sourceTestFiles": 1,
-      "existingQaFiles": 2,
-      "qaHelperTestFiles": 1,
+      "runtimeImageAssets": 1,
+      "existingQaFiles": 1,
       "newPersistentQaFiles": 0,
-      "promotedProofFiles": 0,
+      "newOfflineAssetTools": 1,
+      "offlineCandidateFiles": 11,
+      "promotedProofFiles": 3,
+      "taskReports": 1,
       "productDocs": 1,
-      "workflowFiles": 4,
+      "operatorLedgerFiles": 1,
+      "workflowFiles": 3,
       "inheritedWipFiles": 0,
-      "browserScenarios": 2,
-      "interruptedVisualAttempt": 1,
+      "registeredJobs": 4,
       "acceptedCorrectiveScenario": 1,
-      "registeredJobs": 2,
+      "failedInfraAttempts": 1,
+      "failedNewHarnessAssertionAttempts": 2,
       "reusedReviewers": 1
     },
     "currentRunMeasurement": {
-      "runtimeSourceFiles": 2,
+      "runtimeSourceFiles": 1,
+      "sourceMetadataFiles": 1,
       "sourceTestFiles": 1,
-      "existingQaFiles": 2,
-      "qaHelperTestFiles": 1,
+      "runtimeImageAssets": 1,
+      "existingQaFiles": 1,
       "newPersistentQaFiles": 0,
-      "promotedProofFiles": 0,
+      "newOfflineAssetTools": 1,
+      "offlineCandidateFiles": 11,
+      "promotedProofFiles": 3,
+      "taskReports": 1,
       "productDocs": 1,
-      "workflowFiles": 4,
+      "operatorLedgerFiles": 1,
+      "workflowFiles": 3,
       "inheritedWipFiles": 0,
-      "browserScenarios": 2,
-      "interruptedVisualAttempt": 1,
+      "registeredJobs": 4,
       "acceptedCorrectiveScenario": 1,
-      "registeredJobs": 2,
+      "failedInfraAttempts": 1,
+      "failedNewHarnessAssertionAttempts": 2,
       "reusedReviewers": 1
     },
     "runMeasurement": {
-      "runtimeSourceFiles": 2,
+      "runtimeSourceFiles": 1,
+      "sourceMetadataFiles": 1,
       "sourceTestFiles": 1,
-      "existingQaFiles": 2,
-      "qaHelperTestFiles": 1,
+      "runtimeImageAssets": 1,
+      "existingQaFiles": 1,
       "newPersistentQaFiles": 0,
-      "promotedProofFiles": 0,
+      "newOfflineAssetTools": 1,
+      "offlineCandidateFiles": 11,
+      "promotedProofFiles": 3,
+      "taskReports": 1,
       "productDocs": 1,
-      "workflowFiles": 4,
+      "operatorLedgerFiles": 1,
+      "workflowFiles": 3,
       "inheritedWipFiles": 0,
-      "browserScenarios": 2,
-      "interruptedVisualAttempt": 1,
+      "registeredJobs": 4,
       "acceptedCorrectiveScenario": 1,
-      "registeredJobs": 2,
+      "failedInfraAttempts": 1,
+      "failedNewHarnessAssertionAttempts": 2,
       "reusedReviewers": 1
     },
     "deploymentHealth0503": {
@@ -43947,8 +44357,8 @@
       ],
       "rawReceiptAcceptanceUnchanged": "NOT_ACCEPTED"
     },
-    "lastAcceptedProductionCommit": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
-    "implementationCommit": "c6b9cb8e2c5649cfce91a79a6d6b374cf1df7dd6",
+    "lastAcceptedProductionCommit": "5e22775",
+    "implementationCommit": "74f8669",
     "poiUi1903": {
       "status": "ACCEPTED_SCOPED",
       "at": "2026-10-18T19:26:33.504Z",
@@ -44197,7 +44607,60 @@
       "historicalQaJobs": 328,
       "inheritedWip": 0,
       "originalPack": "Preserve all44 approved assets and metadata; separate correction provenance",
-      "qaScope": "Existing contextual production driver; fixture-origin presentation only, no earned campaign or combat/balance claim"
+      "qaScope": "Existing contextual production driver; fixture-origin presentation only, no earned campaign or combat/balance claim",
+      "review": {
+        "status": "ACCEPTED_SCOPED",
+        "reviewer": "contracts-guardian /root/poi_guardian",
+        "sourceCommit": "5e22775",
+        "scope": "Declared fixture origin, first night-watch step, two pages, PC1366 normal only",
+        "rawReceiptAcceptance": "NOT_ACCEPTED"
+      },
+      "proofPath": "docs/reports/bois-clair-night-2026-10-18/proof.json",
+      "tests": [
+        "40current focused tests3files PASS (environment6/contextual31/refuge3); historical tmp duplicates excluded",
+        "TypeScript and production build PASS;8MP4",
+        "contracts:validate8contracts8slots/set1.5.0; immutable baseline d1031ec gate EMPTY; diff --check PASS",
+        "night-watch-final-0234 SUCCEEDED/eligible; guardian ACCEPTED_SCOPED first-step2pages PC1366normal fixture only",
+        "8original offline WAVs binary/digest/PCM/peak/RMS/edge integrity independently PASS; manual audition page play/stop/no-autoplay check PASS"
+      ],
+      "metrics": {
+        "runtimeSourceFiles": 1,
+        "sourceMetadataFiles": 1,
+        "sourceTestFiles": 1,
+        "runtimeImageAssets": 1,
+        "existingQaFiles": 1,
+        "newPersistentQaFiles": 0,
+        "newOfflineAssetTools": 1,
+        "offlineCandidateFiles": 11,
+        "promotedProofFiles": 3,
+        "taskReports": 1,
+        "productDocs": 1,
+        "operatorLedgerFiles": 1,
+        "workflowFiles": 3,
+        "inheritedWipFiles": 0,
+        "registeredJobs": 4,
+        "acceptedCorrectiveScenario": 1,
+        "failedInfraAttempts": 1,
+        "failedNewHarnessAssertionAttempts": 2,
+        "reusedReviewers": 1
+      },
+      "acceptedJob": "night-watch-final-0234",
+      "audio": {
+        "status": "OFFLINE_CANDIDATES_READY_NO_RUNTIME",
+        "audit": "docs/autonomy/UI_FX_AUDIT_2026-10-18.md",
+        "manifest": "docs/media/audio/ui-fx-candidates-v1/manifest.json",
+        "url": "http://127.0.0.1:5444/",
+        "previewPid": 43684,
+        "subjectiveListening": "OPERATOR_PENDING"
+      },
+      "preserved": {
+        "historicalQaJobsExact": 328,
+        "deferredRootsExact": true,
+        "originalPackBytes": true,
+        "mainUnchanged": true,
+        "schedulerUnchanged": true,
+        "operatorPreview5438": true
+      }
     }
   },
   "previousInterruptedRun": {
@@ -44245,21 +44708,26 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0126Z-codex-last-save-reload.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0238Z-codex-night-and-ui-fx.md",
   "runMeasurement": {
-    "runtimeSourceFiles": 2,
+    "runtimeSourceFiles": 1,
+    "sourceMetadataFiles": 1,
     "sourceTestFiles": 1,
-    "existingQaFiles": 2,
-    "qaHelperTestFiles": 1,
+    "runtimeImageAssets": 1,
+    "existingQaFiles": 1,
     "newPersistentQaFiles": 0,
-    "promotedProofFiles": 0,
+    "newOfflineAssetTools": 1,
+    "offlineCandidateFiles": 11,
+    "promotedProofFiles": 3,
+    "taskReports": 1,
     "productDocs": 1,
-    "workflowFiles": 4,
+    "operatorLedgerFiles": 1,
+    "workflowFiles": 3,
     "inheritedWipFiles": 0,
-    "browserScenarios": 2,
-    "interruptedVisualAttempt": 1,
+    "registeredJobs": 4,
     "acceptedCorrectiveScenario": 1,
-    "registeredJobs": 2,
+    "failedInfraAttempts": 1,
+    "failedNewHarnessAssertionAttempts": 2,
     "reusedReviewers": 1
   },
   "deferredDemoTask": {
@@ -44384,7 +44852,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": [],
+  "uncommittedWork": "Only selected current-run audit/candidates/proof/closure; source green5e22775",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -44514,19 +44982,24 @@
     }
   },
   "runStatistics": {
-    "runtimeSourceFiles": 2,
+    "runtimeSourceFiles": 1,
+    "sourceMetadataFiles": 1,
     "sourceTestFiles": 1,
-    "existingQaFiles": 2,
-    "qaHelperTestFiles": 1,
+    "runtimeImageAssets": 1,
+    "existingQaFiles": 1,
     "newPersistentQaFiles": 0,
-    "promotedProofFiles": 0,
+    "newOfflineAssetTools": 1,
+    "offlineCandidateFiles": 11,
+    "promotedProofFiles": 3,
+    "taskReports": 1,
     "productDocs": 1,
-    "workflowFiles": 4,
+    "operatorLedgerFiles": 1,
+    "workflowFiles": 3,
     "inheritedWipFiles": 0,
-    "browserScenarios": 2,
-    "interruptedVisualAttempt": 1,
+    "registeredJobs": 4,
     "acceptedCorrectiveScenario": 1,
-    "registeredJobs": 2,
+    "failedInfraAttempts": 1,
+    "failedNewHarnessAssertionAttempts": 2,
     "reusedReviewers": 1
   },
   "qaToolingJustification": "Zero new QA runners/frameworks; existing campaign pilot and receipt helper extended with original owner/assertion/provenance checks; manual timeout exception scoped to the directly authorized named run",
@@ -44552,7 +45025,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "b7a40f384c7b68774859adf6e46f7894fd750f36",
+  "implementationCommit": "74f8669",
   "authorizedWorkContinuation": "Direct last-save task complete in scoped implementation/proof. Publish selected coherent dev checkpoint under OD-2026-10-12-A without routine confirmation; retain original native07 proof and current copy scope separately.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
@@ -44636,7 +45109,7 @@
     "preparation": "Native rest75;3KO/5wounded/300gold",
     "scope": "Scoped1366normal rescue secondrefuge on prior frozen build"
   },
-  "lastAcceptedProductionCommit": "07b9bdba243ca23c8507c97b9e2f27d1a227c8e6",
+  "lastAcceptedProductionCommit": "5e22775",
   "operatorFeedback1748": {
     "previous": {
       "activeTask": "DEMO-QA-POLISH: continuous earned campaign beyond first refuge",
@@ -45532,19 +46005,24 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runtimeSourceFiles": 2,
+    "runtimeSourceFiles": 1,
+    "sourceMetadataFiles": 1,
     "sourceTestFiles": 1,
-    "existingQaFiles": 2,
-    "qaHelperTestFiles": 1,
+    "runtimeImageAssets": 1,
+    "existingQaFiles": 1,
     "newPersistentQaFiles": 0,
-    "promotedProofFiles": 0,
+    "newOfflineAssetTools": 1,
+    "offlineCandidateFiles": 11,
+    "promotedProofFiles": 3,
+    "taskReports": 1,
     "productDocs": 1,
-    "workflowFiles": 4,
+    "operatorLedgerFiles": 1,
+    "workflowFiles": 3,
     "inheritedWipFiles": 0,
-    "browserScenarios": 2,
-    "interruptedVisualAttempt": 1,
+    "registeredJobs": 4,
     "acceptedCorrectiveScenario": 1,
-    "registeredJobs": 2,
+    "failedInfraAttempts": 1,
+    "failedNewHarnessAssertionAttempts": 2,
     "reusedReviewers": 1
   },
   "standingDevPublicationAuthorization": {
@@ -47800,19 +48278,24 @@
   "lastSnapshotCommit": "b7a40f384c7b68774859adf6e46f7894fd750f36",
   "lastSnapshotAt": "2026-10-19T01:26:42.662Z",
   "runMetrics": {
-    "runtimeSourceFiles": 2,
+    "runtimeSourceFiles": 1,
+    "sourceMetadataFiles": 1,
     "sourceTestFiles": 1,
-    "existingQaFiles": 2,
-    "qaHelperTestFiles": 1,
+    "runtimeImageAssets": 1,
+    "existingQaFiles": 1,
     "newPersistentQaFiles": 0,
-    "promotedProofFiles": 0,
+    "newOfflineAssetTools": 1,
+    "offlineCandidateFiles": 11,
+    "promotedProofFiles": 3,
+    "taskReports": 1,
     "productDocs": 1,
-    "workflowFiles": 4,
+    "operatorLedgerFiles": 1,
+    "workflowFiles": 3,
     "inheritedWipFiles": 0,
-    "browserScenarios": 2,
-    "interruptedVisualAttempt": 1,
+    "registeredJobs": 4,
     "acceptedCorrectiveScenario": 1,
-    "registeredJobs": 2,
+    "failedInfraAttempts": 1,
+    "failedNewHarnessAssertionAttempts": 2,
     "reusedReviewers": 1
   }
 }
