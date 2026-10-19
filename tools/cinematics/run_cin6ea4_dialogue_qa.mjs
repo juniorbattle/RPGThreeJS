@@ -674,8 +674,13 @@ async function runContextualProduction() {
               assert.equal(observation.activeVideos, 0); assert.equal(observation.osReduced, os); assert.equal(observation.gameReduced, false);
               if (nightWatch) {
                 const plate = demoEnvironmentPlateForContext('dialogue:ate_bois_clair_night_watch', 'STATIC_TABLEAU');
-                const backdrop = await dialogue.evaluate(element => getComputedStyle(element.closest('.narrative-stage').querySelector('.narrative-media-surface')).backgroundImage);
+                const backdrop = await dialogue.evaluate(element => getComputedStyle(element.closest('.narrative-stage').querySelector('.narrative-scene-surface__environment')).backgroundImage);
                 assert.ok(backdrop.includes(plate.publicUrl), 'Wrong nighttime backdrop');
+                const decoded = await page.evaluate(async url => {
+                  const image = new Image(); image.src = url; await image.decode();
+                  return { width: image.naturalWidth, height: image.naturalHeight };
+                }, plate.publicUrl);
+                assert.deepEqual(decoded, { width: plate.width, height: plate.height });
                 const response = await page.request.get(plate.publicUrl);
                 assert.ok(response.ok(), 'Night plate load failed');
                 const { createHash } = await import('node:crypto');
