@@ -2115,7 +2115,8 @@ console.log(JSON.stringify({pass:report.pass,nodes:report.nodes,battles:report.b
 /** Narrow UI presentation proof on the already certified save; no campaign/combat replay. */
 async function runUiFx(options) {
   const job=beginJob(options), result={schemaVersion:1,pass:false,errors:[],captures:[],events:[],lifecycle:[],
-    scope:'Earned2141 first-refuge UI FX settings, real potion/save/resolved backtrack; no new fight, native reward/refusal, subjective balance or global/mobile acceptance',
+    scope:'Earned2141 first-refuge UI FX settings, real potion/save/resolved backtrack and reload disposal; excludes native hidden/suspend (platform not observable), new fight, native reward/refusal, subjective balance and global/mobile acceptance',
+    fullFeatureAcceptance:false,nativeVisibility:{status:'NOT_OBSERVED_PLATFORM',unitPolicy:'hidden stop/suspend covered by UiSoundPlayer.test.ts',closureCriterion:'Real hidden/suspend observation remains open; disposal is not an equivalent'},
     runtimeMutated:false,combatOutcomeInjected:false,earnedSavePath,priorProofPath,qaJobReceipt:job.receiptPath};
   let server,browser,context,page;
   try {
@@ -2187,11 +2188,10 @@ async function runUiFx(options) {
     await cue('back',()=>page.keyboard.press('Escape'));
     await page.locator('[data-action="sounds"]').click();await cue('back',()=>page.locator('[data-sound-close]').click());
     assert.deepEqual(await owner(),initialOwner,'Audio settings changed owner');assert.deepEqual(await slots(),initialSlots,'Audio settings changed save slots');
-    const beforeHidden=await count(),foreground=await context.newPage();await foreground.goto('about:blank');await foreground.bringToFront();
-    await page.waitForFunction(()=>document.hidden,null,{timeout:5000});
-    await page.waitForFunction(()=>window.__demoQaApp.uiSounds.context.state==='suspended'&&window.__demoQaApp.uiSounds.voices.size===0);
-    await page.bringToFront();await page.waitForFunction(()=>!document.hidden);await foreground.close();
-    assert.equal(await count(),beforeHidden,'Visibility return replayed a cue');result.hiddenSilence=true;
+    // Installed Chromium keeps document.hidden=false even after real window minimization,
+    // with focus emulation disabled and backgrounding flags removed. Do not fake an event
+    // or substitute pagehide for hidden. The separate native closure criterion stays OPEN.
+    assert.equal(options.parameters.nativeVisibility,'NOT_OBSERVED_PLATFORM');
     await page.reload({waitUntil:'networkidle'});assert.equal(await count(),0);
     assert.ok(result.lifecycle.some(e=>e.method==='close'),'Reload did not dispose the audio context');
     assert.equal(await page.evaluate(()=>window.__demoQaApp.uiSounds.context),null,'Reload restored audio without gesture');

@@ -42,7 +42,7 @@
     "Dedicated reviewed audio exception and runtime integration",
     "GlobalPC/mobile/hardware/balance acceptance retained outside this asset approval"
   ],
-  "nextAction": "Existing native driver: scoped earned-first-refuge UI FX settings/single-event playback proof; no fresh campaign",
+  "nextAction": "Run the scoped earned UI FX proof excluding the declared platform hidden gap; retain that native criterion open",
   "taskQueue": [
     "LAST-SAVE-RELOAD: corrected target; ordinary/elite restore exact active-game save",
     "POI-PATH-PAWN-CLARITY: prior COMPLETE_SCOPED_UI retained",
@@ -36547,7 +36547,7 @@
       "status": "NO_INHERITED_WIP_ACCEPTANCE_METADATA_ONLY",
       "inheritedWip": 0
     },
-    "nextAction": "Existing native driver: scoped earned-first-refuge UI FX settings/single-event playback proof; no fresh campaign",
+    "nextAction": "Run the scoped earned UI FX proof excluding the declared platform hidden gap; retain that native criterion open",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "sourceMetadataFiles": 1,
@@ -44591,8 +44591,19 @@
       "files": 4,
       "assetHashes": "8byte-identical approved WAVs",
       "nativePlan": "Existing demo driver, earned2141first-refuge, no new campaign",
-      "nativeModeReview": "Prelaunch fixes: exact HTTP WAV hashes, float32 tolerance, certified firstrefuge scope, incompatible modes rejected, real browser visibility and reload disposal observation",
-      "qaToolingJustification": "Adapt existing demo continuous driver only for a bounded certified earned UI-sound continuation; no new persistent runner and no fresh campaign"
+      "nativeModeReview": "Guardian prior instructions: continue useful scoped UI proof while explicitly retaining unobserved native hidden criterion, no full-feature acceptance",
+      "qaToolingJustification": "Adapt existing demo continuous driver only for a bounded certified earned UI-sound continuation; no new persistent runner and no fresh campaign",
+      "nativeVisibility": {
+        "status": "NOT_OBSERVED_PLATFORM",
+        "probes": "Installed Chromium headless/full/headed-offscreen; real tab/front/minimize/freeze; focus emulation disabled on all targets, background flags removed; document.hidden always false",
+        "sourcePolicy": "Unit hidden stop/suspend PASS; runtime unchanged",
+        "closureCriterion": "Native real hidden/suspend still OPEN, never equivalent to reload disposal"
+      },
+      "tests": {
+        "source": 48,
+        "helperHost": 24,
+        "build": "PASS"
+      }
     }
   },
   "previousInterruptedRun": {
