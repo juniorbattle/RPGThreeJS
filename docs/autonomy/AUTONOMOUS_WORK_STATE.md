@@ -1,6 +1,6 @@
 # Combat FX — scoped native proof accepted, operator audition open
 
-Run codex-combat-audio-20261019T1537; status COMBAT_FX_IMPLEMENTED_SCOPED_PC_PLAYTEST_READY; phase SCOPED_NATIVE_ACCEPTED_OPERATOR_AUDITION_OPEN. Set1.7.0 / immutable baseline f4aae63; source4d69c23; prior published checkpoint 9e4a25972406f9876745694371c203ef59c6ec5d.16original candidates integrated with existing8accepted UI WAVs byte-identical. Shared Sons preferences default off, trusted iframe unlock, scoped audio lifecycle, native focus restored.
+Run codex-combat-audio-20261019T1537; status COMBAT_FX_IMPLEMENTED_SCOPED_PC_PLAYTEST_READY; phase SCOPED_NATIVE_ACCEPTED_OPERATOR_AUDITION_OPEN. Set1.7.0 / immutable baseline f4aae63; source4d69c23; published product/proof checkpoint deb59305b9c00a483c45662b89a2062cf24c232d.16original candidates integrated with existing8accepted UI WAVs byte-identical. Shared Sons preferences default off, trusted iframe unlock, scoped audio lifecycle, native focus restored.
 
 127distinct source tests12files,25distinct helper tests across full24/25+isolated2/2, TypeScript/build8MP4/contracts8of8/8slots/gates PASS. First1559 FAILED focus before actions; corrected1605 SUCCEEDED and independent ACCEPTED_SCOPED. One new wolves victory6rounds32actions,239native starts/231combat,11new families,peak2; exact345gold/rewards/V6 reload. Raw receipt NOT_ACCEPTED remains separate from reviewed verdict.
 
@@ -10,7 +10,7 @@ Next product action: Operator: audition the integrated combat FX in the existing
 
 Preview http://127.0.0.1:5438/ PID32208 intentionally retained; QA5443 closed/workers stopped. Historical335 jobs plus2new=337, all previous records/deferred roots/uiFx0259 unchanged. Metrics:11runtime source/4source test/16audio+3audition/1generator/2existingQA+1helpertest/4proof/1report/3productdocs/1existingmedia metadata/11workflow/8dedicated protected amendment; inheritedWIP0.
 
-Handoff: [combat FX closeout](handoffs/2026-10-19T1633Z-codex-combat-fx.md). End timestamp follows successful checkpoint publication.
+Handoff: [combat FX closeout](handoffs/2026-10-19T1633Z-codex-combat-fx.md). Run ended 2026-10-19T16:33:04.170Z after verified product/proof checkpoint deb5930. Containing metadata closure follows; final Git SHA/parity and lock release recorded in automation memory. No WIP; full QA/art remain open.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

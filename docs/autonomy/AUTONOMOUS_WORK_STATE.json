@@ -1,13 +1,13 @@
 {
   "status": "COMBAT_FX_IMPLEMENTED_SCOPED_PC_PLAYTEST_READY",
   "runStartedAt": "2026-10-19T15:38:15.0959806Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-19T16:33:04.170Z",
   "activeTask": "COMBAT-AUDIO-BOUNDED-EXECUTION",
   "activePhase": "SCOPED_NATIVE_ACCEPTED_OPERATOR_AUDITION_OPEN",
   "activeSubtask": "16 original combat candidates integrated; current one-fight proof independently accepted scoped; full QA and art open",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "9e4a25972406f9876745694371c203ef59c6ec5d",
-  "lastPushedCommit": "9e4a25972406f9876745694371c203ef59c6ec5d",
+  "lastKnownGoodCommit": "deb59305b9c00a483c45662b89a2062cf24c232d",
+  "lastPushedCommit": "deb59305b9c00a483c45662b89a2062cf24c232d",
   "completedThisRun": [
     "Dedicated operator-approved amendment set1.7.0/f4aae63 with guardian review BEFORE runtime; main/scheduler untouched",
     "16original combat WAVs and parent-shared battle audio/settings/gesture/session lifecycle plus audited remaining UI feedback",
@@ -120,7 +120,7 @@
   ],
   "creditStatus": "AVAILABLE_AFTER_VERIFIED_RESET",
   "contractComplianceStatus": "PASS scoped guardian; full QA_EVIDENCE blocked on native hidden and five unplayed families; set1.7.0/f4aae63 unchanged after dedicated amendment",
-  "commitReferenceScope": "Verified published integrated-product/proof checkpoint before this self-referential metadata closure; final dev SHA verified in Git and automation memory after commit/push",
+  "commitReferenceScope": "Verified published product/proof checkpoint deb5930 before this metadata closure; final metadata SHA verified in Git and automation memory",
   "operatorAuthorization": "OD-2026-10-19-B direct Okay go approves dedicated bounded combat FX amendment/execution. OD-2026-10-12-A normal origin/dev publication.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -193,18 +193,18 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-combat-audio-20261019T1537",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T16:32:03.146Z",
+  "lastHeartbeat": "2026-10-19T16:33:04.170Z",
   "wip": {
     "branch": "dev",
-    "sha": "9e4a25972406f9876745694371c203ef59c6ec5d",
+    "sha": "deb59305b9c00a483c45662b89a2062cf24c232d",
     "dirtyFiles": [],
-    "status": "COHERENT_REVIEWED_CLOSURE_PAYLOAD_FULL_QA_OPEN",
-    "lastGreenCheck": "2026-10-19T16:32:03.146Z",
+    "status": "NO_WIP_SCOPED_AUDIO_DELIVERED_FULL_QA_OPEN",
+    "lastGreenCheck": "2026-10-19T16:33:04.170Z",
     "inheritedWip": 0,
     "commitReferenceScope": "Containing publication checkpoint; final metadata SHA verified in Git/automation memory"
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T16:32:03.146Z",
+    "lastHeartbeat": "2026-10-19T16:33:04.170Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37212,10 +37212,10 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "9e4a25972406f9876745694371c203ef59c6ec5d",
+      "sha": "deb59305b9c00a483c45662b89a2062cf24c232d",
       "dirtyFiles": [],
-      "status": "COHERENT_REVIEWED_CLOSURE_PAYLOAD_FULL_QA_OPEN",
-      "lastGreenCheck": "2026-10-19T16:32:03.146Z",
+      "status": "NO_WIP_SCOPED_AUDIO_DELIVERED_FULL_QA_OPEN",
+      "lastGreenCheck": "2026-10-19T16:33:04.170Z",
       "inheritedWip": 0,
       "commitReferenceScope": "Containing publication checkpoint; final metadata SHA verified in Git/automation memory"
     },
@@ -37256,11 +37256,11 @@
       "authorization": "OD-2026-10-12-A",
       "amendmentAuthorization": "OD-2026-10-19-B",
       "sourceCheckpoint": "4d69c23405c64ff9cad5391a0f5a053f5a1aa246",
-      "lastVerifiedCheckpoint": "9e4a25972406f9876745694371c203ef59c6ec5d",
-      "finalWorkflow": "Containing closure commit; final parity and lock release recorded in automation memory"
+      "lastVerifiedCheckpoint": "deb59305b9c00a483c45662b89a2062cf24c232d",
+      "finalWorkflow": "Containing metadata closure commit follows verified deb5930; final SHA/parity/lock release in Git and automation memory"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-19T16:33:04.170Z",
+    "writerStopped": true,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
       "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
@@ -37374,15 +37374,15 @@
       "reason": "Automatic review found insufficient trusted exact authorization to disclose internal state on public GitHub WIP branch; local concrete checkpoint in preparation"
     },
     "publicationCloseout": {
-      "status": "PUBLISHED_DELIVERY_LIVE_PARITY_VERIFIED",
-      "deliveryCommit": "0aada9fdd65d10702138bfdf1174ce188c824302",
-      "branch": "dev",
-      "remote": "origin/dev",
-      "remoteVerifiedAt": "2026-10-15T21:32:17.578Z",
-      "protectedMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "normalNonForce": true,
-      "authorization": "OD-2026-10-12-A and OD-2026-10-15-A",
-      "finalMetadata": "Current metadata commit is identified by Git; guarded final push/parity/owned-lock release follows this checkpoint"
+      "runId": "codex-combat-audio-20261019T1537",
+      "sourceCommit": "4d69c23405c64ff9cad5391a0f5a053f5a1aa246",
+      "proofCheckpoint": "deb59305b9c00a483c45662b89a2062cf24c232d",
+      "destination": "origin/dev",
+      "authorization": "OD-2026-10-12-A",
+      "remoteParityVerified": true,
+      "main": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "lockRelease": "AFTER_FINAL_METADATA_PUSH_AND_AUTOMATION_MEMORY",
+      "endedAt": "2026-10-19T16:33:04.170Z"
     },
     "run1859History": {
       "runId": "rpgthreejs-auto-dev-90m-20261008T1859",
@@ -41394,7 +41394,7 @@
     "status": "COMBAT_FX_IMPLEMENTED_SCOPED_PC_PLAYTEST_READY",
     "runStartedAt": "2026-10-19T15:38:15.0959806Z",
     "activePhase": "SCOPED_NATIVE_ACCEPTED_OPERATOR_AUDITION_OPEN",
-    "heartbeat": "2026-10-19T16:32:03.146Z",
+    "heartbeat": "2026-10-19T16:33:04.170Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-19T1633Z-codex-combat-fx.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -42735,7 +42735,7 @@
       }
     },
     "threadId": "01a14d64-3d19-78c1-af2a-c2f212d73ce2",
-    "writerStoppedMeaning": "Product/audit work complete; normal closure publication and owned lock release only",
+    "writerStoppedMeaning": "Product and QA workers stopped; final metadata publication and owned-lock release only. Operator preview intentionally retained.",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -43123,7 +43123,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "9e4a25972406f9876745694371c203ef59c6ec5d",
+    "lastPushedCommit": "deb59305b9c00a483c45662b89a2062cf24c232d",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -43929,7 +43929,7 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "9e4a25972406f9876745694371c203ef59c6ec5d",
+    "lastKnownGoodCommit": "deb59305b9c00a483c45662b89a2062cf24c232d",
     "completedThisRun": [
       "Dedicated operator-approved amendment set1.7.0/f4aae63 with guardian review BEFORE runtime; main/scheduler untouched",
       "16original combat WAVs and parent-shared battle audio/settings/gesture/session lifecycle plus audited remaining UI feedback",
@@ -45542,7 +45542,9 @@
         "defeat"
       ]
     },
-    "contractSetVersion": "1.7.0"
+    "contractSetVersion": "1.7.0",
+    "uncommittedWork": "NONE after containing final metadata commit; product/proof checkpoint deb5930 published and remote verified",
+    "commitReferenceScope": "Verified published product/proof checkpoint deb5930 before this metadata closure; final metadata SHA verified in Git and automation memory"
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T0011",
@@ -45735,7 +45737,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Reviewed state/report/proof/handoff closure payload ready for normal origin/dev publication",
+  "uncommittedWork": "NONE after containing final metadata commit; product/proof checkpoint deb5930 published and remote verified",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",

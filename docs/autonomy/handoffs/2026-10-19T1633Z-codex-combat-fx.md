@@ -15,3 +15,5 @@ All335historical qaJobs/deferred roots/uiFx0259 unchanged;337total including2new
 Operator: audition the integrated combat FX in the existing PC save/next fight and judge timbres, levels and comfort. Five families and true hidden/suspend remain unobserved; no automatic campaign replay or media generation to fill counters.
 
 Operator server http://127.0.0.1:5438/ PID32208 retained; game and audition HTTP200; QA5443 closed,29120/29720 stopped. In combat use Réglages → Sons; listening page /assets/audio/combat-fx-v1/index.html. Publication/end timestamp/lock release follow paired checkpoint; final SHA in Git and automation memory.
+
+Product/proof checkpoint deb59305b9c00a483c45662b89a2062cf24c232d published and remote-verified. Run ended 2026-10-19T16:33:04.170Z; final metadata closure follows. All335 historical QA records/deferred roots/uiFx0259 independently compared exact again (337total). Final closure SHA/parity/owned-lock release recorded in Git and automation memory.
