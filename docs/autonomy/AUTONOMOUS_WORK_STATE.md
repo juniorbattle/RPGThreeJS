@@ -1,18 +1,16 @@
-# Eight approved UI FX integrated; native hidden criterion open
+# Audit des sons manquants termine ; combat encore sans audio
 
-Product/proof checkpoint 513a4d53c2a0f3c1019e9e9fb2c087fa1b179229 published and remote parity verified; main unchanged. Ended 2026-10-19T06:38:02.058Z. Final paired metadata push/ownedlockrelease only; final SHA in Git/automationmemory. Preview5438 HTTP200, QA5443 no listener.
+AUDIT_COMPLETE_COMBAT_AUDIO_PENDING. Run codex-combat-audio-audit-20261019T0657, baseline dev@c01112e995a8e1641e8b11c8e1841fe9326caa72, set1.6.0 / LOCKED8fdc797. Source/runtime/assets inchanges. Rapport : [audit approfondi](../reports/combat-audio-audit-2026-10-19.md). Handoff : [reprise](handoffs/2026-10-19T0705Z-codex-combat-audio-audit.md).
 
-IMPLEMENTED_SCOPED_NATIVE_VISIBILITY_OPEN. Run codex-ui-fx-20261019T0259; source2a8dbe8/hooksd161976/acceptedpilota37024c. Ended 2026-10-19T06:35:10.245Z; publication/metadata/ownedlockrelease remain. Dedicated set1.6.0 amendment8fdc797 independently reviewed and operational baselinef4d266c established before runtime; normal LOCKEDgate empty.
+Combat iframe sans service audio, relais de gestes ou acces volume/mute. Matrice des controles, mouvements, armes/sorts, impacts/rates/critiques, soins/statuts/KO, tours et resultats ; autres trous titre/carte/refuge/choix combat-repli/gestion/reprise.16familles FX proposees, aucune generee ou acceptee. Guardian documentaire PASS ; aucune activation combat sous OD-F.
 
-Sons on title/map, voluntaryenable/mute/volume, defaultsilent/separatepreference;8approvedWAVbytesidentical; boundedgestureplayer/failurecleanup/noownerV6change. 59sourcetests6files/24helperhost/types/build/8MP4/contracts8/8/gates PASS. Sandbox helper Gittempdenial distinct fromproduct.
+Checks : contracts8/8 et8slots PASS ; LOCKEDgate vide ; diffcheck et preservation des335jobs/objets differes au checkpoint. Aucun test runtime/build/gameplay relance pour l'audit. CUA expire avant session ; aucune nouvelle preuve native ou modification de sauvegarde.
 
-Guardian ACCEPTED_SCOPED_OTHER_BOUNDARIES job0633: earned2141firstrefuge,9nativeAudioBufferSourceNode.starts/6distinctcues,realpotion1to56,manualsaveexact,resolvedbacktrack1cue,settings/slotsunchanged,volume0/mute/reloadsilent,invalidWAVnonblocking,exactreload. Threecapturesinspected. Twofailedunloadobservationattempts preserved; synchronous QA sessionStorage logscloseinvocation, notpromisefulfillment.332historicaljobs/deferredroots exact,335totaljobs.
+Precedent lot UI conserve : huit WAV et hooks publies, job0633 ACCEPTED_SCOPED_OTHER_BOUNDARIES ; native hidden/suspend OPEN/NOT_OBSERVED_PLATFORM, fullFeatureAcceptance:false. Aucun PASS global/artistique/materiel/mobile ajoute. Preview5438 et audition5444 conserves ; scheduler/main/saves inchanges.
 
-Fullfeature/lotQA remains BLOCKED solely nativehidden/suspend: installedChromiumdocument.hiddenfalse under trueheadless/headed/tab/minimize/focus-policyprobes. No fakevisibility event; sourceunitstop/suspendPASS is distinct fromnativeacceptance; fullFeatureAcceptance:false. No native reward/refused/newcombat/global/mobile/hardware acceptance. No music/voices/ambience/combat/videoaudio.
+UNE prochaine action produit : Prepare the bounded combat-audio lot from the source audit: shared audio settings, tactical UI feedback and core six-hero FX candidates; a dedicated approved exception must precede production activation. Preserve the prior native hidden/suspend criterion OPEN without repeating its diagnostic loop.
 
-ONE next action: On the interactive PC game, enable Sons and observe real tab/window hide -> audio stops, then returns only after a new user action; retain the native hidden/suspend criterion open until observed. No new campaign replay or asset generation; other accepted UI FX boundaries are retained.
-
-Operator game http://127.0.0.1:5438/ -> refresh -> Sons -> Activer les sons. Existingpreview24360/5438 and audition43684/5444 retained;QA5443/browsercleaned, scheduler/browser/saves untouched. Handoff docs/autonomy/handoffs/2026-10-19T0635Z-codex-ui-fx-integration.md. Metrics source6/styles1/testfiles4/audioassets8/existingQA2/helpertest1/newQA0/proof4/report1/productdocs3/packmeta2/approvedprotected7/workflow8/inheritedWIP0.
+Compteurs ce run : source0/assets0/tests0/QA-outils-preuves0/rapport1/workflow5/WIPherite0. Checkpoint documentaire vers origin/dev selon OD-2026-10-12-A ; SHA final et parite dans Git/automationmemory.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

@@ -1,5 +1,7 @@
 # Report authority index
 
+Latest source audit: [Combat and remaining UI audio coverage](combat-audio-audit-2026-10-19.md) — SOURCE_AUDIT_COMPLETE at c01112e; combat audio unimplemented,16FXfamilies proposed, no runtime/native acceptance added. Existing UI FX native hidden/suspend criterion remains open.
+
 Current navigation authority: [Lot E / OD-2026-10-15-B](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md), extended by [last-save OD-2026-10-18-C](../autonomy/LAST_SAVE_RELOAD_OPERATOR_DECISION_2026-10-18.md), contract set1.5.0 and [production POI navigation](../project/POI_NAVIGATION.md). [OD-2026-10-15-A](../autonomy/POI_V2_OPERATOR_DECISION_2026-10-15.md) retains the definitive physical-engine retirement. Earlier physical-road reports below remain historical.
 
 Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Reports remain historical even when their outcome was merged. Current contracts: [project status](../project/CURRENT_STATUS.md), [T0](../traversal/T0_PRODUCTION_CONTRACT.md), [remaining legs](../traversal/LEGS_ROADMAP.md), and [demo content](../content/DEMO_CONTENT_MAP.md).
