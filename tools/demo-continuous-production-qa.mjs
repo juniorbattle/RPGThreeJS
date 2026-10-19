@@ -2124,9 +2124,11 @@ async function runUiFx(options) {
     browser=await chromium.launch({headless:true});context=await browser.newContext({viewport:{width:1366,height:768}});
     await context.addInitScript(()=>{
       window.__uiFxStarts=[];
+      const record=event=>{const key='__uiFxLifecycle';sessionStorage.setItem(key,JSON.stringify([...JSON.parse(sessionStorage.getItem(key)??'[]'),event]));};
+      window.addEventListener('pagehide',()=>record({method:'pagehide',hidden:document.hidden}));
       for(const method of ['close','suspend']){
         const original=AudioContext.prototype[method];
-        AudioContext.prototype[method]=function(...args){console.debug('__UI_FX_LIFECYCLE__'+JSON.stringify({method,hidden:document.hidden}));return original.apply(this,args);};
+        AudioContext.prototype[method]=function(...args){record({method,hidden:document.hidden});return original.apply(this,args);};
       }
       const original=AudioBufferSourceNode.prototype.start;
       AudioBufferSourceNode.prototype.start=function(...args){
@@ -2137,7 +2139,6 @@ async function runUiFx(options) {
     page=await context.newPage();
     page.on('pageerror',error=>result.errors.push(error.message));
     page.on('console',message=>{
-      if(message.text().startsWith('__UI_FX_LIFECYCLE__'))result.lifecycle.push(JSON.parse(message.text().slice('__UI_FX_LIFECYCLE__'.length)));
       if(message.type()==='error')result.errors.push(message.text());
     });
     await page.route('**/assets/game-*.js',async route=>{
@@ -2195,7 +2196,6 @@ async function runUiFx(options) {
     // or substitute pagehide for hidden. The separate native closure criterion stays OPEN.
     assert.equal(options.parameters.nativeVisibility,'NOT_OBSERVED_PLATFORM');
     await page.reload({waitUntil:'networkidle'});assert.equal(await count(),0);
-    assert.ok(result.lifecycle.some(e=>e.method==='close'),'Reload did not dispose the audio context');
     assert.equal(await page.evaluate(()=>window.__demoQaApp.uiSounds.context),null,'Reload restored audio without gesture');
     await page.locator('[data-action="continue"]').click();
     await page.locator('.poi-map:visible').waitFor();await page.waitForFunction(()=>window.__demoQaApp.uiSounds.buffers.size===8);
@@ -2233,6 +2233,8 @@ async function runUiFx(options) {
     assert.deepEqual(await owner(),failedOwner);assert.deepEqual(await slots(),storedBeforeReload);
     await page.locator('[data-action="continue"]').click();await page.locator('.poi-map:visible').waitFor();
     assert.deepEqual(await owner(),resumed,'Reload with failed optional audio changed campaign state');
+    result.lifecycle=await page.evaluate(()=>JSON.parse(sessionStorage.getItem('__uiFxLifecycle')??'[]'));
+    assert.ok(result.lifecycle.some(e=>e.method==='close'),'Reload did not dispose the audio context');
     assert.equal(await page.locator('iframe').count(),0,'Sound-only proof entered combat');
     assert.deepEqual(result.errors,[]);result.resumed=await owner();result.failureNonblocking=true;result.exactReload=true;result.pass=true;
     await capture('sounds-native-map.png');
