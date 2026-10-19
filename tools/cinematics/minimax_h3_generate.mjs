@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { CIN3_PROMPT_VERSION, getCin3Pilot } from './cin3_config.mjs';
 import { buildShotPrompt, sourcePathForShot, validateShotSpec } from './cin4_shot_spec.mjs';
 import { validateChainProof } from './cin4_media.mjs';
-import { assertResumableTask } from './minimax_task_checkpoint.mjs';
+import { assertAttemptAuthorized, assertResumableTask, MANUAL_CAMP_DECISION_PATH } from './minimax_task_checkpoint.mjs';
 
 const API_ORIGIN = 'https://api.minimax.io';
 const CREATE_ENDPOINT = `${API_ORIGIN}/v2/video_generation`;
@@ -199,7 +199,8 @@ async function main() {
   if (!['768P', '2K'].includes(resolution)) throw new Error('--resolution must be 768P or 2K.');
   if (args.spec && resolution !== configuredResolution) throw new Error(`--resolution must match the shot spec (${configuredResolution}).`);
   const attempt = parsePositiveInteger(args.attempt, '--attempt');
-  if (attempt > 3) throw new Error('The cinematic pipeline allows at most three autonomous attempts per shot. Report the first three defects before a fourth attempt.');
+  if (attempt > 3 && (attempt !== 4 || !args['manual-authorization'])) assertAttemptAuthorized(attempt);
+  if (attempt <= 3 && args['manual-authorization']) throw new Error('Manual camp authorization applies only to attempt04.');
 
   const source = resolve(projectRoot, args.source ?? expectedSource);
   if (source !== expectedSource) throw new Error(`--source must match the configured first-frame source ${relative(projectRoot, expectedSource).replaceAll('\\', '/')}.`);
@@ -227,10 +228,23 @@ async function main() {
   if (!Number.isFinite(timeoutMinutes) || timeoutMinutes <= 0 || timeoutMinutes > 120) throw new Error('--timeout-minutes must be greater than 0 and no more than 120.');
   const sourceSha256 = createHash('sha256').update(sourceBytes).digest('hex');
   const promptSha256 = createHash('sha256').update(prompt, 'utf8').digest('hex');
+  let manualMetadata = {};
+  if (attempt === 4) {
+    const authorizationPath = resolve(projectRoot, args['manual-authorization']);
+    assertWithin(resolve(projectRoot, 'tools/cinematics/specs'), authorizationPath, '--manual-authorization');
+    const authorizationBytes = await readFile(authorizationPath);
+    const authorization = JSON.parse(authorizationBytes.toString('utf8'));
+    const decisionBytes = await readFile(resolve(projectRoot, MANUAL_CAMP_DECISION_PATH));
+    const decisionSha256 = createHash('sha256').update(decisionBytes).digest('hex');
+    assertAttemptAuthorized(attempt, authorization, { cinematicId: id, ...cin4Metadata, model: MODEL, attempt, duration, resolution,
+      sourceSha256, promptSha256, outputCandidatePath: relative(projectRoot, output).replaceAll('\\', '/'), decisionSha256 }, decisionBytes.toString('utf8'));
+    manualMetadata = { manualAuthorizationPath: relative(projectRoot, authorizationPath).replaceAll('\\', '/'),
+      manualAuthorizationSha256: createHash('sha256').update(authorizationBytes).digest('hex'), manualDecisionSha256: decisionSha256 };
+  }
   let resumedMetadata;
   if (resume) {
     resumedMetadata = JSON.parse(await readFile(metadataPath, 'utf8'));
-    assertResumableTask(resumedMetadata, { cinematicId: id, ...cin4Metadata, model: MODEL, attempt, duration, resolution, sourceSha256, promptSha256, outputCandidatePath: relative(projectRoot, output).replaceAll('\\', '/') });
+    assertResumableTask(resumedMetadata, { cinematicId: id, ...cin4Metadata, model: MODEL, attempt, duration, resolution, sourceSha256, promptSha256, outputCandidatePath: relative(projectRoot, output).replaceAll('\\', '/'), ...manualMetadata });
   }
   for (const path of [output, ...(!resume ? [metadataPath] : []), `${output}.part`]) {
     try {
@@ -248,6 +262,7 @@ async function main() {
   const metadata = resumedMetadata ? { ...resumedMetadata, resumedAt: startedAt, status: 'resuming' } : {
     cinematicId: id,
     ...cin4Metadata,
+    ...manualMetadata,
     sourcePath: relative(projectRoot, source).replaceAll('\\', '/'),
     sourceSha256,
     canonicalCharacterSources,

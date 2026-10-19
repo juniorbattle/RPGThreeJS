@@ -1,19 +1,10 @@
-# PC readiness retained — cinematic audit delivered
+# Manual camp candidate04 — source and guard ready
 
-Run codex-cinematic-audit-20261019T1823;OD-2026-10-19-C;status READY_FOR_PC_ACCEPTANCE / cinematic audit COMPLETE_SCOPED. Set1.7.0,immutable f4aae63;baseline dev578dc4d,main00b96f1 unchanged. Clean preflight/exclusive lock/no inherited WIP;host parity/fetch/process verification resolved sandbox DNS restriction.
+Run codex-manual-camp-20261019T2005;OD-2026-10-19-D explicit manual capexception. Old01–03 retained;recurringgeneration prohibited/scheduler unchanged. Cleanbaseline dev671c6ee/main00b96f1;ownedexclusive lock,noinheritedWIP.
 
-[Eight-slot disposition and first correction plan](../reports/cinematic-existing-audit-2026-10-19.md), [SHA inventory](../reports/cinematic-existing-audit-2026-10-19/inventory.json), [handoff](handoffs/2026-10-19T1850Z-codex-cinematic-audit.md). Eight MP4s/descriptors,24old frames and6raw+6master candidates preserved;three keyframes match their old provenance.17of18unique refs match;Alistair changed by manual b4e890a,old0c876f/current84ff7bd now distinguished. Only retained absent path: Bois-Clair shot02/source.png,never regenerated.
+Source ee041130/newcurrentV2 and nightfamily independently reviewed;threefullactors/book/staff/swordvisible. Blade nearlygroundtouching:actualmotion mustcarryit clear. Source/spec validation PASS,61focusedtestsPASS,contracts8/8+8slots/LOCKED/diffgatesPASS;guardianactualdiffPASS beforeprovider.
 
-ONE next product action: External manual workstream: prepare the existing12s camp departure with current Alistair84ff7bd and sustained grounded three-actor walking using the dated report; retain cap3/no fourth repeat in the current pipeline. Recurrence waits for new media, a demonstrated independent PC defect or operator verdict; do not repeat this audit or call a provider.
-
-No runtime defect demonstrated by scoped source/visual/domain review. Artistic remaster incomplete/external;all candidates unaccepted,Bois first10s only/portrait crop unresolved,camp3cap retained. No source,media,keyframe,QA driver,scheduler or gameplay change. No new stage played/build/browser/matrix/job. GlobalPC/art/balance/hardware/mobile and audio5families/nativehidden remain open;operator listening deferred. Audio4d69c23/ACCEPTED_SCOPED and8UI/nocturnalBoisClair accepted scopes preserved.
-
-Verification: currentSHA/descriptor/reference audit PASS;TypeScript exit0;contracts8of8/8slots,emptyLOCKED/diff gates;independent cinematics OK_WITH_CONDITIONS and guardianPASS audit scope. All337qaJobs,MDblock,deferred roots and prior audio/assetacceptances exact against578dc4d. Initial ignored checker output-buffer/duplicate-expectation formatting issues corrected;no product or historical evidence changed.
-
-Metrics: runtime0/sourceTests0/media0/keyframes0/persistentQA0/gameplay0/browser0/jobs0;one new report/one selected JSON proof/three canonical docs/four workflowfiles;inheritedWIP0;two readonlyreviewers. Published/verified WIP e5a371f;final coherent dev checkpoint/parity/endtime/lockrelease follow.
-
-
-Audit checkpoint 006240df69442abd2020019298a40a6bcfbece07 normally published/remote-verified on origin/dev;main00b96f1 unchanged. Run ended 2026-10-19T18:53:09.896Z (~29min). Final metadata publication/parity,temporary WIP retirement and owned lock release follow;exact final SHA recorded in automation memory.
+Next: Checkpoint current source/guard,then submit exactlyone authorizedmanualcamp04 with existingadapter;retain taskmetadata and inspectactualmotion before any acceptance. Provider notyetcalled;no productionMP4/runtimechange. All337jobs/deferredroots/prioraudioacceptances preserved exactly;globalPC/art/balance/hardware/mobile/truehidden limits remainopen.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

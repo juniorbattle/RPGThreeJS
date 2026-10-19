@@ -1,57 +1,51 @@
 {
-  "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-19T18:23:58.0504429Z",
-  "runEndedAt": "2026-10-19T18:53:09.896Z",
-  "activeTask": "CINEMATIC-EIGHT-SLOT-EXISTING-MEDIA-AUDIT",
-  "activePhase": "CINEMATIC_AUDIT_COMPLETE_SCOPED_MANUAL_HANDOFF_READY",
-  "activeSubtask": "Eight-slot audit delivered; first correction is external manual camp walking/current-V2 correction, no runtime defect demonstrated",
+  "status": "MANUAL_CAMP_MEDIA_IN_PROGRESS",
+  "runStartedAt": "2026-10-19T20:09:26.5391732Z",
+  "runEndedAt": null,
+  "activeTask": "MANUAL-CAMP-CANDIDATE-04",
+  "activePhase": "SOURCE_AND_BOUNDED_GUARD_GREEN_READY_TO_SUBMIT",
+  "activeSubtask": "Prepare corrected moonlit source then one camp candidate04 under explicit manual operator cap exception",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "006240df69442abd2020019298a40a6bcfbece07",
-  "lastPushedCommit": "006240df69442abd2020019298a40a6bcfbece07",
+  "lastKnownGoodCommit": "671c6eebed2872dd8284b3dbe7c55e883bba0d06",
+  "lastPushedCommit": "671c6eebed2872dd8284b3dbe7c55e883bba0d06",
   "completedThisRun": [
-    "Completed OD-2026-10-19-C eight-slot disposition table and exact existing-media/current-reference reconciliation",
-    "Prepared ONE manual camp12s correction with current identities, precise action timing/evidence and cap3 retained",
-    "Preserved all337QA jobs and audio/deferred acceptances;no source/assets/media/QA driver/scheduler changes",
-    "Audit checkpoint006240d normally published/remote-verified origin/dev;main00b96f1 unchanged;metadata closure follows"
+    "Clean read-only preflight/remoteparity/exclusive lock/fetch;manual operator explicit cap exception recorded OD-2026-10-19-D",
+    "Guardian preimplementation PASS for manual scope and bounded attempt04 guard"
   ],
   "filesChanged": [
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-    "docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-    "docs/reports/INDEX.md",
-    "docs/reports/cinematic-existing-audit-2026-10-19.md",
-    "docs/reports/cinematic-existing-audit-2026-10-19/inventory.json",
-    "docs/autonomy/handoffs/2026-10-19T1850Z-codex-cinematic-audit.md"
+    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
+    "tools/cinematics/minimax_h3_generate.mjs",
+    "tools/cinematics/minimax_task_checkpoint.mjs",
+    "tools/cinematics/minimax_task_checkpoint.test.mjs",
+    "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
+    "tools/cinematics/candidates/manual-camp-20261019/candidate-04-provenance.json",
+    "tools/cinematics/candidates/manual-camp-20261019/source-prompt.txt",
+    "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
+    "tools/cinematics/specs/manual-camp-20261019/candidate-04-authorization.json"
   ],
   "testsRun": [
-    "Eight shipped MP4/descriptors/current IDs and24retained source-frame SHA exact;151935283bytes",
-    "Six raw+six master candidates and three tracked keyframes match historical SHA;one absent ignored Bois-Clair shot02 source recorded",
-    "18unique environment/master references reconciled:17match;Alistair old0c876f/current84ff7bd tied exactly to manual b4e890a",
-    "All337historical qaJobs/MDblock/deferredDemoTask/pendingNarrativeTask/combatFx/combatFxDeliveryRun/operatorAcceptedAssets exact against578dc4d",
-    "Independent cinematics-journey source/agency review OK_WITH_CONDITIONS; contracts-guardian audit/publication scope PASS",
-    "TypeScript --noEmit exit0;contracts8of8/8slots;LOCKED baseline/working gates empty;git diff --check PASS"
+    "61focused tests:43attempt/resume+18CIN4spec",
+    "Newsource/specPASS,contracts8/8+8slots,LOCKED/diffgatesempty",
+    "IndependentcurrentV2source reviewOK_WITH_CONDITIONS;guardianactualdiffPASS"
   ],
   "testsPassed": [
-    "Eight shipped MP4/descriptors/current IDs and24retained source-frame SHA exact;151935283bytes",
-    "Six raw+six master candidates and three tracked keyframes match historical SHA;one absent ignored Bois-Clair shot02 source recorded",
-    "18unique environment/master references reconciled:17match;Alistair old0c876f/current84ff7bd tied exactly to manual b4e890a",
-    "All337historical qaJobs/MDblock/deferredDemoTask/pendingNarrativeTask/combatFx/combatFxDeliveryRun/operatorAcceptedAssets exact against578dc4d",
-    "Independent cinematics-journey source/agency review OK_WITH_CONDITIONS; contracts-guardian audit/publication scope PASS",
-    "TypeScript --noEmit exit0;contracts8of8/8slots;LOCKED baseline/working gates empty;git diff --check PASS"
+    "61focused tests:43attempt/resume+18CIN4spec",
+    "Newsource/specPASS,contracts8/8+8slots,LOCKED/diffgatesempty",
+    "IndependentcurrentV2source reviewOK_WITH_CONDITIONS;guardianactualdiffPASS"
   ],
   "testsRemaining": [
-    "No runtime unit/build/browser replay warranted for unchanged source/media audit",
-    "Final artistic media acceptance remains external manual;global PC/art/balance/hardware,combatFX5families/nativehidden and final mobile remain open"
+    "Source art/identity review",
+    "Exact-request exception refusal/resume tests and guardian actualdiff",
+    "One candidate04 generation,decode/motion/master/isolatedplayer review"
   ],
   "blockers": [],
   "remainingWork": [
-    "External manual camp correction per report;artistic remaster incomplete;current pipeline3cap closed",
-    "New independent demonstrated PC finding or operator verdict before further recurring product/audit work",
-    "Operator audio/art/balance/hardware/global PC acceptance;mobile after PC stability"
+    "One manual camp candidate04;artisticacceptance and runtimepromotion separate"
   ],
-  "nextAction": "External manual workstream: prepare the existing12s camp departure with current Alistair84ff7bd and sustained grounded three-actor walking using the dated report; retain cap3/no fourth repeat in the current pipeline. Recurrence waits for new media, a demonstrated independent PC defect or operator verdict; do not repeat this audit or call a provider.",
+  "nextAction": "Checkpoint current source/guard,then submit exactlyone authorizedmanualcamp04 with existingadapter;retain taskmetadata and inspectactualmotion before any acceptance",
   "taskQueue": [
     "Manual camp correction handoff (not an automatic provider task)",
     "Demonstrated independent PC defect/operator verdict when supplied",
@@ -130,19 +124,24 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-cinematic-audit-20261019T1823",
+  "runId": "codex-manual-camp-20261019T2005",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T18:53:09.896Z",
+  "lastHeartbeat": "2026-10-19T20:24:46.053Z",
   "wip": {
     "branch": "dev",
-    "sha": "006240df69442abd2020019298a40a6bcfbece07",
-    "dirtyFiles": [],
-    "status": "NO_SOURCE_WIP_AUDIT_COMPLETE_METADATA_CLOSEOUT",
+    "sha": "671c6eebed2872dd8284b3dbe7c55e883bba0d06",
+    "dirtyFiles": [
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+    ],
+    "status": "MANUAL_SOURCE_PREPARATION",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-19T18:53:09.896Z"
+    "lastGreenCheck": "2026-10-19T20:14:34.555Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T18:53:09.896Z",
+    "lastHeartbeat": "2026-10-19T20:24:46.053Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37150,13 +37149,26 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "006240df69442abd2020019298a40a6bcfbece07",
-      "dirtyFiles": [],
-      "status": "NO_SOURCE_WIP_AUDIT_COMPLETE_METADATA_CLOSEOUT",
+      "sha": "671c6eebed2872dd8284b3dbe7c55e883bba0d06",
+      "dirtyFiles": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/OPERATOR_DECISIONS.md",
+        "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
+        "tools/cinematics/minimax_h3_generate.mjs",
+        "tools/cinematics/minimax_task_checkpoint.mjs",
+        "tools/cinematics/minimax_task_checkpoint.test.mjs",
+        "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
+        "tools/cinematics/candidates/manual-camp-20261019/candidate-04-provenance.json",
+        "tools/cinematics/candidates/manual-camp-20261019/source-prompt.txt",
+        "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
+        "tools/cinematics/specs/manual-camp-20261019/candidate-04-authorization.json"
+      ],
+      "status": "GREEN_SOURCE_GUARD",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-19T18:53:09.896Z"
+      "lastGreenCheck": "2026-10-19T20:14:34.555Z"
     },
-    "nextAction": "External manual workstream: prepare the existing12s camp departure with current Alistair84ff7bd and sustained grounded three-actor walking using the dated report; retain cap3/no fourth repeat in the current pipeline. Recurrence waits for new media, a demonstrated independent PC defect or operator verdict; do not repeat this audit or call a provider.",
+    "nextAction": "Checkpoint current source/guard,then submit exactlyone authorizedmanualcamp04 with existingadapter;retain taskmetadata and inspectactualmotion before any acceptance",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "sourceTestFiles": 0,
@@ -37197,8 +37209,8 @@
       "finalWorkflow": "Audit006240d published/remote-verified;containing metadata closure final SHA/parity in automation memory",
       "lastVerifiedCheckpoint": "006240df69442abd2020019298a40a6bcfbece07"
     },
-    "runEndedAt": "2026-10-19T18:53:09.896Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
       "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
@@ -41325,7 +41337,7 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-cinematic-audit-20261019T1823",
+    "runId": "codex-manual-camp-20261019T2005",
     "agent": "codex",
     "status": "NEXT_SCHEDULED_CINEMATIC_AUDIT_READY",
     "runStartedAt": "2026-10-19T18:19:04.431Z",
@@ -45468,7 +45480,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-19T1850Z-codex-cinematic-audit.md",
+  "currentHandoff": "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
   "runMeasurement": {
     "runtimeSourceFiles": 0,
     "sourceTestFiles": 0,
@@ -49539,5 +49551,25 @@
     "runEndedAt": "2026-10-19T18:53:09.896Z",
     "publishedCheckpoint": "006240df69442abd2020019298a40a6bcfbece07",
     "finalMetadata": "Containingcommit;exactfinalSHA/parity/lockrelease recorded in automation memory"
+  },
+  "manualCampContinuation": {
+    "decision": "OD-2026-10-19-D",
+    "manualOnly": true,
+    "operatorQuote": "Nouvelle série MiniMax : j’autorise explicitement le dépassement du cap pour le camp",
+    "candidateNumber": 4,
+    "priorAttemptsPreserved": [
+      1,
+      2,
+      3
+    ],
+    "recurringGenerationAuthorized": false,
+    "productionReplacementAuthorized": false,
+    "status": "SOURCE_AND_BOUNDED_GUARD_GREEN_READY_TO_SUBMIT",
+    "baseline": "671c6eebed2872dd8284b3dbe7c55e883bba0d06",
+    "sourceSha256": "ee04113053ce19c88a409cf0789a8abdc1fc828a305272ee83dbe66520a33ed0",
+    "sourceCandidate": "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
+    "spec": "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
+    "sourceReview": "cinematics-journey OK_WITH_CONDITIONS;threefullbodies/currentV2/nightfamily;blade-ground clearance to inspect in actualmotion",
+    "guardian": "PASS_ACTUAL_DIFF_BEFORE_SUBMISSION"
   }
 }

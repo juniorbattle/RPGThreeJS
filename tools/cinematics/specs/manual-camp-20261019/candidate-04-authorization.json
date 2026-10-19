@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "manualOnly": true,
+  "operatorDecisionId": "OD-2026-10-19-D",
+  "decisionPath": "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
+  "cinematicId": "camp_departure",
+  "sequenceId": "production_manual_camp_20261019",
+  "shotId": "shot_01",
+  "model": "MiniMax-H3",
+  "attempt": 4,
+  "duration": 12,
+  "resolution": "2K",
+  "sourceSha256": "ee04113053ce19c88a409cf0789a8abdc1fc828a305272ee83dbe66520a33ed0",
+  "promptSha256": "f9f72bb82f070baca54e7c1b1c51884b5ca46853bdd295f7e8c2694826f5318f",
+  "outputCandidatePath": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/candidate_04_raw.mp4",
+  "decisionSha256": "5b342ae3c5adbb672f6518ff1600e7293122015accc214bcf4b293289a1a165b"
+}

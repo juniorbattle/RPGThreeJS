@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-19T20:19:42.065Z",
+  "slot": "camp_departure",
+  "candidateNumber": 4,
+  "manualDecision": "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md",
+  "originalOutput": "C:/Users/miche/.codex/generated_images/01a15567-37ce-7150-a6fc-6ad9bcd5766c/exec-8d55ee12-ee6d-4fbd-9bbc-c39ccf1575dd.png",
+  "output": "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
+  "sha256": "ee04113053ce19c88a409cf0789a8abdc1fc828a305272ee83dbe66520a33ed0",
+  "frame": {
+    "width": 1672,
+    "height": 941
+  },
+  "status": "REVIEWED_SOURCE_CANDIDATE_NOT_ARTISTIC_VIDEO_ACCEPTANCE",
+  "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+  "sourceReferences": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/white_mage.png",
+      "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/maelor.png",
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alistair.png",
+      "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219"
+    }
+  ],
+  "compositionReference": {
+    "path": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/keyframe-v1.png",
+    "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+    "historicalOnly": true
+  },
+  "promptIntent": "CurrentV2 integrated firstframe;exact environment;walkingcontactpose;threefullbodies;newsourceplainAlistairchest",
+  "sourceReview": [
+    "Moonlit camp landmarks/crescent retained",
+    "Three full bodies,current covered identities/equipment visible",
+    "Alistair obsolete large chestlion absent,reference84ff7bd retained",
+    "Pose is source preparation only;does not prove sustained walking"
+  ],
+  "specPath": "tools/cinematics/specs/manual-camp-20261019/camp-departure-04.json",
+  "imagePromptFile": "tools/cinematics/candidates/manual-camp-20261019/source-prompt.txt",
+  "imagePromptSha256": "ddbe21b1ead233b3da04bf8a5106d11a4da576d26ad047486784236aeef7458d",
+  "independentSourceReview": "cinematics-journey OK_WITH_CONDITIONS;threefullbodies/currentV2/nightfamily;blade-ground clearance to inspect in actualmotion"
+}

@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "production_manual_camp_20261019",
+  "cinematicId": "camp_departure",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "manual-camp04-current-v2-grounded-departure-v1",
+  "resolution": "2K",
+  "frame": {
+    "width": 1920,
+    "height": 1080
+  },
+  "status": "MANUAL_OPERATOR_CANDIDATE_04_NOT_PRODUCTION",
+  "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+  "artDirection": "Modern pixel-art/HD-2D. Canonical moonlit Lion camp and protected V2 identities; final silent authored motion must pass separate visual/runtime acceptance.",
+  "shots": [
+    {
+      "shotId": "shot_01",
+      "purpose": "A rare major departure: the small company physically starts toward the existing route through the grand camp/valley environment.",
+      "framing": "WIDE_GROUNDED_CAMP_COMPANY",
+      "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "source": {
+        "type": "ROOT_SOURCE",
+        "output": "tmp/cinematics/cin4/production_manual_camp_20261019/shot_01/source.png",
+        "frame": {
+          "width": 1672,
+          "height": 941
+        },
+        "sha256": "ee04113053ce19c88a409cf0789a8abdc1fc828a305272ee83dbe66520a33ed0",
+        "inputCandidate": "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+          "referenceAssets": [
+            "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+            "public/assets/characters/pixel/masters/white_mage.png",
+            "public/assets/characters/pixel/masters/maelor.png",
+            "public/assets/characters/pixel/masters/alistair.png"
+          ],
+          "qualityGates": [
+            "NO_COLLAGE_LOOK",
+            "WORLD_INTEGRATION",
+            "V2_IDENTITY",
+            "CANONICAL_ENVIRONMENT",
+            "NO_GAME_TRUTH_MUTATION"
+          ]
+        }
+      },
+      "characters": [
+        {
+          "id": "marian",
+          "asset": "public/assets/characters/pixel/masters/white_mage.png",
+          "position": {
+            "x": 0.32,
+            "groundY": 0.78
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "ENVIRONMENT:camp_road",
+          "depth": 30,
+          "role": "SECONDARY",
+          "action": "WALK_PURPOSEFUL",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
+          "position": {
+            "x": 0.44,
+            "groundY": 0.78
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:alistair",
+          "depth": 20,
+          "role": "PRIMARY",
+          "action": "WALK_PURPOSEFUL",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
+          "position": {
+            "x": 0.58,
+            "groundY": 0.78
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1.02
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "ENVIRONMENT:camp_road",
+          "depth": 10,
+          "role": "PRIMARY",
+          "action": "WALK_PURPOSEFUL",
+          "mirrorPolicy": "FORBID"
+        }
+      ],
+      "camera": {
+        "mode": "STATIC",
+        "intent": "One grounded wide departure with a fixed world axis; physical strides, weight and environment movement provide the energy, no zoom/parallax substitute."
+      },
+      "durationSeconds": 12,
+      "continuityOut": "END",
+      "endIntent": "READABLE_STABLE_DEPARTURE_THEN_COVERED_STATIC_TABLEAU",
+      "nextStepUiSafeZone": {
+        "x": 0,
+        "y": 0.85,
+        "width": 1,
+        "height": 0.15
+      },
+      "promptIntent": "Animate this exact integrated image as a finely stepped PIXEL-ART/HD-2D cinematic. One continuous wide shot, fixed camera. The three travelers are already beginning to WALK PURPOSEFULLY toward SCREEN RIGHT: make this actual locomotion, not breathing/idle or sliding. From0–2s transfer weight onto a firmly planted leading foot and complete the first natural step. From2–10s each actor completes at least two distinct alternating left-right WALK cycles, feet plant/release, knees and hips articulate, each grounded stride moves the body forward; travel a modest span of approximately one body width within this existing street so all three remain entirely visible. Different natural stride phases, Maelor follows Alistair and Marian follows Maelor. Do not hold them stationary while moving the background. Keep their source proportions, crisp discrete pixel clusters/stepped contours and all exact clothing/armor patterns. Maelor keeps the same physical small book clamped to his chest in its original hand the entire time and retains his dagger; no book disappearance, switch or invented scroll. Marian keeps her original veiled face and gold star staff. Alistair keeps the corrected source closed helmet, plain red chest/scarf/cape WITHOUT adding the obsolete large gold lion chest emblem, precise waist/leg ornaments and single sword; carry the blade safely low/forward clear of feet, never attack or duplicate it. Actual cloth/cape inertia, staff/book carried with body, readable boots and matching ground contact shadows. In10–12s decelerate to a stable alive formation, no freeze jump. Independent fire flicker/sparks, river ripples and light wind in the existing banners are subtle secondary motion. Keep exact CRESCENT moon phase and location, castle, aqueduct, river, mountains, tents and time of night; no moon travel, new world surfaces, new actors, combat, magic, reward, recruitment, route outcome, UI, subtitles, speech or intended audio. No cuts, zoom, orbit, actor redesign, smooth anime/3D rerender or lost equipment. Final full bodies remain above the bottom15percent ground safe zone for the existing covered STATIC_TABLEAU handoff. The desired dramatic rhythm is physical impulse, sustained readable progression, then living stop; camera movement never substitutes for walking."
+    }
+  ],
+  "operatorDecision": "docs/autonomy/MANUAL_CAMP_CONTINUATION_OPERATOR_DECISION_2026-10-19.md"
+}
