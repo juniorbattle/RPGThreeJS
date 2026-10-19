@@ -2,6 +2,17 @@
 
 État au 18 octobre 2026 : candidat de travail sur `dev`, acceptation finale opérateur ouverte. La navigation POI V2/Lot E est livrée dans les portées du [rapport Lot E](../reports/lot-e-final-2026-10-15.md). La [file de finition](../autonomy/DEMO_COMPLETION_PLAN.md) distingue les corrections vérifiées des critères encore ouverts.
 
+## Sons de combat — lot du19octobre2026
+
+[Lot dédié OD-2026-10-19-B](../autonomy/COMBAT_FX_OPERATOR_DECISION_2026-10-19.md), set1.7.0, baseline f4aae63. Les nouveaux effets sont intégrés comme candidats à écouter ; aucune acceptation artistique ou globale n'est présumée. [Preuves et limites](../reports/combat-fx-integration-2026-10-19.md).
+
+- Sur la carte, ouvrir Sons et activer les sons si nécessaire. Pendant un combat, ouvrir Réglages puis Sons : mêmes volume et mute. Fermer avec Escape doit revenir au bouton Sons du combat.
+- Utiliser la partie habituelle et un prochain combat disponible ; soigner les héros avec les objets disponibles avant de juger sa difficulté. Pas besoin de rejouer toute la campagne pour écouter ce lot.
+- Juger d'abord la différence armes/magie/impact/raté, la présence des soins/K.O./tour/résultat, le volume et la fatigue des sons répétés. Les indices visuels restent présents en jouant sans son.
+- Contrôler aussi le vrai passage en arrière-plan : arrêt/suspension, puis reprise uniquement après geste. Ce critère natif ancien reste ouvert dans l'environnement automatisé ; une suspension forcée du contexte ne le valide pas.
+
+Serveur opérateur courant : http://127.0.0.1:5438/ (origine des sauvegardes existantes). Page d'écoute volontaire : http://127.0.0.1:5438/assets/audio/combat-fx-v1/index.html. Garder le même navigateur/profil/origine ; aucune sauvegarde opérateur n'est déplacée par le lot.
+
 ## Lancer la campagne
 
 Depuis le dépôt, exécuter `npm install` si nécessaire, puis `npm run build` et `npm run preview -- --host 127.0.0.1 --port 4173 --strictPort`. Ouvrir `http://127.0.0.1:4173/` dans un navigateur PC. Si le port est occupé, choisir un autre port libre et garder cette adresse pendant le test : les sauvegardes du navigateur dépendent aussi de l'origine et du profil utilisés.

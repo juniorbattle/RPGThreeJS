@@ -1,5 +1,7 @@
 # Report authority index
 
+Current bounded audio implementation: [Combat FX integration](combat-fx-integration-2026-10-19.md) — set1.7.0 / OD-2026-10-19-B;16candidatefamilies, shared iframe settings, first native focus defect corrected; final scoped evidence and artistic limits in report.
+
 Latest source audit: [Combat and remaining UI audio coverage](combat-audio-audit-2026-10-19.md) — SOURCE_AUDIT_COMPLETE at c01112e; combat audio unimplemented,16FXfamilies proposed, no runtime/native acceptance added. Existing UI FX native hidden/suspend criterion remains open.
 
 Current navigation authority: [Lot E / OD-2026-10-15-B](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md), extended by [last-save OD-2026-10-18-C](../autonomy/LAST_SAVE_RELOAD_OPERATOR_DECISION_2026-10-18.md), contract set1.5.0 and [production POI navigation](../project/POI_NAVIGATION.md). [OD-2026-10-15-A](../autonomy/POI_V2_OPERATOR_DECISION_2026-10-15.md) retains the definitive physical-engine retirement. Earlier physical-road reports below remain historical.

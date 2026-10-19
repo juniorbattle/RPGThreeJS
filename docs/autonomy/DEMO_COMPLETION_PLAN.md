@@ -1,5 +1,8 @@
 # Demo completion — delivered POI/Lot E baseline
 
+Current19October2026 audio scope: [OD-2026-10-19-B](COMBAT_FX_OPERATOR_DECISION_2026-10-19.md), set1.7.0 / immutable baseline f4aae63e792025430c16153e1cd329c20745cf6b. Shared combat settings, audited UI feedback and16short original FX candidates implemented; [current proof/remaining limits](../reports/combat-fx-integration-2026-10-19.md). The direct operator media execution supersedes audio deferral solely for this bounded lot. Artistic listening, prior native hidden/suspend and global PC verdict stay open. Other accepted campaign/economy/skills evidence is preserved, no campaign replay or silent rebalance.
+
+
 Current dedicated operator task: OD-2026-10-18-C executes set1.5.0 LAST-SAVE-RELOAD after the accepted POI UI feedback. Immediately usable holdings plus exact selected last-save defeat recovery supersede old unsecured-loot/checkpoint-loss rules only. Reward/cost/elite quantities remain unchanged; manual multi-slot support stays future scope. Preserve old native scopes; no full campaign replay to certify unchanged code. See [decision](LAST_SAVE_RELOAD_OPERATOR_DECISION_2026-10-18.md) and [proof](../reports/last-save-reload-2026-10-18.md).
 
 Current directives: **OD-2026-10-16-A**, [recurrence handoff](handoffs/2026-10-16T2226Z-codex-recurring-poi-config.md), and **OD-2026-10-16-B**, [immediate product resumption](PRODUCT_RESUMPTION_OPERATOR_DECISION_2026-10-16.md). Configuration-only execution is superseded; authorized product work resumes now and on subsequent runs. This is the mutable active queue, not a new product-acceptance claim. It supersedes obsolete execution priorities from OD13A/B while retaining their product-first/no-instrumentation-loop policy and all historical evidence.

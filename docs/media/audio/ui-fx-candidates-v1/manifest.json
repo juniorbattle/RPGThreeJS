@@ -5,7 +5,7 @@
   "generator": "tools/audio/generate-ui-fx-candidates.mjs",
   "generatorSha256": "7fdff453b4609e59f1c37588fafe977490dd227e3b749c7baf261df594542bd1",
   "authority": "Direct operator request 2026-10-18: audit concrete FX needs and locations, generate simple sounds if possible",
-  "limits": "Eight approved UI FX integrated at audited native UI/campaign events. Native hidden/suspend proof remains open; no music, voices, ambient loops, combat-iframe sounds or cinematic audio changes.",
+  "limits": "Eight operator-accepted byte-identical UI FX retained. OD-2026-10-19-B/set1.7.0 additionally reuses appropriate UI cues at audited tactical intentions;16new combat FX are a separate candidate pack pending artistic acceptance. Native hidden/suspend remains open; no music, voices, ambience, Ultimates or cinematic/video audio.",
   "candidates": [
     {
       "id": "navigate",
