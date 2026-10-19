@@ -681,7 +681,7 @@ async function runContextualProduction() {
                   return { width: image.naturalWidth, height: image.naturalHeight };
                 }, plate.publicUrl);
                 assert.deepEqual(decoded, { width: plate.width, height: plate.height });
-                const response = await page.request.get(plate.publicUrl);
+                const response = await page.request.get(new URL(plate.publicUrl, page.url()).href);
                 assert.ok(response.ok(), 'Night plate load failed');
                 const { createHash } = await import('node:crypto');
                 assert.equal(createHash('sha256').update(await response.body()).digest('hex'), plate.sha256);
