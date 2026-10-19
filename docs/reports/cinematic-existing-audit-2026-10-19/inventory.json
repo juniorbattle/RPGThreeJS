@@ -1,0 +1,1675 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-19T18:34:09.530Z",
+  "baseline": "578dc4dca39eeb1ce7818b0572c87368fc11fd2e",
+  "scope": "READ_ONLY_EXISTING_MEDIA_RECONCILIATION_NOT_NEW_PLAYBACK_OR_ART_ACCEPTANCE",
+  "slotIds": [
+    "camp_departure",
+    "alaric_audience_arrival",
+    "bois_clair_arrival",
+    "bois_clair_saved",
+    "bois_clair_sacrificed",
+    "lion_judgement",
+    "serpent_route_ending",
+    "lion_trial_route_ending"
+  ],
+  "manifestIds": [
+    "lion_judgement",
+    "camp_departure",
+    "alaric_audience_arrival",
+    "bois_clair_arrival",
+    "bois_clair_saved",
+    "bois_clair_sacrificed",
+    "serpent_route_ending",
+    "lion_trial_route_ending"
+  ],
+  "productionMp4Count": 8,
+  "sourceFreeQaPlaceholder": {
+    "id": "qa-placeholder",
+    "title": "Chronique cinématique",
+    "sources": [],
+    "fallbackText": "Emplacement réservé à une future séquence animée.",
+    "placeholderOnly": true,
+    "durationMs": 1200
+  },
+  "slots": [
+    {
+      "id": "camp_departure",
+      "descriptorMatches": true,
+      "media": {
+        "path": "public/assets/cinematics/camp_departure.mp4",
+        "exists": true,
+        "sha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3",
+        "expectedSha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3",
+        "matches": true,
+        "bytes": 14245824
+      },
+      "durationMs": 12000,
+      "measuredStream": {
+        "id": "camp_departure",
+        "sourceSha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 288,
+        "measuredDurationMs": 12000,
+        "descriptorDurationMs": 12000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "sourceVisualReview": "Old source is sunset camp with three exposed/different character identities. New V2/night integrated keyframe candidate exists; motion acceptance remains pending.",
+      "frames": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/camp_departure-first.png",
+          "sha256": "79200f294990e620b8c4e778663b72ee0ff13daf723db02feaa229f3c147ae6b",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "79200f294990e620b8c4e778663b72ee0ff13daf723db02feaa229f3c147ae6b",
+          "matches": true,
+          "bytes": 4379231
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 144,
+          "timestampSeconds": 6,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/camp_departure-middle.png",
+          "sha256": "21a2ca864fd9d78686597a40b59f5ec885e671d02107f0a749d319e6ae9dfb29",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "21a2ca864fd9d78686597a40b59f5ec885e671d02107f0a749d319e6ae9dfb29",
+          "matches": true,
+          "bytes": 4187572
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 287,
+          "timestampSeconds": 11.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/camp_departure-final.png",
+          "sha256": "b065e543a6894e7bf0cca3d48378206581682f59f87401ef087dd19d62b6d9a7",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "b065e543a6894e7bf0cca3d48378206581682f59f87401ef087dd19d62b6d9a7",
+          "matches": true,
+          "bytes": 4558946
+        }
+      ],
+      "canonicalContextHistorical": {
+        "nodeId": "lion-camp",
+        "trigger": "GameApp.startNewChronicle: after prologue and acte_ouverture, before camp_departure dialogue and campaign entry",
+        "sources": [
+          "src/game/GameApp.ts:1596",
+          "src/game/content.ts:204",
+          "src/campaign/LionCampaignStructure.ts:77"
+        ],
+        "followingDialogueId": "camp_departure",
+        "truth": "A vulnerable company prepares its departure from the Lion camp. Preserve the existing repaired-banner/preparation context; no battle, new recruit or acquired reward.",
+        "exclusions": [
+          "No optional Cedric/Garen as universally recruited cast",
+          "No victory or new route choice",
+          "Do not replace canonical moonlit camp with the old video sunrise"
+        ]
+      }
+    },
+    {
+      "id": "alaric_audience_arrival",
+      "descriptorMatches": true,
+      "media": {
+        "path": "public/assets/cinematics/alaric_audience_arrival.mp4",
+        "exists": true,
+        "sha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629",
+        "expectedSha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629",
+        "matches": true,
+        "bytes": 12340443
+      },
+      "durationMs": 12000,
+      "measuredStream": {
+        "id": "alaric_audience_arrival",
+        "sourceSha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 288,
+        "measuredDurationMs": 12000,
+        "descriptorDurationMs": 12000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "sourceVisualReview": "Existing clip switches wide/medium/wide cast composition. Replacement must preserve V2 masks, silhouettes and continuous physical presence.",
+      "frames": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/alaric_audience_arrival-first.png",
+          "sha256": "97236e83ad6afacd1cf2a66ebe07ddbfaed997370110c9b9d92486f6941b84f7",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "97236e83ad6afacd1cf2a66ebe07ddbfaed997370110c9b9d92486f6941b84f7",
+          "matches": true,
+          "bytes": 3978453
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 144,
+          "timestampSeconds": 6,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/alaric_audience_arrival-middle.png",
+          "sha256": "203fe5cbd87fc39482c5eb3f31c342620243a95061b8ce76d1c39c7dd79b667a",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "203fe5cbd87fc39482c5eb3f31c342620243a95061b8ce76d1c39c7dd79b667a",
+          "matches": true,
+          "bytes": 3889224
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 287,
+          "timestampSeconds": 11.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/alaric_audience_arrival-final.png",
+          "sha256": "38469ebf5c4c596acd9fd97d4938bf5f68b4f5f06fecc0c5932b08612ae6e7d8",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "38469ebf5c4c596acd9fd97d4938bf5f68b4f5f06fecc0c5932b08612ae6e7d8",
+          "matches": true,
+          "bytes": 4101745
+        }
+      ],
+      "canonicalContextHistorical": {
+        "nodeId": "lion-audience",
+        "trigger": "beforeDialogue lion_briefing, subject to approved prelude video policy",
+        "sources": [
+          "src/cinematics/Cin6aPresentation.ts:17",
+          "src/game/content.ts:294",
+          "src/game/content.ts:355",
+          "src/campaign/LionCampaignStructure.ts:92"
+        ],
+        "followingDialogueId": "lion_briefing",
+        "truth": "The company enters Alaric’s audience; the Bois-Clair mandate and accept/advance decision follow interactively.",
+        "exclusions": [
+          "No advance/gold handover before the player accepts it",
+          "No recognition or Seal awarded",
+          "No unnecessary additional court actors"
+        ]
+      }
+    },
+    {
+      "id": "bois_clair_arrival",
+      "descriptorMatches": true,
+      "media": {
+        "path": "public/assets/cinematics/bois_clair_arrival.mp4",
+        "exists": true,
+        "sha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699",
+        "expectedSha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699",
+        "matches": true,
+        "bytes": 25714244
+      },
+      "durationMs": 20000,
+      "measuredStream": {
+        "id": "bois_clair_arrival",
+        "sourceSha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 480,
+        "measuredDurationMs": 20000,
+        "descriptorDurationMs": 20000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "sourceVisualReview": "Existing source changes from Alistair to a roguish actor/villageoise. Its source cast does not establish a universally recruited Cedric.",
+      "frames": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_arrival-first.png",
+          "sha256": "bd71be33dc05a72cd26682736d44e94023a2eca2530f3a0cadf29c1ad35d9339",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "bd71be33dc05a72cd26682736d44e94023a2eca2530f3a0cadf29c1ad35d9339",
+          "matches": true,
+          "bytes": 3485014
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 240,
+          "timestampSeconds": 10,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_arrival-middle.png",
+          "sha256": "571ef88e77861e293b92442eeb1d01515d41b7ae249ddf77a7f12e54c5ebea88",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "571ef88e77861e293b92442eeb1d01515d41b7ae249ddf77a7f12e54c5ebea88",
+          "matches": true,
+          "bytes": 3469576
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 479,
+          "timestampSeconds": 19.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_arrival-final.png",
+          "sha256": "325785a4c70a4a3e1a182823bc528c6fe8c78d5aa963df2e34053555e836d019",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "325785a4c70a4a3e1a182823bc528c6fe8c78d5aa963df2e34053555e836d019",
+          "matches": true,
+          "bytes": 3518125
+        }
+      ],
+      "canonicalContextHistorical": {
+        "nodeId": "lion-village-choice",
+        "trigger": "beforeDialogue village_choice",
+        "sources": [
+          "src/cinematics/Cin6aPresentation.ts:18",
+          "src/game/content.ts:618",
+          "src/game/contextualDialogueContent.ts:87",
+          "src/campaign/LionCampaignStructure.ts:236"
+        ],
+        "followingDialogueId": "village_choice",
+        "truth": "Bois-Clair is under Serpent pressure. Captives/northern old bridge and reserves/southern low gate define the existing urgency. Saving people or taking reserves remains undecided.",
+        "exclusions": [
+          "No rescue, loot or outcome resolved in the clip",
+          "No obligatory Cedric: the contextual dialogue can use Kestrel instead",
+          "No extra canonical combat"
+        ]
+      }
+    },
+    {
+      "id": "bois_clair_saved",
+      "descriptorMatches": true,
+      "media": {
+        "path": "public/assets/cinematics/bois_clair_saved.mp4",
+        "exists": true,
+        "sha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f",
+        "expectedSha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f",
+        "matches": true,
+        "bytes": 21378564
+      },
+      "durationMs": 18000,
+      "measuredStream": {
+        "id": "bois_clair_saved",
+        "sourceSha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 432,
+        "measuredDurationMs": 18000,
+        "descriptorDurationMs": 18000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "sourceVisualReview": "Existing source remains heavily burning and changes foreground cast; replacement should follow the promoted saved-aftermath environment, not invent a rebuilt village.",
+      "frames": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_saved-first.png",
+          "sha256": "6ef3aa596b1662fe8d58762b6ae81083137c59eb5887223816ba939b7f2c1726",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "6ef3aa596b1662fe8d58762b6ae81083137c59eb5887223816ba939b7f2c1726",
+          "matches": true,
+          "bytes": 3481482
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 216,
+          "timestampSeconds": 9,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_saved-middle.png",
+          "sha256": "6a62060bfcc131068cf7295bd7ef10437d358ff19e425ac2e3551c167a1fd5c4",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "6a62060bfcc131068cf7295bd7ef10437d358ff19e425ac2e3551c167a1fd5c4",
+          "matches": true,
+          "bytes": 3710070
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 431,
+          "timestampSeconds": 17.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_saved-final.png",
+          "sha256": "1d74b4ca7a546461646b229609e9e34bf65240d09e8133b50c37746d45e79d71",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "1d74b4ca7a546461646b229609e9e34bf65240d09e8133b50c37746d45e79d71",
+          "matches": true,
+          "bytes": 3691689
+        }
+      ],
+      "canonicalContextHistorical": {
+        "nodeId": "lion-village-choice",
+        "trigger": "after village_defense victory and missionSuccess=true, missionGreed!==true; before village_defense_aftermath",
+        "sources": [
+          "src/cinematics/Cin6aPresentation.ts:132",
+          "src/game/GameApp.ts:1517",
+          "src/game/content.ts:1021"
+        ],
+        "followingDialogueId": "village_defense_aftermath",
+        "truth": "The Serpents have fled and children/captives are safe; damage remains. Reward refusal versus receiving gratitude/provisions remains in the following dialogue.",
+        "exclusions": [
+          "No automatically accepted/refused provisions",
+          "No complete reconstruction",
+          "No extra reward, slain enemy or named civilian"
+        ]
+      }
+    },
+    {
+      "id": "bois_clair_sacrificed",
+      "descriptorMatches": true,
+      "media": {
+        "path": "public/assets/cinematics/bois_clair_sacrificed.mp4",
+        "exists": true,
+        "sha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4",
+        "expectedSha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4",
+        "matches": true,
+        "bytes": 20858964
+      },
+      "durationMs": 18000,
+      "measuredStream": {
+        "id": "bois_clair_sacrificed",
+        "sourceSha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 432,
+        "measuredDurationMs": 18000,
+        "descriptorDurationMs": 18000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "sourceVisualReview": "Existing source isolates villageoise then adds old Maelor. Replacement must convey the canonical reserves/human-cost distinction while preserving the pending provisions choice.",
+      "frames": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_sacrificed-first.png",
+          "sha256": "9bb89b8ff450602a01053781b3f706ed1e02118da95f93f80ca5926c3163c7fe",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "9bb89b8ff450602a01053781b3f706ed1e02118da95f93f80ca5926c3163c7fe",
+          "matches": true,
+          "bytes": 3443724
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 216,
+          "timestampSeconds": 9,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_sacrificed-middle.png",
+          "sha256": "eefd794435b3846810b160b3ac34faf78463436a215df1797fd57a47f8af7f25",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "eefd794435b3846810b160b3ac34faf78463436a215df1797fd57a47f8af7f25",
+          "matches": true,
+          "bytes": 3824763
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 431,
+          "timestampSeconds": 17.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/bois_clair_sacrificed-final.png",
+          "sha256": "d935e1d95ca2c8f352a14a7025d923ccd0bb8616d9846cdb87ce996a092131ff",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "d935e1d95ca2c8f352a14a7025d923ccd0bb8616d9846cdb87ce996a092131ff",
+          "matches": true,
+          "bytes": 3884916
+        }
+      ],
+      "canonicalContextHistorical": {
+        "nodeId": "lion-village-choice",
+        "trigger": "after village_raid victory and missionGreed=true; before village_raid_aftermath",
+        "sources": [
+          "src/cinematics/Cin6aPresentation.ts:132",
+          "src/game/GameApp.ts:1517",
+          "src/game/content.ts:1044"
+        ],
+        "followingDialogueId": "village_raid_aftermath",
+        "truth": "The coffers/reserves are secured and the Serpents dispersed, with captives abandoned and human cost. Leaving provisions versus taking everything remains a dialogue choice.",
+        "exclusions": [
+          "No invented massacre or additional death",
+          "No automatic charitable donation or decision to take everything",
+          "No extra loot total or unique treasure"
+        ]
+      }
+    },
+    {
+      "id": "lion_judgement",
+      "descriptorMatches": true,
+      "media": {
+        "path": "public/assets/cinematics/lion_judgement.mp4",
+        "exists": true,
+        "sha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9",
+        "expectedSha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9",
+        "matches": true,
+        "bytes": 21565194
+      },
+      "durationMs": 17000,
+      "measuredStream": {
+        "id": "lion_judgement",
+        "sourceSha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 408,
+        "measuredDurationMs": 17000,
+        "descriptorDurationMs": 17000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "sourceVisualReview": "Existing source shows Alaric/Champion and camera push. Its title/fallback is not authority to show a predetermined ruling before dynamic judgement.",
+      "frames": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_judgement-first.png",
+          "sha256": "038f9998e108fcf7dca9559cd3d98db8f9ee76efc5baa7179b7de8eb8bbf463c",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "038f9998e108fcf7dca9559cd3d98db8f9ee76efc5baa7179b7de8eb8bbf463c",
+          "matches": true,
+          "bytes": 3183780
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 204,
+          "timestampSeconds": 8.5,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_judgement-middle.png",
+          "sha256": "da333f243aeddd75905a60a39c1c48289dc2f52f24014ae1658f4ee3a6f460a0",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "da333f243aeddd75905a60a39c1c48289dc2f52f24014ae1658f4ee3a6f460a0",
+          "matches": true,
+          "bytes": 3667145
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 407,
+          "timestampSeconds": 16.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_judgement-final.png",
+          "sha256": "c566f2f301b30459fd6c051073f71a0418839a5def16047dac06a69db2295155",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "c566f2f301b30459fd6c051073f71a0418839a5def16047dac06a69db2295155",
+          "matches": true,
+          "bytes": 3972932
+        }
+      ],
+      "canonicalContextHistorical": {
+        "nodeId": "lion-final-judgement",
+        "trigger": "before current dynamic lion_finale_judgement, before testimony, verdict and final route choice",
+        "sources": [
+          "src/game/lionFinale.ts:321",
+          "src/game/contextualDialogueContent.ts:501",
+          "src/game/GameApp.ts:1288"
+        ],
+        "followingDialogueId": "lion_finale_judgement",
+        "truth": "A solemn appearance before Alaric and the Lion Champion. The factual dossier, credibility, Shadow disclosure, bluff/lie and route intent remain interactive and state-derived.",
+        "exclusions": [
+          "No verdict or recognition presumed before testimony",
+          "No Seal granted",
+          "No chosen pursuit or trial",
+          "No universal exposed/revealed Shadow truth"
+        ]
+      }
+    },
+    {
+      "id": "serpent_route_ending",
+      "descriptorMatches": true,
+      "media": {
+        "path": "public/assets/cinematics/serpent_route_ending.mp4",
+        "exists": true,
+        "sha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c",
+        "expectedSha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c",
+        "matches": true,
+        "bytes": 16058120
+      },
+      "durationMs": 18000,
+      "measuredStream": {
+        "id": "serpent_route_ending",
+        "sourceSha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 432,
+        "measuredDurationMs": 18000,
+        "descriptorDurationMs": 18000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "sourceVisualReview": "Existing frames depict Seraphine and a kneeling General with a ring-like artefact on the ground. The previous descriptor imposed final company custody; it is now corrected to the universally true recovered-artefact fact.",
+      "frames": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/serpent_route_ending-first.png",
+          "sha256": "2d6c1db6fa57ebfd75646a463f276f1e5f246eff4e8a377e9da02c6e4e6335c5",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "2d6c1db6fa57ebfd75646a463f276f1e5f246eff4e8a377e9da02c6e4e6335c5",
+          "matches": true,
+          "bytes": 2711115
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 216,
+          "timestampSeconds": 9,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/serpent_route_ending-middle.png",
+          "sha256": "957abd3a704640722711399027886de80f573d713edc2c8e7c4c2714470ec7d7",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "957abd3a704640722711399027886de80f573d713edc2c8e7c4c2714470ec7d7",
+          "matches": true,
+          "bytes": 3337188
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 431,
+          "timestampSeconds": 17.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/serpent_route_ending-final.png",
+          "sha256": "905fe95c87c896e5d9826f4d62db8dd83bc13a3a1487c80459f32a82e2e9b185",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "905fe95c87c896e5d9826f4d62db8dd83bc13a3a1487c80459f32a82e2e9b185",
+          "matches": true,
+          "bytes": 4213464
+        }
+      ],
+      "canonicalContextHistorical": {
+        "nodeId": "lion-final-judgement",
+        "trigger": "after serpent_captain victory, serpentGeneralDefeated=true, completed serpent_pursuit route, AFTER serpent_general_aftermath; before epilogue",
+        "sources": [
+          "src/cinematics/Cin6aPresentation.ts:153",
+          "src/game/GameApp.ts:1527",
+          "src/game/lionFinale.ts:492",
+          "src/game/lionFinale.ts:542"
+        ],
+        "followingDialogueId": "epilogue",
+        "truth": "The General is defeated, the artefact recovered and recognition/Seal earned. The prior aftermath may have entrusted the evidence to Alaric or concealed it; the same slot serves both outcomes.",
+        "exclusions": [
+          "No universally final artefact owner or custody transfer",
+          "No universal public disclosure to the court",
+          "No new execution, reward or route choice",
+          "Do not turn descriptor fallback into game truth"
+        ]
+      }
+    },
+    {
+      "id": "lion_trial_route_ending",
+      "descriptorMatches": true,
+      "media": {
+        "path": "public/assets/cinematics/lion_trial_route_ending.mp4",
+        "exists": true,
+        "sha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2",
+        "expectedSha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2",
+        "matches": true,
+        "bytes": 19773930
+      },
+      "durationMs": 20000,
+      "measuredStream": {
+        "id": "lion_trial_route_ending",
+        "sourceSha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2",
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "frameRate": "24/1",
+        "decodedFrameCount": 480,
+        "measuredDurationMs": 20000,
+        "descriptorDurationMs": 20000,
+        "durationDeltaMs": 0,
+        "audioStreams": []
+      },
+      "sourceVisualReview": "Existing clip shows Alaric/Champion in a mountainous camp setting. Replacement must follow the promoted trial-finale environment and preserve voluntary/refused-route neutrality.",
+      "frames": [
+        {
+          "label": "first",
+          "decodedFrameIndex": 0,
+          "timestampSeconds": 0,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_trial_route_ending-first.png",
+          "sha256": "80b6b6362f777e9e0b8d17b8a9fd61d65f34e46babf6397b8151555ef9003aed",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "80b6b6362f777e9e0b8d17b8a9fd61d65f34e46babf6397b8151555ef9003aed",
+          "matches": true,
+          "bytes": 2965109
+        },
+        {
+          "label": "middle",
+          "decodedFrameIndex": 240,
+          "timestampSeconds": 10,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_trial_route_ending-middle.png",
+          "sha256": "1c23955789bd9a0aeed06c741ef70d3f51251fc657401c5ea935d36778451a64",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "1c23955789bd9a0aeed06c741ef70d3f51251fc657401c5ea935d36778451a64",
+          "matches": true,
+          "bytes": 3315851
+        },
+        {
+          "label": "final",
+          "decodedFrameIndex": 479,
+          "timestampSeconds": 19.958333,
+          "path": "tmp/cinematics/eight-slot-remaster/source-probe/lion_trial_route_ending-final.png",
+          "sha256": "e4824db0e7b50162902042b3bbdc9f26a9897d443280ee117f2090a95cb8bea5",
+          "width": 1920,
+          "height": 1080,
+          "exists": true,
+          "expectedSha256": "e4824db0e7b50162902042b3bbdc9f26a9897d443280ee117f2090a95cb8bea5",
+          "matches": true,
+          "bytes": 3546586
+        }
+      ],
+      "canonicalContextHistorical": {
+        "nodeId": "lion-final-judgement",
+        "trigger": "after lion_chief victory, lionTrialWon=true, completed lion_trial route, AFTER lion_trial_aftermath; before epilogue",
+        "sources": [
+          "src/cinematics/Cin6aPresentation.ts:166",
+          "src/game/GameApp.ts:1527",
+          "src/game/lionFinale.ts:524",
+          "src/game/lionFinale.ts:542"
+        ],
+        "followingDialogueId": "epilogue",
+        "truth": "The Champion is defeated and Alaric recognizes the Seal earned under Lion martial law. Trial can be voluntary or follow refused recognition; the Serpent General remains free and Shadow disclosure varies.",
+        "exclusions": [
+          "No killing Alaric or the Champion",
+          "No capture/defeat of Serpent General",
+          "No universal punishment framing",
+          "No universal Shadow revelation"
+        ]
+      }
+    }
+  ],
+  "references": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "exists": true,
+      "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32",
+      "expectedSha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32",
+      "matches": true,
+      "bytes": 2835841
+    },
+    {
+      "id": "maelor",
+      "path": "public/assets/characters/pixel/masters/maelor.png",
+      "exists": true,
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+      "expectedSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+      "matches": true,
+      "bytes": 99197
+    },
+    {
+      "id": "alistair",
+      "path": "public/assets/characters/pixel/masters/alistair.png",
+      "exists": true,
+      "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219",
+      "expectedSha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
+      "matches": false,
+      "bytes": 121109
+    },
+    {
+      "id": "white_mage",
+      "path": "public/assets/characters/pixel/masters/white_mage.png",
+      "exists": true,
+      "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda",
+      "expectedSha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda",
+      "matches": true,
+      "bytes": 126115
+    },
+    {
+      "id": "sage_seraphine",
+      "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+      "exists": true,
+      "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+      "expectedSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+      "matches": true,
+      "bytes": 125722
+    },
+    {
+      "id": "archer",
+      "path": "public/assets/characters/pixel/masters/archer.png",
+      "exists": true,
+      "sha256": "cf9f50e30fe534ea9637857be43774ad19a39dbb721b0834a9bec54dd9e0c022",
+      "expectedSha256": "cf9f50e30fe534ea9637857be43774ad19a39dbb721b0834a9bec54dd9e0c022",
+      "matches": true,
+      "bytes": 108907
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+      "exists": true,
+      "sha256": "1214cc5627b41456f8540e9c0f043fb45edda7ddd502cf01cebc4c4f8325f13b",
+      "expectedSha256": "1214cc5627b41456f8540e9c0f043fb45edda7ddd502cf01cebc4c4f8325f13b",
+      "matches": true,
+      "bytes": 2657049
+    },
+    {
+      "id": "alaric",
+      "path": "public/assets/characters/pixel/masters/alaric.png",
+      "exists": true,
+      "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+      "expectedSha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+      "matches": true,
+      "bytes": 145272
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+      "exists": true,
+      "sha256": "a3e69c055552b41f4c6c8f13196bb1500d6781a79533d45aab7410f6b67af7ec",
+      "expectedSha256": "a3e69c055552b41f4c6c8f13196bb1500d6781a79533d45aab7410f6b67af7ec",
+      "matches": true,
+      "bytes": 2642881
+    },
+    {
+      "id": "villageoise",
+      "path": "public/assets/characters/pixel/masters/villageoise.png",
+      "exists": true,
+      "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
+      "expectedSha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
+      "matches": true,
+      "bytes": 94603
+    },
+    {
+      "id": "serpent_raider",
+      "path": "public/assets/characters/pixel/masters/serpent_raider.png",
+      "exists": true,
+      "sha256": "4f4bfb55016f325544a598a34213567657d43159c895bff57ac740ed4892ed9f",
+      "expectedSha256": "4f4bfb55016f325544a598a34213567657d43159c895bff57ac740ed4892ed9f",
+      "matches": true,
+      "bytes": 92756
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-saved.png",
+      "exists": true,
+      "sha256": "09485b94cb0f4e4b56386a2fcb4e02d0ecae8fbfb0dca1a6309cb6f97cd1444b",
+      "expectedSha256": "09485b94cb0f4e4b56386a2fcb4e02d0ecae8fbfb0dca1a6309cb6f97cd1444b",
+      "matches": true,
+      "bytes": 2801995
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+      "exists": true,
+      "sha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464",
+      "expectedSha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464",
+      "matches": true,
+      "bytes": 2848022
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png",
+      "exists": true,
+      "sha256": "280361d3b73ba06753562c8fe73009c48dbda7db592d65ef891ae8ec323e3ebf",
+      "expectedSha256": "280361d3b73ba06753562c8fe73009c48dbda7db592d65ef891ae8ec323e3ebf",
+      "matches": true,
+      "bytes": 2823327
+    },
+    {
+      "id": "lion_champion",
+      "path": "public/assets/characters/pixel/masters/lion_champion.png",
+      "exists": true,
+      "sha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc",
+      "expectedSha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc",
+      "matches": true,
+      "bytes": 221428
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+      "exists": true,
+      "sha256": "1b804263ddf29b5ff7a75628beca9eb8188a4e7205d8e5d439ef9c4b0bffd762",
+      "expectedSha256": "1b804263ddf29b5ff7a75628beca9eb8188a4e7205d8e5d439ef9c4b0bffd762",
+      "matches": true,
+      "bytes": 2973042
+    },
+    {
+      "id": "serpent_general_boss",
+      "path": "public/assets/characters/pixel/masters/serpent_general_boss.png",
+      "exists": true,
+      "sha256": "b5dc5c8d644ede7cdb83a82492976a82d8bf133936a0b0db7c696ecc416ba33d",
+      "expectedSha256": "b5dc5c8d644ede7cdb83a82492976a82d8bf133936a0b0db7c696ecc416ba33d",
+      "matches": true,
+      "bytes": 215551
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+      "exists": true,
+      "sha256": "a6111e975110dd070b9f54ea276d9d7499e44efefcd36676f7cb95a740f1aec1",
+      "expectedSha256": "a6111e975110dd070b9f54ea276d9d7499e44efefcd36676f7cb95a740f1aec1",
+      "matches": true,
+      "bytes": 3196637
+    }
+  ],
+  "candidates": [
+    {
+      "proof": "docs/reports/cinematic-active-motion-1/candidate-qa.json",
+      "slot": "camp_departure",
+      "attempt": 1,
+      "status": "REJECTED_ARTISTIC_NOT_PRODUCTION",
+      "positive": [
+        "Actual alternating leg locomotion and weight shifts, cape/banner/fire/environment motion",
+        "Three concealed V2 silhouettes stay readable; no dialogue, combat or new outcome",
+        "Technically decoded; 12s silent 1920x1080/24fps master"
+      ],
+      "defects": [
+        {
+          "id": "V2_BOOK_DISAPPEARS",
+          "evidence": "Visible Maelor book at 6s absent from final 11.9s frame"
+        },
+        {
+          "id": "ENVIRONMENT_MOON_PHASE_DRIFT",
+          "evidence": "Source crescent changes to large full disc in later frames"
+        },
+        {
+          "id": "PIXEL_STYLE_SOFTENING",
+          "evidence": "Middle/final actors and equipment rendered as smooth illustration rather than source intentional pixel clusters"
+        }
+      ],
+      "technicalMaster": null,
+      "evidence": [
+        {
+          "path": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/source.png",
+          "exists": true,
+          "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+          "expectedSha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+          "matches": true,
+          "bytes": 2811305
+        },
+        {
+          "path": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/keyframe-v1.png",
+          "exists": true,
+          "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+          "bytes": 2811305
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/shot_master.mp4",
+          "exists": true,
+          "sha256": "5175e7291c3062d747b3b00a69d2bbab7099e094b65d8189237708367f46b8f3",
+          "expectedSha256": "5175e7291c3062d747b3b00a69d2bbab7099e094b65d8189237708367f46b8f3",
+          "matches": true,
+          "bytes": 25084111
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/candidate_01_raw.mp4",
+          "exists": true,
+          "sha256": "a8ff175f218d39562ae64645f360fe6ace3180caf03e0a3cb936899ab18da019",
+          "expectedSha256": "a8ff175f218d39562ae64645f360fe6ace3180caf03e0a3cb936899ab18da019",
+          "matches": true,
+          "bytes": 23107247
+        }
+      ]
+    },
+    {
+      "proof": "docs/reports/cinematic-active-motion-1/candidate-qa-followup.json",
+      "slot": "camp_departure",
+      "attempt": 2,
+      "status": "REJECTED_FINAL_STYLE_UNACCEPTED_RETAIN_MOTION_PROGRESS",
+      "positive": [
+        "True alternating locomotion and living cloth/environment",
+        "Maelor book/dagger retained through final; source crescent retained",
+        "Full-body three-cast ending and silent exact-duration master"
+      ],
+      "defects": [
+        {
+          "id": "PIXEL_CONSTRUCTION_NOT_RETAINED",
+          "evidence": "Middle/final actors and ornamental edges still redrawn as smooth illustration despite explicit pixel-cluster constraints"
+        }
+      ],
+      "technicalMaster": null,
+      "evidence": [
+        {
+          "path": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/source.png",
+          "exists": true,
+          "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+          "expectedSha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+          "matches": true,
+          "bytes": 2811305
+        },
+        {
+          "path": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/keyframe-v1.png",
+          "exists": true,
+          "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+          "bytes": 2811305
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/candidate_02_master.mp4",
+          "exists": true,
+          "sha256": "d078d47f1c18d599323edfb77ab6d2704e460bb110cd2085d44ac545a0983278",
+          "expectedSha256": "d078d47f1c18d599323edfb77ab6d2704e460bb110cd2085d44ac545a0983278",
+          "matches": true,
+          "bytes": 21865761
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/candidate_02_raw.mp4",
+          "exists": true,
+          "sha256": "39af6b9e713145ae8e5983992d3521e60208567ae40ea462eaa18711019f7bc7",
+          "expectedSha256": "39af6b9e713145ae8e5983992d3521e60208567ae40ea462eaa18711019f7bc7",
+          "matches": true,
+          "bytes": 19403258
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/camp-02-raw-review/first.png",
+          "exists": true,
+          "sha256": "eedac741a37b46e902b7f5517281d1d6543fc2da5ba4a75ece1e95f4f854fa03",
+          "expectedSha256": "eedac741a37b46e902b7f5517281d1d6543fc2da5ba4a75ece1e95f4f854fa03",
+          "matches": true,
+          "bytes": 7275135
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/camp-02-raw-review/initiation.png",
+          "exists": true,
+          "sha256": "44c024c34789ef2b24f66b50141817ff34c7462779b4e608dd7e252450f06553",
+          "expectedSha256": "44c024c34789ef2b24f66b50141817ff34c7462779b4e608dd7e252450f06553",
+          "matches": true,
+          "bytes": 7232515
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/camp-02-raw-review/stride.png",
+          "exists": true,
+          "sha256": "31000221a591b64df580d2e293865e133c22cfd71671127a4eef1a84bb264826",
+          "expectedSha256": "31000221a591b64df580d2e293865e133c22cfd71671127a4eef1a84bb264826",
+          "matches": true,
+          "bytes": 6837645
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/camp-02-raw-review/middle.png",
+          "exists": true,
+          "sha256": "dfcce6dee101600971e35b44c98fe95ec0a1706e3e58b457c79179eb953d5139",
+          "expectedSha256": "dfcce6dee101600971e35b44c98fe95ec0a1706e3e58b457c79179eb953d5139",
+          "matches": true,
+          "bytes": 6305636
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/camp-02-raw-review/progression.png",
+          "exists": true,
+          "sha256": "a838a33c9c25d379708d4ba16b41d6b066f98a32789345d713ac7b567035578a",
+          "expectedSha256": "a838a33c9c25d379708d4ba16b41d6b066f98a32789345d713ac7b567035578a",
+          "matches": true,
+          "bytes": 6160524
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/camp-02-raw-review/final.png",
+          "exists": true,
+          "sha256": "4548c94843e0683688782610399c6870be5bc3d2e91f2a466b6d5dfd50b9f997",
+          "expectedSha256": "4548c94843e0683688782610399c6870be5bc3d2e91f2a466b6d5dfd50b9f997",
+          "matches": true,
+          "bytes": 6357822
+        }
+      ]
+    },
+    {
+      "proof": "docs/reports/cinematic-active-motion-1/candidate-qa-followup.json",
+      "slot": "alaric_audience_arrival",
+      "attempt": 1,
+      "status": "REJECTED_ARTISTIC_NOT_PRODUCTION",
+      "positive": [
+        "Delegation walks and Alaric reacts; hall light/cloth/fire move",
+        "Four masked V2 silhouettes; no dialogue, combat, choice or mission/payment outcome",
+        "Silent exact-duration technical master"
+      ],
+      "defects": [
+        {
+          "id": "ALARIC_EQUIPMENT_REPLACED",
+          "evidence": "He sits and displays an invented paper/scroll; source sword/staff no longer remain in source hands"
+        },
+        {
+          "id": "MAELOR_BOOK_RELOCATED_REDESIGNED",
+          "evidence": "Source held book becomes a back-strapped cross-emblem object"
+        },
+        {
+          "id": "END_FRAMING_AND_PIXEL_DRIFT",
+          "evidence": "Final push crops delegation lower bodies and smooths source actor pixel construction"
+        }
+      ],
+      "technicalMaster": null,
+      "evidence": [
+        {
+          "path": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/source.png",
+          "exists": true,
+          "sha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+          "expectedSha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+          "matches": true,
+          "bytes": 2679007
+        },
+        {
+          "path": "tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/keyframe-v1.png",
+          "exists": true,
+          "sha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+          "bytes": 2679007
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/shot_master.mp4",
+          "exists": true,
+          "sha256": "39d496bc38fb971375c6ab2ec637d20337574ff38d73e48ebced2d4a8e56ce06",
+          "expectedSha256": "39d496bc38fb971375c6ab2ec637d20337574ff38d73e48ebced2d4a8e56ce06",
+          "matches": true,
+          "bytes": 22896792
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/candidate_01_raw.mp4",
+          "exists": true,
+          "sha256": "27f31b27096383d6a781faebc328cfe3725d35349003077464cdcf5f583f65b1",
+          "expectedSha256": "27f31b27096383d6a781faebc328cfe3725d35349003077464cdcf5f583f65b1",
+          "matches": true,
+          "bytes": 20315710
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/audience-01-raw-review/first.png",
+          "exists": true,
+          "sha256": "33065e3dbc800a7c78030d2e5df6414151de0eec581bf7c76bd8e24e2de36a4a",
+          "expectedSha256": "33065e3dbc800a7c78030d2e5df6414151de0eec581bf7c76bd8e24e2de36a4a",
+          "matches": true,
+          "bytes": 6688603
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/audience-01-raw-review/initiation.png",
+          "exists": true,
+          "sha256": "38d55fc9aaf449617275e43602f8ec92263a40022ce4060f0e5523d6e0a920c2",
+          "expectedSha256": "38d55fc9aaf449617275e43602f8ec92263a40022ce4060f0e5523d6e0a920c2",
+          "matches": true,
+          "bytes": 7372596
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/audience-01-raw-review/stride.png",
+          "exists": true,
+          "sha256": "1dd878d645e6760fe8e2a2475640bd1c0642309adbfb2457650b8ad4eead5e12",
+          "expectedSha256": "1dd878d645e6760fe8e2a2475640bd1c0642309adbfb2457650b8ad4eead5e12",
+          "matches": true,
+          "bytes": 7425425
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/audience-01-raw-review/middle.png",
+          "exists": true,
+          "sha256": "bf658319b672dbe45b79c7f428fd08f943c1aff90ebd664272a5ecc921963535",
+          "expectedSha256": "bf658319b672dbe45b79c7f428fd08f943c1aff90ebd664272a5ecc921963535",
+          "matches": true,
+          "bytes": 7367378
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/audience-01-raw-review/progression.png",
+          "exists": true,
+          "sha256": "4fbc5b26d15174197da7342d6422323aa96fc2e8c2dde23c7ae8d5223f558330",
+          "expectedSha256": "4fbc5b26d15174197da7342d6422323aa96fc2e8c2dde23c7ae8d5223f558330",
+          "matches": true,
+          "bytes": 7524505
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/audience-01-raw-review/final.png",
+          "exists": true,
+          "sha256": "234b1ec873c0f7c6706acb982a69f4f1ca6e1eb70f946fd1b41bf4b0cefc63f0",
+          "expectedSha256": "234b1ec873c0f7c6706acb982a69f4f1ca6e1eb70f946fd1b41bf4b0cefc63f0",
+          "matches": true,
+          "bytes": 7326993
+        }
+      ]
+    },
+    {
+      "proof": "docs/reports/cinematic-active-motion-1/candidate-qa-final.json",
+      "slot": "camp_departure",
+      "attempt": 3,
+      "status": "REJECTED_ACTIVE_STAGING_INSUFFICIENT",
+      "positive": [
+        "Book, dagger, star staff, sword and source crescent retained through sampled final frame",
+        "Stepped world/armor detail improves and full-body framing remains readable"
+      ],
+      "defects": [
+        {
+          "id": "ACTIVE_DEPARTURE_NOT_DELIVERED",
+          "evidence": "Contact sequence shows minimal weight/leg changes rather than sustained alternating brisk walking; most of the block stays in a near-resting formation"
+        },
+        {
+          "id": "CAMERA_DIAGNOSTIC_NOT_FOLLOWED",
+          "evidence": "World parallax changes despite requested locked camera; diagnostic cannot certify pixel preservation under the intended active production camera"
+        }
+      ],
+      "generationLimit": "Three autonomous attempts consumed; no fourth submission or numbering reset",
+      "technicalMaster": {
+        "keys": [
+          "schemaVersion",
+          "sequenceId",
+          "cinematicId",
+          "tier",
+          "shotId",
+          "sourceCandidatePath",
+          "sourceCandidateSha256",
+          "outputPath",
+          "outputSha256",
+          "mastering",
+          "report"
+        ]
+      },
+      "evidence": [
+        {
+          "path": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/source.png",
+          "exists": true,
+          "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+          "expectedSha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+          "matches": true,
+          "bytes": 2811305
+        },
+        {
+          "path": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/keyframe-v1.png",
+          "exists": true,
+          "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+          "bytes": 2811305
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/candidate_03_raw.mp4",
+          "exists": true,
+          "sha256": "712e9b33a7e635f2143c4f3e4571a648320d8de553f901cb51edb14a1e346d8f",
+          "expectedSha256": "712e9b33a7e635f2143c4f3e4571a648320d8de553f901cb51edb14a1e346d8f",
+          "matches": true,
+          "bytes": 22881108
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/camp-03-raw-review/first.png",
+          "exists": true,
+          "sha256": "d5b3488127c7e63337f2e3f9341ce3d39b1d5296ff128a6cdab6d2339ba434a2",
+          "expectedSha256": "d5b3488127c7e63337f2e3f9341ce3d39b1d5296ff128a6cdab6d2339ba434a2",
+          "matches": true,
+          "bytes": 7230199
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/camp-03-raw-review/initiation.png",
+          "exists": true,
+          "sha256": "264db88097390ca2db0b37c3282985e402a4711d80d5ed4896fb4f50230b80f2",
+          "expectedSha256": "264db88097390ca2db0b37c3282985e402a4711d80d5ed4896fb4f50230b80f2",
+          "matches": true,
+          "bytes": 7774874
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/camp-03-raw-review/stride.png",
+          "exists": true,
+          "sha256": "c861349e35e73fe421f2fe896c462a4c0c1510bc14494deac44137414736256f",
+          "expectedSha256": "c861349e35e73fe421f2fe896c462a4c0c1510bc14494deac44137414736256f",
+          "matches": true,
+          "bytes": 7708038
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/camp-03-raw-review/middle.png",
+          "exists": true,
+          "sha256": "ee579401652ba6131a5cf0dcbea855c996605e1d7ad86243e6130da05e5af364",
+          "expectedSha256": "ee579401652ba6131a5cf0dcbea855c996605e1d7ad86243e6130da05e5af364",
+          "matches": true,
+          "bytes": 7617147
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/camp-03-raw-review/progression.png",
+          "exists": true,
+          "sha256": "2d0c4e2d05414cc5dae27ca323522a89b2880c711d6b35da87e1a62f34928cbd",
+          "expectedSha256": "2d0c4e2d05414cc5dae27ca323522a89b2880c711d6b35da87e1a62f34928cbd",
+          "matches": true,
+          "bytes": 7499723
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/camp-03-raw-review/final.png",
+          "exists": true,
+          "sha256": "2d282420a0adc2ce0c8a5b0b72b4de27d802caca08e1c8afb0317cd4c6040ecc",
+          "expectedSha256": "2d282420a0adc2ce0c8a5b0b72b4de27d802caca08e1c8afb0317cd4c6040ecc",
+          "matches": true,
+          "bytes": 7354799
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_camp_departure_v1/shot_01/candidate_03_master.mp4",
+          "exists": true,
+          "sha256": "a1ec6df5632bbf7576b430d5338b86e1cda4122e118bff6c312adeccc700af24",
+          "bytes": 27010407,
+          "expectedSha256": "a1ec6df5632bbf7576b430d5338b86e1cda4122e118bff6c312adeccc700af24",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "proof": "docs/reports/cinematic-active-motion-1/candidate-qa-final.json",
+      "slot": "alaric_audience_arrival",
+      "attempt": 2,
+      "status": "RETAINED_PROGRESS_FINAL_ART_UNACCEPTED",
+      "positive": [
+        "No invented scroll; Alaric remains standing with source held items",
+        "Maelor held book retained; four full bodies remain readable; original hall axis and torch motion retained",
+        "Real initial delegation steps and settled listening reactions"
+      ],
+      "technicalMaster": {
+        "keys": [
+          "schemaVersion",
+          "sequenceId",
+          "cinematicId",
+          "tier",
+          "shotId",
+          "sourceCandidatePath",
+          "sourceCandidateSha256",
+          "outputPath",
+          "outputSha256",
+          "mastering",
+          "report"
+        ]
+      },
+      "evidence": [
+        {
+          "path": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/source.png",
+          "exists": true,
+          "sha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+          "expectedSha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+          "matches": true,
+          "bytes": 2679007
+        },
+        {
+          "path": "tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/keyframe-v1.png",
+          "exists": true,
+          "sha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+          "bytes": 2679007
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/candidate_02_raw.mp4",
+          "exists": true,
+          "sha256": "cdd0b9967260cb606abe949ed69134c6acd05f82a42f7fce091dd90c948d4b21",
+          "expectedSha256": "cdd0b9967260cb606abe949ed69134c6acd05f82a42f7fce091dd90c948d4b21",
+          "matches": true,
+          "bytes": 18159666
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/audience-02-raw-review/first.png",
+          "exists": true,
+          "sha256": "844a526f816aff619445b632884aefeabf15769bd1958f1b0cc1d92fefc48bc1",
+          "expectedSha256": "844a526f816aff619445b632884aefeabf15769bd1958f1b0cc1d92fefc48bc1",
+          "matches": true,
+          "bytes": 6884051
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/audience-02-raw-review/initiation.png",
+          "exists": true,
+          "sha256": "13920f63d2de0aaf8255e03eb661c17d94af2f4570562df44df29b135b229978",
+          "expectedSha256": "13920f63d2de0aaf8255e03eb661c17d94af2f4570562df44df29b135b229978",
+          "matches": true,
+          "bytes": 7607810
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/audience-02-raw-review/stride.png",
+          "exists": true,
+          "sha256": "be760393de6f1a72a788308e7b5d2557d4602061ab61f4529df18c3d76023e1c",
+          "expectedSha256": "be760393de6f1a72a788308e7b5d2557d4602061ab61f4529df18c3d76023e1c",
+          "matches": true,
+          "bytes": 7647526
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/audience-02-raw-review/middle.png",
+          "exists": true,
+          "sha256": "75c87c09cc7cf2e0de3132ef1fc79ea655ddc2b5c701052624dc2e7a7e85bac1",
+          "expectedSha256": "75c87c09cc7cf2e0de3132ef1fc79ea655ddc2b5c701052624dc2e7a7e85bac1",
+          "matches": true,
+          "bytes": 7835352
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/audience-02-raw-review/progression.png",
+          "exists": true,
+          "sha256": "ccf1928dc093aa6983afda2191bb8f8a235495a4a9b30530acfa600feb92476e",
+          "expectedSha256": "ccf1928dc093aa6983afda2191bb8f8a235495a4a9b30530acfa600feb92476e",
+          "matches": true,
+          "bytes": 7973194
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/audience-02-raw-review/final.png",
+          "exists": true,
+          "sha256": "4aecf9c0250c5ead25f396a101e05e4c6a391d93576ba87b2a4bc62b7af5227b",
+          "expectedSha256": "4aecf9c0250c5ead25f396a101e05e4c6a391d93576ba87b2a4bc62b7af5227b",
+          "matches": true,
+          "bytes": 7583839
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_alaric_audience_arrival_v1/shot_01/candidate_02_master.mp4",
+          "exists": true,
+          "sha256": "36c89493d842885a4238f71f18fadc471fd98e30bfd22b0f706a2dda0df50aa5",
+          "bytes": 20795828,
+          "expectedSha256": "36c89493d842885a4238f71f18fadc471fd98e30bfd22b0f706a2dda0df50aa5",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "proof": "docs/reports/cinematic-active-motion-1/candidate-qa-final.json",
+      "slot": "bois_clair_arrival",
+      "attempt": 1,
+      "status": "PASS_CANDIDATE_BLOCK_REVIEW_NOT_FULL_SLOT_ACCEPTANCE",
+      "positive": [
+        "Readable initial physical arrival steps then attention/stopping; low nonattacking source sword and concealed V2 identity retained",
+        "Source street, broken palisade, cart, church, ridge and amber time retained; independent fire/smoke/embers develop urgency",
+        "Stepped armor silhouette and environment family remain recognizable; no rescue, loot, new combat or selected outcome"
+      ],
+      "technicalMaster": {
+        "keys": [
+          "schemaVersion",
+          "sequenceId",
+          "cinematicId",
+          "tier",
+          "shotId",
+          "sourceCandidatePath",
+          "sourceCandidateSha256",
+          "outputPath",
+          "outputSha256",
+          "mastering",
+          "report"
+        ]
+      },
+      "evidence": [
+        {
+          "path": "tmp/cinematics/cin4/production_eight_bois_clair_arrival_v1/shot_01/source.png",
+          "exists": true,
+          "sha256": "31918e9e8b1a8bc73f913cbd8e16f98cd9b3c0e795f7984288f12729cd35b8f8",
+          "expectedSha256": "31918e9e8b1a8bc73f913cbd8e16f98cd9b3c0e795f7984288f12729cd35b8f8",
+          "matches": true,
+          "bytes": 2622167
+        },
+        {
+          "path": "tools/cinematics/candidates/production-eight-slot-remaster/bois_clair_arrival/shot-01-keyframe-v1.png",
+          "exists": true,
+          "sha256": "31918e9e8b1a8bc73f913cbd8e16f98cd9b3c0e795f7984288f12729cd35b8f8",
+          "bytes": 2622167
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_bois_clair_arrival_v1/shot_02/source.png",
+          "exists": false
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_bois_clair_arrival_v1/shot_01/candidate_01_raw.mp4",
+          "exists": true,
+          "sha256": "b2e13fb83a11d6ca2e9006be6b565eee9b432fb2b53d7c7bc9619255e13756d9",
+          "expectedSha256": "b2e13fb83a11d6ca2e9006be6b565eee9b432fb2b53d7c7bc9619255e13756d9",
+          "matches": true,
+          "bytes": 12467959
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/bois-01-raw-review/first.png",
+          "exists": true,
+          "sha256": "6821065568e65642f7238fce7150e77494e0903fa09074ca7a3fdb507ddd187e",
+          "expectedSha256": "6821065568e65642f7238fce7150e77494e0903fa09074ca7a3fdb507ddd187e",
+          "matches": true,
+          "bytes": 7223513
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/bois-01-raw-review/initiation.png",
+          "exists": true,
+          "sha256": "8aec1ae4f380d29e4291d69177ede0b363642c3c7ed645b15d92cbd19652894e",
+          "expectedSha256": "8aec1ae4f380d29e4291d69177ede0b363642c3c7ed645b15d92cbd19652894e",
+          "matches": true,
+          "bytes": 7762525
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/bois-01-raw-review/stride.png",
+          "exists": true,
+          "sha256": "0df9c128775faae594d0147146a75ebab45ab22556c2e5a143ec1ae04eb29a3d",
+          "expectedSha256": "0df9c128775faae594d0147146a75ebab45ab22556c2e5a143ec1ae04eb29a3d",
+          "matches": true,
+          "bytes": 7733870
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/bois-01-raw-review/middle.png",
+          "exists": true,
+          "sha256": "df7a5a3475cecbdeb7c89a8a833293b87e821b0bb15433e12d565e4b524d851e",
+          "expectedSha256": "df7a5a3475cecbdeb7c89a8a833293b87e821b0bb15433e12d565e4b524d851e",
+          "matches": true,
+          "bytes": 7556361
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/bois-01-raw-review/progression.png",
+          "exists": true,
+          "sha256": "7c8d897a9de30cec849e9cb4b706dc8e3124b3ec4ca078ccbb87db52b93216cc",
+          "expectedSha256": "7c8d897a9de30cec849e9cb4b706dc8e3124b3ec4ca078ccbb87db52b93216cc",
+          "matches": true,
+          "bytes": 7410009
+        },
+        {
+          "path": "tmp/cinematics/eight-slot-remaster/active-motion-1/bois-01-raw-review/final.png",
+          "exists": true,
+          "sha256": "68237219bc3e33084b4fc91461f6d1b10e1791dc8cdcf77ef0344f69951f583d",
+          "expectedSha256": "68237219bc3e33084b4fc91461f6d1b10e1791dc8cdcf77ef0344f69951f583d",
+          "matches": true,
+          "bytes": 7316915
+        },
+        {
+          "path": "tmp/cinematics/cin4/production_eight_bois_clair_arrival_v1/shot_01/shot_master.mp4",
+          "exists": true,
+          "sha256": "b0e80d01845f82f3d42c4024a7ffc047b306ad00d567586fea9eac98b533411f",
+          "bytes": 16118986,
+          "expectedSha256": "b0e80d01845f82f3d42c4024a7ffc047b306ad00d567586fea9eac98b533411f",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "keyframes": [
+    {
+      "slot": "camp_departure",
+      "provenance": {
+        "path": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/provenance.json",
+        "exists": true,
+        "sha256": "43434700bac3baf26a47b2475aeaacc6aff5e0136dd4ec70a6dd44bed086a9b0",
+        "bytes": 7719
+      },
+      "image": {
+        "path": "tools/cinematics/candidates/production-eight-slot-remaster/camp_departure/keyframe-v1.png",
+        "exists": true,
+        "sha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+        "expectedSha256": "3022c463bd918eaf4acbcf1bbb86be0627c7a6f4a16c663df7585c92154496b5",
+        "matches": true,
+        "bytes": 2811305
+      },
+      "sourceReferences": [
+        {
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+          "exists": true,
+          "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32",
+          "expectedSha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32",
+          "matches": true,
+          "bytes": 2835841
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/white_mage.png",
+          "exists": true,
+          "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda",
+          "expectedSha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda",
+          "matches": true,
+          "bytes": 126115
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "exists": true,
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "expectedSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "matches": true,
+          "bytes": 99197
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/alistair.png",
+          "exists": true,
+          "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219",
+          "expectedSha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
+          "matches": false,
+          "bytes": 121109
+        }
+      ]
+    },
+    {
+      "slot": "alaric_audience_arrival",
+      "provenance": {
+        "path": "tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/provenance.json",
+        "exists": true,
+        "sha256": "cbbcbf6fada71c65fd303348123d76ff21d33a0e85a417f7fa0dd6dff4dc1ddc",
+        "bytes": 4506
+      },
+      "image": {
+        "path": "tools/cinematics/candidates/production-eight-slot-remaster/alaric_audience_arrival/keyframe-v1.png",
+        "exists": true,
+        "sha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+        "expectedSha256": "bbb37404b513a091b04f5a8c79a19745e1cead5567c4fe777f7e2da09741768f",
+        "matches": true,
+        "bytes": 2679007
+      },
+      "sourceReferences": [
+        {
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+          "exists": true,
+          "sha256": "1214cc5627b41456f8540e9c0f043fb45edda7ddd502cf01cebc4c4f8325f13b",
+          "expectedSha256": "1214cc5627b41456f8540e9c0f043fb45edda7ddd502cf01cebc4c4f8325f13b",
+          "matches": true,
+          "bytes": 2657049
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "exists": true,
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+          "expectedSha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+          "matches": true,
+          "bytes": 145272
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "exists": true,
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+          "expectedSha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+          "matches": true,
+          "bytes": 125722
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "exists": true,
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "expectedSha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "matches": true,
+          "bytes": 99197
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/alistair.png",
+          "exists": true,
+          "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219",
+          "expectedSha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
+          "matches": false,
+          "bytes": 121109
+        }
+      ]
+    },
+    {
+      "slot": "bois_clair_arrival",
+      "provenance": {
+        "path": "tools/cinematics/candidates/production-eight-slot-remaster/bois_clair_arrival/shot-01-provenance.json",
+        "exists": true,
+        "sha256": "5db08519f4f27dc9cbade2d85593d0b443a7c9931d2e5a8589e94d9096fc765f",
+        "bytes": 3653
+      },
+      "image": {
+        "path": "tools/cinematics/candidates/production-eight-slot-remaster/bois_clair_arrival/shot-01-keyframe-v1.png",
+        "exists": true,
+        "sha256": "31918e9e8b1a8bc73f913cbd8e16f98cd9b3c0e795f7984288f12729cd35b8f8",
+        "expectedSha256": "31918e9e8b1a8bc73f913cbd8e16f98cd9b3c0e795f7984288f12729cd35b8f8",
+        "matches": true,
+        "bytes": 2622167
+      },
+      "sourceReferences": [
+        {
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+          "exists": true,
+          "sha256": "a3e69c055552b41f4c6c8f13196bb1500d6781a79533d45aab7410f6b67af7ec",
+          "expectedSha256": "a3e69c055552b41f4c6c8f13196bb1500d6781a79533d45aab7410f6b67af7ec",
+          "matches": true,
+          "bytes": 2642881
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/alistair.png",
+          "exists": true,
+          "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219",
+          "expectedSha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
+          "matches": false,
+          "bytes": 121109
+        }
+      ]
+    }
+  ],
+  "referenceDrift": {
+    "path": "public/assets/characters/pixel/masters/alistair.png",
+    "manualCommit": "b4e890af6fa61287818430b12eed21b4cc2f91fd",
+    "beforeSha256": "0c876f783b31e2d21b3fe0657b92a3da8c3a961cb3546a09ccb1aee4fae1b2be",
+    "afterSha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219",
+    "current": {
+      "path": "public/assets/characters/pixel/masters/alistair.png",
+      "exists": true,
+      "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219",
+      "bytes": 121109
+    },
+    "effect": "Old candidate provenance remains valid for old source only; use current master for future manual correction, never rewrite old hashes or infer emblem/origin canon"
+  },
+  "proofs": [
+    {
+      "path": "docs/reports/cinematic-active-motion-1/candidate-qa.json",
+      "exists": true,
+      "sha256": "2a1516b261a9101f027f618f6dd95289ed1f4d66056fd7d2c639807a6ce6bf9c",
+      "bytes": 48099
+    },
+    {
+      "path": "docs/reports/cinematic-active-motion-1/candidate-qa-followup.json",
+      "exists": true,
+      "sha256": "45c28b2b5832c6047486f66a86c66a7dfcb1ccf5559c58eff66b9d7516aaa4ef",
+      "bytes": 79217
+    },
+    {
+      "path": "docs/reports/cinematic-active-motion-1/candidate-qa-final.json",
+      "exists": true,
+      "sha256": "c6d7e2e1fbf05a0d9ff81bb50c8260a620adfc233c3b13d12ca1d2cd6322c766",
+      "bytes": 87865
+    }
+  ],
+  "artisticAcceptance": false,
+  "productionChanged": false,
+  "firstCorrection": {
+    "slot": "camp_departure",
+    "kind": "EXTERNAL_MANUAL_WORKSTREAM",
+    "defect": "ACTIVE_DEPARTURE_NOT_DELIVERED",
+    "currentPipelineAttemptsConsumed": 3,
+    "fourthRepeatAuthorized": false,
+    "durationSeconds": 12,
+    "currentAlistairRequired": true,
+    "plan": "0-2 grounded start;2-10 sustained alternating three-actor walking;10-12 readable living stop in promoted moonlit camp",
+    "recurringGenerationPollingPromotionReplacement": false
+  },
+  "limitations": [
+    "Existing24frames reused; no fresh decode/playback/temporal acceptance",
+    "All6candidates retain original reviews, never production acceptance",
+    "Bois-Clair only10s and portrait framing unresolved;shot2source absent",
+    "Current source-reviewed lifecycle is not a rerun of historical60scenario proof"
+  ]
+}

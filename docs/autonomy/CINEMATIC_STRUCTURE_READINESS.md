@@ -1,5 +1,7 @@
 # Cinematic structure readiness
 
+> **Current reconciliation, 2026-10-19:** [eight-slot audit and manual correction handoff](../reports/cinematic-existing-audit-2026-10-19.md), OD-2026-10-19-C / set1.7.0, immutable baseline f4aae63. No new runtime drift demonstrated; old lifecycle proof below retains its original scope, not current-build acceptance. Ordinary navigation now returns to the POI map; Journey is retained at explicit preparation/terminal boundaries, never physical Traversal. Eight MP4s unchanged; artistic remaster incomplete/external; audio has only the bounded UI/combat exceptions. First manual camp correction and current-versus-historical Alistair provenance are recorded in the audit. Do not repeat unchanged cinematic matrices.
+
 CURRENT FACT, 2026-10-02 UTC. Queue item 8 structure is implemented and verified against existing media. This is separate from the incomplete **EXTERNAL_MANUAL_WORKSTREAM** for artistic remaster. Authority: [active scope decision](CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md), contract set v1 / `PRODUCTION-CONTRACTS-LOCK-1`, current `dev` source. Items 1–7 remain complete; independent demo QA is item 9; audio remains DEFERRED.
 
 ## Eight-slot integration map

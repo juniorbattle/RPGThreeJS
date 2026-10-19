@@ -1,59 +1,66 @@
 {
-  "status": "NEXT_SCHEDULED_CINEMATIC_AUDIT_READY",
-  "runStartedAt": "2026-10-19T18:19:04.431Z",
-  "runEndedAt": "2026-10-19T18:20:47.714Z",
-  "activeTask": "NEXT-RUN-CINEMATIC-AUDIT-CONFIGURATION",
-  "activePhase": "PERSIST_NEXT_SESSION_ONLY",
-  "activeSubtask": "Save the eight-slot existing-media audit priority; no audit/media work now",
+  "status": "READY_FOR_PC_ACCEPTANCE",
+  "runStartedAt": "2026-10-19T18:23:58.0504429Z",
+  "runEndedAt": null,
+  "activeTask": "CINEMATIC-EIGHT-SLOT-EXISTING-MEDIA-AUDIT",
+  "activePhase": "CINEMATIC_AUDIT_COMPLETE_SCOPED_MANUAL_HANDOFF_READY",
+  "activeSubtask": "Eight-slot audit delivered; first correction is external manual camp walking/current-V2 correction, no runtime defect demonstrated",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
-  "lastPushedCommit": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
+  "lastKnownGoodCommit": "578dc4dca39eeb1ce7818b0572c87368fc11fd2e",
+  "lastPushedCommit": "578dc4dca39eeb1ce7818b0572c87368fc11fd2e",
   "completedThisRun": [
-    "Saved explicit operator next-session priority; existing cinematic media/candidates audit before a first concrete correction",
-    "Operator combat FX listening deferred voluntarily; scoped technical/art/hidden limits remain open"
+    "Completed OD-2026-10-19-C eight-slot disposition table and exact existing-media/current-reference reconciliation",
+    "Prepared ONE manual camp12s correction with current identities, precise action timing/evidence and cap3 retained",
+    "Preserved all337QA jobs and audio/deferred acceptances;no source/assets/media/QA driver/scheduler changes",
+    "Published/verified reviewed WIP e5a371f;final coherent dev publication follows"
   ],
   "filesChanged": [
-    "docs/autonomy/NEXT_CINEMATIC_AUDIT_OPERATOR_DECISION_2026-10-19.md",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-    "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-    "docs/autonomy/RECURRING_RUN_PROMPT.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-19T1820Z-codex-next-cinematic-audit.md"
+    "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+    "docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+    "docs/reports/INDEX.md",
+    "docs/reports/cinematic-existing-audit-2026-10-19.md",
+    "docs/reports/cinematic-existing-audit-2026-10-19/inventory.json",
+    "docs/autonomy/handoffs/2026-10-19T1850Z-codex-cinematic-audit.md"
   ],
   "testsRun": [
-    "Automation exact prompt SHA f2197a69fd2d86340ff7d87adf45820d61407c812cfbd30cfb77f1346ffaa699; only prompt/updated_at changed; PAUSED/90min/model/effort/target/cwd/notifications unchanged",
-    "All337historical qaJobs/deferred roots/combatFx/uiFx0259 exact against69e8abb; source/media/QA tools untouched",
-    "git diff --check PASS; LOCKEDf4aae63 empty/protected workingstatus empty; contracts8of8/8slots PASS"
+    "Eight shipped MP4/descriptors/current IDs and24retained source-frame SHA exact;151935283bytes",
+    "Six raw+six master candidates and three tracked keyframes match historical SHA;one absent ignored Bois-Clair shot02 source recorded",
+    "18unique environment/master references reconciled:17match;Alistair old0c876f/current84ff7bd tied exactly to manual b4e890a",
+    "All337historical qaJobs/MDblock/deferredDemoTask/pendingNarrativeTask/combatFx/combatFxDeliveryRun/operatorAcceptedAssets exact against578dc4d",
+    "Independent cinematics-journey source/agency review OK_WITH_CONDITIONS; contracts-guardian audit/publication scope PASS",
+    "TypeScript --noEmit exit0;contracts8of8/8slots;LOCKED baseline/working gates empty;git diff --check PASS"
   ],
   "testsPassed": [
-    "Automation exact prompt SHA f2197a69fd2d86340ff7d87adf45820d61407c812cfbd30cfb77f1346ffaa699; only prompt/updated_at changed; PAUSED/90min/model/effort/target/cwd/notifications unchanged",
-    "All337historical qaJobs/deferred roots/combatFx/uiFx0259 exact against69e8abb; source/media/QA tools untouched",
-    "git diff --check PASS; LOCKEDf4aae63 empty/protected workingstatus empty; contracts8of8/8slots PASS"
+    "Eight shipped MP4/descriptors/current IDs and24retained source-frame SHA exact;151935283bytes",
+    "Six raw+six master candidates and three tracked keyframes match historical SHA;one absent ignored Bois-Clair shot02 source recorded",
+    "18unique environment/master references reconciled:17match;Alistair old0c876f/current84ff7bd tied exactly to manual b4e890a",
+    "All337historical qaJobs/MDblock/deferredDemoTask/pendingNarrativeTask/combatFx/combatFxDeliveryRun/operatorAcceptedAssets exact against578dc4d",
+    "Independent cinematics-journey source/agency review OK_WITH_CONDITIONS; contracts-guardian audit/publication scope PASS",
+    "TypeScript --noEmit exit0;contracts8of8/8slots;LOCKED baseline/working gates empty;git diff --check PASS"
   ],
   "testsRemaining": [
-    "Next scheduled cinematic audit NOT_STARTED; product tests/build/browser not run for workflow-only change",
-    "Prior audio hidden/five-family/art/global limits retained separately"
+    "No runtime unit/build/browser replay warranted for unchanged source/media audit",
+    "Final artistic media acceptance remains external manual;global PC/art/balance/hardware,combatFX5families/nativehidden and final mobile remain open"
   ],
-  "blockers": [
-    "Future cinematic artistic remaster/promotion/replacement stays external manual workstream; audit itself authorized"
-  ],
+  "blockers": [],
   "remainingWork": [
-    "Next scheduled session: existing-media audit/disposition and one precise correction plan",
-    "Operator combat FX listening later; native hidden/five-family/full PC/art/hardware acceptance open",
-    "Manual artistic cinematic production only within separate authorization; mobile after PC stability"
+    "External manual camp correction per report;artistic remaster incomplete;current pipeline3cap closed",
+    "New independent demonstrated PC finding or operator verdict before further recurring product/audit work",
+    "Operator audio/art/balance/hardware/global PC acceptance;mobile after PC stability"
   ],
-  "nextAction": "After read-only preflight and exclusive lock, audit exactly the eight existing cinematic slots and retained candidates against current manifests/source, canonical V2/environment references and prior evidence. Produce a per-slot keep/correct/manual-remaster disposition and identify ONE demonstrated first correction; reuse historical proof. Do not generate/poll/promote/replace video or keyframes in recurring runs. Operator combat-FX listening is deferred voluntarily and does not block this audit.",
+  "nextAction": "External manual workstream: prepare the existing12s camp departure with current Alistair84ff7bd and sustained grounded three-actor walking using the dated report; retain cap3/no fourth repeat in the current pipeline. Recurrence waits for new media, a demonstrated independent PC defect or operator verdict; do not repeat this audit or call a provider.",
   "taskQueue": [
-    "Eight existing cinematic slots and retained candidates: bounded audit and keep/correct dispositions",
-    "One demonstrated runtime correction within contracts or concrete manual-remaster handoff",
-    "Operator audio/global PC/art/balance/hardware reviews; final mobile later"
+    "Manual camp correction handoff (not an automatic provider task)",
+    "Demonstrated independent PC defect/operator verdict when supplied",
+    "Operator combatFX listening/globalPC/art/balance/hardware;mobile after PC stability"
   ],
-  "creditStatus": "AVAILABLE_AFTER_VERIFIED_RESET",
-  "contractComplianceStatus": "PASS scoped documentation/configuration; set1.7.0 LOCKED gate empty and contracts8of8/8slots; no media/runtime changes",
-  "commitReferenceScope": "Verified published next-priority checkpoint3537be6; containing metadata closure SHA/parity recorded in Git and automation memory",
-  "operatorAuthorization": "OD-2026-10-19-B direct Okay go approves dedicated bounded combat FX amendment/execution. OD-2026-10-12-A normal origin/dev publication.",
+  "creditStatus": "AVAILABLE",
+  "contractComplianceStatus": "PASS scoped audit/preparation;set1.7.0/f4aae63 gates empty;independent guardianPASS;no final artistic/runtime/global acceptance inferred",
+  "commitReferenceScope": "Source baseline578dc4d;audited report checkpoint and final metadata SHA/parity recorded in Git/automation memory;no self-referential SHA",
+  "operatorAuthorization": "OD-2026-10-19-C existing cinematic audit/preparation; OD-2026-10-12-A normal origin/dev publication",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -123,19 +130,29 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-cinematic-next-run-20261019T1818",
+  "runId": "codex-cinematic-audit-20261019T1823",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T18:20:47.714Z",
+  "lastHeartbeat": "2026-10-19T18:49:57.434Z",
   "wip": {
-    "branch": "dev",
-    "sha": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
-    "dirtyFiles": [],
-    "status": "NO_WIP_NEXT_SCHEDULED_AUDIT_READY",
+    "branch": "wip/codex-cinematic-audit-20261019T1823",
+    "sha": "e5a371f38ebf2f03d55e98fce41902a0f8e6311f",
+    "dirtyFiles": [
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+      "docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/reports/INDEX.md",
+      "docs/reports/cinematic-existing-audit-2026-10-19.md",
+      "docs/reports/cinematic-existing-audit-2026-10-19/inventory.json",
+      "docs/autonomy/handoffs/2026-10-19T1850Z-codex-cinematic-audit.md"
+    ],
+    "status": "GREEN_AUDIT_FINAL_CHECKPOINT_READY",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-19T18:20:47.714Z"
+    "lastGreenCheck": "2026-10-19T18:49:57.434Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T18:20:47.714Z",
+    "lastHeartbeat": "2026-10-19T18:49:57.434Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37142,46 +37159,65 @@
       }
     ],
     "wip": {
-      "branch": "dev",
-      "sha": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
-      "dirtyFiles": [],
-      "status": "NO_WIP_NEXT_SCHEDULED_AUDIT_READY",
+      "branch": "wip/codex-cinematic-audit-20261019T1823",
+      "sha": "e5a371f38ebf2f03d55e98fce41902a0f8e6311f",
+      "dirtyFiles": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+        "docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md",
+        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+        "docs/reports/INDEX.md",
+        "docs/reports/cinematic-existing-audit-2026-10-19.md",
+        "docs/reports/cinematic-existing-audit-2026-10-19/inventory.json",
+        "docs/autonomy/handoffs/2026-10-19T1850Z-codex-cinematic-audit.md"
+      ],
+      "status": "GREEN_AUDIT_FINAL_CHECKPOINT_READY",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-19T18:20:47.714Z"
+      "lastGreenCheck": "2026-10-19T18:49:57.434Z"
     },
-    "nextAction": "After read-only preflight and exclusive lock, audit exactly the eight existing cinematic slots and retained candidates against current manifests/source, canonical V2/environment references and prior evidence. Produce a per-slot keep/correct/manual-remaster disposition and identify ONE demonstrated first correction; reuse historical proof. Do not generate/poll/promote/replace video or keyframes in recurring runs. Operator combat-FX listening is deferred voluntarily and does not block this audit.",
+    "nextAction": "External manual workstream: prepare the existing12s camp departure with current Alistair84ff7bd and sustained grounded three-actor walking using the dated report; retain cap3/no fourth repeat in the current pipeline. Recurrence waits for new media, a demonstrated independent PC defect or operator verdict; do not repeat this audit or call a provider.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "sourceTestFiles": 0,
       "runtimeAudioAssets": 0,
       "videoAssets": 0,
+      "keyframeAssets": 0,
       "existingQaFiles": 0,
       "newQaFiles": 0,
-      "promotedProofFiles": 0,
-      "workflowFiles": 8,
-      "productDocumentationFiles": 0,
+      "persistentQaTools": 0,
+      "promotedProofFiles": 1,
+      "taskReports": 1,
+      "productDocumentationFiles": 3,
+      "workflowFiles": 4,
       "inheritedWipFiles": 0,
       "registeredJobs": 0,
       "browserScenarios": 0,
-      "automationPromptUpdates": 1
+      "gameplayStagesPlayed": 0,
+      "readOnlyReviewers": 2,
+      "automationPromptUpdates": 0
     },
     "checkpointPaths": [
-      "docs/reports/combat-audio-audit-2026-10-19.md",
-      "docs/reports/INDEX.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-19T0705Z-codex-combat-audio-audit.md"
+      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+      "docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/reports/INDEX.md",
+      "docs/reports/cinematic-existing-audit-2026-10-19.md",
+      "docs/reports/cinematic-existing-audit-2026-10-19/inventory.json",
+      "docs/autonomy/handoffs/2026-10-19T1850Z-codex-cinematic-audit.md"
     ],
     "publication": {
       "destination": "origin/dev",
       "authorization": "OD-2026-10-12-A",
-      "sourceCheckpoint": "69e8abbd794ee11329b5d205545bdbcfa09de907",
-      "finalWorkflow": "Containing configuration checkpoint; final SHA/parity/lock release recorded in automation memory",
-      "lastVerifiedCheckpoint": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e"
+      "sourceBaseline": "578dc4dca39eeb1ce7818b0572c87368fc11fd2e",
+      "wipCheckpoint": "e5a371f38ebf2f03d55e98fce41902a0f8e6311f",
+      "wipRemoteVerified": true,
+      "finalWorkflow": "Pending final coherent checkpoint,normal publication and remote parity"
     },
-    "runEndedAt": "2026-10-19T18:20:47.714Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "status": "INCLUDED_IN_FINAL_CLOSEOUT_COMMIT",
       "deliveryCommit": "0686065d883567116c4b09f7b326c4e50bdbc8a7",
@@ -41308,7 +41344,7 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-cinematic-next-run-20261019T1818",
+    "runId": "codex-cinematic-audit-20261019T1823",
     "agent": "codex",
     "status": "NEXT_SCHEDULED_CINEMATIC_AUDIT_READY",
     "runStartedAt": "2026-10-19T18:19:04.431Z",
@@ -45451,21 +45487,26 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-19T1820Z-codex-next-cinematic-audit.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-19T1850Z-codex-cinematic-audit.md",
   "runMeasurement": {
     "runtimeSourceFiles": 0,
     "sourceTestFiles": 0,
     "runtimeAudioAssets": 0,
     "videoAssets": 0,
+    "keyframeAssets": 0,
     "existingQaFiles": 0,
     "newQaFiles": 0,
-    "promotedProofFiles": 0,
-    "workflowFiles": 8,
-    "productDocumentationFiles": 0,
+    "persistentQaTools": 0,
+    "promotedProofFiles": 1,
+    "taskReports": 1,
+    "productDocumentationFiles": 3,
+    "workflowFiles": 4,
     "inheritedWipFiles": 0,
     "registeredJobs": 0,
     "browserScenarios": 0,
-    "automationPromptUpdates": 1
+    "gameplayStagesPlayed": 0,
+    "readOnlyReviewers": 2,
+    "automationPromptUpdates": 0
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -45589,7 +45630,17 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "NONE after containing metadata closure",
+  "uncommittedWork": [
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+    "docs/autonomy/CINEMATIC_STRUCTURE_READINESS.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+    "docs/reports/INDEX.md",
+    "docs/reports/cinematic-existing-audit-2026-10-19.md",
+    "docs/reports/cinematic-existing-audit-2026-10-19/inventory.json",
+    "docs/autonomy/handoffs/2026-10-19T1850Z-codex-cinematic-audit.md"
+  ],
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -45736,17 +45787,22 @@
     "sourceTestFiles": 0,
     "runtimeAudioAssets": 0,
     "videoAssets": 0,
+    "keyframeAssets": 0,
     "existingQaFiles": 0,
     "newQaFiles": 0,
-    "promotedProofFiles": 0,
-    "workflowFiles": 8,
-    "productDocumentationFiles": 0,
+    "persistentQaTools": 0,
+    "promotedProofFiles": 1,
+    "taskReports": 1,
+    "productDocumentationFiles": 3,
+    "workflowFiles": 4,
     "inheritedWipFiles": 0,
     "registeredJobs": 0,
     "browserScenarios": 0,
-    "automationPromptUpdates": 1
+    "gameplayStagesPlayed": 0,
+    "readOnlyReviewers": 2,
+    "automationPromptUpdates": 0
   },
-  "qaToolingJustification": "Existing continuous native pilot extended with one opt-in combat-audio observer/settings prelude and existing battle/navigation methods; prior driver had no audio observer in its combat path. No new persistent runner, no new campaign.",
+  "qaToolingJustification": "No persistent QA tool added or changed;one-off ignored read-only hash/continuity checks and existing TypeScript/contracts commands only",
   "retainedRunArtifacts": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "physicalFreeze": "tmp/autonomy/final-physical-0514.json",
@@ -46753,15 +46809,20 @@
     "sourceTestFiles": 0,
     "runtimeAudioAssets": 0,
     "videoAssets": 0,
+    "keyframeAssets": 0,
     "existingQaFiles": 0,
     "newQaFiles": 0,
-    "promotedProofFiles": 0,
-    "workflowFiles": 8,
-    "productDocumentationFiles": 0,
+    "persistentQaTools": 0,
+    "promotedProofFiles": 1,
+    "taskReports": 1,
+    "productDocumentationFiles": 3,
+    "workflowFiles": 4,
     "inheritedWipFiles": 0,
     "registeredJobs": 0,
     "browserScenarios": 0,
-    "automationPromptUpdates": 1
+    "gameplayStagesPlayed": 0,
+    "readOnlyReviewers": 2,
+    "automationPromptUpdates": 0
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -47040,7 +47101,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-19T15:41:32.649Z",
+  "heartbeat": "2026-10-19T18:49:57.434Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -49013,22 +49074,27 @@
     "taskComplete": false,
     "newLabelBrowser": "OPEN"
   },
-  "lastSnapshotCommit": "b7a40f384c7b68774859adf6e46f7894fd750f36",
-  "lastSnapshotAt": "2026-10-19T01:26:42.662Z",
+  "lastSnapshotCommit": "e5a371f38ebf2f03d55e98fce41902a0f8e6311f",
+  "lastSnapshotAt": "2026-10-19T18:43:15.296Z",
   "runMetrics": {
     "runtimeSourceFiles": 0,
     "sourceTestFiles": 0,
     "runtimeAudioAssets": 0,
     "videoAssets": 0,
+    "keyframeAssets": 0,
     "existingQaFiles": 0,
     "newQaFiles": 0,
-    "promotedProofFiles": 0,
-    "workflowFiles": 8,
-    "productDocumentationFiles": 0,
+    "persistentQaTools": 0,
+    "promotedProofFiles": 1,
+    "taskReports": 1,
+    "productDocumentationFiles": 3,
+    "workflowFiles": 4,
     "inheritedWipFiles": 0,
     "registeredJobs": 0,
     "browserScenarios": 0,
-    "automationPromptUpdates": 1
+    "gameplayStagesPlayed": 0,
+    "readOnlyReviewers": 2,
+    "automationPromptUpdates": 0
   },
   "operatorAcceptedAssets": {
     "decision": "OD-2026-10-18-E",
@@ -49414,13 +49480,13 @@
   },
   "nextCinematicAudit": {
     "decision": "OD-2026-10-19-C",
-    "status": "SAVED_AND_CONFIGURATION_VERIFIED",
-    "scope": "PERSIST_ONLY_NO_AUDIT_EXECUTION",
-    "auditStatus": "NOT_STARTED",
+    "status": "COMPLETE_SCOPED_AUDIT_MANUAL_CORRECTION_READY",
+    "scope": "EXISTING_MEDIA_AUDIT_AND_ONE_MANUAL_CORRECTION_PLAN",
+    "auditStatus": "COMPLETE_SCOPED",
     "runId": "codex-cinematic-next-run-20261019T1818",
     "sourceBaseline": "69e8abbd794ee11329b5d205545bdbcfa09de907",
-    "nextAction": "After read-only preflight and exclusive lock, audit exactly the eight existing cinematic slots and retained candidates against current manifests/source, canonical V2/environment references and prior evidence. Produce a per-slot keep/correct/manual-remaster disposition and identify ONE demonstrated first correction; reuse historical proof. Do not generate/poll/promote/replace video or keyframes in recurring runs. Operator combat-FX listening is deferred voluntarily and does not block this audit.",
-    "firstReviewSlot": "Select from actual audit findings, no artistic choice invented now",
+    "nextAction": "External manual workstream: prepare the existing12s camp departure with current Alistair84ff7bd and sustained grounded three-actor walking using the dated report; retain cap3/no fourth repeat in the current pipeline. Recurrence waits for new media, a demonstrated independent PC defect or operator verdict; do not repeat this audit or call a provider.",
+    "firstReviewSlot": "camp_departure",
     "eightSlotsOnly": true,
     "ff9ReadableActionDirection": true,
     "recurringGenerationPollingPromotionReplacement": false,
@@ -49446,6 +49512,57 @@
       "promptSha256": "f2197a69fd2d86340ff7d87adf45820d61407c812cfbd30cfb77f1346ffaa699",
       "allHistoricalJobsPreserved": 337,
       "deferredRootsAndPriorAcceptancesExact": true
+    },
+    "executionRunId": "codex-cinematic-audit-20261019T1823",
+    "report": "docs/reports/cinematic-existing-audit-2026-10-19.md",
+    "inventory": "docs/reports/cinematic-existing-audit-2026-10-19/inventory.json"
+  },
+  "cinematicAuditRun": {
+    "runId": "codex-cinematic-audit-20261019T1823",
+    "sourceBaseline": "578dc4dca39eeb1ce7818b0572c87368fc11fd2e",
+    "report": "docs/reports/cinematic-existing-audit-2026-10-19.md",
+    "inventory": "docs/reports/cinematic-existing-audit-2026-10-19/inventory.json",
+    "handoff": "docs/autonomy/handoffs/2026-10-19T1850Z-codex-cinematic-audit.md",
+    "status": "COMPLETE_SCOPED",
+    "runtimeDefectDemonstrated": false,
+    "artisticAcceptance": false,
+    "firstCorrection": "camp_departure12s grounded walking,currentV2,moonlitfamily",
+    "currentAlistairSha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219",
+    "manualAlistairCommit": "b4e890af6fa61287818430b12eed21b4cc2f91fd",
+    "campAttemptsConsumed": 3,
+    "recurringGenerationPollingPromotionReplacement": false,
+    "historicalQaJobsExact": 337,
+    "reviewerVerdicts": {
+      "cinematicsJourney": "OK_WITH_CONDITIONS_NO_RUNTIME_DEFECT",
+      "contractsGuardian": "PASS_AUDIT_PUBLICATION_SCOPE"
+    },
+    "checks": [
+      "Eight shipped MP4/descriptors/current IDs and24retained source-frame SHA exact;151935283bytes",
+      "Six raw+six master candidates and three tracked keyframes match historical SHA;one absent ignored Bois-Clair shot02 source recorded",
+      "18unique environment/master references reconciled:17match;Alistair old0c876f/current84ff7bd tied exactly to manual b4e890a",
+      "All337historical qaJobs/MDblock/deferredDemoTask/pendingNarrativeTask/combatFx/combatFxDeliveryRun/operatorAcceptedAssets exact against578dc4d",
+      "Independent cinematics-journey source/agency review OK_WITH_CONDITIONS; contracts-guardian audit/publication scope PASS",
+      "TypeScript --noEmit exit0;contracts8of8/8slots;LOCKED baseline/working gates empty;git diff --check PASS"
+    ],
+    "metrics": {
+      "runtimeSourceFiles": 0,
+      "sourceTestFiles": 0,
+      "runtimeAudioAssets": 0,
+      "videoAssets": 0,
+      "keyframeAssets": 0,
+      "existingQaFiles": 0,
+      "newQaFiles": 0,
+      "persistentQaTools": 0,
+      "promotedProofFiles": 1,
+      "taskReports": 1,
+      "productDocumentationFiles": 3,
+      "workflowFiles": 4,
+      "inheritedWipFiles": 0,
+      "registeredJobs": 0,
+      "browserScenarios": 0,
+      "gameplayStagesPlayed": 0,
+      "readOnlyReviewers": 2,
+      "automationPromptUpdates": 0
     }
   }
 }

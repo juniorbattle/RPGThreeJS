@@ -1,0 +1,13 @@
+# Existing eight-slot audit completed — 2026-10-19T18:49:57.434Z
+
+Run codex-cinematic-audit-20261019T1823;OD-2026-10-19-C;baseline578dc4d;set1.7.0/f4aae63. Audit/preparation COMPLETE_SCOPED,PC READY_FOR_PC_ACCEPTANCE remains open for operator judgement.
+
+[Report/table/first correction](../../reports/cinematic-existing-audit-2026-10-19.md) and [current SHA reconciliation](../../reports/cinematic-existing-audit-2026-10-19/inventory.json). All8shipped clips/descriptors/24frames unchanged;6raw+6master candidates and3keyframes match historicalSHA.18unique refs17match;onlyAlistair changed via manual b4e890a to84ff7bd. Historical0c876f candidate provenance is retained,never rewritten/current-certified. Bois shot02/source.png remains missing/unproduced;shot01 only10s/portraitcrop not fullslot.
+
+ONE next product action: External manual workstream: prepare the existing12s camp departure with current Alistair84ff7bd and sustained grounded three-actor walking using the dated report; retain cap3/no fourth repeat in the current pipeline. Recurrence waits for new media, a demonstrated independent PC defect or operator verdict; do not repeat this audit or call a provider.
+
+First camp plan:0–2s groundedstart,2–10s sustained alternating threeactorwalking,10–12s livingstop;currentV2 and promoted moonlitfamily. Camp3attemptcap closed/currentpipeline nofourth/noreset. Choose controllable artistic method only in manual workstream;no generation/polling/keyframe/MP4promotion/replacement in recurrence. No new runtime defect demonstrated,source correction unwarranted. Existing approvedIDs/canon/fouractors/Alaric/choices/V6/POI/truthowners protected. No new source,media,QAtool,scheduler or gameplay change;no repeated campaign/matrix.
+
+Read-only cinematics reviewer OK_WITH_CONDITIONS;guardianPASS audit/publication scope. SHA checks,TypeScript,contracts8/8+8slots,LOCKED/diffgates PASS;all337QA records/MDblock/deferredDemoTask/pendingNarrativeTask/combatFx/combatFxDeliveryRun/operatorAcceptedAssets exact. No new runtime/browser/artisticacceptance. Audio4d69c23/proofdeb5930/closure69e8abb scopednative retained;5families/truehidden/art/hardware/globalPC open;8UI/nightbackground accepted. Mobile afterPCstability;no autonomousrebalance/music.
+
+Metrics source0/tests0/media0/keyframes0/persistentQA0/jobs0/browser0/gameplay0;report1/proofJSON1/canonicaldocs3/workflow4/inherited0/read-onlyreviewers2. Clean preflight,no competingwriter or inheritedWIP;host remote/process/fetch verified after sandboxDNS failure. OwnedWIPe5a371f published/verified;final dev normalpublication underOD-2026-10-12-A and exactparity/end/lockrelease recorded in state/memory. No PR/main change,operatorpreview/browser/saves retained.

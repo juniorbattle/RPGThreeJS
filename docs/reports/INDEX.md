@@ -1,5 +1,7 @@
 # Report authority index
 
+Current cinematic audit: [Eight existing slots and first correction](cinematic-existing-audit-2026-10-19.md) — OD-2026-10-19-C; unchanged eight MP4s/six candidates, current Alistair provenance reconciliation and manual camp walking handoff. Audit COMPLETE_SCOPED; no runtime change or artistic acceptance.
+
 Current bounded audio implementation: [Combat FX integration](combat-fx-integration-2026-10-19.md) — set1.7.0 / OD-2026-10-19-B;16candidatefamilies, shared iframe settings, first native focus defect corrected; final scoped evidence and artistic limits in report.
 
 Latest source audit: [Combat and remaining UI audio coverage](combat-audio-audit-2026-10-19.md) — SOURCE_AUDIT_COMPLETE at c01112e; combat audio unimplemented,16FXfamilies proposed, no runtime/native acceptance added. Existing UI FX native hidden/suspend criterion remains open.
