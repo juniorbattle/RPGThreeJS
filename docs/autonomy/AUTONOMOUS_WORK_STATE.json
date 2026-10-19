@@ -3,8 +3,8 @@
   "runStartedAt": "2026-10-19T15:38:15.0959806Z",
   "runEndedAt": null,
   "activeTask": "COMBAT-AUDIO-BOUNDED-EXECUTION",
-  "activePhase": "PRODUCT_IMPLEMENTED_QA_PENDING",
-  "activeSubtask": "Shared combat audio and16FX candidates implemented; one earned optional fight verification next",
+  "activePhase": "NATIVE_FOCUS_REGRESSION_FIXED",
+  "activeSubtask": "First native attempt found inner iframe focus loss; explicit owner callback after inert release now restores current frame/document/session",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "f4aae63e792025430c16153e1cd329c20745cf6b",
   "lastPushedCommit": "53bfd488028280f6f14583401d39b31a3a56f5f7",
@@ -37,15 +37,15 @@
     "Native hidden criterion retained OPEN; operator art/hardware/global acceptance separate"
   ],
   "blockers": [
-    "Combat audio activation is explicitly deferred by OD-F/set1.6.0; the audit identifies the bounded future exception, not a runtime failure",
-    "Prior native hidden/suspend evidence remains NOT_OBSERVED_PLATFORM"
+    "Prior native hidden/suspend criterion remains OPEN/NOT_OBSERVED_PLATFORM; no diagnosis loop",
+    "Corrected native combat settings focus needs direct production verification"
   ],
   "remainingWork": [
     "Implement bounded combat audio after dedicated exception; existing eight UI sounds do not cover battle feedback",
     "Native hidden/suspend acceptance and operator hardware/art comfort",
     "Global PC/feltbalance/mobile/final handoff remain operator-scoped"
   ],
-  "nextAction": "Freeze reviewed source/build/driver, register native combat-FX proof from certified optional-patrol earned save, use existing potions and fight optional wolves once; inspect actual sources/settings/return/reload.",
+  "nextAction": "After final build, register combat-fx-native-focus-fixed using unchanged driver/assertions and original SUCCEEDED patrol seed; replay only the one optional wolves encounter for the demonstrated focus regression.",
   "taskQueue": [
     "LAST-SAVE-RELOAD: corrected target; ordinary/elite restore exact active-game save",
     "POI-PATH-PAWN-CLARITY: prior COMPLETE_SCOPED_UI retained",
@@ -127,7 +127,7 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-combat-audio-20261019T1537",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-19T15:56:21.119Z",
+  "lastHeartbeat": "2026-10-19T16:02:31.654Z",
   "wip": {
     "branch": null,
     "sha": "f7fc776c4fdaa4cf9a6c2b45de3b15e2ed4428b6",
@@ -136,7 +136,7 @@
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-19T15:56:21.119Z",
+    "lastHeartbeat": "2026-10-19T16:02:31.654Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -36904,6 +36904,124 @@
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "combat-fx-native-1559",
+        "runId": "codex-combat-audio-20261019T1537",
+        "status": "FAILED",
+        "registeredAt": "2026-10-19T15:58:20.670Z",
+        "pid": 29120,
+        "port": 5443,
+        "command": [
+          "node",
+          "tools/demo-continuous-production-qa.mjs"
+        ],
+        "parameters": {
+          "target": "expedition-checkpoint",
+          "routePlan": "rescue",
+          "timeoutMinutes": 20,
+          "finalePlan": "serpent",
+          "defeatNodeId": "lion-village-choice",
+          "nativeDefeatWait": false,
+          "touchInput": false,
+          "nativeEquipment": false,
+          "trialPlan": "event",
+          "explorationPlan": "direct",
+          "checkpointPoiId": "lion-poi-opening-wolves",
+          "gameReducedMotion": false,
+          "viewport": [
+            1366,
+            768
+          ],
+          "osReducedMotion": false,
+          "earnedSavePath": "tmp/demo/lot-e-complete-patrol-0002/earned-expedition-checkpoint-v6.json",
+          "priorProofPath": "tmp/demo/lot-e-complete-patrol-0002/results.json",
+          "verifySalvation": false,
+          "verifyCombatFx": true
+        },
+        "requiredAssertions": [
+          "COMBAT_FX_SHARED_SETTINGS_GESTURE",
+          "COMBAT_FX_NATIVE_RESOLVED_EVENTS",
+          "COMBAT_FX_MUTE_VOLUME_SCOPE_DISPOSAL",
+          "EARNED_LINEAGE",
+          "NATIVE_INPUTS",
+          "EXACT_RELOAD"
+        ],
+        "output": "tmp/demo/combat-fx-native-1559",
+        "receiptPath": "tmp/demo/combat-fx-native-1559/qa-job.json",
+        "provenance": {
+          "gitHead": "06a59c48c86b02ff16eeb4df821c7d47a04f63c3",
+          "sourceTree": "db6dea285e261dbb52e26b2852c1d245b6d71c07",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/demo-continuous-production-qa.mjs",
+            "sha256": "a251be2d4eeefa33ceed09fc80f85cf39c38e68ca15b1872d79a73e930c23d50"
+          },
+          "inputs": [
+            {
+              "role": "earnedSavePath",
+              "path": "tmp/demo/lot-e-complete-patrol-0002/earned-expedition-checkpoint-v6.json",
+              "sha256": "93f7d1af6175efe39d3dbed7612ec98bd7539dfcd6ef193d0e34ee537db54b6c"
+            },
+            {
+              "role": "priorProofPath",
+              "path": "tmp/demo/lot-e-complete-patrol-0002/results.json",
+              "sha256": "78a75d4704fc5857eef81054bada061cfc2f3dd935227d39540d8fb14d1afcb1"
+            }
+          ],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/game-hrfLje0_.js",
+              "sha256": "3104748fe05ee36082ef1ec8b8accc4e0c2bdc324092bb2aa8783e71e2d9827f"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "e6f06d3726239722625281ad52b642de24e4436cf001b7aa93c0bedeabcaf9b5"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-19T15:58:44.550Z",
+        "endedAt": "2026-10-19T15:59:23.323Z",
+        "exitCode": 1,
+        "resultPath": "tmp/demo/combat-fx-native-1559/results.json",
+        "resultSha256": "83f31e02bc67cf839564d39fe13012d63b1423a73c3cbc092ab49ddb68deb486",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
       }
     ],
     "wip": {
@@ -36913,7 +37031,7 @@
       "status": "NO_WIP_AUDIT_PUBLISHED",
       "inheritedWip": 0
     },
-    "nextAction": "Freeze reviewed source/build/driver, register native combat-FX proof from certified optional-patrol earned save, use existing potions and fight optional wolves once; inspect actual sources/settings/return/reload.",
+    "nextAction": "After final build, register combat-fx-native-focus-fixed using unchanged driver/assertions and original SUCCEEDED patrol seed; replay only the one optional wolves encounter for the demonstrated focus regression.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "styleFiles": 0,
@@ -37741,7 +37859,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "COMBAT-AUDIO-BOUNDED-EXECUTION",
-    "activeSubtask": "Shared combat audio and16FX candidates implemented; one earned optional fight verification next",
+    "activeSubtask": "First native attempt found inner iframe focus loss; explicit owner callback after inert release now restores current frame/document/session",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41077,7 +41195,7 @@
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-19T15:38:15.0959806Z",
-    "activePhase": "PRODUCT_IMPLEMENTED_QA_PENDING",
+    "activePhase": "NATIVE_FOCUS_REGRESSION_FIXED",
     "heartbeat": "2026-10-19T07:07:14.284Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-19T0705Z-codex-combat-audio-audit.md",
     "motion1617": {
@@ -42809,12 +42927,11 @@
     },
     "lastPushedCommit": "f7fc776c4fdaa4cf9a6c2b45de3b15e2ed4428b6",
     "productPreview": {
-      "verifiedAt": "2026-10-16T15:27:07.4093983Z",
-      "indexSha256": "b4773b8722aef154c3cd6e0e92cd677703c177b82f23cd084e5b661d353aa69f",
-      "pid": 30712,
-      "startedByLotE": true,
-      "retainedForOperator": true,
-      "url": "http://127.0.0.1:5175/"
+      "url": "http://127.0.0.1:5438/",
+      "pid": 32208,
+      "ownerRun": "codex-combat-audio-20261019T1537",
+      "purpose": "Operator game preview; intentionally retained",
+      "saveMutation": "NONE"
     },
     "previousPoiFinalizationLiveScalars": {
       "lastHeartbeat": "2026-10-15T21:12:33.934Z",
@@ -45087,7 +45204,12 @@
         "Helper sandboxGitconfig denial; host24/25 then isolated detached-worker +newmode2/2 PASS; no assertion weakening",
         "contracts8/8+8slots;8UIbytesexact;16candidateSHA/PCMdurations/peaks valid"
       ],
-      "qaToolingJustification": "Existing continuous native pilot extended with one opt-in combat-audio observer/settings prelude and existing battle/navigation methods; prior driver had no audio observer in its combat path. No new persistent runner, no new campaign."
+      "qaToolingJustification": "Existing continuous native pilot extended with one opt-in combat-audio observer/settings prelude and existing battle/navigation methods; prior driver had no audio observer in its combat path. No new persistent runner, no new campaign.",
+      "firstNativeJob": "combat-fx-native-1559",
+      "firstNativeFailure": "Settings did not restore native combat opener, before tactical actions",
+      "focusFix": "UiSoundSettings releases inert then explicit Bridge callback checks frame/session/document and restores opener; close combat also closes overlay",
+      "unitTests": 127,
+      "unitSuites": 12
     }
   },
   "previousInterruptedRun": {
@@ -48794,6 +48916,11 @@
       "Helper sandboxGitconfig denial; host24/25 then isolated detached-worker +newmode2/2 PASS; no assertion weakening",
       "contracts8/8+8slots;8UIbytesexact;16candidateSHA/PCMdurations/peaks valid"
     ],
-    "qaToolingJustification": "Existing continuous native pilot extended with one opt-in combat-audio observer/settings prelude and existing battle/navigation methods; prior driver had no audio observer in its combat path. No new persistent runner, no new campaign."
+    "qaToolingJustification": "Existing continuous native pilot extended with one opt-in combat-audio observer/settings prelude and existing battle/navigation methods; prior driver had no audio observer in its combat path. No new persistent runner, no new campaign.",
+    "firstNativeJob": "combat-fx-native-1559",
+    "firstNativeFailure": "Settings did not restore native combat opener, before tactical actions",
+    "focusFix": "UiSoundSettings releases inert then explicit Bridge callback checks frame/session/document and restores opener; close combat also closes overlay",
+    "unitTests": 127,
+    "unitSuites": 12
   }
 }

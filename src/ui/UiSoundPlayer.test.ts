@@ -126,3 +126,12 @@ it('iframe gesture observation attaches and detaches real DOM listeners; synthet
   expect(add.mock.calls.map(c => c[0])).toEqual(['pointerdown', 'keydown']);
   detach(); expect(remove.mock.calls.map(c => c[0])).toEqual(['pointerdown', 'keydown']);
 });
+
+it('settings restore an explicit nested focus owner after releasing the parent inert state', () => {
+  player = new UiSoundPlayer(); const root = document.createElement('div'), owner = document.createElement('div');
+  root.append(owner); document.body.append(root);
+  const returnFocus = vi.fn(() => expect(owner.inert).toBe(false));
+  const settings = new UiSoundSettings(root, player); settings.open(returnFocus);
+  expect(owner.inert).toBe(true); settings.close(); expect(returnFocus).toHaveBeenCalledOnce();
+  settings.close(); expect(returnFocus).toHaveBeenCalledOnce();
+});

@@ -7,7 +7,7 @@ export class UiSoundSettings {
   private restore: (() => void) | null = null;
   constructor(private readonly root: HTMLElement, private readonly player: UiSoundPlayer) {}
 
-  open(): void {
+  open(returnFocus?: () => void): void {
     if (this.element) return;
     const previous = document.activeElement as HTMLElement | null;
     const siblings = [...this.root.children].map(child => ({ child: child as HTMLElement, inert: (child as HTMLElement).inert }));
@@ -17,7 +17,8 @@ export class UiSoundSettings {
     this.root.append(element); this.element = element;
     this.restore = () => {
       for (const { child, inert } of siblings) if (child.isConnected) child.inert = inert;
-      if (previous?.isConnected && !previous.closest('[inert]')) previous.focus({ preventScroll: true });
+      if (returnFocus) returnFocus();
+      else if (previous?.isConnected && !previous.closest('[inert]')) previous.focus({ preventScroll: true });
     };
     const toggle = element.querySelector<HTMLButtonElement>('[data-sound-toggle]')!;
     const refresh = () => {

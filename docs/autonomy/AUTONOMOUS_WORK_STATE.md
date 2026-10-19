@@ -1,10 +1,10 @@
-# Combat FX implemented — native proof pending
+# Combat FX — native focus correction ready
 
-Run codex-combat-audio-20261019T1537; reviewed set1.7.0/f4aae63 operational782e834 before runtime. Shared parent audio, trusted iframe gestures, same mute/volume,16original short combat candidates and audited UI feedback implemented. New art acceptance pending;8UIbytes unchanged,335historicaljobs preserved.
+Run codex-combat-audio-20261019T1537; set1.7.0/f4aae63, source06a59c4 published.16candidateFX+sharedsettings implemented, artacceptancepending. Firstnativejob1559 FAILED on inner iframe opener restoration before tactical actions; all evidence retained. Product fix releases inert then restores exact frame/document/session opener.127distinctsource tests12files passed across focused runs, final14/14focus-neighbors andbuild PASS.25distincthelper tests passed with isolated flakyworker rerun; sandboxGittempdenial separate.
 
-101distinctsource tests10files passed across focused runs; helper25distinct pass across24/25full+isolatedflakyworker2/2. SandboxGittempdenial is environment-only. Build finalization/review and one native optional fight next; nativehiddenOPEN unchanged. No gameplay/PA/equipment/outcome injected.
+Next: After final build, register combat-fx-native-focus-fixed using unchanged driver/assertions and original SUCCEEDED patrol seed; replay only the one optional wolves encounter for the demonstrated focus regression.
 
-Next: Freeze reviewed source/build/driver, register native combat-FX proof from certified optional-patrol earned save, use existing potions and fight optional wolves once; inspect actual sources/settings/return/reload.
+Preview5438 PID32208 retained; prior335jobs/deferredroots/nativehiddenOPEN unchanged.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -344,4 +344,5 @@ Next: Freeze reviewed source/build/driver, register native combat-FX proof from 
 - ui-fx-native-0630: FAILED; port 5443; receipt `tmp/demo/ui-fx-native-0630/qa-job.json`; NOT_ACCEPTED
 - ui-fx-native-0631: FAILED; port 5443; receipt `tmp/demo/ui-fx-native-0631/qa-job.json`; NOT_ACCEPTED
 - ui-fx-native-0633: SUCCEEDED; port 5443; receipt `tmp/demo/ui-fx-native-0633/qa-job.json`; NOT_ACCEPTED
+- combat-fx-native-1559: FAILED; port 5443; receipt `tmp/demo/combat-fx-native-1559/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

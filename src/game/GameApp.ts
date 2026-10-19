@@ -192,7 +192,7 @@ export class GameApp {
       },
       onSound: id => this.uiSounds.play(id),
     });
-    this.combat = new CombatBridge(root, { player: this.uiSounds, openSettings: () => this.soundSettings.open() });
+    this.combat = new CombatBridge(root, { player: this.uiSounds, openSettings: restore => this.soundSettings.open(restore), closeSettings: () => this.soundSettings.close() });
     this.exploration = new ExplorationView({ root, statusHud: this.statusHud, onSound: id => this.uiSounds.play(id) });
     this.poiEncounter = new PoiEncounterView(root, id => this.uiSounds.play(id));
     this.poiMap = new PoiMapView({root,

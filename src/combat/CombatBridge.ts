@@ -35,7 +35,7 @@ export class CombatBridge {
   private audioSession: string | null = null;
   private detachGestures: (() => void) | null = null;
 
-  constructor(private readonly root: HTMLElement, private readonly audio?: { player: UiSoundPlayer; openSettings: () => void }) {
+  constructor(private readonly root: HTMLElement, private readonly audio?: { player: UiSoundPlayer; openSettings: (returnFocus: () => void) => void; closeSettings?: () => void }) {
     window.addEventListener('message', this.onMessage);
   }
 
@@ -88,6 +88,7 @@ export class CombatBridge {
   }
 
   close(): void {
+    try { if (this.audioSession) this.audio?.closeSettings?.(); } catch { /* Optional settings cannot prevent the combat handoff. */ }
     this.detachGestures?.(); this.detachGestures = null;
     if (this.audioSession) this.audio?.player.endCombat(this.audioSession);
     this.audioSession = null;
@@ -110,7 +111,13 @@ export class CombatBridge {
     if (sound.success) {
       if (sound.data.sessionId !== this.audioSession) return;
       try {
-        if (sound.data.type === 'rpg-threejs:combat-sound-settings') this.audio?.openSettings();
+        if (sound.data.type === 'rpg-threejs:combat-sound-settings') {
+          const iframe = this.iframe, session = this.audioSession, opener = iframe?.contentDocument?.activeElement as HTMLElement | null;
+          this.audio?.openSettings(() => {
+            if (this.iframe !== iframe || this.audioSession !== session || !iframe?.isConnected || !opener?.isConnected || iframe.contentDocument !== opener.ownerDocument || opener.closest('[inert]')) return;
+            iframe.focus(); opener.focus({ preventScroll: true });
+          });
+        }
         else this.audio?.player.playCombat(sound.data.id, sound.data.sessionId, sound.data.eventId);
       } catch { /* Audio must never escape into combat result handling. */ }
       return;
