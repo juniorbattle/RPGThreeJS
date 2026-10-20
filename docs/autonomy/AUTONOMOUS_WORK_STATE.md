@@ -1,16 +1,16 @@
-# P03 — compagnon récupéré et rapproché ; relais keyframe manuel
+# P03 — images fixes livrées, revue artistique attendue
 
-Run codex-p03-companion-20261020, suite interactive « go », baseline dev 7ca2e807139f957599e1b1b2ca43922ad22196db. Status READY_FOR_PC_ACCEPTANCE ; phase P03_COMPANION_RECONCILED_MANUAL_KEYFRAME_HANDOFF. [Rapprochement](cinematics/P03_COMPANION_RECONCILIATION_2026-10-20.md), [dossier P03](CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md), [handoff](handoffs/2026-10-20T1725Z-codex-p03-companion.md).
+Run codex-manual-p03-stills-20261020, suite manuelle « go », baseline dev 420fb34a6e79c98a0d48c7f654ccdfe087959bf3. Status READY_FOR_PC_ACCEPTANCE ; phase P03_STILL_CANDIDATES_OPERATOR_REVIEW. [Revue et images](MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md), [autorisation](MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md), [handoff](handoffs/2026-10-20T1905Z-codex-p03-stills.md).
 
-Compagnon artistique v1 du13octobre retrouvé dans la Bibliothèque ChatGPT. Transcription intégrale visible archivée avec provenance et empreinte ; export original non obtenu. Dépendance documentaire close. P03 compatible dans la portée préparatoire : acteurs physiques V2, profondeur LION_CAMP, marche/appuis/objets, pré-dialogue intérieur, dix secondes proposées, retour tableau. Fonction dramatique et intentions sonores sur papier précisées ; aucun rendu accepté.
+Trois appels imagegen intégré : entréev1, correction cadrage/chargev2, planche de quatre poses de coupe. Trois PNG1672×941, prompts/provenances/SHA conservés. v1 trop basse/aligne ; v2 proposée pour cadrage/identités. Phase d'appui encore peu explicite et repères/espacements de coupe non appariés exactement : étude fixe seulement, aucun raccord/G2/mouvement/artistique/runtime accepté. Compagnon récupéré et dossier rapproché conservés.
 
-Next: Manual artistic workshop: prepare for review the P03 filmic entry keyframe and P02/P04 cut poses using the reconciled dossier. Companion recovered; do not repeat search/dossier/audit. Generative production needs its dedicated manual authorization; no recurring generation.
+Next: Operator artistic review of P03 entry v2 and four-pose board: judge framing/angle and identify the support-pose correction before locking cut matches. Stills do not prove gait; no video/MiniMax/recurring media work inferred.
 
-Aucune génération/keyframe/vidéo/polling/MiniMax/tentative supplémentaire/MP4/runtime/audio/scheduler modifié. Huit slots/camp livré12s,339jobs et toutes leurs dispositions/deferred/audio/candidats/storyboard restent conservés. Global PC/art/balance/hardware, cinq familles natives et vrai hidden/suspend audio restent ouverts ; mobile après stabilité PC. Historique du dossier initial et de sa recherche locale conservé.
+Aucun MiniMax/vidéo/polling/extension04/MP4/runtime/audio/scheduler changé. Huit slots/camp12s,339jobs et leurs dispositions, sources/public, V6/canon/économie/audio et candidats01–04/Bois-Clair inchangés. Global PC/art/équilibre/matériel, cinq familles natives et vrai hidden/suspend encore ouverts ; mobile après PC stable.
 
-Checks: Visible Library text/transcript match:10995characters/153lines/FNV1a6f0f9699; local SHA256670d058131b181acca65af09dbfb08a8598642abe060800d790133fba5450e31; git diff --check and LOCKED gates PASS; npm run contracts:validate PASS:8contracts/8slots; 339 QA jobs, exact MD QA block and unrelated state roots preserved; local links checked. Source/types/build/browser produit non requis pour cette documentation ; aucun jeu joué. Conformité set1.7.0 / f4aae63, matrice au rapprochement.
+Checks: git diff --check and both LOCKED gates PASS; npm run contracts:validate PASS:8contracts/8slots; 3PNG/3prompts/SHA and5source hashes checked; all3images visually inspected; 339 QA objects/exact MD block and unrelated historical/deferred/audio roots preserved; local payload links checked. Source/types/build/browser produit non requis pour ces candidats hors runtime ; aucun jeu joué. Conformité set1.7.0/f4aae63, matrice à la revue.
 
-Counts: runtime0/tests0/media0/keyframes0/jobs0/browser0/gameplay0 ; références2/canonicaldocs3/workflow3/attributes1 =9trackedpaths ; inheritedWIP0. Publication normale origin/dev sous OD-2026-10-12-A. Run ended 2026-10-20T17:20:16.217Z; SHA de livraison/parité/libération dans Git et mémoire automation.
+Counts16paths :3images/4candidateprompts-provenance/4canonicaldocs/5workflow ; runtime/tests/QA/proof/jobs/browserproduit/gameplay0 ; inheritedWIP0. Publication normale dev OD-2026-10-12-A. Run ended 2026-10-20T19:01:58.236Z; SHA/parité/libération dans Git et mémoire automation.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

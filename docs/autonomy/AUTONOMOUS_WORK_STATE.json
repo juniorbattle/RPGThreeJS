@@ -1,61 +1,69 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-20T17:14:33.6520916Z",
-  "runEndedAt": "2026-10-20T17:20:16.217Z",
-  "activeTask": "CAMP-P03-COMPANION-RECONCILIATION",
-  "activePhase": "P03_COMPANION_RECONCILED_MANUAL_KEYFRAME_HANDOFF",
-  "activeSubtask": "Named artistic companion retrieved from ChatGPT Library and reconciled; P03 dramatic/sound intentions clarified",
+  "runStartedAt": "2026-10-20T18:53:29.5154062Z",
+  "runEndedAt": "2026-10-20T19:01:58.236Z",
+  "activeTask": "MANUAL-CAMP-P03-FILMIC-STILLS",
+  "activePhase": "P03_STILL_CANDIDATES_OPERATOR_REVIEW",
+  "activeSubtask": "Entry v2 and four-pose cut board delivered with explicit support/cut-match limitations",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "ad18c7fe0317c29c37b59f2968632195c0addbd6",
-  "lastPushedCommit": "ad18c7fe0317c29c37b59f2968632195c0addbd6",
+  "lastKnownGoodCommit": "420fb34a6e79c98a0d48c7f654ccdfe087959bf3",
+  "lastPushedCommit": "420fb34a6e79c98a0d48c7f654ccdfe087959bf3",
   "completedThisRun": [
-    "Recovered complete visible artistic companion text and provenance; reconciled sections1–10 with P03",
-    "Clarified restrained dramatic progression and paper-only sound intentions; missing-reference dependency closed"
+    "Manual built-in imagegen entryv1/correctionv2/four-pose board; all3PNGs/prompts/provenance retained",
+    "Visual review: framing improved; exact support phase/cut-match/ground continuity unaccepted"
   ],
   "filesChanged": [
-    ".gitattributes",
-    "docs/autonomy/cinematics/RPGThreeJS_CONTRAT_ARTISTIQUE_CINEMATIQUES_v1_2026-10-13.txt",
-    "docs/autonomy/cinematics/P03_COMPANION_RECONCILIATION_2026-10-20.md",
+    "docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
+    "docs/autonomy/MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md",
+    "docs/autonomy/handoffs/2026-10-20T1905Z-codex-p03-stills.md",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
     "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
     "docs/autonomy/DEMO_COMPLETION_PLAN.md",
     "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/handoffs/2026-10-20T1725Z-codex-p03-companion.md"
+    "tools/cinematics/candidates/manual-p03-20261020/cut-poses-prompt.txt",
+    "tools/cinematics/candidates/manual-p03-20261020/keyframe-correction-prompt.txt",
+    "tools/cinematics/candidates/manual-p03-20261020/keyframe-prompt.txt",
+    "tools/cinematics/candidates/manual-p03-20261020/p03-cut-poses-v1.png",
+    "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v1.png",
+    "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v2.png",
+    "tools/cinematics/candidates/manual-p03-20261020/provenance.json"
   ],
   "testsRun": [
-    "Visible Library text/transcript match:10995characters/153lines/FNV1a6f0f9699; local SHA256670d058131b181acca65af09dbfb08a8598642abe060800d790133fba5450e31",
-    "git diff --check and LOCKED gates PASS",
+    "git diff --check and both LOCKED gates PASS",
     "npm run contracts:validate PASS:8contracts/8slots",
-    "339 QA jobs, exact MD QA block and unrelated state roots preserved; local links checked"
+    "3PNG/3prompts/SHA and5source hashes checked; all3images visually inspected",
+    "339 QA objects/exact MD block and unrelated historical/deferred/audio roots preserved; local payload links checked"
   ],
   "testsPassed": [
-    "Visible Library text/transcript match:10995characters/153lines/FNV1a6f0f9699; local SHA256670d058131b181acca65af09dbfb08a8598642abe060800d790133fba5450e31",
-    "git diff --check and LOCKED gates PASS",
+    "git diff --check and both LOCKED gates PASS",
     "npm run contracts:validate PASS:8contracts/8slots",
-    "339 QA jobs, exact MD QA block and unrelated state roots preserved; local links checked"
+    "3PNG/3prompts/SHA and5source hashes checked; all3images visually inspected",
+    "339 QA objects/exact MD block and unrelated historical/deferred/audio roots preserved; local payload links checked"
   ],
   "testsRemaining": [
     "Future continuous 1x pilot motion/artistic acceptance, filmic keyframe/cut poses and runtime integration not evaluated",
     "Global PC/art/balance/hardware, five native audio families and true hidden/suspend remain open; mobile after stable PC"
   ],
   "blockers": [
-    "No missing-document blocker remains. Future generated filmic keyframe/video production requires dedicated manual authorization; artistic/runtime acceptance remains open."
+    "No technical delivery blocker. Artistic judgement/support-pose correction and exact cut matches remain open; stills cannot certify gait."
   ],
   "remainingWork": [
-    "Prepare P03 filmic entry keyframe/cut poses for review in manual artistic workstream",
-    "Independent demonstrated authorized PC work or operator acceptance; no unchanged replay"
+    "Operator review of v2/pose board before further manual production",
+    "Continuous pilot motion and artistic/runtime acceptance remain separate",
+    "Global PC/audio/hardware/mobile boundaries retained"
   ],
-  "nextAction": "Manual artistic workshop: prepare for review the P03 filmic entry keyframe and P02/P04 cut poses using the reconciled dossier. Companion recovered; do not repeat search/dossier/audit. Generative production needs its dedicated manual authorization; no recurring generation.",
+  "nextAction": "Operator artistic review of P03 entry v2 and four-pose board: judge framing/angle and identify the support-pose correction before locking cut matches. Stills do not prove gait; no video/MiniMax/recurring media work inferred.",
   "taskQueue": [
-    "Manual artistic workshop: prepare for review the P03 filmic entry keyframe and P02/P04 cut poses using the reconciled dossier. Companion recovered; do not repeat search/dossier/audit. Generative production needs its dedicated manual authorization; no recurring generation.",
+    "Operator artistic review of P03 entry v2 and four-pose board: judge framing/angle and identify the support-pose correction before locking cut matches. Stills do not prove gait; no video/MiniMax/recurring media work inferred.",
     "Independent already-authorized demonstrated PC task only; no unchanged replay",
     "Mobile after PC stability"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SCOPED_DOCUMENTARY_RECONCILIATION;set1.7.0/f4aae63 unchanged;no motion/art/runtime acceptance",
-  "commitReferenceScope": "Containing delivery commit/parity in Git and automation memory; historical campP03Dossier retained",
-  "operatorAuthorization": "Interactive user go on companion retrieval/reconciliation,2026-10-20; OD-2026-10-12-A normal public dev publication",
+  "contractComplianceStatus": "PASS_MANUAL_STILL_SCOPE_ONLY;set1.7.0/f4aae63 unchanged;art/cuts/motion/runtime not accepted",
+  "commitReferenceScope": "Delivery/containing closure in Git and automation memory; preceding dossier/reconciliation historical roots retained",
+  "operatorAuthorization": "Direct interactive go on P03 keyframe and P02/P04 cut-pose stills,20October2026; OD-2026-10-12-A normal public dev publication",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -125,19 +133,36 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-p03-companion-20261020",
+  "runId": "codex-manual-p03-stills-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T17:20:16.217Z",
+  "lastHeartbeat": "2026-10-20T19:01:58.236Z",
   "wip": {
     "branch": "dev",
-    "sha": "ad18c7fe0317c29c37b59f2968632195c0addbd6",
-    "dirtyFiles": [],
-    "status": "PUBLISHED_COMPANION",
+    "sha": "420fb34a6e79c98a0d48c7f654ccdfe087959bf3",
+    "dirtyFiles": [
+      "docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
+      "docs/autonomy/MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md",
+      "docs/autonomy/handoffs/2026-10-20T1905Z-codex-p03-stills.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "tools/cinematics/candidates/manual-p03-20261020/cut-poses-prompt.txt",
+      "tools/cinematics/candidates/manual-p03-20261020/keyframe-correction-prompt.txt",
+      "tools/cinematics/candidates/manual-p03-20261020/keyframe-prompt.txt",
+      "tools/cinematics/candidates/manual-p03-20261020/p03-cut-poses-v1.png",
+      "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v1.png",
+      "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v2.png",
+      "tools/cinematics/candidates/manual-p03-20261020/provenance.json"
+    ],
+    "status": "GREEN_MANUAL_STILL_DELIVERY",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T17:20:16.217Z"
+    "lastGreenCheck": "2026-10-20T19:01:58.236Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T17:20:16.217Z",
+    "lastHeartbeat": "2026-10-20T19:01:58.236Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37327,33 +37352,50 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "ad18c7fe0317c29c37b59f2968632195c0addbd6",
-      "dirtyFiles": [],
-      "status": "PUBLISHED_COMPANION",
+      "sha": "420fb34a6e79c98a0d48c7f654ccdfe087959bf3",
+      "dirtyFiles": [
+        "docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
+        "docs/autonomy/MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md",
+        "docs/autonomy/handoffs/2026-10-20T1905Z-codex-p03-stills.md",
+        "docs/autonomy/OPERATOR_DECISIONS.md",
+        "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
+        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+        "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "tools/cinematics/candidates/manual-p03-20261020/cut-poses-prompt.txt",
+        "tools/cinematics/candidates/manual-p03-20261020/keyframe-correction-prompt.txt",
+        "tools/cinematics/candidates/manual-p03-20261020/keyframe-prompt.txt",
+        "tools/cinematics/candidates/manual-p03-20261020/p03-cut-poses-v1.png",
+        "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v1.png",
+        "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v2.png",
+        "tools/cinematics/candidates/manual-p03-20261020/provenance.json"
+      ],
+      "status": "GREEN_MANUAL_STILL_DELIVERY",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T17:20:16.217Z"
+      "lastGreenCheck": "2026-10-20T19:01:58.236Z"
     },
-    "nextAction": "Manual artistic workshop: prepare for review the P03 filmic entry keyframe and P02/P04 cut poses using the reconciled dossier. Companion recovered; do not repeat search/dossier/audit. Generative production needs its dedicated manual authorization; no recurring generation.",
+    "nextAction": "Operator artistic review of P03 entry v2 and four-pose board: judge framing/angle and identify the support-pose correction before locking cut matches. Stills do not prove gait; no video/MiniMax/recurring media work inferred.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "sourceTestFiles": 0,
       "videoAssets": 0,
-      "keyframeAssets": 0,
+      "keyframeAssets": 3,
       "persistentQaTools": 0,
       "promotedProofFiles": 0,
       "taskReports": 0,
-      "productDocumentationFiles": 3,
-      "workflowFiles": 3,
-      "uniqueTrackedPaths": 9,
+      "productDocumentationFiles": 4,
+      "workflowFiles": 5,
+      "candidatePromptProvenanceFiles": 4,
+      "uniqueTrackedPaths": 16,
       "inheritedWipFiles": 0,
       "registeredJobs": 0,
       "totalQaJobs": 339,
       "browserScenarios": 0,
       "gameplayStagesPlayed": 0,
       "providerTasksCreated": 0,
-      "automationUpdated": 0,
-      "referenceFiles": 2,
-      "attributeFiles": 1
+      "builtInImagegenCalls": 3,
+      "automationUpdated": 0
     },
     "checkpointPaths": [
       "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
@@ -37372,7 +37414,7 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-20T17:20:16.217Z",
+    "runEndedAt": "2026-10-20T19:01:58.236Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
@@ -38168,8 +38210,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "CAMP-P03-COMPANION-RECONCILIATION",
-    "activeSubtask": "Named artistic companion retrieved from ChatGPT Library and reconciled; P03 dramatic/sound intentions clarified",
+    "activeTask": "MANUAL-CAMP-P03-FILMIC-STILLS",
+    "activeSubtask": "Entry v2 and four-pose cut board delivered with explicit support/cut-match limitations",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41501,13 +41543,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-p03-companion-20261020",
+    "runId": "codex-manual-p03-stills-20261020",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-20T17:14:33.6520916Z",
-    "activePhase": "P03_COMPANION_RECONCILED_MANUAL_KEYFRAME_HANDOFF",
-    "heartbeat": "2026-10-20T17:20:16.217Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-20T1725Z-codex-p03-companion.md",
+    "runStartedAt": "2026-10-20T18:53:29.5154062Z",
+    "activePhase": "P03_STILL_CANDIDATES_OPERATOR_REVIEW",
+    "heartbeat": "2026-10-20T19:01:58.236Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-20T1905Z-codex-p03-stills.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -45678,27 +45720,27 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-20T1725Z-codex-p03-companion.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-20T1905Z-codex-p03-stills.md",
   "runMeasurement": {
     "runtimeSourceFiles": 0,
     "sourceTestFiles": 0,
     "videoAssets": 0,
-    "keyframeAssets": 0,
+    "keyframeAssets": 3,
     "persistentQaTools": 0,
     "promotedProofFiles": 0,
     "taskReports": 0,
-    "productDocumentationFiles": 3,
-    "workflowFiles": 3,
-    "uniqueTrackedPaths": 9,
+    "productDocumentationFiles": 4,
+    "workflowFiles": 5,
+    "candidatePromptProvenanceFiles": 4,
+    "uniqueTrackedPaths": 16,
     "inheritedWipFiles": 0,
     "registeredJobs": 0,
     "totalQaJobs": 339,
     "browserScenarios": 0,
     "gameplayStagesPlayed": 0,
     "providerTasksCreated": 0,
-    "automationUpdated": 0,
-    "referenceFiles": 2,
-    "attributeFiles": 1
+    "builtInImagegenCalls": 3,
+    "automationUpdated": 0
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -49974,5 +50016,28 @@
     "nextAction": "Manual artistic workshop: prepare for review the P03 filmic entry keyframe and P02/P04 cut poses using the reconciled dossier. Companion recovered; do not repeat search/dossier/audit. Generative production needs its dedicated manual authorization; no recurring generation.",
     "runEndedAt": "2026-10-20T17:20:16.217Z",
     "deliveryCheckpoint": "ad18c7fe0317c29c37b59f2968632195c0addbd6"
+  },
+  "campP03ManualStills": {
+    "runId": "codex-manual-p03-stills-20261020",
+    "baseline": "420fb34a6e79c98a0d48c7f654ccdfe087959bf3",
+    "status": "DELIVERED_FOR_OPERATOR_ART_REVIEW_WITH_LIMITS",
+    "manualAuthorization": "docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
+    "review": "docs/autonomy/MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md",
+    "handoff": "docs/autonomy/handoffs/2026-10-20T1905Z-codex-p03-stills.md",
+    "provenance": "tools/cinematics/candidates/manual-p03-20261020/provenance.json",
+    "selectedForReview": "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v2.png",
+    "cutPoseStudy": "tools/cinematics/candidates/manual-p03-20261020/p03-cut-poses-v1.png",
+    "retainedEarlierVariant": "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v1.png",
+    "tool": "built-in image_gen",
+    "imagegenCalls": 3,
+    "videoProviderTasks": 0,
+    "recurringGenerationAuthorized": false,
+    "artisticAcceptance": false,
+    "cutMatchesAccepted": false,
+    "locomotionObserved": false,
+    "runtimeIntegrationAcceptance": false,
+    "qaJobsUnchanged": 339,
+    "nextAction": "Operator artistic review of P03 entry v2 and four-pose board: judge framing/angle and identify the support-pose correction before locking cut matches. Stills do not prove gait; no video/MiniMax/recurring media work inferred.",
+    "runEndedAt": "2026-10-20T19:01:58.236Z"
   }
 }

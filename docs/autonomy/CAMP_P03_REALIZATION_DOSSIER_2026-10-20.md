@@ -1,5 +1,7 @@
 # Camp P03 — dossier de réalisation du pilote
 
+> **Suite interactive manuelle du20octobre :** compagnon retrouvé puis rapproché ; [keyframe v2 et étude des quatre poses de coupe maintenant proposés](MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md) sous autorisation directe « go ». Les raccords/appuis ne sont pas validés ; aucun rendu continu ou G2 accepté. Le texte préparatoire ci-dessous conserve sa portée historique ; la récurrence ne génère pas de média.
+
 **PROPOSED FUTURE DESIGN — préparation livrée, 20 octobre 2026.** Tâche `CAMP-P03-REALIZATION-DOSSIER`, [OD-2026-10-20-B](RECURRING_CAMP_P03_OPERATOR_DECISION_2026-10-20.md), baseline `dev@18482498925b70f0f26abf1233a842bcc86ce94e`. Document de réalisation pour le chantier artistique manuel ; aucun fichier de soumission fournisseur. Les valeurs de mise en scène ci-dessous sont des propositions à éprouver, pas des mesures d'un rendu existant.
 
 Le défaut à résoudre est le **glissement observé par l'opérateur sur le candidat04**. Ses poses/relations restent utiles ; sa marche n'est pas artistiquement acceptée. Le retour « Ok excelllent » porte sur le traitement/storyboard28s ; il ne certifie ni locomotion, ni perspective filmique, ni animatique G2, ni portrait runtime. Ce dossier approfondit uniquement P03 et ses deux raccords ; il ne refait pas les quatre panneaux ni l'audit des huit slots.

@@ -1,5 +1,8 @@
 # Demo completion — delivered POI/Lot E baseline
 
+> **Current interactive manual still delivery,20October2026:** [P03 entryv2 and four-pose board](MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md) delivered under [direct go](MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md). Framing improved; exact support phase/cut matches remain open. ONE next action: operator artistic review of v2/board to identify the support-pose correction before locking cuts. No motion/G2/art/runtime acceptance or video/MiniMax call; recurring scope/scheduler unchanged. Earlier preparation/retrieval notes below remain historical. [Current handoff](handoffs/2026-10-20T1905Z-codex-p03-stills.md).
+
+
 > **Current manual follow-up,20October2026:** artistic companion recovered from ChatGPT Library and [reconciled with P03](cinematics/P03_COMPANION_RECONCILIATION_2026-10-20.md). The missing-reference dependency below is resolved; earlier delivery/configuration notes remain historical. P03 dramatic progression and paper-only sound intentions clarified. ONE next action: manual artistic workshop prepares the P03 filmic entry keyframe and P02/P04 cut poses for review. No generation launched/authorized by this retrieval; recurring media prohibition and all PC/audio/runtime acceptance limits retained. [Current handoff](handoffs/2026-10-20T1725Z-codex-p03-companion.md).
 
 

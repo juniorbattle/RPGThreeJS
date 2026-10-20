@@ -1,0 +1,97 @@
+{
+  "kind": "MANUAL_FILMIC_STILL_CANDIDATES",
+  "runId": "codex-manual-p03-stills-20261020",
+  "baseline": "420fb34a6e79c98a0d48c7f654ccdfe087959bf3",
+  "authorization": "Direct interactive user go on P03 filmic keyframe and P02/P04 poses; docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
+  "tool": "built-in image_gen",
+  "calls": 3,
+  "videoProviderTasks": 0,
+  "recurringGenerationAuthorized": false,
+  "productionReplacement": false,
+  "artisticAcceptance": false,
+  "locomotionProof": false,
+  "sourceModelUnavailable": true,
+  "createdAt": "2026-10-20T19:00:39.460Z",
+  "records": [
+    {
+      "file": "p03-entry-v1.png",
+      "prompt": "keyframe-prompt.txt",
+      "inputs": [
+        "public/assets/characters/pixel/masters/white_mage.png",
+        "public/assets/characters/pixel/masters/maelor.png",
+        "public/assets/characters/pixel/masters/alistair.png",
+        "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+        "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png"
+      ],
+      "original": "exec-0e6edfb2-8295-48eb-ac81-d0a0467cef5f.png",
+      "disposition": "RETAINED_COMPOSITION_TOO_LOW",
+      "sha256": "0a9f43170722e73cca6250201fd2fe1729034500568c4415b282a4f86f9ecfb3",
+      "bytes": 2879501,
+      "width": 1672,
+      "height": 941,
+      "promptSha256": "6edca7757c3a07d0e7562b3ea05e2e459c41e2729943d15fa8f6a85a4213f84c",
+      "inputHashes": [
+        {
+          "path": "public/assets/characters/pixel/masters/white_mage.png",
+          "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/alistair.png",
+          "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219"
+        },
+        {
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+          "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32"
+        },
+        {
+          "path": "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
+          "sha256": "ee04113053ce19c88a409cf0789a8abdc1fc828a305272ee83dbe66520a33ed0"
+        }
+      ]
+    },
+    {
+      "file": "p03-entry-v2.png",
+      "prompt": "keyframe-correction-prompt.txt",
+      "inputs": [
+        "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v1.png"
+      ],
+      "original": "exec-431df036-4d05-42dd-95a7-6c51915b8b9c.png",
+      "disposition": "PROPOSED_OPERATOR_REVIEW_SUPPORT_PHASE_UNRESOLVED",
+      "sha256": "2029c057616dacef57f9aa767269d77bce56d4dcd691f33fccc4221f7dd7be5f",
+      "bytes": 2890946,
+      "width": 1672,
+      "height": 941,
+      "promptSha256": "25e90ea8c17d433b757bc58782b678532b2b58c50f25b8da24584922a9447328",
+      "inputHashes": [
+        {
+          "path": "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v1.png",
+          "sha256": "0a9f43170722e73cca6250201fd2fe1729034500568c4415b282a4f86f9ecfb3"
+        }
+      ]
+    },
+    {
+      "file": "p03-cut-poses-v1.png",
+      "prompt": "cut-poses-prompt.txt",
+      "inputs": [
+        "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v2.png"
+      ],
+      "original": "exec-438ccecd-cec4-44db-8c16-6961bb8925dc.png",
+      "disposition": "POSE_STUDY_CUT_MATCHES_NOT_ACCEPTED",
+      "sha256": "fed8371a867ab9496b064d4e4a4dab84b150bcabdae222e1004e3621465bb96a",
+      "bytes": 3283733,
+      "width": 1672,
+      "height": 941,
+      "promptSha256": "8fb3d61ae240dd29d7b057143562832aa6b85da37229858eb1df437b07c421ce",
+      "inputHashes": [
+        {
+          "path": "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v2.png",
+          "sha256": "2029c057616dacef57f9aa767269d77bce56d4dcd691f33fccc4221f7dd7be5f"
+        }
+      ]
+    }
+  ]
+}
