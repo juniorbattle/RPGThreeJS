@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-20T15:36:30Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-20T15:46:51.673Z",
   "activeTask": "CAMP-P03-REALIZATION-DOSSIER",
   "activePhase": "P03_DOSSIER_DELIVERED_MANUAL_ART_HANDOFF",
   "activeSubtask": "One realization dossier delivered; future artistic production awaits named companion",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "e3dd49186959ac78216ddee08e420ca21dd233d5",
-  "lastPushedCommit": "e3dd49186959ac78216ddee08e420ca21dd233d5",
+  "lastKnownGoodCommit": "836269855cbe9d60aef117bfeb49433a5073972f",
+  "lastPushedCommit": "836269855cbe9d60aef117bfeb49433a5073972f",
   "completedThisRun": [
     "One P03 realization dossier with grounded phases, per-actor cycles, camera/ground/equipment continuity, exact V2/night SHA references, future keyframe/cut brief and continuous-render review grid"
   ],
@@ -52,7 +52,7 @@
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SCOPED_PREPARATION_ONLY;set1.7.0/f4aae63 unchanged;no motion/art/runtime acceptance",
-  "commitReferenceScope": "Configuratione3dd491 published/remoteverified; final metadata SHA/parity and ownedlock release in Git/automation memory",
+  "commitReferenceScope": "Delivery checkpoint in campP03Dossier; containing closure SHA/parity/lock release recorded in automation memory",
   "operatorAuthorization": "OD-2026-10-20-B one-off recurring P03 dossier preparation; OD-2026-10-12-A normal public dev publication",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -125,17 +125,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-auto-p03-dossier-20261020T1536",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T15:45:41.905Z",
+  "lastHeartbeat": "2026-10-20T15:46:51.673Z",
   "wip": {
     "branch": "dev",
-    "sha": "e3dd49186959ac78216ddee08e420ca21dd233d5",
+    "sha": "836269855cbe9d60aef117bfeb49433a5073972f",
     "dirtyFiles": [],
-    "status": "PUBLISHED_CONFIGURATION",
+    "status": "PUBLISHED_DOSSIER",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T07:20:03.695Z"
+    "lastGreenCheck": "2026-10-20T15:46:51.673Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T15:45:41.905Z",
+    "lastHeartbeat": "2026-10-20T15:46:51.673Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37325,11 +37325,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "e3dd49186959ac78216ddee08e420ca21dd233d5",
+      "sha": "836269855cbe9d60aef117bfeb49433a5073972f",
       "dirtyFiles": [],
-      "status": "PUBLISHED_CONFIGURATION",
+      "status": "PUBLISHED_DOSSIER",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T07:20:03.695Z"
+      "lastGreenCheck": "2026-10-20T15:46:51.673Z"
     },
     "nextAction": "Manual artistic workshop: retrieve RPGThreeJS_CONTRAT_ARTISTIQUE_CINEMATIQUES_v1_2026-10-13.md and reconcile it with the delivered P03 dossier before preparing its filmic keyframe and cut poses. No recurring generation; no unchanged dossier/audit replay. Without new evidence or an already-authorized demonstrated independent PC defect, preserve checkpoint.",
     "runMetrics": {
@@ -37363,18 +37363,18 @@
       "destination": "origin/dev",
       "authorization": "OD-2026-10-12-A",
       "manualDecision": "OD-2026-10-20-B",
-      "sourceBaseline": "c97200f87d513f7b0c5d035454849d17dc4c4058",
-      "lastVerifiedCheckpoint": "e3dd49186959ac78216ddee08e420ca21dd233d5",
-      "finalWorkflow": "Configuratione3dd491 published; containing metadata SHA/parity/lockrelease in automation memory",
-      "remoteDevVerified": true
+      "sourceBaseline": "18482498925b70f0f26abf1233a842bcc86ce94e",
+      "lastVerifiedCheckpoint": "836269855cbe9d60aef117bfeb49433a5073972f",
+      "remoteDevVerified": true,
+      "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-20T15:46:51.673Z",
+    "writerStopped": true,
     "metadataPublication": {
-      "scope": "RecurringP03 configuration closure",
-      "deliveryCheckpoint": "e3dd49186959ac78216ddee08e420ca21dd233d5",
+      "scope": "P03 realization dossier closure",
+      "deliveryCheckpoint": "836269855cbe9d60aef117bfeb49433a5073972f",
       "status": "CONTAINING_METADATA_COMMIT",
-      "runEndedAt": "2026-10-20T07:20:03.695Z"
+      "runEndedAt": "2026-10-20T15:46:51.673Z"
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -41502,7 +41502,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-20T15:36:30Z",
     "activePhase": "P03_DOSSIER_DELIVERED_MANUAL_ART_HANDOFF",
-    "heartbeat": "2026-10-20T15:45:41.905Z",
+    "heartbeat": "2026-10-20T15:46:51.673Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-20T1545Z-codex-p03-dossier.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -43231,7 +43231,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "e3dd49186959ac78216ddee08e420ca21dd233d5",
+    "lastPushedCommit": "836269855cbe9d60aef117bfeb49433a5073972f",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -47277,7 +47277,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-20T15:45:41.905Z",
+  "heartbeat": "2026-10-20T15:46:51.673Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -49942,6 +49942,11 @@
       "339 QA objects/MD block and all unrelated historical/deferred/audio/candidate/storyboard objects exact",
       "Dossier local links verified; read-only cinematics/guardian scoped-preparation reviews PASS"
     ],
-    "runEndedAt": null
+    "runEndedAt": "2026-10-20T15:46:51.673Z",
+    "deliveryCheckpoint": "836269855cbe9d60aef117bfeb49433a5073972f",
+    "reviewers": {
+      "cinematicsJourney": "PASS_SCOPED_PREPARATION",
+      "contractsGuardian": "PASS_SCOPED_PREPARATION"
+    }
   }
 }

@@ -10,7 +10,7 @@ Missing companion is a dependency for future manual generation, not an unfinishe
 
 Checks: git diff --check and both LOCKED gates PASS; npm run contracts:validate PASS:8 LOCKED contracts/8 slots; Six reference SHA256 exact; five images inspected; source pre-dialogue chronology reconciled; 339 QA objects/MD block and all unrelated historical/deferred/audio/candidate/storyboard objects exact; Dossier local links verified; read-only cinematics/guardian scoped-preparation reviews PASS. Source tests/types/build/browser are not needed for a documentation-only dossier; no new gameplay proof.
 
-Counts: runtime0/tests0/media0/keyframes0/persistentQA0/proof0/browser0/jobs0/gameplay0; canonicaldocs3/workflow3=6trackedpaths; inheritedWIP0. Publication normal origin/dev under OD-2026-10-12-A; containing closure SHA/parity/ownedlock release in automation memory. Run ongoing; heartbeat 2026-10-20T15:45:41.905Z.
+Counts: runtime0/tests0/media0/keyframes0/persistentQA0/proof0/browser0/jobs0/gameplay0; canonicaldocs3/workflow3=6trackedpaths; inheritedWIP0. Publication normal origin/dev under OD-2026-10-12-A; containing closure SHA/parity/ownedlock release in automation memory. Run ended 2026-10-20T15:46:51.673Z.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
