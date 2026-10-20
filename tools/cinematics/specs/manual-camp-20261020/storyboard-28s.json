@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "kind": "NON_EXECUTABLE_PREPRODUCTION_STORYBOARD",
+  "status": "PROPOSED_FUTURE_DESIGN_OPERATOR_REVIEW_PENDING",
+  "taskId": "MANUAL-CAMP-STORYBOARD-28S",
+  "operatorDecision": "OD-2026-10-20-A",
+  "baseline": "5b5b00427e7c9c4d15117155b62c6f5a80dfd198",
+  "cinematicId": "camp_departure",
+  "generationAuthorizedByThisFile": false,
+  "providerTasksCreated": 0,
+  "productionReplacement": false,
+  "runtimeDurationChanged": false,
+  "proposedDurationSeconds": 28,
+  "shippedDurationSeconds": 12,
+  "framedActors": [
+    "marian",
+    "maelor",
+    "alistair"
+  ],
+  "canonicalCompanyAtNode": [
+    "maelor",
+    "alistair",
+    "marian",
+    "sage_seraphine",
+    "kestrel"
+  ],
+  "framedActorsAreCompleteCompany": false,
+  "canonicalSequence": [
+    "prologue",
+    "acte_ouverture",
+    "camp_departure_video",
+    "camp_departure_preparation_dialogue",
+    "campaign_entry"
+  ],
+  "lastImageBoundary": "INSIDE_CAMP_BEFORE_GATE_CROSSING",
+  "screenDirection": "LEFT_TO_RIGHT_SAME_SIDE_OF_AXIS",
+  "environmentFamily": "LION_CAMP_NIGHT",
+  "artDirection": "MODERN_PIXEL_ART_HD2D_INTEGRATED_ACTORS_NOT_CUTOUT_SPRITES",
+  "audio": "SILENT_REVIEW_VIDEO_AUDIO_DEFERRED",
+  "portraitProposal": "ENTIRE_16_9_CONTAINED_FRAME_NO_CENTER_CROP_RUNTIME_NOT_IMPLEMENTED",
+  "operatorFeedbackCandidate04": {
+    "observedDefect": "CHARACTERS_SEEM_TO_SLIDE",
+    "retainForDesign": [
+      "poses",
+      "structure"
+    ],
+    "artisticAcceptance": false,
+    "historicalTechnicalReceiptsUnchanged": true
+  },
+  "sourceEvidence": [
+    {
+      "path": "src/game/GameApp.ts",
+      "section": "startNewChronicle"
+    },
+    {
+      "path": "src/game/content.ts",
+      "section": "camp_departure, first preparation line before gate"
+    },
+    {
+      "path": "src/campaign/LionCampaignStructure.ts",
+      "section": "lion-camp canonical cast"
+    }
+  ],
+  "references": [
+    {
+      "role": "SUPPLIED_PLAN_NON_LOCKED",
+      "path": "docs/autonomy/cinematics/reference-minimax-production-plan-v1-2026-10-13.txt",
+      "sha256": "c4de6c3e7ed260f297ee6b00e4f87e047133cadc9bfa990887038f3e41d14783"
+    },
+    {
+      "role": "COMPOSITION_IDENTITY_NOT_AN_ACCEPTED_FIRSTFRAME",
+      "path": "tools/cinematics/candidates/manual-camp-20261019/candidate-04-source.png",
+      "sha256": "ee04113053ce19c88a409cf0789a8abdc1fc828a305272ee83dbe66520a33ed0"
+    },
+    {
+      "role": "PROMOTED_NIGHT_ENVIRONMENT",
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32"
+    },
+    {
+      "role": "CURRENT_V2_MARIAN",
+      "path": "public/assets/characters/pixel/masters/white_mage.png",
+      "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+    },
+    {
+      "role": "CURRENT_V2_MAELOR",
+      "path": "public/assets/characters/pixel/masters/maelor.png",
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+    },
+    {
+      "role": "CURRENT_V2_ALISTAIR",
+      "path": "public/assets/characters/pixel/masters/alistair.png",
+      "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219"
+    }
+  ],
+  "missingReference": {
+    "name": "RPGThreeJS_CONTRAT_ARTISTIQUE_CINEMATIQUES_v1_2026-10-13.md",
+    "status": "NOT_FOUND_LOCALLY_CONTENTS_NOT_VERIFIED",
+    "blocksStoryboardPreparation": false,
+    "requiredBeforeGenerationGate": true
+  },
+  "shots": [
+    {
+      "id": "P01",
+      "start": 0,
+      "end": 6,
+      "duration": 6,
+      "title": "Le lieu nous dépasse",
+      "frame": "Ensemble ·28–35mm indicatifs",
+      "action": "Découvrir la profondeur du camp puis les trois silhouettes. Les pieds restent posés ; feu et tissus vivent sobrement.",
+      "camera": "Courte avancée diagonale2–5s : vrai volume et premier plan, sans fausse marche par parallaxe.",
+      "cut": "Au livre de Maelor, même côté de son épaule et même lumière.",
+      "boundary": "Dans la rue intérieure ; aucun autre acteur identifiable ajouté."
+    },
+    {
+      "id": "P02",
+      "start": 6,
+      "end": 12,
+      "duration": 6,
+      "title": "Ce que chacun porte",
+      "frame": "Plan moyen trois-quarts ·50mm indicatifs",
+      "action": "Maelor stabilise son livre ; Marian resserre sa prise sur le bâton ; Alistair oriente son buste. Aucun échange d’objet ou ordre nouveau.",
+      "camera": "Cadre tenu, trois niveaux de profondeur ; mains et attaches lisibles.",
+      "cut": "Amorce d’un appui visible ; direction gauche vers droite conservée.",
+      "boundary": "Livre même main, une épée au-dessus du sol ; pas de fourreau inventé."
+    },
+    {
+      "id": "P03",
+      "start": 12,
+      "end": 22,
+      "duration": 10,
+      "title": "Le poids du premier pas",
+      "frame": "Corps entiers trois-quarts ·35–40mm indicatifs",
+      "action": "Démarrer, marcher quelques mètres dans l’allée intérieure, ralentir. Deux cycles complets par acteur, poids et contact au sol observables.",
+      "camera": "Verrouillée les4premières secondes ; accompagnement discret ensuite, plus lent que les acteurs.",
+      "cut": "Sur un contact identifié, positions relatives et phase d’arrêt conservées.",
+      "boundary": "Aucun seuil franchi. Lame, pieds et bâton lisibles sur tout le plan.",
+      "motionPilotFirst": true
+    },
+    {
+      "id": "P04",
+      "start": 22,
+      "end": 28,
+      "duration": 6,
+      "title": "Avant le seuil",
+      "frame": "Ensemble ouvert ·28–35mm indicatifs",
+      "action": "Terminer l’arrêt, orienter les regards vers l’allée puis respirer. Le rassemblement reste intérieur et la préparation encore possible.",
+      "camera": "Léger recul/dévoilement jusqu’à26s, puis composition stabilisée.",
+      "cut": "Rendre la main au tableau existant de préparation ; pas de dialogue sur un nouveau hold.",
+      "boundary": "Pas de départ accompli, de lieu atteint, de victoire ou de formation triomphale."
+    }
+  ],
+  "motionAcceptance": [
+    "Observe continuous fullspeed motion then frames; compensate camera using nearby ground landmarks",
+    "Planted foot stays attached to its ground point while pelvis advances",
+    "At least two complete alternating cycles for each actor without prolonged foot occlusion",
+    "Initiation and stop show weight transfer, not rigid group translation",
+    "Book/staff/sword persist; blade clears ground and cloth; staff not a sliding leg",
+    "No artistic PASS from pixel deltas, camera movement or schematic timed board"
+  ],
+  "nextProductionStep": "REVIEW_STORYBOARD_AND_RECONCILE_ARTISTIC_COMPANION_THEN_PREPARE_ONLY_P03_PILOT_KEYFRAME",
+  "notProductionSpec": true,
+  "preparationVerification": {
+    "cinematicsJourney": "PASS_SCOPED_PREPARATION_ONLY",
+    "contractsGuardian": "PASS_SCOPED_PREPARATION_ONLY",
+    "boardReview": "tmp/cinematics/manual-camp-20261020/board-review/results.json",
+    "motionEvidence": false,
+    "artisticAcceptance": false,
+    "runtimeIntegrationAcceptance": false
+  }
+}

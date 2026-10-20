@@ -1,18 +1,16 @@
-# Manual camp candidate04 — ready for PC operator review
+# Camp28s — treatment and storyboard delivered for review
 
-Run codex-manual-camp-20261019T2005; OD-2026-10-19-D explicitly authorizes this manual camp cap exception. Source/guard checkpoint b13279d published. One paid task454200539038213; source ee041130, raw ed202694, silent12s1080p24master6258be9b retained ignored. No production MP4/runtime change, old01–03 retained; recurring generation remains prohibited and scheduler unchanged.
+Run codex-camp-storyboard-20261020T0644; 2026-10-20T06:54:28.887Z; direct OD-2026-10-20-A preparation request. [Treatment/fourshots](CAMP_DEPARTURE_28S_STORYBOARD_2026-10-20.md) / [schematic interactive board](../media/cinematics/camp-departure-28s/storyboard.html).28s proposed, shipped12s unchanged. Candidate04 operator finding: sliding;poses/structure retained as design references, no artistic acceptance. Historical technical evidence remains unchanged.
 
-61focusedtests, TypeScript, source/spec, contracts8/8+8slots, LOCKED and whitespace gates PASS. Isolated DEV player11/11cases; initial wrapper FAILED retained, one minimal wrapper correction then SUCCEEDED. Guardian ACCEPTED_SCOPED_ISOLATED_DEV_PLAYER_ONLY separately from raw NOT_ACCEPTED receipts. Actual portrait390 VISUAL_FAIL clips Marian/Alistair. Fullspeed gait/blade clearance/artistic/integration acceptance remain open. Dedicated QA5445 stopped; existing operator preview untouched.
+Canonical source: prelude before preparation dialogue; trio a framedsubset of5companymembers. Local walking/regroup INSIDE camp, no gate crossing/arrival/newcanon. Proposed shot durations6+6+10+6; first future motionpilot P03 only. Missing artistic companion to reconcile before generation gate. Schematics/timedpanels are not keyframes, filmic animatic/G2 acceptance or locomotion proof.
 
-All337prior jobs preserved exactly;2newjobs =>339. Deferred narrative/demo/audio roots and eight shipped videos/prior candidates preserved. Other PC/global/art/balance/hardware, five native audio families/true hidden-suspend and mobile-after-PC limits unchanged.
+Prototype smokePASS:4shots28s/6SHA/2links;keyboard playback/pause/seek/stop;1366 and390reducedmotion,whole16:9contained/44pxbuttons/nooverflow/errors0;two captures inspected. Domain and guardian PASS preparationonly;contracts8/8+8slots/LOCKED/diffgatesPASS. No game build/sourcechange/productionQA/gameplaystage/providerjob.
 
-Counts: runtime0; media tooling2+test1; keyframe1+provenance/prompt2; spec/auth2; report1/proof7; productdocs2/workflow6;24unique paths; inheritedWIP0; no gameplay stage played;2driver invocations for11distinct isolated cases.
+All339existing QA jobs/MDblock/deferred/audio roots and source/shippedmedia preserved. OtherPC/global/art/balance/hardware/audiohidden/mobilelimits remainopen. Counts:runtime0/tests0/media0;canonicaldocs2/reference1/prototype1/nonexecutablespec1/workflow6=11paths;newjobs0,persistentQA0,inheritedWIP0.
 
-Report: [candidate04](../reports/manual-camp-candidate-04-2026-10-19.md). Handoff: [manual camp04](handoffs/2026-10-19T2100Z-codex-manual-camp04.md).
+Operator preview retained: http://127.0.0.1:5451/docs/media/cinematics/camp-departure-28s/storyboard.html; PID35308,port5451,restrictedlocalhoststoryboardserver. Game/audition previews untouched. Handoff: [storyboard](handoffs/2026-10-20T0655Z-codex-camp-storyboard.md).
 
-Next: Operator: watch candidate04 silent12s master at normal speed; judge gait, blade clearance and PC framing before artistic selection/integration. No additional provider task or production replacement inferred.
-
-Delivery checkpoint a95f73460f222462b3f0d10e72a0004af6c24bb2 published and remote-verified. Run ended 2026-10-19T20:58:45.747Z; final metadata SHA/parity and owned-lock release recorded in automation memory.
+Next: Operator review the delivered28s/four-shot camp storyboard, especially internal pre-gate ending and P03 continuous grounded walk; reconcile missing artistic companion before preparing the P03 pilot keyframe. No generation/runtime integration inferred.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

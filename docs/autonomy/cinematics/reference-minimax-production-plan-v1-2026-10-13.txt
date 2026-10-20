@@ -1,0 +1,312 @@
+RPGThreeJS — Plan de production du remaster cinématique MiniMax
+
+Version : 1.0 — 13 octobre 2026
+Statut : PLAN ARTISTIQUE DE PRÉPRODUCTION, non exécuté ; durées proposées indicatives ; pas de changement de code ni de contrat LOCKED.
+Projet : RPGThreeJS / Cité du Tournoi.
+Mots-clés de recherche : RPGThreeJS, MiniMax H3, cinématiques, storyboard, 8 vidéos, Bois-Clair, FF9, FMV, durée 60 secondes, montage, musique, SFX, Option C.
+
+Document compagnon : RPGThreeJS_CONTRAT_ARTISTIQUE_CINEMATIQUES_v1_2026-10-13.md. Lire celui-ci avant toute génération.
+
+1. Objectif
+
+Produire huit cinématiques premium, véritables scènes filmées non dialoguées, inspirées par l'ambition de mise en scène des FMV de Final Fantasy IX, mais originales et fidèles aux identités et événements de RPGThreeJS.
+
+Pas de sprites sur fonds peints animés. Les sprites et plates servent d'identité/reference ; la vidéo générée doit montrer des acteurs et lieux recréés cinématographiquement et physiquement cohérents.
+
+Les huit emplacements approuvés existent déjà dans src/cinematics/ApprovedProductionVideos.ts. Ne pas en ajouter un neuvième. Les anciennes vidéos restent actives tant que de nouveaux masters n'ont pas franchi un double contrôle artistique puis technique.
+
+2. Tableau de production — durées exploratoires
+
+Slot approuvé (ID stable)
+
+Master actuel (rapport historique)
+
+Plage envisagée, non verrouillée
+
+Intention dramatique et réserve canonique
+
+camp_departure
+
+12 s
+
+25–40 s
+
+Départ du camp, geste collectif, poids du voyage, mouvements physiques ; aucune recrue non présente canoniquement
+
+alaric_audience_arrival
+
+12 s
+
+30–45 s
+
+Architecture, procession/entrée, autorité d'Alaric ; aucun choix de mission anticipé
+
+bois_clair_arrival
+
+20 s
+
+45–65 s
+
+Découverte urgente du village et de la catastrophe déjà écrite ; aucun sauvetage/sacrifice présélectionné
+
+bois_clair_saved
+
+18 s
+
+35–50 s
+
+Conséquence de la victoire et du village sauvé ; aucun nouveau gain ou choix automatique
+
+bois_clair_sacrificed
+
+18 s
+
+35–55 s
+
+Gravité et conséquence physique du sacrifice ; préserver le déroulement canonique
+
+lion_judgement
+
+17 s
+
+40–60 s
+
+Cérémonie majestueuse, menace et montée dramatique ; ne jamais révéler le verdict ou la route avant le choix
+
+serpent_route_ending
+
+18 s
+
+45–70 s
+
+Point d'orgue après résolution canonique du général Serpent ; respecter garde de l'artefact et dialogues/choix restants
+
+lion_trial_route_ending
+
+20 s
+
+40–60 s
+
+Grandeur et conséquence de la victoire Lion ; ne pas présélectionner l'intention finale du joueur
+
+Ces valeurs sont des points de départ. Le storyboard décide de la durée réelle ; aucune scène n'est forcée à 60 secondes, ni bridée à 20. Les métadonnées runtime existantes n'ont pas été modifiées.
+
+3. Organisation des deux chantiers
+
+Chantier A — Codex, démo jouable
+
+Priorité autonome actuelle : campagne PC complète, combats réellement joués, contrôles, V6, mobile après desktop. Ne pas détourner les runs récurrents vers MiniMax. Source : docs/autonomy/DEMO_COMPLETION_PLAN.md / décision OD-2026-10-13-A.
+
+Chantier B — Remaster vidéo indépendant
+
+Travail artistique piloté séparément : recherche, storyboards, génération, montage et approbations manuelles. La règle docs/autonomy/CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md interdit aux runs autonomes récurrents de générer, sonder, remplacer ou publier des vidéos. Ce plan ne modifie pas cette interdiction.
+
+4. Pipeline détaillé et portes de décision
+
+Phase 0 — Inventaire canonique et technique
+
+Pour chaque slot : relever trigger, nœud, dialogues avant/après, cast réellement présent, environnement, saison/heure, choix encore ouverts, conséquences déjà résolues, masters V2 promus et plates. Réutiliser les outils de provenance et l'audit des huit slots :
+
+tools/cinematics/specs/production_eight_slot_remaster_brief.json ;
+
+tools/cinematics/specs/production-eight-slot-remaster/ ;
+
+src/cinematics/ApprovedProductionVideos.ts ;
+
+src/cinematics/CinematicPlayer.ts ;
+
+les contrats WORLD_AND_CHARACTERS, PRESENTATION_AND_MEDIA, CAMPAIGN_AND_STATE.
+
+Sortie attendue : fiche de vérité de scène listant explicitement ce qu'elle peut et ne peut pas montrer. Ne pas utiliser les documents historiques comme autorité supérieure à dev et aux contrats.
+
+Phase 1 — Traitement cinématographique (sans génération)
+
+Produire une fiche de réalisation : intention émotionnelle, personnages présents, géographie, événement, familles de plans, progression dramatique, climax, image de sortie et transition vers le gameplay. Interdire le dialogue verbal narratif et toute vidéo explicative statique.
+
+Porte G1 : approbation de l'intention et du respect du canon.
+
+Phase 2 — Storyboard / animatique
+
+Découper en plans clairement motivés, avec pour chaque plan :
+
+ordre, durée approximative, action physique et position des acteurs ;
+
+cadrage, focale ou perception optique, angle, déplacement caméra ;
+
+entrée et sortie des éléments de décor, lumière et continuité ;
+
+références canon (identité/rendu) et raccord au plan précédent/suivant ;
+
+synchronisations sonores visées et points de respiration.
+
+Créer au besoin de nouveaux keyframes véritablement cinématographiques, dérivés des références, pas des tableaux où l'on a plaqué des sprites. Une image de référence d'identité n'est pas automatiquement un photogramme de départ.
+
+Porte G2 : validation des cadrages, de la continuité et du rythme sur animatique avant toute génération coûteuse.
+
+Phase 3 — Préparation MiniMax
+
+Utiliser l'adaptateur local MiniMax existant lorsque compatible, et vérifier la documentation actuelle du modèle/API au moment de la production : nombre/type de références, mode image/video, durée maximale par job, audio supporté, résolutions, prix et conditions de reprise.
+
+Distinguer deux familles d'entrées :
+
+Références de design (sprites V2, poses, environnements) : servent à identifier personnage et univers ; ne doivent pas être reproduites comme calques ou premier plan statique.
+
+Keyframes cinématographiques approuvés : servent à contrôler un plan déjà conçu pour le cinéma, avec acteurs physiquement intégrés et perspective adaptée.
+
+Si le mode d'entrée de MiniMax force une image en premier photogramme, donner un keyframe filmique généré et validé, pas le sprite brut ni la plate latérale du jeu. Verrouiller les invariants de visage/masque, tenue, arme, accessoire, lieu et heure ; expliciter les exclusions.
+
+Porte G3 : conformité du prompt, des références, de la continuité et des coûts avant lancement.
+
+Phase 4 — Génération par plans et revue
+
+Favoriser plusieurs plans courts avec mouvements réels, reliés au montage, plutôt qu'une génération monolithique sans contrôle.
+
+Tester d'abord une séquence de mouvement représentative ; observer début, milieu, fin et les étapes entre eux.
+
+Vérifier la tenue des objets/accessoires et éviter les apparitions/disparitions ; ne pas accepter un plan simplement parce que le modèle l'a rendu sans erreur.
+
+Archiver prompt versionné, modèle, paramètres, identifiants de tâche, source/références et empreintes des rendus ; préserver les candidats rejetés avec raison.
+
+Reprendre les générations seulement lorsqu'une hypothèse artistique concrète a changé ; éviter les essais répétés à l'identique.
+
+Porte G4 : chaque plan est artistiquement recevable et compatible avec son raccord.
+
+Phase 5 — Montage, couleur et son
+
+Assembler les plans en une seule séquence cohérente ; travailler coupes, transitions, échelle, colorimétrie et courbe dramatique. Privilégier une continuité musicale sur le montage entier.
+
+Prévoir trois couches : musique originale, ambiances et SFX ponctuels. Synchroniser visuellement impacts, mouvements, flammes, armes, énergie et silences. Les pistes générées n'imposent pas le mix final ; vérifier les droits et éviter toute imitation musicale de FF9.
+
+Frontière actuelle : l'audio est DEFERRED dans le code/contrats. Conserver les intentions et maquettes sonores en préproduction ; ne pas publier le son comme fonctionnalité du jeu avant décision contractuelle et adaptation runtime approuvées.
+
+Porte G5 : visionner sans dialogue, vérifier la courbe émotionnelle et autoriser explicitement le master artistique.
+
+Phase 6 — Intégration production (séparée)
+
+Une fois un nouveau master approuvé : ajuster prudemment les métadonnées de durée, la pipeline de lecture, les transitions, les fallbacks, le skip, le focus, la réduction de mouvement et la gestion des sauvegardes si nécessaire, avec approbation des modifications contractuelles applicables. Préserver les huit IDs et l'autorité de campagne. Ne jamais remplacer silencieusement un MP4 existant.
+
+Porte G6 : lectures réelles aux principaux formats, contrôles, événements canoniques, retours au tableau/combats, rechargements V6 et approbation finale du master dans la démo.
+
+5. Pilote recommandé : bois_clair_arrival
+
+Choix recommandé, non lancé : commencer par le moment de découverte de Bois-Clair. Il permet de démontrer que la méthode produit de la profondeur, des déplacements de caméra motivés, une catastrophe vivante, des réactions d'acteurs et un raccord vers le choix du joueur — sans préjuger de l'issue.
+
+Traitement exploratoire de 55 secondes
+
+Temps
+
+Fonction
+
+Intention visuelle et audiovisuelle
+
+0–10 s
+
+Découverte
+
+Révéler le village et le danger par un cadre large cinématographique ; tension sonore naissante
+
+10–23 s
+
+Urgence
+
+Traversée du lieu, mouvement réel de l'environnement, fumées/flammes/débris seulement selon les faits canoniques
+
+23–39 s
+
+Climax
+
+Montrer la portée de la catastrophe par une composition forte ; lumière, impact dramatique et accent musical
+
+39–49 s
+
+Réactions
+
+Réactions physiques non verbales de personnages effectivement présents ; garder équipements et identités
+
+49–55 s
+
+Raccord
+
+Stabiliser une image lisible qui rend l'agence au joueur avant la décision de sauver/sacrifier
+
+Ce storyboard est une proposition de cadrage, pas une autorisation d'ajouter des destructions, personnages ou événements. La chronologie exacte et les scènes devront être confrontées au canon actuel avant G1.
+
+Définition de réussite du pilote
+
+Le spectateur comprend la situation sans dialogue ni boîte de texte.
+
+Les personnages et le village sont recréés cinématographiquement, pas extraits du jeu par collage.
+
+Le monde semble profond et vivant, avec déplacements crédibles et géographie cohérente.
+
+Le point culminant est mémorable et les plans se raccordent.
+
+Les choix du joueur demeurent ouverts au dernier photogramme.
+
+La durée finale résulte du montage ; 55 s n'est pas un quota.
+
+Ne généraliser le pipeline aux sept autres masters qu'après la validation artistique réelle de ce pilote.
+
+6. Matrice des échecs à détecter
+
+Défaut
+
+Refus / correction requise
+
+Sprite plaqué ou personnage glissant devant un fond
+
+Recomposer le plan comme scène incarnée ; changer entrée/référence de génération
+
+Décor statique utilisé comme simple poster
+
+Recréer un environnement à profondeur et caméra libres
+
+Arme, livre, casque, masque ou tenue mutés/disparus
+
+Rejeter le plan ; source/contrôle d'identité renforcés
+
+Acteur canonique absent ou personnage non recruté présent
+
+Rejeter et aligner sur la fiche de vérité de scène
+
+Montage monotone ou sans enjeu
+
+Refaire le traitement/animatique, pas augmenter aveuglément la durée
+
+Grand effet spectaculaire non présent dans le canon
+
+Refuser l'effet ; garder l'événement autorisé
+
+Verdict/choix préempté par le clip
+
+Refuser ; garder l'agence du joueur
+
+Qualité technique PASS mais direction artistique médiocre
+
+Pas de promotion en master production
+
+Son discontinu ou musique copiée
+
+Reconcevoir le mix et la provenance avant approbation audio
+
+7. Livrables à conserver par vidéo
+
+Chaque slot aura, lorsque son chantier sera engagé : fiche de vérité, traitement, storyboard, référence des personnages et décors, animatique, prompts et références versionnés, résultats MiniMax (y compris échecs), tests de continuité, édition finale, intention SFX/musique, validation artistique opérateur, validation technique/runtime, empreintes et master accepté. Les fichiers candidats ne remplacent pas la production.
+
+8. Actions différées et frontières du dépôt
+
+Contrat media / durées : relever toute borne normative dans les contrats et mettre à jour la doctrine via décision/amendement dédié avant publication de nouvelles durées.
+
+Audio : actuellement différé ; la vision est établie, mais le déblocage technique/contractuel reste distinct.
+
+Cadence automatique : aucun job MiniMax dans l'automatisation RPGThreeJS Auto Dev 90m sans nouvelle décision explicite.
+
+Main : aucune modification automatique ; dev ne reçoit que des changements approuvés selon le protocole du projet.
+
+Prologue/refuge vidéo supplémentaire : hors des huit slots ; une autre décision serait indispensable.
+
+9. Reprise facile dans ChatGPT
+
+Demande suggérée : « Récupère dans ma Bibliothèque RPGThreeJS/Cinematics le contrat artistique et le plan MiniMax v1 du 13 octobre 2026 ; reprenons le storyboard de Bois-Clair sans changer le canon. »
+
+Ligne de travail prioritaire au prochain atelier : fiche canonique bois_clair_arrival → storyboard → 1 ou 2 plans pilotes → revue artistique, sans interrompre la finalisation PC par Codex.
