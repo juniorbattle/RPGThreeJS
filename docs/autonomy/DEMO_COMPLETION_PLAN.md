@@ -1,5 +1,11 @@
 # Demo completion — delivered POI/Lot E baseline
 
+## P03 realization dossier delivered — OD-2026-10-20-B
+
+The one-off recurring preparation is delivered in [CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md](CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md): proposed10s continuous pilot inside the camp before preparation dialogue, grounded per-actor cycles/weight, camera/ground references, current V2/night SHA provenance, persistent equipment, future filmic keyframe/cuts and1x render review grid. Candidate04 sliding remains artistically unaccepted; positive28s storyboard feedback does not certify gait/G2/runtime. No media/provider/runtime/audio/scheduler work occurred. Missing artistic companion remains a future production dependency; independent dossier preparation is complete.
+
+**One next action:** manual artistic workshop retrieves `RPGThreeJS_CONTRAT_ARTISTIQUE_CINEMATIQUES_v1_2026-10-13.md` and reconciles it with this dossier before preparing the P03 filmic keyframe/cut poses. No recurring generation, repeated dossier/storyboard/eight-slot audit or unchanged campaign replay. Without a new fact or an already-authorized demonstrated independent PC defect, preserve the checkpoint. Other PC/art/balance/hardware and five-native-family/true-hidden audio criteria remain open; mobile after stable PC. [Current handoff](handoffs/2026-10-20T1545Z-codex-p03-dossier.md).
+
 ## Cinematic audit delivered — OD-2026-10-19-C
 
 Recurring queue **OD-2026-10-20-B**: [one concrete P03 realization dossier](RECURRING_CAMP_P03_OPERATOR_DECISION_2026-10-20.md) now replaces the completed eight-slot audit as the next scheduled preparation. Reuse the delivered28s storyboard; specify grounded motion/framing/equipment/references, future keyframe brief, cuts and review grid; bounded artistic-companion reconciliation. No recurring generation/polling/keyframes/MiniMax/attempt extension/promotion. Deliver once, then manual artistic handoff; no unchanged diagnostic loops. Existing automation remains PAUSED with other settings preserved, activation operator-only. This configuration session launches no product work.

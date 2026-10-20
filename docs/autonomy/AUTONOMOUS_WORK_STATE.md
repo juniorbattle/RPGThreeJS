@@ -1,18 +1,16 @@
-# Recurring P03 priority saved — configuration only
+# P03 realization dossier — delivered once; manual artistic handoff
 
-Run codex-recurring-camp-p03-20261020T0715; OD-2026-10-20-B direct request. [Decision](RECURRING_CAMP_P03_OPERATOR_DECISION_2026-10-20.md), [next-run handoff](handoffs/2026-10-20T0715Z-codex-recurring-camp-p03.md). Existing RPGThreeJS Auto Dev90m prompt updated with concrete P03 realization preparation, replacing completed eight-slot audit. Savedprompt equals canonical RECURRING_RUN_PROMPT.md.
+Run codex-auto-p03-dossier-20261020T1536; baseline dev 18482498925b70f0f26abf1233a842bcc86ce94e; OD-2026-10-20-B. [Dossier](CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md), [handoff](handoffs/2026-10-20T1545Z-codex-p03-dossier.md). Status READY_FOR_PC_ACCEPTANCE; phase P03_DOSSIER_DELIVERED_MANUAL_ART_HANDOFF.
 
-Settings preserved:PAUSED/90minutes/gpt-6.1-sol/high/local/sameproject-directory/notifications. Activation exclusively operator. Configuration session launches no product/media work. Proposed28s/fourshots and positive storyboard feedback retained, not gait/G2/runtime/art acceptance. Candidate04 sliding remains unaccepted. No recurring generation/keyframe/video/polling/MiniMax/attempt extension/MP4 replacement/runtime duration/audio change.
+One independent preparation complete: proposed continuous10s P03 within28s, whole-body three-quarter framing, initiation/two cycles per actor/deceleration/stop, ground-relative contacts, persistent equipment, exact V2/night SHA references, future filmic keyframe/cuts and 1x render review grid. Candidate04 sliding remains unaccepted; positive storyboard feedback is not motion/G2/art/runtime acceptance. Inside camp before preparation dialogue; no gate crossing.
 
-Next: Next operator-enabled scheduled run: after preflight/lock, read current P03 treatment/source chronology and prepare ONE concrete realization dossier (grounded action, camera, equipment, current references, future keyframe brief/cuts/review grid), bounded companion reconciliation, then manual artistic handoff. No recurring generation/repeated audit or automatic retry.
+Next: Manual artistic workshop: retrieve RPGThreeJS_CONTRAT_ARTISTIQUE_CINEMATIQUES_v1_2026-10-13.md and reconcile it with the delivered P03 dossier before preparing its filmic keyframe and cut poses. No recurring generation; no unchanged dossier/audit replay. Without new evidence or an already-authorized demonstrated independent PC defect, preserve checkpoint.
 
-Deliver dossier once; no repeat unchangedaudit/storyboard/diagnostic loop. Missing artistic companion remains a precise dependency before future manual generation; complete independent preparation elements. Interior pre-dialogue camp boundary/currentV2/night references protected.
+Missing companion is a dependency for future manual generation, not an unfinished independent dossier element. Bounded local filenames/history search found none; remote Library unexamined; no contents invented. No generation/polling/MiniMax/attempt04 extension/MP4 replacement/runtime duration/portrait/audio/scheduler change. Existing operator previews untouched. Shipped camp12s/eight slots and all339jobs/MDQAblock/deferred/audio/manualcandidate/storyboard objects preserved. No global PC/art/balance/hardware acceptance; five native audio families and true hidden/suspend still open; mobile after stable PC.
 
-Separate UI request:140past exact-automation-ID sessions archived and verified across3pages; currentchat01a15567 retained, unrelated chats untouched. No source/evidence/save deletion. All339QA jobs/MDblock/deferred/audio/manualcandidate/storyboard objects exact. Other PC/art/balance/hardware/audiohidden/mobile limits unchanged. Storyboardpreview5451/game/audition previews untouched.
+Checks: git diff --check and both LOCKED gates PASS; npm run contracts:validate PASS:8 LOCKED contracts/8 slots; Six reference SHA256 exact; five images inspected; source pre-dialogue chronology reconciled; 339 QA objects/MD block and all unrelated historical/deferred/audio/candidate/storyboard objects exact; Dossier local links verified; read-only cinematics/guardian scoped-preparation reviews PASS. Source tests/types/build/browser are not needed for a documentation-only dossier; no new gameplay proof.
 
-Checks:automation equality/settings,archive membership,JSON conservation,diff/LOCKED/8contracts+8slots. Counts:productsource0/tests0/media0/QA0/browser0/gameplay0;canonicaldocs2/workflow6=8paths;inheritedWIP0;automationupdate1/UIarchives140.
-
-Configuratione3dd49186959ac78216ddee08e420ca21dd233d5 published/remote-verified; main00b96f1 unchanged. Run ended 2026-10-20T07:20:03.695Z. Containing metadata SHA/parity and ownedlock release in automation memory.
+Counts: runtime0/tests0/media0/keyframes0/persistentQA0/proof0/browser0/jobs0/gameplay0; canonicaldocs3/workflow3=6trackedpaths; inheritedWIP0. Publication normal origin/dev under OD-2026-10-12-A; containing closure SHA/parity/ownedlock release in automation memory. Run ongoing; heartbeat 2026-10-20T15:45:41.905Z.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
