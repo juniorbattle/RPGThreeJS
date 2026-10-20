@@ -1,13 +1,13 @@
 {
   "status": "CONFIGURED_RECURRING_P03_PREPARATION",
   "runStartedAt": "2026-10-20T07:14:49.2699998Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-20T07:20:03.695Z",
   "activeTask": "CONFIGURE-RECURRING-CAMP-P03",
   "activePhase": "SAVED_NEXT_SCHEDULED_PREPARATION",
   "activeSubtask": "Priority updated and140past scheduled chats archived; no product/media task launched",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
-  "lastPushedCommit": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
+  "lastKnownGoodCommit": "e3dd49186959ac78216ddee08e420ca21dd233d5",
+  "lastPushedCommit": "e3dd49186959ac78216ddee08e420ca21dd233d5",
   "completedThisRun": [
     "Cleanpreflight/atomiclock/fetch/devparity/noinheritedWIP",
     "Existing automation updated with P03 dossier priority; all settings including PAUSED preserved; savedprompt equalscanonical",
@@ -52,7 +52,7 @@
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_CONFIGURATION_ONLY;set1.7.0/f4aae63 unchanged;no new product/media/acceptance",
-  "commitReferenceScope": "Storyboard delivery399e4d8 published/parity; final closure SHA/parity and ownedlock release recorded in Git/automation memory",
+  "commitReferenceScope": "Configuratione3dd491 published/remoteverified; final metadata SHA/parity and ownedlock release in Git/automation memory",
   "operatorAuthorization": "OD-2026-10-20-B direct recurring integration and pastsession archival; OD-2026-10-12-A normal public dev publication",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -125,26 +125,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-recurring-camp-p03-20261020T0715",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T07:18:38.121Z",
+  "lastHeartbeat": "2026-10-20T07:20:03.695Z",
   "wip": {
     "branch": "dev",
-    "sha": "c97200f87d513f7b0c5d035454849d17dc4c4058",
-    "dirtyFiles": [
-      "docs/autonomy/RECURRING_CAMP_P03_OPERATOR_DECISION_2026-10-20.md",
-      "docs/autonomy/handoffs/2026-10-20T0715Z-codex-recurring-camp-p03.md",
-      "docs/autonomy/RECURRING_RUN_PROMPT.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
-    ],
-    "status": "GREEN_CONFIGURATION",
+    "sha": "e3dd49186959ac78216ddee08e420ca21dd233d5",
+    "dirtyFiles": [],
+    "status": "PUBLISHED_CONFIGURATION",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T07:18:38.121Z"
+    "lastGreenCheck": "2026-10-20T07:20:03.695Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T07:18:38.121Z",
+    "lastHeartbeat": "2026-10-20T07:20:03.695Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37334,20 +37325,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "c97200f87d513f7b0c5d035454849d17dc4c4058",
-      "dirtyFiles": [
-        "docs/autonomy/RECURRING_CAMP_P03_OPERATOR_DECISION_2026-10-20.md",
-        "docs/autonomy/handoffs/2026-10-20T0715Z-codex-recurring-camp-p03.md",
-        "docs/autonomy/RECURRING_RUN_PROMPT.md",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-        "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
-      ],
-      "status": "GREEN_CONFIGURATION",
+      "sha": "e3dd49186959ac78216ddee08e420ca21dd233d5",
+      "dirtyFiles": [],
+      "status": "PUBLISHED_CONFIGURATION",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T07:18:38.121Z"
+      "lastGreenCheck": "2026-10-20T07:20:03.695Z"
     },
     "nextAction": "Next operator-enabled scheduled run: after preflight/lock, read current P03 treatment/source chronology and prepare ONE concrete realization dossier (grounded action, camera, equipment, current references, future keyframe brief/cuts/review grid), bounded companion reconciliation, then manual artistic handoff. No recurring generation/repeated audit or automatic retry.",
     "runMetrics": {
@@ -37385,16 +37367,17 @@
       "authorization": "OD-2026-10-12-A",
       "manualDecision": "OD-2026-10-20-B",
       "sourceBaseline": "c97200f87d513f7b0c5d035454849d17dc4c4058",
-      "lastVerifiedCheckpoint": "c97200f87d513f7b0c5d035454849d17dc4c4058",
-      "finalWorkflow": "Containing configuration checkpoint pending"
+      "lastVerifiedCheckpoint": "e3dd49186959ac78216ddee08e420ca21dd233d5",
+      "finalWorkflow": "Configuratione3dd491 published; containing metadata SHA/parity/lockrelease in automation memory",
+      "remoteDevVerified": true
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-20T07:20:03.695Z",
+    "writerStopped": true,
     "metadataPublication": {
-      "scope": "Camp28s storyboard closure and completionplan currentpointer",
-      "deliveryCheckpoint": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
-      "status": "CONTAINING_CLOSURE_COMMIT",
-      "runEndedAt": "2026-10-20T06:56:28.940Z"
+      "scope": "RecurringP03 configuration closure",
+      "deliveryCheckpoint": "e3dd49186959ac78216ddee08e420ca21dd233d5",
+      "status": "CONTAINING_METADATA_COMMIT",
+      "runEndedAt": "2026-10-20T07:20:03.695Z"
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -38129,7 +38112,7 @@
       "workerAbsent": 60012,
       "portAbsent": 5352
     },
-    "publishedCheckpoint": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
+    "publishedCheckpoint": "e3dd49186959ac78216ddee08e420ca21dd233d5",
     "closeout0613": {
       "checkpoint": "babc01bf3571247b73516a740c501a88b1deb7dd",
       "runEndedAt": "2026-10-09T06:56:55.147Z",
@@ -41522,7 +41505,7 @@
     "status": "CONFIGURED_RECURRING_P03_PREPARATION",
     "runStartedAt": "2026-10-20T07:14:49.2699998Z",
     "activePhase": "SAVED_NEXT_SCHEDULED_PREPARATION",
-    "heartbeat": "2026-10-20T07:18:38.121Z",
+    "heartbeat": "2026-10-20T07:20:03.695Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-20T0715Z-codex-recurring-camp-p03.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -43251,7 +43234,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
+    "lastPushedCommit": "e3dd49186959ac78216ddee08e420ca21dd233d5",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -45837,7 +45820,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Selected configuration checkpoint pending",
+  "uncommittedWork": "NONE after containing metadata checkpoint",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -47298,7 +47281,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-20T07:18:38.121Z",
+  "heartbeat": "2026-10-20T07:20:03.695Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -49933,6 +49916,8 @@
       "QA_EVIDENCE": "PASS339exact; no new acceptance",
       "REPOSITORY_GOVERNANCE": "PASS ownedlock/settingspreserved/devnormal"
     },
-    "configuredAt": "2026-10-20T07:18:38.121Z"
+    "configuredAt": "2026-10-20T07:18:38.121Z",
+    "deliveryCheckpoint": "e3dd49186959ac78216ddee08e420ca21dd233d5",
+    "runEndedAt": "2026-10-20T07:20:03.695Z"
   }
 }

@@ -11,3 +11,5 @@ Retain all339QA jobs/MDblock/deferred/audio roots/eight videos/candidates and cu
 Separate explicit UI request completed:140 prior scheduled sessions of the exact automation archived and verified across archive inventory; this chat retained, unrelated chats untouched. No Git evidence or saves deleted.
 
 Publication: normal origin/dev under OD-2026-10-12-A; exact delivery/final metadata SHAs, runEndedAt, parity and owned-lock release recorded in Git/automation memory at closeout.
+
+Configuratione3dd49186959ac78216ddee08e420ca21dd233d5 published/remote-verified; main00b96f1 unchanged. Run ended 2026-10-20T07:20:03.695Z. Containing metadata SHA/parity and ownedlock release in automation memory.
