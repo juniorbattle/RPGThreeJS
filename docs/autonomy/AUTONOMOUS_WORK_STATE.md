@@ -6,11 +6,13 @@ Canonical source: prelude before preparation dialogue; trio a framedsubset of5co
 
 Prototype smokePASS:4shots28s/6SHA/2links;keyboard playback/pause/seek/stop;1366 and390reducedmotion,whole16:9contained/44pxbuttons/nooverflow/errors0;two captures inspected. Domain and guardian PASS preparationonly;contracts8/8+8slots/LOCKED/diffgatesPASS. No game build/sourcechange/productionQA/gameplaystage/providerjob.
 
-All339existing QA jobs/MDblock/deferred/audio roots and source/shippedmedia preserved. OtherPC/global/art/balance/hardware/audiohidden/mobilelimits remainopen. Counts:runtime0/tests0/media0;canonicaldocs2/reference1/prototype1/nonexecutablespec1/workflow6=11paths;newjobs0,persistentQA0,inheritedWIP0.
+All339existing QA jobs/MDblock/deferred/audio roots and source/shippedmedia preserved. OtherPC/global/art/balance/hardware/audiohidden/mobilelimits remainopen. Counts:runtime0/tests0/media0;canonicaldocs3/reference1/prototype1/nonexecutablespec1/workflow6=12paths;newjobs0,persistentQA0,inheritedWIP0.
 
 Operator preview retained: http://127.0.0.1:5451/docs/media/cinematics/camp-departure-28s/storyboard.html; PID35308,port5451,restrictedlocalhoststoryboardserver. Game/audition previews untouched. Handoff: [storyboard](handoffs/2026-10-20T0655Z-codex-camp-storyboard.md).
 
 Next: Operator review the delivered28s/four-shot camp storyboard, especially internal pre-gate ending and P03 continuous grounded walk; reconcile missing artistic companion before preparing the P03 pilot keyframe. No generation/runtime integration inferred.
+
+Delivery399e4d8292086d281ceadedd89921fbb7a4ed4b7 published/remote-verified; main00b96f1 unchanged. Run ended 2026-10-20T06:56:28.940Z. Final closure SHA/parity and ownedlock release recorded in automation memory; operator storyboard preview5451 retained deliberately.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-20T06:44:58.8645137Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-20T06:56:28.940Z",
   "activeTask": "MANUAL-CAMP-STORYBOARD-28S",
   "activePhase": "DELIVERED_FOR_STORYBOARD_REVIEW",
   "activeSubtask": "28s treatment/four-shot schematic board; operator gait failure retained; no new generation",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
-  "lastPushedCommit": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
+  "lastKnownGoodCommit": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
+  "lastPushedCommit": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
   "completedThisRun": [
     "Clean read-only preflight, atomic ownedlock, fetch/parity; explicit preparation decision OD-2026-10-20-A",
     "Preserved supplied plan and exact current V2/night reference hashes; framedtrio subset and pre-dialogue interior boundary checked from source",
@@ -25,7 +25,8 @@
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/handoffs/2026-10-20T0655Z-codex-camp-storyboard.md",
-    ".gitattributes"
+    ".gitattributes",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md"
   ],
   "testsRun": [
     "4shots sum28s/no holes;6referenceSHA checks;2boardlinks",
@@ -58,7 +59,7 @@
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SCOPED_PREPARATION_ONLY; set1.7.0/f4aae63 unchanged; guardian/domain PASS; no art/G2/runtime/motion acceptance",
-  "commitReferenceScope": "Source/guard b13279d; delivery a95f734; exact containing metadata SHA/remote parity in Git and automation memory",
+  "commitReferenceScope": "Storyboard delivery399e4d8 published/parity; final closure SHA/parity and ownedlock release recorded in Git/automation memory",
   "operatorAuthorization": "OD-2026-10-20-A direct preparation request; OD-2026-10-12-A normal public origin/dev publication",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -131,29 +132,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-camp-storyboard-20261020T0644",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T06:54:28.887Z",
+  "lastHeartbeat": "2026-10-20T06:56:28.940Z",
   "wip": {
     "branch": "dev",
-    "sha": "5b5b00427e7c9c4d15117155b62c6f5a80dfd198",
-    "dirtyFiles": [
-      "docs/autonomy/CAMP_STORYBOARD_OPERATOR_DECISION_2026-10-20.md",
-      "docs/autonomy/CAMP_DEPARTURE_28S_STORYBOARD_2026-10-20.md",
-      "docs/autonomy/cinematics/reference-minimax-production-plan-v1-2026-10-13.txt",
-      "docs/media/cinematics/camp-departure-28s/storyboard.html",
-      "tools/cinematics/specs/manual-camp-20261020/storyboard-28s.json",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-20T0655Z-codex-camp-storyboard.md",
-      ".gitattributes"
-    ],
-    "status": "GREEN_STORYBOARD_PREPARATION",
+    "sha": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
+    "dirtyFiles": [],
+    "status": "PUBLISHED_STORYBOARD_DELIVERY",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T06:54:28.887Z"
+    "lastGreenCheck": "2026-10-20T06:56:28.940Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T06:54:28.887Z",
+    "lastHeartbeat": "2026-10-20T06:56:28.940Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37343,23 +37332,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "5b5b00427e7c9c4d15117155b62c6f5a80dfd198",
-      "dirtyFiles": [
-        "docs/autonomy/CAMP_STORYBOARD_OPERATOR_DECISION_2026-10-20.md",
-        "docs/autonomy/CAMP_DEPARTURE_28S_STORYBOARD_2026-10-20.md",
-        "docs/autonomy/cinematics/reference-minimax-production-plan-v1-2026-10-13.txt",
-        "docs/media/cinematics/camp-departure-28s/storyboard.html",
-        "tools/cinematics/specs/manual-camp-20261020/storyboard-28s.json",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-20T0655Z-codex-camp-storyboard.md",
-        ".gitattributes"
-      ],
-      "status": "GREEN_STORYBOARD_PREPARATION",
+      "sha": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
+      "dirtyFiles": [],
+      "status": "PUBLISHED_STORYBOARD_DELIVERY",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T06:54:28.887Z"
+      "lastGreenCheck": "2026-10-20T06:56:28.940Z"
     },
     "nextAction": "Operator review the delivered28s/four-shot camp storyboard, especially internal pre-gate ending and P03 continuous grounded walk; reconcile missing artistic companion before preparing the P03 pilot keyframe. No generation/runtime integration inferred.",
     "runMetrics": {
@@ -37372,12 +37349,12 @@
       "persistentQaTools": 0,
       "promotedProofFiles": 0,
       "taskReports": 0,
-      "productDocumentationFiles": 2,
+      "productDocumentationFiles": 3,
       "suppliedReferenceFiles": 1,
       "storyboardPrototypeFiles": 1,
       "nonExecutableStoryboardSpecs": 1,
       "workflowFiles": 6,
-      "uniqueTrackedPaths": 11,
+      "uniqueTrackedPaths": 12,
       "inheritedWipFiles": 0,
       "registeredJobs": 0,
       "totalQaJobs": 339,
@@ -37398,23 +37375,25 @@
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "docs/autonomy/handoffs/2026-10-20T0655Z-codex-camp-storyboard.md",
-      ".gitattributes"
+      ".gitattributes",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md"
     ],
     "publication": {
       "destination": "origin/dev",
       "authorization": "OD-2026-10-12-A",
       "manualDecision": "OD-2026-10-20-A",
       "sourceBaseline": "5b5b00427e7c9c4d15117155b62c6f5a80dfd198",
-      "lastVerifiedCheckpoint": "5b5b00427e7c9c4d15117155b62c6f5a80dfd198",
-      "finalWorkflow": "Storyboard delivery containing checkpoint pending"
+      "lastVerifiedCheckpoint": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
+      "finalWorkflow": "Storyboard399e4d8 published; final plan/state/handoff closure SHA/parity and ownedlock release recorded in automation memory",
+      "remoteDevVerified": true
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-20T06:56:28.940Z",
+    "writerStopped": true,
     "metadataPublication": {
-      "scope": "Manual camp04 closure",
-      "deliveryCheckpoint": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
-      "status": "CONTAINING_METADATA_COMMIT",
-      "runEndedAt": "2026-10-19T20:58:45.747Z"
+      "scope": "Camp28s storyboard closure and completionplan currentpointer",
+      "deliveryCheckpoint": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
+      "status": "CONTAINING_CLOSURE_COMMIT",
+      "runEndedAt": "2026-10-20T06:56:28.940Z"
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -38149,7 +38128,7 @@
       "workerAbsent": 60012,
       "portAbsent": 5352
     },
-    "publishedCheckpoint": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
+    "publishedCheckpoint": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
     "closeout0613": {
       "checkpoint": "babc01bf3571247b73516a740c501a88b1deb7dd",
       "runEndedAt": "2026-10-09T06:56:55.147Z",
@@ -41542,7 +41521,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-20T06:44:58.8645137Z",
     "activePhase": "DELIVERED_FOR_STORYBOARD_REVIEW",
-    "heartbeat": "2026-10-20T06:54:28.887Z",
+    "heartbeat": "2026-10-20T06:56:28.940Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-20T0655Z-codex-camp-storyboard.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -43271,7 +43250,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "a95f73460f222462b3f0d10e72a0004af6c24bb2",
+    "lastPushedCommit": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -45709,12 +45688,12 @@
     "persistentQaTools": 0,
     "promotedProofFiles": 0,
     "taskReports": 0,
-    "productDocumentationFiles": 2,
+    "productDocumentationFiles": 3,
     "suppliedReferenceFiles": 1,
     "storyboardPrototypeFiles": 1,
     "nonExecutableStoryboardSpecs": 1,
     "workflowFiles": 6,
-    "uniqueTrackedPaths": 11,
+    "uniqueTrackedPaths": 12,
     "inheritedWipFiles": 0,
     "registeredJobs": 0,
     "totalQaJobs": 339,
@@ -45846,7 +45825,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Selected storyboard delivery checkpoint pending",
+  "uncommittedWork": "NONE after containing closure checkpoint",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -45998,12 +45977,12 @@
     "persistentQaTools": 0,
     "promotedProofFiles": 0,
     "taskReports": 0,
-    "productDocumentationFiles": 2,
+    "productDocumentationFiles": 3,
     "suppliedReferenceFiles": 1,
     "storyboardPrototypeFiles": 1,
     "nonExecutableStoryboardSpecs": 1,
     "workflowFiles": 6,
-    "uniqueTrackedPaths": 11,
+    "uniqueTrackedPaths": 12,
     "inheritedWipFiles": 0,
     "registeredJobs": 0,
     "totalQaJobs": 339,
@@ -47025,12 +47004,12 @@
     "persistentQaTools": 0,
     "promotedProofFiles": 0,
     "taskReports": 0,
-    "productDocumentationFiles": 2,
+    "productDocumentationFiles": 3,
     "suppliedReferenceFiles": 1,
     "storyboardPrototypeFiles": 1,
     "nonExecutableStoryboardSpecs": 1,
     "workflowFiles": 6,
-    "uniqueTrackedPaths": 11,
+    "uniqueTrackedPaths": 12,
     "inheritedWipFiles": 0,
     "registeredJobs": 0,
     "totalQaJobs": 339,
@@ -47317,7 +47296,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-20T06:54:28.887Z",
+  "heartbeat": "2026-10-20T06:56:28.940Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -49302,12 +49281,12 @@
     "persistentQaTools": 0,
     "promotedProofFiles": 0,
     "taskReports": 0,
-    "productDocumentationFiles": 2,
+    "productDocumentationFiles": 3,
     "suppliedReferenceFiles": 1,
     "storyboardPrototypeFiles": 1,
     "nonExecutableStoryboardSpecs": 1,
     "workflowFiles": 6,
-    "uniqueTrackedPaths": 11,
+    "uniqueTrackedPaths": 12,
     "inheritedWipFiles": 0,
     "registeredJobs": 0,
     "totalQaJobs": 339,
@@ -49884,6 +49863,8 @@
     "completedAt": "2026-10-20T06:54:28.887Z",
     "previousManualCandidateStatus": "CANDIDATE_DELIVERED_FOR_PC_OPERATOR_REVIEW",
     "independentDialogueDrift": "camp_departure step3 old exposedgold refuge advice contradicts current lastsave doctrine; untouched, no new narrative task inferred",
-    "suppliedReferenceBytePreservation": "Exact -text attribute on supplied plan only prevents autocrlf changing archived bytes"
+    "suppliedReferenceBytePreservation": "Exact -text attribute on supplied plan only prevents autocrlf changing archived bytes",
+    "deliveryCheckpoint": "399e4d8292086d281ceadedd89921fbb7a4ed4b7",
+    "runEndedAt": "2026-10-20T06:56:28.940Z"
   }
 }
