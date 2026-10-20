@@ -1,18 +1,19 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-20T19:27:23.8576937Z",
-  "runEndedAt": "2026-10-20T19:35:48.142Z",
+  "runEndedAt": "2026-10-20T19:37:20.622Z",
   "activeTask": "MANUAL-CAMP-P03-SUPPORT-CORRECTION",
   "activePhase": "P03_SUPPORT_CORRECTED_CROP_STUDY_OPERATOR_REVIEW",
   "activeSubtask": "Two manual stills and exact shared-source crop pairs delivered; filmed gait/cuts remain unobserved",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "eb0a5858752397c570d42c5baa7610df98e7500a",
-  "lastPushedCommit": "eb0a5858752397c570d42c5baa7610df98e7500a",
+  "lastKnownGoodCommit": "4c3a3eb9b5a73a2fbdf505cb53dbe4bd8223b323",
+  "lastPushedCommit": "4c3a3eb9b5a73a2fbdf505cb53dbe4bd8223b323",
   "completedThisRun": [
     "Targeted support-v3 correction:free heel/support loading/staff clearance/sword outside knees; proposed settled stop-v1",
     "Replaced independently generated cut comparisons with shared-source digital crop pairs; one artifact smoke"
   ],
   "filesChanged": [
+    ".gitattributes",
     "docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
     "docs/autonomy/MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md",
     "docs/autonomy/handoffs/2026-10-20T1940Z-codex-p03-support.md",
@@ -134,32 +135,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-p03-support-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T19:35:48.142Z",
+  "lastHeartbeat": "2026-10-20T19:37:20.622Z",
   "wip": {
     "branch": "dev",
-    "sha": "eb0a5858752397c570d42c5baa7610df98e7500a",
-    "dirtyFiles": [
-      "docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
-      "docs/autonomy/MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md",
-      "docs/autonomy/handoffs/2026-10-20T1940Z-codex-p03-support.md",
-      "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "tools/cinematics/candidates/manual-p03-20261020/p03-support-v3.png",
-      "tools/cinematics/candidates/manual-p03-20261020/p03-stop-v1.png",
-      "tools/cinematics/candidates/manual-p03-20261020/support-correction-prompt.txt",
-      "tools/cinematics/candidates/manual-p03-20261020/stop-pose-prompt.txt",
-      "tools/cinematics/candidates/manual-p03-20261020/support-review-provenance.json",
-      "tools/cinematics/candidates/manual-p03-20261020/review-support-v3.html"
-    ],
-    "status": "GREEN_SUPPORT_STILL_ARTIFACT",
+    "sha": "4c3a3eb9b5a73a2fbdf505cb53dbe4bd8223b323",
+    "dirtyFiles": [],
+    "status": "PUBLISHED_SUPPORT_POSE_REVIEW",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T19:35:48.142Z"
+    "lastGreenCheck": "2026-10-20T19:37:20.622Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T19:35:48.142Z",
+    "lastHeartbeat": "2026-10-20T19:37:20.622Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37349,26 +37335,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "eb0a5858752397c570d42c5baa7610df98e7500a",
-      "dirtyFiles": [
-        "docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
-        "docs/autonomy/MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md",
-        "docs/autonomy/handoffs/2026-10-20T1940Z-codex-p03-support.md",
-        "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
-        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-        "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "tools/cinematics/candidates/manual-p03-20261020/p03-support-v3.png",
-        "tools/cinematics/candidates/manual-p03-20261020/p03-stop-v1.png",
-        "tools/cinematics/candidates/manual-p03-20261020/support-correction-prompt.txt",
-        "tools/cinematics/candidates/manual-p03-20261020/stop-pose-prompt.txt",
-        "tools/cinematics/candidates/manual-p03-20261020/support-review-provenance.json",
-        "tools/cinematics/candidates/manual-p03-20261020/review-support-v3.html"
-      ],
-      "status": "GREEN_SUPPORT_STILL_ARTIFACT",
+      "sha": "4c3a3eb9b5a73a2fbdf505cb53dbe4bd8223b323",
+      "dirtyFiles": [],
+      "status": "PUBLISHED_SUPPORT_POSE_REVIEW",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T19:35:48.142Z"
+      "lastGreenCheck": "2026-10-20T19:37:20.622Z"
     },
     "nextAction": "Operator artistic review of support-v3 and stop-v1 plus their proposed shared cut phase, to select the basis for a future continuous10s pilot. Digital crop pairs are not filmed cuts or gait proof; no further variation without a precise defect, no automatic video/MiniMax/recurring generation.",
     "runMetrics": {
@@ -37383,7 +37354,7 @@
       "workflowFiles": 4,
       "candidatePromptProvenanceFiles": 3,
       "reviewViewerFiles": 1,
-      "uniqueTrackedPaths": 14,
+      "uniqueTrackedPaths": 15,
       "inheritedWipFiles": 0,
       "registeredJobs": 0,
       "totalQaJobs": 339,
@@ -37392,7 +37363,8 @@
       "gameplayStagesPlayed": 0,
       "providerTasksCreated": 0,
       "builtInImagegenCalls": 2,
-      "automationUpdated": 0
+      "automationUpdated": 0,
+      "attributeFiles": 1
     },
     "checkpointPaths": [
       "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
@@ -37411,7 +37383,7 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-20T19:35:48.142Z",
+    "runEndedAt": "2026-10-20T19:37:20.622Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
@@ -41545,7 +41517,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-20T19:27:23.8576937Z",
     "activePhase": "P03_SUPPORT_CORRECTED_CROP_STUDY_OPERATOR_REVIEW",
-    "heartbeat": "2026-10-20T19:35:48.142Z",
+    "heartbeat": "2026-10-20T19:37:20.622Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-20T1940Z-codex-p03-support.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -45730,7 +45702,7 @@
     "workflowFiles": 4,
     "candidatePromptProvenanceFiles": 3,
     "reviewViewerFiles": 1,
-    "uniqueTrackedPaths": 14,
+    "uniqueTrackedPaths": 15,
     "inheritedWipFiles": 0,
     "registeredJobs": 0,
     "totalQaJobs": 339,
@@ -45739,7 +45711,8 @@
     "gameplayStagesPlayed": 0,
     "providerTasksCreated": 0,
     "builtInImagegenCalls": 2,
-    "automationUpdated": 0
+    "automationUpdated": 0,
+    "attributeFiles": 1
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -50063,8 +50036,9 @@
     "filmedCutsAccepted": false,
     "locomotionProof": false,
     "digitalCropPairsSameSource": true,
-    "runEndedAt": "2026-10-20T19:35:48.142Z",
+    "runEndedAt": "2026-10-20T19:37:20.622Z",
     "nextAction": "Operator artistic review of support-v3 and stop-v1 plus their proposed shared cut phase, to select the basis for a future continuous10s pilot. Digital crop pairs are not filmed cuts or gait proof; no further variation without a precise defect, no automatic video/MiniMax/recurring generation.",
-    "artifactSmokeJustification": "Short read-only check of new candidate review HTML; existing campaign runners do not cover this off-runtime artifact; ignored static helper only, no persistent QA driver."
+    "artifactSmokeJustification": "Short read-only check of new candidate review HTML; existing campaign runners do not cover this off-runtime artifact; ignored static helper only, no persistent QA driver.",
+    "deliveryCheckpoint": "4c3a3eb9b5a73a2fbdf505cb53dbe4bd8223b323"
   }
 }

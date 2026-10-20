@@ -10,7 +10,7 @@ Aucun MiniMax/vidéo/polling/extension04/MP4/runtime/audio/scheduler modifié. H
 
 Checks: git diff --check and both LOCKED gates PASS; npm run contracts:validate PASS:8contracts/8slots; 2PNG/2prompts/source/output SHA exact; old stills/provenance preserved; One artifact browser smoke1280x720:4panels/shared sources/equal P03 crops/pointer+Space/46pxbutton/nooverflow/0errors,2captures inspected; 339 QA jobs/exact MD block and unrelated historical/deferred/audio roots conserved; local links checked. Un smoke hors runtime seulement, aucun scénario produit ou jeu joué. Helper statique ignoré pour cet artefact non couvert par les runners campagne. Preview hôte5452/PID22960 conservé,5fichiers autorisés ; premier serveur sandbox inaccessible au navigateur arrêté, autres previews inchangés.
 
-Counts14paths :2images/3prompts-provenance/1viewer/4canonicaldocs/4workflow ; runtime/tests/QAtools/proof/jobs/gameplay0 ;1smoke artefact ; inheritedWIP0. Set1.7.0/f4aae63 inchangé. Publication normale dev OD-2026-10-12-A. Run ended 2026-10-20T19:35:48.142Z; SHA/parité/libération dans Git et mémoire automation.
+Counts15paths :2images/3prompts-provenance/1viewer/4canonicaldocs/4workflow/1attribute ; runtime/tests/QAtools/proof/jobs/gameplay0 ;1smoke artefact ; inheritedWIP0. Set1.7.0/f4aae63 inchangé. Publication normale dev OD-2026-10-12-A. Run ended 2026-10-20T19:37:20.622Z; SHA/parité/libération dans Git et mémoire automation.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
