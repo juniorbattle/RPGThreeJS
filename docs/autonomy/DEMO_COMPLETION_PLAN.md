@@ -1,5 +1,8 @@
 # Demo completion — delivered POI/Lot E baseline
 
+> **Current manual follow-up,20October2026:** artistic companion recovered from ChatGPT Library and [reconciled with P03](cinematics/P03_COMPANION_RECONCILIATION_2026-10-20.md). The missing-reference dependency below is resolved; earlier delivery/configuration notes remain historical. P03 dramatic progression and paper-only sound intentions clarified. ONE next action: manual artistic workshop prepares the P03 filmic entry keyframe and P02/P04 cut poses for review. No generation launched/authorized by this retrieval; recurring media prohibition and all PC/audio/runtime acceptance limits retained. [Current handoff](handoffs/2026-10-20T1725Z-codex-p03-companion.md).
+
+
 ## P03 realization dossier delivered — OD-2026-10-20-B
 
 The one-off recurring preparation is delivered in [CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md](CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md): proposed10s continuous pilot inside the camp before preparation dialogue, grounded per-actor cycles/weight, camera/ground references, current V2/night SHA provenance, persistent equipment, future filmic keyframe/cuts and1x render review grid. Candidate04 sliding remains artistically unaccepted; positive28s storyboard feedback does not certify gait/G2/runtime. No media/provider/runtime/audio/scheduler work occurred. Missing artistic companion remains a future production dependency; independent dossier preparation is complete.

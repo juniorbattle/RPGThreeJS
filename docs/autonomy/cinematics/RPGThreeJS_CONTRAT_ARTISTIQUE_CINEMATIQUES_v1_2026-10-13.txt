@@ -1,0 +1,153 @@
+RPGThreeJS — Contrat artistique des cinématiques
+
+Version : 1.0 — 13 octobre 2026
+Statut : DIRECTION ARTISTIQUE VALIDÉE DANS LA CONVERSATION ; document de référence de la Bibliothèque, non encore intégré aux contrats LOCKED du dépôt.
+Projet : RPGThreeJS / Cité du Tournoi — campagne Lion.
+Mots-clés de recherche : RPGThreeJS, cinématiques, MiniMax, Final Fantasy IX, FF9, FMV, Option C, Character System V2, film direction, sans dialogue, cinematic reference, storyboard, audio.
+
+Principe fondateur : nos cinématiques sont de véritables scènes de cinéma, non dialoguées, mises en scène et montées avec le niveau d'ambition dramatique des FMV de Final Fantasy IX. Les ressources 2D du jeu sont des références d'identité et d'univers, jamais des sprites détourés placés sur un fond statique.
+
+1. Portée et hiérarchie
+
+Ce contrat fixe l'intention artistique du futur remaster indépendant des huit cinématiques existantes. Il ne donne pas à un agent le droit d'éditer docs/game/GAME_CONSTITUTION.md, docs/contracts/**, les assets protégés ou les masters publiés sans procédure approuvée.
+
+L'ordre de référence pour l'implémentation dans le dépôt reste : décision opérateur explicite et actuelle → Constitution/contrats LOCKED → code de production → documents canoniques → anciens rapports. En cas de désaccord, proposer une modification contractuelle distincte avant de toucher au runtime.
+
+Conserver comme références contextuelles : docs/game/GAME_CONSTITUTION.md, docs/contracts/WORLD_AND_CHARACTERS.md, docs/contracts/PRESENTATION_AND_MEDIA.md, docs/contracts/AUTHORING_AND_QA.md, docs/autonomy/CINEMATIC_STRUCTURE_OPERATOR_DECISION_2026-10-01.md, src/cinematics/ApprovedProductionVideos.ts, et la bible historique de la Bibliothèque RPGThreeJS/Art Direction/RPGThreeJS_Option_C_Master_Art_Direction_and_Cinematics.md (ancienne version, ne remplace pas les contrats courants).
+
+2. Inspiration : les FMV de Final Fantasy IX, sans imitation littérale
+
+Référence d'intention : sens du spectacle, lecture visuelle des enjeux, chorégraphie, révélations, entrées de personnages, poursuites, magie spectaculaire si l'événement existe déjà dans le canon, montage énergique, alternance de grandeur et de retenue, impact audiovisuel.
+
+Le spectateur regarde une scène filmée ; il ne lit pas une conversation.
+
+La scène communique d'abord par l'action physique, la gestuelle, l'environnement, la composition, la lumière, le montage, les bruitages et la musique.
+
+Chaque vidéo possède un début, une progression et une fin/raccord dramatique reconnaissables.
+
+« Spectaculaire » ne signifie pas « explosion systématique » : une entrée solennelle ou une révélation silencieuse peut être mémorable.
+
+Aucune reprise servile de personnages, plans iconiques, musique ou assets protégés de FF9.
+
+3. Règle absolue sur les ressources RPGThreeJS
+3.1 Personnages — Character System V2
+
+Les sprites, poses et masters promus sont des références d'identité canonique : silhouette, équipement, visibilité du visage, capuche/casque, vêtements, armes, accessoires, palette, proportions, faction et signes distinctifs.
+
+Autorisé : réinterpréter ces références comme de véritables acteurs d'une scène filmée avec volumes, gestes, inertie, interaction avec le sol, éclairage, cadrage et mouvement physique cohérents avec l'esthétique stylisée Option C.
+
+Interdit : détourer un sprite et le faire glisser, pivoter ou zoomer sur un calque ; copier-coller une pose de combat ; transformer silencieusement un personnage en héros générique ; faire disparaître ou changer un accessoire d'un plan à l'autre ; introduire un membre qui n'est pas canoniquement présent.
+
+La précédente anomalie « livre disparaissant en cours de vidéo » illustre un échec de continuité d'identité, même lorsque le clip est techniquement valide.
+
+3.2 Décors — identité du lieu, pas arrière-plan figé
+
+Les peintures et plates du jeu guident géographie, architecture, matériaux, palette, heure, lumière, monuments, symboles et atmosphère.
+
+Autorisé : reconstituer un lieu cinématographique avec profondeur réelle, perspective libre, plans larges, gros plans, contre-plongée, travelling, déplacement entre volumes, éléments actifs (végétation, fumée, flammes, drapeaux, foule uniquement si déjà autorisée par le canon).
+
+Interdit : coller un décor du gameplay en fond puis animer seulement la caméra ; imposer la vue latérale Traversal ; créer une scène en couches plates reconnaissables ; changer le lieu, l'heure ou la situation historique sans base canonique.
+
+3.3 Cohérence avec Option C
+
+Conserver l'identité fantasy JRPG, la densité visuelle maîtrisée, le dessin lisible, la palette auteurisée, les silhouettes et la lumière organisée. La liberté de caméra ne permet pas de basculer sans justification vers photoréalisme générique, anime anonyme, aquarelle ou 3D lisse impersonnelle.
+
+Le résultat doit apparaître comme une cinématique du même jeu, non comme un collage de captures ni comme une publicité fantasy sans lien.
+
+4. Grammaire de réalisation
+
+Une vraie scène peut utiliser :
+
+Établissement : où sommes-nous, qui est présent, quel est l'enjeu ?
+
+Mise en mouvement : entrée, départ, découverte, approche, affrontement ou phénomène.
+
+Tension et variation : accélération, suspension, focalisation sur un acteur, contrechamp, changements de taille de plan motivés.
+
+Point culminant : impact, apparition, démonstration de puissance, compréhension d'une conséquence, image marquante.
+
+Retombée et raccord : transition propre vers le STATIC_TABLEAU, le combat ou le choix du joueur.
+
+Chaque plan doit avoir une fonction dramatique. Les mouvements de caméra sans action ou les panoramiques décoratifs répétés ne sont pas un substitut à la réalisation.
+
+Familles de séquences
+
+Spectacle ou bouleversement majeur : guerre, incendie, magie ou transformation déjà autorisés.
+
+Action / poursuite : vitesse, espaces lisibles, mise en danger, changements de perspective motivés.
+
+Présentation marquante : présence d'un personnage, attitude, geste, silhouette, identité et rapport de pouvoir.
+
+Révélation / conséquence : ampleur d'une situation, changement d'état du lieu, gravité d'un événement.
+
+5. Contrat narratif : scène essentiellement non verbale
+
+Pas de dialogue parlé explicatif, pas de conversation filmée, pas de sous-titres narratifs obligatoires.
+
+Pas de boîtes de dialogue, pas de choix, pas de décision prise pour le joueur pendant le clip.
+
+Les expressions, efforts, respirations, cris non linguistiques ou réactions brèves peuvent participer à l'action, à condition de ne pas remplacer les dialogues du canon.
+
+Les révélations canoniques, choix moraux, verdicts, recrutements et conséquences demeurent sous les autorités existantes : campagne, RunSystem et combat.
+
+Une cinématique peut présenter une situation qui conduit à un choix, jamais présélectionner ce choix.
+
+Les interactions, dialogues et réactions complexes reprennent après la vidéo sur STATIC_TABLEAU ou la surface compétente.
+
+6. Son et musique : intention créative approuvée, intégration technique à autoriser
+
+L'objectif artistique associe musique, atmosphères et bruitages synchronisés : pas, armes, impacts, vent, feu, tissus, magie canonique, silences et accents. Prévoir une continuité musicale de l'ensemble malgré les générations de clips séparés.
+
+Éviter les dialogues ; éviter la musique ou les bruitages copiés d'œuvres existantes. Privilégier des créations originales et une provenance/licence vérifiable.
+
+Frontière contractuelle actuelle : AUDIO est DEFERRED dans le dépôt, et les masters production historiques sont silencieux. La préparation des intentions sonores est possible immédiatement ; l'adoption d'une chaîne audio finale, le mixage livré et toute modification des contrats/runtime nécessitent une décision opérateur dédiée. Les capacités audio du modèle MiniMax et de l'adaptateur local sont à vérifier pour la version utilisée, sans présumer qu'un résultat brut constitue un mix final.
+
+7. Durées
+
+La longueur n'est pas imposée par les masters historiques de 12 à 20 secondes. Chaque scène a le droit au temps nécessaire pour être réellement montée et dramatique, sans remplissage artificiel.
+
+Les plages de durée présentées dans le plan sont des hypothèses créatives, non des durées verrouillées. Le nombre de huit slots reste verrouillé tant qu'aucune modification contractuelle n'est approuvée.
+
+Une séquence de plus de 20 secondes peut être assemblée à partir de plusieurs plans MiniMax, avec montage, raccords, étalonnage et son unifié. Les contraintes réelles de longueur par génération, résolution, nombre de références, formats et budgets doivent être validées au moment du chantier.
+
+8. Critères d'acceptation artistique (obligatoires)
+
+ACCEPTER seulement si :
+
+L'action à l'écran est lisible sans dialogue explicatif.
+
+Aucun sprite ni décor n'est simplement plaqué sur un calque.
+
+Les personnages gardent leur identité, vêtements, accessoires et nombre d'armes dans tous les plans.
+
+La géographie, l'architecture, la lumière et la chronologie restent cohérentes avec le canon.
+
+La caméra agit comme une caméra de cinéma et révèle une scène vivante.
+
+L'ensemble présente une progression dramatique et une image/moment mémorable.
+
+Les mouvements sont crédibles, continus ou raccordés proprement ; aucune métamorphose involontaire.
+
+Les choix, verdicts, effets de combat et conséquences ne sont pas inventés ou anticipés.
+
+Le raccord vers le jeu est volontaire, sans duplicate cast ni transition incohérente.
+
+La durée est justifiée par la scène, sans plans décoratifs destinés à remplir un quota.
+
+Les intentions sonores sont définies ; leur statut de production/licence/approbation est explicite.
+
+La qualité technique du flux (résolution, décodage, durée nominale) ne suffit pas à garantir l'acceptation artistique.
+
+9. Décisions et exceptions
+
+Retenus dans cette conversation : inspiration FMV FF9 comme niveau de réalisation ; scènes véritables non dialoguées ; MiniMax comme fournisseur privilégié déjà employé ; sprites V2 et décors comme références et pas comme éléments collés ; possibilité d'allonger sensiblement les vidéos ; musique/SFX comme partie essentielle de la vision.
+
+Restent à approuver ou à vérifier : minutage final de chaque vidéo, scripts et storyboards précis, choix de mise en scène, modèle/API MiniMax effectivement disponible, budget/générations, musiques/SFX finaux, modification technique des contrats audio et durées, acceptation des nouveaux masters.
+
+Séparation impérative : ce chantier de remaster reste indépendant de la mission Codex de finalisation de la démo PC ; aucune génération MiniMax récurrente automatique, aucun changement silencieux de main ni remplacement d'asset de production non accepté.
+
+10. Reprise ultérieure
+
+Demande de récupération suggérée : « Retrouve le contrat artistique des cinématiques MiniMax RPGThreeJS, version 1 du 13 octobre 2026, dans ma Bibliothèque. »
+
+Document associé : RPGThreeJS_PLAN_PRODUCTION_MINIMAX_CINEMATIQUES_v1_2026-10-13.md dans le même dossier de Bibliothèque.
