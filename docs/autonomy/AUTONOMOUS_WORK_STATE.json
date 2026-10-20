@@ -3,10 +3,10 @@
   "runStartedAt": "2026-10-20T22:00:30.1524046Z",
   "runEndedAt": null,
   "activeTask": "MANUAL-CAMP-P03-CANDIDATE05",
-  "activePhase": "P03_CANDIDATE05_APPROVED_GUARD_GREEN",
-  "activeSubtask": "Bounded05 guard+first/last payload ready; no provider call yet",
+  "activePhase": "P03_CANDIDATE05_PROVIDER_TASK_ACTIVE",
+  "activeSubtask": "One task454578901115393 accepted; query/download sameID only, no secondPOST",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "2eeb0dea67a54fe0295de1e9c843c5910950c448",
+  "lastKnownGoodCommit": "9120fe2e487e4e739726b4d0f4b73c29f69ce778",
   "lastPushedCommit": "bdb8965c0a9e0c10b7b795f4405f578cf5446767",
   "completedThisRun": [
     "Recorded explicit one-candidate05/USD1.50excludingtax approval OD-2026-10-20-C",
@@ -50,9 +50,9 @@
     "Normal-speed continuous motion and operator artistic verdict remain separate from provider success",
     "GlobalPC/balance/hardware/audio5families/hidden/mobile afterPC remain open"
   ],
-  "nextAction": "Submit exactly one approved candidate05 with the recorded spec/authorization; if taskId exists poll that same task only, never POST again.",
+  "nextAction": "Wait for/download MiniMax task454578901115393 only (runner session51538); interrupted runner must resume that taskId with --resume true, never create another POST.",
   "taskQueue": [
-    "Submit exactly one approved candidate05 with the recorded spec/authorization; if taskId exists poll that same task only, never POST again.",
+    "Wait for/download MiniMax task454578901115393 only (runner session51538); interrupted runner must resume that taskId with --resume true, never create another POST.",
     "Independent authorized demonstratedPC defect only; mobile afterPC stability"
   ],
   "creditStatus": "AVAILABLE",
@@ -130,10 +130,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-p03-video05-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T22:05:42.299Z",
+  "lastHeartbeat": "2026-10-20T22:14:48.737Z",
   "wip": {
     "branch": "dev",
-    "sha": "2eeb0dea67a54fe0295de1e9c843c5910950c448",
+    "sha": "9120fe2e487e4e739726b4d0f4b73c29f69ce778",
     "dirtyFiles": [
       ".gitattributes",
       "tools/cinematics/minimax_h3_generate.mjs",
@@ -150,10 +150,10 @@
     ],
     "status": "GREEN_MANUAL05_GUARD",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T22:05:42.299Z"
+    "lastGreenCheck": "2026-10-20T22:14:48.737Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T22:05:42.299Z",
+    "lastHeartbeat": "2026-10-20T22:14:48.737Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37343,7 +37343,7 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "2eeb0dea67a54fe0295de1e9c843c5910950c448",
+      "sha": "9120fe2e487e4e739726b4d0f4b73c29f69ce778",
       "dirtyFiles": [
         ".gitattributes",
         "tools/cinematics/minimax_h3_generate.mjs",
@@ -37360,9 +37360,9 @@
       ],
       "status": "GREEN_MANUAL05_GUARD",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T22:05:42.299Z"
+      "lastGreenCheck": "2026-10-20T22:14:48.737Z"
     },
-    "nextAction": "Submit exactly one approved candidate05 with the recorded spec/authorization; if taskId exists poll that same task only, never POST again.",
+    "nextAction": "Wait for/download MiniMax task454578901115393 only (runner session51538); interrupted runner must resume that taskId with --resume true, never create another POST.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "toolSourceFiles": 2,
@@ -37373,7 +37373,7 @@
       "gameplayStagesPlayed": 0,
       "registeredJobs": 0,
       "totalQaJobs": 339,
-      "providerTasksCreated": 0,
+      "providerTasksCreated": 1,
       "providerPaidRetries": 0,
       "productionMp4Replacements": 0,
       "automationUpdated": 0,
@@ -38193,7 +38193,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "MANUAL-CAMP-P03-CANDIDATE05",
-    "activeSubtask": "Bounded05 guard+first/last payload ready; no provider call yet",
+    "activeSubtask": "One task454578901115393 accepted; query/download sameID only, no secondPOST",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41529,8 +41529,8 @@
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-20T22:00:30.1524046Z",
-    "activePhase": "P03_CANDIDATE05_APPROVED_GUARD_GREEN",
-    "heartbeat": "2026-10-20T22:05:42.299Z",
+    "activePhase": "P03_CANDIDATE05_PROVIDER_TASK_ACTIVE",
+    "heartbeat": "2026-10-20T22:14:48.737Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-20T2210Z-codex-p03-candidate05.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -45713,7 +45713,7 @@
     "gameplayStagesPlayed": 0,
     "registeredJobs": 0,
     "totalQaJobs": 339,
-    "providerTasksCreated": 0,
+    "providerTasksCreated": 1,
     "providerPaidRetries": 0,
     "productionMp4Replacements": 0,
     "automationUpdated": 0,
@@ -50074,7 +50074,7 @@
   "campP03Candidate05": {
     "runId": "codex-manual-p03-video05-20261020",
     "baseline": "2eeb0dea67a54fe0295de1e9c843c5910950c448",
-    "status": "AUTHORIZED_NOT_SUBMITTED",
+    "status": "running",
     "decision": "docs/autonomy/MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md",
     "spec": "tools/cinematics/specs/manual-p03-20261020/camp-p03-05.json",
     "authorization": "tools/cinematics/specs/manual-p03-20261020/candidate-05-authorization.json",
@@ -50082,15 +50082,16 @@
     "handoff": "docs/autonomy/handoffs/2026-10-20T2210Z-codex-p03-candidate05.md",
     "budgetUsdExcludingTax": 1.5,
     "estimatedCostUsd": 1.3,
-    "providerTasksCreated": 0,
+    "providerTasksCreated": 1,
     "paidRetries": 0,
-    "taskId": null,
-    "raw": null,
+    "taskId": "454578901115393",
+    "raw": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/candidate_05_raw.mp4",
     "rawSha256": null,
-    "providerMetadata": null,
+    "providerMetadata": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/candidate_05_raw.metadata.json",
     "artisticAcceptance": false,
     "runtimeChanged": false,
     "runEndedAt": null,
-    "nextAction": "Submit exactly one approved candidate05 with the recorded spec/authorization; if taskId exists poll that same task only, never POST again."
+    "nextAction": "Wait for/download MiniMax task454578901115393 only (runner session51538); interrupted runner must resume that taskId with --resume true, never create another POST.",
+    "runnerSessionId": 51538
   }
 }

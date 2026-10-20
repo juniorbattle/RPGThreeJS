@@ -1,10 +1,10 @@
 # P03 — candidat05 manuel autorisé
 
-Run codex-manual-p03-video05-20261020, UTC 2026-10-20T22:05:42.299Z. READY_FOR_PC_ACCEPTANCE conservé ; phase P03_CANDIDATE05_APPROVED_GUARD_GREEN. [Décision explicite](MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md), [résultat](MANUAL_P03_CANDIDATE05_RESULT_2026-10-20.md), [handoff](handoffs/2026-10-20T2210Z-codex-p03-candidate05.md).
+Run codex-manual-p03-video05-20261020, UTC 2026-10-20T22:14:48.737Z. READY_FOR_PC_ACCEPTANCE conservé ; phase P03_CANDIDATE05_PROVIDER_TASK_ACTIVE. [Décision explicite](MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md), [résultat](MANUAL_P03_CANDIDATE05_RESULT_2026-10-20.md), [handoff](handoffs/2026-10-20T2210Z-codex-p03-candidate05.md).
 
 Une seule tâche H3/10s/2K, deux images exactes, promptbyteidentique ; estimation1,30$US/plafond1,50$US hors taxes, aucune relance payante. Garde05 strictement liée aux SHA/chemins/modèle/durée/résolution/budget/décision ;04et01–03 conservés,06+refusé. Checkpoint exclusif avant clé/réseau, reprise même taskId seulement.
 
-Next: Submit exactly one approved candidate05 with the recorded spec/authorization; if taskId exists poll that same task only, never POST again.
+Next: Wait for/download MiniMax task454578901115393 only (runner session51538); interrupted runner must resume that taskId with --resume true, never create another POST.
 
 Checks: 140 focused tests PASS (122checkpoint/request +18shot-spec); legacy04 retained; npm run build PASS including tsc; inherited chunk-size advisory only; contracts:validate8/8 and both LOCKED gates empty; diffcheck PASS; actual-diff guardian PASS_SCOPED_ACTUAL_DIFF, exact spec/decision/prompt/two-source hashes independently checked; 339qaJobs, exactMDQAblock and unrelated historical/deferred/audio roots preserved. Deux outils/untest/deuxJSON ; runtime/gameplay/MP4replacement/jobs/automation0.339jobs et blocMD exacts, tous roots historiques/P03/deferred/audio conservés. Huit slots/camp12s/V6/canon/économie/préviews antérieurs inchangés. Récurrence sans génération ; opération manuelle explicite seulement. Aucun succès fournisseur ne vaut acceptation artistique/marche/G2/runtime.
 
