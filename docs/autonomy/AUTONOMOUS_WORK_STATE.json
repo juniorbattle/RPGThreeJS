@@ -1,18 +1,19 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-20T18:53:29.5154062Z",
-  "runEndedAt": "2026-10-20T19:01:58.236Z",
+  "runEndedAt": "2026-10-20T19:03:08.763Z",
   "activeTask": "MANUAL-CAMP-P03-FILMIC-STILLS",
   "activePhase": "P03_STILL_CANDIDATES_OPERATOR_REVIEW",
   "activeSubtask": "Entry v2 and four-pose cut board delivered with explicit support/cut-match limitations",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "420fb34a6e79c98a0d48c7f654ccdfe087959bf3",
-  "lastPushedCommit": "420fb34a6e79c98a0d48c7f654ccdfe087959bf3",
+  "lastKnownGoodCommit": "2b84a3c0c588649b9e1501c267e2b7b34599ce30",
+  "lastPushedCommit": "2b84a3c0c588649b9e1501c267e2b7b34599ce30",
   "completedThisRun": [
     "Manual built-in imagegen entryv1/correctionv2/four-pose board; all3PNGs/prompts/provenance retained",
     "Visual review: framing improved; exact support phase/cut-match/ground continuity unaccepted"
   ],
   "filesChanged": [
+    ".gitattributes",
     "docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
     "docs/autonomy/MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md",
     "docs/autonomy/handoffs/2026-10-20T1905Z-codex-p03-stills.md",
@@ -135,34 +136,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-p03-stills-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T19:01:58.236Z",
+  "lastHeartbeat": "2026-10-20T19:03:08.763Z",
   "wip": {
     "branch": "dev",
-    "sha": "420fb34a6e79c98a0d48c7f654ccdfe087959bf3",
-    "dirtyFiles": [
-      "docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
-      "docs/autonomy/MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md",
-      "docs/autonomy/handoffs/2026-10-20T1905Z-codex-p03-stills.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "tools/cinematics/candidates/manual-p03-20261020/cut-poses-prompt.txt",
-      "tools/cinematics/candidates/manual-p03-20261020/keyframe-correction-prompt.txt",
-      "tools/cinematics/candidates/manual-p03-20261020/keyframe-prompt.txt",
-      "tools/cinematics/candidates/manual-p03-20261020/p03-cut-poses-v1.png",
-      "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v1.png",
-      "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v2.png",
-      "tools/cinematics/candidates/manual-p03-20261020/provenance.json"
-    ],
-    "status": "GREEN_MANUAL_STILL_DELIVERY",
+    "sha": "2b84a3c0c588649b9e1501c267e2b7b34599ce30",
+    "dirtyFiles": [],
+    "status": "PUBLISHED_STILL_CANDIDATES",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T19:01:58.236Z"
+    "lastGreenCheck": "2026-10-20T19:03:08.763Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T19:01:58.236Z",
+    "lastHeartbeat": "2026-10-20T19:03:08.763Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37352,28 +37336,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "420fb34a6e79c98a0d48c7f654ccdfe087959bf3",
-      "dirtyFiles": [
-        "docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
-        "docs/autonomy/MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md",
-        "docs/autonomy/handoffs/2026-10-20T1905Z-codex-p03-stills.md",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
-        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-        "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "tools/cinematics/candidates/manual-p03-20261020/cut-poses-prompt.txt",
-        "tools/cinematics/candidates/manual-p03-20261020/keyframe-correction-prompt.txt",
-        "tools/cinematics/candidates/manual-p03-20261020/keyframe-prompt.txt",
-        "tools/cinematics/candidates/manual-p03-20261020/p03-cut-poses-v1.png",
-        "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v1.png",
-        "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v2.png",
-        "tools/cinematics/candidates/manual-p03-20261020/provenance.json"
-      ],
-      "status": "GREEN_MANUAL_STILL_DELIVERY",
+      "sha": "2b84a3c0c588649b9e1501c267e2b7b34599ce30",
+      "dirtyFiles": [],
+      "status": "PUBLISHED_STILL_CANDIDATES",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T19:01:58.236Z"
+      "lastGreenCheck": "2026-10-20T19:03:08.763Z"
     },
     "nextAction": "Operator artistic review of P03 entry v2 and four-pose board: judge framing/angle and identify the support-pose correction before locking cut matches. Stills do not prove gait; no video/MiniMax/recurring media work inferred.",
     "runMetrics": {
@@ -37387,7 +37354,7 @@
       "productDocumentationFiles": 4,
       "workflowFiles": 5,
       "candidatePromptProvenanceFiles": 4,
-      "uniqueTrackedPaths": 16,
+      "uniqueTrackedPaths": 17,
       "inheritedWipFiles": 0,
       "registeredJobs": 0,
       "totalQaJobs": 339,
@@ -37395,7 +37362,8 @@
       "gameplayStagesPlayed": 0,
       "providerTasksCreated": 0,
       "builtInImagegenCalls": 3,
-      "automationUpdated": 0
+      "automationUpdated": 0,
+      "attributeFiles": 1
     },
     "checkpointPaths": [
       "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
@@ -37414,7 +37382,7 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-20T19:01:58.236Z",
+    "runEndedAt": "2026-10-20T19:03:08.763Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
@@ -41548,7 +41516,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-20T18:53:29.5154062Z",
     "activePhase": "P03_STILL_CANDIDATES_OPERATOR_REVIEW",
-    "heartbeat": "2026-10-20T19:01:58.236Z",
+    "heartbeat": "2026-10-20T19:03:08.763Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-20T1905Z-codex-p03-stills.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -45732,7 +45700,7 @@
     "productDocumentationFiles": 4,
     "workflowFiles": 5,
     "candidatePromptProvenanceFiles": 4,
-    "uniqueTrackedPaths": 16,
+    "uniqueTrackedPaths": 17,
     "inheritedWipFiles": 0,
     "registeredJobs": 0,
     "totalQaJobs": 339,
@@ -45740,7 +45708,8 @@
     "gameplayStagesPlayed": 0,
     "providerTasksCreated": 0,
     "builtInImagegenCalls": 3,
-    "automationUpdated": 0
+    "automationUpdated": 0,
+    "attributeFiles": 1
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -50038,6 +50007,7 @@
     "runtimeIntegrationAcceptance": false,
     "qaJobsUnchanged": 339,
     "nextAction": "Operator artistic review of P03 entry v2 and four-pose board: judge framing/angle and identify the support-pose correction before locking cut matches. Stills do not prove gait; no video/MiniMax/recurring media work inferred.",
-    "runEndedAt": "2026-10-20T19:01:58.236Z"
+    "runEndedAt": "2026-10-20T19:03:08.763Z",
+    "deliveryCheckpoint": "2b84a3c0c588649b9e1501c267e2b7b34599ce30"
   }
 }

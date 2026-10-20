@@ -10,7 +10,7 @@ Aucun MiniMax/vidéo/polling/extension04/MP4/runtime/audio/scheduler changé. Hu
 
 Checks: git diff --check and both LOCKED gates PASS; npm run contracts:validate PASS:8contracts/8slots; 3PNG/3prompts/SHA and5source hashes checked; all3images visually inspected; 339 QA objects/exact MD block and unrelated historical/deferred/audio roots preserved; local payload links checked. Source/types/build/browser produit non requis pour ces candidats hors runtime ; aucun jeu joué. Conformité set1.7.0/f4aae63, matrice à la revue.
 
-Counts16paths :3images/4candidateprompts-provenance/4canonicaldocs/5workflow ; runtime/tests/QA/proof/jobs/browserproduit/gameplay0 ; inheritedWIP0. Publication normale dev OD-2026-10-12-A. Run ended 2026-10-20T19:01:58.236Z; SHA/parité/libération dans Git et mémoire automation.
+Counts17paths :3images/4candidateprompts-provenance/4canonicaldocs/5workflow/1attribute ; runtime/tests/QA/proof/jobs/browserproduit/gameplay0 ; inheritedWIP0. Publication normale dev OD-2026-10-12-A. Run ended 2026-10-20T19:03:08.763Z; SHA/parité/libération dans Git et mémoire automation.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
