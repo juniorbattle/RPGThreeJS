@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-20T22:00:30.1524046Z",
-  "runEndedAt": "2026-10-20T22:23:42.073Z",
+  "runEndedAt": "2026-10-20T22:24:31.645Z",
   "activeTask": "MANUAL-CAMP-P03-CANDIDATE05",
   "activePhase": "P03_CANDIDATE05_REVIEW_CHECKPOINT",
   "activeSubtask": "One paid candidate preserved; visible sword-clearance defect, gait not certified; operator review only",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "2e22cdb9e6c72733c091d697a020ab339c24e586",
-  "lastPushedCommit": "2e22cdb9e6c72733c091d697a020ab339c24e586",
+  "lastKnownGoodCommit": "ef2dfc4e49b3f6a19385653427dd1121915ccedd",
+  "lastPushedCommit": "ef2dfc4e49b3f6a19385653427dd1121915ccedd",
   "completedThisRun": [
     "Recorded explicit one-candidate05/USD1.50excludingtax approval OD-2026-10-20-C",
     "Implemented exactpayload/last-frame/resume/exclusive-reservation guard with byte-identical approved prompt",
@@ -135,32 +135,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-p03-video05-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T22:23:42.073Z",
+  "lastHeartbeat": "2026-10-20T22:24:31.645Z",
   "wip": {
     "branch": "dev",
-    "sha": "2e22cdb9e6c72733c091d697a020ab339c24e586",
-    "dirtyFiles": [
-      ".gitattributes",
-      "tools/cinematics/minimax_h3_generate.mjs",
-      "tools/cinematics/minimax_task_checkpoint.mjs",
-      "tools/cinematics/minimax_task_checkpoint.test.mjs",
-      "tools/cinematics/specs/manual-p03-20261020/camp-p03-05.json",
-      "tools/cinematics/specs/manual-p03-20261020/candidate-05-authorization.json",
-      "docs/autonomy/MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/MANUAL_P03_CANDIDATE05_RESULT_2026-10-20.md",
-      "docs/autonomy/handoffs/2026-10-20T2210Z-codex-p03-candidate05.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "tools/cinematics/candidates/manual-p03-20261020/candidate-05-review-receipt.json",
-      "tools/cinematics/candidates/manual-p03-20261020/candidate-05-frame061-review.png"
-    ],
-    "status": "ARTIFACT_REVIEW_CHECKPOINT",
+    "sha": "ef2dfc4e49b3f6a19385653427dd1121915ccedd",
+    "dirtyFiles": [],
+    "status": "GREEN_MANUAL05_NOT_ART_ACCEPTED",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T22:22:19.902Z"
+    "lastGreenCheck": "2026-10-20T22:24:31.645Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T22:23:42.073Z",
+    "lastHeartbeat": "2026-10-20T22:24:31.645Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37350,26 +37335,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "2e22cdb9e6c72733c091d697a020ab339c24e586",
-      "dirtyFiles": [
-        ".gitattributes",
-        "tools/cinematics/minimax_h3_generate.mjs",
-        "tools/cinematics/minimax_task_checkpoint.mjs",
-        "tools/cinematics/minimax_task_checkpoint.test.mjs",
-        "tools/cinematics/specs/manual-p03-20261020/camp-p03-05.json",
-        "tools/cinematics/specs/manual-p03-20261020/candidate-05-authorization.json",
-        "docs/autonomy/MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/MANUAL_P03_CANDIDATE05_RESULT_2026-10-20.md",
-        "docs/autonomy/handoffs/2026-10-20T2210Z-codex-p03-candidate05.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "tools/cinematics/candidates/manual-p03-20261020/candidate-05-review-receipt.json",
-        "tools/cinematics/candidates/manual-p03-20261020/candidate-05-frame061-review.png"
-      ],
-      "status": "ARTIFACT_REVIEW_CHECKPOINT",
+      "sha": "ef2dfc4e49b3f6a19385653427dd1121915ccedd",
+      "dirtyFiles": [],
+      "status": "GREEN_MANUAL05_NOT_ART_ACCEPTED",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T22:22:19.902Z"
+      "lastGreenCheck": "2026-10-20T22:24:31.645Z"
     },
     "nextAction": "Review the preserved candidate05 continuous10s video at normal speed and give one precise artistic/motion verdict; no second paid attempt is authorized.",
     "runMetrics": {
@@ -37407,7 +37377,7 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-20T22:23:42.073Z",
+    "runEndedAt": "2026-10-20T22:24:31.645Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
@@ -41541,7 +41511,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-20T22:00:30.1524046Z",
     "activePhase": "P03_CANDIDATE05_REVIEW_CHECKPOINT",
-    "heartbeat": "2026-10-20T22:23:42.073Z",
+    "heartbeat": "2026-10-20T22:24:31.645Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-20T2210Z-codex-p03-candidate05.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -50103,7 +50073,7 @@
     "providerMetadata": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/candidate_05_raw.metadata.json",
     "artisticAcceptance": false,
     "runtimeChanged": false,
-    "runEndedAt": "2026-10-20T22:23:42.073Z",
+    "runEndedAt": "2026-10-20T22:24:31.645Z",
     "nextAction": "Review the preserved candidate05 continuous10s video at normal speed and give one precise artistic/motion verdict; no second paid attempt is authorized.",
     "providerStatus": "downloaded",
     "receipt": "tools/cinematics/candidates/manual-p03-20261020/candidate-05-review-receipt.json",
@@ -50118,6 +50088,8 @@
     "approvalConsumed": true,
     "guardianCloseout": "PASS_SCOPED_CLOSEOUT_CLAIMS;raw/silent/frame hashes independently verified;no gait/art/runtime acceptance",
     "runnerExited": true,
-    "pendingProviderTasks": 0
+    "pendingProviderTasks": 0,
+    "deliveryCommit": "ef2dfc4e49b3f6a19385653427dd1121915ccedd",
+    "publication": "VERIFIED origin/dev; containing closure hash in Git and automation memory"
   }
 }

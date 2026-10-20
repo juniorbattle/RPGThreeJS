@@ -1,6 +1,6 @@
 # P03 — candidat05 manuel autorisé
 
-Run codex-manual-p03-video05-20261020, UTC 2026-10-20T22:22:19.902Z. READY_FOR_PC_ACCEPTANCE conservé ; phase P03_CANDIDATE05_REVIEW_CHECKPOINT. [Décision explicite](MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md), [résultat](MANUAL_P03_CANDIDATE05_RESULT_2026-10-20.md), [handoff](handoffs/2026-10-20T2210Z-codex-p03-candidate05.md).
+Run codex-manual-p03-video05-20261020, UTC 2026-10-20T22:24:31.645Z. READY_FOR_PC_ACCEPTANCE conservé ; phase P03_CANDIDATE05_REVIEW_CHECKPOINT. [Décision explicite](MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md), [résultat](MANUAL_P03_CANDIDATE05_RESULT_2026-10-20.md), [handoff](handoffs/2026-10-20T2210Z-codex-p03-candidate05.md).
 
 Une seule tâche H3/10s/2K, deux images exactes, promptbyteidentique ; estimation1,30$US/plafond1,50$US hors taxes, aucune relance payante. Garde05 strictement liée aux SHA/chemins/modèle/durée/résolution/budget/décision ;04et01–03 conservés,06+refusé. Checkpoint exclusif avant clé/réseau, reprise même taskId seulement.
 
@@ -9,6 +9,8 @@ Tâche454578901115393 téléchargée :2560×1440/24fps/243images/10,125s (usage1
 Next: Review the preserved candidate05 continuous10s video at normal speed and give one precise artistic/motion verdict; no second paid attempt is authorized.
 
 Checks: 140 focused tests PASS (122checkpoint/request +18shot-spec); legacy04 retained; npm run build PASS including tsc; inherited chunk-size advisory only; contracts:validate8/8 and both LOCKED gates empty; diffcheck PASS; actual-diff guardian PASS_SCOPED_ACTUAL_DIFF, exact spec/decision/prompt/two-source hashes independently checked; 339qaJobs, exactMDQAblock and unrelated historical/deferred/audio roots preserved. 14paths :2outils/1test/2spec-autorisation/7workflow-décision/2preuves sélectionnées ; runtime/gameplay/MP4replacement/jobs/automation0.339jobs et blocMD exacts, tous roots historiques/P03/deferred/audio conservés. Huit slots/camp12s/V6/canon/économie/préviews antérieurs inchangés. Récurrence sans génération ; opération manuelle explicite seulement. Aucun succès fournisseur ne vaut acceptation artistique/marche/G2/runtime.
+
+Clôture : livraison ef2dfc4e49b3f6a19385653427dd1121915ccedd publiée et vérifiée sur origin/dev ; fin du run 2026-10-20T22:24:31.645Z. Le commit contenant cette clôture et la libération du verrou sont consignés dans Git et la mémoire automation. Aucun nouveau candidat autorisé.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
