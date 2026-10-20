@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "sequenceId": "production_manual_p03_20261020",
+  "cinematicId": "camp_departure",
+  "tier": "HERO",
+  "canonicalFacing": "SCREEN_RIGHT",
+  "promptVersion": "manual-p03-05-exact-approved-motion-v1",
+  "resolution": "2K",
+  "frame": {
+    "width": 1920,
+    "height": 1080
+  },
+  "status": "MANUAL_OPERATOR_CANDIDATE_05_NOT_PRODUCTION",
+  "productionDoctrine": "INTEGRATED_KEYFRAME_V3",
+  "artDirection": "Modern pixel-art/HD-2D. Canonical moonlit Lion camp and protected V2 identities; final silent authored motion must pass separate visual/runtime acceptance.",
+  "shots": [
+    {
+      "shotId": "shot_p03",
+      "purpose": "P03: the three-person subset walks and stops entirely inside LION_CAMP before the existing pre-gate dialogue.",
+      "framing": "THREE_QUARTER_FULL_BODY_FIXED_CAMERA",
+      "environment": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "source": {
+        "type": "ROOT_SOURCE",
+        "output": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/source.png",
+        "frame": {
+          "width": 1672,
+          "height": 941
+        },
+        "sha256": "0fd6533213c77bc5e95094fe254f8c7f9d64fec1a52e95d7a917dc9fe9e56068",
+        "inputCandidate": "tools/cinematics/candidates/manual-p03-20261020/p03-support-v3.png",
+        "integration": {
+          "method": "OPENAI_BUILT_IN_IMAGE_GEN_EDIT",
+          "layoutReference": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+          "referenceAssets": [
+            "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+            "public/assets/characters/pixel/masters/white_mage.png",
+            "public/assets/characters/pixel/masters/maelor.png",
+            "public/assets/characters/pixel/masters/alistair.png"
+          ],
+          "qualityGates": [
+            "NO_COLLAGE_LOOK",
+            "WORLD_INTEGRATION",
+            "V2_IDENTITY",
+            "CANONICAL_ENVIRONMENT",
+            "NO_GAME_TRUTH_MUTATION"
+          ]
+        }
+      },
+      "characters": [
+        {
+          "id": "marian",
+          "asset": "public/assets/characters/pixel/masters/white_mage.png",
+          "position": {
+            "x": 0.32,
+            "groundY": 0.78
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "ENVIRONMENT:camp_road",
+          "depth": 30,
+          "role": "SECONDARY",
+          "action": "WALK_PURPOSEFUL",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "maelor",
+          "asset": "public/assets/characters/pixel/masters/maelor.png",
+          "position": {
+            "x": 0.44,
+            "groundY": 0.78
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "CHARACTER:alistair",
+          "depth": 20,
+          "role": "PRIMARY",
+          "action": "WALK_PURPOSEFUL",
+          "mirrorPolicy": "FORBID"
+        },
+        {
+          "id": "alistair",
+          "asset": "public/assets/characters/pixel/masters/alistair.png",
+          "position": {
+            "x": 0.58,
+            "groundY": 0.78
+          },
+          "scale": {
+            "framing": "WIDE",
+            "perspective": 1.02
+          },
+          "facing": "SCREEN_RIGHT",
+          "lookTarget": "ENVIRONMENT:camp_road",
+          "depth": 10,
+          "role": "PRIMARY",
+          "action": "WALK_PURPOSEFUL",
+          "mirrorPolicy": "FORBID"
+        }
+      ],
+      "camera": {
+        "mode": "STATIC",
+        "intent": "Fixed camera for the entire continuous10s; at least two complete alternating gait cycles per actor, loaded feet anchored to nearby soil, gradual deceleration and living stop."
+      },
+      "durationSeconds": 10,
+      "continuityOut": "END",
+      "endIntent": "SETTLED_INSIDE_CAMP_BEFORE_EXISTING_PRE_GATE_DIALOGUE",
+      "nextStepUiSafeZone": {
+        "x": 0,
+        "y": 0.85,
+        "width": 1,
+        "height": 0.15
+      },
+      "promptIntent": "Create one continuous10-second cinematic locomotion pilot for RPGThreeJS P03, inside the existing moonlit Lion camp before the preparation dialogue. Use the first-frame image as the exact initial pose/identity and the last-frame image as the proposed settled endpoint. Reconstruct real dimensional physical actors and camp volumes in the same authored modern pixel-painterly HD-2D family. No pasted sprites, flat background sliding, generic anime/photoreal/smooth3D redesign.\nCamera HELD FIXED for all10seconds, same lens and action axis. All three full bodies, six feet, staff and sword stay visible above lower18% dirt margin. Modest local LEFT-to-RIGHT progression entirely within camp. No threshold crossing or arrival. Near dirt/stone geometry stays coherent and stationary; do not morph ground or move scenery to hit the endpoint. If exact endpoint composition cannot be achieved physically, do not fake it with sliding or teleporting.\nInitial pose: Alistair has a flat supporting left sole and unloading right heel; maintain that phase at the beginning. Maelor starts a fraction later, Marian later still, with her staff lifted.0–1.4s: finish the initial weight transfer and first natural step, pelvis supported by planted foot, toes release and swing foot clears dirt, then contacts and takes load.1.4–7.8s: each actor individually completes at least TWO FULL alternating gait cycles with readable support, heel release, swing and opposite contact. A full cycle is LEFT contact→RIGHT contact→next LEFT contact (or the opposite named sequence); two cycles require five successive alternating contacts. Never count the initial still as a completed cycle. Their phases and cadence differ naturally; no rigid formation translated as one layer. Feet remain anchored to nearby dirt during loaded stance while pelvis advances. Knees/ankles/hips articulate, body weight and length of stride explain actual travel. No floating, skating, foot-size changes or leg stretching.\n7.8–9.6s: shorten strides, decelerate through actual contacts, settle the pelvis over planted support, second foot comes to balanced stance.9.6–10s: stable body roots, both soles planted, slight residual cloth/respiration only. No terminal pose jump, freeze, loop, retiming or hidden cut. The last-frame image is an endpoint target, never permission to morph clothes/terrain or skip gait.\nMarian: ivory/gold/blue full-length robe and veiled face unchanged, two shoes readable when contacting; anatomical RIGHT hand keeps the same one sun-wheel staff. Staff lifts before translating, each planted tip remains fixed to its dirt point until lifted, then rests at final stop. Do not shorten skirt or add limbs.\nMaelor: same purple/gold hood/scarf and covered face; CLOSED book held firmly in anatomical LEFT arm throughout, same clasp/thickness and hand, attached belt dagger stays attached. No opening/switching/disappearing book or drawn dagger. Free arm/shoulders compensate actual steps.\nAlistair: current closed helmet/dark steel-gold armor/RED cape unchanged, exactly ONE sword anatomical RIGHT hand held OUTBOARD, blade forward of cloth and outside knee/boot silhouettes, tip visibly clear of dirt throughout. Cape inertia must never carry it through blade. No added scabbard, attack or heraldic explanation.\nKeep exact nighttime camp identity, lights and crescent, existing tents/banners/river/aqueduct/castle. Subtle fire/tissue life is secondary to true gait. The trio is a framed subset of company, no new person, order, speech, UI, subtitle, magic, recruitment, choice, resource, outcome or new event. No camera move/cut/zoom/orbit/blur hiding feet. No music or speech requested; final review master silent. This is an experimental physical-walk pilot, not final production adoption.\n",
+      "promptFile": "tools/cinematics/candidates/manual-p03-20261020/pilot-motion-prompt.txt",
+      "lastFrame": {
+        "path": "tools/cinematics/candidates/manual-p03-20261020/p03-stop-v1.png",
+        "width": 1672,
+        "height": 941,
+        "sha256": "63744ae86d599e80a78feb39fd6b1c9f07653d5a3b3ea5e81c61db023885ecfa"
+      }
+    }
+  ],
+  "operatorDecision": "docs/autonomy/MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md",
+  "budgetUsd": 1.5,
+  "estimatedCostUsd": 1.3,
+  "maxPaidTasks": 1,
+  "automaticPaidRetries": 0
+}

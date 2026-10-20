@@ -1,16 +1,12 @@
-# P03 — pilote10s proposé ; exception manuelle05 attendue
+# P03 — candidat05 manuel autorisé
 
-Run codex-p03-pilot-proposal-20261020, suite « next », baseline dev 6c5e7a86b8c813cdb53933d527c580850814c073. Status READY_FOR_PC_ACCEPTANCE ; phase P03_PILOT05_PROPOSAL_AWAITING_MANUAL_EXCEPTION. [Proposition concrète](P03_CONTINUOUS_PILOT05_PROPOSAL_2026-10-20.md), [handoff](handoffs/2026-10-20T2200Z-codex-p03-pilot-proposal.md).
+Run codex-manual-p03-video05-20261020, UTC 2026-10-20T22:05:42.299Z. READY_FOR_PC_ACCEPTANCE conservé ; phase P03_CANDIDATE05_APPROVED_GUARD_GREEN. [Décision explicite](MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md), [résultat](MANUAL_P03_CANDIDATE05_RESULT_2026-10-20.md), [handoff](handoffs/2026-10-20T2210Z-codex-p03-candidate05.md).
 
-MiniMax-H3/10s/2K, départ support-v3 + arrivée stop-v1, caméra fixe, deux cycles complets par acteur, arrêt. Prompt3765caractères et JSON non exécutable liés aux SHA. Estimation officielle1,30$US/plafond proposé1,50$US hors taxes, une tâche05, sans remise à zéro01–04 ni relance payante automatique. API first+last confirmée ; runner actuel first-frame seul et garde04 inchangés.
+Une seule tâche H3/10s/2K, deux images exactes, promptbyteidentique ; estimation1,30$US/plafond1,50$US hors taxes, aucune relance payante. Garde05 strictement liée aux SHA/chemins/modèle/durée/résolution/budget/décision ;04et01–03 conservés,06+refusé. Checkpoint exclusif avant clé/réseau, reprise même taskId seulement.
 
-Next: Operator explicit decision on exactly one manual camp candidate05:MiniMax-H3/10s/2K/first+last image, estimatedUSD1.30/proposed capUSD1.50 excluding taxes,no automatic paid retries,and corresponding exact guard/last-frame adaptation. No provider request or guard weakening before approval; preserve proposal if no decision.
+Next: Submit exactly one approved candidate05 with the recorded spec/authorization; if taskId exists poll that same task only, never POST again.
 
-Question explicite présentée après préparation. Aucun oui, acceptation artistique ou changement de cap inféré de « next ». Aucune génération/polling/image/vidéo/MiniMax/credential/solde/MP4/runtime/audio/scheduler modifié.339jobs/dispositions et autres racines exacts ; huit slots/camp12s/V6/canon/économie/audio et anciens médias conservés. Preview5452/PID22960 antérieur intact ; autres critères PC/art/équilibre/matériel/audio5familles/hidden et mobile après PC restent ouverts.
-
-Checks: git diff --check and both LOCKED gates PASS; npm run contracts:validate PASS:8contracts/8slots; Source/prompt SHA, non-executable proposal and3765character prompt limit checked; pure local guard rejects05 without credentials; 339 QA jobs/exact MD block and unrelated historical/deferred/audio roots preserved; local payload links checked; Official H3 first+last/10s/2K and pricing consulted; no account/provider generation call. Aucun type/build/test source/browser/campagne nécessaire pour ce payload documentaire. Tests refus05 purs sans clé, garde non modifiée.
-
-Counts9paths :2candidateprompt-proposal/4canonicaldocs/3workflow ; productcode/media/tests/QA/jobs/browser/gameplay0 ; inheritedWIP0. Préparation de décision seulement, pas de progrès joué. Set1.7.0/f4aae63 inchangé. Publication normale dev OD-2026-10-12-A. Run ended 2026-10-20T21:57:05.618Z; SHA/parité/libération dans Git et mémoire automation.
+Checks: 140 focused tests PASS (122checkpoint/request +18shot-spec); legacy04 retained; npm run build PASS including tsc; inherited chunk-size advisory only; contracts:validate8/8 and both LOCKED gates empty; diffcheck PASS; actual-diff guardian PASS_SCOPED_ACTUAL_DIFF, exact spec/decision/prompt/two-source hashes independently checked; 339qaJobs, exactMDQAblock and unrelated historical/deferred/audio roots preserved. Deux outils/untest/deuxJSON ; runtime/gameplay/MP4replacement/jobs/automation0.339jobs et blocMD exacts, tous roots historiques/P03/deferred/audio conservés. Huit slots/camp12s/V6/canon/économie/préviews antérieurs inchangés. Récurrence sans génération ; opération manuelle explicite seulement. Aucun succès fournisseur ne vaut acceptation artistique/marche/G2/runtime.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

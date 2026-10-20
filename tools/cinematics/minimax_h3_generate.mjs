@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { CIN3_PROMPT_VERSION, getCin3Pilot } from './cin3_config.mjs';
 import { buildShotPrompt, sourcePathForShot, validateShotSpec } from './cin4_shot_spec.mjs';
 import { validateChainProof } from './cin4_media.mjs';
-import { assertAttemptAuthorized, assertResumableTask, MANUAL_CAMP_DECISION_PATH } from './minimax_task_checkpoint.mjs';
+import { assertAttemptAuthorized, assertResumableTask, MANUAL_CAMP_DECISION_PATH, MANUAL_P03_DECISION_PATH, P03_REQUEST } from './minimax_task_checkpoint.mjs';
 
 const API_ORIGIN = 'https://api.minimax.io';
 const CREATE_ENDPOINT = `${API_ORIGIN}/v2/video_generation`;
@@ -112,12 +112,28 @@ async function sleep(ms) {
   await new Promise((resolveDelay) => setTimeout(resolveDelay, ms));
 }
 
-async function writeMetadata(path, metadata) {
-  await writeFile(path, `${JSON.stringify(metadata, null, 2)}\n`, { encoding: 'utf8' });
+export async function writeMetadata(path, metadata, exclusive = false) {
+  await writeFile(path, `${JSON.stringify(metadata, null, 2)}\n`, { encoding: 'utf8', flag: exclusive ? 'wx' : 'w' });
+}
+
+export function buildGenerationRequest({ prompt, sourceBytes, lastFrameBytes, resolution, duration }) {
+  return { model: MODEL, content: [
+    { type: 'text', text: prompt },
+    { type: 'image_url', image_url: { url: `data:image/png;base64,${sourceBytes.toString('base64')}` }, role: 'first_frame' },
+    ...(lastFrameBytes ? [{ type: 'image_url', image_url: { url: `data:image/png;base64,${lastFrameBytes.toString('base64')}` }, role: 'last_frame' }] : []),
+  ], resolution, duration, ratio: 'adaptive' };
+}
+
+export function validateLastFrame(bytes, frame) {
+  if (bytes.length < 24 || bytes.length > 30 * 1024 * 1024
+      || !bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))
+      || bytes.readUInt32BE(16) !== frame.width || bytes.readUInt32BE(20) !== frame.height
+      || createHash('sha256').update(bytes).digest('hex') !== frame.sha256) throw new Error('Last frame PNG/dimensions/SHA256 mismatch.');
 }
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  const attempt = parsePositiveInteger(args.attempt, '--attempt');
   const projectRoot = await findProjectRoot(dirname(fileURLToPath(import.meta.url)));
   let id;
   let prompt;
@@ -131,6 +147,8 @@ async function main() {
   let configuredSourceSha256;
   let configuredDuration = 8;
   let configuredResolution = '2K';
+  let p03Metadata = {};
+  let lastFrameBytes;
 
   if (args.spec) {
     const specPath = resolve(projectRoot, args.spec);
@@ -142,6 +160,18 @@ async function main() {
     id = args.id ?? spec.cinematicId;
     if (id !== spec.cinematicId) throw new Error(`--id must match spec cinematicId '${spec.cinematicId}'.`);
     prompt = buildShotPrompt(spec, shot);
+    if (attempt === 5) {
+      if (shot.promptFile !== P03_REQUEST.promptPath || shot.lastFrame?.path !== P03_REQUEST.lastFramePath) throw new Error('Manual P03 requires its approved prompt and last-frame paths.');
+      prompt = await readFile(resolve(projectRoot, shot.promptFile), 'utf8');
+      lastFrameBytes = await readFile(resolve(projectRoot, shot.lastFrame.path));
+      validateLastFrame(lastFrameBytes, shot.lastFrame);
+      p03Metadata = { promptPath: shot.promptFile, lastFramePath: shot.lastFrame.path,
+        lastFrameSha256: createHash('sha256').update(lastFrameBytes).digest('hex'),
+        lastFrameWidth: shot.lastFrame.width, lastFrameHeight: shot.lastFrame.height,
+        specSha256: createHash('sha256').update(await readFile(specPath)).digest('hex'),
+        budgetUsd: spec.budgetUsd, estimatedCostUsd: spec.estimatedCostUsd,
+        maxPaidTasks: spec.maxPaidTasks, automaticPaidRetries: spec.automaticPaidRetries };
+    } else if (shot.promptFile || shot.lastFrame) throw new Error('Exact prompt/last frame is restricted to approved manual P03 attempt05.');
     promptVersion = spec.promptVersion;
     canonicalCharacterSources = shot.characters.map((character) => character.asset);
     environmentSource = shot.environment;
@@ -198,8 +228,7 @@ async function main() {
   const resolution = args.resolution ?? configuredResolution;
   if (!['768P', '2K'].includes(resolution)) throw new Error('--resolution must be 768P or 2K.');
   if (args.spec && resolution !== configuredResolution) throw new Error(`--resolution must match the shot spec (${configuredResolution}).`);
-  const attempt = parsePositiveInteger(args.attempt, '--attempt');
-  if (attempt > 3 && (attempt !== 4 || !args['manual-authorization'])) assertAttemptAuthorized(attempt);
+  if (attempt > 3 && (![4, 5].includes(attempt) || !args['manual-authorization'])) assertAttemptAuthorized(attempt);
   if (attempt <= 3 && args['manual-authorization']) throw new Error('Manual camp authorization applies only to attempt04.');
 
   const source = resolve(projectRoot, args.source ?? expectedSource);
@@ -229,14 +258,15 @@ async function main() {
   const sourceSha256 = createHash('sha256').update(sourceBytes).digest('hex');
   const promptSha256 = createHash('sha256').update(prompt, 'utf8').digest('hex');
   let manualMetadata = {};
-  if (attempt === 4) {
+  if (attempt === 4 || attempt === 5) {
     const authorizationPath = resolve(projectRoot, args['manual-authorization']);
     assertWithin(resolve(projectRoot, 'tools/cinematics/specs'), authorizationPath, '--manual-authorization');
     const authorizationBytes = await readFile(authorizationPath);
     const authorization = JSON.parse(authorizationBytes.toString('utf8'));
-    const decisionBytes = await readFile(resolve(projectRoot, MANUAL_CAMP_DECISION_PATH));
+    const decisionBytes = await readFile(resolve(projectRoot, attempt === 5 ? MANUAL_P03_DECISION_PATH : MANUAL_CAMP_DECISION_PATH));
     const decisionSha256 = createHash('sha256').update(decisionBytes).digest('hex');
     assertAttemptAuthorized(attempt, authorization, { cinematicId: id, ...cin4Metadata, model: MODEL, attempt, duration, resolution,
+      ...p03Metadata, ...(attempt === 5 ? { sourcePath: relative(projectRoot, source).replaceAll('\\', '/'), sourceWidth: width, sourceHeight: height } : {}),
       sourceSha256, promptSha256, outputCandidatePath: relative(projectRoot, output).replaceAll('\\', '/'), decisionSha256 }, decisionBytes.toString('utf8'));
     manualMetadata = { manualAuthorizationPath: relative(projectRoot, authorizationPath).replaceAll('\\', '/'),
       manualAuthorizationSha256: createHash('sha256').update(authorizationBytes).digest('hex'), manualDecisionSha256: decisionSha256 };
@@ -244,7 +274,7 @@ async function main() {
   let resumedMetadata;
   if (resume) {
     resumedMetadata = JSON.parse(await readFile(metadataPath, 'utf8'));
-    assertResumableTask(resumedMetadata, { cinematicId: id, ...cin4Metadata, model: MODEL, attempt, duration, resolution, sourceSha256, promptSha256, outputCandidatePath: relative(projectRoot, output).replaceAll('\\', '/'), ...manualMetadata });
+    assertResumableTask(resumedMetadata, { cinematicId: id, ...cin4Metadata, ...p03Metadata, ...(attempt === 5 ? { sourcePath: relative(projectRoot, source).replaceAll('\\', '/'), sourceWidth: width, sourceHeight: height } : {}), model: MODEL, attempt, duration, resolution, sourceSha256, promptSha256, outputCandidatePath: relative(projectRoot, output).replaceAll('\\', '/'), ...manualMetadata });
   }
   for (const path of [output, ...(!resume ? [metadataPath] : []), `${output}.part`]) {
     try {
@@ -257,12 +287,13 @@ async function main() {
   await mkdir(candidateRoot, { recursive: true });
   await mkdir(dirname(output), { recursive: true });
 
-  const apiKey = loadApiKey(await readFile(resolve(projectRoot, '.env.local'), 'utf8'));
   const startedAt = new Date().toISOString();
   const metadata = resumedMetadata ? { ...resumedMetadata, resumedAt: startedAt, status: 'resuming' } : {
     cinematicId: id,
     ...cin4Metadata,
     ...manualMetadata,
+    ...p03Metadata,
+    ...(attempt === 5 ? { sourceWidth: width, sourceHeight: height } : {}),
     sourcePath: relative(projectRoot, source).replaceAll('\\', '/'),
     sourceSha256,
     canonicalCharacterSources,
@@ -270,7 +301,7 @@ async function main() {
     provider: 'MiniMax Open Platform Direct API',
     apiEndpoint: '/v2/video_generation',
     model: MODEL,
-    generationMode: 'image-to-video / first-frame',
+    generationMode: lastFrameBytes ? 'image-to-video / first+last-frame' : 'image-to-video / first-frame',
     sourceTransport: 'data:image/png;base64',
     resolution,
     duration,
@@ -281,7 +312,9 @@ async function main() {
     startedAt,
     status: 'submitting',
   };
-  await writeMetadata(metadataPath, metadata);
+  // Reserve once before credentials/network. An uncertain POST can never be retried as a new task.
+  await writeMetadata(metadataPath, metadata, !resume);
+  const apiKey = loadApiKey(await readFile(resolve(projectRoot, '.env.local'), 'utf8'));
 
   try {
     let taskId = metadata.taskId;
@@ -290,19 +323,10 @@ async function main() {
       const created = await fetchJson(CREATE_ENDPOINT, {
       method: 'POST',
       headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: MODEL,
-        content: [
-          { type: 'text', text: prompt },
-          { type: 'image_url', image_url: { url: `data:image/png;base64,${sourceBytes.toString('base64')}` }, role: 'first_frame' },
-        ],
-        resolution,
-        duration,
-        ratio: 'adaptive',
-      }),
+      body: JSON.stringify(buildGenerationRequest({ prompt, sourceBytes, lastFrameBytes, resolution, duration })),
     }, apiKey);
       taskId = String(created.task_id ?? '');
-      if (!taskId) throw new Error('MiniMax create response did not include task_id.');
+      if (!/^\d+$/u.test(taskId)) throw new Error('MiniMax create response did not include a numeric task_id; no resubmission allowed.');
     }
     metadata.taskId = taskId;
     metadata.status = 'queued';
@@ -374,7 +398,7 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().catch((error) => {
   console.error(`ERROR: ${error.message}`);
   process.exitCode = 1;
 });
