@@ -10,7 +10,7 @@ Aucune génération/keyframe/vidéo/polling/MiniMax/tentative supplémentaire/MP
 
 Checks: Visible Library text/transcript match:10995characters/153lines/FNV1a6f0f9699; local SHA256670d058131b181acca65af09dbfb08a8598642abe060800d790133fba5450e31; git diff --check and LOCKED gates PASS; npm run contracts:validate PASS:8contracts/8slots; 339 QA jobs, exact MD QA block and unrelated state roots preserved; local links checked. Source/types/build/browser produit non requis pour cette documentation ; aucun jeu joué. Conformité set1.7.0 / f4aae63, matrice au rapprochement.
 
-Counts: runtime0/tests0/media0/keyframes0/jobs0/browser0/gameplay0 ; références2/canonicaldocs3/workflow3/attributes1 =9trackedpaths ; inheritedWIP0. Publication normale origin/dev sous OD-2026-10-12-A. Run ended 2026-10-20T17:19:36.127Z; SHA de livraison/parité/libération dans Git et mémoire automation.
+Counts: runtime0/tests0/media0/keyframes0/jobs0/browser0/gameplay0 ; références2/canonicaldocs3/workflow3/attributes1 =9trackedpaths ; inheritedWIP0. Publication normale origin/dev sous OD-2026-10-12-A. Run ended 2026-10-20T17:20:16.217Z; SHA de livraison/parité/libération dans Git et mémoire automation.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

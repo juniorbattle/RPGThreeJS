@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-20T17:14:33.6520916Z",
-  "runEndedAt": "2026-10-20T17:19:36.127Z",
+  "runEndedAt": "2026-10-20T17:20:16.217Z",
   "activeTask": "CAMP-P03-COMPANION-RECONCILIATION",
   "activePhase": "P03_COMPANION_RECONCILED_MANUAL_KEYFRAME_HANDOFF",
   "activeSubtask": "Named artistic companion retrieved from ChatGPT Library and reconciled; P03 dramatic/sound intentions clarified",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "7ca2e807139f957599e1b1b2ca43922ad22196db",
-  "lastPushedCommit": "7ca2e807139f957599e1b1b2ca43922ad22196db",
+  "lastKnownGoodCommit": "ad18c7fe0317c29c37b59f2968632195c0addbd6",
+  "lastPushedCommit": "ad18c7fe0317c29c37b59f2968632195c0addbd6",
   "completedThisRun": [
     "Recovered complete visible artistic companion text and provenance; reconciled sections1–10 with P03",
     "Clarified restrained dramatic progression and paper-only sound intentions; missing-reference dependency closed"
@@ -127,27 +127,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-p03-companion-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T17:19:36.127Z",
+  "lastHeartbeat": "2026-10-20T17:20:16.217Z",
   "wip": {
     "branch": "dev",
-    "sha": "7ca2e807139f957599e1b1b2ca43922ad22196db",
-    "dirtyFiles": [
-      ".gitattributes",
-      "docs/autonomy/cinematics/RPGThreeJS_CONTRAT_ARTISTIQUE_CINEMATIQUES_v1_2026-10-13.txt",
-      "docs/autonomy/cinematics/P03_COMPANION_RECONCILIATION_2026-10-20.md",
-      "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/handoffs/2026-10-20T1725Z-codex-p03-companion.md"
-    ],
-    "status": "GREEN_DOCUMENTATION",
+    "sha": "ad18c7fe0317c29c37b59f2968632195c0addbd6",
+    "dirtyFiles": [],
+    "status": "PUBLISHED_COMPANION",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T17:18:11.171Z"
+    "lastGreenCheck": "2026-10-20T17:20:16.217Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T17:19:36.127Z",
+    "lastHeartbeat": "2026-10-20T17:20:16.217Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37337,21 +37327,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "7ca2e807139f957599e1b1b2ca43922ad22196db",
-      "dirtyFiles": [
-        ".gitattributes",
-        "docs/autonomy/cinematics/RPGThreeJS_CONTRAT_ARTISTIQUE_CINEMATIQUES_v1_2026-10-13.txt",
-        "docs/autonomy/cinematics/P03_COMPANION_RECONCILIATION_2026-10-20.md",
-        "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
-        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-        "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/handoffs/2026-10-20T1725Z-codex-p03-companion.md"
-      ],
-      "status": "GREEN_DOCUMENTATION",
+      "sha": "ad18c7fe0317c29c37b59f2968632195c0addbd6",
+      "dirtyFiles": [],
+      "status": "PUBLISHED_COMPANION",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T17:18:11.171Z"
+      "lastGreenCheck": "2026-10-20T17:20:16.217Z"
     },
     "nextAction": "Manual artistic workshop: prepare for review the P03 filmic entry keyframe and P02/P04 cut poses using the reconciled dossier. Companion recovered; do not repeat search/dossier/audit. Generative production needs its dedicated manual authorization; no recurring generation.",
     "runMetrics": {
@@ -37392,7 +37372,7 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-20T17:19:36.127Z",
+    "runEndedAt": "2026-10-20T17:20:16.217Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
@@ -41526,7 +41506,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-20T17:14:33.6520916Z",
     "activePhase": "P03_COMPANION_RECONCILED_MANUAL_KEYFRAME_HANDOFF",
-    "heartbeat": "2026-10-20T17:19:36.127Z",
+    "heartbeat": "2026-10-20T17:20:16.217Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-20T1725Z-codex-p03-companion.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -49992,6 +49972,7 @@
     "runtimeAcceptance": false,
     "qaJobsUnchanged": 339,
     "nextAction": "Manual artistic workshop: prepare for review the P03 filmic entry keyframe and P02/P04 cut poses using the reconciled dossier. Companion recovered; do not repeat search/dossier/audit. Generative production needs its dedicated manual authorization; no recurring generation.",
-    "runEndedAt": "2026-10-20T17:19:36.127Z"
+    "runEndedAt": "2026-10-20T17:20:16.217Z",
+    "deliveryCheckpoint": "ad18c7fe0317c29c37b59f2968632195c0addbd6"
   }
 }
