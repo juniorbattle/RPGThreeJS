@@ -1,0 +1,97 @@
+{
+  "kind": "MANUAL_SUPPORT_POSE_CORRECTION_AND_SHARED_IMAGE_CROP_REVIEW",
+  "runId": "codex-manual-p03-support-20261020",
+  "baseline": "eb0a5858752397c570d42c5baa7610df98e7500a",
+  "authorization": "Interactive go to review/correct support and cut matching; addendum in docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
+  "tool": "built-in image_gen",
+  "callsThisFollowup": 2,
+  "records": [
+    {
+      "file": "p03-support-v3.png",
+      "prompt": "support-correction-prompt.txt",
+      "input": "tools/cinematics/candidates/manual-p03-20261020/p03-entry-v2.png",
+      "original": "exec-f509dee2-0567-4b85-aea6-436cf274b581.png",
+      "sha256": "0fd6533213c77bc5e95094fe254f8c7f9d64fec1a52e95d7a917dc9fe9e56068",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2735390,
+      "promptSha256": "bc433cab1ad6a3e13366d9689ef6c222d13277174b5396404c03435ccf9bd7dd",
+      "inputSha256": "2029c057616dacef57f9aa767269d77bce56d4dcd691f33fccc4221f7dd7be5f"
+    },
+    {
+      "file": "p03-stop-v1.png",
+      "prompt": "stop-pose-prompt.txt",
+      "input": "tools/cinematics/candidates/manual-p03-20261020/p03-support-v3.png",
+      "original": "exec-da5a1ed2-3cf0-40ce-b834-c9a5c2225c15.png",
+      "sha256": "63744ae86d599e80a78feb39fd6b1c9f07653d5a3b3ea5e81c61db023885ecfa",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2693404,
+      "promptSha256": "86bac455786df68580ec317c892732b4a2df38b333e1668312060b476de9e33e",
+      "inputSha256": "0fd6533213c77bc5e95094fe254f8c7f9d64fec1a52e95d7a917dc9fe9e56068"
+    }
+  ],
+  "viewer": {
+    "path": "tools/cinematics/candidates/manual-p03-20261020/review-support-v3.html",
+    "sha256": "2d46989f9a3686c1e8834419a7066b70d61a7ba54ed2912f62fcffcd7218c455",
+    "kind": "DIGITAL_CROP_SIMULATION_NOT_FILMED_SHOT",
+    "pairs": [
+      {
+        "source": "p03-support-v3.png",
+        "crops": [
+          [
+            0.03,
+            0.08,
+            0.92,
+            0.92
+          ],
+          [
+            0.02,
+            0.04,
+            0.96,
+            0.96
+          ]
+        ]
+      },
+      {
+        "source": "p03-stop-v1.png",
+        "crops": [
+          [
+            0.02,
+            0.04,
+            0.96,
+            0.96
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      }
+    ],
+    "localPins": "Indicative hand-placed pose landmarks; no3D/calibrated measurement"
+  },
+  "browserObservation": {
+    "viewport": [
+      1280,
+      720
+    ],
+    "fourPanels": true,
+    "pairSourcesExact": true,
+    "p03ViewBoxesEqual": true,
+    "overflow": false,
+    "buttonHeight": 46.2857,
+    "pointerAndSpaceToggle": true,
+    "errors": 0,
+    "capturesInspected": 2,
+    "gameplay": false
+  },
+  "artisticAcceptance": false,
+  "videoProductionAuthorized": false,
+  "locomotionProof": false,
+  "filmicCutAcceptance": false,
+  "recurringGenerationAuthorized": false,
+  "createdAt": "2026-10-20T19:34:57.116Z"
+}

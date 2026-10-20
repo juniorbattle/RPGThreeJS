@@ -7,3 +7,7 @@ Périmètre : un keyframe filmique d'entrée P03 et une planche des poses limitr
 Il s'agit d'une suite interactive manuelle, pas d'une extension de la récurrence : aucun appel/polling MiniMax ou vidéo, tentative05/extension04, remplacement MP4, nouvelle durée runtime, activation audio, acceptation artistique ou changement scheduler n'est autorisé ici. Les huit slots, V6, canon,339jobs et leurs dispositions demeurent conservés. Les images fixes ne prouvent aucun cycle ou appui continu et ne constituent pas une animatique acceptée.
 
 Copier les sorties dans un dossier manuel versionné, conserver prompts/provenances/SHA et éventuels rejets, inspecter identités, perspective, mains/objets, pieds/lame et raccords. Toute correction ciblée reste dans ces images fixes ; arrêter sur une limite de qualité explicite plutôt que prétendre accepter un rendu de marche. Publication normale dev autorisée par OD-2026-10-12-A ; main protégé.
+
+## Suite interactive : revue des appuis et correction ciblée
+
+Après livraison du v2 et de la planche, l'assistant propose d'examiner angle, pose d'appui et correspondance des pieds au sol. L'opérateur répond de nouveau **« go »**. Cette suite manuelle autorise la revue détaillée et une correction d'image fixe portant sur la charge du pied porteur/talon libéré, la lame hors silhouette des jambes et la pointe du bâton dégagée ; les versions précédentes restent conservées. Aucun verdict artistique opérateur n'est déduit de ce « go ». Un nouveau rendu continu ou une série vidéo ne sont pas lancés.
