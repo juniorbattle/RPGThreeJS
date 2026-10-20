@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-20T21:51:12.2808267Z",
-  "runEndedAt": "2026-10-20T21:55:29.700Z",
+  "runEndedAt": "2026-10-20T21:57:05.618Z",
   "activeTask": "MANUAL-CAMP-P03-PILOT05-PROPOSAL",
   "activePhase": "P03_PILOT05_PROPOSAL_AWAITING_MANUAL_EXCEPTION",
   "activeSubtask": "Concrete10s first+last-frame payload/prompt/budget prepared; attempt05 exception not authorized",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "6c5e7a86b8c813cdb53933d527c580850814c073",
-  "lastPushedCommit": "6c5e7a86b8c813cdb53933d527c580850814c073",
+  "lastKnownGoodCommit": "bdb8965c0a9e0c10b7b795f4405f578cf5446767",
+  "lastPushedCommit": "bdb8965c0a9e0c10b7b795f4405f578cf5446767",
   "completedThisRun": [
     "Prepared exact3765character motion prompt and source-hashed non-executable pilot05 request preview",
     "Verified official H3 first+last/10s/2K pricing and existing first-frame-only/attempt04 adapter limits; explicit bounded question presented"
@@ -130,27 +130,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-p03-pilot-proposal-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T21:55:29.700Z",
+  "lastHeartbeat": "2026-10-20T21:57:05.618Z",
   "wip": {
     "branch": "dev",
-    "sha": "6c5e7a86b8c813cdb53933d527c580850814c073",
-    "dirtyFiles": [
-      "docs/autonomy/P03_CONTINUOUS_PILOT05_PROPOSAL_2026-10-20.md",
-      "docs/autonomy/handoffs/2026-10-20T2200Z-codex-p03-pilot-proposal.md",
-      "tools/cinematics/candidates/manual-p03-20261020/pilot-motion-prompt.txt",
-      "tools/cinematics/candidates/manual-p03-20261020/pilot05-proposal.json",
-      "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
-    ],
-    "status": "GREEN_NON_EXECUTABLE_PILOT_PROPOSAL",
+    "sha": "bdb8965c0a9e0c10b7b795f4405f578cf5446767",
+    "dirtyFiles": [],
+    "status": "PUBLISHED_PILOT_PROPOSAL_AWAITING_APPROVAL",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T21:55:29.700Z"
+    "lastGreenCheck": "2026-10-20T21:57:05.618Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T21:55:29.700Z",
+    "lastHeartbeat": "2026-10-20T21:57:05.618Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37340,21 +37330,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "6c5e7a86b8c813cdb53933d527c580850814c073",
-      "dirtyFiles": [
-        "docs/autonomy/P03_CONTINUOUS_PILOT05_PROPOSAL_2026-10-20.md",
-        "docs/autonomy/handoffs/2026-10-20T2200Z-codex-p03-pilot-proposal.md",
-        "tools/cinematics/candidates/manual-p03-20261020/pilot-motion-prompt.txt",
-        "tools/cinematics/candidates/manual-p03-20261020/pilot05-proposal.json",
-        "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
-        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-        "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
-      ],
-      "status": "GREEN_NON_EXECUTABLE_PILOT_PROPOSAL",
+      "sha": "bdb8965c0a9e0c10b7b795f4405f578cf5446767",
+      "dirtyFiles": [],
+      "status": "PUBLISHED_PILOT_PROPOSAL_AWAITING_APPROVAL",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T21:55:29.700Z"
+      "lastGreenCheck": "2026-10-20T21:57:05.618Z"
     },
     "nextAction": "Operator explicit decision on exactly one manual camp candidate05:MiniMax-H3/10s/2K/first+last image, estimatedUSD1.30/proposed capUSD1.50 excluding taxes,no automatic paid retries,and corresponding exact guard/last-frame adaptation. No provider request or guard weakening before approval; preserve proposal if no decision.",
     "runMetrics": {
@@ -37394,7 +37374,7 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-20T21:55:29.700Z",
+    "runEndedAt": "2026-10-20T21:57:05.618Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
@@ -41528,7 +41508,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-20T21:51:12.2808267Z",
     "activePhase": "P03_PILOT05_PROPOSAL_AWAITING_MANUAL_EXCEPTION",
-    "heartbeat": "2026-10-20T21:55:29.700Z",
+    "heartbeat": "2026-10-20T21:57:05.618Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-20T2200Z-codex-p03-pilot-proposal.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -50070,6 +50050,7 @@
     "guardUnmodified": true,
     "artisticAcceptance": false,
     "nextAction": "Operator explicit decision on exactly one manual camp candidate05:MiniMax-H3/10s/2K/first+last image, estimatedUSD1.30/proposed capUSD1.50 excluding taxes,no automatic paid retries,and corresponding exact guard/last-frame adaptation. No provider request or guard weakening before approval; preserve proposal if no decision.",
-    "runEndedAt": "2026-10-20T21:55:29.700Z"
+    "runEndedAt": "2026-10-20T21:57:05.618Z",
+    "deliveryCheckpoint": "bdb8965c0a9e0c10b7b795f4405f578cf5446767"
   }
 }
