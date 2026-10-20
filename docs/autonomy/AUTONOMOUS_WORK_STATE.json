@@ -1,69 +1,64 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-20T19:27:23.8576937Z",
-  "runEndedAt": "2026-10-20T19:37:20.622Z",
-  "activeTask": "MANUAL-CAMP-P03-SUPPORT-CORRECTION",
-  "activePhase": "P03_SUPPORT_CORRECTED_CROP_STUDY_OPERATOR_REVIEW",
-  "activeSubtask": "Two manual stills and exact shared-source crop pairs delivered; filmed gait/cuts remain unobserved",
+  "runStartedAt": "2026-10-20T21:51:12.2808267Z",
+  "runEndedAt": "2026-10-20T21:55:29.700Z",
+  "activeTask": "MANUAL-CAMP-P03-PILOT05-PROPOSAL",
+  "activePhase": "P03_PILOT05_PROPOSAL_AWAITING_MANUAL_EXCEPTION",
+  "activeSubtask": "Concrete10s first+last-frame payload/prompt/budget prepared; attempt05 exception not authorized",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "4c3a3eb9b5a73a2fbdf505cb53dbe4bd8223b323",
-  "lastPushedCommit": "4c3a3eb9b5a73a2fbdf505cb53dbe4bd8223b323",
+  "lastKnownGoodCommit": "6c5e7a86b8c813cdb53933d527c580850814c073",
+  "lastPushedCommit": "6c5e7a86b8c813cdb53933d527c580850814c073",
   "completedThisRun": [
-    "Targeted support-v3 correction:free heel/support loading/staff clearance/sword outside knees; proposed settled stop-v1",
-    "Replaced independently generated cut comparisons with shared-source digital crop pairs; one artifact smoke"
+    "Prepared exact3765character motion prompt and source-hashed non-executable pilot05 request preview",
+    "Verified official H3 first+last/10s/2K pricing and existing first-frame-only/attempt04 adapter limits; explicit bounded question presented"
   ],
   "filesChanged": [
-    ".gitattributes",
-    "docs/autonomy/MANUAL_CAMP_P03_STILLS_OPERATOR_DECISION_2026-10-20.md",
-    "docs/autonomy/MANUAL_CAMP_P03_STILLS_REVIEW_2026-10-20.md",
-    "docs/autonomy/handoffs/2026-10-20T1940Z-codex-p03-support.md",
+    "docs/autonomy/P03_CONTINUOUS_PILOT05_PROPOSAL_2026-10-20.md",
+    "docs/autonomy/handoffs/2026-10-20T2200Z-codex-p03-pilot-proposal.md",
+    "tools/cinematics/candidates/manual-p03-20261020/pilot-motion-prompt.txt",
+    "tools/cinematics/candidates/manual-p03-20261020/pilot05-proposal.json",
     "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
     "docs/autonomy/DEMO_COMPLETION_PLAN.md",
     "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "tools/cinematics/candidates/manual-p03-20261020/p03-support-v3.png",
-    "tools/cinematics/candidates/manual-p03-20261020/p03-stop-v1.png",
-    "tools/cinematics/candidates/manual-p03-20261020/support-correction-prompt.txt",
-    "tools/cinematics/candidates/manual-p03-20261020/stop-pose-prompt.txt",
-    "tools/cinematics/candidates/manual-p03-20261020/support-review-provenance.json",
-    "tools/cinematics/candidates/manual-p03-20261020/review-support-v3.html"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
   ],
   "testsRun": [
     "git diff --check and both LOCKED gates PASS",
     "npm run contracts:validate PASS:8contracts/8slots",
-    "2PNG/2prompts/source/output SHA exact; old stills/provenance preserved",
-    "One artifact browser smoke1280x720:4panels/shared sources/equal P03 crops/pointer+Space/46pxbutton/nooverflow/0errors,2captures inspected",
-    "339 QA jobs/exact MD block and unrelated historical/deferred/audio roots conserved; local links checked"
+    "Source/prompt SHA, non-executable proposal and3765character prompt limit checked; pure local guard rejects05 without credentials",
+    "339 QA jobs/exact MD block and unrelated historical/deferred/audio roots preserved; local payload links checked",
+    "Official H3 first+last/10s/2K and pricing consulted; no account/provider generation call"
   ],
   "testsPassed": [
     "git diff --check and both LOCKED gates PASS",
     "npm run contracts:validate PASS:8contracts/8slots",
-    "2PNG/2prompts/source/output SHA exact; old stills/provenance preserved",
-    "One artifact browser smoke1280x720:4panels/shared sources/equal P03 crops/pointer+Space/46pxbutton/nooverflow/0errors,2captures inspected",
-    "339 QA jobs/exact MD block and unrelated historical/deferred/audio roots conserved; local links checked"
+    "Source/prompt SHA, non-executable proposal and3765character prompt limit checked; pure local guard rejects05 without credentials",
+    "339 QA jobs/exact MD block and unrelated historical/deferred/audio roots preserved; local payload links checked",
+    "Official H3 first+last/10s/2K and pricing consulted; no account/provider generation call"
   ],
   "testsRemaining": [
     "Future continuous 1x pilot motion/artistic acceptance, filmic keyframe/cut poses and runtime integration not evaluated",
     "Global PC/art/balance/hardware, five native audio families and true hidden/suspend remain open; mobile after stable PC"
   ],
   "blockers": [
-    "No technical artifact blocker. Operator art/phase selection, actual continuous gait, cape/blade clearance in motion and filmed cut matching remain open."
+    "Explicit one-off manual05/operator budget decision pending; current guard rejects05 and sends first_frame only. No adapter change or provider call authorized yet."
   ],
   "remainingWork": [
-    "Operator selection of two pose references and shared cut phase before a separately authorized continuous pilot",
-    "Global PC/audio/art/balance/hardware/mobile acceptance remains separate"
+    "Operator decision on exact proposed payload/cap and manual05 exception",
+    "Only after approval:guardian review/bounded guard+last-frame implementation/tests, then one experimental task",
+    "Global PC/art/motion/runtime/audio/mobile acceptance remains separate"
   ],
-  "nextAction": "Operator artistic review of support-v3 and stop-v1 plus their proposed shared cut phase, to select the basis for a future continuous10s pilot. Digital crop pairs are not filmed cuts or gait proof; no further variation without a precise defect, no automatic video/MiniMax/recurring generation.",
+  "nextAction": "Operator explicit decision on exactly one manual camp candidate05:MiniMax-H3/10s/2K/first+last image, estimatedUSD1.30/proposed capUSD1.50 excluding taxes,no automatic paid retries,and corresponding exact guard/last-frame adaptation. No provider request or guard weakening before approval; preserve proposal if no decision.",
   "taskQueue": [
-    "Operator artistic review of support-v3 and stop-v1 plus their proposed shared cut phase, to select the basis for a future continuous10s pilot. Digital crop pairs are not filmed cuts or gait proof; no further variation without a precise defect, no automatic video/MiniMax/recurring generation.",
+    "Operator explicit decision on exactly one manual camp candidate05:MiniMax-H3/10s/2K/first+last image, estimatedUSD1.30/proposed capUSD1.50 excluding taxes,no automatic paid retries,and corresponding exact guard/last-frame adaptation. No provider request or guard weakening before approval; preserve proposal if no decision.",
     "Independent already-authorized demonstrated PC task only; no unchanged replay",
     "Mobile after PC stability"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_MANUAL_SUPPORT_STILL_SCOPE_ONLY;set1.7.0/f4aae63 unchanged;digital crops not film/gait acceptance",
-  "commitReferenceScope": "Delivery/containing closure in Git and automation memory; historical dossier/companion/still roots retained",
-  "operatorAuthorization": "Direct interactive go on detailed support/cut review and targeted manual still correction,20October2026; existing manual still scope; OD-2026-10-12-A dev publication",
+  "contractComplianceStatus": "PASS_PROPOSAL_PRESERVATION_ONLY;set1.7.0/f4aae63 unchanged;submission authorization pending",
+  "commitReferenceScope": "Delivery/containing closure in Git and automation memory; historical P03 roots preserved",
+  "operatorAuthorization": "Interactive next authorizes concrete pilot preparation; explicit manual05 exception requested, not presumed; OD-2026-10-12-A normal dev publication",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -133,19 +128,29 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-manual-p03-support-20261020",
+  "runId": "codex-p03-pilot-proposal-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T19:37:20.622Z",
+  "lastHeartbeat": "2026-10-20T21:55:29.700Z",
   "wip": {
     "branch": "dev",
-    "sha": "4c3a3eb9b5a73a2fbdf505cb53dbe4bd8223b323",
-    "dirtyFiles": [],
-    "status": "PUBLISHED_SUPPORT_POSE_REVIEW",
+    "sha": "6c5e7a86b8c813cdb53933d527c580850814c073",
+    "dirtyFiles": [
+      "docs/autonomy/P03_CONTINUOUS_PILOT05_PROPOSAL_2026-10-20.md",
+      "docs/autonomy/handoffs/2026-10-20T2200Z-codex-p03-pilot-proposal.md",
+      "tools/cinematics/candidates/manual-p03-20261020/pilot-motion-prompt.txt",
+      "tools/cinematics/candidates/manual-p03-20261020/pilot05-proposal.json",
+      "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+    ],
+    "status": "GREEN_NON_EXECUTABLE_PILOT_PROPOSAL",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T19:37:20.622Z"
+    "lastGreenCheck": "2026-10-20T21:55:29.700Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T19:37:20.622Z",
+    "lastHeartbeat": "2026-10-20T21:55:29.700Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37335,36 +37340,42 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "4c3a3eb9b5a73a2fbdf505cb53dbe4bd8223b323",
-      "dirtyFiles": [],
-      "status": "PUBLISHED_SUPPORT_POSE_REVIEW",
+      "sha": "6c5e7a86b8c813cdb53933d527c580850814c073",
+      "dirtyFiles": [
+        "docs/autonomy/P03_CONTINUOUS_PILOT05_PROPOSAL_2026-10-20.md",
+        "docs/autonomy/handoffs/2026-10-20T2200Z-codex-p03-pilot-proposal.md",
+        "tools/cinematics/candidates/manual-p03-20261020/pilot-motion-prompt.txt",
+        "tools/cinematics/candidates/manual-p03-20261020/pilot05-proposal.json",
+        "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
+        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+        "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+      ],
+      "status": "GREEN_NON_EXECUTABLE_PILOT_PROPOSAL",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T19:37:20.622Z"
+      "lastGreenCheck": "2026-10-20T21:55:29.700Z"
     },
-    "nextAction": "Operator artistic review of support-v3 and stop-v1 plus their proposed shared cut phase, to select the basis for a future continuous10s pilot. Digital crop pairs are not filmed cuts or gait proof; no further variation without a precise defect, no automatic video/MiniMax/recurring generation.",
+    "nextAction": "Operator explicit decision on exactly one manual camp candidate05:MiniMax-H3/10s/2K/first+last image, estimatedUSD1.30/proposed capUSD1.50 excluding taxes,no automatic paid retries,and corresponding exact guard/last-frame adaptation. No provider request or guard weakening before approval; preserve proposal if no decision.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "sourceTestFiles": 0,
       "videoAssets": 0,
-      "keyframeAssets": 2,
+      "keyframeAssets": 0,
       "persistentQaTools": 0,
       "promotedProofFiles": 0,
       "taskReports": 0,
       "productDocumentationFiles": 4,
-      "workflowFiles": 4,
-      "candidatePromptProvenanceFiles": 3,
-      "reviewViewerFiles": 1,
-      "uniqueTrackedPaths": 15,
+      "workflowFiles": 3,
+      "candidatePromptProposalFiles": 2,
+      "uniqueTrackedPaths": 9,
       "inheritedWipFiles": 0,
       "registeredJobs": 0,
       "totalQaJobs": 339,
       "browserScenarios": 0,
-      "artifactBrowserSmokes": 1,
       "gameplayStagesPlayed": 0,
       "providerTasksCreated": 0,
-      "builtInImagegenCalls": 2,
-      "automationUpdated": 0,
-      "attributeFiles": 1
+      "automationUpdated": 0
     },
     "checkpointPaths": [
       "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
@@ -37383,7 +37394,7 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-20T19:37:20.622Z",
+    "runEndedAt": "2026-10-20T21:55:29.700Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
@@ -38179,8 +38190,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "MANUAL-CAMP-P03-SUPPORT-CORRECTION",
-    "activeSubtask": "Two manual stills and exact shared-source crop pairs delivered; filmed gait/cuts remain unobserved",
+    "activeTask": "MANUAL-CAMP-P03-PILOT05-PROPOSAL",
+    "activeSubtask": "Concrete10s first+last-frame payload/prompt/budget prepared; attempt05 exception not authorized",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41512,13 +41523,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-manual-p03-support-20261020",
+    "runId": "codex-p03-pilot-proposal-20261020",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-20T19:27:23.8576937Z",
-    "activePhase": "P03_SUPPORT_CORRECTED_CROP_STUDY_OPERATOR_REVIEW",
-    "heartbeat": "2026-10-20T19:37:20.622Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-20T1940Z-codex-p03-support.md",
+    "runStartedAt": "2026-10-20T21:51:12.2808267Z",
+    "activePhase": "P03_PILOT05_PROPOSAL_AWAITING_MANUAL_EXCEPTION",
+    "heartbeat": "2026-10-20T21:55:29.700Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-20T2200Z-codex-p03-pilot-proposal.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -45689,30 +45700,26 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-20T1940Z-codex-p03-support.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-20T2200Z-codex-p03-pilot-proposal.md",
   "runMeasurement": {
     "runtimeSourceFiles": 0,
     "sourceTestFiles": 0,
     "videoAssets": 0,
-    "keyframeAssets": 2,
+    "keyframeAssets": 0,
     "persistentQaTools": 0,
     "promotedProofFiles": 0,
     "taskReports": 0,
     "productDocumentationFiles": 4,
-    "workflowFiles": 4,
-    "candidatePromptProvenanceFiles": 3,
-    "reviewViewerFiles": 1,
-    "uniqueTrackedPaths": 15,
+    "workflowFiles": 3,
+    "candidatePromptProposalFiles": 2,
+    "uniqueTrackedPaths": 9,
     "inheritedWipFiles": 0,
     "registeredJobs": 0,
     "totalQaJobs": 339,
     "browserScenarios": 0,
-    "artifactBrowserSmokes": 1,
     "gameplayStagesPlayed": 0,
     "providerTasksCreated": 0,
-    "builtInImagegenCalls": 2,
-    "automationUpdated": 0,
-    "attributeFiles": 1
+    "automationUpdated": 0
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -50040,5 +50047,29 @@
     "nextAction": "Operator artistic review of support-v3 and stop-v1 plus their proposed shared cut phase, to select the basis for a future continuous10s pilot. Digital crop pairs are not filmed cuts or gait proof; no further variation without a precise defect, no automatic video/MiniMax/recurring generation.",
     "artifactSmokeJustification": "Short read-only check of new candidate review HTML; existing campaign runners do not cover this off-runtime artifact; ignored static helper only, no persistent QA driver.",
     "deliveryCheckpoint": "4c3a3eb9b5a73a2fbdf505cb53dbe4bd8223b323"
+  },
+  "campP03Pilot05Proposal": {
+    "runId": "codex-p03-pilot-proposal-20261020",
+    "baseline": "6c5e7a86b8c813cdb53933d527c580850814c073",
+    "status": "PROPOSAL_COMPLETE_AWAITING_EXPLICIT_MANUAL05_EXCEPTION",
+    "proposal": "docs/autonomy/P03_CONTINUOUS_PILOT05_PROPOSAL_2026-10-20.md",
+    "requestPreview": "tools/cinematics/candidates/manual-p03-20261020/pilot05-proposal.json",
+    "motionPrompt": "tools/cinematics/candidates/manual-p03-20261020/pilot-motion-prompt.txt",
+    "handoff": "docs/autonomy/handoffs/2026-10-20T2200Z-codex-p03-pilot-proposal.md",
+    "model": "MiniMax-H3",
+    "seconds": 10,
+    "resolution": "2K",
+    "firstFrame": "tools/cinematics/candidates/manual-p03-20261020/p03-support-v3.png",
+    "lastFrame": "tools/cinematics/candidates/manual-p03-20261020/p03-stop-v1.png",
+    "estimatedUsd": 1.3,
+    "requestedCapUsdExcludingTax": 1.5,
+    "operatorQuestionPresented": true,
+    "approvalReceived": false,
+    "generationAuthorized": false,
+    "providerTasksCreated": 0,
+    "guardUnmodified": true,
+    "artisticAcceptance": false,
+    "nextAction": "Operator explicit decision on exactly one manual camp candidate05:MiniMax-H3/10s/2K/first+last image, estimatedUSD1.30/proposed capUSD1.50 excluding taxes,no automatic paid retries,and corresponding exact guard/last-frame adaptation. No provider request or guard weakening before approval; preserve proposal if no decision.",
+    "runEndedAt": "2026-10-20T21:55:29.700Z"
   }
 }
