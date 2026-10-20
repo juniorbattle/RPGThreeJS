@@ -1,17 +1,18 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-20T22:00:30.1524046Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-20T22:23:42.073Z",
   "activeTask": "MANUAL-CAMP-P03-CANDIDATE05",
-  "activePhase": "P03_CANDIDATE05_PROVIDER_TASK_ACTIVE",
-  "activeSubtask": "One task454578901115393 accepted; query/download sameID only, no secondPOST",
+  "activePhase": "P03_CANDIDATE05_REVIEW_CHECKPOINT",
+  "activeSubtask": "One paid candidate preserved; visible sword-clearance defect, gait not certified; operator review only",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "9120fe2e487e4e739726b4d0f4b73c29f69ce778",
-  "lastPushedCommit": "bdb8965c0a9e0c10b7b795f4405f578cf5446767",
+  "lastKnownGoodCommit": "2e22cdb9e6c72733c091d697a020ab339c24e586",
+  "lastPushedCommit": "2e22cdb9e6c72733c091d697a020ab339c24e586",
   "completedThisRun": [
     "Recorded explicit one-candidate05/USD1.50excludingtax approval OD-2026-10-20-C",
     "Implemented exactpayload/last-frame/resume/exclusive-reservation guard with byte-identical approved prompt",
-    "Guardian reviewed actualdiff;140focused tests/build/contracts/gates PASS"
+    "Guardian reviewed actualdiff;140focused tests/build/contracts/gates PASS",
+    "Submitted/downloaded exactlyone task; preserved raw+same-video-payload silent copy,1x browser observations and two selectedproofs; motion not accepted"
   ],
   "filesChanged": [
     ".gitattributes",
@@ -25,7 +26,9 @@
     "docs/autonomy/MANUAL_P03_CANDIDATE05_RESULT_2026-10-20.md",
     "docs/autonomy/handoffs/2026-10-20T2210Z-codex-p03-candidate05.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "tools/cinematics/candidates/manual-p03-20261020/candidate-05-review-receipt.json",
+    "tools/cinematics/candidates/manual-p03-20261020/candidate-05-frame061-review.png"
   ],
   "testsRun": [
     "140 focused tests PASS (122checkpoint/request +18shot-spec); legacy04 retained",
@@ -45,14 +48,16 @@
     "Future continuous 1x pilot motion/artistic acceptance, filmic keyframe/cut poses and runtime integration not evaluated",
     "Global PC/art/balance/hardware, five native audio families and true hidden/suspend remain open; mobile after stable PC"
   ],
-  "blockers": [],
+  "blockers": [
+    "Manual artistic/motion verdict on samecandidate; no second paid attempt authorized."
+  ],
   "remainingWork": [
     "Normal-speed continuous motion and operator artistic verdict remain separate from provider success",
     "GlobalPC/balance/hardware/audio5families/hidden/mobile afterPC remain open"
   ],
-  "nextAction": "Wait for/download MiniMax task454578901115393 only (runner session51538); interrupted runner must resume that taskId with --resume true, never create another POST.",
+  "nextAction": "Review the preserved candidate05 continuous10s video at normal speed and give one precise artistic/motion verdict; no second paid attempt is authorized.",
   "taskQueue": [
-    "Wait for/download MiniMax task454578901115393 only (runner session51538); interrupted runner must resume that taskId with --resume true, never create another POST.",
+    "Review the preserved candidate05 continuous10s video at normal speed and give one precise artistic/motion verdict; no second paid attempt is authorized.",
     "Independent authorized demonstratedPC defect only; mobile afterPC stability"
   ],
   "creditStatus": "AVAILABLE",
@@ -130,10 +135,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-p03-video05-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T22:14:48.737Z",
+  "lastHeartbeat": "2026-10-20T22:23:42.073Z",
   "wip": {
     "branch": "dev",
-    "sha": "9120fe2e487e4e739726b4d0f4b73c29f69ce778",
+    "sha": "2e22cdb9e6c72733c091d697a020ab339c24e586",
     "dirtyFiles": [
       ".gitattributes",
       "tools/cinematics/minimax_h3_generate.mjs",
@@ -146,14 +151,16 @@
       "docs/autonomy/MANUAL_P03_CANDIDATE05_RESULT_2026-10-20.md",
       "docs/autonomy/handoffs/2026-10-20T2210Z-codex-p03-candidate05.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "tools/cinematics/candidates/manual-p03-20261020/candidate-05-review-receipt.json",
+      "tools/cinematics/candidates/manual-p03-20261020/candidate-05-frame061-review.png"
     ],
-    "status": "GREEN_MANUAL05_GUARD",
+    "status": "ARTIFACT_REVIEW_CHECKPOINT",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T22:14:48.737Z"
+    "lastGreenCheck": "2026-10-20T22:22:19.902Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T22:14:48.737Z",
+    "lastHeartbeat": "2026-10-20T22:23:42.073Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37343,7 +37350,7 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "9120fe2e487e4e739726b4d0f4b73c29f69ce778",
+      "sha": "2e22cdb9e6c72733c091d697a020ab339c24e586",
       "dirtyFiles": [
         ".gitattributes",
         "tools/cinematics/minimax_h3_generate.mjs",
@@ -37356,20 +37363,23 @@
         "docs/autonomy/MANUAL_P03_CANDIDATE05_RESULT_2026-10-20.md",
         "docs/autonomy/handoffs/2026-10-20T2210Z-codex-p03-candidate05.md",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "tools/cinematics/candidates/manual-p03-20261020/candidate-05-review-receipt.json",
+        "tools/cinematics/candidates/manual-p03-20261020/candidate-05-frame061-review.png"
       ],
-      "status": "GREEN_MANUAL05_GUARD",
+      "status": "ARTIFACT_REVIEW_CHECKPOINT",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T22:14:48.737Z"
+      "lastGreenCheck": "2026-10-20T22:22:19.902Z"
     },
-    "nextAction": "Wait for/download MiniMax task454578901115393 only (runner session51538); interrupted runner must resume that taskId with --resume true, never create another POST.",
+    "nextAction": "Review the preserved candidate05 continuous10s video at normal speed and give one precise artistic/motion verdict; no second paid attempt is authorized.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "toolSourceFiles": 2,
       "sourceTestFiles": 1,
       "manualSpecAuthorizationFiles": 2,
       "workflowAndDecisionFiles": 7,
-      "uniqueTrackedPaths": 12,
+      "promotedProofFiles": 2,
+      "uniqueTrackedPaths": 14,
       "gameplayStagesPlayed": 0,
       "registeredJobs": 0,
       "totalQaJobs": 339,
@@ -37377,7 +37387,8 @@
       "providerPaidRetries": 0,
       "productionMp4Replacements": 0,
       "automationUpdated": 0,
-      "inheritedWipFiles": 0
+      "inheritedWipFiles": 0,
+      "artifactBrowserReviews": 1
     },
     "checkpointPaths": [
       "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
@@ -37396,7 +37407,7 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": null,
+    "runEndedAt": "2026-10-20T22:23:42.073Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
@@ -38193,7 +38204,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "MANUAL-CAMP-P03-CANDIDATE05",
-    "activeSubtask": "One task454578901115393 accepted; query/download sameID only, no secondPOST",
+    "activeSubtask": "One paid candidate preserved; visible sword-clearance defect, gait not certified; operator review only",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41529,8 +41540,8 @@
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-20T22:00:30.1524046Z",
-    "activePhase": "P03_CANDIDATE05_PROVIDER_TASK_ACTIVE",
-    "heartbeat": "2026-10-20T22:14:48.737Z",
+    "activePhase": "P03_CANDIDATE05_REVIEW_CHECKPOINT",
+    "heartbeat": "2026-10-20T22:23:42.073Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-20T2210Z-codex-p03-candidate05.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -45709,7 +45720,8 @@
     "sourceTestFiles": 1,
     "manualSpecAuthorizationFiles": 2,
     "workflowAndDecisionFiles": 7,
-    "uniqueTrackedPaths": 12,
+    "promotedProofFiles": 2,
+    "uniqueTrackedPaths": 14,
     "gameplayStagesPlayed": 0,
     "registeredJobs": 0,
     "totalQaJobs": 339,
@@ -45717,7 +45729,8 @@
     "providerPaidRetries": 0,
     "productionMp4Replacements": 0,
     "automationUpdated": 0,
-    "inheritedWipFiles": 0
+    "inheritedWipFiles": 0,
+    "artifactBrowserReviews": 1
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -50074,7 +50087,7 @@
   "campP03Candidate05": {
     "runId": "codex-manual-p03-video05-20261020",
     "baseline": "2eeb0dea67a54fe0295de1e9c843c5910950c448",
-    "status": "running",
+    "status": "DOWNLOADED_TECHNICAL_MOTION_NOT_ACCEPTED",
     "decision": "docs/autonomy/MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md",
     "spec": "tools/cinematics/specs/manual-p03-20261020/camp-p03-05.json",
     "authorization": "tools/cinematics/specs/manual-p03-20261020/candidate-05-authorization.json",
@@ -50086,12 +50099,25 @@
     "paidRetries": 0,
     "taskId": "454578901115393",
     "raw": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/candidate_05_raw.mp4",
-    "rawSha256": null,
+    "rawSha256": "3be081e54e108ff52ea5544628b86ab2abb3730c61531ed4c9218f649eb00b3d",
     "providerMetadata": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/candidate_05_raw.metadata.json",
     "artisticAcceptance": false,
     "runtimeChanged": false,
-    "runEndedAt": null,
-    "nextAction": "Wait for/download MiniMax task454578901115393 only (runner session51538); interrupted runner must resume that taskId with --resume true, never create another POST.",
-    "runnerSessionId": 51538
+    "runEndedAt": "2026-10-20T22:23:42.073Z",
+    "nextAction": "Review the preserved candidate05 continuous10s video at normal speed and give one precise artistic/motion verdict; no second paid attempt is authorized.",
+    "providerStatus": "downloaded",
+    "receipt": "tools/cinematics/candidates/manual-p03-20261020/candidate-05-review-receipt.json",
+    "previewUrl": "http://127.0.0.1:5453/review-candidate05.html",
+    "previewPid": 9228,
+    "silentReview": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/candidate_05_silent_review.mp4",
+    "actualSeconds": 10.125,
+    "requestedSeconds": 10,
+    "bladeClearance": "NOT_ACCEPTED: tip at ground level around2.54–3.45s; no3Dcollision claim",
+    "twoCyclesPerActor": "NOT_DEMONSTRATED",
+    "normalSpeedPlaybackObserved": true,
+    "approvalConsumed": true,
+    "guardianCloseout": "PASS_SCOPED_CLOSEOUT_CLAIMS;raw/silent/frame hashes independently verified;no gait/art/runtime acceptance",
+    "runnerExited": true,
+    "pendingProviderTasks": 0
   }
 }

@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "task": "MANUAL-CAMP-P03-CANDIDATE05",
+  "runId": "codex-manual-p03-video05-20261020",
+  "status": "DOWNLOADED_TECHNICAL_MOTION_NOT_ACCEPTED",
+  "operatorDecisionId": "OD-2026-10-20-C",
+  "providerTaskId": "454578901115393",
+  "sourceCommit": "9120fe2e487e4e739726b4d0f4b73c29f69ce778",
+  "submittedAt": "2026-10-20T22:06:11.369Z",
+  "completedAt": "2026-10-20T22:19:00.566Z",
+  "model": "MiniMax-H3",
+  "attempt": 5,
+  "requestedDurationSeconds": 10,
+  "rawDurationSeconds": 10.125,
+  "frameCount": 243,
+  "fps": 24,
+  "width": 2560,
+  "height": 1440,
+  "providerUsage": {
+    "total_seconds": 10,
+    "output_seconds": 10,
+    "input_image_count": 2
+  },
+  "estimatedUsdExcludingTax": 1.3,
+  "operatorCapUsdExcludingTax": 1.5,
+  "invoiceVerified": false,
+  "paidTasksCreated": 1,
+  "paidRetries": 0,
+  "raw": {
+    "path": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/candidate_05_raw.mp4",
+    "sha256": "3be081e54e108ff52ea5544628b86ab2abb3730c61531ed4c9218f649eb00b3d",
+    "bytes": 9660517,
+    "audioStreams": 1,
+    "audioAcceptance": false
+  },
+  "silentReview": {
+    "path": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/candidate_05_silent_review.mp4",
+    "sha256": "9a44cb94a7fd891c4af788d2f33f558455f403aecefcee5e11769e6cc9058d5d",
+    "videoPayloadHash": "SHA256=8593f4bbb01ccffc79f3dc591cb6208a22bfc4239faecbc316a753c8c9efff9c",
+    "videoPayloadUnchanged": true,
+    "audioStreams": 0,
+    "retime": false,
+    "pad": false,
+    "resize": false
+  },
+  "sources": [
+    {
+      "path": "tools/cinematics/minimax_h3_generate.mjs",
+      "workingFileSha256": "4b3a740dbc482afa8e03c2a94d434d2a1651948ee0730a6dee722ac0a8fb38dc"
+    },
+    {
+      "path": "tools/cinematics/minimax_task_checkpoint.mjs",
+      "workingFileSha256": "09688abedfe415bbf650ef4d66634fd263c56fa9e95d7299b7bd3d349e627838"
+    },
+    {
+      "path": "tools/cinematics/specs/manual-p03-20261020/camp-p03-05.json",
+      "workingFileSha256": "3974e6010f0a14b370db9a40d450826d91baa89f72bd38a250086c5bca07abcc"
+    },
+    {
+      "path": "tools/cinematics/specs/manual-p03-20261020/candidate-05-authorization.json",
+      "workingFileSha256": "610eeea43a99d5c12bc8d2700b9a9fd13292a6ebcb202cdc7fc8e5b6aeb07a83"
+    },
+    {
+      "path": "docs/autonomy/MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md",
+      "workingFileSha256": "3908343d49b481bf0825a0f7946e2d040ddc40adcd8eda2bab83651477adcce4"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-p03-20261020/pilot-motion-prompt.txt",
+      "workingFileSha256": "cc0abd436a2ad4377e383038c5ff6c5cccfb7da65f8f56d2928afcf510a66bbb"
+    },
+    {
+      "path": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/source.png",
+      "workingFileSha256": "0fd6533213c77bc5e95094fe254f8c7f9d64fec1a52e95d7a917dc9fe9e56068"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-p03-20261020/p03-stop-v1.png",
+      "workingFileSha256": "63744ae86d599e80a78feb39fd6b1c9f07653d5a3b3ea5e81c61db023885ecfa"
+    }
+  ],
+  "selectedFrame": {
+    "path": "tools/cinematics/candidates/manual-p03-20261020/candidate-05-frame061-review.png",
+    "sha256": "9ca9afb68063641f439be313ed6850e118990e260f333754573c57068548bd54",
+    "exactFrameIndex": 61,
+    "timestampSeconds": 2.541667,
+    "description": "Sword tip reaches ground level; no visible clearance at this phase. Still frame does not prove gait or collision geometry."
+  },
+  "review": {
+    "method": "Native browser continuous playback1x with selected live observations and five extracted exact frames; no full contact-by-contact gait certification.",
+    "normalSpeedPlaybackObserved": true,
+    "liveObservedTimesSeconds": [
+      0,
+      3.45,
+      8.23,
+      9.57,
+      10.13
+    ],
+    "extractedFrames": [
+      {
+        "label": "first",
+        "exactFrameIndex": 0,
+        "timestampSeconds": 0,
+        "path": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/review_frames_candidate05/first.png",
+        "sha256": "001d5fdefd6c65103db18a13c4feed7a69759ed079a8e9be1aa35f5740f625e1"
+      },
+      {
+        "label": "p25",
+        "exactFrameIndex": 61,
+        "timestampSeconds": 2.541667,
+        "path": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/review_frames_candidate05/p25.png",
+        "sha256": "9ca9afb68063641f439be313ed6850e118990e260f333754573c57068548bd54"
+      },
+      {
+        "label": "p50",
+        "exactFrameIndex": 121,
+        "timestampSeconds": 5.041667,
+        "path": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/review_frames_candidate05/p50.png",
+        "sha256": "b7c7d206400ba3f2f53e78db394a43319cb354cb92afa7959dd2e381174909e6"
+      },
+      {
+        "label": "p75",
+        "exactFrameIndex": 182,
+        "timestampSeconds": 7.583333,
+        "path": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/review_frames_candidate05/p75.png",
+        "sha256": "e1408936322b497bdd3b4011089e1e24b80b02dc300d861d0914e1d2ff55dce1"
+      },
+      {
+        "label": "last",
+        "exactFrameIndex": 242,
+        "timestampSeconds": 10.083333,
+        "path": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/review_frames_candidate05/last.png",
+        "sha256": "ece8d12f8e8e1ca78d3b8ade1cb6e34ab94e3297fc740855fdc82899d747ed5e"
+      }
+    ],
+    "bladeClearance": "NOT_ACCEPTED: tip at ground level on frame61/2.541667s and live around3.45s",
+    "twoFullCyclesPerActor": {
+      "alistair": "NOT_DEMONSTRATED",
+      "maelor": "NOT_DEMONSTRATED",
+      "marian": "NOT_DEMONSTRATED"
+    },
+    "groundAnchoringAndWeightTransfer": "NOT_CERTIFIED_BY_CAPTURE_SAMPLES",
+    "fixedCamera": "No obvious reframing in selected observations; no volumetric proof inferred.",
+    "bookStaffCape": "Present in selected views; continuous prop/contact correctness not certified.",
+    "decelerationAndStop": "Settled endpoint observed; exact phase/contact sequence not certified.",
+    "artisticAcceptance": false,
+    "runtimeAcceptance": false
+  },
+  "preview": {
+    "url": "http://127.0.0.1:5453/review-candidate05.html",
+    "pid": 9228,
+    "bind": "127.0.0.1",
+    "allowlistedFiles": 2,
+    "capture": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/browser-review-candidate05.png",
+    "captureSha256": "7c04bd699f0d6717231c02c5e8b0a472efbe98be6a6271250404bf7e229df908"
+  },
+  "invariants": {
+    "productionMp4Replacements": 0,
+    "runtimeChanged": false,
+    "saveV6Changed": false,
+    "canonAdded": false,
+    "videoSlots": 8,
+    "scheduledGenerationAuthorized": false
+  },
+  "nextAction": "Operator reviews this preserved continuous candidate05 at1x, especially blade clearance2.5–3.5s and each actor contact sequence; no second paid candidate is authorized."
+}
