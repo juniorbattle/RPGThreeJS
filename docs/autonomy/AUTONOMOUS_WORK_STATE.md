@@ -1,18 +1,16 @@
-# Camp28s — treatment and storyboard delivered for review
+# Recurring P03 priority saved — configuration only
 
-Run codex-camp-storyboard-20261020T0644; 2026-10-20T06:54:28.887Z; direct OD-2026-10-20-A preparation request. [Treatment/fourshots](CAMP_DEPARTURE_28S_STORYBOARD_2026-10-20.md) / [schematic interactive board](../media/cinematics/camp-departure-28s/storyboard.html).28s proposed, shipped12s unchanged. Candidate04 operator finding: sliding;poses/structure retained as design references, no artistic acceptance. Historical technical evidence remains unchanged.
+Run codex-recurring-camp-p03-20261020T0715; OD-2026-10-20-B direct request. [Decision](RECURRING_CAMP_P03_OPERATOR_DECISION_2026-10-20.md), [next-run handoff](handoffs/2026-10-20T0715Z-codex-recurring-camp-p03.md). Existing RPGThreeJS Auto Dev90m prompt updated with concrete P03 realization preparation, replacing completed eight-slot audit. Savedprompt equals canonical RECURRING_RUN_PROMPT.md.
 
-Canonical source: prelude before preparation dialogue; trio a framedsubset of5companymembers. Local walking/regroup INSIDE camp, no gate crossing/arrival/newcanon. Proposed shot durations6+6+10+6; first future motionpilot P03 only. Missing artistic companion to reconcile before generation gate. Schematics/timedpanels are not keyframes, filmic animatic/G2 acceptance or locomotion proof.
+Settings preserved:PAUSED/90minutes/gpt-6.1-sol/high/local/sameproject-directory/notifications. Activation exclusively operator. Configuration session launches no product/media work. Proposed28s/fourshots and positive storyboard feedback retained, not gait/G2/runtime/art acceptance. Candidate04 sliding remains unaccepted. No recurring generation/keyframe/video/polling/MiniMax/attempt extension/MP4 replacement/runtime duration/audio change.
 
-Prototype smokePASS:4shots28s/6SHA/2links;keyboard playback/pause/seek/stop;1366 and390reducedmotion,whole16:9contained/44pxbuttons/nooverflow/errors0;two captures inspected. Domain and guardian PASS preparationonly;contracts8/8+8slots/LOCKED/diffgatesPASS. No game build/sourcechange/productionQA/gameplaystage/providerjob.
+Next: Next operator-enabled scheduled run: after preflight/lock, read current P03 treatment/source chronology and prepare ONE concrete realization dossier (grounded action, camera, equipment, current references, future keyframe brief/cuts/review grid), bounded companion reconciliation, then manual artistic handoff. No recurring generation/repeated audit or automatic retry.
 
-All339existing QA jobs/MDblock/deferred/audio roots and source/shippedmedia preserved. OtherPC/global/art/balance/hardware/audiohidden/mobilelimits remainopen. Counts:runtime0/tests0/media0;canonicaldocs3/reference1/prototype1/nonexecutablespec1/workflow6=12paths;newjobs0,persistentQA0,inheritedWIP0.
+Deliver dossier once; no repeat unchangedaudit/storyboard/diagnostic loop. Missing artistic companion remains a precise dependency before future manual generation; complete independent preparation elements. Interior pre-dialogue camp boundary/currentV2/night references protected.
 
-Operator preview retained: http://127.0.0.1:5451/docs/media/cinematics/camp-departure-28s/storyboard.html; PID35308,port5451,restrictedlocalhoststoryboardserver. Game/audition previews untouched. Handoff: [storyboard](handoffs/2026-10-20T0655Z-codex-camp-storyboard.md).
+Separate UI request:140past exact-automation-ID sessions archived and verified across3pages; currentchat01a15567 retained, unrelated chats untouched. No source/evidence/save deletion. All339QA jobs/MDblock/deferred/audio/manualcandidate/storyboard objects exact. Other PC/art/balance/hardware/audiohidden/mobile limits unchanged. Storyboardpreview5451/game/audition previews untouched.
 
-Next: Operator review the delivered28s/four-shot camp storyboard, especially internal pre-gate ending and P03 continuous grounded walk; reconcile missing artistic companion before preparing the P03 pilot keyframe. No generation/runtime integration inferred.
-
-Delivery399e4d8292086d281ceadedd89921fbb7a4ed4b7 published/remote-verified; main00b96f1 unchanged. Run ended 2026-10-20T06:56:28.940Z. Final closure SHA/parity and ownedlock release recorded in automation memory; operator storyboard preview5451 retained deliberately.
+Checks:automation equality/settings,archive membership,JSON conservation,diff/LOCKED/8contracts+8slots. Counts:productsource0/tests0/media0/QA0/browser0/gameplay0;canonicaldocs2/workflow6=8paths;inheritedWIP0;automationupdate1/UIarchives140.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
