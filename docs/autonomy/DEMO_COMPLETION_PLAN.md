@@ -1,5 +1,7 @@
 # Demo completion — delivered POI/Lot E baseline
 
+> **Directive effective21October2026 — [OD-2026-10-21-B](ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md)** : l’automatisation est ACTIVE, activation opérateur acquise. Les runs planifiés produisent les sept candidats illustrés offline autorisés, audience Alaric en premier, sans nouvelle validation de lancement. Les mentions PAUSED/configuration seulement et anciennes prochaines actions P03 ci-dessous sont historiques. Aucun élargissement de portée média/runtime/contrats ; art final et PC global restent ouverts. [Handoff courant](handoffs/2026-10-21T1744Z-codex-unblock-automation.md).
+
 > **Current P03 next-step proposal,20October2026:** [one concrete10s MiniMax-H3/2K candidate05 proposal](P03_CONTINUOUS_PILOT05_PROPOSAL_2026-10-20.md), exact prompt/source hashes/first+last inputs,estimatedUSD1.30/proposedcapUSD1.50excludingtax. Await explicit manual05 exception; existing guard/runner unchanged, no generation or paid retry. ONE next action: operator decision on this bounded payload and guard adaptation. Preview/339jobs/historical acceptance/PC/audio/mobile scopes retained. [Handoff](handoffs/2026-10-20T2200Z-codex-p03-pilot-proposal.md).
 
 

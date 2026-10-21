@@ -4,10 +4,10 @@
   "contractTaskId": "PRODUCTION-CONTRACTS-ILLUSTRATED-CANDIDATES-1",
   "contractSetVersion": "1.8.0",
   "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
-  "status": "CONFIGURED_NOT_STARTED",
+  "status": "READY_FOR_AUTONOMOUS_PRODUCTION",
   "scheduler": {
     "id": "rpgthreejs-auto-dev-90m",
-    "status": "PAUSED",
+    "status": "ACTIVE",
     "preserved": true
   },
   "reference": {
@@ -135,5 +135,9 @@
     "videoSlots": 8,
     "noGameTruthChanges": true
   },
-  "createdAt": "2026-10-21T07:43:23.384Z"
+  "createdAt": "2026-10-21T07:43:23.384Z",
+  "executionDecisionId": "OD-2026-10-21-B",
+  "executionDecisionPath": "docs/autonomy/ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md",
+  "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
+  "executionPolicy": "Operator activation is already granted. Scheduled runs execute the seven authorized offline illustrated candidates; obsolete configuration-only/PAUSED notes are historical. No routine restart approval."
 }

@@ -1,18 +1,14 @@
-# Cinématiques illustrées — mission autonome préparée
+# Cinématiques illustrées — exécution autonome débloquée
 
-Run codex-illustrated-cinematics-config-20261021, 2026-10-21T07:43:23.384Z. READY_FOR_PC_ACCEPTANCE conservé ; configuration seulement, aucune étape gameplay ni image générée.
+Run codex-unblock-automation-20261021T1744Z, 2026-10-21T17:47:22.787Z. READY_FOR_PC_ACCEPTANCE conservé ; aucun gameplay ni média produit pendant cette correction de configuration.
 
-[Décision et autorisation](ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md). Camp structure/logique acceptées ; huit images20s de référence conservées, art final/runtime distincts. Amendement ciblé1.8.0 0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa, autre contrats/constitution inchangés.
+Décision courante [OD-2026-10-21-B](ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md) : l’opérateur demande de débloquer l’automatisation déjà ACTIVE. Les anciennes clauses configuration seulement / attente d’activation / PAUSED sont historiques et ne s’appliquent plus aux runs planifiés. Prompt enregistré et canonique alignés ; cadence90min, gpt-6.1-sol/high/local/projet et notifications conservés.
 
-Sept candidats offline à produire dans l'ordre : audience Alaric, arrivée Bois-Clair, Bois-Clair sauvé, Bois-Clair sacrifié, jugement Lion, fin Serpent, fin épreuve Lion. Chaque image avance la situation canonique, cadres motivés/fondus doux/raccords équipement et géographie ; nombre/durée adaptés. Aucun vidéo/MiniMax/base extraite/flipbook/audio/MP4/runtime/canon ajouté.
+Phase **READY_FOR_AUTONOMOUS_PRODUCTION**. La file reste sept candidats offline, audience Alaric en premier ; camp conservé. Le set1.8.0 et sa baseline0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa sont inchangés. La portée reste celle de [OD-2026-10-21-A](ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md) : images intégrées imagegen uniquement ; art final/intégration runtime séparés.
 
-Automation existante90min/gpt-6.1-sol/high/local **PAUSED**, activation opérateur conservée. Prompt mis à jour par outil officiel et égalité exacte vérifiée ; paramètres conservés. Vérifications : contrats8/8slots, gates0cb9513 vides, diffcheck,339jobs/85racines/blocQA/8SHAcamp préservés.
+Prochaine action du prochain run : Read current audience trigger and lion_briefing, source-bound causal shot progression, then built-in imagegen audience montage before any choice/advance handoff.
 
-Première action future : Read current audience trigger and lion_briefing, source-bound causal shot progression, then built-in imagegen audience montage before any choice/advance handoff.
-
-339jobs/acceptations/blocQA exact et toutes racines/variantes/preuves historiques conservés. PC global/art final/équilibre/FX16/5familles/hidden restent ouverts ; mobile après stabilitéPC.
-
-Clôture 2026-10-21T07:48:51.048Z, configuration bbe2a547da0c16dc4716ac05c40c5dc59fc567f5 publiée/vérifiée, guardian PASS_CONFIG_CLOSEOUT ; aucune génération. Verrou libéré après checkpoint metadata.
+[Handoff courant](handoffs/2026-10-21T1744Z-codex-unblock-automation.md). Préservation :339jobs et acceptations/blocMDQA exacts, anciennes racines/variantes/preuves, huit SHA camp, src/public/contrats/constitution. Vérifications : diffcheck, barrières LOCKED, contrats8/8slots, prompt exact et paramètres scheduler. Aucun build/scénario gameplay nécessaire pour ces seuls textes/états. Compteurs :0produit/0image/0QA ajouté/8workflow/1plan/0WIP hérité.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

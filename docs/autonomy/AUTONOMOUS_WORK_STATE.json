@@ -1,74 +1,45 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-21T07:34:41.9906986Z",
-  "runEndedAt": "2026-10-21T07:48:51.048Z",
+  "runStartedAt": "2026-10-21T17:45:13.3943668Z",
+  "runEndedAt": "2026-10-21T17:48:24.653Z",
   "activeTask": "ILLUSTRATED-CINEMATICS-AUTONOMOUS-PRODUCTION",
-  "activePhase": "CONFIGURED_AWAITING_OPERATOR_SCHEDULER_ACTIVATION",
-  "activeSubtask": "Audience first; built-in still images only after reviewed amendment and committed baseline",
+  "activePhase": "READY_FOR_AUTONOMOUS_PRODUCTION",
+  "activeSubtask": "Operator-activated illustrated queue unblocked; audience first on next scheduled run",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
-  "lastPushedCommit": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
+  "lastKnownGoodCommit": "564d4c1851df70e29ba2f8ead878cc5a3705f75a",
+  "lastPushedCommit": "564d4c1851df70e29ba2f8ead878cc5a3705f75a",
   "completedThisRun": [
-    "Scoped operator camp structure/design acceptance recorded",
-    "Explicit narrowly approved dedicated contract amendment reviewed and committed",
-    "Existing recurrence configured for seven offline illustrated candidates; no product execution"
+    "Operator explicitly requests all necessary automation unblocking",
+    "Removed obsolete configuration-only/PAUSED instructions; scheduler ACTIVE retained",
+    "Aligned canonical prompt, plan and current shared state; no media or runtime change"
   ],
   "filesChanged": [
-    ".gitattributes",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-request.json",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-result.json",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/index.html",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/montage.css",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/montage.mjs",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/provenance.json",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/requests.json",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/results-v1.json",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/results.json",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/reused-inputs.json",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v1.png",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v2.png",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview.png",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v1.json",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v2.json",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt.json",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/sequence.json",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/shot-01.png",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/shot-02.png",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/shot-03.png",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/shot-04.png",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/shot-05.png",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/shot-06.png",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/shot-07.png",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08-v1-right-hand.png",
-    "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08.png",
-    "docs/autonomy/CAMP_CONTINUITY_FINISH_OPERATOR_DIRECTION_2026-10-21.md",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/RECURRING_RUN_PROMPT.md",
+    "tools/cinematics/specs/illustrated-sequences/production-plan.json",
+    "docs/autonomy/ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md",
+    "docs/autonomy/handoffs/2026-10-21T1744Z-codex-unblock-automation.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-21T0658Z-codex-camp-continuity.md"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+    "docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md"
   ],
   "testsRun": [
-    "contracts8/8",
-    "tsc --noEmit",
-    "node syntax",
-    "LOCKED/protected-path gates",
-    "diff --check",
-    "One configured existing8stage reader scenario",
-    "8image/origin and identicalreader/sequence verification",
-    "Same reader scenario v2 only after own08clothing-overlap correction"
+    "git diff --check",
+    "LOCKED baseline gate/status empty",
+    "npm run contracts:validate (8 contracts / 8 slots)",
+    "exact saved prompt and ACTIVE scheduler settings verified",
+    "339 QA jobs, MD QA block, historical state roots and camp references preserved"
   ],
   "testsPassed": [
-    "contracts:validate8contracts/8slots; exactthreefileamendment",
-    "PASS_AMENDMENT_ACTUAL_DIFF independentguardian beforecommit",
-    "Savedautomationprompt exactlymatches RECURRING_RUN_PROMPT; PAUSED/90min/model/high/project/environment preserved",
-    "339qaJobs deepEqual and exactMDQAblock preserved;85nonoperationalroots unchanged",
-    "EightacceptedcampreferenceSHAunchanged; src/public/candidatehistory/constitution unchanged",
-    "Newbaseline0cb9513 LOCKEDgate empty; diffcheckPASS",
-    "PASS_CONFIG_CLOSEOUT finalindependentreview; prompttailcorrected and exactparityreverified"
+    "git diff --check",
+    "LOCKED baseline gate/status empty",
+    "npm run contracts:validate (8 contracts / 8 slots)",
+    "exact saved prompt and ACTIVE scheduler settings verified",
+    "339 QA jobs, MD QA block, historical state roots and camp references preserved"
   ],
   "testsRemaining": [
-    "Firstscheduled audiencecandidate notstarted; image/toolavailability checkedwhenrunstarts",
-    "Per-scene artisticreview and anyruntimeadoption remainseparate"
+    "Next production run: source-bound audience montage and change-relevant verification"
   ],
   "blockers": [
     "Finegear/veil/geography/physical3D/fullart continuity remain operator judgment; former08projected-overlap now visibly improved"
@@ -90,9 +61,9 @@
     "Independent demonstrated PC issue only; mobile after PC stability"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_AMENDMENT_ACTUAL_DIFF_AND_PASS_CONFIG_CLOSEOUT;set1.8.0; no runtime adoption",
-  "commitReferenceScope": "Reviewed illustrated-cinematic configuration delivery; following metadata-only closeout discoverable in Git, avoiding circular self-reference.",
-  "operatorAuthorization": "Direct camp structure/design validation and explicit answer Autoriser cet amendement ciblé; offline illustrated candidates only, scheduler activation retained by operator",
+  "contractComplianceStatus": "PASS_WORKFLOW_ONLY: set1.8.0, immutable baseline retained; no LOCKED/runtime/acceptance change",
+  "commitReferenceScope": "Base commit before this workflow-only checkpoint; containing commit and remote parity are recorded in automation memory.",
+  "operatorAuthorization": "OD-2026-10-21-B: direct operator request to unblock everything necessary for the automation; activation already granted. Scope stays OD-2026-10-21-A/set1.8.0.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -162,19 +133,19 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-illustrated-cinematics-config-20261021",
+  "runId": "codex-unblock-automation-20261021T1744Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T07:48:51.048Z",
+  "lastHeartbeat": "2026-10-21T17:47:22.787Z",
   "wip": {
     "branch": "dev",
-    "sha": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
+    "sha": "564d4c1851df70e29ba2f8ead878cc5a3705f75a",
     "dirtyFiles": [],
-    "status": "ILLUSTRATED_CONFIGURATION_PUBLISHED_METADATA_CLOSEOUT",
+    "status": "WORKFLOW_CHECKPOINT",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-21T07:48:51.048Z"
+    "lastGreenCheck": "2026-10-21T17:47:22.787Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T07:48:51.048Z",
+    "lastHeartbeat": "2026-10-21T17:47:22.787Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37364,40 +37335,33 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
+      "sha": "564d4c1851df70e29ba2f8ead878cc5a3705f75a",
       "dirtyFiles": [],
-      "status": "ILLUSTRATED_CONFIGURATION_PUBLISHED_METADATA_CLOSEOUT",
+      "status": "WORKFLOW_CHECKPOINT",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-21T07:48:51.048Z"
+      "lastGreenCheck": "2026-10-21T17:47:22.787Z"
     },
     "nextAction": "Read current audience trigger and lion_briefing, source-bound causal shot progression, then built-in imagegen audience montage before any choice/advance handoff.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "gameplayStagesPlayed": 0,
-      "imageGenEditCalls": 3,
-      "editedImages": 2,
-      "reusedImages": 6,
-      "displayedImages": 8,
-      "artifactSourceFiles": 3,
-      "artifactDataFiles": 8,
-      "selectedProofFiles": 2,
-      "workflowFiles": 5,
-      "repositoryConfigFiles": 1,
-      "artifactBrowserScenarios": 2,
+      "generatedImages": 0,
       "newQaJobs": 0,
       "totalQaJobs": 339,
       "inheritedWipFiles": 0,
-      "retainedPrior08Variants": 1,
-      "historicalProofFiles": 4,
-      "retainedPriorImageFiles": 1
+      "workflowFiles": 8,
+      "candidatePlanFiles": 1
     },
     "checkpointPaths": [
-      "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
-      "docs/autonomy/handoffs/2026-10-20T1545Z-codex-p03-dossier.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
+      "docs/autonomy/RECURRING_RUN_PROMPT.md",
+      "tools/cinematics/specs/illustrated-sequences/production-plan.json",
+      "docs/autonomy/ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md",
+      "docs/autonomy/handoffs/2026-10-21T1744Z-codex-unblock-automation.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md"
     ],
     "publication": {
       "destination": "origin/dev",
@@ -37408,7 +37372,7 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-21T07:48:51.048Z",
+    "runEndedAt": "2026-10-21T17:48:24.653Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
@@ -38205,7 +38169,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "ILLUSTRATED-CINEMATICS-AUTONOMOUS-PRODUCTION",
-    "activeSubtask": "Audience first; built-in still images only after reviewed amendment and committed baseline",
+    "activeSubtask": "Operator-activated illustrated queue unblocked; audience first on next scheduled run",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41537,13 +41501,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-illustrated-cinematics-config-20261021",
+    "runId": "codex-unblock-automation-20261021T1744Z",
     "agent": "codex",
-    "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-21T07:34:41.9906986Z",
-    "activePhase": "CONFIGURED_AWAITING_OPERATOR_SCHEDULER_ACTIVATION",
-    "heartbeat": "2026-10-21T07:48:51.048Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0734Z-codex-illustrated-cinematics-config.md",
+    "status": "READY_FOR_AUTONOMOUS_PRODUCTION",
+    "runStartedAt": "2026-10-21T17:45:13.3943668Z",
+    "activePhase": "READY_FOR_AUTONOMOUS_PRODUCTION",
+    "heartbeat": "2026-10-21T17:47:22.787Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-21T1744Z-codex-unblock-automation.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -45799,7 +45763,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0734Z-codex-illustrated-cinematics-config.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-21T1744Z-codex-unblock-automation.md",
   "runMeasurement": {
     "runtimeProductFiles": 0,
     "gameplayStepsPlayed": 0,
@@ -45935,7 +45899,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "NONE after containing metadata checkpoint",
+  "uncommittedWork": "None inherited; explicit workflow checkpoint paths only",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -47101,23 +47065,13 @@
   },
   "currentRunMeasurement": {
     "runtimeSourceFiles": 0,
-    "sourceTestFiles": 0,
-    "videoAssets": 0,
-    "keyframeAssets": 0,
-    "persistentQaTools": 0,
-    "promotedProofFiles": 0,
-    "taskReports": 0,
-    "productDocumentationFiles": 2,
-    "workflowFiles": 6,
-    "uniqueTrackedPaths": 8,
-    "inheritedWipFiles": 0,
-    "registeredJobs": 0,
-    "totalQaJobs": 339,
-    "browserScenarios": 0,
     "gameplayStagesPlayed": 0,
-    "providerTasksCreated": 0,
-    "automationUpdated": 1,
-    "pastAutomationChatsArchived": 140
+    "generatedImages": 0,
+    "newQaJobs": 0,
+    "totalQaJobs": 339,
+    "inheritedWipFiles": 0,
+    "workflowFiles": 8,
+    "candidatePlanFiles": 1
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -47155,11 +47109,15 @@
     "history": "recurringPoiConfiguration.previousRootFields.demoCompletionFocus"
   },
   "nextScheduledExecutionDirective": {
-    "decision": "OD-2026-10-20-B",
-    "path": "docs/autonomy/handoffs/2026-10-20T0715Z-codex-recurring-camp-p03.md",
-    "status": "SAVED_NEXT_RECURRING_PRIORITY_SCHEDULER_PAUSED",
+    "decision": "OD-2026-10-21-B",
+    "path": "docs/autonomy/handoffs/2026-10-21T1744Z-codex-unblock-automation.md",
+    "status": "EXECUTE_AUTHORIZED_ILLUSTRATED_PRODUCTION",
     "configurationChatDoesNotExecuteProduct": true,
-    "automationRemainsPaused": true,
+    "scheduledRunExecutesProduct": true,
+    "automationRemainsPaused": false,
+    "schedulerStatus": "ACTIVE",
+    "activationAlreadyGranted": true,
+    "nextAction": "Read current audience trigger and lion_briefing, source-bound causal shot progression, then built-in imagegen audience montage before any choice/advance handoff.",
     "history": "recurringCampP03Configuration.previousRoot.nextScheduledExecutionDirective"
   },
   "poiMigration": {
@@ -47396,7 +47354,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-20T15:46:51.673Z",
+  "heartbeat": "2026-10-21T17:47:22.787Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -50359,19 +50317,17 @@
     "runEndedAt": "2026-10-21T07:27:54.989Z",
     "elapsedMinutes": 30.84
   },
-  "blockedBy": [
-    "Scheduler remains PAUSED until operator activation"
-  ],
+  "blockedBy": [],
   "illustratedCinematicsAutonomy": {
     "schemaVersion": 1,
     "operatorDecisionId": "OD-2026-10-21-A",
     "contractTaskId": "PRODUCTION-CONTRACTS-ILLUSTRATED-CANDIDATES-1",
     "contractSetVersion": "1.8.0",
     "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
-    "status": "CONFIGURED_NOT_STARTED",
+    "status": "READY_FOR_AUTONOMOUS_PRODUCTION",
     "scheduler": {
       "id": "rpgthreejs-auto-dev-90m",
-      "status": "PAUSED",
+      "status": "ACTIVE",
       "preserved": true
     },
     "reference": {
@@ -50502,7 +50458,7 @@
     "createdAt": "2026-10-21T07:43:23.384Z",
     "decisionPath": "docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md",
     "planPath": "tools/cinematics/specs/illustrated-sequences/production-plan.json",
-    "guardRail": "No generation until amendment reviewed/committed baseline; no runtime adoption",
+    "guardRail": "Amendment reviewed, committed and baseline established; execute offline imagegen candidates. Final art/runtime adoption remain operator decisions.",
     "schedulerUpdateVerified": true,
     "configurationVerification": {
       "verifiedAt": "2026-10-21T07:46:22.208Z",
@@ -50522,6 +50478,53 @@
     "guardian": "PASS_CONFIG_CLOSEOUT",
     "deliveryCommit": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
     "runEndedAt": "2026-10-21T07:48:51.048Z",
-    "elapsedMinutes": 14.15
+    "elapsedMinutes": 14.15,
+    "executionDecisionId": "OD-2026-10-21-B",
+    "executionDecisionPath": "docs/autonomy/ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md"
+  },
+  "automationExecutionUnblock": {
+    "decisionId": "OD-2026-10-21-B",
+    "decisionPath": "docs/autonomy/ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md",
+    "runId": "codex-unblock-automation-20261021T1744Z",
+    "verifiedAt": "2026-10-21T17:48:24.653Z",
+    "priorPhase": "CONFIGURED_AWAITING_OPERATOR_SCHEDULER_ACTIVATION",
+    "priorBlockedBy": [
+      "Scheduler remains PAUSED until operator activation"
+    ],
+    "priorScheduledDirective": {
+      "decision": "OD-2026-10-20-B",
+      "path": "docs/autonomy/handoffs/2026-10-20T0715Z-codex-recurring-camp-p03.md",
+      "status": "SAVED_NEXT_RECURRING_PRIORITY_SCHEDULER_PAUSED",
+      "configurationChatDoesNotExecuteProduct": true,
+      "automationRemainsPaused": true,
+      "history": "recurringCampP03Configuration.previousRoot.nextScheduledExecutionDirective"
+    },
+    "historicalIllustratedConfiguration": {
+      "verifiedAt": "2026-10-21T07:46:22.208Z",
+      "automationId": "rpgthreejs-auto-dev-90m",
+      "savedPromptExact": true,
+      "settingsPreserved": true,
+      "schedulerStatus": "PAUSED",
+      "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+      "qaJobsPreserved": 339,
+      "nonOperationalRootsPreserved": 85,
+      "mdQaTailPreserved": true,
+      "campImageHashesPreserved": 8,
+      "productionRuntimeUnchanged": true,
+      "queueCount": 7,
+      "newImages": 0
+    },
+    "scope": "Workflow repair only; no new media/runtime authority",
+    "savedPromptExact": true,
+    "schedulerStatus": "ACTIVE",
+    "schedulerSettingsPreserved": true,
+    "qaJobsPreserved": 339,
+    "mdQaTailPreserved": true,
+    "historicalRootsPreserved": 85,
+    "campImageHashesPreserved": 8,
+    "queueCount": 7,
+    "newImages": 0,
+    "contractsValidated": 8,
+    "videoSlots": 8
   }
 }

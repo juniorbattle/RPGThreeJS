@@ -1,5 +1,7 @@
 # Montages narratifs illustrés — OD-2026-10-21-A
 
+> **Exécution actuelle : [OD-2026-10-21-B](ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md)**. L’opérateur a activé la tâche puis demandé son déblocage complet. Les mentions PAUSED/configuration seulement de la configuration initiale ci-dessous sont historiques ; les runs planifiés exécutent désormais la file illustrée approuvée. Portée, contrats et limites de la présente décision inchangés.
+
 Décision opérateur explicite du21octobre2026, après revue du camp livré dans `tools/cinematics/candidates/camp-story-continuity-20261021` (livraison b48c2d0, clôture0dc5c7a).
 
 > « Ok ta mise en structure est bonne. on valide et on va faire pareil pour les autres cinematiques en conservant cette logique de conception. prepapre la tache planifie pour qu'il continue seul de maniere autonome »
