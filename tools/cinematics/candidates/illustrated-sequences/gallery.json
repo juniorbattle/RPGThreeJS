@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T22:25:45.221Z",
+  "updatedAt": "2026-10-21T22:51:36.467Z",
   "scope": "Offline illustrated candidates; final art/runtime separate",
   "scenes": [
     {
@@ -34,15 +34,16 @@
     },
     {
       "id": "lion_judgement",
-      "status": "GENERATED_REVIEW_PENDING",
+      "status": "NEEDS_CORRECTION",
       "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/index.html",
       "finalArtAccepted": false,
-      "runtimeIntegrated": false
+      "runtimeIntegrated": false,
+      "technicalReview": "PASS_SCOPED; FINAL_GAZE_NEEDS_CORRECTION"
     },
     {
       "id": "serpent_route_ending",
-      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
-      "path": null,
+      "status": "GENERATED_REVIEW_PENDING",
+      "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/index.html",
       "finalArtAccepted": false,
       "runtimeIntegrated": false
     },

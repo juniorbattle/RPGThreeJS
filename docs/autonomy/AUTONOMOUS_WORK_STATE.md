@@ -1,12 +1,18 @@
-# Cinématiques illustrées — quatre prêtes, jugement produit
+# Cinématiques illustrées — Serpent produit, jugement à corriger
 
-Run codex-illustrated-resume-20261021T2146Z, début2026-10-21T21:46:48Z, clôture2026-10-21T22:31:08.401Z. READY_FOR_PC_ACCEPTANCE conservé ; scheduler ACTIVE/configuration inchangée. Crédits revenus, production reprise. Sauvé READY par revue indépendante de preuve existante. Sacrifié READY :5images/18s,1scénario/10contrôles,3captures inspectées,guardianPASS. Jugement :4images/16s,4initiaux+2corrections/6raw,guardianPASS_PRESERVATION ; lecture continue et raccord final03→04 non acceptés. Aucun artfinal/runtime/globalPC accepté.
+Run codex-illustrated-judgement-20261021T2236Z, début2026-10-21T22:36:15Z, checkpoint2026-10-21T22:53:51.843Z. READY_FOR_PC_ACCEPTANCE conservé ; scheduler ACTIVE/configuration byte-identique. Préflight propre/verrouatomique/fetchparité, aucun WIP hérité.
 
-**UNE prochaine action exacte :** Resume lion_judgement/v1 WITHOUT regenerating four selected images. Observe normal16s, especially03→04 final attention (still more dipped, not accepted). Copy preserved sacrificed smoke to a new judgement driver; adapt4images/3dissolves/16s/times0,4,8,11/paths/SHA while retaining every assertion; unique registered receipt and inspected captures before READY, then serpent_route_ending.
+Jugement : quatre images reprises sans régénération, une lecture16s/3fondus et10contrôles techniquesPASS. Trois captures inspectées ; guardian71SHA PASS_PRESERVATION/PASS_TECHNICAL_READER_SCOPED. **NEEDS_CORRECTION** :03→04 rebaisse tête/ligne du regard, attention finale non maintenue. Reçu brutSUCCEEDED/NOT_ACCEPTED conservé. Pas de READY/artfinal/runtime.
 
-41tests/TypeScript/contracts8+8/gates/diffcheck/SHA PASS.346jobs hérités intacts,347total.0source runtime/0gameplay/9illustrations sélectionnées/11appels/2corrections/1scénario/8QApreuves/3workflowdocs+1plan/0WIP hérité. Deux fins sans média. [Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html) · [Handoff](handoffs/2026-10-21T2146Z-codex-illustrated-continuation.md).
+Serpent : cinq nouvelles images1672x941/18s,5appels initiaux0correction ;1rejet avant génération pour6références, corrigé à5, requête/erreur conservées. DeuxV2Séraphine/Maelor, ruines nocturnes SERPENT_FINALE, tension→mainrelâchée→attentionMaelor→attentioncommune→livreplusbas/disponibilité. Ni artefact/Sceau/custodie/divulgation imposée ni canon ajouté. **GENERATED_REVIEW_PENDING** : images/timeline/lecteur consultables, propre lecture18s/reçu à faire. Aucune preuve jugement ou lecteur partagé n’accepte ces nouveaux médias.
 
-Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/narrative/presentation/save/governance PASS préservation ; UI/QA PASS borné sauvé+sacrifié, jugement continu/raccord PENDING ; Traversal/combat N/A. Aucun LOCKED modifié. Serveur5461 et onglet arrêtés ; publication normale origin/dev OD-2026-10-12-A, main protégé.
+**UNE prochaine action exacte :** Resume serpent_route_ending/v1 WITHOUT regenerating five selected images: observe normal18s, copy preserved sacrificed smoke (5images/4dissolves/18s/times0,4,7,10,13), change scene/paths/SHA/job only, retain all assertions; unique receipt/captures/scoped review before READY. Judgement NEEDS_CORRECTION final03→04 head gaze; no identical retry.
+
+contracts:validate PASS8LOCKED/8slots; immutablebaseline/statusgates empty ; npx tsc --noEmit PASS ; 63focusedtests PASS: Cin6aPresentation39 and lionFinale24; tmp excluded ; Judgement one scenario/oneattempt10checks PASS, threecaptures inspected, rawSUCCEEDED/NOT_ACCEPTED; guardian71/71SHA, sceneNEEDS_CORRECTION ; Static117SHA assertions/links/timeline/queue PASS;347inheritedjobs/348total deepEqual, historicalnonoperationalroots retained ; Camp8SHA/reader/source/public/LOCKED/scheduler preservation PASS; git diff --check PASS. Aucun build/anciennecampagne rejoué : aucun runtime modifié.0source/0gameplay/5sélectionnées/5raw/5appelsréussis/1rejetsansimage/0correction/1scénario/6nouveauxfichiersQApreuve/3workflowdocs+1plan/0WIPhérité. GalerieetREADME actualisés.
+
+Conformité1.8.0/baseline0cb95135 : GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/SAVE/REPOSITORY_GOVERNANCE PASS préservation ; NARRATIVE_PRESENTATION BLOCKED raccordjugement, Serpent continuPENDING ; UI_ACCESSIBILITY/QA_EVIDENCE PASS borné lecteurjugement/SerpentpreuvePENDING ; TRAVERSAL/COMBAT N/A. Aucun LOCKED modifié, huit slots conservés. Artfinal/adoptionruntime/PCglobal/équilibre/matériel/audio/mobileaprèsPC restentouverts.
+
+[Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html) · [Handoff](handoffs/2026-10-21T2236Z-codex-judgement-serpent.md). Publicationnormaleorigin/devOD-2026-10-12-A ; mainprotégé ; SHAfinal/parité/libérationverrou consignés dans Git/mémoireaprèspublication.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -358,6 +364,7 @@ Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/nar
 - illustrated-bois-arrival-1854: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-bois-1854/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-bois-saved-2031: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-saved-2031/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-bois-sacrificed-2146: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-resume-2146/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-judgement-2236: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-judgement-2236/review/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
-Livraison jugement70a8daa5fcb4e233bb3a576e4f9abbbc740b272b et sacrifiéb4ef81b1e6c17b67cf2f6aefe60dca8927f4f294 publiées, parité origin/dev vérifiée. Clôture2026-10-21T22:34:29.324Z. Métadonnées finales dans le commit suivant ; WIPowned et verrou retirés seulement après publication vérifiée et mémoire automation. Serveur/onglet fermés, scheduler inchangé.
+Revue Serpent indépendante2026-10-21T22:55:43.379Z : PASS_PRESERVATION_ONLY,52/52SHA et cinqimagesinspectées ; GENERATED_REVIEW_PENDING, aucune lecture18s ni READY/artfinal/runtimeacceptés. Détailslanterne/broderies variables et derniergeste subtil explicites.

@@ -1,0 +1,29 @@
+{
+  "status": "PASS_PRESERVATION_ONLY",
+  "reviewedAt": "2026-10-21T22:55:43.379Z",
+  "guardian": "/root/guardian",
+  "provenanceHashChecks": 52,
+  "provenance": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/provenance.json",
+    "sha256": "a84e88241c2ab561021bd1d003f945da9b67e29551f40ea05c8f450e06097092"
+  },
+  "selectedImagesInspected": 5,
+  "rawOutputs": 5,
+  "targetedCorrections": 0,
+  "rejectedArgumentCallsNoImage": 1,
+  "sceneStatus": "GENERATED_REVIEW_PENDING",
+  "actualProgression": "Stopped/tensed pair; Seraphine open right glove lowers; Maelor attention raises right; Seraphine hood turns left; closer endpoint/book slightly lower",
+  "continuity": "TwoV2 actors, leftbook/leftstaff/rights empty, permanent chained lantern/satchel, approved nocturnal SERPENT_FINALE; postvictory/aftermath before separate epilogue",
+  "remainingVisualLimits": [
+    "Final change subtle, continuous18s readability unverified",
+    "No visible eye gaze under opaque veil",
+    "No conspicuous final right finger opening",
+    "Lantern ornament/embroidery vary"
+  ],
+  "technicalMontageStatus": "PENDING_OWN_18S_REVIEW_AND_RECEIPT",
+  "artAccepted": false,
+  "runtimeIntegrated": false,
+  "contractSetVersion": "1.8.0",
+  "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+  "lockedRulesChanged": false
+}

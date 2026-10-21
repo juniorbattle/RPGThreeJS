@@ -1,0 +1,42 @@
+{
+  "totalSeconds": 18,
+  "normalFadeSeconds": 1,
+  "reducedFadeSeconds": 0.8,
+  "stages": [
+    {
+      "title": "Après l’affrontement",
+      "description": "La compagnie est déjà arrêtée dans les ruines nocturnes, matériel conservé.",
+      "start": 0,
+      "duration": 4,
+      "path": "shot-01.png"
+    },
+    {
+      "title": "La tension retombe",
+      "description": "Séraphine ouvre sa main droite et la pose plus bas, son bâton reste maintenu.",
+      "start": 4,
+      "duration": 3,
+      "path": "shot-02.png"
+    },
+    {
+      "title": "L’attention rejoint l’alliée",
+      "description": "Maelor relève la tête vers Séraphine hors cadre, livre fermé contre lui.",
+      "start": 7,
+      "duration": 3,
+      "path": "shot-03.png"
+    },
+    {
+      "title": "L’attention se partage",
+      "description": "Séraphine tourne sa capuche vers Maelor ; leurs positions restent stables.",
+      "start": 10,
+      "duration": 3,
+      "path": "shot-04.png"
+    },
+    {
+      "title": "Avant le bilan",
+      "description": "Le livre repose un peu plus bas ; le cadre resserré retient leur disponibilité avant l’épilogue.",
+      "start": 13,
+      "duration": 5,
+      "path": "shot-05.png"
+    }
+  ]
+}

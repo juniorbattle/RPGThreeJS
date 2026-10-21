@@ -1,0 +1,98 @@
+{
+  "status": "PASS_TECHNICAL_READER_SCOPED_SCENE_NEEDS_CORRECTION",
+  "reviewedAt": "2026-10-21T22:46:11.315Z",
+  "guardian": "/root/guardian",
+  "guardianHashAssertions": 71,
+  "rawReceipt": {
+    "path": "tmp/cinematics/illustrated-judgement-2236/review/qa-job.json",
+    "sha256": "5469b2d5ab0d851ead9a162130c63be78f9160f3a518833030d69f80cf97b654"
+  },
+  "rawResult": {
+    "path": "tmp/cinematics/illustrated-judgement-2236/review/results.json",
+    "sha256": "d00029b817536e42cf630443a4c9c9ace7ff933dce462f2d0d65613584446445"
+  },
+  "driver": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-smoke.mjs",
+    "sha256": "4fee61140137e94ef9131fda1b0037de1c32d29b3f8ea27644b135086d42ce9c"
+  },
+  "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+  "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "parameters": {
+    "scene": "lion_judgement",
+    "url": "http://127.0.0.1:5461/lion_judgement/v1/index.html",
+    "media": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/sequence.json",
+        "sha256": "9e7d79cfee3ec410bdf62d17ef4b4aade474b6e580f2d3724f8f2dc4d05c603e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+        "sha256": "f62031235118c0c98970a66880296b6f134f0055a96c2bf93450ceee48de2bf1"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-02.png",
+        "sha256": "cffecfa5e1acf4e94002a21356f248c9fad42283e8bf20a6fdd095502eadd2ba"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+        "sha256": "1fe23af8966273186aadaf5bcf19d348a8af617d1e6aa93c9da4cf41e0137f10"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-04.png",
+        "sha256": "4540c10f1926778410ab22d6068eae632e57d0d95b18246f74082d3070232727"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/index.html",
+        "sha256": "46ecbd1d1e9172c8962f463a4dcb3812fdac232ee4eecda61bc8d8a3a8547266"
+      }
+    ],
+    "reader": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+        "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+        "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+      }
+    ],
+    "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+  },
+  "checks": [
+    "Four distinct complete images preloaded; initially paused on establishing image",
+    "Three real-time dissolves through chronological4images, total16s and final stop",
+    "All four scene stages follow the authored timeline",
+    "Four-stage Home/End/arrow/previous navigation matches timeline",
+    "OSreduce gentle dissolve retained; pause freezes opacity and clock; resume advances",
+    "Whole images/44px controls/no horizontal clipping at1366x768",
+    "Whole images/44px controls/no horizontal clipping at620x780",
+    "Whole images/44px controls/no horizontal clipping at390x844",
+    "No nominal console/page errors",
+    "Missing final raccord image disables playback with visible status"
+  ],
+  "captures": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-2236/dissolve-3.png",
+      "sha256": "1c7f0038d6dd8efa227d3d174ef66a9fd93ad950c27271eac48595ea781c0cc4"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-2236/desktop-endpoint.png",
+      "sha256": "8b06555f2981bd1c4920da328493a75d5e471efec30ce00d66dcf25f8c34fe57"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-2236/narrow-preparation.png",
+      "sha256": "019166c166a4895d153a32cd9428a1fe39c50e0d1f279c0244cc090654c48ce3"
+    }
+  ],
+  "independentVerdict": "NEEDS_CORRECTION",
+  "preservationVerdict": "PASS_PRESERVATION",
+  "finalAttentionDefect": "03 lifts level gaze toward company;04 noticeably lowers muzzle/eye-line. Dissolve3 and final endpoint do not sustain intended attention.",
+  "rawAcceptance": "NOT_ACCEPTED",
+  "artAccepted": false,
+  "runtimeIntegrated": false,
+  "imagesRegeneratedThisRun": 0,
+  "correctionsThisRun": 0,
+  "priorCorrectionsRetained": 2,
+  "technicalScope": "Offline reader only;10checks/3dissolves16s; no gameplay or final art acceptance",
+  "observation": "Four native images and three captures inspected; IAB actual0.2s to16s observed under OSreduce0.8s, normal1s/16s proven by driver."
+}

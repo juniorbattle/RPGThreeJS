@@ -1,0 +1,1 @@
+{"status":"TOOL_ARGUMENT_REJECTED_NO_IMAGE","error":"`referenced_image_paths` must contain at most 5 paths","tool":"image_gen.imagegen","output":null,"correction":"Retain immutable environment/twoV2masters plus shots01/02, describe Maelor attention without sixth image."}

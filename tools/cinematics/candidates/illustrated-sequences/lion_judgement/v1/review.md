@@ -18,3 +18,9 @@ Art final, compréhension humaine et adoption runtime restent opérateur ; aucun
 ## Revue indépendante de préservation 2026-10-21T22:31:08.401Z
 
 Guardian **PASS_PRESERVATION** : quatre images et variantes04initial/correction01 inspectées,51SHA vérifiés, six sorties conservées, Alaric seul/équipement/salle/frontière préopen conformes. Correction02 améliore **légèrement** tête/poitrine ; le dernier plan reste plus incliné que03 et ne reproduit pas exactement son regard à niveau. Ne pas déclarer le raccord résolu ni une levée de tête manifeste. Aucun blocage de canon/équipement ; continuité de l’attention finale et lecture16s restent non acceptées. GENERATED_REVIEW_PENDING conservé, aucun troisième retry ce run.
+
+## Revue continue 2026-10-21T22:46:11.315Z
+
+**NEEDS_CORRECTION** : lecture16s et10contrôles techniquesPASS, mais03→04 perd le regard relevé. Dernierlarge baisse museau/ligne des yeux, sans maintenir la disponibilité visée. Guardian indépendant PASS_PRESERVATION/PASS_TECHNICAL_READER_SCOPED,71/71assertionsSHA ; trois captures regardées, quatre images conservées sans régénération. Reçu brutSUCCEEDED/NOT_ACCEPTED séparé de cette revue. Pas de READY/artfinal/runtime.
+
+Deux corrections antérieures sont conservées ;02 montrait un progrès léger, donc le seuil BLOCKED de deux passages sans progrès n’est pas inféré du seul cap2. Éviter un retry identique ; prochaine correction devra viser la rotation de tête sans modifier la composition ni équipement. File indépendante Serpent poursuivie. Preuve propre : [reçu](review-receipt.json).

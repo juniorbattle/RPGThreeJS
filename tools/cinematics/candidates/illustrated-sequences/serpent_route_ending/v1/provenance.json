@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "sceneId": "serpent_route_ending",
+  "version": "v1",
+  "status": "GENERATED_REVIEW_PENDING",
+  "runId": "codex-illustrated-judgement-20261021T2236Z",
+  "createdAt": "2026-10-21T22:41:06.806Z",
+  "sourceBranch": "dev",
+  "sourceCommit": "53a320e06cb3d8eb9b7a6dd379a232c953fecbd4",
+  "contractSetVersion": "1.8.0",
+  "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+  "generationMode": "BUILT_IN_IMAGEGEN_ONLY_OFFLINE_ILLUSTRATION",
+  "finalArtAccepted": false,
+  "runtimeIntegrated": false,
+  "references": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+      "sha256": "1b804263ddf29b5ff7a75628beca9eb8188a4e7205d8e5d439ef9c4b0bffd762",
+      "role": "Immutable approved environment or Character V2 authority"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+      "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862",
+      "role": "Immutable approved environment or Character V2 authority"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/maelor.png",
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+      "role": "Immutable approved environment or Character V2 authority"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/cinematics/Cin6aPresentation.ts",
+      "sha256": "41e0dee7f65231bd8e65cee075ac8c6d909302b6de37e7560b0eeeae8a645990"
+    },
+    {
+      "path": "src/game/GameApp.ts",
+      "sha256": "067df49417b038704b154b54402aae42840d5f3bde279838d845f848d530d8b5"
+    },
+    {
+      "path": "src/game/lionFinale.ts",
+      "sha256": "3d6cdc02af29607e243524177aa3aeb66715834c61990aea34c991cfa5bb6740"
+    },
+    {
+      "path": "src/render/data/demo-environment-pack-v1.production.json",
+      "sha256": "fcd1c020d9674c35e9665bb10fdcd7d4d898f382ed0117016f4b6c9dce6e00c3"
+    }
+  ],
+  "calls": [
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/requests/shot-01.json",
+        "sha256": "836f01ba2b18ec2e53fa4d721acee8a4ddf215c280f7da17ae6d2c3fd0bf5dcb"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/results/shot-01.json",
+        "sha256": "fb98fc4699e9424fa5ad94929cf476c8bcbbe3aeef85a2ca1210d3920863c4a7"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/raw/shot-01-initial.png",
+        "sha256": "22184453de1ee8f9beaf48360ef21526a064e8f930246a68a72991dc345616aa"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+          "sha256": "1b804263ddf29b5ff7a75628beca9eb8188a4e7205d8e5d439ef9c4b0bffd762"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/sage_seraphine.png",
+          "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/requests/shot-02.json",
+        "sha256": "60b172bee382bcafd772e23bf205642bb4c450844858a4567e060141ef78710a"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/results/shot-02.json",
+        "sha256": "9dcec3a13f40e4212205855a5b5f703c0179e382b6ace79911475cdb1d33ddbf"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/raw/shot-02-initial.png",
+        "sha256": "1321706a9bbc5e5789204d740baa9de6d8e75c886a52277d7a4715dd93a112c8"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+          "sha256": "1b804263ddf29b5ff7a75628beca9eb8188a4e7205d8e5d439ef9c4b0bffd762"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/sage_seraphine.png",
+          "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-01.png",
+          "sha256": "22184453de1ee8f9beaf48360ef21526a064e8f930246a68a72991dc345616aa"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/requests/shot-03.json",
+        "sha256": "780b3dc4b38987e16b7adc1180a44a2c5d783a4313984dff9f903606fc41787d"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/results/shot-03.json",
+        "sha256": "47937735795cc787e20bdbc90cd05d2fad053aab478ae5c4fda56cafc049e13e"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/raw/shot-03-initial.png",
+        "sha256": "9ac7d397073439aeb80d463931cc8bccff7c7d7197d59e2314d899e6ac7462dc"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+          "sha256": "1b804263ddf29b5ff7a75628beca9eb8188a4e7205d8e5d439ef9c4b0bffd762"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/sage_seraphine.png",
+          "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-01.png",
+          "sha256": "22184453de1ee8f9beaf48360ef21526a064e8f930246a68a72991dc345616aa"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/requests/shot-04.json",
+        "sha256": "bf9694df8358c82efb79bc5d97b25a2c0893702a6e08bb72a290b9f7cf14f080"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/results/shot-04.json",
+        "sha256": "0f61cc97fdb0295ce521c06e383d9eac242c310bc465c2c9715e431a6c7cead5"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/raw/shot-04-initial.png",
+        "sha256": "25ab81eee2554ef685b0945f9adf3f357165a7354f14ab3ae28467981891f884"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+          "sha256": "1b804263ddf29b5ff7a75628beca9eb8188a4e7205d8e5d439ef9c4b0bffd762"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/sage_seraphine.png",
+          "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-01.png",
+          "sha256": "22184453de1ee8f9beaf48360ef21526a064e8f930246a68a72991dc345616aa"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-02.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-02.png",
+          "sha256": "1321706a9bbc5e5789204d740baa9de6d8e75c886a52277d7a4715dd93a112c8"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/requests/shot-05.json",
+        "sha256": "83ab23abe4d918a07dc14a28fe9c83f17d13d3e039453f0a2c5c79bd706d6cff"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/results/shot-05.json",
+        "sha256": "7ae66d43be1096974b020ecead16b027463aba282176f72d7eb1250b84fe56ba"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/raw/shot-05-initial.png",
+        "sha256": "25d49b68a2a8a9875e024d2eb26f5b107db7cf369ac31c3e1d90170340540dde"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/serpent-finale-cinematic-source.png",
+          "sha256": "1b804263ddf29b5ff7a75628beca9eb8188a4e7205d8e5d439ef9c4b0bffd762"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/sage_seraphine.png",
+          "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+          "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png",
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-04.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-04.png",
+          "sha256": "25ab81eee2554ef685b0945f9adf3f357165a7354f14ab3ae28467981891f884"
+        }
+      ]
+    }
+  ],
+  "selectedImages": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-01.png",
+      "sha256": "22184453de1ee8f9beaf48360ef21526a064e8f930246a68a72991dc345616aa",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-02.png",
+      "sha256": "1321706a9bbc5e5789204d740baa9de6d8e75c886a52277d7a4715dd93a112c8",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-03.png",
+      "sha256": "9ac7d397073439aeb80d463931cc8bccff7c7d7197d59e2314d899e6ac7462dc",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-04.png",
+      "sha256": "25ab81eee2554ef685b0945f9adf3f357165a7354f14ab3ae28467981891f884",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-05.png",
+      "sha256": "25d49b68a2a8a9875e024d2eb26f5b107db7cf369ac31c3e1d90170340540dde",
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "reader": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+      "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+      "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+    }
+  ],
+  "updatedAt": "2026-10-21T22:51:20.492Z",
+  "initialImages": 5,
+  "targetedCorrections": 0,
+  "toolArgumentRejections": [
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/requests/shot-04-error-sixrefs.json",
+        "sha256": "849682cebe38bc4bec31ad95158c3bb097cc4a2cc3f40e4baa4195582ae895ff"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/results/shot-04-error-sixrefs.json",
+        "sha256": "6af1a5e065b0dacf5a20ae92104c4c7e91ed9687a24b0ebdc13bcceebad2a460"
+      },
+      "imageProduced": false
+    }
+  ],
+  "sequence": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/sequence.json",
+    "sha256": "a4c2dd8d69ac474c0a5dbe3eb72c4b5f2870f0def3339b2aa75ed22f612347e2"
+  }
+}
