@@ -3,8 +3,8 @@
   "runStartedAt": "2026-10-21T01:23:37.4537369Z",
   "runEndedAt": null,
   "activeTask": "MANUAL-CAMP-FRESH-FLIPBOOK",
-  "activePhase": "DIRECT_GENERATED_POSES_FINISHING_SEQUENCE",
-  "activeSubtask": "12of18fullscene drawings on disk; rejectedatlases excluded; finishremaining individually",
+  "activePhase": "FRESH_FLIPBOOK_GENERATED_READER_VERIFICATION",
+  "activeSubtask": "18 raw generated drawings preserved; offline reader ready for focused verification",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "41fa9481ebac1aa699f6750535e05509b8de729c",
   "lastPushedCommit": "41fa9481ebac1aa699f6750535e05509b8de729c",
@@ -62,7 +62,7 @@
     "Finish6newdrawings",
     "Assemble/test/inspectrawflipbook and record preciseartlimits"
   ],
-  "nextAction": "Generate remainingframes12–17 from newbase only; assemble exactraw18drawings at6fps in an offline reader, inspect continuity without alignment/interpolation or priorvideo input.",
+  "nextAction": "Verify the standalone flipbook controls and raw-image continuity; publish for operator review of the flipbook style, without gait or runtime acceptance.",
   "taskQueue": [
     "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
     "Independent already-authorized demonstratedPC defect only;no unchanged diagnostic loop",
@@ -143,7 +143,7 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-camp-flipbook-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T01:55:12.623Z",
+  "lastHeartbeat": "2026-10-21T02:11:03.989Z",
   "wip": {
     "branch": "dev",
     "sha": "41fa9481ebac1aa699f6750535e05509b8de729c",
@@ -184,7 +184,7 @@
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T01:55:12.623Z",
+    "lastHeartbeat": "2026-10-21T02:11:03.989Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37411,7 +37411,7 @@
       "lastGreenCheck": "2026-10-21T01:55:12.623Z",
       "inheritedWip": 0
     },
-    "nextAction": "Generate remainingframes12–17 from newbase only; assemble exactraw18drawings at6fps in an offline reader, inspect continuity without alignment/interpolation or priorvideo input.",
+    "nextAction": "Verify the standalone flipbook controls and raw-image continuity; publish for operator review of the flipbook style, without gait or runtime acceptance.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "rawGeneratedImages": 14,
@@ -38238,7 +38238,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "MANUAL-CAMP-FRESH-FLIPBOOK",
-    "activeSubtask": "12of18fullscene drawings on disk; rejectedatlases excluded; finishremaining individually",
+    "activeSubtask": "18 raw generated drawings preserved; offline reader ready for focused verification",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41574,8 +41574,8 @@
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-21T01:23:37.4537369Z",
-    "activePhase": "DIRECT_GENERATED_POSES_FINISHING_SEQUENCE",
-    "heartbeat": "2026-10-21T01:55:12.623Z",
+    "activePhase": "FRESH_FLIPBOOK_GENERATED_READER_VERIFICATION",
+    "heartbeat": "2026-10-21T02:11:03.989Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0137Z-codex-flipbook.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -50182,11 +50182,11 @@
   },
   "campFlipbookStudy": {
     "runId": "codex-manual-camp-flipbook-20261020",
-    "status": "IN_PROGRESS_FINISHING_SIX_POSES",
+    "status": "GENERATED_READER_PENDING_VERIFICATION",
     "document": "docs/autonomy/CAMP_FLIPBOOK_STUDY_2026-10-20.md",
     "canonicalInputsOnly": true,
     "newBase": "tools/cinematics/candidates/flipbook-camp-20261020/base-v1.png",
-    "imageGenCalls": 14,
+    "imageGenCalls": 20,
     "rejectedAtlases": 2,
     "previousVideosUsed": false,
     "previousStillsUsed": false,
@@ -50194,8 +50194,10 @@
     "plannedFps": 6,
     "artisticAcceptance": false,
     "runtimeChanged": false,
-    "nextAction": "Generate remainingframes12–17 from newbase only; assemble exactraw18drawings at6fps in an offline reader, inspect continuity without alignment/interpolation or priorvideo input.",
-    "individualPosesGenerated": 11,
-    "sequenceDrawingsAvailable": 12
+    "nextAction": "Verify the standalone flipbook controls and raw-image continuity; publish for operator review of the flipbook style, without gait or runtime acceptance.",
+    "individualPosesGenerated": 17,
+    "sequenceDrawingsAvailable": 18,
+    "preview": "http://127.0.0.1:5455/",
+    "provenance": "tools/cinematics/candidates/flipbook-camp-20261020/provenance.json"
   }
 }

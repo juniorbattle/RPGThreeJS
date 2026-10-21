@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RPGThreeJS — Flipbook du camp</title><link rel="stylesheet" href="flipbook.css"></head>
+<body><main>
+  <header><div><p class="eyebrow">RPGThreeJS · Nouvelle étude d’animation</p><h1>Le camp, image par image</h1></div><span class="badge">FLIPBOOK · 18 DESSINS</span></header>
+  <section class="screen" tabindex="0" aria-label="Flipbook du trio dans le camp"><img id="picture" src="base-v1.png" alt="Dessin 1 du nouveau flipbook du camp"><p id="error" role="status" hidden></p></section>
+  <section class="controls" aria-label="Commandes du flipbook">
+    <div class="caption"><span id="number">01 / 18</span><p>Nouvelle base · nouvelles poses générées</p><output id="time" aria-live="off">0,00 / 3,00 s</output></div>
+    <div class="transport"><button id="play" class="primary" disabled>Chargement…</button><button id="previous" aria-label="Dessin  précédent">←</button><button id="next" aria-label="Dessin  suivant">→</button><label>Cadence <select id="fps" aria-label="Cadence du flipbook"><option value="4">4 i/s</option><option value="6" selected>6 i/s</option><option value="8">8 i/s</option></select></label><input id="seek" type="range" min="0" max="17" step="1" value="0" aria-label="Dessin  affiché" aria-valuetext="Dessin 1 sur18"></div>
+    <p id="status" role="status" aria-live="polite">Chargement des 18 dessins…</p><p id="motion-note" hidden>Réduction des mouvements active : feuilletage manuel disponible ; la lecture animée démarre uniquement sur votre demande.</p>
+  </section>
+  <details><summary>Les 18 dessins et leur origine</summary><p>Chaque image est un dessin généré depuis la nouvelle base. Cette base utilise uniquement les masters V2 et le décor canonique du camp. Aucune ancienne vidéo, image extraite ou pose du montage précédent n’est utilisée. La lecture ne comporte ni fondu, interpolation, déplacement logiciel des personnages ou réalignement du décor.</p><div id="thumbnails" class="thumbnails"></div><p><a href="provenance.json">Sources, requêtes et empreintes des images</a></p></details>
+  <footer>Essai indépendant du jeu. Les variations de placement et d’équipement restent visibles ; les cycles de marche et les appuis ne sont pas certifiés. Aucun son.</footer>
+</main><script type="module" src="flipbook.mjs"></script></body></html>

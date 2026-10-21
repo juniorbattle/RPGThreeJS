@@ -1,0 +1,291 @@
+{
+  "scope": "MANUAL-CAMP-FLIPBOOK-2026-10-20",
+  "createdAt": "2026-10-21T02:11:03.989Z",
+  "runId": "codex-manual-camp-flipbook-20261020",
+  "startingCommit": "0610d8017c797fac092a489e74daf77e04101dd7",
+  "generator": "built-in image_gen.imagegen",
+  "canonicalInputs": [
+    {
+      "path": "public/assets/characters/pixel/masters/white_mage.png",
+      "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/maelor.png",
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alistair.png",
+      "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32"
+    }
+  ],
+  "newBase": "base-v1.png",
+  "ancestry": "The base uses the four canonical inputs only; all 17 later full-scene drawings use this new base only. No previous video, candidate, extracted frame or illustrated study used as input.",
+  "imageGenCalls": 20,
+  "playback": {
+    "frames": 18,
+    "fps": 6,
+    "durationSeconds": 3,
+    "autoplay": false,
+    "loop": false,
+    "interpolation": false,
+    "alignment": false,
+    "crop": false,
+    "sprites": false,
+    "audio": false
+  },
+  "frames": [
+    {
+      "index": 0,
+      "path": "base-v1.png",
+      "sha256": "3b1eeb9532f4081f5490a03fc6e5d91a2d195a9404c6957cf975435b9ab46160",
+      "width": 1672,
+      "height": 941,
+      "bytes": 3006792,
+      "original": "exec-e7ccfa62-1152-455d-9811-a45f9aba89df.png",
+      "requestFile": "base-request.txt",
+      "reference": [
+        "public/assets/characters/pixel/masters/white_mage.png",
+        "public/assets/characters/pixel/masters/maelor.png",
+        "public/assets/characters/pixel/masters/alistair.png",
+        "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png"
+      ]
+    },
+    {
+      "index": 1,
+      "path": "frame-001.png",
+      "sha256": "2e8774af7725aba5c2b691c6e985c3b08ddb0e09b9122dff281d2697c5ed32ca",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2875454,
+      "original": "exec-fd888007-0cf0-4175-8b88-877accb873d9.png",
+      "requestFile": "direct-02-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 2,
+      "path": "frame-002.png",
+      "sha256": "1412056a51af25c8534a2460785db37c71c995ef8e4e10828d0f9479bd50b529",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2907302,
+      "original": "exec-6545f59c-2837-4285-971c-626f2d541d9e.png",
+      "requestFile": "direct-02-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 3,
+      "path": "frame-003.png",
+      "sha256": "5b513e4552a7ca01246d079ae2d81705fcac33938f0b3d54a250db72097c9eab",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2924259,
+      "original": "exec-80887828-7324-40fe-a961-d4f92af3a2c4.png",
+      "requestFile": "direct-02-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 4,
+      "path": "frame-004.png",
+      "sha256": "66412c059a94aa302eaebd41370cd511c942768b0357c6a30f9f30181e250943",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2900044,
+      "original": "exec-3f179137-213b-44ae-9dfd-3ef14d6b893b.png",
+      "requestFile": "direct-01-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 5,
+      "path": "frame-005.png",
+      "sha256": "4cee9705a2c71a6116f30c4e350cb2b43ab1dbcd69e9e0f024cff72bd224d9cd",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2881812,
+      "original": "exec-51b31c6f-2e64-4743-8dbc-3e805b15c491.png",
+      "requestFile": "direct-03-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 6,
+      "path": "frame-006.png",
+      "sha256": "ea8c9f7e0e9657d9f2fcf4a4ce6a578aa678f18c48ab4d8b73fee9351d10f735",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2925225,
+      "original": "exec-7a054052-f757-4864-94a2-90f80736a8be.png",
+      "requestFile": "direct-03-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 7,
+      "path": "frame-007.png",
+      "sha256": "1c2493985adeed25d9dd3d7920539ab070c1e5aa5502f12d72b5c4cd88e43e4c",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2909003,
+      "original": "exec-2902904c-3c1e-47b3-8478-a426cef9307c.png",
+      "requestFile": "direct-01-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 8,
+      "path": "frame-008.png",
+      "sha256": "af0ae0aa4bf7a530a735ad6ae095d303b052965397afc136d39e8a679bd90391",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2885960,
+      "original": "exec-0b6ba070-e6d4-4627-bec0-df7512559ade.png",
+      "requestFile": "direct-03-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 9,
+      "path": "frame-009.png",
+      "sha256": "7d1e6d1a09a090d6ef66e1c11f82590a30cbd07938b3c17e2947be01972090a8",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2918172,
+      "original": "exec-ce0434a9-a0f9-44e2-88cf-27c838c402c0.png",
+      "requestFile": "direct-04-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 10,
+      "path": "frame-010.png",
+      "sha256": "68802db490f79572ef74d32a613f73fdd042d7f10b86a37fa78b11f9f7636e00",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2915062,
+      "original": "exec-e9fcf178-ebd1-4905-a034-406f70ee4245.png",
+      "requestFile": "direct-04-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 11,
+      "path": "frame-011.png",
+      "sha256": "9342708e1f0a2e609f419914c4d07f605b8c0cf76d234770c9811af1042abf20",
+      "width": 1671,
+      "height": 941,
+      "bytes": 2921106,
+      "original": "exec-2cbe522d-67ca-47b8-8608-fba30d6caf9e.png",
+      "requestFile": "direct-04-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 12,
+      "path": "frame-012.png",
+      "sha256": "47b28f62136b0dee361f9f705b4ae9ea68a9efbcca228dd8339f2d1085b70405",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2941020,
+      "original": "exec-5e3d71ea-3831-437c-965c-3c3f7281f5d2.png",
+      "requestFile": "direct-05-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 13,
+      "path": "frame-013.png",
+      "sha256": "ea3dc8c0de7069184c9fe7637234c7054f2618ace4ca10929cc02c6d1f8bbc88",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2861238,
+      "original": "exec-f11ac79e-cbab-4c6d-841b-093254409fd3.png",
+      "requestFile": "direct-05-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 14,
+      "path": "frame-014.png",
+      "sha256": "dee3e1fd58a65cd1ce64725cffc3d3e57bfc21e0dbd2c027b3046fa9642c6e3a",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2886102,
+      "original": "exec-542dfb83-5c32-4ca4-8395-7635c44f8976.png",
+      "requestFile": "direct-05-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 15,
+      "path": "frame-015.png",
+      "sha256": "37b5354ef9854c1591d2adb34f89b425a6e18963e4142c449d35fd715fcd8f98",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2916673,
+      "original": "exec-11fbea03-822a-4009-a6af-acedc2771c27.png",
+      "requestFile": "direct-05-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 16,
+      "path": "frame-016.png",
+      "sha256": "5ad34ce4f58a37a38a208bc74f8f9cdae72ab0e0cc8cf355f62124ce3a8df9e6",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2901748,
+      "original": "exec-b2d1f69c-4298-4a7b-8276-bc6ea8e2be68.png",
+      "requestFile": "direct-05-requests.json",
+      "reference": "base-v1.png"
+    },
+    {
+      "index": 17,
+      "path": "frame-017.png",
+      "sha256": "82ca538d6a6ab68e0e7aac05871a269e19e139c7a9c6e357c411fae8c98a7254",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2900357,
+      "original": "exec-2af8b00e-7209-4300-8df2-69cd20171393.png",
+      "requestFile": "direct-05-requests.json",
+      "reference": "base-v1.png"
+    }
+  ],
+  "rejected": [
+    {
+      "path": "atlas-a-v1-rejected.png",
+      "requestFile": "atlas-a-request.txt",
+      "reason": "Excessive rightward drift and clipped sword; excluded from playback"
+    },
+    {
+      "path": "atlas-a-v2-rejected.png",
+      "requestFile": "atlas-a-correction-request.txt",
+      "reason": "Correction insufficient; excluded from playback"
+    }
+  ],
+  "requests": {
+    "base": "base-request.txt",
+    "baseBriefNotExactRequest": "base-prompt.txt",
+    "textNormalization": "Base/atlas text requests: normalize CRLF to LF and trimEnd; direct JSON prompt strings are exact.",
+    "direct": [
+      "direct-01-requests.json",
+      "direct-02-requests.json",
+      "direct-03-requests.json",
+      "direct-04-requests.json",
+      "direct-05-requests.json"
+    ],
+    "results": [
+      "direct-01-results.json",
+      "direct-02-results.json",
+      "direct-03-results.json",
+      "direct-04-results.json",
+      "direct-05-results.json"
+    ]
+  },
+  "retainedOriginalDirectory": "C:/Users/miche/.codex/generated_images/01a15a00-3093-7b92-9dd1-416e160ac959",
+  "quality": {
+    "artisticAcceptance": false,
+    "gaitAcceptance": false,
+    "twoCompleteCyclesCertified": false,
+    "observations": [
+      "Actor placement, leg poses and equipment grips vary between drawings.",
+      "Complete foot contacts and weight transfers have not been certified.",
+      "Original canvas sizes are retained without realignment.",
+      "18 unique generated drawings are not evidence of smooth grounded locomotion."
+    ]
+  },
+  "runtimeChanged": false,
+  "lockedChanged": false,
+  "preview": "http://127.0.0.1:5455/"
+}

@@ -7,3 +7,5 @@ Next: Generate individual fresh full-scene poses from base-v1 only, excluding bo
 Verroupossédé, tâcheactive ;339jobs et historiquesintacts. Pas d’adoptionruntime/LOCKED/MiniMax/audio/scheduler.
 
 Flipbook progress 2026-10-21T01:55:12.623Z: 12/18drawings; twoatlases rejected. Next: Generate remainingframes12–17 from newbase only; assemble exactraw18drawings at6fps in an offline reader, inspect continuity without alignment/interpolation or priorvideo input.
+
+Flipbook 2026-10-21T02:11:03.989Z: all 18 raw drawings preserved (20 imagegen calls including two rejected atlases). Reader ready; next: focused standalone verification. No gait/art/runtime acceptance.

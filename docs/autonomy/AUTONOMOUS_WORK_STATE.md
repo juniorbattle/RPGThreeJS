@@ -11,6 +11,9 @@ Aucun MiniMax/vidéo/audio/runtime/scheduler/LOCKED.339jobs et racineshistorique
 
 Flipbook progress 2026-10-21T01:55:12.623Z: 12/18drawings; twoatlases rejected. Next: Generate remainingframes12–17 from newbase only; assemble exactraw18drawings at6fps in an offline reader, inspect continuity without alignment/interpolation or priorvideo input.
 
+
+Flipbook 2026-10-21T02:11:03.989Z: all 18 raw drawings preserved (20 imagegen calls including two rejected atlases). Reader ready; next: focused standalone verification. No gait/art/runtime acceptance.
+
 <!-- QA_JOBS_START -->
 ## Live QA jobs
 
