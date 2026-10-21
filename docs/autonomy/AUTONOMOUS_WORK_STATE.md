@@ -1,16 +1,12 @@
-# Camp — nouveau flipbook prêt pour revue
+# Camp — cinq nouveaux plans illustrés
 
-Run codex-manual-camp-flipbook-20261020; UTC 2026-10-21T02:15:20.357Z. READY_FOR_PC_ACCEPTANCE préservé. [Dossier et limites](CAMP_FLIPBOOK_STUDY_2026-10-20.md).
+Run codex-manual-camp-five-stills-20261020, UTC 2026-10-21T02:32:27.786Z. READY_FOR_PC_ACCEPTANCE conservé. [Demande et livrable](CAMP_FIVE_STILLS_OPERATOR_DIRECTION_2026-10-20.md).
 
-18 dessins générés à partir d'une nouvelle base canonique, sans vidéo précédente ; lecteur hors jeu 6 i/s / 3s, pause et feuilletage. Deux planches rejetées conservées. 20 appels imagegen, aucun appel MiniMax/vidéo, aucun remplacement runtime/LOCKED/audio/scheduler.
+Clarification opérateur : cinq images distinctes de mise en scène, sources canoniques seulement. Ancien flipbook écarté, ancienne vidéo absente des inputs. Cinq nouveaux plans générés et copiés bruts ; lecteur de revue20s à vérifier. Détails d'équipement et géographie non acceptés.
 
-Contrats 8/8, TypeScript, barrière LOCKED et diff propres, smoke du lecteur PASS, trois captures inspectées, guardian PASS_SCOPED_CLOSEOUT. Des sauts de poses/positions/équipement demeurent ; ni marche, deux cycles, art, équipement ou intégration acceptés. Zéro étape de gameplay jouée.
+Prochain : Verify the five-shot reader, then deliver these same compositions for operator review without art/runtime acceptance.
 
-339 jobs et leurs acceptations/bloc ci-dessous préservés exactement. Anciennes vidéos/candidats/études, V6, vérités campagne/combat, objets différés et limites PC/mobile conservés.
-
-Une prochaine action : Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained.
-
-Aperçu http://127.0.0.1:5455/ ; PID 25924 conservé pour revue. Livraison 713bd722cd5c4702deeb5bf36b2a9a2429d5ebcc publiée et vérifiée OD-2026-10-12-A ; runEndedAt 2026-10-21T02:17:03.642Z. Clôture metadata puis libération du verrou après parité.
+339jobs et acceptations/bloc exact conservés. Aucun runtime, LOCKED, MP4, audio, scheduler ou vérité jeu changé.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

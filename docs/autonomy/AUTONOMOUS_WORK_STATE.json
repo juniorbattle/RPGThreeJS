@@ -1,10 +1,10 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-21T01:23:37.4537369Z",
-  "runEndedAt": "2026-10-21T02:17:03.642Z",
-  "activeTask": "MANUAL-CAMP-FRESH-FLIPBOOK",
-  "activePhase": "FRESH_FLIPBOOK_READY_FOR_OPERATOR_STYLE_REVIEW",
-  "activeSubtask": "18 raw drawings and offline reader delivered; gait/art/runtime unaccepted",
+  "runStartedAt": "2026-10-21T02:24:53.650Z",
+  "runEndedAt": null,
+  "activeTask": "MANUAL-CAMP-FIVE-STAGED-STILLS",
+  "activePhase": "FIVE_STILLS_READER_VERIFICATION",
+  "activeSubtask": "Five distinct generated shots preserved; verify the offline 20s montage",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "713bd722cd5c4702deeb5bf36b2a9a2429d5ebcc",
   "lastPushedCommit": "713bd722cd5c4702deeb5bf36b2a9a2429d5ebcc",
@@ -86,7 +86,7 @@
   "remainingWork": [
     "Operator review of this flipbook; global PC/balance/hardware/audio and mobile-after-PC scopes retained"
   ],
-  "nextAction": "Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained.",
+  "nextAction": "Verify the five-shot reader, then deliver these same compositions for operator review without art/runtime acceptance.",
   "taskQueue": [
     "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
     "Independent already-authorized demonstratedPC defect only;no unchanged diagnostic loop",
@@ -165,9 +165,9 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-manual-camp-flipbook-20261020",
+  "runId": "codex-manual-camp-five-stills-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T02:17:03.642Z",
+  "lastHeartbeat": "2026-10-21T02:32:27.786Z",
   "wip": {
     "branch": "dev",
     "sha": "713bd722cd5c4702deeb5bf36b2a9a2429d5ebcc",
@@ -177,7 +177,7 @@
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T02:17:03.642Z",
+    "lastHeartbeat": "2026-10-21T02:32:27.786Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37373,7 +37373,7 @@
       "lastGreenCheck": "2026-10-21T02:17:03.642Z",
       "inheritedWip": 0
     },
-    "nextAction": "Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained.",
+    "nextAction": "Verify the five-shot reader, then deliver these same compositions for operator review without art/runtime acceptance.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "gameplayStagesPlayed": 0,
@@ -37403,8 +37403,8 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-21T02:17:03.642Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
       "deliveryCheckpoint": "836269855cbe9d60aef117bfeb49433a5073972f",
@@ -38199,8 +38199,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "MANUAL-CAMP-FRESH-FLIPBOOK",
-    "activeSubtask": "18 raw drawings and offline reader delivered; gait/art/runtime unaccepted",
+    "activeTask": "MANUAL-CAMP-FIVE-STAGED-STILLS",
+    "activeSubtask": "Five distinct generated shots preserved; verify the offline 20s montage",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41532,13 +41532,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-manual-camp-flipbook-20261020",
+    "runId": "codex-manual-camp-five-stills-20261020",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-21T01:23:37.4537369Z",
-    "activePhase": "FRESH_FLIPBOOK_READY_FOR_OPERATOR_STYLE_REVIEW",
+    "runStartedAt": "2026-10-21T02:24:53.650Z",
+    "activePhase": "FIVE_STILLS_READER_VERIFICATION",
     "heartbeat": "2026-10-21T02:17:03.642Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0137Z-codex-flipbook.md",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0224Z-codex-camp-five-stills.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -45757,7 +45757,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0137Z-codex-flipbook.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0224Z-codex-camp-five-stills.md",
   "runMeasurement": {
     "runtimeSourceFiles": 0,
     "gameplayStagesPlayed": 0,
@@ -50217,5 +50217,22 @@
     "deliveryCommit": "713bd722cd5c4702deeb5bf36b2a9a2429d5ebcc",
     "runEndedAt": "2026-10-21T02:17:03.642Z",
     "elapsedMinutes": 53.44
+  },
+  "campFiveStills": {
+    "status": "GENERATED_READER_PENDING_CHECK",
+    "operatorClarification": "Return to initial idea: five images of different shots and staging, image-generation tools only, no video base. Prior flipbook not retained.",
+    "canonicalInputsOnly": true,
+    "priorMediaUsed": false,
+    "requests": "tools/cinematics/candidates/camp-five-stills-20261020/requests.json",
+    "runtimeChanged": false,
+    "artisticAcceptance": false,
+    "document": "docs/autonomy/CAMP_FIVE_STILLS_OPERATOR_DIRECTION_2026-10-20.md",
+    "provenance": "tools/cinematics/candidates/camp-five-stills-20261020/provenance.json",
+    "generatedImages": 5,
+    "imageGenCalls": 5,
+    "preview": {
+      "url": "http://127.0.0.1:5456/",
+      "pid": 13348
+    }
   }
 }

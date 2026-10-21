@@ -1,0 +1,134 @@
+{
+  "scope": "MANUAL-CAMP-FIVE-STILLS-2026-10-20",
+  "runId": "codex-manual-camp-five-stills-20261020",
+  "createdAt": "2026-10-21T02:32:27.786Z",
+  "startingCommit": "c55c8254831e7e139a4bce7ba0bd1e793774f786",
+  "mode": "built-in image_gen.imagegen; five separate generation calls",
+  "canonicalInputs": [
+    {
+      "path": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/white_mage.png",
+      "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+    },
+    {
+      "path": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png",
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+    },
+    {
+      "path": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alistair.png",
+      "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219"
+    },
+    {
+      "path": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32"
+    }
+  ],
+  "artisticCompanion": {
+    "path": "docs/autonomy/cinematics/RPGThreeJS_CONTRAT_ARTISTIQUE_CINEMATIQUES_v1_2026-10-13.txt",
+    "sha256": "670d058131b181acca65af09dbfb08a8598642abe060800d790133fba5450e31",
+    "authority": "Retrieved reference companion, not a new LOCKED contract"
+  },
+  "ancestry": "Every new shot uses the same four canonical references only. No video, extracted frame, prior illustrated montage or flipbook image used as input.",
+  "exactRequests": {
+    "path": "requests.json",
+    "sha256": "b47cd2328a4378c7035c6e24ed6ebb06deff06cadddda55b373a21fbe1c7eeee"
+  },
+  "results": {
+    "path": "results.json",
+    "sha256": "e51ec95ccb7cfa31fe3d357d42eba2e7188109af43b7a815d34f5b0a7c596d57"
+  },
+  "originalDir": "C:/Users/miche/.codex/generated_images/01a15a00-3093-7b92-9dd1-416e160ac959",
+  "images": [
+    {
+      "id": "01",
+      "original": "exec-9528b8c1-5b6b-497c-aa51-e8d8d1f7e99a.png",
+      "path": "shot-01.png",
+      "sha256": "4527fac0012efab783cadd19dc89b55d5e93599b71ede4fdc583eb52d899a38a",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2792924,
+      "title": "Le camp, avant le départ"
+    },
+    {
+      "id": "02",
+      "original": "exec-4a21bbcc-28b9-47bc-ae00-4b780752e1ee.png",
+      "path": "shot-02.png",
+      "sha256": "8400287b3735e8f308af21a497a25ec6a7233787dd510d48e780c87921350bbd",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2424974,
+      "title": "Ce que chacun porte"
+    },
+    {
+      "id": "03",
+      "original": "exec-3b342235-ca6b-471a-8b8c-d6e5c1323076.png",
+      "path": "shot-03.png",
+      "sha256": "aeab4ad0d5a0b2f83e39ce55096955c4c3d32f32d594505365bb6bf4f634e3ae",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2956187,
+      "title": "Dans l’allée"
+    },
+    {
+      "id": "04",
+      "original": "exec-cfc1ddff-0dbe-4126-a4de-c5d40b0818c9.png",
+      "path": "shot-04.png",
+      "sha256": "3e147a21bd2e3db7254da227f4f0c2993950d9e02cc151a3ccc2217aad63a716",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2558331,
+      "title": "Un regard partagé"
+    },
+    {
+      "id": "05",
+      "original": "exec-c7060122-12d4-410a-9288-3bd5cbdb3e73.png",
+      "path": "shot-05.png",
+      "sha256": "02e878694745670b14e60c075b747d9d6cb7d2056a240901f66fce3a02baefdb",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2996799,
+      "title": "Avant de franchir la porte"
+    }
+  ],
+  "montage": {
+    "order": [
+      "shot-01.png",
+      "shot-02.png",
+      "shot-03.png",
+      "shot-04.png",
+      "shot-05.png"
+    ],
+    "durations": [
+      4,
+      3,
+      5,
+      4,
+      4
+    ],
+    "totalSeconds": 20,
+    "durationStatus": "PROPOSED_REVIEW_TIMING_ONLY",
+    "cuts": "whole still-image substitution, no interpolation, pan, crop, sprite or pose animation",
+    "autoplay": false,
+    "loop": false,
+    "audio": false
+  },
+  "scene": "LION_CAMP at night, framed subset Marian/Maelor/Alistair, gathering inside camp before existing dialogue; no crossing/arrival/recruitment/choice/reward/new event.",
+  "quality": {
+    "artisticAcceptance": false,
+    "continuousMotionClaim": false,
+    "geographyAcceptance": false,
+    "equipmentContinuityAcceptance": false,
+    "observations": [
+      "Five deliberately different camera framings, not successive animation poses.",
+      "Fine equipment/helmet/book/cloth details vary between independent images.",
+      "Shot01 sword-tip clearance is not conclusively established; shot03 sword hand differs from requested right-hand reference.",
+      "New perspectives are artistic reconstructions, not verified geography.",
+      "Cuts imply staging ellipses; they do not certify continuous gait or foot contact."
+    ]
+  },
+  "runtimeChanged": false,
+  "lockedChanged": false,
+  "preview": {
+    "url": "http://127.0.0.1:5456/",
+    "pid": 13348
+  }
+}

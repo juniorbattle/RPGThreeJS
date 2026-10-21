@@ -1,0 +1,25 @@
+# Camp — cinq illustrations, cinq mises en scène
+
+MANUAL-CAMP-FIVE-STILLS-2026-10-20. Client20octobre2026, UTC 2026-10-21T02:32:27.786Z.
+
+## Demande explicite
+
+« non je veux repartir sur l'idee initial : faire un enchainement d'images de mise en scene comme plusieurs frame d'images qui s'enchainent comme pour simuler notre cinematique mais sans utiiliser comme base une video uniquement avec les outils d'images, on aurait des 5-5 images de divers plans et mises en scene pour reprensenter le moment ». Portée concrète : cinq images complètes avec cadrages distincts, maintenues quelques secondes et reliées par des coupes, pas une marche animée. L'opérateur a écarté le flipbook précédent ; l'avis de retour à la vidéo n'est pas adopté.
+
+## Livraison artistique proposée
+
+1. Le camp, avant le départ : ensemble large, groupe petit dans le lieu.
+2. Ce que chacun porte : rapproché Maelor/livre, Marian en second plan.
+3. Dans l'allée : trio complet, diagonale de profondeur.
+4. Un regard partagé : casque/épaule d'Alistair au premier plan, Maelor/Marian en face.
+5. Avant de franchir la porte : groupe arrêté à l'intérieur, composition large autour du feu.
+
+Cinq appels de génération d'images intégré, chaque fois depuis les quatre seules références V2/camp canoniques. Aucun ancien MP4, extrait, image de l'étude illustrée ou du flipbook en input. Originaux et exactes requêtes conservés, copies projet byte-identiques SHA vérifiés. Fichiers : tools/cinematics/candidates/camp-five-stills-20261020 ; requests.json, results.json, provenance.json, cinq shot-0N.png et lecteur HTML/CSS/MJS. Compagnon artistique retrouvé en TXT/provenance conservé comme référence, pas nouveau contrat LOCKED.
+
+Montage de revue proposé :4+3+5+4+4=20s, lecture sur demande et arrêt final, sélection de chaque plan, clavier, pause et curseur. Aucune durée runtime changée ; camp livré12s et traitement28s antérieur conservés. Pas de son, vidéo générée, pan, crop, fondu ou interpolation. Nouveau cadrage généré pour chaque image plutôt qu'un recadrage d'une seule plate.
+
+Toute la scène reste dans LION_CAMP nocturne avant le dialogue existant. Le trio est un sous-ensemble de la compagnie, aucun franchissement, arrivée, nouvelle recrue, canon, événement, choix, gain ou dialogue ajouté. Aucun changement des propriétaires campagne/RunSystem/combat, V6, runtime, huit slots, MP4s, audio ou scheduler. Les anciens essais demeurent historiques intacts.
+
+**Limites** : détails de costume/casque/livre et prises d'équipement varient ; lame du plan01 proche du sol, dégagement non certifié, et main d'épée du plan03 différente de la référence demandée. Aucun raccord d'équipement, géographie, art, marche continue ou appui accepté. Les nouvelles perspectives sont des propositions artistiques. Ces défauts restent visibles et documentés, sans réalignement ou collage pour les cacher.
+
+Aperçu http://127.0.0.1:5456/, PID 13348, loopback à liste fermée de neuf fichiers +favicon204. Prochaine action : regarder ce même montage et juger les cinq compositions et le rythme avant correction ciblée d'un plan.
