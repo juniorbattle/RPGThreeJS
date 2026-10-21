@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-21T22:36:15Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-21T22:57:33.650Z",
   "activeTask": "ILLUSTRATED-CINEMATICS-OFFLINE-CANDIDATES",
   "activePhase": "SERPENT_ENDING_GENERATED_REVIEW_PENDING",
   "activeSubtask": "Judgement technicalPASS but finalattention NEEDS_CORRECTION; Serpent5images18s generated, own continuous proof pending",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "53a320e06cb3d8eb9b7a6dd379a232c953fecbd4",
-  "lastPushedCommit": "53a320e06cb3d8eb9b7a6dd379a232c953fecbd4",
+  "lastKnownGoodCommit": "d72109e2e35a650d19cab56ea5975439a4ff23c7",
+  "lastPushedCommit": "d72109e2e35a650d19cab56ea5975439a4ff23c7",
   "completedThisRun": [
     "Resumed judgement4selectedimages without regeneration; one16s scenario10checks scopedPASS, guardian71SHA",
     "Judgement final03to04head/eyeline failure preserved as NEEDS_CORRECTION; no READY or false artistic acceptance",
@@ -180,15 +180,15 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-illustrated-judgement-20261021T2236Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T22:55:43.379Z",
+  "lastHeartbeat": "2026-10-21T22:57:33.650Z",
   "wip": {
     "branch": null,
     "sha": null,
     "status": "ON_DEV",
-    "lastGreenCheck": "7d1abf3 published; arrival10checks/saved5images41tests/types/contracts/SHA PASS; saved continuous review pending"
+    "lastGreenCheck": "Deliveryd72109e2e35a650d19cab56ea5975439a4ff23c7 published;63tests/types/contracts/117SHA; Serpentpreservation52SHA/own18sPENDING, judgementNEEDS_CORRECTION"
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T22:55:43.379Z",
+    "lastHeartbeat": "2026-10-21T22:57:33.650Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -38562,38 +38562,10 @@
       }
     ],
     "wip": {
-      "branch": "wip/codex-illustrated-judgement-20261021T2236Z",
-      "sha": "738f97af1ec791dc91081436991c02d284bf04b7",
-      "status": "GREEN",
-      "dirtyFiles": [
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-2236/desktop-endpoint.png",
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-2236/dissolve-3.png",
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-2236/narrow-preparation.png",
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-receipt.json",
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-smoke.mjs",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/provenance.json",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/raw/shot-01-initial.png",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/raw/shot-02-initial.png",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/raw/shot-03-initial.png",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/requests/shot-01.json",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/requests/shot-02.json",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/requests/shot-03.json",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/requests/shot-04.json",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/results/shot-01.json",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/results/shot-02.json",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/results/shot-03.json",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-01.png",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-02.png",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-03.png",
-        "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/source-progression.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "tools/cinematics/candidates/illustrated-sequences/gallery.json",
-        "tools/cinematics/candidates/illustrated-sequences/index.html",
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review.md",
-        "tools/cinematics/specs/illustrated-sequences/production-plan.json"
-      ],
-      "lastGreenCheck": "SHA verified preserved inputs/selected partial outputs; judgement10technicalchecks/NEEDS_CORRECTION, no artistic acceptance"
+      "branch": null,
+      "sha": null,
+      "status": "ON_DEV",
+      "lastGreenCheck": "Deliveryd72109e2e35a650d19cab56ea5975439a4ff23c7 published;63tests/types/contracts/117SHA; Serpentpreservation52SHA/own18sPENDING, judgementNEEDS_CORRECTION"
     },
     "nextAction": "Resume serpent_route_ending/v1 WITHOUT regenerating five selected images: observe normal18s, copy preserved sacrificed smoke (5images/4dissolves/18s/times0,4,7,10,13), change scene/paths/SHA/job only, retain all assertions; unique receipt/captures/scoped review before READY. Judgement NEEDS_CORRECTION final03→04 head gaze; no identical retry.",
     "runMetrics": {
@@ -38661,13 +38633,14 @@
       "tools/cinematics/specs/illustrated-sequences/production-plan.json"
     ],
     "publication": {
-      "status": "PENDING_REVIEWED_DEV_PUBLICATION",
+      "status": "DELIVERY_VERIFIED_METADATA_CHECKPOINT_FOLLOWS",
+      "sha": "d72109e2e35a650d19cab56ea5975439a4ff23c7",
+      "remoteDevVerifiedAt": "2026-10-21T22:56:49.730Z",
       "authority": "OD-2026-10-12-A",
-      "destination": "origin/dev",
-      "mainProtected": true
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-21T22:57:33.650Z",
+    "writerStopped": true,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
       "previewPort5461Stopped": true,
@@ -42797,10 +42770,10 @@
     },
     "runId": "codex-illustrated-judgement-20261021T2236Z",
     "agent": "codex",
-    "status": "IN_PROGRESS",
+    "status": "CHECKPOINTED",
     "runStartedAt": "2026-10-21T22:36:15Z",
     "activePhase": "SERPENT_ENDING_GENERATED_REVIEW_PENDING",
-    "heartbeat": "2026-10-21T22:53:51.843Z",
+    "heartbeat": "2026-10-21T22:57:33.650Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T2236Z-codex-judgement-serpent.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -44529,7 +44502,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "70a8daa5fcb4e233bb3a576e4f9abbbc740b272b",
+    "lastPushedCommit": "d72109e2e35a650d19cab56ea5975439a4ff23c7",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -47049,6 +47022,16 @@
       "gameplaySteps": 0,
       "qaJobsPreserved": 339,
       "nextAction": "Read current audience trigger and lion_briefing, source-bound causal shot progression, then built-in imagegen audience montage before any choice/advance handoff."
+    },
+    "run2236": {
+      "delivery": "d72109e2e35a650d19cab56ea5975439a4ff23c7",
+      "endedAt": "2026-10-21T22:57:33.650Z",
+      "serpent": "GENERATED_REVIEW_PENDING",
+      "judgement": "NEEDS_CORRECTION",
+      "nextAction": "Resume serpent_route_ending/v1 WITHOUT regenerating five selected images: observe normal18s, copy preserved sacrificed smoke (5images/4dissolves/18s/times0,4,7,10,13), change scene/paths/SHA/job only, retain all assertions; unique receipt/captures/scoped review before READY. Judgement NEEDS_CORRECTION final03→04 head gaze; no identical retry.",
+      "server5461": "STOPPED",
+      "browserTab": "CLOSED",
+      "ownedWip": "Delete only after metadata dev publication verified"
     }
   },
   "previousInterruptedRun": {

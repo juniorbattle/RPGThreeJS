@@ -368,3 +368,5 @@ Conformité1.8.0/baseline0cb95135 : GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/E
 <!-- QA_JOBS_END -->
 
 Revue Serpent indépendante2026-10-21T22:55:43.379Z : PASS_PRESERVATION_ONLY,52/52SHA et cinqimagesinspectées ; GENERATED_REVIEW_PENDING, aucune lecture18s ni READY/artfinal/runtimeacceptés. Détailslanterne/broderies variables et derniergeste subtil explicites.
+
+Livraison d72109e2e35a650d19cab56ea5975439a4ff23c7 publiée et parité origin/dev vérifiée. Run terminé2026-10-21T22:57:33.650Z, serveur5461 arrêté et ongletIAB fermé. Métadonnées finales dans le commit suivant ; snapshotowned/verrou retirés seulement après publication vérifiée et mémoireautomation. SchedulerACTIVE byte-identique.
