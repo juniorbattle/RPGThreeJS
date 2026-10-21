@@ -1,0 +1,63 @@
+{
+  "totalSeconds": 20,
+  "normalFadeSeconds": 1,
+  "reducedFadeSeconds": 0.8,
+  "stages": [
+    {
+      "title": "Le camp, avant le départ",
+      "description": "Le lieu et le groupe",
+      "start": 0,
+      "duration": 3,
+      "path": "shot-01.png"
+    },
+    {
+      "title": "Ce que chacun porte",
+      "description": "Maelor garde son livre à la main",
+      "start": 3,
+      "duration": 2,
+      "path": "shot-02.png"
+    },
+    {
+      "title": "Le livre calé contre lui",
+      "description": "Il le ramène contre son corps",
+      "start": 5,
+      "duration": 2,
+      "path": "shot-03.png"
+    },
+    {
+      "title": "Marian se prépare à suivre",
+      "description": "Elle reprend sa prise sur le bâton",
+      "start": 7,
+      "duration": 2,
+      "path": "shot-04.png"
+    },
+    {
+      "title": "Un regard partagé",
+      "description": "Les compagnons se portent attention",
+      "start": 9,
+      "duration": 2,
+      "path": "shot-05.png"
+    },
+    {
+      "title": "Quelques pas dans le camp",
+      "description": "Le groupe se rapproche dans l’allée intérieure",
+      "start": 11,
+      "duration": 3,
+      "path": "shot-06.png"
+    },
+    {
+      "title": "Le groupe s’arrête",
+      "description": "Ils se rassemblent à l’intérieur du camp",
+      "start": 14,
+      "duration": 3,
+      "path": "shot-07.png"
+    },
+    {
+      "title": "Prêts à se parler",
+      "description": "Ils se tournent les uns vers les autres, avant le dialogue",
+      "start": 17,
+      "duration": 3,
+      "path": "shot-08.png"
+    }
+  ]
+}

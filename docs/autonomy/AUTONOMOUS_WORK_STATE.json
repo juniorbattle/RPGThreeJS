@@ -1,10 +1,10 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-21T02:23:48.7436344Z",
-  "runEndedAt": "2026-10-21T04:12:11.392Z",
-  "activeTask": "MANUAL-CAMP-FIVE-STAGED-STILLS",
-  "activePhase": "FIVE_STILLS_SOFT_DISSOLVES_READY_FOR_REVIEW",
-  "activeSubtask": "Same five illustrations; abrupt cuts replaced by verified soft whole-frame dissolves",
+  "runStartedAt": "2026-10-21T06:29:15.239Z",
+  "runEndedAt": null,
+  "activeTask": "MANUAL-CAMP-EIGHT-IMAGE-STORY",
+  "activePhase": "VERIFY_CHRONOLOGICAL_EIGHT_IMAGE_READER",
+  "activeSubtask": "Four new action/consequence illustrations plus four reused stills; narrative20s assembly",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
   "lastPushedCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
@@ -65,7 +65,7 @@
     "Operator verdict on these same five compositions",
     "Global PC/art/balance/hardware/audio/nativehidden and mobile-after-PC acceptance retained"
   ],
-  "nextAction": "Operator watches the same five-image montage with soft dissolves and gives a transition/rhythm verdict; keep visual continuity/art acceptance separate.",
+  "nextAction": "Verify20s/eight-stage reader and new narrative beats, then deliver for operator comprehension/rhythm review without art/runtime acceptance.",
   "taskQueue": [
     "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
     "Independent already-authorized demonstratedPC defect only;no unchanged diagnostic loop",
@@ -144,9 +144,9 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-manual-camp-five-stills-20261020",
+  "runId": "codex-manual-camp-story-sequence-20261021",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T04:12:11.392Z",
+  "lastHeartbeat": "2026-10-21T06:37:25.120Z",
   "wip": {
     "branch": "dev",
     "sha": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
@@ -156,7 +156,7 @@
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T04:12:11.392Z",
+    "lastHeartbeat": "2026-10-21T06:37:25.120Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37352,7 +37352,7 @@
       "lastGreenCheck": "2026-10-21T04:12:11.392Z",
       "inheritedWip": 0
     },
-    "nextAction": "Operator watches the same five-image montage with soft dissolves and gives a transition/rhythm verdict; keep visual continuity/art acceptance separate.",
+    "nextAction": "Verify20s/eight-stage reader and new narrative beats, then deliver for operator comprehension/rhythm review without art/runtime acceptance.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "gameplayStagesPlayed": 0,
@@ -37385,8 +37385,8 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-21T04:12:11.392Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
       "deliveryCheckpoint": "836269855cbe9d60aef117bfeb49433a5073972f",
@@ -38181,8 +38181,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "MANUAL-CAMP-FIVE-STAGED-STILLS",
-    "activeSubtask": "Same five illustrations; abrupt cuts replaced by verified soft whole-frame dissolves",
+    "activeTask": "MANUAL-CAMP-EIGHT-IMAGE-STORY",
+    "activeSubtask": "Four new action/consequence illustrations plus four reused stills; narrative20s assembly",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41514,13 +41514,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-manual-camp-five-stills-20261020",
+    "runId": "codex-manual-camp-story-sequence-20261021",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-21T02:23:48.7436344Z",
-    "activePhase": "FIVE_STILLS_SOFT_DISSOLVES_READY_FOR_REVIEW",
+    "runStartedAt": "2026-10-21T06:29:15.239Z",
+    "activePhase": "VERIFY_CHRONOLOGICAL_EIGHT_IMAGE_READER",
     "heartbeat": "2026-10-21T04:12:11.392Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0224Z-codex-camp-five-stills.md",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0628Z-codex-camp-story-sequence.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -45732,7 +45732,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0224Z-codex-camp-five-stills.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0628Z-codex-camp-story-sequence.md",
   "runMeasurement": {
     "runtimeSourceFiles": 0,
     "gameplayStagesPlayed": 0,
@@ -50231,5 +50231,24 @@
     "runEndedAt": "2026-10-21T04:12:11.392Z",
     "wallClockMinutes": 108.38,
     "wallClockNote": "Includes operator-review interval between initial delivery and follow-up on abrupt cuts; not continuous active agent time."
+  },
+  "campStorySequence": {
+    "status": "EIGHT_IMAGES_GENERATED_READER_VERIFICATION",
+    "operatorRequest": "More images within20s, with an actual sequence of the current situation rather than merely varied framings.",
+    "proposedImages": 8,
+    "newImagesRequested": 4,
+    "reusedImages": 4,
+    "requests": "tools/cinematics/candidates/camp-story-sequence-20261021/requests.json",
+    "noVideoInputs": true,
+    "artisticAcceptance": false,
+    "runtimeChanged": false,
+    "document": "docs/autonomy/CAMP_STORY_SEQUENCE_OPERATOR_DIRECTION_2026-10-21.md",
+    "provenance": "tools/cinematics/candidates/camp-story-sequence-20261021/provenance.json",
+    "newImageCalls": 4,
+    "totalImages": 8,
+    "preview": {
+      "url": "http://127.0.0.1:5457/",
+      "pid": 7596
+    }
   }
 }

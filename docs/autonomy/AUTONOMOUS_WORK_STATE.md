@@ -1,16 +1,12 @@
-# Camp — cinq plans illustrés prêts pour revue
+# Camp — huit étapes liées, revue en cours
 
-Run codex-manual-camp-five-stills-20261020, UTC 2026-10-21T02:37:03.762Z. READY_FOR_PC_ACCEPTANCE conservé. [Demande et limites](CAMP_FIVE_STILLS_OPERATOR_DIRECTION_2026-10-20.md).
+Run codex-manual-camp-story-sequence-20261021, UTC 2026-10-21T06:37:25.120Z. READY_FOR_PC_ACCEPTANCE conservé. [Demande/déroulement](CAMP_STORY_SEQUENCE_OPERATOR_DIRECTION_2026-10-21.md).
 
-Cinq nouveaux plans, V2/camp canoniques uniquement, aucune vidéo ou image des anciens essais en input. Cinq illustrations distinctes tenues quelques secondes, pas un flipbook. Retour sur les coupes trop brutales : fondus enchaînés1.2s (OSreduce0.8s), temps et pause cohérents, mêmes cinq images. Montage hors jeu20s proposé :4+3+5+4+4. Lecture sur demande, pause, sélection/clavier et arrêt final.
+Quatre nouvelles images +quatre fixes conservées ; camp → livre → livre retenu → bâton → regards → quelques pas intérieurs → arrêt → attention avant dialogue. Huit étapes/20s et fondus proposés, pas de base vidéo/flipbook. Narration, compréhension, art, accessoires, géographie et locomotion non acceptés.
 
-Gates propres, contrats8/8, TypeScript0, smoke lecteur11checks PASS, quatre captures inspectées ; guardian PASS_SCOPED_CLOSEOUT, reçu lecteur et captures rapprochés. Art, équipement, géographie non acceptés ; limites lame01/main03/détails conservées.
+Prochaine action : Verify20s/eight-stage reader and new narrative beats, then deliver for operator comprehension/rhythm review without art/runtime acceptance.
 
-339jobs/acceptations et bloc exact ci-dessous intacts, historiques et objets différés conservés. Aucun runtime/V6/canon/MP4/LOCKED/audio/scheduler modifié ; zéro étapejouée.
-
-Une prochaine action : Operator watches the same five-image montage with soft dissolves and gives a transition/rhythm verdict; keep visual continuity/art acceptance separate.
-
-Aperçu http://127.0.0.1:5456/, PID 13348 conservé. Livraison douce 33f2a799c5fcd2219a3368fd1165753644a7dbe9 publiée/vérifiée OD-2026-10-12-A, runEndedAt 2026-10-21T04:12:11.392Z. Clôture metadata puis libération du verrou après parité.
+339jobs/acceptations/bloc exact et racines historiques conservés. Aucun src/public/runtime/V6/canon/LOCKED/MP4/audio/scheduler modifié.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "01",
+    "path": "shot-01.png",
+    "source": "tools/cinematics/candidates/camp-five-stills-20261020/shot-01.png"
+  },
+  {
+    "id": "02",
+    "path": "shot-02.png",
+    "source": "tools/cinematics/candidates/camp-five-stills-20261020/shot-02.png"
+  },
+  {
+    "id": "05",
+    "path": "shot-05.png",
+    "source": "tools/cinematics/candidates/camp-five-stills-20261020/shot-04.png"
+  },
+  {
+    "id": "07",
+    "path": "shot-07.png",
+    "source": "tools/cinematics/candidates/camp-five-stills-20261020/shot-05.png"
+  }
+]
