@@ -365,8 +365,14 @@ Conformité1.8.0/baseline0cb95135 : GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/E
 - illustrated-bois-saved-2031: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-saved-2031/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-bois-sacrificed-2146: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-resume-2146/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-judgement-2236: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-judgement-2236/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-serpent-2305: FAILED; port 5461; receipt `tmp/cinematics/illustrated-serpent-2305/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-serpent-2305-host: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-serpent-2305/review-host/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 Revue Serpent indépendante2026-10-21T22:55:43.379Z : PASS_PRESERVATION_ONLY,52/52SHA et cinqimagesinspectées ; GENERATED_REVIEW_PENDING, aucune lecture18s ni READY/artfinal/runtimeacceptés. Détailslanterne/broderies variables et derniergeste subtil explicites.
 
 Livraison d72109e2e35a650d19cab56ea5975439a4ff23c7 publiée et parité origin/dev vérifiée. Run terminé2026-10-21T22:57:33.650Z, serveur5461 arrêté et ongletIAB fermé. Métadonnées finales dans le commit suivant ; snapshotowned/verrou retirés seulement après publication vérifiée et mémoireautomation. SchedulerACTIVE byte-identique.
+
+Current run codex-illustrated-serpent-20261021T2305Z: Serpent five retained images/18s; offline technical and continuous review, no regeneration. Next: own receipt and inspected captures, scoped independent review, then Lion-trial.
+
+Checkpoint 2026-10-21T23:17:02.633Z: Serpent READY scoped, guardian71SHA. Lion-trial01green/4pending, no regeneration. Next: Complete Lion-trial02–05 without regenerating01; own18sproof next run. Judgement final gaze correction remains.

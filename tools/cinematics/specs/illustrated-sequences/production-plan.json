@@ -152,7 +152,7 @@
     {
       "id": "serpent_route_ending",
       "order": 6,
-      "status": "GENERATED_REVIEW_PENDING",
+      "status": "READY_FOR_OPERATOR_REVIEW",
       "sourceIndex": "tools/cinematics/specs/production-eight-slot-remaster/serpent_route_ending.json",
       "sourceIndexRole": "Historical reference paths only; revalidate current canonical source, never execute video instructions",
       "outputRoot": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending",
@@ -164,22 +164,29 @@
       "proposedDurationSeconds": 18,
       "candidatePath": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/index.html",
       "provenancePath": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/provenance.json",
-      "updatedAt": "2026-10-21T22:51:36.467Z",
+      "updatedAt": "2026-10-21T23:16:30.965Z",
       "reviewPath": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review.md",
-      "toolArgumentRejections": 1
+      "toolArgumentRejections": 1,
+      "technicalReview": "PASS10CHECKS18S_AND_INDEPENDENT_SCOPED_REVIEW",
+      "receiptPath": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review-receipt.json",
+      "reviewCloseoutPath": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review-closeout.json"
     },
     {
       "id": "lion_trial_route_ending",
       "order": 7,
-      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
+      "status": "IN_PROGRESS",
       "sourceIndex": "tools/cinematics/specs/production-eight-slot-remaster/lion_trial_route_ending.json",
       "sourceIndexRole": "Historical reference paths only; revalidate current canonical source, never execute video instructions",
       "outputRoot": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending",
       "finalArtAccepted": false,
-      "runtimeIntegrated": false
+      "runtimeIntegrated": false,
+      "version": "v1",
+      "initialImages": 1,
+      "corrections": 0,
+      "updatedAt": "2026-10-21T23:17:02.633Z"
     }
   ],
-  "firstAction": "Resume serpent_route_ending/v1 WITHOUT regenerating five selected images: observe normal18s, copy preserved sacrificed smoke (5images/4dissolves/18s/times0,4,7,10,13), change scene/paths/SHA/job only, retain all assertions; unique receipt/captures/scoped review before READY. Judgement NEEDS_CORRECTION final03→04 head gaze; no identical retry.",
+  "firstAction": "Complete source-bound Lion-trial candidate; resume first selected illustration without regeneration. Serpent READY scoped; Judgement final03to04 attention remains NEEDS_CORRECTION.",
   "completionPolicy": "Each reviewed offline delivery becomes READY_FOR_OPERATOR_REVIEW; advance to next pending scene without routine approval; all seven delivered -> single operator review handoff.",
   "preserve": {
     "qaJobs": 339,
@@ -193,5 +200,5 @@
   "executionDecisionPath": "docs/autonomy/ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md",
   "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
   "executionPolicy": "Operator activation is already granted. Scheduled runs execute the seven authorized offline illustrated candidates; obsolete configuration-only/PAUSED notes are historical. No routine restart approval.",
-  "updatedAt": "2026-10-21T22:51:36.467Z"
+  "updatedAt": "2026-10-21T23:16:30.965Z"
 }

@@ -1,0 +1,119 @@
+{
+  "status": "PASS_SCOPED_OFFLINE_REVIEW",
+  "reviewedAt": "2026-10-21T23:15:59.875Z",
+  "artAccepted": false,
+  "runtimeIntegrated": false,
+  "rawReceipt": {
+    "path": "tmp/cinematics/illustrated-serpent-2305/review-host/qa-job.json",
+    "sha256": "b75a0dae2ded89590ac17f30e6485b6dd929ca256c1f602043fcaa242da70783"
+  },
+  "rawResult": {
+    "path": "tmp/cinematics/illustrated-serpent-2305/review-host/results.json",
+    "sha256": "97bfe5448bf9d270d653592767b8418e9521167aa67a62ba1faa154e55df83f3"
+  },
+  "driver": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review-smoke.mjs",
+    "sha256": "d1f659c658188aa04b6fdb6418d4736e188ac2996fe458057c26dcd69fabc937"
+  },
+  "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+  "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "parameters": {
+    "scene": "serpent_route_ending",
+    "url": "http://127.0.0.1:5461/serpent_route_ending/v1/index.html",
+    "media": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/sequence.json",
+        "sha256": "a4c2dd8d69ac474c0a5dbe3eb72c4b5f2870f0def3339b2aa75ed22f612347e2"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-01.png",
+        "sha256": "22184453de1ee8f9beaf48360ef21526a064e8f930246a68a72991dc345616aa"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-02.png",
+        "sha256": "1321706a9bbc5e5789204d740baa9de6d8e75c886a52277d7a4715dd93a112c8"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-03.png",
+        "sha256": "9ac7d397073439aeb80d463931cc8bccff7c7d7197d59e2314d899e6ac7462dc"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-04.png",
+        "sha256": "25ab81eee2554ef685b0945f9adf3f357165a7354f14ab3ae28467981891f884"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-05.png",
+        "sha256": "25d49b68a2a8a9875e024d2eb26f5b107db7cf369ac31c3e1d90170340540dde"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/index.html",
+        "sha256": "56b7d9307449630c55196e8dbef5c9966aa52b989fd329d3dfea16a8be893514"
+      }
+    ],
+    "reader": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+        "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+        "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+      }
+    ],
+    "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+  },
+  "checks": [
+    "Five distinct complete images preloaded; initially paused on establishing image",
+    "Four real-time dissolves through chronological5images, total18s and final stop",
+    "All five scene stages follow the authored timeline",
+    "Five-stage Home/End/arrow/previous navigation matches timeline",
+    "OSreduce gentle dissolve retained; pause freezes opacity and clock; resume advances",
+    "Whole images/44px controls/no horizontal clipping at1366x768",
+    "Whole images/44px controls/no horizontal clipping at620x780",
+    "Whole images/44px controls/no horizontal clipping at390x844",
+    "No nominal console/page errors",
+    "Missing final raccord image disables playback with visible status"
+  ],
+  "captures": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review-dissolve-4.png",
+      "sha256": "8210660621b15164f4b2e5fb63af13396b4b2f589a39125d1d95bd1a8099ba52"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review-desktop-endpoint.png",
+      "sha256": "83848502aebf42db4c4d251c3351887e4b6388033b29d672ecaaf1ddca6dbfaa"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review-narrow-preparation.png",
+      "sha256": "f5dbc83cd11cb09c2128828d28321de619e5985ae673993d64690befd695ea73"
+    }
+  ],
+  "rawAcceptance": "NOT_ACCEPTED",
+  "eligibility": {
+    "provenanceMatches": true,
+    "provenanceStable": true,
+    "requestMatches": true,
+    "matchesCurrentExecution": true,
+    "resultDigestMatches": true,
+    "eligibleForReview": true
+  },
+  "guardian": {
+    "reviewer": "/root/guardian",
+    "verdict": "PASS_SCOPED_OFFLINE_REVIEW",
+    "hashChecks": 71,
+    "sourceProvenance": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/provenance.json",
+      "sha256": "a84e88241c2ab561021bd1d003f945da9b67e29551f40ea05c8f450e06097092"
+    }
+  },
+  "observation": "Five native images plus three selected captures inspected. Normal18s/four1s dissolves established by exact smoke; separate IAB playback0.1s→18s observed with OSreduce0.8s fades, not human normal-motion observation.",
+  "limits": [
+    "Fine lantern ornaments/embroidery vary",
+    "Opaque veil prevents visible eye gaze; final book lowering is subtle",
+    "No finalart/runtime/globalPC/comprehension acceptance"
+  ],
+  "failedAttempt": {
+    "path": "tmp/cinematics/illustrated-serpent-2305/review/qa-job.json",
+    "sha256": "6ecb4381ba7b2ec7e57adbad70ba1230b498eba0d5d4548fd375d1dbc47b8b37"
+  }
+}

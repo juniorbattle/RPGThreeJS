@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T22:51:36.467Z",
+  "updatedAt": "2026-10-21T23:16:30.965Z",
   "scope": "Offline illustrated candidates; final art/runtime separate",
   "scenes": [
     {
@@ -42,14 +42,16 @@
     },
     {
       "id": "serpent_route_ending",
-      "status": "GENERATED_REVIEW_PENDING",
+      "status": "READY_FOR_OPERATOR_REVIEW",
       "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/index.html",
       "finalArtAccepted": false,
-      "runtimeIntegrated": false
+      "runtimeIntegrated": false,
+      "technicalReview": "PASS10CHECKS18S_AND_INDEPENDENT_SCOPED_REVIEW",
+      "reviewCloseoutPath": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review-closeout.json"
     },
     {
       "id": "lion_trial_route_ending",
-      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
+      "status": "IN_PROGRESS_1_OF_5",
       "path": null,
       "finalArtAccepted": false,
       "runtimeIntegrated": false

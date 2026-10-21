@@ -1,0 +1,42 @@
+{
+  "totalSeconds": 18,
+  "normalFadeSeconds": 1,
+  "reducedFadeSeconds": 0.8,
+  "stages": [
+    {
+      "title": "Épreuve achevée",
+      "description": "Large establishing courtyard: Alaric upright quietly observes the Champion. Champion shoulders slightly tense, chin level toward Alaric, sword down and diagonal beside his own right leg, tip close to ground, empty left hand naturally curled. They are already stopped after the fight. Heads/boots/staff/sword fully inside landscape, lion mosaic and both statues readable.",
+      "start": 0,
+      "duration": 4,
+      "path": "shot-01.png"
+    },
+    {
+      "title": "La garde se relâche",
+      "description": "Medium composition on the Champion alone at SCREEN RIGHT, Alaric outside frame to left. Champion lowers his RIGHT sword hand closer to right thigh and sets blade almost vertical with its point lightly near floor; his empty LEFT fingers open naturally and his shoulders visibly drop. Head remains level angled toward Alaric offscreen-left; helmet fully closed. No new wound or combat event. Courtyard environment retains right statue/arch/banner/sunset scale.",
+      "start": 4,
+      "duration": 3,
+      "path": "shot-02.png"
+    },
+    {
+      "title": "Le résultat est reconnu",
+      "description": "Medium composition on Alaric alone at SCREEN LEFT, Champion outside frame right. Alaric lifts his chin and directs his open eyes firmly toward Champion offscreen-right, a calm attentive acknowledgement of the already-known result; shoulders settle, mouth closed. His short sword stays low in anatomical RIGHT hand, staff upright in anatomical LEFT hand; include both hands and all staff head in frame. No palm gesture, speech or new order.",
+      "start": 7,
+      "duration": 3,
+      "path": "shot-03.png"
+    },
+    {
+      "title": "La tension tombe",
+      "description": "Wide two-person composition in the same exact places as01. Champion helmet now has a clearly modest inclination of chin toward Alaric, a restrained physical acknowledgement; shoulders relaxed and LEFT empty hand open low. Sword remains vertical down in his RIGHT hand. Alaric maintains his lifted chin and level attentive gaze toward Champion, staff and low sword retained. Not kneeling or bowing deeply, not punishment, no change of rank or outcome.",
+      "start": 10,
+      "duration": 3,
+      "path": "shot-04.png"
+    },
+    {
+      "title": "Avant l’épilogue",
+      "description": "Wide two-person endpoint slightly closer than01 but full bodies and all equipment visible. Champion straightens his helmet again toward Alaric, shoulders remain low, empty LEFT hand relaxed open low and RIGHT sword vertical down; Alaric keeps level lifted attentive gaze toward Champion, mouth closed, both hands on original sword/staff. The visual change from04 is recovery from brief head inclination into calm mutual attention. No walk or object exchange. Final image retains already-resolved martial result, then releases to separately staged epilogue, never claim this courtyard is the epilogue dialogue background.",
+      "start": 13,
+      "duration": 5,
+      "path": "shot-05.png"
+    }
+  ]
+}

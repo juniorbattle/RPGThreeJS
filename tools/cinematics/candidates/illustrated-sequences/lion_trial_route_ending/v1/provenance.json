@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "sceneId": "lion_trial_route_ending",
+  "version": "v1",
+  "status": "IN_PROGRESS",
+  "runId": "codex-illustrated-serpent-20261021T2305Z",
+  "createdAt": "2026-10-21T23:12:52.992Z",
+  "sourceBranch": "dev",
+  "sourceCommit": "ce0b6cdbfcc0990a2fc315252d45630dc54a430b",
+  "contractSetVersion": "1.8.0",
+  "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+  "generationMode": "BUILT_IN_IMAGEGEN_ONLY_OFFLINE_ILLUSTRATION",
+  "finalArtAccepted": false,
+  "runtimeIntegrated": false,
+  "references": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+      "sha256": "a6111e975110dd070b9f54ea276d9d7499e44efefcd36676f7cb95a740f1aec1",
+      "role": "Immutable approved environment or Character V2 authority"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alaric.png",
+      "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+      "role": "Immutable approved environment or Character V2 authority"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/lion_champion.png",
+      "sha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc",
+      "role": "Immutable approved environment or Character V2 authority"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/cinematics/Cin6aPresentation.ts",
+      "sha256": "41e0dee7f65231bd8e65cee075ac8c6d909302b6de37e7560b0eeeae8a645990"
+    },
+    {
+      "path": "src/game/GameApp.ts",
+      "sha256": "067df49417b038704b154b54402aae42840d5f3bde279838d845f848d530d8b5"
+    },
+    {
+      "path": "src/game/lionFinale.ts",
+      "sha256": "3d6cdc02af29607e243524177aa3aeb66715834c61990aea34c991cfa5bb6740"
+    },
+    {
+      "path": "src/cinematics/ApprovedProductionVideos.ts",
+      "sha256": "905122db013b0b4a32196a4ca82cca43c50e58ff13f389bb1a019acf2b72a919"
+    },
+    {
+      "path": "src/campaign/LionCampaignStructure.ts",
+      "sha256": "dede76984fd7892c0f2127921f69c089c5e3c1278aaca1935da42a0a171f7c91"
+    }
+  ],
+  "calls": [
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/requests/shot-01.json",
+        "sha256": "4edabb620d1d92c752fe42647de72e30439bb167841fa7c21efab8bd27c65a2d"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/results/shot-01.json",
+        "sha256": "891ff3afbd798b86b9a8aaa90d15f84ca8f55aa7947a540bc65285a13a0f7a1c"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/raw/shot-01-initial.png",
+        "sha256": "99c3c6c767b208f1c86473e5c81226038736da76a14180a41587f592c4aef249"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+          "sha256": "a6111e975110dd070b9f54ea276d9d7499e44efefcd36676f7cb95a740f1aec1"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/lion_champion.png",
+          "path": "public/assets/characters/pixel/masters/lion_champion.png",
+          "sha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc"
+        }
+      ]
+    }
+  ],
+  "selectedImages": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-01.png",
+      "sha256": "99c3c6c767b208f1c86473e5c81226038736da76a14180a41587f592c4aef249",
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "initialImages": 1,
+  "corrections": 0,
+  "canonicalBoundary": "AFTER resolved lion_chief victory and lion_trial_aftermath; BEFORE epilogue; Lion-trial-only, voluntary/refused neutral; General free, disclosure variable",
+  "scope": "Offline only; no runtime/canon/reward/save/audio/video change"
+}

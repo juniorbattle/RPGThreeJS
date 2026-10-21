@@ -19,3 +19,9 @@ Dernier plan dans SERPENT_FINALE puis libération de famille pour l’épilogue 
 ## Revue indépendante de préservation 2026-10-21T22:55:43.379Z
 
 Guardian **PASS_PRESERVATION_ONLY**,52/52assertionsSHA ; cinq images/cinqraw inspectés, aucune correction. Progression effective confirmée dans la limite du dernier changement subtil. Livre/bâton/sac/lanterne permanente/mains/lieu/heure/frontière canonique cohérents. Art détaillé/yeux invisibles/ouverture finale des doigts non acceptés. GENERATED_REVIEW_PENDING conservé ; propre lecture18s/reçu requis.
+
+## Clôture de revue 2026-10-21T23:15:59.875Z
+
+**READY_FOR_OPERATOR_REVIEW**. Guardian indépendant PASS_SCOPED_OFFLINE_REVIEW,71SHA vérifiés ; cinq images natives et trois captures sélectionnées inspectées. Le scénario18s/4fondus1s passe10contrôles et toute provenance/digest/requête/current sont éligibles ; reçu brutSUCCEEDED/NOT_ACCEPTED conservé séparément. Échec initial accès serveur conservé ; même scénario relancé après serveur hôte, aucune assertion modifiée.
+
+Lecture IAB observée du départ à l’arrêt18s avec réductionOS active/fondus0.8s ; vitesse normale18s/fondus1s établie par le pilote exact et ses captures, pas revendiquée comme observation humaine normale. Gestes discrets et variation d’ornements demeurent limites artistiques. Aucun bloqueur canon/raccord identifié. [Reçu](review-receipt.json) et [clôture](review-closeout.json). Le HTML/provenance de génération restent byte-identiques aux entrées testées ; leur ancien texte pending est historique, le statut courant est ici et en galerie. Artfinal/runtime/PCglobal restent opérateur.

@@ -1,17 +1,16 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-21T22:36:15Z",
-  "runEndedAt": "2026-10-21T22:57:33.650Z",
-  "activeTask": "ILLUSTRATED-CINEMATICS-OFFLINE-CANDIDATES",
-  "activePhase": "SERPENT_ENDING_GENERATED_REVIEW_PENDING",
-  "activeSubtask": "Judgement technicalPASS but finalattention NEEDS_CORRECTION; Serpent5images18s generated, own continuous proof pending",
+  "runStartedAt": "2026-10-21T23:05:50Z",
+  "runEndedAt": null,
+  "activeTask": "ILLUSTRATED-LION-TRIAL",
+  "activePhase": "OFFLINE_GENERATION",
+  "activeSubtask": "Lion-trial01selected; generate02from four inspected references",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "d72109e2e35a650d19cab56ea5975439a4ff23c7",
   "lastPushedCommit": "d72109e2e35a650d19cab56ea5975439a4ff23c7",
   "completedThisRun": [
-    "Resumed judgement4selectedimages without regeneration; one16s scenario10checks scopedPASS, guardian71SHA",
-    "Judgement final03to04head/eyeline failure preserved as NEEDS_CORRECTION; no READY or false artistic acceptance",
-    "Produced Serpent5newintegratedillustrations18s with5initialoutputs/0corrections; exactrequests/results/raw/inputoutputSHA/source/timeline/reader/gallery; GENERATED_REVIEW_PENDING"
+    "Serpent18s10checks/guardian71SHA READY scoped",
+    "Lion-trial01selected,4initialpending"
   ],
   "filesChanged": [
     "docs/autonomy/handoffs/2026-10-21T2236Z-codex-judgement-serpent.md",
@@ -93,7 +92,7 @@
     "Lion-trial ending candidate",
     "Operator finalart/runtime/globalPC/balance/hardware; mobileafterPC"
   ],
-  "nextAction": "Resume serpent_route_ending/v1 WITHOUT regenerating five selected images: observe normal18s, copy preserved sacrificed smoke (5images/4dissolves/18s/times0,4,7,10,13), change scene/paths/SHA/job only, retain all assertions; unique receipt/captures/scoped review before READY. Judgement NEEDS_CORRECTION final03→04 head gaze; no identical retry.",
+  "nextAction": "Complete Lion-trial02–05 without regenerating01; own18sproof next run. Judgement final gaze correction remains.",
   "taskQueue": [
     "Produce offline illustrated candidate alaric_audience_arrival",
     "Produce offline illustrated candidate bois_clair_arrival",
@@ -178,7 +177,7 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-illustrated-judgement-20261021T2236Z",
+  "runId": "codex-illustrated-serpent-20261021T2305Z",
   "agent": "codex",
   "lastHeartbeat": "2026-10-21T22:57:33.650Z",
   "wip": {
@@ -188,7 +187,7 @@
     "lastGreenCheck": "Deliveryd72109e2e35a650d19cab56ea5975439a4ff23c7 published;63tests/types/contracts/117SHA; Serpentpreservation52SHA/own18sPENDING, judgementNEEDS_CORRECTION"
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T22:57:33.650Z",
+    "lastHeartbeat": "2026-10-21T23:17:02.633Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -38559,15 +38558,273 @@
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "illustrated-serpent-2305",
+        "runId": "codex-illustrated-serpent-20261021T2305Z",
+        "status": "FAILED",
+        "registeredAt": "2026-10-21T23:07:22.137Z",
+        "pid": 44784,
+        "port": 5461,
+        "command": [
+          "node",
+          "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review-smoke.mjs"
+        ],
+        "parameters": {
+          "scene": "serpent_route_ending",
+          "url": "http://127.0.0.1:5461/serpent_route_ending/v1/index.html",
+          "media": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/sequence.json",
+              "sha256": "a4c2dd8d69ac474c0a5dbe3eb72c4b5f2870f0def3339b2aa75ed22f612347e2"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-01.png",
+              "sha256": "22184453de1ee8f9beaf48360ef21526a064e8f930246a68a72991dc345616aa"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-02.png",
+              "sha256": "1321706a9bbc5e5789204d740baa9de6d8e75c886a52277d7a4715dd93a112c8"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-03.png",
+              "sha256": "9ac7d397073439aeb80d463931cc8bccff7c7d7197d59e2314d899e6ac7462dc"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-04.png",
+              "sha256": "25ab81eee2554ef685b0945f9adf3f357165a7354f14ab3ae28467981891f884"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-05.png",
+              "sha256": "25d49b68a2a8a9875e024d2eb26f5b107db7cf369ac31c3e1d90170340540dde"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/index.html",
+              "sha256": "56b7d9307449630c55196e8dbef5c9966aa52b989fd329d3dfea16a8be893514"
+            }
+          ],
+          "reader": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+              "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+              "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+            }
+          ],
+          "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+        },
+        "requiredAssertions": [
+          "FIVE_DISTINCT_IMAGES_PAUSED",
+          "FOUR_NORMAL_SPEED_DISSOLVES_18S_STOP",
+          "ORDER_TIMELINE_KEYBOARD",
+          "OS_REDUCE_PAUSE_RESUME",
+          "CONTAIN_44PX_NO_OVERFLOW",
+          "NO_CONSOLE_ERRORS",
+          "MISSING_IMAGE_DISABLES_PLAYBACK"
+        ],
+        "output": "tmp/cinematics/illustrated-serpent-2305/review",
+        "receiptPath": "tmp/cinematics/illustrated-serpent-2305/review/qa-job.json",
+        "provenance": {
+          "gitHead": "ce0b6cdbfcc0990a2fc315252d45630dc54a430b",
+          "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review-smoke.mjs",
+            "sha256": "3cb56894d53fc96dad296950e023c4207369f1d47904639ff178aeae5dbad7b9"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-CpZAzB3w.js",
+              "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-21T23:07:47.231Z",
+        "endedAt": "2026-10-21T23:08:08.553Z",
+        "exitCode": 1,
+        "resultPath": "tmp/cinematics/illustrated-serpent-2305/review/results.json",
+        "resultSha256": "2e646aa08ee35457baac883378af27a2527ad9f2aa928a2ca4b0db24c86a2934",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "illustrated-serpent-2305-host",
+        "runId": "codex-illustrated-serpent-20261021T2305Z",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-21T23:08:43.177Z",
+        "pid": 14048,
+        "port": 5461,
+        "command": [
+          "node",
+          "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review-smoke.mjs"
+        ],
+        "parameters": {
+          "scene": "serpent_route_ending",
+          "url": "http://127.0.0.1:5461/serpent_route_ending/v1/index.html",
+          "media": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/sequence.json",
+              "sha256": "a4c2dd8d69ac474c0a5dbe3eb72c4b5f2870f0def3339b2aa75ed22f612347e2"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-01.png",
+              "sha256": "22184453de1ee8f9beaf48360ef21526a064e8f930246a68a72991dc345616aa"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-02.png",
+              "sha256": "1321706a9bbc5e5789204d740baa9de6d8e75c886a52277d7a4715dd93a112c8"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-03.png",
+              "sha256": "9ac7d397073439aeb80d463931cc8bccff7c7d7197d59e2314d899e6ac7462dc"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-04.png",
+              "sha256": "25ab81eee2554ef685b0945f9adf3f357165a7354f14ab3ae28467981891f884"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-05.png",
+              "sha256": "25d49b68a2a8a9875e024d2eb26f5b107db7cf369ac31c3e1d90170340540dde"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/index.html",
+              "sha256": "56b7d9307449630c55196e8dbef5c9966aa52b989fd329d3dfea16a8be893514"
+            }
+          ],
+          "reader": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+              "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+              "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+            }
+          ],
+          "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+        },
+        "requiredAssertions": [
+          "FIVE_DISTINCT_IMAGES_PAUSED",
+          "FOUR_NORMAL_SPEED_DISSOLVES_18S_STOP",
+          "ORDER_TIMELINE_KEYBOARD",
+          "OS_REDUCE_PAUSE_RESUME",
+          "CONTAIN_44PX_NO_OVERFLOW",
+          "NO_CONSOLE_ERRORS",
+          "MISSING_IMAGE_DISABLES_PLAYBACK"
+        ],
+        "output": "tmp/cinematics/illustrated-serpent-2305/review-host",
+        "receiptPath": "tmp/cinematics/illustrated-serpent-2305/review-host/qa-job.json",
+        "provenance": {
+          "gitHead": "ce0b6cdbfcc0990a2fc315252d45630dc54a430b",
+          "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review-smoke.mjs",
+            "sha256": "d1f659c658188aa04b6fdb6418d4736e188ac2996fe458057c26dcd69fabc937"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-CpZAzB3w.js",
+              "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-21T23:08:43.911Z",
+        "endedAt": "2026-10-21T23:09:07.599Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/illustrated-serpent-2305/review-host/results.json",
+        "resultSha256": "97bfe5448bf9d270d653592767b8418e9521167aa67a62ba1faa154e55df83f3",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": {
-      "branch": null,
-      "sha": null,
-      "status": "ON_DEV",
-      "lastGreenCheck": "Deliveryd72109e2e35a650d19cab56ea5975439a4ff23c7 published;63tests/types/contracts/117SHA; Serpentpreservation52SHA/own18sPENDING, judgementNEEDS_CORRECTION"
+      "status": "GREEN",
+      "lastGreenCheck": "Serpent10checks/63tests/tsc/contracts/diffcheck; trial01inspected"
     },
-    "nextAction": "Resume serpent_route_ending/v1 WITHOUT regenerating five selected images: observe normal18s, copy preserved sacrificed smoke (5images/4dissolves/18s/times0,4,7,10,13), change scene/paths/SHA/job only, retain all assertions; unique receipt/captures/scoped review before READY. Judgement NEEDS_CORRECTION final03→04 head gaze; no identical retry.",
+    "nextAction": "Complete Lion-trial02–05 without regenerating01; own18sproof next run. Judgement final gaze correction remains.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "gameplayChanges": 0,
@@ -38639,8 +38896,8 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": "2026-10-21T22:57:33.650Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
       "previewPort5461Stopped": true,
@@ -39435,8 +39692,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "ILLUSTRATED-CINEMATICS-OFFLINE-CANDIDATES",
-    "activeSubtask": "Judgement technicalPASS but finalattention NEEDS_CORRECTION; Serpent5images18s generated, own continuous proof pending",
+    "activeTask": "ILLUSTRATED-LION-TRIAL",
+    "activeSubtask": "Lion-trial01selected; generate02from four inspected references",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -42768,11 +43025,11 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-illustrated-judgement-20261021T2236Z",
+    "runId": "codex-illustrated-serpent-20261021T2305Z",
     "agent": "codex",
-    "status": "CHECKPOINTED",
-    "runStartedAt": "2026-10-21T22:36:15Z",
-    "activePhase": "SERPENT_ENDING_GENERATED_REVIEW_PENDING",
+    "status": "IN_PROGRESS",
+    "runStartedAt": "2026-10-21T23:05:50Z",
+    "activePhase": "OFFLINE_GENERATION",
     "heartbeat": "2026-10-21T22:57:33.650Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T2236Z-codex-judgement-serpent.md",
     "motion1617": {
