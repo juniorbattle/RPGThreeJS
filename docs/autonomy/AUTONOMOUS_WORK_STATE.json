@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-21T18:54:03Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-21T19:20:33.291Z",
   "activeTask": "ILLUSTRATED-CINEMATICS-OFFLINE-CANDIDATES",
   "activePhase": "BOIS_CLAIR_SAVED_GENERATED_REVIEW_PENDING",
   "activeSubtask": "Arrival scoped proof complete; saved5images/18s pending continuous technical review",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "59253f373db27356fd1c99add18b37765e72c91d",
-  "lastPushedCommit": "59253f373db27356fd1c99add18b37765e72c91d",
+  "lastKnownGoodCommit": "7d1abf302f0c13ace0255fafb45576fbb6400c35",
+  "lastPushedCommit": "7d1abf302f0c13ace0255fafb45576fbb6400c35",
   "completedThisRun": [
     "Arrival5existing images reviewed without regeneration;10checks/guardianPASS, READY_FOR_OPERATOR_REVIEW",
     "Saved5illustrations/18s generated from current branch/V2/saved environment,2targeted corrections,7raw outputs retained; GENERATED_REVIEW_PENDING",
@@ -141,63 +141,15 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-illustrated-bois-20261021T1854Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T19:16:55.943Z",
+  "lastHeartbeat": "2026-10-21T19:20:33.291Z",
   "wip": {
-    "branch": "wip/codex-illustrated-bois-20261021T1854Z",
-    "sha": "91f5288ca0ef89a6889f0308a008741646af66b1",
-    "dirtyFiles": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "tools/cinematics/candidates/illustrated-sequences/README.md",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/index.html",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/provenance.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/review.md",
-      "tools/cinematics/candidates/illustrated-sequences/gallery.json",
-      "tools/cinematics/candidates/illustrated-sequences/index.html",
-      "tools/cinematics/specs/illustrated-sequences/production-plan.json",
-      "docs/autonomy/handoffs/2026-10-21T1854Z-codex-illustrated-bois.md",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/proof/desktop-endpoint.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/proof/dissolve-2.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/proof/narrow-preparation.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/review-receipt.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/review-smoke.mjs",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/index.html",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/provenance.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-01-correction-01.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-01-initial.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-02.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-03.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-04.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-05-correction-02.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-05-initial.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-01-correction-01.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-01.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-02.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-03.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-04.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-05-correction-02.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-05.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-01-correction-01.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-01.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-02.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-03.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-04.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-05-correction-02.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-05.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review.md",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/sequence.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-02.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-03.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-04.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-05.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/source-progression.md"
-    ],
-    "status": "GREEN",
-    "lastGreenCheck": "Arrival10checks/guardianPASS; saved5images inspected,7outputs/provenancePASS; saved browserPENDING"
+    "branch": null,
+    "sha": null,
+    "status": "ON_DEV",
+    "lastGreenCheck": "7d1abf3 published; arrival10checks/saved5images41tests/types/contracts/SHA PASS; saved continuous review pending"
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T19:16:55.943Z",
+    "lastHeartbeat": "2026-10-21T19:20:33.291Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -38185,58 +38137,10 @@
       }
     ],
     "wip": {
-      "branch": "wip/codex-illustrated-bois-20261021T1854Z",
-      "sha": "91f5288ca0ef89a6889f0308a008741646af66b1",
-      "dirtyFiles": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "tools/cinematics/candidates/illustrated-sequences/README.md",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/index.html",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/provenance.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/review.md",
-        "tools/cinematics/candidates/illustrated-sequences/gallery.json",
-        "tools/cinematics/candidates/illustrated-sequences/index.html",
-        "tools/cinematics/specs/illustrated-sequences/production-plan.json",
-        "docs/autonomy/handoffs/2026-10-21T1854Z-codex-illustrated-bois.md",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/proof/desktop-endpoint.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/proof/dissolve-2.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/proof/narrow-preparation.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/review-receipt.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/review-smoke.mjs",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/index.html",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/provenance.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-01-correction-01.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-01-initial.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-02.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-03.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-04.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-05-correction-02.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-05-initial.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-01-correction-01.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-01.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-02.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-03.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-04.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-05-correction-02.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-05.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-01-correction-01.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-01.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-02.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-03.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-04.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-05-correction-02.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-05.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review.md",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/sequence.json",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-02.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-03.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-04.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-05.png",
-        "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/source-progression.md"
-      ],
-      "status": "GREEN",
-      "lastGreenCheck": "Arrival10checks/guardianPASS; saved5images inspected,7outputs/provenancePASS; saved browserPENDING"
+      "branch": null,
+      "sha": null,
+      "status": "ON_DEV",
+      "lastGreenCheck": "7d1abf3 published; arrival10checks/saved5images41tests/types/contracts/SHA PASS; saved continuous review pending"
     },
     "nextAction": "Resume bois_clair_saved/v1 without regenerating its5selected illustrations. Copy preserved arrival smoke to saved/v1, adapt paths/mediaSHA only (same5images/4dissolves/18s/0,4,7,10,13), retain every assertion and unique receipt. Observe normal18s and inspect relevant captures before READY; then bois_clair_sacrificed. Camp/audience/arrival/proven reader unchanged.",
     "runMetrics": {
@@ -38268,16 +38172,17 @@
       "docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md"
     ],
     "publication": {
-      "destination": "origin/dev",
-      "authorization": "OD-2026-10-12-A",
-      "manualDecision": "OD-2026-10-20-B",
-      "sourceBaseline": "18482498925b70f0f26abf1233a842bcc86ce94e",
-      "lastVerifiedCheckpoint": "836269855cbe9d60aef117bfeb49433a5073972f",
-      "remoteDevVerified": true,
-      "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
+      "runId": "codex-illustrated-bois-20261021T1854Z",
+      "productCheckpoint": "7d1abf302f0c13ace0255fafb45576fbb6400c35",
+      "normalPush": true,
+      "verifiedAt": "2026-10-21T19:20:33.291Z",
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "previewServerStopped": true,
+      "qaBrowserClosed": true,
+      "metadataCommit": "Containing final metadata commit discoverable in Git and automation memory; no circular self-reference"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-21T19:20:33.291Z",
+    "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
       "deliveryCheckpoint": "836269855cbe9d60aef117bfeb49433a5073972f",
@@ -43751,7 +43656,7 @@
       }
     },
     "threadId": "01a14d64-3d19-78c1-af2a-c2f212d73ce2",
-    "writerStoppedMeaning": "No product/QA work launched; only final metadata publication, requested memory note and lock release remain",
+    "writerStoppedMeaning": "Production/preview/browser work ended; owner performs publication metadata then releases owned lock",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -44139,7 +44044,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "59253f373db27356fd1c99add18b37765e72c91d",
+    "lastPushedCommit": "7d1abf302f0c13ace0255fafb45576fbb6400c35",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -44945,7 +44850,7 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "59253f373db27356fd1c99add18b37765e72c91d",
+    "lastKnownGoodCommit": "7d1abf302f0c13ace0255fafb45576fbb6400c35",
     "completedThisRun": [
       "Arrival5existing images reviewed without regeneration;10checks/guardianPASS, READY_FOR_OPERATOR_REVIEW",
       "Saved5illustrations/18s generated from current branch/V2/saved environment,2targeted corrections,7raw outputs retained; GENERATED_REVIEW_PENDING",
@@ -46480,7 +46385,7 @@
       ]
     },
     "contractSetVersion": "1.8.0",
-    "uncommittedWork": "Only current reviewed offline candidate/proof/workflow paths; coherent checkpoint in progress",
+    "uncommittedWork": "NONE after containing metadata closeout",
     "commitReferenceScope": "Reviewed illustrated-cinematic configuration delivery; following metadata-only closeout discoverable in Git, avoiding circular self-reference.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
@@ -46782,7 +46687,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "Only current reviewed offline candidate/proof/workflow paths; coherent checkpoint in progress",
+  "uncommittedWork": "NONE after containing metadata closeout",
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -51512,9 +51417,13 @@
       "inheritedWip": 0
     },
     "publication": {
-      "status": "CHECKPOINT_PENDING",
-      "target": "origin/dev",
-      "authority": "OD-2026-10-12-A"
+      "productCheckpoint": "7d1abf302f0c13ace0255fafb45576fbb6400c35",
+      "normalPush": true,
+      "verifiedAt": "2026-10-21T19:20:33.291Z",
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "previewServerStopped": true,
+      "qaBrowserClosed": true,
+      "metadataCommit": "Containing final metadata commit discoverable in Git and automation memory; no circular self-reference"
     },
     "previousRuns": [
       {
@@ -51590,6 +51499,8 @@
           "metadataCommitReference": "Containing metadata commit and final parity are recorded in automation memory/Git"
         }
       }
-    ]
+    ],
+    "runEndedAt": "2026-10-21T19:20:33.291Z",
+    "elapsedMinutes": 26.5
   }
 }

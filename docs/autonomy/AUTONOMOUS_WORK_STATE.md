@@ -1,6 +1,6 @@
 # Cinématiques illustrées — arrivée revue ; branche sauvée produite
 
-Run codex-illustrated-bois-20261021T1854Z · début2026-10-21T18:54:03Z · heartbeat 2026-10-21T19:16:55.943Z. READY_FOR_PC_ACCEPTANCE conservé, scheduler ACTIVE/configuration byte-identique. [Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html) · [Lecture locale](../../tools/cinematics/candidates/illustrated-sequences/README.md).
+Run codex-illustrated-bois-20261021T1854Z · début2026-10-21T18:54:03Z · clôture 2026-10-21T19:20:33.291Z. READY_FOR_PC_ACCEPTANCE conservé, scheduler ACTIVE/configuration byte-identique. [Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html) · [Lecture locale](../../tools/cinematics/candidates/illustrated-sequences/README.md).
 
 Arrivée :5images existantes/18s sans régénération,1scénario/1reçu/10contrôles PASS et guardian PASS_SCOPED, READY_FOR_OPERATOR_REVIEW. StatutHTML seulement corrigé après preuve avec exactavant/après/SHA ; reçu brut NOT_ACCEPTED distinct de revue bornée. Sauvé :5images/18s,5appels initiaux+2corrections mains/accessoires,7raw conservés, guardian PASS_PRESERVATION, GENERATED_REVIEW_PENDING ; lecture continue/reçu technique à faire avant READY. Aucun art final/runtime accepté.
 
@@ -8,7 +8,7 @@ Arrivée :5images existantes/18s sans régénération,1scénario/1reçu/10contr�
 
 TypeScript/41tests ciblés/contrats8+8/gates/diffcheck/SHA/timeline/liens PASS.344jobs hérités inchangés,345total.0source runtime/0gameplay/5illustrations sélectionnées/7appels/1scénario/5QApreuves/3workflowdocs+1plan/0WIP hérité. Lecteur/pilote audience/camp/anciens médias/src/public/V6/audio/contrats intacts. Art/PCglobal/balance/hardware/audio différé/mobile-aprèsPC restent ouverts. [Handoff courant](handoffs/2026-10-21T1854Z-codex-illustrated-bois.md).
 
-Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/narrative/presentation/save/governance PASS préservation ; UI/QA PASS arrivée, sauvé continu PENDING ; Traversal/combat N/A. Aucun LOCKED changé. Checkpoint/push/parité/fin/libération dans Git et mémoire automation, main inchangé.
+Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/narrative/presentation/save/governance PASS préservation ; UI/QA PASS arrivée, sauvé continu PENDING ; Traversal/combat N/A. Aucun LOCKED changé. Checkpoint produit 7d1abf302f0c13ace0255fafb45576fbb6400c35 publié/parité origin/dev vérifiée. Serveur/onglet arrêtés. Clôture 2026-10-21T19:20:33.291Z ; métadonnée contenant cet état et libération du verrou consignées dans Git/mémoire automation, main inchangé.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
