@@ -1,12 +1,16 @@
-# Camp — cinq nouveaux plans illustrés
+# Camp — cinq plans illustrés prêts pour revue
 
-Run codex-manual-camp-five-stills-20261020, UTC 2026-10-21T02:32:27.786Z. READY_FOR_PC_ACCEPTANCE conservé. [Demande et livrable](CAMP_FIVE_STILLS_OPERATOR_DIRECTION_2026-10-20.md).
+Run codex-manual-camp-five-stills-20261020, UTC 2026-10-21T02:37:03.762Z. READY_FOR_PC_ACCEPTANCE conservé. [Demande et limites](CAMP_FIVE_STILLS_OPERATOR_DIRECTION_2026-10-20.md).
 
-Clarification opérateur : cinq images distinctes de mise en scène, sources canoniques seulement. Ancien flipbook écarté, ancienne vidéo absente des inputs. Cinq nouveaux plans générés et copiés bruts ; lecteur de revue20s à vérifier. Détails d'équipement et géographie non acceptés.
+Cinq nouveaux plans, V2/camp canoniques uniquement, aucune vidéo ou image des anciens essais en input. Cinq illustrations distinctes tenues quelques secondes, pas un flipbook. Montage hors jeu20s proposé :4+3+5+4+4. Lecture sur demande, pause, sélection/clavier et arrêt final.
 
-Prochain : Verify the five-shot reader, then deliver these same compositions for operator review without art/runtime acceptance.
+Gates propres, contrats8/8, TypeScript0, smoke lecteur11checks PASS, quatre captures inspectées ; guardian PASS_SCOPED_CLOSEOUT, reçu lecteur et captures rapprochés. Art, équipement, géographie non acceptés ; limites lame01/main03/détails conservées.
 
-339jobs et acceptations/bloc exact conservés. Aucun runtime, LOCKED, MP4, audio, scheduler ou vérité jeu changé.
+339jobs/acceptations et bloc exact ci-dessous intacts, historiques et objets différés conservés. Aucun runtime/V6/canon/MP4/LOCKED/audio/scheduler modifié ; zéro étapejouée.
+
+Une prochaine action : Operator watches this same five-shot montage and gives a verdict on compositions and cut rhythm; any next correction targets a named shot, without inferring runtime adoption.
+
+Aperçu http://127.0.0.1:5456/, PID 13348 conservé. Publication dev OD-2026-10-12-A puis clôture et libération du verrou.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

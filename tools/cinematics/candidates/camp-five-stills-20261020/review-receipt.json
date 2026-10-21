@@ -1,0 +1,51 @@
+{
+  "scope": "Five distinct generated stills in offline montage; reader evidence only, not art/gait/runtime acceptance",
+  "checks": [
+    "Five complete image shots loaded; initially paused on shot01",
+    "Actual20s progression through five shots at4/7/12/16s, then stopped without loop",
+    "Thumbnails and previous/next select matching compositions, paused",
+    "Screen keyboard and native range keyboard seek remain usable",
+    "Pause freezes montage time",
+    "OS-only reduction change pauses; manual shot selection retained",
+    "Whole image contained, no horizontal clipping,44px targets at1366x768",
+    "Whole image contained, no horizontal clipping,44px targets at620x780",
+    "Whole image contained, no horizontal clipping,44px targets at390x844",
+    "No nominal console/page errors",
+    "Missing illustration disables playback/seek with visible status"
+  ],
+  "captures": [
+    {
+      "path": "tmp/cinematics/camp-five-stills-20261020/check/desktop-wide.png",
+      "sha256": "c02334ea0f49014c4b3f88c25c6ac5d7b2060c2096c57185cc56cbe4a7603996",
+      "inspected": true
+    },
+    {
+      "path": "tmp/cinematics/camp-five-stills-20261020/check/desktop-shot02.png",
+      "sha256": "ff7bad565f6eb6911e94317e751c948b449241f42f3ba8fb024865654907cc90",
+      "inspected": true
+    },
+    {
+      "path": "tmp/cinematics/camp-five-stills-20261020/check/desktop-shot04.png",
+      "sha256": "31267186c65abe49d316a5c6613d64b4b47d89ba70a51cf868a866f9df804cce",
+      "inspected": true
+    },
+    {
+      "path": "tmp/cinematics/camp-five-stills-20261020/check/narrow-detail.png",
+      "sha256": "8e801c03f272a7dd600f2d8d11cfbc9f9fbc5f8de31bd9b3af34627ce2d168ed",
+      "inspected": true
+    }
+  ],
+  "driver": "tmp/autonomy/five-stills-smoke.mjs",
+  "status": "PASS",
+  "consoleErrors": [],
+  "completedAt": "2026-10-21T02:34:01.708Z",
+  "driverSha256": "3116c4bb7a2800866acf9d302fc13b24d53b29f5afd191c06bce461ac99c7e15",
+  "readerSha256": {
+    "index.html": "5f741ab1317c6b24a45f18f167911dba25b0c275e15ef2cbe3b090ac188deab2",
+    "montage.css": "8fd07f49ebf345eca07e58a48266c7a5866cf840b6e898571c56fcd2409e74ab",
+    "montage.mjs": "5c5dc8ad2eeb51844453904607376b48d8c24ec5680a662171293e4cbaf41ec6"
+  },
+  "provenanceSha256": "a5d8a92987a1f703ca1e0086d85aa4c0dcee5cb6565aab8dde37762963017cd5",
+  "acceptance": "READER_ONLY; OPERATOR_ART_AND_STAGING_VERDICT_PENDING",
+  "guardian": "PASS_SCOPED_CLOSEOUT"
+}

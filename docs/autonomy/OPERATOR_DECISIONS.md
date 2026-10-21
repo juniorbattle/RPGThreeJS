@@ -66,3 +66,5 @@ Append-only index of the explicit operator decisions that bind autonomous work. 
 | MANUAL-ILLUSTRATED-CAMP-2026-10-20 | 2026-10-20 | Interactive Okay go on a short offline illustrated camp montage for comparison using existing images | [Illustrated camp comparison](ILLUSTRATED_CAMP_COMPARISON_2026-10-20.md) | PROTOTYPE ONLY; no media-doctrine adoption, generation, runtime replacement or scheduler change |
 
 | MANUAL-CAMP-FLIPBOOK-2026-10-20 | 2026-10-20 | Explicitly restart using image-generation tools and flipbook style, without the previous video | [Fresh camp flipbook](CAMP_FLIPBOOK_STUDY_2026-10-20.md) | MANUAL OFFLINE EXPERIMENT ONLY; canonical V2/camp inputs, no media-doctrine/runtime adoption or recurring generation |
+
+| MANUAL-CAMP-FIVE-STILLS-2026-10-20 | 2026-10-20 | Clarify initial idea: five distinct staged illustrations held sequentially, generated from canonical references without any video base; previous flipbook direction not retained | [Five camp stills](CAMP_FIVE_STILLS_OPERATOR_DIRECTION_2026-10-20.md) | MANUAL OFFLINE PROPOSAL; five fresh images, no runtime/media-doctrine adoption or recurring-generation permission |

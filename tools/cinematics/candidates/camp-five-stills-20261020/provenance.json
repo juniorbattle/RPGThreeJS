@@ -130,5 +130,11 @@
   "preview": {
     "url": "http://127.0.0.1:5456/",
     "pid": 13348
-  }
+  },
+  "readerSha256": {
+    "index.html": "5f741ab1317c6b24a45f18f167911dba25b0c275e15ef2cbe3b090ac188deab2",
+    "montage.css": "8fd07f49ebf345eca07e58a48266c7a5866cf840b6e898571c56fcd2409e74ab",
+    "montage.mjs": "5c5dc8ad2eeb51844453904607376b48d8c24ec5680a662171293e4cbaf41ec6"
+  },
+  "reviewedAt": "2026-10-21T02:37:03.762Z"
 }
