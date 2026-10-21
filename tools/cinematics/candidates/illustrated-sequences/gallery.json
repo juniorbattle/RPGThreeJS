@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T22:09:11.981Z",
+  "updatedAt": "2026-10-21T22:25:45.221Z",
   "scope": "Offline illustrated candidates; final art/runtime separate",
   "scenes": [
     {
@@ -34,8 +34,8 @@
     },
     {
       "id": "lion_judgement",
-      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
-      "path": null,
+      "status": "GENERATED_REVIEW_PENDING",
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/index.html",
       "finalArtAccepted": false,
       "runtimeIntegrated": false
     },

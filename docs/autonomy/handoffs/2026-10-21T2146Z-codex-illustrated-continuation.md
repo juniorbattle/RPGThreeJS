@@ -1,0 +1,24 @@
+# Cinématiques illustrées — quatre prêtes, jugement produit
+
+Run codex-illustrated-resume-20261021T2146Z, début2026-10-21T21:46:48Z, clôture2026-10-21T22:31:08.401Z. READY_FOR_PC_ACCEPTANCE conservé ; scheduler ACTIVE/configuration inchangée. Crédits revenus, production reprise. Sauvé READY par revue indépendante de preuve existante. Sacrifié READY :5images/18s,1scénario/10contrôles,3captures inspectées,guardianPASS. Jugement :4images/16s,4initiaux+2corrections/6raw,guardianPASS_PRESERVATION ; lecture continue et raccord final03→04 non acceptés. Aucun artfinal/runtime/globalPC accepté.
+
+**UNE prochaine action exacte :** Resume lion_judgement/v1 WITHOUT regenerating four selected images. Observe normal16s, especially03→04 final attention (still more dipped, not accepted). Copy preserved sacrificed smoke to a new judgement driver; adapt4images/3dissolves/16s/times0,4,8,11/paths/SHA while retaining every assertion; unique registered receipt and inspected captures before READY, then serpent_route_ending.
+
+41tests/TypeScript/contracts8+8/gates/diffcheck/SHA PASS.346jobs hérités intacts,347total.0source runtime/0gameplay/9illustrations sélectionnées/11appels/2corrections/1scénario/8QApreuves/3workflowdocs+1plan/0WIP hérité. Deux fins sans média. [Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html) · [Handoff](handoffs/2026-10-21T2146Z-codex-illustrated-continuation.md).
+
+Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/narrative/presentation/save/governance PASS préservation ; UI/QA PASS borné sauvé+sacrifié, jugement continu/raccord PENDING ; Traversal/combat N/A. Aucun LOCKED modifié. Serveur5461 et onglet arrêtés ; publication normale origin/dev OD-2026-10-12-A, main protégé.
+
+
+Préflight propre sans verrou/WIP hérité, dev/origin/devccacfcc et main00b96f1 ; lock atomique, fetch/prune non destructif et remoteparity vérifiés. Reprise directe utilisateur après crédits revenus ; aucun changement scheduler.
+
+Sauvé : guardian77SHA/5images/3captures PASS_SCOPED, preuve18s antérieure conservée ; seul statut HTML corrigé avec avant/après/testedSHA/deliveredSHA dans review-closeout.json. Aucun QA ni image rejoué.
+
+Sacrifié : cinq nouveaux plans,5appels0correction, deuxV2 Maelor/Villageoise/plaquebrûlée, distance→cadrageattention→panierprotecteur→regardbaissé→raccord avant village_raid_aftermath:1/provisions. Tout raw/requêtes/résultats/SHA/source/timeline. Un scénario exact pilote copié assertions inchangées,10checks/3capturesinspectées,rawSUCCEEDED/NOT_ACCEPTED,guardian45+15SHA PASS_SCOPED_OFFLINE_REVIEW. IAB lecture réelle début/finOSreduce0,8s ; normal1s/18s par pilote. Checkpoint livré b4ef81b1e6c17b67cf2f6aefe60dca8927f4f294/parité vérifiée.
+
+Jugement : source actuelleCinematicTriggers:12/GameApp:1140/lionFinale:320 premièreétapeopen/LionCampaignStructure:348Alaricuniversel. Quatreplans16s/0,4,8,11 : attente→prise→têterelevee→largefinal. Masque/cape/épéedroitebasse/bâtongauche/salleintacte préservés. Quatreinitiaux+2correctionstêtefinale,6rawexactes. Correction01 peu de progrès ;02amélioration légère mais finaleplusinclinéeque03, attention nonrésolue/nonacceptée. Cap2atteint, aucun retryidentique. Guardian51SHA PASS_PRESERVATION, pas de READY. Aucun autre cast/verdict/Sceau/choix/ordre introduit. Pilote de cette scène NON exécuté, aucun fauxreçu ; reprendre ses mêmes4images avant prochainefin.
+
+Matrice : GAME_CONSTITUTION PASS ; ART_DIRECTION PASS scoped/finalartdéféré ; CHARACTERS PASS V2/2puis1acteur/équipement ; ENVIRONMENTS PASS plaques approuvées ; NARRATIVE_CAMPAIGN PASS frontièrespréchoix/préopendynamique ; NARRATIVE_PRESENTATION PASS préservation, jugementraccordPENDING ; TRAVERSAL N/A ; COMBAT N/A ; SAVE PASS aucun src/public/V6 ; UI_ACCESSIBILITY PASS scoped preuveunique ; QA_EVIDENCE PASS sauvé+sacrifié, jugementcomplétionPENDING ; REPOSITORY_GOVERNANCE PASS publicationnormale/LOCKEDgates. Huitcontrats/huitvidéos préservés ; pas de vidéo/MiniMax/keyframe/MP4/audio/runtime/neuvièmeslot.
+
+346jobs hérités et acceptations deepEqual,347total ; racineshistoriques contrôlées, huitSHAcamp/schedulerbyteidentique.41tests2sources/tmp-exclu/TypeScript/contracts etstatiqueSHA/liens/timeline PASS ; build/campagne inchangés non rejoués.9sélectionnées/11appels/11raw/2corrections/1scénario/1nouveaureçu/8QApreuves (incluant closeouts/preservation),3workflowdocs+1plan/0WIPhérité. WIP publiés254ed710 et a205539 sous brancheowned ; retirer seulement après livraison dev.
+
+Serveur5461 et ongletIAB fermés. Deuxfins encore sansmédia,4/7READY+1GENERATED_REVIEW_PENDING ; campstructure historique inchangée. Artfinal/adoptionruntime/PCglobal/équilibre/matériel/audio/mobileaprèsPC demeurentopérateur. Prochaineaction ci-dessus suffisamment précise, aucune permission routinière requise. SHAfinal/parité/libérationverrou consignés dans Git/mémoireautomation après publication.

@@ -1,0 +1,22 @@
+{
+  "status": "PASS_PRESERVATION_ONLY",
+  "at": "2026-10-21T22:31:08.401Z",
+  "guardian": "/root/guardian",
+  "provenanceHashChecks": 51,
+  "provenance": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/provenance.json",
+    "sha256": "5c48ff6ec487b34194fec4e83d3df2d3c9b62fe3f3b5d79ebff371981d4f1c55"
+  },
+  "imagesInspected": 4,
+  "variantsInspected": [
+    "shot-04-initial",
+    "shot-04-correction-01"
+  ],
+  "actualFinalPose": "Correction02 slight head/chest improvement; remains more dipped than03; final attention continuity unresolved",
+  "technicalMontageStatus": "PENDING_OWN_16S_REVIEW",
+  "sceneStatus": "GENERATED_REVIEW_PENDING",
+  "artAccepted": false,
+  "runtimeIntegrated": false,
+  "contractSetVersion": "1.8.0",
+  "lockedRulesChanged": false
+}

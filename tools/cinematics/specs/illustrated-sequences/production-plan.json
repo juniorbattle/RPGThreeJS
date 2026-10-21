@@ -130,12 +130,22 @@
     {
       "id": "lion_judgement",
       "order": 5,
-      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
+      "status": "GENERATED_REVIEW_PENDING",
       "sourceIndex": "tools/cinematics/specs/production-eight-slot-remaster/lion_judgement.json",
       "sourceIndexRole": "Historical reference paths only; revalidate current canonical source, never execute video instructions",
       "outputRoot": "tools/cinematics/candidates/illustrated-sequences/lion_judgement",
       "finalArtAccepted": false,
-      "runtimeIntegrated": false
+      "runtimeIntegrated": false,
+      "version": "v1",
+      "candidatePath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/index.html",
+      "provenancePath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/provenance.json",
+      "reviewPath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review.md",
+      "initialImages": 4,
+      "corrections": 2,
+      "proposedDurationSeconds": 16,
+      "updatedAt": "2026-10-21T22:25:45.221Z",
+      "preservationReview": "PASS_PRESERVATION; FINAL_ATTENTION_AND16S_PENDING",
+      "reviewPreservationPath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-preservation.json"
     },
     {
       "id": "serpent_route_ending",
@@ -158,7 +168,7 @@
       "runtimeIntegrated": false
     }
   ],
-  "firstAction": "Produce branch-neutral lion_judgement offline before dynamic lionFinale open; Alaric sole required actor, no verdict/Seal/route presumption. Four16s stills proposed; shared reader unchanged; single browser scenario already used for sacrificed this run.",
+  "firstAction": "Resume lion_judgement/v1 WITHOUT regenerating four selected images. Observe normal16s, especially03→04 final attention (still more dipped, not accepted). Copy preserved sacrificed smoke to a new judgement driver; adapt4images/3dissolves/16s/times0,4,8,11/paths/SHA while retaining every assertion; unique registered receipt and inspected captures before READY, then serpent_route_ending.",
   "completionPolicy": "Each reviewed offline delivery becomes READY_FOR_OPERATOR_REVIEW; advance to next pending scene without routine approval; all seven delivered -> single operator review handoff.",
   "preserve": {
     "qaJobs": 339,
@@ -172,5 +182,5 @@
   "executionDecisionPath": "docs/autonomy/ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md",
   "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
   "executionPolicy": "Operator activation is already granted. Scheduled runs execute the seven authorized offline illustrated candidates; obsolete configuration-only/PAUSED notes are historical. No routine restart approval.",
-  "updatedAt": "2026-10-21T22:09:11.981Z"
+  "updatedAt": "2026-10-21T22:31:08.401Z"
 }

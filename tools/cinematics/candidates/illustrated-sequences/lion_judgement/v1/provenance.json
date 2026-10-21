@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "sceneId": "lion_judgement",
+  "version": "v1",
+  "runId": "codex-illustrated-resume-20261021T2146Z",
+  "generatedAt": "2026-10-21T22:25:45.221Z",
+  "sourceBranch": "dev",
+  "sourceCommit": "b4ef81b1e6c17b67cf2f6aefe60dca8927f4f294",
+  "contractSetVersion": "1.8.0",
+  "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+  "status": "GENERATED_REVIEW_PENDING",
+  "tool": "built-in image_gen.imagegen only",
+  "initialImages": 4,
+  "targetedCorrections": 2,
+  "uniqueGeneratedOutputs": 6,
+  "rawPolicy": "All six original outputs/variants retained byte-identically; exact requests/results/output_hint/raw paths; image_url bytes represented by rawPNG plusSHA, no re-encoding; overwritten correction01 input mapped to rawinitial",
+  "references": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png",
+      "sha256": "280361d3b73ba06753562c8fe73009c48dbda7db592d65ef891ae8ec323e3ebf",
+      "role": "Immutable approved V2/environment authority"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alaric.png",
+      "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+      "role": "Immutable approved V2/environment authority"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-05.png",
+      "sha256": "3f1038577e7ea08e00fced9bbc0da55a2460507bd7057ad7d1ccc8fd12b4da27",
+      "role": "Existing illustrated pose equipment reference only, not final art or environment authority"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/cinematics/CinematicTriggers.ts",
+      "sha256": "e53e891c352cd13ae6fa07431e6fe6df87d4c2a80b420503131aa424274a4011"
+    },
+    {
+      "path": "src/campaign/LionCampaignStructure.ts",
+      "sha256": "dede76984fd7892c0f2127921f69c089c5e3c1278aaca1935da42a0a171f7c91"
+    },
+    {
+      "path": "src/game/lionFinale.ts",
+      "sha256": "3d6cdc02af29607e243524177aa3aeb66715834c61990aea34c991cfa5bb6740"
+    },
+    {
+      "path": "src/game/contextualDialogueContent.ts",
+      "sha256": "1d9d815e89eaf1d235018ace4d945f3280e39fcbadbbe7f53ad602cd896a2447"
+    },
+    {
+      "path": "src/game/GameApp.ts",
+      "sha256": "067df49417b038704b154b54402aae42840d5f3bde279838d845f848d530d8b5"
+    },
+    {
+      "path": "src/render/data/demo-environment-pack-v1.production.json",
+      "sha256": "fcd1c020d9674c35e9665bb10fdcd7d4d898f382ed0117016f4b6c9dce6e00c3"
+    }
+  ],
+  "calls": [
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/requests/shot-01.json",
+        "sha256": "e5a4183036a235903b8212d99f5be50f66ed0164f6a37a4092c8ebcd068beb72"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/results/shot-01.json",
+        "sha256": "71d1517019cd28e908eb34973224c505a91e467d6022ed10a9dbd4a90e08e787"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-01-initial.png",
+        "sha256": "f62031235118c0c98970a66880296b6f134f0055a96c2bf93450ceee48de2bf1"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png",
+          "sha256": "280361d3b73ba06753562c8fe73009c48dbda7db592d65ef891ae8ec323e3ebf"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-05.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-05.png",
+          "sha256": "3f1038577e7ea08e00fced9bbc0da55a2460507bd7057ad7d1ccc8fd12b4da27"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/requests/shot-02.json",
+        "sha256": "84e67a111e93dfc81dac213c5a181c74edd6c01a1d61593137ddc9037b900669"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/results/shot-02.json",
+        "sha256": "14827500a2c80d04df41d9b8d3f321c4ec7b3873b4d11936bee47cf2b8558b97"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-02-initial.png",
+        "sha256": "cffecfa5e1acf4e94002a21356f248c9fad42283e8bf20a6fdd095502eadd2ba"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+          "sha256": "f62031235118c0c98970a66880296b6f134f0055a96c2bf93450ceee48de2bf1"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-05.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-05.png",
+          "sha256": "3f1038577e7ea08e00fced9bbc0da55a2460507bd7057ad7d1ccc8fd12b4da27"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/requests/shot-03.json",
+        "sha256": "8315da523ed9f53ff36cc3532ad148f24a142888de67f3f770f9936960b84504"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/results/shot-03.json",
+        "sha256": "7d12d16a692f3023fae146071f7ab4ded4b747a36a3e6307cd9bb5a43080cb9d"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-03-initial.png",
+        "sha256": "1fe23af8966273186aadaf5bcf19d348a8af617d1e6aa93c9da4cf41e0137f10"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+          "sha256": "f62031235118c0c98970a66880296b6f134f0055a96c2bf93450ceee48de2bf1"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-02.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-02.png",
+          "sha256": "cffecfa5e1acf4e94002a21356f248c9fad42283e8bf20a6fdd095502eadd2ba"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/requests/shot-04-correction-01.json",
+        "sha256": "36ce9300e387f021d344a2e122b41b56216379c0fc26e70bb95790dd3882e771"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/results/shot-04-correction-01.json",
+        "sha256": "d85cbf8e1778cd1d3bbdb2bb499673ad0386794854e4b9cea4e2da5322f69221"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-04-correction-01.png",
+        "sha256": "12aa091a02e78d06d9ccc8a24e7b46a0b37561cf89ff64136e6e9f3b06d11b2b"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-04.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-04-initial.png",
+          "sha256": "4d9cd55fce77baac0f28186b05037c4f881d67cb264b86932632d96363aa31fd"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+          "sha256": "1fe23af8966273186aadaf5bcf19d348a8af617d1e6aa93c9da4cf41e0137f10"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/requests/shot-04-correction-02.json",
+        "sha256": "276e755f040c7737bdc6e9bb2a1ad62e0d4fecb1d227480efa98b5ae8bc53891"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/results/shot-04-correction-02.json",
+        "sha256": "8da2b17570492ec8070c175ee3aab5f75c01902d3eb875df64b381556a559c09"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-04-correction-02.png",
+        "sha256": "4540c10f1926778410ab22d6068eae632e57d0d95b18246f74082d3070232727"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-04-correction-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-04-correction-01.png",
+          "sha256": "12aa091a02e78d06d9ccc8a24e7b46a0b37561cf89ff64136e6e9f3b06d11b2b"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+          "sha256": "1fe23af8966273186aadaf5bcf19d348a8af617d1e6aa93c9da4cf41e0137f10"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/requests/shot-04.json",
+        "sha256": "afceddc2eb9946e8525412eb83df56167ad90af3ea26e829b802e12297bad569"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/results/shot-04.json",
+        "sha256": "6583305b7ba5dc68327cd4dbc75c2dd475fb23959b0ab442bfff4fc8cafa6bb9"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-04-initial.png",
+        "sha256": "4d9cd55fce77baac0f28186b05037c4f881d67cb264b86932632d96363aa31fd"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+          "sha256": "f62031235118c0c98970a66880296b6f134f0055a96c2bf93450ceee48de2bf1"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+          "sha256": "1fe23af8966273186aadaf5bcf19d348a8af617d1e6aa93c9da4cf41e0137f10"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+      "sha256": "f62031235118c0c98970a66880296b6f134f0055a96c2bf93450ceee48de2bf1",
+      "width": 1672,
+      "height": 941,
+      "selectedFrom": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-01-initial.png"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-02.png",
+      "sha256": "cffecfa5e1acf4e94002a21356f248c9fad42283e8bf20a6fdd095502eadd2ba",
+      "width": 1672,
+      "height": 941,
+      "selectedFrom": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-02-initial.png"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+      "sha256": "1fe23af8966273186aadaf5bcf19d348a8af617d1e6aa93c9da4cf41e0137f10",
+      "width": 1672,
+      "height": 941,
+      "selectedFrom": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-03-initial.png"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-04.png",
+      "sha256": "4540c10f1926778410ab22d6068eae632e57d0d95b18246f74082d3070232727",
+      "width": 1672,
+      "height": 941,
+      "selectedFrom": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/raw/shot-04-correction-02.png"
+    }
+  ],
+  "sequence": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/sequence.json",
+    "sha256": "9e7d79cfee3ec410bdf62d17ef4b4aade474b6e580f2d3724f8f2dc4d05c603e"
+  },
+  "reader": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+      "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+      "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+    }
+  ],
+  "truthBoundary": "After final_refuge preparation; before dynamic lion_finale_judgement open, before record/bluff/outcome/verdict/intent",
+  "visibleActors": [
+    "alaric"
+  ],
+  "runtimeIntegrated": false,
+  "finalArtAccepted": false
+}

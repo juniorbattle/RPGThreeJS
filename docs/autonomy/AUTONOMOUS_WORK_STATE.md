@@ -1,10 +1,12 @@
-# Montages illustrés — Bois-Clair livré, jugement en production
+# Cinématiques illustrées — quatre prêtes, jugement produit
 
-Run codex-illustrated-resume-20261021T2146Z, début2026-10-21T21:46:48Z, heartbeat2026-10-21T22:09:11.981Z. IN_PROGRESS ; crédits disponibles. Scheduler ACTIVE/configuration inchangée. Sauvé READY par revue indépendante de preuve existante, sans QA rejoué. Sacrifié READY :5nouvelles images/18s,1scénario/10contrôles,3captures inspectées,guardianPASS. Art/runtime/globalPC non acceptés.
+Run codex-illustrated-resume-20261021T2146Z, début2026-10-21T21:46:48Z, clôture2026-10-21T22:31:08.401Z. READY_FOR_PC_ACCEPTANCE conservé ; scheduler ACTIVE/configuration inchangée. Crédits revenus, production reprise. Sauvé READY par revue indépendante de preuve existante. Sacrifié READY :5images/18s,1scénario/10contrôles,3captures inspectées,guardianPASS. Jugement :4images/16s,4initiaux+2corrections/6raw,guardianPASS_PRESERVATION ; lecture continue et raccord final03→04 non acceptés. Aucun artfinal/runtime/globalPC accepté.
 
-Prochaine action : Produce branch-neutral lion_judgement offline before dynamic lionFinale open; Alaric sole required actor, no verdict/Seal/route presumption. Four16s stills proposed; shared reader unchanged; single browser scenario already used for sacrificed this run.
+**UNE prochaine action exacte :** Resume lion_judgement/v1 WITHOUT regenerating four selected images. Observe normal16s, especially03→04 final attention (still more dipped, not accepted). Copy preserved sacrificed smoke to a new judgement driver; adapt4images/3dissolves/16s/times0,4,8,11/paths/SHA while retaining every assertion; unique registered receipt and inspected captures before READY, then serpent_route_ending.
 
-346jobs hérités inchangés,347total. Camp/audience/arrivée/médias sauvés/lecteur/src/public/V6/contrats inchangés. Gate set1.8.0/baseline0cb95135 vide.
+41tests/TypeScript/contracts8+8/gates/diffcheck/SHA PASS.346jobs hérités intacts,347total.0source runtime/0gameplay/9illustrations sélectionnées/11appels/2corrections/1scénario/8QApreuves/3workflowdocs+1plan/0WIP hérité. Deux fins sans média. [Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html) · [Handoff](handoffs/2026-10-21T2146Z-codex-illustrated-continuation.md).
+
+Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/narrative/presentation/save/governance PASS préservation ; UI/QA PASS borné sauvé+sacrifié, jugement continu/raccord PENDING ; Traversal/combat N/A. Aucun LOCKED modifié. Serveur5461 et onglet arrêtés ; publication normale origin/dev OD-2026-10-12-A, main protégé.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -357,5 +359,3 @@ Prochaine action : Produce branch-neutral lion_judgement offline before dynamic 
 - illustrated-bois-saved-2031: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-saved-2031/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-bois-sacrificed-2146: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-resume-2146/review/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
-
-Checkpoint technique6d4704826d0f8bd0295b59676828c5c1052b8a15 publié et parité origin/dev vérifiée. Clôture 2026-10-21T21:44:56.094Z. Serveur5461 arrêté, aucun onglet créé, scheduler byte-identique. Verrou libéré après publication des métadonnées et mémoire automation ; SHA de métadonnée dans Git.
