@@ -1,18 +1,16 @@
-# Camp — nouvelle base flipbook en production manuelle
+# Camp — nouveau flipbook prêt pour revue
 
-Run codex-manual-camp-flipbook-20261020; UTC 2026-10-21T01:36:53.404Z. READY_FOR_PC_ACCEPTANCE conservé. [Scope/progression](CAMP_FLIPBOOK_STUDY_2026-10-20.md). L’opérateur a corrigé l’essai illustré : génération de véritables images successives depuis références canoniques seulement, sans vidéo précédente.
+Run codex-manual-camp-flipbook-20261020; UTC 2026-10-21T02:15:20.357Z. READY_FOR_PC_ACCEPTANCE préservé. [Dossier et limites](CAMP_FLIPBOOK_STUDY_2026-10-20.md).
 
-Nouvelle base générée, deux planches3×3 écartées pour dérive/cadrage de lame, conservéesbrutes. Suite : poses générées séparément à pleine résolution depuis base-v1 ; aucun alignement/composite/interpolation pour masquer les défauts.18poses/6fps reste cible, aucune acceptation marche/art/runtime.
+18 dessins générés à partir d'une nouvelle base canonique, sans vidéo précédente ; lecteur hors jeu 6 i/s / 3s, pause et feuilletage. Deux planches rejetées conservées. 20 appels imagegen, aucun appel MiniMax/vidéo, aucun remplacement runtime/LOCKED/audio/scheduler.
 
-Next: Generate individual fresh full-scene poses from base-v1 only, excluding both rejected atlases and all old cinematics/stills; inspect actual continuity before assembling18frame6fps offline flipbook.
+Contrats 8/8, TypeScript, barrière LOCKED et diff propres, smoke du lecteur PASS, trois captures inspectées, guardian PASS_SCOPED_CLOSEOUT. Des sauts de poses/positions/équipement demeurent ; ni marche, deux cycles, art, équipement ou intégration acceptés. Zéro étape de gameplay jouée.
 
-Aucun MiniMax/vidéo/audio/runtime/scheduler/LOCKED.339jobs et racineshistoriques préservés ; campagnes/V6/économie/huit slots/12s inchangés. Checkpoint intermédiaire : production d’images en cours, pas de nouvelle étapejouée.
+339 jobs et leurs acceptations/bloc ci-dessous préservés exactement. Anciennes vidéos/candidats/études, V6, vérités campagne/combat, objets différés et limites PC/mobile conservés.
 
+Une prochaine action : Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained.
 
-Flipbook progress 2026-10-21T01:55:12.623Z: 12/18drawings; twoatlases rejected. Next: Generate remainingframes12–17 from newbase only; assemble exactraw18drawings at6fps in an offline reader, inspect continuity without alignment/interpolation or priorvideo input.
-
-
-Flipbook 2026-10-21T02:11:03.989Z: all 18 raw drawings preserved (20 imagegen calls including two rejected atlases). Reader ready; next: focused standalone verification. No gait/art/runtime acceptance.
+Aperçu http://127.0.0.1:5455/ ; PID 25924 conservé pour revue. Publication OD-2026-10-12-A, clôture puis libération du verrou après parité.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

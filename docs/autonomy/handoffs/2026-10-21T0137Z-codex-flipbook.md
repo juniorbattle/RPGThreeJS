@@ -1,11 +1,11 @@
-# Handoff — nouveau flipbook, progression
+# Handoff — nouveau flipbook livré, revue du style ouverte
 
-UTC 2026-10-21T01:36:53.404Z, run codex-manual-camp-flipbook-20261020. [Scope](../CAMP_FLIPBOOK_STUDY_2026-10-20.md). Inputs initiauxcamp+V2masters seulement ; base-v1 neuve. DeuxatlasesA écartées, lamehorscadre/dérive malgré correction ; ne paslesintégrer. Suiteposesindividuelles depuisbase, pasdecandidatsanciens.
+UTC 2026-10-21T02:15:20.357Z, run codex-manual-camp-flipbook-20261020. [Dossier](../CAMP_FLIPBOOK_STUDY_2026-10-20.md). Baseline 0610d8017c797fac092a489e74daf77e04101dd7.
 
-Next: Generate individual fresh full-scene poses from base-v1 only, excluding both rejected atlases and all old cinematics/stills; inspect actual continuity before assembling18frame6fps offline flipbook.
+18 sorties brutes affichées (nouvelle base canonique +17 poses), deux atlases rejetés hors lecture, tous inputs/prompts/SHA retenus. Aucun ancien média utilisé comme input. Lecture hors jeu 6 i/s /3s, pause et feuilletage, URL http://127.0.0.1:5455/, PID 25924, IAB6.
 
-Verroupossédé, tâcheactive ;339jobs et historiquesintacts. Pas d’adoptionruntime/LOCKED/MiniMax/audio/scheduler.
+Gates et smoke du lecteur PASS, guardian PASS_SCOPED_CLOSEOUT. Sauts de poses/placement et variations d'équipement visibles ; aucune acceptation marche/deuxcycles/art/runtime. Aucun src/public/LOCKED/scheduler/audio/MP4 modifié. 339jobs/acceptations et bloc MD exact conservés ; historiques intacts.
 
-Flipbook progress 2026-10-21T01:55:12.623Z: 12/18drawings; twoatlases rejected. Next: Generate remainingframes12–17 from newbase only; assemble exactraw18drawings at6fps in an offline reader, inspect continuity without alignment/interpolation or priorvideo input.
+Next: Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained.
 
-Flipbook 2026-10-21T02:11:03.989Z: all 18 raw drawings preserved (20 imagegen calls including two rejected atlases). Reader ready; next: focused standalone verification. No gait/art/runtime acceptance.
+Dernier checkpoint préalable b94f84e706c7b1ebb1801bfd9b62d34bcb9c2e53; livraison et clôture à publier normalement sur origin/dev selon OD-2026-10-12-A, puis libérer le verrou possédé. Serveur de revue seulement conservé, aucun worker/provider/QA long actif.

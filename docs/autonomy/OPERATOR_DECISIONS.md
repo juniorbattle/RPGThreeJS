@@ -64,3 +64,5 @@ Append-only index of the explicit operator decisions that bind autonomous work. 
 | OD-2026-10-20-C | 2026-10-20 | Explicitly approve one manual camp candidate05, H3/10s/2K/first+last, USD1.50 excluding tax cap, exact guard exception and no automatic paid retry | [Manual P03 candidate05 approval](MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md) | ACTIVE for this single manual task; no recurring generation or runtime promotion |
 
 | MANUAL-ILLUSTRATED-CAMP-2026-10-20 | 2026-10-20 | Interactive Okay go on a short offline illustrated camp montage for comparison using existing images | [Illustrated camp comparison](ILLUSTRATED_CAMP_COMPARISON_2026-10-20.md) | PROTOTYPE ONLY; no media-doctrine adoption, generation, runtime replacement or scheduler change |
+
+| MANUAL-CAMP-FLIPBOOK-2026-10-20 | 2026-10-20 | Explicitly restart using image-generation tools and flipbook style, without the previous video | [Fresh camp flipbook](CAMP_FLIPBOOK_STUDY_2026-10-20.md) | MANUAL OFFLINE EXPERIMENT ONLY; canonical V2/camp inputs, no media-doctrine/runtime adoption or recurring generation |

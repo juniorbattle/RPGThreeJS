@@ -8,9 +8,9 @@ const say=text=>{$('status').textContent=text};
 function render(){
  const picture=$('picture');
  if(picture.getAttribute('src')!==paths[index])picture.setAttribute('src',paths[index]);
- picture.alt=`Dessin ${index+1} sur18 du nouveau flipbook du camp`;
+ picture.alt=`Dessin ${index+1} sur 18 du nouveau flipbook du camp`;
  $('number').textContent=`${String(index+1).padStart(2,'0')} / 18`;
- $('seek').value=String(index);$('seek').setAttribute('aria-valuetext',`Dessin ${index+1} sur18`);
+ $('seek').value=String(index);$('seek').setAttribute('aria-valuetext',`Dessin ${index+1} sur 18`);
  $('time').textContent=`${format(index/fps)} / ${format(18/fps)} s`;
  $('play').textContent=playing?'Pause':index===17?'Relire le flipbook':'Lire le flipbook';
  $('play').disabled=$('previous').disabled=$('next').disabled=!ready;
@@ -26,13 +26,13 @@ function toggle(){
  if(playing){pause('Lecture en pause.');return}
  if(!ready)return;
  if(index===17)index=0;
- playing=true;start=performance.now()-index*1000/fps;render();say(`Lecture des 18 dessins à${fps}images/seconde, sur demande.`);raf=requestAnimationFrame(tick);
+ playing=true;start=performance.now()-index*1000/fps;render();say(`Lecture des 18 dessins à ${fps} images/seconde, sur demande.`);raf=requestAnimationFrame(tick);
 }
-function go(frame){pause();index=Math.max(0,Math.min(17,frame));render();say(`Dessin ${index+1} sur18, en pause.`)}
+function go(frame){pause();index=Math.max(0,Math.min(17,frame));render();say(`Dessin ${index+1} sur 18, en pause.`)}
 $('play').addEventListener('click',toggle);
 $('previous').addEventListener('click',()=>go(index-1));$('next').addEventListener('click',()=>go(index+1));
 $('seek').addEventListener('input',event=>go(Number(event.target.value)));
-$('fps').addEventListener('change',event=>{pause();fps=Number(event.target.value);render();say(`Cadence${fps}images/seconde, en pause.`)});
+$('fps').addEventListener('change',event=>{pause();fps=Number(event.target.value);render();say(`Cadence ${fps} images/seconde, en pause.`)});
 document.addEventListener('keydown',event=>{
  if(/^(INPUT|SELECT|BUTTON|SUMMARY|TEXTAREA)$/.test(event.target.tagName)||event.altKey||event.ctrlKey||event.metaKey)return;
  if(event.code==='Space'){event.preventDefault();toggle()}
@@ -48,7 +48,7 @@ try{
  await Promise.all(paths.map((path,i)=>new Promise((resolve,reject)=>{const img=new Image();images[i]=img;img.onload=async()=>{try{await img.decode();resolve()}catch(error){reject(error)}};img.onerror=()=>reject(new Error(path));img.src=path})));
  ready=true;
  for(let i=0;i<18;i++){
-  const button=document.createElement('button');button.setAttribute('aria-label',`Afficher le dessin${i+1}`);
+  const button=document.createElement('button');button.setAttribute('aria-label',`Afficher le dessin ${i+1}`);
   const thumb=document.createElement('img');thumb.src=paths[i];thumb.alt='';thumb.loading='lazy';
   const label=document.createElement('span');label.textContent=String(i+1).padStart(2,'0');button.append(thumb,label);button.addEventListener('click',()=>go(i));$('thumbnails').append(button);
  }

@@ -3,15 +3,15 @@
   "runStartedAt": "2026-10-21T01:23:37.4537369Z",
   "runEndedAt": null,
   "activeTask": "MANUAL-CAMP-FRESH-FLIPBOOK",
-  "activePhase": "FRESH_FLIPBOOK_GENERATED_READER_VERIFICATION",
-  "activeSubtask": "18 raw generated drawings preserved; offline reader ready for focused verification",
+  "activePhase": "FRESH_FLIPBOOK_READY_FOR_OPERATOR_STYLE_REVIEW",
+  "activeSubtask": "18 raw drawings and offline reader delivered; gait/art/runtime unaccepted",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "41fa9481ebac1aa699f6750535e05509b8de729c",
-  "lastPushedCommit": "41fa9481ebac1aa699f6750535e05509b8de729c",
+  "lastKnownGoodCommit": "b94f84e706c7b1ebb1801bfd9b62d34bcb9c2e53",
+  "lastPushedCommit": "b94f84e706c7b1ebb1801bfd9b62d34bcb9c2e53",
   "completedThisRun": [
-    "Generated freshbase from canonicalcamp/V2masters only",
-    "Preserved and rejectedtwo driftingatlases",
-    "Generated individualfullscene poses with actualrequests/results retained"
+    "Generated one fresh base from four canonical V2/camp inputs",
+    "Generated 17 individual full-scene drawings and retained two rejected atlases",
+    "Delivered a verified 18-slot offline flipbook without old-media input or runtime change"
   ],
   "filesChanged": [
     "tools/cinematics/candidates/flipbook-camp-20261020/atlas-a-correction-request.txt",
@@ -29,6 +29,10 @@
     "tools/cinematics/candidates/flipbook-camp-20261020/direct-03-results.json",
     "tools/cinematics/candidates/flipbook-camp-20261020/direct-04-requests.json",
     "tools/cinematics/candidates/flipbook-camp-20261020/direct-04-results.json",
+    "tools/cinematics/candidates/flipbook-camp-20261020/direct-05-requests.json",
+    "tools/cinematics/candidates/flipbook-camp-20261020/direct-05-results.json",
+    "tools/cinematics/candidates/flipbook-camp-20261020/flipbook.css",
+    "tools/cinematics/candidates/flipbook-camp-20261020/flipbook.mjs",
     "tools/cinematics/candidates/flipbook-camp-20261020/frame-001.png",
     "tools/cinematics/candidates/flipbook-camp-20261020/frame-002.png",
     "tools/cinematics/candidates/flipbook-camp-20261020/frame-003.png",
@@ -40,29 +44,49 @@
     "tools/cinematics/candidates/flipbook-camp-20261020/frame-009.png",
     "tools/cinematics/candidates/flipbook-camp-20261020/frame-010.png",
     "tools/cinematics/candidates/flipbook-camp-20261020/frame-011.png",
+    "tools/cinematics/candidates/flipbook-camp-20261020/frame-012.png",
+    "tools/cinematics/candidates/flipbook-camp-20261020/frame-013.png",
+    "tools/cinematics/candidates/flipbook-camp-20261020/frame-014.png",
+    "tools/cinematics/candidates/flipbook-camp-20261020/frame-015.png",
+    "tools/cinematics/candidates/flipbook-camp-20261020/frame-016.png",
+    "tools/cinematics/candidates/flipbook-camp-20261020/frame-017.png",
+    "tools/cinematics/candidates/flipbook-camp-20261020/index.html",
+    "tools/cinematics/candidates/flipbook-camp-20261020/provenance.json",
+    "tools/cinematics/candidates/flipbook-camp-20261020/review-preview.png",
+    "tools/cinematics/candidates/flipbook-camp-20261020/review-receipt.json",
+    ".gitattributes",
     "docs/autonomy/CAMP_FLIPBOOK_STUDY_2026-10-20.md",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/handoffs/2026-10-21T0137Z-codex-flipbook.md"
   ],
   "testsRun": [
-    "contracts:validate8/8 and LOCKEDpreflight clean",
-    "GeneratedPNGs/requests/results preserved; no motionacceptance"
+    "contracts:validate",
+    "tsc --noEmit",
+    "LOCKED baseline and working-tree gates",
+    "diff --check",
+    "One standalone flipbook browser scenario and three inspected captures",
+    "18 originals and four canonical-input SHA checks"
   ],
   "testsPassed": [
-    "contracts:validate8/8 and LOCKEDpreflight clean",
-    "GeneratedPNGs/requests/results preserved; no motionacceptance"
+    "8 contracts / 8 slots",
+    "TypeScript exit0",
+    "Protected contract paths untouched",
+    "Reader-only smoke PASS; no gait acceptance",
+    "339 QA jobs and exact MD QA block preserved",
+    "Guardian PASS_SCOPED_CLOSEOUT"
   ],
   "testsRemaining": [
-    "Future continuous 1x pilot motion/artistic acceptance, filmic keyframe/cut poses and runtime integration not evaluated",
-    "Global PC/art/balance/hardware, five native audio families and true hidden/suspend remain open; mobile after stable PC"
+    "Operator style/art/gait verdict; no global PC acceptance inferred"
   ],
-  "blockers": [],
+  "blockers": [
+    "Visual pose/placement/equipment variations remain; artistic verdict pending"
+  ],
   "remainingWork": [
-    "Finish6newdrawings",
-    "Assemble/test/inspectrawflipbook and record preciseartlimits"
+    "Operator review of this flipbook; global PC/balance/hardware/audio and mobile-after-PC scopes retained"
   ],
-  "nextAction": "Verify the standalone flipbook controls and raw-image continuity; publish for operator review of the flipbook style, without gait or runtime acceptance.",
+  "nextAction": "Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained.",
   "taskQueue": [
     "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
     "Independent already-authorized demonstratedPC defect only;no unchanged diagnostic loop",
@@ -143,10 +167,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-camp-flipbook-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T02:11:03.989Z",
+  "lastHeartbeat": "2026-10-21T02:15:20.357Z",
   "wip": {
     "branch": "dev",
-    "sha": "41fa9481ebac1aa699f6750535e05509b8de729c",
+    "sha": "b94f84e706c7b1ebb1801bfd9b62d34bcb9c2e53",
     "dirtyFiles": [
       "tools/cinematics/candidates/flipbook-camp-20261020/atlas-a-correction-request.txt",
       "tools/cinematics/candidates/flipbook-camp-20261020/atlas-a-request.txt",
@@ -163,6 +187,10 @@
       "tools/cinematics/candidates/flipbook-camp-20261020/direct-03-results.json",
       "tools/cinematics/candidates/flipbook-camp-20261020/direct-04-requests.json",
       "tools/cinematics/candidates/flipbook-camp-20261020/direct-04-results.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/direct-05-requests.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/direct-05-results.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/flipbook.css",
+      "tools/cinematics/candidates/flipbook-camp-20261020/flipbook.mjs",
       "tools/cinematics/candidates/flipbook-camp-20261020/frame-001.png",
       "tools/cinematics/candidates/flipbook-camp-20261020/frame-002.png",
       "tools/cinematics/candidates/flipbook-camp-20261020/frame-003.png",
@@ -174,17 +202,29 @@
       "tools/cinematics/candidates/flipbook-camp-20261020/frame-009.png",
       "tools/cinematics/candidates/flipbook-camp-20261020/frame-010.png",
       "tools/cinematics/candidates/flipbook-camp-20261020/frame-011.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-012.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-013.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-014.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-015.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-016.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-017.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/index.html",
+      "tools/cinematics/candidates/flipbook-camp-20261020/provenance.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/review-preview.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/review-receipt.json",
+      ".gitattributes",
       "docs/autonomy/CAMP_FLIPBOOK_STUDY_2026-10-20.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
       "docs/autonomy/handoffs/2026-10-21T0137Z-codex-flipbook.md"
     ],
-    "status": "NEW_RAW_POSES_PRESERVED_NOT_ART_ACCEPTED",
-    "lastGreenCheck": "2026-10-21T01:55:12.623Z",
+    "status": "COHERENT_DELIVERY_READY_TO_PUBLISH",
+    "lastGreenCheck": "2026-10-21T02:15:20.357Z",
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T02:11:03.989Z",
+    "lastHeartbeat": "2026-10-21T02:15:20.357Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37374,7 +37414,7 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "41fa9481ebac1aa699f6750535e05509b8de729c",
+      "sha": "b94f84e706c7b1ebb1801bfd9b62d34bcb9c2e53",
       "dirtyFiles": [
         "tools/cinematics/candidates/flipbook-camp-20261020/atlas-a-correction-request.txt",
         "tools/cinematics/candidates/flipbook-camp-20261020/atlas-a-request.txt",
@@ -37391,6 +37431,10 @@
         "tools/cinematics/candidates/flipbook-camp-20261020/direct-03-results.json",
         "tools/cinematics/candidates/flipbook-camp-20261020/direct-04-requests.json",
         "tools/cinematics/candidates/flipbook-camp-20261020/direct-04-results.json",
+        "tools/cinematics/candidates/flipbook-camp-20261020/direct-05-requests.json",
+        "tools/cinematics/candidates/flipbook-camp-20261020/direct-05-results.json",
+        "tools/cinematics/candidates/flipbook-camp-20261020/flipbook.css",
+        "tools/cinematics/candidates/flipbook-camp-20261020/flipbook.mjs",
         "tools/cinematics/candidates/flipbook-camp-20261020/frame-001.png",
         "tools/cinematics/candidates/flipbook-camp-20261020/frame-002.png",
         "tools/cinematics/candidates/flipbook-camp-20261020/frame-003.png",
@@ -37402,25 +37446,37 @@
         "tools/cinematics/candidates/flipbook-camp-20261020/frame-009.png",
         "tools/cinematics/candidates/flipbook-camp-20261020/frame-010.png",
         "tools/cinematics/candidates/flipbook-camp-20261020/frame-011.png",
+        "tools/cinematics/candidates/flipbook-camp-20261020/frame-012.png",
+        "tools/cinematics/candidates/flipbook-camp-20261020/frame-013.png",
+        "tools/cinematics/candidates/flipbook-camp-20261020/frame-014.png",
+        "tools/cinematics/candidates/flipbook-camp-20261020/frame-015.png",
+        "tools/cinematics/candidates/flipbook-camp-20261020/frame-016.png",
+        "tools/cinematics/candidates/flipbook-camp-20261020/frame-017.png",
+        "tools/cinematics/candidates/flipbook-camp-20261020/index.html",
+        "tools/cinematics/candidates/flipbook-camp-20261020/provenance.json",
+        "tools/cinematics/candidates/flipbook-camp-20261020/review-preview.png",
+        "tools/cinematics/candidates/flipbook-camp-20261020/review-receipt.json",
+        ".gitattributes",
         "docs/autonomy/CAMP_FLIPBOOK_STUDY_2026-10-20.md",
+        "docs/autonomy/OPERATOR_DECISIONS.md",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
         "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
         "docs/autonomy/handoffs/2026-10-21T0137Z-codex-flipbook.md"
       ],
-      "status": "NEW_RAW_POSES_PRESERVED_NOT_ART_ACCEPTED",
-      "lastGreenCheck": "2026-10-21T01:55:12.623Z",
+      "status": "COHERENT_DELIVERY_READY_TO_PUBLISH",
+      "lastGreenCheck": "2026-10-21T02:15:20.357Z",
       "inheritedWip": 0
     },
-    "nextAction": "Verify the standalone flipbook controls and raw-image continuity; publish for operator review of the flipbook style, without gait or runtime acceptance.",
+    "nextAction": "Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
-      "rawGeneratedImages": 14,
-      "imageGenCalls": 14,
-      "rejectedAtlases": 2,
-      "individualPoseImages": 11,
-      "plannedFrames": 18,
       "gameplayStagesPlayed": 0,
-      "registeredJobs": 0,
+      "imageGenCalls": 20,
+      "rawGeneratedImages": 20,
+      "displayedDrawings": 18,
+      "rejectedAtlases": 2,
+      "artifactBrowserScenarios": 1,
+      "newQaJobs": 0,
       "totalQaJobs": 339,
       "inheritedWipFiles": 0
     },
@@ -38238,7 +38294,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "MANUAL-CAMP-FRESH-FLIPBOOK",
-    "activeSubtask": "18 raw generated drawings preserved; offline reader ready for focused verification",
+    "activeSubtask": "18 raw drawings and offline reader delivered; gait/art/runtime unaccepted",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41574,8 +41630,8 @@
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-21T01:23:37.4537369Z",
-    "activePhase": "FRESH_FLIPBOOK_GENERATED_READER_VERIFICATION",
-    "heartbeat": "2026-10-21T02:11:03.989Z",
+    "activePhase": "FRESH_FLIPBOOK_READY_FOR_OPERATOR_STYLE_REVIEW",
+    "heartbeat": "2026-10-21T02:15:20.357Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0137Z-codex-flipbook.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -43304,7 +43360,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "836269855cbe9d60aef117bfeb49433a5073972f",
+    "lastPushedCommit": "b94f84e706c7b1ebb1801bfd9b62d34bcb9c2e53",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -44110,49 +44166,91 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "3537be6b8577c2dbd7938105c8fcb9ce01f2470e",
+    "lastKnownGoodCommit": "b94f84e706c7b1ebb1801bfd9b62d34bcb9c2e53",
     "completedThisRun": [
-      "Saved explicit operator next-session priority; existing cinematic media/candidates audit before a first concrete correction",
-      "Operator combat FX listening deferred voluntarily; scoped technical/art/hidden limits remain open"
+      "Generated one fresh base from four canonical V2/camp inputs",
+      "Generated 17 individual full-scene drawings and retained two rejected atlases",
+      "Delivered a verified 18-slot offline flipbook without old-media input or runtime change"
     ],
     "filesChanged": [
-      "docs/autonomy/NEXT_CINEMATIC_AUDIT_OPERATOR_DECISION_2026-10-19.md",
+      "tools/cinematics/candidates/flipbook-camp-20261020/atlas-a-correction-request.txt",
+      "tools/cinematics/candidates/flipbook-camp-20261020/atlas-a-request.txt",
+      "tools/cinematics/candidates/flipbook-camp-20261020/atlas-a-v1-rejected.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/atlas-a-v2-rejected.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/base-prompt.txt",
+      "tools/cinematics/candidates/flipbook-camp-20261020/base-request.txt",
+      "tools/cinematics/candidates/flipbook-camp-20261020/base-v1.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/direct-01-requests.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/direct-01-results.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/direct-02-requests.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/direct-02-results.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/direct-03-requests.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/direct-03-results.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/direct-04-requests.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/direct-04-results.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/direct-05-requests.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/direct-05-results.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/flipbook.css",
+      "tools/cinematics/candidates/flipbook-camp-20261020/flipbook.mjs",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-001.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-002.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-003.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-004.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-005.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-006.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-007.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-008.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-009.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-010.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-011.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-012.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-013.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-014.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-015.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-016.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/frame-017.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/index.html",
+      "tools/cinematics/candidates/flipbook-camp-20261020/provenance.json",
+      "tools/cinematics/candidates/flipbook-camp-20261020/review-preview.png",
+      "tools/cinematics/candidates/flipbook-camp-20261020/review-receipt.json",
+      ".gitattributes",
+      "docs/autonomy/CAMP_FLIPBOOK_STUDY_2026-10-20.md",
       "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md",
-      "docs/autonomy/RECURRING_RUN_PROMPT.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-19T1820Z-codex-next-cinematic-audit.md"
+      "docs/autonomy/handoffs/2026-10-21T0137Z-codex-flipbook.md"
     ],
     "testsRun": [
-      "Automation exact prompt SHA f2197a69fd2d86340ff7d87adf45820d61407c812cfbd30cfb77f1346ffaa699; only prompt/updated_at changed; PAUSED/90min/model/effort/target/cwd/notifications unchanged",
-      "All337historical qaJobs/deferred roots/combatFx/uiFx0259 exact against69e8abb; source/media/QA tools untouched",
-      "git diff --check PASS; LOCKEDf4aae63 empty/protected workingstatus empty; contracts8of8/8slots PASS"
+      "contracts:validate",
+      "tsc --noEmit",
+      "LOCKED baseline and working-tree gates",
+      "diff --check",
+      "One standalone flipbook browser scenario and three inspected captures",
+      "18 originals and four canonical-input SHA checks"
     ],
     "testsPassed": [
-      "Automation exact prompt SHA f2197a69fd2d86340ff7d87adf45820d61407c812cfbd30cfb77f1346ffaa699; only prompt/updated_at changed; PAUSED/90min/model/effort/target/cwd/notifications unchanged",
-      "All337historical qaJobs/deferred roots/combatFx/uiFx0259 exact against69e8abb; source/media/QA tools untouched",
-      "git diff --check PASS; LOCKEDf4aae63 empty/protected workingstatus empty; contracts8of8/8slots PASS"
+      "8 contracts / 8 slots",
+      "TypeScript exit0",
+      "Protected contract paths untouched",
+      "Reader-only smoke PASS; no gait acceptance",
+      "339 QA jobs and exact MD QA block preserved",
+      "Guardian PASS_SCOPED_CLOSEOUT"
     ],
     "testsRemaining": [
-      "Next scheduled cinematic audit NOT_STARTED; product tests/build/browser not run for workflow-only change",
-      "Prior audio hidden/five-family/art/global limits retained separately"
+      "Operator style/art/gait verdict; no global PC acceptance inferred"
     ],
     "blockers": [
-      "Future cinematic artistic remaster/promotion/replacement stays external manual workstream; audit itself authorized"
+      "Visual pose/placement/equipment variations remain; artistic verdict pending"
     ],
     "remainingWork": [
-      "Next scheduled session: existing-media audit/disposition and one precise correction plan",
-      "Operator combat FX listening later; native hidden/five-family/full PC/art/hardware acceptance open",
-      "Manual artistic cinematic production only within separate authorization; mobile after PC stability"
+      "Operator review of this flipbook; global PC/balance/hardware/audio and mobile-after-PC scopes retained"
     ],
     "taskQueue": [
       "Eight existing cinematic slots and retained candidates: bounded audit and keep/correct dispositions",
       "One demonstrated runtime correction within contracts or concrete manual-remaster handoff",
       "Operator audio/global PC/art/balance/hardware reviews; final mobile later"
     ],
-    "contractComplianceStatus": "PASS scoped documentation/configuration; set1.7.0 LOCKED gate empty and contracts8of8/8slots; no media/runtime changes",
+    "contractComplianceStatus": "PASS_SCOPED_ACTUAL_ARTIFACT;set1.7.0/f4aae63 unchanged;offlineprototype only",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -44597,18 +44695,15 @@
     },
     "runMeasurement": {
       "runtimeSourceFiles": 0,
-      "sourceTestFiles": 0,
-      "runtimeAudioAssets": 0,
-      "videoAssets": 0,
-      "existingQaFiles": 0,
-      "newQaFiles": 0,
-      "promotedProofFiles": 0,
-      "workflowFiles": 8,
-      "productDocumentationFiles": 0,
-      "inheritedWipFiles": 0,
-      "registeredJobs": 0,
-      "browserScenarios": 0,
-      "automationPromptUpdates": 1
+      "gameplayStagesPlayed": 0,
+      "imageGenCalls": 20,
+      "rawGeneratedImages": 20,
+      "displayedDrawings": 18,
+      "rejectedAtlases": 2,
+      "artifactBrowserScenarios": 1,
+      "newQaJobs": 0,
+      "totalQaJobs": 339,
+      "inheritedWipFiles": 0
     },
     "deploymentHealth0503": {
       "problem": "Retained Hunters failed deployment hides Cedric/Elara1HP behind En jeu cards; same omission in current renderer",
@@ -45750,13 +45845,13 @@
   "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0137Z-codex-flipbook.md",
   "runMeasurement": {
     "runtimeSourceFiles": 0,
-    "rawGeneratedImages": 14,
-    "imageGenCalls": 14,
-    "rejectedAtlases": 2,
-    "individualPoseImages": 11,
-    "plannedFrames": 18,
     "gameplayStagesPlayed": 0,
-    "registeredJobs": 0,
+    "imageGenCalls": 20,
+    "rawGeneratedImages": 20,
+    "displayedDrawings": 18,
+    "rejectedAtlases": 2,
+    "artifactBrowserScenarios": 1,
+    "newQaJobs": 0,
     "totalQaJobs": 339,
     "inheritedWipFiles": 0
   },
@@ -46044,7 +46139,7 @@
     "automationUpdated": 1,
     "pastAutomationChatsArchived": 140
   },
-  "qaToolingJustification": "No new or rerun QA tools/scenarios; configuration equality and preservation checks only",
+  "qaToolingJustification": "Existing campaign drivers do not target standalone image readers; one temporary ignored Playwright smoke, no persistent QA tool or new job.",
   "retainedRunArtifacts": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "physicalFreeze": "tmp/autonomy/final-physical-0514.json",
@@ -50182,7 +50277,7 @@
   },
   "campFlipbookStudy": {
     "runId": "codex-manual-camp-flipbook-20261020",
-    "status": "GENERATED_READER_PENDING_VERIFICATION",
+    "status": "DELIVERED_OFFLINE_REVIEW_PENDING",
     "document": "docs/autonomy/CAMP_FLIPBOOK_STUDY_2026-10-20.md",
     "canonicalInputsOnly": true,
     "newBase": "tools/cinematics/candidates/flipbook-camp-20261020/base-v1.png",
@@ -50194,10 +50289,15 @@
     "plannedFps": 6,
     "artisticAcceptance": false,
     "runtimeChanged": false,
-    "nextAction": "Verify the standalone flipbook controls and raw-image continuity; publish for operator review of the flipbook style, without gait or runtime acceptance.",
+    "nextAction": "Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained.",
     "individualPosesGenerated": 17,
     "sequenceDrawingsAvailable": 18,
     "preview": "http://127.0.0.1:5455/",
-    "provenance": "tools/cinematics/candidates/flipbook-camp-20261020/provenance.json"
+    "provenance": "tools/cinematics/candidates/flipbook-camp-20261020/provenance.json",
+    "previewPid": 25924,
+    "receipt": "tools/cinematics/candidates/flipbook-camp-20261020/review-receipt.json",
+    "guardian": "PASS_SCOPED_CLOSEOUT",
+    "gaitAcceptance": false,
+    "twoCyclesCertified": false
   }
 }

@@ -246,12 +246,14 @@
     {
       "path": "atlas-a-v1-rejected.png",
       "requestFile": "atlas-a-request.txt",
-      "reason": "Excessive rightward drift and clipped sword; excluded from playback"
+      "reason": "Excessive rightward drift and clipped sword; excluded from playback",
+      "sha256": "5cba26f185c937c9e344cf4d1643df9aea98da1eebd34c7d1228449449e84ff9"
     },
     {
       "path": "atlas-a-v2-rejected.png",
       "requestFile": "atlas-a-correction-request.txt",
-      "reason": "Correction insufficient; excluded from playback"
+      "reason": "Correction insufficient; excluded from playback",
+      "sha256": "4d239774512c662008ec8830f1fd08b279a381f399a7013280480876257fcbb8"
     }
   ],
   "requests": {
@@ -287,5 +289,29 @@
   },
   "runtimeChanged": false,
   "lockedChanged": false,
-  "preview": "http://127.0.0.1:5455/"
+  "preview": "http://127.0.0.1:5455/",
+  "viewer": {
+    "index.html": "5186ff65d7834fdf3d892c6c7bc3d1e1f158c7e7a1466e732538d3025129b0d3",
+    "flipbook.css": "9a19298fbe9b927c9b1f3390f8400a2c5c6c109f9275f9a386e3bdeb433a38e7",
+    "flipbook.mjs": "7b2d014b23682cd51006fabaae2b2ea6013270f66d48d2512fabf9aeac700fbb"
+  },
+  "requestAndResultFiles": {
+    "atlas-a-correction-request.txt": "fdfec1d891b4365cf31b039310e1774374aa55f39da02040da4eb55777fb26b0",
+    "atlas-a-request.txt": "c9969f27002bbcd8cad291e09ee339f897b9cf688f93fc44c7aaa1ebd43ad48f",
+    "base-prompt.txt": "3cd47cca456ccf34800b5c0b225ba5aada404430b6b7b3d66a863ad5e4c07751",
+    "base-request.txt": "71d70f593bdbe8510d56b51e3cab9710bb16387b864aace018b29207560294c9",
+    "direct-01-requests.json": "353167f5bbe7d5adedd82f9f9b5c3b5847235ae8d1c5a878a6fd58f8d16ac418",
+    "direct-01-results.json": "de91b029aa00671f92137aa844fb7928bc3f95fce86956c4bf72c37ef52d692e",
+    "direct-02-requests.json": "5c6ea54497645a5518dd5481d426cd8d6f3893cdbbc31ae3034454c77d8aa1c4",
+    "direct-02-results.json": "9fc4e9d43dbb8331fefcff329bb7a51107a6955af28508bf58d57cac74e1758c",
+    "direct-03-requests.json": "9b0abd0f5b5d0897b397df7089b7681cfeb2d2f389a9147483e4dd6ccd966252",
+    "direct-03-results.json": "a7e41a806f5a60f9417495f32702284e70e390411d10239a0247b400ac1b648e",
+    "direct-04-requests.json": "73da8e0012488ae12b3a63f5680f122ca90116f504cf442bd13bb4a8305745ec",
+    "direct-04-results.json": "f89222d32248a8debd8ae0acc9c033a5046661afac1b978ef1b0d07c01b6bbe2",
+    "direct-05-requests.json": "e41ccca6edafaa2b84ac5613dec59bbd321533abf821bb7c5a6e9a00672e1e44",
+    "direct-05-results.json": "0fe1ac4ae9352ee2b54ace10d2fa411a4a3f322e43d964544bd4015cd34c7423"
+  },
+  "previewPid": 25924,
+  "reviewedAt": "2026-10-21T02:15:20.357Z",
+  "guardian": "PASS_SCOPED_CLOSEOUT: no gait, two-cycle, artwork, equipment-consistency or runtime acceptance"
 }

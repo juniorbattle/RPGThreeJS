@@ -1,0 +1,47 @@
+{
+  "scope": "Standalone flipbook reader only; not gameplay or gait acceptance",
+  "checks": [
+    "18 drawings preloaded; default paused at first drawing, 6fps",
+    "Real-time 18-slot 6fps playback reaches final drawing at 3s and stops without loop",
+    "Previous/next/Home/End keyboard feuilletage",
+    "Pause freezes the drawing and cadence change remains paused",
+    "OS reduction change pauses playback; explicit manual stepping remains available",
+    "No horizontal clipping, 44px controls, no picture transform at 1366x768",
+    "No horizontal clipping, 44px controls, no picture transform at 620x780",
+    "No horizontal clipping, 44px controls, no picture transform at 390x844",
+    "Gallery selects the corresponding original drawing",
+    "No successful-path console/page errors",
+    "Missing drawing disables playback with explicit error, without substitution"
+  ],
+  "captures": [
+    {
+      "path": "tmp/cinematics/flipbook-camp-20261020/check/desktop-first.png",
+      "sha256": "3260cd41f4fbe3c406f7eb12c40f762c57f1c90c20a9afcced89965a40a270d9",
+      "inspected": true
+    },
+    {
+      "path": "tmp/cinematics/flipbook-camp-20261020/check/desktop-last.png",
+      "sha256": "13a2547da44fe56d42f8c2848f93b79ac08515e393e8b44ac823db07945be922",
+      "inspected": true
+    },
+    {
+      "path": "tmp/cinematics/flipbook-camp-20261020/check/narrow-reduced.png",
+      "sha256": "a641627dd200c4c029e04feac3c561949b146437ba29b6dc5bc0b284b63e205d",
+      "inspected": true
+    }
+  ],
+  "driver": "tmp/autonomy/flipbook-smoke.mjs",
+  "status": "PASS",
+  "consoleErrors": [],
+  "completedAt": "2026-10-21T02:12:38.451Z",
+  "driverSha256": "ae0e87081d3ae0715fc5b85394486f13fc7554a89c865342e98a0fa50095233e",
+  "viewerSha256": {
+    "index.html": "5186ff65d7834fdf3d892c6c7bc3d1e1f158c7e7a1466e732538d3025129b0d3",
+    "flipbook.css": "9a19298fbe9b927c9b1f3390f8400a2c5c6c109f9275f9a386e3bdeb433a38e7",
+    "flipbook.mjs": "7b2d014b23682cd51006fabaae2b2ea6013270f66d48d2512fabf9aeac700fbb"
+  },
+  "provenanceSha256": "2b2fb095d819a070489b214e223f12cd0f92e771118c45e2038033de0ee4d0b3",
+  "sourceVersionNote": "Reader behavior verified before label-spacing-only correction; no behavioral changes after smoke.",
+  "acceptance": "READER_ONLY; ART_AND_GAIT_NOT_ACCEPTED",
+  "guardian": "PASS_SCOPED_CLOSEOUT: no gait, two-cycle, artwork, equipment-consistency or runtime acceptance"
+}
