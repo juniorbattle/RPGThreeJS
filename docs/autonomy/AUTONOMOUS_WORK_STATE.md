@@ -10,7 +10,7 @@ Lecteur PASS10/3captures, types0/contracts8/8/gates propres ; guardian PASS_SCOP
 
 Une prochaine action : Operator reviews the same revised01/08 and20s montage for final visual continuity/artistic judgment before any runtime adoption.
 
-Aperçu http://127.0.0.1:5458/, PID 32928 conservé ; publication dev OD-2026-10-12-A puis clôture/verrou.
+Aperçu http://127.0.0.1:5458/, PID 32928 conservé ; livraison b48c2d0ae69c13fd3002b551bdb05734f468b9d3 publiée/vérifiée OD-2026-10-12-A, runEndedAt 2026-10-21T07:27:54.989Z. Clôture metadata puis libération du verrou après parité.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

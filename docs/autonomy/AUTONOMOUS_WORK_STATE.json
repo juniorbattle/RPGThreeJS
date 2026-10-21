@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-21T06:58:59.385Z",
-  "runEndedAt": null,
+  "runStartedAt": "2026-10-21T06:57:04.3020682Z",
+  "runEndedAt": "2026-10-21T07:27:54.989Z",
   "activeTask": "MANUAL-CAMP-STILL-CONTINUITY-FINISH",
   "activePhase": "CAMP_TWO_EDIT_FINISH_READY_FOR_REVIEW",
   "activeSubtask": "Final08right-hand vertical blade separated from purplecoat; same8stage20s reader PASS10",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "ccc3e09e3c0fa86b0754b30e7180ef33d6be1d23",
-  "lastPushedCommit": "ccc3e09e3c0fa86b0754b30e7180ef33d6be1d23",
+  "lastKnownGoodCommit": "b48c2d0ae69c13fd3002b551bdb05734f468b9d3",
+  "lastPushedCommit": "b48c2d0ae69c13fd3002b551bdb05734f468b9d3",
   "completedThisRun": [
     "Edited only01blade clearance and08anatomical sword hand using built-in imagegen",
     "Reused six images and MJS/CSS/sequence byte-identically; preserved8stages/20s",
@@ -86,7 +86,7 @@
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SCOPED_ACTUAL_ARTIFACT;set1.7.0/f4aae63 unchanged;offlineprototype only",
-  "commitReferenceScope": "Current eight-image story delivery; subsequent metadata-only closure is discoverable in Git, no circular self-reference.",
+  "commitReferenceScope": "Current camp continuity delivery; subsequent metadata-only closure is discoverable in Git, avoiding circular self-reference.",
   "operatorAuthorization": "Interactive go on proposed hands/accessories/orientations/raccord finishing; two targeted still edits, same8stage20s offline story, no video/runtime adoption.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -159,50 +159,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-camp-continuity-20261021",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T07:10:34.559Z",
+  "lastHeartbeat": "2026-10-21T07:27:54.989Z",
   "wip": {
     "branch": "dev",
-    "sha": "ccc3e09e3c0fa86b0754b30e7180ef33d6be1d23",
-    "dirtyFiles": [
-      ".gitattributes",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-request.json",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-result.json",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/index.html",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/montage.css",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/montage.mjs",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/provenance.json",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/requests.json",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/results-v1.json",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/results.json",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/reused-inputs.json",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v1.png",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v2.png",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview.png",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v1.json",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v2.json",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt.json",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/sequence.json",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/shot-01.png",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/shot-02.png",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/shot-03.png",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/shot-04.png",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/shot-05.png",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/shot-06.png",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/shot-07.png",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08-v1-right-hand.png",
-      "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08.png",
-      "docs/autonomy/CAMP_CONTINUITY_FINISH_OPERATOR_DIRECTION_2026-10-21.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-21T0658Z-codex-camp-continuity.md"
-    ],
-    "status": "TWO_EDIT_DELIVERY_VERIFIED_PENDING_PUBLICATION",
-    "lastGreenCheck": "2026-10-21T07:10:34.559Z",
+    "sha": "b48c2d0ae69c13fd3002b551bdb05734f468b9d3",
+    "dirtyFiles": [],
+    "status": "CAMP_CONTINUITY_PUBLISHED_METADATA_CLOSEOUT",
+    "lastGreenCheck": "2026-10-21T07:27:54.989Z",
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T07:10:34.559Z",
+    "lastHeartbeat": "2026-10-21T07:27:54.989Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37392,43 +37359,10 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "ccc3e09e3c0fa86b0754b30e7180ef33d6be1d23",
-      "dirtyFiles": [
-        ".gitattributes",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-request.json",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-result.json",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/index.html",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/montage.css",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/montage.mjs",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/provenance.json",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/requests.json",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/results-v1.json",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/results.json",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/reused-inputs.json",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v1.png",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v2.png",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview.png",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v1.json",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v2.json",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt.json",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/sequence.json",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/shot-01.png",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/shot-02.png",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/shot-03.png",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/shot-04.png",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/shot-05.png",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/shot-06.png",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/shot-07.png",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08-v1-right-hand.png",
-        "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08.png",
-        "docs/autonomy/CAMP_CONTINUITY_FINISH_OPERATOR_DIRECTION_2026-10-21.md",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-21T0658Z-codex-camp-continuity.md"
-      ],
-      "status": "TWO_EDIT_DELIVERY_VERIFIED_PENDING_PUBLICATION",
-      "lastGreenCheck": "2026-10-21T07:10:34.559Z",
+      "sha": "b48c2d0ae69c13fd3002b551bdb05734f468b9d3",
+      "dirtyFiles": [],
+      "status": "CAMP_CONTINUITY_PUBLISHED_METADATA_CLOSEOUT",
+      "lastGreenCheck": "2026-10-21T07:27:54.989Z",
       "inheritedWip": 0
     },
     "nextAction": "Operator reviews the same revised01/08 and20s montage for final visual continuity/artistic judgment before any runtime adoption.",
@@ -37469,8 +37403,8 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-21T07:27:54.989Z",
+    "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
       "deliveryCheckpoint": "836269855cbe9d60aef117bfeb49433a5073972f",
@@ -41601,9 +41535,9 @@
     "runId": "codex-manual-camp-continuity-20261021",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-21T06:58:59.385Z",
+    "runStartedAt": "2026-10-21T06:57:04.3020682Z",
     "activePhase": "CAMP_TWO_EDIT_FINISH_READY_FOR_REVIEW",
-    "heartbeat": "2026-10-21T07:10:34.559Z",
+    "heartbeat": "2026-10-21T07:27:54.989Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0658Z-codex-camp-continuity.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -43332,7 +43266,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "ccc3e09e3c0fa86b0754b30e7180ef33d6be1d23",
+    "lastPushedCommit": "b48c2d0ae69c13fd3002b551bdb05734f468b9d3",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -44138,7 +44072,7 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "ccc3e09e3c0fa86b0754b30e7180ef33d6be1d23",
+    "lastKnownGoodCommit": "b48c2d0ae69c13fd3002b551bdb05734f468b9d3",
     "completedThisRun": [
       "Edited only01blade clearance and08anatomical sword hand using built-in imagegen",
       "Reused six images and MJS/CSS/sequence byte-identically; preserved8stages/20s",
@@ -45697,7 +45631,7 @@
     },
     "contractSetVersion": "1.7.0",
     "uncommittedWork": "NONE after containing metadata closure",
-    "commitReferenceScope": "Current eight-image story delivery; subsequent metadata-only closure is discoverable in Git, no circular self-reference.",
+    "commitReferenceScope": "Current camp continuity delivery; subsequent metadata-only closure is discoverable in Git, avoiding circular self-reference.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
       "status": "SAVED_AND_CONFIGURATION_VERIFIED",
@@ -45796,6 +45730,15 @@
       "previewPid": 7596,
       "qaJobsPreserved": 339,
       "nextAction": "Operator watches this same8-image20s sequence and judges whether preparation, interior regrouping, stop and readiness for dialogue are clear without reading the captions; target any unclear transition by its image numbers."
+    },
+    "campContinuityCloseout": {
+      "deliveryCommit": "b48c2d0ae69c13fd3002b551bdb05734f468b9d3",
+      "normalPushVerified": true,
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "preview": "http://127.0.0.1:5458/",
+      "previewPid": 32928,
+      "qaJobsPreserved": 339,
+      "nextAction": "Operator reviews the same revised01/08 and20s montage for final visual continuity/artistic judgment before any runtime adoption."
     }
   },
   "previousInterruptedRun": {
@@ -50405,6 +50348,9 @@
       "request": "08-revision-request.json",
       "status": "VERTICAL_GAP_OBSERVED_READER_PASS10"
     },
-    "previewImage": "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v2.png"
+    "previewImage": "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v2.png",
+    "deliveryCommit": "b48c2d0ae69c13fd3002b551bdb05734f468b9d3",
+    "runEndedAt": "2026-10-21T07:27:54.989Z",
+    "elapsedMinutes": 30.84
   }
 }
