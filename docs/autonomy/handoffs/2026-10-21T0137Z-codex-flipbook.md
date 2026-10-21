@@ -9,3 +9,5 @@ Gates et smoke du lecteur PASS, guardian PASS_SCOPED_CLOSEOUT. Sauts de poses/pl
 Next: Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained.
 
 Dernier checkpoint préalable b94f84e706c7b1ebb1801bfd9b62d34bcb9c2e53; livraison et clôture à publier normalement sur origin/dev selon OD-2026-10-12-A, puis libérer le verrou possédé. Serveur de revue seulement conservé, aucun worker/provider/QA long actif.
+
+Livraison 713bd722cd5c4702deeb5bf36b2a9a2429d5ebcc publiée normalement et vérifiée sur origin/dev ; main inchangé. runEndedAt 2026-10-21T02:17:03.642Z, durée 53.44min. Arbre propre avant clôture metadata ; verrou à libérer seulement après vérification du commit de clôture. Le serveur de revue seul reste actif.

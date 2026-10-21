@@ -10,7 +10,7 @@ Contrats 8/8, TypeScript, barrière LOCKED et diff propres, smoke du lecteur PAS
 
 Une prochaine action : Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained.
 
-Aperçu http://127.0.0.1:5455/ ; PID 25924 conservé pour revue. Publication OD-2026-10-12-A, clôture puis libération du verrou après parité.
+Aperçu http://127.0.0.1:5455/ ; PID 25924 conservé pour revue. Livraison 713bd722cd5c4702deeb5bf36b2a9a2429d5ebcc publiée et vérifiée OD-2026-10-12-A ; runEndedAt 2026-10-21T02:17:03.642Z. Clôture metadata puis libération du verrou après parité.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
