@@ -1,0 +1,289 @@
+{
+  "scope": "MANUAL-CAMP-CONTINUITY-2026-10-21",
+  "runId": "codex-manual-camp-continuity-20261021",
+  "createdAt": "2026-10-21T07:06:10.905Z",
+  "startingCommit": "ccc3e09e3c0fa86b0754b30e7180ef33d6be1d23",
+  "operatorAuthorization": "Interactive go on proposed hands/accessories/orientations/visual-raccord finishing pass, same8stage20s story.",
+  "mode": "built-in image_gen.imagegen, targeted local-file edits",
+  "editCalls": 2,
+  "reusedImages": 6,
+  "priorProvenance": {
+    "path": "tools/cinematics/candidates/camp-story-sequence-20261021/provenance.json",
+    "sha256": "ef0a7099a32af44430506d7442c5954451698bc73d2fe342ef99ef263f6e4cd0"
+  },
+  "inputs": [
+    {
+      "path": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/camp-story-sequence-20261021/shot-01.png",
+      "sha256": "4527fac0012efab783cadd19dc89b55d5e93599b71ede4fdc583eb52d899a38a"
+    },
+    {
+      "path": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alistair.png",
+      "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219"
+    },
+    {
+      "path": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/camp-story-sequence-20261021/shot-06.png",
+      "sha256": "736e5947031df56c784a67ce0b03c94bde1ac7507c92be1e46d1bc6864c4c683"
+    },
+    {
+      "path": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/camp-story-sequence-20261021/shot-08.png",
+      "sha256": "d4c1c2bdc377c7240dc80abab108d6aac5db44a02adc78d6cc7cdcbd0a9ae259"
+    },
+    {
+      "path": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/camp-story-sequence-20261021/shot-07.png",
+      "sha256": "02e878694745670b14e60c075b747d9d6cb7d2056a240901f66fce3a02baefdb"
+    }
+  ],
+  "exactRequests": {
+    "path": "requests.json",
+    "sha256": "1ac79c1a6e1b9efd4aad5efa364d5befc15cc3eba4f8cb03a84f39dba7aad70a"
+  },
+  "results": {
+    "path": "results.json",
+    "sha256": "f4bc8de7a0bf9bb176b9708147c7f2ac796037d6f7f444f02b14edd08f22b0a0"
+  },
+  "reusedInputRecord": {
+    "path": "reused-inputs.json",
+    "sha256": "4be6028f5556f1b2f882b6dde5f95c32b0a32590ce9096bbc5adaf194e4f9280"
+  },
+  "originals": "C:/Users/miche/.codex/generated_images/01a15a00-3093-7b92-9dd1-416e160ac959",
+  "images": [
+    {
+      "title": "Le camp, avant le départ",
+      "description": "Le lieu et le groupe",
+      "start": 0,
+      "duration": 3,
+      "path": "shot-01.png",
+      "id": "01",
+      "sha256": "7f345bfbeee0ecb31100435cb3b9c2172a72e801d349e6ce67f0fe83c68d7ba6",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2684061,
+      "origin": {
+        "kind": "targeted_imagegen_edit",
+        "source": "tools/cinematics/candidates/camp-story-sequence-20261021/shot-01.png",
+        "sourceSha256": "4527fac0012efab783cadd19dc89b55d5e93599b71ede4fdc583eb52d899a38a",
+        "original": "exec-b5777a4d-f660-490f-acae-7e57d8596042.png",
+        "requestId": "01"
+      }
+    },
+    {
+      "title": "Ce que chacun porte",
+      "description": "Maelor garde son livre à la main",
+      "start": 3,
+      "duration": 2,
+      "path": "shot-02.png",
+      "id": "02",
+      "sha256": "8400287b3735e8f308af21a497a25ec6a7233787dd510d48e780c87921350bbd",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2424974,
+      "origin": {
+        "kind": "byte_identical_reuse",
+        "source": "tools/cinematics/candidates/camp-story-sequence-20261021/shot-02.png"
+      }
+    },
+    {
+      "title": "Le livre calé contre lui",
+      "description": "Il le ramène contre son corps",
+      "start": 5,
+      "duration": 2,
+      "path": "shot-03.png",
+      "id": "03",
+      "sha256": "0ba39bba1a3888a196391ed1c58ae7b8c7400432ec5bde6d389b236a4f609597",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2590429,
+      "origin": {
+        "kind": "byte_identical_reuse",
+        "source": "tools/cinematics/candidates/camp-story-sequence-20261021/shot-03.png"
+      }
+    },
+    {
+      "title": "Marian se prépare à suivre",
+      "description": "Elle reprend sa prise sur le bâton",
+      "start": 7,
+      "duration": 2,
+      "path": "shot-04.png",
+      "id": "04",
+      "sha256": "396960c3cbb39c669a086421f8c0e03b5d2eed501eac8366d222ab1165971a16",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2648101,
+      "origin": {
+        "kind": "byte_identical_reuse",
+        "source": "tools/cinematics/candidates/camp-story-sequence-20261021/shot-04.png"
+      }
+    },
+    {
+      "title": "Un regard partagé",
+      "description": "Les compagnons se portent attention",
+      "start": 9,
+      "duration": 2,
+      "path": "shot-05.png",
+      "id": "05",
+      "sha256": "3e147a21bd2e3db7254da227f4f0c2993950d9e02cc151a3ccc2217aad63a716",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2558331,
+      "origin": {
+        "kind": "byte_identical_reuse",
+        "source": "tools/cinematics/candidates/camp-story-sequence-20261021/shot-05.png"
+      }
+    },
+    {
+      "title": "Quelques pas dans le camp",
+      "description": "Le groupe se rapproche dans l’allée intérieure",
+      "start": 11,
+      "duration": 3,
+      "path": "shot-06.png",
+      "id": "06",
+      "sha256": "736e5947031df56c784a67ce0b03c94bde1ac7507c92be1e46d1bc6864c4c683",
+      "width": 1672,
+      "height": 941,
+      "bytes": 3004566,
+      "origin": {
+        "kind": "byte_identical_reuse",
+        "source": "tools/cinematics/candidates/camp-story-sequence-20261021/shot-06.png"
+      }
+    },
+    {
+      "title": "Le groupe s’arrête",
+      "description": "Ils se rassemblent à l’intérieur du camp",
+      "start": 14,
+      "duration": 3,
+      "path": "shot-07.png",
+      "id": "07",
+      "sha256": "02e878694745670b14e60c075b747d9d6cb7d2056a240901f66fce3a02baefdb",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2996799,
+      "origin": {
+        "kind": "byte_identical_reuse",
+        "source": "tools/cinematics/candidates/camp-story-sequence-20261021/shot-07.png"
+      }
+    },
+    {
+      "title": "Prêts à se parler",
+      "description": "Ils se tournent les uns vers les autres, avant le dialogue",
+      "start": 17,
+      "duration": 3,
+      "path": "shot-08.png",
+      "id": "08",
+      "sha256": "829fdf86c357f82c07dec8779b56abaae3d43c8a0035f7d69195bf6648ec26b8",
+      "width": 1672,
+      "height": 941,
+      "bytes": 2759201,
+      "origin": {
+        "kind": "targeted_imagegen_edit",
+        "source": "tools/cinematics/candidates/camp-story-sequence-20261021/shot-08.png",
+        "sourceSha256": "d4c1c2bdc377c7240dc80abab108d6aac5db44a02adc78d6cc7cdcbd0a9ae259",
+        "original": "exec-25320baa-9aa5-499f-98db-38192c718aa4.png",
+        "requestId": "08"
+      }
+    }
+  ],
+  "sequence": {
+    "totalSeconds": 20,
+    "normalFadeSeconds": 1,
+    "reducedFadeSeconds": 0.8,
+    "stages": [
+      {
+        "title": "Le camp, avant le départ",
+        "description": "Le lieu et le groupe",
+        "start": 0,
+        "duration": 3,
+        "path": "shot-01.png"
+      },
+      {
+        "title": "Ce que chacun porte",
+        "description": "Maelor garde son livre à la main",
+        "start": 3,
+        "duration": 2,
+        "path": "shot-02.png"
+      },
+      {
+        "title": "Le livre calé contre lui",
+        "description": "Il le ramène contre son corps",
+        "start": 5,
+        "duration": 2,
+        "path": "shot-03.png"
+      },
+      {
+        "title": "Marian se prépare à suivre",
+        "description": "Elle reprend sa prise sur le bâton",
+        "start": 7,
+        "duration": 2,
+        "path": "shot-04.png"
+      },
+      {
+        "title": "Un regard partagé",
+        "description": "Les compagnons se portent attention",
+        "start": 9,
+        "duration": 2,
+        "path": "shot-05.png"
+      },
+      {
+        "title": "Quelques pas dans le camp",
+        "description": "Le groupe se rapproche dans l’allée intérieure",
+        "start": 11,
+        "duration": 3,
+        "path": "shot-06.png"
+      },
+      {
+        "title": "Le groupe s’arrête",
+        "description": "Ils se rassemblent à l’intérieur du camp",
+        "start": 14,
+        "duration": 3,
+        "path": "shot-07.png"
+      },
+      {
+        "title": "Prêts à se parler",
+        "description": "Ils se tournent les uns vers les autres, avant le dialogue",
+        "start": 17,
+        "duration": 3,
+        "path": "shot-08.png"
+      }
+    ]
+  },
+  "reader": {
+    "scriptSha256": "4cd4f93cb9b21d5a1eb374fec2d835231e92e00cdf7d4cbf23a17072bb1dc41e",
+    "styleSha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83",
+    "behavior": "Byte-identical to prior reviewed8stage reader, only source-folder and origin text differ."
+  },
+  "observedCorrections": [
+    {
+      "image": "01",
+      "before": "Sword tip at soil level",
+      "after": "Relaxed diagonal blade visibly raised above nearby ground",
+      "claim": "2D visual clearance improvement only, not physical collision proof"
+    },
+    {
+      "image": "08",
+      "before": "Sword in near anatomicalLEFT hand",
+      "after": "Hilt held by far anatomicalRIGHT hand nearest Maelor; near left glove empty",
+      "claim": "Visible hand ownership corrected; no mirrored composition"
+    }
+  ],
+  "limits": [
+    "Only two prioritized corrections; fine helmet/book/veil/cloth detail variation remains.",
+    "Edited full scenes may contain small unrequested pixel differences; only six reused frames are byte-identical.",
+    "Final08lower blade projects near/over the purple-cloth edge before leaving the crop; full3D/clothing clearance not certified.",
+    "All artistic, full-continuity, geography, narrative comprehension, locomotion and runtime acceptance remain open."
+  ],
+  "noVideoInputs": true,
+  "noFlipbookInputs": true,
+  "storyChanged": false,
+  "totalSeconds": 20,
+  "runtimeChanged": false,
+  "lockedChanged": false,
+  "preview": {
+    "url": "http://127.0.0.1:5458/",
+    "pid": 32928
+  },
+  "readerSha256": {
+    "index.html": "839b688fcd36b6a875ce5dc2afdea03f728cc46b3eb2bc0f5f30b3715f5e6487",
+    "montage.css": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83",
+    "montage.mjs": "4cd4f93cb9b21d5a1eb374fec2d835231e92e00cdf7d4cbf23a17072bb1dc41e"
+  },
+  "reviewedAt": "2026-10-21T07:10:34.559Z"
+}

@@ -1,16 +1,16 @@
-# Camp — huit étapes narratives prêtes pour revue
+# Camp — deux raccords visuels corrigés
 
-Run codex-manual-camp-story-sequence-20261021, UTC 2026-10-21T06:43:39.163Z. READY_FOR_PC_ACCEPTANCE conservé. [Déroulement et limites](CAMP_STORY_SEQUENCE_OPERATOR_DIRECTION_2026-10-21.md).
+Run codex-manual-camp-continuity-20261021, UTC 2026-10-21T07:10:34.559Z. READY_FOR_PC_ACCEPTANCE conservé. [Portée/limites](CAMP_CONTINUITY_FINISH_OPERATOR_DIRECTION_2026-10-21.md).
 
-20s : lieu → livre → livre retenu → bâton → regards → quelques pas intérieurs → arrêt → attention avant dialogue. Quatre nouvelles images et quatre réemplois byte-identiques, aucune base vidéo/flipbook. Fondus1s/OSreduce0.8s, pas de boucle/son/pan/zoom/pose interpolée.
+01pointe relevée,08épée dans la main droite et gauche vide. Six autres images +MJS/CSS/sequence byte-identiques ; histoire8étapes20s et fondus inchangés. Deux appels imagegen, aucune vidéo/baseflipbook/runtime modifié.
 
-Reader PASS10checks/7fondus réels,3captures inspectées, TypeScript0, contrats8/8 et gates propres. Guardian PASS_SCOPED_CLOSEOUT, reçu et captures rapprochés. Compréhension/causalité artistique/équipement/géographie/locomotion non acceptés.
+Lecteur PASS10/3captures, types0/contracts8/8/gates propres ; guardian corrections observées PASS_SCOPED, reçu courant à rapprocher. Proximité lame/étoffe08 et détails fins restent non acceptés ; aucune continuité/art/3D/locomotion globale certifiée.
 
-339jobs et acceptations/bloc exact conservés, toutes anciennes racines et preuves intactes. Aucun runtime/V6/canon/MP4/LOCKED/audio/scheduler changé ; zéro étape de gameplay jouée.
+339jobs/acceptations/bloc exact et anciens essais/preuves/racines intacts. Aucun canon/V6/LOCKED/MP4/audio/scheduler changé ; zéro étape gameplay.
 
-Une prochaine action : Operator watches this same8-image20s sequence and judges whether preparation, interior regrouping, stop and readiness for dialogue are clear without reading the captions; target any unclear transition by its image numbers.
+Une prochaine action : Operator compares revised01/08 in this same8-image20s montage, especially final blade/purple-cloth proximity, and gives a precise visual-continuity verdict before any runtime adoption.
 
-Aperçu http://127.0.0.1:5457/, PID 7596 conservé ; livraison 956885f60ac2a4baf5076e70b1b5dd235390fc69 publiée/vérifiée OD-2026-10-12-A, runEndedAt 2026-10-21T06:48:53.818Z. Clôture metadata puis libération du verrou après parité.
+Aperçu http://127.0.0.1:5458/, PID 32928 conservé ; publication dev OD-2026-10-12-A puis clôture/verrou.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

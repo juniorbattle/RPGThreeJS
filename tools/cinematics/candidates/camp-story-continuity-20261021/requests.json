@@ -1,0 +1,38 @@
+[
+  {
+    "id": "01",
+    "path": "shot-01.png",
+    "target": "tools/cinematics/candidates/camp-story-sequence-20261021/shot-01.png",
+    "reason": "Make sword clearance from ground legible in the establishing image",
+    "prompt": "Use case: precise-object-edit. Edit image1 (the wide night camp illustration), preserving its entire composition, the three characters' identities and positions, the camp, foreground ropes/crates, tents, light, landscape, crescent, camera framing and existing pixel-art/HD-2D finish. Image2 is Alistair's canonical identity/one-sword reference; image3 shows a calm right-hand sword carry already used later in this same still-image story. They are supporting references only, NOT replacement compositions. SINGLE CORRECTION: Alistair, the small knight at right of the central trio, currently has his blade tip almost on the soil. Adjust only his existing sword-carrying forearm/wrist and the SAME single sword into a relaxed low forward-diagonal carry with clearly visible daylight/empty space between the ENTIRE blade and the ground. Give at least a boot-height gap at its lowest visible point, not a barely separated few pixels. Preserve anatomicalRIGHT-hand ownership and make the glove/guard connection clear; left hand free, no second weapon or scabbard. Keep the blade visibly in free space, not intersecting a red/purple cloak, leg or the other actors. Do not shorten or bend the blade to solve this, and do not make him raise it in salute/threat. A slight forearm adjustment is permitted; no new gesture/order/story event, no change to head orientation or body placement. Do not redesign other actors, the book/staff, armour, decorations, environment or lighting. All remain inside this same night camp before the dialogue. Output one complete16:9 scene image, not a crop, panel, animation or diagram; no text/UI/watermark.",
+    "refs": [
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-01.png",
+      "public/assets/characters/pixel/masters/alistair.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-06.png"
+    ],
+    "referenced_image_paths": [
+      "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/camp-story-sequence-20261021/shot-01.png",
+      "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alistair.png",
+      "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/camp-story-sequence-20261021/shot-06.png"
+    ],
+    "transparent_background": false
+  },
+  {
+    "id": "08",
+    "path": "shot-08.png",
+    "target": "tools/cinematics/candidates/camp-story-sequence-20261021/shot-08.png",
+    "reason": "Restore anatomical right-hand sword ownership without changing pre-dialogue attention",
+    "prompt": "Use case: precise-object-edit. Edit image1, the final medium group at the night camp. Preserve its camera/framing, exact trio placement and inward head/torso orientations: white-veiled Marian at left, purple Maelor center holding the same closed book in his LEFT hand, red-caped Alistair at right turned toward his companions. Preserve the same camp/background/crescent/light, pixel-art/HD-2D materials, helmet, armour, staff, book and clothes. Image2 is Alistair's canonical RIGHT-hand sword identity reference; image3 shows his correct one-handed right-hand carry in the immediately preceding stopped-group still. Supporting references only. SINGLE CORRECTION: the sword is currently in Alistair's anatomicalLEFT hand, the large near forearm at VIEWER-RIGHT beside the cape. Transfer the SAME sword to his anatomicalRIGHT hand: this is his far-side arm at VIEWER-LEFT of his torso, the arm nearest Maelor, currently hanging empty. Its glove must clearly wrap the existing hilt. His anatomicalLEFT near hand on VIEWER-RIGHT must now be visibly empty and relaxed beside the cape. Maintain this calm resting posture, no pointing, oath/salute or threat. Place the sword low, vertical or gently forward/down in the free gap in front of/between the knight and Maelor, not penetrating the purple/red cloth or another body. It may continue below the existing bottom crop, but must connect visibly to the correct hand, not float or duplicate; no new scabbard, second blade or arm. Do NOT mirror the whole image or turn the body away; preserve their mutual attention before existing dialogue. No face revealed, no new actor, lore, event, movement beyond the camp or text. Return a complete16:9 corrected scene, not a crop or panel.",
+    "refs": [
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-08.png",
+      "public/assets/characters/pixel/masters/alistair.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-07.png"
+    ],
+    "referenced_image_paths": [
+      "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/camp-story-sequence-20261021/shot-08.png",
+      "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alistair.png",
+      "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/camp-story-sequence-20261021/shot-07.png"
+    ],
+    "transparent_background": false
+  }
+]
