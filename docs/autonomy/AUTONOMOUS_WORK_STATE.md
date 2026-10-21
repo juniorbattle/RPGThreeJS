@@ -358,3 +358,5 @@ Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/nar
 - illustrated-bois-arrival-1854: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-bois-1854/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-bois-saved-2031: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-saved-2031/review/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
+
+Checkpoint technique6d4704826d0f8bd0295b59676828c5c1052b8a15 publié et parité origin/dev vérifiée. Clôture 2026-10-21T21:44:56.094Z. Serveur5461 arrêté, aucun onglet créé, scheduler byte-identique. Verrou libéré après publication des métadonnées et mémoire automation ; SHA de métadonnée dans Git.

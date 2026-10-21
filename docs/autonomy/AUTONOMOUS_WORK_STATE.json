@@ -1,13 +1,13 @@
 {
   "status": "PAUSED_FOR_CREDITS",
   "runStartedAt": "2026-10-21T20:31:12Z",
-  "runEndedAt": "2026-10-21T21:43:31.428Z",
+  "runEndedAt": "2026-10-21T21:44:56.094Z",
   "activeTask": "ILLUSTRATED-CINEMATICS-OFFLINE-CANDIDATES",
   "activePhase": "SAVED_TECHNICAL_PASS_INDEPENDENT_REVIEW_BLOCKED_CREDITS",
   "activeSubtask": "Saved18s10checks/captures complete; guardian usage limit; no new generation",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "7d1abf302f0c13ace0255fafb45576fbb6400c35",
-  "lastPushedCommit": "7d1abf302f0c13ace0255fafb45576fbb6400c35",
+  "lastKnownGoodCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
+  "lastPushedCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
   "completedThisRun": [
     "Saved existing5images18s technical playback10checks and inspected3captures; fresh exact receipt, no regeneration"
   ],
@@ -141,7 +141,7 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-illustrated-saved-20261021T2031Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T21:43:31.428Z",
+  "lastHeartbeat": "2026-10-21T21:44:56.094Z",
   "wip": {
     "branch": null,
     "sha": null,
@@ -149,7 +149,7 @@
     "lastGreenCheck": "7d1abf3 published; arrival10checks/saved5images41tests/types/contracts/SHA PASS; saved continuous review pending"
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T21:43:31.428Z",
+    "lastHeartbeat": "2026-10-21T21:44:56.094Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -38269,8 +38269,8 @@
     "wip": {
       "branch": null,
       "sha": null,
-      "status": "CHECKPOINT_PENDING",
-      "lastGreenCheck": "Saved10checks/41tests/tsc/contracts PASS; independent reviewer blocked credits"
+      "status": "ON_DEV",
+      "lastGreenCheck": "6d47048 published and remote parity verified; saved technical10checks PASS; independent review blocked by model usage limit"
     },
     "nextAction": "Retest model/reviewer availability, finish scoped independent saved/v1 review using review-receipt.json and unchanged5images18s (no browser rerun absent provenance drift), then READY and source-bound bois_clair_sacrificed generation before village_raid_aftermath:1/provisions choice; no routine operator approval.",
     "runMetrics": {
@@ -38301,22 +38301,17 @@
       "docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md"
     ],
     "publication": {
-      "runId": "codex-illustrated-bois-20261021T1854Z",
-      "productCheckpoint": "7d1abf302f0c13ace0255fafb45576fbb6400c35",
-      "normalPush": true,
-      "verifiedAt": "2026-10-21T19:20:33.291Z",
+      "deliveryCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
+      "normalPushVerified": true,
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "previewServerStopped": true,
-      "qaBrowserClosed": true,
-      "metadataCommit": "Containing final metadata commit discoverable in Git and automation memory; no circular self-reference"
+      "at": "2026-10-21T21:44:56.094Z"
     },
-    "runEndedAt": "2026-10-21T21:43:31.428Z",
-    "writerStopped": false,
+    "runEndedAt": "2026-10-21T21:44:56.094Z",
+    "writerStopped": true,
     "metadataPublication": {
-      "scope": "P03 realization dossier closure",
-      "deliveryCheckpoint": "836269855cbe9d60aef117bfeb49433a5073972f",
-      "status": "CONTAINING_METADATA_COMMIT",
-      "runEndedAt": "2026-10-20T15:46:51.673Z"
+      "scope": "Following commit records published delivery SHA and final closeout; identify metadata HEAD via Git",
+      "previewPort5461Stopped": true,
+      "schedulerConfigurationPreserved": true
     },
     "publication1752History": {
       "status": "VERIFIED_PUBLISHED",
@@ -42444,7 +42439,7 @@
     "status": "PAUSED_FOR_CREDITS",
     "runStartedAt": "2026-10-21T20:31:12Z",
     "activePhase": "SAVED_TECHNICAL_PASS_INDEPENDENT_REVIEW_BLOCKED_CREDITS",
-    "heartbeat": "2026-10-21T21:43:31.428Z",
+    "heartbeat": "2026-10-21T21:44:56.094Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T2031Z-codex-saved-credit-checkpoint.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -44173,7 +44168,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "7d1abf302f0c13ace0255fafb45576fbb6400c35",
+    "lastPushedCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -44979,7 +44974,7 @@
     },
     "creditStatus": "PAUSED_FOR_CREDITS_MODEL_REVIEWER_LIMIT_IMAGEGEN_NOT_PROBED",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "7d1abf302f0c13ace0255fafb45576fbb6400c35",
+    "lastKnownGoodCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
     "completedThisRun": [
       "Saved existing5images18s technical playback10checks and inspected3captures; fresh exact receipt, no regeneration"
     ],
@@ -45932,7 +45927,7 @@
       "rawReceiptAcceptanceUnchanged": "NOT_ACCEPTED"
     },
     "lastAcceptedProductionCommit": "5e22775",
-    "implementationCommit": "74f8669",
+    "implementationCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
     "poiUi1903": {
       "status": "ACCEPTED_SCOPED",
       "at": "2026-10-18T19:26:33.504Z",
@@ -47004,7 +46999,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "d161976",
+  "implementationCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
   "authorizedWorkContinuation": "Direct last-save task complete in scoped implementation/proof. Publish selected coherent dev checkpoint under OD-2026-10-12-A without routine confirmation; retain original native07 proof and current copy scope separately.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
@@ -48280,7 +48275,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-21T21:43:31.428Z",
+  "heartbeat": "2026-10-21T21:44:56.094Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
