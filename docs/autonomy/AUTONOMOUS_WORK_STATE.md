@@ -10,7 +10,7 @@ Gates propres, contrats8/8, TypeScript0, smoke lecteur11checks PASS, quatre capt
 
 Une prochaine action : Operator watches the same five-image montage with soft dissolves and gives a transition/rhythm verdict; keep visual continuity/art acceptance separate.
 
-Aperçu http://127.0.0.1:5456/, PID 13348 conservé. Publication dev OD-2026-10-12-A puis clôture et libération du verrou.
+Aperçu http://127.0.0.1:5456/, PID 13348 conservé. Livraison douce 33f2a799c5fcd2219a3368fd1165753644a7dbe9 publiée/vérifiée OD-2026-10-12-A, runEndedAt 2026-10-21T04:12:11.392Z. Clôture metadata puis libération du verrou après parité.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

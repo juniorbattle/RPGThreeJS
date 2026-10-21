@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-21T02:24:53.650Z",
-  "runEndedAt": null,
+  "runStartedAt": "2026-10-21T02:23:48.7436344Z",
+  "runEndedAt": "2026-10-21T04:12:11.392Z",
   "activeTask": "MANUAL-CAMP-FIVE-STAGED-STILLS",
   "activePhase": "FIVE_STILLS_SOFT_DISSOLVES_READY_FOR_REVIEW",
   "activeSubtask": "Same five illustrations; abrupt cuts replaced by verified soft whole-frame dissolves",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "08fd5d56545dda32f6a3705dc309db994fbcbd13",
-  "lastPushedCommit": "08fd5d56545dda32f6a3705dc309db994fbcbd13",
+  "lastKnownGoodCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
+  "lastPushedCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
   "completedThisRun": [
     "Generated five distinct staged illustrations using canonical V2/camp references only",
     "Delivered 20s held-image montage with manual shot selection and no prior-media input",
@@ -73,7 +73,7 @@
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SCOPED_ACTUAL_ARTIFACT;set1.7.0/f4aae63 unchanged;offlineprototype only",
-  "commitReferenceScope": "Delivery commit below; subsequent metadata-only closure commit is discoverable in Git (self-reference intentionally avoided).",
+  "commitReferenceScope": "Current delivered soft-transition commit; following metadata-only closeout is discoverable in Git, avoiding circular self-reference.",
   "operatorAuthorization": "Explicit interactive correction: five distinct staged images generated with image tools only, no video base. MANUAL-CAMP-FIVE-STILLS-2026-10-20, offline review only.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -146,39 +146,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-camp-five-stills-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T04:10:05.307Z",
+  "lastHeartbeat": "2026-10-21T04:12:11.392Z",
   "wip": {
     "branch": "dev",
-    "sha": "08fd5d56545dda32f6a3705dc309db994fbcbd13",
-    "dirtyFiles": [
-      ".gitattributes",
-      "tools/cinematics/candidates/camp-five-stills-20261020/index.html",
-      "tools/cinematics/candidates/camp-five-stills-20261020/montage.css",
-      "tools/cinematics/candidates/camp-five-stills-20261020/montage.mjs",
-      "tools/cinematics/candidates/camp-five-stills-20261020/provenance.json",
-      "tools/cinematics/candidates/camp-five-stills-20261020/requests.json",
-      "tools/cinematics/candidates/camp-five-stills-20261020/results.json",
-      "tools/cinematics/candidates/camp-five-stills-20261020/review-crossfade-v2.png",
-      "tools/cinematics/candidates/camp-five-stills-20261020/review-preview.png",
-      "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt-crossfade-v2.json",
-      "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt.json",
-      "tools/cinematics/candidates/camp-five-stills-20261020/shot-01.png",
-      "tools/cinematics/candidates/camp-five-stills-20261020/shot-02.png",
-      "tools/cinematics/candidates/camp-five-stills-20261020/shot-03.png",
-      "tools/cinematics/candidates/camp-five-stills-20261020/shot-04.png",
-      "tools/cinematics/candidates/camp-five-stills-20261020/shot-05.png",
-      "docs/autonomy/CAMP_FIVE_STILLS_OPERATOR_DIRECTION_2026-10-20.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-21T0224Z-codex-camp-five-stills.md"
-    ],
-    "status": "VERIFIED_DELIVERY_PENDING_PUBLICATION",
-    "lastGreenCheck": "2026-10-21T02:37:03.762Z",
+    "sha": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
+    "dirtyFiles": [],
+    "status": "SOFT_TRANSITION_DELIVERY_PUBLISHED_METADATA_CLOSEOUT",
+    "lastGreenCheck": "2026-10-21T04:12:11.392Z",
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T04:10:05.307Z",
+    "lastHeartbeat": "2026-10-21T04:12:11.392Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37368,32 +37346,10 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "08fd5d56545dda32f6a3705dc309db994fbcbd13",
-      "dirtyFiles": [
-        ".gitattributes",
-        "tools/cinematics/candidates/camp-five-stills-20261020/index.html",
-        "tools/cinematics/candidates/camp-five-stills-20261020/montage.css",
-        "tools/cinematics/candidates/camp-five-stills-20261020/montage.mjs",
-        "tools/cinematics/candidates/camp-five-stills-20261020/provenance.json",
-        "tools/cinematics/candidates/camp-five-stills-20261020/requests.json",
-        "tools/cinematics/candidates/camp-five-stills-20261020/results.json",
-        "tools/cinematics/candidates/camp-five-stills-20261020/review-crossfade-v2.png",
-        "tools/cinematics/candidates/camp-five-stills-20261020/review-preview.png",
-        "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt-crossfade-v2.json",
-        "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt.json",
-        "tools/cinematics/candidates/camp-five-stills-20261020/shot-01.png",
-        "tools/cinematics/candidates/camp-five-stills-20261020/shot-02.png",
-        "tools/cinematics/candidates/camp-five-stills-20261020/shot-03.png",
-        "tools/cinematics/candidates/camp-five-stills-20261020/shot-04.png",
-        "tools/cinematics/candidates/camp-five-stills-20261020/shot-05.png",
-        "docs/autonomy/CAMP_FIVE_STILLS_OPERATOR_DIRECTION_2026-10-20.md",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/handoffs/2026-10-21T0224Z-codex-camp-five-stills.md"
-      ],
-      "status": "VERIFIED_DELIVERY_PENDING_PUBLICATION",
-      "lastGreenCheck": "2026-10-21T02:37:03.762Z",
+      "sha": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
+      "dirtyFiles": [],
+      "status": "SOFT_TRANSITION_DELIVERY_PUBLISHED_METADATA_CLOSEOUT",
+      "lastGreenCheck": "2026-10-21T04:12:11.392Z",
       "inheritedWip": 0
     },
     "nextAction": "Operator watches the same five-image montage with soft dissolves and gives a transition/rhythm verdict; keep visual continuity/art acceptance separate.",
@@ -37429,8 +37385,8 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-21T04:12:11.392Z",
+    "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
       "deliveryCheckpoint": "836269855cbe9d60aef117bfeb49433a5073972f",
@@ -41561,9 +41517,9 @@
     "runId": "codex-manual-camp-five-stills-20261020",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-21T02:24:53.650Z",
+    "runStartedAt": "2026-10-21T02:23:48.7436344Z",
     "activePhase": "FIVE_STILLS_SOFT_DISSOLVES_READY_FOR_REVIEW",
-    "heartbeat": "2026-10-21T04:10:05.307Z",
+    "heartbeat": "2026-10-21T04:12:11.392Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0224Z-codex-camp-five-stills.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -43292,7 +43248,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "08fd5d56545dda32f6a3705dc309db994fbcbd13",
+    "lastPushedCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -44098,7 +44054,7 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "08fd5d56545dda32f6a3705dc309db994fbcbd13",
+    "lastKnownGoodCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
     "completedThisRun": [
       "Generated five distinct staged illustrations using canonical V2/camp references only",
       "Delivered 20s held-image montage with manual shot selection and no prior-media input",
@@ -45639,7 +45595,7 @@
     },
     "contractSetVersion": "1.7.0",
     "uncommittedWork": "NONE after containing metadata closure",
-    "commitReferenceScope": "Delivery commit below; subsequent metadata-only closure commit is discoverable in Git (self-reference intentionally avoided).",
+    "commitReferenceScope": "Current delivered soft-transition commit; following metadata-only closeout is discoverable in Git, avoiding circular self-reference.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
       "status": "SAVED_AND_CONFIGURATION_VERIFIED",
@@ -45720,7 +45676,16 @@
       "nextAction": "Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained."
     },
     "operatorAuthorization": "Explicit interactive correction: five distinct staged images generated with image tools only, no video base. MANUAL-CAMP-FIVE-STILLS-2026-10-20, offline review only.",
-    "qaToolingJustification": "Existing campaign/video runners do not target this standalone still-image montage; one ignored temporary Playwright scenario, no persistent tool/job."
+    "qaToolingJustification": "Existing campaign/video runners do not target this standalone still-image montage; one ignored temporary Playwright scenario, no persistent tool/job.",
+    "campFiveStillsCloseout": {
+      "deliveryCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
+      "normalPushVerified": true,
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "preview": "http://127.0.0.1:5456/",
+      "previewPid": 13348,
+      "qaJobsPreserved": 339,
+      "nextAction": "Operator watches the same five-image montage with soft dissolves and gives a transition/rhythm verdict; keep visual continuity/art acceptance separate."
+    }
   },
   "previousInterruptedRun": {
     "runId": "rpgthreejs-auto-dev-90m-20261009T0011",
@@ -50261,6 +50226,10 @@
       "readerStatus": "PASS6",
       "operatorAcceptance": false,
       "guardian": "PASS_SCOPED_IMPLEMENTATION"
-    }
+    },
+    "deliveryCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
+    "runEndedAt": "2026-10-21T04:12:11.392Z",
+    "wallClockMinutes": 108.38,
+    "wallClockNote": "Includes operator-review interval between initial delivery and follow-up on abrupt cuts; not continuous active agent time."
   }
 }
