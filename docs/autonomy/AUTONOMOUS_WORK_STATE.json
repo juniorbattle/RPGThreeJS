@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-21T01:08:01.9187753Z",
-  "runEndedAt": "2026-10-21T01:19:01.148Z",
+  "runEndedAt": "2026-10-21T01:20:27.881Z",
   "activeTask": "MANUAL-ILLUSTRATED-CAMP-COMPARISON",
   "activePhase": "ILLUSTRATED_CAMP_PROTOTYPE_READY_FOR_COMPARISON",
   "activeSubtask": "Four compositions/three existing images/16s proposed;exclusiveImages-Video05 reader delivered offline",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "0b4d46c6e5de2250b3ba0e066e20f7e1c81268a7",
-  "lastPushedCommit": "0b4d46c6e5de2250b3ba0e066e20f7e1c81268a7",
+  "lastKnownGoodCommit": "ed80aa821f62d586990a583c9972330e1c6370d3",
+  "lastPushedCommit": "ed80aa821f62d586990a583c9972330e1c6370d3",
   "completedThisRun": [
     "Built actual four-shot illustrated camp montage from three existingimages with explicitellipsis and optionalwholeframecrop",
     "Added paused exclusive mode comparison to retainedsilentVideo05,keyboard/seek/reducedmotion/failure fallback",
@@ -136,30 +136,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-camp-illustrated-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T01:19:01.148Z",
+  "lastHeartbeat": "2026-10-21T01:20:27.881Z",
   "wip": {
     "branch": "dev",
-    "sha": "0b4d46c6e5de2250b3ba0e066e20f7e1c81268a7",
-    "dirtyFiles": [
-      ".gitattributes",
-      "tools/cinematics/candidates/illustrated-camp-20261020/index.html",
-      "tools/cinematics/candidates/illustrated-camp-20261020/study.css",
-      "tools/cinematics/candidates/illustrated-camp-20261020/study.mjs",
-      "tools/cinematics/candidates/illustrated-camp-20261020/provenance.json",
-      "tools/cinematics/candidates/illustrated-camp-20261020/review-receipt.json",
-      "tools/cinematics/candidates/illustrated-camp-20261020/review-preview.png",
-      "docs/autonomy/ILLUSTRATED_CAMP_COMPARISON_2026-10-20.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/handoffs/2026-10-21T0120Z-codex-illustrated-camp.md"
-    ],
-    "status": "GREEN_ILLUSTRATED_ARTIFACT_NOT_ART_ACCEPTED",
+    "sha": "ed80aa821f62d586990a583c9972330e1c6370d3",
+    "dirtyFiles": [],
+    "status": "GREEN_OFFLINE_STUDY_AWAITING_STYLE_VERDICT",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-21T01:19:01.148Z"
+    "lastGreenCheck": "2026-10-21T01:20:27.881Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T01:19:01.148Z",
+    "lastHeartbeat": "2026-10-21T01:20:27.881Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37349,24 +37336,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "0b4d46c6e5de2250b3ba0e066e20f7e1c81268a7",
-      "dirtyFiles": [
-        ".gitattributes",
-        "tools/cinematics/candidates/illustrated-camp-20261020/index.html",
-        "tools/cinematics/candidates/illustrated-camp-20261020/study.css",
-        "tools/cinematics/candidates/illustrated-camp-20261020/study.mjs",
-        "tools/cinematics/candidates/illustrated-camp-20261020/provenance.json",
-        "tools/cinematics/candidates/illustrated-camp-20261020/review-receipt.json",
-        "tools/cinematics/candidates/illustrated-camp-20261020/review-preview.png",
-        "docs/autonomy/ILLUSTRATED_CAMP_COMPARISON_2026-10-20.md",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/handoffs/2026-10-21T0120Z-codex-illustrated-camp.md"
-      ],
-      "status": "GREEN_ILLUSTRATED_ARTIFACT_NOT_ART_ACCEPTED",
+      "sha": "ed80aa821f62d586990a583c9972330e1c6370d3",
+      "dirtyFiles": [],
+      "status": "GREEN_OFFLINE_STUDY_AWAITING_STYLE_VERDICT",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-21T01:19:01.148Z"
+      "lastGreenCheck": "2026-10-21T01:20:27.881Z"
     },
     "nextAction": "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
     "runMetrics": {
@@ -37409,7 +37383,7 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-21T01:19:01.148Z",
+    "runEndedAt": "2026-10-21T01:20:27.881Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
@@ -41543,7 +41517,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-21T01:08:01.9187753Z",
     "activePhase": "ILLUSTRATED_CAMP_PROTOTYPE_READY_FOR_COMPARISON",
-    "heartbeat": "2026-10-21T01:19:01.148Z",
+    "heartbeat": "2026-10-21T01:20:27.881Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0120Z-codex-illustrated-camp.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -50152,7 +50126,11 @@
     "doctrineAdoption": false,
     "runtimeChanged": false,
     "gaitAcceptance": false,
-    "runEndedAt": "2026-10-21T01:19:01.148Z",
-    "nextAction": "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred."
+    "runEndedAt": "2026-10-21T01:20:27.881Z",
+    "nextAction": "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
+    "deliveryCommit": "ed80aa821f62d586990a583c9972330e1c6370d3",
+    "publication": "Verified origin/dev; containingclosure inGit/automationmemory",
+    "qaWorkerActive": false,
+    "browserTab": 5
   }
 }
