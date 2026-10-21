@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-21T17:54:03Z",
-  "runEndedAt": "2026-10-21T18:43:02.120Z",
+  "runEndedAt": "2026-10-21T18:45:39.639Z",
   "activeTask": "ILLUSTRATED-CINEMATICS-AUTONOMOUS-PRODUCTION",
   "activePhase": "BOIS_CLAIR_GENERATED_REVIEW_PENDING",
   "activeSubtask": "Audience published READY_FOR_OPERATOR_REVIEW; Bois-Clair five-image18s candidate generated, technical playback review pending",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "256cd041d3639c94b070ddaf46f9bad10e342362",
-  "lastPushedCommit": "256cd041d3639c94b070ddaf46f9bad10e342362",
+  "lastKnownGoodCommit": "09a9ffff68a37371e387cc8c329a2bd0377938e5",
+  "lastPushedCommit": "09a9ffff68a37371e387cc8c329a2bd0377938e5",
   "completedThisRun": [
     "Verified current audience trigger/lion_briefing and four V2/environment inputs",
     "Generated six integrated illustrations and two targeted Alaric equipment corrections; all raw variants retained",
@@ -225,7 +225,7 @@
     "lastGreenCheck": "2026-10-21T17:47:22.787Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T18:43:02.120Z",
+    "lastHeartbeat": "2026-10-21T18:45:39.639Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -38084,11 +38084,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "256cd041d3639c94b070ddaf46f9bad10e342362",
+      "sha": "09a9ffff68a37371e387cc8c329a2bd0377938e5",
       "dirtyFiles": [],
-      "status": "CHECKPOINT_READY_TECHNICAL_SCOPE_EXPLICIT",
+      "status": "PUBLISHED_CHECKPOINT",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-21T18:43:02.120Z"
+      "lastGreenCheck": "2026-10-21T18:45:39.639Z"
     },
     "nextAction": "Resume bois_clair_arrival/v1 without regenerating its five inspected images. Start tracked reader-v1/serve.cjs; observe18s montage normally. Copy the preserved audience smoke into a new Bois-Clair version driver, adapt5images/four dissolves/18s/timeline0/4/7/10/13 and exact media SHA, preserving loading/order/keyboard/pause/resume/OSreduce/framing/console/missing-image assertions. Register one unique receipt and inspect captures before READY_FOR_OPERATOR_REVIEW; only then advance bois_clair_saved. Do not modify the proven audience reader/driver or regenerate audience/camp.",
     "runMetrics": {
@@ -51338,6 +51338,15 @@
       "inheritedWip": 0,
       "workflowDocPaths": 3,
       "specPlanPaths": 1
+    },
+    "publication": {
+      "productCheckpoint": "09a9ffff68a37371e387cc8c329a2bd0377938e5",
+      "audienceCheckpoint": "256cd041d3639c94b070ddaf46f9bad10e342362",
+      "normalPush": true,
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "previewServerStopped": true,
+      "qaBrowserClosed": true,
+      "metadataCommitReference": "Containing metadata commit and final parity are recorded in automation memory/Git"
     }
   }
 }
