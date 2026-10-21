@@ -1,0 +1,8 @@
+{
+  "prompt": "Precise targeted correction to image1 only. Preserve exact landscape composition, both actors' locations/scale, Marian entirely unchanged, approved damaged village, low orange sky, every landmark, HD2D pixel-art, identity/costume and full frame. Image2 is the original V2 villageoise equipment reference. Correct ONLY Villageoise's accessory and hand continuity: her basket belongs on her own anatomical LEFT side, which must appear on the VIEWER'S RIGHT side of her apron even as her hood turns screen-left toward Marian. Her leather satchel and hanging ivory pouch belong at VIEWER'S LEFT of her waist, as in image2. Do NOT mirror her body or outfit to turn her head. The basket must be held HIGH against her upper abdomen: her left hand on viewer-right holds the handle, her right hand reaches across the upper rim from viewer-left, two intact hands. Her shoulders are still slightly raised, guarded stance, before relaxing. Same basket with same ivory cloth and blue woven band, no contents added. Keep faces concealed. No offer, contact, reward, speech or new actor. Do not change any other aspect; one corrected integrated scene.",
+  "referenced_image_paths": [
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/villageoise.png"
+  ],
+  "transparent_background": false
+}

@@ -1,14 +1,14 @@
-# Cinématiques illustrées — audience livrée, Bois-Clair à vérifier
+# Cinématiques illustrées — arrivée revue ; branche sauvée produite
 
-Run codex-illustrated-audience-20261021T1754Z · clôture 2026-10-21T18:45:39.639Z. READY_FOR_PC_ACCEPTANCE conservé ; scheduler ACTIVE/configuration inchangés.
+Run codex-illustrated-bois-20261021T1854Z · début2026-10-21T18:54:03Z · heartbeat 2026-10-21T19:16:55.943Z. READY_FOR_PC_ACCEPTANCE conservé, scheduler ACTIVE/configuration byte-identique. [Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html) · [Lecture locale](../../tools/cinematics/candidates/illustrated-sequences/README.md).
 
-[Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html) · [Lecture locale](../../tools/cinematics/candidates/illustrated-sequences/README.md). Audience :6images/20s,2corrections,READY_FOR_OPERATOR_REVIEW, publiée256cd04 ; pilote10contrôles et revue agent/guardian PASS bornés. Bois-Clair arrivée :5images/18s,1correction panier,GENERATED_REVIEW_PENDING ; images inspectées/guardian préservation PASS, lecture continue/reçu technique à faire. Aucun art final ni runtime accepté.
+Arrivée :5images existantes/18s sans régénération,1scénario/1reçu/10contrôles PASS et guardian PASS_SCOPED, READY_FOR_OPERATOR_REVIEW. StatutHTML seulement corrigé après preuve avec exactavant/après/SHA ; reçu brut NOT_ACCEPTED distinct de revue bornée. Sauvé :5images/18s,5appels initiaux+2corrections mains/accessoires,7raw conservés, guardian PASS_PRESERVATION, GENERATED_REVIEW_PENDING ; lecture continue/reçu technique à faire avant READY. Aucun art final/runtime accepté.
 
-**Prochaine action exacte :** Resume bois_clair_arrival/v1 without regenerating its five inspected images. Start tracked reader-v1/serve.cjs; observe18s montage normally. Copy the preserved audience smoke into a new Bois-Clair version driver, adapt5images/four dissolves/18s/timeline0/4/7/10/13 and exact media SHA, preserving loading/order/keyboard/pause/resume/OSreduce/framing/console/missing-image assertions. Register one unique receipt and inspect captures before READY_FOR_OPERATOR_REVIEW; only then advance bois_clair_saved. Do not modify the proven audience reader/driver or regenerate audience/camp.
+**Une prochaine action exacte :** Resume bois_clair_saved/v1 without regenerating its5selected illustrations. Copy preserved arrival smoke to saved/v1, adapt paths/mediaSHA only (same5images/4dissolves/18s/0,4,7,10,13), retain every assertion and unique receipt. Observe normal18s and inspect relevant captures before READY; then bois_clair_sacrificed. Camp/audience/arrival/proven reader unchanged.
 
-339jobs originaux/acceptations et racines historiques préservés ;5nouveaux reçus :4échecs environnement/pilote conservés,1succès technique revu. TypeScript/41tests sources ciblés(+82copies historiques)/contrats8+8/gates/diffcheck/SHA/liens/timelines PASS. Aucun gameplay rejoué ni build runtime nécessaire :src/public/vidéos/V6/audio/camp inchangés.14appelsimagegen/11images sélectionnées,0fichier source runtime,0WIP hérité. Contrats1.8.0/baseline0cb95135 inchangés ; main protégé.
+TypeScript/41tests ciblés/contrats8+8/gates/diffcheck/SHA/timeline/liens PASS.344jobs hérités inchangés,345total.0source runtime/0gameplay/5illustrations sélectionnées/7appels/1scénario/5QApreuves/3workflowdocs+1plan/0WIP hérité. Lecteur/pilote audience/camp/anciens médias/src/public/V6/audio/contrats intacts. Art/PCglobal/balance/hardware/audio différé/mobile-aprèsPC restent ouverts. [Handoff courant](handoffs/2026-10-21T1854Z-codex-illustrated-bois.md).
 
-[Handoff courant](handoffs/2026-10-21T1754Z-codex-illustrated-audience.md). Checkpoint produit publié09a9ffff68a37371e387cc8c329a2bd0377938e5 cité dans JSON ; serveurs de revue arrêtés ; le commit contenant cette clôture et sa parité finale sont consignés dans Git/mémoire d’automatisation.
+Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/narrative/presentation/save/governance PASS préservation ; UI/QA PASS arrivée, sauvé continu PENDING ; Traversal/combat N/A. Aucun LOCKED changé. Checkpoint/push/parité/fin/libération dans Git et mémoire automation, main inchangé.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -356,5 +356,6 @@ Run codex-illustrated-audience-20261021T1754Z · clôture 2026-10-21T18:45:39.63
 - illustrated-audience-1754-host-browser: FAILED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review-host-browser/qa-job.json`; NOT_ACCEPTED
 - illustrated-audience-1754-host-access: FAILED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review-host-access/qa-job.json`; NOT_ACCEPTED
 - illustrated-audience-1754-host-server: FAILED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review-host-server/qa-job.json`; NOT_ACCEPTED
-- illustrated-audience-1754-final: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review-final/qa-job.json`; NOT_ACCEPTED
+- illustrated-audience-1754-final: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review-final/qa-job.json`; ACCEPTED_SCOPED_OFFLINE_READER_AUDIENCE
+- illustrated-bois-arrival-1854: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-bois-1854/review/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

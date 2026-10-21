@@ -1,0 +1,134 @@
+{
+  "status": "PASS_SCOPED_OFFLINE_READER",
+  "reviewedAt": "2026-10-21T19:02:46.919Z",
+  "artAccepted": false,
+  "runtimeIntegrated": false,
+  "rawReceipt": {
+    "path": "tmp/cinematics/illustrated-bois-1854/review/qa-job.json",
+    "sha256": "36b028989e9b5ba94550a3c70e884b9af7afa40f9de37707b740417359e9ab10"
+  },
+  "rawResult": {
+    "path": "tmp/cinematics/illustrated-bois-1854/review/results.json",
+    "sha256": "cedddc32478a6fbcce1307707eb7981448954786f86a33dbba5e9c20dd393db7"
+  },
+  "driver": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/review-smoke.mjs",
+    "sha256": "092e39b512609aa0535b063224a2ec98b02e207234a0e49510a0b55313a44981"
+  },
+  "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+  "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "parameters": {
+    "scene": "bois_clair_arrival",
+    "url": "http://127.0.0.1:5461/bois_clair_arrival/v1/index.html",
+    "media": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/sequence.json",
+        "sha256": "06d86ebf4e916b18ec7c80dd2ae2364aedad7651d4155f4360fd39d7721f8dff"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-01.png",
+        "sha256": "3491a49ec04463dcd65064f2898d62c56c2843d0233657e7971016ae28c571ce"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-02.png",
+        "sha256": "6d0314f418918febca4c106802357a657ad14ad2bc7bbe16a00cf8e5885fea1b"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-03.png",
+        "sha256": "f584944b180bda04836ce480f3f478c0ca4a7d098892411e1b65dabab8a6e7b1"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-04.png",
+        "sha256": "999918f5ca1e619317247a6ae18b9c7b8bda51e13f99c51b4dbdc49bb1e90c9d"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-05.png",
+        "sha256": "524f898f5d63f2d528f5bcff881b55a26e7d46db030b50218c0ccc96dca6c626"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/index.html",
+        "sha256": "eb899b7e91fadb344f2c954a3fef59daf352cd1ccaff0cdf2f1100fbee4004f6"
+      }
+    ],
+    "reader": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+        "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+        "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+      }
+    ],
+    "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+  },
+  "checks": [
+    "Five distinct complete images preloaded; initially paused on establishing image",
+    "Four real-time dissolves through chronological5images, total18s and final stop",
+    "All five scene stages follow the authored timeline",
+    "Five-stage Home/End/arrow/previous navigation matches timeline",
+    "OSreduce gentle dissolve retained; pause freezes opacity and clock; resume advances",
+    "Whole images/44px controls/no horizontal clipping at1366x768",
+    "Whole images/44px controls/no horizontal clipping at620x780",
+    "Whole images/44px controls/no horizontal clipping at390x844",
+    "No nominal console/page errors",
+    "Missing final raccord image disables playback with visible status"
+  ],
+  "samples": [
+    {
+      "time": 3.2,
+      "base": "shot-01.png",
+      "next": "shot-02.png",
+      "alpha": 0.130247,
+      "loaded": true
+    },
+    {
+      "time": 6.2,
+      "base": "shot-02.png",
+      "next": "shot-03.png",
+      "alpha": 0.130037,
+      "loaded": true
+    },
+    {
+      "time": 9.2,
+      "base": "shot-03.png",
+      "next": "shot-04.png",
+      "alpha": 0.129932,
+      "loaded": true
+    },
+    {
+      "time": 12.2,
+      "base": "shot-04.png",
+      "next": "shot-05.png",
+      "alpha": 0.129827,
+      "loaded": true
+    }
+  ],
+  "captures": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/proof/dissolve-2.png",
+      "sha256": "76ec36afd387c7733993194981bb1f9f4a4a835b2ed785242615bc39b52ff257"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/proof/desktop-endpoint.png",
+      "sha256": "715822da4415987366c506007ffa6c2c75064e2dfea5501f6139435259baa312"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/proof/narrow-preparation.png",
+      "sha256": "c43e34a3551ff050c24b6b1214fed7638c5ff97b2b301f7634025f9c1ea5e132"
+    }
+  ],
+  "statusCopy": {
+    "scope": "POST_PROOF_STATUS_COPY_ONLY",
+    "testedIndexSha256": "eb899b7e91fadb344f2c954a3fef59daf352cd1ccaff0cdf2f1100fbee4004f6",
+    "deliveredIndexSha256": "292e62196160725af5bfa4c8519cb6b54eefbb76df5bc484f9400cd0889045a0",
+    "exactBefore": "<!doctype html>\n<html lang=\"fr\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>RPGThreeJS — Bois-Clair — cinq illustrations à vérifier</title><link rel=\"stylesheet\" href=\"../../reader-v1/montage.css\"></head>\n<body><main>\n<header><p class=\"eyebrow\">RPGThreeJS · Étude de mise en scène</p><h1>Avant l’appel à l’aide</h1><p>Bois-Clair au crépuscule, avant toute décision.</p></header>\n<section class=\"screen\" tabindex=\"0\" aria-label=\"Aperçu du montage illustré\"><img id=\"picture\" src=\"shot-01.png\" alt=\"Une place sous l’incendie\"><img id=\"incoming\" src=\"shot-02.png\" alt=\"\" aria-hidden=\"true\"><p id=\"error\" role=\"status\" hidden></p></section>\n<section class=\"controls\" aria-label=\"Commandes du montage\"><div class=\"caption\"><span id=\"number\">01 / 05</span><h2 id=\"title\">Une place sous l’incendie</h2><output id=\"time\">0,0 / 18,0 s</output></div><p id=\"description\">Le lieu sous pression ; les quatre présences restent distinctes.</p><div class=\"transport\"><button id=\"play\" class=\"primary\" disabled>Chargement…</button><button id=\"previous\" aria-label=\"Plan précédent\" disabled>←</button><button id=\"next\" aria-label=\"Plan suivant\" disabled>→</button><input id=\"seek\" type=\"range\" min=\"0\" max=\"18\" step=\"0.1\" value=\"0\" aria-label=\"Position dans le montage\" disabled></div><p id=\"status\" role=\"status\" aria-live=\"polite\">Chargement des cinq illustrations…</p><p id=\"motion-note\" hidden>Réduction des mouvements active. Vous pouvez parcourir les plans avec les flèches ; la lecture démarre uniquement sur demande.</p></section>\n<nav id=\"shots\" aria-label=\"Les cinq étapes\"></nav>\n<footer>EN ATTENTE DE REVUE TECHNIQUE · cinq images / 18 secondes proposées · candidat hors jeu, art final et intégration non acceptés.<details><summary>Sources et limites</summary><p>Le montage s’arrête avant village_choice : aucun secours, sacrifice, choix ou gain joué. Images inspectées individuellement ; lecture continue et reçu technique restent à vérifier au prochain run.</p><a href=\"provenance.json\">Provenance et requêtes exactes</a> · <a href=\"source-progression.md\">Progression sourcée</a> · <a href=\"review.md\">Revue et limites</a></details></footer>\n</main><script type=\"module\" src=\"../../reader-v1/montage.mjs\"></script></body></html>\n",
+    "exactAfter": "<!doctype html>\n<html lang=\"fr\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>RPGThreeJS — Bois-Clair — cinq illustrations proposées</title><link rel=\"stylesheet\" href=\"../../reader-v1/montage.css\"></head>\n<body><main>\n<header><p class=\"eyebrow\">RPGThreeJS · Étude de mise en scène</p><h1>Avant l’appel à l’aide</h1><p>Bois-Clair au crépuscule, avant toute décision.</p></header>\n<section class=\"screen\" tabindex=\"0\" aria-label=\"Aperçu du montage illustré\"><img id=\"picture\" src=\"shot-01.png\" alt=\"Une place sous l’incendie\"><img id=\"incoming\" src=\"shot-02.png\" alt=\"\" aria-hidden=\"true\"><p id=\"error\" role=\"status\" hidden></p></section>\n<section class=\"controls\" aria-label=\"Commandes du montage\"><div class=\"caption\"><span id=\"number\">01 / 05</span><h2 id=\"title\">Une place sous l’incendie</h2><output id=\"time\">0,0 / 18,0 s</output></div><p id=\"description\">Le lieu sous pression ; les quatre présences restent distinctes.</p><div class=\"transport\"><button id=\"play\" class=\"primary\" disabled>Chargement…</button><button id=\"previous\" aria-label=\"Plan précédent\" disabled>←</button><button id=\"next\" aria-label=\"Plan suivant\" disabled>→</button><input id=\"seek\" type=\"range\" min=\"0\" max=\"18\" step=\"0.1\" value=\"0\" aria-label=\"Position dans le montage\" disabled></div><p id=\"status\" role=\"status\" aria-live=\"polite\">Chargement des cinq illustrations…</p><p id=\"motion-note\" hidden>Réduction des mouvements active. Vous pouvez parcourir les plans avec les flèches ; la lecture démarre uniquement sur demande.</p></section>\n<nav id=\"shots\" aria-label=\"Les cinq étapes\"></nav>\n<footer>PRÊT POUR REVUE OPÉRATEUR · cinq images / 18 secondes proposées · candidat hors jeu, art final et intégration non acceptés.<details><summary>Sources et limites</summary><p>Le montage s’arrête avant village_choice : aucun secours, sacrifice, choix ou gain joué. Images et lecture continue inspectées ; contrôles techniques bornés vérifiés. Art final et intégration restent à décider.</p><a href=\"provenance.json\">Provenance et requêtes exactes</a> · <a href=\"source-progression.md\">Progression sourcée</a> · <a href=\"review.md\">Revue et limites</a></details></footer>\n</main><script type=\"module\" src=\"../../reader-v1/montage.mjs\"></script></body></html>\n",
+    "limitation": "Raw receipt hashes tested pre-copy index; no claim of browser geometry proof for changed title/footer text. Controls/scripts/CSS/timeline/images byte-identical."
+  },
+  "guardian": "PASS_SCOPED_OFFLINE_READER_ARRIVAL; raw NOT_ACCEPTED retained",
+  "limits": [
+    "No gameplay/art/runtime/global acceptance",
+    "IAB OSreduce0.8s sampled start/end; normal1s4dissolves18s driver captures inspected"
+  ]
+}

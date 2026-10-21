@@ -1,0 +1,362 @@
+{
+  "runId": "codex-illustrated-bois-20261021T1854Z",
+  "createdAt": "2026-10-21T19:12:55.685Z",
+  "sourceBranch": "dev",
+  "sourceCommit": "59253f373db27356fd1c99add18b37765e72c91d",
+  "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+  "operatorDecisions": [
+    "OD-2026-10-21-A",
+    "OD-2026-10-21-B"
+  ],
+  "contractSet": "1.8.0",
+  "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+  "status": "GENERATED_REVIEW_PENDING",
+  "tool": "built-in image_gen.imagegen only",
+  "initialImages": 5,
+  "targetedCorrections": 2,
+  "uniqueGeneratedOutputs": 7,
+  "rawPolicy": "All7original PNG outputs/variants retained byte-identically; original generator paths in results; encoded image_url bytes represented by rawPNG plus SHA, no re-encoding.",
+  "references": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-saved.png",
+      "sha256": "09485b94cb0f4e4b56386a2fcb4e02d0ecae8fbfb0dca1a6309cb6f97cd1444b"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/villageoise.png",
+      "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/white_mage.png",
+      "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/cinematics/Cin6aPresentation.ts",
+      "sha256": "41e0dee7f65231bd8e65cee075ac8c6d909302b6de37e7560b0eeeae8a645990"
+    },
+    {
+      "path": "src/game/content.ts",
+      "sha256": "f1c09e07cbdcd4641ff92207cf7118370673e4e33bfcc8b6adacf2cca1853ea0"
+    },
+    {
+      "path": "src/game/GameApp.ts",
+      "sha256": "067df49417b038704b154b54402aae42840d5f3bde279838d845f848d530d8b5"
+    },
+    {
+      "path": "src/render/data/demo-environment-pack-v1.production.json",
+      "sha256": "fcd1c020d9674c35e9665bb10fdcd7d4d898f382ed0117016f4b6c9dce6e00c3"
+    }
+  ],
+  "calls": [
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-01-correction-01.json",
+        "sha256": "70f5f2acc50e7c3bd83eee83fef21801695636aa2906aa5567f5747751d32834"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-01-correction-01.json",
+        "sha256": "0d3f55d36e84cb4e029e96b96cb8a30b4ec4ddc0bca16e27d53f4dbb0ba174dd"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-01-correction-01.png",
+        "sha256": "be5c947c2e416934b420661d43e337bee07f3f17d0ddf7b7e10b75ecbd2103a4"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-01-initial.png",
+          "sha256": "c777911e6146e6b5478c7c8ff1f64341b9d81d7aab017e15eeacecb4f635da03"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/villageoise.png",
+          "path": "public/assets/characters/pixel/masters/villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-01.json",
+        "sha256": "f65625bfd57e6f3ecc044836c39c2502902784a1ffe060d0df44098a9706dc05"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-01.json",
+        "sha256": "62a4b3ab97807dd34cea6233ca07927fbbbe56dfada7614c9bf6fb27835c90f9"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-01-initial.png",
+        "sha256": "c777911e6146e6b5478c7c8ff1f64341b9d81d7aab017e15eeacecb4f635da03"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-saved.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-saved.png",
+          "sha256": "09485b94cb0f4e4b56386a2fcb4e02d0ecae8fbfb0dca1a6309cb6f97cd1444b"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/villageoise.png",
+          "path": "public/assets/characters/pixel/masters/villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/white_mage.png",
+          "path": "public/assets/characters/pixel/masters/white_mage.png",
+          "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-02.json",
+        "sha256": "ae74eb952e72455ae9e2028071ef53c251bc05f2253b69b91512df0e8708a36c"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-02.json",
+        "sha256": "a68a538dc6f3a1af54e1d25e46d34b7deeeabbc2b4b845984e3582082a58223b"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-02.png",
+        "sha256": "a4006292c34e8564a11ad1444efa21d92140b78445bb02248340cd6b33559c84"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
+          "sha256": "be5c947c2e416934b420661d43e337bee07f3f17d0ddf7b7e10b75ecbd2103a4"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/villageoise.png",
+          "path": "public/assets/characters/pixel/masters/villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/white_mage.png",
+          "path": "public/assets/characters/pixel/masters/white_mage.png",
+          "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-03.json",
+        "sha256": "459df7309f5b1750392f79a066ee3c4c6a54590dfaf207a17aa73ef06f2b858c"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-03.json",
+        "sha256": "878ece4dad9158f442bdb378a956bfb3bcd6ef3da91ed407522bff09cd66bdba"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-03.png",
+        "sha256": "3619cddaf405582dde64fc7ace5edc20aa962fa5a81566f802067b14963c4e69"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-02.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-02.png",
+          "sha256": "a4006292c34e8564a11ad1444efa21d92140b78445bb02248340cd6b33559c84"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/villageoise.png",
+          "path": "public/assets/characters/pixel/masters/villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-04.json",
+        "sha256": "46d73b6263b1ff72a59bb6ad130df5041017e4a2bdeb34402c868e2da31ec3de"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-04.json",
+        "sha256": "7e9841e46ca1d333d7ad4604f464fa2ccb4cfd9fb547ad7053f6f82982fc6eff"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-04.png",
+        "sha256": "816dc1a64b0f4b3ad527482bec0954ba5b49e6782ea9959982fac894d5fdd15c"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
+          "sha256": "be5c947c2e416934b420661d43e337bee07f3f17d0ddf7b7e10b75ecbd2103a4"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-03.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-03.png",
+          "sha256": "3619cddaf405582dde64fc7ace5edc20aa962fa5a81566f802067b14963c4e69"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/white_mage.png",
+          "path": "public/assets/characters/pixel/masters/white_mage.png",
+          "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-05-correction-02.json",
+        "sha256": "679aedb2ab514271aacef7cdbf0f0494ebcfb973fe71a6a802c39f41c7531c37"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-05-correction-02.json",
+        "sha256": "d0e96936b8e7ae6a4b7aabffcbff9cfdf27f5e360dd12417a3269da95ff05a25"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-05-correction-02.png",
+        "sha256": "09d1c53c650efef0999e4cb68e938ddfab1f9bad41fe1c94d0166429c92656d8"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-05.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-05-initial.png",
+          "sha256": "923c188fefdd41f96fc0964486d811960c9ad438056fb7acfd3c7525b3031f80"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-04.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-04.png",
+          "sha256": "816dc1a64b0f4b3ad527482bec0954ba5b49e6782ea9959982fac894d5fdd15c"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/requests/shot-05.json",
+        "sha256": "e143059c957125276f4505aef34ed601345f830aea8531ae3c35d0b98a2a52e3"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/results/shot-05.json",
+        "sha256": "f03055a343230c5c1f7034d8e612c292db0748e6ea0b128e66c4b570e255ad2b"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-05-initial.png",
+        "sha256": "923c188fefdd41f96fc0964486d811960c9ad438056fb7acfd3c7525b3031f80"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
+          "sha256": "be5c947c2e416934b420661d43e337bee07f3f17d0ddf7b7e10b75ecbd2103a4"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-04.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-04.png",
+          "sha256": "816dc1a64b0f4b3ad527482bec0954ba5b49e6782ea9959982fac894d5fdd15c"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-saved.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-saved.png",
+          "sha256": "09485b94cb0f4e4b56386a2fcb4e02d0ecae8fbfb0dca1a6309cb6f97cd1444b"
+        }
+      ]
+    }
+  ],
+  "selected": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
+      "sha256": "be5c947c2e416934b420661d43e337bee07f3f17d0ddf7b7e10b75ecbd2103a4",
+      "width": 1672,
+      "height": 941,
+      "selectedFrom": "raw/shot-01-correction-01.png"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-02.png",
+      "sha256": "a4006292c34e8564a11ad1444efa21d92140b78445bb02248340cd6b33559c84",
+      "width": 1672,
+      "height": 941,
+      "selectedFrom": "raw/shot-02.png"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-03.png",
+      "sha256": "3619cddaf405582dde64fc7ace5edc20aa962fa5a81566f802067b14963c4e69",
+      "width": 1672,
+      "height": 941,
+      "selectedFrom": "raw/shot-03.png"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-04.png",
+      "sha256": "816dc1a64b0f4b3ad527482bec0954ba5b49e6782ea9959982fac894d5fdd15c",
+      "width": 1672,
+      "height": 941,
+      "selectedFrom": "raw/shot-04.png"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-05.png",
+      "sha256": "09d1c53c650efef0999e4cb68e938ddfab1f9bad41fe1c94d0166429c92656d8",
+      "width": 1672,
+      "height": 941,
+      "selectedFrom": "raw/shot-05-correction-02.png"
+    }
+  ],
+  "raw": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-01-correction-01.png",
+      "sha256": "be5c947c2e416934b420661d43e337bee07f3f17d0ddf7b7e10b75ecbd2103a4"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-01-initial.png",
+      "sha256": "c777911e6146e6b5478c7c8ff1f64341b9d81d7aab017e15eeacecb4f635da03"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-02.png",
+      "sha256": "a4006292c34e8564a11ad1444efa21d92140b78445bb02248340cd6b33559c84"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-03.png",
+      "sha256": "3619cddaf405582dde64fc7ace5edc20aa962fa5a81566f802067b14963c4e69"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-04.png",
+      "sha256": "816dc1a64b0f4b3ad527482bec0954ba5b49e6782ea9959982fac894d5fdd15c"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-05-correction-02.png",
+      "sha256": "09d1c53c650efef0999e4cb68e938ddfab1f9bad41fe1c94d0166429c92656d8"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/raw/shot-05-initial.png",
+      "sha256": "923c188fefdd41f96fc0964486d811960c9ad438056fb7acfd3c7525b3031f80"
+    }
+  ],
+  "reader": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+      "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+      "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+    }
+  ],
+  "sequence": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/sequence.json",
+    "sha256": "ca07974212e52336f32c1e0316a7e5e25f930d33668d9d9664044ccc19db7381"
+  },
+  "index": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/index.html",
+    "sha256": "f3a98e7e842d94220426df422c1d33b9b2de88e43cf1c6a193a576fb7b6eb6c3"
+  },
+  "narrativeBoundary": {
+    "branch": "village_defense victory; missionSuccess=true; missionGreed!==true",
+    "followingDialogue": "village_defense_aftermath:1",
+    "choicesPlayed": false,
+    "rewardTransfer": false,
+    "visibleCast": [
+      "white_mage",
+      "villageoise"
+    ],
+    "environment": "SAVED damaged plate; no reconstruction"
+  },
+  "review": {
+    "nativeImagesInspected": true,
+    "technicalBrowser": "PENDING_NEXT_RUN_ONE_SCENARIO_LIMIT",
+    "normalSpeedMontage": "PENDING_NEXT_RUN",
+    "artAccepted": false,
+    "runtimeIntegrated": false,
+    "guardian": {
+      "status": "PASS_PRESERVATION",
+      "scope": "Five native images/V2/environment/branch/equipment; continuous montage still pending"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "totalSeconds": 18,
+  "normalFadeSeconds": 1,
+  "reducedFadeSeconds": 0.8,
+  "stages": [
+    {
+      "title": "Le danger est retombé",
+      "description": "Le lieu reste endommagé ; deux présences immobiles après la défense.",
+      "start": 0,
+      "duration": 4,
+      "path": "shot-01.png"
+    },
+    {
+      "title": "Relâcher les épaules",
+      "description": "Les épaules de la Villageoise se relâchent, son panier reste contre elle.",
+      "start": 4,
+      "duration": 3,
+      "path": "shot-02.png"
+    },
+    {
+      "title": "Desserrer le panier",
+      "description": "Les doigts droits se détendent sur le bord ; la main gauche garde l’anse.",
+      "start": 7,
+      "duration": 3,
+      "path": "shot-03.png"
+    },
+    {
+      "title": "Une attention apaisée",
+      "description": "Les deux regards se rejoignent sans contact ni soin.",
+      "start": 10,
+      "duration": 3,
+      "path": "shot-04.png"
+    },
+    {
+      "title": "Avant les remerciements",
+      "description": "Un arrêt disponible avant le dialogue existant et son choix de récompense.",
+      "start": 13,
+      "duration": 5,
+      "path": "shot-05.png"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "prompt": "Targeted precise continuity correction ONLY to Villageoise hands and basket in image1. Preserve EVERY other pixel-intent: landscape wide framing, both actor positions/scale, Marian entirely unchanged, lighting, damaged square, hood/scarf/costume, satchel VIEWER LEFT and basket VIEWER RIGHT, feet, no new event. Image2 is the preceding selected shot04 and gives exact desired hand arrangement. In image1 Villageoise's forearms are crossed incorrectly at the basket rim. Restore exactly image2's arrangement, scaled to image1: her anatomical LEFT hand, at viewer-right side of torso, grips the wicker HANDLE a little above the rim; left forearm slopes upward naturally from elbow. Her anatomical RIGHT hand comes from viewer-left with wrist straight and UNCURLED fingers resting gently on the near RIM of the basket, no crossed wrists, no interlocking fingers, no detached handle. Basket remains at own left waist/hip, not raised to chest and not offered outward. Both complete anatomical hands clearly distinct. Same cloth/blueband/basket shape. Pose is quiet mutual attention before aftermath dialogue, no gesture of thanks, speech, gift or transfer. Do not alter Marian or background or introduce new objects. Finished detailed HD2D pixel-art scene, single image.",
+  "referenced_image_paths": [
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-05.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-04.png"
+  ],
+  "transparent_background": false
+}

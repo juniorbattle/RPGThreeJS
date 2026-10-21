@@ -77,7 +77,7 @@
     {
       "id": "bois_clair_arrival",
       "order": 2,
-      "status": "GENERATED_REVIEW_PENDING",
+      "status": "READY_FOR_OPERATOR_REVIEW",
       "sourceIndex": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_arrival.json",
       "sourceIndexRole": "Historical reference paths only; revalidate current canonical source, never execute video instructions",
       "outputRoot": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival",
@@ -95,12 +95,13 @@
     {
       "id": "bois_clair_saved",
       "order": 3,
-      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
+      "status": "GENERATED_REVIEW_PENDING",
       "sourceIndex": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_saved.json",
       "sourceIndexRole": "Historical reference paths only; revalidate current canonical source, never execute video instructions",
       "outputRoot": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved",
       "finalArtAccepted": false,
-      "runtimeIntegrated": false
+      "runtimeIntegrated": false,
+      "candidate": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/index.html"
     },
     {
       "id": "bois_clair_sacrificed",
@@ -143,7 +144,7 @@
       "runtimeIntegrated": false
     }
   ],
-  "firstAction": "Resume bois_clair_arrival/v1 without regenerating its five inspected images. Start tracked reader-v1/serve.cjs; observe18s montage normally. Copy the preserved audience smoke into a new Bois-Clair version driver, adapt5images/four dissolves/18s/timeline0/4/7/10/13 and exact media SHA, preserving loading/order/keyboard/pause/resume/OSreduce/framing/console/missing-image assertions. Register one unique receipt and inspect captures before READY_FOR_OPERATOR_REVIEW; only then advance bois_clair_saved. Do not modify the proven audience reader/driver or regenerate audience/camp.",
+  "firstAction": "Resume bois_clair_saved/v1 without regenerating its5selected illustrations. Copy preserved arrival smoke to saved/v1, adapt paths/mediaSHA only (same5images/4dissolves/18s/0,4,7,10,13), retain every assertion and unique receipt. Observe normal18s and inspect relevant captures before READY; then bois_clair_sacrificed. Camp/audience/arrival/proven reader unchanged.",
   "completionPolicy": "Each reviewed offline delivery becomes READY_FOR_OPERATOR_REVIEW; advance to next pending scene without routine approval; all seven delivered -> single operator review handoff.",
   "preserve": {
     "qaJobs": 339,
@@ -157,5 +158,5 @@
   "executionDecisionPath": "docs/autonomy/ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md",
   "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
   "executionPolicy": "Operator activation is already granted. Scheduled runs execute the seven authorized offline illustrated candidates; obsolete configuration-only/PAUSED notes are historical. No routine restart approval.",
-  "updatedAt": "2026-10-21T18:43:02.120Z"
+  "updatedAt": "2026-10-21T19:12:55.685Z"
 }
