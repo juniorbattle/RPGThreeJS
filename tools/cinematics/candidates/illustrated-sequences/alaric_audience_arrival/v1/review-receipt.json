@@ -1,0 +1,159 @@
+{
+  "status": "PASS_SCOPED_OFFLINE_READER",
+  "reviewedAt": "2026-10-21T18:22:21.028Z",
+  "artAccepted": false,
+  "runtimeIntegrated": false,
+  "rawReceipt": {
+    "path": "tmp/cinematics/illustrated-audience-1754/review-final/qa-job.json",
+    "sha256": "31ed712e555a2f98938ad6234c6474f5a500abadafd271744c9a6b0fe78f996e"
+  },
+  "rawResult": {
+    "path": "tmp/cinematics/illustrated-audience-1754/review-final/results.json",
+    "sha256": "535c551125005539223527bb4021ee349a376feecc3bcf4e45cd6612f97e73a6"
+  },
+  "driver": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/review-smoke.mjs",
+    "sha256": "781fbf1b699740c27d8e9a5686b8ade8c24e4f8bce8efa49278c188f34a1e5e0"
+  },
+  "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+  "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "parameters": {
+    "scene": "alaric_audience_arrival",
+    "url": "http://127.0.0.1:5461/alaric_audience_arrival/v1/index.html",
+    "media": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/sequence.json",
+        "sha256": "59761c7b88f8d13aef64894651302da12603d2a6c7f47fb69cb364ae8bf6675a"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-01.png",
+        "sha256": "61fc5ad92ccb50da7fc5eeee10a42febccdf1e0a3a1dea37468d3d69e42814fa"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-02.png",
+        "sha256": "3f08219dfc593bca86361b34aa7b30047be528fbc9eed3c0ea865699c61df61c"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-03.png",
+        "sha256": "033e3adac871dd3dc6387ef3934e5580c69d78ba118b946a6b3937db5495293e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-04.png",
+        "sha256": "c90df6e5e894540f9f5fa66d212b8fc9394a881435e4dab53050c7092cbb77fd"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-05.png",
+        "sha256": "3f1038577e7ea08e00fced9bbc0da55a2460507bd7057ad7d1ccc8fd12b4da27"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-06.png",
+        "sha256": "b557883d4dda537d54cfc857ce3c852b45a43ae1d6d2c8470b8c528f311850d7"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/index.html",
+        "sha256": "9d78a72c44c31bcaa515baa05dfbacf7bee9d65cd845b29db3539e736cce5805"
+      }
+    ],
+    "reader": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+        "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+        "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+      }
+    ],
+    "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+  },
+  "checks": [
+    "Six distinct complete images preloaded; initially paused on establishing image",
+    "Five real-time dissolves through chronological6images, total20s and final stop",
+    "All six scene stages follow the authored timeline",
+    "Six-stage Home/End/arrow/previous navigation matches timeline",
+    "OSreduce gentle dissolve retained; pause freezes opacity and clock; resume advances",
+    "Whole images/44px controls/no horizontal clipping at1366x768",
+    "Whole images/44px controls/no horizontal clipping at620x780",
+    "Whole images/44px controls/no horizontal clipping at390x844",
+    "No nominal console/page errors",
+    "Missing final raccord image disables playback with visible status"
+  ],
+  "samples": [
+    {
+      "time": 3.2,
+      "base": "shot-01.png",
+      "next": "shot-02.png",
+      "alpha": 0.129617,
+      "loaded": true
+    },
+    {
+      "time": 6.2,
+      "base": "shot-02.png",
+      "next": "shot-03.png",
+      "alpha": 0.129408,
+      "loaded": true
+    },
+    {
+      "time": 9.2,
+      "base": "shot-03.png",
+      "next": "shot-04.png",
+      "alpha": 0.129408,
+      "loaded": true
+    },
+    {
+      "time": 12.2,
+      "base": "shot-04.png",
+      "next": "shot-05.png",
+      "alpha": 0.129198,
+      "loaded": true
+    },
+    {
+      "time": 15.2,
+      "base": "shot-05.png",
+      "next": "shot-06.png",
+      "alpha": 0.129094,
+      "loaded": true
+    }
+  ],
+  "consoleErrors": [],
+  "captures": [
+    {
+      "path": "proof/desktop-endpoint.png",
+      "sha256": "6071bafb16657b6e914f36890c47cacc00e6403f782326b77f53c9a090350532",
+      "inspected": true
+    },
+    {
+      "path": "proof/dissolve-2.png",
+      "sha256": "6150efe9a509f6d5b483a7996e3711d7eed7838fe31ac46102dca64332d01aed",
+      "inspected": true
+    },
+    {
+      "path": "proof/narrow-preparation.png",
+      "sha256": "e54aa1da79a9e1027445db76522b10c2e6ef24cb7ed74261950b6a139d48d080",
+      "inspected": true
+    }
+  ],
+  "visualObservation": {
+    "review": "review.md",
+    "sha256": "317703f95e959af753994c907f693a1049d7d68c27dffc7e6a84e5b7258977aa",
+    "mode": "Agent inspection of six source images, sampled real-time dissolves and actual20s browser playback; not human artistic acceptance"
+  },
+  "environmentFailuresRetained": [
+    {
+      "path": "tmp/cinematics/illustrated-audience-1754/review/qa-job.json",
+      "sha256": "b81a45c41441c71ec4c7eb8508a2f37572b71e4fc255855f3aa6be12492a4a49"
+    },
+    {
+      "path": "tmp/cinematics/illustrated-audience-1754/review-host-browser/qa-job.json",
+      "sha256": "192f9cf5dc6ea844c45816f76467d07e99b17aab2c24596d0db43486bc8229b3"
+    },
+    {
+      "path": "tmp/cinematics/illustrated-audience-1754/review-host-access/qa-job.json",
+      "sha256": "6335ee00a624e7031bf59446ccdff4203d1cd75fcd43633bceb0c2488fe1ddaa"
+    },
+    {
+      "path": "tmp/cinematics/illustrated-audience-1754/review-host-server/qa-job.json",
+      "sha256": "b5f082506dee01d8aaf62dbb7a4614fe0dff34f9e153311f68d60e91c6b233c5"
+    }
+  ]
+}

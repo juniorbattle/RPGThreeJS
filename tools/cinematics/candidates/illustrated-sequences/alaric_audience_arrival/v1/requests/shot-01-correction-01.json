@@ -1,0 +1,8 @@
+{
+  "referenced_image_paths": [
+    "C:/Users/miche/.codex/generated_images/01a15f99-4601-7613-98ce-c2e85649374a/exec-6db477f6-ecc0-4847-a3b5-37e45ed898e2.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png"
+  ],
+  "transparent_background": false,
+  "prompt": "Use case: precise-object-edit. Image1 is the illustration to correct, image2 is Alaric's immutable V2 equipment/hand authority. Correct ONLY Alaric at screen-right: his sword and regal staff are currently in reversed hands relative to master. Put the downward-pointing sword in his anatomical RIGHT hand, on the screen-LEFT side of his body; put the long regal staff in his anatomical LEFT hand on the screen-RIGHT side of his body, its foot resting on floor. Match the master: sword grip at hip with visible pale grip/pommel above right gauntlet, long staff left. Keep BOTH hands anatomical and coherent, keep him standing beside throne. Do not mirror his whole body. Preserve exact rest of image, all other actors, Maelor closed book, Seraphine staff/veil, Alistair low sword, faces, pixels, environment, framing, positions, gold light and shadows. No added objects, text or people. One integrated pixel-art/HD-2D landscape still; no panels."
+}

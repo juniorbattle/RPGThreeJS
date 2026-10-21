@@ -1,0 +1,55 @@
+{
+  "updatedAt": "2026-10-21T18:22:21.028Z",
+  "scope": "Offline illustrated candidates; final art/runtime separate",
+  "scenes": [
+    {
+      "id": "alaric_audience_arrival",
+      "status": "READY_FOR_OPERATOR_REVIEW",
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/index.html",
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": "bois_clair_arrival",
+      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
+      "path": null,
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": "bois_clair_saved",
+      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
+      "path": null,
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": "bois_clair_sacrificed",
+      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
+      "path": null,
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": "lion_judgement",
+      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
+      "path": null,
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": "serpent_route_ending",
+      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
+      "path": null,
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": "lion_trial_route_ending",
+      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
+      "path": null,
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    }
+  ]
+}

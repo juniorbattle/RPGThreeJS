@@ -1,0 +1,49 @@
+{
+  "totalSeconds": 20,
+  "normalFadeSeconds": 1,
+  "reducedFadeSeconds": 0.8,
+  "stages": [
+    {
+      "title": "La distance de l’audience",
+      "description": "Le lieu et les quatre présences, avant tout mandat.",
+      "start": 0,
+      "duration": 4,
+      "path": "shot-01.png"
+    },
+    {
+      "title": "S’arrêter devant le Lion",
+      "description": "Alistair stabilise son épée basse ; la délégation s’arrête.",
+      "start": 4,
+      "duration": 3,
+      "path": "shot-02.png"
+    },
+    {
+      "title": "Le livre ramené contre soi",
+      "description": "Maelor cale son livre fermé contre son torse.",
+      "start": 7,
+      "duration": 3,
+      "path": "shot-03.png"
+    },
+    {
+      "title": "Une attention commune",
+      "description": "Les compagnons partagent leur attention vers Alaric.",
+      "start": 10,
+      "duration": 3,
+      "path": "shot-04.png"
+    },
+    {
+      "title": "Alaric se tourne vers eux",
+      "description": "Alaric porte son attention vers la délégation.",
+      "start": 13,
+      "duration": 3,
+      "path": "shot-05.png"
+    },
+    {
+      "title": "Avant la première parole",
+      "description": "Tous sont arrêtés et prêts à écouter le dialogue existant.",
+      "start": 16,
+      "duration": 4,
+      "path": "shot-06.png"
+    }
+  ]
+}

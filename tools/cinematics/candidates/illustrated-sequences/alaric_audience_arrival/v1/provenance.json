@@ -1,0 +1,252 @@
+{
+  "runId": "codex-illustrated-audience-20261021T1754Z",
+  "createdAt": "2026-10-21T18:11:41.869Z",
+  "sourceBranch": "dev",
+  "sourceCommit": "ab6a45fb60b3d80b2dc298e38fb354ff051302b5",
+  "operatorDecisions": [
+    "OD-2026-10-21-A",
+    "OD-2026-10-21-B"
+  ],
+  "contractSet": "1.8.0",
+  "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+  "tool": "built-in image_gen.imagegen only",
+  "initialImages": 6,
+  "targetedCorrections": 2,
+  "rawPolicy": "All raw/variants retained byte-identically; selected files are copies, no raster postprocessing",
+  "references": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/alaric-audience-cinematic-source.png",
+      "sha256": "1214cc5627b41456f8540e9c0f043fb45edda7ddd502cf01cebc4c4f8325f13b"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alaric.png",
+      "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alistair.png",
+      "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/sage_seraphine.png",
+      "sha256": "edd636364f82226e112bb5169c6e60a6eabb0b97c995aca4cbf664327663e862"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/maelor.png",
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/cinematics/Cin6aPresentation.ts",
+      "sha256": "41e0dee7f65231bd8e65cee075ac8c6d909302b6de37e7560b0eeeae8a645990"
+    },
+    {
+      "path": "src/campaign/LionCampaignStructure.ts",
+      "sha256": "dede76984fd7892c0f2127921f69c089c5e3c1278aaca1935da42a0a171f7c91"
+    },
+    {
+      "path": "src/game/content.ts",
+      "sha256": "f1c09e07cbdcd4641ff92207cf7118370673e4e33bfcc8b6adacf2cca1853ea0"
+    }
+  ],
+  "requests": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/requests/shot-01-correction-01.json",
+      "sha256": "d2cefd501e401fcf1913112d51cdadbf567457c2e5f552b7a02b29aaf9a54760"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/requests/shot-01-correction-02.json",
+      "sha256": "3c9be1c7bbfad89f50b478c287fcaec248e14863fa8a3e1e3eaca8fa75e61253"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/requests/shot-01.json",
+      "sha256": "bb614efa82e65c5da6645f0dda500cbc7edf41e74200e348e2c6f6059ed14d26"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/requests/shot-02.json",
+      "sha256": "f89958591019211a98db22265cfc17662eaef654a5c6bfd2239c2af9a31f8504"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/requests/shot-03.json",
+      "sha256": "61e05fb9036ad00701c297a3f0ed2ab705d1aaeb1b035f2d452b999533a6288b"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/requests/shot-04.json",
+      "sha256": "eb771804fc0b111e161ae3a8b0b9bb7a6101dfe91830112c1ccf8e15e57eec3f"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/requests/shot-05.json",
+      "sha256": "d8f92f3cd37536dc2bcbd5cd65c7f851a71457f5271ac71f62fb3ee161ce2939"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/requests/shot-06.json",
+      "sha256": "b2fb2f466d6cfeca36812d89684e1196a0a23a32f53997c81fb91fbd072a7e2d"
+    }
+  ],
+  "results": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/results/shot-01-correction-01.json",
+      "sha256": "afbe66074ae29ed299ea2bdcb6bbc00fcf10b545badd50fb54d63f43f6a98fc3"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/results/shot-01-correction-02.json",
+      "sha256": "49574180c2957a819e782d965b53aa14ef17dc8956081fd033fb40c6efa38882"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/results/shot-01.json",
+      "sha256": "7cc0415f71173b8aca04cb96ca1bfbd04d92bc1f9627b70152a168c18c7967cf"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/results/shot-02.json",
+      "sha256": "bad62b7fc23b60e341780f1e8c795519285e9c318251a7ae46cd60d576eccdb7"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/results/shot-03.json",
+      "sha256": "0589b679302999fb849027c60383bda20c529aafa4afa77cdc92c82d3e786fa8"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/results/shot-04.json",
+      "sha256": "3d923a535c6c3e30e5098e014b688e3522a3dee04fdeb3c0d19b42fcaa042df7"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/results/shot-05.json",
+      "sha256": "fcefdd4126e3eeab2c33c0fa6dd741a9348a5bf0814d8b99631cd5bfc7ad546b"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/results/shot-06.json",
+      "sha256": "e359e6f19ba7cbb25034ccd4395779e8348e6dbb32fb24666a19e0aa87b72c52"
+    }
+  ],
+  "raw": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/raw/shot-01-correction-01.png",
+      "sha256": "ed313545bae94168df5265645dd027ba2c6761925b4e993d28bcef1c5475e58d"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/raw/shot-01-correction-02.png",
+      "sha256": "61fc5ad92ccb50da7fc5eeee10a42febccdf1e0a3a1dea37468d3d69e42814fa"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/raw/shot-01-initial.png",
+      "sha256": "ea40eec2777b416c2155ba7e8a7db4e91cbdb551c6b9a494ab627c1a55850a2e"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/raw/shot-02.png",
+      "sha256": "3f08219dfc593bca86361b34aa7b30047be528fbc9eed3c0ea865699c61df61c"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/raw/shot-03.png",
+      "sha256": "033e3adac871dd3dc6387ef3934e5580c69d78ba118b946a6b3937db5495293e"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/raw/shot-04.png",
+      "sha256": "c90df6e5e894540f9f5fa66d212b8fc9394a881435e4dab53050c7092cbb77fd"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/raw/shot-05.png",
+      "sha256": "3f1038577e7ea08e00fced9bbc0da55a2460507bd7057ad7d1ccc8fd12b4da27"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/raw/shot-06.png",
+      "sha256": "b557883d4dda537d54cfc857ce3c852b45a43ae1d6d2c8470b8c528f311850d7"
+    }
+  ],
+  "images": [
+    {
+      "title": "La distance de l’audience",
+      "description": "Le lieu et les quatre présences, avant tout mandat.",
+      "start": 0,
+      "duration": 4,
+      "path": "shot-01.png",
+      "sha256": "61fc5ad92ccb50da7fc5eeee10a42febccdf1e0a3a1dea37468d3d69e42814fa"
+    },
+    {
+      "title": "S’arrêter devant le Lion",
+      "description": "Alistair stabilise son épée basse ; la délégation s’arrête.",
+      "start": 4,
+      "duration": 3,
+      "path": "shot-02.png",
+      "sha256": "3f08219dfc593bca86361b34aa7b30047be528fbc9eed3c0ea865699c61df61c"
+    },
+    {
+      "title": "Le livre ramené contre soi",
+      "description": "Maelor cale son livre fermé contre son torse.",
+      "start": 7,
+      "duration": 3,
+      "path": "shot-03.png",
+      "sha256": "033e3adac871dd3dc6387ef3934e5580c69d78ba118b946a6b3937db5495293e"
+    },
+    {
+      "title": "Une attention commune",
+      "description": "Les compagnons partagent leur attention vers Alaric.",
+      "start": 10,
+      "duration": 3,
+      "path": "shot-04.png",
+      "sha256": "c90df6e5e894540f9f5fa66d212b8fc9394a881435e4dab53050c7092cbb77fd"
+    },
+    {
+      "title": "Alaric se tourne vers eux",
+      "description": "Alaric porte son attention vers la délégation.",
+      "start": 13,
+      "duration": 3,
+      "path": "shot-05.png",
+      "sha256": "3f1038577e7ea08e00fced9bbc0da55a2460507bd7057ad7d1ccc8fd12b4da27"
+    },
+    {
+      "title": "Avant la première parole",
+      "description": "Tous sont arrêtés et prêts à écouter le dialogue existant.",
+      "start": 16,
+      "duration": 4,
+      "path": "shot-06.png",
+      "sha256": "b557883d4dda537d54cfc857ce3c852b45a43ae1d6d2c8470b8c528f311850d7"
+    }
+  ],
+  "timeline": {
+    "path": "sequence.json",
+    "sha256": "59761c7b88f8d13aef64894651302da12603d2a6c7f47fb69cb364ae8bf6675a"
+  },
+  "reader": {
+    "origin": "tools/cinematics/candidates/camp-story-continuity-20261021",
+    "original": [
+      {
+        "path": "tools/cinematics/candidates/camp-story-continuity-20261021/index.html",
+        "sha256": "839b688fcd36b6a875ce5dc2afdea03f728cc46b3eb2bc0f5f30b3715f5e6487"
+      },
+      {
+        "path": "tools/cinematics/candidates/camp-story-continuity-20261021/montage.mjs",
+        "sha256": "4cd4f93cb9b21d5a1eb374fec2d835231e92e00cdf7d4cbf23a17072bb1dc41e"
+      },
+      {
+        "path": "tools/cinematics/candidates/camp-story-continuity-20261021/montage.css",
+        "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+      }
+    ],
+    "adaptation": "Same transport/dissolve/pause/keyboard/error code; six/count/timeline values read from sequence.json; captions and scene copy adapted.",
+    "files": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+        "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+        "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+      }
+    ],
+    "htmlSha256": "9d78a72c44c31bcaa515baa05dfbacf7bee9d65cd845b29db3539e736cce5805"
+  },
+  "runtimeIntegrated": false,
+  "finalArtAccepted": false,
+  "review": {
+    "path": "review-receipt.json",
+    "sha256": "7adbb1153f1bec5a3a82a0ce7737ccbc7ccb31ceebd1281160d4fecfa4fbe754"
+  },
+  "driver": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/review-smoke.mjs",
+    "sha256": "781fbf1b699740c27d8e9a5686b8ade8c24e4f8bce8efa49278c188f34a1e5e0",
+    "originalCampDriver": {
+      "path": "tmp/autonomy/camp-continuity-smoke.mjs",
+      "sha256": "e31135a45e77b2e6eba5702b819c12151242694f7dc92f6babe7a49b13ac4194"
+    },
+    "adaptation": "Counts/times/paths generalized for six images; original load/order/dissolve/keyboard/end/reduction/framing/error assertions retained; clock/resume/media digest added. URL correction to explicit index.html."
+  }
+}

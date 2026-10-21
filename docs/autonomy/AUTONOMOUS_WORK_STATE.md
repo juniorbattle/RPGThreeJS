@@ -1,14 +1,12 @@
-# Cinématiques illustrées — exécution autonome débloquée
+# Cinématiques illustrées — audience prête pour revue
 
-Run codex-unblock-automation-20261021T1744Z, 2026-10-21T17:47:22.787Z. READY_FOR_PC_ACCEPTANCE conservé ; aucun gameplay ni média produit pendant cette correction de configuration.
+Run codex-illustrated-audience-20261021T1754Z · 2026-10-21T18:22:21.028Z. READY_FOR_PC_ACCEPTANCE conservé ; scheduler ACTIVE inchangé.
 
-Décision courante [OD-2026-10-21-B](ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md) : l’opérateur demande de débloquer l’automatisation déjà ACTIVE. Les anciennes clauses configuration seulement / attente d’activation / PAUSED sont historiques et ne s’appliquent plus aux runs planifiés. Prompt enregistré et canonique alignés ; cadence90min, gpt-6.1-sol/high/local/projet et notifications conservés.
+Audience : six images/20s, six générations et deux corrections ciblées, toutes variantes/requêtes/SHA conservées. Montage offline inspecté,10contrôles techniques PASS, art final/intégration séparés. [Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html).
 
-Phase **READY_FOR_AUTONOMOUS_PRODUCTION**. La file reste sept candidats offline, audience Alaric en premier ; camp conservé. Le set1.8.0 et sa baseline0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa sont inchangés. La portée reste celle de [OD-2026-10-21-A](ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md) : images intégrées imagegen uniquement ; art final/intégration runtime séparés.
+Prochaine action : Resume bois_clair_arrival: revalidate current village_choice prelude, night/intact-versus-burning canonical context and four-actor subset, then source-bound offline images before rescue/sacrifice choice.
 
-Prochaine action du prochain run : Read current audience trigger and lion_briefing, source-bound causal shot progression, then built-in imagegen audience montage before any choice/advance handoff.
-
-[Handoff courant](handoffs/2026-10-21T1744Z-codex-unblock-automation.md). Préservation :339jobs et acceptations/blocMDQA exacts, anciennes racines/variantes/preuves, huit SHA camp, src/public/contrats/constitution. Vérifications : diffcheck, barrières LOCKED, contrats8/8slots, prompt exact et paramètres scheduler. Aucun build/scénario gameplay nécessaire pour ces seuls textes/états. Compteurs :0produit/0image/0QA ajouté/8workflow/1plan/0WIP hérité.
+339jobs originaux et acceptations préservés ;5nouveaux reçus :4échecs environnement/pilote conservés,1succès technique borné revu. Source/public/camp/contrats/V6/audio inchangés.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -352,4 +350,9 @@ Prochaine action du prochain run : Read current audience trigger and lion_briefi
 - combat-fx-native-focus-fixed-1605: SUCCEEDED; port 5443; receipt `tmp/demo/combat-fx-native-focus-fixed-1605/qa-job.json`; NOT_ACCEPTED
 - manual-camp04-player-20261019: FAILED; port 5445; receipt `tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job/qa-job.json`; NOT_ACCEPTED
 - manual-camp04-player-fixed-20261019: SUCCEEDED; port 5445; receipt `tmp/cinematics/eight-slot-remaster/manual-camp04-20261019/player-job-fixed/qa-job.json`; NOT_ACCEPTED
+- illustrated-audience-1754: FAILED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-audience-1754-host-browser: FAILED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review-host-browser/qa-job.json`; NOT_ACCEPTED
+- illustrated-audience-1754-host-access: FAILED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review-host-access/qa-job.json`; NOT_ACCEPTED
+- illustrated-audience-1754-host-server: FAILED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review-host-server/qa-job.json`; NOT_ACCEPTED
+- illustrated-audience-1754-final: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review-final/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

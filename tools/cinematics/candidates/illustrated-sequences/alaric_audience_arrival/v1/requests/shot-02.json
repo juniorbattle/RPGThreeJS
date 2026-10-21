@@ -1,0 +1,10 @@
+{
+  "referenced_image_paths": [
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-01.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alistair.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/sage_seraphine.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png"
+  ],
+  "transparent_background": false,
+  "prompt": "Use case: illustration-story. Create ONE new standalone landscape16:9 illustration, shot02 in same exact modern pixel-art/HD-2D audience scene as image1. Images2-4 are immutable V2 Alistair, veiled Sage Seraphine, Maelor. Image1 locks geography, palette, light and equipment. Motivated MEDIUM three-person view of delegation on left side of the hall, facing screen-right toward off-screen Alaric. Same order: Maelor screen-left, Seraphine middle, Alistair screen-right. Frame from knees upward with enough space for hands/equipment, deliberate medium crop, no floating fragments. Narrative change: their approach has ended; Alistair settles into a grounded listening stance and visibly steadies the existing lowered sword with his right gauntlet. His left hand relaxed at side, no oath or salute; Seraphine keeps staff in her left hand, veiled head still a little toward her companions; Maelor holds closed book low in his left hand before next shot brings it closer to chest. Keep Maelor hood, belt dagger, purple/gold coat; Seraphine opaque ivory veil, sage-green/ivory/gold robe and purple/gold lantern staff; Alistair closed steel helmet, red cape and same single sword. Body language poised, not speaking. Preserve hall windows, columns, candle gold light; throne and Alaric are outside crop to the right, no new location or time. No extra people, no invented exchange/document/order/mission/coins/rewards/choices, no text/UI, no montage panels or sprites. Crisp stepped pixels and integrated contact/light, not smooth anime/3D."
+}
