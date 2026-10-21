@@ -1,16 +1,16 @@
-# Camp — deux raccords visuels corrigés
+# Cinématiques illustrées — mission autonome préparée
 
-Run codex-manual-camp-continuity-20261021, UTC 2026-10-21T07:10:34.559Z. READY_FOR_PC_ACCEPTANCE conservé. [Portée/limites](CAMP_CONTINUITY_FINISH_OPERATOR_DIRECTION_2026-10-21.md).
+Run codex-illustrated-cinematics-config-20261021, 2026-10-21T07:43:23.384Z. READY_FOR_PC_ACCEPTANCE conservé ; configuration seulement, aucune étape gameplay ni image générée.
 
-01pointe relevée,08épée dans la main droite et gauche vide. Six autres images +MJS/CSS/sequence byte-identiques ; histoire8étapes20s et fondus inchangés. Trois appels imagegen pour deux plans sélectionnés, aucune vidéo/baseflipbook/runtime modifié.
+[Décision et autorisation](ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md). Camp structure/logique acceptées ; huit images20s de référence conservées, art final/runtime distincts. Amendement ciblé1.8.0 0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa, autre contrats/constitution inchangés.
 
-Lecteur PASS10/3captures, types0/contracts8/8/gates propres ; guardian PASS_SCOPED_CLOSEOUT_V2, reçu final et captures rapprochés. V2 : lame08verticale dans un espace de décor visible, main droite conservée. Ancien chevauchement projeté amélioré ; détails fins, art/3D/locomotion globaux non acceptés.
+Sept candidats offline à produire dans l'ordre : audience Alaric, arrivée Bois-Clair, Bois-Clair sauvé, Bois-Clair sacrifié, jugement Lion, fin Serpent, fin épreuve Lion. Chaque image avance la situation canonique, cadres motivés/fondus doux/raccords équipement et géographie ; nombre/durée adaptés. Aucun vidéo/MiniMax/base extraite/flipbook/audio/MP4/runtime/canon ajouté.
 
-339jobs/acceptations/bloc exact et anciens essais/preuves/racines intacts. Aucun canon/V6/LOCKED/MP4/audio/scheduler changé ; zéro étape gameplay.
+Automation existante90min/gpt-6.1-sol/high/local **PAUSED**, activation opérateur conservée. Prompt mis à jour par outil officiel et égalité exacte vérifiée ; paramètres conservés. Vérifications : contrats8/8slots, gates0cb9513 vides, diffcheck,339jobs/85racines/blocQA/8SHAcamp préservés.
 
-Une prochaine action : Operator reviews the same revised01/08 and20s montage for final visual continuity/artistic judgment before any runtime adoption.
+Première action future : Read current audience trigger and lion_briefing, source-bound causal shot progression, then built-in imagegen audience montage before any choice/advance handoff.
 
-Aperçu http://127.0.0.1:5458/, PID 32928 conservé ; livraison b48c2d0ae69c13fd3002b551bdb05734f468b9d3 publiée/vérifiée OD-2026-10-12-A, runEndedAt 2026-10-21T07:27:54.989Z. Clôture metadata puis libération du verrou après parité.
+339jobs/acceptations/blocQA exact et toutes racines/variantes/preuves historiques conservés. PC global/art final/équilibre/FX16/5familles/hidden restent ouverts ; mobile après stabilitéPC.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

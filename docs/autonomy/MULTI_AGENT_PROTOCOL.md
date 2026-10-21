@@ -113,9 +113,9 @@ Waves: 1 is `handoff-governor`, `contracts-guardian`, `qa-evidence-runner`, `ui-
 
 ## 10. Compliance matrix
 
-Before declaring a task complete, record PASS or BLOCKED for each concerned row. Never complete a task with an unresolved contract conflict. Also record: contracts read, current manifest contractSetVersion (1.7.0 after OD-2026-10-19-B), LOCKED rules impacted, and confirmation that no LOCKED rule changed in a normal task. A dedicated operator-approved amendment records its exact authorized changes and committed immutable baseline.
+Before declaring a task complete, record PASS or BLOCKED for each concerned row. Never complete a task with an unresolved contract conflict. Also record: contracts read, current manifest contractSetVersion (1.8.0 after OD-2026-10-21-A), LOCKED rules impacted, and confirmation that no LOCKED rule changed in a normal task. A dedicated operator-approved amendment records its exact authorized changes and committed immutable baseline.
 
-Current immutable contract/constitution baseline: `f4aae63e792025430c16153e1cd329c20745cf6b`, the dedicated OD-2026-10-19-B bounded combat FX amendment commit (set1.7.0). Original `b1e8858` remains historical. Use the Git gate in AGENTS.md/contracts-compliance; no normal task may move this baseline.
+Current immutable contract/constitution baseline: `0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa`, the dedicated OD-2026-10-21-A offline illustrated-candidates amendment commit (set1.8.0). Original `b1e8858` remains historical. Use the Git gate in AGENTS.md/contracts-compliance; no normal task may move this baseline.
 
 | Row | Contract |
 | --- | --- |

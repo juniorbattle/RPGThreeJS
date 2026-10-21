@@ -49,3 +49,7 @@ Contracts read; files and owners affected; invariants at risk (contract section 
 ## OD-2026-10-03-A scoped review
 
 For this remediation workstream review only the pre-judgement campfire preparation boundary, contextual ATE transitions and Journey handoffs/agency/save-resume. The boundary is mandatory, but not a ninth video, new Traversal, automatic management hub or loot-securing rule. Use campaign ownership and preserve existing durable IDs. The eight video positions/count are structurally approved; do not reopen media generation or slot design.
+
+## Offline illustration exception — OD-2026-10-21-A
+
+Set1.8.0 PRESENTATION_AND_MEDIA permits only built-in-imagegen offline narrative montage candidates for the eight existing IDs, seven remaining after camp structure/design acceptance. Read `docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md` and `tools/cinematics/specs/illustrated-sequences/production-plan.json`. Video/keyframes for video/MiniMax/polling/MP4 promotion/runtime/audio remain excluded. This new exception supersedes only older blanket external-art-workstream guidance for these offline illustrated candidates; final art/adoption and scheduler activation remain operator.

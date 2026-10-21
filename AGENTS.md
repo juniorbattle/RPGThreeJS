@@ -5,7 +5,7 @@ RPGThreeJS is a narrative tactical RPG with an authored campaign (Vite, TypeScri
 ## Authority and reading order
 
 1. Explicit operator decisions: `docs/autonomy/OPERATOR_DECISIONS.md` and the files it links.
-2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.7.0: approved amendment `PRODUCTION-CONTRACTS-COMBAT-FX-1` / OD-2026-10-19-B, immutable baseline `f4aae63e792025430c16153e1cd329c20745cf6b`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
+2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.8.0: approved amendment `PRODUCTION-CONTRACTS-ILLUSTRATED-CANDIDATES-1` / OD-2026-10-21-A, immutable baseline `0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
 3. Current source: it states what is implemented today.
 4. Canonical docs (`docs/project/`, `docs/traversal/`, `docs/content/`), then dated reports in `docs/reports/`. Reports are historical evidence, never doctrine.
 
@@ -13,10 +13,10 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 
 ## Red lines
 
-- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code f4aae63e792025430c16153e1cd329c20745cf6b HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
+- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code 0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
 - Presentation never creates or changes game truth (route, outcome, resource, save). Truth owners: `RunSystem` and campaign relations, versioned saves, tactical combat. `GameApp` coordinates lifecycle and handoffs only.
 - Exactly eight video slots (`src/cinematics/ApprovedProductionVideos.ts`). No ninth slot, no enemy-reveal or routine video. A prologue or first-refuge video needs a dedicated contract task first.
-- Recurring runs never generate or poll video or keyframes (no MiniMax) and never replace an MP4. Media remaster is an external manual workstream.
+- Recurring runs never generate or poll video or video keyframes (no MiniMax) and never replace an MP4. OD-2026-10-21-A/set1.8.0 permits only offline illustrated montage candidates for the eight existing IDs; read `docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md` and the current plan. Runtime adoption/final art remain separate, scheduler activation operator-only.
 - Never invent canon: dialogue, choices, stages, outcomes, rewards, lore. The Alistair emblem or origin and the prologue or first-refuge scene are open operator decisions.
 - The eight accepted UI FX plus the bounded16family combat FX candidate pack and audited UI events are authorized under OD-2026-10-19-B/set1.7.0. New sound artistic acceptance remains operator; music/voice/ambience/Ultimates/video audio remain DEFERRED.
 - Preserve durable IDs and V6 save compatibility. Never serialize visual or transient state.
