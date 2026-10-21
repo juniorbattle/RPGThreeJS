@@ -5,7 +5,7 @@
   "startingCommit": "ccc3e09e3c0fa86b0754b30e7180ef33d6be1d23",
   "operatorAuthorization": "Interactive go on proposed hands/accessories/orientations/visual-raccord finishing pass, same8stage20s story.",
   "mode": "built-in image_gen.imagegen, targeted local-file edits",
-  "editCalls": 2,
+  "editCalls": 3,
   "reusedImages": 6,
   "priorProvenance": {
     "path": "tools/cinematics/candidates/camp-story-sequence-20261021/provenance.json",
@@ -39,7 +39,7 @@
   },
   "results": {
     "path": "results.json",
-    "sha256": "f4bc8de7a0bf9bb176b9708147c7f2ac796037d6f7f444f02b14edd08f22b0a0"
+    "sha256": "223057cf74a29f1238878c34e231cc9fd28099747750803b1b309167e06349bc"
   },
   "reusedInputRecord": {
     "path": "reused-inputs.json",
@@ -169,16 +169,16 @@
       "duration": 3,
       "path": "shot-08.png",
       "id": "08",
-      "sha256": "829fdf86c357f82c07dec8779b56abaae3d43c8a0035f7d69195bf6648ec26b8",
+      "sha256": "6e46a35e64f44405d00b24749484b56c13c3202181a957cbd20ea4617fd428dc",
       "width": 1672,
       "height": 941,
-      "bytes": 2759201,
+      "bytes": 2752072,
       "origin": {
-        "kind": "targeted_imagegen_edit",
-        "source": "tools/cinematics/candidates/camp-story-sequence-20261021/shot-08.png",
-        "sourceSha256": "d4c1c2bdc377c7240dc80abab108d6aac5db44a02adc78d6cc7cdcbd0a9ae259",
-        "original": "exec-25320baa-9aa5-499f-98db-38192c718aa4.png",
-        "requestId": "08"
+        "kind": "targeted_imagegen_revision",
+        "source": "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08-v1-right-hand.png",
+        "sourceSha256": "829fdf86c357f82c07dec8779b56abaae3d43c8a0035f7d69195bf6648ec26b8",
+        "original": "exec-213d86b5-026e-472f-a26b-6a9dc3a47b5c.png",
+        "requestFile": "08-revision-request.json"
       }
     }
   ],
@@ -260,15 +260,15 @@
     {
       "image": "08",
       "before": "Sword in near anatomicalLEFT hand",
-      "after": "Hilt held by far anatomicalRIGHT hand nearest Maelor; near left glove empty",
-      "claim": "Visible hand ownership corrected; no mirrored composition"
+      "after": "Right anatomical hand retained, near left glove empty; lower blade now vertical in a visible background gap clear of the purple-coat outline",
+      "claim": "Observed2D hand and projected clothing-gap correction; no physical3D collision proof"
     }
   ],
   "limits": [
     "Only two prioritized corrections; fine helmet/book/veil/cloth detail variation remains.",
     "Edited full scenes may contain small unrequested pixel differences; only six reused frames are byte-identical.",
-    "Final08lower blade projects near/over the purple-cloth edge before leaving the crop; full3D/clothing clearance not certified.",
-    "All artistic, full-continuity, geography, narrative comprehension, locomotion and runtime acceptance remain open."
+    "All artistic, full-continuity, geography, narrative comprehension, locomotion and runtime acceptance remain open.",
+    "Final selected08has a visible projected gap after one corrective revision; physical3D clearance remains unproven."
   ],
   "noVideoInputs": true,
   "noFlipbookInputs": true,
@@ -285,5 +285,41 @@
     "montage.css": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83",
     "montage.mjs": "4cd4f93cb9b21d5a1eb374fec2d835231e92e00cdf7d4cbf23a17072bb1dc41e"
   },
-  "reviewedAt": "2026-10-21T07:10:34.559Z"
+  "reviewedAt": "2026-10-21T07:10:34.559Z",
+  "selectedEditedImages": 2,
+  "retainedPrior08Variants": 1,
+  "priorPass": {
+    "commit": "765570477f3781f250fc60c3ba38cd6d978cada6",
+    "resultsFile": "results-v1.json",
+    "receipt": "review-receipt-v1.json",
+    "oldSelectedPath": "shot-08.png",
+    "retainedAs": "shot-08-v1-right-hand.png",
+    "retainedSha256": "829fdf86c357f82c07dec8779b56abaae3d43c8a0035f7d69195bf6648ec26b8",
+    "note": "Historical results/receipt paths and provenance hashes resolve against this prior commit; retainedAs supplies its exact08bytes."
+  },
+  "revisionRequest": {
+    "path": "08-revision-request.json",
+    "sha256": "520f14523ae811c8fb7143c0217412f4c1caf97e8e6de19ce386710e806dd9cb"
+  },
+  "revisionResult": {
+    "path": "08-revision-result.json",
+    "sha256": "12bbc4ec6a887d635b51cc56ccecaa707d34ae71eb1297c82f1e7262f3bbb14c"
+  },
+  "revisionAt": "2026-10-21T07:18:08.118Z",
+  "revisionInputs": [
+    {
+      "path": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/camp-story-continuity-20261021/shot-08-v1-right-hand.png",
+      "sha256": "829fdf86c357f82c07dec8779b56abaae3d43c8a0035f7d69195bf6648ec26b8"
+    },
+    {
+      "path": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alistair.png",
+      "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219"
+    },
+    {
+      "path": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/camp-story-sequence-20261021/shot-07.png",
+      "sha256": "02e878694745670b14e60c075b747d9d6cb7d2056a240901f66fce3a02baefdb"
+    }
+  ],
+  "currentReceipt": "review-receipt-v2.json",
+  "currentPreview": "review-preview-v2.png"
 }

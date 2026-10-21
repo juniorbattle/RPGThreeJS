@@ -2,13 +2,13 @@
 
 Run codex-manual-camp-continuity-20261021, UTC 2026-10-21T07:10:34.559Z. READY_FOR_PC_ACCEPTANCE conservé. [Portée/limites](CAMP_CONTINUITY_FINISH_OPERATOR_DIRECTION_2026-10-21.md).
 
-01pointe relevée,08épée dans la main droite et gauche vide. Six autres images +MJS/CSS/sequence byte-identiques ; histoire8étapes20s et fondus inchangés. Deux appels imagegen, aucune vidéo/baseflipbook/runtime modifié.
+01pointe relevée,08épée dans la main droite et gauche vide. Six autres images +MJS/CSS/sequence byte-identiques ; histoire8étapes20s et fondus inchangés. Trois appels imagegen pour deux plans sélectionnés, aucune vidéo/baseflipbook/runtime modifié.
 
-Lecteur PASS10/3captures, types0/contracts8/8/gates propres ; guardian corrections observées PASS_SCOPED, reçu courant à rapprocher. Proximité lame/étoffe08 et détails fins restent non acceptés ; aucune continuité/art/3D/locomotion globale certifiée.
+Lecteur PASS10/3captures, types0/contracts8/8/gates propres ; guardian PASS_SCOPED_CLOSEOUT_V2, reçu final et captures rapprochés. V2 : lame08verticale dans un espace de décor visible, main droite conservée. Ancien chevauchement projeté amélioré ; détails fins, art/3D/locomotion globaux non acceptés.
 
 339jobs/acceptations/bloc exact et anciens essais/preuves/racines intacts. Aucun canon/V6/LOCKED/MP4/audio/scheduler changé ; zéro étape gameplay.
 
-Une prochaine action : Operator compares revised01/08 in this same8-image20s montage, especially final blade/purple-cloth proximity, and gives a precise visual-continuity verdict before any runtime adoption.
+Une prochaine action : Operator reviews the same revised01/08 and20s montage for final visual continuity/artistic judgment before any runtime adoption.
 
 Aperçu http://127.0.0.1:5458/, PID 32928 conservé ; publication dev OD-2026-10-12-A puis clôture/verrou.
 

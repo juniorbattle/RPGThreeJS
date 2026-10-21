@@ -4,25 +4,33 @@
   "runEndedAt": null,
   "activeTask": "MANUAL-CAMP-STILL-CONTINUITY-FINISH",
   "activePhase": "CAMP_TWO_EDIT_FINISH_READY_FOR_REVIEW",
-  "activeSubtask": "Ground clearance01 and right-hand ownership08 visibly corrected; clothing/full-art continuity unaccepted",
+  "activeSubtask": "Final08right-hand vertical blade separated from purplecoat; same8stage20s reader PASS10",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "ccc3e09e3c0fa86b0754b30e7180ef33d6be1d23",
   "lastPushedCommit": "ccc3e09e3c0fa86b0754b30e7180ef33d6be1d23",
   "completedThisRun": [
     "Edited only01blade clearance and08anatomical sword hand using built-in imagegen",
     "Reused six images and MJS/CSS/sequence byte-identically; preserved8stages/20s",
-    "Verified final montage with reused unchanged assertions and inspected3captures"
+    "Verified final montage with reused unchanged assertions and inspected3captures",
+    "Corrected projected08blade/cloth overlap in one further targeted edit; retainedv1 and proof"
   ],
   "filesChanged": [
     ".gitattributes",
+    "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-request.json",
+    "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-result.json",
     "tools/cinematics/candidates/camp-story-continuity-20261021/index.html",
     "tools/cinematics/candidates/camp-story-continuity-20261021/montage.css",
     "tools/cinematics/candidates/camp-story-continuity-20261021/montage.mjs",
     "tools/cinematics/candidates/camp-story-continuity-20261021/provenance.json",
     "tools/cinematics/candidates/camp-story-continuity-20261021/requests.json",
+    "tools/cinematics/candidates/camp-story-continuity-20261021/results-v1.json",
     "tools/cinematics/candidates/camp-story-continuity-20261021/results.json",
     "tools/cinematics/candidates/camp-story-continuity-20261021/reused-inputs.json",
+    "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v1.png",
+    "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v2.png",
     "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview.png",
+    "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v1.json",
+    "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v2.json",
     "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt.json",
     "tools/cinematics/candidates/camp-story-continuity-20261021/sequence.json",
     "tools/cinematics/candidates/camp-story-continuity-20261021/shot-01.png",
@@ -32,6 +40,7 @@
     "tools/cinematics/candidates/camp-story-continuity-20261021/shot-05.png",
     "tools/cinematics/candidates/camp-story-continuity-20261021/shot-06.png",
     "tools/cinematics/candidates/camp-story-continuity-20261021/shot-07.png",
+    "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08-v1-right-hand.png",
     "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08.png",
     "docs/autonomy/CAMP_CONTINUITY_FINISH_OPERATOR_DIRECTION_2026-10-21.md",
     "docs/autonomy/OPERATOR_DECISIONS.md",
@@ -46,7 +55,8 @@
     "LOCKED/protected-path gates",
     "diff --check",
     "One configured existing8stage reader scenario",
-    "8image/origin and identicalreader/sequence verification"
+    "8image/origin and identicalreader/sequence verification",
+    "Same reader scenario v2 only after own08clothing-overlap correction"
   ],
   "testsPassed": [
     "Reader PASS10;3captures inspected",
@@ -54,19 +64,21 @@
     "Two observed visual corrections independently confirmed",
     "TypeScript0/contracts8of8/gates clean",
     "339jobs/exactMDblock/alloldroots preserved",
-    "Guardian PASS_SCOPED_OBSERVED_CORRECTIONS"
+    "Guardian PASS_SCOPED_OBSERVED_CORRECTIONS",
+    "V2 PASS10,3captures inspected, visible background gap around08blade observed",
+    "Guardian V2 independently confirms visible blade gap/right hand and final proof hashes"
   ],
   "testsRemaining": [
-    "Operator full-continuity/art/clothing-clearance verdict; no runtime acceptance"
+    "Operator fullart/physical3D/continuity acceptance; no runtime adoption"
   ],
   "blockers": [
-    "Final08blade projects near/over purplecloth at crop; fullclearance and finegear/veil/geography unaccepted"
+    "Finegear/veil/geography/physical3D/fullart continuity remain operator judgment; former08projected-overlap now visibly improved"
   ],
   "remainingWork": [
     "Operator visual01/08 verdict on same revised montage",
     "GlobalPC/balance/art/hardware/audio/nativehidden/mobile-after-PC boundaries retained"
   ],
-  "nextAction": "Operator compares revised01/08 in this same8-image20s montage, especially final blade/purple-cloth proximity, and gives a precise visual-continuity verdict before any runtime adoption.",
+  "nextAction": "Operator reviews the same revised01/08 and20s montage for final visual continuity/artistic judgment before any runtime adoption.",
   "taskQueue": [
     "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
     "Independent already-authorized demonstratedPC defect only;no unchanged diagnostic loop",
@@ -153,14 +165,21 @@
     "sha": "ccc3e09e3c0fa86b0754b30e7180ef33d6be1d23",
     "dirtyFiles": [
       ".gitattributes",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-request.json",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-result.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/index.html",
       "tools/cinematics/candidates/camp-story-continuity-20261021/montage.css",
       "tools/cinematics/candidates/camp-story-continuity-20261021/montage.mjs",
       "tools/cinematics/candidates/camp-story-continuity-20261021/provenance.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/requests.json",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/results-v1.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/results.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/reused-inputs.json",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v1.png",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v2.png",
       "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview.png",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v1.json",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v2.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/sequence.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/shot-01.png",
@@ -170,6 +189,7 @@
       "tools/cinematics/candidates/camp-story-continuity-20261021/shot-05.png",
       "tools/cinematics/candidates/camp-story-continuity-20261021/shot-06.png",
       "tools/cinematics/candidates/camp-story-continuity-20261021/shot-07.png",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08-v1-right-hand.png",
       "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08.png",
       "docs/autonomy/CAMP_CONTINUITY_FINISH_OPERATOR_DIRECTION_2026-10-21.md",
       "docs/autonomy/OPERATOR_DECISIONS.md",
@@ -37375,14 +37395,21 @@
       "sha": "ccc3e09e3c0fa86b0754b30e7180ef33d6be1d23",
       "dirtyFiles": [
         ".gitattributes",
+        "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-request.json",
+        "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-result.json",
         "tools/cinematics/candidates/camp-story-continuity-20261021/index.html",
         "tools/cinematics/candidates/camp-story-continuity-20261021/montage.css",
         "tools/cinematics/candidates/camp-story-continuity-20261021/montage.mjs",
         "tools/cinematics/candidates/camp-story-continuity-20261021/provenance.json",
         "tools/cinematics/candidates/camp-story-continuity-20261021/requests.json",
+        "tools/cinematics/candidates/camp-story-continuity-20261021/results-v1.json",
         "tools/cinematics/candidates/camp-story-continuity-20261021/results.json",
         "tools/cinematics/candidates/camp-story-continuity-20261021/reused-inputs.json",
+        "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v1.png",
+        "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v2.png",
         "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview.png",
+        "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v1.json",
+        "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v2.json",
         "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt.json",
         "tools/cinematics/candidates/camp-story-continuity-20261021/sequence.json",
         "tools/cinematics/candidates/camp-story-continuity-20261021/shot-01.png",
@@ -37392,6 +37419,7 @@
         "tools/cinematics/candidates/camp-story-continuity-20261021/shot-05.png",
         "tools/cinematics/candidates/camp-story-continuity-20261021/shot-06.png",
         "tools/cinematics/candidates/camp-story-continuity-20261021/shot-07.png",
+        "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08-v1-right-hand.png",
         "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08.png",
         "docs/autonomy/CAMP_CONTINUITY_FINISH_OPERATOR_DIRECTION_2026-10-21.md",
         "docs/autonomy/OPERATOR_DECISIONS.md",
@@ -37403,23 +37431,26 @@
       "lastGreenCheck": "2026-10-21T07:10:34.559Z",
       "inheritedWip": 0
     },
-    "nextAction": "Operator compares revised01/08 in this same8-image20s montage, especially final blade/purple-cloth proximity, and gives a precise visual-continuity verdict before any runtime adoption.",
+    "nextAction": "Operator reviews the same revised01/08 and20s montage for final visual continuity/artistic judgment before any runtime adoption.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "gameplayStagesPlayed": 0,
-      "imageGenEditCalls": 2,
+      "imageGenEditCalls": 3,
       "editedImages": 2,
       "reusedImages": 6,
       "displayedImages": 8,
       "artifactSourceFiles": 3,
-      "artifactDataFiles": 5,
+      "artifactDataFiles": 8,
       "selectedProofFiles": 2,
       "workflowFiles": 5,
       "repositoryConfigFiles": 1,
-      "artifactBrowserScenarios": 1,
+      "artifactBrowserScenarios": 2,
       "newQaJobs": 0,
       "totalQaJobs": 339,
-      "inheritedWipFiles": 0
+      "inheritedWipFiles": 0,
+      "retainedPrior08Variants": 1,
+      "historicalProofFiles": 4,
+      "retainedPriorImageFiles": 1
     },
     "checkpointPaths": [
       "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
@@ -38235,7 +38266,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "MANUAL-CAMP-STILL-CONTINUITY-FINISH",
-    "activeSubtask": "Ground clearance01 and right-hand ownership08 visibly corrected; clothing/full-art continuity unaccepted",
+    "activeSubtask": "Final08right-hand vertical blade separated from purplecoat; same8stage20s reader PASS10",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -44111,18 +44142,26 @@
     "completedThisRun": [
       "Edited only01blade clearance and08anatomical sword hand using built-in imagegen",
       "Reused six images and MJS/CSS/sequence byte-identically; preserved8stages/20s",
-      "Verified final montage with reused unchanged assertions and inspected3captures"
+      "Verified final montage with reused unchanged assertions and inspected3captures",
+      "Corrected projected08blade/cloth overlap in one further targeted edit; retainedv1 and proof"
     ],
     "filesChanged": [
       ".gitattributes",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-request.json",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/08-revision-result.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/index.html",
       "tools/cinematics/candidates/camp-story-continuity-20261021/montage.css",
       "tools/cinematics/candidates/camp-story-continuity-20261021/montage.mjs",
       "tools/cinematics/candidates/camp-story-continuity-20261021/provenance.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/requests.json",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/results-v1.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/results.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/reused-inputs.json",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v1.png",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v2.png",
       "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview.png",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v1.json",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v2.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/sequence.json",
       "tools/cinematics/candidates/camp-story-continuity-20261021/shot-01.png",
@@ -44132,6 +44171,7 @@
       "tools/cinematics/candidates/camp-story-continuity-20261021/shot-05.png",
       "tools/cinematics/candidates/camp-story-continuity-20261021/shot-06.png",
       "tools/cinematics/candidates/camp-story-continuity-20261021/shot-07.png",
+      "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08-v1-right-hand.png",
       "tools/cinematics/candidates/camp-story-continuity-20261021/shot-08.png",
       "docs/autonomy/CAMP_CONTINUITY_FINISH_OPERATOR_DIRECTION_2026-10-21.md",
       "docs/autonomy/OPERATOR_DECISIONS.md",
@@ -44146,7 +44186,8 @@
       "LOCKED/protected-path gates",
       "diff --check",
       "One configured existing8stage reader scenario",
-      "8image/origin and identicalreader/sequence verification"
+      "8image/origin and identicalreader/sequence verification",
+      "Same reader scenario v2 only after own08clothing-overlap correction"
     ],
     "testsPassed": [
       "Reader PASS10;3captures inspected",
@@ -44154,13 +44195,15 @@
       "Two observed visual corrections independently confirmed",
       "TypeScript0/contracts8of8/gates clean",
       "339jobs/exactMDblock/alloldroots preserved",
-      "Guardian PASS_SCOPED_OBSERVED_CORRECTIONS"
+      "Guardian PASS_SCOPED_OBSERVED_CORRECTIONS",
+      "V2 PASS10,3captures inspected, visible background gap around08blade observed",
+      "Guardian V2 independently confirms visible blade gap/right hand and final proof hashes"
     ],
     "testsRemaining": [
-      "Operator full-continuity/art/clothing-clearance verdict; no runtime acceptance"
+      "Operator fullart/physical3D/continuity acceptance; no runtime adoption"
     ],
     "blockers": [
-      "Final08blade projects near/over purplecloth at crop; fullclearance and finegear/veil/geography unaccepted"
+      "Finegear/veil/geography/physical3D/fullart continuity remain operator judgment; former08projected-overlap now visibly improved"
     ],
     "remainingWork": [
       "Operator visual01/08 verdict on same revised montage",
@@ -44617,19 +44660,22 @@
     "runMeasurement": {
       "runtimeSourceFiles": 0,
       "gameplayStagesPlayed": 0,
-      "imageGenEditCalls": 2,
+      "imageGenEditCalls": 3,
       "editedImages": 2,
       "reusedImages": 6,
       "displayedImages": 8,
       "artifactSourceFiles": 3,
-      "artifactDataFiles": 5,
+      "artifactDataFiles": 8,
       "selectedProofFiles": 2,
       "workflowFiles": 5,
       "repositoryConfigFiles": 1,
-      "artifactBrowserScenarios": 1,
+      "artifactBrowserScenarios": 2,
       "newQaJobs": 0,
       "totalQaJobs": 339,
-      "inheritedWipFiles": 0
+      "inheritedWipFiles": 0,
+      "retainedPrior08Variants": 1,
+      "historicalProofFiles": 4,
+      "retainedPriorImageFiles": 1
     },
     "deploymentHealth0503": {
       "problem": "Retained Hunters failed deployment hides Cedric/Elara1HP behind En jeu cards; same omission in current renderer",
@@ -45801,19 +45847,22 @@
   "runMeasurement": {
     "runtimeSourceFiles": 0,
     "gameplayStagesPlayed": 0,
-    "imageGenEditCalls": 2,
+    "imageGenEditCalls": 3,
     "editedImages": 2,
     "reusedImages": 6,
     "displayedImages": 8,
     "artifactSourceFiles": 3,
-    "artifactDataFiles": 5,
+    "artifactDataFiles": 8,
     "selectedProofFiles": 2,
     "workflowFiles": 5,
     "repositoryConfigFiles": 1,
-    "artifactBrowserScenarios": 1,
+    "artifactBrowserScenarios": 2,
     "newQaJobs": 0,
     "totalQaJobs": 339,
-    "inheritedWipFiles": 0
+    "inheritedWipFiles": 0,
+    "retainedPrior08Variants": 1,
+    "historicalProofFiles": 4,
+    "retainedPriorImageFiles": 1
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -50340,15 +50389,22 @@
     "artisticAcceptance": false,
     "document": "docs/autonomy/CAMP_CONTINUITY_FINISH_OPERATOR_DIRECTION_2026-10-21.md",
     "provenance": "tools/cinematics/candidates/camp-story-continuity-20261021/provenance.json",
-    "editCalls": 2,
+    "editCalls": 3,
     "preview": {
       "url": "http://127.0.0.1:5458/",
       "pid": 32928
     },
-    "scopeAcceptance": "Visual two-defect improvement proposed; full art/clothing continuity unaccepted",
-    "receipt": "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt.json",
+    "scopeAcceptance": "01visual ground clearance and08right-hand/visible projected clothing gap improved; fullart/physical3D unaccepted",
+    "receipt": "tools/cinematics/candidates/camp-story-continuity-20261021/review-receipt-v2.json",
     "reader": "PASS10",
-    "guardian": "PASS_SCOPED_OBSERVED_CORRECTIONS",
-    "nextAction": "Operator compares revised01/08 in this same8-image20s montage, especially final blade/purple-cloth proximity, and gives a precise visual-continuity verdict before any runtime adoption."
+    "guardian": "PASS_SCOPED_CLOSEOUT_V2",
+    "nextAction": "Operator compares revised01/08 in this same8-image20s montage, especially final blade/purple-cloth proximity, and gives a precise visual-continuity verdict before any runtime adoption.",
+    "revision08": {
+      "version": 2,
+      "retainedV1": "shot-08-v1-right-hand.png",
+      "request": "08-revision-request.json",
+      "status": "VERTICAL_GAP_OBSERVED_READER_PASS10"
+    },
+    "previewImage": "tools/cinematics/candidates/camp-story-continuity-20261021/review-preview-v2.png"
   }
 }

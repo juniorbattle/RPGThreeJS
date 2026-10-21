@@ -1,0 +1,97 @@
+{
+  "scope": "Eight chronological illustrated stages, offline reader only; not gameplay/comprehension/art/gait acceptance",
+  "driver": "tmp/autonomy/camp-continuity-smoke-v2.mjs",
+  "checks": [
+    "Eight distinct complete images preloaded; initially paused on establishing image",
+    "Seven real-time dissolves through chronological8images, total20s and final stop",
+    "New action stages03/04/06/08 are selectable at5/7/11/17s",
+    "Eight-stage Home/End/arrow/previous navigation matches timeline",
+    "OSreduce gentle dissolve retained; pause freezes opacity and clock",
+    "Whole images/44px controls/no horizontal clipping at1366x768",
+    "Whole images/44px controls/no horizontal clipping at620x780",
+    "Whole images/44px controls/no horizontal clipping at390x844",
+    "No nominal console/page errors",
+    "Missing new movement image disables playback with visible status"
+  ],
+  "samples": [
+    {
+      "time": 2.2,
+      "base": "shot-01.png",
+      "next": "shot-02.png",
+      "alpha": 0.129408,
+      "loaded": true
+    },
+    {
+      "time": 4.2,
+      "base": "shot-02.png",
+      "next": "shot-03.png",
+      "alpha": 0.129303,
+      "loaded": true
+    },
+    {
+      "time": 6.2,
+      "base": "shot-03.png",
+      "next": "shot-04.png",
+      "alpha": 0.129198,
+      "loaded": true
+    },
+    {
+      "time": 8.2,
+      "base": "shot-04.png",
+      "next": "shot-05.png",
+      "alpha": 0.129094,
+      "loaded": true
+    },
+    {
+      "time": 10.2,
+      "base": "shot-05.png",
+      "next": "shot-06.png",
+      "alpha": 0.128989,
+      "loaded": true
+    },
+    {
+      "time": 13.2,
+      "base": "shot-06.png",
+      "next": "shot-07.png",
+      "alpha": 0.128885,
+      "loaded": true
+    },
+    {
+      "time": 16.2,
+      "base": "shot-07.png",
+      "next": "shot-08.png",
+      "alpha": 0.128885,
+      "loaded": true
+    }
+  ],
+  "captures": [
+    {
+      "path": "tmp/cinematics/camp-story-continuity-20261021/check-v2/desktop-endpoint.png",
+      "sha256": "b5eb453d852e49046aba9eed3f7c012e8563a353efd0d8f93f3cec8de4e06466",
+      "inspected": true
+    },
+    {
+      "path": "tmp/cinematics/camp-story-continuity-20261021/check-v2/desktop-movement.png",
+      "sha256": "133f8535de7de1eced8d09c5ed98369835097d14292cff43b09392b5d2bedafd",
+      "inspected": true
+    },
+    {
+      "path": "tmp/cinematics/camp-story-continuity-20261021/check-v2/narrow-preparation.png",
+      "sha256": "498db343b8455045b88134d39c1b1a6040eadbacb59ce938b586a0a5fbb51251",
+      "inspected": true
+    }
+  ],
+  "status": "PASS",
+  "consoleErrors": [],
+  "completedAt": "2026-10-21T07:18:36.354Z",
+  "driverSha256": "c0264866dbf30841267dc48eee810927fce798e589babd1eca933ecc77249ba3",
+  "readerSha256": {
+    "index.html": "839b688fcd36b6a875ce5dc2afdea03f728cc46b3eb2bc0f5f30b3715f5e6487",
+    "montage.css": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83",
+    "montage.mjs": "4cd4f93cb9b21d5a1eb374fec2d835231e92e00cdf7d4cbf23a17072bb1dc41e"
+  },
+  "provenanceSha256": "8be7ae4d398dfd85a8e55ee7c76e85389ec0d3806191b57864476164dd28a3d5",
+  "justification": "Second execution only for directly correcting own08blade/cloth regression; assertions unchanged, output separated",
+  "acceptance": "READER_AND_2D_OBSERVED_CORRECTIONS_ONLY; ART_PHYSICAL3D_AND_RUNTIME_PENDING",
+  "guardian": "PASS_SCOPED_CLOSEOUT_V2"
+}
