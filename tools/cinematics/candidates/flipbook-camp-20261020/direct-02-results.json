@@ -1,0 +1,23 @@
+[
+  {
+    "index": 1,
+    "path": "frame-001.png",
+    "original": "exec-fd888007-0cf0-4175-8b88-877accb873d9.png",
+    "requestFile": "direct-02-requests.json",
+    "reference": "base-v1.png"
+  },
+  {
+    "index": 2,
+    "path": "frame-002.png",
+    "original": "exec-6545f59c-2837-4285-971c-626f2d541d9e.png",
+    "requestFile": "direct-02-requests.json",
+    "reference": "base-v1.png"
+  },
+  {
+    "index": 3,
+    "path": "frame-003.png",
+    "original": "exec-80887828-7324-40fe-a961-d4f92af3a2c4.png",
+    "requestFile": "direct-02-requests.json",
+    "reference": "base-v1.png"
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "index": 4,
+    "path": "frame-004.png",
+    "original": "exec-3f179137-213b-44ae-9dfd-3ef14d6b893b.png",
+    "requestFile": "direct-01-requests.json",
+    "reference": "base-v1.png"
+  },
+  {
+    "index": 7,
+    "path": "frame-007.png",
+    "original": "exec-2902904c-3c1e-47b3-8478-a426cef9307c.png",
+    "requestFile": "direct-01-requests.json",
+    "reference": "base-v1.png"
+  }
+]

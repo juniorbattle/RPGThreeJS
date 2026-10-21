@@ -1,0 +1,23 @@
+[
+  {
+    "index": 9,
+    "path": "frame-009.png",
+    "original": "exec-ce0434a9-a0f9-44e2-88cf-27c838c402c0.png",
+    "requestFile": "direct-04-requests.json",
+    "reference": "base-v1.png"
+  },
+  {
+    "index": 10,
+    "path": "frame-010.png",
+    "original": "exec-e9fcf178-ebd1-4905-a034-406f70ee4245.png",
+    "requestFile": "direct-04-requests.json",
+    "reference": "base-v1.png"
+  },
+  {
+    "index": 11,
+    "path": "frame-011.png",
+    "original": "exec-2cbe522d-67ca-47b8-8608-fba30d6caf9e.png",
+    "requestFile": "direct-04-requests.json",
+    "reference": "base-v1.png"
+  }
+]

@@ -8,6 +8,9 @@ Next: Generate individual fresh full-scene poses from base-v1 only, excluding bo
 
 Aucun MiniMax/vidéo/audio/runtime/scheduler/LOCKED.339jobs et racineshistoriques préservés ; campagnes/V6/économie/huit slots/12s inchangés. Checkpoint intermédiaire : production d’images en cours, pas de nouvelle étapejouée.
 
+
+Flipbook progress 2026-10-21T01:55:12.623Z: 12/18drawings; twoatlases rejected. Next: Generate remainingframes12–17 from newbase only; assemble exactraw18drawings at6fps in an offline reader, inspect continuity without alignment/interpolation or priorvideo input.
+
 <!-- QA_JOBS_START -->
 ## Live QA jobs
 
