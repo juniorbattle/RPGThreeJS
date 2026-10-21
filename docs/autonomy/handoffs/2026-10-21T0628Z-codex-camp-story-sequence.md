@@ -5,3 +5,5 @@
 2026-10-21T06:37:25.120Z: quatre nouvelles images et quatre réemplois copiés bruts/SHA exacts, requêtes/résultats/provenance et lecteur8plans prêts. Verify20s/eight-stage reader and new narrative beats, then deliver for operator comprehension/rhythm review without art/runtime acceptance.
 
 2026-10-21T06:43:39.163Z: lecteur PASS10checks,7fondus20s,3captures inspectées ; guardian assets/storyintent PASS_SCOPED. Les nouveaux gestes sont visibles mais la compréhension reste opérateur. Snapshot préalablef9da67accfd9d0ac8dec06857f2202bb75e0208d. Next: Operator watches this same8-image20s sequence and judges whether preparation, interior regrouping, stop and readiness for dialogue are clear without reading the captions; target any unclear transition by its image numbers.
+
+Clôture2026-10-21T06:48:53.818Z: livraison956885f60ac2a4baf5076e70b1b5dd235390fc69 publiée et vérifiée origin/dev ; main inchangé. Durée21.15min, arbre propre avant metadata, verrou à libérer après sa parité. Aperçu5457/PID7596 seul nouveau serveur conservé, QA/génération terminées. Narration/compréhension/causalité/continuité/locomotion/art/runtime non acceptés.

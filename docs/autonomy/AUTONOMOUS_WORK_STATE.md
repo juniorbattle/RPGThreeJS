@@ -10,7 +10,7 @@ Reader PASS10checks/7fondus réels,3captures inspectées, TypeScript0, contrats8
 
 Une prochaine action : Operator watches this same8-image20s sequence and judges whether preparation, interior regrouping, stop and readiness for dialogue are clear without reading the captions; target any unclear transition by its image numbers.
 
-Aperçu http://127.0.0.1:5457/, PID 7596 conservé ; publication dev OD-2026-10-12-A puis clôture/verrou.
+Aperçu http://127.0.0.1:5457/, PID 7596 conservé ; livraison 956885f60ac2a4baf5076e70b1b5dd235390fc69 publiée/vérifiée OD-2026-10-12-A, runEndedAt 2026-10-21T06:48:53.818Z. Clôture metadata puis libération du verrou après parité.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
