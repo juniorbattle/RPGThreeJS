@@ -1,16 +1,12 @@
-# Le camp — montage illustré prêt pour comparaison
+# Camp — nouvelle base flipbook en production manuelle
 
-Run codex-manual-camp-illustrated-20261020, UTC 2026-10-21T01:20:27.881Z, baseline dev 0b4d46c6e5de2250b3ba0e066e20f7e1c81268a7. READY_FOR_PC_ACCEPTANCE conservé ; phase ILLUSTRATED_CAMP_PROTOTYPE_READY_FOR_COMPARISON. [Scope/résultat](ILLUSTRATED_CAMP_COMPARISON_2026-10-20.md), [handoff](handoffs/2026-10-21T0120Z-codex-illustrated-camp.md).
+Run codex-manual-camp-flipbook-20261020; UTC 2026-10-21T01:36:53.404Z. READY_FOR_PC_ACCEPTANCE conservé. [Scope/progression](CAMP_FLIPBOOK_STUDY_2026-10-20.md). L’opérateur a corrigé l’essai illustré : génération de véritables images successives depuis références canoniques seulement, sans vidéo précédente.
 
-Aperçu http://127.0.0.1:5454/ PID30916 :4compositions/3images existantes,4+3+5+4=16s proposées. Coupes et ellipse vers arrêt, recadrage entier≤1,8% optionnel/désactivé OSreduce. Détail agrandi issu même support-v3 ; pas de nouvelle perspective filmée ou animation d’acteurs. Images/Vidéo05 exclusifs et enpause au changement ; un seul média visible. Sources/SHA/préviews/candidats01–05 exacts, ancien défautlame/cycles05 nonclôturé.
+Nouvelle base générée, deux planches3×3 écartées pour dérive/cadrage de lame, conservéesbrutes. Suite : poses générées séparément à pleine résolution depuis base-v1 ; aucun alignement/composite/interpolation pour masquer les défauts.18poses/6fps reste cible, aucune acceptation marche/art/runtime.
 
-Next: Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.
+Next: Generate individual fresh full-scene poses from base-v1 only, excluding both rejected atlases and all old cinematics/stills; inspect actual continuity before assembling18frame6fps offline flipbook.
 
-Checks: node --check study.mjs PASS; npx tsc --noEmit PASS; contracts:validate8/8 and both LOCKED gates empty;diffcheck PASS; 12bounded artifactbrowser checks PASS after one own preload-race fix, assertions preserved; Source/prototype SHA exact;selectedcaptures inspected;guardian PASS_SCOPED_ACTUAL_ARTIFACT; 339qaJobs/exactMDQAblock/all unrelated historical/deferred/audio roots preserved. Premier scénario échoué sur vidéo absente avant listeners ; correctif native networkState, même assertions/deuxième dossierPASS, pas de réécritureQA. Sourcejeu/public/LOCKED inchangés ; huit slots/12s livré/V6/canon/économie conservés. Aucun appelgénération/polling/audio/scheduler. Recurrence toujours sansgénération ; adoption média reste ouverte.
-
-12paths :3sourcesaperçu/1provenance/2preuves/6workflow ; runtime0/gameplay0/QAnewjobs0/339jobs préservés exacts, WIP hérité0. ToutesracineshistoriquesP03/audio/différés intactes. Aperçus5452/PID22960,5453/PID9228 conservés ;5454 laissé pour opérateur, aucunworkerQAactif. Aucun PASS art/gait/raccordgéographique/doctrine/runtime/mobile. PC global/équilibre/matériel/audio5familles/hidden restent ouverts.
-
-Clôture : livraison ed80aa821f62d586990a583c9972330e1c6370d3 publiée/vérifiée sur origin/dev, runEndedAt 2026-10-21T01:20:27.881Z. Commit contenant cette clôture et libération du verrou consignés dans Git/mémoire.
+Aucun MiniMax/vidéo/audio/runtime/scheduler/LOCKED.339jobs et racineshistoriques préservés ; campagnes/V6/économie/huit slots/12s inchangés. Checkpoint intermédiaire : production d’images en cours, pas de nouvelle étapejouée.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

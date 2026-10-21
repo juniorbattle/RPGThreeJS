@@ -1,10 +1,10 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-21T01:08:01.9187753Z",
-  "runEndedAt": "2026-10-21T01:20:27.881Z",
-  "activeTask": "MANUAL-ILLUSTRATED-CAMP-COMPARISON",
-  "activePhase": "ILLUSTRATED_CAMP_PROTOTYPE_READY_FOR_COMPARISON",
-  "activeSubtask": "Four compositions/three existing images/16s proposed;exclusiveImages-Video05 reader delivered offline",
+  "runStartedAt": "2026-10-21T01:23:37.4537369Z",
+  "runEndedAt": null,
+  "activeTask": "MANUAL-CAMP-FRESH-FLIPBOOK",
+  "activePhase": "FRESH_BASE_AND_REJECTED_ATLASES_PRESERVED_DIRECT_POSES_PENDING",
+  "activeSubtask": "Fresh canonical-reference base generated; two atlases rejected for excessive travel/croppedblade; pivot to fullresolution individualposes",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "ed80aa821f62d586990a583c9972330e1c6370d3",
   "lastPushedCommit": "ed80aa821f62d586990a583c9972330e1c6370d3",
@@ -55,7 +55,7 @@
     "Any final media-doctrine change needs dedicated operator decision/task",
     "GlobalPC/art/balance/hardware/audio5nativefamilies/hidden/mobileafterPC remain open"
   ],
-  "nextAction": "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
+  "nextAction": "Generate individual fresh full-scene poses from base-v1 only, excluding both rejected atlases and all old cinematics/stills; inspect actual continuity before assembling18frame6fps offline flipbook.",
   "taskQueue": [
     "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
     "Independent already-authorized demonstratedPC defect only;no unchanged diagnostic loop",
@@ -64,7 +64,7 @@
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SCOPED_ACTUAL_ARTIFACT;set1.7.0/f4aae63 unchanged;offlineprototype only",
   "commitReferenceScope": "Containing delivery/closure SHA inGit and automationmemory; historicalP03roots unchanged",
-  "operatorAuthorization": "Interactive Okay go on shortcamp illustrated comparison using existingimages;OD-2026-10-12-A normaldevpublication",
+  "operatorAuthorization": "Explicit user correction: freshimagegen flipbook, no priorvideo basis; manualonly, no runtime/adoption/MiniMax;OD-2026-10-12-A normaldevpublication",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -134,19 +134,19 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-manual-camp-illustrated-20261020",
+  "runId": "codex-manual-camp-flipbook-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T01:20:27.881Z",
+  "lastHeartbeat": "2026-10-21T01:36:53.404Z",
   "wip": {
     "branch": "dev",
-    "sha": "ed80aa821f62d586990a583c9972330e1c6370d3",
+    "sha": "0610d8017c797fac092a489e74daf77e04101dd7",
     "dirtyFiles": [],
-    "status": "GREEN_OFFLINE_STUDY_AWAITING_STYLE_VERDICT",
-    "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-21T01:20:27.881Z"
+    "status": "RAW_NEW_IMAGES_AND_REJECTIONS_PRESERVED_NOT_MOTION_ACCEPTED",
+    "lastGreenCheck": "2026-10-21T01:36:53.404Z",
+    "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T01:20:27.881Z",
+    "lastHeartbeat": "2026-10-21T01:36:53.404Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37336,13 +37336,13 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "ed80aa821f62d586990a583c9972330e1c6370d3",
+      "sha": "0610d8017c797fac092a489e74daf77e04101dd7",
       "dirtyFiles": [],
-      "status": "GREEN_OFFLINE_STUDY_AWAITING_STYLE_VERDICT",
-      "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-21T01:20:27.881Z"
+      "status": "RAW_NEW_IMAGES_AND_REJECTIONS_PRESERVED_NOT_MOTION_ACCEPTED",
+      "lastGreenCheck": "2026-10-21T01:36:53.404Z",
+      "inheritedWip": 0
     },
-    "nextAction": "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
+    "nextAction": "Generate individual fresh full-scene poses from base-v1 only, excluding both rejected atlases and all old cinematics/stills; inspect actual continuity before assembling18frame6fps offline flipbook.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "artifactSourceFiles": 3,
@@ -37383,7 +37383,7 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-21T01:20:27.881Z",
+    "runEndedAt": null,
     "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
@@ -38179,8 +38179,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "MANUAL-ILLUSTRATED-CAMP-COMPARISON",
-    "activeSubtask": "Four compositions/three existing images/16s proposed;exclusiveImages-Video05 reader delivered offline",
+    "activeTask": "MANUAL-CAMP-FRESH-FLIPBOOK",
+    "activeSubtask": "Fresh canonical-reference base generated; two atlases rejected for excessive travel/croppedblade; pivot to fullresolution individualposes",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41512,13 +41512,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-manual-camp-illustrated-20261020",
+    "runId": "codex-manual-camp-flipbook-20261020",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-21T01:08:01.9187753Z",
-    "activePhase": "ILLUSTRATED_CAMP_PROTOTYPE_READY_FOR_COMPARISON",
-    "heartbeat": "2026-10-21T01:20:27.881Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0120Z-codex-illustrated-camp.md",
+    "runStartedAt": "2026-10-21T01:23:37.4537369Z",
+    "activePhase": "FRESH_BASE_AND_REJECTED_ATLASES_PRESERVED_DIRECT_POSES_PENDING",
+    "heartbeat": "2026-10-21T01:36:53.404Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0137Z-codex-flipbook.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -45689,7 +45689,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0120Z-codex-illustrated-camp.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0137Z-codex-flipbook.md",
   "runMeasurement": {
     "runtimeSourceFiles": 0,
     "artifactSourceFiles": 3,
@@ -50132,5 +50132,21 @@
     "publication": "Verified origin/dev; containingclosure inGit/automationmemory",
     "qaWorkerActive": false,
     "browserTab": 5
+  },
+  "campFlipbookStudy": {
+    "runId": "codex-manual-camp-flipbook-20261020",
+    "status": "IN_PROGRESS_DIRECT_POSES_PENDING",
+    "document": "docs/autonomy/CAMP_FLIPBOOK_STUDY_2026-10-20.md",
+    "canonicalInputsOnly": true,
+    "newBase": "tools/cinematics/candidates/flipbook-camp-20261020/base-v1.png",
+    "imageGenCalls": 3,
+    "rejectedAtlases": 2,
+    "previousVideosUsed": false,
+    "previousStillsUsed": false,
+    "plannedFrames": 18,
+    "plannedFps": 6,
+    "artisticAcceptance": false,
+    "runtimeChanged": false,
+    "nextAction": "Generate individual fresh full-scene poses from base-v1 only, excluding both rejected atlases and all old cinematics/stills; inspect actual continuity before assembling18frame6fps offline flipbook."
   }
 }
