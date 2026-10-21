@@ -12,6 +12,8 @@ Première action future : Read current audience trigger and lion_briefing, sourc
 
 339jobs/acceptations/blocQA exact et toutes racines/variantes/preuves historiques conservés. PC global/art final/équilibre/FX16/5familles/hidden restent ouverts ; mobile après stabilitéPC.
 
+Clôture 2026-10-21T07:48:51.048Z, configuration bbe2a547da0c16dc4716ac05c40c5dc59fc567f5 publiée/vérifiée, guardian PASS_CONFIG_CLOSEOUT ; aucune génération. Verrou libéré après checkpoint metadata.
+
 <!-- QA_JOBS_START -->
 ## Live QA jobs
 

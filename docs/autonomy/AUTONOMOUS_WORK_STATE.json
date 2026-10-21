@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-21T07:34:41.9906986Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-21T07:48:51.048Z",
   "activeTask": "ILLUSTRATED-CINEMATICS-AUTONOMOUS-PRODUCTION",
   "activePhase": "CONFIGURED_AWAITING_OPERATOR_SCHEDULER_ACTIVATION",
   "activeSubtask": "Audience first; built-in still images only after reviewed amendment and committed baseline",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
-  "lastPushedCommit": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+  "lastKnownGoodCommit": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
+  "lastPushedCommit": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
   "completedThisRun": [
     "Scoped operator camp structure/design acceptance recorded",
     "Explicit narrowly approved dedicated contract amendment reviewed and committed",
@@ -91,7 +91,7 @@
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_AMENDMENT_ACTUAL_DIFF_AND_PASS_CONFIG_CLOSEOUT;set1.8.0; no runtime adoption",
-  "commitReferenceScope": "Current camp continuity delivery; subsequent metadata-only closure is discoverable in Git, avoiding circular self-reference.",
+  "commitReferenceScope": "Reviewed illustrated-cinematic configuration delivery; following metadata-only closeout discoverable in Git, avoiding circular self-reference.",
   "operatorAuthorization": "Direct camp structure/design validation and explicit answer Autoriser cet amendement ciblé; offline illustrated candidates only, scheduler activation retained by operator",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -164,16 +164,17 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-illustrated-cinematics-config-20261021",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T07:43:23.384Z",
+  "lastHeartbeat": "2026-10-21T07:48:51.048Z",
   "wip": {
     "branch": "dev",
-    "sha": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+    "sha": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
     "dirtyFiles": [],
-    "status": "CONFIGURATION_PENDING_PUBLICATION",
-    "inheritedWip": 0
+    "status": "ILLUSTRATED_CONFIGURATION_PUBLISHED_METADATA_CLOSEOUT",
+    "inheritedWip": 0,
+    "lastGreenCheck": "2026-10-21T07:48:51.048Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T07:43:23.384Z",
+    "lastHeartbeat": "2026-10-21T07:48:51.048Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37363,10 +37364,11 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+      "sha": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
       "dirtyFiles": [],
-      "status": "CONFIGURATION_PENDING_PUBLICATION",
-      "inheritedWip": 0
+      "status": "ILLUSTRATED_CONFIGURATION_PUBLISHED_METADATA_CLOSEOUT",
+      "inheritedWip": 0,
+      "lastGreenCheck": "2026-10-21T07:48:51.048Z"
     },
     "nextAction": "Read current audience trigger and lion_briefing, source-bound causal shot progression, then built-in imagegen audience montage before any choice/advance handoff.",
     "runMetrics": {
@@ -37406,8 +37408,8 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-21T07:48:51.048Z",
+    "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
       "deliveryCheckpoint": "836269855cbe9d60aef117bfeb49433a5073972f",
@@ -41540,7 +41542,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-21T07:34:41.9906986Z",
     "activePhase": "CONFIGURED_AWAITING_OPERATOR_SCHEDULER_ACTIVATION",
-    "heartbeat": "2026-10-21T07:43:23.384Z",
+    "heartbeat": "2026-10-21T07:48:51.048Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0734Z-codex-illustrated-cinematics-config.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -43269,7 +43271,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+    "lastPushedCommit": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -44075,7 +44077,7 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+    "lastKnownGoodCommit": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
     "completedThisRun": [
       "Scoped operator camp structure/design acceptance recorded",
       "Explicit narrowly approved dedicated contract amendment reviewed and committed",
@@ -45632,7 +45634,7 @@
     },
     "contractSetVersion": "1.8.0",
     "uncommittedWork": "NONE after containing metadata closure",
-    "commitReferenceScope": "Current camp continuity delivery; subsequent metadata-only closure is discoverable in Git, avoiding circular self-reference.",
+    "commitReferenceScope": "Reviewed illustrated-cinematic configuration delivery; following metadata-only closeout discoverable in Git, avoiding circular self-reference.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
       "status": "SAVED_AND_CONFIGURATION_VERIFIED",
@@ -45740,6 +45742,16 @@
       "previewPid": 32928,
       "qaJobsPreserved": 339,
       "nextAction": "Operator reviews the same revised01/08 and20s montage for final visual continuity/artistic judgment before any runtime adoption."
+    },
+    "illustratedConfigCloseout": {
+      "deliveryCommit": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
+      "normalPushVerified": true,
+      "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+      "schedulerStatus": "PAUSED",
+      "generatedImages": 0,
+      "gameplaySteps": 0,
+      "qaJobsPreserved": 339,
+      "nextAction": "Read current audience trigger and lion_briefing, source-bound causal shot progression, then built-in imagegen audience montage before any choice/advance handoff."
     }
   },
   "previousInterruptedRun": {
@@ -50507,6 +50519,9 @@
       "queueCount": 7,
       "newImages": 0
     },
-    "guardian": "PASS_CONFIG_CLOSEOUT"
+    "guardian": "PASS_CONFIG_CLOSEOUT",
+    "deliveryCommit": "bbe2a547da0c16dc4716ac05c40c5dc59fc567f5",
+    "runEndedAt": "2026-10-21T07:48:51.048Z",
+    "elapsedMinutes": 14.15
   }
 }
