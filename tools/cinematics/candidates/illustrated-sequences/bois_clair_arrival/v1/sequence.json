@@ -1,0 +1,42 @@
+{
+  "totalSeconds": 18,
+  "normalFadeSeconds": 1,
+  "reducedFadeSeconds": 0.8,
+  "stages": [
+    {
+      "title": "Une place sous l’incendie",
+      "description": "Le lieu sous pression ; les quatre présences restent distinctes.",
+      "start": 0,
+      "duration": 4,
+      "path": "shot-01.png"
+    },
+    {
+      "title": "S’arrêter au bord de la place",
+      "description": "Les héros s’arrêtent, armes basses.",
+      "start": 4,
+      "duration": 3,
+      "path": "shot-02.png"
+    },
+    {
+      "title": "Le panier serré contre soi",
+      "description": "La Villageoise ramène son panier contre son corps.",
+      "start": 7,
+      "duration": 3,
+      "path": "shot-03.png"
+    },
+    {
+      "title": "Marian lui porte attention",
+      "description": "Une attention réciproque, sans contact ni soin.",
+      "start": 10,
+      "duration": 3,
+      "path": "shot-04.png"
+    },
+    {
+      "title": "Avant l’appel à l’aide",
+      "description": "Un arrêt avant les premières paroles et tout choix.",
+      "start": 13,
+      "duration": 5,
+      "path": "shot-05.png"
+    }
+  ]
+}

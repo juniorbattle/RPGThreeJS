@@ -1,0 +1,8 @@
+{
+  "referenced_image_paths": [
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-05.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-03.png"
+  ],
+  "transparent_background": false,
+  "prompt": "Use case: precise-object-edit. Image1 is the final wide Bois-Clair illustration to correct. Image2 is Villageoise's CURRENT basket position and hand-grip continuity reference. Change ONLY the Villageoise at center of image1: RAISE and tuck her existing wicker basket against her upper abdomen/lower chest, clearly ABOVE belt height, held close to torso exactly as image2. Her anatomical LEFT hand stays gripping the raised wicker handle at lower-chest level, RIGHT hand braces basket rim in front of stomach. Natural visible fingers, no extra hand. Keep her head turned left, blue hood/cream scarf/brown dress/cream apron and same basket/cloth design. Do not change body position or scale; just arms and basket higher/closer. Preserve EVERY other part of image1: Alistair, Marian, Raider, their equipment/hands/heads/places, background, existing dusk light/fires, camera, pixel-art clusters. No other edits, no new people/props/text/panels, no rescue/aid/spells/choice. This is the final maintained state after she has clutched her basket, not a reset to its earlier low-hip pose."
+}

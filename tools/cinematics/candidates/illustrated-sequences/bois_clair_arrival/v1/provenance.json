@@ -1,0 +1,218 @@
+{
+  "runId": "codex-illustrated-audience-20261021T1754Z",
+  "createdAt": "2026-10-21T18:39:02.563Z",
+  "sourceBranch": "dev",
+  "sourceCommit": "256cd041d3639c94b070ddaf46f9bad10e342362",
+  "operatorDecisions": [
+    "OD-2026-10-21-A",
+    "OD-2026-10-21-B"
+  ],
+  "contractSet": "1.8.0",
+  "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+  "status": "GENERATED_REVIEW_PENDING",
+  "tool": "built-in image_gen.imagegen only",
+  "initialImages": 5,
+  "targetedCorrections": 1,
+  "uniqueGeneratedOutputs": 6,
+  "rawPolicy": "Every original/variant retained byte-identically; raw/shot-05.png and raw/shot-05-initial.png are duplicate archival copies of the same initial output",
+  "references": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png",
+      "sha256": "a3e69c055552b41f4c6c8f13196bb1500d6781a79533d45aab7410f6b67af7ec"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alistair.png",
+      "sha256": "84ff7bdc3e2165b39f488fdef6ee8af6ff0bec8c2113b047791b35f62efb0219"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/white_mage.png",
+      "sha256": "a02a3a3dc9ffc55c1e9ec217a8dab9bed4bce2a33c4edd3b12d0243eae451bda"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/villageoise.png",
+      "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/serpent_raider.png",
+      "sha256": "4f4bfb55016f325544a598a34213567657d43159c895bff57ac740ed4892ed9f"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/cinematics/Cin6aPresentation.ts",
+      "sha256": "41e0dee7f65231bd8e65cee075ac8c6d909302b6de37e7560b0eeeae8a645990"
+    },
+    {
+      "path": "src/campaign/LionCampaignStructure.ts",
+      "sha256": "dede76984fd7892c0f2127921f69c089c5e3c1278aaca1935da42a0a171f7c91"
+    },
+    {
+      "path": "src/game/content.ts",
+      "sha256": "f1c09e07cbdcd4641ff92207cf7118370673e4e33bfcc8b6adacf2cca1853ea0"
+    },
+    {
+      "path": "src/game/contextualDialogueContent.ts",
+      "sha256": "1d9d815e89eaf1d235018ace4d945f3280e39fcbadbbe7f53ad602cd896a2447"
+    },
+    {
+      "path": "src/render/data/demo-environment-pack-v1.production.json",
+      "sha256": "fcd1c020d9674c35e9665bb10fdcd7d4d898f382ed0117016f4b6c9dce6e00c3"
+    }
+  ],
+  "requests": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/requests/shot-01.json",
+      "sha256": "6d1d5969c53190b5b84edf1520df1aaf4565e607967436c5a25763c31b9db065"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/requests/shot-02.json",
+      "sha256": "20219edb8d1e41988d222a3dd03fa76242ff077ebf668cf7441d278e0de43d5d"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/requests/shot-03.json",
+      "sha256": "a072e3677126197f960d9d57cedf875e87186ee705b80ed3e5aaa5ca6029f3af"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/requests/shot-04.json",
+      "sha256": "d5e8cdd5c51360478388f5d370540fc6d370505b975799f4ceb396a0296d111b"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/requests/shot-05-correction-01.json",
+      "sha256": "97c6bd8d36d422fb3337376b648a55907f988e16620c21b0e8db057c98279dff"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/requests/shot-05.json",
+      "sha256": "ab241f0045efeb62f1b96a70910babf5cba55b8dc9b69a18cdef211e16d038e4"
+    }
+  ],
+  "results": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/results/shot-01.json",
+      "sha256": "0fd3fd54b7bd63cf6a748319f5553e22d31c2cc8d7282483b3c0b56793f35710"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/results/shot-02.json",
+      "sha256": "ce26a362f7295a40b370f033bd7bf3c517db686a320b19d94d14fd56333ae9e8"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/results/shot-03.json",
+      "sha256": "4bb1a229f1e17eccdf8ac65c46c0713e7e6adbc8fe6e504d7a3260926cc70578"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/results/shot-04.json",
+      "sha256": "22e416d74efba210239cf6fec34d546e24b6a9678a77ac30ec60ec77e11820d3"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/results/shot-05-correction-01.json",
+      "sha256": "808f1bed7c42ebf48854a26e9b5219c75320b5a09961cb89afa6ed4f226a85cb"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/results/shot-05.json",
+      "sha256": "b60bf833d19d4289daa8bf4a7a800c8de6167b3b0f68cbaf0afa7841606d583f"
+    }
+  ],
+  "raw": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/raw/shot-01.png",
+      "sha256": "3491a49ec04463dcd65064f2898d62c56c2843d0233657e7971016ae28c571ce"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/raw/shot-02.png",
+      "sha256": "6d0314f418918febca4c106802357a657ad14ad2bc7bbe16a00cf8e5885fea1b"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/raw/shot-03.png",
+      "sha256": "f584944b180bda04836ce480f3f478c0ca4a7d098892411e1b65dabab8a6e7b1"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/raw/shot-04.png",
+      "sha256": "999918f5ca1e619317247a6ae18b9c7b8bda51e13f99c51b4dbdc49bb1e90c9d"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/raw/shot-05-correction-01.png",
+      "sha256": "524f898f5d63f2d528f5bcff881b55a26e7d46db030b50218c0ccc96dca6c626"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/raw/shot-05-initial.png",
+      "sha256": "f9f636b34e97480e6ce16dc5a25070bb9b036c66ef486a433f28371a22cf3e35"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/raw/shot-05.png",
+      "sha256": "f9f636b34e97480e6ce16dc5a25070bb9b036c66ef486a433f28371a22cf3e35"
+    }
+  ],
+  "images": [
+    {
+      "title": "Une place sous l’incendie",
+      "description": "Le lieu sous pression ; les quatre présences restent distinctes.",
+      "start": 0,
+      "duration": 4,
+      "path": "shot-01.png",
+      "sha256": "3491a49ec04463dcd65064f2898d62c56c2843d0233657e7971016ae28c571ce",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "title": "S’arrêter au bord de la place",
+      "description": "Les héros s’arrêtent, armes basses.",
+      "start": 4,
+      "duration": 3,
+      "path": "shot-02.png",
+      "sha256": "6d0314f418918febca4c106802357a657ad14ad2bc7bbe16a00cf8e5885fea1b",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "title": "Le panier serré contre soi",
+      "description": "La Villageoise ramène son panier contre son corps.",
+      "start": 7,
+      "duration": 3,
+      "path": "shot-03.png",
+      "sha256": "f584944b180bda04836ce480f3f478c0ca4a7d098892411e1b65dabab8a6e7b1",
+      "width": 1672,
+      "height": 940
+    },
+    {
+      "title": "Marian lui porte attention",
+      "description": "Une attention réciproque, sans contact ni soin.",
+      "start": 10,
+      "duration": 3,
+      "path": "shot-04.png",
+      "sha256": "999918f5ca1e619317247a6ae18b9c7b8bda51e13f99c51b4dbdc49bb1e90c9d",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "title": "Avant l’appel à l’aide",
+      "description": "Un arrêt avant les premières paroles et tout choix.",
+      "start": 13,
+      "duration": 5,
+      "path": "shot-05.png",
+      "sha256": "524f898f5d63f2d528f5bcff881b55a26e7d46db030b50218c0ccc96dca6c626",
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "timeline": {
+    "path": "sequence.json",
+    "sha256": "06d86ebf4e916b18ec7c80dd2ae2364aedad7651d4155f4360fd39d7721f8dff"
+  },
+  "reader": {
+    "origin": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1",
+    "files": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+        "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+        "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+      }
+    ],
+    "unchangedFromAudience": true,
+    "scope": "Audience transport proof is reusable for unchanged reader code, but is not Bois-Clair media/continuous-playback acceptance",
+    "htmlSha256": "eb899b7e91fadb344f2c954a3fef59daf352cd1ccaff0cdf2f1100fbee4004f6"
+  },
+  "finalArtAccepted": false,
+  "runtimeIntegrated": false
+}

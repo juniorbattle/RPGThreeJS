@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T18:22:21.028Z",
+  "updatedAt": "2026-10-21T18:39:02.563Z",
   "scope": "Offline illustrated candidates; final art/runtime separate",
   "scenes": [
     {
@@ -11,8 +11,8 @@
     },
     {
       "id": "bois_clair_arrival",
-      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
-      "path": null,
+      "status": "GENERATED_REVIEW_PENDING",
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/index.html",
       "finalArtAccepted": false,
       "runtimeIntegrated": false
     },

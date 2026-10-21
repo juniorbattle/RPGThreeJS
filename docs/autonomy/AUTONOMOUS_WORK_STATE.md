@@ -1,12 +1,14 @@
-# Cinématiques illustrées — audience prête pour revue
+# Cinématiques illustrées — audience livrée, Bois-Clair à vérifier
 
-Run codex-illustrated-audience-20261021T1754Z · 2026-10-21T18:22:21.028Z. READY_FOR_PC_ACCEPTANCE conservé ; scheduler ACTIVE inchangé.
+Run codex-illustrated-audience-20261021T1754Z · clôture 2026-10-21T18:43:02.120Z. READY_FOR_PC_ACCEPTANCE conservé ; scheduler ACTIVE/configuration inchangés.
 
-Audience : six images/20s, six générations et deux corrections ciblées, toutes variantes/requêtes/SHA conservées. Montage offline inspecté,10contrôles techniques PASS, art final/intégration séparés. [Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html).
+[Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html) · [Lecture locale](../../tools/cinematics/candidates/illustrated-sequences/README.md). Audience :6images/20s,2corrections,READY_FOR_OPERATOR_REVIEW, publiée256cd04 ; pilote10contrôles et revue agent/guardian PASS bornés. Bois-Clair arrivée :5images/18s,1correction panier,GENERATED_REVIEW_PENDING ; images inspectées/guardian préservation PASS, lecture continue/reçu technique à faire. Aucun art final ni runtime accepté.
 
-Prochaine action : Resume bois_clair_arrival: revalidate current village_choice prelude, night/intact-versus-burning canonical context and four-actor subset, then source-bound offline images before rescue/sacrifice choice.
+**Prochaine action exacte :** Resume bois_clair_arrival/v1 without regenerating its five inspected images. Start tracked reader-v1/serve.cjs; observe18s montage normally. Copy the preserved audience smoke into a new Bois-Clair version driver, adapt5images/four dissolves/18s/timeline0/4/7/10/13 and exact media SHA, preserving loading/order/keyboard/pause/resume/OSreduce/framing/console/missing-image assertions. Register one unique receipt and inspect captures before READY_FOR_OPERATOR_REVIEW; only then advance bois_clair_saved. Do not modify the proven audience reader/driver or regenerate audience/camp.
 
-339jobs originaux et acceptations préservés ;5nouveaux reçus :4échecs environnement/pilote conservés,1succès technique borné revu. Source/public/camp/contrats/V6/audio inchangés.
+339jobs originaux/acceptations et racines historiques préservés ;5nouveaux reçus :4échecs environnement/pilote conservés,1succès technique revu. TypeScript/41tests sources ciblés(+82copies historiques)/contrats8+8/gates/diffcheck/SHA/liens/timelines PASS. Aucun gameplay rejoué ni build runtime nécessaire :src/public/vidéos/V6/audio/camp inchangés.14appelsimagegen/11images sélectionnées,0fichier source runtime,0WIP hérité. Contrats1.8.0/baseline0cb95135 inchangés ; main protégé.
+
+[Handoff courant](handoffs/2026-10-21T1754Z-codex-illustrated-audience.md). Dernier commit produit publié cité dans JSON ; le commit contenant cette clôture et sa parité finale sont consignés dans Git/mémoire d’automatisation.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

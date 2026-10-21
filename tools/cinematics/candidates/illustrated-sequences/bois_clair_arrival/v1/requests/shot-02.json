@@ -1,0 +1,9 @@
+{
+  "referenced_image_paths": [
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-01.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alistair.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/white_mage.png"
+  ],
+  "transparent_background": false,
+  "prompt": "Use case: illustration-story. ONE landscape16:9 integrated modern pixel-art/HD-2D illustration shot02 continuing exact Bois-Clair dusk scene image1. Images2/3 immutable V2 Alistair and Marian. Motivated medium two-person composition, on the SAME left side of the square, Alistair screen-left and Marian screen-right. Narrative change: both have stopped at the edge of the square. Alistair settles his right gauntlet more firmly around the pommel/grip of his existing single DOWNWARD sword, LEFT hand relaxed, helmet slightly turned screen-right toward villageoise outside frame. Marian holds the SAME sun staff upright in RIGHT hand (screen-left side of her body), LEFT hand relaxed near her robe, head toward the village still, not speaking or healing. Preserve exact closed steel helmet/red cape/gold clasps, white/ivory/blue/gold robe/hood/face covering, all armor/materials, proportions. Medium knees-up intentional crop with complete hands/staff head visible, no accidental cut wrists. Same dusk orange sky and firelight, broken palisade, timber house and wet street behind; do not relocate to chapel interior. Villageoise and Raider outside crop to screen-right, no new people. Quiet readiness, not weapon raise/attack/challenge/order/oath/rescue/aid/magic. No new destruction,props,coins,text/UI/panels/collage or photorealism. Crisp stepped pixel clusters and coherent warm shadows. This is the stop before village_choice, no branch chosen."
+}
