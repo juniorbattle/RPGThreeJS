@@ -106,10 +106,17 @@
     ],
     "totalSeconds": 20,
     "durationStatus": "PROPOSED_REVIEW_TIMING_ONLY",
-    "cuts": "whole still-image substitution, no interpolation, pan, crop, sprite or pose animation",
+    "cuts": "Whole-image smoothstep opacity crossfades; no spatial interpolation, pan, crop, sprite or pose animation",
     "autoplay": false,
     "loop": false,
-    "audio": false
+    "audio": false,
+    "crossfade": {
+      "normalSeconds": 1.2,
+      "reducedMotionSeconds": 0.8,
+      "easing": "smoothstep",
+      "opaqueBase": true,
+      "timelineDriven": true
+    }
   },
   "scene": "LION_CAMP at night, framed subset Marian/Maelor/Alistair, gathering inside camp before existing dialogue; no crossing/arrival/recruitment/choice/reward/new event.",
   "quality": {
@@ -132,9 +139,19 @@
     "pid": 13348
   },
   "readerSha256": {
-    "index.html": "5f741ab1317c6b24a45f18f167911dba25b0c275e15ef2cbe3b090ac188deab2",
-    "montage.css": "8fd07f49ebf345eca07e58a48266c7a5866cf840b6e898571c56fcd2409e74ab",
-    "montage.mjs": "5c5dc8ad2eeb51844453904607376b48d8c24ec5680a662171293e4cbaf41ec6"
+    "index.html": "8389d22ed968baa37c138701627310ff6ddbb51d9074f209baa5724f1af93519",
+    "montage.css": "4074a852b0d143fb70decbad3fe9e6cb8b8167201c2889f27f487c31dd16d13f",
+    "montage.mjs": "8a9ccd1489bc332aba543f579f283b0ec5c3ba03bf350b53a92eedbb928791b0"
   },
-  "reviewedAt": "2026-10-21T02:37:03.762Z"
+  "reviewedAt": "2026-10-21T02:37:03.762Z",
+  "previousCutReader": {
+    "commit": "9695c3eba548c31026f49f328f0432af950180f7",
+    "receipt": "review-receipt.json",
+    "sha256": "479ab7ccfb04db54f07c9ba250b146c66429b35007958a23a9e9ea249e07fd6a"
+  },
+  "operatorFeedback": {
+    "at": "2026-10-21T04:10:05.307Z",
+    "text": "Oui mais ce n;est pas des enchainements d'mages fluides... la coupure est trop brutal",
+    "correction": "Replace abrupt automatic cuts with soft full-frame dissolves; same five raw images retained."
+  }
 }

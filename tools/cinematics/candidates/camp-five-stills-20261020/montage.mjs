@@ -11,6 +11,13 @@ let time=0,playing=false,ready=false,start=0,raf=0;
 const index=()=>time<4?0:time<7?1:time<12?2:time<16?3:4;
 function render(){
  const i=index(),shot=shots[i];if($('picture').getAttribute('src')!==shot.path)$('picture').src=shot.path;
+ const fadeDuration=reduce.matches?.8:1.2;
+ const progress=i===4?0:Math.min(1,Math.max(0,(time-(shot.start+shot.duration-fadeDuration))/fadeDuration));
+ const blend=progress*progress*(3-2*progress),incoming=$('incoming');
+ if(i<4&&incoming.getAttribute('src')!==shots[i+1].path)incoming.src=shots[i+1].path;
+ // Opaque outgoing image underneath the incoming layer avoids a black dip.
+ // Timeline-driven opacity means pause, seek and hidden suspend freeze the dissolve too.
+ $('picture').style.opacity='1';incoming.style.opacity=String(blend);
  $('picture').alt=shot.title;$('number').textContent=`0${i+1} / 05`;$('title').textContent=shot.title;$('description').textContent=shot.description;
  $('time').textContent=`${time.toFixed(1).replace('.',',')} / 20,0 s`;$('seek').value=String(time);$('seek').setAttribute('aria-valuetext',`${Math.round(time)} secondes, plan ${i+1} sur 5`);
  $('play').textContent=playing?'Pause':time>=20?'Relire le montage':'Lire le montage';

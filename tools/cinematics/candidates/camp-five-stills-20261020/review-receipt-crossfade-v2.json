@@ -1,0 +1,69 @@
+{
+  "scope": "Operator-requested soft transitions between the same five generated stills; no image generation or runtime adoption",
+  "checks": [
+    "Pause freezes crossfade opacity and clock",
+    "Four real-time smoothstep opacity dissolves, held plans,20s final stop; no black dip or transforms",
+    "OS reduction retains a shorter gentle opacity-only dissolve, explicit play and frozen pause",
+    "Manual shot selection remains a paused whole image",
+    "Both layers retain equal contained geometry across1366/620/390 widths",
+    "No console/page errors"
+  ],
+  "samples": [
+    {
+      "time": 3.1,
+      "base": "1",
+      "incoming": "0.160963",
+      "baseComplete": true,
+      "incomingComplete": true,
+      "transform": "none"
+    },
+    {
+      "time": 6.1,
+      "base": "1",
+      "incoming": "0.152145",
+      "baseComplete": true,
+      "incomingComplete": true,
+      "transform": "none"
+    },
+    {
+      "time": 11.1,
+      "base": "1",
+      "incoming": "0.15196",
+      "baseComplete": true,
+      "incomingComplete": true,
+      "transform": "none"
+    },
+    {
+      "time": 15.1,
+      "base": "1",
+      "incoming": "0.151774",
+      "baseComplete": true,
+      "incomingComplete": true,
+      "transform": "none"
+    }
+  ],
+  "captures": [
+    {
+      "path": "tmp/cinematics/camp-five-stills-20261020/crossfade-v2/dissolve.png",
+      "sha256": "0ca80e1231241082dd1a0b5fd089568c0d1b345b896a7290230f6a829f1ead44",
+      "inspected": true
+    },
+    {
+      "path": "tmp/cinematics/camp-five-stills-20261020/crossfade-v2/desktop-detail.png",
+      "sha256": "e400c351fd18030eb88e446b6a9d56cd11e13816280a6cb0cfc8d4f5cbe6126d",
+      "inspected": true
+    }
+  ],
+  "driver": "tmp/autonomy/five-stills-crossfade-smoke.mjs",
+  "status": "PASS",
+  "consoleErrors": [],
+  "completedAt": "2026-10-21T04:08:06.030Z",
+  "driverSha256": "ee61fdbfb14811989f72ce6e907092bd38a32b3fc1a65ada2e3a693bc3a6f594",
+  "readerSha256": {
+    "index.html": "8389d22ed968baa37c138701627310ff6ddbb51d9074f209baa5724f1af93519",
+    "montage.css": "4074a852b0d143fb70decbad3fe9e6cb8b8167201c2889f27f487c31dd16d13f",
+    "montage.mjs": "8a9ccd1489bc332aba543f579f283b0ec5c3ba03bf350b53a92eedbb928791b0"
+  },
+  "provenanceSha256": "7f7079b797186928bd5866e82c020a006cecf12ae934ce37317a5542330a3442",
+  "acceptance": "TRANSITION_READER_ONLY; OPERATOR_RHYTHM_AND_ART_VERDICT_PENDING"
+}

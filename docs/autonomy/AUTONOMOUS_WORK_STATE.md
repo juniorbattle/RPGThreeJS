@@ -2,13 +2,13 @@
 
 Run codex-manual-camp-five-stills-20261020, UTC 2026-10-21T02:37:03.762Z. READY_FOR_PC_ACCEPTANCE conservé. [Demande et limites](CAMP_FIVE_STILLS_OPERATOR_DIRECTION_2026-10-20.md).
 
-Cinq nouveaux plans, V2/camp canoniques uniquement, aucune vidéo ou image des anciens essais en input. Cinq illustrations distinctes tenues quelques secondes, pas un flipbook. Montage hors jeu20s proposé :4+3+5+4+4. Lecture sur demande, pause, sélection/clavier et arrêt final.
+Cinq nouveaux plans, V2/camp canoniques uniquement, aucune vidéo ou image des anciens essais en input. Cinq illustrations distinctes tenues quelques secondes, pas un flipbook. Retour sur les coupes trop brutales : fondus enchaînés1.2s (OSreduce0.8s), temps et pause cohérents, mêmes cinq images. Montage hors jeu20s proposé :4+3+5+4+4. Lecture sur demande, pause, sélection/clavier et arrêt final.
 
 Gates propres, contrats8/8, TypeScript0, smoke lecteur11checks PASS, quatre captures inspectées ; guardian PASS_SCOPED_CLOSEOUT, reçu lecteur et captures rapprochés. Art, équipement, géographie non acceptés ; limites lame01/main03/détails conservées.
 
 339jobs/acceptations et bloc exact ci-dessous intacts, historiques et objets différés conservés. Aucun runtime/V6/canon/MP4/LOCKED/audio/scheduler modifié ; zéro étapejouée.
 
-Une prochaine action : Operator watches this same five-shot montage and gives a verdict on compositions and cut rhythm; any next correction targets a named shot, without inferring runtime adoption.
+Une prochaine action : Operator watches the same five-image montage with soft dissolves and gives a transition/rhythm verdict; keep visual continuity/art acceptance separate.
 
 Aperçu http://127.0.0.1:5456/, PID 13348 conservé. Publication dev OD-2026-10-12-A puis clôture et libération du verrou.
 

@@ -3,15 +3,16 @@
   "runStartedAt": "2026-10-21T02:24:53.650Z",
   "runEndedAt": null,
   "activeTask": "MANUAL-CAMP-FIVE-STAGED-STILLS",
-  "activePhase": "FIVE_STAGED_STILLS_READY_FOR_REVIEW",
-  "activeSubtask": "Five distinct generated images and held-image montage delivered; art/equipment/geography unaccepted",
+  "activePhase": "FIVE_STILLS_SOFT_DISSOLVES_READY_FOR_REVIEW",
+  "activeSubtask": "Same five illustrations; abrupt cuts replaced by verified soft whole-frame dissolves",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "08fd5d56545dda32f6a3705dc309db994fbcbd13",
   "lastPushedCommit": "08fd5d56545dda32f6a3705dc309db994fbcbd13",
   "completedThisRun": [
     "Generated five distinct staged illustrations using canonical V2/camp references only",
     "Delivered 20s held-image montage with manual shot selection and no prior-media input",
-    "Verified reader and preserved exact requests/results/raw originals/SHA"
+    "Verified reader and preserved exact requests/results/raw originals/SHA",
+    "Replaced abrupt automatic cuts with timeline-driven soft full-image crossfades after explicit operator feedback"
   ],
   "filesChanged": [
     ".gitattributes",
@@ -21,7 +22,9 @@
     "tools/cinematics/candidates/camp-five-stills-20261020/provenance.json",
     "tools/cinematics/candidates/camp-five-stills-20261020/requests.json",
     "tools/cinematics/candidates/camp-five-stills-20261020/results.json",
+    "tools/cinematics/candidates/camp-five-stills-20261020/review-crossfade-v2.png",
     "tools/cinematics/candidates/camp-five-stills-20261020/review-preview.png",
+    "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt-crossfade-v2.json",
     "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt.json",
     "tools/cinematics/candidates/camp-five-stills-20261020/shot-01.png",
     "tools/cinematics/candidates/camp-five-stills-20261020/shot-02.png",
@@ -41,14 +44,16 @@
     "LOCKED baseline/worktree gates",
     "diff --check",
     "One standalone montage browser scenario",
-    "Five raw project/original pairs and four canonical-input hashes"
+    "Five raw project/original pairs and four canonical-input hashes",
+    "Focused crossfade-v2 scenario"
   ],
   "testsPassed": [
     "11reader-only checks PASS",
     "Four captures inspected",
     "8contracts/8slots; TypeScript0; gates clean",
     "339QA jobs and exact MD block preserved",
-    "Guardian PASS_SCOPED_CLOSEOUT; assets/provenance/reader receipt and four captures"
+    "Guardian PASS_SCOPED_CLOSEOUT; assets/provenance/reader receipt and four captures",
+    "Crossfade reader PASS6checks with two inspected captures; five raw images unchanged"
   ],
   "testsRemaining": [
     "Operator composition/rhythm/art/equipment/geography review; no runtime integration acceptance"
@@ -60,7 +65,7 @@
     "Operator verdict on these same five compositions",
     "Global PC/art/balance/hardware/audio/nativehidden and mobile-after-PC acceptance retained"
   ],
-  "nextAction": "Operator watches this same five-shot montage and gives a verdict on compositions and cut rhythm; any next correction targets a named shot, without inferring runtime adoption.",
+  "nextAction": "Operator watches the same five-image montage with soft dissolves and gives a transition/rhythm verdict; keep visual continuity/art acceptance separate.",
   "taskQueue": [
     "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
     "Independent already-authorized demonstratedPC defect only;no unchanged diagnostic loop",
@@ -141,7 +146,7 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-camp-five-stills-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T02:37:03.762Z",
+  "lastHeartbeat": "2026-10-21T04:10:05.307Z",
   "wip": {
     "branch": "dev",
     "sha": "08fd5d56545dda32f6a3705dc309db994fbcbd13",
@@ -153,7 +158,9 @@
       "tools/cinematics/candidates/camp-five-stills-20261020/provenance.json",
       "tools/cinematics/candidates/camp-five-stills-20261020/requests.json",
       "tools/cinematics/candidates/camp-five-stills-20261020/results.json",
+      "tools/cinematics/candidates/camp-five-stills-20261020/review-crossfade-v2.png",
       "tools/cinematics/candidates/camp-five-stills-20261020/review-preview.png",
+      "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt-crossfade-v2.json",
       "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt.json",
       "tools/cinematics/candidates/camp-five-stills-20261020/shot-01.png",
       "tools/cinematics/candidates/camp-five-stills-20261020/shot-02.png",
@@ -171,7 +178,7 @@
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T02:37:03.762Z",
+    "lastHeartbeat": "2026-10-21T04:10:05.307Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37370,7 +37377,9 @@
         "tools/cinematics/candidates/camp-five-stills-20261020/provenance.json",
         "tools/cinematics/candidates/camp-five-stills-20261020/requests.json",
         "tools/cinematics/candidates/camp-five-stills-20261020/results.json",
+        "tools/cinematics/candidates/camp-five-stills-20261020/review-crossfade-v2.png",
         "tools/cinematics/candidates/camp-five-stills-20261020/review-preview.png",
+        "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt-crossfade-v2.json",
         "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt.json",
         "tools/cinematics/candidates/camp-five-stills-20261020/shot-01.png",
         "tools/cinematics/candidates/camp-five-stills-20261020/shot-02.png",
@@ -37387,7 +37396,7 @@
       "lastGreenCheck": "2026-10-21T02:37:03.762Z",
       "inheritedWip": 0
     },
-    "nextAction": "Operator watches this same five-shot montage and gives a verdict on compositions and cut rhythm; any next correction targets a named shot, without inferring runtime adoption.",
+    "nextAction": "Operator watches the same five-image montage with soft dissolves and gives a transition/rhythm verdict; keep visual continuity/art acceptance separate.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "gameplayStagesPlayed": 0,
@@ -37396,12 +37405,12 @@
       "distinctShotImages": 5,
       "artifactSourceFiles": 3,
       "artifactDataFiles": 3,
-      "selectedProofFiles": 2,
+      "selectedProofFiles": 4,
       "workflowFiles": 5,
       "inheritedWipFiles": 0,
       "newQaJobs": 0,
       "totalQaJobs": 339,
-      "artifactBrowserScenarios": 1
+      "artifactBrowserScenarios": 2
     },
     "checkpointPaths": [
       "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
@@ -38217,7 +38226,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "MANUAL-CAMP-FIVE-STAGED-STILLS",
-    "activeSubtask": "Five distinct generated images and held-image montage delivered; art/equipment/geography unaccepted",
+    "activeSubtask": "Same five illustrations; abrupt cuts replaced by verified soft whole-frame dissolves",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41553,8 +41562,8 @@
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-21T02:24:53.650Z",
-    "activePhase": "FIVE_STAGED_STILLS_READY_FOR_REVIEW",
-    "heartbeat": "2026-10-21T02:37:03.762Z",
+    "activePhase": "FIVE_STILLS_SOFT_DISSOLVES_READY_FOR_REVIEW",
+    "heartbeat": "2026-10-21T04:10:05.307Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0224Z-codex-camp-five-stills.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -44093,7 +44102,8 @@
     "completedThisRun": [
       "Generated five distinct staged illustrations using canonical V2/camp references only",
       "Delivered 20s held-image montage with manual shot selection and no prior-media input",
-      "Verified reader and preserved exact requests/results/raw originals/SHA"
+      "Verified reader and preserved exact requests/results/raw originals/SHA",
+      "Replaced abrupt automatic cuts with timeline-driven soft full-image crossfades after explicit operator feedback"
     ],
     "filesChanged": [
       ".gitattributes",
@@ -44103,7 +44113,9 @@
       "tools/cinematics/candidates/camp-five-stills-20261020/provenance.json",
       "tools/cinematics/candidates/camp-five-stills-20261020/requests.json",
       "tools/cinematics/candidates/camp-five-stills-20261020/results.json",
+      "tools/cinematics/candidates/camp-five-stills-20261020/review-crossfade-v2.png",
       "tools/cinematics/candidates/camp-five-stills-20261020/review-preview.png",
+      "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt-crossfade-v2.json",
       "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt.json",
       "tools/cinematics/candidates/camp-five-stills-20261020/shot-01.png",
       "tools/cinematics/candidates/camp-five-stills-20261020/shot-02.png",
@@ -44123,14 +44135,16 @@
       "LOCKED baseline/worktree gates",
       "diff --check",
       "One standalone montage browser scenario",
-      "Five raw project/original pairs and four canonical-input hashes"
+      "Five raw project/original pairs and four canonical-input hashes",
+      "Focused crossfade-v2 scenario"
     ],
     "testsPassed": [
       "11reader-only checks PASS",
       "Four captures inspected",
       "8contracts/8slots; TypeScript0; gates clean",
       "339QA jobs and exact MD block preserved",
-      "Guardian PASS_SCOPED_CLOSEOUT; assets/provenance/reader receipt and four captures"
+      "Guardian PASS_SCOPED_CLOSEOUT; assets/provenance/reader receipt and four captures",
+      "Crossfade reader PASS6checks with two inspected captures; five raw images unchanged"
     ],
     "testsRemaining": [
       "Operator composition/rhythm/art/equipment/geography review; no runtime integration acceptance"
@@ -44598,12 +44612,12 @@
       "distinctShotImages": 5,
       "artifactSourceFiles": 3,
       "artifactDataFiles": 3,
-      "selectedProofFiles": 2,
+      "selectedProofFiles": 4,
       "workflowFiles": 5,
       "inheritedWipFiles": 0,
       "newQaJobs": 0,
       "totalQaJobs": 339,
-      "artifactBrowserScenarios": 1
+      "artifactBrowserScenarios": 2
     },
     "deploymentHealth0503": {
       "problem": "Retained Hunters failed deployment hides Cedric/Elara1HP behind En jeu cards; same omission in current renderer",
@@ -45762,12 +45776,12 @@
     "distinctShotImages": 5,
     "artifactSourceFiles": 3,
     "artifactDataFiles": 3,
-    "selectedProofFiles": 2,
+    "selectedProofFiles": 4,
     "workflowFiles": 5,
     "inheritedWipFiles": 0,
     "newQaJobs": 0,
     "totalQaJobs": 339,
-    "artifactBrowserScenarios": 1
+    "artifactBrowserScenarios": 2
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -50233,12 +50247,20 @@
       "url": "http://127.0.0.1:5456/",
       "pid": 13348
     },
-    "receipt": "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt.json",
+    "receipt": "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt-crossfade-v2.json",
     "proposedDurationSeconds": 20,
     "equipmentContinuityAcceptance": false,
     "geographyAcceptance": false,
     "readerQa": "PASS_SCOPED_11_CHECKS",
-    "guardian": "PASS_SCOPED_CLOSEOUT",
-    "nextAction": "Operator watches this same five-shot montage and gives a verdict on compositions and cut rhythm; any next correction targets a named shot, without inferring runtime adoption."
+    "guardian": "PASS_SCOPED_IMPLEMENTATION_CROSSFADE; separate current receipt/feedback recording completed",
+    "nextAction": "Operator watches the same five-image montage with soft dissolves and gives a transition/rhythm verdict; keep visual continuity/art acceptance separate.",
+    "transitionCorrection": {
+      "normalSeconds": 1.2,
+      "reducedSeconds": 0.8,
+      "receipt": "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt-crossfade-v2.json",
+      "readerStatus": "PASS6",
+      "operatorAcceptance": false,
+      "guardian": "PASS_SCOPED_IMPLEMENTATION"
+    }
   }
 }
