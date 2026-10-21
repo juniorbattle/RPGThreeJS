@@ -1,0 +1,49 @@
+{
+  "browserScenario": "one standalone illustration/comparison artifact, not game QA",
+  "checks": [
+    "Real-time16s traversal of allfour compositions, then paused at16s",
+    "Native range keyboard seek moves to0.05s",
+    "Screen keyboard previous/next/Home preserves usable focus",
+    "Pause freezes montage clock and recrop",
+    "Mode switches stop outgoing media/timer and incoming surface remains paused",
+    "OS-only reduction removes recrop while retained timeline stays operable",
+    "Bounds/hit targets/16:9 containment 1366x768",
+    "Bounds/hit targets/16:9 containment 620x780",
+    "Bounds/hit targets/16:9 containment 390x844",
+    "No console/page errors on successful artifact path",
+    "Missing image gives explicit status and retains video selection",
+    "Missing video retains illustrated montage controls"
+  ],
+  "captures": [
+    "tmp/cinematics/illustrated-camp-20261020/check-fixed/desktop-first.png",
+    "tmp/cinematics/illustrated-camp-20261020/check-fixed/detail.png",
+    "tmp/cinematics/illustrated-camp-20261020/check-fixed/trio.png",
+    "tmp/cinematics/illustrated-camp-20261020/check-fixed/stop.png",
+    "tmp/cinematics/illustrated-camp-20261020/check-fixed/narrow-reduced.png"
+  ],
+  "status": "PASS",
+  "consoleErrors": [],
+  "completedAt": "2026-10-21T01:16:07.688Z",
+  "runId": "codex-manual-camp-illustrated-20261020",
+  "baseline": "0b4d46c6e5de2250b3ba0e066e20f7e1c81268a7",
+  "provenanceSha256": "5e78e3e441ed23ba0163f9f905f57035f29b8ca8e15cf9b919c12d172e12d9e4",
+  "driver": {
+    "path": "tmp/autonomy/illustrated-camp-smoke.mjs",
+    "sha256": "f33c4955afd0068e49b96013c04f7d170907c83a57cefd2a611078aa1972c335",
+    "reason": "Existing game-browser drivers do not target this offline artifact; temporary bounded artifact-only check."
+  },
+  "selectedCapture": {
+    "path": "tools/cinematics/candidates/illustrated-camp-20261020/review-preview.png",
+    "sha256": "5c0ac97c078ed9f598e3bd5798d6cfd834857534f5ce6b74c9a44182a3231da8"
+  },
+  "inspectedCaptures": [
+    "desktop-first",
+    "detail",
+    "trio",
+    "stop",
+    "narrow-reduced"
+  ],
+  "priorFailure": "First same-scenario run failed the missingvideo earlypreload case; native networkState fix only, same assertions rerun in separatefolder",
+  "guardian": "PASS_SCOPED_ACTUAL_ARTIFACT;hashes/receipt/captures reviewed,not independently replayed",
+  "scope": "Artifact controls/layout/real-time timeline only;no gait/spatial/art/doctrine/runtime/mobile acceptance"
+}

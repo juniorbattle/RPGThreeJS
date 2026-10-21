@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "status": "OFFLINE_EDITORIAL_COMPARISON_NOT_PRODUCTION",
+  "operatorScope": "Interactive Okay go on a short illustrated camp comparison; no production-doctrine adoption or generation authorized.",
+  "runId": "codex-manual-camp-illustrated-20261020",
+  "baseline": "0b4d46c6e5de2250b3ba0e066e20f7e1c81268a7",
+  "createdAt": "2026-10-21T01:15:44.926Z",
+  "durationSecondsProposed": 16,
+  "sourceImageCount": 3,
+  "compositions": 4,
+  "sources": [
+    {
+      "id": "camp",
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png",
+      "sha256": "7e2eaba3b2d18d409fb0126a0e4ad9361caa5f61148f2a145b4cd2fbec379c32",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "id": "entry",
+      "path": "tools/cinematics/candidates/manual-p03-20261020/p03-support-v3.png",
+      "sha256": "0fd6533213c77bc5e95094fe254f8c7f9d64fec1a52e95d7a917dc9fe9e56068",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "id": "stop",
+      "path": "tools/cinematics/candidates/manual-p03-20261020/p03-stop-v1.png",
+      "sha256": "63744ae86d599e80a78feb39fd6b1c9f07653d5a3b3ea5e81c61db023885ecfa",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "id": "video05",
+      "path": "tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/candidate_05_silent_review.mp4",
+      "sha256": "9a44cb94a7fd891c4af788d2f33f558455f403aecefcee5e11769e6cc9058d5d"
+    }
+  ],
+  "files": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-camp-20261020/index.html",
+      "sha256": "962508bcf96d9f0c9896c0512ce238ceab8fde83904b4d1d8823a94d0515acd5"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-camp-20261020/study.css",
+      "sha256": "098d8b0f181bac37e7fb511641b788d0fcdca82254bfd06ed6898c5756aae8c6"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-camp-20261020/study.mjs",
+      "sha256": "48537346f413adf24dbc80f7bda5f1b5277933ddccb89a3964b007d930c4fe3d"
+    }
+  ],
+  "shots": [
+    {
+      "id": "01",
+      "start": 0,
+      "duration": 4,
+      "source": "camp",
+      "viewBox": [
+        0,
+        0,
+        1672,
+        941
+      ],
+      "intent": "Establish existing camp"
+    },
+    {
+      "id": "02",
+      "start": 4,
+      "duration": 3,
+      "source": "entry",
+      "viewBox": [
+        520,
+        260,
+        440,
+        247.5
+      ],
+      "intent": "Digital equipment detail from exact same entry still, no new perspective"
+    },
+    {
+      "id": "03",
+      "start": 7,
+      "duration": 5,
+      "source": "entry",
+      "viewBox": [
+        0,
+        0,
+        1672,
+        941
+      ],
+      "intent": "Whole trio in same entry still; no actor animation"
+    },
+    {
+      "id": "04",
+      "start": 12,
+      "duration": 4,
+      "source": "stop",
+      "viewBox": [
+        0,
+        0,
+        1672,
+        941
+      ],
+      "intent": "Elliptical cut to existing settled pose, still inside camp before dialogue"
+    }
+  ],
+  "transitions": "Cuts; no pose morph or interpolation",
+  "camera": {
+    "method": "Whole-image recrop only",
+    "maxScale": 1.018,
+    "optional": true,
+    "osReducedMotionDisables": true,
+    "notVolumetricCamera": true
+  },
+  "invariants": {
+    "newImages": 0,
+    "newVideos": 0,
+    "providerCalls": 0,
+    "newAudio": 0,
+    "newCanon": 0,
+    "runtimeChanges": 0,
+    "productionMp4Replacements": 0,
+    "productionVideoSlots": 8,
+    "shipCampSeconds": 12,
+    "saveV6Changes": 0
+  },
+  "limits": [
+    "Three existing raster images/four editorial compositions, not four newly filmed perspectives",
+    "Ellipsis does not prove continuous gait, elapsed game time, ground anchoring or exact geographical continuity",
+    "16s is proposed timing, not adoption of former28s storyboard or change of shipped12s descriptor",
+    "Candidate05 retains its unaccepted blade/gait status; viewing its silent copy does not accept its audio/art",
+    "Final doctrine/runtime/media acceptance remain undecided"
+  ],
+  "preview": {
+    "url": "http://127.0.0.1:5454/",
+    "pid": 30916,
+    "bind": "127.0.0.1",
+    "allowlistedFiles": 8
+  }
+}

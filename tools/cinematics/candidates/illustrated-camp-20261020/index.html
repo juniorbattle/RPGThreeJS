@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RPGThreeJS — Le camp, montage illustré</title>
+  <link rel="stylesheet" href="study.css">
+</head>
+<body>
+  <main>
+    <header class="masthead">
+      <div><p class="eyebrow">RPGThreeJS · Étude de mise en scène</p><h1>Le camp, en quatre images</h1></div>
+      <div class="modes" role="group" aria-label="Version à regarder">
+        <button id="images-mode" aria-pressed="true">Images</button>
+        <button id="video-mode" aria-pressed="false">Vidéo 05</button>
+      </div>
+    </header>
+
+    <section class="screen" aria-label="Aperçu de la cinématique" tabindex="0">
+      <svg id="illustration" viewBox="0 0 1672 941" role="img" aria-labelledby="scene-title" preserveAspectRatio="xMidYMid meet">
+        <title id="scene-title">Le camp nocturne, plan d’ensemble</title>
+        <image id="scene-image" width="1672" height="941" href="../../../../public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-camp-cinematic-source.png" />
+      </svg>
+      <video id="candidate" hidden muted playsinline preload="metadata" aria-label="Candidat vidéo 05, copie silencieuse conservant le rythme original">
+        <source src="../../../../tmp/cinematics/cin4/production_manual_p03_20261020/shot_p03/candidate_05_silent_review.mp4" type="video/mp4">
+      </video>
+      <p id="media-error" hidden role="status"></p>
+    </section>
+
+    <section class="deck" aria-label="Commandes de lecture">
+      <div class="shot-caption"><span id="shot-number">01 / 04</span><div><h2 id="shot-label">Le camp</h2><p id="shot-note">Une vue d’ensemble pour installer le lieu.</p></div><output id="clock" aria-live="off">0,0 / 16,0 s</output></div>
+      <div class="transport">
+        <button id="play" class="primary" disabled>Chargement…</button>
+        <button id="previous" aria-label="Plan précédent">←</button>
+        <button id="next" aria-label="Plan suivant">→</button>
+        <input id="seek" type="range" min="0" max="16" step="0.05" value="0" aria-label="Position de lecture" aria-valuetext="0 seconde sur 16">
+        <label class="motion-option"><input id="camera-motion" type="checkbox" checked> <span id="motion-label">Recadrage doux</span></label>
+      </div>
+      <div class="chapters" role="group" aria-label="Aller à un plan">
+        <button data-shot="0" aria-current="step"><span>01</span> Le camp <small>4 s</small></button>
+        <button data-shot="1"><span>02</span> Le détail <small>3 s</small></button>
+        <button data-shot="2"><span>03</span> Le trio <small>5 s</small></button>
+        <button data-shot="3"><span>04</span> L’arrêt <small>4 s</small></button>
+      </div>
+      <p id="play-status" class="status" role="status" aria-live="polite">Chargement des images existantes…</p>
+    </section>
+
+    <footer>
+      <p>Quatre compositions, des coupes, une ellipse entre deux positions. <strong>Le mouvement des personnages n’est pas animé.</strong></p>
+      <details><summary>Ce que compare cet essai</summary><p>Montage illustré de 16 s proposé, face au candidat05 de 10,125 s. Trois images existantes : le camp et les deux poses du trio ; le détail est un recadrage de la même image. Aucun nouveau dessin ou son. Les vues ne certifient pas un raccord de géographie ni une marche continue. Le trio reste dans le camp, avant le dialogue existant. Cet essai ne remplace aucune vidéo du jeu et ne vaut pas adoption artistique.</p></details>
+    </footer>
+  </main>
+  <script type="module" src="study.mjs"></script>
+</body>
+</html>

@@ -1,69 +1,70 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-20T22:00:30.1524046Z",
-  "runEndedAt": "2026-10-20T22:24:31.645Z",
-  "activeTask": "MANUAL-CAMP-P03-CANDIDATE05",
-  "activePhase": "P03_CANDIDATE05_REVIEW_CHECKPOINT",
-  "activeSubtask": "One paid candidate preserved; visible sword-clearance defect, gait not certified; operator review only",
+  "runStartedAt": "2026-10-21T01:08:01.9187753Z",
+  "runEndedAt": "2026-10-21T01:19:01.148Z",
+  "activeTask": "MANUAL-ILLUSTRATED-CAMP-COMPARISON",
+  "activePhase": "ILLUSTRATED_CAMP_PROTOTYPE_READY_FOR_COMPARISON",
+  "activeSubtask": "Four compositions/three existing images/16s proposed;exclusiveImages-Video05 reader delivered offline",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "ef2dfc4e49b3f6a19385653427dd1121915ccedd",
-  "lastPushedCommit": "ef2dfc4e49b3f6a19385653427dd1121915ccedd",
+  "lastKnownGoodCommit": "0b4d46c6e5de2250b3ba0e066e20f7e1c81268a7",
+  "lastPushedCommit": "0b4d46c6e5de2250b3ba0e066e20f7e1c81268a7",
   "completedThisRun": [
-    "Recorded explicit one-candidate05/USD1.50excludingtax approval OD-2026-10-20-C",
-    "Implemented exactpayload/last-frame/resume/exclusive-reservation guard with byte-identical approved prompt",
-    "Guardian reviewed actualdiff;140focused tests/build/contracts/gates PASS",
-    "Submitted/downloaded exactlyone task; preserved raw+same-video-payload silent copy,1x browser observations and two selectedproofs; motion not accepted"
+    "Built actual four-shot illustrated camp montage from three existingimages with explicitellipsis and optionalwholeframecrop",
+    "Added paused exclusive mode comparison to retainedsilentVideo05,keyboard/seek/reducedmotion/failure fallback",
+    "Verified12artifactbrowserchecks after minimalearlypreloadfailurefix;reviewed captures and guardianPASS;no game/runtime/media replacement"
   ],
   "filesChanged": [
     ".gitattributes",
-    "tools/cinematics/minimax_h3_generate.mjs",
-    "tools/cinematics/minimax_task_checkpoint.mjs",
-    "tools/cinematics/minimax_task_checkpoint.test.mjs",
-    "tools/cinematics/specs/manual-p03-20261020/camp-p03-05.json",
-    "tools/cinematics/specs/manual-p03-20261020/candidate-05-authorization.json",
-    "docs/autonomy/MANUAL_P03_CANDIDATE05_OPERATOR_DECISION_2026-10-20.md",
+    "tools/cinematics/candidates/illustrated-camp-20261020/index.html",
+    "tools/cinematics/candidates/illustrated-camp-20261020/study.css",
+    "tools/cinematics/candidates/illustrated-camp-20261020/study.mjs",
+    "tools/cinematics/candidates/illustrated-camp-20261020/provenance.json",
+    "tools/cinematics/candidates/illustrated-camp-20261020/review-receipt.json",
+    "tools/cinematics/candidates/illustrated-camp-20261020/review-preview.png",
+    "docs/autonomy/ILLUSTRATED_CAMP_COMPARISON_2026-10-20.md",
     "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/MANUAL_P03_CANDIDATE05_RESULT_2026-10-20.md",
-    "docs/autonomy/handoffs/2026-10-20T2210Z-codex-p03-candidate05.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "tools/cinematics/candidates/manual-p03-20261020/candidate-05-review-receipt.json",
-    "tools/cinematics/candidates/manual-p03-20261020/candidate-05-frame061-review.png"
+    "docs/autonomy/handoffs/2026-10-21T0120Z-codex-illustrated-camp.md"
   ],
   "testsRun": [
-    "140 focused tests PASS (122checkpoint/request +18shot-spec); legacy04 retained",
-    "npm run build PASS including tsc; inherited chunk-size advisory only",
-    "contracts:validate8/8 and both LOCKED gates empty; diffcheck PASS",
-    "actual-diff guardian PASS_SCOPED_ACTUAL_DIFF, exact spec/decision/prompt/two-source hashes independently checked",
-    "339qaJobs, exactMDQAblock and unrelated historical/deferred/audio roots preserved"
+    "node --check study.mjs PASS",
+    "npx tsc --noEmit PASS",
+    "contracts:validate8/8 and both LOCKED gates empty;diffcheck PASS",
+    "12bounded artifactbrowser checks PASS after one own preload-race fix, assertions preserved",
+    "Source/prototype SHA exact;selectedcaptures inspected;guardian PASS_SCOPED_ACTUAL_ARTIFACT",
+    "339qaJobs/exactMDQAblock/all unrelated historical/deferred/audio roots preserved"
   ],
   "testsPassed": [
-    "140 focused tests PASS (122checkpoint/request +18shot-spec); legacy04 retained",
-    "npm run build PASS including tsc; inherited chunk-size advisory only",
-    "contracts:validate8/8 and both LOCKED gates empty; diffcheck PASS",
-    "actual-diff guardian PASS_SCOPED_ACTUAL_DIFF, exact spec/decision/prompt/two-source hashes independently checked",
-    "339qaJobs, exactMDQAblock and unrelated historical/deferred/audio roots preserved"
+    "node --check study.mjs PASS",
+    "npx tsc --noEmit PASS",
+    "contracts:validate8/8 and both LOCKED gates empty;diffcheck PASS",
+    "12bounded artifactbrowser checks PASS after one own preload-race fix, assertions preserved",
+    "Source/prototype SHA exact;selectedcaptures inspected;guardian PASS_SCOPED_ACTUAL_ARTIFACT",
+    "339qaJobs/exactMDQAblock/all unrelated historical/deferred/audio roots preserved"
   ],
   "testsRemaining": [
     "Future continuous 1x pilot motion/artistic acceptance, filmic keyframe/cut poses and runtime integration not evaluated",
     "Global PC/art/balance/hardware, five native audio families and true hidden/suspend remain open; mobile after stable PC"
   ],
   "blockers": [
-    "Manual artistic/motion verdict on samecandidate; no second paid attempt authorized."
+    "Operator style verdict/adoption undecided; prototype is not media-doctrine or artistic acceptance"
   ],
   "remainingWork": [
-    "Normal-speed continuous motion and operator artistic verdict remain separate from provider success",
-    "GlobalPC/balance/hardware/audio5families/hidden/mobile afterPC remain open"
+    "Review thissame comparison once;newspecificfinding before further iteration",
+    "Any final media-doctrine change needs dedicated operator decision/task",
+    "GlobalPC/art/balance/hardware/audio5nativefamilies/hidden/mobileafterPC remain open"
   ],
-  "nextAction": "Review the preserved candidate05 continuous10s video at normal speed and give one precise artistic/motion verdict; no second paid attempt is authorized.",
+  "nextAction": "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
   "taskQueue": [
-    "Review the preserved candidate05 continuous10s video at normal speed and give one precise artistic/motion verdict; no second paid attempt is authorized.",
-    "Independent authorized demonstratedPC defect only; mobile afterPC stability"
+    "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
+    "Independent already-authorized demonstratedPC defect only;no unchanged diagnostic loop",
+    "Mobile afterPC stability"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SCOPED_ACTUAL_DIFF;set1.7.0/f4aae63 unchanged;manual05 only OD-2026-10-20-C",
-  "commitReferenceScope": "Historical roots preserved; current delivery/closure hashes in Git and automation memory",
-  "operatorAuthorization": "Explicit one candidate05,USD1.50excludingtax cap,noautomaticpaidretry; OD-2026-10-12-A normaldevpublication",
+  "contractComplianceStatus": "PASS_SCOPED_ACTUAL_ARTIFACT;set1.7.0/f4aae63 unchanged;offlineprototype only",
+  "commitReferenceScope": "Containing delivery/closure SHA inGit and automationmemory; historicalP03roots unchanged",
+  "operatorAuthorization": "Interactive Okay go on shortcamp illustrated comparison using existingimages;OD-2026-10-12-A normaldevpublication",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -133,19 +134,32 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-manual-p03-video05-20261020",
+  "runId": "codex-manual-camp-illustrated-20261020",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-20T22:24:31.645Z",
+  "lastHeartbeat": "2026-10-21T01:19:01.148Z",
   "wip": {
     "branch": "dev",
-    "sha": "ef2dfc4e49b3f6a19385653427dd1121915ccedd",
-    "dirtyFiles": [],
-    "status": "GREEN_MANUAL05_NOT_ART_ACCEPTED",
+    "sha": "0b4d46c6e5de2250b3ba0e066e20f7e1c81268a7",
+    "dirtyFiles": [
+      ".gitattributes",
+      "tools/cinematics/candidates/illustrated-camp-20261020/index.html",
+      "tools/cinematics/candidates/illustrated-camp-20261020/study.css",
+      "tools/cinematics/candidates/illustrated-camp-20261020/study.mjs",
+      "tools/cinematics/candidates/illustrated-camp-20261020/provenance.json",
+      "tools/cinematics/candidates/illustrated-camp-20261020/review-receipt.json",
+      "tools/cinematics/candidates/illustrated-camp-20261020/review-preview.png",
+      "docs/autonomy/ILLUSTRATED_CAMP_COMPARISON_2026-10-20.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/handoffs/2026-10-21T0120Z-codex-illustrated-camp.md"
+    ],
+    "status": "GREEN_ILLUSTRATED_ARTIFACT_NOT_ART_ACCEPTED",
     "inheritedWip": 0,
-    "lastGreenCheck": "2026-10-20T22:24:31.645Z"
+    "lastGreenCheck": "2026-10-21T01:19:01.148Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-20T22:24:31.645Z",
+    "lastHeartbeat": "2026-10-21T01:19:01.148Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37335,30 +37349,48 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "ef2dfc4e49b3f6a19385653427dd1121915ccedd",
-      "dirtyFiles": [],
-      "status": "GREEN_MANUAL05_NOT_ART_ACCEPTED",
+      "sha": "0b4d46c6e5de2250b3ba0e066e20f7e1c81268a7",
+      "dirtyFiles": [
+        ".gitattributes",
+        "tools/cinematics/candidates/illustrated-camp-20261020/index.html",
+        "tools/cinematics/candidates/illustrated-camp-20261020/study.css",
+        "tools/cinematics/candidates/illustrated-camp-20261020/study.mjs",
+        "tools/cinematics/candidates/illustrated-camp-20261020/provenance.json",
+        "tools/cinematics/candidates/illustrated-camp-20261020/review-receipt.json",
+        "tools/cinematics/candidates/illustrated-camp-20261020/review-preview.png",
+        "docs/autonomy/ILLUSTRATED_CAMP_COMPARISON_2026-10-20.md",
+        "docs/autonomy/OPERATOR_DECISIONS.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/handoffs/2026-10-21T0120Z-codex-illustrated-camp.md"
+      ],
+      "status": "GREEN_ILLUSTRATED_ARTIFACT_NOT_ART_ACCEPTED",
       "inheritedWip": 0,
-      "lastGreenCheck": "2026-10-20T22:24:31.645Z"
+      "lastGreenCheck": "2026-10-21T01:19:01.148Z"
     },
-    "nextAction": "Review the preserved candidate05 continuous10s video at normal speed and give one precise artistic/motion verdict; no second paid attempt is authorized.",
+    "nextAction": "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
-      "toolSourceFiles": 2,
-      "sourceTestFiles": 1,
-      "manualSpecAuthorizationFiles": 2,
-      "workflowAndDecisionFiles": 7,
+      "artifactSourceFiles": 3,
+      "artifactProvenanceFiles": 1,
       "promotedProofFiles": 2,
-      "uniqueTrackedPaths": 14,
-      "gameplayStagesPlayed": 0,
+      "workflowDecisionFiles": 6,
+      "uniqueTrackedPaths": 12,
+      "persistentQaTools": 0,
+      "sourceTestFiles": 0,
       "registeredJobs": 0,
       "totalQaJobs": 339,
-      "providerTasksCreated": 1,
-      "providerPaidRetries": 0,
-      "productionMp4Replacements": 0,
+      "artifactBrowserScenarios": 1,
+      "artifactBrowserExecutions": 2,
+      "ownRegressionFixes": 1,
+      "productionScenarios": 0,
+      "gameplayStagesPlayed": 0,
+      "imageGenerations": 0,
+      "videoGenerations": 0,
+      "providerTasksCreated": 0,
+      "mp4Replacements": 0,
       "automationUpdated": 0,
-      "inheritedWipFiles": 0,
-      "artifactBrowserReviews": 1
+      "inheritedWipFiles": 0
     },
     "checkpointPaths": [
       "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
@@ -37377,7 +37409,7 @@
       "remoteDevVerified": true,
       "finalWorkflow": "Containing metadata SHA/parity and owned lock release recorded in automation memory"
     },
-    "runEndedAt": "2026-10-20T22:24:31.645Z",
+    "runEndedAt": "2026-10-21T01:19:01.148Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "P03 realization dossier closure",
@@ -38173,8 +38205,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "MANUAL-CAMP-P03-CANDIDATE05",
-    "activeSubtask": "One paid candidate preserved; visible sword-clearance defect, gait not certified; operator review only",
+    "activeTask": "MANUAL-ILLUSTRATED-CAMP-COMPARISON",
+    "activeSubtask": "Four compositions/three existing images/16s proposed;exclusiveImages-Video05 reader delivered offline",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41506,13 +41538,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-manual-p03-video05-20261020",
+    "runId": "codex-manual-camp-illustrated-20261020",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-20T22:00:30.1524046Z",
-    "activePhase": "P03_CANDIDATE05_REVIEW_CHECKPOINT",
-    "heartbeat": "2026-10-20T22:24:31.645Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-20T2210Z-codex-p03-candidate05.md",
+    "runStartedAt": "2026-10-21T01:08:01.9187753Z",
+    "activePhase": "ILLUSTRATED_CAMP_PROTOTYPE_READY_FOR_COMPARISON",
+    "heartbeat": "2026-10-21T01:19:01.148Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0120Z-codex-illustrated-camp.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -45683,24 +45715,29 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-20T2210Z-codex-p03-candidate05.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0120Z-codex-illustrated-camp.md",
   "runMeasurement": {
     "runtimeSourceFiles": 0,
-    "toolSourceFiles": 2,
-    "sourceTestFiles": 1,
-    "manualSpecAuthorizationFiles": 2,
-    "workflowAndDecisionFiles": 7,
+    "artifactSourceFiles": 3,
+    "artifactProvenanceFiles": 1,
     "promotedProofFiles": 2,
-    "uniqueTrackedPaths": 14,
-    "gameplayStagesPlayed": 0,
+    "workflowDecisionFiles": 6,
+    "uniqueTrackedPaths": 12,
+    "persistentQaTools": 0,
+    "sourceTestFiles": 0,
     "registeredJobs": 0,
     "totalQaJobs": 339,
-    "providerTasksCreated": 1,
-    "providerPaidRetries": 0,
-    "productionMp4Replacements": 0,
+    "artifactBrowserScenarios": 1,
+    "artifactBrowserExecutions": 2,
+    "ownRegressionFixes": 1,
+    "productionScenarios": 0,
+    "gameplayStagesPlayed": 0,
+    "imageGenerations": 0,
+    "videoGenerations": 0,
+    "providerTasksCreated": 0,
+    "mp4Replacements": 0,
     "automationUpdated": 0,
-    "inheritedWipFiles": 0,
-    "artifactBrowserReviews": 1
+    "inheritedWipFiles": 0
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -50091,5 +50128,31 @@
     "pendingProviderTasks": 0,
     "deliveryCommit": "ef2dfc4e49b3f6a19385653427dd1121915ccedd",
     "publication": "VERIFIED origin/dev; containing closure hash in Git and automation memory"
+  },
+  "campIllustratedComparison": {
+    "runId": "codex-manual-camp-illustrated-20261020",
+    "baseline": "0b4d46c6e5de2250b3ba0e066e20f7e1c81268a7",
+    "status": "PROTOTYPE_READY_FOR_STYLE_REVIEW_NOT_ADOPTED",
+    "authorization": "MANUAL-ILLUSTRATED-CAMP-2026-10-20",
+    "document": "docs/autonomy/ILLUSTRATED_CAMP_COMPARISON_2026-10-20.md",
+    "artifact": "tools/cinematics/candidates/illustrated-camp-20261020/index.html",
+    "provenance": "tools/cinematics/candidates/illustrated-camp-20261020/provenance.json",
+    "receipt": "tools/cinematics/candidates/illustrated-camp-20261020/review-receipt.json",
+    "handoff": "docs/autonomy/handoffs/2026-10-21T0120Z-codex-illustrated-camp.md",
+    "sourceImages": 3,
+    "compositions": 4,
+    "proposedSeconds": 16,
+    "newImages": 0,
+    "newVideos": 0,
+    "previewUrl": "http://127.0.0.1:5454/",
+    "previewPid": 30916,
+    "browserChecks": 12,
+    "guardian": "PASS_SCOPED_ACTUAL_ARTIFACT",
+    "artisticAcceptance": false,
+    "doctrineAdoption": false,
+    "runtimeChanged": false,
+    "gaitAcceptance": false,
+    "runEndedAt": "2026-10-21T01:19:01.148Z",
+    "nextAction": "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred."
   }
 }
