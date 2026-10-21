@@ -1,0 +1,18 @@
+{
+  "status": "READY_FOR_OPERATOR_REVIEW",
+  "at": "2026-10-21T22:09:11.981Z",
+  "guardian": "PASS_SCOPED_OFFLINE_REVIEW",
+  "reviewer": "/root/guardian",
+  "provenanceHashChecks": 45,
+  "receiptHashChecks": 15,
+  "proof": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review-receipt.json",
+    "sha256": "d060e3470ddb0a0b0d105118aa0ce48ae305fd8d022846a8156db3bf8143b863"
+  },
+  "artAccepted": false,
+  "runtimeIntegrated": false,
+  "rawAcceptance": "NOT_ACCEPTED",
+  "contractSetVersion": "1.8.0",
+  "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+  "lockedRulesChanged": false
+}

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T21:43:31.428Z",
+  "updatedAt": "2026-10-21T22:09:11.981Z",
   "scope": "Offline illustrated candidates; final art/runtime separate",
   "scenes": [
     {
@@ -18,16 +18,17 @@
     },
     {
       "id": "bois_clair_saved",
-      "status": "GENERATED_REVIEW_PENDING",
+      "status": "READY_FOR_OPERATOR_REVIEW",
       "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/index.html",
       "finalArtAccepted": false,
       "runtimeIntegrated": false,
-      "technicalReview": "PASS_10_CHECKS_INDEPENDENT_REVIEW_BLOCKED_CREDITS"
+      "technicalReview": "PASS_SCOPED",
+      "reviewCloseoutPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-closeout.json"
     },
     {
       "id": "bois_clair_sacrificed",
-      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
-      "path": null,
+      "status": "READY_FOR_OPERATOR_REVIEW",
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/index.html",
       "finalArtAccepted": false,
       "runtimeIntegrated": false
     },

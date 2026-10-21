@@ -1,0 +1,49 @@
+{
+  "status": "READY_FOR_OPERATOR_REVIEW",
+  "at": "2026-10-21T21:49:55.666Z",
+  "guardian": "PASS_SCOPED_OFFLINE_REVIEW",
+  "reviewer": "/root/guardian",
+  "verifiedHashReferences": 77,
+  "proof": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-receipt.json",
+    "sha256": "8060b7f85f84df5192e8cf713bf37237c9e657b71bc9bb097fcb7c84c814f2c7"
+  },
+  "noBrowserRerun": true,
+  "artAccepted": false,
+  "runtimeIntegrated": false,
+  "historicalCreditBlock": "Resolved by direct operator continuation; historical receipt kept unchanged",
+  "statusOnlyHtml": {
+    "testedSha256": "f3a98e7e842d94220426df422c1d33b9b2de88e43cf1c6a193a576fb7b6eb6c3",
+    "deliveredSha256": "512a1421cff7855fea5be7ae85707bf60881db2f3e879fa6803aae46ad9b1525",
+    "edits": [
+      [
+        "cinq illustrations à vérifier",
+        "cinq illustrations prêtes pour revue"
+      ],
+      [
+        "EN ATTENTE DE REVUE TECHNIQUE",
+        "PRÊT POUR REVUE OPÉRATEUR"
+      ],
+      [
+        "Images inspectées individuellement ; lecture continue et reçu technique restent à vérifier au prochain run.",
+        "Images et captures inspectées ; lecture18s et dix contrôles techniques réussis, revue indépendante terminée. Art final et intégration restent à décider."
+      ]
+    ]
+  },
+  "matrix": {
+    "GAME_CONSTITUTION": "PASS",
+    "ART_DIRECTION": "PASS_SCOPED_FINAL_ART_DEFERRED",
+    "CHARACTERS": "PASS_TWO_V2_ACTORS",
+    "ENVIRONMENTS": "PASS_SAVED_DAMAGED",
+    "NARRATIVE_CAMPAIGN": "PASS_PRE_CHOICE",
+    "NARRATIVE_PRESENTATION": "PASS_UNCHANGED_READER",
+    "TRAVERSAL": "N/A",
+    "COMBAT": "N/A",
+    "SAVE": "PASS_UNCHANGED",
+    "UI_ACCESSIBILITY": "PASS_SCOPED",
+    "QA_EVIDENCE": "PASS_EXACT_PROVENANCE",
+    "REPOSITORY_GOVERNANCE": "PASS"
+  },
+  "contractSetVersion": "1.8.0",
+  "lockedRulesChanged": false
+}

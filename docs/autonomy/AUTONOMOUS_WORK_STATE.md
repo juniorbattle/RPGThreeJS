@@ -1,12 +1,10 @@
-# Bois-Clair sauvé : lecture technique réussie, revue indépendante bloquée
+# Montages illustrés — Bois-Clair livré, jugement en production
 
-Run codex-illustrated-saved-20261021T2031Z, début2026-10-21T20:31:12Z, clôture2026-10-21T21:43:31.428Z. **PAUSED_FOR_CREDITS** : le reviewer contracts-guardian a retourné une limite d’usage avant son avis. Scheduler ACTIVE/configuration inchangée. Reprise du montage existant sans génération :5images/18s,1scénario/10contrôles PASS,3captures inspectées. Statut GENERATED_REVIEW_PENDING conservé ; aucune nouvelle acceptation artistique/runtime/globalPC.
+Run codex-illustrated-resume-20261021T2146Z, début2026-10-21T21:46:48Z, heartbeat2026-10-21T22:09:11.981Z. IN_PROGRESS ; crédits disponibles. Scheduler ACTIVE/configuration inchangée. Sauvé READY par revue indépendante de preuve existante, sans QA rejoué. Sacrifié READY :5nouvelles images/18s,1scénario/10contrôles,3captures inspectées,guardianPASS. Art/runtime/globalPC non acceptés.
 
-**UNE prochaine action :** Retest model/reviewer availability, finish scoped independent saved/v1 review using review-receipt.json and unchanged5images18s (no browser rerun absent provenance drift), then READY and source-bound bois_clair_sacrificed generation before village_raid_aftermath:1/provisions choice; no routine operator approval.
+Prochaine action : Produce branch-neutral lion_judgement offline before dynamic lionFinale open; Alaric sole required actor, no verdict/Seal/route presumption. Four16s stills proposed; shared reader unchanged; single browser scenario already used for sacrificed this run.
 
-41tests/TypeScript/contracts8+8/gates/SHA/diffcheck PASS.345jobs hérités intacts,346total ; brut SUCCEEDED/NOT_ACCEPTED séparé.0source runtime/0gameplay/0imagegen/5nouveaux fichiers QA-preuve/3workflowdocs+1plan/0WIP hérité. Camp/audience/arrivée/saved médias/lecteur/src/public/V6/audio/contrats inchangés. Quatre scènes restent sans média. [Handoff](handoffs/2026-10-21T2031Z-codex-saved-credit-checkpoint.md).
-
-Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/narrative/presentation/save/governance PASS préservation ; UI/QA PASS technique bornée, revue indépendante BLOCKED_CREDITS ; Traversal/combat N/A. Aucun LOCKED modifié. Publication normale dev OD-2026-10-12-A ; SHA final/parité/libération du verrou dans Git/mémoire automation.
+346jobs hérités inchangés,347total. Camp/audience/arrivée/médias sauvés/lecteur/src/public/V6/contrats inchangés. Gate set1.8.0/baseline0cb95135 vide.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -357,6 +355,7 @@ Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/nar
 - illustrated-audience-1754-final: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review-final/qa-job.json`; ACCEPTED_SCOPED_OFFLINE_READER_AUDIENCE
 - illustrated-bois-arrival-1854: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-bois-1854/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-bois-saved-2031: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-saved-2031/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-bois-sacrificed-2146: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-resume-2146/review/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 Checkpoint technique6d4704826d0f8bd0295b59676828c5c1052b8a15 publié et parité origin/dev vérifiée. Clôture 2026-10-21T21:44:56.094Z. Serveur5461 arrêté, aucun onglet créé, scheduler byte-identique. Verrou libéré après publication des métadonnées et mémoire automation ; SHA de métadonnée dans Git.

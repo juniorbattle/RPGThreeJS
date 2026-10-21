@@ -1,0 +1,42 @@
+{
+  "totalSeconds": 18,
+  "normalFadeSeconds": 1,
+  "reducedFadeSeconds": 0.8,
+  "stages": [
+    {
+      "title": "Ce qui demeure",
+      "description": "La place brûlée et la distance entre les deux personnages montrent le coût déjà établi.",
+      "start": 0,
+      "duration": 4,
+      "path": "shot-01.png"
+    },
+    {
+      "title": "L’attention se resserre",
+      "description": "Le cadrage rapproche le livre fermé et les têtes inclinées ; rien ne change de propriétaire.",
+      "start": 4,
+      "duration": 3,
+      "path": "shot-02.png"
+    },
+    {
+      "title": "Se protéger",
+      "description": "La Villageoise remonte son panier et replie ses épaules, sous le regard de Maelor.",
+      "start": 7,
+      "duration": 3,
+      "path": "shot-03.png"
+    },
+    {
+      "title": "Éviter le regard",
+      "description": "La tête se baisse vers le panier ; la relation reste sans réponse.",
+      "start": 10,
+      "duration": 3,
+      "path": "shot-04.png"
+    },
+    {
+      "title": "Avant la première parole",
+      "description": "Retour large : Maelor regarde la Villageoise, restée repliée, avant le dialogue et son choix.",
+      "start": 13,
+      "duration": 5,
+      "path": "shot-05.png"
+    }
+  ]
+}

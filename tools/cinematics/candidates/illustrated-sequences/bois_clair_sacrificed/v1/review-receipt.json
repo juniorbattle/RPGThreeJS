@@ -1,0 +1,129 @@
+{
+  "status": "TECHNICAL_PASS_INDEPENDENT_CLOSEOUT_PENDING",
+  "reviewedAt": "2026-10-21T22:04:00.748Z",
+  "artAccepted": false,
+  "runtimeIntegrated": false,
+  "rawReceipt": {
+    "path": "tmp/cinematics/illustrated-resume-2146/review/qa-job.json",
+    "sha256": "3a613ade86cf07b09ac7b63451fc2256b9cd75449f528db322d9dcedb48e2934"
+  },
+  "rawResult": {
+    "path": "tmp/cinematics/illustrated-resume-2146/review/results.json",
+    "sha256": "1af67e415b9cb8e100a1cea3e90c3264759b107418d7b8e5c475d5b02d9ddffb"
+  },
+  "driver": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review-smoke.mjs",
+    "sha256": "7600cfd6e94de4b8255c1ac1bf110cd8d48b88df2f017a88421371077b57dd52"
+  },
+  "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+  "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "parameters": {
+    "scene": "bois_clair_sacrificed",
+    "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v1/index.html",
+    "media": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/sequence.json",
+        "sha256": "e2283bbdfa3d6cd5940ed4fc41d784ab593f5198ab37cdf4babde1c3dac0d9c6"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png",
+        "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-02.png",
+        "sha256": "9fd66d8a895979b248d4f3dc4cbb5cc4c177137bb1b9ea4d2c1f5d92da93055f"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-03.png",
+        "sha256": "8e4707c0c6e6a93161a9a1cac92eb9d3cdbc12c9b02d277daaf474aad690840e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-04.png",
+        "sha256": "181df3ef5f93a5c0e1dee01f8ad625f8ce44fc075f842468c31e0f97b786692d"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-05.png",
+        "sha256": "39f4c63fbe01cadaa11723dc8abd8b85af43602a6d2488be98fc9151b912bf27"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/index.html",
+        "sha256": "483feda7022d515fafedf32e643c95237e5dc1ead20b10969d54a67a6779d252"
+      }
+    ],
+    "reader": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+        "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+        "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+      }
+    ],
+    "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+  },
+  "checks": [
+    "Five distinct complete images preloaded; initially paused on establishing image",
+    "Four real-time dissolves through chronological5images, total18s and final stop",
+    "All five scene stages follow the authored timeline",
+    "Five-stage Home/End/arrow/previous navigation matches timeline",
+    "OSreduce gentle dissolve retained; pause freezes opacity and clock; resume advances",
+    "Whole images/44px controls/no horizontal clipping at1366x768",
+    "Whole images/44px controls/no horizontal clipping at620x780",
+    "Whole images/44px controls/no horizontal clipping at390x844",
+    "No nominal console/page errors",
+    "Missing final raccord image disables playback with visible status"
+  ],
+  "samples": [
+    {
+      "time": 3.2,
+      "base": "shot-01.png",
+      "next": "shot-02.png",
+      "alpha": 0.130667,
+      "loaded": true
+    },
+    {
+      "time": 6.2,
+      "base": "shot-02.png",
+      "next": "shot-03.png",
+      "alpha": 0.130457,
+      "loaded": true
+    },
+    {
+      "time": 9.2,
+      "base": "shot-03.png",
+      "next": "shot-04.png",
+      "alpha": 0.130352,
+      "loaded": true
+    },
+    {
+      "time": 12.2,
+      "base": "shot-04.png",
+      "next": "shot-05.png",
+      "alpha": 0.130247,
+      "loaded": true
+    }
+  ],
+  "captures": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review-dissolve-2.png",
+      "sha256": "c291a2fa34ebe47a7e6c9c015e799fc716f4c7bcdeabc8ebd00dc1f71db92fb4"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review-desktop-endpoint.png",
+      "sha256": "1eb4debb3c3b248865a456a8c2f459dd6d71e0d018004f04420dc93f49b36b97"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review-narrow-preparation.png",
+      "sha256": "edb1cf701af7d28788360962643d3fedcf7492457225601b83d21a3ae66b1862"
+    }
+  ],
+  "rawAcceptance": "NOT_ACCEPTED",
+  "humanStyleAcceptance": false,
+  "observation": {
+    "nativeImages": "all five full-size inspected",
+    "normalPlayback": "Four real1s dissolves and18s stop in registered Playwright scenario",
+    "iab": "Actual reader18s observed at0.2s and18s with OSreduce0.8s; same media unchanged",
+    "captures": "dissolve02, endpoint and390width inspected; no clipping/overflow"
+  }
+}

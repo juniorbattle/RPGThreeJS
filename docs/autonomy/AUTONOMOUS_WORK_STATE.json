@@ -1,15 +1,16 @@
 {
-  "status": "PAUSED_FOR_CREDITS",
-  "runStartedAt": "2026-10-21T20:31:12Z",
-  "runEndedAt": "2026-10-21T21:44:56.094Z",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-21T21:46:48Z",
+  "runEndedAt": null,
   "activeTask": "ILLUSTRATED-CINEMATICS-OFFLINE-CANDIDATES",
-  "activePhase": "SAVED_TECHNICAL_PASS_INDEPENDENT_REVIEW_BLOCKED_CREDITS",
-  "activeSubtask": "Saved18s10checks/captures complete; guardian usage limit; no new generation",
+  "activePhase": "LION_JUDGEMENT_SOURCE_BOUND_PRODUCTION",
+  "activeSubtask": "Saved and sacrificed READY scoped; begin branch-neutral judgement",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
   "lastPushedCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
   "completedThisRun": [
-    "Saved existing5images18s technical playback10checks and inspected3captures; fresh exact receipt, no regeneration"
+    "Saved independent review completed from existing proof; READY without QA rerun",
+    "Sacrificed5newillustrations/18s,10checks+guardianPASS; READY, art/runtime remain open"
   ],
   "filesChanged": [
     "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-smoke.mjs",
@@ -44,9 +45,7 @@
     "Independent scoped saved review after availability returns; four remaining scenes",
     "Operator final art/runtime/globalPC/balance/hardware; mobile afterPC"
   ],
-  "blockers": [
-    "Independent contracts-guardian failed before review: model usage limit reached. Imagegen credit availability not tested; no alternative provider."
-  ],
+  "blockers": [],
   "remainingWork": [
     "Saved technical review before READY",
     "bois_clair_sacrificed",
@@ -54,7 +53,7 @@
     "serpent_route_ending",
     "lion_trial_route_ending"
   ],
-  "nextAction": "Retest model/reviewer availability, finish scoped independent saved/v1 review using review-receipt.json and unchanged5images18s (no browser rerun absent provenance drift), then READY and source-bound bois_clair_sacrificed generation before village_raid_aftermath:1/provisions choice; no routine operator approval.",
+  "nextAction": "Produce branch-neutral lion_judgement offline before dynamic lionFinale open; Alaric sole required actor, no verdict/Seal/route presumption. Four16s stills proposed; shared reader unchanged; single browser scenario already used for sacrificed this run.",
   "taskQueue": [
     "Produce offline illustrated candidate alaric_audience_arrival",
     "Produce offline illustrated candidate bois_clair_arrival",
@@ -66,8 +65,8 @@
     "Single indexed artistic review handoff for completed candidates",
     "Independent demonstrated PC issue only; mobile after PC stability"
   ],
-  "creditStatus": "PAUSED_FOR_CREDITS_MODEL_REVIEWER_LIMIT_IMAGEGEN_NOT_PROBED",
-  "contractComplianceStatus": "PASS_PRESERVATION_AND_SCOPED_TECHNICAL; INDEPENDENT_MILESTONE_REVIEW_BLOCKED_CREDITS; LOCKED_UNCHANGED",
+  "creditStatus": "AVAILABLE_INTEGRATED_IMAGEGEN_AND_REVIEWER",
+  "contractComplianceStatus": "PASS_SCOPED_SAVED_INDEPENDENT_REVIEW_LOCKED_UNCHANGED",
   "commitReferenceScope": "Base commit before this workflow-only checkpoint; containing commit and remote parity are recorded in automation memory.",
   "operatorAuthorization": "OD-2026-10-21-B: direct operator request to unblock everything necessary for the automation; activation already granted. Scope stays OD-2026-10-21-A/set1.8.0.",
   "creativeDirection": {
@@ -139,9 +138,9 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-illustrated-saved-20261021T2031Z",
+  "runId": "codex-illustrated-resume-20261021T2146Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T21:44:56.094Z",
+  "lastHeartbeat": "2026-10-21T21:54:46.689Z",
   "wip": {
     "branch": null,
     "sha": null,
@@ -149,7 +148,7 @@
     "lastGreenCheck": "7d1abf3 published; arrival10checks/saved5images41tests/types/contracts/SHA PASS; saved continuous review pending"
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T21:44:56.094Z",
+    "lastHeartbeat": "2026-10-21T22:09:11.981Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -38264,15 +38263,145 @@
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "illustrated-bois-sacrificed-2146",
+        "runId": "codex-illustrated-resume-20261021T2146Z",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-21T22:00:15.687Z",
+        "pid": 36588,
+        "port": 5461,
+        "command": [
+          "node",
+          "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review-smoke.mjs"
+        ],
+        "parameters": {
+          "scene": "bois_clair_sacrificed",
+          "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v1/index.html",
+          "media": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/sequence.json",
+              "sha256": "e2283bbdfa3d6cd5940ed4fc41d784ab593f5198ab37cdf4babde1c3dac0d9c6"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png",
+              "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-02.png",
+              "sha256": "9fd66d8a895979b248d4f3dc4cbb5cc4c177137bb1b9ea4d2c1f5d92da93055f"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-03.png",
+              "sha256": "8e4707c0c6e6a93161a9a1cac92eb9d3cdbc12c9b02d277daaf474aad690840e"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-04.png",
+              "sha256": "181df3ef5f93a5c0e1dee01f8ad625f8ce44fc075f842468c31e0f97b786692d"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-05.png",
+              "sha256": "39f4c63fbe01cadaa11723dc8abd8b85af43602a6d2488be98fc9151b912bf27"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/index.html",
+              "sha256": "483feda7022d515fafedf32e643c95237e5dc1ead20b10969d54a67a6779d252"
+            }
+          ],
+          "reader": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+              "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+              "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+            }
+          ],
+          "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+        },
+        "requiredAssertions": [
+          "FIVE_DISTINCT_IMAGES_PAUSED",
+          "FOUR_NORMAL_SPEED_DISSOLVES_18S_STOP",
+          "ORDER_TIMELINE_KEYBOARD",
+          "OS_REDUCE_PAUSE_RESUME",
+          "CONTAIN_44PX_NO_OVERFLOW",
+          "NO_CONSOLE_ERRORS",
+          "MISSING_IMAGE_DISABLES_PLAYBACK"
+        ],
+        "output": "tmp/cinematics/illustrated-resume-2146/review",
+        "receiptPath": "tmp/cinematics/illustrated-resume-2146/review/qa-job.json",
+        "provenance": {
+          "gitHead": "ccacfccf2a38163393d7427bec2efad9afea364b",
+          "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review-smoke.mjs",
+            "sha256": "7600cfd6e94de4b8255c1ac1bf110cd8d48b88df2f017a88421371077b57dd52"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-CpZAzB3w.js",
+              "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-21T22:01:14.936Z",
+        "endedAt": "2026-10-21T22:01:38.554Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/illustrated-resume-2146/review/results.json",
+        "resultSha256": "1af67e415b9cb8e100a1cea3e90c3264759b107418d7b8e5c475d5b02d9ddffb",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": {
-      "branch": null,
-      "sha": null,
-      "status": "ON_DEV",
-      "lastGreenCheck": "6d47048 published and remote parity verified; saved technical10checks PASS; independent review blocked by model usage limit"
+      "branch": "wip/codex-illustrated-resume-20261021T2146Z",
+      "sha": "254ed71074037270e982e893902941067e6a0ca7",
+      "status": "GREEN",
+      "lastGreenCheck": "Exact reviewed snapshot paths byte verified; partial media is not acceptance"
     },
-    "nextAction": "Retest model/reviewer availability, finish scoped independent saved/v1 review using review-receipt.json and unchanged5images18s (no browser rerun absent provenance drift), then READY and source-bound bois_clair_sacrificed generation before village_raid_aftermath:1/provisions choice; no routine operator approval.",
+    "nextAction": "Produce branch-neutral lion_judgement offline before dynamic lionFinale open; Alaric sole required actor, no verdict/Seal/route presumption. Four16s stills proposed; shared reader unchanged; single browser scenario already used for sacrificed this run.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "gameplaySteps": 0,
@@ -38306,8 +38435,8 @@
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
       "at": "2026-10-21T21:44:56.094Z"
     },
-    "runEndedAt": "2026-10-21T21:44:56.094Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "scope": "Following commit records published delivery SHA and final closeout; identify metadata HEAD via Git",
       "previewPort5461Stopped": true,
@@ -39102,7 +39231,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "ILLUSTRATED-CINEMATICS-OFFLINE-CANDIDATES",
-    "activeSubtask": "Saved18s10checks/captures complete; guardian usage limit; no new generation",
+    "activeSubtask": "Saved and sacrificed READY scoped; begin branch-neutral judgement",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -42434,12 +42563,12 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-illustrated-saved-20261021T2031Z",
+    "runId": "codex-illustrated-resume-20261021T2146Z",
     "agent": "codex",
-    "status": "PAUSED_FOR_CREDITS",
-    "runStartedAt": "2026-10-21T20:31:12Z",
-    "activePhase": "SAVED_TECHNICAL_PASS_INDEPENDENT_REVIEW_BLOCKED_CREDITS",
-    "heartbeat": "2026-10-21T21:44:56.094Z",
+    "status": "IN_PROGRESS",
+    "runStartedAt": "2026-10-21T21:46:48Z",
+    "activePhase": "LION_JUDGEMENT_SOURCE_BOUND_PRODUCTION",
+    "heartbeat": "2026-10-21T21:54:46.689Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T2031Z-codex-saved-credit-checkpoint.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -44972,11 +45101,12 @@
       },
       "closeoutAt": "2026-10-16T15:33:54.359Z"
     },
-    "creditStatus": "PAUSED_FOR_CREDITS_MODEL_REVIEWER_LIMIT_IMAGEGEN_NOT_PROBED",
+    "creditStatus": "AVAILABLE_INTEGRATED_IMAGEGEN_AND_REVIEWER",
     "workingBranch": "dev",
     "lastKnownGoodCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
     "completedThisRun": [
-      "Saved existing5images18s technical playback10checks and inspected3captures; fresh exact receipt, no regeneration"
+      "Saved independent review completed from existing proof; READY without QA rerun",
+      "Sacrificed5newillustrations/18s,10checks+guardianPASS; READY, art/runtime remain open"
     ],
     "filesChanged": [
       "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-smoke.mjs",
@@ -45011,9 +45141,7 @@
       "Independent scoped saved review after availability returns; four remaining scenes",
       "Operator final art/runtime/globalPC/balance/hardware; mobile afterPC"
     ],
-    "blockers": [
-      "Independent contracts-guardian failed before review: model usage limit reached. Imagegen credit availability not tested; no alternative provider."
-    ],
+    "blockers": [],
     "remainingWork": [
       "Saved technical review before READY",
       "bois_clair_sacrificed",
@@ -48275,7 +48403,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-21T21:44:56.094Z",
+  "heartbeat": "2026-10-21T21:54:46.689Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -50248,8 +50376,8 @@
     "taskComplete": false,
     "newLabelBrowser": "OPEN"
   },
-  "lastSnapshotCommit": "e5a371f38ebf2f03d55e98fce41902a0f8e6311f",
-  "lastSnapshotAt": "2026-10-21T19:17:34.978Z",
+  "lastSnapshotCommit": "254ed71074037270e982e893902941067e6a0ca7",
+  "lastSnapshotAt": "2026-10-21T21:54:55.889Z",
   "runMetrics": {
     "runtimeSourceFiles": 0,
     "gameplaySteps": 0,
@@ -51463,11 +51591,11 @@
     "videoSlots": 8
   },
   "illustratedProduction": {
-    "runId": "codex-illustrated-saved-20261021T2031Z",
-    "updatedAt": "2026-10-21T21:43:31.428Z",
-    "scene": "bois_clair_saved",
+    "runId": "codex-illustrated-resume-20261021T2146Z",
+    "updatedAt": "2026-10-21T22:09:11.981Z",
+    "scene": "lion_judgement",
     "version": "v1",
-    "status": "SAVED_TECHNICAL_PASS_INDEPENDENT_REVIEW_BLOCKED_CREDITS",
+    "status": "LION_JUDGEMENT_SOURCE_BOUND_PRODUCTION",
     "initialImages": 5,
     "corrections": 2,
     "rawVariantsRetained": 8,
@@ -51477,18 +51605,20 @@
     "finalArtAccepted": false,
     "delivered": [
       "alaric_audience_arrival",
-      "bois_clair_arrival"
+      "bois_clair_arrival",
+      "bois_clair_saved",
+      "bois_clair_sacrificed"
     ],
-    "nextScene": "bois_clair_saved",
+    "nextScene": "lion_judgement",
     "galleryPath": "tools/cinematics/candidates/illustrated-sequences/index.html",
-    "qa": "illustrated-bois-saved-2031",
+    "qa": "illustrated-bois-sacrificed-2146",
     "qaJobsAdded": 1,
-    "originalQaJobsPreserved": 345,
+    "originalQaJobsPreserved": 346,
     "guardian": {
       "arrival": "PASS_SCOPED_OFFLINE_READER_ARRIVAL",
       "saved": "PASS_PRESERVATION; continuous montage pending"
     },
-    "totalImagegenCalls": 0,
+    "totalImagegenCalls": 5,
     "selectedIllustrations": 5,
     "rawUniqueOutputs": 7,
     "scenes": [
@@ -51512,13 +51642,22 @@
       },
       {
         "id": "bois_clair_saved",
-        "status": "GENERATED_REVIEW_PENDING",
+        "status": "READY_FOR_OPERATOR_REVIEW",
         "initialImages": 5,
         "corrections": 2,
         "seconds": 18,
-        "guardian": "PASS_PRESERVATION",
+        "guardian": "PASS_SCOPED_OFFLINE_REVIEW",
         "technicalReview": "PASS10CHECKS_CAPTURE_INSPECTED",
-        "independentReview": "BLOCKED_CREDITS"
+        "independentReview": "PASS_SCOPED_OFFLINE_REVIEW"
+      },
+      {
+        "id": "bois_clair_sacrificed",
+        "status": "READY_FOR_OPERATOR_REVIEW",
+        "initialImages": 5,
+        "corrections": 0,
+        "seconds": 18,
+        "guardian": "PASS_SCOPED_OFFLINE_REVIEW",
+        "technicalReview": "PASS10CHECKS_CAPTURE_INSPECTED"
       }
     ],
     "noRuntimeChange": true,
@@ -51627,8 +51766,8 @@
     ],
     "runEndedAt": "2026-10-21T19:20:33.291Z",
     "elapsedMinutes": 26.5,
-    "generatedThisRun": 0,
+    "generatedThisRun": 5,
     "technicalReviewReceipt": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-receipt.json",
-    "independentReview": "BLOCKED_CREDITS"
+    "independentReview": "PASS_SCOPED_SAVED_AND_SACRIFICED"
   }
 }

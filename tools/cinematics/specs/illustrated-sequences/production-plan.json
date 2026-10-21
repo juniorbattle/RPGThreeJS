@@ -4,7 +4,7 @@
   "contractTaskId": "PRODUCTION-CONTRACTS-ILLUSTRATED-CANDIDATES-1",
   "contractSetVersion": "1.8.0",
   "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
-  "status": "PAUSED_FOR_CREDITS",
+  "status": "IN_PROGRESS",
   "scheduler": {
     "id": "rpgthreejs-auto-dev-90m",
     "status": "ACTIVE",
@@ -95,26 +95,37 @@
     {
       "id": "bois_clair_saved",
       "order": 3,
-      "status": "GENERATED_REVIEW_PENDING",
+      "status": "READY_FOR_OPERATOR_REVIEW",
       "sourceIndex": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_saved.json",
       "sourceIndexRole": "Historical reference paths only; revalidate current canonical source, never execute video instructions",
       "outputRoot": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved",
       "finalArtAccepted": false,
       "runtimeIntegrated": false,
       "candidate": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/index.html",
-      "technicalReview": "PASS_10_CHECKS_INDEPENDENT_REVIEW_BLOCKED_CREDITS",
+      "technicalReview": "PASS10CHECKS_AND_INDEPENDENT_SCOPED_REVIEW",
       "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-receipt.json",
-      "updatedAt": "2026-10-21T21:43:31.428Z"
+      "updatedAt": "2026-10-21T21:49:55.666Z",
+      "reviewCloseoutPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-closeout.json"
     },
     {
       "id": "bois_clair_sacrificed",
       "order": 4,
-      "status": "PENDING_SOURCE_BOUND_PRODUCTION",
+      "status": "READY_FOR_OPERATOR_REVIEW",
       "sourceIndex": "tools/cinematics/specs/production-eight-slot-remaster/bois_clair_sacrificed.json",
       "sourceIndexRole": "Historical reference paths only; revalidate current canonical source, never execute video instructions",
       "outputRoot": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed",
       "finalArtAccepted": false,
-      "runtimeIntegrated": false
+      "runtimeIntegrated": false,
+      "version": "v1",
+      "candidatePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/index.html",
+      "provenancePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/provenance.json",
+      "reviewPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review.md",
+      "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review-receipt.json",
+      "reviewCloseoutPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review-closeout.json",
+      "initialImages": 5,
+      "corrections": 0,
+      "proposedDurationSeconds": 18,
+      "updatedAt": "2026-10-21T22:09:11.981Z"
     },
     {
       "id": "lion_judgement",
@@ -147,7 +158,7 @@
       "runtimeIntegrated": false
     }
   ],
-  "firstAction": "Retest model/reviewer availability, finish scoped independent saved/v1 review using review-receipt.json and unchanged5images18s (no browser rerun absent provenance drift), then READY and source-bound bois_clair_sacrificed generation before village_raid_aftermath:1/provisions choice; no routine operator approval.",
+  "firstAction": "Produce branch-neutral lion_judgement offline before dynamic lionFinale open; Alaric sole required actor, no verdict/Seal/route presumption. Four16s stills proposed; shared reader unchanged; single browser scenario already used for sacrificed this run.",
   "completionPolicy": "Each reviewed offline delivery becomes READY_FOR_OPERATOR_REVIEW; advance to next pending scene without routine approval; all seven delivered -> single operator review handoff.",
   "preserve": {
     "qaJobs": 339,
@@ -161,5 +172,5 @@
   "executionDecisionPath": "docs/autonomy/ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md",
   "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
   "executionPolicy": "Operator activation is already granted. Scheduled runs execute the seven authorized offline illustrated candidates; obsolete configuration-only/PAUSED notes are historical. No routine restart approval.",
-  "updatedAt": "2026-10-21T21:43:31.428Z"
+  "updatedAt": "2026-10-21T22:09:11.981Z"
 }

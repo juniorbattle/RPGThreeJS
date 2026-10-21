@@ -1,0 +1,6 @@
+{
+  "output_hint": "Generated images are saved to C:\\Users\\miche\\.codex\\generated_images\\01a16029-2713-7f02-bc09-01681379b711 as C:\\Users\\miche\\.codex\\generated_images\\01a16029-2713-7f02-bc09-01681379b711\\exec-9e5c5baa-336c-4eea-a0af-39cd08f93fdc.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "tool": "image_gen.imagegen",
+  "rawPath": "C:\\Users\\miche\\.codex\\generated_images\\01a16029-2713-7f02-bc09-01681379b711\\exec-9e5c5baa-336c-4eea-a0af-39cd08f93fdc.png",
+  "inspection": "Selected: basket visibly raised with separate hands; Maelor book retained, two V2 identities, no transfer. Output keeps wider composition than requested, readable guarded relation retained."
+}
