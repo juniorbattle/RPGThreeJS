@@ -1,0 +1,131 @@
+{
+  "status": "TECHNICAL_PASS_INDEPENDENT_REVIEW_BLOCKED_CREDITS",
+  "reviewedAt": "2026-10-21T21:43:31.428Z",
+  "artAccepted": false,
+  "runtimeIntegrated": false,
+  "rawReceipt": {
+    "path": "tmp/cinematics/illustrated-saved-2031/review/qa-job.json",
+    "sha256": "e0f74561d602e92761d88bd915aa09839545139c0334a9ab09b3bb12664d2551"
+  },
+  "rawResult": {
+    "path": "tmp/cinematics/illustrated-saved-2031/review/results.json",
+    "sha256": "9c0907e610174dd07e6b8850e40f11da056c43c4d26a87ea821792202c1cb05d"
+  },
+  "driver": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-smoke.mjs",
+    "sha256": "4c11349eec6e113e305a024a72b44cd3f8e5fe1f352c10d4fad7f182cf1a7631"
+  },
+  "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+  "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "parameters": {
+    "scene": "bois_clair_saved",
+    "url": "http://127.0.0.1:5461/bois_clair_saved/v1/index.html",
+    "media": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/sequence.json",
+        "sha256": "ca07974212e52336f32c1e0316a7e5e25f930d33668d9d9664044ccc19db7381"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
+        "sha256": "be5c947c2e416934b420661d43e337bee07f3f17d0ddf7b7e10b75ecbd2103a4"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-02.png",
+        "sha256": "a4006292c34e8564a11ad1444efa21d92140b78445bb02248340cd6b33559c84"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-03.png",
+        "sha256": "3619cddaf405582dde64fc7ace5edc20aa962fa5a81566f802067b14963c4e69"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-04.png",
+        "sha256": "816dc1a64b0f4b3ad527482bec0954ba5b49e6782ea9959982fac894d5fdd15c"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-05.png",
+        "sha256": "09d1c53c650efef0999e4cb68e938ddfab1f9bad41fe1c94d0166429c92656d8"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/index.html",
+        "sha256": "f3a98e7e842d94220426df422c1d33b9b2de88e43cf1c6a193a576fb7b6eb6c3"
+      }
+    ],
+    "reader": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+        "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+        "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+      }
+    ],
+    "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+  },
+  "checks": [
+    "Five distinct complete images preloaded; initially paused on establishing image",
+    "Four real-time dissolves through chronological5images, total18s and final stop",
+    "All five scene stages follow the authored timeline",
+    "Five-stage Home/End/arrow/previous navigation matches timeline",
+    "OSreduce gentle dissolve retained; pause freezes opacity and clock; resume advances",
+    "Whole images/44px controls/no horizontal clipping at1366x768",
+    "Whole images/44px controls/no horizontal clipping at620x780",
+    "Whole images/44px controls/no horizontal clipping at390x844",
+    "No nominal console/page errors",
+    "Missing final raccord image disables playback with visible status"
+  ],
+  "samples": [
+    {
+      "time": 3.2,
+      "base": "shot-01.png",
+      "next": "shot-02.png",
+      "alpha": 0.129513,
+      "loaded": true
+    },
+    {
+      "time": 6.2,
+      "base": "shot-02.png",
+      "next": "shot-03.png",
+      "alpha": 0.129303,
+      "loaded": true
+    },
+    {
+      "time": 9.2,
+      "base": "shot-03.png",
+      "next": "shot-04.png",
+      "alpha": 0.129303,
+      "loaded": true
+    },
+    {
+      "time": 12.2,
+      "base": "shot-04.png",
+      "next": "shot-05.png",
+      "alpha": 0.129094,
+      "loaded": true
+    }
+  ],
+  "captures": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-dissolve-2.png",
+      "sha256": "7120da1048b12cdc1e69d3619cbbcfbb38ddaf83664c0c09af4244e062824d2f"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-desktop-endpoint.png",
+      "sha256": "a12c631789d0ef68ecc5d53a60473081fc45b3f66f8dea90a9d621c1496cec8a"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-narrow-preparation.png",
+      "sha256": "61a8bfbe0448bb019dbc9251a76c9430dcefb62f0a76958da50f86e25e06fbe3"
+    }
+  ],
+  "rawAcceptance": "NOT_ACCEPTED",
+  "independentReview": {
+    "status": "BLOCKED_CREDITS",
+    "reason": "contracts-guardian subagent failed: usage limit reached; retry availability next run, no repeated browser needed unless provenance changes"
+  },
+  "limitations": [
+    "No READY promotion until independent scoped review finishes",
+    "No new illustration, gameplay, artistic or runtime acceptance",
+    "Saved five selected images, sequence, HTML and shared reader unchanged"
+  ]
+}

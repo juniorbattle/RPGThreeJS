@@ -1,14 +1,12 @@
-# Cinématiques illustrées — arrivée revue ; branche sauvée produite
+# Bois-Clair sauvé : lecture technique réussie, revue indépendante bloquée
 
-Run codex-illustrated-bois-20261021T1854Z · début2026-10-21T18:54:03Z · clôture 2026-10-21T19:20:33.291Z. READY_FOR_PC_ACCEPTANCE conservé, scheduler ACTIVE/configuration byte-identique. [Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html) · [Lecture locale](../../tools/cinematics/candidates/illustrated-sequences/README.md).
+Run codex-illustrated-saved-20261021T2031Z, début2026-10-21T20:31:12Z, clôture2026-10-21T21:43:31.428Z. **PAUSED_FOR_CREDITS** : le reviewer contracts-guardian a retourné une limite d’usage avant son avis. Scheduler ACTIVE/configuration inchangée. Reprise du montage existant sans génération :5images/18s,1scénario/10contrôles PASS,3captures inspectées. Statut GENERATED_REVIEW_PENDING conservé ; aucune nouvelle acceptation artistique/runtime/globalPC.
 
-Arrivée :5images existantes/18s sans régénération,1scénario/1reçu/10contrôles PASS et guardian PASS_SCOPED, READY_FOR_OPERATOR_REVIEW. StatutHTML seulement corrigé après preuve avec exactavant/après/SHA ; reçu brut NOT_ACCEPTED distinct de revue bornée. Sauvé :5images/18s,5appels initiaux+2corrections mains/accessoires,7raw conservés, guardian PASS_PRESERVATION, GENERATED_REVIEW_PENDING ; lecture continue/reçu technique à faire avant READY. Aucun art final/runtime accepté.
+**UNE prochaine action :** Retest model/reviewer availability, finish scoped independent saved/v1 review using review-receipt.json and unchanged5images18s (no browser rerun absent provenance drift), then READY and source-bound bois_clair_sacrificed generation before village_raid_aftermath:1/provisions choice; no routine operator approval.
 
-**Une prochaine action exacte :** Resume bois_clair_saved/v1 without regenerating its5selected illustrations. Copy preserved arrival smoke to saved/v1, adapt paths/mediaSHA only (same5images/4dissolves/18s/0,4,7,10,13), retain every assertion and unique receipt. Observe normal18s and inspect relevant captures before READY; then bois_clair_sacrificed. Camp/audience/arrival/proven reader unchanged.
+41tests/TypeScript/contracts8+8/gates/SHA/diffcheck PASS.345jobs hérités intacts,346total ; brut SUCCEEDED/NOT_ACCEPTED séparé.0source runtime/0gameplay/0imagegen/5nouveaux fichiers QA-preuve/3workflowdocs+1plan/0WIP hérité. Camp/audience/arrivée/saved médias/lecteur/src/public/V6/audio/contrats inchangés. Quatre scènes restent sans média. [Handoff](handoffs/2026-10-21T2031Z-codex-saved-credit-checkpoint.md).
 
-TypeScript/41tests ciblés/contrats8+8/gates/diffcheck/SHA/timeline/liens PASS.344jobs hérités inchangés,345total.0source runtime/0gameplay/5illustrations sélectionnées/7appels/1scénario/5QApreuves/3workflowdocs+1plan/0WIP hérité. Lecteur/pilote audience/camp/anciens médias/src/public/V6/audio/contrats intacts. Art/PCglobal/balance/hardware/audio différé/mobile-aprèsPC restent ouverts. [Handoff courant](handoffs/2026-10-21T1854Z-codex-illustrated-bois.md).
-
-Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/narrative/presentation/save/governance PASS préservation ; UI/QA PASS arrivée, sauvé continu PENDING ; Traversal/combat N/A. Aucun LOCKED changé. Checkpoint produit 7d1abf302f0c13ace0255fafb45576fbb6400c35 publié/parité origin/dev vérifiée. Serveur/onglet arrêtés. Clôture 2026-10-21T19:20:33.291Z ; métadonnée contenant cet état et libération du verrou consignées dans Git/mémoire automation, main inchangé.
+Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/narrative/presentation/save/governance PASS préservation ; UI/QA PASS technique bornée, revue indépendante BLOCKED_CREDITS ; Traversal/combat N/A. Aucun LOCKED modifié. Publication normale dev OD-2026-10-12-A ; SHA final/parité/libération du verrou dans Git/mémoire automation.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -358,4 +356,5 @@ Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/nar
 - illustrated-audience-1754-host-server: FAILED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review-host-server/qa-job.json`; NOT_ACCEPTED
 - illustrated-audience-1754-final: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-audience-1754/review-final/qa-job.json`; ACCEPTED_SCOPED_OFFLINE_READER_AUDIENCE
 - illustrated-bois-arrival-1854: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-bois-1854/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-bois-saved-2031: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-saved-2031/review/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->

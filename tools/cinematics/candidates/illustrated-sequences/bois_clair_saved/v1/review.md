@@ -15,3 +15,9 @@ Géographie/lumière : même place humide, palissade brisée, maisons/clocher à
 **À reprendre en priorité sans régénération :** observer ce montage18s à vitesse normale, copier le pilote arrivé5images/4fondus/18s/départs0/4/7/10/13 dans ce dossier v1, adapter uniquement chemins/identités/SHA ; garder chargement/ordre/pause/reprise/clavier/fin/OSreduce/cadrage/console/manquant. Enregistrer un nouveau reçu et inspecter captures. Le seul scénario de ce run est celui de l’arrivée : sa preuve du lecteur n’accepte pas ces nouveaux médias. Ne pas passer READY avant cette revue ; ensuite poursuivre bois_clair_sacrificed sans validation humaine routinière.
 
 Art final, compréhension humaine, adoption runtime et PC global restent opérateur. Aucun src/public/manifest/vidéo/audio/save/contrat/camp modifié. Deux corrections consommées dans ce run ; aucun retry identique.
+
+## Reprise technique 2026-10-21T21:43:31.428Z
+
+Les cinq images existantes ont été reprises sans régénération. Un scénario normal18s/4fondus à vitesse réelle, dix contrôles PASS : chargement/ordre/clavier/pause horloge+opacité/reprise/OSreduce/cadrage1366,620,390/44px/console/final absent. Captures fondu02/fin/étroit inspectées ; aucun rognage ni débordement visible. Preuve exacte dans review-receipt.json ; brut SUCCEEDED et NOT_ACCEPTED conservés séparément. HTML/timeline/lecteur/images byte-identiques.
+
+La revue indépendante contracts-guardian a échoué avant avis, limite d’usage du modèle (retour outil : usage limit reached). Statut GENERATED_REVIEW_PENDING conservé ; aucune promotion READY, aucune acceptation artistique. Run PAUSED_FOR_CREDITS, scheduler ACTIVE inchangé. Prochain run : vérifier disponibilité puis revue indépendante du diff/reçu existant ; ne pas relancer le navigateur ni régénérer sans dérive. Ensuite produire bois_clair_sacrificed.

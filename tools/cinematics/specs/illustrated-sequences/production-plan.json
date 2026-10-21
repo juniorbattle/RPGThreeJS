@@ -4,7 +4,7 @@
   "contractTaskId": "PRODUCTION-CONTRACTS-ILLUSTRATED-CANDIDATES-1",
   "contractSetVersion": "1.8.0",
   "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
-  "status": "IN_PROGRESS",
+  "status": "PAUSED_FOR_CREDITS",
   "scheduler": {
     "id": "rpgthreejs-auto-dev-90m",
     "status": "ACTIVE",
@@ -101,7 +101,10 @@
       "outputRoot": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved",
       "finalArtAccepted": false,
       "runtimeIntegrated": false,
-      "candidate": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/index.html"
+      "candidate": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/index.html",
+      "technicalReview": "PASS_10_CHECKS_INDEPENDENT_REVIEW_BLOCKED_CREDITS",
+      "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-receipt.json",
+      "updatedAt": "2026-10-21T21:43:31.428Z"
     },
     {
       "id": "bois_clair_sacrificed",
@@ -144,7 +147,7 @@
       "runtimeIntegrated": false
     }
   ],
-  "firstAction": "Resume bois_clair_saved/v1 without regenerating its5selected illustrations. Copy preserved arrival smoke to saved/v1, adapt paths/mediaSHA only (same5images/4dissolves/18s/0,4,7,10,13), retain every assertion and unique receipt. Observe normal18s and inspect relevant captures before READY; then bois_clair_sacrificed. Camp/audience/arrival/proven reader unchanged.",
+  "firstAction": "Retest model/reviewer availability, finish scoped independent saved/v1 review using review-receipt.json and unchanged5images18s (no browser rerun absent provenance drift), then READY and source-bound bois_clair_sacrificed generation before village_raid_aftermath:1/provisions choice; no routine operator approval.",
   "completionPolicy": "Each reviewed offline delivery becomes READY_FOR_OPERATOR_REVIEW; advance to next pending scene without routine approval; all seven delivered -> single operator review handoff.",
   "preserve": {
     "qaJobs": 339,
@@ -158,5 +161,5 @@
   "executionDecisionPath": "docs/autonomy/ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md",
   "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
   "executionPolicy": "Operator activation is already granted. Scheduled runs execute the seven authorized offline illustrated candidates; obsolete configuration-only/PAUSED notes are historical. No routine restart approval.",
-  "updatedAt": "2026-10-21T19:12:55.685Z"
+  "updatedAt": "2026-10-21T21:43:31.428Z"
 }
