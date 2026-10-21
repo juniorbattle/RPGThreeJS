@@ -3,69 +3,68 @@
   "runStartedAt": "2026-10-21T06:29:15.239Z",
   "runEndedAt": null,
   "activeTask": "MANUAL-CAMP-EIGHT-IMAGE-STORY",
-  "activePhase": "VERIFY_CHRONOLOGICAL_EIGHT_IMAGE_READER",
-  "activeSubtask": "Four new action/consequence illustrations plus four reused stills; narrative20s assembly",
+  "activePhase": "EIGHT_IMAGE_CAMP_STORY_READY_FOR_REVIEW",
+  "activeSubtask": "Visible preparation/action/consequence beats added; reader verified, story comprehension unaccepted",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
-  "lastPushedCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
+  "lastKnownGoodCommit": "f9da67accfd9d0ac8dec06857f2202bb75e0208d",
+  "lastPushedCommit": "f9da67accfd9d0ac8dec06857f2202bb75e0208d",
   "completedThisRun": [
-    "Generated five distinct staged illustrations using canonical V2/camp references only",
-    "Delivered 20s held-image montage with manual shot selection and no prior-media input",
-    "Verified reader and preserved exact requests/results/raw originals/SHA",
-    "Replaced abrupt automatic cuts with timeline-driven soft full-image crossfades after explicit operator feedback"
+    "Generated4new whole-scene action/consequence stills from canonical+previousstill references only",
+    "Reused4prior stills byte-identically and assembled8chronological stages within20s",
+    "Verified7real-time dissolves, controls/layout/failure and preserved raw inputs/requests/results"
   ],
   "filesChanged": [
     ".gitattributes",
-    "tools/cinematics/candidates/camp-five-stills-20261020/index.html",
-    "tools/cinematics/candidates/camp-five-stills-20261020/montage.css",
-    "tools/cinematics/candidates/camp-five-stills-20261020/montage.mjs",
-    "tools/cinematics/candidates/camp-five-stills-20261020/provenance.json",
-    "tools/cinematics/candidates/camp-five-stills-20261020/requests.json",
-    "tools/cinematics/candidates/camp-five-stills-20261020/results.json",
-    "tools/cinematics/candidates/camp-five-stills-20261020/review-crossfade-v2.png",
-    "tools/cinematics/candidates/camp-five-stills-20261020/review-preview.png",
-    "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt-crossfade-v2.json",
-    "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt.json",
-    "tools/cinematics/candidates/camp-five-stills-20261020/shot-01.png",
-    "tools/cinematics/candidates/camp-five-stills-20261020/shot-02.png",
-    "tools/cinematics/candidates/camp-five-stills-20261020/shot-03.png",
-    "tools/cinematics/candidates/camp-five-stills-20261020/shot-04.png",
-    "tools/cinematics/candidates/camp-five-stills-20261020/shot-05.png",
-    "docs/autonomy/CAMP_FIVE_STILLS_OPERATOR_DIRECTION_2026-10-20.md",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/index.html",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/montage.css",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/montage.mjs",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/provenance.json",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/requests.json",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/results.json",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/reused-inputs.json",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/review-preview.png",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/review-receipt.json",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/sequence.json",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/shot-01.png",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/shot-02.png",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/shot-03.png",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/shot-04.png",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/shot-05.png",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/shot-06.png",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/shot-07.png",
+    "tools/cinematics/candidates/camp-story-sequence-20261021/shot-08.png",
+    "docs/autonomy/CAMP_STORY_SEQUENCE_OPERATOR_DIRECTION_2026-10-21.md",
     "docs/autonomy/OPERATOR_DECISIONS.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-21T0224Z-codex-camp-five-stills.md"
+    "docs/autonomy/handoffs/2026-10-21T0628Z-codex-camp-story-sequence.md"
   ],
   "testsRun": [
     "contracts:validate8/8",
     "tsc --noEmit",
     "node syntax",
-    "LOCKED baseline/worktree gates",
+    "LOCKED baseline/protected-path gates",
     "diff --check",
-    "One standalone montage browser scenario",
-    "Five raw project/original pairs and four canonical-input hashes",
-    "Focused crossfade-v2 scenario"
+    "One8-stage20s reader smoke",
+    "8image/origin and7input hash verification"
   ],
   "testsPassed": [
-    "11reader-only checks PASS",
-    "Four captures inspected",
-    "8contracts/8slots; TypeScript0; gates clean",
-    "339QA jobs and exact MD block preserved",
-    "Guardian PASS_SCOPED_CLOSEOUT; assets/provenance/reader receipt and four captures",
-    "Crossfade reader PASS6checks with two inspected captures; five raw images unchanged"
+    "Reader PASS10checks,3captures inspected",
+    "8contracts/8slots; TypeScript0; protectedgates clean",
+    "339QA jobs and exact MD QA block preserved",
+    "Guardian PASS_SCOPED_CLOSEOUT; assets/storyintent and current reader/proof hashes"
   ],
   "testsRemaining": [
-    "Operator composition/rhythm/art/equipment/geography review; no runtime integration acceptance"
+    "Operator comprehension/rhythm/art/equipment/geography verdict; no runtime acceptance inferred"
   ],
   "blockers": [
-    "Fine visual continuity unaccepted: shot01 soil-near swordtip, shot03 swordhand, gear details and reconstructed perspectives"
+    "Comprehension and visual continuity remain unaccepted; final08swordhand, finegear/veil and inherited01groundclearance limits documented"
   ],
   "remainingWork": [
-    "Operator verdict on these same five compositions",
-    "Global PC/art/balance/hardware/audio/nativehidden and mobile-after-PC acceptance retained"
+    "Operator review of this same causal sequence",
+    "GlobalPC/art/balance/hardware/audio/nativehidden and mobile-after-PC boundaries retained"
   ],
-  "nextAction": "Verify20s/eight-stage reader and new narrative beats, then deliver for operator comprehension/rhythm review without art/runtime acceptance.",
+  "nextAction": "Operator watches this same8-image20s sequence and judges whether preparation, interior regrouping, stop and readiness for dialogue are clear without reading the captions; target any unclear transition by its image numbers.",
   "taskQueue": [
     "Operator watches the same16s Images montage and compares with retained Video05, then gives a precise style/rhythm/framing verdict; no doctrine/runtime replacement or new generation inferred.",
     "Independent already-authorized demonstratedPC defect only;no unchanged diagnostic loop",
@@ -74,7 +73,7 @@
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SCOPED_ACTUAL_ARTIFACT;set1.7.0/f4aae63 unchanged;offlineprototype only",
   "commitReferenceScope": "Current delivered soft-transition commit; following metadata-only closeout is discoverable in Git, avoiding circular self-reference.",
-  "operatorAuthorization": "Explicit interactive correction: five distinct staged images generated with image tools only, no video base. MANUAL-CAMP-FIVE-STILLS-2026-10-20, offline review only.",
+  "operatorAuthorization": "Explicit interactive request: more images within20s and chronological current situation. Eight-stage offline implementation, four new imagegen scenes; no video base/runtime adoption.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -146,17 +145,42 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-manual-camp-story-sequence-20261021",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T06:37:25.120Z",
+  "lastHeartbeat": "2026-10-21T06:43:39.163Z",
   "wip": {
     "branch": "dev",
-    "sha": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
-    "dirtyFiles": [],
-    "status": "SOFT_TRANSITION_DELIVERY_PUBLISHED_METADATA_CLOSEOUT",
-    "lastGreenCheck": "2026-10-21T04:12:11.392Z",
+    "sha": "f9da67accfd9d0ac8dec06857f2202bb75e0208d",
+    "dirtyFiles": [
+      ".gitattributes",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/index.html",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/montage.css",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/montage.mjs",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/provenance.json",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/requests.json",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/results.json",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/reused-inputs.json",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/review-preview.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/review-receipt.json",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/sequence.json",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-01.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-02.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-03.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-04.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-05.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-06.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-07.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-08.png",
+      "docs/autonomy/CAMP_STORY_SEQUENCE_OPERATOR_DIRECTION_2026-10-21.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/handoffs/2026-10-21T0628Z-codex-camp-story-sequence.md"
+    ],
+    "status": "VERIFIED_CAMP_STORY_DELIVERY_PENDING_PUBLICATION",
+    "lastGreenCheck": "2026-10-21T06:43:39.163Z",
     "inheritedWip": 0
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T06:37:25.120Z",
+    "lastHeartbeat": "2026-10-21T06:43:39.163Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -37346,27 +37370,54 @@
     ],
     "wip": {
       "branch": "dev",
-      "sha": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
-      "dirtyFiles": [],
-      "status": "SOFT_TRANSITION_DELIVERY_PUBLISHED_METADATA_CLOSEOUT",
-      "lastGreenCheck": "2026-10-21T04:12:11.392Z",
+      "sha": "f9da67accfd9d0ac8dec06857f2202bb75e0208d",
+      "dirtyFiles": [
+        ".gitattributes",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/index.html",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/montage.css",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/montage.mjs",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/provenance.json",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/requests.json",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/results.json",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/reused-inputs.json",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/review-preview.png",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/review-receipt.json",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/sequence.json",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/shot-01.png",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/shot-02.png",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/shot-03.png",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/shot-04.png",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/shot-05.png",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/shot-06.png",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/shot-07.png",
+        "tools/cinematics/candidates/camp-story-sequence-20261021/shot-08.png",
+        "docs/autonomy/CAMP_STORY_SEQUENCE_OPERATOR_DIRECTION_2026-10-21.md",
+        "docs/autonomy/OPERATOR_DECISIONS.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/handoffs/2026-10-21T0628Z-codex-camp-story-sequence.md"
+      ],
+      "status": "VERIFIED_CAMP_STORY_DELIVERY_PENDING_PUBLICATION",
+      "lastGreenCheck": "2026-10-21T06:43:39.163Z",
       "inheritedWip": 0
     },
-    "nextAction": "Verify20s/eight-stage reader and new narrative beats, then deliver for operator comprehension/rhythm review without art/runtime acceptance.",
+    "nextAction": "Operator watches this same8-image20s sequence and judges whether preparation, interior regrouping, stop and readiness for dialogue are clear without reading the captions; target any unclear transition by its image numbers.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "gameplayStagesPlayed": 0,
-      "imageGenCalls": 5,
-      "generatedImages": 5,
-      "distinctShotImages": 5,
+      "imageGenCalls": 4,
+      "newImages": 4,
+      "reusedImages": 4,
+      "displayedImages": 8,
       "artifactSourceFiles": 3,
-      "artifactDataFiles": 3,
-      "selectedProofFiles": 4,
+      "artifactDataFiles": 5,
+      "selectedProofFiles": 2,
       "workflowFiles": 5,
-      "inheritedWipFiles": 0,
+      "repositoryConfigFiles": 1,
+      "artifactBrowserScenarios": 1,
       "newQaJobs": 0,
       "totalQaJobs": 339,
-      "artifactBrowserScenarios": 2
+      "inheritedWipFiles": 0
     },
     "checkpointPaths": [
       "docs/autonomy/CAMP_P03_REALIZATION_DOSSIER_2026-10-20.md",
@@ -38182,7 +38233,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "MANUAL-CAMP-EIGHT-IMAGE-STORY",
-    "activeSubtask": "Four new action/consequence illustrations plus four reused stills; narrative20s assembly",
+    "activeSubtask": "Visible preparation/action/consequence beats added; reader verified, story comprehension unaccepted",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -41518,8 +41569,8 @@
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-21T06:29:15.239Z",
-    "activePhase": "VERIFY_CHRONOLOGICAL_EIGHT_IMAGE_READER",
-    "heartbeat": "2026-10-21T04:12:11.392Z",
+    "activePhase": "EIGHT_IMAGE_CAMP_STORY_READY_FOR_REVIEW",
+    "heartbeat": "2026-10-21T06:43:39.163Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T0628Z-codex-camp-story-sequence.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -43248,7 +43299,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
+    "lastPushedCommit": "f9da67accfd9d0ac8dec06857f2202bb75e0208d",
     "productPreview": {
       "url": "http://127.0.0.1:5438/",
       "pid": 32208,
@@ -44054,63 +44105,62 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
+    "lastKnownGoodCommit": "f9da67accfd9d0ac8dec06857f2202bb75e0208d",
     "completedThisRun": [
-      "Generated five distinct staged illustrations using canonical V2/camp references only",
-      "Delivered 20s held-image montage with manual shot selection and no prior-media input",
-      "Verified reader and preserved exact requests/results/raw originals/SHA",
-      "Replaced abrupt automatic cuts with timeline-driven soft full-image crossfades after explicit operator feedback"
+      "Generated4new whole-scene action/consequence stills from canonical+previousstill references only",
+      "Reused4prior stills byte-identically and assembled8chronological stages within20s",
+      "Verified7real-time dissolves, controls/layout/failure and preserved raw inputs/requests/results"
     ],
     "filesChanged": [
       ".gitattributes",
-      "tools/cinematics/candidates/camp-five-stills-20261020/index.html",
-      "tools/cinematics/candidates/camp-five-stills-20261020/montage.css",
-      "tools/cinematics/candidates/camp-five-stills-20261020/montage.mjs",
-      "tools/cinematics/candidates/camp-five-stills-20261020/provenance.json",
-      "tools/cinematics/candidates/camp-five-stills-20261020/requests.json",
-      "tools/cinematics/candidates/camp-five-stills-20261020/results.json",
-      "tools/cinematics/candidates/camp-five-stills-20261020/review-crossfade-v2.png",
-      "tools/cinematics/candidates/camp-five-stills-20261020/review-preview.png",
-      "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt-crossfade-v2.json",
-      "tools/cinematics/candidates/camp-five-stills-20261020/review-receipt.json",
-      "tools/cinematics/candidates/camp-five-stills-20261020/shot-01.png",
-      "tools/cinematics/candidates/camp-five-stills-20261020/shot-02.png",
-      "tools/cinematics/candidates/camp-five-stills-20261020/shot-03.png",
-      "tools/cinematics/candidates/camp-five-stills-20261020/shot-04.png",
-      "tools/cinematics/candidates/camp-five-stills-20261020/shot-05.png",
-      "docs/autonomy/CAMP_FIVE_STILLS_OPERATOR_DIRECTION_2026-10-20.md",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/index.html",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/montage.css",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/montage.mjs",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/provenance.json",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/requests.json",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/results.json",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/reused-inputs.json",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/review-preview.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/review-receipt.json",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/sequence.json",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-01.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-02.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-03.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-04.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-05.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-06.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-07.png",
+      "tools/cinematics/candidates/camp-story-sequence-20261021/shot-08.png",
+      "docs/autonomy/CAMP_STORY_SEQUENCE_OPERATOR_DIRECTION_2026-10-21.md",
       "docs/autonomy/OPERATOR_DECISIONS.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-21T0224Z-codex-camp-five-stills.md"
+      "docs/autonomy/handoffs/2026-10-21T0628Z-codex-camp-story-sequence.md"
     ],
     "testsRun": [
       "contracts:validate8/8",
       "tsc --noEmit",
       "node syntax",
-      "LOCKED baseline/worktree gates",
+      "LOCKED baseline/protected-path gates",
       "diff --check",
-      "One standalone montage browser scenario",
-      "Five raw project/original pairs and four canonical-input hashes",
-      "Focused crossfade-v2 scenario"
+      "One8-stage20s reader smoke",
+      "8image/origin and7input hash verification"
     ],
     "testsPassed": [
-      "11reader-only checks PASS",
-      "Four captures inspected",
-      "8contracts/8slots; TypeScript0; gates clean",
-      "339QA jobs and exact MD block preserved",
-      "Guardian PASS_SCOPED_CLOSEOUT; assets/provenance/reader receipt and four captures",
-      "Crossfade reader PASS6checks with two inspected captures; five raw images unchanged"
+      "Reader PASS10checks,3captures inspected",
+      "8contracts/8slots; TypeScript0; protectedgates clean",
+      "339QA jobs and exact MD QA block preserved",
+      "Guardian PASS_SCOPED_CLOSEOUT; assets/storyintent and current reader/proof hashes"
     ],
     "testsRemaining": [
-      "Operator composition/rhythm/art/equipment/geography review; no runtime integration acceptance"
+      "Operator comprehension/rhythm/art/equipment/geography verdict; no runtime acceptance inferred"
     ],
     "blockers": [
-      "Fine visual continuity unaccepted: shot01 soil-near swordtip, shot03 swordhand, gear details and reconstructed perspectives"
+      "Comprehension and visual continuity remain unaccepted; final08swordhand, finegear/veil and inherited01groundclearance limits documented"
     ],
     "remainingWork": [
-      "Operator verdict on these same five compositions",
-      "Global PC/art/balance/hardware/audio/nativehidden and mobile-after-PC acceptance retained"
+      "Operator review of this same causal sequence",
+      "GlobalPC/art/balance/hardware/audio/nativehidden and mobile-after-PC boundaries retained"
     ],
     "taskQueue": [
       "Eight existing cinematic slots and retained candidates: bounded audit and keep/correct dispositions",
@@ -44563,17 +44613,19 @@
     "runMeasurement": {
       "runtimeSourceFiles": 0,
       "gameplayStagesPlayed": 0,
-      "imageGenCalls": 5,
-      "generatedImages": 5,
-      "distinctShotImages": 5,
+      "imageGenCalls": 4,
+      "newImages": 4,
+      "reusedImages": 4,
+      "displayedImages": 8,
       "artifactSourceFiles": 3,
-      "artifactDataFiles": 3,
-      "selectedProofFiles": 4,
+      "artifactDataFiles": 5,
+      "selectedProofFiles": 2,
       "workflowFiles": 5,
-      "inheritedWipFiles": 0,
+      "repositoryConfigFiles": 1,
+      "artifactBrowserScenarios": 1,
       "newQaJobs": 0,
       "totalQaJobs": 339,
-      "artifactBrowserScenarios": 2
+      "inheritedWipFiles": 0
     },
     "deploymentHealth0503": {
       "problem": "Retained Hunters failed deployment hides Cedric/Elara1HP behind En jeu cards; same omission in current renderer",
@@ -45675,8 +45727,8 @@
       "qaJobsPreserved": 339,
       "nextAction": "Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained."
     },
-    "operatorAuthorization": "Explicit interactive correction: five distinct staged images generated with image tools only, no video base. MANUAL-CAMP-FIVE-STILLS-2026-10-20, offline review only.",
-    "qaToolingJustification": "Existing campaign/video runners do not target this standalone still-image montage; one ignored temporary Playwright scenario, no persistent tool/job.",
+    "operatorAuthorization": "Explicit interactive request: more images within20s and chronological current situation. Eight-stage offline implementation, four new imagegen scenes; no video base/runtime adoption.",
+    "qaToolingJustification": "Existing game/video drivers do not target this standalone eight-stage illustrated reader; one temporary ignored Playwright scenario, no persistent QA tool or new job.",
     "campFiveStillsCloseout": {
       "deliveryCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
       "normalPushVerified": true,
@@ -45736,17 +45788,19 @@
   "runMeasurement": {
     "runtimeSourceFiles": 0,
     "gameplayStagesPlayed": 0,
-    "imageGenCalls": 5,
-    "generatedImages": 5,
-    "distinctShotImages": 5,
+    "imageGenCalls": 4,
+    "newImages": 4,
+    "reusedImages": 4,
+    "displayedImages": 8,
     "artifactSourceFiles": 3,
-    "artifactDataFiles": 3,
-    "selectedProofFiles": 4,
+    "artifactDataFiles": 5,
+    "selectedProofFiles": 2,
     "workflowFiles": 5,
-    "inheritedWipFiles": 0,
+    "repositoryConfigFiles": 1,
+    "artifactBrowserScenarios": 1,
     "newQaJobs": 0,
     "totalQaJobs": 339,
-    "artifactBrowserScenarios": 2
+    "inheritedWipFiles": 0
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -46032,7 +46086,7 @@
     "automationUpdated": 1,
     "pastAutomationChatsArchived": 140
   },
-  "qaToolingJustification": "Existing campaign/video runners do not target this standalone still-image montage; one ignored temporary Playwright scenario, no persistent tool/job.",
+  "qaToolingJustification": "Existing game/video drivers do not target this standalone eight-stage illustrated reader; one temporary ignored Playwright scenario, no persistent QA tool or new job.",
   "retainedRunArtifacts": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "physicalFreeze": "tmp/autonomy/final-physical-0514.json",
@@ -50233,7 +50287,7 @@
     "wallClockNote": "Includes operator-review interval between initial delivery and follow-up on abrupt cuts; not continuous active agent time."
   },
   "campStorySequence": {
-    "status": "EIGHT_IMAGES_GENERATED_READER_VERIFICATION",
+    "status": "DELIVERED_OFFLINE_COMPREHENSION_REVIEW_PENDING",
     "operatorRequest": "More images within20s, with an actual sequence of the current situation rather than merely varied framings.",
     "proposedImages": 8,
     "newImagesRequested": 4,
@@ -50249,6 +50303,10 @@
     "preview": {
       "url": "http://127.0.0.1:5457/",
       "pid": 7596
-    }
+    },
+    "receipt": "tools/cinematics/candidates/camp-story-sequence-20261021/review-receipt.json",
+    "reader": "PASS_SCOPED_10_CHECKS",
+    "guardian": "PASS_SCOPED_CLOSEOUT",
+    "nextAction": "Operator watches this same8-image20s sequence and judges whether preparation, interior regrouping, stop and readiness for dialogue are clear without reading the captions; target any unclear transition by its image numbers."
   }
 }

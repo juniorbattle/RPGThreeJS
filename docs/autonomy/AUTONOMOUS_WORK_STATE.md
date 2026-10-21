@@ -1,12 +1,16 @@
-# Camp — huit étapes liées, revue en cours
+# Camp — huit étapes narratives prêtes pour revue
 
-Run codex-manual-camp-story-sequence-20261021, UTC 2026-10-21T06:37:25.120Z. READY_FOR_PC_ACCEPTANCE conservé. [Demande/déroulement](CAMP_STORY_SEQUENCE_OPERATOR_DIRECTION_2026-10-21.md).
+Run codex-manual-camp-story-sequence-20261021, UTC 2026-10-21T06:43:39.163Z. READY_FOR_PC_ACCEPTANCE conservé. [Déroulement et limites](CAMP_STORY_SEQUENCE_OPERATOR_DIRECTION_2026-10-21.md).
 
-Quatre nouvelles images +quatre fixes conservées ; camp → livre → livre retenu → bâton → regards → quelques pas intérieurs → arrêt → attention avant dialogue. Huit étapes/20s et fondus proposés, pas de base vidéo/flipbook. Narration, compréhension, art, accessoires, géographie et locomotion non acceptés.
+20s : lieu → livre → livre retenu → bâton → regards → quelques pas intérieurs → arrêt → attention avant dialogue. Quatre nouvelles images et quatre réemplois byte-identiques, aucune base vidéo/flipbook. Fondus1s/OSreduce0.8s, pas de boucle/son/pan/zoom/pose interpolée.
 
-Prochaine action : Verify20s/eight-stage reader and new narrative beats, then deliver for operator comprehension/rhythm review without art/runtime acceptance.
+Reader PASS10checks/7fondus réels,3captures inspectées, TypeScript0, contrats8/8 et gates propres. Guardian PASS_SCOPED_CLOSEOUT, reçu et captures rapprochés. Compréhension/causalité artistique/équipement/géographie/locomotion non acceptés.
 
-339jobs/acceptations/bloc exact et racines historiques conservés. Aucun src/public/runtime/V6/canon/LOCKED/MP4/audio/scheduler modifié.
+339jobs et acceptations/bloc exact conservés, toutes anciennes racines et preuves intactes. Aucun runtime/V6/canon/MP4/LOCKED/audio/scheduler changé ; zéro étape de gameplay jouée.
+
+Une prochaine action : Operator watches this same8-image20s sequence and judges whether preparation, interior regrouping, stop and readiness for dialogue are clear without reading the captions; target any unclear transition by its image numbers.
+
+Aperçu http://127.0.0.1:5457/, PID 7596 conservé ; publication dev OD-2026-10-12-A puis clôture/verrou.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

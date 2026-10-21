@@ -283,5 +283,15 @@
   "preview": {
     "url": "http://127.0.0.1:5457/",
     "pid": 7596
-  }
+  },
+  "readerSha256": {
+    "index.html": "abfff983973bba1d4cbbc88ed4730a35514ff1790994e6234bdbad9e3bcbee92",
+    "montage.css": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83",
+    "montage.mjs": "4cd4f93cb9b21d5a1eb374fec2d835231e92e00cdf7d4cbf23a17072bb1dc41e"
+  },
+  "sequenceRecord": {
+    "path": "sequence.json",
+    "sha256": "6cd5a53614d87fed306ecb3adf19c906c5c23d9d0a19a4a15979b54c66e95b03"
+  },
+  "reviewedAt": "2026-10-21T06:43:39.163Z"
 }
