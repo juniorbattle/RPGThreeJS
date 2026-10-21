@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.7.0",
+  "contractSetVersion": "1.8.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -123,6 +123,18 @@
       "constitutionChanged": true,
       "supersededRule": "Combat-iframe audio deferral only for the bounded16families and audited tactical/UI events; other audio stays deferred",
       "implementationAcceptance": "PENDING; scoped native technical evidence and operator artistic acceptance remain separate"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-ILLUSTRATED-CANDIDATES-1",
+      "operatorDecisionId": "OD-2026-10-21-A",
+      "operatorDecisionPath": "docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md",
+      "approvedAt": "2026-10-21",
+      "changedContracts": [
+        "PRESENTATION_AND_MEDIA"
+      ],
+      "constitutionChanged": false,
+      "supersededRule": "Artistic media external to recurrence solely for offline built-in-imagegen narrative illustration candidates for existing eight IDs; video work and runtime promotion remain external",
+      "implementationAcceptance": "CAMP_STRUCTURE_METHOD_ACCEPTED_SCOPED; seven other offline candidates pending; no runtime adoption or final artistic acceptance"
     }
   ],
   "status": "LOCKED",

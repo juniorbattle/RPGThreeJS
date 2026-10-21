@@ -27,7 +27,17 @@ Facing is authored for readability, never automatically flipped at every speaker
 
 No visible production `...` transition placeholder: use relevant authored title/text or no text. Meaningful ATE captions such as “Pendant ce temps…”, “Au même moment…” and “De l’autre côté…” are selected by simultaneity, place/group change or temporal continuity, never randomly. They introduce no new plot facts. Legitimate authored punctuation is not placeholder copy.
 
-The mandatory pre-judgement campfire is a Journey/narrative preparation boundary under CAMPAIGN_AND_STATE, never a ninth video. The eight slots above are structurally approved and their count/IDs remain closed; artistic media work remains external to recurring runs.
+The mandatory pre-judgement campfire is a Journey/narrative preparation boundary under CAMPAIGN_AND_STATE, never a ninth video. The eight slots above are structurally approved and their count/IDs remain closed; video artistic work remains external to recurring runs. Offline illustrated candidates have only the narrow recurring exception below.
+
+## Offline illustrated candidates — OD-2026-10-21-A
+
+Dedicated `PRODUCTION-CONTRACTS-ILLUSTRATED-CANDIDATES-1`, set1.8.0, [explicit operator approval](../autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md), authorizes recurring built-in image generation solely for offline narrative illustrated candidates associated with the eight existing IDs above. The operator accepts the camp prototype's structure/design method; the remaining seven scenes may be produced autonomously, audience first, without routine per-plan approval. This is no new video slot, runtime media doctrine or final artistic acceptance.
+
+Use current authored facts, immutable Character V2 references and approved environment families. Each distinct staged image advances the existing situation, with coherent geography, time, branch, facing, hands and retained equipment; use gentle whole-image transitions and motivated holds. Adapt shot count and duration to the scene. At most four visible narrative actors per composition. No invented dialogue, lore, orders, recruitment, events, choices, rewards or outcomes; no playing a choice or consequence before its canonical owner resolves it. Preserve the Alaric climax and all tableau/agency boundaries. Generated candidates never create game truth or save transient state.
+
+Only versioned offline artifacts under `tools/cinematics/candidates/` are authorized. Reuse the camp reader and compatible QA; retain raw outputs, variants, exact prompts/reference hashes, source/branch context, timeline and inspected proof. Review actual images and continuous montage readability, separately from machine checks. Historical evidence and its acceptance are immutable. Structural approval of the camp does not automatically accept future art, detailed equipment continuity, continuous locomotion, physical clearance or runtime behavior.
+
+No video-derived image base, rejected flipbook reconstruction, video/keyframe generation or polling, MiniMax, MP4 replacement/promotion, runtime source/production manifest/descriptor changes, new slots, cinematic audio or other deferred audio. This exception does not authorize integrating candidates into the game. Final artistic review and any runtime adoption remain separate operator decisions; scheduler activation remains operator-controlled. All other contracts and production owners remain unchanged. Independent actual-diff review, amendment commit and a following committed immutable baseline precede recurring generation.
 
 
 ## Bounded UI FX exception — OD-2026-10-18-F
