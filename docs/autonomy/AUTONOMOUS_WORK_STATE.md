@@ -359,3 +359,5 @@ Conformité1.8.0/baseline0cb95135 : constitution/art/characters/environments/nar
 - illustrated-bois-saved-2031: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-saved-2031/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-bois-sacrificed-2146: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-resume-2146/review/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
+
+Livraison jugement70a8daa5fcb4e233bb3a576e4f9abbbc740b272b et sacrifiéb4ef81b1e6c17b67cf2f6aefe60dca8927f4f294 publiées, parité origin/dev vérifiée. Clôture2026-10-21T22:34:29.324Z. Métadonnées finales dans le commit suivant ; WIPowned et verrou retirés seulement après publication vérifiée et mémoire automation. Serveur/onglet fermés, scheduler inchangé.

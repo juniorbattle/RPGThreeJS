@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-21T21:46:48Z",
-  "runEndedAt": "2026-10-21T22:31:08.401Z",
+  "runEndedAt": "2026-10-21T22:34:29.324Z",
   "activeTask": "ILLUSTRATED-CINEMATICS-OFFLINE-CANDIDATES",
   "activePhase": "LION_JUDGEMENT_GENERATED_REVIEW_PENDING",
   "activeSubtask": "Saved and sacrificed READY; judgement4selected16s with final attention/technical review pending",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "b4ef81b1e6c17b67cf2f6aefe60dca8927f4f294",
-  "lastPushedCommit": "b4ef81b1e6c17b67cf2f6aefe60dca8927f4f294",
+  "lastKnownGoodCommit": "70a8daa5fcb4e233bb3a576e4f9abbbc740b272b",
+  "lastPushedCommit": "70a8daa5fcb4e233bb3a576e4f9abbbc740b272b",
   "completedThisRun": [
     "Saved independent review PASS from existing proof; READY without rerun/regeneration",
     "Sacrificed5newillustrations18s/10checks/scopedguardianPASS READY",
@@ -202,7 +202,7 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-illustrated-resume-20261021T2146Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-21T22:31:08.401Z",
+  "lastHeartbeat": "2026-10-21T22:34:29.324Z",
   "wip": {
     "branch": null,
     "sha": null,
@@ -210,7 +210,7 @@
     "lastGreenCheck": "7d1abf3 published; arrival10checks/saved5images41tests/types/contracts/SHA PASS; saved continuous review pending"
   },
   "live": {
-    "lastHeartbeat": "2026-10-21T22:31:08.401Z",
+    "lastHeartbeat": "2026-10-21T22:34:29.324Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -38458,10 +38458,10 @@
       }
     ],
     "wip": {
-      "branch": "wip/codex-illustrated-resume-20261021T2146Z",
-      "sha": "a205539afd52bac5e463ad910c185e9ddd11ebc0",
-      "status": "CHECKPOINT_PENDING",
-      "lastGreenCheck": "Saved+sacrificed scopedPASS,judgement51SHA/preservationPASS; continuous/finalattentionPENDING"
+      "branch": null,
+      "sha": null,
+      "status": "ON_DEV",
+      "lastGreenCheck": "70a8daa published/parity verified; saved+sacrificed scopedPASS; judgement preservationPASS continuous/finalattentionPENDING"
     },
     "nextAction": "Resume lion_judgement/v1 WITHOUT regenerating four selected images. Observe normal16s, especially03→04 final attention (still more dipped, not accepted). Copy preserved sacrificed smoke to a new judgement driver; adapt4images/3dissolves/16s/times0,4,8,11/paths/SHA while retaining every assertion; unique registered receipt and inspected captures before READY, then serpent_route_ending.",
     "runMetrics": {
@@ -38493,16 +38493,18 @@
       "docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md"
     ],
     "publication": {
-      "deliveryCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
+      "deliveryCommit": "70a8daa5fcb4e233bb3a576e4f9abbbc740b272b",
+      "sacrificedDeliveryCommit": "b4ef81b1e6c17b67cf2f6aefe60dca8927f4f294",
       "normalPushVerified": true,
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "at": "2026-10-21T21:44:56.094Z"
+      "at": "2026-10-21T22:34:29.324Z"
     },
-    "runEndedAt": "2026-10-21T22:31:08.401Z",
-    "writerStopped": false,
+    "runEndedAt": "2026-10-21T22:34:29.324Z",
+    "writerStopped": true,
     "metadataPublication": {
-      "scope": "Following commit records published delivery SHA and final closeout; identify metadata HEAD via Git",
+      "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
       "previewPort5461Stopped": true,
+      "iabTabClosed": true,
       "schedulerConfigurationPreserved": true
     },
     "publication1752History": {
@@ -42631,7 +42633,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-21T21:46:48Z",
     "activePhase": "LION_JUDGEMENT_GENERATED_REVIEW_PENDING",
-    "heartbeat": "2026-10-21T22:31:08.401Z",
+    "heartbeat": "2026-10-21T22:34:29.324Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-21T2146Z-codex-illustrated-continuation.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -44360,7 +44362,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
+    "lastPushedCommit": "70a8daa5fcb4e233bb3a576e4f9abbbc740b272b",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -45165,7 +45167,7 @@
     },
     "creditStatus": "AVAILABLE_INTEGRATED_IMAGEGEN_AND_REVIEWER",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
+    "lastKnownGoodCommit": "70a8daa5fcb4e233bb3a576e4f9abbbc740b272b",
     "completedThisRun": [
       "Saved independent review PASS from existing proof; READY without rerun/regeneration",
       "Sacrificed5newillustrations18s/10checks/scopedguardianPASS READY",
@@ -46179,7 +46181,7 @@
       "rawReceiptAcceptanceUnchanged": "NOT_ACCEPTED"
     },
     "lastAcceptedProductionCommit": "5e22775",
-    "implementationCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
+    "implementationCommit": "70a8daa5fcb4e233bb3a576e4f9abbbc740b272b",
     "poiUi1903": {
       "status": "ACCEPTED_SCOPED",
       "at": "2026-10-18T19:26:33.504Z",
@@ -47252,7 +47254,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "6d4704826d0f8bd0295b59676828c5c1052b8a15",
+  "implementationCommit": "70a8daa5fcb4e233bb3a576e4f9abbbc740b272b",
   "authorizedWorkContinuation": "Direct last-save task complete in scoped implementation/proof. Publish selected coherent dev checkpoint under OD-2026-10-12-A without routine confirmation; retain original native07 proof and current copy scope separately.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
@@ -48529,7 +48531,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-21T22:31:08.401Z",
+  "heartbeat": "2026-10-21T22:34:29.324Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
