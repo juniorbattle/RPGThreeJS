@@ -1,0 +1,17 @@
+{
+  "verdict": "PASS_SCOPED_VISUAL_PRESERVATION",
+  "reviewer": "contracts-guardian",
+  "status": "GENERATED_REVIEW_PENDING",
+  "observations": [
+    "New04 inspected against03, old04, master and approved hall: left attention more horizontal and readable",
+    "Sword right low, staff left, one actor, intact hall; fullfigure differs from requested belowknees framing and is disclosed",
+    "Raw and selected bytes identical; boundary preparation -> slot before dialogue -> dynamic open preserved",
+    "Own16s/three dissolves proof still required before READY; no verdict, reward or choice played"
+  ],
+  "lionTrialMetadataReview": "PASS_METADATA_CLOSEOUT: footer/source paragraph only; tested/delivered SHA distinct; raw NOT_ACCEPTED preserved; promoted result byte-identical",
+  "contractSetVersion": "1.8.0",
+  "baseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+  "lockedRulesChanged": false,
+  "finalArtAccepted": false,
+  "runtimeIntegrated": false
+}

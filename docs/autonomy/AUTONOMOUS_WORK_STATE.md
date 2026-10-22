@@ -1,32 +1,27 @@
-# Fin Lion — raccord final corrigé, v2 à vérifier
+# Candidats illustrés — fin Lion prête, Jugement corrigé
 
-Run codex-illustrated-trial-20261022T0404Z, début2026-10-22T04:04:00Z, fin2026-10-22T04:23:15.221Z.
+Run codex-illustrated-trial-review-20261022T0536Z, début2026-10-22T05:36:00Z, checkpoint2026-10-22T05:51:05.855Z, dev.
 
-Lion-trial v1 five inherited images recovered without regeneration, own18s10check technical proof and inspected captures. Visible04→05 scale/foot drift kept NEEDS_CORRECTION. One integrated edit creates v2 new05,01–04 reused; independent visual improvement PASS, v2 GENERATED_REVIEW_PENDING until own continuous proof. Five of seven scenes READY, judgement NEEDS_CORRECTION. No runtime/gameplay/video/audio change.
+Lion-trial v2 own18s/fourdissolves/10checks and independent scoped review PASS, READY_FOR_OPERATOR_REVIEW. Six of seven ready. Judgement v2 one new final04 from successful03 changes framing and maintains level attention,01–03 reused; GENERATED_REVIEW_PENDING until own16s. No runtime/gameplay/video/audio change.
 
-Préflight : ancienrun systemError, heartbeat23:13Z >105min, workersQA44784/14048 et parentserveur23972 absents ; serveurstatiqueorphelin41952 arrêté. Verrou archivé et acquis atomiquement. Git dev915096ef/origin-dev/liveremote égaux, main00b96f1b inchangé, stashvide.27entrées WIP héritées reprises et snapshotf87587e2 publié, aucun reset/clean. SchedulerACTIVE et SHAconfiguration préservés.
+Préflight propre sansverrou/WIP, atomiclock, HEAD/origin-dev/liveremote b6552e4 égaux ; main00b96f1b inchangé. Fetch hôte après getaddrinfo sandbox. SchedulerACTIVE et configuration byte-identique. Aucun src/public/LOCKED/V6/MP4/audio modifié.
 
-Sources relues : Cin6aPresentation audience/lion_briefing, endinglion_trial, GameApp1435–1462 et lionFinale524–540 ; victoire/postcombat avant slot puis épilogue séparé. DeuxV2Alaric/Champion, courLION_TRIALintacte coucherdesoleil. Matérielparchemin/bâton/épée et mains préservés. Erreur historique requête01 épée versus parchemin réel documentée, requête/résultat gardés.
+- TypeScript PASS;63 focused testsPASS(Cin6aPresentation39+lionFinale24,tmp excluded)
+- contracts:validate8LOCKED/8slots PASS; immutablebaseline/status gates empty;diffcheckPASS
+- One scene Lion-trialv2:host2 own18s/four1sdissolves/10checksPASS; eligible/stable/current/request/digest true,rawNOT_ACCEPTED
+- Five native Lion images+dissolve4/endpoint/narrow inspected;IAB0.2→18 OSreduce observed
+- Two environment attempts preserved FAILED: sandboxChromium missing, host-browser/sandbox-server isolation; no assertion weakened
+- Judgementv2 one integrated correction04 from03,three reused,raw/request/result/inputs/outputSHA retained; own16s pending
+- SchedulerACTIVE SHA da132bce965600ca0feb8e62dda4ff701517d14f5bb88a6c6459f12bf561eda1 unchanged;351inheritedjobs/acceptances preserved,354total
+- Independent guardian Lionv2 PASS_SCOPED_READY_FOR_OPERATOR_REVIEW and PASS_METADATA_CLOSEOUT; judgementv2 PASS_SCOPED_VISUAL_PRESERVATION, own16s pending
 
-- git diff --check PASS; immutable0cb95135 HEAD/status gates empty
-- contracts:validate PASS8LOCKED/8slots
-- npx tsc --noEmit PASS
-- 63 focused tests PASS: Cin6aPresentation39+lionFinale24, tmp excluded
-- One unique scenario/one attempt illustrated-trial-0404:10checks PASS; registered/synced eligible true, raw SUCCEEDED/NOT_ACCEPTED retained
-- v1 normal18s/four1sdissolves; inspected dissolve3/4/endpoint/narrow; IAB OSreduce0.2→18 observed
-- 84/84 v1+v2 provenance SHA PASS; v2 relative image paths/timeline PASS
-- 350 inherited QA jobs/acceptances deepEqual;351 total; scheduler ACTIVE SHA da132bce965600ca0feb8e62dda4ff701517d14f5bb88a6c6459f12bf561eda1 unchanged
-- Independent guardian v1 PASS_TECHNICAL_PRESERVATION with scale defect; v2 PASS_SCOPED_VISUAL_IMPROVEMENT, own18s proof pending
+Set1.8.0 baseline0cb95135 unchanged. GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/SAVE/REPOSITORY_GOVERNANCE PASS preservation; NARRATIVE_PRESENTATION/UI_ACCESSIBILITY/QA_EVIDENCE PASS scoped Lionv2 own18s; Judgementv2 own16s PENDING. TRAVERSAL/COMBAT N/A. No LOCKED rule changed. Art/runtime/globalPC/balance/hardware/audio/mobile-afterPC remain open.
 
-GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/SAVE/REPOSITORY_GOVERNANCE PASS preservation; UI_ACCESSIBILITY/QA_EVIDENCE PASS exactv1 reader; NARRATIVE_PRESENTATION BLOCKED v1scale/judgementgaze, v2improvement PASS owncontinuousPENDING; TRAVERSAL/COMBAT N/A. Set1.8.0/baseline0cb95135 unchanged; no LOCKED rule changed.
+Compteurs : {"runtimeSourceFiles":0,"gameplaySteps":0,"generatedInitialImages":0,"targetedCorrections":1,"imagegenCalls":1,"selectedNewIllustrations":1,"reusedSelectedImages":8,"rawOutputs":1,"qaScenarios":1,"qaAttempts":3,"environmentFailures":2,"qaJobsAdded":3,"qaJobsTotal":354,"newQaProofFiles":7,"workflowDocPaths":3,"planDataPaths":1,"inheritedWipEntries":0}. Les351jobs hérités et acceptations restent identiques ; deux échecs environnement et un succès propres ajoutés. Aucun nouveau build/campagne justifié pour candidat offline. Lionv1preuve/raccorddéfectueux et Jugementv1restent historiques intacts. FooterLionv2 seulchangé aprèstest, SHAtesté/livré distincts dansreçu.
 
-Quatreplans réutilisés, une correction ciblée intégrée. V1 média/timeline/lecteur exacts et reçu conservés ; v2 références01–04 ../v1, nouveau05raw/requête/résultat/SHA. Petitesvariationscape/appuiAlaric/sol explicites, aucun ancragepixel ni marchecontinue revendiqués. Aucun transfert de reçu. Aucun nouveaubuild/campagne justifié pour candidatoffline.
+UNE prochaine action : Resume lion_judgement/v2 WITHOUT regenerating four selected images (01–03 relative ../v1, new04). Observe normal16s especially03→04 level gaze. Copy preserved judgement/v1 four-image16s smoke to v2; adapt version/URL/relative paths/SHA/run/job/output only, keep three dissolves/loading/order/pauseclockopacity/resume/keyboard/final/OSreduce/framing/console/missing assertions. One unique registered receipt, inspect captures and independent review before READY; then one indexed seven-scene synthesis. No campaign replay.
 
-Compteurs : {"runtimeSourceFiles":0,"gameplaySteps":0,"generatedInitialImages":0,"targetedCorrections":1,"imagegenCalls":1,"selectedNewIllustrations":1,"reusedSelectedImages":4,"rawOutputs":1,"qaScenarios":1,"qaAttempts":1,"qaJobsAdded":1,"qaJobsTotal":351,"newQaProofFiles":6,"workflowDocPaths":3,"planDataPaths":1,"inheritedWipEntries":27,"inheritedSelectedImages":4,"inheritedRawOutputs":5}.
-
-UNE prochaine action : Resume lion_trial_route_ending/v2 without regeneration: observe normal18s and04→05 corrected scale/feet raccord. Copy v1 review-smoke to v2, adapt version/URL/input paths ../v1/shot01–04/new05 and SHA/run/job/output only; preserve all loading/order/four dissolves/finalstop/pauseclockopacity/resume/keyboard/OSreduce/framing/console/missing assertions. Register unique receipt, inspect captures and independent review before READY. Then precise judgement final gaze correction; no repeated campaign.
-
-Publication normaleorigin/dev sousOD-2026-10-12-A ; finalSHA/parité et libérationverrou consignés après commit. Artfinal/adoptionruntime/globalPC/équilibre/matériel/audio/mobileaprèsPC restentouverts.
+Handoff : docs/autonomy/handoffs/2026-10-22T0536Z-codex-trial-review-judgement.md. Publication normaleorigin/dev sousOD-2026-10-12-A ; parité et runEndedAt consignés aprèscommit.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -382,16 +377,11 @@ Publication normaleorigin/dev sousOD-2026-10-12-A ; finalSHA/parité et libérat
 - illustrated-serpent-2305: FAILED; port 5461; receipt `tmp/cinematics/illustrated-serpent-2305/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-serpent-2305-host: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-serpent-2305/review-host/qa-job.json`; NOT_ACCEPTED
 - illustrated-trial-0404: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-trial-0404/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-trial-v2-0536: FAILED; port 5461; receipt `tmp/cinematics/illustrated-trial-v2-0536/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-trial-v2-0536-host: FAILED; port 5461; receipt `tmp/cinematics/illustrated-trial-v2-0536-host/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-trial-v2-0536-host2: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-trial-v2-0536-host2/review/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
-Revue Serpent indépendante2026-10-21T22:55:43.379Z : PASS_PRESERVATION_ONLY,52/52SHA et cinqimagesinspectées ; GENERATED_REVIEW_PENDING, aucune lecture18s ni READY/artfinal/runtimeacceptés. Détailslanterne/broderies variables et derniergeste subtil explicites.
+Revue indépendante finale : Jugementv2 PASS_SCOPED_VISUAL_PRESERVATION, lecture16s requise avantREADY ; Lionv2 PASS_METADATA_CLOSEOUT.48SHAprovenance,351jobs hérités/8campSHA/racines historiques/SHA scheduler vérifiés.
 
-Livraison d72109e2e35a650d19cab56ea5975439a4ff23c7 publiée et parité origin/dev vérifiée. Run terminé2026-10-21T22:57:33.650Z, serveur5461 arrêté et ongletIAB fermé. Métadonnées finales dans le commit suivant ; snapshotowned/verrou retirés seulement après publication vérifiée et mémoireautomation. SchedulerACTIVE byte-identique.
-
-Current run codex-illustrated-serpent-20261021T2305Z: Serpent five retained images/18s; offline technical and continuous review, no regeneration. Next: own receipt and inspected captures, scoped independent review, then Lion-trial.
-
-Checkpoint 2026-10-21T23:17:02.633Z: Serpent READY scoped, guardian71SHA. Lion-trial01green/4pending, no regeneration. Next: Complete Lion-trial02–05 without regenerating01; own18sproof next run. Judgement final gaze correction remains.
-
-Reprise 2026-10-22T04:07:49.870Z — codex-illustrated-trial-20261022T0404Z : verrou abandonné >105min, propriétaire systemError, workers44784/14048 et parent23972 absents ; serveur statique orphelin41952 arrêté. WIP hérité27entrées préservé dans wip/codex-illustrated-trial-20261022T0404Z@f87587e2ebf0ee0878419133a6c96481e4c492b1. Prochaine action : Review inherited Lion trial images/provenance, run compatible18s smoke once and inspect captures before READY.
-
-Livraison fe691e1cdb5a4d00f786b22c52a9e6c621a9a989 publiée, parité origin/dev/liveremote vérifiée ; clôture2026-10-22T04:26:01.252Z. Serveur owned900 et ongletIAB fermés ;350jobs hérités exacts/351total. Métadonnées finales dans le commit suivant, mémoireautomation porte le SHAfinal.
+WIP exact-path temporary-index snapshot wip/codex-illustrated-trial-review-20261022T0536Z@35faed611d9de5c038cbb04ef03fc287d363699e, GREEN ; same selected content delivers to dev next.

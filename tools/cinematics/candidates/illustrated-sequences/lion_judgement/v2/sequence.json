@@ -1,0 +1,35 @@
+{
+  "totalSeconds": 16,
+  "normalFadeSeconds": 1,
+  "reducedFadeSeconds": 0.8,
+  "stages": [
+    {
+      "title": "L’autorité attend",
+      "description": "Alaric est déjà arrêté dans la salle, tête inclinée, épée et bâton maintenus.",
+      "start": 0,
+      "duration": 4,
+      "path": "../v1/shot-01.png"
+    },
+    {
+      "title": "La prise se stabilise",
+      "description": "Le détail des mains montre la prise du bâton qui se fixe, épée toujours basse.",
+      "start": 4,
+      "duration": 4,
+      "path": "../v1/shot-02.png"
+    },
+    {
+      "title": "L’attention se relève",
+      "description": "La tête se relève vers la compagnie hors cadre, sans parole ni signe de verdict.",
+      "start": 8,
+      "duration": 3,
+      "path": "../v1/shot-03.png"
+    },
+    {
+      "title": "Avant la première parole",
+      "description": "Le cadre plus ouvert maintient la tête relevée et l’attention vers la compagnie hors champ, avant la première parole.",
+      "start": 11,
+      "duration": 5,
+      "path": "shot-04.png"
+    }
+  ]
+}

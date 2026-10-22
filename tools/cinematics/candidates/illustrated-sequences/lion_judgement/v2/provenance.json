@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "sceneId": "lion_judgement",
+  "version": "v2",
+  "status": "GENERATED_REVIEW_PENDING",
+  "runId": "codex-illustrated-trial-review-20261022T0536Z",
+  "createdAt": "2026-10-22T05:47:59.333Z",
+  "sourceBranch": "dev",
+  "sourceCommit": "b6552e487bf49c810308049241af09724676fb84",
+  "contractSetVersion": "1.8.0",
+  "contractBaseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+  "generationMode": "BUILT_IN_IMAGEGEN_ONLY_OFFLINE_ILLUSTRATION",
+  "finalArtAccepted": false,
+  "runtimeIntegrated": false,
+  "previousVersion": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/index.html",
+  "references": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png",
+      "sha256": "280361d3b73ba06753562c8fe73009c48dbda7db592d65ef891ae8ec323e3ebf",
+      "role": "Immutable approved V2/environment authority"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/alaric.png",
+      "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+      "role": "Immutable approved V2/environment authority"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-05.png",
+      "sha256": "3f1038577e7ea08e00fced9bbc0da55a2460507bd7057ad7d1ccc8fd12b4da27",
+      "role": "Existing illustrated pose equipment reference only, not final art or environment authority"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/cinematics/CinematicTriggers.ts",
+      "sha256": "e53e891c352cd13ae6fa07431e6fe6df87d4c2a80b420503131aa424274a4011"
+    },
+    {
+      "path": "src/campaign/LionCampaignStructure.ts",
+      "sha256": "dede76984fd7892c0f2127921f69c089c5e3c1278aaca1935da42a0a171f7c91"
+    },
+    {
+      "path": "src/game/lionFinale.ts",
+      "sha256": "3d6cdc02af29607e243524177aa3aeb66715834c61990aea34c991cfa5bb6740"
+    },
+    {
+      "path": "src/game/contextualDialogueContent.ts",
+      "sha256": "1d9d815e89eaf1d235018ace4d945f3280e39fcbadbbe7f53ad602cd896a2447"
+    },
+    {
+      "path": "src/game/GameApp.ts",
+      "sha256": "067df49417b038704b154b54402aae42840d5f3bde279838d845f848d530d8b5"
+    },
+    {
+      "path": "src/render/data/demo-environment-pack-v1.production.json",
+      "sha256": "fcd1c020d9674c35e9665bb10fdcd7d4d898f382ed0117016f4b6c9dce6e00c3"
+    }
+  ],
+  "reader": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+      "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+      "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+    }
+  ],
+  "canonicalBoundary": "After mandatory final_refuge preparation, before dynamic lion_finale_judgement:open in lionFinale.ts:320; no verdict/witness/disclosure/choice/effect played",
+  "calls": [
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/requests/shot-04-correction-01.json",
+        "sha256": "f1b9a839de16e07c3b6b8508316592e6fc663e51d54544013dd88073cd1e88e6"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/results/shot-04-correction-01.json",
+        "sha256": "22d6e3a173431a99c9beed38af4b6eeef696a0551afcad5d9ed8f4ee91e89ae6"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/raw/shot-04-correction-01.png",
+        "sha256": "d075bc92961719698d859579312493a10d96dfc095889363b02ee2acf4bad991"
+      },
+      "inputImages": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+          "sha256": "1fe23af8966273186aadaf5bcf19d348a8af617d1e6aa93c9da4cf41e0137f10",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png"
+        },
+        {
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png",
+          "sha256": "280361d3b73ba06753562c8fe73009c48dbda7db592d65ef891ae8ec323e3ebf",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png"
+        }
+      ]
+    }
+  ],
+  "selectedImages": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+      "sha256": "f62031235118c0c98970a66880296b6f134f0055a96c2bf93450ceee48de2bf1"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-02.png",
+      "sha256": "cffecfa5e1acf4e94002a21356f248c9fad42283e8bf20a6fdd095502eadd2ba"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+      "sha256": "1fe23af8966273186aadaf5bcf19d348a8af617d1e6aa93c9da4cf41e0137f10"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/shot-04.png",
+      "sha256": "d075bc92961719698d859579312493a10d96dfc095889363b02ee2acf4bad991",
+      "width": 1672,
+      "height": 941
+    }
+  ],
+  "sequence": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/sequence.json",
+    "sha256": "00e78748ce3e095eed4297626921996cffd0ed1148d0564e6eebc055e45498b5"
+  },
+  "index": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/index.html",
+    "sha256": "074d3b559326d1066c79ce970eb70c66c505249069953f25f547a9729d406a6e"
+  },
+  "initialImages": 0,
+  "targetedCorrections": 1,
+  "reusedImages": 3,
+  "reviewBoundary": "Native new04 inspected against03, level attention improved, own continuous16s proof PENDING; v1 technical receipt never transfers",
+  "scope": "Offline only; no runtime/canon/reward/save/audio/video change"
+}

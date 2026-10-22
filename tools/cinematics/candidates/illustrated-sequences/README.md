@@ -15,3 +15,5 @@ The gallery links only real candidate media and displays actual queue status. Au
 Exact requests/results, raw variants, source context, input/output SHA and review limits live in each scene version. No source/public/game manifest/save/audio/video changes are part of this directory.
 
 Lion-trial v2 : quatre plans repris et final corrigé ; propre18s preuve PENDING. V1 dixcontrôles techniques PASS mais raccord04→05 NEEDS_CORRECTION (échelle/appuis). Aucun reçu transféré ni artfinal/runtime accepté.
+
+2026-10-22T05:47:59.333Z : Lion-trial v2 READY_FOR_OPERATOR_REVIEW (propre18s/dixcontrôles/revueindépendante), Jugement v2 GENERATED_REVIEW_PENDING (troisréutilisés/nouveau04regardmaintenu), sixsursept prêts, art/runtime séparés.

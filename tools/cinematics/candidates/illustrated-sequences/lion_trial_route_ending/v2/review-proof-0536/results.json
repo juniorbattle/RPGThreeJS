@@ -1,0 +1,105 @@
+{
+  "scope": "Five chronological illustrated stages, offline reader only; not gameplay/comprehension/art/gait acceptance",
+  "driver": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-smoke.mjs",
+  "checks": [
+    "Five distinct complete images preloaded; initially paused on establishing image",
+    "Four real-time dissolves through chronological5images, total18s and final stop",
+    "All five scene stages follow the authored timeline",
+    "Five-stage Home/End/arrow/previous navigation matches timeline",
+    "OSreduce gentle dissolve retained; pause freezes opacity and clock; resume advances",
+    "Whole images/44px controls/no horizontal clipping at1366x768",
+    "Whole images/44px controls/no horizontal clipping at620x780",
+    "Whole images/44px controls/no horizontal clipping at390x844",
+    "No nominal console/page errors",
+    "Missing final raccord image disables playback with visible status"
+  ],
+  "samples": [
+    {
+      "time": 3.2,
+      "base": "../v1/shot-01.png",
+      "next": "../v1/shot-02.png",
+      "alpha": 0.129722,
+      "loaded": true
+    },
+    {
+      "time": 6.2,
+      "base": "../v1/shot-02.png",
+      "next": "../v1/shot-03.png",
+      "alpha": 0.129513,
+      "loaded": true
+    },
+    {
+      "time": 9.2,
+      "base": "../v1/shot-03.png",
+      "next": "../v1/shot-04.png",
+      "alpha": 0.129408,
+      "loaded": true
+    },
+    {
+      "time": 12.2,
+      "base": "../v1/shot-04.png",
+      "next": "shot-05.png",
+      "alpha": 0.129303,
+      "loaded": true
+    }
+  ],
+  "captures": [
+    "tmp/cinematics/illustrated-trial-v2-0536-host2/review/dissolve-1.png",
+    "tmp/cinematics/illustrated-trial-v2-0536-host2/review/dissolve-2.png",
+    "tmp/cinematics/illustrated-trial-v2-0536-host2/review/dissolve-3.png",
+    "tmp/cinematics/illustrated-trial-v2-0536-host2/review/dissolve-4.png",
+    "tmp/cinematics/illustrated-trial-v2-0536-host2/review/desktop-endpoint.png",
+    "tmp/cinematics/illustrated-trial-v2-0536-host2/review/desktop-movement.png",
+    "tmp/cinematics/illustrated-trial-v2-0536-host2/review/narrow-preparation.png"
+  ],
+  "status": "PASS",
+  "pass": true,
+  "errors": [],
+  "provenance": {
+    "scene": "lion_trial_route_ending",
+    "url": "http://127.0.0.1:5461/lion_trial_route_ending/v2/index.html",
+    "media": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/sequence.json",
+        "sha256": "2646664c22fed07d902a57f712c0b98d6505cbe34d3ffb0167864f729244a481"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-01.png",
+        "sha256": "99c3c6c767b208f1c86473e5c81226038736da76a14180a41587f592c4aef249"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-02.png",
+        "sha256": "6469af2210ec1f81c98b7c06402777ef0edb6953a1a164c20795ff210d95d825"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-03.png",
+        "sha256": "7fee180fda34160cd1f368af19a6d3326e3f7c8e9b8071eab9addfe83cdb1b07"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-04.png",
+        "sha256": "d0ce14aa2322d316512aa3311ef74e85110b3a38ef57687f91d2acda971cf4ce"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/shot-05.png",
+        "sha256": "357e5742af7ad9c7d49eed1b4210f2c26126e11a300a6e9a6ab2bc7704bedaaa"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/index.html",
+        "sha256": "321da1e1f2edffae0bfb0c081443aed98ea41ed200af11cad1339b8907f288ec"
+      }
+    ],
+    "reader": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+        "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+        "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+      }
+    ],
+    "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+  },
+  "consoleErrors": [],
+  "completedAt": "2026-10-22T05:41:27.546Z"
+}

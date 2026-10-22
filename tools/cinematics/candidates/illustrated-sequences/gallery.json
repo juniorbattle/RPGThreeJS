@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-22T04:18:52.513Z",
+  "updatedAt": "2026-10-22T05:47:59.333Z",
   "scope": "Offline illustrated candidates; final art/runtime separate",
   "scenes": [
     {
@@ -34,11 +34,11 @@
     },
     {
       "id": "lion_judgement",
-      "status": "NEEDS_CORRECTION",
-      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/index.html",
+      "status": "GENERATED_REVIEW_PENDING",
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/index.html",
       "finalArtAccepted": false,
       "runtimeIntegrated": false,
-      "technicalReview": "PASS_SCOPED; FINAL_GAZE_NEEDS_CORRECTION"
+      "technicalReview": "V2_NATIVE_GAZE_IMPROVED_OWN16S_PENDING"
     },
     {
       "id": "serpent_route_ending",
@@ -51,11 +51,12 @@
     },
     {
       "id": "lion_trial_route_ending",
-      "status": "GENERATED_REVIEW_PENDING",
+      "status": "READY_FOR_OPERATOR_REVIEW",
       "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/index.html",
       "finalArtAccepted": false,
       "runtimeIntegrated": false,
-      "technicalReview": "V1_PASS10CHECKS_WITH_SCALE_DEFECT;V2_OWN18S_PENDING"
+      "technicalReview": "PASS10CHECKS18S_AND_INDEPENDENT_SCOPED_REVIEW",
+      "reviewCloseoutPath": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-receipt.json"
     }
   ]
 }

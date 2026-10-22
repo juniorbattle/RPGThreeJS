@@ -130,24 +130,30 @@
     {
       "id": "lion_judgement",
       "order": 5,
-      "status": "NEEDS_CORRECTION",
+      "status": "GENERATED_REVIEW_PENDING",
       "sourceIndex": "tools/cinematics/specs/production-eight-slot-remaster/lion_judgement.json",
       "sourceIndexRole": "Historical reference paths only; revalidate current canonical source, never execute video instructions",
       "outputRoot": "tools/cinematics/candidates/illustrated-sequences/lion_judgement",
       "finalArtAccepted": false,
       "runtimeIntegrated": false,
-      "version": "v1",
-      "candidatePath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/index.html",
-      "provenancePath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/provenance.json",
-      "reviewPath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review.md",
-      "initialImages": 4,
-      "corrections": 2,
+      "version": "v2",
+      "candidatePath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/index.html",
+      "provenancePath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/provenance.json",
+      "reviewPath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review.md",
+      "initialImages": 0,
+      "corrections": 1,
       "proposedDurationSeconds": 16,
-      "updatedAt": "2026-10-21T22:46:11.315Z",
-      "preservationReview": "PASS_PRESERVATION; FINAL_ATTENTION_AND16S_PENDING",
-      "reviewPreservationPath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-preservation.json",
-      "receiptPath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-receipt.json",
-      "technicalReview": "PASS10CHECKS16S; FINAL_ATTENTION03_TO04_FAIL"
+      "updatedAt": "2026-10-22T05:47:59.333Z",
+      "preservationReview": "PASS_SCOPED_VISUAL_PRESERVATION; OWN16S_PENDING",
+      "technicalReview": "OWN_V2_16S_PENDING",
+      "previousVersion": {
+        "version": "v1",
+        "candidatePath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/index.html",
+        "receiptPath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/review-receipt.json",
+        "status": "NEEDS_CORRECTION"
+      },
+      "reusedImages": 3,
+      "reviewPreservationPath": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-preservation.json"
     },
     {
       "id": "serpent_route_ending",
@@ -174,7 +180,7 @@
     {
       "id": "lion_trial_route_ending",
       "order": 7,
-      "status": "GENERATED_REVIEW_PENDING",
+      "status": "READY_FOR_OPERATOR_REVIEW",
       "sourceIndex": "tools/cinematics/specs/production-eight-slot-remaster/lion_trial_route_ending.json",
       "sourceIndexRole": "Historical reference paths only; revalidate current canonical source, never execute video instructions",
       "outputRoot": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending",
@@ -183,16 +189,17 @@
       "version": "v2",
       "initialImages": 5,
       "corrections": 2,
-      "updatedAt": "2026-10-22T04:18:52.513Z",
+      "updatedAt": "2026-10-22T05:47:59.333Z",
       "proposedDurationSeconds": 18,
       "candidatePath": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/index.html",
       "provenancePath": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/provenance.json",
       "reviewPath": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review.md",
       "reusedImages": 4,
-      "technicalReview": "V1_PASS10CHECKS_WITH_SCALE_DEFECT;V2_OWN18S_PENDING"
+      "technicalReview": "PASS10CHECKS18S_AND_INDEPENDENT_SCOPED_REVIEW",
+      "receiptPath": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-receipt.json"
     }
   ],
-  "firstAction": "Resume lion_trial_route_ending/v1 WITHOUT regenerating five selected images. Observe normal18s; copy Serpent5image/4dissolve/18s smoke, adapt scene/path/SHA/job/output only, preserve every assertion; own receipt/captures/scopedreview before READY. Then judgement final gaze correction with new visual information.",
+  "firstAction": "Resume lion_judgement/v2 without regeneration. Observe normal16s/03→04 level gaze. Copy v1 judgement4image/3dissolve/16s smoke to v2, adapt URL/relative01–03 paths/new04/SHA/job/output only; preserve every assertion. Register unique receipt, inspect captures and independent review before READY; then one indexed seven-scene synthesis.",
   "completionPolicy": "Each reviewed offline delivery becomes READY_FOR_OPERATOR_REVIEW; advance to next pending scene without routine approval; all seven delivered -> single operator review handoff.",
   "preserve": {
     "qaJobs": 339,

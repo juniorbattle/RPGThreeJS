@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "sceneId": "lion_trial_route_ending",
   "version": "v2",
-  "status": "GENERATED_REVIEW_PENDING",
+  "status": "READY_FOR_OPERATOR_REVIEW",
   "runId": "codex-illustrated-trial-20261022T0404Z",
   "createdAt": "2026-10-22T04:18:52.513Z",
   "sourceBranch": "dev",
@@ -139,11 +139,15 @@
   },
   "index": {
     "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/index.html",
-    "sha256": "321da1e1f2edffae0bfb0c081443aed98ea41ed200af11cad1339b8907f288ec"
+    "sha256": "d287f920a518ec7b564abf15a9cb1ff19860c66c3cba3f17412c4e12e110c3d2"
   },
   "initialImages": 0,
   "corrections": 1,
   "reusedImages": 4,
-  "reviewBoundary": "Five-image v1 technical receipt preserved, not transferred to corrected v2. Own continuous18s proof PENDING.",
-  "scope": "Offline only; no runtime/canon/reward/save/audio/video change"
+  "reviewBoundary": "Own v2 normal18s/four1s dissolves technical and independent scoped review PASS; v1 receipt untouched; final art/runtime separate",
+  "scope": "Offline only; no runtime/canon/reward/save/audio/video change",
+  "reviewReceipt": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-receipt.json",
+    "sha256": "a2948f2da365ec3d333244bbd8fbb07802b8d69b1d257b06db9026e0b748244b"
+  }
 }
