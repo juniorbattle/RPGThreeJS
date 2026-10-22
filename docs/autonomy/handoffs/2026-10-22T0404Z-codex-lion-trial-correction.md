@@ -27,3 +27,5 @@ Compteurs : {"runtimeSourceFiles":0,"gameplaySteps":0,"generatedInitialImages":0
 UNE prochaine action : Resume lion_trial_route_ending/v2 without regeneration: observe normal18s and04→05 corrected scale/feet raccord. Copy v1 review-smoke to v2, adapt version/URL/input paths ../v1/shot01–04/new05 and SHA/run/job/output only; preserve all loading/order/four dissolves/finalstop/pauseclockopacity/resume/keyboard/OSreduce/framing/console/missing assertions. Register unique receipt, inspect captures and independent review before READY. Then precise judgement final gaze correction; no repeated campaign.
 
 Publication normaleorigin/dev sousOD-2026-10-12-A ; finalSHA/parité et libérationverrou consignés après commit. Artfinal/adoptionruntime/globalPC/équilibre/matériel/audio/mobileaprèsPC restentouverts.
+
+Livraison fe691e1cdb5a4d00f786b22c52a9e6c621a9a989 publiée, parité origin/dev/liveremote vérifiée ; clôture2026-10-22T04:26:01.252Z. Serveur owned900 et ongletIAB fermés ;350jobs hérités exacts/351total. Métadonnées finales dans le commit suivant, mémoireautomation porte le SHAfinal.

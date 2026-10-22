@@ -393,3 +393,5 @@ Current run codex-illustrated-serpent-20261021T2305Z: Serpent five retained imag
 Checkpoint 2026-10-21T23:17:02.633Z: Serpent READY scoped, guardian71SHA. Lion-trial01green/4pending, no regeneration. Next: Complete Lion-trial02–05 without regenerating01; own18sproof next run. Judgement final gaze correction remains.
 
 Reprise 2026-10-22T04:07:49.870Z — codex-illustrated-trial-20261022T0404Z : verrou abandonné >105min, propriétaire systemError, workers44784/14048 et parent23972 absents ; serveur statique orphelin41952 arrêté. WIP hérité27entrées préservé dans wip/codex-illustrated-trial-20261022T0404Z@f87587e2ebf0ee0878419133a6c96481e4c492b1. Prochaine action : Review inherited Lion trial images/provenance, run compatible18s smoke once and inspect captures before READY.
+
+Livraison fe691e1cdb5a4d00f786b22c52a9e6c621a9a989 publiée, parité origin/dev/liveremote vérifiée ; clôture2026-10-22T04:26:01.252Z. Serveur owned900 et ongletIAB fermés ;350jobs hérités exacts/351total. Métadonnées finales dans le commit suivant, mémoireautomation porte le SHAfinal.

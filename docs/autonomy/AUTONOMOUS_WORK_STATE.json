@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-22T04:04:00Z",
-  "runEndedAt": "2026-10-22T04:23:15.221Z",
+  "runEndedAt": "2026-10-22T04:26:01.252Z",
   "activeTask": "ILLUSTRATED-LION-TRIAL",
   "activePhase": "CORRECTED_CANDIDATE_REVIEW_PENDING",
   "activeSubtask": "v2 final scale correction produced; own normal18s review next",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "915096efbf523d8ceef24110d5714c28c72b7804",
-  "lastPushedCommit": "915096efbf523d8ceef24110d5714c28c72b7804",
+  "lastKnownGoodCommit": "fe691e1cdb5a4d00f786b22c52a9e6c621a9a989",
+  "lastPushedCommit": "fe691e1cdb5a4d00f786b22c52a9e6c621a9a989",
   "completedThisRun": [
     "Lion-trial v1 five inherited images recovered without regeneration, own18s10check technical proof and inspected captures. Visible04→05 scale/foot drift kept NEEDS_CORRECTION. One integrated edit creates v2 new05,01–04 reused; independent visual improvement PASS, v2 GENERATED_REVIEW_PENDING until own continuous proof. Five of seven scenes READY, judgement NEEDS_CORRECTION. No runtime/gameplay/video/audio change."
   ],
@@ -117,7 +117,7 @@
   ],
   "creditStatus": "AVAILABLE_INTEGRATED_IMAGEGEN_AND_REVIEWER",
   "contractComplianceStatus": "PASS_PRESERVATION_AND_V1_SCOPED_TECHNICAL; V2_VISUAL_IMPROVEMENT_PASS_OWN18S_PENDING; JUDGEMENT_NARRATIVE_BLOCKED; LOCKED_UNCHANGED",
-  "commitReferenceScope": "Base commit before this workflow-only checkpoint; containing commit and remote parity are recorded in automation memory.",
+  "commitReferenceScope": "Last verified published delivery commit; final metadata commit SHA authoritative in Git and automation memory.",
   "operatorAuthorization": "OD-2026-10-21-B: direct operator request to unblock everything necessary for the automation; activation already granted. Scope stays OD-2026-10-21-A/set1.8.0.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -194,7 +194,7 @@
   "wip": {
     "branch": "wip/codex-illustrated-trial-20261022T0404Z",
     "sha": "f87587e2ebf0ee0878419133a6c96481e4c492b1",
-    "status": "GREEN_CORRECTION_CHECKPOINT_REVIEW_PENDING",
+    "status": "PUBLISHED_DELIVERY_CONTAINS_INHERITED_WIP",
     "dirtyFiles": [
       "tools/cinematics/candidates/illustrated-sequences/README.md",
       "tools/cinematics/candidates/illustrated-sequences/gallery.json",
@@ -38993,7 +38993,7 @@
     "wip": {
       "branch": "wip/codex-illustrated-trial-20261022T0404Z",
       "sha": "f87587e2ebf0ee0878419133a6c96481e4c492b1",
-      "status": "GREEN_CORRECTION_CHECKPOINT_REVIEW_PENDING",
+      "status": "PUBLISHED_DELIVERY_CONTAINS_INHERITED_WIP",
       "dirtyFiles": [
         "tools/cinematics/candidates/illustrated-sequences/README.md",
         "tools/cinematics/candidates/illustrated-sequences/gallery.json",
@@ -39096,7 +39096,7 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": "2026-10-22T04:23:15.221Z",
+    "runEndedAt": "2026-10-22T04:26:01.252Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
@@ -39212,9 +39212,11 @@
       "reason": "Automatic review found insufficient trusted exact authorization to disclose internal state on public GitHub WIP branch; local concrete checkpoint in preparation"
     },
     "publicationCloseout": {
-      "status": "PREPARED_PENDING_DEV_PUSH",
-      "runId": "codex-illustrated-trial-20261022T0404Z",
-      "at": "2026-10-22T04:24:08.884Z"
+      "status": "DELIVERY_PUSH_VERIFIED",
+      "commit": "fe691e1cdb5a4d00f786b22c52a9e6c621a9a989",
+      "destination": "origin/dev",
+      "verifiedAt": "2026-10-22T04:26:01.252Z",
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
     "run1859History": {
       "runId": "rpgthreejs-auto-dev-90m-20261008T1859",
