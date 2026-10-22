@@ -1,0 +1,42 @@
+{
+  "totalSeconds": 18,
+  "normalFadeSeconds": 1,
+  "reducedFadeSeconds": 0.8,
+  "stages": [
+    {
+      "title": "Épreuve achevée",
+      "description": "Alaric et le Champion sont déjà arrêtés dans la cour, après le résultat reconnu.",
+      "start": 0,
+      "duration": 4,
+      "path": "shot-01.png"
+    },
+    {
+      "title": "La garde se relâche",
+      "description": "La main vide du Champion se détend ; son épée reste basse dans la main droite.",
+      "start": 4,
+      "duration": 3,
+      "path": "shot-02.png"
+    },
+    {
+      "title": "L’attention d’Alaric",
+      "description": "Alaric relève le menton vers le Champion, parchemin et bâton conservés.",
+      "start": 7,
+      "duration": 3,
+      "path": "shot-03.png"
+    },
+    {
+      "title": "La tension tombe",
+      "description": "Le Champion incline brièvement son casque ; Alaric maintient son attention.",
+      "start": 10,
+      "duration": 3,
+      "path": "shot-04.png"
+    },
+    {
+      "title": "Avant l’épilogue",
+      "description": "Le Champion redresse son casque ; les deux restent disponibles au bilan existant.",
+      "start": 13,
+      "duration": 5,
+      "path": "shot-05.png"
+    }
+  ]
+}

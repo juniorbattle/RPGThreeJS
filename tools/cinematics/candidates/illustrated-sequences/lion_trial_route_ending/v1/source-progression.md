@@ -13,3 +13,7 @@ Le candidat représente uniquement la retombée du résultat déjà reconnu, pas
 5.13–18s : Champion redressé, attention réciproque calme avant le bilan, aucune marche.
 
 Intentions à vérifier sur les images réelles. Cinq illustrations initiales et18s proposées, fondus1s/0.8sOSreduce ; artfinal et adoptionruntime séparés. Une seule preuve navigateur du run consacrée au Serpent : lecture et preuve propre Lion-trial restent au prochain checkpoint si scénario consommé.
+
+## Résultat réel 2026-10-21T23:27:15.484Z
+
+Cinq illustrations sélectionnées1672x941/18s,5initiales+1correction02 (cadrage moyen/doigtsrelâchés),6raw conservées. Alaric tient un parchemin roulé clair lié rouge dans main droite comme master ; demande01 épée erronée n’a pas modifié l’objet de sortie. Les requêtes suivantes corrigent cette interprétation et préservent l’objet, aucune épée tirée inventée. 04inclinationcasque/05redressement effectifs, Alaric garde menton niveau, aucun nouvelordre. planifié antérieur conservé, sequence.json décrit les états réels. Propre18slecture/preuve reste au prochainrun, un scénarioSerpent consommé.

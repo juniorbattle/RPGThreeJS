@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21T23:16:30.965Z",
+  "updatedAt": "2026-10-22T04:18:52.513Z",
   "scope": "Offline illustrated candidates; final art/runtime separate",
   "scenes": [
     {
@@ -51,10 +51,11 @@
     },
     {
       "id": "lion_trial_route_ending",
-      "status": "IN_PROGRESS_1_OF_5",
-      "path": null,
+      "status": "GENERATED_REVIEW_PENDING",
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/index.html",
       "finalArtAccepted": false,
-      "runtimeIntegrated": false
+      "runtimeIntegrated": false,
+      "technicalReview": "V1_PASS10CHECKS_WITH_SCALE_DEFECT;V2_OWN18S_PENDING"
     }
   ]
 }

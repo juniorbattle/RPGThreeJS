@@ -1,0 +1,156 @@
+{
+  "reviewedAt": "2026-10-22T04:18:52.513Z",
+  "verdict": "PASS_TECHNICAL_PRESERVATION_NEEDS_CORRECTION",
+  "scope": "Exact v1 media and reader only; art/runtime not accepted",
+  "job": {
+    "schemaVersion": 1,
+    "jobId": "illustrated-trial-0404",
+    "runId": "codex-illustrated-trial-20261022T0404Z",
+    "status": "SUCCEEDED",
+    "registeredAt": "2026-10-22T04:09:05.992Z",
+    "pid": 44260,
+    "port": 5461,
+    "command": [
+      "node",
+      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/review-smoke.mjs"
+    ],
+    "parameters": {
+      "scene": "lion_trial_route_ending",
+      "url": "http://127.0.0.1:5461/lion_trial_route_ending/v1/index.html",
+      "media": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/sequence.json",
+          "sha256": "72d135ed3d31469f9cffad6240dc641418b1f31199f0e63aa9512f532eb51ed7"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-01.png",
+          "sha256": "99c3c6c767b208f1c86473e5c81226038736da76a14180a41587f592c4aef249"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-02.png",
+          "sha256": "6469af2210ec1f81c98b7c06402777ef0edb6953a1a164c20795ff210d95d825"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-03.png",
+          "sha256": "7fee180fda34160cd1f368af19a6d3326e3f7c8e9b8071eab9addfe83cdb1b07"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-04.png",
+          "sha256": "d0ce14aa2322d316512aa3311ef74e85110b3a38ef57687f91d2acda971cf4ce"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-05.png",
+          "sha256": "5898761680252c25394b897447746a16e28f4c558b35259a075ddfd03b36fcdc"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/index.html",
+          "sha256": "1a8f8a40088d55bc36ad1671eda2b1ff4414859e0ca48fbdfac1005b0b088c5d"
+        }
+      ],
+      "reader": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+          "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+          "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+        }
+      ],
+      "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+    },
+    "requiredAssertions": [
+      "FIVE_DISTINCT_IMAGES_PAUSED",
+      "FOUR_NORMAL_SPEED_DISSOLVES_18S_STOP",
+      "ORDER_TIMELINE_KEYBOARD",
+      "OS_REDUCE_PAUSE_RESUME",
+      "CONTAIN_44PX_NO_OVERFLOW",
+      "NO_CONSOLE_ERRORS",
+      "MISSING_IMAGE_DISABLES_PLAYBACK"
+    ],
+    "output": "tmp/cinematics/illustrated-trial-0404/review",
+    "receiptPath": "tmp/cinematics/illustrated-trial-0404/review/qa-job.json",
+    "provenance": {
+      "gitHead": "915096efbf523d8ceef24110d5714c28c72b7804",
+      "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+      "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "driver": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/review-smoke.mjs",
+        "sha256": "ad6817970cf21a613ffdc52cf03528c41b96f474ea15fd5dd4af995f2a34ee1f"
+      },
+      "inputs": [],
+      "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+      "build": [
+        {
+          "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+          "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+        },
+        {
+          "path": "dist/assets/combat-DG7ZUtBq.css",
+          "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+        },
+        {
+          "path": "dist/assets/combat-tTV9DuEb.js",
+          "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+        },
+        {
+          "path": "dist/assets/game-CpZAzB3w.js",
+          "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+        },
+        {
+          "path": "dist/assets/game-D9rcJ1yO.css",
+          "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+        }
+      ]
+    },
+    "acceptance": "NOT_ACCEPTED",
+    "startedAt": "2026-10-22T04:09:10.945Z",
+    "endedAt": "2026-10-22T04:09:34.948Z",
+    "exitCode": 0,
+    "resultPath": "tmp/cinematics/illustrated-trial-0404/review/results.json",
+    "resultSha256": "ef8eafb05f529e712dabe74741b33ccc8c4315e475e5729cefca4b58992cc7e5",
+    "provenanceMatches": true,
+    "provenanceStable": true,
+    "requestMatches": true,
+    "matchesCurrentExecution": true,
+    "resultDigestMatches": true,
+    "eligibleForReview": true
+  },
+  "technicalResults": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/review-proof-0404/results.json",
+    "sha256": "ef8eafb05f529e712dabe74741b33ccc8c4315e475e5729cefca4b58992cc7e5"
+  },
+  "selectedCaptures": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/review-proof-0404/dissolve-4.png",
+      "sha256": "fb2649a77496af815c7943fc78d3246970302ba55b6253d27a208cbe2755fd25"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/review-proof-0404/desktop-endpoint.png",
+      "sha256": "c79793314d9f53c2417e22300e3d5e6cddf165e10ec1be3b9b0f354bb92387cd"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/review-proof-0404/narrow-preparation.png",
+      "sha256": "273b78ea3647de988e6cad5f34770166b9bdd29310182958368c9366f5adfe79"
+    }
+  ],
+  "visualDefect": "04→05 actors enlarge and feet shift against unchanged courtyard; v2 correction produced, own proof pending",
+  "independentReview": "contracts-guardian /root/trial_guardian: PASS_TECHNICAL_PRESERVATION; narrative BLOCKED04→05 scale/feet drift",
+  "normalObservation": "Real normal18s runner/four1sdissolves; corresponding captures inspected. IAB OSreduce0.2→18 separately observed."
+}

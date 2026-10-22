@@ -1,0 +1,10 @@
+{
+  "prompt": "Use case: precise-object-edit. Asset: one offline narrative illustration, NOT a video frame. Image 1 is the ONLY edit target and fixes the entire composition exactly. Images 2,3 are immutable identity/equipment references; image 4 is immutable environment reference, not a new composition. Edit image1 to create the next distinct illustration: ONLY lift the right-hand Lion Champion's bowed helmet into a level, quiet attentive pose facing Alaric on the left. His helmet must rise visibly at the neck without changing his torso, shoulders, body height, boots, stance or placement. Preserve Alaric completely unchanged, especially his height, feet on their exact tiles, right hand rolled pale parchment/red tie and left grounded staff. Preserve Champion's exact feet on their same tiles, blue tabard and fur cape, left empty gauntlet and right sword pointing down, scale and distance. Keep every background landmark, mosaic, lighting and camera framing identical to image1. No growth of actors, no advance, no walk, no camera move or zoom, no added actors/text/dialogue/seal/reward. Modern pixel art HD-2D matching supplied image. Output single full-frame 16:9 landscape illustration. The only change from image1 should be Champion helmet recovering from inclination to level attention. Keep all lower-body geometry and courtyard untouched.",
+  "referenced_image_paths": [
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-04.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/lion_champion.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png"
+  ],
+  "transparent_background": false
+}

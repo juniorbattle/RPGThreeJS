@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "sceneId": "lion_trial_route_ending",
   "version": "v1",
-  "status": "IN_PROGRESS",
+  "status": "NEEDS_CORRECTION",
   "runId": "codex-illustrated-serpent-20261021T2305Z",
   "createdAt": "2026-10-21T23:12:52.992Z",
   "sourceBranch": "dev",
@@ -82,6 +82,196 @@
           "sha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc"
         }
       ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/requests/shot-02.json",
+        "sha256": "83caa81ba91f1ef9b011b0873a246c5602848e1f5207bdc6cb0966de7132bbd0"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/results/shot-02.json",
+        "sha256": "ce8b07162291100c274a4d54f0b1322e97f11080a81654f2cea264e41e2a5a16"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/raw/shot-02-initial.png",
+        "sha256": "f0a4c97a05a3816aa2c671ca10af6dcbad3cb8cb38dc83ae8ce2fb2173932f19"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+          "sha256": "a6111e975110dd070b9f54ea276d9d7499e44efefcd36676f7cb95a740f1aec1"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/lion_champion.png",
+          "path": "public/assets/characters/pixel/masters/lion_champion.png",
+          "sha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-01.png",
+          "sha256": "99c3c6c767b208f1c86473e5c81226038736da76a14180a41587f592c4aef249"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/requests/shot-02-correction-01.json",
+        "sha256": "48fe4e77e54ab158623bc40dccf972dc87a1d854dfb0fa4283ab6e506be20918"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/results/shot-02-correction-01.json",
+        "sha256": "8d74269afe4cdb90c636d4f4006f1df3c2a6dfcb8fd2ba7da18d3bac47ada639"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/raw/shot-02-correction-01.png",
+        "sha256": "6469af2210ec1f81c98b7c06402777ef0edb6953a1a164c20795ff210d95d825"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-02.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/raw/shot-02-initial.png",
+          "sha256": "f0a4c97a05a3816aa2c671ca10af6dcbad3cb8cb38dc83ae8ce2fb2173932f19"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/lion_champion.png",
+          "path": "public/assets/characters/pixel/masters/lion_champion.png",
+          "sha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+          "sha256": "a6111e975110dd070b9f54ea276d9d7499e44efefcd36676f7cb95a740f1aec1"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-01.png",
+          "sha256": "99c3c6c767b208f1c86473e5c81226038736da76a14180a41587f592c4aef249"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/requests/shot-03.json",
+        "sha256": "77573c2a9020c094a4446f3bf7aa127c35fe9120028141c7eb038ac1c2ee0375"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/results/shot-03.json",
+        "sha256": "e0ae6038d361207931536e1ade4c165a2ae301018b5c18bb60f50d3946188dbe"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/raw/shot-03-initial.png",
+        "sha256": "7fee180fda34160cd1f368af19a6d3326e3f7c8e9b8071eab9addfe83cdb1b07"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+          "sha256": "a6111e975110dd070b9f54ea276d9d7499e44efefcd36676f7cb95a740f1aec1"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/lion_champion.png",
+          "path": "public/assets/characters/pixel/masters/lion_champion.png",
+          "sha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-01.png",
+          "sha256": "99c3c6c767b208f1c86473e5c81226038736da76a14180a41587f592c4aef249"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/requests/shot-04.json",
+        "sha256": "349bcccbfd7787433d9e3b74e23348712a21b4557fce0b456b3809bdb271b412"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/results/shot-04.json",
+        "sha256": "1dd98788f9fb8cac52b445d4e6aa00affd179206812b5c408e1fb40b2b7e291b"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/raw/shot-04-initial.png",
+        "sha256": "d0ce14aa2322d316512aa3311ef74e85110b3a38ef57687f91d2acda971cf4ce"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+          "sha256": "a6111e975110dd070b9f54ea276d9d7499e44efefcd36676f7cb95a740f1aec1"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/lion_champion.png",
+          "path": "public/assets/characters/pixel/masters/lion_champion.png",
+          "sha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-01.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-01.png",
+          "sha256": "99c3c6c767b208f1c86473e5c81226038736da76a14180a41587f592c4aef249"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-03.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-03.png",
+          "sha256": "7fee180fda34160cd1f368af19a6d3326e3f7c8e9b8071eab9addfe83cdb1b07"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/requests/shot-05.json",
+        "sha256": "b1c4fd97b5bdccb5784e9698ccaa3eed22e9922190751910f4a746ada239276a"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/results/shot-05.json",
+        "sha256": "f9dc1ae606e90a800f3f6c1054be0e78c2f5cb54a5325e30e1c9a3413cc63238"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/raw/shot-05-initial.png",
+        "sha256": "5898761680252c25394b897447746a16e28f4c558b35259a075ddfd03b36fcdc"
+      },
+      "inputImages": [
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+          "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/cinematic-source/lion-trial-cinematic-source.png",
+          "sha256": "a6111e975110dd070b9f54ea276d9d7499e44efefcd36676f7cb95a740f1aec1"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/alaric.png",
+          "path": "public/assets/characters/pixel/masters/alaric.png",
+          "sha256": "dd9df8d464f8b207fa5bfbc6e6c9969236d351fe3e7df8388a3a860907d0142f"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/lion_champion.png",
+          "path": "public/assets/characters/pixel/masters/lion_champion.png",
+          "sha256": "fba0f3cca3ca9fa59bfbafd6f90fc8b0778e636ab5b2140a3516f5ca9ef848bc"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-04.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-04.png",
+          "sha256": "d0ce14aa2322d316512aa3311ef74e85110b3a38ef57687f91d2acda971cf4ce"
+        },
+        {
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-03.png",
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-03.png",
+          "sha256": "7fee180fda34160cd1f368af19a6d3326e3f7c8e9b8071eab9addfe83cdb1b07"
+        }
+      ]
     }
   ],
   "selectedImages": [
@@ -90,10 +280,57 @@
       "sha256": "99c3c6c767b208f1c86473e5c81226038736da76a14180a41587f592c4aef249",
       "width": 1672,
       "height": 941
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-02.png",
+      "sha256": "6469af2210ec1f81c98b7c06402777ef0edb6953a1a164c20795ff210d95d825",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-03.png",
+      "sha256": "7fee180fda34160cd1f368af19a6d3326e3f7c8e9b8071eab9addfe83cdb1b07",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-04.png",
+      "sha256": "d0ce14aa2322d316512aa3311ef74e85110b3a38ef57687f91d2acda971cf4ce",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-05.png",
+      "sha256": "5898761680252c25394b897447746a16e28f4c558b35259a075ddfd03b36fcdc",
+      "width": 1672,
+      "height": 941
     }
   ],
-  "initialImages": 1,
-  "corrections": 0,
+  "initialImages": 5,
+  "corrections": 1,
   "canonicalBoundary": "AFTER resolved lion_chief victory and lion_trial_aftermath; BEFORE epilogue; Lion-trial-only, voluntary/refused neutral; General free, disclosure variable",
-  "scope": "Offline only; no runtime/canon/reward/save/audio/video change"
+  "scope": "Offline only; no runtime/canon/reward/save/audio/video change",
+  "updatedAt": "2026-10-21T23:27:15.484Z",
+  "reader": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+      "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+      "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+    }
+  ],
+  "sequence": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/sequence.json",
+    "sha256": "72d135ed3d31469f9cffad6240dc641418b1f31199f0e63aa9512f532eb51ed7"
+  },
+  "targetedCorrections": 1,
+  "index": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/index.html",
+    "sha256": "1a8f8a40088d55bc36ad1671eda2b1ff4414859e0ca48fbdfac1005b0b088c5d"
+  },
+  "inputInterpretationCorrection": "Initial01 request called Alaric compact held object sword; actual output preserves V2 pale rolled parchment/red tie, correctly named and retained from03. No drawn blade introduced.",
+  "reviewedAt": "2026-10-22T04:18:52.513Z",
+  "visualDefect": "04→05 actors enlarge and feet shift against unchanged courtyard; v2 correction produced, own proof pending"
 }

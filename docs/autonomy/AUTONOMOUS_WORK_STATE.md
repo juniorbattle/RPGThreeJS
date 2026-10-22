@@ -1,18 +1,32 @@
-# Cinématiques illustrées — Serpent produit, jugement à corriger
+# Fin Lion — raccord final corrigé, v2 à vérifier
 
-Run codex-illustrated-judgement-20261021T2236Z, début2026-10-21T22:36:15Z, checkpoint2026-10-21T22:53:51.843Z. READY_FOR_PC_ACCEPTANCE conservé ; scheduler ACTIVE/configuration byte-identique. Préflight propre/verrouatomique/fetchparité, aucun WIP hérité.
+Run codex-illustrated-trial-20261022T0404Z, début2026-10-22T04:04:00Z, fin2026-10-22T04:23:15.221Z.
 
-Jugement : quatre images reprises sans régénération, une lecture16s/3fondus et10contrôles techniquesPASS. Trois captures inspectées ; guardian71SHA PASS_PRESERVATION/PASS_TECHNICAL_READER_SCOPED. **NEEDS_CORRECTION** :03→04 rebaisse tête/ligne du regard, attention finale non maintenue. Reçu brutSUCCEEDED/NOT_ACCEPTED conservé. Pas de READY/artfinal/runtime.
+Lion-trial v1 five inherited images recovered without regeneration, own18s10check technical proof and inspected captures. Visible04→05 scale/foot drift kept NEEDS_CORRECTION. One integrated edit creates v2 new05,01–04 reused; independent visual improvement PASS, v2 GENERATED_REVIEW_PENDING until own continuous proof. Five of seven scenes READY, judgement NEEDS_CORRECTION. No runtime/gameplay/video/audio change.
 
-Serpent : cinq nouvelles images1672x941/18s,5appels initiaux0correction ;1rejet avant génération pour6références, corrigé à5, requête/erreur conservées. DeuxV2Séraphine/Maelor, ruines nocturnes SERPENT_FINALE, tension→mainrelâchée→attentionMaelor→attentioncommune→livreplusbas/disponibilité. Ni artefact/Sceau/custodie/divulgation imposée ni canon ajouté. **GENERATED_REVIEW_PENDING** : images/timeline/lecteur consultables, propre lecture18s/reçu à faire. Aucune preuve jugement ou lecteur partagé n’accepte ces nouveaux médias.
+Préflight : ancienrun systemError, heartbeat23:13Z >105min, workersQA44784/14048 et parentserveur23972 absents ; serveurstatiqueorphelin41952 arrêté. Verrou archivé et acquis atomiquement. Git dev915096ef/origin-dev/liveremote égaux, main00b96f1b inchangé, stashvide.27entrées WIP héritées reprises et snapshotf87587e2 publié, aucun reset/clean. SchedulerACTIVE et SHAconfiguration préservés.
 
-**UNE prochaine action exacte :** Resume serpent_route_ending/v1 WITHOUT regenerating five selected images: observe normal18s, copy preserved sacrificed smoke (5images/4dissolves/18s/times0,4,7,10,13), change scene/paths/SHA/job only, retain all assertions; unique receipt/captures/scoped review before READY. Judgement NEEDS_CORRECTION final03→04 head gaze; no identical retry.
+Sources relues : Cin6aPresentation audience/lion_briefing, endinglion_trial, GameApp1435–1462 et lionFinale524–540 ; victoire/postcombat avant slot puis épilogue séparé. DeuxV2Alaric/Champion, courLION_TRIALintacte coucherdesoleil. Matérielparchemin/bâton/épée et mains préservés. Erreur historique requête01 épée versus parchemin réel documentée, requête/résultat gardés.
 
-contracts:validate PASS8LOCKED/8slots; immutablebaseline/statusgates empty ; npx tsc --noEmit PASS ; 63focusedtests PASS: Cin6aPresentation39 and lionFinale24; tmp excluded ; Judgement one scenario/oneattempt10checks PASS, threecaptures inspected, rawSUCCEEDED/NOT_ACCEPTED; guardian71/71SHA, sceneNEEDS_CORRECTION ; Static117SHA assertions/links/timeline/queue PASS;347inheritedjobs/348total deepEqual, historicalnonoperationalroots retained ; Camp8SHA/reader/source/public/LOCKED/scheduler preservation PASS; git diff --check PASS. Aucun build/anciennecampagne rejoué : aucun runtime modifié.0source/0gameplay/5sélectionnées/5raw/5appelsréussis/1rejetsansimage/0correction/1scénario/6nouveauxfichiersQApreuve/3workflowdocs+1plan/0WIPhérité. GalerieetREADME actualisés.
+- git diff --check PASS; immutable0cb95135 HEAD/status gates empty
+- contracts:validate PASS8LOCKED/8slots
+- npx tsc --noEmit PASS
+- 63 focused tests PASS: Cin6aPresentation39+lionFinale24, tmp excluded
+- One unique scenario/one attempt illustrated-trial-0404:10checks PASS; registered/synced eligible true, raw SUCCEEDED/NOT_ACCEPTED retained
+- v1 normal18s/four1sdissolves; inspected dissolve3/4/endpoint/narrow; IAB OSreduce0.2→18 observed
+- 84/84 v1+v2 provenance SHA PASS; v2 relative image paths/timeline PASS
+- 350 inherited QA jobs/acceptances deepEqual;351 total; scheduler ACTIVE SHA da132bce965600ca0feb8e62dda4ff701517d14f5bb88a6c6459f12bf561eda1 unchanged
+- Independent guardian v1 PASS_TECHNICAL_PRESERVATION with scale defect; v2 PASS_SCOPED_VISUAL_IMPROVEMENT, own18s proof pending
 
-Conformité1.8.0/baseline0cb95135 : GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/SAVE/REPOSITORY_GOVERNANCE PASS préservation ; NARRATIVE_PRESENTATION BLOCKED raccordjugement, Serpent continuPENDING ; UI_ACCESSIBILITY/QA_EVIDENCE PASS borné lecteurjugement/SerpentpreuvePENDING ; TRAVERSAL/COMBAT N/A. Aucun LOCKED modifié, huit slots conservés. Artfinal/adoptionruntime/PCglobal/équilibre/matériel/audio/mobileaprèsPC restentouverts.
+GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/SAVE/REPOSITORY_GOVERNANCE PASS preservation; UI_ACCESSIBILITY/QA_EVIDENCE PASS exactv1 reader; NARRATIVE_PRESENTATION BLOCKED v1scale/judgementgaze, v2improvement PASS owncontinuousPENDING; TRAVERSAL/COMBAT N/A. Set1.8.0/baseline0cb95135 unchanged; no LOCKED rule changed.
 
-[Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html) · [Handoff](handoffs/2026-10-21T2236Z-codex-judgement-serpent.md). Publicationnormaleorigin/devOD-2026-10-12-A ; mainprotégé ; SHAfinal/parité/libérationverrou consignés dans Git/mémoireaprèspublication.
+Quatreplans réutilisés, une correction ciblée intégrée. V1 média/timeline/lecteur exacts et reçu conservés ; v2 références01–04 ../v1, nouveau05raw/requête/résultat/SHA. Petitesvariationscape/appuiAlaric/sol explicites, aucun ancragepixel ni marchecontinue revendiqués. Aucun transfert de reçu. Aucun nouveaubuild/campagne justifié pour candidatoffline.
+
+Compteurs : {"runtimeSourceFiles":0,"gameplaySteps":0,"generatedInitialImages":0,"targetedCorrections":1,"imagegenCalls":1,"selectedNewIllustrations":1,"reusedSelectedImages":4,"rawOutputs":1,"qaScenarios":1,"qaAttempts":1,"qaJobsAdded":1,"qaJobsTotal":351,"newQaProofFiles":6,"workflowDocPaths":3,"planDataPaths":1,"inheritedWipEntries":27,"inheritedSelectedImages":4,"inheritedRawOutputs":5}.
+
+UNE prochaine action : Resume lion_trial_route_ending/v2 without regeneration: observe normal18s and04→05 corrected scale/feet raccord. Copy v1 review-smoke to v2, adapt version/URL/input paths ../v1/shot01–04/new05 and SHA/run/job/output only; preserve all loading/order/four dissolves/finalstop/pauseclockopacity/resume/keyboard/OSreduce/framing/console/missing assertions. Register unique receipt, inspect captures and independent review before READY. Then precise judgement final gaze correction; no repeated campaign.
+
+Publication normaleorigin/dev sousOD-2026-10-12-A ; finalSHA/parité et libérationverrou consignés après commit. Artfinal/adoptionruntime/globalPC/équilibre/matériel/audio/mobileaprèsPC restentouverts.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -367,6 +381,7 @@ Conformité1.8.0/baseline0cb95135 : GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/E
 - illustrated-judgement-2236: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-judgement-2236/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-serpent-2305: FAILED; port 5461; receipt `tmp/cinematics/illustrated-serpent-2305/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-serpent-2305-host: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-serpent-2305/review-host/qa-job.json`; NOT_ACCEPTED
+- illustrated-trial-0404: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-trial-0404/review/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 Revue Serpent indépendante2026-10-21T22:55:43.379Z : PASS_PRESERVATION_ONLY,52/52SHA et cinqimagesinspectées ; GENERATED_REVIEW_PENDING, aucune lecture18s ni READY/artfinal/runtimeacceptés. Détailslanterne/broderies variables et derniergeste subtil explicites.
@@ -376,3 +391,5 @@ Livraison d72109e2e35a650d19cab56ea5975439a4ff23c7 publiée et parité origin/de
 Current run codex-illustrated-serpent-20261021T2305Z: Serpent five retained images/18s; offline technical and continuous review, no regeneration. Next: own receipt and inspected captures, scoped independent review, then Lion-trial.
 
 Checkpoint 2026-10-21T23:17:02.633Z: Serpent READY scoped, guardian71SHA. Lion-trial01green/4pending, no regeneration. Next: Complete Lion-trial02–05 without regenerating01; own18sproof next run. Judgement final gaze correction remains.
+
+Reprise 2026-10-22T04:07:49.870Z — codex-illustrated-trial-20261022T0404Z : verrou abandonné >105min, propriétaire systemError, workers44784/14048 et parent23972 absents ; serveur statique orphelin41952 arrêté. WIP hérité27entrées préservé dans wip/codex-illustrated-trial-20261022T0404Z@f87587e2ebf0ee0878419133a6c96481e4c492b1. Prochaine action : Review inherited Lion trial images/provenance, run compatible18s smoke once and inspect captures before READY.
