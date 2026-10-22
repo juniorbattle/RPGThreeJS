@@ -25,3 +25,5 @@ Handoff : docs/autonomy/handoffs/2026-10-22T0536Z-codex-trial-review-judgement.m
 
 
 Revue indépendante finale : Jugementv2 PASS_SCOPED_VISUAL_PRESERVATION, lecture16s requise avantREADY ; Lionv2 PASS_METADATA_CLOSEOUT.48SHAprovenance,351jobs hérités/8campSHA/racines historiques/SHA scheduler vérifiés.
+
+Livraison b48ab9fcdb4e7afd817985e90d2711b39a539774 publiée et parité origin/dev/liveremote vérifiée ; main00b96f1b inchangé. Clôture2026-10-22T05:54:35.969Z, serveur owned et ongletIAB arrêtés. Snapshot35faed61 publié puis brancheWIPdistante retirée après livraisondev ; reflocal retiré à libérationverrou. Aucun héritageWIP ;351jobs exacts/354total. Métadonnées finales dans le commit suivant ; mémoireautomation porte SHAfinal.
