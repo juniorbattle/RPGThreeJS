@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.8.0",
+  "contractSetVersion": "1.9.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -135,6 +135,18 @@
       "constitutionChanged": false,
       "supersededRule": "Artistic media external to recurrence solely for offline built-in-imagegen narrative illustration candidates for existing eight IDs; video work and runtime promotion remain external",
       "implementationAcceptance": "CAMP_STRUCTURE_METHOD_ACCEPTED_SCOPED; seven other offline candidates pending; no runtime adoption or final artistic acceptance"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-ILLUSTRATED-DIRECTION-2",
+      "operatorDecisionId": "OD-2026-10-23-B",
+      "operatorDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
+      "approvedAt": "2026-10-23",
+      "changedContracts": [
+        "PRESENTATION_AND_MEDIA"
+      ],
+      "constitutionChanged": false,
+      "supersededRule": "Gentle whole-image transitions only for offline illustrated candidates; use motivated cuts/dissolves/holds and expressive pose direction with explicit pilot-method artistic approval before generalization",
+      "implementationAcceptance": "AUTHORIZED_OFFLINE_DIRECTION_ONLY; pilot not generated or artistically accepted; no runtime adoption"
     }
   ],
   "status": "LOCKED",
