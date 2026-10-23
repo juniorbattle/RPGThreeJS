@@ -2,9 +2,13 @@
 
 Run codex-pose-pilot-20261023T0425Z, débutUTC2026-10-23T04:25Z. Préflight propre, aucun verrou/WIP hérité, dev distant734bea70 vérifié, main inchangé. Verrou atomique possédé. Sources actuelles et trois références V2/décor inspectées. Partition/fiches avant génération sous tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/storyboard.md.
 
-Prochaine action : Generate only new v2 shots02–05 from the inspected V2 masters, approved destroyed environment and sourced storyboard; retain exact v1shot01 establishing image. No six-scene generalization before explicit artistic method approval.
+Prochaine action précédente (accomplie) : Generate only new v2 shots02–05 from the inspected V2 masters, approved destroyed environment and sourced storyboard; retain exact v1shot01 establishing image. No six-scene generalization before explicit artistic method approval.
 
 Scheduler observé ACTIVE/xhigh/cadence90min, conservé octet pour octet ; ancien PAUSED historique. Aucun src/public/runtime/contrat/vidéo/audio/camp modifié.355jobs et acceptations historiques conservés.
+
+Cinq images sélectionnées :01 historique exact +02–05 nouveaux,4initiales/1correction/5raw. Nouveau lecteur local pour coupes et comparaison sans légendes ; preuve propre encore attendue. Aucune acceptation artistique ou runtime.
+
+UNE prochaine action : Run registered v2 own18s hard-cut/caption-free comparison proof, inspect captures and complete independent scoped review; then await explicit operator artistic method acceptance before six-scene generalization.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 2,
+  "sceneId": "bois_clair_sacrificed",
+  "version": "v2",
+  "runId": "codex-pose-pilot-20261023T0425Z",
+  "generatedAt": "2026-10-23T04:38:13.927Z",
+  "sourceBranch": "dev",
+  "sourceCommit": "734bea704b6c8ad449bf5f5f71d554058c22beff",
+  "preGenerationStoryboardCommit": "5d0a4252b59e30c164588a2f645cd6c6611fcf30",
+  "contractSetVersion": "1.9.0",
+  "contractBaseline": "32c8439f6dea1d09f428c5c081392ab0c700e356",
+  "tool": "built-in image_gen.imagegen only",
+  "initialImages": 4,
+  "targetedCorrections": 1,
+  "uniqueGeneratedOutputs": 5,
+  "reusedImages": 1,
+  "rawPolicy": "Every returned PNG retained byte-identically, no crop/re-encoding; exact prompt/request/output_hint retained in request/result; image_url bytes represented by raw PNG SHA",
+  "status": {
+    "generation": "GENERATED",
+    "technical": "NOT_VERIFIED",
+    "art": "ART_REVIEW_PENDING",
+    "readiness": "IN_PROGRESS",
+    "operatorMethodAcceptance": "PENDING",
+    "runtime": "NOT_ADOPTED",
+    "generalizationAllowed": false
+  },
+  "references": [
+    {
+      "path": "public/assets/characters/pixel/masters/maelor.png",
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/villageoise.png",
+      "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
+    },
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+      "sha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/cinematics/Cin6aPresentation.ts",
+      "sha256": "41e0dee7f65231bd8e65cee075ac8c6d909302b6de37e7560b0eeeae8a645990"
+    },
+    {
+      "path": "src/game/content.ts",
+      "sha256": "f1c09e07cbdcd4641ff92207cf7118370673e4e33bfcc8b6adacf2cca1853ea0"
+    },
+    {
+      "path": "src/game/GameApp.ts",
+      "sha256": "067df49417b038704b154b54402aae42840d5f3bde279838d845f848d530d8b5"
+    },
+    {
+      "path": "src/render/data/demo-environment-pack-v1.production.json",
+      "sha256": "fcd1c020d9674c35e9665bb10fdcd7d4d898f382ed0117016f4b6c9dce6e00c3"
+    }
+  ],
+  "storyboard": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/storyboard.md",
+    "sha256": "649aa51e57104f410e3c78d69ed499810e9792d6624a1536888563bac54ec769"
+  },
+  "calls": [
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/requests/shot-02.json",
+        "sha256": "924a31285061a1fb93418a5e64b3b8030df8ee782beba44f34129b44efd2f3b0"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/results/shot-02.json",
+        "sha256": "bf64a4a8c69e164454733b196b9b4dd574f6c9ff02cb01021b28325ccf0f67a0"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/raw/shot-02-initial.png",
+        "sha256": "28c1136592debd7d43a3d4955bd98e6a474e88a378b03f6aacae5fc6f318fd0a"
+      },
+      "inputImages": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png",
+          "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/villageoise.png"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/requests/shot-03.json",
+        "sha256": "d271de789eaf75e93004f07e1b85b2e4eda444d50465336c6bc18578fbe5a26b"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/results/shot-03.json",
+        "sha256": "94a76294061b48a5331682b1482d24239b0a936d373089a21ce15eaa67b511f0"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/raw/shot-03-initial.png",
+        "sha256": "7fcb8b1a201ed268e7dfde606a3e799822cbb520aa912c97d50cfd166dbe6da5"
+      },
+      "inputImages": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-02.png",
+          "sha256": "28c1136592debd7d43a3d4955bd98e6a474e88a378b03f6aacae5fc6f318fd0a",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-02.png"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/villageoise.png"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/requests/shot-03-correction-01.json",
+        "sha256": "4f2d0a89be451046f90f6cc84fcefb0a91ce9cb3d5d0e450de31e7744787ca48"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/results/shot-03-correction-01.json",
+        "sha256": "92f4ba8a8aef0aab287423c33ed8f3308ec7b8818b775472e736b893496deecd"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/raw/shot-03-correction-01.png",
+        "sha256": "c6f03d5faf4255f59f20966f97b571cdf55929d45f02d5a3336a8ab2649302c1"
+      },
+      "inputImages": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/raw/shot-03-initial.png",
+          "sha256": "7fcb8b1a201ed268e7dfde606a3e799822cbb520aa912c97d50cfd166dbe6da5",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/raw/shot-03-initial.png"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-02.png",
+          "sha256": "28c1136592debd7d43a3d4955bd98e6a474e88a378b03f6aacae5fc6f318fd0a",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-02.png"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/villageoise.png"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/requests/shot-04.json",
+        "sha256": "4f7707e8e2a45a97d7593ec3a3e67375760bedff29f3c1b599527591aee52add"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/results/shot-04.json",
+        "sha256": "5aca0347359936c3b5650b437756da07eec8202e10ffd58112207a4361d4a627"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/raw/shot-04-initial.png",
+        "sha256": "dac8bce866090a8da22c8d361d8b74280ad9cf61defdebff397695ba5330d199"
+      },
+      "inputImages": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-03.png",
+          "sha256": "c6f03d5faf4255f59f20966f97b571cdf55929d45f02d5a3336a8ab2649302c1",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-03.png"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/villageoise.png"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png"
+        }
+      ]
+    },
+    {
+      "request": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/requests/shot-05.json",
+        "sha256": "97cbefd8b3353c9b0b25cad1672be150f10d45ad10eba1cecf7e7286fad77d90"
+      },
+      "result": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/results/shot-05.json",
+        "sha256": "ae5f9bef48e24690181a5ad2e5cc7e90c6b90f6ee6238d697b95179a6c373639"
+      },
+      "rawOutput": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/raw/shot-05-initial.png",
+        "sha256": "631b1d414353d6c10e580f103d5f0b63288dc303f3e122933d33ab6e8a3f1cbf"
+      },
+      "inputImages": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-03.png",
+          "sha256": "c6f03d5faf4255f59f20966f97b571cdf55929d45f02d5a3336a8ab2649302c1",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-03.png"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-04.png",
+          "sha256": "dac8bce866090a8da22c8d361d8b74280ad9cf61defdebff397695ba5330d199",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-04.png"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/maelor.png",
+          "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png"
+        },
+        {
+          "path": "public/assets/characters/pixel/masters/villageoise.png",
+          "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180",
+          "requestPath": "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/villageoise.png"
+        }
+      ]
+    }
+  ],
+  "selectedOutputs": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/../v1/shot-01.png",
+      "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-02.png",
+      "sha256": "28c1136592debd7d43a3d4955bd98e6a474e88a378b03f6aacae5fc6f318fd0a"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-03.png",
+      "sha256": "c6f03d5faf4255f59f20966f97b571cdf55929d45f02d5a3336a8ab2649302c1"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-04.png",
+      "sha256": "dac8bce866090a8da22c8d361d8b74280ad9cf61defdebff397695ba5330d199"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-05.png",
+      "sha256": "631b1d414353d6c10e580f103d5f0b63288dc303f3e122933d33ab6e8a3f1cbf"
+    }
+  ],
+  "sequence": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/sequence.json",
+    "sha256": "a6396afd6f82469cf5617e915b66592b2cef2551f9059c86265839f24eda8d52"
+  },
+  "reader": {
+    "basedOn": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+      "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+    },
+    "script": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/montage.mjs",
+      "sha256": "ce06b53bcf009f0dbeaffd2877f85ce8818e91e0eed7d6bf0dcbb0d608012b66"
+    },
+    "css": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+      "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+    },
+    "adaptation": "Only destination cut handling and caption-free historical comparison; existing loading/transport/clock-opacity pause/resume/keyboard/OSreduce/contain/44px/fallback retained. Historical reader untouched."
+  },
+  "limits": [
+    "No art/operator/runtime acceptance",
+    "No continuous animation, simulated walk or pixel-fixed stance",
+    "02/03 remain wide instead of requested closer frames;02 knee bend not claimed",
+    "03 widened brace retained;04 basket lower and torso turn smaller than requested; head withdrawal carries04",
+    "Fine trim/cloth/ground details vary; operator final art review remains required"
+  ]
+}
