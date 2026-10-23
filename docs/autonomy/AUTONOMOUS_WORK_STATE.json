@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-23T01:47:00Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-23T02:04:16.244Z",
   "activeTask": "ILLUSTRATED-SEVEN-SCENE-HANDOFF",
   "activePhase": "READY_FOR_OPERATOR_REVIEW",
   "activeSubtask": "Seven offline candidates delivered; one indexed artistic review handoff",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "b48ab9fcdb4e7afd817985e90d2711b39a539774",
-  "lastPushedCommit": "b48ab9fcdb4e7afd817985e90d2711b39a539774",
+  "lastKnownGoodCommit": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
+  "lastPushedCommit": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
   "completedThisRun": [
     "Sept montages candidats hors jeu prêts pour revue opérateur :35illustrations/126secondes proposées. Jugementv2 propre16s/3fondus/10contrôles et revue indépendantePASS, quatre images réutilisées. Une synthèse indexée des sept scènes livrée ; aucune nouvelle génération, étape gameplay ou adoption runtime."
   ],
@@ -181,7 +181,7 @@
     "lastGreenCheck": "git diff --check PASS; immutable0cb95135 HEAD/status gates empty; contracts:validate PASS8LOCKED/8slots; npx tsc --noEmit PASS; 63 focused tests PASS: Cin6aPresentation39+lionFinale24, tmp excluded; One unique scenario/one attempt illustrated-trial-0404:10checks PASS; registered/synced eligible true, raw SUCCEEDED/NOT_ACCEPTED retained; v1 normal18s/four1sdissolves; inspected dissolve3/4/endpoint/narrow; IAB OSreduce0.2→18 observed; 84/84 v1+v2 provenance SHA PASS; v2 relative image paths/timeline PASS; 350 inherited QA jobs/acceptances deepEqual;351 total; scheduler ACTIVE SHA da132bce965600ca0feb8e62dda4ff701517d14f5bb88a6c6459f12bf561eda1 unchanged; Independent guardian v1 PASS_TECHNICAL_PRESERVATION with scale defect; v2 PASS_SCOPED_VISUAL_IMPROVEMENT, own18s proof pending"
   },
   "live": {
-    "lastHeartbeat": "2026-10-23T01:58:16.182Z",
+    "lastHeartbeat": "2026-10-23T02:04:16.244Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -39461,24 +39461,8 @@
       "branch": null,
       "sha": null,
       "status": "GREEN",
-      "dirtyFiles": [
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "tools/cinematics/candidates/illustrated-sequences/gallery.json",
-        "tools/cinematics/candidates/illustrated-sequences/index.html",
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review.md",
-        "tools/cinematics/specs/illustrated-sequences/production-plan.json",
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/desktop-endpoint.png",
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/dissolve-3.png",
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/narrow-preparation.png",
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/results.json",
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-receipt.json",
-        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-smoke.mjs",
-        "tools/cinematics/candidates/illustrated-sequences/review-index.json",
-        "tools/cinematics/candidates/illustrated-sequences/review-index.md",
-        "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md"
-      ],
-      "lastGreenCheck": "TypeScript PASS ;63tests ciblés(Cin6aPresentation39/lionFinale24,tmp exclus); contracts:validate PASS8LOCKED/8slots ; gates baseline/status vides ;diffcheckPASS; Jugementv2 propre16s/3fondus normaux1s/10contrôlesPASS ; un scénario/une tentative; Reçu SUCCEEDED éligible/stable/current/request/digest ; rawNOT_ACCEPTED conservé; Quatre images natives et trois captures fondu03/fin/390 inspectées ;IAB0,2→13,4→16s OSreduce observé"
+      "dirtyFiles": [],
+      "lastGreenCheck": "Coherent delivery 9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9 published and parity verified; final metadata follows"
     },
     "nextAction": "Revue artistique opérateur des sept montages via tools/cinematics/candidates/illustrated-sequences/review-index.md et galerie. Aucune adoption runtime implicite. Sans nouveau verdict ni défaut PC indépendant déjà démontré, conserver le checkpoint ; aucune régénération ni campagne inchangée à rejouer. Mobile après PC.",
     "runMetrics": {
@@ -39523,8 +39507,8 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-23T02:04:16.244Z",
+    "writerStopped": true,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
       "previewPort5461Stopped": true,
@@ -39639,15 +39623,14 @@
       "reason": "Automatic review found insufficient trusted exact authorization to disclose internal state on public GitHub WIP branch; local concrete checkpoint in preparation"
     },
     "publicationCloseout": {
-      "deliveryCommit": "b48ab9fcdb4e7afd817985e90d2711b39a539774",
-      "verifiedOriginDev": "b48ab9fcdb4e7afd817985e90d2711b39a539774",
+      "deliveryCommit": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
+      "verifiedOriginDev": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
       "remoteMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "snapshot": "35faed611d9de5c038cbb04ef03fc287d363699e",
-      "remoteSnapshotDeleted": true,
       "ownedServerStopped": true,
-      "iabClosed": true,
-      "closedAt": "2026-10-22T05:54:35.969Z",
-      "scope": "Final metadata commit follows delivery; final SHA in automation memory and Git"
+      "iabTab": "Unavailable at closeout; no tab left under agent control",
+      "snapshot": "No WIP branch needed; coherent dev checkpoint at14.5min",
+      "closedAt": "2026-10-23T02:04:16.244Z",
+      "scope": "Closure metadata follows; final SHA recorded in Git and automation memory"
     },
     "run1859History": {
       "runId": "rpgthreejs-auto-dev-90m-20261008T1859",
@@ -43659,7 +43642,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-23T01:47:00Z",
     "activePhase": "READY_FOR_OPERATOR_REVIEW",
-    "heartbeat": "2026-10-23T01:58:16.182Z",
+    "heartbeat": "2026-10-23T02:04:16.244Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -45000,7 +44983,7 @@
       }
     },
     "threadId": "01a16671-9e41-7761-9fd9-52200f935aca",
-    "writerStoppedMeaning": "Product and QA complete; final metadata publication then owned lock release",
+    "writerStoppedMeaning": "Product and QA complete; final closure metadata publication then lock release",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -45388,7 +45371,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "b48ab9fcdb4e7afd817985e90d2711b39a539774",
+    "lastPushedCommit": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -46193,7 +46176,7 @@
     },
     "creditStatus": "REVIEWER_AVAILABLE_IMAGEGEN_NOT_NEEDED_NOT_TESTED",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "b48ab9fcdb4e7afd817985e90d2711b39a539774",
+    "lastKnownGoodCommit": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
     "completedThisRun": [
       "Sept montages candidats hors jeu prêts pour revue opérateur :35illustrations/126secondes proposées. Jugementv2 propre16s/3fondus/10contrôles et revue indépendantePASS, quatre images réutilisées. Une synthèse indexée des sept scènes livrée ; aucune nouvelle génération, étape gameplay ou adoption runtime."
     ],
@@ -47734,7 +47717,7 @@
       ]
     },
     "contractSetVersion": "1.8.0",
-    "uncommittedWork": "Owned offline proof/synthesis and closure only; no inherited WIP",
+    "uncommittedWork": "Only reviewed state/handoff closure metadata; final commit follows",
     "commitReferenceScope": "Reviewed illustrated-cinematic configuration delivery; following metadata-only closeout discoverable in Git, avoiding circular self-reference.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
@@ -47933,7 +47916,16 @@
         "configurationSha256": "223b2bfe7ccfda25026de105b72a79af44fe5eeb9802874af7b73c1c49b7b342",
         "note": "Current saved status differs from run prompt ACTIVE; no scheduler mutation or inferred reactivation"
       },
-      "metadataReview": "PASS_METADATA_SYNTHESIS_CLOSEOUT; seven versions/35images126s/links/limits/rawproof/scheduler observation coherent"
+      "metadataReview": "PASS_METADATA_SYNTHESIS_CLOSEOUT; seven versions/35images126s/links/limits/rawproof/scheduler observation coherent",
+      "publication": {
+        "deliveryCommit": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
+        "verifiedOriginDev": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
+        "remoteMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+        "ownedServerStopped": true,
+        "iabTab": "Unavailable at closeout; no tab left under agent control",
+        "snapshot": "No WIP branch needed; coherent dev checkpoint at14.5min",
+        "closedAt": "2026-10-23T02:04:16.244Z"
+      }
     }
   },
   "previousInterruptedRun": {

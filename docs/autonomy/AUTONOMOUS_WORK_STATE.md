@@ -386,3 +386,5 @@ Handoff : docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review
 <!-- QA_JOBS_END -->
 
 Guardian final : PASS_METADATA_SYNTHESIS_CLOSEOUT ; sept versions35images126s/statuts/frontières/limites/reçus/liens cohérents, aucune acceptation artistique ou runtime. Vérification finale93SHA/93racines historiques/354jobs hérités inchangés/355total/8SHA camp/configuration scheduler préservée.
+
+Livraison 9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9 publiée et paritédev/origin-dev/liveremote vérifiée ; main00b96f1b inchangé. Finrun2026-10-23T02:04:16.244Z, serveur5461 arrêté. OngletIAB non disponible à la clôture ; index de revue ouvert dansCodex (queued). Aucun WIP hérité ; checkpoint cohérentdev après14,5min, aucune brancheWIP nécessaire. Métadonnées de clôture dans le commit suivant ; SHAfinal dans mémoireautomation/Git. Scheduler PAUSED et octets inchangés.
