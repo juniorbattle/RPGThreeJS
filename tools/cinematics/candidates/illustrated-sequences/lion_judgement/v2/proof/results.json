@@ -1,0 +1,93 @@
+{
+  "scope": "Four chronological illustrated stages, offline reader only; not gameplay/comprehension/art/gait acceptance",
+  "driver": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-smoke.mjs",
+  "checks": [
+    "Four distinct complete images preloaded; initially paused on establishing image",
+    "Three real-time dissolves through chronological4images, total16s and final stop",
+    "All four scene stages follow the authored timeline",
+    "Four-stage Home/End/arrow/previous navigation matches timeline",
+    "OSreduce gentle dissolve retained; pause freezes opacity and clock; resume advances",
+    "Whole images/44px controls/no horizontal clipping at1366x768",
+    "Whole images/44px controls/no horizontal clipping at620x780",
+    "Whole images/44px controls/no horizontal clipping at390x844",
+    "No nominal console/page errors",
+    "Missing final raccord image disables playback with visible status"
+  ],
+  "samples": [
+    {
+      "time": 3.2,
+      "base": "../v1/shot-01.png",
+      "next": "../v1/shot-02.png",
+      "alpha": 0.125142,
+      "loaded": true
+    },
+    {
+      "time": 7.2,
+      "base": "../v1/shot-02.png",
+      "next": "../v1/shot-03.png",
+      "alpha": 0.125039,
+      "loaded": true
+    },
+    {
+      "time": 10.2,
+      "base": "../v1/shot-03.png",
+      "next": "shot-04.png",
+      "alpha": 0.124935,
+      "loaded": true
+    }
+  ],
+  "captures": [
+    "tmp/cinematics/illustrated-judgement-v2-0147/review/dissolve-1.png",
+    "tmp/cinematics/illustrated-judgement-v2-0147/review/dissolve-2.png",
+    "tmp/cinematics/illustrated-judgement-v2-0147/review/dissolve-3.png",
+    "tmp/cinematics/illustrated-judgement-v2-0147/review/desktop-endpoint.png",
+    "tmp/cinematics/illustrated-judgement-v2-0147/review/desktop-movement.png",
+    "tmp/cinematics/illustrated-judgement-v2-0147/review/narrow-preparation.png"
+  ],
+  "status": "PASS",
+  "pass": true,
+  "errors": [],
+  "provenance": {
+    "scene": "lion_judgement",
+    "url": "http://127.0.0.1:5461/lion_judgement/v2/index.html",
+    "media": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/sequence.json",
+        "sha256": "00e78748ce3e095eed4297626921996cffd0ed1148d0564e6eebc055e45498b5"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+        "sha256": "f62031235118c0c98970a66880296b6f134f0055a96c2bf93450ceee48de2bf1"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-02.png",
+        "sha256": "cffecfa5e1acf4e94002a21356f248c9fad42283e8bf20a6fdd095502eadd2ba"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+        "sha256": "1fe23af8966273186aadaf5bcf19d348a8af617d1e6aa93c9da4cf41e0137f10"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/shot-04.png",
+        "sha256": "d075bc92961719698d859579312493a10d96dfc095889363b02ee2acf4bad991"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/index.html",
+        "sha256": "074d3b559326d1066c79ce970eb70c66c505249069953f25f547a9729d406a6e"
+      }
+    ],
+    "reader": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+        "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+        "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+      }
+    ],
+    "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+  },
+  "consoleErrors": [],
+  "completedAt": "2026-10-23T01:52:07.424Z"
+}

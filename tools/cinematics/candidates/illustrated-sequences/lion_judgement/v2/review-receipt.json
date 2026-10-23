@@ -1,0 +1,199 @@
+{
+  "reviewedAt": "2026-10-23T01:54:22.527Z",
+  "verdict": "PASS_SCOPED_READY_FOR_OPERATOR_REVIEW",
+  "scope": "Exact own v2 four-image16s offline candidate; no gameplay/final art/runtime acceptance",
+  "job": {
+    "schemaVersion": 1,
+    "jobId": "illustrated-judgement-v2-0147",
+    "runId": "codex-illustrated-final-review-20261023T0147Z",
+    "status": "SUCCEEDED",
+    "registeredAt": "2026-10-23T01:50:52.818Z",
+    "pid": 3616,
+    "port": 5461,
+    "command": [
+      "node",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-smoke.mjs"
+    ],
+    "parameters": {
+      "scene": "lion_judgement",
+      "url": "http://127.0.0.1:5461/lion_judgement/v2/index.html",
+      "media": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/sequence.json",
+          "sha256": "00e78748ce3e095eed4297626921996cffd0ed1148d0564e6eebc055e45498b5"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+          "sha256": "f62031235118c0c98970a66880296b6f134f0055a96c2bf93450ceee48de2bf1"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-02.png",
+          "sha256": "cffecfa5e1acf4e94002a21356f248c9fad42283e8bf20a6fdd095502eadd2ba"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+          "sha256": "1fe23af8966273186aadaf5bcf19d348a8af617d1e6aa93c9da4cf41e0137f10"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/shot-04.png",
+          "sha256": "d075bc92961719698d859579312493a10d96dfc095889363b02ee2acf4bad991"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/index.html",
+          "sha256": "074d3b559326d1066c79ce970eb70c66c505249069953f25f547a9729d406a6e"
+        }
+      ],
+      "reader": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+          "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+          "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+        }
+      ],
+      "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+    },
+    "requiredAssertions": [
+      "FOUR_DISTINCT_IMAGES_PAUSED",
+      "THREE_NORMAL_SPEED_DISSOLVES_16S_STOP",
+      "ORDER_TIMELINE_KEYBOARD",
+      "OS_REDUCE_PAUSE_RESUME",
+      "CONTAIN_44PX_NO_OVERFLOW",
+      "NO_CONSOLE_ERRORS",
+      "MISSING_IMAGE_DISABLES_PLAYBACK"
+    ],
+    "output": "tmp/cinematics/illustrated-judgement-v2-0147/review",
+    "receiptPath": "tmp/cinematics/illustrated-judgement-v2-0147/review/qa-job.json",
+    "provenance": {
+      "gitHead": "6447162c9291c451e2c3270a555ef1741130ccb7",
+      "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+      "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "driver": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-smoke.mjs",
+        "sha256": "18fd78adf15baf4d9b64fe11f4eab510ebc91c1df553d53b8c8713be4bcea594"
+      },
+      "inputs": [],
+      "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+      "build": [
+        {
+          "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+          "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+        },
+        {
+          "path": "dist/assets/combat-DG7ZUtBq.css",
+          "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+        },
+        {
+          "path": "dist/assets/combat-tTV9DuEb.js",
+          "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+        },
+        {
+          "path": "dist/assets/game-CpZAzB3w.js",
+          "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+        },
+        {
+          "path": "dist/assets/game-D9rcJ1yO.css",
+          "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+        },
+        {
+          "path": "dist/assets/three-core-f0ajj1rG.js",
+          "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+        },
+        {
+          "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+          "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+        },
+        {
+          "path": "dist/assets/validation-mSkvzYyn.js",
+          "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+        },
+        {
+          "path": "dist/index.html",
+          "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+        }
+      ]
+    },
+    "acceptance": "NOT_ACCEPTED",
+    "startedAt": "2026-10-23T01:51:45.698Z",
+    "endedAt": "2026-10-23T01:52:07.604Z",
+    "exitCode": 0,
+    "resultPath": "tmp/cinematics/illustrated-judgement-v2-0147/review/results.json",
+    "resultSha256": "7b66a024a5f753c0a257890515cf1ad4c78ebd92d1e27bb14108be55f3b31183",
+    "provenanceMatches": true,
+    "provenanceStable": true,
+    "requestMatches": true,
+    "matchesCurrentExecution": true,
+    "resultDigestMatches": true,
+    "eligibleForReview": true
+  },
+  "rawReceipt": {
+    "path": "tmp/cinematics/illustrated-judgement-v2-0147/review/qa-job.json",
+    "sha256": "fa0e0c5ac27b8a673c6459ace7a971a1afb3d102f38e9eee852db92c5a298591",
+    "acceptance": "NOT_ACCEPTED"
+  },
+  "rawResults": {
+    "path": "tmp/cinematics/illustrated-judgement-v2-0147/review/results.json",
+    "sha256": "7b66a024a5f753c0a257890515cf1ad4c78ebd92d1e27bb14108be55f3b31183"
+  },
+  "promotedResults": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/results.json",
+    "sha256": "7b66a024a5f753c0a257890515cf1ad4c78ebd92d1e27bb14108be55f3b31183"
+  },
+  "captures": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/dissolve-3.png",
+      "sha256": "eb0634ae2d5c951bf75762377f1395025d60d9dc0fde44a63608aa0f0eb2ba1e",
+      "inspected": true
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/desktop-endpoint.png",
+      "sha256": "ead429a17abf4b08d18d058fd3e24071f2817e675d0e6dfc4dd7adca3f3b1688",
+      "inspected": true
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/narrow-preparation.png",
+      "sha256": "9c422355446f657a6c98c218cac708bb97ccaec445b714ed69307f8e20472649",
+      "inspected": true
+    }
+  ],
+  "visualReview": {
+    "nativeImages": [
+      "../v1/shot-01.png",
+      "../v1/shot-02.png",
+      "../v1/shot-03.png",
+      "shot-04.png"
+    ],
+    "observations": [
+      "01 establishes the waiting authority in the intact hall",
+      "02 reveals steady occupied sword/staff hands; no order or exchange",
+      "03 raises attention toward offscreen company to left",
+      "04 keeps raised left attention in a wider fullfigure framing before dynamic open"
+    ],
+    "limits": [
+      "Painted floor, ornament and figure scale variations remain candidate art",
+      "Fullfigure actual04 differs from belowknees generation request",
+      "No continuous gait or pixel-fixed stance claim"
+    ],
+    "iab": "Own16s playback observed at0.2s,13.4s and final16s with OSreduce active; normal1s dissolves separately evidenced by exact Playwright run"
+  },
+  "finalArtAccepted": false,
+  "runtimeIntegrated": false,
+  "contractSetVersion": "1.8.0",
+  "baseline": "0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa",
+  "lockedRulesChanged": false,
+  "independentReview": {
+    "reviewer": "contracts-guardian",
+    "verdict": "PASS_SCOPED_READY_FOR_OPERATOR_REVIEW",
+    "observations": [
+      "Actual v1→v2 driver diff preserves every assertion",
+      "Own16s three normal-speed dissolves and ten checks PASS; exact SHA and provenance verified",
+      "Four native images and three selected captures inspected;03→04 raised leftward attention retained",
+      "Sword right/staff left, Alaric alone, intact hall and before dynamic open boundary retained",
+      "Fullfigure actual framing, floor/figure scale and ornament/equipment-detail variations disclosed; no final art acceptance"
+    ],
+    "scope": "Judgement v2 only; synthesis may index existing readiness without renewing other six proofs",
+    "lockedRulesChanged": false
+  }
+}

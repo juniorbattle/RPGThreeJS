@@ -1,27 +1,29 @@
-# Candidats illustrés — fin Lion prête, Jugement corrigé
+# Sept montages illustrés prêts pour revue
 
-Run codex-illustrated-trial-review-20261022T0536Z, début2026-10-22T05:36:00Z, checkpoint2026-10-22T05:51:05.855Z, dev.
+Run codex-illustrated-final-review-20261023T0147Z, début2026-10-23T01:47:00Z, checkpoint2026-10-23T01:58:16.182Z, dev.
 
-Lion-trial v2 own18s/fourdissolves/10checks and independent scoped review PASS, READY_FOR_OPERATOR_REVIEW. Six of seven ready. Judgement v2 one new final04 from successful03 changes framing and maintains level attention,01–03 reused; GENERATED_REVIEW_PENDING until own16s. No runtime/gameplay/video/audio change.
+Sept montages candidats hors jeu prêts pour revue opérateur :35illustrations/126secondes proposées. Jugementv2 propre16s/3fondus/10contrôles et revue indépendantePASS, quatre images réutilisées. Une synthèse indexée des sept scènes livrée ; aucune nouvelle génération, étape gameplay ou adoption runtime.
 
-Préflight propre sansverrou/WIP, atomiclock, HEAD/origin-dev/liveremote b6552e4 égaux ; main00b96f1b inchangé. Fetch hôte après getaddrinfo sandbox. SchedulerACTIVE et configuration byte-identique. Aucun src/public/LOCKED/V6/MP4/audio modifié.
+Préflight sansverrou/WIP, autres chats idle, verrou atomique. HEAD/origin-dev/liveremote6447162 égaux ;main00b96f1b inchangé. Fetchhôte aprèsDNSsandbox. Le statut scheduler actuel enregistré est **PAUSED**, différent du promptACTIVE ; configuration intégralement préservée, aucune réactivation inférée. La mentionACTIVE du préambule de préparation de ce run était une hypothèse corrigée ici.
 
-- TypeScript PASS;63 focused testsPASS(Cin6aPresentation39+lionFinale24,tmp excluded)
-- contracts:validate8LOCKED/8slots PASS; immutablebaseline/status gates empty;diffcheckPASS
-- One scene Lion-trialv2:host2 own18s/four1sdissolves/10checksPASS; eligible/stable/current/request/digest true,rawNOT_ACCEPTED
-- Five native Lion images+dissolve4/endpoint/narrow inspected;IAB0.2→18 OSreduce observed
-- Two environment attempts preserved FAILED: sandboxChromium missing, host-browser/sandbox-server isolation; no assertion weakened
-- Judgementv2 one integrated correction04 from03,three reused,raw/request/result/inputs/outputSHA retained; own16s pending
-- SchedulerACTIVE SHA da132bce965600ca0feb8e62dda4ff701517d14f5bb88a6c6459f12bf561eda1 unchanged;351inheritedjobs/acceptances preserved,354total
-- Independent guardian Lionv2 PASS_SCOPED_READY_FOR_OPERATOR_REVIEW and PASS_METADATA_CLOSEOUT; judgementv2 PASS_SCOPED_VISUAL_PRESERVATION, own16s pending
+[Synthèse unique](../../tools/cinematics/candidates/illustrated-sequences/review-index.md) · [Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html). Sept versions exactes/limites/frontières/reçus liées. Jugementv2 HTML/provenance de génération restent byte-identiques malgré textependinghistorique ; statutcourant revue/plan/galerie. Versionsv1défectueuses/précédentespreuves conservées.
 
-Set1.8.0 baseline0cb95135 unchanged. GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/SAVE/REPOSITORY_GOVERNANCE PASS preservation; NARRATIVE_PRESENTATION/UI_ACCESSIBILITY/QA_EVIDENCE PASS scoped Lionv2 own18s; Judgementv2 own16s PENDING. TRAVERSAL/COMBAT N/A. No LOCKED rule changed. Art/runtime/globalPC/balance/hardware/audio/mobile-afterPC remain open.
+- TypeScript PASS ;63tests ciblés(Cin6aPresentation39/lionFinale24,tmp exclus)
+- contracts:validate PASS8LOCKED/8slots ; gates baseline/status vides ;diffcheckPASS
+- Jugementv2 propre16s/3fondus normaux1s/10contrôlesPASS ; un scénario/une tentative
+- Reçu SUCCEEDED éligible/stable/current/request/digest ; rawNOT_ACCEPTED conservé
+- Quatre images natives et trois captures fondu03/fin/390 inspectées ;IAB0,2→13,4→16s OSreduce observé
+- Guardian PASS_SCOPED_READY_FOR_OPERATOR_REVIEW ; regard relevé03→04/équipement/frontière confirmés
+- 354jobs hérités et acceptations inchangés ;355total ; aucun média historique modifié
+- Scheduler enregistréPAUSED découvert, SHA223b2bfe7ccfda25026de105b72a79af44fe5eeb9802874af7b73c1c49b7b342 conservé ; aucun changement de paramètres
 
-Compteurs : {"runtimeSourceFiles":0,"gameplaySteps":0,"generatedInitialImages":0,"targetedCorrections":1,"imagegenCalls":1,"selectedNewIllustrations":1,"reusedSelectedImages":8,"rawOutputs":1,"qaScenarios":1,"qaAttempts":3,"environmentFailures":2,"qaJobsAdded":3,"qaJobsTotal":354,"newQaProofFiles":7,"workflowDocPaths":3,"planDataPaths":1,"inheritedWipEntries":0}. Les351jobs hérités et acceptations restent identiques ; deux échecs environnement et un succès propres ajoutés. Aucun nouveau build/campagne justifié pour candidat offline. Lionv1preuve/raccorddéfectueux et Jugementv1restent historiques intacts. FooterLionv2 seulchangé aprèstest, SHAtesté/livré distincts dansreçu.
+Set1.8.0/baseline0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa. GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/NARRATIVE_PRESENTATION/SAVE/UI_ACCESSIBILITY/QA_EVIDENCE/REPOSITORY_GOVERNANCE PASS pour préservation et revue offline bornée ; TRAVERSAL/COMBAT N/A. Aucun LOCKED modifié, gates vides. Autres six revues indexées avec leur portée historique, non renouvelées. Artfinal/runtime/PCglobal/équilibre/matériel/audio/mobileaprèsPC ouverts.
 
-UNE prochaine action : Resume lion_judgement/v2 WITHOUT regenerating four selected images (01–03 relative ../v1, new04). Observe normal16s especially03→04 level gaze. Copy preserved judgement/v1 four-image16s smoke to v2; adapt version/URL/relative paths/SHA/run/job/output only, keep three dissolves/loading/order/pauseclockopacity/resume/keyboard/final/OSreduce/framing/console/missing assertions. One unique registered receipt, inspect captures and independent review before READY; then one indexed seven-scene synthesis. No campaign replay.
+Compteurs : {"runtimeSourceFiles":0,"gameplaySteps":0,"generatedImages":0,"imagegenCalls":0,"reusedSelectedImages":4,"qaScenarios":1,"qaAttempts":1,"qaJobsAdded":1,"qaJobsTotal":355,"newQaProofFiles":6,"reviewIndexFiles":2,"workflowDocPaths":3,"planDataPaths":1,"galleryPaths":2,"reviewPathsModified":1,"inheritedWipEntries":0}. Aucun build/campagne/retestautresscènes justifié pour preuveoffline et index. Pas de src/public/registre/manifest/V6/vidéo/keyframe/MiniMax/MP4/audio/camp/contrats modifié.
 
-Handoff : docs/autonomy/handoffs/2026-10-22T0536Z-codex-trial-review-judgement.md. Publication normaleorigin/dev sousOD-2026-10-12-A ; parité et runEndedAt consignés aprèscommit.
+UNE prochaine action : Revue artistique opérateur des sept montages via tools/cinematics/candidates/illustrated-sequences/review-index.md et galerie. Aucune adoption runtime implicite. Sans nouveau verdict ni défaut PC indépendant déjà démontré, conserver le checkpoint ; aucune régénération ni campagne inchangée à rejouer. Mobile après PC.
+
+Handoff : docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md. Publication normaleorigin/dev sousOD-2026-10-12-A, main protégé ; clôture/parité finales après livraison.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -380,10 +382,7 @@ Handoff : docs/autonomy/handoffs/2026-10-22T0536Z-codex-trial-review-judgement.m
 - illustrated-trial-v2-0536: FAILED; port 5461; receipt `tmp/cinematics/illustrated-trial-v2-0536/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-trial-v2-0536-host: FAILED; port 5461; receipt `tmp/cinematics/illustrated-trial-v2-0536-host/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-trial-v2-0536-host2: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-trial-v2-0536-host2/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-judgement-v2-0147: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-judgement-v2-0147/review/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
-Revue indépendante finale : Jugementv2 PASS_SCOPED_VISUAL_PRESERVATION, lecture16s requise avantREADY ; Lionv2 PASS_METADATA_CLOSEOUT.48SHAprovenance,351jobs hérités/8campSHA/racines historiques/SHA scheduler vérifiés.
-
-WIP exact-path temporary-index snapshot wip/codex-illustrated-trial-review-20261022T0536Z@35faed611d9de5c038cbb04ef03fc287d363699e, GREEN ; same selected content delivers to dev next.
-
-Livraison b48ab9fcdb4e7afd817985e90d2711b39a539774 publiée et parité origin/dev/liveremote vérifiée ; main00b96f1b inchangé. Clôture2026-10-22T05:54:35.969Z, serveur owned et ongletIAB arrêtés. Snapshot35faed61 publié puis brancheWIPdistante retirée après livraisondev ; reflocal retiré à libérationverrou. Aucun héritageWIP ;351jobs exacts/354total. Métadonnées finales dans le commit suivant ; mémoireautomation porte SHAfinal.
+Guardian final : PASS_METADATA_SYNTHESIS_CLOSEOUT ; sept versions35images126s/statuts/frontières/limites/reçus/liens cohérents, aucune acceptation artistique ou runtime. Vérification finale93SHA/93racines historiques/354jobs hérités inchangés/355total/8SHA camp/configuration scheduler préservée.

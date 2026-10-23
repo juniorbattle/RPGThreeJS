@@ -1,0 +1,601 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-23T01:58:16.397Z",
+  "status": "READY_FOR_OPERATOR_REVIEW",
+  "scope": "Single indexed seven-scene operator review synthesis; offline only",
+  "totalSelectedImages": 35,
+  "totalProposedSeconds": 126,
+  "scenes": [
+    {
+      "id": "alaric_audience_arrival",
+      "label": "Audience d’Alaric",
+      "version": "v1",
+      "status": "READY_FOR_OPERATOR_REVIEW",
+      "candidate": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/index.html",
+      "sequence": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/sequence.json",
+        "sha256": "59761c7b88f8d13aef64894651302da12603d2a6c7f47fb69cb364ae8bf6675a"
+      },
+      "images": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-01.png",
+          "sha256": "61fc5ad92ccb50da7fc5eeee10a42febccdf1e0a3a1dea37468d3d69e42814fa"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-02.png",
+          "sha256": "3f08219dfc593bca86361b34aa7b30047be528fbc9eed3c0ea865699c61df61c"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-03.png",
+          "sha256": "033e3adac871dd3dc6387ef3934e5580c69d78ba118b946a6b3937db5495293e"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-04.png",
+          "sha256": "c90df6e5e894540f9f5fa66d212b8fc9394a881435e4dab53050c7092cbb77fd"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-05.png",
+          "sha256": "3f1038577e7ea08e00fced9bbc0da55a2460507bd7057ad7d1ccc8fd12b4da27"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/shot-06.png",
+          "sha256": "b557883d4dda537d54cfc857ce3c852b45a43ae1d6d2c8470b8c528f311850d7"
+        }
+      ],
+      "provenance": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/provenance.json",
+        "sha256": "9407f62e4f8c474ffbd1e517aa2d09d537f79678e1ed745e977f996c4a15a52e"
+      },
+      "review": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/review.md",
+      "receipt": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/alaric_audience_arrival/v1/review-receipt.json",
+        "sha256": "7adbb1153f1bec5a3a82a0ce7737ccbc7ccb31ceebd1281160d4fecfa4fbe754"
+      },
+      "durationSeconds": 20,
+      "stages": [
+        {
+          "title": "La distance de l’audience",
+          "description": "Le lieu et les quatre présences, avant tout mandat.",
+          "start": 0,
+          "duration": 4,
+          "path": "shot-01.png"
+        },
+        {
+          "title": "S’arrêter devant le Lion",
+          "description": "Alistair stabilise son épée basse ; la délégation s’arrête.",
+          "start": 4,
+          "duration": 3,
+          "path": "shot-02.png"
+        },
+        {
+          "title": "Le livre ramené contre soi",
+          "description": "Maelor cale son livre fermé contre son torse.",
+          "start": 7,
+          "duration": 3,
+          "path": "shot-03.png"
+        },
+        {
+          "title": "Une attention commune",
+          "description": "Les compagnons partagent leur attention vers Alaric.",
+          "start": 10,
+          "duration": 3,
+          "path": "shot-04.png"
+        },
+        {
+          "title": "Alaric se tourne vers eux",
+          "description": "Alaric porte son attention vers la délégation.",
+          "start": 13,
+          "duration": 3,
+          "path": "shot-05.png"
+        },
+        {
+          "title": "Avant la première parole",
+          "description": "Tous sont arrêtés et prêts à écouter le dialogue existant.",
+          "start": 16,
+          "duration": 4,
+          "path": "shot-06.png"
+        }
+      ],
+      "boundary": "Avant lion_briefing:1 ; aucun mandat, choix ni avance joué.",
+      "limits": "Gestes d’attention parfois subtils ; grands changements de cadre assumés. Broderies et marche continue non acceptées.",
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": "bois_clair_arrival",
+      "label": "Arrivée à Bois-Clair",
+      "version": "v1",
+      "status": "READY_FOR_OPERATOR_REVIEW",
+      "candidate": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/index.html",
+      "sequence": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/sequence.json",
+        "sha256": "06d86ebf4e916b18ec7c80dd2ae2364aedad7651d4155f4360fd39d7721f8dff"
+      },
+      "images": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-01.png",
+          "sha256": "3491a49ec04463dcd65064f2898d62c56c2843d0233657e7971016ae28c571ce"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-02.png",
+          "sha256": "6d0314f418918febca4c106802357a657ad14ad2bc7bbe16a00cf8e5885fea1b"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-03.png",
+          "sha256": "f584944b180bda04836ce480f3f478c0ca4a7d098892411e1b65dabab8a6e7b1"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-04.png",
+          "sha256": "999918f5ca1e619317247a6ae18b9c7b8bda51e13f99c51b4dbdc49bb1e90c9d"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/shot-05.png",
+          "sha256": "524f898f5d63f2d528f5bcff881b55a26e7d46db030b50218c0ccc96dca6c626"
+        }
+      ],
+      "provenance": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/provenance.json",
+        "sha256": "302980ffa09959af9024846bdee9aa7e070d9ba7cc199248454219f849893297"
+      },
+      "review": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/review.md",
+      "receipt": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_arrival/v1/review-receipt.json",
+        "sha256": "ec6c0ac6ebd8533c22ec1dada39ea2d31c0359d8f7e377ee7e649c1fd37c35c4"
+      },
+      "durationSeconds": 18,
+      "stages": [
+        {
+          "title": "Une place sous l’incendie",
+          "description": "Le lieu sous pression ; les quatre présences restent distinctes.",
+          "start": 0,
+          "duration": 4,
+          "path": "shot-01.png"
+        },
+        {
+          "title": "S’arrêter au bord de la place",
+          "description": "Les héros s’arrêtent, armes basses.",
+          "start": 4,
+          "duration": 3,
+          "path": "shot-02.png"
+        },
+        {
+          "title": "Le panier serré contre soi",
+          "description": "La Villageoise ramène son panier contre son corps.",
+          "start": 7,
+          "duration": 3,
+          "path": "shot-03.png"
+        },
+        {
+          "title": "Marian lui porte attention",
+          "description": "Une attention réciproque, sans contact ni soin.",
+          "start": 10,
+          "duration": 3,
+          "path": "shot-04.png"
+        },
+        {
+          "title": "Avant l’appel à l’aide",
+          "description": "Un arrêt avant les premières paroles et tout choix.",
+          "start": 13,
+          "duration": 5,
+          "path": "shot-05.png"
+        }
+      ],
+      "boundary": "Avant village_choice:1 ; incendie au crépuscule, secours et pillage encore non résolus.",
+      "limits": "Détails peints et panier à juger artistiquement ; le crépuscule n’est pas la garde nocturne ultérieure.",
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": "bois_clair_saved",
+      "label": "Bois-Clair sauvé",
+      "version": "v1",
+      "status": "READY_FOR_OPERATOR_REVIEW",
+      "candidate": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/index.html",
+      "sequence": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/sequence.json",
+        "sha256": "ca07974212e52336f32c1e0316a7e5e25f930d33668d9d9664044ccc19db7381"
+      },
+      "images": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-01.png",
+          "sha256": "be5c947c2e416934b420661d43e337bee07f3f17d0ddf7b7e10b75ecbd2103a4"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-02.png",
+          "sha256": "a4006292c34e8564a11ad1444efa21d92140b78445bb02248340cd6b33559c84"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-03.png",
+          "sha256": "3619cddaf405582dde64fc7ace5edc20aa962fa5a81566f802067b14963c4e69"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-04.png",
+          "sha256": "816dc1a64b0f4b3ad527482bec0954ba5b49e6782ea9959982fac894d5fdd15c"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/shot-05.png",
+          "sha256": "09d1c53c650efef0999e4cb68e938ddfab1f9bad41fe1c94d0166429c92656d8"
+        }
+      ],
+      "provenance": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/provenance.json",
+        "sha256": "34f9f1abf7f23b36c36ebbd421c81ea772240061cb8146ebdbfd6a6f1c533f90"
+      },
+      "review": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review.md",
+      "receipt": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_saved/v1/review-receipt.json",
+        "sha256": "8060b7f85f84df5192e8cf713bf37237c9e657b71bc9bb097fcb7c84c814f2c7"
+      },
+      "durationSeconds": 18,
+      "stages": [
+        {
+          "title": "Le danger est retombé",
+          "description": "Le lieu reste endommagé ; deux présences immobiles après la défense.",
+          "start": 0,
+          "duration": 4,
+          "path": "shot-01.png"
+        },
+        {
+          "title": "Relâcher les épaules",
+          "description": "Les épaules de la Villageoise se relâchent, son panier reste contre elle.",
+          "start": 4,
+          "duration": 3,
+          "path": "shot-02.png"
+        },
+        {
+          "title": "Desserrer le panier",
+          "description": "Les doigts droits se détendent sur le bord ; la main gauche garde l’anse.",
+          "start": 7,
+          "duration": 3,
+          "path": "shot-03.png"
+        },
+        {
+          "title": "Une attention apaisée",
+          "description": "Les deux regards se rejoignent sans contact ni soin.",
+          "start": 10,
+          "duration": 3,
+          "path": "shot-04.png"
+        },
+        {
+          "title": "Avant les remerciements",
+          "description": "Un arrêt disponible avant le dialogue existant et son choix de récompense.",
+          "start": 13,
+          "duration": 5,
+          "path": "shot-05.png"
+        }
+      ],
+      "boundary": "Après victoire village_defense et branche sauvée résolues ; avant village_defense_aftermath:1 et récompense.",
+      "limits": "Relâchement épaules/panier à apprécier ; dégâts conservés, aucun soin ou transfert.",
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": "bois_clair_sacrificed",
+      "label": "Bois-Clair sacrifié",
+      "version": "v1",
+      "status": "READY_FOR_OPERATOR_REVIEW",
+      "candidate": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/index.html",
+      "sequence": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/sequence.json",
+        "sha256": "e2283bbdfa3d6cd5940ed4fc41d784ab593f5198ab37cdf4babde1c3dac0d9c6"
+      },
+      "images": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png",
+          "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-02.png",
+          "sha256": "9fd66d8a895979b248d4f3dc4cbb5cc4c177137bb1b9ea4d2c1f5d92da93055f"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-03.png",
+          "sha256": "8e4707c0c6e6a93161a9a1cac92eb9d3cdbc12c9b02d277daaf474aad690840e"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-04.png",
+          "sha256": "181df3ef5f93a5c0e1dee01f8ad625f8ce44fc075f842468c31e0f97b786692d"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-05.png",
+          "sha256": "39f4c63fbe01cadaa11723dc8abd8b85af43602a6d2488be98fc9151b912bf27"
+        }
+      ],
+      "provenance": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/provenance.json",
+        "sha256": "fb76854c976090d12777305dee60fb2d2e4c53b7fe016d635010d885bdb47ab1"
+      },
+      "review": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review.md",
+      "receipt": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review-receipt.json",
+        "sha256": "d060e3470ddb0a0b0d105118aa0ce48ae305fd8d022846a8156db3bf8143b863"
+      },
+      "durationSeconds": 18,
+      "stages": [
+        {
+          "title": "Ce qui demeure",
+          "description": "La place brûlée et la distance entre les deux personnages montrent le coût déjà établi.",
+          "start": 0,
+          "duration": 4,
+          "path": "shot-01.png"
+        },
+        {
+          "title": "L’attention se resserre",
+          "description": "Le cadrage rapproche le livre fermé et les têtes inclinées ; rien ne change de propriétaire.",
+          "start": 4,
+          "duration": 3,
+          "path": "shot-02.png"
+        },
+        {
+          "title": "Se protéger",
+          "description": "La Villageoise remonte son panier et replie ses épaules, sous le regard de Maelor.",
+          "start": 7,
+          "duration": 3,
+          "path": "shot-03.png"
+        },
+        {
+          "title": "Éviter le regard",
+          "description": "La tête se baisse vers le panier ; la relation reste sans réponse.",
+          "start": 10,
+          "duration": 3,
+          "path": "shot-04.png"
+        },
+        {
+          "title": "Avant la première parole",
+          "description": "Retour large : Maelor regarde la Villageoise, restée repliée, avant le dialogue et son choix.",
+          "start": 13,
+          "duration": 5,
+          "path": "shot-05.png"
+        }
+      ],
+      "boundary": "Après victoire village_raid et branche sacrifiée résolues ; avant village_raid_aftermath:1 et choix des provisions.",
+      "limits": "Maelor regarde déjà à droite au plan01 et garde sa main fermée au02 ; les gestes demandés mais absents ne sont pas revendiqués.",
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": "lion_judgement",
+      "label": "Jugement du Lion",
+      "version": "v2",
+      "status": "READY_FOR_OPERATOR_REVIEW",
+      "candidate": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/index.html",
+      "sequence": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/sequence.json",
+        "sha256": "00e78748ce3e095eed4297626921996cffd0ed1148d0564e6eebc055e45498b5"
+      },
+      "images": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+          "sha256": "f62031235118c0c98970a66880296b6f134f0055a96c2bf93450ceee48de2bf1"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-02.png",
+          "sha256": "cffecfa5e1acf4e94002a21356f248c9fad42283e8bf20a6fdd095502eadd2ba"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+          "sha256": "1fe23af8966273186aadaf5bcf19d348a8af617d1e6aa93c9da4cf41e0137f10"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/shot-04.png",
+          "sha256": "d075bc92961719698d859579312493a10d96dfc095889363b02ee2acf4bad991"
+        }
+      ],
+      "provenance": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/provenance.json",
+        "sha256": "9b8f3ec5b75ed66ba46387ff885e1566231207582cf13cd3392be8f9bc06e0f7"
+      },
+      "review": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review.md",
+      "receipt": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-receipt.json",
+        "sha256": "cebd147370a9f987a0bd23dbc518c651e7867bb70fa7826e0007130f61456d7d"
+      },
+      "durationSeconds": 16,
+      "stages": [
+        {
+          "title": "L’autorité attend",
+          "description": "Alaric est déjà arrêté dans la salle, tête inclinée, épée et bâton maintenus.",
+          "start": 0,
+          "duration": 4,
+          "path": "../v1/shot-01.png"
+        },
+        {
+          "title": "La prise se stabilise",
+          "description": "Le détail des mains montre la prise du bâton qui se fixe, épée toujours basse.",
+          "start": 4,
+          "duration": 4,
+          "path": "../v1/shot-02.png"
+        },
+        {
+          "title": "L’attention se relève",
+          "description": "La tête se relève vers la compagnie hors cadre, sans parole ni signe de verdict.",
+          "start": 8,
+          "duration": 3,
+          "path": "../v1/shot-03.png"
+        },
+        {
+          "title": "Avant la première parole",
+          "description": "Le cadre plus ouvert maintient la tête relevée et l’attention vers la compagnie hors champ, avant la première parole.",
+          "start": 11,
+          "duration": 5,
+          "path": "shot-04.png"
+        }
+      ],
+      "boundary": "Après final_refuge ; avant le open dynamique de lion_finale_judgement, sans témoignage ni verdict.",
+      "limits": "Le plan04 réel est en plein pied ; variations d’échelle du sol, d’ornements et de figure. Le regard relevé est conservé ; aucun ancrage au pixel revendiqué.",
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": "serpent_route_ending",
+      "label": "Fin de la route Serpent",
+      "version": "v1",
+      "status": "READY_FOR_OPERATOR_REVIEW",
+      "candidate": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/index.html",
+      "sequence": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/sequence.json",
+        "sha256": "a4c2dd8d69ac474c0a5dbe3eb72c4b5f2870f0def3339b2aa75ed22f612347e2"
+      },
+      "images": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-01.png",
+          "sha256": "22184453de1ee8f9beaf48360ef21526a064e8f930246a68a72991dc345616aa"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-02.png",
+          "sha256": "1321706a9bbc5e5789204d740baa9de6d8e75c886a52277d7a4715dd93a112c8"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-03.png",
+          "sha256": "9ac7d397073439aeb80d463931cc8bccff7c7d7197d59e2314d899e6ac7462dc"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-04.png",
+          "sha256": "25ab81eee2554ef685b0945f9adf3f357165a7354f14ab3ae28467981891f884"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/shot-05.png",
+          "sha256": "25d49b68a2a8a9875e024d2eb26f5b107db7cf369ac31c3e1d90170340540dde"
+        }
+      ],
+      "provenance": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/provenance.json",
+        "sha256": "a84e88241c2ab561021bd1d003f945da9b67e29551f40ea05c8f450e06097092"
+      },
+      "review": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review.md",
+      "receipt": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/serpent_route_ending/v1/review-receipt.json",
+        "sha256": "e48d70563a7e825919da7940908fbcc84f004516bf110f36cd7a04d4551f5a25"
+      },
+      "durationSeconds": 18,
+      "stages": [
+        {
+          "title": "Après l’affrontement",
+          "description": "La compagnie est déjà arrêtée dans les ruines nocturnes, matériel conservé.",
+          "start": 0,
+          "duration": 4,
+          "path": "shot-01.png"
+        },
+        {
+          "title": "La tension retombe",
+          "description": "Séraphine ouvre sa main droite et la pose plus bas, son bâton reste maintenu.",
+          "start": 4,
+          "duration": 3,
+          "path": "shot-02.png"
+        },
+        {
+          "title": "L’attention rejoint l’alliée",
+          "description": "Maelor relève la tête vers Séraphine hors cadre, livre fermé contre lui.",
+          "start": 7,
+          "duration": 3,
+          "path": "shot-03.png"
+        },
+        {
+          "title": "L’attention se partage",
+          "description": "Séraphine tourne sa capuche vers Maelor ; leurs positions restent stables.",
+          "start": 10,
+          "duration": 3,
+          "path": "shot-04.png"
+        },
+        {
+          "title": "Avant le bilan",
+          "description": "Le livre repose un peu plus bas ; le cadre resserré retient leur disponibilité avant l’épilogue.",
+          "start": 13,
+          "duration": 5,
+          "path": "shot-05.png"
+        }
+      ],
+      "boundary": "Après victoire et aftermath Serpent résolus ; avant épilogue séparé, aucun choix de secret rejoué.",
+      "limits": "Yeux sous voile non lisibles, ouverture des doigts peu manifeste, variations d’ornement de lanterne et broderies.",
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    },
+    {
+      "id": "lion_trial_route_ending",
+      "label": "Fin de l’épreuve du Lion",
+      "version": "v2",
+      "status": "READY_FOR_OPERATOR_REVIEW",
+      "candidate": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/index.html",
+      "sequence": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/sequence.json",
+        "sha256": "2646664c22fed07d902a57f712c0b98d6505cbe34d3ffb0167864f729244a481"
+      },
+      "images": [
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-01.png",
+          "sha256": "99c3c6c767b208f1c86473e5c81226038736da76a14180a41587f592c4aef249"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-02.png",
+          "sha256": "6469af2210ec1f81c98b7c06402777ef0edb6953a1a164c20795ff210d95d825"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-03.png",
+          "sha256": "7fee180fda34160cd1f368af19a6d3326e3f7c8e9b8071eab9addfe83cdb1b07"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-04.png",
+          "sha256": "d0ce14aa2322d316512aa3311ef74e85110b3a38ef57687f91d2acda971cf4ce"
+        },
+        {
+          "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/shot-05.png",
+          "sha256": "357e5742af7ad9c7d49eed1b4210f2c26126e11a300a6e9a6ab2bc7704bedaaa"
+        }
+      ],
+      "provenance": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/provenance.json",
+        "sha256": "bf261a9b34b3234f054bd64fe72d83b403b1fb00a0ef11326c3a253ea27251db"
+      },
+      "review": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review.md",
+      "receipt": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-receipt.json",
+        "sha256": "a2948f2da365ec3d333244bbd8fbb07802b8d69b1d257b06db9026e0b748244b"
+      },
+      "durationSeconds": 18,
+      "stages": [
+        {
+          "title": "Épreuve achevée",
+          "description": "Alaric et le Champion sont déjà arrêtés dans la cour, après le résultat reconnu.",
+          "start": 0,
+          "duration": 4,
+          "path": "../v1/shot-01.png"
+        },
+        {
+          "title": "La garde se relâche",
+          "description": "La main vide du Champion se détend ; son épée reste basse dans la main droite.",
+          "start": 4,
+          "duration": 3,
+          "path": "../v1/shot-02.png"
+        },
+        {
+          "title": "L’attention d’Alaric",
+          "description": "Alaric relève le menton vers le Champion, parchemin et bâton conservés.",
+          "start": 7,
+          "duration": 3,
+          "path": "../v1/shot-03.png"
+        },
+        {
+          "title": "La tension tombe",
+          "description": "Le Champion incline brièvement son casque ; Alaric maintient son attention.",
+          "start": 10,
+          "duration": 3,
+          "path": "../v1/shot-04.png"
+        },
+        {
+          "title": "Avant l’épilogue",
+          "description": "Le Champion redresse son casque ; les deux restent disponibles au bilan existant.",
+          "start": 13,
+          "duration": 5,
+          "path": "shot-05.png"
+        }
+      ],
+      "boundary": "Après victoire lion_chief et lion_trial_aftermath ; avant épilogue séparé, aucun transfert de Sceau.",
+      "limits": "Petites variations de cape/appui d’Alaric et sol ; raccord corrigé sans prétendre des pieds fixes au pixel.",
+      "finalArtAccepted": false,
+      "runtimeIntegrated": false
+    }
+  ],
+  "finalArtAccepted": false,
+  "runtimeIntegrated": false,
+  "independentReviewScope": "Judgementv2 PASS_SCOPED_READY_FOR_OPERATOR_REVIEW; other six original scoped reviews indexed, not rerun or renewed"
+}

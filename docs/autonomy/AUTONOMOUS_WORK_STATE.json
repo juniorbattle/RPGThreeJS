@@ -1,81 +1,63 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-22T05:36:00Z",
-  "runEndedAt": "2026-10-22T05:54:35.969Z",
-  "activeTask": "ILLUSTRATED-JUDGEMENT-V2",
-  "activePhase": "CORRECTED_CANDIDATE_REVIEW_PENDING",
-  "activeSubtask": "Lion-trial v2 ready; judgement new04 native gaze improved, own16s next",
+  "runStartedAt": "2026-10-23T01:47:00Z",
+  "runEndedAt": null,
+  "activeTask": "ILLUSTRATED-SEVEN-SCENE-HANDOFF",
+  "activePhase": "READY_FOR_OPERATOR_REVIEW",
+  "activeSubtask": "Seven offline candidates delivered; one indexed artistic review handoff",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "b48ab9fcdb4e7afd817985e90d2711b39a539774",
   "lastPushedCommit": "b48ab9fcdb4e7afd817985e90d2711b39a539774",
   "completedThisRun": [
-    "Lion-trial v2 own18s/fourdissolves/10checks and independent scoped review PASS, READY_FOR_OPERATOR_REVIEW. Six of seven ready. Judgement v2 one new final04 from successful03 changes framing and maintains level attention,01–03 reused; GENERATED_REVIEW_PENDING until own16s. No runtime/gameplay/video/audio change."
+    "Sept montages candidats hors jeu prêts pour revue opérateur :35illustrations/126secondes proposées. Jugementv2 propre16s/3fondus/10contrôles et revue indépendantePASS, quatre images réutilisées. Une synthèse indexée des sept scènes livrée ; aucune nouvelle génération, étape gameplay ou adoption runtime."
   ],
   "filesChanged": [
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "tools/cinematics/candidates/illustrated-sequences/README.md",
     "tools/cinematics/candidates/illustrated-sequences/gallery.json",
     "tools/cinematics/candidates/illustrated-sequences/index.html",
-    "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/index.html",
-    "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/provenance.json",
-    "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review.md",
-    "tools/cinematics/specs/illustrated-sequences/production-plan.json",
-    "docs/autonomy/handoffs/2026-10-22T0536Z-codex-trial-review-judgement.md",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/index.html",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/provenance.json",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/raw/shot-04-correction-01.png",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/requests/shot-04-correction-01.json",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/results/shot-04-correction-01.json",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-preservation.json",
     "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review.md",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/sequence.json",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/shot-04.png",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/source-progression.md",
-    "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-proof-0536/desktop-endpoint.png",
-    "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-proof-0536/dissolve-4.png",
-    "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-proof-0536/narrow-preparation.png",
-    "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-proof-0536/results.json",
-    "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-receipt.json",
-    "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-smoke.mjs"
+    "tools/cinematics/specs/illustrated-sequences/production-plan.json",
+    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/desktop-endpoint.png",
+    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/dissolve-3.png",
+    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/narrow-preparation.png",
+    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/results.json",
+    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-receipt.json",
+    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-smoke.mjs",
+    "tools/cinematics/candidates/illustrated-sequences/review-index.json",
+    "tools/cinematics/candidates/illustrated-sequences/review-index.md",
+    "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md"
   ],
   "testsRun": [
-    "TypeScript PASS;63 focused testsPASS(Cin6aPresentation39+lionFinale24,tmp excluded)",
-    "contracts:validate8LOCKED/8slots PASS; immutablebaseline/status gates empty;diffcheckPASS",
-    "One scene Lion-trialv2:host2 own18s/four1sdissolves/10checksPASS; eligible/stable/current/request/digest true,rawNOT_ACCEPTED",
-    "Five native Lion images+dissolve4/endpoint/narrow inspected;IAB0.2→18 OSreduce observed",
-    "Two environment attempts preserved FAILED: sandboxChromium missing, host-browser/sandbox-server isolation; no assertion weakened",
-    "Judgementv2 one integrated correction04 from03,three reused,raw/request/result/inputs/outputSHA retained; own16s pending",
-    "SchedulerACTIVE SHA da132bce965600ca0feb8e62dda4ff701517d14f5bb88a6c6459f12bf561eda1 unchanged;351inheritedjobs/acceptances preserved,354total",
-    "Independent guardian Lionv2 PASS_SCOPED_READY_FOR_OPERATOR_REVIEW and PASS_METADATA_CLOSEOUT; judgementv2 PASS_SCOPED_VISUAL_PRESERVATION, own16s pending"
+    "TypeScript PASS ;63tests ciblés(Cin6aPresentation39/lionFinale24,tmp exclus)",
+    "contracts:validate PASS8LOCKED/8slots ; gates baseline/status vides ;diffcheckPASS",
+    "Jugementv2 propre16s/3fondus normaux1s/10contrôlesPASS ; un scénario/une tentative",
+    "Reçu SUCCEEDED éligible/stable/current/request/digest ; rawNOT_ACCEPTED conservé",
+    "Quatre images natives et trois captures fondu03/fin/390 inspectées ;IAB0,2→13,4→16s OSreduce observé",
+    "Guardian PASS_SCOPED_READY_FOR_OPERATOR_REVIEW ; regard relevé03→04/équipement/frontière confirmés",
+    "354jobs hérités et acceptations inchangés ;355total ; aucun média historique modifié",
+    "Scheduler enregistréPAUSED découvert, SHA223b2bfe7ccfda25026de105b72a79af44fe5eeb9802874af7b73c1c49b7b342 conservé ; aucun changement de paramètres"
   ],
   "testsPassed": [
-    "TypeScript PASS;63 focused testsPASS(Cin6aPresentation39+lionFinale24,tmp excluded)",
-    "contracts:validate8LOCKED/8slots PASS; immutablebaseline/status gates empty;diffcheckPASS",
-    "One scene Lion-trialv2:host2 own18s/four1sdissolves/10checksPASS; eligible/stable/current/request/digest true,rawNOT_ACCEPTED",
-    "Five native Lion images+dissolve4/endpoint/narrow inspected;IAB0.2→18 OSreduce observed",
-    "Judgementv2 one integrated correction04 from03,three reused,raw/request/result/inputs/outputSHA retained; own16s pending",
-    "SchedulerACTIVE SHA da132bce965600ca0feb8e62dda4ff701517d14f5bb88a6c6459f12bf561eda1 unchanged;351inheritedjobs/acceptances preserved,354total",
-    "Independent guardian Lionv2 PASS_SCOPED_READY_FOR_OPERATOR_REVIEW and PASS_METADATA_CLOSEOUT; judgementv2 PASS_SCOPED_VISUAL_PRESERVATION, own16s pending"
+    "TypeScript PASS ;63tests ciblés(Cin6aPresentation39/lionFinale24,tmp exclus)",
+    "contracts:validate PASS8LOCKED/8slots ; gates baseline/status vides ;diffcheckPASS",
+    "Jugementv2 propre16s/3fondus normaux1s/10contrôlesPASS ; un scénario/une tentative",
+    "Reçu SUCCEEDED éligible/stable/current/request/digest ; rawNOT_ACCEPTED conservé",
+    "Quatre images natives et trois captures fondu03/fin/390 inspectées ;IAB0,2→13,4→16s OSreduce observé",
+    "Guardian PASS_SCOPED_READY_FOR_OPERATOR_REVIEW ; regard relevé03→04/équipement/frontière confirmés",
+    "354jobs hérités et acceptations inchangés ;355total ; aucun média historique modifié",
+    "Scheduler enregistréPAUSED découvert, SHA223b2bfe7ccfda25026de105b72a79af44fe5eeb9802874af7b73c1c49b7b342 conservé ; aucun changement de paramètres"
   ],
   "testsRemaining": [
-    "Judgementv2 own16s and independent review",
-    "Indexed seven-scene synthesis once all ready",
-    "Operator finalart/runtime/globalPC/balance/hardware;audio deferrals/mobileafterPC"
+    "Revue artistique des sept scènes et décision distincte d’adoption runtime",
+    "Verdict globalPC/équilibre/atlas/confort matériel ;audio différé ;mobileaprèsPC"
   ],
-  "blockers": [
-    {
-      "id": "JUDGEMENT_V2_REVIEW_PENDING",
-      "status": "GENERATED_REVIEW_PENDING",
-      "detail": "One-scenario budget used by Liontrialv2; new judgement04 inspected natively, own16s proof not transferred from v1"
-    }
-  ],
+  "blockers": [],
   "remainingWork": [
-    "Judgementv2 own16s beforeREADY",
-    "One indexed seven-scene review synthesis",
-    "Operator final art/runtime/globalPC/balance/hardware; mobileafterPC"
+    "Revue artistique opérateur via synthèse unique",
+    "Adoptionruntime future séparée ;PCglobal/équilibre/matériel/audio/mobile aprèsPC"
   ],
-  "nextAction": "Resume lion_judgement/v2 WITHOUT regenerating four selected images (01–03 relative ../v1, new04). Observe normal16s especially03→04 level gaze. Copy preserved judgement/v1 four-image16s smoke to v2; adapt version/URL/relative paths/SHA/run/job/output only, keep three dissolves/loading/order/pauseclockopacity/resume/keyboard/final/OSreduce/framing/console/missing assertions. One unique registered receipt, inspect captures and independent review before READY; then one indexed seven-scene synthesis. No campaign replay.",
+  "nextAction": "Revue artistique opérateur des sept montages via tools/cinematics/candidates/illustrated-sequences/review-index.md et galerie. Aucune adoption runtime implicite. Sans nouveau verdict ni défaut PC indépendant déjà démontré, conserver le checkpoint ; aucune régénération ni campagne inchangée à rejouer. Mobile après PC.",
   "taskQueue": [
     "Produce offline illustrated candidate alaric_audience_arrival",
     "Produce offline illustrated candidate bois_clair_arrival",
@@ -87,8 +69,8 @@
     "Single indexed artistic review handoff for completed candidates",
     "Independent demonstrated PC issue only; mobile after PC stability"
   ],
-  "creditStatus": "AVAILABLE_INTEGRATED_IMAGEGEN_AND_REVIEWER",
-  "contractComplianceStatus": "Set1.8.0 baseline0cb95135 unchanged. GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/SAVE/REPOSITORY_GOVERNANCE PASS preservation; NARRATIVE_PRESENTATION/UI_ACCESSIBILITY/QA_EVIDENCE PASS scoped Lionv2 own18s; Judgementv2 own16s PENDING. TRAVERSAL/COMBAT N/A. No LOCKED rule changed. Art/runtime/globalPC/balance/hardware/audio/mobile-afterPC remain open.",
+  "creditStatus": "REVIEWER_AVAILABLE_IMAGEGEN_NOT_NEEDED_NOT_TESTED",
+  "contractComplianceStatus": "Set1.8.0/baseline0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa. GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/NARRATIVE_PRESENTATION/SAVE/UI_ACCESSIBILITY/QA_EVIDENCE/REPOSITORY_GOVERNANCE PASS pour préservation et revue offline bornée ; TRAVERSAL/COMBAT N/A. Aucun LOCKED modifié, gates vides. Autres six revues indexées avec leur portée historique, non renouvelées. Artfinal/runtime/PCglobal/équilibre/matériel/audio/mobileaprèsPC ouverts.",
   "commitReferenceScope": "Last verified published delivery commit; final metadata commit SHA authoritative in Git and automation memory.",
   "operatorAuthorization": "OD-2026-10-21-B: direct operator request to unblock everything necessary for the automation; activation already granted. Scope stays OD-2026-10-21-A/set1.8.0.",
   "creativeDirection": {
@@ -199,7 +181,7 @@
     "lastGreenCheck": "git diff --check PASS; immutable0cb95135 HEAD/status gates empty; contracts:validate PASS8LOCKED/8slots; npx tsc --noEmit PASS; 63 focused tests PASS: Cin6aPresentation39+lionFinale24, tmp excluded; One unique scenario/one attempt illustrated-trial-0404:10checks PASS; registered/synced eligible true, raw SUCCEEDED/NOT_ACCEPTED retained; v1 normal18s/four1sdissolves; inspected dissolve3/4/endpoint/narrow; IAB OSreduce0.2→18 observed; 84/84 v1+v2 provenance SHA PASS; v2 relative image paths/timeline PASS; 350 inherited QA jobs/acceptances deepEqual;351 total; scheduler ACTIVE SHA da132bce965600ca0feb8e62dda4ff701517d14f5bb88a6c6459f12bf561eda1 unchanged; Independent guardian v1 PASS_TECHNICAL_PRESERVATION with scale defect; v2 PASS_SCOPED_VISUAL_IMPROVEMENT, own18s proof pending"
   },
   "live": {
-    "lastHeartbeat": "2026-10-22T05:54:35.969Z",
+    "lastHeartbeat": "2026-10-23T01:58:16.182Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -39347,62 +39329,192 @@
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "illustrated-judgement-v2-0147",
+        "runId": "codex-illustrated-final-review-20261023T0147Z",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-23T01:50:52.818Z",
+        "pid": 3616,
+        "port": 5461,
+        "command": [
+          "node",
+          "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-smoke.mjs"
+        ],
+        "parameters": {
+          "scene": "lion_judgement",
+          "url": "http://127.0.0.1:5461/lion_judgement/v2/index.html",
+          "media": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/sequence.json",
+              "sha256": "00e78748ce3e095eed4297626921996cffd0ed1148d0564e6eebc055e45498b5"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-01.png",
+              "sha256": "f62031235118c0c98970a66880296b6f134f0055a96c2bf93450ceee48de2bf1"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-02.png",
+              "sha256": "cffecfa5e1acf4e94002a21356f248c9fad42283e8bf20a6fdd095502eadd2ba"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v1/shot-03.png",
+              "sha256": "1fe23af8966273186aadaf5bcf19d348a8af617d1e6aa93c9da4cf41e0137f10"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/shot-04.png",
+              "sha256": "d075bc92961719698d859579312493a10d96dfc095889363b02ee2acf4bad991"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/index.html",
+              "sha256": "074d3b559326d1066c79ce970eb70c66c505249069953f25f547a9729d406a6e"
+            }
+          ],
+          "reader": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.mjs",
+              "sha256": "7da0596e0b3e528b3dcae669edce008cc4c3c72891a64420a106720486cb369e"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+              "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+            }
+          ],
+          "scope": "offline reader only, existing dist bundle is provenance context, not used for rendering"
+        },
+        "requiredAssertions": [
+          "FOUR_DISTINCT_IMAGES_PAUSED",
+          "THREE_NORMAL_SPEED_DISSOLVES_16S_STOP",
+          "ORDER_TIMELINE_KEYBOARD",
+          "OS_REDUCE_PAUSE_RESUME",
+          "CONTAIN_44PX_NO_OVERFLOW",
+          "NO_CONSOLE_ERRORS",
+          "MISSING_IMAGE_DISABLES_PLAYBACK"
+        ],
+        "output": "tmp/cinematics/illustrated-judgement-v2-0147/review",
+        "receiptPath": "tmp/cinematics/illustrated-judgement-v2-0147/review/qa-job.json",
+        "provenance": {
+          "gitHead": "6447162c9291c451e2c3270a555ef1741130ccb7",
+          "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-smoke.mjs",
+            "sha256": "18fd78adf15baf4d9b64fe11f4eab510ebc91c1df553d53b8c8713be4bcea594"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-CpZAzB3w.js",
+              "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-23T01:51:45.698Z",
+        "endedAt": "2026-10-23T01:52:07.604Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/illustrated-judgement-v2-0147/review/results.json",
+        "resultSha256": "7b66a024a5f753c0a257890515cf1ad4c78ebd92d1e27bb14108be55f3b31183",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": {
       "branch": null,
       "sha": null,
       "status": "GREEN",
-      "dirtyFiles": [],
-      "lastGreenCheck": "Delivery b48ab9fcdb4e7afd817985e90d2711b39a539774 published; WIP remote removed; metadata closure follows"
+      "dirtyFiles": [
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "tools/cinematics/candidates/illustrated-sequences/gallery.json",
+        "tools/cinematics/candidates/illustrated-sequences/index.html",
+        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review.md",
+        "tools/cinematics/specs/illustrated-sequences/production-plan.json",
+        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/desktop-endpoint.png",
+        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/dissolve-3.png",
+        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/narrow-preparation.png",
+        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/results.json",
+        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-receipt.json",
+        "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-smoke.mjs",
+        "tools/cinematics/candidates/illustrated-sequences/review-index.json",
+        "tools/cinematics/candidates/illustrated-sequences/review-index.md",
+        "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md"
+      ],
+      "lastGreenCheck": "TypeScript PASS ;63tests ciblés(Cin6aPresentation39/lionFinale24,tmp exclus); contracts:validate PASS8LOCKED/8slots ; gates baseline/status vides ;diffcheckPASS; Jugementv2 propre16s/3fondus normaux1s/10contrôlesPASS ; un scénario/une tentative; Reçu SUCCEEDED éligible/stable/current/request/digest ; rawNOT_ACCEPTED conservé; Quatre images natives et trois captures fondu03/fin/390 inspectées ;IAB0,2→13,4→16s OSreduce observé"
     },
-    "nextAction": "Resume lion_judgement/v2 WITHOUT regenerating four selected images (01–03 relative ../v1, new04). Observe normal16s especially03→04 level gaze. Copy preserved judgement/v1 four-image16s smoke to v2; adapt version/URL/relative paths/SHA/run/job/output only, keep three dissolves/loading/order/pauseclockopacity/resume/keyboard/final/OSreduce/framing/console/missing assertions. One unique registered receipt, inspect captures and independent review before READY; then one indexed seven-scene synthesis. No campaign replay.",
+    "nextAction": "Revue artistique opérateur des sept montages via tools/cinematics/candidates/illustrated-sequences/review-index.md et galerie. Aucune adoption runtime implicite. Sans nouveau verdict ni défaut PC indépendant déjà démontré, conserver le checkpoint ; aucune régénération ni campagne inchangée à rejouer. Mobile après PC.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "gameplaySteps": 0,
-      "generatedInitialImages": 0,
-      "targetedCorrections": 1,
-      "imagegenCalls": 1,
-      "selectedNewIllustrations": 1,
-      "reusedSelectedImages": 8,
-      "rawOutputs": 1,
+      "generatedImages": 0,
+      "imagegenCalls": 0,
+      "reusedSelectedImages": 4,
       "qaScenarios": 1,
-      "qaAttempts": 3,
-      "environmentFailures": 2,
-      "qaJobsAdded": 3,
-      "qaJobsTotal": 354,
-      "newQaProofFiles": 7,
+      "qaAttempts": 1,
+      "qaJobsAdded": 1,
+      "qaJobsTotal": 355,
+      "newQaProofFiles": 6,
+      "reviewIndexFiles": 2,
       "workflowDocPaths": 3,
       "planDataPaths": 1,
+      "galleryPaths": 2,
+      "reviewPathsModified": 1,
       "inheritedWipEntries": 0
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "tools/cinematics/candidates/illustrated-sequences/README.md",
       "tools/cinematics/candidates/illustrated-sequences/gallery.json",
       "tools/cinematics/candidates/illustrated-sequences/index.html",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/index.html",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/provenance.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review.md",
-      "tools/cinematics/specs/illustrated-sequences/production-plan.json",
-      "docs/autonomy/handoffs/2026-10-22T0536Z-codex-trial-review-judgement.md",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/index.html",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/provenance.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/raw/shot-04-correction-01.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/requests/shot-04-correction-01.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/results/shot-04-correction-01.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-preservation.json",
       "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review.md",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/sequence.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/shot-04.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/source-progression.md",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-proof-0536/desktop-endpoint.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-proof-0536/dissolve-4.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-proof-0536/narrow-preparation.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-proof-0536/results.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-receipt.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-smoke.mjs"
+      "tools/cinematics/specs/illustrated-sequences/production-plan.json",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/desktop-endpoint.png",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/dissolve-3.png",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/narrow-preparation.png",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/results.json",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-receipt.json",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-smoke.mjs",
+      "tools/cinematics/candidates/illustrated-sequences/review-index.json",
+      "tools/cinematics/candidates/illustrated-sequences/review-index.md",
+      "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md"
     ],
     "publication": {
       "status": "DELIVERY_VERIFIED_METADATA_CHECKPOINT_FOLLOWS",
@@ -39411,8 +39523,8 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": "2026-10-22T05:54:35.969Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
       "previewPort5461Stopped": true,
@@ -40209,8 +40321,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "ILLUSTRATED-JUDGEMENT-V2",
-    "activeSubtask": "Lion-trial v2 ready; judgement new04 native gaze improved, own16s next",
+    "activeTask": "ILLUSTRATED-SEVEN-SCENE-HANDOFF",
+    "activeSubtask": "Seven offline candidates delivered; one indexed artistic review handoff",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -43542,13 +43654,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-illustrated-trial-review-20261022T0536Z",
+    "runId": "codex-illustrated-final-review-20261023T0147Z",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-22T05:36:00Z",
-    "activePhase": "CORRECTED_CANDIDATE_REVIEW_PENDING",
-    "heartbeat": "2026-10-22T05:54:35.969Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-22T0536Z-codex-trial-review-judgement.md",
+    "runStartedAt": "2026-10-23T01:47:00Z",
+    "activePhase": "READY_FOR_OPERATOR_REVIEW",
+    "heartbeat": "2026-10-23T01:58:16.182Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -44887,7 +44999,7 @@
         }
       }
     },
-    "threadId": "01a1621c-4284-7e32-8649-0aca49add0c9",
+    "threadId": "01a16671-9e41-7761-9fd9-52200f935aca",
     "writerStoppedMeaning": "Product and QA complete; final metadata publication then owned lock release",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
@@ -46079,75 +46191,57 @@
       },
       "closeoutAt": "2026-10-16T15:33:54.359Z"
     },
-    "creditStatus": "AVAILABLE_INTEGRATED_IMAGEGEN_AND_REVIEWER",
+    "creditStatus": "REVIEWER_AVAILABLE_IMAGEGEN_NOT_NEEDED_NOT_TESTED",
     "workingBranch": "dev",
     "lastKnownGoodCommit": "b48ab9fcdb4e7afd817985e90d2711b39a539774",
     "completedThisRun": [
-      "Lion-trial v2 own18s/fourdissolves/10checks and independent scoped review PASS, READY_FOR_OPERATOR_REVIEW. Six of seven ready. Judgement v2 one new final04 from successful03 changes framing and maintains level attention,01–03 reused; GENERATED_REVIEW_PENDING until own16s. No runtime/gameplay/video/audio change."
+      "Sept montages candidats hors jeu prêts pour revue opérateur :35illustrations/126secondes proposées. Jugementv2 propre16s/3fondus/10contrôles et revue indépendantePASS, quatre images réutilisées. Une synthèse indexée des sept scènes livrée ; aucune nouvelle génération, étape gameplay ou adoption runtime."
     ],
     "filesChanged": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "tools/cinematics/candidates/illustrated-sequences/README.md",
       "tools/cinematics/candidates/illustrated-sequences/gallery.json",
       "tools/cinematics/candidates/illustrated-sequences/index.html",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/index.html",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/provenance.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review.md",
-      "tools/cinematics/specs/illustrated-sequences/production-plan.json",
-      "docs/autonomy/handoffs/2026-10-22T0536Z-codex-trial-review-judgement.md",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/index.html",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/provenance.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/raw/shot-04-correction-01.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/requests/shot-04-correction-01.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/results/shot-04-correction-01.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-preservation.json",
       "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review.md",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/sequence.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/shot-04.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/source-progression.md",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-proof-0536/desktop-endpoint.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-proof-0536/dissolve-4.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-proof-0536/narrow-preparation.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-proof-0536/results.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-receipt.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-smoke.mjs"
+      "tools/cinematics/specs/illustrated-sequences/production-plan.json",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/desktop-endpoint.png",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/dissolve-3.png",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/narrow-preparation.png",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/results.json",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-receipt.json",
+      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-smoke.mjs",
+      "tools/cinematics/candidates/illustrated-sequences/review-index.json",
+      "tools/cinematics/candidates/illustrated-sequences/review-index.md",
+      "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md"
     ],
     "testsRun": [
-      "TypeScript PASS;63 focused testsPASS(Cin6aPresentation39+lionFinale24,tmp excluded)",
-      "contracts:validate8LOCKED/8slots PASS; immutablebaseline/status gates empty;diffcheckPASS",
-      "One scene Lion-trialv2:host2 own18s/four1sdissolves/10checksPASS; eligible/stable/current/request/digest true,rawNOT_ACCEPTED",
-      "Five native Lion images+dissolve4/endpoint/narrow inspected;IAB0.2→18 OSreduce observed",
-      "Two environment attempts preserved FAILED: sandboxChromium missing, host-browser/sandbox-server isolation; no assertion weakened",
-      "Judgementv2 one integrated correction04 from03,three reused,raw/request/result/inputs/outputSHA retained; own16s pending",
-      "SchedulerACTIVE SHA da132bce965600ca0feb8e62dda4ff701517d14f5bb88a6c6459f12bf561eda1 unchanged;351inheritedjobs/acceptances preserved,354total",
-      "Independent guardian Lionv2 PASS_SCOPED_READY_FOR_OPERATOR_REVIEW and PASS_METADATA_CLOSEOUT; judgementv2 PASS_SCOPED_VISUAL_PRESERVATION, own16s pending"
+      "TypeScript PASS ;63tests ciblés(Cin6aPresentation39/lionFinale24,tmp exclus)",
+      "contracts:validate PASS8LOCKED/8slots ; gates baseline/status vides ;diffcheckPASS",
+      "Jugementv2 propre16s/3fondus normaux1s/10contrôlesPASS ; un scénario/une tentative",
+      "Reçu SUCCEEDED éligible/stable/current/request/digest ; rawNOT_ACCEPTED conservé",
+      "Quatre images natives et trois captures fondu03/fin/390 inspectées ;IAB0,2→13,4→16s OSreduce observé",
+      "Guardian PASS_SCOPED_READY_FOR_OPERATOR_REVIEW ; regard relevé03→04/équipement/frontière confirmés",
+      "354jobs hérités et acceptations inchangés ;355total ; aucun média historique modifié",
+      "Scheduler enregistréPAUSED découvert, SHA223b2bfe7ccfda25026de105b72a79af44fe5eeb9802874af7b73c1c49b7b342 conservé ; aucun changement de paramètres"
     ],
     "testsPassed": [
-      "TypeScript PASS;63 focused testsPASS(Cin6aPresentation39+lionFinale24,tmp excluded)",
-      "contracts:validate8LOCKED/8slots PASS; immutablebaseline/status gates empty;diffcheckPASS",
-      "One scene Lion-trialv2:host2 own18s/four1sdissolves/10checksPASS; eligible/stable/current/request/digest true,rawNOT_ACCEPTED",
-      "Five native Lion images+dissolve4/endpoint/narrow inspected;IAB0.2→18 OSreduce observed",
-      "Judgementv2 one integrated correction04 from03,three reused,raw/request/result/inputs/outputSHA retained; own16s pending",
-      "SchedulerACTIVE SHA da132bce965600ca0feb8e62dda4ff701517d14f5bb88a6c6459f12bf561eda1 unchanged;351inheritedjobs/acceptances preserved,354total",
-      "Independent guardian Lionv2 PASS_SCOPED_READY_FOR_OPERATOR_REVIEW and PASS_METADATA_CLOSEOUT; judgementv2 PASS_SCOPED_VISUAL_PRESERVATION, own16s pending"
+      "TypeScript PASS ;63tests ciblés(Cin6aPresentation39/lionFinale24,tmp exclus)",
+      "contracts:validate PASS8LOCKED/8slots ; gates baseline/status vides ;diffcheckPASS",
+      "Jugementv2 propre16s/3fondus normaux1s/10contrôlesPASS ; un scénario/une tentative",
+      "Reçu SUCCEEDED éligible/stable/current/request/digest ; rawNOT_ACCEPTED conservé",
+      "Quatre images natives et trois captures fondu03/fin/390 inspectées ;IAB0,2→13,4→16s OSreduce observé",
+      "Guardian PASS_SCOPED_READY_FOR_OPERATOR_REVIEW ; regard relevé03→04/équipement/frontière confirmés",
+      "354jobs hérités et acceptations inchangés ;355total ; aucun média historique modifié",
+      "Scheduler enregistréPAUSED découvert, SHA223b2bfe7ccfda25026de105b72a79af44fe5eeb9802874af7b73c1c49b7b342 conservé ; aucun changement de paramètres"
     ],
     "testsRemaining": [
-      "Judgementv2 own16s and independent review",
-      "Indexed seven-scene synthesis once all ready",
-      "Operator finalart/runtime/globalPC/balance/hardware;audio deferrals/mobileafterPC"
+      "Revue artistique des sept scènes et décision distincte d’adoption runtime",
+      "Verdict globalPC/équilibre/atlas/confort matériel ;audio différé ;mobileaprèsPC"
     ],
-    "blockers": [
-      {
-        "id": "JUDGEMENT_V2_REVIEW_PENDING",
-        "status": "GENERATED_REVIEW_PENDING",
-        "detail": "One-scenario budget used by Liontrialv2; new judgement04 inspected natively, own16s proof not transferred from v1"
-      }
-    ],
+    "blockers": [],
     "remainingWork": [
-      "Judgementv2 own16s beforeREADY",
-      "One indexed seven-scene review synthesis",
-      "Operator final art/runtime/globalPC/balance/hardware; mobileafterPC"
+      "Revue artistique opérateur via synthèse unique",
+      "Adoptionruntime future séparée ;PCglobal/équilibre/matériel/audio/mobile aprèsPC"
     ],
     "taskQueue": [
       "Produce offline illustrated candidate alaric_audience_arrival",
@@ -46160,7 +46254,7 @@
       "Single indexed artistic review handoff for completed candidates",
       "Independent demonstrated PC issue only; mobile after PC stability"
     ],
-    "contractComplianceStatus": "Set1.8.0 baseline0cb95135 unchanged. GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/SAVE/REPOSITORY_GOVERNANCE PASS preservation; NARRATIVE_PRESENTATION/UI_ACCESSIBILITY/QA_EVIDENCE PASS scoped Lionv2 own18s; Judgementv2 own16s PENDING. TRAVERSAL/COMBAT N/A. No LOCKED rule changed. Art/runtime/globalPC/balance/hardware/audio/mobile-afterPC remain open.",
+    "contractComplianceStatus": "Set1.8.0/baseline0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa. GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/NARRATIVE_PRESENTATION/SAVE/UI_ACCESSIBILITY/QA_EVIDENCE/REPOSITORY_GOVERNANCE PASS pour préservation et revue offline bornée ; TRAVERSAL/COMBAT N/A. Aucun LOCKED modifié, gates vides. Autres six revues indexées avec leur portée historique, non renouvelées. Artfinal/runtime/PCglobal/équilibre/matériel/audio/mobileaprèsPC ouverts.",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -46576,20 +46670,19 @@
     "runStatistics": {
       "runtimeSourceFiles": 0,
       "gameplaySteps": 0,
-      "generatedInitialImages": 0,
-      "targetedCorrections": 1,
-      "imagegenCalls": 1,
-      "selectedNewIllustrations": 1,
-      "reusedSelectedImages": 8,
-      "rawOutputs": 1,
+      "generatedImages": 0,
+      "imagegenCalls": 0,
+      "reusedSelectedImages": 4,
       "qaScenarios": 1,
-      "qaAttempts": 3,
-      "environmentFailures": 2,
-      "qaJobsAdded": 3,
-      "qaJobsTotal": 354,
-      "newQaProofFiles": 7,
+      "qaAttempts": 1,
+      "qaJobsAdded": 1,
+      "qaJobsTotal": 355,
+      "newQaProofFiles": 6,
+      "reviewIndexFiles": 2,
       "workflowDocPaths": 3,
       "planDataPaths": 1,
+      "galleryPaths": 2,
+      "reviewPathsModified": 1,
       "inheritedWipEntries": 0
     },
     "currentRunMeasurement": {
@@ -47641,7 +47734,7 @@
       ]
     },
     "contractSetVersion": "1.8.0",
-    "uncommittedWork": "Owned offline candidate/media/proof and pairedstate closure; no inheritedWIP",
+    "uncommittedWork": "Owned offline proof/synthesis and closure only; no inherited WIP",
     "commitReferenceScope": "Reviewed illustrated-cinematic configuration delivery; following metadata-only closeout discoverable in Git, avoiding circular self-reference.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
@@ -47808,6 +47901,39 @@
         "iabClosed": true,
         "closedAt": "2026-10-22T05:54:35.969Z"
       }
+    },
+    "illustrated0147": {
+      "summary": "Sept montages candidats hors jeu prêts pour revue opérateur :35illustrations/126secondes proposées. Jugementv2 propre16s/3fondus/10contrôles et revue indépendantePASS, quatre images réutilisées. Une synthèse indexée des sept scènes livrée ; aucune nouvelle génération, étape gameplay ou adoption runtime.",
+      "counts": {
+        "runtimeSourceFiles": 0,
+        "gameplaySteps": 0,
+        "generatedImages": 0,
+        "imagegenCalls": 0,
+        "reusedSelectedImages": 4,
+        "qaScenarios": 1,
+        "qaAttempts": 1,
+        "qaJobsAdded": 1,
+        "qaJobsTotal": 355,
+        "newQaProofFiles": 6,
+        "reviewIndexFiles": 2,
+        "workflowDocPaths": 3,
+        "planDataPaths": 1,
+        "galleryPaths": 2,
+        "reviewPathsModified": 1,
+        "inheritedWipEntries": 0
+      },
+      "reviewIndex": "tools/cinematics/candidates/illustrated-sequences/review-index.md",
+      "judgementReceipt": "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-receipt.json",
+      "guardian": "PASS_SCOPED_READY_FOR_OPERATOR_REVIEW",
+      "scheduler": {
+        "id": "rpgthreejs-auto-dev-90m",
+        "status": "PAUSED",
+        "preserved": true,
+        "observedAt": "2026-10-23T01:58:16.182Z",
+        "configurationSha256": "223b2bfe7ccfda25026de105b72a79af44fe5eeb9802874af7b73c1c49b7b342",
+        "note": "Current saved status differs from run prompt ACTIVE; no scheduler mutation or inferred reactivation"
+      },
+      "metadataReview": "PASS_METADATA_SYNTHESIS_CLOSEOUT; seven versions/35images126s/links/limits/rawproof/scheduler observation coherent"
     }
   },
   "previousInterruptedRun": {
