@@ -1,0 +1,14 @@
+{
+  "totalSeconds": 24,
+  "normalFadeSeconds": 1,
+  "reducedFadeSeconds": 0.8,
+  "stages": [
+    { "title": "Installation", "description": "", "start": 0, "duration": 4, "path": "../v1/shot-01.png", "transition": "cut" },
+    { "title": "Retenue", "description": "", "start": 4, "duration": 3, "path": "../v2/shot-02.png", "transition": "cut" },
+    { "title": "Protection", "description": "", "start": 7, "duration": 2.5, "path": "../v2/shot-03.png", "transition": "dissolve", "fadeSeconds": 1 },
+    { "title": "Détournement", "description": "", "start": 9.5, "duration": 3.5, "path": "../v2/shot-04.png", "transition": "cut" },
+    { "title": "Attention sans réponse", "description": "", "start": 13, "duration": 3, "path": "shot-05.png", "transition": "dissolve", "fadeSeconds": 1 },
+    { "title": "Fermeture", "description": "", "start": 16, "duration": 3, "path": "shot-06.png", "transition": "dissolve", "fadeSeconds": 0.8 },
+    { "title": "Raccord", "description": "", "start": 19, "duration": 5, "path": "shot-07.png", "transition": "cut" }
+  ]
+}

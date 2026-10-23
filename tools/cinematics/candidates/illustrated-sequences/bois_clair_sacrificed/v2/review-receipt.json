@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "version": "v2",
+  "runId": "codex-pose-pilot-20261023T0425Z",
+  "reviewedAt": "2026-10-23T04:49:42.960Z",
+  "status": {
+    "generation": "GENERATED",
+    "technical": "TECHNICALLY_VERIFIED",
+    "art": "ART_REVIEW_PENDING",
+    "readiness": "READY_FOR_OPERATOR_REVIEW",
+    "operatorMethodAcceptance": "PENDING",
+    "runtime": "NOT_ADOPTED",
+    "generalizationAllowed": false
+  },
+  "rawExecutionStatus": "SUCCEEDED",
+  "rawAcceptance": "NOT_ACCEPTED",
+  "rawReceipt": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-job.json",
+    "sha256": "3ea388b540720f76fa0e565f6bb25651a7901456665fe573ec3ca652fc298458"
+  },
+  "results": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-results.json",
+    "sha256": "3ceef6e4ad75c5772d6ad8348d87c92061d70e3a0752016f6510dd7c6906b4c2"
+  },
+  "driver": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-smoke.mjs",
+    "sha256": "6bfcc07b31f7a7fc5e93a5d04cc7ce4e2e5346c86162205c5f536c6aa24979f4"
+  },
+  "options": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/qa-options.json",
+    "sha256": "04077b01fff7fd48bc0a259eab9fdfcc2a7ef996882dbe644471f4ecbc5337ed"
+  },
+  "checks": [
+    "Five distinct complete images preloaded; initially paused on establishing image",
+    "Four real-time hard cuts, no blending across boundaries, varied5shot durations,18s and final stop",
+    "All five scene stages follow the authored timeline",
+    "Five-stage Home/End/arrow/previous navigation matches timeline",
+    "OSreduce explicit cuts preserve all fixed images; pause freezes opacity and clock; resume crosses same boundary",
+    "Whole images/44px controls/no horizontal clipping at1366x768",
+    "Whole images/44px controls/no horizontal clipping at620x780",
+    "Whole images/44px controls/no horizontal clipping at390x844",
+    "No nominal console/page errors",
+    "Exact historical v1 media/timeline replayed18s with four normal dissolves without narrative titles/descriptions; no historical acceptance rewritten",
+    "Missing final raccord image disables playback with visible status"
+  ],
+  "captures": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-cut-3.png",
+      "sha256": "3f8231c3144c5f12b16a69fca41661073cc0ee227ba2a70847b1ded9dbfa3c72"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-desktop-endpoint.png",
+      "sha256": "517aa58369d55517ff4aefdc9852ac3ffcd3469c5a702bd4f81eb9a4f713a687"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-narrow.png",
+      "sha256": "3f9e18cc99f2c24d70e26c7813c58ecaadbba46c6a123b5d2e250e20b329e9de"
+    }
+  ],
+  "guardian": "PASS_CONTRACTS_PRESENTATION_AND_TECHNICAL_SCOPED",
+  "visualScope": "Native images and each pair inspected; normal18s new and historical timelines replayed without narrative captions; cut captures inspected. IAB v2 observed0.2/11.9/18 and v1 at0.2/9.7/dissolve and paused3. No human artistic acceptance claimed.",
+  "failedAttempt": {
+    "receipt": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-failed-job.json",
+      "sha256": "1acbef7d23881e3d797b46c6679346f864855df04a347896aa22d402f1bd35de"
+    },
+    "result": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-failed-results.json",
+      "sha256": "fbc073b8880e213aeadb20475290221e873e537ff610b947dc730b3953273e65"
+    },
+    "driver": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-smoke-attempt-01.mjs",
+      "sha256": "6945f18a9975cbb71be7cb0d51dbebf017a829b9b69d2507150c829f1b3f90e5"
+    },
+    "options": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/qa-options-attempt-01.json",
+      "sha256": "4bcce763086217ac581a919f321d1252b5dea42373df87473bb1a54384df072c"
+    },
+    "cause": "OS media notification not awaited; corrected one harness pass without weakening assertions"
+  },
+  "notAccepted": [
+    "Operator artistic method acceptance",
+    "Runtime integration",
+    "Global PC balance or art",
+    "Mobile acceptance"
+  ]
+}

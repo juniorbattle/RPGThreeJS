@@ -1,7 +1,7 @@
 {
   "runId": "codex-pose-pilot-20261023T0425Z",
-  "jobId": "illustrated-pose-pilot-v2-0425",
-  "output": "tmp/cinematics/pose-pilot-0425/review",
+  "jobId": "illustrated-pose-pilot-v2-0425-fixed",
+  "output": "tmp/cinematics/pose-pilot-0425/review-fixed",
   "driver": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-smoke.mjs",
   "port": 5461,
   "parameters": {

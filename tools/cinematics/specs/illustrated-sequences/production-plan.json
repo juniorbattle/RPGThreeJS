@@ -203,7 +203,7 @@
       "receiptPath": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-receipt.json"
     }
   ],
-  "firstAction": "Au prochain run effectivement déclenché : préflight/verrou/synchronisation, puis reprendre le nouveau pilote bois_clair_sacrificed/v2 s'il existe ; sinon relire victoire village_raid/missionGreed=true et frontière avant village_raid_aftermath:1/provisions, inspecter V2/décor/ancienne version, écrire partition de poses et fiches avant imagegen intégré. Comparer images et montage sans légendes ; attendre acceptation artistique explicite de la méthode par l'opérateur avant les six autres. Statut scheduler PAUSED préservé, aucune génération dans cette configuration.",
+  "firstAction": "Generate v3shots05/06/07 under the prepared sourced partition, preserve all v2 evidence and validate actual relationships; next run performs v3 own technical proof before READY. Explicit artistic pilot-method approval still precedes six-scene generalization.",
   "completionPolicy": "Historical seven-scene queue preserved. New pilot first; explicit operator ART_ACCEPTED method verdict before six-scene revision; no READY/technical auto-acceptance.",
   "preserve": {
     "qaJobs": 339,
@@ -217,34 +217,51 @@
   "executionDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
   "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
   "executionPolicy": "Existing recurrence content updated, saved PAUSED preserved. Future triggered run executes pilot without routine per-plan approval; operator artistic gate before generalization.",
-  "updatedAt": "2026-10-23T04:38:13.927Z",
+  "updatedAt": "2026-10-23T04:50:48.468Z",
   "completedOfflineCandidatesAt": "2026-10-23T01:58:16.182Z",
   "reviewIndexPath": "tools/cinematics/candidates/illustrated-sequences/review-index.md",
   "revisionDirective": {
     "decisionPath": "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
     "sourcePath": "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
     "sourceSha256": "11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
-    "status": "PILOT_GENERATED_TECHNICAL_PENDING",
+    "status": "PILOT_V3_DIRECT_FEEDBACK_PREPARED",
     "amendmentDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
     "historicalQueueRole": "Unmodified historical technical deliveries, not near-final artistic acceptance",
     "pilot": {
       "id": "bois_clair_sacrificed",
-      "version": "v2",
-      "status": "GENERATED",
+      "version": "v3",
+      "status": "PLANNED_NOT_GENERATED",
       "requiresSourceAndPosePartition": true,
       "beforeDialogue": "village_raid_aftermath:1",
       "operatorMethodAcceptance": "PENDING",
       "generalizationAllowed": false,
-      "candidatePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/index.html",
+      "candidatePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
       "storyboardPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/storyboard.md",
-      "provenancePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/provenance.json",
-      "initialImages": 4,
-      "targetedCorrections": 1,
-      "reusedImages": 1,
+      "provenancePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/provenance.json",
+      "initialImages": 0,
+      "targetedCorrections": 0,
+      "reusedImages": 4,
       "technical": "NOT_VERIFIED",
       "art": "ART_REVIEW_PENDING",
       "readiness": "IN_PROGRESS",
-      "runtime": "NOT_ADOPTED"
+      "runtime": "NOT_ADOPTED",
+      "generation": "NOT_GENERATED",
+      "storyboard": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/storyboard.md",
+      "schedulerObserved": {
+        "status": "ACTIVE",
+        "reasoningEffort": "xhigh",
+        "cadenceMinutes": 90,
+        "sha256": "c35518087c11b6e9e0b98d3e797d6cd0f60193607c29e1ea2660c33c6e631969",
+        "changed": false
+      },
+      "previousVersion": {
+        "version": "v2",
+        "technical": "TECHNICALLY_VERIFIED",
+        "readiness": "READY_FOR_OPERATOR_REVIEW",
+        "art": "ART_REVIEW_PENDING",
+        "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-receipt.json"
+      },
+      "operatorFeedback": "docs/autonomy/ILLUSTRATED_DISSOLVE_FEEDBACK_2026-10-23.md"
     },
     "remainingSceneIds": [
       "alaric_audience_arrival",
@@ -257,6 +274,7 @@
     "transitions": "MOTIVATED_HARD_CUTS_DISSOLVES_HOLDS",
     "hardCuts": "AUTHORIZED_MOTIVATED_OFFLINE",
     "animatedReframing": "BOUNDED_STUDY_WITH_REDUCED_MOTION_ALTERNATIVE",
-    "qaJobsAtConfiguration": 355
+    "qaJobsAtConfiguration": 355,
+    "latestFeedbackPath": "docs/autonomy/ILLUSTRATED_DISSOLVE_FEEDBACK_2026-10-23.md"
   }
 }

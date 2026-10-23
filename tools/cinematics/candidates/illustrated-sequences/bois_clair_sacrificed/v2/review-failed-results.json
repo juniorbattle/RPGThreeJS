@@ -1,0 +1,7 @@
+{
+  "pass": false,
+  "errors": [
+    "Expected values to be strictly equal:\n\nfalse !== true\n"
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n\n    at file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-smoke.mjs:13:210"
+}

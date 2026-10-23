@@ -17,9 +17,9 @@
   "rawPolicy": "Every returned PNG retained byte-identically, no crop/re-encoding; exact prompt/request/output_hint retained in request/result; image_url bytes represented by raw PNG SHA",
   "status": {
     "generation": "GENERATED",
-    "technical": "NOT_VERIFIED",
+    "technical": "TECHNICALLY_VERIFIED",
     "art": "ART_REVIEW_PENDING",
-    "readiness": "IN_PROGRESS",
+    "readiness": "READY_FOR_OPERATOR_REVIEW",
     "operatorMethodAcceptance": "PENDING",
     "runtime": "NOT_ADOPTED",
     "generalizationAllowed": false
@@ -274,5 +274,6 @@
     "02/03 remain wide instead of requested closer frames;02 knee bend not claimed",
     "03 widened brace retained;04 basket lower and torso turn smaller than requested; head withdrawal carries04",
     "Fine trim/cloth/ground details vary; operator final art review remains required"
-  ]
+  ],
+  "technicalReviewReceipt": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-receipt.json"
 }

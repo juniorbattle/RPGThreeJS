@@ -1,4 +1,4 @@
-# Pilote Bois-Clair sacrifié v2 — revue en cours
+# Pilote Bois-Clair sacrifié v2 — techniquement vérifié
 
 Run codex-pose-pilot-20261023T0425Z. Nouvelle version séparée sous set1.9.0 ; v1 et les sept livraisons historiques restent intactes. Quatre illustrations initiales, une correction ciblée, cinq raw conservés et01 historique réutilisé. Aucune vidéo, audio ou adoption en jeu.
 
@@ -14,7 +14,7 @@ Run codex-pose-pilot-20261023T0425Z. Nouvelle version séparée sous set1.9.0 ; 
 
 Les plans02/03 gardent le même cadrage large que01 ; leur raison d'être est le jeu corporel distinct, pas un recadrage.04 porte le changement de point de vue et la rupture visuelle ;05 fait lire sa conséquence spatiale. Le dernier plan reste avant village_raid_aftermath:1 et les deux choix de provisions. Aucun remords canonique, refus de choix, départ, don ou gain n'est joué.
 
-Prérevue indépendante : **PASS_PREGEN_SCOPED**. Revue réelle02/03/04 : **PASS visuel ciblé canon/continuité**, pas verdict artistique opérateur.05 et montage complet doivent encore recevoir la revue finale.
+Prérevue indépendante : **PASS_PREGEN_SCOPED**. Revue réelle02/03/04 : **PASS visuel ciblé canon/continuité**, pas verdict artistique opérateur.05 et le montage ont reçu PASS_CONTRACTS_PRESENTATION_AND_TECHNICAL_SCOPED après inspection réelle et du reçu.
 
 ## Lecteur et preuve
 
@@ -22,6 +22,32 @@ Copie locale du lecteur `reader-v1/montage.mjs` : seulement transition d'entrée
 
 Durées4/3/2.5/3.5/5secondes, quatre coupes franches, tenue finale5s ; total18s proposé. Aucune information n'exige recadrage animé ou fondu, donc aucun mouvement caméra. La préférence OS conserve toutes les informations fixes et ne lance jamais la lecture.
 
-Statuts actuels : **GENERATED**, technique **NOT_VERIFIED**, art **ART_REVIEW_PENDING**, readiness **IN_PROGRESS**. ART_ACCEPTED et RUNTIME_ACCEPTED absents. La preuve technique et la comparaison à vitesse normale sans légendes sont encore à faire. [Lecteur nouveau](index.html), [comparaison v1 sans légendes](index.html?historical=1), [storyboard préparé avant génération](storyboard.md), [provenance](provenance.json).
+Statuts : **GENERATED**, **TECHNICALLY_VERIFIED**, **ART_REVIEW_PENDING**, **READY_FOR_OPERATOR_REVIEW**. ART_ACCEPTED et RUNTIME_ACCEPTED absents. Preuve propre v2 PASS11contrôles : quatre coupes4/7/9.5/13s, durée18s, pause horloge/opacité/reprise/clavier, OSreduce, contain/44px1366/620/390, console et fallback manquant. Comparaison historique18s/quatre fondus sans légendes rejouée dans le même scénario. Premier reçu FAILED conservé ; correction minimale attend la notificationOS, aucune assertion retirée. Résultat SUCCEEDED/NOT_ACCEPTED brut conservé, eligible/stable/current/digest/request vrais au sync. [Lecteur nouveau](index.html), [comparaison v1 sans légendes](index.html?historical=1), [storyboard préparé avant génération](storyboard.md), [provenance](provenance.json).
 
 Une fois cohérent et techniquement vérifié, attendre l'acceptation artistique explicite opérateur sur images ET montage/méthode avant de produire les six autres scènes. Aucun READY agent, camp ou reçu technique ne franchit ce jalon.
+
+
+## Comparaison perceptuelle et retour opérateur
+
+V1 situe correctement le village, mais ses silhouettes verticales et ses cadres proches portent une progression corporelle faible ; le fondu de2→3 donne une impression optique de mouvement, également observable dans le screenshot IAB à9.7s. V2 ajoute bras/livre repliés, protection et évitement franchement lisibles, avec un accent sec sur04 et une tenue finale. Cette appréciation agent reste distincte de la compréhension et de l’acceptation artistiques humaines.
+
+Le retour direct opérateur sur la **v1 affichée**,23octobre, demande plus d’images et davantage de cet effet de transition. [Décision de reprise](../../../../../../docs/autonomy/ILLUSTRATED_DISSOLVE_FEEDBACK_2026-10-23.md) : nouvelle v3 séparée du seul pilote. Ce retour ne déclare pas la nouvelle méthode artistiquement acceptée. V2 et sa preuve sont préservés.
+
+## Conformité scoped
+
+Set1.9.0/baseline32c8439f6dea1d09f428c5c081392ab0c700e356. Constitution, WORLD_AND_CHARACTERS, CAMPAIGN_AND_STATE, PRESENTATION_AND_MEDIA, UI_AND_ACCESSIBILITY, AUTHORING_AND_QA, AUTONOMOUS_WORK_PROTOCOL et manifeste lus. Aucune règle LOCKED modifiée, gates baseline/working vides ; validator8contrats/8slots PASS.
+
+| Ligne | Statut | Preuve |
+| --- | --- | --- |
+| GAME_CONSTITUTION | PASS | Offline, propriétaires inchangés. |
+| ART_DIRECTION | PASS | Poses distinctes, limites réelles déclarées, art final opérateur. |
+| CHARACTERS | PASS | Deux V2, mains/objets/tenues maintenus. |
+| ENVIRONMENTS | PASS | Place détruite, lumière/axe maintenus. |
+| NARRATIVE / CAMPAIGN | PASS | Avant dialogue1 et choix ; aucun canon créé. |
+| NARRATIVE_PRESENTATION | PASS | Coupes4/7/9.5/13s, final18s. |
+| TRAVERSAL | N/A | Aucun changement. |
+| COMBAT | N/A | Aucun changement. |
+| SAVE | PASS | V6 inchangé. |
+| UI / ACCESSIBILITY | PASS | Pause/reprise/clavier/OSreduce/contain44px. |
+| QA_EVIDENCE | PASS | Reçu exact, échec conservé,11contrôles, captures inspectées. |
+| REPOSITORY_GOVERNANCE | PASS | dev, historique et jalon opérateur conservés. |

@@ -1,14 +1,12 @@
-# Pilote de poses Bois-Clair sacrifié — en cours
+# Pilote Bois-Clair : v2 vérifiée, v3 enrichie en cours
 
-Run codex-pose-pilot-20261023T0425Z, débutUTC2026-10-23T04:25Z. Préflight propre, aucun verrou/WIP hérité, dev distant734bea70 vérifié, main inchangé. Verrou atomique possédé. Sources actuelles et trois références V2/décor inspectées. Partition/fiches avant génération sous tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/storyboard.md.
+Run codex-pose-pilot-20261023T0425Z depuis04:25Z. V2cinqimages/18s/quatre coupes : GENERATED, TECHNICALLY_VERIFIED, ART_REVIEW_PENDING, READY_FOR_OPERATOR_REVIEW. Preuve propre11contrôlesPASS, premier échec harness conservé ; aucune acceptation artistique/runtime.
 
-Prochaine action précédente (accomplie) : Generate only new v2 shots02–05 from the inspected V2 masters, approved destroyed environment and sourced storyboard; retain exact v1shot01 establishing image. No six-scene generalization before explicit artistic method approval.
+Retour direct opérateur sur le fondu2→3 de la v1 affichée : augmenter les images et les fondus. Nouvelle v3 séparée septplans/24s préparée, sans réécrire v1/v2 ni généraliser aux six scènes. Doc ILLUSTRATED_DISSOLVE_FEEDBACK_2026-10-23.md. Budget cumulé4initiales/1correction produites ;3initialesv3 prévues.
 
-Scheduler observé ACTIVE/xhigh/cadence90min, conservé octet pour octet ; ancien PAUSED historique. Aucun src/public/runtime/contrat/vidéo/audio/camp modifié.355jobs et acceptations historiques conservés.
+UNE prochaine action : Generate v3shots05/06/07 under the prepared sourced partition, preserve all v2 evidence and validate actual relationships; next run performs v3 own technical proof before READY. Explicit artistic pilot-method approval still precedes six-scene generalization.
 
-Cinq images sélectionnées :01 historique exact +02–05 nouveaux,4initiales/1correction/5raw. Nouveau lecteur local pour coupes et comparaison sans légendes ; preuve propre encore attendue. Aucune acceptation artistique ou runtime.
-
-UNE prochaine action : Run registered v2 own18s hard-cut/caption-free comparison proof, inspect captures and complete independent scoped review; then await explicit operator artistic method acceptance before six-scene generalization.
+Scheduler ACTIVE/xhigh/90min conservé ; seul updated_at a changé extérieurement pendant ce run. Aucun appel de mutation scheduler.355jobs historiques/acceptations intacts,357total ; zéro src/public/runtime/LOCKED/vidéo/audio/camp/gameplay.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -368,6 +366,8 @@ UNE prochaine action : Run registered v2 own18s hard-cut/caption-free comparison
 - illustrated-trial-v2-0536-host: FAILED; port 5461; receipt `tmp/cinematics/illustrated-trial-v2-0536-host/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-trial-v2-0536-host2: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-trial-v2-0536-host2/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-judgement-v2-0147: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-judgement-v2-0147/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-pose-pilot-v2-0425: FAILED; port 5461; receipt `tmp/cinematics/pose-pilot-0425/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-pose-pilot-v2-0425-fixed: SUCCEEDED; port 5461; receipt `tmp/cinematics/pose-pilot-0425/review-fixed/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 Guardian final : PASS_METADATA_SYNTHESIS_CLOSEOUT ; sept versions35images126s/statuts/frontières/limites/reçus/liens cohérents, aucune acceptation artistique ou runtime. Vérification finale93SHA/93racines historiques/354jobs hérités inchangés/355total/8SHA camp/configuration scheduler préservée.
