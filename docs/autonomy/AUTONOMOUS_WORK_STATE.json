@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-23T07:45:51Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-23T08:09:54.234Z",
   "activeTask": "BOIS-CLAIR-SACRIFICED-POSE-PILOT",
   "activePhase": "AWAITING_OPERATOR_ARTISTIC_METHOD_VERDICT",
   "activeSubtask": "V3 technically verified and ready for artistic images-and-montage review",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "95bc2a228b0b50e100a6edfcc617731d2efbdf98",
-  "lastPushedCommit": "95bc2a228b0b50e100a6edfcc617731d2efbdf98",
+  "lastKnownGoodCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
+  "lastPushedCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
   "completedThisRun": [
     "Recovered abandoned05:04 lock after systemError/no QA or build worker; archived lock; preserved24 inherited files in verified WIP32ac8034",
     "Host fetch verified dev95bc2a22 and main00b96f1b; scheduler ACTIVE/xhigh/90min SHA4c39ebf8 preserved",
@@ -94,7 +94,7 @@
   ],
   "creditStatus": "AVAILABLE_NO_GENERATION_REQUIRED",
   "contractComplianceStatus": "PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED",
-  "commitReferenceScope": "Last verified published checkpoint before configuration; final configuration commits authoritative in Git and automation memory.",
+  "commitReferenceScope": "Delivery1c0c0f72 is published/verified; following metadata-only commit closes this run without claiming self-referential commit hashes.",
   "operatorAuthorization": "OD-2026-10-21-A/B and OD-2026-10-23-A/B offline pose pilot; direct23October user feedback requests more illustrations and optical dissolves on displayed historicalv1, applied only to separatepilotv3. No scheduler mutation/generalization/art acceptance inferred.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -167,13 +167,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-pose-v3-proof-20261023T0745Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-23T08:05:51.835Z",
-  "wip": {
-    "sha": "32ac8034067b21dfca7a8917a9e18ed30bd154e4",
-    "branch": "wip/codex-pose-v3-proof-20261023T0745Z"
-  },
+  "lastHeartbeat": "2026-10-23T08:09:54.234Z",
+  "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-23T08:05:51.835Z",
+    "lastHeartbeat": "2026-10-23T08:09:54.234Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -40270,10 +40267,7 @@
         "eligibleForReview": true
       }
     ],
-    "wip": {
-      "sha": "32ac8034067b21dfca7a8917a9e18ed30bd154e4",
-      "branch": "wip/codex-pose-v3-proof-20261023T0745Z"
-    },
+    "wip": null,
     "nextAction": "Attendre le verdict artistique explicite opérateur sur les images ET le montage/méthode bois_clair_sacrificed/v3. Sans nouveau verdict, préserver le checkpoint sans génération, QA ou synthèse répétée. Les six autres scènes restent verrouillées ; aucun changement du scheduler.",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
@@ -40318,8 +40312,8 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-23T08:09:54.234Z",
+    "writerStopped": true,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
       "previewPort5461Stopped": true,
@@ -44453,7 +44447,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-23T07:45:51Z",
     "activePhase": "AWAITING_OPERATOR_ARTISTIC_METHOD_VERDICT",
-    "heartbeat": "2026-10-23T08:05:51.835Z",
+    "heartbeat": "2026-10-23T08:09:54.234Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-23T0745Z-codex-pose-v3-proof.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -46182,7 +46176,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "95bc2a228b0b50e100a6edfcc617731d2efbdf98",
+    "lastPushedCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -46987,7 +46981,7 @@
     },
     "creditStatus": "AVAILABLE_NO_GENERATION_REQUIRED",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "95bc2a228b0b50e100a6edfcc617731d2efbdf98",
+    "lastKnownGoodCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
     "completedThisRun": [
       "Recovered abandoned05:04 lock after systemError/no QA or build worker; archived lock; preserved24 inherited files in verified WIP32ac8034",
       "Host fetch verified dev95bc2a22 and main00b96f1b; scheduler ACTIVE/xhigh/90min SHA4c39ebf8 preserved",
@@ -48561,16 +48555,12 @@
     },
     "contractSetVersion": "1.9.0",
     "uncommittedWork": {
-      "inheritedPaths": 24,
-      "inheritedSnapshot": "32ac8034067b21dfca7a8917a9e18ed30bd154e4",
-      "currentPayloadPaths": 44,
-      "sourceFiles": 0,
-      "qaProofFilesAdded": 18,
-      "workflowPaths": 5,
-      "candidateMetadataModified": 3,
-      "phase": "READY_FOR_PUBLICATION"
+      "status": "COHERENT_CHECKPOINT_PUBLISHED",
+      "deliveryCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
+      "inheritedWipPathsPreserved": 24,
+      "remainingProductWip": 0
     },
-    "commitReferenceScope": "Last verified published checkpoint before configuration; final configuration commits authoritative in Git and automation memory.",
+    "commitReferenceScope": "Delivery1c0c0f72 is published/verified; following metadata-only commit closes this run without claiming self-referential commit hashes.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
       "status": "SAVED_AND_CONFIGURATION_VERIFIED",
@@ -48803,7 +48793,19 @@
       "verdict": "PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED",
       "ownReceipt": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-receipt.json",
       "schedulerSha256": "4c39ebf8a7dba98ccc1cf0c16356acf55c1278c5a58544687d137cd102252433",
-      "preservedInheritedJobs": 357
+      "preservedInheritedJobs": 357,
+      "publication": {
+        "deliveryCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
+        "verifiedAt": "2026-10-23T08:09:54.234Z",
+        "remote": "origin/dev",
+        "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+        "wipCleanup": "Delete only owned WIP branch after final metadata publication"
+      },
+      "committedByteVerification": {
+        "v3Files": 40,
+        "allMatch": true,
+        "rule": ".gitattributes v3-only -text with default whitespace checks plus cr-at-eol"
+      }
     }
   },
   "previousInterruptedRun": {
@@ -49035,14 +49037,10 @@
     }
   },
   "uncommittedWork": {
-    "inheritedPaths": 24,
-    "inheritedSnapshot": "32ac8034067b21dfca7a8917a9e18ed30bd154e4",
-    "currentPayloadPaths": 44,
-    "sourceFiles": 0,
-    "qaProofFilesAdded": 18,
-    "workflowPaths": 5,
-    "candidateMetadataModified": 3,
-    "phase": "READY_FOR_PUBLICATION"
+    "status": "COHERENT_CHECKPOINT_PUBLISHED",
+    "deliveryCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
+    "inheritedWipPathsPreserved": 24,
+    "remainingProductWip": 0
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
@@ -49227,7 +49225,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "70a8daa5fcb4e233bb3a576e4f9abbbc740b272b",
+  "implementationCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
   "authorizedWorkContinuation": "Direct last-save task complete in scoped implementation/proof. Publish selected coherent dev checkpoint under OD-2026-10-12-A without routine confirmation; retain original native07 proof and current copy scope separately.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
@@ -50495,7 +50493,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-23T08:05:51.835Z",
+  "heartbeat": "2026-10-23T08:09:54.234Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -52468,7 +52466,7 @@
     "taskComplete": false,
     "newLabelBrowser": "OPEN"
   },
-  "lastSnapshotCommit": "738f97af1ec791dc91081436991c02d284bf04b7",
+  "lastSnapshotCommit": "32ac8034067b21dfca7a8917a9e18ed30bd154e4",
   "lastSnapshotAt": "2026-10-21T22:46:44.560Z",
   "runMetrics": {
     "runtimeSourceFilesModified": 0,

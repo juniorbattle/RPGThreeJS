@@ -18,6 +18,8 @@ Compteurs :0source runtime,0nouvelle image/appelimagegen,18nouveaux fichiersQA/p
 
 **UNE prochaine action : Attendre le verdict artistique explicite opérateur sur les images ET le montage/méthode bois_clair_sacrificed/v3. Sans nouveau verdict, préserver le checkpoint sans génération, QA ou synthèse répétée. Les six autres scènes restent verrouillées ; aucun changement du scheduler.**
 
+Clôture UTC2026-10-23T08:09:54.234Z : livraison1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f publiée et vérifiée sur origin/dev ; main inchangé ;40fichiersv3 committés identiques aux octets revus. Aucun WIP produit restant ; métadonnées finales publiées ensuite.
+
 <!-- QA_JOBS_START -->
 ## Live QA jobs
 

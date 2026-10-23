@@ -39,3 +39,5 @@ Les sept images et six paires ont été inspectées ainsi que les captures des f
 | TRAVERSAL / COMBAT | N/A, inchangés |
 
 Constitution,index,manifest,AUTONOMOUS_WORK_PROTOCOL,WORLD_AND_CHARACTERS,CAMPAIGN_AND_STATE,PRESENTATION_AND_MEDIA,UI_AND_ACCESSIBILITY,AUTHORING_AND_QA lus. Set1.9.0 ; baseline immuable32c8439f6dea1d09f428c5c081392ab0c700e356. Aucune règleLOCKED changée.
+
+Publication vérifiée : livraison1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f sur origin/dev ; main inchangé. Les40blobsv3 correspondent aux octets revus, y compris CRLF conservé par la règle locale. RunEndedAt2026-10-23T08:09:54.234Z ; aucun WIP produit restant. Le commit de clôture suivant ne modifie que l'étatMD/JSON et ce handoff. Après sa publication, supprimer uniquement la brancheWIP propre et libérer le verrou possédé.
