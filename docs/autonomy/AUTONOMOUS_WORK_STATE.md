@@ -1,29 +1,26 @@
-# Sept montages illustrés prêts pour revue
+# Récurrence configurée — pilote de poses illustrées
 
-Run codex-illustrated-final-review-20261023T0147Z, début2026-10-23T01:47:00Z, checkpoint2026-10-23T01:58:16.182Z, dev.
+Décision [OD-2026-10-23-A/B](ILLUSTRATED_POSE_DIRECTION_2026-10-23.md), run codex-illustrated-direction-config-20261023T0401Z, débutUTC 2026-10-23T04:04:52.043333Z, checkpointUTC 2026-10-23T04:19:42.490Z.
 
-Sept montages candidats hors jeu prêts pour revue opérateur :35illustrations/126secondes proposées. Jugementv2 propre16s/3fondus/10contrôles et revue indépendantePASS, quatre images réutilisées. Une synthèse indexée des sept scènes livrée ; aucune nouvelle génération, étape gameplay ou adoption runtime.
+Nouvelle direction artistique et proposition intégrale conservées. Prochaine production : seul pilote Bois-Clair sacrifié, nouvelle version séparée, partition de poses avant imagegen, comparaison sans légendes et acceptation artistique opérateur de la méthode avant les six autres. Sept versions historiques/35images/126s et preuves intactes ; camp conservé. Statut projet READY_FOR_PC_ACCEPTANCE retenu dans JSON, sans nouveau verdictglobal.
 
-Préflight sansverrou/WIP, autres chats idle, verrou atomique. HEAD/origin-dev/liveremote6447162 égaux ;main00b96f1b inchangé. Fetchhôte aprèsDNSsandbox. Le statut scheduler actuel enregistré est **PAUSED**, différent du promptACTIVE ; configuration intégralement préservée, aucune réactivation inférée. La mentionACTIVE du préambule de préparation de ce run était une hypothèse corrigée ici.
+Prompt existant mis à jour via l'outil officiel et égal au canonique. Scheduler **PAUSED**, cadence90min, gpt-6.1-sol/high, local/projet/cwd/notifications conservés. Cette configuration ne lance pas de génération ou gameplay. Coupes franches/fondus/pauses et durées motivés autorisés sous1.9.0 ; recadrage discret seulement à étudier avec bénéfice justifié et alternative de réduction.
 
-[Synthèse unique](../../tools/cinematics/candidates/illustrated-sequences/review-index.md) · [Galerie](../../tools/cinematics/candidates/illustrated-sequences/index.html). Sept versions exactes/limites/frontières/reçus liées. Jugementv2 HTML/provenance de génération restent byte-identiques malgré textependinghistorique ; statutcourant revue/plan/galerie. Versionsv1défectueuses/précédentespreuves conservées.
+- Official automation update succeeded; saved prompt equals canonical after newline normalization
+- PAUSED, cadence90min, model gpt-6.1-sol/high, local project/cwd, notifications and created_at preserved
+- contracts:validate PASS8LOCKED/8slots; immutable baseline/status gates empty; diffcheckPASS
+- 355inherited qaJobs/acceptances and all unrelated state roots preserved; zero new QA job
+- Seven historical queue entries and selected index/media hashes preserved; no runtime/reader/media edit
+- Exact user proposal retained with SHA256 11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b
+- Guardian PASS_AMENDMENT_ACTUAL_DIFF; amendment32c8439, following baseline checkpoint063d1ee9; PASS_CONFIG_1_9_CLOSEOUT
 
-- TypeScript PASS ;63tests ciblés(Cin6aPresentation39/lionFinale24,tmp exclus)
-- contracts:validate PASS8LOCKED/8slots ; gates baseline/status vides ;diffcheckPASS
-- Jugementv2 propre16s/3fondus normaux1s/10contrôlesPASS ; un scénario/une tentative
-- Reçu SUCCEEDED éligible/stable/current/request/digest ; rawNOT_ACCEPTED conservé
-- Quatre images natives et trois captures fondu03/fin/390 inspectées ;IAB0,2→13,4→16s OSreduce observé
-- Guardian PASS_SCOPED_READY_FOR_OPERATOR_REVIEW ; regard relevé03→04/équipement/frontière confirmés
-- 354jobs hérités et acceptations inchangés ;355total ; aucun média historique modifié
-- Scheduler enregistréPAUSED découvert, SHA223b2bfe7ccfda25026de105b72a79af44fe5eeb9802874af7b73c1c49b7b342 conservé ; aucun changement de paramètres
+Set1.9.0/baseline32c8439f6dea1d09f428c5c081392ab0c700e356 recorded after dedicated approved amendment; constitution/seven othercontracts unchanged. Constitution/art/characters/environments/narrative/presentation/save/UI/QA/governance PASS configuration and preservation; Traversal/combat N/A. Only offline direction/transitions LOCKED rule changed by explicit dedicated OD23B amendment; no further LOCKED change. Motivated hard cuts/dissolves/holds authorized; discreet reframing only studied with documented reading benefit and reduced-motion alternative; pilot artistic approval gate explicit. No product/art/runtime acceptance.
 
-Set1.8.0/baseline0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa. GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/NARRATIVE_PRESENTATION/SAVE/UI_ACCESSIBILITY/QA_EVIDENCE/REPOSITORY_GOVERNANCE PASS pour préservation et revue offline bornée ; TRAVERSAL/COMBAT N/A. Aucun LOCKED modifié, gates vides. Autres six revues indexées avec leur portée historique, non renouvelées. Artfinal/runtime/PCglobal/équilibre/matériel/audio/mobileaprèsPC ouverts.
+Compteurs : {"runtimeSourceFiles":0,"gameplaySteps":0,"generatedImages":0,"imagegenCalls":0,"qaScenarios":0,"qaJobsAdded":0,"qaJobsTotal":355,"newQaProofFiles":0,"workflowPaths":17,"planDataPaths":1,"inheritedWipEntries":0}.
 
-Compteurs : {"runtimeSourceFiles":0,"gameplaySteps":0,"generatedImages":0,"imagegenCalls":0,"reusedSelectedImages":4,"qaScenarios":1,"qaAttempts":1,"qaJobsAdded":1,"qaJobsTotal":355,"newQaProofFiles":6,"reviewIndexFiles":2,"workflowDocPaths":3,"planDataPaths":1,"galleryPaths":2,"reviewPathsModified":1,"inheritedWipEntries":0}. Aucun build/campagne/retestautresscènes justifié pour preuveoffline et index. Pas de src/public/registre/manifest/V6/vidéo/keyframe/MiniMax/MP4/audio/camp/contrats modifié.
+UNE prochaine action : Au prochain run effectivement déclenché : préflight/verrou/synchronisation, puis reprendre le nouveau pilote bois_clair_sacrificed/v2 s'il existe ; sinon relire victoire village_raid/missionGreed=true et frontière avant village_raid_aftermath:1/provisions, inspecter V2/décor/ancienne version, écrire partition de poses et fiches avant imagegen intégré. Comparer images et montage sans légendes ; attendre acceptation artistique explicite de la méthode par l'opérateur avant les six autres. Statut scheduler PAUSED préservé, aucune génération dans cette configuration.
 
-UNE prochaine action : Revue artistique opérateur des sept montages via tools/cinematics/candidates/illustrated-sequences/review-index.md et galerie. Aucune adoption runtime implicite. Sans nouveau verdict ni défaut PC indépendant déjà démontré, conserver le checkpoint ; aucune régénération ni campagne inchangée à rejouer. Mobile après PC.
-
-Handoff : docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md. Publication normaleorigin/dev sousOD-2026-10-12-A, main protégé ; clôture/parité finales après livraison.
+Handoff : [2026-10-23T0404Z-codex-pose-pilot-config.md](handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md).
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

@@ -1,78 +1,77 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-23T01:47:00Z",
-  "runEndedAt": "2026-10-23T02:04:16.244Z",
-  "activeTask": "ILLUSTRATED-SEVEN-SCENE-HANDOFF",
-  "activePhase": "READY_FOR_OPERATOR_REVIEW",
-  "activeSubtask": "Seven offline candidates delivered; one indexed artistic review handoff",
+  "runStartedAt": "2026-10-23T04:04:52.043333Z",
+  "runEndedAt": "2026-10-23T04:19:42.490Z",
+  "activeTask": "ILLUSTRATED-POSE-PILOT-CONFIGURATION",
+  "activePhase": "CONFIGURED_PILOT_PENDING",
+  "activeSubtask": "Future Bois-Clair sacrificed pose pilot; explicit operator method approval before six-scene generalization",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
-  "lastPushedCommit": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
+  "lastKnownGoodCommit": "070f31492aeff5a729871320096eadf7e2af8012",
+  "lastPushedCommit": "070f31492aeff5a729871320096eadf7e2af8012",
   "completedThisRun": [
-    "Sept montages candidats hors jeu prêts pour revue opérateur :35illustrations/126secondes proposées. Jugementv2 propre16s/3fondus/10contrôles et revue indépendantePASS, quatre images réutilisées. Une synthèse indexée des sept scènes livrée ; aucune nouvelle génération, étape gameplay ou adoption runtime."
+    "Existing recurrence prompt updated via official tool; expressive pose pilot directive and operator gate recorded. Configuration only, no generated image or played stage."
   ],
   "filesChanged": [
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "AGENTS.md",
+    ".agents/skills/autonomy-handoff/SKILL.md",
+    ".agents/skills/contracts-compliance/SKILL.md",
+    ".agents/skills/cinematics-journey/SKILL.md",
+    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+    "docs/contracts/PRESENTATION_AND_MEDIA.md",
+    "docs/contracts/README.md",
+    "docs/contracts/contracts.manifest.json",
+    "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
+    "docs/autonomy/RECURRING_RUN_PROMPT.md",
+    "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
+    "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "tools/cinematics/candidates/illustrated-sequences/gallery.json",
-    "tools/cinematics/candidates/illustrated-sequences/index.html",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review.md",
-    "tools/cinematics/specs/illustrated-sequences/production-plan.json",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/desktop-endpoint.png",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/dissolve-3.png",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/narrow-preparation.png",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/results.json",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-receipt.json",
-    "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-smoke.mjs",
-    "tools/cinematics/candidates/illustrated-sequences/review-index.json",
-    "tools/cinematics/candidates/illustrated-sequences/review-index.md",
-    "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+    "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
+    "tools/cinematics/specs/illustrated-sequences/production-plan.json"
   ],
   "testsRun": [
-    "TypeScript PASS ;63tests ciblés(Cin6aPresentation39/lionFinale24,tmp exclus)",
-    "contracts:validate PASS8LOCKED/8slots ; gates baseline/status vides ;diffcheckPASS",
-    "Jugementv2 propre16s/3fondus normaux1s/10contrôlesPASS ; un scénario/une tentative",
-    "Reçu SUCCEEDED éligible/stable/current/request/digest ; rawNOT_ACCEPTED conservé",
-    "Quatre images natives et trois captures fondu03/fin/390 inspectées ;IAB0,2→13,4→16s OSreduce observé",
-    "Guardian PASS_SCOPED_READY_FOR_OPERATOR_REVIEW ; regard relevé03→04/équipement/frontière confirmés",
-    "354jobs hérités et acceptations inchangés ;355total ; aucun média historique modifié",
-    "Scheduler enregistréPAUSED découvert, SHA223b2bfe7ccfda25026de105b72a79af44fe5eeb9802874af7b73c1c49b7b342 conservé ; aucun changement de paramètres"
+    "Official automation update succeeded; saved prompt equals canonical after newline normalization",
+    "PAUSED, cadence90min, model gpt-6.1-sol/high, local project/cwd, notifications and created_at preserved",
+    "contracts:validate PASS8LOCKED/8slots; immutable baseline/status gates empty; diffcheckPASS",
+    "355inherited qaJobs/acceptances and all unrelated state roots preserved; zero new QA job",
+    "Seven historical queue entries and selected index/media hashes preserved; no runtime/reader/media edit",
+    "Exact user proposal retained with SHA256 11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
+    "Guardian PASS_AMENDMENT_ACTUAL_DIFF; amendment32c8439, following baseline checkpoint063d1ee9; PASS_CONFIG_1_9_CLOSEOUT"
   ],
   "testsPassed": [
-    "TypeScript PASS ;63tests ciblés(Cin6aPresentation39/lionFinale24,tmp exclus)",
-    "contracts:validate PASS8LOCKED/8slots ; gates baseline/status vides ;diffcheckPASS",
-    "Jugementv2 propre16s/3fondus normaux1s/10contrôlesPASS ; un scénario/une tentative",
-    "Reçu SUCCEEDED éligible/stable/current/request/digest ; rawNOT_ACCEPTED conservé",
-    "Quatre images natives et trois captures fondu03/fin/390 inspectées ;IAB0,2→13,4→16s OSreduce observé",
-    "Guardian PASS_SCOPED_READY_FOR_OPERATOR_REVIEW ; regard relevé03→04/équipement/frontière confirmés",
-    "354jobs hérités et acceptations inchangés ;355total ; aucun média historique modifié",
-    "Scheduler enregistréPAUSED découvert, SHA223b2bfe7ccfda25026de105b72a79af44fe5eeb9802874af7b73c1c49b7b342 conservé ; aucun changement de paramètres"
+    "Official automation update succeeded; saved prompt equals canonical after newline normalization",
+    "PAUSED, cadence90min, model gpt-6.1-sol/high, local project/cwd, notifications and created_at preserved",
+    "contracts:validate PASS8LOCKED/8slots; immutable baseline/status gates empty; diffcheckPASS",
+    "355inherited qaJobs/acceptances and all unrelated state roots preserved; zero new QA job",
+    "Seven historical queue entries and selected index/media hashes preserved; no runtime/reader/media edit",
+    "Exact user proposal retained with SHA256 11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
+    "Guardian PASS_AMENDMENT_ACTUAL_DIFF; amendment32c8439, following baseline checkpoint063d1ee9; PASS_CONFIG_1_9_CLOSEOUT"
   ],
   "testsRemaining": [
-    "Revue artistique des sept scènes et décision distincte d’adoption runtime",
-    "Verdict globalPC/équilibre/atlas/confort matériel ;audio différé ;mobileaprèsPC"
+    "Future pilot image/montage artistic review and its own technical proof",
+    "Explicit operator pilot-method approval before generalization",
+    "Global PC/balance/art/hardware; audio deferred; mobile after PC"
   ],
   "blockers": [],
   "remainingWork": [
-    "Revue artistique opérateur via synthèse unique",
-    "Adoptionruntime future séparée ;PCglobal/équilibre/matériel/audio/mobile aprèsPC"
+    "Produce separate Bois-Clair sacrificed pilot under motivated cuts/dissolves/holds under1.9.0",
+    "Obtain explicit artistic approval of pilot method before six remaining scenes"
   ],
-  "nextAction": "Revue artistique opérateur des sept montages via tools/cinematics/candidates/illustrated-sequences/review-index.md et galerie. Aucune adoption runtime implicite. Sans nouveau verdict ni défaut PC indépendant déjà démontré, conserver le checkpoint ; aucune régénération ni campagne inchangée à rejouer. Mobile après PC.",
+  "nextAction": "Au prochain run effectivement déclenché : préflight/verrou/synchronisation, puis reprendre le nouveau pilote bois_clair_sacrificed/v2 s'il existe ; sinon relire victoire village_raid/missionGreed=true et frontière avant village_raid_aftermath:1/provisions, inspecter V2/décor/ancienne version, écrire partition de poses et fiches avant imagegen intégré. Comparer images et montage sans légendes ; attendre acceptation artistique explicite de la méthode par l'opérateur avant les six autres. Statut scheduler PAUSED préservé, aucune génération dans cette configuration.",
   "taskQueue": [
-    "Produce offline illustrated candidate alaric_audience_arrival",
-    "Produce offline illustrated candidate bois_clair_arrival",
-    "Produce offline illustrated candidate bois_clair_saved",
-    "Produce offline illustrated candidate bois_clair_sacrificed",
-    "Produce offline illustrated candidate lion_judgement",
-    "Produce offline illustrated candidate serpent_route_ending",
-    "Produce offline illustrated candidate lion_trial_route_ending",
-    "Single indexed artistic review handoff for completed candidates",
+    "Prepare sourced pose partition and shot sheets for Bois-Clair sacrificed pilot",
+    "Generate insufficient pilot illustrations in a separate version, preserve historical media",
+    "Verify own offline reader and compare old/new montage without captions",
+    "Await explicit operator artistic acceptance of pilot method before six-scene generalization",
+    "After pilot method acceptance only: audience, arrival, saved, judgement, Serpent ending, Lion-trial ending",
     "Independent demonstrated PC issue only; mobile after PC stability"
   ],
-  "creditStatus": "REVIEWER_AVAILABLE_IMAGEGEN_NOT_NEEDED_NOT_TESTED",
-  "contractComplianceStatus": "Set1.8.0/baseline0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa. GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/NARRATIVE_PRESENTATION/SAVE/UI_ACCESSIBILITY/QA_EVIDENCE/REPOSITORY_GOVERNANCE PASS pour préservation et revue offline bornée ; TRAVERSAL/COMBAT N/A. Aucun LOCKED modifié, gates vides. Autres six revues indexées avec leur portée historique, non renouvelées. Artfinal/runtime/PCglobal/équilibre/matériel/audio/mobileaprèsPC ouverts.",
-  "commitReferenceScope": "Last verified published delivery commit; final metadata commit SHA authoritative in Git and automation memory.",
-  "operatorAuthorization": "OD-2026-10-21-B: direct operator request to unblock everything necessary for the automation; activation already granted. Scope stays OD-2026-10-21-A/set1.8.0.",
+  "creditStatus": "NOT_TESTED_CONFIGURATION_ONLY",
+  "contractComplianceStatus": "Set1.9.0/baseline32c8439f6dea1d09f428c5c081392ab0c700e356 recorded after dedicated approved amendment; constitution/seven othercontracts unchanged. Constitution/art/characters/environments/narrative/presentation/save/UI/QA/governance PASS configuration and preservation; Traversal/combat N/A. Only offline direction/transitions LOCKED rule changed by explicit dedicated OD23B amendment; no further LOCKED change. Motivated hard cuts/dissolves/holds authorized; discreet reframing only studied with documented reading benefit and reduced-motion alternative; pilot artistic approval gate explicit. No product/art/runtime acceptance.",
+  "commitReferenceScope": "Last verified published checkpoint before configuration; final configuration commits authoritative in Git and automation memory.",
+  "operatorAuthorization": "OD-2026-10-23-A/B: direct request to update existing recurring task with supplied artistic proposal; scope offline1.9.0 with dedicated approved direction amendment; no scheduler activation requested.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -142,46 +141,37 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-illustrated-trial-20261022T0404Z",
+  "runId": "codex-illustrated-direction-config-20261023T0401Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-22T04:23:15.221Z",
+  "lastHeartbeat": "2026-10-23T04:19:42.490Z",
   "wip": {
-    "branch": "wip/codex-illustrated-trial-20261022T0404Z",
-    "sha": "f87587e2ebf0ee0878419133a6c96481e4c492b1",
-    "status": "PUBLISHED_DELIVERY_CONTAINS_INHERITED_WIP",
+    "branch": null,
+    "sha": null,
+    "status": "GREEN_CONFIGURATION",
     "dirtyFiles": [
-      "tools/cinematics/candidates/illustrated-sequences/README.md",
-      "tools/cinematics/candidates/illustrated-sequences/gallery.json",
-      "tools/cinematics/candidates/illustrated-sequences/index.html",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/provenance.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/requests/shot-03.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/requests/shot-04.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/requests/shot-05.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/source-progression.md",
-      "tools/cinematics/specs/illustrated-sequences/production-plan.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/index.html",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/raw/shot-02-correction-01.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/raw/shot-02-initial.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/raw/shot-03-initial.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/raw/shot-04-initial.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/raw/shot-05-initial.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/requests/shot-02-correction-01.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/results/shot-02-correction-01.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/results/shot-02.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/results/shot-03.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/results/shot-04.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/results/shot-05.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/review.md",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/sequence.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-02.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-03.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-04.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-05.png"
+      "AGENTS.md",
+      ".agents/skills/autonomy-handoff/SKILL.md",
+      ".agents/skills/contracts-compliance/SKILL.md",
+      ".agents/skills/cinematics-journey/SKILL.md",
+      "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+      "docs/contracts/PRESENTATION_AND_MEDIA.md",
+      "docs/contracts/README.md",
+      "docs/contracts/contracts.manifest.json",
+      "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
+      "docs/autonomy/RECURRING_RUN_PROMPT.md",
+      "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
+      "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
+      "tools/cinematics/specs/illustrated-sequences/production-plan.json"
     ],
-    "lastGreenCheck": "git diff --check PASS; immutable0cb95135 HEAD/status gates empty; contracts:validate PASS8LOCKED/8slots; npx tsc --noEmit PASS; 63 focused tests PASS: Cin6aPresentation39+lionFinale24, tmp excluded; One unique scenario/one attempt illustrated-trial-0404:10checks PASS; registered/synced eligible true, raw SUCCEEDED/NOT_ACCEPTED retained; v1 normal18s/four1sdissolves; inspected dissolve3/4/endpoint/narrow; IAB OSreduce0.2→18 observed; 84/84 v1+v2 provenance SHA PASS; v2 relative image paths/timeline PASS; 350 inherited QA jobs/acceptances deepEqual;351 total; scheduler ACTIVE SHA da132bce965600ca0feb8e62dda4ff701517d14f5bb88a6c6459f12bf561eda1 unchanged; Independent guardian v1 PASS_TECHNICAL_PRESERVATION with scale defect; v2 PASS_SCOPED_VISUAL_IMPROVEMENT, own18s proof pending"
+    "lastGreenCheck": "2026-10-23T04:19:42.490Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-23T02:04:16.244Z",
+    "lastHeartbeat": "2026-10-23T04:19:42.490Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -39460,11 +39450,30 @@
     "wip": {
       "branch": null,
       "sha": null,
-      "status": "GREEN",
-      "dirtyFiles": [],
-      "lastGreenCheck": "Coherent delivery 9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9 published and parity verified; final metadata follows"
+      "status": "GREEN_CONFIGURATION",
+      "dirtyFiles": [
+        "AGENTS.md",
+        ".agents/skills/autonomy-handoff/SKILL.md",
+        ".agents/skills/contracts-compliance/SKILL.md",
+        ".agents/skills/cinematics-journey/SKILL.md",
+        "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+        "docs/contracts/PRESENTATION_AND_MEDIA.md",
+        "docs/contracts/README.md",
+        "docs/contracts/contracts.manifest.json",
+        "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
+        "docs/autonomy/RECURRING_RUN_PROMPT.md",
+        "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
+        "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
+        "docs/autonomy/OPERATOR_DECISIONS.md",
+        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+        "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
+        "tools/cinematics/specs/illustrated-sequences/production-plan.json"
+      ],
+      "lastGreenCheck": "2026-10-23T04:19:42.490Z"
     },
-    "nextAction": "Revue artistique opérateur des sept montages via tools/cinematics/candidates/illustrated-sequences/review-index.md et galerie. Aucune adoption runtime implicite. Sans nouveau verdict ni défaut PC indépendant déjà démontré, conserver le checkpoint ; aucune régénération ni campagne inchangée à rejouer. Mobile après PC.",
+    "nextAction": "Au prochain run effectivement déclenché : préflight/verrou/synchronisation, puis reprendre le nouveau pilote bois_clair_sacrificed/v2 s'il existe ; sinon relire victoire village_raid/missionGreed=true et frontière avant village_raid_aftermath:1/provisions, inspecter V2/décor/ancienne version, écrire partition de poses et fiches avant imagegen intégré. Comparer images et montage sans légendes ; attendre acceptation artistique explicite de la méthode par l'opérateur avant les six autres. Statut scheduler PAUSED préservé, aucune génération dans cette configuration.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "gameplaySteps": 0,
@@ -39507,7 +39516,7 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": "2026-10-23T02:04:16.244Z",
+    "runEndedAt": "2026-10-23T04:19:42.490Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
@@ -40304,8 +40313,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "ILLUSTRATED-SEVEN-SCENE-HANDOFF",
-    "activeSubtask": "Seven offline candidates delivered; one indexed artistic review handoff",
+    "activeTask": "ILLUSTRATED-POSE-PILOT-CONFIGURATION",
+    "activeSubtask": "Future Bois-Clair sacrificed pose pilot; explicit operator method approval before six-scene generalization",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -43637,13 +43646,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-illustrated-final-review-20261023T0147Z",
+    "runId": "codex-illustrated-direction-config-20261023T0401Z",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-23T01:47:00Z",
-    "activePhase": "READY_FOR_OPERATOR_REVIEW",
-    "heartbeat": "2026-10-23T02:04:16.244Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md",
+    "runStartedAt": "2026-10-23T04:04:52.043333Z",
+    "activePhase": "CONFIGURED_PILOT_PENDING",
+    "heartbeat": "2026-10-23T04:19:42.490Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -44983,7 +44992,7 @@
       }
     },
     "threadId": "01a16671-9e41-7761-9fd9-52200f935aca",
-    "writerStoppedMeaning": "Product and QA complete; final closure metadata publication then lock release",
+    "writerStoppedMeaning": "Configuration checkpoint prepared; no product/QA worker launched. Lock released only after verified publication.",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -45371,7 +45380,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
+    "lastPushedCommit": "070f31492aeff5a729871320096eadf7e2af8012",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -46174,70 +46183,69 @@
       },
       "closeoutAt": "2026-10-16T15:33:54.359Z"
     },
-    "creditStatus": "REVIEWER_AVAILABLE_IMAGEGEN_NOT_NEEDED_NOT_TESTED",
+    "creditStatus": "NOT_TESTED_CONFIGURATION_ONLY",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
+    "lastKnownGoodCommit": "070f31492aeff5a729871320096eadf7e2af8012",
     "completedThisRun": [
-      "Sept montages candidats hors jeu prêts pour revue opérateur :35illustrations/126secondes proposées. Jugementv2 propre16s/3fondus/10contrôles et revue indépendantePASS, quatre images réutilisées. Une synthèse indexée des sept scènes livrée ; aucune nouvelle génération, étape gameplay ou adoption runtime."
+      "Existing recurrence prompt updated via official tool; expressive pose pilot directive and operator gate recorded. Configuration only, no generated image or played stage."
     ],
     "filesChanged": [
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "AGENTS.md",
+      ".agents/skills/autonomy-handoff/SKILL.md",
+      ".agents/skills/contracts-compliance/SKILL.md",
+      ".agents/skills/cinematics-journey/SKILL.md",
+      "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+      "docs/contracts/PRESENTATION_AND_MEDIA.md",
+      "docs/contracts/README.md",
+      "docs/contracts/contracts.manifest.json",
+      "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
+      "docs/autonomy/RECURRING_RUN_PROMPT.md",
+      "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
+      "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "tools/cinematics/candidates/illustrated-sequences/gallery.json",
-      "tools/cinematics/candidates/illustrated-sequences/index.html",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review.md",
-      "tools/cinematics/specs/illustrated-sequences/production-plan.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/desktop-endpoint.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/dissolve-3.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/narrow-preparation.png",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/proof/results.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-receipt.json",
-      "tools/cinematics/candidates/illustrated-sequences/lion_judgement/v2/review-smoke.mjs",
-      "tools/cinematics/candidates/illustrated-sequences/review-index.json",
-      "tools/cinematics/candidates/illustrated-sequences/review-index.md",
-      "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md"
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
+      "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
+      "tools/cinematics/specs/illustrated-sequences/production-plan.json"
     ],
     "testsRun": [
-      "TypeScript PASS ;63tests ciblés(Cin6aPresentation39/lionFinale24,tmp exclus)",
-      "contracts:validate PASS8LOCKED/8slots ; gates baseline/status vides ;diffcheckPASS",
-      "Jugementv2 propre16s/3fondus normaux1s/10contrôlesPASS ; un scénario/une tentative",
-      "Reçu SUCCEEDED éligible/stable/current/request/digest ; rawNOT_ACCEPTED conservé",
-      "Quatre images natives et trois captures fondu03/fin/390 inspectées ;IAB0,2→13,4→16s OSreduce observé",
-      "Guardian PASS_SCOPED_READY_FOR_OPERATOR_REVIEW ; regard relevé03→04/équipement/frontière confirmés",
-      "354jobs hérités et acceptations inchangés ;355total ; aucun média historique modifié",
-      "Scheduler enregistréPAUSED découvert, SHA223b2bfe7ccfda25026de105b72a79af44fe5eeb9802874af7b73c1c49b7b342 conservé ; aucun changement de paramètres"
+      "Official automation update succeeded; saved prompt equals canonical after newline normalization",
+      "PAUSED, cadence90min, model gpt-6.1-sol/high, local project/cwd, notifications and created_at preserved",
+      "contracts:validate PASS8LOCKED/8slots; immutable baseline/status gates empty; diffcheckPASS",
+      "355inherited qaJobs/acceptances and all unrelated state roots preserved; zero new QA job",
+      "Seven historical queue entries and selected index/media hashes preserved; no runtime/reader/media edit",
+      "Exact user proposal retained with SHA256 11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
+      "Guardian PASS_AMENDMENT_ACTUAL_DIFF; amendment32c8439, following baseline checkpoint063d1ee9; PASS_CONFIG_1_9_CLOSEOUT"
     ],
     "testsPassed": [
-      "TypeScript PASS ;63tests ciblés(Cin6aPresentation39/lionFinale24,tmp exclus)",
-      "contracts:validate PASS8LOCKED/8slots ; gates baseline/status vides ;diffcheckPASS",
-      "Jugementv2 propre16s/3fondus normaux1s/10contrôlesPASS ; un scénario/une tentative",
-      "Reçu SUCCEEDED éligible/stable/current/request/digest ; rawNOT_ACCEPTED conservé",
-      "Quatre images natives et trois captures fondu03/fin/390 inspectées ;IAB0,2→13,4→16s OSreduce observé",
-      "Guardian PASS_SCOPED_READY_FOR_OPERATOR_REVIEW ; regard relevé03→04/équipement/frontière confirmés",
-      "354jobs hérités et acceptations inchangés ;355total ; aucun média historique modifié",
-      "Scheduler enregistréPAUSED découvert, SHA223b2bfe7ccfda25026de105b72a79af44fe5eeb9802874af7b73c1c49b7b342 conservé ; aucun changement de paramètres"
+      "Official automation update succeeded; saved prompt equals canonical after newline normalization",
+      "PAUSED, cadence90min, model gpt-6.1-sol/high, local project/cwd, notifications and created_at preserved",
+      "contracts:validate PASS8LOCKED/8slots; immutable baseline/status gates empty; diffcheckPASS",
+      "355inherited qaJobs/acceptances and all unrelated state roots preserved; zero new QA job",
+      "Seven historical queue entries and selected index/media hashes preserved; no runtime/reader/media edit",
+      "Exact user proposal retained with SHA256 11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
+      "Guardian PASS_AMENDMENT_ACTUAL_DIFF; amendment32c8439, following baseline checkpoint063d1ee9; PASS_CONFIG_1_9_CLOSEOUT"
     ],
     "testsRemaining": [
-      "Revue artistique des sept scènes et décision distincte d’adoption runtime",
-      "Verdict globalPC/équilibre/atlas/confort matériel ;audio différé ;mobileaprèsPC"
+      "Future pilot image/montage artistic review and its own technical proof",
+      "Explicit operator pilot-method approval before generalization",
+      "Global PC/balance/art/hardware; audio deferred; mobile after PC"
     ],
     "blockers": [],
     "remainingWork": [
-      "Revue artistique opérateur via synthèse unique",
-      "Adoptionruntime future séparée ;PCglobal/équilibre/matériel/audio/mobile aprèsPC"
+      "Produce separate Bois-Clair sacrificed pilot under motivated cuts/dissolves/holds under1.9.0",
+      "Obtain explicit artistic approval of pilot method before six remaining scenes"
     ],
     "taskQueue": [
-      "Produce offline illustrated candidate alaric_audience_arrival",
-      "Produce offline illustrated candidate bois_clair_arrival",
-      "Produce offline illustrated candidate bois_clair_saved",
-      "Produce offline illustrated candidate bois_clair_sacrificed",
-      "Produce offline illustrated candidate lion_judgement",
-      "Produce offline illustrated candidate serpent_route_ending",
-      "Produce offline illustrated candidate lion_trial_route_ending",
-      "Single indexed artistic review handoff for completed candidates",
+      "Prepare sourced pose partition and shot sheets for Bois-Clair sacrificed pilot",
+      "Generate insufficient pilot illustrations in a separate version, preserve historical media",
+      "Verify own offline reader and compare old/new montage without captions",
+      "Await explicit operator artistic acceptance of pilot method before six-scene generalization",
+      "After pilot method acceptance only: audience, arrival, saved, judgement, Serpent ending, Lion-trial ending",
       "Independent demonstrated PC issue only; mobile after PC stability"
     ],
-    "contractComplianceStatus": "Set1.8.0/baseline0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa. GAME_CONSTITUTION/ART_DIRECTION/CHARACTERS/ENVIRONMENTS/NARRATIVE_CAMPAIGN/NARRATIVE_PRESENTATION/SAVE/UI_ACCESSIBILITY/QA_EVIDENCE/REPOSITORY_GOVERNANCE PASS pour préservation et revue offline bornée ; TRAVERSAL/COMBAT N/A. Aucun LOCKED modifié, gates vides. Autres six revues indexées avec leur portée historique, non renouvelées. Artfinal/runtime/PCglobal/équilibre/matériel/audio/mobileaprèsPC ouverts.",
+    "contractComplianceStatus": "Set1.9.0/baseline32c8439f6dea1d09f428c5c081392ab0c700e356 recorded after dedicated approved amendment; constitution/seven othercontracts unchanged. Constitution/art/characters/environments/narrative/presentation/save/UI/QA/governance PASS configuration and preservation; Traversal/combat N/A. Only offline direction/transitions LOCKED rule changed by explicit dedicated OD23B amendment; no further LOCKED change. Motivated hard cuts/dissolves/holds authorized; discreet reframing only studied with documented reading benefit and reduced-motion alternative; pilot artistic approval gate explicit. No product/art/runtime acceptance.",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -46655,48 +46663,39 @@
       "gameplaySteps": 0,
       "generatedImages": 0,
       "imagegenCalls": 0,
-      "reusedSelectedImages": 4,
-      "qaScenarios": 1,
-      "qaAttempts": 1,
-      "qaJobsAdded": 1,
+      "qaScenarios": 0,
+      "qaJobsAdded": 0,
       "qaJobsTotal": 355,
-      "newQaProofFiles": 6,
-      "reviewIndexFiles": 2,
-      "workflowDocPaths": 3,
+      "newQaProofFiles": 0,
+      "workflowPaths": 17,
       "planDataPaths": 1,
-      "galleryPaths": 2,
-      "reviewPathsModified": 1,
       "inheritedWipEntries": 0
     },
     "currentRunMeasurement": {
       "runtimeSourceFiles": 0,
       "gameplaySteps": 0,
-      "generatedInitialImages": 5,
-      "targetedCorrections": 2,
-      "imagegenCalls": 7,
-      "selectedIllustrations": 5,
-      "rawOutputs": 7,
-      "qaScenarios": 1,
-      "qaAttempts": 1,
-      "qaJobsAdded": 1,
-      "qaJobsTotal": 345,
-      "newQaProofFiles": 5,
-      "workflowDocPaths": 3,
+      "generatedImages": 0,
+      "imagegenCalls": 0,
+      "qaScenarios": 0,
+      "qaJobsAdded": 0,
+      "qaJobsTotal": 355,
+      "newQaProofFiles": 0,
+      "workflowPaths": 17,
       "planDataPaths": 1,
-      "inheritedWip": 0
+      "inheritedWipEntries": 0
     },
     "runMeasurement": {
-      "runtimeProductFiles": 0,
-      "gameplayStepsPlayed": 0,
+      "runtimeSourceFiles": 0,
+      "gameplaySteps": 0,
       "generatedImages": 0,
-      "newQaJobs": 0,
-      "qaJobsTotal": 339,
-      "inheritedWip": 0,
-      "contractFilesChanged": 3,
-      "scope": "Dedicated amendment and configuration only; no gameplay/media production progress",
-      "workflowFilesChanged": 11,
-      "planDataFiles": 1,
-      "qaProofFilesAdded": 0
+      "imagegenCalls": 0,
+      "qaScenarios": 0,
+      "qaJobsAdded": 0,
+      "qaJobsTotal": 355,
+      "newQaProofFiles": 0,
+      "workflowPaths": 17,
+      "planDataPaths": 1,
+      "inheritedWipEntries": 0
     },
     "deploymentHealth0503": {
       "problem": "Retained Hunters failed deployment hides Cedric/Elara1HP behind En jeu cards; same omission in current renderer",
@@ -47716,9 +47715,9 @@
         "defeat"
       ]
     },
-    "contractSetVersion": "1.8.0",
+    "contractSetVersion": "1.9.0",
     "uncommittedWork": "Only reviewed state/handoff closure metadata; final commit follows",
-    "commitReferenceScope": "Reviewed illustrated-cinematic configuration delivery; following metadata-only closeout discoverable in Git, avoiding circular self-reference.",
+    "commitReferenceScope": "Last verified published checkpoint before configuration; final configuration commits authoritative in Git and automation memory.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
       "status": "SAVED_AND_CONFIGURATION_VERIFIED",
@@ -47798,7 +47797,7 @@
       "qaJobsPreserved": 339,
       "nextAction": "Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained."
     },
-    "operatorAuthorization": "Interactive go on proposed hands/accessories/orientations/raccord finishing; two targeted still edits, same8stage20s offline story, no video/runtime adoption.",
+    "operatorAuthorization": "OD-2026-10-23-A/B: direct request to update existing recurring task with supplied artistic proposal; scope offline1.9.0 with dedicated approved direction amendment; no scheduler activation requested.",
     "qaToolingJustification": "Reuse previous temporary8stage driver with only port/output paths changed; identical assertions verified, no new persistent QA tool/job.",
     "campFiveStillsCloseout": {
       "deliveryCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
@@ -47926,6 +47925,12 @@
         "snapshot": "No WIP branch needed; coherent dev checkpoint at14.5min",
         "closedAt": "2026-10-23T02:04:16.244Z"
       }
+    },
+    "posePilotConfiguration": {
+      "decisionPath": "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
+      "configuredAt": "2026-10-23T04:19:42.490Z",
+      "schedulerStatus": "PAUSED",
+      "generalizationAllowed": false
     }
   },
   "previousInterruptedRun": {
@@ -48007,23 +48012,19 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-22T0404Z-codex-lion-trial-correction.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
   "runMeasurement": {
     "runtimeSourceFiles": 0,
     "gameplaySteps": 0,
-    "generatedInitialImages": 9,
-    "targetedCorrections": 2,
-    "imagegenCalls": 11,
-    "selectedIllustrations": 9,
-    "rawOutputs": 11,
-    "qaScenarios": 1,
-    "qaAttempts": 1,
-    "qaJobsAdded": 1,
-    "qaJobsTotal": 347,
-    "newQaProofFiles": 8,
-    "workflowDocPaths": 3,
+    "generatedImages": 0,
+    "imagegenCalls": 0,
+    "qaScenarios": 0,
+    "qaJobsAdded": 0,
+    "qaJobsTotal": 355,
+    "newQaProofFiles": 0,
+    "workflowPaths": 17,
     "planDataPaths": 1,
-    "inheritedWip": 0
+    "inheritedWipEntries": 0
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -48291,23 +48292,16 @@
   },
   "runStatistics": {
     "runtimeSourceFiles": 0,
-    "sourceTestFiles": 0,
-    "videoAssets": 0,
-    "keyframeAssets": 0,
-    "persistentQaTools": 0,
-    "promotedProofFiles": 0,
-    "taskReports": 0,
-    "productDocumentationFiles": 2,
-    "workflowFiles": 6,
-    "uniqueTrackedPaths": 8,
-    "inheritedWipFiles": 0,
-    "registeredJobs": 0,
-    "totalQaJobs": 339,
-    "browserScenarios": 0,
-    "gameplayStagesPlayed": 0,
-    "providerTasksCreated": 0,
-    "automationUpdated": 1,
-    "pastAutomationChatsArchived": 140
+    "gameplaySteps": 0,
+    "generatedImages": 0,
+    "imagegenCalls": 0,
+    "qaScenarios": 0,
+    "qaJobsAdded": 0,
+    "qaJobsTotal": 355,
+    "newQaProofFiles": 0,
+    "workflowPaths": 17,
+    "planDataPaths": 1,
+    "inheritedWipEntries": 0
   },
   "qaToolingJustification": "Reused Serpent five-image18s driver with scene/path/SHA/run adaptations only; no assertion or shared reader changed.",
   "retainedRunArtifacts": {
@@ -49314,19 +49308,15 @@
   "currentRunMeasurement": {
     "runtimeSourceFiles": 0,
     "gameplaySteps": 0,
-    "generatedInitialImages": 9,
-    "targetedCorrections": 2,
-    "imagegenCalls": 11,
-    "selectedIllustrations": 9,
-    "rawOutputs": 11,
-    "qaScenarios": 1,
-    "qaAttempts": 1,
-    "qaJobsAdded": 1,
-    "qaJobsTotal": 347,
-    "newQaProofFiles": 8,
-    "workflowDocPaths": 3,
+    "generatedImages": 0,
+    "imagegenCalls": 0,
+    "qaScenarios": 0,
+    "qaJobsAdded": 0,
+    "qaJobsTotal": 355,
+    "newQaProofFiles": 0,
+    "workflowPaths": 17,
     "planDataPaths": 1,
-    "inheritedWip": 0
+    "inheritedWipEntries": 0
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -49363,18 +49353,7 @@
     "scope": "POI_POST_LOT_E_PC_FINISHING",
     "history": "recurringPoiConfiguration.previousRootFields.demoCompletionFocus"
   },
-  "nextScheduledExecutionDirective": {
-    "decision": "OD-2026-10-21-B",
-    "path": "docs/autonomy/handoffs/2026-10-21T1744Z-codex-unblock-automation.md",
-    "status": "EXECUTE_AUTHORIZED_ILLUSTRATED_PRODUCTION",
-    "configurationChatDoesNotExecuteProduct": true,
-    "scheduledRunExecutesProduct": true,
-    "automationRemainsPaused": false,
-    "schedulerStatus": "ACTIVE",
-    "activationAlreadyGranted": true,
-    "nextAction": "Read current audience trigger and lion_briefing, source-bound causal shot progression, then built-in imagegen audience montage before any choice/advance handoff.",
-    "history": "recurringCampP03Configuration.previousRoot.nextScheduledExecutionDirective"
-  },
+  "nextScheduledExecutionDirective": "Au prochain run effectivement déclenché : préflight/verrou/synchronisation, puis reprendre le nouveau pilote bois_clair_sacrificed/v2 s'il existe ; sinon relire victoire village_raid/missionGreed=true et frontière avant village_raid_aftermath:1/provisions, inspecter V2/décor/ancienne version, écrire partition de poses et fiches avant imagegen intégré. Comparer images et montage sans légendes ; attendre acceptation artistique explicite de la méthode par l'opérateur avant les six autres. Statut scheduler PAUSED préservé, aucune génération dans cette configuration.",
   "poiMigration": {
     "operatorDecisionId": "OD-2026-10-13-D",
     "taskId": "PRODUCTION-CONTRACTS-POI-NAVIGATION-1",
@@ -49609,7 +49588,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-21T22:34:29.324Z",
+  "heartbeat": "2026-10-23T04:19:42.490Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -51463,7 +51442,7 @@
     "scheduler": "UNTOUCHED",
     "externalNightplateBlockerReverified": "Current dialogue:ate_bois_clair_night_watch still maps to bois_clair_tableau_burning; approved-source-manifest timeOfDay sunset. No approved night substitution established."
   },
-  "contractSetVersion": "1.8.0",
+  "contractSetVersion": "1.9.0",
   "run2229": {
     "preflight": {
       "clean": true,
@@ -52990,5 +52969,49 @@
     "generatedThisRun": 9,
     "technicalReviewReceipt": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/review-receipt.json",
     "independentReview": "PASS_SCOPED_SAVED_SACRIFICED_AND_JUDGEMENT_PRESERVATION"
+  },
+  "illustratedPoseDirection": {
+    "decisionId": "OD-2026-10-23-A/B",
+    "decisionPath": "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
+    "sourcePath": "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
+    "sourceSha256": "11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
+    "configuredAt": "2026-10-23T04:19:42.490Z",
+    "scope": "CONFIGURATION_ONLY",
+    "pilotId": "bois_clair_sacrificed",
+    "plannedVersion": "v2-if-free",
+    "pilotStatus": "PLANNED_NOT_GENERATED",
+    "operatorMethodAcceptance": "PENDING_NOT_REQUESTED_YET",
+    "generalizationAllowed": false,
+    "historicalIndex": "tools/cinematics/candidates/illustrated-sequences/review-index.json",
+    "historicalVersionsPreserved": true,
+    "hardCuts": "AUTHORIZED_MOTIVATED_OFFLINE",
+    "animatedReframing": "BOUNDED_STUDY_WITH_REDUCED_MOTION_ALTERNATIVE",
+    "scheduler": {
+      "id": "rpgthreejs-auto-dev-90m",
+      "status": "PAUSED",
+      "settingsPreserved": true,
+      "sha256": "65c4bae6131ddea6bc537ec3bf57f2f6f033906cd39773656a546355e21baeb4"
+    },
+    "contractBaseline": "32c8439f6dea1d09f428c5c081392ab0c700e356",
+    "amendmentCommit": "32c8439f6dea1d09f428c5c081392ab0c700e356",
+    "baselineCheckpointCommit": "063d1ee9165fb46afbf4afbdca20b268cf4572e9",
+    "previousScheduledDirective": {
+      "decision": "OD-2026-10-21-B",
+      "path": "docs/autonomy/handoffs/2026-10-21T1744Z-codex-unblock-automation.md",
+      "status": "EXECUTE_AUTHORIZED_ILLUSTRATED_PRODUCTION",
+      "configurationChatDoesNotExecuteProduct": true,
+      "scheduledRunExecutesProduct": true,
+      "automationRemainsPaused": false,
+      "schedulerStatus": "ACTIVE",
+      "activationAlreadyGranted": true,
+      "nextAction": "Read current audience trigger and lion_briefing, source-bound causal shot progression, then built-in imagegen audience montage before any choice/advance handoff.",
+      "history": "recurringCampP03Configuration.previousRoot.nextScheduledExecutionDirective"
+    },
+    "previousConfigurationTask": {
+      "runId": "codex-illustrated-trial-20261022T0404Z",
+      "activeTask": "ILLUSTRATED-SEVEN-SCENE-HANDOFF",
+      "nextAction": "Revue artistique opérateur des sept montages via tools/cinematics/candidates/illustrated-sequences/review-index.md et galerie. Aucune adoption runtime implicite. Sans nouveau verdict ni défaut PC indépendant déjà démontré, conserver le checkpoint ; aucune régénération ni campagne inchangée à rejouer. Mobile après PC.",
+      "currentHandoff": "docs/autonomy/handoffs/2026-10-22T0404Z-codex-lion-trial-correction.md"
+    }
   }
 }
