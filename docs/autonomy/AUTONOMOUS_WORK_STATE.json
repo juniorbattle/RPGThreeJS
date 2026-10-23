@@ -1,70 +1,89 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-23T04:25:00Z",
+  "runStartedAt": "2026-10-23T07:45:51Z",
   "runEndedAt": null,
   "activeTask": "BOIS-CLAIR-SACRIFICED-POSE-PILOT",
-  "activePhase": "V2_VERIFIED_V3_FEEDBACK_IN_PROGRESS",
-  "activeSubtask": "Operator likes historical2→3 dissolve; separate seven-image24s pilotv3 prepared",
+  "activePhase": "AWAITING_OPERATOR_ARTISTIC_METHOD_VERDICT",
+  "activeSubtask": "V3 technically verified and ready for artistic images-and-montage review",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
-  "lastPushedCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
+  "lastKnownGoodCommit": "95bc2a228b0b50e100a6edfcc617731d2efbdf98",
+  "lastPushedCommit": "95bc2a228b0b50e100a6edfcc617731d2efbdf98",
   "completedThisRun": [
-    "Clean read-only preflight; atomic lock; host fetch verified dev parity; current sources, V2 masters, destroyed environment and historical poses inspected",
-    "Separate v2 source-bound pose partition and five shot sheets written before generation",
-    "Four initial illustrations + one targeted hand correction generated with integrated tool; five raw outputs retained; establishing01 reused exactly",
-    "Independent guardian PASS_PREGEN_SCOPED and targeted actual02/03/04 continuity review",
-    "V2 own11checks PASS after one minimal OS-notification harness fix; failed attempt and exact source/driver/media preserved",
-    "Direct operator feedback on displayed historicalv1: more images and more optical dissolves; v3 sourced seven-shot storyboard prepared before generation"
+    "Recovered abandoned05:04 lock after systemError/no QA or build worker; archived lock; preserved24 inherited files in verified WIP32ac8034",
+    "Host fetch verified dev95bc2a22 and main00b96f1b; scheduler ACTIVE/xhigh/90min SHA4c39ebf8 preserved",
+    "Read current contracts/source/storyboard; no media regeneration; v2 reader assertions adapted only to7images/24s and mixed transitions",
+    "Own v3 registered24s mixed-transition proof PASS11; exact historical18s comparison and all controls retained",
+    "Two failed attempts retained; one minimal clock-quantization assertion repair; no image generation or runtime change",
+    "All7nativeimages/6pairs and normalblend/final/narrow/Ospause captures inspected; independent guardian PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED",
+    "Status-only footer update inverted byte-exactly against saved tested HTML; own receipt/provenance linked;357oldjobs/acceptances preserved"
   ],
   "filesChanged": [
-    "AGENTS.md",
-    ".agents/skills/autonomy-handoff/SKILL.md",
-    ".agents/skills/contracts-compliance/SKILL.md",
-    ".agents/skills/cinematics-journey/SKILL.md",
-    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
-    "docs/contracts/PRESENTATION_AND_MEDIA.md",
-    "docs/contracts/README.md",
-    "docs/contracts/contracts.manifest.json",
-    "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
-    "docs/autonomy/RECURRING_RUN_PROMPT.md",
-    "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
-    "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    ".gitattributes",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+    "docs/autonomy/handoffs/2026-10-23T0425Z-codex-pose-pilot.md",
+    "docs/autonomy/handoffs/2026-10-23T0745Z-codex-pose-v3-proof.md",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/montage.mjs",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/provenance.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/qa-options-attempt-01.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/qa-options-attempt-02.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/qa-options.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/raw/shot-05-initial.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/raw/shot-06-initial.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/raw/shot-07-initial.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/requests/shot-05.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/requests/shot-06.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/requests/shot-07.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/results/shot-05.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/results/shot-06.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/results/shot-07.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-01-receipt.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-02-receipt.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-02-results.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-closeout.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-endpoint.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-generation-checkpoint.md",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-fade-2-3.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-fade-4-5.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-fade-5-6.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-preview.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-narrow.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-normal-fade-4-5.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-os-pause.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-receipt.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-results.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke-attempt-01.mjs",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke.mjs",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-sync-status.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-tested.html",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review.md",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-05.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-06.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-07.png",
     "tools/cinematics/specs/illustrated-sequences/production-plan.json"
   ],
   "testsRun": [
-    "Official automation update succeeded; saved prompt equals canonical after newline normalization",
-    "PAUSED, cadence90min, model gpt-6.1-sol/high, local project/cwd, notifications and created_at preserved",
-    "contracts:validate PASS8LOCKED/8slots; immutable baseline/status gates empty; diffcheckPASS",
-    "355inherited qaJobs/acceptances and all unrelated state roots preserved; zero new QA job",
-    "Seven historical queue entries and selected index/media hashes preserved; no runtime/reader/media edit",
-    "Exact user proposal retained with SHA256 11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
-    "Guardian PASS_AMENDMENT_ACTUAL_DIFF; amendment32c8439, following baseline checkpoint063d1ee9; PASS_CONFIG_1_9_CLOSEOUT"
+    "npx tsc --noEmit PASS exit0",
+    "npx vitest run src/cinematics/Cin6aPresentation.test.ts src/game/lionFinale.test.ts --exclude tmp/**:63tests/2files PASS",
+    "npm run contracts:validate:8LOCKED/8slots PASS; baseline/working gates empty; git diff --check PASS",
+    "V3 one registered scenario/3attempts: environment failure, exact-opacity harness failure, corrected11checks PASS on host; source/driver/media/digest all verified"
   ],
   "testsPassed": [
-    "Official automation update succeeded; saved prompt equals canonical after newline normalization",
-    "PAUSED, cadence90min, model gpt-6.1-sol/high, local project/cwd, notifications and created_at preserved",
-    "contracts:validate PASS8LOCKED/8slots; immutable baseline/status gates empty; diffcheckPASS",
-    "355inherited qaJobs/acceptances and all unrelated state roots preserved; zero new QA job",
-    "Seven historical queue entries and selected index/media hashes preserved; no runtime/reader/media edit",
-    "Exact user proposal retained with SHA256 11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
-    "Guardian PASS_AMENDMENT_ACTUAL_DIFF; amendment32c8439, following baseline checkpoint063d1ee9; PASS_CONFIG_1_9_CLOSEOUT"
+    "63focusedtests; TypeScript;8contracts/8slots;LOCKED gates;diffcheck",
+    "V3 reader11checks/24s/3cuts+3dissolves; own eligible/current/stable/raw SUCCEEDED/NOT_ACCEPTED with scoped closeout",
+    "Historical357jobs/acceptances and plan.queue deepEqual; v1/v2/readers/camp/src/public/LOCKED/scheduler preserved"
   ],
   "testsRemaining": [
-    "Future pilot image/montage artistic review and its own technical proof",
-    "Explicit operator pilot-method approval before generalization",
-    "Global PC/balance/art/hardware; audio deferred; mobile after PC"
+    "Operator artistic review of images AND montage/method; runtime adoption/global PC remain separate"
   ],
-  "blockers": [],
+  "blockers": [
+    "Explicit operator artistic images-and-montage method verdict required before six-scene generalization; technical proof is complete"
+  ],
   "remainingWork": [
-    "Produce separate Bois-Clair sacrificed pilot under motivated cuts/dissolves/holds under1.9.0",
-    "Obtain explicit artistic approval of pilot method before six remaining scenes"
+    "Attendre le verdict artistique explicite opérateur sur les images ET le montage/méthode bois_clair_sacrificed/v3. Sans nouveau verdict, préserver le checkpoint sans génération, QA ou synthèse répétée. Les six autres scènes restent verrouillées ; aucun changement du scheduler."
   ],
-  "nextAction": "Generate v3shots05/06/07 under the prepared sourced partition, preserve all v2 evidence and validate actual relationships; next run performs v3 own technical proof before READY. Explicit artistic pilot-method approval still precedes six-scene generalization.",
+  "nextAction": "Attendre le verdict artistique explicite opérateur sur les images ET le montage/méthode bois_clair_sacrificed/v3. Sans nouveau verdict, préserver le checkpoint sans génération, QA ou synthèse répétée. Les six autres scènes restent verrouillées ; aucun changement du scheduler.",
   "taskQueue": [
     "Prepare sourced pose partition and shot sheets for Bois-Clair sacrificed pilot",
     "Generate insufficient pilot illustrations in a separate version, preserve historical media",
@@ -73,10 +92,10 @@
     "After pilot method acceptance only: audience, arrival, saved, judgement, Serpent ending, Lion-trial ending",
     "Independent demonstrated PC issue only; mobile after PC stability"
   ],
-  "creditStatus": "NOT_TESTED_CONFIGURATION_ONLY",
-  "contractComplianceStatus": "Set1.9.0/baseline32c8439f6dea1d09f428c5c081392ab0c700e356 recorded after dedicated approved amendment; constitution/seven othercontracts unchanged. Constitution/art/characters/environments/narrative/presentation/save/UI/QA/governance PASS configuration and preservation; Traversal/combat N/A. Only offline direction/transitions LOCKED rule changed by explicit dedicated OD23B amendment; no further LOCKED change. Motivated hard cuts/dissolves/holds authorized; discreet reframing only studied with documented reading benefit and reduced-motion alternative; pilot artistic approval gate explicit. No product/art/runtime acceptance.",
+  "creditStatus": "AVAILABLE_NO_GENERATION_REQUIRED",
+  "contractComplianceStatus": "PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED",
   "commitReferenceScope": "Last verified published checkpoint before configuration; final configuration commits authoritative in Git and automation memory.",
-  "operatorAuthorization": "OD-2026-10-23-A/B: direct request to update existing recurring task with supplied artistic proposal; scope offline1.9.0 with dedicated approved direction amendment; no scheduler activation requested.",
+  "operatorAuthorization": "OD-2026-10-21-A/B and OD-2026-10-23-A/B offline pose pilot; direct23October user feedback requests more illustrations and optical dissolves on displayed historicalv1, applied only to separatepilotv3. No scheduler mutation/generalization/art acceptance inferred.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -146,18 +165,15 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-illustrated-direction-config-20261023T0401Z",
+  "runId": "codex-pose-v3-proof-20261023T0745Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-23T04:21:09.486Z",
+  "lastHeartbeat": "2026-10-23T08:05:51.835Z",
   "wip": {
-    "branch": null,
-    "sha": null,
-    "status": "GREEN_CONFIGURATION",
-    "dirtyFiles": [],
-    "lastGreenCheck": "2026-10-23T04:21:09.486Z"
+    "sha": "32ac8034067b21dfca7a8917a9e18ed30bd154e4",
+    "branch": "wip/codex-pose-v3-proof-20261023T0745Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-23T04:50:48.468Z",
+    "lastHeartbeat": "2026-10-23T08:05:51.835Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -39751,48 +39767,532 @@
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "illustrated-pose-v3-0745",
+        "runId": "codex-pose-v3-proof-20261023T0745Z",
+        "status": "FAILED",
+        "registeredAt": "2026-10-23T07:51:15.663Z",
+        "pid": 34804,
+        "port": 5461,
+        "command": [
+          "node",
+          "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke.mjs"
+        ],
+        "parameters": {
+          "scene": "bois_clair_sacrificed",
+          "version": "v3",
+          "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v3/index.html",
+          "media": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/sequence.json",
+              "sha256": "4a98352b939b1554deea5e8bfbd32eaec92d15ac643121e20231f603194325aa"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
+              "sha256": "a8f63d3202f3c2cf8eab4e400d8729d8f6990b1e763d5cc53bbb7945ede6f4bb"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png",
+              "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-02.png",
+              "sha256": "28c1136592debd7d43a3d4955bd98e6a474e88a378b03f6aacae5fc6f318fd0a"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-03.png",
+              "sha256": "c6f03d5faf4255f59f20966f97b571cdf55929d45f02d5a3336a8ab2649302c1"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-04.png",
+              "sha256": "dac8bce866090a8da22c8d361d8b74280ad9cf61defdebff397695ba5330d199"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-05.png",
+              "sha256": "fa534e2840328c4ecf29d42d348b8ab0d6c2574e0cafd389416ee96c8359df81"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-06.png",
+              "sha256": "07ab52cf8264bb70bdb53948ee4f65ac17e1d2f65bf37c89e62bfe304a0769cf"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-07.png",
+              "sha256": "07c056fe52cf4612a2166224e6425ab171b7b0267cb326e64c1a164101b47959"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/sequence.json",
+              "sha256": "e2283bbdfa3d6cd5940ed4fc41d784ab593f5198ab37cdf4babde1c3dac0d9c6"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png",
+              "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-02.png",
+              "sha256": "9fd66d8a895979b248d4f3dc4cbb5cc4c177137bb1b9ea4d2c1f5d92da93055f"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-03.png",
+              "sha256": "8e4707c0c6e6a93161a9a1cac92eb9d3cdbc12c9b02d277daaf474aad690840e"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-04.png",
+              "sha256": "181df3ef5f93a5c0e1dee01f8ad625f8ce44fc075f842468c31e0f97b786692d"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-05.png",
+              "sha256": "39f4c63fbe01cadaa11723dc8abd8b85af43602a6d2488be98fc9151b912bf27"
+            }
+          ],
+          "reader": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/montage.mjs",
+              "sha256": "51509e4f95489993a494d3ee3bb1855b99b8663dafa24a80896189c299521ae0"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+              "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+            }
+          ],
+          "storyboard": {
+            "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/storyboard.md",
+            "sha256": "8f1c61cea14fcc2bc4be9f4b47d7fe9edfaac62b5df82a6fd32d6789dea283e6"
+          },
+          "scope": "Offline v3 reader and caption-free historical comparison only; existing dist bundle is receipt context, not rendered runtime"
+        },
+        "requiredAssertions": [
+          "SEVEN_DISTINCT_IMAGES_PAUSED",
+          "THREE_CUTS_THREE_AUTHORED_DISSOLVES_24S_STOP",
+          "ORDER_TIMELINE_KEYBOARD",
+          "OS_REDUCE_NONZERO_OPACITY_CLOCK_PAUSE_RESUME",
+          "CONTAIN_44PX_NO_OVERFLOW",
+          "NO_CONSOLE_ERRORS",
+          "MISSING_IMAGE_DISABLES_PLAYBACK",
+          "HISTORICAL_COMPARISON_18S_FOUR_DISSOLVES_NO_CAPTIONS"
+        ],
+        "output": "tmp/cinematics/pose-v3-0745/review",
+        "receiptPath": "tmp/cinematics/pose-v3-0745/review/qa-job.json",
+        "provenance": {
+          "gitHead": "95bc2a228b0b50e100a6edfcc617731d2efbdf98",
+          "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke.mjs",
+            "sha256": "926a5c1626d7deb403a0a3e8fb997e251548ea1e29f025aa97b205166ca0b020"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-CpZAzB3w.js",
+              "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-23T07:51:16.409Z",
+        "endedAt": "2026-10-23T07:51:16.424Z",
+        "exitCode": 1,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "illustrated-pose-v3-0745-host",
+        "runId": "codex-pose-v3-proof-20261023T0745Z",
+        "status": "FAILED",
+        "registeredAt": "2026-10-23T07:51:34.234Z",
+        "pid": 47228,
+        "port": 5461,
+        "command": [
+          "node",
+          "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke.mjs"
+        ],
+        "parameters": {
+          "scene": "bois_clair_sacrificed",
+          "version": "v3",
+          "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v3/index.html",
+          "media": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/sequence.json",
+              "sha256": "4a98352b939b1554deea5e8bfbd32eaec92d15ac643121e20231f603194325aa"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
+              "sha256": "a8f63d3202f3c2cf8eab4e400d8729d8f6990b1e763d5cc53bbb7945ede6f4bb"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png",
+              "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-02.png",
+              "sha256": "28c1136592debd7d43a3d4955bd98e6a474e88a378b03f6aacae5fc6f318fd0a"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-03.png",
+              "sha256": "c6f03d5faf4255f59f20966f97b571cdf55929d45f02d5a3336a8ab2649302c1"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-04.png",
+              "sha256": "dac8bce866090a8da22c8d361d8b74280ad9cf61defdebff397695ba5330d199"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-05.png",
+              "sha256": "fa534e2840328c4ecf29d42d348b8ab0d6c2574e0cafd389416ee96c8359df81"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-06.png",
+              "sha256": "07ab52cf8264bb70bdb53948ee4f65ac17e1d2f65bf37c89e62bfe304a0769cf"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-07.png",
+              "sha256": "07c056fe52cf4612a2166224e6425ab171b7b0267cb326e64c1a164101b47959"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/sequence.json",
+              "sha256": "e2283bbdfa3d6cd5940ed4fc41d784ab593f5198ab37cdf4babde1c3dac0d9c6"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png",
+              "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-02.png",
+              "sha256": "9fd66d8a895979b248d4f3dc4cbb5cc4c177137bb1b9ea4d2c1f5d92da93055f"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-03.png",
+              "sha256": "8e4707c0c6e6a93161a9a1cac92eb9d3cdbc12c9b02d277daaf474aad690840e"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-04.png",
+              "sha256": "181df3ef5f93a5c0e1dee01f8ad625f8ce44fc075f842468c31e0f97b786692d"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-05.png",
+              "sha256": "39f4c63fbe01cadaa11723dc8abd8b85af43602a6d2488be98fc9151b912bf27"
+            }
+          ],
+          "reader": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/montage.mjs",
+              "sha256": "51509e4f95489993a494d3ee3bb1855b99b8663dafa24a80896189c299521ae0"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+              "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+            }
+          ],
+          "storyboard": {
+            "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/storyboard.md",
+            "sha256": "8f1c61cea14fcc2bc4be9f4b47d7fe9edfaac62b5df82a6fd32d6789dea283e6"
+          },
+          "scope": "Offline v3 reader and caption-free historical comparison only; existing dist bundle is receipt context, not rendered runtime"
+        },
+        "requiredAssertions": [
+          "SEVEN_DISTINCT_IMAGES_PAUSED",
+          "THREE_CUTS_THREE_AUTHORED_DISSOLVES_24S_STOP",
+          "ORDER_TIMELINE_KEYBOARD",
+          "OS_REDUCE_NONZERO_OPACITY_CLOCK_PAUSE_RESUME",
+          "CONTAIN_44PX_NO_OVERFLOW",
+          "NO_CONSOLE_ERRORS",
+          "MISSING_IMAGE_DISABLES_PLAYBACK",
+          "HISTORICAL_COMPARISON_18S_FOUR_DISSOLVES_NO_CAPTIONS"
+        ],
+        "output": "tmp/cinematics/pose-v3-0745/review-host",
+        "receiptPath": "tmp/cinematics/pose-v3-0745/review-host/qa-job.json",
+        "provenance": {
+          "gitHead": "95bc2a228b0b50e100a6edfcc617731d2efbdf98",
+          "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke.mjs",
+            "sha256": "926a5c1626d7deb403a0a3e8fb997e251548ea1e29f025aa97b205166ca0b020"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-CpZAzB3w.js",
+              "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-23T07:51:39.039Z",
+        "endedAt": "2026-10-23T07:51:45.819Z",
+        "exitCode": 1,
+        "resultPath": "tmp/cinematics/pose-v3-0745/review-host/results.json",
+        "resultSha256": "11f241aadaf50a83c90eb1e4c4b6986fd98b8830be5ff1a5597408d8f5b2c6d1",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "illustrated-pose-v3-0745-fixed",
+        "runId": "codex-pose-v3-proof-20261023T0745Z",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-23T07:52:24.455Z",
+        "pid": 26436,
+        "port": 5461,
+        "command": [
+          "node",
+          "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke.mjs"
+        ],
+        "parameters": {
+          "scene": "bois_clair_sacrificed",
+          "version": "v3",
+          "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v3/index.html",
+          "media": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/sequence.json",
+              "sha256": "4a98352b939b1554deea5e8bfbd32eaec92d15ac643121e20231f603194325aa"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
+              "sha256": "a8f63d3202f3c2cf8eab4e400d8729d8f6990b1e763d5cc53bbb7945ede6f4bb"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png",
+              "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-02.png",
+              "sha256": "28c1136592debd7d43a3d4955bd98e6a474e88a378b03f6aacae5fc6f318fd0a"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-03.png",
+              "sha256": "c6f03d5faf4255f59f20966f97b571cdf55929d45f02d5a3336a8ab2649302c1"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-04.png",
+              "sha256": "dac8bce866090a8da22c8d361d8b74280ad9cf61defdebff397695ba5330d199"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-05.png",
+              "sha256": "fa534e2840328c4ecf29d42d348b8ab0d6c2574e0cafd389416ee96c8359df81"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-06.png",
+              "sha256": "07ab52cf8264bb70bdb53948ee4f65ac17e1d2f65bf37c89e62bfe304a0769cf"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-07.png",
+              "sha256": "07c056fe52cf4612a2166224e6425ab171b7b0267cb326e64c1a164101b47959"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/sequence.json",
+              "sha256": "e2283bbdfa3d6cd5940ed4fc41d784ab593f5198ab37cdf4babde1c3dac0d9c6"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png",
+              "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-02.png",
+              "sha256": "9fd66d8a895979b248d4f3dc4cbb5cc4c177137bb1b9ea4d2c1f5d92da93055f"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-03.png",
+              "sha256": "8e4707c0c6e6a93161a9a1cac92eb9d3cdbc12c9b02d277daaf474aad690840e"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-04.png",
+              "sha256": "181df3ef5f93a5c0e1dee01f8ad625f8ce44fc075f842468c31e0f97b786692d"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-05.png",
+              "sha256": "39f4c63fbe01cadaa11723dc8abd8b85af43602a6d2488be98fc9151b912bf27"
+            }
+          ],
+          "reader": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/montage.mjs",
+              "sha256": "51509e4f95489993a494d3ee3bb1855b99b8663dafa24a80896189c299521ae0"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+              "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+            }
+          ],
+          "storyboard": {
+            "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/storyboard.md",
+            "sha256": "8f1c61cea14fcc2bc4be9f4b47d7fe9edfaac62b5df82a6fd32d6789dea283e6"
+          },
+          "scope": "Offline v3 reader and caption-free historical comparison only; existing dist bundle is receipt context, not rendered runtime"
+        },
+        "requiredAssertions": [
+          "SEVEN_DISTINCT_IMAGES_PAUSED",
+          "THREE_CUTS_THREE_AUTHORED_DISSOLVES_24S_STOP",
+          "ORDER_TIMELINE_KEYBOARD",
+          "OS_REDUCE_NONZERO_OPACITY_CLOCK_PAUSE_RESUME",
+          "CONTAIN_44PX_NO_OVERFLOW",
+          "NO_CONSOLE_ERRORS",
+          "MISSING_IMAGE_DISABLES_PLAYBACK",
+          "HISTORICAL_COMPARISON_18S_FOUR_DISSOLVES_NO_CAPTIONS"
+        ],
+        "output": "tmp/cinematics/pose-v3-0745/review-fixed",
+        "receiptPath": "tmp/cinematics/pose-v3-0745/review-fixed/qa-job.json",
+        "provenance": {
+          "gitHead": "95bc2a228b0b50e100a6edfcc617731d2efbdf98",
+          "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke.mjs",
+            "sha256": "a529e438052866a1488ee548bb6de33c726568c6217dd33897833769f1d24e5a"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-CpZAzB3w.js",
+              "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-23T07:52:28.612Z",
+        "endedAt": "2026-10-23T07:53:19.998Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/pose-v3-0745/review-fixed/results.json",
+        "resultSha256": "8f347d8c9746c2fcd4a32c44c780ad8d2368e367f4900808ae45b44e12dfa8a5",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": {
-      "branch": null,
-      "sha": null,
-      "status": "GREEN",
-      "dirtyFiles": [
-        "index.html",
-        "montage.mjs",
-        "provenance.json",
-        "qa-options.json",
-        "raw",
-        "requests",
-        "results",
-        "review-smoke.mjs",
-        "sequence.json",
-        "shot-02.png",
-        "shot-03.png",
-        "shot-04.png",
-        "shot-05.png",
-        "storyboard.md"
-      ],
-      "lastGreenCheck": "V2 technical PASS11/guardian; v3 pre-generation storyboard prepared after direct operator feedback"
+      "sha": "32ac8034067b21dfca7a8917a9e18ed30bd154e4",
+      "branch": "wip/codex-pose-v3-proof-20261023T0745Z"
     },
-    "nextAction": "Generate v3shots05/06/07 under the prepared sourced partition, preserve all v2 evidence and validate actual relationships; next run performs v3 own technical proof before READY. Explicit artistic pilot-method approval still precedes six-scene generalization.",
+    "nextAction": "Attendre le verdict artistique explicite opérateur sur les images ET le montage/méthode bois_clair_sacrificed/v3. Sans nouveau verdict, préserver le checkpoint sans génération, QA ou synthèse répétée. Les six autres scènes restent verrouillées ; aucun changement du scheduler.",
     "runMetrics": {
-      "runtimeSourceFiles": 0,
-      "gameplaySteps": 0,
-      "generatedImages": 0,
+      "runtimeSourceFilesModified": 0,
+      "gameplayFilesModified": 0,
+      "newImages": 0,
       "imagegenCalls": 0,
-      "reusedSelectedImages": 4,
-      "qaScenarios": 1,
-      "qaAttempts": 1,
-      "qaJobsAdded": 1,
-      "qaJobsTotal": 355,
-      "newQaProofFiles": 6,
-      "reviewIndexFiles": 2,
-      "workflowDocPaths": 3,
-      "planDataPaths": 1,
-      "galleryPaths": 2,
-      "reviewPathsModified": 1,
-      "inheritedWipEntries": 0
+      "targetedCorrections": 0,
+      "scenarios": 1,
+      "attempts": 3,
+      "newQaJobs": 3,
+      "inheritedQaJobs": 357,
+      "totalQaJobs": 360,
+      "inheritedWipPaths": 24,
+      "qaProofFilesAdded": 18,
+      "workflowFilesModifiedOrAdded": 5,
+      "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
+      "candidateMetadataFilesModified": 3,
+      "selectedPublicationPaths": 44,
+      "newPaths": 20
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -39818,8 +40318,8 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": "2026-10-23T04:21:09.486Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
       "previewPort5461Stopped": true,
@@ -40615,8 +41115,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "ILLUSTRATED-POSE-PILOT-CONFIGURATION",
-    "activeSubtask": "Future Bois-Clair sacrificed pose pilot; explicit operator method approval before six-scene generalization",
+    "activeTask": "BOIS-CLAIR-SACRIFICED-POSE-PILOT",
+    "activeSubtask": "V3 technically verified and ready for artistic images-and-montage review",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -43948,13 +44448,13 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-pose-pilot-20261023T0425Z",
+    "runId": "codex-pose-v3-proof-20261023T0745Z",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-23T04:04:52.043333Z",
-    "activePhase": "CONFIGURED_PILOT_PENDING",
-    "heartbeat": "2026-10-23T04:21:09.486Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
+    "runStartedAt": "2026-10-23T07:45:51Z",
+    "activePhase": "AWAITING_OPERATOR_ARTISTIC_METHOD_VERDICT",
+    "heartbeat": "2026-10-23T08:05:51.835Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-23T0745Z-codex-pose-v3-proof.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -45293,7 +45793,7 @@
         }
       }
     },
-    "threadId": "01a16671-9e41-7761-9fd9-52200f935aca",
+    "threadId": "01a167b9-2df2-7192-9ff1-fa652a2816ba",
     "writerStoppedMeaning": "Configuration checkpoint prepared; no product/QA worker launched. Lock released only after verified publication.",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
@@ -45682,7 +46182,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
+    "lastPushedCommit": "95bc2a228b0b50e100a6edfcc617731d2efbdf98",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -46485,59 +46985,83 @@
       },
       "closeoutAt": "2026-10-16T15:33:54.359Z"
     },
-    "creditStatus": "NOT_TESTED_CONFIGURATION_ONLY",
+    "creditStatus": "AVAILABLE_NO_GENERATION_REQUIRED",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
+    "lastKnownGoodCommit": "95bc2a228b0b50e100a6edfcc617731d2efbdf98",
     "completedThisRun": [
-      "Existing recurrence prompt updated via official tool; expressive pose pilot directive and operator gate recorded. Configuration only, no generated image or played stage."
+      "Recovered abandoned05:04 lock after systemError/no QA or build worker; archived lock; preserved24 inherited files in verified WIP32ac8034",
+      "Host fetch verified dev95bc2a22 and main00b96f1b; scheduler ACTIVE/xhigh/90min SHA4c39ebf8 preserved",
+      "Read current contracts/source/storyboard; no media regeneration; v2 reader assertions adapted only to7images/24s and mixed transitions",
+      "Own v3 registered24s mixed-transition proof PASS11; exact historical18s comparison and all controls retained",
+      "Two failed attempts retained; one minimal clock-quantization assertion repair; no image generation or runtime change",
+      "All7nativeimages/6pairs and normalblend/final/narrow/Ospause captures inspected; independent guardian PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED",
+      "Status-only footer update inverted byte-exactly against saved tested HTML; own receipt/provenance linked;357oldjobs/acceptances preserved"
     ],
     "filesChanged": [
-      "AGENTS.md",
-      ".agents/skills/autonomy-handoff/SKILL.md",
-      ".agents/skills/contracts-compliance/SKILL.md",
-      ".agents/skills/cinematics-journey/SKILL.md",
-      "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
-      "docs/contracts/PRESENTATION_AND_MEDIA.md",
-      "docs/contracts/README.md",
-      "docs/contracts/contracts.manifest.json",
-      "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
-      "docs/autonomy/RECURRING_RUN_PROMPT.md",
-      "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
-      "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      ".gitattributes",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
+      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
+      "docs/autonomy/handoffs/2026-10-23T0425Z-codex-pose-pilot.md",
+      "docs/autonomy/handoffs/2026-10-23T0745Z-codex-pose-v3-proof.md",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/montage.mjs",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/provenance.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/qa-options-attempt-01.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/qa-options-attempt-02.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/qa-options.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/raw/shot-05-initial.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/raw/shot-06-initial.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/raw/shot-07-initial.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/requests/shot-05.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/requests/shot-06.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/requests/shot-07.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/results/shot-05.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/results/shot-06.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/results/shot-07.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-01-receipt.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-02-receipt.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-02-results.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-closeout.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-endpoint.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-generation-checkpoint.md",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-fade-2-3.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-fade-4-5.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-fade-5-6.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-preview.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-narrow.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-normal-fade-4-5.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-os-pause.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-receipt.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-results.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke-attempt-01.mjs",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke.mjs",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-sync-status.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-tested.html",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review.md",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-05.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-06.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-07.png",
       "tools/cinematics/specs/illustrated-sequences/production-plan.json"
     ],
     "testsRun": [
-      "Official automation update succeeded; saved prompt equals canonical after newline normalization",
-      "PAUSED, cadence90min, model gpt-6.1-sol/high, local project/cwd, notifications and created_at preserved",
-      "contracts:validate PASS8LOCKED/8slots; immutable baseline/status gates empty; diffcheckPASS",
-      "355inherited qaJobs/acceptances and all unrelated state roots preserved; zero new QA job",
-      "Seven historical queue entries and selected index/media hashes preserved; no runtime/reader/media edit",
-      "Exact user proposal retained with SHA256 11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
-      "Guardian PASS_AMENDMENT_ACTUAL_DIFF; amendment32c8439, following baseline checkpoint063d1ee9; PASS_CONFIG_1_9_CLOSEOUT"
+      "npx tsc --noEmit PASS exit0",
+      "npx vitest run src/cinematics/Cin6aPresentation.test.ts src/game/lionFinale.test.ts --exclude tmp/**:63tests/2files PASS",
+      "npm run contracts:validate:8LOCKED/8slots PASS; baseline/working gates empty; git diff --check PASS",
+      "V3 one registered scenario/3attempts: environment failure, exact-opacity harness failure, corrected11checks PASS on host; source/driver/media/digest all verified"
     ],
     "testsPassed": [
-      "Official automation update succeeded; saved prompt equals canonical after newline normalization",
-      "PAUSED, cadence90min, model gpt-6.1-sol/high, local project/cwd, notifications and created_at preserved",
-      "contracts:validate PASS8LOCKED/8slots; immutable baseline/status gates empty; diffcheckPASS",
-      "355inherited qaJobs/acceptances and all unrelated state roots preserved; zero new QA job",
-      "Seven historical queue entries and selected index/media hashes preserved; no runtime/reader/media edit",
-      "Exact user proposal retained with SHA256 11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
-      "Guardian PASS_AMENDMENT_ACTUAL_DIFF; amendment32c8439, following baseline checkpoint063d1ee9; PASS_CONFIG_1_9_CLOSEOUT"
+      "63focusedtests; TypeScript;8contracts/8slots;LOCKED gates;diffcheck",
+      "V3 reader11checks/24s/3cuts+3dissolves; own eligible/current/stable/raw SUCCEEDED/NOT_ACCEPTED with scoped closeout",
+      "Historical357jobs/acceptances and plan.queue deepEqual; v1/v2/readers/camp/src/public/LOCKED/scheduler preserved"
     ],
     "testsRemaining": [
-      "Future pilot image/montage artistic review and its own technical proof",
-      "Explicit operator pilot-method approval before generalization",
-      "Global PC/balance/art/hardware; audio deferred; mobile after PC"
+      "Operator artistic review of images AND montage/method; runtime adoption/global PC remain separate"
     ],
-    "blockers": [],
+    "blockers": [
+      "Explicit operator artistic images-and-montage method verdict required before six-scene generalization; technical proof is complete"
+    ],
     "remainingWork": [
-      "Produce separate Bois-Clair sacrificed pilot under motivated cuts/dissolves/holds under1.9.0",
-      "Obtain explicit artistic approval of pilot method before six remaining scenes"
+      "Attendre le verdict artistique explicite opérateur sur les images ET le montage/méthode bois_clair_sacrificed/v3. Sans nouveau verdict, préserver le checkpoint sans génération, QA ou synthèse répétée. Les six autres scènes restent verrouillées ; aucun changement du scheduler."
     ],
     "taskQueue": [
       "Prepare sourced pose partition and shot sheets for Bois-Clair sacrificed pilot",
@@ -46547,7 +47071,7 @@
       "After pilot method acceptance only: audience, arrival, saved, judgement, Serpent ending, Lion-trial ending",
       "Independent demonstrated PC issue only; mobile after PC stability"
     ],
-    "contractComplianceStatus": "Set1.9.0/baseline32c8439f6dea1d09f428c5c081392ab0c700e356 recorded after dedicated approved amendment; constitution/seven othercontracts unchanged. Constitution/art/characters/environments/narrative/presentation/save/UI/QA/governance PASS configuration and preservation; Traversal/combat N/A. Only offline direction/transitions LOCKED rule changed by explicit dedicated OD23B amendment; no further LOCKED change. Motivated hard cuts/dissolves/holds authorized; discreet reframing only studied with documented reading benefit and reduced-motion alternative; pilot artistic approval gate explicit. No product/art/runtime acceptance.",
+    "contractComplianceStatus": "PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -46961,43 +47485,61 @@
       "guardian": "Independent contracts-guardian final PASS; seed/proof/diff/current hashes/6flags and all3captures inspected"
     },
     "runStatistics": {
-      "runtimeSourceFiles": 0,
-      "gameplaySteps": 0,
-      "generatedImages": 0,
+      "runtimeSourceFilesModified": 0,
+      "gameplayFilesModified": 0,
+      "newImages": 0,
       "imagegenCalls": 0,
-      "qaScenarios": 0,
-      "qaJobsAdded": 0,
-      "qaJobsTotal": 355,
-      "newQaProofFiles": 0,
-      "workflowPaths": 17,
-      "planDataPaths": 1,
-      "inheritedWipEntries": 0
+      "targetedCorrections": 0,
+      "scenarios": 1,
+      "attempts": 3,
+      "newQaJobs": 3,
+      "inheritedQaJobs": 357,
+      "totalQaJobs": 360,
+      "inheritedWipPaths": 24,
+      "qaProofFilesAdded": 18,
+      "workflowFilesModifiedOrAdded": 5,
+      "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
+      "candidateMetadataFilesModified": 3,
+      "selectedPublicationPaths": 44,
+      "newPaths": 20
     },
     "currentRunMeasurement": {
-      "runtimeSourceFiles": 0,
-      "gameplaySteps": 0,
-      "generatedImages": 0,
+      "runtimeSourceFilesModified": 0,
+      "gameplayFilesModified": 0,
+      "newImages": 0,
       "imagegenCalls": 0,
-      "qaScenarios": 0,
-      "qaJobsAdded": 0,
-      "qaJobsTotal": 355,
-      "newQaProofFiles": 0,
-      "workflowPaths": 17,
-      "planDataPaths": 1,
-      "inheritedWipEntries": 0
+      "targetedCorrections": 0,
+      "scenarios": 1,
+      "attempts": 3,
+      "newQaJobs": 3,
+      "inheritedQaJobs": 357,
+      "totalQaJobs": 360,
+      "inheritedWipPaths": 24,
+      "qaProofFilesAdded": 18,
+      "workflowFilesModifiedOrAdded": 5,
+      "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
+      "candidateMetadataFilesModified": 3,
+      "selectedPublicationPaths": 44,
+      "newPaths": 20
     },
     "runMeasurement": {
-      "runtimeSourceFiles": 0,
-      "gameplaySteps": 0,
-      "generatedImages": 0,
+      "runtimeSourceFilesModified": 0,
+      "gameplayFilesModified": 0,
+      "newImages": 0,
       "imagegenCalls": 0,
-      "qaScenarios": 0,
-      "qaJobsAdded": 0,
-      "qaJobsTotal": 355,
-      "newQaProofFiles": 0,
-      "workflowPaths": 17,
-      "planDataPaths": 1,
-      "inheritedWipEntries": 0
+      "targetedCorrections": 0,
+      "scenarios": 1,
+      "attempts": 3,
+      "newQaJobs": 3,
+      "inheritedQaJobs": 357,
+      "totalQaJobs": 360,
+      "inheritedWipPaths": 24,
+      "qaProofFilesAdded": 18,
+      "workflowFilesModifiedOrAdded": 5,
+      "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
+      "candidateMetadataFilesModified": 3,
+      "selectedPublicationPaths": 44,
+      "newPaths": 20
     },
     "deploymentHealth0503": {
       "problem": "Retained Hunters failed deployment hides Cedric/Elara1HP behind En jeu cards; same omission in current renderer",
@@ -48018,7 +48560,16 @@
       ]
     },
     "contractSetVersion": "1.9.0",
-    "uncommittedWork": "Only reviewed state/handoff closure metadata; final commit follows",
+    "uncommittedWork": {
+      "inheritedPaths": 24,
+      "inheritedSnapshot": "32ac8034067b21dfca7a8917a9e18ed30bd154e4",
+      "currentPayloadPaths": 44,
+      "sourceFiles": 0,
+      "qaProofFilesAdded": 18,
+      "workflowPaths": 5,
+      "candidateMetadataModified": 3,
+      "phase": "READY_FOR_PUBLICATION"
+    },
     "commitReferenceScope": "Last verified published checkpoint before configuration; final configuration commits authoritative in Git and automation memory.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
@@ -48100,7 +48651,7 @@
       "nextAction": "Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained."
     },
     "operatorAuthorization": "OD-2026-10-23-A/B: direct request to update existing recurring task with supplied artistic proposal; scope offline1.9.0 with dedicated approved direction amendment; no scheduler activation requested.",
-    "qaToolingJustification": "Reuse previous temporary8stage driver with only port/output paths changed; identical assertions verified, no new persistent QA tool/job.",
+    "qaToolingJustification": "Reused v2 driver in separate v3; only paths/count/timeline/mixed-transition assertions adapted. No new QA framework. One additional opacity assertion repaired for range-input0.1s quantization; historical assertions retained.",
     "campFiveStillsCloseout": {
       "deliveryCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
       "normalPushVerified": true,
@@ -48240,10 +48791,23 @@
       "devRemoteParity": true,
       "mainUnchanged": true,
       "metadataCommitScope": "Following metadata SHA authoritative in Git/automation memory"
+    },
+    "preview": {
+      "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v3/index.html",
+      "pid": 21636,
+      "role": "Intentionally retained read-only localhost review server for operator; no QA worker running"
+    },
+    "poseV3Proof": {
+      "runId": "codex-pose-v3-proof-20261023T0745Z",
+      "proofPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-closeout.json",
+      "verdict": "PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED",
+      "ownReceipt": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-receipt.json",
+      "schedulerSha256": "4c39ebf8a7dba98ccc1cf0c16356acf55c1278c5a58544687d137cd102252433",
+      "preservedInheritedJobs": 357
     }
   },
   "previousInterruptedRun": {
-    "runId": "codex-illustrated-serpent-20261021T2305Z",
+    "runId": "codex-pose-pilot-20261023T0425Z",
     "head": "915096efbf523d8ceef24110d5714c28c72b7804",
     "inheritedEntries": 27,
     "activity": "Owner systemError, heartbeat older105min, QA44784/14048 and serverparent23972 absent; orphan static41952 stopped before takeover",
@@ -48281,7 +48845,14 @@
         "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v1/shot-05.png"
       ],
       "lastGreenCheck": "Inherited snapshot exact path set verified; candidate review pending"
-    }
+    },
+    "recoveredBy": "codex-pose-v3-proof-20261023T0745Z",
+    "recoveredAt": "2026-10-23T08:00:50.381Z",
+    "lastHeartbeat": "2026-10-23T05:04:00.098Z",
+    "threadStatus": "systemError",
+    "workerAudit": "Host CIM: no QA/Git/build worker; existing read-only review21636 preserved",
+    "inheritedWipPaths": 24,
+    "snapshotCommit": "32ac8034067b21dfca7a8917a9e18ed30bd154e4"
   },
   "autonomousExecutionPolicy": {
     "decisionSource": "docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md",
@@ -48321,19 +48892,25 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-23T0745Z-codex-pose-v3-proof.md",
   "runMeasurement": {
-    "runtimeSourceFiles": 0,
-    "gameplaySteps": 0,
-    "generatedImages": 0,
+    "runtimeSourceFilesModified": 0,
+    "gameplayFilesModified": 0,
+    "newImages": 0,
     "imagegenCalls": 0,
-    "qaScenarios": 0,
-    "qaJobsAdded": 0,
-    "qaJobsTotal": 355,
-    "newQaProofFiles": 0,
-    "workflowPaths": 17,
-    "planDataPaths": 1,
-    "inheritedWipEntries": 0
+    "targetedCorrections": 0,
+    "scenarios": 1,
+    "attempts": 3,
+    "newQaJobs": 3,
+    "inheritedQaJobs": 357,
+    "totalQaJobs": 360,
+    "inheritedWipPaths": 24,
+    "qaProofFilesAdded": 18,
+    "workflowFilesModifiedOrAdded": 5,
+    "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
+    "candidateMetadataFilesModified": 3,
+    "selectedPublicationPaths": 44,
+    "newPaths": 20
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -48457,7 +49034,16 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": "NONE after containing metadata closeout",
+  "uncommittedWork": {
+    "inheritedPaths": 24,
+    "inheritedSnapshot": "32ac8034067b21dfca7a8917a9e18ed30bd154e4",
+    "currentPayloadPaths": 44,
+    "sourceFiles": 0,
+    "qaProofFilesAdded": 18,
+    "workflowPaths": 5,
+    "candidateMetadataModified": 3,
+    "phase": "READY_FOR_PUBLICATION"
+  },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -48600,19 +49186,25 @@
     }
   },
   "runStatistics": {
-    "runtimeSourceFiles": 0,
-    "gameplaySteps": 0,
-    "generatedImages": 0,
+    "runtimeSourceFilesModified": 0,
+    "gameplayFilesModified": 0,
+    "newImages": 0,
     "imagegenCalls": 0,
-    "qaScenarios": 0,
-    "qaJobsAdded": 0,
-    "qaJobsTotal": 355,
-    "newQaProofFiles": 0,
-    "workflowPaths": 17,
-    "planDataPaths": 1,
-    "inheritedWipEntries": 0
+    "targetedCorrections": 0,
+    "scenarios": 1,
+    "attempts": 3,
+    "newQaJobs": 3,
+    "inheritedQaJobs": 357,
+    "totalQaJobs": 360,
+    "inheritedWipPaths": 24,
+    "qaProofFilesAdded": 18,
+    "workflowFilesModifiedOrAdded": 5,
+    "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
+    "candidateMetadataFilesModified": 3,
+    "selectedPublicationPaths": 44,
+    "newPaths": 20
   },
-  "qaToolingJustification": "Reused Serpent five-image18s driver with scene/path/SHA/run adaptations only; no assertion or shared reader changed.",
+  "qaToolingJustification": "Reused v2 driver in separate v3; only paths/count/timeline/mixed-transition assertions adapted. No new QA framework. One additional opacity assertion repaired for range-input0.1s quantization; historical assertions retained.",
   "retainedRunArtifacts": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "physicalFreeze": "tmp/autonomy/final-physical-0514.json",
@@ -49615,17 +50207,23 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runtimeSourceFiles": 0,
-    "gameplaySteps": 0,
-    "generatedImages": 0,
+    "runtimeSourceFilesModified": 0,
+    "gameplayFilesModified": 0,
+    "newImages": 0,
     "imagegenCalls": 0,
-    "qaScenarios": 0,
-    "qaJobsAdded": 0,
-    "qaJobsTotal": 355,
-    "newQaProofFiles": 0,
-    "workflowPaths": 17,
-    "planDataPaths": 1,
-    "inheritedWipEntries": 0
+    "targetedCorrections": 0,
+    "scenarios": 1,
+    "attempts": 3,
+    "newQaJobs": 3,
+    "inheritedQaJobs": 357,
+    "totalQaJobs": 360,
+    "inheritedWipPaths": 24,
+    "qaProofFilesAdded": 18,
+    "workflowFilesModifiedOrAdded": 5,
+    "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
+    "candidateMetadataFilesModified": 3,
+    "selectedPublicationPaths": 44,
+    "newPaths": 20
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -49897,7 +50495,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-23T04:21:09.486Z",
+  "heartbeat": "2026-10-23T08:05:51.835Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -51873,24 +52471,23 @@
   "lastSnapshotCommit": "738f97af1ec791dc91081436991c02d284bf04b7",
   "lastSnapshotAt": "2026-10-21T22:46:44.560Z",
   "runMetrics": {
-    "runtimeSourceFiles": 0,
-    "gameplaySteps": 0,
-    "generatedInitialImages": 0,
-    "targetedCorrections": 1,
-    "imagegenCalls": 1,
-    "selectedNewIllustrations": 1,
-    "reusedSelectedImages": 4,
-    "rawOutputs": 1,
-    "qaScenarios": 1,
-    "qaAttempts": 1,
-    "qaJobsAdded": 1,
-    "qaJobsTotal": 351,
-    "newQaProofFiles": 6,
-    "workflowDocPaths": 3,
-    "planDataPaths": 1,
-    "inheritedWipEntries": 27,
-    "inheritedSelectedImages": 4,
-    "inheritedRawOutputs": 5
+    "runtimeSourceFilesModified": 0,
+    "gameplayFilesModified": 0,
+    "newImages": 0,
+    "imagegenCalls": 0,
+    "targetedCorrections": 0,
+    "scenarios": 1,
+    "attempts": 3,
+    "newQaJobs": 3,
+    "inheritedQaJobs": 357,
+    "totalQaJobs": 360,
+    "inheritedWipPaths": 24,
+    "qaProofFilesAdded": 18,
+    "workflowFilesModifiedOrAdded": 5,
+    "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
+    "candidateMetadataFilesModified": 3,
+    "selectedPublicationPaths": 44,
+    "newPaths": 20
   },
   "operatorAcceptedAssets": {
     "decision": "OD-2026-10-18-E",
@@ -52860,7 +53457,7 @@
     "runEndedAt": "2026-10-21T07:27:54.989Z",
     "elapsedMinutes": 30.84
   },
-  "blockedBy": [],
+  "blockedBy": "OPERATOR_ARTISTIC_METHOD_VERDICT",
   "illustratedCinematicsAutonomy": {
     "schemaVersion": 1,
     "operatorDecisionId": "OD-2026-10-21-A",
@@ -53328,30 +53925,30 @@
   "illustratedPosePilot": {
     "id": "bois_clair_sacrificed",
     "version": "v3",
-    "generation": "NOT_GENERATED",
-    "technical": "NOT_VERIFIED",
-    "art": "ART_REVIEW_PENDING",
-    "readiness": "IN_PROGRESS",
+    "status": "READY_FOR_OPERATOR_REVIEW",
+    "requiresSourceAndPosePartition": true,
+    "beforeDialogue": "village_raid_aftermath:1",
     "operatorMethodAcceptance": "PENDING",
-    "runtime": "NOT_ADOPTED",
     "generalizationAllowed": false,
+    "candidatePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
+    "storyboardPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/storyboard.md",
+    "provenancePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/provenance.json",
+    "initialImages": 3,
+    "targetedCorrections": 0,
+    "reusedImages": 4,
+    "technical": "TECHNICALLY_VERIFIED",
+    "art": "ART_REVIEW_PENDING",
+    "readiness": "READY_FOR_OPERATOR_REVIEW",
+    "runtime": "NOT_ADOPTED",
+    "generation": "GENERATED",
     "storyboard": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/storyboard.md",
     "schedulerObserved": {
       "status": "ACTIVE",
       "reasoningEffort": "xhigh",
       "cadenceMinutes": 90,
-      "sha256": "c35518087c11b6e9e0b98d3e797d6cd0f60193607c29e1ea2660c33c6e631969",
+      "sha256": "4c39ebf8a7dba98ccc1cf0c16356acf55c1278c5a58544687d137cd102252433",
       "changed": false
     },
-    "status": "GENERATED",
-    "requiresSourceAndPosePartition": true,
-    "beforeDialogue": "village_raid_aftermath:1",
-    "candidatePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
-    "storyboardPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/storyboard.md",
-    "provenancePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/provenance.json",
-    "initialImages": 4,
-    "targetedCorrections": 1,
-    "reusedImages": 1,
     "previousVersion": {
       "version": "v2",
       "technical": "TECHNICALLY_VERIFIED",
@@ -53359,6 +53956,42 @@
       "art": "ART_REVIEW_PENDING",
       "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-receipt.json"
     },
-    "operatorFeedback": "docs/autonomy/ILLUSTRATED_DISSOLVE_FEEDBACK_2026-10-23.md"
+    "operatorFeedback": "docs/autonomy/ILLUSTRATED_DISSOLVE_FEEDBACK_2026-10-23.md",
+    "proposedDurationSeconds": 24,
+    "cumulativeRun": {
+      "initialImages": 7,
+      "targetedCorrections": 1,
+      "integratedCalls": 8,
+      "rawOutputs": 8
+    },
+    "preview": {
+      "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v3/index.html",
+      "pid": 21636,
+      "role": "Intentionally retained read-only localhost review server for operator; no QA worker running"
+    },
+    "technicalReview": "PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED",
+    "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-receipt.json",
+    "closeoutPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-closeout.json",
+    "reviewPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review.md"
+  },
+  "latestHandoff": "docs/autonomy/handoffs/2026-10-23T0745Z-codex-pose-v3-proof.md",
+  "runCounts": {
+    "runtimeSourceFilesModified": 0,
+    "gameplayFilesModified": 0,
+    "newImages": 0,
+    "imagegenCalls": 0,
+    "targetedCorrections": 0,
+    "scenarios": 1,
+    "attempts": 3,
+    "newQaJobs": 3,
+    "inheritedQaJobs": 357,
+    "totalQaJobs": 360,
+    "inheritedWipPaths": 24,
+    "qaProofFilesAdded": 18,
+    "workflowFilesModifiedOrAdded": 5,
+    "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
+    "candidateMetadataFilesModified": 3,
+    "selectedPublicationPaths": 44,
+    "newPaths": 20
   }
 }

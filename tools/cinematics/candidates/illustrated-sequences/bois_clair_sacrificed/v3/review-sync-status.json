@@ -1,0 +1,35 @@
+[
+  {
+    "jobId": "illustrated-pose-v3-0745",
+    "status": "FAILED",
+    "acceptance": "NOT_ACCEPTED",
+    "provenanceMatches": true,
+    "provenanceStable": null,
+    "requestMatches": true,
+    "matchesCurrentExecution": false,
+    "resultDigestMatches": false,
+    "eligibleForReview": false
+  },
+  {
+    "jobId": "illustrated-pose-v3-0745-host",
+    "status": "FAILED",
+    "acceptance": "NOT_ACCEPTED",
+    "provenanceMatches": true,
+    "provenanceStable": true,
+    "requestMatches": true,
+    "matchesCurrentExecution": false,
+    "resultDigestMatches": true,
+    "eligibleForReview": false
+  },
+  {
+    "jobId": "illustrated-pose-v3-0745-fixed",
+    "status": "SUCCEEDED",
+    "acceptance": "NOT_ACCEPTED",
+    "provenanceMatches": true,
+    "provenanceStable": true,
+    "requestMatches": true,
+    "matchesCurrentExecution": true,
+    "resultDigestMatches": true,
+    "eligibleForReview": true
+  }
+]

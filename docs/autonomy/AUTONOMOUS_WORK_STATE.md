@@ -1,12 +1,22 @@
-# Pilote Bois-Clair : v2 vérifiée, v3 enrichie en cours
+# Bois-Clair v3 : prête pour revue artistique
 
-Run codex-pose-pilot-20261023T0425Z depuis04:25Z. V2cinqimages/18s/quatre coupes : GENERATED, TECHNICALLY_VERIFIED, ART_REVIEW_PENDING, READY_FOR_OPERATOR_REVIEW. Preuve propre11contrôlesPASS, premier échec harness conservé ; aucune acceptation artistique/runtime.
+Run codex-pose-v3-proof-20261023T0745Z, début UTC 2026-10-23T07:45:51Z, checkpoint 2026-10-23T08:05:51.835Z. Projet : READY_FOR_PC_ACCEPTANCE, sans nouvelle acceptation globale.
 
-Retour direct opérateur sur le fondu2→3 de la v1 affichée : augmenter les images et les fondus. Nouvelle v3 séparée septplans/24s préparée, sans réécrire v1/v2 ni généraliser aux six scènes. Doc ILLUSTRATED_DISSOLVE_FEEDBACK_2026-10-23.md. Budget cumulé4initiales/1correction produites ;3initialesv3 prévues.
+Le pilote est **GENERATED / TECHNICALLY_VERIFIED / ART_REVIEW_PENDING / READY_FOR_OPERATOR_REVIEW**. L'acceptation artistique de la méthode reste PENDING ; runtime NOT_ADOPTED ; généralisation aux six autres scènes interdite avant verdict explicite.
 
-UNE prochaine action : Generate v3shots05/06/07 under the prepared sourced partition, preserve all v2 evidence and validate actual relationships; next run performs v3 own technical proof before READY. Explicit artistic pilot-method approval still precedes six-scene generalization.
+[Lecteur v3](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html) · [Comparaison v1](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html?historical=1) · [Revue et limites](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review.md) · [Preuve et SHA](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-closeout.json) · [Handoff](handoffs/2026-10-23T0745Z-codex-pose-v3-proof.md).
 
-Scheduler ACTIVE/xhigh/90min conservé ; seul updated_at a changé extérieurement pendant ce run. Aucun appel de mutation scheduler.355jobs historiques/acceptations intacts,357total ; zéro src/public/runtime/LOCKED/vidéo/audio/camp/gameplay.
+La preuve propre passe11contrôles : sept images sur24s, trois coupes et trois fondus1/1/0.8s, pause horloge+opacité non nulle/reprise, clavier/fin, réductionOS, contain/44px aux largeurs1366/620/390, console et image07 manquante. La comparaison v1 exacte dure18s sans légendes. Un scénario et trois tentatives conservées : absence de Chromium dans le sandbox ; assertion nouvelle trop précise pour l'horloge arrondie ; une correction minimale puis PASS. Le reçu brut reste SUCCEEDED/NOT_ACCEPTED ; la clôture technique est séparée. Guardian : PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED puis PASS_CLOSEOUT_METADATA_SCOPED.
+
+Les sept images, six paires et captures pertinentes ont été inspectées. Le fondu04→05 double davantage bras/livre/tête de Maelor ; son gant reste près du fourreau. Ces limites sont soumises au verdict artistique. Aucun geste d'offre, départ, transfert, choix futur ou animation corporelle continue n'est affirmé.
+
+L'ancien verrou05:04 a été repris après plus de105min, session systemError et audit hôte sans worker Git/build/QA associé.24fichiers hérités sauvegardés dans WIP32ac8034. Les357anciens jobs et acceptations sont inchangés ;360jobs au total. V1/v2, camp, lecteurs historiques et file historique conservés. Scheduler ACTIVE/xhigh/90min, SHA4c39ebf8a7dba98ccc1cf0c16356acf55c1278c5a58544687d137cd102252433, inchangé. Serveur de revue5461/PID21636 et preview5438 conservés.
+
+Vérifications :63tests ciblés/2sources, TypeScript,8contrats/8slots, barrièresLOCKED vides, diffcheck et SHA/provenance PASS. Aucun build ou parcours de campagne rejoué pour ce candidat offline. Set1.9.0/baseline32c8439f6dea1d09f428c5c081392ab0c700e356 inchangé.
+
+Compteurs :0source runtime,0nouvelle image/appelimagegen,18nouveaux fichiersQA/preuves,3métadonnées candidat modifiées,5chemins workflow,24chemins WIP hérités,44chemins dans le payload sélectionné. La règle .gitattributes est bornée àv3 pour préserver les octets/SHA, y compris le reçu de synchronisation CRLF.
+
+**UNE prochaine action : Attendre le verdict artistique explicite opérateur sur les images ET le montage/méthode bois_clair_sacrificed/v3. Sans nouveau verdict, préserver le checkpoint sans génération, QA ou synthèse répétée. Les six autres scènes restent verrouillées ; aucun changement du scheduler.**
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -368,6 +378,9 @@ Scheduler ACTIVE/xhigh/90min conservé ; seul updated_at a changé extérieureme
 - illustrated-judgement-v2-0147: SUCCEEDED; port 5461; receipt `tmp/cinematics/illustrated-judgement-v2-0147/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-pose-pilot-v2-0425: FAILED; port 5461; receipt `tmp/cinematics/pose-pilot-0425/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-pose-pilot-v2-0425-fixed: SUCCEEDED; port 5461; receipt `tmp/cinematics/pose-pilot-0425/review-fixed/qa-job.json`; NOT_ACCEPTED
+- illustrated-pose-v3-0745: FAILED; port 5461; receipt `tmp/cinematics/pose-v3-0745/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-pose-v3-0745-host: FAILED; port 5461; receipt `tmp/cinematics/pose-v3-0745/review-host/qa-job.json`; NOT_ACCEPTED
+- illustrated-pose-v3-0745-fixed: SUCCEEDED; port 5461; receipt `tmp/cinematics/pose-v3-0745/review-fixed/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 Guardian final : PASS_METADATA_SYNTHESIS_CLOSEOUT ; sept versions35images126s/statuts/frontières/limites/reçus/liens cohérents, aucune acceptation artistique ou runtime. Vérification finale93SHA/93racines historiques/354jobs hérités inchangés/355total/8SHA camp/configuration scheduler préservée.

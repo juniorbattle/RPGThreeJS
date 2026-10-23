@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "runId": "codex-pose-v3-proof-20261023T0745Z",
+  "reviewedAt": "2026-10-23T08:00:50.381Z",
+  "verdict": "PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED",
+  "rawExecution": {
+    "receipt": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-receipt.json",
+      "sha256": "43da63bba42ca68a3be26668968c4670d205ff42aa6763a8e1b35f184332e1c6"
+    },
+    "results": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-results.json",
+      "sha256": "8f347d8c9746c2fcd4a32c44c780ad8d2368e367f4900808ae45b44e12dfa8a5"
+    },
+    "status": "SUCCEEDED",
+    "acceptance": "NOT_ACCEPTED",
+    "checks": 11
+  },
+  "sync": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-sync-status.json",
+    "sha256": "33f945c5eb9396c9ef953e2985300aac7c62a090f9995b53816a222c1083b4fc"
+  },
+  "status": {
+    "generation": "GENERATED",
+    "technical": "TECHNICALLY_VERIFIED",
+    "art": "ART_REVIEW_PENDING",
+    "readiness": "READY_FOR_OPERATOR_REVIEW",
+    "operatorMethodAcceptance": "PENDING",
+    "runtime": "NOT_ADOPTED",
+    "generalizationAllowed": false
+  },
+  "statusOnlyHtml": {
+    "tested": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-tested.html",
+      "sha256": "a8f63d3202f3c2cf8eab4e400d8729d8f6990b1e763d5cc53bbb7945ede6f4bb"
+    },
+    "delivered": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
+      "sha256": "2e92a058ca80891898fd0771cbfbbd27d0bf4bb70373780f79558a6eb4244b1a"
+    },
+    "testedOriginalPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
+    "testedSha256": "a8f63d3202f3c2cf8eab4e400d8729d8f6990b1e763d5cc53bbb7945ede6f4bb",
+    "oldText": "24 secondes proposées · nouvelle variante · preuve technique propre encore attendue · art et intégration non acceptés.",
+    "newText": "24 secondes proposées · lecture technique vérifiée · revue artistique de la méthode attendue · intégration non acceptée.",
+    "inverseReplacementByteEqual": true,
+    "readerSequenceMediaUnchanged": true,
+    "scope": "Only footer status text changed after test; raw receipt remains tied to tested bytes. No fresh full proof claimed for delivered status copy."
+  },
+  "selectedCaptures": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-normal-fade-4-5.png",
+      "sha256": "1c5ea96d80b7db4237b7891dd7722ec1e86937e5b271c22070ce0315e003bb7b"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-endpoint.png",
+      "sha256": "82e615023bf4181f46c232359fc4ea4ae23d04d94e5c7e1bd8c638dd40982cca"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-narrow.png",
+      "sha256": "4d453de481ad9eadab146252cfe3f941979c5c08d5072bf48659552d2f7bfc7f"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-os-pause.png",
+      "sha256": "454df8c7a64931896bddfd07b41772accd9f5ded8245af6a3fbdb973453af049"
+    }
+  ],
+  "failedAttempts": {
+    "sandbox": {
+      "receipt": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-01-receipt.json",
+        "sha256": "b19af246a89baf8e0dab0a2fe4f9cc564dc3985e099fb540b12ff9227267832b"
+      },
+      "cause": "Chromium absent in sandbox cache; no page launched; host used without install"
+    },
+    "host": {
+      "receipt": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-02-receipt.json",
+        "sha256": "0df2447a905c10a02ad404a024066da4dea69f2b0879d449abafd391dae736e1"
+      },
+      "results": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-02-results.json",
+        "sha256": "11f241aadaf50a83c90eb1e4c4b6986fd98b8830be5ff1a5597408d8f5b2c6d1"
+      },
+      "driver": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke-attempt-01.mjs",
+        "sha256": "926a5c1626d7deb403a0a3e8fb997e251548ea1e29f025aa97b205166ca0b020"
+      },
+      "cause": "New exact-time opacity assertion treated a range input step0.1 clock as unrounded",
+      "repair": "One minimal assertion repair bounds smoothstep by the displayed clock plus/minus0.05s; all timing/opacity/control assertions retained"
+    }
+  },
+  "independentReview": {
+    "role": "contracts-guardian",
+    "verdict": "PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED",
+    "scope": "Actual driver diff, raw receipts, normal04-to05 and final captures; no artistic or runtime acceptance"
+  },
+  "reviewedLevels": {
+    "nativeImages": "All7actual images inspected; v1exact5images also inspected",
+    "pairs": "All6pairs inspected; same left/right axis and object ownership; normal blends and scoped viewport captures inspected",
+    "montage": "One registered caption-free real-time24s v3 plus18s exact v1 proof; manual IAB request-to-end observations under OSreduce, no extra certified scenario"
+  },
+  "limits": [
+    "04-to05 optical arm/book/head doubling is the main operator artistic decision",
+    "Maelor right glove touches/lies beside sheathed weapon; no clearly free hand, unequivocal relaxation or attack claimed",
+    "Minor final-wide scale/appui/cloth/ground variation; no pixel-fixed stance or continuous motion claimed",
+    "Agent review and reader PASS do not accept art/method; six-scene generalization waits for explicit operator verdict",
+    "No runtime adoption/global PC/hardware/balance/audio acceptance"
+  ],
+  "preservation": {
+    "inheritedQaJobs": 357,
+    "totalQaJobs": 360,
+    "historicalJobsAndAcceptancesDeepEqual": true,
+    "historicalPlanQueueDeepEqual": true,
+    "historicalV1V2Unchanged": true,
+    "schedulerTomlSha256": "4c39ebf8a7dba98ccc1cf0c16356acf55c1278c5a58544687d137cd102252433",
+    "newImages": 0,
+    "imagegenCalls": 0
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "output_hint": "Generated images are saved to C:\\Users\\miche\\.codex\\generated_images\\01a16701-7c34-7530-89df-c61df53361c8 as C:\\Users\\miche\\.codex\\generated_images\\01a16701-7c34-7530-89df-c61df53361c8\\exec-e6b14f2f-6108-4844-a9ed-5c656439bfd3.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "rawPath": "C:/Users/miche/.codex/generated_images/01a16701-7c34-7530-89df-c61df53361c8/exec-e6b14f2f-6108-4844-a9ed-5c656439bfd3.png",
+  "inspection": "Selected for pair review: Maelor lifts head/neck toward woman and releases right arm down his side, book remains closed in left hand. Low right glove lies beside existing sheathed equipment; no unsheathing/attack claimed. Woman holds previous rightward attention/basket. Medium camera and landmarks stable; trim details vary. Independent actual-image review: right glove touches or follows the sheath; do not claim clearly free hand or unquestionable relaxation. No drawn weapon or attack."
+}

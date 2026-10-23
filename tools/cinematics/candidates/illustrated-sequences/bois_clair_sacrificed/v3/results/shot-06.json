@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen.imagegen",
+  "output_hint": "Generated images are saved to C:\\Users\\miche\\.codex\\generated_images\\01a16701-7c34-7530-89df-c61df53361c8 as C:\\Users\\miche\\.codex\\generated_images\\01a16701-7c34-7530-89df-c61df53361c8\\exec-d7dbb1fd-cfbd-4487-82ad-fc892f339733.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "rawPath": "C:/Users/miche/.codex/generated_images/01a16701-7c34-7530-89df-c61df53361c8/exec-d7dbb1fd-cfbd-4487-82ad-fc892f339733.png",
+  "inspection": "Selected for montage review: woman upper torso and shoulder turn more to screen right and forearms wrap basket close; head stays averted. Left handle/right front-grip remain legible, basket stays hers. Maelor retained raised attention/low right arm/book left, same medium geography. No feet visible, so no locomotion claimed."
+}

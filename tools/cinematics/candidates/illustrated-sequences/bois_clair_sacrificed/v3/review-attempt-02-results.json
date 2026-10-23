@@ -1,0 +1,7 @@
+{
+  "pass": false,
+  "errors": [
+    "The expression evaluated to a falsy value:\n\n  assert(Math.abs(before.alpha-progress*progress*(3-2*progress))<.0001)\n"
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(Math.abs(before.alpha-progress*progress*(3-2*progress))<.0001)\n\n    at file:///C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke.mjs:18:166"
+}
