@@ -53,3 +53,6 @@ For this remediation workstream review only the pre-judgement campfire preparati
 ## Offline illustration exception — OD-2026-10-21-A
 
 Set1.8.0 PRESENTATION_AND_MEDIA permits only built-in-imagegen offline narrative montage candidates for the eight existing IDs, seven remaining after camp structure/design acceptance. Read `docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md` and `tools/cinematics/specs/illustrated-sequences/production-plan.json`. Video/keyframes for video/MiniMax/polling/MP4 promotion/runtime/audio remain excluded. This new exception supersedes only older blanket external-art-workstream guidance for these offline illustrated candidates; final art/adoption and scheduler activation remain operator.
+## Current illustrated direction — OD-2026-10-23-A/B
+
+For offline candidates, set1.9.0 permits motivated hard cuts/dissolves/holds and varied shot durations; discreet whole-image reframing may only be studied with documented reading benefit and a reduced-motion alternative. Read docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md and ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md. Separate Bois-Clair sacrificed pilot first; explicit operator artistic method approval before six-scene generalization. Preserve historical versions/proofs and camp, exact eight IDs, no video/runtime/audio permission.

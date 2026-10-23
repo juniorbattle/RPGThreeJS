@@ -5,7 +5,7 @@ RPGThreeJS is a narrative tactical RPG with an authored campaign (Vite, TypeScri
 ## Authority and reading order
 
 1. Explicit operator decisions: `docs/autonomy/OPERATOR_DECISIONS.md` and the files it links.
-2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.8.0: approved amendment `PRODUCTION-CONTRACTS-ILLUSTRATED-CANDIDATES-1` / OD-2026-10-21-A, immutable baseline `0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
+2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.9.0: approved amendment `PRODUCTION-CONTRACTS-ILLUSTRATED-DIRECTION-2` / OD-2026-10-23-B, immutable baseline `32c8439f6dea1d09f428c5c081392ab0c700e356`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
 3. Current source: it states what is implemented today.
 4. Canonical docs (`docs/project/`, `docs/traversal/`, `docs/content/`), then dated reports in `docs/reports/`. Reports are historical evidence, never doctrine.
 
@@ -13,7 +13,7 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 
 ## Red lines
 
-- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code 0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
+- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code 32c8439f6dea1d09f428c5c081392ab0c700e356 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
 - Presentation never creates or changes game truth (route, outcome, resource, save). Truth owners: `RunSystem` and campaign relations, versioned saves, tactical combat. `GameApp` coordinates lifecycle and handoffs only.
 - Exactly eight video slots (`src/cinematics/ApprovedProductionVideos.ts`). No ninth slot, no enemy-reveal or routine video. A prologue or first-refuge video needs a dedicated contract task first.
 - Recurring runs never generate or poll video or video keyframes (no MiniMax) and never replace an MP4. OD-2026-10-21-A/set1.8.0 permits only offline illustrated montage candidates for the eight existing IDs; read `docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md` and the current plan. Runtime adoption/final art remain separate, scheduler activation operator-only.
@@ -89,3 +89,6 @@ OD-2026-10-13-A established product-first progress; its current POI continuation
 Apply OD-2026-10-04-A / `docs/autonomy/PRODUCTION_FOCUS_OPERATOR_DECISION_2026-10-04.md`: product code first, existing QA runners, one browser smoke per run and wider acceptance only at queue milestones. Keep sensitive guardian triggers, snapshot green WIP within15min, and count source versus added QA/proof files at closeout. External canonical-mapping blockers do not consume recurring runs.
 
 Read OD-2026-10-03-A and MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md before resuming a stale nextAction. Its ordered remediation queue takes priority over generic DEMO-QA-POLISH; battlefield keyboard WIP is deferred and preserved. Prior automated PASS cannot invalidate the operator visual finding. The contract amendment is complete at the baseline above; runtime corrections require fresh acceptance. Eight videos, gameplay-owned rewards and last-save recovery, Alaric climax and the four-actor cap remain protected. Only an explicitly dedicated operator-approved task may amend contracts or move the immutable baseline.
+## Current illustrated direction — OD-2026-10-23-A/B
+
+The current recurring priority is a separate Bois-Clair sacrificed pose pilot under [the operator direction](docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md) and [approved editing amendment](docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md). Set1.9.0 permits motivated hard cuts/dissolves/holds and varied timings for offline candidates, with only bounded study of discreet reframing respecting reduced motion. Explicit operator artistic approval of the pilot method precedes six-scene generalization. Preserve every historical version/evidence and camp. Configuration requests preserve current scheduler status unless activation is explicitly requested.

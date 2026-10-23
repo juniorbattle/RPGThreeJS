@@ -5,7 +5,7 @@ description: "Use before implementing and before declaring any RPGThreeJS task c
 
 # Contracts compliance
 
-Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
+Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `32c8439f6dea1d09f428c5c081392ab0c700e356`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
 
 ## Orchestration (OD-2026-10-02-C)
 
@@ -14,7 +14,7 @@ The orchestrator applies this skill before implementation and task completion. I
 ## Gates (run them, do not assume)
 
 ```
-git --no-optional-locks diff --exit-code 0cb95135fe31cd3b30ec1e6a4b8041c0ae0ea3aa HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md   # must print nothing
+git --no-optional-locks diff --exit-code 32c8439f6dea1d09f428c5c081392ab0c700e356 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md   # must print nothing
 git --no-optional-locks status --short -- docs/contracts docs/game/GAME_CONSTITUTION.md                  # must print nothing
 npm run contracts:validate                                                                              # 8 contracts, 8 slots
 ```
@@ -65,8 +65,11 @@ Then record: contracts read, contract set version, LOCKED rules impacted, and an
 
 ## Approved contract amendment boundary
 
-Current set1.8.0 derives from PRODUCTION-CONTRACTS-ILLUSTRATED-CANDIDATES-1 / OD-2026-10-21-A at the immutable baseline above; b1e8858 is the original historical lock. A dedicated operator-approved amendment records exact changed rules, task/decision and version, independent review, then establishes its committed baseline in a following operational commit. A normal task must not advance that baseline or edit a LOCKED contract. Its gate must remain empty. During an authorized amendment, inspect the exact approved diff rather than claim no rule changed. Read the current manifest version for every matrix. Manual visual findings reopen affected acceptance; an old PASS is historical, not a rebuttal.
+Current set1.9.0 derives from PRODUCTION-CONTRACTS-ILLUSTRATED-DIRECTION-2 / OD-2026-10-23-B at the immutable baseline above; b1e8858 is the original historical lock. A dedicated operator-approved amendment records exact changed rules, task/decision and version, independent review, then establishes its committed baseline in a following operational commit. A normal task must not advance that baseline or edit a LOCKED contract. Its gate must remain empty. During an authorized amendment, inspect the exact approved diff rather than claim no rule changed. Read the current manifest version for every matrix. Manual visual findings reopen affected acceptance; an old PASS is historical, not a rebuttal.
 
 ## Offline illustration exception — OD-2026-10-21-A
 
 Set1.8.0 PRESENTATION_AND_MEDIA permits only built-in-imagegen offline narrative montage candidates for the eight existing IDs, seven remaining after camp structure/design acceptance. Read `docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md` and `tools/cinematics/specs/illustrated-sequences/production-plan.json`. Video/keyframes for video/MiniMax/polling/MP4 promotion/runtime/audio remain excluded. This new exception supersedes only older blanket external-art-workstream guidance for these offline illustrated candidates; final art/adoption and scheduler activation remain operator.
+## Expressive illustrated direction — OD-2026-10-23-A/B
+
+Set1.9.0 amends only offline illustration direction: motivated hard cuts/dissolves/holds, varied timings and bounded study of discreet reframing with reduced-motion alternative. Read docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md and ILLUSTRATED_POSE_DIRECTION_2026-10-23.md. The new separate Bois-Clair sacrificed pilot requires explicit operator artistic acceptance of its method before six-scene generalization. Current LOCKED baseline is the dedicated1.9.0 amendment above;0cb95135/set1.8.0 is historical. No runtime/video/audio/canon/V6 or scheduler activation permission is added.
