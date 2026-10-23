@@ -1,28 +1,10 @@
-# Récurrence configurée — pilote de poses illustrées
+# Pilote de poses Bois-Clair sacrifié — en cours
 
-Décision [OD-2026-10-23-A/B](ILLUSTRATED_POSE_DIRECTION_2026-10-23.md), run codex-illustrated-direction-config-20261023T0401Z, débutUTC 2026-10-23T04:04:52.043333Z, checkpointUTC 2026-10-23T04:19:42.490Z.
+Run codex-pose-pilot-20261023T0425Z, débutUTC2026-10-23T04:25Z. Préflight propre, aucun verrou/WIP hérité, dev distant734bea70 vérifié, main inchangé. Verrou atomique possédé. Sources actuelles et trois références V2/décor inspectées. Partition/fiches avant génération sous tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/storyboard.md.
 
-Nouvelle direction artistique et proposition intégrale conservées. Prochaine production : seul pilote Bois-Clair sacrifié, nouvelle version séparée, partition de poses avant imagegen, comparaison sans légendes et acceptation artistique opérateur de la méthode avant les six autres. Sept versions historiques/35images/126s et preuves intactes ; camp conservé. Statut projet READY_FOR_PC_ACCEPTANCE retenu dans JSON, sans nouveau verdictglobal.
+Prochaine action : Generate only new v2 shots02–05 from the inspected V2 masters, approved destroyed environment and sourced storyboard; retain exact v1shot01 establishing image. No six-scene generalization before explicit artistic method approval.
 
-Prompt existant mis à jour via l'outil officiel et égal au canonique. Scheduler **PAUSED**, cadence90min, gpt-6.1-sol/high, local/projet/cwd/notifications conservés. Cette configuration ne lance pas de génération ou gameplay. Coupes franches/fondus/pauses et durées motivés autorisés sous1.9.0 ; recadrage discret seulement à étudier avec bénéfice justifié et alternative de réduction.
-
-- Official automation update succeeded; saved prompt equals canonical after newline normalization
-- PAUSED, cadence90min, model gpt-6.1-sol/high, local project/cwd, notifications and created_at preserved
-- contracts:validate PASS8LOCKED/8slots; immutable baseline/status gates empty; diffcheckPASS
-- 355inherited qaJobs/acceptances and all unrelated state roots preserved; zero new QA job
-- Seven historical queue entries and selected index/media hashes preserved; no runtime/reader/media edit
-- Exact user proposal retained with SHA256 11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b
-- Guardian PASS_AMENDMENT_ACTUAL_DIFF; amendment32c8439, following baseline checkpoint063d1ee9; PASS_CONFIG_1_9_CLOSEOUT
-
-Set1.9.0/baseline32c8439f6dea1d09f428c5c081392ab0c700e356 recorded after dedicated approved amendment; constitution/seven othercontracts unchanged. Constitution/art/characters/environments/narrative/presentation/save/UI/QA/governance PASS configuration and preservation; Traversal/combat N/A. Only offline direction/transitions LOCKED rule changed by explicit dedicated OD23B amendment; no further LOCKED change. Motivated hard cuts/dissolves/holds authorized; discreet reframing only studied with documented reading benefit and reduced-motion alternative; pilot artistic approval gate explicit. No product/art/runtime acceptance.
-
-Compteurs : {"runtimeSourceFiles":0,"gameplaySteps":0,"generatedImages":0,"imagegenCalls":0,"qaScenarios":0,"qaJobsAdded":0,"qaJobsTotal":355,"newQaProofFiles":0,"workflowPaths":17,"planDataPaths":1,"inheritedWipEntries":0}.
-
-UNE prochaine action : Au prochain run effectivement déclenché : préflight/verrou/synchronisation, puis reprendre le nouveau pilote bois_clair_sacrificed/v2 s'il existe ; sinon relire victoire village_raid/missionGreed=true et frontière avant village_raid_aftermath:1/provisions, inspecter V2/décor/ancienne version, écrire partition de poses et fiches avant imagegen intégré. Comparer images et montage sans légendes ; attendre acceptation artistique explicite de la méthode par l'opérateur avant les six autres. Statut scheduler PAUSED préservé, aucune génération dans cette configuration.
-
-Handoff : [2026-10-23T0404Z-codex-pose-pilot-config.md](handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md).
-
-Clôture : guardian **PASS_CONFIG_1_9_CLOSEOUT** ;56SHA index/8camp/355jobs et blocMDQA préservés. Livraison dev71cbee140928c132a02f7df9b2e61469a6428bbf publiée et parité distante vérifiée, main inchangé. FinUTC2026-10-23T04:21:09.486Z ; SHAfinal des métadonnées autoritaire Git/mémoireautomation.
+Scheduler observé ACTIVE/xhigh/cadence90min, conservé octet pour octet ; ancien PAUSED historique. Aucun src/public/runtime/contrat/vidéo/audio/camp modifié.355jobs et acceptations historiques conservés.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

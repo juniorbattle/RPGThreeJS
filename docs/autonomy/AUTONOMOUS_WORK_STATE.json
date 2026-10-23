@@ -1,15 +1,16 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-23T04:04:52.043333Z",
-  "runEndedAt": "2026-10-23T04:21:09.486Z",
-  "activeTask": "ILLUSTRATED-POSE-PILOT-CONFIGURATION",
-  "activePhase": "CONFIGURED_PILOT_PENDING",
-  "activeSubtask": "Future Bois-Clair sacrificed pose pilot; explicit operator method approval before six-scene generalization",
+  "runStartedAt": "2026-10-23T04:25:00Z",
+  "runEndedAt": null,
+  "activeTask": "BOIS-CLAIR-SACRIFICED-POSE-PILOT",
+  "activePhase": "POSE_PARTITION_READY",
+  "activeSubtask": "Source-bound v2 storyboard before integrated imagegen",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
   "lastPushedCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
   "completedThisRun": [
-    "Existing recurrence prompt updated via official tool; expressive pose pilot directive and operator gate recorded. Configuration only, no generated image or played stage."
+    "Clean read-only preflight; atomic lock; host fetch verified dev parity; current sources, V2 masters, destroyed environment and historical poses inspected",
+    "Separate v2 source-bound pose partition and five shot sheets written before generation"
   ],
   "filesChanged": [
     "AGENTS.md",
@@ -59,7 +60,7 @@
     "Produce separate Bois-Clair sacrificed pilot under motivated cuts/dissolves/holds under1.9.0",
     "Obtain explicit artistic approval of pilot method before six remaining scenes"
   ],
-  "nextAction": "Au prochain run effectivement déclenché : préflight/verrou/synchronisation, puis reprendre le nouveau pilote bois_clair_sacrificed/v2 s'il existe ; sinon relire victoire village_raid/missionGreed=true et frontière avant village_raid_aftermath:1/provisions, inspecter V2/décor/ancienne version, écrire partition de poses et fiches avant imagegen intégré. Comparer images et montage sans légendes ; attendre acceptation artistique explicite de la méthode par l'opérateur avant les six autres. Statut scheduler PAUSED préservé, aucune génération dans cette configuration.",
+  "nextAction": "Generate only new v2 shots02–05 from the inspected V2 masters, approved destroyed environment and sourced storyboard; retain exact v1shot01 establishing image. No six-scene generalization before explicit artistic method approval.",
   "taskQueue": [
     "Prepare sourced pose partition and shot sheets for Bois-Clair sacrificed pilot",
     "Generate insufficient pilot illustrations in a separate version, preserve historical media",
@@ -152,7 +153,7 @@
     "lastGreenCheck": "2026-10-23T04:21:09.486Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-23T04:21:09.486Z",
+    "lastHeartbeat": "2026-10-23T04:29:07.142Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -39431,11 +39432,14 @@
     "wip": {
       "branch": null,
       "sha": null,
-      "status": "GREEN_CONFIGURATION",
-      "dirtyFiles": [],
-      "lastGreenCheck": "2026-10-23T04:21:09.486Z"
+      "status": "GREEN",
+      "dirtyFiles": [
+        "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/storyboard.md",
+        "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/sequence.json"
+      ],
+      "lastGreenCheck": "Current source/reference inspection and diff check; no generation yet"
     },
-    "nextAction": "Au prochain run effectivement déclenché : préflight/verrou/synchronisation, puis reprendre le nouveau pilote bois_clair_sacrificed/v2 s'il existe ; sinon relire victoire village_raid/missionGreed=true et frontière avant village_raid_aftermath:1/provisions, inspecter V2/décor/ancienne version, écrire partition de poses et fiches avant imagegen intégré. Comparer images et montage sans légendes ; attendre acceptation artistique explicite de la méthode par l'opérateur avant les six autres. Statut scheduler PAUSED préservé, aucune génération dans cette configuration.",
+    "nextAction": "Generate only new v2 shots02–05 from the inspected V2 masters, approved destroyed environment and sourced storyboard; retain exact v1shot01 establishing image. No six-scene generalization before explicit artistic method approval.",
     "runMetrics": {
       "runtimeSourceFiles": 0,
       "gameplaySteps": 0,
@@ -43608,7 +43612,7 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-illustrated-direction-config-20261023T0401Z",
+    "runId": "codex-pose-pilot-20261023T0425Z",
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-23T04:04:52.043333Z",
@@ -52984,5 +52988,24 @@
     },
     "publishedDeliveryCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
     "finalReview": "PASS_CONFIG_1_9_CLOSEOUT"
+  },
+  "illustratedPosePilot": {
+    "id": "bois_clair_sacrificed",
+    "version": "v2",
+    "generation": "NOT_GENERATED",
+    "technical": "NOT_VERIFIED",
+    "art": "ART_REVIEW_PENDING",
+    "readiness": "IN_PROGRESS",
+    "operatorMethodAcceptance": "PENDING",
+    "runtime": "NOT_ADOPTED",
+    "generalizationAllowed": false,
+    "storyboard": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/storyboard.md",
+    "schedulerObserved": {
+      "status": "ACTIVE",
+      "reasoningEffort": "xhigh",
+      "cadenceMinutes": 90,
+      "sha256": "c35518087c11b6e9e0b98d3e797d6cd0f60193607c29e1ea2660c33c6e631969",
+      "changed": false
+    }
   }
 }
