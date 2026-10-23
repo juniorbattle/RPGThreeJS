@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-23T04:04:52.043333Z",
-  "runEndedAt": "2026-10-23T04:19:42.490Z",
+  "runEndedAt": "2026-10-23T04:21:09.486Z",
   "activeTask": "ILLUSTRATED-POSE-PILOT-CONFIGURATION",
   "activePhase": "CONFIGURED_PILOT_PENDING",
   "activeSubtask": "Future Bois-Clair sacrificed pose pilot; explicit operator method approval before six-scene generalization",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "070f31492aeff5a729871320096eadf7e2af8012",
-  "lastPushedCommit": "070f31492aeff5a729871320096eadf7e2af8012",
+  "lastKnownGoodCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
+  "lastPushedCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
   "completedThisRun": [
     "Existing recurrence prompt updated via official tool; expressive pose pilot directive and operator gate recorded. Configuration only, no generated image or played stage."
   ],
@@ -143,35 +143,16 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-illustrated-direction-config-20261023T0401Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-23T04:19:42.490Z",
+  "lastHeartbeat": "2026-10-23T04:21:09.486Z",
   "wip": {
     "branch": null,
     "sha": null,
     "status": "GREEN_CONFIGURATION",
-    "dirtyFiles": [
-      "AGENTS.md",
-      ".agents/skills/autonomy-handoff/SKILL.md",
-      ".agents/skills/contracts-compliance/SKILL.md",
-      ".agents/skills/cinematics-journey/SKILL.md",
-      "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
-      "docs/contracts/PRESENTATION_AND_MEDIA.md",
-      "docs/contracts/README.md",
-      "docs/contracts/contracts.manifest.json",
-      "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
-      "docs/autonomy/RECURRING_RUN_PROMPT.md",
-      "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
-      "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
-      "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-      "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
-      "tools/cinematics/specs/illustrated-sequences/production-plan.json"
-    ],
-    "lastGreenCheck": "2026-10-23T04:19:42.490Z"
+    "dirtyFiles": [],
+    "lastGreenCheck": "2026-10-23T04:21:09.486Z"
   },
   "live": {
-    "lastHeartbeat": "2026-10-23T04:19:42.490Z",
+    "lastHeartbeat": "2026-10-23T04:21:09.486Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -39451,27 +39432,8 @@
       "branch": null,
       "sha": null,
       "status": "GREEN_CONFIGURATION",
-      "dirtyFiles": [
-        "AGENTS.md",
-        ".agents/skills/autonomy-handoff/SKILL.md",
-        ".agents/skills/contracts-compliance/SKILL.md",
-        ".agents/skills/cinematics-journey/SKILL.md",
-        "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
-        "docs/contracts/PRESENTATION_AND_MEDIA.md",
-        "docs/contracts/README.md",
-        "docs/contracts/contracts.manifest.json",
-        "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
-        "docs/autonomy/RECURRING_RUN_PROMPT.md",
-        "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
-        "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
-        "docs/autonomy/OPERATOR_DECISIONS.md",
-        "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-        "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-        "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
-        "tools/cinematics/specs/illustrated-sequences/production-plan.json"
-      ],
-      "lastGreenCheck": "2026-10-23T04:19:42.490Z"
+      "dirtyFiles": [],
+      "lastGreenCheck": "2026-10-23T04:21:09.486Z"
     },
     "nextAction": "Au prochain run effectivement déclenché : préflight/verrou/synchronisation, puis reprendre le nouveau pilote bois_clair_sacrificed/v2 s'il existe ; sinon relire victoire village_raid/missionGreed=true et frontière avant village_raid_aftermath:1/provisions, inspecter V2/décor/ancienne version, écrire partition de poses et fiches avant imagegen intégré. Comparer images et montage sans légendes ; attendre acceptation artistique explicite de la méthode par l'opérateur avant les six autres. Statut scheduler PAUSED préservé, aucune génération dans cette configuration.",
     "runMetrics": {
@@ -39516,7 +39478,7 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": "2026-10-23T04:19:42.490Z",
+    "runEndedAt": "2026-10-23T04:21:09.486Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
@@ -43651,7 +43613,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-23T04:04:52.043333Z",
     "activePhase": "CONFIGURED_PILOT_PENDING",
-    "heartbeat": "2026-10-23T04:19:42.490Z",
+    "heartbeat": "2026-10-23T04:21:09.486Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-23T0404Z-codex-pose-pilot-config.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -45380,7 +45342,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "070f31492aeff5a729871320096eadf7e2af8012",
+    "lastPushedCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -46185,7 +46147,7 @@
     },
     "creditStatus": "NOT_TESTED_CONFIGURATION_ONLY",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "070f31492aeff5a729871320096eadf7e2af8012",
+    "lastKnownGoodCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
     "completedThisRun": [
       "Existing recurrence prompt updated via official tool; expressive pose pilot directive and operator gate recorded. Configuration only, no generated image or played stage."
     ],
@@ -47931,6 +47893,13 @@
       "configuredAt": "2026-10-23T04:19:42.490Z",
       "schedulerStatus": "PAUSED",
       "generalizationAllowed": false
+    },
+    "posePilotPublication": {
+      "deliveryCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
+      "verifiedAt": "2026-10-23T04:21:09.486Z",
+      "devRemoteParity": true,
+      "mainUnchanged": true,
+      "metadataCommitScope": "Following metadata SHA authoritative in Git/automation memory"
     }
   },
   "previousInterruptedRun": {
@@ -49588,7 +49557,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-23T04:19:42.490Z",
+  "heartbeat": "2026-10-23T04:21:09.486Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -53012,6 +52981,8 @@
       "activeTask": "ILLUSTRATED-SEVEN-SCENE-HANDOFF",
       "nextAction": "Revue artistique opérateur des sept montages via tools/cinematics/candidates/illustrated-sequences/review-index.md et galerie. Aucune adoption runtime implicite. Sans nouveau verdict ni défaut PC indépendant déjà démontré, conserver le checkpoint ; aucune régénération ni campagne inchangée à rejouer. Mobile après PC.",
       "currentHandoff": "docs/autonomy/handoffs/2026-10-22T0404Z-codex-lion-trial-correction.md"
-    }
+    },
+    "publishedDeliveryCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
+    "finalReview": "PASS_CONFIG_1_9_CLOSEOUT"
   }
 }
