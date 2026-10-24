@@ -1000,15 +1000,32 @@ async function runOpeningScenario(context) {
     const camp = await readPresentation(page); assertDialogueTableau(camp, 'opening camp');
     await page.screenshot({ path: resolve(OUTPUT_DIR, 'opening-camp.png') });
     await finishDialogue(page, 'camp_departure', 0, trace);
-    if (await waitForBoundaryOrCombat(page, trace) !== 'journey') throw new Error('Opening departure boundary missing');
-    await page.locator('[data-journey-continue]:visible').click();
+    if (VIDEO_RETIREMENT) {
+      // Production navigation is POI-owned since OD15-A; retain the legacy Journey proof below.
+      await page.locator('.poi-map').waitFor({ state: 'visible' });
+      const marker = page.locator('.poi-map [data-poi-id="lion-audience"]');
+      if (await marker.getAttribute('data-poi-reachable') !== 'true') throw new Error('Audience is not a reachable native POI');
+      await marker.focus(); await page.keyboard.press('Enter');
+      if (await marker.getAttribute('aria-pressed') !== 'true') throw new Error('Native POI keyboard selection failed');
+      const move = page.locator('.poi-map [data-poi-action="move"]:not(:disabled)');
+      await move.focus();
+      if (!await move.evaluate(button => button === document.activeElement)) throw new Error('Native POI move focus failed');
+      await page.screenshot({ path: resolve(OUTPUT_DIR, 'opening-camp-map.png') });
+      await page.keyboard.press('Enter');
+    } else {
+      if (await waitForBoundaryOrCombat(page, trace) !== 'journey') throw new Error('Opening departure boundary missing');
+      await page.locator('[data-journey-continue]:visible').click();
+    }
     await waitForDialogueSequence(page, 'lion_briefing', trace);
     const audience = await readPresentation(page); assertDialogueTableau(audience, 'opening audience');
     await page.screenshot({ path: resolve(OUTPUT_DIR, 'opening-audience.png') });
     await finishDialogue(page, 'lion_briefing', 0, trace);
-    if (await waitForBoundaryOrCombat(page, trace) !== 'journey') throw new Error('Audience route boundary missing');
+    if (VIDEO_RETIREMENT) await page.locator('.poi-map').waitFor({ state: 'visible' });
+    else if (await waitForBoundaryOrCombat(page, trace) !== 'journey') throw new Error('Audience route boundary missing');
     const truth = await loadSavedTruth(page);
     if (truth.flags.lionMissionAccepted !== true) throw new Error('Audience choice not owned by campaign truth');
+    if (VIDEO_RETIREMENT && (truth.currentNodeId !== 'lion-audience'
+      || !truth.resolvedNodeIds.includes('lion-audience'))) throw new Error('Native audience POI did not resolve');
     const resume = await checkResolvedResume(page);
     let videoRetirement;
     if (VIDEO_RETIREMENT) {
@@ -1151,7 +1168,8 @@ const result = { schemaVersion: 1, viewport: VIEWPORT, reducedMotion: REDUCED_MO
   finalRefugeContext: DISPLACED_FAMILY_CONTEXT ? 'exploited-refugees' : null,
   interruptPrelude: INTERRUPT_PRELUDE,
   liveOsFlip: LIVE_OS_FLIP,
-  method: PRODUCTION ? 'BUILT_PRODUCTION_REAL_GAMEAPP_V6_COMBAT_RESULT_FIXTURE_ONLY' : 'DEV_REAL_GAMEAPP_V6_QA_VICTORY', opening: [], nodes: [], finales: [], pass: false };
+  method: VIDEO_RETIREMENT ? 'BUILT_PRODUCTION_NATIVE_POI_OPENING_NO_STATE_INJECTION'
+    : PRODUCTION ? 'BUILT_PRODUCTION_REAL_GAMEAPP_V6_COMBAT_RESULT_FIXTURE_ONLY' : 'DEV_REAL_GAMEAPP_V6_QA_VICTORY', opening: [], nodes: [], finales: [], pass: false };
 let failed = false;
 try {
   if (PRODUCTION && ((CIN8_GROUP && !SCENARIO_FILTER) || SCENARIO_FILTER.split(',').includes('opening-camp-audience'))) {
