@@ -74,8 +74,9 @@
   },
   "status": {
     "generation": "GENERATED",
-    "technical": "NOT_VERIFIED",
+    "technical": "TECHNICALLY_VERIFIED",
     "art": "ART_REVIEW_PENDING",
+    "readiness": "READY_FOR_OPERATOR_REVIEW",
     "runtime": "NOT_ADOPTED"
   },
   "providerJobs": [
@@ -173,7 +174,7 @@
     "editedSeconds": 26.5,
     "expectedCostUsd": 3.64
   },
-  "lastProviderSyncAt": "2026-10-24T06:21:09.479Z",
+  "lastProviderSyncAt": "2026-10-24T06:24:05.908Z",
   "downloadedProofs": [
     {
       "path": "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot01.json",
@@ -213,10 +214,104 @@
     "sha256": "fce4856b5bda0fa1eac43ec1ba720107a2ff975e4ed0e5390c7fd2871f96ef2b"
   },
   "actualVisualReview": {
-    "shot01": "Emptyruins remain, smoke/flames change without collapse; noactor introduced",
-    "shot03": "Decodedhand reachescentralgap towardwoman, basketprotection tightens; finalbotharms/booklower andhead/bustraised; glove/hiltclearance requiresreview",
-    "runtimeAccepted": false,
+    "shot01": "Emptyruins retain architecture/ground; existingfire/smokemotion, no newactor/collapse in inspectedframes",
+    "shot02": "Distinctcloser damagedhabitation, noactor; editedfirst2.5s remainreadable",
+    "shot03": "Rightarm reaches centralgap, womancloses/hunches aroundbasket, bookLEFTretained; botharms/book lower byend andhead/buststraighten",
+    "shot04": "Closedcratesforeground, separatedfigures/no transfer; actualslowpush and gloveambiguity disclosed",
+    "finalMaster": "Extracted13.25/19.875/26.458s inspected; no newchoice/provisions distribution/reconciliation/drawnblade",
+    "limits": [
+      "Humanrightpalm is cupped/upward-or-inward rather than clearlydownward; it reaches centralgap towardwoman",
+      "Release occurs late around12–14s of15s humanblock, not the exact9–12s promptwindow; full15s retained",
+      "Finalrightglove remains adjacent/overlappingguard orsheath; no unambiguousclearance or drawnblade claimed",
+      "Finalblock has an actualslowpush despite WIDE_HOLD intent; cratesremainclosed/visible",
+      "Cut at21.5s changes bookheight and womanhunch intensity; geographical/equipment raccord remains operatorreviewtarget",
+      "Decodedframe samples/inputseamstatistics and encoding are scoped technicalevidence, not defect-free continuousmotion/anatomy or artisticacceptance"
+    ],
+    "guardian": "PASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED",
     "artAccepted": false,
-    "guardian": "PASS_SCOPED_RAW_FRAMES: gesturecentral, basketprotection, bookretained/lowered, head/bustraised; palmUP/inward, late12–14s release, gloveguardambiguity. Silentmaster/montagereviewpending."
-  }
+    "runtimeAccepted": false
+  },
+  "finalMaster": {
+    "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/bois_clair_sacrificed_manual_26_5s.mp4",
+    "sha256": "c1881750ffe667b6f2aa50ba891e0a5643d0519f99f523dbdb4af8d0b4c83263",
+    "report": {
+      "container": "mov,mp4,m4a,3gp,3g2,mj2",
+      "codec": "h264",
+      "profile": "High",
+      "pixelFormat": "yuv420p",
+      "width": 1920,
+      "height": 1080,
+      "sampleAspectRatio": "1:1",
+      "displayAspectRatio": "16:9",
+      "averageFrameRate": "24/1",
+      "durationSeconds": 26.5,
+      "audioStream": false,
+      "rotation": 0
+    },
+    "encodingEvidence": {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/assembly-evidence.json",
+      "sha256": "8077abadd6428679a4535cc1ca4fd2c1230bf6d161936990a3cccc6ecd96f01c"
+    },
+    "sourceRecipe": {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/assemble.mjs",
+      "sha256": "fce4856b5bda0fa1eac43ec1ba720107a2ff975e4ed0e5390c7fd2871f96ef2b"
+    },
+    "nativePreview": "http://127.0.0.1:5462/video.mp4"
+  },
+  "terminalProviderProofs": [
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot01.json",
+      "sha256": "fc8cd4b59117ab607814cb001489eeb744df6e118d72e9b4f1e1493063aa5705"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot02.json",
+      "sha256": "a1b0e84b0e80d7a965e8dfd76c85ce5ba950d59b37ecf5b53af239562d552b67"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot03.json",
+      "sha256": "4bfa7ba9670f4c1c4bdd6bfd95f1ac5527695b86290ab584bffdde01311ce5e0"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot04.json",
+      "sha256": "373f7e5f977ebd19123ea860f7d8043903ca181e2951302121cd566c6c249b9f"
+    }
+  ],
+  "finalVisualProofs": [
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/final-frame-extraction.json",
+      "sha256": "7f0468bc26de43694cf9be40964067afad729c616e499548783d28b57ff7cd61"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/review-human.png",
+      "sha256": "bef1ad2c0ed2eb981d1fbcb62a929d5cf24a9d405af957e64604298c667e6eb6"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/review-resolution.png",
+      "sha256": "efbe7c34e337c7a40494807db33b0f1e98db61d93601015fe53e5f4f3e6a4902"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/review-endpoint.png",
+      "sha256": "8472fd95b572f877349ce510834a7c48183804c7f92e881528803791fc555941"
+    }
+  ],
+  "nativePreview": {
+    "url": "http://127.0.0.1:5462/video.mp4",
+    "pid": 40308,
+    "server": {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/serve.cjs",
+      "sha256": "c62729aba0915931de1d0d700f8636815c38f2fca9604419267cfd6784ac5419"
+    },
+    "review": "NativeIABtab3 rendered/replayed0:00→0:26withoutcaptions; start/end screenshots observed, no browserdecoderstats or runtimebehavior acceptance claimed",
+    "retainedForOperator": true
+  },
+  "billing": {
+    "estimatedRequestedSeconds": 28,
+    "estimatedUsd": 3.64,
+    "budgetCeilingUsd": 4,
+    "providerTasks": 4,
+    "paidRetries": 0,
+    "actualBilling": "NOT_REPORTED_BY_PROVIDER",
+    "rawEncodedSeconds": 29.169
+  },
+  "completedAt": "2026-10-24T06:35:53.065Z"
 }

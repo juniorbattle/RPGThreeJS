@@ -1,0 +1,53 @@
+{
+  "cinematicId": "bois_clair_sacrificed",
+  "pipeline": "CIN-4",
+  "sequenceId": "manual_bois_partition_20261024_v1",
+  "shotId": "shot_02",
+  "tier": "HERO",
+  "sourceType": "CUT_SOURCE",
+  "fromShotId": null,
+  "framing": "AUTHORED_LOCATION_MAJOR_EVENT",
+  "camera": {
+    "mode": "STATIC",
+    "intent": "Hold this distinct close view of the charred house; motion belongs to existing flames/smoke, no scanning or orbit."
+  },
+  "continuityOut": "DELIBERATE_CUT",
+  "endIntent": "STABLE_READABLE_MOTIVATED_EDITORIAL_CUT",
+  "staging": [],
+  "specPath": "tools/cinematics/specs/manual-bois-partition-20261024.json",
+  "sourceFrame": {
+    "width": 1672,
+    "height": 941
+  },
+  "sourcePath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/source.png",
+  "sourceSha256": "f02db5029f5cc48a857d3eb9ea9f7e2a52c3e7990a1236533546c28ba4991d0e",
+  "canonicalCharacterSources": [],
+  "environmentSource": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+  "provider": "MiniMax Open Platform Direct API",
+  "apiEndpoint": "/v2/video_generation",
+  "model": "MiniMax-H3",
+  "generationMode": "image-to-video / first-frame",
+  "sourceTransport": "data:image/png;base64",
+  "resolution": "2K",
+  "duration": 4,
+  "attempt": 1,
+  "promptVersion": "manual-bois-partition-20261024-v1",
+  "promptSha256": "1f197bde275ed7d07a03f115ce896df5971d9329273525920851c3d41c38bc3a",
+  "outputCandidatePath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/candidate_01_raw.mp4",
+  "startedAt": "2026-10-24T06:13:46.271Z",
+  "status": "downloaded",
+  "taskId": "455759047762392",
+  "lastProviderStatus": "succeeded",
+  "usage": {
+    "total_seconds": 4,
+    "input_seconds": 0,
+    "output_seconds": 4,
+    "input_image_count": 1,
+    "total_tokens": 221332,
+    "prompt_tokens": 13020,
+    "completion_tokens": 208312
+  },
+  "completedAt": "2026-10-24T06:17:09.179Z",
+  "outputBytes": 4005112,
+  "outputSha256": "7c9721b2f611d410a6cb06ecdbfe6756178c85e0d745c6860c7ef4c78d22feee"
+}

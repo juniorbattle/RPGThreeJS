@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "runId": "codex-bois-video-20261024T0551Z",
+  "reviewedAt": "2026-10-24T06:35:53.065Z",
+  "status": {
+    "generation": "GENERATED",
+    "technical": "TECHNICALLY_VERIFIED",
+    "art": "ART_REVIEW_PENDING",
+    "readiness": "READY_FOR_OPERATOR_REVIEW",
+    "runtime": "NOT_ADOPTED"
+  },
+  "finalMaster": {
+    "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/bois_clair_sacrificed_manual_26_5s.mp4",
+    "sha256": "c1881750ffe667b6f2aa50ba891e0a5643d0519f99f523dbdb4af8d0b4c83263",
+    "report": {
+      "container": "mov,mp4,m4a,3gp,3g2,mj2",
+      "codec": "h264",
+      "profile": "High",
+      "pixelFormat": "yuv420p",
+      "width": 1920,
+      "height": 1080,
+      "sampleAspectRatio": "1:1",
+      "displayAspectRatio": "16:9",
+      "averageFrameRate": "24/1",
+      "durationSeconds": 26.5,
+      "audioStream": false,
+      "rotation": 0
+    },
+    "encodingEvidence": {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/assembly-evidence.json",
+      "sha256": "8077abadd6428679a4535cc1ca4fd2c1230bf6d161936990a3cccc6ecd96f01c"
+    },
+    "sourceRecipe": {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/assemble.mjs",
+      "sha256": "fce4856b5bda0fa1eac43ec1ba720107a2ff975e4ed0e5390c7fd2871f96ef2b"
+    },
+    "nativePreview": "http://127.0.0.1:5462/video.mp4"
+  },
+  "providerJobs": [
+    {
+      "shotId": "shot_01",
+      "taskId": "455754359071094",
+      "status": "downloaded",
+      "metadataPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/candidate_01_raw.metadata.json",
+      "sourceSha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464",
+      "promptSha256": "caef363a88824659dd9e466b5e0bef35dcff481b1dda9b7b676b2af710baba7f",
+      "duration": 4,
+      "resolution": "2K",
+      "attempt": 1,
+      "outputPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/candidate_01_raw.mp4",
+      "outputSha256": "4ff8275a47c3b2ab435271aa3bae65e99c72944431662f3b1eeae6fd85c11212",
+      "outputBytes": 4972945
+    },
+    {
+      "shotId": "shot_02",
+      "taskId": "455759047762392",
+      "status": "downloaded",
+      "metadataPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/candidate_01_raw.metadata.json",
+      "sourceSha256": "f02db5029f5cc48a857d3eb9ea9f7e2a52c3e7990a1236533546c28ba4991d0e",
+      "promptSha256": "1f197bde275ed7d07a03f115ce896df5971d9329273525920851c3d41c38bc3a",
+      "duration": 4,
+      "resolution": "2K",
+      "attempt": 1,
+      "outputPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/candidate_01_raw.mp4",
+      "outputSha256": "7c9721b2f611d410a6cb06ecdbfe6756178c85e0d745c6860c7ef4c78d22feee",
+      "outputBytes": 4005112
+    },
+    {
+      "shotId": "shot_03",
+      "taskId": "455753654690290",
+      "status": "downloaded",
+      "metadataPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/candidate_01_raw.metadata.json",
+      "sourceSha256": "8e9a6e1c58546a1d762631cca9ce853b1f1321e2001ad084ab4b7415c5a962ae",
+      "promptSha256": "1a900e3136ffb73f3fbf9f781aba4d71a533e8607e3dd1ca51e97c4743e6f9ab",
+      "duration": 15,
+      "resolution": "2K",
+      "attempt": 1,
+      "outputPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/candidate_01_raw.mp4",
+      "outputSha256": "8f4b1e36ae8ce3ec7fe31d82adb9b7f1c488e67279970732b56042429a4b0c40",
+      "outputBytes": 17498917
+    },
+    {
+      "shotId": "shot_04",
+      "taskId": "455761043280385",
+      "status": "downloaded",
+      "metadataPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_04/candidate_01_raw.metadata.json",
+      "sourceSha256": "119b2cfd128bd91be26ec84286ac6b4b4a291285e59d661798ff1d56ba08ab7c",
+      "promptSha256": "2db5996e314734d6346607002176f2dfae7b35c0482f9e016cb6319898de9654",
+      "duration": 5,
+      "resolution": "2K",
+      "attempt": 1,
+      "outputPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_04/candidate_01_raw.mp4",
+      "outputSha256": "162e4e7c0d002c5735ec25f62dea065f6f6d4f202d7b1eacf04ba8a9a1285e42",
+      "outputBytes": 5840009
+    }
+  ],
+  "visual": {
+    "shot01": "Emptyruins retain architecture/ground; existingfire/smokemotion, no newactor/collapse in inspectedframes",
+    "shot02": "Distinctcloser damagedhabitation, noactor; editedfirst2.5s remainreadable",
+    "shot03": "Rightarm reaches centralgap, womancloses/hunches aroundbasket, bookLEFTretained; botharms/book lower byend andhead/buststraighten",
+    "shot04": "Closedcratesforeground, separatedfigures/no transfer; actualslowpush and gloveambiguity disclosed",
+    "finalMaster": "Extracted13.25/19.875/26.458s inspected; no newchoice/provisions distribution/reconciliation/drawnblade",
+    "limits": [
+      "Humanrightpalm is cupped/upward-or-inward rather than clearlydownward; it reaches centralgap towardwoman",
+      "Release occurs late around12–14s of15s humanblock, not the exact9–12s promptwindow; full15s retained",
+      "Finalrightglove remains adjacent/overlappingguard orsheath; no unambiguousclearance or drawnblade claimed",
+      "Finalblock has an actualslowpush despite WIDE_HOLD intent; cratesremainclosed/visible",
+      "Cut at21.5s changes bookheight and womanhunch intensity; geographical/equipment raccord remains operatorreviewtarget",
+      "Decodedframe samples/inputseamstatistics and encoding are scoped technicalevidence, not defect-free continuousmotion/anatomy or artisticacceptance"
+    ],
+    "guardian": "PASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED",
+    "artAccepted": false,
+    "runtimeAccepted": false
+  },
+  "limits": [
+    "Humanrightpalm is cupped/upward-or-inward rather than clearlydownward; it reaches centralgap towardwoman",
+    "Release occurs late around12–14s of15s humanblock, not the exact9–12s promptwindow; full15s retained",
+    "Finalrightglove remains adjacent/overlappingguard orsheath; no unambiguousclearance or drawnblade claimed",
+    "Finalblock has an actualslowpush despite WIDE_HOLD intent; cratesremainclosed/visible",
+    "Cut at21.5s changes bookheight and womanhunch intensity; geographical/equipment raccord remains operatorreviewtarget",
+    "Decodedframe samples/inputseamstatistics and encoding are scoped technicalevidence, not defect-free continuousmotion/anatomy or artisticacceptance"
+  ],
+  "compliance": {
+    "verdict": "PASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED",
+    "set": "1.9.0",
+    "baseline": "32c8439f6dea1d09f428c5c081392ab0c700e356",
+    "lockedRulesChanged": false,
+    "matrix": {
+      "GAME_CONSTITUTION": "PASS",
+      "ART_DIRECTION": "PASS_SCOPED_OPERATOR_PENDING",
+      "CHARACTERS": "PASS_SCOPED_EQUIPMENT_LIMIT_DISCLOSED",
+      "ENVIRONMENTS": "PASS",
+      "NARRATIVE_CAMPAIGN": "PASS",
+      "NARRATIVE_PRESENTATION": "PASS_SCOPED",
+      "TRAVERSAL": "N/A",
+      "COMBAT": "N/A",
+      "SAVE": "PASS",
+      "UI_ACCESSIBILITY": "N/A_NO_RUNTIME_INTEGRATION",
+      "QA_EVIDENCE": "PASS_SCOPED",
+      "REPOSITORY_GOVERNANCE": "PASS"
+    }
+  },
+  "nativePreview": {
+    "url": "http://127.0.0.1:5462/video.mp4",
+    "pid": 40308,
+    "server": {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/serve.cjs",
+      "sha256": "c62729aba0915931de1d0d700f8636815c38f2fca9604419267cfd6784ac5419"
+    },
+    "review": "NativeIABtab3 rendered/replayed0:00→0:26withoutcaptions; start/end screenshots observed, no browserdecoderstats or runtimebehavior acceptance claimed",
+    "retainedForOperator": true
+  },
+  "tests": {
+    "focusedTests": 155,
+    "typeScript": "PASS",
+    "contracts": "8LOCKED/8slotsPASS",
+    "sourceSpec": "4source/promptSHA/nativeframePASS",
+    "oldActorPromptsByteIdentical": 13,
+    "newAutomatedBrowserScenarios": 0,
+    "nativeBrowserPreview": "Observed actual render/replay start/end; no runtimeQA inferred"
+  },
+  "seamProofScope": "Statistics decode INPUT shotendpoint frames, not final-output seamframes. Finaloutput separately probed and samples extracted/inspected.",
+  "preservation": {
+    "inheritedQaJobs": 362,
+    "allJobsAndAcceptancesDeepEqual": true,
+    "illustratedPilotDeepEqual": true,
+    "gameplaySteps": 0,
+    "runtimeSourceFiles": 0,
+    "productionMp4Replaced": false,
+    "schedulerChanged": false
+  },
+  "budget": {
+    "estimatedRequestedSeconds": 28,
+    "estimatedUsd": 3.64,
+    "budgetCeilingUsd": 4,
+    "providerTasks": 4,
+    "paidRetries": 0,
+    "actualBilling": "NOT_REPORTED_BY_PROVIDER",
+    "rawEncodedSeconds": 29.169
+  },
+  "nextAction": "Operator reviews this same26.5s manualvideo and gives artisticverdict; no paidretry, scene-generalization or runtimeadoption inferred. Recurring video/keyframe/MiniMax work remains prohibited."
+}

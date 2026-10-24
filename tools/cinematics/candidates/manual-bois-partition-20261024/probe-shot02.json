@@ -1,0 +1,100 @@
+{
+  "recordedAt": "2026-10-24T06:22:03.575Z",
+  "slot": "bois_clair_sacrificed",
+  "shot": "shot_02",
+  "input": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/candidate_01_raw.mp4",
+  "sha256": "7c9721b2f611d410a6cb06ecdbfe6756178c85e0d745c6860c7ef4c78d22feee",
+  "media": {
+    "container": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec": "h264",
+    "profile": "High",
+    "pixelFormat": "yuv420p",
+    "width": 2560,
+    "height": 1440,
+    "sampleAspectRatio": null,
+    "displayAspectRatio": null,
+    "averageFrameRate": "24/1",
+    "durationSeconds": 4.459,
+    "audioStream": true,
+    "rotation": 0
+  },
+  "authoredBlockDurationSeconds": 4,
+  "durationDeltaSeconds": 0.45899999999999963,
+  "frames": [
+    {
+      "label": "first",
+      "seconds": 0,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot02/first.png",
+      "sha256": "98e6ee92521b4229e253aadb4a90dcbcc6f97c6f6ad3fc0db90417b56c66ddaf"
+    },
+    {
+      "label": "initiation",
+      "seconds": 0.5,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot02/initiation.png",
+      "sha256": "819bc03b8dafebc3d68be734e2baaf09f24978b07ab3586197ff4c95ea683b13"
+    },
+    {
+      "label": "stride",
+      "seconds": 1,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot02/stride.png",
+      "sha256": "ad791879fe54f5298d9e6740d3c61265976e6e43ebe6a37a9b891ec5213f6c3d"
+    },
+    {
+      "label": "middle",
+      "seconds": 2,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot02/middle.png",
+      "sha256": "eaf7324b46ec1dbd313d1fcd7a98c9445449f9b3ae3404be3ef3bb80c20c79f8"
+    },
+    {
+      "label": "progression",
+      "seconds": 3,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot02/progression.png",
+      "sha256": "db5d012dee09d43f17b08ac0b8d91d0a0b819d3e6cc31eee6084a8816d85c675"
+    },
+    {
+      "label": "final",
+      "seconds": 3.9,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot02/final.png",
+      "sha256": "744d99bff3375d0d49cda9fb3c2fa74bcc301a3569a804fb3d780642c3d5f40e"
+    }
+  ],
+  "motion": [
+    {
+      "seconds": 0.5,
+      "worldMeanAbsoluteDelta": 2.21,
+      "actorsMeanAbsoluteDelta": 1.683
+    },
+    {
+      "seconds": 1,
+      "worldMeanAbsoluteDelta": 2.181,
+      "actorsMeanAbsoluteDelta": 1.744
+    },
+    {
+      "seconds": 1.5,
+      "worldMeanAbsoluteDelta": 2.475,
+      "actorsMeanAbsoluteDelta": 2.013
+    },
+    {
+      "seconds": 2,
+      "worldMeanAbsoluteDelta": 2.042,
+      "actorsMeanAbsoluteDelta": 1.571
+    },
+    {
+      "seconds": 2.5,
+      "worldMeanAbsoluteDelta": 2.33,
+      "actorsMeanAbsoluteDelta": 2.184
+    },
+    {
+      "seconds": 3,
+      "worldMeanAbsoluteDelta": 2.432,
+      "actorsMeanAbsoluteDelta": 2.346
+    },
+    {
+      "seconds": 3.5,
+      "worldMeanAbsoluteDelta": 2.137,
+      "actorsMeanAbsoluteDelta": 1.929
+    }
+  ],
+  "contactSheetPaddingTiles": 2,
+  "scope": "DECODED_FRAME_DIFFERENCES_ARE_DIAGNOSTIC_ONLY_CAMERA_MOTION_CAN_CAUSE_THEM;_ARTISTIC_REVIEW_REQUIRED"
+}

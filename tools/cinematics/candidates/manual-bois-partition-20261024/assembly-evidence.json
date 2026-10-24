@@ -1,0 +1,314 @@
+{
+  "recordedAt": "2026-10-24T06:22:36.732Z",
+  "manualOnly": true,
+  "spec": {
+    "path": "tools/cinematics/specs/manual-bois-partition-20261024.json",
+    "sha256": "273ee96304f67a20e690417579ed4eca86633cb3c7a5f88756990d3be4ef3731"
+  },
+  "clips": [
+    {
+      "shotId": "shot_01",
+      "raw": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/candidate_01_raw.mp4",
+        "sha256": "4ff8275a47c3b2ab435271aa3bae65e99c72944431662f3b1eeae6fd85c11212"
+      },
+      "rawReport": {
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "codec": "h264",
+        "profile": "High",
+        "pixelFormat": "yuv420p",
+        "width": 2560,
+        "height": 1440,
+        "sampleAspectRatio": null,
+        "displayAspectRatio": null,
+        "averageFrameRate": "24/1",
+        "durationSeconds": 4.459,
+        "audioStream": true,
+        "rotation": 0
+      },
+      "rawVideoStream": {
+        "avg_frame_rate": "24/1",
+        "duration": "4.458984",
+        "nb_frames": "107"
+      },
+      "providerMetadata": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/candidate_01_raw.metadata.json",
+        "sha256": "fc8cd4b59117ab607814cb001489eeb744df6e118d72e9b4f1e1493063aa5705"
+      },
+      "master": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/shot_master.mp4",
+        "sha256": "e5b899f3a6dfcdb5ff583ac3fc7546f100202a062bccf273098a42d58f9b0eb2"
+      },
+      "masterMetadata": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/shot_master.metadata.json",
+        "sha256": "1f9405a6db641a4a21c3bb802053479be60b89630d079e7478732ed2b13d208d"
+      },
+      "duration": 4,
+      "editorialDuration": 4
+    },
+    {
+      "shotId": "shot_02",
+      "raw": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/candidate_01_raw.mp4",
+        "sha256": "7c9721b2f611d410a6cb06ecdbfe6756178c85e0d745c6860c7ef4c78d22feee"
+      },
+      "rawReport": {
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "codec": "h264",
+        "profile": "High",
+        "pixelFormat": "yuv420p",
+        "width": 2560,
+        "height": 1440,
+        "sampleAspectRatio": null,
+        "displayAspectRatio": null,
+        "averageFrameRate": "24/1",
+        "durationSeconds": 4.459,
+        "audioStream": true,
+        "rotation": 0
+      },
+      "rawVideoStream": {
+        "avg_frame_rate": "24/1",
+        "duration": "4.458984",
+        "nb_frames": "107"
+      },
+      "providerMetadata": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/candidate_01_raw.metadata.json",
+        "sha256": "a1b0e84b0e80d7a965e8dfd76c85ce5ba950d59b37ecf5b53af239562d552b67"
+      },
+      "master": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/shot_master.mp4",
+        "sha256": "1fd57efdc3b002b71a8dfc832e4348746b5952ca31978089bcc4c2d873f36246"
+      },
+      "masterMetadata": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/shot_master.metadata.json",
+        "sha256": "32aa3d6363639bad51a2ecae3ba8550b80cf1ae0987fb690c43c03300cfec8c2"
+      },
+      "duration": 4,
+      "editorialDuration": 2.5
+    },
+    {
+      "shotId": "shot_03",
+      "raw": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/candidate_01_raw.mp4",
+        "sha256": "8f4b1e36ae8ce3ec7fe31d82adb9b7f1c488e67279970732b56042429a4b0c40"
+      },
+      "rawReport": {
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "codec": "h264",
+        "profile": "High",
+        "pixelFormat": "yuv420p",
+        "width": 2560,
+        "height": 1440,
+        "sampleAspectRatio": null,
+        "displayAspectRatio": null,
+        "averageFrameRate": "24/1",
+        "durationSeconds": 15.084,
+        "audioStream": true,
+        "rotation": 0
+      },
+      "rawVideoStream": {
+        "avg_frame_rate": "24/1",
+        "duration": "15.083984",
+        "nb_frames": "362"
+      },
+      "providerMetadata": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/candidate_01_raw.metadata.json",
+        "sha256": "4bfa7ba9670f4c1c4bdd6bfd95f1ac5527695b86290ab584bffdde01311ce5e0"
+      },
+      "master": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/shot_master.mp4",
+        "sha256": "d3e5c860d30dfdf49a328d2646313e07f10ff21c9d01dfb79de72f8726257820"
+      },
+      "masterMetadata": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/shot_master.metadata.json",
+        "sha256": "edbe9b2a0145ebb58a21c1c846b5d7e83faa14a73d205879758fd314a752f6fd"
+      },
+      "duration": 15,
+      "editorialDuration": 15
+    },
+    {
+      "shotId": "shot_04",
+      "raw": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_04/candidate_01_raw.mp4",
+        "sha256": "162e4e7c0d002c5735ec25f62dea065f6f6d4f202d7b1eacf04ba8a9a1285e42"
+      },
+      "rawReport": {
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "codec": "h264",
+        "profile": "High",
+        "pixelFormat": "yuv420p",
+        "width": 2560,
+        "height": 1440,
+        "sampleAspectRatio": null,
+        "displayAspectRatio": null,
+        "averageFrameRate": "24/1",
+        "durationSeconds": 5.167,
+        "audioStream": true,
+        "rotation": 0
+      },
+      "rawVideoStream": {
+        "avg_frame_rate": "24/1",
+        "duration": "5.166992",
+        "nb_frames": "124"
+      },
+      "providerMetadata": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_04/candidate_01_raw.metadata.json",
+        "sha256": "373f7e5f977ebd19123ea860f7d8043903ca181e2951302121cd566c6c249b9f"
+      },
+      "master": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_04/shot_master.mp4",
+        "sha256": "743ba4e05c7fa78c036e9330bc8c0cb88f58924385a7c481f89dee4bda73a6e5"
+      },
+      "masterMetadata": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_04/shot_master.metadata.json",
+        "sha256": "e2c5e19dbe4465ad303af6c25272d3c8adf8b8e6fd8161ef904132f80d72da8b"
+      },
+      "duration": 5,
+      "editorialDuration": 5
+    }
+  ],
+  "output": {
+    "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/bois_clair_sacrificed_manual_26_5s.mp4",
+    "sha256": "c1881750ffe667b6f2aa50ba891e0a5643d0519f99f523dbdb4af8d0b4c83263"
+  },
+  "report": {
+    "container": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec": "h264",
+    "profile": "High",
+    "pixelFormat": "yuv420p",
+    "width": 1920,
+    "height": 1080,
+    "sampleAspectRatio": "1:1",
+    "displayAspectRatio": "16:9",
+    "averageFrameRate": "24/1",
+    "durationSeconds": 26.5,
+    "audioStream": false,
+    "rotation": 0
+  },
+  "boundaries": [
+    {
+      "atSeconds": 4,
+      "transition": "CUT",
+      "before": {
+        "mean": 59.469,
+        "standardDeviation": 44.981,
+        "minimum": 0,
+        "maximum": 255,
+        "darkFraction": 0.07909,
+        "nonblack": true,
+        "nonblank": true
+      },
+      "after": {
+        "mean": 59.016,
+        "standardDeviation": 50.233,
+        "minimum": 0,
+        "maximum": 255,
+        "darkFraction": 0.12291,
+        "nonblack": true,
+        "nonblank": true
+      },
+      "difference": {
+        "meanAbsoluteDifference": 47.8954,
+        "changedChannelFraction": 0.863728
+      }
+    },
+    {
+      "atSeconds": 6.5,
+      "transition": "CUT",
+      "before": {
+        "mean": 59.727,
+        "standardDeviation": 49.836,
+        "minimum": 0,
+        "maximum": 255,
+        "darkFraction": 0.115094,
+        "nonblack": true,
+        "nonblank": true
+      },
+      "after": {
+        "mean": 60.16,
+        "standardDeviation": 49.273,
+        "minimum": 0,
+        "maximum": 255,
+        "darkFraction": 0.102417,
+        "nonblack": true,
+        "nonblank": true
+      },
+      "difference": {
+        "meanAbsoluteDifference": 49.5295,
+        "changedChannelFraction": 0.865152
+      }
+    },
+    {
+      "atSeconds": 21.5,
+      "transition": "CUT",
+      "before": {
+        "mean": 67.673,
+        "standardDeviation": 53.183,
+        "minimum": 0,
+        "maximum": 255,
+        "darkFraction": 0.076707,
+        "nonblack": true,
+        "nonblank": true
+      },
+      "after": {
+        "mean": 58.785,
+        "standardDeviation": 51.796,
+        "minimum": 0,
+        "maximum": 255,
+        "darkFraction": 0.128842,
+        "nonblack": true,
+        "nonblank": true
+      },
+      "difference": {
+        "meanAbsoluteDifference": 45.9573,
+        "changedChannelFraction": 0.843116
+      }
+    }
+  ],
+  "ffmpegCommand": {
+    "executable": "C:\\Users\\miche\\Documents\\Projects\\RPGThreeJS\\tmp\\cinematics\\toolchain\\node_modules\\ffmpeg-static\\ffmpeg.exe",
+    "args": [
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-nostdin",
+      "-i",
+      "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/shot_master.mp4",
+      "-i",
+      "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/shot_master.mp4",
+      "-i",
+      "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/shot_master.mp4",
+      "-i",
+      "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_04/shot_master.mp4",
+      "-filter_complex",
+      "[0:v:0]trim=duration=4,setpts=PTS-STARTPTS[v0];[1:v:0]trim=duration=2.5,setpts=PTS-STARTPTS[v1];[2:v:0]trim=duration=15,setpts=PTS-STARTPTS[v2];[3:v:0]trim=duration=5,setpts=PTS-STARTPTS[v3];[v0][v1][v2][v3]concat=n=4:v=1:a=0,setsar=1,format=yuv420p[v]",
+      "-map",
+      "[v]",
+      "-an",
+      "-map_metadata",
+      "-1",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "slow",
+      "-crf",
+      "18",
+      "-profile:v",
+      "high",
+      "-pix_fmt",
+      "yuv420p",
+      "-g",
+      "48",
+      "-movflags",
+      "+faststart",
+      "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/bois_clair_sacrificed_manual_26_5s.part.mp4"
+    ]
+  },
+  "durationSeconds": 26.5,
+  "trim": {
+    "shot_02": "First2.5s of4s; no retiming; no otherclip trimmed"
+  },
+  "audio": "Allmasters/final-an; noaudio stream",
+  "justification": "Existingmaster_shot reused. Existingassemble_sequence totals integergeneration durations28s and has no editorialtrim; bounded standardffmpegtrim/concat preserves existingvalidator/assembler assertions, with existingprobe/technicalErrors and seamhelpers reused.",
+  "status": "TECHNICAL_ENCODING_VERIFIED_ART_REVIEW_PENDING"
+}

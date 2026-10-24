@@ -1,14 +1,20 @@
-# Bois-Clair : candidat vidéo MiniMax manuel
+# Bois-Clair : vidéo MiniMax prête pour revue artistique
 
-Run codex-bois-video-20261024T0551Z, début2026-10-24T05:51:50.0908309Z. Nouvelle demande directe opérateur : transformer la partitionv4 en vidéo. [Décision](MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md), [spécification](../../tools/cinematics/specs/manual-bois-partition-20261024.json). Quatreblocs4/4/15/5s générés, montage4/2,5/15/5=26,5s, estimation3,64$US/max4$US, un essai payant/bloc et aucune relance payante automatique. Sourcesv4/01/02/03/08 réutilisées exactement. Capacité explicite environmentOnly/test/revue avant fournisseur.
+Run codex-bois-video-20261024T0551Z, début2026-10-24T05:51:50.0908309Z. [Vidéo locale](http://127.0.0.1:5462/video.mp4) · [revue](../../tools/cinematics/candidates/manual-bois-partition-20261024/review.md) · [handoff](handoffs/2026-10-24T0551Z-codex-bois-video.md).
 
-Ce chantier est MANUAL EXTERNAL, pas une permission pour la récurrence : scheduler PAUSED/90min/xhigh inchangé. Les362jobs et toutes les acceptations, versions illustrées et la revueART_NEEDS_CORRECTION04/06 demeurent historiques ; méthode illustréePENDING/généralisationfalse/runtimeNOT_ADOPTED. Aucun nouveau keyframe/runtime/slot/LOCKED/audio.
+Quatre tâches manuelles téléchargées, un essai chacune/zéro retry. Film26,5s exact,1920×1080/24fps/H.264/yuv420p, sans audio ; SHAc1881750ffe667b6f2aa50ba891e0a5643d0519f99f523dbdb4af8d0b4c83263. Ordre4/2,5/15/5s, coupes4/6,5/21,5 ; bloc humain15s complet. GENERATED/TECHNICALLY_VERIFIED/ART_REVIEW_PENDING/READY_FOR_OPERATOR_REVIEW, runtimeNOT_ADOPTED.
 
-Prochaine action : Verify bounded environmentOnly plans/prompt compilation, then submit four manual firstframe tasks once each; inspect actualvideo before silentmontage. Recurringgeneration remainsprohibited.
+Main droite vers femme, fermeture du panier, bras/livre gauche abaissés puis redressement visibles. Réserves : paume cuppée/vershaut, retombée tardive, gant/fourreau ambigu, push final non demandé et raccord21,5s livre/posture. Revue indépendantePASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED.155tests/TypeScript/contrats8/8/sourceSHA/probes/extractions PASS. Statistiques des raccords = frames d’extrémité des entrées, pas preuve de frames finales aux raccords. Aperçu natif rendu/relu, pas acceptation du mouvement complet ou runtime.
+
+Les362QA/acceptations et pilote illustrév4 sont identiques à l’entrée du run ;0gameplay/src/public/runtime/LOCKED/save/POI/combat/MP4 de production modifié. Scheduler PAUSED/90min/xhigh/configSHA25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07 inchangé. Bruts/masters ignorés conservés,4taskIDs dans la provenance, aucune tâche fournisseur pendante. Serveur borné40308/5462 et ongletvidéo3 conservés pour opérateur ; anciensserveurs intacts.
+
+UNE prochaine action : Operator reviews the existing26.5s silentmanualvideo and returns an artisticverdict on gesture/release/pacing/raccord. No new paidtask or runtimeadoption; recurringMiniMax remainsprohibited.
+
+Publication finale des preuves/état à faire sur origin/dev selonOD12-A ; main protégé.
 
 
-Préflight propre, dev434a150f/main00b96f1b, anciensserveurs conservés, aucune génération vidéo en attente avant ce run. Exactes requêtes/SHA et taskIds à checkpoint avant/après appels. Autorisation fournisseur permanente OD01-A/B confirmée ; ne pas réutiliser les anciens prompts walking/step/emptyhandraise du remaster, incompatibles avec cette partition.
+Préflight nouveau chantier propredev434a150f ; ancienrunillustré clôturé/publié avant verroumanuel atomique. Autorisationdirecte « transforme cette partition en video avec minimax » + OD01-A/B, aucun nouvel accord fournisseur exigé. Préparation3b606f5f/checkpoint34bd349d publiés. Aucun usage de l’ancienprompt walking/villageoisestep, aucune extensioncamp05/lastframe, aucun keyframe neuf.
 
-<!-- MANUAL_VIDEO_PROGRESS_START -->
-2026-10-24T06:21:09.479Z : shot_01=downloaded task455754359071094 ; shot_02=downloaded task455759047762392 ; shot_03=downloaded task455753654690290 ; shot_04=downloaded task455761043280385. Tâches réservées sans nouvelessai ; acceptation artistique et runtime en attente.
-<!-- MANUAL_VIDEO_PROGRESS_END -->
+TaskIDs :01=455754359071094 ;02=455759047762392 ;03=455753654690290 ;04=455761043280385, tousdownloaded. Bruts4,459/4,459/15,084/5,167s avec audioinvolontaire ; imagesdébut/milieu/fin/contactsheet inspectées. Masters de plans conformes et silence du film final vérifié, pas de padding de mouvementmanquant. RecetteFFmpeg et exactes requêtes/SHA versionnées. Aperçu natif,0scénarioautomatisécampagne,0nouveaujobQA ;362jobs préservés exactement.
+
+Comptage :{"runtimeSourceFilesModified":0,"gameplaySteps":0,"toolingFilesModified":1,"toolingTestFilesModified":1,"newImages":0,"imagegenCalls":0,"providerTasksSubmitted":4,"downloadedBlocks":4,"paidRetries":0,"generatedRequestedSeconds":28,"editedSeconds":26.5,"qaScenarios":0,"nativePreviewSessions":1,"newQaJobs":0,"inheritedQaJobs":362,"totalQaJobs":362,"inheritedWipPaths":0,"selectedPublicationPaths":36,"qaAndProofFiles":17,"workflowFiles":7}. Coût prévu3,64$US pour28s demandées, plafond4$, facturationexacte nonrapportée,0paidretry. Revueartopérateur de ce mêmefilm avant toute nouvelle dépense ; scopeillustré/cadence/activation restent séparés.

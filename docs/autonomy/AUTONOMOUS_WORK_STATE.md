@@ -1,10 +1,16 @@
-# Bois-Clair : candidat vidéo MiniMax manuel
+# Bois-Clair : vidéo MiniMax prête pour revue artistique
 
-Run codex-bois-video-20261024T0551Z, début2026-10-24T05:51:50.0908309Z. Nouvelle demande directe opérateur : transformer la partitionv4 en vidéo. [Décision](MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md), [spécification](../../tools/cinematics/specs/manual-bois-partition-20261024.json). Quatreblocs4/4/15/5s générés, montage4/2,5/15/5=26,5s, estimation3,64$US/max4$US, un essai payant/bloc et aucune relance payante automatique. Sourcesv4/01/02/03/08 réutilisées exactement. Capacité explicite environmentOnly/test/revue avant fournisseur.
+Run codex-bois-video-20261024T0551Z, début2026-10-24T05:51:50.0908309Z. [Vidéo locale](http://127.0.0.1:5462/video.mp4) · [revue](../../tools/cinematics/candidates/manual-bois-partition-20261024/review.md) · [handoff](handoffs/2026-10-24T0551Z-codex-bois-video.md).
 
-Ce chantier est MANUAL EXTERNAL, pas une permission pour la récurrence : scheduler PAUSED/90min/xhigh inchangé. Les362jobs et toutes les acceptations, versions illustrées et la revueART_NEEDS_CORRECTION04/06 demeurent historiques ; méthode illustréePENDING/généralisationfalse/runtimeNOT_ADOPTED. Aucun nouveau keyframe/runtime/slot/LOCKED/audio.
+Quatre tâches manuelles téléchargées, un essai chacune/zéro retry. Film26,5s exact,1920×1080/24fps/H.264/yuv420p, sans audio ; SHAc1881750ffe667b6f2aa50ba891e0a5643d0519f99f523dbdb4af8d0b4c83263. Ordre4/2,5/15/5s, coupes4/6,5/21,5 ; bloc humain15s complet. GENERATED/TECHNICALLY_VERIFIED/ART_REVIEW_PENDING/READY_FOR_OPERATOR_REVIEW, runtimeNOT_ADOPTED.
 
-Prochaine action : Verify bounded environmentOnly plans/prompt compilation, then submit four manual firstframe tasks once each; inspect actualvideo before silentmontage. Recurringgeneration remainsprohibited.
+Main droite vers femme, fermeture du panier, bras/livre gauche abaissés puis redressement visibles. Réserves : paume cuppée/vershaut, retombée tardive, gant/fourreau ambigu, push final non demandé et raccord21,5s livre/posture. Revue indépendantePASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED.155tests/TypeScript/contrats8/8/sourceSHA/probes/extractions PASS. Statistiques des raccords = frames d’extrémité des entrées, pas preuve de frames finales aux raccords. Aperçu natif rendu/relu, pas acceptation du mouvement complet ou runtime.
+
+Les362QA/acceptations et pilote illustrév4 sont identiques à l’entrée du run ;0gameplay/src/public/runtime/LOCKED/save/POI/combat/MP4 de production modifié. Scheduler PAUSED/90min/xhigh/configSHA25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07 inchangé. Bruts/masters ignorés conservés,4taskIDs dans la provenance, aucune tâche fournisseur pendante. Serveur borné40308/5462 et ongletvidéo3 conservés pour opérateur ; anciensserveurs intacts.
+
+UNE prochaine action : Operator reviews the existing26.5s silentmanualvideo and returns an artisticverdict on gesture/release/pacing/raccord. No new paidtask or runtimeadoption; recurringMiniMax remainsprohibited.
+
+Publication finale des preuves/état à faire sur origin/dev selonOD12-A ; main protégé.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -380,5 +386,5 @@ Livraison 9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9 publiée et paritédev/origin
 ClôtureUTC2026-10-24T05:46:57.320Z : livraisonc5e79378 publiée/vérifiée,61fichiers candidat identiques aux octets commités ; verrou à libérer après publication de cette clôture metadata.362QA dont360hérités identiques, aucun workerQA/Git/build laissé ; serveur21636/5461 conservé pour revue. Scope artistique reste partiel et méthodePENDING.
 
 <!-- MANUAL_VIDEO_PROGRESS_START -->
-2026-10-24T06:21:09.479Z : shot_01=downloaded task455754359071094 ; shot_02=downloaded task455759047762392 ; shot_03=downloaded task455753654690290 ; shot_04=downloaded task455761043280385. Tâches réservées sans nouvelessai ; acceptation artistique et runtime en attente.
+2026-10-24T06:24:05.908Z : shot_01=downloaded task455754359071094 ; shot_02=downloaded task455759047762392 ; shot_03=downloaded task455753654690290 ; shot_04=downloaded task455761043280385. Tâches réservées sans nouvelessai ; acceptation artistique et runtime en attente.
 <!-- MANUAL_VIDEO_PROGRESS_END -->

@@ -3,16 +3,19 @@
   "runStartedAt": "2026-10-24T05:51:50.0908309Z",
   "runEndedAt": null,
   "activeTask": "MANUAL-BOIS-CLAIR-PARTITION-MINIMAX",
-  "activePhase": "MANUAL_MINIMAX_SUBMITTING_HUMAN_BLOCK",
-  "activeSubtask": "Firstpaidtask shot03/15s; no retry if POST outcome ambiguous",
+  "activePhase": "MANUAL_VIDEO_READY_FOR_OPERATOR_REVIEW",
+  "activeSubtask": "Four generatedclips assembled into exact26.5s silentreviewmaster; fullhuman15s preserved; operatorartpending",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "434a150fc37dbb9b3020160cf8ec8c9601191e8a",
-  "lastPushedCommit": "434a150fc37dbb9b3020160cf8ec8c9601191e8a",
+  "lastKnownGoodCommit": "34bd349d995a73fdc0576e7623b8555deba61301",
+  "lastPushedCommit": "34bd349d995a73fdc0576e7623b8555deba61301",
   "completedThisRun": [
     "Clean dev434a150f/origin parity, prior illustratedrun closed andlockarchived, newatomic manual lock",
     "Standing manualMiniMaxauthority and live request verified;4nativeexistingplates reused, no newimagegen",
     "28s generation/26.5s edit,4payloads estimated3.64USD max4USD zeroautomaticpaidretries prepared",
-    "Strict environmentOnly capability with155testsPASS;13oldactorprompts byteidentical;4sources/spec validated"
+    "Strict environmentOnly capability with155testsPASS;13oldactorprompts byteidentical;4sources/spec validated",
+    "Four exactlyboundMiniMaxfirstframe tasks downloaded; raw/taskIDs/metadata/request/sourceSHA retained,0paidretries",
+    "Actualdecodedframe progression and independentmanualscope reviewPASS; exact26.5s1080p24fps silentmaster verified",
+    "Nativebrowser video rendered/replayed withoutcaptions; encoding/frameclaims kept distinct from art/runtimeacceptance"
   ],
   "filesChanged": [
     ".gitattributes",
@@ -21,13 +24,32 @@
     "docs/autonomy/MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md",
     "docs/autonomy/OPERATOR_DECISIONS.md",
     "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/assemble.mjs",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/assembly-evidence.json",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/final-frame-extraction.json",
     "tools/cinematics/candidates/manual-bois-partition-20261024/preflight.json",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot01.json",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot02.json",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot03.json",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot04.json",
     "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_01.txt",
     "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_02.txt",
     "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_03.txt",
     "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_04.txt",
     "tools/cinematics/candidates/manual-bois-partition-20261024/provenance.json",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/provider-events.jsonl",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot01.json",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot02.json",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot03.json",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot04.json",
     "tools/cinematics/candidates/manual-bois-partition-20261024/requests.json",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/review-closeout.json",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/review-endpoint.png",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/review-human-contact.png",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/review-human.png",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/review-resolution.png",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/review.md",
+    "tools/cinematics/candidates/manual-bois-partition-20261024/serve.cjs",
     "tools/cinematics/candidates/manual-bois-partition-20261024/verification-preflight.json",
     "tools/cinematics/cin4_shot_spec.mjs",
     "tools/cinematics/cin4_shot_spec.test.mjs",
@@ -36,22 +58,25 @@
   "testsRun": [
     "155focusedtests:33shotvalidator/122capresume",
     "TypeScript--noEmit,contracts8/8,LOCKEDbaseline/diffcheck",
-    "Four source/spec/SHA/nativeframe validation;13oldactorprompts byteidentical"
+    "Four source/spec/SHA/nativeframe validation;13oldactorprompts byteidentical",
+    "Four raw/masterprobes and own26.5sH264/1080p24fps/audioabsent checks",
+    "Actualraw/finalframe extraction and independentcanon/equipment/raccordreview"
   ],
   "testsPassed": [
     "155focusedtests:33shotvalidator/122capresume",
     "TypeScript--noEmit,contracts8/8,LOCKEDbaseline/diffcheck",
-    "Four source/spec/SHA/nativeframe validation;13oldactorprompts byteidentical"
+    "Four source/spec/SHA/nativeframe validation;13oldactorprompts byteidentical",
+    "Four raw/masterprobes and own26.5sH264/1080p24fps/audioabsent checks",
+    "Actualraw/finalframe extraction and independentcanon/equipment/raccordreview"
   ],
   "testsRemaining": [
-    "Focusedvalidator/runnerguardtests and ownsource/spec checks",
-    "Actual fourvideo inspections and silent26.5s edit/browserreview"
+    "Explicit artisticverdict on this manualvideo; runtimeadoption remains a future dedicatedtask"
   ],
   "blockers": [],
   "remainingWork": [
-    "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance."
+    "Explicit artisticverdict on this manualvideo; runtimeadoption remains a future dedicatedtask"
   ],
-  "nextAction": "Verify bounded environmentOnly plans/prompt compilation, then submit four manual firstframe tasks once each; inspect actualvideo before silentmontage. Recurringgeneration remainsprohibited.",
+  "nextAction": "Operator reviews the existing26.5s silentmanualvideo and returns an artisticverdict on gesture/release/pacing/raccord. No new paidtask or runtimeadoption; recurringMiniMax remainsprohibited.",
   "taskQueue": [
     "Prepare sourced pose partition and shot sheets for Bois-Clair sacrificed pilot",
     "Generate insufficient pilot illustrations in a separate version, preserve historical media",
@@ -61,8 +86,8 @@
     "Independent demonstrated PC issue only; mobile after PC stability"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_MANUAL_BOIS_PROVIDER_SUBMISSION_SCOPED",
-  "commitReferenceScope": "Deliveryc5e79378 published and verified on origin/dev,61candidatefiles committed bytes match. Following state-only closure SHA remains authoritative in Git/automationmemory; no selfreferential SHA.",
+  "contractComplianceStatus": "PASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED",
+  "commitReferenceScope": "Manualpreparation3b606f5f and generationcheckpoint34bd349d published; finalproof checkpoint follows. Finalvideo remainsignored/local, no productionreplacement.",
   "operatorAuthorization": "Direct24Oct transformpartitionwithMiniMax request engages OD2026-10-01-A/B manualproviderpermission; no routine key/transmission reapproval, no recurrence/runtime/audio/artacceptance",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -135,10 +160,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-bois-video-20261024T0551Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-24T06:21:09.479Z",
+  "lastHeartbeat": "2026-10-24T06:35:53.065Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-24T06:21:09.479Z",
+    "lastHeartbeat": "2026-10-24T06:35:53.065Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -40597,21 +40622,28 @@
       }
     ],
     "wip": null,
-    "nextAction": "Verify bounded environmentOnly plans/prompt compilation, then submit four manual firstframe tasks once each; inspect actualvideo before silentmontage. Recurringgeneration remainsprohibited.",
+    "nextAction": "Operator reviews the existing26.5s silentmanualvideo and returns an artisticverdict on gesture/release/pacing/raccord. No new paidtask or runtimeadoption; recurringMiniMax remainsprohibited.",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
+      "gameplaySteps": 0,
       "toolingFilesModified": 1,
       "toolingTestFilesModified": 1,
       "newImages": 0,
       "imagegenCalls": 0,
-      "providerTasksSubmitted": 0,
-      "plannedPaidTasks": 4,
+      "providerTasksSubmitted": 4,
+      "downloadedBlocks": 4,
+      "paidRetries": 0,
+      "generatedRequestedSeconds": 28,
+      "editedSeconds": 26.5,
       "qaScenarios": 0,
+      "nativePreviewSessions": 1,
       "newQaJobs": 0,
       "inheritedQaJobs": 362,
       "totalQaJobs": 362,
       "inheritedWipPaths": 0,
-      "selectedPaths": 17
+      "selectedPublicationPaths": 36,
+      "qaAndProofFiles": 17,
+      "workflowFiles": 7
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -40631,11 +40663,9 @@
       "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md"
     ],
     "publication": {
-      "status": "DELIVERY_VERIFIED_METADATA_CLOSURE_FOLLOWS",
-      "sha": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
-      "remoteDevVerifiedAt": "2026-10-24T05:46:57.320Z",
+      "status": "FINAL_MANUAL_VIDEO_PROOF_PENDING",
       "authority": "OD-2026-10-12-A",
-      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
+      "previousPublished": "34bd349d995a73fdc0576e7623b8555deba61301"
     },
     "runEndedAt": null,
     "writerStopped": false,
@@ -41435,7 +41465,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "MANUAL-BOIS-CLAIR-PARTITION-MINIMAX",
-    "activeSubtask": "Firstpaidtask shot03/15s; no retry if POST outcome ambiguous",
+    "activeSubtask": "Four generatedclips assembled into exact26.5s silentreviewmaster; fullhuman15s preserved; operatorartpending",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -44771,8 +44801,8 @@
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-24T05:51:50.0908309Z",
-    "activePhase": "MANUAL_MINIMAX_SUBMITTING_HUMAN_BLOCK",
-    "heartbeat": "2026-10-24T06:21:09.479Z",
+    "activePhase": "MANUAL_VIDEO_READY_FOR_OPERATOR_REVIEW",
+    "heartbeat": "2026-10-24T06:35:53.065Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -46501,7 +46531,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "434a150fc37dbb9b3020160cf8ec8c9601191e8a",
+    "lastPushedCommit": "34bd349d995a73fdc0576e7623b8555deba61301",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -47306,12 +47336,15 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "434a150fc37dbb9b3020160cf8ec8c9601191e8a",
+    "lastKnownGoodCommit": "34bd349d995a73fdc0576e7623b8555deba61301",
     "completedThisRun": [
       "Clean dev434a150f/origin parity, prior illustratedrun closed andlockarchived, newatomic manual lock",
       "Standing manualMiniMaxauthority and live request verified;4nativeexistingplates reused, no newimagegen",
       "28s generation/26.5s edit,4payloads estimated3.64USD max4USD zeroautomaticpaidretries prepared",
-      "Strict environmentOnly capability with155testsPASS;13oldactorprompts byteidentical;4sources/spec validated"
+      "Strict environmentOnly capability with155testsPASS;13oldactorprompts byteidentical;4sources/spec validated",
+      "Four exactlyboundMiniMaxfirstframe tasks downloaded; raw/taskIDs/metadata/request/sourceSHA retained,0paidretries",
+      "Actualdecodedframe progression and independentmanualscope reviewPASS; exact26.5s1080p24fps silentmaster verified",
+      "Nativebrowser video rendered/replayed withoutcaptions; encoding/frameclaims kept distinct from art/runtimeacceptance"
     ],
     "filesChanged": [
       ".gitattributes",
@@ -47320,13 +47353,32 @@
       "docs/autonomy/MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md",
       "docs/autonomy/OPERATOR_DECISIONS.md",
       "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/assemble.mjs",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/assembly-evidence.json",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/final-frame-extraction.json",
       "tools/cinematics/candidates/manual-bois-partition-20261024/preflight.json",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot01.json",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot02.json",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot03.json",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot04.json",
       "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_01.txt",
       "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_02.txt",
       "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_03.txt",
       "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_04.txt",
       "tools/cinematics/candidates/manual-bois-partition-20261024/provenance.json",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/provider-events.jsonl",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot01.json",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot02.json",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot03.json",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot04.json",
       "tools/cinematics/candidates/manual-bois-partition-20261024/requests.json",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/review-closeout.json",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/review-endpoint.png",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/review-human-contact.png",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/review-human.png",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/review-resolution.png",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/review.md",
+      "tools/cinematics/candidates/manual-bois-partition-20261024/serve.cjs",
       "tools/cinematics/candidates/manual-bois-partition-20261024/verification-preflight.json",
       "tools/cinematics/cin4_shot_spec.mjs",
       "tools/cinematics/cin4_shot_spec.test.mjs",
@@ -47335,20 +47387,23 @@
     "testsRun": [
       "155focusedtests:33shotvalidator/122capresume",
       "TypeScript--noEmit,contracts8/8,LOCKEDbaseline/diffcheck",
-      "Four source/spec/SHA/nativeframe validation;13oldactorprompts byteidentical"
+      "Four source/spec/SHA/nativeframe validation;13oldactorprompts byteidentical",
+      "Four raw/masterprobes and own26.5sH264/1080p24fps/audioabsent checks",
+      "Actualraw/finalframe extraction and independentcanon/equipment/raccordreview"
     ],
     "testsPassed": [
       "155focusedtests:33shotvalidator/122capresume",
       "TypeScript--noEmit,contracts8/8,LOCKEDbaseline/diffcheck",
-      "Four source/spec/SHA/nativeframe validation;13oldactorprompts byteidentical"
+      "Four source/spec/SHA/nativeframe validation;13oldactorprompts byteidentical",
+      "Four raw/masterprobes and own26.5sH264/1080p24fps/audioabsent checks",
+      "Actualraw/finalframe extraction and independentcanon/equipment/raccordreview"
     ],
     "testsRemaining": [
-      "Focusedvalidator/runnerguardtests and ownsource/spec checks",
-      "Actual fourvideo inspections and silent26.5s edit/browserreview"
+      "Explicit artisticverdict on this manualvideo; runtimeadoption remains a future dedicatedtask"
     ],
     "blockers": [],
     "remainingWork": [
-      "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance."
+      "Explicit artisticverdict on this manualvideo; runtimeadoption remains a future dedicatedtask"
     ],
     "taskQueue": [
       "Prepare sourced pose partition and shot sheets for Bois-Clair sacrificed pilot",
@@ -47358,7 +47413,7 @@
       "After pilot method acceptance only: audience, arrival, saved, judgement, Serpent ending, Lion-trial ending",
       "Independent demonstrated PC issue only; mobile after PC stability"
     ],
-    "contractComplianceStatus": "PASS_MANUAL_BOIS_PROVIDER_SUBMISSION_SCOPED",
+    "contractComplianceStatus": "PASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -47773,48 +47828,69 @@
     },
     "runStatistics": {
       "runtimeSourceFilesModified": 0,
+      "gameplaySteps": 0,
       "toolingFilesModified": 1,
       "toolingTestFilesModified": 1,
       "newImages": 0,
       "imagegenCalls": 0,
-      "providerTasksSubmitted": 0,
-      "plannedPaidTasks": 4,
+      "providerTasksSubmitted": 4,
+      "downloadedBlocks": 4,
+      "paidRetries": 0,
+      "generatedRequestedSeconds": 28,
+      "editedSeconds": 26.5,
       "qaScenarios": 0,
+      "nativePreviewSessions": 1,
       "newQaJobs": 0,
       "inheritedQaJobs": 362,
       "totalQaJobs": 362,
       "inheritedWipPaths": 0,
-      "selectedPaths": 17
+      "selectedPublicationPaths": 36,
+      "qaAndProofFiles": 17,
+      "workflowFiles": 7
     },
     "currentRunMeasurement": {
       "runtimeSourceFilesModified": 0,
+      "gameplaySteps": 0,
       "toolingFilesModified": 1,
       "toolingTestFilesModified": 1,
       "newImages": 0,
       "imagegenCalls": 0,
-      "providerTasksSubmitted": 0,
-      "plannedPaidTasks": 4,
+      "providerTasksSubmitted": 4,
+      "downloadedBlocks": 4,
+      "paidRetries": 0,
+      "generatedRequestedSeconds": 28,
+      "editedSeconds": 26.5,
       "qaScenarios": 0,
+      "nativePreviewSessions": 1,
       "newQaJobs": 0,
       "inheritedQaJobs": 362,
       "totalQaJobs": 362,
       "inheritedWipPaths": 0,
-      "selectedPaths": 17
+      "selectedPublicationPaths": 36,
+      "qaAndProofFiles": 17,
+      "workflowFiles": 7
     },
     "runMeasurement": {
       "runtimeSourceFilesModified": 0,
+      "gameplaySteps": 0,
       "toolingFilesModified": 1,
       "toolingTestFilesModified": 1,
       "newImages": 0,
       "imagegenCalls": 0,
-      "providerTasksSubmitted": 0,
-      "plannedPaidTasks": 4,
+      "providerTasksSubmitted": 4,
+      "downloadedBlocks": 4,
+      "paidRetries": 0,
+      "generatedRequestedSeconds": 28,
+      "editedSeconds": 26.5,
       "qaScenarios": 0,
+      "nativePreviewSessions": 1,
       "newQaJobs": 0,
       "inheritedQaJobs": 362,
       "totalQaJobs": 362,
       "inheritedWipPaths": 0,
-      "selectedPaths": 17
+      "selectedPublicationPaths": 36,
+      "qaAndProofFiles": 17,
+      "workflowFiles": 7
     },
     "deploymentHealth0503": {
       "problem": "Retained Hunters failed deployment hides Cedric/Elara1HP behind En jeu cards; same omission in current renderer",
@@ -48253,7 +48329,7 @@
       "rawReceiptAcceptanceUnchanged": "NOT_ACCEPTED"
     },
     "lastAcceptedProductionCommit": "5e22775",
-    "implementationCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
+    "implementationCommit": "3b606f5fa4c6df20ac7adebaa4c452949bf70e01",
     "poiUi1903": {
       "status": "ACCEPTED_SCOPED",
       "at": "2026-10-18T19:26:33.504Z",
@@ -48836,12 +48912,11 @@
     },
     "contractSetVersion": "1.9.0",
     "uncommittedWork": {
-      "status": "COHERENT_CHECKPOINT_PUBLISHED",
-      "deliveryCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
-      "inheritedWipPathsPreserved": 0,
-      "remainingProductWip": 0
+      "status": "FINAL_MANUAL_VIDEO_PROOF_TO_PUBLISH",
+      "inheritedWip": 0,
+      "rawVideosRetainedIgnored": true
     },
-    "commitReferenceScope": "Deliveryc5e79378 published and verified on origin/dev,61candidatefiles committed bytes match. Following state-only closure SHA remains authoritative in Git/automationmemory; no selfreferential SHA.",
+    "commitReferenceScope": "Manualpreparation3b606f5f and generationcheckpoint34bd349d published; finalproof checkpoint follows. Finalvideo remainsignored/local, no productionreplacement.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
       "status": "SAVED_AND_CONFIGURATION_VERIFIED",
@@ -49064,9 +49139,14 @@
       "metadataCommitScope": "Following metadata SHA authoritative in Git/automation memory"
     },
     "preview": {
-      "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v4/index.html",
-      "pid": 21636,
-      "role": "Intentionally retained localhost review server; no QA worker running"
+      "url": "http://127.0.0.1:5462/video.mp4",
+      "pid": 40308,
+      "server": {
+        "path": "tools/cinematics/candidates/manual-bois-partition-20261024/serve.cjs",
+        "sha256": "c62729aba0915931de1d0d700f8636815c38f2fca9604419267cfd6784ac5419"
+      },
+      "review": "NativeIABtab3 rendered/replayed0:00→0:26withoutcaptions; start/end screenshots observed, no browserdecoderstats or runtimebehavior acceptance claimed",
+      "retainedForOperator": true
     },
     "poseV3Proof": {
       "runId": "codex-pose-v3-proof-20261023T0745Z",
@@ -49140,7 +49220,7 @@
       "decision": "docs/autonomy/MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md",
       "specPath": "tools/cinematics/specs/manual-bois-partition-20261024.json",
       "candidatePath": "tools/cinematics/candidates/manual-bois-partition-20261024/",
-      "status": "GENERATED",
+      "status": "READY_FOR_OPERATOR_REVIEW",
       "manualOnly": true,
       "recurringGenerationAllowed": false,
       "paidTasksMax": 4,
@@ -49149,30 +49229,84 @@
       "artifactReviewPending": true,
       "sourceIllustratedPilotStatus": "ART_NEEDS_CORRECTION",
       "nextAction": "Verify bounded environmentOnly plans/prompt compilation, then submit four manual firstframe tasks once each; inspect actualvideo before silentmontage. Recurringgeneration remainsprohibited.",
-      "guardian": "PASS_MANUAL_BOIS_PROVIDER_SUBMISSION_SCOPED actual155tests/prompts/4sourceSHA",
+      "guardian": "PASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED",
       "providerTaskIds": [
         "455754359071094",
         "455759047762392",
         "455753654690290",
         "455761043280385"
       ],
-      "downloadedBlocks": 4
+      "downloadedBlocks": 4,
+      "dimensions": {
+        "generation": "GENERATED",
+        "technical": "TECHNICALLY_VERIFIED",
+        "art": "ART_REVIEW_PENDING",
+        "readiness": "READY_FOR_OPERATOR_REVIEW",
+        "runtime": "NOT_ADOPTED"
+      },
+      "finalMaster": {
+        "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/bois_clair_sacrificed_manual_26_5s.mp4",
+        "sha256": "c1881750ffe667b6f2aa50ba891e0a5643d0519f99f523dbdb4af8d0b4c83263"
+      },
+      "report": {
+        "container": "mov,mp4,m4a,3gp,3g2,mj2",
+        "codec": "h264",
+        "profile": "High",
+        "pixelFormat": "yuv420p",
+        "width": 1920,
+        "height": 1080,
+        "sampleAspectRatio": "1:1",
+        "displayAspectRatio": "16:9",
+        "averageFrameRate": "24/1",
+        "durationSeconds": 26.5,
+        "audioStream": false,
+        "rotation": 0
+      },
+      "reviewPath": "tools/cinematics/candidates/manual-bois-partition-20261024/review.md",
+      "closeoutPath": "tools/cinematics/candidates/manual-bois-partition-20261024/review-closeout.json",
+      "preview": {
+        "url": "http://127.0.0.1:5462/video.mp4",
+        "pid": 40308,
+        "server": {
+          "path": "tools/cinematics/candidates/manual-bois-partition-20261024/serve.cjs",
+          "sha256": "c62729aba0915931de1d0d700f8636815c38f2fca9604419267cfd6784ac5419"
+        },
+        "review": "NativeIABtab3 rendered/replayed0:00→0:26withoutcaptions; start/end screenshots observed, no browserdecoderstats or runtimebehavior acceptance claimed",
+        "retainedForOperator": true
+      },
+      "limits": [
+        "Humanrightpalm is cupped/upward-or-inward rather than clearlydownward; it reaches centralgap towardwoman",
+        "Release occurs late around12–14s of15s humanblock, not the exact9–12s promptwindow; full15s retained",
+        "Finalrightglove remains adjacent/overlappingguard orsheath; no unambiguousclearance or drawnblade claimed",
+        "Finalblock has an actualslowpush despite WIDE_HOLD intent; cratesremainclosed/visible",
+        "Cut at21.5s changes bookheight and womanhunch intensity; geographical/equipment raccord remains operatorreviewtarget",
+        "Decodedframe samples/inputseamstatistics and encoding are scoped technicalevidence, not defect-free continuousmotion/anatomy or artisticacceptance"
+      ],
+      "paidTasksUsed": 4,
+      "paidRetries": 0,
+      "providerTasksPending": 0
     },
     "runCounts": {
       "runtimeSourceFilesModified": 0,
+      "gameplaySteps": 0,
       "toolingFilesModified": 1,
       "toolingTestFilesModified": 1,
       "newImages": 0,
       "imagegenCalls": 0,
       "providerTasksSubmitted": 4,
-      "plannedPaidTasks": 4,
+      "downloadedBlocks": 4,
+      "paidRetries": 0,
+      "generatedRequestedSeconds": 28,
+      "editedSeconds": 26.5,
       "qaScenarios": 0,
+      "nativePreviewSessions": 1,
       "newQaJobs": 0,
       "inheritedQaJobs": 362,
       "totalQaJobs": 362,
       "inheritedWipPaths": 0,
-      "selectedPaths": 17,
-      "downloadedBlocks": 4
+      "selectedPublicationPaths": 36,
+      "qaAndProofFiles": 17,
+      "workflowFiles": 7
     }
   },
   "previousInterruptedRun": {
@@ -49264,18 +49398,25 @@
   "currentHandoff": "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
   "runMeasurement": {
     "runtimeSourceFilesModified": 0,
+    "gameplaySteps": 0,
     "toolingFilesModified": 1,
     "toolingTestFilesModified": 1,
     "newImages": 0,
     "imagegenCalls": 0,
-    "providerTasksSubmitted": 0,
-    "plannedPaidTasks": 4,
+    "providerTasksSubmitted": 4,
+    "downloadedBlocks": 4,
+    "paidRetries": 0,
+    "generatedRequestedSeconds": 28,
+    "editedSeconds": 26.5,
     "qaScenarios": 0,
+    "nativePreviewSessions": 1,
     "newQaJobs": 0,
     "inheritedQaJobs": 362,
     "totalQaJobs": 362,
     "inheritedWipPaths": 0,
-    "selectedPaths": 17
+    "selectedPublicationPaths": 36,
+    "qaAndProofFiles": 17,
+    "workflowFiles": 7
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -49400,10 +49541,9 @@
     }
   },
   "uncommittedWork": {
-    "status": "COHERENT_CHECKPOINT_PUBLISHED",
-    "deliveryCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
-    "inheritedWipPathsPreserved": 0,
-    "remainingProductWip": 0
+    "status": "FINAL_MANUAL_VIDEO_PROOF_TO_PUBLISH",
+    "inheritedWip": 0,
+    "rawVideosRetainedIgnored": true
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
@@ -49563,18 +49703,25 @@
   },
   "runStatistics": {
     "runtimeSourceFilesModified": 0,
+    "gameplaySteps": 0,
     "toolingFilesModified": 1,
     "toolingTestFilesModified": 1,
     "newImages": 0,
     "imagegenCalls": 0,
-    "providerTasksSubmitted": 0,
-    "plannedPaidTasks": 4,
+    "providerTasksSubmitted": 4,
+    "downloadedBlocks": 4,
+    "paidRetries": 0,
+    "generatedRequestedSeconds": 28,
+    "editedSeconds": 26.5,
     "qaScenarios": 0,
+    "nativePreviewSessions": 1,
     "newQaJobs": 0,
     "inheritedQaJobs": 362,
     "totalQaJobs": 362,
     "inheritedWipPaths": 0,
-    "selectedPaths": 17
+    "selectedPublicationPaths": 36,
+    "qaAndProofFiles": 17,
+    "workflowFiles": 7
   },
   "qaToolingJustification": "Version compatible v3 reader/driver only for8paths/26.5s/authoredtransitions; no framework or historicalproof overwrite",
   "retainedRunArtifacts": {
@@ -49599,7 +49746,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
+  "implementationCommit": "3b606f5fa4c6df20ac7adebaa4c452949bf70e01",
   "authorizedWorkContinuation": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance. Preserve actually saved scheduler status; this manual go is not scheduleractivation.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
@@ -50580,18 +50727,25 @@
   },
   "currentRunMeasurement": {
     "runtimeSourceFilesModified": 0,
+    "gameplaySteps": 0,
     "toolingFilesModified": 1,
     "toolingTestFilesModified": 1,
     "newImages": 0,
     "imagegenCalls": 0,
-    "providerTasksSubmitted": 0,
-    "plannedPaidTasks": 4,
+    "providerTasksSubmitted": 4,
+    "downloadedBlocks": 4,
+    "paidRetries": 0,
+    "generatedRequestedSeconds": 28,
+    "editedSeconds": 26.5,
     "qaScenarios": 0,
+    "nativePreviewSessions": 1,
     "newQaJobs": 0,
     "inheritedQaJobs": 362,
     "totalQaJobs": 362,
     "inheritedWipPaths": 0,
-    "selectedPaths": 17
+    "selectedPublicationPaths": 36,
+    "qaAndProofFiles": 17,
+    "workflowFiles": 7
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -50863,7 +51017,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-24T06:21:09.479Z",
+  "heartbeat": "2026-10-24T06:35:53.065Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -52840,18 +52994,25 @@
   "lastSnapshotAt": "2026-10-21T22:46:44.560Z",
   "runMetrics": {
     "runtimeSourceFilesModified": 0,
+    "gameplaySteps": 0,
     "toolingFilesModified": 1,
     "toolingTestFilesModified": 1,
     "newImages": 0,
     "imagegenCalls": 0,
-    "providerTasksSubmitted": 0,
-    "plannedPaidTasks": 4,
+    "providerTasksSubmitted": 4,
+    "downloadedBlocks": 4,
+    "paidRetries": 0,
+    "generatedRequestedSeconds": 28,
+    "editedSeconds": 26.5,
     "qaScenarios": 0,
+    "nativePreviewSessions": 1,
     "newQaJobs": 0,
     "inheritedQaJobs": 362,
     "totalQaJobs": 362,
     "inheritedWipPaths": 0,
-    "selectedPaths": 17
+    "selectedPublicationPaths": 36,
+    "qaAndProofFiles": 17,
+    "workflowFiles": 7
   },
   "operatorAcceptedAssets": {
     "decision": "OD-2026-10-18-E",
@@ -54464,25 +54625,31 @@
   "latestHandoff": "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
   "runCounts": {
     "runtimeSourceFilesModified": 0,
+    "gameplaySteps": 0,
     "toolingFilesModified": 1,
     "toolingTestFilesModified": 1,
     "newImages": 0,
     "imagegenCalls": 0,
     "providerTasksSubmitted": 4,
-    "plannedPaidTasks": 4,
+    "downloadedBlocks": 4,
+    "paidRetries": 0,
+    "generatedRequestedSeconds": 28,
+    "editedSeconds": 26.5,
     "qaScenarios": 0,
+    "nativePreviewSessions": 1,
     "newQaJobs": 0,
     "inheritedQaJobs": 362,
     "totalQaJobs": 362,
     "inheritedWipPaths": 0,
-    "selectedPaths": 17,
-    "downloadedBlocks": 4
+    "selectedPublicationPaths": 36,
+    "qaAndProofFiles": 17,
+    "workflowFiles": 7
   },
   "manualVideoWorkstream": {
     "decision": "docs/autonomy/MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md",
     "specPath": "tools/cinematics/specs/manual-bois-partition-20261024.json",
     "candidatePath": "tools/cinematics/candidates/manual-bois-partition-20261024/",
-    "status": "GENERATED",
+    "status": "READY_FOR_OPERATOR_REVIEW",
     "manualOnly": true,
     "recurringGenerationAllowed": false,
     "paidTasksMax": 4,
@@ -54491,13 +54658,61 @@
     "artifactReviewPending": true,
     "sourceIllustratedPilotStatus": "ART_NEEDS_CORRECTION",
     "nextAction": "Verify bounded environmentOnly plans/prompt compilation, then submit four manual firstframe tasks once each; inspect actualvideo before silentmontage. Recurringgeneration remainsprohibited.",
-    "guardian": "PASS_MANUAL_BOIS_PROVIDER_SUBMISSION_SCOPED actual155tests/prompts/4sourceSHA",
+    "guardian": "PASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED",
     "providerTaskIds": [
       "455754359071094",
       "455759047762392",
       "455753654690290",
       "455761043280385"
     ],
-    "downloadedBlocks": 4
+    "downloadedBlocks": 4,
+    "dimensions": {
+      "generation": "GENERATED",
+      "technical": "TECHNICALLY_VERIFIED",
+      "art": "ART_REVIEW_PENDING",
+      "readiness": "READY_FOR_OPERATOR_REVIEW",
+      "runtime": "NOT_ADOPTED"
+    },
+    "finalMaster": {
+      "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/bois_clair_sacrificed_manual_26_5s.mp4",
+      "sha256": "c1881750ffe667b6f2aa50ba891e0a5643d0519f99f523dbdb4af8d0b4c83263"
+    },
+    "report": {
+      "container": "mov,mp4,m4a,3gp,3g2,mj2",
+      "codec": "h264",
+      "profile": "High",
+      "pixelFormat": "yuv420p",
+      "width": 1920,
+      "height": 1080,
+      "sampleAspectRatio": "1:1",
+      "displayAspectRatio": "16:9",
+      "averageFrameRate": "24/1",
+      "durationSeconds": 26.5,
+      "audioStream": false,
+      "rotation": 0
+    },
+    "reviewPath": "tools/cinematics/candidates/manual-bois-partition-20261024/review.md",
+    "closeoutPath": "tools/cinematics/candidates/manual-bois-partition-20261024/review-closeout.json",
+    "preview": {
+      "url": "http://127.0.0.1:5462/video.mp4",
+      "pid": 40308,
+      "server": {
+        "path": "tools/cinematics/candidates/manual-bois-partition-20261024/serve.cjs",
+        "sha256": "c62729aba0915931de1d0d700f8636815c38f2fca9604419267cfd6784ac5419"
+      },
+      "review": "NativeIABtab3 rendered/replayed0:00→0:26withoutcaptions; start/end screenshots observed, no browserdecoderstats or runtimebehavior acceptance claimed",
+      "retainedForOperator": true
+    },
+    "limits": [
+      "Humanrightpalm is cupped/upward-or-inward rather than clearlydownward; it reaches centralgap towardwoman",
+      "Release occurs late around12–14s of15s humanblock, not the exact9–12s promptwindow; full15s retained",
+      "Finalrightglove remains adjacent/overlappingguard orsheath; no unambiguousclearance or drawnblade claimed",
+      "Finalblock has an actualslowpush despite WIDE_HOLD intent; cratesremainclosed/visible",
+      "Cut at21.5s changes bookheight and womanhunch intensity; geographical/equipment raccord remains operatorreviewtarget",
+      "Decodedframe samples/inputseamstatistics and encoding are scoped technicalevidence, not defect-free continuousmotion/anatomy or artisticacceptance"
+    ],
+    "paidTasksUsed": 4,
+    "paidRetries": 0,
+    "providerTasksPending": 0
   }
 }

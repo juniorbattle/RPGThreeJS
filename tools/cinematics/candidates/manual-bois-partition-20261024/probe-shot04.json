@@ -1,0 +1,110 @@
+{
+  "recordedAt": "2026-10-24T06:22:03.649Z",
+  "slot": "bois_clair_sacrificed",
+  "shot": "shot_04",
+  "input": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_04/candidate_01_raw.mp4",
+  "sha256": "162e4e7c0d002c5735ec25f62dea065f6f6d4f202d7b1eacf04ba8a9a1285e42",
+  "media": {
+    "container": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec": "h264",
+    "profile": "High",
+    "pixelFormat": "yuv420p",
+    "width": 2560,
+    "height": 1440,
+    "sampleAspectRatio": null,
+    "displayAspectRatio": null,
+    "averageFrameRate": "24/1",
+    "durationSeconds": 5.167,
+    "audioStream": true,
+    "rotation": 0
+  },
+  "authoredBlockDurationSeconds": 5,
+  "durationDeltaSeconds": 0.16699999999999982,
+  "frames": [
+    {
+      "label": "first",
+      "seconds": 0,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot04/first.png",
+      "sha256": "01ebf1d294858af922d66d108497283db23dd5d91f99dbcdb6cc3de2c9897bbd"
+    },
+    {
+      "label": "initiation",
+      "seconds": 0.625,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot04/initiation.png",
+      "sha256": "7fd491d330bcc71cb4cd129e80e201972ec8ac7a4903c58c4b695ea6c3bec585"
+    },
+    {
+      "label": "stride",
+      "seconds": 1.25,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot04/stride.png",
+      "sha256": "9b332062b72e77396f20c169237db7e3f453df048cfa8d45b744220c7bba12d6"
+    },
+    {
+      "label": "middle",
+      "seconds": 2.5,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot04/middle.png",
+      "sha256": "0ec295e07cbea56533ff8dafa3ecdccde12c3ca39238a3e92077d62e20cc1f83"
+    },
+    {
+      "label": "progression",
+      "seconds": 3.75,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot04/progression.png",
+      "sha256": "84799e9d0abf6fc46059fb4d2d463bc26af1de8117187b71696695c6ac053784"
+    },
+    {
+      "label": "final",
+      "seconds": 4.9,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot04/final.png",
+      "sha256": "3ed56689d365479876214beecf4cd43e8f61032dfedeec61501fd2dba8789e42"
+    }
+  ],
+  "motion": [
+    {
+      "seconds": 0.5,
+      "worldMeanAbsoluteDelta": 1.882,
+      "actorsMeanAbsoluteDelta": 5.364
+    },
+    {
+      "seconds": 1,
+      "worldMeanAbsoluteDelta": 2.197,
+      "actorsMeanAbsoluteDelta": 4.53
+    },
+    {
+      "seconds": 1.5,
+      "worldMeanAbsoluteDelta": 1.989,
+      "actorsMeanAbsoluteDelta": 3.8
+    },
+    {
+      "seconds": 2,
+      "worldMeanAbsoluteDelta": 1.754,
+      "actorsMeanAbsoluteDelta": 3.873
+    },
+    {
+      "seconds": 2.5,
+      "worldMeanAbsoluteDelta": 1.971,
+      "actorsMeanAbsoluteDelta": 2.755
+    },
+    {
+      "seconds": 3,
+      "worldMeanAbsoluteDelta": 1.973,
+      "actorsMeanAbsoluteDelta": 4.856
+    },
+    {
+      "seconds": 3.5,
+      "worldMeanAbsoluteDelta": 2.122,
+      "actorsMeanAbsoluteDelta": 2.899
+    },
+    {
+      "seconds": 4,
+      "worldMeanAbsoluteDelta": 1.667,
+      "actorsMeanAbsoluteDelta": 3.823
+    },
+    {
+      "seconds": 4.5,
+      "worldMeanAbsoluteDelta": 1.856,
+      "actorsMeanAbsoluteDelta": 4.129
+    }
+  ],
+  "contactSheetPaddingTiles": 1,
+  "scope": "DECODED_FRAME_DIFFERENCES_ARE_DIAGNOSTIC_ONLY_CAMERA_MOTION_CAN_CAUSE_THEM;_ARTISTIC_REVIEW_REQUIRED"
+}
