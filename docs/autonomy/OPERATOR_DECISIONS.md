@@ -86,3 +86,5 @@ Append-only index of the explicit operator decisions that bind autonomous work. 
 - 2026-10-24 — [Révision narrative du pilote Bois-Clair](BOIS_CLAIR_NARRATIVE_REVISION_2026-10-24.md) : retour négatif sur le récit v3 ; go manuel sur v4, dégâts variés, Maelor apaisement→échec→bras abaissés→résolution, habitante protectrice conservée et coffres déjà acquis comme bilan. Aucune acceptation artistique/méthode/runtime ou généralisation inférée ; schedulerPAUSED conservé.
 
 | MANUAL-BOIS-PARTITION-VIDEO-2026-10-24 | 2026-10-24 | Directly transform the current Bois-Clair narrative partition into a separate manual MiniMax video candidate | [Manual Bois-Clair video](MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md) | MANUAL ONLY; existingID/firstframe4blocks, no recurring generation, runtime or art acceptance |
+
+| OD-2026-10-24-A | 2026-10-24 | Abandonner les cinématiques, retirer aussi les vidéos du jeu, prévoir davantage de travail sur dialogues statiques et NarrativeStage | [Retrait des cinématiques](CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md) | DEDICATED RETIREMENT AUTHORIZED; huit IDs historiques, zéro vidéo runtime, archives préservées, scheduler inchangé |

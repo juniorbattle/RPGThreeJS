@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.9.0",
+  "contractSetVersion": "1.10.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -147,6 +147,21 @@
       "constitutionChanged": false,
       "supersededRule": "Gentle whole-image transitions only for offline illustrated candidates; use motivated cuts/dissolves/holds and expressive pose direction with explicit pilot-method artistic approval before generalization",
       "implementationAcceptance": "AUTHORIZED_OFFLINE_DIRECTION_ONLY; pilot not generated or artistically accepted; no runtime adoption"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1",
+      "operatorDecisionId": "OD-2026-10-24-A",
+      "operatorDecisionPath": "docs/autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md",
+      "approvedAt": "2026-10-24",
+      "changedContracts": [
+        "PRESENTATION_AND_MEDIA",
+        "AUTHORING_AND_QA",
+        "AUTONOMOUS_WORK_PROTOCOL"
+      ],
+      "constitutionChanged": true,
+      "historicalMediaIdsRetained": true,
+      "supersededRule": "Exactly eight active videos and offline illustrated cinematic production; zero active video/video-derived hold/preload/shipped MP4, existing static dialogues/tableaux preserve authored events",
+      "implementationAcceptance": "PENDING; runtime retirement and scoped native evidence required, operator art/global acceptance separate"
     }
   ],
   "status": "LOCKED",

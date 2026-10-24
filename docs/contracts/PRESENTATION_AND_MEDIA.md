@@ -4,7 +4,7 @@ Status: **LOCKED**.
 
 `STATIC_TABLEAU` is the normal interactive narrative language. Stage actors as actors: authored positions, facing, look target, depth, focus, and restaging when relational/dramatic readability requires it. A speaker change alone does not require a turn or restage. Favor clear compositions, currently up to four visible actors. Background and cast ownership must be explicit; do not duplicate integrated video actors with sprites. Preserve dialogue text except explicitly authorized factual corrections, choice agency, and canonical outcomes when changing staging.
 
-Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), set 1.2.0: the illustrated POI map becomes principal navigation. Journey/NarrativeStage retain authored continuity and handoffs; TravelView/adapters may be reused without a second truth owner. POI activation opens existing tableau/combat/refuge; resolved revisits replay no one-shot narrative/cinematic presentation or effects. Unlocked refuge services remain reusable. Cinematic video is rare and reserved for these **exactly eight** production slots:
+Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), set 1.2.0: the illustrated POI map becomes principal navigation. Journey/NarrativeStage retain authored continuity and handoffs; TravelView/adapters may be reused without a second truth owner. POI activation opens existing tableau/combat/refuge; resolved revisits replay no one-shot narrative/cinematic presentation or effects. Unlocked refuge services remain reusable. Under OD-2026-10-24-A / PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1, set1.10.0, all production videos are retired. These **exactly eight historical identities** remain closed for provenance and compatibility, with **zero active video slots**:
 
 1. `camp_departure`
 2. `alaric_audience_arrival`
@@ -15,7 +15,7 @@ Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonom
 7. `serpent_route_ending`
 8. `lion_trial_route_ending`
 
-These are major, grand events. `MAIN_EVENT => CINEMATIC_REQUIRED` is superseded. No default video for enemy reveals, recruits, merchants, routine travel, or minor beats. Older MP4s or slots have no production design authority; audit their references, convert the beat to the appropriate tableau/still/other authored surface, and retire media safely. Existing files or manifest entries outside the eight are **drift**, not ninth approved slots. A slot name does not certify that its current asset meets final art direction.
+These remain major authored events, presented through existing static dialogues/tableaux. `MAIN_EVENT => CINEMATIC_REQUIRED` is superseded. No default video for enemy reveals, recruits, merchants, routine travel, or minor beats. Older MP4s or slots have no production design authority; audit their references, convert the beat to the appropriate tableau/still/other authored surface, and retire media safely. Existing files or manifest entries outside the eight are **drift**, not ninth approved slots. A slot name does not certify that its current asset meets final art direction.
 
 Use a hold only for the exact same moment established by its preceding video; release it when place, time, encounter, situation, or activity changes. Tableau and stills preserve visual-family continuity with their locations. Fallback must preserve player agency. Audio is **DEFERRED** until narrative, presentation, cinematics, and POI navigation structure are demonstrably LOCKED and stable. Prepare an audio-specific decision then; do not infer a final audio doctrine now.
 
@@ -27,7 +27,13 @@ Facing is authored for readability, never automatically flipped at every speaker
 
 No visible production `...` transition placeholder: use relevant authored title/text or no text. Meaningful ATE captions such as “Pendant ce temps…”, “Au même moment…” and “De l’autre côté…” are selected by simultaneity, place/group change or temporal continuity, never randomly. They introduce no new plot facts. Legitimate authored punctuation is not placeholder copy.
 
-The mandatory pre-judgement campfire is a Journey/narrative preparation boundary under CAMPAIGN_AND_STATE, never a ninth video. The eight slots above are structurally approved and their count/IDs remain closed; video artistic work remains external to recurring runs. Offline illustrated candidates have only the narrow recurring exception below.
+The mandatory pre-judgement campfire is a Journey/narrative preparation boundary under CAMPAIGN_AND_STATE, never a ninth video. The eight identities above remain historical; none authorizes runtime video or new cinematic production. The offline authorizations below describe preserved historical work and are superseded by the retirement section.
+
+## Cinematic retirement — OD-2026-10-24-A
+
+Dedicated `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md), set1.10.0: no production video playback, video preloading, video-derived hold or shipped MP4. Preserve all eight moments through the authored dialogues/tableaux and their existing choices, effects and transitions. No video delay or empty replacement interlude. Retain environment/cast ownership, four-actor cap, V2, Alaric climax, keyboard/focus, OS/game reduced motion and missing-image agency. Preserve canonical IDs, causal order, resolved/revisit behavior and V6; presentation creates no facts.
+
+Stop new cinematic, illustrated-montage and MiniMax production, including pilot generalization. Preserve all existing media, candidates, readers, raw requests/results/hashes and historical receipts/acceptances. Archive shipped videos and their manifest byte-identically outside public rather than destroy them. The earlier eight-slot, video-hold and offline-production permissions are superseded only on this retirement scope; old evidence keeps its actual limits. Static dialogue/NarrativeStage improvement is the presentation continuation, without new canon, choices, outcomes or audio permission. Scheduler state and settings remain unchanged. Independent actual-diff review, amendment commit and a following immutable-baseline commit precede runtime.
 
 ## Offline illustrated candidates — OD-2026-10-21-A
 

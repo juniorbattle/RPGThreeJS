@@ -22,6 +22,10 @@ Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonom
 
 Dedicated `PRODUCTION-CONTRACTS-POI-V2-RETIREMENT-1`, set 1.3.0. The explicitly requested exceptional manual mission proceeds through playable A/B, artistic C and definitive physical retirement D, with coherent normal dev checkpoints and preserved WIP. Its operator-specified absence of a time/work limit applies to this mission only; scheduled configuration and paused status stay unchanged. Independent guardian review precedes the amended LOCKED baseline and guards sensitive runtime milestones. No new authoring/reward or art acceptance is inferred from execution authorization. Main remains protected.
 
+## Cinematic retirement continuation — OD-2026-10-24-A
+
+Dedicated `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md), set1.10.0 supersedes the historical cinematic production queue and offline illustrated pilot/generalization authorizations. Retire runtime videos through existing static dialogues/tableaux, preserve archives/evidence and gameplay/save authority, then address bounded demonstrated static dialogue/NarrativeStage presentation issues. Do not generate/poll video, keyframes or illustrated cinematic candidates, replace MP4s, or infer artistic acceptance. Dedicated reviewed amendment and committed baseline precede runtime. Preserve the saved scheduler status/cadence/settings; no activation inferred. The historical queue below is not an instruction to restart retired work.
+
 ## Preserved historical ordered initial queue
 
 1. `PRODUCTION-CONTRACTS-LOCK-1` and this protocol.
