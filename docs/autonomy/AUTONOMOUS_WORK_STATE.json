@@ -3,8 +3,8 @@
   "runStartedAt": "2026-10-24T05:51:50.0908309Z",
   "runEndedAt": null,
   "activeTask": "MANUAL-BOIS-CLAIR-PARTITION-MINIMAX",
-  "activePhase": "MANUAL_VIDEO_PREPRODUCTION",
-  "activeSubtask": "Four firstframe clips/26.5s edit, exact prompts and environmentOnly capability review before provider",
+  "activePhase": "MANUAL_MINIMAX_SUBMITTING_HUMAN_BLOCK",
+  "activeSubtask": "Firstpaidtask shot03/15s; no retry if POST outcome ambiguous",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "434a150fc37dbb9b3020160cf8ec8c9601191e8a",
   "lastPushedCommit": "434a150fc37dbb9b3020160cf8ec8c9601191e8a",
@@ -60,8 +60,8 @@
     "After pilot method acceptance only: audience, arrival, saved, judgement, Serpent ending, Lion-trial ending",
     "Independent demonstrated PC issue only; mobile after PC stability"
   ],
-  "creditStatus": "NOT_CHECKED_FOR_PROVIDER",
-  "contractComplianceStatus": "PREGEN_ACTUAL_DIFF_REVIEW_PENDING",
+  "creditStatus": "AVAILABLE",
+  "contractComplianceStatus": "PASS_MANUAL_BOIS_PROVIDER_SUBMISSION_SCOPED",
   "commitReferenceScope": "Deliveryc5e79378 published and verified on origin/dev,61candidatefiles committed bytes match. Following state-only closure SHA remains authoritative in Git/automationmemory; no selfreferential SHA.",
   "operatorAuthorization": "Direct24Oct transformpartitionwithMiniMax request engages OD2026-10-01-A/B manualproviderpermission; no routine key/transmission reapproval, no recurrence/runtime/audio/artacceptance",
   "creativeDirection": {
@@ -135,10 +135,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-bois-video-20261024T0551Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-24T06:03:25.378Z",
+  "lastHeartbeat": "2026-10-24T06:21:09.479Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-24T06:03:25.378Z",
+    "lastHeartbeat": "2026-10-24T06:21:09.479Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -41435,7 +41435,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "MANUAL-BOIS-CLAIR-PARTITION-MINIMAX",
-    "activeSubtask": "Four firstframe clips/26.5s edit, exact prompts and environmentOnly capability review before provider",
+    "activeSubtask": "Firstpaidtask shot03/15s; no retry if POST outcome ambiguous",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -44771,8 +44771,8 @@
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-24T05:51:50.0908309Z",
-    "activePhase": "MANUAL_VIDEO_PREPRODUCTION",
-    "heartbeat": "2026-10-24T06:03:25.378Z",
+    "activePhase": "MANUAL_MINIMAX_SUBMITTING_HUMAN_BLOCK",
+    "heartbeat": "2026-10-24T06:21:09.479Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -47304,7 +47304,7 @@
       },
       "closeoutAt": "2026-10-16T15:33:54.359Z"
     },
-    "creditStatus": "NOT_CHECKED_FOR_PROVIDER",
+    "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
     "lastKnownGoodCommit": "434a150fc37dbb9b3020160cf8ec8c9601191e8a",
     "completedThisRun": [
@@ -47358,7 +47358,7 @@
       "After pilot method acceptance only: audience, arrival, saved, judgement, Serpent ending, Lion-trial ending",
       "Independent demonstrated PC issue only; mobile after PC stability"
     ],
-    "contractComplianceStatus": "PREGEN_ACTUAL_DIFF_REVIEW_PENDING",
+    "contractComplianceStatus": "PASS_MANUAL_BOIS_PROVIDER_SUBMISSION_SCOPED",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -49140,7 +49140,7 @@
       "decision": "docs/autonomy/MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md",
       "specPath": "tools/cinematics/specs/manual-bois-partition-20261024.json",
       "candidatePath": "tools/cinematics/candidates/manual-bois-partition-20261024/",
-      "status": "PREPRODUCTION_NOT_SUBMITTED",
+      "status": "GENERATED",
       "manualOnly": true,
       "recurringGenerationAllowed": false,
       "paidTasksMax": 4,
@@ -49148,7 +49148,15 @@
       "estimatedCostUsd": 3.64,
       "artifactReviewPending": true,
       "sourceIllustratedPilotStatus": "ART_NEEDS_CORRECTION",
-      "nextAction": "Verify bounded environmentOnly plans/prompt compilation, then submit four manual firstframe tasks once each; inspect actualvideo before silentmontage. Recurringgeneration remainsprohibited."
+      "nextAction": "Verify bounded environmentOnly plans/prompt compilation, then submit four manual firstframe tasks once each; inspect actualvideo before silentmontage. Recurringgeneration remainsprohibited.",
+      "guardian": "PASS_MANUAL_BOIS_PROVIDER_SUBMISSION_SCOPED actual155tests/prompts/4sourceSHA",
+      "providerTaskIds": [
+        "455754359071094",
+        "455759047762392",
+        "455753654690290",
+        "455761043280385"
+      ],
+      "downloadedBlocks": 4
     },
     "runCounts": {
       "runtimeSourceFilesModified": 0,
@@ -49156,14 +49164,15 @@
       "toolingTestFilesModified": 1,
       "newImages": 0,
       "imagegenCalls": 0,
-      "providerTasksSubmitted": 0,
+      "providerTasksSubmitted": 4,
       "plannedPaidTasks": 4,
       "qaScenarios": 0,
       "newQaJobs": 0,
       "inheritedQaJobs": 362,
       "totalQaJobs": 362,
       "inheritedWipPaths": 0,
-      "selectedPaths": 17
+      "selectedPaths": 17,
+      "downloadedBlocks": 4
     }
   },
   "previousInterruptedRun": {
@@ -50854,7 +50863,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-24T06:03:25.378Z",
+  "heartbeat": "2026-10-24T06:21:09.479Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -54459,20 +54468,21 @@
     "toolingTestFilesModified": 1,
     "newImages": 0,
     "imagegenCalls": 0,
-    "providerTasksSubmitted": 0,
+    "providerTasksSubmitted": 4,
     "plannedPaidTasks": 4,
     "qaScenarios": 0,
     "newQaJobs": 0,
     "inheritedQaJobs": 362,
     "totalQaJobs": 362,
     "inheritedWipPaths": 0,
-    "selectedPaths": 17
+    "selectedPaths": 17,
+    "downloadedBlocks": 4
   },
   "manualVideoWorkstream": {
     "decision": "docs/autonomy/MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md",
     "specPath": "tools/cinematics/specs/manual-bois-partition-20261024.json",
     "candidatePath": "tools/cinematics/candidates/manual-bois-partition-20261024/",
-    "status": "PREPRODUCTION_NOT_SUBMITTED",
+    "status": "GENERATED",
     "manualOnly": true,
     "recurringGenerationAllowed": false,
     "paidTasksMax": 4,
@@ -54480,6 +54490,14 @@
     "estimatedCostUsd": 3.64,
     "artifactReviewPending": true,
     "sourceIllustratedPilotStatus": "ART_NEEDS_CORRECTION",
-    "nextAction": "Verify bounded environmentOnly plans/prompt compilation, then submit four manual firstframe tasks once each; inspect actualvideo before silentmontage. Recurringgeneration remainsprohibited."
+    "nextAction": "Verify bounded environmentOnly plans/prompt compilation, then submit four manual firstframe tasks once each; inspect actualvideo before silentmontage. Recurringgeneration remainsprohibited.",
+    "guardian": "PASS_MANUAL_BOIS_PROVIDER_SUBMISSION_SCOPED actual155tests/prompts/4sourceSHA",
+    "providerTaskIds": [
+      "455754359071094",
+      "455759047762392",
+      "455753654690290",
+      "455761043280385"
+    ],
+    "downloadedBlocks": 4
   }
 }

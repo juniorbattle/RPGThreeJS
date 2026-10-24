@@ -1,0 +1,210 @@
+{
+  "recordedAt": "2026-10-24T06:17:00.281Z",
+  "slot": "bois_clair_sacrificed",
+  "shot": "shot_03",
+  "input": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/candidate_01_raw.mp4",
+  "sha256": "8f4b1e36ae8ce3ec7fe31d82adb9b7f1c488e67279970732b56042429a4b0c40",
+  "media": {
+    "container": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec": "h264",
+    "profile": "High",
+    "pixelFormat": "yuv420p",
+    "width": 2560,
+    "height": 1440,
+    "sampleAspectRatio": null,
+    "displayAspectRatio": null,
+    "averageFrameRate": "24/1",
+    "durationSeconds": 15.084,
+    "audioStream": true,
+    "rotation": 0
+  },
+  "authoredBlockDurationSeconds": 15,
+  "durationDeltaSeconds": 0.08399999999999963,
+  "frames": [
+    {
+      "label": "first",
+      "seconds": 0,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot03/first.png",
+      "sha256": "97ede4ea81e1e92b79131571da032f670570ba5bbabe100deb22167cbd11e822"
+    },
+    {
+      "label": "initiation",
+      "seconds": 1.875,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot03/initiation.png",
+      "sha256": "cbaa032a36d4f47d173ed15479ca3b700eabb82f8df66291c5d61d51b6ae85b2"
+    },
+    {
+      "label": "stride",
+      "seconds": 3.75,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot03/stride.png",
+      "sha256": "7fc0899025433d456505340a524911121ec308f78942ae6e39a4ed96958683f3"
+    },
+    {
+      "label": "middle",
+      "seconds": 7.5,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot03/middle.png",
+      "sha256": "72ac18cd2dade51291c16bc7e5daced65cafa08195d2f7f9498cd94082d5d26d"
+    },
+    {
+      "label": "progression",
+      "seconds": 11.25,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot03/progression.png",
+      "sha256": "a33e954420c68b96e90f3809af2d14ce52f65d94d8bd50495721345ebb9ad2d8"
+    },
+    {
+      "label": "final",
+      "seconds": 14.9,
+      "path": "tmp/cinematics/eight-slot-remaster/manual-bois-0551-shot03/final.png",
+      "sha256": "4e72ddc0f1206d3f2e9a0cd4c2fe6fb64e239ba5c42655deeb8a493dff190dd3"
+    }
+  ],
+  "motion": [
+    {
+      "seconds": 0.5,
+      "worldMeanAbsoluteDelta": 2.268,
+      "actorsMeanAbsoluteDelta": 7.663
+    },
+    {
+      "seconds": 1,
+      "worldMeanAbsoluteDelta": 3.119,
+      "actorsMeanAbsoluteDelta": 10.284
+    },
+    {
+      "seconds": 1.5,
+      "worldMeanAbsoluteDelta": 3.556,
+      "actorsMeanAbsoluteDelta": 12.052
+    },
+    {
+      "seconds": 2,
+      "worldMeanAbsoluteDelta": 3.465,
+      "actorsMeanAbsoluteDelta": 8.496
+    },
+    {
+      "seconds": 2.5,
+      "worldMeanAbsoluteDelta": 2.791,
+      "actorsMeanAbsoluteDelta": 9.398
+    },
+    {
+      "seconds": 3,
+      "worldMeanAbsoluteDelta": 2.516,
+      "actorsMeanAbsoluteDelta": 4.757
+    },
+    {
+      "seconds": 3.5,
+      "worldMeanAbsoluteDelta": 3.533,
+      "actorsMeanAbsoluteDelta": 8.614
+    },
+    {
+      "seconds": 4,
+      "worldMeanAbsoluteDelta": 3.176,
+      "actorsMeanAbsoluteDelta": 8.021
+    },
+    {
+      "seconds": 4.5,
+      "worldMeanAbsoluteDelta": 3.027,
+      "actorsMeanAbsoluteDelta": 6.55
+    },
+    {
+      "seconds": 5,
+      "worldMeanAbsoluteDelta": 2.212,
+      "actorsMeanAbsoluteDelta": 4.245
+    },
+    {
+      "seconds": 5.5,
+      "worldMeanAbsoluteDelta": 1.823,
+      "actorsMeanAbsoluteDelta": 5.758
+    },
+    {
+      "seconds": 6,
+      "worldMeanAbsoluteDelta": 1.971,
+      "actorsMeanAbsoluteDelta": 5.086
+    },
+    {
+      "seconds": 6.5,
+      "worldMeanAbsoluteDelta": 1.637,
+      "actorsMeanAbsoluteDelta": 5.975
+    },
+    {
+      "seconds": 7,
+      "worldMeanAbsoluteDelta": 1.787,
+      "actorsMeanAbsoluteDelta": 6.206
+    },
+    {
+      "seconds": 7.5,
+      "worldMeanAbsoluteDelta": 2.012,
+      "actorsMeanAbsoluteDelta": 4.667
+    },
+    {
+      "seconds": 8,
+      "worldMeanAbsoluteDelta": 2.175,
+      "actorsMeanAbsoluteDelta": 5.877
+    },
+    {
+      "seconds": 8.5,
+      "worldMeanAbsoluteDelta": 1.804,
+      "actorsMeanAbsoluteDelta": 3.376
+    },
+    {
+      "seconds": 9,
+      "worldMeanAbsoluteDelta": 2.056,
+      "actorsMeanAbsoluteDelta": 5.831
+    },
+    {
+      "seconds": 9.5,
+      "worldMeanAbsoluteDelta": 2.578,
+      "actorsMeanAbsoluteDelta": 5.972
+    },
+    {
+      "seconds": 10,
+      "worldMeanAbsoluteDelta": 2.082,
+      "actorsMeanAbsoluteDelta": 5.461
+    },
+    {
+      "seconds": 10.5,
+      "worldMeanAbsoluteDelta": 2.213,
+      "actorsMeanAbsoluteDelta": 5.132
+    },
+    {
+      "seconds": 11,
+      "worldMeanAbsoluteDelta": 1.943,
+      "actorsMeanAbsoluteDelta": 5.398
+    },
+    {
+      "seconds": 11.5,
+      "worldMeanAbsoluteDelta": 2.141,
+      "actorsMeanAbsoluteDelta": 6.276
+    },
+    {
+      "seconds": 12,
+      "worldMeanAbsoluteDelta": 3.238,
+      "actorsMeanAbsoluteDelta": 8.798
+    },
+    {
+      "seconds": 12.5,
+      "worldMeanAbsoluteDelta": 3.441,
+      "actorsMeanAbsoluteDelta": 9.685
+    },
+    {
+      "seconds": 13,
+      "worldMeanAbsoluteDelta": 3.643,
+      "actorsMeanAbsoluteDelta": 11.38
+    },
+    {
+      "seconds": 13.5,
+      "worldMeanAbsoluteDelta": 3.399,
+      "actorsMeanAbsoluteDelta": 9.672
+    },
+    {
+      "seconds": 14,
+      "worldMeanAbsoluteDelta": 2.503,
+      "actorsMeanAbsoluteDelta": 5.657
+    },
+    {
+      "seconds": 14.5,
+      "worldMeanAbsoluteDelta": 1.751,
+      "actorsMeanAbsoluteDelta": 2.159
+    }
+  ],
+  "contactSheetPaddingTiles": 0,
+  "scope": "DECODED_FRAME_DIFFERENCES_ARE_DIAGNOSTIC_ONLY_CAMERA_MOTION_CAN_CAUSE_THEM;_ARTISTIC_REVIEW_REQUIRED"
+}

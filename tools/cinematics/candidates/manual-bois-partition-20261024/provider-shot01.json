@@ -1,0 +1,53 @@
+{
+  "cinematicId": "bois_clair_sacrificed",
+  "pipeline": "CIN-4",
+  "sequenceId": "manual_bois_partition_20261024_v1",
+  "shotId": "shot_01",
+  "tier": "HERO",
+  "sourceType": "ROOT_SOURCE",
+  "fromShotId": null,
+  "framing": "AUTHORED_LOCATION_MAJOR_EVENT",
+  "camera": {
+    "mode": "WIDE_HOLD",
+    "intent": "Wide establishing view; keep architecture and horizon fixed, no fake 2D still zoom."
+  },
+  "continuityOut": "DELIBERATE_CUT",
+  "endIntent": "STABLE_READABLE_MOTIVATED_EDITORIAL_CUT",
+  "staging": [],
+  "specPath": "tools/cinematics/specs/manual-bois-partition-20261024.json",
+  "sourceFrame": {
+    "width": 1672,
+    "height": 941
+  },
+  "sourcePath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/source.png",
+  "sourceSha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464",
+  "canonicalCharacterSources": [],
+  "environmentSource": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+  "provider": "MiniMax Open Platform Direct API",
+  "apiEndpoint": "/v2/video_generation",
+  "model": "MiniMax-H3",
+  "generationMode": "image-to-video / first-frame",
+  "sourceTransport": "data:image/png;base64",
+  "resolution": "2K",
+  "duration": 4,
+  "attempt": 1,
+  "promptVersion": "manual-bois-partition-20261024-v1",
+  "promptSha256": "caef363a88824659dd9e466b5e0bef35dcff481b1dda9b7b676b2af710baba7f",
+  "outputCandidatePath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/candidate_01_raw.mp4",
+  "startedAt": "2026-10-24T06:08:39.952Z",
+  "status": "downloaded",
+  "taskId": "455754359071094",
+  "lastProviderStatus": "succeeded",
+  "usage": {
+    "total_seconds": 4,
+    "input_seconds": 0,
+    "output_seconds": 4,
+    "input_image_count": 1,
+    "total_tokens": 221332,
+    "prompt_tokens": 13020,
+    "completion_tokens": 208312
+  },
+  "completedAt": "2026-10-24T06:13:46.186Z",
+  "outputBytes": 4972945,
+  "outputSha256": "4ff8275a47c3b2ab435271aa3bae65e99c72944431662f3b1eeae6fd85c11212"
+}

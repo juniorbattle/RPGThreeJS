@@ -73,12 +73,69 @@
     "automaticPaidRetries": 0
   },
   "status": {
-    "generation": "NOT_SUBMITTED",
+    "generation": "GENERATED",
     "technical": "NOT_VERIFIED",
     "art": "ART_REVIEW_PENDING",
     "runtime": "NOT_ADOPTED"
   },
-  "providerJobs": [],
+  "providerJobs": [
+    {
+      "shotId": "shot_01",
+      "taskId": "455754359071094",
+      "status": "downloaded",
+      "metadataPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/candidate_01_raw.metadata.json",
+      "sourceSha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464",
+      "promptSha256": "caef363a88824659dd9e466b5e0bef35dcff481b1dda9b7b676b2af710baba7f",
+      "duration": 4,
+      "resolution": "2K",
+      "attempt": 1,
+      "outputPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/candidate_01_raw.mp4",
+      "outputSha256": "4ff8275a47c3b2ab435271aa3bae65e99c72944431662f3b1eeae6fd85c11212",
+      "outputBytes": 4972945
+    },
+    {
+      "shotId": "shot_02",
+      "taskId": "455759047762392",
+      "status": "downloaded",
+      "metadataPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/candidate_01_raw.metadata.json",
+      "sourceSha256": "f02db5029f5cc48a857d3eb9ea9f7e2a52c3e7990a1236533546c28ba4991d0e",
+      "promptSha256": "1f197bde275ed7d07a03f115ce896df5971d9329273525920851c3d41c38bc3a",
+      "duration": 4,
+      "resolution": "2K",
+      "attempt": 1,
+      "outputPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/candidate_01_raw.mp4",
+      "outputSha256": "7c9721b2f611d410a6cb06ecdbfe6756178c85e0d745c6860c7ef4c78d22feee",
+      "outputBytes": 4005112
+    },
+    {
+      "shotId": "shot_03",
+      "taskId": "455753654690290",
+      "status": "downloaded",
+      "metadataPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/candidate_01_raw.metadata.json",
+      "sourceSha256": "8e9a6e1c58546a1d762631cca9ce853b1f1321e2001ad084ab4b7415c5a962ae",
+      "promptSha256": "1a900e3136ffb73f3fbf9f781aba4d71a533e8607e3dd1ca51e97c4743e6f9ab",
+      "duration": 15,
+      "resolution": "2K",
+      "attempt": 1,
+      "outputPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/candidate_01_raw.mp4",
+      "outputSha256": "8f4b1e36ae8ce3ec7fe31d82adb9b7f1c488e67279970732b56042429a4b0c40",
+      "outputBytes": 17498917
+    },
+    {
+      "shotId": "shot_04",
+      "taskId": "455761043280385",
+      "status": "downloaded",
+      "metadataPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_04/candidate_01_raw.metadata.json",
+      "sourceSha256": "119b2cfd128bd91be26ec84286ac6b4b4a291285e59d661798ff1d56ba08ab7c",
+      "promptSha256": "2db5996e314734d6346607002176f2dfae7b35c0482f9e016cb6319898de9654",
+      "duration": 5,
+      "resolution": "2K",
+      "attempt": 1,
+      "outputPath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_04/candidate_01_raw.mp4",
+      "outputSha256": "162e4e7c0d002c5735ec25f62dea065f6f6d4f202d7b1eacf04ba8a9a1285e42",
+      "outputBytes": 5840009
+    }
+  ],
   "audio": "No audio requested; retain raw ignored, reviewmaster always silent",
   "historicalVersionsPreserved": true,
   "schedulerMutated": false,
@@ -115,5 +172,51 @@
     "generatedSeconds": 28,
     "editedSeconds": 26.5,
     "expectedCostUsd": 3.64
+  },
+  "lastProviderSyncAt": "2026-10-24T06:21:09.479Z",
+  "downloadedProofs": [
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot01.json",
+      "sha256": "fc8cd4b59117ab607814cb001489eeb744df6e118d72e9b4f1e1493063aa5705"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot03.json",
+      "sha256": "4bfa7ba9670f4c1c4bdd6bfd95f1ac5527695b86290ab584bffdde01311ce5e0"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot01.json",
+      "sha256": "3f75d46d265cd4119b019b0871a222bffc34b26f16a2a23c320958d281f63269"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot03.json",
+      "sha256": "4355af5e7c914b2f7d08c769b30c0c33339039d3af9ce546a5ad37944adc9115"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/review-human-contact.png",
+      "sha256": "9c2c79449207c601a9dd013d5c6e5116e1b629cfc5b870ae67f4769cf8bbc186"
+    }
+  ],
+  "previewServer": {
+    "source": {
+      "path": "tmp/autonomy/serve-p03-05.cjs",
+      "sha256": "2fd557af771aed6507fe4b69a478a1c50d78881729af640da3656790ead354de"
+    },
+    "adaptation": {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/serve.cjs",
+      "sha256": "c62729aba0915931de1d0d700f8636815c38f2fca9604419267cfd6784ac5419"
+    },
+    "scope": "Only singlefinal ignoredvideo route, nativebrowsercontrols; no newplayer/runtime implementation",
+    "port": 5462
+  },
+  "authoringRecipe": {
+    "path": "tools/cinematics/candidates/manual-bois-partition-20261024/assemble.mjs",
+    "sha256": "fce4856b5bda0fa1eac43ec1ba720107a2ff975e4ed0e5390c7fd2871f96ef2b"
+  },
+  "actualVisualReview": {
+    "shot01": "Emptyruins remain, smoke/flames change without collapse; noactor introduced",
+    "shot03": "Decodedhand reachescentralgap towardwoman, basketprotection tightens; finalbotharms/booklower andhead/bustraised; glove/hiltclearance requiresreview",
+    "runtimeAccepted": false,
+    "artAccepted": false,
+    "guardian": "PASS_SCOPED_RAW_FRAMES: gesturecentral, basketprotection, bookretained/lowered, head/bustraised; palmUP/inward, late12–14s release, gloveguardambiguity. Silentmaster/montagereviewpending."
   }
 }

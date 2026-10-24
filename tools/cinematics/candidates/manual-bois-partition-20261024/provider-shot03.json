@@ -1,0 +1,75 @@
+{
+  "cinematicId": "bois_clair_sacrificed",
+  "pipeline": "CIN-4",
+  "sequenceId": "manual_bois_partition_20261024_v1",
+  "shotId": "shot_03",
+  "tier": "HERO",
+  "sourceType": "CUT_SOURCE",
+  "fromShotId": null,
+  "framing": "RELATIONAL_BODY_PERFORMANCE",
+  "camera": {
+    "mode": "STATIC",
+    "intent": "Hold a readable mediumwide two-person composition, both bodies and hands/book/basket visible, no cut or orbit; dramatic information comes from physical performance."
+  },
+  "continuityOut": "DELIBERATE_CUT",
+  "endIntent": "STABLE_READABLE_MOTIVATED_EDITORIAL_CUT",
+  "staging": [
+    {
+      "id": "maelor",
+      "facing": "SCREEN_RIGHT",
+      "lookTarget": "CHARACTER:villageoise",
+      "depth": 10,
+      "role": "PRIMARY",
+      "action": "RAISE_HAND",
+      "mirrorPolicy": "FORBID"
+    },
+    {
+      "id": "villageoise",
+      "facing": "SCREEN_RIGHT",
+      "lookTarget": "OFFSCREEN_RIGHT",
+      "depth": 20,
+      "role": "SECONDARY",
+      "action": "IDLE_BREATH",
+      "mirrorPolicy": "FORBID"
+    }
+  ],
+  "specPath": "tools/cinematics/specs/manual-bois-partition-20261024.json",
+  "sourceFrame": {
+    "width": 1672,
+    "height": 941
+  },
+  "sourcePath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/source.png",
+  "sourceSha256": "8e9a6e1c58546a1d762631cca9ce853b1f1321e2001ad084ab4b7415c5a962ae",
+  "canonicalCharacterSources": [
+    "public/assets/characters/pixel/masters/maelor.png",
+    "public/assets/characters/pixel/masters/villageoise.png"
+  ],
+  "environmentSource": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+  "provider": "MiniMax Open Platform Direct API",
+  "apiEndpoint": "/v2/video_generation",
+  "model": "MiniMax-H3",
+  "generationMode": "image-to-video / first-frame",
+  "sourceTransport": "data:image/png;base64",
+  "resolution": "2K",
+  "duration": 15,
+  "attempt": 1,
+  "promptVersion": "manual-bois-partition-20261024-v1",
+  "promptSha256": "1a900e3136ffb73f3fbf9f781aba4d71a533e8607e3dd1ca51e97c4743e6f9ab",
+  "outputCandidatePath": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/candidate_01_raw.mp4",
+  "startedAt": "2026-10-24T06:05:11.808Z",
+  "status": "downloaded",
+  "taskId": "455753654690290",
+  "lastProviderStatus": "succeeded",
+  "usage": {
+    "total_seconds": 15,
+    "input_seconds": 0,
+    "output_seconds": 15,
+    "input_image_count": 1,
+    "total_tokens": 794190,
+    "prompt_tokens": 13020,
+    "completion_tokens": 781170
+  },
+  "completedAt": "2026-10-24T06:15:44.010Z",
+  "outputBytes": 17498917,
+  "outputSha256": "8f4b1e36ae8ce3ec7fe31d82adb9b7f1c488e67279970732b56042429a4b0c40"
+}

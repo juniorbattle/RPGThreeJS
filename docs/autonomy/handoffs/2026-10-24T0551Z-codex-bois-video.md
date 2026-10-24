@@ -8,3 +8,7 @@ Prochaine action : Verify bounded environmentOnly plans/prompt compilation, then
 
 
 Préflight propre, dev434a150f/main00b96f1b, anciensserveurs conservés, aucune génération vidéo en attente avant ce run. Exactes requêtes/SHA et taskIds à checkpoint avant/après appels. Autorisation fournisseur permanente OD01-A/B confirmée ; ne pas réutiliser les anciens prompts walking/step/emptyhandraise du remaster, incompatibles avec cette partition.
+
+<!-- MANUAL_VIDEO_PROGRESS_START -->
+2026-10-24T06:21:09.479Z : shot_01=downloaded task455754359071094 ; shot_02=downloaded task455759047762392 ; shot_03=downloaded task455753654690290 ; shot_04=downloaded task455761043280385. Tâches réservées sans nouvelessai ; acceptation artistique et runtime en attente.
+<!-- MANUAL_VIDEO_PROGRESS_END -->

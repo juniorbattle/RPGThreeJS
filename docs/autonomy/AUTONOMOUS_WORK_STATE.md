@@ -378,3 +378,7 @@ Guardian final : PASS_METADATA_SYNTHESIS_CLOSEOUT ; sept versions35images126s/st
 Livraison 9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9 publiée et paritédev/origin-dev/liveremote vérifiée ; main00b96f1b inchangé. Finrun2026-10-23T02:04:16.244Z, serveur5461 arrêté. OngletIAB non disponible à la clôture ; index de revue ouvert dansCodex (queued). Aucun WIP hérité ; checkpoint cohérentdev après14,5min, aucune brancheWIP nécessaire. Métadonnées de clôture dans le commit suivant ; SHAfinal dans mémoireautomation/Git. Scheduler PAUSED et octets inchangés.
 
 ClôtureUTC2026-10-24T05:46:57.320Z : livraisonc5e79378 publiée/vérifiée,61fichiers candidat identiques aux octets commités ; verrou à libérer après publication de cette clôture metadata.362QA dont360hérités identiques, aucun workerQA/Git/build laissé ; serveur21636/5461 conservé pour revue. Scope artistique reste partiel et méthodePENDING.
+
+<!-- MANUAL_VIDEO_PROGRESS_START -->
+2026-10-24T06:21:09.479Z : shot_01=downloaded task455754359071094 ; shot_02=downloaded task455759047762392 ; shot_03=downloaded task455753654690290 ; shot_04=downloaded task455761043280385. Tâches réservées sans nouvelessai ; acceptation artistique et runtime en attente.
+<!-- MANUAL_VIDEO_PROGRESS_END -->
