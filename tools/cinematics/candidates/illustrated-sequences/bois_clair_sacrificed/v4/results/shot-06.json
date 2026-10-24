@@ -1,0 +1,5 @@
+{
+  "tool": "image_gen.imagegen",
+  "output_hint": "Generated images are saved to C:\\Users\\miche\\.codex\\generated_images\\01a167b9-2df2-7192-9ff1-fa652a2816ba as C:\\Users\\miche\\.codex\\generated_images\\01a167b9-2df2-7192-9ff1-fa652a2816ba\\exec-5ef41a66-c4a3-4c89-9ef5-66de3bf705cd.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
+  "rawPath": "C:/Users/miche/.codex/generated_images/01a167b9-2df2-7192-9ff1-fa652a2816ba/exec-5ef41a66-c4a3-4c89-9ef5-66de3bf705cd.png"
+}

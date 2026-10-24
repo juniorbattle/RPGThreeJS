@@ -203,7 +203,7 @@
       "receiptPath": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-receipt.json"
     }
   ],
-  "firstAction": "Generate and inspect v4 shots02–08 from the pre-reviewed source-bound storyboard, retaining exact requests/raw/results/SHA; then own26.5s reader proof and operator review. No six-scene generalization.",
+  "firstAction": "Run own v4 reader proof, inspect pairs/normal montage and preserve precise artistic limits before operator review. No new images or six-scene generalization.",
   "completionPolicy": "Historical seven-scene queue preserved. New pilot first; explicit operator ART_ACCEPTED method verdict before six-scene revision; no READY/technical auto-acceptance.",
   "preserve": {
     "qaJobs": 339,
@@ -217,21 +217,21 @@
   "executionDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
   "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
   "executionPolicy": "Existing recurrence content updated, saved PAUSED preserved. Future triggered run executes pilot without routine per-plan approval; operator artistic gate before generalization.",
-  "updatedAt": "2026-10-24T05:15:26.997Z",
+  "updatedAt": "2026-10-24T05:29:02.734Z",
   "completedOfflineCandidatesAt": "2026-10-23T01:58:16.182Z",
   "reviewIndexPath": "tools/cinematics/candidates/illustrated-sequences/review-index.md",
   "revisionDirective": {
     "decisionPath": "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
     "sourcePath": "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
     "sourceSha256": "11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
-    "status": "PILOT_V4_GENERATION_IN_PROGRESS",
+    "status": "PILOT_V4_GENERATED_OWN_REVIEW_PENDING",
     "amendmentDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
     "historicalQueueRole": "Unmodified historical technical deliveries, not near-final artistic acceptance",
     "pilot": {
       "id": "bois_clair_sacrificed",
       "version": "v4",
       "status": "STORYBOARD_PREPARED",
-      "generation": "GENERATION_IN_PROGRESS",
+      "generation": "GENERATED",
       "technical": "NOT_VERIFIED",
       "art": "ART_REVIEW_PENDING",
       "readiness": "IN_PROGRESS",
@@ -260,9 +260,11 @@
         "sha256": "25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07",
         "changed": false
       },
-      "initialImages": 3,
+      "initialImages": 7,
       "targetedCorrections": 2,
-      "progressUpdatedAt": "2026-10-24T05:15:26.997Z"
+      "progressUpdatedAt": "2026-10-24T05:26:34.883Z",
+      "readerPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html",
+      "reviewPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review.md"
     },
     "remainingSceneIds": [
       "alaric_audience_arrival",

@@ -9,7 +9,7 @@ UNE prochaine action : Generate and inspect v4 shots02–08 from the pre-reviewe
 Toutes360anciennesQA/acceptations, v1/v2/v3/camp, src/public/LOCKED/runtime/V6/POI/combat/vidéo/audio préservés. Aucune généralisation avant verdict explicite opérateur sur les images et le montage v4.
 
 <!-- V4_PROGRESS_START -->
-V4 : 3illustrations initiales nouvelles, 2corrections,1réemploi ; raw/requêtes/résultats/SHA conservés. Dernier résultat04-correction-01, 1672x941. Technique et art restent à vérifier.
+V4 : 7illustrations initiales nouvelles, 2corrections,1réemploi ; raw/requêtes/résultats/SHA conservés. Dernier résultat08, 1672x941. Technique et art restent à vérifier.
 <!-- V4_PROGRESS_END -->
 
 <!-- QA_JOBS_START -->
@@ -375,6 +375,7 @@ V4 : 3illustrations initiales nouvelles, 2corrections,1réemploi ; raw/requêtes
 - illustrated-pose-v3-0745: FAILED; port 5461; receipt `tmp/cinematics/pose-v3-0745/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-pose-v3-0745-host: FAILED; port 5461; receipt `tmp/cinematics/pose-v3-0745/review-host/qa-job.json`; NOT_ACCEPTED
 - illustrated-pose-v3-0745-fixed: SUCCEEDED; port 5461; receipt `tmp/cinematics/pose-v3-0745/review-fixed/qa-job.json`; NOT_ACCEPTED
+- illustrated-bois-v4-0455: PLANNED; port 5461; receipt `tmp/cinematics/bois-v4-0455/review/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 Guardian final : PASS_METADATA_SYNTHESIS_CLOSEOUT ; sept versions35images126s/statuts/frontières/limites/reçus/liens cohérents, aucune acceptation artistique ou runtime. Vérification finale93SHA/93racines historiques/354jobs hérités inchangés/355total/8SHA camp/configuration scheduler préservée.
