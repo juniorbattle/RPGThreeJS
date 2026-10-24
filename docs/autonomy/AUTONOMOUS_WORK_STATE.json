@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-24T05:51:50.0908309Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-24T06:39:22.433Z",
   "activeTask": "MANUAL-BOIS-CLAIR-PARTITION-MINIMAX",
   "activePhase": "MANUAL_VIDEO_READY_FOR_OPERATOR_REVIEW",
   "activeSubtask": "Four generatedclips assembled into exact26.5s silentreviewmaster; fullhuman15s preserved; operatorartpending",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "34bd349d995a73fdc0576e7623b8555deba61301",
-  "lastPushedCommit": "34bd349d995a73fdc0576e7623b8555deba61301",
+  "lastKnownGoodCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
+  "lastPushedCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
   "completedThisRun": [
     "Clean dev434a150f/origin parity, prior illustratedrun closed andlockarchived, newatomic manual lock",
     "Standing manualMiniMaxauthority and live request verified;4nativeexistingplates reused, no newimagegen",
@@ -15,7 +15,8 @@
     "Strict environmentOnly capability with155testsPASS;13oldactorprompts byteidentical;4sources/spec validated",
     "Four exactlyboundMiniMaxfirstframe tasks downloaded; raw/taskIDs/metadata/request/sourceSHA retained,0paidretries",
     "Actualdecodedframe progression and independentmanualscope reviewPASS; exact26.5s1080p24fps silentmaster verified",
-    "Nativebrowser video rendered/replayed withoutcaptions; encoding/frameclaims kept distinct from art/runtimeacceptance"
+    "Nativebrowser video rendered/replayed withoutcaptions; encoding/frameclaims kept distinct from art/runtimeacceptance",
+    "Delivery5d6354d3 normalpush verified;27candidatefiles/37hashesmatch;allworkersended,onlyboundedpreview40308/5462retained; schedulerconfigunchanged"
   ],
   "filesChanged": [
     ".gitattributes",
@@ -87,7 +88,7 @@
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED",
-  "commitReferenceScope": "Manualpreparation3b606f5f and generationcheckpoint34bd349d published; finalproof checkpoint follows. Finalvideo remainsignored/local, no productionreplacement.",
+  "commitReferenceScope": "Delivery5d6354d3 verifiedorigin/dev;27candidatefiles matchcommittedbytes,37provenancehashesmatch. Following metadata-onlyclosure SHA authoritativeinGit/automationmemory.",
   "operatorAuthorization": "Direct24Oct transformpartitionwithMiniMax request engages OD2026-10-01-A/B manualproviderpermission; no routine key/transmission reapproval, no recurrence/runtime/audio/artacceptance",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -160,10 +161,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-bois-video-20261024T0551Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-24T06:35:53.065Z",
+  "lastHeartbeat": "2026-10-24T06:39:22.433Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-24T06:35:53.065Z",
+    "lastHeartbeat": "2026-10-24T06:39:22.433Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -40663,12 +40664,14 @@
       "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md"
     ],
     "publication": {
-      "status": "FINAL_MANUAL_VIDEO_PROOF_PENDING",
+      "status": "DELIVERY_VERIFIED_METADATA_CLOSURE_FOLLOWS",
+      "sha": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
+      "remoteDevVerifiedAt": "2026-10-24T06:39:22.433Z",
       "authority": "OD-2026-10-12-A",
-      "previousPublished": "34bd349d995a73fdc0576e7623b8555deba61301"
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-24T06:39:22.433Z",
+    "writerStopped": true,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
       "previewPort5461Stopped": true,
@@ -44802,7 +44805,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-24T05:51:50.0908309Z",
     "activePhase": "MANUAL_VIDEO_READY_FOR_OPERATOR_REVIEW",
-    "heartbeat": "2026-10-24T06:35:53.065Z",
+    "heartbeat": "2026-10-24T06:39:22.433Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -46143,7 +46146,7 @@
       }
     },
     "threadId": "01a167b9-2df2-7192-9ff1-fa652a2816ba",
-    "writerStoppedMeaning": "Product/generation/QA work ended; only coherent metadata publication and owned lock release remain",
+    "writerStoppedMeaning": "All provider/encoding workers ended; only metadata publication and owned lock release remain",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -46531,7 +46534,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "34bd349d995a73fdc0576e7623b8555deba61301",
+    "lastPushedCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -47336,7 +47339,7 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "34bd349d995a73fdc0576e7623b8555deba61301",
+    "lastKnownGoodCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
     "completedThisRun": [
       "Clean dev434a150f/origin parity, prior illustratedrun closed andlockarchived, newatomic manual lock",
       "Standing manualMiniMaxauthority and live request verified;4nativeexistingplates reused, no newimagegen",
@@ -47344,7 +47347,8 @@
       "Strict environmentOnly capability with155testsPASS;13oldactorprompts byteidentical;4sources/spec validated",
       "Four exactlyboundMiniMaxfirstframe tasks downloaded; raw/taskIDs/metadata/request/sourceSHA retained,0paidretries",
       "Actualdecodedframe progression and independentmanualscope reviewPASS; exact26.5s1080p24fps silentmaster verified",
-      "Nativebrowser video rendered/replayed withoutcaptions; encoding/frameclaims kept distinct from art/runtimeacceptance"
+      "Nativebrowser video rendered/replayed withoutcaptions; encoding/frameclaims kept distinct from art/runtimeacceptance",
+      "Delivery5d6354d3 normalpush verified;27candidatefiles/37hashesmatch;allworkersended,onlyboundedpreview40308/5462retained; schedulerconfigunchanged"
     ],
     "filesChanged": [
       ".gitattributes",
@@ -48912,11 +48916,12 @@
     },
     "contractSetVersion": "1.9.0",
     "uncommittedWork": {
-      "status": "FINAL_MANUAL_VIDEO_PROOF_TO_PUBLISH",
-      "inheritedWip": 0,
-      "rawVideosRetainedIgnored": true
+      "status": "COHERENT_MANUAL_VIDEO_CHECKPOINT_PUBLISHED",
+      "deliveryCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
+      "inheritedWipPaths": 0,
+      "rawAndFinalMasterRetainedIgnored": true
     },
-    "commitReferenceScope": "Manualpreparation3b606f5f and generationcheckpoint34bd349d published; finalproof checkpoint follows. Finalvideo remainsignored/local, no productionreplacement.",
+    "commitReferenceScope": "Delivery5d6354d3 verifiedorigin/dev;27candidatefiles matchcommittedbytes,37provenancehashesmatch. Following metadata-onlyclosure SHA authoritativeinGit/automationmemory.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
       "status": "SAVED_AND_CONFIGURATION_VERIFIED",
@@ -49284,7 +49289,17 @@
       ],
       "paidTasksUsed": 4,
       "paidRetries": 0,
-      "providerTasksPending": 0
+      "providerTasksPending": 0,
+      "runEndedAt": "2026-10-24T06:39:22.433Z",
+      "publication": {
+        "deliveryCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
+        "verifiedAt": "2026-10-24T06:39:22.433Z",
+        "remote": "origin/dev",
+        "candidateFiles": 27,
+        "provenanceHashes": 37,
+        "allMatch": true,
+        "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
+      }
     },
     "runCounts": {
       "runtimeSourceFilesModified": 0,
@@ -49541,9 +49556,10 @@
     }
   },
   "uncommittedWork": {
-    "status": "FINAL_MANUAL_VIDEO_PROOF_TO_PUBLISH",
-    "inheritedWip": 0,
-    "rawVideosRetainedIgnored": true
+    "status": "COHERENT_MANUAL_VIDEO_CHECKPOINT_PUBLISHED",
+    "deliveryCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
+    "inheritedWipPaths": 0,
+    "rawAndFinalMasterRetainedIgnored": true
   },
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
@@ -51017,7 +51033,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-24T06:35:53.065Z",
+  "heartbeat": "2026-10-24T06:39:22.433Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -54713,6 +54729,16 @@
     ],
     "paidTasksUsed": 4,
     "paidRetries": 0,
-    "providerTasksPending": 0
+    "providerTasksPending": 0,
+    "runEndedAt": "2026-10-24T06:39:22.433Z",
+    "publication": {
+      "deliveryCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
+      "verifiedAt": "2026-10-24T06:39:22.433Z",
+      "remote": "origin/dev",
+      "candidateFiles": 27,
+      "provenanceHashes": 37,
+      "allMatch": true,
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
+    }
   }
 }

@@ -10,7 +10,7 @@ Les362QA/acceptations et pilote illustrév4 sont identiques à l’entrée du ru
 
 UNE prochaine action : Operator reviews the existing26.5s silentmanualvideo and returns an artisticverdict on gesture/release/pacing/raccord. No new paidtask or runtimeadoption; recurringMiniMax remainsprohibited.
 
-Publication finale des preuves/état à faire sur origin/dev selonOD12-A ; main protégé.
+Livraison5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655 publiée et parité origin/dev vérifiée selonOD12-A ; main protégé.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -388,3 +388,5 @@ ClôtureUTC2026-10-24T05:46:57.320Z : livraisonc5e79378 publiée/vérifiée,61fi
 <!-- MANUAL_VIDEO_PROGRESS_START -->
 2026-10-24T06:24:05.908Z : shot_01=downloaded task455754359071094 ; shot_02=downloaded task455759047762392 ; shot_03=downloaded task455753654690290 ; shot_04=downloaded task455761043280385. Tâches réservées sans nouvelessai ; acceptation artistique et runtime en attente.
 <!-- MANUAL_VIDEO_PROGRESS_END -->
+
+ClôtureUTC2026-10-24T06:39:22.433Z :27fichiers candidat identiques aux octets commités,37SHAs de provenance vérifiés ;362jobs/acceptations et v4 illustré identiques,0worker fournisseur/encodage restant. Dernière publication metadata puis libération du seul verrou possédé ; aperçu40308/5462 retenu. ART_REVIEW_PENDING, aucune acceptationruntime/généralisation/récurrence.

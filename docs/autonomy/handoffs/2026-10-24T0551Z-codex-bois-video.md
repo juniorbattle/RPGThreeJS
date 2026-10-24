@@ -10,7 +10,7 @@ Les362QA/acceptations et pilote illustrév4 sont identiques à l’entrée du ru
 
 UNE prochaine action : Operator reviews the existing26.5s silentmanualvideo and returns an artisticverdict on gesture/release/pacing/raccord. No new paidtask or runtimeadoption; recurringMiniMax remainsprohibited.
 
-Publication finale des preuves/état à faire sur origin/dev selonOD12-A ; main protégé.
+Livraison5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655 publiée et parité origin/dev vérifiée selonOD12-A ; main protégé.
 
 
 Préflight nouveau chantier propredev434a150f ; ancienrunillustré clôturé/publié avant verroumanuel atomique. Autorisationdirecte « transforme cette partition en video avec minimax » + OD01-A/B, aucun nouvel accord fournisseur exigé. Préparation3b606f5f/checkpoint34bd349d publiés. Aucun usage de l’ancienprompt walking/villageoisestep, aucune extensioncamp05/lastframe, aucun keyframe neuf.
@@ -18,3 +18,5 @@ Préflight nouveau chantier propredev434a150f ; ancienrunillustré clôturé/pub
 TaskIDs :01=455754359071094 ;02=455759047762392 ;03=455753654690290 ;04=455761043280385, tousdownloaded. Bruts4,459/4,459/15,084/5,167s avec audioinvolontaire ; imagesdébut/milieu/fin/contactsheet inspectées. Masters de plans conformes et silence du film final vérifié, pas de padding de mouvementmanquant. RecetteFFmpeg et exactes requêtes/SHA versionnées. Aperçu natif,0scénarioautomatisécampagne,0nouveaujobQA ;362jobs préservés exactement.
 
 Comptage :{"runtimeSourceFilesModified":0,"gameplaySteps":0,"toolingFilesModified":1,"toolingTestFilesModified":1,"newImages":0,"imagegenCalls":0,"providerTasksSubmitted":4,"downloadedBlocks":4,"paidRetries":0,"generatedRequestedSeconds":28,"editedSeconds":26.5,"qaScenarios":0,"nativePreviewSessions":1,"newQaJobs":0,"inheritedQaJobs":362,"totalQaJobs":362,"inheritedWipPaths":0,"selectedPublicationPaths":36,"qaAndProofFiles":17,"workflowFiles":7}. Coût prévu3,64$US pour28s demandées, plafond4$, facturationexacte nonrapportée,0paidretry. Revueartopérateur de ce mêmefilm avant toute nouvelle dépense ; scopeillustré/cadence/activation restent séparés.
+
+ClôtureUTC2026-10-24T06:39:22.433Z :27fichiers candidat identiques aux octets commités,37SHAs de provenance vérifiés ;362jobs/acceptations et v4 illustré identiques,0worker fournisseur/encodage restant. Dernière publication metadata puis libération du seul verrou possédé ; aperçu40308/5462 retenu. ART_REVIEW_PENDING, aucune acceptationruntime/généralisation/récurrence.
