@@ -15,3 +15,4 @@ tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/** -t
 tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 tools/cinematics/candidates/manual-bois-partition-20261024/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 tools/cinematics/specs/manual-bois-partition-20261024.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+tools/cinematics/archive/production-videos-2026-10-24/manifest.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
