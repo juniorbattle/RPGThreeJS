@@ -1,0 +1,18 @@
+{
+  "recordedAt": "2026-10-24T06:02:00Z",
+  "evidenceOrigin": "Captured functions.exec/exec_command outputs of this manual run; no browser or gameplay proof implied",
+  "focusedTests": {
+    "command": "npx vitest run tools/cinematics/cin4_shot_spec.test.mjs tools/cinematics/minimax_task_checkpoint.test.mjs --exclude tmp/**",
+    "exitCode": 0,
+    "startedLocal": "2026-10-24 01:58:56 America/Toronto",
+    "validatorTests": 33,
+    "checkpointGuardTests": 122,
+    "totalPassed": 155,
+    "filesPassed": 2,
+    "stdout": "Test Files  2 passed (2)\nTests  155 passed (155)\nDuration  826ms\n"
+  },
+  "typeScript": { "command": "npx tsc --noEmit", "exitCode": 0, "stdout": "" },
+  "contracts": { "command": "npm run contracts:validate", "exitCode": 0, "stdout": "Validated 8 locked contracts and 8 video slots." },
+  "protectedGate": { "command": "git diff --exit-code 32c8439f6dea1d09f428c5c081392ab0c700e356 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md", "exitCode": 0, "stdout": "" },
+  "scope": "Strict emptyenvironment opt-in and prior cap/resume/firstframe request guards; no provider request made at test time"
+}

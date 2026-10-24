@@ -1,14 +1,10 @@
-# Bois-Clair v4 : technique vérifiée, jeu de Maelor à corriger
+# Bois-Clair : candidat vidéo MiniMax manuel
 
-Run codex-bois-v4-20261024T0455Z, débutUTC2026-10-24T04:55:07Z. [Handoff](handoffs/2026-10-24T0455Z-codex-bois-v4.md) · [lecteur](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html) · [revue](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review.md).
+Run codex-bois-video-20261024T0551Z, début2026-10-24T05:51:50.0908309Z. Nouvelle demande directe opérateur : transformer la partitionv4 en vidéo. [Décision](MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md), [spécification](../../tools/cinematics/specs/manual-bois-partition-20261024.json). Quatreblocs4/4/15/5s générés, montage4/2,5/15/5=26,5s, estimation3,64$US/max4$US, un essai payant/bloc et aucune relance payante automatique. Sourcesv4/01/02/03/08 réutilisées exactement. Capacité explicite environmentOnly/test/revue avant fournisseur.
 
-Huit images/26,5s : deux vues du village détruit, relation à deux, réaction protectrice de la femme, bras droit retombé/tête raffermie, bilan sur caisses fermées.7initiales/2corrections/1réemploi,9raw avec requêtes/résultats/SHA. **GENERATED / TECHNICALLY_VERIFIED / ART_NEEDS_CORRECTION / IN_PROGRESS** ; méthodePENDING/généralisationfalse/runtimeNOT_ADOPTED.04geste orienté à l’écart de la femme et06descente gauche/livre insuffisante : aucune réussite artistique ou READY revendiquée.
+Ce chantier est MANUAL EXTERNAL, pas une permission pour la récurrence : scheduler PAUSED/90min/xhigh inchangé. Les362jobs et toutes les acceptations, versions illustrées et la revueART_NEEDS_CORRECTION04/06 demeurent historiques ; méthode illustréePENDING/généralisationfalse/runtimeNOT_ADOPTED. Aucun nouveau keyframe/runtime/slot/LOCKED/audio.
 
-Montage final sixcoupes/unfondu0,65s (OS0,4s), durées/images inchangées. Les deux fondus initiaux à dédoublement sont remplacés par des coupes ; leur preuve initiale est conservée. Un scénario/deux essais justifiés, reçu final11contrôles et sixdrapeaux provenance vrais ; rawSUCCEEDED/NOT_ACCEPTED. Contrats8/8, TypeScript,63tests PASS ; captures pertinentes inspectées. Aucun gameplay joué, src/public/runtime/LOCKED/save/POI/combat/vidéo/audio inchangé.360jobs/acceptations hérités et queue historique conservés exactement ;362jobs avec les deux proprespreuves.
-
-Scheduler réellement PAUSED/xhigh/90min inchangé, SHA25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07. Préflight dev300d78df propre ; publication normale origin/dev autorisée OD-2026-10-12-A ; livraisonc5e7937879630685ef3b8be10bbe8c6435cc85cd publiée et parité origin/dev vérifiée. main00b96f1b préservé. Serveur5461/PID21636 conservé pour revue.
-
-UNE prochaine action produit : reprendre seulement Maelor04/06 selon les défauts visibles, changer composition/pose et conserver les images satisfaisantes. Plafond2corrections utilisé cette passe ; aucun nouvel appel image identique. Les six scènes attendent toujours le verdict artistique explicite images ET montage/méthode d’un pilote cohérent.
+Prochaine action : Verify bounded environmentOnly plans/prompt compilation, then submit four manual firstframe tasks once each; inspect actualvideo before silentmontage. Recurringgeneration remainsprohibited.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

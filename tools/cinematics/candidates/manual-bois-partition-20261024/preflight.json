@@ -1,0 +1,52 @@
+{
+  "validatedAt": "2026-10-24T06:02:14.636Z",
+  "valid": true,
+  "errors": [],
+  "warnings": [
+    "shots[2] stages two characters facing the same screen direction.",
+    "shots[3] stages two characters facing the same screen direction."
+  ],
+  "oldActorPromptsByteIdentical": 13,
+  "sourceCount": 4,
+  "firstLastFrameUsed": false,
+  "generatedSeconds": 28,
+  "editedSeconds": 26.5,
+  "expectedCostUsd": 3.64,
+  "sourceHashes": [
+    {
+      "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/source.png",
+      "sha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464"
+    },
+    {
+      "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/source.png",
+      "sha256": "f02db5029f5cc48a857d3eb9ea9f7e2a52c3e7990a1236533546c28ba4991d0e"
+    },
+    {
+      "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/source.png",
+      "sha256": "8e9a6e1c58546a1d762631cca9ce853b1f1321e2001ad084ab4b7415c5a962ae"
+    },
+    {
+      "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_04/source.png",
+      "sha256": "119b2cfd128bd91be26ec84286ac6b4b4a291285e59d661798ff1d56ba08ab7c"
+    }
+  ],
+  "prompts": [
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_01.txt",
+      "sha256": "caef363a88824659dd9e466b5e0bef35dcff481b1dda9b7b676b2af710baba7f"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_02.txt",
+      "sha256": "1f197bde275ed7d07a03f115ce896df5971d9329273525920851c3d41c38bc3a"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_03.txt",
+      "sha256": "1a900e3136ffb73f3fbf9f781aba4d71a533e8607e3dd1ca51e97c4743e6f9ab"
+    },
+    {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_04.txt",
+      "sha256": "2db5996e314734d6346607002176f2dfae7b35c0482f9e016cb6319898de9654"
+    }
+  ],
+  "providerSubmitted": false
+}

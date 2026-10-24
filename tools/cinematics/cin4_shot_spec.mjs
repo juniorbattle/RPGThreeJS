@@ -203,7 +203,17 @@ export async function validateShotSpec(input, options = {}) {
         }
       }
     }
-    if (!Array.isArray(shot.characters) || shot.characters.length === 0) {
+    if (shot.environmentOnly !== undefined && typeof shot.environmentOnly !== 'boolean') {
+      errors.push(`${prefix}.environmentOnly must be boolean when present.`);
+    }
+    if (shot.environmentOnly === true && (!Array.isArray(shot.characters) || shot.characters.length !== 0)) {
+      errors.push(`${prefix} environment-only shots require an explicitly empty characters array.`);
+    }
+    if (shot.environmentOnly === true && shot.props !== undefined
+        && (!Array.isArray(shot.props) || shot.props.length !== 0)) {
+      errors.push(`${prefix} environment-only shots cannot add registered props.`);
+    }
+    if (!Array.isArray(shot.characters) || (shot.characters.length === 0 && shot.environmentOnly !== true)) {
       errors.push(`${prefix}.characters must be non-empty.`);
       continue;
     }
@@ -310,14 +320,18 @@ export function buildShotPrompt(spec, shot) {
     spec.artDirection,
     `Shot ${shot.shotId}: ${shot.purpose}`,
     `Framing: ${shot.framing}. Camera intent: ${shot.camera.mode}${shot.camera.intent ? `: ${shot.camera.intent}` : ' with conservative amplitude'}.`,
-    `Staging: ${characters}.`,
+    shot.environmentOnly === true
+      ? 'Staging: environment only. No people, animals, human silhouettes, faces in windows, or reflected actors; do not introduce characters.'
+      : `Staging: ${characters}.`,
     ...(spec.cast ? [`Casting geography: player company [${spec.cast.playerFaction?.representatives?.join(', ') || 'waived'}] versus ${spec.cast.externalFaction?.id ?? 'external faction'} [${spec.cast.externalFaction?.representatives?.join(', ') || 'none'}]. Preserve both authored factions and never add an invented player avatar.`] : []),
     ...(props ? [`Deterministic props already present in the source: ${props}. Preserve their identity, position, and ownership ambiguity.`] : []),
     `Action intent: ${shot.promptIntent}`,
     ...(shot.dialogueSafeZone ? [`Dialogue-safe zone is normalized rectangle (${shot.dialogueSafeZone.x}, ${shot.dialogueSafeZone.y}, ${shot.dialogueSafeZone.width}, ${shot.dialogueSafeZone.height}); keep important faces, weapons, and evidence outside it.`] : []),
     ...(shot.agencySafeZone ? [`Agency-safe zone is normalized rectangle (${shot.agencySafeZone.x}, ${shot.agencySafeZone.y}, ${shot.agencySafeZone.width}, ${shot.agencySafeZone.height}); keep important faces, weapons, and evidence outside it.`] : []),
-    'The supplied first frame is authoritative. Preserve exactly every character identity, face or head, hair or helmet, armor, clothing, cape or tabard, weapon, body proportions, color palette, facing direction, spatial relationship, and environment identity. Animate the existing composition; do not redesign it.',
-    'Preserve the exact facing direction already shown in the first frame. Do not turn either character around, reverse screen direction, rotate a body 180 degrees, cross the established axis, or swap character sides.',
+    shot.environmentOnly === true
+      ? 'The supplied empty first frame is authoritative. Preserve architecture, ground, existing objects, palette, light and environment identity. Animate only the existing environment; do not redesign it or introduce actors.'
+      : 'The supplied first frame is authoritative. Preserve exactly every character identity, face or head, hair or helmet, armor, clothing, cape or tabard, weapon, body proportions, color palette, facing direction, spatial relationship, and environment identity. Animate the existing composition; do not redesign it.',
+    ...(shot.environmentOnly === true ? [] : ['Preserve the exact facing direction already shown in the first frame. Do not turn either character around, reverse screen direction, rotate a body 180 degrees, cross the established axis, or swap character sides.']),
     `End-state intent: ${shot.endIntent}. Finish stable, sharp, nonblank, nonverdict, and suitable for ${shot.continuityOut === 'LAST_FRAME' ? 'last-frame chaining' : 'an editorial cut or deterministic dialogue handoff'}.`,
     'No speech, lip sync, subtitles, text, UI, watermark, photorealism, live action, realistic 3D conversion, extra characters, duplicated limbs, duplicated weapons, anatomy melting, combat, attack, projectile, explosion, camera orbit, whip pan, large rotation, aggressive zoom, heavy blur, black ending, white ending, or style drift.',
   ].join(' ');

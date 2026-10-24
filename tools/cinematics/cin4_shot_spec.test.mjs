@@ -35,6 +35,47 @@ describe('CIN-4 shot specification', () => {
     expect(sourcePathForShot(spec, shot3)).toBe('tmp/cinematics/cin4/lion_judgement_v2/shot_02/last_frame.png');
   });
 
+  it('accepts an explicitly empty environment-only shot and compiles no invented cast', async () => {
+    const spec = await loadSpec();
+    spec.shots[0].environmentOnly = true;
+    spec.shots[0].characters = [];
+    expect((await validateShotSpec(spec, { projectRoot })).valid).toBe(true);
+    const prompt = buildShotPrompt(spec, spec.shots[0]);
+    expect(prompt).toContain('Staging: environment only. No people, animals, human silhouettes');
+    expect(prompt).toContain('reflected actors');
+    expect(prompt).toContain('supplied empty first frame is authoritative');
+    expect(prompt).not.toContain('Do not turn either character around');
+  });
+
+  it.each([undefined, false, 'true', 1, null])('rejects an empty cast without literal environmentOnly:true (%j)', async (flag) => {
+    const spec = await loadSpec();
+    spec.shots[0].environmentOnly = flag;
+    spec.shots[0].characters = [];
+    expect((await validateShotSpec(spec, { projectRoot })).valid).toBe(false);
+  });
+
+  it.each(['actors', 'malformed cast', 'prop'])('rejects an environment-only shot with %s', async (kind) => {
+    const spec = await loadSpec();
+    spec.shots[0].environmentOnly = true;
+    if (kind !== 'actors') spec.shots[0].characters = kind === 'malformed cast' ? null : [];
+    if (kind === 'prop') spec.shots[0].props = [{ id: 'seal', kind: 'SEALED_ARTEFACT', position: { x: .5, groundY: .9 }, sizePx: 96 }];
+    expect((await validateShotSpec(spec, { projectRoot })).valid).toBe(false);
+  });
+
+  it.each(['environment', 'source', 'native frame', 'camera', 'duration', 'safe zone'])('retains the %s guard for environment-only shots', async (kind) => {
+    const spec = await loadSpec();
+    const shot = spec.shots[0];
+    shot.environmentOnly = true;
+    shot.characters = [];
+    if (kind === 'environment') shot.environment = 'missing-environment.png';
+    if (kind === 'source') shot.source.output = '../outside.png';
+    if (kind === 'native frame') shot.source.frame = { width: 512, height: 512 };
+    if (kind === 'camera') shot.camera.mode = 'ORBIT';
+    if (kind === 'duration') shot.durationSeconds = 16;
+    if (kind === 'safe zone') shot.dialogueSafeZone = { x: .9, y: 0, width: .9, height: .1 };
+    expect((await validateShotSpec(spec, { projectRoot })).valid).toBe(false);
+  });
+
   it.each([
     ['facing', (spec) => { spec.shots[0].characters[0].facing = 'FORWARD'; }],
     ['lookTarget', (spec) => { spec.shots[0].characters[0].lookTarget = 'CHARACTER:missing'; }],

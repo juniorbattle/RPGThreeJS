@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "runId": "codex-bois-video-20261024T0551Z",
+  "sourceBranch": "dev",
+  "sourceCommit": "434a150fc37dbb9b3020160cf8ec8c9601191e8a",
+  "contractSet": "1.9.0",
+  "contractBaseline": "32c8439f6dea1d09f428c5c081392ab0c700e356",
+  "manualOnly": true,
+  "userRequest": "transforme cette partition en video avec minimax",
+  "spec": {
+    "path": "tools/cinematics/specs/manual-bois-partition-20261024.json",
+    "sha256": "273ee96304f67a20e690417579ed4eca86633cb3c7a5f88756990d3be4ef3731"
+  },
+  "sourcePartition": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md",
+    "sha256": "6e98e25411bc09c6a4d240299c86d4ed74e0ac5ab4a8c155592473142fc0499a"
+  },
+  "illustratedStatus": "ART_NEEDS_CORRECTION preserved; video request does not accept illustrated method",
+  "inputs": [
+    {
+      "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_01/source.png",
+      "sha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464",
+      "from": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-01.png",
+        "sha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464"
+      }
+    },
+    {
+      "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_02/source.png",
+      "sha256": "f02db5029f5cc48a857d3eb9ea9f7e2a52c3e7990a1236533546c28ba4991d0e",
+      "from": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-02.png",
+        "sha256": "f02db5029f5cc48a857d3eb9ea9f7e2a52c3e7990a1236533546c28ba4991d0e"
+      }
+    },
+    {
+      "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_03/source.png",
+      "sha256": "8e9a6e1c58546a1d762631cca9ce853b1f1321e2001ad084ab4b7415c5a962ae",
+      "from": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-03.png",
+        "sha256": "8e9a6e1c58546a1d762631cca9ce853b1f1321e2001ad084ab4b7415c5a962ae"
+      }
+    },
+    {
+      "path": "tmp/cinematics/cin4/manual_bois_partition_20261024_v1/shot_04/source.png",
+      "sha256": "119b2cfd128bd91be26ec84286ac6b4b4a291285e59d661798ff1d56ba08ab7c",
+      "from": {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-08.png",
+        "sha256": "119b2cfd128bd91be26ec84286ac6b4b4a291285e59d661798ff1d56ba08ab7c"
+      }
+    }
+  ],
+  "references": [
+    {
+      "path": "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-aftermath-sacrificed.png",
+      "sha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/maelor.png",
+      "sha256": "7fbd98cb90feae2bd6ce55d0e79e6995178cc285ca7c59b6908f62d77063e2ec"
+    },
+    {
+      "path": "public/assets/characters/pixel/masters/villageoise.png",
+      "sha256": "bd77e62b065dc4920d00ba78ada81d3546467df886c19f4a0c31071fa125a180"
+    }
+  ],
+  "model": "MiniMax-H3",
+  "mode": "first-frame only, genericattempt01 pernewdistinctshot; no camp05 exception",
+  "budget": {
+    "estimatedUsd": 3.64,
+    "ceilingUsd": 4,
+    "paidTasks": 4,
+    "automaticPaidRetries": 0
+  },
+  "status": {
+    "generation": "NOT_SUBMITTED",
+    "technical": "NOT_VERIFIED",
+    "art": "ART_REVIEW_PENDING",
+    "runtime": "NOT_ADOPTED"
+  },
+  "providerJobs": [],
+  "audio": "No audio requested; retain raw ignored, reviewmaster always silent",
+  "historicalVersionsPreserved": true,
+  "schedulerMutated": false,
+  "createdAt": "2026-10-24T05:58:05.678Z",
+  "requests": {
+    "path": "tools/cinematics/candidates/manual-bois-partition-20261024/requests.json",
+    "sha256": "932c0977251be78263ffc6c23581856923f3962c40a7ad9dd1c72fb90e56118d"
+  },
+  "tooling": {
+    "adapter": {
+      "path": "tools/cinematics/minimax_h3_generate.mjs",
+      "sha256": "4b3a740dbc482afa8e03c2a94d434d2a1651948ee0730a6dee722ac0a8fb38dc"
+    },
+    "validator": {
+      "path": "tools/cinematics/cin4_shot_spec.mjs",
+      "sha256": "ae2baf0c1c46539ced41e610751d7278f5c1b3b2588f7b30c03f1e9eceaeb850"
+    },
+    "focusedTests": "155/155 PASS;tsc/contracts8/8/LOCKEDgatePASS",
+    "verification": {
+      "path": "tools/cinematics/candidates/manual-bois-partition-20261024/verification-preflight.json",
+      "sha256": "3e19fd26146b67f9f188bb71387a6e2e4cf6fd22e26926806cc4e28a22130315"
+    }
+  },
+  "preGenerationValidation": {
+    "valid": true,
+    "errors": [],
+    "warnings": [
+      "shots[2] stages two characters facing the same screen direction.",
+      "shots[3] stages two characters facing the same screen direction."
+    ],
+    "oldActorPromptsByteIdentical": 13,
+    "sourceCount": 4,
+    "firstLastFrameUsed": false,
+    "generatedSeconds": 28,
+    "editedSeconds": 26.5,
+    "expectedCostUsd": 3.64
+  }
+}
