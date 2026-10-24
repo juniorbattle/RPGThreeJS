@@ -27,9 +27,9 @@ const BLOCK_MEDIA = process.env.CIN6D6_BLOCK_MEDIA === '1';
 const INTERRUPT_PRELUDE = process.env.CIN6D6_INTERRUPT_PRELUDE === '1';
 const LIVE_OS_FLIP = process.env.CIN6D6_LIVE_OS_FLIP === '1';
 const VIDEO_RETIREMENT = process.env.CIN6D6_VIDEO_RETIREMENT === '1';
-if (VIDEO_RETIREMENT && (!PRODUCTION || SCENARIO_FILTER !== 'opening-camp-audience'
+if (VIDEO_RETIREMENT && (!PRODUCTION || !LIVE_OS_FLIP || SCENARIO_FILTER !== 'opening-camp-audience'
   || REDUCED_MOTION || OS_REDUCED_MOTION || BLOCK_MEDIA || INTERRUPT_PRELUDE)) {
-  throw new Error('Video retirement proof requires only the built native opening scenario with available media and initially normal motion.');
+  throw new Error('Video retirement proof requires the built native opening scenario, available media, initially normal motion and a live OS reduced-motion change.');
 }
 if (LIVE_OS_FLIP && (!PRODUCTION || SCENARIO_FILTER !== 'opening-camp-audience'
   || REDUCED_MOTION || OS_REDUCED_MOTION || BLOCK_MEDIA || INTERRUPT_PRELUDE)) {
