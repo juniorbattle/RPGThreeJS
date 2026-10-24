@@ -1,3 +1,7 @@
+# Current continuation — OD-2026-10-24-B
+
+[Flow, sprite animation and VFX direction](PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md): coherence and responsive dialogue/choice/combat handoffs first; prepare one Alistair local-frame pilot, then readable combat action/VFX and bounded casting expansion. Existing poses/motion/VFX are reused; no full rebuild, video revival, art/runtime acceptance or scheduler change inferred. The Bois-Clair relational plan remains. This preparation produces no new animation or playable proof.
+
 # Current direction — OD-2026-10-24-A
 
 The operator abandons cinematics and explicitly removes videos from the game. This supersedes every older cinematic nextAction/roadmap/pilot/generalization instruction below. Preserve historical candidates, source/proofs and their original acceptance. Set1.10.0: zero active video/video-derived hold/preload/shipped MP4; eight historical identities and authored moments retained. Follow [the retirement decision](CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md) and [static narrative finishing plan](STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md). Next presentation pass: village_raid_aftermath readability with existing V2 resources, unchanged text/choices/truth. No generation or artistic acceptance inferred. Scheduler PAUSED/90min/settings preserved. PC before mobile.

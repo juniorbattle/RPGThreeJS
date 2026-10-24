@@ -2,6 +2,8 @@
 
 Direction opérateur [OD-2026-10-24-A](CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md). Plan de présentation ; aucune nouvelle réplique, action canonique, conséquence ou acceptation artistique.
 
+Suite OD-2026-10-24-B : le [plan fluidité, sprites et VFX](PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md) organise désormais la progression globale. Le pilote technique proposé utilise Alistair, commun au camp et au combat ; la passe relationnelle Bois-Clair ci-dessous reste à réaliser. Les spritesheets locales ne remplacent pas les dialogues/tableaux par une cinématique.
+
 Le joueur doit comprendre le lieu, qui parle à qui, le rapport entre les personnages et les choix disponibles par le tableau et le dialogue existant. Éviter de remplacer les vidéos par une succession automatique d’images.
 
 ## Première passe : Bois-Clair sacrifié
