@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "jobId": "video-retirement-opening-poi-2258",
+  "runId": "codex-cinematic-retirement-20261024T2258Z",
+  "status": "SUCCEEDED",
+  "startedAt": "2026-10-24T23:21:05.776Z",
+  "endedAt": "2026-10-24T23:21:21.585Z",
+  "pid": 41824,
+  "port": 5463,
+  "output": "tmp/cinematics/retirement-opening-poi-2258",
+  "command": [
+    "node",
+    "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+  ],
+  "parameters": {
+    "scenario": "opening-camp-audience",
+    "viewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "videoRetirement": true,
+    "liveOsFlip": true
+  },
+  "requiredAssertions": [
+    "native-opening-camp-audience",
+    "zero-video-elements-requests-play-preload",
+    "static-cast-max-four",
+    "keyboard-choices",
+    "exact-resolved-resume",
+    "normal-and-live-os-reduction"
+  ],
+  "provenance": {
+    "gitHead": "ed401c1371be6bb79c8038bb0ef9997930756144",
+    "sourceTree": "500454e45485e731222dc9bcd69986989a9eb32d",
+    "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "driver": {
+      "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+      "sha256": "9f4a7df939b39805b73f5c9aedfac9484647d73896ef0e216129669867088fe9"
+    },
+    "inputs": [],
+    "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+    "build": [
+      {
+        "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+        "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+      },
+      {
+        "path": "dist/assets/combat-DG7ZUtBq.css",
+        "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+      },
+      {
+        "path": "dist/assets/combat-tTV9DuEb.js",
+        "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+      },
+      {
+        "path": "dist/assets/game-Cy5TtnfD.js",
+        "sha256": "94b3cc9d1bfd99a6a168b4e7348c4dca8889be25396235fc011c1a855999e46b"
+      },
+      {
+        "path": "dist/assets/game-D9rcJ1yO.css",
+        "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+      },
+      {
+        "path": "dist/assets/three-core-f0ajj1rG.js",
+        "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+      },
+      {
+        "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+        "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+      },
+      {
+        "path": "dist/assets/validation-mSkvzYyn.js",
+        "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+      },
+      {
+        "path": "dist/index.html",
+        "sha256": "d2c8ab4e1a7e0e1d8a79b3b083c4e86a5df5b9ee33e2d1fb7d713c5b22550cd9"
+      }
+    ]
+  },
+  "acceptance": "NOT_ACCEPTED",
+  "provenanceStable": true,
+  "exitCode": 0,
+  "resultPath": "tmp/cinematics/retirement-opening-poi-2258/results.json",
+  "resultSha256": "7924636ba9fda38651fe18bf092371d6df4b2ce829006903319e398ca93733a3"
+}

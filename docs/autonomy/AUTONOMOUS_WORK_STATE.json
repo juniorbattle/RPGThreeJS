@@ -1,85 +1,127 @@
 {
-  "status": "IN_PROGRESS",
+  "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-24T22:56:42.2989304Z",
-  "runEndedAt": null,
-  "activeTask": "CINEMATIC-RETIREMENT-AND-STATIC-NARRATIVE",
-  "activePhase": "IMPLEMENTED_PENDING_NATIVE_PROOF",
-  "activeSubtask": "Retirer les vidéos par les tableaux existants, préserver les archives et préparer la finition des dialogues statiques",
+  "runEndedAt": "2026-10-24T23:27:49.591Z",
+  "activeTask": "STATIC_NARRATIVE_FINISHING",
+  "activePhase": "VIDEO_RETIREMENT_COMPLETE_STATIC_NARRATIVE_NEXT",
+  "activeSubtask": "Vidéos retirées et preuve native acceptée dans sa portée; prochaine passe statique planifiée sur Bois-Clair",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
-  "lastPushedCommit": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
+  "lastKnownGoodCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
+  "lastPushedCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
   "completedThisRun": [
-    "Dedicated operator retirement amendment reviewed/committed then immutable baseline published",
-    "Eight MP4 and manifest archived byte-identically; video/hold/preload runtime retired through existing tableaux",
-    "176focusedtests/types/build/staging/contractsPASS;0video files distributed",
-    "Current cinematic queue retired; static narrative plan and recurring prompt updated with PAUSED/settings retained"
+    "OD24-A/amendement1.10.0 revus et publiés puis baseline immuable enregistrée avant runtime",
+    "8MP4+manifest archivés byte-identiquement et vérifiés dans Git;0vidéo distribuée/active/hold/précharge",
+    "13conversions statiques et147IDs préservés; dialogues/choix/campagne/V6 inchangés",
+    "176tests ciblés/types/build/staging/contractsPASS;0vidéo dans dist;LOCKED/diffcheck propres",
+    "Un parcours natif PC1366 ouverture/camp/cartePOI/audience, choix clavier, OSfalse→true/gamefalse, reload des champs campagne observés inchangé;0vidéo/lecture/requête",
+    "Trois reçus conservés: lancement sandbox sans navigateur, attente Journey périmée FAILED, correction POI native SUCCEEDED et revue scoped",
+    "5captures inspectées, preuves source/driver/build/digest conservées;362QA historiques/acceptations identiques",
+    "File cinématique arrêtée, plan de narration statique prêt; prompt officiel aligné en conservant PAUSED/90min/xhigh/tous autres réglages"
   ],
   "filesChanged": [
+    ".agents/skills/autonomy-handoff/SKILL.md",
+    ".agents/skills/cinematics-journey/SKILL.md",
+    ".agents/skills/contracts-compliance/SKILL.md",
+    ".agents/skills/narrative-tableau/SKILL.md",
+    ".agents/skills/qa-evidence/SKILL.md",
     ".gitattributes",
+    "AGENTS.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md",
+    "docs/autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
     "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/assemble.mjs",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/assembly-evidence.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/final-frame-extraction.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/preflight.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot01.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot02.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot03.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot04.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_01.txt",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_02.txt",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_03.txt",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_04.txt",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/provenance.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/provider-events.jsonl",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot01.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot02.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot03.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot04.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/requests.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/review-closeout.json",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/review-endpoint.png",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/review-human-contact.png",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/review-human.png",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/review-resolution.png",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/review.md",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/serve.cjs",
-    "tools/cinematics/candidates/manual-bois-partition-20261024/verification-preflight.json",
-    "tools/cinematics/cin4_shot_spec.mjs",
-    "tools/cinematics/cin4_shot_spec.test.mjs",
-    "tools/cinematics/specs/manual-bois-partition-20261024.json"
+    "docs/autonomy/RECURRING_RUN_PROMPT.md",
+    "docs/autonomy/STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md",
+    "docs/autonomy/handoffs/2026-10-24T2258Z-codex-video-retirement.md",
+    "docs/contracts/AUTHORING_AND_QA.md",
+    "docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md",
+    "docs/contracts/PRESENTATION_AND_MEDIA.md",
+    "docs/contracts/README.md",
+    "docs/contracts/contracts.manifest.json",
+    "docs/game/GAME_CONSTITUTION.md",
+    "docs/project/CURRENT_STATUS.md",
+    "docs/project/PC_PLAYTEST.md",
+    "docs/reports/INDEX.md",
+    "docs/reports/cinematic-retirement-2026-10-24.md",
+    "public/assets/cinematics/manifest.json",
+    "src/cinematics/ApprovedProductionVideos.test.ts",
+    "src/cinematics/ApprovedProductionVideos.ts",
+    "src/cinematics/CinematicPlayer.ts",
+    "src/cinematics/CinematicPreloader.ts",
+    "src/cinematics/CinematicReductionPolicy.ts",
+    "src/cinematics/CinematicRegistry.test.ts",
+    "src/cinematics/CinematicRegistry.ts",
+    "src/cinematics/FinalPresentationRegistry.generated.ts",
+    "src/cinematics/NarrativePresentationDoctrine.test.ts",
+    "src/cinematics/NarrativePresentationDoctrine.ts",
+    "src/cinematics/NarrativePresentationPolicy.test.ts",
+    "src/cinematics/NarrativePresentationPolicy.ts",
+    "src/cinematics/NarrativePresentationRuntime.test.ts",
+    "src/cinematics/NarrativeStage.test.ts",
+    "src/cinematics/VideoRetirement.test.ts",
+    "src/game/GameApp.ts",
+    "src/game/cin6aVerticalIntegration.test.ts",
+    "src/journey/JourneyCampaignBoundary.test.ts",
+    "src/journey/JourneyCampaignBoundary.ts",
+    "src/journey/JourneyPresentationResolver.test.ts",
+    "src/journey/JourneyPresentationResolver.ts",
+    "tools/cinematics/archive/production-videos-2026-10-24/README.md",
+    "tools/cinematics/archive/production-videos-2026-10-24/alaric_audience_arrival.mp4",
+    "tools/cinematics/archive/production-videos-2026-10-24/bois_clair_arrival.mp4",
+    "tools/cinematics/archive/production-videos-2026-10-24/bois_clair_sacrificed.mp4",
+    "tools/cinematics/archive/production-videos-2026-10-24/bois_clair_saved.mp4",
+    "tools/cinematics/archive/production-videos-2026-10-24/camp_departure.mp4",
+    "tools/cinematics/archive/production-videos-2026-10-24/lion_judgement.mp4",
+    "tools/cinematics/archive/production-videos-2026-10-24/lion_trial_route_ending.mp4",
+    "tools/cinematics/archive/production-videos-2026-10-24/manifest.json",
+    "tools/cinematics/archive/production-videos-2026-10-24/retirement.json",
+    "tools/cinematics/archive/production-videos-2026-10-24/serpent_route_ending.mp4",
+    "tools/cinematics/generate_cin6d6_runtime_registry.ts",
+    "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+    "tools/cinematics/specs/illustrated-sequences/production-plan.json",
+    "tools/cinematics/specs/production_presentation_modes.json",
+    "tools/contracts/validate-contracts.mjs",
+    "docs/reports/cinematic-retirement-2026-10-24/driver-reviewed.mjs",
+    "docs/reports/cinematic-retirement-2026-10-24/opening-audience.png",
+    "docs/reports/cinematic-retirement-2026-10-24/opening-camp-audience-lion_briefing-3-choices.png",
+    "docs/reports/cinematic-retirement-2026-10-24/opening-camp.png",
+    "docs/reports/cinematic-retirement-2026-10-24/opening-cast-after.png",
+    "docs/reports/cinematic-retirement-2026-10-24/opening-os-before-flip.png",
+    "docs/reports/cinematic-retirement-2026-10-24/provenance.json",
+    "docs/reports/cinematic-retirement-2026-10-24/qa-job.json",
+    "docs/reports/cinematic-retirement-2026-10-24/results.json"
   ],
   "testsRun": [
-    "176 focused tests across14files",
-    "TypeScript/production build",
-    "Narrative staging75/75dialogues,282/282presentationsteps",
-    "contracts8LOCKED/8historicalIDs/0activevideos+archiveSHA",
-    "dist0MP4/WebM/LOCKEDgate/diffcheck"
+    "176focusedtests/14files --exclude tmp/**",
+    "TypeScript --noEmit via build; production Vite build",
+    "Narrative staging75/75dialogues,282/282runtimepresentationsteps",
+    "contracts:validate 8LOCKED/8historicalIDs/0activevideo+archiveSHA",
+    "One corrected native opening-camp-audience PC1366 + live OS reduction + real POI keyboard + observed saved-field reload",
+    "Exact driver/build/result/archive hashes,5captures,LOCKED baseline/status,diffcheck,365QA inventory"
   ],
   "testsPassed": [
-    "176/176focused",
-    "TypeScript/build/staging/contracts/archiveSHA/dist0videos/LOCKED/diffcheck"
+    "176/176focused;TypeScript/build/staging/contractsPASS",
+    "Native corrected opening/camp/audience SUCCEEDED+stableprovenance,0videoevents/elements/requests",
+    "Cast4→2→4,1surface,visible focus,79px choices,OS/game independence,observed campaign fields stable after reload",
+    "All9archive committed SHA match,8video binaries unchanged,dist0videos;362historical QA/acceptances deepEqual"
   ],
-  "testsRemaining": [
-    "One built native opening-camp-audience with live OS reduction, zero video and exact resume; independent final review"
-  ],
+  "testsRemaining": [],
   "blockers": [],
   "remainingWork": [
-    "Retrait runtime et preuve ciblée",
-    "Passe artistique future tableaux/dialogues; playtest global PC puis mobile"
+    "Plan de finition statique village_raid_aftermath à réaliser et juger visuellement",
+    "Playtest opérateur global PC,art/équilibre/confort;mobile après stabilité PC"
   ],
-  "nextAction": "Inspecter puis améliorer le tableau village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec poses V2 existantes et choix inchangés, selon STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.",
+  "nextAction": "Inspecter puis améliorer village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec les ressources V2 existantes, texte et deux choix inchangés ; suivre STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.",
   "taskQueue": [
-    "Retrait des vidéos par tableaux et preuve native ciblée",
-    "Inspecter puis améliorer le tableau village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec poses V2 existantes et choix inchangés, selon STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.",
-    "Défaut PC démontré et playtest opérateur; mobile après PC"
+    "Inspecter puis améliorer village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec les ressources V2 existantes, texte et deux choix inchangés ; suivre STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.",
+    "Puis une scène statique à la fois selon défaut concret et plan",
+    "Playtest PC puis mobile, sans reprise de production cinématique"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PENDING_RUNTIME_RETIREMENT",
-  "commitReferenceScope": "Delivery5d6354d3 verifiedorigin/dev;27candidatefiles matchcommittedbytes,37provenancehashesmatch. Following metadata-onlyclosure SHA authoritativeinGit/automationmemory.",
+  "contractComplianceStatus": "PASS_TECHNIQUE_RETRAIT_SCOPE",
+  "commitReferenceScope": "Native proof source ed401c1371be6bb79c8038bb0ef9997930756144; subsequent metadata-only closure commits are authoritative in Git/remote. No source/driver/build changes after this proof.",
   "operatorAuthorization": "Direct operator decision OD-2026-10-24-A: abandon cinematics, remove videos from game, plan further static dialogue/NarrativeStage optimization",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -152,10 +194,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-cinematic-retirement-20261024T2258Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-24T23:13:23.441Z",
+  "lastHeartbeat": "2026-10-24T23:27:49.591Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-24T23:13:23.441Z",
+    "lastHeartbeat": "2026-10-24T23:27:49.591Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -40611,31 +40653,316 @@
         "matchesCurrentExecution": true,
         "resultDigestMatches": true,
         "eligibleForReview": true
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "video-retirement-opening-2258",
+        "runId": "codex-cinematic-retirement-20261024T2258Z",
+        "status": "FAILED",
+        "registeredAt": "2026-10-24T23:16:01.260Z",
+        "pid": 22816,
+        "port": 5463,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "scenario": "opening-camp-audience",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "videoRetirement": true,
+          "liveOsFlip": true
+        },
+        "requiredAssertions": [
+          "native-opening-camp-audience",
+          "zero-video-elements-requests-play-preload",
+          "static-cast-max-four",
+          "keyboard-choices",
+          "exact-resolved-resume",
+          "normal-and-live-os-reduction"
+        ],
+        "output": "tmp/cinematics/retirement-opening-2258",
+        "receiptPath": "tmp/cinematics/retirement-opening-2258/qa-job.json",
+        "provenance": {
+          "gitHead": "5bc706794a7311d51eecf30ddbfd18d217448135",
+          "sourceTree": "500454e45485e731222dc9bcd69986989a9eb32d",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "8acca59f0c10e7d4f83b218f707a058ba96139f4ddc6eb50e2d5223233bac24f"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-Cy5TtnfD.js",
+              "sha256": "94b3cc9d1bfd99a6a168b4e7348c4dca8889be25396235fc011c1a855999e46b"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "d2c8ab4e1a7e0e1d8a79b3b083c4e86a5df5b9ee33e2d1fb7d713c5b22550cd9"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-24T23:16:40.842Z",
+        "endedAt": "2026-10-24T23:16:40.924Z",
+        "exitCode": 1,
+        "provenanceMatches": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": false,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "video-retirement-opening-host-2258",
+        "runId": "codex-cinematic-retirement-20261024T2258Z",
+        "status": "FAILED",
+        "registeredAt": "2026-10-24T23:17:08.829Z",
+        "pid": 9564,
+        "port": 5463,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "scenario": "opening-camp-audience",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "videoRetirement": true,
+          "liveOsFlip": true
+        },
+        "requiredAssertions": [
+          "native-opening-camp-audience",
+          "zero-video-elements-requests-play-preload",
+          "static-cast-max-four",
+          "keyboard-choices",
+          "exact-resolved-resume",
+          "normal-and-live-os-reduction"
+        ],
+        "output": "tmp/cinematics/retirement-opening-host-2258",
+        "receiptPath": "tmp/cinematics/retirement-opening-host-2258/qa-job.json",
+        "provenance": {
+          "gitHead": "5bc706794a7311d51eecf30ddbfd18d217448135",
+          "sourceTree": "500454e45485e731222dc9bcd69986989a9eb32d",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "8acca59f0c10e7d4f83b218f707a058ba96139f4ddc6eb50e2d5223233bac24f"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-Cy5TtnfD.js",
+              "sha256": "94b3cc9d1bfd99a6a168b4e7348c4dca8889be25396235fc011c1a855999e46b"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "d2c8ab4e1a7e0e1d8a79b3b083c4e86a5df5b9ee33e2d1fb7d713c5b22550cd9"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-24T23:17:27.942Z",
+        "endedAt": "2026-10-24T23:18:43.832Z",
+        "exitCode": 1,
+        "resultPath": "tmp/cinematics/retirement-opening-host-2258/results.json",
+        "resultSha256": "9800ae64442eaf652b7d5c8070b764038fd5581eb2fb0b08d65082bb78bffdea",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "video-retirement-opening-poi-2258",
+        "runId": "codex-cinematic-retirement-20261024T2258Z",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-24T23:20:46.735Z",
+        "pid": 41824,
+        "port": 5463,
+        "command": [
+          "node",
+          "tools/cinematics/run_cin6d6_route_browser_qa.mjs"
+        ],
+        "parameters": {
+          "scenario": "opening-camp-audience",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "videoRetirement": true,
+          "liveOsFlip": true
+        },
+        "requiredAssertions": [
+          "native-opening-camp-audience",
+          "zero-video-elements-requests-play-preload",
+          "static-cast-max-four",
+          "keyboard-choices",
+          "exact-resolved-resume",
+          "normal-and-live-os-reduction"
+        ],
+        "output": "tmp/cinematics/retirement-opening-poi-2258",
+        "receiptPath": "tmp/cinematics/retirement-opening-poi-2258/qa-job.json",
+        "provenance": {
+          "gitHead": "ed401c1371be6bb79c8038bb0ef9997930756144",
+          "sourceTree": "500454e45485e731222dc9bcd69986989a9eb32d",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+            "sha256": "9f4a7df939b39805b73f5c9aedfac9484647d73896ef0e216129669867088fe9"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-Cy5TtnfD.js",
+              "sha256": "94b3cc9d1bfd99a6a168b4e7348c4dca8889be25396235fc011c1a855999e46b"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "d2c8ab4e1a7e0e1d8a79b3b083c4e86a5df5b9ee33e2d1fb7d713c5b22550cd9"
+            }
+          ]
+        },
+        "acceptance": "ACCEPTED_SCOPED_PC1366_NATIVE_VIDEO_RETIREMENT",
+        "startedAt": "2026-10-24T23:21:05.776Z",
+        "endedAt": "2026-10-24T23:21:21.585Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/retirement-opening-poi-2258/results.json",
+        "resultSha256": "7924636ba9fda38651fe18bf092371d6df4b2ce829006903319e398ca93733a3",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true,
+        "acceptanceReview": {
+          "reviewedAt": "2026-10-24T23:27:49.591Z",
+          "sourceCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
+          "receiptResultSha256": "7924636ba9fda38651fe18bf092371d6df4b2ce829006903319e398ca93733a3",
+          "capturesInspected": 5,
+          "scope": "Native opening/camp/audience, keyboard POI+choice, live OS reduction, zero video; resumed current/resolved/flags/ending/member identity fields unchanged",
+          "excludes": [
+            "full V6 byte equality on reload",
+            "other route visual acceptance",
+            "global PC/art/balance/mobile"
+          ],
+          "guardian": "PASS_TECHNIQUE_RETRAIT_SCOPE"
+        }
       }
     ],
     "wip": null,
-    "nextAction": "Inspecter puis améliorer le tableau village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec poses V2 existantes et choix inchangés, selon STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.",
+    "nextAction": "Inspecter puis améliorer village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec les ressources V2 existantes, texte et deux choix inchangés ; suivre STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.",
     "runMetrics": {
-      "runtimeSourceFilesModified": 0,
-      "gameplaySteps": 0,
-      "toolingFilesModified": 1,
-      "toolingTestFilesModified": 1,
+      "runtimeSourceFilesModified": 11,
+      "sourceTestFilesModified": 10,
+      "gameplayTruthFilesModified": 0,
+      "mediaFilesRehomed": 8,
       "newImages": 0,
-      "imagegenCalls": 0,
-      "providerTasksSubmitted": 4,
-      "downloadedBlocks": 4,
-      "paidRetries": 0,
-      "generatedRequestedSeconds": 28,
-      "editedSeconds": 26.5,
-      "qaScenarios": 0,
-      "nativePreviewSessions": 1,
-      "newQaJobs": 0,
+      "providerTasksSubmitted": 0,
+      "qaScenarios": 1,
+      "nativeScenarioAttempts": 2,
+      "failedBrowserLaunchBeforeGameplay": 1,
+      "harnessCorrections": 1,
+      "newQaJobs": 3,
       "inheritedQaJobs": 362,
-      "totalQaJobs": 362,
-      "inheritedWipPaths": 0,
-      "selectedPublicationPaths": 36,
-      "qaAndProofFiles": 17,
-      "workflowFiles": 7
+      "totalQaJobs": 365,
+      "selectedCaptures": 5,
+      "qaAndProofFiles": 9,
+      "inheritedWipPaths": 0
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -40661,8 +40988,8 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-24T23:27:49.591Z",
+    "writerStopped": true,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
       "previewPort5461Stopped": true,
@@ -41458,8 +41785,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "CINEMATIC-RETIREMENT-AND-STATIC-NARRATIVE",
-    "activeSubtask": "Retirer les vidéos par les tableaux existants, préserver les archives et préparer la finition des dialogues statiques",
+    "activeTask": "STATIC_NARRATIVE_FINISHING",
+    "activeSubtask": "Vidéos retirées et preuve native acceptée dans sa portée; prochaine passe statique planifiée sur Bois-Clair",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -44793,11 +45120,11 @@
     },
     "runId": "codex-cinematic-retirement-20261024T2258Z",
     "agent": "codex",
-    "status": "IN_PROGRESS",
+    "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-24T22:56:42.2989304Z",
-    "activePhase": "IMPLEMENTED_PENDING_NATIVE_PROOF",
-    "heartbeat": "2026-10-24T06:39:22.433Z",
-    "currentHandoff": "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
+    "activePhase": "VIDEO_RETIREMENT_COMPLETE_STATIC_NARRATIVE_NEXT",
+    "heartbeat": "2026-10-24T23:27:49.591Z",
+    "currentHandoff": "docs/autonomy/handoffs/2026-10-24T2258Z-codex-video-retirement.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
       "priorNextAction": "Read-only autonomy preflight/exclusive lock; inspect1521 FAILED terminal/result1da5daa0 and selected docs/reports/native-skills-20261012-1521/checks.json. Scoped fresh native Salvation3to2 healthy setup then2to0/capped40percent and five novice classes accepted; lancer, second-refuge/fullV6/ending/balance/Pursuit breadth remain OPEN. Never seed1521 partial outputs or replay unchanged35/45min or extend deadline solely for PASS. Terminal diagnosis: both authored canonical battles succeeded, final T1route5/5 progressed after shrine toward Bois-Clair; no demonstrated transition defect. Preserve parent all-six/random-Pursuit and exact deferred keyboard/pendingNarrative/taskQueue. Continue independent authorized desktop motion gap: review current shared departure/reveal/arrival invariants and existing compatible receipts, then ONE registered existing traversal-motion-production-qa.mjs --motion=normal --legs=T0 --viewports=1366x768 --port=<verified-free-port> --output=<unique-ignored-path>, explicit --pursuit-check=0; fixture-origin motion only, not earned campaign. Do not repeat accepted T1normal/OS; T3/game-only and mobileLAST remain later. Correct a demonstrated product defect only, retain no new QA tool/no speculative pilot rewrite.",
@@ -46137,7 +46464,7 @@
       }
     },
     "threadId": "01a167b9-2df2-7192-9ff1-fa652a2816ba",
-    "writerStoppedMeaning": "All provider/encoding workers ended; only metadata publication and owned lock release remain",
+    "writerStoppedMeaning": "Product/QA workers stopped; only coherent metadata publication and owned-lock release remain.",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -46525,7 +46852,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
+    "lastPushedCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -47330,76 +47657,118 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
+    "lastKnownGoodCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
     "completedThisRun": [
-      "Dedicated operator retirement amendment reviewed/committed then immutable baseline published",
-      "Eight MP4 and manifest archived byte-identically; video/hold/preload runtime retired through existing tableaux",
-      "176focusedtests/types/build/staging/contractsPASS;0video files distributed",
-      "Current cinematic queue retired; static narrative plan and recurring prompt updated with PAUSED/settings retained"
+      "OD24-A/amendement1.10.0 revus et publiés puis baseline immuable enregistrée avant runtime",
+      "8MP4+manifest archivés byte-identiquement et vérifiés dans Git;0vidéo distribuée/active/hold/précharge",
+      "13conversions statiques et147IDs préservés; dialogues/choix/campagne/V6 inchangés",
+      "176tests ciblés/types/build/staging/contractsPASS;0vidéo dans dist;LOCKED/diffcheck propres",
+      "Un parcours natif PC1366 ouverture/camp/cartePOI/audience, choix clavier, OSfalse→true/gamefalse, reload des champs campagne observés inchangé;0vidéo/lecture/requête",
+      "Trois reçus conservés: lancement sandbox sans navigateur, attente Journey périmée FAILED, correction POI native SUCCEEDED et revue scoped",
+      "5captures inspectées, preuves source/driver/build/digest conservées;362QA historiques/acceptations identiques",
+      "File cinématique arrêtée, plan de narration statique prêt; prompt officiel aligné en conservant PAUSED/90min/xhigh/tous autres réglages"
     ],
     "filesChanged": [
+      ".agents/skills/autonomy-handoff/SKILL.md",
+      ".agents/skills/cinematics-journey/SKILL.md",
+      ".agents/skills/contracts-compliance/SKILL.md",
+      ".agents/skills/narrative-tableau/SKILL.md",
+      ".agents/skills/qa-evidence/SKILL.md",
       ".gitattributes",
+      "AGENTS.md",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md",
+      "docs/autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md",
+      "docs/autonomy/DEMO_COMPLETION_PLAN.md",
+      "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
       "docs/autonomy/OPERATOR_DECISIONS.md",
-      "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/assemble.mjs",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/assembly-evidence.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/final-frame-extraction.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/preflight.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot01.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot02.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot03.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/probe-shot04.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_01.txt",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_02.txt",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_03.txt",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/prompts/shot_04.txt",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/provenance.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/provider-events.jsonl",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot01.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot02.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot03.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/provider-shot04.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/requests.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/review-closeout.json",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/review-endpoint.png",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/review-human-contact.png",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/review-human.png",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/review-resolution.png",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/review.md",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/serve.cjs",
-      "tools/cinematics/candidates/manual-bois-partition-20261024/verification-preflight.json",
-      "tools/cinematics/cin4_shot_spec.mjs",
-      "tools/cinematics/cin4_shot_spec.test.mjs",
-      "tools/cinematics/specs/manual-bois-partition-20261024.json"
+      "docs/autonomy/RECURRING_RUN_PROMPT.md",
+      "docs/autonomy/STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md",
+      "docs/autonomy/handoffs/2026-10-24T2258Z-codex-video-retirement.md",
+      "docs/contracts/AUTHORING_AND_QA.md",
+      "docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md",
+      "docs/contracts/PRESENTATION_AND_MEDIA.md",
+      "docs/contracts/README.md",
+      "docs/contracts/contracts.manifest.json",
+      "docs/game/GAME_CONSTITUTION.md",
+      "docs/project/CURRENT_STATUS.md",
+      "docs/project/PC_PLAYTEST.md",
+      "docs/reports/INDEX.md",
+      "docs/reports/cinematic-retirement-2026-10-24.md",
+      "public/assets/cinematics/manifest.json",
+      "src/cinematics/ApprovedProductionVideos.test.ts",
+      "src/cinematics/ApprovedProductionVideos.ts",
+      "src/cinematics/CinematicPlayer.ts",
+      "src/cinematics/CinematicPreloader.ts",
+      "src/cinematics/CinematicReductionPolicy.ts",
+      "src/cinematics/CinematicRegistry.test.ts",
+      "src/cinematics/CinematicRegistry.ts",
+      "src/cinematics/FinalPresentationRegistry.generated.ts",
+      "src/cinematics/NarrativePresentationDoctrine.test.ts",
+      "src/cinematics/NarrativePresentationDoctrine.ts",
+      "src/cinematics/NarrativePresentationPolicy.test.ts",
+      "src/cinematics/NarrativePresentationPolicy.ts",
+      "src/cinematics/NarrativePresentationRuntime.test.ts",
+      "src/cinematics/NarrativeStage.test.ts",
+      "src/cinematics/VideoRetirement.test.ts",
+      "src/game/GameApp.ts",
+      "src/game/cin6aVerticalIntegration.test.ts",
+      "src/journey/JourneyCampaignBoundary.test.ts",
+      "src/journey/JourneyCampaignBoundary.ts",
+      "src/journey/JourneyPresentationResolver.test.ts",
+      "src/journey/JourneyPresentationResolver.ts",
+      "tools/cinematics/archive/production-videos-2026-10-24/README.md",
+      "tools/cinematics/archive/production-videos-2026-10-24/alaric_audience_arrival.mp4",
+      "tools/cinematics/archive/production-videos-2026-10-24/bois_clair_arrival.mp4",
+      "tools/cinematics/archive/production-videos-2026-10-24/bois_clair_sacrificed.mp4",
+      "tools/cinematics/archive/production-videos-2026-10-24/bois_clair_saved.mp4",
+      "tools/cinematics/archive/production-videos-2026-10-24/camp_departure.mp4",
+      "tools/cinematics/archive/production-videos-2026-10-24/lion_judgement.mp4",
+      "tools/cinematics/archive/production-videos-2026-10-24/lion_trial_route_ending.mp4",
+      "tools/cinematics/archive/production-videos-2026-10-24/manifest.json",
+      "tools/cinematics/archive/production-videos-2026-10-24/retirement.json",
+      "tools/cinematics/archive/production-videos-2026-10-24/serpent_route_ending.mp4",
+      "tools/cinematics/generate_cin6d6_runtime_registry.ts",
+      "tools/cinematics/run_cin6d6_route_browser_qa.mjs",
+      "tools/cinematics/specs/illustrated-sequences/production-plan.json",
+      "tools/cinematics/specs/production_presentation_modes.json",
+      "tools/contracts/validate-contracts.mjs",
+      "docs/reports/cinematic-retirement-2026-10-24/driver-reviewed.mjs",
+      "docs/reports/cinematic-retirement-2026-10-24/opening-audience.png",
+      "docs/reports/cinematic-retirement-2026-10-24/opening-camp-audience-lion_briefing-3-choices.png",
+      "docs/reports/cinematic-retirement-2026-10-24/opening-camp.png",
+      "docs/reports/cinematic-retirement-2026-10-24/opening-cast-after.png",
+      "docs/reports/cinematic-retirement-2026-10-24/opening-os-before-flip.png",
+      "docs/reports/cinematic-retirement-2026-10-24/provenance.json",
+      "docs/reports/cinematic-retirement-2026-10-24/qa-job.json",
+      "docs/reports/cinematic-retirement-2026-10-24/results.json"
     ],
     "testsRun": [
-      "176 focused tests across14files",
-      "TypeScript/production build",
-      "Narrative staging75/75dialogues,282/282presentationsteps",
-      "contracts8LOCKED/8historicalIDs/0activevideos+archiveSHA",
-      "dist0MP4/WebM/LOCKEDgate/diffcheck"
+      "176focusedtests/14files --exclude tmp/**",
+      "TypeScript --noEmit via build; production Vite build",
+      "Narrative staging75/75dialogues,282/282runtimepresentationsteps",
+      "contracts:validate 8LOCKED/8historicalIDs/0activevideo+archiveSHA",
+      "One corrected native opening-camp-audience PC1366 + live OS reduction + real POI keyboard + observed saved-field reload",
+      "Exact driver/build/result/archive hashes,5captures,LOCKED baseline/status,diffcheck,365QA inventory"
     ],
     "testsPassed": [
-      "176/176focused",
-      "TypeScript/build/staging/contracts/archiveSHA/dist0videos/LOCKED/diffcheck"
+      "176/176focused;TypeScript/build/staging/contractsPASS",
+      "Native corrected opening/camp/audience SUCCEEDED+stableprovenance,0videoevents/elements/requests",
+      "Cast4→2→4,1surface,visible focus,79px choices,OS/game independence,observed campaign fields stable after reload",
+      "All9archive committed SHA match,8video binaries unchanged,dist0videos;362historical QA/acceptances deepEqual"
     ],
-    "testsRemaining": [
-      "One built native opening-camp-audience with live OS reduction, zero video and exact resume; independent final review"
-    ],
+    "testsRemaining": [],
     "blockers": [],
     "remainingWork": [
-      "Retrait runtime et preuve ciblée",
-      "Passe artistique future tableaux/dialogues; playtest global PC puis mobile"
+      "Plan de finition statique village_raid_aftermath à réaliser et juger visuellement",
+      "Playtest opérateur global PC,art/équilibre/confort;mobile après stabilité PC"
     ],
     "taskQueue": [
-      "Retrait des vidéos par tableaux et preuve native ciblée",
-      "Inspecter puis améliorer le tableau village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec poses V2 existantes et choix inchangés, selon STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.",
-      "Défaut PC démontré et playtest opérateur; mobile après PC"
+      "Inspecter puis améliorer village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec les ressources V2 existantes, texte et deux choix inchangés ; suivre STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.",
+      "Puis une scène statique à la fois selon défaut concret et plan",
+      "Playtest PC puis mobile, sans reprise de production cinématique"
     ],
-    "contractComplianceStatus": "PENDING_RUNTIME_RETIREMENT",
+    "contractComplianceStatus": "PASS_TECHNIQUE_RETRAIT_SCOPE",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -47521,8 +47890,8 @@
         "REPOSITORY_GOVERNANCE": "PASS"
       }
     },
-    "lastSnapshotAt": "2026-10-22T05:52:22.776Z",
-    "lastSnapshotCommit": "35faed611d9de5c038cbb04ef03fc287d363699e",
+    "lastSnapshotAt": "2026-10-24T23:27:49.591Z",
+    "lastSnapshotCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
     "priorityDecision2320": {
       "recordedAt": "2026-10-17T23:21:43.962Z",
       "decisionId": "OD-2026-10-17-A",
@@ -47835,48 +48204,40 @@
       "workflowFiles": 7
     },
     "currentRunMeasurement": {
-      "runtimeSourceFilesModified": 0,
-      "gameplaySteps": 0,
-      "toolingFilesModified": 1,
-      "toolingTestFilesModified": 1,
+      "runtimeSourceFilesModified": 11,
+      "sourceTestFilesModified": 10,
+      "gameplayTruthFilesModified": 0,
+      "mediaFilesRehomed": 8,
       "newImages": 0,
-      "imagegenCalls": 0,
-      "providerTasksSubmitted": 4,
-      "downloadedBlocks": 4,
-      "paidRetries": 0,
-      "generatedRequestedSeconds": 28,
-      "editedSeconds": 26.5,
-      "qaScenarios": 0,
-      "nativePreviewSessions": 1,
-      "newQaJobs": 0,
+      "providerTasksSubmitted": 0,
+      "qaScenarios": 1,
+      "nativeScenarioAttempts": 2,
+      "failedBrowserLaunchBeforeGameplay": 1,
+      "harnessCorrections": 1,
+      "newQaJobs": 3,
       "inheritedQaJobs": 362,
-      "totalQaJobs": 362,
-      "inheritedWipPaths": 0,
-      "selectedPublicationPaths": 36,
-      "qaAndProofFiles": 17,
-      "workflowFiles": 7
+      "totalQaJobs": 365,
+      "selectedCaptures": 5,
+      "qaAndProofFiles": 9,
+      "inheritedWipPaths": 0
     },
     "runMeasurement": {
-      "runtimeSourceFilesModified": 0,
-      "gameplaySteps": 0,
-      "toolingFilesModified": 1,
-      "toolingTestFilesModified": 1,
+      "runtimeSourceFilesModified": 11,
+      "sourceTestFilesModified": 10,
+      "gameplayTruthFilesModified": 0,
+      "mediaFilesRehomed": 8,
       "newImages": 0,
-      "imagegenCalls": 0,
-      "providerTasksSubmitted": 4,
-      "downloadedBlocks": 4,
-      "paidRetries": 0,
-      "generatedRequestedSeconds": 28,
-      "editedSeconds": 26.5,
-      "qaScenarios": 0,
-      "nativePreviewSessions": 1,
-      "newQaJobs": 0,
+      "providerTasksSubmitted": 0,
+      "qaScenarios": 1,
+      "nativeScenarioAttempts": 2,
+      "failedBrowserLaunchBeforeGameplay": 1,
+      "harnessCorrections": 1,
+      "newQaJobs": 3,
       "inheritedQaJobs": 362,
-      "totalQaJobs": 362,
-      "inheritedWipPaths": 0,
-      "selectedPublicationPaths": 36,
-      "qaAndProofFiles": 17,
-      "workflowFiles": 7
+      "totalQaJobs": 365,
+      "selectedCaptures": 5,
+      "qaAndProofFiles": 9,
+      "inheritedWipPaths": 0
     },
     "deploymentHealth0503": {
       "problem": "Retained Hunters failed deployment hides Cedric/Elara1HP behind En jeu cards; same omission in current renderer",
@@ -48315,7 +48676,7 @@
       "rawReceiptAcceptanceUnchanged": "NOT_ACCEPTED"
     },
     "lastAcceptedProductionCommit": "5e22775",
-    "implementationCommit": "3b606f5fa4c6df20ac7adebaa4c452949bf70e01",
+    "implementationCommit": "9ddf1fef3491a49ba664b42ddea665e94aef9636",
     "poiUi1903": {
       "status": "ACCEPTED_SCOPED",
       "at": "2026-10-18T19:26:33.504Z",
@@ -48897,13 +49258,8 @@
       ]
     },
     "contractSetVersion": "1.10.0",
-    "uncommittedWork": {
-      "status": "COHERENT_MANUAL_VIDEO_CHECKPOINT_PUBLISHED",
-      "deliveryCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
-      "inheritedWipPaths": 0,
-      "rawAndFinalMasterRetainedIgnored": true
-    },
-    "commitReferenceScope": "Delivery5d6354d3 verifiedorigin/dev;27candidatefiles matchcommittedbytes,37provenancehashesmatch. Following metadata-onlyclosure SHA authoritativeinGit/automationmemory.",
+    "uncommittedWork": [],
+    "commitReferenceScope": "Native proof source ed401c1371be6bb79c8038bb0ef9997930756144; subsequent metadata-only closure commits are authoritative in Git/remote. No source/driver/build changes after this proof.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
       "status": "SAVED_AND_CONFIGURATION_VERIFIED",
@@ -49284,13 +49640,22 @@
       }
     },
     "runCounts": {
-      "runtimeSourceFilesModified": 12,
-      "canonicalGameplayFilesModified": 0,
+      "runtimeSourceFilesModified": 11,
+      "sourceTestFilesModified": 10,
+      "gameplayTruthFilesModified": 0,
+      "mediaFilesRehomed": 8,
       "newImages": 0,
       "providerTasksSubmitted": 0,
-      "inheritedWipPaths": 0,
-      "qaScenarios": 0,
-      "inheritedQaJobs": 362
+      "qaScenarios": 1,
+      "nativeScenarioAttempts": 2,
+      "failedBrowserLaunchBeforeGameplay": 1,
+      "harnessCorrections": 1,
+      "newQaJobs": 3,
+      "inheritedQaJobs": 362,
+      "totalQaJobs": 365,
+      "selectedCaptures": 5,
+      "qaAndProofFiles": 9,
+      "inheritedWipPaths": 0
     },
     "nextScheduledExecutionDirective": "OD-2026-10-24-A supersedes the cinematic queue: no illustrated/video production or polling. Preserve scheduler settings. Continue the current static narrative plan, not historical cinematic nextActions."
   },
@@ -49382,26 +49747,22 @@
   },
   "currentHandoff": "docs/autonomy/handoffs/2026-10-24T2258Z-codex-video-retirement.md",
   "runMeasurement": {
-    "runtimeSourceFilesModified": 0,
-    "gameplaySteps": 0,
-    "toolingFilesModified": 1,
-    "toolingTestFilesModified": 1,
+    "runtimeSourceFilesModified": 11,
+    "sourceTestFilesModified": 10,
+    "gameplayTruthFilesModified": 0,
+    "mediaFilesRehomed": 8,
     "newImages": 0,
-    "imagegenCalls": 0,
-    "providerTasksSubmitted": 4,
-    "downloadedBlocks": 4,
-    "paidRetries": 0,
-    "generatedRequestedSeconds": 28,
-    "editedSeconds": 26.5,
-    "qaScenarios": 0,
-    "nativePreviewSessions": 1,
-    "newQaJobs": 0,
+    "providerTasksSubmitted": 0,
+    "qaScenarios": 1,
+    "nativeScenarioAttempts": 2,
+    "failedBrowserLaunchBeforeGameplay": 1,
+    "harnessCorrections": 1,
+    "newQaJobs": 3,
     "inheritedQaJobs": 362,
-    "totalQaJobs": 362,
-    "inheritedWipPaths": 0,
-    "selectedPublicationPaths": 36,
-    "qaAndProofFiles": 17,
-    "workflowFiles": 7
+    "totalQaJobs": 365,
+    "selectedCaptures": 5,
+    "qaAndProofFiles": 9,
+    "inheritedWipPaths": 0
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -49525,12 +49886,7 @@
       "traversalProfileRuntimeInvocation": "NOT_TESTED; matching skill fallback documented"
     }
   },
-  "uncommittedWork": {
-    "status": "COHERENT_MANUAL_VIDEO_CHECKPOINT_PUBLISHED",
-    "deliveryCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
-    "inheritedWipPaths": 0,
-    "rawAndFinalMasterRetainedIgnored": true
-  },
+  "uncommittedWork": [],
   "publicationHistory": [
     "Interrupted1002 WIP publication was rejected by automatic review; its local snapshots retained. Current1300 reviewed WIP292a35f9 published and remote-verified under explicit recurring repository/branch authorization.",
     "Run1945 initial public WIP5acd729 rejected by automatic review for missing explicit content publication authorization; operator authorized exact WIP branch and scoped dev QA checkpoint, then said continue after runtime correction description. Initial WIP pushed and remote verified. Final coherent source/QA/evidence checkpoint publication pending guarded push. Final source354b83d and checkpoint1fa0635d8f6e10d7a11ea0693d5e1ed17c1b55cf published; owned WIP5c2a777069e5bf721a3c32a73df53d34be2abb39 remote verified; main00b96f1b502539618790b1c0d8d642f86d3dcf7f unchanged. No pending automatic-review rejection.",
@@ -49732,7 +50088,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "3b606f5fa4c6df20ac7adebaa4c452949bf70e01",
+  "implementationCommit": "9ddf1fef3491a49ba664b42ddea665e94aef9636",
   "authorizedWorkContinuation": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance. Preserve actually saved scheduler status; this manual go is not scheduleractivation.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
@@ -50712,26 +51068,22 @@
     "fullDemoComplete": false
   },
   "currentRunMeasurement": {
-    "runtimeSourceFilesModified": 0,
-    "gameplaySteps": 0,
-    "toolingFilesModified": 1,
-    "toolingTestFilesModified": 1,
+    "runtimeSourceFilesModified": 11,
+    "sourceTestFilesModified": 10,
+    "gameplayTruthFilesModified": 0,
+    "mediaFilesRehomed": 8,
     "newImages": 0,
-    "imagegenCalls": 0,
-    "providerTasksSubmitted": 4,
-    "downloadedBlocks": 4,
-    "paidRetries": 0,
-    "generatedRequestedSeconds": 28,
-    "editedSeconds": 26.5,
-    "qaScenarios": 0,
-    "nativePreviewSessions": 1,
-    "newQaJobs": 0,
+    "providerTasksSubmitted": 0,
+    "qaScenarios": 1,
+    "nativeScenarioAttempts": 2,
+    "failedBrowserLaunchBeforeGameplay": 1,
+    "harnessCorrections": 1,
+    "newQaJobs": 3,
     "inheritedQaJobs": 362,
-    "totalQaJobs": 362,
-    "inheritedWipPaths": 0,
-    "selectedPublicationPaths": 36,
-    "qaAndProofFiles": 17,
-    "workflowFiles": 7
+    "totalQaJobs": 365,
+    "selectedCaptures": 5,
+    "qaAndProofFiles": 9,
+    "inheritedWipPaths": 0
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -51003,7 +51355,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-24T06:39:22.433Z",
+  "heartbeat": "2026-10-24T23:27:49.591Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -52976,29 +53328,25 @@
     "taskComplete": false,
     "newLabelBrowser": "OPEN"
   },
-  "lastSnapshotCommit": "32ac8034067b21dfca7a8917a9e18ed30bd154e4",
-  "lastSnapshotAt": "2026-10-21T22:46:44.560Z",
+  "lastSnapshotCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
+  "lastSnapshotAt": "2026-10-24T23:27:49.591Z",
   "runMetrics": {
-    "runtimeSourceFilesModified": 0,
-    "gameplaySteps": 0,
-    "toolingFilesModified": 1,
-    "toolingTestFilesModified": 1,
+    "runtimeSourceFilesModified": 11,
+    "sourceTestFilesModified": 10,
+    "gameplayTruthFilesModified": 0,
+    "mediaFilesRehomed": 8,
     "newImages": 0,
-    "imagegenCalls": 0,
-    "providerTasksSubmitted": 4,
-    "downloadedBlocks": 4,
-    "paidRetries": 0,
-    "generatedRequestedSeconds": 28,
-    "editedSeconds": 26.5,
-    "qaScenarios": 0,
-    "nativePreviewSessions": 1,
-    "newQaJobs": 0,
+    "providerTasksSubmitted": 0,
+    "qaScenarios": 1,
+    "nativeScenarioAttempts": 2,
+    "failedBrowserLaunchBeforeGameplay": 1,
+    "harnessCorrections": 1,
+    "newQaJobs": 3,
     "inheritedQaJobs": 362,
-    "totalQaJobs": 362,
-    "inheritedWipPaths": 0,
-    "selectedPublicationPaths": 36,
-    "qaAndProofFiles": 17,
-    "workflowFiles": 7
+    "totalQaJobs": 365,
+    "selectedCaptures": 5,
+    "qaAndProofFiles": 9,
+    "inheritedWipPaths": 0
   },
   "operatorAcceptedAssets": {
     "decision": "OD-2026-10-18-E",
@@ -54610,13 +54958,22 @@
   },
   "latestHandoff": "docs/autonomy/handoffs/2026-10-24T2258Z-codex-video-retirement.md",
   "runCounts": {
-    "runtimeSourceFilesModified": 12,
-    "canonicalGameplayFilesModified": 0,
+    "runtimeSourceFilesModified": 11,
+    "sourceTestFilesModified": 10,
+    "gameplayTruthFilesModified": 0,
+    "mediaFilesRehomed": 8,
     "newImages": 0,
     "providerTasksSubmitted": 0,
-    "inheritedWipPaths": 0,
-    "qaScenarios": 0,
-    "inheritedQaJobs": 362
+    "qaScenarios": 1,
+    "nativeScenarioAttempts": 2,
+    "failedBrowserLaunchBeforeGameplay": 1,
+    "harnessCorrections": 1,
+    "newQaJobs": 3,
+    "inheritedQaJobs": 362,
+    "totalQaJobs": 365,
+    "selectedCaptures": 5,
+    "qaAndProofFiles": 9,
+    "inheritedWipPaths": 0
   },
   "manualVideoWorkstream": {
     "decision": "docs/autonomy/MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md",
@@ -54701,22 +55058,50 @@
   "cinematicRetirement": {
     "decision": "OD-2026-10-24-A",
     "task": "PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1",
-    "phase": "IMPLEMENTED_PENDING_NATIVE_PROOF",
+    "phase": "VIDEO_RETIREMENT_COMPLETE_STATIC_NARRATIVE_NEXT",
     "oldBaseline": "32c8439f6dea1d09f428c5c081392ab0c700e356",
-    "runtime": "IMPLEMENTED_PENDING_NATIVE",
+    "runtime": "TECHNICALLY_VERIFIED_SCOPED",
     "artisticAcceptance": "NOT_INFERRED",
     "generationStopped": true,
     "historicalEightIdsRetained": true,
     "scheduler": {
       "status": "PAUSED",
       "cadenceMinutes": 90,
-      "settingsPreserved": true
+      "model": "gpt-6.1-sol",
+      "reasoning": "xhigh",
+      "allOtherSettingsPreserved": true,
+      "promptUpdatedByOfficialTool": true,
+      "sha256": "409955549c96befafe89ca8027c71e3af736d98c4ef9f456f6f8b259e798ef42"
     },
     "staticPlan": "docs/autonomy/STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md",
     "baseline": "da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5",
     "amendmentReview": "PASS_ACTUAL_DIFF",
     "historicalQaJobs": 362,
     "historicalCheckpoint": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
-    "report": "docs/reports/cinematic-retirement-2026-10-24.md"
+    "report": "docs/reports/cinematic-retirement-2026-10-24.md",
+    "technicalAcceptance": "ACCEPTED_SCOPED_PC1366_NATIVE_VIDEO_RETIREMENT",
+    "globalPcAcceptance": "PENDING_OPERATOR",
+    "sourceTestedCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
+    "proof": "docs/reports/cinematic-retirement-2026-10-24/provenance.json",
+    "guardian": "PASS_TECHNIQUE_RETRAIT_SCOPE",
+    "endedAt": "2026-10-24T23:27:49.591Z",
+    "counts": {
+      "runtimeSourceFilesModified": 11,
+      "sourceTestFilesModified": 10,
+      "gameplayTruthFilesModified": 0,
+      "mediaFilesRehomed": 8,
+      "newImages": 0,
+      "providerTasksSubmitted": 0,
+      "qaScenarios": 1,
+      "nativeScenarioAttempts": 2,
+      "failedBrowserLaunchBeforeGameplay": 1,
+      "harnessCorrections": 1,
+      "newQaJobs": 3,
+      "inheritedQaJobs": 362,
+      "totalQaJobs": 365,
+      "selectedCaptures": 5,
+      "qaAndProofFiles": 9,
+      "inheritedWipPaths": 0
+    }
   }
 }

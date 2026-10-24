@@ -1,0 +1,1231 @@
+{
+  "schemaVersion": 1,
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "reducedMotion": false,
+  "osReducedMotion": false,
+  "blockedMedia": false,
+  "finalRefugeContext": null,
+  "interruptPrelude": false,
+  "liveOsFlip": true,
+  "method": "BUILT_PRODUCTION_NATIVE_POI_OPENING_NO_STATE_INJECTION",
+  "opening": [
+    {
+      "id": "opening-camp-audience",
+      "camp": {
+        "mode": "STATIC_TABLEAU",
+        "beat": "dialogue:camp_departure",
+        "visualFamily": "LION_CAMP",
+        "fallbackActive": "false",
+        "castOwnership": "STAGE_OWNS_CAST",
+        "staticActors": 4,
+        "primarySurfaces": 1,
+        "primaryInvariant": "PASS",
+        "dialogueSequence": "camp_departure",
+        "surface": "STATIC_TABLEAU",
+        "dialogueStepsOnHold": "0",
+        "choiceStepsOnHold": "0",
+        "movingMedia": 0
+      },
+      "audience": {
+        "mode": "STATIC_TABLEAU",
+        "beat": "dialogue:lion_briefing",
+        "visualFamily": "ALARIC_AUDIENCE",
+        "fallbackActive": "false",
+        "castOwnership": "STAGE_OWNS_CAST",
+        "staticActors": 4,
+        "primarySurfaces": 1,
+        "primaryInvariant": "PASS",
+        "dialogueSequence": "lion_briefing",
+        "surface": "STATIC_TABLEAU",
+        "dialogueStepsOnHold": "0",
+        "choiceStepsOnHold": "0",
+        "movingMedia": 0
+      },
+      "openingCastTransition": {
+        "samples": [
+          {
+            "elapsedMs": 0.10000002384185791,
+            "phase": "SETTLED",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": false
+          },
+          {
+            "elapsedMs": 0.40000003576278687,
+            "phase": "SETTLED",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": false
+          },
+          {
+            "elapsedMs": 2.700000047683716,
+            "phase": "SETTLED",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": false
+          },
+          {
+            "elapsedMs": 8.300000011920929,
+            "phase": "EXIT",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 20.200000047683716,
+            "phase": "EXIT",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 36.10000002384186,
+            "phase": "EXIT",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 53.10000002384186,
+            "phase": "EXIT",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 70,
+            "phase": "EXIT",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 86.20000004768372,
+            "phase": "EXIT",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 102.80000001192093,
+            "phase": "EXIT",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 119.5,
+            "phase": "EXIT",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 136,
+            "phase": "EXIT",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 152.9000000357628,
+            "phase": "EXIT",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 170.30000001192093,
+            "phase": "EXIT",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 186.9000000357628,
+            "phase": "EXIT",
+            "actors": [
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "alistair",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              },
+              {
+                "id": "marian",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE",
+                "exitEffect": "FADE_OUT"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 193,
+            "phase": "BREATH",
+            "actors": [
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 203.9000000357628,
+            "phase": "BREATH",
+            "actors": [
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 220.70000004768372,
+            "phase": "BREATH",
+            "actors": [
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 237.30000001192093,
+            "phase": "BREATH",
+            "actors": [
+              {
+                "id": "maelor",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 237.80000001192093,
+            "phase": "ENTRY",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 254.10000002384186,
+            "phase": "ENTRY",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 271.2000000476837,
+            "phase": "ENTRY",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 286.60000002384186,
+            "phase": "ENTRY",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 303,
+            "phase": "ENTRY",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 319.2000000476837,
+            "phase": "ENTRY",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 338.80000001192093,
+            "phase": "ENTRY",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 353.2000000476837,
+            "phase": "ENTRY",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 370.10000002384186,
+            "phase": "ENTRY",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 386.80000001192093,
+            "phase": "ENTRY",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 403.9000000357628,
+            "phase": "ENTRY",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 419.80000001192093,
+            "phase": "ENTRY",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 419.9000000357628,
+            "phase": "SETTLED",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": true
+          },
+          {
+            "elapsedMs": 436.60000002384186,
+            "phase": "SETTLED",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": false
+          },
+          {
+            "elapsedMs": 439.2000000476837,
+            "phase": "SETTLED",
+            "actors": [
+              {
+                "id": "kestrel",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "elara",
+                "facing": "RIGHT",
+                "animation": "none",
+                "entryEffect": "FADE_IN"
+              },
+              {
+                "id": "maelor",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              },
+              {
+                "id": "sage_seraphine",
+                "facing": "LEFT",
+                "animation": "none",
+                "entryEffect": "NONE"
+              }
+            ],
+            "retained": true,
+            "preparing": false
+          }
+        ],
+        "durationMs": 439.2000000476837,
+        "stepId": "5",
+        "text": "Les Serpents tiennent les grandes routes. Je repérerai les passages où notre petite compagnie peut encore avancer ; mon arc couvrira ceux qui traversent. Nous pouvons cacher une bannière.",
+        "focused": true,
+        "enabled": true,
+        "fits": true,
+        "osReduced": true,
+        "gameReduced": false,
+        "presentation": {
+          "mode": "STATIC_TABLEAU",
+          "beat": "dialogue:acte_ouverture",
+          "visualFamily": "LION_CAMP",
+          "fallbackActive": "false",
+          "castOwnership": "STAGE_OWNS_CAST",
+          "staticActors": 4,
+          "primarySurfaces": 1,
+          "primaryInvariant": "PASS",
+          "dialogueSequence": "acte_ouverture",
+          "surface": "STATIC_TABLEAU",
+          "dialogueStepsOnHold": "0",
+          "choiceStepsOnHold": "0",
+          "movingMedia": 0
+        },
+        "savedTruthUnchanged": true,
+        "captures": [
+          "opening-cast-before.png",
+          "opening-cast-after.png"
+        ]
+      },
+      "openingLiveOsFlip": {
+        "before": {
+          "osReduced": false,
+          "gameReduced": false,
+          "actors": [
+            "sage_seraphine",
+            "maelor",
+            "alistair",
+            "marian"
+          ]
+        },
+        "after": {
+          "osReduced": true,
+          "gameReduced": false,
+          "sameMountedSurface": true,
+          "stepId": "4",
+          "actors": [
+            "sage_seraphine",
+            "maelor",
+            "alistair",
+            "marian"
+          ]
+        },
+        "savedTruthUnchanged": true,
+        "capture": "opening-os-before-flip.png"
+      },
+      "videoRetirement": {
+        "events": [],
+        "videoElements": 0,
+        "mediaMode": "STILL",
+        "requests": []
+      },
+      "dialogues": [
+        "acte_ouverture",
+        "camp_departure",
+        "lion_briefing"
+      ],
+      "media": [],
+      "truth": {
+        "lionMissionAccepted": true
+      },
+      "resume": {
+        "truthUnchanged": true,
+        "currentNodeId": "lion-audience",
+        "endingId": null,
+        "replayedVideos": [],
+        "combatFrames": 0,
+        "overlays": 0
+      },
+      "choiceBounds": [
+        {
+          "sequenceId": "lion_briefing",
+          "stepId": "3",
+          "bounds": [
+            {
+              "label": "Accepter la mission d’Alaric.◇Serment clair devant le Lion◇Alaric observe votre conduite",
+              "x": 458,
+              "y": 586.5,
+              "width": 450,
+              "height": 79.25,
+              "withinViewport": true
+            },
+            {
+              "label": "Accepter, mais réclamer une avance.◇Soutien matériel immédiat◇Chaque pièce pèsera dans le jugement",
+              "x": 458,
+              "y": 671.75,
+              "width": 450,
+              "height": 79.25,
+              "withinViewport": true
+            }
+          ],
+          "keyboardActivation": true,
+          "capture": "opening-camp-audience-lion_briefing-3-choices.png"
+        }
+      ],
+      "systemMotion": null,
+      "diagnostics": {
+        "consoleErrors": [],
+        "pageErrors": [],
+        "requestFailures": []
+      },
+      "pass": true
+    }
+  ],
+  "nodes": [],
+  "finales": [],
+  "pass": true,
+  "errors": []
+}

@@ -1,5 +1,7 @@
 # Report authority index
 
+Current narrative presentation24October2026: [Video retirement and static continuation](cinematic-retirement-2026-10-24.md), OD24-A/set1.10.0. Zero active/shipped video; eight historical identities and all media/proofs preserved. Scoped native PC opening/camp/POI/audience verified; static narrative finishing remains planned. Earlier cinematic candidate/audit entries below are historical.
+
 Current manual cinematic candidate: [Camp04](manual-camp-candidate-04-2026-10-19.md) — explicit OD-2026-10-19-D cap exception, current-V2 source and silent12s candidate,11isolated-player cases accepted technically. PC operator review pending; portrait crop and blade clearance remain open. No shipped-media replacement or recurring generation.
 
 Current cinematic audit: [Eight existing slots and first correction](cinematic-existing-audit-2026-10-19.md) — OD-2026-10-19-C; unchanged eight MP4s/six candidates, current Alistair provenance reconciliation and manual camp walking handoff. Audit COMPLETE_SCOPED; no runtime change or artistic acceptance.
