@@ -217,7 +217,7 @@
   "executionDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
   "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
   "executionPolicy": "Existing recurrence content updated, saved PAUSED preserved. Future triggered run executes pilot without routine per-plan approval; operator artistic gate before generalization.",
-  "updatedAt": "2026-10-24T05:44:10.346Z",
+  "updatedAt": "2026-10-24T05:46:57.320Z",
   "completedOfflineCandidatesAt": "2026-10-23T01:58:16.182Z",
   "reviewIndexPath": "tools/cinematics/candidates/illustrated-sequences/review-index.md",
   "revisionDirective": {
@@ -294,7 +294,15 @@
         ],
         "reducedFadeSeconds": 0.4
       },
-      "lastReviewedAt": "2026-10-24T05:44:10.346Z"
+      "lastReviewedAt": "2026-10-24T05:44:10.346Z",
+      "publication": {
+        "deliveryCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
+        "remote": "origin/dev",
+        "verifiedAt": "2026-10-24T05:46:57.320Z",
+        "committedCandidateFiles": 61,
+        "bytesMatch": true
+      },
+      "runEndedAt": "2026-10-24T05:46:57.320Z"
     },
     "remainingSceneIds": [
       "alaric_audience_arrival",

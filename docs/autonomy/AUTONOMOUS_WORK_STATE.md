@@ -6,7 +6,7 @@ Huit images/26,5s : deux vues du village détruit, relation à deux, réaction p
 
 Montage final sixcoupes/unfondu0,65s (OS0,4s), durées/images inchangées. Les deux fondus initiaux à dédoublement sont remplacés par des coupes ; leur preuve initiale est conservée. Un scénario/deux essais justifiés, reçu final11contrôles et sixdrapeaux provenance vrais ; rawSUCCEEDED/NOT_ACCEPTED. Contrats8/8, TypeScript,63tests PASS ; captures pertinentes inspectées. Aucun gameplay joué, src/public/runtime/LOCKED/save/POI/combat/vidéo/audio inchangé.360jobs/acceptations hérités et queue historique conservés exactement ;362jobs avec les deux proprespreuves.
 
-Scheduler réellement PAUSED/xhigh/90min inchangé, SHA25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07. Préflight dev300d78df propre ; publication normale origin/dev autorisée OD-2026-10-12-A ; checkpoint final à publier. main00b96f1b préservé. Serveur5461/PID21636 conservé pour revue.
+Scheduler réellement PAUSED/xhigh/90min inchangé, SHA25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07. Préflight dev300d78df propre ; publication normale origin/dev autorisée OD-2026-10-12-A ; livraisonc5e7937879630685ef3b8be10bbe8c6435cc85cd publiée et parité origin/dev vérifiée. main00b96f1b préservé. Serveur5461/PID21636 conservé pour revue.
 
 UNE prochaine action produit : reprendre seulement Maelor04/06 selon les défauts visibles, changer composition/pose et conserver les images satisfaisantes. Plafond2corrections utilisé cette passe ; aucun nouvel appel image identique. Les six scènes attendent toujours le verdict artistique explicite images ET montage/méthode d’un pilote cohérent.
 
@@ -380,3 +380,5 @@ UNE prochaine action produit : reprendre seulement Maelor04/06 selon les défaut
 Guardian final : PASS_METADATA_SYNTHESIS_CLOSEOUT ; sept versions35images126s/statuts/frontières/limites/reçus/liens cohérents, aucune acceptation artistique ou runtime. Vérification finale93SHA/93racines historiques/354jobs hérités inchangés/355total/8SHA camp/configuration scheduler préservée.
 
 Livraison 9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9 publiée et paritédev/origin-dev/liveremote vérifiée ; main00b96f1b inchangé. Finrun2026-10-23T02:04:16.244Z, serveur5461 arrêté. OngletIAB non disponible à la clôture ; index de revue ouvert dansCodex (queued). Aucun WIP hérité ; checkpoint cohérentdev après14,5min, aucune brancheWIP nécessaire. Métadonnées de clôture dans le commit suivant ; SHAfinal dans mémoireautomation/Git. Scheduler PAUSED et octets inchangés.
+
+ClôtureUTC2026-10-24T05:46:57.320Z : livraisonc5e79378 publiée/vérifiée,61fichiers candidat identiques aux octets commités ; verrou à libérer après publication de cette clôture metadata.362QA dont360hérités identiques, aucun workerQA/Git/build laissé ; serveur21636/5461 conservé pour revue. Scope artistique reste partiel et méthodePENDING.

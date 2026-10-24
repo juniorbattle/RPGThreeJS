@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-24T04:55:07Z",
-  "runEndedAt": null,
+  "runEndedAt": "2026-10-24T05:46:57.320Z",
   "activeTask": "BOIS-CLAIR-SACRIFICED-V4-NARRATIVE-REVISION",
   "activePhase": "V4_TECHNICALLY_VERIFIED_ART_NEEDS_CORRECTION",
   "activeSubtask": "Eightshot offline26.5s montage, own proof green; Maelor04 interpersonal gesture and06 botharm release remain incomplete",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
-  "lastPushedCommit": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
+  "lastKnownGoodCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
+  "lastPushedCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
   "completedThisRun": [
     "Clean preflight/no inheritedlock orWIP; ownedlock/hostfetch parity verified dev300d78df/main00b96f1b",
     "MastersV2, approved ruinedplate, actual womanv3pose and current raid aftermath source inspected",
@@ -16,7 +16,8 @@
     "Generated7initial illustrations and2targetedcorrections; retained9raw/exactrequests/results/SHA, reusedapprovedplate; eightselectedimages",
     "Inspected nativeimages/pairs and timedmontage; corrected own opticaldoubling withcuts, no new image/duration",
     "Own final11readerchecks PASS, exactv3comparison retained; sixsyncflags true;63focusedtests/tsc/contracts PASS",
-    "Precisely retained ART_NEEDS_CORRECTION04/06; no READY/operatorart/runtime/generalization claim"
+    "Precisely retained ART_NEEDS_CORRECTION04/06; no READY/operatorart/runtime/generalization claim",
+    "Deliveryc5e79378 normalpush verified origin/dev; main00b96f1b unchanged,61candidatefiles committedbytes match; schedulerconfigSHA unchanged"
   ],
   "filesChanged": [
     ".gitattributes",
@@ -120,7 +121,7 @@
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_TECHNICAL_PRESERVATION_ART_DIRECTION_OPEN",
-  "commitReferenceScope": "Assembledcandidate9bdc2763 published; final proof/transitioncorrection checkpoint follows. Git and subsequent closure record authoritative, no selfreferential SHA.",
+  "commitReferenceScope": "Deliveryc5e79378 published and verified on origin/dev,61candidatefiles committed bytes match. Following state-only closure SHA remains authoritative in Git/automationmemory; no selfreferential SHA.",
   "operatorAuthorization": "Direct24Oct user go on revised village→reassurance→fear→release→clanpriority→concretebilan arc; offline scope OD2026-10-21-A/B and23-A/B. Artistic method/runtime/sixscene permission not inferred. Publication OD2026-10-12-A.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -193,10 +194,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-bois-v4-20261024T0455Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-24T05:44:10.346Z",
+  "lastHeartbeat": "2026-10-24T05:46:57.320Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-24T05:44:10.346Z",
+    "lastHeartbeat": "2026-10-24T05:46:57.320Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -40696,12 +40697,14 @@
       "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md"
     ],
     "publication": {
-      "status": "FINAL_CHECKPOINT_PENDING",
-      "previousPublished": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
-      "authority": "OD-2026-10-12-A"
+      "status": "DELIVERY_VERIFIED_METADATA_CLOSURE_FOLLOWS",
+      "sha": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
+      "remoteDevVerifiedAt": "2026-10-24T05:46:57.320Z",
+      "authority": "OD-2026-10-12-A",
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": null,
-    "writerStopped": false,
+    "runEndedAt": "2026-10-24T05:46:57.320Z",
+    "writerStopped": true,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
       "previewPort5461Stopped": true,
@@ -44835,7 +44838,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-24T04:55:07Z",
     "activePhase": "V4_TECHNICALLY_VERIFIED_ART_NEEDS_CORRECTION",
-    "heartbeat": "2026-10-24T05:44:10.346Z",
+    "heartbeat": "2026-10-24T05:46:57.320Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-24T0455Z-codex-bois-v4.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -46176,7 +46179,7 @@
       }
     },
     "threadId": "01a167b9-2df2-7192-9ff1-fa652a2816ba",
-    "writerStoppedMeaning": "Configuration checkpoint prepared; no product/QA worker launched. Lock released only after verified publication.",
+    "writerStoppedMeaning": "Product/generation/QA work ended; only coherent metadata publication and owned lock release remain",
     "run1944": {
       "startedAt": "2026-10-13T19:45:46.4541492Z",
       "seedAudit": "tmp/autonomy/run-1944/seed-audit.json",
@@ -46564,7 +46567,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
+    "lastPushedCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -47369,7 +47372,7 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
+    "lastKnownGoodCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
     "completedThisRun": [
       "Clean preflight/no inheritedlock orWIP; ownedlock/hostfetch parity verified dev300d78df/main00b96f1b",
       "MastersV2, approved ruinedplate, actual womanv3pose and current raid aftermath source inspected",
@@ -47378,7 +47381,8 @@
       "Generated7initial illustrations and2targetedcorrections; retained9raw/exactrequests/results/SHA, reusedapprovedplate; eightselectedimages",
       "Inspected nativeimages/pairs and timedmontage; corrected own opticaldoubling withcuts, no new image/duration",
       "Own final11readerchecks PASS, exactv3comparison retained; sixsyncflags true;63focusedtests/tsc/contracts PASS",
-      "Precisely retained ART_NEEDS_CORRECTION04/06; no READY/operatorart/runtime/generalization claim"
+      "Precisely retained ART_NEEDS_CORRECTION04/06; no READY/operatorart/runtime/generalization claim",
+      "Deliveryc5e79378 normalpush verified origin/dev; main00b96f1b unchanged,61candidatefiles committedbytes match; schedulerconfigSHA unchanged"
     ],
     "filesChanged": [
       ".gitattributes",
@@ -48395,7 +48399,7 @@
       "rawReceiptAcceptanceUnchanged": "NOT_ACCEPTED"
     },
     "lastAcceptedProductionCommit": "5e22775",
-    "implementationCommit": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
+    "implementationCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
     "poiUi1903": {
       "status": "ACCEPTED_SCOPED",
       "at": "2026-10-18T19:26:33.504Z",
@@ -48978,11 +48982,12 @@
     },
     "contractSetVersion": "1.9.0",
     "uncommittedWork": {
-      "status": "FINAL_PROOF_CHECKPOINT_TO_PUBLISH",
+      "status": "COHERENT_CHECKPOINT_PUBLISHED",
+      "deliveryCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
       "inheritedWipPathsPreserved": 0,
       "remainingProductWip": 0
     },
-    "commitReferenceScope": "Assembledcandidate9bdc2763 published; final proof/transitioncorrection checkpoint follows. Git and subsequent closure record authoritative, no selfreferential SHA.",
+    "commitReferenceScope": "Deliveryc5e79378 published and verified on origin/dev,61candidatefiles committed bytes match. Following state-only closure SHA remains authoritative in Git/automationmemory; no selfreferential SHA.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
       "status": "SAVED_AND_CONFIGURATION_VERIFIED",
@@ -49264,8 +49269,16 @@
         "notes": "Offline illustrated productprogress only; no gameplay claimed. One corrective repeat for observed opticaldoubling; both receipts preserved. No inheritedWIP."
       },
       "publication": {
-        "status": "FINAL_CHECKPOINT_PENDING",
-        "authority": "OD-2026-10-12-A"
+        "deliveryCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
+        "remote": "origin/dev",
+        "verifiedAt": "2026-10-24T05:46:57.320Z",
+        "committedCandidateFiles": 61,
+        "bytesMatch": true
+      },
+      "runEndedAt": "2026-10-24T05:46:57.320Z",
+      "committedByteVerification": {
+        "candidateFiles": 61,
+        "allMatch": true
       }
     }
   },
@@ -49501,7 +49514,8 @@
     }
   },
   "uncommittedWork": {
-    "status": "FINAL_PROOF_CHECKPOINT_TO_PUBLISH",
+    "status": "COHERENT_CHECKPOINT_PUBLISHED",
+    "deliveryCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
     "inheritedWipPathsPreserved": 0,
     "remainingProductWip": 0
   },
@@ -49699,7 +49713,7 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
+  "implementationCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
   "authorizedWorkContinuation": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance. Preserve actually saved scheduler status; this manual go is not scheduleractivation.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
@@ -50970,7 +50984,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-24T05:44:10.346Z",
+  "heartbeat": "2026-10-24T05:46:57.320Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -54189,7 +54203,15 @@
         ],
         "reducedFadeSeconds": 0.4
       },
-      "lastReviewedAt": "2026-10-24T05:44:10.346Z"
+      "lastReviewedAt": "2026-10-24T05:44:10.346Z",
+      "publication": {
+        "deliveryCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
+        "remote": "origin/dev",
+        "verifiedAt": "2026-10-24T05:46:57.320Z",
+        "committedCandidateFiles": 61,
+        "bytesMatch": true
+      },
+      "runEndedAt": "2026-10-24T05:46:57.320Z"
     }
   },
   "automationExecutionUnblock": {
@@ -54485,7 +54507,14 @@
         "runtime": "NOT_ADOPTED",
         "generalizationAllowed": false
       },
-      "record": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-closeout.json"
+      "record": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-closeout.json",
+      "publication": {
+        "deliveryCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
+        "remote": "origin/dev",
+        "verifiedAt": "2026-10-24T05:46:57.320Z",
+        "committedCandidateFiles": 61,
+        "bytesMatch": true
+      }
     }
   },
   "illustratedPosePilot": {
@@ -54555,7 +54584,15 @@
       ],
       "reducedFadeSeconds": 0.4
     },
-    "lastReviewedAt": "2026-10-24T05:44:10.346Z"
+    "lastReviewedAt": "2026-10-24T05:44:10.346Z",
+    "publication": {
+      "deliveryCommit": "c5e7937879630685ef3b8be10bbe8c6435cc85cd",
+      "remote": "origin/dev",
+      "verifiedAt": "2026-10-24T05:46:57.320Z",
+      "committedCandidateFiles": 61,
+      "bytesMatch": true
+    },
+    "runEndedAt": "2026-10-24T05:46:57.320Z"
   },
   "latestHandoff": "docs/autonomy/handoffs/2026-10-24T0455Z-codex-bois-v4.md",
   "runCounts": {
