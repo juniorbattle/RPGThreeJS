@@ -1,6 +1,6 @@
 # Vidéos retirées ; narration statique en priorité
 
-Run codex-cinematic-retirement-20261024T2258Z, 2026-10-24T22:56:42.2989304Z → 2026-10-24T23:27:49.591Z. Phase VIDEO_RETIREMENT_COMPLETE_STATIC_NARRATIVE_NEXT. Retrait technique terminé dans la portée ci-dessous ; acceptation artistique/global PC opérateur ouverte.
+Run codex-cinematic-retirement-20261024T2258Z, 2026-10-24T22:56:42.2989304Z → 2026-10-24T23:30:21.668Z. Phase VIDEO_RETIREMENT_COMPLETE_STATIC_NARRATIVE_NEXT. Retrait technique terminé dans la portée ci-dessous ; acceptation artistique/global PC opérateur ouverte.
 
 [Décision OD24-A](CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md) · [plan statique](STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md) · [rapport/preuve](../reports/cinematic-retirement-2026-10-24.md). Set1.10.0 baseline da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5 ; amendement puis baseline opérationnelle eb3d3d0d publiés avant runtime.
 
@@ -383,3 +383,5 @@ Compteurs : {"runtimeSourceFilesModified":11,"sourceTestFilesModified":10,"gamep
 - video-retirement-opening-host-2258: FAILED; port 5463; receipt `tmp/cinematics/retirement-opening-host-2258/qa-job.json`; NOT_ACCEPTED
 - video-retirement-opening-poi-2258: SUCCEEDED; port 5463; receipt `tmp/cinematics/retirement-opening-poi-2258/qa-job.json`; ACCEPTED_SCOPED_PC1366_NATIVE_VIDEO_RETIREMENT
 <!-- QA_JOBS_END -->
+
+Livraison 54b8baeab5289d4b12c3f02a71fed64b829a20cc publiée et vérifiée sur origin/dev ; main inchangé. Preuve source ed401c13 conservée,9fichiers de preuve et9archives identiques aux octets commités. Clôture metadata seule puis libération du verrou possédé.

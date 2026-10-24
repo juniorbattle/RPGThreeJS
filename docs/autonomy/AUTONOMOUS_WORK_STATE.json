@@ -1,13 +1,13 @@
 {
   "status": "READY_FOR_PC_ACCEPTANCE",
   "runStartedAt": "2026-10-24T22:56:42.2989304Z",
-  "runEndedAt": "2026-10-24T23:27:49.591Z",
+  "runEndedAt": "2026-10-24T23:30:21.668Z",
   "activeTask": "STATIC_NARRATIVE_FINISHING",
   "activePhase": "VIDEO_RETIREMENT_COMPLETE_STATIC_NARRATIVE_NEXT",
   "activeSubtask": "Vidéos retirées et preuve native acceptée dans sa portée; prochaine passe statique planifiée sur Bois-Clair",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
-  "lastPushedCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
+  "lastKnownGoodCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
+  "lastPushedCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
   "completedThisRun": [
     "OD24-A/amendement1.10.0 revus et publiés puis baseline immuable enregistrée avant runtime",
     "8MP4+manifest archivés byte-identiquement et vérifiés dans Git;0vidéo distribuée/active/hold/précharge",
@@ -121,7 +121,7 @@
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_TECHNIQUE_RETRAIT_SCOPE",
-  "commitReferenceScope": "Native proof source ed401c1371be6bb79c8038bb0ef9997930756144; subsequent metadata-only closure commits are authoritative in Git/remote. No source/driver/build changes after this proof.",
+  "commitReferenceScope": "Delivery 54b8baeab5289d4b12c3f02a71fed64b829a20cc verified origin/dev; native source ed401c1371be6bb79c8038bb0ef9997930756144 and frozen driver/build/proof retained. Following metadata-only commit SHA authoritative in Git/remote.",
   "operatorAuthorization": "Direct operator decision OD-2026-10-24-A: abandon cinematics, remove videos from game, plan further static dialogue/NarrativeStage optimization",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -194,10 +194,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-cinematic-retirement-20261024T2258Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-24T23:27:49.591Z",
+  "lastHeartbeat": "2026-10-24T23:30:21.668Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-24T23:27:49.591Z",
+    "lastHeartbeat": "2026-10-24T23:30:21.668Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -40988,7 +40988,7 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": "2026-10-24T23:27:49.591Z",
+    "runEndedAt": "2026-10-24T23:30:21.668Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
@@ -41104,14 +41104,12 @@
       "reason": "Automatic review found insufficient trusted exact authorization to disclose internal state on public GitHub WIP branch; local concrete checkpoint in preparation"
     },
     "publicationCloseout": {
-      "deliveryCommit": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
-      "verifiedOriginDev": "9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9",
-      "remoteMain": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
-      "ownedServerStopped": true,
-      "iabTab": "Unavailable at closeout; no tab left under agent control",
-      "snapshot": "No WIP branch needed; coherent dev checkpoint at14.5min",
-      "closedAt": "2026-10-23T02:04:16.244Z",
-      "scope": "Closure metadata follows; final SHA recorded in Git and automation memory"
+      "deliveryCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
+      "branch": "dev",
+      "originDevVerified": true,
+      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f",
+      "authority": "OD-2026-10-12-A",
+      "sourceAndProofUnchanged": true
     },
     "run1859History": {
       "runId": "rpgthreejs-auto-dev-90m-20261008T1859",
@@ -45123,7 +45121,7 @@
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-24T22:56:42.2989304Z",
     "activePhase": "VIDEO_RETIREMENT_COMPLETE_STATIC_NARRATIVE_NEXT",
-    "heartbeat": "2026-10-24T23:27:49.591Z",
+    "heartbeat": "2026-10-24T23:30:21.668Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-24T2258Z-codex-video-retirement.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -46852,7 +46850,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
+    "lastPushedCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -47657,7 +47655,7 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
+    "lastKnownGoodCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
     "completedThisRun": [
       "OD24-A/amendement1.10.0 revus et publiés puis baseline immuable enregistrée avant runtime",
       "8MP4+manifest archivés byte-identiquement et vérifiés dans Git;0vidéo distribuée/active/hold/précharge",
@@ -47890,8 +47888,8 @@
         "REPOSITORY_GOVERNANCE": "PASS"
       }
     },
-    "lastSnapshotAt": "2026-10-24T23:27:49.591Z",
-    "lastSnapshotCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
+    "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
+    "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
     "priorityDecision2320": {
       "recordedAt": "2026-10-17T23:21:43.962Z",
       "decisionId": "OD-2026-10-17-A",
@@ -49259,7 +49257,7 @@
     },
     "contractSetVersion": "1.10.0",
     "uncommittedWork": [],
-    "commitReferenceScope": "Native proof source ed401c1371be6bb79c8038bb0ef9997930756144; subsequent metadata-only closure commits are authoritative in Git/remote. No source/driver/build changes after this proof.",
+    "commitReferenceScope": "Delivery 54b8baeab5289d4b12c3f02a71fed64b829a20cc verified origin/dev; native source ed401c1371be6bb79c8038bb0ef9997930756144 and frozen driver/build/proof retained. Following metadata-only commit SHA authoritative in Git/remote.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
       "status": "SAVED_AND_CONFIGURATION_VERIFIED",
@@ -51355,7 +51353,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-24T23:27:49.591Z",
+  "heartbeat": "2026-10-24T23:30:21.668Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -53328,8 +53326,8 @@
     "taskComplete": false,
     "newLabelBrowser": "OPEN"
   },
-  "lastSnapshotCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
-  "lastSnapshotAt": "2026-10-24T23:27:49.591Z",
+  "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
+  "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
   "runMetrics": {
     "runtimeSourceFilesModified": 11,
     "sourceTestFilesModified": 10,
@@ -55084,7 +55082,7 @@
     "sourceTestedCommit": "ed401c1371be6bb79c8038bb0ef9997930756144",
     "proof": "docs/reports/cinematic-retirement-2026-10-24/provenance.json",
     "guardian": "PASS_TECHNIQUE_RETRAIT_SCOPE",
-    "endedAt": "2026-10-24T23:27:49.591Z",
+    "endedAt": "2026-10-24T23:30:21.668Z",
     "counts": {
       "runtimeSourceFilesModified": 11,
       "sourceTestFilesModified": 10,
@@ -55102,6 +55100,7 @@
       "selectedCaptures": 5,
       "qaAndProofFiles": 9,
       "inheritedWipPaths": 0
-    }
+    },
+    "deliveryCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc"
   }
 }

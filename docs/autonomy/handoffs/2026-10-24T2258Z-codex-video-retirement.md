@@ -1,6 +1,6 @@
 # Vidéos retirées ; narration statique en priorité
 
-Run codex-cinematic-retirement-20261024T2258Z, 2026-10-24T22:56:42.2989304Z → 2026-10-24T23:27:49.591Z. Phase VIDEO_RETIREMENT_COMPLETE_STATIC_NARRATIVE_NEXT. Retrait technique terminé dans la portée ci-dessous ; acceptation artistique/global PC opérateur ouverte.
+Run codex-cinematic-retirement-20261024T2258Z, 2026-10-24T22:56:42.2989304Z → 2026-10-24T23:30:21.668Z. Phase VIDEO_RETIREMENT_COMPLETE_STATIC_NARRATIVE_NEXT. Retrait technique terminé dans la portée ci-dessous ; acceptation artistique/global PC opérateur ouverte.
 
 [Décision OD24-A](../CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md) · [plan statique](../STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md) · [rapport/preuve](../../reports/cinematic-retirement-2026-10-24.md). Set1.10.0 baseline da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5 ; amendement puis baseline opérationnelle eb3d3d0d publiés avant runtime.
 
@@ -14,3 +14,5 @@ Scheduler officiel PAUSED/90min/xhigh/local ; tous réglages conservés hors pro
 
 Compteurs : {"runtimeSourceFilesModified":11,"sourceTestFilesModified":10,"gameplayTruthFilesModified":0,"mediaFilesRehomed":8,"newImages":0,"providerTasksSubmitted":0,"qaScenarios":1,"nativeScenarioAttempts":2,"failedBrowserLaunchBeforeGameplay":1,"harnessCorrections":1,"newQaJobs":3,"inheritedQaJobs":362,"totalQaJobs":365,"selectedCaptures":5,"qaAndProofFiles":9,"inheritedWipPaths":0}. Coherent dev publication authorized OD-2026-10-12-A ; main protégé. Le SHA de clôture metadata reste autoritaire dans Git/remote ; source testée ci-dessus.
 
+
+Livraison 54b8baeab5289d4b12c3f02a71fed64b829a20cc publiée et vérifiée sur origin/dev ; main inchangé. Preuve source ed401c13 conservée,9fichiers de preuve et9archives identiques aux octets commités. Clôture metadata seule puis libération du verrou possédé.
