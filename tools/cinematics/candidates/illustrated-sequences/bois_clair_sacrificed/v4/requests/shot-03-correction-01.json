@@ -1,0 +1,9 @@
+{
+  "prompt": "Use case: precise-object-edit. One landscape16:9 HD-2D pixel-diorama fantasy still. Image1 is the exact edit target. Canonical MaelorV2 image2, womanV2 image3. Preserve the entire composition, background, feet, scale, woman pose/basket, all clothes and the closed book in Maelor's anatomical LEFT hand at his left thigh. Correct ONLY Maelor's anatomical RIGHT arm and hand, the arm on the LEFT SIDE of this picture: his current right glove is touching/gripping the gold weapon hilt, which incorrectly suggests a threat. His RIGHT upper arm must angle slightly OUTWARD toward the LEFT EDGE OF THE IMAGE, away from his own belt and sword. Elbow held slightly away from body, forearm lowered OUTSIDE his cloak silhouette. Show the empty brown-gloved RIGHT HAND OPEN with all relaxed fingers pointing downward, palm partially visible. Leave at least one full hand-width of CLEAR EMPTY BACKGROUND between this hand and the sheathed weapon/gold hilt. The weapon remains sheathed and worn exactly at his right flank; no hand touches hilt, sheath or belt. No extra weapon, arm, hand or book swap. This is calm neutral attention before a later reassuring gesture, not a raised stop sign or crossed arms. Change no other feature, pose, crop, character position or architecture. No text or UI.",
+  "referenced_image_paths": [
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-03.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/maelor.png",
+    "C:/Users/miche/Documents/Projects/RPGThreeJS/public/assets/characters/pixel/masters/villageoise.png"
+  ],
+  "transparent_background": false
+}

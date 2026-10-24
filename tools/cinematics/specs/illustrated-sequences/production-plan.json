@@ -217,21 +217,21 @@
   "executionDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
   "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
   "executionPolicy": "Existing recurrence content updated, saved PAUSED preserved. Future triggered run executes pilot without routine per-plan approval; operator artistic gate before generalization.",
-  "updatedAt": "2026-10-24T05:03:38.511Z",
+  "updatedAt": "2026-10-24T05:15:26.997Z",
   "completedOfflineCandidatesAt": "2026-10-23T01:58:16.182Z",
   "reviewIndexPath": "tools/cinematics/candidates/illustrated-sequences/review-index.md",
   "revisionDirective": {
     "decisionPath": "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
     "sourcePath": "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
     "sourceSha256": "11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
-    "status": "PILOT_V4_STORYBOARD_PREPARED",
+    "status": "PILOT_V4_GENERATION_IN_PROGRESS",
     "amendmentDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
     "historicalQueueRole": "Unmodified historical technical deliveries, not near-final artistic acceptance",
     "pilot": {
       "id": "bois_clair_sacrificed",
       "version": "v4",
       "status": "STORYBOARD_PREPARED",
-      "generation": "NOT_GENERATED",
+      "generation": "GENERATION_IN_PROGRESS",
       "technical": "NOT_VERIFIED",
       "art": "ART_REVIEW_PENDING",
       "readiness": "IN_PROGRESS",
@@ -259,7 +259,10 @@
         "cadenceMinutes": 90,
         "sha256": "25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07",
         "changed": false
-      }
+      },
+      "initialImages": 3,
+      "targetedCorrections": 2,
+      "progressUpdatedAt": "2026-10-24T05:15:26.997Z"
     },
     "remainingSceneIds": [
       "alaric_audience_arrival",

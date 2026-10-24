@@ -2,11 +2,15 @@
 
 Run codex-bois-v4-20261024T0455Z, débutUTC2026-10-24T04:55:07Z. Préflight propre, verrou exclusif, fetch hôte : dev300d78df/main00b96f1b. SchedulerPAUSED/xhigh/90min inchangé, SHA25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07.
 
-L'opérateur rouvre l'art de v3 : succession de bras sans récit lisible. Sa preuve technique et ses fichiers restent historiques. Go direct sur v4 : dégâts en plusieurs plans → tentative d'apaisement de Maelor → habitante toujours effrayée → bras qui retombent → résolution et bilan sur coffres fermés déjà acquis. Huit plans/26.5s ; décor initial exact réutilisé, sept illustrations prévues. [Direction](BOIS_CLAIR_NARRATIVE_REVISION_2026-10-24.md), [fiches](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md). PASS_PREGEN_V4_SCOPED ; aucune génération encore.
+L'opérateur rouvre l'art de v3 : succession de bras sans récit lisible. Sa preuve technique et ses fichiers restent historiques. Go direct sur v4 : dégâts en plusieurs plans → tentative d'apaisement de Maelor → habitante toujours effrayée → bras qui retombent → résolution et bilan sur coffres fermés déjà acquis. Huit plans/26.5s ; décor initial exact réutilisé, sept illustrations prévues. [Direction](BOIS_CLAIR_NARRATIVE_REVISION_2026-10-24.md), [fiches](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md). PASS_PREGEN_V4_SCOPED ; génération en cours, voir progression.
 
 UNE prochaine action : Generate and inspect v4 shots02–08 from the pre-reviewed source-bound storyboard, retaining exact requests/raw/results/SHA; then own26.5s reader proof and operator review. No six-scene generalization.
 
 Toutes360anciennesQA/acceptations, v1/v2/v3/camp, src/public/LOCKED/runtime/V6/POI/combat/vidéo/audio préservés. Aucune généralisation avant verdict explicite opérateur sur les images et le montage v4.
+
+<!-- V4_PROGRESS_START -->
+V4 : 3illustrations initiales nouvelles, 2corrections,1réemploi ; raw/requêtes/résultats/SHA conservés. Dernier résultat04-correction-01, 1672x941. Technique et art restent à vérifier.
+<!-- V4_PROGRESS_END -->
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

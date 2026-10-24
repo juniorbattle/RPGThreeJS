@@ -3,8 +3,8 @@
   "runStartedAt": "2026-10-24T04:55:07Z",
   "runEndedAt": null,
   "activeTask": "BOIS-CLAIR-SACRIFICED-V4-NARRATIVE-REVISION",
-  "activePhase": "STORYBOARD_PREPARED",
-  "activeSubtask": "Seven source-bound new illustrations plus exact ruined-plate reuse; Maelor reassurance-to-resolve arc and coffers bilan",
+  "activePhase": "GENERATION_IN_PROGRESS",
+  "activeSubtask": "V4 3initial illustrations generated; inspect actual images and continue source-bound storyboard",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
   "lastPushedCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
@@ -82,7 +82,7 @@
     "After pilot method acceptance only: audience, arrival, saved, judgement, Serpent ending, Lion-trial ending",
     "Independent demonstrated PC issue only; mobile after PC stability"
   ],
-  "creditStatus": "GENERATION_PENDING",
+  "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_PREGEN_V4_SCOPED",
   "commitReferenceScope": "Delivery1c0c0f72 is published/verified; following metadata-only commit closes this run without claiming self-referential commit hashes.",
   "operatorAuthorization": "OD-2026-10-21-A/B and OD-2026-10-23-A/B offline pose pilot; direct23October user feedback requests more illustrations and optical dissolves on displayed historicalv1, applied only to separatepilotv3. No scheduler mutation/generalization/art acceptance inferred.",
@@ -157,10 +157,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-bois-v4-20261024T0455Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-24T05:03:38.511Z",
+  "lastHeartbeat": "2026-10-24T05:15:26.997Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-24T05:03:38.511Z",
+    "lastHeartbeat": "2026-10-24T05:15:26.997Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -41100,7 +41100,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "BOIS-CLAIR-SACRIFICED-V4-NARRATIVE-REVISION",
-    "activeSubtask": "Seven source-bound new illustrations plus exact ruined-plate reuse; Maelor reassurance-to-resolve arc and coffers bilan",
+    "activeSubtask": "V4 3initial illustrations generated; inspect actual images and continue source-bound storyboard",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -44436,8 +44436,8 @@
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-24T04:55:07Z",
-    "activePhase": "STORYBOARD_PREPARED",
-    "heartbeat": "2026-10-24T05:03:38.511Z",
+    "activePhase": "GENERATION_IN_PROGRESS",
+    "heartbeat": "2026-10-24T05:15:26.997Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-24T0455Z-codex-bois-v4.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -46969,7 +46969,7 @@
       },
       "closeoutAt": "2026-10-16T15:33:54.359Z"
     },
-    "creditStatus": "GENERATION_PENDING",
+    "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
     "lastKnownGoodCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
     "completedThisRun": [
@@ -50481,7 +50481,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-24T05:03:38.511Z",
+  "heartbeat": "2026-10-24T05:15:26.997Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -53912,7 +53912,7 @@
     "id": "bois_clair_sacrificed",
     "version": "v4",
     "status": "STORYBOARD_PREPARED",
-    "generation": "NOT_GENERATED",
+    "generation": "GENERATION_IN_PROGRESS",
     "technical": "NOT_VERIFIED",
     "art": "ART_REVIEW_PENDING",
     "readiness": "IN_PROGRESS",
@@ -53940,14 +53940,17 @@
       "cadenceMinutes": 90,
       "sha256": "25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07",
       "changed": false
-    }
+    },
+    "initialImages": 3,
+    "targetedCorrections": 2,
+    "progressUpdatedAt": "2026-10-24T05:15:26.997Z"
   },
   "latestHandoff": "docs/autonomy/handoffs/2026-10-24T0455Z-codex-bois-v4.md",
   "runCounts": {
     "runtimeSourceFilesModified": 0,
-    "newImages": 0,
-    "imagegenCalls": 0,
-    "targetedCorrections": 0,
+    "newImages": 3,
+    "imagegenCalls": 5,
+    "targetedCorrections": 2,
     "scenarios": 0,
     "inheritedWipPaths": 0,
     "preservedInheritedQaJobs": 360
