@@ -1,24 +1,12 @@
-# Bois-Clair v3 : prête pour revue artistique
+# Bois-Clair v4 : nouvelle réalisation autorisée
 
-Run codex-pose-v3-proof-20261023T0745Z, début UTC 2026-10-23T07:45:51Z, checkpoint 2026-10-23T08:05:51.835Z. Projet : READY_FOR_PC_ACCEPTANCE, sans nouvelle acceptation globale.
+Run codex-bois-v4-20261024T0455Z, débutUTC2026-10-24T04:55:07Z. Préflight propre, verrou exclusif, fetch hôte : dev300d78df/main00b96f1b. SchedulerPAUSED/xhigh/90min inchangé, SHA25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07.
 
-Le pilote est **GENERATED / TECHNICALLY_VERIFIED / ART_REVIEW_PENDING / READY_FOR_OPERATOR_REVIEW**. L'acceptation artistique de la méthode reste PENDING ; runtime NOT_ADOPTED ; généralisation aux six autres scènes interdite avant verdict explicite.
+L'opérateur rouvre l'art de v3 : succession de bras sans récit lisible. Sa preuve technique et ses fichiers restent historiques. Go direct sur v4 : dégâts en plusieurs plans → tentative d'apaisement de Maelor → habitante toujours effrayée → bras qui retombent → résolution et bilan sur coffres fermés déjà acquis. Huit plans/26.5s ; décor initial exact réutilisé, sept illustrations prévues. [Direction](BOIS_CLAIR_NARRATIVE_REVISION_2026-10-24.md), [fiches](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md). PASS_PREGEN_V4_SCOPED ; aucune génération encore.
 
-[Lecteur v3](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html) · [Comparaison v1](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html?historical=1) · [Revue et limites](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review.md) · [Preuve et SHA](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-closeout.json) · [Handoff](handoffs/2026-10-23T0745Z-codex-pose-v3-proof.md).
+UNE prochaine action : Generate and inspect v4 shots02–08 from the pre-reviewed source-bound storyboard, retaining exact requests/raw/results/SHA; then own26.5s reader proof and operator review. No six-scene generalization.
 
-La preuve propre passe11contrôles : sept images sur24s, trois coupes et trois fondus1/1/0.8s, pause horloge+opacité non nulle/reprise, clavier/fin, réductionOS, contain/44px aux largeurs1366/620/390, console et image07 manquante. La comparaison v1 exacte dure18s sans légendes. Un scénario et trois tentatives conservées : absence de Chromium dans le sandbox ; assertion nouvelle trop précise pour l'horloge arrondie ; une correction minimale puis PASS. Le reçu brut reste SUCCEEDED/NOT_ACCEPTED ; la clôture technique est séparée. Guardian : PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED puis PASS_CLOSEOUT_METADATA_SCOPED.
-
-Les sept images, six paires et captures pertinentes ont été inspectées. Le fondu04→05 double davantage bras/livre/tête de Maelor ; son gant reste près du fourreau. Ces limites sont soumises au verdict artistique. Aucun geste d'offre, départ, transfert, choix futur ou animation corporelle continue n'est affirmé.
-
-L'ancien verrou05:04 a été repris après plus de105min, session systemError et audit hôte sans worker Git/build/QA associé.24fichiers hérités sauvegardés dans WIP32ac8034. Les357anciens jobs et acceptations sont inchangés ;360jobs au total. V1/v2, camp, lecteurs historiques et file historique conservés. Scheduler ACTIVE/xhigh/90min, SHA4c39ebf8a7dba98ccc1cf0c16356acf55c1278c5a58544687d137cd102252433, inchangé. Serveur de revue5461/PID21636 et preview5438 conservés.
-
-Vérifications :63tests ciblés/2sources, TypeScript,8contrats/8slots, barrièresLOCKED vides, diffcheck et SHA/provenance PASS. Aucun build ou parcours de campagne rejoué pour ce candidat offline. Set1.9.0/baseline32c8439f6dea1d09f428c5c081392ab0c700e356 inchangé.
-
-Compteurs :0source runtime,0nouvelle image/appelimagegen,18nouveaux fichiersQA/preuves,3métadonnées candidat modifiées,5chemins workflow,24chemins WIP hérités,44chemins dans le payload sélectionné. La règle .gitattributes est bornée àv3 pour préserver les octets/SHA, y compris le reçu de synchronisation CRLF.
-
-**UNE prochaine action : Attendre le verdict artistique explicite opérateur sur les images ET le montage/méthode bois_clair_sacrificed/v3. Sans nouveau verdict, préserver le checkpoint sans génération, QA ou synthèse répétée. Les six autres scènes restent verrouillées ; aucun changement du scheduler.**
-
-Clôture UTC2026-10-23T08:09:54.234Z : livraison1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f publiée et vérifiée sur origin/dev ; main inchangé ;40fichiersv3 committés identiques aux octets revus. Aucun WIP produit restant ; métadonnées finales publiées ensuite.
+Toutes360anciennesQA/acceptations, v1/v2/v3/camp, src/public/LOCKED/runtime/V6/POI/combat/vidéo/audio préservés. Aucune généralisation avant verdict explicite opérateur sur les images et le montage v4.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

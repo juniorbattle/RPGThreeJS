@@ -203,7 +203,7 @@
       "receiptPath": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-receipt.json"
     }
   ],
-  "firstAction": "Attendre le verdict artistique explicite opérateur sur les images ET le montage/méthode bois_clair_sacrificed/v3. Sans nouveau verdict, préserver le checkpoint sans génération, QA ou synthèse répétée. Les six autres scènes restent verrouillées ; aucun changement du scheduler.",
+  "firstAction": "Generate and inspect v4 shots02–08 from the pre-reviewed source-bound storyboard, retaining exact requests/raw/results/SHA; then own26.5s reader proof and operator review. No six-scene generalization.",
   "completionPolicy": "Historical seven-scene queue preserved. New pilot first; explicit operator ART_ACCEPTED method verdict before six-scene revision; no READY/technical auto-acceptance.",
   "preserve": {
     "qaJobs": 339,
@@ -217,67 +217,49 @@
   "executionDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
   "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
   "executionPolicy": "Existing recurrence content updated, saved PAUSED preserved. Future triggered run executes pilot without routine per-plan approval; operator artistic gate before generalization.",
-  "updatedAt": "2026-10-23T08:00:50.381Z",
+  "updatedAt": "2026-10-24T05:03:38.511Z",
   "completedOfflineCandidatesAt": "2026-10-23T01:58:16.182Z",
   "reviewIndexPath": "tools/cinematics/candidates/illustrated-sequences/review-index.md",
   "revisionDirective": {
     "decisionPath": "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
     "sourcePath": "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
     "sourceSha256": "11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
-    "status": "PILOT_READY_AWAITING_OPERATOR_ARTISTIC_METHOD_VERDICT",
+    "status": "PILOT_V4_STORYBOARD_PREPARED",
     "amendmentDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
     "historicalQueueRole": "Unmodified historical technical deliveries, not near-final artistic acceptance",
     "pilot": {
       "id": "bois_clair_sacrificed",
-      "version": "v3",
-      "status": "READY_FOR_OPERATOR_REVIEW",
-      "requiresSourceAndPosePartition": true,
-      "beforeDialogue": "village_raid_aftermath:1",
-      "operatorMethodAcceptance": "PENDING",
-      "generalizationAllowed": false,
-      "candidatePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
-      "storyboardPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/storyboard.md",
-      "provenancePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/provenance.json",
-      "initialImages": 3,
-      "targetedCorrections": 0,
-      "reusedImages": 4,
-      "technical": "TECHNICALLY_VERIFIED",
+      "version": "v4",
+      "status": "STORYBOARD_PREPARED",
+      "generation": "NOT_GENERATED",
+      "technical": "NOT_VERIFIED",
       "art": "ART_REVIEW_PENDING",
-      "readiness": "READY_FOR_OPERATOR_REVIEW",
+      "readiness": "IN_PROGRESS",
+      "operatorMethodAcceptance": "PENDING",
       "runtime": "NOT_ADOPTED",
-      "generation": "GENERATED",
-      "storyboard": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/storyboard.md",
+      "generalizationAllowed": false,
+      "candidatePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html",
+      "storyboardPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md",
+      "provenancePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/provenance.json",
+      "operatorDirection": "docs/autonomy/BOIS_CLAIR_NARRATIVE_REVISION_2026-10-24.md",
+      "proposedDurationSeconds": 26.5,
+      "plannedImages": 8,
+      "plannedInitialImages": 7,
+      "reusedImages": 1,
+      "previousVersion": {
+        "version": "v3",
+        "historicalTechnical": "TECHNICALLY_VERIFIED",
+        "historicalReadiness": "READY_FOR_OPERATOR_REVIEW",
+        "operatorReview": "ART_NEEDS_CORRECTION",
+        "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-receipt.json"
+      },
       "schedulerObserved": {
-        "status": "ACTIVE",
+        "status": "PAUSED",
         "reasoningEffort": "xhigh",
         "cadenceMinutes": 90,
-        "sha256": "4c39ebf8a7dba98ccc1cf0c16356acf55c1278c5a58544687d137cd102252433",
+        "sha256": "25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07",
         "changed": false
-      },
-      "previousVersion": {
-        "version": "v2",
-        "technical": "TECHNICALLY_VERIFIED",
-        "readiness": "READY_FOR_OPERATOR_REVIEW",
-        "art": "ART_REVIEW_PENDING",
-        "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/review-receipt.json"
-      },
-      "operatorFeedback": "docs/autonomy/ILLUSTRATED_DISSOLVE_FEEDBACK_2026-10-23.md",
-      "proposedDurationSeconds": 24,
-      "cumulativeRun": {
-        "initialImages": 7,
-        "targetedCorrections": 1,
-        "integratedCalls": 8,
-        "rawOutputs": 8
-      },
-      "preview": {
-        "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v3/index.html",
-        "pid": 21636,
-        "role": "Intentionally retained read-only localhost review server for operator; no QA worker running"
-      },
-      "technicalReview": "PASS_V3_TECHNICAL_AND_PRESERVATION_SCOPED",
-      "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-receipt.json",
-      "closeoutPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-closeout.json",
-      "reviewPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review.md"
+      }
     },
     "remainingSceneIds": [
       "alaric_audience_arrival",
@@ -291,6 +273,6 @@
     "hardCuts": "AUTHORIZED_MOTIVATED_OFFLINE",
     "animatedReframing": "BOUNDED_STUDY_WITH_REDUCED_MOTION_ALTERNATIVE",
     "qaJobsAtConfiguration": 355,
-    "latestFeedbackPath": "docs/autonomy/ILLUSTRATED_DISSOLVE_FEEDBACK_2026-10-23.md"
+    "latestFeedbackPath": "docs/autonomy/BOIS_CLAIR_NARRATIVE_REVISION_2026-10-24.md"
   }
 }
