@@ -24,7 +24,7 @@ git --no-optional-locks stash list
 git --no-optional-locks diff --stat
 git --no-optional-locks rev-parse HEAD origin/dev origin/main
 git ls-remote --heads origin dev main "wip/*"
-git --no-optional-locks diff --exit-code 32c8439f6dea1d09f428c5c081392ab0c700e356 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md
+git --no-optional-locks diff --exit-code da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md
 ```
 
 Also read `docs/autonomy/AUTONOMOUS_WORK_STATE.md` and `.json`, the newest file in `docs/autonomy/handoffs/`, and the Codex automation memory (`~/.codex/automations/rpgthreejs-auto-dev-90m/memory.md`). Compare the state with `git status`: live state is refreshed at snapshots, but a cutoff can leave it stale. Examine unlisted work and live.qaJobs receipts/provenance before rerunning QA.
@@ -50,7 +50,7 @@ Git: branch <b> | HEAD <sha> | origin/dev <sha> | stash <n>
 Working tree: <n modified, n untracked> <paths>
 WIP snapshot: <branch@sha | none>
 State files: status=<> task=<> vs lock -> <consistent | stale: ...>
-LOCKED docs: <unchanged since 32c8439f6dea1d09f428c5c081392ab0c700e356 | CHANGED: ...>
+LOCKED docs: <unchanged since da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5 | CHANGED: ...>
 Coherence of the work found: <what it does; what was verified; what was not>
 Decision: <READ-ONLY | SNAPSHOT | TAKEOVER (operator order needed if under 105 min)>
 Next action: <precise>
@@ -128,3 +128,7 @@ Closeout: update the state files including the live block, run the quick checks,
 - `core.autocrlf=true` on this host prints LF/CRLF warnings. They are not errors.
 - Never take a lock younger than 105 minutes without an explicit operator order.
 - Do not edit the other agent's state files while it may resume: leave a note in `docs/autonomy/handoffs/` instead.
+
+## Current retirement — OD-2026-10-24-A
+
+Set1.10.0 supersedes earlier cinematic production directions: zero active video/hold/preload/shipped MP4, eight historical IDs and archived media/proof preserved. No illustrated/video generation or pilot generalization. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5.

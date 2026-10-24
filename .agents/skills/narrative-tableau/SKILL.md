@@ -5,6 +5,8 @@ description: "Use when working on RPGThreeJS narrative presentation: STATIC_TABL
 
 # Narrative tableau
 
+Current OD-2026-10-24-A/set1.10.0 retires all production videos and illustrated cinematic production. Eight IDs below are historical only; zero active video/hold/preload/shipped MP4. Preserve archived media/evidence and existing canonical moments/agency through static dialogues/tableaux. Earlier eight-slot production instructions are historical.
+
 Contracts: PRESENTATION_AND_MEDIA (tableau), CAMPAIGN_AND_STATE (canon and choices), WORLD_AND_CHARACTERS (Character System V2), all in `docs/contracts/`.
 
 ## Ownership

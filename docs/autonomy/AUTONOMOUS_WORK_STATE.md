@@ -1,16 +1,12 @@
-# Bois-Clair : vidéo MiniMax prête pour revue artistique
+# Retrait vidéo et finition de la narration statique
 
-Run codex-bois-video-20261024T0551Z, début2026-10-24T05:51:50.0908309Z. [Vidéo locale](http://127.0.0.1:5462/video.mp4) · [revue](../../tools/cinematics/candidates/manual-bois-partition-20261024/review.md) · [handoff](handoffs/2026-10-24T0551Z-codex-bois-video.md).
+Run codex-cinematic-retirement-20261024T2258Z, début 2026-10-24T22:56:42.2989304Z. Phase AMENDMENT_REVIEW. [Décision OD24-A](CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md) · [plan statique](STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md).
 
-Quatre tâches manuelles téléchargées, un essai chacune/zéro retry. Film26,5s exact,1920×1080/24fps/H.264/yuv420p, sans audio ; SHAc1881750ffe667b6f2aa50ba891e0a5643d0519f99f523dbdb4af8d0b4c83263. Ordre4/2,5/15/5s, coupes4/6,5/21,5 ; bloc humain15s complet. GENERATED/TECHNICALLY_VERIFIED/ART_REVIEW_PENDING/READY_FOR_OPERATOR_REVIEW, runtimeNOT_ADOPTED.
+L’opérateur abandonne les cinématiques et confirme retirer aussi les vidéos du jeu. Les huit moments et IDs, dialogues/choix/conséquences, V6, Alaric et quatre acteurs restent protégés. Tous candidats, prompts, bruts, hashes et acceptations historiques conservés. Aucune nouvelle génération cinématique ; les anciennes files et nextActions sont historiques.
 
-Main droite vers femme, fermeture du panier, bras/livre gauche abaissés puis redressement visibles. Réserves : paume cuppée/vershaut, retombée tardive, gant/fourreau ambigu, push final non demandé et raccord21,5s livre/posture. Revue indépendantePASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED.155tests/TypeScript/contrats8/8/sourceSHA/probes/extractions PASS. Statistiques des raccords = frames d’extrémité des entrées, pas preuve de frames finales aux raccords. Aperçu natif rendu/relu, pas acceptation du mouvement complet ou runtime.
+Runtime en attente de retrait/preuve ciblée. Amendement dédié set1.10.0 en revue, aucun PASS runtime ou artistique inféré. Scheduler PAUSED/90min et réglages conservés. Les362QA héritées et leurs acceptations restent intactes.
 
-Les362QA/acceptations et pilote illustrév4 sont identiques à l’entrée du run ;0gameplay/src/public/runtime/LOCKED/save/POI/combat/MP4 de production modifié. Scheduler PAUSED/90min/xhigh/configSHA25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07 inchangé. Bruts/masters ignorés conservés,4taskIDs dans la provenance, aucune tâche fournisseur pendante. Serveur borné40308/5462 et ongletvidéo3 conservés pour opérateur ; anciensserveurs intacts.
-
-UNE prochaine action : Operator reviews the existing26.5s silentmanualvideo and returns an artisticverdict on gesture/release/pacing/raccord. No new paidtask or runtimeadoption; recurringMiniMax remainsprohibited.
-
-Livraison5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655 publiée et parité origin/dev vérifiée selonOD12-A ; main protégé.
+UNE prochaine action produit : Inspecter puis améliorer le tableau village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec poses V2 existantes et choix inchangés, selon STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

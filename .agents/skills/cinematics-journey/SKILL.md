@@ -5,6 +5,8 @@ description: "Use when working on RPGThreeJS cinematic video slots, Journey boun
 
 # Cinematics and Journey
 
+Current OD-2026-10-24-A/set1.10.0 retires all production videos and illustrated cinematic production. Eight IDs below are historical only; zero active video/hold/preload/shipped MP4. Preserve archived media/evidence and existing canonical moments/agency through static dialogues/tableaux. Earlier eight-slot production instructions are historical.
+
 Contract: PRESENTATION_AND_MEDIA (`docs/contracts/PRESENTATION_AND_MEDIA.md`). Scope decisions: `docs/autonomy/OPERATOR_DECISIONS.md` (OD-2026-10-01-B). Maps: `docs/autonomy/CINEMATIC_CONVERSION_MATRIX.md` and `docs/autonomy/CINEMATIC_EIGHT_SLOT_REMASTER.md` (the generation continuation in the latter is superseded).
 
 ## The eight slots

@@ -5,6 +5,8 @@ description: "Use to verify RPGThreeJS changes. Chooses and runs focused vitest,
 
 # QA and evidence
 
+Current OD-2026-10-24-A/set1.10.0 retires all production videos and illustrated cinematic production. Eight IDs below are historical only; zero active video/hold/preload/shipped MP4. Preserve archived media/evidence and existing canonical moments/agency through static dialogues/tableaux. Earlier eight-slot production instructions are historical.
+
 Contract: AUTHORING_AND_QA (`docs/contracts/AUTHORING_AND_QA.md`) and the evidence policy in `docs/reports/README.md`. Target the authority boundary being changed; do not default to the full suite.
 
 ## Verification ladder (fast to slow)
@@ -12,7 +14,7 @@ Contract: AUTHORING_AND_QA (`docs/contracts/AUTHORING_AND_QA.md`) and the eviden
 1. Focused tests: `npx vitest run <files>` (seconds). Run the touched files and their neighbours.
 2. Types: `npx tsc --noEmit` (about 12 seconds).
 3. `npm run contracts:validate`.
-4. Build: `npm run build` (tsc and vite). When media code is involved, check that `dist` holds exactly eight MP4s: `(Get-ChildItem dist -Recurse -Filter *.mp4).Count`.
+4. Build: `npm run build` (tsc and vite). When media code is involved, check that `dist` holds zero MP4s after retirement (eight historical media files are archived outside public): `(Get-ChildItem dist -Recurse -Filter *.mp4).Count`.
 5. Browser drivers (below), against DEV or the built production preview. Production-affecting work needs the production build.
 6. `git diff --check` and `git status`: only intended edits remain.
 

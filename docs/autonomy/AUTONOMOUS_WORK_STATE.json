@@ -1,22 +1,16 @@
 {
-  "status": "READY_FOR_PC_ACCEPTANCE",
-  "runStartedAt": "2026-10-24T05:51:50.0908309Z",
-  "runEndedAt": "2026-10-24T06:39:22.433Z",
-  "activeTask": "MANUAL-BOIS-CLAIR-PARTITION-MINIMAX",
-  "activePhase": "MANUAL_VIDEO_READY_FOR_OPERATOR_REVIEW",
-  "activeSubtask": "Four generatedclips assembled into exact26.5s silentreviewmaster; fullhuman15s preserved; operatorartpending",
+  "status": "IN_PROGRESS",
+  "runStartedAt": "2026-10-24T22:56:42.2989304Z",
+  "runEndedAt": null,
+  "activeTask": "CINEMATIC-RETIREMENT-AND-STATIC-NARRATIVE",
+  "activePhase": "AMENDMENT_REVIEW",
+  "activeSubtask": "Retirer les vidéos par les tableaux existants, préserver les archives et préparer la finition des dialogues statiques",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
-  "lastPushedCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
+  "lastKnownGoodCommit": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
+  "lastPushedCommit": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
   "completedThisRun": [
-    "Clean dev434a150f/origin parity, prior illustratedrun closed andlockarchived, newatomic manual lock",
-    "Standing manualMiniMaxauthority and live request verified;4nativeexistingplates reused, no newimagegen",
-    "28s generation/26.5s edit,4payloads estimated3.64USD max4USD zeroautomaticpaidretries prepared",
-    "Strict environmentOnly capability with155testsPASS;13oldactorprompts byteidentical;4sources/spec validated",
-    "Four exactlyboundMiniMaxfirstframe tasks downloaded; raw/taskIDs/metadata/request/sourceSHA retained,0paidretries",
-    "Actualdecodedframe progression and independentmanualscope reviewPASS; exact26.5s1080p24fps silentmaster verified",
-    "Nativebrowser video rendered/replayed withoutcaptions; encoding/frameclaims kept distinct from art/runtimeacceptance",
-    "Delivery5d6354d3 normalpush verified;27candidatefiles/37hashesmatch;allworkersended,onlyboundedpreview40308/5462retained; schedulerconfigunchanged"
+    "Préflight propre, dev/origin synchronisés, verrou exclusif; 362 QA/acceptations héritées conservées",
+    "Décision explicite de retrait et plan de finition statique documentés; amendement dédié en revue"
   ],
   "filesChanged": [
     ".gitattributes",
@@ -56,40 +50,26 @@
     "tools/cinematics/cin4_shot_spec.test.mjs",
     "tools/cinematics/specs/manual-bois-partition-20261024.json"
   ],
-  "testsRun": [
-    "155focusedtests:33shotvalidator/122capresume",
-    "TypeScript--noEmit,contracts8/8,LOCKEDbaseline/diffcheck",
-    "Four source/spec/SHA/nativeframe validation;13oldactorprompts byteidentical",
-    "Four raw/masterprobes and own26.5sH264/1080p24fps/audioabsent checks",
-    "Actualraw/finalframe extraction and independentcanon/equipment/raccordreview"
-  ],
-  "testsPassed": [
-    "155focusedtests:33shotvalidator/122capresume",
-    "TypeScript--noEmit,contracts8/8,LOCKEDbaseline/diffcheck",
-    "Four source/spec/SHA/nativeframe validation;13oldactorprompts byteidentical",
-    "Four raw/masterprobes and own26.5sH264/1080p24fps/audioabsent checks",
-    "Actualraw/finalframe extraction and independentcanon/equipment/raccordreview"
-  ],
+  "testsRun": [],
+  "testsPassed": [],
   "testsRemaining": [
-    "Explicit artisticverdict on this manualvideo; runtimeadoption remains a future dedicatedtask"
+    "Tests ciblés, TypeScript, contrats, build et un scénario production opening-camp-audience sans vidéo"
   ],
   "blockers": [],
   "remainingWork": [
-    "Explicit artisticverdict on this manualvideo; runtimeadoption remains a future dedicatedtask"
+    "Retrait runtime et preuve ciblée",
+    "Passe artistique future tableaux/dialogues; playtest global PC puis mobile"
   ],
-  "nextAction": "Operator reviews the existing26.5s silentmanualvideo and returns an artisticverdict on gesture/release/pacing/raccord. No new paidtask or runtimeadoption; recurringMiniMax remainsprohibited.",
+  "nextAction": "Inspecter puis améliorer le tableau village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec poses V2 existantes et choix inchangés, selon STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.",
   "taskQueue": [
-    "Prepare sourced pose partition and shot sheets for Bois-Clair sacrificed pilot",
-    "Generate insufficient pilot illustrations in a separate version, preserve historical media",
-    "Verify own offline reader and compare old/new montage without captions",
-    "Await explicit operator artistic acceptance of pilot method before six-scene generalization",
-    "After pilot method acceptance only: audience, arrival, saved, judgement, Serpent ending, Lion-trial ending",
-    "Independent demonstrated PC issue only; mobile after PC stability"
+    "Retrait des vidéos par tableaux et preuve native ciblée",
+    "Inspecter puis améliorer le tableau village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec poses V2 existantes et choix inchangés, selon STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.",
+    "Défaut PC démontré et playtest opérateur; mobile après PC"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED",
+  "contractComplianceStatus": "PENDING_RUNTIME_RETIREMENT",
   "commitReferenceScope": "Delivery5d6354d3 verifiedorigin/dev;27candidatefiles matchcommittedbytes,37provenancehashesmatch. Following metadata-onlyclosure SHA authoritativeinGit/automationmemory.",
-  "operatorAuthorization": "Direct24Oct transformpartitionwithMiniMax request engages OD2026-10-01-A/B manualproviderpermission; no routine key/transmission reapproval, no recurrence/runtime/audio/artacceptance",
+  "operatorAuthorization": "Direct operator decision OD-2026-10-24-A: abandon cinematics, remove videos from game, plan further static dialogue/NarrativeStage optimization",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -159,12 +139,12 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-bois-video-20261024T0551Z",
+  "runId": "codex-cinematic-retirement-20261024T2258Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-24T06:39:22.433Z",
+  "lastHeartbeat": "2026-10-24T23:01:17.839Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-24T06:39:22.433Z",
+    "lastHeartbeat": "2026-10-24T23:01:17.839Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -40623,7 +40603,7 @@
       }
     ],
     "wip": null,
-    "nextAction": "Operator reviews the existing26.5s silentmanualvideo and returns an artisticverdict on gesture/release/pacing/raccord. No new paidtask or runtimeadoption; recurringMiniMax remainsprohibited.",
+    "nextAction": "Inspecter puis améliorer le tableau village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec poses V2 existantes et choix inchangés, selon STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
       "gameplaySteps": 0,
@@ -40670,8 +40650,8 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": "2026-10-24T06:39:22.433Z",
-    "writerStopped": true,
+    "runEndedAt": null,
+    "writerStopped": false,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
       "previewPort5461Stopped": true,
@@ -41467,8 +41447,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "MANUAL-BOIS-CLAIR-PARTITION-MINIMAX",
-    "activeSubtask": "Four generatedclips assembled into exact26.5s silentreviewmaster; fullhuman15s preserved; operatorartpending",
+    "activeTask": "CINEMATIC-RETIREMENT-AND-STATIC-NARRATIVE",
+    "activeSubtask": "Retirer les vidéos par les tableaux existants, préserver les archives et préparer la finition des dialogues statiques",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -44800,11 +44780,11 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-bois-video-20261024T0551Z",
+    "runId": "codex-cinematic-retirement-20261024T2258Z",
     "agent": "codex",
-    "status": "READY_FOR_PC_ACCEPTANCE",
-    "runStartedAt": "2026-10-24T05:51:50.0908309Z",
-    "activePhase": "MANUAL_VIDEO_READY_FOR_OPERATOR_REVIEW",
+    "status": "IN_PROGRESS",
+    "runStartedAt": "2026-10-24T22:56:42.2989304Z",
+    "activePhase": "AMENDMENT_REVIEW",
     "heartbeat": "2026-10-24T06:39:22.433Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
     "motion1617": {
@@ -46534,7 +46514,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
+    "lastPushedCommit": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -47339,16 +47319,10 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
+    "lastKnownGoodCommit": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
     "completedThisRun": [
-      "Clean dev434a150f/origin parity, prior illustratedrun closed andlockarchived, newatomic manual lock",
-      "Standing manualMiniMaxauthority and live request verified;4nativeexistingplates reused, no newimagegen",
-      "28s generation/26.5s edit,4payloads estimated3.64USD max4USD zeroautomaticpaidretries prepared",
-      "Strict environmentOnly capability with155testsPASS;13oldactorprompts byteidentical;4sources/spec validated",
-      "Four exactlyboundMiniMaxfirstframe tasks downloaded; raw/taskIDs/metadata/request/sourceSHA retained,0paidretries",
-      "Actualdecodedframe progression and independentmanualscope reviewPASS; exact26.5s1080p24fps silentmaster verified",
-      "Nativebrowser video rendered/replayed withoutcaptions; encoding/frameclaims kept distinct from art/runtimeacceptance",
-      "Delivery5d6354d3 normalpush verified;27candidatefiles/37hashesmatch;allworkersended,onlyboundedpreview40308/5462retained; schedulerconfigunchanged"
+      "Préflight propre, dev/origin synchronisés, verrou exclusif; 362 QA/acceptations héritées conservées",
+      "Décision explicite de retrait et plan de finition statique documentés; amendement dédié en revue"
     ],
     "filesChanged": [
       ".gitattributes",
@@ -47388,36 +47362,22 @@
       "tools/cinematics/cin4_shot_spec.test.mjs",
       "tools/cinematics/specs/manual-bois-partition-20261024.json"
     ],
-    "testsRun": [
-      "155focusedtests:33shotvalidator/122capresume",
-      "TypeScript--noEmit,contracts8/8,LOCKEDbaseline/diffcheck",
-      "Four source/spec/SHA/nativeframe validation;13oldactorprompts byteidentical",
-      "Four raw/masterprobes and own26.5sH264/1080p24fps/audioabsent checks",
-      "Actualraw/finalframe extraction and independentcanon/equipment/raccordreview"
-    ],
-    "testsPassed": [
-      "155focusedtests:33shotvalidator/122capresume",
-      "TypeScript--noEmit,contracts8/8,LOCKEDbaseline/diffcheck",
-      "Four source/spec/SHA/nativeframe validation;13oldactorprompts byteidentical",
-      "Four raw/masterprobes and own26.5sH264/1080p24fps/audioabsent checks",
-      "Actualraw/finalframe extraction and independentcanon/equipment/raccordreview"
-    ],
+    "testsRun": [],
+    "testsPassed": [],
     "testsRemaining": [
-      "Explicit artisticverdict on this manualvideo; runtimeadoption remains a future dedicatedtask"
+      "Tests ciblés, TypeScript, contrats, build et un scénario production opening-camp-audience sans vidéo"
     ],
     "blockers": [],
     "remainingWork": [
-      "Explicit artisticverdict on this manualvideo; runtimeadoption remains a future dedicatedtask"
+      "Retrait runtime et preuve ciblée",
+      "Passe artistique future tableaux/dialogues; playtest global PC puis mobile"
     ],
     "taskQueue": [
-      "Prepare sourced pose partition and shot sheets for Bois-Clair sacrificed pilot",
-      "Generate insufficient pilot illustrations in a separate version, preserve historical media",
-      "Verify own offline reader and compare old/new montage without captions",
-      "Await explicit operator artistic acceptance of pilot method before six-scene generalization",
-      "After pilot method acceptance only: audience, arrival, saved, judgement, Serpent ending, Lion-trial ending",
-      "Independent demonstrated PC issue only; mobile after PC stability"
+      "Retrait des vidéos par tableaux et preuve native ciblée",
+      "Inspecter puis améliorer le tableau village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec poses V2 existantes et choix inchangés, selon STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.",
+      "Défaut PC démontré et playtest opérateur; mobile après PC"
     ],
-    "contractComplianceStatus": "PASS_MANUAL_BOIS_FINAL_CANDIDATE_SCOPED",
+    "contractComplianceStatus": "PENDING_RUNTIME_RETIREMENT",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -48914,7 +48874,7 @@
         "defeat"
       ]
     },
-    "contractSetVersion": "1.9.0",
+    "contractSetVersion": "1.10.0",
     "uncommittedWork": {
       "status": "COHERENT_MANUAL_VIDEO_CHECKPOINT_PUBLISHED",
       "deliveryCommit": "5d6354d31e46ea2ad5b06d427d4dd6c14e5a3655",
@@ -49001,7 +48961,7 @@
       "qaJobsPreserved": 339,
       "nextAction": "Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained."
     },
-    "operatorAuthorization": "Direct24Oct transformpartitionwithMiniMax request engages OD2026-10-01-A/B manualproviderpermission; no routine key/transmission reapproval, no recurrence/runtime/audio/artacceptance",
+    "operatorAuthorization": "Direct operator decision OD-2026-10-24-A: abandon cinematics, remove videos from game, plan further static dialogue/NarrativeStage optimization",
     "qaToolingJustification": "Version compatible v3 reader/driver only for8paths/26.5s/authoredtransitions; no framework or historicalproof overwrite",
     "campFiveStillsCloseout": {
       "deliveryCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
@@ -49322,7 +49282,8 @@
       "selectedPublicationPaths": 36,
       "qaAndProofFiles": 17,
       "workflowFiles": 7
-    }
+    },
+    "nextScheduledExecutionDirective": "OD-2026-10-24-A supersedes the cinematic queue: no illustrated/video production or polling. Preserve scheduler settings. Continue the current static narrative plan, not historical cinematic nextActions."
   },
   "previousInterruptedRun": {
     "runId": "codex-pose-pilot-20261023T0425Z",
@@ -49410,7 +49371,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-24T2258Z-codex-video-retirement.md",
   "runMeasurement": {
     "runtimeSourceFilesModified": 0,
     "gameplaySteps": 0,
@@ -49520,7 +49481,7 @@
     ],
     "acceptance": "INCOMPLETE; prior0520reports are not current production keyboard acceptance"
   },
-  "operatorPriority": "Current concrete PC feedback addressed; final operator PC/art/balance/hardware acceptance before mobile",
+  "operatorPriority": "Static dialogue/NarrativeStage quality and PC finishing after video retirement",
   "reopenedAcceptance": [
     {
       "area": "TRAVERSAL T0/T1/T3",
@@ -50798,7 +50759,7 @@
     "scope": "POI_POST_LOT_E_PC_FINISHING",
     "history": "recurringPoiConfiguration.previousRootFields.demoCompletionFocus"
   },
-  "nextScheduledExecutionDirective": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance. Preserve actually saved scheduler status; this manual go is not scheduleractivation.",
+  "nextScheduledExecutionDirective": "OD-2026-10-24-A supersedes the cinematic queue: no illustrated/video production or polling. Preserve scheduler settings. Continue the current static narrative plan, not historical cinematic nextActions.",
   "poiMigration": {
     "operatorDecisionId": "OD-2026-10-13-D",
     "taskId": "PRODUCTION-CONTRACTS-POI-NAVIGATION-1",
@@ -52887,7 +52848,7 @@
     "scheduler": "UNTOUCHED",
     "externalNightplateBlockerReverified": "Current dialogue:ate_bois_clair_night_watch still maps to bois_clair_tableau_burning; approved-source-manifest timeOfDay sunset. No approved night substitution established."
   },
-  "contractSetVersion": "1.9.0",
+  "contractSetVersion": "1.10.0",
   "run2229": {
     "preflight": {
       "clean": true,
@@ -54638,7 +54599,7 @@
     },
     "runEndedAt": "2026-10-24T05:46:57.320Z"
   },
-  "latestHandoff": "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
+  "latestHandoff": "docs/autonomy/handoffs/2026-10-24T2258Z-codex-video-retirement.md",
   "runCounts": {
     "runtimeSourceFilesModified": 0,
     "gameplaySteps": 0,
@@ -54740,5 +54701,23 @@
       "allMatch": true,
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     }
+  },
+  "cinematicRetirement": {
+    "decision": "OD-2026-10-24-A",
+    "task": "PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1",
+    "phase": "AMENDMENT_REVIEW",
+    "oldBaseline": "32c8439f6dea1d09f428c5c081392ab0c700e356",
+    "runtime": "PENDING",
+    "artisticAcceptance": "NOT_INFERRED",
+    "generationStopped": true,
+    "historicalEightIdsRetained": true,
+    "scheduler": {
+      "status": "PAUSED",
+      "cadenceMinutes": 90,
+      "settingsPreserved": true
+    },
+    "staticPlan": "docs/autonomy/STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md",
+    "baseline": "da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5",
+    "amendmentReview": "PASS_ACTUAL_DIFF"
   }
 }
