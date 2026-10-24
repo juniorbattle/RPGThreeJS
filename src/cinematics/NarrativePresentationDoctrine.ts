@@ -286,7 +286,7 @@ const HISTORICAL_NARRATIVE_PRESENTATION_DOCTRINE: readonly NarrativePresentation
   { beatId: 'dialogue:shadow_signs', primaryInteractiveMode: 'STATIC_TABLEAU', mainEvent: false, cinematicRequirement: 'NONE', cinematicTier: 'NONE', cinematicPlacement: 'TBD', combatOutcome: 'NONE', notes: 'Shadow signs dialogue.' },
 ]);
 
-/** Main-event and combat meaning survives; only eight media beats require video. */
+/** Main-event and combat meaning survives; all video requirements are retired (OD-2026-10-24-A). */
 export const NARRATIVE_PRESENTATION_DOCTRINE: readonly NarrativePresentationDefinition[] = Object.freeze(
   HISTORICAL_NARRATIVE_PRESENTATION_DOCTRINE.map((def) => {
     const approvedVideo = def.beatId.startsWith('media:')
@@ -314,7 +314,7 @@ export interface DoctrineValidationResult {
  *
  * Rules:
  * 1. Only approved media beats require video, regardless of MAIN_EVENT.
- * 2. The eight approved videos have MAJOR tier.
+ * 2. No current beat has a required video or MAJOR video tier.
  * 3. All other beats have no video requirement or tier.
  * 4. STATIC_TABLEAU â†’ dialogue allowed (no restriction)
  * 5. CINEMATIC_VIDEO â†’ normal dialogue forbidden (enforced by runtime, not here)

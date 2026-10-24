@@ -3,14 +3,16 @@
   "runStartedAt": "2026-10-24T22:56:42.2989304Z",
   "runEndedAt": null,
   "activeTask": "CINEMATIC-RETIREMENT-AND-STATIC-NARRATIVE",
-  "activePhase": "AMENDMENT_REVIEW",
+  "activePhase": "IMPLEMENTED_PENDING_NATIVE_PROOF",
   "activeSubtask": "Retirer les vidéos par les tableaux existants, préserver les archives et préparer la finition des dialogues statiques",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
   "lastPushedCommit": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
   "completedThisRun": [
-    "Préflight propre, dev/origin synchronisés, verrou exclusif; 362 QA/acceptations héritées conservées",
-    "Décision explicite de retrait et plan de finition statique documentés; amendement dédié en revue"
+    "Dedicated operator retirement amendment reviewed/committed then immutable baseline published",
+    "Eight MP4 and manifest archived byte-identically; video/hold/preload runtime retired through existing tableaux",
+    "176focusedtests/types/build/staging/contractsPASS;0video files distributed",
+    "Current cinematic queue retired; static narrative plan and recurring prompt updated with PAUSED/settings retained"
   ],
   "filesChanged": [
     ".gitattributes",
@@ -50,10 +52,19 @@
     "tools/cinematics/cin4_shot_spec.test.mjs",
     "tools/cinematics/specs/manual-bois-partition-20261024.json"
   ],
-  "testsRun": [],
-  "testsPassed": [],
+  "testsRun": [
+    "176 focused tests across14files",
+    "TypeScript/production build",
+    "Narrative staging75/75dialogues,282/282presentationsteps",
+    "contracts8LOCKED/8historicalIDs/0activevideos+archiveSHA",
+    "dist0MP4/WebM/LOCKEDgate/diffcheck"
+  ],
+  "testsPassed": [
+    "176/176focused",
+    "TypeScript/build/staging/contracts/archiveSHA/dist0videos/LOCKED/diffcheck"
+  ],
   "testsRemaining": [
-    "Tests ciblés, TypeScript, contrats, build et un scénario production opening-camp-audience sans vidéo"
+    "One built native opening-camp-audience with live OS reduction, zero video and exact resume; independent final review"
   ],
   "blockers": [],
   "remainingWork": [
@@ -141,10 +152,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-cinematic-retirement-20261024T2258Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-24T23:01:17.839Z",
+  "lastHeartbeat": "2026-10-24T23:13:23.441Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-24T23:01:17.839Z",
+    "lastHeartbeat": "2026-10-24T23:13:23.441Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -44784,7 +44795,7 @@
     "agent": "codex",
     "status": "IN_PROGRESS",
     "runStartedAt": "2026-10-24T22:56:42.2989304Z",
-    "activePhase": "AMENDMENT_REVIEW",
+    "activePhase": "IMPLEMENTED_PENDING_NATIVE_PROOF",
     "heartbeat": "2026-10-24T06:39:22.433Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-24T0551Z-codex-bois-video.md",
     "motion1617": {
@@ -47321,8 +47332,10 @@
     "workingBranch": "dev",
     "lastKnownGoodCommit": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
     "completedThisRun": [
-      "Préflight propre, dev/origin synchronisés, verrou exclusif; 362 QA/acceptations héritées conservées",
-      "Décision explicite de retrait et plan de finition statique documentés; amendement dédié en revue"
+      "Dedicated operator retirement amendment reviewed/committed then immutable baseline published",
+      "Eight MP4 and manifest archived byte-identically; video/hold/preload runtime retired through existing tableaux",
+      "176focusedtests/types/build/staging/contractsPASS;0video files distributed",
+      "Current cinematic queue retired; static narrative plan and recurring prompt updated with PAUSED/settings retained"
     ],
     "filesChanged": [
       ".gitattributes",
@@ -47362,10 +47375,19 @@
       "tools/cinematics/cin4_shot_spec.test.mjs",
       "tools/cinematics/specs/manual-bois-partition-20261024.json"
     ],
-    "testsRun": [],
-    "testsPassed": [],
+    "testsRun": [
+      "176 focused tests across14files",
+      "TypeScript/production build",
+      "Narrative staging75/75dialogues,282/282presentationsteps",
+      "contracts8LOCKED/8historicalIDs/0activevideos+archiveSHA",
+      "dist0MP4/WebM/LOCKEDgate/diffcheck"
+    ],
+    "testsPassed": [
+      "176/176focused",
+      "TypeScript/build/staging/contracts/archiveSHA/dist0videos/LOCKED/diffcheck"
+    ],
     "testsRemaining": [
-      "Tests ciblés, TypeScript, contrats, build et un scénario production opening-camp-audience sans vidéo"
+      "One built native opening-camp-audience with live OS reduction, zero video and exact resume; independent final review"
     ],
     "blockers": [],
     "remainingWork": [
@@ -48962,7 +48984,7 @@
       "nextAction": "Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained."
     },
     "operatorAuthorization": "Direct operator decision OD-2026-10-24-A: abandon cinematics, remove videos from game, plan further static dialogue/NarrativeStage optimization",
-    "qaToolingJustification": "Version compatible v3 reader/driver only for8paths/26.5s/authoredtransitions; no framework or historicalproof overwrite",
+    "qaToolingJustification": "Reuse existing opening-camp-audience driver; bounded retirement mode observes zero video requests/creation/load/play and adds existing qa-job receipt without weakening historical assertions.",
     "campFiveStillsCloseout": {
       "deliveryCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
       "normalPushVerified": true,
@@ -49262,26 +49284,13 @@
       }
     },
     "runCounts": {
-      "runtimeSourceFilesModified": 0,
-      "gameplaySteps": 0,
-      "toolingFilesModified": 1,
-      "toolingTestFilesModified": 1,
+      "runtimeSourceFilesModified": 12,
+      "canonicalGameplayFilesModified": 0,
       "newImages": 0,
-      "imagegenCalls": 0,
-      "providerTasksSubmitted": 4,
-      "downloadedBlocks": 4,
-      "paidRetries": 0,
-      "generatedRequestedSeconds": 28,
-      "editedSeconds": 26.5,
-      "qaScenarios": 0,
-      "nativePreviewSessions": 1,
-      "newQaJobs": 0,
-      "inheritedQaJobs": 362,
-      "totalQaJobs": 362,
+      "providerTasksSubmitted": 0,
       "inheritedWipPaths": 0,
-      "selectedPublicationPaths": 36,
-      "qaAndProofFiles": 17,
-      "workflowFiles": 7
+      "qaScenarios": 0,
+      "inheritedQaJobs": 362
     },
     "nextScheduledExecutionDirective": "OD-2026-10-24-A supersedes the cinematic queue: no illustrated/video production or polling. Preserve scheduler settings. Continue the current static narrative plan, not historical cinematic nextActions."
   },
@@ -49700,7 +49709,7 @@
     "qaAndProofFiles": 17,
     "workflowFiles": 7
   },
-  "qaToolingJustification": "Version compatible v3 reader/driver only for8paths/26.5s/authoredtransitions; no framework or historicalproof overwrite",
+  "qaToolingJustification": "Reuse existing opening-camp-audience driver; bounded retirement mode observes zero video requests/creation/load/play and adds existing qa-job receipt without weakening historical assertions.",
   "retainedRunArtifacts": {
     "runId": "rpgthreejs-auto-dev-90m-20261008T0514",
     "physicalFreeze": "tmp/autonomy/final-physical-0514.json",
@@ -54601,26 +54610,13 @@
   },
   "latestHandoff": "docs/autonomy/handoffs/2026-10-24T2258Z-codex-video-retirement.md",
   "runCounts": {
-    "runtimeSourceFilesModified": 0,
-    "gameplaySteps": 0,
-    "toolingFilesModified": 1,
-    "toolingTestFilesModified": 1,
+    "runtimeSourceFilesModified": 12,
+    "canonicalGameplayFilesModified": 0,
     "newImages": 0,
-    "imagegenCalls": 0,
-    "providerTasksSubmitted": 4,
-    "downloadedBlocks": 4,
-    "paidRetries": 0,
-    "generatedRequestedSeconds": 28,
-    "editedSeconds": 26.5,
-    "qaScenarios": 0,
-    "nativePreviewSessions": 1,
-    "newQaJobs": 0,
-    "inheritedQaJobs": 362,
-    "totalQaJobs": 362,
+    "providerTasksSubmitted": 0,
     "inheritedWipPaths": 0,
-    "selectedPublicationPaths": 36,
-    "qaAndProofFiles": 17,
-    "workflowFiles": 7
+    "qaScenarios": 0,
+    "inheritedQaJobs": 362
   },
   "manualVideoWorkstream": {
     "decision": "docs/autonomy/MANUAL_BOIS_PARTITION_VIDEO_2026-10-24.md",
@@ -54705,9 +54701,9 @@
   "cinematicRetirement": {
     "decision": "OD-2026-10-24-A",
     "task": "PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1",
-    "phase": "AMENDMENT_REVIEW",
+    "phase": "IMPLEMENTED_PENDING_NATIVE_PROOF",
     "oldBaseline": "32c8439f6dea1d09f428c5c081392ab0c700e356",
-    "runtime": "PENDING",
+    "runtime": "IMPLEMENTED_PENDING_NATIVE",
     "artisticAcceptance": "NOT_INFERRED",
     "generationStopped": true,
     "historicalEightIdsRetained": true,
@@ -54718,6 +54714,9 @@
     },
     "staticPlan": "docs/autonomy/STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md",
     "baseline": "da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5",
-    "amendmentReview": "PASS_ACTUAL_DIFF"
+    "amendmentReview": "PASS_ACTUAL_DIFF",
+    "historicalQaJobs": 362,
+    "historicalCheckpoint": "7fc1a63cfd1ef52ba69fcd752e5b1d4cec5563a1",
+    "report": "docs/reports/cinematic-retirement-2026-10-24.md"
   }
 }

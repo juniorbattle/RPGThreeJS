@@ -1,4 +1,4 @@
-import { readFileSync, statSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import { CinematicRegistry, parseVideoCinematicManifest } from './CinematicRegistry';
@@ -47,17 +47,17 @@ describe('cinematic registry', () => {
     };
     const registry = new CinematicRegistry();
     await registry.load(undefined, async () => new Response(JSON.stringify(productionManifest), { status: 200 }));
-    expect(registry.values().map((entry) => entry.id)).toEqual(['camp_departure', 'qa-placeholder']);
+    expect(registry.values().map((entry) => entry.id)).toEqual([]);
     expect(registry.get('serpent_general_reveal')).toBeUndefined();
   });
 
-  it('loads exactly eight playable videos from the current production manifest', async () => {
+  it('loads zero playable videos from the current production manifest', async () => {
     const raw = readFileSync(join(process.cwd(), 'public/assets/cinematics/manifest.json'), 'utf8');
     const registry = new CinematicRegistry();
     await registry.load(undefined, async () => new Response(raw, { status: 200 }));
     const playable = registry.values().filter((entry) => entry.sources.length > 0).map((entry) => entry.id);
     expect(new Set(playable)).toEqual(new Set(APPROVED_PRODUCTION_VIDEO_IDS));
-    expect(playable).toHaveLength(8);
+    expect(playable).toHaveLength(0);
   });
 
   it('falls back to an empty registry for missing or invalid manifests', async () => {
@@ -94,28 +94,10 @@ describe('cinematic registry', () => {
     expect(Reflect.set(VIDEO_CINEMATIC_TRIGGERS.beforeCombat, 'extra', 'not-allowed')).toBe(false);
   });
 
-  it('ships the QA placeholder and exactly eight approved production videos', () => {
-    const raw = readFileSync(join(process.cwd(), 'public', 'assets', 'cinematics', 'manifest.json'), 'utf-8');
-    const parsed = parseVideoCinematicManifest(JSON.parse(raw));
-    expect(parsed?.cinematics.map((descriptor) => descriptor.id)).toEqual([
-      'qa-placeholder',
-      'lion_judgement',
-      'camp_departure',
-      'alaric_audience_arrival',
-      'bois_clair_arrival',
-      'bois_clair_saved',
-      'bois_clair_sacrificed',
-      'serpent_route_ending',
-      'lion_trial_route_ending',
-    ]);
-    expect(parsed?.cinematics[0]?.placeholderOnly).toBe(true);
-    const real = parsed?.cinematics.slice(1) ?? [];
-    expect(real).toHaveLength(8);
-    for (const descriptor of real) {
-      expect(descriptor.placeholderOnly).not.toBe(true);
-      expect(descriptor.sources).toEqual([{ src: `/assets/cinematics/${descriptor.id}.mp4`, type: 'video/mp4' }]);
-      const mediaPath = join(process.cwd(), 'public', descriptor.sources[0]!.src);
-      expect(statSync(mediaPath).size).toBeGreaterThan(0);
-    }
+  it('ships no active descriptors and retains all eight media in the historical archive', () => {
+    const raw = readFileSync(join(process.cwd(), 'public/assets/cinematics/manifest.json'), 'utf8');
+    expect(parseVideoCinematicManifest(JSON.parse(raw))?.cinematics).toEqual([]);
+    const archive = JSON.parse(readFileSync(join(process.cwd(), 'tools/cinematics/archive/production-videos-2026-10-24/retirement.json'), 'utf8'));
+    expect(archive.inventory.filter((entry: { id?: string }) => entry.id)).toHaveLength(8);
   });
 });

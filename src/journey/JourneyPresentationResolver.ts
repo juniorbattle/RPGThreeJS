@@ -46,7 +46,7 @@ export function stateKey(fact: string, variant: string): string {
  * while presenting its still/tableau instead of an unapproved video.
  */
 export const JOURNEY_PRESENTATION_MAP: JourneyPresentationMap = Object.freeze({
-  [nodeArrivalKey('lion-camp')]: 'camp_departure',
+  [nodeArrivalKey('lion-camp')]: null,
   [edgeKey('lion-audience', 'lion-opening-ambush')]: null,
   [nodeArrivalKey('lion-refugees')]: null,
   [nodeArrivalKey('lion-valmir-road')]: null,
@@ -105,7 +105,7 @@ export function resolveCandidateCinematicIds(
       : [nodeArrivalKey(node.id)];
     for (const key of candidates) {
       const cinematicId = map[key];
-      if (cinematicId && !ids.includes(cinematicId)) ids.push(cinematicId);
+      if (cinematicId && isApprovedProductionVideo(cinematicId) && !ids.includes(cinematicId)) ids.push(cinematicId);
     }
     const contentCinematicId = resolveCin6cContentCandidateId(node.contentId);
     if (contentCinematicId && isApprovedProductionVideo(contentCinematicId) && !ids.includes(contentCinematicId)) {

@@ -79,7 +79,7 @@ export class CinematicPreloader {
   private preloadOne(id: string): void {
     if (!id || this.entries.has(id)) return;
     const descriptor = this.registry.get(id);
-    if (!descriptor || descriptor.placeholderOnly) {
+    if (import.meta.env.PROD || !descriptor || descriptor.placeholderOnly) {
       this.entries.set(id, { status: 'skipped', video: null, listeners: null });
       return;
     }

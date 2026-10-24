@@ -91,10 +91,10 @@ describe('NarrativePresentationDoctrine', () => {
       expect(result.errors).toContain('test:main_event_optional: production cinematic classification must be NONE/NONE');
     });
 
-    it('enforces PROLOGUE → cinematicRequirement = REQUIRED', () => {
+    it('preserves the opening main event without requiring a video', () => {
       const prologue = getNarrativePresentationDefinition('media:camp_departure');
       expect(prologue).toBeDefined();
-      expect(prologue!.cinematicRequirement).toBe('REQUIRED');
+      expect(prologue!.cinematicRequirement).toBe('NONE');
       expect(prologue!.mainEvent).toBe(true);
     });
 
@@ -158,9 +158,9 @@ describe('NarrativePresentationDoctrine', () => {
       }
     });
 
-    it('ensures all MAJOR tier beats have REQUIRED cinematic', () => {
+    it('retires every MAJOR video tier', () => {
       const major = NARRATIVE_PRESENTATION_DOCTRINE.filter((d) => d.cinematicTier === 'MAJOR');
-      expect(major.length).toBeGreaterThan(0);
+      expect(major).toHaveLength(0);
       for (const def of major) {
         expect(def.cinematicRequirement, def.beatId).toBe('REQUIRED');
       }

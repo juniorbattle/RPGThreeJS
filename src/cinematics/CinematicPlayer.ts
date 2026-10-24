@@ -47,6 +47,8 @@ export class CinematicPlayer {
   }
 
   private run(id: string, options: VideoCinematicPlaybackOptions, hold: boolean): Promise<HeldVideoCinematic> {
+    // Production cannot resurrect a retired video, even from an injected/stale descriptor.
+    if (import.meta.env.PROD) return settledWithoutSurface(id, 'unavailable');
     if (this.active) return settledWithoutSurface(id, 'busy');
     const descriptor = this.registry.get(id);
     if (!descriptor) return settledWithoutSurface(id, 'unavailable');

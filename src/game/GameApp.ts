@@ -581,7 +581,7 @@ export class GameApp {
     const stage = this.createNarrativeStage(tableau);
     try {
       const beat = resolveCinematicPresentation(id);
-      const result = beat
+      const result = beat?.mode === 'CINEMATIC_VIDEO'
         ? await stage.presentCinematicBeat(beat, { reducedMotion: this.state.settings.reducedGraphics })
         : await stage.presentCinematic(id, { reducedMotion: this.state.settings.reducedGraphics });
       this.lastNarrativeCinematicBeat = beat;

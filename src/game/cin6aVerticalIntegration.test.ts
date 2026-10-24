@@ -30,7 +30,7 @@ describe('CIN-6A vertical integration seams', () => {
 
   it('maps the reviewed CIN-6A boundaries plus the CIN-6D static audience-road release', () => {
     expect(JOURNEY_PRESENTATION_MAP).toEqual({
-      'node:lion-camp:arrival': 'camp_departure',
+      'node:lion-camp:arrival': null,
       'edge:lion-audience>lion-opening-ambush': null,
       'node:lion-refugees:arrival': null,
       'node:lion-valmir-road:arrival': null,

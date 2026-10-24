@@ -1,10 +1,10 @@
 # Retrait vidéo et finition de la narration statique
 
-Run codex-cinematic-retirement-20261024T2258Z, début 2026-10-24T22:56:42.2989304Z. Phase AMENDMENT_REVIEW. [Décision OD24-A](CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md) · [plan statique](STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md).
+Run codex-cinematic-retirement-20261024T2258Z, début 2026-10-24T22:56:42.2989304Z. Phase IMPLEMENTED_PENDING_NATIVE_PROOF. [Décision OD24-A](CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md) · [plan statique](STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md).
 
 L’opérateur abandonne les cinématiques et confirme retirer aussi les vidéos du jeu. Les huit moments et IDs, dialogues/choix/conséquences, V6, Alaric et quatre acteurs restent protégés. Tous candidats, prompts, bruts, hashes et acceptations historiques conservés. Aucune nouvelle génération cinématique ; les anciennes files et nextActions sont historiques.
 
-Runtime en attente de retrait/preuve ciblée. Amendement dédié set1.10.0 en revue, aucun PASS runtime ou artistique inféré. Scheduler PAUSED/90min et réglages conservés. Les362QA héritées et leurs acceptations restent intactes.
+Retrait runtime implémenté ;176tests/types/build/staging/contratsPASS, dist0vidéo. Amendement set1.10.0 da69ec63 puis baseline eb3d3d0d publiés. Preuve native ciblée et revue finale encore attendues ; aucun PASS artistique/global inféré. Scheduler PAUSED/90min et réglages conservés. Les362QA héritées et leurs acceptations restent intactes.
 
 UNE prochaine action produit : Inspecter puis améliorer le tableau village_raid_aftermath : rapports Maelor/habitante, destinataires/regards et contexte détruit, avec poses V2 existantes et choix inchangés, selon STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md.
 
@@ -374,15 +374,3 @@ UNE prochaine action produit : Inspecter puis améliorer le tableau village_raid
 - illustrated-bois-v4-0455: SUCCEEDED; port 5461; receipt `tmp/cinematics/bois-v4-0455/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-bois-v4-0455-cuts: SUCCEEDED; port 5461; receipt `tmp/cinematics/bois-v4-0455/review-cuts/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
-
-Guardian final : PASS_METADATA_SYNTHESIS_CLOSEOUT ; sept versions35images126s/statuts/frontières/limites/reçus/liens cohérents, aucune acceptation artistique ou runtime. Vérification finale93SHA/93racines historiques/354jobs hérités inchangés/355total/8SHA camp/configuration scheduler préservée.
-
-Livraison 9b2c3be1e5b17bc1204177bab1ba2c6aa53469b9 publiée et paritédev/origin-dev/liveremote vérifiée ; main00b96f1b inchangé. Finrun2026-10-23T02:04:16.244Z, serveur5461 arrêté. OngletIAB non disponible à la clôture ; index de revue ouvert dansCodex (queued). Aucun WIP hérité ; checkpoint cohérentdev après14,5min, aucune brancheWIP nécessaire. Métadonnées de clôture dans le commit suivant ; SHAfinal dans mémoireautomation/Git. Scheduler PAUSED et octets inchangés.
-
-ClôtureUTC2026-10-24T05:46:57.320Z : livraisonc5e79378 publiée/vérifiée,61fichiers candidat identiques aux octets commités ; verrou à libérer après publication de cette clôture metadata.362QA dont360hérités identiques, aucun workerQA/Git/build laissé ; serveur21636/5461 conservé pour revue. Scope artistique reste partiel et méthodePENDING.
-
-<!-- MANUAL_VIDEO_PROGRESS_START -->
-2026-10-24T06:24:05.908Z : shot_01=downloaded task455754359071094 ; shot_02=downloaded task455759047762392 ; shot_03=downloaded task455753654690290 ; shot_04=downloaded task455761043280385. Tâches réservées sans nouvelessai ; acceptation artistique et runtime en attente.
-<!-- MANUAL_VIDEO_PROGRESS_END -->
-
-ClôtureUTC2026-10-24T06:39:22.433Z :27fichiers candidat identiques aux octets commités,37SHAs de provenance vérifiés ;362jobs/acceptations et v4 illustré identiques,0worker fournisseur/encodage restant. Dernière publication metadata puis libération du seul verrou possédé ; aperçu40308/5462 retenu. ART_REVIEW_PENDING, aucune acceptationruntime/généralisation/récurrence.

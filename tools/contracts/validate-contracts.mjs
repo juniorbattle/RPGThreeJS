@@ -1,4 +1,5 @@
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { resolve, sep } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..', '..');
@@ -44,10 +45,46 @@ for (const entry of manifest.contracts ?? []) {
 for (const id of required) if (!ids.has(id)) failures.push(`Missing required contract: ${id}`);
 const media = read('docs/contracts/PRESENTATION_AND_MEDIA.md');
 const listedSlots = [...media.matchAll(/^\d+\. `([a-z_]+)`$/gm)].map((match) => match[1]);
-if (JSON.stringify(listedSlots) !== JSON.stringify(expectedSlots)) failures.push('Approved cinematic slots are not exactly the eight locked IDs.');
+if (JSON.stringify(listedSlots) !== JSON.stringify(expectedSlots)) failures.push('Historical cinematic identities are not exactly the eight locked IDs.');
+// The retirement policy must be implemented, not merely described by the contract.
+const production = JSON.parse(read('tools/cinematics/specs/production_presentation_modes.json'));
+if (production.retirementDecision !== 'OD-2026-10-24-A'
+  || JSON.stringify(production.historicalVideoIds) !== JSON.stringify(expectedSlots)
+  || JSON.stringify(production.approvedVideoIds) !== '[]') {
+  failures.push('Production retirement requires the eight historical identities and zero approved videos.');
+}
+const runtimeManifest = JSON.parse(read('public/assets/cinematics/manifest.json'));
+if (runtimeManifest.version !== 1 || JSON.stringify(runtimeManifest.cinematics) !== '[]') {
+  failures.push('Production cinematic manifest must have zero descriptors.');
+}
+const generated = read('src/cinematics/FinalPresentationRegistry.generated.ts')
+  .match(/Object\.freeze\(([\s\S]+) as const satisfies readonly ResolvedPresentationBeat\[\]\);/);
+const beats = generated ? JSON.parse(generated[1]) : [];
+if (beats.length !== 147 || new Set(beats.map(beat => beat.beatId)).size !== 147) failures.push('Historical 147 beat identities must remain unique.');
+for (const beat of beats) {
+  if (['CINEMATIC_VIDEO', 'CINEMATIC_HOLD'].includes(beat.mode)
+    || beat.cinematicId || beat.holdSourceCinematicId
+    || [beat.sourceAsset, ...beat.preloadRefs].some(ref => /\.(mp4|webm)(?:$|[?#])/i.test(ref ?? ''))) {
+    failures.push(`Retired video/hold/preload remains: ${beat.beatId}`);
+  }
+}
+const videoFiles = directory => readdirSync(resolve(root, directory), { withFileTypes: true }).flatMap(entry => (
+  entry.isDirectory() ? videoFiles(`${directory}/${entry.name}`) : /\.(mp4|webm)$/i.test(entry.name) ? [`${directory}/${entry.name}`] : []
+));
+if (videoFiles('public').length) failures.push('Video files remain in shipped public assets.');
+const archive = JSON.parse(read('tools/cinematics/archive/production-videos-2026-10-24/retirement.json'));
+if (JSON.stringify(archive.inventory.filter(entry => entry.id).map(entry => entry.id)) !== JSON.stringify(expectedSlots)) {
+  failures.push('Retired media archive must preserve all eight identities.');
+}
+for (const entry of archive.inventory) {
+  if (!insideRoot(entry.archive) || !existsSync(resolve(root, entry.archive))
+    || createHash('sha256').update(readFileSync(resolve(root, entry.archive))).digest('hex') !== entry.sha256) {
+    failures.push(`Retired media archive missing or changed: ${entry.id ?? entry.source}`);
+  }
+}
 if (failures.length) {
   for (const failure of failures) console.error(failure);
   process.exitCode = 1;
 } else {
-  console.log(`Validated ${manifest.contracts.length} locked contracts and ${listedSlots.length} video slots.`);
+  console.log(`Validated ${manifest.contracts.length} locked contracts, ${listedSlots.length} historical media IDs, zero active videos/holds/preloads/shipped video files, and byte-identical archives.`);
 }

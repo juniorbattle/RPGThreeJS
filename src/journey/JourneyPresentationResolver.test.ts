@@ -32,9 +32,9 @@ describe('journey presentation resolver', () => {
     expect(stateKey('lionConduct', 'honour')).toBe('state:lionConduct:honour');
   });
 
-  it('keeps only approved video at Journey boundaries', () => {
+  it('retains static Journey boundaries without videos', () => {
     expect(JOURNEY_PRESENTATION_MAP).toEqual({
-      'node:lion-camp:arrival': 'camp_departure',
+      'node:lion-camp:arrival': null,
       'edge:lion-audience>lion-opening-ambush': null,
       'node:lion-refugees:arrival': null,
       'node:lion-valmir-road:arrival': null,
@@ -89,10 +89,7 @@ describe('journey presentation resolver', () => {
       [edgeKey('lion-refugees', first!.id)]: 'clip-edge-a',
       [nodeArrivalKey(first!.id)]: 'clip-arrival-a',
       [nodeArrivalKey(second!.id)]: 'clip-edge-a',
-    })).toEqual([
-      'clip-edge-a',
-      'clip-arrival-a',
-    ]);
+    })).toEqual([]);
   });
 
   it('never derives candidates from unavailable nodes', () => {

@@ -67,7 +67,6 @@ export class CinematicRegistry {
         const manifest = url === '/assets/cinematics/manifest.json'
           ? { ...parsed.data, cinematics: parsed.data.cinematics.filter((descriptor) => (
             isApprovedProductionVideo(descriptor.id)
-            || (descriptor.id === 'qa-placeholder' && descriptor.placeholderOnly === true)
           )) }
           : parsed.data;
         this.apply(manifest);

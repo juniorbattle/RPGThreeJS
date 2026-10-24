@@ -1,0 +1,60 @@
+{
+  "decision": "OD-2026-10-24-A",
+  "baseline": "da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5",
+  "purpose": "Byte-identical historical media outside shipped public assets; no active video descriptors",
+  "inventory": [
+    {
+      "id": "camp_departure",
+      "source": "public/assets/cinematics/camp_departure.mp4",
+      "archive": "tools/cinematics/archive/production-videos-2026-10-24/camp_departure.mp4",
+      "sha256": "a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3"
+    },
+    {
+      "id": "alaric_audience_arrival",
+      "source": "public/assets/cinematics/alaric_audience_arrival.mp4",
+      "archive": "tools/cinematics/archive/production-videos-2026-10-24/alaric_audience_arrival.mp4",
+      "sha256": "b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629"
+    },
+    {
+      "id": "bois_clair_arrival",
+      "source": "public/assets/cinematics/bois_clair_arrival.mp4",
+      "archive": "tools/cinematics/archive/production-videos-2026-10-24/bois_clair_arrival.mp4",
+      "sha256": "a37d397665960f8f6749d8f1ece69eaf91c7160cec68fc581ed26ea78042a699"
+    },
+    {
+      "id": "bois_clair_saved",
+      "source": "public/assets/cinematics/bois_clair_saved.mp4",
+      "archive": "tools/cinematics/archive/production-videos-2026-10-24/bois_clair_saved.mp4",
+      "sha256": "a57d9ef8ff2fbb26084066b057f89948bdfe59de22dc7f7770d6576900223b1f"
+    },
+    {
+      "id": "bois_clair_sacrificed",
+      "source": "public/assets/cinematics/bois_clair_sacrificed.mp4",
+      "archive": "tools/cinematics/archive/production-videos-2026-10-24/bois_clair_sacrificed.mp4",
+      "sha256": "db07031a3105fb31280abe3aca026cb74e4612e2aa44f7023b5401847322f1a4"
+    },
+    {
+      "id": "lion_judgement",
+      "source": "public/assets/cinematics/lion_judgement.mp4",
+      "archive": "tools/cinematics/archive/production-videos-2026-10-24/lion_judgement.mp4",
+      "sha256": "6ea5b12bb8c97deadbea2177725d7e3eb958ab7971361d34064729acf776e5f9"
+    },
+    {
+      "id": "serpent_route_ending",
+      "source": "public/assets/cinematics/serpent_route_ending.mp4",
+      "archive": "tools/cinematics/archive/production-videos-2026-10-24/serpent_route_ending.mp4",
+      "sha256": "f1de1f29ccc98ca66f97da94c21060d100687e4fef39b2d0378bcdea36db395c"
+    },
+    {
+      "id": "lion_trial_route_ending",
+      "source": "public/assets/cinematics/lion_trial_route_ending.mp4",
+      "archive": "tools/cinematics/archive/production-videos-2026-10-24/lion_trial_route_ending.mp4",
+      "sha256": "34f023ac0313e622a82d53c955e63e1e56a62eb4bd3bfdef9580196fcff178b2"
+    },
+    {
+      "source": "public/assets/cinematics/manifest.json",
+      "archive": "tools/cinematics/archive/production-videos-2026-10-24/manifest.json",
+      "sha256": "2c2b075dfdb54de1aed791a8261ad327a78e7d902c907d8d23b3f6f34d2a6edd"
+    }
+  ]
+}

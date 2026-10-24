@@ -1,3 +1,4 @@
+import { isApprovedProductionVideo } from '../cinematics/ApprovedProductionVideos';
 import type { CinematicPlayer } from '../cinematics/CinematicPlayer';
 import type { CinematicRegistry } from '../cinematics/CinematicRegistry';
 import type { VideoCinematicResult, VideoCinematicResultReason } from '../cinematics/CinematicTypes';
@@ -147,7 +148,7 @@ export class JourneyCampaignBoundary {
       ...(request.currentLabel ? { currentLabel: request.currentLabel } : {}),
       ...(request.secondary ? { secondary: request.secondary } : {}),
     });
-    const playId = cinematicId && !this.presentedKeys.has(key) ? cinematicId : undefined;
+    const playId = cinematicId && isApprovedProductionVideo(cinematicId) && !this.presentedKeys.has(key) ? cinematicId : undefined;
     const resolvedPresentationBeat = resolveBoundaryPrimaryPresentation(context, playId);
     const presentationCandidates = resolveBoundaryPresentationCandidates(context);
     const session = this.createSession(request.reducedMotion);

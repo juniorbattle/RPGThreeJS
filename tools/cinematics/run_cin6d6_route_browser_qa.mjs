@@ -2,6 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { chromium } from 'playwright';
 import { createServer, preview } from 'vite';
+import { beginJob } from '../qa/qa-job.mjs';
 
 const PRODUCTION = process.argv.includes('--production');
 const PRODUCTION_PORT = Number(process.env.CIN6D6_PORT ?? 5242);
@@ -25,6 +26,11 @@ const APPROVED_VIDEO_IDS = ['camp_departure', 'alaric_audience_arrival', 'bois_c
 const BLOCK_MEDIA = process.env.CIN6D6_BLOCK_MEDIA === '1';
 const INTERRUPT_PRELUDE = process.env.CIN6D6_INTERRUPT_PRELUDE === '1';
 const LIVE_OS_FLIP = process.env.CIN6D6_LIVE_OS_FLIP === '1';
+const VIDEO_RETIREMENT = process.env.CIN6D6_VIDEO_RETIREMENT === '1';
+if (VIDEO_RETIREMENT && (!PRODUCTION || SCENARIO_FILTER !== 'opening-camp-audience'
+  || REDUCED_MOTION || OS_REDUCED_MOTION || BLOCK_MEDIA || INTERRUPT_PRELUDE)) {
+  throw new Error('Video retirement proof requires only the built native opening scenario with available media and initially normal motion.');
+}
 if (LIVE_OS_FLIP && (!PRODUCTION || SCENARIO_FILTER !== 'opening-camp-audience'
   || REDUCED_MOTION || OS_REDUCED_MOTION || BLOCK_MEDIA || INTERRUPT_PRELUDE)) {
   throw new Error('Live OS flip requires only the built opening scenario, initially normal OS/game motion and available media.');
@@ -42,6 +48,29 @@ if (PRODUCTION) {
 }
 
 async function installHooks(page) {
+  if (VIDEO_RETIREMENT) await page.addInitScript(() => {
+    const record = kind => {
+      const records = JSON.parse(sessionStorage.getItem('retirement-video-events') ?? '[]');
+      records.push(kind); sessionStorage.setItem('retirement-video-events', JSON.stringify(records));
+    };
+    const create = document.createElement.bind(document);
+    document.createElement = function(tag, ...args) {
+      if (String(tag).toLowerCase() === 'video') record('created');
+      return create(tag, ...args);
+    };
+    for (const method of ['load', 'play']) {
+      const original = HTMLMediaElement.prototype[method];
+      HTMLMediaElement.prototype[method] = function(...args) {
+        if (this.tagName === 'VIDEO') record(method);
+        return original.apply(this, args);
+      };
+    }
+    new MutationObserver(records => {
+      for (const mutation of records) for (const node of mutation.addedNodes) {
+        if (node instanceof Element && (node.matches('video') || node.querySelector('video'))) record('mounted');
+      }
+    }).observe(document, { childList: true, subtree: true });
+  });
   if (REVIEW_TRANSITION_COPY) await page.addInitScript(() => {
     const labels = [];
     window.__transitionCopyLabels = labels;
@@ -954,6 +983,10 @@ async function runFinaleScenario(context, scenario) {
 
 async function runOpeningScenario(context) {
   const page = await context.newPage(); await installHooks(page);
+  const videoRequests = [];
+  if (VIDEO_RETIREMENT) page.on('request', request => {
+    if (/\.(mp4|webm)(?:$|[?#])/i.test(request.url()) || request.resourceType() === 'media') videoRequests.push(request.url());
+  });
   const diagnostics = diagnosticsFor(page), trace = { dialogues: new Set(), media: new Set(), combats: 0, choiceBounds: [], capturePrefix: 'opening-camp-audience' };
   try {
     await page.goto(`${BASE_URL}/?presentation=narrative&media=video`, { waitUntil: 'domcontentloaded' });
@@ -977,11 +1010,23 @@ async function runOpeningScenario(context) {
     const truth = await loadSavedTruth(page);
     if (truth.flags.lionMissionAccepted !== true) throw new Error('Audience choice not owned by campaign truth');
     const resume = await checkResolvedResume(page);
+    let videoRetirement;
+    if (VIDEO_RETIREMENT) {
+      videoRetirement = await page.evaluate(() => ({
+        events: JSON.parse(sessionStorage.getItem('retirement-video-events') ?? '[]'),
+        videoElements: document.querySelectorAll('video').length,
+        mediaMode: window.__cin8App.narrativeMediaMode,
+      }));
+      videoRetirement.requests = videoRequests;
+      if (videoRetirement.events.length || videoRetirement.requests.length || videoRetirement.videoElements
+        || videoRetirement.mediaMode !== 'STILL' || camp.mode !== 'STATIC_TABLEAU' || audience.mode !== 'STATIC_TABLEAU'
+        || trace.media.size) throw new Error(`Video retirement regression: ${JSON.stringify(videoRetirement)}`);
+    }
     const unexpected = diagnostics.requestFailures.filter((failure) => !isExpectedMediaFailure(failure));
     if (diagnostics.consoleErrors.length || diagnostics.pageErrors.length || unexpected.length) throw new Error(`Opening diagnostics: ${JSON.stringify(diagnostics)}`);
     if (!trace.openingCastTransition) throw new Error('Opening cast replacement was not observed.');
     return { id: 'opening-camp-audience', camp, audience, openingCastTransition: trace.openingCastTransition,
-      ...(LIVE_OS_FLIP ? { openingLiveOsFlip: trace.openingLiveOsFlip } : {}), dialogues: [...trace.dialogues], media: [...trace.media],
+      ...(LIVE_OS_FLIP ? { openingLiveOsFlip: trace.openingLiveOsFlip } : {}), ...(VIDEO_RETIREMENT ? { videoRetirement } : {}), dialogues: [...trace.dialogues], media: [...trace.media],
       truth: { lionMissionAccepted: true }, resume, choiceBounds: trace.choiceBounds, systemMotion: await systemMotionProof(page),
       diagnostics: { ...diagnostics, requestFailures: unexpected }, pass: true };
   } finally { await page.close(); }
@@ -1093,7 +1138,12 @@ const selected = (entry) => SCENARIO_FILTER ? SCENARIO_FILTER.split(',').include
 if (SCENARIO_FILTER && SCENARIO_FILTER.split(',').some((id) => ![{ id: 'opening-camp-audience' }, ...nodeScenarios, ...finaleScenarios].some((entry) => entry.id === id))) {
   throw new Error(`Unknown CIN6D6_ROUTE_SCENARIO: ${SCENARIO_FILTER}`);
 }
-await mkdir(OUTPUT_DIR, { recursive: true });
+const retirementJob = VIDEO_RETIREMENT ? beginJob({
+  output: OUTPUT_DIR, driver: 'tools/cinematics/run_cin6d6_route_browser_qa.mjs', port: PRODUCTION_PORT,
+  parameters: { scenario: SCENARIO_FILTER, viewport: VIEWPORT, videoRetirement: true, liveOsFlip: LIVE_OS_FLIP },
+  requiredAssertions: ['native-opening-camp-audience', 'zero-video-elements-requests-play-preload', 'static-cast-max-four', 'keyboard-choices', 'exact-resolved-resume', 'normal-and-live-os-reduction'],
+}) : null;
+if (!retirementJob) await mkdir(OUTPUT_DIR, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const productionServer = PRODUCTION ? await preview({ preview: { host: '127.0.0.1', port: PRODUCTION_PORT, strictPort: true } }) : null;
 const context = await browser.newContext({ viewport: VIEWPORT, reducedMotion: REDUCED_MOTION || OS_REDUCED_MOTION ? 'reduce' : 'no-preference' });
@@ -1140,5 +1190,10 @@ try {
   if (productionServer) await new Promise((resolve, reject) => productionServer.httpServer.close((error) => error ? reject(error) : resolve()));
 }
 await writeFile(resolve(OUTPUT_DIR, 'results.json'), `${JSON.stringify(result, null, 2)}\n`, 'utf8');
+if (retirementJob) {
+  result.errors = [...result.opening, ...result.nodes, ...result.finales].filter(entry => !entry.pass).map(entry => entry.error);
+  await writeFile(resolve(OUTPUT_DIR, 'results.json'), `${JSON.stringify(result, null, 2)}\n`, 'utf8');
+  retirementJob.finish(result);
+}
 console.log(JSON.stringify(result, null, 2));
 if (failed) process.exitCode = 1;

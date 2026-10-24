@@ -192,7 +192,9 @@ describe('NarrativeStage', () => {
     await stage.presentDialogueTableau('/audience.webp', tableau.phases![0]!.id, 'HOLD');
     expect(stage.element.dataset.narrativePreludeTransition).toBe('HOLD_TO_TABLEAU');
 
-    const hold = getResolvedPresentationBeat('dialogue:lion_briefing')!;
+    // Isolated legacy helper fixture; the production registry has no video-derived holds.
+    const hold = { ...getResolvedPresentationBeat('dialogue:lion_briefing')!, mode: 'CINEMATIC_HOLD' as const,
+      holdSourceCinematicId: 'alaric_audience_arrival', staticCast: [], castOwnership: 'VIDEO_OWNS_CAST' as const };
     const dialogueResidue = document.createElement('p');
     dialogueResidue.textContent = 'must clear';
     stage.dialogueLayer.append(dialogueResidue);

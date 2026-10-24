@@ -83,18 +83,18 @@ describe('CIN-6D.6 presentation runtime', () => {
       mode,
       beats.filter((entry) => entry.mode === mode).length,
     ]))).toEqual({
-      CINEMATIC_VIDEO: 8,
-      CINEMATIC_HOLD: 5,
+      CINEMATIC_VIDEO: 0,
+      CINEMATIC_HOLD: 0,
       TRAVEL_STILL: 31,
-      STATIC_TABLEAU: 77,
+      STATIC_TABLEAU: 90,
       COMBAT: 24,
       GAMEPLAY_UI: 2,
     });
   });
 
   it('resolves every identity through one pure lookup path', () => {
-    expect(resolvePresentationBeat({ dialogueId: 'lion_briefing' })?.mode).toBe('CINEMATIC_HOLD');
-    expect(resolvePresentationBeat({ cinematicId: 'alaric_audience_arrival' })?.mode).toBe('CINEMATIC_VIDEO');
+    expect(resolvePresentationBeat({ dialogueId: 'lion_briefing' })?.mode).toBe('STATIC_TABLEAU');
+    expect(resolvePresentationBeat({ cinematicId: 'alaric_audience_arrival' })?.mode).toBe('STATIC_TABLEAU');
     expect(resolvePresentationBeat({ edgeId: 'lion-audience>lion-opening-ambush' })?.mode).toBe('TRAVEL_STILL');
     expect(resolvePresentationBeat({ combatId: 'forest_ambush', expectedMode: 'COMBAT' })?.mode).toBe('COMBAT');
     expect(resolvePresentationCandidates([
@@ -144,9 +144,9 @@ describe('CIN-6D.6 presentation runtime', () => {
     }
   });
 
-  it('validates all five approved-video Hold contracts identity by identity', () => {
+  it('retires every video-derived hold identity', () => {
     const holdBeats = beats.filter((entry) => entry.mode === 'CINEMATIC_HOLD');
-    expect(holdBeats).toHaveLength(5);
+    expect(holdBeats).toHaveLength(0);
     expect(holdBeats.every((entry) => !entry.beatId.startsWith('edge:'))).toBe(true);
     for (const entry of holdBeats) {
       expect(entry.castOwnership, entry.beatId).toBe('VIDEO_OWNS_CAST');
@@ -159,9 +159,9 @@ describe('CIN-6D.6 presentation runtime', () => {
     }
   });
 
-  it('validates all 77 production Static Tableau contracts identity by identity', () => {
+  it('validates all 90 production Static Tableau contracts identity by identity', () => {
     const tableauBeats = beats.filter((entry) => entry.mode === 'STATIC_TABLEAU');
-    expect(tableauBeats).toHaveLength(77);
+    expect(tableauBeats).toHaveLength(90);
     for (const entry of tableauBeats) {
       expect(entry.castOwnership, entry.beatId).toBe('STAGE_OWNS_CAST');
       expect(entry.tableauBackgroundId, entry.beatId).toBeTruthy();
@@ -172,11 +172,12 @@ describe('CIN-6D.6 presentation runtime', () => {
     }
   });
 
-  it('limits the runtime registry to exactly the eight approved video slots', () => {
+  it('keeps zero video beats or descriptors in the runtime registry', () => {
     const manifest = JSON.parse(readFileSync(
       resolve(process.cwd(), 'public/assets/cinematics/manifest.json'),
       'utf8',
     )) as { cinematics: Array<{ id: string }> };
+    expect(manifest.cinematics).toEqual([]);
     const manifestIds = new Set(manifest.cinematics.map((entry) => entry.id));
     const videoBeats = beats.filter((entry) => entry.mode === 'CINEMATIC_VIDEO');
     expect(videoBeats.map((entry) => entry.cinematicId).sort()).toEqual([...APPROVED_PRODUCTION_VIDEO_IDS].sort());
@@ -192,7 +193,7 @@ describe('CIN-6D.6 presentation runtime', () => {
   });
 
   it('retires all old MP4 and hold dependencies without losing dialogue identity', () => {
-    expect(Object.keys(production.modeOverrides)).toHaveLength(44);
+    expect(Object.keys(production.modeOverrides)).toHaveLength(57);
     for (const [beatId, mode] of Object.entries(production.modeOverrides)) {
       const entry = beat(beatId);
       expect(entry.mode, beatId).toBe(mode);
@@ -221,8 +222,8 @@ describe('CIN-6D.6 presentation runtime', () => {
   });
 
   it('locks the audience-to-road reference sequence', () => {
-    expect(resolveCinematicPresentation('alaric_audience_arrival')?.mode).toBe('CINEMATIC_VIDEO');
-    expect(resolveDialoguePresentation('lion_briefing')?.mode).toBe('CINEMATIC_HOLD');
+    expect(resolveCinematicPresentation('alaric_audience_arrival')?.mode).toBe('STATIC_TABLEAU');
+    expect(resolveDialoguePresentation('lion_briefing')?.mode).toBe('STATIC_TABLEAU');
     expect(resolveEdgePresentation('lion-audience', 'lion-opening-ambush')?.mode).toBe('TRAVEL_STILL');
     expect(resolveCinematicPresentation('forest_journey_tension')?.mode).toBe('TRAVEL_STILL');
     expect(resolveDialoguePresentation('pre_opening_trail')?.mode).toBe('STATIC_TABLEAU');
@@ -237,11 +238,12 @@ describe('CIN-6D.6 presentation runtime', () => {
     expect(resolveDialoguePresentation('final_refuge')?.mode).toBe('STATIC_TABLEAU');
     expect(beat('media:first_refuge_departure').mode).toBe('TRAVEL_STILL');
     expect(beat('media:second_refuge_departure').mode).toBe('TRAVEL_STILL');
-    expect(resolveDialoguePresentation('epilogue')?.mode).toBe('CINEMATIC_HOLD');
+    expect(resolveDialoguePresentation('epilogue')?.mode).toBe('STATIC_TABLEAU');
   });
 
   it('centralizes hold continuity and releases it on context change', () => {
-    const hold = beat('dialogue:lion_briefing');
+    const hold: ResolvedPresentationBeat = { ...beat('dialogue:lion_briefing'), mode: 'CINEMATIC_HOLD',
+      holdContinuity: { location: 'court', timeContext: 'audience', encounter: 'lion_briefing', activity: 'audience' } };
     expect(holdContinuityMatches(hold.holdContinuity, hold.holdContinuity!)).toBe(true);
     expect(checkPresentationTransition(hold, beat('edge:lion-audience>lion-opening-ambush'), {
       location: 'forest road', timeContext: 'later', encounter: 'road', activity: 'travel',
@@ -322,7 +324,7 @@ describe('CIN-6D.6 presentation runtime', () => {
     expect(document.querySelector('.narrative-stage')).toBeNull();
   });
 
-  it('keeps explicit video and hold fallbacks sprite-free, then releases them for Travel Still', async () => {
+  it('keeps isolated legacy video/hold fallbacks sprite-free in DEV; production uses no such modes', async () => {
     const registry = new CinematicRegistry({ version: 1, cinematics: [] });
     const stage = new NarrativeStage({
       registry,
@@ -331,12 +333,16 @@ describe('CIN-6D.6 presentation runtime', () => {
       dev: true,
     });
     stage.setTableau(ALARIC_AUDIENCE_TABLEAU);
-    await stage.presentCinematicBeat(beat('media:alaric_audience_arrival'));
+    const legacyVideo: ResolvedPresentationBeat = { ...beat('media:alaric_audience_arrival'), mode: 'CINEMATIC_VIDEO',
+      cinematicId: 'alaric_audience_arrival', staticCast: [], castOwnership: 'VIDEO_OWNS_CAST' };
+    const legacyHold: ResolvedPresentationBeat = { ...beat('dialogue:lion_briefing'), mode: 'CINEMATIC_HOLD',
+      holdSourceCinematicId: 'alaric_audience_arrival', staticCast: [], castOwnership: 'VIDEO_OWNS_CAST' };
+    await stage.presentCinematicBeat(legacyVideo);
     expect(stage.currentMediaSurfaceKind).toBe('FALLBACK');
     expect(stage.element.querySelector('.narrative-cast__actor')).toBeNull();
     expect(stage.element.dataset.narrativeCastOwnership).toBe('ENVIRONMENT_ONLY');
 
-    await stage.enterCinematicHold(beat('dialogue:lion_briefing'));
+    await stage.enterCinematicHold(legacyHold);
     expect(stage.element.dataset.presentationMode).toBe('CINEMATIC_HOLD');
     expect(stage.element.querySelector('.narrative-cast__actor')).toBeNull();
 

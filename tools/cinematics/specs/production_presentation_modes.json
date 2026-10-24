@@ -2,17 +2,8 @@
   "schemaVersion": 1,
   "sourceAudit": "tools/cinematics/specs/final_presentation_mode_audit.json",
   "contractSet": "PRODUCTION-CONTRACTS-LOCK-1",
-  "purpose": "Production mode overrides for the eight approved video slots; historical audit remains unchanged.",
-  "approvedVideoIds": [
-    "camp_departure",
-    "alaric_audience_arrival",
-    "bois_clair_arrival",
-    "bois_clair_saved",
-    "bois_clair_sacrificed",
-    "lion_judgement",
-    "serpent_route_ending",
-    "lion_trial_route_ending"
-  ],
+  "purpose": "OD-2026-10-24-A: zero active videos/video-derived holds; eight historical identities and authored events retained; historical audit unchanged.",
+  "approvedVideoIds": [],
   "modeOverrides": {
     "media:serpent_general_reveal": "COMBAT",
     "media:lion_champion_reveal": "COMBAT",
@@ -57,6 +48,30 @@
     "edge:lion-valmir-road>lion-second-trial-event": "TRAVEL_STILL",
     "edge:lion-valmir-road>lion-second-trial-combat": "TRAVEL_STILL",
     "edge:lion-witnesses>lion-final-trial-event": "TRAVEL_STILL",
-    "edge:lion-witnesses>lion-final-trial-combat": "TRAVEL_STILL"
-  }
+    "edge:lion-witnesses>lion-final-trial-combat": "TRAVEL_STILL",
+    "media:camp_departure": "STATIC_TABLEAU",
+    "media:alaric_audience_arrival": "STATIC_TABLEAU",
+    "media:bois_clair_arrival": "STATIC_TABLEAU",
+    "media:bois_clair_saved": "STATIC_TABLEAU",
+    "media:bois_clair_sacrificed": "STATIC_TABLEAU",
+    "media:lion_judgement": "STATIC_TABLEAU",
+    "media:serpent_route_ending": "STATIC_TABLEAU",
+    "media:lion_trial_route_ending": "STATIC_TABLEAU",
+    "dialogue:camp_departure": "STATIC_TABLEAU",
+    "dialogue:epilogue": "STATIC_TABLEAU",
+    "dialogue:lion_briefing": "STATIC_TABLEAU",
+    "dialogue:lion_finale_judgement": "STATIC_TABLEAU",
+    "dialogue:village_choice": "STATIC_TABLEAU"
+  },
+  "retirementDecision": "OD-2026-10-24-A",
+  "historicalVideoIds": [
+    "camp_departure",
+    "alaric_audience_arrival",
+    "bois_clair_arrival",
+    "bois_clair_saved",
+    "bois_clair_sacrificed",
+    "lion_judgement",
+    "serpent_route_ending",
+    "lion_trial_route_ending"
+  ]
 }

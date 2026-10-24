@@ -4,7 +4,7 @@
   "contractTaskId": "PRODUCTION-CONTRACTS-ILLUSTRATED-CANDIDATES-1",
   "contractSetVersion": "1.9.0",
   "contractBaseline": "32c8439f6dea1d09f428c5c081392ab0c700e356",
-  "status": "PILOT_PLANNED",
+  "status": "RETIRED_BY_OPERATOR",
   "scheduler": {
     "id": "rpgthreejs-auto-dev-90m",
     "status": "PAUSED",
@@ -203,7 +203,7 @@
       "receiptPath": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-receipt.json"
     }
   ],
-  "firstAction": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance.",
+  "firstAction": "Do not produce cinematics; preserve historical queue/candidates and follow current static narrative plan.",
   "completionPolicy": "Historical seven-scene queue preserved. New pilot first; explicit operator ART_ACCEPTED method verdict before six-scene revision; no READY/technical auto-acceptance.",
   "preserve": {
     "qaJobs": 339,
@@ -217,7 +217,7 @@
   "executionDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
   "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
   "executionPolicy": "Existing recurrence content updated, saved PAUSED preserved. Future triggered run executes pilot without routine per-plan approval; operator artistic gate before generalization.",
-  "updatedAt": "2026-10-24T05:46:57.320Z",
+  "updatedAt": "2026-10-24T23:12:21.938Z",
   "completedOfflineCandidatesAt": "2026-10-23T01:58:16.182Z",
   "reviewIndexPath": "tools/cinematics/candidates/illustrated-sequences/review-index.md",
   "revisionDirective": {
@@ -317,5 +317,14 @@
     "animatedReframing": "BOUNDED_STUDY_WITH_REDUCED_MOTION_ALTERNATIVE",
     "qaJobsAtConfiguration": 355,
     "latestFeedbackPath": "docs/autonomy/BOIS_CLAIR_NARRATIVE_REVISION_2026-10-24.md"
+  },
+  "retirement": {
+    "decision": "OD-2026-10-24-A",
+    "previousStatus": "PILOT_PLANNED",
+    "previousFirstAction": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance.",
+    "productionAllowed": false,
+    "generalizationAllowed": false,
+    "historicalCandidatesAndAcceptancesPreserved": true,
+    "nextAction": "docs/autonomy/STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md"
   }
 }

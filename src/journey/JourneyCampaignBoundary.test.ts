@@ -354,7 +354,7 @@ describe('journey campaign boundary', () => {
     expect(outcome.kind).toBe('node');
   });
 
-  it('does not replay the same mapped clip after a secondary-action re-presentation', async () => {
+  it('ignores stale mapped clips on both initial and secondary-action re-presentation', async () => {
     const playHeld = vi.spyOn(CinematicPlayer.prototype, 'playHeld');
     const registry = new CinematicRegistry({
       version: 1,
@@ -378,7 +378,7 @@ describe('journey campaign boundary', () => {
     expect(document.querySelector('.narrative-media-surface--travel-still')).not.toBeNull();
     click(`[data-journey-choice="${available[0]!.id}"]`);
     await expect(second).resolves.toMatchObject({ cinematicId: 'clip-arrival', surfaceReason: 'ended', kind: 'node', presentationMode: 'TRAVEL_STILL' });
-    expect(playHeld.mock.calls.filter(([id]) => id === 'clip-arrival')).toHaveLength(1);
+    expect(playHeld.mock.calls.filter(([id]) => id === 'clip-arrival')).toHaveLength(0);
     expect(document.querySelector('.narrative-stage')).toBeNull();
   });
 
