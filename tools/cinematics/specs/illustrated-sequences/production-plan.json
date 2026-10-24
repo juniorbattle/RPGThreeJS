@@ -203,7 +203,7 @@
       "receiptPath": "tools/cinematics/candidates/illustrated-sequences/lion_trial_route_ending/v2/review-receipt.json"
     }
   ],
-  "firstAction": "Run own v4 reader proof, inspect pairs/normal montage and preserve precise artistic limits before operator review. No new images or six-scene generalization.",
+  "firstAction": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance.",
   "completionPolicy": "Historical seven-scene queue preserved. New pilot first; explicit operator ART_ACCEPTED method verdict before six-scene revision; no READY/technical auto-acceptance.",
   "preserve": {
     "qaJobs": 339,
@@ -217,23 +217,23 @@
   "executionDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
   "executionAuthorizedAt": "2026-10-21T17:47:22.787Z",
   "executionPolicy": "Existing recurrence content updated, saved PAUSED preserved. Future triggered run executes pilot without routine per-plan approval; operator artistic gate before generalization.",
-  "updatedAt": "2026-10-24T05:29:02.734Z",
+  "updatedAt": "2026-10-24T05:44:10.346Z",
   "completedOfflineCandidatesAt": "2026-10-23T01:58:16.182Z",
   "reviewIndexPath": "tools/cinematics/candidates/illustrated-sequences/review-index.md",
   "revisionDirective": {
     "decisionPath": "docs/autonomy/ILLUSTRATED_POSE_DIRECTION_2026-10-23.md",
     "sourcePath": "docs/autonomy/ILLUSTRATED_ART_DIRECTION_SOURCE_2026-10-23.md",
     "sourceSha256": "11f2af47e901f735180e9d994e812ec53d72545cfbc9c93631275827ba9c166b",
-    "status": "PILOT_V4_GENERATED_OWN_REVIEW_PENDING",
+    "status": "PILOT_V4_TECHNICALLY_VERIFIED_ART_NEEDS_CORRECTION",
     "amendmentDecisionPath": "docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md",
     "historicalQueueRole": "Unmodified historical technical deliveries, not near-final artistic acceptance",
     "pilot": {
       "id": "bois_clair_sacrificed",
       "version": "v4",
-      "status": "STORYBOARD_PREPARED",
+      "status": "GENERATED_ART_NEEDS_CORRECTION",
       "generation": "GENERATED",
-      "technical": "NOT_VERIFIED",
-      "art": "ART_REVIEW_PENDING",
+      "technical": "TECHNICALLY_VERIFIED",
+      "art": "ART_NEEDS_CORRECTION",
       "readiness": "IN_PROGRESS",
       "operatorMethodAcceptance": "PENDING",
       "runtime": "NOT_ADOPTED",
@@ -262,9 +262,39 @@
       },
       "initialImages": 7,
       "targetedCorrections": 2,
-      "progressUpdatedAt": "2026-10-24T05:26:34.883Z",
+      "progressUpdatedAt": "2026-10-24T05:44:10.346Z",
       "readerPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html",
-      "reviewPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review.md"
+      "reviewPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review.md",
+      "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-receipt.json",
+      "closeoutPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-closeout.json",
+      "issues": [
+        {
+          "id": "MAELOR_04_GESTURE_DIRECTION",
+          "status": "OPEN",
+          "visible": "Right palm opens screenLEFT, away from womanRIGHT, although head/torso address her. Reassurance not clear enough.",
+          "next": "Recompose Maelor torso/arms to place an empty open hand into the central relationship gap, preserve left closedbook and woman posture; no identical retry."
+        },
+        {
+          "id": "MAELOR_06_BOTH_ARMS_RELEASE",
+          "status": "OPEN",
+          "visible": "Right arm drops; left elbow/book remain at hip/upperthigh. Requested botharm release incomplete.",
+          "next": "Make leftelbow/book visibly descend beside thigh and shoulder engagement release while retaining ownership; check against04 and07 at comparable scale."
+        },
+        {
+          "id": "MAELOR_08_GLOVE_GUARD",
+          "status": "LIMIT",
+          "visible": "Glove adjacent guard/sheath; no clear unsheathing, attack or unambiguous weapon clearance claimed."
+        }
+      ],
+      "transitions": {
+        "cuts": 6,
+        "dissolves": 1,
+        "fadeSeconds": [
+          0.65
+        ],
+        "reducedFadeSeconds": 0.4
+      },
+      "lastReviewedAt": "2026-10-24T05:44:10.346Z"
     },
     "remainingSceneIds": [
       "alaric_audience_arrival",

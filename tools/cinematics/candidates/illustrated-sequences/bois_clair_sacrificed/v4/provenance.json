@@ -41,11 +41,11 @@
   ],
   "storyboard": {
     "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md",
-    "sha256": "fb83e3e008d974f6d9c4ed081de6035f896b106d75ce21523e898cfef9dd89a9"
+    "sha256": "6e98e25411bc09c6a4d240299c86d4ed74e0ac5ab4a8c155592473142fc0499a"
   },
   "sequence": {
     "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/sequence.json",
-    "sha256": "27dd7f6ebc51accc33720a34d65af0dd32c79f91047d18d1851b2a6b04e10a61"
+    "sha256": "754444330bec6a89be8b4334a599e978b7369c53bd417eb4fe471b11a0fae166"
   },
   "reused": [
     {
@@ -405,8 +405,8 @@
   ],
   "status": {
     "generation": "GENERATED",
-    "technical": "NOT_VERIFIED",
-    "art": "ART_REVIEW_PENDING",
+    "technical": "TECHNICALLY_VERIFIED",
+    "art": "ART_NEEDS_CORRECTION",
     "readiness": "IN_PROGRESS",
     "operatorMethodAcceptance": "PENDING",
     "runtime": "NOT_ADOPTED",
@@ -469,9 +469,68 @@
     }
   ],
   "limits": [
-    "Actual04 calming gesture is lateral toward screenLEFT, head/torso address womanRIGHT; not a hand reaching into the centralgap",
-    "Minor costume/ground/scale/projection variation across illustrations; no pixel-fixed blocking or continuousbodyanimation",
-    "08 rightglove near sheathedweapon, no unsheathing or attack claimed; precise hand clearance and materialbilan need operatorreview",
-    "Own reader proof and operator artistic images+montage method verdict remain separate; no six-scene generalization/runtime"
-  ]
+    "Right palm opens screenLEFT, away from womanRIGHT, although head/torso address her. Reassurance not clear enough.",
+    "Right arm drops; left elbow/book remain at hip/upperthigh. Requested botharm release incomplete.",
+    "Glove adjacent guard/sheath; no clear unsheathing, attack or unambiguous weapon clearance claimed.",
+    "Small costume/ground/scale/projection variations; no continuousbodyanimation or exactcamera relocation claim",
+    "Native/pair review and timed reader observations do not equal operator artistic images+montage method acceptance"
+  ],
+  "preGenerationStoryboard": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard-pre-transition-review.md",
+    "sha256": "fb83e3e008d974f6d9c4ed081de6035f896b106d75ce21523e898cfef9dd89a9",
+    "originalPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md"
+  },
+  "initialSequence": {
+    "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/sequence-attempt-01.json",
+    "sha256": "27dd7f6ebc51accc33720a34d65af0dd32c79f91047d18d1851b2a6b04e10a61",
+    "originalPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/sequence.json"
+  },
+  "editingCorrection": {
+    "reason": "Direct correction of observed architecture doubling01→02 and arm/head ghosting03→04; unchanged eight images and26.5s; initial passing technical evidence retained as historical version of this candidate.",
+    "sequenceBefore": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/sequence-attempt-01.json",
+      "sha256": "27dd7f6ebc51accc33720a34d65af0dd32c79f91047d18d1851b2a6b04e10a61"
+    },
+    "storyboardBefore": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard-pre-transition-review.md",
+      "sha256": "fb83e3e008d974f6d9c4ed081de6035f896b106d75ce21523e898cfef9dd89a9"
+    },
+    "receiptBefore": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-attempt-01-receipt.json",
+      "sha256": "c0af5b235b308138eb6f10969c3c86b38d8657772fee24a5cc6376ad853dfcc7"
+    },
+    "imagesChanged": 0,
+    "durationsChanged": 0,
+    "transitionsChanged": [
+      "01→02 dissolve tocut",
+      "03→04 dissolve tocut"
+    ],
+    "remainingDissolve": "06→07 0.65s; OSreduce0.4s"
+  },
+  "technicalEvidence": {
+    "receipt": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-receipt.json",
+      "sha256": "25c351015fcb4e7799d608e5805d0caa64a0abd7488619e4b08f2a090fdffd57"
+    },
+    "results": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-results.json",
+      "sha256": "459b4aa0bdc18c854c5a1c975a238deba333936a611bb7e07321d6cc3186fe86"
+    },
+    "driver": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-smoke.mjs",
+      "sha256": "f684d68a4744ed9e1fd874a97d67433e79dc7ebab8123789e51723b0fd0d3f78"
+    },
+    "options": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/qa-options.json",
+      "sha256": "88844aafabeee228f7f67441f62ec14ec6090cca992b65a8638a5fef64f9ba42"
+    },
+    "sync": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-sync-status.json",
+      "sha256": "672a5fd5e79f67aea4a76e61e4786d1b541534ebb6944260efafb03e96a22840"
+    },
+    "rawAcceptance": "NOT_ACCEPTED",
+    "scopedTechnicalReview": "PASS",
+    "jobId": "illustrated-bois-v4-0455-cuts",
+    "reviewedAt": "2026-10-24T05:44:10.346Z"
+  }
 }

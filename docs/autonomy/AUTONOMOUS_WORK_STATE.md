@@ -1,16 +1,14 @@
-# Bois-Clair v4 : nouvelle réalisation autorisée
+# Bois-Clair v4 : technique vérifiée, jeu de Maelor à corriger
 
-Run codex-bois-v4-20261024T0455Z, débutUTC2026-10-24T04:55:07Z. Préflight propre, verrou exclusif, fetch hôte : dev300d78df/main00b96f1b. SchedulerPAUSED/xhigh/90min inchangé, SHA25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07.
+Run codex-bois-v4-20261024T0455Z, débutUTC2026-10-24T04:55:07Z. [Handoff](handoffs/2026-10-24T0455Z-codex-bois-v4.md) · [lecteur](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html) · [revue](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review.md).
 
-L'opérateur rouvre l'art de v3 : succession de bras sans récit lisible. Sa preuve technique et ses fichiers restent historiques. Go direct sur v4 : dégâts en plusieurs plans → tentative d'apaisement de Maelor → habitante toujours effrayée → bras qui retombent → résolution et bilan sur coffres fermés déjà acquis. Huit plans/26.5s ; décor initial exact réutilisé, sept illustrations prévues. [Direction](BOIS_CLAIR_NARRATIVE_REVISION_2026-10-24.md), [fiches](../../tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md). PASS_PREGEN_V4_SCOPED ; génération en cours, voir progression.
+Huit images/26,5s : deux vues du village détruit, relation à deux, réaction protectrice de la femme, bras droit retombé/tête raffermie, bilan sur caisses fermées.7initiales/2corrections/1réemploi,9raw avec requêtes/résultats/SHA. **GENERATED / TECHNICALLY_VERIFIED / ART_NEEDS_CORRECTION / IN_PROGRESS** ; méthodePENDING/généralisationfalse/runtimeNOT_ADOPTED.04geste orienté à l’écart de la femme et06descente gauche/livre insuffisante : aucune réussite artistique ou READY revendiquée.
 
-UNE prochaine action : Generate and inspect v4 shots02–08 from the pre-reviewed source-bound storyboard, retaining exact requests/raw/results/SHA; then own26.5s reader proof and operator review. No six-scene generalization.
+Montage final sixcoupes/unfondu0,65s (OS0,4s), durées/images inchangées. Les deux fondus initiaux à dédoublement sont remplacés par des coupes ; leur preuve initiale est conservée. Un scénario/deux essais justifiés, reçu final11contrôles et sixdrapeaux provenance vrais ; rawSUCCEEDED/NOT_ACCEPTED. Contrats8/8, TypeScript,63tests PASS ; captures pertinentes inspectées. Aucun gameplay joué, src/public/runtime/LOCKED/save/POI/combat/vidéo/audio inchangé.360jobs/acceptations hérités et queue historique conservés exactement ;362jobs avec les deux proprespreuves.
 
-Toutes360anciennesQA/acceptations, v1/v2/v3/camp, src/public/LOCKED/runtime/V6/POI/combat/vidéo/audio préservés. Aucune généralisation avant verdict explicite opérateur sur les images et le montage v4.
+Scheduler réellement PAUSED/xhigh/90min inchangé, SHA25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07. Préflight dev300d78df propre ; publication normale origin/dev autorisée OD-2026-10-12-A ; checkpoint final à publier. main00b96f1b préservé. Serveur5461/PID21636 conservé pour revue.
 
-<!-- V4_PROGRESS_START -->
-V4 : 7illustrations initiales nouvelles, 2corrections,1réemploi ; raw/requêtes/résultats/SHA conservés. Dernier résultat08, 1672x941. Technique et art restent à vérifier.
-<!-- V4_PROGRESS_END -->
+UNE prochaine action produit : reprendre seulement Maelor04/06 selon les défauts visibles, changer composition/pose et conserver les images satisfaisantes. Plafond2corrections utilisé cette passe ; aucun nouvel appel image identique. Les six scènes attendent toujours le verdict artistique explicite images ET montage/méthode d’un pilote cohérent.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
@@ -375,7 +373,8 @@ V4 : 7illustrations initiales nouvelles, 2corrections,1réemploi ; raw/requêtes
 - illustrated-pose-v3-0745: FAILED; port 5461; receipt `tmp/cinematics/pose-v3-0745/review/qa-job.json`; NOT_ACCEPTED
 - illustrated-pose-v3-0745-host: FAILED; port 5461; receipt `tmp/cinematics/pose-v3-0745/review-host/qa-job.json`; NOT_ACCEPTED
 - illustrated-pose-v3-0745-fixed: SUCCEEDED; port 5461; receipt `tmp/cinematics/pose-v3-0745/review-fixed/qa-job.json`; NOT_ACCEPTED
-- illustrated-bois-v4-0455: PLANNED; port 5461; receipt `tmp/cinematics/bois-v4-0455/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-bois-v4-0455: SUCCEEDED; port 5461; receipt `tmp/cinematics/bois-v4-0455/review/qa-job.json`; NOT_ACCEPTED
+- illustrated-bois-v4-0455-cuts: SUCCEEDED; port 5461; receipt `tmp/cinematics/bois-v4-0455/review-cuts/qa-job.json`; NOT_ACCEPTED
 <!-- QA_JOBS_END -->
 
 Guardian final : PASS_METADATA_SYNTHESIS_CLOSEOUT ; sept versions35images126s/statuts/frontières/limites/reçus/liens cohérents, aucune acceptation artistique ou runtime. Vérification finale93SHA/93racines historiques/354jobs hérités inchangés/355total/8SHA camp/configuration scheduler préservée.

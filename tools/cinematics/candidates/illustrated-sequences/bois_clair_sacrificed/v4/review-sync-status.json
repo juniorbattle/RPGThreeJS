@@ -1,0 +1,18 @@
+{
+  "reviewedAt": "2026-10-24T05:44:10.346Z",
+  "jobId": "illustrated-bois-v4-0455-cuts",
+  "status": "SUCCEEDED",
+  "rawAcceptance": "NOT_ACCEPTED",
+  "provenanceMatches": true,
+  "provenanceStable": true,
+  "requestMatches": true,
+  "matchesCurrentExecution": true,
+  "resultDigestMatches": true,
+  "eligibleForReview": true,
+  "previousAttempt": {
+    "jobId": "illustrated-bois-v4-0455",
+    "role": "Initial threefade version preserved; changed sequence/driver requires own new proof",
+    "matchesCurrentExecution": false,
+    "acceptance": "NOT_ACCEPTED"
+  }
+}

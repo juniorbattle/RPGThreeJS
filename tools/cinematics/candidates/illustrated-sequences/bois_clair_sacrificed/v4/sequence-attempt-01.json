@@ -1,0 +1,15 @@
+{
+  "totalSeconds": 26.5,
+  "normalFadeSeconds": 0.55,
+  "reducedFadeSeconds": 0.4,
+  "stages": [
+    { "title": "Bois-Clair dévasté", "description": "", "start": 0, "duration": 3, "path": "shot-01.png", "transition": "cut" },
+    { "title": "Les habitations", "description": "", "start": 3, "duration": 2.5, "path": "shot-02.png", "transition": "dissolve", "fadeSeconds": 0.55 },
+    { "title": "Le rapport humain", "description": "", "start": 5.5, "duration": 3, "path": "shot-03.png", "transition": "cut" },
+    { "title": "Apaiser", "description": "", "start": 8.5, "duration": 3.5, "path": "shot-04.png", "transition": "dissolve", "fadeSeconds": 0.45 },
+    { "title": "La peur persiste", "description": "", "start": 12, "duration": 3, "path": "shot-05.png", "transition": "cut" },
+    { "title": "Le geste retombe", "description": "", "start": 15, "duration": 3, "path": "shot-06.png", "transition": "cut" },
+    { "title": "Assumer", "description": "", "start": 18, "duration": 3.5, "path": "shot-07.png", "transition": "dissolve", "fadeSeconds": 0.65 },
+    { "title": "Le bilan", "description": "", "start": 21.5, "duration": 5, "path": "shot-08.png", "transition": "cut" }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "runId": "codex-bois-v4-20261024T0455Z",
-  "jobId": "illustrated-bois-v4-0455",
-  "output": "tmp/cinematics/bois-v4-0455/review",
+  "jobId": "illustrated-bois-v4-0455-cuts",
+  "output": "tmp/cinematics/bois-v4-0455/review-cuts",
   "driver": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-smoke.mjs",
   "port": 5461,
   "parameters": {
@@ -11,7 +11,7 @@
     "media": [
       {
         "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/sequence.json",
-        "sha256": "27dd7f6ebc51accc33720a34d65af0dd32c79f91047d18d1851b2a6b04e10a61"
+        "sha256": "754444330bec6a89be8b4334a599e978b7369c53bd417eb4fe471b11a0fae166"
       },
       {
         "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html",
@@ -94,13 +94,14 @@
     ],
     "storyboard": {
       "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md",
-      "sha256": "fb83e3e008d974f6d9c4ed081de6035f896b106d75ce21523e898cfef9dd89a9"
+      "sha256": "6e98e25411bc09c6a4d240299c86d4ed74e0ac5ab4a8c155592473142fc0499a"
     },
-    "scope": "Offline v4 and exact previousv3 caption-free comparison; existing dist is receipt context, no game bundle rendered"
+    "scope": "Offline v4 and exact previousv3 caption-free comparison; existing dist is receipt context, no game bundle rendered",
+    "correctionReason": "Direct correction of observed architecture doubling01→02 and arm/head ghosting03→04; unchanged eight images and26.5s; initial passing technical evidence retained as historical version of this candidate."
   },
   "requiredAssertions": [
     "EIGHT_DISTINCT_IMAGES_PAUSED",
-    "FOUR_CUTS_THREE_AUTHORED_DISSOLVES_26_5S_STOP",
+    "SIX_CUTS_ONE_AUTHORED_DISSOLVE_26_5S_STOP",
     "ORDER_TIMELINE_KEYBOARD",
     "OS_REDUCE_NONZERO_OPACITY_CLOCK_PAUSE_RESUME",
     "CONTAIN_44PX_NO_OVERFLOW",

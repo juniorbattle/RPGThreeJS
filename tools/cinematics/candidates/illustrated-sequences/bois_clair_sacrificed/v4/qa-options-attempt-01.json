@@ -1,0 +1,111 @@
+{
+  "runId": "codex-bois-v4-20261024T0455Z",
+  "jobId": "illustrated-bois-v4-0455",
+  "output": "tmp/cinematics/bois-v4-0455/review",
+  "driver": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-smoke.mjs",
+  "port": 5461,
+  "parameters": {
+    "scene": "bois_clair_sacrificed",
+    "version": "v4",
+    "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v4/index.html",
+    "media": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/sequence.json",
+        "sha256": "27dd7f6ebc51accc33720a34d65af0dd32c79f91047d18d1851b2a6b04e10a61"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html",
+        "sha256": "09ea67eac81d29f6a11127512b61df4af0f90a14ee482138d92758bd888cf093"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-01.png",
+        "sha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-02.png",
+        "sha256": "f02db5029f5cc48a857d3eb9ea9f7e2a52c3e7990a1236533546c28ba4991d0e"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-03.png",
+        "sha256": "8e9a6e1c58546a1d762631cca9ce853b1f1321e2001ad084ab4b7415c5a962ae"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-04.png",
+        "sha256": "22cbb3dea206aa2081df50c94e449f1bf2996f6f7a69f4909f3563c52091a8c5"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-05.png",
+        "sha256": "5f0580f267eb4cf88bac5d0ffdaba04b89553c8dd5704744dc072e8bc4c8726d"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-06.png",
+        "sha256": "0c42e5d91603496b1ce7975bf58e5430bb34fda21e69392ca04398741b37e8c7"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-07.png",
+        "sha256": "cd16c3e7977e87bbb49433f37b6e0ab98ef1eb11bdc1dd61d59629b6602a39b4"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-08.png",
+        "sha256": "119b2cfd128bd91be26ec84286ac6b4b4a291285e59d661798ff1d56ba08ab7c"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/sequence.json",
+        "sha256": "4a98352b939b1554deea5e8bfbd32eaec92d15ac643121e20231f603194325aa"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png",
+        "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-02.png",
+        "sha256": "28c1136592debd7d43a3d4955bd98e6a474e88a378b03f6aacae5fc6f318fd0a"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-03.png",
+        "sha256": "c6f03d5faf4255f59f20966f97b571cdf55929d45f02d5a3336a8ab2649302c1"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-04.png",
+        "sha256": "dac8bce866090a8da22c8d361d8b74280ad9cf61defdebff397695ba5330d199"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-05.png",
+        "sha256": "fa534e2840328c4ecf29d42d348b8ab0d6c2574e0cafd389416ee96c8359df81"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-06.png",
+        "sha256": "07ab52cf8264bb70bdb53948ee4f65ac17e1d2f65bf37c89e62bfe304a0769cf"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-07.png",
+        "sha256": "07c056fe52cf4612a2166224e6425ab171b7b0267cb326e64c1a164101b47959"
+      }
+    ],
+    "reader": [
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/montage.mjs",
+        "sha256": "b766b5158c1556495f81fdccaab7a80950c7a06c35b0e7dd9556260aa76a0886"
+      },
+      {
+        "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+        "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+      }
+    ],
+    "storyboard": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md",
+      "sha256": "fb83e3e008d974f6d9c4ed081de6035f896b106d75ce21523e898cfef9dd89a9"
+    },
+    "scope": "Offline v4 and exact previousv3 caption-free comparison; existing dist is receipt context, no game bundle rendered"
+  },
+  "requiredAssertions": [
+    "EIGHT_DISTINCT_IMAGES_PAUSED",
+    "FOUR_CUTS_THREE_AUTHORED_DISSOLVES_26_5S_STOP",
+    "ORDER_TIMELINE_KEYBOARD",
+    "OS_REDUCE_NONZERO_OPACITY_CLOCK_PAUSE_RESUME",
+    "CONTAIN_44PX_NO_OVERFLOW",
+    "NO_CONSOLE_ERRORS",
+    "MISSING_IMAGE_DISABLES_PLAYBACK",
+    "PREVIOUS_V3_COMPARISON_24S_MIXED_TRANSITIONS_NO_CAPTIONS"
+  ]
+}

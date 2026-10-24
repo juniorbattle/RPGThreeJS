@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "runId": "codex-bois-v4-20261024T0455Z",
+  "reviewedAt": "2026-10-24T05:44:10.346Z",
+  "status": {
+    "generation": "GENERATED",
+    "technical": "TECHNICALLY_VERIFIED",
+    "art": "ART_NEEDS_CORRECTION",
+    "readiness": "IN_PROGRESS",
+    "operatorMethodAcceptance": "PENDING",
+    "runtime": "NOT_ADOPTED",
+    "generalizationAllowed": false
+  },
+  "sourceBase": "300d78dfde7bed43e6ef7c1cbb603e0d72431960",
+  "testedGitHead": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
+  "proof": {
+    "receipt": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-receipt.json",
+      "sha256": "25c351015fcb4e7799d608e5805d0caa64a0abd7488619e4b08f2a090fdffd57"
+    },
+    "results": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-results.json",
+      "sha256": "459b4aa0bdc18c854c5a1c975a238deba333936a611bb7e07321d6cc3186fe86"
+    },
+    "driver": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-smoke.mjs",
+      "sha256": "f684d68a4744ed9e1fd874a97d67433e79dc7ebab8123789e51723b0fd0d3f78"
+    },
+    "options": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/qa-options.json",
+      "sha256": "88844aafabeee228f7f67441f62ec14ec6090cca992b65a8638a5fef64f9ba42"
+    },
+    "sync": {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-sync-status.json",
+      "sha256": "672a5fd5e79f67aea4a76e61e4786d1b541534ebb6944260efafb03e96a22840"
+    },
+    "rawAcceptance": "NOT_ACCEPTED",
+    "scopedTechnicalReview": "PASS",
+    "jobId": "illustrated-bois-v4-0455-cuts",
+    "reviewedAt": "2026-10-24T05:44:10.346Z"
+  },
+  "imageReview": [
+    {
+      "shot": "01",
+      "visible": "Exact approved wideplate, empty destroyed village; damage already occurred.",
+      "inspection": "Native selected1672x941 image visually inspected"
+    },
+    {
+      "shot": "02",
+      "visible": "Charred habitation seen closer, noactor; village family/light retained, exact architectural projection varies.",
+      "inspection": "Native selected1672x941 image visually inspected"
+    },
+    {
+      "shot": "03",
+      "visible": "MaelorLEFT bookLEFT, free right hand; womanRIGHT closedbasket/headaverted. Initialhilt-touch raw rejected.",
+      "inspection": "Native selected1672x941 image visually inspected"
+    },
+    {
+      "shot": "04",
+      "visible": "Visible rightarm opening and slight forwardtorso/head; direction awayfromwoman fails intended interpersonal clarity. Initialwrongarm/book raw rejected.",
+      "inspection": "Native selected1672x941 image visually inspected"
+    },
+    {
+      "shot": "05",
+      "visible": "Protective basket/closedelbows and avertedhead clearly visible; maintains woman attitude, no newrefusal/retreat.",
+      "inspection": "Native selected1672x941 image visually inspected"
+    },
+    {
+      "shot": "06",
+      "visible": "Rightarm down/headlower; bookLEFT still nearhip. Botharmsrelease not fully expressed.",
+      "inspection": "Native selected1672x941 image visually inspected"
+    },
+    {
+      "shot": "07",
+      "visible": "Headraised/torsofirmer; armsstaylow; womanclosed. Resolution interpretation remains operatorart judgment.",
+      "inspection": "Native selected1672x941 image visually inspected"
+    },
+    {
+      "shot": "08",
+      "visible": "Plain closedwoodcrates foreground and separate figures/ruins readable; no contents, gainamount, transfer, departure or provisions choice.",
+      "inspection": "Native selected1672x941 image visually inspected"
+    }
+  ],
+  "pairReview": [
+    {
+      "pair": "01→02",
+      "transition": "cut",
+      "observation": "Wider damage to habitation; cut removes observed double architecture; exact same-building projection is not proven."
+    },
+    {
+      "pair": "02→03",
+      "transition": "cut",
+      "observation": "Return to sharedwide place; people appear through change of view, noarrival/walk claimed."
+    },
+    {
+      "pair": "03→04",
+      "transition": "cut",
+      "observation": "Sameleft/right relationship and body scale; cut removes ghost arm/head, but calming gesture points away."
+    },
+    {
+      "pair": "04→05",
+      "transition": "cut",
+      "observation": "Womanreaction closeview shows ongoing fear/protection; no new action invented."
+    },
+    {
+      "pair": "05→06",
+      "transition": "cut",
+      "observation": "Return towide with rightarm lowered; leftbookrelease remains weak."
+    },
+    {
+      "pair": "06→07",
+      "transition": "dissolve0.65s",
+      "observation": "Head/bust reassertion visible; small clothing/ground differences blend optically, no continuousbodyanimation claimed."
+    },
+    {
+      "pair": "07→08",
+      "transition": "cut",
+      "observation": "Lowerwide view makes closedcrates concrete; geographical projection/scale shifts disclosed, no physical relocation asserted."
+    }
+  ],
+  "montageReview": {
+    "newVersion": "Eightimages/26.5s, sixcuts/onefade; no narrativecaptions rendered",
+    "previousVersion": "Exact preservedv3 sevenimages/24s, threecuts/threedissolves; comparison media hashes in options",
+    "observedImprovement": "Two villageviews before relationship and a concreteclosedcrate finalbilan. Previous crossed/uncrossed armcycle removed.",
+    "unresolved": "Central reassurance→release causal bodybeat remains insufficient04/06; no complete story comprehension PASS",
+    "method": "Nativeimages and adjacentpairs inspected; real-time normal26.5s and old24s browser run sampled/captured; no inference of artistic success from prompts or automatedchecks. IABOSreduce visual preview separate from normalmode proof."
+  },
+  "issues": [
+    {
+      "id": "MAELOR_04_GESTURE_DIRECTION",
+      "status": "OPEN",
+      "visible": "Right palm opens screenLEFT, away from womanRIGHT, although head/torso address her. Reassurance not clear enough.",
+      "next": "Recompose Maelor torso/arms to place an empty open hand into the central relationship gap, preserve left closedbook and woman posture; no identical retry."
+    },
+    {
+      "id": "MAELOR_06_BOTH_ARMS_RELEASE",
+      "status": "OPEN",
+      "visible": "Right arm drops; left elbow/book remain at hip/upperthigh. Requested botharm release incomplete.",
+      "next": "Make leftelbow/book visibly descend beside thigh and shoulder engagement release while retaining ownership; check against04 and07 at comparable scale."
+    },
+    {
+      "id": "MAELOR_08_GLOVE_GUARD",
+      "status": "LIMIT",
+      "visible": "Glove adjacent guard/sheath; no clear unsheathing, attack or unambiguous weapon clearance claimed."
+    }
+  ],
+  "compliance": {
+    "verdict": "PASS_V4_CUT_CORRECTION_TECHNICAL_AND_PRESERVATION_SCOPED",
+    "contractSet": "1.9.0",
+    "baseline": "32c8439f6dea1d09f428c5c081392ab0c700e356",
+    "matrix": {
+      "GAME_CONSTITUTION": "PASS",
+      "ART_DIRECTION": "BLOCKED_MAELOR_04_06",
+      "CHARACTERS": "PASS_SCOPED_WITH_DISCLOSED_HAND_LIMIT",
+      "ENVIRONMENTS": "PASS_SCOPED",
+      "NARRATIVE_CAMPAIGN": "PASS",
+      "NARRATIVE_PRESENTATION": "BLOCKED_MAELOR_04_06",
+      "TRAVERSAL": "N/A_UNTOUCHED",
+      "COMBAT": "N/A_UNTOUCHED",
+      "SAVE": "PASS",
+      "UI_ACCESSIBILITY": "PASS_SCOPED",
+      "QA_EVIDENCE": "PASS_SCOPED",
+      "REPOSITORY_GOVERNANCE": "PASS"
+    },
+    "lockedRulesChanged": false,
+    "independentReviewer": "guardian_v3: actual corrected captures/driver/receipts inspected;11checksPASS;art04/06blocked"
+  },
+  "counts": {
+    "selectedImages": 8,
+    "initialImages": 7,
+    "targetedCorrections": 2,
+    "imagegenCalls": 9,
+    "reusedImages": 1,
+    "rawOutputs": 9,
+    "qaScenarios": 1,
+    "qaAttempts": 2,
+    "qaJobsAdded": 2,
+    "inheritedQaJobsPreserved": 360,
+    "totalQaJobs": 362,
+    "runtimeSourceFiles": 0,
+    "gameplaySteps": 0
+  },
+  "correctionLimit": "Two targeted image corrections used thisrun; no third or relabelled correction. Only montage defect corrected after own initial proof; no media changed.",
+  "captures": [
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-cut-1-2.png",
+      "sha256": "912b827edd20d4e451e0ad5415039c7ca7545df6e3ad1755b1bd3f32629863b8"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-cut-3-4.png",
+      "sha256": "9f5d49179900891ccb0875817d3f9da8e3d03c12da8232312ec8659ba5d235d9"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-dissolve-6-7.png",
+      "sha256": "505b1746681833ad161f31106d9f83e3b68843f3400d276b940f5b3b328d99bf"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-endpoint.png",
+      "sha256": "1208a602425836a5e71eb1a1ef3320ffed590a1e185523a89377e8181e98e040"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-os-pause.png",
+      "sha256": "68f931179e938ce1db8b145a453db172348de06e83a27f9d0b270e364f92b71b"
+    },
+    {
+      "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-narrow.png",
+      "sha256": "697e095bade3da99df74761f9a6a7adc4edecbce4ee1f7ca7812b188181104b4"
+    }
+  ],
+  "historicalPreservation": {
+    "original360JobsAndAcceptancesDeepEqual": true,
+    "historicalQueueDeepEqual": true,
+    "versionsV1V2V3AndCampUnchanged": true
+  },
+  "scheduler": {
+    "status": "PAUSED",
+    "cadenceMinutes": 90,
+    "sha256": "25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07",
+    "mutated": false
+  },
+  "nextProductAction": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance."
+}

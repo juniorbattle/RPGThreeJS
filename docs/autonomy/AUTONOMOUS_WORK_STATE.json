@@ -3,77 +3,113 @@
   "runStartedAt": "2026-10-24T04:55:07Z",
   "runEndedAt": null,
   "activeTask": "BOIS-CLAIR-SACRIFICED-V4-NARRATIVE-REVISION",
-  "activePhase": "V4_GENERATED_OWN_REVIEW_PENDING",
-  "activeSubtask": "Eight images assembled; own26.5s mixed-transition proof and actualpair/montage review",
+  "activePhase": "V4_TECHNICALLY_VERIFIED_ART_NEEDS_CORRECTION",
+  "activeSubtask": "Eightshot offline26.5s montage, own proof green; Maelor04 interpersonal gesture and06 botharm release remain incomplete",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
-  "lastPushedCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
+  "lastKnownGoodCommit": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
+  "lastPushedCommit": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
   "completedThisRun": [
     "Clean preflight/no inheritedlock orWIP; ownedlock/hostfetch parity verified dev300d78df/main00b96f1b",
     "MastersV2, approved ruinedplate, actual womanv3pose and current raid aftermath source inspected",
     "Direct operator negative v3 narrative review and revised go preserved;8shot sheets/26.5s sequence and7exactrequests written before generation",
-    "Independent contracts-guardian PASS_PREGEN_V4_SCOPED; existing closedwoodcrates approved as visualbilan, nocontents/transfer"
+    "Independent contracts-guardian PASS_PREGEN_V4_SCOPED; existing closedwoodcrates approved as visualbilan, nocontents/transfer",
+    "Generated7initial illustrations and2targetedcorrections; retained9raw/exactrequests/results/SHA, reusedapprovedplate; eightselectedimages",
+    "Inspected nativeimages/pairs and timedmontage; corrected own opticaldoubling withcuts, no new image/duration",
+    "Own final11readerchecks PASS, exactv3comparison retained; sixsyncflags true;63focusedtests/tsc/contracts PASS",
+    "Precisely retained ART_NEEDS_CORRECTION04/06; no READY/operatorart/runtime/generalization claim"
   ],
   "filesChanged": [
     ".gitattributes",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-23T0425Z-codex-pose-pilot.md",
-    "docs/autonomy/handoffs/2026-10-23T0745Z-codex-pose-v3-proof.md",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/montage.mjs",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/provenance.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/qa-options-attempt-01.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/qa-options-attempt-02.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/qa-options.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/raw/shot-05-initial.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/raw/shot-06-initial.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/raw/shot-07-initial.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/requests/shot-05.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/requests/shot-06.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/requests/shot-07.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/results/shot-05.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/results/shot-06.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/results/shot-07.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-01-receipt.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-02-receipt.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-02-results.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-closeout.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-endpoint.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-generation-checkpoint.md",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-fade-2-3.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-fade-4-5.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-fade-5-6.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-preview.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-narrow.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-normal-fade-4-5.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-os-pause.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-receipt.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-results.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke-attempt-01.mjs",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke.mjs",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-sync-status.json",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-tested.html",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review.md",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-05.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-06.png",
-    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-07.png",
+    "docs/autonomy/BOIS_CLAIR_NARRATIVE_REVISION_2026-10-24.md",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "docs/autonomy/handoffs/2026-10-24T0455Z-codex-bois-v4.md",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/montage.mjs",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/provenance.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/qa-options-attempt-01.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/qa-options.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-02.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-03-correction-01.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-03.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-04-correction-01.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-04.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-05.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-06.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-07.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-08.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-02.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-03-correction-01.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-03.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-04-correction-01.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-04.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-05.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-06.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-07.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-08.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-02.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-03-correction-01.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-03.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-04-correction-01.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-04.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-05.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-06.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-07.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-08.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-attempt-01-dissolve-1.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-attempt-01-dissolve-3.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-attempt-01-receipt.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-attempt-01-results.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-closeout.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-cut-1-2.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-cut-3-4.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-dissolve-6-7.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-endpoint.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-narrow.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-os-pause.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-receipt.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-results.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-smoke-attempt-01.mjs",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-smoke.mjs",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-sync-status.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review.md",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/sequence-attempt-01.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/sequence.json",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-01.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-02.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-03.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-04.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-05.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-06.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-07.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-08.png",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard-pre-transition-review.md",
+    "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md",
     "tools/cinematics/specs/illustrated-sequences/production-plan.json"
   ],
   "testsRun": [
-    "Pre-generation contracts8LOCKED/8slots PASS; immutablebaseline/status gates empty"
+    "git diff --check and immutableLOCKED/source/public/history gates",
+    "npm run contracts:validate:8LOCKED/8slots",
+    "npx tsc --noEmit",
+    "63focusedtests: Cin6aPresentation and lionFinale",
+    "One offlinev4scenario,2attempts: initialtechnicalPASS then directowntransitioncorrection/final11checksPASS; oldv3comparison24s included"
   ],
   "testsPassed": [
-    "PASS_PREGEN_V4_SCOPED; contracts8/8 and baseline gates"
+    "Contracts8/8, TypeScript,63tests and scopedreader11checks",
+    "Finalreceipt exactmedia/driver/readerSHA and sixsyncflags true; original360jobs/acceptances and oldqueue deepEqual"
   ],
   "testsRemaining": [
-    "Inspect nativeimages/pairs; own8shot26.5s reader proof; operator artistic method verdict"
+    "Maelor04/06 artisticpose corrections then changed-media ownproof",
+    "Explicit operator images+montage method verdict before sixscene generalization; dedicatedruntimeadoption separate"
   ],
-  "blockers": [],
+  "blockers": [
+    "ART_NEEDS_CORRECTION:04 handprojects awayfromwoman;06 leftbook/armdrop insufficient;2correctionsused thisrun"
+  ],
   "remainingWork": [
-    "Generate and inspect v4 shots02–08 from the pre-reviewed source-bound storyboard, retaining exact requests/raw/results/SHA; then own26.5s reader proof and operator review. No six-scene generalization."
+    "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance."
   ],
-  "nextAction": "Run own v4 reader proof, inspect pairs/normal montage and preserve precise artistic limits before operator review. No new images or six-scene generalization.",
+  "nextAction": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance.",
   "taskQueue": [
     "Prepare sourced pose partition and shot sheets for Bois-Clair sacrificed pilot",
     "Generate insufficient pilot illustrations in a separate version, preserve historical media",
@@ -83,9 +119,9 @@
     "Independent demonstrated PC issue only; mobile after PC stability"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_PREGEN_V4_SCOPED",
-  "commitReferenceScope": "Delivery1c0c0f72 is published/verified; following metadata-only commit closes this run without claiming self-referential commit hashes.",
-  "operatorAuthorization": "OD-2026-10-21-A/B and OD-2026-10-23-A/B offline pose pilot; direct23October user feedback requests more illustrations and optical dissolves on displayed historicalv1, applied only to separatepilotv3. No scheduler mutation/generalization/art acceptance inferred.",
+  "contractComplianceStatus": "PASS_TECHNICAL_PRESERVATION_ART_DIRECTION_OPEN",
+  "commitReferenceScope": "Assembledcandidate9bdc2763 published; final proof/transitioncorrection checkpoint follows. Git and subsequent closure record authoritative, no selfreferential SHA.",
+  "operatorAuthorization": "Direct24Oct user go on revised village→reassurance→fear→release→clanpriority→concretebilan arc; offline scope OD2026-10-21-A/B and23-A/B. Artistic method/runtime/sixscene permission not inferred. Publication OD2026-10-12-A.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -157,10 +193,10 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "runId": "codex-bois-v4-20261024T0455Z",
   "agent": "codex",
-  "lastHeartbeat": "2026-10-24T05:26:34.883Z",
+  "lastHeartbeat": "2026-10-24T05:44:10.346Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-24T05:26:34.883Z",
+    "lastHeartbeat": "2026-10-24T05:44:10.346Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -40260,9 +40296,9 @@
         "schemaVersion": 1,
         "jobId": "illustrated-bois-v4-0455",
         "runId": "codex-bois-v4-20261024T0455Z",
-        "status": "PLANNED",
+        "status": "SUCCEEDED",
         "registeredAt": "2026-10-24T05:30:58.498Z",
-        "pid": null,
+        "pid": 3872,
         "port": 5461,
         "command": [
           "node",
@@ -40423,29 +40459,224 @@
             }
           ]
         },
-        "acceptance": "NOT_ACCEPTED"
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-24T05:31:44.075Z",
+        "endedAt": "2026-10-24T05:32:46.480Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/bois-v4-0455/review/results.json",
+        "resultSha256": "72312e0946945106585ce0e07f804073aaabd88b9df14e6c328ac36ab032fdd4",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": false,
+        "resultDigestMatches": true,
+        "eligibleForReview": false
+      },
+      {
+        "schemaVersion": 1,
+        "jobId": "illustrated-bois-v4-0455-cuts",
+        "runId": "codex-bois-v4-20261024T0455Z",
+        "status": "SUCCEEDED",
+        "registeredAt": "2026-10-24T05:39:36.524Z",
+        "pid": 49628,
+        "port": 5461,
+        "command": [
+          "node",
+          "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-smoke.mjs"
+        ],
+        "parameters": {
+          "scene": "bois_clair_sacrificed",
+          "version": "v4",
+          "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v4/index.html",
+          "media": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/sequence.json",
+              "sha256": "754444330bec6a89be8b4334a599e978b7369c53bd417eb4fe471b11a0fae166"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html",
+              "sha256": "09ea67eac81d29f6a11127512b61df4af0f90a14ee482138d92758bd888cf093"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-01.png",
+              "sha256": "0ea6afe5a97c962c586667675488a3de4312782046afe96fb812630d677b3464"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-02.png",
+              "sha256": "f02db5029f5cc48a857d3eb9ea9f7e2a52c3e7990a1236533546c28ba4991d0e"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-03.png",
+              "sha256": "8e9a6e1c58546a1d762631cca9ce853b1f1321e2001ad084ab4b7415c5a962ae"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-04.png",
+              "sha256": "22cbb3dea206aa2081df50c94e449f1bf2996f6f7a69f4909f3563c52091a8c5"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-05.png",
+              "sha256": "5f0580f267eb4cf88bac5d0ffdaba04b89553c8dd5704744dc072e8bc4c8726d"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-06.png",
+              "sha256": "0c42e5d91603496b1ce7975bf58e5430bb34fda21e69392ca04398741b37e8c7"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-07.png",
+              "sha256": "cd16c3e7977e87bbb49433f37b6e0ab98ef1eb11bdc1dd61d59629b6602a39b4"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-08.png",
+              "sha256": "119b2cfd128bd91be26ec84286ac6b4b4a291285e59d661798ff1d56ba08ab7c"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/sequence.json",
+              "sha256": "4a98352b939b1554deea5e8bfbd32eaec92d15ac643121e20231f603194325aa"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v1/shot-01.png",
+              "sha256": "4f76bc0140461b3b94921e77c8c0ff74d5b38638eaab1583af24688b6ed23eeb"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-02.png",
+              "sha256": "28c1136592debd7d43a3d4955bd98e6a474e88a378b03f6aacae5fc6f318fd0a"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-03.png",
+              "sha256": "c6f03d5faf4255f59f20966f97b571cdf55929d45f02d5a3336a8ab2649302c1"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v2/shot-04.png",
+              "sha256": "dac8bce866090a8da22c8d361d8b74280ad9cf61defdebff397695ba5330d199"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-05.png",
+              "sha256": "fa534e2840328c4ecf29d42d348b8ab0d6c2574e0cafd389416ee96c8359df81"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-06.png",
+              "sha256": "07ab52cf8264bb70bdb53948ee4f65ac17e1d2f65bf37c89e62bfe304a0769cf"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-07.png",
+              "sha256": "07c056fe52cf4612a2166224e6425ab171b7b0267cb326e64c1a164101b47959"
+            }
+          ],
+          "reader": [
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/montage.mjs",
+              "sha256": "b766b5158c1556495f81fdccaab7a80950c7a06c35b0e7dd9556260aa76a0886"
+            },
+            {
+              "path": "tools/cinematics/candidates/illustrated-sequences/reader-v1/montage.css",
+              "sha256": "71e06fcdc3b4b9cc5932ae955048fe5a148c4bdfac90f8ed7f0af9bae011af83"
+            }
+          ],
+          "storyboard": {
+            "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md",
+            "sha256": "6e98e25411bc09c6a4d240299c86d4ed74e0ac5ab4a8c155592473142fc0499a"
+          },
+          "scope": "Offline v4 and exact previousv3 caption-free comparison; existing dist is receipt context, no game bundle rendered",
+          "correctionReason": "Direct correction of observed architecture doubling01→02 and arm/head ghosting03→04; unchanged eight images and26.5s; initial passing technical evidence retained as historical version of this candidate."
+        },
+        "requiredAssertions": [
+          "EIGHT_DISTINCT_IMAGES_PAUSED",
+          "SIX_CUTS_ONE_AUTHORED_DISSOLVE_26_5S_STOP",
+          "ORDER_TIMELINE_KEYBOARD",
+          "OS_REDUCE_NONZERO_OPACITY_CLOCK_PAUSE_RESUME",
+          "CONTAIN_44PX_NO_OVERFLOW",
+          "NO_CONSOLE_ERRORS",
+          "MISSING_IMAGE_DISABLES_PLAYBACK",
+          "PREVIOUS_V3_COMPARISON_24S_MIXED_TRANSITIONS_NO_CAPTIONS"
+        ],
+        "output": "tmp/cinematics/bois-v4-0455/review-cuts",
+        "receiptPath": "tmp/cinematics/bois-v4-0455/review-cuts/qa-job.json",
+        "provenance": {
+          "gitHead": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
+          "sourceTree": "391734fc92c22f7490797971aae3882bb10638cd",
+          "sourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "driver": {
+            "path": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-smoke.mjs",
+            "sha256": "f684d68a4744ed9e1fd874a97d67433e79dc7ebab8123789e51723b0fd0d3f78"
+          },
+          "inputs": [],
+          "receiptToolSha256": "13f5266324b41c1d9c3f8dbc4214ca4306518344a6d8eafe1e4c0165fe1b1a40",
+          "build": [
+            {
+              "path": "dist/assets/ReducedMotion-Dmdg4V6f.js",
+              "sha256": "ea9612f996bfc76158382539941606606909979eff8c8a1e873f78b86ab94d99"
+            },
+            {
+              "path": "dist/assets/combat-DG7ZUtBq.css",
+              "sha256": "64679990185ef5c9ba54075bbea95a815f5a2c1964d60c8382a120f01cf4f45a"
+            },
+            {
+              "path": "dist/assets/combat-tTV9DuEb.js",
+              "sha256": "5b8e2012129bd7c1fede986723921c163996bc35adfb402a3469951017538ed5"
+            },
+            {
+              "path": "dist/assets/game-CpZAzB3w.js",
+              "sha256": "d53d9c6af76240cd07c04fae1f88299a835f00b2bc742bec785c65ee9731d335"
+            },
+            {
+              "path": "dist/assets/game-D9rcJ1yO.css",
+              "sha256": "1b3d11dd35b8c9fe5c1b7d7654aec58cf7df0b1e363d4c33ed4482f32660c8b4"
+            },
+            {
+              "path": "dist/assets/three-core-f0ajj1rG.js",
+              "sha256": "872d2ba78a736c13c1a47069a6530c897398162c69060b7b6052577d73cbff49"
+            },
+            {
+              "path": "dist/assets/three-postprocessing-DldD4cu8.js",
+              "sha256": "e112a4e9e75ba3e25ecfbe4bd548361d1e3bf9d1a3790e622bd81d1ea5cd2f63"
+            },
+            {
+              "path": "dist/assets/validation-mSkvzYyn.js",
+              "sha256": "f63db7aee2c59717a7a82ecfa4d6a7dc0ac2c07d06c7d7d435b0367d65cf3a10"
+            },
+            {
+              "path": "dist/index.html",
+              "sha256": "33fb4e6a6db00d585fdc34e8409b8f5660780f1817567d405cde4671929d81e2"
+            }
+          ]
+        },
+        "acceptance": "NOT_ACCEPTED",
+        "startedAt": "2026-10-24T05:39:53.574Z",
+        "endedAt": "2026-10-24T05:40:50.234Z",
+        "exitCode": 0,
+        "resultPath": "tmp/cinematics/bois-v4-0455/review-cuts/results.json",
+        "resultSha256": "459b4aa0bdc18c854c5a1c975a238deba333936a611bb7e07321d6cc3186fe86",
+        "provenanceMatches": true,
+        "provenanceStable": true,
+        "requestMatches": true,
+        "matchesCurrentExecution": true,
+        "resultDigestMatches": true,
+        "eligibleForReview": true
       }
     ],
     "wip": null,
-    "nextAction": "Run own v4 reader proof, inspect pairs/normal montage and preserve precise artistic limits before operator review. No new images or six-scene generalization.",
+    "nextAction": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance.",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,
-      "newImages": 0,
-      "imagegenCalls": 0,
-      "targetedCorrections": 0,
+      "gameplaySteps": 0,
+      "newImages": 7,
+      "imagegenCalls": 9,
+      "targetedCorrections": 2,
+      "reusedSelectedImages": 1,
+      "selectedImages": 8,
+      "rawOutputs": 9,
       "scenarios": 1,
-      "attempts": 3,
-      "newQaJobs": 3,
-      "inheritedQaJobs": 357,
-      "totalQaJobs": 360,
-      "inheritedWipPaths": 24,
-      "qaProofFilesAdded": 18,
-      "workflowFilesModifiedOrAdded": 5,
-      "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
-      "candidateMetadataFilesModified": 3,
-      "selectedPublicationPaths": 44,
-      "newPaths": 20
+      "attempts": 2,
+      "newQaJobs": 2,
+      "inheritedQaJobs": 360,
+      "totalQaJobs": 362,
+      "inheritedWipPaths": 0,
+      "selectedPublicationPaths": 68,
+      "offlineMediaFiles": 17,
+      "qaAndProofFiles": 21,
+      "workflowFiles": 7,
+      "notes": "Offline illustrated productprogress only; no gameplay claimed. One corrective repeat for observed opticaldoubling; both receipts preserved. No inheritedWIP."
     },
     "checkpointPaths": [
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
@@ -40465,11 +40696,9 @@
       "docs/autonomy/handoffs/2026-10-23T0147Z-codex-seven-illustrated-review.md"
     ],
     "publication": {
-      "status": "DELIVERY_VERIFIED_METADATA_CHECKPOINT_FOLLOWS",
-      "sha": "d72109e2e35a650d19cab56ea5975439a4ff23c7",
-      "remoteDevVerifiedAt": "2026-10-21T22:56:49.730Z",
-      "authority": "OD-2026-10-12-A",
-      "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
+      "status": "FINAL_CHECKPOINT_PENDING",
+      "previousPublished": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
+      "authority": "OD-2026-10-12-A"
     },
     "runEndedAt": null,
     "writerStopped": false,
@@ -41269,7 +41498,7 @@
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
     "activeTask": "BOIS-CLAIR-SACRIFICED-V4-NARRATIVE-REVISION",
-    "activeSubtask": "Eight images assembled; own26.5s mixed-transition proof and actualpair/montage review",
+    "activeSubtask": "Eightshot offline26.5s montage, own proof green; Maelor04 interpersonal gesture and06 botharm release remain incomplete",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -44605,8 +44834,8 @@
     "agent": "codex",
     "status": "READY_FOR_PC_ACCEPTANCE",
     "runStartedAt": "2026-10-24T04:55:07Z",
-    "activePhase": "V4_GENERATED_OWN_REVIEW_PENDING",
-    "heartbeat": "2026-10-24T05:26:34.883Z",
+    "activePhase": "V4_TECHNICALLY_VERIFIED_ART_NEEDS_CORRECTION",
+    "heartbeat": "2026-10-24T05:44:10.346Z",
     "currentHandoff": "docs/autonomy/handoffs/2026-10-24T0455Z-codex-bois-v4.md",
     "motion1617": {
       "startedAt": "2026-10-12T16:19:03.0865403Z",
@@ -46335,7 +46564,7 @@
       "automaticApprovalRefusals": 0,
       "scope": "Focus implemented/mechanical green/browser OPEN; strict Salvation frozen native scoped accepted; campaign aggregateFAILED"
     },
-    "lastPushedCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
+    "lastPushedCommit": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
     "productPreview": {
       "port": 5461,
       "stopped": true,
@@ -47140,71 +47369,107 @@
     },
     "creditStatus": "AVAILABLE",
     "workingBranch": "dev",
-    "lastKnownGoodCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
+    "lastKnownGoodCommit": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
     "completedThisRun": [
       "Clean preflight/no inheritedlock orWIP; ownedlock/hostfetch parity verified dev300d78df/main00b96f1b",
       "MastersV2, approved ruinedplate, actual womanv3pose and current raid aftermath source inspected",
       "Direct operator negative v3 narrative review and revised go preserved;8shot sheets/26.5s sequence and7exactrequests written before generation",
-      "Independent contracts-guardian PASS_PREGEN_V4_SCOPED; existing closedwoodcrates approved as visualbilan, nocontents/transfer"
+      "Independent contracts-guardian PASS_PREGEN_V4_SCOPED; existing closedwoodcrates approved as visualbilan, nocontents/transfer",
+      "Generated7initial illustrations and2targetedcorrections; retained9raw/exactrequests/results/SHA, reusedapprovedplate; eightselectedimages",
+      "Inspected nativeimages/pairs and timedmontage; corrected own opticaldoubling withcuts, no new image/duration",
+      "Own final11readerchecks PASS, exactv3comparison retained; sixsyncflags true;63focusedtests/tsc/contracts PASS",
+      "Precisely retained ART_NEEDS_CORRECTION04/06; no READY/operatorart/runtime/generalization claim"
     ],
     "filesChanged": [
       ".gitattributes",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
       "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-      "docs/autonomy/handoffs/2026-10-23T0425Z-codex-pose-pilot.md",
-      "docs/autonomy/handoffs/2026-10-23T0745Z-codex-pose-v3-proof.md",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/index.html",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/montage.mjs",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/provenance.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/qa-options-attempt-01.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/qa-options-attempt-02.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/qa-options.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/raw/shot-05-initial.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/raw/shot-06-initial.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/raw/shot-07-initial.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/requests/shot-05.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/requests/shot-06.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/requests/shot-07.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/results/shot-05.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/results/shot-06.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/results/shot-07.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-01-receipt.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-02-receipt.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-attempt-02-results.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-closeout.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-endpoint.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-generation-checkpoint.md",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-fade-2-3.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-fade-4-5.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-fade-5-6.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-manual-preview.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-narrow.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-normal-fade-4-5.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-os-pause.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-receipt.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-results.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke-attempt-01.mjs",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-smoke.mjs",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-sync-status.json",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-tested.html",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review.md",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-05.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-06.png",
-      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/shot-07.png",
+      "docs/autonomy/BOIS_CLAIR_NARRATIVE_REVISION_2026-10-24.md",
+      "docs/autonomy/OPERATOR_DECISIONS.md",
+      "docs/autonomy/handoffs/2026-10-24T0455Z-codex-bois-v4.md",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/montage.mjs",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/provenance.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/qa-options-attempt-01.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/qa-options.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-02.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-03-correction-01.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-03.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-04-correction-01.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-04.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-05.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-06.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-07.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/raw/shot-08.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-02.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-03-correction-01.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-03.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-04-correction-01.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-04.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-05.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-06.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-07.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/requests/shot-08.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-02.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-03-correction-01.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-03.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-04-correction-01.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-04.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-05.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-06.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-07.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/results/shot-08.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-attempt-01-dissolve-1.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-attempt-01-dissolve-3.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-attempt-01-receipt.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-attempt-01-results.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-closeout.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-cut-1-2.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-cut-3-4.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-dissolve-6-7.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-endpoint.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-narrow.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-os-pause.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-receipt.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-results.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-smoke-attempt-01.mjs",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-smoke.mjs",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-sync-status.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review.md",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/sequence-attempt-01.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/sequence.json",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-01.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-02.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-03.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-04.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-05.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-06.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-07.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/shot-08.png",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard-pre-transition-review.md",
+      "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md",
       "tools/cinematics/specs/illustrated-sequences/production-plan.json"
     ],
     "testsRun": [
-      "Pre-generation contracts8LOCKED/8slots PASS; immutablebaseline/status gates empty"
+      "git diff --check and immutableLOCKED/source/public/history gates",
+      "npm run contracts:validate:8LOCKED/8slots",
+      "npx tsc --noEmit",
+      "63focusedtests: Cin6aPresentation and lionFinale",
+      "One offlinev4scenario,2attempts: initialtechnicalPASS then directowntransitioncorrection/final11checksPASS; oldv3comparison24s included"
     ],
     "testsPassed": [
-      "PASS_PREGEN_V4_SCOPED; contracts8/8 and baseline gates"
+      "Contracts8/8, TypeScript,63tests and scopedreader11checks",
+      "Finalreceipt exactmedia/driver/readerSHA and sixsyncflags true; original360jobs/acceptances and oldqueue deepEqual"
     ],
     "testsRemaining": [
-      "Inspect nativeimages/pairs; own8shot26.5s reader proof; operator artistic method verdict"
+      "Maelor04/06 artisticpose corrections then changed-media ownproof",
+      "Explicit operator images+montage method verdict before sixscene generalization; dedicatedruntimeadoption separate"
     ],
-    "blockers": [],
+    "blockers": [
+      "ART_NEEDS_CORRECTION:04 handprojects awayfromwoman;06 leftbook/armdrop insufficient;2correctionsused thisrun"
+    ],
     "remainingWork": [
-      "Generate and inspect v4 shots02–08 from the pre-reviewed source-bound storyboard, retaining exact requests/raw/results/SHA; then own26.5s reader proof and operator review. No six-scene generalization."
+      "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance."
     ],
     "taskQueue": [
       "Prepare sourced pose partition and shot sheets for Bois-Clair sacrificed pilot",
@@ -47214,7 +47479,7 @@
       "After pilot method acceptance only: audience, arrival, saved, judgement, Serpent ending, Lion-trial ending",
       "Independent demonstrated PC issue only; mobile after PC stability"
     ],
-    "contractComplianceStatus": "PASS_PREGEN_V4_SCOPED",
+    "contractComplianceStatus": "PASS_TECHNICAL_PRESERVATION_ART_DIRECTION_OPEN",
     "dialogueNames2300": {
       "recordedAt": "2026-10-17T23:10:22.748Z",
       "runId": "rpgthreejs-auto-dev-90m-20261017T2300",
@@ -47630,59 +47895,68 @@
     "runStatistics": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,
-      "newImages": 0,
-      "imagegenCalls": 0,
-      "targetedCorrections": 0,
+      "gameplaySteps": 0,
+      "newImages": 7,
+      "imagegenCalls": 9,
+      "targetedCorrections": 2,
+      "reusedSelectedImages": 1,
+      "selectedImages": 8,
+      "rawOutputs": 9,
       "scenarios": 1,
-      "attempts": 3,
-      "newQaJobs": 3,
-      "inheritedQaJobs": 357,
-      "totalQaJobs": 360,
-      "inheritedWipPaths": 24,
-      "qaProofFilesAdded": 18,
-      "workflowFilesModifiedOrAdded": 5,
-      "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
-      "candidateMetadataFilesModified": 3,
-      "selectedPublicationPaths": 44,
-      "newPaths": 20
+      "attempts": 2,
+      "newQaJobs": 2,
+      "inheritedQaJobs": 360,
+      "totalQaJobs": 362,
+      "inheritedWipPaths": 0,
+      "selectedPublicationPaths": 68,
+      "offlineMediaFiles": 17,
+      "qaAndProofFiles": 21,
+      "workflowFiles": 7,
+      "notes": "Offline illustrated productprogress only; no gameplay claimed. One corrective repeat for observed opticaldoubling; both receipts preserved. No inheritedWIP."
     },
     "currentRunMeasurement": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,
-      "newImages": 0,
-      "imagegenCalls": 0,
-      "targetedCorrections": 0,
+      "gameplaySteps": 0,
+      "newImages": 7,
+      "imagegenCalls": 9,
+      "targetedCorrections": 2,
+      "reusedSelectedImages": 1,
+      "selectedImages": 8,
+      "rawOutputs": 9,
       "scenarios": 1,
-      "attempts": 3,
-      "newQaJobs": 3,
-      "inheritedQaJobs": 357,
-      "totalQaJobs": 360,
-      "inheritedWipPaths": 24,
-      "qaProofFilesAdded": 18,
-      "workflowFilesModifiedOrAdded": 5,
-      "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
-      "candidateMetadataFilesModified": 3,
-      "selectedPublicationPaths": 44,
-      "newPaths": 20
+      "attempts": 2,
+      "newQaJobs": 2,
+      "inheritedQaJobs": 360,
+      "totalQaJobs": 362,
+      "inheritedWipPaths": 0,
+      "selectedPublicationPaths": 68,
+      "offlineMediaFiles": 17,
+      "qaAndProofFiles": 21,
+      "workflowFiles": 7,
+      "notes": "Offline illustrated productprogress only; no gameplay claimed. One corrective repeat for observed opticaldoubling; both receipts preserved. No inheritedWIP."
     },
     "runMeasurement": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,
-      "newImages": 0,
-      "imagegenCalls": 0,
-      "targetedCorrections": 0,
+      "gameplaySteps": 0,
+      "newImages": 7,
+      "imagegenCalls": 9,
+      "targetedCorrections": 2,
+      "reusedSelectedImages": 1,
+      "selectedImages": 8,
+      "rawOutputs": 9,
       "scenarios": 1,
-      "attempts": 3,
-      "newQaJobs": 3,
-      "inheritedQaJobs": 357,
-      "totalQaJobs": 360,
-      "inheritedWipPaths": 24,
-      "qaProofFilesAdded": 18,
-      "workflowFilesModifiedOrAdded": 5,
-      "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
-      "candidateMetadataFilesModified": 3,
-      "selectedPublicationPaths": 44,
-      "newPaths": 20
+      "attempts": 2,
+      "newQaJobs": 2,
+      "inheritedQaJobs": 360,
+      "totalQaJobs": 362,
+      "inheritedWipPaths": 0,
+      "selectedPublicationPaths": 68,
+      "offlineMediaFiles": 17,
+      "qaAndProofFiles": 21,
+      "workflowFiles": 7,
+      "notes": "Offline illustrated productprogress only; no gameplay claimed. One corrective repeat for observed opticaldoubling; both receipts preserved. No inheritedWIP."
     },
     "deploymentHealth0503": {
       "problem": "Retained Hunters failed deployment hides Cedric/Elara1HP behind En jeu cards; same omission in current renderer",
@@ -48121,7 +48395,7 @@
       "rawReceiptAcceptanceUnchanged": "NOT_ACCEPTED"
     },
     "lastAcceptedProductionCommit": "5e22775",
-    "implementationCommit": "70a8daa5fcb4e233bb3a576e4f9abbbc740b272b",
+    "implementationCommit": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
     "poiUi1903": {
       "status": "ACCEPTED_SCOPED",
       "at": "2026-10-18T19:26:33.504Z",
@@ -48704,12 +48978,11 @@
     },
     "contractSetVersion": "1.9.0",
     "uncommittedWork": {
-      "status": "COHERENT_CHECKPOINT_PUBLISHED",
-      "deliveryCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
-      "inheritedWipPathsPreserved": 24,
+      "status": "FINAL_PROOF_CHECKPOINT_TO_PUBLISH",
+      "inheritedWipPathsPreserved": 0,
       "remainingProductWip": 0
     },
-    "commitReferenceScope": "Delivery1c0c0f72 is published/verified; following metadata-only commit closes this run without claiming self-referential commit hashes.",
+    "commitReferenceScope": "Assembledcandidate9bdc2763 published; final proof/transitioncorrection checkpoint follows. Git and subsequent closure record authoritative, no selfreferential SHA.",
     "nextCinematicAudit": {
       "decision": "OD-2026-10-19-C",
       "status": "SAVED_AND_CONFIGURATION_VERIFIED",
@@ -48789,7 +49062,7 @@
       "qaJobsPreserved": 339,
       "nextAction": "Operator reviews this same fresh 18-drawing flipbook at 6fps and gives a style verdict; then target the visibly jumping poses if this direction is retained."
     },
-    "operatorAuthorization": "OD-2026-10-23-A/B: direct request to update existing recurring task with supplied artistic proposal; scope offline1.9.0 with dedicated approved direction amendment; no scheduler activation requested.",
+    "operatorAuthorization": "Direct24Oct user go on revised village→reassurance→fear→release→clanpriority→concretebilan arc; offline scope OD2026-10-21-A/B and23-A/B. Artistic method/runtime/sixscene permission not inferred. Publication OD2026-10-12-A.",
     "qaToolingJustification": "Version compatible v3 reader/driver only for8paths/26.5s/authoredtransitions; no framework or historicalproof overwrite",
     "campFiveStillsCloseout": {
       "deliveryCommit": "33f2a799c5fcd2219a3368fd1165753644a7dbe9",
@@ -48932,9 +49205,9 @@
       "metadataCommitScope": "Following metadata SHA authoritative in Git/automation memory"
     },
     "preview": {
-      "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v3/index.html",
+      "url": "http://127.0.0.1:5461/bois_clair_sacrificed/v4/index.html",
       "pid": 21636,
-      "role": "Intentionally retained read-only localhost review server for operator; no QA worker running"
+      "role": "Intentionally retained localhost review server; no QA worker running"
     },
     "poseV3Proof": {
       "runId": "codex-pose-v3-proof-20261023T0745Z",
@@ -48954,6 +49227,45 @@
         "v3Files": 40,
         "allMatch": true,
         "rule": ".gitattributes v3-only -text with default whitespace checks plus cr-at-eol"
+      }
+    },
+    "poseV4Review": {
+      "runId": "codex-bois-v4-20261024T0455Z",
+      "record": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-closeout.json",
+      "status": {
+        "generation": "GENERATED",
+        "technical": "TECHNICALLY_VERIFIED",
+        "art": "ART_NEEDS_CORRECTION",
+        "readiness": "IN_PROGRESS",
+        "operatorMethodAcceptance": "PENDING",
+        "runtime": "NOT_ADOPTED",
+        "generalizationAllowed": false
+      },
+      "counts": {
+        "runtimeSourceFilesModified": 0,
+        "gameplayFilesModified": 0,
+        "gameplaySteps": 0,
+        "newImages": 7,
+        "imagegenCalls": 9,
+        "targetedCorrections": 2,
+        "reusedSelectedImages": 1,
+        "selectedImages": 8,
+        "rawOutputs": 9,
+        "scenarios": 1,
+        "attempts": 2,
+        "newQaJobs": 2,
+        "inheritedQaJobs": 360,
+        "totalQaJobs": 362,
+        "inheritedWipPaths": 0,
+        "selectedPublicationPaths": 68,
+        "offlineMediaFiles": 17,
+        "qaAndProofFiles": 21,
+        "workflowFiles": 7,
+        "notes": "Offline illustrated productprogress only; no gameplay claimed. One corrective repeat for observed opticaldoubling; both receipts preserved. No inheritedWIP."
+      },
+      "publication": {
+        "status": "FINAL_CHECKPOINT_PENDING",
+        "authority": "OD-2026-10-12-A"
       }
     }
   },
@@ -49047,21 +49359,24 @@
   "runMeasurement": {
     "runtimeSourceFilesModified": 0,
     "gameplayFilesModified": 0,
-    "newImages": 0,
-    "imagegenCalls": 0,
-    "targetedCorrections": 0,
+    "gameplaySteps": 0,
+    "newImages": 7,
+    "imagegenCalls": 9,
+    "targetedCorrections": 2,
+    "reusedSelectedImages": 1,
+    "selectedImages": 8,
+    "rawOutputs": 9,
     "scenarios": 1,
-    "attempts": 3,
-    "newQaJobs": 3,
-    "inheritedQaJobs": 357,
-    "totalQaJobs": 360,
-    "inheritedWipPaths": 24,
-    "qaProofFilesAdded": 18,
-    "workflowFilesModifiedOrAdded": 5,
-    "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
-    "candidateMetadataFilesModified": 3,
-    "selectedPublicationPaths": 44,
-    "newPaths": 20
+    "attempts": 2,
+    "newQaJobs": 2,
+    "inheritedQaJobs": 360,
+    "totalQaJobs": 362,
+    "inheritedWipPaths": 0,
+    "selectedPublicationPaths": 68,
+    "offlineMediaFiles": 17,
+    "qaAndProofFiles": 21,
+    "workflowFiles": 7,
+    "notes": "Offline illustrated productprogress only; no gameplay claimed. One corrective repeat for observed opticaldoubling; both receipts preserved. No inheritedWIP."
   },
   "deferredDemoTask": {
     "status": "DEFERRED_BY_OD-2026-10-03-A_NOT_DELETED",
@@ -49186,9 +49501,8 @@
     }
   },
   "uncommittedWork": {
-    "status": "COHERENT_CHECKPOINT_PUBLISHED",
-    "deliveryCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
-    "inheritedWipPathsPreserved": 24,
+    "status": "FINAL_PROOF_CHECKPOINT_TO_PUBLISH",
+    "inheritedWipPathsPreserved": 0,
     "remainingProductWip": 0
   },
   "publicationHistory": [
@@ -49343,21 +49657,24 @@
   "runStatistics": {
     "runtimeSourceFilesModified": 0,
     "gameplayFilesModified": 0,
-    "newImages": 0,
-    "imagegenCalls": 0,
-    "targetedCorrections": 0,
+    "gameplaySteps": 0,
+    "newImages": 7,
+    "imagegenCalls": 9,
+    "targetedCorrections": 2,
+    "reusedSelectedImages": 1,
+    "selectedImages": 8,
+    "rawOutputs": 9,
     "scenarios": 1,
-    "attempts": 3,
-    "newQaJobs": 3,
-    "inheritedQaJobs": 357,
-    "totalQaJobs": 360,
-    "inheritedWipPaths": 24,
-    "qaProofFilesAdded": 18,
-    "workflowFilesModifiedOrAdded": 5,
-    "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
-    "candidateMetadataFilesModified": 3,
-    "selectedPublicationPaths": 44,
-    "newPaths": 20
+    "attempts": 2,
+    "newQaJobs": 2,
+    "inheritedQaJobs": 360,
+    "totalQaJobs": 362,
+    "inheritedWipPaths": 0,
+    "selectedPublicationPaths": 68,
+    "offlineMediaFiles": 17,
+    "qaAndProofFiles": 21,
+    "workflowFiles": 7,
+    "notes": "Offline illustrated productprogress only; no gameplay claimed. One corrective repeat for observed opticaldoubling; both receipts preserved. No inheritedWIP."
   },
   "qaToolingJustification": "Version compatible v3 reader/driver only for8paths/26.5s/authoredtransitions; no framework or historicalproof overwrite",
   "retainedRunArtifacts": {
@@ -49382,8 +49699,8 @@
     "preparation": "Native rest/revival before further combat;130gold/rest60",
     "scope": "Fresh opening-to-first-refuge1366normal; no full-demo/balance/OS campaign claim"
   },
-  "implementationCommit": "1c0c0f72b0e6792db7b8bfc77b3eca22b24ef16f",
-  "authorizedWorkContinuation": "Direct last-save task complete in scoped implementation/proof. Publish selected coherent dev checkpoint under OD-2026-10-12-A without routine confirmation; retain original native07 proof and current copy scope separately.",
+  "implementationCommit": "9bdc27634dda92e48843bd96b3fccfe8b5f51dc5",
+  "authorizedWorkContinuation": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance. Preserve actually saved scheduler status; this manual go is not scheduleractivation.",
   "publication1214History": {
     "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
     "reviewedCheckpoint": "b73f0bedf1b5c6b6ec909ed6918a35362e08339a",
@@ -50364,21 +50681,24 @@
   "currentRunMeasurement": {
     "runtimeSourceFilesModified": 0,
     "gameplayFilesModified": 0,
-    "newImages": 0,
-    "imagegenCalls": 0,
-    "targetedCorrections": 0,
+    "gameplaySteps": 0,
+    "newImages": 7,
+    "imagegenCalls": 9,
+    "targetedCorrections": 2,
+    "reusedSelectedImages": 1,
+    "selectedImages": 8,
+    "rawOutputs": 9,
     "scenarios": 1,
-    "attempts": 3,
-    "newQaJobs": 3,
-    "inheritedQaJobs": 357,
-    "totalQaJobs": 360,
-    "inheritedWipPaths": 24,
-    "qaProofFilesAdded": 18,
-    "workflowFilesModifiedOrAdded": 5,
-    "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
-    "candidateMetadataFilesModified": 3,
-    "selectedPublicationPaths": 44,
-    "newPaths": 20
+    "attempts": 2,
+    "newQaJobs": 2,
+    "inheritedQaJobs": 360,
+    "totalQaJobs": 362,
+    "inheritedWipPaths": 0,
+    "selectedPublicationPaths": 68,
+    "offlineMediaFiles": 17,
+    "qaAndProofFiles": 21,
+    "workflowFiles": 7,
+    "notes": "Offline illustrated productprogress only; no gameplay claimed. One corrective repeat for observed opticaldoubling; both receipts preserved. No inheritedWIP."
   },
   "standingDevPublicationAuthorization": {
     "decision": "OD-2026-10-12-A",
@@ -50415,7 +50735,7 @@
     "scope": "POI_POST_LOT_E_PC_FINISHING",
     "history": "recurringPoiConfiguration.previousRootFields.demoCompletionFocus"
   },
-  "nextScheduledExecutionDirective": "Au prochain run effectivement déclenché : préflight/verrou/synchronisation, puis reprendre le nouveau pilote bois_clair_sacrificed/v2 s'il existe ; sinon relire victoire village_raid/missionGreed=true et frontière avant village_raid_aftermath:1/provisions, inspecter V2/décor/ancienne version, écrire partition de poses et fiches avant imagegen intégré. Comparer images et montage sans légendes ; attendre acceptation artistique explicite de la méthode par l'opérateur avant les six autres. Statut scheduler PAUSED préservé, aucune génération dans cette configuration.",
+  "nextScheduledExecutionDirective": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance. Preserve actually saved scheduler status; this manual go is not scheduleractivation.",
   "poiMigration": {
     "operatorDecisionId": "OD-2026-10-13-D",
     "taskId": "PRODUCTION-CONTRACTS-POI-NAVIGATION-1",
@@ -50650,7 +50970,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-24T05:26:34.883Z",
+  "heartbeat": "2026-10-24T05:44:10.346Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -52628,21 +52948,24 @@
   "runMetrics": {
     "runtimeSourceFilesModified": 0,
     "gameplayFilesModified": 0,
-    "newImages": 0,
-    "imagegenCalls": 0,
-    "targetedCorrections": 0,
+    "gameplaySteps": 0,
+    "newImages": 7,
+    "imagegenCalls": 9,
+    "targetedCorrections": 2,
+    "reusedSelectedImages": 1,
+    "selectedImages": 8,
+    "rawOutputs": 9,
     "scenarios": 1,
-    "attempts": 3,
-    "newQaJobs": 3,
-    "inheritedQaJobs": 357,
-    "totalQaJobs": 360,
-    "inheritedWipPaths": 24,
-    "qaProofFilesAdded": 18,
-    "workflowFilesModifiedOrAdded": 5,
-    "notes": "24 inherited WIP paths preserved; current run adds18 QA/proof files and1 handoff, modifies3 candidate metadata files plus5 workflow paths (including byte-preserving .gitattributes). No runtime/product source or media changes.",
-    "candidateMetadataFilesModified": 3,
-    "selectedPublicationPaths": 44,
-    "newPaths": 20
+    "attempts": 2,
+    "newQaJobs": 2,
+    "inheritedQaJobs": 360,
+    "totalQaJobs": 362,
+    "inheritedWipPaths": 0,
+    "selectedPublicationPaths": 68,
+    "offlineMediaFiles": 17,
+    "qaAndProofFiles": 21,
+    "workflowFiles": 7,
+    "notes": "Offline illustrated productprogress only; no gameplay claimed. One corrective repeat for observed opticaldoubling; both receipts preserved. No inheritedWIP."
   },
   "operatorAcceptedAssets": {
     "decision": "OD-2026-10-18-E",
@@ -53612,7 +53935,12 @@
     "runEndedAt": "2026-10-21T07:27:54.989Z",
     "elapsedMinutes": 30.84
   },
-  "blockedBy": null,
+  "blockedBy": {
+    "subtask": "Maelor04/06",
+    "reason": "ART_NEEDS_CORRECTION_AND_THIS_RUN_IMAGE_CORRECTION_LIMIT",
+    "scope": "No globalPC/runtime blocker; no repeatedimagegeneration thisrun",
+    "record": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-closeout.json"
+  },
   "illustratedCinematicsAutonomy": {
     "schemaVersion": 1,
     "operatorDecisionId": "OD-2026-10-21-A",
@@ -53759,7 +54087,7 @@
         "runtimeIntegrated": false
       }
     ],
-    "firstAction": "Resume bois_clair_saved/v1 without regenerating its5selected illustrations. Copy preserved arrival smoke to saved/v1, adapt paths/mediaSHA only (same5images/4dissolves/18s/0,4,7,10,13), retain every assertion and unique receipt. Observe normal18s and inspect relevant captures before READY; then bois_clair_sacrificed. Camp/audience/arrival/proven reader unchanged.",
+    "firstAction": "Correct only Maelor04/06 from the recorded visible defects in a later bounded pass, changing composition/pose rather than repeating prompts; preserve village/woman/closedcrate work and all versions. No sixscene generalization before explicit operator images+montage method acceptance.",
     "completionPolicy": "Each reviewed offline delivery becomes READY_FOR_OPERATOR_REVIEW; advance to next pending scene without routine approval; all seven delivered -> single operator review handoff.",
     "preserve": {
       "qaJobs": 339,
@@ -53793,7 +54121,76 @@
     "runEndedAt": "2026-10-21T07:48:51.048Z",
     "elapsedMinutes": 14.15,
     "executionDecisionId": "OD-2026-10-21-B",
-    "executionDecisionPath": "docs/autonomy/ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md"
+    "executionDecisionPath": "docs/autonomy/ILLUSTRATED_AUTOMATION_EXECUTION_2026-10-21.md",
+    "currentPilot": {
+      "id": "bois_clair_sacrificed",
+      "version": "v4",
+      "status": "GENERATED_ART_NEEDS_CORRECTION",
+      "generation": "GENERATED",
+      "technical": "TECHNICALLY_VERIFIED",
+      "art": "ART_NEEDS_CORRECTION",
+      "readiness": "IN_PROGRESS",
+      "operatorMethodAcceptance": "PENDING",
+      "runtime": "NOT_ADOPTED",
+      "generalizationAllowed": false,
+      "candidatePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html",
+      "storyboardPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/storyboard.md",
+      "provenancePath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/provenance.json",
+      "operatorDirection": "docs/autonomy/BOIS_CLAIR_NARRATIVE_REVISION_2026-10-24.md",
+      "proposedDurationSeconds": 26.5,
+      "plannedImages": 8,
+      "plannedInitialImages": 7,
+      "reusedImages": 1,
+      "previousVersion": {
+        "version": "v3",
+        "historicalTechnical": "TECHNICALLY_VERIFIED",
+        "historicalReadiness": "READY_FOR_OPERATOR_REVIEW",
+        "operatorReview": "ART_NEEDS_CORRECTION",
+        "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v3/review-receipt.json"
+      },
+      "schedulerObserved": {
+        "status": "PAUSED",
+        "reasoningEffort": "xhigh",
+        "cadenceMinutes": 90,
+        "sha256": "25b8b9af6a771b342b9c7c495c0fb78ebe24f333875aa403a1327f9bacc3cc07",
+        "changed": false
+      },
+      "initialImages": 7,
+      "targetedCorrections": 2,
+      "progressUpdatedAt": "2026-10-24T05:44:10.346Z",
+      "readerPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html",
+      "reviewPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review.md",
+      "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-receipt.json",
+      "closeoutPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-closeout.json",
+      "issues": [
+        {
+          "id": "MAELOR_04_GESTURE_DIRECTION",
+          "status": "OPEN",
+          "visible": "Right palm opens screenLEFT, away from womanRIGHT, although head/torso address her. Reassurance not clear enough.",
+          "next": "Recompose Maelor torso/arms to place an empty open hand into the central relationship gap, preserve left closedbook and woman posture; no identical retry."
+        },
+        {
+          "id": "MAELOR_06_BOTH_ARMS_RELEASE",
+          "status": "OPEN",
+          "visible": "Right arm drops; left elbow/book remain at hip/upperthigh. Requested botharm release incomplete.",
+          "next": "Make leftelbow/book visibly descend beside thigh and shoulder engagement release while retaining ownership; check against04 and07 at comparable scale."
+        },
+        {
+          "id": "MAELOR_08_GLOVE_GUARD",
+          "status": "LIMIT",
+          "visible": "Glove adjacent guard/sheath; no clear unsheathing, attack or unambiguous weapon clearance claimed."
+        }
+      ],
+      "transitions": {
+        "cuts": 6,
+        "dissolves": 1,
+        "fadeSeconds": [
+          0.65
+        ],
+        "reducedFadeSeconds": 0.4
+      },
+      "lastReviewedAt": "2026-10-24T05:44:10.346Z"
+    }
   },
   "automationExecutionUnblock": {
     "decisionId": "OD-2026-10-21-B",
@@ -54075,15 +54472,29 @@
       "currentHandoff": "docs/autonomy/handoffs/2026-10-22T0404Z-codex-lion-trial-correction.md"
     },
     "publishedDeliveryCommit": "71cbee140928c132a02f7df9b2e61469a6428bbf",
-    "finalReview": "PASS_CONFIG_1_9_CLOSEOUT"
+    "finalReview": "PASS_CONFIG_1_9_CLOSEOUT",
+    "currentExecution": {
+      "runId": "codex-bois-v4-20261024T0455Z",
+      "version": "v4",
+      "status": {
+        "generation": "GENERATED",
+        "technical": "TECHNICALLY_VERIFIED",
+        "art": "ART_NEEDS_CORRECTION",
+        "readiness": "IN_PROGRESS",
+        "operatorMethodAcceptance": "PENDING",
+        "runtime": "NOT_ADOPTED",
+        "generalizationAllowed": false
+      },
+      "record": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-closeout.json"
+    }
   },
   "illustratedPosePilot": {
     "id": "bois_clair_sacrificed",
     "version": "v4",
-    "status": "STORYBOARD_PREPARED",
+    "status": "GENERATED_ART_NEEDS_CORRECTION",
     "generation": "GENERATED",
-    "technical": "NOT_VERIFIED",
-    "art": "ART_REVIEW_PENDING",
+    "technical": "TECHNICALLY_VERIFIED",
+    "art": "ART_NEEDS_CORRECTION",
     "readiness": "IN_PROGRESS",
     "operatorMethodAcceptance": "PENDING",
     "runtime": "NOT_ADOPTED",
@@ -54112,18 +54523,61 @@
     },
     "initialImages": 7,
     "targetedCorrections": 2,
-    "progressUpdatedAt": "2026-10-24T05:26:34.883Z",
+    "progressUpdatedAt": "2026-10-24T05:44:10.346Z",
     "readerPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/index.html",
-    "reviewPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review.md"
+    "reviewPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review.md",
+    "receiptPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-receipt.json",
+    "closeoutPath": "tools/cinematics/candidates/illustrated-sequences/bois_clair_sacrificed/v4/review-closeout.json",
+    "issues": [
+      {
+        "id": "MAELOR_04_GESTURE_DIRECTION",
+        "status": "OPEN",
+        "visible": "Right palm opens screenLEFT, away from womanRIGHT, although head/torso address her. Reassurance not clear enough.",
+        "next": "Recompose Maelor torso/arms to place an empty open hand into the central relationship gap, preserve left closedbook and woman posture; no identical retry."
+      },
+      {
+        "id": "MAELOR_06_BOTH_ARMS_RELEASE",
+        "status": "OPEN",
+        "visible": "Right arm drops; left elbow/book remain at hip/upperthigh. Requested botharm release incomplete.",
+        "next": "Make leftelbow/book visibly descend beside thigh and shoulder engagement release while retaining ownership; check against04 and07 at comparable scale."
+      },
+      {
+        "id": "MAELOR_08_GLOVE_GUARD",
+        "status": "LIMIT",
+        "visible": "Glove adjacent guard/sheath; no clear unsheathing, attack or unambiguous weapon clearance claimed."
+      }
+    ],
+    "transitions": {
+      "cuts": 6,
+      "dissolves": 1,
+      "fadeSeconds": [
+        0.65
+      ],
+      "reducedFadeSeconds": 0.4
+    },
+    "lastReviewedAt": "2026-10-24T05:44:10.346Z"
   },
   "latestHandoff": "docs/autonomy/handoffs/2026-10-24T0455Z-codex-bois-v4.md",
   "runCounts": {
     "runtimeSourceFilesModified": 0,
+    "gameplayFilesModified": 0,
+    "gameplaySteps": 0,
     "newImages": 7,
     "imagegenCalls": 9,
     "targetedCorrections": 2,
-    "scenarios": 0,
+    "reusedSelectedImages": 1,
+    "selectedImages": 8,
+    "rawOutputs": 9,
+    "scenarios": 1,
+    "attempts": 2,
+    "newQaJobs": 2,
+    "inheritedQaJobs": 360,
+    "totalQaJobs": 362,
     "inheritedWipPaths": 0,
-    "preservedInheritedQaJobs": 360
+    "selectedPublicationPaths": 68,
+    "offlineMediaFiles": 17,
+    "qaAndProofFiles": 21,
+    "workflowFiles": 7,
+    "notes": "Offline illustrated productprogress only; no gameplay claimed. One corrective repeat for observed opticaldoubling; both receipts preserved. No inheritedWIP."
   }
 }
