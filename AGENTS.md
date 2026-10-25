@@ -78,11 +78,11 @@ Codex starts subagents only when authorized. The recurring instruction authorize
 
 ## Current priority
 
-The live state's `nextAction` and `taskQueue` give the exact next step. The order set by OD-2026-10-25-A:
+The live state's `nextAction` and `taskQueue` give the exact next step. The order set by OD-2026-10-25-B ([combat VFX priority](docs/autonomy/COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md)), after the OD-2026-10-25-A cleanup (done):
 
-1. Cleanup before product work: test baseline (N1) and state archive (N2) are done; then entry documents (N5), agents and skills (N4), WIP branch archive tags (N3).
-2. OD-2026-10-24-B flow pilot ([direction](docs/autonomy/PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md)): Claude writes the narrative frame player with the fixed master as fallback; Codex produces the Alistair four-frame idle candidate in a dedicated session; then one complete Alistair combat action.
-3. Bois-Clair relational finishing under the [static narrative plan](docs/autonomy/STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md), the dialogue → choice → combat → consequence flow, then combat VFX action by action.
+1. Combat skill actions and the VFX Composer lab, one family at a time ([coverage](docs/reports/combat-vfx-coverage-2026-10-25.md)): first restore the procedural fallback where a sheet is missing, then contact, projectiles, heals/buffs/statuses, movement and boss signatures, each composed in the lab, published, validated and checked in the Combat Stage with normal and reduced motion. Artistic acceptance stays with the operator.
+2. OD-2026-10-24-B narrative pilot, paused: the frame player is delivered and inert on `dev` (empty registry); no Codex session for the Alistair idle frames until the operator resumes it.
+3. Bois-Clair relational finishing under the [static narrative plan](docs/autonomy/STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md) and the dialogue → choice → combat → consequence flow.
 4. Operator PC playtest, then the mobile pass. [Demo completion plan](docs/autonomy/DEMO_COMPLETION_PLAN.md).
 
 ## Standing constraints

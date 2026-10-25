@@ -1,112 +1,99 @@
 {
-  "status": "READY_FOR_ALISTAIR_IDLE_CANDIDATE",
-  "runStartedAt": "2026-10-25T07:09:32Z",
-  "runEndedAt": "2026-10-25T07:31:05Z",
-  "activeTask": "PLAYABLE_FLOW_SPRITE_VFX_PILOT",
-  "activePhase": "FRAME_PLAYER_READY",
-  "activeSubtask": "Lecteur d'animation par frames intégré à NarrativeSceneSurface, registre vide ; attend le candidat Alistair de la session Codex dédiée",
+  "status": "READY_FOR_COMBAT_VFX_LOT0",
+  "runStartedAt": "2026-10-25T08:14:10Z",
+  "runEndedAt": "2026-10-25T08:16:43Z",
+  "activeTask": "COMBAT_SKILL_ACTIONS_VFX",
+  "activePhase": "PRIORITY_RECORDED_COVERAGE_AUDITED",
+  "activeSubtask": "OD-2026-10-25-B consignée ; couverture des 34 actions de démo mesurée (3 effets visibles) ; lot 0, repli procédural, à démarrer ; mode d'auteur à confirmer",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "033e3a99cc3b05e6bdf510cc179ffcc079376106",
-  "lastPushedCommit": "033e3a99cc3b05e6bdf510cc179ffcc079376106",
+  "lastKnownGoodCommit": "3e036189a29efb371a3282f7e39240c55447dafc",
+  "lastPushedCommit": "3e036189a29efb371a3282f7e39240c55447dafc",
   "completedThisRun": [
     "Préflight propre et verrou exclusif (agent claude)",
-    "NarrativeActorFramePlayer : horloge unique bornée, master en fallback, mouvement réduit OS/jeu, page cachée, dispose, écouteurs paresseux, garde de la couche optionnelle",
-    "Intégration NarrativeSceneSurface : option frameBindings, sync à chaque phase montée, refresh au mount, dispose ; registre vide, tableaux inchangés",
-    "19 tests du lecteur et de la surface ; deux mutations vérifiées ; un saut de frame au montage trouvé et corrigé",
-    "Disponibilité des frames sur load : Chromium retient decode() dans une fenêtre qui ne peint pas, ce qui rendait la borne de 750 ms définitive",
-    "Essai réel Chromium sur CAMP_DEPARTURE_TABLEAU avec frames de fixture, serveur arrêté",
-    "Revues narrative-tableau et combat-vfx-sprites sans point bloquant, corrections appliquées"
+    "OD-2026-10-25-B consignée : Composer VFX et actions de combat en priorité, pilote narratif Alistair en pause",
+    "Inventaire des 34 actions de démo du lab, vérifié par une sonde vite-node non commitée : 3 SPRITE, 31 SKIPPED (13 sans autre étape)",
+    "Causes vérifiées : planches retirées sautées, repli procédural supprimé par actionHasSpritesheetVfx, registre publié vide, poses dash/attack/cast jamais appliquées",
+    "AGENTS.md, protocole §9, registre des décisions et index des rapports alignés"
   ],
   "filesChanged": [
-    "src/cinematics/NarrativeActorFrames.ts",
-    "src/cinematics/NarrativeActorFrames.test.ts",
-    "src/cinematics/NarrativeSceneSurface.ts",
+    "docs/autonomy/COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md",
+    "docs/reports/combat-vfx-coverage-2026-10-25.md",
+    "docs/reports/INDEX.md",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "AGENTS.md",
+    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-25T0709Z-claude-frame-player.md"
+    "docs/autonomy/handoffs/2026-10-25T0814Z-claude-vfx-priority.md"
   ],
   "testsRun": [
-    "npx vitest run NarrativeActorFrames, NarrativeSceneSurface, NarrativeStage",
-    "mutations : refresh de mount() retiré, garde retirée",
-    "npm test",
-    "npx tsc --noEmit",
-    "npm run build",
+    "sonde vite-node getGroupedActionsInScope/getVfxPreset/VFX_SPRITE_SHEETS",
     "contracts:validate",
-    "cinematics:validate-narrative-staging",
     "LOCKED baseline gate",
-    "git diff --check",
-    "essai Chromium via preview_start (rpg-dev)"
+    "git diff --check"
   ],
   "testsPassed": [
-    "ciblés : 69/69 (19 nouveaux)",
-    "chaque mutation fait échouer le test attendu",
-    "npm test : 161 fichiers vitest, 2833 tests, puis node:test 26/26",
-    "tsc PASS",
-    "build PASS (avertissement de taille de chunk préexistant)",
+    "sonde : 34 actions, 3 SPRITE, 31 SKIPPED",
     "contracts:validate PASS",
-    "narrative staging PASS",
     "LOCKED gate vide",
-    "git diff --check propre",
-    "Chromium : STILL sous réduction OS ; avec decode() retenu, boucle 0→1→2→3→0 à 250 ms, bascule OS immédiate, FALLBACK_MASTER sur frame absente, 0 écouteur après dispose"
+    "git diff --check propre"
   ],
-  "testsRemaining": [
-    "Boucle réelle à taille de jeu sur les frames du candidat Alistair (après la session Codex)"
-  ],
+  "testsRemaining": [],
   "blockers": [],
   "remainingWork": [
-    "Candidat alistair-idle/v1 par une session Codex dédiée (opérateur), puis liaison et revue visuelle",
-    "Une action combat complète d’Alistair",
-    "Finition Maelor/habitante, raccords dialogue/choix/combat/conséquence",
-    "Attaque/réaction et VFX action par action avec ressources existantes",
-    "Art/global PC opérateur puis mobile"
+    "Lot 0 : repli procédural et test de visibilité des 34 actions",
+    "Lots 1 à 5 : contact, projectiles, soins/bénédictions/altérations, déplacement, signatures de boss, dans le Composer",
+    "Attaques de base ennemies et objets de boutique (clés publiées génériques attack et item)",
+    "Interface de chorégraphie par beats du Composer, QA navigateur du filtre de démo",
+    "Pilote narratif Alistair (en pause), finition Bois-Clair, playtest PC puis mobile"
   ],
-  "nextAction": "Côté opérateur : lancer la session Codex dédiée qui produit tools/characters/candidates/alistair-idle/v1/ selon docs/autonomy/PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md : quatre frames traitées en PNG séparés, 512×512, même ancrage des pieds que le master, avec provenance. Ensuite côté Claude : ajouter la liaison CAMP_DEPARTURE_TABLEAU / CAMP_DEPARTURE / alistair (avec le master attendu) à NARRATIVE_ACTOR_FRAME_BINDINGS, vérifier la boucle à taille de jeu, sans flash et face au miroir, soumettre la comparaison à l'opérateur, puis une action combat complète d'Alistair.",
+  "nextAction": "Lot 0 d'OD-2026-10-25-B : dans legacyCombatRuntime.js, faire compter à actionHasSpritesheetVfx seulement les planches qui se résolvent (VFX_SPRITE_SHEETS), pour que le repli procédural (castTelegraph) revienne sur les 31 actions de démo dont la planche est retirée ; ajouter un test qui garantit que chaque action de démo affiche une planche résolue ou le repli ; corriger flowSpriteDirection.combatFacts.vfxBasePresent. Puis lot 1 (contact) dans le Composer, selon le mode d'auteur confirmé par l'opérateur.",
   "taskQueue": [
-    "Côté opérateur : lancer la session Codex dédiée qui produit tools/characters/candidates/alistair-idle/v1/ selon docs/autonomy/PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md : quatre frames traitées en PNG séparés, 512×512, même ancrage des pieds que le master, avec provenance. Ensuite côté Claude : ajouter la liaison CAMP_DEPARTURE_TABLEAU / CAMP_DEPARTURE / alistair (avec le master attendu) à NARRATIVE_ACTOR_FRAME_BINDINGS, vérifier la boucle à taille de jeu, sans flash et face au miroir, soumettre la comparaison à l'opérateur, puis une action combat complète d'Alistair.",
-    "Finition relationnelle Bois-Clair et cohérence de la tranche jouée",
-    "Compléter VFX contact/projectile/soin/statut selon actions réelles",
-    "Extension casting après progrès visible, playtest PC puis mobile"
+    "Lot 0 d'OD-2026-10-25-B : dans legacyCombatRuntime.js, faire compter à actionHasSpritesheetVfx seulement les planches qui se résolvent (VFX_SPRITE_SHEETS), pour que le repli procédural (castTelegraph) revienne sur les 31 actions de démo dont la planche est retirée ; ajouter un test qui garantit que chaque action de démo affiche une planche résolue ou le repli ; corriger flowSpriteDirection.combatFacts.vfxBasePresent. Puis lot 1 (contact) dans le Composer, selon le mode d'auteur confirmé par l'opérateur.",
+    "Lot 1 contact : attaques de base épée/dague/lance, Brise-garde, Lame maudite, Attaque sournoise, Estocade longue, frappes ennemies",
+    "Lot 2 projectiles, lot 3 soins/bénédictions/altérations, lot 4 déplacement, lot 5 signatures de boss",
+    "Pilote narratif Alistair (en pause), finition relationnelle Bois-Clair, playtest PC puis mobile"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_PRESENTATION_ONLY_NO_CONTRACT_CHANGE_REVIEWS_NO_BLOCKER",
-  "runId": "claude-frame-player-20261025T0709Z",
+  "contractComplianceStatus": "PASS_GOVERNANCE_AND_REPORT_NO_CONTRACT_CHANGE",
+  "runId": "claude-vfx-priority-20261025T0814Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-10-25T07:31:05Z",
-  "heartbeat": "2026-10-25T07:31:05Z",
+  "lastHeartbeat": "2026-10-25T08:16:43Z",
+  "heartbeat": "2026-10-25T08:16:43Z",
   "wip": null,
   "uncommittedWork": [],
   "providerTasksPending": [],
   "blockedBy": null,
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-25T0709Z-claude-frame-player.md",
-  "latestHandoff": "docs/autonomy/handoffs/2026-10-25T0709Z-claude-frame-player.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-25T0814Z-claude-vfx-priority.md",
+  "latestHandoff": "docs/autonomy/handoffs/2026-10-25T0814Z-claude-vfx-priority.md",
   "previousRun": {
-    "runId": "claude-wip-archive-20261025T0538Z",
-    "runEndedAt": "2026-10-25T05:42:38Z",
-    "activeTask": "WIP_BRANCH_ARCHIVE",
-    "commit": "033e3a99cc3b05e6bdf510cc179ffcc079376106"
+    "runId": "claude-frame-player-20261025T0709Z",
+    "runEndedAt": "2026-10-25T07:31:05Z",
+    "activeTask": "PLAYABLE_FLOW_SPRITE_VFX_PILOT",
+    "commit": "3e036189a29efb371a3282f7e39240c55447dafc"
   },
   "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
   "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
   "runMetrics": {
-    "runtimeSourceFilesModified": 2,
-    "runtimeSourceFilesAdded": 1,
+    "runtimeSourceFilesModified": 0,
     "gameplayFilesModified": 0,
-    "testFilesModified": 1,
+    "testFilesModified": 0,
     "newMedia": 0,
     "imagegenCalls": 0,
-    "qaScenarios": 1,
+    "qaScenarios": 0,
     "newQaJobs": 0,
     "inheritedQaJobs": 365,
     "liveQaJobsAfter": 3,
     "inheritedWipPaths": 0,
-    "workflowFiles": 3,
-    "productProgress": 1
+    "workflowFiles": 9,
+    "taskReports": 1,
+    "productProgress": 0
   },
   "contractSetVersion": "1.10.0",
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "operatorPriority": "Pilote OD-2026-10-24-B : lecteur prêt ; frames Alistair par une session Codex dédiée, puis liaison, revue visuelle et une action combat ; ensuite finition Bois-Clair et VFX ; zéro vidéo",
-  "operatorAuthorization": "OD-2026-10-25-A : Claude écrivain principal interactif, agent claude sous le même verrou, dev seulement, serveurs en mode mixte, protocole interactif allégé ; tests et état d'abord, puis nettoyage et pilote Alistair (frames Codex, lecteur Claude). Aucun amendement de contrat.",
-  "commitReferenceScope": "Lecteur d'animation par frames sur 033e3a99cc3b05e6bdf510cc179ffcc079376106 ; code de présentation et tests seulement, registre vide, aucun média, contrat ni état de jeu. Le SHA du commit de clôture fait foi dans Git.",
+  "operatorPriority": "OD-2026-10-25-B : Composer VFX et actions de compétence du combat tactique et du Combat Stage, une famille à la fois ; pilote narratif Alistair en pause ; puis Bois-Clair, playtest PC et mobile ; zéro vidéo",
+  "operatorAuthorization": "OD-2026-10-25-A : Claude écrivain principal interactif, agent claude sous le même verrou, dev seulement, serveurs en mode mixte, protocole interactif allégé ; tests et état d'abord, puis nettoyage et pilote Alistair (frames Codex, lecteur Claude). Aucun amendement de contrat. OD-2026-10-25-B : priorité au Composer VFX et aux actions de combat, pilote Alistair en pause, art opérateur, aucun amendement.",
+  "commitReferenceScope": "Consignation d'OD-2026-10-25-B et rapport de couverture sur 3e036189a29efb371a3282f7e39240c55447dafc ; aucun changement de code, test, média ou contrat. Le SHA du commit de clôture fait foi dans Git.",
   "autonomousExecutionPolicy": {
     "decisionSource": "docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md",
     "routineOperatorApproval": false,
@@ -447,7 +434,7 @@
   "flowSpriteDirection": {
     "decision": "OD-2026-10-24-B",
     "path": "docs/autonomy/PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md",
-    "status": "FRAME_PLAYER_READY_CANDIDATE_PENDING",
+    "status": "PAUSED_BY_OD-2026-10-25-B_FRAME_PLAYER_INERT",
     "pilot": {
       "actor": "alistair",
       "context": "camp_departure",
@@ -470,7 +457,9 @@
       ],
       "motionPresetsPresent": true,
       "vfxBasePresent": true,
-      "publishedComposerOverrides": 0
+      "publishedComposerOverrides": 0,
+      "vfxBaseResolvableDemoActions": "3/34",
+      "vfxBaseNote": "vfxBasePresent ne vaut que pour les 12 presets pilot_* : 31 des 34 actions de démo pointent vers des planches retirées (docs/reports/combat-vfx-coverage-2026-10-25.md)."
     },
     "scope": "LOCAL_ACTOR_ANIMATION_NOT_CINEMATICS",
     "guardian": "PASS_PREPARATION_ACTUAL_PLAN",
@@ -572,30 +561,30 @@
     "rule": "Kept: protocol fields, run identity, current authority, open/deferred items and current scopes; QA jobs registered after the set 1.10.0 amendment commit. Everything else is unchanged in the snapshot."
   },
   "live": {
-    "lastHeartbeat": "2026-10-25T07:31:05Z",
-    "runId": "claude-frame-player-20261025T0709Z",
+    "lastHeartbeat": "2026-10-25T08:16:43Z",
+    "runId": "claude-vfx-priority-20261025T0814Z",
     "agent": "claude",
-    "status": "READY_FOR_ALISTAIR_IDLE_CANDIDATE",
+    "status": "READY_FOR_COMBAT_VFX_LOT0",
     "wip": null,
-    "nextAction": "Côté opérateur : lancer la session Codex dédiée qui produit tools/characters/candidates/alistair-idle/v1/ selon docs/autonomy/PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md : quatre frames traitées en PNG séparés, 512×512, même ancrage des pieds que le master, avec provenance. Ensuite côté Claude : ajouter la liaison CAMP_DEPARTURE_TABLEAU / CAMP_DEPARTURE / alistair (avec le master attendu) à NARRATIVE_ACTOR_FRAME_BINDINGS, vérifier la boucle à taille de jeu, sans flash et face au miroir, soumettre la comparaison à l'opérateur, puis une action combat complète d'Alistair.",
-    "runEndedAt": "2026-10-25T07:31:05Z",
+    "nextAction": "Lot 0 d'OD-2026-10-25-B : dans legacyCombatRuntime.js, faire compter à actionHasSpritesheetVfx seulement les planches qui se résolvent (VFX_SPRITE_SHEETS), pour que le repli procédural (castTelegraph) revienne sur les 31 actions de démo dont la planche est retirée ; ajouter un test qui garantit que chaque action de démo affiche une planche résolue ou le repli ; corriger flowSpriteDirection.combatFacts.vfxBasePresent. Puis lot 1 (contact) dans le Composer, selon le mode d'auteur confirmé par l'opérateur.",
+    "runEndedAt": "2026-10-25T08:16:43Z",
     "writerStopped": true,
-    "activeTask": "PLAYABLE_FLOW_SPRITE_VFX_PILOT",
-    "activeSubtask": "Lecteur d'animation par frames intégré à NarrativeSceneSurface, registre vide ; attend le candidat Alistair de la session Codex dédiée",
+    "activeTask": "COMBAT_SKILL_ACTIONS_VFX",
+    "activeSubtask": "OD-2026-10-25-B consignée ; couverture des 34 actions de démo mesurée (3 effets visibles) ; lot 0, repli procédural, à démarrer ; mode d'auteur à confirmer",
     "runMetrics": {
-      "runtimeSourceFilesModified": 2,
-      "runtimeSourceFilesAdded": 1,
+      "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,
-      "testFilesModified": 1,
+      "testFilesModified": 0,
       "newMedia": 0,
       "imagegenCalls": 0,
-      "qaScenarios": 1,
+      "qaScenarios": 0,
       "newQaJobs": 0,
       "inheritedQaJobs": 365,
       "liveQaJobsAfter": 3,
       "inheritedWipPaths": 0,
-      "workflowFiles": 3,
-      "productProgress": 1
+      "workflowFiles": 9,
+      "taskReports": 1,
+      "productProgress": 0
     },
     "qaJobArchives": [
       "docs/autonomy/archive/AUTONOMOUS_WORK_STATE_2026-10-25.json"
@@ -891,5 +880,36 @@
         }
       }
     ]
+  },
+  "combatVfxPriority20261025": {
+    "decision": "OD-2026-10-25-B",
+    "path": "docs/autonomy/COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md",
+    "coverageReport": "docs/reports/combat-vfx-coverage-2026-10-25.md",
+    "baseline": "3e036189a29efb371a3282f7e39240c55447dafc",
+    "demoActions": 34,
+    "spriteVisible": [
+      "w_charge",
+      "w_salvation",
+      "ni_shadow_step"
+    ],
+    "skippedRetiredSheets": 31,
+    "skippedWithoutOtherStep": 13,
+    "rootCauses": [
+      "VfxSystem saute une planche introuvable (VfxSystem.ts:1139-1143)",
+      "actionHasSpritesheetVfx ne regarde que le type d’étape et supprime castTelegraph (legacyCombatRuntime.js:1589-1597, 1692-1696)",
+      "registre publié vide depuis 6c86c96e",
+      "poses dash/attack/cast seulement via étapes de mouvement publiées"
+    ],
+    "plan": [
+      "LOT0_FALLBACK_AND_VISIBILITY_TEST",
+      "LOT1_CONTACT",
+      "LOT2_PROJECTILES",
+      "LOT3_HEAL_BUFF_STATUS",
+      "LOT4_MOVEMENT",
+      "LOT5_BOSS_SIGNATURES"
+    ],
+    "authoringMode": "UNDECIDED_RECOMMENDED_CLAUDE_DRAFTS_OPERATOR_ART",
+    "assets": "PNG CartoonCoffee locaux, jamais commités ; acquisition par le serveur de dev, MEGA_PACK_ROOT jamais lu par les agents",
+    "artisticAcceptance": "OPERATOR"
   }
 }

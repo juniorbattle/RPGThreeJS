@@ -1,16 +1,14 @@
-# Lecteur d’animation prêt — candidat Alistair attendu
+# Actions de combat et Composer VFX en priorité
 
-Run claude-frame-player-20261025T0709Z (agent claude, session interactive), 2026-10-25T07:09:32Z → 2026-10-25T07:31:05Z. Pilote [OD-2026-10-24-B](PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md), côté Claude (étape P2 d’[OD-2026-10-25-A](CLAUDE_INTEGRATION_AND_CLEANUP_OPERATOR_DECISION_2026-10-25.md)).
+Run claude-vfx-priority-20261025T0814Z (agent claude, session interactive), 2026-10-25T08:14:10Z → 2026-10-25T08:16:43Z. [OD-2026-10-25-B](COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md) : l’opérateur demande de se concentrer sur le Composer VFX et de finir les actions de compétence du combat tactique et du Combat Stage. Le pilote narratif Alistair est en pause ; son lecteur reste livré et inerte.
 
-`NarrativeSceneSurface` sait animer un acteur par frames (`src/cinematics/NarrativeActorFrames.ts`). Une seule horloge par surface. Le master V2 reste affiché pendant le chargement, sur échec et en mouvement réduit (OS ou jeu). La boucle s’arrête quand la page est cachée ou au démontage, et tout est libéré au dispose. Aucun état en V6. Le registre est vide : aucun tableau ne change tant que les frames d’Alistair n’existent pas.
-
-npm test : 161 fichiers vitest, 2833 tests, puis node:test 26/26 ; tsc, build, contrats et validateur de mise en scène verts. Revues narrative-tableau et combat-vfx-sprites sans point bloquant.
+[Couverture](../reports/combat-vfx-coverage-2026-10-25.md) : sur 34 actions de démo, 3 affichent leur effet. Les 31 autres pointent vers des planches retirées, sautées en silence, et perdent aussi le repli procédural. Le registre publié est vide.
 
 Contrats 1.10.0 et baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5` inchangés. Scheduler PAUSED, réglages inchangés. `main` protégé.
 
-UNE prochaine action : Côté opérateur : lancer la session Codex dédiée qui produit tools/characters/candidates/alistair-idle/v1/ selon docs/autonomy/PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md : quatre frames traitées en PNG séparés, 512×512, même ancrage des pieds que le master, avec provenance. Ensuite côté Claude : ajouter la liaison CAMP_DEPARTURE_TABLEAU / CAMP_DEPARTURE / alistair (avec le master attendu) à NARRATIVE_ACTOR_FRAME_BINDINGS, vérifier la boucle à taille de jeu, sans flash et face au miroir, soumettre la comparaison à l'opérateur, puis une action combat complète d'Alistair.
+UNE prochaine action : Lot 0 d'OD-2026-10-25-B : dans legacyCombatRuntime.js, faire compter à actionHasSpritesheetVfx seulement les planches qui se résolvent (VFX_SPRITE_SHEETS), pour que le repli procédural (castTelegraph) revienne sur les 31 actions de démo dont la planche est retirée ; ajouter un test qui garantit que chaque action de démo affiche une planche résolue ou le repli ; corriger flowSpriteDirection.combatFacts.vfxBasePresent. Puis lot 1 (contact) dans le Composer, selon le mode d'auteur confirmé par l'opérateur.
 
-Compteurs : {"runtimeSourceFilesModified":2,"runtimeSourceFilesAdded":1,"gameplayFilesModified":0,"testFilesModified":1,"newMedia":0,"imagegenCalls":0,"qaScenarios":1,"newQaJobs":0,"inheritedQaJobs":365,"liveQaJobsAfter":3,"inheritedWipPaths":0,"workflowFiles":3,"productProgress":1}. Handoff : [2026-10-25T0709Z-claude-frame-player.md](handoffs/2026-10-25T0709Z-claude-frame-player.md). Publication normale sur origin autorisée par OD-2026-10-12-A.
+Compteurs : {"runtimeSourceFilesModified":0,"gameplayFilesModified":0,"testFilesModified":0,"newMedia":0,"imagegenCalls":0,"qaScenarios":0,"newQaJobs":0,"inheritedQaJobs":365,"liveQaJobsAfter":3,"inheritedWipPaths":0,"workflowFiles":9,"taskReports":1,"productProgress":0}. Handoff : [2026-10-25T0814Z-claude-vfx-priority.md](handoffs/2026-10-25T0814Z-claude-vfx-priority.md). Publication normale sur origin autorisée par OD-2026-10-12-A.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
