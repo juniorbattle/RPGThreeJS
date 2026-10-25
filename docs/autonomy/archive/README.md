@@ -7,6 +7,7 @@ Historique clos de l'état d'autonomie, sorti de l'état courant par [OD-2026-10
 | `AUTONOMOUS_WORK_STATE_2026-10-25.json` | état complet : 119 clés, bloc `live`, 365 jobs QA | `0f3ff1a4b918e1d710dbbd2ecad38a70e79a8885` | `ff0e2850ffb855c9289e99bcab02cf3de1f390c01da8660a0c7749d32d10b2fc` |
 | `AUTONOMOUS_WORK_STATE_2026-10-25.md` | résumé et liste des 365 jobs QA | `3aa564fecd8df88a73ff2856a33ed37578a006c8` | `27001c6b92be65228d09e2964596f3b32f1727f3c00ef82b58129560217daca4` |
 | `QA_JOB_ORPHANS_2026-10-25.json` | annotation des 15 jobs restés RUNNING | — | — |
+| `WIP_BRANCHES_2026-10-25.md` | inventaire des 13 tags `archive/wip/*` qui remplacent les branches WIP (N3) | — | — |
 
 ## Ce qui reste dans l'état courant
 

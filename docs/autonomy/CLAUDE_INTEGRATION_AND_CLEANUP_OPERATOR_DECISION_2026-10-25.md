@@ -58,3 +58,11 @@ N6 : aucune suppression. N7 : plus tard.
 ## Ce qui ne change pas
 
 Contrats LOCKED et constitution, canon, V6, propriétaires de vérité, zéro vidéo active, audio différé hors exceptions accordées, protection de `main`. Le statut PAUSED du scheduler, sa cadence de 90 minutes et ses autres réglages restent tels quels : Claude ne l'active jamais. Aucune acceptation artistique ni playtest global n'est inféré.
+
+## Exécution
+
+- N1 : base de tests réparée, `6b6cb95e` ([rapport](../reports/test-baseline-repair-2026-10-25.md)).
+- N2 : état archivé et compacté, `c675e5cd` ([archive](archive/README.md)).
+- N5 : documents d'entrée à jour, `f19df89c`.
+- N4 : agents et skills à jour, renvois `.claude/`, `14ea4e2d`.
+- N3 : branches WIP archivées en 13 tags `archive/wip/*` puis supprimées ([inventaire](archive/WIP_BRANCHES_2026-10-25.md)). Correctif du constat d'audit : il y avait 12 branches `wip/*` locales et 11 sur origin, et non 13 et 12.

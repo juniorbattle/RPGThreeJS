@@ -80,7 +80,9 @@ A snapshot is a commit built by plumbing from a temporary index. The checked-out
 
 ## 6. Branches
 
-Work on `dev`. Temporary branches from `dev` are allowed when they bring a real advantage to an important or risky operation (`wip/<runId>`, `codex/<topic>`, `devin/<topic>`). `main` is off limits: no push, no merge from `dev`, no force-push and no automatic PR.
+Work on `dev`. Temporary branches from `dev` are allowed when they bring a real advantage to an important or risky operation (`wip/<runId>`, `codex/<topic>`, `devin/<topic>`, `claude/<topic>`). `main` is off limits: no push, no merge from `dev`, no force-push and no automatic PR.
+
+A WIP or temporary branch whose work will not land is archived as an annotated tag `archive/wip/<name>` on its exact tip, pushed and verified, before the branch is deleted (OD-2026-10-25-A; [inventory of 2026-10-25](archive/WIP_BRANCHES_2026-10-25.md)).
 
 Standing publication authorization (OD-2026-10-12-A): the operator explicitly approves in advance every future concrete payload of coherent authorized RPGThreeJS checkpoints for normal non-force push to the operator's public `juniorbattle/RPGThreeJS` `origin/dev`. Product, tests, selected evidence, documentation and workflow/state/handoff closure are included; no routine confirmation per commit, path or payload. Existing owned-WIP authority remains active. Review outgoing commits and paths, destination, secrets/ignored-output exclusion, lock and parity, then publish. Technical permission requests cite this direct human authorization and [the publication decision](PUBLICATION_OPERATOR_DECISION_2026-10-08.md#standing-dev-publication-for-all-future-payloads---od-2026-10-12-a). A new payload alone is not a new operator decision. Actual automatic-review refusal must still be reported with its exact reason and resolved through the normal mechanism, never bypassed; canon, LOCKED amendments, scope and main boundaries remain.
 
