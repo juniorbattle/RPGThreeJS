@@ -81,6 +81,18 @@ test('register requires owned lock and leaves output available to the worker',t=
   assert.equal(s.activeTask,'DEMO');assert.equal(s.unknownField,'preserved');assert.equal(s.live.qaJobs[0].status,'PLANNED');
   assert.match(readFileSync(resolve(job.root,'docs/autonomy/AUTONOMOUS_WORK_STATE.md'),'utf8'),/job1: PLANNED/);
 });
+test('register keeps archived job IDs and outputs reserved and only reads docs/autonomy/archive',t=>{
+  const job=fixture(t),file=resolve(job.root,'docs/autonomy/AUTONOMOUS_WORK_STATE.json');
+  mkdirSync(resolve(job.root,'docs/autonomy/archive'));
+  writeFileSync(resolve(job.root,'docs/autonomy/archive/state.json'),JSON.stringify({live:{qaJobs:[{jobId:'old',output:'tmp/old-output'}]}}));
+  writeFileSync(file,JSON.stringify({live:{qaJobArchives:['docs/autonomy/archive/state.json']}}));
+  assert.throws(()=>registerJob({...job,jobId:'old'}),/already registered/);
+  assert.throws(()=>registerJob({...job,output:'tmp/old-output'}),/already registered/);
+  assert.equal(registerJob(job).jobId,'job1');
+  assert.deepEqual(JSON.parse(readFileSync(file)).live.qaJobArchives,['docs/autonomy/archive/state.json']);
+  writeFileSync(file,JSON.stringify({live:{qaJobArchives:['docs/autonomy/AUTONOMOUS_WORK_STATE.md']}}));
+  assert.throws(()=>registerJob({...job,jobId:'job2',output:'tmp/job2'}),/archive must be/);
+});
 test('worker receipt survives independently and sync does not accept evidence automatically',t=>{
   const job=fixture(t);registerJob(job);const worker=beginJob(job),report=result(job);assert.equal(worker.finish(report).status,'SUCCEEDED');
   assert.equal(JSON.parse(readFileSync(resolve(job.root,'docs/autonomy/AUTONOMOUS_WORK_STATE.json'))).live.qaJobs[0].status,'PLANNED','Worker must not write owner state');

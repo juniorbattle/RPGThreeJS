@@ -70,6 +70,8 @@ Required state fields: `status`, `runStartedAt`, `runEndedAt`, `activeTask`, `ac
 
 Non-owners (an agent that does not hold the lock) leave notes in [handoffs/](handoffs/) instead of editing the state files. The lock holder folds them into the state.
 
+Keep the state current, not cumulative (OD-2026-10-25-A). Closed run blocks and finished QA history move unchanged to [archive/](archive/README.md); the live state keeps the required fields above, run identity, current authority, open or deferred items and current scopes. `live.qaJobArchives` lists archived snapshots whose job IDs and outputs stay reserved.
+
 ## 5. WIP snapshots (**NEW**)
 
 Cadence (OD-2026-10-04-A): after each green atomic subtask and at most about every 15 minutes. The lock heartbeat remains about every 10 minutes and before/after long operations. Refresh the paired live state with the snapshot. Coherent work is also committed on `dev`, as the LOCKED protocol requires.
@@ -144,7 +146,7 @@ One imperative line, then the trailer `Agent: <codex|devin|claude>; Run: <runId>
 
 Before long QA, the lock holder registers live.qaJobs in both state files: jobId/runId, parameters/command, expected assertions, start time/PID/port, ignored output and receipt paths, driver/helper/source/build identity and status. Use [QA_JOB_CONTINUITY.md](QA_JOB_CONTINUITY.md). Workers write only their own ignored receipts/results, so a quota cutoff does not lose their outcome. The lock holder alone syncs the shared state.
 
-At restart read terminal receipts before rerunning. Check result hash, assertions, exact save/proof lineage, viewport/motion parameters and current provenance; inspect selected captures. SUCCEEDED is an execution result, not acceptance. Unknown provenance or old assertions remain NOT_ACCEPTED. If the driver/source/build changes while QA runs, invalidate that proof rather than relabel it. Track unfinished workers/ports before considering a stale lock.
+At restart read terminal receipts before rerunning. Check result hash, assertions, exact save/proof lineage, viewport/motion parameters and current provenance; inspect selected captures. SUCCEEDED is an execution result, not acceptance. Unknown provenance or old assertions remain NOT_ACCEPTED. If the driver/source/build changes while QA runs, invalidate that proof rather than relabel it. Track unfinished workers/ports before considering a stale lock. Jobs annotated `ORPHANED_UNVERIFIED` in [the archive](archive/README.md) no longer count as unfinished workers.
 
 ## Appendix A. Short recurring-run instruction (for the operator to adopt)
 

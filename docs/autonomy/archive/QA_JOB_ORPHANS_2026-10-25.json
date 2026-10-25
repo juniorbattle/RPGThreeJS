@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "decision": "OD-2026-10-25-A / N2",
+  "annotates": "docs/autonomy/archive/AUTONOMOUS_WORK_STATE_2026-10-25.json",
+  "annotatedAt": "2026-10-25T04:54:00Z",
+  "reason": "Registered as RUNNING between 2026-10-02 and 2026-10-12; each receipt still says RUNNING with no endedAt, so its worker stopped without finalizing. No process was inspected or stopped (system-wide process scans are not allowed); ports and receipts are left untouched. These entries no longer count as unfinished workers for stale-lock assessment.",
+  "acceptance": "NOT_ACCEPTED; the archived snapshot keeps the original RUNNING status byte for byte",
+  "jobs": [
+    {
+      "jobId": "1952-desktop",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
+      "registeredAt": "2026-10-02T19:57:51.764Z",
+      "port": 5258,
+      "receiptPath": "tmp/demo/1952-desktop/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "1952-trial",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
+      "registeredAt": "2026-10-02T19:57:53.79Z",
+      "port": 5261,
+      "receiptPath": "tmp/demo/1952-trial/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "1952-intermediate",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T1952",
+      "registeredAt": "2026-10-02T20:03:03.233Z",
+      "port": 5260,
+      "receiptPath": "tmp/demo/1952-intermediate/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "2122-grid-final",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
+      "registeredAt": "2026-10-02T21:34:18.903Z",
+      "port": 5264,
+      "receiptPath": "tmp/demo/2122-grid-final/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "2122-trial-final",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
+      "registeredAt": "2026-10-02T21:35:24.027Z",
+      "port": 5265,
+      "receiptPath": "tmp/demo/2122-trial-final/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "2122-grid-bounded",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
+      "registeredAt": "2026-10-02T21:40:25.115Z",
+      "port": 5264,
+      "receiptPath": "tmp/demo/2122-grid-bounded/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "2122-grid-sampled",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
+      "registeredAt": "2026-10-02T21:47:08.793Z",
+      "port": 5264,
+      "receiptPath": "tmp/demo/2122-grid-sampled/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "2122-grid-fixed",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
+      "registeredAt": "2026-10-02T21:57:42.013Z",
+      "port": 5264,
+      "receiptPath": "tmp/demo/2122-grid-fixed/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "2122-intermediate-fixed",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
+      "registeredAt": "2026-10-02T21:59:10.912Z",
+      "port": 5266,
+      "receiptPath": "tmp/demo/2122-intermediate-fixed/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "2122-trial-conserve",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T2122",
+      "registeredAt": "2026-10-02T21:59:25.788Z",
+      "port": 5265,
+      "receiptPath": "tmp/demo/2122-trial-conserve/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "2252-trial-native-skills",
+      "runId": "rpgthreejs-auto-dev-90m-20261002T2252",
+      "registeredAt": "2026-10-02T23:10:28.062Z",
+      "port": 5270,
+      "receiptPath": "tmp/demo/2252-trial-native-skills/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "motion-1002-normal",
+      "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
+      "registeredAt": "2026-10-03T10:17:22.807Z",
+      "port": 5280,
+      "receiptPath": "tmp/traversal/motion-1002-normal/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "motion-1002-os",
+      "runId": "rpgthreejs-auto-dev-90m-20261003T1002",
+      "registeredAt": "2026-10-03T10:17:23.54Z",
+      "port": 5281,
+      "receiptPath": "tmp/traversal/motion-1002-os/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "campaign-ending-2104",
+      "runId": "rpgthreejs-auto-dev-90m-20261008T2104",
+      "registeredAt": "2026-10-08T21:08:51.682Z",
+      "port": 5346,
+      "receiptPath": "tmp/demo/campaign-ending-2104/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    },
+    {
+      "jobId": "second-refuge-native-desktop-0647",
+      "runId": "rpgthreejs-auto-dev-90m-20261012T0647",
+      "registeredAt": "2026-10-12T06:50:37.777Z",
+      "port": 5388,
+      "receiptPath": "tmp/demo/second-refuge-native-desktop-0647/qa-job.json",
+      "originalStatus": "RUNNING",
+      "receiptStatus": "RUNNING",
+      "receiptEndedAt": null,
+      "status": "ORPHANED_UNVERIFIED"
+    }
+  ]
+}

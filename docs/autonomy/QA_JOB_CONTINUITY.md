@@ -4,7 +4,7 @@ Status: operational implementation of OD-2026-10-02-C. This ledger belongs to de
 
 ## Ownership and acceptance
 
-The lock holder registers a long job in `live.qaJobs` before launch and synchronizes the shared MD/JSON at heartbeat/checkpoint. The worker writes only its new ignored output directory: `qa-job.json`, `results.json` and ordinary captures. An orchestrator cutoff does not stop an already launched worker from writing its result. No worker writes the shared state.
+The lock holder registers a long job in `live.qaJobs` before launch and synchronizes the shared MD/JSON at heartbeat/checkpoint. The worker writes only its new ignored output directory: `qa-job.json`, `results.json` and ordinary captures. An orchestrator cutoff does not stop an already launched worker from writing its result. No worker writes the shared state. Finished history moves unchanged to [the state archive](archive/README.md) (OD-2026-10-25-A); `tools/qa/qa-job.mjs` keeps every job ID and output listed there reserved through `live.qaJobArchives`.
 
 The receipt records job/run identity, PID, port, public parameters, expected assertions, source/driver/receipt-helper/build identity and start/end times. `SUCCEEDED` means the driver completed with a clean result and stable provenance; it does **not** mean production acceptance. `sync` checks the persisted result hash and current provenance and leaves `acceptance = NOT_ACCEPTED`. The lock holder inspects assertions, exact save/proof lineage and selected captures before accepting a boundary.
 

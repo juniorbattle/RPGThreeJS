@@ -50,7 +50,7 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 ## Autonomy and multi-agent protocol
 
 - Protocol: `docs/autonomy/MULTI_AGENT_PROTOCOL.md`, which extends the LOCKED `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`.
-- Continuity truth: Git, `dev`, the contracts, `docs/autonomy/AUTONOMOUS_WORK_STATE.md` and `.json`, and the execution lock `.git/codex-autonomy.lock`.
+- Continuity truth: Git, `dev`, the contracts, `docs/autonomy/AUTONOMOUS_WORK_STATE.md` and `.json`, and the execution lock `.git/codex-autonomy.lock`. The state holds current facts only; closed history lives unchanged in `docs/autonomy/archive/` (OD-2026-10-25-A).
 - One writer per working tree. At the start of a run or session do the read-only preflight (`handoff-governor` or the `autonomy-handoff` skill) before modifying anything. Never reset, clean or check out over uncommitted work: it may belong to an interrupted run.
 
 ## Specialists

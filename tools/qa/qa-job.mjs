@@ -71,6 +71,14 @@ function ownedState(root, runId, readOnly=false) {
   assert.equal(lock.runId,runId,'Only the execution lock holder may update live.qaJobs');
   return JSON.parse(readFileSync(resolve(root,'docs/autonomy/AUTONOMOUS_WORK_STATE.json'),'utf8'));
 }
+// Closed history leaves the live state (OD-2026-10-25-A); archived job IDs and outputs stay reserved.
+function archivedJobs(root, state) {
+  return (state.live?.qaJobArchives ?? []).flatMap(archive => {
+    const path=resolve(root,archive);
+    assert.ok(inside(resolve(root,'docs/autonomy/archive'),path)&&path.endsWith('.json'),'QA job archive must be a docs/autonomy/archive/*.json file');
+    return JSON.parse(readFileSync(path,'utf8')).live?.qaJobs ?? [];
+  });
+}
 function writeJobs(root, state) {
   const mdPath=resolve(root,'docs/autonomy/AUTONOMOUS_WORK_STATE.md');
   const md=readFileSync(mdPath,'utf8');
@@ -87,7 +95,7 @@ export function registerJob({root=process.cwd(),runId,jobId,output,driver,port,p
   const path=ignoredOutput(root,output);
   assert.ok(!existsSync(path),'Never overwrite an existing QA output');
   const state=ownedState(root,runId); state.live??={}; state.live.qaJobs??=[];
-  assert.ok(!state.live.qaJobs.some(j=>j.jobId===jobId||j.output===relative(root,path).replaceAll('\\','/')),'Job ID/output already registered');
+  assert.ok(![...state.live.qaJobs,...archivedJobs(root,state)].some(j=>j.jobId===jobId||j.output===relative(root,path).replaceAll('\\','/')),'Job ID/output already registered');
   const job={schemaVersion:1,jobId,runId,status:'PLANNED',registeredAt:new Date().toISOString(),pid:null,port,
     command:['node',driver],parameters,requiredAssertions,output:relative(root,path).replaceAll('\\','/'),
     receiptPath:relative(root,resolve(path,'qa-job.json')).replaceAll('\\','/'),provenance:provenance(root,driver,parameters),acceptance:'NOT_ACCEPTED'};
