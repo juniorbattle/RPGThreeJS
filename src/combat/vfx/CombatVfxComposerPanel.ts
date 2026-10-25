@@ -31,7 +31,7 @@ import {
   getVfxActionScope,
   getActionsInScope,
 } from './DemoVfxActionScope';
-import { buildDemoWorkloadSummary } from './DemoVfxWorkload';
+import { WORKLOAD_STATE_MARKS, buildDemoWorkloadSummary, classifyWorkloadState, nextActionToCompose } from './DemoVfxWorkload';
 import {
   addSlot,
   removeSlot,
@@ -352,6 +352,16 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     return dock;
   }
 
+  function selectAction(actionKey: string): void {
+    currentActionKey = actionKey;
+    store = setSelectedActionKey(store, currentActionKey);
+    catalogueOpen = false;
+    replaceTargetSlotId = null;
+    addVfxToBeatId = null;
+    saveComposerStore(localStorage, store);
+    render();
+  }
+
   function renderHeader(draft: VfxPresetDraft): HTMLElement {
     const header = document.createElement('div');
     header.className = 'cmp-header';
@@ -384,30 +394,40 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     actionLabel.textContent = 'ACTION';
     const select = document.createElement('select');
     select.className = 'cmp-action-select';
+    // OD-2026-10-25-B: the list shows each action's workload state so the operator can chain the remaining ones.
+    const registry = getActiveRegistry();
+    const stateOf = (actionKey: string) => classifyWorkloadState(actionKey, store, registry);
+    const order: string[] = [];
     for (const bucket of getGroupedActionsInScope(authoringScope)) {
       const optgroup = document.createElement('optgroup');
       optgroup.label = bucket.label;
       for (const action of bucket.actions) {
         const opt = document.createElement('option');
         opt.value = action.actionKey;
-        opt.textContent = `${action.displayName} (${action.actionKey})`;
+        opt.textContent = `${WORKLOAD_STATE_MARKS[stateOf(action.actionKey)]} ${action.displayName} (${action.actionKey})`;
         optgroup.appendChild(opt);
+        order.push(action.actionKey);
       }
       select.appendChild(optgroup);
     }
     select.value = currentActionKey;
-    select.addEventListener('change', () => {
-      currentActionKey = select.value;
-      store = setSelectedActionKey(store, currentActionKey);
-      catalogueOpen = false;
-      replaceTargetSlotId = null;
-      addVfxToBeatId = null;
-      saveComposerStore(localStorage, store);
-      render();
-    });
+    select.addEventListener('change', () => selectAction(select.value));
     actionLabel.appendChild(select);
     actionRow.appendChild(actionLabel);
     header.appendChild(actionRow);
+
+    const navRow = document.createElement('div');
+    navRow.className = 'cmp-row cmp-action-nav';
+    const previous = nextActionToCompose(order, currentActionKey, stateOf, -1);
+    const next = nextActionToCompose(order, currentActionKey, stateOf, 1);
+    const prevBtn = buildButton('◀ PREV TO COMPOSE', 'cmp-action-prev', () => { if (previous) selectAction(previous); });
+    prevBtn.disabled = !previous;
+    prevBtn.title = 'Previous action not yet published';
+    const nextBtn = buildButton('NEXT TO COMPOSE ▶', 'cmp-action-next', () => { if (next) selectAction(next); });
+    nextBtn.disabled = !next;
+    nextBtn.title = 'Next action not yet published';
+    navRow.append(prevBtn, nextBtn);
+    header.appendChild(navRow);
 
     const presetInfo = document.createElement('div');
     presetInfo.className = 'cmp-preset-id';
@@ -1406,7 +1426,7 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
     if (unplayable.length > 0) {
       const warn = document.createElement('div');
       warn.className = 'cmp-warn';
-      warn.textContent = `${unplayable.length} slot(s) cannot be previewed (${unplayable.join(', ')}). Use REPLACE to pick a CartoonCoffee source.`;
+      warn.textContent = `${unplayable.length} slot(s) cannot be previewed (${unplayable.join(', ')}). Use REPLACE to pick a CartoonCoffee source; until then, retired base art shows a procedural stand-in in combat.`;
       section.appendChild(warn);
     }
 

@@ -11,7 +11,7 @@ The [game constitution](game/GAME_CONSTITUTION.md) and [locked production contra
 
 ## Start here
 
-- [Current project status](project/CURRENT_STATUS.md), [demo roadmap](project/DEMO_ROADMAP.md), [post-demo roadmap](project/POST_DEMO_ROADMAP.md), and [engineering rules](project/ENGINEERING_RULES.md).
+- [Current project status](project/CURRENT_STATUS.md), [demo roadmap](project/DEMO_ROADMAP.md), [post-demo roadmap](project/POST_DEMO_ROADMAP.md), and [engineering rules](project/ENGINEERING_RULES.md). Combat VFX authoring: [Composer workflow](project/VFX_COMPOSER_WORKFLOW.md) and [demo action coverage](reports/combat-vfx-coverage-2026-10-25.md) (OD-2026-10-25-B).
 - [Lot E delivery](reports/lot-e-final-2026-10-15.md), [approved authoring catalogue](project/RPGThreeJS_LOT_E_MANIFEST_AUTHORING_FINAL_2026-10-15.json), [POI V2 and engine retirement](reports/poi-v2-retirement-2026-10-15.md), [atlas art and authoring](project/POI_V2_ART_AND_AUTHORING.md), [reviewed removal inventory](project/retired-traversal/README.md) and [production POI navigation](project/POI_NAVIGATION.md). Earlier [second-refuge integration](reports/poi-map-integration-2026-10-14.md) and [campaign finalization](reports/poi-map-finalization-2026-10-14.md) retain their recorded scopes. The [Traversal reference](traversal/README.md), [old T0 contract](traversal/T0_PRODUCTION_CONTRACT.md) and [leg audit](traversal/LEGS_ROADMAP.md) remain historical navigation/compatibility references under the current LOCKED POI successor doctrine.
 - [Content map](content/README.md) and [demo content map](content/DEMO_CONTENT_MAP.md).
 - [Historical reports](reports/README.md) and [report index](reports/INDEX.md).

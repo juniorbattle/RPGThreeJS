@@ -2,6 +2,10 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { installVfxComposerPanel } from './CombatVfxComposerPanel';
 import { COMPOSER_STORAGE_KEY, COMPOSER_UI_PREFS_KEY, loadComposerStore, loadComposerUiPrefs } from './VfxComposerPlayback';
+import { getScopeCensus } from './DemoVfxActionScope';
+import { PUBLISHED_REGISTRY_SCHEMA_VERSION, publishEntry, type PublishedVfxRegistry } from './PublishedVfxRegistry';
+import { __devClearOverlay, __devUpdateOverlay } from './PublishedVfxResolver';
+import { createDraftFromAction } from './VfxPresetComposer';
 
 const ROOT_ID = 'r2c-vfx-composer';
 
@@ -1065,5 +1069,95 @@ describe('R2C-VFX LAB V2.6.1 — RESET ALL PRESETS', () => {
     // Status should show failure
     const status = q('.cmp-status');
     expect(status?.textContent).toContain('RESET FAILED');
+  });
+});
+
+describe('Composer action navigation (OD-2026-10-25-B)', () => {
+  let dispose: () => void = () => {};
+  let origFetch: typeof fetch = () => Promise.resolve({ ok: false } as Response);
+
+  beforeEach(() => {
+    localStorage.clear();
+    document.body.textContent = '';
+    document.head.textContent = '';
+    origFetch = globalThis.fetch;
+    globalThis.fetch = (async () => ({ ok: true, json: async () => ({ ok: true }) }) as unknown as Response) as typeof fetch;
+    dispose = installVfxComposerPanel({ enabled: true });
+  });
+
+  afterEach(() => {
+    dispose();
+    localStorage.clear();
+    globalThis.fetch = origFetch;
+  });
+
+  const options = () => Array.from(q<HTMLSelectElement>('.cmp-action-select')!.options);
+
+  it('marks every action with its workload state, and an opened action seeded with retired art stays remaining', () => {
+    expect(options().length).toBe(getScopeCensus().demo);
+    for (const option of options()) expect(option.textContent).toMatch(/^[✓●◐○] /);
+    expect(options()[0]!.textContent).toMatch(/^○ /);
+    expect(q('[data-counter="progress"] .cmp-workload-value')?.textContent).toBe('0');
+  });
+
+  it('walks the unpublished actions with NEXT TO COMPOSE and PREV', () => {
+    const order = options().map((option) => option.value);
+    const select = () => q<HTMLSelectElement>('.cmp-action-select')!;
+    select().value = order[0]!;
+    select().dispatchEvent(new Event('change', { bubbles: true }));
+    click(q('.cmp-action-next'));
+    expect(select().value).toBe(order[1]);
+    click(q('.cmp-action-next'));
+    expect(select().value).toBe(order[2]);
+    click(q('.cmp-action-prev'));
+    expect(select().value).toBe(order[1]);
+    click(q('.cmp-action-prev'));
+    click(q('.cmp-action-prev'));
+    expect(select().value).toBe(order[order.length - 1]);
+  });
+
+  const publishedRegistry = (actionKeys: readonly string[]) => actionKeys.reduce(
+    (registry, actionKey) => publishEntry(registry, createDraftFromAction({ actionKey, presetId: `composer_${actionKey}`, visualSteps: [{ candidateId: 'blade_hit_small' }] })),
+    { schemaVersion: PUBLISHED_REGISTRY_SCHEMA_VERSION, actions: {} } as PublishedVfxRegistry,
+  );
+  const reinstallWith = (registry: PublishedVfxRegistry) => {
+    dispose();
+    localStorage.clear();
+    __devUpdateOverlay(registry);
+    dispose = installVfxComposerPanel({ enabled: true });
+  };
+
+  it('marks published actions and skips them, and disables both buttons once every other action is published', () => {
+    const order = options().map((option) => option.value);
+    try {
+      reinstallWith(publishedRegistry([order[1]!]));
+      expect(options()[1]!.textContent).toMatch(/^✓ /);
+      const select = () => q<HTMLSelectElement>('.cmp-action-select')!;
+      select().value = order[0]!;
+      select().dispatchEvent(new Event('change', { bubbles: true }));
+      click(q('.cmp-action-next'));
+      expect(select().value).toBe(order[2]);
+      click(q('.cmp-action-prev'));
+      expect(select().value).toBe(order[0]);
+
+      reinstallWith(publishedRegistry(order.slice(1)));
+      select().value = order[0]!;
+      select().dispatchEvent(new Event('change', { bubbles: true }));
+      expect(q<HTMLButtonElement>('.cmp-action-next')!.disabled).toBe(true);
+      expect(q<HTMLButtonElement>('.cmp-action-prev')!.disabled).toBe(true);
+    } finally {
+      __devClearOverlay();
+    }
+  });
+
+  it('navigates within the upcoming scope as well', () => {
+    click(q('.cmp-scope-upcoming'));
+    const order = options().map((option) => option.value);
+    expect(order.length).toBe(getScopeCensus().upcoming);
+    const select = () => q<HTMLSelectElement>('.cmp-action-select')!;
+    select().value = order[0]!;
+    select().dispatchEvent(new Event('change', { bubbles: true }));
+    click(q('.cmp-action-next'));
+    expect(select().value).toBe(order[1]);
   });
 });

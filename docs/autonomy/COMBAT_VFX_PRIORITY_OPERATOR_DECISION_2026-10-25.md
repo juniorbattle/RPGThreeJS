@@ -43,3 +43,13 @@ Une famille à la fois, comme le demande le skill `combat-vfx-sprites` :
 Chaque action est composée dans le lab, avec les candidats locaux ou acquis par le serveur de dev, puis publiée dans `src/combat/vfx/generated/published-vfx-presets.json`. Elle est ensuite contrôlée par `npm run vfx:validate-published`, les tests VFX et une vérification dans le Combat Stage, en mouvement normal et réduit.
 
 Mode d'auteur à confirmer par l'opérateur (UNDECIDED). La recommandation : Claude compose et publie des brouillons ; l'opérateur les revoit dans le lab et garde l'acceptation artistique.
+
+## Suite
+
+- **Mode d'auteur (APPROVED DECISION).** Réponse de l'opérateur : « Je compose moi-même les effets dans le lab. Fais le lot 0 (repli procédural et test de visibilité) et prépare le lab pour que je puisse enchaîner les actions. » L'opérateur compose et publie. Claude vérifie chaque série publiée et la commite sur `dev`. [Mode d'emploi](../project/VFX_COMPOSER_WORKFLOW.md).
+- **Lot 0 livré** (run `claude-vfx-lot0-20261025T0845Z`) :
+  - une étape dont la planche n'est plus enregistrée est dessinée par un substitut procédural de `VfxSystem`, à la même ancre et au même moment, en vue tactique comme dans le Combat Stage ;
+  - `actionHasSpritesheetVfx` ne compte plus que les planches résolues ;
+  - un test garantit que le preset de chacune des 34 actions dessine quelque chose ;
+  - le lab marque l'état de chaque action, passe à la suivante non publiée, et ne compte plus comme travail un brouillon pré-rempli d'art retiré.
+- **Lecture du contrat, à porter sur la prochaine fiche d'arbitrages.** `COMBAT_AND_VFX.md` interdit un effet de jeu fabriqué ou une substitution d'asset sans rapport. Le substitut n'est ni l'un ni l'autre : il est dessiné par les textures du moteur, sans fichier externe, déclenché par le même événement résolu, et sa famille vient du nom de la planche retirée. C'est un **placeholder de présentation** : il ne compte jamais comme couverture, qui reste à 3 sur 34. La lacune reste visible dans le lab, dans les avertissements de développement et dans les tests. Il touche aussi les retours génériques dont la planche est retirée : K.O., critique, `generic_hit`, attaques de base ennemies, `teleport_burst`. L'opérateur le verra donc pendant son playtest.

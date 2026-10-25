@@ -10,6 +10,8 @@ import { describe, expect, it } from 'vitest';
 import {
   buildDemoWorkloadSummary,
   classifyWorkloadState,
+  isRetiredBaseArtSlot,
+  nextActionToCompose,
   type WorkloadState,
 } from './DemoVfxWorkload';
 import {
@@ -200,5 +202,48 @@ describe('DemoVfxWorkload — summary aggregation', () => {
     const a = buildDemoWorkloadSummary(emptyStore, createEmptyRegistry());
     const b = buildDemoWorkloadSummary(emptyStore, createEmptyRegistry());
     expect(JSON.stringify(a)).toBe(JSON.stringify(b));
+  });
+});
+
+describe('DemoVfxWorkload — retired base art and navigation (OD-2026-10-25-B)', () => {
+  it('recognises slots seeded with retired base art, and only those', () => {
+    expect(isRetiredBaseArtSlot('basic_greatsword_cleave_heavy')).toBe(true);
+    expect(isRetiredBaseArtSlot('skill_poison_maw_bite_heavy')).toBe(true);
+    expect(isRetiredBaseArtSlot('megapack_healing_v3')).toBe(false);
+    expect(isRetiredBaseArtSlot('blade_hit_small')).toBe(false);
+  });
+
+  it('reports REMAINING for a scaffold seeded only with retired base art', () => {
+    const seeded = putDraft(createEmptyComposerStore(), draftWithSlots(KEY_A, 'basic_greatsword_cleave_heavy'));
+    expect(classifyWorkloadState(KEY_A, seeded, createEmptyRegistry())).toBe<WorkloadState>('REMAINING');
+    const worked = putDraft(createEmptyComposerStore(), createDraftFromAction({
+      actionKey: KEY_A,
+      presetId: `composer_${KEY_A}`,
+      visualSteps: [{ candidateId: 'basic_greatsword_cleave_heavy' }, { candidateId: 'blade_hit_small' }],
+    }));
+    expect(classifyWorkloadState(KEY_A, worked, createEmptyRegistry())).toBe<WorkloadState>('IN_PROGRESS');
+  });
+
+  it('counts unit motion, explicit beats and technical polish as work beside retired slots', () => {
+    const seeded = draftWithSlots(KEY_A, 'basic_greatsword_cleave_heavy');
+    const state = (draft: VfxPresetDraft) => classifyWorkloadState(KEY_A, putDraft(createEmptyComposerStore(), draft), createEmptyRegistry());
+    expect(state(seeded)).toBe<WorkloadState>('REMAINING');
+    expect(state({ ...seeded, technicalPolish: 'AUTO' } as VfxPresetDraft)).toBe<WorkloadState>('IN_PROGRESS');
+    expect(state({ ...seeded, beats: [{ id: 'b1', startDelay: 0, composition: 'TOGETHER', vfxSlotIds: [], casterMotionIds: [] }] } as VfxPresetDraft)).toBe<WorkloadState>('IN_PROGRESS');
+    expect(state({ ...seeded, casterMotion: [{ id: 'm1' }] } as unknown as VfxPresetDraft)).toBe<WorkloadState>('IN_PROGRESS');
+  });
+
+  it('finds the nearest unpublished action in either direction, wrapping around', () => {
+    const order = ['a', 'b', 'c', 'd'];
+    const states: Record<string, WorkloadState> = { a: 'REMAINING', b: 'IN_PROGRESS', c: 'PUBLISHED', d: 'READY' };
+    const stateOf = (key: string) => states[key]!;
+    expect(nextActionToCompose(order, 'b', stateOf)).toBe('d');
+    expect(nextActionToCompose(order, 'd', stateOf)).toBe('a');
+    expect(nextActionToCompose(order, 'a', stateOf, -1)).toBe('d');
+    expect(nextActionToCompose(order, 'd', stateOf, -1)).toBe('b');
+    expect(nextActionToCompose(order, 'unknown', stateOf)).toBe('a');
+    expect(nextActionToCompose(order, 'unknown', stateOf, -1)).toBe('d');
+    expect(nextActionToCompose(order, 'a', () => 'PUBLISHED')).toBeNull();
+    expect(nextActionToCompose(['a'], 'a', stateOf)).toBeNull();
   });
 });

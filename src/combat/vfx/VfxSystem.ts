@@ -13,6 +13,7 @@ import {
   releaseLabCandidateTexture,
 } from './VfxSpriteSheets';
 import type { ResolvedVfxSpriteSheetPresentation, VfxSpriteSheetFrameDefinition, VfxSpriteSheetDefinition } from './VfxSpriteSheets';
+import { resolveRenderableVfxStep } from './VfxMissingSheetStandIn';
 import { getVfxTexture, disposeVfxTextures } from './VfxTextures';
 import type {
   CinematicAnchor,
@@ -915,7 +916,7 @@ export class VfxSystem {
   }
 
   private async scheduleStep(step: VfxStep, preset: VfxPreset, context: VfxContext, durationScale: number) {
-    const effectiveStep = this.withCinematicOverrides(step, context);
+    const effectiveStep = resolveRenderableVfxStep(this.withCinematicOverrides(step, context));
     await this.wait(effectiveStep.startTime * durationScale, context);
     if (this.disposed) return;
     const duration = effectiveStep.duration * durationScale;

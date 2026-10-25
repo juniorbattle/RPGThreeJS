@@ -39,7 +39,7 @@ describe('V10F final hotfix runtime contracts', () => {
   it('suppresses generic overlays when spritesheet VFX exists (V10G-R2A.2/R2A.5)', () => {
     expect(runtimeSource).toContain("import { getVfxPreset } from './vfx/VfxPresets'");
     expect(runtimeSource).toContain('function actionHasSpritesheetVfx(spec={},u=null)');
-    expect(runtimeSource).toContain("preset.steps.some(step=>step.type==='spriteSheet')");
+    expect(runtimeSource).toContain("preset.steps.some(step=>step.type==='spriteSheet'&&isVfxSpriteSheetResolved(step.spriteSheet))");
     expect(runtimeSource).toContain('function actionHasPreset(spec={},u=null)');
     expect(runtimeSource).toContain('const hasSpritesheet=actionHasSpritesheetVfx(spec,u)');
     expect(runtimeSource).toContain('const hasPreset=actionHasPreset(spec,u)');

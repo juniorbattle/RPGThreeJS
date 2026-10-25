@@ -84,3 +84,13 @@ Accès : `?vfxlab=1` en développement, avec `devQa` (`CombatBridge.ts:61,67`).
 - Lecture, sauvegarde, publication (`src/dev/vfxPublishDevServer.ts`, écriture atomique du JSON), dépublication, publication groupée, export.
 - 2 769 candidats au catalogue, 171 synchronisés en local. L'acquisition de nouveaux candidats passe par le serveur de dev (`/dev/vfx-acquire`), qui lit `MEGA_PACK_ROOT` lui-même ; les agents ne lisent jamais `.env*`.
 - Reste ouvert dans les rapports : l'interface de chorégraphie par beats (`r2c-vfx-composer-v2-7-caster-motion-choreography.md:100-102`) et la QA navigateur manuelle du filtre de démo (`r2c-vfx-composer-v2-6-3-demo-scope-workload.md:323-324`).
+
+## Addendum — lot 0 (run `claude-vfx-lot0-20261025T0845Z`)
+
+CURRENT FACT, après le lot 0 :
+- La couverture ne change pas : 3 actions de démo sur 34 affichent un effet composé.
+- Les 31 autres affichent un substitut procédural (`src/combat/vfx/VfxMissingSheetStandIn.ts`) au lieu de rien. Ce placeholder ne compte pas comme couverture.
+- `actionHasSpritesheetVfx` ne compte plus que les planches enregistrées, ce qui rétablit `castTelegraph`. Le saut de `Bond du Faucon` passe toujours par le repli propre à `doMove` (`vfx('hit')`), pas par le substitut.
+- Les retours génériques dont la planche est retirée affichent aussi le substitut : K.O. (`kill_spark`), critique (`critical_hit`), `generic_hit`, attaques de base ennemies, `teleport_burst`.
+- Reste ouvert : `isStrictSpritesheetCompliant` (`VfxActionRegistry.ts`, audit seulement) ne regarde toujours que le type d'étape.
+- L'aspect des substituts n'a pas été inspecté à l'écran (panneau du navigateur non peint pendant l'essai). Leur création dans une scène Chromium réelle est vérifiée.

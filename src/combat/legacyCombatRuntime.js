@@ -14,6 +14,7 @@ import { combatBackgroundFor } from '../render/combatBackgrounds';
 import { COMBAT_PRESENTATION } from './combatPresentationConfig.js';
 import { VfxSystem } from './vfx/VfxSystem';
 import { getVfxPreset } from './vfx/VfxPresets';
+import { isVfxSpriteSheetResolved } from './vfx/VfxMissingSheetStandIn';
 import { installVfxComposerPanel } from './vfx/CombatVfxComposerPanel';
 import { vfxResourceManager } from './vfx/VfxResourceManager';
 import { getLabAction } from './vfx/CombatVfxLab';
@@ -1593,7 +1594,7 @@ function actionHasSpritesheetVfx(spec={},u=null){
   if(!presetId)return false;
   const preset=getVfxPreset(presetId);
   if(!preset)return false;
-  return preset.steps.some(step=>step.type==='spriteSheet');
+  return preset.steps.some(step=>step.type==='spriteSheet'&&isVfxSpriteSheetResolved(step.spriteSheet));
 }
 function actionHasPreset(spec={},u=null){
   const actionKey=getActionKeyForPublishedVfx(spec,u);

@@ -17,7 +17,10 @@
  *   REMAINING   — no meaningful authoring work yet.
  */
 
+import { isMissingSpriteSheetStep } from './VfxMissingSheetStandIn';
+import { VFX_PRESETS } from './VfxPresets';
 import type { ComposerStore } from './VfxComposerPlayback';
+import type { VfxPresetDraft } from './VfxPresetComposer';
 import { getSavedFingerprint } from './VfxComposerPlayback';
 import {
   computeFingerprint,
@@ -57,13 +60,57 @@ export interface DemoWorkloadSummary {
   groups: WorkloadGroupSummary[];
 }
 
+/** Sheets the base presets still name although their art was retired (R2C-C-1). */
+const RETIRED_BASE_SHEETS: ReadonlySet<string> = new Set(
+  Object.values(VFX_PRESETS).flatMap((preset) => preset.steps.filter(isMissingSpriteSheetStep).map((step) => String(step.spriteSheet))),
+);
+
+/** True for a slot seeded with retired base art: selecting an action creates it, the operator did not. */
+export function isRetiredBaseArtSlot(candidateId: string): boolean {
+  return RETIRED_BASE_SHEETS.has(candidateId);
+}
+
 /**
- * A draft counts as authoring work only when it actually references at least
- * one visual slot. An empty scaffold left behind by selecting an action is not
- * "in progress".
+ * A draft counts as authoring work once it holds something the operator added:
+ * a visual slot that is not retired base art, unit motion, explicit beats or a
+ * technical polish. The scaffold left behind by selecting an action, empty or
+ * seeded with retired sheets, is not "in progress".
  */
-function hasMeaningfulWork(draft: { visualSlots: unknown[] } | undefined): boolean {
-  return Boolean(draft && Array.isArray(draft.visualSlots) && draft.visualSlots.length > 0);
+function hasMeaningfulWork(draft: VfxPresetDraft | undefined): boolean {
+  if (!draft) return false;
+  return (Array.isArray(draft.visualSlots) && draft.visualSlots.some((slot) => !isRetiredBaseArtSlot(slot.candidateId)))
+    || (draft.casterMotion?.length ?? 0) > 0
+    || (draft.beats?.length ?? 0) > 0
+    || (draft.technicalPolish !== undefined && draft.technicalPolish !== 'OFF');
+}
+
+/** Short marks for the action list, one per workload state. */
+export const WORKLOAD_STATE_MARKS: Readonly<Record<WorkloadState, string>> = Object.freeze({
+  PUBLISHED: '✓',
+  READY: '●',
+  IN_PROGRESS: '◐',
+  REMAINING: '○',
+});
+
+/**
+ * The nearest action after (or before) `current` in list order that is not
+ * PUBLISHED, wrapping around; null when every other action is published.
+ */
+export function nextActionToCompose(
+  order: readonly string[],
+  current: string,
+  stateOf: (actionKey: string) => WorkloadState,
+  direction: 1 | -1 = 1,
+): string | null {
+  const count = order.length;
+  const found = order.indexOf(current);
+  // An unknown current action starts just outside the list, so the first step lands on its first or last entry.
+  const start = found >= 0 ? found : direction === 1 ? -1 : count;
+  for (let step = 1; step <= count; step += 1) {
+    const candidate = order[(((start + direction * step) % count) + count) % count]!;
+    if (candidate !== current && stateOf(candidate) !== 'PUBLISHED') return candidate;
+  }
+  return null;
 }
 
 export function classifyWorkloadState(

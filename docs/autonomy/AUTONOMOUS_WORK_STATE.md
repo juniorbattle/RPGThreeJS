@@ -1,14 +1,16 @@
-# Actions de combat et Composer VFX en priorité
+# Lab VFX prêt — l’opérateur compose
 
-Run claude-vfx-priority-20261025T0814Z (agent claude, session interactive), 2026-10-25T08:14:10Z → 2026-10-25T08:16:43Z. [OD-2026-10-25-B](COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md) : l’opérateur demande de se concentrer sur le Composer VFX et de finir les actions de compétence du combat tactique et du Combat Stage. Le pilote narratif Alistair est en pause ; son lecteur reste livré et inerte.
+Run claude-vfx-lot0-20261025T0845Z (agent claude, session interactive), 2026-10-25T08:45:49Z → 2026-10-25T09:17:20Z. Lot 0 d’[OD-2026-10-25-B](COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md) ; les effets sont composés dans le lab par l’opérateur.
 
-[Couverture](../reports/combat-vfx-coverage-2026-10-25.md) : sur 34 actions de démo, 3 affichent leur effet. Les 31 autres pointent vers des planches retirées, sautées en silence, et perdent aussi le repli procédural. Le registre publié est vide.
+Les 31 actions de démo dont la planche de base est retirée affichent désormais un substitut procédural au bon endroit et au bon moment, en vue tactique comme dans le Combat Stage, et retrouvent leur repli castTelegraph. Un test garantit que chacune des 34 actions dessine quelque chose. Le lab marque l’état de chaque action, saute à la suivante non publiée et ne compte plus un brouillon pré-rempli comme travail. [Mode d’emploi](../project/VFX_COMPOSER_WORKFLOW.md).
+
+npm test : 162 fichiers vitest, 2849 tests, puis node:test 26/26 ; tsc, build, vfx:validate-published et contrats verts. Revue combat-vfx-sprites : OK avec conditions, rien de bloquant ; corrections appliquées.
 
 Contrats 1.10.0 et baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5` inchangés. Scheduler PAUSED, réglages inchangés. `main` protégé.
 
-UNE prochaine action : Lot 0 d'OD-2026-10-25-B : dans legacyCombatRuntime.js, faire compter à actionHasSpritesheetVfx seulement les planches qui se résolvent (VFX_SPRITE_SHEETS), pour que le repli procédural (castTelegraph) revienne sur les 31 actions de démo dont la planche est retirée ; ajouter un test qui garantit que chaque action de démo affiche une planche résolue ou le repli ; corriger flowSpriteDirection.combatFacts.vfxBasePresent. Puis lot 1 (contact) dans le Composer, selon le mode d'auteur confirmé par l'opérateur.
+UNE prochaine action : L'opérateur compose les actions dans le Composer (OD-2026-10-25-B, mode d'auteur : opérateur), famille par famille selon docs/project/VFX_COMPOSER_WORKFLOW.md. Après chaque série publiée, Claude vérifie : npm run vfx:validate-published, tests VFX et stage, un combat de contrôle en mouvement normal et réduit, puis commit sur dev du registre publié.
 
-Compteurs : {"runtimeSourceFilesModified":0,"gameplayFilesModified":0,"testFilesModified":0,"newMedia":0,"imagegenCalls":0,"qaScenarios":0,"newQaJobs":0,"inheritedQaJobs":365,"liveQaJobsAfter":3,"inheritedWipPaths":0,"workflowFiles":9,"taskReports":1,"productProgress":0}. Handoff : [2026-10-25T0814Z-claude-vfx-priority.md](handoffs/2026-10-25T0814Z-claude-vfx-priority.md). Publication normale sur origin autorisée par OD-2026-10-12-A.
+Compteurs : {"runtimeSourceFilesModified":5,"runtimeSourceFilesAdded":1,"gameplayFilesModified":0,"testFilesModified":4,"testFilesAdded":1,"newMedia":0,"imagegenCalls":0,"qaScenarios":1,"newQaJobs":0,"inheritedQaJobs":365,"liveQaJobsAfter":3,"inheritedWipPaths":0,"workflowFiles":5,"productDocumentationFiles":2,"productProgress":1}. Handoff : [2026-10-25T0845Z-claude-vfx-lot0.md](handoffs/2026-10-25T0845Z-claude-vfx-lot0.md). Publication normale sur origin autorisée par OD-2026-10-12-A.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
