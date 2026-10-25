@@ -1,6 +1,6 @@
 # RPGThreeJS agent guide
 
-RPGThreeJS is a narrative tactical RPG with an authored campaign (Vite, TypeScript, three.js, vitest with happy-dom, Playwright QA). Two agents work in this repository: the recurring Codex run `rpgthreejs-auto-dev-90m` and interactive Devin sessions. This file is their shared entry point. It routes to authorities; it does not restate them.
+RPGThreeJS is a narrative tactical RPG with an authored campaign (Vite, TypeScript, three.js, vitest with happy-dom, Playwright QA). Three agents work in this repository: interactive Claude Code sessions, the recurring Codex run `rpgthreejs-auto-dev-90m` (saved PAUSED) and interactive Devin sessions. Under OD-2026-10-25-A Claude is the principal writer of interactive sessions while the automation stays paused; Codex works on request, never at the same time, under the same lock. This file is their shared entry point. It routes to authorities; it does not restate them.
 
 ## Authority and reading order
 
@@ -55,7 +55,7 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 
 ## Specialists
 
-Subagent profiles live in `.agents/agents/` (Devin) and `.codex/agents/` (Codex). The knowledge they load lives in `.agents/skills/`. They are reviewers or runners and are read-only by default. Writing stays with the single orchestrator, who should load the matching skill first.
+Subagent profiles live in `.agents/agents/` (Devin) and `.codex/agents/` (Codex). The knowledge they load lives in `.agents/skills/`. Claude Code reads the same profiles and skills from `.agents/` (brief a subagent with the profile text) until the `.claude/` mirrors planned by OD-2026-10-25-A exist. They are reviewers or runners and are read-only by default. Writing stays with the single orchestrator, who should load the matching skill first.
 
 | Role | Skill | Use for |
 | --- | --- | --- |
@@ -71,7 +71,7 @@ Codex starts subagents only when authorized. The recurring instruction authorize
 
 ## Conventions
 
-- Commit messages: one imperative line, then a trailer line `Agent: <codex|devin>; Run: <runId>`.
+- Commit messages: one imperative line, then a trailer line `Agent: <codex|devin|claude>; Run: <runId>`. Claude adds its `Co-Authored-By` line after the trailer; its runIds read `claude-<topic>-<YYYYMMDDTHHMMZ>`.
 - The owner's host uses `core.autocrlf=true`: run `git diff --check` and avoid whitespace-only churn.
 - Ordinary QA writes to ignored paths (`tmp/`, `docs/reports/evidence/`, `tools/qa-shots/`). Tracked evidence is promoted explicitly and never overwritten.
 - New task reports follow `docs/reports/README.md`.
@@ -96,3 +96,7 @@ The current recurring priority is a separate Bois-Clair sacrificed pose pilot un
 ## Current retirement — OD-2026-10-24-A
 
 Set1.10.0 supersedes earlier cinematic production directions: zero active video/hold/preload/shipped MP4, eight historical IDs and archived media/proof preserved. No illustrated/video generation or pilot generalization. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5.
+
+## Current arbitration — OD-2026-10-25-A
+
+[Claude integration and cleanup decision](docs/autonomy/CLAUDE_INTEGRATION_AND_CLEANUP_OPERATOR_DECISION_2026-10-25.md). Claude signs the existing lock with `agent: "claude"` and follows the project branch rule: `dev` only, never `main`, whatever its global instructions say. Dev server through `preview_start`; project QA drivers keep their own servers registered in `live.qaJobs`; orphan processes are reported, never killed. Interactive sessions follow the lighter protocol in `MULTI_AGENT_PROTOCOL.md` §3. Order before the Alistair pilot: test baseline, state archive and compaction, entry documents, agents and skills, WIP branch archive tags. Codex produces the Alistair frames in a dedicated session; Claude writes the frame player. No contract amendment; scheduler saved PAUSED and unchanged.

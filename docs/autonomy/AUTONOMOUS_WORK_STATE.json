@@ -1,61 +1,67 @@
 {
-  "status": "READY_FOR_PILOT_PREPARATION",
-  "runStartedAt": "2026-10-24T23:41:32.1822907Z",
-  "runEndedAt": "2026-10-24T23:49:53.380Z",
-  "activeTask": "PLAYABLE_FLOW_SPRITE_VFX_PILOT",
-  "activePhase": "DIRECTION_RECORDED_PILOT_NOT_GENERATED",
-  "activeSubtask": "Direction et plan borné prêts ; animations par frames et VFX encore à réaliser/vérifier",
+  "status": "READY_FOR_TEST_BASELINE_REPAIR",
+  "runStartedAt": "2026-10-25T04:06:21Z",
+  "runEndedAt": "2026-10-25T04:09:18Z",
+  "activeTask": "TEST_BASELINE_REPAIR",
+  "activePhase": "OPERATOR_ARBITRATION_RECORDED",
+  "activeSubtask": "OD-2026-10-25-A consignée ; réparation de la base de tests (N1) à démarrer",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "d049bda36e2bae4af0c1e1edc9a3a2e332ce799f",
-  "lastPushedCommit": "d049bda36e2bae4af0c1e1edc9a3a2e332ce799f",
+  "lastKnownGoodCommit": "879eaf3d80c834942034e24548b4dedd1b5a9ac4",
+  "lastPushedCommit": "879eaf3d80c834942034e24548b4dedd1b5a9ac4",
   "completedThisRun": [
-    "Préflight propre,dev/origin synchronisés,verrou exclusif",
-    "Direction opérateur cohérence/fluidité et spritesheets/VFX enregistrée OD24-B",
-    "Capacités réelles source distinguées :4poses combat/mouvements/VFXbase présents, animation narrative par frames absente",
-    "Master Alistair inspecté ; pilote un acteur/4frames de repos proposé, pas produit",
-    "Cadrage indépendant conforme1.10.0 sans amendement,texte/choix/autorités et artfinal préservés"
+    "Préflight propre : dev = origin/dev à 879eaf3d, pas de verrou, arbre propre, barrière LOCKED vide, aucune écriture Codex depuis 23:40 locale",
+    "Audit en lecture seule (gouvernance, contrats, agents, workflow, code) et fiche d'arbitrages remplie par l'opérateur",
+    "OD-2026-10-25-A consignée : décision datée, entrée au registre",
+    "AGENTS.md et MULTI_AGENT_PROTOCOL.md (§2, §3, §11) : agent claude, trailer, protocole interactif allégé"
   ],
   "filesChanged": [
-    "docs/autonomy/PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md",
+    "docs/autonomy/CLAUDE_INTEGRATION_AND_CLEANUP_OPERATOR_DECISION_2026-10-25.md",
     "docs/autonomy/OPERATOR_DECISIONS.md",
-    "docs/autonomy/STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md",
+    "AGENTS.md",
+    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-    "docs/autonomy/handoffs/2026-10-24T2342Z-codex-flow-sprite-direction.md"
+    "docs/autonomy/handoffs/2026-10-25T0406Z-claude-arbitration.md"
   ],
   "testsRun": [
-    "LOCKED baseline/status/diffcheck",
+    "git diff --check",
+    "LOCKED baseline gate",
     "contracts:validate",
-    "Source references/master SHA and365QA/scheduler preservation"
+    "Audit 2026-10-24 : tsc, validateur narratif, vitest limité à src/"
   ],
   "testsPassed": [
-    "LOCKED baseline/status and whitespace gates PASS",
+    "git diff --check PASS",
+    "LOCKED baseline gate PASS (vide)",
     "contracts:validate PASS",
-    "Actual master SHA matches committed source; historical manifest SHA kept distinct",
-    "365 QA jobs/acceptances and scheduler bytes unchanged",
-    "Guardian PASS_PREPARATION_ACTUAL_PLAN; no source/media/runtime change"
+    "Audit : tsc PASS, validateur narratif PASS (2 étapes mortes signalées)"
   ],
-  "testsRemaining": [],
+  "testsRemaining": [
+    "npm test rouge : vitest ramasse 381 fichiers copiés sous tmp/ ; sur src/ 51 échecs sur 2 636 dans 13 fichiers (29 combatCue, ~15 doctrine retirée, 6 refugeHubContinuity) ; traité en N1"
+  ],
   "blockers": [],
   "remainingWork": [
-    "Pilote visuel Alistair puis lecteur frames et essai runtime borné",
+    "N1 base de tests, N2 état, N5 documents, N4 agents/skills, N3 branches WIP (OD-2026-10-25-A)",
+    "Pilote Alistair : lecteur par Claude, frames par Codex, puis essai runtime borné",
     "Finition Maelor/habitante, raccords dialogue/choix/combat/conséquence",
     "Attaque/réaction et VFX action par action avec ressources existantes",
     "Art/global PC opérateur puis mobile"
   ],
-  "nextAction": "Préparer le candidat de repos quatre frames Alistair pour le tableau interactif du camp : références V2, fiche de frames/ancrage, génération intégrée et comparaison à taille de jeu selon PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md ; un acteur seulement avant extension combat/VFX.",
+  "nextAction": "Réparer la base de tests (N1, OD-2026-10-25-A) : exclure tmp/, dist/ et output/ dans la config vitest de vite.config.ts ; fournir combatCue aux harnais de src/combat/combatKeyboard.test.ts et src/combat/unitMotion.test.ts ; classer les tests de doctrine retirée (mise à jour s'ils gardent une frontière vivante, sinon retrait mentionné au rapport) ; diagnostiquer src/game/refugeHubContinuity.test.ts ; revue contracts-guardian ; npm test vert.",
   "taskQueue": [
-    "Préparer le candidat de repos quatre frames Alistair pour le tableau interactif du camp : références V2, fiche de frames/ancrage, génération intégrée et comparaison à taille de jeu selon PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md ; un acteur seulement avant extension combat/VFX.",
-    "Vérifier pilote à taille de jeu/OS et conserver agence ; une action combat lisible",
+    "Réparer la base de tests (N1, OD-2026-10-25-A) : exclure tmp/, dist/ et output/ dans la config vitest de vite.config.ts ; fournir combatCue aux harnais de src/combat/combatKeyboard.test.ts et src/combat/unitMotion.test.ts ; classer les tests de doctrine retirée (mise à jour s'ils gardent une frontière vivante, sinon retrait mentionné au rapport) ; diagnostiquer src/game/refugeHubContinuity.test.ts ; revue contracts-guardian ; npm test vert.",
+    "N2 : copier l'état actuel à l'identique dans docs/autonomy/archive/, compacter l'état courant aux champs du protocole et aux jobs utiles ; 15 jobs RUNNING fantômes en ORPHANED_UNVERIFIED dans l'archive ; live.qaJobs compatible avec tools/qa/qa-job.mjs.",
+    "N5 : mettre AGENTS.md et MULTI_AGENT_PROTOCOL.md §9 à jour sur la priorité réelle ; réparer la forme du registre OPERATOR_DECISIONS.md sans changer le texte des entrées.",
+    "N4 : archiver traversal-engineer, recentrer cinematics-journey sans vidéo, rafraîchir digests/contracts-compliance/qa-evidence, créer le reviewer combat-vfx-sprites, ajouter les renvois .claude/ ; parité .codex/.",
+    "N3 : tag archive/wip/<nom> sur chaque pointe locale et origin (deux versions de la branche divergente), push des tags, puis suppression des branches wip/*.",
+    "P2 : lecteur d'animation par frames dans NarrativeSceneSurface (Claude, master fixe en fallback) ; frames Alistair par une session Codex dédiée lancée par l'opérateur ; repli generate2dsprite/API image seulement après confirmation dans la conversation.",
     "Finition relationnelle Bois-Clair et cohérence de la tranche jouée",
     "Compléter VFX contact/projectile/soin/statut selon actions réelles",
-    "Extension casting après progrès visible,playtest PC puis mobile"
+    "Extension casting après progrès visible, playtest PC puis mobile"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_PREPARATION_SCOPED_NO_RUNTIME_CHANGE",
-  "commitReferenceScope": "Planning only against d049bda36e2bae4af0c1e1edc9a3a2e332ce799f; no source/media/build or old proof changed. Following workflow checkpoint SHA authoritative in Git/remote.",
-  "operatorAuthorization": "OD-2026-10-24-B: coherent/fluid dialogue-choice-combat; sprite animation in/out of combat and VFX finishing direction. Pilot details are proposals; no art/runtime acceptance inferred.",
+  "contractComplianceStatus": "PASS_GOVERNANCE_RECORD_NO_CONTRACT_CHANGE",
+  "commitReferenceScope": "Consignation de gouvernance sur 879eaf3d80c834942034e24548b4dedd1b5a9ac4 ; aucun changement de source, média, build ou preuve historique. Le SHA du commit de clôture fait foi dans Git.",
+  "operatorAuthorization": "OD-2026-10-25-A : Claude écrivain principal interactif, agent claude sous le même verrou, dev seulement, serveurs en mode mixte, protocole interactif allégé ; tests et état d'abord, puis nettoyage et pilote Alistair (frames Codex, lecteur Claude). Aucun amendement de contrat.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
     "intent": "Very rhythmic and active cinematic videos",
@@ -125,12 +131,12 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "codex-flow-sprite-direction-20261024T2342Z",
-  "agent": "codex",
-  "lastHeartbeat": "2026-10-24T23:49:53.380Z",
+  "runId": "claude-arbitrages-20261025T0406Z",
+  "agent": "claude",
+  "lastHeartbeat": "2026-10-25T04:09:18Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-24T23:49:53.380Z",
+    "lastHeartbeat": "2026-10-25T04:09:18Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -40878,7 +40884,7 @@
       }
     ],
     "wip": null,
-    "nextAction": "Préparer le candidat de repos quatre frames Alistair pour le tableau interactif du camp : références V2, fiche de frames/ancrage, génération intégrée et comparaison à taille de jeu selon PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md ; un acteur seulement avant extension combat/VFX.",
+    "nextAction": "Réparer la base de tests (N1, OD-2026-10-25-A) : exclure tmp/, dist/ et output/ dans la config vitest de vite.config.ts ; fournir combatCue aux harnais de src/combat/combatKeyboard.test.ts et src/combat/unitMotion.test.ts ; classer les tests de doctrine retirée (mise à jour s'ils gardent une frontière vivante, sinon retrait mentionné au rapport) ; diagnostiquer src/game/refugeHubContinuity.test.ts ; revue contracts-guardian ; npm test vert.",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,
@@ -40915,7 +40921,7 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": "2026-10-24T23:49:53.380Z",
+    "runEndedAt": "2026-10-25T04:09:18Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
@@ -41710,8 +41716,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "PLAYABLE_FLOW_SPRITE_VFX_PILOT",
-    "activeSubtask": "Direction et plan borné prêts ; animations par frames et VFX encore à réaliser/vérifier",
+    "activeTask": "TEST_BASELINE_REPAIR",
+    "activeSubtask": "OD-2026-10-25-A consignée ; réparation de la base de tests (N1) à démarrer",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -45043,9 +45049,9 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "codex-flow-sprite-direction-20261024T2342Z",
-    "agent": "codex",
-    "status": "READY_FOR_PILOT_PREPARATION",
+    "runId": "claude-arbitrages-20261025T0406Z",
+    "agent": "claude",
+    "status": "READY_FOR_TEST_BASELINE_REPAIR",
     "runStartedAt": "2026-10-24T23:41:32.1822907Z",
     "activePhase": "DIRECTION_RECORDED_PILOT_NOT_GENERATED",
     "heartbeat": "2026-10-24T23:49:53.380Z",
@@ -49585,7 +49591,7 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-24T2342Z-codex-flow-sprite-direction.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-25T0406Z-claude-arbitration.md",
   "runMeasurement": {
     "runtimeSourceFilesModified": 0,
     "gameplayFilesModified": 0,
@@ -49685,7 +49691,7 @@
     ],
     "acceptance": "INCOMPLETE; prior0520reports are not current production keyboard acceptance"
   },
-  "operatorPriority": "Cohérence/fluidité de la tranche jouée, animation locale des personnages et VFX ; zéro vidéo",
+  "operatorPriority": "Base de tests et état fiables, nettoyage de la gouvernance, puis pilote Alistair (lecteur Claude, frames Codex) ; zéro vidéo",
   "reopenedAcceptance": [
     {
       "area": "TRAVERSAL T0/T1/T3",
@@ -51156,7 +51162,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-24T23:49:53.380Z",
+  "heartbeat": "2026-10-25T04:09:18Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -54751,7 +54757,7 @@
     },
     "runEndedAt": "2026-10-24T05:46:57.320Z"
   },
-  "latestHandoff": "docs/autonomy/handoffs/2026-10-24T2342Z-codex-flow-sprite-direction.md",
+  "latestHandoff": "docs/autonomy/handoffs/2026-10-25T0406Z-claude-arbitration.md",
   "runCounts": {
     "runtimeSourceFilesModified": 0,
     "gameplayFilesModified": 0,
@@ -54926,5 +54932,30 @@
     "guardian": "PASS_PREPARATION_ACTUAL_PLAN",
     "schedulerConfigPreserved": true,
     "schedulerSha256": "409955549c96befafe89ca8027c71e3af736d98c4ef9f456f6f8b259e798ef42"
+  },
+  "operatorArbitration20261025": {
+    "decision": "OD-2026-10-25-A",
+    "path": "docs/autonomy/CLAUDE_INTEGRATION_AND_CLEANUP_OPERATOR_DECISION_2026-10-25.md",
+    "source": "Fiche d'arbitrages privée remplie par l'opérateur le 2026-10-25 entre 04:01 et 04:05 UTC, confirmée dans la conversation",
+    "choices": {
+      "A1": "Claude principal, Codex sur demande",
+      "A2": "Agent claude, même verrou",
+      "A3": "Règle du projet : dev seulement",
+      "A4": "Mode mixte",
+      "A5": "Protocole allégé en interactif",
+      "P1": "Tests et état d'abord, puis pilote",
+      "P2": "Codex fait les frames, Claude le lecteur",
+      "N1": "Réparation complète",
+      "N2": "Archiver puis compacter",
+      "N3": "Tags d'archive puis suppression",
+      "N4": "Mise à jour complète avec nouveau reviewer",
+      "N5": "Mettre à jour et réparer la forme",
+      "N6": "Ne rien supprimer pour l'instant",
+      "N7": "Plus tard"
+    },
+    "operatorNoteP2": "tu peux recuperer generate2dsprite  et uiliser api image  open ai  au pire si tu veux avoir full control ",
+    "noteHandling": "Repli possible ; installation de l'outil et usage de la clé API à confirmer dans la conversation avant usage ; aucun .env lu par Claude.",
+    "contractAmendment": false,
+    "scheduler": "PAUSED, cadence et réglages inchangés"
   }
 }

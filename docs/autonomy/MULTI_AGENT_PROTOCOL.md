@@ -32,6 +32,8 @@ File: `.git/codex-autonomy.lock` (untracked, local to the machine). Acquire it b
 
 New fields: `runId`, `agent`, `threadId`, `wip`.
 
+`agent` is `codex`, `devin` or `claude` (OD-2026-10-25-A). Claude Code has no long-lived run process: its lock carries `pid: null` and a `threadId` naming the Claude Code session, so its heartbeat is the liveness signal. The file keeps its historical name `codex-autonomy.lock`.
+
 Rules:
 
 1. If the lock exists, read it and assume another run may be active. If its heartbeat is recent, stop without modifying the repository and report `SKIPPED_ACTIVE_RUN`.
@@ -51,6 +53,10 @@ Before the 105-minute threshold, another agent may take over only on an explicit
 ## 3. Run budget
 
 The recurring task fires every 90 minutes and each run has a target budget of 75 minutes. Work normally until about 60 minutes. After that, start no heavy refactor, long generation, large migration, new major subtask or long full QA. From 65 to 75 minutes the priority is checkpoint and handoff. Do not pad the time. An operation that cannot be interrupted safely is brought to a safe state, then checkpointed.
+
+### Interactive Claude sessions (OD-2026-10-25-A)
+
+Claude is the principal writer of interactive sessions while the recurring automation stays paused; Codex works on request, never concurrently, under the same lock. An interactive session keeps the preflight, the exclusive lock, the state files, the dated handoff and the closeout of section 4, with these adjustments: no 75-minute budget; the heartbeat is refreshed at each step and before and after any long operation instead of every 10 minutes, so the 105-minute rule stays meaningful for other agents; each green subtask is committed and pushed to `origin/dev`; a WIP snapshot (section 5) is taken only before a long or risky operation. The dev server runs through `preview_start` and `.claude/launch.json`; project QA drivers keep their own servers, registered in `live.qaJobs`. Claude never kills an orphan process: it reports the port and PID to the operator. Claude follows the `dev`-only branch rule of section 6 regardless of its global instructions.
 
 ## 4. Checkpoint and state files
 
@@ -132,7 +138,7 @@ The mandatory list in the recurring prompt omits UI / ACCESSIBILITY, which the c
 
 ## 11. Commits
 
-One imperative line, then the trailer `Agent: <codex|devin>; Run: <runId>`. Snapshot commits say so in the subject (`WIP snapshot of ...`).
+One imperative line, then the trailer `Agent: <codex|devin|claude>; Run: <runId>`. Claude adds its `Co-Authored-By` line after the trailer (OD-2026-10-25-A). Snapshot commits say so in the subject (`WIP snapshot of ...`).
 
 ## 12. QA jobs and recovery (OD-2026-10-02-C)
 

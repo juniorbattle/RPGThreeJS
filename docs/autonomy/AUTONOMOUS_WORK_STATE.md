@@ -1,18 +1,16 @@
-# Cohérence de jeu, sprites et VFX — préparation
+# Arbitrages de reprise consignés — réparation de la base de tests à démarrer
 
-Run codex-flow-sprite-direction-20261024T2342Z, 2026-10-24T23:41:32.1822907Z → 2026-10-24T23:49:53.380Z. Direction opérateur OD24-B ; plan prêt, pilote non généré. Ce run apporte0progrès produit/runtime et aucune acceptation artistique.
+Run claude-arbitrages-20261025T0406Z (agent claude, session interactive), 2026-10-25T04:06:21Z. Premier run de Claude Code : audit en lecture seule de `dev@879eaf3d`, puis consignation des 14 choix de l'opérateur comme [OD-2026-10-25-A](CLAUDE_INTEGRATION_AND_CLEANUP_OPERATOR_DECISION_2026-10-25.md). Aucun progrès produit ni changement de source, média ou build.
 
-[Direction et plan borné](PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md) · [plan narratif conservé](STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md). Contrats1.10.0/baseline da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5 inchangés. Préflight propredevd049bda36e2bae4af0c1e1edc9a3a2e332ce799f,verrou exclusif,pasWIP hérité.
+Contrats 1.10.0 et baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5` inchangés, aucun amendement. Scheduler PAUSED, cadence et réglages inchangés. `main` protégé. Préflight propre : pas de verrou, arbre propre, `dev` = `origin/dev`, aucune écriture Codex depuis 23:40 locale.
 
-Objectif : fluidité dialogue→choix→combat→conséquence, avec animations locales de personnages et finition des VFX. Source : quatre poses combat et mouvements déjà présents, moteur/presetsVFX existants, overridesComposer publiés0 ; pas encore de lecteur frames narratif. STATIC_TABLEAU conserve composition et agence, sans imposer immobilité absolue. Revue PASS_PREPARATION_ACTUAL_PLAN, aucun amendement nécessaire pour ce pilote borné.
+Décisions : Claude écrit en interactif tant que l'automation est en pause, Codex sur demande et jamais en même temps, sous le même verrou (`agent: "claude"`). `dev` seulement. Serveur de dev par `preview_start`, drivers QA avec leur propre serveur inscrit dans `live.qaJobs`. Protocole interactif allégé (`MULTI_AGENT_PROTOCOL.md` §3). Ordre : N1 tests, N2 état, N5 documents, N4 agents et skills, N3 branches WIP, puis le pilote Alistair (lecteur par Claude, frames par une session Codex). N6 : rien supprimé. N7 : plus tard.
 
-Proposition : Alistair, un cycle de repos quatre frames au camp avant une action combat complète et ses VFX. Master 512×512 inspecté, SHA réel identique à Git ; métadonnée historique divergente distinguée dans le plan ; aucune image produite ni animation intégrée ici. Maelor/habitante restent la cible relationnelle de Bois-Clair ; ne pas importer les gestes de l’ancien pilote comme canon. Identités/équipement/ancrage/facing,4acteurs,OS/jeu réduit,clavier/choix/V6/autorités préservés.
+État des tests : tsc, `contracts:validate`, validateur narratif et barrière LOCKED passent. `npm test` est rouge : vitest ramasse 381 fichiers copiés sous `tmp/` ; sur `src/`, 51 échecs sur 2 636 dans 13 fichiers (29 `combatCue`, une quinzaine de tests de doctrine retirée, 6 `refugeHubContinuity`).
 
-Les vidéos restent retirées ; archives/preuves et365QA/acceptations identiques au précédent checkpoint. Preuve native du retrait sur sourceed401c13 conservée dans docs/reports/cinematic-retirement-2026-10-24/ ; aucun replay ni nouveaujob. Scheduler PAUSED/90min/xhigh et octets de configuration strictement inchangés. Pas de tests/build/browser relancés pour ce plan documentaire ; gates rapides et intégrité vérifiés.
+UNE prochaine action : réparer la base de tests (N1) : exclure `tmp/`, `dist/` et `output/` dans la config vitest de `vite.config.ts` ; fournir `combatCue` aux harnais de `src/combat/combatKeyboard.test.ts` et `src/combat/unitMotion.test.ts` ; classer les tests de doctrine retirée ; diagnostiquer `src/game/refugeHubContinuity.test.ts` ; revue contracts-guardian ; `npm test` vert.
 
-UNE prochaine action produit : Préparer le candidat de repos quatre frames Alistair pour le tableau interactif du camp : références V2, fiche de frames/ancrage, génération intégrée et comparaison à taille de jeu selon PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md ; un acteur seulement avant extension combat/VFX.
-
-Compteurs : {"runtimeSourceFilesModified":0,"gameplayFilesModified":0,"newMedia":0,"imagegenCalls":0,"qaScenarios":0,"newQaJobs":0,"inheritedQaJobs":365,"inheritedWipPaths":0,"workflowFiles":7,"productProgress":0}. Publication normale origin/dev autorisée OD-2026-10-12-A,main protégé. Les choix de frames/découpage sont proposés ; acceptation artistique finale et playtest PC restent opérateur,mobile ensuite.
+Compteurs : {"runtimeSourceFilesModified":0,"gameplayFilesModified":0,"newMedia":0,"imagegenCalls":0,"qaScenarios":0,"newQaJobs":0,"inheritedQaJobs":365,"inheritedWipPaths":0,"workflowFiles":7,"productProgress":0}. Handoff : [2026-10-25T0406Z-claude-arbitration.md](handoffs/2026-10-25T0406Z-claude-arbitration.md). Publication normale sur origin/dev autorisée par OD-2026-10-12-A.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
