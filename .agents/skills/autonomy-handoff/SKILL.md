@@ -1,6 +1,6 @@
 ---
 name: autonomy-handoff
-description: "Use at the start of any run or session on RPGThreeJS before touching the repository, when taking over from or handing off to another agent (Codex or Devin), and at closeout. Checks the execution lock, state files against Git, remote parity and uncommitted work; takes non-invasive WIP snapshots; produces the takeover brief."
+description: "Use at the start of any run or session on RPGThreeJS before touching the repository, when taking over from or handing off to another agent (Codex, Devin or Claude), and at closeout. Checks the execution lock, state files against Git, remote parity and uncommitted work; takes non-invasive WIP snapshots; produces the takeover brief."
 ---
 
 # Autonomy handoff

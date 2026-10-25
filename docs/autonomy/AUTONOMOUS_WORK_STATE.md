@@ -1,14 +1,14 @@
-# Documents d’entrée à jour — agents et skills à mettre à jour
+# Agents et skills à jour — branches WIP à archiver
 
-Run claude-entry-docs-20261025T0503Z (agent claude, session interactive), 2026-10-25T05:03:40Z → 2026-10-25T05:06:23Z. Tâche N5 d’[OD-2026-10-25-A](CLAUDE_INTEGRATION_AND_CLEANUP_OPERATOR_DECISION_2026-10-25.md) terminée ; documentation seulement.
+Run claude-agents-skills-20261025T0512Z (agent claude, session interactive), 2026-10-25T05:12:50Z → 2026-10-25T05:31:40Z. Tâche N4 d’[OD-2026-10-25-A](CLAUDE_INTEGRATION_AND_CLEANUP_OPERATOR_DECISION_2026-10-25.md) terminée ; profils, skills et gouvernance seulement.
 
-AGENTS.md décrit désormais la priorité réelle (« Current priority ») et les règles encore actives (« Standing constraints ») au lieu de quatre sections périmées. Le §9 du protocole suit OD-2026-10-25-A. Le registre des décisions est un seul tableau continu ; aucun texte d’entrée n’a changé. Archive de l’état : [archive/README.md](archive/README.md).
+`traversal-engineer` est archivé, `cinematics-journey` relit Journey sans vidéo, les résumés de contrat sont au set 1.10.0 et un reviewer `combat-vfx-sprites` existe en lecture seule. `.claude/` expose les 7 profils et 7 skills à Claude Code et lance le serveur de dev. Revue contracts-guardian PASS_WITH_NOTES, corrections appliquées. Le prompt récurrent de Codex ne nomme pas encore `combat-vfx-sprites` (action de l’opérateur).
 
 Contrats 1.10.0 et baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5` inchangés. Scheduler PAUSED, réglages inchangés. `main` protégé.
 
-UNE prochaine action : N4 (OD-2026-10-25-A) : archiver traversal-engineer, recentrer cinematics-journey sur Journey et NarrativeStage sans vidéo, rafraîchir les digests de narrative-tableau et ui-accessibility, la table de contracts-compliance et la liste d’outils de qa-evidence, créer un reviewer combat-vfx-sprites en lecture seule, ajouter les renvois .claude/ vers .agents/, garder la parité .codex/, puis mettre à jour la table des spécialistes d’AGENTS.md et la ligne Waves du §9 ; contracts:validate et git diff --check.
+UNE prochaine action : N3 (OD-2026-10-25-A) : poser un tag archive/wip/<nom> sur la pointe de chacune des 12 branches wip/* locales et des 11 distantes (pour la branche divergente wip/rpgthreejs-auto-dev-90m-20261003T1600, un tag par version), pousser les tags, vérifier qu’ils résolvent vers les mêmes commits, puis supprimer les branches locales et distantes ; ensuite pilote OD-2026-10-24-B.
 
-Compteurs : {"runtimeSourceFilesModified":0,"gameplayFilesModified":0,"testFilesModified":0,"newMedia":0,"imagegenCalls":0,"qaScenarios":0,"newQaJobs":0,"inheritedQaJobs":365,"liveQaJobsAfter":3,"inheritedWipPaths":0,"workflowFiles":6,"productProgress":0}. Handoff : [2026-10-25T0503Z-claude-entry-docs.md](handoffs/2026-10-25T0503Z-claude-entry-docs.md). Publication normale sur origin/dev autorisée par OD-2026-10-12-A.
+Compteurs : {"runtimeSourceFilesModified":0,"gameplayFilesModified":0,"testFilesModified":0,"newMedia":0,"imagegenCalls":0,"qaScenarios":0,"newQaJobs":0,"inheritedQaJobs":365,"liveQaJobsAfter":3,"inheritedWipPaths":0,"workflowFiles":36,"productProgress":0}. Handoff : [2026-10-25T0512Z-claude-agents-skills.md](handoffs/2026-10-25T0512Z-claude-agents-skills.md). Publication normale sur origin/dev autorisée par OD-2026-10-12-A.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

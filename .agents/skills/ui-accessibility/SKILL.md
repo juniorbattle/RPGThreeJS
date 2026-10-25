@@ -13,14 +13,17 @@ Contract: UI_AND_ACCESSIBILITY (`docs/contracts/UI_AND_ACCESSIBILITY.md`), plus 
 
 ## Invariants
 
-Digest of the contract as of commit `d7ca28aed5c377ffedb03202f6364b7a947d1096`; the contract text wins on any difference.
+Digest of the contract at set 1.10.0 (baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5`); the contract text wins on any difference.
 
 - Shared palette: deep navy, brass, warm gold, ivory. Keep the UI compact so the world, tableau or battlefield stays dominant.
 - Status text and numbers are read from runtime truth. Never display made-up combat values or resource totals, or an action that is not really enabled.
 - At every handoff a single component owns focus, overlays and lifecycle.
-- At desktop, intermediate and narrow widths, navigation, choices, status and critical combat controls stay usable. Measure real bounds, clipping, overlap, scrolling and hit targets in the choice, reward, combat and refuge states.
+- At desktop, intermediate and narrow widths, navigation, choices, status and critical combat controls stay usable. Measure real bounds, clipping, overlap, scrolling and hit targets in the choice, reward, combat, refuge and map states.
 - Keyboard operation, a visible focus indicator, meaningful labels and reduced-motion support are required from the first iteration.
+- POI map (OD-2026-10-13-D, OD-2026-10-15-A/B): POI roles and states (available, active, resolved, neutralized, locked, reusable refuge) and mobile threats (position, next-turn area, tendency, contested routes) are shown with text as well as colour. Wait and Combat-or-retreat are explicit intents; no modal, gesture, hover, zoom or selection owns movement, reward, branch, threat tick or resolution. Restore safe map focus after cancellation, retreat and combat. Map targets are at least 44px; paths, labels and threat indicators stay separated at 1366x768, 620px and 390x844.
 - A media fallback keeps the player's agency and never depends on motion to carry information.
+- Sound (OD-2026-10-18-F, OD-2026-10-19-B): default silence, accessible enable, mute and volume, real gesture unlock, preferences outside gameplay saves, no cue on load, reload, restored preference or programmatic focus, and audio failure never blocks agency.
+
 ## Reduced motion model
 
 Two sources: the game setting (`state.settings.reducedGraphics`, passed as `reducedMotion` by `GameApp`) and the OS `prefers-reduced-motion`. Either one requests less motion, and an explicit game value of `false` must never switch off the OS request. JavaScript reads this through one shared helper in `src/ui/` rather than ad-hoc `matchMedia` calls. CSS keeps `@media (prefers-reduced-motion: reduce)` blocks in `app.css` and `poi-map.css`. Verify OS-only and game-setting reduction separately in the current native campaign driver. Physical Traversal QA labs were retired under OD-2026-10-15-A.
@@ -30,7 +33,7 @@ Historical item8 acceptance remains scoped to its source/proof. Active manual-pl
 ## Verify
 
 - Focused: `npx vitest run src/ui` and the touched suites, then `npx tsc --noEmit`.
-- Browser: drivers, ports and outputs are in the `qa-evidence` skill. Test desktop, 620x780 and 390x844; keyboard-only paths; visible focus and labels; OS reduce on and off; game setting on and off; failed media loads.
+- Browser: drivers, ports and outputs are in the `qa-evidence` skill. Test desktop (1366x768 for the map), 620x780 and 390x844; keyboard-only paths; visible focus and labels; OS reduce on and off; game setting on and off; failed media loads.
 - Read real bounds from the page (`getBoundingClientRect` against the viewport) and inspect the captures.
 
 ## Hazards
@@ -41,7 +44,7 @@ Historical item8 acceptance remains scoped to its source/proof. Active manual-pl
 
 ## Hand off
 
-Cast and staging: `narrative-tableau`. Video, skip, fallback, resume: `cinematics-journey`. Contract mapping and matrix: `contracts-compliance`. Evidence: `qa-evidence`.
+Cast and staging: `narrative-tableau`. Journey, skip, fallback, resume: `cinematics-journey`. Combat animation and VFX readability: `combat-vfx-sprites`. Contract mapping and matrix: `contracts-compliance`. Evidence: `qa-evidence`.
 
 ## Return (impact brief)
 
@@ -49,4 +52,4 @@ Contracts read; files and owners affected; invariants at risk (contract section 
 
 ## OD-2026-10-03-A transition review
 
-Inspect cast exit/breath/entry continuity, gentle fade/pause/focus alternative, meaningful transition text, dialogue responsive bounds and retained/restored focus. Test normal and OS-only reduced motion at desktop/intermediate/narrow widths. Coordinate grouping/facing/copy with narrative-tableau; do not decide dialogue facts or reopen the approved cinematic count.
+Inspect cast exit/breath/entry continuity, gentle fade/pause/focus alternative, meaningful transition text, dialogue responsive bounds and retained/restored focus. Test normal and OS-only reduced motion at desktop/intermediate/narrow widths. Coordinate grouping/facing/copy with narrative-tableau; do not decide dialogue facts or reopen the historical cinematic identities.

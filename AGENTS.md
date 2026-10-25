@@ -7,7 +7,7 @@ RPGThreeJS is a narrative tactical RPG with an authored campaign (Vite, TypeScri
 1. Explicit operator decisions: `docs/autonomy/OPERATOR_DECISIONS.md` and the files it links.
 2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.10.0: approved amendment `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / OD-2026-10-24-A, immutable baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
 3. Current source: it states what is implemented today.
-4. Canonical docs (`docs/project/`, `docs/traversal/`, `docs/content/`), then dated reports in `docs/reports/`. Reports are historical evidence, never doctrine.
+4. Canonical docs (`docs/project/`, `docs/content/`), then dated reports in `docs/reports/`. Reports are historical evidence, never doctrine. `docs/traversal/` records the retired physical Traversal and is historical.
 
 The code adapts to a LOCKED contract, never the reverse. On a conflict: record it, mark the task blocked, continue with an independent task.
 
@@ -55,7 +55,7 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 
 ## Specialists
 
-Subagent profiles live in `.agents/agents/` (Devin) and `.codex/agents/` (Codex). The knowledge they load lives in `.agents/skills/`. Claude Code reads the same profiles and skills from `.agents/` (brief a subagent with the profile text) until the `.claude/` mirrors planned by OD-2026-10-25-A exist. They are reviewers or runners and are read-only by default. Writing stays with the single orchestrator, who should load the matching skill first.
+Subagent profiles live in `.agents/agents/` (Devin) and `.codex/agents/` (Codex). The knowledge they load lives in `.agents/skills/`. `.claude/agents/` and `.claude/skills/` hold thin pointers to these canonical files for Claude Code (OD-2026-10-25-A): edit the canonical files, then keep names and descriptions in step. Retired profiles live in `.agents/archive/`. They are reviewers or runners and are read-only by default. Writing stays with the single orchestrator, who should load the matching skill first.
 
 | Role | Skill | Use for |
 | --- | --- | --- |
@@ -63,11 +63,11 @@ Subagent profiles live in `.agents/agents/` (Devin) and `.codex/agents/` (Codex)
 | `contracts-guardian` | `contracts-compliance` | contract mapping, authority-boundary review, compliance matrix |
 | `qa-evidence-runner` | `qa-evidence` | focused tests, tsc, build, browser drivers, evidence |
 | `ui-accessibility` | `ui-accessibility` | UI, responsive layout, keyboard, reduced motion |
-| `cinematics-journey` | `cinematics-journey` | eight slots, Journey, skip, fallback, resume |
+| `cinematics-journey` | `cinematics-journey` | Journey, retired cinematic identities and their static moments, skip, fallback, resume |
 | `narrative-tableau` | `narrative-tableau` | relational grouping, stable facing, cast/ATE transitions, dialogue and context |
-| `traversal-engineer` | `traversal-engineer` | T0/T1/T3 ground, route/checkpoint motion, Risk/Reward/Pursuit, depth and spawn lifetime |
+| `combat-vfx-sprites` | `combat-vfx-sprites` | frame animation of actors, combat poses and motion, Combat Stage, VFX, combat sound cues |
 
-Codex starts subagents only when authorized. The recurring instruction authorizes the named roles for the milestone/risk triggers in MULTI_AGENT_PROTOCOL.md; applying a skill does not require spawning its reviewer. Continue coherent dev work autonomously without routine operator approval; the operator performs final demo testing.
+Codex starts subagents only when authorized. The recurring instruction authorizes the named roles for the milestone/risk triggers in MULTI_AGENT_PROTOCOL.md; it does not yet name `combat-vfx-sprites`, and adding it there is an operator action. Applying a skill does not require spawning its reviewer. Continue coherent dev work autonomously without routine operator approval; the operator performs final demo testing.
 
 ## Conventions
 

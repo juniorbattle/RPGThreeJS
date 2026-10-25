@@ -19,7 +19,7 @@ git --no-optional-locks status --short -- docs/contracts docs/game/GAME_CONSTITU
 npm run contracts:validate                                                                              # 8 contracts, 8 historical IDs, 0 active videos
 ```
 
-The validator checks the manifest identity and LOCKED status, each contract path, its `Status: **LOCKED**` marker and README link, the eight required contract IDs, and that `PRESENTATION_AND_MEDIA.md` lists exactly the eight approved video IDs in its numbered list. It does not hash contract content, so the Git gate is the real protection. There is no CI.
+The validator checks the manifest identity and LOCKED status, each contract path, its `Status: **LOCKED**` marker and README link, the eight required contract IDs, the eight historical IDs listed in `PRESENTATION_AND_MEDIA.md`, zero approved videos in `production_presentation_modes.json`, an empty runtime cinematic manifest, 147 unique generated beats with no video, hold or preload, no video file under `public/`, and the SHA-256 of the production-videos archive. It does not hash contract content, so the Git gate is the real protection. There is no CI.
 
 ## Route the task to contracts
 
@@ -27,8 +27,8 @@ The validator checks the manifest identity and LOCKED status, each contract path
 | --- | --- |
 | art direction, V2 characters, environment families, asset promotion or deletion | WORLD_AND_CHARACTERS |
 | campaign, dialogue, nodes, choices, saves, progression, refuges, loot | CAMPAIGN_AND_STATE |
-| tableau, NarrativeStage, cinematic slots, Journey, holds, fallback, audio | PRESENTATION_AND_MEDIA |
-| Traversal legs, Risk, Reward, Pursuit, checkpoints | TRAVERSAL and `docs/traversal/T0_PRODUCTION_CONTRACT.md` |
+| tableau, NarrativeStage, retired cinematic identities, Journey, fallback, audio | PRESENTATION_AND_MEDIA |
+| POI map navigation, expedition state, mobile elites, Combat or retreat, refuge reuse | TRAVERSAL (historical contract ID; POI map doctrine). `docs/traversal/` and physical road criteria are historical; persisted expedition state also CAMPAIGN_AND_STATE (Lot E), elite combat COMBAT_AND_VFX (Lot E) |
 | tactical combat, Combat Stage, VFX | COMBAT_AND_VFX |
 | UI, layout, focus, keyboard, reduced motion | UI_AND_ACCESSIBILITY |
 | tests, QA evidence, content authoring, branches, `main` | AUTHORING_AND_QA and AUTONOMOUS_WORK_PROTOCOL |
@@ -37,9 +37,9 @@ The validator checks the manifest identity and LOCKED status, each contract path
 
 For every changed file ask:
 
-1. Which layer owns it: truth (campaign, `RunSystem`, saves, tactical combat), coordinator (`GameApp`), or presentation (tableau, cinematics, Journey, Traversal scene, Combat Stage, VFX, UI, audio)?
-2. Does any presentation code gain a new write path to truth (route, outcome, resource, secured gold, save) other than the existing handoff callbacks?
-3. Does any save field carry visual or transient state (animation, camera, layout, Route Risk or Pursuit)?
+1. Which layer owns it: truth (campaign, `RunSystem`, saves, tactical combat), coordinator (`GameApp`), or presentation (tableau, Journey, POI atlas, Combat Stage, VFX, UI, audio)?
+2. Does any presentation code gain a new write path to truth (route, outcome, resource, holdings, save) other than the existing handoff callbacks?
+3. Does any save field carry visual or transient state (animation frame or clock, camera, layout, map focus, threat preview)?
 4. Are durable IDs, V6 compatibility and migrations preserved? A changed durable schema needs an explicit migration and resume tests.
 5. Does Combat Stage or VFX compute, duplicate or change damage, AP, status or outcome?
 6. Do gameplay owners credit gains and restore the selected last actual save as approved under set1.5.0? Audio/presentation must never credit, debit or secure holdings; physical Traversal stays retired.
@@ -48,14 +48,14 @@ For every changed file ask:
 
 - Zero active video/hold/preload/shipped MP4; retain eight historical IDs and all authored moments through static dialogue/tableau. Fallback preserves agency and never replays resolved content.
 - No invented canon: dialogue, choices, stages, outcomes, rewards. Presentation briefs may not mint canon.
-- Recurring runs: no MiniMax or other video or keyframe generation, no MP4 replacement (OD-2026-10-01-B in `docs/autonomy/OPERATOR_DECISIONS.md`).
-- Audio DEFERRED except eight approved UI FX and bounded16family combat candidates/audited events under OD-2026-10-19-B. T2 and T4 are retired as playable legs with durable IDs kept; T3 is not renumbered.
+- No run generates or polls video, keyframes or illustrated cinematic candidates (no MiniMax), and none replaces or restores an MP4 (OD-2026-10-24-A).
+- Audio DEFERRED except the eight approved UI FX and the bounded 16-family combat candidates and audited events under OD-2026-10-19-B. T2 and T4 are retired as playable legs with durable IDs kept; T3 is not renumbered.
 - A `legacy*` name is not deletion authority: first list every reference (runtime, registry, manifest, styles, tools, tests, docs, evidence).
 - Autonomous writes go to `dev` or to a temporary branch created from it.
 
 ## Open operator decisions (never decide them)
 
-The Alistair emblem or origin; the prologue cinematic; the first-refuge first scene (a contract task must precede any slot); ultimates; remaining audio categories beyond the bounded UI/combat FX exception; any extension of the eight-slot list.
+The Alistair emblem or origin; the prologue cinematic; the first-refuge first scene (a contract task must precede any slot); ultimates; remaining audio categories beyond the bounded UI/combat FX exception; any new video slot or return of cinematic production (retired by OD-2026-10-24-A); final art and felt-balance acceptance.
 
 ## Compliance matrix (return this)
 
@@ -67,13 +67,10 @@ Then record: contracts read, contract set version, LOCKED rules impacted, and an
 
 Current set1.10.0 derives from PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1 / OD-2026-10-24-A at the immutable baseline above; b1e8858 is the original historical lock. A dedicated operator-approved amendment records exact changed rules, task/decision and version, independent review, then establishes its committed baseline in a following operational commit. A normal task must not advance that baseline or edit a LOCKED contract. Its gate must remain empty. During an authorized amendment, inspect the exact approved diff rather than claim no rule changed. Read the current manifest version for every matrix. Manual visual findings reopen affected acceptance; an old PASS is historical, not a rebuttal.
 
-## Offline illustration exception — OD-2026-10-21-A
-
-Set1.8.0 PRESENTATION_AND_MEDIA permits only built-in-imagegen offline narrative montage candidates for the eight existing IDs, seven remaining after camp structure/design acceptance. Read `docs/autonomy/ILLUSTRATED_CINEMATICS_OPERATOR_DECISION_2026-10-21.md` and `tools/cinematics/specs/illustrated-sequences/production-plan.json`. Video/keyframes for video/MiniMax/polling/MP4 promotion/runtime/audio remain excluded. This new exception supersedes only older blanket external-art-workstream guidance for these offline illustrated candidates; final art/adoption and scheduler activation remain operator.
-## Expressive illustrated direction — OD-2026-10-23-A/B
-
-Set1.9.0 amends only offline illustration direction: motivated hard cuts/dissolves/holds, varied timings and bounded study of discreet reframing with reduced-motion alternative. Read docs/autonomy/ILLUSTRATED_EDITING_AMENDMENT_2026-10-23.md and ILLUSTRATED_POSE_DIRECTION_2026-10-23.md. The new separate Bois-Clair sacrificed pilot requires explicit operator artistic acceptance of its method before six-scene generalization. Current LOCKED baseline is the dedicated1.9.0 amendment above;0cb95135/set1.8.0 is historical. No runtime/video/audio/canon/V6 or scheduler activation permission is added.
-
 ## Current retirement — OD-2026-10-24-A
 
-Set1.10.0 supersedes earlier cinematic production directions: zero active video/hold/preload/shipped MP4, eight historical IDs and archived media/proof preserved. No illustrated/video generation or pilot generalization. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5.
+Set 1.10.0 supersedes earlier cinematic production directions, including the offline illustrated permissions of sets 1.8.0 (OD-2026-10-21-A) and 1.9.0 (OD-2026-10-23-B), whose candidates and evidence stay as history: zero active video, hold, preload or shipped MP4; eight historical IDs and archived media and proof preserved; no illustrated or video generation or pilot generalization. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5.
+
+## Current direction — OD-2026-10-24-B
+
+A local frame animation of an actor or a combat action is presentation: it observes resolved events, keeps a fallback to the Character V2 master or pose, stores nothing in V6 and never owns focus, lines, choices, turn timing or outcomes. See `docs/autonomy/PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md`; route detailed review to `combat-vfx-sprites`.

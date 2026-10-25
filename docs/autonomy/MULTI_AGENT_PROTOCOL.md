@@ -113,11 +113,11 @@ Production focus (OD-2026-10-04-A): advance the product code first. Per run, run
 
 Specialists remain read-only for tracked source/state. QA workers may write their own ignored outputs, never the shared state; the single lock holder integrates results. Keep the current orchestrator and guardian high settings in lot1. No execpolicy change.
 
-Waves: 1 is `handoff-governor`, `contracts-guardian`, `qa-evidence-runner`, `ui-accessibility`, `cinematics-journey`, `narrative-tableau`. Planned: 2 is `combat-stage-vfx`, `tactical-combat-authority`, `campaign-state-authority`, `narrative-canon-guard`; 3 originally planned `traversal-engineer`, `world-art-continuity`. OD-2026-10-03-A activates only read-only `traversal-engineer`; world-art-continuity remains deferred.
+Waves: 1 is `handoff-governor`, `contracts-guardian`, `qa-evidence-runner`, `ui-accessibility`, `cinematics-journey`, `narrative-tableau`. Planned: 2 is `combat-stage-vfx`, `tactical-combat-authority`, `campaign-state-authority`, `narrative-canon-guard`; 3 originally planned `traversal-engineer`, `world-art-continuity`. OD-2026-10-03-A activated only read-only `traversal-engineer`; OD-2026-10-25-A archived it in `.agents/archive/` after the physical Traversal retirement, refocused `cinematics-journey` on Journey after the video retirement, and activated read-only `combat-vfx-sprites`, whose scope overlaps the planned `combat-stage-vfx`. The planned wave 2 profiles and world-art-continuity remain deferred.
 
 ### Active remediation priority (OD-2026-10-03-A)
 
-[Manual-playtest decision](MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md) takes precedence over a historical nextAction. Use its ordered queue; preserve deferred battlefield keyboard/combat WIP and exact continuation. First lot is the explicit contract amendment; subsequent runtime tasks cannot edit LOCKED rules. Prior automated PASS remains historical and cannot invalidate manual visual findings. Relevant profiles route Traversal, relational tableau, UI motion/focus and campfire/ATE/Journey questions; never launch them all by default. Normal slot/canon/temporary-loot/save/main safeguards remain.
+[Manual-playtest decision](MANUAL_PLAYTEST_OPERATOR_DECISION_2026-10-03.md) takes precedence over a historical nextAction. Use its ordered queue; preserve deferred battlefield keyboard/combat WIP and exact continuation. First lot is the explicit contract amendment; subsequent runtime tasks cannot edit LOCKED rules. Prior automated PASS remains historical and cannot invalidate manual visual findings. Relevant profiles route relational tableau, UI motion/focus, campfire/ATE/Journey and combat animation questions; never launch them all by default. Normal slot/canon/temporary-loot/save/main safeguards remain.
 
 ## 10. Compliance matrix
 
@@ -131,7 +131,7 @@ Current immutable contract/constitution baseline: `da69ec63bff1bc35f4b2b03feffe9
 | ART_DIRECTION, CHARACTERS, ENVIRONMENTS | WORLD_AND_CHARACTERS |
 | NARRATIVE / CAMPAIGN, SAVE | CAMPAIGN_AND_STATE |
 | NARRATIVE_PRESENTATION | PRESENTATION_AND_MEDIA |
-| TRAVERSAL | TRAVERSAL and `docs/traversal/T0_PRODUCTION_CONTRACT.md` |
+| TRAVERSAL | TRAVERSAL (historical ID; POI map doctrine). `docs/traversal/` is historical |
 | COMBAT (including VFX) | COMBAT_AND_VFX |
 | UI / ACCESSIBILITY | UI_AND_ACCESSIBILITY |
 | QA_EVIDENCE, REPOSITORY_GOVERNANCE | AUTHORING_AND_QA, AUTONOMOUS_WORK_PROTOCOL |
