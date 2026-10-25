@@ -3,6 +3,7 @@ import { assets } from '../render/assetManifest';
 import { resolveCharacterAsset } from '../render/CharacterVisualRegistry';
 import { createGenericNarrativeTableau, type NarrativeActorEntryEffect, type NarrativeActorExitEffect, type NarrativeAddressResolution, type NarrativeLayoutPlacement, type NarrativeStagedActorSpec, type NarrativeTableauSpec, type NarrativeVisualPhaseSpec } from './NarrativeTableau';
 import { resolveStaticTableauActorTuning, resolveStaticTableauComposition, type StaticTableauCompositionProfile } from './StaticTableauComposition';
+import { NarrativeActorFramePlayer, resolveNarrativeActorFrameBindings, type NarrativeActorFrameBinding } from './NarrativeActorFrames';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
 
 interface DialogueAssetProfile {
@@ -105,14 +106,23 @@ export class NarrativeSceneSurface {
   private readonly renderableWaits = new Set<() => void>();
   private readonly gameReducedMotion: boolean;
   private readonly actorImages: Readonly<Record<string, string>>;
+  private readonly frames: NarrativeActorFramePlayer;
 
   constructor(
     private readonly root: HTMLElement,
     private readonly tableau: NarrativeTableauSpec,
-    options: { reducedMotion?: boolean; actorImages?: Readonly<Record<string, string>> } = {},
+    options: {
+      reducedMotion?: boolean;
+      actorImages?: Readonly<Record<string, string>>;
+      frameBindings?: readonly NarrativeActorFrameBinding[];
+    } = {},
   ) {
     this.gameReducedMotion = options.reducedMotion === true;
     this.actorImages = options.actorImages ?? {};
+    this.frames = new NarrativeActorFramePlayer(
+      options.frameBindings ?? resolveNarrativeActorFrameBindings(tableau.id),
+      this.gameReducedMotion,
+    );
     this.phases = tableau.phases ?? [];
     this.element.className = 'narrative-scene-surface narrative-media-surface narrative-media-surface--still';
     this.element.dataset.narrativeScene = tableau.id;
@@ -144,6 +154,7 @@ export class NarrativeSceneSurface {
   mount(image?: string, phaseId?: string): void {
     this.prepare(image, phaseId);
     this.root.replaceChildren(this.element);
+    this.frames.refresh();
   }
 
   async whenRenderable(): Promise<void> {
@@ -271,6 +282,7 @@ export class NarrativeSceneSurface {
       this.focusLayer.dataset.speaker = speakerId ?? '';
       this.element.dataset.speakerPosition = phase.staticCast.find((actor) => actor.actorId === speakerId)?.screenPosition ?? '';
       this.activePhaseId = phase.id;
+      this.frames.sync(phase.id, actors);
     };
     if (!exiting.length) mountActors();
     await imagesReady;
@@ -290,6 +302,7 @@ export class NarrativeSceneSurface {
     this.phaseRevision++;
     for (const cancel of this.renderableWaits) cancel();
     this.renderableWaits.clear();
+    this.frames.dispose();
     this.castLayer.replaceChildren();
     this.element.remove();
   }
