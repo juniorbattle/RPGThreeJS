@@ -41,6 +41,12 @@ import {
 import { createUnitInstance } from './catalog';
 import { createInitialState } from './store';
 import { gameStateSchema, type DialogueSequence, type GameState, type RunNode } from './types';
+import { LOT_E_POIS, lotECombatConfigs } from '../campaign/LionPoiAuthoring';
+
+// Lot E (OD-2026-10-15-B) adds optional POIs and combats outside the authored R6 braid and dialogue framing.
+const LOT_E_POI_IDS = new Set(LOT_E_POIS.map((poi) => poi.id));
+const LOT_E_COMBAT_IDS = new Set(lotECombatConfigs().map((combat) => combat.id));
+const AUTHORED_COMBATS = [...combatConfigs.values()].filter((combat) => !LOT_E_COMBAT_IDS.has(combat.id));
 
 const LEGACY_COMPATIBILITY_DIALOGUES = new Set([
   'mystery_ambush',
@@ -404,7 +410,10 @@ describe('R6 runtime ownership and ordering lock', () => {
       source.indexOf('\n  private setMode', source.indexOf('private async continueChronicle')),
     );
     expect(continueMethod).toContain('resolvePendingLionFinaleCombat(this.state.flags)');
-    expect(continueMethod).toContain('pendingFinaleCombat !== null || !this.state.resolvedNodeIds.includes(current.id)');
+    // POI navigation (14490908, OD-2026-10-13-D) added the neutralized/bypassed conditions; the last-save reload
+    // (878241d8, OD-2026-10-18-C) moved the resume branch to resumeSavedCampaign, inside this slice.
+    expect(continueMethod).toContain('await this.resumeSavedCampaign()');
+    expect(continueMethod).toContain('pendingFinaleCombat !== null || (!this.state.resolvedNodeIds.includes(current.id)');
   });
 });
 
@@ -435,8 +444,9 @@ describe('R6 content reachability and reference integrity', () => {
 
   it('validates every combat, ATE, R4, and contextual patch/anchor reference', () => {
     const runNodeIds = new Set(generateRunGraph(6100).nodes.map((node) => node.id));
-    expect(combatConfigs.size).toBe(18);
-    for (const combat of combatConfigs.values()) {
+    expect(AUTHORED_COMBATS).toHaveLength(18);
+    expect(combatConfigs.size).toBe(AUTHORED_COMBATS.length + LOT_E_COMBAT_IDS.size);
+    for (const combat of AUTHORED_COMBATS) {
       expect(combat.preCombatDialogueId, `${combat.id}:pre`).toBeTruthy();
       expect(combat.postCombatDialogueId, `${combat.id}:post`).toBeTruthy();
       expect(resolveGameDialogue(combat.preCombatDialogueId!, createInitialState())).not.toBeNull();
@@ -481,7 +491,12 @@ describe('R6 content reachability and reference integrity', () => {
 describe('R6 authoritative topology', () => {
   it('keeps the 21-node depth-17 acyclic braid fully reachable with valid joins', () => {
     for (const seed of [0, 1, 6100, 0x7fffffff]) {
-      const graph = generateRunGraph(seed);
+      const fullGraph = generateRunGraph(seed);
+      // POI navigation owns the Lot E edges; the authored braid is checked without the optional POIs.
+      const lotENodes = fullGraph.nodes.filter((node) => LOT_E_POI_IDS.has(node.id));
+      expect(lotENodes).toHaveLength(LOT_E_POIS.length);
+      expect(lotENodes.every((node) => node.links.length === 0)).toBe(true);
+      const graph = { ...fullGraph, nodes: fullGraph.nodes.filter((node) => !LOT_E_POI_IDS.has(node.id)) };
       const byId = new Map(graph.nodes.map((node) => [node.id, node]));
       expect(graph.nodes).toHaveLength(21);
       expect(Math.max(...graph.nodes.map((node) => node.depth))).toBe(17);
@@ -692,7 +707,8 @@ describe('R6 Bois-Clair and Shadow integration gates', () => {
 
 describe('R6 combat and finale route integration', () => {
   it('keeps adaptive combat framing valid for every production encounter', () => {
-    for (const combat of combatConfigs.values()) {
+    expect([...combatConfigs.values()].filter((combat) => LOT_E_COMBAT_IDS.has(combat.id)).every((combat) => combat.encounterRank !== 'boss')).toBe(true);
+    for (const combat of AUTHORED_COMBATS) {
       expect(resolveGameDialogue(combat.preCombatDialogueId!, createInitialState())).not.toBeNull();
       expect(resolveGameDialogue(combat.postCombatDialogueId!, createInitialState())).not.toBeNull();
       if (OPTIONAL_COMBAT_IDS.has(combat.id)) {

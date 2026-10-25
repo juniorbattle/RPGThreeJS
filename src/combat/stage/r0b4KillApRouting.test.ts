@@ -51,10 +51,11 @@ describe('R0B.4 P0 AP kill reward', () => {
   });
 
   it('applyDamage is called from both effects path and normal attack path', () => {
+    // The magic flag (OD-2026-10-19-B) only selects the impact sound; damage and AP routing are unchanged.
     // Effects path
-    expect(runtimeSource).toContain('await applyDamage(t,dmg,u,{critical:crit}); totalDamageDealt+=dmg');
+    expect(runtimeSource).toContain("await applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag')}); totalDamageDealt+=dmg");
     // Normal attack path
-    expect(runtimeSource).toContain('await applyDamage(t,dmg,u,{critical:crit}); basicDmg=dmg');
+    expect(runtimeSource).toContain("await applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag')}); basicDmg=dmg");
   });
 
   it('Stage aftermath does not award AP (presentation-only, no ap mutation)', () => {

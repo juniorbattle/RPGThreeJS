@@ -41,7 +41,7 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 
 ## Commands
 
-- Focused tests: `npx vitest run <files>`. Full suite: `npm test`.
+- Focused tests: `npx vitest run <files>`. Full suite: `npm test` (vitest, then the `node:test` suite `tools/qa/qa-job.test.mjs`). `tmp/`, `output/` and the historical cinematic tests listed in `vite.config.ts` stay outside the current suite (OD-2026-10-25-A).
 - Types: `npx tsc --noEmit`. Build: `npm run build` (tsc and vite). Contracts: `npm run contracts:validate`.
 - Narrative staging validator: `npm run cinematics:validate-narrative-staging`.
 - Browser QA drivers live in `tools/` (Playwright). Ports, flags and output paths: `.agents/skills/qa-evidence/SKILL.md`.

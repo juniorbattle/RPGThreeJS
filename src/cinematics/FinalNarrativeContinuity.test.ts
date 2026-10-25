@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { dialogues } from '../game/content';
 import { generateRunGraph } from '../game/runSystem';
+import { LOT_E_POIS } from '../campaign/LionPoiAuthoring';
 import { AUDIENCE_ROAD_DEPARTURE_TABLEAU, resolveNarrativeChoiceScreenLanes, ALARIC_AUDIENCE_TABLEAU } from './NarrativeTableau';
 
 function readJson(path: string): any {
@@ -15,8 +16,12 @@ describe('CIN-6D final narrative continuity lock', () => {
     const spec = readJson('tools/cinematics/specs/final_narrative_continuity.json');
     const graph = generateRunGraph(6100);
     const liveEdges = graph.nodes.flatMap((node) => node.links.map((target) => `${node.id}>${target}`));
+    // Lot E (OD-2026-10-15-B) adds twelve optional POIs outside this CIN-6D audit; they carry no route edge.
+    const lotEPoiIds = new Set(LOT_E_POIS.map((poi) => poi.id));
+    const authoredNodes = graph.nodes.filter((node) => !lotEPoiIds.has(node.id));
+    expect(graph.nodes).toHaveLength(authoredNodes.length + LOT_E_POIS.length);
     expect(spec.summary).toEqual({ nodes: 21, edges: 23, maxDepth: 17 });
-    expect(spec.nodes.map((node: any) => node.nodeId)).toEqual(graph.nodes.map((node) => node.id));
+    expect(spec.nodes.map((node: any) => node.nodeId)).toEqual(authoredNodes.map((node) => node.id));
     expect(spec.edges.map((edge: any) => edge.edgeId)).toEqual(liveEdges);
     expect(spec.edges.every((edge: any) => edge.requiresExplicitPresentation && !edge.stalePriorHoldAllowed)).toBe(true);
     expect(new Set(spec.beatTaxonomy)).toEqual(new Set([

@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { combatConfigs, dialogues, POST_NODE_ATE } from '../game/content';
 import { generateRunGraph } from '../game/runSystem';
+import { LOT_E_POIS, lotECombatConfigs } from '../campaign/LionPoiAuthoring';
 
 function readJson(path: string): any {
   return JSON.parse(readFileSync(resolve(process.cwd(), path), 'utf8'));
@@ -41,9 +42,13 @@ describe('CIN-6D.5 final presentation mode audit', () => {
     const audit = readJson('tools/cinematics/specs/final_presentation_mode_audit.json');
     const graph = generateRunGraph(6100);
     const edgeIds = graph.nodes.flatMap((node) => node.links.map((target) => `${node.id}>${target}`));
+    // Lot E (OD-2026-10-15-B) adds twelve optional POIs outside this CIN-6D.5 audit; they carry no route edge.
+    const lotEPoiIds = new Set(LOT_E_POIS.map((poi) => poi.id));
+    const authoredNodes = graph.nodes.filter((node) => !lotEPoiIds.has(node.id));
+    expect(graph.nodes).toHaveLength(authoredNodes.length + LOT_E_POIS.length);
     expect(audit.summary.nodes).toBe(21);
     expect(audit.summary.edges).toBe(23);
-    expect(audit.nodeCoverage.map((entry: any) => entry.nodeId)).toEqual(graph.nodes.map((node) => node.id));
+    expect(audit.nodeCoverage.map((entry: any) => entry.nodeId)).toEqual(authoredNodes.map((node) => node.id));
     expect(audit.nodeCoverage.every((entry: any) => entry.beatIds.length > 0)).toBe(true);
     expect(audit.edgeAudit.map((entry: any) => entry.edgeId)).toEqual(edgeIds);
     expect(audit.edgeAudit.every((entry: any) => entry.targetMode && entry.playerVisiblePause)).toBe(true);
@@ -95,7 +100,8 @@ describe('CIN-6D.5 final presentation mode audit', () => {
     ];
     expect(audit.beats.every((beat: any) => required.every((field) => Object.prototype.hasOwnProperty.call(beat, field)))).toBe(true);
     expect(audit.beats.every((beat: any) => beat.reason && beat.previousBeat && beat.nextBeat)).toBe(true);
-    expect(audit.beats.filter((beat: any) => beat.targetPresentationMode === 'COMBAT')).toHaveLength(combatConfigs.size);
+    // Lot E combats are presented by the POI encounter view, outside this authored-beat matrix.
+    expect(audit.beats.filter((beat: any) => beat.targetPresentationMode === 'COMBAT')).toHaveLength(combatConfigs.size - lotECombatConfigs().length);
   });
 
   it('locks travel stills, tableau backgrounds, families and next-mission requirements', () => {

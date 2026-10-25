@@ -1,55 +1,73 @@
 {
-  "status": "READY_FOR_TEST_BASELINE_REPAIR",
-  "runStartedAt": "2026-10-25T04:06:21Z",
-  "runEndedAt": "2026-10-25T04:09:18Z",
-  "activeTask": "TEST_BASELINE_REPAIR",
-  "activePhase": "OPERATOR_ARBITRATION_RECORDED",
-  "activeSubtask": "OD-2026-10-25-A consignée ; réparation de la base de tests (N1) à démarrer",
+  "status": "READY_FOR_STATE_COMPACTION",
+  "runStartedAt": "2026-10-25T04:11:10Z",
+  "runEndedAt": "2026-10-25T04:44:25Z",
+  "activeTask": "STATE_ARCHIVE_AND_COMPACTION",
+  "activePhase": "TEST_BASELINE_REPAIRED",
+  "activeSubtask": "N1 terminé (npm test vert) ; N2 archivage et compactage de l'état à démarrer",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "879eaf3d80c834942034e24548b4dedd1b5a9ac4",
-  "lastPushedCommit": "879eaf3d80c834942034e24548b4dedd1b5a9ac4",
+  "lastKnownGoodCommit": "0937868834752a87d2a9b12d52cd074e0cbc311b",
+  "lastPushedCommit": "0937868834752a87d2a9b12d52cd074e0cbc311b",
   "completedThisRun": [
-    "Préflight propre : dev = origin/dev à 879eaf3d, pas de verrou, arbre propre, barrière LOCKED vide, aucune écriture Codex depuis 23:40 locale",
-    "Audit en lecture seule (gouvernance, contrats, agents, workflow, code) et fiche d'arbitrages remplie par l'opérateur",
-    "OD-2026-10-25-A consignée : décision datée, entrée au registre",
-    "AGENTS.md et MULTI_AGENT_PROTOCOL.md (§2, §3, §11) : agent claude, trailer, protocole interactif allégé"
+    "Préflight propre et verrou exclusif (agent claude)",
+    "vitest : exclusion de tmp/, output/, du test node:test qa-job et de 8 tests historiques de la chaîne cinématique (fichiers intacts)",
+    "Harnais combatCue/setHint et stubs soundSettings/uiSounds ; test de rejet souris aligné sur OD-2026-10-19-B et renforcé",
+    "Tests CIN-6D/R5/R6 limités au contenu écrit avec contrôle exact des ajouts Lot E ; assertions de reprise suivies dans resumeSavedCampaign ; MP4 lus dans l'archive du retrait",
+    "DemoVfxActionScope compte les deux élites mobiles du Lot E comme combats atteignables (outil Composer, sans effet gameplay)",
+    "npm test lance vitest puis node --test tools/qa/qa-job.test.mjs ; revue contracts-guardian PASS_WITH_NOTES, notes appliquées"
   ],
   "filesChanged": [
-    "docs/autonomy/CLAUDE_INTEGRATION_AND_CLEANUP_OPERATOR_DECISION_2026-10-25.md",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "vite.config.ts",
+    "package.json",
+    "src/combat/vfx/DemoVfxActionScope.ts",
+    "src/cinematics/DialogueStagingDirector.test.ts",
+    "src/cinematics/FinalNarrativeContinuity.test.ts",
+    "src/cinematics/FinalPresentationModeAudit.test.ts",
+    "src/combat/combatKeyboard.test.ts",
+    "src/combat/stage/r0b4KillApRouting.test.ts",
+    "src/combat/unitMotion.test.ts",
+    "src/game/campaignGrammarConsolidation.test.ts",
+    "src/game/cin2CampaignBridge.test.ts",
+    "src/game/cin65CinematicDialogueIntegration.test.ts",
+    "src/game/r5NarrativeExpansion.test.ts",
+    "src/game/r6FullRouteIntegration.test.ts",
+    "src/game/refugeHubContinuity.test.ts",
     "AGENTS.md",
-    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
+    "docs/reports/test-baseline-repair-2026-10-25.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-25T0406Z-claude-arbitration.md"
+    "docs/autonomy/handoffs/2026-10-25T0411Z-claude-test-baseline.md"
   ],
   "testsRun": [
-    "git diff --check",
+    "npm test (vitest + node:test qa-job)",
+    "npx tsc --noEmit",
+    "npm run build",
+    "npm run contracts:validate",
     "LOCKED baseline gate",
-    "contracts:validate",
-    "Audit 2026-10-24 : tsc, validateur narratif, vitest limité à src/"
+    "git diff --check"
   ],
   "testsPassed": [
-    "git diff --check PASS",
-    "LOCKED baseline gate PASS (vide)",
+    "vitest 160 fichiers / 2814 tests PASS sur deux passages consécutifs",
+    "node:test qa-job 25/25 PASS",
+    "tsc PASS",
+    "build PASS (avertissement de taille de chunk hérité)",
     "contracts:validate PASS",
-    "Audit : tsc PASS, validateur narratif PASS (2 étapes mortes signalées)"
+    "LOCKED gate vide",
+    "git diff --check propre",
+    "contracts-guardian PASS_WITH_NOTES, F1-F5 appliqués"
   ],
-  "testsRemaining": [
-    "npm test rouge : vitest ramasse 381 fichiers copiés sous tmp/ ; sur src/ 51 échecs sur 2 636 dans 13 fichiers (29 combatCue, ~15 doctrine retirée, 6 refugeHubContinuity) ; traité en N1"
-  ],
+  "testsRemaining": [],
   "blockers": [],
   "remainingWork": [
-    "N1 base de tests, N2 état, N5 documents, N4 agents/skills, N3 branches WIP (OD-2026-10-25-A)",
+    "N2 état, N5 documents, N4 agents/skills, N3 branches WIP (OD-2026-10-25-A)",
     "Pilote Alistair : lecteur par Claude, frames par Codex, puis essai runtime borné",
     "Finition Maelor/habitante, raccords dialogue/choix/combat/conséquence",
     "Attaque/réaction et VFX action par action avec ressources existantes",
     "Art/global PC opérateur puis mobile"
   ],
-  "nextAction": "Réparer la base de tests (N1, OD-2026-10-25-A) : exclure tmp/, dist/ et output/ dans la config vitest de vite.config.ts ; fournir combatCue aux harnais de src/combat/combatKeyboard.test.ts et src/combat/unitMotion.test.ts ; classer les tests de doctrine retirée (mise à jour s'ils gardent une frontière vivante, sinon retrait mentionné au rapport) ; diagnostiquer src/game/refugeHubContinuity.test.ts ; revue contracts-guardian ; npm test vert.",
+  "nextAction": "N2 (OD-2026-10-25-A) : copier docs/autonomy/AUTONOMOUS_WORK_STATE.json à l'identique dans docs/autonomy/archive/, compacter l'état courant aux champs exigés par MULTI_AGENT_PROTOCOL.md §4 et aux jobs utiles, passer les 15 jobs RUNNING fantômes en ORPHANED_UNVERIFIED dans l'archive (reçus intacts), garder live.qaJobs compatible avec tools/qa/qa-job.mjs, puis npm test et contracts:validate.",
   "taskQueue": [
-    "Réparer la base de tests (N1, OD-2026-10-25-A) : exclure tmp/, dist/ et output/ dans la config vitest de vite.config.ts ; fournir combatCue aux harnais de src/combat/combatKeyboard.test.ts et src/combat/unitMotion.test.ts ; classer les tests de doctrine retirée (mise à jour s'ils gardent une frontière vivante, sinon retrait mentionné au rapport) ; diagnostiquer src/game/refugeHubContinuity.test.ts ; revue contracts-guardian ; npm test vert.",
-    "N2 : copier l'état actuel à l'identique dans docs/autonomy/archive/, compacter l'état courant aux champs du protocole et aux jobs utiles ; 15 jobs RUNNING fantômes en ORPHANED_UNVERIFIED dans l'archive ; live.qaJobs compatible avec tools/qa/qa-job.mjs.",
+    "N2 (OD-2026-10-25-A) : copier docs/autonomy/AUTONOMOUS_WORK_STATE.json à l'identique dans docs/autonomy/archive/, compacter l'état courant aux champs exigés par MULTI_AGENT_PROTOCOL.md §4 et aux jobs utiles, passer les 15 jobs RUNNING fantômes en ORPHANED_UNVERIFIED dans l'archive (reçus intacts), garder live.qaJobs compatible avec tools/qa/qa-job.mjs, puis npm test et contracts:validate.",
     "N5 : mettre AGENTS.md et MULTI_AGENT_PROTOCOL.md §9 à jour sur la priorité réelle ; réparer la forme du registre OPERATOR_DECISIONS.md sans changer le texte des entrées.",
     "N4 : archiver traversal-engineer, recentrer cinematics-journey sans vidéo, rafraîchir digests/contracts-compliance/qa-evidence, créer le reviewer combat-vfx-sprites, ajouter les renvois .claude/ ; parité .codex/.",
     "N3 : tag archive/wip/<nom> sur chaque pointe locale et origin (deux versions de la branche divergente), push des tags, puis suppression des branches wip/*.",
@@ -59,8 +77,8 @@
     "Extension casting après progrès visible, playtest PC puis mobile"
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_GOVERNANCE_RECORD_NO_CONTRACT_CHANGE",
-  "commitReferenceScope": "Consignation de gouvernance sur 879eaf3d80c834942034e24548b4dedd1b5a9ac4 ; aucun changement de source, média, build ou preuve historique. Le SHA du commit de clôture fait foi dans Git.",
+  "contractComplianceStatus": "PASS_TEST_BASELINE_NO_GAMEPLAY_CHANGE_GUARDIAN_PASS_WITH_NOTES",
+  "commitReferenceScope": "Réparation de tests et d'outillage sur 0937868834752a87d2a9b12d52cd074e0cbc311b ; aucun changement de gameplay, sauvegarde, média ou contrat. Le SHA du commit de clôture fait foi dans Git.",
   "operatorAuthorization": "OD-2026-10-25-A : Claude écrivain principal interactif, agent claude sous le même verrou, dev seulement, serveurs en mode mixte, protocole interactif allégé ; tests et état d'abord, puis nettoyage et pilote Alistair (frames Codex, lecteur Claude). Aucun amendement de contrat.",
   "creativeDirection": {
     "reference": "Final Fantasy IX (FF9)",
@@ -131,12 +149,12 @@
     "proof": "docs/reports/cinematic-active-motion-1.md"
   },
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
-  "runId": "claude-arbitrages-20261025T0406Z",
+  "runId": "claude-test-baseline-20261025T0411Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-10-25T04:09:18Z",
+  "lastHeartbeat": "2026-10-25T04:44:25Z",
   "wip": null,
   "live": {
-    "lastHeartbeat": "2026-10-25T04:09:18Z",
+    "lastHeartbeat": "2026-10-25T04:44:25Z",
     "qaJobs": [
       {
         "schemaVersion": 1,
@@ -40884,17 +40902,20 @@
       }
     ],
     "wip": null,
-    "nextAction": "Réparer la base de tests (N1, OD-2026-10-25-A) : exclure tmp/, dist/ et output/ dans la config vitest de vite.config.ts ; fournir combatCue aux harnais de src/combat/combatKeyboard.test.ts et src/combat/unitMotion.test.ts ; classer les tests de doctrine retirée (mise à jour s'ils gardent une frontière vivante, sinon retrait mentionné au rapport) ; diagnostiquer src/game/refugeHubContinuity.test.ts ; revue contracts-guardian ; npm test vert.",
+    "nextAction": "N2 (OD-2026-10-25-A) : copier docs/autonomy/AUTONOMOUS_WORK_STATE.json à l'identique dans docs/autonomy/archive/, compacter l'état courant aux champs exigés par MULTI_AGENT_PROTOCOL.md §4 et aux jobs utiles, passer les 15 jobs RUNNING fantômes en ORPHANED_UNVERIFIED dans l'archive (reçus intacts), garder live.qaJobs compatible avec tools/qa/qa-job.mjs, puis npm test et contracts:validate.",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
+      "toolingSourceFilesModified": 1,
       "gameplayFilesModified": 0,
+      "testFilesModified": 12,
+      "configFilesModified": 2,
       "newMedia": 0,
       "imagegenCalls": 0,
       "qaScenarios": 0,
       "newQaJobs": 0,
       "inheritedQaJobs": 365,
       "inheritedWipPaths": 0,
-      "workflowFiles": 7,
+      "workflowFiles": 5,
       "productProgress": 0
     },
     "checkpointPaths": [
@@ -40921,7 +40942,7 @@
       "authority": "OD-2026-10-12-A",
       "mainUnchanged": "00b96f1b502539618790b1c0d8d642f86d3dcf7f"
     },
-    "runEndedAt": "2026-10-25T04:09:18Z",
+    "runEndedAt": "2026-10-25T04:44:25Z",
     "writerStopped": true,
     "metadataPublication": {
       "scope": "Following metadata commit records exact delivery and closeout; metadata HEAD available via Git",
@@ -41716,8 +41737,8 @@
       "approvalReview": "First publication command timed out unexecuted; one expressly permitted retry succeeded; no rejection",
       "finalMetadataSha": "Recorded externally in automation memory after publication"
     },
-    "activeTask": "TEST_BASELINE_REPAIR",
-    "activeSubtask": "OD-2026-10-25-A consignée ; réparation de la base de tests (N1) à démarrer",
+    "activeTask": "STATE_ARCHIVE_AND_COMPACTION",
+    "activeSubtask": "N1 terminé (npm test vert) ; N2 archivage et compactage de l'état à démarrer",
     "closeout2223": {
       "runEndedAt": "2026-10-09T22:53:06.726Z",
       "workerPidsAbsent": [
@@ -45049,9 +45070,9 @@
       },
       "workers": "Host worker26700/port5389 absent after terminal, verified16:10; preexisting Vite29856 retained"
     },
-    "runId": "claude-arbitrages-20261025T0406Z",
+    "runId": "claude-test-baseline-20261025T0411Z",
     "agent": "claude",
-    "status": "READY_FOR_TEST_BASELINE_REPAIR",
+    "status": "READY_FOR_STATE_COMPACTION",
     "runStartedAt": "2026-10-24T23:41:32.1822907Z",
     "activePhase": "DIRECTION_RECORDED_PILOT_NOT_GENERATED",
     "heartbeat": "2026-10-24T23:49:53.380Z",
@@ -49591,17 +49612,20 @@
       "normalization": "Canonical file matches scheduler prompt exactly; scheduler trims terminal newline"
     }
   },
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-25T0406Z-claude-arbitration.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-25T0411Z-claude-test-baseline.md",
   "runMeasurement": {
     "runtimeSourceFilesModified": 0,
+    "toolingSourceFilesModified": 1,
     "gameplayFilesModified": 0,
+    "testFilesModified": 12,
+    "configFilesModified": 2,
     "newMedia": 0,
     "imagegenCalls": 0,
     "qaScenarios": 0,
     "newQaJobs": 0,
     "inheritedQaJobs": 365,
     "inheritedWipPaths": 0,
-    "workflowFiles": 7,
+    "workflowFiles": 5,
     "productProgress": 0
   },
   "deferredDemoTask": {
@@ -50882,14 +50906,17 @@
   },
   "currentRunMeasurement": {
     "runtimeSourceFilesModified": 0,
+    "toolingSourceFilesModified": 1,
     "gameplayFilesModified": 0,
+    "testFilesModified": 12,
+    "configFilesModified": 2,
     "newMedia": 0,
     "imagegenCalls": 0,
     "qaScenarios": 0,
     "newQaJobs": 0,
     "inheritedQaJobs": 365,
     "inheritedWipPaths": 0,
-    "workflowFiles": 7,
+    "workflowFiles": 5,
     "productProgress": 0
   },
   "standingDevPublicationAuthorization": {
@@ -51162,7 +51189,7 @@
     "publicationCommit": "8ce70717fbceece50b6406234a1f81b11bc34b40",
     "closedAt": "2026-10-14T01:44:59.122Z"
   },
-  "heartbeat": "2026-10-25T04:09:18Z",
+  "heartbeat": "2026-10-25T04:44:25Z",
   "poiContinuation": {
     "runId": "codex-poi-continuation-20261014",
     "status": "COMPLETE_SCOPED",
@@ -53139,14 +53166,17 @@
   "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
   "runMetrics": {
     "runtimeSourceFilesModified": 0,
+    "toolingSourceFilesModified": 1,
     "gameplayFilesModified": 0,
+    "testFilesModified": 12,
+    "configFilesModified": 2,
     "newMedia": 0,
     "imagegenCalls": 0,
     "qaScenarios": 0,
     "newQaJobs": 0,
     "inheritedQaJobs": 365,
     "inheritedWipPaths": 0,
-    "workflowFiles": 7,
+    "workflowFiles": 5,
     "productProgress": 0
   },
   "operatorAcceptedAssets": {
@@ -54757,17 +54787,20 @@
     },
     "runEndedAt": "2026-10-24T05:46:57.320Z"
   },
-  "latestHandoff": "docs/autonomy/handoffs/2026-10-25T0406Z-claude-arbitration.md",
+  "latestHandoff": "docs/autonomy/handoffs/2026-10-25T0411Z-claude-test-baseline.md",
   "runCounts": {
     "runtimeSourceFilesModified": 0,
+    "toolingSourceFilesModified": 1,
     "gameplayFilesModified": 0,
+    "testFilesModified": 12,
+    "configFilesModified": 2,
     "newMedia": 0,
     "imagegenCalls": 0,
     "qaScenarios": 0,
     "newQaJobs": 0,
     "inheritedQaJobs": 365,
     "inheritedWipPaths": 0,
-    "workflowFiles": 7,
+    "workflowFiles": 5,
     "productProgress": 0
   },
   "manualVideoWorkstream": {
@@ -54957,5 +54990,36 @@
     "noteHandling": "Repli possible ; installation de l'outil et usage de la clé API à confirmer dans la conversation avant usage ; aucun .env lu par Claude.",
     "contractAmendment": false,
     "scheduler": "PAUSED, cadence et réglages inchangés"
+  },
+  "testBaselineRepair20261025": {
+    "decision": "OD-2026-10-25-A / N1",
+    "report": "docs/reports/test-baseline-repair-2026-10-25.md",
+    "before": {
+      "collectedFiles": 535,
+      "failingFiles": 138,
+      "srcFailures": "51/2636 in 13 files",
+      "toolsFailures": "18 in 8 files plus node:test file under vitest"
+    },
+    "after": {
+      "vitestFiles": 160,
+      "vitestTests": 2814,
+      "nodeTestQaJob": "25/25"
+    },
+    "excludedHistoricalTests": [
+      "tools/cinematics/campaign_cinematic_census.test.mjs",
+      "tools/cinematics/cin66_character_scale.test.mjs",
+      "tools/cinematics/cin66_finalization.test.mjs",
+      "tools/cinematics/cin66_visual_polish_audit.test.mjs",
+      "tools/cinematics/cin6b_production.test.mjs",
+      "tools/cinematics/cin6ea2_dynamic_gate.test.mjs",
+      "tools/cinematics/cin6ea_finalization.test.mjs",
+      "tools/cinematics/cin6ea_preproduction.test.mjs"
+    ],
+    "excludedHistoricalCounts": {
+      "tests": 120,
+      "failing": 18,
+      "passing": 102
+    },
+    "guardian": "PASS_WITH_NOTES; F1-F5 applied; build added to evidence"
   }
 }

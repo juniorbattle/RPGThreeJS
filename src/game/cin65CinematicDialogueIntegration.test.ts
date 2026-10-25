@@ -69,9 +69,10 @@ describe('CIN-6.5 cinematic dialogue integration', () => {
     expect(manifest.cinematics.find((entry: { id: string }) => entry.id === 'camp_departure')?.durationMs).toBe(12_000);
     expect(manifest.cinematics.find((entry: { id: string }) => entry.id === 'alaric_audience_arrival')?.durationMs).toBe(12_000);
     expect(manifest.cinematics.find((entry: { id: string }) => entry.id === 'valmir_route_fork')?.durationMs).toBe(10_000);
-    const campMedia = readFileSync(resolve(process.cwd(), 'public/assets/cinematics/camp_departure.mp4'));
+    // OD-2026-10-24-A archived the production videos byte-identically outside public; the hashes stay provenance.
+    const campMedia = readFileSync(resolve(process.cwd(), 'tools/cinematics/archive/production-videos-2026-10-24/camp_departure.mp4'));
     expect(createHash('sha256').update(campMedia).digest('hex')).toBe('a56678969bfb319d503be1f3f406ca2a3bef1a11bebc07db78c6fb22e6b9c0f3');
-    const audienceMedia = readFileSync(resolve(process.cwd(), 'public/assets/cinematics/alaric_audience_arrival.mp4'));
+    const audienceMedia = readFileSync(resolve(process.cwd(), 'tools/cinematics/archive/production-videos-2026-10-24/alaric_audience_arrival.mp4'));
     expect(createHash('sha256').update(audienceMedia).digest('hex')).toBe('b823180582228dc2dd08592926efeb8ec58bc40bc102e238577361eac1dcb629');
     const valmirMedia = readFileSync(resolve(process.cwd(), 'tools/cinematics/archive/retired-video-masters/valmir_route_fork.mp4'));
     expect(createHash('sha256').update(valmirMedia).digest('hex')).toBe('63a4a0c3793d6e29ce8fd94b1478dfab59e40f856d53a01915e47fb9a6343261');

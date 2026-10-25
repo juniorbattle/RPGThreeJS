@@ -26,7 +26,7 @@ it('keeps the same first refuge and route state through management and Rest; onl
     expect(state.stepCounter).toBe(originalStep);
   });
   const app = Object.assign(Object.create(GameApp.prototype), {
-    state, mode: 'RESULT', activeNarrativeStage: null,
+    state, mode: 'RESULT', activeNarrativeStage: null, soundSettings: { close: vi.fn() }, uiSounds: { play: vi.fn() },
     saves: { saveAuto: vi.fn() },
     statusHud: new CampaignStatusHud(() => selectCampaignStatus(state)),
     playJourneyCinematic: vi.fn(async () => undefined),
@@ -77,7 +77,7 @@ it('keeps the second refuge interactive without moving its post-node ATE before 
   state.run.currentNodeId = state.currentNodeId = node.id;
   const order: string[] = [];
   const app = Object.assign(Object.create(GameApp.prototype), {
-    state, mode: 'RESULT', activeNarrativeStage: null,
+    state, mode: 'RESULT', activeNarrativeStage: null, soundSettings: { close: vi.fn() }, uiSounds: { play: vi.fn() },
     saves: { saveAuto: vi.fn() },
     statusHud: new CampaignStatusHud(() => selectCampaignStatus(state)),
     playJourneyCinematic: vi.fn(async () => { order.push('arrival'); }),
@@ -127,7 +127,7 @@ it.each(['lion-first-refuge', 'lion-second-refuge'])('saves %s consolidation bef
   const save = vi.spyOn(saves, 'saveAuto');
   let opened = 0;
   const app = Object.assign(Object.create(GameApp.prototype), {
-    state, saves, mode: 'RESULT', activeNarrativeStage: null,
+    state, saves, mode: 'RESULT', activeNarrativeStage: null, soundSettings: { close: vi.fn() }, uiSounds: { play: vi.fn() },
     playJourneyCinematic: vi.fn(async () => undefined), playDialogue: vi.fn(async () => undefined),
     exploration: { prepareBackground: vi.fn(async () => undefined), open: vi.fn(async () => {
       opened++;
@@ -161,7 +161,7 @@ it.each(['healthy', 'insufficient gold'])('does not save or alter owner truth af
   const save = vi.spyOn(saves, 'saveAuto');
   let opened = 0;
   const app = Object.assign(Object.create(GameApp.prototype), {
-    state, saves, mode: 'RESULT', activeNarrativeStage: null,
+    state, saves, mode: 'RESULT', activeNarrativeStage: null, soundSettings: { close: vi.fn() }, uiSounds: { play: vi.fn() },
     exploration: { prepareBackground: vi.fn(async () => undefined), open: vi.fn(async () => {
       expect(state).toEqual(before);
       expect(saves.loadAuto()).toEqual(before);
@@ -171,4 +171,6 @@ it.each(['healthy', 'insufficient gold'])('does not save or alter owner truth af
   });
   await app.resolveRunNode(node, false);
   expect(save).toHaveBeenCalledTimes(1);
+  // A rejected rest is a failed action: no success cue (OD-2026-10-18-F).
+  expect(app.uiSounds.play).not.toHaveBeenCalled();
 });

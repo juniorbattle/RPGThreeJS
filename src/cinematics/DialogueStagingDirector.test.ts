@@ -68,7 +68,8 @@ describe('DialogueStagingDirector', () => {
     expect(director.plan.decisions.every((decision) => decision.presentationStrategy === 'SPEAKER_FOCUS')).toBe(true);
     expect(director.plan.decisions.every((decision) => decision.speakerVisibleBeforeLine)).toBe(true);
     expect(director.plan.decisions.every((decision) => decision.castOwnership === 'STAGE_OWNS_CAST')).toBe(true);
-    expect(director.plan.decisions.every((decision) => decision.mediaRemasterLater)).toBe(true);
+    // OD-2026-10-24-A retired production videos: no media remaster remains pending for this tableau.
+    expect(director.plan.decisions.some((decision) => decision.mediaRemasterLater)).toBe(false);
   });
 
   it('segments long text without changing its words or canonical step semantics', () => {

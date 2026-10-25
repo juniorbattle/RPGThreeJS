@@ -39,6 +39,7 @@ import { combatConfigs, dialogues } from '../../game/content';
 import { createInitialState } from '../../game/store';
 import { createRunState, getAvailableRunNodes } from '../../game/runSystem';
 import { LION_CONDUCT_FLAG_WEIGHTS } from '../../game/lionNarrative';
+import { LOT_E_ELITES } from '../../campaign/LionPoiAuthoring';
 import type { GameState, NarrativeEffect } from '../../game/types';
 
 // ============================================================ Types
@@ -358,6 +359,10 @@ function deriveReachableCombatIds(): Set<string> {
   }
 
   for (const id of LION_FINALE_COMBAT_IDS) ids.add(id);
+
+  // Lot E mobile elites patrol the POI map instead of occupying a route node; their Combat-or-retreat
+  // encounter is still reachable in the demo.
+  for (const elite of LOT_E_ELITES) ids.add(elite.combat.id);
 
   // Keep only ids that are real combat encounters.
   for (const id of [...ids]) {

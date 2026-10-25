@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "test": "vitest run",
+    "test": "vitest run && node --test tools/qa/qa-job.test.mjs",
     "test:watch": "vitest",
     "contracts:validate": "node tools/contracts/validate-contracts.mjs",
     "test:r7-simulation": "vite-node tools/r7/run-r7-simulation.ts",

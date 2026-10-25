@@ -1,4 +1,6 @@
+/// <reference types="vitest/config" />
 import { defineConfig, loadEnv, type Plugin } from 'vite';
+import { configDefaults } from 'vitest/config';
 import { existsSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import {
@@ -13,6 +15,21 @@ import { handlePublishRequest, handleUnpublishRequest, handleResetAllPresetsRequ
 interface VfxDevPluginOptions {
   megaPackRoot: string;
 }
+
+// Historical cinematic-production checks (120 tests, 18 failing at retirement): they certify shipped videos and
+// matrices retired by OD-2026-10-24-A, frozen pre-POI save types and protected-path lists, and character hashes
+// recorded before the operator's 2026-10-13 Alistair correction. Kept unchanged as evidence, outside the current
+// suite; current coverage of the boundaries they touched: docs/reports/test-baseline-repair-2026-10-25.md.
+const HISTORICAL_CINEMATIC_TESTS = [
+  'tools/cinematics/campaign_cinematic_census.test.mjs',
+  'tools/cinematics/cin66_character_scale.test.mjs',
+  'tools/cinematics/cin66_finalization.test.mjs',
+  'tools/cinematics/cin66_visual_polish_audit.test.mjs',
+  'tools/cinematics/cin6b_production.test.mjs',
+  'tools/cinematics/cin6ea2_dynamic_gate.test.mjs',
+  'tools/cinematics/cin6ea_finalization.test.mjs',
+  'tools/cinematics/cin6ea_preproduction.test.mjs',
+];
 
 function vfxDevAcquisitionPlugin(options: VfxDevPluginOptions): Plugin {
   const { megaPackRoot } = options;
@@ -308,6 +325,13 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 5173,
       strictPort: false,
+    },
+    test: {
+      // tmp/ and output/ hold ignored QA outputs and archived source copies; their tests are not the current suite.
+      // qa-job.test.mjs is a node:test suite run by `npm test` itself.
+      exclude: [...configDefaults.exclude, 'tmp/**', 'output/**', 'tools/qa/qa-job.test.mjs', ...HISTORICAL_CINEMATIC_TESTS],
+      // Several full-catalogue audits take 2-3 s alone and passed the 5 s default under full-suite parallel load.
+      testTimeout: 20_000,
     },
   };
 });

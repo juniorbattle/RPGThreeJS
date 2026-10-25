@@ -49,7 +49,7 @@ it('secures loot, stages actual clan, gathers once, then opens management and pr
   const gold = state.gold, gems = state.inventory.materials.red_gem ?? 0;
   const order: string[] = [];
   const app = Object.assign(Object.create(GameApp.prototype), { state, mode: 'RESULT',
-    saves: { saveAuto: vi.fn() },
+    saves: { saveAuto: vi.fn() }, soundSettings: { close: vi.fn() }, uiSounds: { play: vi.fn() },
     activeNarrativeStage: null, statusHud: new CampaignStatusHud(() => selectCampaignStatus(state)),
     playJourneyCinematic: vi.fn(async (id: string) => { order.push(id); }),
     playDialogue: vi.fn(async (id: string, _label: string, options: any) => {

@@ -127,12 +127,12 @@ describe('native battlefield rejection feedback', () => {
       reach: { list: [{ gx: 0, gz: 0 }, { gx: 1, gz: 0 }], prev: {} },
       pending: { spec: { key: 'attack', self }, keys: new Set(['1,0']) },
     };
-    const move = vi.fn(async () => undefined), execute = vi.fn(async () => undefined), after = vi.fn();
-    const activate = new Function('G', 'keyboardInput', 'byId', 'moveAlong', 'buildPath', 'afterSub', 'doExecute',
-      `${announcement}\n${activation}\nreturn activateBattlefieldCell;`)(
-      game, keyboard, (id: string) => document.getElementById(id), move, () => ['native path'], after, execute,
+    const move = vi.fn(async () => undefined), execute = vi.fn(async () => undefined), after = vi.fn(), cue = vi.fn();
+    const activate = new Function('G', 'keyboardInput', 'byId', 'moveAlong', 'buildPath', 'afterSub', 'doExecute', 'combatCue',
+      `const setHint=()=>{};\n${announcement}\n${activation}\nreturn activateBattlefieldCell;`)(
+      game, keyboard, (id: string) => document.getElementById(id), move, () => ['native path'], after, execute, cue,
     ) as (cell: { gx: number; gz: number } | null) => Promise<void>;
-    return { game, status, canvas, move, execute, after, activate };
+    return { game, status, canvas, move, execute, after, cue, activate };
   }
 
   it.each(['move', 'target'] as const)('confirms rejected %s input without spending AP or changing focus', async mode => {
@@ -154,14 +154,23 @@ describe('native battlefield rejection feedback', () => {
     expect(input.move).not.toHaveBeenCalled();
   });
 
-  it.each(['move', 'target'] as const)('keeps pointer rejection and busy %s input outside keyboard feedback', async mode => {
-    const pointer = nativeInput(mode, false), original = pointer.status.textContent;
+  // OD-2026-10-19-B cues `refused` on an explicit refusal for pointer and keyboard alike; 06a59c48 also shows the
+  // refusal text for pointer input. Busy input stays silent. Neither path moves, executes or changes game state.
+  it.each(['move', 'target'] as const)('announces pointer rejection like keyboard rejection and keeps busy %s input silent', async mode => {
+    const pointer = nativeInput(mode, false), pointerBefore = structuredClone(pointer.game);
     await pointer.activate({ gx: 7, gz: 3 });
-    expect(pointer.status.textContent).toBe(original);
-    const busy = nativeInput(mode);
+    expect(pointer.status.textContent).toBe(`Case 8, 4 — ${mode === 'move' ? 'Déplacement' : 'Ciblage'} refusé — choisissez une case disponible`);
+    expect(pointer.cue.mock.calls).toEqual([['refused']]);
+    expect(pointer.game).toEqual(pointerBefore);
+    expect(pointer.move).not.toHaveBeenCalled();
+    expect(pointer.execute).not.toHaveBeenCalled();
+    const busy = nativeInput(mode), original = busy.status.textContent;
     busy.game.busy = true;
     await busy.activate({ gx: 7, gz: 3 });
     expect(busy.status.textContent).toBe(original);
+    expect(busy.cue).not.toHaveBeenCalled();
+    expect(busy.move).not.toHaveBeenCalled();
+    expect(busy.execute).not.toHaveBeenCalled();
   });
 
   it('preserves legal movement and target execution through their native owners', async () => {
@@ -193,7 +202,7 @@ describe('native action submenu cancellation', () => {
     const game = { mode: 'menu', busy, active: { ap: 3 }, pending: null };
     const sync = vi.fn();
     const cancel = new Function('G', 'dom', 'keyboardInput', 'syncActionDockState',
-      closeSource + cancelSource + ';return cancelToMenu;')(game, { menu, skillmenu }, keyboard, sync);
+      'const combatCue=()=>{};' + closeSource + cancelSource + ';return cancelToMenu;')(game, { menu, skillmenu }, keyboard, sync);
     skillmenu.querySelector('button')!.focus();
     return { game, menu, skillmenu, outside, sync, cancel };
   }
@@ -239,7 +248,7 @@ describe('native movement undo focus', () => {
     const place = vi.fn((u, gx, gz) => Object.assign(u, { gx, gz }));
     const api = new Function('G', 'dom', 'renderer', 'keyboardInput', 'restoreUnitFocus', 'placeUnit', 'clearHL',
       'selectUnit', 'setHint', 'closeMenus', 'hasS', 'invCount', 'renderCombatActionDock', 'syncActionDockState',
-      `${undoSource}\n${menuSource}\nreturn { undo: undoMove, open: openActionMenu };`)(
+      `const combatCue=()=>{};\n${undoSource}\n${menuSource}\nreturn { undo: undoMove, open: openActionMenu };`)(
       game, { menu, skillmenu }, { domElement: canvas }, keyboard, vi.fn(), place, vi.fn(), vi.fn(), vi.fn(),
       vi.fn(), () => false, () => 0, renderCombatActionDock, sync,
     ) as { undo: () => void; open: () => void };
@@ -300,7 +309,7 @@ describe('native next-player-turn focus', () => {
     const noop = () => {};
     const api = new Function('G', 'dom', 'renderer', 'keyboardInput', 'document', 'renderCombatActionDock',
       'closeMenus', 'nextTurn', 'tickStatusDamage', 'setTimeout',
-      `let turnReturnFocus=false; const _t=0, STATUS={};
+      `let turnReturnFocus=false; const _t=0, STATUS={}, combatCue=()=>{};
        const hideActionPreview=()=>{}, refreshTurnbar=()=>{}, selectUnit=()=>{}, focusCam=()=>{},
        refreshPanel=()=>{}, floatText=()=>{}, logMsg=()=>{}, clearBossIntentPresentation=()=>{},
        setHint=()=>{}, restoreUnitFocus=()=>{}, clearHL=()=>{}, syncActionDockState=()=>{},
@@ -365,7 +374,7 @@ describe('native deployment keyboard focus', () => {
     const reset = vi.fn(() => { game.deployedUnits = []; open(); });
     open = new Function('G', 'dom', 'keyboardInput', 'captureDeploymentFocus', 'renderObjective', 'cl', 'playerDeployLimit',
       'deploymentCard', 'canStartDeployment', 'deployDefById', 'selectUnitData', 'setHint', 'autoDeploy', 'resetDeploy', 'beginBattle',
-      menuSource + actionSource + ';return openDeployMenu;')(
+      'const combatCue=()=>{};' + menuSource + actionSource + ';return openDeployMenu;')(
       game, { menu, skillmenu }, keyboard, captureDeploymentFocus, renderObjective,
       (n: number, min: number, max: number) => Math.max(min, Math.min(max, n)), () => 4,
       (unit: { campaignId: string }) => '<button type="button" data-unit="' + unit.campaignId + '">Hero</button>',

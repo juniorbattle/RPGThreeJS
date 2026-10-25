@@ -17,6 +17,7 @@ import {
 import { R5_MEANINGFUL_CHOICE_CLASSIFICATIONS } from './r5NarrativeContent';
 import { createInitialState } from './store';
 import { gameStateSchema, type DialogueSequence, type GameState } from './types';
+import { lotECombatConfigs } from '../campaign/LionPoiAuthoring';
 
 function stateWith(flags: Record<string, boolean>, reputation = 30, seed = 7785): GameState {
   const state = createInitialState();
@@ -57,8 +58,12 @@ const HONOUR_FLAGS = {
 
 describe('R5 content production boundaries', () => {
   it('frames every production combat after the final dialogue-combat lock', () => {
-    expect(combatConfigs.size).toBe(18);
-    for (const combat of combatConfigs.values()) {
+    // Lot E combats (OD-2026-10-15-B) are presented by the POI encounter view and carry no dialogue framing.
+    const lotECombatIds = new Set(lotECombatConfigs().map((combat) => combat.id));
+    const authoredCombats = [...combatConfigs.values()].filter((combat) => !lotECombatIds.has(combat.id));
+    expect(authoredCombats).toHaveLength(18);
+    expect(combatConfigs.size).toBe(authoredCombats.length + lotECombatIds.size);
+    for (const combat of authoredCombats) {
       expect(combat.preCombatDialogueId, `${combat.id}:pre`).toBeTruthy();
       expect(combat.postCombatDialogueId, `${combat.id}:post`).toBeTruthy();
       expect(dialogues.has(combat.preCombatDialogueId!), `${combat.id}:pre exists`).toBe(true);

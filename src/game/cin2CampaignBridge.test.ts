@@ -46,7 +46,9 @@ describe('CIN-2 campaign presentation bridge', () => {
     const facade=method('private async enterCampaignPresentation');
     expect(facade).toContain('this.showPoiMap()');expect(facade).toContain('this.hasCompletedPoiChronicle()');
     expect(facade).toContain('lion-final-refuge');expect(facade).toContain('await this.enterJourney()');
-    for(const name of ['private async resolveRunNode','private async resolveCombat','private async flushPendingCombat','private async continueChronicle'])
+    // Since the last-save reload (OD-2026-10-18-C), continueChronicle delegates its resume branch to resumeSavedCampaign.
+    expect(method('private async continueChronicle')).toContain('await this.resumeSavedCampaign()');
+    for(const name of ['private async resolveRunNode','private async resolveCombat','private async flushPendingCombat','private async resumeSavedCampaign'])
       expect(method(name)).toContain('this.enterCampaignPresentation()');
     expect(SOURCE).not.toMatch(/activeTraversal|enterTraversal|usesTraversalPresentation|new TravelView/);
   });
@@ -151,7 +153,12 @@ describe('CIN-2 campaign presentation bridge', () => {
   });
 
   it('resumes a reload without replaying a committed route or a durable finale', () => {
-    const chronicle = method('private async continueChronicle');
+    // continueChronicle loads the save in a neutral mode, then resumeSavedCampaign picks the branch (OD-2026-10-18-C).
+    const loader = method('private async continueChronicle');
+    expect(loader).toContain('await this.resumeSavedCampaign()');
+    expect(loader).not.toContain('this.showTravel()');
+    expect(loader).not.toContain('this.travel.open()');
+    const chronicle = method('private async resumeSavedCampaign');
     expect(chronicle).toContain('resolvePendingLionFinaleCombat(this.state.flags)');
     expect(chronicle).toContain('!this.state.resolvedNodeIds.includes(current.id)');
     expect(chronicle).toContain('await this.resolveRunNode(current, true)');
@@ -250,6 +257,8 @@ describe('CIN-2 campaign presentation bridge', () => {
     };
     walk(resolve(process.cwd(), 'public'));
     walk(resolve(process.cwd(), 'tools/cinematics/archive/retired-video-masters'));
+    // OD-2026-10-24-A moved the eight production videos byte-identically out of public into this archive.
+    walk(resolve(process.cwd(), 'tools/cinematics/archive/production-videos-2026-10-24'));
     expect(videos.map((path) => path.replaceAll('\\', '/').split('/').at(-1)).sort()).toEqual([
       'abandoned_cart_reveal.mp4',
       'alaric_audience_arrival.mp4',

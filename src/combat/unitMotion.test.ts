@@ -64,7 +64,7 @@ function actualMovement(reducedInitially = false) {
   const cells = [{ topY: 4, occupant: unit as typeof unit | null }, { topY: 3, occupant: null as typeof unit | null }, { topY: 1, occupant: null as typeof unit | null }];
   const restore = vi.fn();
   const harness = new Function('G', 'UNIT_MOTION_PRESETS', 'beginUnitMotion', 'isUnitMotionCurrent', 'killSpriteMotion', 'clearHL', 'cellAt', 'spriteScaleSign', 'largeUnitSpriteScale', 'setFacing', 'wX', 'wZ', 'placeUnit', 'restoreUnitVisualBaseline',
-    `let REDUCED_GRAPHICS=${reducedInitially}; const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),lerp=(a,b,t)=>a+(b-a)*t,easeOutCubic=t=>t,easeInOut=t=>t; ${tweenSource} ${movementSource}; return {tweenP,advance:updateTweens,moveAlong,setReduced:value=>{REDUCED_GRAPHICS=value;},pending:()=>tweens.length};`)(
+    `let REDUCED_GRAPHICS=${reducedInitially}; const combatCue=()=>{},clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),lerp=(a,b,t)=>a+(b-a)*t,easeOutCubic=t=>t,easeInOut=t=>t; ${tweenSource} ${movementSource}; return {tweenP,advance:updateTweens,moveAlong,setReduced:value=>{REDUCED_GRAPHICS=value;},pending:()=>tweens.length};`)(
     game, UNIT_MOTION_PRESETS, beginUnitMotion, isUnitMotionCurrent, cancelUnitMotion, () => {},
     (gx: number) => cells[gx], (sprite: { scale: { x: number } }) => Math.sign(sprite.scale.x), () => 2, () => {}, (x: number) => x, (z: number) => z,
     (u: typeof unit, gx: number, gz: number) => { cells[u.gx]!.occupant = null; cells[gx]!.occupant = u; u.gx = gx; u.gz = gz; commits.push([gx, gz]); }, restore,

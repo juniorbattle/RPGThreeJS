@@ -1,16 +1,14 @@
-# Arbitrages de reprise consignés — réparation de la base de tests à démarrer
+# Base de tests réparée — archivage et compactage de l'état à démarrer
 
-Run claude-arbitrages-20261025T0406Z (agent claude, session interactive), 2026-10-25T04:06:21Z. Premier run de Claude Code : audit en lecture seule de `dev@879eaf3d`, puis consignation des 14 choix de l'opérateur comme [OD-2026-10-25-A](CLAUDE_INTEGRATION_AND_CLEANUP_OPERATOR_DECISION_2026-10-25.md). Aucun progrès produit ni changement de source, média ou build.
+Run claude-test-baseline-20261025T0411Z (agent claude, session interactive), 2026-10-25T04:11:10Z → 2026-10-25T04:44:25Z. Tâche N1 d'[OD-2026-10-25-A](CLAUDE_INTEGRATION_AND_CLEANUP_OPERATOR_DECISION_2026-10-25.md) terminée ; [rapport](../reports/test-baseline-repair-2026-10-25.md).
 
-Contrats 1.10.0 et baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5` inchangés, aucun amendement. Scheduler PAUSED, cadence et réglages inchangés. `main` protégé. Préflight propre : pas de verrou, arbre propre, `dev` = `origin/dev`, aucune écriture Codex depuis 23:40 locale.
+`npm test` est vert : vitest 160 fichiers / 2 814 tests, puis `node --test tools/qa/qa-job.test.mjs` 25/25. tsc, build, `contracts:validate`, barrière LOCKED et `git diff --check` passent. Revue contracts-guardian PASS_WITH_NOTES, notes appliquées. Aucun changement de gameplay, de sauvegarde, de média ni de contrat ; l'outil de portée VFX compte désormais les deux élites mobiles du Lot E.
 
-Décisions : Claude écrit en interactif tant que l'automation est en pause, Codex sur demande et jamais en même temps, sous le même verrou (`agent: "claude"`). `dev` seulement. Serveur de dev par `preview_start`, drivers QA avec leur propre serveur inscrit dans `live.qaJobs`. Protocole interactif allégé (`MULTI_AGENT_PROTOCOL.md` §3). Ordre : N1 tests, N2 état, N5 documents, N4 agents et skills, N3 branches WIP, puis le pilote Alistair (lecteur par Claude, frames par une session Codex). N6 : rien supprimé. N7 : plus tard.
+`npm test` exclut `tmp/`, `output/` et 8 tests historiques de la chaîne cinématique (fichiers intacts, liste dans `vite.config.ts`). Contrats 1.10.0 et baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5` inchangés. Scheduler PAUSED, réglages inchangés. `main` protégé.
 
-État des tests : tsc, `contracts:validate`, validateur narratif et barrière LOCKED passent. `npm test` est rouge : vitest ramasse 381 fichiers copiés sous `tmp/` ; sur `src/`, 51 échecs sur 2 636 dans 13 fichiers (29 `combatCue`, une quinzaine de tests de doctrine retirée, 6 `refugeHubContinuity`).
+UNE prochaine action : N2 (OD-2026-10-25-A) : copier docs/autonomy/AUTONOMOUS_WORK_STATE.json à l'identique dans docs/autonomy/archive/, compacter l'état courant aux champs exigés par MULTI_AGENT_PROTOCOL.md §4 et aux jobs utiles, passer les 15 jobs RUNNING fantômes en ORPHANED_UNVERIFIED dans l'archive (reçus intacts), garder live.qaJobs compatible avec tools/qa/qa-job.mjs, puis npm test et contracts:validate.
 
-UNE prochaine action : réparer la base de tests (N1) : exclure `tmp/`, `dist/` et `output/` dans la config vitest de `vite.config.ts` ; fournir `combatCue` aux harnais de `src/combat/combatKeyboard.test.ts` et `src/combat/unitMotion.test.ts` ; classer les tests de doctrine retirée ; diagnostiquer `src/game/refugeHubContinuity.test.ts` ; revue contracts-guardian ; `npm test` vert.
-
-Compteurs : {"runtimeSourceFilesModified":0,"gameplayFilesModified":0,"newMedia":0,"imagegenCalls":0,"qaScenarios":0,"newQaJobs":0,"inheritedQaJobs":365,"inheritedWipPaths":0,"workflowFiles":7,"productProgress":0}. Handoff : [2026-10-25T0406Z-claude-arbitration.md](handoffs/2026-10-25T0406Z-claude-arbitration.md). Publication normale sur origin/dev autorisée par OD-2026-10-12-A.
+Compteurs : {"runtimeSourceFilesModified":0,"toolingSourceFilesModified":1,"gameplayFilesModified":0,"testFilesModified":12,"configFilesModified":2,"newMedia":0,"imagegenCalls":0,"qaScenarios":0,"newQaJobs":0,"inheritedQaJobs":365,"inheritedWipPaths":0,"workflowFiles":5,"productProgress":0}. Handoff : [2026-10-25T0411Z-claude-test-baseline.md](handoffs/2026-10-25T0411Z-claude-test-baseline.md). Publication normale sur origin/dev autorisée par OD-2026-10-12-A.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
