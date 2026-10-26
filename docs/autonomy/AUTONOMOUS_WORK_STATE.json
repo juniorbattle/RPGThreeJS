@@ -53,7 +53,6 @@
   ],
   "blockers": [],
   "remainingWork": [
-    "Serveur de dev orphelin sur le port 5174 (PID 28612), à arrêter par l’opérateur",
     "Attaques de base ennemies et objets de boutique (clés publiées génériques attack et item)",
     "Option QA « Tous les héros QA » : 12 unités pour 8 cases, lancement bloqué (constat, non corrigé)",
     "Pilote narratif Alistair (en pause), finition Bois-Clair, playtest PC puis mobile"
@@ -1001,7 +1000,9 @@
     "orphanDevServer": {
       "port": 5174,
       "pid": 28612,
-      "status": "REPORTED_TO_OPERATOR_NOT_STOPPED"
+      "status": "STOPPED_ON_OPERATOR_REQUEST",
+      "stoppedAt": "2026-10-26T01:56:03Z",
+      "operatorRequest": "Oui, arrête le serveur de dev orphelin sur le port 5174 (PID 28612)."
     }
   }
 }

@@ -2,7 +2,7 @@
 
 Run claude-vfx-movement-boss-20261026T0147Z (agent claude, session interactive), 2026-10-26T01:47:23Z → 2026-10-26T01:54:42Z. [OD-2026-10-25-B](COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md) : Claude compose et publie les effets, l’opérateur les revoit.
 
-Lots 4 et 5 publiés (déplacement et signatures de boss) : a_hawk_leap, boss_slam, boss_quake, boss_flurry, boss_titan_slam, boss_inferno, boss_apocalypse. Les 34 actions de démo ont un effet composé (31 publications, 3 pilotes). La Charge joue enfin son effet et les atterrissages suivent les publications. Serveur de dev orphelin sur le port 5174 (PID 28612), signalé à l’opérateur. npm test : 162 fichiers vitest, 2851 tests, puis node:test 26/26 ; build, registre et contrats verts.
+Lots 4 et 5 publiés (déplacement et signatures de boss) : a_hawk_leap, boss_slam, boss_quake, boss_flurry, boss_titan_slam, boss_inferno, boss_apocalypse. Les 34 actions de démo ont un effet composé (31 publications, 3 pilotes). La Charge joue enfin son effet et les atterrissages suivent les publications. Serveur de dev orphelin du port 5174 (PID 28612) arrêté à la demande de l’opérateur. npm test : 162 fichiers vitest, 2851 tests, puis node:test 26/26 ; build, registre et contrats verts.
 
 Contrats 1.10.0 et baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5` inchangés. Scheduler PAUSED, réglages inchangés. `main` protégé.
 

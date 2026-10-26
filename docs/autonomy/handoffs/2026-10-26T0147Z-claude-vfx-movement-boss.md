@@ -40,7 +40,7 @@ Elles touchent la présentation seulement, dans `legacyCombatRuntime.js`.
 
 ## Incident de session
 
-Un serveur de dev a été lancé par erreur hors de `preview_start`, sur le port 5174 (PID 28612). Il a seulement servi à acquérir des candidats. Il n'a pas été arrêté, conformément à la règle de l'opérateur, qui décide de son arrêt.
+Un serveur de dev a été lancé par erreur hors de `preview_start`, sur le port 5174 (PID 28612). Il a seulement servi à acquérir des candidats. Il a été signalé à l'opérateur, puis arrêté à sa demande, après vérification que le PID possédait toujours ce port.
 
 ## Prochaine action
 
