@@ -1,4 +1,13 @@
-# Current continuation — OD-2026-10-24-B
+# Current direction — OD-2026-10-25-C
+
+[Ligne d’arrivée de la démo](DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md) : trois chantiers finissent la démo, puis le playtest PC et une démo figée.
+- **A.** Les effets d'action, composés par l'opérateur.
+- **B.** Le dynamisme des unités, par Claude.
+- **C.** La musique, après l'amendement set 1.11.0.
+
+Tout ce qui suit dans ce fichier est de l'historique.
+
+# Earlier continuation — OD-2026-10-24-B
 
 [Flow, sprite animation and VFX direction](PLAYABLE_FLOW_SPRITES_VFX_DIRECTION_2026-10-24.md): coherence and responsive dialogue/choice/combat handoffs first; prepare one Alistair local-frame pilot, then readable combat action/VFX and bounded casting expansion. Existing poses/motion/VFX are reused; no full rebuild, video revival, art/runtime acceptance or scheduler change inferred. The Bois-Clair relational plan remains. This preparation produces no new animation or playable proof.
 

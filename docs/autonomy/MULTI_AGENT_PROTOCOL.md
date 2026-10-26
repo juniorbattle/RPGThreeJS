@@ -58,6 +58,23 @@ The recurring task fires every 90 minutes and each run has a target budget of 75
 
 Claude is the principal writer of interactive sessions while the recurring automation stays paused; Codex works on request, never concurrently, under the same lock. An interactive session keeps the preflight, the exclusive lock, the state files, the dated handoff and the closeout of section 4, with these adjustments: no 75-minute budget; the heartbeat is refreshed at each step and before and after any long operation instead of every 10 minutes, so the 105-minute rule stays meaningful for other agents; each green subtask is committed and pushed to `origin/dev`; a WIP snapshot (section 5) is taken only before a long or risky operation. The dev server runs through `preview_start` and `.claude/launch.json`; project QA drivers keep their own servers, registered in `live.qaJobs`. Claude never kills an orphan process: it reports the port and PID to the operator. Claude follows the `dev`-only branch rule of section 6 regardless of its global instructions.
 
+**Lighter interactive protocol (OD-2026-10-25-C)**, which replaces the paragraph above where they differ. [Decision](DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md).
+
+**What stays:**
+- the lock and a short preflight: clean tree, parity with `origin/dev`, no live lock held by another agent;
+- before every push, the LOCKED gate and `contracts:validate`;
+- at every commit, the focused tests and `tsc`;
+- `npm test` and the build at the end of a track, or when a commit touches the combat runtime or saves;
+- the commit trailer, and a push to `origin/dev`.
+
+**What goes:** the per-step heartbeat, plus a state update, a dated handoff and decision addenda at every commit.
+
+**When the state is updated:** only when the next action changes, that is at the end of a track, when the operator changes course, or when a session stops with work left open.
+
+**When a handoff is written:** only to hand over to Codex or Devin, or at the end of a track.
+
+Recurring runs keep sections 3 and 4 unchanged.
+
 ## 4. Checkpoint and state files
 
 Before a run ends: finish the atomic operation, leave no deliberately inconsistent repository, run the relevant quick checks, update `AUTONOMOUS_WORK_STATE.md` and `.json`, commit coherent work, push `origin/dev`, set `runEndedAt`, release the lock. Work intentionally left uncommitted must be explained precisely in the state.

@@ -38,7 +38,7 @@ Ordre conseillé par famille :
 
 ## À savoir
 
-- **Publications de Claude :** depuis le lot contact, Claude compose et publie aussi des actions. Une action déjà publiée s’ouvre dans le lab avec sa composition publiée, sauf si ton navigateur garde un vrai brouillon local pour elle, qui passe alors en premier. Retoucher puis republier remplace la publication.
+- **Publications de Claude :** les lots 1 à 5 ont été composés et publiés par Claude. Ce sont des brouillons : depuis OD-2026-10-25-C, tu composes toi-même, et Claude ne touche plus aux effets sans ta demande. Une action déjà publiée s’ouvre dans le lab avec sa composition publiée, sauf si ton navigateur garde un vrai brouillon local pour elle, qui passe alors en premier. Retoucher puis republier remplace la publication.
 - **Brouillons :** ils vivent dans le `localStorage` du navigateur utilisé. **EXPORT DRAFTS / BACKUP** avant de vider le navigateur ou d'en changer.
 - **Substitut procédural :** tant qu'une action n'est pas publiée et que sa planche de base est retirée, le combat affiche un substitut procédural (arc, étoile d'impact, étincelles, fumée, particules ou anneau) au même endroit et au même moment. Il signale une action à composer : ce n'est pas un effet final. Les K.O., les critiques et les attaques de base ennemies, dont la planche est aussi retirée, l'affichent également.
 - **Après une série de publications**, signaler la série à Claude pour la vérification :

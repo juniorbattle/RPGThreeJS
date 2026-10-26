@@ -1,74 +1,61 @@
 {
-  "status": "READY_FOR_OPERATOR_REVIEW_ALL_DEMO_VFX",
-  "runStartedAt": "2026-10-26T01:47:23Z",
-  "runEndedAt": "2026-10-26T01:54:42Z",
-  "activeTask": "COMBAT_SKILL_ACTIONS_VFX",
-  "activePhase": "ALL_DEMO_ACTIONS_COMPOSED",
-  "activeSubtask": "Lots 4 et 5 publiés : les 34 actions de démo ont un effet composé (31 publications, 3 pilotes) ; revue opérateur en jeu",
+  "status": "DEMO_FINISH_LINE_SET",
+  "runStartedAt": "2026-10-26T02:54:59Z",
+  "runEndedAt": "2026-10-26T02:57:01Z",
+  "activeTask": "DEMO_FINISH_LINE_OD_2026_10_25_C",
+  "activePhase": "TRACK_B_UNIT_LIVELINESS_NEXT",
+  "activeSubtask": "Décision enregistrée : l'opérateur compose les effets, protocole interactif allégé, trois chantiers (effets, dynamisme, musique)",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "d4b81dcceb2728f96a206eff94f538357b37bc49",
-  "lastPushedCommit": "d4b81dcceb2728f96a206eff94f538357b37bc49",
+  "lastKnownGoodCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
+  "lastPushedCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "completedThisRun": [
-    "Préflight propre et verrou exclusif (agent claude)",
-    "Runtime : playActionVfxAt passe par le résolveur de publications ; le dash joue l’effet de l’action à l’arrivée (la Charge n’affichait qu’une secousse)",
-    "7 actions publiées par handlePublishRequest : a_hawk_leap, boss_slam, boss_quake, boss_flurry, boss_titan_slam, boss_inferno, boss_apocalypse",
-    "Candidats Smoke_Cloud_Burst_Thick, Ground_Fire, Power_Burst, Explosion_Smoke, Tornado_Lightning acquis par /dev/vfx-acquire (locaux, non commités)",
-    "Vérification Chromium : 7 actions jouées avec textures, sans erreur, en normal et réduit ; atterrissage sans unité cible",
-    "Incident : un serveur de dev lancé par erreur hors preview_start sur le port 5174 (PID 28612), non arrêté, signalé à l’opérateur"
+    "OD-2026-10-25-C enregistrée : docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
+    "Registre des décisions, AGENTS.md, MULTI_AGENT_PROTOCOL §3, décision VFX, mode d’emploi du Composer et plan de démo mis à jour"
   ],
   "filesChanged": [
-    "src/combat/legacyCombatRuntime.js",
-    "src/combat/legacyCombatRuntime.hotfix.test.ts",
-    "src/combat/vfx/generated/published-vfx-presets.json",
+    "docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
+    "docs/autonomy/OPERATOR_DECISIONS.md",
+    "AGENTS.md",
+    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
     "docs/autonomy/COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md",
-    "docs/reports/combat-vfx-coverage-2026-10-25.md",
+    "docs/project/VFX_COMPOSER_WORKFLOW.md",
+    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md"
+    "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
   ],
   "testsRun": [
-    "npm run vfx:validate-published",
-    "tests runtime hotfix/unitMotion/combatKeyboard",
-    "npm test",
-    "npx tsc --noEmit",
-    "npm run build",
     "contracts:validate",
     "LOCKED baseline gate",
-    "git diff --check",
-    "Chromium via preview_start (rpg-dev) : scène réelle"
+    "git diff --check"
   ],
   "testsPassed": [
-    "vfx:validate-published PASS (31 actions)",
-    "runtime 122/122",
-    "npm test : 162 fichiers vitest, 2851 tests, puis node:test 26/26",
-    "tsc PASS",
-    "build PASS (avertissement de taille de chunk préexistant)",
     "contracts:validate PASS",
     "LOCKED gate vide",
-    "git diff --check propre",
-    "Chromium : 7 actions jouées avec textures, sans erreur, normal et réduit"
+    "git diff --check propre"
   ],
   "testsRemaining": [
-    "Revue artistique opérateur des 34 actions en jeu, d’abord la Charge corrigée et les signatures de boss"
+    "Revue artistique des effets par l'opérateur (chantier A)"
   ],
   "blockers": [],
   "remainingWork": [
-    "Attaques de base ennemies et objets de boutique (clés publiées génériques attack et item)",
+    "Chantier A : effets d’action composés par l’opérateur (34 actions, puis attack, item, K.O., critique, generic_hit)",
+    "Chantier B : dynamisme des unités (B1 respiration, B2 réactions visibles ; B3 frames au choix de l’opérateur)",
+    "Chantier C : musique, après amendement set 1.11.0",
     "Option QA « Tous les héros QA » : 12 unités pour 8 cases, lancement bloqué (constat, non corrigé)",
-    "Pilote narratif Alistair (en pause), finition Bois-Clair, playtest PC puis mobile"
+    "Gelés jusqu’à la fin des chantiers : pilote Alistair, finition Bois-Clair, nouveaux systèmes, rééquilibrage, refonte d’art"
   ],
-  "nextAction": "Revue opérateur des 31 publications et des 3 pilotes en jeu (d'abord la Charge corrigée et les signatures de boss) et retouches signalées à Claude ; ensuite, au choix de l'opérateur : attaques de base ennemies et objets de boutique (clés génériques attack et item), reprise du pilote narratif ou Bois-Clair.",
+  "nextAction": "Chantier B1 d'OD-2026-10-25-C (Claude) : respiration légère des unités au repos en vue tactique et dans le Stage, décalée par unité, coupée en mouvement réduit, présentation seulement ; puis B2 (réactions existantes visibles en vue tactique). En parallèle, l'opérateur compose les effets d'action dans le lab (chantier A).",
   "taskQueue": [
-    "Revue opérateur des 31 publications et des 3 pilotes en jeu (d'abord la Charge corrigée et les signatures de boss) et retouches signalées à Claude ; ensuite, au choix de l'opérateur : attaques de base ennemies et objets de boutique (clés génériques attack et item), reprise du pilote narratif ou Bois-Clair.",
-    "Attaques de base ennemies et objets de boutique (clés publiées génériques attack et item)",
-    "Pilote narratif Alistair (en pause), finition relationnelle Bois-Clair, playtest PC puis mobile"
+    "Chantier B1 d'OD-2026-10-25-C (Claude) : respiration légère des unités au repos en vue tactique et dans le Stage, décalée par unité, coupée en mouvement réduit, présentation seulement ; puis B2 (réactions existantes visibles en vue tactique). En parallèle, l'opérateur compose les effets d'action dans le lab (chantier A).",
+    "Chantier C : amendement set 1.11.0 pour la musique (tâche dédiée approuvée par l'opérateur), puis 4 ou 5 pistes choisies par l'opérateur, fondu par contexte, volume et coupure séparés.",
+    "Playtest PC de l'opérateur, liste de corrections, démo figée ; mobile seulement si l'opérateur le veut."
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_PRESENTATION_ONLY_NO_CONTRACT_CHANGE",
-  "runId": "claude-vfx-movement-boss-20261026T0147Z",
+  "contractComplianceStatus": "PASS_DOCS_ONLY_NO_CONTRACT_CHANGE",
+  "runId": "claude-finish-line-20261026T0255Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-10-26T01:54:42Z",
-  "heartbeat": "2026-10-26T01:54:42Z",
+  "lastHeartbeat": "2026-10-26T02:57:01Z",
+  "heartbeat": "2026-10-26T02:57:01Z",
   "wip": null,
   "uncommittedWork": [],
   "providerTasksPending": [],
@@ -76,33 +63,25 @@
   "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "previousRun": {
-    "runId": "claude-vfx-support-20261026T0140Z",
-    "runEndedAt": "2026-10-26T01:46:00Z",
+    "runId": "claude-vfx-movement-boss-20261026T0147Z",
+    "runEndedAt": "2026-10-26T01:54:42Z",
     "activeTask": "COMBAT_SKILL_ACTIONS_VFX",
-    "commit": "d4b81dcceb2728f96a206eff94f538357b37bc49"
+    "commit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2"
   },
   "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
   "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
   "runMetrics": {
-    "runtimeSourceFilesModified": 1,
+    "runtimeSourceFilesModified": 0,
     "gameplayFilesModified": 0,
-    "testFilesModified": 1,
-    "publishedVfxActions": 7,
-    "newMedia": 0,
-    "imagegenCalls": 0,
-    "qaScenarios": 1,
-    "newQaJobs": 0,
-    "inheritedQaJobs": 365,
-    "liveQaJobsAfter": 3,
-    "inheritedWipPaths": 0,
-    "workflowFiles": 5,
-    "productProgress": 1
+    "testFilesModified": 0,
+    "workflowFiles": 9,
+    "productProgress": 0
   },
   "contractSetVersion": "1.10.0",
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "operatorPriority": "OD-2026-10-25-B : Composer VFX et actions de compétence du combat tactique et du Combat Stage, une famille à la fois ; pilote narratif Alistair en pause ; puis Bois-Clair, playtest PC et mobile ; zéro vidéo",
   "operatorAuthorization": "OD-2026-10-25-A : Claude écrivain principal interactif, agent claude sous le même verrou, dev seulement, serveurs en mode mixte, protocole interactif allégé ; tests et état d'abord, puis nettoyage et pilote Alistair (frames Codex, lecteur Claude). Aucun amendement de contrat. OD-2026-10-25-B : priorité au Composer VFX et aux actions de combat, pilote Alistair en pause, art opérateur, aucun amendement.",
-  "commitReferenceScope": "Lots 4 et 5 d'OD-2026-10-25-B sur d4b81dcceb2728f96a206eff94f538357b37bc49 : registre publié (7 actions), deux corrections de présentation du runtime et leur test ; aucun média commité, contrat ni vérité de combat. Le SHA du commit de clôture fait foi dans Git.",
+  "commitReferenceScope": "OD-2026-10-25-C sur dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2 : documents de gouvernance seulement ; aucun code, média ni contrat. Le SHA du commit fait foi dans Git.",
   "autonomousExecutionPolicy": {
     "decisionSource": "docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md",
     "routineOperatorApproval": false,
@@ -570,30 +549,22 @@
     "rule": "Kept: protocol fields, run identity, current authority, open/deferred items and current scopes; QA jobs registered after the set 1.10.0 amendment commit. Everything else is unchanged in the snapshot."
   },
   "live": {
-    "lastHeartbeat": "2026-10-26T01:54:42Z",
-    "runId": "claude-vfx-movement-boss-20261026T0147Z",
+    "lastHeartbeat": "2026-10-26T02:57:01Z",
+    "runId": "claude-finish-line-20261026T0255Z",
     "agent": "claude",
-    "status": "READY_FOR_OPERATOR_REVIEW_ALL_DEMO_VFX",
+    "status": "DEMO_FINISH_LINE_SET",
     "wip": null,
-    "nextAction": "Revue opérateur des 31 publications et des 3 pilotes en jeu (d'abord la Charge corrigée et les signatures de boss) et retouches signalées à Claude ; ensuite, au choix de l'opérateur : attaques de base ennemies et objets de boutique (clés génériques attack et item), reprise du pilote narratif ou Bois-Clair.",
-    "runEndedAt": "2026-10-26T01:54:42Z",
+    "nextAction": "Chantier B1 d'OD-2026-10-25-C (Claude) : respiration légère des unités au repos en vue tactique et dans le Stage, décalée par unité, coupée en mouvement réduit, présentation seulement ; puis B2 (réactions existantes visibles en vue tactique). En parallèle, l'opérateur compose les effets d'action dans le lab (chantier A).",
+    "runEndedAt": "2026-10-26T02:57:01Z",
     "writerStopped": true,
-    "activeTask": "COMBAT_SKILL_ACTIONS_VFX",
-    "activeSubtask": "Lots 4 et 5 publiés : les 34 actions de démo ont un effet composé (31 publications, 3 pilotes) ; revue opérateur en jeu",
+    "activeTask": "DEMO_FINISH_LINE_OD_2026_10_25_C",
+    "activeSubtask": "Décision enregistrée : l'opérateur compose les effets, protocole interactif allégé, trois chantiers (effets, dynamisme, musique)",
     "runMetrics": {
-      "runtimeSourceFilesModified": 1,
+      "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,
-      "testFilesModified": 1,
-      "publishedVfxActions": 7,
-      "newMedia": 0,
-      "imagegenCalls": 0,
-      "qaScenarios": 1,
-      "newQaJobs": 0,
-      "inheritedQaJobs": 365,
-      "liveQaJobsAfter": 3,
-      "inheritedWipPaths": 0,
-      "workflowFiles": 5,
-      "productProgress": 1
+      "testFilesModified": 0,
+      "workflowFiles": 9,
+      "productProgress": 0
     },
     "qaJobArchives": [
       "docs/autonomy/archive/AUTONOMOUS_WORK_STATE_2026-10-25.json"
@@ -917,7 +888,7 @@
       "LOT4_MOVEMENT",
       "LOT5_BOSS_SIGNATURES"
     ],
-    "authoringMode": "CLAUDE_COMPOSES_OPERATOR_REVIEWS",
+    "authoringMode": "OPERATOR_COMPOSES_OD_2026_10_25_C",
     "assets": "PNG CartoonCoffee locaux, jamais commités ; acquisition par le serveur de dev, MEGA_PACK_ROOT jamais lu par les agents",
     "artisticAcceptance": "OPERATOR",
     "lot0": {
@@ -1004,5 +975,21 @@
       "stoppedAt": "2026-10-26T01:56:03Z",
       "operatorRequest": "Oui, arrête le serveur de dev orphelin sur le port 5174 (PID 28612)."
     }
+  },
+  "demoFinishLine20261025": {
+    "decision": "docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
+    "tracks": {
+      "A": "OPERATOR_VFX_IN_LAB",
+      "B": "CLAUDE_UNIT_LIVELINESS_NEXT",
+      "C": "MUSIC_NEEDS_AMENDMENT_1_11_0"
+    },
+    "frozen": [
+      "alistair-pilot",
+      "bois-clair-relational",
+      "new-systems",
+      "rebalance",
+      "art-remaster"
+    ],
+    "interactiveProtocol": "LIGHT_STATE_ON_NEXT_ACTION_CHANGE"
   }
 }

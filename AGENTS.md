@@ -78,12 +78,17 @@ Codex starts subagents only when authorized. The recurring instruction authorize
 
 ## Current priority
 
-The live state's `nextAction` and `taskQueue` give the exact next step. The order set by OD-2026-10-25-B ([combat VFX priority](docs/autonomy/COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md)), after the OD-2026-10-25-A cleanup (done):
+The live state's `nextAction` gives the exact next step. OD-2026-10-25-C ([demo finish line](docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md)) is the current direction and supersedes the older stacked directives of the demo completion plan. Three tracks finish the demo:
 
-1. Combat skill actions and the VFX Composer lab, one family at a time ([coverage](docs/reports/combat-vfx-coverage-2026-10-25.md)): first restore the procedural fallback where a sheet is missing, then contact, projectiles, heals/buffs/statuses, movement and boss signatures, each composed in the lab, published, validated and checked in the Combat Stage with normal and reduced motion. Artistic acceptance stays with the operator.
-2. OD-2026-10-24-B narrative pilot, paused: the frame player is delivered and inert on `dev` (empty registry); no Codex session for the Alistair idle frames until the operator resumes it.
-3. Bois-Clair relational finishing under the [static narrative plan](docs/autonomy/STATIC_NARRATIVE_FINISHING_PLAN_2026-10-24.md) and the dialogue → choice → combat → consequence flow.
-4. Operator PC playtest, then the mobile pass. [Demo completion plan](docs/autonomy/DEMO_COMPLETION_PLAN.md).
+- **A. Action and skill VFX.** The operator composes and publishes them in the lab. Claude touches effects only on a precise operator request, such as a lab bug or a tool setting.
+- **B. Unit liveliness.** Claude does it, presentation only, with the current art:
+  - an idle breath in the tactical view and the Stage, off in reduced motion;
+  - existing reactions made visible in the tactical view.
+
+  Frame animation is an option the operator decides afterwards.
+- **C. Music.** It first needs a dedicated contract amendment, set 1.11.0, approved by the operator. The tracks are chosen by the operator; Claude never generates music.
+
+Then the operator PC playtest, a fix list, and a frozen demo; the mobile pass only if the operator wants it. The Alistair narrative pilot, Bois-Clair relational finishing, new systems or content, rebalancing and art remasters stay frozen until then, unless the operator asks. A defect found while playing can always be fixed.
 
 ## Standing constraints
 

@@ -46,6 +46,7 @@ Mode d'auteur à confirmer par l'opérateur (UNDECIDED). La recommandation : Cla
 
 ## Suite
 
+- **Mode d'auteur final (OD-2026-10-25-C, 2026-10-25).** L'opérateur compose lui-même les effets dans le lab, car Claude manque de précision. Claude ne compose ni ne publie plus d'effet sans demande précise de l'opérateur. Les 31 publications de Claude restent des brouillons que l'opérateur reprend ou efface. [Ligne d’arrivée de la démo](DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md).
 - **Mode d'auteur (APPROVED DECISION).** Réponse de l'opérateur : « Je compose moi-même les effets dans le lab. Fais le lot 0 (repli procédural et test de visibilité) et prépare le lab pour que je puisse enchaîner les actions. » L'opérateur compose et publie. Claude vérifie chaque série publiée et la commite sur `dev`. [Mode d'emploi](../project/VFX_COMPOSER_WORKFLOW.md).
 - **Lot 0 livré** (run `claude-vfx-lot0-20261025T0845Z`) :
   - une étape dont la planche n'est plus enregistrée est dessinée par un substitut procédural de `VfxSystem`, à la même ancre et au même moment, en vue tactique comme dans le Combat Stage ;
