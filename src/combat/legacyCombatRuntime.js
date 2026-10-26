@@ -1673,7 +1673,9 @@ function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
 function playActionVfxAt(presetId,u,targetPoint,spec={}){
   if(!presetId||!u||!targetPoint)return null;
   const point=targetPoint.clone?targetPoint.clone():new THREE.Vector3(targetPoint.x,targetPoint.y,targetPoint.z);
-  const result=combatVfxSystem.play(presetId,{...makeActionVfxContext(u,[],u.gx,u.gz,spec),targetPoint:point});
+  const context={...makeActionVfxContext(u,[],u.gx,u.gz,spec),targetPoint:point},actionKey=getActionKeyForPublishedVfx(spec,u);
+  // A published composition replaces the static preset here too (leap landings, teleports, dash arrivals).
+  const result=isActionPublished(actionKey)?playPublishedActionVfx({actionKey,fallbackPresetId:presetId,context,vfxSystem:combatVfxSystem}):combatVfxSystem.play(presetId,context);
   if(!result.played)return null;
   void result.completion.catch(error=>console.warn('[CombatVfx] Action playback failed safely.',error));
   return result;
@@ -1734,7 +1736,7 @@ async function doMove(u,spec,cx,cz){ setFacing(u,cx,cz); const c=cellAt(cx,cz); 
     else if(spec.key!=='ar_explosive_retreat')vfx('hit',head);
     if(spec.key!=='ar_explosive_retreat')screenShake(0.32,0.22);
   }
-  else { placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.dash||0.2,easeOutCubic); const dashHasSpritesheet=actionHasSpritesheetVfx(spec,u); screenShake(0.5,0.3); if(!dashHasSpritesheet){ screenFlash('#fff0b0',0.16); vfx('hit',head); }
+  else { placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.dash||0.2,easeOutCubic); const dashHasSpritesheet=actionHasSpritesheetVfx(spec,u); screenShake(0.5,0.3); if(dashHasSpritesheet)playActionVfxAt(getActionVfxPreset(spec,u),u,head,spec); if(!dashHasSpritesheet){ screenFlash('#fff0b0',0.16); vfx('hit',head); }
     if(spec.impact){ const hits=aliveUnits().filter(t=>t.team!==u.team&&(Math.abs(t.gx-cx)+Math.abs(t.gz-cz)===1)); for(const t of hits){ const impactSpec={type:'phys',power:spec.power||8}; const crit=tacticalRnd()<critChance(u,t,impactSpec); let {dmg}=computeDamage(u,t,impactSpec); if(crit)dmg=Math.round(dmg*1.5); floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':'#ffffff',crit); if(crit){ if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); } logMsg('Coup critique !'); } await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.impact.status)applyStatus(t,spec.impact.status,spec.impact.statusTurns); await wait(0.06); } } }
   await wait(0.12); }
 function unitCenter(u){ return {gx:u.size>1?bossCenterGX(u):u.gx,gz:u.size>1?bossCenterGZ(u):u.gz}; }

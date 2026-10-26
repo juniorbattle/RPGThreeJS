@@ -114,3 +114,17 @@ Chaque projectile se déplace du devant du lanceur à la cible et porte le retou
 CURRENT FACT : 27 actions de démo sur 34 ont un effet composé. Ce sont les 3 pilotes et 24 publications. Les 7 actions ajoutées : `basic_crosier_hit`, `e_vigor_rune`, `boss_guard`, `boss_regen`, `boss_fortify`, `enemy_hex`, `boss_freeze`. `w_salvation` reste sur son preset pilote.
 
 Restent les déplacements (`w_charge` et `ni_shadow_step` déjà pilotes, `a_hawk_leap`) et les signatures de boss (`boss_slam`, `boss_quake`, `boss_flurry`, `boss_titan_slam`, `boss_inferno`, `boss_apocalypse`).
+
+## Addendum — lots 4 et 5, déplacements et signatures de boss (run `claude-vfx-movement-boss-20261026T0147Z`)
+
+CURRENT FACT : les 34 actions de démo ont un effet composé, soit 31 publications et 3 pilotes (`w_charge`, `w_salvation`, `ni_shadow_step`).
+
+Correctif au constat initial : `w_charge` était compté `SPRITE` parce que sa planche se résolvait. Pourtant la branche dash de `doMove` ne jouait jamais le preset, et le repli procédural restait coupé : la Charge n'affichait qu'une secousse d'écran. Elle joue désormais son preset à l'arrivée.
+
+Autre correctif : `playActionVfxAt` (atterrissage de Bond du Faucon, téléportations) ignorait les publications. Il passe maintenant par le résolveur.
+
+Restent hors de ces 34 actions :
+- les attaques de base ennemies (clé générique `attack`) ;
+- les objets de boutique (clé `item`).
+
+Acceptation artistique : opérateur, non inférée.

@@ -25,6 +25,12 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).toContain("else if(spec.key!=='ar_explosive_retreat')vfx('hit',head)");
   });
 
+  // OD-2026-10-25-B: movement skills used to bypass published compositions, and the dash never played its preset.
+  it('plays published compositions at leap, teleport and dash points, and the dash plays its own effect', () => {
+    expect(runtimeSource).toContain('isActionPublished(actionKey)?playPublishedActionVfx({actionKey,fallbackPresetId:presetId,context,vfxSystem:combatVfxSystem}):combatVfxSystem.play(presetId,context)');
+    expect(runtimeSource).toContain('if(dashHasSpritesheet)playActionVfxAt(getActionVfxPreset(spec,u),u,head,spec); if(!dashHasSpritesheet){ screenFlash');
+  });
+
   it('imports presentation tuning from the shared combatVfxPresentation module', () => {
     expect(runtimeSource).toContain("from './combatVfxPresentation'");
     expect(runtimeSource).not.toContain("const ACTION_PRESENTATION_TIERS=Object.freeze");

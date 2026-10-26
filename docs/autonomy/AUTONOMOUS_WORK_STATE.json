@@ -1,31 +1,36 @@
 {
-  "status": "READY_FOR_OPERATOR_REVIEW_SUPPORT_VFX",
-  "runStartedAt": "2026-10-26T01:40:32Z",
-  "runEndedAt": "2026-10-26T01:46:00Z",
+  "status": "READY_FOR_OPERATOR_REVIEW_ALL_DEMO_VFX",
+  "runStartedAt": "2026-10-26T01:47:23Z",
+  "runEndedAt": "2026-10-26T01:54:42Z",
   "activeTask": "COMBAT_SKILL_ACTIONS_VFX",
-  "activePhase": "LOT3_SUPPORT_PUBLISHED",
-  "activeSubtask": "Lot 3 soins/bénédictions/altérations publié par Claude (7 actions, 27/34 composées) ; revue opérateur puis lots 4 et 5",
+  "activePhase": "ALL_DEMO_ACTIONS_COMPOSED",
+  "activeSubtask": "Lots 4 et 5 publiés : les 34 actions de démo ont un effet composé (31 publications, 3 pilotes) ; revue opérateur en jeu",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "6929dd25bc8458642ab61d012c7cc52750e6588d",
-  "lastPushedCommit": "6929dd25bc8458642ab61d012c7cc52750e6588d",
+  "lastKnownGoodCommit": "d4b81dcceb2728f96a206eff94f538357b37bc49",
+  "lastPushedCommit": "d4b81dcceb2728f96a206eff94f538357b37bc49",
   "completedThisRun": [
     "Préflight propre et verrou exclusif (agent claude)",
-    "Candidats soin, buff, malédiction et gel choisis sur planche contact ; Negative_Buff, Impact_Ice et Charge_Ice acquis par /dev/vfx-acquire (locaux, non commités)",
-    "7 actions publiées par handlePublishRequest : basic_crosier_hit, e_vigor_rune, boss_guard, boss_regen, boss_fortify, enemy_hex, boss_freeze",
-    "w_salvation conservé sur son preset pilote ; gel en séquence charge → impact fort → anneau ; malédiction et gel en pose cast",
-    "Vérification Chromium : 7 actions jouées avec textures chargées, sans erreur, en normal et réduit"
+    "Runtime : playActionVfxAt passe par le résolveur de publications ; le dash joue l’effet de l’action à l’arrivée (la Charge n’affichait qu’une secousse)",
+    "7 actions publiées par handlePublishRequest : a_hawk_leap, boss_slam, boss_quake, boss_flurry, boss_titan_slam, boss_inferno, boss_apocalypse",
+    "Candidats Smoke_Cloud_Burst_Thick, Ground_Fire, Power_Burst, Explosion_Smoke, Tornado_Lightning acquis par /dev/vfx-acquire (locaux, non commités)",
+    "Vérification Chromium : 7 actions jouées avec textures, sans erreur, en normal et réduit ; atterrissage sans unité cible",
+    "Incident : un serveur de dev lancé par erreur hors preview_start sur le port 5174 (PID 28612), non arrêté, signalé à l’opérateur"
   ],
   "filesChanged": [
+    "src/combat/legacyCombatRuntime.js",
+    "src/combat/legacyCombatRuntime.hotfix.test.ts",
     "src/combat/vfx/generated/published-vfx-presets.json",
     "docs/autonomy/COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md",
     "docs/reports/combat-vfx-coverage-2026-10-25.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-26T0140Z-claude-vfx-support.md"
+    "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md"
   ],
   "testsRun": [
     "npm run vfx:validate-published",
+    "tests runtime hotfix/unitMotion/combatKeyboard",
     "npm test",
+    "npx tsc --noEmit",
     "npm run build",
     "contracts:validate",
     "LOCKED baseline gate",
@@ -33,54 +38,56 @@
     "Chromium via preview_start (rpg-dev) : scène réelle"
   ],
   "testsPassed": [
-    "vfx:validate-published PASS (24 actions)",
-    "npm test : 162 fichiers vitest, 2850 tests, puis node:test 26/26",
+    "vfx:validate-published PASS (31 actions)",
+    "runtime 122/122",
+    "npm test : 162 fichiers vitest, 2851 tests, puis node:test 26/26",
+    "tsc PASS",
     "build PASS (avertissement de taille de chunk préexistant)",
     "contracts:validate PASS",
     "LOCKED gate vide",
     "git diff --check propre",
-    "Chromium : 7 actions jouées avec textures chargées, sans erreur, normal et réduit"
+    "Chromium : 7 actions jouées avec textures, sans erreur, normal et réduit"
   ],
   "testsRemaining": [
-    "Revue artistique opérateur des lots 1 à 3"
+    "Revue artistique opérateur des 34 actions en jeu, d’abord la Charge corrigée et les signatures de boss"
   ],
   "blockers": [],
   "remainingWork": [
-    "Lot 4 déplacements, lot 5 signatures de boss",
+    "Serveur de dev orphelin sur le port 5174 (PID 28612), à arrêter par l’opérateur",
     "Attaques de base ennemies et objets de boutique (clés publiées génériques attack et item)",
     "Option QA « Tous les héros QA » : 12 unités pour 8 cases, lancement bloqué (constat, non corrigé)",
     "Pilote narratif Alistair (en pause), finition Bois-Clair, playtest PC puis mobile"
   ],
-  "nextAction": "L'opérateur revoit les lots 1 à 3 et signale les retouches ; puis Claude compose le lot 4 (déplacements : a_hawk_leap, finition de w_charge et ni_shadow_step) et le lot 5 (signatures de boss : boss_slam, boss_quake, boss_flurry, boss_titan_slam, boss_inferno, boss_apocalypse) avec tmp/claude-probe/compose-lib.ts, publie par handlePublishRequest et vérifie.",
+  "nextAction": "Revue opérateur des 31 publications et des 3 pilotes en jeu (d'abord la Charge corrigée et les signatures de boss) et retouches signalées à Claude ; ensuite, au choix de l'opérateur : attaques de base ennemies et objets de boutique (clés génériques attack et item), reprise du pilote narratif ou Bois-Clair.",
   "taskQueue": [
-    "L'opérateur revoit les lots 1 à 3 et signale les retouches ; puis Claude compose le lot 4 (déplacements : a_hawk_leap, finition de w_charge et ni_shadow_step) et le lot 5 (signatures de boss : boss_slam, boss_quake, boss_flurry, boss_titan_slam, boss_inferno, boss_apocalypse) avec tmp/claude-probe/compose-lib.ts, publie par handlePublishRequest et vérifie.",
-    "Lot 5 : signatures de boss",
+    "Revue opérateur des 31 publications et des 3 pilotes en jeu (d'abord la Charge corrigée et les signatures de boss) et retouches signalées à Claude ; ensuite, au choix de l'opérateur : attaques de base ennemies et objets de boutique (clés génériques attack et item), reprise du pilote narratif ou Bois-Clair.",
+    "Attaques de base ennemies et objets de boutique (clés publiées génériques attack et item)",
     "Pilote narratif Alistair (en pause), finition relationnelle Bois-Clair, playtest PC puis mobile"
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_PRESENTATION_ONLY_NO_CONTRACT_CHANGE",
-  "runId": "claude-vfx-support-20261026T0140Z",
+  "runId": "claude-vfx-movement-boss-20261026T0147Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-10-26T01:46:00Z",
-  "heartbeat": "2026-10-26T01:46:00Z",
+  "lastHeartbeat": "2026-10-26T01:54:42Z",
+  "heartbeat": "2026-10-26T01:54:42Z",
   "wip": null,
   "uncommittedWork": [],
   "providerTasksPending": [],
   "blockedBy": null,
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0140Z-claude-vfx-support.md",
-  "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0140Z-claude-vfx-support.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
+  "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "previousRun": {
-    "runId": "claude-vfx-projectiles-20261026T0123Z",
-    "runEndedAt": "2026-10-26T01:29:57Z",
+    "runId": "claude-vfx-support-20261026T0140Z",
+    "runEndedAt": "2026-10-26T01:46:00Z",
     "activeTask": "COMBAT_SKILL_ACTIONS_VFX",
-    "commit": "6929dd25bc8458642ab61d012c7cc52750e6588d"
+    "commit": "d4b81dcceb2728f96a206eff94f538357b37bc49"
   },
   "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
   "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
   "runMetrics": {
-    "runtimeSourceFilesModified": 0,
+    "runtimeSourceFilesModified": 1,
     "gameplayFilesModified": 0,
-    "testFilesModified": 0,
+    "testFilesModified": 1,
     "publishedVfxActions": 7,
     "newMedia": 0,
     "imagegenCalls": 0,
@@ -96,7 +103,7 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "operatorPriority": "OD-2026-10-25-B : Composer VFX et actions de compétence du combat tactique et du Combat Stage, une famille à la fois ; pilote narratif Alistair en pause ; puis Bois-Clair, playtest PC et mobile ; zéro vidéo",
   "operatorAuthorization": "OD-2026-10-25-A : Claude écrivain principal interactif, agent claude sous le même verrou, dev seulement, serveurs en mode mixte, protocole interactif allégé ; tests et état d'abord, puis nettoyage et pilote Alistair (frames Codex, lecteur Claude). Aucun amendement de contrat. OD-2026-10-25-B : priorité au Composer VFX et aux actions de combat, pilote Alistair en pause, art opérateur, aucun amendement.",
-  "commitReferenceScope": "Lot 3 soins, bénédictions et altérations d'OD-2026-10-25-B sur 6929dd25bc8458642ab61d012c7cc52750e6588d : registre publié (7 actions) et documents ; aucun code, média commité, contrat ni vérité de combat. Le SHA du commit de clôture fait foi dans Git.",
+  "commitReferenceScope": "Lots 4 et 5 d'OD-2026-10-25-B sur d4b81dcceb2728f96a206eff94f538357b37bc49 : registre publié (7 actions), deux corrections de présentation du runtime et leur test ; aucun média commité, contrat ni vérité de combat. Le SHA du commit de clôture fait foi dans Git.",
   "autonomousExecutionPolicy": {
     "decisionSource": "docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md",
     "routineOperatorApproval": false,
@@ -564,20 +571,20 @@
     "rule": "Kept: protocol fields, run identity, current authority, open/deferred items and current scopes; QA jobs registered after the set 1.10.0 amendment commit. Everything else is unchanged in the snapshot."
   },
   "live": {
-    "lastHeartbeat": "2026-10-26T01:46:00Z",
-    "runId": "claude-vfx-support-20261026T0140Z",
+    "lastHeartbeat": "2026-10-26T01:54:42Z",
+    "runId": "claude-vfx-movement-boss-20261026T0147Z",
     "agent": "claude",
-    "status": "READY_FOR_OPERATOR_REVIEW_SUPPORT_VFX",
+    "status": "READY_FOR_OPERATOR_REVIEW_ALL_DEMO_VFX",
     "wip": null,
-    "nextAction": "L'opérateur revoit les lots 1 à 3 et signale les retouches ; puis Claude compose le lot 4 (déplacements : a_hawk_leap, finition de w_charge et ni_shadow_step) et le lot 5 (signatures de boss : boss_slam, boss_quake, boss_flurry, boss_titan_slam, boss_inferno, boss_apocalypse) avec tmp/claude-probe/compose-lib.ts, publie par handlePublishRequest et vérifie.",
-    "runEndedAt": "2026-10-26T01:46:00Z",
+    "nextAction": "Revue opérateur des 31 publications et des 3 pilotes en jeu (d'abord la Charge corrigée et les signatures de boss) et retouches signalées à Claude ; ensuite, au choix de l'opérateur : attaques de base ennemies et objets de boutique (clés génériques attack et item), reprise du pilote narratif ou Bois-Clair.",
+    "runEndedAt": "2026-10-26T01:54:42Z",
     "writerStopped": true,
     "activeTask": "COMBAT_SKILL_ACTIONS_VFX",
-    "activeSubtask": "Lot 3 soins/bénédictions/altérations publié par Claude (7 actions, 27/34 composées) ; revue opérateur puis lots 4 et 5",
+    "activeSubtask": "Lots 4 et 5 publiés : les 34 actions de démo ont un effet composé (31 publications, 3 pilotes) ; revue opérateur en jeu",
     "runMetrics": {
-      "runtimeSourceFilesModified": 0,
+      "runtimeSourceFilesModified": 1,
       "gameplayFilesModified": 0,
-      "testFilesModified": 0,
+      "testFilesModified": 1,
       "publishedVfxActions": 7,
       "newMedia": 0,
       "imagegenCalls": 0,
@@ -939,8 +946,8 @@
       "review": "OPERATOR_PENDING",
       "composedFrom": "local CartoonCoffee sources, contact sheet review"
     },
-    "publishedDemoActions": 24,
-    "composedDemoActions": 27,
+    "publishedDemoActions": 31,
+    "composedDemoActions": 34,
     "lot2Projectiles": {
       "run": "claude-vfx-projectiles-20261026T0123Z",
       "published": [
@@ -969,6 +976,32 @@
       ],
       "review": "OPERATOR_PENDING",
       "pilotKept": "w_salvation"
+    },
+    "lots45MovementBoss": {
+      "run": "claude-vfx-movement-boss-20261026T0147Z",
+      "published": [
+        "a_hawk_leap",
+        "boss_slam",
+        "boss_quake",
+        "boss_flurry",
+        "boss_titan_slam",
+        "boss_inferno",
+        "boss_apocalypse"
+      ],
+      "review": "OPERATOR_PENDING",
+      "pilotsKept": [
+        "w_charge",
+        "ni_shadow_step"
+      ],
+      "runtimeFixes": [
+        "playActionVfxAt honours publications",
+        "dash plays its action effect"
+      ]
+    },
+    "orphanDevServer": {
+      "port": 5174,
+      "pid": 28612,
+      "status": "REPORTED_TO_OPERATOR_NOT_STOPPED"
     }
   }
 }

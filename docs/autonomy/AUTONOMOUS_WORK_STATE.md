@@ -1,14 +1,14 @@
-# Lots 1 à 3 publiés — revue de l’opérateur attendue
+# Les 34 actions de démo ont un effet — revue de l’opérateur attendue
 
-Run claude-vfx-support-20261026T0140Z (agent claude, session interactive), 2026-10-26T01:40:32Z → 2026-10-26T01:46:00Z. [OD-2026-10-25-B](COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md) : Claude compose et publie les effets, l’opérateur les revoit.
+Run claude-vfx-movement-boss-20261026T0147Z (agent claude, session interactive), 2026-10-26T01:47:23Z → 2026-10-26T01:54:42Z. [OD-2026-10-25-B](COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md) : Claude compose et publie les effets, l’opérateur les revoit.
 
-7 actions de soin, bénédiction et altération publiées : basic_crosier_hit, e_vigor_rune, boss_guard, boss_regen, boss_fortify, enemy_hex, boss_freeze. 27 actions de démo sur 34 ont un effet composé (24 publications et 3 pilotes). npm test : 162 fichiers vitest, 2850 tests, puis node:test 26/26 ; build, registre et contrats verts.
+Lots 4 et 5 publiés (déplacement et signatures de boss) : a_hawk_leap, boss_slam, boss_quake, boss_flurry, boss_titan_slam, boss_inferno, boss_apocalypse. Les 34 actions de démo ont un effet composé (31 publications, 3 pilotes). La Charge joue enfin son effet et les atterrissages suivent les publications. Serveur de dev orphelin sur le port 5174 (PID 28612), signalé à l’opérateur. npm test : 162 fichiers vitest, 2851 tests, puis node:test 26/26 ; build, registre et contrats verts.
 
 Contrats 1.10.0 et baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5` inchangés. Scheduler PAUSED, réglages inchangés. `main` protégé.
 
-UNE prochaine action : L'opérateur revoit les lots 1 à 3 et signale les retouches ; puis Claude compose le lot 4 (déplacements : a_hawk_leap, finition de w_charge et ni_shadow_step) et le lot 5 (signatures de boss : boss_slam, boss_quake, boss_flurry, boss_titan_slam, boss_inferno, boss_apocalypse) avec tmp/claude-probe/compose-lib.ts, publie par handlePublishRequest et vérifie.
+UNE prochaine action : Revue opérateur des 31 publications et des 3 pilotes en jeu (d'abord la Charge corrigée et les signatures de boss) et retouches signalées à Claude ; ensuite, au choix de l'opérateur : attaques de base ennemies et objets de boutique (clés génériques attack et item), reprise du pilote narratif ou Bois-Clair.
 
-Compteurs : {"runtimeSourceFilesModified":0,"gameplayFilesModified":0,"testFilesModified":0,"publishedVfxActions":7,"newMedia":0,"imagegenCalls":0,"qaScenarios":1,"newQaJobs":0,"inheritedQaJobs":365,"liveQaJobsAfter":3,"inheritedWipPaths":0,"workflowFiles":5,"productProgress":1}. Handoff : [2026-10-26T0140Z-claude-vfx-support.md](handoffs/2026-10-26T0140Z-claude-vfx-support.md). Publication normale sur origin autorisée par OD-2026-10-12-A.
+Compteurs : {"runtimeSourceFilesModified":1,"gameplayFilesModified":0,"testFilesModified":1,"publishedVfxActions":7,"newMedia":0,"imagegenCalls":0,"qaScenarios":1,"newQaJobs":0,"inheritedQaJobs":365,"liveQaJobsAfter":3,"inheritedWipPaths":0,"workflowFiles":5,"productProgress":1}. Handoff : [2026-10-26T0147Z-claude-vfx-movement-boss.md](handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md). Publication normale sur origin autorisée par OD-2026-10-12-A.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
