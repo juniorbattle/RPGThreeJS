@@ -1,6 +1,151 @@
 {
   "schemaVersion": 1,
   "actions": {
+    "a_precise_shot": {
+      "actionKey": "a_precise_shot",
+      "presetId": "published_a_precise_shot",
+      "visualSlots": [
+        {
+          "id": "slot_mvoktjf1_8",
+          "candidateId": "r1_0145",
+          "sizeProfile": "MID",
+          "timingProfile": "QUICK",
+          "placementProfile": "CASTER",
+          "advanced": {
+            "duration": 0.3
+          }
+        },
+        {
+          "id": "slot_mvoktjf1_9",
+          "candidateId": "r1_1723",
+          "sizeProfile": "MID",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "flash": true,
+            "shake": true,
+            "hitStop": true,
+            "power": "LIGHT"
+          },
+          "advanced": {
+            "duration": 0.3
+          },
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL"
+        },
+        {
+          "id": "slot_mvoktjf1_a",
+          "candidateId": "r1_0585",
+          "sizeProfile": "BIG",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "84b79baf",
+      "casterMotion": [
+        {
+          "id": "motion_mvoktjf2_1",
+          "type": "HOLD",
+          "actor": "CASTER",
+          "pose": "attack",
+          "duration": 0.55
+        }
+      ],
+      "beats": [
+        {
+          "id": "beat_mvoktjf2_1",
+          "startDelay": 0,
+          "composition": "SEQUENCE",
+          "vfxSlotIds": [
+            "slot_mvoktjf1_8",
+            "slot_mvoktjf1_9",
+            "slot_mvoktjf1_a"
+          ],
+          "casterMotionIds": [
+            "motion_mvoktjf2_1"
+          ]
+        }
+      ]
+    },
+    "ar_calibrated_shot": {
+      "actionKey": "ar_calibrated_shot",
+      "presetId": "published_ar_calibrated_shot",
+      "visualSlots": [
+        {
+          "id": "slot_mvoktjfh_c",
+          "candidateId": "r1_0110",
+          "sizeProfile": "MID",
+          "timingProfile": "QUICK",
+          "placementProfile": "CASTER",
+          "advanced": {
+            "duration": 0.3
+          }
+        },
+        {
+          "id": "slot_mvoktjfi_d",
+          "candidateId": "r1_1716",
+          "sizeProfile": "MID",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "shake": true,
+            "hitStop": true,
+            "power": "LIGHT"
+          },
+          "advanced": {
+            "duration": 0.3
+          },
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL"
+        },
+        {
+          "id": "slot_mvoktjfi_e",
+          "candidateId": "r1_0551",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "59ca232e",
+      "casterMotion": [
+        {
+          "id": "motion_mvoktjfi_2",
+          "type": "HOLD",
+          "actor": "CASTER",
+          "pose": "attack",
+          "duration": 0.55
+        }
+      ],
+      "beats": [
+        {
+          "id": "beat_mvoktjfi_2",
+          "startDelay": 0,
+          "composition": "SEQUENCE",
+          "vfxSlotIds": [
+            "slot_mvoktjfh_c",
+            "slot_mvoktjfi_d",
+            "slot_mvoktjfi_e"
+          ],
+          "casterMotionIds": [
+            "motion_mvoktjfi_2"
+          ]
+        }
+      ]
+    },
     "basic_dagger_hit": {
       "actionKey": "basic_dagger_hit",
       "presetId": "published_basic_dagger_hit",
@@ -62,6 +207,44 @@
       "tier": 1,
       "fingerprint": "08620d65"
     },
+    "basic_grimoire_hit": {
+      "actionKey": "basic_grimoire_hit",
+      "presetId": "published_basic_grimoire_hit",
+      "visualSlots": [
+        {
+          "id": "slot_mvoktjeq_5",
+          "candidateId": "r1_0934",
+          "sizeProfile": "LOW",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "shake": true,
+            "hitStop": true,
+            "power": "LIGHT"
+          },
+          "advanced": {
+            "duration": 0.45
+          },
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL"
+        },
+        {
+          "id": "slot_mvoktjeq_6",
+          "candidateId": "r1_0544",
+          "sizeProfile": "LOW",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 1,
+      "fingerprint": "744baca6"
+    },
     "basic_long_spear_hit": {
       "actionKey": "basic_long_spear_hit",
       "presetId": "published_basic_long_spear_hit",
@@ -92,6 +275,115 @@
       "autoPlacement": "TARGET",
       "tier": 1,
       "fingerprint": "4db9b978"
+    },
+    "basic_longbow_hit": {
+      "actionKey": "basic_longbow_hit",
+      "presetId": "published_basic_longbow_hit",
+      "visualSlots": [
+        {
+          "id": "slot_mvoktjec_2",
+          "candidateId": "r1_1717",
+          "sizeProfile": "LOW",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "shake": true,
+            "hitStop": true,
+            "power": "LIGHT"
+          },
+          "advanced": {
+            "duration": 0.3
+          },
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL",
+          "trajectoryProfile": "ARC_LOW"
+        },
+        {
+          "id": "slot_mvoktjec_3",
+          "candidateId": "r1_1708",
+          "sizeProfile": "LOW",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 1,
+      "fingerprint": "a777d07e"
+    },
+    "boss_pin": {
+      "actionKey": "boss_pin",
+      "presetId": "published_boss_pin",
+      "visualSlots": [
+        {
+          "id": "slot_mvoktjgi_p",
+          "candidateId": "r1_1723",
+          "sizeProfile": "BIG",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "flash": true,
+            "shake": true,
+            "hitStop": true,
+            "power": "STRONG"
+          },
+          "advanced": {
+            "duration": 0.3
+          },
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL"
+        },
+        {
+          "id": "slot_mvoktjgi_q",
+          "candidateId": "r1_0552",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        },
+        {
+          "id": "slot_mvoktjgi_r",
+          "candidateId": "r1_0593",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "GROUND"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 4,
+      "fingerprint": "bc5cdc7a",
+      "casterMotion": [
+        {
+          "id": "motion_mvoktjgi_6",
+          "type": "HOLD",
+          "actor": "CASTER",
+          "pose": "attack",
+          "duration": 0.55
+        }
+      ],
+      "beats": [
+        {
+          "id": "beat_mvoktjgi_6",
+          "startDelay": 0,
+          "composition": "SEQUENCE",
+          "vfxSlotIds": [
+            "slot_mvoktjgi_p",
+            "slot_mvoktjgi_q",
+            "slot_mvoktjgi_r"
+          ],
+          "casterMotionIds": [
+            "motion_mvoktjgi_6"
+          ]
+        }
+      ]
     },
     "d_cursed_blade": {
       "actionKey": "d_cursed_blade",
@@ -144,6 +436,128 @@
           ],
           "casterMotionIds": [
             "motion_mvok763u_2"
+          ]
+        }
+      ]
+    },
+    "enemy_binding_shot": {
+      "actionKey": "enemy_binding_shot",
+      "presetId": "published_enemy_binding_shot",
+      "visualSlots": [
+        {
+          "id": "slot_mvoktjga_m",
+          "candidateId": "r1_1717",
+          "sizeProfile": "MID",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "shake": true,
+            "hitStop": true,
+            "power": "LIGHT"
+          },
+          "advanced": {
+            "duration": 0.3
+          },
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL"
+        },
+        {
+          "id": "slot_mvoktjga_n",
+          "candidateId": "r1_0592",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "GROUND"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "GROUND",
+      "tier": 2,
+      "fingerprint": "49776672",
+      "casterMotion": [
+        {
+          "id": "motion_mvoktjga_5",
+          "type": "HOLD",
+          "actor": "CASTER",
+          "pose": "attack",
+          "duration": 0.55
+        }
+      ],
+      "beats": [
+        {
+          "id": "beat_mvoktjga_5",
+          "startDelay": 0,
+          "composition": "SEQUENCE",
+          "vfxSlotIds": [
+            "slot_mvoktjga_m",
+            "slot_mvoktjga_n"
+          ],
+          "casterMotionIds": [
+            "motion_mvoktjga_5"
+          ]
+        }
+      ]
+    },
+    "enemy_dark_bolt": {
+      "actionKey": "enemy_dark_bolt",
+      "presetId": "published_enemy_dark_bolt",
+      "visualSlots": [
+        {
+          "id": "slot_mvoktjg3_j",
+          "candidateId": "r1_0935",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "shake": true,
+            "hitStop": true,
+            "power": "LIGHT"
+          },
+          "advanced": {
+            "duration": 0.45
+          },
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL"
+        },
+        {
+          "id": "slot_mvoktjg3_k",
+          "candidateId": "r1_0544",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "e63d999b",
+      "casterMotion": [
+        {
+          "id": "motion_mvoktjg3_4",
+          "type": "HOLD",
+          "actor": "CASTER",
+          "pose": "cast",
+          "duration": 0.55
+        }
+      ],
+      "beats": [
+        {
+          "id": "beat_mvoktjg3_4",
+          "startDelay": 0,
+          "composition": "SEQUENCE",
+          "vfxSlotIds": [
+            "slot_mvoktjg3_j",
+            "slot_mvoktjg3_k"
+          ],
+          "casterMotionIds": [
+            "motion_mvoktjg3_4"
           ]
         }
       ]
@@ -308,6 +722,68 @@
           ],
           "casterMotionIds": [
             "motion_mvok7649_4"
+          ]
+        }
+      ]
+    },
+    "n_dark_bolt": {
+      "actionKey": "n_dark_bolt",
+      "presetId": "published_n_dark_bolt",
+      "visualSlots": [
+        {
+          "id": "slot_mvoktjfv_g",
+          "candidateId": "r1_0952",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "flash": true,
+            "shake": true,
+            "hitStop": true,
+            "power": "STRONG"
+          },
+          "advanced": {
+            "duration": 0.45
+          },
+          "positionMode": "TRAVEL",
+          "travelFrom": "CASTER_FRONT",
+          "travelTo": "TARGET",
+          "aimProfile": "ALONG_PATH",
+          "mirrorProfile": "AUTO_HORIZONTAL"
+        },
+        {
+          "id": "slot_mvoktjfv_h",
+          "candidateId": "r1_0572",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "9597b291",
+      "casterMotion": [
+        {
+          "id": "motion_mvoktjfv_3",
+          "type": "HOLD",
+          "actor": "CASTER",
+          "pose": "cast",
+          "duration": 0.55
+        }
+      ],
+      "beats": [
+        {
+          "id": "beat_mvoktjfv_3",
+          "startDelay": 0,
+          "composition": "SEQUENCE",
+          "vfxSlotIds": [
+            "slot_mvoktjfv_g",
+            "slot_mvoktjfv_h"
+          ],
+          "casterMotionIds": [
+            "motion_mvoktjfv_3"
           ]
         }
       ]

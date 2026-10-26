@@ -102,3 +102,9 @@ CURRENT FACT : 12 actions de démo sur 34 ont désormais un effet composé. Ce s
 - Les actions du Combat Stage portent une fente en pose `attack` avec retour, sauf Estoc long, qui tient la pose sans avancer.
 - Les actions tactiques n'ont que des effets : le mouvement d'unité ne s'applique que dans le Stage.
 - Acceptation artistique : opérateur, non inférée.
+
+## Addendum — lot 2, projectiles (run `claude-vfx-projectiles-20261026T0123Z`)
+
+CURRENT FACT : 20 actions de démo sur 34 ont un effet composé. Ce sont les 3 pilotes et 17 publications. Les 8 projectiles ajoutés : `basic_longbow_hit`, `basic_grimoire_hit`, `a_precise_shot`, `ar_calibrated_shot`, `n_dark_bolt`, `enemy_dark_bolt`, `enemy_binding_shot`, `boss_pin`.
+
+Chaque projectile se déplace du devant du lanceur à la cible et porte le retour d'impact, si bien que les dégâts tombent à son arrivée. Les tireurs tiennent la pose `attack`, les mages la pose `cast`. Acceptation artistique : opérateur, non inférée.
