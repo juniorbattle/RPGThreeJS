@@ -31,6 +31,7 @@ import {
   type VfxPresetDraft,
 } from './VfxPresetComposer';
 import { compileCasterMotion, createCasterMotionStep } from './CasterMotion';
+import { getLabAction } from './CombatVfxLab';
 
 const durableRegistry = publishedRegistryData as PublishedVfxRegistry;
 
@@ -136,9 +137,10 @@ const compileOptions = {
 };
 
 describe('Phase B back-compat — durable registry + historical fixtures', () => {
-  it('accepts the intentionally empty durable registry after RESET ALL', () => {
-    expect(Object.keys(durableRegistry.actions)).toHaveLength(0);
+  // RESET ALL emptied the durable registry on 2026-09-07; OD-2026-10-25-B re-authors it action by action.
+  it('keeps the durable registry valid and limited to known lab actions', () => {
     expect(validatePublishedRegistry(durableRegistry).ok).toBe(true);
+    for (const actionKey of Object.keys(durableRegistry.actions)) expect(getLabAction(actionKey), actionKey).toBeDefined();
   });
 
   it('keeps two exact pre-reset V2.4 publications as compatibility fixtures', () => {

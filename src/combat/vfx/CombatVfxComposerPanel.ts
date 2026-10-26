@@ -31,7 +31,7 @@ import {
   getVfxActionScope,
   getActionsInScope,
 } from './DemoVfxActionScope';
-import { WORKLOAD_STATE_MARKS, buildDemoWorkloadSummary, classifyWorkloadState, nextActionToCompose } from './DemoVfxWorkload';
+import { WORKLOAD_STATE_MARKS, buildDemoWorkloadSummary, classifyWorkloadState, hasMeaningfulWork, nextActionToCompose } from './DemoVfxWorkload';
 import {
   addSlot,
   removeSlot,
@@ -256,9 +256,12 @@ export function installVfxComposerPanel(options: ComposerPanelOptions): () => vo
   /** Migrates an existing action into a draft when none exists yet. */
   function ensureDraft(actionKey: string): VfxPresetDraft {
     const existing = getDraft(store, actionKey);
-    if (existing) return existing;
+    const published = getPublishedEntry(getActiveRegistry(), actionKey);
+    // A publication made elsewhere (another browser, or a scripted session) opens as the starting point; only local
+    // work the operator actually did takes precedence over it.
+    if (existing && (!published || hasMeaningfulWork(existing))) return existing;
     const action = getLabAction(actionKey);
-    const draft = createDraftFromAction(buildMigrationSource(action));
+    const draft = published ? publishedEntryToDraft(published) : createDraftFromAction(buildMigrationSource(action));
     store = putDraft(store, draft);
     return draft;
   }

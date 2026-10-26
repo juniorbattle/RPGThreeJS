@@ -76,7 +76,7 @@ export function isRetiredBaseArtSlot(candidateId: string): boolean {
  * technical polish. The scaffold left behind by selecting an action, empty or
  * seeded with retired sheets, is not "in progress".
  */
-function hasMeaningfulWork(draft: VfxPresetDraft | undefined): boolean {
+export function hasMeaningfulWork(draft: VfxPresetDraft | undefined): boolean {
   if (!draft) return false;
   return (Array.isArray(draft.visualSlots) && draft.visualSlots.some((slot) => !isRetiredBaseArtSlot(slot.candidateId)))
     || (draft.casterMotion?.length ?? 0) > 0

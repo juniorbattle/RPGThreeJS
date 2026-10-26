@@ -94,3 +94,11 @@ CURRENT FACT, après le lot 0 :
 - Les retours génériques dont la planche est retirée affichent aussi le substitut : K.O. (`kill_spark`), critique (`critical_hit`), `generic_hit`, attaques de base ennemies, `teleport_burst`.
 - Reste ouvert : `isStrictSpritesheetCompliant` (`VfxActionRegistry.ts`, audit seulement) ne regarde toujours que le type d'étape.
 - L'aspect des substituts n'a pas été inspecté à l'écran (panneau du navigateur non peint pendant l'essai). Leur création dans une scène Chromium réelle est vérifiée.
+
+## Addendum — lot 1, contact (run `claude-vfx-contact-20261026T0103Z`)
+
+CURRENT FACT : 12 actions de démo sur 34 ont désormais un effet composé. Ce sont les 3 presets pilotes et 9 publications : `basic_greatsword_hit`, `basic_dagger_hit`, `basic_long_spear_hit`, `w_break_guard`, `d_cursed_blade`, `ro_sneak_attack`, `l_long_thrust`, `enemy_heavy_strike`, `enemy_venom_strike`.
+
+- Les actions du Combat Stage portent une fente en pose `attack` avec retour, sauf Estoc long, qui tient la pose sans avancer.
+- Les actions tactiques n'ont que des effets : le mouvement d'unité ne s'applique que dans le Stage.
+- Acceptation artistique : opérateur, non inférée.

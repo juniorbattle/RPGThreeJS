@@ -7,6 +7,10 @@ import { PUBLISHED_REGISTRY_SCHEMA_VERSION, publishEntry, type PublishedVfxRegis
 import { __devClearOverlay, __devUpdateOverlay } from './PublishedVfxResolver';
 import { createDraftFromAction } from './VfxPresetComposer';
 
+// UI tests run against an empty publication registry, independent of the durable presets being authored.
+beforeEach(() => __devUpdateOverlay({ schemaVersion: PUBLISHED_REGISTRY_SCHEMA_VERSION, actions: {} }));
+afterEach(() => __devClearOverlay());
+
 const ROOT_ID = 'r2c-vfx-composer';
 
 function getRoot(): HTMLElement {
@@ -1159,5 +1163,44 @@ describe('Composer action navigation (OD-2026-10-25-B)', () => {
     select().dispatchEvent(new Event('change', { bubbles: true }));
     click(q('.cmp-action-next'));
     expect(select().value).toBe(order[1]);
+  });
+});
+
+describe('Composer opens publications made elsewhere (OD-2026-10-25-B)', () => {
+  let dispose: () => void = () => {};
+  let origFetch: typeof fetch = () => Promise.resolve({ ok: false } as Response);
+
+  beforeEach(() => {
+    localStorage.clear();
+    document.body.textContent = '';
+    document.head.textContent = '';
+    origFetch = globalThis.fetch;
+    globalThis.fetch = (async () => ({ ok: true, json: async () => ({ ok: true }) }) as unknown as Response) as typeof fetch;
+  });
+
+  afterEach(() => {
+    dispose();
+    __devClearOverlay();
+    localStorage.clear();
+    globalThis.fetch = origFetch;
+  });
+
+  it('shows the published composition, not the retired seed, and keeps real local work first', () => {
+    const actionKey = 'basic_greatsword_hit';
+    const published = createDraftFromAction({ actionKey, presetId: 'basic_greatsword_hit', visualSteps: [{ candidateId: 'r1_1624' }] });
+    __devUpdateOverlay(publishEntry({ schemaVersion: PUBLISHED_REGISTRY_SCHEMA_VERSION, actions: {} }, published));
+    dispose = installVfxComposerPanel({ enabled: true });
+    const select = q<HTMLSelectElement>('.cmp-action-select')!;
+    select.value = actionKey;
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    expect(qa('.cmp-slot-card').map((card) => card.textContent ?? '').join(' ')).not.toContain('basic_greatsword_cleave_heavy');
+    expect(q('.cmp-slot-unplayable')).toBeNull();
+    expect(Array.from(select.options).find((option) => option.value === actionKey)!.textContent).toMatch(/^✓ /);
+
+    dispose();
+    const local = createDraftFromAction({ actionKey, presetId: 'basic_greatsword_hit', visualSteps: [{ candidateId: 'r1_1670' }] });
+    localStorage.setItem(COMPOSER_STORAGE_KEY, JSON.stringify({ drafts: { [actionKey]: local }, savedFingerprints: {}, selectedActionKey: actionKey }));
+    dispose = installVfxComposerPanel({ enabled: true });
+    expect(loadComposerStore(localStorage).drafts[actionKey]!.visualSlots.map((slot) => slot.candidateId)).toEqual(['r1_1670']);
   });
 });

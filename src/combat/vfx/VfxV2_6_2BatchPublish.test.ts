@@ -1,5 +1,6 @@
 // @vitest-environment happy-dom
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { __devClearOverlay as clearRegistryOverlay, __devUpdateOverlay as setRegistryOverlay } from './PublishedVfxResolver';
 import { installVfxComposerPanel } from './CombatVfxComposerPanel';
 
 import {
@@ -24,6 +25,11 @@ import {
 } from './VfxPresetComposer';
 import { buildBatchPublishPlan } from './BatchPublishPlan';
 import { handlePublishAllPresetsRequest, type VfxRegistryIo } from '../../dev/vfxPublishDevServer';
+
+// UI tests run against an empty publication registry, independent of the durable presets being authored.
+beforeEach(() => setRegistryOverlay({ schemaVersion: PUBLISHED_REGISTRY_SCHEMA_VERSION, actions: {} }));
+afterEach(() => clearRegistryOverlay());
+
 
 // ============================================================ In-memory registry IO
 

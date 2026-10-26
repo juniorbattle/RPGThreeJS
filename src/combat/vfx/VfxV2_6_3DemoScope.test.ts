@@ -7,6 +7,8 @@
  * drafting, saving, publishing or resetting an action.
  */
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { __devClearOverlay as clearRegistryOverlay, __devUpdateOverlay as setRegistryOverlay } from './PublishedVfxResolver';
+import { PUBLISHED_REGISTRY_SCHEMA_VERSION } from './PublishedVfxRegistry';
 
 import { installVfxComposerPanel } from './CombatVfxComposerPanel';
 import {
@@ -22,6 +24,11 @@ import {
   getScopeCensus,
   VFX_ACTION_GROUP_LABELS,
 } from './DemoVfxActionScope';
+
+// UI tests run against an empty publication registry, independent of the durable presets being authored.
+beforeEach(() => setRegistryOverlay({ schemaVersion: PUBLISHED_REGISTRY_SCHEMA_VERSION, actions: {} }));
+afterEach(() => clearRegistryOverlay());
+
 
 const ROOT_ID = 'r2c-vfx-composer';
 

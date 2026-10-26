@@ -1,7 +1,14 @@
 // @vitest-environment happy-dom
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { __devClearOverlay as clearRegistryOverlay, __devUpdateOverlay as setRegistryOverlay } from './PublishedVfxResolver';
+import { PUBLISHED_REGISTRY_SCHEMA_VERSION } from './PublishedVfxRegistry';
 import { installVfxComposerPanel } from './CombatVfxComposerPanel';
 import { COMPOSER_STORAGE_KEY, loadComposerStore } from './VfxComposerPlayback';
+
+// UI tests run against an empty publication registry, independent of the durable presets being authored.
+beforeEach(() => setRegistryOverlay({ schemaVersion: PUBLISHED_REGISTRY_SCHEMA_VERSION, actions: {} }));
+afterEach(() => clearRegistryOverlay());
+
 
 const ROOT_ID = 'r2c-vfx-composer';
 
