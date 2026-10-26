@@ -1,19 +1,19 @@
 {
-  "status": "READY_FOR_OPERATOR_REVIEW_PROJECTILE_VFX",
-  "runStartedAt": "2026-10-26T01:23:40Z",
-  "runEndedAt": "2026-10-26T01:29:57Z",
+  "status": "READY_FOR_OPERATOR_REVIEW_SUPPORT_VFX",
+  "runStartedAt": "2026-10-26T01:40:32Z",
+  "runEndedAt": "2026-10-26T01:46:00Z",
   "activeTask": "COMBAT_SKILL_ACTIONS_VFX",
-  "activePhase": "LOT2_PROJECTILES_PUBLISHED",
-  "activeSubtask": "Lot 2 projectiles publié par Claude (8 actions, 20/34 composées) ; revue opérateur des lots 1 et 2 puis lot 3",
+  "activePhase": "LOT3_SUPPORT_PUBLISHED",
+  "activeSubtask": "Lot 3 soins/bénédictions/altérations publié par Claude (7 actions, 27/34 composées) ; revue opérateur puis lots 4 et 5",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "c51ba24d675390726f7de352711a748613e7e6f1",
-  "lastPushedCommit": "c51ba24d675390726f7de352711a748613e7e6f1",
+  "lastKnownGoodCommit": "6929dd25bc8458642ab61d012c7cc52750e6588d",
+  "lastPushedCommit": "6929dd25bc8458642ab61d012c7cc52750e6588d",
   "completedThisRun": [
     "Préflight propre et verrou exclusif (agent claude)",
-    "Candidats projectiles choisis sur planche contact (pas de flèche dans le pack : estocs en déplacement, comme dans les choix de septembre)",
-    "8 actions publiées par handlePublishRequest : basic_longbow_hit, basic_grimoire_hit, a_precise_shot, ar_calibrated_shot, n_dark_bolt, enemy_dark_bolt, enemy_binding_shot, boss_pin",
-    "Projectiles en TRAVEL portant le retour d’impact : dégâts à l’arrivée (0,3 s flèche, 0,45 s orbe, 0,6 s avec visée)",
-    "Vérification Chromium : 8 actions jouées sans erreur en normal et réduit, trajet du lanceur à la cible confirmé"
+    "Candidats soin, buff, malédiction et gel choisis sur planche contact ; Negative_Buff, Impact_Ice et Charge_Ice acquis par /dev/vfx-acquire (locaux, non commités)",
+    "7 actions publiées par handlePublishRequest : basic_crosier_hit, e_vigor_rune, boss_guard, boss_regen, boss_fortify, enemy_hex, boss_freeze",
+    "w_salvation conservé sur son preset pilote ; gel en séquence charge → impact fort → anneau ; malédiction et gel en pose cast",
+    "Vérification Chromium : 7 actions jouées avec textures chargées, sans erreur, en normal et réduit"
   ],
   "filesChanged": [
     "src/combat/vfx/generated/published-vfx-presets.json",
@@ -21,7 +21,7 @@
     "docs/reports/combat-vfx-coverage-2026-10-25.md",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md",
-    "docs/autonomy/handoffs/2026-10-26T0123Z-claude-vfx-projectiles.md"
+    "docs/autonomy/handoffs/2026-10-26T0140Z-claude-vfx-support.md"
   ],
   "testsRun": [
     "npm run vfx:validate-published",
@@ -33,47 +33,47 @@
     "Chromium via preview_start (rpg-dev) : scène réelle"
   ],
   "testsPassed": [
-    "vfx:validate-published PASS (17 actions)",
+    "vfx:validate-published PASS (24 actions)",
     "npm test : 162 fichiers vitest, 2850 tests, puis node:test 26/26",
     "build PASS (avertissement de taille de chunk préexistant)",
     "contracts:validate PASS",
     "LOCKED gate vide",
     "git diff --check propre",
-    "Chromium : 8 projectiles joués avec textures, trajet x 0,3 → 4, sans erreur, normal et réduit"
+    "Chromium : 7 actions jouées avec textures chargées, sans erreur, normal et réduit"
   ],
   "testsRemaining": [
-    "Revue artistique opérateur des lots contact et projectiles"
+    "Revue artistique opérateur des lots 1 à 3"
   ],
   "blockers": [],
   "remainingWork": [
-    "Lot 3 soins/bénédictions/altérations, lot 4 déplacements, lot 5 signatures de boss",
+    "Lot 4 déplacements, lot 5 signatures de boss",
     "Attaques de base ennemies et objets de boutique (clés publiées génériques attack et item)",
     "Option QA « Tous les héros QA » : 12 unités pour 8 cases, lancement bloqué (constat, non corrigé)",
     "Pilote narratif Alistair (en pause), finition Bois-Clair, playtest PC puis mobile"
   ],
-  "nextAction": "L'opérateur revoit les lots contact et projectiles et signale les retouches ; puis Claude compose le lot 3 (soins, bénédictions et altérations : basic_crosier_hit, e_vigor_rune, w_salvation en finition, enemy_hex, boss_guard, boss_regen, boss_fortify, boss_freeze) avec tmp/claude-probe/compose-lib.ts, publie par handlePublishRequest et vérifie.",
+  "nextAction": "L'opérateur revoit les lots 1 à 3 et signale les retouches ; puis Claude compose le lot 4 (déplacements : a_hawk_leap, finition de w_charge et ni_shadow_step) et le lot 5 (signatures de boss : boss_slam, boss_quake, boss_flurry, boss_titan_slam, boss_inferno, boss_apocalypse) avec tmp/claude-probe/compose-lib.ts, publie par handlePublishRequest et vérifie.",
   "taskQueue": [
-    "L'opérateur revoit les lots contact et projectiles et signale les retouches ; puis Claude compose le lot 3 (soins, bénédictions et altérations : basic_crosier_hit, e_vigor_rune, w_salvation en finition, enemy_hex, boss_guard, boss_regen, boss_fortify, boss_freeze) avec tmp/claude-probe/compose-lib.ts, publie par handlePublishRequest et vérifie.",
-    "Lots 4 et 5 : déplacements, signatures de boss",
+    "L'opérateur revoit les lots 1 à 3 et signale les retouches ; puis Claude compose le lot 4 (déplacements : a_hawk_leap, finition de w_charge et ni_shadow_step) et le lot 5 (signatures de boss : boss_slam, boss_quake, boss_flurry, boss_titan_slam, boss_inferno, boss_apocalypse) avec tmp/claude-probe/compose-lib.ts, publie par handlePublishRequest et vérifie.",
+    "Lot 5 : signatures de boss",
     "Pilote narratif Alistair (en pause), finition relationnelle Bois-Clair, playtest PC puis mobile"
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_PRESENTATION_ONLY_NO_CONTRACT_CHANGE",
-  "runId": "claude-vfx-projectiles-20261026T0123Z",
+  "runId": "claude-vfx-support-20261026T0140Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-10-26T01:29:57Z",
-  "heartbeat": "2026-10-26T01:29:57Z",
+  "lastHeartbeat": "2026-10-26T01:46:00Z",
+  "heartbeat": "2026-10-26T01:46:00Z",
   "wip": null,
   "uncommittedWork": [],
   "providerTasksPending": [],
   "blockedBy": null,
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0123Z-claude-vfx-projectiles.md",
-  "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0123Z-claude-vfx-projectiles.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0140Z-claude-vfx-support.md",
+  "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0140Z-claude-vfx-support.md",
   "previousRun": {
-    "runId": "claude-vfx-contact-20261026T0103Z",
-    "runEndedAt": "2026-10-26T01:20:08Z",
+    "runId": "claude-vfx-projectiles-20261026T0123Z",
+    "runEndedAt": "2026-10-26T01:29:57Z",
     "activeTask": "COMBAT_SKILL_ACTIONS_VFX",
-    "commit": "c51ba24d675390726f7de352711a748613e7e6f1"
+    "commit": "6929dd25bc8458642ab61d012c7cc52750e6588d"
   },
   "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
   "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
@@ -81,7 +81,7 @@
     "runtimeSourceFilesModified": 0,
     "gameplayFilesModified": 0,
     "testFilesModified": 0,
-    "publishedVfxActions": 8,
+    "publishedVfxActions": 7,
     "newMedia": 0,
     "imagegenCalls": 0,
     "qaScenarios": 1,
@@ -96,7 +96,7 @@
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "operatorPriority": "OD-2026-10-25-B : Composer VFX et actions de compétence du combat tactique et du Combat Stage, une famille à la fois ; pilote narratif Alistair en pause ; puis Bois-Clair, playtest PC et mobile ; zéro vidéo",
   "operatorAuthorization": "OD-2026-10-25-A : Claude écrivain principal interactif, agent claude sous le même verrou, dev seulement, serveurs en mode mixte, protocole interactif allégé ; tests et état d'abord, puis nettoyage et pilote Alistair (frames Codex, lecteur Claude). Aucun amendement de contrat. OD-2026-10-25-B : priorité au Composer VFX et aux actions de combat, pilote Alistair en pause, art opérateur, aucun amendement.",
-  "commitReferenceScope": "Lot 2 projectiles d'OD-2026-10-25-B sur c51ba24d675390726f7de352711a748613e7e6f1 : registre publié (8 actions) et documents ; aucun code, média commité, contrat ni vérité de combat. Le SHA du commit de clôture fait foi dans Git.",
+  "commitReferenceScope": "Lot 3 soins, bénédictions et altérations d'OD-2026-10-25-B sur 6929dd25bc8458642ab61d012c7cc52750e6588d : registre publié (7 actions) et documents ; aucun code, média commité, contrat ni vérité de combat. Le SHA du commit de clôture fait foi dans Git.",
   "autonomousExecutionPolicy": {
     "decisionSource": "docs/autonomy/AUTONOMY_EFFICIENCY_OPERATOR_DECISION_2026-10-02.md",
     "routineOperatorApproval": false,
@@ -564,21 +564,21 @@
     "rule": "Kept: protocol fields, run identity, current authority, open/deferred items and current scopes; QA jobs registered after the set 1.10.0 amendment commit. Everything else is unchanged in the snapshot."
   },
   "live": {
-    "lastHeartbeat": "2026-10-26T01:29:57Z",
-    "runId": "claude-vfx-projectiles-20261026T0123Z",
+    "lastHeartbeat": "2026-10-26T01:46:00Z",
+    "runId": "claude-vfx-support-20261026T0140Z",
     "agent": "claude",
-    "status": "READY_FOR_OPERATOR_REVIEW_PROJECTILE_VFX",
+    "status": "READY_FOR_OPERATOR_REVIEW_SUPPORT_VFX",
     "wip": null,
-    "nextAction": "L'opérateur revoit les lots contact et projectiles et signale les retouches ; puis Claude compose le lot 3 (soins, bénédictions et altérations : basic_crosier_hit, e_vigor_rune, w_salvation en finition, enemy_hex, boss_guard, boss_regen, boss_fortify, boss_freeze) avec tmp/claude-probe/compose-lib.ts, publie par handlePublishRequest et vérifie.",
-    "runEndedAt": "2026-10-26T01:29:57Z",
+    "nextAction": "L'opérateur revoit les lots 1 à 3 et signale les retouches ; puis Claude compose le lot 4 (déplacements : a_hawk_leap, finition de w_charge et ni_shadow_step) et le lot 5 (signatures de boss : boss_slam, boss_quake, boss_flurry, boss_titan_slam, boss_inferno, boss_apocalypse) avec tmp/claude-probe/compose-lib.ts, publie par handlePublishRequest et vérifie.",
+    "runEndedAt": "2026-10-26T01:46:00Z",
     "writerStopped": true,
     "activeTask": "COMBAT_SKILL_ACTIONS_VFX",
-    "activeSubtask": "Lot 2 projectiles publié par Claude (8 actions, 20/34 composées) ; revue opérateur des lots 1 et 2 puis lot 3",
+    "activeSubtask": "Lot 3 soins/bénédictions/altérations publié par Claude (7 actions, 27/34 composées) ; revue opérateur puis lots 4 et 5",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,
       "testFilesModified": 0,
-      "publishedVfxActions": 8,
+      "publishedVfxActions": 7,
       "newMedia": 0,
       "imagegenCalls": 0,
       "qaScenarios": 1,
@@ -939,8 +939,8 @@
       "review": "OPERATOR_PENDING",
       "composedFrom": "local CartoonCoffee sources, contact sheet review"
     },
-    "publishedDemoActions": 17,
-    "composedDemoActions": 20,
+    "publishedDemoActions": 24,
+    "composedDemoActions": 27,
     "lot2Projectiles": {
       "run": "claude-vfx-projectiles-20261026T0123Z",
       "published": [
@@ -955,6 +955,20 @@
       ],
       "review": "OPERATOR_PENDING",
       "impactOnArrival": true
+    },
+    "lot3Support": {
+      "run": "claude-vfx-support-20261026T0140Z",
+      "published": [
+        "basic_crosier_hit",
+        "e_vigor_rune",
+        "boss_guard",
+        "boss_regen",
+        "boss_fortify",
+        "enemy_hex",
+        "boss_freeze"
+      ],
+      "review": "OPERATOR_PENDING",
+      "pilotKept": "w_salvation"
     }
   }
 }

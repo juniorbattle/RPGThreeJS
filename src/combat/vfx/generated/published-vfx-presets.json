@@ -146,6 +146,36 @@
         }
       ]
     },
+    "basic_crosier_hit": {
+      "actionKey": "basic_crosier_hit",
+      "presetId": "published_basic_crosier_hit",
+      "visualSlots": [
+        {
+          "id": "slot_mvoler1k_2",
+          "candidateId": "r1_0484",
+          "sizeProfile": "MID",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO"
+        },
+        {
+          "id": "slot_mvoler1k_3",
+          "candidateId": "r1_0482",
+          "sizeProfile": "MID",
+          "timingProfile": "QUICK",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "shake": true,
+            "hitStop": true,
+            "power": "LIGHT"
+          }
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 1,
+      "fingerprint": "7ad83bfe"
+    },
     "basic_dagger_hit": {
       "actionKey": "basic_dagger_hit",
       "presetId": "published_basic_dagger_hit",
@@ -315,6 +345,115 @@
       "tier": 1,
       "fingerprint": "a777d07e"
     },
+    "boss_fortify": {
+      "actionKey": "boss_fortify",
+      "presetId": "published_boss_fortify",
+      "visualSlots": [
+        {
+          "id": "slot_mvoler2j_c",
+          "candidateId": "r1_0678",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "flash": true,
+            "power": "LIGHT"
+          }
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 3,
+      "fingerprint": "716d6a05"
+    },
+    "boss_freeze": {
+      "actionKey": "boss_freeze",
+      "presetId": "published_boss_freeze",
+      "visualSlots": [
+        {
+          "id": "slot_mvoler2w_g",
+          "candidateId": "r1_0183",
+          "sizeProfile": "MID",
+          "timingProfile": "QUICK",
+          "placementProfile": "CASTER",
+          "advanced": {
+            "duration": 0.35
+          }
+        },
+        {
+          "id": "slot_mvoler2x_h",
+          "candidateId": "r1_0566",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "flash": true,
+            "shake": true,
+            "hitStop": true,
+            "power": "STRONG"
+          }
+        },
+        {
+          "id": "slot_mvoler2x_i",
+          "candidateId": "r1_0180",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "GROUND"
+        }
+      ],
+      "choreography": "SEQUENCE",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 4,
+      "fingerprint": "74c62acb",
+      "casterMotion": [
+        {
+          "id": "motion_mvoler2x_2",
+          "type": "HOLD",
+          "actor": "CASTER",
+          "pose": "cast",
+          "duration": 0.6
+        }
+      ],
+      "beats": [
+        {
+          "id": "beat_mvoler2x_2",
+          "startDelay": 0,
+          "composition": "SEQUENCE",
+          "vfxSlotIds": [
+            "slot_mvoler2w_g",
+            "slot_mvoler2x_h",
+            "slot_mvoler2x_i"
+          ],
+          "casterMotionIds": [
+            "motion_mvoler2x_2"
+          ]
+        }
+      ]
+    },
+    "boss_guard": {
+      "actionKey": "boss_guard",
+      "presetId": "published_boss_guard",
+      "visualSlots": [
+        {
+          "id": "slot_mvoler28_7",
+          "candidateId": "r1_0971",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "flash": true,
+            "power": "LIGHT"
+          }
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 3,
+      "fingerprint": "b345352f"
+    },
     "boss_pin": {
       "actionKey": "boss_pin",
       "presetId": "published_boss_pin",
@@ -385,6 +524,35 @@
         }
       ]
     },
+    "boss_regen": {
+      "actionKey": "boss_regen",
+      "presetId": "published_boss_regen",
+      "visualSlots": [
+        {
+          "id": "slot_mvoler2d_9",
+          "candidateId": "r1_0483",
+          "sizeProfile": "BIG",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "flash": true,
+            "power": "LIGHT"
+          }
+        },
+        {
+          "id": "slot_mvoler2d_a",
+          "candidateId": "r1_0488",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO"
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 3,
+      "fingerprint": "6d0813fe"
+    },
     "d_cursed_blade": {
       "actionKey": "d_cursed_blade",
       "presetId": "published_d_cursed_blade",
@@ -439,6 +607,28 @@
           ]
         }
       ]
+    },
+    "e_vigor_rune": {
+      "actionKey": "e_vigor_rune",
+      "presetId": "published_e_vigor_rune",
+      "visualSlots": [
+        {
+          "id": "slot_mvoler23_5",
+          "candidateId": "r1_0677",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "flash": true,
+            "power": "LIGHT"
+          }
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "d324d02e"
     },
     "enemy_binding_shot": {
       "actionKey": "enemy_binding_shot",
@@ -613,6 +803,50 @@
           ],
           "casterMotionIds": [
             "motion_mvok764g_5"
+          ]
+        }
+      ]
+    },
+    "enemy_hex": {
+      "actionKey": "enemy_hex",
+      "presetId": "published_enemy_hex",
+      "visualSlots": [
+        {
+          "id": "slot_mvoler2p_e",
+          "candidateId": "r1_0625",
+          "sizeProfile": "MID",
+          "timingProfile": "NORMAL",
+          "placementProfile": "AUTO",
+          "impactFx": {
+            "flash": true,
+            "power": "LIGHT"
+          }
+        }
+      ],
+      "choreography": "TOGETHER",
+      "technicalPolish": "OFF",
+      "autoPlacement": "TARGET",
+      "tier": 2,
+      "fingerprint": "14a9de30",
+      "casterMotion": [
+        {
+          "id": "motion_mvoler2p_1",
+          "type": "HOLD",
+          "actor": "CASTER",
+          "pose": "cast",
+          "duration": 0.6
+        }
+      ],
+      "beats": [
+        {
+          "id": "beat_mvoler2p_1",
+          "startDelay": 0,
+          "composition": "TOGETHER",
+          "vfxSlotIds": [
+            "slot_mvoler2p_e"
+          ],
+          "casterMotionIds": [
+            "motion_mvoler2p_1"
           ]
         }
       ]

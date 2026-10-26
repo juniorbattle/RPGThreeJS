@@ -108,3 +108,9 @@ CURRENT FACT : 12 actions de démo sur 34 ont désormais un effet composé. Ce s
 CURRENT FACT : 20 actions de démo sur 34 ont un effet composé. Ce sont les 3 pilotes et 17 publications. Les 8 projectiles ajoutés : `basic_longbow_hit`, `basic_grimoire_hit`, `a_precise_shot`, `ar_calibrated_shot`, `n_dark_bolt`, `enemy_dark_bolt`, `enemy_binding_shot`, `boss_pin`.
 
 Chaque projectile se déplace du devant du lanceur à la cible et porte le retour d'impact, si bien que les dégâts tombent à son arrivée. Les tireurs tiennent la pose `attack`, les mages la pose `cast`. Acceptation artistique : opérateur, non inférée.
+
+## Addendum — lot 3, soins, bénédictions et altérations (run `claude-vfx-support-20261026T0140Z`)
+
+CURRENT FACT : 27 actions de démo sur 34 ont un effet composé. Ce sont les 3 pilotes et 24 publications. Les 7 actions ajoutées : `basic_crosier_hit`, `e_vigor_rune`, `boss_guard`, `boss_regen`, `boss_fortify`, `enemy_hex`, `boss_freeze`. `w_salvation` reste sur son preset pilote.
+
+Restent les déplacements (`w_charge` et `ni_shadow_step` déjà pilotes, `a_hawk_leap`) et les signatures de boss (`boss_slam`, `boss_quake`, `boss_flurry`, `boss_titan_slam`, `boss_inferno`, `boss_apocalypse`).
