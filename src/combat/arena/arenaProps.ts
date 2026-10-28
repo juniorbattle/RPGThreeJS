@@ -122,8 +122,8 @@ export function createFireMaterial(seed: number, pixels: [number, number] = [18,
       float f = n * 1.35 + core * 0.62 - uv.y * 1.25 - 0.18;
       f *= uPower; f += (bayer4(cell) - 0.5) * 0.08;
       if (f < 0.1) discard;
-      vec3 c = f > 0.66 ? vec3(1.0, 0.93, 0.66) : f > 0.44 ? vec3(1.0, 0.7, 0.24) : f > 0.25 ? vec3(0.96, 0.38, 0.1) : vec3(0.55, 0.12, 0.05);
-      gl_FragColor = vec4(c * 0.92, 1.0);
+      vec3 c = f > 0.72 ? vec3(1.0, 0.88, 0.55) : f > 0.46 ? vec3(1.0, 0.62, 0.2) : f > 0.26 ? vec3(0.9, 0.32, 0.08) : vec3(0.5, 0.1, 0.04);
+      gl_FragColor = vec4(c * 0.82, 1.0);
     }`,
     transparent: true,
     depthWrite: false,
@@ -158,7 +158,19 @@ export function createSmokeMaterial(seed: number, tint: string): THREE.ShaderMat
   });
 }
 
-function fireBillboard(ctx: PropContext, seed: number, w: number, h: number, light?: { color: string; intensity: number; distance: number }): THREE.Mesh {
+function fireBillboard(ctx: PropContext, seed: number, w: number, h: number, light?: { color: string; intensity: number; distance: number }): THREE.Object3D {
+  // Wide fires read as several tongues of flame rather than one fat blob.
+  if (w > 1.2) {
+    const group = new THREE.Group();
+    const tongues = Math.min(4, Math.round(w / 0.6));
+    for (let i = 0; i < tongues; i++) {
+      const k = tongues === 1 ? 0 : i / (tongues - 1) - 0.5;
+      const tongue = fireBillboard(ctx, seed * 7 + i, w * 0.48, h * (0.75 + Math.abs(Math.sin(seed + i * 2.3)) * 0.35), i === 0 ? light : undefined);
+      tongue.position.set(k * w * 0.62, 0, (i % 2) * 0.04);
+      group.add(tongue);
+    }
+    return group;
+  }
   // ~14 fire texels per metre: flames share the decor's pixel scale at any size.
   const material = createFireMaterial(seed, [Math.max(8, Math.round(w * 14)), Math.max(12, Math.round(h * 14))]);
   const geometry = new THREE.PlaneGeometry(w, h);
@@ -313,7 +325,7 @@ function statue(ctx: PropContext, seed: number): THREE.Group {
   const stone = stoneMaterial(ctx, seed, 0.2);
   g.add(at(mesh(boxGeometry(2.4, 1.0, 1.8, 1.6), stone, ctx), 0, 0.5, 0));
   g.add(at(mesh(boxGeometry(1.7, 1.6, 1.3, 1.6), stone, ctx), 0, 1.8, 0));
-  const gold = litMaterial(ctx, 'gold', null, { color: '#c39a3c', metalness: 0.65, roughness: 0.4, emissive: '#3a2606' });
+  const gold = litMaterial(ctx, 'gold-statue', null, { color: '#d9ad48', metalness: 0.35, roughness: 0.45, emissive: '#7a5312', emissiveIntensity: 1.1 });
   const disc = mesh(new THREE.CylinderGeometry(1.15, 1.15, 0.18, 24), gold, ctx);
   disc.rotation.x = Math.PI / 2;
   disc.position.set(0, 3.6, 0);

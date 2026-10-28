@@ -1,0 +1,37 @@
+{
+  "task": "COMBAT-HD2D-1",
+  "date": "2026-10-28",
+  "branch": "claude/combat-scenes-pixel-art-1v60j4",
+  "baseline": "00b96f1",
+  "typecheck": "pass",
+  "build": "pass",
+  "tests": {
+    "files": { "passed": 157, "failed": 6 },
+    "cases": { "passed": 2404, "failed": 18, "skipped": 23 },
+    "failingFilesIdenticalToBaseline": true,
+    "baselineFailingFiles": [
+      "src/combat/vfx/spritesheetPng.test.ts",
+      "tools/cinematics/cin4_media.test.mjs",
+      "tools/cinematics/cin6ea2_dynamic_gate.test.mjs",
+      "tools/cinematics/cin6ea3_pilot_e_regate.test.mjs",
+      "tools/cinematics/cin6ea_finalization.test.mjs",
+      "tools/cinematics/cin6ea_preproduction.test.mjs"
+    ],
+    "baselineFailureCause": "local-only assets absent from the clone (CartoonCoffee megapack runtime PNGs, cinematic evidence)"
+  },
+  "browser": {
+    "engine": "Chromium (SwiftShader WebGL), 1440x810",
+    "standaloneArenas": ["forest_route", "bois_clair_burning", "lion_sanctum"],
+    "campaignBoot": [
+      { "combatId": "lion_chief", "initialized": true, "pageErrors": 0 },
+      { "combatId": "village_defense", "initialized": true, "pageErrors": 0 },
+      { "combatId": "troll_crossing", "initialized": true, "pageErrors": 0 }
+    ],
+    "actionsPlayed": ["attack", "w_lion_surge", "n_dark_meteor", "w_miracle", "d_devouring_eclipse", "n_flame_wave"]
+  },
+  "limitations": [
+    "SwiftShader screenshots: no frame-rate measurement on real GPUs.",
+    "Audio verified by recipe/cue coverage tests only (headless, no listening pass).",
+    "Hero animations use pose keyframes until the local art mission generates full strips."
+  ]
+}

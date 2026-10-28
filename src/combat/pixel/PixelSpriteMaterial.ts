@@ -33,7 +33,9 @@ export function createPixelSpriteMaterial(texture: THREE.Texture, sheetSize: { w
   const material = new THREE.MeshBasicMaterial({
     map: texture,
     transparent: true,
-    alphaTest: 0.5,
+    // Cut-out happens on the texel alpha in the shader below: a material-level
+    // alphaTest would also cut sprites faded below 50% (focus dim, spotlight).
+    alphaTest: 0,
     depthWrite: false,
     side: THREE.DoubleSide,
     fog: false,
@@ -52,6 +54,8 @@ export function createPixelSpriteMaterial(texture: THREE.Texture, sheetSize: { w
   vec2 pixelStep = max(fwidth(pixelUv), vec2(1e-5));
   pixelUv = pixelSeam + clamp((pixelUv - pixelSeam) / pixelStep, -0.5, 0.5);
   vec4 sampledDiffuseColor = texture2D(map, pixelUv / uPixelTexSize);
+  if (sampledDiffuseColor.a < 0.5) discard;
+  sampledDiffuseColor.a = 1.0;
   diffuseColor *= sampledDiffuseColor;
   diffuseColor.rgb = diffuseColor.rgb * uPixelTint + uPixelRim * vMapUv.y * 0.35;
   diffuseColor.rgb = mix(diffuseColor.rgb, vec3(1.0, 0.98, 0.92), clamp(uPixelFlash, 0.0, 1.0));

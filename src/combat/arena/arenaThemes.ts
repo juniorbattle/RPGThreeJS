@@ -76,6 +76,8 @@ export interface ArenaTheme {
   props: readonly ArenaProp[];
   /** Seeded mid-ground band (forest wall, village rooftops) that frames the far plate. */
   band?: { kinds: readonly ArenaPropKind[]; count: number; z: [number, number]; halfWidth: number; gap: number; scale: [number, number] };
+  /** Seeded ground clutter between the platform and the band (never on the platform). */
+  clutter?: { kinds: readonly ArenaPropKind[]; count: number; z: [number, number]; halfWidth: number; scale: [number, number] };
   /** Ambient particles drifting through the arena. */
   motes: { color: string; count: number; rise: number; size: number; glow: boolean };
 }
@@ -221,7 +223,8 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
     spriteTint: '#f6f3ea',
     spriteRim: '#3a4a30',
     props: FOREST_PROPS,
-    band: { kinds: ['tree', 'pine', 'tree', 'bush'], count: 26, z: [-10, -21], halfWidth: 26, gap: 3.2, scale: [1.2, 1.9] },
+    band: { kinds: ['tree', 'pine', 'tree', 'bush'], count: 30, z: [-8.5, -20], halfWidth: 26, gap: 4.5, scale: [1.2, 1.9] },
+    clutter: { kinds: ['bush', 'fern', 'rock', 'grass', 'bush', 'fern'], count: 34, z: [-3.6, -11], halfWidth: 15, scale: [0.8, 1.4] },
     motes: { color: '#f3e3a0', count: 70, rise: 0.08, size: 0.07, glow: true },
   },
   bois_clair_burning: {
@@ -256,6 +259,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
     spriteRim: '#7a3014',
     props: VILLAGE_PROPS,
     band: { kinds: ['house', 'pine', 'dead_tree', 'house'], count: 12, z: [-15, -22], halfWidth: 26, gap: 4.5, scale: [1.0, 1.5] },
+    clutter: { kinds: ['barrel', 'crate', 'grass', 'rock', 'grass', 'fence'], count: 18, z: [-3.8, -12], halfWidth: 14, scale: [0.8, 1.2] },
     motes: { color: '#ffa54d', count: 140, rise: 0.42, size: 0.075, glow: true },
   },
   lion_sanctum: {
@@ -289,7 +293,8 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
     spriteTint: '#e9ecf7',
     spriteRim: '#30406c',
     props: SANCTUM_PROPS,
-    band: { kinds: ['pine', 'pine', 'column', 'tree'], count: 18, z: [-12, -21], halfWidth: 26, gap: 4, scale: [1.2, 1.8] },
+    band: { kinds: ['pine', 'pine', 'broken_column', 'tree'], count: 18, z: [-12, -21], halfWidth: 26, gap: 6, scale: [1.2, 1.8] },
+    clutter: { kinds: ['gravestone', 'rock', 'grass', 'fern', 'broken_column', 'bush'], count: 16, z: [-3.8, -11], halfWidth: 14, scale: [0.8, 1.2] },
     motes: { color: '#f1d68c', count: 90, rise: 0.06, size: 0.065, glow: true },
   },
 });
@@ -306,6 +311,22 @@ export function arenaBandProps(theme: ArenaTheme, rng: () => number): ArenaProp[
     const kind = band.kinds[Math.floor(rng() * band.kinds.length)] ?? 'tree';
     const s = band.scale[0] + (band.scale[1] - band.scale[0]) * rng();
     out.push({ kind, x, z, s, v: 20 + i, r: (rng() - 0.5) * 0.6, burning: theme.id === 'bois_clair_burning' && rng() < 0.4 });
+  }
+  return out;
+}
+
+/** Deterministic ground clutter; positions that would crowd the platform are dropped. */
+export function arenaClutterProps(theme: ArenaTheme, rng: () => number): ArenaProp[] {
+  const clutter = theme.clutter;
+  if (!clutter) return [];
+  const out: ArenaProp[] = [];
+  for (let i = 0; i < clutter.count; i++) {
+    const x = (rng() * 2 - 1) * clutter.halfWidth;
+    const z = clutter.z[0] + (clutter.z[1] - clutter.z[0]) * rng();
+    const kind = clutter.kinds[Math.floor(rng() * clutter.kinds.length)] ?? 'grass';
+    const s = clutter.scale[0] + (clutter.scale[1] - clutter.scale[0]) * rng();
+    const prop: ArenaProp = { kind, x, z, s, v: 40 + i, r: (rng() - 0.5) * 1.2 };
+    if (!propCrowdsPlatform(prop)) out.push(prop);
   }
   return out;
 }

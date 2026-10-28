@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { makeNoise, seeded } from './pixelArt';
-import { arenaBandProps, arenaThemeFor, type ArenaTheme } from './arenaThemes';
+import { arenaBandProps, arenaClutterProps, arenaThemeFor, type ArenaTheme } from './arenaThemes';
 import { groundTexture, tileSideTexture, tileTopTexture } from './arenaTextures';
 import { buildProp, type PropContext } from './arenaProps';
 import { drawFern, drawGrass, DECOR_TEXELS_PER_UNIT } from './arenaSprites';
@@ -80,7 +80,8 @@ export class CombatArena {
     const midPlate = GENERATED_PLATES[this.theme.id]?.mid;
     // A generated mid-ground frieze replaces the procedural band.
     const band = this.ctx.reduced || midPlate ? [] : arenaBandProps(this.theme, bandRng);
-    for (const prop of [...this.theme.props, ...band]) {
+    const clutter = this.ctx.reduced ? [] : arenaClutterProps(this.theme, seeded(6262 + this.theme.id.length * 7));
+    for (const prop of [...this.theme.props, ...band, ...clutter]) {
       if (this.ctx.reduced && (prop.kind === 'grass' || prop.kind === 'fern' || prop.kind === 'smoke')) continue;
       const object = buildProp(this.ctx, prop);
       if (object) this.root.add(object);

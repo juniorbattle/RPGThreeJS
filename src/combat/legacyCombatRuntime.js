@@ -1005,6 +1005,8 @@ function createUnit(def){
   const mat=pixel?pixel.handle.material:new THREE.MeshBasicMaterial({map:s.tex,transparent:true,alphaTest:0.05,depthWrite:false,side:THREE.DoubleSide,fog:false,toneMapped:false});
   const spr=new THREE.Mesh(pixel?pixel.createGeometry():new THREE.PlaneGeometry(s.w*visualPresenceScale,s.h*visualPresenceScale),mat);
   spr.position.y=pixel?pixel.layout.centerY:(s.baseY??s.h*0.5); spr.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SPRITE; grp.add(spr);
+  // HD-2D grounding: pixel sprites cast their silhouette on the arena (the frame's alpha drives the shadow).
+  if(pixel&&!REDUCED_GRAPHICS){ spr.castShadow=true; spr.customDepthMaterial=new THREE.MeshDepthMaterial({depthPacking:THREE.RGBADepthPacking,map:pixel.texture,alphaTest:0.5}); }
   const statusIndicatorGroup=new THREE.Group(); statusIndicatorGroup.name='status-indicators'; statusIndicatorGroup.renderOrder=STATUS_BADGE_RENDER_ORDER; grp.add(statusIndicatorGroup);
   scene.add(grp);
   const unitMaxAp=Number.isFinite(def.maxap)?def.maxap:Number.isFinite(def.maxAp)?def.maxAp:5;

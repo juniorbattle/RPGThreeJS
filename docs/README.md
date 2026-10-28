@@ -13,6 +13,7 @@ Current baseline: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0` (PROJECT-CON
 - [Current project status](project/CURRENT_STATUS.md), [demo roadmap](project/DEMO_ROADMAP.md), [post-demo roadmap](project/POST_DEMO_ROADMAP.md), and [engineering rules](project/ENGINEERING_RULES.md).
 - [Traversal authority](traversal/README.md), [T0 production contract](traversal/T0_PRODUCTION_CONTRACT.md), and [remaining legs](traversal/LEGS_ROADMAP.md).
 - [Content map](content/README.md) and [demo content map](content/DEMO_CONTENT_MAP.md).
+- [Combat HD-2D presentation contract](combat/COMBAT_HD2D.md) and its [local art mission](combat/LOCAL_ART_MISSION.md).
 - [Historical reports](reports/README.md) and [report index](reports/INDEX.md).
 - [Repository inventory and proposed cleanup](audits/project-continuity-audit-1.md). No deletion is authorized by the plan alone.
 - [First physical cleanup record](reports/project-continuity-cleanup-1.md). Retired task evidence remains recoverable from Git history; current QA reruns use ignored local output.
