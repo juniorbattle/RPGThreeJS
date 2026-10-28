@@ -128,7 +128,7 @@ export interface FxField {
 }
 
 /** One cell-level beat of a field finale: what erupts on that cell. */
-export type FieldBeat = 'flame' | 'pillar' | 'bolt' | 'shards' | 'orb' | 'burst' | 'slash';
+export type FieldBeat = 'flame' | 'pillar' | 'bolt' | 'shards' | 'orb' | 'burst' | 'slash' | 'arrows' | 'blast';
 
 /** The signature eruption of an element when an ultimate floods the field. */
 export function fieldBeatFor(element: FxElement): FieldBeat {

@@ -68,7 +68,7 @@ export class FxDirector {
     }
     let duration = recipe.duration + (recipe.projectile ? hitTime : 0);
     if (intensity.field && ctx.field) {
-      this.fieldFinale(recipe.element, impactTime, ctx, ctx.field);
+      this.fieldFinale(recipe.element, impactTime, ctx, ctx.field, recipe.fieldBeat);
       duration = Math.max(duration, impactTime + FIELD_WAVE_DELAY + 1.9);
     }
     return { impactTime, duration, cinematic: Boolean(recipe.cinematic), weight: intensity.weight, completion: engine.wait(duration) };
@@ -79,7 +79,7 @@ export class FxDirector {
    * shock rings rolling past its edges, field-wide motes, a flash and a wave
    * of element eruptions that rolls cell by cell away from the impact.
    */
-  private fieldFinale(element: FxElement, at: number, ctx: FxPlayContext, field: FxField): void {
+  private fieldFinale(element: FxElement, at: number, ctx: FxPlayContext, field: FxField, beatOverride?: FieldBeat): void {
     const engine = this.engine;
     const pal = engine.palette(element);
     const center = new THREE.Vector3(field.center.x, 0.02, field.center.z);
@@ -97,8 +97,10 @@ export class FxDirector {
       [0, 0.16, 0.34].forEach((delay, i) => engine.after(delay, () => engine.ring(origin, element, { radius: reach * (1.1 + i * 0.28), duration: 0.9 + i * 0.12, from: 0.05 })));
       engine.motes(center, element, { count: engine.reduced ? 40 : 120, radius: field.halfWidth, rise: 2.8, life: 1.9, size: 0.1, sink });
     });
-    const beat = fieldBeatFor(element);
-    for (const { cell, delay } of fieldWaveCells(field.cells, origin, engine.reduced ? 6 : 16)) {
+    const beat = beatOverride ?? fieldBeatFor(element);
+    // light columns are additive and tall: fewer of them keep the field readable
+    const max = engine.reduced ? 6 : beat === 'pillar' ? 10 : 16;
+    for (const { cell, delay } of fieldWaveCells(field.cells, origin, max)) {
       engine.after(wave + delay, () => this.fieldBeat(beat, element, new THREE.Vector3(cell.x, 0.02, cell.z)));
     }
   }
@@ -113,8 +115,24 @@ export class FxDirector {
         engine.decal(at, element, { radius: 0.6 });
         break;
       case 'pillar':
-        engine.pillar(at, element, { radius: 0.36, height: 10, duration: 1.0 });
+        engine.pillar(at, element, { radius: 0.28, height: 9, duration: 0.95 });
         engine.motes(at, element, { count: 8, radius: 0.4, rise: 2.6 });
+        engine.ring(at, element, { radius: 0.9, duration: 0.5 });
+        break;
+      case 'arrows':
+        for (let i = 0; i < 3; i++) {
+          const hit = at.clone().add(new THREE.Vector3((i - 1) * 0.3, 0, ((i * 7) % 3 - 1) * 0.2));
+          engine.after(i * 0.05, () => {
+            engine.streak(hit.clone().add(new THREE.Vector3(-1.2, 7, -1.6)), hit.clone().setY(0.1), element, { width: 0.1, duration: 0.2 });
+            engine.after(0.08, () => engine.impactStar(hit.clone().setY(0.3), element, 0.7, 0.22));
+          });
+        }
+        break;
+      case 'blast':
+        engine.orb(chest, element, { radius: 0.9, duration: 0.42 });
+        engine.burst(chest, element, { count: 14, speed: 3.4, up: 2, size: 0.11 });
+        engine.smoke(at.clone().setY(0.5), { count: 6, spread: 0.4 });
+        engine.decal(at, element, { radius: 0.7 });
         break;
       case 'bolt':
         engine.bolt(at.clone().setY(0.3), element, { duration: 0.32, width: 0.06 });

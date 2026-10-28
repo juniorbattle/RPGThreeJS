@@ -1,4 +1,5 @@
 import { elementForTags, type FxElement } from './fxPalettes';
+import type { FieldBeat } from './fxIntensity';
 
 /**
  * Declarative combat FX recipes. A recipe is a timeline of primitive steps
@@ -57,6 +58,8 @@ export interface FxRecipe {
   projectile?: FxProjectile;
   /** Ultimate / boss signature: spotlight-grade punctuation. */
   cinematic?: boolean;
+  /** Eruption of the field-wide finale when the element's default does not fit (see fieldBeatFor). */
+  fieldBeat?: FieldBeat;
 }
 
 type Steps = FxStep[];
@@ -475,7 +478,7 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
     ],
   }),
   ultimate_perfect_duality: () => ({
-    id: 'ultimate_perfect_duality', element: 'arcane', impactAt: 0.95, duration: 2.0, cinematic: true,
+    id: 'ultimate_perfect_duality', element: 'arcane', impactAt: 0.95, duration: 2.0, cinematic: true, fieldBeat: 'slash',
     steps: [
       ...charge('arcane', 0.6),
       s(0.75, 'slash', 'targetChest', { size: 3.6, angle: -0.7, duration: 0.32 }, { element: 'holy' }),
@@ -501,7 +504,7 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
     ],
   }),
   ultimate_zenith_arrow: () => ({
-    id: 'ultimate_zenith_arrow', element: 'gold', impactAt: 1.05, duration: 2.0, cinematic: true,
+    id: 'ultimate_zenith_arrow', element: 'gold', impactAt: 1.05, duration: 2.0, cinematic: true, fieldBeat: 'arrows',
     steps: [
       ...charge('gold', 0.55),
       s(0.6, 'streak', 'sourceChest', { width: 0.3, duration: 0.3 }, { to: 'sky', element: 'gold' }),
@@ -522,7 +525,7 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
     steps.push(s(1.05, 'sfx', undefined, { id: 'ultimate_hit' }));
     steps.push(...cinematicHit(1.05, 'blood', 1.3), ...hitFeedback(1.05, 'blood', 2));
     steps.push(s(1.08, 'burst', 'targetChest', { count: 30, speed: 2, soft: true }, { element: 'poison' }));
-    return { id: 'ultimate_silent_assassin', element: 'shadow', impactAt: 1.05, duration: 1.9, cinematic: true, steps };
+    return { id: 'ultimate_silent_assassin', element: 'shadow', impactAt: 1.05, duration: 1.9, cinematic: true, fieldBeat: 'slash', steps };
   },
   ultimate_fault_breaker: () => ({
     id: 'ultimate_fault_breaker', element: 'earth', impactAt: 0.95, duration: 2.0, cinematic: true,
@@ -545,7 +548,7 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
       steps.push(...explosion(0.7 + i * 0.16, 'fire', 0.9, 'targetChest', { each: true }).map((step) => ({ ...step, p: { ...step.p, jitter: 0.6 } })));
     }
     steps.push(...cinematicHit(1.0, 'fire', 1.3));
-    return { id: 'ultimate_artillery_barrage', element: 'fire', impactAt: 1.0, duration: 2.2, cinematic: true, steps };
+    return { id: 'ultimate_artillery_barrage', element: 'fire', impactAt: 1.0, duration: 2.2, cinematic: true, fieldBeat: 'blast', steps };
   },
   boss_apocalypse_v2: () => ({ ...areaFireFamily('boss_apocalypse_v2', 1.5, true), steps: [...charge('fire', 0.5), ...areaFireFamily('x', 1.5).steps.map((step) => ({ ...step, at: step.at + 0.5 })), ...cinematicHit(0.92, 'fire')], impactAt: 0.92, duration: 2.1 }),
   boss_execution: () => ({ ...slashFamily('boss_execution', 'blood', 2.4, 'heavy_slash', 2), cinematic: true, steps: [...charge('blood', 0.5), ...slashFamily('x', 'blood', 2.4, 'heavy_slash', 2).steps.map((step) => ({ ...step, at: step.at + 0.55 })), ...cinematicHit(0.73, 'blood')], impactAt: 0.73, duration: 1.6 }),
