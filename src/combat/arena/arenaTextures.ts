@@ -5,12 +5,14 @@ import type { ArenaPalette, GroundStyle, TileStyle } from './arenaThemes';
 export const TILE_TEXELS = 48;
 
 function shadeTone(tones: readonly string[], level: number, x: number, y: number): Rgb {
-  // Dithered pick between two neighbouring tones of a ramp.
+  // Flat tone clusters; an ordered dither only in a narrow band at each tone
+  // boundary (dithering every texel reads as a checkerboard, not as paint).
   const max = tones.length - 1;
   const v = Math.max(0, Math.min(max, level * max));
   const lo = Math.floor(v);
   const frac = v - lo;
-  return rgb(tones[frac > bayer(x, y) ? Math.min(max, lo + 1) : lo]);
+  const step = frac > 0.68 || (frac > 0.32 && bayer(x, y) < (frac - 0.32) / 0.36) ? 1 : 0;
+  return rgb(tones[Math.min(max, lo + step)]);
 }
 
 interface Rect { x: number; y: number; w: number; h: number }

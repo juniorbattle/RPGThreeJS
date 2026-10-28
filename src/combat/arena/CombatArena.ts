@@ -35,11 +35,9 @@ const ATMOS_VERTEX = `varying vec2 vUv; void main(){ vUv = uv; gl_Position = pro
 const ATMOS_NOISE = `
 float h21(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float vnoise(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
-  return mix(mix(h21(i), h21(i + vec2(1.0, 0.0)), f.x), mix(h21(i + vec2(0.0, 1.0)), h21(i + vec2(1.0, 1.0)), f.x), f.y); }
-float bayer4(vec2 p){ vec2 q = mod(floor(p), 4.0); int i = int(q.x + q.y * 4.0);
-  float m[16] = float[16](0.,8.,2.,10.,12.,4.,14.,6.,3.,11.,1.,9.,15.,7.,13.,5.); return (m[i] + 0.5) / 16.0; }`;
+  return mix(mix(h21(i), h21(i + vec2(1.0, 0.0)), f.x), mix(h21(i + vec2(0.0, 1.0)), h21(i + vec2(1.0, 1.0)), f.x), f.y); }`;
 
-/** Pixel light shaft: soft-edged additive band, dust streaks, a slow breath, banded with a Bayer dither. */
+/** Light shaft: soft-edged additive band in pixel cells, dust streaks and a slow breath. */
 function createShaftMaterial(color: string, opacity: number, seed: number, pixels: THREE.Vector2): THREE.ShaderMaterial {
   return new THREE.ShaderMaterial({
     uniforms: { uTime: { value: 0 }, uSeed: { value: seed }, uOpacity: { value: opacity }, uColor: { value: new THREE.Color(color) }, uPixels: { value: pixels } },
@@ -53,10 +51,8 @@ function createShaftMaterial(color: string, opacity: number, seed: number, pixel
       float dust = 0.72 + 0.28 * vnoise(vec2(uv.x * 9.0 + uSeed, uv.y * 3.0 - uTime * 0.12));
       float breath = 0.82 + 0.18 * sin(uTime * 0.37 + uSeed * 2.1);
       float a = body * ends * dust * breath * uOpacity;
-      // small steps: a flat core of light with dithered transitions only
-      float q = floor(a / 0.05 + bayer4(cell)) * 0.05;
-      if (q <= 0.0) discard;
-      gl_FragColor = vec4(uColor * q, 1.0);
+      if (a < 0.004) discard;
+      gl_FragColor = vec4(uColor * a, 1.0);
     }`,
     transparent: true,
     depthWrite: false,
@@ -66,7 +62,7 @@ function createShaftMaterial(color: string, opacity: number, seed: number, pixel
   });
 }
 
-/** Low mist: scrolling value noise, densest at the ground, two flat tones cut by a Bayer dither. */
+/** Low mist in pixel cells: scrolling value noise, densest at the ground, with a rolling top edge. */
 function createMistMaterial(color: string, opacity: number, seed: number, pixels: THREE.Vector2): THREE.ShaderMaterial {
   return new THREE.ShaderMaterial({
     uniforms: { uTime: { value: 0 }, uSeed: { value: seed }, uOpacity: { value: opacity }, uColor: { value: new THREE.Color(color) }, uPixels: { value: pixels } },
@@ -75,13 +71,14 @@ function createMistMaterial(color: string, opacity: number, seed: number, pixels
     void main(){
       vec2 cell = floor(vUv * uPixels); vec2 uv = (cell + 0.5) / uPixels;
       float t = uTime * 0.035;
-      float n = vnoise(vec2(uv.x * 7.0 + t + uSeed, uv.y * 2.2)) * 0.62 + vnoise(vec2(uv.x * 17.0 - t * 1.7, uv.y * 4.0 + uSeed)) * 0.38;
-      float rise = pow(1.0 - uv.y, 1.6) * smoothstep(0.0, 0.08, uv.y);
+      float n = vnoise(vec2(uv.x * 7.0 + t + uSeed, uv.y * 3.4)) * 0.62 + vnoise(vec2(uv.x * 17.0 - t * 1.7, uv.y * 6.0 + uSeed)) * 0.38;
+      // a rolling top edge: banks of mist, never a ruled line
+      float top = 0.45 + 0.55 * vnoise(vec2(uv.x * 5.0 + uSeed - t * 0.6, 0.5));
+      float rise = smoothstep(top, 0.0, uv.y) * smoothstep(0.0, 0.06, uv.y);
       float sides = smoothstep(0.0, 0.12, uv.x) * smoothstep(1.0, 0.88, uv.x);
-      float a = (n * 1.25 - 0.22) * rise * sides * uOpacity;
-      float q = floor(a / 0.09 + bayer4(cell)) * 0.09;
-      if (q <= 0.0) discard;
-      gl_FragColor = vec4(uColor * (0.92 + n * 0.16), min(0.7, q * 1.6));
+      float a = clamp((n * 1.3 - 0.2) * rise * sides * uOpacity, 0.0, 0.62);
+      if (a < 0.01) discard;
+      gl_FragColor = vec4(uColor * (0.92 + n * 0.16), a);
     }`,
     transparent: true,
     depthWrite: false,
