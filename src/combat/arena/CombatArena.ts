@@ -42,6 +42,9 @@ export class CombatArena {
   private readonly lights: Array<{ light: THREE.PointLight; base: number; flicker: number; phase: number }> = [];
   private readonly geometries: THREE.BufferGeometry[] = [];
   private farPlate: THREE.Mesh | null = null;
+  private lightTargets: ArenaLightTargets | null = null;
+  private baseIntensity = { hemi: 1, sun: 1, fill: 1 };
+  private dim = { value: 1, from: 1, to: 1, t: 0, duration: 0 };
 
   constructor(private readonly options: CombatArenaOptions) {
     this.theme = arenaThemeFor(options.sceneId);
@@ -245,6 +248,8 @@ export class CombatArena {
 
   applyLighting(targets: ArenaLightTargets): void {
     const l = this.theme.light;
+    this.lightTargets = targets;
+    this.baseIntensity = { hemi: l.hemiIntensity, sun: l.sunIntensity, fill: l.fillIntensity };
     targets.hemi.color.set(l.hemiSky);
     targets.hemi.groundColor.set(l.hemiGround);
     targets.hemi.intensity = l.hemiIntensity;
@@ -303,6 +308,29 @@ export class CombatArena {
     this.farPlate = mesh;
   }
 
+  /**
+   * Spotlight mood: tweens the ambient/sun/fill rig toward `amount` of its
+   * authored intensity (fires, candles and lanterns keep burning).
+   */
+  setDim(amount: number, seconds = 0.4): void {
+    this.dim = { value: this.dim.value, from: this.dim.value, to: Math.max(0, amount), t: 0, duration: Math.max(0, seconds) };
+    if (this.dim.duration === 0) this.applyDim(this.dim.to);
+  }
+
+  get dimLevel(): number {
+    return this.dim.value;
+  }
+
+  private applyDim(value: number): void {
+    this.dim.value = value;
+    const targets = this.lightTargets;
+    if (!targets) return;
+    targets.hemi.intensity = this.baseIntensity.hemi * value;
+    targets.sun.intensity = this.baseIntensity.sun * (0.25 + value * 0.75) * value;
+    targets.fill.intensity = this.baseIntensity.fill * value;
+    if (this.farPlate) (this.farPlate.material as THREE.MeshBasicMaterial).color.set(this.theme.farPlate.tint).multiplyScalar(0.35 + value * 0.65);
+  }
+
   // ------------------------------------------------------------ frame
 
   update(t: number, dt: number, camera: THREE.Camera): void {
@@ -323,6 +351,12 @@ export class CombatArena {
       entry.light.intensity = entry.base * (1 + n * entry.flicker);
     }
     if (this.farPlate) this.farPlate.position.x = _camWorld.x * 0.12;
+    if (this.dim.value !== this.dim.to) {
+      this.dim.t += dt;
+      const k = this.dim.duration > 0 ? Math.min(1, this.dim.t / this.dim.duration) : 1;
+      this.applyDim(this.dim.from + (this.dim.to - this.dim.from) * (k * k * (3 - 2 * k)));
+      if (k >= 1) this.applyDim(this.dim.to);
+    }
   }
 
   /** Small read-only census for QA tooling. */

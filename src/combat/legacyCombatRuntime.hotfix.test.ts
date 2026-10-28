@@ -113,24 +113,21 @@ describe('V10F final hotfix runtime contracts', () => {
 
   it('guarantees action and page teardown', () => {
     expect(runtimeSource).toContain('try { await executeActionCore');
-    expect(runtimeSource).toContain('if(G.stage)await combatStageExit()');
+    expect(runtimeSource).toContain('if(G.spotlight)await presentActionExit()');
     expect(runtimeSource).toContain("window.addEventListener('pagehide',disposeCombatRuntime");
     expect(runtimeSource).toContain('combatVfxSystem.dispose()');
   });
 
-  it('keeps the painted combat camera static across turns, actions, stages, and deployment', () => {
-    expect(runtimeSource).toContain('const cam=Object.freeze({');
-    expect(runtimeSource).toContain('function focusCam(){ }');
-    expect(runtimeSource).toContain('function actionCam(){ }');
-    expect(runtimeSource).toContain('function stageFrame(){ }');
-    expect(runtimeSource).toContain('function overviewCam(){ }');
+  it('drives the combat camera through one director (tactical, action push-in, spotlight)', () => {
+    expect(runtimeSource).toContain("import { CombatCameraDirector } from './camera/CombatCameraDirector'");
+    expect(runtimeSource).toContain('const cameraDirector=new CombatCameraDirector({');
+    expect(runtimeSource).toContain('function restoreCam(){ return cameraDirector.restore(0.5); }');
+    expect(runtimeSource).toContain("cameraDirector.frame('spotlight',");
+    expect(runtimeSource).toContain('await cameraDirector.restore(');
+    // the player never orbits the camera; Q/E stay unbound
     expect(runtimeSource).toContain('function rotateCam(){ }');
-    expect(runtimeSource).toContain('function restoreCam(){ return Promise.resolve(); }');
     expect(runtimeSource).not.toContain('tween(cam');
     expect(runtimeSource).not.toContain('tweenP(cam');
-    expect(runtimeSource).not.toContain('_actionCameraBaseline');
-    expect(runtimeSource).not.toContain('_stageCameraBaseline');
-    expect(runtimeSource).not.toContain('camera.fov=cl(');
   });
 
   it('V2.6.1: screen-space shake replaces world-camera shake', () => {
@@ -141,9 +138,9 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).toContain('shakeSampleToUvOffset');
     expect(runtimeSource).toContain('ImpactShake');
     expect(runtimeSource).toContain('impactShakePass');
-    // Camera position is set directly from cam baseline, without applyAdditiveCameraShake
-    expect(runtimeSource).toContain('camera.position.set(cam.tx+x,cam.ty+cam.height,cam.tz+z)');
-    expect(runtimeSource).toContain('camera.lookAt(cam.tx,cam.ty,cam.tz)');
+    // Camera position comes from the director shot, without applyAdditiveCameraShake
+    expect(runtimeSource).toContain('camera.position.set(shot.tx+Math.sin(shot.yaw)*shot.dist,shot.ty+shot.height,shot.tz+Math.cos(shot.yaw)*shot.dist)');
+    expect(runtimeSource).toContain('camera.lookAt(shot.tx,shot.ty,shot.tz)');
     // The old world-camera shake path is removed from applyCam
     expect(runtimeSource).not.toContain('applyAdditiveCameraShake({x:cam.tx+x');
     expect(runtimeSource).not.toContain("if(k==='q')rotateCam");
@@ -152,29 +149,9 @@ describe('V10F final hotfix runtime contracts', () => {
 });
 
 describe('R0A-QA1.1 impact ordering and phase timing', () => {
-  it('notifyImpact occurs before resolveImpact with no presentation wait between them', () => {
-    const impactBlock = runtimeSource.match(/combatStage\.notifyImpact\(\);[\s\S]*?await resolveImpact\(\);/);
-    expect(impactBlock).not.toBeNull();
-    const block = impactBlock![0];
-    expect(block).toContain('combatStage.notifyImpact()');
-    expect(block).toContain('await resolveImpact()');
-    const notifyIdx = block.indexOf('combatStage.notifyImpact()');
-    const resolveIdx = block.indexOf('await resolveImpact()');
-    expect(notifyIdx).toBeLessThan(resolveIdx);
-    const between = block.slice(notifyIdx + 'combatStage.notifyImpact()'.length, resolveIdx);
-    expect(between).not.toContain('wait');
-    expect(between).not.toContain('impactToReactionMs');
-  });
-
-  it('impactToReactionMs wait occurs AFTER resolveImpact, not before', () => {
-    const impactBlock = runtimeSource.match(/combatStage\.notifyImpact\(\);[\s\S]*?impactHold/);
-    expect(impactBlock).not.toBeNull();
-    const block = impactBlock![0];
-    const resolveIdx = block.indexOf('await resolveImpact()');
-    const reactionIdx = block.indexOf('impactToReactionMs');
-    expect(resolveIdx).toBeGreaterThan(-1);
-    expect(reactionIdx).toBeGreaterThan(-1);
-    expect(reactionIdx).toBeGreaterThan(resolveIdx);
+  it('resolves gameplay before the presentation impact hold', () => {
+    const block = runtimeSource.match(/await resolveImpact\(\);\n\s*const impactHold=/);
+    expect(block).not.toBeNull();
   });
 
   it('resolveImpact is wrapped in onceAsync for exactly-once resolution', () => {
@@ -182,14 +159,9 @@ describe('R0A-QA1.1 impact ordering and phase timing', () => {
     expect(runtimeSource).toContain("if(typeof actionContext.onResolveImpact==='function')await actionContext.onResolveImpact()");
   });
 
-  it('settleMs is consumed after combatStageEnter and before attackAnim', () => {
-    const settleBlock = runtimeSource.match(/await combatStageEnter[\s\S]*?settleMs[\s\S]*?attackAnim/);
-    expect(settleBlock).not.toBeNull();
-  });
-
-  it('recoveryMs is consumed before combatStageExit', () => {
-    const recoveryBlock = runtimeSource.match(/recoveryMs[\s\S]*?combatStageExit/);
-    expect(recoveryBlock).not.toBeNull();
+  it('opens the action presentation before the attack animation', () => {
+    const block = runtimeSource.match(/await presentActionEnter\(u,targets,spec\);[\s\S]*?attackAnim\(/);
+    expect(block).not.toBeNull();
   });
 
   it('releaseToImpactMs is not consumed as a separate wait in the runtime', () => {
@@ -208,100 +180,20 @@ describe('R0A-QA1.1 impact ordering and phase timing', () => {
   });
 });
 
-describe('R0B universal Stage routing in runtime', () => {
-  it('imports resolveCombatStageProfileUniversal and getStageProfileInfo', () => {
-    expect(runtimeSource).toContain('resolveCombatStageProfileUniversal');
-    expect(runtimeSource).toContain('getStageProfileInfo');
+describe('In-arena action presentation (Combat Stage retired)', () => {
+  it('no longer imports or instantiates the Combat Stage scene', () => {
+    expect(runtimeSource).not.toContain("from './stage/CombatStage'");
+    expect(runtimeSource).not.toContain('new CombatStage(');
+    expect(runtimeSource).not.toContain('combatStage.');
   });
 
-  it('combatStageEnter resolves profile universally and passes it to combatStage.enter', () => {
-    expect(runtimeSource).toContain('resolveCombatStageProfileUniversal(spec,presentation)');
-    expect(runtimeSource).toContain('profile:stageProfile');
+  it('routes ultimates and boss signatures to the spotlight, AoE to a wider shot', () => {
+    expect(runtimeSource).toContain("if(presentation?.ultimate||tuning.tier===6)return 'spotlight';");
+    expect(runtimeSource).toContain("if((spec.radius||0)>=1&&targets.length>1)return 'aoe';");
   });
 
-  it('combatStageEnter passes sourceTeam from attacker team', () => {
-    expect(runtimeSource).toContain('sourceTeam:att.team');
-  });
-
-  it('combatStageEnter passes stationaryAttacker for boss/elite', () => {
-    expect(runtimeSource).toContain('stationaryAttacker');
-    expect(runtimeSource).toContain('att.boss||att.elite');
-  });
-
-  it('logs Stage QA info when STAGE_QA_ENABLED', () => {
-    expect(runtimeSource).toContain('getStageProfileInfo(spec,presentation)');
-    expect(runtimeSource).toContain('[Stage QA]');
-  });
-
-  it('QA logging includes faction direction and source team', () => {
-    expect(runtimeSource).toContain('att.team');
-    expect(runtimeSource).toContain('dir=');
-  });
-
-  it('uses getSkillPresentation for presentation metadata in combatStageEnter', () => {
-    expect(runtimeSource).toContain('const presentation=getSkillPresentation(spec)');
-  });
-
-  it('preserves resolveImpact exactly-once with universal routing', () => {
-    expect(runtimeSource).toContain('const resolveImpact=onceAsync(async()=>{');
-    expect(runtimeSource).toContain('combatStage.notifyImpact()');
-    expect(runtimeSource).toContain('await resolveImpact()');
-    const impactBlock = runtimeSource.match(/combatStage\.notifyImpact\(\);[\s\S]*?await resolveImpact\(\);/);
-    expect(impactBlock).not.toBeNull();
-    const block = impactBlock![0];
-    const notifyIdx = block.indexOf('combatStage.notifyImpact()');
-    const resolveIdx = block.indexOf('await resolveImpact()');
-    expect(notifyIdx).toBeLessThan(resolveIdx);
-    const between = block.slice(notifyIdx + 'combatStage.notifyImpact()'.length, resolveIdx);
-    expect(between).not.toContain('wait');
-  });
-
-  it('impactToReactionMs remains after resolveImpact', () => {
-    const impactBlock = runtimeSource.match(/combatStage\.notifyImpact\(\);[\s\S]*?impactHold/);
-    expect(impactBlock).not.toBeNull();
-    const block = impactBlock![0];
-    const resolveIdx = block.indexOf('await resolveImpact()');
-    const reactionIdx = block.indexOf('impactToReactionMs');
-    expect(reactionIdx).toBeGreaterThan(resolveIdx);
-  });
-
-  it('settleMs gap remains after combatStageEnter', () => {
-    const settleBlock = runtimeSource.match(/await combatStageEnter[\s\S]*?settleMs[\s\S]*?attackAnim/);
-    expect(settleBlock).not.toBeNull();
-  });
-
-  it('recoveryMs gap remains before combatStageExit', () => {
-    const recoveryBlock = runtimeSource.match(/recoveryMs[\s\S]*?combatStageExit/);
-    expect(recoveryBlock).not.toBeNull();
-  });
-
-  it('captures pre-resolution unit state for aftermath snapshot', () => {
-    expect(runtimeSource).toContain('_preState');
-    expect(runtimeSource).toContain('alive:u.alive,hp:u.hp,statuses');
-  });
-
-  it('calls presentResolvedAftermath with aftermath snapshot and floatText', () => {
-    expect(runtimeSource).toContain('combatStage.presentResolvedAftermath(_aftermath,floatText)');
-  });
-
-  it('builds aftermath snapshot with KO, statusesApplied, healed from pre/post state', () => {
-    expect(runtimeSource).toContain('_buildAE');
-    expect(runtimeSource).toContain('ko:_pre.alive&&!_un.alive');
-    expect(runtimeSource).toContain('statusesApplied');
-    expect(runtimeSource).toContain('healed:_un.alive&&_un.hp>_pre.hp');
-  });
-
-  it('aftermath hold is driven by presentResolvedAftermath, not reactionToFeedbackMs wait', () => {
-    expect(runtimeSource).not.toContain('reactionToFeedbackMs');
-    expect(runtimeSource).toContain('presentResolvedAftermath');
-  });
-
-  it('aftermath occurs after animation and before recovery/exit', () => {
-    const block = runtimeSource.match(/await animation;[\s\S]*?presentResolvedAftermath[\s\S]*?recoveryMs[\s\S]*?combatStageExit/);
+  it('closes the presentation after gameplay resolution', () => {
+    const block = runtimeSource.match(/await animation;[\s\S]*?await presentActionExit\(\); G\.busy=false; checkEnd\(\);/);
     expect(block).not.toBeNull();
-  });
-
-  it('aftermath filters attacker from targets list', () => {
-    expect(runtimeSource).toContain('targets.filter(t=>t!==u)');
   });
 });

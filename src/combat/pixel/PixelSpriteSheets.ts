@@ -32,6 +32,10 @@ export interface PixelSheetEntry {
   anims: Readonly<Record<string, PixelAnim>>;
   figureHeightPx: number;
   idleBoundsPx: PixelBoundsPx;
+  /** Extra identities (portrait paths) for master-only roster units. */
+  aliases?: readonly string[];
+  /** Built from a single master: idle + breath only, motion from code. */
+  masterOnly?: boolean;
 }
 
 /** World-space size of one cell plane and where its feet anchor sits. */
@@ -64,9 +68,12 @@ const entries = new Map<string, PixelSheetEntry>(
   Object.entries(raw.units).map(([unitId, entry]) => [unitId, Object.freeze({ ...entry, unitId })]),
 );
 
+const aliases = new Map<string, PixelSheetEntry>();
+for (const entry of entries.values()) for (const alias of entry.aliases ?? []) aliases.set(alias, entry);
+
 export function resolvePixelSheet(identity: string | null | undefined): PixelSheetEntry | undefined {
   if (!identity) return undefined;
-  const direct = entries.get(identity);
+  const direct = entries.get(identity) ?? aliases.get(identity);
   if (direct) return direct;
   const canonical = resolveCharacterUnitId(identity);
   return canonical ? entries.get(canonical) : undefined;

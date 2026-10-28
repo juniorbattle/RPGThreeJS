@@ -55,6 +55,12 @@
   #stagevig{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:0;transition:opacity .42s;
     background:radial-gradient(ellipse 78% 68% at 50% 50%,rgba(0,0,0,0) 55%,rgba(0,0,0,.18) 100%)}
   #stagevig.on{opacity:1}
+  /* Spotlight letterbox: two ink bars slide in for ultimates and boss signatures. */
+  #stagevig::before,#stagevig::after{content:"";position:absolute;left:0;right:0;height:9vh;background:#05060a;transition:transform .45s cubic-bezier(.19,1,.22,1)}
+  #stagevig::before{top:0;transform:translateY(-100%)}
+  #stagevig::after{bottom:0;transform:translateY(100%)}
+  #stagevig.on::before,#stagevig.on::after{transform:translateY(0)}
+  #ui.staging #menu,#ui.staging #skillmenu,#ui.staging #hud-right-stack,#ui.staging #settings-btn,#ui.staging #help{opacity:0;transition:opacity .3s}
   body:has(#stagevig.on)::before{opacity:.3}
   #stagetitle{position:fixed;top:30px;left:50%;z-index:20;pointer-events:none;
     transform:translate(-50%,-18px) scale(.92);opacity:0;

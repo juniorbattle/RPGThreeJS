@@ -50,6 +50,20 @@ SMALL_CREATURE_MIN_HEIGHT = 1.15
 BOSS_UNITS = {'lion_champion', 'serpent_general_boss'}
 POSES = ('prepare', 'dash', 'attack', 'cast')
 
+# Roster units that only own a master portrait (archived, outside the demo
+# cast). They get idle + breathing frames; motion comes from code.
+# id: (portrait under /assets/characters/pixel/, visible world height in m)
+MASTER_ONLY = {
+    'morvan': ('archive/non-demo/morvan.png', 2.12),
+    'aldric': ('archive/non-demo/aldric.png', 2.08),
+    'lyra': ('archive/non-demo/lyra.png', 2.02),
+    'eldwin': ('archive/non-demo/eldwin.png', 2.04),
+    'talon': ('archive/non-demo/talon.png', 2.05),
+    'gunnar': ('archive/non-demo/gunnar.png', 2.06),
+    'troll': ('archive/non-demo/troll.png', 4.2),
+    'undead_champion': ('archive/non-demo/undead_champion.png', 4.3),
+}
+
 
 def load_rgba(src: str) -> np.ndarray:
     path = ROOT / 'public' / src.lstrip('/')
@@ -243,6 +257,47 @@ def default_anims(unit: dict) -> dict:
     }
 
 
+def build_master_only(unit_id: str, rel: str, world_height: float) -> tuple[np.ndarray, dict]:
+    src = f'/assets/characters/pixel/{rel}'
+    rgba = load_rgba(src)
+    ys, xs = np.nonzero(rgba[..., 3] > 0.5)
+    factor = world_height * PX_PER_UNIT / max(1, ys.max() + 1 - ys.min())
+    small = clean_specks(binarize(downscale(rgba, factor)))
+    pal = shared_palette([small], PALETTE_SIZE)
+    small = add_outline(apply_palette(small, pal))
+    ys, xs = np.nonzero(small[..., 3] > 0.5)
+    pad = 2
+    crop = small[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+    ch, cw = crop.shape[0] + pad * 2, crop.shape[1] + pad * 2
+    cell = np.zeros((ch, cw, 4), dtype=np.float32)
+    cell[pad:pad + crop.shape[0], pad:pad + crop.shape[1]] = crop
+    cax, cay = cw // 2, ch - pad - 1
+    idle_b = breathe(cell, cay, pad)
+    sheet = np.concatenate([cell, idle_b], axis=1)
+    hold = {'frames': ['idle'], 'ms': [200], 'loop': False}
+    entry = {
+        'file': f'{PUBLIC_PREFIX}/{unit_id}.png',
+        'cell': [cw, ch],
+        'anchor': [cax, cay],
+        'presenceScale': 1.0,
+        'cells': ['idle', 'idle_b'],
+        'anims': {
+            'idle': {'frames': ['idle', 'idle_b'], 'ms': [680, 680], 'loop': True},
+            'move': {'frames': ['idle_b'], 'ms': [120], 'loop': True},
+            'windup': {'frames': ['idle_b'], 'ms': [120], 'loop': False},
+            'attack': hold, 'cast': hold, 'hurt': {'frames': ['idle_b'], 'ms': [220], 'loop': False},
+            'ko': {'frames': ['idle_b'], 'ms': [400], 'loop': False},
+        },
+        'aliases': [src],
+        'masterOnly': True,
+        'source': {'master': hashlib.sha256((ROOT / 'public' / src.lstrip('/')).read_bytes()).hexdigest()},
+        'figureHeightPx': int(cay - pad),
+        'idleBoundsPx': idle_bounds(cell),
+        'colors': int(len(np.unique((sheet[sheet[..., 3] > 0.5][:, :3] * 255).astype(np.uint8), axis=0))),
+    }
+    return sheet, entry
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument('--only', default='')
@@ -268,6 +323,17 @@ def main() -> int:
         result['units'][unit['unitId']] = entry
         previews.append(png)
         print(f"{unit['unitId']:26s} cell {entry['cell']} figure {entry['figureHeightPx']}px colors {entry['colors']} presence {entry['presenceScale']}")
+    for unit_id, (rel, height) in MASTER_ONLY.items():
+        if only and unit_id not in only:
+            continue
+        sheet, entry = build_master_only(unit_id, rel, height)
+        png = Image.fromarray((sheet * 255).round().astype(np.uint8), 'RGBA')
+        out = OUT_DIR / f'{unit_id}.png'
+        png.save(out, optimize=True)
+        entry['sha256'] = hashlib.sha256(out.read_bytes()).hexdigest()
+        result['units'][unit_id] = entry
+        previews.append(png)
+        print(f"{unit_id:26s} cell {entry['cell']} figure {entry['figureHeightPx']}px colors {entry['colors']} (master only)")
     result['units'] = dict(sorted(result['units'].items()))
     OUT_JSON.write_text(json.dumps(result, indent=2) + '\n')
     if args.preview and previews:

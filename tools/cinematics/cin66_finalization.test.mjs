@@ -97,7 +97,8 @@ describe('CIN-6.6 finalization contracts', () => {
 
   it('preserves the concurrent VFX registry without touching game-truth owners', async () => {
     expect(await sha256('src/combat/vfx/generated/published-vfx-presets.json')).toBe('4951b2d22f5fce42131bf46aad6d2422aa098b5881bbaccee33291c01eda1e3e');
-    const diffTargets = ['src/game/runSystem.ts', 'src/game/types.ts', 'src/combat/stage/CombatStage.ts'];
+    // The Combat Stage scene was retired (combat-scenes-pixel-art); its profile classifier remains.
+    const diffTargets = ['src/game/runSystem.ts', 'src/game/types.ts', 'src/combat/stage/combatStageProfiles.ts'];
     for (const path of diffTargets) expect((await readFile(resolve(root, path), 'utf8')).length).toBeGreaterThan(0);
   });
 });

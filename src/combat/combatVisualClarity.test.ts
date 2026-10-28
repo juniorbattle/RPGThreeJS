@@ -7,10 +7,10 @@ const bridgeSource = readFileSync(new URL('./CombatBridge.ts', import.meta.url),
 const workbenchSource = readFileSync(new URL('./UnitMotionWorkbench.ts', import.meta.url), 'utf8');
 
 describe('V11A.1 combat visual clarity contracts', () => {
-  it('hides non-involved units during combat stage and restores them on exit', () => {
+  it('steps non-involved units back during the spotlight and restores them on exit', () => {
     expect(runtimeSource).toContain('G._stageFaded=[]');
     expect(runtimeSource).toContain('o._opSnap=');
-    expect(runtimeSource).toContain('o.grp.visible=false');
+    expect(runtimeSource).toContain('tween(o.mat,{opacity:Math.min(o.mat.opacity,.24)}');
     expect(runtimeSource).toContain('G._stageFaded=null');
     expect(runtimeSource).toContain('getUnitVisualState(o.team,o.alive,o.downed)');
   });
@@ -43,10 +43,9 @@ describe('V11A.1 combat visual clarity contracts', () => {
     expect(workbenchSource).toContain("'boss-ultimate'");
   });
 
-  it('preserves the static camera contract', () => {
+  it('keeps turn changes camera-neutral; only actions move the director', () => {
     expect(runtimeSource).toContain('function focusCam(){ }');
     expect(runtimeSource).toContain('function actionCam(){ }');
-    expect(runtimeSource).toContain('function stageFrame(){ }');
     expect(runtimeSource).not.toContain('tween(cam');
     expect(runtimeSource).not.toContain('tweenP(cam');
   });

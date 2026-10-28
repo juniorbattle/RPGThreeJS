@@ -28,7 +28,7 @@ import { CombatCameraFeedback, applyAdditiveCameraShake, shakeSampleToUvOffset }
 import { installUnitMotionWorkbench } from './UnitMotionWorkbench';
 import { COMBAT_RENDER_LAYERS } from './combatRenderLayers';
 import { resolveBossIntentVisualState } from './bossIntentPresentation';
-import { CombatStage } from './stage/CombatStage';
+import { CombatCameraDirector } from './camera/CombatCameraDirector';
 import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
 import { isExhausted } from './combatExhaustion';
 import { resolvePixelSheet, pixelSheetVisibleBounds, PIXEL_PX_PER_UNIT } from './pixel/PixelSpriteSheets';
@@ -36,7 +36,6 @@ import { PixelSpriteRig } from './pixel/PixelSpriteMaterial';
 import { combatLargeUnitPresenceScale } from './combatPresencePresentation';
 import { resolveStatusAnchorY, statusAnchorGap } from './statusAnchorPresentation';
 import { renderCombatResult, renderDeploymentCard, renderDeploymentPreview } from './combatShellPresentation';
-import { resolveCombatStageProfileUniversal, getStageProfileInfo, forceResolveCombatStageProfile } from './stage/combatStageProfiles';
 import { isActionPublished, playActionVfx as playPublishedActionVfx, getPublishedDraft, __devUpdateOverlay, __devClearOverlay, getActiveRegistry } from './vfx/PublishedVfxResolver';
 import { combatHudCameraFov, renderCombatActionDock, renderCombatActionPreview, renderCombatObjective, renderCombatSkillRows, renderCombatStatuses, renderCombatTurnOrder, renderCombatUnitCard, selectedCombatAction } from './combatHudPresentation';
 
@@ -158,16 +157,18 @@ scene.fog=new THREE.FogExp2(0x52635c, COMBAT_PRESENTATION.ambientMist.fogDensity
 const combatVfxSystem=new VfxSystem();
 
 const camera=new THREE.PerspectiveCamera(COMBAT_PRESENTATION.camera.fov, innerWidth/innerHeight, 0.1, 200);
-function syncCombatHudCamera(){ const combatFov=combatHudCameraFov(innerWidth,COMBAT_PRESENTATION.camera.fov); camera.fov=G.mode==='deploy'&&innerWidth<=560?Math.max(combatFov,68):combatFov; camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); if(G.backgroundLayers)G.backgroundLayers.setViewportScale(Math.tan(camera.fov*Math.PI/360)/Math.tan(COMBAT_PRESENTATION.camera.fov*Math.PI/360)); }
+let cameraBaseFov=COMBAT_PRESENTATION.camera.fov;
+function syncCombatHudCamera(){ const combatFov=combatHudCameraFov(innerWidth,COMBAT_PRESENTATION.camera.fov); cameraBaseFov=G.mode==='deploy'&&innerWidth<=560?Math.max(combatFov,68):combatFov; camera.fov=cameraBaseFov; camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); }
 syncCombatHudCamera();
-const cam=Object.freeze({ yaw:0, dist:COMBAT_PRESENTATION.camera.baseDistance, height:COMBAT_PRESENTATION.camera.baseHeight, tx:0, ty:COMBAT_PRESENTATION.camera.targetY, tz:0 });
+// Tactical overview, action push-ins and the in-arena spotlight (ultimates,
+// boss signatures) all come from one director; shake stays screen-space.
+const cameraDirector=new CombatCameraDirector({ tx:0, ty:COMBAT_PRESENTATION.camera.targetY, tz:0, yaw:0, dist:COMBAT_PRESENTATION.camera.baseDistance, height:COMBAT_PRESENTATION.camera.baseHeight, fov:0 });
 const cameraFeedback=new CombatCameraFeedback();
-function applyCam(){
-  const x=Math.sin(cam.yaw)*cam.dist, z=Math.cos(cam.yaw)*cam.dist;
-  // V2.6.1: Camera position is now immutable during shake. The visible
-  // impact shake comes from the screen-space post-process pass only.
-  camera.position.set(cam.tx+x,cam.ty+cam.height,cam.tz+z);
-  camera.lookAt(cam.tx,cam.ty,cam.tz);
+function applyCam(dt=0){
+  const shot=cameraDirector.update(dt);
+  camera.position.set(shot.tx+Math.sin(shot.yaw)*shot.dist,shot.ty+shot.height,shot.tz+Math.cos(shot.yaw)*shot.dist);
+  camera.lookAt(shot.tx,shot.ty,shot.tz);
+  const fov=cameraBaseFov+shot.fov; if(Math.abs(camera.fov-fov)>1e-3){ camera.fov=fov; camera.updateProjectionMatrix(); }
 }
 applyCam();
 
@@ -239,14 +240,12 @@ const impactShakePass=new ShaderPass(ImpactShake); composer.addPass(impactShakeP
 
 composer.addPass(new OutputPass());
 
-const combatStage=new CombatStage({renderPass,tacticalScene:scene,tacticalCamera:camera,tiltShiftStrength:TiltShift.uniforms.strength,width:innerWidth,height:innerHeight});
 
 addEventListener('resize',()=>{
   syncCombatHudCamera();
   renderer.setSize(innerWidth,innerHeight); composer.setSize(innerWidth,innerHeight);
   bloom.setSize(innerWidth,innerHeight);
   TiltShift.uniforms.w.value=1/innerWidth; TiltShift.uniforms.h.value=1/innerHeight;
-  combatStage.handleResize(innerWidth,innerHeight);
 });
 
 // ============================= PROCEDURAL PIXEL-ART SPRITES =============================
@@ -361,7 +360,7 @@ async function preloadExternalSprites(){
     ...strategicDefinitions.map(unit=>strategicVisualFor(unit)?.src||unit.portrait),
     ...Object.values(BOSS_PORTRAITS).map(portrait=>resolveStrategicUnitVisual(portrait)?.src||portrait),
   ].filter(url=>typeof url==='string'&&(url.startsWith('/assets/characters/pixel/combat/')||url.startsWith('/assets/characters/pixel/masters/'))))];
-  await Promise.all([...strategicVisuals.values()].map(visual=>preloadPixelSheet(visual.unitId)));
+  await Promise.all([...[...strategicVisuals.values()].map(visual=>visual.unitId),...strategicDefinitions.map(def=>def.portrait)].map(identity=>preloadPixelSheet(identity)));
   if(!urls.length)return;
   await Promise.all(urls.map(async url=>{
     if(externalSpriteCache.has(url))return;
@@ -965,7 +964,7 @@ function resetUnitSpriteScale(u){
 function createUnit(def){
   const strategicVisual=strategicVisualFor(def);
   const s=externalSpriteCache.get(strategicVisual?.src||def.portrait)||externalSpriteCache.get(def.portrait)||SPR[def.kind];
-  const pixelEntry=strategicVisual?resolvePixelSheet(strategicVisual.unitId):undefined;
+  const pixelEntry=resolvePixelSheet(strategicVisual?.unitId)||resolvePixelSheet(def.portrait);
   const pixelTexture=pixelEntry?pixelSheetTextures.get(pixelEntry.unitId):undefined;
   const pixel=pixelEntry&&pixelTexture?new PixelSpriteRig(pixelEntry,pixelTexture):null;
   const visualPresenceScale=pixel?1:(s.authoritativePhysicalScale&&(def.boss||def.elite||def.size>1)
@@ -1188,10 +1187,9 @@ function checkEnd(){ if(G.over)return true; if(aliveUnits('foe').length===0){ wi
 function worldToScreen(v,activeCamera){ const p=v.clone().project(activeCamera||camera); return {x:(p.x*0.5+0.5)*innerWidth,y:(-p.y*0.5+0.5)*innerHeight}; }
 function floatText(u,txt,color,big){ const el=document.createElement('div'); el.className='float'; el.textContent=txt; el.style.color=color||'#fff'; if(big)el.style.fontSize='26px';
   dom.fx.appendChild(el); const start=performance.now(), dur=1.05;
-  const stageAnchor=combatStage.getFloatTextAnchor(u);
-  const activeCamera=stageAnchor?combatStage.camera:camera;
-  const base=stageAnchor?stageAnchor.clone():(u.grp?u.grp.position.clone():new THREE.Vector3(wX(u.gx),0,wZ(u.gz)));
-  if(!stageAnchor){ base.y+=2.5; base.x+=rnd(-0.2,0.2); }
+  const activeCamera=camera;
+  const base=u.grp?u.grp.position.clone():new THREE.Vector3(wX(u.gx),0,wZ(u.gz));
+  base.y+=Math.min(3.2,(u.visualHeight||2)+0.35); base.x+=rnd(-0.2,0.2);
   (function a(){ const e=Math.min(1,(performance.now()-start)/(dur*1000)); const wp=base.clone(); wp.y+=e*1.0; const s=worldToScreen(wp,activeCamera); el.style.left=s.x+'px'; el.style.top=s.y+'px'; el.style.opacity=(1-e*e); if(e<1)requestAnimationFrame(a); else el.remove(); })(); }
 function flashUnit(u,color){ u.mat.color.set(color); setTimeout(()=>u.alive&&u.mat.color.set('#ffffff'),140); }
 async function playUnitHitReaction(u,opts={}){
@@ -1628,12 +1626,7 @@ function playActionVfx(spec,u,targets,cx,cz,visualContext={}){
   const results=visualTargets.map((group,groupIndex)=>{
     const context=makeActionVfxContext(u,group,cx,cz,spec,visualContext);
     if(published&&!presentation?.cinematic){
-      const unitMotion=(G.stage&&groupIndex===0)?{
-        install:motion=>combatStage.setUnitMotion(motion),
-        applyStep:step=>combatStage.applyUnitMotionStep(step),
-        cleanup:()=>combatStage.resetUnitMotionPresentation(),
-      }:undefined;
-      return playPublishedActionVfx({actionKey,fallbackPresetId:presetId,context,vfxSystem:combatVfxSystem,...(unitMotion?{unitMotion}:{})});
+      return playPublishedActionVfx({actionKey,fallbackPresetId:presetId,context,vfxSystem:combatVfxSystem});
     }
     return presentation?.cinematic
       ?combatVfxSystem.playCinematic(presentation.cinematic,context,presetId)
@@ -1649,21 +1642,6 @@ function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
   // The gameplay resolver already supplies the true target/AoE origin through
   // cx/cz. Keep that point stable even when the first affected unit stands on
   // another tile; target/targetGround anchors remain available for unit hits.
-  const stageOverride=combatStage.getVfxContextOverride();
-  if(stageOverride){
-    const sourceProxy=combatStage.getVfxUnitProxy(u)??stageOverride.sourceUnit;
-    const targetProxies=targets.length?targets.map(t=>combatStage.getVfxUnitProxy(t)??stageOverride.targetUnits[0]):stageOverride.targetUnits;
-    return {
-      scene:stageOverride.scene,camera:stageOverride.camera,sourceUnit:sourceProxy,targetUnits:targetProxies,
-      targetPoint:stageOverride.targetPoint,
-      reducedGraphics:REDUCED_GRAPHICS,
-      intensity:tuning.intensity,particleScale:tuning.particleScale,durationScale:tuning.durationScale,
-      orientation:presentation?.orientation,scaleTier:tuning.scaleTier,presentationScale:tuning.presentationScale,
-      staticScaleMultiplier:tuning.staticScaleMultiplier,impactOpacityFloor:tuning.impactOpacityFloor,
-      impactRenderOrder:tuning.impactRenderOrder,groundYOffset:tuning.groundYOffset,
-      helpers:{wait,screenShake,screenFlash,hitStop,floatText,wX,wZ,tileTop}
-    };
-  }
   const targetPoint=visualContext.targetPoint||new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz));
   return {
     scene,camera,sourceUnit:u,targetUnits:targets,
@@ -1714,10 +1692,7 @@ async function attackAnim(u,spec,cx,cz,targets=[],actionContext={}){ const ctr=n
       } else if(preset==='debuff_cast'){
         if(spec.range&&spec.range[1]>1)await projectile(u,cx,cz,spec); else vfx('dark',ctr); if(spec.radius>=1)shockRing(ctr,spec.radius,0xb06aff);
       } else { vfx('hit',ctr); screenShake(preset==='melee_heavy'?0.46:0.32,preset==='melee_heavy'?0.28:0.22); }
-    combatStage.notifyImpact();
     await resolveImpact();
-    const phaseTiming=combatStage.getActivePhaseTiming?.();
-    if(phaseTiming&&phaseTiming.impactToReactionMs>0) await wait(phaseTiming.impactToReactionMs/1000);
     const impactHold=Math.max(feel.impactHold,tuning.afterEffectDelay); if(impactHold>0)await wait(impactHold);
   };
   await playSpriteMotion(u,preset,{cx,cz,spec,target:targets[0],...tuning,motionDurationScale:tuning.motionDurationScale*feel.motionDurationScale,motionIntensity:tuning.motionIntensity*feel.motionIntensity,onImpact:impact});
@@ -1854,9 +1829,7 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   const targets=context.selectedTargets.length&&(spec.revive||spec.targetMode==='ally'||spec.targetMode==='enemy')?context.selectedTargets:affectedUnits(u,spec,impactCx,impactCz);
   if(spec.key==='attack'&&spec.weaponType==='rapier'&&targets.length){ const t=targets[0]; const dist=Math.abs((u.size>1?bossCenterGX(u):u.gx)-t.gx)+Math.abs((u.size>1?bossCenterGZ(u):u.gz)-t.gz); spec.type=dist>=2?'mag':'phys'; }
   logMsg(u.name+' → '+spec.name);
-  await combatStageEnter(u,targets,spec);
-  const settleTiming=combatStage.getActivePhaseTiming?.();
-  if(settleTiming&&settleTiming.settleMs>0) await wait(settleTiming.settleMs/1000);
+  await presentActionEnter(u,targets,spec);
   let signalImpact,finishImpact;
   const impactStarted=new Promise(resolve=>{signalImpact=resolve;}),impactFinished=new Promise(resolve=>{finishImpact=resolve;});
   // Align the isolated runtime-frame proof with the real attack choreography,
@@ -1942,19 +1915,13 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
   if(spec.key==='attack'){ G.basicAttacksThisTurn++; } if(spec.item){ G.itemsUsedThisTurn++; }
   if(G.movedThisTurn)G.movedBeforeAct=true; refreshPanel(u);
-  const _pres=getSkillPresentation(spec);
-  const _buildAE=(_un)=>{ const _pre=_preState.get(_un); if(!_pre)return{unit:_un,ko:false,revived:false,statusesApplied:[],statusesRemoved:[],healed:false}; const _ps=new Set(Object.keys(_un.statuses)); return{unit:_un,ko:_pre.alive&&!_un.alive,revived:!_pre.alive&&_un.alive,statusesApplied:[..._ps].filter(s=>!_pre.statuses.has(s)).map(s=>({name:(STATUS[s]&&STATUS[s].name)||s,color:(STATUS[s]&&STATUS[s].col)||'#ff9a4a'})),statusesRemoved:[..._pre.statuses].filter(s=>!_ps.has(s)),healed:_un.alive&&_un.hp>_pre.hp}; };
-  const _aftermath={attacker:_buildAE(u),targets:targets.filter(t=>t!==u).map(t=>_buildAE(t)),isUltimate:Boolean(_pres&&_pres.ultimate)};
-  await combatStage.presentResolvedAftermath(_aftermath,floatText);
-  const recoveryTiming=combatStage.getActivePhaseTiming?.();
-  if(recoveryTiming&&recoveryTiming.recoveryMs>0) await wait(recoveryTiming.recoveryMs/1000);
-  await combatStageExit(); G.busy=false; checkEnd();
+  await presentActionExit(); G.busy=false; checkEnd();
 }
 async function executeAction(u,spec,cx,cz){
   G._actionFeedbackToken='action-'+(++actionFeedbackSerial); G._actionShakeFrequency=18;
   try { await executeActionCore(u,spec,cx,cz); }
   finally {
-    try { if(G.stage)await combatStageExit(); else restoreUnitFocus(); }
+    try { if(G.spotlight)await presentActionExit(); else restoreUnitFocus(); }
     finally { if(u&&u.alive)restoreUnitVisualBaseline(u); G.busy=false; }
   }
 }
@@ -2070,31 +2037,51 @@ const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
 function killTweens(obj){ for(let i=tweens.length-1;i>=0;i--) if(tweens[i].obj===obj){ const handle=tweens[i]; tweens.splice(i,1); if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } }
 function focusCam(){ }
 function actionCam(){ }
-function restoreCam(){ return Promise.resolve(); }
-// ---- Combat stage : focus cinématique attaquant/cible ----
+function restoreCam(){ return cameraDirector.restore(0.5); }
+// ---- Présentation d'action dans l'arène (remplace le Combat Stage) ----
+// Every action gets a short camera push-in toward actor and target. Ultimates
+// and boss signatures get the spotlight: the arena light dims, bystanders step
+// back, letterbox and title rise and the camera drops low and close.
 let stageVigEl=null, stageTitleEl=null;
 function buildStageOverlay(){ stageVigEl=document.createElement('div'); stageVigEl.id='stagevig'; document.body.appendChild(stageVigEl);
   stageTitleEl=document.createElement('div'); stageTitleEl.id='stagetitle'; stageTitleEl.innerHTML='<b></b><small></small>'; document.body.appendChild(stageTitleEl); }
-function stageFrame(){ }
-async function combatStageEnter(att,targets,spec,opts){ const presentation=getSkillPresentation(spec); const stageProfile=opts&&opts.forceProfile?opts.forceProfile:resolveCombatStageProfileUniversal(spec,presentation); if(!stageProfile) return;
-  hideActionPreview(); G.stage=true; const feel=resolveCombatFeel({motionPreset:getActionMotionPreset(spec),visualTier:getActionVisualTier(spec),boss:Boolean(att.boss&&spec.offensive),reducedGraphics:REDUCED_GRAPHICS}); G._stageLeadOut=feel.stageLeadOut; if(!stageTitleEl)buildStageOverlay();
+function actionShotKind(spec,targets){
+  const presentation=getSkillPresentation(spec),tuning=getActionPresentationTuning(spec);
+  if(presentation?.ultimate||tuning.tier===6)return 'spotlight';
+  if((spec.radius||0)>=1&&targets.length>1)return 'aoe';
+  return 'action';
+}
+function unitShotPoint(u){ return u&&u.grp?{x:u.grp.position.x,y:u.grp.position.y,z:u.grp.position.z}:undefined; }
+async function presentActionEnter(att,targets,spec,opts={}){
+  hideActionPreview();
+  const kind=opts.forceSpotlight?'spotlight':actionShotKind(spec,targets);
+  const target=targets.find(t=>t!==att)||targets[0]||null;
+  G.spotlight={kind};
+  if(kind!=='spotlight'){ await cameraDirector.frame(kind,unitShotPoint(att),unitShotPoint(target),REDUCED_GRAPHICS?0.2:0.32); return; }
+  const feel=resolveCombatFeel({motionPreset:getActionMotionPreset(spec),visualTier:getActionVisualTier(spec),boss:Boolean(att.boss&&spec.offensive),reducedGraphics:REDUCED_GRAPHICS});
+  if(!stageTitleEl)buildStageOverlay();
   const inv=new Set([att]); for(const t of targets)inv.add(t); G._stageFaded=[];
   for(const o of G.units){ if(inv.has(o))continue; o._opSnap={mat:o.mat.opacity,blob:o.blob.material.opacity,vis:o.grp.visible};
-    tween(o.mat,{opacity:0},0.2,easeOutCubic,()=>{ if(o._opSnap)o.grp.visible=false; }); tween(o.blob.material,{opacity:0},0.2,easeOutCubic); G._stageFaded.push(o); }
+    tween(o.mat,{opacity:Math.min(o.mat.opacity,.24)},0.25,easeOutCubic); tween(o.blob.material,{opacity:0},0.2,easeOutCubic); G._stageFaded.push(o); }
   if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
-  stageFrame(att,targets); killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.stageVignette},0.42,easeInOut);
+  killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.spotlightVignette},0.42,easeInOut);
+  if(G.arena)G.arena.setDim(0.42,0.45);
   const etgt=targets.find(t=>t!==att&&t.team!==att.team);
   stageTitleEl.querySelector('b').textContent=spec.name||'Action';
   stageTitleEl.querySelector('small').textContent=att.name+(etgt?'  \u2192  '+etgt.name:'');
   stageVigEl.classList.add('on'); stageTitleEl.classList.add('on'); dom.ui.classList.add('staging');
-  const stationaryAttacker=Boolean(att.boss||att.elite);
-  if(STAGE_QA_ENABLED){ const info=getStageProfileInfo(spec,presentation); const isSupport=info&&(info.layout==='support_single'||info.layout==='support_group'||info.layout==='self_target'); const dir=att.team==='player'?(isSupport?'L→L':'L→R'):(isSupport?'R→R':'R→L'); if(info)console.log('[Stage QA] '+spec.key+' → '+info.id+(info.explicit?' (explicit)':' (generic)')+' layout='+info.layout+' impact='+info.impactAnchor+' source='+(att.team||'?')+' dir='+dir+(stationaryAttacker?' [stationary]':'')); }
-  await Promise.all([wait(feel.stageLeadIn),combatStage.enter(att,targets,spec,{reducedGraphics:REDUCED_GRAPHICS,environmentId:COMBAT_SCENE_ID,profile:stageProfile,sourceTeam:att.team,stationaryAttacker})]); }
-async function combatStageExit(){
-  killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.vignette},0.5,easeInOut);
-  if(stageVigEl)stageVigEl.classList.remove('on'); if(stageTitleEl)stageTitleEl.classList.remove('on'); if(dom.ui)dom.ui.classList.remove('staging');
-  if(G._stageFaded){ for(const o of G._stageFaded){ if(o._opSnap){ const state=getUnitVisualState(o.team,o.alive,o.downed); killTweens(o.mat); killTweens(o.blob.material); o.grp.visible=state.visible&&o._opSnap.vis; if(state.visible){ tween(o.mat,{opacity:o.alive?o._opSnap.mat:state.bodyOpacity},0.3,easeOutCubic); tween(o.blob.material,{opacity:o.alive?o._opSnap.blob:state.shadowOpacity},0.3,easeOutCubic); if(!o.alive&&o.downed&&o.team==='player'&&o.mat&&o.mat.color)o.mat.color.set('#ff5a4a'); } delete o._opSnap; } } G._stageFaded=null; }
-  G.stage=false; const leadOut=G._stageLeadOut??.22; G._stageLeadOut=null; await Promise.all([wait(leadOut),combatStage.exit()]); }
+  await Promise.all([wait(feel.stageLeadIn||0.3),cameraDirector.frame('spotlight',unitShotPoint(att),unitShotPoint(target),REDUCED_GRAPHICS?0.3:0.5)]);
+}
+async function presentActionExit(){
+  const active=G.spotlight; if(!active)return; G.spotlight=null;
+  if(active.kind==='spotlight'){
+    killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.vignette},0.5,easeInOut);
+    if(G.arena)G.arena.setDim(1,0.5);
+    if(stageVigEl)stageVigEl.classList.remove('on'); if(stageTitleEl)stageTitleEl.classList.remove('on'); if(dom.ui)dom.ui.classList.remove('staging');
+    if(G._stageFaded){ for(const o of G._stageFaded){ if(o._opSnap){ const state=getUnitVisualState(o.team,o.alive,o.downed); killTweens(o.mat); killTweens(o.blob.material); o.grp.visible=state.visible&&o._opSnap.vis; if(state.visible){ tween(o.mat,{opacity:o.alive?o._opSnap.mat:state.bodyOpacity},0.3,easeOutCubic); tween(o.blob.material,{opacity:o.alive?o._opSnap.blob:state.shadowOpacity},0.3,easeOutCubic); if(!o.alive&&o.downed&&o.team==='player'&&o.mat&&o.mat.color)o.mat.color.set('#ff5a4a'); } delete o._opSnap; } } G._stageFaded=null; }
+  }
+  await cameraDirector.restore(active.kind==='spotlight'?0.6:0.45);
+}
 function rotateCam(){ }
 
 // ============================= INPUT =============================
@@ -2161,10 +2148,7 @@ function bindInput(){ const el=renderer.domElement;
   el.addEventListener('contextmenu',e=>{ e.preventDefault(); cancelToMenu(); });
   addEventListener('wheel',e=>e.preventDefault(),{passive:false});
   addEventListener('keydown',e=>{ const k=e.key.toLowerCase();
-    if(STAGE_QA_ENABLED&&k==='o'){ e.preventDefault(); void togglePoseQaStage(); }
-    else if(STAGE_QA_ENABLED&&combatStage.isActive()&&(k==='['||k===']')){ e.preventDefault(); announcePoseQa(combatStage.selectNextPoseQaUnit(k==='['?-1:1)); }
-    else if(STAGE_QA_ENABLED&&combatStage.isActive()&&k==='p'){ e.preventDefault(); void cyclePoseQa(); }
-    else if(k==='escape')cancelToMenu();
+    if(k==='escape')cancelToMenu();
     else if(k==='enter'&&G.mode==='menu'&&!G.busy)endTurn();
     else if(k==='m'&&G.mode==='menu')enterMove();
     else if(k==='u'&&G.mode==='menu')undoMove();
@@ -2314,7 +2298,7 @@ function endGame(win){ if(G.over)return; restoreUnitFocus(); for(const u of G.un
 let _last=performance.now(), _t=0,_diagnosticsAt=0,_animationFrame=0,_runtimeDisposed=false;
 function animate(){ if(_runtimeDisposed)return; _animationFrame=requestAnimationFrame(animate);
   const now=performance.now(); const dt=Math.min(0.05,(now-_last)/1000); _last=now; _t+=dt;
-  updateTweens(dt); cameraFeedback.tick(dt); applyCam();
+  updateTweens(dt); cameraFeedback.tick(dt); applyCam(dt);
   // V2.6.1: Feed shake sample into the screen-space post-process pass.
   const _shakeSample=cameraFeedback.sample();
   const _shakeOffset=shakeSampleToUvOffset(_shakeSample,innerWidth,innerHeight);
@@ -2348,7 +2332,6 @@ function animate(){ if(_runtimeDisposed)return; _animationFrame=requestAnimation
   if(hlMeshes.length){ for(const m of hlMeshes){ if(REDUCED_GRAPHICS){ m.material.opacity=m.userData.baseOp||0.28; } else { const p=m.userData.pulse||0.08,k=1-p+p*Math.sin(_t*4.2); m.material.opacity=(m.userData.baseOp||0.28)*k; } } }
   if(G.rays){ for(const r of G.rays){ if(r.map)r.map.offset.x=(r.map.offset.x+r.spd*dt)%1; r.mat.opacity=REDUCED_GRAPHICS?0:Math.max(0,r.base+Math.sin(_t*r.pulse+r.ph)*r.amp); } }
   updateSelectors();
-  combatStage.tick(dt);
   composer.render();
   if(now-_diagnosticsAt>=250){ _diagnosticsAt=now; let walkable=0,blocked=0; for(const column of G.grid)for(const cell of column){ if(!cell)continue; if(cell.walkable)walkable++; else blocked++; }
     window.__COMBAT_DIAGNOSTICS={drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometries:renderer.info.memory.geometries,textures:renderer.info.memory.textures,reducedGraphics:REDUCED_GRAPHICS,units:G.units.length,activeTweens:tweens.length,activeVfxObjects:combatVfxSystem.activeObjectCount,grid:{width:CFG.W,depth:CFG.D,walkable,blocked}};
@@ -2507,7 +2490,6 @@ async function playQaMotionScenario(scenario){
   } finally { for(const unit of G.units)if(unit.alive)restoreUnitVisualBaseline(unit); G.busy=false; }
 }
 function resetQaMotion(){ clearQaBossIntentPreview(); for(const unit of G.units){ killSpriteMotion(unit); if(unit.alive)restoreUnitVisualBaseline(unit); } cameraFeedback.clear(); void restoreCam(); }
-let poseQaHoldActive=false;
 const STAGE_QA_ACTIONS=[
   {key:'attack',label:'Stage: Attaque'},
   {key:'n_flame_wave',label:'Stage: Vague de Flammes'},
@@ -2541,27 +2523,6 @@ async function playStageQaScenario(actionKey){
   if(spec.ap>owner.ap)owner.ap=spec.ap;
   await executeAction(owner,spec,spec.self?owner.gx:target.gx,spec.self?owner.gz:target.gz);
 }
-function announcePoseQa(state){
-  if(!state){ setHint('Pose QA — aucune unité avec poses sur la scène active'); return; }
-  const message='Pose QA '+(state.index+1)+'/'+state.total+' — '+state.unitName+' ['+state.unitId+'] — '+state.pose.toUpperCase();
-  console.log('[Combat Pose QA]',message);
-  setHint(message);
-}
-async function cyclePoseQa(){ announcePoseQa(await combatStage.cycleSelectedPose()); }
-async function togglePoseQaStage(){
-  if(poseQaHoldActive){ poseQaHoldActive=false; await combatStageExit(); G.busy=false; setHint('Pose QA — scène fermée'); return; }
-  if(G.busy||G.over)return;
-  qaPrepareCombat();
-  const source=G.pinnedUnit&&G.pinnedUnit.alive?G.pinnedUnit:qaMotionUnit();
-  const target=source&&(aliveUnits(source.team==='player'?'foe':'player')[0]||source);
-  if(!source||!target)return;
-  G.busy=true;
-  const spec={...getSpec(source,'attack',0,0),name:'Validation des poses'};
-  await combatStageEnter(source,[target],spec,{});
-  poseQaHoldActive=combatStage.isActive();
-  if(!poseQaHoldActive)G.busy=false;
-  announcePoseQa(combatStage.getPoseQaState());
-}
 function mountQaControls(){
   if((!QA_ENABLED&&!STAGE_QA_ENABLED)||byId('qa-combat-controls'))return;
   const controls=document.createElement('aside');
@@ -2569,8 +2530,7 @@ function mountQaControls(){
   controls.setAttribute('aria-label','Outils QA de combat');
   const legacyButtons=QA_ENABLED?'<div><button type="button" data-qa="prepare">Auto-déployer</button><button type="button" data-qa="victory">Victoire</button><button type="button" data-qa="defeat">Défaite</button></div>':'';
   const stageButtons=STAGE_QA_ENABLED?'<div>'+STAGE_QA_ACTIONS.map(a=>'<button type="button" data-stage-qa="'+a.key+'">'+a.label+'</button>').join('')+'</div>':'';
-  const poseButtons=STAGE_QA_ENABLED?'<div><button type="button" data-pose-qa="hold">Pose: ouvrir / fermer O</button><button type="button" data-pose-qa="select">Pose: unité suivante [ / ]</button><button type="button" data-pose-qa="cycle">Pose: suivante P</button></div>':'';
-  controls.innerHTML='<b>QA combat</b><span>Session isolée</span>'+legacyButtons+stageButtons+poseButtons;
+  controls.innerHTML='<b>QA combat</b><span>Session isolée</span>'+legacyButtons+stageButtons;
   if(QA_ENABLED){
     controls.querySelector('[data-qa="prepare"]').onclick=()=>qaPrepareCombat();
     controls.querySelector('[data-qa="victory"]').onclick=()=>{ if(!G.over){ qaPrepareCombat(); winWave(); } };
@@ -2578,9 +2538,6 @@ function mountQaControls(){
   }
   if(STAGE_QA_ENABLED){
     controls.querySelectorAll('[data-stage-qa]').forEach(btn=>{ btn.onclick=()=>playStageQaScenario(btn.dataset.stageQa); });
-    controls.querySelector('[data-pose-qa="hold"]').onclick=()=>void togglePoseQaStage();
-    controls.querySelector('[data-pose-qa="select"]').onclick=()=>announcePoseQa(combatStage.selectNextPoseQaUnit());
-    controls.querySelector('[data-pose-qa="cycle"]').onclick=()=>void cyclePoseQa();
   }
   document.body.appendChild(controls);
 }
@@ -2622,11 +2579,6 @@ function buildLabPlaybackContext(){
       const cx=target.size>1?bossCenterGX(target):target.gx, cz=target.size>1?bossCenterGZ(target):target.gz;
       return makeActionVfxContext(source,[target],cx,cz,{key:actionKey,ap:1});
     },
-    unitMotion:{
-      install:(motion)=>{ combatStage.setUnitMotion(motion); },
-      applyStep:(step)=>combatStage.applyUnitMotionStep(step),
-      cleanup:()=>combatStage.resetUnitMotionPresentation(),
-    },
     buildStageContext:async(actionKey,playVfx)=>{
       const action=getLabAction(actionKey);
       if(!action)return false;
@@ -2641,19 +2593,16 @@ function buildLabPlaybackContext(){
       if(!target)return false;
       const skill=SKILL_MAP.get(actionKey);
       const spec={key:actionKey,name:action.displayName,ap:action.apCost??1,type:skill?.type,offensive:skill?.offensive,support:skill?.support,self:skill?.self,radius:skill?.radius,range:skill?.range,mode:skill?.mode,dest:skill?.dest,targetMode:skill?.targetMode,healPercent:skill?.healPercent,flatHeal:skill?.flatHeal,apRestore:skill?.apRestore,cure:skill?.cure,status:skill?.status,shape:skill?.shape,effects:skill?.effects};
-      const presentation=getSkillPresentation(spec);
-      const forceProfile=forceResolveCombatStageProfile(spec,presentation);
-      if(!forceProfile)return false;
       const cx=target.size>1?bossCenterGX(target):target.gx, cz=target.size>1?bossCenterGZ(target):target.gz;
       G.busy=true;
       let stageOpened=false;
       try{
-        await combatStageEnter(source,[target],spec,{forceProfile});
-        stageOpened=Boolean(G.stage);
+        await presentActionEnter(source,[target],spec,{forceSpotlight:true});
+        stageOpened=Boolean(G.spotlight);
         const context=makeActionVfxContext(source,[target],cx,cz,spec);
         await playVfx(context);
       }finally{
-        if(stageOpened)await combatStageExit();
+        if(stageOpened)await presentActionExit();
         G.busy=false;
       }
       return true;
@@ -2733,23 +2682,6 @@ async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED
           intentCenterY:intent?.visible?project(intent.position.y).y:null,
           screenClipped:indicator.y<0||indicator.y>innerHeight};
       });
-      _qaHelpers.inspectCombatStagePresenceForQa=()=>{
-        if(!combatStage.isActive())return[];
-        combatStage.camera.updateMatrixWorld();
-        return combatStage.scene.children.filter(root=>root.name.startsWith('CombatStageUnitRoot:')).map(root=>{
-          const mesh=root.getObjectByName('poseVisual');
-          if(!mesh)return null;
-          mesh.updateWorldMatrix(true,false);
-          mesh.geometry.computeBoundingBox();
-          const bounds=mesh.geometry.boundingBox;
-          const corners=[[bounds.min.x,bounds.min.y],[bounds.min.x,bounds.max.y],[bounds.max.x,bounds.min.y],[bounds.max.x,bounds.max.y]];
-          const points=corners.map(([x,y])=>mesh.localToWorld(new THREE.Vector3(x,y,0)).project(combatStage.camera));
-          const xs=points.map(p=>(p.x*0.5+0.5)*innerWidth),ys=points.map(p=>(1-p.y)*0.5*innerHeight);
-          const x=Math.min(...xs),y=Math.min(...ys),right=Math.max(...xs),bottom=Math.max(...ys);
-          return{name:root.name,pose:mesh.material.map?.name||'',x,y,right,bottom,width:right-x,height:bottom-y,
-            clipped:x<0||y<0||right>innerWidth||bottom>innerHeight};
-        }).filter(Boolean);
-      };
       _qaHelpers.showStatusForShellQa=(identity,status='burn',turns=2)=>{
         const u=G.units.find(unit=>[unit.name,unit.campaignId,unit.combatPoseUnitId,unit.portrait].some(value=>typeof value==='string'&&value.includes(identity)));
         if(!u||!STATUS[status])return{error:'Unknown unit or status'};
@@ -2834,7 +2766,7 @@ async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED
   Object.assign(window,{__publishedVfx:{isActionPublished,getPublishedDraft,getActiveRegistry,__devUpdateOverlay,__devClearOverlay},
     __qaHelpers:_qaHelpers});
 }
-function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); disposeVfxComposerPanel(); combatVfxSystem.dispose(); combatStage.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
+function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); disposeVfxComposerPanel(); combatVfxSystem.dispose(); if(G.arena)G.arena.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
 window.addEventListener('pagehide',disposeCombatRuntime,{once:true});
 window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!=='none') dom.loading.innerHTML='<div style="color:#ff8a7a;max-width:540px;text-align:center;line-height:26px">Échec du chargement de Three.js.<br>Vérifiez votre connexion internet puis rechargez la page.<br><span style="color:#9fb0d0">La page doit être servie via un serveur local (http://), pas ouverte directement depuis le disque.</span></div>'; });
 window.addEventListener('unhandledrejection',e=>console.error(e.reason));
