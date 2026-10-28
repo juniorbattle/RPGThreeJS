@@ -1,0 +1,2949 @@
+{
+  "version": 1,
+  "pxPerUnit": 40,
+  "units": {
+    "alistair": {
+      "file": "/assets/characters/pixel/combat-sprites/alistair.png",
+      "cell": [
+        121,
+        92
+      ],
+      "anchor": [
+        62,
+        89
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "e824e2f939d377594449f15c1f78e0408291cef281478b9d6e25a8531f670f54",
+        "dash": "00aff34643abcda4909befa5c731062655a4424e4119c603b4af98d4149c554e",
+        "attack": "6fa0116994812bf7cea5a8debb34676c1c4a2f6ef98b46b1c2084fbf6c8ae84e",
+        "cast": "9e78a2bacd4fd18d0a1e4f07e7c542b642205935aad0f693f074ad35bfbad220"
+      },
+      "figureHeightPx": 87,
+      "idleBoundsPx": {
+        "left": 35,
+        "top": 2,
+        "right": 89,
+        "bottom": 90
+      },
+      "colors": 41,
+      "sha256": "edf6a0384878eb2510e6716bf5dc2e44eb739993b7296ffb8394b1c1659bee6b"
+    },
+    "archer": {
+      "file": "/assets/characters/pixel/combat-sprites/archer.png",
+      "cell": [
+        100,
+        96
+      ],
+      "anchor": [
+        50,
+        93
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "475ddd427dc2e3d8ced69fbe58be01721ab42b0a0bd7dd20b024e2829ae13a7c",
+        "dash": "322abe150cc9e047ba969f0336577579b1cb5c45e470a2d0ccb9cc1829c56473",
+        "attack": "de42a96e9a98ddd9b18505b49c46c27040b8a360998562926b37211557ef6649",
+        "cast": "338601e9197a863c5444fb4e99503c645c2480ed091907d7fa1c8b9db1d0e280"
+      },
+      "figureHeightPx": 85,
+      "idleBoundsPx": {
+        "left": 25,
+        "top": 8,
+        "right": 76,
+        "bottom": 94
+      },
+      "colors": 41,
+      "sha256": "c094f186fa72dd090c54043e4f5a69d7cb42c0c2c067cf5ea3b6d8c7b5655896"
+    },
+    "cave_bat": {
+      "file": "/assets/characters/pixel/combat-sprites/cave_bat.png",
+      "cell": [
+        70,
+        78
+      ],
+      "anchor": [
+        36,
+        76
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            300,
+            200,
+            300,
+            200
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "0f8d2f677a502f1e09c229d3785c8d1348708b4330239eb3a4a7f320106a3c2f",
+        "dash": "f0bf6056cae7d00c0e922b06cd34bed44152ffe8af629045f6d9834ea24572d8",
+        "attack": "807bd25e4ba5c18aadd4b3123de2e72f493dc433cd8558842a642f1c8a58a5eb",
+        "cast": "121e8106387ab83eada13900e9de336dc94face5145132699b70af51d7208c11"
+      },
+      "figureHeightPx": 73,
+      "idleBoundsPx": {
+        "left": 11,
+        "top": 3,
+        "right": 62,
+        "bottom": 51
+      },
+      "colors": 41,
+      "sha256": "2b33bfd0cc93594d28b655649ef5f4ca8699cafa398a3a2e9ff26f315930da29"
+    },
+    "cave_rat": {
+      "file": "/assets/characters/pixel/combat-sprites/cave_rat.png",
+      "cell": [
+        110,
+        55
+      ],
+      "anchor": [
+        59,
+        51
+      ],
+      "presenceScale": 1.5862,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            300,
+            200,
+            300,
+            200
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "4960de3bfee9093660a84311478a08fb98c5a5b65d08fd1047e645aad3f0988d",
+        "dash": "ea2290ec65f80addf805055534e6b3388f3b3d6807dd6ab70f2df949efde3a74",
+        "attack": "8279308458863d3a1a0ec8af0d66756b374cf9287caf379bed8f6f0f8b046430",
+        "cast": "61829da625b633c9002a1c924a3cce266c23e1ca2ac816a5b9257a2f96295982"
+      },
+      "figureHeightPx": 47,
+      "idleBoundsPx": {
+        "left": 20,
+        "top": 4,
+        "right": 100,
+        "bottom": 52
+      },
+      "colors": 41,
+      "sha256": "5916ea8b8ada54cd3085ac2734a0a7e94869bbd9de91048a8bd7dc528c02c017"
+    },
+    "dark_mage": {
+      "file": "/assets/characters/pixel/combat-sprites/dark_mage.png",
+      "cell": [
+        87,
+        98
+      ],
+      "anchor": [
+        47,
+        94
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "87fd9e23e511b840a0ddc1e4d038076d9a488961ac8bbd16c4f0dc9574947cac",
+        "dash": "24b9a408415c201d8dd2d44f4c9f82c15411858fe2f8b01a5a61aedd2d718ab4",
+        "attack": "44f92e6dde511abec6024a3d42bd978604273a5e71fe79699cd8b62b8f3aa091",
+        "cast": "e9d138c84781c642e49c53bd1ff42235916c1e4f4a654b2fb19bfb812c10907d"
+      },
+      "figureHeightPx": 85,
+      "idleBoundsPx": {
+        "left": 24,
+        "top": 9,
+        "right": 70,
+        "bottom": 95
+      },
+      "colors": 41,
+      "sha256": "32d9b87a5785a2db61e47a9def74d639fa2b19d067f3309eb358ca66cc87bc48"
+    },
+    "forest_badger": {
+      "file": "/assets/characters/pixel/combat-sprites/forest_badger.png",
+      "cell": [
+        112,
+        71
+      ],
+      "anchor": [
+        56,
+        68
+      ],
+      "presenceScale": 1.5726,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            300,
+            200,
+            300,
+            200
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "355b4d963291508f5552a40588f65b620b239b06fa84d9d9b87efacaa2ca2287",
+        "dash": "8725437eff99a2419c89081a1b7913bddd8a26e0183311273511b27d42521695",
+        "attack": "e64e653a75eadb9a7c4ede13b5b4712978b2f1d2b24c40d77e3b2658d0dcf6e8",
+        "cast": "8cf736d48ad19b9a02c691e784e0e2900e50c8e06f27bf3988494756d80a4798"
+      },
+      "figureHeightPx": 46,
+      "idleBoundsPx": {
+        "left": 16,
+        "top": 22,
+        "right": 94,
+        "bottom": 69
+      },
+      "colors": 41,
+      "sha256": "b0fb3302d64e5b108f5b20ed41ee06e90fb0078e1ebca1d694c1e83cd5e95a9a"
+    },
+    "forest_spider": {
+      "file": "/assets/characters/pixel/combat-sprites/forest_spider.png",
+      "cell": [
+        85,
+        54
+      ],
+      "anchor": [
+        43,
+        50
+      ],
+      "presenceScale": 1.3731,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            300,
+            200,
+            300,
+            200
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "35451f9f9ed6da8e15e9bb8f92961d5e083463b88e9121fba0126062d4fe7b37",
+        "dash": "4670b6e1960bf502fe570287c817bb216781d347916c5551d79851017884db01",
+        "attack": "ac9a7a5b75c2fa317aa537122f9145a6d90a43d0e92a9a780eb3c13a66244cb1",
+        "cast": "f078a47eceb725bda353394d30b37d75dcbec627485ecc263a391562d1c9ddff"
+      },
+      "figureHeightPx": 47,
+      "idleBoundsPx": {
+        "left": 9,
+        "top": 3,
+        "right": 77,
+        "bottom": 51
+      },
+      "colors": 41,
+      "sha256": "14656ccb887bf352b0e1cb8d1893a870299b7706be21c3035044f25c1a411a56"
+    },
+    "forest_troll_elite": {
+      "file": "/assets/characters/pixel/combat-sprites/forest_troll_elite.png",
+      "cell": [
+        185,
+        172
+      ],
+      "anchor": [
+        93,
+        168
+      ],
+      "presenceScale": 1.5212,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "187207c2c3c9681c14e61e888b51836bc08667263c79672a7c00b025f1b23d71",
+        "dash": "4ea0bac388d82e7099caeb3a2d823d6b874b419382098da29816b9d88630ffab",
+        "attack": "68cb01dfb0f8a990a737eeb00739e5a3619f1bb38ad88c49696930c9e45417ac",
+        "cast": "084cb1a9391d8d40dda41d3b522913530e3650f96c5f38146214df58fe0107bb"
+      },
+      "figureHeightPx": 161,
+      "idleBoundsPx": {
+        "left": 19,
+        "top": 7,
+        "right": 168,
+        "bottom": 170
+      },
+      "colors": 41,
+      "sha256": "4bf4fe2e0aabb4e946e2693e3222d9b824b8abda1e199909ac3aeb68d6fc207d"
+    },
+    "goblin": {
+      "file": "/assets/characters/pixel/combat-sprites/goblin.png",
+      "cell": [
+        84,
+        72
+      ],
+      "anchor": [
+        41,
+        69
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            300,
+            200,
+            300,
+            200
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "63f4386efc1880d0282dd1e5f93e4ab7802791df6ddf69bbfc5db9ef1ce14602",
+        "dash": "78c8b3e2c54bbc7e7abbb55ffc1958a6075f70ce417a6bcf210ea526e8433ba5",
+        "attack": "d03d5aa154246ba41cb35ff6af8797654a796aaaafef178be544f74902834719",
+        "cast": "1f1377c7df50c24dbbb9a271d3e45c4ed938e10b2e82d707fae4ee97d0e5fd43"
+      },
+      "figureHeightPx": 58,
+      "idleBoundsPx": {
+        "left": 14,
+        "top": 11,
+        "right": 68,
+        "bottom": 70
+      },
+      "colors": 41,
+      "sha256": "fc05094c1274488b49e901ed6753cf64f626de0de7ea0c5dcb07d038d2aa3874"
+    },
+    "lancer": {
+      "file": "/assets/characters/pixel/combat-sprites/lancer.png",
+      "cell": [
+        121,
+        107
+      ],
+      "anchor": [
+        60,
+        104
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "71a8d68f765367eefe2317e1fea6b0d82c1957968d5208a23b57bc28a6f3fcfa",
+        "dash": "9d89be015f5292e3a04131da8791ebc7e3ddd6fbc56b461d417011acf277eb8f",
+        "attack": "2c57235b843c667e7a4c993ae2da695d38c683dfbe25ea12fe848265c7be916d",
+        "cast": "1c6f58d989f5300b8f1c6c5b0f823c4ad149627cec92ea37094ce3b71592d8ca"
+      },
+      "figureHeightPx": 102,
+      "idleBoundsPx": {
+        "left": 31,
+        "top": 2,
+        "right": 89,
+        "bottom": 105
+      },
+      "colors": 41,
+      "sha256": "a493cf709a7596daca8430b8d0447ced669e8426a6e91944f466effd15536ee6"
+    },
+    "lion_champion": {
+      "file": "/assets/characters/pixel/combat-sprites/lion_champion.png",
+      "cell": [
+        217,
+        191
+      ],
+      "anchor": [
+        103,
+        180
+      ],
+      "presenceScale": 1.6291,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "96338159d52bcb027f6e31bf8c389289ddf5e4654721c1842c86086847be31eb",
+        "dash": "749d5bd8635bf8556792d8fa820cf1aee059c18055f63b185767b40b4f6c9da4",
+        "attack": "7d5845118be49fe85c2f5fabf3f83034f970f8d7e157fdc103303ba23edd217c",
+        "cast": "b815a7bed0de2c78663fb692ca068bb87cab571e68bf62548d29b5dbef19ceee"
+      },
+      "figureHeightPx": 172,
+      "idleBoundsPx": {
+        "left": 45,
+        "top": 8,
+        "right": 162,
+        "bottom": 183
+      },
+      "colors": 41,
+      "sha256": "90c5ee1cb65bf38cc6ec896cfb6848fc34ca06965401f83a8f6d8dc8610d638e"
+    },
+    "marsh_toad": {
+      "file": "/assets/characters/pixel/combat-sprites/marsh_toad.png",
+      "cell": [
+        86,
+        53
+      ],
+      "anchor": [
+        44,
+        50
+      ],
+      "presenceScale": 1.1572,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            300,
+            200,
+            300,
+            200
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "a83053cfea9add42290b237d3e7771ee9855015c3b50f2da1a437c90e69c99f9",
+        "dash": "c216f5927bc0d1914382675dee01f5c8bf00b6fd1068b6104afb5181f57ad403",
+        "attack": "4f9d36bbf103182cb0757a21acc143d15cf306c837eba32e7c799f5eed316760",
+        "cast": "b38ba863c80de666bd5a68fc948cfb333bdf794f0f71a209e8cf5fec69c72d32"
+      },
+      "figureHeightPx": 46,
+      "idleBoundsPx": {
+        "left": 17,
+        "top": 4,
+        "right": 71,
+        "bottom": 51
+      },
+      "colors": 41,
+      "sha256": "8cee2fe23471d223c384aa9b39612482badf834934b828ae795348085c1a472a"
+    },
+    "rogue": {
+      "file": "/assets/characters/pixel/combat-sprites/rogue.png",
+      "cell": [
+        96,
+        88
+      ],
+      "anchor": [
+        48,
+        85
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "1f398114dae0dd38b6ebc67739a6b95d4d350e89cd30a39a9c28eb0517f183b9",
+        "dash": "37feea0cfcee72264b0c23672975849c519d55e72c3972ec57601283acd5907f",
+        "attack": "39c857d8047175397df730100e701c240d7d4188f70a42b26745126ac553bb2e",
+        "cast": "a5159b06aabe4c1636167140a9f66afafc00fb734b51858dee473bb2bbd6352a"
+      },
+      "figureHeightPx": 83,
+      "idleBoundsPx": {
+        "left": 12,
+        "top": 2,
+        "right": 87,
+        "bottom": 86
+      },
+      "colors": 41,
+      "sha256": "b0d0225fcdca24a0ef4997ea23aba93baa86f11f96d1619418d90f2d6493ecde"
+    },
+    "serpent_brute": {
+      "file": "/assets/characters/pixel/combat-sprites/serpent_brute.png",
+      "cell": [
+        98,
+        94
+      ],
+      "anchor": [
+        48,
+        91
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "34b37204ececc4c3830f5f473bcaed1315cf94dd2461aa998263144f845c8bcb",
+        "dash": "c65c2afc6cd6f756dcf8a18118c77bb2a7ed5430bdbfae0afd716a587c26821d",
+        "attack": "ccd05573dfd968378d73d0d878b1f2e27525fdc1ae83921eda28f9222d8ab6e3",
+        "cast": "389747e0c61c0e1fc6f12d4ab31ccac10d7fbd648c2a27ef984c541b2cbfa6a8"
+      },
+      "figureHeightPx": 89,
+      "idleBoundsPx": {
+        "left": 18,
+        "top": 2,
+        "right": 79,
+        "bottom": 92
+      },
+      "colors": 41,
+      "sha256": "99d5f5a80fef348d1dc2f57fa60cec4b561280edc687059afd3d5f099ab0c193"
+    },
+    "serpent_duelist_elite": {
+      "file": "/assets/characters/pixel/combat-sprites/serpent_duelist_elite.png",
+      "cell": [
+        190,
+        166
+      ],
+      "anchor": [
+        95,
+        164
+      ],
+      "presenceScale": 1.6335,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "35b067ea0d29bb171ecf89ccd350b8e9dcd15032c9924ef4217954b3d4e7056c",
+        "dash": "cc7146d3b7c9cd42cc898f75326621af786e35496b3b3457665ac77108bd5a85",
+        "attack": "f048360cb97581a041e1043ec90ee50143cf5d2b16d83d2eb0063c26d008227c",
+        "cast": "ff7c8b9e405525524c221e656a3f0df9d86304112b427353fb3669c2aa667962"
+      },
+      "figureHeightPx": 161,
+      "idleBoundsPx": {
+        "left": 14,
+        "top": 3,
+        "right": 177,
+        "bottom": 165
+      },
+      "colors": 41,
+      "sha256": "99b53bbdd9360290a99f498d805e2c8c3fcc8663937a45612c59a7381efb20e5"
+    },
+    "serpent_elite_brute": {
+      "file": "/assets/characters/pixel/combat-sprites/serpent_elite_brute.png",
+      "cell": [
+        173,
+        167
+      ],
+      "anchor": [
+        87,
+        164
+      ],
+      "presenceScale": 1.5394,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "1c7b5818e7f924050a3ade4876462f2147545907f0f1c39bf9ff24f3818c89d2",
+        "dash": "fd9425b404872131ae0676e0ca7d31eb671e76cfb68e3b1f491e378f8234754f",
+        "attack": "1848b66c4ce044a2149a5c26d8d4e64f9040ffbb993ac8ff1258f315d6336ca5",
+        "cast": "e904164ec70a9df2d3a2e6dbb2ffea995b09beb5343b8d5b92e2000c05a0775d"
+      },
+      "figureHeightPx": 161,
+      "idleBoundsPx": {
+        "left": 34,
+        "top": 3,
+        "right": 140,
+        "bottom": 166
+      },
+      "colors": 41,
+      "sha256": "3eb4fe82da08a517619d907d089d2220a52c5d690e9fe97661a77de6a3302138"
+    },
+    "serpent_general_boss": {
+      "file": "/assets/characters/pixel/combat-sprites/serpent_general_boss.png",
+      "cell": [
+        204,
+        180
+      ],
+      "anchor": [
+        103,
+        177
+      ],
+      "presenceScale": 1.7437,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "01538ac8848d2379587cf24666ba1d7236dd024fffd5a9ba1dbfca7409b975b8",
+        "dash": "77de8236850a19e8bfd1a45ac7e53da9a2331867288e59d5e86c83af2cfbbc7e",
+        "attack": "a37bf5f1fc60ec08af2ca814eb61ae7788382e1bd62fe0f10f7cb7db6eeb7ffd",
+        "cast": "f9f1306b2d511d2f497d555bd447ae664e05941bd4a912347805c23a9ee34164"
+      },
+      "figureHeightPx": 175,
+      "idleBoundsPx": {
+        "left": 27,
+        "top": 2,
+        "right": 178,
+        "bottom": 178
+      },
+      "colors": 41,
+      "sha256": "9e8da7eaf6cf216087da67acf96a4e3b33bc334d3683675e927191d72b78b7dc"
+    },
+    "serpent_oracle": {
+      "file": "/assets/characters/pixel/combat-sprites/serpent_oracle.png",
+      "cell": [
+        90,
+        89
+      ],
+      "anchor": [
+        45,
+        86
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "ffd9aa77472b6d4a1ba816cf4accbcd39704ad2dd6549ec0ebbeff7e2359166a",
+        "dash": "4018bb2f442e48eb8ce1d578987807e3a2291265ac24b0a57195255c0591a386",
+        "attack": "71e3ba616eba7dfde0455012d52cbe4bcfcf3b2c4fdd6c888993e795aa5e6f79",
+        "cast": "a4a7418de51756f0f3f085d497379a51b830f5ae53c8dd63c8ce0af022e1cd39"
+      },
+      "figureHeightPx": 84,
+      "idleBoundsPx": {
+        "left": 22,
+        "top": 2,
+        "right": 68,
+        "bottom": 87
+      },
+      "colors": 41,
+      "sha256": "6bfb6372ab71410271cf2bacc15ad05b5b42689915d53741b161dff0d3c8f0f2"
+    },
+    "serpent_raider": {
+      "file": "/assets/characters/pixel/combat-sprites/serpent_raider.png",
+      "cell": [
+        103,
+        87
+      ],
+      "anchor": [
+        53,
+        84
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "6193dcb36d615686f115154a7f48994581aeb057a9ff2e368607166cb7ebeb74",
+        "dash": "ac7fc263f9bef974933bf580138a3f4ffb45481adc70a2543290b95034f71dd4",
+        "attack": "fc1c7fd387c3ee5ded8ac4f14349e837f04bccc0da2fcd68473167786f9ea5b8",
+        "cast": "4b893f3059ba1bf84dcb27b941bcaba25d20eb5024f8c0ff98f7025eb5c46fc2"
+      },
+      "figureHeightPx": 82,
+      "idleBoundsPx": {
+        "left": 23,
+        "top": 2,
+        "right": 83,
+        "bottom": 85
+      },
+      "colors": 41,
+      "sha256": "f941ded1ae571ff2e0e34f36f078904bf80766dbcbd5d609a7b54390a608057c"
+    },
+    "skeleton": {
+      "file": "/assets/characters/pixel/combat-sprites/skeleton.png",
+      "cell": [
+        98,
+        90
+      ],
+      "anchor": [
+        49,
+        87
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "918b35716cd366514466848ddb0506f1af05d1c400169689c9bf483c521984c4",
+        "dash": "af4684a506e38a35cf81d6b46755805be362fa279a5b2f2421a3367460ea0723",
+        "attack": "770ebea7da9eac4ee180a6d9bf5e4d5e062826f8745455ee1c197c08e8c642ff",
+        "cast": "f22cd8720f3b800d5e537e9668360e1d56355e4645d321679728c978ce4865ed"
+      },
+      "figureHeightPx": 85,
+      "idleBoundsPx": {
+        "left": 23,
+        "top": 2,
+        "right": 75,
+        "bottom": 88
+      },
+      "colors": 41,
+      "sha256": "1c4a0ad3da4a3e0fe98cb6de528ce7c6e9b1b0a868aca9d2839068cff7a8ccd5"
+    },
+    "venom_serpent": {
+      "file": "/assets/characters/pixel/combat-sprites/venom_serpent.png",
+      "cell": [
+        93,
+        55
+      ],
+      "anchor": [
+        46,
+        52
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            300,
+            200,
+            300,
+            200
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "208834e9ca0db24a3664fadd13b5bd0615353cff7637e46a23fb96e46e884c93",
+        "dash": "dc75935258f816a2ef5d4fa09b54da306953360b351ac3a276eb5c08387fb0d1",
+        "attack": "0d53d73b1d4c73cbef0b67312074dfc280d06e0f2152536d2f48511da10853e4",
+        "cast": "8b265bb1ba854acde02db8596d78d007bc6b67113f4047909ee27c8d7396be8c"
+      },
+      "figureHeightPx": 50,
+      "idleBoundsPx": {
+        "left": 22,
+        "top": 2,
+        "right": 70,
+        "bottom": 53
+      },
+      "colors": 41,
+      "sha256": "76e1cda86b3eb35b4541b397c58d0186c4c11cc391ff45cedb5ba25115aceb66"
+    },
+    "village_militia_slinger": {
+      "file": "/assets/characters/pixel/combat-sprites/village_militia_slinger.png",
+      "cell": [
+        101,
+        88
+      ],
+      "anchor": [
+        50,
+        85
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "83e28be13f380a00f78fb8f7aa163138a9b1e7ad825deb072a0b06184ea10fb4",
+        "dash": "27f1d5a296de9ce42b2d5725e46d9fafd6477a3a06fbc7163d0c2515e94634f8",
+        "attack": "444f612f3ead4fb60242458d4884d1dcd0de3fef4dc9d791bbe69ea463526b14",
+        "cast": "9066d47ced7bf92cdb7ef6b0a8f2f7fa5de43febd43d373211069360a3d3c9b0"
+      },
+      "figureHeightPx": 83,
+      "idleBoundsPx": {
+        "left": 21,
+        "top": 2,
+        "right": 79,
+        "bottom": 85
+      },
+      "colors": 41,
+      "sha256": "2317687b41587e5c9fec2e737d86eedc5ae9fdebb3ea1640eb2be4474d5fe9f9"
+    },
+    "village_militia_spearman": {
+      "file": "/assets/characters/pixel/combat-sprites/village_militia_spearman.png",
+      "cell": [
+        94,
+        92
+      ],
+      "anchor": [
+        47,
+        90
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "11c0f6ec9872b21dd2d731205bd74601c41cecf94c6d1353bf195a63d21d71c8",
+        "dash": "71229a34a8a8ee7e59febb9d2d0beb960b84416e2246190e864d4d915e79dcd8",
+        "attack": "71fc6aa2822529e6b8d77e258ea238b7e3a3d3b5483b0c55b486705a1708e16b",
+        "cast": "24e2f9a166522c85378d5f02e7f68168c6bd4ab410e5eb59d2f239be0a128961"
+      },
+      "figureHeightPx": 88,
+      "idleBoundsPx": {
+        "left": 26,
+        "top": 2,
+        "right": 69,
+        "bottom": 90
+      },
+      "colors": 41,
+      "sha256": "7db40df59a372e3fb45c31b3cace5f71ddbedeb725b0c5f349561b630ff30cea"
+    },
+    "white_mage": {
+      "file": "/assets/characters/pixel/combat-sprites/white_mage.png",
+      "cell": [
+        99,
+        103
+      ],
+      "anchor": [
+        49,
+        99
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "1ab84b7bef8ff1e72b7ece90d0e8fc8f6e4a1ec6b2c4f76530b49af2b4f90a2e",
+        "dash": "e163ce75d756ac2f1b3630b9a55bbb0d16e69b88e7ac4554bfc7a657c76e00cf",
+        "attack": "20a332457c506c7b4882816736a8e6e6644c823147e5d7fc680fe3f4842a987f",
+        "cast": "2eae70aac4cbe44bb9178fa8fee44c3b437df4c84c537c65108f98597dcc7a4c"
+      },
+      "figureHeightPx": 91,
+      "idleBoundsPx": {
+        "left": 28,
+        "top": 8,
+        "right": 70,
+        "bottom": 101
+      },
+      "colors": 41,
+      "sha256": "f1fadb94fbc072ff8714d9b2e18ea580b6c7cf87469a049e6b6e80ac32cdf7ed"
+    },
+    "wild_boar": {
+      "file": "/assets/characters/pixel/combat-sprites/wild_boar.png",
+      "cell": [
+        94,
+        68
+      ],
+      "anchor": [
+        47,
+        65
+      ],
+      "presenceScale": 1.1795,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            300,
+            200,
+            300,
+            200
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "a3f7cbf41c2677d12d86c1ee0453fe9a860046da1995177a6dd90ad493dad449",
+        "dash": "79c0c6a72a3a3f372e7951e8cf5d270a4839e34207112b2e09dec315915dbae6",
+        "attack": "f1fe8aafe089fe50b0d0ce570c9b918ab5a3090dd349444549a2ff2a057ba413",
+        "cast": "97c05b5874d6b6a0243add0a3953c423adca7f4fe75538b5df80dbb369c1c4a0"
+      },
+      "figureHeightPx": 46,
+      "idleBoundsPx": {
+        "left": 13,
+        "top": 19,
+        "right": 82,
+        "bottom": 67
+      },
+      "colors": 41,
+      "sha256": "425b181eed6f8bf03d87420a39a20c943550b35f9ccabc4ce2fa757f49f3168a"
+    },
+    "wolf": {
+      "file": "/assets/characters/pixel/combat-sprites/wolf.png",
+      "cell": [
+        90,
+        73
+      ],
+      "anchor": [
+        42,
+        70
+      ],
+      "presenceScale": 1.0222,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            300,
+            200,
+            300,
+            200
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "3e7c15fd1452923c7046368c2d2f9cea2224c8a8ea48082eb25e337f0c2c727d",
+        "dash": "b9375c59b4afff7303512f08413dc30d535ffc6d0f55e1fc10180849b1905f27",
+        "attack": "431ca97b9fd3b2fb652d87a0db89490434d50cc8030072a74d7a681166db19b8",
+        "cast": "100228c1e73f1a5fa23dbf2369765f0e5a8fca31970a131193334ac31cf3c0eb"
+      },
+      "figureHeightPx": 47,
+      "idleBoundsPx": {
+        "left": 13,
+        "top": 23,
+        "right": 72,
+        "bottom": 71
+      },
+      "colors": 41,
+      "sha256": "055aff877a55f89c4b2e079c7005f5f74dcb363433749cad0e99e0a19d492384"
+    },
+    "young_dragon_elite": {
+      "file": "/assets/characters/pixel/combat-sprites/young_dragon_elite.png",
+      "cell": [
+        194,
+        167
+      ],
+      "anchor": [
+        97,
+        160
+      ],
+      "presenceScale": 1.6545,
+      "cells": [
+        "idle",
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle",
+            "idle_b",
+            "idle_b"
+          ],
+          "ms": [
+            420,
+            260,
+            420,
+            260
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "dash"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b",
+            "dash"
+          ],
+          "ms": [
+            90,
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "attack"
+          ],
+          "ms": [
+            360
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle_b",
+            "cast"
+          ],
+          "ms": [
+            110,
+            520
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "source": {
+        "prepare": "7e18d87bd031b4b740827017f8f53a67656badff53ba5846a4fdd5cdc793f2a6",
+        "dash": "45a5eeab01db06a7069524cb510eec20864cde38d889295fc37ced57b37fb46b",
+        "attack": "3e13cffa84c49fb608db73c3ab74e29599090933da4a556a63940e11b3106ea9",
+        "cast": "3b8dd469f26deebf168dd0413b1424cb3b0b4c05895604853f4f433bcbcebe1c"
+      },
+      "figureHeightPx": 158,
+      "idleBoundsPx": {
+        "left": 9,
+        "top": 2,
+        "right": 184,
+        "bottom": 164
+      },
+      "colors": 41,
+      "sha256": "5b8cd5f0d3372a89e72aea0179a6e5c631b5e136d8512d161bcc246d2336787b"
+    }
+  }
+}

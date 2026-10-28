@@ -9,8 +9,8 @@ import { UnitFocusController } from './UnitFocusController';
 import { combatInitializeMessageSchema } from './protocol';
 import { canStartDeployment, normalizeDeploymentLimit, orderDeploymentCandidates } from './deploymentRules';
 import { getUnitVisualState } from './unitVisualState';
-import { BackgroundLayerSystem } from '../render/BackgroundLayerSystem';
-import { combatBackgroundFor } from '../render/combatBackgrounds';
+import { CombatArena } from './arena/CombatArena';
+import { setPixelSpriteLight } from './pixel/PixelSpriteMaterial';
 import { COMBAT_PRESENTATION } from './combatPresentationConfig.js';
 import { VfxSystem } from './vfx/VfxSystem';
 import { getVfxPreset } from './vfx/VfxPresets';
@@ -31,6 +31,8 @@ import { resolveBossIntentVisualState } from './bossIntentPresentation';
 import { CombatStage } from './stage/CombatStage';
 import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
 import { isExhausted } from './combatExhaustion';
+import { resolvePixelSheet, pixelSheetVisibleBounds, PIXEL_PX_PER_UNIT } from './pixel/PixelSpriteSheets';
+import { PixelSpriteRig } from './pixel/PixelSpriteMaterial';
 import { combatLargeUnitPresenceScale } from './combatPresencePresentation';
 import { resolveStatusAnchorY, statusAnchorGap } from './statusAnchorPresentation';
 import { renderCombatResult, renderDeploymentCard, renderDeploymentPreview } from './combatShellPresentation';
@@ -67,6 +69,8 @@ let QA_FULL_AP=false;
 let QA_DEPLOY_ALL=false;
 let COMBAT_ID='standalone';
 let COMBAT_SCENE_ID='forest_route';
+// DEV: ?scene=<arena id> previews another arena in the standalone combat.
+if(import.meta.env.DEV&&new URLSearchParams(location.search).get('scene'))COMBAT_SCENE_ID=new URLSearchParams(location.search).get('scene');
 let COMBAT_OBJECTIVE='Vaincre tous les ennemis.';
 let COMBAT_LABEL='Combat tactique';
 let COMBAT_REWARDS=null;
@@ -168,7 +172,7 @@ function applyCam(){
 applyCam();
 
 // Lights
-scene.add(new THREE.HemisphereLight(0xcfd8ca,0x313d36,0.86));
+const hemi=new THREE.HemisphereLight(0xcfd8ca,0x313d36,0.86); scene.add(hemi);
 const sun=new THREE.DirectionalLight(0xffead1,1.78);
 sun.position.set(-9,15,9); sun.castShadow=true;
 sun.shadow.mapSize.set(1024,1024);
@@ -258,6 +262,15 @@ const PAL={
 };
 const SPR={};
 const externalSpriteCache=new Map();
+const pixelSheetTextures=new Map();
+async function preloadPixelSheet(unitId){
+  const entry=resolvePixelSheet(unitId); if(!entry||pixelSheetTextures.has(entry.unitId))return;
+  try{
+    const tex=await new THREE.TextureLoader().loadAsync(entry.file);
+    tex.colorSpace=THREE.SRGBColorSpace; tex.magFilter=THREE.LinearFilter; tex.minFilter=THREE.LinearFilter; tex.generateMipmaps=false; tex.wrapS=tex.wrapT=THREE.ClampToEdgeWrapping;
+    pixelSheetTextures.set(entry.unitId,tex);
+  }catch(err){ console.warn('Feuille pixel indisponible',entry.file,err); }
+}
 function drawUnit(kind){
   const GW=22,GH=30,S=8,P=PAL[kind];
   const cv=document.createElement('canvas'); cv.width=GW*S; cv.height=GH*S;
@@ -348,6 +361,7 @@ async function preloadExternalSprites(){
     ...strategicDefinitions.map(unit=>strategicVisualFor(unit)?.src||unit.portrait),
     ...Object.values(BOSS_PORTRAITS).map(portrait=>resolveStrategicUnitVisual(portrait)?.src||portrait),
   ].filter(url=>typeof url==='string'&&(url.startsWith('/assets/characters/pixel/combat/')||url.startsWith('/assets/characters/pixel/masters/'))))];
+  await Promise.all([...strategicVisuals.values()].map(visual=>preloadPixelSheet(visual.unitId)));
   if(!urls.length)return;
   await Promise.all(urls.map(async url=>{
     if(externalSpriteCache.has(url))return;
@@ -447,8 +461,11 @@ function buildGridOverlay(){
   const lines=new THREE.LineSegments(geo,material);lines.renderOrder=COMBAT_RENDER_LAYERS.TILE_BASE+.4;worldRoot.add(lines);G.gridLines=lines;
 }
 async function buildWorld(){
-  G.backgroundLayers=new BackgroundLayerSystem(scene);
-  await G.backgroundLayers.load(combatBackgroundFor(COMBAT_SCENE_ID));
+  G.arena=new CombatArena({sceneId:COMBAT_SCENE_ID,columns:CFG.W,rows:CFG.D,tile:CFG.TILE,reducedGraphics:REDUCED_GRAPHICS});
+  await G.arena.build();
+  worldRoot.add(G.arena.root);
+  G.arena.applyLighting({renderer,scene,hemi,sun,fill});
+  setPixelSpriteLight(G.arena.theme.spriteTint,G.arena.theme.spriteRim);
   syncCombatHudCamera();
   G.environment=buildSceneAmbience(COMBAT_SCENE_ID);
   const pickMaterial=new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false,color:0x000000});
@@ -533,7 +550,6 @@ function makeHazeTex(){
 }
 function buildSceneAmbience(sceneId){
   const p=SCENE_AMBIENCE[sceneId]||SCENE_AMBIENCE.forest_route;
-  scene.fog=new THREE.FogExp2(p.fog,p.density);
   const pos=new Float32Array(p.count*3),spd=[],phase=[];
   for(let i=0;i<p.count;i++){
     pos[i*3]=rnd(-p.area[0],p.area[0]); pos[i*3+1]=rnd(p.y[0],p.y[1]); pos[i*3+2]=rnd(-p.area[1],p.area[1]);
@@ -542,11 +558,11 @@ function buildSceneAmbience(sceneId){
   const geo=new THREE.BufferGeometry(); geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
   const mat=new THREE.PointsMaterial({map:makeSoftParticleTex(),color:p.color,size:p.size,transparent:true,opacity:p.opacity,depthWrite:false,depthTest:true,blending:THREE.AdditiveBlending,fog:false,toneMapped:false});
   const points=new THREE.Points(geo,mat); points.name='SceneAmbienceParticles'; points.renderOrder=1; points.raycast=()=>{}; scene.add(points);
-  const glowMat=new THREE.MeshBasicMaterial({map:makeGlowTex(),color:p.glowColor,transparent:true,opacity:p.glow,depthWrite:false,depthTest:false,blending:THREE.AdditiveBlending,fog:false,toneMapped:false});
-  const glow=new THREE.Mesh(new THREE.PlaneGeometry(24,15),glowMat); glow.name='SceneAmbienceGlow'; glow.position.set(0,2,-8); glow.renderOrder=-5; glow.raycast=()=>{}; scene.add(glow);
+  const glowMat=new THREE.MeshBasicMaterial({map:makeGlowTex(),color:p.glowColor,transparent:true,opacity:p.glow,depthWrite:false,depthTest:true,blending:THREE.AdditiveBlending,fog:false,toneMapped:false});
+  const glow=new THREE.Mesh(new THREE.PlaneGeometry(24,15),glowMat); glow.name='SceneAmbienceGlow'; glow.position.set(0,3,-14); glow.renderOrder=-5; glow.raycast=()=>{}; scene.add(glow);
   const hazeTex=makeHazeTex();
-  const hazeMat=new THREE.MeshBasicMaterial({map:hazeTex,color:p.mistColor,transparent:true,opacity:p.mistOpacity,depthWrite:false,depthTest:false,blending:THREE.NormalBlending,fog:false,toneMapped:false});
-  const haze=new THREE.Mesh(new THREE.PlaneGeometry(18,5.2),hazeMat); haze.name='SceneAmbienceHaze'; haze.position.set(0,1.12,-4.9); haze.renderOrder=-4; haze.raycast=()=>{}; scene.add(haze);
+  const hazeMat=new THREE.MeshBasicMaterial({map:hazeTex,color:p.mistColor,transparent:true,opacity:p.mistOpacity,depthWrite:false,depthTest:true,blending:THREE.NormalBlending,fog:false,toneMapped:false});
+  const haze=new THREE.Mesh(new THREE.PlaneGeometry(18,5.2),hazeMat); haze.name='SceneAmbienceHaze'; haze.position.set(0,1.4,-9.5); haze.scale.set(2.2,1.6,1); haze.renderOrder=-4; haze.raycast=()=>{}; scene.add(haze);
   const rayTex=makeRayTex();
   const rayMat=new THREE.MeshBasicMaterial({map:rayTex,color:p.rayColor,transparent:true,opacity:p.rayOpacity,depthWrite:false,depthTest:false,blending:THREE.AdditiveBlending,fog:false,toneMapped:false});
   const rays=new THREE.Mesh(new THREE.PlaneGeometry(20,10),rayMat); rays.name='SceneAmbienceRays'; rays.position.set(-1.4,4.6,-7.4); rays.rotation.z=-0.08; rays.renderOrder=-4.5; rays.raycast=()=>{}; scene.add(rays);
@@ -949,8 +965,11 @@ function resetUnitSpriteScale(u){
 function createUnit(def){
   const strategicVisual=strategicVisualFor(def);
   const s=externalSpriteCache.get(strategicVisual?.src||def.portrait)||externalSpriteCache.get(def.portrait)||SPR[def.kind];
-  const visualPresenceScale=s.authoritativePhysicalScale&&(def.boss||def.elite||def.size>1)
-    ?combatLargeUnitPresenceScale(s.strategicVisual,def.boss?'boss':'elite'):1;
+  const pixelEntry=strategicVisual?resolvePixelSheet(strategicVisual.unitId):undefined;
+  const pixelTexture=pixelEntry?pixelSheetTextures.get(pixelEntry.unitId):undefined;
+  const pixel=pixelEntry&&pixelTexture?new PixelSpriteRig(pixelEntry,pixelTexture):null;
+  const visualPresenceScale=pixel?1:(s.authoritativePhysicalScale&&(def.boss||def.elite||def.size>1)
+    ?combatLargeUnitPresenceScale(s.strategicVisual,def.boss?'boss':'elite'):1);
   const grp=new THREE.Group();
   const shadowScale=COMBAT_PRESENTATION.units.shadowScale;
   const blob=new THREE.Mesh(new THREE.PlaneGeometry(1.32*shadowScale,1.32*0.5*shadowScale),new THREE.MeshBasicMaterial({map:blobTex,transparent:true,depthWrite:false,opacity:COMBAT_PRESENTATION.units.shadowOpacity,fog:false,toneMapped:false}));
@@ -965,9 +984,11 @@ function createUnit(def){
   const outlineMat=new THREE.MeshBasicMaterial({map:s.tex,color:0x03050a,transparent:true,opacity:0.44,alphaTest:0.05,depthWrite:false,side:THREE.DoubleSide,fog:false,toneMapped:false});
   const outline=new THREE.Mesh(new THREE.PlaneGeometry(s.w*visualPresenceScale,s.h*visualPresenceScale),outlineMat);
   outline.position.y=s.baseY??s.h*0.5; outline.scale.set(1.1,1.1,1); outline.renderOrder=COMBAT_RENDER_LAYERS.UNIT_OUTLINE; grp.add(outline);
-  const mat=new THREE.MeshBasicMaterial({map:s.tex,transparent:true,alphaTest:0.05,depthWrite:false,side:THREE.DoubleSide,fog:false,toneMapped:false});
-  const spr=new THREE.Mesh(new THREE.PlaneGeometry(s.w*visualPresenceScale,s.h*visualPresenceScale),mat);
-  spr.position.y=s.baseY??s.h*0.5; spr.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SPRITE; grp.add(spr);
+  // Pixel sheets carry their own ink outline; the soft silhouette halo is for painted sprites only.
+  if(pixel)outline.visible=false;
+  const mat=pixel?pixel.handle.material:new THREE.MeshBasicMaterial({map:s.tex,transparent:true,alphaTest:0.05,depthWrite:false,side:THREE.DoubleSide,fog:false,toneMapped:false});
+  const spr=new THREE.Mesh(pixel?pixel.createGeometry():new THREE.PlaneGeometry(s.w*visualPresenceScale,s.h*visualPresenceScale),mat);
+  spr.position.y=pixel?pixel.layout.centerY:(s.baseY??s.h*0.5); spr.renderOrder=COMBAT_RENDER_LAYERS.UNIT_SPRITE; grp.add(spr);
   const statusIndicatorGroup=new THREE.Group(); statusIndicatorGroup.name='status-indicators'; statusIndicatorGroup.renderOrder=STATUS_BADGE_RENDER_ORDER; grp.add(statusIndicatorGroup);
   scene.add(grp);
   const unitMaxAp=Number.isFinite(def.maxap)?def.maxap:Number.isFinite(def.maxAp)?def.maxAp:5;
@@ -982,17 +1003,18 @@ function createUnit(def){
     spriteFacing:def.spriteFacing??1,
     facing:def.team==='player'?{dx:1,dz:0}:{dx:-1,dz:0},
     visualFacingX:def.team==='player'?1:-1,
-    grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, statusIndicatorGroup, spriteHeight:s.h*visualPresenceScale, baseY:(s.baseY??s.h*0.5)*visualPresenceScale,
-    authoritativePhysicalScale:!!s.authoritativePhysicalScale,strategicVisualUnitId:strategicVisual?.unitId||null,strategicVisual:strategicVisual||null,
-    visualPresenceScale,
-    statusVisibleBounds:s.strategicVisual?{sourceSizePx:s.strategicVisual.sourceSizePx,alphaBoundsPx:s.strategicVisual.alphaBoundsPx}:null,
+    grp, spr, outline, mat, blob, teamGlow, teamRingUnder, teamRing, statusIndicatorGroup, spriteHeight:pixel?pixel.layout.height:s.h*visualPresenceScale, baseY:pixel?pixel.layout.centerY:(s.baseY??s.h*0.5)*visualPresenceScale,
+    authoritativePhysicalScale:!!(pixel||s.authoritativePhysicalScale),strategicVisualUnitId:strategicVisual?.unitId||null,strategicVisual:strategicVisual||null,
+    visualPresenceScale:pixel?pixelEntry.presenceScale:visualPresenceScale, pixel,
+    statusVisibleBounds:pixel?pixelSheetVisibleBounds(pixelEntry):s.strategicVisual?{sourceSizePx:s.strategicVisual.sourceSizePx,alphaBoundsPx:s.strategicVisual.alphaBoundsPx}:null,
     cell(){ return cellAt(this.gx,this.gz); }
   };
   const spriteScale=largeUnitSpriteScale(u);
-  u.visualHeight=s.h*visualPresenceScale*spriteScale;
-  u.visualWidth=s.w*visualPresenceScale*spriteScale;
+  u.visualHeight=pixel?pixelEntry.figureHeightPx/PIXEL_PX_PER_UNIT:s.h*visualPresenceScale*spriteScale;
+  u.visualWidth=pixel?(pixelEntry.idleBoundsPx.right-pixelEntry.idleBoundsPx.left)/PIXEL_PX_PER_UNIT:s.w*visualPresenceScale*spriteScale;
   if(u.size>1){ blob.scale.set(u.size,u.size,1); teamGlow.scale.set(u.size,u.size,1); teamRing.scale.set(u.size,u.size,1); if(teamRingUnder)teamRingUnder.scale.set(u.size,u.size,1); }
-  if(u.authoritativePhysicalScale){ u.baseY=s.baseY*visualPresenceScale; spr.position.y=u.baseY; outline.position.y=u.baseY; }
+  if(pixel){ outline.position.y=u.baseY; }
+  else if(u.authoritativePhysicalScale){ u.baseY=s.baseY*visualPresenceScale; spr.position.y=u.baseY; outline.position.y=u.baseY; }
   else if(u.size>1){ u.baseY=s.h*0.5*spriteScale-s.h*COMBAT_PRESENTATION.units.largeUnitGroundOffset; spr.position.y=u.baseY; outline.position.y=u.baseY; }
   else if(u.team==='player'){ u.baseY=s.h*0.5-s.h*COMBAT_PRESENTATION.units.heroGroundOffset; spr.position.y=u.baseY; outline.position.y=u.baseY; }
   resetUnitSpriteScale(u);
@@ -1102,6 +1124,7 @@ function buildPath(prev,u,gx,gz){ const path=[]; const s=u.gx+','+u.gz; let k=gx
 async function moveAlong(u,path){
   if(!path.length)return;
   G.busy=true; clearHL(); killSpriteMotion(u); const epoch=beginUnitMotion(u),motion=UNIT_MOTION_PRESETS.move_step;
+  playPixelAnim(u,'move');
   try{
     for(const [gx,gz] of path){
       if(!isUnitMotionCurrent(u,epoch))return;
@@ -1123,6 +1146,7 @@ async function moveAlong(u,path){
     const settle=[tweenP(u.spr.scale,{x:sign*scale,y:scale},settleHalf,easeInOut)]; if(u.outline){ const os=spriteScaleSign(u.outline); settle.push(tweenP(u.outline.scale,{x:os*outlineScale,y:outlineScale},settleHalf,easeInOut)); } await Promise.all(settle);
   } finally {
     if(isUnitMotionCurrent(u,epoch))restoreUnitVisualBaseline(u);
+    playPixelAnim(u,'idle');
     G.busy=false;
   }
 }
@@ -1176,6 +1200,7 @@ async function playUnitHitReaction(u,opts={}){
   const baseline=motionBaseline(u); killSpriteMotion(u); const epoch=beginUnitMotion(u); u._motionPlaying=true;
   try{
     const flashColor=critical?'#fff3b0':'#ff6a5a';
+    playPixelAnim(u,'hurt'); if(u.pixel)u.pixel.flash(critical?1:0.8);
     if(u.mat){ u.mat.color.set(flashColor); setTimeout(()=>{if(u.alive&&u.mat)u.mat.color.set('#ffffff');},reduced?90:(critical?180:140)); }
     const away=opts.source?motionDirection(u,{source:opts.source,reaction:true},true):{x:0,z:0};
     const hitDist=(critical?0.15:(isBoss?0.07:0.12))*(reduced?0.65:1);
@@ -1192,7 +1217,7 @@ async function playUnitHitReaction(u,opts={}){
     const recoil=tweenP(u.grp.position,{x:baseline.group.x,y:baseline.group.y,z:baseline.group.z},hitBack,easeInOut);
     if(u.outline){ const osqY=os*(1-squashAmt),osqX=os*(1+squashAmt*0.45); tween(u.outline.scale,{x:og*osqX,y:osqY},hitBack*0.35,easeOutCubic,()=>{ tween(u.outline.scale,{x:og*os,y:os},hitBack*0.65,easeInOut); }); }
     await Promise.all([shake,squash,recoil]);
-  } finally { if(isUnitMotionCurrent(u,epoch))spriteReturnBaseline(u,baseline); }
+  } finally { if(isUnitMotionCurrent(u,epoch)){ spriteReturnBaseline(u,baseline); playPixelAnim(u,'idle'); } }
 }
 const VFX_GEO={spark:new THREE.SphereGeometry(1,6,6),ring:new THREE.RingGeometry(0.1,0.34,28)};
 function disposeVFXMesh(m){ if(!m)return; scene.remove(m); if(m.material)m.material.dispose(); if(m.geometry&&m.geometry!==VFX_GEO.spark&&m.geometry!==VFX_GEO.ring)m.geometry.dispose(); }
@@ -1260,6 +1285,14 @@ function motionDirection(u,context={},away=false){
   return {x:dx/len,z:dz/len};
 }
 function spriteScaleSign(mesh){ return mesh&&mesh.scale.x<0?-1:1; }
+/** Pixel-sheet keyframes ride on top of the code motion (windup, dash, recoil). */
+function playPixelAnim(u,name,restart=true){ if(u&&u.pixel)u.pixel.play(name,restart); }
+function pixelAnimForPreset(presetId){
+  if(presetId==='melee_light'||presetId==='melee_heavy'||presetId==='ranged_attack')return 'attack';
+  if(presetId==='hit_reaction'||presetId==='knockout')return 'hurt';
+  if(presetId==='move_step'||presetId==='move_leap')return 'move';
+  return 'cast';
+}
 async function spriteSquash(u,amount,duration,isCurrent=()=>true){
   if(!amount)return; const spriteScale=largeUnitSpriteScale(u),outlineScale=spriteScale*1.1;
   const spriteSign=spriteScaleSign(u.spr),outlineSign=spriteScaleSign(u.outline);
@@ -1287,26 +1320,32 @@ async function playSpriteMotion(u,presetId,context={}){
   try{
     if(presetId==='melee_light'||presetId==='melee_heavy'){
       const squash=spriteSquash(u,preset.squash,preset.windup*0.45,current);
+      playPixelAnim(u,'windup');
       await spriteWindup(u,baseline,direction,preset); await squash; if(!current())return;
+      playPixelAnim(u,'attack');
       await spriteDash(u,baseline,direction,preset); await impactIfCurrent(); if(!current())return;
       await spriteRecoil(u,baseline,preset.recoil);
     } else if(presetId==='ranged_attack'){
+      playPixelAnim(u,'attack');
       await spriteWindup(u,baseline,direction,preset); await impactIfCurrent(); if(!current())return;
       await spriteRecoil(u,baseline,preset.recoil);
     } else if(presetId==='magic_cast'||presetId==='heal_cast'||presetId==='buff_cast'||presetId==='debuff_cast'||presetId==='teleport'){
       const squash=spriteSquash(u,preset.squash,(preset.cast||0.16)*0.4,current);
+      playPixelAnim(u,'cast');
       await spriteCastLift(u,baseline,preset); await squash; if(!current())return; await impactIfCurrent(); if(!current())return;
       await spriteRecoil(u,baseline,preset.recoil);
     } else if(presetId==='self_aoe'||presetId==='move_leap'){
       const squash=spriteSquash(u,preset.squash,(preset.jumpUp||0.16)*0.4,current);
+      playPixelAnim(u,presetId==='move_leap'?'move':'cast');
       await spriteJump(u,baseline,preset,current); await squash; if(!current())return; await impactIfCurrent();
     } else if(presetId==='hit_reaction'||presetId==='knockout'){
+      playPixelAnim(u,'hurt'); if(u.pixel)u.pixel.flash(0.7);
       const away=motionDirection(u,{...context,reaction:true},true),d=(preset.hitDistance||0.11)*(u.size>1?1.08:1);
       const shake=spriteHitShake(u,d*0.55,(preset.hitOut||0.06)+(preset.hitBack||0.12)),squash=spriteSquash(u,preset.squash,(preset.hitOut||0.06)*0.55);
       await tweenP(u.grp.position,{x:baseline.group.x+away.x*d,y:baseline.group.y,z:baseline.group.z+away.z*d},preset.hitOut||0.06,easeOutCubic);
       await Promise.all([shake,squash]); if(!current())return; await spriteRecoil(u,baseline,preset.hitBack||0.12); await impactIfCurrent();
     } else await impactIfCurrent();
-  } finally { if(current())spriteReturnBaseline(u,baseline); }
+  } finally { if(current()){ spriteReturnBaseline(u,baseline); playPixelAnim(u,'idle'); } }
 }
 
 function orientMult(att,tgt){ const ax=(att.size>1?bossCenterGX(att):att.gx)-tgt.gx, az=(att.size>1?bossCenterGZ(att):att.gz)-tgt.gz; const len=Math.hypot(ax,az)||1; const d=tgt.facing.dx*(ax/len)+tgt.facing.dz*(az/len); if(d>0.55)return{m:1.0,lab:'face'}; if(d<-0.55)return{m:1.3,lab:'DOS'}; return{m:1.15,lab:'flanc'}; }
@@ -1347,6 +1386,7 @@ function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; const reques
 async function knockOut(u,src){
   const baseline=motionBaseline(u),away=src?motionDirection(u,{source:src,reaction:true},true):{x:0,z:0},state=getUnitVisualState(u.team,false,true),sign=spriteScaleSign(u.spr),scale=largeUnitSpriteScale(u),outlineScale=scale*1.1;
   killSpriteMotion(u); const epoch=beginUnitMotion(u); u.alive=false; u.downed=true; clearBossIntentPresentation(u);
+  playPixelAnim(u,'ko'); if(u.pixel)u.pixel.flash(1);
   if(u.size>1)clearBossCells(u); else { const c=u.cell(); if(c&&c.occupant===u)c.occupant=null; }
   if(!G.stage)floatText(u,'K.O.','#ff5a4a',true); logMsg(u.name+' est K.O. !'); screenShake(0.5,0.4,true); screenFlash('#ff5a4a',0.22); refreshTurnbar();
   try{
@@ -1450,7 +1490,7 @@ function isPureSwapAction(spec){
 }
 function restoreUnitVisualBaseline(u){
   if(!u||!u.alive||!u.grp)return;
-  const baseline=motionBaseline(u); spriteReturnBaseline(u,baseline); u.grp.visible=true;
+  const baseline=motionBaseline(u); spriteReturnBaseline(u,baseline); u.grp.visible=true; playPixelAnim(u,'idle',false);
   if(u.mat){ u.mat.opacity=1; if(u.mat.color)u.mat.color.set('#ffffff'); }
   if(u.outline&&u.outline.material)u.outline.material.opacity=.44;
   if(u.blob&&u.blob.material)u.blob.material.opacity=COMBAT_PRESENTATION.units.shadowOpacity;
@@ -2282,11 +2322,14 @@ function animate(){ if(_runtimeDisposed)return; _animationFrame=requestAnimation
   for(const u of G.units){ const dx=camera.position.x-u.grp.position.x, dz=camera.position.z-u.grp.position.z; u.spr.rotation.y=Math.atan2(dx,dz); if(u.outline){ u.outline.rotation.y=u.spr.rotation.y; u.outline.material.opacity=Math.max(0.16,u.mat.opacity*0.44); }
     if(u.teamRing){ if(!u.alive){ u.teamRing.material.opacity=0; if(u.teamRingUnder)u.teamRingUnder.material.opacity=0; if(u.teamGlow)u.teamGlow.material.opacity=0; } else if(!u._motionPlaying){ const isActive=u===G.active&&!G.stage&&!G.over,isHover=G.hoverUnit===u,isTarget=G.mode==='target'&&G.pending&&G.pending.keys.has(cellKey(u.gx,u.gz))&&G.active&&u.team!==G.active.team; u.teamRing.material.opacity=Math.min(1,COMBAT_PRESENTATION.units.teamRingOpacity*(isActive?1.16:(isTarget?1.12:(isHover?1.08:0.94)))); if(u.teamRingUnder)u.teamRingUnder.material.opacity=isActive ? .68 : (isTarget ? .64 : (isHover ? .6 : .5)); if(u.teamGlow)u.teamGlow.material.opacity=isActive ? .28 : (isTarget ? .25 : (isHover ? .22 : (u.team==='player' ? .15 : .17))); } }
     syncBossIntentPresentation(u,_t);
-    if(u.alive) u.spr.position.y=u.baseY+(u===G.active?Math.sin(_t*3.2)*0.05:0); syncStatusIndicators(u,_t); }
+    if(u.pixel)u.pixel.update(dt);
+    // Pixel sprites bob on whole art pixels so the grid never swims.
+    if(u.alive){ const bob=u===G.active?Math.sin(_t*3.2)*0.05:0; u.spr.position.y=u.baseY+(u.pixel?Math.round(bob*PIXEL_PX_PER_UNIT)/PIXEL_PX_PER_UNIT:bob); } syncStatusIndicators(u,_t); }
   Grade.uniforms.time.value=_t*1000;
   for(const m of G_timeMats) if(m.uniforms&&m.uniforms.t) m.uniforms.t.value=_t;
   if(G.dust){ G.dust.mesh.visible=!REDUCED_GRAPHICS; const p=G.dust.mesh.geometry.attributes.position; for(let i=0;i<G.dust.N;i++){ let y=p.getY(i)+G.dust.spd[i]*dt; if(y>7.5)y=0.3; p.setY(i,y); p.setX(i,p.getX(i)+Math.sin(_t+i)*0.0016); } p.needsUpdate=true; }
   if(G.environment)G.environment.update(_t,dt,REDUCED_GRAPHICS);
+  if(G.arena)G.arena.update(_t,dt,camera);
   if(G.backgroundLayers)G.backgroundLayers.update(dt,camera,REDUCED_GRAPHICS);
   if(G.groundCover){
     const tactical=G.mode==='move'||G.mode==='target';

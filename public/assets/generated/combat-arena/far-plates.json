@@ -1,0 +1,41 @@
+{
+  "forest_route": {
+    "file": "/assets/generated/combat-arena/forest_route-far.webp",
+    "size": [
+      1672,
+      470
+    ],
+    "horizonRgb": [
+      66,
+      78,
+      82
+    ],
+    "source": "demo-environment-pack-v1/strategic/forest-route-strategic.png"
+  },
+  "bois_clair_burning": {
+    "file": "/assets/generated/combat-arena/bois_clair_burning-far.webp",
+    "size": [
+      1672,
+      489
+    ],
+    "horizonRgb": [
+      72,
+      45,
+      30
+    ],
+    "source": "demo-environment-pack-v1/strategic/bois-clair-burning-strategic.png"
+  },
+  "lion_sanctum": {
+    "file": "/assets/generated/combat-arena/lion_sanctum-far.webp",
+    "size": [
+      1672,
+      499
+    ],
+    "horizonRgb": [
+      39,
+      47,
+      61
+    ],
+    "source": "demo-environment-pack-v1/strategic/lion-sanctum-strategic.png"
+  }
+}
