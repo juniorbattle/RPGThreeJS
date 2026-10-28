@@ -31,6 +31,16 @@ interface LiveEffect {
 }
 
 type Vec = THREE.Vector3;
+
+/**
+ * Draw order against the combat layers (combatRenderLayers.ts): ground marks
+ * stay under the unit sprites (50), everything that stands up (sparks, stars,
+ * slashes, flames, beams) draws over them, under the floating text (90).
+ */
+const FX_LAYER = {
+  groundDecal: 27, groundCircle: 28, groundRing: 29,
+  volume: 75, beam: 76, billboard: 77, sparks: 78, slash: 79, projectile: 80, sheet: 81,
+} as const;
 const tmpV = new THREE.Vector3();
 const tmpQ = new THREE.Quaternion();
 const Z_AXIS = new THREE.Vector3(0, 0, 1);
@@ -275,6 +285,17 @@ export class FxEngine {
     this.live.push(fx);
   }
 
+  /**
+   * Moves a standing effect a little toward the camera, so an effect centred
+   * on a unit is drawn over its sprite instead of fighting the same depth.
+   */
+  private nudge(position: Vec, amount = 0.32): Vec {
+    this.camera.getWorldPosition(tmpV);
+    const dx = tmpV.x - position.x, dz = tmpV.z - position.z;
+    const len = Math.hypot(dx, dz) || 1;
+    return new THREE.Vector3(position.x + (dx / len) * amount, position.y, position.z + (dz / len) * amount);
+  }
+
   private billboard(mesh: THREE.Object3D, camera: THREE.Camera, roll = 0): void {
     camera.getWorldQuaternion(tmpQ);
     mesh.quaternion.copy(tmpQ);
@@ -327,11 +348,13 @@ export class FxEngine {
     const material = new THREE.ShaderMaterial({
       uniforms: { uScale: { value: 900 }, uSoft: { value: options.soft ? 1 : 0 } },
       vertexShader: POINTS_VERTEX, fragmentShader: POINTS_FRAGMENT,
-      transparent: true, depthWrite: false, blending: options.additive === false ? THREE.NormalBlending : THREE.AdditiveBlending, toneMapped: false, fog: false,
+      // Hard sparks are opaque pixels (bright values still bloom): they stay
+      // readable over a sunlit forest, where additive sparks wash out.
+      transparent: true, depthWrite: false, blending: (options.additive ?? options.soft ?? false) ? THREE.AdditiveBlending : THREE.NormalBlending, toneMapped: false, fog: false,
     });
     const points = new THREE.Points(geometry, material);
     points.frustumCulled = false;
-    points.renderOrder = 30;
+    points.renderOrder = FX_LAYER.sparks;
     this.root.add(points);
     const gravity = options.gravity ?? 4, drag = options.drag ?? 1.6;
     let t = 0;
@@ -386,8 +409,8 @@ export class FxEngine {
     const material = rampMaterial(map, FX_PALETTES[element], { additive: options.additive, sweep: options.sweep });
     material.uniforms.uBoost!.value = options.boost ?? 1.25;
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(width, height), material);
-    mesh.position.copy(position);
-    mesh.renderOrder = 31;
+    mesh.position.copy(options.follow ? position : this.nudge(position));
+    mesh.renderOrder = FX_LAYER.billboard;
     mesh.frustumCulled = false;
     this.root.add(mesh);
     let t = 0;
@@ -410,7 +433,10 @@ export class FxEngine {
   }
 
   impactStar(position: Vec, element: FxElement, size = 1.4, duration = 0.28): void {
-    this.rampBillboard(this.textures.star, element, size, size, position, { duration, grow: [0.35, 1.25], roll: hash(this.clock) * Math.PI, fadeIn: 0.05, boost: 1.6 });
+    const roll = hash(this.clock) * Math.PI;
+    // dark backing: the star keeps a silhouette on bright ground
+    this.rampBillboard(this.textures.star, element, size * 1.12, size * 1.12, position, { duration: duration * 0.9, grow: [0.35, 1.25], roll, fadeIn: 0.05, boost: 0.32, additive: false });
+    this.rampBillboard(this.textures.star, element, size, size, position, { duration, grow: [0.35, 1.25], roll, fadeIn: 0.05, boost: 2.0 });
     this.rampBillboard(this.textures.disc, element, size * 0.8, size * 0.8, position, { duration: duration * 0.8, grow: [0.6, 1.4], fadeIn: 0.02, boost: 1.2 });
   }
 
@@ -419,9 +445,12 @@ export class FxEngine {
   }
 
   /** Sweeping crescent slash in screen space, rolled by `angle` (radians). */
-  slash(position: Vec, element: FxElement, options: { angle?: number; size?: number; duration?: number; flip?: boolean; thickness?: number } = {}): void {
+  slash(position: Vec, element: FxElement, options: { angle?: number; size?: number; duration?: number; flip?: boolean; thickness?: number; under?: boolean; dark?: boolean } = {}): void {
     const size = options.size ?? 2.2, duration = options.duration ?? 0.32;
-    const thickness = options.thickness ?? 0.55;
+    const thickness = options.thickness ?? 0.8;
+    // A dark, slightly larger blade under the bright one carves the arc into
+    // any background (sunlit stone, snow, fire).
+    if (options.under !== false) this.slash(position, element, { ...options, size: size * 1.07, thickness: thickness * 1.25, under: false, dark: true });
     const geometry = new THREE.RingGeometry(size * (0.5 - thickness * 0.25), size * 0.5, 40, 1, Math.PI * 0.08, Math.PI * 0.84);
     // remap uv: u along arc, v across the blade
     const uv = geometry.attributes.uv as THREE.BufferAttribute;
@@ -432,11 +461,15 @@ export class FxEngine {
       const a = Math.atan2(y, x), r = Math.hypot(x, y);
       uv.setXY(i, clamp01((a - Math.PI * 0.08) / (Math.PI * 0.84)), clamp01((r - inner) / (outer - inner)));
     }
-    const material = rampMaterial(this.textures.crescent, FX_PALETTES[element], { sweep: true });
-    material.uniforms.uBoost!.value = 1.7;
+    // the blade's apex, not the arc's centre, sits on the anchor: the cut
+    // crosses the target instead of hovering above it like a halo
+    geometry.translate(0, -(inner + outer) / 2, 0);
+    const dark = options.dark === true;
+    const material = rampMaterial(this.textures.crescent, FX_PALETTES[element], { sweep: true, additive: !dark });
+    material.uniforms.uBoost!.value = dark ? 0.28 : 2.1;
     const mesh = new THREE.Mesh(geometry, material);
-    mesh.position.copy(position);
-    mesh.renderOrder = 32;
+    mesh.position.copy(this.nudge(position, 0.4));
+    mesh.renderOrder = dark ? FX_LAYER.billboard : FX_LAYER.slash;
     mesh.frustumCulled = false;
     if (options.flip) mesh.scale.x = -1;
     this.root.add(mesh);
@@ -451,7 +484,7 @@ export class FxEngine {
         const head = easeOut(Math.min(1, k * 1.6)) * 1.05;
         const tail = Math.max(0, (k - 0.25) / 0.75) * 1.05;
         material.uniforms.uSweep!.value.set(head, tail);
-        material.uniforms.uOpacity!.value = k > 0.8 ? (1 - k) / 0.2 : 1;
+        material.uniforms.uOpacity!.value = (k > 0.8 ? (1 - k) / 0.2 : 1) * (dark ? 0.7 : 1);
         return k < 1;
       },
       dispose: () => { this.root.remove(mesh); geometry.dispose(); material.dispose(); },
@@ -463,11 +496,11 @@ export class FxEngine {
   ring(position: Vec, element: FxElement, options: { radius?: number; duration?: number; ground?: boolean; from?: number; boost?: number } = {}): void {
     const radius = options.radius ?? 1.6, duration = options.duration ?? 0.5;
     const material = rampMaterial(this.textures.ring, FX_PALETTES[element]);
-    material.uniforms.uBoost!.value = options.boost ?? 1.9;
+    material.uniforms.uBoost!.value = options.boost ?? 2.3;
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
     mesh.position.copy(position);
     if (options.ground !== false) { mesh.rotation.x = -Math.PI / 2; mesh.position.y = Math.max(position.y, 0.06); }
-    mesh.renderOrder = 29;
+    mesh.renderOrder = FX_LAYER.groundRing;
     mesh.frustumCulled = false;
     this.root.add(mesh);
     let t = 0;
@@ -493,7 +526,7 @@ export class FxEngine {
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(radius * 2, radius * 2), material);
     mesh.rotation.x = -Math.PI / 2;
     mesh.position.set(position.x, Math.max(0.05, position.y + 0.05), position.z);
-    mesh.renderOrder = 28;
+    mesh.renderOrder = FX_LAYER.groundCircle;
     this.root.add(mesh);
     let t = 0;
     const spin = options.spin ?? 1.2;
@@ -518,8 +551,8 @@ export class FxEngine {
     const geometry = new THREE.PlaneGeometry(radius * 2, height);
     geometry.translate(0, height / 2, 0);
     const mesh = new THREE.Mesh(geometry, material);
-    mesh.position.set(position.x, Math.max(0, position.y - 0.05), position.z);
-    mesh.renderOrder = 33;
+    mesh.position.copy(this.nudge(position, 0.25)).setY(Math.max(0, position.y - 0.05));
+    mesh.renderOrder = FX_LAYER.beam;
     mesh.frustumCulled = false;
     this.root.add(mesh);
     let t = 0;
@@ -548,7 +581,7 @@ export class FxEngine {
     const mesh = new THREE.Mesh(geometry, material);
     const mid = from.clone().add(to).multiplyScalar(0.5);
     mesh.position.copy(mid);
-    mesh.renderOrder = 33;
+    mesh.renderOrder = FX_LAYER.slash;
     mesh.frustumCulled = false;
     this.root.add(mesh);
     const axis = to.clone().sub(from).normalize();
@@ -582,7 +615,7 @@ export class FxEngine {
       const material = rampMaterial(this.textures.disc, FX_PALETTES[element]);
       material.uniforms.uBoost!.value = 1.8;
       const mesh = new THREE.Mesh(new THREE.PlaneGeometry(size, options.streak ? size * 0.32 : size), material);
-      mesh.renderOrder = 34;
+      mesh.renderOrder = FX_LAYER.projectile;
       mesh.frustumCulled = false;
       this.root.add(mesh);
       const dir = to.clone().sub(from);
@@ -640,7 +673,7 @@ export class FxEngine {
           const seg = new THREE.Mesh(new THREE.CylinderGeometry(w, w, len, 5, 1, true), mat);
           seg.position.copy(a).add(b).multiplyScalar(0.5);
           seg.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), b.clone().sub(a).normalize());
-          seg.renderOrder = 35;
+          seg.renderOrder = FX_LAYER.projectile;
           group.add(seg);
         }
       }
@@ -711,7 +744,7 @@ export class FxEngine {
     });
     const mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 14, 0, Math.PI * 2, 0, Math.PI / 2), material);
     mesh.position.set(position.x, Math.max(0, position.y - 0.05), position.z);
-    mesh.renderOrder = 30;
+    mesh.renderOrder = FX_LAYER.volume;
     this.root.add(mesh);
     let t = 0;
     this.add({
@@ -750,8 +783,8 @@ export class FxEngine {
     const geometry = new THREE.PlaneGeometry(width, height);
     geometry.translate(0, height / 2, 0);
     const mesh = new THREE.Mesh(geometry, material);
-    mesh.position.set(position.x, Math.max(0, position.y - 0.05), position.z);
-    mesh.renderOrder = 33;
+    mesh.position.copy(this.nudge(position, 0.34)).setY(Math.max(0, position.y - 0.05));
+    mesh.renderOrder = FX_LAYER.beam;
     mesh.frustumCulled = false;
     this.root.add(mesh);
     let t = 0;
@@ -790,7 +823,7 @@ export class FxEngine {
     const material = new THREE.MeshBasicMaterial({ map, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, fog: false });
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(size, size), material);
     mesh.position.copy(position);
-    mesh.renderOrder = 36;
+    mesh.renderOrder = FX_LAYER.sheet;
     mesh.frustumCulled = false;
     this.root.add(mesh);
     let t = 0;
@@ -814,7 +847,7 @@ export class FxEngine {
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(radius * 2, radius * 2), material);
     mesh.rotation.x = -Math.PI / 2;
     mesh.position.set(position.x, 0.04, position.z);
-    mesh.renderOrder = 27;
+    mesh.renderOrder = FX_LAYER.groundDecal;
     this.root.add(mesh);
     let t = 0;
     this.add({

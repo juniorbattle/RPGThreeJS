@@ -12,7 +12,7 @@ export type CombatSfxId =
   | 'cast' | 'whoosh' | 'magic_hit' | 'explosion' | 'fire_burst' | 'breath' | 'thunder' | 'ice' | 'earth'
   | 'quake' | 'land' | 'teleport' | 'wind' | 'holy_charge' | 'holy' | 'heal' | 'shield' | 'curse' | 'void'
   | 'bite' | 'poison' | 'dash' | 'ultimate_charge' | 'ultimate_hit' | 'meteor' | 'miracle' | 'crit' | 'ko'
-  | 'step' | 'ui' | 'turn' | 'victory' | 'defeat';
+  | 'step' | 'ui' | 'turn' | 'victory' | 'defeat' | 'impact_heavy' | 'field_wave';
 
 export type CombatAmbienceId = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum';
 
@@ -181,6 +181,9 @@ export function createCombatSfx(options: { enabled?: boolean } = {}): CombatSfx 
     miracle: (o, t, p) => { chime(o, t, [523 * p, 659 * p, 784 * p, 1047 * p, 1319 * p], 0.09, 1.2, 0.08); for (const f of [262, 392]) tone(o, t, f * p, 'sine', 1.6, 0.12, { attack: 0.3 }); return 1.7; },
     crit: (o, t, p) => { tone(o, t, 1800 * p, 'square', 0.05, 0.1, { to: 600 }); tone(o, t, 120 * p, 'sine', 0.3, 0.9, { to: 40 }); hiss(o, t, 0.12, 'highpass', 4000, 0.7, 0.5); chime(o, t + 0.05, [1568 * p, 2093 * p], 0.05, 0.25, 0.06); return 0.35; },
     ko: (o, t, p) => { tone(o, t, 330 * p, 'triangle', 0.5, 0.18, { to: 90 }); hiss(o, t, 0.3, 'lowpass', 900, 0.8, 0.3); return 0.5; },
+    impact_heavy: (o, t, p) => { tone(o, t, 95 * p, 'sine', 0.5, 0.9, { to: 34 }); hiss(o, t, 0.04, 'highpass', 4200, 0.7, 0.45); hiss(o, t + 0.02, 0.4, 'lowpass', 1100, 0.6, 0.55, { to: 160 }); return 0.52; },
+    // ultimate field wave: a sub boom that rolls out, a rising rush of air and a bright shimmer on top
+    field_wave: (o, t, p) => { tone(o, t, 48 * p, 'sine', 1.8, 1, { to: 24 }); hiss(o, t, 1.6, 'lowpass', 220, 0.7, 0.8, { to: 1400, attack: 0.25 }); hiss(o, t + 0.1, 1.2, 'bandpass', 2600, 1.2, 0.18, { to: 700 }); chime(o, t + 0.05, [1047 * p, 1568 * p, 2093 * p], 0.07, 0.9, 0.04); return 1.9; },
     step: (o, t, p) => { hiss(o, t, 0.05, 'lowpass', 520 * p, 1, 0.14); return 0.06; },
     ui: (o, t) => { tone(o, t, 880, 'sine', 0.05, 0.12); return 0.06; },
     turn: (o, t) => { chime(o, t, [659, 988], 0.06, 0.18, 0.06, 'triangle'); return 0.25; },
@@ -294,5 +297,5 @@ export const COMBAT_SFX_IDS: readonly CombatSfxId[] = [
   'cast', 'whoosh', 'magic_hit', 'explosion', 'fire_burst', 'breath', 'thunder', 'ice', 'earth',
   'quake', 'land', 'teleport', 'wind', 'holy_charge', 'holy', 'heal', 'shield', 'curse', 'void',
   'bite', 'poison', 'dash', 'ultimate_charge', 'ultimate_hit', 'meteor', 'miracle', 'crit', 'ko',
-  'step', 'ui', 'turn', 'victory', 'defeat',
+  'step', 'ui', 'turn', 'victory', 'defeat', 'impact_heavy', 'field_wave',
 ];

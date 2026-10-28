@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { FxEngine } from './FxEngine';
 import type { FxElement } from './fxPalettes';
 import { recipeImpactTime, type FxAnchor, type FxRecipe, type FxStep } from './fxRecipes';
+import { apAccentSteps, fieldBeatFor, fieldWaveCells, fxIntensity, scaleStep, type FieldBeat, type FxField, type FxIntensity } from './fxIntensity';
 
 export interface FxUnitRef {
   /** Feet position in world space. */
@@ -17,6 +18,10 @@ export interface FxPlayContext {
   point: THREE.Vector3;
   /** World centres of the affected AoE cells, on the ground. */
   cells: THREE.Vector3[];
+  /** Skill weight: AP cost, ultimate / boss signature. Scales every step. */
+  power?: { ap?: number; ultimate?: boolean };
+  /** Battle platform, for the field-wide finale of ultimates. */
+  field?: FxField;
 }
 
 export interface FxPlayback {
@@ -24,7 +29,11 @@ export interface FxPlayback {
   duration: number;
   completion: Promise<void>;
   cinematic: boolean;
+  weight: FxIntensity['weight'];
 }
+
+/** Seconds from an ultimate's hit to its field wave (the camera's whip-out to the field shot). */
+export const FIELD_WAVE_DELAY = 0.34;
 
 /** Plays declarative recipes on the FX engine, resolving anchors per step. */
 export class FxDirector {
@@ -33,6 +42,10 @@ export class FxDirector {
   play(recipe: FxRecipe, ctx: FxPlayContext): FxPlayback {
     const engine = this.engine;
     const firstTarget = ctx.targets[0];
+    const intensity = fxIntensity(ctx.power);
+    // The build-up before the hit grows more gently than the hit itself, so a
+    // big charge never swallows the actor.
+    const buildUp: FxIntensity = { ...intensity, scale: Math.sqrt(intensity.scale), count: Math.sqrt(intensity.count), glow: Math.sqrt(intensity.glow) };
     let hitTime = 0;
     if (recipe.projectile) {
       const proj = recipe.projectile;
@@ -41,16 +54,86 @@ export class FxDirector {
       hitTime = recipeImpactTime({ ...recipe, impactAt: 0 }, from.distanceTo(to));
       engine.after(proj.at, () => {
         if (proj.sfx) engine.hooks.sfx(proj.sfx);
-        void engine.projectile(from, to, proj.element ?? recipe.element, { speed: proj.speed, size: proj.size, arc: proj.arc, streak: proj.streak });
+        void engine.projectile(from, to, proj.element ?? recipe.element, { speed: proj.speed, size: (proj.size ?? 0.7) * intensity.scale, arc: proj.arc, streak: proj.streak });
       });
     }
+    const impactTime = recipe.projectile ? hitTime + recipe.impactAt : recipe.impactAt;
     for (const step of recipe.steps) {
       const at = step.at + (step.afterHit ? hitTime : 0);
-      engine.after(at, () => this.run(step, recipe, ctx));
+      const scaled = scaleStep(step, at < impactTime - 0.2 ? buildUp : intensity);
+      engine.after(at, () => this.run(scaled, recipe, ctx));
     }
-    const impactTime = recipe.projectile ? hitTime + recipe.impactAt : recipe.impactAt;
-    const duration = recipe.duration + (recipe.projectile ? hitTime : 0);
-    return { impactTime, duration, cinematic: Boolean(recipe.cinematic), completion: engine.wait(duration) };
+    for (const accent of apAccentSteps(impactTime, recipe.element, intensity, ctx.cells.length > 1)) {
+      engine.after(accent.at, () => this.run(accent, recipe, ctx));
+    }
+    let duration = recipe.duration + (recipe.projectile ? hitTime : 0);
+    if (intensity.field && ctx.field) {
+      this.fieldFinale(recipe.element, impactTime, ctx, ctx.field);
+      duration = Math.max(duration, impactTime + FIELD_WAVE_DELAY + 1.9);
+    }
+    return { impactTime, duration, cinematic: Boolean(recipe.cinematic), weight: intensity.weight, completion: engine.wait(duration) };
+  }
+
+  /**
+   * Ultimates flood the battlefield: a rune circle under the whole platform,
+   * shock rings rolling past its edges, field-wide motes, a flash and a wave
+   * of element eruptions that rolls cell by cell away from the impact.
+   */
+  private fieldFinale(element: FxElement, at: number, ctx: FxPlayContext, field: FxField): void {
+    const engine = this.engine;
+    const pal = engine.palette(element);
+    const center = new THREE.Vector3(field.center.x, 0.02, field.center.z);
+    const origin = new THREE.Vector3(ctx.point.x, 0.06, ctx.point.z);
+    const reach = Math.hypot(field.halfWidth, field.halfDepth);
+    const sink = element === 'shadow' || element === 'blood';
+    // The hit itself belongs to the recipe (and the close-up punch); the wave
+    // starts as the camera pulls out to the field shot, so it is seen whole.
+    const wave = at + FIELD_WAVE_DELAY;
+    engine.after(Math.max(0, at - 0.3), () => engine.circle(center, element, { radius: field.halfWidth * 1.1, duration: 2.6, spin: sink ? -0.5 : 0.5 }));
+    engine.after(at, () => engine.hooks.flash(pal.core, 0.24, 0.32));
+    engine.after(wave, () => {
+      engine.hooks.sfx('field_wave');
+      engine.light(center.clone().setY(3.4), pal.light, 48, 1.7, 22);
+      [0, 0.16, 0.34].forEach((delay, i) => engine.after(delay, () => engine.ring(origin, element, { radius: reach * (1.1 + i * 0.28), duration: 0.9 + i * 0.12, from: 0.05 })));
+      engine.motes(center, element, { count: engine.reduced ? 40 : 120, radius: field.halfWidth, rise: 2.8, life: 1.9, size: 0.1, sink });
+    });
+    const beat = fieldBeatFor(element);
+    for (const { cell, delay } of fieldWaveCells(field.cells, origin, engine.reduced ? 6 : 16)) {
+      engine.after(wave + delay, () => this.fieldBeat(beat, element, new THREE.Vector3(cell.x, 0.02, cell.z)));
+    }
+  }
+
+  private fieldBeat(beat: FieldBeat, element: FxElement, at: THREE.Vector3): void {
+    const engine = this.engine;
+    const chest = at.clone().setY(0.9);
+    switch (beat) {
+      case 'flame':
+        engine.flame(at, { width: 1.1, height: 2.6, duration: 1.25 });
+        engine.burst(at.clone().setY(0.4), element, { count: 10, speed: 2.2, up: 2.8, size: 0.1 });
+        engine.decal(at, element, { radius: 0.6 });
+        break;
+      case 'pillar':
+        engine.pillar(at, element, { radius: 0.36, height: 10, duration: 1.0 });
+        engine.motes(at, element, { count: 8, radius: 0.4, rise: 2.6 });
+        break;
+      case 'bolt':
+        engine.bolt(at.clone().setY(0.3), element, { duration: 0.32, width: 0.06 });
+        engine.ring(at, element, { radius: 1.0, duration: 0.35 });
+        break;
+      case 'shards':
+        engine.shards(at, element, { count: 4, radius: 0.45, height: 1.2, duration: 0.95 });
+        engine.burst(at.clone().setY(0.3), element === 'ice' ? 'ice' : 'earth', { count: 8, speed: 2, up: 3, gravity: 8, size: 0.12 });
+        break;
+      case 'orb':
+        engine.orb(chest, element, { radius: 0.85, duration: 0.5, dark: element === 'shadow' });
+        engine.motes(at, element, { count: 8, radius: 0.4, sink: element === 'shadow' });
+        break;
+      case 'slash':
+        engine.slash(chest, element, { size: 1.9, angle: (at.x * 1.7 + at.z) % 1.4 - 0.7, duration: 0.24 });
+        break;
+      default:
+        engine.burst(chest, element, { count: 14, speed: 3, size: 0.1 });
+    }
   }
 
   private anchor(anchor: FxAnchor | undefined, ctx: FxPlayContext, target: FxUnitRef | undefined, jitter = 0): THREE.Vector3 {
@@ -111,7 +194,7 @@ export class FxDirector {
           });
           break;
         }
-        case 'ring': engine.ring(at, element, { radius: num('radius', 1.6), duration: num('duration', 0.5), ground: p.ground !== false }); break;
+        case 'ring': engine.ring(at, element, { radius: num('radius', 1.6), duration: num('duration', 0.5), ground: p.ground !== false, from: num('from', 0.15) }); break;
         case 'circle': engine.circle(at, element, { radius: num('radius', 1.3), duration: num('duration', 1.1), spin: num('spin', 1.2) }); break;
         case 'pillar': engine.pillar(at, element, { radius: num('radius', 0.55), height: num('height', 9), duration: num('duration', 0.8) }); break;
         case 'streak': engine.streak(at, this.anchor(step.to, ctx, ctx.targets[0], jitter), element, { width: num('width', 0.35), duration: num('duration', 0.25) }); break;

@@ -76,7 +76,7 @@ function hitFeedback(at: number, element: FxElement, weight: number, extra: Part
 function slashFamily(id: string, element: FxElement, weight = 1, sfx = 'slash', cuts = 1): FxRecipe {
   const steps: Steps = [s(0, 'sfx', undefined, { id: sfx })];
   for (let i = 0; i < cuts; i++) {
-    steps.push(s(0.02 + i * 0.09, 'slash', 'targetChest', { size: 1.8 + weight * 0.5, angle: i % 2 ? 0.75 : -0.5, flip: i % 2 === 1, duration: 0.26 + weight * 0.05 }, { element }));
+    steps.push(s(0.02 + i * 0.09, 'slash', 'targetChest', { size: 2.4 + weight * 0.6, angle: i % 2 ? 0.75 : -0.5, flip: i % 2 === 1, duration: 0.26 + weight * 0.05 }, { element }));
   }
   steps.push(...hitFeedback(0.09 + (cuts - 1) * 0.09, element, weight));
   steps.push(s(0.1, 'sfx', undefined, { id: 'hit' }));

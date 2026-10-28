@@ -18,7 +18,7 @@ export interface CameraShot {
   fov: number;
 }
 
-export type ShotKind = 'tactical' | 'action' | 'aoe' | 'spotlight' | 'impact';
+export type ShotKind = 'tactical' | 'action' | 'aoe' | 'spotlight' | 'impact' | 'field';
 
 export interface ShotPoint {
   x: number;
@@ -86,6 +86,19 @@ export function shotFor(kind: ShotKind, base: CameraShot, actor?: ShotPoint, tar
       dist: base.dist * 0.86,
       height: base.height * 0.94,
       fov: 0,
+    };
+  }
+  if (kind === 'field') {
+    // Ultimate finale: pull out past the tactical view so the whole battlefield
+    // (and the wave rolling across it) is in frame, leaning toward the actor.
+    return {
+      tx: base.tx + actor.x * 0.06,
+      ty: base.ty - 0.15,
+      tz: base.tz,
+      yaw: clamp(-side * 0.05, -0.08, 0.08),
+      dist: base.dist * 1.06,
+      height: base.height * 1.1,
+      fov: 3,
     };
   }
   if (kind === 'impact') {
