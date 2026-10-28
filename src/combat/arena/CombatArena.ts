@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { makeNoise, seeded } from './pixelArt';
 import { arenaBandProps, arenaClutterProps, arenaThemeFor, type ArenaTheme } from './arenaThemes';
 import { groundTexture, tileSideTexture, tileTopTexture } from './arenaTextures';
@@ -47,6 +48,7 @@ export class CombatArena {
   private readonly lights: Array<{ light: THREE.PointLight; base: number; flicker: number; phase: number }> = [];
   private readonly geometries: THREE.BufferGeometry[] = [];
   private farPlate: THREE.Mesh | null = null;
+  private mergedMeshes = 0;
   private lightTargets: ArenaLightTargets | null = null;
   private baseIntensity = { hemi: 1, sun: 1, fill: 1 };
   private dim = { value: 1, from: 1, to: 1, t: 0, duration: 0 };
@@ -88,6 +90,7 @@ export class CombatArena {
     }
     this.root.updateMatrixWorld(true);
     this.buildLights();
+    this.mergeStaticDecor();
     await this.buildFarPlate();
     if (midPlate) await this.buildMidPlate(midPlate);
   }
@@ -110,6 +113,62 @@ export class CombatArena {
     } catch (error) {
       console.warn('Plan intermédiaire indisponible', plate.file, error);
     }
+  }
+
+  /**
+   * Draw-call budget: every static decor mesh (not a billboard, not
+   * vertex-animated, not a shader effect) is baked into one geometry per
+   * material. Columns, walls, houses, fences… collapse from hundreds of
+   * meshes to a few dozen draws (shadow pass included).
+   */
+  private mergeStaticDecor(): void {
+    const billboards = new Set<THREE.Object3D>(this.ctx.billboards);
+    const underBillboard = (object: THREE.Object3D | null): boolean => {
+      for (let o = object; o; o = o.parent) if (billboards.has(o)) return true;
+      return false;
+    };
+    const rootInverse = this.root.matrixWorld.clone().invert();
+    const buckets = new Map<string, { material: THREE.Material; cast: boolean; receive: boolean; order: number; meshes: THREE.Mesh[] }>();
+    this.root.traverse((object) => {
+      const mesh = object as THREE.Mesh;
+      if (!mesh.isMesh || (mesh as THREE.InstancedMesh).isInstancedMesh || Array.isArray(mesh.material)) return;
+      if (mesh.userData.dynamic || mesh.customDepthMaterial || underBillboard(mesh)) return;
+      if ((mesh.material as THREE.ShaderMaterial).isShaderMaterial) return;
+      if (!mesh.geometry.attributes.normal || !mesh.geometry.attributes.uv) return;
+      const material = mesh.material as THREE.Material;
+      const key = `${material.uuid}|${mesh.castShadow}|${mesh.receiveShadow}|${mesh.renderOrder}`;
+      let bucket = buckets.get(key);
+      if (!bucket) { bucket = { material, cast: mesh.castShadow, receive: mesh.receiveShadow, order: mesh.renderOrder, meshes: [] }; buckets.set(key, bucket); }
+      bucket.meshes.push(mesh);
+    });
+    let merged = 0;
+    for (const bucket of buckets.values()) {
+      if (bucket.meshes.length < 2) continue;
+      const geometries = bucket.meshes.map((mesh) => {
+        const g = mesh.geometry.index ? mesh.geometry.toNonIndexed() : mesh.geometry.clone();
+        for (const name of Object.keys(g.attributes)) if (name !== 'position' && name !== 'normal' && name !== 'uv') g.deleteAttribute(name);
+        g.clearGroups();
+        g.applyMatrix4(rootInverse.clone().multiply(mesh.matrixWorld));
+        return g;
+      });
+      const geometry = mergeGeometries(geometries, false);
+      for (const g of geometries) g.dispose();
+      if (!geometry) continue;
+      this.geometries.push(geometry);
+      const bake = new THREE.Mesh(geometry, bucket.material);
+      bake.castShadow = bucket.cast;
+      bake.receiveShadow = bucket.receive;
+      bake.renderOrder = bucket.order;
+      bake.raycast = () => {};
+      bake.name = 'arena-static-decor';
+      this.root.add(bake);
+      for (const mesh of bucket.meshes) {
+        mesh.removeFromParent();
+        mesh.geometry.dispose();
+      }
+      merged += bucket.meshes.length;
+    }
+    this.mergedMeshes = merged;
   }
 
   // ------------------------------------------------------------ platform
@@ -396,6 +455,7 @@ export class CombatArena {
       props: this.theme.props.length,
       billboards: this.ctx.billboards.length,
       lights: this.lights.length,
+      mergedMeshes: this.mergedMeshes,
       textures: this.ctx.textures.size,
       farPlate: Boolean(this.farPlate && (this.farPlate.material as THREE.MeshBasicMaterial).map),
     };

@@ -25,6 +25,7 @@ Le **Combat Stage** (scène séparée) est retiré. Les actions se jouent dans l
 - Plan lointain : bande d'horizon découpée dans les peintures stratégiques approuvées (`tools/combat-arena/build_far_plates.py`), fondue dans le brouillard.
 - Lumière : soleil, hémisphère et appoint fixés par thème. Au plus 6 points lumineux scintillants pris dans les demandes des décors (braseros, lanternes, bougies, incendies). `setDim()` assombrit l'arène pendant le projecteur.
 - Graphismes réduits : pas de bande, pas de fouillis, pas de fumée, 2 lumières au plus.
+- Budget de rendu : le décor statique (ni billboard, ni animé par sommets, ni effet en shader) est fusionné en une géométrie par matériau à la construction. Cela fait environ 300 appels de dessin par image, passe d'ombre comprise (rapport COMBAT-HD2D-1).
 
 ## Unités pixel
 

@@ -6,8 +6,15 @@
   "typecheck": "pass",
   "build": "pass",
   "tests": {
-    "files": { "passed": 157, "failed": 6 },
-    "cases": { "passed": 2404, "failed": 18, "skipped": 23 },
+    "files": {
+      "passed": 157,
+      "failed": 6
+    },
+    "cases": {
+      "passed": 2404,
+      "failed": 18,
+      "skipped": 23
+    },
     "failingFilesIdenticalToBaseline": true,
     "baselineFailingFiles": [
       "src/combat/vfx/spritesheetPng.test.ts",
@@ -21,17 +28,59 @@
   },
   "browser": {
     "engine": "Chromium (SwiftShader WebGL), 1440x810",
-    "standaloneArenas": ["forest_route", "bois_clair_burning", "lion_sanctum"],
-    "campaignBoot": [
-      { "combatId": "lion_chief", "initialized": true, "pageErrors": 0 },
-      { "combatId": "village_defense", "initialized": true, "pageErrors": 0 },
-      { "combatId": "troll_crossing", "initialized": true, "pageErrors": 0 }
+    "standaloneArenas": [
+      "forest_route",
+      "bois_clair_burning",
+      "lion_sanctum"
     ],
-    "actionsPlayed": ["attack", "w_lion_surge", "n_dark_meteor", "w_miracle", "d_devouring_eclipse", "n_flame_wave"]
+    "campaignBoot": [
+      {
+        "combatId": "lion_chief",
+        "initialized": true,
+        "pageErrors": 0
+      },
+      {
+        "combatId": "village_defense",
+        "initialized": true,
+        "pageErrors": 0
+      },
+      {
+        "combatId": "troll_crossing",
+        "initialized": true,
+        "pageErrors": 0
+      }
+    ],
+    "actionsPlayed": [
+      "attack",
+      "w_lion_surge",
+      "n_dark_meteor",
+      "w_miracle",
+      "d_devouring_eclipse",
+      "n_flame_wave"
+    ],
+    "aiSoak": {
+      "rounds": 3,
+      "hangs": 0,
+      "pageErrors": 0,
+      "tool": "tools/combat-arena/trace-ai.mjs"
+    }
   },
   "limitations": [
     "SwiftShader screenshots: no frame-rate measurement on real GPUs.",
     "Audio verified by recipe/cue coverage tests only (headless, no listening pass).",
     "Hero animations use pose keyframes until the local art mission generates full strips."
-  ]
+  ],
+  "render": {
+    "drawCallsPerFrame": {
+      "forest_route": 308,
+      "bois_clair_burning": 319,
+      "lion_sanctum": 297
+    },
+    "trianglesPerFrame": {
+      "forest_route": 21801,
+      "bois_clair_burning": 23881,
+      "lion_sanctum": 25861
+    },
+    "staticDecorMerged": true
+  }
 }

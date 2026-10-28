@@ -538,6 +538,7 @@ function banner(ctx: PropContext, seed: number, burning: boolean): THREE.Group {
   flag.customDepthMaterial = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepthPacking, map: tex, alphaTest: 0.5 });
   flag.position.set(0, 3.86, 0.05);
   flag.raycast = () => {};
+  flag.userData.dynamic = true; // vertex-animated: never merged into static decor
   g.add(flag);
   ctx.animated.push((t) => { time.value = t + seed; });
   return g;

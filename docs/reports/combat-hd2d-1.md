@@ -24,6 +24,16 @@
 5. **Sons synthétisés** (`src/combat/audio/`) : un son pour chaque repère d'effet, pas, tour, victoire/défaite, ambiance par biome, réglage on/off.
 6. **Pipeline de la mission locale** (`tools/openai-art/`) : générateur gpt-image-2, 44 prompts (bandes d'animation des héros, plans d'arène, planches FX), traitements vers les contrats existants. Testé sur une bande synthétique. [Mission](../combat/LOCAL_ART_MISSION.md).
 
+## Indicateurs de rendu
+
+| Arène | Appels de dessin par image (passe d'ombre comprise) | Triangles | Décors statiques fusionnés |
+| --- | --- | --- | --- |
+| Route forestière | 308 | 21,8 k | 69 maillages |
+| Bois-Clair en flammes | 319 | 23,9 k | 141 maillages |
+| Sanctuaire du Lion | 297 | 25,9 k | 158 maillages |
+
+La fusion du décor statique par matériau ramène les appels d'environ 420-540 à environ 300. Sous SwiftShader (rendu logiciel, sans GPU), le combat tourne vers 2,5 images/s. Ce chiffre ne dit rien d'un vrai GPU : un essai de longue durée sur 3 manches d'IA n'a montré ni blocage ni erreur (`tools/combat-arena/trace-ai.mjs`).
+
 ## Corrigé en cours de route
 
 - Un sprite pixel atténué sous 50 % disparaissait au lieu de devenir translucent : la découpe alpha se fait désormais sur le texel. Cela touchait le mode déplacement et les témoins du projecteur. Capture [07](combat-hd2d-1/07-move-mode-focus.jpg).
