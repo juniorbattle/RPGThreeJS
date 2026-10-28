@@ -15,7 +15,7 @@ export type ArenaPropKind =
   | 'column' | 'broken_column' | 'arch' | 'wall' | 'stairs' | 'obelisk'
   | 'house' | 'fence' | 'barrel' | 'crate' | 'cart' | 'haystack'
   | 'lantern' | 'brazier' | 'banner' | 'candles' | 'gravestone'
-  | 'fire' | 'smoke' | 'statue';
+  | 'fire' | 'smoke' | 'statue' | 'well' | 'log' | 'debris';
 
 export interface ArenaProp {
   kind: ArenaPropKind;
@@ -80,6 +80,10 @@ export interface ArenaTheme {
   clutter?: { kinds: readonly ArenaPropKind[]; count: number; z: [number, number]; halfWidth: number; scale: [number, number] };
   /** Ambient particles drifting through the arena. */
   motes: { color: string; count: number; rise: number; size: number; glow: boolean };
+  /** Slanted light shafts (sun through the canopy, moonlight between the arches): [x, z, width, height, tilt]. */
+  shafts?: { color: string; opacity: number; items: ReadonlyArray<readonly [number, number, number, number, number]> };
+  /** Low drifting mist layers between the decor and the horizon: [z, height, width]. */
+  mist?: { color: string; opacity: number; layers: ReadonlyArray<readonly [number, number, number]> };
 }
 
 const FOREST_PROPS: ArenaProp[] = [
@@ -122,6 +126,9 @@ const FOREST_PROPS: ArenaProp[] = [
   { kind: 'fern', x: -6.8, z: 5.6, s: 1.5, v: 7 },
   { kind: 'bush', x: 7.4, z: 5.8, s: 1.4, v: 5 },
   { kind: 'rock', x: -3.6, z: 6.4, s: 0.8, v: 5 },
+  { kind: 'log', x: 3.4, z: -3.9, s: 0.9, r: 0.25, v: 1 },
+  { kind: 'log', x: -8.4, z: 2.6, s: 1, r: 1.3, v: 2 },
+  { kind: 'fern', x: 4.6, z: -4.2, s: 0.8, v: 2 },
 ];
 
 const VILLAGE_PROPS: ArenaProp[] = [
@@ -157,6 +164,10 @@ const VILLAGE_PROPS: ArenaProp[] = [
   { kind: 'rock', x: -7.4, z: 3.0, s: 0.8, v: 1 },
   { kind: 'grass', x: 7.4, z: 5.4, s: 1.4, v: 1 },
   { kind: 'crate', x: -7.2, z: 5.8, s: 1.3, r: 0.4, v: 3 },
+  { kind: 'well', x: -8.9, z: -0.6, s: 1, r: 0.3, v: 4 },
+  { kind: 'debris', x: 2.4, z: -4.1, s: 1, v: 1 },
+  { kind: 'debris', x: -9.2, z: -7.2, s: 1.1, v: 2 },
+  { kind: 'debris', x: 8.8, z: -4.6, s: 0.9, v: 3 },
 ];
 
 const SANCTUM_PROPS: ArenaProp[] = [
@@ -226,6 +237,12 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
     band: { kinds: ['tree', 'pine', 'tree', 'bush'], count: 30, z: [-8.5, -20], halfWidth: 26, gap: 4.5, scale: [1.2, 1.9] },
     clutter: { kinds: ['bush', 'fern', 'rock', 'grass', 'bush', 'fern'], count: 34, z: [-3.6, -11], halfWidth: 15, scale: [0.8, 1.4] },
     motes: { color: '#f3e3a0', count: 70, rise: 0.08, size: 0.07, glow: true },
+    shafts: {
+      color: '#ffe7a8',
+      opacity: 0.26,
+      items: [[-5.2, -10.5, 2.2, 15, 0.36], [-1.2, -13, 1.4, 16, 0.36], [2.8, -9.4, 2.8, 15, 0.36], [7.4, -12.2, 1.8, 16, 0.36], [10.6, -8.6, 1.2, 14, 0.36]],
+    },
+    mist: { color: '#b8cbb4', opacity: 0.4, layers: [[-8.8, 1.6, 44], [-14.5, 2.6, 60]] },
   },
   bois_clair_burning: {
     id: 'bois_clair_burning',
@@ -261,6 +278,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
     band: { kinds: ['house', 'pine', 'dead_tree', 'house'], count: 12, z: [-15, -22], halfWidth: 26, gap: 4.5, scale: [1.0, 1.5] },
     clutter: { kinds: ['barrel', 'crate', 'grass', 'rock', 'grass', 'fence'], count: 18, z: [-3.8, -12], halfWidth: 14, scale: [0.8, 1.2] },
     motes: { color: '#ffa54d', count: 140, rise: 0.42, size: 0.075, glow: true },
+    mist: { color: '#5a3328', opacity: 0.5, layers: [[-11.5, 2.2, 56], [-17, 3.4, 66]] },
   },
   lion_sanctum: {
     id: 'lion_sanctum',
@@ -296,6 +314,12 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
     band: { kinds: ['pine', 'pine', 'broken_column', 'tree'], count: 18, z: [-12, -21], halfWidth: 26, gap: 6, scale: [1.2, 1.8] },
     clutter: { kinds: ['gravestone', 'rock', 'grass', 'fern', 'broken_column', 'bush'], count: 16, z: [-3.8, -11], halfWidth: 14, scale: [0.8, 1.2] },
     motes: { color: '#f1d68c', count: 90, rise: 0.06, size: 0.065, glow: true },
+    shafts: {
+      color: '#a8bfff',
+      opacity: 0.2,
+      items: [[-6.4, -8.6, 2.0, 14, -0.28], [-0.9, -9.4, 2.6, 15, -0.28], [4.8, -9.0, 2.0, 14, -0.28], [9.8, -11.5, 1.4, 15, -0.28]],
+    },
+    mist: { color: '#5d6f92', opacity: 0.45, layers: [[-6.8, 1.1, 40], [-12.5, 2.2, 58]] },
   },
 });
 

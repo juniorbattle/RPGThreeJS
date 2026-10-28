@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import { seeded, type Rng } from './pixelArt';
 import type { ArenaPalette, ArenaProp } from './arenaThemes';
 import {
-  bannerTexture, barkTexture, metalTexture, plankTexture, roofTexture, stoneBlockTexture, strawTexture, timberWallTexture,
+  bannerTexture, barkTexture, burlapTexture, columnTexture, lionReliefTexture, logEndTexture, metalTexture, plankTexture,
+  roofTexture, stoneBlockTexture, strawTexture, timberWallTexture, timberWindowMask,
 } from './arenaTextures';
 import { DECOR_TEXELS_PER_UNIT, drawBush, drawDeadTree, drawFern, drawGrass, drawPine, drawTree, type DecorSprite } from './arenaSprites';
 
@@ -79,6 +80,24 @@ function stoneMaterial(ctx: PropContext, seed: number, mossy = 0.5): THREE.MeshS
   const key = `stone-${seed % 4}-${mossy}`;
   const texture = repeatTexture(ctx, key, () => stoneBlockTexture(ctx.palette, 100 + (seed % 4), 32, 64, 8, mossy).toTexture({ repeat: true }));
   return litMaterial(ctx, key, texture);
+}
+
+function fluteMaterial(ctx: PropContext, seed: number, lichen = 0.4): THREE.MeshStandardMaterial {
+  const key = `flute-${seed % 3}-${lichen}`;
+  const texture = repeatTexture(ctx, key, () => columnTexture(ctx.palette, 300 + (seed % 3), lichen).toTexture({ repeat: true }));
+  return litMaterial(ctx, key, texture);
+}
+
+/**
+ * Column shaft whose flutes wrap a whole number of times (no seam facing the
+ * camera); 64 texels per 1.6 m along the shaft, like the ashlar.
+ */
+function fluteGeometry(rTop: number, rBottom: number, h: number, repeats = 3): THREE.CylinderGeometry {
+  const g = new THREE.CylinderGeometry(rTop, rBottom, h, repeats * 8, 1, true);
+  const uv = g.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * repeats, uv.getY(i) * h / 1.6);
+  uv.needsUpdate = true;
+  return g;
 }
 
 function woodMaterial(ctx: PropContext, vertical = false): THREE.MeshStandardMaterial {
@@ -203,12 +222,21 @@ function decorSprite(ctx: PropContext, key: string, draw: () => DecorSprite) {
   return entry;
 }
 
-function billboard(ctx: PropContext, key: string, draw: () => DecorSprite, scale: number, castShadow: boolean): THREE.Object3D {
-  const { texture, sprite } = decorSprite(ctx, key, draw);
-  const w = sprite.canvas.width / DECOR_TEXELS_PER_UNIT * scale;
-  const h = sprite.canvas.height / DECOR_TEXELS_PER_UNIT * scale;
+/**
+ * Camera-facing vegetation. The sprite is drawn AT its display scale (bucketed
+ * by 0.2) so a big tree keeps the decor texel density instead of showing
+ * pixels twice the size of the units'.
+ */
+function billboard(ctx: PropContext, key: string, draw: (scale: number) => DecorSprite, scale: number, castShadow: boolean): THREE.Object3D {
+  const bucket = Math.max(0.6, Math.round(scale * 5) / 5);
+  const fullKey = `${key}@${bucket}`;
+  const { texture, sprite } = decorSprite(ctx, fullKey, () => draw(bucket));
+  const residual = scale / bucket;
+  const w = sprite.canvas.width / DECOR_TEXELS_PER_UNIT * residual;
+  const h = sprite.canvas.height / DECOR_TEXELS_PER_UNIT * residual;
   const geometry = new THREE.PlaneGeometry(w, h);
-  geometry.translate((sprite.canvas.width / 2 - sprite.anchor[0]) / DECOR_TEXELS_PER_UNIT * scale, h / 2 - (sprite.canvas.height - sprite.anchor[1]) / DECOR_TEXELS_PER_UNIT * scale, 0);
+  geometry.translate((sprite.canvas.width / 2 - sprite.anchor[0]) / DECOR_TEXELS_PER_UNIT * residual, h / 2 - (sprite.canvas.height - sprite.anchor[1]) / DECOR_TEXELS_PER_UNIT * residual, 0);
+  key = fullKey;
   const material = cached(ctx.materials, `sprite-mat-${key}`, () => new THREE.MeshLambertMaterial({ map: texture, alphaTest: 0.5, side: THREE.DoubleSide }));
   const m = new THREE.Mesh(geometry, material);
   m.raycast = () => {};
@@ -229,14 +257,30 @@ function column(ctx: PropContext, rng: Rng, seed: number, broken: boolean): THRE
   const shaftH = broken ? 1.3 + rng() * 1.1 : 4.1;
   g.add(at(mesh(boxGeometry(1.2, 0.36, 1.2, 1.6), stone, ctx), 0, 0.18, 0));
   g.add(at(mesh(boxGeometry(1.0, 0.2, 1.0, 1.6), stone, ctx), 0, 0.46, 0));
-  const shaft = mesh(cylinderGeometry(0.4, 0.44, shaftH, 12, 1.6), stone, ctx);
+  const flute = fluteMaterial(ctx, seed, broken ? 0.8 : 0.35);
+  const shaft = mesh(fluteGeometry(0.4, 0.44, shaftH), flute, ctx);
   shaft.position.y = 0.56 + shaftH / 2;
   g.add(shaft);
   if (broken) {
-    const chunk = mesh(cylinderGeometry(0.38, 0.4, 1.1, 12, 1.6), stone, ctx);
-    chunk.rotation.set(Math.PI / 2, 0, rng() * 0.6 - 0.3);
-    chunk.position.set(0.9 + rng() * 0.3, 0.38, 0.5 + rng() * 0.4);
-    g.add(chunk);
+    // jagged break: a few tilted shards on the stump
+    for (let i = 0; i < 3; i++) {
+      const shard = mesh(boxGeometry(0.34 + rng() * 0.16, 0.22 + rng() * 0.3, 0.3 + rng() * 0.14, 1.6), stone, ctx);
+      const a = (i / 3) * Math.PI * 2 + rng();
+      shard.position.set(Math.cos(a) * 0.17, 0.56 + shaftH + 0.06, Math.sin(a) * 0.17);
+      shard.rotation.set((rng() - 0.5) * 0.5, rng() * 3, (rng() - 0.5) * 0.5);
+      g.add(shard);
+    }
+    const drum = new THREE.Group();
+    drum.add(mesh(fluteGeometry(0.38, 0.4, 1.1), flute, ctx));
+    for (const end of [-1, 1]) {
+      const cap = mesh(new THREE.CircleGeometry(end < 0 ? 0.4 : 0.38, 24), stone, ctx);
+      cap.rotation.x = end * -Math.PI / 2;
+      cap.position.y = end * 0.55;
+      drum.add(cap);
+    }
+    drum.rotation.set(Math.PI / 2, 0, rng() * 0.6 - 0.3);
+    drum.position.set(0.9 + rng() * 0.3, 0.38, 0.5 + rng() * 0.4);
+    g.add(drum);
     const cap = mesh(boxGeometry(0.7, 0.4, 0.6, 1.6), stone, ctx);
     cap.rotation.set(0.2, rng() * 2, 0.3);
     cap.position.set(-0.8, 0.2, 0.6);
@@ -320,28 +364,54 @@ function obelisk(ctx: PropContext, seed: number): THREE.Group {
   return g;
 }
 
+/**
+ * The Lion stele: stepped plinth, a carved panel with the house lion and sun
+ * medallion in gold relief (emissive mask, so it reads at night without
+ * blooming into a blob), a gold sun crown and a pair of guardian lamps.
+ */
 function statue(ctx: PropContext, seed: number): THREE.Group {
   const g = new THREE.Group();
   const stone = stoneMaterial(ctx, seed, 0.2);
-  g.add(at(mesh(boxGeometry(2.4, 1.0, 1.8, 1.6), stone, ctx), 0, 0.5, 0));
-  g.add(at(mesh(boxGeometry(1.7, 1.6, 1.3, 1.6), stone, ctx), 0, 1.8, 0));
-  const gold = litMaterial(ctx, 'gold-statue', null, { color: '#d9ad48', metalness: 0.35, roughness: 0.45, emissive: '#7a5312', emissiveIntensity: 1.1 });
-  const disc = mesh(new THREE.CylinderGeometry(1.15, 1.15, 0.18, 24), gold, ctx);
+  g.add(at(mesh(boxGeometry(2.6, 0.5, 1.9, 1.6), stone, ctx), 0, 0.25, 0));
+  g.add(at(mesh(boxGeometry(2.2, 0.4, 1.6, 1.6), stone, ctx), 0, 0.7, 0));
+  const steleW = 1.5, steleH = 2.25, steleD = 0.5;
+  g.add(at(mesh(boxGeometry(steleW, steleH, steleD, 1.6), stone, ctx), 0, 0.9 + steleH / 2, 0));
+  const arch = mesh(new THREE.CylinderGeometry(steleW / 2, steleW / 2, steleD, 16, 1, false, -Math.PI / 2, Math.PI), stone, ctx);
+  arch.rotation.x = -Math.PI / 2;
+  arch.position.y = 0.9 + steleH;
+  g.add(arch);
+  const relief = cached(ctx.materials, `lion-relief-${seed}`, () => {
+    const { face, gold } = lionReliefTexture(ctx.palette, 60 + seed);
+    const map = face.toTexture();
+    const emissiveMap = gold.toTexture();
+    ctx.textures.set(`lion-relief-${seed}`, map);
+    ctx.textures.set(`lion-relief-gold-${seed}`, emissiveMap);
+    return new THREE.MeshStandardMaterial({ map, emissiveMap, emissive: '#ffffff', emissiveIntensity: 0.55, roughness: 0.7, metalness: 0.15 });
+  }) as THREE.MeshStandardMaterial;
+  const panel = mesh(new THREE.PlaneGeometry(steleW - 0.16, steleH * 0.96), relief, ctx, false);
+  panel.position.set(0, 0.9 + steleH * 0.5, steleD / 2 + 0.006);
+  g.add(panel);
+  // sun crown on the arch
+  const gold = litMaterial(ctx, 'gold-statue', null, { color: '#d9ad48', metalness: 0.45, roughness: 0.4, emissive: '#5a3c0c', emissiveIntensity: 0.6 });
+  const crownY = 0.9 + steleH + steleW / 2 + 0.42;
+  const disc = mesh(new THREE.CylinderGeometry(0.34, 0.34, 0.12, 16), gold, ctx);
   disc.rotation.x = Math.PI / 2;
-  disc.position.set(0, 3.6, 0);
+  disc.position.set(0, crownY, 0);
   g.add(disc);
-  const rays = 12;
+  const rays = 10;
   for (let i = 0; i < rays; i++) {
-    const a = (i / rays) * Math.PI * 2;
-    const ray = mesh(new THREE.ConeGeometry(0.16, 0.7, 4), gold, ctx);
-    ray.position.set(Math.cos(a) * 1.45, 3.6 + Math.sin(a) * 1.45, 0);
+    const a = (i / rays) * Math.PI * 2 + Math.PI / 2;
+    const ray = mesh(new THREE.ConeGeometry(0.08, i % 2 ? 0.3 : 0.44, 4), gold, ctx);
+    const r = i % 2 ? 0.5 : 0.57;
+    ray.position.set(Math.cos(a) * r, crownY + Math.sin(a) * r, 0);
     ray.rotation.z = a - Math.PI / 2;
     g.add(ray);
   }
-  const halo = new THREE.Mesh(new THREE.CircleGeometry(1.9, 32), new THREE.MeshBasicMaterial({ color: '#ffd77a', transparent: true, opacity: 0.12, depthWrite: false, toneMapped: false, fog: false, blending: THREE.AdditiveBlending }));
-  halo.position.set(0, 3.6, -0.2);
+  const halo = new THREE.Mesh(new THREE.CircleGeometry(1.0, 32), new THREE.MeshBasicMaterial({ color: '#ffd77a', transparent: true, opacity: 0.06, depthWrite: false, toneMapped: false, fog: false, blending: THREE.AdditiveBlending }));
+  halo.position.set(0, crownY, -0.1);
+  halo.raycast = () => {};
   g.add(halo);
-  ctx.animated.push((t) => { (halo.material as THREE.MeshBasicMaterial).opacity = 0.1 + Math.sin(t * 0.8 + seed) * 0.04; });
+  ctx.animated.push((t) => { (halo.material as THREE.MeshBasicMaterial).opacity = 0.05 + Math.sin(t * 0.8 + seed) * 0.025; });
   return g;
 }
 
@@ -349,7 +419,11 @@ function house(ctx: PropContext, rng: Rng, seed: number, burning: boolean): THRE
   const g = new THREE.Group();
   const w = 4.6, h = 2.7, d = 3.4;
   const wallTex = repeatTexture(ctx, `timber-${burning}`, () => timberWallTexture(ctx.palette, 31 + (burning ? 1 : 0), burning).toTexture({ repeat: true }));
-  const wallMat = litMaterial(ctx, `timber-${burning}`, wallTex);
+  const windowTex = repeatTexture(ctx, `timber-windows-${burning}`, () => timberWindowMask(burning).toTexture({ repeat: true }));
+  const fresh = !ctx.materials.has(`timber-${burning}`);
+  // the panes glow through the emissive mask: lamplight, or fire flickering inside
+  const wallMat = litMaterial(ctx, `timber-${burning}`, wallTex, { emissiveMap: windowTex, emissive: '#ffffff', emissiveIntensity: burning ? 1.1 : 0.85 });
+  if (fresh && burning) ctx.animated.push((t) => { wallMat.emissiveIntensity = 0.95 + Math.sin(t * 9.3) * 0.12 + Math.sin(t * 14.1) * 0.08; });
   const body = mesh(boxGeometry(w, h, d, 2.6), wallMat, ctx);
   // keep facade texture at one storey per wall height
   body.position.y = h / 2;
@@ -377,13 +451,6 @@ function house(ctx: PropContext, rng: Rng, seed: number, burning: boolean): THRE
   const door = mesh(new THREE.PlaneGeometry(0.9, 1.6), woodMaterial(ctx, true), ctx, false);
   door.position.set(-0.3, 0.8 + 0.4, d / 2 + 0.01);
   g.add(door);
-  for (const wx of [-1.5, 1.2]) {
-    const glow = new THREE.Mesh(new THREE.PlaneGeometry(0.34, 0.4), glowMaterial(burning ? '#e8742a' : '#d9a24e'));
-    glow.position.set(wx, 1.55, d / 2 + 0.02);
-    glow.raycast = () => {};
-    g.add(glow);
-    if (burning) ctx.animated.push((t) => { (glow.material as THREE.MeshBasicMaterial).color.setHSL(0.065, 0.95, 0.42 + Math.sin(t * 9 + wx * 3) * 0.07); });
-  }
   if (burning) {
     const flames = fireBillboard(ctx, seed + 3, 2.6, 2.4, { color: '#ff7a2a', intensity: 9, distance: 12 });
     flames.position.set((rng() - 0.5) * 1.2, h + rise * 0.55, 0.4);
@@ -433,35 +500,183 @@ function crate(ctx: PropContext): THREE.Group {
   return g;
 }
 
+function sackMaterial(ctx: PropContext): THREE.MeshStandardMaterial {
+  return litMaterial(ctx, 'burlap', repeatTexture(ctx, 'burlap', () => burlapTexture(13).toTexture({ repeat: true })));
+}
+
+function sack(ctx: PropContext, rng: Rng): THREE.Mesh {
+  const geometry = new THREE.SphereGeometry(0.34, 8, 6);
+  const pos = geometry.attributes.position as THREE.BufferAttribute;
+  for (let i = 0; i < pos.count; i++) {
+    const y = pos.getY(i);
+    // flat bottom, a tied neck at the top
+    const neck = y > 0.2 ? 0.55 + (0.34 - y) * 1.6 : 1;
+    pos.setXYZ(i, pos.getX(i) * neck, Math.max(-0.2, y), pos.getZ(i) * neck);
+  }
+  geometry.computeVertexNormals();
+  const m = mesh(geometry, sackMaterial(ctx), ctx);
+  m.scale.set(1, 1.15 + rng() * 0.2, 0.85);
+  return m;
+}
+
 function cart(ctx: PropContext, rng: Rng): THREE.Group {
   const g = new THREE.Group();
   const wood = woodMaterial(ctx);
-  const bed = mesh(boxGeometry(2.6, 0.5, 1.5, 1), wood, ctx);
-  bed.position.y = 0.9;
+  const bed = mesh(boxGeometry(2.6, 0.18, 1.5, 1), wood, ctx);
+  bed.position.y = 0.78;
   g.add(bed);
   for (const side of [-1, 1]) {
-    const wheel = mesh(new THREE.CylinderGeometry(0.6, 0.6, 0.14, 14), woodMaterial(ctx, true), ctx);
+    const board = mesh(boxGeometry(2.6, 0.36, 0.08, 1), wood, ctx);
+    board.position.set(0, 1.04, side * 0.71);
+    g.add(board);
+    const wheel = mesh(new THREE.CylinderGeometry(0.6, 0.6, 0.12, 14), woodMaterial(ctx, true), ctx);
     wheel.rotation.x = Math.PI / 2;
-    wheel.position.set(0.3, 0.6, side * 0.82);
+    wheel.position.set(0.3, 0.6, side * 0.84);
     g.add(wheel);
+    const hub = mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.2, 8), litMaterial(ctx, 'metal-dark', null, { color: '#2a2622', roughness: 0.7 }), ctx);
+    hub.rotation.x = Math.PI / 2;
+    hub.position.set(0.3, 0.6, side * 0.9);
+    g.add(hub);
   }
-  const shaft = mesh(boxGeometry(2, 0.1, 0.1, 1), wood, ctx);
-  shaft.position.set(-2, 0.55, 0);
-  shaft.rotation.z = 0.25;
-  g.add(shaft);
-  const sack = mesh(new THREE.SphereGeometry(0.42, 8, 6), litMaterial(ctx, 'sack', repeatTexture(ctx, 'straw', () => strawTexture(9).toTexture({ repeat: true }))), ctx);
-  sack.scale.set(1.2, 0.7, 1);
-  sack.position.set(-0.4 + rng() * 0.3, 1.35, 0);
-  g.add(sack);
+  const back = mesh(boxGeometry(0.08, 0.36, 1.5, 1), wood, ctx);
+  back.position.set(1.28, 1.04, 0);
+  g.add(back);
+  for (const side of [-1, 1]) {
+    const shaft = mesh(boxGeometry(2, 0.1, 0.1, 1), wood, ctx);
+    shaft.position.set(-2, 0.55, side * 0.5);
+    shaft.rotation.z = 0.25;
+    g.add(shaft);
+  }
+  for (let i = 0; i < 3; i++) {
+    const s = sack(ctx, rng);
+    s.position.set(-0.7 + i * 0.55, 1.07, (rng() - 0.5) * 0.5);
+    s.rotation.set((rng() - 0.5) * 0.4, rng() * 3, (rng() - 0.5) * 0.4);
+    g.add(s);
+  }
+  const box = mesh(boxGeometry(0.6, 0.6, 0.6, 1), wood, ctx);
+  box.position.set(0.85, 1.17, 0.2);
+  box.rotation.y = 0.3;
+  g.add(box);
   return g;
 }
 
-function haystack(ctx: PropContext): THREE.Group {
+function haystack(ctx: PropContext, rng: Rng): THREE.Group {
   const g = new THREE.Group();
   const straw = litMaterial(ctx, 'straw', repeatTexture(ctx, 'straw', () => strawTexture(9).toTexture({ repeat: true })));
-  const stack = mesh(new THREE.SphereGeometry(1, 10, 8, 0, Math.PI * 2, 0, Math.PI / 2), straw, ctx);
-  stack.scale.set(1.3, 1.1, 1.1);
-  g.add(stack);
+  // beehive rick: bulging flank, rounded shoulder, a tight crown
+  const profile = [[0.98, 0], [1.08, 0.3], [1.12, 0.7], [1.05, 1.1], [0.88, 1.45], [0.62, 1.75], [0.32, 1.95], [0.04, 2.04]].map(([r, y]) => new THREE.Vector2(r, y));
+  const geometry = new THREE.LatheGeometry(profile, 16);
+  const uv = geometry.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * 9, uv.getY(i) * 2.6);
+  g.add(mesh(geometry, straw, ctx));
+  const rope = litMaterial(ctx, 'rope', null, { color: '#3a2a18', roughness: 1 });
+  for (const [y, r] of [[0.85, 1.13], [1.48, 0.87]] as const) {
+    const band = mesh(new THREE.TorusGeometry(r, 0.035, 4, 18), rope, ctx, false);
+    band.rotation.x = Math.PI / 2;
+    band.position.y = y;
+    g.add(band);
+  }
+  const pole = mesh(new THREE.CylinderGeometry(0.04, 0.05, 0.7, 5), woodMaterial(ctx, true), ctx);
+  pole.position.y = 2.2;
+  pole.rotation.z = (rng() - 0.5) * 0.2;
+  g.add(pole);
+  // loose straw at the foot (scale-aware billboards in straw tones)
+  const strawPal = { ...ctx.palette, grass: ['#3b2a10', '#6a5022', '#977733', '#c2a04f', '#e0c473'] };
+  for (let i = 0; i < 4; i++) {
+    const a = (i / 4) * Math.PI * 2 + rng();
+    const tuft = billboard(ctx, 'straw-tuft', (k) => drawGrass(strawPal, 5, k), 0.8 + rng() * 0.3, false);
+    tuft.position.set(Math.cos(a) * 1.15, 0, Math.sin(a) * 1.15);
+    g.add(tuft);
+  }
+  return g;
+}
+
+/** Village well: open stone ring, dark water, gabled roof, crank and bucket. */
+function well(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = stoneMaterial(ctx, seed, 0.5);
+  const ring = mesh(cylinderGeometry(0.95, 1.0, 0.95, 18, 1.6), stone, ctx);
+  ring.position.y = 0.475;
+  g.add(ring);
+  const inner = mesh(new THREE.CylinderGeometry(0.78, 0.78, 0.95, 18, 1, true), litMaterial(ctx, 'well-inner', null, { color: ctx.palette.stoneDark[1], roughness: 1, side: THREE.BackSide }), ctx, false);
+  inner.position.y = 0.475;
+  g.add(inner);
+  const lip = mesh(new THREE.RingGeometry(0.76, 1.02, 18, 1), stone, ctx);
+  lip.rotation.x = -Math.PI / 2;
+  lip.position.y = 0.955;
+  g.add(lip);
+  const water = mesh(new THREE.CircleGeometry(0.78, 18), litMaterial(ctx, 'well-water', null, { color: '#0d1418', roughness: 0.15, metalness: 0.4 }), ctx, false);
+  water.rotation.x = -Math.PI / 2;
+  water.position.y = 0.62;
+  g.add(water);
+  const wood = woodMaterial(ctx, true);
+  for (const side of [-1, 1]) {
+    const post = mesh(boxGeometry(0.14, 2.1, 0.14, 1), wood, ctx);
+    post.position.set(side * 0.9, 1.05, 0);
+    g.add(post);
+  }
+  const roofMat = woodMaterial(ctx);
+  for (const side of [-1, 1]) {
+    const plank = mesh(boxGeometry(2.3, 0.07, 0.86, 1), roofMat, ctx);
+    plank.position.set(0, 2.32, side * 0.32);
+    plank.rotation.x = side * 0.62;
+    g.add(plank);
+  }
+  const crank = mesh(new THREE.CylinderGeometry(0.07, 0.07, 1.9, 6), wood, ctx);
+  crank.rotation.z = Math.PI / 2;
+  crank.position.y = 1.72;
+  g.add(crank);
+  const rope = mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.6, 4), litMaterial(ctx, 'rope', null, { color: '#3a2a18', roughness: 1 }), ctx, false);
+  rope.position.set(0.1, 1.4, 0);
+  g.add(rope);
+  const bucket = mesh(cylinderGeometry(0.17, 0.13, 0.26, 8, 1), woodMaterial(ctx, true), ctx);
+  bucket.position.set(0.1, 1.0, 0);
+  g.add(bucket);
+  return g;
+}
+
+/** Fallen log: bark side, sawn ring ends, a tuft of fern on the moss. */
+function log(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const bark = litMaterial(ctx, 'log-bark', repeatTexture(ctx, 'log-bark', () => barkTexture(ctx.palette, 70 + seed % 2).toTexture({ repeat: true })));
+  const length = 2.2 + rng() * 0.8, r = 0.3 + rng() * 0.08;
+  const body = mesh(cylinderGeometry(r, r * 1.08, length, 12, 0.8), bark, ctx);
+  body.rotation.z = Math.PI / 2;
+  body.position.y = r * 0.9;
+  g.add(body);
+  const ends = litMaterial(ctx, 'log-end', cached(ctx.textures, 'log-end', () => logEndTexture(ctx.palette, 71).toTexture()));
+  for (const side of [-1, 1]) {
+    const cap = mesh(new THREE.CircleGeometry(side < 0 ? r : r * 1.08, 12), ends, ctx, false);
+    cap.rotation.y = side * Math.PI / 2;
+    cap.position.set(side * length / 2, r * 0.9, 0);
+    g.add(cap);
+  }
+  const fern = billboard(ctx, `fern-${seed % 4}`, (k) => drawFern(ctx.palette, seed % 4, k), 0.7, false);
+  fern.position.set((rng() - 0.5) * length * 0.5, r * 1.6, 0.05);
+  g.add(fern);
+  return g;
+}
+
+/** Charred planks and a scorched beam, fallen from the burning roofs. */
+function debris(ctx: PropContext, rng: Rng): THREE.Group {
+  const g = new THREE.Group();
+  const charred = litMaterial(ctx, 'charred', repeatTexture(ctx, 'planks-h', () => plankTexture(ctx.palette, 22, false).toTexture({ repeat: true })), { color: '#5c4a40' });
+  for (let i = 0; i < 4; i++) {
+    const plank = mesh(boxGeometry(1.1 + rng() * 0.9, 0.08, 0.22, 1), charred, ctx);
+    plank.position.set((rng() - 0.5) * 1.2, 0.05 + i * 0.03, (rng() - 0.5) * 0.9);
+    plank.rotation.set(0, rng() * Math.PI, (rng() - 0.5) * 0.25);
+    g.add(plank);
+  }
+  const beam = mesh(boxGeometry(1.9, 0.22, 0.22, 1), charred, ctx);
+  beam.position.set(0.2, 0.2, 0.1);
+  beam.rotation.set(0, rng() * Math.PI, 0.18);
+  g.add(beam);
+  const coal = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.05, 0.12), glowMaterial('#ff6a1f'));
+  coal.position.set(0.3, 0.32, 0.1);
+  coal.raycast = () => {};
+  g.add(coal);
+  const phase = rng() * 6;
+  ctx.animated.push((t) => { (coal.material as THREE.MeshBasicMaterial).color.setHSL(0.05, 1, 0.42 + Math.sin(t * 5 + phase) * 0.1); });
   return g;
 }
 
@@ -621,12 +836,26 @@ export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | n
   const s = prop.s ?? 1;
   let object: THREE.Object3D | null = null;
   switch (prop.kind) {
-    case 'tree': object = billboard(ctx, `tree-${seed % 5}`, () => drawTree(ctx.palette, seed % 5), s, true); break;
-    case 'pine': object = billboard(ctx, `pine-${seed % 4}`, () => drawPine(ctx.palette, seed % 4), s, true); break;
-    case 'dead_tree': object = billboard(ctx, `dead-${seed % 3}-${!!prop.burning}`, () => drawDeadTree(ctx.palette, seed % 3, !!prop.burning), s, true); break;
-    case 'bush': object = billboard(ctx, `bush-${seed % 4}`, () => drawBush(ctx.palette, seed % 4), s, false); break;
-    case 'fern': object = billboard(ctx, `fern-${seed % 4}`, () => drawFern(ctx.palette, seed % 4), s, false); break;
-    case 'grass': object = billboard(ctx, `grass-${seed % 3}`, () => drawGrass(ctx.palette, seed % 3), s, false); break;
+    case 'tree': object = billboard(ctx, `tree-${seed % 5}`, (k) => drawTree(ctx.palette, seed % 5, k), s, true); break;
+    case 'pine': object = billboard(ctx, `pine-${seed % 4}`, (k) => drawPine(ctx.palette, seed % 4, k), s, true); break;
+    case 'dead_tree': {
+      const tree = billboard(ctx, `dead-${seed % 3}-${!!prop.burning}`, (k) => drawDeadTree(ctx.palette, seed % 3, !!prop.burning, k), s, true);
+      if (!prop.burning) { object = tree; break; }
+      // flames licking the forks of the crown
+      const group = new THREE.Group();
+      group.add(tree);
+      const crown = fireBillboard(ctx, seed + 11, 0.9 * s, 1.4 * s);
+      crown.position.set(0.25 * s, 3.9 * s, 0.05);
+      group.add(crown);
+      const fork = fireBillboard(ctx, seed + 17, 0.6 * s, 0.9 * s);
+      fork.position.set(-0.6 * s, 3.2 * s, 0.05);
+      group.add(fork);
+      object = group;
+      break;
+    }
+    case 'bush': object = billboard(ctx, `bush-${seed % 4}`, (k) => drawBush(ctx.palette, seed % 4, k), s, false); break;
+    case 'fern': object = billboard(ctx, `fern-${seed % 4}`, (k) => drawFern(ctx.palette, seed % 4, k), s, false); break;
+    case 'grass': object = billboard(ctx, `grass-${seed % 3}`, (k) => drawGrass(ctx.palette, seed % 3, k), s, false); break;
     case 'rock': object = rock(ctx, rng, seed); break;
     case 'column': object = column(ctx, rng, seed, false); break;
     case 'broken_column': object = column(ctx, rng, seed, true); break;
@@ -640,7 +869,10 @@ export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | n
     case 'barrel': object = barrel(ctx); break;
     case 'crate': object = crate(ctx); break;
     case 'cart': object = cart(ctx, rng); break;
-    case 'haystack': object = haystack(ctx); break;
+    case 'haystack': object = haystack(ctx, rng); break;
+    case 'well': object = well(ctx, seed); break;
+    case 'log': object = log(ctx, rng, seed); break;
+    case 'debris': object = debris(ctx, rng); break;
     case 'lantern': object = lantern(ctx, seed); break;
     case 'brazier': object = brazier(ctx, seed); break;
     case 'banner': object = banner(ctx, seed, !!prop.burning); break;

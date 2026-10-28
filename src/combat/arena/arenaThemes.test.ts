@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ARENA_THEMES, arenaBandProps, arenaThemeFor, propCrowdsPlatform } from './arenaThemes';
+import { ARENA_PLATFORM, ARENA_THEMES, arenaBandProps, arenaThemeFor, propCrowdsPlatform } from './arenaThemes';
 import { seeded } from './pixelArt';
 
 describe('procedural combat arena themes', () => {
@@ -28,5 +28,12 @@ describe('procedural combat arena themes', () => {
 
   it('ships a far plate for every theme', () => {
     for (const theme of Object.values(ARENA_THEMES)) expect(theme.farPlate.file).toMatch(/^\/assets\/generated\/combat-arena\/.+-far\.webp$/);
+  });
+
+  it('keeps light shafts and mist behind the platform, so they never veil the units', () => {
+    for (const theme of Object.values(ARENA_THEMES)) {
+      for (const [, z] of theme.shafts?.items ?? []) expect(z, theme.id).toBeLessThan(-ARENA_PLATFORM.halfDepth - 2);
+      for (const [z] of theme.mist?.layers ?? []) expect(z, theme.id).toBeLessThan(-ARENA_PLATFORM.halfDepth - 2);
+    }
   });
 });

@@ -4,7 +4,7 @@ import { makeNoise, seeded } from './pixelArt';
 import { arenaBandProps, arenaClutterProps, arenaThemeFor, type ArenaTheme } from './arenaThemes';
 import { groundTexture, tileSideTexture, tileTopTexture, trampledGroundTexture } from './arenaTextures';
 import { buildProp, type PropContext } from './arenaProps';
-import { drawFern, drawGrass, DECOR_TEXELS_PER_UNIT } from './arenaSprites';
+import { drawFern, drawGrass, drawTreeLine, DECOR_TEXELS_PER_UNIT } from './arenaSprites';
 import platesJson from '../../render/generated/combatArenaPlates.json';
 
 interface GeneratedPlate { file: string; aspect: number; width: number; z: number; bottomY: number }
@@ -30,6 +30,64 @@ export interface ArenaLightTargets {
 }
 
 const TILE_VARIANTS = 6;
+
+const ATMOS_VERTEX = `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+const ATMOS_NOISE = `
+float h21(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+float vnoise(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+  return mix(mix(h21(i), h21(i + vec2(1.0, 0.0)), f.x), mix(h21(i + vec2(0.0, 1.0)), h21(i + vec2(1.0, 1.0)), f.x), f.y); }
+float bayer4(vec2 p){ vec2 q = mod(floor(p), 4.0); int i = int(q.x + q.y * 4.0);
+  float m[16] = float[16](0.,8.,2.,10.,12.,4.,14.,6.,3.,11.,1.,9.,15.,7.,13.,5.); return (m[i] + 0.5) / 16.0; }`;
+
+/** Pixel light shaft: soft-edged additive band, dust streaks, a slow breath, banded with a Bayer dither. */
+function createShaftMaterial(color: string, opacity: number, seed: number, pixels: THREE.Vector2): THREE.ShaderMaterial {
+  return new THREE.ShaderMaterial({
+    uniforms: { uTime: { value: 0 }, uSeed: { value: seed }, uOpacity: { value: opacity }, uColor: { value: new THREE.Color(color) }, uPixels: { value: pixels } },
+    vertexShader: ATMOS_VERTEX,
+    fragmentShader: `uniform float uTime, uSeed, uOpacity; uniform vec3 uColor; uniform vec2 uPixels; varying vec2 vUv; ${ATMOS_NOISE}
+    void main(){
+      vec2 cell = floor(vUv * uPixels); vec2 uv = (cell + 0.5) / uPixels;
+      float across = 1.0 - abs(uv.x - 0.5) * 2.0;
+      float body = smoothstep(0.0, 0.7, across);
+      float ends = smoothstep(0.0, 0.3, uv.y) * smoothstep(1.0, 0.62, uv.y);
+      float dust = 0.72 + 0.28 * vnoise(vec2(uv.x * 9.0 + uSeed, uv.y * 3.0 - uTime * 0.12));
+      float breath = 0.82 + 0.18 * sin(uTime * 0.37 + uSeed * 2.1);
+      float a = body * ends * dust * breath * uOpacity;
+      // small steps: a flat core of light with dithered transitions only
+      float q = floor(a / 0.05 + bayer4(cell)) * 0.05;
+      if (q <= 0.0) discard;
+      gl_FragColor = vec4(uColor * q, 1.0);
+    }`,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    fog: false,
+    side: THREE.DoubleSide,
+  });
+}
+
+/** Low mist: scrolling value noise, densest at the ground, two flat tones cut by a Bayer dither. */
+function createMistMaterial(color: string, opacity: number, seed: number, pixels: THREE.Vector2): THREE.ShaderMaterial {
+  return new THREE.ShaderMaterial({
+    uniforms: { uTime: { value: 0 }, uSeed: { value: seed }, uOpacity: { value: opacity }, uColor: { value: new THREE.Color(color) }, uPixels: { value: pixels } },
+    vertexShader: ATMOS_VERTEX,
+    fragmentShader: `uniform float uTime, uSeed, uOpacity; uniform vec3 uColor; uniform vec2 uPixels; varying vec2 vUv; ${ATMOS_NOISE}
+    void main(){
+      vec2 cell = floor(vUv * uPixels); vec2 uv = (cell + 0.5) / uPixels;
+      float t = uTime * 0.035;
+      float n = vnoise(vec2(uv.x * 7.0 + t + uSeed, uv.y * 2.2)) * 0.62 + vnoise(vec2(uv.x * 17.0 - t * 1.7, uv.y * 4.0 + uSeed)) * 0.38;
+      float rise = pow(1.0 - uv.y, 1.6) * smoothstep(0.0, 0.08, uv.y);
+      float sides = smoothstep(0.0, 0.12, uv.x) * smoothstep(1.0, 0.88, uv.x);
+      float a = (n * 1.25 - 0.22) * rise * sides * uOpacity;
+      float q = floor(a / 0.09 + bayer4(cell)) * 0.09;
+      if (q <= 0.0) discard;
+      gl_FragColor = vec4(uColor * (0.92 + n * 0.16), min(0.7, q * 1.6));
+    }`,
+    transparent: true,
+    depthWrite: false,
+    fog: false,
+  });
+}
 const _camWorld = new THREE.Vector3();
 const _objWorld = new THREE.Vector3();
 const _parentQuat = new THREE.Quaternion();
@@ -52,6 +110,7 @@ export class CombatArena {
   private lightTargets: ArenaLightTargets | null = null;
   private baseIntensity = { hemi: 1, sun: 1, fill: 1 };
   private dim = { value: 1, from: 1, to: 1, t: 0, duration: 0 };
+  private readonly atmosphere: Array<{ material: THREE.ShaderMaterial; base: number }> = [];
 
   constructor(private readonly options: CombatArenaOptions) {
     this.theme = arenaThemeFor(options.sceneId);
@@ -92,6 +151,8 @@ export class CombatArena {
     this.root.updateMatrixWorld(true);
     this.buildLights();
     this.mergeStaticDecor();
+    this.buildTreeLines();
+    this.buildAtmosphere();
     await this.buildFarPlate();
     if (midPlate) await this.buildMidPlate(midPlate);
   }
@@ -278,6 +339,71 @@ export class CombatArena {
     this.root.add(ground);
   }
 
+  /**
+   * Distant tree lines between the mid-ground band and the far plate: two
+   * fogged silhouettes that close the horizon (the ground never shows as an
+   * endless lawn behind the forest).
+   */
+  private buildTreeLines(): void {
+    if (this.ctx.reduced) return;
+    const conifer = this.theme.id !== 'forest_route';
+    const rows: Array<{ z: number; width: number; height: number; seed: number; shade: string }> = [
+      { z: -25, width: 74, height: 9, seed: 3, shade: '#b8c0c4' },
+      { z: -21.5, width: 66, height: 7, seed: 7, shade: '#d8dcd6' },
+    ];
+    for (const row of rows) {
+      const sprite = drawTreeLine(this.theme.palette, row.seed + this.theme.id.length, conifer || row.seed === 3, 720, 96);
+      const texture = sprite.canvas.toTexture();
+      this.ctx.textures.set(`tree-line-${row.seed}`, texture);
+      const geometry = new THREE.PlaneGeometry(row.width, row.height);
+      this.geometries.push(geometry);
+      const material = new THREE.MeshBasicMaterial({ map: texture, alphaTest: 0.5, fog: true, color: row.shade });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(0, -0.2 + row.height / 2, row.z);
+      mesh.raycast = () => {};
+      mesh.name = 'arena-tree-line';
+      this.root.add(mesh);
+    }
+  }
+
+  /**
+   * Light shafts and low mist, both pixel-banded shaders: the forest gets sun
+   * through the canopy, the sanctum moonlight between the arches, the village
+   * a drifting pall of smoke. Dimmed with the rig during the spotlight.
+   */
+  private buildAtmosphere(): void {
+    if (this.ctx.reduced) return;
+    const shafts = this.theme.shafts;
+    shafts?.items.forEach(([x, z, width, height, tilt], i) => {
+      const material = createShaftMaterial(shafts.color, shafts.opacity, i * 1.7 + 0.4, new THREE.Vector2(Math.round(width * 20), Math.round(height * 20)));
+      const geometry = new THREE.PlaneGeometry(width, height);
+      geometry.translate(0, height / 2, 0);
+      this.geometries.push(geometry);
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(x, -0.3, z);
+      mesh.rotation.z = tilt;
+      mesh.renderOrder = 3;
+      mesh.raycast = () => {};
+      mesh.name = 'arena-light-shaft';
+      this.root.add(mesh);
+      this.atmosphere.push({ material, base: shafts.opacity });
+    });
+    const mist = this.theme.mist;
+    mist?.layers.forEach(([z, height, width], i) => {
+      const material = createMistMaterial(mist.color, mist.opacity, i * 3.1 + 1.3, new THREE.Vector2(Math.round(width * 20), Math.round(height * 20)));
+      const geometry = new THREE.PlaneGeometry(width, height);
+      geometry.translate(0, height / 2, 0);
+      this.geometries.push(geometry);
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(0, -0.18, z);
+      mesh.renderOrder = 2;
+      mesh.raycast = () => {};
+      mesh.name = 'arena-mist';
+      this.root.add(mesh);
+      this.atmosphere.push({ material, base: mist.opacity });
+    });
+  }
+
   /** Worn earth around the platform and a path toward the back (not on the village mud). */
   private buildTrampledApron(): void {
     if (this.theme.ground === 'village_mud') return;
@@ -438,6 +564,7 @@ export class CombatArena {
     targets.sun.intensity = this.baseIntensity.sun * (0.25 + value * 0.75) * value;
     targets.fill.intensity = this.baseIntensity.fill * value;
     if (this.farPlate) (this.farPlate.material as THREE.MeshBasicMaterial).color.set(this.theme.farPlate.tint).multiplyScalar(0.35 + value * 0.65);
+    for (const entry of this.atmosphere) entry.material.uniforms.uOpacity!.value = entry.base * value;
   }
 
   // ------------------------------------------------------------ frame
@@ -455,6 +582,7 @@ export class CombatArena {
       board.rotation.y = yaw;
     }
     for (const fn of this.ctx.animated) fn(t, dt);
+    for (const entry of this.atmosphere) entry.material.uniforms.uTime!.value = t;
     for (const entry of this.lights) {
       const n = Math.sin(t * 9.1 + entry.phase) * 0.5 + Math.sin(t * 13.7 + entry.phase * 2.3) * 0.3 + Math.sin(t * 3.1 + entry.phase) * 0.2;
       entry.light.intensity = entry.base * (1 + n * entry.flicker);
@@ -475,6 +603,7 @@ export class CombatArena {
       props: this.theme.props.length,
       billboards: this.ctx.billboards.length,
       lights: this.lights.length,
+      atmosphere: this.atmosphere.length,
       mergedMeshes: this.mergedMeshes,
       textures: this.ctx.textures.size,
       farPlate: Boolean(this.farPlate && (this.farPlate.material as THREE.MeshBasicMaterial).map),

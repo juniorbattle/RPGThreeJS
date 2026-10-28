@@ -277,10 +277,31 @@ export function timberWallTexture(pal: ArenaPalette, seed: number, burning: bool
     pc.set(x, y, c);
   }
   // windows
-  for (const wx of [8, 50]) {
+  for (const wx of TIMBER_WINDOWS) {
     for (let y = 30; y < 40; y++) for (let x = wx; x < wx + 7; x++) {
-      const frame = x === wx || x === wx + 6 || y === 30 || y === 39 || x === wx + 3;
-      pc.set(x, y, frame ? rgb(pal.wood[0]) : burning ? mixRgb(rgb('#ffb347'), rgb('#ff6a1f'), (y - 30) / 10) : rgb('#f4c56a'));
+      const frame = x === wx || x === wx + 6 || y === 30 || y === 39 || x === wx + 3 || y === 35;
+      pc.set(x, y, frame ? rgb(pal.wood[0]) : windowPane(burning, x - wx, y - 30));
+    }
+  }
+  return pc;
+}
+
+const TIMBER_WINDOWS = [8, 50] as const;
+
+function windowPane(burning: boolean, x: number, y: number): Rgb {
+  // warm lamplight, brighter at the top of each pane (or fire light from below)
+  const t = burning ? 1 - y / 10 : y / 10;
+  return burning ? mixRgb(rgb('#ffd27a'), rgb('#ff6a1f'), t) : mixRgb(rgb('#ffe3a0'), rgb('#e09a3c'), t + (x === 1 || x === 4 ? -0.15 : 0));
+}
+
+/** Emissive mask of the facade: only the window panes glow at night. */
+export function timberWindowMask(burning: boolean): PixelCanvas {
+  const pc = new PixelCanvas(64, 48);
+  pc.fill([0, 0, 0]);
+  for (const wx of TIMBER_WINDOWS) {
+    for (let y = 31; y < 39; y++) for (let x = wx + 1; x < wx + 6; x++) {
+      if (x === wx + 3 || y === 35) continue;
+      pc.set(x, y, windowPane(burning, x - wx, y - 30));
     }
   }
   return pc;
@@ -300,28 +321,99 @@ export function roofTexture(pal: ArenaPalette, seed: number, burning: boolean): 
   return pc;
 }
 
-/** Heraldic banner: house cloth, gold border and a rampant lion silhouette. */
+// ---------------------------------------------------------------- heraldry
+
+const LION_W = 26, LION_H = 34;
+
+function segmentDistance(px: number, py: number, ax: number, ay: number, bx: number, by: number): [number, number] {
+  const dx = bx - ax, dy = by - ay;
+  const t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)));
+  return [Math.hypot(px - (ax + dx * t), py - (ay + dy * t)), t];
+}
+
+function inStroke(px: number, py: number, pts: ReadonlyArray<readonly [number, number]>, w0: number, w1: number): boolean {
+  const n = pts.length - 1;
+  for (let i = 0; i < n; i++) {
+    const a = pts[i]!, b = pts[i + 1]!;
+    const [d, t] = segmentDistance(px, py, a[0], a[1], b[0], b[1]);
+    if (d <= (w0 + (w1 - w0) * (i + t) / n) / 2) return true;
+  }
+  return false;
+}
+
+function inEllipse(px: number, py: number, cx: number, cy: number, rx: number, ry: number): boolean {
+  return ((px - cx) / rx) ** 2 + ((py - cy) / ry) ** 2 <= 1;
+}
+
+const LION_CLAWS = new Set(['1,5', '2,4', '1,7', '2,14', '2,16', '5,23', '5,25']);
+
+/**
+ * The house lion, rampant and facing left, on a 26×34 grid: 0 empty, 1 body,
+ * 2 mane (and tail tuft). Built from strokes and ellipses so the banners and
+ * the stele share one emblem.
+ */
+function lionPart(x: number, y: number): 0 | 1 | 2 {
+  const px = x + 0.5, py = y + 0.5;
+  if (x === 9 && y === 5) return 0; // eye
+  if (py > 8.4 && py < 9.4 && px > 4.5 && px < 8.6) return 0; // open jaw
+  if (inEllipse(px, py, 10.8, 6.6, 3.3, 2.9) || inEllipse(px, py, 7.2, 7.4, 2.3, 1.3) || inEllipse(px, py, 7.6, 9.8, 1.9, 0.9) || inEllipse(px, py, 11.6, 3.4, 1.1, 1.1)) return 1;
+  const ma = Math.atan2(py - 8.8, px - 13.2);
+  if (px > 8.2 && Math.hypot(px - 13.2, (py - 8.8) / 1.12) <= 5 + Math.abs(Math.sin(ma * 5 + 0.6))) return 2;
+  if (inStroke(px, py, [[13.5, 12], [15.2, 18], [16.2, 23]], 7.6, 5.6)
+    || inStroke(px, py, [[12, 12.5], [7.2, 11.6], [3.8, 7.8]], 3.2, 2.4) || inEllipse(px, py, 3.2, 6.8, 1.6, 1.4)
+    || inStroke(px, py, [[12.5, 15.6], [8.2, 16.2], [4.8, 15.4]], 3.0, 2.2) || inEllipse(px, py, 3.9, 15.2, 1.6, 1.3)
+    || inEllipse(px, py, 16.6, 23.2, 3.0, 3.4)
+    || inStroke(px, py, [[17, 25], [16.4, 29], [17.6, 32]], 4.2, 2.8) || inEllipse(px, py, 17.4, 32.6, 2.8, 1.0)
+    || inStroke(px, py, [[14.8, 23.6], [10.8, 26.6], [7.8, 24.6]], 3.8, 2.6) || inEllipse(px, py, 7.0, 24.0, 1.6, 1.3)
+    || inStroke(px, py, [[18.6, 22], [21.6, 19], [21.2, 14.2], [23, 10.8]], 1.7, 1.3)) return 1;
+  if (inEllipse(px, py, 23.4, 9.2, 1.7, 2.3)) return 2;
+  return LION_CLAWS.has(`${x},${y}`) ? 1 : 0;
+}
+
+/**
+ * Paints the lion at (ox, oy) in a ramp: lit up-left edges, shaded down-right
+ * edges, radial strands in the mane and a shade line where mane meets head.
+ */
+function paintLion(pc: PixelCanvas, ox: number, oy: number, tones: readonly string[], onPixel?: (x: number, y: number, c: Rgb) => void): void {
+  const solid = (x: number, y: number) => x >= 0 && y >= 0 && x < LION_W && y < LION_H && lionPart(x, y) > 0;
+  for (let y = 0; y < LION_H; y++) for (let x = 0; x < LION_W; x++) {
+    const part = lionPart(x, y);
+    if (!part) continue;
+    const lit = !solid(x - 1, y) || !solid(x, y - 1);
+    const shade = !solid(x + 1, y) || !solid(x, y + 1);
+    let t = lit ? 1 : shade ? 0.34 : 0.7;
+    if (part === 2 && !lit) {
+      const a = Math.atan2(y + 0.5 - 8.8, x + 0.5 - 13.2), d = Math.hypot(x + 0.5 - 13.2, y + 0.5 - 8.8);
+      if (Math.sin(a * 7 + d * 0.9) > 0.55) t = 0.42;
+      if ((lionPart(x - 1, y) === 1 && x - 1 > 8 && x - 1 < 14) || (lionPart(x, y - 1) === 1 && x > 8 && x < 14 && y - 1 < 10)) t = 0.2;
+    }
+    const c = ramp(tones, t);
+    pc.set(ox + x, oy + y, c);
+    onPixel?.(ox + x, oy + y, c);
+  }
+}
+
+/** Heraldic banner (40×80, the decor's 32 texels/m): house cloth, gold border and the rampant lion. */
 export function bannerTexture(pal: ArenaPalette, seed: number, burning = false): PixelCanvas {
-  const W = 20, H = 40;
+  const W = 40, H = 80;
   const pc = new PixelCanvas(W, H);
   const rng = seeded(seed);
-  const n = makeNoise(rng, 6);
+  const n = makeNoise(rng, 8);
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     // swallowtail bottom
-    if (y > H - 7 && Math.abs(x - W / 2 + 0.5) < (y - (H - 7)) * 1.4) continue;
-    if (burning && y > H - 12 && n(x / 2, y / 2) > 0.55 + (H - y) * 0.03) continue;
-    const fold = Math.sin(x * 0.9) * 0.12;
-    let c = shadeTone(pal.cloth, 0.6 + fold + (n(x / 3, y / 3) - 0.5) * 0.2, x, y);
-    if (x === 1 || x === W - 2 || y === 2) c = shadeTone(pal.trim, 0.65, x, y);
+    if (y > H - 14 && Math.abs(x - W / 2 + 0.5) < (y - (H - 14)) * 1.4) continue;
+    if (burning && y > H - 24 && n(x / 4, y / 4) > 0.55 + (H - y) * 0.015) continue;
+    const fold = Math.sin(x * 0.45) * 0.12;
+    let c = shadeTone(pal.cloth, 0.6 + fold + (n(x / 6, y / 6) - 0.5) * 0.2, x, y);
+    const swallow = y > H - 14 && Math.abs(Math.abs(x - W / 2 + 0.5) - (y - (H - 14)) * 1.4) < 1.6;
+    if (x <= 3 && x >= 2 || x >= W - 4 && x <= W - 3 || (y >= 4 && y <= 5) || (swallow && !burning)) c = shadeTone(pal.trim, x <= 3 || y <= 5 ? 0.8 : 0.5, x, y);
     pc.set(x, y, c);
   }
-  // lion: a compact rampant silhouette drawn as rows of spans
-  const lion: Array<[number, number, number]> = [
-    [10, 9, 12], [11, 8, 13], [12, 7, 13], [13, 8, 12], [14, 9, 13], [15, 6, 13], [16, 5, 12], [17, 6, 12],
-    [18, 7, 13], [19, 7, 14], [20, 6, 14], [21, 6, 13], [22, 7, 9], [22, 11, 13], [23, 6, 8], [23, 12, 14], [24, 5, 7], [24, 13, 15],
-  ];
-  for (const [y, x0, x1] of lion) for (let x = x0; x <= x1; x++) pc.set(x, y, ramp(pal.trim, x === x0 ? 0.55 : 0.9));
-  pc.set(12, 10, ramp(pal.cloth, 0.1));
+  // charred, glowing hem on burning banners
+  if (burning) for (let y = 1; y < H; y++) for (let x = 0; x < W; x++) {
+    if (pc.alpha(x, y) && !pc.alpha(x, y + 1) && y > H - 30) { pc.set(x, y, rgb('#ff8a2a')); pc.set(x, y - 1, rgb('#2a120c')); }
+  }
+  paintLion(pc, 7, 16, pal.trim);
   return pc;
 }
 
@@ -335,12 +427,116 @@ export function metalTexture(seed: number): PixelCanvas {
   return pc;
 }
 
+/** Straw: long strands in five tones, a few bright stalks and dark gaps between bundles. */
 export function strawTexture(seed: number): PixelCanvas {
   const pc = new PixelCanvas(32, 32);
   const rng = seeded(seed);
+  const strand = makeNoise(rng, 16), bundle = makeNoise(rng, 4);
+  const tones = ['#3b2a10', '#6a5022', '#977733', '#c2a04f', '#e0c473'] as const;
   for (let y = 0; y < 32; y++) for (let x = 0; x < 32; x++) {
-    const v = 0.5 + Math.sin(x * 1.7 + y * 0.3 + rng() * 0.8) * 0.25;
-    pc.set(x, y, mixRgb(rgb('#6d5524'), rgb('#d8bb6a'), Math.max(0, Math.min(1, v))));
+    // elongated in y: strands run down the stack
+    let level = 0.5 + (strand(x / 1.2, y / 9) - 0.5) * 0.9 + (bundle(x / 8, y / 8) - 0.5) * 0.25;
+    if (strand(x / 0.9 + 7, y / 5) > 0.86) level = 0.98; // a lit stalk
+    if (strand(x / 1.1 + 3, y / 6 + 5) < 0.12) level = 0.08; // gap between strands
+    pc.set(x, y, shadeTone(tones, Math.max(0, Math.min(1, level)), x, y));
   }
   return pc;
+}
+
+/** Burlap: a coarse two-tone weave for sacks. */
+export function burlapTexture(seed: number): PixelCanvas {
+  const pc = new PixelCanvas(16, 16);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 4);
+  const tones = ['#4a3a26', '#6b5639', '#8c7550', '#ab9469'] as const;
+  for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) {
+    const weave = (x + y) % 2 === 0 ? 0.12 : -0.08;
+    pc.set(x, y, shadeTone(tones, Math.max(0, Math.min(1, 0.55 + weave + (n(x / 4, y / 4) - 0.5) * 0.4)), x, y));
+  }
+  return pc;
+}
+
+/**
+ * Fluted column drum, 4 flutes per 32-texel repeat (light from the left:
+ * the left wall of each groove is in shade, the fillets catch the light),
+ * a drum joint every 32 texels, chips, a crack and lichen in the grooves.
+ */
+export function columnTexture(pal: ArenaPalette, seed: number, lichen = 0.4): PixelCanvas {
+  const W = 32, H = 64;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), fine = makeNoise(rng, 16), moss = makeNoise(rng, 8);
+  const profile = [0.82, 0.22, 0.32, 0.44, 0.54, 0.62, 0.7, 0.78];
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const f = x % 8;
+    let level = (profile[f] ?? 0.5) * 0.74 + 0.1 + (n(x / 6, y / 7) - 0.5) * 0.2 + (fine(x / 2, y / 2) - 0.5) * 0.08;
+    const joint = y % 32;
+    if (joint === 0) level = 0.04; else if (joint === 1) level += 0.12; else if (joint === 31) level -= 0.1;
+    let c = shadeTone(pal.stone, Math.max(0.03, Math.min(0.97, level)), x, y);
+    if (f >= 1 && f <= 3 && moss(x / 3, y / 5) > 0.82 - lichen * 0.2) c = shadeTone(pal.moss, 0.3 + moss(x, y) * 0.5, x, y);
+    pc.set(x, y, c);
+  }
+  for (let k = 0; k < 7; k++) { // chips: a dark pit with a lit lower lip
+    const x = Math.floor(rng() * W), y = 2 + Math.floor(rng() * (H - 4));
+    pc.setWrap(x, y, rgb(pal.stoneDark[1])); pc.setWrap(x + 1, y, rgb(pal.stoneDark[2]));
+    pc.setWrap(x, y + 1, ramp(pal.stone, 0.8));
+  }
+  crack(pc, rng, 4 + Math.floor(rng() * 24), 4, 14 + Math.floor(rng() * 12), rgb(pal.stoneDark[1]), { x: 0, y: 0, w: W, h: H });
+  return pc;
+}
+
+/** Sawn log end: growth rings around a dark heart, bark rim (16×16, used on caps). */
+export function logEndTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const pc = new PixelCanvas(16, 16);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 4);
+  for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) {
+    const d = Math.hypot(x - 7.5, y - 7.5) + (n(x / 3, y / 3) - 0.5) * 1.2;
+    let c: Rgb;
+    if (d > 7.2) c = rgb(pal.bark[1]);
+    else if (d > 6.2) c = rgb(pal.bark[3]);
+    else c = shadeTone(pal.wood, 0.55 + (Math.floor(d) % 2 ? -0.18 : 0.12) + (x < y ? 0.08 : -0.06), x, y);
+    pc.set(x, y, c);
+  }
+  return pc;
+}
+
+/**
+ * Carved stele face for the lion sanctum: a dark stone panel with a bevelled
+ * border, a gold sun medallion and the house lion in relief (the banner lion
+ * at twice the size, so both read as one emblem). Returns the face and an
+ * emissive mask holding only the gold.
+ */
+export function lionReliefTexture(pal: ArenaPalette, seed: number): { face: PixelCanvas; gold: PixelCanvas } {
+  const W = 48, H = 72;
+  const face = new PixelCanvas(W, H);
+  const gold = new PixelCanvas(W, H);
+  gold.fill([0, 0, 0]);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const edge = Math.min(x, y, W - 1 - x, H - 1 - y);
+    let level = 0.34 + (n(x / 4, y / 4) - 0.5) * 0.18;
+    if (edge < 3) level = edge === 0 ? 0.1 : x < W - 3 && y < H - 3 && (x < 3 || y < 3) ? 0.62 : 0.2;
+    else if (edge === 3) level = 0.16;
+    face.set(x, y, shadeTone(pal.stone, level, x, y));
+  }
+  const putGold = (x: number, y: number, t: number) => {
+    face.set(x, y, ramp(pal.trim, t));
+    gold.set(x, y, ramp(pal.trim, t * 0.85));
+  };
+  // sun medallion
+  const cx = 24, cy = 17;
+  for (let y = cy - 13; y <= cy + 13; y++) for (let x = cx - 13; x <= cx + 13; x++) {
+    const d = Math.hypot(x - cx, y - cy), a = Math.atan2(y - cy, x - cx);
+    const ray = d > 8.5 && d < 12.5 && Math.abs(Math.sin(a * 6)) > 0.72 - (12.5 - d) * 0.04;
+    if (d < 6.5 || (d >= 7.5 && d < 8.5) || ray) putGold(x, y, d < 6.5 ? (x - cx + (y - cy) < -2 ? 1 : 0.72) : 0.55 + (x < cx ? 0.3 : 0));
+  }
+  // the house lion in relief, under the medallion
+  paintLion(face, 11, 33, pal.trim, (x, y, c) => gold.set(x, y, mixRgb([0, 0, 0], c, 0.85)));
+  // drop shadow of the relief on the panel
+  for (let y = H - 2; y > 0; y--) for (let x = W - 2; x > 0; x--) {
+    if (gold.get(x - 1, y - 1)[0] > 0 && gold.get(x, y)[0] === 0 && Math.min(x, y, W - 1 - x, H - 1 - y) > 3) face.set(x, y, rgb(pal.stoneDark[0]));
+  }
+  return { face, gold };
 }
