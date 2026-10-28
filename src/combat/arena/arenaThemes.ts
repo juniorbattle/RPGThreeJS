@@ -235,7 +235,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
     spriteRim: '#3a4a30',
     props: FOREST_PROPS,
     band: { kinds: ['tree', 'pine', 'tree', 'bush'], count: 30, z: [-8.5, -20], halfWidth: 26, gap: 4.5, scale: [1.2, 1.9] },
-    clutter: { kinds: ['bush', 'fern', 'rock', 'grass', 'bush', 'fern'], count: 34, z: [-3.6, -11], halfWidth: 15, scale: [0.8, 1.4] },
+    clutter: { kinds: ['bush', 'fern', 'rock', 'grass', 'bush', 'fern', 'log'], count: 58, z: [-3.6, -18], halfWidth: 17, scale: [0.8, 1.5] },
     motes: { color: '#f3e3a0', count: 70, rise: 0.08, size: 0.07, glow: true },
     shafts: {
       color: '#ffe7a8',
@@ -312,7 +312,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
     spriteRim: '#30406c',
     props: SANCTUM_PROPS,
     band: { kinds: ['pine', 'pine', 'broken_column', 'tree'], count: 18, z: [-12, -21], halfWidth: 26, gap: 6, scale: [1.2, 1.8] },
-    clutter: { kinds: ['gravestone', 'rock', 'grass', 'fern', 'broken_column', 'bush'], count: 16, z: [-3.8, -11], halfWidth: 14, scale: [0.8, 1.2] },
+    clutter: { kinds: ['gravestone', 'rock', 'grass', 'fern', 'broken_column', 'bush', 'gravestone'], count: 26, z: [-3.8, -15], halfWidth: 15, scale: [0.8, 1.2] },
     motes: { color: '#f1d68c', count: 90, rise: 0.06, size: 0.065, glow: true },
     shafts: {
       color: '#a8bfff',
