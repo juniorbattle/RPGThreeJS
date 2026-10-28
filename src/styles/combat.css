@@ -60,6 +60,13 @@
   #stagevig::before{top:0;transform:translateY(-100%)}
   #stagevig::after{bottom:0;transform:translateY(100%)}
   #stagevig.on::before,#stagevig.on::after{transform:translateY(0)}
+  /* Ultimate speed lines: thin radial rays converging on the screen centre. */
+  #fx-speedlines{position:fixed;inset:0;z-index:6;pointer-events:none;opacity:0;transition:opacity .25s;
+    background:repeating-conic-gradient(from 0deg at 50% 52%,transparent 0deg 3.1deg,color-mix(in srgb,var(--fx-color,#fff) 55%,transparent) 3.1deg 3.4deg);
+    -webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 52%,transparent 38%,#000 92%);mask-image:radial-gradient(ellipse 60% 55% at 50% 52%,transparent 38%,#000 92%);mix-blend-mode:screen}
+  #fx-speedlines.on{opacity:.55;animation:fx-speedlines-spin .9s linear infinite}
+  @keyframes fx-speedlines-spin{to{transform:rotate(2deg) scale(1.03)}}
+  @media (prefers-reduced-motion:reduce){#fx-speedlines{display:none}}
   #ui.staging #menu,#ui.staging #skillmenu,#ui.staging #hud-right-stack,#ui.staging #settings-btn,#ui.staging #help{opacity:0;transition:opacity .3s}
   body:has(#stagevig.on)::before{opacity:.3}
   #stagetitle{position:fixed;top:30px;left:50%;z-index:20;pointer-events:none;

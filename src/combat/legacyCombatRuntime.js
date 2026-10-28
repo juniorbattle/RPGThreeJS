@@ -28,7 +28,11 @@ import { CombatCameraFeedback, applyAdditiveCameraShake, shakeSampleToUvOffset }
 import { installUnitMotionWorkbench } from './UnitMotionWorkbench';
 import { COMBAT_RENDER_LAYERS } from './combatRenderLayers';
 import { resolveBossIntentVisualState } from './bossIntentPresentation';
-import { CombatCameraDirector } from './camera/CombatCameraDirector';
+import { CombatCameraDirector, shotFor } from './camera/CombatCameraDirector';
+import { FxEngine } from './fx/FxEngine';
+import { FxDirector } from './fx/FxDirector';
+import { resolveFxRecipe } from './fx/fxRecipes';
+import { createCombatSfx } from './audio/CombatSfx';
 import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
 import { isExhausted } from './combatExhaustion';
 import { resolvePixelSheet, pixelSheetVisibleBounds, PIXEL_PX_PER_UNIT } from './pixel/PixelSpriteSheets';
@@ -157,6 +161,18 @@ scene.fog=new THREE.FogExp2(0x52635c, COMBAT_PRESENTATION.ambientMist.fogDensity
 const combatVfxSystem=new VfxSystem();
 
 const camera=new THREE.PerspectiveCamera(COMBAT_PRESENTATION.camera.fov, innerWidth/innerHeight, 0.1, 200);
+// Procedural Octopath-style FX + synthesized SFX (no spritesheet or audio file
+// dependency). Hooks are bound lazily: the helpers are defined further down.
+const combatSfx=createCombatSfx({enabled:new URLSearchParams(location.search).get('son')!=='0'});
+const fxEngine=new FxEngine(scene,camera,{
+  shake:(magnitude,duration)=>screenShake(magnitude,duration,magnitude>0.3),
+  flash:(color,opacity)=>screenFlash(color,opacity),
+  sfx:(id,options)=>combatSfx.play(id,options),
+  slowmo:(scale,duration)=>{ if(REDUCED_GRAPHICS)return; G.timeScale=scale; G.slowUntil=performance.now()+duration*1000; },
+  speedLines:(duration,color)=>showSpeedLines(duration,color),
+  punch:(point,duration)=>cameraPunch(point,duration),
+},3);
+const fxDirector=new FxDirector(fxEngine);
 let cameraBaseFov=COMBAT_PRESENTATION.camera.fov;
 function syncCombatHudCamera(){ const combatFov=combatHudCameraFov(innerWidth,COMBAT_PRESENTATION.camera.fov); cameraBaseFov=G.mode==='deploy'&&innerWidth<=560?Math.max(combatFov,68):combatFov; camera.fov=cameraBaseFov; camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); }
 syncCombatHudCamera();
@@ -465,6 +481,7 @@ async function buildWorld(){
   worldRoot.add(G.arena.root);
   G.arena.applyLighting({renderer,scene,hemi,sun,fill});
   setPixelSpriteLight(G.arena.theme.spriteTint,G.arena.theme.spriteRim);
+  combatSfx.ambience(G.arena.theme.id);
   syncCombatHudCamera();
   G.environment=buildSceneAmbience(COMBAT_SCENE_ID);
   const pickMaterial=new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false,color:0x000000});
@@ -1128,7 +1145,7 @@ async function moveAlong(u,path){
     for(const [gx,gz] of path){
       if(!isUnitMotionCurrent(u,epoch))return;
       const c=cellAt(gx,gz),from=u.grp.position.clone(),sign=spriteScaleSign(u.spr),scale=largeUnitSpriteScale(u),outlineScale=scale*1.1;
-      setFacing(u,gx,gz);
+      setFacing(u,gx,gz); combatSfx.play('step',{pitch:(u.size>1?0.7:0.92)+Math.random()*0.16,volume:u.size>1?1.4:1});
       const nextSign=spriteScaleSign(u.spr),mid={x:(from.x+wX(gx))/2,y:Math.max(from.y,c.topY)+(motion.lift||0.08),z:(from.z+wZ(gz))/2};
       const launch=[tweenP(u.grp.position,mid,motion.stepHalf,easeOutCubic),tweenP(u.spr.rotation,{z:-nextSign*(motion.tilt||0.045)},motion.stepHalf,easeOutCubic),tweenP(u.spr.scale,{x:nextSign*scale*(1+(motion.squash||0.035)*0.35),y:scale*(1-(motion.squash||0.035))},motion.stepHalf,easeOutCubic)];
       if(u.outline){ const os=spriteScaleSign(u.outline); launch.push(tweenP(u.outline.rotation,{z:-os*(motion.tilt||0.045)},motion.stepHalf,easeOutCubic),tweenP(u.outline.scale,{x:os*outlineScale*(1+(motion.squash||0.035)*0.35),y:outlineScale*(1-(motion.squash||0.035))},motion.stepHalf,easeOutCubic)); }
@@ -1161,7 +1178,7 @@ function tickStatusDuration(u){ for(const s in u.statuses){ u.statuses[s]--; if(
 function buildOrder(){ return aliveUnits().sort((a,b)=> (effDEX(b)-effDEX(a)) || (a.team===b.team? a.id-b.id : (a.team==='player'?-1:1))); }
 function startRound(){ if(checkEnd())return; G.round++; G.order=buildOrder(); G.turnIdx=-1; logMsg('— Manche '+G.round+' —'); nextTurn(); }
 function nextTurn(){ if(G.over||checkEnd())return; G.turnIdx++; if(G.turnIdx>=G.order.length){ startRound(); return; } const u=G.order[G.turnIdx]; if(!u||!u.alive){ nextTurn(); return; } beginTurn(u); }
-async function beginTurn(u){ if(G.over)return; u._hasStartedTurn=true; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.skillMovedThisTurn=false; G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz; u._usedUtility=false; u._statusPulseStartedAt=_t;
+async function beginTurn(u){ if(G.over)return; u._hasStartedTurn=true; G.active=u; if(u.team==='player')combatSfx.play('turn'); G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.skillMovedThisTurn=false; G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz; u._usedUtility=false; u._statusPulseStartedAt=_t;
   const regen=(u.boss||u.elite)?2:1; u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
   if(regen>0) setTimeout(()=>{ if(u.alive)floatText(u,'+'+regen+' AP','#7fd0ff'); },120);
   refreshTurnbar(); selectUnit(u); focusCam(u);
@@ -1198,7 +1215,7 @@ async function playUnitHitReaction(u,opts={}){
   const baseline=motionBaseline(u); killSpriteMotion(u); const epoch=beginUnitMotion(u); u._motionPlaying=true;
   try{
     const flashColor=critical?'#fff3b0':'#ff6a5a';
-    playPixelAnim(u,'hurt'); if(u.pixel)u.pixel.flash(critical?1:0.8);
+    playPixelAnim(u,'hurt'); if(u.pixel)u.pixel.flash(critical?0.85:0.55);
     if(u.mat){ u.mat.color.set(flashColor); setTimeout(()=>{if(u.alive&&u.mat)u.mat.color.set('#ffffff');},reduced?90:(critical?180:140)); }
     const away=opts.source?motionDirection(u,{source:opts.source,reaction:true},true):{x:0,z:0};
     const hitDist=(critical?0.15:(isBoss?0.07:0.12))*(reduced?0.65:1);
@@ -1637,6 +1654,32 @@ function playActionVfx(spec,u,targets,cx,cz,visualContext={}){
   void completion.catch(error=>console.warn('[CombatVfx] Action playback failed safely.',error));
   return {played:true,presetId:published?`published_${actionKey}`:presetId,impactTime:Math.max(...results.map(result=>result.impactTime)),completion};
 }
+function fxUnitRef(t){ return {position:t.grp.position.clone(),height:Math.max(0.8,Math.min(4.4,t.visualHeight||1.9))}; }
+/** Plays the procedural FX recipe for an action; returns null when no preset applies. */
+function playActionFx(spec,u,targets,cx,cz,visualContext={}){
+  const presetId=getActionVfxPreset(spec,u); if(!presetId||!u||!u.grp)return null;
+  const preset=getVfxPreset(presetId); const recipe=resolveFxRecipe(presetId,preset?.tags||[]);
+  const point=visualContext.targetPoint?visualContext.targetPoint.clone():new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz));
+  const cells=(spec.radius>=1||spec.shape)?aoeCells(u,spec,cx,cz).filter(([gx,gz])=>inBounds(gx,gz)).map(([gx,gz])=>new THREE.Vector3(wX(gx),tileTop(gx,gz),wZ(gz))):[];
+  const refs=targets.filter(t=>t&&t.grp).map(fxUnitRef);
+  const playback=fxDirector.play(recipe,{source:fxUnitRef(u),targets:refs.length?refs:[{position:point.clone(),height:1.6}],point,cells:cells.length?cells:[point.clone()]});
+  return {played:true,presetId,impactTime:playback.impactTime,completion:playback.completion,cinematic:playback.cinematic};
+}
+let speedLinesEl=null,speedLinesTimer=0;
+function showSpeedLines(duration,color){
+  if(REDUCED_GRAPHICS)return;
+  if(!speedLinesEl){ speedLinesEl=document.createElement('div'); speedLinesEl.id='fx-speedlines'; document.body.appendChild(speedLinesEl); }
+  speedLinesEl.style.setProperty('--fx-color',color); speedLinesEl.classList.remove('on'); void speedLinesEl.offsetWidth; speedLinesEl.classList.add('on');
+  clearTimeout(speedLinesTimer); speedLinesTimer=setTimeout(()=>speedLinesEl&&speedLinesEl.classList.remove('on'),duration*1000);
+}
+/** Spotlight impact punch: a fast close-up on the hit, then back to the spotlight shot. */
+function cameraPunch(point,duration){
+  if(!G.spotlight||G.spotlight.kind!=='spotlight'||REDUCED_GRAPHICS)return;
+  const back=cameraDirector.shot,actor=unitShotPoint(G.active)||{x:point.x,z:point.z};
+  void cameraDirector.goTo(shotFor('impact',cameraDirector.baseShot,actor,{x:point.x,y:Math.max(0,point.y-1),z:point.z}),0.1,'impact')
+    .then(()=>wait(Math.max(0.15,duration*0.55)))
+    .then(()=>{ if(G.spotlight&&cameraDirector.kind==='impact')return cameraDirector.goTo(back,0.32,'spotlight'); });
+}
 function makeActionVfxContext(u,targets,cx,cz,spec={},visualContext={}){
   const tuning=getActionPresentationTuning(spec),presentation=getSkillPresentation(spec);
   // The gameplay resolver already supplies the true target/AoE origin through
@@ -1664,6 +1707,11 @@ function playActionVfxAt(presetId,u,targetPoint,spec={}){
 }
 function playFeedbackVfx(presetId,source,target){
   if(!target)return false;
+  if(target.grp&&source&&source.grp){
+    const preset=getVfxPreset(presetId);
+    fxDirector.play(resolveFxRecipe(presetId,preset?.tags||[]),{source:fxUnitRef(source),targets:[fxUnitRef(target)],point:target.grp.position.clone(),cells:[target.grp.position.clone()]});
+    return true;
+  }
   const cx=target.size>1?bossCenterGX(target):target.gx, cz=target.size>1?bossCenterGZ(target):target.gz;
   const result=combatVfxSystem.play(presetId,makeActionVfxContext(source,[target],cx,cz,{key:presetId,ap:1}));
   if(!result.played)return false;
@@ -1673,16 +1721,28 @@ function playFeedbackVfx(presetId,source,target){
 async function attackAnim(u,spec,cx,cz,targets=[],actionContext={}){ const ctr=new THREE.Vector3(wX(cx),tileTop(cx,cz)+0.6,wZ(cz)); const presentation=getSkillPresentation(spec),preset=getActionMotionPreset(spec),isUltimate=Boolean(presentation?.ultimate),tuning=getActionPresentationTuning(spec),isBossSignature=tuning.tier===6,impactCount=presentation?.impactCount||1,feel=resolveCombatFeel({motionPreset:preset,visualTier:tuning.tier,boss:Boolean(u.boss&&spec.offensive),reducedGraphics:REDUCED_GRAPHICS});
   G._actionShakeFrequency=feel.shakeFrequency;
   const resolveImpact=onceAsync(async()=>{ if(typeof actionContext.onResolveImpact==='function')await actionContext.onResolveImpact(); });
+  // Ultimates and boss signatures: the FX charge plays first (the actor powers
+  // up in its cast pose), then the strike motion lands on the recipe impact.
+  const fxVisualContext=()=>{ const origin=actionContext.origin; return spec.key==='ar_explosive_retreat'&&origin?{targetPoint:new THREE.Vector3(wX(origin.gx),tileTop(origin.gx,origin.gz),wZ(origin.gz))}:{}; };
+  let preFx=null,preFxStart=0;
+  if((isUltimate||isBossSignature)&&spec.key!=='ro_tumble'){
+    preFx=playActionFx(spec,u,targets,cx,cz,fxVisualContext());
+    if(preFx&&preFx.cinematic){ preFxStart=performance.now(); playPixelAnim(u,'cast'); floatText(u,isUltimate?'ULTIME':'SIGNATURE',isUltimate?'#ffd86a':'#ffb36a',true); await wait(Math.max(0,preFx.impactTime-0.34)); }
+    else preFx=null;
+  }
   const impact=async()=>{
-    const hasSpritesheet=actionHasSpritesheetVfx(spec,u);
-    const hasPreset=actionHasPreset(spec,u);
-    if(isUltimate){ floatText(u,'ULTIME','#ffd86a',true); if(!hasPreset)screenFlash('#fff0b0',0.07); screenShake(0.20,0.14); }
-    else if(isBossSignature){ floatText(u,'SIGNATURE','#ffb36a',true); if(!hasPreset)screenFlash('#ffb36a',0.055); screenShake(0.22,0.16); }
+    // Procedural FX recipes cover every action preset; legacy spritesheet
+    // checks only matter when no preset resolves.
+    const fxReady=Boolean(getActionVfxPreset(spec,u));
+    const hasSpritesheet=fxReady||actionHasSpritesheetVfx(spec,u);
+    const hasPreset=fxReady||actionHasPreset(spec,u);
+    if(isUltimate&&!preFx){ floatText(u,'ULTIME','#ffd86a',true); if(!hasPreset)screenFlash('#fff0b0',0.07); screenShake(0.20,0.14); }
+    else if(isBossSignature&&!preFx){ floatText(u,'SIGNATURE','#ffb36a',true); if(!hasPreset)screenFlash('#ffb36a',0.055); screenShake(0.22,0.16); }
     if(spec.key!=='attack'&&!hasSpritesheet)castTelegraph(u,spec,Boolean(hasPreset));
     if(spec.key==='ro_tumble')return resolveImpact();
-    const origin=actionContext.origin,visualContext=spec.key==='ar_explosive_retreat'&&origin?{targetPoint:new THREE.Vector3(wX(origin.gx),tileTop(origin.gx,origin.gz),wZ(origin.gz))}:{};
-      const generated=playActionVfx(spec,u,targets,cx,cz,visualContext);
-      if(generated){ for(let i=1;i<impactCount;i++){ await wait(0.10); playActionVfx(spec,u,targets,cx,cz,visualContext); } await wait(generated.impactTime); }
+    const visualContext=fxVisualContext();
+      const generated=preFx||playActionFx(spec,u,targets,cx,cz,visualContext)||playActionVfx(spec,u,targets,cx,cz,visualContext);
+      if(generated){ if(!generated.cinematic)for(let i=1;i<impactCount;i++){ await wait(0.12); playActionFx(spec,u,targets,cx,cz,visualContext); } const elapsed=preFx?(performance.now()-preFxStart)/1000:0; await wait(Math.max(0,generated.impactTime-elapsed)); }
       else if(spec.heal||spec.revive||spec.support||spec.apRestore||spec.cure){
         const type=(spec.type==='debuff')?'dark':'heal'; for(const [gx,gz] of aoeCells(u,spec,cx,cz))vfx(type,new THREE.Vector3(wX(gx),tileTop(gx,gz)+0.6,wZ(gz))); screenFlash(spec.type==='debuff'?'#8d5cff':'#bfffc0',0.14);
       } else if(preset==='self_aoe'){
@@ -2174,8 +2234,10 @@ function applyGraphics(){ document.body.classList.toggle('reduced-graphics',REDU
 function renderSettings(){ if(!dom.settings)return;
   dom.settings.innerHTML='<div class="settings__ttl">Réglages</div>'+
     '<button class="settings__row" type="button" data-s="fxhd" role="menuitemcheckbox" aria-checked="'+(!REDUCED_GRAPHICS)+'"><span>Effets HD</span><i class="settings__sw'+(!REDUCED_GRAPHICS?' on':'')+'"></i></button>'+
+    '<button class="settings__row" type="button" data-s="sound" role="menuitemcheckbox" aria-checked="'+(!combatSfx.settings().muted)+'"><span>Effets sonores</span><i class="settings__sw'+(!combatSfx.settings().muted?' on':'')+'"></i></button>'+
     '<button class="settings__row" type="button" data-s="help" role="menuitem"><span>Aide & commandes</span><i class="settings__hint">?</i></button>';
   dom.settings.querySelector('[data-s="fxhd"]').onclick=()=>{ REDUCED_GRAPHICS=!REDUCED_GRAPHICS; applyGraphics(); renderSettings(); };
+  dom.settings.querySelector('[data-s="sound"]').onclick=()=>{ combatSfx.configure({muted:!combatSfx.settings().muted}); renderSettings(); };
   dom.settings.querySelector('[data-s="help"]').onclick=()=>{ const d=dom.help&&dom.help.querySelector('details'); if(d)d.open=true; toggleSettings(false); };
 }
 function toggleSettings(show){ if(!dom.settings)return; const open=(show==null)?dom.settings.classList.contains('hidden'):show;
@@ -2283,22 +2345,25 @@ function showCombatResult(presentation,onClick){
   action.onclick=()=>{ if(action.disabled)return; action.disabled=true; onClick(); };
   action.focus();
 }
-function winWave(){ if(G.over)return; restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
+function winWave(){ if(G.over)return; combatSfx.play('victory'); restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
   logMsg('— Vague '+G.wave+' vaincue ! —');
   if(CAMPAIGN_MODE){
     showCombatResult({tone:'victory',title:'Victoire',subtitle:COMBAT_LABEL,detailLabel:'Objectif sécurisé',detail:COMBAT_OBJECTIVE,buttonLabel:'Continuer la chronique',rewards:COMBAT_REWARDS},()=>notifyCampaignResult(true));
   } else {
     showCombatResult({tone:'wave',title:'Vague '+G.wave+' vaincue',subtitle:'La formation tient encore la ligne.',detailLabel:'Mode escarmouche',detail:'Renforts imminents',buttonLabel:'Vague '+(G.wave+1)+' ▶'},()=>{ dom.banner.className='hidden'; startNextWave(); });
   } }
-function endGame(win){ if(G.over)return; restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
+function endGame(win){ if(G.over)return; combatSfx.play(win?'victory':'defeat'); restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
   showCombatResult({tone:win?'victory':'defeat',title:win?'Victoire':'Défaite',subtitle:win?'Élyndra est sauvée !':'Votre équipe a été vaincue…',detailLabel:win?'Issue':'Checkpoint',detail:win?'Combat terminé':'Retour au dernier refuge',buttonLabel:CAMPAIGN_MODE?'Revenir à la carte':'Rejouer'},()=>CAMPAIGN_MODE?notifyCampaignResult(Boolean(win)):location.reload());
   logMsg(win?'— VICTOIRE —':'— DÉFAITE —'); }
 
 // ============================= RENDER LOOP =============================
 let _last=performance.now(), _t=0,_diagnosticsAt=0,_animationFrame=0,_runtimeDisposed=false;
 function animate(){ if(_runtimeDisposed)return; _animationFrame=requestAnimationFrame(animate);
-  const now=performance.now(); const dt=Math.min(0.05,(now-_last)/1000); _last=now; _t+=dt;
-  updateTweens(dt); cameraFeedback.tick(dt); applyCam(dt);
+  const now=performance.now(); const realDt=Math.min(0.05,(now-_last)/1000); _last=now;
+  // Slow motion (ultimate impacts, critical hits) scales gameplay presentation time only.
+  if(G.slowUntil&&now>=G.slowUntil){ G.timeScale=1; G.slowUntil=0; }
+  const dt=realDt*(G.timeScale||1); _t+=dt;
+  updateTweens(dt); cameraFeedback.tick(realDt); applyCam(realDt); fxEngine.update(dt);
   // V2.6.1: Feed shake sample into the screen-space post-process pass.
   const _shakeSample=cameraFeedback.sample();
   const _shakeOffset=shakeSampleToUvOffset(_shakeSample,innerWidth,innerHeight);
@@ -2492,6 +2557,10 @@ async function playQaMotionScenario(scenario){
 function resetQaMotion(){ clearQaBossIntentPreview(); for(const unit of G.units){ killSpriteMotion(unit); if(unit.alive)restoreUnitVisualBaseline(unit); } cameraFeedback.clear(); void restoreCam(); }
 const STAGE_QA_ACTIONS=[
   {key:'attack',label:'Stage: Attaque'},
+  {key:'w_lion_surge',label:'Ultime: Lion'},
+  {key:'n_dark_meteor',label:'Ultime: Météore'},
+  {key:'w_miracle',label:'Ultime: Miracle'},
+  {key:'a_arrow_rain',label:'Pluie de flèches'},
   {key:'n_flame_wave',label:'Stage: Vague de Flammes'},
   {key:'d_devouring_eclipse',label:'Stage: Éclipse Dévorante'},
   {key:'__qa_multi_target',label:'Stage QA: Multi-cibles'},
@@ -2766,7 +2835,7 @@ async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED
   Object.assign(window,{__publishedVfx:{isActionPublished,getPublishedDraft,getActiveRegistry,__devUpdateOverlay,__devClearOverlay},
     __qaHelpers:_qaHelpers});
 }
-function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); disposeVfxComposerPanel(); combatVfxSystem.dispose(); if(G.arena)G.arena.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
+function disposeCombatRuntime(){ if(_runtimeDisposed)return; _runtimeDisposed=true; if(_animationFrame)cancelAnimationFrame(_animationFrame); restoreUnitFocus(); for(const unit of G.units.slice()){killSpriteMotion(unit);disposeBossIntentPresentation(unit);} for(const texture of bossIntentBadgeTextures.values())texture.dispose(); bossIntentBadgeTextures.clear(); for(const handle of tweens.splice(0)){ if(!handle.settled){ handle.settled=true; handle.onCancel&&handle.onCancel(); } } cameraFeedback.clear(); disposeVfxComposerPanel(); combatVfxSystem.dispose(); fxEngine.dispose(); combatSfx.dispose(); if(G.arena)G.arena.dispose(); if(screenFlashEl){ screenFlashEl.remove(); screenFlashEl=null; } dom.fx&&dom.fx.replaceChildren(); renderer.dispose(); }
 window.addEventListener('pagehide',disposeCombatRuntime,{once:true});
 window.addEventListener('error',()=>{ if(dom.loading&&dom.loading.style.display!=='none') dom.loading.innerHTML='<div style="color:#ff8a7a;max-width:540px;text-align:center;line-height:26px">Échec du chargement de Three.js.<br>Vérifiez votre connexion internet puis rechargez la page.<br><span style="color:#9fb0d0">La page doit être servie via un serveur local (http://), pas ouverte directement depuis le disque.</span></div>'; });
 window.addEventListener('unhandledrejection',e=>console.error(e.reason));

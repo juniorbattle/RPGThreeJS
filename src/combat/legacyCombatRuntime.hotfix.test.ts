@@ -41,8 +41,9 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).toContain('function actionHasSpritesheetVfx(spec={},u=null)');
     expect(runtimeSource).toContain("preset.steps.some(step=>step.type==='spriteSheet')");
     expect(runtimeSource).toContain('function actionHasPreset(spec={},u=null)');
-    expect(runtimeSource).toContain('const hasSpritesheet=actionHasSpritesheetVfx(spec,u)');
-    expect(runtimeSource).toContain('const hasPreset=actionHasPreset(spec,u)');
+    // procedural FX recipes count as authored VFX: generic overlays stay suppressed
+    expect(runtimeSource).toContain('const hasSpritesheet=fxReady||actionHasSpritesheetVfx(spec,u)');
+    expect(runtimeSource).toContain('const hasPreset=fxReady||actionHasPreset(spec,u)');
     expect(runtimeSource).toContain('if(!hasPreset)screenFlash');
     expect(runtimeSource).toContain('if(!dashHasSpritesheet){ screenFlash');
     expect(runtimeSource).not.toContain('actionUsesAuthoredSpritesheet');
@@ -119,7 +120,7 @@ describe('V10F final hotfix runtime contracts', () => {
   });
 
   it('drives the combat camera through one director (tactical, action push-in, spotlight)', () => {
-    expect(runtimeSource).toContain("import { CombatCameraDirector } from './camera/CombatCameraDirector'");
+    expect(runtimeSource).toContain("import { CombatCameraDirector, shotFor } from './camera/CombatCameraDirector'");
     expect(runtimeSource).toContain('const cameraDirector=new CombatCameraDirector({');
     expect(runtimeSource).toContain('function restoreCam(){ return cameraDirector.restore(0.5); }');
     expect(runtimeSource).toContain("cameraDirector.frame('spotlight',");
