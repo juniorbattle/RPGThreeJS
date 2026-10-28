@@ -36,3 +36,5 @@ tools/qa-shots/
 
 # Local IDE config
 .devin/
+# Local OpenAI art generation (raw outputs + provenance, processed into public/ by tools/openai-art)
+art-gen/

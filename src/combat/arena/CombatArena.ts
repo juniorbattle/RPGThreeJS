@@ -4,6 +4,11 @@ import { arenaBandProps, arenaThemeFor, type ArenaTheme } from './arenaThemes';
 import { groundTexture, tileSideTexture, tileTopTexture } from './arenaTextures';
 import { buildProp, type PropContext } from './arenaProps';
 import { drawFern, drawGrass, DECOR_TEXELS_PER_UNIT } from './arenaSprites';
+import platesJson from '../../render/generated/combatArenaPlates.json';
+
+interface GeneratedPlate { file: string; aspect: number; width: number; z: number; bottomY: number }
+/** Locally generated arena layers (tools/openai-art); empty until the art mission runs. */
+const GENERATED_PLATES = (platesJson as { plates: Record<string, { mid?: GeneratedPlate }> }).plates;
 
 export interface CombatArenaOptions {
   sceneId: string;
@@ -72,7 +77,10 @@ export class CombatArena {
     this.buildGround();
     this.buildEdgeVegetation();
     const bandRng = seeded(5150 + this.theme.id.length * 13);
-    for (const prop of [...this.theme.props, ...(this.ctx.reduced ? [] : arenaBandProps(this.theme, bandRng))]) {
+    const midPlate = GENERATED_PLATES[this.theme.id]?.mid;
+    // A generated mid-ground frieze replaces the procedural band.
+    const band = this.ctx.reduced || midPlate ? [] : arenaBandProps(this.theme, bandRng);
+    for (const prop of [...this.theme.props, ...band]) {
       if (this.ctx.reduced && (prop.kind === 'grass' || prop.kind === 'fern' || prop.kind === 'smoke')) continue;
       const object = buildProp(this.ctx, prop);
       if (object) this.root.add(object);
@@ -80,6 +88,27 @@ export class CombatArena {
     this.root.updateMatrixWorld(true);
     this.buildLights();
     await this.buildFarPlate();
+    if (midPlate) await this.buildMidPlate(midPlate);
+  }
+
+  private async buildMidPlate(plate: GeneratedPlate): Promise<void> {
+    if (typeof window === 'undefined' || /happy-dom/i.test(window.navigator?.userAgent ?? '')) return;
+    try {
+      const texture = await new THREE.TextureLoader().loadAsync(plate.file);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      this.ctx.textures.set('mid-plate', texture);
+      const height = plate.width * plate.aspect;
+      const geometry = new THREE.PlaneGeometry(plate.width, height);
+      this.geometries.push(geometry);
+      const material = new THREE.MeshBasicMaterial({ map: texture, alphaTest: 0.5, transparent: false, fog: true, color: '#e6e6e6' });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(0, plate.bottomY + height / 2, plate.z);
+      mesh.raycast = () => {};
+      mesh.name = 'arena-mid-plate';
+      this.root.add(mesh);
+    } catch (error) {
+      console.warn('Plan intermédiaire indisponible', plate.file, error);
+    }
   }
 
   // ------------------------------------------------------------ platform

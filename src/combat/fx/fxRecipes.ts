@@ -13,7 +13,7 @@ export type FxAnchor = 'source' | 'sourceChest' | 'sourceGround' | 'target' | 't
 
 export type FxStepKind =
   | 'slash' | 'star' | 'burst' | 'ring' | 'circle' | 'pillar' | 'streak' | 'bolt' | 'shards' | 'dome' | 'orb'
-  | 'flame' | 'motes' | 'smoke' | 'glow' | 'decal' | 'light'
+  | 'flame' | 'motes' | 'smoke' | 'glow' | 'decal' | 'light' | 'sheet'
   | 'shake' | 'flash' | 'sfx' | 'slowmo' | 'speedLines' | 'punch';
 
 export interface FxStep {
@@ -369,8 +369,16 @@ function charge(element: FxElement, length = 0.6): Steps {
   ];
 }
 
+/** Generated-art layer (tools/openai-art FX sheets); skipped while the sheet is absent. */
+const SHEET_FOR: Partial<Record<FxElement, string>> = {
+  gold: 'lion_slash', holy: 'holy_pillar', shadow: 'void_implosion', fire: 'meteor_impact',
+  ice: 'ice_burst', arcane: 'arcane_sigil', heal: 'heal_bloom', lightning: 'lightning_strike',
+};
+
 function cinematicHit(at: number, element: FxElement, scale = 1.3): Steps {
+  const sheet = SHEET_FOR[element];
   return [
+    ...(sheet ? [s(at, 'sheet', 'targetChest', { id: sheet, size: 4.6 * scale, duration: 0.9 })] : []),
     s(at, 'slowmo', undefined, { scale: 0.3, duration: 0.32 }),
     s(at, 'punch', 'targetChest', { duration: 0.5 }),
     s(at, 'flash', undefined, { opacity: 0.22 }, { element }),

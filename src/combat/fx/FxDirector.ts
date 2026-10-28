@@ -124,6 +124,7 @@ export class FxDirector {
         case 'smoke': engine.smoke(at.y < 0.3 ? at.clone().setY(0.4) : at, { count: num('count', 14), spread: num('spread', 0.35), size: num('size', 0.55) }); break;
         case 'glow': engine.glow(at, element, num('size', 2), num('duration', 0.5)); break;
         case 'decal': engine.decal(at, element, { radius: num('radius', 1) }); break;
+        case 'sheet': engine.sheet(at, String(p.id ?? ''), { size: num('size', 3), duration: num('duration', 0.8) }); break;
         case 'light': engine.light(at.y < 0.4 ? at.clone().setY(1.1) : at, engine.palette(element).light, num('intensity', 14), num('duration', 0.5), num('distance', 9)); break;
         default: break;
       }

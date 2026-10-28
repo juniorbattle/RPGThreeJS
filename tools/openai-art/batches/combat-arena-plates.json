@@ -1,0 +1,122 @@
+{
+  "batch": "combat-arena-plates",
+  "images": [
+    {
+      "name": "forest_route-far",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/forest-route-strategic.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "Use the attached painting only as a style and palette reference (premium HD pixel-art painting, same light and mood); do not copy its composition and do not include its floor.\n\nONE wide background layer for a side-on battle scene: a misty mountain valley at dawn: a distant castle on a cliff with an aqueduct, tall waterfalls, layers of dark pine forest fading into blue haze, soft golden light from the upper left, a calm sky with clouds. Only the sky and the far distance: the bottom quarter of the image is soft atmospheric haze where the distant land meets the fog; no ground plane, no road, no foreground objects, no people.\n\nSeen straight from the front at eye level, wide panoramic composition with interest spread across the whole width; the centre stays readable but uncluttered.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "scene": "forest_route",
+        "layer": "far",
+        "placement": {
+          "z": -27,
+          "width": 46,
+          "bottomY": -2.2
+        }
+      }
+    },
+    {
+      "name": "forest_route-mid",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/forest-route-strategic.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "Use the attached painting only as a style and palette reference (premium HD pixel-art painting, same light and mood); do not copy its composition.\n\nONE isolated scenery layer seen straight from the front like an elevation (eye level, no perspective tilt): a continuous row of ancient mossy forest edge for the middle distance: large leafy oaks and pines, broken stone pillars and a ruined archway overgrown with ivy, ferns and bushes at their feet. The objects stand on a common baseline at the bottom edge and fill the whole width as a continuous frieze, varied heights, a gap of open space in the middle third so the far background shows through.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background behind and between the objects, with no shading, no floor and no cast shadow; magenta must not appear in the objects.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "scene": "forest_route",
+        "layer": "mid",
+        "key": "#FF00FF",
+        "placement": {
+          "z": -14,
+          "width": 40,
+          "bottomY": -0.2
+        }
+      }
+    },
+    {
+      "name": "bois_clair_burning-far",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/bois-clair-burning-strategic.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "Use the attached painting only as a style and palette reference (premium HD pixel-art painting, same light and mood); do not copy its composition and do not include its floor.\n\nONE wide background layer for a side-on battle scene: a village burning at dusk: an orange-red sky full of drifting smoke, a church steeple and timber roofs in flames on a far hill, dark forest silhouettes, embers in the air. Only the sky and the far distance: the bottom quarter of the image is soft atmospheric haze where the distant land meets the fog; no ground plane, no road, no foreground objects, no people.\n\nSeen straight from the front at eye level, wide panoramic composition with interest spread across the whole width; the centre stays readable but uncluttered.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "scene": "bois_clair_burning",
+        "layer": "far",
+        "placement": {
+          "z": -27,
+          "width": 46,
+          "bottomY": -2.2
+        }
+      }
+    },
+    {
+      "name": "bois_clair_burning-mid",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/bois-clair-burning-strategic.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "Use the attached painting only as a style and palette reference (premium HD pixel-art painting, same light and mood); do not copy its composition.\n\nONE isolated scenery layer seen straight from the front like an elevation (eye level, no perspective tilt): a continuous row of half-timbered village houses for the middle distance, some roofs on fire with smoke columns, wooden fences, carts, barrels and torn red banners with a gold lion. The objects stand on a common baseline at the bottom edge and fill the whole width as a continuous frieze, varied heights, a gap of open space in the middle third so the far background shows through.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background behind and between the objects, with no shading, no floor and no cast shadow; magenta must not appear in the objects.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "scene": "bois_clair_burning",
+        "layer": "mid",
+        "key": "#FF00FF",
+        "placement": {
+          "z": -14,
+          "width": 40,
+          "bottomY": -0.2
+        }
+      }
+    },
+    {
+      "name": "lion_sanctum-far",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/lion-sanctum-strategic.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "Use the attached painting only as a style and palette reference (premium HD pixel-art painting, same light and mood); do not copy its composition and do not include its floor.\n\nONE wide background layer for a side-on battle scene: a moonlit night over a ruined royal sanctuary: a great gothic ruin with tall arches on a distant crag, a full moon, deep blue sky with silver clouds, misty waterfalls and pine ridges. Only the sky and the far distance: the bottom quarter of the image is soft atmospheric haze where the distant land meets the fog; no ground plane, no road, no foreground objects, no people.\n\nSeen straight from the front at eye level, wide panoramic composition with interest spread across the whole width; the centre stays readable but uncluttered.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "scene": "lion_sanctum",
+        "layer": "far",
+        "placement": {
+          "z": -27,
+          "width": 46,
+          "bottomY": -2.2
+        }
+      }
+    },
+    {
+      "name": "lion_sanctum-mid",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/lion-sanctum-strategic.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "Use the attached painting only as a style and palette reference (premium HD pixel-art painting, same light and mood); do not copy its composition.\n\nONE isolated scenery layer seen straight from the front like an elevation (eye level, no perspective tilt): a continuous row of sanctuary ruins for the middle distance: tall pointed arches, broken colonnades, statues, blue banners with a gold lion, candles in niches, dark pines behind. The objects stand on a common baseline at the bottom edge and fill the whole width as a continuous frieze, varied heights, a gap of open space in the middle third so the far background shows through.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background behind and between the objects, with no shading, no floor and no cast shadow; magenta must not appear in the objects.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "scene": "lion_sanctum",
+        "layer": "mid",
+        "key": "#FF00FF",
+        "placement": {
+          "z": -14,
+          "width": 40,
+          "bottomY": -0.2
+        }
+      }
+    }
+  ]
+}

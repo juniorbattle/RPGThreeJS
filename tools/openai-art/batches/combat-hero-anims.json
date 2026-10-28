@@ -1,0 +1,767 @@
+{
+  "batch": "combat-hero-anims",
+  "images": [
+    {
+      "name": "alistair-idle",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/alistair.png",
+        "public/assets/characters/pixel/combat/alistair/prepare.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a knight in dark steel plate with a long red cape and a red-and-gold tabard, longsword: the full master illustration and the \"prepare\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 4 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a calm battle-ready breathing loop: 1 neutral stance, 2 chest rises and shoulders lift one pixel, 3 neutral again with cloth settling, 4 slight exhale with the weapon lowering a touch.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure green (#00FF00) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "alistair",
+        "anim": "idle",
+        "frames": 4,
+        "ms": [
+          260,
+          220,
+          260,
+          220
+        ],
+        "loop": true,
+        "key": "#00FF00"
+      }
+    },
+    {
+      "name": "alistair-walk",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/alistair.png",
+        "public/assets/characters/pixel/combat/alistair/dash.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a knight in dark steel plate with a long red cape and a red-and-gold tabard, longsword: the full master illustration and the \"dash\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a brisk six-frame combat walk cycle to the right: contact, down, passing, up, contact with the other leg, passing; arms and cape swing in counter-motion, head steady.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure green (#00FF00) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "alistair",
+        "anim": "walk",
+        "frames": 6,
+        "ms": [
+          110,
+          110,
+          110,
+          110,
+          110,
+          110
+        ],
+        "loop": true,
+        "key": "#00FF00"
+      }
+    },
+    {
+      "name": "alistair-attack",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/alistair.png",
+        "public/assets/characters/pixel/combat/alistair/attack.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a knight in dark steel plate with a long red cape and a red-and-gold tabard, longsword: the full master illustration and the \"attack\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a weapon attack to the right: 1 guard, 2 anticipation pulling the weapon back, 3 lunge forward, 4 full strike at maximum extension, 5 follow-through, 6 recovery back toward guard.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure green (#00FF00) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "alistair",
+        "anim": "attack",
+        "frames": 6,
+        "ms": [
+          90,
+          90,
+          70,
+          60,
+          140,
+          160
+        ],
+        "loop": false,
+        "key": "#00FF00"
+      }
+    },
+    {
+      "name": "alistair-cast",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/alistair.png",
+        "public/assets/characters/pixel/combat/alistair/cast.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a knight in dark steel plate with a long red cape and a red-and-gold tabard, longsword: the full master illustration and the \"cast\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: casting a spell or a war cry: 1 stance, 2 gathering power with the free hand raised, 3 focus with the cape lifting, 4 release with the arm or weapon thrust forward (the strongest pose), 5 hold, 6 lowering back to stance.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure green (#00FF00) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "alistair",
+        "anim": "cast",
+        "frames": 6,
+        "ms": [
+          110,
+          110,
+          120,
+          220,
+          160,
+          160
+        ],
+        "loop": false,
+        "key": "#00FF00"
+      }
+    },
+    {
+      "name": "alistair-hurtko",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/alistair.png",
+        "public/assets/characters/pixel/combat/alistair/prepare.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a knight in dark steel plate with a long red cape and a red-and-gold tabard, longsword: the full master illustration and the \"prepare\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 5 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: frames 1-2: taking a hit (1 flinch backward with the head snapped back, 2 staggered and hunched); frames 3-5: knocked out (3 knees buckling, 4 falling to one knee, 5 collapsed on the ground lying on the side).\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure green (#00FF00) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "alistair",
+        "anim": "hurtko",
+        "frames": 5,
+        "ms": [
+          90,
+          180,
+          160,
+          160,
+          420
+        ],
+        "loop": false,
+        "key": "#00FF00"
+      }
+    },
+    {
+      "name": "archer-idle",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/archer.png",
+        "public/assets/characters/pixel/combat/archer/prepare.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a hooded archer in green cloak and leather armour with a longbow and a quiver: the full master illustration and the \"prepare\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 4 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a calm battle-ready breathing loop: 1 neutral stance, 2 chest rises and shoulders lift one pixel, 3 neutral again with cloth settling, 4 slight exhale with the weapon lowering a touch.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "archer",
+        "anim": "idle",
+        "frames": 4,
+        "ms": [
+          260,
+          220,
+          260,
+          220
+        ],
+        "loop": true,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "archer-walk",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/archer.png",
+        "public/assets/characters/pixel/combat/archer/dash.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a hooded archer in green cloak and leather armour with a longbow and a quiver: the full master illustration and the \"dash\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a brisk six-frame combat walk cycle to the right: contact, down, passing, up, contact with the other leg, passing; arms and cape swing in counter-motion, head steady.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "archer",
+        "anim": "walk",
+        "frames": 6,
+        "ms": [
+          110,
+          110,
+          110,
+          110,
+          110,
+          110
+        ],
+        "loop": true,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "archer-attack",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/archer.png",
+        "public/assets/characters/pixel/combat/archer/attack.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a hooded archer in green cloak and leather armour with a longbow and a quiver: the full master illustration and the \"attack\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a weapon attack to the right: 1 guard, 2 anticipation pulling the weapon back, 3 lunge forward, 4 full strike at maximum extension, 5 follow-through, 6 recovery back toward guard.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "archer",
+        "anim": "attack",
+        "frames": 6,
+        "ms": [
+          90,
+          90,
+          70,
+          60,
+          140,
+          160
+        ],
+        "loop": false,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "archer-cast",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/archer.png",
+        "public/assets/characters/pixel/combat/archer/cast.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a hooded archer in green cloak and leather armour with a longbow and a quiver: the full master illustration and the \"cast\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: casting a spell or a war cry: 1 stance, 2 gathering power with the free hand raised, 3 focus with the cape lifting, 4 release with the arm or weapon thrust forward (the strongest pose), 5 hold, 6 lowering back to stance.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "archer",
+        "anim": "cast",
+        "frames": 6,
+        "ms": [
+          110,
+          110,
+          120,
+          220,
+          160,
+          160
+        ],
+        "loop": false,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "archer-hurtko",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/archer.png",
+        "public/assets/characters/pixel/combat/archer/prepare.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a hooded archer in green cloak and leather armour with a longbow and a quiver: the full master illustration and the \"prepare\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 5 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: frames 1-2: taking a hit (1 flinch backward with the head snapped back, 2 staggered and hunched); frames 3-5: knocked out (3 knees buckling, 4 falling to one knee, 5 collapsed on the ground lying on the side).\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "archer",
+        "anim": "hurtko",
+        "frames": 5,
+        "ms": [
+          90,
+          180,
+          160,
+          160,
+          420
+        ],
+        "loop": false,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "dark_mage-idle",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/dark_mage.png",
+        "public/assets/characters/pixel/combat/dark_mage/prepare.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a black mage in a deep-blue robe and wide-brimmed hat, holding a grimoire, violet magic in the hand: the full master illustration and the \"prepare\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 4 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a calm battle-ready breathing loop: 1 neutral stance, 2 chest rises and shoulders lift one pixel, 3 neutral again with cloth settling, 4 slight exhale with the weapon lowering a touch.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure green (#00FF00) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "dark_mage",
+        "anim": "idle",
+        "frames": 4,
+        "ms": [
+          260,
+          220,
+          260,
+          220
+        ],
+        "loop": true,
+        "key": "#00FF00"
+      }
+    },
+    {
+      "name": "dark_mage-walk",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/dark_mage.png",
+        "public/assets/characters/pixel/combat/dark_mage/dash.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a black mage in a deep-blue robe and wide-brimmed hat, holding a grimoire, violet magic in the hand: the full master illustration and the \"dash\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a brisk six-frame combat walk cycle to the right: contact, down, passing, up, contact with the other leg, passing; arms and cape swing in counter-motion, head steady.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure green (#00FF00) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "dark_mage",
+        "anim": "walk",
+        "frames": 6,
+        "ms": [
+          110,
+          110,
+          110,
+          110,
+          110,
+          110
+        ],
+        "loop": true,
+        "key": "#00FF00"
+      }
+    },
+    {
+      "name": "dark_mage-attack",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/dark_mage.png",
+        "public/assets/characters/pixel/combat/dark_mage/attack.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a black mage in a deep-blue robe and wide-brimmed hat, holding a grimoire, violet magic in the hand: the full master illustration and the \"attack\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a weapon attack to the right: 1 guard, 2 anticipation pulling the weapon back, 3 lunge forward, 4 full strike at maximum extension, 5 follow-through, 6 recovery back toward guard.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure green (#00FF00) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "dark_mage",
+        "anim": "attack",
+        "frames": 6,
+        "ms": [
+          90,
+          90,
+          70,
+          60,
+          140,
+          160
+        ],
+        "loop": false,
+        "key": "#00FF00"
+      }
+    },
+    {
+      "name": "dark_mage-cast",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/dark_mage.png",
+        "public/assets/characters/pixel/combat/dark_mage/cast.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a black mage in a deep-blue robe and wide-brimmed hat, holding a grimoire, violet magic in the hand: the full master illustration and the \"cast\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: casting a spell or a war cry: 1 stance, 2 gathering power with the free hand raised, 3 focus with the cape lifting, 4 release with the arm or weapon thrust forward (the strongest pose), 5 hold, 6 lowering back to stance.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure green (#00FF00) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "dark_mage",
+        "anim": "cast",
+        "frames": 6,
+        "ms": [
+          110,
+          110,
+          120,
+          220,
+          160,
+          160
+        ],
+        "loop": false,
+        "key": "#00FF00"
+      }
+    },
+    {
+      "name": "dark_mage-hurtko",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/dark_mage.png",
+        "public/assets/characters/pixel/combat/dark_mage/prepare.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a black mage in a deep-blue robe and wide-brimmed hat, holding a grimoire, violet magic in the hand: the full master illustration and the \"prepare\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 5 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: frames 1-2: taking a hit (1 flinch backward with the head snapped back, 2 staggered and hunched); frames 3-5: knocked out (3 knees buckling, 4 falling to one knee, 5 collapsed on the ground lying on the side).\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure green (#00FF00) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "dark_mage",
+        "anim": "hurtko",
+        "frames": 5,
+        "ms": [
+          90,
+          180,
+          160,
+          160,
+          420
+        ],
+        "loop": false,
+        "key": "#00FF00"
+      }
+    },
+    {
+      "name": "lancer-idle",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/lancer.png",
+        "public/assets/characters/pixel/combat/lancer/prepare.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a lancer with long teal hair in silver-and-teal armour holding a long spear: the full master illustration and the \"prepare\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 4 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a calm battle-ready breathing loop: 1 neutral stance, 2 chest rises and shoulders lift one pixel, 3 neutral again with cloth settling, 4 slight exhale with the weapon lowering a touch.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "lancer",
+        "anim": "idle",
+        "frames": 4,
+        "ms": [
+          260,
+          220,
+          260,
+          220
+        ],
+        "loop": true,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "lancer-walk",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/lancer.png",
+        "public/assets/characters/pixel/combat/lancer/dash.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a lancer with long teal hair in silver-and-teal armour holding a long spear: the full master illustration and the \"dash\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a brisk six-frame combat walk cycle to the right: contact, down, passing, up, contact with the other leg, passing; arms and cape swing in counter-motion, head steady.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "lancer",
+        "anim": "walk",
+        "frames": 6,
+        "ms": [
+          110,
+          110,
+          110,
+          110,
+          110,
+          110
+        ],
+        "loop": true,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "lancer-attack",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/lancer.png",
+        "public/assets/characters/pixel/combat/lancer/attack.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a lancer with long teal hair in silver-and-teal armour holding a long spear: the full master illustration and the \"attack\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a weapon attack to the right: 1 guard, 2 anticipation pulling the weapon back, 3 lunge forward, 4 full strike at maximum extension, 5 follow-through, 6 recovery back toward guard.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "lancer",
+        "anim": "attack",
+        "frames": 6,
+        "ms": [
+          90,
+          90,
+          70,
+          60,
+          140,
+          160
+        ],
+        "loop": false,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "lancer-cast",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/lancer.png",
+        "public/assets/characters/pixel/combat/lancer/cast.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a lancer with long teal hair in silver-and-teal armour holding a long spear: the full master illustration and the \"cast\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: casting a spell or a war cry: 1 stance, 2 gathering power with the free hand raised, 3 focus with the cape lifting, 4 release with the arm or weapon thrust forward (the strongest pose), 5 hold, 6 lowering back to stance.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "lancer",
+        "anim": "cast",
+        "frames": 6,
+        "ms": [
+          110,
+          110,
+          120,
+          220,
+          160,
+          160
+        ],
+        "loop": false,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "lancer-hurtko",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/lancer.png",
+        "public/assets/characters/pixel/combat/lancer/prepare.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a lancer with long teal hair in silver-and-teal armour holding a long spear: the full master illustration and the \"prepare\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 5 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: frames 1-2: taking a hit (1 flinch backward with the head snapped back, 2 staggered and hunched); frames 3-5: knocked out (3 knees buckling, 4 falling to one knee, 5 collapsed on the ground lying on the side).\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "lancer",
+        "anim": "hurtko",
+        "frames": 5,
+        "ms": [
+          90,
+          180,
+          160,
+          160,
+          420
+        ],
+        "loop": false,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "rogue-idle",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/rogue.png",
+        "public/assets/characters/pixel/combat/rogue/prepare.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a rogue in a crimson-magenta hooded cloak and dark leathers with two curved daggers: the full master illustration and the \"prepare\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 4 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a calm battle-ready breathing loop: 1 neutral stance, 2 chest rises and shoulders lift one pixel, 3 neutral again with cloth settling, 4 slight exhale with the weapon lowering a touch.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure cyan (#00FFFF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "rogue",
+        "anim": "idle",
+        "frames": 4,
+        "ms": [
+          260,
+          220,
+          260,
+          220
+        ],
+        "loop": true,
+        "key": "#00FFFF"
+      }
+    },
+    {
+      "name": "rogue-walk",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/rogue.png",
+        "public/assets/characters/pixel/combat/rogue/dash.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a rogue in a crimson-magenta hooded cloak and dark leathers with two curved daggers: the full master illustration and the \"dash\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a brisk six-frame combat walk cycle to the right: contact, down, passing, up, contact with the other leg, passing; arms and cape swing in counter-motion, head steady.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure cyan (#00FFFF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "rogue",
+        "anim": "walk",
+        "frames": 6,
+        "ms": [
+          110,
+          110,
+          110,
+          110,
+          110,
+          110
+        ],
+        "loop": true,
+        "key": "#00FFFF"
+      }
+    },
+    {
+      "name": "rogue-attack",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/rogue.png",
+        "public/assets/characters/pixel/combat/rogue/attack.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a rogue in a crimson-magenta hooded cloak and dark leathers with two curved daggers: the full master illustration and the \"attack\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a weapon attack to the right: 1 guard, 2 anticipation pulling the weapon back, 3 lunge forward, 4 full strike at maximum extension, 5 follow-through, 6 recovery back toward guard.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure cyan (#00FFFF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "rogue",
+        "anim": "attack",
+        "frames": 6,
+        "ms": [
+          90,
+          90,
+          70,
+          60,
+          140,
+          160
+        ],
+        "loop": false,
+        "key": "#00FFFF"
+      }
+    },
+    {
+      "name": "rogue-cast",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/rogue.png",
+        "public/assets/characters/pixel/combat/rogue/cast.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a rogue in a crimson-magenta hooded cloak and dark leathers with two curved daggers: the full master illustration and the \"cast\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: casting a spell or a war cry: 1 stance, 2 gathering power with the free hand raised, 3 focus with the cape lifting, 4 release with the arm or weapon thrust forward (the strongest pose), 5 hold, 6 lowering back to stance.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure cyan (#00FFFF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "rogue",
+        "anim": "cast",
+        "frames": 6,
+        "ms": [
+          110,
+          110,
+          120,
+          220,
+          160,
+          160
+        ],
+        "loop": false,
+        "key": "#00FFFF"
+      }
+    },
+    {
+      "name": "rogue-hurtko",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/rogue.png",
+        "public/assets/characters/pixel/combat/rogue/prepare.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a rogue in a crimson-magenta hooded cloak and dark leathers with two curved daggers: the full master illustration and the \"prepare\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 5 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: frames 1-2: taking a hit (1 flinch backward with the head snapped back, 2 staggered and hunched); frames 3-5: knocked out (3 knees buckling, 4 falling to one knee, 5 collapsed on the ground lying on the side).\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure cyan (#00FFFF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "rogue",
+        "anim": "hurtko",
+        "frames": 5,
+        "ms": [
+          90,
+          180,
+          160,
+          160,
+          420
+        ],
+        "loop": false,
+        "key": "#00FFFF"
+      }
+    },
+    {
+      "name": "white_mage-idle",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/white_mage.png",
+        "public/assets/characters/pixel/combat/white_mage/prepare.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a white mage in an ivory-and-gold hooded robe with a golden sun staff: the full master illustration and the \"prepare\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 4 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a calm battle-ready breathing loop: 1 neutral stance, 2 chest rises and shoulders lift one pixel, 3 neutral again with cloth settling, 4 slight exhale with the weapon lowering a touch.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "white_mage",
+        "anim": "idle",
+        "frames": 4,
+        "ms": [
+          260,
+          220,
+          260,
+          220
+        ],
+        "loop": true,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "white_mage-walk",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/white_mage.png",
+        "public/assets/characters/pixel/combat/white_mage/dash.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a white mage in an ivory-and-gold hooded robe with a golden sun staff: the full master illustration and the \"dash\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a brisk six-frame combat walk cycle to the right: contact, down, passing, up, contact with the other leg, passing; arms and cape swing in counter-motion, head steady.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "white_mage",
+        "anim": "walk",
+        "frames": 6,
+        "ms": [
+          110,
+          110,
+          110,
+          110,
+          110,
+          110
+        ],
+        "loop": true,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "white_mage-attack",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/white_mage.png",
+        "public/assets/characters/pixel/combat/white_mage/attack.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a white mage in an ivory-and-gold hooded robe with a golden sun staff: the full master illustration and the \"attack\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: a weapon attack to the right: 1 guard, 2 anticipation pulling the weapon back, 3 lunge forward, 4 full strike at maximum extension, 5 follow-through, 6 recovery back toward guard.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "white_mage",
+        "anim": "attack",
+        "frames": 6,
+        "ms": [
+          90,
+          90,
+          70,
+          60,
+          140,
+          160
+        ],
+        "loop": false,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "white_mage-cast",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/white_mage.png",
+        "public/assets/characters/pixel/combat/white_mage/cast.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a white mage in an ivory-and-gold hooded robe with a golden sun staff: the full master illustration and the \"cast\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 6 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: casting a spell or a war cry: 1 stance, 2 gathering power with the free hand raised, 3 focus with the cape lifting, 4 release with the arm or weapon thrust forward (the strongest pose), 5 hold, 6 lowering back to stance.\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "white_mage",
+        "anim": "cast",
+        "frames": 6,
+        "ms": [
+          110,
+          110,
+          120,
+          220,
+          160,
+          160
+        ],
+        "loop": false,
+        "key": "#FF00FF"
+      }
+    },
+    {
+      "name": "white_mage-hurtko",
+      "endpoint": "edits",
+      "inputs": [
+        "public/assets/characters/pixel/masters/white_mage.png",
+        "public/assets/characters/pixel/combat/white_mage/prepare.png"
+      ],
+      "size": "1536x1024",
+      "quality": "high",
+      "prompt": "The attached images are our own game art of a white mage in an ivory-and-gold hooded robe with a golden sun staff: the full master illustration and the \"prepare\" combat pose. Draw a horizontal animation strip of this exact character.\n\nExactly 5 frames in a single row, left to right, evenly spaced across the full width, each frame in its own equal-width column with clear empty background between frames. The animation: frames 1-2: taking a hit (1 flinch backward with the head snapped back, 2 staggered and hunched); frames 3-5: knocked out (3 knees buckling, 4 falling to one knee, 5 collapsed on the ground lying on the side).\n\nPremium HD pixel art matching the attached reference images exactly: same character, same outfit, same colours, same proportions, same level of detail and the same crisp square pixels with selective dark outlines.\n\nSide view, the character faces RIGHT in every frame. Full body visible in every frame, never cropped. Every frame is drawn at the same scale with both feet resting on one shared horizontal baseline near the bottom of the image.\n\nAbsolutely no visual effects: no slash trails, no motion arcs, no glow, no aura, no sparks, no particles, no magic circles, no speed lines, no shadows on the ground. Effects are added later by the game engine.\n\nA perfectly flat, uniform pure magenta (#FF00FF) background with no shading, no texture, no floor; that colour must not appear anywhere on the character.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "unit": "white_mage",
+        "anim": "hurtko",
+        "frames": 5,
+        "ms": [
+          90,
+          180,
+          160,
+          160,
+          420
+        ],
+        "loop": false,
+        "key": "#FF00FF"
+      }
+    }
+  ]
+}

@@ -1,6 +1,11 @@
 import * as THREE from 'three';
 import { FX_PALETTES, type FxElement, type FxPalette } from './fxPalettes';
 import { createFireMaterial } from '../arena/arenaProps';
+import fxSheetsJson from '../../render/generated/combatFxSheets.json';
+
+interface FxSheetEntry { file: string; grid: [number, number]; frames: number }
+/** Locally generated FX spritesheets (tools/openai-art); empty until the art mission runs. */
+export const FX_SHEETS = (fxSheetsJson as { sheets: Record<string, FxSheetEntry> }).sheets;
 
 /**
  * Procedural combat FX engine (Octopath-style: white-hot cores that bloom,
@@ -262,6 +267,7 @@ export class FxEngine {
   dispose(): void {
     this.clear();
     for (const t of Object.values(this.textures)) t.dispose();
+    for (const t of this.sheetTextures.values()) t.dispose();
     this.root.removeFromParent();
   }
 
@@ -762,6 +768,43 @@ export class FxEngine {
       },
       dispose: () => { this.root.remove(mesh); geometry.dispose(); material.dispose(); },
     });
+  }
+
+  private readonly sheetTextures = new Map<string, THREE.Texture>();
+
+  /** Additive frame-sheet effect (generated art) layered over the procedural FX. */
+  sheet(position: Vec, id: string, options: { size?: number; duration?: number } = {}): boolean {
+    const entry = FX_SHEETS[id];
+    if (!entry || this.reduced) return false;
+    let texture = this.sheetTextures.get(id);
+    if (!texture) {
+      texture = new THREE.TextureLoader().load(entry.file);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      this.sheetTextures.set(id, texture);
+    }
+    const [cols, rows] = entry.grid;
+    const map = texture.clone();
+    map.repeat.set(1 / cols, 1 / rows);
+    map.needsUpdate = true;
+    const size = options.size ?? 3, duration = options.duration ?? 0.8;
+    const material = new THREE.MeshBasicMaterial({ map, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, fog: false });
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(size, size), material);
+    mesh.position.copy(position);
+    mesh.renderOrder = 36;
+    mesh.frustumCulled = false;
+    this.root.add(mesh);
+    let t = 0;
+    this.add({
+      update: (dt, camera) => {
+        t += dt;
+        const frame = Math.min(entry.frames - 1, Math.floor((t / duration) * entry.frames));
+        map.offset.set((frame % cols) / cols, 1 - (Math.floor(frame / cols) + 1) / rows);
+        this.billboard(mesh, camera);
+        return t < duration;
+      },
+      dispose: () => { this.root.remove(mesh); mesh.geometry.dispose(); material.dispose(); map.dispose(); },
+    });
+    return true;
   }
 
   /** Scorch / crack decal on the floor that lingers a moment. */
