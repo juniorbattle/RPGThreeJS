@@ -13,7 +13,7 @@
 | `SUPERSEDED_BY` | NONE |
 | `PRODUCTION_IMPACT` | Présentation du combat canonique (`/legacy-combat.html`) : arène procédurale à la place du fond peint et de la grille superposée, feuilles pixel pour toutes les unités, caméra d'action et projecteur dans l'arène (Combat Stage retiré), effets et sons procéduraux. Règles, IA, protocole et sauvegarde inchangés. |
 | `CANONICAL_DOCS_UPDATED` | `docs/combat/COMBAT_HD2D.md` (nouveau), `docs/combat/LOCAL_ART_MISSION.md` (nouveau), `docs/project/CURRENT_STATUS.md`, `docs/README.md` |
-| `EVIDENCE` | [`result.json`](combat-hd2d-1/result.json) et 7 captures dans [`combat-hd2d-1/`](combat-hd2d-1/). Portée : Chromium SwiftShader 1440×810, combat autonome et démarrage par le protocole de la campagne. Pas de mesure de performance GPU réelle. Sons vérifiés par les tests de couverture, pas d'écoute. |
+| `EVIDENCE` | [`result.json`](combat-hd2d-1/result.json) et 10 captures dans [`combat-hd2d-1/`](combat-hd2d-1/). Portée : Chromium SwiftShader 1440×810, combat autonome et démarrage par le protocole de la campagne. Pas de mesure de performance GPU réelle. Sons vérifiés par les tests de couverture, pas d'écoute. |
 
 ## Réalisé (CURRENT FACT)
 
@@ -23,6 +23,18 @@
 4. **Effets procéduraux** (`src/combat/fx/`) : une recette pour chaque preset (ultimes et signatures avec charge, ralenti, speed lines, coup de caméra), lumière dynamique sur l'arène. Ils ne dépendent plus du pack CartoonCoffee local.
 5. **Sons synthétisés** (`src/combat/audio/`) : un son pour chaque repère d'effet, pas, tour, victoire/défaite, ambiance par biome, réglage on/off.
 6. **Pipeline de la mission locale** (`tools/openai-art/`) : générateur gpt-image-2, 44 prompts (bandes d'animation des héros, plans d'arène, planches FX), traitements vers les contrats existants. Testé sur une bande synthétique. [Mission](../combat/LOCAL_ART_MISSION.md).
+
+## Passe 2 — décor méticuleux et poids des effets (CURRENT FACT)
+
+Demandes de l'opérateur : décors arrière (arbres de la forêt « encore brouillon ») et chaque détail de chaque scène ; effets d'autant plus visibles que la compétence coûte de PA ; ultimes couvrant le terrain.
+
+1. **Végétation** : arbres feuillus en grappes de feuilles à 4-5 tons, pins à étages, dessinés à leur taille d'affichage ; deux lignes d'arbres dans le brouillard ferment l'horizon.
+2. **Détails par biome** : colonnes cannelées, tambours tombés et rondins (forêt) ; fenêtres éclairées par masque émissif, meule de foin, charrette chargée, puits, débris calcinés et arbre mort en feu (village) ; stèle du Lion en relief doré et bannières au lion rampant redessiné (sanctuaire). Rayons de lumière et brume basse. Textures tramées seulement aux transitions de tons. Capture [08](combat-hd2d-1/08-decor-pass-arenas.jpg).
+3. **Poids des effets selon les PA** (`fxIntensity.ts`) : léger, standard, fort, lourd, majeur, ultime ; tailles, particules, lumière et tremblement suivent le coût, avec des couches d'impact en plus à 3, 4 et 5 PA. Capture [09](combat-hd2d-1/09-fx-ap-weight.jpg).
+4. **Ultimes plein terrain** : cercle de runes sous la plateforme, ondes qui dépassent ses bords, vague d'éruptions case par case selon l'élément ou la recette ; la caméra recule sur un plan d'ensemble et le projecteur tient jusqu'à la fin de la vague. Capture [10](combat-hd2d-1/10-ultimates-field-wave.jpg).
+5. **Lisibilité** : les effets debout se dessinaient avant les sprites d'unité et étaient cachés par la cible ; ils passent désormais devant. Entailles qui traversent la cible avec une lame sombre dessous, étincelles pixel opaques.
+6. **Vérifications** : 17 tests en échec, les mêmes que sur `main` cas par cas (médias locaux absents) ; build OK ; démarrage par le protocole de la campagne sans erreur (`lion_chief`, `village_defense`) ; IA sur 4 manches sans erreur.
+7. **Correction de gouvernance** : le verrou CIN-6E-A listait les nouveaux fichiers combat comme non autorisés. Ce test était masqué parce que son fichier échoue déjà sur des médias absents. Les fichiers de la refonte sont maintenant autorisés explicitement, avec la référence à la demande de l'opérateur.
 
 ## Indicateurs de rendu
 
@@ -39,6 +51,8 @@ La fusion du décor statique par matériau ramène les appels d'environ 420-540 
 - Un sprite pixel atténué sous 50 % disparaissait au lieu de devenir translucent : la découpe alpha se fait désormais sur le texel. Cela touchait le mode déplacement et les témoins du projecteur. Capture [07](combat-hd2d-1/07-move-mode-focus.jpg).
 
 ## Reste ouvert (PROPOSED FUTURE DESIGN / UNDECIDED)
+
+- Valider sur GPU réel le rythme de la finale des ultimes (enchaînement coup rapproché, plan d'ensemble, vague) : les captures en rendu logiciel n'en montrent que des images isolées.
 
 - Lancer la mission locale (44 images, validation à l'œil par l'opérateur).
 - Faire une passe de performance sur GPU réel, notamment l'arène du village : lumières, fumée, particules.

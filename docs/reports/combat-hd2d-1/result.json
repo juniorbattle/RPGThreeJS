@@ -7,12 +7,12 @@
   "build": "pass",
   "tests": {
     "files": {
-      "passed": 157,
+      "passed": 159,
       "failed": 6
     },
     "cases": {
-      "passed": 2404,
-      "failed": 18,
+      "passed": 2413,
+      "failed": 17,
       "skipped": 23
     },
     "failingFilesIdenticalToBaseline": true,
@@ -24,7 +24,9 @@
       "tools/cinematics/cin6ea_finalization.test.mjs",
       "tools/cinematics/cin6ea_preproduction.test.mjs"
     ],
-    "baselineFailureCause": "local-only assets absent from the clone (CartoonCoffee megapack runtime PNGs, cinematic evidence)"
+    "baselineFailureCause": "local-only assets absent from the clone (CartoonCoffee megapack runtime PNGs, cinematic evidence)",
+    "failingTestsIdenticalToMain": true,
+    "comparison": "per test case against a main @ 00b96f1 worktree run (17 = 17, no new failure)"
   },
   "browser": {
     "engine": "Chromium (SwiftShader WebGL), 1440x810",
@@ -82,5 +84,42 @@
       "lion_sanctum": 25861
     },
     "staticDecorMerged": true
+  },
+  "pass2": {
+    "decor": [
+      "clustered pixel vegetation drawn at display scale",
+      "fogged tree lines",
+      "fluted columns and fallen drums",
+      "lion stele with emissive gold relief",
+      "rampant lion shared by banners and stele (40x80 banners)",
+      "emissive facade windows",
+      "beehive hay rick, loaded cart, well, charred debris, burning dead tree",
+      "fallen logs",
+      "light shafts and rolling mist",
+      "tone-boundary-only dithering"
+    ],
+    "fx": {
+      "weights": [
+        "light (0-1 AP)",
+        "standard (2)",
+        "strong (3)",
+        "heavy (4)",
+        "major (5)",
+        "ultimate"
+      ],
+      "fieldFinale": "rune circle under the platform, rings past its edges, field-wide motes, cell-by-cell eruption wave",
+      "camera": "impact punch then field shot; spotlight held until the wave ends",
+      "readability": "standing FX drawn over unit sprites"
+    },
+    "campaignBoot": {
+      "lion_chief": "initialized, 0 errors",
+      "village_defense": "initialized, 0 errors"
+    },
+    "aiTrace": "bois_clair_burning rounds 4 to 7, 0 errors (software GL ~2.5 fps)",
+    "evidence": [
+      "08-decor-pass-arenas.jpg",
+      "09-fx-ap-weight.jpg",
+      "10-ultimates-field-wave.jpg"
+    ]
   }
 }
