@@ -190,6 +190,36 @@ export function groundTexture(style: GroundStyle, pal: ArenaPalette, seed = 7): 
   return pc;
 }
 
+/**
+ * Trampled apron around the battle platform: worn earth with ragged,
+ * dithered edges and a path running back toward the ruins (alpha-cut).
+ * u spans x (−W/2…W/2), v spans z (back → front).
+ */
+export function trampledGroundTexture(pal: ArenaPalette, seed: number, w = 192, h = 128): PixelCanvas {
+  const pc = new PixelCanvas(w, h);
+  const rng = seeded(seed);
+  const n1 = makeNoise(rng, 8), n2 = makeNoise(rng, 16);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const u = (x / (w - 1)) * 2 - 1, v = (y / (h - 1)) * 2 - 1;
+    // rounded rectangle around the platform + a path toward the back (v < 0)
+    const box = Math.max(Math.abs(u) / 0.86, Math.abs(v) / 0.8);
+    const path = v < 0 ? Math.abs(u + Math.sin(v * 3) * 0.05) / (0.1 + (1 + v) * 0.06) : 9;
+    const shape = Math.min(box, path);
+    const edge = shape + (n1(x / 6, y / 6) - 0.5) * 0.5 + (n2(x / 2.5, y / 2.5) - 0.5) * 0.18;
+    if (edge > 1) continue;
+    if (edge > 0.88 && bayer(x, y) > (1 - edge) * 6) continue; // dithered fringe
+    const level = 0.45 + (n2(x / 3, y / 3) - 0.5) * 0.4 + (n1(x / 9, y / 9) - 0.5) * 0.2 - (edge > 0.8 ? 0.12 : 0);
+    let c = shadeTone(pal.dirt, Math.max(0, Math.min(1, level)), x, y);
+    if (n1(x / 2, y / 2) > 0.8 && edge > 0.5) c = shadeTone(pal.grass, 0.35 + n2(x, y) * 0.3, x, y);
+    pc.set(x, y, c);
+  }
+  for (let k = 0; k < 60; k++) {
+    const x = Math.floor(rng() * w), y = Math.floor(rng() * h);
+    if (pc.alpha(x, y)) pc.set(x, y, ramp(pal.stone, 0.3 + rng() * 0.4));
+  }
+  return pc;
+}
+
 /** Ashlar courses for walls, columns, arches and pedestals. */
 export function stoneBlockTexture(pal: ArenaPalette, seed: number, w = 32, h = 64, course = 8, mossy = 0.5): PixelCanvas {
   const pc = new PixelCanvas(w, h);

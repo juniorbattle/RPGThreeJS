@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { makeNoise, seeded } from './pixelArt';
 import { arenaBandProps, arenaClutterProps, arenaThemeFor, type ArenaTheme } from './arenaThemes';
-import { groundTexture, tileSideTexture, tileTopTexture } from './arenaTextures';
+import { groundTexture, tileSideTexture, tileTopTexture, trampledGroundTexture } from './arenaTextures';
 import { buildProp, type PropContext } from './arenaProps';
 import { drawFern, drawGrass, DECOR_TEXELS_PER_UNIT } from './arenaSprites';
 import platesJson from '../../render/generated/combatArenaPlates.json';
@@ -77,6 +77,7 @@ export class CombatArena {
   async build(): Promise<void> {
     this.buildPlatform();
     this.buildGround();
+    this.buildTrampledApron();
     this.buildEdgeVegetation();
     const bandRng = seeded(5150 + this.theme.id.length * 13);
     const midPlate = GENERATED_PLATES[this.theme.id]?.mid;
@@ -275,6 +276,25 @@ export class CombatArena {
     ground.raycast = () => {};
     ground.name = 'arena-ground';
     this.root.add(ground);
+  }
+
+  /** Worn earth around the platform and a path toward the back (not on the village mud). */
+  private buildTrampledApron(): void {
+    if (this.theme.ground === 'village_mud') return;
+    const texture = trampledGroundTexture(this.theme.palette, 1201 + this.theme.id.length).toTexture();
+    this.ctx.textures.set('apron', texture);
+    const { width, depth } = this.platformSize;
+    const w = width + 7.5, d = depth + 9;
+    const geometry = new THREE.PlaneGeometry(w, d);
+    this.geometries.push(geometry);
+    const material = new THREE.MeshStandardMaterial({ map: texture, alphaTest: 0.5, roughness: 1, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
+    const apron = new THREE.Mesh(geometry, material);
+    apron.rotation.x = -Math.PI / 2;
+    apron.position.set(0, -0.14, -1.1);
+    apron.receiveShadow = true;
+    apron.raycast = () => {};
+    apron.name = 'arena-apron';
+    this.root.add(apron);
   }
 
   /** Grass and ferns hugging the curb so the platform grows out of the ground. */
