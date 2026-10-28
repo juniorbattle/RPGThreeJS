@@ -222,6 +222,45 @@ export function trampledGroundTexture(pal: ArenaPalette, seed: number, w = 192, 
   return pc;
 }
 
+/**
+ * Cobbled village square around the platform: rounded setts in staggered
+ * rows, packed earth in the joints, worn and missing stones toward a ragged
+ * alpha-cut edge, a few scorch marks from the fires (u spans x, v spans z).
+ */
+export function cobbleApronTexture(pal: ArenaPalette, seed: number, w = 384, h = 256): PixelCanvas {
+  const pc = new PixelCanvas(w, h);
+  const rng = seeded(seed);
+  const n1 = makeNoise(rng, 8), n2 = makeNoise(rng, 16);
+  const k = w / 192; // texels per apron unit of the 192-wide layout
+  const cell = Math.round(6 * k);
+  const cols = Math.ceil(w / cell + 2);
+  const jitter = Array.from({ length: cols * Math.ceil(h / cell + 2) }, () => [rng(), rng(), rng()] as const);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const u = (x / (w - 1)) * 2 - 1, v = (y / (h - 1)) * 2 - 1;
+    const box = Math.max(Math.abs(u) / 0.9, Math.abs(v) / 0.84);
+    const edge = box + (n1(x / (6 * k), y / (6 * k)) - 0.5) * 0.45 + (n2(x / (2.5 * k), y / (2.5 * k)) - 0.5) * 0.15;
+    if (edge > 1) continue;
+    const row = Math.floor(y / cell);
+    const sx = x + (row % 2) * (cell / 2);
+    const cx = Math.floor(sx / cell);
+    const j = jitter[(row + 1) * cols + cx + 1] ?? [0.5, 0.5, 0.5];
+    const lx = (sx % cell) - cell / 2 + 0.5 + (j[0] - 0.5) * k, ly = (y % cell) - cell / 2 + 0.5 + (j[1] - 0.5) * 0.6 * k;
+    const d = Math.hypot(lx / (2.7 * k), ly / (2.4 * k));
+    const missing = j[2] < 0.06 + Math.max(0, edge - 0.7) * 0.9;
+    let c: Rgb;
+    if (d > 1 || missing) {
+      c = shadeTone(pal.dirt, 0.25 + (n2(x / (3 * k), y / (3 * k)) - 0.5) * 0.3, x, y); // earth in the joints
+    } else {
+      // domed sett: lit up-left, shaded down-right, a tone per stone
+      const level = 0.42 + j[2] * 0.22 - ((lx + ly) / k) * 0.06 - d * 0.12 + (n1(x / (3 * k), y / (3 * k)) - 0.5) * 0.12;
+      c = shadeTone(pal.stone, Math.max(0.05, Math.min(0.95, level)), x, y);
+    }
+    if (n1(x / (9 * k) + 3, y / (9 * k)) > 0.78) c = mixRgb(c, rgb(pal.stoneDark[0]), 0.55); // soot from the fires
+    pc.set(x, y, c);
+  }
+  return pc;
+}
+
 /** Ashlar courses for walls, columns, arches and pedestals. */
 export function stoneBlockTexture(pal: ArenaPalette, seed: number, w = 32, h = 64, course = 8, mossy = 0.5): PixelCanvas {
   const pc = new PixelCanvas(w, h);
@@ -416,6 +455,18 @@ export function bannerTexture(pal: ArenaPalette, seed: number, burning = false):
     if (pc.alpha(x, y) && !pc.alpha(x, y + 1) && y > H - 30) { pc.set(x, y, rgb('#ff8a2a')); pc.set(x, y - 1, rgb('#2a120c')); }
   }
   paintLion(pc, 7, 16, pal.trim);
+  return pc;
+}
+
+/** Lantern pane: iron frame and cross bars over warm glass, brightest at the flame. */
+export function lanternTexture(): PixelCanvas {
+  const W = 8, H = 12;
+  const pc = new PixelCanvas(W, H);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const frame = x === 0 || x === W - 1 || y === 0 || y === H - 1 || y === 5 || x === 3 || x === 4 && y < 2;
+    const glow = 1 - Math.min(1, Math.hypot(x - 3.5, y - 7.5) / 6);
+    pc.set(x, y, frame ? rgb('#241f1b') : mixRgb(rgb('#e0782a'), rgb('#fff1b8'), glow));
+  }
   return pc;
 }
 

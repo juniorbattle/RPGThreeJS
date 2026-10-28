@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { seeded, type Rng } from './pixelArt';
 import type { ArenaPalette, ArenaProp } from './arenaThemes';
 import {
-  bannerTexture, barkTexture, burlapTexture, columnTexture, lionReliefTexture, logEndTexture, metalTexture, plankTexture,
+  bannerTexture, barkTexture, burlapTexture, columnTexture, lanternTexture, lionReliefTexture, logEndTexture, metalTexture, plankTexture,
   roofTexture, stoneBlockTexture, strawTexture, timberWallTexture, timberWindowMask,
 } from './arenaTextures';
 import { DECOR_TEXELS_PER_UNIT, drawBush, drawDeadTree, drawFern, drawGrass, drawPine, drawTree, type DecorSprite } from './arenaSprites';
@@ -689,7 +689,8 @@ function lantern(ctx: PropContext, seed: number): THREE.Group {
   const arm = mesh(boxGeometry(0.7, 0.1, 0.1, 1), wood, ctx);
   arm.position.set(0.3, 2.5, 0);
   g.add(arm);
-  const cage = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.28, 0.2), glowMaterial('#ffb54d'));
+  const pane = cached(ctx.textures, 'lantern-pane', () => lanternTexture().toTexture());
+  const cage = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.3, 0.2), new THREE.MeshBasicMaterial({ map: pane, toneMapped: false, fog: false }));
   cage.position.set(0.58, 2.2, 0);
   cage.raycast = () => {};
   g.add(cage);
@@ -698,7 +699,7 @@ function lantern(ctx: PropContext, seed: number): THREE.Group {
   cap.rotation.y = Math.PI / 4;
   g.add(cap);
   ctx.lights.push({ anchor: cage, color: '#ffbf6a', intensity: 5.5, distance: 7.5, flicker: 0.12 });
-  ctx.animated.push((t) => { (cage.material as THREE.MeshBasicMaterial).color.setHSL(0.09, 1, 0.62 + Math.sin(t * 7 + seed) * 0.04); });
+  ctx.animated.push((t) => { (cage.material as THREE.MeshBasicMaterial).color.setScalar(1.05 + Math.sin(t * 7 + seed) * 0.08 + Math.sin(t * 12.3 + seed * 2) * 0.04); });
   return g;
 }
 

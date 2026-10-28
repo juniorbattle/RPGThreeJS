@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { makeNoise, seeded } from './pixelArt';
 import { arenaBandProps, arenaClutterProps, arenaThemeFor, type ArenaTheme } from './arenaThemes';
-import { groundTexture, tileSideTexture, tileTopTexture, trampledGroundTexture } from './arenaTextures';
+import { cobbleApronTexture, groundTexture, tileSideTexture, tileTopTexture, trampledGroundTexture } from './arenaTextures';
 import { buildProp, type PropContext } from './arenaProps';
 import { drawFern, drawGrass, drawTreeLine, DECOR_TEXELS_PER_UNIT } from './arenaSprites';
 import platesJson from '../../render/generated/combatArenaPlates.json';
@@ -401,10 +401,10 @@ export class CombatArena {
     });
   }
 
-  /** Worn earth around the platform and a path toward the back (not on the village mud). */
+  /** Worn earth around the platform and a path toward the back; a cobbled square in the village. */
   private buildTrampledApron(): void {
-    if (this.theme.ground === 'village_mud') return;
-    const texture = trampledGroundTexture(this.theme.palette, 1201 + this.theme.id.length).toTexture();
+    const village = this.theme.ground === 'village_mud';
+    const texture = (village ? cobbleApronTexture(this.theme.palette, 1301) : trampledGroundTexture(this.theme.palette, 1201 + this.theme.id.length)).toTexture();
     this.ctx.textures.set('apron', texture);
     const { width, depth } = this.platformSize;
     const w = width + 7.5, d = depth + 9;
