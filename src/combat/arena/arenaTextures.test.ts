@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ARENA_THEMES } from './arenaThemes';
-import { bannerTexture, columnTexture, lionReliefTexture, timberWallTexture, timberWindowMask } from './arenaTextures';
+import { bannerTexture, columnTexture, lionReliefTexture, plasterTexture, windowTextures } from './arenaTextures';
 
 const pal = ARENA_THEMES.lion_sanctum.palette;
 
@@ -22,16 +22,27 @@ describe('arena pixel textures', () => {
     expect(glowing).toBeLessThan(face.width * face.height * 0.5);
   });
 
-  it('lights only the window panes of the timber facades', () => {
+  it('lights only the panes of the house windows, never their frame', () => {
     for (const burning of [false, true]) {
-      const wall = timberWallTexture(pal, 31, burning);
-      const mask = timberWindowMask(burning);
-      expect([mask.width, mask.height]).toEqual([wall.width, wall.height]);
+      const { face, glow } = windowTextures(burning);
+      expect([glow.width, glow.height]).toEqual([face.width, face.height]);
       let lit = 0;
-      for (let y = 0; y < mask.height; y++) for (let x = 0; x < mask.width; x++) if (mask.get(x, y)[0] > 0) lit++;
-      expect(lit).toBeGreaterThan(20);
-      expect(lit).toBeLessThan(100);
+      for (let y = 0; y < glow.height; y++) for (let x = 0; x < glow.width; x++) {
+        const frame = x === 0 || y === 0 || x === glow.width - 1 || y === glow.height - 1;
+        if (glow.get(x, y)[0] > 0) { lit++; expect(frame).toBe(false); }
+      }
+      expect(lit).toBeGreaterThan(40);
     }
+  });
+
+  it('soots the plaster of burning houses', () => {
+    const mean = (burning: boolean) => {
+      const pc = plasterTexture(pal, 51, burning);
+      let sum = 0;
+      for (let y = 0; y < 32; y++) for (let x = 0; x < 32; x++) sum += pc.get(x, y)[0];
+      return sum / 1024;
+    };
+    expect(mean(true)).toBeLessThan(mean(false));
   });
 
   it('wraps the fluted column texture seamlessly (four whole flutes per repeat)', () => {

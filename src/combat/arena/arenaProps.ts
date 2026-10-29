@@ -3,7 +3,7 @@ import { seeded, type Rng } from './pixelArt';
 import type { ArenaPalette, ArenaProp } from './arenaThemes';
 import {
   bannerTexture, barkTexture, burlapTexture, columnTexture, lanternTexture, lionReliefTexture, logEndTexture, metalTexture, plankTexture,
-  roofTexture, stoneBlockTexture, strawTexture, timberWallTexture, timberWindowMask,
+  plasterTexture, roofTexture, stoneBlockTexture, strawTexture, windowTextures,
 } from './arenaTextures';
 import { DECOR_TEXELS_PER_UNIT, drawBush, drawDeadTree, drawFern, drawGrass, drawPine, drawTree, type DecorSprite } from './arenaSprites';
 
@@ -415,46 +415,279 @@ function statue(ctx: PropContext, seed: number): THREE.Group {
   return g;
 }
 
+// ---------------------------------------------------------------- half-timbered house
+
+type FacadeSlot = 'door' | 'window' | 'brace' | 'cross' | 'plain';
+
+interface HouseKit {
+  ctx: PropContext;
+  rng: Rng;
+  burning: boolean;
+  beam: THREE.Material;
+  window: THREE.Material;
+  shutter: THREE.Material;
+  door: THREE.Material;
+  iron: THREE.Material;
+  stone: THREE.Material;
+}
+
+function houseKit(ctx: PropContext, rng: Rng, seed: number, burning: boolean): HouseKit {
+  const planks = repeatTexture(ctx, 'planks-v', () => plankTexture(ctx.palette, 21, true).toTexture({ repeat: true }));
+  const fresh = !ctx.materials.has(`house-window-${burning}`);
+  const window = cached(ctx.materials, `house-window-${burning}`, () => {
+    const { face, glow } = windowTextures(burning);
+    const map = face.toTexture(), emissiveMap = glow.toTexture();
+    ctx.textures.set(`house-window-${burning}`, map);
+    ctx.textures.set(`house-window-glow-${burning}`, emissiveMap);
+    return new THREE.MeshStandardMaterial({ map, emissiveMap, emissive: '#ffffff', emissiveIntensity: burning ? 1.15 : 0.9, roughness: 0.4 });
+  }) as THREE.MeshStandardMaterial;
+  if (fresh && burning) ctx.animated.push((t) => { window.emissiveIntensity = 1.0 + Math.sin(t * 9.3) * 0.14 + Math.sin(t * 14.1) * 0.08; });
+  return {
+    ctx, rng, burning, window,
+    beam: litMaterial(ctx, `house-beam-${burning}`, planks, { color: burning ? '#4a3a33' : '#7a6458' }),
+    shutter: litMaterial(ctx, 'house-shutter', planks, { color: '#8a7a6a' }),
+    door: woodMaterial(ctx, true),
+    iron: litMaterial(ctx, 'metal-dark', null, { color: '#2a2622', roughness: 0.7 }),
+    stone: stoneMaterial(ctx, seed, 0.25),
+  };
+}
+
+/**
+ * One timber-framed wall face in local space: x across [−w/2, w/2], y up from
+ * the face's foot, beams standing proud of the plaster toward +z. Each slot
+ * between posts holds a door, a framed window with shutters and sill, a
+ * brace, a St Andrew's cross or a plain mid rail.
+ */
+function facade(kit: HouseKit, width: number, height: number, slots: readonly FacadeSlot[], storeyFoot = false): THREE.Group {
+  const { ctx, rng } = kit;
+  const g = new THREE.Group();
+  const add = (geo: THREE.BufferGeometry, mat: THREE.Material, x: number, y: number, z: number, rz = 0, cast = true) => {
+    const m = mesh(geo, mat, ctx, cast);
+    m.position.set(x, y, z);
+    m.rotation.z = rz;
+    g.add(m);
+    return m;
+  };
+  const beam = (w: number, h: number, x: number, y: number, rz = 0, d = 0.07) => add(boxGeometry(w, h, d, 1), kit.beam, x, y, d / 2, rz);
+  const n = slots.length, pw = width / n;
+  for (let i = 0; i <= n; i++) beam(0.15, height, -width / 2 + i * pw, height / 2, 0, i === 0 || i === n ? 0.1 : 0.07);
+  beam(width + 0.04, 0.13, 0, 0.065);
+  beam(width + 0.04, 0.13, 0, height - 0.065);
+  slots.forEach((slot, i) => {
+    const cx = -width / 2 + (i + 0.5) * pw;
+    const inner = pw - 0.15;
+    if (slot === 'door') {
+      const dw = Math.min(0.92, inner - 0.08), dh = Math.min(1.62, height - 0.2);
+      add(new THREE.PlaneGeometry(dw, dh), kit.door, cx, dh / 2 + 0.02, 0.012, 0, false);
+      beam(0.1, dh + 0.08, cx - dw / 2 - 0.05, dh / 2 + 0.02, 0, 0.09);
+      beam(0.1, dh + 0.08, cx + dw / 2 + 0.05, dh / 2 + 0.02, 0, 0.09);
+      beam(dw + 0.32, 0.14, cx, dh + 0.09, 0, 0.1); // lintel
+      for (const y of [0.4, dh - 0.35]) add(boxGeometry(dw * 0.8, 0.05, 0.02, 1), kit.iron, cx - dw * 0.06, y, 0.024, 0, false);
+      add(new THREE.TorusGeometry(0.05, 0.014, 4, 8), kit.iron, cx + dw * 0.3, dh * 0.52, 0.03, 0, false); // door ring
+      if (storeyFoot) add(boxGeometry(dw + 0.4, 0.12, 0.34, 1.6), kit.stone, cx, 0.06 - 0.42, 0.18); // door step on the plinth
+      return;
+    }
+    if (slot === 'window') {
+      const ww = Math.min(0.66, inner * 0.62), wh = Math.min(0.84, height * 0.5);
+      const wy = height * 0.56;
+      add(new THREE.PlaneGeometry(ww, wh), kit.window, cx, wy, 0.012, 0, false);
+      beam(ww + 0.14, 0.08, cx, wy + wh / 2 + 0.04, 0, 0.08);
+      beam(0.08, wh, cx - ww / 2 - 0.04, wy, 0, 0.08);
+      beam(0.08, wh, cx + ww / 2 + 0.04, wy, 0, 0.08);
+      add(boxGeometry(ww + 0.22, 0.06, 0.16, 1), kit.beam, cx, wy - wh / 2 - 0.03, 0.08); // sill
+      // shutters folded back against the wall (one hangs askew on a burning house)
+      for (const side of [-1, 1]) {
+        if (kit.burning && side === 1 && rng() < 0.5) continue;
+        const sh = add(boxGeometry(ww / 2, wh, 0.035, 1), kit.shutter, cx + side * (ww / 2 + ww / 4 + 0.09), wy, 0.03);
+        if (kit.burning && side === 1) { sh.rotation.z = 0.35; sh.position.y -= 0.08; }
+        add(boxGeometry(0.03, wh * 0.9, 0.012, 1), kit.beam, sh.position.x, wy, 0.052, 0, false);
+      }
+      // rails below the sill keep the panel framed
+      beam(inner, 0.1, cx, wy - wh / 2 - 0.2);
+      return;
+    }
+    if (slot === 'brace' || slot === 'cross') {
+      const len = Math.hypot(inner, height - 0.26);
+      const a = Math.atan2(height - 0.26, inner);
+      const dir = i % 2 === 0 ? 1 : -1;
+      beam(len, 0.11, cx, height / 2, dir * a);
+      if (slot === 'cross') beam(len, 0.11, cx, height / 2, -dir * a);
+      return;
+    }
+    beam(inner, 0.1, cx, height * 0.45);
+  });
+  return g;
+}
+
+/** Plaster triangle of a gable end with king post, struts and a small loft window. */
+function gable(kit: HouseKit, plaster: THREE.Material, width: number, rise: number): THREE.Group {
+  const g = new THREE.Group();
+  const shape = new THREE.Shape();
+  shape.moveTo(-width / 2, 0); shape.lineTo(width / 2, 0); shape.lineTo(0, rise); shape.lineTo(-width / 2, 0);
+  const geo = new THREE.ShapeGeometry(shape);
+  const uv = geo.attributes.uv as THREE.BufferAttribute;
+  const pos = geo.attributes.position as THREE.BufferAttribute;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, pos.getX(i), pos.getY(i));
+  const wall = mesh(geo, plaster, kit.ctx);
+  g.add(wall);
+  const beam = (w: number, h: number, x: number, y: number, rz = 0) => {
+    const m = mesh(boxGeometry(w, h, 0.07, 1), kit.beam, kit.ctx);
+    m.position.set(x, y, 0.035);
+    m.rotation.z = rz;
+    g.add(m);
+  };
+  beam(0.14, rise * 0.86, 0, rise * 0.43);
+  const strut = Math.atan2(rise * 0.5, width * 0.32);
+  beam(Math.hypot(width * 0.32, rise * 0.5), 0.1, -width * 0.16, rise * 0.25, strut);
+  beam(Math.hypot(width * 0.32, rise * 0.5), 0.1, width * 0.16, rise * 0.25, -strut);
+  beam(width * 0.62, 0.11, 0, rise * 0.42);
+  const lw = 0.36, lh = 0.44;
+  for (const side of [-1, 1]) {
+    const m = mesh(new THREE.PlaneGeometry(lw, lh), kit.window, kit.ctx, false);
+    m.position.set(side * width * 0.2, rise * 0.62 - 0.3, 0.012);
+    if (side === 1 || rise > 1.9) g.add(m);
+  }
+  return g;
+}
+
+/**
+ * Half-timbered village house, built in parts so light and shadow catch every
+ * timber: stone plinth, ground storey, jettied upper storey on joists, framed
+ * windows with shutters and sills, a door with lintel and step, plaster gables
+ * with king posts, thick tiled roof slabs with eaves, ridge and barge boards,
+ * a capped chimney. Burning houses lose part of a roof slope (charred rafters
+ * and flames through the gap), have soot on the plaster and fire in a window.
+ */
 function house(ctx: PropContext, rng: Rng, seed: number, burning: boolean): THREE.Group {
   const g = new THREE.Group();
-  const w = 4.6, h = 2.7, d = 3.4;
-  const wallTex = repeatTexture(ctx, `timber-${burning}`, () => timberWallTexture(ctx.palette, 31 + (burning ? 1 : 0), burning).toTexture({ repeat: true }));
-  const windowTex = repeatTexture(ctx, `timber-windows-${burning}`, () => timberWindowMask(burning).toTexture({ repeat: true }));
-  const fresh = !ctx.materials.has(`timber-${burning}`);
-  // the panes glow through the emissive mask: lamplight, or fire flickering inside
-  const wallMat = litMaterial(ctx, `timber-${burning}`, wallTex, { emissiveMap: windowTex, emissive: '#ffffff', emissiveIntensity: burning ? 1.1 : 0.85 });
-  if (fresh && burning) ctx.animated.push((t) => { wallMat.emissiveIntensity = 0.95 + Math.sin(t * 9.3) * 0.12 + Math.sin(t * 14.1) * 0.08; });
-  const body = mesh(boxGeometry(w, h, d, 2.6), wallMat, ctx);
-  // keep facade texture at one storey per wall height
-  body.position.y = h / 2;
-  g.add(body);
-  const stone = stoneMaterial(ctx, seed, 0.2);
-  g.add(at(mesh(boxGeometry(w + 0.12, 0.45, d + 0.12, 1.6), stone, ctx), 0, 0.22, 0));
-  const roofTex = repeatTexture(ctx, `roof-${burning}`, () => roofTexture(ctx.palette, 41, burning).toTexture({ repeat: true }));
-  const roofMat = litMaterial(ctx, `roof-${burning}`, roofTex);
-  const shape = new THREE.Shape();
-  const overhang = 0.35, rise = 1.9;
-  shape.moveTo(-(w / 2 + overhang), 0);
-  shape.lineTo(w / 2 + overhang, 0);
-  shape.lineTo(0, rise);
-  shape.lineTo(-(w / 2 + overhang), 0);
-  const roofGeo = new THREE.ExtrudeGeometry(shape, { depth: d + overhang * 2, bevelEnabled: false });
-  const uv = roofGeo.attributes.uv as THREE.BufferAttribute;
-  for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) / 1.4, uv.getY(i) / 1.4);
-  const roof = mesh(roofGeo, roofMat, ctx);
-  roof.position.set(0, h, -(d / 2 + overhang));
-  if (burning) roof.rotation.z = (rng() - 0.5) * 0.06;
-  g.add(roof);
-  const chimney = mesh(boxGeometry(0.5, 1.4, 0.5, 1.6), stone, ctx);
-  chimney.position.set(w * 0.28, h + 1.3, -0.4);
-  g.add(chimney);
-  const door = mesh(new THREE.PlaneGeometry(0.9, 1.6), woodMaterial(ctx, true), ctx, false);
-  door.position.set(-0.3, 0.8 + 0.4, d / 2 + 0.01);
-  g.add(door);
+  const kit = houseKit(ctx, rng, seed, burning);
+  const variant = seed % 3;
+  const w = variant === 1 ? 4.8 : 4.3, d = 3.4;
+  const twoStorey = variant !== 2;
+  const plinth = 0.42, h1 = 1.95, h2 = twoStorey ? 1.55 : 0, jetty = twoStorey ? 0.2 : 0;
+  const H = h1 + h2;
+  const rise = twoStorey ? 1.75 : 2.15;
+  const plasterTex = repeatTexture(ctx, `plaster-${burning}`, () => plasterTexture(ctx.palette, 51 + (burning ? 1 : 0), burning).toTexture({ repeat: true }));
+  const plaster = litMaterial(ctx, `plaster-${burning}`, plasterTex);
+  const roofTex = cached(ctx.textures, `roof-slab-${burning}`, () => {
+    const t = roofTexture(ctx.palette, 41, burning).toTexture({ repeat: true });
+    t.center.set(0.5, 0.5); t.rotation = Math.PI / 2; // tile courses run along the ridge
+    return t;
+  });
+  const roofMat = litMaterial(ctx, `roof-slab-${burning}`, roofTex);
+  const box = (bw: number, bh: number, bd: number, mat: THREE.Material, x: number, y: number, z: number, upr = 1) => {
+    const m = mesh(boxGeometry(bw, bh, bd, upr), mat, ctx);
+    m.position.set(x, y, z);
+    g.add(m);
+    return m;
+  };
+  // masonry and walls
+  box(w + 0.14, plinth, d + 0.14, kit.stone, 0, plinth / 2, 0, 1.6);
+  box(w, h1 - plinth, d, plaster, 0, plinth + (h1 - plinth) / 2, 0);
+  const upperD = d + jetty * 2, upperW = w + 0.06;
+  if (twoStorey) {
+    box(upperW, h2, upperD, plaster, 0, h1 + h2 / 2, 0);
+    box(upperW + 0.08, 0.16, upperD + 0.04, kit.beam, 0, h1 + 0.02, 0); // floor beam
+    for (const side of [-1, 1]) for (let x = -w / 2 + 0.25; x <= w / 2 - 0.2; x += 0.48) box(0.11, 0.11, jetty + 0.08, kit.beam, x, h1 - 0.1, side * (d / 2 + jetty / 2)); // joist ends
+  }
+  // timber framing on every face
+  const front = facade(kit, w, h1 - plinth, w > 4.5 ? ['window', 'door', 'window'] : ['door', 'window', 'brace'], true);
+  front.position.set(0, plinth, d / 2);
+  g.add(front);
+  const back = facade(kit, w, h1 - plinth, ['window', 'cross', 'window']);
+  back.position.set(0, plinth, -d / 2); back.rotation.y = Math.PI;
+  g.add(back);
+  for (const side of [-1, 1]) {
+    const f = facade(kit, d, h1 - plinth, side < 0 ? ['brace', 'window', 'brace'] : ['window', 'plain', 'window']);
+    f.position.set(side * w / 2, plinth, 0); f.rotation.y = side * Math.PI / 2;
+    g.add(f);
+  }
+  if (twoStorey) {
+    const up = facade(kit, upperW, h2, ['brace', 'window', 'window', 'brace']);
+    up.position.set(0, h1 + 0.1, upperD / 2);
+    g.add(up);
+    const upBack = facade(kit, upperW, h2, ['cross', 'window', 'cross']);
+    upBack.position.set(0, h1 + 0.1, -upperD / 2); upBack.rotation.y = Math.PI;
+    g.add(upBack);
+    for (const side of [-1, 1]) {
+      const f = facade(kit, upperD, h2, ['brace', 'window', 'brace']);
+      f.position.set(side * upperW / 2, h1 + 0.1, 0); f.rotation.y = side * Math.PI / 2;
+      g.add(f);
+    }
+  }
+  // gables front and back
+  for (const side of [-1, 1]) {
+    const gb = gable(kit, plaster, upperW, rise);
+    gb.position.set(0, H, side * upperD / 2);
+    if (side < 0) gb.rotation.y = Math.PI;
+    g.add(gb);
+  }
+  // roof: two thick slabs with eaves, a ridge beam and barge boards
+  const eave = 0.34, overhang = 0.3;
+  const theta = Math.atan2(rise, upperW / 2);
+  const span = upperW / 2 + eave;
+  const L = span / Math.cos(theta);
+  const roofD = upperD + overhang * 2;
+  const slabT = 0.14;
+  const holed = burning && rng() < 0.75;
+  for (const side of [-1, 1]) {
+    const slab = (from: number, to: number) => {
+      // part of the slope between fractions `from` and `to` of its length (0 = ridge)
+      const len = L * (to - from), mid = L * (from + to) / 2;
+      const m = mesh(boxGeometry(len, slabT, roofD, 1.4), roofMat, ctx);
+      m.position.set(side * (mid * Math.cos(theta)), H + rise - mid * Math.sin(theta) + slabT / 2 / Math.cos(theta), 0);
+      m.rotation.z = -side * theta;
+      g.add(m);
+    };
+    if (holed && side === 1) {
+      slab(0, 0.3); slab(0.68, 1);
+      for (let k = 0; k < 4; k++) { // charred rafters across the gap
+        const z = -roofD / 2 + 0.5 + k * (roofD - 1) / 3;
+        const len = L * 0.42, mid = L * 0.49;
+        const r = mesh(boxGeometry(len, 0.1, 0.1, 1), kit.beam, ctx);
+        r.position.set(mid * Math.cos(theta), H + rise - mid * Math.sin(theta) - 0.02, z);
+        r.rotation.z = -theta + (k === 2 ? 0.12 : 0);
+        g.add(r);
+      }
+      const gapFire = fireBillboard(ctx, seed + 23, 1.4, 1.9);
+      gapFire.position.set(L * 0.49 * Math.cos(theta), H + rise - L * 0.49 * Math.sin(theta) - 0.1, 0.2);
+      g.add(gapFire);
+    } else slab(0, 1);
+    // barge boards along the gable edges
+    for (const end of [-1, 1]) {
+      const m = mesh(boxGeometry(L, 0.18, 0.06, 1), kit.beam, ctx);
+      m.position.set(side * (L / 2) * Math.cos(theta), H + rise - (L / 2) * Math.sin(theta) + 0.02, end * (roofD / 2 + 0.02));
+      m.rotation.z = -side * theta;
+      g.add(m);
+    }
+  }
+  box(0.18, 0.18, roofD + 0.06, kit.beam, 0, H + rise + slabT * 0.9, 0);
+  // chimney through the left slope
+  const chimX = -upperW * 0.22, chimZ = -0.5;
+  const roofY = H + rise - Math.abs(chimX) * Math.tan(theta);
+  box(0.56, rise * 0.55 + 0.9, 0.56, kit.stone, chimX, roofY + (rise * 0.55 + 0.9) / 2 - 0.4, chimZ, 1.6);
+  box(0.72, 0.12, 0.72, kit.stone, chimX, roofY + rise * 0.55 + 0.56, chimZ, 1.6);
+  if (!burning) {
+    const plume = smoke(ctx, seed + 5, '#5a5458', 1.1, 3.6);
+    plume.position.set(chimX, roofY + rise * 0.55 + 0.62, chimZ);
+    g.add(plume);
+  }
   if (burning) {
-    const flames = fireBillboard(ctx, seed + 3, 2.6, 2.4, { color: '#ff7a2a', intensity: 9, distance: 12 });
-    flames.position.set((rng() - 0.5) * 1.2, h + rise * 0.55, 0.4);
+    const flames = fireBillboard(ctx, seed + 3, 2.4, 2.4, { color: '#ff7a2a', intensity: 9, distance: 12 });
+    flames.position.set(holed ? -L * 0.35 : (rng() - 0.5) * 1.2, H + rise * 0.55, 0.4);
     g.add(flames);
+    // fire behind an upper window
+    const winFire = fireBillboard(ctx, seed + 31, 0.6, 0.9);
+    winFire.position.set(twoStorey ? upperW * 0.12 : w * 0.25, twoStorey ? h1 + h2 * 0.36 : h1 * 0.5, upperD / 2 + 0.08);
+    g.add(winFire);
+  } else if (seed % 2 === 0) {
+    // a wall lantern by the door
+    const pane = cached(ctx.textures, 'lantern-pane', () => lanternTexture().toTexture());
+    const lamp = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.24, 0.16), new THREE.MeshBasicMaterial({ map: pane, toneMapped: false, fog: false }));
+    lamp.position.set(-w * 0.18 + 0.75, plinth + 1.75, d / 2 + 0.16);
+    lamp.raycast = () => {};
+    g.add(lamp);
+    ctx.lights.push({ anchor: lamp, color: '#ffbf6a', intensity: 3, distance: 5, flicker: 0.12 });
   }
   return g;
 }
@@ -817,10 +1050,10 @@ function rock(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
   return g;
 }
 
-function smoke(ctx: PropContext, seed: number, tint: string): THREE.Object3D {
+function smoke(ctx: PropContext, seed: number, tint: string, width = 3.2, height = 9): THREE.Object3D {
   const material = createSmokeMaterial(seed, tint);
-  const geometry = new THREE.PlaneGeometry(3.2, 9);
-  geometry.translate(0, 4.5, 0);
+  const geometry = new THREE.PlaneGeometry(width, height);
+  geometry.translate(0, height / 2, 0);
   const m = new THREE.Mesh(geometry, material);
   m.renderOrder = 4;
   m.raycast = () => {};

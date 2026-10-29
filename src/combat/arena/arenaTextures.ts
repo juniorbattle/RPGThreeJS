@@ -305,49 +305,6 @@ export function plankTexture(pal: ArenaPalette, seed: number, vertical = false):
   return pc;
 }
 
-/** Half-timbered plaster facade (one storey, tiles horizontally). */
-export function timberWallTexture(pal: ArenaPalette, seed: number, burning: boolean): PixelCanvas {
-  const pc = new PixelCanvas(64, 48);
-  const rng = seeded(seed);
-  const n = makeNoise(rng, 8);
-  for (let y = 0; y < 48; y++) for (let x = 0; x < 64; x++) {
-    let c = shadeTone(pal.plaster, 0.55 + (n(x / 5, y / 5) - 0.5) * 0.35 - (burning ? y / 140 : 0), x, y);
-    const post = x % 21 < 3, beam = y < 3 || y > 44 || Math.abs(y - 24) < 2;
-    const brace = Math.abs((x % 21) - 3 - (y - 3) * 0.42) < 1.6 && y > 3 && y < 23;
-    if (post || beam || brace) c = shadeTone(pal.wood, 0.3 + (n(x, y) - 0.5) * 0.3, x, y);
-    pc.set(x, y, c);
-  }
-  // windows
-  for (const wx of TIMBER_WINDOWS) {
-    for (let y = 30; y < 40; y++) for (let x = wx; x < wx + 7; x++) {
-      const frame = x === wx || x === wx + 6 || y === 30 || y === 39 || x === wx + 3 || y === 35;
-      pc.set(x, y, frame ? rgb(pal.wood[0]) : windowPane(burning, x - wx, y - 30));
-    }
-  }
-  return pc;
-}
-
-const TIMBER_WINDOWS = [8, 50] as const;
-
-function windowPane(burning: boolean, x: number, y: number): Rgb {
-  // warm lamplight, brighter at the top of each pane (or fire light from below)
-  const t = burning ? 1 - y / 10 : y / 10;
-  return burning ? mixRgb(rgb('#ffd27a'), rgb('#ff6a1f'), t) : mixRgb(rgb('#ffe3a0'), rgb('#e09a3c'), t + (x === 1 || x === 4 ? -0.15 : 0));
-}
-
-/** Emissive mask of the facade: only the window panes glow at night. */
-export function timberWindowMask(burning: boolean): PixelCanvas {
-  const pc = new PixelCanvas(64, 48);
-  pc.fill([0, 0, 0]);
-  for (const wx of TIMBER_WINDOWS) {
-    for (let y = 31; y < 39; y++) for (let x = wx + 1; x < wx + 6; x++) {
-      if (x === wx + 3 || y === 35) continue;
-      pc.set(x, y, windowPane(burning, x - wx, y - 30));
-    }
-  }
-  return pc;
-}
-
 export function roofTexture(pal: ArenaPalette, seed: number, burning: boolean): PixelCanvas {
   const pc = new PixelCanvas(32, 32);
   const rng = seeded(seed);
@@ -456,6 +413,47 @@ export function bannerTexture(pal: ArenaPalette, seed: number, burning = false):
   }
   paintLion(pc, 7, 16, pal.trim);
   return pc;
+}
+
+/**
+ * Lime plaster between the timbers: broad flat patches in the plaster ramp,
+ * hairline cracks and a few stains; soot-darkened on burning houses.
+ */
+export function plasterTexture(pal: ArenaPalette, seed: number, burning: boolean): PixelCanvas {
+  const pc = new PixelCanvas(32, 32);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 4), fine = makeNoise(rng, 16);
+  for (let y = 0; y < 32; y++) for (let x = 0; x < 32; x++) {
+    let level = 0.62 + (n(x / 8, y / 8) - 0.5) * 0.22 + (fine(x / 2, y / 2) - 0.5) * 0.06;
+    if (burning) level -= 0.16 + (n(x / 8 + 2, y / 8) > 0.6 ? 0.18 : 0);
+    pc.set(x, y, shadeTone(pal.plaster, Math.max(0.04, Math.min(0.96, level)), x, y));
+  }
+  crack(pc, rng, 6 + Math.floor(rng() * 20), 3, 9 + Math.floor(rng() * 8), ramp(pal.plaster, 0.1), { x: 0, y: 0, w: 32, h: 32 });
+  for (let k = 0; k < 3; k++) { // a weathering stain
+    const cx = Math.floor(rng() * 32), cy = Math.floor(rng() * 32);
+    for (let j = 0; j < 4; j++) pc.tint(cx, cy + j, 0.9);
+  }
+  return pc;
+}
+
+/**
+ * Leaded window (9×14): wood frame, cross mullion, four panes lit by lamps
+ * (or by fire inside). Returns the face and its emissive mask (panes only).
+ */
+export function windowTextures(burning: boolean): { face: PixelCanvas; glow: PixelCanvas } {
+  const W = 9, H = 14;
+  const face = new PixelCanvas(W, H), glow = new PixelCanvas(W, H);
+  glow.fill([0, 0, 0]);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const frame = x === 0 || x === W - 1 || y === 0 || y === H - 1 || x === 4 || y === 6;
+    if (frame) { face.set(x, y, rgb(x === 0 || y === 0 ? '#4a3626' : '#22170f')); continue; }
+    const t = burning ? 1 - y / H : y / H;
+    const lead = (x + y) % 4 === 0; // diamond leading
+    const c = burning ? mixRgb(rgb('#ffd47a'), rgb('#e0541a'), t) : mixRgb(rgb('#ffe9a8'), rgb('#d8923a'), t);
+    face.set(x, y, lead ? mixRgb(c, rgb('#3a2a1a'), 0.45) : c);
+    glow.set(x, y, lead ? mixRgb(c, rgb('#000000'), 0.5) : c);
+  }
+  return { face, glow };
 }
 
 /** Lantern pane: iron frame and cross bars over warm glass, brightest at the flame. */
