@@ -174,7 +174,7 @@ function areaFireFamily(id: string, scale = 1, cinematic = false): FxRecipe {
       s(0, 'circle', 'point', { radius: 1.6 * scale, duration: 1.1 }, { element: 'fire' }),
       s(0.1, 'motes', 'point', { count: 20, radius: 1.2 * scale }, { element: 'fire' }),
       s(0.36, 'sfx', undefined, { id: 'fire_burst' }),
-      s(0.38, 'flame', 'targetGround', { width: 1.05, height: 2.6 * scale, duration: 1.0 }, { cells: true }),
+      s(0.38, 'flame', 'targetGround', { width: 1.05, height: 2.0 * scale, duration: 1.0 }, { cells: true }),
       s(0.4, 'ring', 'point', { radius: 2.4 * scale, duration: 0.6 }, { element: 'fire' }),
       s(0.42, 'burst', 'targetChest', { count: 22, speed: 3.2, size: 0.1 }, { element: 'fire', each: true }),
       s(0.42, 'light', 'point', { intensity: 26 * scale, duration: 1.0, distance: 11 }, { element: 'fire' }),

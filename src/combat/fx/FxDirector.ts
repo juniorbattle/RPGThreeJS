@@ -120,7 +120,7 @@ export class FxDirector {
     const chest = at.clone().setY(0.9);
     switch (beat) {
       case 'flame':
-        engine.flame(at, { width: 1.1, height: 2.6, duration: 1.25 });
+        engine.flame(at, { width: 1.05, height: 2.1, duration: 1.25 });
         engine.burst(at.clone().setY(0.4), element, { count: 10, speed: 2.2, up: 2.8, size: 0.1 });
         engine.decal(at, element, { radius: 0.6 });
         break;

@@ -136,28 +136,62 @@ const NOISE_GLSL = `
 float h21(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float vnoise(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
   return mix(mix(h21(i), h21(i + vec2(1.0, 0.0)), f.x), mix(h21(i + vec2(0.0, 1.0)), h21(i + vec2(1.0, 1.0)), f.x), f.y); }
-float fbm(vec2 p){ float v = 0.0, a = 0.5; for (int i = 0; i < 4; i++) { v += a * vnoise(p); p *= 2.03; a *= 0.5; } return v; }
-float bayer4(vec2 p){ vec2 q = mod(floor(p), 4.0); int i = int(q.x + q.y * 4.0);
-  float m[16] = float[16](0.,8.,2.,10.,12.,4.,14.,6.,3.,11.,1.,9.,15.,7.,13.,5.); return (m[i] + 0.5) / 16.0; }`;
+float fbm(vec2 p){ float v = 0.0, a = 0.5; for (int i = 0; i < 4; i++) { v += a * vnoise(p); p *= 2.03; a *= 0.5; } return v; }`;
 
-/** Pixelated flame: fbm advected upward, banded into a four-tone fire ramp. */
-export function createFireMaterial(seed: number, pixels: [number, number] = [18, 28]): THREE.ShaderMaterial {
+const BAND_GLSL = `float band(float f, float th, float aa){ return smoothstep(th - aa, th + aa, f); }`;
+
+/**
+ * Stylized flame, hand-drawn look (Octopath / anime fire): a flame silhouette
+ * multiplied by domain-warped noise that rises fast, so the outline curls and
+ * hooks; a finer noise in a wider crown breaks wisps off the tips; the foot is
+ * rounded. The result is cut into five crisp anti-aliased bands (deep red
+ * rim, red-orange, orange, yellow, a warm white core low in the flame): sharp
+ * at any size, never pixel blocks. `tongues` draws several flames side by side
+ * (a carpet of fire on a cell); `brightness` lifts FX flames above decor fires.
+ */
+export function createFireMaterial(seed: number, brightness = 1.55, options: { tongues?: number; taper?: number } = {}): THREE.ShaderMaterial {
   return new THREE.ShaderMaterial({
-    uniforms: { uTime: { value: 0 }, uSeed: { value: seed * 3.17 }, uPixels: { value: new THREE.Vector2(...pixels) }, uPower: { value: 1 } },
+    uniforms: {
+      uTime: { value: 0 }, uSeed: { value: seed * 3.17 }, uPower: { value: 1 }, uBright: { value: brightness },
+      uTongues: { value: options.tongues ?? 1 }, uTaper: { value: options.taper ?? 0.55 },
+    },
     vertexShader: FIRE_VERTEX,
-    fragmentShader: `uniform float uTime, uSeed, uPower; uniform vec2 uPixels; varying vec2 vUv; ${NOISE_GLSL}
+    fragmentShader: `uniform float uTime, uSeed, uPower, uBright, uTongues, uTaper; varying vec2 vUv; ${NOISE_GLSL} ${BAND_GLSL}
     void main(){
-      vec2 cell = floor(vUv * uPixels); vec2 uv = (cell + 0.5) / uPixels;
-      float t = uTime * 1.7 + uSeed;
-      vec2 q = vec2(uv.x * 3.1 + uSeed, uv.y * 2.4 - t);
-      float n = fbm(q + vec2(0.0, fbm(q * 1.4 + t * 0.3)));
-      float core = 1.0 - abs(uv.x - 0.5) * 2.3;
-      float f = n * 1.35 + core * 0.62 - uv.y * 1.25 - 0.18;
-      f *= uPower; f += (bayer4(cell) - 0.5) * 0.08;
-      if (f < 0.1) discard;
-      vec3 c = f > 0.72 ? vec3(1.0, 0.88, 0.55) : f > 0.46 ? vec3(1.0, 0.62, 0.2) : f > 0.26 ? vec3(0.9, 0.32, 0.08) : vec3(0.5, 0.1, 0.04);
-      gl_FragColor = vec4(c * 0.82, 1.0);
+      float k = vUv.x * uTongues, id = floor(k);
+      float s = uSeed + id * 1.73;
+      float tall = 0.78 + 0.22 * h21(vec2(id, uSeed));
+      float x = fract(k), y = vUv.y / tall;
+      if (y > 1.05) discard;
+      float tt = uTime * 1.6 + s;
+      // domain warp: curls and hooks in the outline
+      float wx = fbm(vec2(x * 2.5 + s, y * 2.0 - tt * 0.9)) - 0.5;
+      float wy = fbm(vec2(x * 2.5 + s + 5.2, y * 2.0 - tt * 1.1)) - 0.5;
+      float px = x - 0.5 + wx * 0.28 * (0.2 + y) + sin(tt * 1.3 + y * 3.0) * 0.05 * y;
+      float py = y + wy * 0.12;
+      float width = 0.5 * pow(clamp(1.0 - py, 0.0, 1.0), uTaper) + 0.01;
+      float mask = pow(clamp(1.0 - abs(px) / width, 0.0, 1.0), 0.75) * pow(clamp(1.0 - py, 0.0, 1.0), 0.7);
+      float n = clamp((fbm(vec2(x * 3.2 + s, y * 2.6 - tt * 1.8)) - 0.25) / 0.5, 0.0, 1.2);
+      float f = mask * (0.5 + n * 0.95);
+      // crown: wisps that break off and rise
+      float n2 = fbm(vec2(x * 5.0 + s * 1.3, y * 3.6 - tt * 2.6));
+      float crown = clamp(1.0 - abs(px) / (width * 1.6 + 0.08), 0.0, 1.0) * smoothstep(0.3, 0.7, py) * clamp(1.15 - py, 0.0, 1.0);
+      f = max(f, crown * (n2 - 0.4) * 3.0);
+      // rounded foot: the flame grows out of the embers, never a ruled edge
+      f *= smoothstep(0.0, 0.1, y) * (0.75 + 0.25 * smoothstep(0.0, 0.25, y)) * uPower;
+      float aa = fwidth(f) + 0.0015;
+      float a = band(f, 0.18, aa);
+      if (a < 0.01) discard;
+      vec3 c = vec3(0.45, 0.07, 0.04);
+      c = mix(c, vec3(0.88, 0.24, 0.06), band(f, 0.3, aa));
+      c = mix(c, vec3(1.0, 0.52, 0.1), band(f, 0.44, aa));
+      c = mix(c, vec3(1.0, 0.8, 0.32), band(f, 0.6, aa));
+      c = mix(c, vec3(1.0, 0.96, 0.8), band(f, 0.78, aa));
+      // the ramp is authored in sRGB; the render target is linear (the output pass encodes)
+      // values above 1 in the hot bands survive the filmic tone mapping and feed the bloom
+      gl_FragColor = vec4(pow(c, vec3(2.2)) * uBright, a);
     }`,
+    extensions: { derivatives: true },
     transparent: true,
     depthWrite: false,
     toneMapped: false,
@@ -166,24 +200,27 @@ export function createFireMaterial(seed: number, pixels: [number, number] = [18,
   });
 }
 
+/** Stylized smoke: swaying column of soft puffs in two crisp anti-aliased tones. */
 export function createSmokeMaterial(seed: number, tint: string): THREE.ShaderMaterial {
   return new THREE.ShaderMaterial({
     uniforms: { uTime: { value: 0 }, uSeed: { value: seed * 5.1 }, uTint: { value: new THREE.Color(tint) } },
     vertexShader: FIRE_VERTEX,
-    fragmentShader: `uniform float uTime, uSeed; uniform vec3 uTint; varying vec2 vUv; ${NOISE_GLSL}
+    fragmentShader: `uniform float uTime, uSeed; uniform vec3 uTint; varying vec2 vUv; ${NOISE_GLSL} ${BAND_GLSL}
     void main(){
-      vec2 px = vec2(24.0, 64.0); vec2 cell = floor(vUv * px); vec2 uv = (cell + 0.5) / px;
+      vec2 uv = vUv;
       float t = uTime * 0.22 + uSeed;
       float widen = 0.28 + uv.y * 0.5;
       float sway = (fbm(vec2(uv.y * 2.0, t)) - 0.5) * 0.5 * uv.y;
       float d = abs(uv.x - 0.5 - sway) / widen;
       float n = fbm(vec2(uv.x * 2.6, uv.y * 3.2 - t * 2.2));
-      float a = (1.0 - d) * 0.9 + n * 0.75 - 0.75 - uv.y * 0.25;
-      a *= smoothstep(0.0, 0.12, uv.y);
-      if (a < 0.06 + bayer4(cell) * 0.12) discard;
-      float band = a > 0.32 ? 0.55 : 0.36;
-      gl_FragColor = vec4(uTint * (0.75 + n * 0.4), band);
+      float a = ((1.0 - d) * 0.9 + n * 0.75 - 0.75 - uv.y * 0.25) * smoothstep(0.0, 0.12, uv.y);
+      float aa = fwidth(a) * 1.2 + 0.002;
+      float m = band(a, 0.08, aa);
+      if (m < 0.01) discard;
+      float inner = band(a, 0.3, aa);
+      gl_FragColor = vec4(uTint * (0.78 + n * 0.32 + inner * 0.12), m * (0.36 + inner * 0.18));
     }`,
+    extensions: { derivatives: true },
     transparent: true,
     depthWrite: false,
     side: THREE.DoubleSide,
@@ -204,8 +241,7 @@ function fireBillboard(ctx: PropContext, seed: number, w: number, h: number, lig
     }
     return group;
   }
-  // ~14 fire texels per metre: flames share the decor's pixel scale at any size.
-  const material = createFireMaterial(seed, [Math.max(8, Math.round(w * 14)), Math.max(12, Math.round(h * 14))]);
+  const material = createFireMaterial(seed);
   const geometry = new THREE.PlaneGeometry(w, h);
   geometry.translate(0, h / 2, 0);
   const m = new THREE.Mesh(geometry, material);

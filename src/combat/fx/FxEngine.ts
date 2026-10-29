@@ -39,7 +39,7 @@ type Vec = THREE.Vector3;
  */
 const FX_LAYER = {
   groundDecal: 27, groundCircle: 28, groundRing: 29,
-  volume: 75, beam: 76, billboard: 77, sparks: 78, slash: 79, projectile: 80, sheet: 81,
+  smoke: 74, volume: 75, beam: 76, billboard: 77, sparks: 78, slash: 79, projectile: 80, sheet: 81,
 } as const;
 const tmpV = new THREE.Vector3();
 const tmpQ = new THREE.Quaternion();
@@ -236,6 +236,8 @@ export interface BurstOptions {
   colors?: string[];
   drag?: number;
   additive?: boolean;
+  /** Draw order override (smoke sits behind flames). */
+  order?: number;
 }
 
 export class FxEngine {
@@ -387,7 +389,7 @@ export class FxEngine {
     });
     const points = new THREE.Points(geometry, material);
     points.frustumCulled = false;
-    points.renderOrder = FX_LAYER.sparks;
+    points.renderOrder = options.order ?? FX_LAYER.sparks;
     this.root.add(points);
     const gravity = options.gravity ?? 4, drag = options.drag ?? 1.6;
     let t = 0;
@@ -430,6 +432,7 @@ export class FxEngine {
       count: options.count ?? 14, speed: 0.9, up: 1.1, gravity: -0.3, spread: options.spread ?? 0.35,
       life: options.life ?? 1.2, size: options.size ?? 0.55, drag: 2.2, soft: true, additive: false,
       colors: [options.color ?? '#3a3440', '#4a4452', '#2a2630'],
+      order: FX_LAYER.smoke, // behind the flames, never a grey veil over them
     });
   }
 
@@ -853,8 +856,10 @@ export class FxEngine {
 
   /** Short-lived column of pixel fire. */
   flame(position: Vec, options: { width?: number; height?: number; duration?: number } = {}): void {
-    const width = options.width ?? 1.2, height = options.height ?? 2.4, duration = options.duration ?? 0.9;
-    const material = createFireMaterial(hash(this.clock) * 10, [Math.max(10, Math.round(width * 16)), Math.max(14, Math.round(height * 16))]);
+    const width = options.width ?? 1.2, duration = options.duration ?? 0.9;
+    // a flame is a body, not a needle: each tongue keeps a drawn flame's proportions
+    const height = Math.min(options.height ?? 2.4, width * 1.75);
+    const material = createFireMaterial(hash(this.clock) * 10, 1.8, { tongues: Math.max(1, Math.round(width / (height * 0.62))) });
     const geometry = new THREE.PlaneGeometry(width, height);
     geometry.translate(0, height / 2, 0);
     const mesh = new THREE.Mesh(geometry, material);
@@ -870,7 +875,7 @@ export class FxEngine {
         camera.getWorldPosition(tmpV);
         mesh.rotation.y = Math.atan2(tmpV.x - mesh.position.x, tmpV.z - mesh.position.z);
         material.uniforms.uTime!.value = t * 1.6;
-        material.uniforms.uPower!.value = k < 0.15 ? k / 0.15 * 1.2 : 1.2 - (k - 0.15) * 1.3;
+        material.uniforms.uPower!.value = k < 0.15 ? k / 0.15 : 1 - (k - 0.15) * 1.05;
         mesh.scale.set(1, 0.5 + easeOut(Math.min(1, k * 4)) * 0.6, 1);
         return k < 1;
       },
