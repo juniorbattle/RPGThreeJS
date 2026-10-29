@@ -121,5 +121,37 @@
       "09-fx-ap-weight.jpg",
       "10-ultimates-field-wave.jpg"
     ]
+  },
+  "pass3": {
+    "houses": "built in parts (plinth, jetty, timber framing, leaded windows with shutters, gables, thick roof slabs, chimney); burning variant with broken roof",
+    "integration": [
+      "props on the ground (were 0.16 above it)",
+      "contact shadows and weeds baked into one mesh each",
+      "carved monolithic headstones",
+      "CombatArena.test.ts generation proof",
+      "HappyDOM detection fix"
+    ],
+    "fx": [
+      "star-free rune seals",
+      "heartbeat pulse on ultimate and signature seals",
+      "crisp tone bands",
+      "exact cell flashes",
+      "cell-fitted per-cell eruptions"
+    ],
+    "tests": {
+      "passed": 2417,
+      "failed": 20,
+      "skipped": 23,
+      "newVsMain": "none; 3 cinematics tests time out at 5 s in this container, identically on main"
+    },
+    "campaignBoot": {
+      "village_defense": "initialized, 0 errors",
+      "lion_chief": "initialized, 0 errors"
+    },
+    "evidence": [
+      "11-village-houses.jpg",
+      "12-ground-integration.jpg",
+      "13-seals-pulse-precision.jpg"
+    ]
   }
 }

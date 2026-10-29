@@ -13,7 +13,7 @@
 | `SUPERSEDED_BY` | NONE |
 | `PRODUCTION_IMPACT` | Présentation du combat canonique (`/legacy-combat.html`) : arène procédurale à la place du fond peint et de la grille superposée, feuilles pixel pour toutes les unités, caméra d'action et projecteur dans l'arène (Combat Stage retiré), effets et sons procéduraux. Règles, IA, protocole et sauvegarde inchangés. |
 | `CANONICAL_DOCS_UPDATED` | `docs/combat/COMBAT_HD2D.md` (nouveau), `docs/combat/LOCAL_ART_MISSION.md` (nouveau), `docs/project/CURRENT_STATUS.md`, `docs/README.md` |
-| `EVIDENCE` | [`result.json`](combat-hd2d-1/result.json) et 10 captures dans [`combat-hd2d-1/`](combat-hd2d-1/). Portée : Chromium SwiftShader 1440×810, combat autonome et démarrage par le protocole de la campagne. Pas de mesure de performance GPU réelle. Sons vérifiés par les tests de couverture, pas d'écoute. |
+| `EVIDENCE` | [`result.json`](combat-hd2d-1/result.json) et 13 captures dans [`combat-hd2d-1/`](combat-hd2d-1/). Portée : Chromium SwiftShader 1440×810, combat autonome et démarrage par le protocole de la campagne. Pas de mesure de performance GPU réelle. Sons vérifiés par les tests de couverture, pas d'écoute. |
 
 ## Réalisé (CURRENT FACT)
 
@@ -35,6 +35,17 @@ Demandes de l'opérateur : décors arrière (arbres de la forêt « encore broui
 5. **Lisibilité** : les effets debout se dessinaient avant les sprites d'unité et étaient cachés par la cible ; ils passent désormais devant. Entailles qui traversent la cible avec une lame sombre dessous, étincelles pixel opaques.
 6. **Vérifications** : 17 tests en échec, les mêmes que sur `main` cas par cas (médias locaux absents) ; build OK ; démarrage par le protocole de la campagne sans erreur (`lion_chief`, `village_defense`) ; IA sur 4 manches sans erreur.
 7. **Correction de gouvernance** : le verrou CIN-6E-A listait les nouveaux fichiers combat comme non autorisés. Ce test était masqué parce que son fichier échoue déjà sur des médias absents. Les fichiers de la refonte sont maintenant autorisés explicitement, avec la référence à la demande de l'opérateur.
+
+## Passe 3 — maisons, intégration, sceaux et précision (CURRENT FACT)
+
+Retour de l'opérateur : maisons du village en feu « légèrement inférieures », s'assurer que les environnements sont bien générés et intégrés, effets encore à préciser, retirer l'étoile des cercles des compétences signatures et ultimes (identité non voulue) ou la remplacer par un effet de pulsation pour les plus puissantes.
+
+1. **Maisons** : reconstruites en pièces (soubassement, étage en encorbellement, colombages en relief, fenêtres à vitraux avec volets et appuis, porte à linteau, pignons à poinçon, toit en dalles épaisses avec avant-toit, faîtage et rives, cheminée fumante, lanterne murale). En feu : pan de toit ouvert sur des chevrons calcinés, feu derrière une fenêtre, suie. Capture [11](combat-hd2d-1/11-village-houses.jpg).
+2. **Intégration** : les décors flottaient de 16 cm (posés à `y = 0` alors que le sol est à `-0,16`) ; ils sont maintenant au sol, avec ombres de contact et herbes au pied des murs (un appel de dessin chacun). Stèles funéraires monolithes gravées au lieu de la texture de briques. Capture [12](combat-hd2d-1/12-ground-integration.jpg).
+3. **Génération testée** : `CombatArena.test.ts` construit chaque arène et vérifie chaque accessoire (au sol, hors plateau) et le budget d'appels de dessin. Ce test a révélé que la détection de l'environnement de test ne reconnaissait pas « HappyDOM » : la construction attendait indéfiniment le plan lointain. Corrigé.
+4. **Sceaux** : plus d'étoile ; anneaux, glyphes runiques, tirets et perles. Pulsation (deux éclats par battement, anneau de lumière émis) réservée aux ultimes et signatures de boss. Capture [13](combat-hd2d-1/13-seals-pulse-precision.jpg).
+5. **Précision des effets** : couleurs en bandes nettes, cases touchées allumées sous les actions de zone (et sous la cible d'un coup lourd), éruptions par case à la largeur d'une case.
+6. **Vérifications** : build OK ; démarrage par le protocole de la campagne sans erreur (`village_defense`, `lion_chief`) ; suite complète comparée à `main` cas par cas : aucun nouvel échec. Trois tests de cinématiques dépassent leur délai de 5 s dans ce conteneur, à l'identique sur `main`.
 
 ## Indicateurs de rendu
 
