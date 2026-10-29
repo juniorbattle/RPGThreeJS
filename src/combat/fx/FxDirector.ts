@@ -58,7 +58,9 @@ export class FxDirector {
       });
     }
     const impactTime = recipe.projectile ? hitTime + recipe.impactAt : recipe.impactAt;
+    const magic = recipe.magic !== false;
     for (const step of recipe.steps) {
+      if (!magic && step.kind === 'circle') continue; // seals belong to spells only
       const at = step.at + (step.afterHit ? hitTime : 0);
       const scaled = scaleStep(step, at < impactTime - 0.2 ? buildUp : intensity);
       engine.after(at, () => this.run(scaled, recipe, ctx));
@@ -74,7 +76,7 @@ export class FxDirector {
     }
     let duration = recipe.duration + (recipe.projectile ? hitTime : 0);
     if (intensity.field && ctx.field) {
-      this.fieldFinale(recipe.element, impactTime, ctx, ctx.field, recipe.fieldBeat);
+      this.fieldFinale(recipe.element, impactTime, ctx, ctx.field, recipe.fieldBeat, magic);
       duration = Math.max(duration, impactTime + FIELD_WAVE_DELAY + 1.9);
     }
     return { impactTime, duration, cinematic: Boolean(recipe.cinematic), weight: intensity.weight, completion: engine.wait(duration) };
@@ -85,7 +87,7 @@ export class FxDirector {
    * shock rings rolling past its edges, field-wide motes, a flash and a wave
    * of element eruptions that rolls cell by cell away from the impact.
    */
-  private fieldFinale(element: FxElement, at: number, ctx: FxPlayContext, field: FxField, beatOverride?: FieldBeat): void {
+  private fieldFinale(element: FxElement, at: number, ctx: FxPlayContext, field: FxField, beatOverride?: FieldBeat, magic = true): void {
     const engine = this.engine;
     const pal = engine.palette(element);
     const center = new THREE.Vector3(field.center.x, 0.02, field.center.z);
@@ -95,7 +97,9 @@ export class FxDirector {
     // The hit itself belongs to the recipe (and the close-up punch); the wave
     // starts as the camera pulls out to the field shot, so it is seen whole.
     const wave = at + FIELD_WAVE_DELAY;
-    engine.after(Math.max(0, at - 0.3), () => engine.circle(center, element, { radius: field.halfWidth * 1.1, duration: 2.6, spin: sink ? -0.5 : 0.5, pulse: true }));
+    // spells pulse a seal under the whole platform; martial ultimates pulse bare shock rings
+    if (magic) engine.after(Math.max(0, at - 0.3), () => engine.circle(center, element, { radius: field.halfWidth * 1.1, duration: 2.6, spin: sink ? -0.5 : 0.5, pulse: true }));
+    else engine.after(at, () => engine.pulseRings(center, element, { radius: reach * 1.05, duration: 2.0 }));
     engine.after(at, () => engine.hooks.flash(pal.core, 0.24, 0.32));
     engine.after(wave, () => {
       engine.hooks.sfx('field_wave');
@@ -219,6 +223,7 @@ export class FxDirector {
           break;
         }
         case 'ring': engine.ring(at, element, { radius: num('radius', 1.6), duration: num('duration', 0.5), ground: p.ground !== false, from: num('from', 0.15) }); break;
+        case 'pulse': engine.pulseRings(at, element, { radius: num('radius', 2), duration: num('duration', 1.2) }); break;
         case 'circle': engine.circle(at, element, { radius: num('radius', 1.3), duration: num('duration', 1.1), spin: num('spin', 1.2), pulse: p.pulse === true }); break;
         case 'pillar': engine.pillar(at, element, { radius: num('radius', 0.55), height: num('height', 9), duration: num('duration', 0.8) }); break;
         case 'streak': engine.streak(at, this.anchor(step.to, ctx, ctx.targets[0], jitter), element, { width: num('width', 0.35), duration: num('duration', 0.25) }); break;

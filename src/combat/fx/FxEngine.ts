@@ -595,6 +595,29 @@ export class FxEngine {
     });
   }
 
+  /**
+   * Heartbeat shock rings with no seal: the pulse of martial ultimates and
+   * signatures (two rings per beat for `duration` seconds).
+   */
+  pulseRings(position: Vec, element: FxElement, options: { radius?: number; duration?: number } = {}): void {
+    const radius = options.radius ?? 2, duration = options.duration ?? 1.2;
+    const at = new THREE.Vector3(position.x, Math.max(0.06, position.y + 0.06), position.z);
+    let t = 0, beats = -1;
+    this.add({
+      update: (dt) => {
+        t += dt;
+        const beat = Math.floor(t / PULSE_PERIOD);
+        if (beat > beats && t < duration) {
+          beats = beat;
+          this.ring(at, element, { radius, duration: 0.5, from: 0.25, boost: 2.1 });
+          this.after(PULSE_PERIOD * 0.22, () => this.ring(at, element, { radius: radius * 0.8, duration: 0.45, from: 0.2, boost: 1.7 }));
+        }
+        return t < duration;
+      },
+      dispose: () => {},
+    });
+  }
+
   /** Column of light falling from the sky onto a point. */
   pillar(position: Vec, element: FxElement, options: { radius?: number; height?: number; duration?: number } = {}): void {
     const radius = options.radius ?? 0.55, height = options.height ?? 9, duration = options.duration ?? 0.8;

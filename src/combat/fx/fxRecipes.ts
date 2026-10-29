@@ -14,7 +14,7 @@ export type FxAnchor = 'source' | 'sourceChest' | 'sourceGround' | 'target' | 't
 
 export type FxStepKind =
   | 'slash' | 'star' | 'burst' | 'ring' | 'circle' | 'pillar' | 'streak' | 'bolt' | 'shards' | 'dome' | 'orb'
-  | 'flame' | 'motes' | 'smoke' | 'glow' | 'decal' | 'light' | 'sheet'
+  | 'flame' | 'motes' | 'smoke' | 'glow' | 'decal' | 'light' | 'sheet' | 'pulse'
   | 'shake' | 'flash' | 'sfx' | 'slowmo' | 'speedLines' | 'punch';
 
 export interface FxStep {
@@ -60,6 +60,11 @@ export interface FxRecipe {
   cinematic?: boolean;
   /** Eruption of the field-wide finale when the element's default does not fit (see fieldBeatFor). */
   fieldBeat?: FieldBeat;
+  /**
+   * Magic school: only magic actions draw rune seals (charge, AoE, field
+   * finale). Martial actions never do. Inferred from the steps when absent.
+   */
+  magic?: boolean;
 }
 
 type Steps = FxStep[];
@@ -132,13 +137,13 @@ function explosion(at: number, element: FxElement, scale: number, anchor: FxAnch
   ];
 }
 
-function boltFamily(id: string, element: FxElement, scale = 1): FxRecipe {
+function boltFamily(id: string, element: FxElement, scale = 1, seal = true): FxRecipe {
   return {
     id, element, impactAt: 0.02, duration: 1.1,
     projectile: { at: 0.32, from: 'sourceChest', to: 'targetChest', element, speed: 13, size: 0.75 * scale, arc: 0.5, sfx: 'whoosh' },
     steps: [
       s(0, 'sfx', undefined, { id: 'cast' }),
-      s(0, 'circle', 'sourceGround', { radius: 0.9, duration: 0.6 }, { element }),
+      ...(seal ? [s(0, 'circle', 'sourceGround', { radius: 0.9, duration: 0.6 }, { element })] : []),
       s(0.02, 'glow', 'sourceChest', { size: 1.4, duration: 0.42 }, { element }),
       s(0.05, 'motes', 'source', { count: 14, radius: 0.5 }, { element }),
       ...explosion(0, element, 0.85 * scale, 'targetChest', { afterHit: true }),
@@ -361,7 +366,21 @@ function arcaneFamily(id: string, scale = 1): FxRecipe {
 
 // ------------------------------------------------------------ ultimates & signatures
 
-function charge(element: FxElement, length = 0.6): Steps {
+/**
+ * Ultimate / signature build-up. Magic: a pulsing rune seal under the caster.
+ * Martial: no seal; a battle aura (heartbeat shock rings, dust kicked up,
+ * rising motes) so a sword or bow ultimate never borrows a spell's identity.
+ */
+function charge(element: FxElement, length = 0.6, magic = true): Steps {
+  if (!magic) return [
+    s(0, 'sfx', undefined, { id: 'ultimate_charge' }),
+    s(0, 'pulse', 'sourceGround', { radius: 2.3, duration: length + 0.45 }, { element }),
+    s(0, 'glow', 'sourceChest', { size: 2.3, duration: length + 0.2 }, { element }),
+    s(0.02, 'burst', 'sourceGround', { count: 22, speed: 2.6, up: 0.8, gravity: 3, size: 0.13, soft: true }, { element: 'earth' }),
+    s(0.05, 'motes', 'source', { count: 34, radius: 0.7, rise: 3.6 }, { element }),
+    s(0.1, 'speedLines', undefined, { duration: length + 0.4 }, { element }),
+    s(length * 0.8, 'ring', 'sourceGround', { radius: 2.6, duration: 0.4 }, { element }),
+  ];
   return [
     s(0, 'sfx', undefined, { id: 'ultimate_charge' }),
     s(0, 'circle', 'sourceGround', { radius: 1.6, duration: length + 0.5, spin: 2.4 }, { element }),
@@ -394,7 +413,7 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
   ultimate_lion_surge: () => ({
     id: 'ultimate_lion_surge', element: 'gold', impactAt: 0.95, duration: 2.0, cinematic: true,
     steps: [
-      ...charge('gold', 0.6),
+      ...charge('gold', 0.6, false),
       s(0.7, 'sfx', undefined, { id: 'dash' }),
       s(0.72, 'streak', 'sourceChest', { width: 0.8, duration: 0.35 }, { to: 'targetChest', element: 'gold' }),
       s(0.82, 'slash', 'targetChest', { size: 3.4, angle: -0.6, duration: 0.3 }, { element: 'gold' }),
@@ -440,7 +459,7 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
   ultimate_firmament_lance: () => ({
     id: 'ultimate_firmament_lance', element: 'lightning', impactAt: 1.0, duration: 2.0, cinematic: true,
     steps: [
-      ...charge('lightning', 0.6),
+      ...charge('lightning', 0.6, false),
       s(0.75, 'pillar', 'targetGround', { radius: 0.7, height: 14, duration: 0.8 }, { element: 'lightning' }),
       s(0.9, 'bolt', 'targetChest', { duration: 0.4, width: 0.12 }, { element: 'lightning' }),
       s(0.95, 'sfx', undefined, { id: 'thunder' }),
@@ -506,7 +525,7 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
   ultimate_zenith_arrow: () => ({
     id: 'ultimate_zenith_arrow', element: 'gold', impactAt: 1.05, duration: 2.0, cinematic: true, fieldBeat: 'arrows',
     steps: [
-      ...charge('gold', 0.55),
+      ...charge('gold', 0.55, false),
       s(0.6, 'streak', 'sourceChest', { width: 0.3, duration: 0.3 }, { to: 'sky', element: 'gold' }),
       s(0.6, 'sfx', undefined, { id: 'bow' }),
       s(0.9, 'pillar', 'targetGround', { radius: 0.45, height: 16, duration: 0.6 }, { element: 'gold' }),
@@ -517,7 +536,7 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
     ],
   }),
   ultimate_silent_assassin: () => {
-    const steps: Steps = [...charge('shadow', 0.5)];
+    const steps: Steps = [...charge('shadow', 0.5, false)];
     for (let i = 0; i < 6; i++) {
       steps.push(s(0.6 + i * 0.07, 'slash', 'targetChest', { size: 2.6, angle: (i * 1.3) % 3.1 - 1.5, flip: i % 2 === 1, duration: 0.2 }, { element: i % 2 ? 'blood' : 'shadow' }));
       steps.push(s(0.6 + i * 0.07, 'sfx', undefined, { id: 'slash', pitch: 1 + i * 0.05 }));
@@ -530,7 +549,7 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
   ultimate_fault_breaker: () => ({
     id: 'ultimate_fault_breaker', element: 'earth', impactAt: 0.95, duration: 2.0, cinematic: true,
     steps: [
-      ...charge('blunt', 0.6),
+      ...charge('blunt', 0.6, false),
       s(0.8, 'slash', 'targetChest', { size: 3.8, angle: 1.4, duration: 0.25 }, { element: 'blunt' }),
       s(0.95, 'sfx', undefined, { id: 'quake' }),
       s(0.95, 'sfx', undefined, { id: 'ultimate_hit' }),
@@ -543,7 +562,7 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
     ],
   }),
   ultimate_artillery_barrage: () => {
-    const steps: Steps = [...charge('fire', 0.5)];
+    const steps: Steps = [...charge('fire', 0.5, false)];
     for (let i = 0; i < 4; i++) {
       steps.push(...explosion(0.7 + i * 0.16, 'fire', 0.9, 'targetChest', { each: true }).map((step) => ({ ...step, p: { ...step.p, jitter: 0.6 } })));
     }
@@ -551,7 +570,7 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
     return { id: 'ultimate_artillery_barrage', element: 'fire', impactAt: 1.0, duration: 2.2, cinematic: true, fieldBeat: 'blast', steps };
   },
   boss_apocalypse_v2: () => ({ ...areaFireFamily('boss_apocalypse_v2', 1.5, true), steps: [...charge('fire', 0.5), ...areaFireFamily('x', 1.5).steps.map((step) => ({ ...step, at: step.at + 0.5 })), ...cinematicHit(0.92, 'fire')], impactAt: 0.92, duration: 2.1 }),
-  boss_execution: () => ({ ...slashFamily('boss_execution', 'blood', 2.4, 'heavy_slash', 2), cinematic: true, steps: [...charge('blood', 0.5), ...slashFamily('x', 'blood', 2.4, 'heavy_slash', 2).steps.map((step) => ({ ...step, at: step.at + 0.55 })), ...cinematicHit(0.73, 'blood')], impactAt: 0.73, duration: 1.6 }),
+  boss_execution: () => ({ ...slashFamily('boss_execution', 'blood', 2.4, 'heavy_slash', 2), cinematic: true, steps: [...charge('blood', 0.5, false), ...slashFamily('x', 'blood', 2.4, 'heavy_slash', 2).steps.map((step) => ({ ...step, at: step.at + 0.55 })), ...cinematicHit(0.73, 'blood')], impactAt: 0.73, duration: 1.6 }),
   boss_flurry: () => ({ ...slashFamily('boss_flurry', 'steel', 1.6, 'slash', 5), cinematic: true }),
   boss_inferno: () => areaFireFamily('boss_inferno', 1.4, true),
   boss_titan_slam: () => quakeFamily('boss_titan_slam', 1.5, true),
@@ -662,10 +681,10 @@ const EXPLICIT: Record<string, () => FxRecipe> = {
   basic_holy_mace_hit: () => ({ ...bluntFamily('basic_holy_mace_hit', 'holy', 1.1) }),
   basic_scythe_hit: () => slashFamily('basic_scythe_hit', 'shadow', 1.4, 'heavy_slash'),
   basic_long_spear_hit: () => thrustFamily('basic_long_spear_hit', 'steel', 1),
-  basic_grimoire_hit: () => boltFamily('basic_grimoire_hit', 'arcane', 0.7),
-  basic_crosier_hit: () => boltFamily('basic_crosier_hit', 'holy', 0.6),
+  basic_grimoire_hit: () => boltFamily('basic_grimoire_hit', 'arcane', 0.7, false),
+  basic_crosier_hit: () => boltFamily('basic_crosier_hit', 'holy', 0.6, false),
   basic_rapier_hit: () => thrustFamily('basic_rapier_hit', 'steel', 0.7),
-  basic_wand_hit: () => boltFamily('basic_wand_hit', 'arcane', 0.6),
+  basic_wand_hit: () => boltFamily('basic_wand_hit', 'arcane', 0.6, false),
   basic_longbow_hit: () => arrowFamily('basic_longbow_hit'),
   basic_shuriken_hit: () => ({ ...arrowFamily('basic_shuriken_hit', 'steel', 0.6), projectile: { at: 0.02, from: 'sourceChest', to: 'targetChest', element: 'steel', speed: 20, size: 0.5, arc: 0.1, sfx: 'throw' } }),
   basic_dagger_hit: () => slashFamily('basic_dagger_hit', 'steel', 0.6, 'slash', 2),
@@ -701,7 +720,8 @@ function familyFor(id: string, tags: readonly string[]): FxRecipe {
 export function resolveFxRecipe(presetId: string, tags: readonly string[] = []): FxRecipe {
   const explicit = EXPLICIT[presetId];
   const recipe = explicit ? explicit() : familyFor(presetId, tags);
-  return { ...recipe, id: presetId };
+  // spells carry seals; a recipe without any seal is martial
+  return { ...recipe, id: presetId, magic: recipe.magic ?? recipe.steps.some((step) => step.kind === 'circle') };
 }
 
 export function listExplicitFxRecipes(): string[] {
