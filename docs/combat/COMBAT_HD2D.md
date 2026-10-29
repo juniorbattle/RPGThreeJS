@@ -36,7 +36,8 @@ Le **Combat Stage** (scène séparée) est retiré. Les actions se jouent dans l
 
 - Contrat v1 : `src/render/generated/combatPixelSprites.json` (densité, cellule, ancre au pied, cellules nommées, séquences en ms). Feuilles dans `public/assets/characters/pixel/combat-sprites/`.
 - Produites par `tools/pixel-sprites/build_combat_sprites.py` depuis les poses du Character System V2 : réduction par zones, alpha binaire, palette commune de 40 couleurs, contour d'encre, image de respiration. Héros d'environ 88 px, élites et boss à environ 2× la hauteur du héros, mais à la même taille de pixel. Petites créatures relevées à 1,15 m pour rester lisibles. Les unités qui n'ont qu'un master (héros archivés, troll, champion mort-vivant) ont idle + respiration.
-- Le matériau garde la sémantique de `MeshBasicMaterial` : `color` pour les teintes de retour, `opacity` pour l'atténuation. Il ajoute un échantillonnage « sharp bilinear », une teinte d'arène et un flash blanc d'impact. La découpe se fait sur l'alpha du texel : une unité atténuée reste translucide.
+- Le matériau garde la sémantique de `MeshBasicMaterial` : `color` pour les teintes de retour, `opacity` pour l'atténuation. Il ajoute un échantillonnage « sharp bilinear », une teinte d'arène et un flash blanc d'impact. La découpe se fait sur l'alpha du texel.
+- Atténuation lisible (`pixelFocusResponse`) : une opacité basse assombrit et désature le sprite au lieu de le rendre transparent. Une unité atténuée par le focus (0,42) reste couverte à environ 86 %, à environ 67 % de luminosité. La transparence pure la fondait dans un sol de même teinte : brigands verts sur l'herbe de la route forestière, invisibles en mode ciblage. Un fondu vers 0 (K.O., téléportation) reste complet.
 - Les masters restent l'autorité des dialogues et de la mise en scène narrative. Les feuilles de combat en dérivent.
 
 ## Caméra et projecteur

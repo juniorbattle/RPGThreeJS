@@ -16,6 +16,48 @@ export function setPixelSpriteLight(tint: THREE.ColorRepresentation, rim: THREE.
   PIXEL_SPRITE_LIGHT.uPixelRim.value.set(rim);
 }
 
+/**
+ * How a pixel sprite answers `material.opacity`. Plain translucency let a
+ * focus-dimmed unit (0.42) melt into a same-hue ground, such as green-clad
+ * brigands on the forest grass. A dimmed sprite therefore keeps most of its
+ * coverage and recedes by shade and saturation instead; a fade towards 0
+ * (K.O., teleport) still reaches full transparency.
+ */
+export const PIXEL_FOCUS_RESPONSE = Object.freeze({
+  /** Opacity below which the sprite is fully receded in shade and saturation. */
+  focusLow: 0.2,
+  /** Opacity at which coverage is already full. */
+  coverageFull: 0.55,
+  minShade: 0.6,
+  minSaturation: 0.35,
+});
+
+function smoothstep(edge0: number, edge1: number, x: number): number {
+  const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)));
+  return t * t * (3 - 2 * t);
+}
+
+/** CPU mirror of the shader mapping, for tests and tuning. */
+export function pixelFocusResponse(opacity: number): { alpha: number; shade: number; saturation: number } {
+  const fade = Math.min(1, Math.max(0, opacity));
+  const focus = smoothstep(PIXEL_FOCUS_RESPONSE.focusLow, 1, fade);
+  return {
+    alpha: smoothstep(0, PIXEL_FOCUS_RESPONSE.coverageFull, fade),
+    shade: PIXEL_FOCUS_RESPONSE.minShade + (1 - PIXEL_FOCUS_RESPONSE.minShade) * focus,
+    saturation: PIXEL_FOCUS_RESPONSE.minSaturation + (1 - PIXEL_FOCUS_RESPONSE.minSaturation) * focus,
+  };
+}
+
+const glslFloat = (value: number) => value.toFixed(3);
+
+/** Fragment code applying `pixelFocusResponse` to `diffuseColor` (its alpha holds the material opacity). */
+export const PIXEL_FOCUS_GLSL = `  float pixelFade = clamp(diffuseColor.a, 0.0, 1.0);
+  float pixelFocus = smoothstep(${glslFloat(PIXEL_FOCUS_RESPONSE.focusLow)}, 1.0, pixelFade);
+  float pixelLuma = dot(diffuseColor.rgb, vec3(0.299, 0.587, 0.114));
+  diffuseColor.rgb = mix(vec3(pixelLuma), diffuseColor.rgb, mix(${glslFloat(PIXEL_FOCUS_RESPONSE.minSaturation)}, 1.0, pixelFocus));
+  diffuseColor.rgb *= mix(${glslFloat(PIXEL_FOCUS_RESPONSE.minShade)}, 1.0, pixelFocus);
+  diffuseColor.a = smoothstep(0.0, ${glslFloat(PIXEL_FOCUS_RESPONSE.coverageFull)}, pixelFade);`;
+
 export interface PixelSpriteMaterialHandle {
   material: THREE.MeshBasicMaterial;
   /** 0..1 white hit flash, decays in `PixelSpriteRig.update`. */
@@ -25,7 +67,8 @@ export interface PixelSpriteMaterialHandle {
 /**
  * MeshBasicMaterial with "sharp bilinear" sampling: texels stay square and
  * crisp at any non-integer zoom, edges get a one-screen-pixel blend instead of
- * the shimmering of NearestFilter. Keeps color/opacity/alphaTest semantics.
+ * the shimmering of NearestFilter. Keeps color/alphaTest semantics; opacity
+ * follows `pixelFocusResponse`.
  */
 export function createPixelSpriteMaterial(texture: THREE.Texture, sheetSize: { width: number; height: number }): PixelSpriteMaterialHandle {
   const flash = { value: 0 };
@@ -58,10 +101,11 @@ export function createPixelSpriteMaterial(texture: THREE.Texture, sheetSize: { w
   sampledDiffuseColor.a = 1.0;
   diffuseColor *= sampledDiffuseColor;
   diffuseColor.rgb = diffuseColor.rgb * uPixelTint + uPixelRim * vMapUv.y * 0.35;
+${PIXEL_FOCUS_GLSL}
   diffuseColor.rgb = mix(diffuseColor.rgb, vec3(1.0, 0.98, 0.92), clamp(uPixelFlash, 0.0, 1.0));
 #endif`);
   };
-  material.customProgramCacheKey = () => 'combat-pixel-sprite-v1';
+  material.customProgramCacheKey = () => 'combat-pixel-sprite-v2';
   return { material, flash };
 }
 
