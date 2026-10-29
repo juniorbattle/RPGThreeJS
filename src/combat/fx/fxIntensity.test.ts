@@ -24,6 +24,12 @@ describe('FX weight by AP cost', () => {
     expect(heavy.p!.duration).toBe(0.5);
     expect(heavy.p!.count as number).toBeGreaterThan(20);
     expect(heavy.p!.size as number).toBeGreaterThan(0.1);
+    const cellFlame = scaleStep({ at: 0.3, kind: 'flame', cells: true, p: { width: 1.05, height: 2.6 } }, fxIntensity({ ap: 5 }));
+    expect(cellFlame.p!.width).toBe(1.05); // a cell's footprint, whatever the cost
+    expect(cellFlame.p!.height as number).toBeGreaterThan(2.6);
+    const seal = scaleStep({ at: 0, kind: 'circle', p: { radius: 1.6 } }, fxIntensity({ ultimate: true }));
+    expect(seal.p!.pulse).toBe(true);
+    expect(scaleStep({ at: 0, kind: 'circle', p: { radius: 1.6 } }, fxIntensity({ ap: 5 })).p!.pulse).toBeUndefined();
     const flash = scaleStep({ at: 0, kind: 'flash', p: { opacity: 0.3 } }, fxIntensity({ ultimate: true }));
     expect(flash.p!.opacity as number).toBeLessThanOrEqual(0.34);
   });

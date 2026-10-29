@@ -66,6 +66,12 @@ export class FxDirector {
     for (const accent of apAccentSteps(impactTime, recipe.element, intensity, ctx.cells.length > 1)) {
       engine.after(accent.at, () => this.run(accent, recipe, ctx));
     }
+    // precision: the exact cells an area action hits flash under it (heavy single hits mark their cell too)
+    const flashCells = ctx.cells.length > 1 || (intensity.weight !== 'light' && intensity.weight !== 'standard' && intensity.weight !== 'strong');
+    if (flashCells && ctx.cells.length) {
+      const tile = (ctx.field?.tile ?? 1.18) * 0.94;
+      engine.after(impactTime, () => { for (const cell of ctx.cells) engine.cellFlash(cell, recipe.element, { size: tile, duration: 0.55 }); });
+    }
     let duration = recipe.duration + (recipe.projectile ? hitTime : 0);
     if (intensity.field && ctx.field) {
       this.fieldFinale(recipe.element, impactTime, ctx, ctx.field, recipe.fieldBeat);

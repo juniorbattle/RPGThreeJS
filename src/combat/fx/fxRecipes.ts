@@ -169,7 +169,7 @@ function areaFireFamily(id: string, scale = 1, cinematic = false): FxRecipe {
       s(0, 'circle', 'point', { radius: 1.6 * scale, duration: 1.1 }, { element: 'fire' }),
       s(0.1, 'motes', 'point', { count: 20, radius: 1.2 * scale }, { element: 'fire' }),
       s(0.36, 'sfx', undefined, { id: 'fire_burst' }),
-      s(0.38, 'flame', 'targetGround', { width: 1.3, height: 2.6 * scale, duration: 1.0 }, { cells: true }),
+      s(0.38, 'flame', 'targetGround', { width: 1.05, height: 2.6 * scale, duration: 1.0 }, { cells: true }),
       s(0.4, 'ring', 'point', { radius: 2.4 * scale, duration: 0.6 }, { element: 'fire' }),
       s(0.42, 'burst', 'targetChest', { count: 22, speed: 3.2, size: 0.1 }, { element: 'fire', each: true }),
       s(0.42, 'light', 'point', { intensity: 26 * scale, duration: 1.0, distance: 11 }, { element: 'fire' }),
@@ -183,7 +183,7 @@ function areaFireFamily(id: string, scale = 1, cinematic = false): FxRecipe {
 function breathFamily(id: string, element: FxElement = 'fire', cinematic = false): FxRecipe {
   const steps: Steps = [s(0, 'sfx', undefined, { id: 'breath' })];
   for (let i = 0; i < 6; i++) steps.push(s(0.05 + i * 0.07, 'burst', 'sourceChest', { count: 18, speed: 9, cone: 0.5, life: 0.55, size: 0.16, spray: 'target' }, { element }));
-  steps.push(s(0.3, 'flame', 'targetGround', { width: 1.2, height: 2, duration: 0.8 }, { cells: true }));
+  steps.push(s(0.3, 'flame', 'targetGround', { width: 1.0, height: 2, duration: 0.8 }, { cells: true }));
   steps.push(...hitFeedback(0.38, element, 1.2, { each: true }));
   steps.push(s(0.38, 'light', 'point', { intensity: 24, duration: 0.8 }, { element }));
   return { id, element, impactAt: 0.38, duration: 1.2, steps, cinematic };
@@ -459,7 +459,7 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
       s(0, 'sfx', undefined, { id: 'ultimate_hit' }, { afterHit: true }),
       ...cinematicHit(0, 'fire', 1.6).map((step) => ({ ...step, afterHit: true })),
       ...explosion(0, 'fire', 2, 'point', { afterHit: true }),
-      s(0.05, 'flame', 'targetGround', { width: 1.4, height: 3, duration: 1.1 }, { cells: true, afterHit: true }),
+      s(0.05, 'flame', 'targetGround', { width: 1.05, height: 3, duration: 1.1 }, { cells: true, afterHit: true }),
       s(0.1, 'ring', 'point', { radius: 5.2, duration: 0.9 }, { element: 'shadow', afterHit: true }),
     ],
   }),

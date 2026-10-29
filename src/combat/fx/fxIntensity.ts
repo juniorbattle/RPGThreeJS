@@ -80,7 +80,12 @@ export function scaleStep(step: FxStep, intensity: FxIntensity): FxStep {
     }
     case 'slowmo': case 'speedLines': case 'punch': break;
     default:
-      for (const key of SIZE_KEYS) { const v = num(key); if (v !== undefined) p[key] = v * intensity.scale; }
+      for (const key of SIZE_KEYS) {
+        const v = num(key);
+        if (v === undefined) continue;
+        // per-cell eruptions keep a cell's footprint (the zone stays exact) and grow in height only
+        p[key] = step.cells && key !== 'height' ? v : v * intensity.scale;
+      }
       for (const key of COUNT_KEYS) { const v = num(key); if (v !== undefined) p[key] = Math.round(v * (step.kind === 'shards' ? Math.sqrt(intensity.count) : intensity.count)); }
       if (step.kind === 'burst') { const v = num('speed'); if (v !== undefined) p.speed = v * Math.sqrt(intensity.scale); }
       // the pulse marks the most powerful skills only
@@ -127,6 +132,8 @@ export interface FxField {
   cells: ReadonlyArray<{ x: number; y: number; z: number }>;
   halfWidth: number;
   halfDepth: number;
+  /** Edge of one grid cell (world units). */
+  tile?: number;
 }
 
 /** One cell-level beat of a field finale: what erupts on that cell. */

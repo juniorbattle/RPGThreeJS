@@ -1660,7 +1660,7 @@ function fxUnitRef(t){ return {position:t.grp.position.clone(),height:Math.max(0
 /** Battle platform for field-wide ultimates: centre, every cell centre, half extents. */
 function fxField(){
   const cells=[]; for(let gx=0;gx<CFG.W;gx++)for(let gz=0;gz<CFG.D;gz++)cells.push({x:wX(gx),y:tileTop(gx,gz),z:wZ(gz)});
-  return {center:{x:0,y:0,z:0},cells,halfWidth:CFG.W*CFG.TILE/2,halfDepth:CFG.D*CFG.TILE/2};
+  return {center:{x:0,y:0,z:0},cells,halfWidth:CFG.W*CFG.TILE/2,halfDepth:CFG.D*CFG.TILE/2,tile:CFG.TILE};
 }
 /**
  * Visual weight of an action: its AP cost (a basic attack counts its élan
@@ -2816,12 +2816,15 @@ async function main(){ document.body.classList.toggle('reduced-graphics',REDUCED
       return{ok:true,removed:removeName,added:addName};
     };
     // FX gallery: plays a preset's recipe from the first hero onto the first foe at a chosen weight.
-    _qaHelpers.fxPreview=(presetId,power={})=>{
+    _qaHelpers.fxPreview=(presetId,power={},area=0)=>{
       const source=G.units.find(u=>u.alive&&u.team==='player'),target=G.units.find(u=>u.alive&&u.team==='foe');
       if(!source||!target)return null;
       const preset=getVfxPreset(presetId),recipe=resolveFxRecipe(presetId,preset?.tags||[]);
       const point=target.grp.position.clone();
-      const playback=fxDirector.play(recipe,{source:fxUnitRef(source),targets:[fxUnitRef(target)],point,cells:[point.clone()],power,field:fxField()});
+      // `area` > 0: the cells within that many steps of the target, as an AoE would pass them
+      const cells=[];
+      if(area>0){ for(let gx=target.gx-area;gx<=target.gx+area;gx++)for(let gz=target.gz-area;gz<=target.gz+area;gz++)if(inBounds(gx,gz)&&Math.abs(gx-target.gx)+Math.abs(gz-target.gz)<=area)cells.push(new THREE.Vector3(wX(gx),tileTop(gx,gz),wZ(gz))); }
+      const playback=fxDirector.play(recipe,{source:fxUnitRef(source),targets:[fxUnitRef(target)],point,cells:cells.length?cells:[point.clone()],power,field:fxField()});
       return {impactTime:playback.impactTime,duration:playback.duration,weight:playback.weight};
     };
     // Frozen FX clock for exact-moment captures: fxFreeze(true), then fxAdvance(seconds) in 1/60 steps.

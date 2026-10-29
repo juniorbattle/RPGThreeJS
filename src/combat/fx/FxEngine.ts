@@ -62,7 +62,7 @@ const RAMP_VERTEX = `varying vec2 vUv; void main(){ vUv = uv; gl_Position = proj
  * Gradient-map material: a grayscale intensity texture is mapped through the
  * palette ramp dark → edge → body → core, so one texture serves every element.
  */
-function rampMaterial(map: THREE.Texture, palette: FxPalette, options: { additive?: boolean; sweep?: boolean } = {}): THREE.ShaderMaterial {
+function rampMaterial(map: THREE.Texture, palette: FxPalette, options: { additive?: boolean; sweep?: boolean; bands?: number } = {}): THREE.ShaderMaterial {
   return new THREE.ShaderMaterial({
     uniforms: {
       uMap: { value: map },
@@ -73,12 +73,15 @@ function rampMaterial(map: THREE.Texture, palette: FxPalette, options: { additiv
       uOpacity: { value: 1 },
       uBoost: { value: 1.25 },
       uSweep: { value: new THREE.Vector2(0, 1) },
+      uBands: { value: options.bands ?? 6 },
     },
     vertexShader: RAMP_VERTEX,
-    fragmentShader: `uniform sampler2D uMap; uniform vec3 uCore, uBody, uEdge, uDark; uniform float uOpacity, uBoost; uniform vec2 uSweep; varying vec2 vUv;
+    fragmentShader: `uniform sampler2D uMap; uniform vec3 uCore, uBody, uEdge, uDark; uniform float uOpacity, uBoost, uBands; uniform vec2 uSweep; varying vec2 vUv;
     void main(){
       vec4 t = texture2D(uMap, vUv);
       float i = t.r;
+      // crisp tone bands instead of airbrushed gradients: edges read sharp, like the pixel decor
+      if (uBands > 0.5) i = floor(i * uBands + 0.35) / uBands;
       ${options.sweep ? 'float head = uSweep.x; float tail = uSweep.y; float u = vUv.x; float k = smoothstep(tail, tail + 0.18, u) * (1.0 - smoothstep(head, head + 0.02, u)); i *= k; i = mix(i, i * 1.25, smoothstep(head - 0.25, head, u));' : ''}
       vec3 c = i > 0.78 ? mix(uBody, uCore, (i - 0.78) / 0.22) : i > 0.45 ? mix(uEdge, uBody, (i - 0.45) / 0.33) : mix(uDark, uEdge, i / 0.45);
       float a = t.a * smoothstep(0.02, 0.2, i) * uOpacity;
@@ -202,7 +205,18 @@ function makeTextures() {
     for (let y = -1; y <= 1; y++) for (let x = -1; x <= 1; x++) set(cx + x, cy + y, 240);
     c.putImageData(img, 0, 0);
   }, true);
-  return { disc, ring, star, crescent, beam, runes };
+  // Tile flash (16×16, nearest): bright rim, bevel and a soft fill, for the exact cells an action hits.
+  const tile = canvasTexture(16, (c, s) => {
+    const img = c.createImageData(s, s);
+    for (let y = 0; y < s; y++) for (let x = 0; x < s; x++) {
+      const edge = Math.min(x, y, s - 1 - x, s - 1 - y);
+      const v = edge === 0 ? 255 : edge === 1 ? 235 : edge === 2 ? 110 : 58;
+      const i = (y * s + x) * 4;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255;
+    }
+    c.putImageData(img, 0, 0);
+  }, true);
+  return { disc, ring, star, crescent, beam, runes, tile };
 }
 
 // ---------------------------------------------------------------- engine
@@ -876,6 +890,29 @@ export class FxEngine {
       dispose: () => { this.root.remove(mesh); mesh.geometry.dispose(); material.dispose(); map.dispose(); },
     });
     return true;
+  }
+
+  /** Flashes one battle-grid cell: the exact tiles an action hits light up under the effect. */
+  cellFlash(position: Vec, element: FxElement, options: { size?: number; duration?: number } = {}): void {
+    const size = options.size ?? 1.1, duration = options.duration ?? 0.5;
+    const material = rampMaterial(this.textures.tile, FX_PALETTES[element], { bands: 0 });
+    material.uniforms.uBoost!.value = 2.6;
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(size, size), material);
+    mesh.rotation.x = -Math.PI / 2;
+    mesh.position.set(position.x, 0.045, position.z);
+    mesh.renderOrder = FX_LAYER.groundDecal;
+    this.root.add(mesh);
+    let t = 0;
+    this.add({
+      update: (dt) => {
+        t += dt;
+        const k = t / duration;
+        mesh.scale.setScalar(1 + easeOut(k) * 0.05);
+        material.uniforms.uOpacity!.value = (k < 0.08 ? k / 0.08 : 1) * (k > 0.45 ? Math.max(0, 1 - (k - 0.45) / 0.55) : 1);
+        return k < 1;
+      },
+      dispose: () => { this.root.remove(mesh); mesh.geometry.dispose(); material.dispose(); },
+    });
   }
 
   /** Scorch / crack decal on the floor that lingers a moment. */
