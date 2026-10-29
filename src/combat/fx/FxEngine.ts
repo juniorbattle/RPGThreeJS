@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { FX_PALETTES, type FxElement, type FxPalette } from './fxPalettes';
-import { createFireMaterial } from '../arena/arenaProps';
+import { createFireHaloMaterial, createFireMaterial, FIRE_TEXELS_PER_UNIT } from '../arena/arenaProps';
 import fxSheetsJson from '../../render/generated/combatFxSheets.json';
 
 interface FxSheetEntry { file: string; grid: [number, number]; frames: number }
@@ -859,7 +859,7 @@ export class FxEngine {
     const width = options.width ?? 1.2, duration = options.duration ?? 0.9;
     // a flame is a body, not a needle: each tongue keeps a drawn flame's proportions
     const height = Math.min(options.height ?? 2.4, width * 1.75);
-    const material = createFireMaterial(hash(this.clock) * 10, 1.8, { tongues: Math.max(1, Math.round(width / (height * 0.62))) });
+    const material = createFireMaterial(hash(this.clock) * 10, [Math.round(width * FIRE_TEXELS_PER_UNIT), Math.round(height * FIRE_TEXELS_PER_UNIT)], 1.3, { tongues: Math.max(1, Math.round(width / (height * 0.62))) });
     const geometry = new THREE.PlaneGeometry(width, height);
     geometry.translate(0, height / 2, 0);
     const mesh = new THREE.Mesh(geometry, material);
@@ -867,6 +867,14 @@ export class FxEngine {
     mesh.renderOrder = FX_LAYER.beam;
     mesh.frustumCulled = false;
     this.root.add(mesh);
+    // warm halo behind the flame: the fire lights the ground and the units around it
+    const halo = createFireHaloMaterial(hash(this.clock * 3) * 10, 0.3);
+    const haloGeo = new THREE.PlaneGeometry(width * 2.4 + 0.4, height * 1.7 + 0.3);
+    haloGeo.translate(0, height * 0.45, -0.02);
+    const glow = new THREE.Mesh(haloGeo, halo);
+    glow.renderOrder = FX_LAYER.beam - 1;
+    glow.frustumCulled = false;
+    mesh.add(glow);
     let t = 0;
     this.add({
       update: (dt, camera) => {
@@ -874,12 +882,15 @@ export class FxEngine {
         const k = t / duration;
         camera.getWorldPosition(tmpV);
         mesh.rotation.y = Math.atan2(tmpV.x - mesh.position.x, tmpV.z - mesh.position.z);
+        const power = k < 0.15 ? k / 0.15 : 1 - (k - 0.15) * 1.05;
         material.uniforms.uTime!.value = t * 1.6;
-        material.uniforms.uPower!.value = k < 0.15 ? k / 0.15 : 1 - (k - 0.15) * 1.05;
+        material.uniforms.uPower!.value = power;
+        halo.uniforms.uTime!.value = t;
+        halo.uniforms.uStrength!.value = 0.3 * Math.max(0, power);
         mesh.scale.set(1, 0.5 + easeOut(Math.min(1, k * 4)) * 0.6, 1);
         return k < 1;
       },
-      dispose: () => { this.root.remove(mesh); geometry.dispose(); material.dispose(); },
+      dispose: () => { this.root.remove(mesh); geometry.dispose(); material.dispose(); haloGeo.dispose(); halo.dispose(); },
     });
   }
 

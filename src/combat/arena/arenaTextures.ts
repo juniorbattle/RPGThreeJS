@@ -516,15 +516,49 @@ export function strawTexture(seed: number): PixelCanvas {
   return pc;
 }
 
-/** Burlap: a coarse two-tone weave for sacks. */
+/** Burlap: soft folds and coarse vertical threads, never a checkerboard. */
 export function burlapTexture(seed: number): PixelCanvas {
-  const pc = new PixelCanvas(16, 16);
+  const pc = new PixelCanvas(32, 32);
   const rng = seeded(seed);
-  const n = makeNoise(rng, 4);
+  const n = makeNoise(rng, 4), fine = makeNoise(rng, 16);
   const tones = ['#4a3a26', '#6b5639', '#8c7550', '#ab9469'] as const;
-  for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) {
-    const weave = (x + y) % 2 === 0 ? 0.12 : -0.08;
-    pc.set(x, y, shadeTone(tones, Math.max(0, Math.min(1, 0.55 + weave + (n(x / 4, y / 4) - 0.5) * 0.4)), x, y));
+  for (let y = 0; y < 32; y++) for (let x = 0; x < 32; x++) {
+    const fold = Math.sin(x * 0.35 + n(x / 8, y / 8) * 4) * 0.12; // slack folds of the cloth
+    const thread = x % 3 === 0 ? -0.07 : 0;
+    pc.set(x, y, shadeTone(tones, Math.max(0, Math.min(1, 0.55 + fold + thread + (fine(x / 2, y / 3) - 0.5) * 0.14)), x, y));
+  }
+  return pc;
+}
+
+/** Barrel lid: boards across a round head, an iron chime ring, a bung. */
+export function barrelLidTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const pc = new PixelCanvas(24, 24);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  for (let y = 0; y < 24; y++) for (let x = 0; x < 24; x++) {
+    const d = Math.hypot(x - 11.5, y - 11.5);
+    let c: Rgb;
+    if (d > 10.6) c = rgb('#2a2622');
+    else if (d > 9.6) c = rgb('#4a4440');
+    else {
+      const board = Math.floor(y / 6), seam = y % 6 === 0;
+      c = shadeTone(pal.wood, seam ? 0.08 : 0.5 + (n(x / 5, board * 2) - 0.5) * 0.35 + (board % 2) * 0.08, x, y);
+    }
+    pc.set(x, y, c);
+  }
+  pc.set(15, 15, rgb(pal.wood[0])); pc.set(16, 15, rgb(pal.wood[0])); pc.set(15, 16, rgb(pal.wood[0]));
+  return pc;
+}
+
+/** Glowing bed of coals: dark lumps over a molten orange glow. */
+export function coalsTexture(seed: number): PixelCanvas {
+  const pc = new PixelCanvas(24, 24);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 6);
+  for (let y = 0; y < 24; y++) for (let x = 0; x < 24; x++) {
+    const v = n(x / 3, y / 3);
+    const c = v > 0.62 ? rgb('#2a1610') : v > 0.5 ? rgb('#7a2a10') : v > 0.32 ? rgb('#e0601c') : rgb('#ffb347');
+    pc.set(x, y, c);
   }
   return pc;
 }
