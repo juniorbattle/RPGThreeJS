@@ -13,7 +13,7 @@ export class UiSoundSettings {
     const siblings = [...this.root.children].map(child => ({ child: child as HTMLElement, inert: (child as HTMLElement).inert }));
     for (const { child } of siblings) child.inert = true;
     const element = document.createElement('div'); element.className = 'ui-sound-backdrop';
-    element.innerHTML = `<section class="ui-sound-settings" role="dialog" aria-modal="true" aria-labelledby="ui-sound-title"><h2 id="ui-sound-title">Sons du jeu</h2><p>Sons des menus, de la campagne et des combats. Vous pouvez jouer entièrement sans son.</p><button type="button" data-sound-toggle aria-pressed="${this.player.enabled}"></button><label for="ui-sound-volume">Volume des sons <output id="ui-sound-value"></output></label><input id="ui-sound-volume" type="range" min="0" max="100" step="5" value="${Math.round(this.player.volume * 100)}"><button type="button" data-sound-close>Fermer</button></section>`;
+    element.innerHTML = `<section class="ui-sound-settings" role="dialog" aria-modal="true" aria-labelledby="ui-sound-title"><h2 id="ui-sound-title">Sons du jeu</h2><p>Sons des menus, de la campagne et des combats. Vous pouvez jouer entièrement sans son.</p><button type="button" data-sound-toggle aria-pressed="${this.player.enabled}"></button><label for="ui-sound-volume">Volume des sons <output id="ui-sound-value"></output></label><input id="ui-sound-volume" type="range" min="0" max="100" step="5" value="${Math.round(this.player.volume * 100)}"><h3 class="ui-sound-settings__group">Musique</h3><p>Musique générée par le jeu. Elle ne démarre qu'après votre première action.</p><button type="button" data-music-toggle aria-pressed="${this.player.musicEnabled}"></button><label for="ui-music-volume">Volume de la musique <output id="ui-music-value"></output></label><input id="ui-music-volume" type="range" min="0" max="100" step="5" value="${Math.round(this.player.musicVolume * 100)}"><button type="button" data-sound-close>Fermer</button></section>`;
     this.root.append(element); this.element = element;
     this.restore = () => {
       for (const { child, inert } of siblings) if (child.isConnected) child.inert = inert;
@@ -21,13 +21,19 @@ export class UiSoundSettings {
       else if (previous?.isConnected && !previous.closest('[inert]')) previous.focus({ preventScroll: true });
     };
     const toggle = element.querySelector<HTMLButtonElement>('[data-sound-toggle]')!;
+    const musicToggle = element.querySelector<HTMLButtonElement>('[data-music-toggle]')!;
     const refresh = () => {
       toggle.textContent = this.player.enabled ? 'Couper les sons' : 'Activer les sons';
       toggle.setAttribute('aria-pressed', String(this.player.enabled));
-      element.querySelector('output')!.textContent = `${Math.round(this.player.volume * 100)} %`;
+      element.querySelector('#ui-sound-value')!.textContent = `${Math.round(this.player.volume * 100)} %`;
+      musicToggle.textContent = this.player.musicEnabled ? 'Couper la musique' : 'Activer la musique';
+      musicToggle.setAttribute('aria-pressed', String(this.player.musicEnabled));
+      element.querySelector('#ui-music-value')!.textContent = `${Math.round(this.player.musicVolume * 100)} %`;
     };
     toggle.addEventListener('click', event => { this.player.setEnabled(!this.player.enabled, event); refresh(); });
-    element.querySelector<HTMLInputElement>('input')!.addEventListener('input', event => { this.player.setVolume(Number((event.target as HTMLInputElement).value) / 100); refresh(); });
+    element.querySelector<HTMLInputElement>('#ui-sound-volume')!.addEventListener('input', event => { this.player.setVolume(Number((event.target as HTMLInputElement).value) / 100); refresh(); });
+    musicToggle.addEventListener('click', event => { this.player.setMusicEnabled(!this.player.musicEnabled, event); refresh(); });
+    element.querySelector<HTMLInputElement>('#ui-music-volume')!.addEventListener('input', event => { this.player.setMusicVolume(Number((event.target as HTMLInputElement).value) / 100); refresh(); });
     element.querySelector('[data-sound-close]')!.addEventListener('click', () => { this.player.play('back'); this.close(); });
     element.addEventListener('keydown', event => {
       if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); this.player.play('back'); this.close(); }

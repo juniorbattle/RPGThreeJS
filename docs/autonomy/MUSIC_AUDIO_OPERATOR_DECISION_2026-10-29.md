@@ -52,3 +52,27 @@ The operator's artistic acceptance of every track and cue stays separate. Nothin
 5. Runtime implementation.
 
 Reviewed amendment committed as `a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa`; this following operational checkpoint establishes it as the immutable set 1.11.0 baseline before runtime.
+
+## Runtime delivered (run claude-music-runtime-20261030T0045Z)
+
+- **Engine.** `src/audio/music/`: theory, instruments, sample bank and its worker, real-time voices, rooms, themes, generator, ambience and director. It is adapted from the RPGCards engine (provenance in each module header) and loaded lazily as a separate chunk at the first real gesture.
+- **Five original themes**, re-voiced on every pass from a seed:
+  - title: D dorian;
+  - map: G mixolydian;
+  - dialogue and refuge: F major in three;
+  - combat: A minor;
+  - boss: D phrygian.
+- **Ambience** for the three arenas, on the ambience bus under the music volume.
+- **Owner.** `UiSoundPlayer` stays the single owner. Effects are unchanged (default off). Music is on but armed only, with its own preference `rpg-threejs:music:v1` outside V6. A hidden page suspends; returning resumes the music only.
+- **Context.** `GameApp.setMode` picks the context from the presentation surface; `CombatBridge` picks combat or boss from `encounterRank`, and the ambience from `sceneId`.
+- **Controls.** The sound panel (title, campaign, combat) has music mute and volume.
+- **Evidence:**
+  - targeted tests on the generator, bank, owner arming, controls and combat hand-off;
+  - full suite, build and contracts pass;
+  - Chromium with real clicks:
+    - nothing before the first click;
+    - the title music starts at the first click;
+    - the boss music and the Lion Sanctum ambience in a QA boss fight;
+    - mute and un-mute;
+    - no long task or blocking frame from synthesis during start-up and 20 s of boss playback, after moving the rooms into the worker.
+- **Not done yet.** The synthesized alternative source for the sixteen effect families is authorized but not wired. Listening acceptance belongs to the operator.

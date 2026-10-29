@@ -1,17 +1,19 @@
 {
-  "status": "CONTRACT_SET_1_11_0_APPROVED_MUSIC_NEXT",
-  "runStartedAt": "2026-10-29T22:20:00Z",
-  "runEndedAt": "2026-10-29T23:08:55Z",
+  "status": "MUSIC_RUNTIME_DELIVERED_LISTENING_REVIEW",
+  "runStartedAt": "2026-10-29T23:20:00Z",
+  "runEndedAt": "2026-10-29T23:31:50Z",
   "activeTask": "MUSIC_OD_2026_10_29_B",
-  "activePhase": "AMENDMENT_BASELINE_MOVED",
-  "activeSubtask": "Amendement set 1.11.0 revu, approuvé, commité (a4ff05b2) ; baseline déplacée",
+  "activePhase": "RUNTIME_DELIVERED",
+  "activeSubtask": "Musique générée par code (5 contextes) et ambiances livrées ; écoute opérateur",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "lastPushedCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "completedThisRun": [
-    "Amendement set 1.11.0 rédigé, revu deux fois par contracts-guardian, approuvé par l’opérateur (« J’approuve »), commité a4ff05b2",
-    "Reprise du moteur RPGCards approuvée (« Reprendre et adapter »)",
-    "Baseline déplacée dans AGENTS.md, protocole, skills, prompt récurrent et statut"
+    "Moteur musical src/audio/music adapté de RPGCards (chunk séparé, banque et salles dans un worker)",
+    "5 thèmes originaux et 3 ambiances",
+    "UiSoundPlayer : musique armée par défaut, silencieuse avant le premier geste, préférence hors V6",
+    "Contexte par GameApp.setMode et CombatBridge (rang, scène)",
+    "Réglages musique dans le panneau des sons"
   ],
   "filesChanged": [
     "docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
@@ -25,37 +27,42 @@
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
   ],
   "testsRun": [
+    "vitest ciblés (audio, UiSoundPlayer, CombatBridgeAudio, GameApp)",
+    "npm test",
+    "npx tsc --noEmit",
+    "npm run build",
     "contracts:validate",
-    "LOCKED gate vs a4ff05b2",
-    "git diff --check"
+    "Chromium via preview_start : clics réels, long tasks et long-animation-frame"
   ],
   "testsPassed": [
-    "contracts:validate PASS",
-    "gate vide",
-    "diff --check propre"
+    "tests ciblés verts",
+    "npm test vert",
+    "tsc PASS",
+    "build PASS (chunk MusicDirector 28 kB + worker)",
+    "contracts PASS",
+    "Chromium : rien avant le geste, titre au premier clic, boss + ambiance sanctuaire, coupure/reprise, aucune long task de synthèse"
   ],
   "testsRemaining": [
-    "Rythme réel des actions et des ultimes sur GPU, panneau visible",
-    "Revue artistique opérateur"
+    "Écoute et acceptation artistique de l'opérateur"
   ],
   "blockers": [],
   "remainingWork": [
-    "Chantier C : musique générée par code (5 contextes), ambiance des biomes, sons synthétisés à départager à l’écoute",
+    "Chantier C : écoute opérateur des 5 musiques et 3 ambiances ; source synthétisée des 16 familles à brancher et départager à l'écoute",
     "Mission d’art locale (44 images) et passe de performance GPU réelle : au choix de l’opérateur",
     "Retrait des assets du Combat Stage devenus inutiles : accord de l’opérateur requis",
     "Option QA « Tous les héros QA » / stageqa : déploiement bloqué (constat préexistant)"
   ],
-  "nextAction": "Chantier C, musique (OD-2026-10-29-B, set 1.11.0) : adapter le moteur musical de RPGCards, le brancher sur le propriétaire audio parent (bus musique et ambiance, armée par défaut, silencieuse avant le premier geste), composer les 5 contextes (titre, carte, dialogue et refuge, combat, boss) et l'ambiance des 3 biomes, réglages musique sur chaque écran. En parallèle : revue en jeu de l'opérateur de la présentation HD-2D.",
+  "nextAction": "Écoute de l'opérateur en jeu des 5 musiques (titre, carte, dialogue et refuge, combat, boss) et des 3 ambiances de combat ; retouches demandées à Claude. Ensuite, au choix : source synthétisée des 16 familles d'effets à départager à l'écoute (pas encore branchée), puis playtest PC complet et démo figée.",
   "taskQueue": [
-    "Chantier C, musique (OD-2026-10-29-B, set 1.11.0) : adapter le moteur musical de RPGCards, le brancher sur le propriétaire audio parent (bus musique et ambiance, armée par défaut, silencieuse avant le premier geste), composer les 5 contextes (titre, carte, dialogue et refuge, combat, boss) et l'ambiance des 3 biomes, réglages musique sur chaque écran. En parallèle : revue en jeu de l'opérateur de la présentation HD-2D.",
+    "Écoute de l'opérateur en jeu des 5 musiques (titre, carte, dialogue et refuge, combat, boss) et des 3 ambiances de combat ; retouches demandées à Claude. Ensuite, au choix : source synthétisée des 16 familles d'effets à départager à l'écoute (pas encore branchée), puis playtest PC complet et démo figée.",
     "Playtest PC de l'opérateur, liste de corrections, démo figée ; mobile seulement si l'opérateur le veut."
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SET_1_11_0_BASELINE_a4ff05b2",
-  "runId": "claude-music-amendment-20261029T2307Z",
+  "contractComplianceStatus": "PASS_SET_1_11_0",
+  "runId": "claude-music-runtime-20261030T0045Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-10-29T23:08:55Z",
-  "heartbeat": "2026-10-29T23:08:55Z",
+  "lastHeartbeat": "2026-10-29T23:31:50Z",
+  "heartbeat": "2026-10-29T23:31:50Z",
   "wip": null,
   "uncommittedWork": [],
   "providerTasksPending": [],
@@ -63,10 +70,10 @@
   "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "previousRun": {
-    "runId": "claude-forest-dim-fix-20261029T1226Z",
-    "runEndedAt": "2026-10-29T12:33:19Z",
-    "activeTask": "DEMO_FINISH_LINE_OD_2026_10_29_A",
-    "commit": "74df4ec9"
+    "runId": "claude-music-amendment-20261029T2307Z",
+    "runEndedAt": "2026-10-29T23:08:55Z",
+    "activeTask": "MUSIC_OD_2026_10_29_B",
+    "commit": "41b155a9"
   },
   "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
   "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
@@ -549,16 +556,16 @@
     "rule": "Kept: protocol fields, run identity, current authority, open/deferred items and current scopes; QA jobs registered after the set 1.10.0 amendment commit. Everything else is unchanged in the snapshot."
   },
   "live": {
-    "lastHeartbeat": "2026-10-29T23:08:55Z",
-    "runId": "claude-music-amendment-20261029T2307Z",
+    "lastHeartbeat": "2026-10-29T23:31:50Z",
+    "runId": "claude-music-runtime-20261030T0045Z",
     "agent": "claude",
-    "status": "CONTRACT_SET_1_11_0_APPROVED_MUSIC_NEXT",
+    "status": "MUSIC_RUNTIME_DELIVERED_LISTENING_REVIEW",
     "wip": null,
-    "nextAction": "Chantier C, musique (OD-2026-10-29-B, set 1.11.0) : adapter le moteur musical de RPGCards, le brancher sur le propriétaire audio parent (bus musique et ambiance, armée par défaut, silencieuse avant le premier geste), composer les 5 contextes (titre, carte, dialogue et refuge, combat, boss) et l'ambiance des 3 biomes, réglages musique sur chaque écran. En parallèle : revue en jeu de l'opérateur de la présentation HD-2D.",
-    "runEndedAt": "2026-10-29T23:08:55Z",
+    "nextAction": "Écoute de l'opérateur en jeu des 5 musiques (titre, carte, dialogue et refuge, combat, boss) et des 3 ambiances de combat ; retouches demandées à Claude. Ensuite, au choix : source synthétisée des 16 familles d'effets à départager à l'écoute (pas encore branchée), puis playtest PC complet et démo figée.",
+    "runEndedAt": "2026-10-29T23:31:50Z",
     "writerStopped": true,
     "activeTask": "MUSIC_OD_2026_10_29_B",
-    "activeSubtask": "Amendement set 1.11.0 revu, approuvé, commité (a4ff05b2) ; baseline déplacée",
+    "activeSubtask": "Musique générée par code (5 contextes) et ambiances livrées ; écoute opérateur",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,
@@ -981,7 +988,7 @@
     "tracks": {
       "A": "PROCEDURAL_FX_REVIEW",
       "B": "PIXEL_ANIMATIONS_DELIVERED_REVIEW",
-      "C": "MUSIC_AMENDMENT_APPROVED_IMPLEMENTATION_NEXT"
+      "C": "MUSIC_DELIVERED_LISTENING_REVIEW"
     },
     "frozen": [
       "alistair-pilot",

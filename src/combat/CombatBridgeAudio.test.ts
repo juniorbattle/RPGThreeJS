@@ -40,3 +40,15 @@ it('optional crypto failure cannot prevent combat, and a late old load cannot de
   expect(player.observeGestures).toHaveBeenCalledTimes(2);
   expect(player.beginCombat.mock.calls[0]![0]).not.toBe(player.beginCombat.mock.calls[1]![0]);
 });
+
+it('selects combat or boss music and the arena ambience from the hand-off only (OD-2026-10-29-B)', () => {
+  vi.spyOn(HTMLIFrameElement.prototype, 'src', 'set').mockImplementation(() => {});
+  const player = { beginCombat: vi.fn(), endCombat: vi.fn(), playCombat: vi.fn(), observeGestures: vi.fn(() => vi.fn()), setMusicContext: vi.fn(), setMusicScene: vi.fn() };
+  const root = document.createElement('div'); document.body.append(root);
+  bridge = new CombatBridge(root, { player: player as unknown as UiSoundPlayer, openSettings: vi.fn() });
+  const session = (rank: string, sceneId: string) => ({ config: { id: 'test', encounterLabel: 'Test', encounterRank: rank, sceneId } as CombatConfig, clan: [], inventory: {}, preferredUnitIds: [], reducedGraphics: false });
+  bridge.start(session('normal', 'forest_route'));
+  expect(player.setMusicContext).toHaveBeenLastCalledWith('combat'); expect(player.setMusicScene).toHaveBeenLastCalledWith('forest_route');
+  bridge.start(session('boss', 'lion_sanctum'));
+  expect(player.setMusicContext).toHaveBeenLastCalledWith('boss'); expect(player.setMusicScene).toHaveBeenLastCalledWith('lion_sanctum');
+});

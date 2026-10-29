@@ -3,11 +3,33 @@ export { UI_SOUND_IDS } from './GameSoundCatalog';
 export type { UiSoundId } from './GameSoundCatalog';
 export type UiSoundFeedback = (id: UiSoundId) => void;
 const PREFERENCE_KEY = 'rpg-threejs:ui-audio:v1';
+const MUSIC_PREFERENCE_KEY = 'rpg-threejs:music:v1';
 
-/** Optional parent-owned presentation. No gameplay state, resolution or delayed cue queue. */
+/** Music contexts (OD-2026-10-29-B); the engine itself loads lazily on the first real gesture. */
+export type MusicContextId = 'title' | 'map' | 'dialogue' | 'combat' | 'boss';
+export interface MusicHost {
+  setContext(id: MusicContextId | null): void;
+  setAmbience(sceneId: string | null): void;
+  setVolume(volume: number): void;
+  dispose(): void;
+}
+export type MusicFactory = (context: AudioContext) => MusicHost | Promise<MusicHost>;
+const loadMusic: MusicFactory = async context => (await import('../audio/music/MusicDirector')).createMusicDirector(context);
+
+/**
+ * Optional parent-owned presentation: the single audio owner for cues, music and ambience. No gameplay state,
+ * resolution or delayed cue queue. Effects default off; music defaults on but is only armed until a real gesture.
+ */
 export class UiSoundPlayer {
   enabled = false;
   volume = 0.5;
+  musicEnabled = true;
+  musicVolume = 0.6;
+  private music: MusicHost | null = null;
+  private musicLoading: Promise<void> | null = null;
+  private musicContext: MusicContextId | null = null;
+  private musicScene: string | null = null;
+  private readonly musicFactory: MusicFactory | null;
   private context: AudioContext | null = null;
   private gain: GainNode | null = null;
   private readonly buffers = new Map<GameSoundId, AudioBuffer>();
@@ -21,20 +43,30 @@ export class UiSoundPlayer {
   private disposed = false;
   private lastPlayedAt = -Infinity;
   private readonly gesture = (event: Event) => {
-    if (event.isTrusted && this.enabled) void this.unlock();
+    if (event.isTrusted && (this.enabled || this.musicActive)) void this.unlock();
   };
   private readonly visibility = () => {
-    if (!document.hidden) return;
+    if (!document.hidden) {
+      // Returning resumes an already unlocked context for music only; no cue is replayed.
+      if (this.music && this.musicActive && this.context?.state === 'suspended') void this.context.resume().catch(() => {});
+      return;
+    }
     this.stop();
     void this.context?.suspend().catch(() => {});
   };
 
-  constructor() {
+  constructor(options: { music?: MusicFactory | null } = {}) {
+    this.musicFactory = options.music === undefined ? loadMusic : options.music;
     try {
       const saved = JSON.parse(localStorage.getItem(PREFERENCE_KEY) ?? 'null');
       this.enabled = saved?.enabled === true;
       if (typeof saved?.volume === 'number' && Number.isFinite(saved.volume)) this.volume = Math.max(0, Math.min(1, saved.volume));
     } catch { /* Preferences are optional; silence remains playable. */ }
+    try {
+      const saved = JSON.parse(localStorage.getItem(MUSIC_PREFERENCE_KEY) ?? 'null');
+      if (typeof saved?.enabled === 'boolean') this.musicEnabled = saved.enabled;
+      if (typeof saved?.volume === 'number' && Number.isFinite(saved.volume)) this.musicVolume = Math.max(0, Math.min(1, saved.volume));
+    } catch { /* A restored preference only arms music; it never starts audio. */ }
     window.addEventListener('pointerdown', this.gesture, true);
     window.addEventListener('keydown', this.gesture, true);
     document.addEventListener('visibilitychange', this.visibility);
@@ -90,8 +122,53 @@ export class UiSoundPlayer {
     catch { /* A denied preference write never blocks the action. */ }
   }
 
+  private persistMusic(): void {
+    try { localStorage.setItem(MUSIC_PREFERENCE_KEY, JSON.stringify({ enabled: this.musicEnabled, volume: this.musicVolume })); }
+    catch { /* A denied preference write never blocks the action. */ }
+  }
+
+  private get musicActive(): boolean {
+    return this.musicEnabled && this.musicVolume > 0 && this.musicFactory !== null;
+  }
+
+  /** Read-only snapshot for tests and dev QA; never part of game state. */
+  musicSnapshot(): { context: MusicContextId | null; scene: string | null; active: boolean; unlocked: boolean; host: unknown } {
+    return { context: this.musicContext, scene: this.musicScene, active: this.musicActive, unlocked: this.context?.state === 'running', host: (this.music as { state?: unknown } | null)?.state ?? null };
+  }
+
+  /** The presentation context selects the track; audio still waits for a real gesture. */
+  setMusicContext(id: MusicContextId | null): void {
+    this.musicContext = id;
+    if (this.musicActive) this.music?.setContext(id);
+  }
+
+  /** Combat scene for the biome ambience (null outside combat). */
+  setMusicScene(sceneId: string | null): void {
+    this.musicScene = sceneId;
+    if (this.musicActive) this.music?.setAmbience(sceneId);
+  }
+
+  /** Un-muting is itself a real gesture: it unlocks audio and resumes the current context. */
+  setMusicEnabled(enabled: boolean, event: Event): void {
+    if (!event.isTrusted || this.disposed) return;
+    this.musicEnabled = enabled;
+    this.persistMusic();
+    if (this.musicActive) { void this.unlock(); this.music?.setContext(this.musicContext); this.music?.setAmbience(this.musicScene); }
+    else { this.music?.setContext(null); this.music?.setAmbience(null); }
+  }
+
+  setMusicVolume(value: number): void {
+    if (!Number.isFinite(value) || this.disposed) return;
+    const wasActive = this.musicActive;
+    this.musicVolume = Math.max(0, Math.min(1, value));
+    this.music?.setVolume(this.musicVolume);
+    if (!this.musicActive) { this.music?.setContext(null); this.music?.setAmbience(null); }
+    else if (!wasActive) { this.music?.setContext(this.musicContext); this.music?.setAmbience(this.musicScene); }
+    this.persistMusic();
+  }
+
   private async unlock(): Promise<void> {
-    if (this.disposed || !this.enabled || document.hidden) return;
+    if (this.disposed || (!this.enabled && !this.musicActive) || document.hidden) return;
     try {
       if (!this.context) {
         if (!window.AudioContext) return;
@@ -101,10 +178,27 @@ export class UiSoundPlayer {
         this.gain.connect(this.context.destination);
       }
       if (this.context.state === 'suspended') await this.context.resume();
+      if (this.musicActive) void this.startMusic();
+      if (!this.enabled) return;
       if (!this.warming) this.warming = this.warm();
       if (this.combatScope && !this.combatWarming) this.combatWarming = this.warm(COMBAT_SOUND_IDS);
       await this.warming;
     } catch { /* Unsupported/blocked audio is silent, with no gameplay dependency. */ }
+  }
+
+  private startMusic(): Promise<void> {
+    if (this.music || !this.context || !this.musicFactory) return Promise.resolve();
+    const context = this.context;
+    this.musicLoading ??= (async () => {
+      try {
+        const host = await this.musicFactory!(context);
+        if (this.disposed) { host.dispose(); return; }
+        this.music = host;
+        host.setVolume(this.musicVolume);
+        if (this.musicActive) { host.setContext(this.musicContext); host.setAmbience(this.musicScene); }
+      } catch { this.musicLoading = null; /* Music is optional and fails silently. */ }
+    })();
+    return this.musicLoading;
   }
 
   private async warm(ids: readonly GameSoundId[] = UI_SOUND_IDS): Promise<void> {
@@ -163,6 +257,8 @@ export class UiSoundPlayer {
     window.removeEventListener('keydown', this.gesture, true);
     document.removeEventListener('visibilitychange', this.visibility);
     this.abort.abort(); this.stop(); this.buffers.clear();
+    try { this.music?.dispose(); } catch { /* already gone */ }
+    this.music = null;
     void this.context?.close().catch(() => {});
   }
 }

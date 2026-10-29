@@ -54,6 +54,11 @@ export class CombatBridge {
     this.audioSession = `combat-${++audioSessionSerial}`;
     try { this.audioSession = globalThis.crypto?.randomUUID?.() ?? this.audioSession; } catch { /* Optional nonce API; mandatory source/origin/frame guards remain. */ }
     try { this.audio?.player.beginCombat(this.audioSession); } catch { /* Audio never prevents mounting combat. */ }
+    try {
+      // Music reads only the hand-off: the encounter rank and the arena scene (OD-2026-10-29-B).
+      this.audio?.player.setMusicContext(session.config.encounterRank === 'boss' ? 'boss' : 'combat');
+      this.audio?.player.setMusicScene(session.config.sceneId);
+    } catch { /* Music never prevents mounting combat. */ }
     const iframe = document.createElement('iframe');
     iframe.className = 'combat-frame';
     iframe.title = session.config.encounterLabel;

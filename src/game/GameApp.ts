@@ -35,7 +35,7 @@ import { CombatBridge } from '../combat/CombatBridge';
 import { DialogueView, resolveDialogueBackdrop } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
 import { PoiMapView } from '../ui/PoiMapView';
-import { UiSoundPlayer } from '../ui/UiSoundPlayer';
+import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
 import { ExplorationView } from '../ui/ExplorationView';
 import { resolveRefugePresentation } from '../ui/RefugePresentation';
@@ -79,6 +79,12 @@ import {
   type NarrativeTableauSpec,
 } from '../cinematics/NarrativeTableau';
 type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'JOURNEY' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT' | 'QA';
+/** Presentation surface → music context (OD-2026-10-29-B); COMBAT is set by CombatBridge from the encounter rank. */
+const MODE_MUSIC: Readonly<Record<AppMode, MusicContextId | null>> = {
+  TITLE: 'title', QA: 'title', TRAVEL: 'map', RESULT: 'map',
+  PROLOGUE: 'dialogue', JOURNEY: 'dialogue', NARRATIVE: 'dialogue', MANAGEMENT: 'dialogue',
+  COMBAT: null,
+};
 
 type QaPartyMode = 'campaign' | 'full';
 type QaSkillMode = 'normal' | 'all';
@@ -176,6 +182,7 @@ export class GameApp {
     private readonly canvas: HTMLCanvasElement,
   ) {
     this.soundSettings = new UiSoundSettings(root, this.uiSounds);
+    if (import.meta.env.DEV) Object.assign(window, { __rpgMusic: () => this.uiSounds.musicSnapshot() });
     this.chrome.className = 'game-chrome';
     this.root.append(this.chrome);
     this.dialogue = new DialogueView({
@@ -1588,6 +1595,13 @@ export class GameApp {
 
   private setMode(mode: AppMode): void {
     this.soundSettings.close();
+    // Music follows the presentation surface only; combat picks combat or boss itself (CombatBridge).
+    // It is optional presentation: a failure never blocks the transition.
+    try {
+      const music = MODE_MUSIC[mode];
+      if (music) this.uiSounds.setMusicContext(music);
+      if (mode !== 'COMBAT') this.uiSounds.setMusicScene(null);
+    } catch { /* silent */ }
     if (mode !== 'NARRATIVE' && mode !== 'JOURNEY') this.statusHud?.hide();
     this.mode = mode;
     document.body.dataset.mode = mode.toLowerCase();
