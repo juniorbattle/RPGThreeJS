@@ -137,6 +137,7 @@ describe('CIN-6E-A final operator approval and visual production lock', () => {
       // separate Combat Stage scene is retired. Rules, AI, protocol and save are
       // unchanged; the proofs that encoded the Stage are updated or removed.
       'src/combat/arena/CombatArena.ts',
+      'src/combat/arena/CombatArena.test.ts',
       'src/combat/arena/arenaProps.ts',
       'src/combat/arena/arenaSprites.ts',
       'src/combat/arena/arenaTextures.ts',
