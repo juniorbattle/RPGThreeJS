@@ -83,6 +83,8 @@ export function scaleStep(step: FxStep, intensity: FxIntensity): FxStep {
       for (const key of SIZE_KEYS) { const v = num(key); if (v !== undefined) p[key] = v * intensity.scale; }
       for (const key of COUNT_KEYS) { const v = num(key); if (v !== undefined) p[key] = Math.round(v * (step.kind === 'shards' ? Math.sqrt(intensity.count) : intensity.count)); }
       if (step.kind === 'burst') { const v = num('speed'); if (v !== undefined) p.speed = v * Math.sqrt(intensity.scale); }
+      // the pulse marks the most powerful skills only
+      if (step.kind === 'circle' && intensity.weight === 'ultimate') p.pulse = true;
   }
   return { ...step, p };
 }

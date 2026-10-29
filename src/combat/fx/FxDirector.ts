@@ -89,7 +89,7 @@ export class FxDirector {
     // The hit itself belongs to the recipe (and the close-up punch); the wave
     // starts as the camera pulls out to the field shot, so it is seen whole.
     const wave = at + FIELD_WAVE_DELAY;
-    engine.after(Math.max(0, at - 0.3), () => engine.circle(center, element, { radius: field.halfWidth * 1.1, duration: 2.6, spin: sink ? -0.5 : 0.5 }));
+    engine.after(Math.max(0, at - 0.3), () => engine.circle(center, element, { radius: field.halfWidth * 1.1, duration: 2.6, spin: sink ? -0.5 : 0.5, pulse: true }));
     engine.after(at, () => engine.hooks.flash(pal.core, 0.24, 0.32));
     engine.after(wave, () => {
       engine.hooks.sfx('field_wave');
@@ -213,7 +213,7 @@ export class FxDirector {
           break;
         }
         case 'ring': engine.ring(at, element, { radius: num('radius', 1.6), duration: num('duration', 0.5), ground: p.ground !== false, from: num('from', 0.15) }); break;
-        case 'circle': engine.circle(at, element, { radius: num('radius', 1.3), duration: num('duration', 1.1), spin: num('spin', 1.2) }); break;
+        case 'circle': engine.circle(at, element, { radius: num('radius', 1.3), duration: num('duration', 1.1), spin: num('spin', 1.2), pulse: p.pulse === true }); break;
         case 'pillar': engine.pillar(at, element, { radius: num('radius', 0.55), height: num('height', 9), duration: num('duration', 0.8) }); break;
         case 'streak': engine.streak(at, this.anchor(step.to, ctx, ctx.targets[0], jitter), element, { width: num('width', 0.35), duration: num('duration', 0.25) }); break;
         case 'bolt': engine.bolt(at, element, { duration: num('duration', 0.35), width: num('width', 0.07) }); break;

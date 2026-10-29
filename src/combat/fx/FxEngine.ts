@@ -45,6 +45,8 @@ const tmpV = new THREE.Vector3();
 const tmpQ = new THREE.Quaternion();
 const Z_AXIS = new THREE.Vector3(0, 0, 1);
 const easeOut = (t: number) => 1 - Math.pow(1 - Math.min(1, Math.max(0, t)), 3);
+/** Heartbeat of the seals of ultimates and boss signatures (seconds per beat). */
+const PULSE_PERIOD = 0.62;
 const clamp01 = (t: number) => Math.min(1, Math.max(0, t));
 
 function hash(n: number): number {
@@ -158,7 +160,9 @@ function makeTextures() {
     v.addColorStop(0, 'rgba(0,0,0,1)'); v.addColorStop(0.15, 'rgba(0,0,0,0)'); v.addColorStop(0.85, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,1)');
     c.globalCompositeOperation = 'destination-out'; c.fillStyle = v; c.fillRect(0, 0, s, s);
   });
-  // Pixel-art rune circle (grayscale, nearest filtered): rings, star, glyph ticks.
+  // Pixel-art seal (grayscale, nearest filtered): concentric rings, a band of
+  // rune glyphs, a dashed ring and dotted inner rings. Deliberately no star
+  // or polygon: the circles read as runic seals, with no unwanted symbolism.
   const runes = canvasTexture(128, (c, s) => {
     const img = c.createImageData(s, s);
     const set = (x: number, y: number, v: number) => {
@@ -167,20 +171,35 @@ function makeTextures() {
       const i = (y * s + x) * 4; const val = Math.max(img.data[i] ?? 0, v);
       img.data[i] = img.data[i + 1] = img.data[i + 2] = val; img.data[i + 3] = 255;
     };
-    const cx = s / 2, cy = s / 2;
-    for (const [r, v] of [[60, 255], [56, 170], [40, 220], [24, 160]] as const) {
-      for (let a = 0; a < Math.PI * 2; a += 0.5 / r) set(cx + Math.cos(a) * r, cy + Math.sin(a) * r, v);
+    const cx = s / 2 - 0.5, cy = s / 2 - 0.5;
+    const ring = (r: number, v: number, on = (_a: number) => true) => {
+      for (let a = 0; a < Math.PI * 2; a += 0.4 / r) if (on(a)) set(cx + Math.cos(a) * r, cy + Math.sin(a) * r, v);
+    };
+    ring(61, 255); ring(60, 235); ring(58, 140); ring(46, 230); ring(45, 200); ring(26, 170); ring(8, 210);
+    ring(41, 200, (a) => ((a / (Math.PI * 2)) * 24) % 1 < 0.6); // dashed
+    ring(18, 190, (a) => ((a / (Math.PI * 2)) * 40) % 1 < 0.3); // dotted
+    // rune glyphs (3×5, upright = pointing outward) between the outer rings
+    const glyphs = [
+      ['#.#', '#.#', '###', '..#', '..#'], ['##.', '#.#', '##.', '#.#', '##.'], ['#..', '#.#', '###', '#.#', '..#'],
+      ['.##', '#..', '.#.', '..#', '##.'], ['###', '..#', '.#.', '#..', '###'], ['#.#', '.#.', '#.#', '.#.', '#.#'],
+    ];
+    const slots = 18;
+    for (let k = 0; k < slots; k++) {
+      const a = (k / slots) * Math.PI * 2;
+      const rx = Math.cos(a), ry = Math.sin(a), tx = -ry, ty = rx;
+      const glyph = glyphs[k % glyphs.length]!;
+      glyph.forEach((row, gy) => [...row].forEach((ch, gx) => {
+        if (ch === '#') set(cx + rx * (52 + 2 - gy) + tx * (gx - 1), cy + ry * (52 + 2 - gy) + ty * (gx - 1), 245);
+      }));
+      const b = a + Math.PI / slots; // separator dot between glyphs
+      set(cx + Math.cos(b) * 52, cy + Math.sin(b) * 52, 170);
     }
-    for (let k = 0; k < 6; k++) { // hexagram
-      const a0 = (k / 6) * Math.PI * 2, a1 = ((k + 2) / 6) * Math.PI * 2;
-      for (let t = 0; t <= 1; t += 0.01) set(cx + Math.cos(a0) * 40 * (1 - t) + Math.cos(a1) * 40 * t, cy + Math.sin(a0) * 40 * (1 - t) + Math.sin(a1) * 40 * t, 200);
+    for (let k = 0; k < 12; k++) { // beads between the dashed and inner rings
+      const a = (k / 12) * Math.PI * 2 + Math.PI / 12;
+      const x = cx + Math.cos(a) * 34, y = cy + Math.sin(a) * 34, v = k % 2 ? 160 : 230;
+      set(x, y, v); set(x + 1, y, v * 0.8); set(x - 1, y, v * 0.8); set(x, y + 1, v * 0.8); set(x, y - 1, v * 0.8);
     }
-    for (let k = 0; k < 24; k++) { // glyph ticks between the two outer rings
-      const a = (k / 24) * Math.PI * 2;
-      const len = k % 3 === 0 ? 5 : 3;
-      for (let t = 0; t < len; t++) set(cx + Math.cos(a) * (46 + t + (k % 2)), cy + Math.sin(a) * (46 + t + (k % 2)), 240);
-      if (k % 2 === 0) set(cx + Math.cos(a + 0.06) * 50, cy + Math.sin(a + 0.06) * 50, 230);
-    }
+    for (let y = -1; y <= 1; y++) for (let x = -1; x <= 1; x++) set(cx + x, cy + y, 240);
     c.putImageData(img, 0, 0);
   }, true);
   return { disc, ring, star, crescent, beam, runes };
@@ -518,8 +537,12 @@ export class FxEngine {
     });
   }
 
-  /** Rotating pixel-rune circle on the ground. */
-  circle(position: Vec, element: FxElement, options: { radius?: number; duration?: number; spin?: number } = {}): void {
+  /**
+   * Rotating pixel-rune seal on the ground. `pulse` (ultimates and boss
+   * signatures only) gives it a heartbeat: two quick flares per beat, each
+   * sending a ring of light out from the seal's rim.
+   */
+  circle(position: Vec, element: FxElement, options: { radius?: number; duration?: number; spin?: number; pulse?: boolean } = {}): void {
     const radius = options.radius ?? 1.3, duration = options.duration ?? 1.1;
     const material = rampMaterial(this.textures.runes, FX_PALETTES[element]);
     material.uniforms.uBoost!.value = 2.1;
@@ -528,14 +551,29 @@ export class FxEngine {
     mesh.position.set(position.x, Math.max(0.05, position.y + 0.05), position.z);
     mesh.renderOrder = FX_LAYER.groundCircle;
     this.root.add(mesh);
-    let t = 0;
+    let t = 0, beats = 0;
     const spin = options.spin ?? 1.2;
+    const period = PULSE_PERIOD;
     this.add({
       update: (dt) => {
         t += dt;
         const k = t / duration;
         mesh.rotation.z += spin * dt;
-        mesh.scale.setScalar(0.4 + 0.6 * easeOut(Math.min(1, k * 3)));
+        let grow = 0.4 + 0.6 * easeOut(Math.min(1, k * 3));
+        let boost = 2.1;
+        if (options.pulse && k > 0.12 && k < 0.85) {
+          const phase = (t % period) / period;
+          const flare = Math.exp(-Math.pow(phase / 0.06, 2)) + 0.7 * Math.exp(-Math.pow((phase - 0.22) / 0.06, 2));
+          boost += flare * 1.8;
+          grow *= 1 + flare * 0.035;
+          const beat = Math.floor(t / period);
+          if (beat > beats) {
+            beats = beat;
+            this.ring(new THREE.Vector3(position.x, Math.max(0.06, position.y + 0.06), position.z), element, { radius: radius * 1.55, duration: 0.6, from: 0.72, boost: 1.7 });
+          }
+        }
+        mesh.scale.setScalar(grow);
+        material.uniforms.uBoost!.value = boost;
         material.uniforms.uOpacity!.value = (k < 0.15 ? k / 0.15 : 1) * (k > 0.75 ? (1 - k) / 0.25 : 1);
         return k < 1;
       },
