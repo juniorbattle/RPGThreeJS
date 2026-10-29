@@ -1,0 +1,157 @@
+{
+  "task": "COMBAT-HD2D-1",
+  "date": "2026-10-28",
+  "branch": "claude/combat-scenes-pixel-art-1v60j4",
+  "baseline": "00b96f1",
+  "typecheck": "pass",
+  "build": "pass",
+  "tests": {
+    "files": {
+      "passed": 159,
+      "failed": 6
+    },
+    "cases": {
+      "passed": 2413,
+      "failed": 17,
+      "skipped": 23
+    },
+    "failingFilesIdenticalToBaseline": true,
+    "baselineFailingFiles": [
+      "src/combat/vfx/spritesheetPng.test.ts",
+      "tools/cinematics/cin4_media.test.mjs",
+      "tools/cinematics/cin6ea2_dynamic_gate.test.mjs",
+      "tools/cinematics/cin6ea3_pilot_e_regate.test.mjs",
+      "tools/cinematics/cin6ea_finalization.test.mjs",
+      "tools/cinematics/cin6ea_preproduction.test.mjs"
+    ],
+    "baselineFailureCause": "local-only assets absent from the clone (CartoonCoffee megapack runtime PNGs, cinematic evidence)",
+    "failingTestsIdenticalToMain": true,
+    "comparison": "per test case against a main @ 00b96f1 worktree run (17 = 17, no new failure)"
+  },
+  "browser": {
+    "engine": "Chromium (SwiftShader WebGL), 1440x810",
+    "standaloneArenas": [
+      "forest_route",
+      "bois_clair_burning",
+      "lion_sanctum"
+    ],
+    "campaignBoot": [
+      {
+        "combatId": "lion_chief",
+        "initialized": true,
+        "pageErrors": 0
+      },
+      {
+        "combatId": "village_defense",
+        "initialized": true,
+        "pageErrors": 0
+      },
+      {
+        "combatId": "troll_crossing",
+        "initialized": true,
+        "pageErrors": 0
+      }
+    ],
+    "actionsPlayed": [
+      "attack",
+      "w_lion_surge",
+      "n_dark_meteor",
+      "w_miracle",
+      "d_devouring_eclipse",
+      "n_flame_wave"
+    ],
+    "aiSoak": {
+      "rounds": 3,
+      "hangs": 0,
+      "pageErrors": 0,
+      "tool": "tools/combat-arena/trace-ai.mjs"
+    }
+  },
+  "limitations": [
+    "SwiftShader screenshots: no frame-rate measurement on real GPUs.",
+    "Audio verified by recipe/cue coverage tests only (headless, no listening pass).",
+    "Hero animations use pose keyframes until the local art mission generates full strips."
+  ],
+  "render": {
+    "drawCallsPerFrame": {
+      "forest_route": 308,
+      "bois_clair_burning": 319,
+      "lion_sanctum": 297
+    },
+    "trianglesPerFrame": {
+      "forest_route": 21801,
+      "bois_clair_burning": 23881,
+      "lion_sanctum": 25861
+    },
+    "staticDecorMerged": true
+  },
+  "pass2": {
+    "decor": [
+      "clustered pixel vegetation drawn at display scale",
+      "fogged tree lines",
+      "fluted columns and fallen drums",
+      "lion stele with emissive gold relief",
+      "rampant lion shared by banners and stele (40x80 banners)",
+      "emissive facade windows",
+      "beehive hay rick, loaded cart, well, charred debris, burning dead tree",
+      "fallen logs",
+      "light shafts and rolling mist",
+      "tone-boundary-only dithering"
+    ],
+    "fx": {
+      "weights": [
+        "light (0-1 AP)",
+        "standard (2)",
+        "strong (3)",
+        "heavy (4)",
+        "major (5)",
+        "ultimate"
+      ],
+      "fieldFinale": "rune circle under the platform, rings past its edges, field-wide motes, cell-by-cell eruption wave",
+      "camera": "impact punch then field shot; spotlight held until the wave ends",
+      "readability": "standing FX drawn over unit sprites"
+    },
+    "campaignBoot": {
+      "lion_chief": "initialized, 0 errors",
+      "village_defense": "initialized, 0 errors"
+    },
+    "aiTrace": "bois_clair_burning rounds 4 to 7, 0 errors (software GL ~2.5 fps)",
+    "evidence": [
+      "08-decor-pass-arenas.jpg",
+      "09-fx-ap-weight.jpg",
+      "10-ultimates-field-wave.jpg"
+    ]
+  },
+  "pass3": {
+    "houses": "built in parts (plinth, jetty, timber framing, leaded windows with shutters, gables, thick roof slabs, chimney); burning variant with broken roof",
+    "integration": [
+      "props on the ground (were 0.16 above it)",
+      "contact shadows and weeds baked into one mesh each",
+      "carved monolithic headstones",
+      "CombatArena.test.ts generation proof",
+      "HappyDOM detection fix"
+    ],
+    "fx": [
+      "star-free rune seals",
+      "heartbeat pulse on ultimate and signature seals",
+      "crisp tone bands",
+      "exact cell flashes",
+      "cell-fitted per-cell eruptions"
+    ],
+    "tests": {
+      "passed": 2417,
+      "failed": 20,
+      "skipped": 23,
+      "newVsMain": "none; 3 cinematics tests time out at 5 s in this container, identically on main"
+    },
+    "campaignBoot": {
+      "village_defense": "initialized, 0 errors",
+      "lion_chief": "initialized, 0 errors"
+    },
+    "evidence": [
+      "11-village-houses.jpg",
+      "12-ground-integration.jpg",
+      "13-seals-pulse-precision.jpg"
+    ]
+  }
+}

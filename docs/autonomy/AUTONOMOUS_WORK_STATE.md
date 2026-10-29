@@ -1,12 +1,12 @@
-# Ligne d’arrivée de la démo fixée — chantier B ensuite
+# Refonte HD-2D du combat portée sur dev — revue de l’opérateur
 
-Run claude-finish-line-20261026T0255Z (agent claude, session interactive), 2026-10-26T02:54:59Z → 2026-10-26T02:57:01Z. [OD-2026-10-25-C](DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md).
+Run claude-combat-hd2d-port-20261029T1122Z (agent claude, session interactive). [OD-2026-10-29-A](DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md#mise-à-jour--od-2026-10-29-a-29-octobre-2026).
 
-L'opérateur compose lui-même les effets dans le lab ; Claude n'y touche plus sans demande précise. Protocole interactif allégé : état mis à jour quand la prochaine action change, compte rendu daté en fin de chantier ou pour passer la main. Trois chantiers finissent la démo : A effets d'action (opérateur), B dynamisme des unités (Claude), C musique (après amendement set 1.11.0). Le reste est gelé jusqu'au playtest PC.
+La refonte de la session cloud (arènes HD-2D, unités pixel animées, caméra d'action, Combat Stage retiré) est sur dev. Le combat joue les recettes procédurales seules ; les sons restent ceux du contrat. Suite complète, build, contrats et registre verts.
 
-Contrats 1.10.0 et baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5` inchangés. Scheduler PAUSED, réglages inchangés. `main` protégé.
+Contrats 1.10.0 et baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5` inchangés. Scheduler PAUSED. `main` protégé.
 
-UNE prochaine action : Chantier B1 d'OD-2026-10-25-C (Claude) : respiration légère des unités au repos en vue tactique et dans le Stage, décalée par unité, coupée en mouvement réduit, présentation seulement ; puis B2 (réactions existantes visibles en vue tactique). En parallèle, l'opérateur compose les effets d'action dans le lab (chantier A).
+UNE prochaine action : Revue en jeu de l'opérateur de la présentation HD-2D portée sur dev (arènes, unités pixel animées, caméra d'action, effets procéduraux) ; corriger d'abord les unités atténuées invisibles dans l'arène forestière en mode ciblage (défaut hérité de la branche). Ensuite chantier C : amendement set 1.11.0 (musique, sons synthétisés, ambiance, cadrage du Stage remplacé).
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

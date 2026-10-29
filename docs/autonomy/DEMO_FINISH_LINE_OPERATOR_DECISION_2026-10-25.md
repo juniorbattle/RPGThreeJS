@@ -85,3 +85,29 @@ Rien de ce qui suit ne démarre sans demande de l'opérateur :
 - toute nouvelle fiche ou tout nouveau rapport qui n'est pas demandé.
 
 Un défaut trouvé en jouant reste corrigeable à tout moment.
+
+## Mise à jour — OD-2026-10-29-A, 29 octobre 2026
+
+L'opérateur a mené, dans une session cloud, la refonte de la présentation du combat (branche `claude/combat-scenes-pixel-art-1v60j4`, [contrat de présentation](../combat/COMBAT_HD2D.md), [rapport](../reports/combat-hd2d-1.md)) :
+- arènes HD-2D procédurales ;
+- unités en feuilles pixel animées (repos, déplacement, élan, attaque, sort, coup reçu, K.O.) ;
+- caméra d'action et projecteur dans l'arène, à la place du Combat Stage, retiré ;
+- effets procéduraux pondérés par le coût en PA.
+
+Il a ensuite choisi, dans la session Claude Code :
+
+1. **Effets en combat : procédural seul.** Le combat joue les recettes procédurales, y compris aux atterrissages, téléportations et arrivées du dash. Les publications du Composer ne jouent plus en combat. Le chantier A n'est plus de composer dans le lab : c'est la revue des recettes procédurales, avec retouches sur demande.
+2. **Sons : ceux de `dev`.** Le système autorisé par contrat (16 familles, coupé par défaut, déverrouillé au geste) reste le seul branché. Le module de sons synthétisés et l'ambiance par biome de la branche restent dans le dépôt, non branchés, en attente de l'amendement set 1.11.0, qui couvrira aussi la musique.
+3. **Portage sur `dev` tout de suite.** La branche partait de `main`, qui a 435 commits de retard. Aux conflits, `dev` garde :
+   - le clavier tactique ;
+   - le libellé de sauvegarde de la campagne ;
+   - le propriétaire audio et la préférence de mouvement réduit.
+
+**Conséquences pour la ligne d'arrivée :**
+- **Chantier B en grande partie livré** par les animations pixel. Reste la revue de l'opérateur en jeu.
+- **Chantier C inchangé**, sinon que l'amendement set 1.11.0 traitera ensemble la musique, les sons synthétisés et l'ambiance.
+
+**Lecture du contrat.** `COMBAT_AND_VFX.md` décrit le Combat Stage comme présentation seulement, et demande de préserver les identités de poses du Character System V2 et le cadrage authored.
+- Le retrait du Stage n'enlève aucune vérité de jeu.
+- Les feuilles pixel dérivent des poses V2, et les masters restent l'autorité narrative.
+- La caméra d'action remplace le cadrage du Stage. L'amendement set 1.11.0 devra le dire explicitement.

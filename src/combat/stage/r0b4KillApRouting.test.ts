@@ -58,12 +58,11 @@ describe('R0B.4 P0 AP kill reward', () => {
     expect(runtimeSource).toContain("await applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag')}); basicDmg=dmg");
   });
 
-  it('Stage aftermath does not award AP (presentation-only, no ap mutation)', () => {
-    expect(runtimeSource).not.toContain('presentResolvedAftermath.*ap');
-    // presentResolvedAftermath call does not modify AP
-    const idx = runtimeSource.indexOf('await combatStage.presentResolvedAftermath');
-    const block = runtimeSource.substring(idx, idx + 200);
-    expect(block).not.toContain('.ap=');
+  it('spotlight presentation does not award AP (presentation-only, no ap mutation)', () => {
+    const start = runtimeSource.indexOf('async function presentActionEnter');
+    const end = runtimeSource.indexOf('function rotateCam');
+    expect(start).toBeGreaterThan(0);
+    expect(runtimeSource.substring(start, end)).not.toContain('.ap=');
   });
 
   it('checkEnd is called after kill (combat end detection)', () => {
@@ -282,11 +281,11 @@ describe('R0B.4 P1 tactical feedback preservation', () => {
     expect(preceding).not.toContain('if(!G.stage)');
   });
 
-  it('combatStageEnter returns early for tactical-routed actions (no G.stage=true)', () => {
-    expect(runtimeSource).toContain('if(!stageProfile) return;');
+  it('non-spotlight actions only frame the camera (no bystander fade, no overlay)', () => {
+    expect(runtimeSource).toContain("if(kind!=='spotlight'){ await cameraDirector.frame(kind,");
   });
 
-  it('executeAction finally block checks G.stage before calling combatStageExit', () => {
-    expect(runtimeSource).toContain('if(G.stage)await combatStageExit(); else restoreUnitFocus()');
+  it('executeAction finally block closes an open presentation before restoring focus', () => {
+    expect(runtimeSource).toContain('if(G.spotlight)await presentActionExit(); else restoreUnitFocus()');
   });
 });

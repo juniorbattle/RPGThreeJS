@@ -1,0 +1,141 @@
+{
+  "batch": "combat-fx-sheets",
+  "images": [
+    {
+      "name": "fx-lion_slash",
+      "endpoint": "generations",
+      "inputs": [],
+      "size": "1024x1024",
+      "quality": "high",
+      "prompt": "A 4 by 4 grid of 16 animation frames of a huge golden crescent sword slash with a white-hot edge and sparks, read left to right then top to bottom: the effect appears, peaks around frame 6 and fades out by frame 16.\n\nEvery frame centred in its equal square cell, same scale and same centre in every cell, generous empty space around the effect inside each cell.\n\nVideo-game visual effect in a premium HD-2D style: bright white-hot core, saturated body colour, crisp pixel-art clusters on the edges.\n\nPure black (#000000) background (the game adds the effect with additive blending), no gradient, no vignette.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "fx": "lion_slash",
+        "grid": [
+          4,
+          4
+        ],
+        "frames": 16,
+        "blending": "additive"
+      }
+    },
+    {
+      "name": "fx-holy_pillar",
+      "endpoint": "generations",
+      "inputs": [],
+      "size": "1024x1024",
+      "quality": "high",
+      "prompt": "A 4 by 4 grid of 16 animation frames of a vertical pillar of holy light falling from the sky with feathers of light, read left to right then top to bottom: the effect appears, peaks around frame 6 and fades out by frame 16.\n\nEvery frame centred in its equal square cell, same scale and same centre in every cell, generous empty space around the effect inside each cell.\n\nVideo-game visual effect in a premium HD-2D style: bright white-hot core, saturated body colour, crisp pixel-art clusters on the edges.\n\nPure black (#000000) background (the game adds the effect with additive blending), no gradient, no vignette.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "fx": "holy_pillar",
+        "grid": [
+          4,
+          4
+        ],
+        "frames": 16,
+        "blending": "additive"
+      }
+    },
+    {
+      "name": "fx-void_implosion",
+      "endpoint": "generations",
+      "inputs": [],
+      "size": "1024x1024",
+      "quality": "high",
+      "prompt": "A 4 by 4 grid of 16 animation frames of a black-violet void sphere imploding with purple lightning arcs, read left to right then top to bottom: the effect appears, peaks around frame 6 and fades out by frame 16.\n\nEvery frame centred in its equal square cell, same scale and same centre in every cell, generous empty space around the effect inside each cell.\n\nVideo-game visual effect in a premium HD-2D style: bright white-hot core, saturated body colour, crisp pixel-art clusters on the edges.\n\nPure black (#000000) background (the game adds the effect with additive blending), no gradient, no vignette.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "fx": "void_implosion",
+        "grid": [
+          4,
+          4
+        ],
+        "frames": 16,
+        "blending": "additive"
+      }
+    },
+    {
+      "name": "fx-meteor_impact",
+      "endpoint": "generations",
+      "inputs": [],
+      "size": "1024x1024",
+      "quality": "high",
+      "prompt": "A 4 by 4 grid of 16 animation frames of a fiery meteor impact explosion with a shockwave ring and debris, read left to right then top to bottom: the effect appears, peaks around frame 6 and fades out by frame 16.\n\nEvery frame centred in its equal square cell, same scale and same centre in every cell, generous empty space around the effect inside each cell.\n\nVideo-game visual effect in a premium HD-2D style: bright white-hot core, saturated body colour, crisp pixel-art clusters on the edges.\n\nPure black (#000000) background (the game adds the effect with additive blending), no gradient, no vignette.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "fx": "meteor_impact",
+        "grid": [
+          4,
+          4
+        ],
+        "frames": 16,
+        "blending": "additive"
+      }
+    },
+    {
+      "name": "fx-ice_burst",
+      "endpoint": "generations",
+      "inputs": [],
+      "size": "1024x1024",
+      "quality": "high",
+      "prompt": "A 4 by 4 grid of 16 animation frames of ice crystals erupting from the ground with frost mist, read left to right then top to bottom: the effect appears, peaks around frame 6 and fades out by frame 16.\n\nEvery frame centred in its equal square cell, same scale and same centre in every cell, generous empty space around the effect inside each cell.\n\nVideo-game visual effect in a premium HD-2D style: bright white-hot core, saturated body colour, crisp pixel-art clusters on the edges.\n\nPure black (#000000) background (the game adds the effect with additive blending), no gradient, no vignette.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "fx": "ice_burst",
+        "grid": [
+          4,
+          4
+        ],
+        "frames": 16,
+        "blending": "additive"
+      }
+    },
+    {
+      "name": "fx-arcane_sigil",
+      "endpoint": "generations",
+      "inputs": [],
+      "size": "1024x1024",
+      "quality": "high",
+      "prompt": "A 4 by 4 grid of 16 animation frames of a rotating magenta arcane sigil circle with runes, seen from the front, read left to right then top to bottom: the effect appears, peaks around frame 6 and fades out by frame 16.\n\nEvery frame centred in its equal square cell, same scale and same centre in every cell, generous empty space around the effect inside each cell.\n\nVideo-game visual effect in a premium HD-2D style: bright white-hot core, saturated body colour, crisp pixel-art clusters on the edges.\n\nPure black (#000000) background (the game adds the effect with additive blending), no gradient, no vignette.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "fx": "arcane_sigil",
+        "grid": [
+          4,
+          4
+        ],
+        "frames": 16,
+        "blending": "additive"
+      }
+    },
+    {
+      "name": "fx-heal_bloom",
+      "endpoint": "generations",
+      "inputs": [],
+      "size": "1024x1024",
+      "quality": "high",
+      "prompt": "A 4 by 4 grid of 16 animation frames of a soft green-gold healing bloom of light petals rising, read left to right then top to bottom: the effect appears, peaks around frame 6 and fades out by frame 16.\n\nEvery frame centred in its equal square cell, same scale and same centre in every cell, generous empty space around the effect inside each cell.\n\nVideo-game visual effect in a premium HD-2D style: bright white-hot core, saturated body colour, crisp pixel-art clusters on the edges.\n\nPure black (#000000) background (the game adds the effect with additive blending), no gradient, no vignette.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "fx": "heal_bloom",
+        "grid": [
+          4,
+          4
+        ],
+        "frames": 16,
+        "blending": "additive"
+      }
+    },
+    {
+      "name": "fx-lightning_strike",
+      "endpoint": "generations",
+      "inputs": [],
+      "size": "1024x1024",
+      "quality": "high",
+      "prompt": "A 4 by 4 grid of 16 animation frames of a forked lightning strike hitting the ground with a flash, read left to right then top to bottom: the effect appears, peaks around frame 6 and fades out by frame 16.\n\nEvery frame centred in its equal square cell, same scale and same centre in every cell, generous empty space around the effect inside each cell.\n\nVideo-game visual effect in a premium HD-2D style: bright white-hot core, saturated body colour, crisp pixel-art clusters on the edges.\n\nPure black (#000000) background (the game adds the effect with additive blending), no gradient, no vignette.\n\nNo text, no letters, no numbers, no frame borders, no grid lines, no labels, no watermark.",
+      "meta": {
+        "fx": "lightning_strike",
+        "grid": [
+          4,
+          4
+        ],
+        "frames": 16,
+        "blending": "additive"
+      }
+    }
+  ]
+}

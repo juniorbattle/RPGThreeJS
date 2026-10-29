@@ -1,16 +1,18 @@
 {
-  "status": "DEMO_FINISH_LINE_SET",
-  "runStartedAt": "2026-10-26T02:54:59Z",
-  "runEndedAt": "2026-10-26T02:57:01Z",
-  "activeTask": "DEMO_FINISH_LINE_OD_2026_10_25_C",
-  "activePhase": "TRACK_B_UNIT_LIVELINESS_NEXT",
-  "activeSubtask": "Décision enregistrée : l'opérateur compose les effets, protocole interactif allégé, trois chantiers (effets, dynamisme, musique)",
+  "status": "COMBAT_HD2D_PORTED_OPERATOR_REVIEW",
+  "runStartedAt": "2026-10-29T11:22:00Z",
+  "runEndedAt": "2026-10-29T11:33:34Z",
+  "activeTask": "DEMO_FINISH_LINE_OD_2026_10_29_A",
+  "activePhase": "COMBAT_HD2D_ON_DEV",
+  "activeSubtask": "Refonte HD-2D de la session cloud portée sur dev : effets procéduraux seuls, sons du contrat",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "lastPushedCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "completedThisRun": [
-    "OD-2026-10-25-C enregistrée : docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
-    "Registre des décisions, AGENTS.md, MULTI_AGENT_PROTOCOL §3, décision VFX, mode d’emploi du Composer et plan de démo mis à jour"
+    "OD-2026-10-29-A enregistrée",
+    "Branche claude/combat-scenes-pixel-art-1v60j4 fusionnée dans dev (8 conflits du runtime résolus en gardant clavier, campagne et sons de dev)",
+    "Mouvements (bond, téléportation, dash) branchés sur les recettes procédurales",
+    "Sons synthétisés et ambiance débranchés"
   ],
   "filesChanged": [
     "docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
@@ -24,38 +26,45 @@
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
   ],
   "testsRun": [
+    "npm test",
+    "npx tsc --noEmit",
+    "npm run build",
     "contracts:validate",
-    "LOCKED baseline gate",
-    "git diff --check"
+    "vfx:validate-published",
+    "LOCKED gate",
+    "Chromium : combat réel Bois-Clair et route forestière"
   ],
   "testsPassed": [
-    "contracts:validate PASS",
-    "LOCKED gate vide",
-    "git diff --check propre"
+    "npm test : 160 fichiers vitest, puis node:test 26/26",
+    "tsc PASS",
+    "build PASS",
+    "contracts PASS",
+    "registre PASS",
+    "Chromium : arène, unités pixel, clavier, ciblage, recettes frappe lourde et ultime, sans erreur console"
   ],
   "testsRemaining": [
-    "Revue artistique des effets par l'opérateur (chantier A)"
+    "Rythme réel des actions et des ultimes sur GPU, panneau visible",
+    "Revue artistique opérateur"
   ],
   "blockers": [],
   "remainingWork": [
-    "Chantier A : effets d’action composés par l’opérateur (34 actions, puis attack, item, K.O., critique, generic_hit)",
-    "Chantier B : dynamisme des unités (B1 respiration, B2 réactions visibles ; B3 frames au choix de l’opérateur)",
-    "Chantier C : musique, après amendement set 1.11.0",
-    "Option QA « Tous les héros QA » : 12 unités pour 8 cases, lancement bloqué (constat, non corrigé)",
-    "Gelés jusqu’à la fin des chantiers : pilote Alistair, finition Bois-Clair, nouveaux systèmes, rééquilibrage, refonte d’art"
+    "Unités atténuées invisibles en mode ciblage dans l’arène forestière (défaut de la branche, Bois-Clair correct)",
+    "Chantier C : amendement set 1.11.0 (musique, sons synthétisés, ambiance, cadrage)",
+    "Mission d’art locale (44 images) et passe de performance GPU réelle : au choix de l’opérateur",
+    "Retrait des assets du Combat Stage devenus inutiles : accord de l’opérateur requis",
+    "Option QA « Tous les héros QA » / stageqa : déploiement bloqué (constat préexistant)"
   ],
-  "nextAction": "Chantier B1 d'OD-2026-10-25-C (Claude) : respiration légère des unités au repos en vue tactique et dans le Stage, décalée par unité, coupée en mouvement réduit, présentation seulement ; puis B2 (réactions existantes visibles en vue tactique). En parallèle, l'opérateur compose les effets d'action dans le lab (chantier A).",
+  "nextAction": "Revue en jeu de l'opérateur de la présentation HD-2D portée sur dev (arènes, unités pixel animées, caméra d'action, effets procéduraux) ; corriger d'abord les unités atténuées invisibles dans l'arène forestière en mode ciblage (défaut hérité de la branche). Ensuite chantier C : amendement set 1.11.0 (musique, sons synthétisés, ambiance, cadrage du Stage remplacé).",
   "taskQueue": [
-    "Chantier B1 d'OD-2026-10-25-C (Claude) : respiration légère des unités au repos en vue tactique et dans le Stage, décalée par unité, coupée en mouvement réduit, présentation seulement ; puis B2 (réactions existantes visibles en vue tactique). En parallèle, l'opérateur compose les effets d'action dans le lab (chantier A).",
-    "Chantier C : amendement set 1.11.0 pour la musique (tâche dédiée approuvée par l'opérateur), puis 4 ou 5 pistes choisies par l'opérateur, fondu par contexte, volume et coupure séparés.",
+    "Revue en jeu de l'opérateur de la présentation HD-2D portée sur dev (arènes, unités pixel animées, caméra d'action, effets procéduraux) ; corriger d'abord les unités atténuées invisibles dans l'arène forestière en mode ciblage (défaut hérité de la branche). Ensuite chantier C : amendement set 1.11.0 (musique, sons synthétisés, ambiance, cadrage du Stage remplacé).",
     "Playtest PC de l'opérateur, liste de corrections, démo figée ; mobile seulement si l'opérateur le veut."
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_DOCS_ONLY_NO_CONTRACT_CHANGE",
-  "runId": "claude-finish-line-20261026T0255Z",
+  "contractComplianceStatus": "PASS_PRESENTATION_ONLY_STAGE_FRAMING_TO_CLARIFY_IN_1_11_0",
+  "runId": "claude-combat-hd2d-port-20261029T1122Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-10-26T02:57:01Z",
-  "heartbeat": "2026-10-26T02:57:01Z",
+  "lastHeartbeat": "2026-10-29T11:33:34Z",
+  "heartbeat": "2026-10-29T11:33:34Z",
   "wip": null,
   "uncommittedWork": [],
   "providerTasksPending": [],
@@ -63,10 +72,10 @@
   "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "previousRun": {
-    "runId": "claude-vfx-movement-boss-20261026T0147Z",
-    "runEndedAt": "2026-10-26T01:54:42Z",
-    "activeTask": "COMBAT_SKILL_ACTIONS_VFX",
-    "commit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2"
+    "runId": "claude-finish-line-20261026T0255Z",
+    "runEndedAt": "2026-10-26T02:57:01Z",
+    "activeTask": "DEMO_FINISH_LINE_OD_2026_10_25_C",
+    "commit": "f4a3d25242c518ec4f60a32e8a30a2658000caf8"
   },
   "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
   "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
@@ -549,16 +558,16 @@
     "rule": "Kept: protocol fields, run identity, current authority, open/deferred items and current scopes; QA jobs registered after the set 1.10.0 amendment commit. Everything else is unchanged in the snapshot."
   },
   "live": {
-    "lastHeartbeat": "2026-10-26T02:57:01Z",
-    "runId": "claude-finish-line-20261026T0255Z",
+    "lastHeartbeat": "2026-10-29T11:33:34Z",
+    "runId": "claude-combat-hd2d-port-20261029T1122Z",
     "agent": "claude",
-    "status": "DEMO_FINISH_LINE_SET",
+    "status": "COMBAT_HD2D_PORTED_OPERATOR_REVIEW",
     "wip": null,
-    "nextAction": "Chantier B1 d'OD-2026-10-25-C (Claude) : respiration légère des unités au repos en vue tactique et dans le Stage, décalée par unité, coupée en mouvement réduit, présentation seulement ; puis B2 (réactions existantes visibles en vue tactique). En parallèle, l'opérateur compose les effets d'action dans le lab (chantier A).",
-    "runEndedAt": "2026-10-26T02:57:01Z",
+    "nextAction": "Revue en jeu de l'opérateur de la présentation HD-2D portée sur dev (arènes, unités pixel animées, caméra d'action, effets procéduraux) ; corriger d'abord les unités atténuées invisibles dans l'arène forestière en mode ciblage (défaut hérité de la branche). Ensuite chantier C : amendement set 1.11.0 (musique, sons synthétisés, ambiance, cadrage du Stage remplacé).",
+    "runEndedAt": "2026-10-29T11:33:34Z",
     "writerStopped": true,
-    "activeTask": "DEMO_FINISH_LINE_OD_2026_10_25_C",
-    "activeSubtask": "Décision enregistrée : l'opérateur compose les effets, protocole interactif allégé, trois chantiers (effets, dynamisme, musique)",
+    "activeTask": "DEMO_FINISH_LINE_OD_2026_10_29_A",
+    "activeSubtask": "Refonte HD-2D de la session cloud portée sur dev : effets procéduraux seuls, sons du contrat",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,
@@ -979,9 +988,9 @@
   "demoFinishLine20261025": {
     "decision": "docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
     "tracks": {
-      "A": "OPERATOR_VFX_IN_LAB",
-      "B": "CLAUDE_UNIT_LIVELINESS_NEXT",
-      "C": "MUSIC_NEEDS_AMENDMENT_1_11_0"
+      "A": "PROCEDURAL_FX_REVIEW",
+      "B": "PIXEL_ANIMATIONS_DELIVERED_REVIEW",
+      "C": "MUSIC_SYNTH_AMBIENCE_NEED_AMENDMENT_1_11_0"
     },
     "frozen": [
       "alistair-pilot",

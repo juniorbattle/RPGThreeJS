@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Decor gallery</title>
+<style>body{margin:0;background:#2b3138;color:#ddd;font:12px sans-serif}.row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;padding:10px}h2{margin:8px 10px 0;font-size:13px}canvas{image-rendering:pixelated;background:#55606a}</style></head>
+<body><div id="out"></div>
+<script type="module">
+import { ARENA_THEMES } from '/src/combat/arena/arenaThemes.ts';
+import { drawTree, drawPine, drawDeadTree, drawBush, drawFern, drawGrass } from '/src/combat/arena/arenaSprites.ts';
+const params = new URLSearchParams(location.search);
+const scale = Number(params.get('scale') || 2);
+const out = document.getElementById('out');
+for (const theme of Object.values(ARENA_THEMES)) {
+  if (params.get('theme') && params.get('theme') !== theme.id) continue;
+  const h = document.createElement('h2'); h.textContent = theme.id; out.appendChild(h);
+  const row = document.createElement('div'); row.className = 'row'; out.appendChild(row);
+  const sprites = [
+    ...[0, 1, 2, 3, 4].map((s) => drawTree(theme.palette, s)),
+    ...[0, 1, 2, 3].map((s) => drawPine(theme.palette, s)),
+    drawDeadTree(theme.palette, 0, false), drawDeadTree(theme.palette, 1, true),
+    ...[0, 1, 2].map((s) => drawBush(theme.palette, s)), ...[0, 1].map((s) => drawFern(theme.palette, s)), drawGrass(theme.palette, 0),
+  ];
+  for (const sprite of sprites) {
+    const c = sprite.canvas.toCanvas();
+    const big = document.createElement('canvas'); big.width = c.width * scale; big.height = c.height * scale;
+    const ctx = big.getContext('2d'); ctx.imageSmoothingEnabled = false; ctx.drawImage(c, 0, 0, big.width, big.height);
+    row.appendChild(big);
+  }
+}
+document.body.dataset.ready = '1';
+</script></body></html>

@@ -52,5 +52,6 @@ Baseline for this index: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Repo
 | [Remaining legs audit](traversal-remaining-legs-audit-1.md) | Earlier evidence and proposed future design; its gallery remains under manual review, and its one-shot tools were retired | [Current-source leg audit](../traversal/LEGS_ROADMAP.md) |
 | [Final convergence](../TRAVERSAL_T0_FINAL_CONVERGENCE.md) | Pre-Lot-A historical report with obsolete production-disabled and road-combat claims | T0 contract |
 | [Full demo route integration](demo-1h-r6-full-route-integration.md) | Prior campaign reachability/save proof | [Current status](../project/CURRENT_STATUS.md) and current source |
+| [Combat HD-2D 1](combat-hd2d-1.md) | Procedural arenas, pixel units, in-arena spotlight, procedural FX/SFX (review) | [Combat HD-2D contract](../combat/COMBAT_HD2D.md) |
 
 Other reports under this directory are historical task records. This audit inventories them, but does not certify their current claims or classify unrelated evidence as removable. Consult the owning source and canonical docs before using an older report to set scope.
