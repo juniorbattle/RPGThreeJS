@@ -67,4 +67,15 @@ describe('procedural combat FX recipes', () => {
       expect(resolveFxRecipe(id).magic, id).toBe(true);
     }
   });
+
+  it('gives every boss signature (tier 6) a charge before its cinematic strike', () => {
+    for (const [key, presentation] of Object.entries(SKILL_PRESENTATION)) {
+      if (presentation?.visualTier !== 6 || presentation.vfxPreset === 'caster_roar') continue; // the roar preset is shared with a 3 AP cry
+      const recipe = resolveFxRecipe(presentation.vfxPreset, VFX_PRESETS[presentation.vfxPreset]?.tags ?? []);
+      expect(recipe.cinematic, key).toBe(true);
+      const charge = recipe.steps.some((step) => step.at === 0 && (step.kind === 'circle' || step.kind === 'pulse'));
+      expect(charge, `${key} charges`).toBe(true);
+      expect(recipe.impactAt, key).toBeGreaterThan(0.4);
+    }
+  });
 });

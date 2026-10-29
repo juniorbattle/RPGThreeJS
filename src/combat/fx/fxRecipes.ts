@@ -409,6 +409,23 @@ function cinematicHit(at: number, element: FxElement, scale = 1.3): Steps {
   ];
 }
 
+/**
+ * Boss signature from a family recipe: the charge (seal for spells, battle
+ * aura for martial blows) plays first, the family's strike follows and the
+ * cinematic punctuation lands on its impact.
+ */
+function signature(base: FxRecipe, element: FxElement, magic: boolean, lead = 0.55): FxRecipe {
+  const impactAt = base.impactAt + lead;
+  return {
+    ...base,
+    cinematic: true,
+    magic,
+    impactAt,
+    duration: base.duration + lead,
+    steps: [...charge(element, lead - 0.05, magic), ...base.steps.map((step) => ({ ...step, at: step.at + lead })), ...cinematicHit(impactAt, element)],
+  };
+}
+
 const ULTIMATES: Record<string, () => FxRecipe> = {
   ultimate_lion_surge: () => ({
     id: 'ultimate_lion_surge', element: 'gold', impactAt: 0.95, duration: 2.0, cinematic: true,
@@ -571,9 +588,12 @@ const ULTIMATES: Record<string, () => FxRecipe> = {
   },
   boss_apocalypse_v2: () => ({ ...areaFireFamily('boss_apocalypse_v2', 1.5, true), steps: [...charge('fire', 0.5), ...areaFireFamily('x', 1.5).steps.map((step) => ({ ...step, at: step.at + 0.5 })), ...cinematicHit(0.92, 'fire')], impactAt: 0.92, duration: 2.1 }),
   boss_execution: () => ({ ...slashFamily('boss_execution', 'blood', 2.4, 'heavy_slash', 2), cinematic: true, steps: [...charge('blood', 0.5, false), ...slashFamily('x', 'blood', 2.4, 'heavy_slash', 2).steps.map((step) => ({ ...step, at: step.at + 0.55 })), ...cinematicHit(0.73, 'blood')], impactAt: 0.73, duration: 1.6 }),
-  boss_flurry: () => ({ ...slashFamily('boss_flurry', 'steel', 1.6, 'slash', 5), cinematic: true }),
-  boss_inferno: () => areaFireFamily('boss_inferno', 1.4, true),
-  boss_titan_slam: () => quakeFamily('boss_titan_slam', 1.5, true),
+  boss_flurry: () => signature(slashFamily('boss_flurry', 'steel', 1.6, 'slash', 5), 'steel', false),
+  boss_inferno: () => signature(areaFireFamily('boss_inferno', 1.4), 'fire', true),
+  boss_titan_slam: () => signature(quakeFamily('boss_titan_slam', 1.5), 'earth', false),
+  boss_quake: () => signature(quakeFamily('boss_quake', 1.2), 'earth', false),
+  boss_slam: () => signature(quakeFamily('boss_slam', 1.1), 'earth', false),
+  skill_boss_inferno: () => signature(areaFireFamily('skill_boss_inferno', 1.4), 'fire', true),
 };
 
 // ------------------------------------------------------------ explicit presets
@@ -613,8 +633,6 @@ const EXPLICIT: Record<string, () => FxRecipe> = {
   root_vines: () => rootFamily('root_vines'),
   frost_bind: () => iceFamily('frost_bind'),
   skill_ice_pillar: () => iceFamily('skill_ice_pillar', 1.3),
-  boss_quake: () => quakeFamily('boss_quake', 1.2, true),
-  boss_slam: () => quakeFamily('boss_slam', 1.1),
   leap_impact: () => leapFamily('leap_impact'),
   teleport_burst: () => moveFamily('teleport_burst', 'arcane'),
   move_smoke_burst: () => moveFamily('move_smoke_burst', 'smoke'),
@@ -624,7 +642,6 @@ const EXPLICIT: Record<string, () => FxRecipe> = {
   skill_leaf_sanctuary: () => healFamily('skill_leaf_sanctuary', 'nature', 1.2),
   skill_fire_impact: () => areaFireFamily('skill_fire_impact'),
   skill_fire_smoke: () => ({ id: 'skill_fire_smoke', element: 'fire', impactAt: 0.02, duration: 1.2, projectile: { at: 0.05, from: 'sourceChest', to: 'point', element: 'fire', speed: 11, size: 0.5, arc: 1.4, sfx: 'whoosh' }, steps: explosion(0, 'fire', 1.2, 'point', { afterHit: true }) }),
-  skill_boss_inferno: () => areaFireFamily('skill_boss_inferno', 1.4),
   skill_wind_slash_swirl: () => windFamily('skill_wind_slash_swirl'),
   skill_arcane_vortex: () => arcaneFamily('skill_arcane_vortex', 1.3),
   skill_arcane_orbit: () => barrierFamily('skill_arcane_orbit', 'arcane'),
