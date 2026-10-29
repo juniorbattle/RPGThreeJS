@@ -5,7 +5,7 @@ description: "Use before implementing and before declaring any RPGThreeJS task c
 
 # Contracts compliance
 
-Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
+Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
 
 ## Orchestration (OD-2026-10-02-C)
 
@@ -14,7 +14,7 @@ The orchestrator applies this skill before implementation and task completion. I
 ## Gates (run them, do not assume)
 
 ```
-git --no-optional-locks diff --exit-code da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md   # must print nothing
+git --no-optional-locks diff --exit-code a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md   # must print nothing
 git --no-optional-locks status --short -- docs/contracts docs/game/GAME_CONSTITUTION.md                  # must print nothing
 npm run contracts:validate                                                                              # 8 contracts, 8 historical IDs, 0 active videos
 ```
@@ -29,7 +29,7 @@ The validator checks the manifest identity and LOCKED status, each contract path
 | campaign, dialogue, nodes, choices, saves, progression, refuges, loot | CAMPAIGN_AND_STATE |
 | tableau, NarrativeStage, retired cinematic identities, Journey, fallback, audio | PRESENTATION_AND_MEDIA |
 | POI map navigation, expedition state, mobile elites, Combat or retreat, refuge reuse | TRAVERSAL (historical contract ID; POI map doctrine). `docs/traversal/` and physical road criteria are historical; persisted expedition state also CAMPAIGN_AND_STATE (Lot E), elite combat COMBAT_AND_VFX (Lot E) |
-| tactical combat, Combat Stage, VFX | COMBAT_AND_VFX |
+| tactical combat, arena presentation (Combat Stage retired), VFX | COMBAT_AND_VFX |
 | UI, layout, focus, keyboard, reduced motion | UI_AND_ACCESSIBILITY |
 | tests, QA evidence, content authoring, branches, `main` | AUTHORING_AND_QA and AUTONOMOUS_WORK_PROTOCOL |
 
@@ -49,7 +49,7 @@ For every changed file ask:
 - Zero active video/hold/preload/shipped MP4; retain eight historical IDs and all authored moments through static dialogue/tableau. Fallback preserves agency and never replays resolved content.
 - No invented canon: dialogue, choices, stages, outcomes, rewards. Presentation briefs may not mint canon.
 - No run generates or polls video, keyframes or illustrated cinematic candidates (no MiniMax), and none replaces or restores an MP4 (OD-2026-10-24-A).
-- Audio DEFERRED except the eight approved UI FX and the bounded 16-family combat candidates and audited events under OD-2026-10-19-B. T2 and T4 are retired as playable legs with durable IDs kept; T3 is not renumbered.
+- Audio: the eight approved UI FX, the bounded 16-family combat candidates and audited events (OD-2026-10-19-B), and since OD-2026-10-29-B code-generated music in five contexts (on by default, silent until the first real gesture), one synthesized ambience per combat biome and synthesized sources for the sixteen families, all under the single parent owner. Voices, a distinct Ultimate audio identity and video audio stay DEFERRED. T2 and T4 are retired as playable legs with durable IDs kept; T3 is not renumbered.
 - A `legacy*` name is not deletion authority: first list every reference (runtime, registry, manifest, styles, tools, tests, docs, evidence).
 - Autonomous writes go to `dev` or to a temporary branch created from it.
 
@@ -65,11 +65,11 @@ Then record: contracts read, contract set version, LOCKED rules impacted, and an
 
 ## Approved contract amendment boundary
 
-Current set1.10.0 derives from PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1 / OD-2026-10-24-A at the immutable baseline above; b1e8858 is the original historical lock. A dedicated operator-approved amendment records exact changed rules, task/decision and version, independent review, then establishes its committed baseline in a following operational commit. A normal task must not advance that baseline or edit a LOCKED contract. Its gate must remain empty. During an authorized amendment, inspect the exact approved diff rather than claim no rule changed. Read the current manifest version for every matrix. Manual visual findings reopen affected acceptance; an old PASS is historical, not a rebuttal.
+Current set1.11.0 derives from PRODUCTION-CONTRACTS-MUSIC-AUDIO-1 / OD-2026-10-29-B at the immutable baseline above (set1.10.0, PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1 / OD-2026-10-24-A at da69ec63, still governs cinematics); b1e8858 is the original historical lock. A dedicated operator-approved amendment records exact changed rules, task/decision and version, independent review, then establishes its committed baseline in a following operational commit. A normal task must not advance that baseline or edit a LOCKED contract. Its gate must remain empty. During an authorized amendment, inspect the exact approved diff rather than claim no rule changed. Read the current manifest version for every matrix. Manual visual findings reopen affected acceptance; an old PASS is historical, not a rebuttal.
 
 ## Current retirement — OD-2026-10-24-A
 
-Set 1.10.0 supersedes earlier cinematic production directions, including the offline illustrated permissions of sets 1.8.0 (OD-2026-10-21-A) and 1.9.0 (OD-2026-10-23-B), whose candidates and evidence stay as history: zero active video, hold, preload or shipped MP4; eight historical IDs and archived media and proof preserved; no illustrated or video generation or pilot generalization. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5.
+Set 1.10.0 supersedes earlier cinematic production directions, including the offline illustrated permissions of sets 1.8.0 (OD-2026-10-21-A) and 1.9.0 (OD-2026-10-23-B), whose candidates and evidence stay as history: zero active video, hold, preload or shipped MP4; eight historical IDs and archived media and proof preserved; no illustrated or video generation or pilot generalization. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa.
 
 ## Current direction — OD-2026-10-24-B
 

@@ -1,12 +1,12 @@
-# Refonte HD-2D du combat portée sur dev — revue de l’opérateur
+# Contrats set 1.11.0 approuvés — musique ensuite
 
-Run claude-combat-hd2d-port-20261029T1122Z (agent claude, session interactive). [OD-2026-10-29-A](DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md#mise-à-jour--od-2026-10-29-a-29-octobre-2026).
+Run claude-music-amendment-20261029T2307Z (agent claude, session interactive). [OD-2026-10-29-B](MUSIC_AUDIO_OPERATOR_DECISION_2026-10-29.md).
 
-La refonte de la session cloud (arènes HD-2D, unités pixel animées, caméra d'action, Combat Stage retiré) est sur dev. Le combat joue les recettes procédurales seules ; les sons restent ceux du contrat. Suite complète, build, contrats et registre verts. Les unités atténuées restent lisibles sur tout sol (run claude-forest-dim-fix-20261029T1226Z).
+Amendement musique et audio revu, approuvé par l'opérateur et commité ; baseline immuable `a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa`. Musique générée par code (5 contextes, moteur RPGCards adapté), ambiance par biome, sons synthétisés ; Combat Stage retiré au profit de l'arène.
 
-Contrats 1.10.0 et baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5` inchangés. Scheduler PAUSED. `main` protégé.
+Scheduler PAUSED. `main` protégé.
 
-UNE prochaine action : Revue en jeu de l'opérateur de la présentation HD-2D sur dev (arènes, unités pixel animées, caméra d'action, effets procéduraux). Ensuite chantier C : amendement set 1.11.0 (musique, sons synthétisés, ambiance, cadrage du Stage remplacé).
+UNE prochaine action : Chantier C, musique (OD-2026-10-29-B, set 1.11.0) : adapter le moteur musical de RPGCards, le brancher sur le propriétaire audio parent (bus musique et ambiance, armée par défaut, silencieuse avant le premier geste), composer les 5 contextes (titre, carte, dialogue et refuge, combat, boss) et l'ambiance des 3 biomes, réglages musique sur chaque écran. En parallèle : revue en jeu de l'opérateur de la présentation HD-2D.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

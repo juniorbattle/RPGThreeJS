@@ -1,15 +1,17 @@
 {
-  "status": "COMBAT_HD2D_PORTED_OPERATOR_REVIEW",
-  "runStartedAt": "2026-10-29T12:26:00Z",
-  "runEndedAt": "2026-10-29T12:33:19Z",
-  "activeTask": "DEMO_FINISH_LINE_OD_2026_10_29_A",
-  "activePhase": "COMBAT_HD2D_ON_DEV",
-  "activeSubtask": "Atténuation lisible des unités pixel (défaut de la route forestière corrigé)",
+  "status": "CONTRACT_SET_1_11_0_APPROVED_MUSIC_NEXT",
+  "runStartedAt": "2026-10-29T22:20:00Z",
+  "runEndedAt": "2026-10-29T23:08:55Z",
+  "activeTask": "MUSIC_OD_2026_10_29_B",
+  "activePhase": "AMENDMENT_BASELINE_MOVED",
+  "activeSubtask": "Amendement set 1.11.0 revu, approuvé, commité (a4ff05b2) ; baseline déplacée",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "lastPushedCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "completedThisRun": [
-    "Unités atténuées lisibles sur tout sol : le shader pixel assombrit et désature au lieu de rendre transparent (pixelFocusResponse)"
+    "Amendement set 1.11.0 rédigé, revu deux fois par contracts-guardian, approuvé par l’opérateur (« J’approuve »), commité a4ff05b2",
+    "Reprise du moteur RPGCards approuvée (« Reprendre et adapter »)",
+    "Baseline déplacée dans AGENTS.md, protocole, skills, prompt récurrent et statut"
   ],
   "filesChanged": [
     "docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
@@ -23,17 +25,14 @@
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
   ],
   "testsRun": [
-    "npm test",
-    "npx tsc --noEmit",
-    "npm run build",
     "contracts:validate",
-    "vfx:validate-published",
-    "LOCKED gate",
-    "Chromium : combat réel Bois-Clair et route forestière"
+    "LOCKED gate vs a4ff05b2",
+    "git diff --check"
   ],
   "testsPassed": [
-    "PixelSpriteMaterial.test.ts et UnitFocusController : 14/14",
-    "Chromium : route forestière et Bois-Clair en mode ciblage, unités atténuées lisibles, sans erreur console"
+    "contracts:validate PASS",
+    "gate vide",
+    "diff --check propre"
   ],
   "testsRemaining": [
     "Rythme réel des actions et des ultimes sur GPU, panneau visible",
@@ -41,22 +40,22 @@
   ],
   "blockers": [],
   "remainingWork": [
-    "Chantier C : amendement set 1.11.0 (musique, sons synthétisés, ambiance, cadrage)",
+    "Chantier C : musique générée par code (5 contextes), ambiance des biomes, sons synthétisés à départager à l’écoute",
     "Mission d’art locale (44 images) et passe de performance GPU réelle : au choix de l’opérateur",
     "Retrait des assets du Combat Stage devenus inutiles : accord de l’opérateur requis",
     "Option QA « Tous les héros QA » / stageqa : déploiement bloqué (constat préexistant)"
   ],
-  "nextAction": "Revue en jeu de l'opérateur de la présentation HD-2D sur dev (arènes, unités pixel animées, caméra d'action, effets procéduraux). Ensuite chantier C : amendement set 1.11.0 (musique, sons synthétisés, ambiance, cadrage du Stage remplacé).",
+  "nextAction": "Chantier C, musique (OD-2026-10-29-B, set 1.11.0) : adapter le moteur musical de RPGCards, le brancher sur le propriétaire audio parent (bus musique et ambiance, armée par défaut, silencieuse avant le premier geste), composer les 5 contextes (titre, carte, dialogue et refuge, combat, boss) et l'ambiance des 3 biomes, réglages musique sur chaque écran. En parallèle : revue en jeu de l'opérateur de la présentation HD-2D.",
   "taskQueue": [
-    "Revue en jeu de l'opérateur de la présentation HD-2D sur dev (arènes, unités pixel animées, caméra d'action, effets procéduraux). Ensuite chantier C : amendement set 1.11.0 (musique, sons synthétisés, ambiance, cadrage du Stage remplacé).",
+    "Chantier C, musique (OD-2026-10-29-B, set 1.11.0) : adapter le moteur musical de RPGCards, le brancher sur le propriétaire audio parent (bus musique et ambiance, armée par défaut, silencieuse avant le premier geste), composer les 5 contextes (titre, carte, dialogue et refuge, combat, boss) et l'ambiance des 3 biomes, réglages musique sur chaque écran. En parallèle : revue en jeu de l'opérateur de la présentation HD-2D.",
     "Playtest PC de l'opérateur, liste de corrections, démo figée ; mobile seulement si l'opérateur le veut."
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_PRESENTATION_ONLY_STAGE_FRAMING_TO_CLARIFY_IN_1_11_0",
-  "runId": "claude-forest-dim-fix-20261029T1226Z",
+  "contractComplianceStatus": "PASS_SET_1_11_0_BASELINE_a4ff05b2",
+  "runId": "claude-music-amendment-20261029T2307Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-10-29T12:33:19Z",
-  "heartbeat": "2026-10-29T12:33:19Z",
+  "lastHeartbeat": "2026-10-29T23:08:55Z",
+  "heartbeat": "2026-10-29T23:08:55Z",
   "wip": null,
   "uncommittedWork": [],
   "providerTasksPending": [],
@@ -64,10 +63,10 @@
   "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "previousRun": {
-    "runId": "claude-combat-hd2d-port-20261029T1122Z",
-    "runEndedAt": "2026-10-29T11:33:34Z",
+    "runId": "claude-forest-dim-fix-20261029T1226Z",
+    "runEndedAt": "2026-10-29T12:33:19Z",
     "activeTask": "DEMO_FINISH_LINE_OD_2026_10_29_A",
-    "commit": "a579323a"
+    "commit": "74df4ec9"
   },
   "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
   "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
@@ -550,16 +549,16 @@
     "rule": "Kept: protocol fields, run identity, current authority, open/deferred items and current scopes; QA jobs registered after the set 1.10.0 amendment commit. Everything else is unchanged in the snapshot."
   },
   "live": {
-    "lastHeartbeat": "2026-10-29T12:33:19Z",
-    "runId": "claude-forest-dim-fix-20261029T1226Z",
+    "lastHeartbeat": "2026-10-29T23:08:55Z",
+    "runId": "claude-music-amendment-20261029T2307Z",
     "agent": "claude",
-    "status": "COMBAT_HD2D_PORTED_OPERATOR_REVIEW",
+    "status": "CONTRACT_SET_1_11_0_APPROVED_MUSIC_NEXT",
     "wip": null,
-    "nextAction": "Revue en jeu de l'opérateur de la présentation HD-2D sur dev (arènes, unités pixel animées, caméra d'action, effets procéduraux). Ensuite chantier C : amendement set 1.11.0 (musique, sons synthétisés, ambiance, cadrage du Stage remplacé).",
-    "runEndedAt": "2026-10-29T12:33:19Z",
+    "nextAction": "Chantier C, musique (OD-2026-10-29-B, set 1.11.0) : adapter le moteur musical de RPGCards, le brancher sur le propriétaire audio parent (bus musique et ambiance, armée par défaut, silencieuse avant le premier geste), composer les 5 contextes (titre, carte, dialogue et refuge, combat, boss) et l'ambiance des 3 biomes, réglages musique sur chaque écran. En parallèle : revue en jeu de l'opérateur de la présentation HD-2D.",
+    "runEndedAt": "2026-10-29T23:08:55Z",
     "writerStopped": true,
-    "activeTask": "DEMO_FINISH_LINE_OD_2026_10_29_A",
-    "activeSubtask": "Atténuation lisible des unités pixel (défaut de la route forestière corrigé)",
+    "activeTask": "MUSIC_OD_2026_10_29_B",
+    "activeSubtask": "Amendement set 1.11.0 revu, approuvé, commité (a4ff05b2) ; baseline déplacée",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,
@@ -982,7 +981,7 @@
     "tracks": {
       "A": "PROCEDURAL_FX_REVIEW",
       "B": "PIXEL_ANIMATIONS_DELIVERED_REVIEW",
-      "C": "MUSIC_SYNTH_AMBIENCE_NEED_AMENDMENT_1_11_0"
+      "C": "MUSIC_AMENDMENT_APPROVED_IMPLEMENTATION_NEXT"
     },
     "frozen": [
       "alistair-pilot",

@@ -13,7 +13,7 @@ Contract: UI_AND_ACCESSIBILITY (`docs/contracts/UI_AND_ACCESSIBILITY.md`), plus 
 
 ## Invariants
 
-Digest of the contract at set 1.10.0 (baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5`); the contract text wins on any difference.
+Digest of the contract at set 1.11.0 (baseline `a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa`); the contract text wins on any difference.
 
 - Shared palette: deep navy, brass, warm gold, ivory. Keep the UI compact so the world, tableau or battlefield stays dominant.
 - Status text and numbers are read from runtime truth. Never display made-up combat values or resource totals, or an action that is not really enabled.
@@ -23,6 +23,7 @@ Digest of the contract at set 1.10.0 (baseline `da69ec63bff1bc35f4b2b03feffe94cb
 - POI map (OD-2026-10-13-D, OD-2026-10-15-A/B): POI roles and states (available, active, resolved, neutralized, locked, reusable refuge) and mobile threats (position, next-turn area, tendency, contested routes) are shown with text as well as colour. Wait and Combat-or-retreat are explicit intents; no modal, gesture, hover, zoom or selection owns movement, reward, branch, threat tick or resolution. Restore safe map focus after cancellation, retreat and combat. Map targets are at least 44px; paths, labels and threat indicators stay separated at 1366x768, 620px and 390x844.
 - A media fallback keeps the player's agency and never depends on motion to carry information.
 - Sound (OD-2026-10-18-F, OD-2026-10-19-B): default silence, accessible enable, mute and volume, real gesture unlock, preferences outside gameplay saves, no cue on load, reload, restored preference or programmatic focus, and audio failure never blocks agency.
+- Music (OD-2026-10-29-B): music volume and mute on every settings surface where music plays, title included, keyboard reachable, labelled, state announced, focus restored. Music is on by default but armed only: nothing sounds before the first real gesture, even with a restored preference; un-muting is a gesture and resumes the current context. Music and ambience never carry information the player needs.
 
 ## Reduced motion model
 

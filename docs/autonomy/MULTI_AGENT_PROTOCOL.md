@@ -140,9 +140,9 @@ Waves: 1 is `handoff-governor`, `contracts-guardian`, `qa-evidence-runner`, `ui-
 
 ## 10. Compliance matrix
 
-Before declaring a task complete, record PASS or BLOCKED for each concerned row. Never complete a task with an unresolved contract conflict. Also record: contracts read, current manifest contractSetVersion (1.10.0 after OD-2026-10-24-A), LOCKED rules impacted, and confirmation that no LOCKED rule changed in a normal task. A dedicated operator-approved amendment records its exact authorized changes and committed immutable baseline.
+Before declaring a task complete, record PASS or BLOCKED for each concerned row. Never complete a task with an unresolved contract conflict. Also record: contracts read, current manifest contractSetVersion (1.11.0 after OD-2026-10-29-B), LOCKED rules impacted, and confirmation that no LOCKED rule changed in a normal task. A dedicated operator-approved amendment records its exact authorized changes and committed immutable baseline.
 
-Current immutable contract/constitution baseline: `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5`, the dedicated OD-2026-10-24-A cinematic-retirement amendment commit (set1.10.0). Original `b1e8858` remains historical. Use the Git gate in AGENTS.md/contracts-compliance; no normal task may move this baseline.
+Current immutable contract/constitution baseline: `a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa`, the dedicated OD-2026-10-29-B music and audio amendment commit (set1.11.0). The previous baseline `da69ec63` (set1.10.0, cinematic retirement) is historical. Original `b1e8858` remains historical. Use the Git gate in AGENTS.md/contracts-compliance; no normal task may move this baseline.
 
 | Row | Contract |
 | --- | --- |
@@ -181,4 +181,4 @@ The operator adopted the current instruction in [RECURRING_RUN_PROMPT.md](RECURR
 
 ## Current retirement — OD-2026-10-24-A
 
-Set1.10.0 supersedes earlier cinematic production directions: zero active video/hold/preload/shipped MP4, eight historical IDs and archived media/proof preserved. No illustrated/video generation or pilot generalization. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5.
+Set1.10.0 supersedes earlier cinematic production directions: zero active video/hold/preload/shipped MP4, eight historical IDs and archived media/proof preserved. No illustrated/video generation or pilot generalization. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa.

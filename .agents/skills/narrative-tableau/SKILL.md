@@ -15,7 +15,7 @@ Contracts: PRESENTATION_AND_MEDIA (tableau), CAMPAIGN_AND_STATE (canon and choic
 
 ## Invariants
 
-Digest of the contracts at set 1.10.0 (baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5`); the contract text wins on any difference.
+Digest of the contracts at set 1.11.0 (baseline `a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa`); the contract text wins on any difference.
 
 - Interactive narrative plays as a staged tableau: actors have an authored position, facing, look target, depth and focus, and are restaged when relational/dramatic readability requires it; a new speaker alone does not require a turn.
 - Keep each composition readable: at most four visible actors. Restage rather than cram.

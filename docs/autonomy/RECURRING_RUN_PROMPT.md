@@ -22,7 +22,7 @@ Préserver Alaric/climax, CharacterV2, familles de décor, tous IDs/V6, gains et
 
 AUTORITÉS ET EXCLUSIVITÉ
 
-Lis AGENTS.md, OPERATOR_DECISIONS.md, MULTI_AGENT_PROTOCOL.md puis constitution, manifeste et contrats concernés avec contracts-compliance. Set courant1.10.0, baseline immuable da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5 (amendement dédié de retrait cinématique OD-2026-10-24-A ; 0cb95135/set1.8.0 et f4aae63 historiques). Aucun contrat LOCKED modifié en tâche normale, aucune décision canonique/scope inventée ; main protégé.
+Lis AGENTS.md, OPERATOR_DECISIONS.md, MULTI_AGENT_PROTOCOL.md puis constitution, manifeste et contrats concernés avec contracts-compliance. Set courant 1.11.0, baseline immuable a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa (amendement dédié musique et audio OD-2026-10-29-B ; le set 1.10.0 da69ec63 reste en vigueur pour le cinéma) (amendement dédié de retrait cinématique OD-2026-10-24-A ; 0cb95135/set1.8.0 et f4aae63 historiques). Aucun contrat LOCKED modifié en tâche normale, aucune décision canonique/scope inventée ; main protégé.
 
 Préflight autonomy-handoff en lecture seule : verrou, activité Codex/Devin, Git/remote, état/handoff, WIP et reçus. Verrou exclusif atomique avant toute écriture. Arrêt sur verrou actif/ambigu ; stale seulement après105min ET agent/processus Git/build/QA associés arrêtés. Un quota dépassé ne prouve pas l’arrêt des workers. Un seul écrivain par working tree ; jamais reset/clean/checkout sur WIP. Sous verrou, fetch --prune et synchronisation non destructive sur dev selon le protocole. Préserve intégralement les jobs QA, leurs acceptations, les objets différés et les preuves historiques.
 

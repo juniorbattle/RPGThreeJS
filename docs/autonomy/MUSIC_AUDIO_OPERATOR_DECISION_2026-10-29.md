@@ -50,3 +50,5 @@ The operator's artistic acceptance of every track and cue stays separate. Nothin
 3. The amendment commit.
 4. A following operational commit that records its SHA as the immutable set 1.11.0 baseline.
 5. Runtime implementation.
+
+Reviewed amendment committed as `a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa`; this following operational checkpoint establishes it as the immutable set 1.11.0 baseline before runtime.

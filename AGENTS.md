@@ -5,7 +5,7 @@ RPGThreeJS is a narrative tactical RPG with an authored campaign (Vite, TypeScri
 ## Authority and reading order
 
 1. Explicit operator decisions: `docs/autonomy/OPERATOR_DECISIONS.md` and the files it links.
-2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.10.0: approved amendment `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / OD-2026-10-24-A, immutable baseline `da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5`. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
+2. `docs/game/GAME_CONSTITUTION.md` and the eight LOCKED contracts (`docs/contracts/README.md`, `contracts.manifest.json`, then every contract relevant to the task). Contract set 1.11.0: approved amendment `PRODUCTION-CONTRACTS-MUSIC-AUDIO-1` / OD-2026-10-29-B, immutable baseline `a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa`; set 1.10.0 (`PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / OD-2026-10-24-A, `da69ec63`) stays in force for cinematics. Original lock `PRODUCTION-CONTRACTS-LOCK-1` / `b1e8858` remains historical.
 3. Current source: it states what is implemented today.
 4. Canonical docs (`docs/project/`, `docs/content/`), then dated reports in `docs/reports/`. Reports are historical evidence, never doctrine. `docs/traversal/` records the retired physical Traversal and is historical.
 
@@ -13,12 +13,12 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 
 ## Red lines
 
-- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code da69ec63bff1bc35f4b2b03feffe94cbd9cad0d5 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
+- Never edit `docs/contracts/**` or `docs/game/GAME_CONSTITUTION.md` in a normal task. Gate (must print nothing): `git diff --exit-code a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
 - Presentation never creates or changes game truth (route, outcome, resource, save). Truth owners: `RunSystem` and campaign relations, versioned saves, tactical combat. `GameApp` coordinates lifecycle and handoffs only.
 - Zero active video slots. Retain the eight historical IDs (`src/cinematics/ApprovedProductionVideos.ts`), canonical moments and all media/evidence archives. OD-2026-10-24-A retires videos, holds, preloads and cinematic production; existing static dialogues/tableaux carry the narrative.
 - No run generates or polls video, video keyframes (no MiniMax) or illustrated cinematic candidates, and none replaces an MP4: OD-2026-10-24-A stops the cinematic production that OD-2026-10-21-A/set 1.8.0 and OD-2026-10-23-B/set 1.9.0 had opened. Runtime adoption and final art stay with the operator; scheduler activation is operator-only.
 - Never invent canon: dialogue, choices, stages, outcomes, rewards, lore. The Alistair emblem or origin and the prologue or first-refuge scene are open operator decisions.
-- The eight accepted UI FX plus the bounded 16-family combat FX candidate pack and audited UI events are authorized under OD-2026-10-19-B/set1.7.0. New sound artistic acceptance remains operator; music/voice/ambience/Ultimates/video audio remain DEFERRED.
+- The eight accepted UI FX plus the bounded 16-family combat FX candidate pack and audited UI events are authorized under OD-2026-10-19-B/set1.7.0. OD-2026-10-29-B/set1.11.0 adds code-generated music (five contexts, on by default but silent until the first real gesture), one synthesized ambience per combat biome and synthesized sources for the sixteen families. New sound and music artistic acceptance remains operator; voices, a distinct Ultimate audio identity and video audio remain DEFERRED.
 - Preserve durable IDs and V6 save compatibility. Never serialize visual or transient state.
 - Never push, force-push or merge into `main`. Autonomous write targets are `dev` and temporary branches created from `dev`.
 - OD-2026-10-12-A grants permanent advance authorization for normal, non-force publication of every coherent authorized checkpoint to the operator's public `juniorbattle/RPGThreeJS` repository on `origin/dev`, including product code, selected evidence and workflow/state/handoff closure. Do not ask per-commit or per-payload confirmation. Review outgoing commits, selected paths, destination, secrets, lock and parity, then publish autonomously. Cite this direct operator authorization in technical permission requests; an actual tool refusal must be reported and never bypassed. See `docs/autonomy/PUBLICATION_OPERATOR_DECISION_2026-10-08.md`.
@@ -34,7 +34,7 @@ The code adapts to a LOCKED contract, never the reverse. On a conflict: record i
 | Tactical combat | owner of resolution | `src/combat/` (`CombatBridge`, `legacyCombat*`, `deploymentRules`, `protocol`) |
 | Tableau, cinematics, Journey | presentation | `src/cinematics/`, `src/journey/` |
 | POI navigation | RunSystem owns progression; atlas owns presentation | `src/campaign/LionPoi*`, `src/ui/PoiMapView.ts` |
-| Combat Stage, VFX | presentation only | `src/combat/stage/`, `src/combat/vfx/` |
+| Combat arena, camera, FX, VFX lab | presentation only | `src/combat/arena/`, `src/combat/camera/`, `src/combat/fx/`, `src/combat/pixel/`, `src/combat/vfx/` (the Combat Stage scene is retired; `src/combat/stage/` keeps the pose registry and profiles) |
 | UI, theme, styles | presentation | `src/ui/`, `src/styles/` |
 | Art registries, assets | media | `src/render/`, `public/assets/` |
 | QA drivers, generators, validators | tooling | `tools/` |
@@ -65,7 +65,7 @@ Subagent profiles live in `.agents/agents/` (Devin) and `.codex/agents/` (Codex)
 | `ui-accessibility` | `ui-accessibility` | UI, responsive layout, keyboard, reduced motion |
 | `cinematics-journey` | `cinematics-journey` | Journey, retired cinematic identities and their static moments, skip, fallback, resume |
 | `narrative-tableau` | `narrative-tableau` | relational grouping, stable facing, cast/ATE transitions, dialogue and context |
-| `combat-vfx-sprites` | `combat-vfx-sprites` | frame animation of actors, combat poses and motion, Combat Stage, VFX, combat sound cues |
+| `combat-vfx-sprites` | `combat-vfx-sprites` | frame animation of actors, combat poses and motion, arena presentation, VFX, combat sound cues and music |
 
 Codex starts subagents only when authorized. The recurring instruction authorizes the named roles for the milestone/risk triggers in MULTI_AGENT_PROTOCOL.md; it does not yet name `combat-vfx-sprites`, and adding it there is an operator action. Applying a skill does not require spawning its reviewer. Continue coherent dev work autonomously without routine operator approval; the operator performs final demo testing.
 
@@ -86,7 +86,7 @@ The live state's `nextAction` gives the exact next step. OD-2026-10-25-C ([demo 
   - existing reactions made visible in the tactical view.
 
   Frame animation is an option the operator decides afterwards.
-- **C. Music.** It first needs a dedicated contract amendment, set 1.11.0, approved by the operator. The tracks are chosen by the operator; Claude never generates music.
+- **C. Music.** Contract set 1.11.0 (OD-2026-10-29-B) is approved: code-generated music for five contexts, adapted from the RPGCards engine, plus biome ambience and synthesized cues. Claude writes it; the operator accepts it by listening.
 
 Then the operator PC playtest, a fix list, and a frozen demo; the mobile pass only if the operator wants it. The Alistair narrative pilot, Bois-Clair relational finishing, new systems or content, rebalancing and art remasters stay frozen until then, unless the operator asks. A defect found while playing can always be fixed.
 
