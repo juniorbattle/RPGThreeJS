@@ -6,9 +6,9 @@
 | --- | --- |
 | [WORLD_AND_CHARACTERS](WORLD_AND_CHARACTERS.md) | Art direction, Character System V2, environments |
 | [CAMPAIGN_AND_STATE](CAMPAIGN_AND_STATE.md) | Narrative, campaign, progression, refuges, state, saves |
-| [PRESENTATION_AND_MEDIA](PRESENTATION_AND_MEDIA.md) | NarrativeStage, dialogue, cinematic slots, Journey, audio |
+| [PRESENTATION_AND_MEDIA](PRESENTATION_AND_MEDIA.md) | NarrativeStage, dialogue, cinematic slots, Journey, audio and music |
 | [TRAVERSAL](TRAVERSAL.md) | Campaign POI navigation; historical contract ID retained |
-| [COMBAT_AND_VFX](COMBAT_AND_VFX.md) | Tactical gameplay, Combat Stage, VFX |
+| [COMBAT_AND_VFX](COMBAT_AND_VFX.md) | Tactical gameplay, arena presentation, VFX |
 | [UI_AND_ACCESSIBILITY](UI_AND_ACCESSIBILITY.md) | UI/UX and accessibility |
 | [AUTHORING_AND_QA](AUTHORING_AND_QA.md) | Content authoring, evidence, repository governance |
 | [AUTONOMOUS_WORK_PROTOCOL](AUTONOMOUS_WORK_PROTOCOL.md) | Branch, state, task and checkpoint procedure |
@@ -18,6 +18,8 @@ Authority order for new work: explicit current operator decisions; this constitu
 Status terms: **LOCKED** means the decision is binding; **implemented** means source and tests currently meet it; **drift** means implementation or canonical docs still need alignment; **deferred** means the contract forbids premature production. Locking the decision is not a claim of implementation or acceptance.
 
 ## Approved amendment history
+
+Contract set **1.11.0** / `PRODUCTION-CONTRACTS-MUSIC-AUDIO-1` / [OD-2026-10-29-B](../autonomy/MUSIC_AUDIO_OPERATOR_DECISION_2026-10-29.md) authorizes code-generated music for five presentation contexts (on by default, silent until the first real gesture), one synthesized ambience per combat biome and synthesized sources for the existing sixteen combat families. It also records the Combat Stage retirement in favour of the in-arena camera. The constitution and five contracts change only for this scope; gameplay, saves, canon, the eight historical media IDs and the remaining audio deferrals stay. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit records its SHA as the immutable baseline before runtime.
 
 Contract set **1.10.0** / `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md) follows the explicit decision to abandon cinematics and remove the videos from the game. Constitution, PRESENTATION_AND_MEDIA, AUTHORING_AND_QA and AUTONOMOUS_WORK_PROTOCOL change only for zero active videos/video-derived holds/preloads/shipped MP4, preserved eight historical identities and archives, stopped cinematic production and static dialogue/NarrativeStage continuation. Canon, V6, truth owners, four-actor cap, Alaric, other art/audio rules and scheduler settings remain unchanged. Independent actual-diff review precedes the amendment commit; a following operational commit records its immutable SHA before runtime. No final art/global acceptance inferred.
 

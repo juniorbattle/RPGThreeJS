@@ -45,3 +45,18 @@ Require focused service/event tests and a scoped production browser observation:
 ## Bounded combat FX exception — OD-2026-10-19-B
 
 Dedicated PRODUCTION-CONTRACTS-COMBAT-FX-1, set1.7.0, [operator execution approval](../autonomy/COMBAT_FX_OPERATOR_DECISION_2026-10-19.md), extends OD-2026-10-18-F solely to audited tactical/remaining UI intentions, shared combat sound settings and the16short nonverbal combat families named in that decision. New files remain candidates pending operator artistic acceptance. Music, voices, ambience, Ultimates and cinematic/video audio remain deferred. One parent audio owner/mute/volume/preference outside V6, default off, real trusted gesture observed directly in current same-origin iframe (never MessageEvent.isTrusted), current frame/origin/session/allowlist validation and bounded identity deduplication. Sounds observe resolved truth and never recalculate RNG/damage/AP/status/outcomes or change resources/save. No cue on init/load/reload/preference/focus or failed/no-op success. Maximum4voices total/2UI, priority result/KO/critical, steps at least120ms apart and bounded UI cadence, maximum1second decoded combat asset, no delayed queue. Session close detaches gestures and stops voices; true hidden stops/suspends; unavailable audio fails silently without blocking agency. Existing unresolved native hidden/suspend evidence remains open until truly observed. Dedicated reviewed amendment baseline precedes runtime; targeted tests and one earned native campaign continuation use existing tooling; artistic/hardware/global acceptance stays separate.
+
+## Code-generated music evidence — OD-2026-10-29-B
+
+Dedicated `PRODUCTION-CONTRACTS-MUSIC-AUDIO-1`, set 1.11.0, [operator decision](../autonomy/MUSIC_AUDIO_OPERATOR_DECISION_2026-10-29.md). For this scope only, it supersedes the music and ambience deferrals and the "locked and stable" audio precondition stated in this contract, including in its UI FX and combat FX sections. Music definitions (themes, instruments, seeds, context map) are versioned code. Offline listening renders go to ignored paths unless the operator promotes a selection.
+
+Required before acceptance:
+- deterministic output for a given seed;
+- the context mapping for each presentation surface;
+- no audio before a real gesture, including with a restored preference;
+- preferences outside V6;
+- disposal and session close stop every voice;
+- no main-thread frame over 50 ms attributable to synthesis, measured;
+- one browser check with a real gesture through title, map, dialogue, combat and boss.
+
+Technical evidence never counts as the operator's listening acceptance.

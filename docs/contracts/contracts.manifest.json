@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.10.0",
+  "contractSetVersion": "1.11.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -162,6 +162,22 @@
       "historicalMediaIdsRetained": true,
       "supersededRule": "Exactly eight active videos and offline illustrated cinematic production; zero active video/video-derived hold/preload/shipped MP4, existing static dialogues/tableaux preserve authored events",
       "implementationAcceptance": "PENDING; runtime retirement and scoped native evidence required, operator art/global acceptance separate"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-MUSIC-AUDIO-1",
+      "operatorDecisionId": "OD-2026-10-29-B",
+      "operatorDecisionPath": "docs/autonomy/MUSIC_AUDIO_OPERATOR_DECISION_2026-10-29.md",
+      "approvedAt": "2026-10-29",
+      "changedContracts": [
+        "PRESENTATION_AND_MEDIA",
+        "COMBAT_AND_VFX",
+        "UI_AND_ACCESSIBILITY",
+        "AUTHORING_AND_QA",
+        "AUTONOMOUS_WORK_PROTOCOL"
+      ],
+      "constitutionChanged": true,
+      "supersededRule": "Music and ambience deferral with its locked-and-stable precondition, the separate Combat Stage scene and framing, and the incomplete-catalog wording for combat VFX; code-generated music in five contexts, biome ambience and synthesized sources for the sixteen families under the single parent owner, in-arena camera presentation",
+      "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator listening acceptance remain separate"
     }
   ],
   "status": "LOCKED",
