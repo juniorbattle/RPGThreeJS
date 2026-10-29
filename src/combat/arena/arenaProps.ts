@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { seeded, type Rng } from './pixelArt';
 import type { ArenaPalette, ArenaProp } from './arenaThemes';
 import {
-  bannerTexture, barkTexture, burlapTexture, columnTexture, gravestoneTexture, lanternTexture, lionReliefTexture, logEndTexture, metalTexture, plankTexture,
+  bannerTexture, barkTexture, barrelLidTexture, burlapTexture, coalsTexture, columnTexture, gravestoneTexture, lanternTexture, lionReliefTexture, logEndTexture, metalTexture, plankTexture,
   plasterTexture, roofTexture, stoneBlockTexture, strawTexture, windowTextures,
 } from './arenaTextures';
 import { DECOR_TEXELS_PER_UNIT, drawBush, drawDeadTree, drawFern, drawGrass, drawPine, drawTree, type DecorSprite } from './arenaSprites';
@@ -136,27 +136,66 @@ const NOISE_GLSL = `
 float h21(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float vnoise(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
   return mix(mix(h21(i), h21(i + vec2(1.0, 0.0)), f.x), mix(h21(i + vec2(0.0, 1.0)), h21(i + vec2(1.0, 1.0)), f.x), f.y); }
-float fbm(vec2 p){ float v = 0.0, a = 0.5; for (int i = 0; i < 4; i++) { v += a * vnoise(p); p *= 2.03; a *= 0.5; } return v; }
-float bayer4(vec2 p){ vec2 q = mod(floor(p), 4.0); int i = int(q.x + q.y * 4.0);
-  float m[16] = float[16](0.,8.,2.,10.,12.,4.,14.,6.,3.,11.,1.,9.,15.,7.,13.,5.); return (m[i] + 0.5) / 16.0; }`;
+float fbm(vec2 p){ float v = 0.0, a = 0.5; for (int i = 0; i < 4; i++) { v += a * vnoise(p); p *= 2.03; a *= 0.5; } return v; }`;
 
-/** Pixelated flame: fbm advected upward, banded into a four-tone fire ramp. */
-export function createFireMaterial(seed: number, pixels: [number, number] = [18, 28]): THREE.ShaderMaterial {
+/** Texel density of the unit sprites: fire is drawn at the same pixel size as the characters. */
+export const FIRE_TEXELS_PER_UNIT = 40;
+
+/**
+ * Pixel-art flame at the units' texel density (40 px/m), so it speaks the
+ * same pixel language as the characters instead of a coarser one or a vector
+ * sticker. Shape: a flame silhouette multiplied by domain-warped noise rising
+ * fast (curls and hooks), a finer crown noise breaking wisps off the tips, a
+ * rounded foot. Five bands, red-orange to a warm white core, with no dark rim
+ * (fire emits light: its edge is a translucent red-orange) and a one-texel
+ * ordered dither on each band edge. Embers drift up through the crown.
+ * `pixels` is the texel grid of the plane; `tongues` draws several flames
+ * side by side; `brightness` lifts FX flames above decor fires.
+ */
+export function createFireMaterial(seed: number, pixels: [number, number], brightness = 1.55, options: { tongues?: number; taper?: number } = {}): THREE.ShaderMaterial {
   return new THREE.ShaderMaterial({
-    uniforms: { uTime: { value: 0 }, uSeed: { value: seed * 3.17 }, uPixels: { value: new THREE.Vector2(...pixels) }, uPower: { value: 1 } },
+    uniforms: {
+      uTime: { value: 0 }, uSeed: { value: seed * 3.17 }, uPower: { value: 1 }, uBright: { value: brightness },
+      uTongues: { value: options.tongues ?? 1 }, uTaper: { value: options.taper ?? 0.55 },
+      uPixels: { value: new THREE.Vector2(Math.max(8, pixels[0]), Math.max(8, pixels[1])) },
+    },
     vertexShader: FIRE_VERTEX,
-    fragmentShader: `uniform float uTime, uSeed, uPower; uniform vec2 uPixels; varying vec2 vUv; ${NOISE_GLSL}
+    fragmentShader: `uniform float uTime, uSeed, uPower, uBright, uTongues, uTaper; uniform vec2 uPixels; varying vec2 vUv; ${NOISE_GLSL}
+    float bayer4(vec2 p){ vec2 q = mod(floor(p), 4.0); int i = int(q.x + q.y * 4.0);
+      float m[16] = float[16](0.,8.,2.,10.,12.,4.,14.,6.,3.,11.,1.,9.,15.,7.,13.,5.); return (m[i] + 0.5) / 16.0; }
     void main(){
-      vec2 cell = floor(vUv * uPixels); vec2 uv = (cell + 0.5) / uPixels;
-      float t = uTime * 1.7 + uSeed;
-      vec2 q = vec2(uv.x * 3.1 + uSeed, uv.y * 2.4 - t);
-      float n = fbm(q + vec2(0.0, fbm(q * 1.4 + t * 0.3)));
-      float core = 1.0 - abs(uv.x - 0.5) * 2.3;
-      float f = n * 1.35 + core * 0.62 - uv.y * 1.25 - 0.18;
-      f *= uPower; f += (bayer4(cell) - 0.5) * 0.08;
-      if (f < 0.1) discard;
-      vec3 c = f > 0.72 ? vec3(1.0, 0.88, 0.55) : f > 0.46 ? vec3(1.0, 0.62, 0.2) : f > 0.26 ? vec3(0.9, 0.32, 0.08) : vec3(0.5, 0.1, 0.04);
-      gl_FragColor = vec4(c * 0.82, 1.0);
+      vec2 cell = floor(vUv * uPixels);
+      vec2 uvq = (cell + 0.5) / uPixels;
+      float k = uvq.x * uTongues, id = floor(k);
+      float s = uSeed + id * 1.73;
+      float tall = 0.78 + 0.22 * h21(vec2(id, uSeed));
+      float x = fract(k), y = uvq.y / tall;
+      float tt = uTime * 1.6 + s;
+      float wx = fbm(vec2(x * 2.5 + s, y * 2.0 - tt * 0.9)) - 0.5;
+      float wy = fbm(vec2(x * 2.5 + s + 5.2, y * 2.0 - tt * 1.1)) - 0.5;
+      float px = x - 0.5 + wx * 0.28 * (0.2 + y) + sin(tt * 1.3 + y * 3.0) * 0.05 * y;
+      float py = y + wy * 0.12;
+      float width = 0.5 * pow(clamp(1.0 - py, 0.0, 1.0), uTaper) + 0.01;
+      float mask = pow(clamp(1.0 - abs(px) / width, 0.0, 1.0), 0.75) * pow(clamp(1.0 - py, 0.0, 1.0), 0.7);
+      float n = clamp((fbm(vec2(x * 3.2 + s, y * 2.6 - tt * 1.8)) - 0.25) / 0.5, 0.0, 1.2);
+      float f = mask * (0.5 + n * 0.95);
+      float n2 = fbm(vec2(x * 5.0 + s * 1.3, y * 3.6 - tt * 2.6));
+      float crown = clamp(1.0 - abs(px) / (width * 1.6 + 0.08), 0.0, 1.0) * smoothstep(0.3, 0.7, py) * clamp(1.15 - py, 0.0, 1.0);
+      f = max(f, crown * (n2 - 0.4) * 3.0);
+      f *= smoothstep(0.0, 0.1, y) * (0.75 + 0.25 * smoothstep(0.0, 0.25, y)) * uPower;
+      f += (bayer4(cell) - 0.5) * 0.05; // one-texel dither on every band edge
+      vec4 c = vec4(0.0);
+      if (f > 0.16) c = vec4(0.86, 0.27, 0.08, 0.78);
+      if (f > 0.3) c = vec4(0.96, 0.45, 0.12, 1.0);
+      if (f > 0.46) c = vec4(1.0, 0.66, 0.22, 1.0);
+      if (f > 0.64) c = vec4(1.0, 0.85, 0.45, 1.0);
+      if (f > 0.8) c = vec4(1.0, 0.97, 0.84, 1.0);
+      // embers: sparse texels drifting up through the crown
+      float ys = floor((uvq.y - uTime * 0.55) * uPixels.y);
+      if (c.a == 0.0 && uvq.y > 0.45 && uPower > 0.3 && h21(vec2(cell.x * 1.31 + uSeed, ys)) > 0.988) c = vec4(1.0, 0.72, 0.3, 1.0);
+      if (c.a == 0.0) discard;
+      // sRGB ramp into the linear target; hot bands above 1 feed the bloom
+      gl_FragColor = vec4(pow(c.rgb, vec3(2.2)) * uBright, c.a);
     }`,
     transparent: true,
     depthWrite: false,
@@ -166,23 +205,53 @@ export function createFireMaterial(seed: number, pixels: [number, number] = [18,
   });
 }
 
-export function createSmokeMaterial(seed: number, tint: string): THREE.ShaderMaterial {
+/**
+ * Warm light thrown around a fire: a soft additive halo behind the flame that
+ * breathes with it, so the fire lights its surroundings instead of sitting on
+ * top of the scene.
+ */
+export function createFireHaloMaterial(seed: number, strength = 0.32): THREE.ShaderMaterial {
   return new THREE.ShaderMaterial({
-    uniforms: { uTime: { value: 0 }, uSeed: { value: seed * 5.1 }, uTint: { value: new THREE.Color(tint) } },
+    uniforms: { uTime: { value: 0 }, uSeed: { value: seed }, uStrength: { value: strength }, uColor: { value: new THREE.Color('#ff8a3a') } },
     vertexShader: FIRE_VERTEX,
-    fragmentShader: `uniform float uTime, uSeed; uniform vec3 uTint; varying vec2 vUv; ${NOISE_GLSL}
+    fragmentShader: `uniform float uTime, uSeed, uStrength; uniform vec3 uColor; varying vec2 vUv;
     void main(){
-      vec2 px = vec2(24.0, 64.0); vec2 cell = floor(vUv * px); vec2 uv = (cell + 0.5) / px;
+      vec2 d = (vUv - vec2(0.5, 0.42)) * vec2(2.0, 2.3);
+      float r = length(d);
+      float flicker = 0.85 + 0.1 * sin(uTime * 9.1 + uSeed) + 0.05 * sin(uTime * 14.3 + uSeed * 2.0);
+      float a = pow(max(0.0, 1.0 - r), 2.0) * uStrength * flicker;
+      if (a < 0.003) discard;
+      gl_FragColor = vec4(uColor * a, 1.0);
+    }`,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    toneMapped: false,
+    fog: false,
+    side: THREE.DoubleSide,
+  });
+}
+
+/** Pixel smoke (24 px/m, a little coarser than the fire it rises from): swaying puffs in two tones, dithered edges. */
+export function createSmokeMaterial(seed: number, tint: string, pixels: [number, number] = [77, 216]): THREE.ShaderMaterial {
+  return new THREE.ShaderMaterial({
+    uniforms: { uTime: { value: 0 }, uSeed: { value: seed * 5.1 }, uTint: { value: new THREE.Color(tint) }, uPixels: { value: new THREE.Vector2(...pixels) } },
+    vertexShader: FIRE_VERTEX,
+    fragmentShader: `uniform float uTime, uSeed; uniform vec3 uTint; uniform vec2 uPixels; varying vec2 vUv; ${NOISE_GLSL}
+    float bayer4(vec2 p){ vec2 q = mod(floor(p), 4.0); int i = int(q.x + q.y * 4.0);
+      float m[16] = float[16](0.,8.,2.,10.,12.,4.,14.,6.,3.,11.,1.,9.,15.,7.,13.,5.); return (m[i] + 0.5) / 16.0; }
+    void main(){
+      vec2 cell = floor(vUv * uPixels); vec2 uv = (cell + 0.5) / uPixels;
       float t = uTime * 0.22 + uSeed;
       float widen = 0.28 + uv.y * 0.5;
       float sway = (fbm(vec2(uv.y * 2.0, t)) - 0.5) * 0.5 * uv.y;
       float d = abs(uv.x - 0.5 - sway) / widen;
       float n = fbm(vec2(uv.x * 2.6, uv.y * 3.2 - t * 2.2));
-      float a = (1.0 - d) * 0.9 + n * 0.75 - 0.75 - uv.y * 0.25;
-      a *= smoothstep(0.0, 0.12, uv.y);
-      if (a < 0.06 + bayer4(cell) * 0.12) discard;
-      float band = a > 0.32 ? 0.55 : 0.36;
-      gl_FragColor = vec4(uTint * (0.75 + n * 0.4), band);
+      float a = ((1.0 - d) * 0.9 + n * 0.75 - 0.75 - uv.y * 0.25) * smoothstep(0.0, 0.12, uv.y);
+      a += (bayer4(cell) - 0.5) * 0.06;
+      if (a < 0.08) discard;
+      float inner = a > 0.3 ? 1.0 : 0.0;
+      gl_FragColor = vec4(uTint * (0.78 + n * 0.32 + inner * 0.12), 0.36 + inner * 0.18);
     }`,
     transparent: true,
     depthWrite: false,
@@ -204,15 +273,22 @@ function fireBillboard(ctx: PropContext, seed: number, w: number, h: number, lig
     }
     return group;
   }
-  // ~14 fire texels per metre: flames share the decor's pixel scale at any size.
-  const material = createFireMaterial(seed, [Math.max(8, Math.round(w * 14)), Math.max(12, Math.round(h * 14))]);
+  const material = createFireMaterial(seed, [Math.round(w * FIRE_TEXELS_PER_UNIT), Math.round(h * FIRE_TEXELS_PER_UNIT)]);
   const geometry = new THREE.PlaneGeometry(w, h);
   geometry.translate(0, h / 2, 0);
   const m = new THREE.Mesh(geometry, material);
   m.renderOrder = 6;
   m.raycast = () => {};
+  // the warm halo behind the flame lights what surrounds it
+  const halo = createFireHaloMaterial(seed, w < 0.3 ? 0.18 : 0.3);
+  const haloGeo = new THREE.PlaneGeometry(w * 2.8 + 0.4, h * 1.9 + 0.3);
+  haloGeo.translate(0, h * 0.45, -0.02);
+  const glow = new THREE.Mesh(haloGeo, halo);
+  glow.renderOrder = 5;
+  glow.raycast = () => {};
+  m.add(glow);
   ctx.billboards.push(m);
-  ctx.animated.push((t) => { material.uniforms.uTime!.value = t; });
+  ctx.animated.push((t) => { material.uniforms.uTime!.value = t; halo.uniforms.uTime!.value = t; });
   if (light) {
     const holder = new THREE.Object3D();
     m.add(holder);
@@ -725,25 +801,49 @@ function fence(ctx: PropContext, rng: Rng): THREE.Group {
   return g;
 }
 
+/** Coopered barrel: bulging staves, three iron hoops, a boarded head with its chime ring. */
 function barrel(ctx: PropContext): THREE.Group {
   const g = new THREE.Group();
-  const body = mesh(cylinderGeometry(0.42, 0.36, 1.0, 12, 1), woodMaterial(ctx, true), ctx);
-  body.position.y = 0.5;
-  g.add(body);
-  const metal = litMaterial(ctx, 'metal', repeatTexture(ctx, 'metal', () => metalTexture(5).toTexture({ repeat: true })), { metalness: 0.4, roughness: 0.6 });
-  for (const y of [0.18, 0.82]) {
-    const band = mesh(new THREE.CylinderGeometry(0.43, 0.43, 0.07, 12, 1, true), metal, ctx, false);
-    band.position.y = y;
-    g.add(band);
+  const H = 1.0;
+  const radiusAt = (y: number) => 0.35 + Math.sin((y / H) * Math.PI) * 0.08;
+  const profile: THREE.Vector2[] = [];
+  for (let i = 0; i <= 8; i++) { const y = (i / 8) * H; profile.push(new THREE.Vector2(radiusAt(y), y)); }
+  const geometry = new THREE.LatheGeometry(profile, 16);
+  const uv = geometry.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * 2.6, uv.getY(i) * H);
+  g.add(mesh(geometry, litMaterial(ctx, 'barrel-staves', repeatTexture(ctx, 'planks-v', () => plankTexture(ctx.palette, 21, true).toTexture({ repeat: true })), { color: '#c8b8a8' }), ctx));
+  const iron = litMaterial(ctx, 'metal', repeatTexture(ctx, 'metal', () => metalTexture(5).toTexture({ repeat: true })), { metalness: 0.45, roughness: 0.55 });
+  for (const y of [0.1, 0.5, 0.9]) {
+    const r = radiusAt(y) + 0.012;
+    const hoop = mesh(new THREE.CylinderGeometry(r, r, 0.07, 16, 1, true), iron, ctx, false);
+    hoop.position.y = y;
+    g.add(hoop);
   }
+  const lid = mesh(new THREE.CircleGeometry(radiusAt(H) - 0.005, 16), litMaterial(ctx, 'barrel-lid', cached(ctx.textures, 'barrel-lid', () => barrelLidTexture(ctx.palette, 23).toTexture())), ctx, false);
+  lid.rotation.x = -Math.PI / 2;
+  lid.position.y = H - 0.03;
+  g.add(lid);
   return g;
 }
 
+/** Plank crate with edge battens and a diagonal brace on each side. */
 function crate(ctx: PropContext): THREE.Group {
   const g = new THREE.Group();
-  const box = mesh(boxGeometry(0.95, 0.95, 0.95, 1), woodMaterial(ctx), ctx);
-  box.position.y = 0.475;
+  const S = 0.95;
+  const box = mesh(boxGeometry(S, S, S, 1), woodMaterial(ctx), ctx);
+  box.position.y = S / 2;
   g.add(box);
+  const batten = litMaterial(ctx, 'crate-batten', repeatTexture(ctx, 'planks-v', () => plankTexture(ctx.palette, 21, true).toTexture({ repeat: true })), { color: '#8a7462' });
+  const t = 0.08, e = S / 2 + 0.012;
+  // vertical battens on the four corners, horizontal battens round top and bottom
+  for (const x of [-1, 1]) for (const z of [-1, 1]) g.add(at(mesh(boxGeometry(t, S, t, 1), batten, ctx), x * (S / 2 - t / 2 + 0.012), S / 2, z * (S / 2 - t / 2 + 0.012)));
+  for (const y of [t / 2, S - t / 2]) {
+    for (const z of [-1, 1]) g.add(at(mesh(boxGeometry(S + 0.02, t, 0.03, 1), batten, ctx), 0, y, z * e));
+    for (const x of [-1, 1]) g.add(at(mesh(boxGeometry(0.03, t, S + 0.02, 1), batten, ctx), x * e, y, 0));
+  }
+  const diag = Math.hypot(S - t * 2, S - t * 2), angle = Math.PI / 4;
+  for (const z of [-1, 1]) { const b = at(mesh(boxGeometry(diag, t * 0.9, 0.025, 1), batten, ctx), 0, S / 2, z * e); b.rotation.z = z * angle; g.add(b); }
+  for (const x of [-1, 1]) { const b = at(mesh(boxGeometry(0.025, t * 0.9, diag, 1), batten, ctx), x * e, S / 2, 0); b.rotation.x = x * angle; g.add(b); }
   return g;
 }
 
@@ -950,25 +1050,47 @@ function lantern(ctx: PropContext, seed: number): THREE.Group {
   return g;
 }
 
+/** Wrought-iron brazier: splayed tripod with feet and a ring, a flared riveted bowl, a bed of glowing coals. */
 function brazier(ctx: PropContext, seed: number): THREE.Group {
   const g = new THREE.Group();
-  const metal = litMaterial(ctx, 'metal-dark', null, { color: '#2a2622', roughness: 0.7 });
+  const iron = litMaterial(ctx, 'metal-dark', null, { color: '#2a2622', roughness: 0.7 });
+  const bowlY = 1.02;
   for (let i = 0; i < 3; i++) {
-    const a = (i / 3) * Math.PI * 2;
-    const leg = mesh(new THREE.CylinderGeometry(0.04, 0.05, 1.1, 5), metal, ctx);
-    leg.position.set(Math.cos(a) * 0.25, 0.5, Math.sin(a) * 0.25);
-    leg.rotation.set(Math.sin(a) * 0.25, 0, -Math.cos(a) * 0.25);
+    const a = (i / 3) * Math.PI * 2 + 0.3;
+    const top = new THREE.Vector3(Math.cos(a) * 0.22, bowlY, Math.sin(a) * 0.22);
+    const foot = new THREE.Vector3(Math.cos(a) * 0.42, 0.02, Math.sin(a) * 0.42);
+    const len = top.distanceTo(foot);
+    const leg = mesh(new THREE.CylinderGeometry(0.03, 0.04, len, 5), iron, ctx);
+    leg.position.copy(top).add(foot).multiplyScalar(0.5);
+    leg.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), top.clone().sub(foot).normalize());
     g.add(leg);
+    g.add(at(mesh(new THREE.BoxGeometry(0.12, 0.04, 0.12), iron, ctx), foot.x, 0.02, foot.z)); // flat foot
   }
-  const bowl = mesh(new THREE.CylinderGeometry(0.48, 0.28, 0.32, 12), metal, ctx);
-  bowl.position.y = 1.08;
+  const ring = mesh(new THREE.TorusGeometry(0.31, 0.02, 4, 18), iron, ctx, false);
+  ring.rotation.x = Math.PI / 2;
+  ring.position.y = 0.48;
+  g.add(ring);
+  // flared bowl with a rolled rim and rivets
+  const profile = [[0.1, 0], [0.26, 0.06], [0.4, 0.2], [0.5, 0.32], [0.53, 0.34]].map(([r, y]) => new THREE.Vector2(r, y));
+  const bowl = mesh(new THREE.LatheGeometry(profile, 16), litMaterial(ctx, 'brazier-bowl', null, { color: '#2e2925', roughness: 0.65, metalness: 0.35, side: THREE.DoubleSide }), ctx);
+  bowl.position.y = bowlY - 0.08;
   g.add(bowl);
-  const coals = new THREE.Mesh(new THREE.CircleGeometry(0.44, 12), glowMaterial('#ff6a1f'));
+  const rim = mesh(new THREE.TorusGeometry(0.52, 0.03, 5, 20), iron, ctx, false);
+  rim.rotation.x = Math.PI / 2;
+  rim.position.y = bowlY + 0.26;
+  g.add(rim);
+  for (let i = 0; i < 8; i++) {
+    const a = (i / 8) * Math.PI * 2;
+    g.add(at(mesh(new THREE.SphereGeometry(0.025, 4, 3), iron, ctx, false), Math.cos(a) * 0.45, bowlY + 0.14, Math.sin(a) * 0.45));
+  }
+  const coals = new THREE.Mesh(new THREE.CircleGeometry(0.47, 16), new THREE.MeshBasicMaterial({ map: cached(ctx.textures, 'coals', () => coalsTexture(7).toTexture()), toneMapped: false, fog: false }));
   coals.rotation.x = -Math.PI / 2;
-  coals.position.y = 1.23;
+  coals.position.y = bowlY + 0.2;
+  coals.raycast = () => {};
   g.add(coals);
+  ctx.animated.push((t) => { (coals.material as THREE.MeshBasicMaterial).color.setScalar(1.15 + Math.sin(t * 3.1 + seed) * 0.15); });
   const flame = fireBillboard(ctx, seed, 0.95, 1.35, { color: '#ff9a4a', intensity: 7, distance: 8.5 });
-  flame.position.y = 1.18;
+  flame.position.y = bowlY + 0.16;
   g.add(flame);
   return g;
 }
@@ -1079,7 +1201,7 @@ function rock(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
 }
 
 function smoke(ctx: PropContext, seed: number, tint: string, width = 3.2, height = 9): THREE.Object3D {
-  const material = createSmokeMaterial(seed, tint);
+  const material = createSmokeMaterial(seed, tint, [Math.round(width * 24), Math.round(height * 24)]);
   const geometry = new THREE.PlaneGeometry(width, height);
   geometry.translate(0, height / 2, 0);
   const m = new THREE.Mesh(geometry, material);

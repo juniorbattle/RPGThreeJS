@@ -13,7 +13,7 @@
 | `SUPERSEDED_BY` | NONE |
 | `PRODUCTION_IMPACT` | Présentation du combat canonique (`/legacy-combat.html`) : arène procédurale à la place du fond peint et de la grille superposée, feuilles pixel pour toutes les unités, caméra d'action et projecteur dans l'arène (Combat Stage retiré), effets et sons procéduraux. Règles, IA, protocole et sauvegarde inchangés. |
 | `CANONICAL_DOCS_UPDATED` | `docs/combat/COMBAT_HD2D.md` (nouveau), `docs/combat/LOCAL_ART_MISSION.md` (nouveau), `docs/project/CURRENT_STATUS.md`, `docs/README.md` |
-| `EVIDENCE` | [`result.json`](combat-hd2d-1/result.json) et 13 captures dans [`combat-hd2d-1/`](combat-hd2d-1/). Portée : Chromium SwiftShader 1440×810, combat autonome et démarrage par le protocole de la campagne. Pas de mesure de performance GPU réelle. Sons vérifiés par les tests de couverture, pas d'écoute. |
+| `EVIDENCE` | [`result.json`](combat-hd2d-1/result.json) et 14 captures dans [`combat-hd2d-1/`](combat-hd2d-1/). Portée : Chromium SwiftShader 1440×810, combat autonome et démarrage par le protocole de la campagne. Pas de mesure de performance GPU réelle. Sons vérifiés par les tests de couverture, pas d'écoute. |
 
 ## Réalisé (CURRENT FACT)
 
@@ -46,6 +46,14 @@ Retour de l'opérateur : maisons du village en feu « légèrement inférieures 
 4. **Sceaux** : plus d'étoile ; anneaux, glyphes runiques, tirets et perles. Pulsation (deux éclats par battement, anneau de lumière émis) réservée aux ultimes et signatures de boss. Capture [13](combat-hd2d-1/13-seals-pulse-precision.jpg).
 5. **Précision des effets** : couleurs en bandes nettes, cases touchées allumées sous les actions de zone (et sous la cible d'un coup lourd), éruptions par case à la largeur d'une case.
 6. **Vérifications** : build OK ; démarrage par le protocole de la campagne sans erreur (`village_defense`, `lion_chief`) ; suite complète comparée à `main` cas par cas : aucun nouvel échec. Trois tests de cinématiques dépassent leur délai de 5 s dans ce conteneur, à l'identique sur `main`.
+
+## Passe 4 — sceaux cohérents, feu intégré, accessoires (CURRENT FACT)
+
+Retour de l'opérateur : pas de cercles sur toutes les compétences (les réserver surtout aux magiques) ; flammes trop pixelisées ; puis, sur la version vectorielle, feu « déconnecté », « comme un élément extérieur » ; continuer les passes sur les accessoires.
+
+1. **Sceaux par école** : seules les recettes magiques tracent un sceau. Les ultimes martiaux chargent avec une aura de combat (ondes de choc au battement) et leur finale pulse des ondes sans rune. Les attaques de base (grimoire, crosse, baguette) n'ont plus de sceau. Testé.
+2. **Feu** : une version vectorielle nette a été essayée puis refusée (pas intégrée à la scène). Le feu actuel est en pixel art à la densité exacte des personnages, sans contour sombre, avec un halo chaud qui éclaire les alentours et des braises. Les couleurs sont linéarisées (elles étaient ré-encodées par la passe de sortie et passaient au pastel). Capture [14](combat-hd2d-1/14-fire-before-after.jpg).
+3. **Accessoires** : tonneaux cerclés à douelles bombées et fond en planches, caisses à tasseaux et croisillons, braseros en fer forgé (trépied, bol évasé riveté, lit de braises), toile de jute plissée.
 
 ## Indicateurs de rendu
 
