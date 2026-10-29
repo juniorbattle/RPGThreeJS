@@ -159,7 +159,7 @@ export class CombatArena {
   }
 
   private async buildMidPlate(plate: GeneratedPlate): Promise<void> {
-    if (typeof window === 'undefined' || /happy-dom/i.test(window.navigator?.userAgent ?? '')) return;
+    if (typeof window === 'undefined' || /happy-?dom/i.test(window.navigator?.userAgent ?? '')) return;
     try {
       const texture = await new THREE.TextureLoader().loadAsync(plate.file);
       texture.colorSpace = THREE.SRGBColorSpace;
@@ -589,7 +589,7 @@ export class CombatArena {
 
   private async buildFarPlate(): Promise<void> {
     const plate = this.theme.farPlate;
-    const happy = typeof window === 'undefined' || /happy-dom/i.test(window.navigator?.userAgent ?? '');
+    const happy = typeof window === 'undefined' || /happy-?dom/i.test(window.navigator?.userAgent ?? '');
     let texture: THREE.Texture | null = null;
     if (!happy) {
       try {
