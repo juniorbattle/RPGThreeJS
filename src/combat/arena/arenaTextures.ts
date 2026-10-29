@@ -456,6 +456,28 @@ export function windowTextures(burning: boolean): { face: PixelCanvas; glow: Pix
   return { face, glow };
 }
 
+/**
+ * Monolithic headstone face (24×32): weathered single stone, a carved ring
+ * and epitaph lines (dark cut, lit lower lip), lichen creeping from the foot.
+ */
+export function gravestoneTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const W = 24, H = 32;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), moss = makeNoise(rng, 8);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    let level = 0.5 + (n(x / 5, y / 5) - 0.5) * 0.24 - (x > W - 3 ? 0.14 : x < 2 ? -0.1 : 0);
+    let c = shadeTone(pal.stone, Math.max(0.05, Math.min(0.95, level)), x, y);
+    if (moss(x / 3, y / 3) - (H - y) * 0.035 > 0.38) c = shadeTone(pal.moss, 0.35 + moss(x, y) * 0.4, x, y);
+    pc.set(x, y, c);
+  }
+  const cut = (x: number, y: number) => { pc.set(x, y, rgb(pal.stoneDark[0])); pc.set(x, y + 1, ramp(pal.stone, 0.75)); };
+  for (let a = 0; a < Math.PI * 2; a += 0.2) cut(Math.round(12 + Math.cos(a) * 4), Math.round(9 + Math.sin(a) * 4));
+  for (const [y, w] of [[17, 12], [20, 14], [23, 10]] as const) for (let x = 12 - w / 2; x < 12 + w / 2; x++) if ((x * 7 + y) % 5) cut(x, y);
+  crack(pc, rng, 3 + Math.floor(rng() * 18), 2, 10, rgb(pal.stoneDark[1]), { x: 0, y: 0, w: W, h: H });
+  return pc;
+}
+
 /** Lantern pane: iron frame and cross bars over warm glass, brightest at the flame. */
 export function lanternTexture(): PixelCanvas {
   const W = 8, H = 12;

@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { makeNoise, seeded } from './pixelArt';
+import { makeNoise, PixelCanvas, seeded } from './pixelArt';
 import { arenaBandProps, arenaClutterProps, arenaThemeFor, type ArenaTheme } from './arenaThemes';
 import { cobbleApronTexture, groundTexture, tileSideTexture, tileTopTexture, trampledGroundTexture } from './arenaTextures';
-import { buildProp, type PropContext } from './arenaProps';
+import { ARENA_GROUND_Y, buildProp, type PropContext } from './arenaProps';
 import { drawFern, drawGrass, drawTreeLine, DECOR_TEXELS_PER_UNIT } from './arenaSprites';
 import platesJson from '../../render/generated/combatArenaPlates.json';
 
@@ -123,6 +123,8 @@ export class CombatArena {
       lights: [],
       sprites: new Map(),
       shadows: true,
+      contacts: [],
+      weeds: [],
     };
   }
 
@@ -148,6 +150,8 @@ export class CombatArena {
     this.root.updateMatrixWorld(true);
     this.buildLights();
     this.mergeStaticDecor();
+    this.buildContactShadows();
+    this.buildWeeds();
     this.buildTreeLines();
     this.buildAtmosphere();
     await this.buildFarPlate();
@@ -334,6 +338,87 @@ export class CombatArena {
     ground.raycast = () => {};
     ground.name = 'arena-ground';
     this.root.add(ground);
+  }
+
+  /**
+   * Soft contact shadows under every prop, baked into one mesh (one draw
+   * call): the decor sits on the ground instead of hovering over it.
+   */
+  private buildContactShadows(): void {
+    const contacts = this.ctx.contacts;
+    if (!contacts.length) return;
+    const blob = new PixelCanvas(32, 32);
+    for (let y = 0; y < 32; y++) for (let x = 0; x < 32; x++) {
+      const d = Math.hypot(x - 15.5, y - 15.5) / 15.5;
+      blob.set(x, y, [0, 0, 0], Math.round(255 * Math.pow(Math.max(0, 1 - d), 1.4)));
+    }
+    const texture = blob.toTexture({ linear: true });
+    this.ctx.textures.set('contact-shadow', texture);
+    const positions: number[] = [], uvs: number[] = [], colors: number[] = [], normals: number[] = [], index: number[] = [];
+    contacts.forEach((c, i) => {
+      const y = ARENA_GROUND_Y + 0.012;
+      positions.push(c.x - c.rx, y, c.z - c.rz, c.x + c.rx, y, c.z - c.rz, c.x + c.rx, y, c.z + c.rz, c.x - c.rx, y, c.z + c.rz);
+      uvs.push(0, 0, 1, 0, 1, 1, 0, 1);
+      for (let k = 0; k < 4; k++) { colors.push(0, 0, 0, c.strength); normals.push(0, 1, 0); }
+      index.push(i * 4, i * 4 + 2, i * 4 + 1, i * 4, i * 4 + 3, i * 4 + 2);
+    });
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+    geometry.setAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
+    geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 4));
+    geometry.setIndex(index);
+    this.geometries.push(geometry);
+    const material = new THREE.MeshBasicMaterial({ map: texture, vertexColors: true, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4 });
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.renderOrder = 1;
+    mesh.raycast = () => {};
+    mesh.name = 'arena-contact-shadows';
+    this.root.add(mesh);
+  }
+
+  /**
+   * Weed tufts at the foot of walls, houses and masonry, baked into one
+   * static mesh (the tactical camera turns at most ±0.24 rad, so fixed quads
+   * facing it read like billboards at the cost of a single draw call).
+   */
+  private buildWeeds(): void {
+    const weeds = this.ctx.weeds;
+    if (!weeds.length) return;
+    const sprites = [drawGrass(this.theme.palette, 1), drawGrass(this.theme.palette, 3)];
+    const atlasW = sprites.reduce((w, sp) => w + sp.canvas.width, 0), atlasH = Math.max(...sprites.map((sp) => sp.canvas.height));
+    const atlas = new PixelCanvas(atlasW, atlasH);
+    const frames: Array<{ u0: number; u1: number; v1: number; w: number; h: number; ax: number }> = [];
+    let ox = 0;
+    for (const sp of sprites) {
+      for (let y = 0; y < sp.canvas.height; y++) for (let x = 0; x < sp.canvas.width; x++) {
+        const [r, g, b, a] = sp.canvas.get(x, y);
+        if (a) atlas.set(ox + x, atlasH - sp.canvas.height + y, [r, g, b], a);
+      }
+      frames.push({ u0: ox / atlasW, u1: (ox + sp.canvas.width) / atlasW, v1: sp.canvas.height / atlasH, w: sp.canvas.width / DECOR_TEXELS_PER_UNIT, h: sp.canvas.height / DECOR_TEXELS_PER_UNIT, ax: sp.anchor[0] / sp.canvas.width });
+      ox += sp.canvas.width;
+    }
+    const texture = atlas.toTexture();
+    this.ctx.textures.set('weed-atlas', texture);
+    const positions: number[] = [], uvs: number[] = [], normals: number[] = [], index: number[] = [];
+    weeds.forEach((wd, i) => {
+      const f = frames[wd.v % frames.length]!;
+      const w = f.w * wd.s, h = f.h * wd.s, x0 = wd.x - w * f.ax, y0 = ARENA_GROUND_Y - 0.03;
+      positions.push(x0, y0, wd.z, x0 + w, y0, wd.z, x0 + w, y0 + h, wd.z, x0, y0 + h, wd.z);
+      uvs.push(f.u0, 0, f.u1, 0, f.u1, f.v1, f.u0, f.v1);
+      for (let k = 0; k < 4; k++) normals.push(0, 0.4, 0.92);
+      index.push(i * 4, i * 4 + 1, i * 4 + 2, i * 4, i * 4 + 2, i * 4 + 3);
+    });
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+    geometry.setAttribute('normal', new THREE.Float32BufferAttribute(normals, 3));
+    geometry.setIndex(index);
+    this.geometries.push(geometry);
+    const mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ map: texture, alphaTest: 0.5, side: THREE.DoubleSide }));
+    mesh.raycast = () => {};
+    mesh.name = 'arena-weeds';
+    this.root.add(mesh);
   }
 
   /**

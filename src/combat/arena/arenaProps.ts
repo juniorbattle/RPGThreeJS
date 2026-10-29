@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { seeded, type Rng } from './pixelArt';
 import type { ArenaPalette, ArenaProp } from './arenaThemes';
 import {
-  bannerTexture, barkTexture, burlapTexture, columnTexture, lanternTexture, lionReliefTexture, logEndTexture, metalTexture, plankTexture,
+  bannerTexture, barkTexture, burlapTexture, columnTexture, gravestoneTexture, lanternTexture, lionReliefTexture, logEndTexture, metalTexture, plankTexture,
   plasterTexture, roofTexture, stoneBlockTexture, strawTexture, windowTextures,
 } from './arenaTextures';
 import { DECOR_TEXELS_PER_UNIT, drawBush, drawDeadTree, drawFern, drawGrass, drawPine, drawTree, type DecorSprite } from './arenaSprites';
@@ -21,7 +21,21 @@ export interface PropContext {
   lights: Array<{ anchor: THREE.Object3D; color: string; intensity: number; distance: number; flicker: number }>;
   sprites: Map<string, { texture: THREE.Texture; sprite: DecorSprite }>;
   shadows: boolean;
+  /** Soft contact shadows under props (baked into one mesh by the arena). */
+  contacts: Array<{ x: number; z: number; rx: number; rz: number; strength: number }>;
+  /** Weed tufts at the foot of walls and masonry (baked into one mesh by the arena). */
+  weeds: Array<{ x: number; z: number; s: number; v: number }>;
 }
+
+/** Height of the ground around the raised battle platform (tile tops stay at y = 0). */
+export const ARENA_GROUND_Y = -0.16;
+
+const BILLBOARD_CONTACT: Partial<Record<ArenaProp['kind'], number>> = { tree: 1.0, pine: 0.85, dead_tree: 0.7, bush: 0.75, fern: 0.5 };
+const NO_CONTACT = new Set<ArenaProp['kind']>(['fire', 'smoke', 'grass']);
+const WEEDS_PER_KIND: Partial<Record<ArenaProp['kind'], number>> = {
+  house: 9, wall: 5, arch: 4, column: 3, broken_column: 3, stairs: 3, statue: 4, obelisk: 3, well: 3, gravestone: 2, barrel: 1, crate: 1, rock: 2,
+};
+const _box = new THREE.Box3();
 
 // ---------------------------------------------------------------- helpers
 
@@ -1020,13 +1034,27 @@ function candles(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
 function gravestone(ctx: PropContext, seed: number): THREE.Group {
   const g = new THREE.Group();
   const stone = stoneMaterial(ctx, seed, 0.7);
+  const faceKey = `gravestone-${seed % 3}`;
+  const face = litMaterial(ctx, faceKey, cached(ctx.textures, faceKey, () => gravestoneTexture(ctx.palette, 80 + (seed % 3)).toTexture()));
   const slab = mesh(boxGeometry(0.8, 1.0, 0.22, 1.6), stone, ctx);
   slab.position.y = 0.5;
   g.add(slab);
-  const top = mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.22, 12, 1, false, 0, Math.PI), stone, ctx);
+  // the carved face on front and back (separate quads, so the stone merges with the decor)
+  for (const side of [1, -1]) {
+    const carved = mesh(new THREE.PlaneGeometry(0.78, 0.98), face, ctx, false);
+    carved.position.set(0, 0.5, side * 0.112);
+    if (side < 0) carved.rotation.y = Math.PI;
+    g.add(carved);
+  }
+  // rounded crown in the same single stone (no ashlar courses on a monolith)
+  const crown = litMaterial(ctx, 'gravestone-crown', null, { color: ctx.palette.stone[3], roughness: 1 });
+  const top = mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.22, 12, 1, false, 0, Math.PI), crown, ctx);
   top.rotation.set(Math.PI / 2, Math.PI / 2, 0);
   top.position.y = 1.0;
   g.add(top);
+  const base = mesh(boxGeometry(0.96, 0.14, 0.4, 1.6), stone, ctx);
+  base.position.y = 0.07;
+  g.add(base);
   return g;
 }
 
@@ -1117,10 +1145,41 @@ export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | n
     default: object = null;
   }
   if (!object) return null;
-  object.position.set(prop.x, 0, prop.z);
+  // props stand on the ground, a centimetre sunk so no seam shows at their foot
+  object.position.set(prop.x, ARENA_GROUND_Y - 0.01, prop.z);
   if (prop.kind !== 'fire' && prop.kind !== 'smoke' && !ctx.billboards.includes(object)) object.rotation.y = prop.r ?? 0;
   const sizedByBuilder = ['tree', 'pine', 'dead_tree', 'bush', 'fern', 'grass', 'fire'].includes(prop.kind);
   if (!sizedByBuilder) object.scale.setScalar(s);
   object.name = `arena-prop:${prop.kind}`;
+  groundProp(ctx, prop, object, rng);
   return object;
+}
+
+/**
+ * Grounds a prop: a soft contact shadow sized to its footprint and, for
+ * masonry and timber, a few weed tufts along its foot.
+ */
+function groundProp(ctx: PropContext, prop: ArenaProp, object: THREE.Object3D, rng: Rng): void {
+  if (NO_CONTACT.has(prop.kind)) return;
+  const s = prop.s ?? 1;
+  const billboardRadius = BILLBOARD_CONTACT[prop.kind];
+  if (billboardRadius !== undefined) {
+    ctx.contacts.push({ x: prop.x, z: prop.z, rx: billboardRadius * s, rz: billboardRadius * s * 0.7, strength: 0.42 });
+    return;
+  }
+  object.updateMatrixWorld(true);
+  _box.setFromObject(object);
+  if (_box.isEmpty()) return;
+  const cx = (_box.min.x + _box.max.x) / 2, cz = (_box.min.z + _box.max.z) / 2;
+  const hx = (_box.max.x - _box.min.x) / 2, hz = (_box.max.z - _box.min.z) / 2;
+  ctx.contacts.push({ x: cx, z: cz, rx: hx * 1.12 + 0.2, rz: hz * 1.12 + 0.2, strength: 0.5 });
+  const weeds = ctx.reduced ? 0 : WEEDS_PER_KIND[prop.kind] ?? 0;
+  for (let i = 0; i < weeds; i++) {
+    // a point on the footprint's rim, a hand's breadth outside
+    const t = rng() * 4;
+    const side = Math.floor(t), f = t - side;
+    const ox = side === 0 ? -1 + f * 2 : side === 1 ? 1 : side === 2 ? 1 - f * 2 : -1;
+    const oz = side === 0 ? 1 : side === 1 ? 1 - f * 2 : side === 2 ? -1 : -1 + f * 2;
+    ctx.weeds.push({ x: cx + ox * (hx + 0.08), z: cz + oz * (hz + 0.08), s: 0.55 + rng() * 0.45, v: i % 2 });
+  }
 }
