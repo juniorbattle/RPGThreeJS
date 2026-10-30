@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { VFX_PRESETS } from '../vfx/VfxPresets';
 import { SKILL_PRESENTATION, HERO_SKILL_IDS } from '../skillPresentation';
 import { COMBAT_SFX_IDS } from '../audio/CombatSfx';
-import { listExplicitFxRecipes, recipeImpactTime, resolveFxRecipe } from './fxRecipes';
+import { listExplicitFxRecipes, recipeImpactTime, resolveFxRecipe, withoutGroundMarks } from './fxRecipes';
 import { elementForTags } from './fxPalettes';
 
 describe('procedural combat FX recipes', () => {
@@ -54,6 +54,21 @@ describe('procedural combat FX recipes', () => {
       expect(hasSeal(id), id).toBe(false);
     }
     for (const id of ['fireball', 'heal_burst', 'curse_pulse', 'frost_bind', 'skill_arcane_vortex', 'skill_fire_impact']) expect(hasSeal(id), id).toBe(true);
+  });
+
+  it('strips floor marks from basic attacks and keeps their impact FX', () => {
+    const floor = (recipe: ReturnType<typeof resolveFxRecipe>) => recipe.steps.filter((step) => ['circle', 'ring', 'pulse', 'decal'].includes(step.kind) && ['sourceGround', 'targetGround', 'point'].includes(String(step.anchor)));
+    for (const id of ['blunt_impact', 'dark_bolt', 'fireball', 'basic_hand_cannon_hit', 'basic_holy_mace_hit']) {
+      const full = resolveFxRecipe(id, VFX_PRESETS[id]?.tags ?? []);
+      const basic = withoutGroundMarks(full);
+      expect(floor(full).length, `${id} has floor marks to strip`).toBeGreaterThan(0);
+      expect(floor(basic), id).toHaveLength(0);
+      expect(basic.steps.some((step) => step.kind === 'star' || step.kind === 'burst' || step.kind === 'slash' || step.kind === 'orb'), `${id} keeps its impact`).toBe(true);
+      expect(basic.magic, id).toBe(full.magic);
+      expect(basic.impactAt).toBe(full.impactAt);
+    }
+    const crit = resolveFxRecipe('critical_hit');
+    expect(withoutGroundMarks(crit)).toBe(crit);
   });
 
   it('keeps martial ultimates martial and spell ultimates magic', () => {

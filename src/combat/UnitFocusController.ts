@@ -38,6 +38,8 @@ export class UnitFocusController {
   private snapshots: OpacitySnapshot[] = [];
   private activeUnit: FocusableUnit | null = null;
   private validTargets = new Set<FocusableUnit>();
+  private highlighted = new Set<FocusableUnit>();
+  private hovered: FocusableUnit | null = null;
   private readonly policy: UnitFocusPolicy;
 
   constructor(policy: Partial<UnitFocusPolicy> = {}) {
@@ -64,6 +66,8 @@ export class UnitFocusController {
   ): void {
     this.restore();
     this.activeUnit = active;
+    this.hovered = null;
+    this.highlighted = new Set();
     this.validTargets = new Set(validTargets);
     this.snapshots = units.map((unit) => ({
       unit,
@@ -89,15 +93,27 @@ export class UnitFocusController {
 
   preview(units: FocusableUnit[]): void {
     if (!this.active) return;
-    const highlighted = new Set(units);
+    this.highlighted = new Set(units);
+    this.apply();
+  }
+
+  /** The unit under the cursor (move or target selection) is always shown at full opacity. */
+  hover(unit: FocusableUnit | null): void {
+    if (!this.active || this.hovered === unit) return;
+    this.hovered = unit;
+    this.apply();
+  }
+
+  private apply(): void {
+    const highlighted = this.highlighted;
     for (const snapshot of this.snapshots) {
       const unit = snapshot.unit;
       if (!unit.alive) continue;
-      if (unit === this.activeUnit || highlighted.has(unit)) {
+      if (unit === this.activeUnit || unit === this.hovered || highlighted.has(unit)) {
         unit.mat.opacity = 1;
         unit.blob.material.opacity = Math.min(
           snapshot.shadow,
-          highlighted.has(unit) ? this.policy.highlightedShadowOpacity : snapshot.shadow,
+          highlighted.has(unit) || unit === this.hovered ? this.policy.highlightedShadowOpacity : snapshot.shadow,
         );
       } else if (this.validTargets.has(unit)) {
         this.setBodyOpacity(unit, this.policy.validTargetOpacity);
@@ -117,6 +133,8 @@ export class UnitFocusController {
     }
     this.snapshots = [];
     this.activeUnit = null;
+    this.hovered = null;
+    this.highlighted = new Set();
     this.validTargets.clear();
   }
 

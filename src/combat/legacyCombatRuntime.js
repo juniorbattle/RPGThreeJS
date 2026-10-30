@@ -32,7 +32,7 @@ import { resolveBossIntentVisualState } from './bossIntentPresentation';
 import { CombatCameraDirector, shotFor } from './camera/CombatCameraDirector';
 import { FxEngine } from './fx/FxEngine';
 import { FxDirector } from './fx/FxDirector';
-import { resolveFxRecipe } from './fx/fxRecipes';
+import { resolveFxRecipe, withoutGroundMarks } from './fx/fxRecipes';
 import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
 import { isExhausted } from './combatExhaustion';
 import { resolvePixelSheet, pixelSheetVisibleBounds, PIXEL_PX_PER_UNIT } from './pixel/PixelSpriteSheets';
@@ -1412,6 +1412,7 @@ function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*
 function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; if(spec.weaponType==='longbow'){ const dist=Math.abs((att.size>1?bossCenterGX(att):att.gx)-tgt.gx)+Math.abs((att.size>1?bossCenterGZ(att):att.gz)-tgt.gz); if(dist>=spec.range[1])acc+=5; } return tacticalRnd()*100<cl(acc,5,95); }
 
 async function applyDamage(u,dmg,src,opts={}){
+  stageRevealUnit(u);
   const hpBefore=u.hp; u.hp=Math.max(0,u.hp-dmg);
   if(u.hp<hpBefore)combatCue(opts.critical?'critical':opts.magic?'magic-impact':'physical-impact','impact',u.id);
   const willKnockOut=u.hp<=0&&u.alive;
@@ -1429,8 +1430,8 @@ async function applyDamage(u,dmg,src,opts={}){
     checkEnd();
   }
 }
-function applyHeal(u,amt){ if(!u.alive)return; const hpBefore=u.hp; u.hp=Math.min(u.maxhp,u.hp+amt); if(u.hp>hpBefore)combatCue('recover','heal',u.id); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
-function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1?2:requestedTurns; const before=t.statuses[st]||0; t.statuses[st]=Math.max(before,effectiveTurns); if(t.statuses[st]>before)combatCue(isNegative(st)?'status-negative':'support','status-'+st,t.id); if(!G.stage)floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
+function applyHeal(u,amt){ if(!u.alive)return; stageRevealUnit(u); const hpBefore=u.hp; u.hp=Math.min(u.maxhp,u.hp+amt); if(u.hp>hpBefore)combatCue('recover','heal',u.id); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
+function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; stageRevealUnit(t); const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1?2:requestedTurns; const before=t.statuses[st]||0; t.statuses[st]=Math.max(before,effectiveTurns); if(t.statuses[st]>before)combatCue(isNegative(st)?'status-negative':'support','status-'+st,t.id); if(!G.stage)floatText(t,(d.name||st).toUpperCase(),d.col||'#fff'); refreshPanel(t); }
 async function knockOut(u,src){
   const baseline=motionBaseline(u),away=src?motionDirection(u,{source:src,reaction:true},true):{x:0,z:0},state=getUnitVisualState(u.team,false,true),sign=spriteScaleSign(u.spr),scale=largeUnitSpriteScale(u),outlineScale=scale*1.1;
   killSpriteMotion(u); const epoch=beginUnitMotion(u); u.alive=false; u.downed=true; combatCue('knockout','ko',u.id); clearBossIntentPresentation(u);
@@ -1705,7 +1706,7 @@ function fxPower(spec){
 /** Plays the procedural FX recipe for an action; returns null when no preset applies. */
 function playActionFx(spec,u,targets,cx,cz,visualContext={}){
   const presetId=getActionVfxPreset(spec,u); if(!presetId||!u||!u.grp)return null;
-  const preset=getVfxPreset(presetId); const recipe=resolveFxRecipe(presetId,preset?.tags||[]);
+  const preset=getVfxPreset(presetId); const resolvedRecipe=resolveFxRecipe(presetId,preset?.tags||[]); const recipe=spec.key==='attack'?withoutGroundMarks(resolvedRecipe):resolvedRecipe;
   const point=visualContext.targetPoint?visualContext.targetPoint.clone():new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz));
   const cells=(spec.radius>=1||spec.shape)?aoeCells(u,spec,cx,cz).filter(([gx,gz])=>inBounds(gx,gz)).map(([gx,gz])=>new THREE.Vector3(wX(gx),tileTop(gx,gz),wZ(gz))):[];
   const refs=targets.filter(t=>t&&t.grp).map(fxUnitRef);
@@ -2168,17 +2169,32 @@ function actionShotKind(spec,targets){
   return 'action';
 }
 function unitShotPoint(u){ return u&&u.grp?{x:u.grp.position.x,y:u.grp.position.y,z:u.grp.position.z}:undefined; }
+// While an action plays only its caster and its targets stay on screen: every other unit is hidden, then brought back on exit.
+function stageRestoreUnit(o){
+  if(!o||!o._opSnap)return;
+  const snap=o._opSnap,state=getUnitVisualState(o.team,o.alive,o.downed); delete o._opSnap;
+  killTweens(o.mat); killTweens(o.blob.material); o.grp.visible=state.visible&&snap.vis;
+  if(!state.visible)return;
+  tween(o.mat,{opacity:o.alive?snap.mat:state.bodyOpacity},0.3,easeOutCubic); tween(o.blob.material,{opacity:o.alive?snap.blob:state.shadowOpacity},0.3,easeOutCubic);
+  if(!o.alive&&o.downed&&o.team==='player'&&o.mat&&o.mat.color)o.mat.color.set('#ff5a4a');
+}
+function stageIsolateUnits(involved){
+  G._stageFaded=[];
+  for(const o of G.units){ if(involved.has(o))continue; o._opSnap={mat:o.mat.opacity,blob:o.blob.material.opacity,vis:o.grp.visible}; G._stageFaded.push(o);
+    if(REDUCED_GRAPHICS){ o.grp.visible=false; continue; }
+    tween(o.mat,{opacity:0},0.2,easeOutCubic,()=>{ if(o._opSnap)o.grp.visible=false; }); tween(o.blob.material,{opacity:0},0.2,easeOutCubic); }
+}
+function stageRevealUnit(u){ if(u&&u._opSnap)stageRestoreUnit(u); }
+function stageRestoreUnits(){ if(!G._stageFaded)return; for(const o of G._stageFaded)stageRestoreUnit(o); G._stageFaded=null; }
 async function presentActionEnter(att,targets,spec,opts={}){
   hideActionPreview();
   const kind=opts.forceSpotlight?'spotlight':actionShotKind(spec,targets);
   const target=targets.find(t=>t!==att)||targets[0]||null;
   G.spotlight={kind};
+  stageIsolateUnits(new Set([att,...targets]));
   if(kind!=='spotlight'){ await cameraDirector.frame(kind,unitShotPoint(att),unitShotPoint(target),REDUCED_GRAPHICS?0.2:0.32); return; }
   const feel=resolveCombatFeel({motionPreset:getActionMotionPreset(spec),visualTier:getActionVisualTier(spec),boss:Boolean(att.boss&&spec.offensive),reducedGraphics:REDUCED_GRAPHICS});
   if(!stageTitleEl)buildStageOverlay();
-  const inv=new Set([att]); for(const t of targets)inv.add(t); G._stageFaded=[];
-  for(const o of G.units){ if(inv.has(o))continue; o._opSnap={mat:o.mat.opacity,blob:o.blob.material.opacity,vis:o.grp.visible};
-    tween(o.mat,{opacity:Math.min(o.mat.opacity,.24)},0.25,easeOutCubic); tween(o.blob.material,{opacity:0},0.2,easeOutCubic); G._stageFaded.push(o); }
   if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
   killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.spotlightVignette},0.42,easeInOut);
   if(G.arena)G.arena.setDim(0.42,0.45);
@@ -2191,12 +2207,11 @@ async function presentActionEnter(att,targets,spec,opts={}){
 async function presentActionExit(){
   const active=G.spotlight; if(!active)return;
   if(active.hold)await Promise.race([active.hold,wait(3)]);
-  G.spotlight=null;
+  G.spotlight=null; stageRestoreUnits();
   if(active.kind==='spotlight'){
     killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.vignette},0.5,easeInOut);
     if(G.arena)G.arena.setDim(1,0.5);
     if(stageVigEl)stageVigEl.classList.remove('on'); if(stageTitleEl)stageTitleEl.classList.remove('on'); if(dom.ui)dom.ui.classList.remove('staging');
-    if(G._stageFaded){ for(const o of G._stageFaded){ if(o._opSnap){ const state=getUnitVisualState(o.team,o.alive,o.downed); killTweens(o.mat); killTweens(o.blob.material); o.grp.visible=state.visible&&o._opSnap.vis; if(state.visible){ tween(o.mat,{opacity:o.alive?o._opSnap.mat:state.bodyOpacity},0.3,easeOutCubic); tween(o.blob.material,{opacity:o.alive?o._opSnap.blob:state.shadowOpacity},0.3,easeOutCubic); if(!o.alive&&o.downed&&o.team==='player'&&o.mat&&o.mat.color)o.mat.color.set('#ff5a4a'); } delete o._opSnap; } } G._stageFaded=null; }
   }
   await cameraDirector.restore(active.kind==='spotlight'?0.6:0.45);
 }
@@ -2273,6 +2288,7 @@ function updateBattlefieldCursor(){
   renderer.domElement.dataset.cursorGx=String(c.gx); renderer.domElement.dataset.cursorGz=String(c.gz);
 }
 function hoverBattlefieldCell(c){ const hoveredUnit=(c&&c.occupant&&c.occupant.alive)?c.occupant:null; G.hover=c; G.hoverUnit=hoveredUnit; if(c)moveCursor(c.gx,c.gz); else if(cursorMesh)cursorMesh.visible=false;
+  if(G.mode==='move'||G.mode==='target')unitFocus.hover(hoveredUnit);
   if(G.mode==='target'){ const sp=G.pending.spec; const targetCell=hoveredUnit?.cell?.()||c,previewKey=sp.key+':'+(targetCell?targetCell.gx+','+targetCell.gz:'none'); if(G._targetPreviewKey===previewKey)return; G._targetPreviewKey=previewKey; if(sp.self)previewAt(G.active.gx,G.active.gz); else if(targetCell&&G.pending.keys.has(targetCell.gx+','+targetCell.gz)){ previewAt(targetCell.gx,targetCell.gz); const target=affectedUnits(G.active,sp,targetCell.gx,targetCell.gz)[0]||hoveredUnit; if(target)transientInspect(target); } else { unitFocus.preview([]); drawRange(); restoreInspection(); } }
   else if((G.mode==='menu'||G.mode==='idle')&&hoveredUnit)transientInspect(hoveredUnit);
   else if((G.mode==='menu'||G.mode==='idle')&&c?.occupant?.alive)transientInspect(c.occupant);
@@ -2477,7 +2493,7 @@ function animate(){ if(_runtimeDisposed)return; _animationFrame=requestAnimation
   const _shakeOffset=shakeSampleToUvOffset(_shakeSample,innerWidth,innerHeight);
   ImpactShake.uniforms.shakeOffset.value.set(_shakeOffset.x,_shakeOffset.y);
   for(const u of G.units){ const dx=camera.position.x-u.grp.position.x, dz=camera.position.z-u.grp.position.z; u.spr.rotation.y=Math.atan2(dx,dz); if(u.outline){ u.outline.rotation.y=u.spr.rotation.y; u.outline.material.opacity=Math.max(0.16,u.mat.opacity*0.44); }
-    if(u.teamRing){ if(!u.alive){ u.teamRing.material.opacity=0; if(u.teamRingUnder)u.teamRingUnder.material.opacity=0; if(u.teamGlow)u.teamGlow.material.opacity=0; } else if(!u._motionPlaying){ const isActive=u===G.active&&!G.stage&&!G.over,isHover=G.hoverUnit===u,isTarget=G.mode==='target'&&G.pending&&G.pending.keys.has(cellKey(u.gx,u.gz))&&G.active&&u.team!==G.active.team; u.teamRing.material.opacity=Math.min(1,COMBAT_PRESENTATION.units.teamRingOpacity*(isActive?1.16:(isTarget?1.12:(isHover?1.08:0.94)))); if(u.teamRingUnder)u.teamRingUnder.material.opacity=isActive ? .68 : (isTarget ? .64 : (isHover ? .6 : .5)); if(u.teamGlow)u.teamGlow.material.opacity=isActive ? .28 : (isTarget ? .25 : (isHover ? .22 : (u.team==='player' ? .15 : .17))); } }
+    if(u.teamRing){ if(!u.alive){ u.teamRing.material.opacity=0; if(u.teamRingUnder)u.teamRingUnder.material.opacity=0; if(u.teamGlow)u.teamGlow.material.opacity=0; } else if(!u._motionPlaying){ const isActive=u===G.active&&!G.stage&&!G.over,isHover=G.hoverUnit===u,isTarget=G.mode==='target'&&G.pending&&G.pending.keys.has(cellKey(u.gx,u.gz))&&G.active&&u.team!==G.active.team,dim=Math.min(1,Math.max(0,u.mat.opacity)); u.teamRing.material.opacity=Math.min(1,COMBAT_PRESENTATION.units.teamRingOpacity*(isActive?1.16:(isTarget?1.12:(isHover?1.08:0.94))))*dim; if(u.teamRingUnder)u.teamRingUnder.material.opacity=(isActive ? .68 : (isTarget ? .64 : (isHover ? .6 : .5)))*dim; if(u.teamGlow)u.teamGlow.material.opacity=(isActive ? .28 : (isTarget ? .25 : (isHover ? .22 : (u.team==='player' ? .15 : .17))))*dim; } }
     syncBossIntentPresentation(u,_t);
     if(u.pixel)u.pixel.update(dt);
     // Pixel sprites bob on whole art pixels so the grid never swims.

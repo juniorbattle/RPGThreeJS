@@ -5,7 +5,7 @@ import { dialogues } from '../game/content';
 import { ALARIC_AUDIENCE_TABLEAU, AUDIENCE_ROAD_DEPARTURE_TABLEAU, CAMP_DEPARTURE_TABLEAU, VALMIR_FORK_TABLEAU, createGenericBoundaryTableau, createGenericNarrativeTableau } from './NarrativeTableau';
 import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 import { createNarrativeDialogueResolver } from './NarrativeDialogueAdapter';
-import { NarrativeSceneSurface, SCENE_INTEGRATED_ACTOR_BASE_SCALE, THEATRICAL_ACTOR_BASE_SCALE } from './NarrativeSceneSurface';
+import { NarrativeSceneSurface, idleBreatheTiming, SCENE_INTEGRATED_ACTOR_BASE_SCALE, THEATRICAL_ACTOR_BASE_SCALE } from './NarrativeSceneSurface';
 import { resolveStaticTableauActorTuning, resolveStaticTableauComposition } from './StaticTableauComposition';
 
 describe('NarrativeSceneSurface', () => {
@@ -14,6 +14,34 @@ describe('NarrativeSceneSurface', () => {
     vi.restoreAllMocks();
     vi.unstubAllGlobals();
     document.body.replaceChildren();
+  });
+
+  it('gives every actor its own stable coded idle-breathe timing and no timer', async () => {
+    const first = idleBreatheTiming('alistair'), again = idleBreatheTiming('alistair'), other = idleBreatheTiming('alaric');
+    expect(again).toEqual(first);
+    expect(first).not.toEqual(other);
+    for (const timing of [first, other]) {
+      expect(timing.periodSeconds).toBeGreaterThanOrEqual(4.4);
+      expect(timing.periodSeconds).toBeLessThanOrEqual(5.6);
+      expect(timing.delaySeconds).toBeLessThanOrEqual(0);
+      expect(timing.delaySeconds).toBeGreaterThan(-timing.periodSeconds);
+    }
+    vi.useFakeTimers();
+    vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue(undefined);
+    for (const reducedMotion of [false, true]) {
+      const root = document.createElement('div');
+      const surface = new NarrativeSceneSurface(root, ALARIC_AUDIENCE_TABLEAU, { reducedMotion });
+      surface.mount('/audience.webp');
+      await vi.runAllTimersAsync();
+      expect(surface.element.dataset.reducedMotion).toBe(String(reducedMotion));
+      const actors = [...surface.castLayer.querySelectorAll<HTMLElement>('.narrative-cast__actor')];
+      expect(actors.length).toBeGreaterThan(0);
+      for (const actor of actors) {
+        expect(actor.style.getPropertyValue('--narrative-breathe-period')).toMatch(/^\d+(\.\d+)?s$/);
+        expect(actor.style.getPropertyValue('--narrative-breathe-delay')).toMatch(/^-?\d+(\.\d+)?s$/);
+      }
+      expect(vi.getTimerCount()).toBe(0);
+    }
   });
 
   it('bounds initial environment decoding without removing the authored surface', async () => {

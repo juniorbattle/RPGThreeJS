@@ -119,3 +119,13 @@ L'opérateur renonce aux animations image par image des héros (option B3) : « 
 - Le chantier B est clos côté production : les animations et le mouvement par code, sur tous les personnages, sont retenus pour la démo.
 - Les 30 images du lot héros de la mission locale ne seront pas générées.
 - Les 6 plans d'arène et les 8 planches d'ultimes ne sont pas tranchés : ils restent optionnels, et aucune génération ne part sans accord de l'opérateur.
+
+## Mise à jour — OD-2026-10-30-B, 30 octobre 2026
+
+Retours de l'opérateur après jeu :
+
+- Pendant la sélection d'une case de déplacement ou d'une cible, les autres unités sont nettement semi-transparentes (le sprite pixel suit désormais l'opacité, avec recul de teinte), leurs anneaux d'équipe s'atténuent avec elles, et l'unité survolée redevient pleinement visible.
+- Pendant l'exécution d'une action, seuls le lanceur et la ou les cibles restent affichés ; les autres unités sont cachées puis rétablies à la fin (une victime non prévue, comme l'éclaboussure d'un canon ou la perce d'une lance, réapparaît avant de subir le coup).
+- Les attaques basiques gardent leur effet d'impact mais n'ont plus de sceau, d'anneau de choc, de pulsation ni de marque de sol. Les compétences, ultimes et signatures de boss ne changent pas ; l'escalade visuelle de l'élan reste.
+- Les personnages des dialogues statiques respirent par code (CSS, sans image ni minuterie), chacun avec sa période et sa phase ; le mouvement réduit du jeu ou du système l'arrête.
+- Musique : les thèmes sont bien structurés mais mal placés. Chaque dialogue a un thème, alors que le contexte, les interlocuteurs et la tension demandent des choix différents ; les musiques génériques par aspect du jeu ne suffisent pas. Chantier ultérieur, à cadrer avec l'opérateur avant tout code.

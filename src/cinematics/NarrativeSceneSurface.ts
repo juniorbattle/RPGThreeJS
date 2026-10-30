@@ -25,6 +25,18 @@ export const THEATRICAL_ACTOR_BASE_SCALE = 1.14;
 /** Journey actors retain each road's authored perspective while reading clearly against the environment. */
 export const SCENE_INTEGRATED_ACTOR_BASE_SCALE = 1.4;
 
+/**
+ * Coded idle breathing (CSS, no frames): each actor gets its own stable period and phase, derived from its id, so a
+ * cast never breathes in unison. Presentation only; nothing here is saved or advances a line.
+ */
+export function idleBreatheTiming(actorId: string): { delaySeconds: number; periodSeconds: number } {
+  let hash = 2166136261;
+  for (let i = 0; i < actorId.length; i++) hash = Math.imul(hash ^ actorId.charCodeAt(i), 16777619) >>> 0;
+  const periodSeconds = 4.4 + (hash % 1000) / 1000 * 1.2;
+  const delaySeconds = -((hash >>> 10) % 1000) / 1000 * periodSeconds;
+  return { delaySeconds: Number(delaySeconds.toFixed(2)), periodSeconds: Number(periodSeconds.toFixed(2)) };
+}
+
 function castState(spec: NarrativeStagedActorSpec, speakerId?: string): NarrativeStaticCastState {
   if (spec.actorId === speakerId) return 'ACTIVE';
   return spec.narrativeRole === 'BACKGROUND' ? 'BACKGROUND' : 'LISTENING';
@@ -79,6 +91,9 @@ function actorElement(
   const actor = document.createElement('figure');
   actor.className = 'narrative-cast__actor';
   actor.dataset.actorId = spec.actorId;
+  const { delaySeconds, periodSeconds } = idleBreatheTiming(spec.actorId);
+  actor.style.setProperty('--narrative-breathe-delay', `${delaySeconds}s`);
+  actor.style.setProperty('--narrative-breathe-period', `${periodSeconds}s`);
   applyActorState(actor, spec, speakerId, undefined, compositionProfile, scenePlacement);
   const image = actorImages[spec.actorId] ?? actorImage(spec.actorId);
   if (image) {
@@ -128,6 +143,7 @@ export class NarrativeSceneSurface {
     this.element.dataset.narrativeScene = tableau.id;
     if (tableau.castPlacementMode !== 'SCENE_INTEGRATED') this.element.dataset.dialogueSurfaceMode = 'STATIC_TABLEAU';
     this.element.dataset.castPlacementMode = tableau.castPlacementMode ?? 'THEATRICAL_FOREGROUND';
+    this.element.dataset.reducedMotion = String(this.gameReducedMotion);
     this.element.dataset.tableauFamily = tableau.family ?? 'FALLBACK';
     if (tableau.tableauBackgroundId) this.element.dataset.tableauBackgroundId = tableau.tableauBackgroundId;
     this.environmentLayer.className = 'narrative-scene-surface__environment';

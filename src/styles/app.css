@@ -2813,6 +2813,11 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .narrative-cast__actor { --narrative-actor-scale:1; --narrative-actor-depth:2; position:absolute; bottom:-5vh; left:50%; z-index:var(--narrative-actor-depth); width:min(36vw,66vh,700px); height:120vh; margin:0; opacity:.5; filter:saturate(.65) brightness(.62) contrast(.97) drop-shadow(0 24px 28px rgba(0,0,0,.82)); transform:translateX(-50%) scale(var(--narrative-actor-scale)); transform-origin:50% 100%; transition:filter .28s ease,opacity .28s ease; }
 .narrative-cast__actor img { width:100%; height:100%; object-fit:contain; object-position:center bottom; image-rendering:pixelated; image-rendering:crisp-edges; }
 .narrative-cast__actor[data-facing="LEFT"] img { transform:scaleX(-1); }
+.narrative-cast__actor img { --narrative-breathe-lift:-.22%; --narrative-breathe-grow:1.014; transform-origin:50% 100%; animation:narrative-actor-breathe var(--narrative-breathe-period,5s) ease-in-out var(--narrative-breathe-delay,0s) infinite; }
+.narrative-cast__actor.is-speaking img { --narrative-breathe-lift:-.34%; --narrative-breathe-grow:1.022; }
+.narrative-cast__actor.is-background img { --narrative-breathe-lift:-.12%; --narrative-breathe-grow:1.008; }
+.narrative-scene-surface[data-reduced-motion="true"] .narrative-cast__actor img { animation:none; }
+@keyframes narrative-actor-breathe { 0%,100% { scale:1 1; translate:0 0; } 50% { scale:calc(1 + (var(--narrative-breathe-grow) - 1) * .4) var(--narrative-breathe-grow); translate:0 var(--narrative-breathe-lift); } }
 .narrative-cast__actor[data-screen-position="FAR_LEFT"] { left:13%; }
 .narrative-cast__actor[data-screen-position="LEFT"] { left:28%; }
 .narrative-cast__actor[data-screen-position="CENTER_LEFT"] { left:42%; }
@@ -2909,6 +2914,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 @media (prefers-reduced-motion: reduce) {
   .narrative-scene-surface__environment,.narrative-scene-surface__atmosphere { animation:none !important; transform:none; translate:none; }
   .narrative-cast__actor { animation:none !important; translate:none !important; }
+  .narrative-cast__actor img { animation:none !important; }
   .narrative-media-transition,.narrative-media-transition * { animation:none !important; transition:none !important; }
 }
 

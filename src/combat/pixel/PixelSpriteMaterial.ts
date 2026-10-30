@@ -17,17 +17,17 @@ export function setPixelSpriteLight(tint: THREE.ColorRepresentation, rim: THREE.
 }
 
 /**
- * How a pixel sprite answers `material.opacity`. Plain translucency let a
- * focus-dimmed unit (0.42) melt into a same-hue ground, such as green-clad
- * brigands on the forest grass. A dimmed sprite therefore keeps most of its
- * coverage and recedes by shade and saturation instead; a fade towards 0
- * (K.O., teleport) still reaches full transparency.
+ * How a pixel sprite answers `material.opacity`. A focus-dimmed unit (0.42)
+ * must read as clearly semi-transparent, so coverage follows the opacity
+ * (smoothed) down to full transparency; shade and saturation recede on top of
+ * it so a dimmed sprite does not melt into a same-hue ground, such as
+ * green-clad brigands on the forest grass.
  */
 export const PIXEL_FOCUS_RESPONSE = Object.freeze({
   /** Opacity below which the sprite is fully receded in shade and saturation. */
   focusLow: 0.2,
   /** Opacity at which coverage is already full. */
-  coverageFull: 0.55,
+  coverageFull: 1,
   minShade: 0.6,
   minSaturation: 0.35,
 });
@@ -105,7 +105,7 @@ ${PIXEL_FOCUS_GLSL}
   diffuseColor.rgb = mix(diffuseColor.rgb, vec3(1.0, 0.98, 0.92), clamp(uPixelFlash, 0.0, 1.0));
 #endif`);
   };
-  material.customProgramCacheKey = () => 'combat-pixel-sprite-v2';
+  material.customProgramCacheKey = () => 'combat-pixel-sprite-v3';
   return { material, flash };
 }
 

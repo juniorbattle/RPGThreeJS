@@ -4,9 +4,10 @@ import { DEFAULT_UNIT_FOCUS_POLICY } from '../UnitFocusController';
 import { createPixelSpriteMaterial, PIXEL_FOCUS_GLSL, pixelFocusResponse } from './PixelSpriteMaterial';
 
 describe('pixel sprite focus response', () => {
-  it('keeps a focus-dimmed unit mostly opaque and recedes it by shade and saturation', () => {
+  it('makes a focus-dimmed unit clearly semi-transparent and recedes it by shade and saturation', () => {
     const dimmed = pixelFocusResponse(DEFAULT_UNIT_FOCUS_POLICY.dimOpacity);
-    expect(dimmed.alpha).toBeGreaterThanOrEqual(0.8);
+    expect(dimmed.alpha).toBeLessThan(0.5);
+    expect(dimmed.alpha).toBeGreaterThan(0.2);
     expect(dimmed.shade).toBeLessThan(0.75);
     expect(dimmed.saturation).toBeLessThan(0.6);
   });
@@ -18,7 +19,7 @@ describe('pixel sprite focus response', () => {
 
   it('keeps valid targets close to full presence', () => {
     const target = pixelFocusResponse(DEFAULT_UNIT_FOCUS_POLICY.validTargetOpacity);
-    expect(target.alpha).toBe(1);
+    expect(target.alpha).toBeGreaterThan(0.85);
     expect(target.shade).toBeGreaterThan(0.9);
   });
 

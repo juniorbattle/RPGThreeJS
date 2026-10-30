@@ -7,12 +7,25 @@ const bridgeSource = readFileSync(new URL('./CombatBridge.ts', import.meta.url),
 const workbenchSource = readFileSync(new URL('./UnitMotionWorkbench.ts', import.meta.url), 'utf8');
 
 describe('V11A.1 combat visual clarity contracts', () => {
-  it('steps non-involved units back during the spotlight and restores them on exit', () => {
+  it('hides every non-involved unit while any action plays and restores them on exit', () => {
     expect(runtimeSource).toContain('G._stageFaded=[]');
     expect(runtimeSource).toContain('o._opSnap=');
-    expect(runtimeSource).toContain('tween(o.mat,{opacity:Math.min(o.mat.opacity,.24)}');
+    expect(runtimeSource).toContain('tween(o.mat,{opacity:0}');
+    expect(runtimeSource).toContain('o.grp.visible=false');
     expect(runtimeSource).toContain('G._stageFaded=null');
     expect(runtimeSource).toContain('getUnitVisualState(o.team,o.alive,o.downed)');
+    expect(runtimeSource).toContain('stageIsolateUnits(new Set([att,...targets]))');
+    expect(runtimeSource).toContain('G.spotlight=null; stageRestoreUnits();');
+  });
+
+  it('reveals an unplanned recipient (splash, pierce) before it takes damage, a heal or a status', () => {
+    expect(runtimeSource).toContain('stageRevealUnit(u);');
+    expect(runtimeSource).toContain('stageRevealUnit(t);');
+  });
+
+  it('keeps hovered units at full opacity and fades team rings with their unit while dimmed', () => {
+    expect(runtimeSource).toContain("if(G.mode==='move'||G.mode==='target')unitFocus.hover(hoveredUnit);");
+    expect(runtimeSource).toContain('dim=Math.min(1,Math.max(0,u.mat.opacity))');
   });
 
   it('keeps tactical overlays below unit presentation layers', () => {

@@ -45,6 +45,29 @@ describe('UnitFocusController', () => {
     expect(other.mat.opacity).toBe(0.42);
   });
 
+  it('lifts any hovered unit to full opacity during move or target selection and dims it again', () => {
+    const active = unit();
+    const other = unit();
+    const valid = unit();
+    const focus = new UnitFocusController();
+
+    focus.focus([active, other, valid], active, [valid]);
+    focus.hover(other);
+    expect(other.mat.opacity).toBe(1);
+    expect(valid.mat.opacity).toBe(0.82);
+
+    focus.preview([valid]);
+    expect(other.mat.opacity).toBe(1);
+    expect(valid.mat.opacity).toBe(1);
+
+    focus.hover(null);
+    expect(other.mat.opacity).toBe(0.42);
+
+    focus.restore();
+    focus.hover(other);
+    expect(other.mat.opacity).toBe(1);
+  });
+
   it('protects boss, elite, and charge opacity floors while dimmed', () => {
     const active = unit();
     const boss = Object.assign(unit(), { boss: true });

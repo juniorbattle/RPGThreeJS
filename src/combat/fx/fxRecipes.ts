@@ -741,6 +741,19 @@ export function resolveFxRecipe(presetId: string, tags: readonly string[] = []):
   return { ...recipe, id: presetId, magic: recipe.magic ?? recipe.steps.some((step) => step.kind === 'circle') };
 }
 
+const GROUND_ANCHORS: ReadonlySet<FxAnchor | undefined> = new Set<FxAnchor | undefined>(['sourceGround', 'targetGround', 'point']);
+const GROUND_MARKS: ReadonlySet<FxStepKind> = new Set<FxStepKind>(['circle', 'ring', 'pulse', 'decal']);
+
+/**
+ * Basic attacks keep their impact FX but never mark the floor: no rune seal,
+ * shock ring, pulse or scorch decal. Skills, ultimates and boss signatures
+ * keep theirs.
+ */
+export function withoutGroundMarks(recipe: FxRecipe): FxRecipe {
+  const steps = recipe.steps.filter((step) => !(GROUND_MARKS.has(step.kind) && GROUND_ANCHORS.has(step.anchor) && step.p?.ground !== false));
+  return steps.length === recipe.steps.length ? recipe : { ...recipe, steps };
+}
+
 export function listExplicitFxRecipes(): string[] {
   return Object.keys(EXPLICIT);
 }
