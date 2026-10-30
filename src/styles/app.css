@@ -2996,3 +2996,4 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .journey-overlay--departure .journey-overlay__panel.campaign-ui-frame { padding: 10px 13px; }
   .journey-overlay--departure .journey-overlay__title { font-size: 21px; }
 }
+.qa-lab__header-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}

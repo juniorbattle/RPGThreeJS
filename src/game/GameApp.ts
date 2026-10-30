@@ -37,6 +37,7 @@ import { ManagementView } from '../ui/ManagementView';
 import { PoiMapView } from '../ui/PoiMapView';
 import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
+import { CombatSoundWorkshop } from '../ui/CombatSoundWorkshop';
 import { ExplorationView } from '../ui/ExplorationView';
 import { resolveRefugePresentation } from '../ui/RefugePresentation';
 import { PrologueView } from '../ui/PrologueView';
@@ -321,7 +322,7 @@ export class GameApp {
       <section class="qa-lab ui-screen" aria-label="Laboratoire QA de combat">
         <header class="qa-lab__header">
           <div><p class="eyebrow">Développement local</p><h1>Laboratoire de combat</h1></div>
-          <button type="button" data-qa-back>Retour au titre</button>
+          <div class="qa-lab__header-actions"><button type="button" data-qa-sounds>Comparer les sons de combat</button><button type="button" data-qa-back>Retour au titre</button></div>
         </header>
         <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
@@ -366,6 +367,7 @@ export class GameApp {
       </section>
     `;
     this.chrome.querySelector('[data-qa-back]')?.addEventListener('click', () => this.renderTitle());
+    this.chrome.querySelector('[data-qa-sounds]')?.addEventListener('click', () => new CombatSoundWorkshop(this.root, this.uiSounds).open());
     this.chrome.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((input) => {
       input.addEventListener('change', () => {
         const group = input.name.split('qa-')[1] as keyof QaParams | undefined;

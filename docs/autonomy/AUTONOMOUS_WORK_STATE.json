@@ -1,19 +1,17 @@
 {
-  "status": "MUSIC_RUNTIME_DELIVERED_LISTENING_REVIEW",
-  "runStartedAt": "2026-10-29T23:20:00Z",
-  "runEndedAt": "2026-10-29T23:31:50Z",
+  "status": "MUSIC_AND_SYNTH_CUES_LISTENING_REVIEW",
+  "runStartedAt": "2026-10-30T00:40:00Z",
+  "runEndedAt": "2026-10-30T00:44:43Z",
   "activeTask": "MUSIC_OD_2026_10_29_B",
   "activePhase": "RUNTIME_DELIVERED",
-  "activeSubtask": "Musique générée par code (5 contextes) et ambiances livrées ; écoute opérateur",
+  "activeSubtask": "Musique, ambiances et sources synthétisées des 16 familles livrées ; écoute et choix de l'opérateur",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "lastPushedCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "completedThisRun": [
-    "Moteur musical src/audio/music adapté de RPGCards (chunk séparé, banque et salles dans un worker)",
-    "5 thèmes originaux et 3 ambiances",
-    "UiSoundPlayer : musique armée par défaut, silencieuse avant le premier geste, préférence hors V6",
-    "Contexte par GameApp.setMode et CombatBridge (rang, scène)",
-    "Réglages musique dans le panneau des sons"
+    "src/audio/synthCues.ts : 16 familles rendues hors ligne (≤ 1 s, crête 0,2)",
+    "UiSoundPlayer : source par famille hors V6, repli sur le fichier, aperçus explicites",
+    "Atelier « Comparer les sons de combat » dans le labo QA"
   ],
   "filesChanged": [
     "docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
@@ -27,42 +25,39 @@
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
   ],
   "testsRun": [
-    "vitest ciblés (audio, UiSoundPlayer, CombatBridgeAudio, GameApp)",
+    "vitest ciblés",
     "npm test",
-    "npx tsc --noEmit",
     "npm run build",
     "contracts:validate",
-    "Chromium via preview_start : clics réels, long tasks et long-animation-frame"
+    "Chromium : rendu des 16 familles, atelier, aperçus par clics réels"
   ],
   "testsPassed": [
-    "tests ciblés verts",
-    "npm test vert",
-    "tsc PASS",
-    "build PASS (chunk MusicDirector 28 kB + worker)",
+    "npm test : 164 fichiers, node:test 26/26",
+    "build PASS",
     "contracts PASS",
-    "Chromium : rien avant le geste, titre au premier clic, boss + ambiance sanctuaire, coupure/reprise, aucune long task de synthèse"
+    "Chromium : 16 rendus, 32 aperçus prêts, chaque aperçu joue son propre tampon"
   ],
   "testsRemaining": [
     "Écoute et acceptation artistique de l'opérateur"
   ],
   "blockers": [],
   "remainingWork": [
-    "Chantier C : écoute opérateur des 5 musiques et 3 ambiances ; source synthétisée des 16 familles à brancher et départager à l'écoute",
+    "Chantier C : écoute opérateur (musiques, ambiances, 16 familles dans l'atelier) ; fixer ses choix comme défaut",
     "Mission d’art locale (44 images) et passe de performance GPU réelle : au choix de l’opérateur",
     "Retrait des assets du Combat Stage devenus inutiles : accord de l’opérateur requis",
     "Option QA « Tous les héros QA » / stageqa : déploiement bloqué (constat préexistant)"
   ],
-  "nextAction": "Écoute de l'opérateur en jeu des 5 musiques (titre, carte, dialogue et refuge, combat, boss) et des 3 ambiances de combat ; retouches demandées à Claude. Ensuite, au choix : source synthétisée des 16 familles d'effets à départager à l'écoute (pas encore branchée), puis playtest PC complet et démo figée.",
+  "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Il me transmet le résumé de ses choix (champ « Choix à me transmettre ») ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
   "taskQueue": [
-    "Écoute de l'opérateur en jeu des 5 musiques (titre, carte, dialogue et refuge, combat, boss) et des 3 ambiances de combat ; retouches demandées à Claude. Ensuite, au choix : source synthétisée des 16 familles d'effets à départager à l'écoute (pas encore branchée), puis playtest PC complet et démo figée.",
+    "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Il me transmet le résumé de ses choix (champ « Choix à me transmettre ») ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
     "Playtest PC de l'opérateur, liste de corrections, démo figée ; mobile seulement si l'opérateur le veut."
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SET_1_11_0",
-  "runId": "claude-music-runtime-20261030T0045Z",
+  "runId": "claude-synth-cues-20261030T0130Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-10-29T23:31:50Z",
-  "heartbeat": "2026-10-29T23:31:50Z",
+  "lastHeartbeat": "2026-10-30T00:44:43Z",
+  "heartbeat": "2026-10-30T00:44:43Z",
   "wip": null,
   "uncommittedWork": [],
   "providerTasksPending": [],
@@ -70,10 +65,10 @@
   "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "previousRun": {
-    "runId": "claude-music-amendment-20261029T2307Z",
-    "runEndedAt": "2026-10-29T23:08:55Z",
+    "runId": "claude-music-runtime-20261030T0045Z",
+    "runEndedAt": "2026-10-29T23:31:50Z",
     "activeTask": "MUSIC_OD_2026_10_29_B",
-    "commit": "41b155a9"
+    "commit": "93c33424"
   },
   "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
   "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
@@ -556,16 +551,16 @@
     "rule": "Kept: protocol fields, run identity, current authority, open/deferred items and current scopes; QA jobs registered after the set 1.10.0 amendment commit. Everything else is unchanged in the snapshot."
   },
   "live": {
-    "lastHeartbeat": "2026-10-29T23:31:50Z",
-    "runId": "claude-music-runtime-20261030T0045Z",
+    "lastHeartbeat": "2026-10-30T00:44:43Z",
+    "runId": "claude-synth-cues-20261030T0130Z",
     "agent": "claude",
-    "status": "MUSIC_RUNTIME_DELIVERED_LISTENING_REVIEW",
+    "status": "MUSIC_AND_SYNTH_CUES_LISTENING_REVIEW",
     "wip": null,
-    "nextAction": "Écoute de l'opérateur en jeu des 5 musiques (titre, carte, dialogue et refuge, combat, boss) et des 3 ambiances de combat ; retouches demandées à Claude. Ensuite, au choix : source synthétisée des 16 familles d'effets à départager à l'écoute (pas encore branchée), puis playtest PC complet et démo figée.",
-    "runEndedAt": "2026-10-29T23:31:50Z",
+    "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Il me transmet le résumé de ses choix (champ « Choix à me transmettre ») ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
+    "runEndedAt": "2026-10-30T00:44:43Z",
     "writerStopped": true,
     "activeTask": "MUSIC_OD_2026_10_29_B",
-    "activeSubtask": "Musique générée par code (5 contextes) et ambiances livrées ; écoute opérateur",
+    "activeSubtask": "Musique, ambiances et sources synthétisées des 16 familles livrées ; écoute et choix de l'opérateur",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,

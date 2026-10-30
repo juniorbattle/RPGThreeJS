@@ -86,7 +86,7 @@ The live state's `nextAction` gives the exact next step. OD-2026-10-25-C ([demo 
   - existing reactions made visible in the tactical view.
 
   Frame animation is an option the operator decides afterwards.
-- **C. Music.** Contract set 1.11.0 (OD-2026-10-29-B): code-generated music for five contexts (`src/audio/music/`, adapted from the RPGCards engine) and biome ambience are delivered; the operator accepts them by listening. The synthesized source for the sixteen effect families is authorized but not wired yet.
+- **C. Music.** Contract set 1.11.0 (OD-2026-10-29-B): code-generated music for five contexts (`src/audio/music/`, adapted from the RPGCards engine) and biome ambience are delivered; the operator accepts them by listening. Each of the sixteen effect families can play its file or its synthesized source (`src/audio/synthCues.ts`, file by default); the operator compares them in the QA lab workshop and his choices become the default.
 
 Then the operator PC playtest, a fix list, and a frozen demo; the mobile pass only if the operator wants it. The Alistair narrative pilot, Bois-Clair relational finishing, new systems or content, rebalancing and art remasters stay frozen until then, unless the operator asks. A defect found while playing can always be fixed.
 

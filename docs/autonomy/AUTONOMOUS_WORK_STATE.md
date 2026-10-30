@@ -1,4 +1,4 @@
-# Musique livrée — écoute de l’opérateur
+# Musique et sons synthétisés livrés — écoute de l’opérateur
 
 Run claude-music-runtime-20261030T0045Z (agent claude, session interactive). [OD-2026-10-29-B](MUSIC_AUDIO_OPERATOR_DECISION_2026-10-29.md), contrats 1.11.0, baseline `a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa`.
 
@@ -6,7 +6,7 @@ Musique générée par code pour les 5 contextes et ambiance des 3 arènes, sous
 
 Scheduler PAUSED. `main` protégé.
 
-UNE prochaine action : Écoute de l'opérateur en jeu des 5 musiques (titre, carte, dialogue et refuge, combat, boss) et des 3 ambiances de combat ; retouches demandées à Claude. Ensuite, au choix : source synthétisée des 16 familles d'effets à départager à l'écoute (pas encore branchée), puis playtest PC complet et démo figée.
+UNE prochaine action : Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Il me transmet le résumé de ses choix (champ « Choix à me transmettre ») ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

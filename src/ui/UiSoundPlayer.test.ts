@@ -207,3 +207,50 @@ describe('code-generated music (OD-2026-10-29-B)', () => {
     const controls = [...root.querySelectorAll<HTMLElement>('button,input')]; expect(controls.at(-1)?.textContent).toBe('Fermer');
   });
 });
+
+describe('synthesized sources for the combat families (OD-2026-10-29-B)', () => {
+  function fakeSynth(duration = 0.3) {
+    const made = new Map<string, { duration: number; synth: string }>();
+    const resolvers: Array<() => void> = [];
+    const renderer = vi.fn((id: string) => new Promise<AudioBuffer | null>(resolve => {
+      resolvers.push(() => { const buffer = { duration, synth: id }; made.set(id, buffer); resolve(buffer as unknown as AudioBuffer); });
+    }));
+    return { renderer, made, finish: async () => { while (resolvers.length) { resolvers.shift()!(); await Promise.resolve(); await Promise.resolve(); } } };
+  }
+
+  it('choosing a source plays nothing; a synthesized family plays once rendered and falls back to its file before', async () => {
+    const synth = fakeSynth();
+    player = new UiSoundPlayer({ music: null, synth: synth.renderer }); await enable(); player.beginCombat('one');
+    await vi.waitFor(() => expect(contexts[0]?.decodeAudioData).toHaveBeenCalledTimes(24));
+    player.setCombatSource('thrust', 'synth');
+    expect(contexts[0]!.sources).toHaveLength(0); await vi.waitFor(() => expect(synth.renderer).toHaveBeenCalledWith('thrust', undefined));
+    player.playCombat('thrust', 'one', 'a'); expect(contexts[0]!.sources[0]!.buffer).not.toHaveProperty('synth');
+    await synth.finish(); await vi.waitFor(() => expect(synth.made.has('thrust')).toBe(true));
+    now += 100; player.playCombat('thrust', 'one', 'b');
+    expect(contexts[0]!.sources[1]!.buffer).toEqual({ duration: 0.3, synth: 'thrust' });
+    expect(JSON.parse(localStorage.getItem('rpg-threejs:combat-fx-source:v1')!)).toEqual(['thrust']);
+  });
+
+  it('previews the exact source asked, never a fallback, and only with effects on', async () => {
+    const synth = fakeSynth();
+    player = new UiSoundPlayer({ music: null, synth: synth.renderer });
+    player.preview('critical', 'file'); expect(contexts).toHaveLength(0);
+    await enable();
+    const ready = player.prepareCombatComparison();
+    await vi.waitFor(() => expect(contexts[0]?.decodeAudioData).toHaveBeenCalledTimes(24));
+    player.preview('critical', 'synth'); expect(contexts[0]!.sources).toHaveLength(0);
+    for (let i = 0; i < 16; i++) await synth.finish();
+    expect(await ready).toBe(true);
+    expect(player.comparisonReady('critical', 'synth')).toBe(true); expect(player.comparisonReady('critical', 'file')).toBe(true);
+    player.preview('critical', 'synth'); expect(contexts[0]!.sources[0]!.buffer).toEqual({ duration: 0.3, synth: 'critical' });
+  });
+
+  it('restores the stored choice, ignores unknown families and rejects a render longer than one second', async () => {
+    localStorage.setItem('rpg-threejs:combat-fx-source:v1', JSON.stringify(['miss', 'not-a-family']));
+    const synth = fakeSynth(1.4);
+    player = new UiSoundPlayer({ music: null, synth: synth.renderer });
+    expect(player.combatSource('miss')).toBe('synth'); expect(player.combatSource('step')).toBe('file');
+    await enable(); await synth.finish();
+    expect(player.comparisonReady('miss', 'synth')).toBe(false);
+  });
+});

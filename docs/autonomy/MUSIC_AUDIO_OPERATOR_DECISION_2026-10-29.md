@@ -75,4 +75,10 @@ Reviewed amendment committed as `a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa`; this
     - the boss music and the Lion Sanctum ambience in a QA boss fight;
     - mute and un-mute;
     - no long task or blocking frame from synthesis during start-up and 20 s of boss playback, after moving the rooms into the worker.
-- **Not done yet.** The synthesized alternative source for the sixteen effect families is authorized but not wired. Listening acceptance belongs to the operator.
+- **Synthesized sources** for the sixteen families (run claude-synth-cues-20261030T0130Z):
+  - `src/audio/synthCues.ts` renders each family once, offline, into a buffer: 0.11 to 0.95 s, peak 0.2 like the file candidates;
+  - they play through the owner's existing path (voices, priorities, cadence, effects setting off by default);
+  - per-family choice in `rpg-threejs:combat-fx-source:v1`, outside V6, file by default; a synthesized family not rendered yet falls back to its file;
+  - comparison workshop in the QA lab (« Comparer les sons de combat »): two explicit previews per family, the source choice, and a summary to send to Claude; choosing a source plays nothing.
+- **Verified** in Chromium with real clicks: all 16 rendered; workshop ready with all 32 previews enabled; each preview plays its own buffer.
+- **Listening acceptance** belongs to the operator. Their choices become the game's default once sent.
