@@ -111,3 +111,11 @@ Il a ensuite choisi, dans la session Claude Code :
 - Le retrait du Stage n'enlève aucune vérité de jeu.
 - Les feuilles pixel dérivent des poses V2, et les masters restent l'autorité narrative.
 - La caméra d'action remplace le cadrage du Stage. L'amendement set 1.11.0 devra le dire explicitement.
+
+## Mise à jour — OD-2026-10-30-A, 30 octobre 2026
+
+L'opérateur renonce aux animations image par image des héros (option B3) : « finalement de ce que travailler et faire des animations des héros, 30 images car j,aime le resultat effectue avec les animations/mouvement par code fait sur tous les personnages ».
+
+- Le chantier B est clos côté production : les animations et le mouvement par code, sur tous les personnages, sont retenus pour la démo.
+- Les 30 images du lot héros de la mission locale ne seront pas générées.
+- Les 6 plans d'arène et les 8 planches d'ultimes ne sont pas tranchés : ils restent optionnels, et aucune génération ne part sans accord de l'opérateur.
