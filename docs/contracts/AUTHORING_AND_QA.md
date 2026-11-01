@@ -60,3 +60,24 @@ Required before acceptance:
 - one browser check with a real gesture through title, map, dialogue, combat and boss.
 
 Technical evidence never counts as the operator's listening acceptance.
+
+## Audio direction evidence — OD-2026-11-01-B
+
+Dedicated `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1`, set 1.12.0, [operator decision](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md). For this scope only, it supersedes in this contract's UI FX, combat FX and music sections: default off, default disabled and default silence (read as silent until the first real gesture), the Ultimate deferral, and the one-second limit for the cues named in COMBAT_AND_VFX. Mood mappings, sections, sound grammar and marks are versioned code. Listening renders stay in ignored paths unless the operator promotes a selection.
+
+Required before acceptance, in addition to the code-generated music evidence:
+- deterministic composed cues, each within its duration limit and its PCM peak ceiling, and within the table's bounds;
+- every sound mark resolves to a known cue, and its identity depends on no result;
+- the mood of every authored narrative scene or surface;
+- no audio before a real gesture with effects on by default, including a restored preference;
+- a stored choice to turn effects off stays honoured, and a volume change alone never turns them off;
+- level and outcome message rejection: foreign session, foreign origin, extra fields, a repeated outcome;
+- a fanfare of at most 8 seconds, a boss entry of at most 6 seconds, an attenuation of at most 6 dB that ends within 1 second, and the -1 dBFS peak, measured;
+- a fanfare is not cut by the surface that follows the result;
+- at most two signature voices, and no result cue evicted by a signature cue;
+- the 500 ms coalescing and the 15-second level return;
+- combat outcome and random sequence identical with audio on and off;
+- no main-thread frame over 50 ms attributable to composing cues, measured;
+- one browser check with a real gesture through title, map, refuge, tension, drama, combat, an Ultimate, boss, victory and defeat, with map and refuge ambience.
+
+The listening lab is the operator's acceptance surface. Its existence, and any measurement, never count as acceptance.

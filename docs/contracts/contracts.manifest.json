@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.11.0",
+  "contractSetVersion": "1.12.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -177,6 +177,22 @@
       ],
       "constitutionChanged": true,
       "supersededRule": "Music and ambience deferral with its locked-and-stable precondition, the separate Combat Stage scene and framing, and the incomplete-catalog wording for combat VFX; code-generated music in five contexts, biome ambience and synthesized sources for the sixteen families under the single parent owner, in-arena camera presentation",
+      "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator listening acceptance remain separate"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1",
+      "operatorDecisionId": "OD-2026-11-01-B",
+      "operatorDecisionPath": "docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md",
+      "approvedAt": "2026-11-01",
+      "changedContracts": [
+        "PRESENTATION_AND_MEDIA",
+        "COMBAT_AND_VFX",
+        "UI_AND_ACCESSIBILITY",
+        "AUTHORING_AND_QA",
+        "AUTONOMOUS_WORK_PROTOCOL"
+      ],
+      "constitutionChanged": true,
+      "supersededRule": "Five music contexts and their source rule, effects default off and default silence, the 2-second crossfade for the boss entry, no family beyond the sixteen, the one-second limit for signature cues, the per-family source choice and the Ultimate audio deferral; nine contexts with sections, bridges, two combat levels and fanfares, effects on by default but armed, composed action cues, FX sound marks, signature cues for twelve Ultimates and eight boss signatures without activating any Ultimate, map and refuge ambience",
       "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator listening acceptance remain separate"
     }
   ],

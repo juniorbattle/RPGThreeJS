@@ -1,6 +1,6 @@
 # Direction audio de la démo — OD-2026-11-01-B
 
-**APPROVED DECISION.** Le 2026-11-01, l'opérateur a rempli la [fiche d'arbitrages audio](https://claude.ai/artifact/UGe8DMGDn7BURNtcWv3UsK) issue de l'[audit audio](../reports/audio-audit-2026-11-01.md). Cette décision fixe la direction et l'ordre de travail. Elle ne modifie aucun contrat : l'extension demandée passe par l'amendement dédié 1.12.0, dont le texte reste à approuver. Rien ici ne vaut validation à l'oreille.
+**APPROVED DECISION.** Le 2026-11-01, l'opérateur a rempli la [fiche d'arbitrages audio](https://claude.ai/artifact/UGe8DMGDn7BURNtcWv3UsK) issue de l'[audit audio](../reports/audio-audit-2026-11-01.md). Cette décision fixe la direction et l'ordre de travail. Elle ne modifie aucun contrat par elle-même : l'extension demandée passe par l'amendement dédié 1.12.0, approuvé le même jour (section Amendement 1.12.0). Rien ici ne vaut validation à l'oreille.
 
 ## Choix de l'opérateur
 
@@ -74,3 +74,25 @@ Vérité du jeu, sauvegardes V6, récompenses, canon, voix et audio vidéo (touj
 ## Sources
 
 [Breath of Fire III, Wikipédia](https://en.wikipedia.org/wiki/Breath_of_Fire_III), [Chrono Cross, Square Enix Music Online](https://squareenixmusic.com/reviews/group/chronocross.html). Aucune source publique consultée ne détaille les modulations de ces trois jeux : les exemples de ponts seront fixés à l'écoute de l'opérateur.
+
+## Amendement 1.12.0
+
+Tâche dédiée `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1`.
+
+| Document | Changement |
+| --- | --- |
+| Constitution | Dans ce périmètre seulement : neuf contextes, effets actifs mais silencieux avant le premier geste, fin des limites de 16 familles et d'une seconde pour les sons nommés, réserve sur les ultimes levée sans en activer aucun. Voix et audio vidéo restent DEFERRED. |
+| `PRESENTATION_AND_MEDIA` | Neuf contextes, humeurs de récit, sections et ponts, deux niveaux de combat, entrée de boss, limiteur, atténuation, effets actifs mais armés, ambiances de carte et de refuge. |
+| `COMBAT_AND_VFX` | Sons composés à trois couches, repères sur les recettes, sons sur mesure des 20, plafonds de voix inchangés, comparaison retirée. |
+| `UI_AND_ACCESSIBILITY` | Effets affichés comme actifs par défaut, contrôles inchangés, laboratoire réservé au développement. |
+| `AUTHORING_AND_QA` | Preuves requises, et laboratoire comme surface de validation. |
+| `AUTONOMOUS_WORK_PROTOCOL` | Périmètre des agents. Interdictions sur l'IA et les pistes externes inchangées. |
+| README, manifest | Entrée du set 1.12.0. |
+
+Ordre : relecture indépendante du diff réel, approbation de l'opérateur, commit de l'amendement, commit opérationnel qui fixe la nouvelle base, puis le code.
+
+Deux relectures indépendantes ont conclu BLOCKED : la portée des choix était couverte, mais le texte laissait des contradictions, des limites invérifiables, et sa première forme empêchait la fanfare de jouer sur une vraie victoire. Il a été réécrit en conséquence. Il autorise le son des ultimes sans en activer aucun : cette décision reste ouverte.
+
+Valeurs proposées par Claude et approuvées avec le texte : fanfare de 8 s au plus, entrée de boss de 6 s au plus, atténuation de 6 dB au plus, sons sur mesure de 2,5 s au plus, un changement de niveau par 500 ms, retour à Réflexion après 15 s, limiteur à -1 dBFS, 160 sons et 32 Mo au plus, 0,5 s de marge après la recette, fin de l'atténuation en 1 s, deux voix de signature au plus, humeur Refuge pour une scène sans humeur. Le pic de 0,2 reprend celui des fichiers actuels.
+
+Approbation de l'opérateur, 2026-11-01. À la question « J'applique l'amendement 1.12.0 avec ces valeurs ? », réponse verbatim : « Okay go sur une nouvelle sous-session ». Elle vaut approbation du texte relu et des valeurs ci-dessus.
