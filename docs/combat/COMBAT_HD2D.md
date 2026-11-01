@@ -48,7 +48,8 @@ Le **Combat Stage** (scène séparée) est retiré. Les actions se jouent dans l
   1. Ouverture du projecteur : la lumière baisse, les autres unités reculent (opacité 0,24), bandes noires et titre, vignette 1,9, plan bas et serré.
   2. La recette d'effet joue d'abord sa **charge** pendant que l'unité tient sa pose de sort.
   3. Le coup tombe à l'impact de la recette, avec ralenti, coup de caméra rapproché et lumière.
-  4. La caméra recule sur le plan `field` et la vague de l'ultime traverse tout le terrain ; le projecteur se referme quand elle est passée.
+  4. La caméra recule sur le plan `field` et la vague de l'ultime traverse tout le terrain ; le projecteur se referme 0,95 s après son départ, la fin de la vague s'éteint pendant le retour de la caméra.
+- Un coup de zone tombe en rafale : chaque cible est frappée 0,08 s après la précédente, sans attendre la fin de sa réaction (`ZONE_HIT_BEAT`). Un K.O. garde son temps complet, pour que le combat s'arrête au même coup qu'avant. L'ordre et les résultats ne changent pas. L'étiquette d'un statut part 0,5 sous le chiffre, qu'elle ne recouvre pas.
 - Le tremblement reste dans l'écran (passe `ImpactShake`). Les changements de tour ne bougent pas la caméra.
 
 ## Effets et sons
@@ -131,6 +132,7 @@ Cette échelle ne concerne que les recettes partagées : attaques de base avec a
 - Galerie FX : `node tools/combat-arena/fx-gallery.mjs <biome> <dossier> "sword_slash@1,sword_slash@5,ultimate_dark_meteor@ult"` joue chaque preset au poids donné, horloge FX figée puis avancée à l'instant voulu (`preset@poids@décalageMs@rayonDeZone`). Aides DEV : `__qaHelpers.fxPreview`, `fxSkill`, `stagePlay`, `fxFreeze`, `fxAdvance`, `spotlightState`.
 - Galerie des compétences : `node tools/combat-arena/skill-gallery.mjs <sortie.jpg> "w_whirl,n_flame_wave" "-200,50,300"` (horloge FX figée, vue tactique) et `node tools/combat-arena/skill-play.mjs <sortie.jpg> "w_lion_surge" 12` (action réelle, caméra comprise, images lues sur le canvas). Pour un vrai grand ennemi, les deux prennent en dernier argument `"boss=lion_chief:lion_champion"` ou `"foes=young_dragon_elite"`, après la scène ; dans `skill-play.mjs`, le préfixe `foe:` joue son action depuis sa vraie place.
 - `?dtcap=0.5` garde le temps de présentation sur l'horloge réelle en rendu logiciel.
+- Rythme : `node tools/combat-arena/action-pace.mjs "foe:boss_titan_slam" lion_sanctum "boss=serpent_general:serpent_general_boss"` chronomètre une action à 60 images/s sur une horloge simulée. Un chronomètre en rendu logiciel lit plusieurs fois trop long, car chaque petit fondu y dure au moins une image. `[sortie.jpg] [temps en ms]` garde des captures, chiffres compris.
 - `tools/combat-arena/shots.sh <dossier>` : les trois arènes. `action-shots.mjs` : images d'une action dans le temps. `campaign-harness.mjs <combatId>` : démarrage réel via le protocole de la campagne. `probe.mjs` : évaluation d'expressions dans la page.
 - Art généré en local : [mission locale](LOCAL_ART_MISSION.md).
 

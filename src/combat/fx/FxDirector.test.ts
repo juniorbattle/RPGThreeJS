@@ -24,6 +24,22 @@ function play(sourceHeight: number, targetHeight: number) {
 }
 const option = (spy: ReturnType<typeof vi.fn>, key: string, arg = 2) => (spy.mock.calls[0]?.[arg] as Record<string, number>)[key];
 
+describe('FxDirector field shot', () => {
+  const cells = [new THREE.Vector3(0, 0, 0), new THREE.Vector3(4, 0, 0)];
+  const unit = { position: new THREE.Vector3(), height: 2 };
+  const engine = { after: vi.fn(), wait: () => Promise.resolve(), palette: () => ({}), reduced: false, hooks: {} };
+  const duration = (written: number) => new FxDirector(engine as unknown as FxEngine)
+    .play({ id: 'test', element: 'fire', impactAt: 1, duration: written, steps: [] }, { source: unit, targets: [unit], point: new THREE.Vector3(), cells, power: { ultimate: true } }).duration;
+
+  it('closes under a second and a half after the blow', () => {
+    expect(duration(1.2)).toBeCloseTo(2.29);
+  });
+
+  it('never closes before the recipe has played', () => {
+    expect(duration(3)).toBe(3);
+  });
+});
+
 describe('FxDirector body scale', () => {
   it('draws what wraps a boss to its height', () => {
     const engine = play(4.4, 4.4);

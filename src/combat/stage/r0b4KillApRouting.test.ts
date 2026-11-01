@@ -51,11 +51,11 @@ describe('R0B.4 P0 AP kill reward', () => {
   });
 
   it('applyDamage is called from both effects path and normal attack path', () => {
-    // The magic flag (OD-2026-10-19-B) only selects the impact sound; damage and AP routing are unchanged.
+    // The magic flag (OD-2026-10-19-B) only selects the impact sound and the beat only paces hit reactions; damage and AP routing are unchanged.
     // Effects path
-    expect(runtimeSource).toContain("await applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag')}); totalDamageDealt+=dmg");
+    expect(runtimeSource).toContain("await applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag'),beat:hitBeat}); totalDamageDealt+=dmg");
     // Normal attack path
-    expect(runtimeSource).toContain("await applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag')}); basicDmg=dmg");
+    expect(runtimeSource).toContain("await applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag'),beat:hitBeat}); basicDmg=dmg");
   });
 
   it('spotlight presentation does not award AP (presentation-only, no ap mutation)', () => {

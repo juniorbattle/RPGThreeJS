@@ -77,7 +77,14 @@ describe('V10F final hotfix runtime contracts', () => {
   });
 
   it('passes critical flag from attack code to applyDamage (V10G-R2A.4)', () => {
-    expect(runtimeSource).toContain("applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag')})");
+    expect(runtimeSource).toContain("applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag'),beat:hitBeat})");
+  });
+
+  it('lands a zone blow as a volley, one target at a time, and a knock-out keeps its beat', () => {
+    expect(runtimeSource).toContain('const hitBeat=targets.length>1?ZONE_HIT_BEAT:0');
+    expect(runtimeSource).toContain('else if(opts.beat){ playUnitHitReaction(u,{source:src,critical:opts.critical}); await wait(opts.beat); }');
+    expect(runtimeSource).toContain("if(willKnockOut){ flashUnit(u,'#ff6a5a'); await knockOut(u,src); }");
+    expect(runtimeSource).toContain('await applyDamage(t,dmg,u,{critical:crit,magic:(spec.type===\'mag\'),beat:hitBeat}); basicDmg=dmg; if(G.over)break;');
   });
 
   it('does not trigger hit reaction for healing (V10G-R2A.4)', () => {

@@ -34,6 +34,8 @@ export interface FxPlayback {
 
 /** Seconds from an ultimate's hit to its field wave (the camera's whip-out to the field shot). */
 export const FIELD_WAVE_DELAY = 0.34;
+/** Seconds the field shot stays on the wave: it has crossed the grid, and its tail fades as the camera comes back. */
+const FIELD_WAVE_HOLD = 0.95;
 
 /** Tallest hero figure: every recipe is written for this size. */
 const HERO_HEIGHT = 2.4;
@@ -103,7 +105,7 @@ export class FxDirector {
     let duration = recipe.duration + (recipe.projectile ? hitTime : 0);
     if (intensity.field && ctx.cells.length > 1) {
       this.fieldFinale(recipe.element, impactTime, ctx, recipe.fieldBeat);
-      duration = Math.max(duration, impactTime + FIELD_WAVE_DELAY + 1.4);
+      duration = Math.max(duration, impactTime + FIELD_WAVE_DELAY + FIELD_WAVE_HOLD);
     }
     return { impactTime, duration, cinematic: Boolean(recipe.cinematic), weight: weight.weight, completion: engine.wait(duration) };
   }
