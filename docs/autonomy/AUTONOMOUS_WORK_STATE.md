@@ -1,12 +1,12 @@
 # Musique et sons synthétisés livrés — écoute de l’opérateur
 
-Run claude-music-runtime-20261030T0045Z (agent claude, session interactive). [OD-2026-10-29-B](MUSIC_AUDIO_OPERATOR_DECISION_2026-10-29.md), contrats 1.11.0, baseline `a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa`.
+Run claude-audio-direction-20261101T1918Z (agent claude, session interactive). [OD-2026-11-01-B](AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md), contrats 1.12.0, baseline `29aa94862f9cd5f2c73ba9569660ed26c41ceaf8`.
 
 Musique générée par code pour les 5 contextes et ambiance des 3 arènes, sous le propriétaire audio unique : armée par défaut, silencieuse avant le premier geste réel, préférence hors V6. Suite complète, build et contrats verts ; vérifiée dans Chromium avec de vrais clics.
 
 Scheduler PAUSED. `main` protégé.
 
-UNE prochaine action : L'opérateur approuve ou corrige le texte de l'amendement 1.12.0, relu et prêt sur la branche `amendment/audio-direction-1-12-0` (valeurs à confirmer listées dans `docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md`). Après son approbation : date d'approbation et mention « proposed » retirée, commit de l'amendement sur `dev`, commit opérationnel qui fixe la nouvelle base et met à jour ses mentions, puis lots 2 à 6 de la direction audio. Le lot 0 est livré. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.
+UNE prochaine action : Lots 2 à 6 de la direction audio sur `dev`, dans l'ordre de `docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md`, sous les règles du set 1.12.0. Le lot 0 est livré. La revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

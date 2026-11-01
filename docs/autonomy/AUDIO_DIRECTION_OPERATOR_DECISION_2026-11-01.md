@@ -96,3 +96,5 @@ Deux relectures indépendantes ont conclu BLOCKED : la portée des choix était 
 Valeurs proposées par Claude et approuvées avec le texte : fanfare de 8 s au plus, entrée de boss de 6 s au plus, atténuation de 6 dB au plus, sons sur mesure de 2,5 s au plus, un changement de niveau par 500 ms, retour à Réflexion après 15 s, limiteur à -1 dBFS, 160 sons et 32 Mo au plus, 0,5 s de marge après la recette, fin de l'atténuation en 1 s, deux voix de signature au plus, humeur Refuge pour une scène sans humeur. Le pic de 0,2 reprend celui des fichiers actuels.
 
 Approbation de l'opérateur, 2026-11-01. À la question « J'applique l'amendement 1.12.0 avec ces valeurs ? », réponse verbatim : « Okay go sur une nouvelle sous-session ». Elle vaut approbation du texte relu et des valeurs ci-dessus.
+
+Reviewed amendment committed as `29aa94862f9cd5f2c73ba9569660ed26c41ceaf8`; this following operational checkpoint establishes it as the immutable set 1.12.0 baseline before runtime.

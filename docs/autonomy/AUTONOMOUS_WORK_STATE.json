@@ -1,10 +1,10 @@
 {
-  "status": "VFX_SIGNATURES_AND_AUDIO_OPERATOR_REVIEW",
+  "status": "AUDIO_DIRECTION_IN_PROGRESS",
   "runStartedAt": "2026-11-01T02:00:00Z",
   "runEndedAt": "2026-11-01T05:36:43Z",
-  "activeTask": "MUSIC_OD_2026_10_29_B",
-  "activePhase": "RUNTIME_DELIVERED",
-  "activeSubtask": "Signatures des héros et des ennemis livrées ; revue en jeu de l'opérateur, écoute des sons",
+  "activeTask": "PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1",
+  "activePhase": "LOTS_2_TO_6",
+  "activeSubtask": "Amendement 1.12.0 appliqué ; lots 2 à 6",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "lastPushedCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
@@ -46,14 +46,14 @@
     "Retrait des assets du Combat Stage devenus inutiles : accord de l’opérateur requis",
     "Option QA « Tous les héros QA » / stageqa : déploiement bloqué (constat préexistant)"
   ],
-  "nextAction": "L'opérateur approuve ou corrige le texte de l'amendement 1.12.0, relu et prêt sur la branche `amendment/audio-direction-1-12-0` (valeurs à confirmer listées dans `docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md`). Après son approbation : date d'approbation et mention « proposed » retirée, commit de l'amendement sur `dev`, commit opérationnel qui fixe la nouvelle base et met à jour ses mentions, puis lots 2 à 6 de la direction audio. Le lot 0 est livré. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.",
+  "nextAction": "Lots 2 à 6 de la direction audio sur dev, dans l'ordre de docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md, sous les règles du set 1.12.0. Le lot 0 est livré. La revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.",
   "taskQueue": [
     "L'opérateur approuve ou corrige le texte de l'amendement 1.12.0, relu et prêt sur la branche `amendment/audio-direction-1-12-0` (valeurs à confirmer listées dans `docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md`). Après son approbation : date d'approbation et mention « proposed » retirée, commit de l'amendement sur `dev`, commit opérationnel qui fixe la nouvelle base et met à jour ses mentions, puis lots 2 à 6 de la direction audio. Le lot 0 est livré. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.",
     "Playtest PC de l'opérateur, liste de corrections, démo figée ; mobile seulement si l'opérateur le veut."
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "PASS_SET_1_11_0",
-  "runId": "claude-enemy-vfx-20261101T0200Z",
+  "contractComplianceStatus": "Set 1.12.0, baseline 29aa94862f9cd5f2c73ba9569660ed26c41ceaf8",
+  "runId": "claude-audio-direction-20261101T1918Z",
   "agent": "claude",
   "lastHeartbeat": "2026-11-01T05:36:43Z",
   "heartbeat": "2026-11-01T05:36:43Z",
@@ -78,7 +78,7 @@
     "workflowFiles": 9,
     "productProgress": 0
   },
-  "contractSetVersion": "1.10.0",
+  "contractSetVersion": "1.12.0",
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "operatorPriority": "OD-2026-10-25-B : Composer VFX et actions de compétence du combat tactique et du Combat Stage, une famille à la fois ; pilote narratif Alistair en pause ; puis Bois-Clair, playtest PC et mobile ; zéro vidéo",
   "operatorAuthorization": "OD-2026-10-25-A : Claude écrivain principal interactif, agent claude sous le même verrou, dev seulement, serveurs en mode mixte, protocole interactif allégé ; tests et état d'abord, puis nettoyage et pilote Alistair (frames Codex, lecteur Claude). Aucun amendement de contrat. OD-2026-10-25-B : priorité au Composer VFX et aux actions de combat, pilote Alistair en pause, art opérateur, aucun amendement.",
