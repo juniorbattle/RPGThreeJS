@@ -1,13 +1,16 @@
 import { describe, expect, it } from 'vitest';
 import { skillById } from '../../game/skills';
-import { HERO_SKILL_IDS, SKILL_PRESENTATION } from '../skillPresentation';
+import { ENEMY_SKILL_IDS, ENEMY_SKILL_PRESENTATION, HERO_SKILL_IDS, SKILL_PRESENTATION } from '../skillPresentation';
 import type { FxRecipe, FxStep } from './fxRecipes';
-import { hasSkillMoveFx, listSkillFxRecipes, skillFxRecipe, skillMoveFxRecipe } from './fxSkills';
+import { enemyAttackFxRecipe, hasSkillMoveFx, listEnemyAttackWeapons, listSkillFxRecipes, skillFxRecipe, skillMoveFxRecipe } from './fxSkills';
 
 const FLIGHT = 0.8;
 const stepAt = (recipe: FxRecipe, step: FxStep) => step.at + (step.afterHit ? FLIGHT : 0);
 const impactOf = (recipe: FxRecipe) => recipe.impactAt + (recipe.projectile ? recipe.projectile.at + FLIGHT - recipe.projectile.at : 0);
 const ULTIMATES = HERO_SKILL_IDS.filter((id) => SKILL_PRESENTATION[id].ultimate);
+/** No unit in the game carries these three. */
+const UNUSED_ENEMY_SKILLS = ['enemy_smoke_veil', 'enemy_taunt', 'enemy_battle_cry'];
+const USED_ENEMY_SKILLS = ENEMY_SKILL_IDS.filter((id) => !UNUSED_ENEMY_SKILLS.includes(id));
 /** A skill's silhouette: which primitives it draws, ignoring timing and sizes. */
 const silhouette = (recipe: FxRecipe) => [...new Set(recipe.steps.filter((step) => !['shake', 'flash', 'sfx', 'slowmo', 'punch', 'light', 'speedLines'].includes(step.kind)).map((step) => `${step.kind}:${step.element ?? ''}`))].sort().join(' ');
 
@@ -70,8 +73,34 @@ describe('skill signatures', () => {
 
   it('stay close on single-target ultimates and pull back on the others', () => {
     const holds = (id: string) => skillFxRecipe(id)!.steps.some((step) => step.kind === 'punch' && step.p?.hold === true);
-    for (const id of ['a_zenith_arrow', 'ni_silent_assassin', 'ro_fault_breaker']) expect(holds(id), id).toBe(true);
-    for (const id of ['n_dark_meteor', 'w_lion_surge', 'ar_artillery_barrage']) expect(holds(id), id).toBe(false);
+    for (const id of ['a_zenith_arrow', 'ni_silent_assassin', 'ro_fault_breaker', 'boss_execution', 'boss_flurry', 'boss_quake']) expect(holds(id), id).toBe(true);
+    for (const id of ['n_dark_meteor', 'w_lion_surge', 'ar_artillery_barrage', 'boss_roar', 'boss_apocalypse']) expect(holds(id), id).toBe(false);
+  });
+
+  it('cover every enemy skill in use, boss signatures as cinematics with a charge', () => {
+    expect(USED_ENEMY_SKILLS).toHaveLength(20);
+    for (const id of USED_ENEMY_SKILLS) {
+      const recipe = skillFxRecipe(id);
+      expect(recipe, id).not.toBeNull();
+      if (ENEMY_SKILL_PRESENTATION[id].visualTier !== 6) continue;
+      expect(recipe!.cinematic, id).toBe(true);
+      expect(recipe!.impactAt, id).toBeGreaterThan(0.5);
+    }
+  });
+
+  it('give enemy basics a real attack: no sword on a bite, no arrow on a stone', () => {
+    const shapes = new Map<string, string>();
+    for (const weapon of listEnemyAttackWeapons()) {
+      const recipe = enemyAttackFxRecipe(weapon)!;
+      expect(recipe.authored, weapon).toBe(true);
+      expect(recipe.steps.some((step) => step.kind === 'ring' || step.kind === 'circle' || step.kind === 'decal'), `${weapon} marks the floor`).toBe(false);
+      const shape = silhouette(recipe);
+      if (recipe.id !== 'attack_thrown_blades') expect(shapes.get(shape), weapon).toBeUndefined();
+      shapes.set(shape, weapon);
+    }
+    expect(enemyAttackFxRecipe('Morsure')!.id).toBe('attack_bite');
+    expect(enemyAttackFxRecipe('Épée rouillée')).toBeNull();
+    expect(enemyAttackFxRecipe(undefined)).toBeNull();
   });
 
   it('give moving skills their own departure and arrival, with no explosion left on the landing', () => {

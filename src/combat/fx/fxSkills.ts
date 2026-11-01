@@ -2,8 +2,9 @@ import type { FxElement } from './fxPalettes';
 import type { FxAnchor, FxProjectile, FxRecipe, FxStep, FxStepKind } from './fxRecipes';
 
 /**
- * Every hero skill has its own signature, written by hand and played exactly
- * as written (see FxRecipe.authored). A class owns a colour and a shape:
+ * Every hero skill and every enemy skill in use has its own signature, written
+ * by hand and played exactly as written (see FxRecipe.authored). A hero class
+ * owns a colour and a shape:
  *
  *   Warrior       gold and steel    wide claws, dust, a charge along the ground
  *   Paladin       holy white-gold   vertical light falling, clean domes
@@ -585,8 +586,301 @@ const gunner: Record<string, () => FxRecipe> = {
   },
 };
 
+// ------------------------------------------------------------ enemies
+
+/** Two fangs closing on the target, one from above and one from below. */
+const fangs = (at: number, element: FxElement, size: number): Steps => [
+  s(at, 'slash', 'targetChest', { size, angle: 0, oy: 0.25, thickness: 1, duration: 0.12 }, { element }),
+  s(at, 'slash', 'targetChest', { size, angle: 3.14, oy: -0.25, thickness: 1, duration: 0.12 }, { element }),
+];
+
+const enemies: Record<string, () => FxRecipe> = {
+  // a club coming straight down: thick, slow, the dust jumps off the floor
+  enemy_heavy_strike: () => skill('enemy_heavy_strike', 'blunt', 0.12, 0.75, [
+    s(0, 'slash', 'targetChest', { size: 3.4, angle: 0, thickness: 1.3, duration: 0.18 }, { element: 'blunt' }),
+    s(0.12, 'star', 'targetChest', { size: 1.3 }, { element: 'blunt' }),
+    s(0.12, 'ring', 'targetGround', { radius: 1.7, duration: 0.34 }, { element: 'blunt' }),
+    s(0.13, 'burst', 'targetGround', { count: 18, speed: 2.6, up: 2.2, gravity: 9, size: 0.13 }, { element: 'earth' }),
+    shake(0.12, 0.3, 0.18),
+  ]),
+  // both fists on the floor: the ground cracks around the brute
+  enemy_crush: () => skill('enemy_crush', 'earth', 0.2, 1, [
+    s(0, 'burst', 'sourceChest', { count: 10, speed: 1, up: 3, gravity: 7, size: 0.12 }, { element: 'earth' }),
+    s(0.18, 'fissure', 'sourceGround', { radius: 2.7, duration: 1.1 }, { element: 'blunt' }),
+    s(0.18, 'ring', 'sourceGround', { radius: 2.7, duration: 0.38 }, { element: 'earth' }),
+    s(0.2, 'burst', 'targetGround', { count: 12, speed: 2.2, up: 2.6, gravity: 9, size: 0.13, stagger: 0.02 }, { cells: true, element: 'earth' }),
+    s(0.2, 'star', 'targetChest', { size: 1.2 }, { element: 'blunt', each: true }),
+    s(0.24, 'smoke', 'sourceGround', { count: 12, spread: 0.8 }),
+    shake(0.2, 0.38, 0.24),
+  ]),
+  // a slow ball of night that trails smoke, nothing like the Dark Mage's straight bolt
+  enemy_dark_bolt: () => skill('enemy_dark_bolt', 'shadow', 0.02, 0.85, [
+    s(0, 'glow', 'sourceChest', { size: 1, duration: 0.24 }, { element: 'shadow' }),
+    s(0, 'orb', 'targetChest', { radius: 0.75, duration: 0.34, dark: true }, { element: 'shadow', afterHit: true }),
+    s(0, 'star', 'targetChest', { size: 1.05 }, { element: 'shadow', afterHit: true }),
+    s(0.02, 'burst', 'targetChest', { count: 14, speed: 2.8, size: 0.09 }, { element: 'shadow', afterHit: true }),
+    shake(0, 0.14, 0.12, { afterHit: true }),
+  ], { projectile: { at: 0.1, from: 'sourceChest', to: 'targetChest', element: 'shadow', speed: 13, size: 0.7, arc: 0.5, smoke: true } }),
+  // no blow: a small seal, a red thread winding down, the curse sinks in
+  enemy_hex: () => skill('enemy_hex', 'shadow', 0.36, 1.1, [
+    s(0, 'circle', 'targetGround', { radius: 0.95, duration: 0.62, spin: -2.4 }, { element: 'shadow' }),
+    s(0.04, 'orbit', 'target', { count: 10, radius: 0.62, duration: 0.62, rise: 1.7, spin: -6 }, { element: 'blood' }),
+    s(0.34, 'orb', 'targetChest', { radius: 0.7, duration: 0.34, implode: true, dark: true }, { element: 'blood' }),
+    s(0.38, 'motes', 'target', { count: 12, radius: 0.5, sink: true }, { element: 'shadow' }),
+  ]),
+  // fangs that close, then a green cloud on the wound
+  enemy_venom_strike: () => skill('enemy_venom_strike', 'poison', 0.1, 0.95, [
+    ...fangs(0, 'poison', 1.9),
+    s(0.1, 'star', 'targetChest', { size: 0.85, duration: 0.18 }, { element: 'poison' }),
+    s(0.12, 'burst', 'targetChest', { count: 22, speed: 0.9, up: 1.2, gravity: -0.5, size: 0.16, life: 0.9, soft: true }, { element: 'poison' }),
+    s(0.16, 'motes', 'target', { count: 10, radius: 0.45, rise: 1.6 }, { element: 'poison' }),
+    shake(0.1, 0.12, 0.1),
+  ]),
+  // weighted cords: they fly in and wind around the legs
+  enemy_binding_shot: () => skill('enemy_binding_shot', 'steel', 0.02, 0.85, [
+    s(0, 'orbit', 'target', { count: 14, radius: 0.55, duration: 0.6, rise: 0.7, spin: 10, size: 0.09 }, { element: 'steel', afterHit: true }),
+    s(0, 'star', 'targetChest', { size: 0.8, duration: 0.16 }, { element: 'steel', afterHit: true }),
+    s(0.02, 'burst', 'targetGround', { count: 8, speed: 1.6, up: 1.2, gravity: 8, size: 0.09 }, { element: 'earth', afterHit: true }),
+  ], { projectile: { at: 0.02, from: 'sourceChest', to: 'targetChest', element: 'steel', speed: 20, size: 0.34, arc: 0.5 } }),
+  // a long roar of fire: the stream is thicker and hotter than any mage's flames
+  enemy_dragon_breath: () => {
+    const steps: Steps = [s(0, 'glow', 'sourceChest', { size: 1.5, duration: 0.3 }, { element: 'fire' })];
+    for (let i = 0; i < 7; i++) steps.push(s(0.04 + i * 0.06, 'burst', 'sourceChest', { count: 26, speed: 11, cone: 0.45, life: 0.55, size: 0.2, spray: 'point' }, { element: 'fire' }));
+    steps.push(
+      s(0.22, 'flame', 'targetGround', { width: 1.04, height: 2.5, duration: 0.95, stagger: 0.05 }, { cells: true }),
+      s(0.36, 'star', 'targetChest', { size: 1.4 }, { element: 'fire', each: true }),
+      s(0.5, 'burst', 'point', { count: 22, speed: 0.8, up: 2.4, gravity: -0.3, size: 0.09, life: 0.9, spread: 1.2, soft: true }, { element: 'gold' }),
+      s(0.55, 'smoke', 'far', { count: 16, spread: 1.1, size: 0.8 }),
+      lit(0.3, 'fire', 34, 0.9, 'point'),
+      shake(0.36, 0.3, 0.3),
+    );
+    return skill('enemy_dragon_breath', 'fire', 0.36, 1.3, steps);
+  },
+
+  // the raised weapon comes down: cracks, one ring, debris on the zone
+  boss_slam: () => ultimate('boss_slam', 'earth', 0.6, 1.7, [
+    s(0.02, 'burst', 'sourceGround', { count: 24, speed: 2.4, up: 0.7, gravity: 3, size: 0.15, soft: true }, { element: 'earth' }),
+    s(0.05, 'converge', 'source', { count: 26, radius: 2, duration: 0.5, height: 0.6, size: 0.13 }, { element: 'earth' }),
+    s(0.46, 'slash', 'point', { size: 4.6, angle: 0, oy: 1.2, thickness: 1.4, duration: 0.16 }, { element: 'blunt' }),
+    s(0.6, 'fissure', 'point', { radius: 3.8, duration: 1.2 }, { element: 'blunt' }),
+    s(0.6, 'ring', 'point', { radius: 3.2, duration: 0.42 }, { element: 'blunt' }),
+    s(0.6, 'slowmo', undefined, { scale: 0.4, duration: 0.2 }),
+    s(0.6, 'punch', 'point', { duration: 0.45 }),
+    s(0.6, 'flash', undefined, { opacity: 0.14 }, { element: 'blunt' }),
+    shake(0.6, 0.62, 0.36),
+    lit(0.6, 'blunt', 30, 0.6, 'point'),
+    s(0.62, 'burst', 'targetGround', { count: 14, speed: 2.6, up: 3.2, gravity: 10, size: 0.15, stagger: 0.04, origin: 'point' }, { cells: true, element: 'earth' }),
+    s(0.66, 'smoke', 'point', { count: 18, spread: 1.4, size: 0.8 }),
+  ], { flashElement: 'blunt' }),
+  // the shock runs along the floor from the boss to one victim, then the curse takes hold
+  boss_quake: () => ultimate('boss_quake', 'shadow', 0.75, 1.6, [
+    s(0.02, 'burst', 'sourceGround', { count: 18, speed: 2, up: 0.6, gravity: 3, size: 0.14, soft: true }, { element: 'earth' }),
+    s(0.1, 'slash', 'sourceChest', { size: 3.4, angle: 0, oy: -0.5, thickness: 1.2, duration: 0.14 }, { element: 'earth' }),
+    s(0.22, 'fissure', 'sourceGround', { radius: 2.2, duration: 1 }, { element: 'shadow' }),
+    s(0.25, 'shot', 'sourceGround', { size: 1.1, duration: 0.5, arc: 0, smoke: true }, { to: 'targetGround', element: 'earth' }),
+    shake(0.25, 0.2, 0.46),
+    s(0.75, 'shards', 'targetGround', { count: 7, radius: 0.7, height: 1.3, duration: 0.75 }, { element: 'earth' }),
+    s(0.75, 'star', 'targetChest', { size: 2.1 }, { element: 'shadow' }),
+    s(0.75, 'orb', 'targetChest', { radius: 1, duration: 0.42, dark: true }, { element: 'shadow' }),
+    s(0.75, 'punch', 'targetChest', { duration: 0.42, hold: true }),
+    shake(0.75, 0.46, 0.26),
+    lit(0.75, 'shadow', 22, 0.6),
+    s(0.82, 'motes', 'target', { count: 16, radius: 0.55, sink: true }, { element: 'shadow' }),
+  ]),
+  // the heaviest blow in the game: rock spears tear through every cell of the zone
+  boss_titan_slam: () => ultimate('boss_titan_slam', 'earth', 0.85, 2.15, [
+    s(0.02, 'burst', 'sourceGround', { count: 34, speed: 3, up: 0.8, gravity: 3, size: 0.17, soft: true }, { element: 'earth' }),
+    s(0.05, 'converge', 'source', { count: 44, radius: 3.4, duration: 0.72, height: 1.4, size: 0.15 }, { element: 'earth' }),
+    s(0.1, 'speedLines', undefined, { duration: 0.75 }, { element: 'earth' }),
+    s(0.72, 'slash', 'point', { size: 6, angle: 0, oy: 1.6, thickness: 1.5, duration: 0.16 }, { element: 'blunt' }),
+    s(0.85, 'fissure', 'point', { radius: 6, duration: 1.5 }, { element: 'gold' }),
+    s(0.85, 'ring', 'point', { radius: 5.6, duration: 0.55 }, { element: 'earth' }),
+    s(0.85, 'slowmo', undefined, { scale: 0.3, duration: 0.3 }),
+    s(0.85, 'punch', 'point', { duration: 0.5 }),
+    s(0.85, 'flash', undefined, { opacity: 0.2 }, { element: 'earth' }),
+    shake(0.85, 0.78, 0.5),
+    lit(0.85, 'gold', 44, 0.9, 'point'),
+    s(0.88, 'shards', 'targetGround', { count: 4, radius: 0.45, height: 1.8, duration: 0.95, stagger: 0.06, origin: 'point' }, { cells: true, element: 'earth' }),
+    s(0.9, 'burst', 'targetGround', { count: 12, speed: 2.8, up: 3.6, gravity: 10, size: 0.16, stagger: 0.06, origin: 'point' }, { cells: true, element: 'earth' }),
+    s(1, 'smoke', 'targetGround', { count: 6, spread: 0.45, size: 0.8, stagger: 0.06, origin: 'point' }, { cells: true }),
+  ], { flashElement: 'earth' }),
+  // three blasts of voice before the blow; every foe caught sags, drained of red
+  boss_roar: () => ultimate('boss_roar', 'blood', 0.62, 1.45, [
+    s(0.1, 'speedLines', undefined, { duration: 0.6 }, { element: 'blood' }),
+    shake(0.1, 0.22, 0.5),
+    ...[0.12, 0.3, 0.46].map((at, i) => s(at, 'ring', 'sourceChest', { radius: 1.8 + i * 0.7, duration: 0.3, ground: false, from: 0.2 }, { element: 'blood' })),
+    s(0.62, 'orb', 'targetChest', { radius: 0.75, duration: 0.34, implode: true, dark: true }, { element: 'blood', each: true }),
+    s(0.62, 'punch', 'sourceChest', { duration: 0.42 }),
+    s(0.62, 'flash', undefined, { opacity: 0.12 }, { element: 'blood' }),
+    s(0.66, 'motes', 'target', { count: 14, radius: 0.5, sink: true }, { element: 'blood', each: true }),
+  ]),
+  // a wall of black blades rises round the boss and a dark dome shuts over it
+  boss_guard: () => skill('boss_guard', 'shadow', 0.3, 1.25, [
+    s(0, 'converge', 'source', { count: 26, radius: 2.2, duration: 0.3, height: 2 }, { element: 'shadow' }),
+    s(0.1, 'shards', 'sourceGround', { count: 10, radius: 1.5, height: 1.6, duration: 1.05 }, { element: 'shadow' }),
+    s(0.2, 'dome', 'sourceGround', { radius: 1.4, duration: 1 }, { element: 'shadow' }),
+    lit(0.3, 'shadow', 14, 0.8, 'sourceChest'),
+    shake(0.1, 0.1, 0.12),
+  ]),
+  // living green drawn out of the ground into the wounds
+  boss_regen: () => skill('boss_regen', 'nature', 0.4, 1.3, [
+    s(0, 'converge', 'source', { count: 36, radius: 2.6, duration: 0.45, height: 0.5, size: 0.12 }, { element: 'nature' }),
+    s(0.32, 'orbit', 'source', { count: 14, radius: 0.9, duration: 0.9, rise: 2.4, spin: 3, soft: true }, { element: 'nature' }),
+    s(0.4, 'glow', 'sourceChest', { size: 1.5, duration: 0.7 }, { element: 'nature' }),
+    lit(0.4, 'nature', 14, 0.8, 'sourceChest'),
+  ]),
+  // red power climbing up the body, gold sparks round it
+  boss_fortify: () => skill('boss_fortify', 'blood', 0.35, 1.2, [
+    s(0, 'converge', 'source', { count: 30, radius: 2, duration: 0.36, height: 1.4 }, { element: 'gold' }),
+    s(0.25, 'pillar', 'source', { radius: 0.28, height: 5, duration: 0.6 }, { element: 'blood' }),
+    s(0.3, 'orbit', 'source', { count: 12, radius: 0.75, duration: 0.85, rise: 2, spin: 6 }, { element: 'gold' }),
+    s(0.35, 'star', 'sourceChest', { size: 1.1, duration: 0.22 }, { element: 'blood' }),
+    lit(0.35, 'blood', 14, 0.6, 'sourceChest'),
+  ]),
+  // a lance of ice, and frost crystals growing around the victim
+  boss_freeze: () => skill('boss_freeze', 'ice', 0.4, 1.2, [
+    s(0, 'glow', 'sourceChest', { size: 1.1, duration: 0.3 }, { element: 'ice' }),
+    s(0.04, 'shot', 'sourceChest', { size: 0.6, duration: 0.36, arc: 0.4, streak: true }, { to: 'targetChest', element: 'ice' }),
+    s(0.38, 'shards', 'targetGround', { count: 9, radius: 0.8, height: 1.7, duration: 0.8 }, { element: 'ice' }),
+    s(0.4, 'star', 'targetChest', { size: 1.4 }, { element: 'ice' }),
+    s(0.42, 'burst', 'targetChest', { count: 18, speed: 3, gravity: 8, size: 0.1 }, { element: 'ice' }),
+    s(0.46, 'motes', 'target', { count: 12, radius: 0.7, rise: 0.8 }, { element: 'ice' }),
+    lit(0.4, 'ice', 14, 0.5),
+    shake(0.4, 0.2, 0.16),
+  ]),
+  // two thrown blades nail the target to the spot
+  boss_pin: () => skill('boss_pin', 'steel', 0.26, 0.9, [
+    s(0, 'shot', 'sourceChest', { size: 0.8, duration: 0.2, arc: 0.1, streak: true, ox: -0.2 }, { to: 'targetChest', element: 'steel' }),
+    s(0.06, 'shot', 'sourceChest', { size: 0.8, duration: 0.2, arc: 0.1, streak: true, ox: 0.2 }, { to: 'targetChest', element: 'steel' }),
+    s(0.24, 'shards', 'targetGround', { count: 4, radius: 0.35, height: 1, duration: 0.6 }, { element: 'steel' }),
+    s(0.26, 'star', 'targetChest', { size: 1 }, { element: 'blood' }),
+    s(0.27, 'burst', 'targetChest', { count: 12, speed: 3, size: 0.09 }, { element: 'blood' }),
+    shake(0.26, 0.22, 0.14),
+  ]),
+  // the light drops, the blade rises, then a single cut from top to bottom
+  boss_execution: () => ultimate('boss_execution', 'blood', 0.9, 1.7, [
+    s(0.05, 'converge', 'source', { count: 34, radius: 2.4, duration: 0.7, height: 2.4 }, { element: 'blood' }),
+    s(0.5, 'flash', undefined, { opacity: 0.22, dark: true }),
+    s(0.78, 'slash', 'targetChest', { size: 6, angle: 0.02, thickness: 0.9, duration: 0.2 }, { element: 'blood' }),
+    s(0.9, 'star', 'targetChest', { size: 2.8, duration: 0.34 }, { element: 'blood' }),
+    s(0.9, 'slowmo', undefined, { scale: 0.2, duration: 0.3 }),
+    s(0.9, 'punch', 'targetChest', { duration: 0.46, hold: true }),
+    shake(0.9, 0.6, 0.3),
+    lit(0.9, 'blood', 30, 0.7),
+    s(0.92, 'burst', 'targetChest', { count: 34, speed: 4.4, up: 1.2, gravity: 8, size: 0.12 }, { element: 'blood' }),
+    s(0.96, 'motes', 'target', { count: 16, radius: 0.5, sink: true }, { element: 'shadow' }),
+  ]),
+  // a stream of thrown blades, each one sparking on the target
+  boss_flurry: () => {
+    const steps: Steps = [s(0.02, 'burst', 'sourceGround', { count: 16, speed: 2, up: 0.5, gravity: 3, size: 0.13, soft: true }, { element: 'earth' })];
+    for (let i = 0; i < 6; i++) {
+      const at = 0.42 + i * 0.07;
+      steps.push(
+        s(at, 'shot', 'sourceChest', { size: 0.8, duration: 0.14, arc: 0.1 * (i % 3 - 1), streak: true, oy: (i % 3 - 1) * 0.3 }, { to: 'targetChest', element: 'steel' }),
+        s(at + 0.14, 'star', 'targetChest', { size: 1.1, duration: 0.16, jitter: 0.5 }, { element: 'gold' }),
+        shake(at + 0.14, 0.14, 0.06),
+      );
+    }
+    steps.push(
+      s(0.92, 'star', 'targetChest', { size: 2.2, duration: 0.3 }, { element: 'steel' }),
+      s(0.92, 'slowmo', undefined, { scale: 0.35, duration: 0.18 }),
+      s(0.92, 'punch', 'targetChest', { duration: 0.42, hold: true }),
+      lit(0.92, 'gold', 22, 0.5),
+      s(0.94, 'burst', 'targetChest', { count: 26, speed: 4.6, size: 0.1, gravity: 8 }, { element: 'gold' }),
+    );
+    return ultimate('boss_flurry', 'steel', 0.92, 1.55, steps);
+  },
+  // fire from below: the seal cracks open and a column of flame takes the zone
+  boss_inferno: () => ultimate('boss_inferno', 'fire', 0.85, 2.05, [
+    s(0.05, 'converge', 'source', { count: 32, radius: 2.2, duration: 0.7, height: 2 }, { element: 'fire' }),
+    s(0.1, 'circle', 'point', { radius: 2.9, duration: 0.85, spin: 2 }, { element: 'fire' }),
+    s(0.7, 'burst', 'point', { count: 26, speed: 1.4, up: 3.4, gravity: -0.2, size: 0.11, life: 0.8, spread: 1.6, soft: true }, { element: 'fire' }),
+    s(0.8, 'pillar', 'point', { radius: 1.25, height: 13, duration: 0.95 }, { element: 'fire' }),
+    s(0.85, 'flame', 'targetGround', { width: 1.05, height: 3, duration: 1.05, stagger: 0.05, origin: 'point' }, { cells: true }),
+    s(0.85, 'ring', 'point', { radius: 3.8, duration: 0.5 }, { element: 'fire' }),
+    s(0.85, 'star', 'targetChest', { size: 2.2 }, { element: 'fire', each: true }),
+    s(0.85, 'slowmo', undefined, { scale: 0.36, duration: 0.26 }),
+    s(0.85, 'punch', 'point', { duration: 0.5 }),
+    s(0.85, 'flash', undefined, { opacity: 0.22 }, { element: 'fire' }),
+    shake(0.85, 0.56, 0.4),
+    lit(0.85, 'fire', 50, 1.1, 'point'),
+    s(1.05, 'smoke', 'point', { count: 26, spread: 1.6, size: 1 }),
+  ], { flashElement: 'fire' }),
+  // the sky turns red and falls on the whole battlefield
+  boss_apocalypse: () => ultimate('boss_apocalypse', 'blood', 1.1, 2.4, [
+    s(0.05, 'converge', 'source', { count: 40, radius: 3, duration: 0.9, height: 3 }, { element: 'blood' }),
+    s(0.2, 'orb', 'pointSky', { radius: 3.4, duration: 1, dark: true }, { element: 'blood' }),
+    s(0.55, 'flash', undefined, { opacity: 0.2, dark: true }),
+    s(0.8, 'rain', 'targetGround', { count: 2, gap: 0.12, width: 0.24, spread: 0.4, duration: 0.22, stagger: 0.03, origin: 'point', every: 2 }, { cells: true, element: 'fire' }),
+    s(1.1, 'ring', 'point', { radius: 5.6, duration: 0.6 }, { element: 'blood' }),
+    s(1.1, 'flash', undefined, { opacity: 0.26 }, { element: 'blood' }),
+    s(1.1, 'slowmo', undefined, { scale: 0.32, duration: 0.3 }),
+    s(1.1, 'punch', 'point', { duration: 0.55 }),
+    shake(1.1, 0.72, 0.5),
+    lit(1.1, 'blood', 56, 1.1, 'point'),
+    s(1.1, 'orb', 'targetChest', { radius: 1, duration: 0.42 }, { element: 'blood', each: true }),
+    s(1.14, 'flame', 'targetGround', { width: 1.02, height: 2.2, duration: 0.95, stagger: 0.04, origin: 'point', every: 2 }, { cells: true }),
+    s(1.3, 'smoke', 'point', { count: 30, spread: 2.4, size: 1.1, life: 1.2 }),
+  ], { flashElement: 'blood' }),
+};
+
+const bite = (id: string, element: FxElement, size: number): FxRecipe => skill(id, element, 0.08, 0.6, [
+  ...fangs(0, element, size),
+  s(0.08, 'star', 'targetChest', { size: 0.75, duration: 0.16 }, { element }),
+  s(0.09, 'burst', 'targetChest', { count: 10, speed: 2.6, size: 0.08, gravity: 8 }, { element: 'blood' }),
+  shake(0.08, 0.1, 0.1),
+]);
+const thrown = (id: string, element: FxElement, size: number, speed: number, arc: number, streak: boolean): FxRecipe => skill(id, element, 0.02, 0.6, [
+  s(0, 'star', 'targetChest', { size: 0.8, duration: 0.16 }, { element, afterHit: true }),
+  s(0.01, 'burst', 'targetChest', { count: 10, speed: 2.4, up: 1.2, gravity: 9, size: 0.09 }, { element, afterHit: true }),
+  shake(0, 0.1, 0.1, { afterHit: true }),
+], { projectile: { at: 0.02, from: 'sourceChest', to: 'targetChest', element, speed, size, arc, streak } });
+const puff = (id: string, element: FxElement): FxRecipe => skill(id, element, 0.2, 0.7, [
+  ...[0, 0.05, 0.1].map((at) => s(at, 'burst', 'sourceChest', { count: 14, speed: 7, cone: 0.4, life: 0.4, size: 0.14, spray: 'target' }, { element })),
+  s(0.2, 'star', 'targetChest', { size: 0.95, duration: 0.18 }, { element }),
+  s(0.22, 'burst', 'targetChest', { count: 10, speed: 1.6, up: 1.8, gravity: 0, size: 0.1, life: 0.5, soft: true }, { element }),
+  shake(0.2, 0.12, 0.1),
+]);
+
+/** Basic attacks that are no weapon at all: teeth, claws, breath, stones. Keyed by weapon name. */
+const ENEMY_ATTACKS: Readonly<Record<string, () => FxRecipe>> = {
+  Morsure: () => bite('attack_bite', 'steel', 1.5),
+  Mandibules: () => bite('attack_mandibles', 'earth', 1.7),
+  Crochets: () => bite('attack_fangs', 'poison', 1.4),
+  Griffes: () => skill('attack_claws', 'blood', 0.1, 0.6, [
+    ...[-0.34, 0, 0.34].map((ox, i) => s(0.02 * i, 'slash', 'targetChest', { size: 1.9, angle: 0.5, ox, thickness: 0.5, duration: 0.14 }, { element: 'blood' })),
+    s(0.1, 'burst', 'targetChest', { count: 10, speed: 2.8, size: 0.08, gravity: 8 }, { element: 'blood' }),
+    shake(0.1, 0.12, 0.1),
+  ]),
+  'Langue lourde': () => skill('attack_tongue', 'poison', 0.12, 0.6, [
+    s(0, 'streak', 'sourceChest', { width: 0.34, duration: 0.2 }, { to: 'targetChest', element: 'poison' }),
+    s(0.12, 'star', 'targetChest', { size: 0.95, duration: 0.16 }, { element: 'nature' }),
+    s(0.13, 'burst', 'targetChest', { count: 12, speed: 1.8, up: 0.6, gravity: 7, size: 0.1 }, { element: 'poison' }),
+    shake(0.12, 0.14, 0.1),
+  ]),
+  Charge: () => skill('attack_ram', 'earth', 0.08, 0.65, [
+    s(0, 'burst', 'targetGround', { count: 16, speed: 2.6, up: 0.9, gravity: 4, size: 0.14, soft: true }, { element: 'earth' }),
+    s(0.08, 'star', 'targetChest', { size: 1.2 }, { element: 'blunt' }),
+    s(0.09, 'burst', 'targetChest', { count: 12, speed: 3.4, up: 1, gravity: 8, size: 0.1 }, { element: 'blunt' }),
+    shake(0.08, 0.24, 0.14),
+  ]),
+  'Jet de pierre': () => thrown('attack_rock', 'earth', 0.7, 13, 1, false),
+  Fronde: () => thrown('attack_sling', 'blunt', 0.26, 24, 0.4, false),
+  'Lames volantes': () => thrown('attack_thrown_blades', 'steel', 0.42, 26, 0.12, true),
+  'Lames de jet': () => thrown('attack_thrown_blades', 'steel', 0.42, 26, 0.12, true),
+  'Souffle court': () => puff('attack_breath', 'fire'),
+  'Souffle emeraude': () => puff('attack_emerald_breath', 'nature'),
+  'Onde froide': () => puff('attack_cold_wave', 'ice'),
+  Sceau: () => skill('attack_seal', 'arcane', 0.24, 0.75, [
+    s(0, 'orbit', 'target', { count: 8, radius: 0.55, duration: 0.3, rise: 1.3, spin: 9 }, { element: 'arcane' }),
+    s(0.22, 'star', 'targetChest', { size: 1 }, { element: 'arcane' }),
+    s(0.24, 'burst', 'targetChest', { count: 12, speed: 2.6, size: 0.09 }, { element: 'arcane' }),
+    shake(0.24, 0.1, 0.1),
+  ]),
+};
+
 const SKILL_RECIPES: Readonly<Record<string, () => FxRecipe>> = {
-  ...warrior, ...paladin, ...darkKnight, ...lancer, ...darkMage, ...whiteMage, ...redMage, ...enchanter, ...archer, ...ninja, ...rogue, ...gunner,
+  ...warrior, ...paladin, ...darkKnight, ...lancer, ...darkMage, ...whiteMage, ...redMage, ...enchanter, ...archer, ...ninja, ...rogue, ...gunner, ...enemies,
 };
 
 // ------------------------------------------------------------ movement
@@ -656,6 +950,15 @@ export function skillFxRecipe(skillId: string): FxRecipe | null {
 
 export function skillMoveFxRecipe(skillId: string, phase: FxMovePhase): FxRecipe | null {
   return MOVE_RECIPES[skillId]?.[phase]?.() ?? null;
+}
+
+/** The basic attack of an enemy that fights with teeth, claws, breath or stones. */
+export function enemyAttackFxRecipe(weaponName: string | undefined): FxRecipe | null {
+  return (weaponName ? ENEMY_ATTACKS[weaponName]?.() : null) ?? null;
+}
+
+export function listEnemyAttackWeapons(): string[] {
+  return Object.keys(ENEMY_ATTACKS);
 }
 
 /** True when a moving skill plays its own departure and arrival, not a shared preset. */

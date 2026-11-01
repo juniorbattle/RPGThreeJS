@@ -55,7 +55,7 @@ Le **Combat Stage** (scène séparée) est retiré. Les actions se jouent dans l
 
 ### Signatures des compétences
 
-Chaque compétence de héros a sa recette écrite à la main (`fxSkills.ts`), jouée telle quelle : ni mise à l'échelle par PA, ni accents d'impact communs, ni finale commune. Une classe possède une couleur et une forme :
+Chaque compétence de héros et chaque compétence ennemie utilisée a sa recette écrite à la main (`fxSkills.ts`), jouée telle quelle : ni mise à l'échelle par PA, ni accents d'impact communs, ni finale commune. Une classe possède une couleur et une forme :
 
 | Classe | Couleur | Forme |
 | --- | --- | --- |
@@ -82,9 +82,16 @@ Règles, testées dans `fxSkills.test.ts` :
 
 Les déplacements (téléportations, bonds, charges, échanges) ont leur propre départ et leur propre arrivée (`skillMoveFxRecipe`).
 
+Côté ennemis :
+
+- les 20 compétences portées par des unités ont leur signature ; les signatures de boss sont `cinematic`, avec une charge ;
+- le Rugissement est la seule exception à l'onde unique : trois ondes de voix partent **avant** le coup ;
+- les attaques de base sans arme (morsures, griffes, crochets, langue, charge, pierres, lames jetées, souffles, sceau) sont choisies par le nom de l'arme (`enemyAttackFxRecipe`) ; les autres gardent la recette de leur arme ;
+- Provocation, Cri de Guerre et Voile de Fumée ne sont portés par aucune unité : ils gardent une recette partagée.
+
 ### Poids visuel selon le coût en PA
 
-Cette échelle ne concerne que les recettes partagées : attaques de base, ennemis, signatures de boss, objets (`fxIntensity.ts`).
+Cette échelle ne concerne que les recettes partagées : attaques de base avec arme, objets, et le repli d'une compétence sans signature (`fxIntensity.ts`).
 
 | Poids | Coût | Ce qui change |
 | --- | --- | --- |
@@ -93,15 +100,15 @@ Cette échelle ne concerne que les recettes partagées : attaques de base, ennem
 | fort | 3 PA | 1,16×, + une onde au sol et une gerbe à l'impact |
 | lourd | 4 PA | 1,32×, onde plus large, colonne de lumière, arrêt sur image court, son `impact_heavy` |
 | majeur | 5 PA | 1,45×, onde large, flash, particules |
-| signature de boss | signature de boss | 1,5× et **finale sur les cases touchées** |
+| ultime sans signature | repli | 1,5× et **finale sur les cases touchées** |
 
 - Le temps d'une recette ne change jamais (l'impact de gameplay reste au même instant). Tailles, rayons, nombres de particules, lumière et tremblement suivent le poids. La charge avant l'impact grandit moins (racine du facteur), pour ne pas masquer l'acteur.
 - L'attaque de base compte son niveau d'élan (Attaque = 1, Attaque+ = 2, Attaque++ = 3), pas le surcoût des attaques répétées.
-- Finale des signatures de boss (`FxDirector.fieldFinale`) : un flash, puis, quand la caméra s'éloigne, une onde et une vague d'éruptions case par case qui part de l'impact, seulement sur les cases touchées. Une signature à cible unique n'a pas de finale. Rien ne part après cette vague.
+- Finale de repli (`FxDirector.fieldFinale`), pour un ultime sans signature : un flash, puis, quand la caméra s'éloigne, une vague d'éruptions case par case qui part de l'impact, seulement sur les cases touchées, sans aucun anneau. Une action à cible unique n'en a pas. Aucune compétence actuelle ne l'utilise.
 - Caméra : coup d'impact rapproché, puis plan `field` (plus large que la vue tactique), sauf `hold`. Les unités atténuées réapparaissent à ce moment. Le projecteur reste ouvert jusqu'à la fin de l'effet (3 s au plus).
 - Lisibilité : les effets debout (étoiles, entailles, flammes, piliers, étincelles) se dessinent au-dessus des sprites d'unité et légèrement vers la caméra. Les traces au sol restent sous les pieds. Les entailles traversent la cible, avec une lame sombre dessous pour se détacher de tout fond.
 - Sceaux : réservés aux **compétences magiques** (une recette est magique si elle trace un sceau ; testé). Les compétences martiales et les attaques de base n'en ont jamais. Le motif : anneaux concentriques, bande de glyphes, anneau en tirets et perles, **sans étoile ni polygone** (identité non voulue).
-- Pulsation : seule la charge des signatures de boss pulse, et elle s'arrête sur le coup. Un sceau pulsé s'éclaire sans émettre d'anneau.
+- Pulsation : plus aucune recette de compétence ne pulse. Un sceau pulsé (repli) s'éclaire sans émettre d'anneau et s'arrête sur le coup.
 - Feu (décors et compétences) : pixel art à la densité des unités (40 px/m), silhouette de flamme animée par un bruit déformé qui monte, crête qui se détache en mèches, base arrondie ; cinq bandes rouge-orangé à blanc chaud, **sans contour sombre** (le feu émet de la lumière), tramage d'un texel aux transitions ; halo chaud additif derrière chaque flamme qui éclaire les alentours ; braises montantes. Fumée en pixel art (24 px/m).
 - Précision : les couleurs des effets sont posées en bandes nettes (pas de dégradé aérographe) ; les cases exactement touchées par une action de zone s'allument (contour et biseau par case), et un coup unique lourd marque la case de sa cible ; les éruptions posées par case (flammes, éclats) gardent la largeur d'une case et ne grandissent qu'en hauteur avec les PA.
 

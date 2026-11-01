@@ -1,6 +1,6 @@
 // Skill gallery: plays hero skills through the real combat FX path with the FX
 // clock frozen and stepped, then lays the frames of each skill out in one strip.
-// usage: node tools/combat-arena/skill-gallery.mjs <out.png> "skill,skill,…" [offsetsMs from the impact] [scene]
+// usage: node tools/combat-arena/skill-gallery.mjs <out.png> "skill,attack:Morsure,…" [offsetsMs from the impact] [scene]
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { chromium } from 'playwright';

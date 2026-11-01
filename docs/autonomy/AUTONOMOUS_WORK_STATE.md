@@ -6,7 +6,7 @@ Musique générée par code pour les 5 contextes et ambiance des 3 arènes, sous
 
 Scheduler PAUSED. `main` protégé.
 
-UNE prochaine action : Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Revue en jeu des signatures visuelles des 48 compétences (`/legacy-combat.html?qa=1&stageqa=1`, boutons des 12 ultimes) ; je retouche sur ses retours. Il me transmet aussi le résumé de ses choix de sons ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.
+UNE prochaine action : Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Revue en jeu des signatures visuelles des héros et des ennemis (`/legacy-combat.html?qa=1&stageqa=1`, boutons des 12 ultimes, et les combats des boss) ; je retouche sur ses retours. Il me transmet aussi le résumé de ses choix de sons ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

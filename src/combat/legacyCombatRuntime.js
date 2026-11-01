@@ -33,7 +33,7 @@ import { CombatCameraDirector, shotFor } from './camera/CombatCameraDirector';
 import { FxEngine } from './fx/FxEngine';
 import { FxDirector } from './fx/FxDirector';
 import { resolveFxRecipe, withoutGroundMarks } from './fx/fxRecipes';
-import { hasSkillMoveFx, skillFxRecipe, skillMoveFxRecipe } from './fx/fxSkills';
+import { enemyAttackFxRecipe, hasSkillMoveFx, skillFxRecipe, skillMoveFxRecipe } from './fx/fxSkills';
 import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
 import { isExhausted } from './combatExhaustion';
 import { resolvePixelSheet, pixelSheetVisibleBounds, PIXEL_PX_PER_UNIT } from './pixel/PixelSpriteSheets';
@@ -1707,7 +1707,7 @@ function fxPower(spec){
 /** Plays the procedural FX recipe for an action; returns null when no preset applies. */
 function playActionFx(spec,u,targets,cx,cz,visualContext={}){
   const presetId=getActionVfxPreset(spec,u); if(!presetId||!u||!u.grp)return null;
-  const preset=getVfxPreset(presetId); const resolvedRecipe=resolveFxRecipe(presetId,preset?.tags||[]); const recipe=skillFxRecipe(spec.key)||(spec.key==='attack'?withoutGroundMarks(resolvedRecipe):resolvedRecipe);
+  const preset=getVfxPreset(presetId); const resolvedRecipe=resolveFxRecipe(presetId,preset?.tags||[]); const recipe=skillFxRecipe(spec.key)||(spec.key==='attack'&&u.team==='foe'?enemyAttackFxRecipe(u.weapons?.[spec.wi||0]?.name):null)||(spec.key==='attack'?withoutGroundMarks(resolvedRecipe):resolvedRecipe);
   const point=visualContext.targetPoint?visualContext.targetPoint.clone():new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz));
   const cells=(spec.radius>=1||spec.shape)?aoeCells(u,spec,cx,cz).filter(([gx,gz])=>inBounds(gx,gz)).map(([gx,gz])=>new THREE.Vector3(wX(gx),tileTop(gx,gz),wZ(gz))):[];
   const refs=targets.filter(t=>t&&t.grp).map(fxUnitRef);
@@ -2727,8 +2727,8 @@ async function playStageQaScenario(actionKey){
     await executeAction(owner,spec,cx,cz);
     return;
   }
-  // a skill whose class is not deployed plays from the first hero, so every action can be checked
-  const owner=actionKey==='attack'?qaMotionUnit():G.units.find(unit=>unit.alive&&Array.isArray(unit.skills)&&unit.skills.includes(actionKey))||aliveUnits('player')[0];
+  // a skill nobody here owns plays from the first unit of its side, so every action can be checked
+  const owner=actionKey==='attack'?qaMotionUnit():G.units.find(unit=>unit.alive&&Array.isArray(unit.skills)&&unit.skills.includes(actionKey))||aliveUnits(/^(enemy|boss)_/.test(actionKey)?'foe':'player')[0];
   if(!owner||!owner.alive){ console.warn('[Stage QA] Aucune unité vivante ne possède',actionKey); return; }
   const enemyTeam=owner.team==='player'?'foe':'player';
   const target=aliveUnits(enemyTeam)[0]||aliveUnits(owner.team).find(unit=>unit!==owner);
@@ -2947,8 +2947,13 @@ async function main(){ applyGraphics(); disposeMotionPreference=onReducedMotionC
     _qaHelpers.stagePlay=(key)=>playStageQaScenario(key);
     // Skill gallery: plays a hero skill's real recipe through the combat path, from its owner onto real targets.
     _qaHelpers.fxSkill=(key,facing={})=>{
+      const hostile=/^(enemy|boss|attack:)/.test(key),heroes=aliveUnits(hostile?'foe':'player'),foes=aliveUnits(hostile?'player':'foe');
+      if(key.startsWith('attack:')){
+        const recipe=enemyAttackFxRecipe(key.slice(7)),source=heroes[0],target=foes[0]; if(!recipe||!source||!target)return null;
+        const point=target.grp.position.clone(),played=fxDirector.play(recipe,{source:fxUnitRef(source),targets:[fxUnitRef(target)],point,cells:[point.clone()],power:{ap:1}});
+        return {impactTime:played.impactTime,weight:played.weight,owner:source.name,targets:1};
+      }
       const def=SKILL_MAP.get(key); if(!def)return null;
-      const heroes=aliveUnits('player'),foes=aliveUnits('foe');
       const owner=heroes.find(unit=>(unit.skills||[]).includes(key))||heroes[0];
       const foe=foes[facing.foe||0]||foes[0]; if(!owner||!foe)return null;
       const spec={...def,key,ap:def.ap},ally=heroes.find(unit=>unit!==owner)||owner;

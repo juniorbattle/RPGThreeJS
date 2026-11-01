@@ -157,3 +157,9 @@ L'opérateur demande que « chaque competences de chaque classe/unites ait sa pr
 - Les 48 compétences de héros ont désormais leur signature (`src/combat/fx/fxSkills.ts`), et les déplacements leur départ et leur arrivée. Le contrat des recettes par code reste respecté : les presets et la composition du labo ne changent pas.
 - Plus aucun anneau ne part après un impact. Les signatures de boss gardent une finale, limitée aux cases touchées.
 - La revue artistique en jeu reste celle de l'opérateur.
+
+Extension du même jour, à la question de l'opérateur sur les ennemis (« Oui, fais-les ») :
+
+- Les 20 compétences ennemies portées par des unités ont leur signature. Tir Entravant et Transpercement n'affichent plus de lianes ni de flèche.
+- Les attaques de base sans arme ont leur effet : une morsure n'est plus un coup d'épée, une pierre n'est plus une flèche.
+- Provocation, Cri de Guerre et Voile de Fumée ne sont portés par aucune unité : ils ne sont pas traités.

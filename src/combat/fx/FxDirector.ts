@@ -223,7 +223,10 @@ export class FxDirector {
     // `stagger`: seconds per world unit from the caster (or the impact), so a step rolls across its places
     const stagger = num('stagger', 0);
     const origin = p.origin === 'point' ? ctx.point : ctx.source.position;
+    // `every`: one place out of n, for steps too heavy to repeat on a whole battlefield
+    const every = Math.max(1, Math.round(num('every', 1)) * (this.engine.reduced ? 2 : 1));
     places.forEach(({ at, target }, i) => {
+      if (i % every) return;
       const placed = step.alternate?.[i % 2] ?? element;
       const fire = () => this.place(step, at.clone().add(offset), target, placed, ctx);
       const delay = stagger * Math.hypot(at.x - origin.x, at.z - origin.z);

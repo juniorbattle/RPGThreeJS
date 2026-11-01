@@ -1,17 +1,17 @@
 {
   "status": "VFX_SIGNATURES_AND_AUDIO_OPERATOR_REVIEW",
-  "runStartedAt": "2026-11-01T00:00:00Z",
-  "runEndedAt": "2026-11-01T04:54:22Z",
+  "runStartedAt": "2026-11-01T02:00:00Z",
+  "runEndedAt": "2026-11-01T05:36:43Z",
   "activeTask": "MUSIC_OD_2026_10_29_B",
   "activePhase": "RUNTIME_DELIVERED",
-  "activeSubtask": "Signatures des 48 compétences livrées ; revue en jeu de l'opérateur, écoute des sons",
+  "activeSubtask": "Signatures des héros et des ennemis livrées ; revue en jeu de l'opérateur, écoute des sons",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "lastPushedCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "completedThisRun": [
-    "src/combat/fx/fxSkills.ts : une signature par compétence, départ et arrivée des déplacements",
-    "Plus aucun anneau après un impact ; finale des boss limitée aux cases touchées",
-    "Outils skill-gallery et skill-play, boutons QA des 12 ultimes"
+    "20 signatures de compétences ennemies dans src/combat/fx/fxSkills.ts",
+    "Attaques de base sans arme des ennemis (morsures, griffes, souffles, pierres)",
+    "Aides QA : compétences jouées depuis un ennemi"
   ],
   "filesChanged": [
     "docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
@@ -28,7 +28,7 @@
     "npm test",
     "npm run build",
     "contracts:validate",
-    "Chromium : 48 compétences capturées, 12 ultimes en action réelle"
+    "Chromium : 8 signatures de boss en action réelle, 12 compétences et 13 attaques capturées"
   ],
   "testsPassed": [
     "npm test PASS",
@@ -46,17 +46,17 @@
     "Retrait des assets du Combat Stage devenus inutiles : accord de l’opérateur requis",
     "Option QA « Tous les héros QA » / stageqa : déploiement bloqué (constat préexistant)"
   ],
-  "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Revue en jeu des signatures visuelles des 48 compétences (`/legacy-combat.html?qa=1&stageqa=1`, boutons des 12 ultimes) ; je retouche sur ses retours. Il me transmet aussi le résumé de ses choix de sons ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
+  "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Revue en jeu des signatures visuelles des héros et des ennemis (`/legacy-combat.html?qa=1&stageqa=1`, boutons des 12 ultimes, et les combats des boss) ; je retouche sur ses retours. Il me transmet aussi le résumé de ses choix de sons ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
   "taskQueue": [
-    "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Revue en jeu des signatures visuelles des 48 compétences (`/legacy-combat.html?qa=1&stageqa=1`, boutons des 12 ultimes) ; je retouche sur ses retours. Il me transmet aussi le résumé de ses choix de sons ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
+    "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Revue en jeu des signatures visuelles des héros et des ennemis (`/legacy-combat.html?qa=1&stageqa=1`, boutons des 12 ultimes, et les combats des boss) ; je retouche sur ses retours. Il me transmet aussi le résumé de ses choix de sons ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
     "Playtest PC de l'opérateur, liste de corrections, démo figée ; mobile seulement si l'opérateur le veut."
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SET_1_11_0",
-  "runId": "claude-vfx-identity-20261101T0000Z",
+  "runId": "claude-enemy-vfx-20261101T0200Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-11-01T04:54:22Z",
-  "heartbeat": "2026-11-01T04:54:22Z",
+  "lastHeartbeat": "2026-11-01T05:36:43Z",
+  "heartbeat": "2026-11-01T05:36:43Z",
   "wip": null,
   "uncommittedWork": [],
   "providerTasksPending": [],
@@ -64,10 +64,10 @@
   "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "previousRun": {
-    "runId": "claude-pixel-ultimates-withdrawal-20261031T0100Z",
-    "runEndedAt": "2026-11-01T03:59:34Z",
+    "runId": "claude-vfx-identity-20261101T0000Z",
+    "runEndedAt": "2026-11-01T04:54:22Z",
     "activeTask": "MUSIC_OD_2026_10_29_B",
-    "commit": "10fe977a"
+    "commit": "5cc6119e"
   },
   "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
   "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
@@ -550,16 +550,16 @@
     "rule": "Kept: protocol fields, run identity, current authority, open/deferred items and current scopes; QA jobs registered after the set 1.10.0 amendment commit. Everything else is unchanged in the snapshot."
   },
   "live": {
-    "lastHeartbeat": "2026-11-01T04:54:22Z",
-    "runId": "claude-vfx-identity-20261101T0000Z",
+    "lastHeartbeat": "2026-11-01T05:36:43Z",
+    "runId": "claude-enemy-vfx-20261101T0200Z",
     "agent": "claude",
     "status": "VFX_SIGNATURES_AND_AUDIO_OPERATOR_REVIEW",
     "wip": null,
-    "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Revue en jeu des signatures visuelles des 48 compétences (`/legacy-combat.html?qa=1&stageqa=1`, boutons des 12 ultimes) ; je retouche sur ses retours. Il me transmet aussi le résumé de ses choix de sons ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
-    "runEndedAt": "2026-11-01T04:54:22Z",
+    "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Revue en jeu des signatures visuelles des héros et des ennemis (`/legacy-combat.html?qa=1&stageqa=1`, boutons des 12 ultimes, et les combats des boss) ; je retouche sur ses retours. Il me transmet aussi le résumé de ses choix de sons ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
+    "runEndedAt": "2026-11-01T05:36:43Z",
     "writerStopped": true,
     "activeTask": "MUSIC_OD_2026_10_29_B",
-    "activeSubtask": "Signatures des 48 compétences livrées ; revue en jeu de l'opérateur, écoute des sons",
+    "activeSubtask": "Signatures des héros et des ennemis livrées ; revue en jeu de l'opérateur, écoute des sons",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,
