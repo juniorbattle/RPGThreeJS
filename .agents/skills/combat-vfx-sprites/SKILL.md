@@ -15,7 +15,7 @@ Contracts: COMBAT_AND_VFX (truth boundary, Combat Stage and VFX are presentation
 - VFX runtime: `src/combat/vfx/VfxSystem.ts`, `VfxSpriteSheets.ts`, `VfxActionRegistry.ts`, `VfxPresets.ts`, `VfxResourceManager.ts`, `VfxRuntimeReadiness.ts`, `PublishedVfxResolver.ts` and `PublishedVfxRegistry.ts` over `generated/published-vfx-presets.json` (published overrides; when empty, the base presets apply).
 - Composer and lab, development only (`?vfxlab=1`): `CombatVfxComposerPanel.ts`, `CombatVfxLab.ts`, `VfxPresetComposer.ts`, `DemoVfxActionScope.ts`, `DemoVfxWorkload.ts`. Some previews need the external CartoonCoffee pack through `MEGA_PACK_ROOT` in `.env.local`, which is never read or committed by agents.
 - Narrative frames: `src/cinematics/NarrativeSceneSurface.ts` owns narrative rendering; masters live under `public/assets/characters/pixel/masters/`.
-- Combat sound: `src/combat/CombatAudio.ts` observes resolved events.
+- Combat sound: `src/combat/CombatAudio.ts` observes resolved events. Recipes carry sound marks on the FX clock (`src/combat/fx/fxSounds.ts`); the closed cue table and its designs live in `src/audio/cueTable.ts` and `cueDesigns.ts`, played by the parent owner (OD-2026-11-01-B).
 
 ## Review checklist
 

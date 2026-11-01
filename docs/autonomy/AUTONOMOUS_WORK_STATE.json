@@ -1,68 +1,86 @@
 {
-  "status": "AUDIO_DIRECTION_IN_PROGRESS",
-  "runStartedAt": "2026-11-01T02:00:00Z",
-  "runEndedAt": "2026-11-01T05:36:43Z",
+  "status": "AUDIO_DIRECTION_DELIVERED_OPERATOR_LISTENING",
+  "runStartedAt": "2026-11-01T19:18:21Z",
+  "runEndedAt": "2026-11-01T20:50:00Z",
   "activeTask": "PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1",
-  "activePhase": "LOTS_2_TO_6",
-  "activeSubtask": "Amendement 1.12.0 appliqué ; lots 2 à 6",
+  "activePhase": "RUNTIME_DELIVERED",
+  "activeSubtask": "Lots 2 à 6 livrés ; écoute de l'opérateur dans le laboratoire",
   "workingBranch": "dev",
-  "lastKnownGoodCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
-  "lastPushedCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
+  "lastKnownGoodCommit": "cfda19627ca4b9d6905854f6652fbf42f67b4ff6",
+  "lastPushedCommit": "cfda19627ca4b9d6905854f6652fbf42f67b4ff6",
   "completedThisRun": [
-    "20 signatures de compétences ennemies dans src/combat/fx/fxSkills.ts",
-    "Attaques de base sans arme des ennemis (morsures, griffes, souffles, pierres)",
-    "Aides QA : compétences jouées depuis un ennemi"
+    "Amendement 1.12.0 appliqué, baseline 29aa9486",
+    "Lot 2 : bus commun, limiteur, atténuation, effets actifs mais armés, messages de niveau et d'issue",
+    "Lot 3 : pistes en sections, ponts écrits, motif des Sceaux, deux niveaux, fanfares, entrée de boss",
+    "Lot 4 : table de 158 sons, repères sur 63 recettes et 14 attaques, 60 sons sur mesure",
+    "Lot 5 : 75 scènes vers trois humeurs, ambiances de carte et de refuge",
+    "Lot 6 : laboratoire d'écoute, comparaison retirée",
+    "Outils de preuve dans tools/audio"
   ],
   "filesChanged": [
-    "docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
-    "docs/autonomy/OPERATOR_DECISIONS.md",
-    "AGENTS.md",
-    "docs/autonomy/MULTI_AGENT_PROTOCOL.md",
-    "docs/autonomy/COMBAT_VFX_PRIORITY_OPERATOR_DECISION_2026-10-25.md",
-    "docs/project/VFX_COMPOSER_WORKFLOW.md",
-    "docs/autonomy/DEMO_COMPLETION_PLAN.md",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.json",
-    "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
+    "src/audio/**",
+    "src/ui/UiSoundPlayer.ts",
+    "src/ui/GameSoundCatalog.ts",
+    "src/ui/AudioListeningLab.ts",
+    "src/combat/CombatAudio.ts",
+    "src/combat/CombatBridge.ts",
+    "src/combat/fx/**",
+    "src/combat/legacyCombatRuntime.js",
+    "src/game/GameApp.ts",
+    "tools/audio/**",
+    "tools/demo-continuous-production-qa.mjs",
+    "docs/**"
   ],
   "testsRun": [
     "npm test",
     "npm run build",
     "contracts:validate",
-    "Chromium : 8 signatures de boss en action réelle, 12 compétences et 13 attaques capturées"
+    "gate 29aa9486",
+    "tools/audio/journey-check.mjs",
+    "tools/audio/director-check.mjs",
+    "tools/audio/truth-check.mjs",
+    "tools/audio/measure-cues.mjs",
+    "tools/audio/limiter-peak.mjs",
+    "tools/audio/analyze.mjs",
+    "tools/audio/mask.mjs",
+    "relecture indépendante contracts-guardian"
   ],
   "testsPassed": [
-    "npm test PASS",
-    "build PASS",
+    "npm test PASS (2807 vitest, 26 node)",
+    "build PASS, laboratoire absent du build joueur",
     "contracts PASS",
-    "Chromium : aucune erreur de page"
+    "gate vide",
+    "journey, director, truth, measure-cues : PASS",
+    "relecture : deux écarts corrigés dans cfda1962"
   ],
   "testsRemaining": [
-    "Écoute et acceptation artistique de l'opérateur"
+    "Écoute et acceptation artistique de l'opérateur dans le laboratoire",
+    "tools/demo-continuous-production-qa.mjs adapté, non relancé en entier"
   ],
   "blockers": [],
   "remainingWork": [
-    "Chantier C : écoute opérateur (musiques, ambiances, 16 familles dans l'atelier) ; fixer ses choix comme défaut",
+    "Chantier C : écoute de l'opérateur dans le laboratoire ; appliquer ses retours",
     "Mission d’art locale (44 images) et passe de performance GPU réelle : au choix de l’opérateur",
     "Retrait des assets du Combat Stage devenus inutiles : accord de l’opérateur requis",
     "Option QA « Tous les héros QA » / stageqa : déploiement bloqué (constat préexistant)"
   ],
-  "nextAction": "Lots 2 à 6 de la direction audio sur dev, dans l'ordre de docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md, sous les règles du set 1.12.0. Le lot 0 est livré. La revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.",
+  "nextAction": "L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, puis playtest PC complet et démo figée. Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte.",
   "taskQueue": [
-    "L'opérateur approuve ou corrige le texte de l'amendement 1.12.0, relu et prêt sur la branche `amendment/audio-direction-1-12-0` (valeurs à confirmer listées dans `docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md`). Après son approbation : date d'approbation et mention « proposed » retirée, commit de l'amendement sur `dev`, commit opérationnel qui fixe la nouvelle base et met à jour ses mentions, puis lots 2 à 6 de la direction audio. Le lot 0 est livré. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.",
+    "L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, puis playtest PC complet et démo figée. Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte.",
     "Playtest PC de l'opérateur, liste de corrections, démo figée ; mobile seulement si l'opérateur le veut."
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "Set 1.12.0, baseline 29aa94862f9cd5f2c73ba9569660ed26c41ceaf8",
+  "contractComplianceStatus": "Set 1.12.0, baseline 29aa94862f9cd5f2c73ba9569660ed26c41ceaf8 ; relecture indépendante, deux écarts corrigés",
   "runId": "claude-audio-direction-20261101T1918Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-11-01T05:36:43Z",
-  "heartbeat": "2026-11-01T05:36:43Z",
+  "lastHeartbeat": "2026-11-01T20:50:00Z",
+  "heartbeat": "2026-11-01T20:50:00Z",
   "wip": null,
   "uncommittedWork": [],
   "providerTasksPending": [],
   "blockedBy": null,
-  "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
-  "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
+  "currentHandoff": "docs/autonomy/handoffs/2026-11-01T2050Z-claude-audio-direction.md",
+  "latestHandoff": "docs/autonomy/handoffs/2026-11-01T2050Z-claude-audio-direction.md",
   "previousRun": {
     "runId": "claude-vfx-identity-20261101T0000Z",
     "runEndedAt": "2026-11-01T04:54:22Z",
@@ -550,22 +568,22 @@
     "rule": "Kept: protocol fields, run identity, current authority, open/deferred items and current scopes; QA jobs registered after the set 1.10.0 amendment commit. Everything else is unchanged in the snapshot."
   },
   "live": {
-    "lastHeartbeat": "2026-11-01T05:36:43Z",
-    "runId": "claude-enemy-vfx-20261101T0200Z",
+    "lastHeartbeat": "2026-11-01T20:50:00Z",
+    "runId": "claude-audio-direction-20261101T1918Z",
     "agent": "claude",
-    "status": "VFX_SIGNATURES_AND_AUDIO_OPERATOR_REVIEW",
+    "status": "AUDIO_DIRECTION_DELIVERED_OPERATOR_LISTENING",
     "wip": null,
-    "nextAction": "L'opérateur approuve ou corrige le texte de l'amendement 1.12.0, relu et prêt sur la branche `amendment/audio-direction-1-12-0` (valeurs à confirmer listées dans `docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md`). Après son approbation : date d'approbation et mention « proposed » retirée, commit de l'amendement sur `dev`, commit opérationnel qui fixe la nouvelle base et met à jour ses mentions, puis lots 2 à 6 de la direction audio. Le lot 0 est livré. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.",
-    "runEndedAt": "2026-11-01T05:36:43Z",
+    "nextAction": "L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, puis playtest PC complet et démo figée. Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte.",
+    "runEndedAt": "2026-11-01T20:50:00Z",
     "writerStopped": true,
-    "activeTask": "MUSIC_OD_2026_10_29_B",
-    "activeSubtask": "Signatures des héros et des ennemis livrées ; revue en jeu de l'opérateur, écoute des sons",
+    "activeTask": "PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1",
+    "activeSubtask": "Lots 2 à 6 livrés ; écoute de l'opérateur dans le laboratoire",
     "runMetrics": {
-      "runtimeSourceFilesModified": 0,
+      "runtimeSourceFilesModified": 28,
       "gameplayFilesModified": 0,
-      "testFilesModified": 0,
-      "workflowFiles": 9,
-      "productProgress": 0
+      "testFilesModified": 10,
+      "workflowFiles": 16,
+      "productProgress": 1
     },
     "qaJobArchives": [
       "docs/autonomy/archive/AUTONOMOUS_WORK_STATE_2026-10-25.json"

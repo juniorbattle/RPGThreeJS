@@ -75,6 +75,22 @@ Vérité du jeu, sauvegardes V6, récompenses, canon, voix et audio vidéo (touj
 
 [Breath of Fire III, Wikipédia](https://en.wikipedia.org/wiki/Breath_of_Fire_III), [Chrono Cross, Square Enix Music Online](https://squareenixmusic.com/reviews/group/chronocross.html). Aucune source publique consultée ne détaille les modulations de ces trois jeux : les exemples de ponts seront fixés à l'écoute de l'opérateur.
 
+## Livraison
+
+Lots 2 à 6 livrés sur `dev`, run `claude-audio-direction-20261101T1918Z`. [Rapport et preuves](../reports/audio-direction-2026-11-01.md). Rien ne vaut validation à l'oreille.
+
+Écoute dans le laboratoire : lancer le serveur de développement, ouvrir `/?qa=1`, QA rencontres, Laboratoire d'écoute, cliquer une fois puis attendre « Tout est prêt ». Une fiche d'avis se remplit en bas, à copier et renvoyer.
+
+| Priorité | À écouter | La question |
+| --- | --- | --- |
+| 1 | Pont de Combat, de Carte, de Refuge, puis laisser boucler | Est-ce la transition que vous aimez ? Le retour se fait-il naturellement ? |
+| 2 | Début de Titre | Le motif des Sceaux tient-il en quatre notes ? |
+| 3 | Combat et Boss, en alternant Réflexion et Action | Réfléchit-on mieux ? L'écart est-il assez net ? |
+| 4 | Carte et Refuge | La couleur jazz inspirée de Breath of Fire 3 convient-elle ? C'est une hypothèse. |
+| 5 | Tension, Drame, Entrée de boss, les deux fanfares | Le ton est-il juste ? |
+| 6 | Les 12 ultimes et les 8 signatures de boss | Chacun a-t-il sa charge, son coup et sa vague ? |
+| 7 | Compétences courantes, attaques ennemies, ambiances | Le geste et l'élément s'entendent-ils ? L'ambiance est-elle assez présente ? |
+
 ## Amendement 1.12.0
 
 Tâche dédiée `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1`.

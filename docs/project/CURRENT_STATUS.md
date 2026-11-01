@@ -1,6 +1,6 @@
 # Current project status
 
-Current contract update 1 November 2026: [OD-2026-11-01-B](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md), set 1.12.0, immutable baseline 29aa94862f9cd5f2c73ba9569660ed26c41ceaf8 authorizes nine music contexts with sections, bridges, two combat levels and fanfares, effects on by default but armed, composed cues with FX sound marks, signature cues for twelve Ultimates and eight boss signatures (sound only, no Ultimate activated) and map and refuge ambience. Runtime and listening acceptance pending.
+Current contract update 1 November 2026: [OD-2026-11-01-B](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md), set 1.12.0, immutable baseline 29aa94862f9cd5f2c73ba9569660ed26c41ceaf8 authorizes nine music contexts with sections, bridges, two combat levels and fanfares, effects on by default but armed, composed cues with FX sound marks, signature cues for twelve Ultimates and eight boss signatures (sound only, no Ultimate activated) and map and refuge ambience. Runtime delivered on `dev` ([report](../reports/audio-direction-2026-11-01.md)); the operator's listening acceptance is pending in the dev listening lab.
 
 Current contract update 29 October 2026: [OD-2026-10-29-B](../autonomy/MUSIC_AUDIO_OPERATOR_DECISION_2026-10-29.md), set 1.11.0, immutable baseline a4ff05b2ced24e26af2e5b15d21b87ead1d24dfa authorizes code-generated music (five contexts), biome ambience and synthesized cues, and records the Combat Stage retirement in favour of the in-arena presentation. Runtime and listening acceptance pending.
 
