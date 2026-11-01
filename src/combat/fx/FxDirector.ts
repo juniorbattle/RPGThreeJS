@@ -61,7 +61,6 @@ export class FxDirector {
     const magic = recipe.magic !== false;
     for (const step of recipe.steps) {
       if (!magic && step.kind === 'circle') continue; // seals belong to spells only
-      if (step.kind === 'sheet') engine.preloadSheet(String(step.p?.id ?? ''));
       const at = step.at + (step.afterHit ? hitTime : 0);
       const scaled = scaleStep(step, at < impactTime - 0.2 ? buildUp : intensity);
       engine.after(at, () => this.run(scaled, recipe, ctx));

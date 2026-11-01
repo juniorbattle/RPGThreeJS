@@ -139,3 +139,11 @@ L'opérateur a écarté l'intégration de pixelfx et retenu des effets écrits p
 - Elles restent désactivées par défaut. Le choix « Effets d'ultimes → Essai pixel » du labo QA écrit la préférence `rpg-threejs:combat-pixel-fx:v1`, hors V6.
 - Limite connue : la planche se dessine par-dessus la scène, donc au-dessus des unités placées devant l'impact.
 - Le verdict de l'opérateur décide de l'activation, d'une correction ou du retrait. Les 5 autres planches du lot ne sont pas commencées.
+
+## Mise à jour — OD-2026-10-31-B, 31 octobre 2026
+
+Après essai, l'opérateur garde les effets actuels : « je pense que nous allons garder les effets ultimes actuel car ils sont nieux adapte et visuellement plus abouti ».
+
+- Les recettes procédurales restent les effets d'ultimes de la démo.
+- L'essai pixel est retiré : outil, planches, lecture en combat et choix du labo QA. Il reste dans l'historique Git (`f5a9abd7`).
+- Le lot `combat-fx-sheets` (8 planches) est abandonné. Seul le lot des plans d'arène reste non tranché.

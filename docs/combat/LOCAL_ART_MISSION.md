@@ -1,6 +1,6 @@
 # Mission locale — art de combat généré (OpenAI gpt-image-2)
 
-Baseline : branche `claude/combat-scenes-pixel-art-1v60j4`. Statut : **PROPOSED FUTURE DESIGN** (pipeline prêt, aucune image générée). Le lot des animations de héros (30 images) est abandonné par OD-2026-10-30-A : le mouvement par code est retenu. Trois planches du lot `combat-fx-sheets` existent en essai, écrites par code (`tools/pixel-fx/`, OD-2026-10-31-A) ; elles ne dépendent pas de cette mission. Contrat runtime : [combat HD-2D](COMBAT_HD2D.md).
+Baseline : branche `claude/combat-scenes-pixel-art-1v60j4`. Statut : **PROPOSED FUTURE DESIGN** (pipeline prêt, aucune image générée). Le lot des animations de héros (30 images) est abandonné par OD-2026-10-30-A : le mouvement par code est retenu. Le lot des planches d'ultimes (`combat-fx-sheets`) est abandonné par OD-2026-10-31-B : les recettes procédurales sont conservées. Contrat runtime : [combat HD-2D](COMBAT_HD2D.md).
 
 La session cloud ne peut pas appeler l'API d'images. Elle a livré un combat jouable entièrement par code : arènes procédurales, sprites pixel tirés des poses existantes, effets et sons synthétisés. Cette mission locale remplace ou enrichit trois familles d'assets, **sans changer une ligne de code runtime**. Chaque traitement écrit dans un contrat que le jeu lit déjà.
 

@@ -1,7 +1,11 @@
 import * as THREE from 'three';
 import { FX_PALETTES, type FxElement, type FxPalette } from './fxPalettes';
 import { createFireHaloMaterial, createFireMaterial, FIRE_TEXELS_PER_UNIT } from '../arena/arenaProps';
-import { fxSheetPlayable, type FxSheetEntry } from './fxSheets';
+import fxSheetsJson from '../../render/generated/combatFxSheets.json';
+
+interface FxSheetEntry { file: string; grid: [number, number]; frames: number }
+/** Locally generated FX spritesheets (tools/openai-art); empty until the art mission runs. */
+export const FX_SHEETS = (fxSheetsJson as { sheets: Record<string, FxSheetEntry> }).sheets;
 
 /**
  * Procedural combat FX engine (Octopath-style: white-hot cores that bloom,
@@ -892,40 +896,23 @@ export class FxEngine {
 
   private readonly sheetTextures = new Map<string, THREE.Texture>();
 
-  private sheetTexture(id: string, entry: FxSheetEntry): THREE.Texture {
+  /** Additive frame-sheet effect (generated art) layered over the procedural FX. */
+  sheet(position: Vec, id: string, options: { size?: number; duration?: number } = {}): boolean {
+    const entry = FX_SHEETS[id];
+    if (!entry || this.reduced) return false;
     let texture = this.sheetTextures.get(id);
     if (!texture) {
       texture = new THREE.TextureLoader().load(entry.file);
       texture.colorSpace = THREE.SRGBColorSpace;
-      if (entry.pixel) {
-        texture.magFilter = THREE.NearestFilter;
-        texture.minFilter = THREE.NearestFilter;
-        texture.generateMipmaps = false;
-      }
       this.sheetTextures.set(id, texture);
     }
-    return texture;
-  }
-
-  /** Starts loading a sheet ahead of its step, so the effect never misses its first frames. */
-  preloadSheet(id: string): void {
-    const entry = fxSheetPlayable(id);
-    if (entry && !this.reduced) this.sheetTexture(id, entry);
-  }
-
-  /** Frame-sheet effect layered over the procedural FX: additive art, or flat pixel art. */
-  sheet(position: Vec, id: string, options: { size?: number; duration?: number } = {}): boolean {
-    const entry = fxSheetPlayable(id);
-    if (!entry || this.reduced) return false;
     const [cols, rows] = entry.grid;
-    const map = this.sheetTexture(id, entry).clone();
+    const map = texture.clone();
     map.repeat.set(1 / cols, 1 / rows);
     map.needsUpdate = true;
-    const size = entry.worldSize ?? options.size ?? 3, duration = options.duration ?? 0.8;
-    // a flat pixel frame lies over the scene: its plane must never slice the units around the impact
-    const material = new THREE.MeshBasicMaterial({ map, transparent: true, depthWrite: false, depthTest: !entry.pixel, blending: entry.pixel ? THREE.NormalBlending : THREE.AdditiveBlending, toneMapped: false, fog: false });
-    const geometry = new THREE.PlaneGeometry(size, size).translate(0, size * (0.5 - (entry.pivotY ?? 0.5)), 0);
-    const mesh = new THREE.Mesh(geometry, material);
+    const size = options.size ?? 3, duration = options.duration ?? 0.8;
+    const material = new THREE.MeshBasicMaterial({ map, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, fog: false });
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(size, size), material);
     mesh.position.copy(position);
     mesh.renderOrder = FX_LAYER.sheet;
     mesh.frustumCulled = false;
