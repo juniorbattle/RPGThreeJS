@@ -46,9 +46,9 @@
     "Retrait des assets du Combat Stage devenus inutiles : accord de l’opérateur requis",
     "Option QA « Tous les héros QA » / stageqa : déploiement bloqué (constat préexistant)"
   ],
-  "nextAction": "L'opérateur remplit la fiche d'arbitrages audio (https://claude.ai/artifact/UGe8DMGDn7BURNtcWv3UsK), issue de `docs/reports/audio-audit-2026-11-01.md`. Je relis ensuite ses choix et je les consigne, je corrige ce qui reste dans le contrat actuel (sons des ultimes, lancement de chaque compétence, équilibre entre musique et effets), puis je prépare l'amendement 1.12.0 selon ses choix. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.",
+  "nextAction": "L'opérateur approuve ou corrige le texte de l'amendement 1.12.0, relu et prêt sur la branche `amendment/audio-direction-1-12-0` (valeurs à confirmer listées dans `docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md`). Après son approbation : date d'approbation et mention « proposed » retirée, commit de l'amendement sur `dev`, commit opérationnel qui fixe la nouvelle base et met à jour ses mentions, puis lots 2 à 6 de la direction audio. Le lot 0 est livré. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.",
   "taskQueue": [
-    "L'opérateur remplit la fiche d'arbitrages audio (https://claude.ai/artifact/UGe8DMGDn7BURNtcWv3UsK), issue de `docs/reports/audio-audit-2026-11-01.md`. Je relis ensuite ses choix et je les consigne, je corrige ce qui reste dans le contrat actuel (sons des ultimes, lancement de chaque compétence, équilibre entre musique et effets), puis je prépare l'amendement 1.12.0 selon ses choix. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.",
+    "L'opérateur approuve ou corrige le texte de l'amendement 1.12.0, relu et prêt sur la branche `amendment/audio-direction-1-12-0` (valeurs à confirmer listées dans `docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md`). Après son approbation : date d'approbation et mention « proposed » retirée, commit de l'amendement sur `dev`, commit opérationnel qui fixe la nouvelle base et met à jour ses mentions, puis lots 2 à 6 de la direction audio. Le lot 0 est livré. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.",
     "Playtest PC de l'opérateur, liste de corrections, démo figée ; mobile seulement si l'opérateur le veut."
   ],
   "creditStatus": "AVAILABLE",
@@ -555,7 +555,7 @@
     "agent": "claude",
     "status": "VFX_SIGNATURES_AND_AUDIO_OPERATOR_REVIEW",
     "wip": null,
-    "nextAction": "L'opérateur remplit la fiche d'arbitrages audio (https://claude.ai/artifact/UGe8DMGDn7BURNtcWv3UsK), issue de `docs/reports/audio-audit-2026-11-01.md`. Je relis ensuite ses choix et je les consigne, je corrige ce qui reste dans le contrat actuel (sons des ultimes, lancement de chaque compétence, équilibre entre musique et effets), puis je prépare l'amendement 1.12.0 selon ses choix. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.",
+    "nextAction": "L'opérateur approuve ou corrige le texte de l'amendement 1.12.0, relu et prêt sur la branche `amendment/audio-direction-1-12-0` (valeurs à confirmer listées dans `docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md`). Après son approbation : date d'approbation et mention « proposed » retirée, commit de l'amendement sur `dev`, commit opérationnel qui fixe la nouvelle base et met à jour ses mentions, puis lots 2 à 6 de la direction audio. Le lot 0 est livré. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.",
     "runEndedAt": "2026-11-01T05:36:43Z",
     "writerStopped": true,
     "activeTask": "MUSIC_OD_2026_10_29_B",

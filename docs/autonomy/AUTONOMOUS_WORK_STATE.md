@@ -6,7 +6,7 @@ Musique générée par code pour les 5 contextes et ambiance des 3 arènes, sous
 
 Scheduler PAUSED. `main` protégé.
 
-UNE prochaine action : L'opérateur remplit la fiche d'arbitrages audio (https://claude.ai/artifact/UGe8DMGDn7BURNtcWv3UsK), issue de `docs/reports/audio-audit-2026-11-01.md`. Je relis ensuite ses choix et je les consigne, je corrige ce qui reste dans le contrat actuel (sons des ultimes, lancement de chaque compétence, équilibre entre musique et effets), puis je prépare l'amendement 1.12.0 selon ses choix. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.
+UNE prochaine action : L'opérateur approuve ou corrige le texte de l'amendement 1.12.0, relu et prêt sur la branche `amendment/audio-direction-1-12-0` (valeurs à confirmer listées dans `docs/autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md`). Après son approbation : date d'approbation et mention « proposed » retirée, commit de l'amendement sur `dev`, commit opérationnel qui fixe la nouvelle base et met à jour ses mentions, puis lots 2 à 6 de la direction audio. Le lot 0 est livré. Sa revue en jeu des signatures visuelles reste ouverte. Ensuite playtest PC complet et démo figée.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
