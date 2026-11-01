@@ -219,5 +219,7 @@ describe('the sample bank and instruments', () => {
     expect(ambienceForScene('lion_sanctum')).toBe('lion_sanctum');
     expect(ambienceForScene('bois_clair_burning')).toBe('bois_clair_burning');
     expect(ambienceForScene('unknown_scene')).toBe('forest_route');
+    expect(ambienceForScene('map')).toBe('map');
+    expect(ambienceForScene('refuge')).toBe('refuge');
   });
 });

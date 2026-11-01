@@ -1,11 +1,11 @@
 /**
- * Synthesized biome ambience (OD-2026-10-29-B): one low loop per combat arena, under the music volume and mute.
- * Filtered noise beds with slow movement and sparse seeded accents. Adapted from the HD-2D combat sound module
- * (`src/combat/audio/CombatSfx.ts`, OD-2026-10-29-A), which is not wired.
+ * Synthesized ambience (OD-2026-10-29-B, OD-2026-11-01-B): one low loop per combat arena, plus the POI map and the
+ * refuge, under the music volume and mute. Filtered noise beds with slow movement and sparse seeded accents. Adapted
+ * from the HD-2D combat sound module (`src/combat/audio/CombatSfx.ts`, OD-2026-10-29-A), which is not wired.
  */
 import { seededRandom } from './theory';
 
-export type AmbienceId = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum';
+export type AmbienceId = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum' | 'map' | 'refuge';
 
 export function startAmbience(ctx: AudioContext, dest: AudioNode, id: AmbienceId): () => void {
   const rng = seededRandom(0xa3b1 + id.length * 977);
@@ -55,6 +55,15 @@ export function startAmbience(ctx: AudioContext, dest: AudioNode, id: AmbienceId
     bed('bandpass', 1800, 1.2, 0.08, 0.3);
     every((t) => { for (let i = 0; i < 4; i++) crackle(t + i * 0.04 * rng()); }, [0.3, 1.1]);
     every((t) => tone(t, 50, 'sine', 1.4, 0.18, 32, 0.3), [6, 12]); // a distant collapse
+  } else if (id === 'map') {
+    bed('bandpass', 560, 0.5, 0.24, 0.06); // open wind over the country
+    bed('highpass', 6200, 0.4, 0.03, 0.09); // dry grass
+    every((t) => { const f = 1800 + rng() * 1400; for (let i = 0; i < 2; i++) tone(t + i * 0.16, f * (1 - i * 0.08), 'sine', 0.12, 0.022, f * 0.9); }, [4, 9]); // a far bird
+  } else if (id === 'refuge') {
+    bed('lowpass', 240, 0.7, 0.34, 0.07); // the hearth's low breath
+    bed('bandpass', 1400, 1, 0.03, 0.2);
+    every((t) => { for (let i = 0; i < 3; i++) crackle(t + i * 0.05 * rng()); }, [0.7, 2.2]); // the fire
+    every((t) => tone(t, 165, 'sine', 0.3, 0.05, 110, 0.02), [7, 14]); // timber settling
   } else {
     bed('bandpass', 300, 0.5, 0.3, 0.04); // night wind
     every((t) => { for (let i = 0; i < 6; i++) tone(t + i * 0.05, 4200, 'square', 0.02, 0.008); }, [1.2, 3]); // crickets
@@ -71,9 +80,9 @@ export function startAmbience(ctx: AudioContext, dest: AudioNode, id: AmbienceId
   };
 }
 
-const AMBIENCES: readonly AmbienceId[] = ['forest_route', 'bois_clair_burning', 'lion_sanctum'];
+const AMBIENCES: readonly AmbienceId[] = ['forest_route', 'bois_clair_burning', 'lion_sanctum', 'map', 'refuge'];
 
-/** The ambience of a combat scene, with the arena's own fallback (`arenaThemeFor`): an unknown scene is the forest route. */
+/** The ambience of a scene, with the arena's own fallback (`arenaThemeFor`): an unknown scene is the forest route. */
 export function ambienceForScene(sceneId: string | null | undefined): AmbienceId {
   return AMBIENCES.find((id) => id === sceneId) ?? 'forest_route';
 }

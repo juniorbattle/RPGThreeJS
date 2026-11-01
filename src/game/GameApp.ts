@@ -35,9 +35,10 @@ import { CombatBridge } from '../combat/CombatBridge';
 import { DialogueView, resolveDialogueBackdrop } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
 import { PoiMapView } from '../ui/PoiMapView';
+import { sceneMood, type NarrativeMood } from '../audio/moods';
+import { CombatSoundWorkshop } from '../ui/CombatSoundWorkshop';
 import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
-import { CombatSoundWorkshop } from '../ui/CombatSoundWorkshop';
 import { ExplorationView } from '../ui/ExplorationView';
 import { resolveRefugePresentation } from '../ui/RefugePresentation';
 import { PrologueView } from '../ui/PrologueView';
@@ -80,12 +81,14 @@ import {
   type NarrativeTableauSpec,
 } from '../cinematics/NarrativeTableau';
 type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'JOURNEY' | 'NARRATIVE' | 'MANAGEMENT' | 'COMBAT' | 'RESULT' | 'QA';
-/** Presentation surface → music context (OD-2026-10-29-B); COMBAT is set by CombatBridge from the encounter rank. */
+/** Presentation surface → music context (OD-2026-11-01-B); COMBAT is set by CombatBridge from the encounter rank. */
 const MODE_MUSIC: Readonly<Record<AppMode, MusicContextId | null>> = {
   TITLE: 'title', QA: 'title', TRAVEL: 'map', RESULT: 'map',
-  PROLOGUE: 'refuge', JOURNEY: 'refuge', NARRATIVE: 'refuge', MANAGEMENT: 'refuge',
+  PROLOGUE: 'drama', JOURNEY: 'refuge', NARRATIVE: 'refuge', MANAGEMENT: 'refuge',
   COMBAT: null,
 };
+/** Surfaces with their own ambience. Management keeps what it opened over, so it stays presentation of the hub. */
+const MODE_AMBIENCE: Readonly<Partial<Record<AppMode, string>>> = { TRAVEL: 'map', RESULT: 'map' };
 
 type QaPartyMode = 'campaign' | 'full';
 type QaSkillMode = 'normal' | 'all';
@@ -1066,7 +1069,7 @@ export class GameApp {
       this.saves.saveAuto(this.state);
       let refugeMessage = '';
       while (true) {
-        this.setMode('NARRATIVE');
+        this.setMode('NARRATIVE', { ambience: 'refuge' });
         const restCost = getRestCost(this.state);
         const woundedCount = getWoundedUnitCount(this.state);
         const action = await this.exploration.open(presentation, getReputationRule(this.state.reputation).label, securedGold, {
@@ -1201,7 +1204,7 @@ export class GameApp {
     stage.bindDialogue(sequence);
     stage.element.dataset.dialogueCastAlignment = alignment.status;
     const openDialogue = async () => {
-      this.setMode('NARRATIVE');
+      this.setMode('NARRATIVE', { mood: sceneMood(sequence.id) });
       await this.dialogue.play(sequence, {
         mode: 'narrative-stage',
         root: stage.dialogueLayer,
@@ -1595,14 +1598,14 @@ export class GameApp {
     await this.enterCampaignPresentation();
   }
 
-  private setMode(mode: AppMode): void {
+  private setMode(mode: AppMode, surface: { mood?: NarrativeMood; ambience?: string } = {}): void {
     this.soundSettings.close();
-    // Music follows the presentation surface only; combat picks combat or boss itself (CombatBridge).
-    // It is optional presentation: a failure never blocks the transition.
+    // Music follows the presentation surface and the scene's mood only; combat picks combat or boss itself
+    // (CombatBridge). It is optional presentation: a failure never blocks the transition.
     try {
-      const music = MODE_MUSIC[mode];
+      const music = surface.mood ?? MODE_MUSIC[mode];
       if (music) this.uiSounds.setMusicContext(music);
-      if (mode !== 'COMBAT') this.uiSounds.setMusicScene(null);
+      if (mode !== 'COMBAT' && mode !== 'MANAGEMENT') this.uiSounds.setMusicScene(surface.ambience ?? MODE_AMBIENCE[mode] ?? null);
     } catch { /* silent */ }
     if (mode !== 'NARRATIVE' && mode !== 'JOURNEY') this.statusHud?.hide();
     this.mode = mode;
