@@ -58,6 +58,34 @@ export function voiceChord(chord: readonly number[], lo: number, hi: number, pre
   return best ?? chord.map((m) => m);
 }
 
+const LETTERS: Readonly<Record<string, number>> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+
+/** MIDI pitch of a written note: `A4`, `Bb3`, `F#5`. */
+export function parsePitch(name: string): number {
+  const match = /^([A-G])(#|b)?(-?\d)$/.exec(name);
+  if (!match) throw new Error(`Bad pitch '${name}'.`);
+  return 12 * (Number(match[3]) + 1) + LETTERS[match[1]!]! + (match[2] === '#' ? 1 : match[2] === 'b' ? -1 : 0);
+}
+
+const QUALITIES: Readonly<Record<string, readonly number[]>> = {
+  '': [0, 4, 7], m: [0, 3, 7], dim: [0, 3, 6], sus2: [0, 2, 7], sus4: [0, 5, 7], 5: [0, 7], m6: [0, 3, 7, 9], add9: [0, 4, 7, 14],
+  7: [0, 4, 7, 10], maj7: [0, 4, 7, 11], m7: [0, 3, 7, 10], m7b5: [0, 3, 6, 10], '7sus4': [0, 5, 7, 10], '7b9': [0, 4, 10, 13],
+  9: [0, 4, 10, 14], maj9: [0, 4, 11, 14], m9: [0, 3, 10, 14],
+};
+
+export interface Chord { symbol: string; root: number; intervals: readonly number[] }
+
+/** A written chord: `Am`, `Bbmaj7`, `E7`, `Dsus4`, `D5`, `G7b9`. */
+export function parseChord(symbol: string): Chord {
+  const match = /^([A-G])(#|b)?(.*)$/.exec(symbol);
+  const intervals = match ? QUALITIES[match[3]!] : undefined;
+  if (!match || !intervals) throw new Error(`Bad chord '${symbol}'.`);
+  return { symbol, root: pc(LETTERS[match[1]!]! + (match[2] === '#' ? 1 : match[2] === 'b' ? -1 : 0)), intervals };
+}
+
+/** Pitches of a chord from the octave at `base`, for voicing and ladders. */
+export const chordPitches = (chord: Chord, base = 48): number[] => chord.intervals.map((i) => base + chord.root + i);
+
 /** Seeded random stream (mulberry32): music never draws from gameplay randomness or `Math.random`. */
 export function seededRandom(seed: number): () => number {
   let s = seed | 0;

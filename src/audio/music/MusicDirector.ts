@@ -1,18 +1,18 @@
 /**
- * Music director (Web Audio, OD-2026-10-29-B): plans each pass of the current theme ahead on the audio clock,
- * crossfades between contexts within 2 seconds, and plays the biome ambience. The rooms and the sample bank are
- * computed in a worker and loaded one per task (no main-thread frame over 50 ms); until a sample or a room is ready,
- * its notes are skipped or play dry. Owned by the parent audio owner (`UiSoundPlayer`),
- * which decides when audio may start; this module never starts audio by itself.
+ * Music director (Web Audio, OD-2026-10-29-B, OD-2026-11-01-B): plans each section of the current track ahead on the
+ * audio clock, crossfades between contexts within 2 seconds, moves the combat levels by gain, and plays the ambience.
+ * The rooms and the sample bank are computed in a worker and loaded one per task (no main-thread frame over 50 ms);
+ * until a sample or a room is ready, its notes are skipped or play dry. Owned by the parent audio owner
+ * (`UiSoundPlayer`), which decides when audio may start; this module never starts audio by itself.
  */
 import { ambienceForScene, startAmbience, type AmbienceId } from './ambience';
 import { choose, plan, sampleRateOf, SAMPLED_INSTRUMENTS, compute, type PlanItem, type SampledInstrument } from './bank';
 import { composePass, type MusicEvent } from './compose';
 import { impulseResponse, type HallId } from './hall';
-import { beatSeconds, passSeconds, THEMES, type MusicContextId, type ThemeDef } from './themes';
+import { beatTime, sectionAt, sectionSeconds, THEMES, type Layer, type MusicContextId, type ThemeDef } from './themes';
 import { body, playPhrase, type TimedNote, type VoiceInstrument } from './voices';
 
-export type MusicLevel = 'reflection' | 'action';
+export type MusicLevel = Layer;
 
 export interface MusicHost {
   setContext(id: MusicContextId | null): void;
@@ -21,7 +21,9 @@ export interface MusicHost {
   setLevel(level: MusicLevel): void;
   attenuate(holdUntil: number): void;
   dispose(): void;
-  readonly state: { context: MusicContextId | null; ambience: AmbienceId | null; pass: number; samples: number };
+  /** Dev listening lab: the current track resumes from a named section at the next pass. */
+  seek(section: string): boolean;
+  readonly state: { context: MusicContextId | null; ambience: AmbienceId | null; pass: number; samples: number; section: string | null; level: MusicLevel };
 }
 
 const LOOKAHEAD = 1.2;
@@ -34,7 +36,9 @@ const FANFARE_MAX = 8;
 const ATTENUATION = 10 ** (-5 / 20);
 const ATTENUATION_ATTACK = 0.05;
 const ATTENUATION_RELEASE = 0.9;
-const SAMPLE_LEVEL: Readonly<Record<SampledInstrument, number>> = { harp: 0.5, lute: 0.5, timpani: 0.6, drum: 0.62, frame: 0.42, cymbal: 0.3 };
+const SAMPLE_LEVEL: Readonly<Record<SampledInstrument, number>> = { harp: 0.5, lute: 0.5, pizz: 0.5, timpani: 0.5, drum: 0.5, kit: 0.42, frame: 0.42, cymbal: 0.3 };
+/** A level change rides on the gains, so it costs nothing on the audio clock. */
+const LEVEL_TAU = 0.14;
 const SAMPLED = new Set<string>(SAMPLED_INSTRUMENTS);
 /** Leaves room for the cues: at the default volume, combat sits near -22 LUFS. */
 const volumeCurve = (v: number): number => Math.max(0, Math.min(1, v)) ** 1.5 * 0.5;
@@ -42,9 +46,10 @@ const volumeCurve = (v: number): number => Math.max(0, Math.min(1, v)) ** 1.5 * 
 interface Playing {
   theme: ThemeDef;
   fader: GainNode;
+  tone: AudioNode | null;
   send: GainNode;
-  sampledIn: GainNode;
-  bodies: Map<VoiceInstrument, { input: AudioNode; output: AudioNode; stop: () => void }>;
+  layers: Record<Layer, GainNode>;
+  bodies: Map<string, { input: AudioNode; output: AudioNode; stop: () => void }>;
   pass: number;
   nextPassAt: number;
   endsAt: number | null;
@@ -95,7 +100,8 @@ class MusicDirector implements MusicHost {
   get state(): MusicHost['state'] {
     let samples = 0;
     for (const entry of this.bank.values()) samples += entry.buffers.length;
-    return { context: this.current?.theme.id ?? null, ambience: this.ambience?.id ?? null, pass: this.current?.pass ?? 0, samples };
+    const playing = this.current;
+    return { context: playing?.theme.id ?? null, ambience: this.ambience?.id ?? null, pass: playing?.pass ?? 0, samples, section: playing ? sectionAt(playing.theme, Math.max(0, playing.pass - 1)).name : null, level: this.level };
   }
 
   setContext(id: MusicContextId | null): void {
@@ -114,7 +120,7 @@ class MusicDirector implements MusicHost {
     playing.fader.gain.exponentialRampToValueAtTime(theme.gain, now + (theme.once ? 0.08 : FADE_IN));
     playing.nextPassAt = now + 0.15;
     if (theme.once) {
-      playing.onceEndsAt = now + Math.min(FANFARE_MAX, passSeconds(theme) + 0.15);
+      playing.onceEndsAt = now + Math.min(FANFARE_MAX, sectionSeconds(sectionAt(theme, 0)) + 0.75);
       playing.fader.gain.setValueAtTime(theme.gain, playing.onceEndsAt - 0.5);
       playing.fader.gain.exponentialRampToValueAtTime(0.0001, playing.onceEndsAt);
     }
@@ -137,7 +143,23 @@ class MusicDirector implements MusicHost {
   }
 
   setLevel(level: MusicLevel): void {
+    if (this.disposed || level === this.level) return;
     this.level = level;
+    const now = this.ctx.currentTime;
+    for (const playing of [this.current, ...this.fading]) if (playing) this.applyLevel(playing, now);
+  }
+
+  private applyLevel(playing: Playing, now: number): void {
+    playing.layers.reflection.gain.setTargetAtTime(this.level === 'reflection' ? 1 : 0, now, LEVEL_TAU);
+    playing.layers.action.gain.setTargetAtTime(this.level === 'action' ? 1 : 0, now, LEVEL_TAU);
+  }
+
+  seek(name: string): boolean {
+    const playing = this.current;
+    const at = playing ? playing.theme.form.findIndex((index) => playing.theme.sections[index]!.name === name) : -1;
+    if (!playing || at < 0) return false;
+    playing.pass = at;
+    return true;
   }
 
   attenuate(holdUntil: number): void {
@@ -169,24 +191,31 @@ class MusicDirector implements MusicHost {
 
   private mount(theme: ThemeDef): Playing {
     const fader = this.ctx.createGain();
-    fader.connect(this.bus);
+    let tone: BiquadFilterNode | null = null;
+    if (theme.lowCut) {
+      tone = this.ctx.createBiquadFilter();
+      tone.type = 'highpass'; tone.frequency.value = theme.lowCut; tone.Q.value = 0.7;
+      fader.connect(tone);
+    }
+    const out = tone ?? fader;
+    out.connect(this.bus);
     const send = this.ctx.createGain();
     send.gain.value = theme.send;
-    fader.connect(send);
+    out.connect(send);
     const reverb = this.reverbs.get(theme.hall);
     if (reverb) send.connect(reverb);
     const waiting = this.sends.get(theme.hall) ?? new Set<GainNode>();
     waiting.add(send);
     this.sends.set(theme.hall, waiting);
-    const sampledIn = this.ctx.createGain();
-    sampledIn.connect(fader);
-    return { theme, fader, send, sampledIn, bodies: new Map(), pass: 0, nextPassAt: 0, endsAt: null, onceEndsAt: null };
+    const layer = (on: boolean): GainNode => { const g = this.ctx.createGain(); g.gain.value = on ? 1 : 0; g.connect(fader); return g; };
+    const layers = { reflection: layer(this.level === 'reflection'), action: layer(this.level === 'action') };
+    return { theme, fader, tone, send, layers, bodies: new Map(), pass: 0, nextPassAt: 0, endsAt: null, onceEndsAt: null };
   }
 
   private unmount(playing: Playing): void {
     this.sends.get(playing.theme.hall)?.delete(playing.send);
     for (const b of playing.bodies.values()) { b.stop(); try { b.output.disconnect(); } catch { /* gone */ } }
-    for (const node of [playing.sampledIn, playing.fader, playing.send]) { try { node.disconnect(); } catch { /* gone */ } }
+    for (const node of [playing.layers.reflection, playing.layers.action, playing.fader, playing.tone, playing.send]) { try { node?.disconnect(); } catch { /* gone */ } }
   }
 
   private task(fn: () => void): void {
@@ -245,29 +274,32 @@ class MusicDirector implements MusicHost {
 
   private schedulePass(playing: Playing): void {
     const { theme } = playing;
-    const spb = beatSeconds(theme);
+    const section = sectionAt(theme, playing.pass);
     const t0 = playing.nextPassAt;
     const events = composePass(theme, playing.pass);
-    const lines = new Map<string, { instrument: VoiceInstrument; notes: TimedNote[] }>();
+    const at = (beat: number): number => t0 + beatTime(section, Math.max(0, beat));
+    const lines = new Map<string, { instrument: VoiceInstrument; layer: Layer | undefined; notes: TimedNote[] }>();
     for (const e of events) {
-      if (SAMPLED.has(e.instrument)) this.playSample(playing, e, t0 + e.beat * spb);
+      if (SAMPLED.has(e.instrument)) this.playSample(playing, e, at(e.beat));
       else {
-        const line = lines.get(e.line) ?? { instrument: e.instrument as VoiceInstrument, notes: [] };
-        line.notes.push({ t: t0 + e.beat * spb, d: e.beats * spb, m: e.m, v: e.v });
-        lines.set(e.line, line);
+        const key = `${e.layer ?? ''}/${e.line}`;
+        const line = lines.get(key) ?? { instrument: e.instrument as VoiceInstrument, layer: e.layer, notes: [] };
+        line.notes.push({ t: at(e.beat), d: at(e.beat + e.beats) - at(e.beat), m: e.m, v: e.v });
+        lines.set(key, line);
       }
     }
-    for (const { instrument, notes } of lines.values()) {
-      let b = playing.bodies.get(instrument);
+    for (const { instrument, layer, notes } of lines.values()) {
+      const key = `${layer ?? ''}/${instrument}`;
+      let b = playing.bodies.get(key);
       if (!b) {
         b = body(this.ctx, instrument);
-        b.output.connect(playing.fader);
-        playing.bodies.set(instrument, b);
+        b.output.connect(layer ? playing.layers[layer] : playing.fader);
+        playing.bodies.set(key, b);
       }
       try { playPhrase(this.ctx, b.input, instrument, notes); } catch { /* one voice never stops the music */ }
     }
     playing.pass++;
-    playing.nextPassAt = t0 + passSeconds(theme);
+    playing.nextPassAt = t0 + sectionSeconds(section);
   }
 
   private playSample(playing: Playing, e: MusicEvent, t: number): void {
@@ -283,7 +315,7 @@ class MusicDirector implements MusicHost {
       source.playbackRate.value = choice.rate;
       const g = this.ctx.createGain();
       g.gain.value = choice.gain * SAMPLE_LEVEL[instrument];
-      source.connect(g).connect(playing.sampledIn);
+      source.connect(g).connect(e.layer ? playing.layers[e.layer] : playing.fader);
       const start = Math.max(this.ctx.currentTime, t);
       source.start(start);
       source.stop(start + buffer.duration / choice.rate + 0.05);

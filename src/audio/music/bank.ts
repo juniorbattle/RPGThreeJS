@@ -5,7 +5,7 @@
  */
 import * as I from './instruments';
 
-export type SampledInstrument = 'harp' | 'lute' | 'timpani' | 'drum' | 'frame' | 'cymbal';
+export type SampledInstrument = 'harp' | 'lute' | 'pizz' | 'timpani' | 'drum' | 'kit' | 'frame' | 'cymbal';
 
 export interface Zone {
   /** MIDI pitch of the computed note (drums: variant number). */
@@ -24,8 +24,10 @@ const PITCHED_SR = 32000;
 export const DEFS: Readonly<Record<SampledInstrument, PitchedDef | HitDef>> = {
   harp: { kind: 'notes', from: 36, to: 92, step: 4, layers: [0.4, 0.85], sr: PITCHED_SR, synth: I.harp },
   lute: { kind: 'notes', from: 40, to: 80, step: 4, layers: [0.45, 0.85], sr: PITCHED_SR, synth: I.lute },
+  pizz: { kind: 'notes', from: 36, to: 84, step: 4, layers: [0.7], sr: PITCHED_SR, synth: I.pizzicato },
   timpani: { kind: 'notes', from: 33, to: 57, step: 3, layers: [0.8], sr: PITCHED_SR, synth: I.timpani },
   drum: { kind: 'hit', variants: 2, synth: I.warDrum },
+  kit: { kind: 'hit', variants: 3, synth: I.drumKit },
   frame: { kind: 'hit', variants: 2, synth: I.frameDrum },
   cymbal: { kind: 'hit', variants: 2, synth: I.cymbal },
 };

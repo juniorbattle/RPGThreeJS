@@ -140,6 +140,25 @@ export function lute(sr: number, m: number, vel: number): Float32Array<ArrayBuff
   return normalise(out, 0.42 + 0.45 * vel);
 }
 
+/** Pizzicato strings: a short plucked body, warm and without a ringing tail. */
+export function pizzicato(sr: number, m: number, vel: number): Float32Array<ArrayBuffer> {
+  const f0 = freq(m);
+  const dur = clamp(1.1 - (m - 40) * 0.01, 0.5, 1.1);
+  const out = new Float32Array(samples(sr, dur));
+  const rng = seededRandom(0x91cc + m * 7);
+  const tau0 = clamp(0.34 * 2 ** (-(m - 40) / 30), 0.12, 0.34);
+  for (let k = 1; k <= 14; k++) {
+    const fk = k * f0;
+    if (fk > sr * 0.44) break;
+    damped(out, sr, fk, (Math.abs(Math.sin(Math.PI * k * 0.17)) + 0.08) / k ** 1.3, tau0 / (1 + 0.5 * (k - 1)), rng() * TAU);
+  }
+  biquad(out, sr, 'pk', 300, 1.2, 3);
+  biquad(out, sr, 'lp', 2400 + 1800 * vel, 0.7);
+  attack(out, sr, 0.0015);
+  tail(out, sr, dur * 0.25);
+  return normalise(out, 0.42 + 0.42 * vel);
+}
+
 /** Timpani: tuned kettle membrane (modes near 1 : 1.5 : 1.98 : 2.44), felt mallet thump, long bloom. */
 export function timpani(sr: number, m: number, vel: number): Float32Array<ArrayBuffer> {
   const f0 = freq(m);
@@ -184,6 +203,36 @@ export function warDrum(sr: number, variant: number): Float32Array<ArrayBuffer> 
   attack(out, sr, 0.001);
   tail(out, sr, 0.08);
   return normalise(out, soft ? 0.6 : 0.85);
+}
+
+/** Drum kit for the boss drive: 0 a tight kick that stays above the impacts' sub, 1 a snare, 2 a closed hat. */
+export function drumKit(sr: number, variant: number): Float32Array<ArrayBuffer> {
+  const rng = seededRandom(0xb17d + variant);
+  const out = new Float32Array(samples(sr, variant === 0 ? 0.28 : variant === 1 ? 0.3 : 0.09));
+  if (variant === 0) {
+    let ph = 0;
+    for (let i = 0; i < out.length; i++) {
+      const t = i / sr;
+      ph += (96 + 90 * Math.exp(-t / 0.03)) / sr;
+      out[i] = Math.sin(TAU * ph) * Math.exp(-t / 0.09);
+    }
+    const click = noise(samples(sr, 0.012), sr, rng, 0.003);
+    biquad(click, sr, 'hp', 1800, 0.7);
+    mix(out, click, 0.25);
+  } else if (variant === 1) {
+    damped(out, sr, 196, 0.8, 0.09, 0);
+    damped(out, sr, 330, 0.4, 0.05, 1);
+    const wires = noise(out.length, sr, rng, 0.09);
+    biquad(wires, sr, 'bp', 3800, 0.6);
+    mix(out, wires, 1.1);
+  } else {
+    const hat = noise(out.length, sr, rng, 0.02);
+    biquad(hat, sr, 'hp', 7000, 0.7);
+    mix(out, hat, 1);
+  }
+  attack(out, sr, 0.0005);
+  tail(out, sr, 0.02);
+  return normalise(out, variant === 2 ? 0.35 : variant === 1 ? 0.62 : 0.8);
 }
 
 /** Frame drum: hand-struck skin; variant 0 is the low "dum", variant 1 the bright rim "tek". */

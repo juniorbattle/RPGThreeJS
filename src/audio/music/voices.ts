@@ -3,11 +3,11 @@
  * tied notes glide without a new attack, detached notes are tongued; the timbre brightens with dynamics through a
  * non-linear shaper; vibrato comes late on held notes. Sections (strings, horns, brass, choir) stack slightly
  * detuned voices and widen through a stereo chorus. Adapted from the RPGCards M13 engine
- * (`src/son/musique/vents.ts`) under OD-2026-10-29-B; the horn, brass and choir profiles are new.
+ * (`src/son/musique/vents.ts`) under OD-2026-10-29-B; the reed, horn, brass and choir profiles are new.
  */
 import { freq, seededRandom } from './theory';
 
-export type VoiceInstrument = 'strings' | 'flute' | 'horn' | 'brass' | 'choir';
+export type VoiceInstrument = 'strings' | 'flute' | 'reed' | 'horn' | 'brass' | 'choir';
 
 /** A scheduled note: absolute start `t` and duration `d` in seconds, MIDI pitch `m`, velocity `v` (0..1). */
 export interface TimedNote { t: number; d: number; m: number; v: number }
@@ -50,6 +50,13 @@ export const PROFILES: Readonly<Record<VoiceInstrument, Profile>> = {
     k: 1.2, b: 0.05, oversample: 'none', pressure: [0.22, 0.6], attack: 0.05, burst: 1.1, release: 0.08, glide: 0.012, hold: 0,
     vibrato: { cents: 14, hz: 5.1, delay: 0.14 }, breath: { level: 0.1, rel: 2, q: 1.2 }, level: 0.5,
     filters: [{ type: 'highpass', f: 220, q: 0.7 }, { type: 'peaking', f: 900, q: 1, g: 2 }, { type: 'lowpass', f: 7000, q: 0.7 }],
+  },
+  // an oboe-like double reed: rich partials through a nasal formant, for the sober lines the flute cannot carry
+  reed: {
+    harmonics: [1, 0.9, 0.78, 0.62, 0.46, 0.34, 0.24, 0.16, 0.1, 0.06],
+    k: 1.4, b: 0.08, oversample: 'none', pressure: [0.26, 0.7], attack: 0.04, burst: 1.15, release: 0.07, glide: 0.014, hold: 0,
+    vibrato: { cents: 10, hz: 5.4, delay: 0.22 }, breath: { level: 0.03, rel: 3, q: 1.2 }, level: 0.32,
+    filters: [{ type: 'highpass', f: 240, q: 0.7 }, { type: 'peaking', f: 1150, q: 1.2, g: 5 }, { type: 'peaking', f: 2800, q: 1.6, g: 3 }, { type: 'lowpass', f: 5600, q: 0.7 }],
   },
   horn: {
     harmonics: [1, 0.62, 0.42, 0.26, 0.16, 0.1, 0.06, 0.04],

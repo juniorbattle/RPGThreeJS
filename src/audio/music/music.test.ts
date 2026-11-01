@@ -1,83 +1,181 @@
 import { describe, expect, it } from 'vitest';
 import { ambienceForScene } from './ambience';
 import { choose, DEFS, plan, SAMPLED_INSTRUMENTS, type SampledInstrument } from './bank';
-import { chordOfBar, composePass } from './compose';
-import { harp, timpani, warDrum } from './instruments';
-import { MUSIC_CONTEXTS, passSeconds, THEMES } from './themes';
-import { degreeToMidi, voiceChord } from './theory';
+import { composePass, harmonyOf, parseLine } from './compose';
+import { harp, lute, pizzicato, drumKit, timpani, warDrum } from './instruments';
+import { beatTime, formSeconds, MUSIC_CONTEXTS, passCycle, sectionAt, sectionBars, sectionBeats, sectionIndexAt, sectionSeconds, SEALS_MOTIF, THEMES, type MusicContextId, type Section } from './themes';
+import { MODES, parseChord, parsePitch, pc, voiceChord } from './theory';
 
 const SAMPLED = new Set<string>(SAMPLED_INSTRUMENTS);
+const LOOPING = MUSIC_CONTEXTS.filter((id) => !THEMES[id].once);
+const allSections = MUSIC_CONTEXTS.flatMap((id) => THEMES[id].sections.map((section) => ({ id, section })));
 
-describe('music themes', () => {
-  it('defines the nine approved contexts with consistent bars and beats', () => {
+/** Scale degree of a pitch in a section's mode, or null outside it. */
+function degreeOf(section: Section, m: number): number | null {
+  const at = MODES[section.mode].findIndex((step) => pc(section.tonic + step) === pc(m));
+  return at < 0 ? null : at;
+}
+function carriesMotif(section: Section): boolean {
+  return (section.lines ?? []).some((line) => {
+    const degrees = parseLine(line.notes, section.beatsPerBar).map((note) => degreeOf(section, note.m));
+    return degrees.some((_, i) => SEALS_MOTIF.every((degree, k) => degrees[i + k] === degree));
+  });
+}
+
+describe('the written music', () => {
+  it('defines the nine approved contexts', () => {
     expect(MUSIC_CONTEXTS).toEqual(['title', 'map', 'refuge', 'tension', 'drama', 'combat', 'boss', 'victory', 'defeat']);
-    for (const id of MUSIC_CONTEXTS) {
-      const theme = THEMES[id];
-      expect(theme.progression).toHaveLength(theme.bars);
-      for (const [bar, beat, , beats] of theme.melody.notes) {
-        expect(bar).toBeLessThan(theme.bars);
-        expect(beat + beats).toBeLessThanOrEqual(theme.beatsPerBar + 1e-9);
+  });
+
+  it('writes every chord and every line in whole bars', () => {
+    for (const { id, section } of allSections) {
+      const where = `${id}/${section.name}`;
+      expect(harmonyOf(section).at(-1)!.beat + harmonyOf(section).at(-1)!.beats, where).toBe(sectionBeats(section));
+      for (const line of section.lines ?? []) {
+        const bars = line.notes.split('|');
+        expect(bars, `${where}/${line.name}`).toHaveLength(sectionBars(section));
+        for (const bar of bars) {
+          const beats = bar.trim().split(/\s+/).reduce((sum, token) => sum + Number(token.split(':')[1]), 0);
+          expect(beats, `${where}/${line.name}: ${bar}`).toBeCloseTo(section.beatsPerBar);
+        }
       }
-      expect(passSeconds(theme)).toBeGreaterThan(theme.once ? 3 : 10);
-      expect(passSeconds(theme)).toBeLessThan(theme.once ? 8 : 40);
     }
   });
 
-  it('places the melody root on the tonic class of each mode', () => {
-    for (const id of MUSIC_CONTEXTS) {
+  it('runs the Seals motif through every track', () => {
+    for (const id of MUSIC_CONTEXTS) expect(THEMES[id].sections.some(carriesMotif), id).toBe(true);
+  });
+
+  it('writes in every loop a bridge that changes tempo, key or metre, and a return prepared on its way home', () => {
+    for (const id of LOOPING) {
       const theme = THEMES[id];
-      expect(((theme.melody.root - theme.tonic) % 12 + 12) % 12).toBe(0);
-      if (theme.counter) expect((theme.counter.root - theme.tonic) % 12).toBe(0);
+      const bridge = theme.sections.find((section) => section.name === 'bridge')!;
+      const home = theme.sections.find((section) => section.name === 'A')!;
+      expect(bridge, id).toBeTruthy();
+      expect(bridge.bpm !== home.bpm || pc(bridge.tonic) !== pc(home.tonic) || bridge.mode !== home.mode || bridge.beatsPerBar !== home.beatsPerBar, id).toBe(true);
+      expect(bridge.lines?.length ?? 0, `${id}: the bridge is written, not a key shift`).toBeGreaterThan(0);
+      const last = theme.sections[theme.form.at(-1)!]!;
+      const final = harmonyOf(last).filter((slot) => slot.chord).at(-1)!.chord!;
+      const toHome = pc(final.root - home.tonic);
+      // the dominant, or in the phrygian the chord a semitone above
+      expect(toHome === 7 || (home.mode === 'phrygian' && toHome === 1), `${id}: the form ends on ${final.symbol}, home is ${pc(home.tonic)}`).toBe(true);
     }
+  });
+
+  it('gives combat and map about a minute and a half, with passages without melody', () => {
+    for (const id of ['combat', 'map'] as const) {
+      expect(formSeconds(THEMES[id]), id).toBeGreaterThan(80);
+      expect(formSeconds(THEMES[id]), id).toBeLessThan(100);
+      const silent = THEMES[id].sections.find((section) => !section.lines?.some((line) => line.layer !== 'reflection'));
+      expect(silent, `${id}: a passage without melody`).toBeTruthy();
+    }
+  });
+
+  it('no longer lets the flute lead the loops', () => {
+    const lead = (id: MusicContextId) => THEMES[id].sections.find((section) => section.name === 'A')!.lines?.[0]?.instrument;
+    expect(LOOPING.filter((id) => lead(id) === 'flute')).toEqual([]);
+    expect(new Set(LOOPING.map(lead)).size).toBeGreaterThanOrEqual(4);
+  });
+
+  it('keeps fanfares within 8 seconds and the boss entry within 6', () => {
+    for (const id of ['victory', 'defeat'] as const) {
+      expect(THEMES[id].once, id).toBe(true);
+      expect(sectionSeconds(THEMES[id].sections[0]!), id).toBeLessThan(7.3);
+    }
+    const entry = THEMES.boss.sections[0]!;
+    expect(entry.name).toBe('entry');
+    expect(sectionSeconds(entry)).toBeLessThanOrEqual(6);
+  });
+
+  it('writes both levels into the combat tracks, from one form', () => {
+    expect([...new Set(composePass(THEMES.combat, 0).map((event) => event.layer ?? 'shared'))].sort()).toEqual(['action', 'reflection', 'shared']);
+    expect(new Set(composePass(THEMES.boss, 1).map((event) => event.layer ?? 'shared'))).toContain('action');
+    for (const id of LOOPING.filter((theme) => theme !== 'combat' && theme !== 'boss')) {
+      expect(composePass(THEMES[id], 0).every((event) => !event.layer), id).toBe(true);
+    }
+  });
+
+  it('plays the boss entry once, then loops without it', () => {
+    const boss = THEMES.boss;
+    expect(sectionAt(boss, 0).name).toBe('entry');
+    expect(sectionAt(boss, 1).name).toBe('A');
+    expect(sectionAt(boss, boss.form.length).name).toBe('A');
+    expect(sectionIndexAt(boss, boss.form.length - 1)).toBe(6);
+    expect(passCycle(boss, boss.form.length)).toBe(1);
+  });
+
+  it('runs a written tempo change through the section', () => {
+    const back = THEMES.combat.sections.find((section) => section.name === 'return')!;
+    const flat = sectionBeats(back) * (60 / back.bpm);
+    expect(sectionSeconds(back)).toBeLessThan(flat);
+    expect(sectionSeconds(back)).toBeGreaterThan(sectionBeats(back) * (60 / back.ramp!.bpm));
+    for (let beat = 1; beat < sectionBeats(back); beat++) expect(beatTime(back, beat)).toBeGreaterThan(beatTime(back, beat - 1));
+  });
+
+  it('parses written pitches and chords', () => {
+    expect(parsePitch('A4')).toBe(69);
+    expect(parsePitch('Bb3')).toBe(58);
+    expect(parsePitch('F#5')).toBe(78);
+    expect(parseChord('Bbmaj7')).toMatchObject({ root: 10, intervals: [0, 4, 7, 11] });
+    expect(parseChord('E7')).toMatchObject({ root: 4, intervals: [0, 4, 7, 10] });
+    expect(parseChord('F#m7b5').root).toBe(6);
+    expect(() => parseChord('H7')).toThrow();
+    expect(() => parseChord('Cwhat')).toThrow();
   });
 });
 
 describe('the generator', () => {
-  it('is reproducible for a given pass and varies from pass to pass', () => {
+  it('is reproducible for a given pass and varies from round to round', () => {
     for (const id of MUSIC_CONTEXTS) {
-      expect(composePass(THEMES[id], 3)).toEqual(composePass(THEMES[id], 3));
-      expect(composePass(THEMES[id], 0)).not.toEqual(composePass(THEMES[id], 1));
+      const theme = THEMES[id];
+      expect(composePass(theme, 3)).toEqual(composePass(theme, 3));
+      if (!theme.once) expect(composePass(theme, 1)).not.toEqual(composePass(theme, 1 + theme.form.length));
     }
   });
 
-  it('keeps every event inside its pass and every pitch inside a playable range', () => {
+  it('keeps every event inside its section and every pitch inside a playable range', () => {
     for (const id of MUSIC_CONTEXTS) {
       const theme = THEMES[id];
-      const length = theme.bars * theme.beatsPerBar;
-      for (let pass = 0; pass < 6; pass++) {
+      for (let pass = 0; pass < theme.form.length * 2; pass++) {
+        const length = sectionBeats(sectionAt(theme, pass));
         for (const e of composePass(theme, pass)) {
-          expect(e.beat).toBeGreaterThanOrEqual(-0.02);
-          expect(e.beat).toBeLessThan(length);
+          expect(e.beat, id).toBeGreaterThanOrEqual(-0.02);
+          expect(e.beat, id).toBeLessThan(length + 0.1);
           expect(e.v).toBeGreaterThan(0);
           expect(e.v).toBeLessThanOrEqual(1);
           if (SAMPLED.has(e.instrument)) {
             const def = DEFS[e.instrument as SampledInstrument];
-            if (def.kind === 'notes') { expect(e.m).toBeGreaterThanOrEqual(def.from - 2); expect(e.m).toBeLessThanOrEqual(def.to + 2); }
+            if (def.kind === 'notes') { expect(e.m, `${id}/${e.instrument}`).toBeGreaterThanOrEqual(def.from - 2); expect(e.m, `${id}/${e.instrument}`).toBeLessThanOrEqual(def.to + 2); }
           } else {
-            expect(e.m).toBeGreaterThanOrEqual(26);
-            expect(e.m).toBeLessThanOrEqual(96);
+            expect(e.m, `${id}/${e.instrument}`).toBeGreaterThanOrEqual(26);
+            expect(e.m, `${id}/${e.instrument}`).toBeLessThanOrEqual(96);
           }
         }
       }
     }
   });
 
-  it('brings the written melody back, rests on its resting passes, and answers with the counter on odd passes', () => {
-    const title = THEMES.title;
-    const melody = (pass: number) => composePass(title, pass).filter((e) => e.line === 'melody');
-    expect(melody(0)).toHaveLength(title.melody.notes.length);
-    expect(melody(3)).toHaveLength(0);
-    expect(melody(1).length).toBeGreaterThanOrEqual(title.melody.notes.length);
-    const first = melody(0)[0]!;
-    expect(first.m).toBe(degreeToMidi(title.melody.root, title.mode, title.melody.notes[0]![2]));
-    const counter = (pass: number) => composePass(THEMES.combat, pass).filter((e) => e.line === 'counter').length;
-    expect(counter(0)).toBe(0);
-    expect(counter(1)).toBeGreaterThan(0);
+  it('writes silence where the score does', () => {
+    const b = THEMES.drama.sections.find((section) => section.name === 'B')!;
+    const silent = harmonyOf(b).filter((slot) => !slot.chord);
+    expect(silent).toHaveLength(4);
+    const events = composePass(THEMES.drama, 1);
+    for (const slot of silent) expect(events.some((e) => e.beat >= slot.beat && e.beat < slot.beat + slot.beats), `bar at ${slot.beat}`).toBe(false);
   });
 
-  it('raises the third where the theme asks for a major dominant', () => {
-    const [root, third] = chordOfBar(THEMES.combat, 7);
-    expect(third! - root!).toBe(4);
+  it('brings a written line back and ornaments it on odd rounds', () => {
+    const title = THEMES.title;
+    const melody = (pass: number) => composePass(title, pass).filter((e) => e.line === 'lead');
+    const written = parseLine(title.sections[0]!.lines![0]!.notes, 4);
+    expect(melody(0).map((e) => e.m)).toEqual(written.map((note) => note.m));
+    expect(melody(title.form.length).length).toBeGreaterThan(written.length);
+  });
+
+  it('answers with a call only on odd rounds', () => {
+    const combat = THEMES.combat;
+    const call = (pass: number) => composePass(combat, pass).filter((e) => e.line === 'call').length;
+    expect(call(1)).toBe(0);
+    expect(call(1 + combat.form.length)).toBeGreaterThan(0);
   });
 
   it('voices chords with smooth voice leading inside the range', () => {
@@ -86,6 +184,14 @@ describe('the generator', () => {
     for (const m of [...first, ...next]) { expect(m).toBeGreaterThanOrEqual(50); expect(m).toBeLessThanOrEqual(69); }
     const motion = next.reduce((sum, m, i) => sum + Math.abs(m - first[i]!), 0);
     expect(motion).toBeLessThanOrEqual(6);
+  });
+
+  it('keeps pads to three or four voices on extended chords', () => {
+    for (const id of ['map', 'refuge', 'title'] as MusicContextId[]) {
+      const lines = new Set(composePass(THEMES[id], 2).filter((e) => e.line.startsWith('pad-')).map((e) => e.line));
+      expect(lines.size, id).toBeGreaterThanOrEqual(3);
+      expect(lines.size, id).toBeLessThanOrEqual(4);
+    }
   });
 });
 
@@ -101,7 +207,7 @@ describe('the sample bank and instruments', () => {
   });
 
   it('computes finite, bounded, audible samples', () => {
-    for (const data of [harp(32000, 62, 0.6), timpani(32000, 45, 0.8), warDrum(48000, 0)]) {
+    for (const data of [harp(32000, 62, 0.6), lute(32000, 55, 0.5), pizzicato(32000, 52, 0.7), timpani(32000, 45, 0.8), warDrum(48000, 0), drumKit(48000, 0), drumKit(48000, 1), drumKit(48000, 2)]) {
       let peak = 0;
       for (const x of data) { expect(Number.isFinite(x)).toBe(true); peak = Math.max(peak, Math.abs(x)); }
       expect(peak).toBeGreaterThan(0.2);

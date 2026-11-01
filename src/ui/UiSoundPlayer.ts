@@ -22,6 +22,7 @@ export interface MusicHost {
   setLevel(level: MusicLevel): void;
   /** Lowers the music until `holdUntil` on the audio clock, then lets it back within a second. */
   attenuate(holdUntil: number): void;
+  seek?(section: string): boolean;
   dispose(): void;
 }
 export type MusicFactory = (context: AudioContext, output: AudioNode) => MusicHost | Promise<MusicHost>;
