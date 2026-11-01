@@ -123,7 +123,7 @@ Cette échelle ne concerne que les recettes partagées : attaques de base avec a
 - L'impact de gameplay (`impactTime`) tombe après le vol du projectile éventuel. Les recettes d'ultime sont `cinematic`.
 - Primitives (`FxEngine`) : particules carrées, particules aspirées (`converge`), orbites (`orbit`), entailles, étoiles d'impact, anneaux (y compris vers l'intérieur), cercles de runes pixel, piliers, traînées, projectiles, volées (`rain`), éclairs, éclats, dômes, orbes, flammes, fumée, fissures (`fissure`), traces au sol, lumière (pool de 3 lumières fixes, donc pas de recompilation), planches générées (`sheet`, ignorées tant qu'elles manquent).
 - Temps FX : `G.timeScale` (ralenti) agit sur les tweens, les animations pixel et les effets. Les `wait()` restent en temps réel.
-- Sons : `combatSfx.play(id)` pour chaque repère des recettes (testé). Contexte audio créé au premier geste. `?son=0` le coupe. Le réglage « Effets sonores » est mémorisé (`localStorage`, avec garde).
+- Sons : le combat joue les 16 familles par `combatCue`, relayées au propriétaire audio parent. Les repères `sfx` des recettes et la banque `CombatSfx.ts` ne sont pas branchés (crochet `sfx` vide, [direction audio](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md)). `?son=0` coupe les sons.
 - Les spritesheets CartoonCoffee (locales, hors dépôt) ne servent plus que de repli quand aucun preset ne résout. Le VFX Lab les utilise toujours.
 
 ## QA

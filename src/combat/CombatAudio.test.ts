@@ -22,4 +22,11 @@ it('maps the initial six hero launch families without calculating a hit or a hea
   expect(combatLaunchSound({ key: 'a_precise_shot', type: 'phys' })).toBe('bow-release');
   expect(combatLaunchSound({ key: 'ro_sneak_attack', type: 'phys', weaponType: 'dagger' })).toBe('light-blade');
   expect(combatLaunchSound({ key: 'l_long_thrust', type: 'phys' })).toBe('thrust');
+  expect(combatLaunchSound({ key: 'l_firmament_lance', type: 'phys' }, 'melee_heavy')).toBe('thrust');
+  expect(combatLaunchSound({ key: 'boss_titan_slam', type: 'phys' }, 'melee_heavy')).toBe('heavy-weapon');
+  expect(combatLaunchSound({ key: 'w_whirl', type: 'phys' }, 'self_aoe')).toBe('heavy-weapon');
+  expect(combatLaunchSound({ key: 'a_arrow_rain', type: 'phys' }, 'ranged_attack')).toBe('bow-release');
+  expect(combatLaunchSound({ key: 'ar_artillery_barrage', type: 'phys' }, 'ranged_attack')).toBe('heavy-weapon');
+  expect(combatLaunchSound({ key: 'attack', type: 'phys', weaponType: 'hand_cannon' }, 'ranged_attack')).toBe('heavy-weapon');
+  expect(combatLaunchSound({ key: 'boss_fortify', type: 'buff' }, 'buff_cast')).toBeNull();
 });

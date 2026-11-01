@@ -25,7 +25,8 @@ const FADE_OUT = 1.6;
 const FADE_IN = 1.2;
 const SAMPLE_LEVEL: Readonly<Record<SampledInstrument, number>> = { harp: 0.5, lute: 0.5, timpani: 0.6, drum: 0.62, frame: 0.42, cymbal: 0.3 };
 const SAMPLED = new Set<string>(SAMPLED_INSTRUMENTS);
-const volumeCurve = (v: number): number => Math.max(0, Math.min(1, v)) ** 1.5 * 0.9;
+/** Leaves room for the cues: at the default volume, combat sits near -22 LUFS. */
+const volumeCurve = (v: number): number => Math.max(0, Math.min(1, v)) ** 1.5 * 0.5;
 
 interface Playing {
   theme: ThemeDef;
@@ -67,7 +68,7 @@ class MusicDirector implements MusicHost {
     this.bus.connect(this.master);
     this.master.connect(ctx.destination);
     this.ambienceBus = ctx.createGain();
-    this.ambienceBus.gain.value = 0.55;
+    this.ambienceBus.gain.value = 2.2;
     this.ambienceBus.connect(this.master);
     this.loadBank();
     this.timer = window.setInterval(() => this.tick(), 50);

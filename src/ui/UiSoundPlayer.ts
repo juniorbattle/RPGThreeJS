@@ -302,9 +302,9 @@ export class UiSoundPlayer {
       }
       const source = this.context.createBufferSource();
       source.buffer = buffer;
-      // Candidate PCM peaks <=0.2; 4 voices *0.55*0.2 <=0.44 before master volume.
+      // Candidate PCM peaks <=0.2; 4 voices *1.1*0.2 <=0.88 before master volume.
       const voiceGain = this.combatScope ? this.context!.createGain() : null;
-      if (voiceGain) { voiceGain.gain.value = 0.55; voiceGain.connect(this.gain!); }
+      if (voiceGain) { voiceGain.gain.value = 1.1; voiceGain.connect(this.gain!); }
       source.connect(voiceGain ?? this.gain!);
       source.onended = () => { this.voices.delete(source); source.disconnect(); voiceGain?.disconnect(); };
       this.voices.set(source, { id, scope });

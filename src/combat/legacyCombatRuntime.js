@@ -75,8 +75,8 @@ let QA_FULL_AP=false;
 let QA_DEPLOY_ALL=false;
 let COMBAT_ID='standalone';
 const combatAudio=new CombatAudioEmitter(message=>window.parent.postMessage(message,location.origin));
-let soundAction=null, soundActionSuppressed=false;
-function combatCue(id,phase='',target=''){ if(soundActionSuppressed)return; combatAudio.cue(id,soundAction?`${soundAction}:${phase}:${target}`:undefined); }
+let soundAction=null;
+function combatCue(id,phase='',target=''){ combatAudio.cue(id,soundAction?`${soundAction}:${phase}:${target}`:undefined); }
 let COMBAT_SCENE_ID='forest_route';
 // DEV: ?scene=<arena id> previews another arena in the standalone combat.
 if(import.meta.env.DEV&&new URLSearchParams(location.search).get('scene'))COMBAT_SCENE_ID=new URLSearchParams(location.search).get('scene');
@@ -1969,7 +1969,7 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   const impactStarted=new Promise(resolve=>{signalImpact=resolve;}),impactFinished=new Promise(resolve=>{finishImpact=resolve;});
   // Align the isolated runtime-frame proof with the real attack choreography,
   // after Stage lead-in/settle rather than consuming it during the transition.
-  const launchSound=combatLaunchSound(spec); if(launchSound)combatCue(launchSound,'launch');
+  const launchSound=combatLaunchSound(spec,getActionMotionPreset(spec)); if(launchSound)combatCue(launchSound,'launch');
   const animation=attackAnim(u,spec,impactCx,impactCz,targets,{...context,onResolveImpact:async()=>{signalImpact(); await impactFinished;}});
   await Promise.race([impactStarted,animation]);
   const _preState=new Map(); _preState.set(u,{alive:u.alive,hp:u.hp,statuses:new Set(Object.keys(u.statuses))}); for(const _t of targets)_preState.set(_t,{alive:_t.alive,hp:_t.hp,statuses:new Set(Object.keys(_t.statuses))});
@@ -2054,11 +2054,11 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   await presentActionExit(); G.busy=false; checkEnd();
 }
 async function executeAction(u,spec,cx,cz){
-  G._actionFeedbackToken='action-'+(++actionFeedbackSerial); soundAction=G._actionFeedbackToken; soundActionSuppressed=Boolean(getSkillPresentation(spec)?.ultimate); G._actionShakeFrequency=18;
+  G._actionFeedbackToken='action-'+(++actionFeedbackSerial); soundAction=G._actionFeedbackToken; G._actionShakeFrequency=18;
   try { await executeActionCore(u,spec,cx,cz); }
   finally {
     try { if(G.spotlight)await presentActionExit(); else restoreUnitFocus(); }
-    finally { soundAction=null; soundActionSuppressed=false; if(u&&u.alive)restoreUnitVisualBaseline(u); G.busy=false; }
+    finally { soundAction=null; if(u&&u.alive)restoreUnitVisualBaseline(u); G.busy=false; }
   }
 }
 

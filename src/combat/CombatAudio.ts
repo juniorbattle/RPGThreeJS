@@ -22,11 +22,14 @@ export class CombatAudioEmitter {
   dispose(): void { this.sessionId = null; }
 }
 
-export function combatLaunchSound(spec: { key?: string; type?: string; weaponType?: string; support?: boolean; heal?: boolean; revive?: boolean; cure?: boolean }): CombatSoundId | null {
-  if (spec.support || spec.heal || spec.revive || spec.cure || spec.type === 'move') return null;
+/** The launch family of an action. Skills carry no weapon type: their motion preset says how heavy the gesture is. */
+export function combatLaunchSound(spec: { key?: string; type?: string; weaponType?: string; support?: boolean; heal?: boolean; revive?: boolean; cure?: boolean }, motion?: string): CombatSoundId | null {
+  if (spec.support || spec.heal || spec.revive || spec.cure || spec.type === 'move' || spec.type === 'buff') return null;
   if (spec.type === 'mag' || spec.type === 'debuff') return 'magic-cast';
   if (spec.key === 'a_precise_shot' || spec.weaponType === 'longbow' || spec.weaponType === 'shuriken') return 'bow-release';
-  if (spec.weaponType === 'long_spear' || spec.key === 'l_long_thrust') return 'thrust';
-  if (spec.weaponType === 'greatsword' || spec.weaponType === 'holy_mace' || spec.weaponType === 'scythe' || spec.key === 'w_break_guard') return 'heavy-weapon';
+  if (spec.weaponType === 'long_spear' || spec.key?.startsWith('l_')) return 'thrust';
+  if (spec.weaponType === 'greatsword' || spec.weaponType === 'holy_mace' || spec.weaponType === 'scythe' || spec.weaponType === 'hand_cannon' || spec.key === 'w_break_guard' || spec.key?.startsWith('ar_')) return 'heavy-weapon';
+  if (motion === 'ranged_attack') return 'bow-release';
+  if (motion === 'melee_heavy' || motion === 'self_aoe') return 'heavy-weapon';
   return 'light-blade';
 }

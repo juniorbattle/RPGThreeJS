@@ -80,6 +80,11 @@ describe('V10F final hotfix runtime contracts', () => {
     expect(runtimeSource).toContain("applyDamage(t,dmg,u,{critical:crit,magic:(spec.type==='mag'),beat:hitBeat})");
   });
 
+  it('lets an ultimate keep its family cues (set 1.11.0)', () => {
+    expect(runtimeSource).toContain("function combatCue(id,phase='',target=''){ combatAudio.cue(");
+    expect(runtimeSource).not.toContain('soundActionSuppressed');
+  });
+
   it('lands a zone blow as a volley, one target at a time, and a knock-out keeps its beat', () => {
     expect(runtimeSource).toContain('const hitBeat=targets.length>1?ZONE_HIT_BEAT:0');
     expect(runtimeSource).toContain('else if(opts.beat){ playUnitHitReaction(u,{source:src,critical:opts.critical}); await wait(opts.beat); }');
