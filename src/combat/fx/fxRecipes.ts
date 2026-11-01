@@ -10,7 +10,7 @@ import type { FieldBeat } from './fxIntensity';
  * Every VFX preset id used by the combat runtime resolves to a recipe here:
  * explicit entries first, then a family chosen from the preset tags.
  */
-export type FxAnchor = 'source' | 'sourceChest' | 'sourceGround' | 'sourceSky' | 'target' | 'targetChest' | 'targetGround' | 'targetSky' | 'point' | 'pointSky' | 'sky' | 'far' | 'farChest' | 'cell';
+export type FxAnchor = 'source' | 'sourceChest' | 'sourceGround' | 'sourceMouth' | 'sourceSky' | 'target' | 'targetChest' | 'targetGround' | 'targetSky' | 'point' | 'pointSky' | 'sky' | 'far' | 'farChest' | 'cell';
 
 export type FxStepKind =
   | 'slash' | 'star' | 'burst' | 'ring' | 'circle' | 'pillar' | 'streak' | 'bolt' | 'shards' | 'dome' | 'orb'

@@ -1,12 +1,14 @@
 // Plays hero skills for real (action flow, spotlight, camera) and keeps frames
 // read straight from the canvas, right after each render: page screenshots are
 // too slow to catch an action. DOM overlays (HUD, screen flash) are not in them.
-// usage: node tools/combat-arena/skill-play.mjs <out.jpg> "skill,skill,…" [frames per skill] [scene]
+// usage: node tools/combat-arena/skill-play.mjs <out.jpg> "skill,foe:skill,…" [frames per skill] [scene] [opponent]
+// `foe:` plays the action of the large opponent from where it stands; [opponent] is
+// the query that picks it: "boss=lion_chief:lion_champion" or "foes=young_dragon_elite".
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { chromium } from 'playwright';
 
-const [,, out = 'tmp/fx-gallery/play.jpg', list = 'w_lion_surge', frameCount = '12', scene = 'forest_route'] = process.argv;
+const [,, out = 'tmp/fx-gallery/play.jpg', list = 'w_lion_surge', frameCount = '12', scene = 'forest_route', opponent = ''] = process.argv;
 const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || undefined, args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
 const logs = [];
 const rows = [];
@@ -27,23 +29,27 @@ for (const skill of list.split(',')) {
       window.__shots.push({ at: performance.now(), data: c.toDataURL('image/jpeg', 0.72) });
     });
   });
-  await page.goto(`http://localhost:5173/legacy-combat.html?qa=1&stageqa=1&scene=${scene}&dtcap=0.5&son=0`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`http://localhost:5173/legacy-combat.html?qa=1&stageqa=1&scene=${scene}&dtcap=0.5&son=0&${opponent}`, { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => document.querySelector('[data-qa=prepare]'), null, { timeout: 60000 });
   await page.waitForTimeout(4000);
   await page.evaluate(() => { document.querySelectorAll('#tutorial button, #boss-tutorial button').forEach((b) => b.click()); document.querySelector('[data-qa=prepare]')?.click(); });
   await page.waitForTimeout(2000);
   const finished = await page.evaluate(async (key) => {
+    const play = () => Promise.race([key.startsWith('foe:') ? window.__qaHelpers.playFromFoe(key.slice(4)) : window.__qaHelpers.stagePlay(key), new Promise((r) => setTimeout(r, 30000))]);
+    // the first play compiles the shaders and stalls: only the second one is kept
+    await play();
     window.__recording = true;
     const start = performance.now();
-    await Promise.race([window.__qaHelpers.stagePlay(key), new Promise((r) => setTimeout(r, 30000))]);
+    await play();
     await new Promise((r) => setTimeout(r, 600));
     window.__recording = false;
     return performance.now() - start;
   }, skill);
   const shots = await page.evaluate((n) => {
-    const all = window.__shots, step = Math.max(1, (all.length - 1) / (n - 1));
-    const first = all[0]?.at ?? 0;
-    return { total: all.length, frames: Array.from({ length: Math.min(n, all.length) }, (_, i) => all[Math.round(i * step)]).map((s) => ({ ms: Math.round(s.at - first), data: s.data })) };
+    // evenly spaced in time, not in images: the frame rate falls during an effect
+    const all = window.__shots, first = all[0]?.at ?? 0, last = all.at(-1)?.at ?? 0;
+    const nearest = (t) => all.reduce((best, shot) => (Math.abs(shot.at - t) < Math.abs(best.at - t) ? shot : best), all[0]);
+    return { total: all.length, frames: Array.from({ length: n }, (_, i) => nearest(first + (last - first) * i / (n - 1))).map((s) => ({ ms: Math.round(s.at - first), data: s.data })) };
   }, Number(frameCount));
   rows.push({ skill, finished, ...shots });
   await page.close();

@@ -82,6 +82,12 @@ Règles, testées dans `fxSkills.test.ts` :
 
 Les déplacements (téléportations, bonds, charges, échanges) ont leur propre départ et leur propre arrivée (`skillMoveFxRecipe`).
 
+Sur un grand corps, les recettes s'adaptent (`FxDirector`, vérifié sur les vrais boss) :
+
+- ce qui entoure un corps (dôme, sceau, anneau, éclats, spirale, fumée, flammes) et ce qu'il lance grandit avec sa taille, à partir de 2,4 unités, la hauteur du plus grand héros ;
+- un coup (entaille, étoile, orbe, gerbe) et une fissure gardent leur taille écrite, et les particules leur taille de pixel ;
+- un souffle part de la gueule (ancre `sourceMouth`) et `reach` règle sa vitesse pour atteindre la cible à toute distance.
+
 Côté ennemis :
 
 - les 20 compétences portées par des unités ont leur signature ; les signatures de boss sont `cinematic`, avec une charge ;
@@ -123,7 +129,7 @@ Cette échelle ne concerne que les recettes partagées : attaques de base avec a
 
 - `npm run dev`, puis `/legacy-combat.html?qa=1&stageqa=1&scene=<biome>`. Les boutons QA jouent : attaque, les 12 ultimes, pluie de flèches, vague de flammes, multi-cibles, soin de groupe. Une compétence dont la classe n'est pas déployée part du premier héros.
 - Galerie FX : `node tools/combat-arena/fx-gallery.mjs <biome> <dossier> "sword_slash@1,sword_slash@5,ultimate_dark_meteor@ult"` joue chaque preset au poids donné, horloge FX figée puis avancée à l'instant voulu (`preset@poids@décalageMs@rayonDeZone`). Aides DEV : `__qaHelpers.fxPreview`, `fxSkill`, `stagePlay`, `fxFreeze`, `fxAdvance`, `spotlightState`.
-- Galerie des compétences : `node tools/combat-arena/skill-gallery.mjs <sortie.jpg> "w_whirl,n_flame_wave" "-200,50,300"` (horloge FX figée, vue tactique) et `node tools/combat-arena/skill-play.mjs <sortie.jpg> "w_lion_surge" 12` (action réelle, caméra comprise, images lues sur le canvas).
+- Galerie des compétences : `node tools/combat-arena/skill-gallery.mjs <sortie.jpg> "w_whirl,n_flame_wave" "-200,50,300"` (horloge FX figée, vue tactique) et `node tools/combat-arena/skill-play.mjs <sortie.jpg> "w_lion_surge" 12` (action réelle, caméra comprise, images lues sur le canvas). Pour un vrai grand ennemi, les deux prennent en dernier argument `"boss=lion_chief:lion_champion"` ou `"foes=young_dragon_elite"`, après la scène ; dans `skill-play.mjs`, le préfixe `foe:` joue son action depuis sa vraie place.
 - `?dtcap=0.5` garde le temps de présentation sur l'horloge réelle en rendu logiciel.
 - `tools/combat-arena/shots.sh <dossier>` : les trois arènes. `action-shots.mjs` : images d'une action dans le temps. `campaign-harness.mjs <combatId>` : démarrage réel via le protocole de la campagne. `probe.mjs` : évaluation d'expressions dans la page.
 - Art généré en local : [mission locale](LOCAL_ART_MISSION.md).

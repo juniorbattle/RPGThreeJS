@@ -1,18 +1,19 @@
 // Skill gallery: plays hero skills through the real combat FX path with the FX
 // clock frozen and stepped, then lays the frames of each skill out in one strip.
-// usage: node tools/combat-arena/skill-gallery.mjs <out.png> "skill,attack:Morsure,…" [offsetsMs from the impact] [scene]
+// usage: node tools/combat-arena/skill-gallery.mjs <out.png> "skill,attack:Morsure,…" [offsetsMs from the impact] [scene] [opponent]
+// [opponent] picks a real large foe: "boss=lion_chief:lion_champion" or "foes=young_dragon_elite".
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { chromium } from 'playwright';
 
-const [,, out = 'tmp/fx-gallery/skills.png', list = 'w_lion_surge', offsets = '-600,-200,50,300,700,1300', scene = 'forest_route'] = process.argv;
+const [,, out = 'tmp/fx-gallery/skills.png', list = 'w_lion_surge', offsets = '-600,-200,50,300,700,1300', scene = 'forest_route', opponent = ''] = process.argv;
 const times = offsets.split(',').map(Number);
 const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || undefined, args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
 const page = await browser.newPage({ viewport: { width: 960, height: 540 } });
 const logs = [];
 page.on('pageerror', (e) => logs.push('pageerror: ' + e.message));
 page.on('console', (m) => { if (m.type() === 'error') logs.push('console: ' + m.text()); });
-await page.goto(`http://localhost:5173/legacy-combat.html?qa=1&scene=${scene}&dtcap=0.5&son=0`, { waitUntil: 'domcontentloaded' });
+await page.goto(`http://localhost:5173/legacy-combat.html?qa=1&scene=${scene}&dtcap=0.5&son=0&${opponent}`, { waitUntil: 'domcontentloaded' });
 await page.waitForTimeout(8000);
 await page.evaluate(() => { document.querySelectorAll('#tutorial button, #boss-tutorial button').forEach((b) => b.click()); document.querySelector('[data-qa=prepare]')?.click(); });
 await page.waitForTimeout(2500);

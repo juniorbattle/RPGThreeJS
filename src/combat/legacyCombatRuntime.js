@@ -92,6 +92,9 @@ let BOSS_SPAWNED=false;
 let ENCOUNTER_ENEMY_VISUAL_IDS=[];
 let ENCOUNTER_BOSS_VISUAL_ID='';
 let ENCOUNTER_ESCORT_VISUAL_IDS=[];
+// DEV: ?boss=<combat id>:<visual id> or ?foes=<visual id,…> faces a real opponent in the standalone combat.
+if(QA_ENABLED&&campaignParams.get('boss')){ IS_BOSS_COMBAT=true; [COMBAT_ID,ENCOUNTER_BOSS_VISUAL_ID='']=campaignParams.get('boss').split(':'); }
+if(QA_ENABLED&&campaignParams.get('foes'))ENCOUNTER_ENEMY_VISUAL_IDS=campaignParams.get('foes').split(',');
 const SCENE_AMBIENCE={
   forest_route:{fog:0x52635c,density:0.012,count:96,color:0xf3d983,size:0.082,opacity:0.5,area:[9.2,5.1],y:[0.28,3.55],rise:[0.05,0.15],drift:0.34,glow:0.1,glowColor:0xd8f0a8,mistColor:0xb9d7bd,mistOpacity:0.16,rayColor:0xf3d29a,rayOpacity:0.09},
   bois_clair_burning:{fog:0x5a3c32,density:0.014,count:132,color:0xffa24f,size:0.09,opacity:0.62,area:[9.6,5.5],y:[0.16,4.4],rise:[0.14,0.38],drift:0.52,glow:0.22,glowColor:0xff8136,mistColor:0x8b5f46,mistOpacity:0.2,rayColor:0xff9a3f,rayOpacity:0.15},
@@ -2945,6 +2948,16 @@ async function main(){ applyGraphics(); disposeMotionPreference=onReducedMotionC
       return {impactTime:playback.impactTime,duration:playback.duration,weight:playback.weight};
     };
     _qaHelpers.stagePlay=(key)=>playStageQaScenario(key);
+    // Boss check: the action of a large foe, from where it really stands, onto a real hero.
+    _qaHelpers.playFromFoe=async(key,target=0)=>{
+      qaPrepareCombat();
+      for(let i=0;G.busy&&i<120;i++)await wait(.25);
+      const owner=aliveUnits('foe').find(unit=>unit.size>1)||aliveUnits('foe')[0],mark=aliveUnits('player')[target]; if(!owner||!mark||G.busy||G.over)return null;
+      const spec=key==='attack'?getSpec(owner,'attack',0,0):getSpec(owner,key);
+      G.active=owner; owner.ap=Math.max(owner.ap,spec.ap); mark.hp=mark.maxhp;
+      await executeAction(owner,spec,spec.self?owner.gx:mark.gx,spec.self?owner.gz:mark.gz);
+      return {owner:owner.name,target:mark.name};
+    };
     // Skill gallery: plays a hero skill's real recipe through the combat path, from its owner onto real targets.
     _qaHelpers.fxSkill=(key,facing={})=>{
       const hostile=/^(enemy|boss|attack:)/.test(key),heroes=aliveUnits(hostile?'foe':'player'),foes=aliveUnits(hostile?'player':'foe');

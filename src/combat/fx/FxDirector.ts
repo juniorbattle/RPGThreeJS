@@ -35,6 +35,26 @@ export interface FxPlayback {
 /** Seconds from an ultimate's hit to its field wave (the camera's whip-out to the field shot). */
 export const FIELD_WAVE_DELAY = 0.34;
 
+/** Tallest hero figure: every recipe is written for this size. */
+const HERO_HEIGHT = 2.4;
+/** What wraps a body, and what it throws. A blow (slash, star, orb, burst) or a crack in the floor keeps its written size. */
+const BODY_KINDS: ReadonlySet<FxStep['kind']> = new Set(['circle', 'converge', 'decal', 'dome', 'flame', 'motes', 'orbit', 'ring', 'shards', 'shot', 'smoke']);
+/** Sparks keep their pixel size: only what they draw grows. */
+const BODY_KEYS = ['radius', 'height', 'width', 'rise', 'spread'];
+const bodyScale = (unit: FxUnitRef | undefined) => (unit ? Math.max(1, unit.height / HERO_HEIGHT) : 1);
+
+/** A boss wears the same guard as a hero, drawn to its height. */
+function onBody(step: FxStep, body: FxUnitRef | undefined): FxStep {
+  const scale = bodyScale(body);
+  if (scale === 1 || !step.p || !BODY_KINDS.has(step.kind)) return step;
+  const p = { ...step.p };
+  for (const key of step.kind === 'shot' ? ['size'] : BODY_KEYS) {
+    const value = p[key];
+    if (typeof value === 'number') p[key] = value * scale;
+  }
+  return { ...step, p };
+}
+
 /** Plays declarative recipes on the FX engine, resolving anchors per step. */
 export class FxDirector {
   constructor(private readonly engine: FxEngine) {}
@@ -57,7 +77,7 @@ export class FxDirector {
       hitTime = recipeImpactTime({ ...recipe, impactAt: 0 }, from.distanceTo(to));
       engine.after(proj.at, () => {
         if (proj.sfx) engine.hooks.sfx(proj.sfx);
-        void engine.projectile(from, to, proj.element ?? recipe.element, { speed: proj.speed, size: (proj.size ?? 0.7) * intensity.scale, arc: proj.arc, streak: proj.streak, smoke: proj.smoke });
+        void engine.projectile(from, to, proj.element ?? recipe.element, { speed: proj.speed, size: (proj.size ?? 0.7) * intensity.scale * bodyScale(ctx.source), arc: proj.arc, streak: proj.streak, smoke: proj.smoke });
       });
     }
     const impactTime = recipe.projectile ? hitTime + recipe.impactAt : recipe.impactAt;
@@ -170,6 +190,12 @@ export class FxDirector {
     return ctx.cells.reduce((best, cell) => (Math.hypot(cell.x - src.x, cell.z - src.z) > Math.hypot(best.x - src.x, best.z - src.z) ? cell : best), ctx.point).clone();
   }
 
+  /** The unit an anchor sits on; a place on the ground or in the sky has none. */
+  private bodyAt(anchor: FxAnchor | undefined, ctx: FxPlayContext, target: FxUnitRef | undefined): FxUnitRef | undefined {
+    if (anchor === 'source' || anchor === 'sourceChest' || anchor === 'sourceGround' || anchor === 'sourceMouth') return ctx.source;
+    return anchor === 'target' || anchor === 'targetChest' || anchor === 'targetGround' ? target : undefined;
+  }
+
   private anchor(anchor: FxAnchor | undefined, ctx: FxPlayContext, target: FxUnitRef | undefined, jitter = 0, pick = 0): THREE.Vector3 {
     const src = ctx.source;
     const tgt = target ?? { position: ctx.point, height: 1.6 };
@@ -183,6 +209,11 @@ export class FxDirector {
       case 'source': v = src.position.clone(); break;
       case 'sourceChest': v = src.position.clone().add(new THREE.Vector3(0, src.height * 0.55, 0)); break;
       case 'sourceGround': v = new THREE.Vector3(src.position.x, 0.02, src.position.z); break;
+      case 'sourceMouth': {
+        const ahead = tgt.position.clone().sub(src.position).setY(0).normalize().multiplyScalar(src.height * 0.36);
+        v = src.position.clone().add(ahead).add(new THREE.Vector3(0, src.height * 0.78, 0));
+        break;
+      }
       case 'target': v = tgt.position.clone(); break;
       case 'targetGround': v = new THREE.Vector3(tgt.position.x, 0.02, tgt.position.z); break;
       case 'point': v = ctx.point.clone(); break;
@@ -228,7 +259,7 @@ export class FxDirector {
     places.forEach(({ at, target }, i) => {
       if (i % every) return;
       const placed = step.alternate?.[i % 2] ?? element;
-      const fire = () => this.place(step, at.clone().add(offset), target, placed, ctx);
+      const fire = () => this.place(onBody(step, this.bodyAt(step.anchor, ctx, target)), at.clone().add(offset), target, placed, ctx);
       const delay = stagger * Math.hypot(at.x - origin.x, at.z - origin.z);
       if (delay > 0) this.engine.after(delay, fire);
       else fire();
@@ -250,9 +281,12 @@ export class FxDirector {
           : p.spray === 'point' ? ctx.point.clone().sub(ctx.source.position).setY(0).normalize()
           : p.spray === 'target' && first ? first.position.clone().add(new THREE.Vector3(0, first.height * 0.4, 0)).sub(at).normalize()
           : undefined;
+        // `reach`: the particles live just long enough to land on the target, however far it stands
+        const life = num('life', 0.7);
+        const speed = p.reach === true && first ? at.distanceTo(first.position.clone().add(new THREE.Vector3(0, first.height * 0.4, 0))) / life : num('speed', 3);
         engine.burst(at, element, {
-          count: num('count', 24), speed: num('speed', 3), up: num('up', 1.2), gravity: num('gravity', 4), size: num('size', 0.11),
-          life: num('life', 0.7), spread: num('spread', 0.15), soft: p.soft === true, cone: num('cone', 1), direction,
+          count: num('count', 24), speed, up: num('up', 1.2), gravity: num('gravity', 4), size: num('size', 0.11),
+          life, spread: num('spread', 0.15), soft: p.soft === true, cone: num('cone', 1), direction,
         });
         break;
       }

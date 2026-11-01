@@ -644,8 +644,8 @@ const enemies: Record<string, () => FxRecipe> = {
   ], { projectile: { at: 0.02, from: 'sourceChest', to: 'targetChest', element: 'steel', speed: 20, size: 0.34, arc: 0.5 } }),
   // a long roar of fire: the stream is thicker and hotter than any mage's flames
   enemy_dragon_breath: () => {
-    const steps: Steps = [s(0, 'glow', 'sourceChest', { size: 1.5, duration: 0.3 }, { element: 'fire' })];
-    for (let i = 0; i < 7; i++) steps.push(s(0.04 + i * 0.06, 'burst', 'sourceChest', { count: 26, speed: 11, cone: 0.45, life: 0.55, size: 0.2, spray: 'point' }, { element: 'fire' }));
+    const steps: Steps = [s(0, 'glow', 'sourceMouth', { size: 1.5, duration: 0.3 }, { element: 'fire' })];
+    for (let i = 0; i < 7; i++) steps.push(s(0.04 + i * 0.06, 'burst', 'sourceMouth', { count: 26, cone: 0.45, life: 0.4, size: 0.2, up: 0, reach: true, spray: 'target' }, { element: 'fire' }));
     steps.push(
       s(0.22, 'flame', 'targetGround', { width: 1.04, height: 2.5, duration: 0.95, stagger: 0.05 }, { cells: true }),
       s(0.36, 'star', 'targetChest', { size: 1.4 }, { element: 'fire', each: true }),
@@ -739,8 +739,8 @@ const enemies: Record<string, () => FxRecipe> = {
   ]),
   // a lance of ice, and frost crystals growing around the victim
   boss_freeze: () => skill('boss_freeze', 'ice', 0.4, 1.2, [
-    s(0, 'glow', 'sourceChest', { size: 1.1, duration: 0.3 }, { element: 'ice' }),
-    s(0.04, 'shot', 'sourceChest', { size: 0.6, duration: 0.36, arc: 0.4, streak: true }, { to: 'targetChest', element: 'ice' }),
+    s(0, 'glow', 'sourceMouth', { size: 1.1, duration: 0.3 }, { element: 'ice' }),
+    s(0.04, 'shot', 'sourceMouth', { size: 0.6, duration: 0.36, arc: 0.4, streak: true }, { to: 'targetChest', element: 'ice' }),
     s(0.38, 'shards', 'targetGround', { count: 9, radius: 0.8, height: 1.7, duration: 0.8 }, { element: 'ice' }),
     s(0.4, 'star', 'targetChest', { size: 1.4 }, { element: 'ice' }),
     s(0.42, 'burst', 'targetChest', { count: 18, speed: 3, gravity: 8, size: 0.1 }, { element: 'ice' }),
@@ -809,7 +809,8 @@ const enemies: Record<string, () => FxRecipe> = {
   // the sky turns red and falls on the whole battlefield
   boss_apocalypse: () => ultimate('boss_apocalypse', 'blood', 1.1, 2.4, [
     s(0.05, 'converge', 'source', { count: 40, radius: 3, duration: 0.9, height: 3 }, { element: 'blood' }),
-    s(0.2, 'orb', 'pointSky', { radius: 3.4, duration: 1, dark: true }, { element: 'blood' }),
+    lit(0.2, 'blood', 40, 0.9, 'pointSky'),
+    s(0.25, 'burst', 'pointSky', { count: 70, speed: 0.6, up: 0, gravity: 1.6, size: 0.17, life: 1, spread: 5, soft: true }, { element: 'blood' }),
     s(0.55, 'flash', undefined, { opacity: 0.2, dark: true }),
     s(0.8, 'rain', 'targetGround', { count: 2, gap: 0.12, width: 0.24, spread: 0.4, duration: 0.22, stagger: 0.03, origin: 'point', every: 2 }, { cells: true, element: 'fire' }),
     s(1.1, 'ring', 'point', { radius: 5.6, duration: 0.6 }, { element: 'blood' }),
@@ -817,8 +818,8 @@ const enemies: Record<string, () => FxRecipe> = {
     s(1.1, 'slowmo', undefined, { scale: 0.32, duration: 0.3 }),
     s(1.1, 'punch', 'point', { duration: 0.55 }),
     shake(1.1, 0.72, 0.5),
-    lit(1.1, 'blood', 56, 1.1, 'point'),
-    s(1.1, 'orb', 'targetChest', { radius: 1, duration: 0.42 }, { element: 'blood', each: true }),
+    lit(1.1, 'blood', 44, 1.1, 'point'),
+    s(1.1, 'star', 'targetChest', { size: 2.2 }, { element: 'blood', each: true }),
     s(1.14, 'flame', 'targetGround', { width: 1.02, height: 2.2, duration: 0.95, stagger: 0.04, origin: 'point', every: 2 }, { cells: true }),
     s(1.3, 'smoke', 'point', { count: 30, spread: 2.4, size: 1.1, life: 1.2 }),
   ], { flashElement: 'blood' }),
@@ -835,11 +836,13 @@ const thrown = (id: string, element: FxElement, size: number, speed: number, arc
   s(0.01, 'burst', 'targetChest', { count: 10, speed: 2.4, up: 1.2, gravity: 9, size: 0.09 }, { element, afterHit: true }),
   shake(0, 0.1, 0.1, { afterHit: true }),
 ], { projectile: { at: 0.02, from: 'sourceChest', to: 'targetChest', element, speed, size, arc, streak } });
-const puff = (id: string, element: FxElement): FxRecipe => skill(id, element, 0.2, 0.7, [
-  ...[0, 0.05, 0.1].map((at) => s(at, 'burst', 'sourceChest', { count: 14, speed: 7, cone: 0.4, life: 0.4, size: 0.14, spray: 'target' }, { element })),
-  s(0.2, 'star', 'targetChest', { size: 0.95, duration: 0.18 }, { element }),
-  s(0.22, 'burst', 'targetChest', { count: 10, speed: 1.6, up: 1.8, gravity: 0, size: 0.1, life: 0.5, soft: true }, { element }),
-  shake(0.2, 0.12, 0.1),
+// a breath leaves the mouth and lands on the target, whatever the distance
+const puff = (id: string, element: FxElement): FxRecipe => skill(id, element, 0.34, 0.85, [
+  s(0, 'glow', 'sourceMouth', { size: 0.9, duration: 0.24 }, { element }),
+  ...[0, 0.05, 0.1, 0.15].map((at) => s(at, 'burst', 'sourceMouth', { count: 20, cone: 0.32, life: 0.34, size: 0.17, up: 0, reach: true, spray: 'target' }, { element })),
+  s(0.34, 'star', 'targetChest', { size: 1.05, duration: 0.18 }, { element }),
+  s(0.36, 'burst', 'targetChest', { count: 10, speed: 1.6, up: 1.8, gravity: 0, size: 0.1, life: 0.5, soft: true }, { element }),
+  shake(0.34, 0.12, 0.1),
 ]);
 
 /** Basic attacks that are no weapon at all: teeth, claws, breath, stones. Keyed by weapon name. */
