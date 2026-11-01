@@ -5,6 +5,8 @@ import { TACTICAL_SOUND_IDS, type TacticalSoundId, type CombatSoundId } from '..
 export const combatAudioMessageSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('rpg-threejs:combat-sound'), sessionId: z.string().max(80), id: z.enum(TACTICAL_SOUND_IDS), eventId: z.string().regex(/^[\w:.-]{1,160}$/) }).strict(),
   z.object({ type: z.literal('rpg-threejs:combat-sound-settings'), sessionId: z.string().max(80) }).strict(),
+  z.object({ type: z.literal('rpg-threejs:combat-music-level'), sessionId: z.string().max(80), level: z.enum(['reflection', 'action']) }).strict(),
+  z.object({ type: z.literal('rpg-threejs:combat-music-outcome'), sessionId: z.string().max(80), outcome: z.enum(['victory', 'defeat']) }).strict(),
 ]);
 export class CombatAudioEmitter {
   private sessionId: string | null = null;
@@ -18,6 +20,16 @@ export class CombatAudioEmitter {
   settings(): void {
     if (!this.sessionId) return;
     try { this.send({ type: 'rpg-threejs:combat-sound-settings', sessionId: this.sessionId }); } catch { /* optional presentation */ }
+  }
+  /** Where an action's presentation starts and ends: no unit, skill, target, number or result. */
+  level(level: 'reflection' | 'action'): void {
+    if (!this.sessionId) return;
+    try { this.send({ type: 'rpg-threejs:combat-music-level', sessionId: this.sessionId, level }); } catch { /* optional presentation */ }
+  }
+  /** Once, when the result card is shown; never on a skirmish wave clear. */
+  outcome(outcome: 'victory' | 'defeat'): void {
+    if (!this.sessionId) return;
+    try { this.send({ type: 'rpg-threejs:combat-music-outcome', sessionId: this.sessionId, outcome }); } catch { /* optional presentation */ }
   }
   dispose(): void { this.sessionId = null; }
 }

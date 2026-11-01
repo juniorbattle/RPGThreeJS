@@ -12,10 +12,14 @@ import { impulseResponse, type HallId } from './hall';
 import { beatSeconds, passSeconds, THEMES, type MusicContextId, type ThemeDef } from './themes';
 import { body, playPhrase, type TimedNote, type VoiceInstrument } from './voices';
 
+export type MusicLevel = 'reflection' | 'action';
+
 export interface MusicHost {
   setContext(id: MusicContextId | null): void;
   setAmbience(sceneId: string | null): void;
   setVolume(volume: number): void;
+  setLevel(level: MusicLevel): void;
+  attenuate(holdUntil: number): void;
   dispose(): void;
   readonly state: { context: MusicContextId | null; ambience: AmbienceId | null; pass: number; samples: number };
 }
@@ -23,6 +27,13 @@ export interface MusicHost {
 const LOOKAHEAD = 1.2;
 const FADE_OUT = 1.6;
 const FADE_IN = 1.2;
+/** A fanfare takes the stream quickly, and always ends inside its limit. */
+const FANFARE_LEAD_OUT = 0.7;
+const FANFARE_MAX = 8;
+/** Lowered under a signature cue, and back within a second of its end. */
+const ATTENUATION = 10 ** (-5 / 20);
+const ATTENUATION_ATTACK = 0.05;
+const ATTENUATION_RELEASE = 0.9;
 const SAMPLE_LEVEL: Readonly<Record<SampledInstrument, number>> = { harp: 0.5, lute: 0.5, timpani: 0.6, drum: 0.62, frame: 0.42, cymbal: 0.3 };
 const SAMPLED = new Set<string>(SAMPLED_INSTRUMENTS);
 /** Leaves room for the cues: at the default volume, combat sits near -22 LUFS. */
@@ -37,15 +48,18 @@ interface Playing {
   pass: number;
   nextPassAt: number;
   endsAt: number | null;
+  /** When a one-shot piece is over; null on a looping track. */
+  onceEndsAt: number | null;
 }
 
-export function createMusicDirector(ctx: AudioContext): MusicHost {
-  return new MusicDirector(ctx);
+export function createMusicDirector(ctx: AudioContext, output: AudioNode = ctx.destination): MusicHost {
+  return new MusicDirector(ctx, output);
 }
 
 class MusicDirector implements MusicHost {
   private readonly master: GainNode;
   private readonly bus: DynamicsCompressorNode;
+  private readonly duck: GainNode;
   private readonly ambienceBus: GainNode;
   private readonly bank = new Map<SampledInstrument, { zones: Array<{ root: number; layer: number }>; buffers: AudioBuffer[] }>();
   /** One convolver per room, shared by every theme that uses it; sends wait dry until their room is loaded. */
@@ -54,19 +68,23 @@ class MusicDirector implements MusicHost {
   private readonly pendingTasks = new Set<number>();
   private current: Playing | null = null;
   private fading: Playing[] = [];
+  /** The surface that asked for its track while a fanfare plays. */
+  private held: MusicContextId | null = null;
+  private level: MusicLevel = 'reflection';
   private timer: number | null = null;
   private worker: Worker | null = null;
   private fallbackTimer: number | null = null;
   private ambience: { id: AmbienceId; stop: () => void } | null = null;
   private disposed = false;
 
-  constructor(private readonly ctx: AudioContext) {
+  constructor(private readonly ctx: AudioContext, output: AudioNode) {
     this.master = ctx.createGain();
     this.master.gain.value = volumeCurve(0.6);
     this.bus = ctx.createDynamicsCompressor();
     this.bus.threshold.value = -14; this.bus.ratio.value = 3; this.bus.attack.value = 0.02; this.bus.release.value = 0.3;
-    this.bus.connect(this.master);
-    this.master.connect(ctx.destination);
+    this.duck = ctx.createGain();
+    this.bus.connect(this.duck).connect(this.master);
+    this.master.connect(output);
     this.ambienceBus = ctx.createGain();
     this.ambienceBus.gain.value = 2.2;
     this.ambienceBus.connect(this.master);
@@ -81,16 +99,25 @@ class MusicDirector implements MusicHost {
   }
 
   setContext(id: MusicContextId | null): void {
-    if (this.disposed || (this.current?.theme.id ?? null) === id) return;
+    if (this.disposed) return;
+    // A fanfare keeps the stream against any surface; only mute or a new fight takes it.
+    if (id && this.current?.theme.once && id !== 'combat' && id !== 'boss') { this.held = id; return; }
+    this.held = null;
+    if ((this.current?.theme.id ?? null) === id) return;
     const now = this.ctx.currentTime;
-    if (this.current) this.fadeOut(this.current, now);
+    const theme = id ? THEMES[id] : null;
+    if (this.current) this.fadeOut(this.current, now, theme?.once ? FANFARE_LEAD_OUT : FADE_OUT);
     this.current = null;
-    if (!id) return;
-    const theme = THEMES[id];
+    if (!theme) return;
     const playing = this.mount(theme);
     playing.fader.gain.setValueAtTime(0.0001, now);
-    playing.fader.gain.exponentialRampToValueAtTime(theme.gain, now + FADE_IN);
+    playing.fader.gain.exponentialRampToValueAtTime(theme.gain, now + (theme.once ? 0.08 : FADE_IN));
     playing.nextPassAt = now + 0.15;
+    if (theme.once) {
+      playing.onceEndsAt = now + Math.min(FANFARE_MAX, passSeconds(theme) + 0.15);
+      playing.fader.gain.setValueAtTime(theme.gain, playing.onceEndsAt - 0.5);
+      playing.fader.gain.exponentialRampToValueAtTime(0.0001, playing.onceEndsAt);
+    }
     this.current = playing;
     // the first pass is planned in its own task, never inside the gesture's task
     this.task(() => this.tick());
@@ -107,6 +134,20 @@ class MusicDirector implements MusicHost {
   setVolume(volume: number): void {
     if (this.disposed) return;
     this.master.gain.setTargetAtTime(volumeCurve(volume), this.ctx.currentTime, 0.05);
+  }
+
+  setLevel(level: MusicLevel): void {
+    this.level = level;
+  }
+
+  attenuate(holdUntil: number): void {
+    if (this.disposed) return;
+    const now = this.ctx.currentTime, down = now + ATTENUATION_ATTACK, up = Math.max(down, holdUntil), g = this.duck.gain;
+    g.cancelScheduledValues(now);
+    g.setValueAtTime(g.value, now);
+    g.linearRampToValueAtTime(ATTENUATION, down);
+    g.setValueAtTime(ATTENUATION, up);
+    g.linearRampToValueAtTime(1, up + ATTENUATION_RELEASE);
   }
 
   dispose(): void {
@@ -139,7 +180,7 @@ class MusicDirector implements MusicHost {
     this.sends.set(theme.hall, waiting);
     const sampledIn = this.ctx.createGain();
     sampledIn.connect(fader);
-    return { theme, fader, send, sampledIn, bodies: new Map(), pass: 0, nextPassAt: 0, endsAt: null };
+    return { theme, fader, send, sampledIn, bodies: new Map(), pass: 0, nextPassAt: 0, endsAt: null, onceEndsAt: null };
   }
 
   private unmount(playing: Playing): void {
@@ -168,12 +209,12 @@ class MusicDirector implements MusicHost {
     });
   }
 
-  private fadeOut(playing: Playing, now: number): void {
+  private fadeOut(playing: Playing, now: number, seconds: number): void {
     const g = playing.fader.gain;
     g.cancelScheduledValues(now);
     g.setValueAtTime(Math.max(0.0001, g.value), now);
-    g.exponentialRampToValueAtTime(0.0001, now + FADE_OUT);
-    playing.endsAt = now + FADE_OUT;
+    g.exponentialRampToValueAtTime(0.0001, now + seconds);
+    playing.endsAt = now + seconds;
     this.fading.push(playing);
   }
 
@@ -186,6 +227,17 @@ class MusicDirector implements MusicHost {
     });
     const playing = this.current;
     if (!playing) return;
+    if (playing.onceEndsAt !== null) {
+      if (playing.pass === 0 && playing.nextPassAt - now < LOOKAHEAD) this.schedulePass(playing);
+      if (now < playing.onceEndsAt) return;
+      playing.endsAt = now;
+      this.fading.push(playing);
+      this.current = null;
+      const held = this.held;
+      this.held = null;
+      if (held) this.setContext(held);
+      return;
+    }
     // a long suspension (hidden page) must not replay the missed passes in a burst
     if (playing.nextPassAt < now - 0.5) playing.nextPassAt = now + 0.15;
     while (playing.nextPassAt - now < LOOKAHEAD) this.schedulePass(playing);

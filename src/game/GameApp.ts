@@ -83,7 +83,7 @@ type AppMode = 'TITLE' | 'PROLOGUE' | 'TRAVEL' | 'JOURNEY' | 'NARRATIVE' | 'MANA
 /** Presentation surface → music context (OD-2026-10-29-B); COMBAT is set by CombatBridge from the encounter rank. */
 const MODE_MUSIC: Readonly<Record<AppMode, MusicContextId | null>> = {
   TITLE: 'title', QA: 'title', TRAVEL: 'map', RESULT: 'map',
-  PROLOGUE: 'dialogue', JOURNEY: 'dialogue', NARRATIVE: 'dialogue', MANAGEMENT: 'dialogue',
+  PROLOGUE: 'refuge', JOURNEY: 'refuge', NARRATIVE: 'refuge', MANAGEMENT: 'refuge',
   COMBAT: null,
 };
 

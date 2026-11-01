@@ -2055,10 +2055,11 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
 }
 async function executeAction(u,spec,cx,cz){
   G._actionFeedbackToken='action-'+(++actionFeedbackSerial); soundAction=G._actionFeedbackToken; G._actionShakeFrequency=18;
+  combatAudio.level('action');
   try { await executeActionCore(u,spec,cx,cz); }
   finally {
     try { if(G.spotlight)await presentActionExit(); else restoreUnitFocus(); }
-    finally { soundAction=null; if(u&&u.alive)restoreUnitVisualBaseline(u); G.busy=false; }
+    finally { combatAudio.level('reflection'); soundAction=null; if(u&&u.alive)restoreUnitVisualBaseline(u); G.busy=false; }
   }
 }
 
@@ -2479,6 +2480,7 @@ function startNextWave(){ restoreUnitFocus(); for(const u of G.units)clearBossIn
     placeUnit(u,u.gx,u.gz,true); refreshPanel(u); }
   spawnWave(G.wave); G.over=false; G.round=0; G.mode='idle'; logMsg('— Vague '+G.wave+' approche ! —'); startRound(); }
 function showCombatResult(presentation,onClick){
+  if(presentation.tone==='victory'||presentation.tone==='defeat')combatAudio.outcome(presentation.tone);
   dom.banner.className='combat-result-overlay combat-result-overlay--'+presentation.tone;
   dom.banner.innerHTML=renderCombatResult({...presentation,participants:G.deployedUnits});
   const action=byId('combat-result-action');

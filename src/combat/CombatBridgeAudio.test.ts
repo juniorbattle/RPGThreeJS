@@ -25,6 +25,31 @@ it('accepts sounds only from its current iframe, origin and session; closes the 
   message(cue); expect(player.playCombat).toHaveBeenCalledOnce();
 });
 
+it('takes level and outcome only as strict messages from its frame, origin and session, with the result as fallback', () => {
+  vi.spyOn(HTMLIFrameElement.prototype, 'src', 'set').mockImplementation(() => {});
+  const player = { beginCombat: vi.fn(), endCombat: vi.fn(), playCombat: vi.fn(), observeGestures: vi.fn(() => vi.fn()), setMusicLevel: vi.fn(), playMusicOutcome: vi.fn() };
+  const root = document.createElement('div'); document.body.append(root);
+  bridge = new CombatBridge(root, { player: player as unknown as UiSoundPlayer, openSettings: vi.fn() });
+  const session = { config: { id: 'test', encounterLabel: 'Test' } as CombatConfig, clan: [], inventory: {}, preferredUnitIds: [], reducedGraphics: false };
+  bridge.start(session); const iframe = root.querySelector('iframe')!, sessionId = player.beginCombat.mock.calls[0]![0];
+  const message = (data: unknown, origin = window.location.origin, source: MessageEventSource | null = iframe.contentWindow) => window.dispatchEvent(new MessageEvent('message', { data, origin, source }));
+  const level = { type: 'rpg-threejs:combat-music-level', sessionId, level: 'action' };
+  const outcome = { type: 'rpg-threejs:combat-music-outcome', sessionId, outcome: 'victory' };
+  for (const good of [level, outcome]) {
+    message(good, 'https://wrong.invalid'); message(good, window.location.origin, window);
+    message({ ...good, sessionId: 'stale' }); message({ ...good, unit: 'hero', damage: 12 });
+  }
+  message({ ...level, level: 'panic' }); message({ ...outcome, outcome: 'draw' });
+  expect(player.setMusicLevel).not.toHaveBeenCalled(); expect(player.playMusicOutcome).not.toHaveBeenCalled();
+  message(level); expect(player.setMusicLevel).toHaveBeenCalledWith(sessionId, 'action');
+  message(outcome); expect(player.playMusicOutcome).toHaveBeenCalledWith(sessionId, 'victory');
+  bridge.start(session); const next = root.querySelector('iframe')!, nextId = player.beginCombat.mock.calls[1]![0];
+  message({ type: 'rpg-threejs:combat-result', victory: false, combatId: 'test', inventory: {}, participants: [], unitHealth: {} }, window.location.origin, next.contentWindow);
+  expect(player.playMusicOutcome).toHaveBeenLastCalledWith(nextId, 'defeat');
+  expect(player.endCombat).toHaveBeenLastCalledWith(nextId);
+  expect(player.playMusicOutcome.mock.invocationCallOrder.at(-1)!).toBeLessThan(player.endCombat.mock.invocationCallOrder.at(-1)!);
+});
+
 it('optional crypto failure cannot prevent combat, and a late old load cannot detach the new gesture listener', () => {
   vi.spyOn(HTMLIFrameElement.prototype, 'src', 'set').mockImplementation(() => {});
   vi.spyOn(crypto, 'randomUUID').mockImplementationOnce(() => { throw Error('unavailable'); });

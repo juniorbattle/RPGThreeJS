@@ -10,6 +10,8 @@ class Context {
   state = 'running';
   destination = {};
   gain = { gain: { value: 0 }, connect: vi.fn(), disconnect: vi.fn() };
+  createDynamicsCompressor() { return { threshold: {}, knee: {}, ratio: {}, attack: {}, release: {}, connect: vi.fn(), disconnect: vi.fn() }; }
+  createWaveShaper() { return { curve: null, oversample: 'none', connect: vi.fn(), disconnect: vi.fn() }; }
   sources: Array<{ buffer: unknown; connect: ReturnType<typeof vi.fn>; disconnect: ReturnType<typeof vi.fn>; start: ReturnType<typeof vi.fn>; stop: ReturnType<typeof vi.fn>; onended: (() => void) | null }> = [];
   createGain() { return this.gain; }
   createBufferSource() { const source = { buffer: null as unknown, connect: vi.fn(), disconnect: vi.fn(), start: vi.fn(), stop: vi.fn(), onended: null }; this.sources.push(source); return source; }
@@ -28,15 +30,32 @@ beforeEach(() => {
 });
 afterEach(() => { player?.dispose(); document.body.replaceChildren(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
 async function enable() { player.setEnabled(true, trusted); await vi.waitFor(() => expect(contexts[0]?.decodeAudioData).toHaveBeenCalledTimes(8)); await Promise.resolve(); }
+const stored = () => JSON.parse(localStorage.getItem('rpg-threejs:ui-audio:v2') ?? 'null');
 
-it('starts silent, requires a trusted enable, and never writes gameplay saves', async () => {
+it('is on by default but silent until a real gesture, and never writes gameplay saves', async () => {
   localStorage.setItem('rpg-threejs:autosave:v6', 'unchanged');
   player = new UiSoundPlayer({ music: null }); player.play('confirm');
-  player.setEnabled(true, new Event('click'));
-  expect(contexts).toHaveLength(0); expect(player.enabled).toBe(false);
-  await enable(); expect(contexts[0]!.sources).toHaveLength(0);
+  player.setEnabled(false, new Event('click')); window.dispatchEvent(new Event('pointerdown'));
+  expect(contexts).toHaveLength(0); expect(player.enabled).toBe(true);
+  (player as unknown as { gesture: (event: Event) => void }).gesture(trusted);
+  await vi.waitFor(() => expect(contexts[0]?.decodeAudioData).toHaveBeenCalledTimes(8)); await Promise.resolve();
+  expect(contexts[0]!.sources).toHaveLength(0);
   player.play('confirm'); expect(contexts[0]!.sources[0]!.start).toHaveBeenCalledOnce();
   expect(localStorage.getItem('rpg-threejs:autosave:v6')).toBe('unchanged');
+});
+it('honours a stored choice to turn effects off, and a volume change alone never turns them off', () => {
+  player = new UiSoundPlayer({ music: null }); player.setVolume(0.2);
+  expect(stored()).toEqual({ volume: 0.2 }); player.dispose();
+  player = new UiSoundPlayer({ music: null }); expect(player.enabled).toBe(true); expect(player.volume).toBe(0.2);
+  player.setEnabled(false, trusted); expect(stored()).toEqual({ enabled: false, volume: 0.2 });
+  player.setVolume(0.3); expect(stored()).toEqual({ enabled: false, volume: 0.3 }); player.dispose();
+  player = new UiSoundPlayer({ music: null }); expect(player.enabled).toBe(false);
+  (player as unknown as { gesture: (event: Event) => void }).gesture(trusted); expect(contexts).toHaveLength(0);
+});
+it('reads a value stored under the former default as no choice, and keeps its volume', () => {
+  localStorage.setItem('rpg-threejs:ui-audio:v1', JSON.stringify({ enabled: false, volume: 0.35 }));
+  player = new UiSoundPlayer({ music: null });
+  expect(player.enabled).toBe(true); expect(player.volume).toBe(0.35); expect(contexts).toHaveLength(0);
 });
 it('restores consent and volume without constructing audio or replaying a cue', () => {
   localStorage.setItem('rpg-threejs:ui-audio:v1', JSON.stringify({ enabled: true, volume: 0.3 }));
@@ -83,7 +102,8 @@ it('settings contain focus, support Escape, and restore prior inert/focus state'
   player = new UiSoundPlayer({ music: null }); const root = document.createElement('div'), opener = document.createElement('button');
   root.append(opener); document.body.append(root); opener.focus();
   const panel = new UiSoundSettings(root, player); panel.open();
-  expect(opener.inert).toBe(true); expect(document.activeElement?.textContent).toBe('Activer les sons');
+  expect(opener.inert).toBe(true); expect(document.activeElement?.textContent).toBe('Couper les sons');
+  expect(document.activeElement?.getAttribute('aria-pressed')).toBe('true');
   document.activeElement!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true, cancelable: true }));
   expect(document.activeElement?.textContent).toBe('Fermer');
   document.activeElement!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
@@ -139,7 +159,7 @@ it('settings restore an explicit nested focus owner after releasing the parent i
 describe('code-generated music (OD-2026-10-29-B)', () => {
   const gesture = (target: UiSoundPlayer) => (target as unknown as { gesture: (event: Event) => void }).gesture(trusted);
   function fakeMusic() {
-    const host = { setContext: vi.fn(), setAmbience: vi.fn(), setVolume: vi.fn(), dispose: vi.fn() };
+    const host = { setContext: vi.fn(), setAmbience: vi.fn(), setVolume: vi.fn(), setLevel: vi.fn(), attenuate: vi.fn(), dispose: vi.fn() };
     return { host, factory: vi.fn(() => host) };
   }
 
@@ -151,10 +171,11 @@ describe('code-generated music (OD-2026-10-29-B)', () => {
     expect(contexts).toHaveLength(0); expect(factory).not.toHaveBeenCalled();
     gesture(player);
     await vi.waitFor(() => expect(host.setContext).toHaveBeenCalledWith('title'));
-    expect(factory).toHaveBeenCalledWith(contexts[0]); expect(host.setVolume).toHaveBeenCalledWith(0.4);
+    expect((factory.mock.calls as unknown[][])[0]![0]).toBe(contexts[0]); expect(host.setVolume).toHaveBeenCalledWith(0.4);
   });
 
-  it('unlocking for music leaves effects off and plays no cue', async () => {
+  it('unlocking for music keeps a stored effects choice and plays no cue', async () => {
+    localStorage.setItem('rpg-threejs:ui-audio:v2', JSON.stringify({ enabled: false, volume: 0.5 }));
     const { host, factory } = fakeMusic();
     player = new UiSoundPlayer({ music: factory }); gesture(player);
     await vi.waitFor(() => expect(factory).toHaveBeenCalledOnce());
@@ -180,10 +201,10 @@ describe('code-generated music (OD-2026-10-29-B)', () => {
   it('volume zero is silence; preferences stay outside gameplay saves; dispose stops the music', async () => {
     localStorage.setItem('rpg-threejs:autosave:v6', 'unchanged');
     const { host, factory } = fakeMusic();
-    player = new UiSoundPlayer({ music: factory }); player.setMusicContext('dialogue'); gesture(player);
-    await vi.waitFor(() => expect(host.setContext).toHaveBeenCalledWith('dialogue'));
+    player = new UiSoundPlayer({ music: factory }); player.setMusicContext('refuge'); gesture(player);
+    await vi.waitFor(() => expect(host.setContext).toHaveBeenCalledWith('refuge'));
     player.setMusicVolume(0); expect(host.setVolume).toHaveBeenLastCalledWith(0); expect(host.setContext).toHaveBeenLastCalledWith(null);
-    player.setMusicVolume(0.5); expect(host.setContext).toHaveBeenLastCalledWith('dialogue');
+    player.setMusicVolume(0.5); expect(host.setContext).toHaveBeenLastCalledWith('refuge');
     expect(JSON.parse(localStorage.getItem('rpg-threejs:music:v1')!)).toEqual({ enabled: true, volume: 0.5 });
     expect(localStorage.getItem('rpg-threejs:autosave:v6')).toBe('unchanged');
     player.dispose(); expect(host.dispose).toHaveBeenCalledOnce();
@@ -191,6 +212,7 @@ describe('code-generated music (OD-2026-10-29-B)', () => {
 
   it('a muted music preference and effects off create no audio on a real gesture', () => {
     localStorage.setItem('rpg-threejs:music:v1', JSON.stringify({ enabled: false }));
+    localStorage.setItem('rpg-threejs:ui-audio:v2', JSON.stringify({ enabled: false }));
     const { factory } = fakeMusic();
     player = new UiSoundPlayer({ music: factory }); gesture(player);
     expect(contexts).toHaveLength(0); expect(factory).not.toHaveBeenCalled();
@@ -205,6 +227,68 @@ describe('code-generated music (OD-2026-10-29-B)', () => {
     expect(root.querySelector('label[for="ui-music-volume"]')?.textContent).toContain('Volume de la musique');
     expect(root.querySelector<HTMLInputElement>('#ui-music-volume')!.value).toBe('60');
     const controls = [...root.querySelectorAll<HTMLElement>('button,input')]; expect(controls.at(-1)?.textContent).toBe('Fermer');
+  });
+});
+
+describe('combat level and outcome (OD-2026-11-01-B)', () => {
+  const gesture = (target: UiSoundPlayer) => (target as unknown as { gesture: (event: Event) => void }).gesture(trusted);
+  async function started() {
+    const host = { setContext: vi.fn(), setAmbience: vi.fn(), setVolume: vi.fn(), setLevel: vi.fn(), attenuate: vi.fn(), dispose: vi.fn() };
+    player = new UiSoundPlayer({ music: () => host }); player.beginCombat('one'); gesture(player);
+    await vi.waitFor(() => expect(host.setVolume).toHaveBeenCalled());
+    host.setLevel.mockClear();
+    return host;
+  }
+  afterEach(() => vi.useRealTimers());
+
+  it('ignores a repeat, applies one change per 500 ms and lets the latest win inside the window', async () => {
+    const host = await started();
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+    player.setMusicLevel('foreign', 'action'); expect(host.setLevel).not.toHaveBeenCalled();
+    player.setMusicLevel('one', 'reflection'); expect(host.setLevel).not.toHaveBeenCalled();
+    player.setMusicLevel('one', 'action'); expect(host.setLevel).toHaveBeenCalledTimes(1);
+    player.setMusicLevel('one', 'action'); expect(host.setLevel).toHaveBeenCalledTimes(1);
+    now += 100; player.setMusicLevel('one', 'reflection'); now += 100; vi.advanceTimersByTime(100); player.setMusicLevel('one', 'action'); now += 100; vi.advanceTimersByTime(100); player.setMusicLevel('one', 'reflection');
+    expect(host.setLevel).toHaveBeenCalledTimes(1);
+    now += 200; vi.advanceTimersByTime(200);
+    expect(host.setLevel).toHaveBeenCalledTimes(2); expect(host.setLevel).toHaveBeenLastCalledWith('reflection');
+  });
+
+  it('returns to reflection after 15 seconds without an end, at session close and on a hidden page', async () => {
+    const host = await started();
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+    player.setMusicLevel('one', 'action'); expect(host.setLevel).toHaveBeenLastCalledWith('action');
+    now += 14_999; vi.advanceTimersByTime(14_999); expect(host.setLevel).toHaveBeenCalledTimes(1);
+    now += 1; vi.advanceTimersByTime(1); expect(host.setLevel).toHaveBeenLastCalledWith('reflection');
+    now += 600; player.setMusicLevel('one', 'action'); now += 600;
+    player.endCombat('one'); expect(host.setLevel).toHaveBeenLastCalledWith('reflection');
+    player.beginCombat('two'); now += 600; player.setMusicLevel('two', 'action'); now += 600;
+    Object.defineProperty(document, 'hidden', { configurable: true, value: true }); document.dispatchEvent(new Event('visibilitychange'));
+    expect(host.setLevel).toHaveBeenLastCalledWith('reflection');
+  });
+
+  it('a level before the first gesture starts nothing and reaches the music when it starts', async () => {
+    const host = { setContext: vi.fn(), setAmbience: vi.fn(), setVolume: vi.fn(), setLevel: vi.fn(), attenuate: vi.fn(), dispose: vi.fn() };
+    const factory = vi.fn(() => host);
+    player = new UiSoundPlayer({ music: factory }); player.beginCombat('one'); player.setMusicLevel('one', 'action');
+    expect(contexts).toHaveLength(0); expect(factory).not.toHaveBeenCalled();
+    gesture(player); await vi.waitFor(() => expect(host.setLevel).toHaveBeenCalledWith('action'));
+  });
+
+  it('plays one outcome per session, ignores a foreign one, and a session close never cuts the fanfare', async () => {
+    const host = await started();
+    player.playMusicOutcome('foreign', 'victory'); expect(host.setContext).not.toHaveBeenCalledWith('victory');
+    player.playMusicOutcome('one', 'victory'); expect(host.setContext).toHaveBeenLastCalledWith('victory');
+    player.playMusicOutcome('one', 'defeat'); expect(host.setContext).toHaveBeenLastCalledWith('victory');
+    const calls = host.setContext.mock.calls.length;
+    player.endCombat('one'); expect(host.setContext).toHaveBeenCalledTimes(calls);
+    player.playMusicOutcome('one', 'defeat'); expect(host.setContext).toHaveBeenCalledTimes(calls);
+  });
+
+  it('resuming after mute never replays a fanfare', async () => {
+    const host = await started();
+    player.playMusicOutcome('one', 'defeat'); player.setMusicEnabled(false, trusted); host.setContext.mockClear();
+    player.setMusicEnabled(true, trusted); expect(host.setContext).not.toHaveBeenCalled();
   });
 });
 

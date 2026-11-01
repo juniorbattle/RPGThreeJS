@@ -6,6 +6,7 @@ import { UiSoundPlayer } from './UiSoundPlayer';
 afterEach(() => { document.body.replaceChildren(); localStorage.clear(); vi.restoreAllMocks(); });
 
 it('lists the sixteen families; with effects off it explains and disables previews; a choice updates the summary only', () => {
+  localStorage.setItem('rpg-threejs:ui-audio:v2', JSON.stringify({ enabled: false }));
   const player = new UiSoundPlayer({ music: null, synth: null });
   const preview = vi.spyOn(player, 'preview');
   const root = document.createElement('div'), opener = document.createElement('button');

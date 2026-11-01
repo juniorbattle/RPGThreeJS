@@ -123,6 +123,8 @@ export class CombatBridge {
             iframe.focus(); opener.focus({ preventScroll: true });
           });
         }
+        else if (sound.data.type === 'rpg-threejs:combat-music-level') this.audio?.player.setMusicLevel(sound.data.sessionId, sound.data.level);
+        else if (sound.data.type === 'rpg-threejs:combat-music-outcome') this.audio?.player.playMusicOutcome(sound.data.sessionId, sound.data.outcome);
         else this.audio?.player.playCombat(sound.data.id, sound.data.sessionId, sound.data.eventId);
       } catch { /* Audio must never escape into combat result handling. */ }
       return;
@@ -152,6 +154,8 @@ export class CombatBridge {
 
     const result = toCombatResult(event.data);
     if (!result || result.combatId !== this.session?.config.id) return;
+    // The fallback when the combat document sent no outcome; the owner ignores a second one.
+    try { if (this.audioSession) this.audio?.player.playMusicOutcome(this.audioSession, result.victory ? 'victory' : 'defeat'); } catch { /* Music never affects the result. */ }
     const resolve = this.resolveResult;
     this.close();
     resolve?.(result);

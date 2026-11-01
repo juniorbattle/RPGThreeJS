@@ -1,20 +1,32 @@
+import { createMix, type MixChain } from '../audio/mix';
 import { COMBAT_SOUND_IDS, UI_SOUND_IDS, isCombatSound, soundPriority, type CombatSoundId, type GameSoundId, type TacticalSoundId, type UiSoundId } from './GameSoundCatalog';
 export { UI_SOUND_IDS } from './GameSoundCatalog';
 export type { UiSoundId } from './GameSoundCatalog';
 export type UiSoundFeedback = (id: UiSoundId) => void;
-const PREFERENCE_KEY = 'rpg-threejs:ui-audio:v1';
+/** `enabled` is written only by the effects control: its absence means the default. */
+const PREFERENCE_KEY = 'rpg-threejs:ui-audio:v2';
+/** Written under the former default-off, where a volume change stored `enabled: false`: only its volume is a choice. */
+const FORMER_PREFERENCE_KEY = 'rpg-threejs:ui-audio:v1';
 const MUSIC_PREFERENCE_KEY = 'rpg-threejs:music:v1';
+const LEVEL_WINDOW_MS = 500;
+const LEVEL_RETURN_MS = 15_000;
 
-/** Music contexts (OD-2026-10-29-B); the engine itself loads lazily on the first real gesture. */
-export type MusicContextId = 'title' | 'map' | 'dialogue' | 'combat' | 'boss';
+/** Music contexts (OD-2026-11-01-B); the engine itself loads lazily on the first real gesture. */
+export type MusicContextId = 'title' | 'map' | 'refuge' | 'tension' | 'drama' | 'combat' | 'boss' | 'victory' | 'defeat';
+export type MusicLevel = 'reflection' | 'action';
+export type CombatOutcome = 'victory' | 'defeat';
 export interface MusicHost {
   setContext(id: MusicContextId | null): void;
   setAmbience(sceneId: string | null): void;
   setVolume(volume: number): void;
+  setLevel(level: MusicLevel): void;
+  /** Lowers the music until `holdUntil` on the audio clock, then lets it back within a second. */
+  attenuate(holdUntil: number): void;
   dispose(): void;
 }
-export type MusicFactory = (context: AudioContext) => MusicHost | Promise<MusicHost>;
-const loadMusic: MusicFactory = async context => (await import('../audio/music/MusicDirector')).createMusicDirector(context);
+export type MusicFactory = (context: AudioContext, output: AudioNode) => MusicHost | Promise<MusicHost>;
+const loadMusic: MusicFactory = async (context, output) => (await import('../audio/music/MusicDirector')).createMusicDirector(context, output);
+const isFanfare = (id: MusicContextId | null): boolean => id === 'victory' || id === 'defeat';
 
 /** Source of a combat family (OD-2026-10-29-B): the accepted file candidate, or its synthesized alternative. */
 export type CombatSoundSource = 'file' | 'synth';
@@ -24,10 +36,10 @@ const loadSynth: SynthRenderer = async (id, sampleRate) => (await import('../aud
 
 /**
  * Optional parent-owned presentation: the single audio owner for cues, music and ambience. No gameplay state,
- * resolution or delayed cue queue. Effects default off; music defaults on but is only armed until a real gesture.
+ * resolution or delayed cue queue. Effects and music default on but are only armed until a real gesture.
  */
 export class UiSoundPlayer {
-  enabled = false;
+  enabled = true;
   volume = 0.5;
   musicEnabled = true;
   musicVolume = 0.6;
@@ -35,6 +47,14 @@ export class UiSoundPlayer {
   private musicLoading: Promise<void> | null = null;
   private musicContext: MusicContextId | null = null;
   private musicScene: string | null = null;
+  private level: MusicLevel = 'reflection';
+  private levelPending: MusicLevel | null = null;
+  private levelOpensAt = 0;
+  private levelTimer: number | null = null;
+  private levelReturn: number | null = null;
+  private outcomeScope: string | null = null;
+  /** Only the effects control sets this; a volume change persists the choice as it stands, or none. */
+  private effectsChoice: boolean | null = null;
   private readonly musicFactory: MusicFactory | null;
   private readonly synthRenderer: SynthRenderer | null;
   private readonly synthSources = new Set<CombatSoundId>();
@@ -43,6 +63,7 @@ export class UiSoundPlayer {
   private synthChain: Promise<void> = Promise.resolve();
   private comparisonWarming: Promise<void> | null = null;
   private context: AudioContext | null = null;
+  private mix: MixChain | null = null;
   private gain: GainNode | null = null;
   private readonly buffers = new Map<GameSoundId, AudioBuffer>();
   private readonly voices = new Map<AudioBufferSourceNode, { id: GameSoundId; scope?: string }>();
@@ -64,6 +85,7 @@ export class UiSoundPlayer {
       return;
     }
     this.stop();
+    this.requestLevel('reflection');
     void this.context?.suspend().catch(() => {});
   };
 
@@ -75,10 +97,11 @@ export class UiSoundPlayer {
       if (Array.isArray(saved)) for (const id of saved) if ((COMBAT_SOUND_IDS as readonly unknown[]).includes(id)) this.synthSources.add(id as CombatSoundId);
     } catch { /* Without a stored choice every family plays its file candidate. */ }
     try {
-      const saved = JSON.parse(localStorage.getItem(PREFERENCE_KEY) ?? 'null');
-      this.enabled = saved?.enabled === true;
+      const current = localStorage.getItem(PREFERENCE_KEY);
+      const saved = JSON.parse(current ?? localStorage.getItem(FORMER_PREFERENCE_KEY) ?? 'null');
+      if (current && typeof saved?.enabled === 'boolean') { this.effectsChoice = saved.enabled; this.enabled = saved.enabled; }
       if (typeof saved?.volume === 'number' && Number.isFinite(saved.volume)) this.volume = Math.max(0, Math.min(1, saved.volume));
-    } catch { /* Preferences are optional; silence remains playable. */ }
+    } catch { /* Preferences are optional; the default stays armed and silent. */ }
     try {
       const saved = JSON.parse(localStorage.getItem(MUSIC_PREFERENCE_KEY) ?? 'null');
       if (typeof saved?.enabled === 'boolean') this.musicEnabled = saved.enabled;
@@ -154,9 +177,45 @@ export class UiSoundPlayer {
     }
   }
 
+  /** Closing a session stops its cues and returns the level; a fanfare on the music stream plays on. */
   endCombat(scope: string): void {
     if (scope !== this.combatScope) return;
     this.stop(); this.combatScope = null; this.combatEvents.clear(); this.combatCadence.clear();
+    this.requestLevel('reflection');
+  }
+
+  /** One-way level of the combat track. It answers nothing, delays nothing and cannot start audio. */
+  setMusicLevel(scope: string, level: MusicLevel): void {
+    if (scope === this.combatScope) this.requestLevel(level);
+  }
+
+  private requestLevel(level: MusicLevel): void {
+    if (this.disposed || level === (this.levelPending ?? this.level)) return;
+    if (this.levelReturn !== null) { window.clearTimeout(this.levelReturn); this.levelReturn = null; }
+    if (level === 'action') this.levelReturn = window.setTimeout(() => { this.levelReturn = null; this.requestLevel('reflection'); }, LEVEL_RETURN_MS);
+    const now = performance.now();
+    if (now >= this.levelOpensAt) { this.applyLevel(level); return; }
+    // Inside the window the latest one wins, and it applies when the window ends.
+    this.levelPending = level;
+    this.levelTimer ??= window.setTimeout(() => {
+      this.levelTimer = null;
+      const pending = this.levelPending;
+      this.levelPending = null;
+      if (pending && pending !== this.level) this.applyLevel(pending);
+    }, this.levelOpensAt - now);
+  }
+
+  private applyLevel(level: MusicLevel): void {
+    this.level = level;
+    this.levelOpensAt = performance.now() + LEVEL_WINDOW_MS;
+    if (this.musicActive) this.music?.setLevel(level);
+  }
+
+  /** The end of an encounter, once per session; music reads nothing else of the result. */
+  playMusicOutcome(scope: string, outcome: CombatOutcome): void {
+    if (scope !== this.combatScope || scope === this.outcomeScope) return;
+    this.outcomeScope = scope;
+    this.setMusicContext(outcome);
   }
 
   playCombat(id: TacticalSoundId, scope: string, eventId: string): void {
@@ -169,6 +228,7 @@ export class UiSoundPlayer {
   setEnabled(enabled: boolean, event: Event): void {
     if (!event.isTrusted || this.disposed) return;
     this.enabled = enabled;
+    this.effectsChoice = enabled;
     this.persist();
     if (enabled) void this.unlock();
     else this.stop();
@@ -183,7 +243,7 @@ export class UiSoundPlayer {
   }
 
   private persist(): void {
-    try { localStorage.setItem(PREFERENCE_KEY, JSON.stringify({ enabled: this.enabled, volume: this.volume })); }
+    try { localStorage.setItem(PREFERENCE_KEY, JSON.stringify(this.effectsChoice === null ? { volume: this.volume } : { enabled: this.effectsChoice, volume: this.volume })); }
     catch { /* A denied preference write never blocks the action. */ }
   }
 
@@ -218,8 +278,15 @@ export class UiSoundPlayer {
     if (!event.isTrusted || this.disposed) return;
     this.musicEnabled = enabled;
     this.persistMusic();
-    if (this.musicActive) { void this.unlock(); this.music?.setContext(this.musicContext); this.music?.setAmbience(this.musicScene); }
+    if (this.musicActive) { void this.unlock(); this.resumeMusic(); }
     else { this.music?.setContext(null); this.music?.setAmbience(null); }
+  }
+
+  /** A fanfare is an event, not a place: resuming never replays it. */
+  private resumeMusic(): void {
+    if (!isFanfare(this.musicContext)) this.music?.setContext(this.musicContext);
+    this.music?.setLevel(this.level);
+    this.music?.setAmbience(this.musicScene);
   }
 
   setMusicVolume(value: number): void {
@@ -228,7 +295,7 @@ export class UiSoundPlayer {
     this.musicVolume = Math.max(0, Math.min(1, value));
     this.music?.setVolume(this.musicVolume);
     if (!this.musicActive) { this.music?.setContext(null); this.music?.setAmbience(null); }
-    else if (!wasActive) { this.music?.setContext(this.musicContext); this.music?.setAmbience(this.musicScene); }
+    else if (!wasActive) this.resumeMusic();
     this.persistMusic();
   }
 
@@ -238,9 +305,10 @@ export class UiSoundPlayer {
       if (!this.context) {
         if (!window.AudioContext) return;
         this.context = new AudioContext();
+        this.mix = createMix(this.context);
         this.gain = this.context.createGain();
         this.gain.gain.value = this.volume;
-        this.gain.connect(this.context.destination);
+        this.gain.connect(this.mix.input);
       }
       if (this.context.state === 'suspended') await this.context.resume();
       if (this.musicActive) void this.startMusic();
@@ -253,15 +321,15 @@ export class UiSoundPlayer {
   }
 
   private startMusic(): Promise<void> {
-    if (this.music || !this.context || !this.musicFactory) return Promise.resolve();
-    const context = this.context;
+    if (this.music || !this.context || !this.mix || !this.musicFactory) return Promise.resolve();
+    const context = this.context, output = this.mix.input;
     this.musicLoading ??= (async () => {
       try {
-        const host = await this.musicFactory!(context);
+        const host = await this.musicFactory!(context, output);
         if (this.disposed) { host.dispose(); return; }
         this.music = host;
         host.setVolume(this.musicVolume);
-        if (this.musicActive) { host.setContext(this.musicContext); host.setAmbience(this.musicScene); }
+        if (this.musicActive) { host.setContext(this.musicContext); host.setLevel(this.level); host.setAmbience(this.musicScene); }
       } catch { this.musicLoading = null; /* Music is optional and fails silently. */ }
     })();
     return this.musicLoading;
@@ -326,8 +394,11 @@ export class UiSoundPlayer {
     window.removeEventListener('keydown', this.gesture, true);
     document.removeEventListener('visibilitychange', this.visibility);
     this.abort.abort(); this.stop(); this.buffers.clear(); this.synthBuffers.clear();
+    if (this.levelTimer !== null) window.clearTimeout(this.levelTimer);
+    if (this.levelReturn !== null) window.clearTimeout(this.levelReturn);
     try { this.music?.dispose(); } catch { /* already gone */ }
     this.music = null;
+    this.mix?.dispose();
     void this.context?.close().catch(() => {});
   }
 }

@@ -7,8 +7,8 @@ import type { HallId } from './hall';
 import type { Mode } from './theory';
 import type { VoiceInstrument } from './voices';
 
-export type MusicContextId = 'title' | 'map' | 'dialogue' | 'combat' | 'boss';
-export const MUSIC_CONTEXTS: readonly MusicContextId[] = ['title', 'map', 'dialogue', 'combat', 'boss'];
+export type MusicContextId = 'title' | 'map' | 'refuge' | 'tension' | 'drama' | 'combat' | 'boss' | 'victory' | 'defeat';
+export const MUSIC_CONTEXTS: readonly MusicContextId[] = ['title', 'map', 'refuge', 'tension', 'drama', 'combat', 'boss', 'victory', 'defeat'];
 
 /** One melody note: bar, beat inside the bar, diatonic degree from the melody root, duration in beats. */
 export type MelodyNote = readonly [bar: number, beat: number, degree: number, beats: number];
@@ -38,9 +38,11 @@ export interface ThemeDef {
   hall: HallId;
   send: number;
   gain: number;
+  /** A one-shot piece (fanfares): one pass, then silence. */
+  once?: boolean;
 }
 
-export const THEMES: Readonly<Record<MusicContextId, ThemeDef>> = {
+const WRITTEN: Readonly<Record<'title' | 'map' | 'refuge' | 'combat' | 'boss', ThemeDef>> = {
   // Title — "La Voie des Sceaux": D dorian, slow and wide; harp, strings, a flute that names the theme.
   title: {
     id: 'title', bpm: 68, beatsPerBar: 4, bars: 8, tonic: 38, mode: 'dorian',
@@ -90,8 +92,8 @@ export const THEMES: Readonly<Record<MusicContextId, ThemeDef>> = {
     hall: 'field', send: 0.26, gain: 0.85,
   },
   // Dialogue and refuge — F major in three, by the fire: harp and soft strings, a sparse flute, no percussion.
-  dialogue: {
-    id: 'dialogue', bpm: 60, beatsPerBar: 3, bars: 8, tonic: 41, mode: 'ionian',
+  refuge: {
+    id: 'refuge', bpm: 60, beatsPerBar: 3, bars: 8, tonic: 41, mode: 'ionian',
     progression: [0, 3, 5, 4, 0, 3, 4, 0],
     melody: {
       instrument: 'flute', root: 65, velocity: 0.38, restEvery: 2,
@@ -161,6 +163,22 @@ export const THEMES: Readonly<Record<MusicContextId, ThemeDef>> = {
       fill: [[0, 'drum', 0, 1], [1, 'drum', 0, 0.7], [2, 'drum', 0, 0.9], [2.5, 'drum', 1, 0.6], [3, 'drum', 1, 0.7], [3.25, 'drum', 1, 0.6], [3.5, 'drum', 1, 0.8], [3.75, 'drum', 0, 0.9], [2, 'cymbal', 1, 0.7]],
     },
     hall: 'chapel', send: 0.24, gain: 0.85,
+  },
+};
+
+export const THEMES: Readonly<Record<MusicContextId, ThemeDef>> = {
+  ...WRITTEN,
+  tension: { ...WRITTEN.refuge, id: 'tension' },
+  drama: { ...WRITTEN.refuge, id: 'drama' },
+  victory: {
+    id: 'victory', bpm: 100, beatsPerBar: 4, bars: 3, tonic: 41, mode: 'ionian', once: true, progression: [0, 4, 0],
+    melody: { instrument: 'brass', root: 53, velocity: 0.7, notes: [[0, 0, 0, 1], [0, 1, 2, 1], [0, 2, 4, 2], [1, 0, 4, 2], [1, 2, 6, 2], [2, 0, 7, 4]] },
+    hall: 'hall', send: 0.3, gain: 0.8,
+  },
+  defeat: {
+    id: 'defeat', bpm: 66, beatsPerBar: 4, bars: 2, tonic: 38, mode: 'aeolian', once: true, progression: [0, 0],
+    melody: { instrument: 'strings', root: 62, velocity: 0.5, notes: [[0, 0, 4, 2], [0, 2, 2, 2], [1, 0, 0, 3]] },
+    hall: 'chapel', send: 0.36, gain: 0.7,
   },
 };
 

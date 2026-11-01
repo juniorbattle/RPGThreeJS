@@ -9,8 +9,8 @@ import { degreeToMidi, voiceChord } from './theory';
 const SAMPLED = new Set<string>(SAMPLED_INSTRUMENTS);
 
 describe('music themes', () => {
-  it('defines the five approved contexts with consistent bars and beats', () => {
-    expect(MUSIC_CONTEXTS).toEqual(['title', 'map', 'dialogue', 'combat', 'boss']);
+  it('defines the nine approved contexts with consistent bars and beats', () => {
+    expect(MUSIC_CONTEXTS).toEqual(['title', 'map', 'refuge', 'tension', 'drama', 'combat', 'boss', 'victory', 'defeat']);
     for (const id of MUSIC_CONTEXTS) {
       const theme = THEMES[id];
       expect(theme.progression).toHaveLength(theme.bars);
@@ -18,15 +18,15 @@ describe('music themes', () => {
         expect(bar).toBeLessThan(theme.bars);
         expect(beat + beats).toBeLessThanOrEqual(theme.beatsPerBar + 1e-9);
       }
-      expect(passSeconds(theme)).toBeGreaterThan(10);
-      expect(passSeconds(theme)).toBeLessThan(40);
+      expect(passSeconds(theme)).toBeGreaterThan(theme.once ? 3 : 10);
+      expect(passSeconds(theme)).toBeLessThan(theme.once ? 8 : 40);
     }
   });
 
   it('places the melody root on the tonic class of each mode', () => {
     for (const id of MUSIC_CONTEXTS) {
       const theme = THEMES[id];
-      expect((theme.melody.root - theme.tonic) % 12).toBe(0);
+      expect(((theme.melody.root - theme.tonic) % 12 + 12) % 12).toBe(0);
       if (theme.counter) expect((theme.counter.root - theme.tonic) % 12).toBe(0);
     }
   });
