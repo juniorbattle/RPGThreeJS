@@ -20,7 +20,7 @@ export interface FxPlayContext {
   cells: THREE.Vector3[];
   /** Skill weight: AP cost, ultimate / boss signature. Scales every step. */
   power?: { ap?: number; ultimate?: boolean };
-  /** Battle platform, for the field-wide finale of ultimates. */
+  /** Battle platform of the action. */
   field?: FxField;
 }
 
@@ -42,7 +42,10 @@ export class FxDirector {
   play(recipe: FxRecipe, ctx: FxPlayContext): FxPlayback {
     const engine = this.engine;
     const firstTarget = ctx.targets[0];
-    const intensity = fxIntensity(ctx.power);
+    const authored = recipe.authored === true;
+    const weight = fxIntensity(ctx.power);
+    // a signature is played as written: only the shared recipes follow the AP scale
+    const intensity = authored ? fxIntensity() : weight;
     // The build-up before the hit grows more gently than the hit itself, so a
     // big charge never swallows the actor.
     const buildUp: FxIntensity = { ...intensity, scale: Math.sqrt(intensity.scale), count: Math.sqrt(intensity.count), glow: Math.sqrt(intensity.glow) };
@@ -54,7 +57,7 @@ export class FxDirector {
       hitTime = recipeImpactTime({ ...recipe, impactAt: 0 }, from.distanceTo(to));
       engine.after(proj.at, () => {
         if (proj.sfx) engine.hooks.sfx(proj.sfx);
-        void engine.projectile(from, to, proj.element ?? recipe.element, { speed: proj.speed, size: (proj.size ?? 0.7) * intensity.scale, arc: proj.arc, streak: proj.streak });
+        void engine.projectile(from, to, proj.element ?? recipe.element, { speed: proj.speed, size: (proj.size ?? 0.7) * intensity.scale, arc: proj.arc, streak: proj.streak, smoke: proj.smoke });
       });
     }
     const impactTime = recipe.projectile ? hitTime + recipe.impactAt : recipe.impactAt;
@@ -65,52 +68,51 @@ export class FxDirector {
       const scaled = scaleStep(step, at < impactTime - 0.2 ? buildUp : intensity);
       engine.after(at, () => this.run(scaled, recipe, ctx));
     }
-    for (const accent of apAccentSteps(impactTime, recipe.element, intensity, ctx.cells.length > 1)) {
-      engine.after(accent.at, () => this.run(accent, recipe, ctx));
+    if (!authored) {
+      for (const accent of apAccentSteps(impactTime, recipe.element, intensity, ctx.cells.length > 1)) {
+        if (recipe.noFloor && accent.kind === 'ring') continue;
+        engine.after(accent.at, () => this.run(accent, recipe, ctx));
+      }
     }
     // precision: the exact cells an area action hits flash under it (heavy single hits mark their cell too)
-    const flashCells = ctx.cells.length > 1 || (intensity.weight !== 'light' && intensity.weight !== 'standard' && intensity.weight !== 'strong');
+    const flashCells = ctx.cells.length > 1 || (!recipe.noFloor && intensity.weight !== 'light' && intensity.weight !== 'standard' && intensity.weight !== 'strong');
     if (flashCells && ctx.cells.length) {
       const tile = (ctx.field?.tile ?? 1.18) * 0.94;
-      engine.after(impactTime, () => { for (const cell of ctx.cells) engine.cellFlash(cell, recipe.element, { size: tile, duration: 0.55 }); });
+      engine.after(impactTime, () => { for (const cell of ctx.cells) engine.cellFlash(cell, recipe.flashElement ?? recipe.element, { size: tile, duration: 0.55 }); });
     }
     let duration = recipe.duration + (recipe.projectile ? hitTime : 0);
-    if (intensity.field && ctx.field) {
-      this.fieldFinale(recipe.element, impactTime, ctx, ctx.field, recipe.fieldBeat, magic);
-      duration = Math.max(duration, impactTime + FIELD_WAVE_DELAY + 1.9);
+    if (intensity.field && ctx.cells.length > 1) {
+      this.fieldFinale(recipe.element, impactTime, ctx, recipe.fieldBeat);
+      duration = Math.max(duration, impactTime + FIELD_WAVE_DELAY + 1.4);
     }
-    return { impactTime, duration, cinematic: Boolean(recipe.cinematic), weight: intensity.weight, completion: engine.wait(duration) };
+    return { impactTime, duration, cinematic: Boolean(recipe.cinematic), weight: weight.weight, completion: engine.wait(duration) };
   }
 
   /**
-   * Ultimates flood the battlefield: a rune circle under the whole platform,
-   * shock rings rolling past its edges, field-wide motes, a flash and a wave
-   * of element eruptions that rolls cell by cell away from the impact.
+   * Boss signatures sweep the cells they really hit: a flash on the blow, then
+   * a wave of element eruptions rolling away from the impact. The ring belongs
+   * to the blow, in the recipe: nothing circular fires here. A single-target
+   * signature has no finale.
    */
-  private fieldFinale(element: FxElement, at: number, ctx: FxPlayContext, field: FxField, beatOverride?: FieldBeat, magic = true): void {
+  private fieldFinale(element: FxElement, at: number, ctx: FxPlayContext, beatOverride?: FieldBeat): void {
     const engine = this.engine;
     const pal = engine.palette(element);
-    const center = new THREE.Vector3(field.center.x, 0.02, field.center.z);
     const origin = new THREE.Vector3(ctx.point.x, 0.06, ctx.point.z);
-    const reach = Math.hypot(field.halfWidth, field.halfDepth);
+    const reach = Math.max(...ctx.cells.map((cell) => Math.hypot(cell.x - origin.x, cell.z - origin.z))) + (ctx.field?.tile ?? 1.18);
     const sink = element === 'shadow' || element === 'blood';
     // The hit itself belongs to the recipe (and the close-up punch); the wave
     // starts as the camera pulls out to the field shot, so it is seen whole.
     const wave = at + FIELD_WAVE_DELAY;
-    // spells pulse a seal under the whole platform; martial ultimates pulse bare shock rings
-    if (magic) engine.after(Math.max(0, at - 0.3), () => engine.circle(center, element, { radius: field.halfWidth * 1.1, duration: 2.6, spin: sink ? -0.5 : 0.5, pulse: true }));
-    else engine.after(at, () => engine.pulseRings(center, element, { radius: reach * 1.05, duration: 2.0 }));
     engine.after(at, () => engine.hooks.flash(pal.core, 0.24, 0.32));
     engine.after(wave, () => {
       engine.hooks.sfx('field_wave');
-      engine.light(center.clone().setY(3.4), pal.light, 48, 1.7, 22);
-      [0, 0.16, 0.34].forEach((delay, i) => engine.after(delay, () => engine.ring(origin, element, { radius: reach * (1.1 + i * 0.28), duration: 0.9 + i * 0.12, from: 0.05 })));
-      engine.motes(center, element, { count: engine.reduced ? 40 : 120, radius: field.halfWidth, rise: 2.8, life: 1.9, size: 0.1, sink });
+      engine.light(origin.clone().setY(3.4), pal.light, 48, 1.2, 22);
+      engine.motes(origin, element, { count: engine.reduced ? 20 : 60, radius: reach * 0.7, rise: 2.8, life: 1.2, size: 0.1, sink });
     });
     const beat = beatOverride ?? fieldBeatFor(element);
     // light columns are additive and tall: fewer of them keep the field readable
     const max = engine.reduced ? 6 : beat === 'pillar' ? 10 : 16;
-    for (const { cell, delay } of fieldWaveCells(field.cells, origin, max)) {
+    for (const { cell, delay } of fieldWaveCells(ctx.cells, origin, max)) {
       engine.after(wave + delay, () => this.fieldBeat(beat, element, new THREE.Vector3(cell.x, 0.02, cell.z)));
     }
   }
@@ -127,7 +129,6 @@ export class FxDirector {
       case 'pillar':
         engine.pillar(at, element, { radius: 0.28, height: 9, duration: 0.95 });
         engine.motes(at, element, { count: 8, radius: 0.4, rise: 2.6 });
-        engine.ring(at, element, { radius: 0.9, duration: 0.5 });
         break;
       case 'arrows':
         for (let i = 0; i < 3; i++) {
@@ -146,7 +147,6 @@ export class FxDirector {
         break;
       case 'bolt':
         engine.bolt(at.clone().setY(0.3), element, { duration: 0.32, width: 0.06 });
-        engine.ring(at, element, { radius: 1.0, duration: 0.35 });
         break;
       case 'shards':
         engine.shards(at, element, { count: 4, radius: 0.45, height: 1.2, duration: 0.95 });
@@ -164,11 +164,22 @@ export class FxDirector {
     }
   }
 
-  private anchor(anchor: FxAnchor | undefined, ctx: FxPlayContext, target: FxUnitRef | undefined, jitter = 0): THREE.Vector3 {
+  /** The affected cell farthest from the caster: the end of a line or a cone. */
+  private far(ctx: FxPlayContext): THREE.Vector3 {
+    const src = ctx.source.position;
+    return ctx.cells.reduce((best, cell) => (Math.hypot(cell.x - src.x, cell.z - src.z) > Math.hypot(best.x - src.x, best.z - src.z) ? cell : best), ctx.point).clone();
+  }
+
+  private anchor(anchor: FxAnchor | undefined, ctx: FxPlayContext, target: FxUnitRef | undefined, jitter = 0, pick = 0): THREE.Vector3 {
     const src = ctx.source;
     const tgt = target ?? { position: ctx.point, height: 1.6 };
     let v: THREE.Vector3;
     switch (anchor) {
+      case 'far': v = this.far(ctx).setY(0.02); break;
+      case 'farChest': v = this.far(ctx).add(new THREE.Vector3(0, 1.1, 0)); break;
+      case 'cell': v = (ctx.cells[Math.min(ctx.cells.length - 1, Math.floor(pick * ctx.cells.length))] ?? ctx.point).clone(); break;
+      case 'sourceSky': v = src.position.clone().add(new THREE.Vector3(0, 9, 0)); break;
+      case 'targetSky': v = tgt.position.clone().add(new THREE.Vector3(-0.5, 11, -1)); break;
       case 'source': v = src.position.clone(); break;
       case 'sourceChest': v = src.position.clone().add(new THREE.Vector3(0, src.height * 0.55, 0)); break;
       case 'sourceGround': v = new THREE.Vector3(src.position.x, 0.02, src.position.z); break;
@@ -192,54 +203,88 @@ export class FxDirector {
     const hooks = this.engine.hooks;
     switch (step.kind) {
       case 'shake': hooks.shake(num('magnitude', 0.2), num('duration', 0.2)); return;
-      case 'flash': hooks.flash(this.engine.palette(element).core, num('opacity', 0.1), num('duration', 0.18)); return;
+      case 'flash': hooks.flash(p.dark === true ? '#06030c' : this.engine.palette(element).core, num('opacity', 0.1), num('duration', 0.18)); return;
       case 'sfx': hooks.sfx(String(p.id ?? 'hit'), { pitch: num('pitch', 1), volume: num('volume', 1) }); return;
       case 'slowmo': hooks.slowmo(num('scale', 0.35), num('duration', 0.3)); return;
       case 'speedLines': hooks.speedLines(num('duration', 0.8), this.engine.palette(element).body); return;
-      case 'punch': hooks.punch?.(this.anchor(step.anchor, ctx, ctx.targets[0]), num('duration', 0.45)); return;
+      case 'punch': hooks.punch?.(this.anchor(step.anchor, ctx, ctx.targets[0]), num('duration', 0.45), p.hold === true); return;
       default: break;
     }
-    const places: THREE.Vector3[] = [];
+    const pick = num('pick', 0);
+    const places: Array<{ at: THREE.Vector3; target: FxUnitRef | undefined }> = [];
     if (step.cells && ctx.cells.length) {
-      for (const cell of ctx.cells) places.push(new THREE.Vector3(cell.x, 0.02, cell.z));
+      for (const cell of ctx.cells) places.push({ at: new THREE.Vector3(cell.x, 0.02, cell.z), target: undefined });
     } else if (step.each && ctx.targets.length) {
-      for (const target of ctx.targets) places.push(this.anchor(step.anchor, ctx, target, jitter));
+      for (const target of ctx.targets) places.push({ at: this.anchor(step.anchor, ctx, target, jitter), target });
     } else {
-      places.push(this.anchor(step.anchor, ctx, ctx.targets[0], jitter));
+      places.push({ at: this.anchor(step.anchor, ctx, ctx.targets[0], jitter, pick), target: ctx.targets[0] });
     }
+    const offset = new THREE.Vector3(num('ox', 0), num('oy', 0), num('oz', 0));
+    // `stagger`: seconds per world unit from the caster (or the impact), so a step rolls across its places
+    const stagger = num('stagger', 0);
+    const origin = p.origin === 'point' ? ctx.point : ctx.source.position;
+    places.forEach(({ at, target }, i) => {
+      const placed = step.alternate?.[i % 2] ?? element;
+      const fire = () => this.place(step, at.clone().add(offset), target, placed, ctx);
+      const delay = stagger * Math.hypot(at.x - origin.x, at.z - origin.z);
+      if (delay > 0) this.engine.after(delay, fire);
+      else fire();
+    });
+  }
+
+  private place(step: FxStep, at: THREE.Vector3, target: FxUnitRef | undefined, element: FxElement, ctx: FxPlayContext): void {
+    const p = step.p ?? {};
+    const num = (key: string, fallback: number) => (typeof p[key] === 'number' ? (p[key] as number) : fallback);
+    const jitter = num('jitter', 0);
     const engine = this.engine;
-    for (const at of places) {
-      switch (step.kind) {
-        case 'slash': engine.slash(at, element, { size: num('size', 2.2), angle: num('angle', 0), duration: num('duration', 0.3), flip: p.flip === true }); break;
-        case 'star': engine.impactStar(at, element, num('size', 1.4), num('duration', 0.28)); break;
-        case 'burst': {
-          const direction = p.spray === 'target' && ctx.targets[0]
-            ? ctx.targets[0].position.clone().add(new THREE.Vector3(0, ctx.targets[0].height * 0.4, 0)).sub(at).normalize()
-            : undefined;
-          engine.burst(at, element, {
-            count: num('count', 24), speed: num('speed', 3), up: num('up', 1.2), gravity: num('gravity', 4), size: num('size', 0.11),
-            life: num('life', 0.7), spread: num('spread', 0.15), soft: p.soft === true, cone: num('cone', 1), direction,
-          });
-          break;
-        }
-        case 'ring': engine.ring(at, element, { radius: num('radius', 1.6), duration: num('duration', 0.5), ground: p.ground !== false, from: num('from', 0.15) }); break;
-        case 'pulse': engine.pulseRings(at, element, { radius: num('radius', 2), duration: num('duration', 1.2) }); break;
-        case 'circle': engine.circle(at, element, { radius: num('radius', 1.3), duration: num('duration', 1.1), spin: num('spin', 1.2), pulse: p.pulse === true }); break;
-        case 'pillar': engine.pillar(at, element, { radius: num('radius', 0.55), height: num('height', 9), duration: num('duration', 0.8) }); break;
-        case 'streak': engine.streak(at, this.anchor(step.to, ctx, ctx.targets[0], jitter), element, { width: num('width', 0.35), duration: num('duration', 0.25) }); break;
-        case 'bolt': engine.bolt(at, element, { duration: num('duration', 0.35), width: num('width', 0.07) }); break;
-        case 'shards': engine.shards(at, element, { count: num('count', 7), radius: num('radius', 0.8), height: num('height', 1.4), duration: num('duration', 0.9) }); break;
-        case 'dome': engine.dome(at, element, { radius: num('radius', 1.1), duration: num('duration', 1) }); break;
-        case 'orb': engine.orb(at.y < 0.5 ? at.clone().setY(0.9) : at, element, { radius: num('radius', 1.2), duration: num('duration', 0.5), implode: p.implode === true, dark: p.dark === true }); break;
-        case 'flame': engine.flame(at, { width: num('width', 1.2), height: num('height', 2.4), duration: num('duration', 0.9) }); break;
-        case 'motes': engine.motes(at, element, { count: num('count', 22), radius: num('radius', 0.6), rise: num('rise', 2.2), sink: p.sink === true }); break;
-        case 'smoke': engine.smoke(at.y < 0.3 ? at.clone().setY(0.4) : at, { count: num('count', 14), spread: num('spread', 0.35), size: num('size', 0.55) }); break;
-        case 'glow': engine.glow(at, element, num('size', 2), num('duration', 0.5)); break;
-        case 'decal': engine.decal(at, element, { radius: num('radius', 1) }); break;
-        case 'sheet': engine.sheet(at, String(p.id ?? ''), { size: num('size', 3), duration: num('duration', 0.8) }); break;
-        case 'light': engine.light(at.y < 0.4 ? at.clone().setY(1.1) : at, engine.palette(element).light, num('intensity', 14), num('duration', 0.5), num('distance', 9)); break;
-        default: break;
+    const to = () => this.anchor(step.to, ctx, target ?? ctx.targets[0], jitter, num('pickTo', 0));
+    switch (step.kind) {
+      case 'slash': engine.slash(at, element, { size: num('size', 2.2), angle: num('angle', 0), duration: num('duration', 0.3), flip: p.flip === true, thickness: num('thickness', 0.8) }); break;
+      case 'star': engine.impactStar(at, element, num('size', 1.4), num('duration', 0.28)); break;
+      case 'burst': {
+        const first = ctx.targets[0];
+        const direction = p.spray === 'through' && first ? first.position.clone().sub(ctx.source.position).setY(0).normalize()
+          : p.spray === 'point' ? ctx.point.clone().sub(ctx.source.position).setY(0).normalize()
+          : p.spray === 'target' && first ? first.position.clone().add(new THREE.Vector3(0, first.height * 0.4, 0)).sub(at).normalize()
+          : undefined;
+        engine.burst(at, element, {
+          count: num('count', 24), speed: num('speed', 3), up: num('up', 1.2), gravity: num('gravity', 4), size: num('size', 0.11),
+          life: num('life', 0.7), spread: num('spread', 0.15), soft: p.soft === true, cone: num('cone', 1), direction,
+        });
+        break;
       }
+      case 'ring': engine.ring(at, element, { radius: num('radius', 1.6), duration: num('duration', 0.5), ground: p.ground !== false, from: num('from', 0.15), inward: p.inward === true }); break;
+      case 'pulse': engine.pulseRings(at, element, { radius: num('radius', 2), duration: num('duration', 1.2) }); break;
+      case 'circle': engine.circle(at, element, { radius: num('radius', 1.3), duration: num('duration', 1.1), spin: num('spin', 1.2), pulse: p.pulse === true }); break;
+      case 'pillar': engine.pillar(at, element, { radius: num('radius', 0.55), height: num('height', 9), duration: num('duration', 0.8) }); break;
+      case 'streak': engine.streak(at, to(), element, { width: num('width', 0.35), duration: num('duration', 0.25) }); break;
+      case 'bolt': engine.bolt(at, element, { from: step.to ? to() : undefined, duration: num('duration', 0.35), width: num('width', 0.07) }); break;
+      case 'shards': engine.shards(at, element, { count: num('count', 7), radius: num('radius', 0.8), height: num('height', 1.4), duration: num('duration', 0.9) }); break;
+      case 'dome': engine.dome(at, element, { radius: num('radius', 1.1), duration: num('duration', 1) }); break;
+      case 'orb': engine.orb(at.y < 0.5 ? at.clone().setY(0.9) : at, element, { radius: num('radius', 1.2), duration: num('duration', 0.5), implode: p.implode === true, dark: p.dark === true }); break;
+      case 'flame': engine.flame(at, { width: num('width', 1.2), height: num('height', 2.4), duration: num('duration', 0.9) }); break;
+      case 'motes': engine.motes(at, element, { count: num('count', 22), radius: num('radius', 0.6), rise: num('rise', 2.2), sink: p.sink === true }); break;
+      case 'smoke': engine.smoke(at.y < 0.3 ? at.clone().setY(0.4) : at, { count: num('count', 14), spread: num('spread', 0.35), size: num('size', 0.55) }); break;
+      case 'glow': engine.glow(at, element, num('size', 2), num('duration', 0.5)); break;
+      case 'decal': engine.decal(at, element, { radius: num('radius', 1) }); break;
+      case 'sheet': engine.sheet(at, String(p.id ?? ''), { size: num('size', 3), duration: num('duration', 0.8) }); break;
+      case 'shot': void engine.projectile(at, to(), element, { size: num('size', 0.5), speed: num('speed', 14), arc: num('arc', 0.6), streak: p.streak === true, smoke: p.smoke === true, trail: p.trail !== false, duration: typeof p.duration === 'number' ? p.duration : undefined }); break;
+      case 'converge': engine.converge(at, element, { count: num('count', 30), radius: num('radius', 2.4), duration: num('duration', 0.7), height: num('height', 1.6), size: num('size', 0.1) }); break;
+      case 'orbit': engine.orbit(at, element, { count: num('count', 12), radius: num('radius', 0.8), duration: num('duration', 1), rise: num('rise', 1.4), spin: num('spin', 4.2), size: num('size', 0.11), soft: p.soft === true }); break;
+      case 'fissure': engine.fissure(at, element, { radius: num('radius', 2.6), duration: num('duration', 1.6) }); break;
+      case 'rain': {
+        const width = num('width', 0.1), span = num('spread', 0.32), gap = num('gap', 0.06);
+        for (let i = 0; i < num('count', 2); i++) {
+          const hit = at.clone().add(new THREE.Vector3((Math.random() - 0.5) * span * 2, 0, (Math.random() - 0.5) * span * 2));
+          engine.after(i * gap, () => {
+            engine.streak(hit.clone().add(new THREE.Vector3(-1.2, 7, -1.6)), hit.clone().setY(0.1), element, { width, duration: num('duration', 0.2) });
+            engine.after(0.1, () => engine.burst(hit.clone().setY(0.2), 'earth', { count: 4, speed: 1.6, up: 1.6, gravity: 7, size: 0.09, life: 0.4 }));
+          });
+        }
+        break;
+      }
+      case 'light': engine.light(at.y < 0.4 ? at.clone().setY(1.1) : at, engine.palette(element).light, num('intensity', 14), num('duration', 0.5), num('distance', 9)); break;
+      default: break;
     }
   }
 }

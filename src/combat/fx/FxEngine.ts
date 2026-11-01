@@ -21,8 +21,8 @@ export interface FxHooks {
   /** Slow motion: FX/tween time scale for `duration` real seconds. */
   slowmo(scale: number, duration: number): void;
   speedLines(duration: number, color: string): void;
-  /** Optional camera punch toward a world point. */
-  punch?(point: THREE.Vector3, duration: number): void;
+  /** Optional camera punch toward a world point; `hold` stays close instead of pulling back to the field. */
+  punch?(point: THREE.Vector3, duration: number, hold?: boolean): void;
 }
 
 interface LiveEffect {
@@ -62,7 +62,7 @@ const RAMP_VERTEX = `varying vec2 vUv; void main(){ vUv = uv; gl_Position = proj
  * Gradient-map material: a grayscale intensity texture is mapped through the
  * palette ramp dark → edge → body → core, so one texture serves every element.
  */
-function rampMaterial(map: THREE.Texture, palette: FxPalette, options: { additive?: boolean; sweep?: boolean; bands?: number } = {}): THREE.ShaderMaterial {
+function rampMaterial(map: THREE.Texture, palette: FxPalette, options: { additive?: boolean; sweep?: boolean; bands?: number; radial?: boolean } = {}): THREE.ShaderMaterial {
   return new THREE.ShaderMaterial({
     uniforms: {
       uMap: { value: map },
@@ -74,15 +74,17 @@ function rampMaterial(map: THREE.Texture, palette: FxPalette, options: { additiv
       uBoost: { value: 1.25 },
       uSweep: { value: new THREE.Vector2(0, 1) },
       uBands: { value: options.bands ?? 6 },
+      uReveal: { value: 1 },
     },
     vertexShader: RAMP_VERTEX,
-    fragmentShader: `uniform sampler2D uMap; uniform vec3 uCore, uBody, uEdge, uDark; uniform float uOpacity, uBoost, uBands; uniform vec2 uSweep; varying vec2 vUv;
+    fragmentShader: `uniform sampler2D uMap; uniform vec3 uCore, uBody, uEdge, uDark; uniform float uOpacity, uBoost, uBands, uReveal; uniform vec2 uSweep; varying vec2 vUv;
     void main(){
       vec4 t = texture2D(uMap, vUv);
       float i = t.r;
       // crisp tone bands instead of airbrushed gradients: edges read sharp, like the pixel decor
       if (uBands > 0.5) i = floor(i * uBands + 0.35) / uBands;
       ${options.sweep ? 'float head = uSweep.x; float tail = uSweep.y; float u = vUv.x; float k = smoothstep(tail, tail + 0.18, u) * (1.0 - smoothstep(head, head + 0.02, u)); i *= k; i = mix(i, i * 1.25, smoothstep(head - 0.25, head, u));' : ''}
+      ${options.radial ? 'if (length(vUv - 0.5) * 2.0 > uReveal) discard;' : ''}
       vec3 c = i > 0.78 ? mix(uBody, uCore, (i - 0.78) / 0.22) : i > 0.45 ? mix(uEdge, uBody, (i - 0.45) / 0.33) : mix(uDark, uEdge, i / 0.45);
       float a = t.a * smoothstep(0.02, 0.2, i) * uOpacity;
       if (a < 0.004) discard;
@@ -216,7 +218,28 @@ function makeTextures() {
     }
     c.putImageData(img, 0, 0);
   }, true);
-  return { disc, ring, star, crescent, beam, runes, tile };
+  // Ground fissures (nearest): jagged cracks running out of the centre, with forks.
+  const cracks = canvasTexture(128, (c, s) => {
+    const img = c.createImageData(s, s);
+    const set = (x: number, y: number, v: number) => {
+      x = Math.round(x); y = Math.round(y);
+      if (x < 0 || y < 0 || x >= s || y >= s) return;
+      const i = (y * s + x) * 4; const val = Math.max(img.data[i] ?? 0, v);
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = val; img.data[i + 3] = 255;
+    };
+    const crack = (x: number, y: number, angle: number, length: number, value: number, seed: number) => {
+      let a = angle;
+      for (let k = 0; k < length; k++) {
+        a += (hash(seed + k * 0.37) - 0.5) * 0.7;
+        x += Math.cos(a); y += Math.sin(a);
+        set(x, y, value); if (length > 24) set(x + 1, y, value * 0.7);
+        if (length > 24 && k % 9 === 8) crack(x, y, a + (hash(seed + k) > 0.5 ? 0.8 : -0.8), length * 0.34, value * 0.8, seed + k * 3.1);
+      }
+    };
+    for (let k = 0; k < 9; k++) crack(s / 2, s / 2, (k / 9) * Math.PI * 2 + hash(k) * 0.4, 42 + hash(k * 2.3) * 18, 255, k * 11.7);
+    c.putImageData(img, 0, 0);
+  }, true);
+  return { disc, ring, star, crescent, beam, runes, tile, cracks };
 }
 
 // ---------------------------------------------------------------- engine
@@ -529,7 +552,7 @@ export class FxEngine {
 
   // ------------------------------------------------------------ ground & volumes
 
-  ring(position: Vec, element: FxElement, options: { radius?: number; duration?: number; ground?: boolean; from?: number; boost?: number } = {}): void {
+  ring(position: Vec, element: FxElement, options: { radius?: number; duration?: number; ground?: boolean; from?: number; boost?: number; inward?: boolean } = {}): void {
     const radius = options.radius ?? 1.6, duration = options.duration ?? 0.5;
     const material = rampMaterial(this.textures.ring, FX_PALETTES[element]);
     material.uniforms.uBoost!.value = options.boost ?? 2.3;
@@ -546,8 +569,9 @@ export class FxEngine {
         t += dt;
         const k = t / duration;
         if (options.ground === false) this.billboard(mesh, camera);
-        mesh.scale.setScalar(radius * (from + (1 - from) * easeOut(k)));
-        material.uniforms.uOpacity!.value = 1 - Math.pow(clamp01(k), 2);
+        // an inward ring collapses onto its centre: light being swallowed
+        mesh.scale.setScalar(radius * (options.inward ? 1 - (1 - from) * Math.pow(k, 2) : from + (1 - from) * easeOut(k)));
+        material.uniforms.uOpacity!.value = options.inward ? Math.min(1, k * 4) : 1 - Math.pow(clamp01(k), 2);
         return k < 1;
       },
       dispose: () => { this.root.remove(mesh); mesh.geometry.dispose(); material.dispose(); },
@@ -555,9 +579,9 @@ export class FxEngine {
   }
 
   /**
-   * Rotating pixel-rune seal on the ground. `pulse` (ultimates and boss
-   * signatures only) gives it a heartbeat: two quick flares per beat, each
-   * sending a ring of light out from the seal's rim.
+   * Rotating pixel-rune seal on the ground. `pulse` (boss charges) gives it a
+   * heartbeat of two quick flares per beat. A seal never spawns rings: every
+   * ring on the field is a step of its recipe, placed on purpose.
    */
   circle(position: Vec, element: FxElement, options: { radius?: number; duration?: number; spin?: number; pulse?: boolean } = {}): void {
     const radius = options.radius ?? 1.3, duration = options.duration ?? 1.1;
@@ -568,7 +592,7 @@ export class FxEngine {
     mesh.position.set(position.x, Math.max(0.05, position.y + 0.05), position.z);
     mesh.renderOrder = FX_LAYER.groundCircle;
     this.root.add(mesh);
-    let t = 0, beats = 0;
+    let t = 0;
     const spin = options.spin ?? 1.2;
     const period = PULSE_PERIOD;
     this.add({
@@ -583,11 +607,6 @@ export class FxEngine {
           const flare = Math.exp(-Math.pow(phase / 0.06, 2)) + 0.7 * Math.exp(-Math.pow((phase - 0.22) / 0.06, 2));
           boost += flare * 1.8;
           grow *= 1 + flare * 0.035;
-          const beat = Math.floor(t / period);
-          if (beat > beats) {
-            beats = beat;
-            this.ring(new THREE.Vector3(position.x, Math.max(0.06, position.y + 0.06), position.z), element, { radius: radius * 1.55, duration: 0.6, from: 0.72, boost: 1.7 });
-          }
         }
         mesh.scale.setScalar(grow);
         material.uniforms.uBoost!.value = boost;
@@ -684,10 +703,10 @@ export class FxEngine {
   }
 
   /** Orb flying from → to (optional arc); resolves on arrival. */
-  projectile(from: Vec, to: Vec, element: FxElement, options: { size?: number; speed?: number; arc?: number; trail?: boolean; streak?: boolean } = {}): Promise<void> {
+  projectile(from: Vec, to: Vec, element: FxElement, options: { size?: number; speed?: number; arc?: number; trail?: boolean; streak?: boolean; smoke?: boolean; duration?: number } = {}): Promise<void> {
     const size = options.size ?? 0.7, speed = options.speed ?? 14, arc = options.arc ?? 0.6;
     const distance = from.distanceTo(to);
-    const duration = Math.max(0.12, distance / speed);
+    const duration = options.duration ?? Math.max(0.12, distance / speed);
     const pos = from.clone();
     return new Promise((resolve) => {
       const material = rampMaterial(this.textures.disc, FX_PALETTES[element]);
@@ -712,6 +731,7 @@ export class FxEngine {
           if (options.trail !== false && trailClock > 0.03) {
             trailClock = 0;
             this.burst(pos.clone(), element, { count: 3, speed: 0.4, up: 0.2, gravity: 0.5, life: 0.35, size: size * 0.16, spread: size * 0.15 });
+            if (options.smoke) this.smoke(pos, { count: 2, spread: size * 0.2, size: size * 0.4, life: 0.8 });
           }
           if (k >= 1 && !done) { done = true; resolve(); }
           return k < 1;
@@ -931,11 +951,128 @@ export class FxEngine {
     return true;
   }
 
+  /** A point cloud of opaque (or soft) pixels whose motion the caller drives. */
+  private cloud(count: number, colors: readonly string[], soft: boolean) {
+    const geometry = new THREE.BufferGeometry();
+    const pos = new Float32Array(count * 3), col = new Float32Array(count * 3), size = new Float32Array(count), alpha = new Float32Array(count);
+    const palette = colors.map((c) => new THREE.Color(c));
+    for (let i = 0; i < count; i++) {
+      const c = palette[i % palette.length]!;
+      col[i * 3] = c.r * 1.6; col[i * 3 + 1] = c.g * 1.6; col[i * 3 + 2] = c.b * 1.6;
+    }
+    geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    geometry.setAttribute('aColor', new THREE.BufferAttribute(col, 3));
+    geometry.setAttribute('aSize', new THREE.BufferAttribute(size, 1));
+    geometry.setAttribute('aAlpha', new THREE.BufferAttribute(alpha, 1));
+    const material = new THREE.ShaderMaterial({
+      uniforms: { uScale: { value: 900 }, uSoft: { value: soft ? 1 : 0 } },
+      vertexShader: POINTS_VERTEX, fragmentShader: POINTS_FRAGMENT,
+      transparent: true, depthWrite: false, blending: soft ? THREE.AdditiveBlending : THREE.NormalBlending, toneMapped: false, fog: false,
+    });
+    const points = new THREE.Points(geometry, material);
+    points.frustumCulled = false;
+    points.renderOrder = FX_LAYER.sparks;
+    this.root.add(points);
+    return {
+      pos, size, alpha,
+      flush: () => { for (const key of ['position', 'aSize', 'aAlpha']) geometry.attributes[key]!.needsUpdate = true; },
+      dispose: () => { this.root.remove(points); geometry.dispose(); material.dispose(); },
+    };
+  }
+
+  /** Pixels drawn in from a wide ring onto a point: energy being gathered or devoured. */
+  converge(position: Vec, element: FxElement, options: { count?: number; radius?: number; duration?: number; size?: number; height?: number } = {}): void {
+    const pal = FX_PALETTES[element];
+    const count = Math.max(4, Math.round((options.count ?? 30) * (this.reduced ? 0.45 : 1)));
+    const radius = options.radius ?? 2.4, duration = options.duration ?? 0.7, height = options.height ?? 1.6, base = options.size ?? 0.1;
+    const cloud = this.cloud(count, [pal.core, pal.body, pal.edge], false);
+    const seeds = Array.from({ length: count }, (_, i) => ({ a: hash(i * 3.3 + this.clock) * Math.PI * 2, r: radius * (0.55 + hash(i * 1.9) * 0.45), y: hash(i * 5.7) * height, delay: hash(i * 2.1) * 0.45 }));
+    let t = 0;
+    this.add({
+      update: (dt) => {
+        t += dt;
+        const k = t / duration;
+        seeds.forEach((seed, i) => {
+          const local = (k - seed.delay) / (1 - seed.delay);
+          if (local < 0 || local >= 1) { cloud.alpha[i] = 0; return; }
+          const pull = 1 - local * local * local;
+          cloud.pos[i * 3] = position.x + Math.cos(seed.a + local * 1.4) * seed.r * pull;
+          cloud.pos[i * 3 + 1] = position.y + seed.y * pull;
+          cloud.pos[i * 3 + 2] = position.z + Math.sin(seed.a + local * 1.4) * seed.r * pull;
+          cloud.alpha[i] = 1;
+          cloud.size[i] = base * (0.7 + (1 - pull) * 0.8);
+        });
+        cloud.flush();
+        return k < 1;
+      },
+      dispose: () => cloud.dispose(),
+    });
+  }
+
+  /** Pixels circling a point and climbing slowly: runes, petals, gathered light. */
+  orbit(position: Vec, element: FxElement, options: { count?: number; radius?: number; duration?: number; rise?: number; spin?: number; size?: number; soft?: boolean } = {}): void {
+    const pal = FX_PALETTES[element];
+    const count = Math.max(3, Math.round((options.count ?? 12) * (this.reduced ? 0.6 : 1)));
+    const radius = options.radius ?? 0.8, duration = options.duration ?? 1, rise = options.rise ?? 1.4, spin = options.spin ?? 4.2, base = options.size ?? 0.11;
+    const cloud = this.cloud(count, [pal.core, pal.body], options.soft ?? false);
+    let t = 0;
+    this.add({
+      update: (dt) => {
+        t += dt;
+        const k = t / duration;
+        for (let i = 0; i < count; i++) {
+          const a = (i / count) * Math.PI * 2 + t * spin;
+          // two loose tiers, so the orbit reads as a helix and not as a flat ring
+          const tier = i % 2 ? 0.5 : 0;
+          cloud.pos[i * 3] = position.x + Math.cos(a) * radius * (1 - k * 0.25);
+          cloud.pos[i * 3 + 1] = position.y + (k + tier * (1 - k)) * rise;
+          cloud.pos[i * 3 + 2] = position.z + Math.sin(a) * radius * (1 - k * 0.25);
+          cloud.alpha[i] = (k < 0.12 ? k / 0.12 : 1) * (k > 0.7 ? (1 - k) / 0.3 : 1);
+          cloud.size[i] = base;
+        }
+        cloud.flush();
+        return k < 1;
+      },
+      dispose: () => cloud.dispose(),
+    });
+  }
+
+  /** Cracks tearing out of a point across the floor, glowing, then going dark. */
+  fissure(position: Vec, element: FxElement, options: { radius?: number; duration?: number } = {}): void {
+    const radius = options.radius ?? 2.6, duration = options.duration ?? 1.6;
+    const roll = hash(this.clock * 7) * Math.PI * 2;
+    const layer = (additive: boolean, y: number, order: number) => {
+      const material = rampMaterial(this.textures.cracks, FX_PALETTES[element], { additive, radial: true, bands: 0 });
+      material.uniforms.uBoost!.value = additive ? 2.4 : 0.22;
+      const mesh = new THREE.Mesh(new THREE.PlaneGeometry(radius * 2, radius * 2), material);
+      mesh.rotation.set(-Math.PI / 2, 0, roll);
+      mesh.position.set(position.x, y, position.z);
+      mesh.renderOrder = order;
+      this.root.add(mesh);
+      return { mesh, material };
+    };
+    const dark = layer(false, 0.045, FX_LAYER.groundDecal), glow = layer(true, 0.055, FX_LAYER.groundCircle);
+    let t = 0;
+    this.add({
+      update: (dt) => {
+        t += dt;
+        const k = t / duration;
+        const reveal = easeOut(k * 7);
+        dark.material.uniforms.uReveal!.value = reveal;
+        glow.material.uniforms.uReveal!.value = reveal;
+        glow.material.uniforms.uOpacity!.value = Math.max(0, 1 - k * 2.2);
+        dark.material.uniforms.uOpacity!.value = k > 0.6 ? (1 - k) / 0.4 : 1;
+        return k < 1;
+      },
+      dispose: () => { for (const { mesh, material } of [dark, glow]) { this.root.remove(mesh); mesh.geometry.dispose(); material.dispose(); } },
+    });
+  }
+
   /** Flashes one battle-grid cell: the exact tiles an action hits light up under the effect. */
   cellFlash(position: Vec, element: FxElement, options: { size?: number; duration?: number } = {}): void {
     const size = options.size ?? 1.1, duration = options.duration ?? 0.5;
     const material = rampMaterial(this.textures.tile, FX_PALETTES[element], { bands: 0 });
-    material.uniforms.uBoost!.value = 2.6;
+    material.uniforms.uBoost!.value = 1.7;
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(size, size), material);
     mesh.rotation.x = -Math.PI / 2;
     mesh.position.set(position.x, 0.045, position.z);

@@ -10,11 +10,12 @@ import type { FieldBeat } from './fxIntensity';
  * Every VFX preset id used by the combat runtime resolves to a recipe here:
  * explicit entries first, then a family chosen from the preset tags.
  */
-export type FxAnchor = 'source' | 'sourceChest' | 'sourceGround' | 'target' | 'targetChest' | 'targetGround' | 'point' | 'pointSky' | 'sky';
+export type FxAnchor = 'source' | 'sourceChest' | 'sourceGround' | 'sourceSky' | 'target' | 'targetChest' | 'targetGround' | 'targetSky' | 'point' | 'pointSky' | 'sky' | 'far' | 'farChest' | 'cell';
 
 export type FxStepKind =
   | 'slash' | 'star' | 'burst' | 'ring' | 'circle' | 'pillar' | 'streak' | 'bolt' | 'shards' | 'dome' | 'orb'
   | 'flame' | 'motes' | 'smoke' | 'glow' | 'decal' | 'light' | 'sheet' | 'pulse'
+  | 'shot' | 'converge' | 'orbit' | 'fissure' | 'rain'
   | 'shake' | 'flash' | 'sfx' | 'slowmo' | 'speedLines' | 'punch';
 
 export interface FxStep {
@@ -30,6 +31,8 @@ export interface FxStep {
   /** Starts after the projectile lands. */
   afterHit?: boolean;
   element?: FxElement;
+  /** Two elements taking turns over the places of the step (duality effects). */
+  alternate?: readonly [FxElement, FxElement];
   p?: Record<string, number | string | boolean>;
 }
 
@@ -42,6 +45,8 @@ export interface FxProjectile {
   size?: number;
   arc?: number;
   streak?: boolean;
+  /** Trails smoke as well as sparks (shells, meteors). */
+  smoke?: boolean;
   sfx?: string;
 }
 
@@ -65,6 +70,15 @@ export interface FxRecipe {
    * finale). Martial actions never do. Inferred from the steps when absent.
    */
   magic?: boolean;
+  /**
+   * A skill's own signature (fxSkills.ts): played exactly as written, with no
+   * scaling by AP, no shared impact accents and no shared finale.
+   */
+  authored?: boolean;
+  /** No floor mark at all, the AP accents included (basic attacks). */
+  noFloor?: boolean;
+  /** Colour of the hit cells, when it differs from the recipe's element. */
+  flashElement?: FxElement;
 }
 
 type Steps = FxStep[];
@@ -374,7 +388,7 @@ function arcaneFamily(id: string, scale = 1): FxRecipe {
 function charge(element: FxElement, length = 0.6, magic = true): Steps {
   if (!magic) return [
     s(0, 'sfx', undefined, { id: 'ultimate_charge' }),
-    s(0, 'pulse', 'sourceGround', { radius: 2.3, duration: length + 0.45 }, { element }),
+    s(0, 'pulse', 'sourceGround', { radius: 2.3, duration: length }, { element }),
     s(0, 'glow', 'sourceChest', { size: 2.3, duration: length + 0.2 }, { element }),
     s(0.02, 'burst', 'sourceGround', { count: 22, speed: 2.6, up: 0.8, gravity: 3, size: 0.13, soft: true }, { element: 'earth' }),
     s(0.05, 'motes', 'source', { count: 34, radius: 0.7, rise: 3.6 }, { element }),
@@ -656,7 +670,7 @@ const EXPLICIT: Record<string, () => FxRecipe> = {
   }),
   kill_spark: () => ({
     id: 'kill_spark', element: 'gold', impactAt: 0, duration: 0.9,
-    steps: [s(0, 'burst', 'targetChest', { count: 34, speed: 3.6, size: 0.12 }, { element: 'gold' }), s(0, 'ring', 'targetGround', { radius: 1.6 }, { element: 'gold' }), s(0, 'sfx', undefined, { id: 'ko' })],
+    steps: [s(0, 'burst', 'targetChest', { count: 34, speed: 3.6, size: 0.12 }, { element: 'gold' }), s(0, 'sfx', undefined, { id: 'ko' })],
   }),
   // pilot presets used by the hero skill presentations
   pilot_w_lion_surge: () => ULTIMATES.ultimate_lion_surge!(),
@@ -697,13 +711,13 @@ const EXPLICIT: Record<string, () => FxRecipe> = {
   basic_greatsword_hit: () => slashFamily('basic_greatsword_hit', 'steel', 1.6, 'heavy_slash'),
   basic_holy_mace_hit: () => ({ ...bluntFamily('basic_holy_mace_hit', 'holy', 1.1) }),
   basic_scythe_hit: () => slashFamily('basic_scythe_hit', 'shadow', 1.4, 'heavy_slash'),
-  basic_long_spear_hit: () => thrustFamily('basic_long_spear_hit', 'steel', 1),
-  basic_grimoire_hit: () => boltFamily('basic_grimoire_hit', 'arcane', 0.7, false),
-  basic_crosier_hit: () => boltFamily('basic_crosier_hit', 'holy', 0.6, false),
-  basic_rapier_hit: () => thrustFamily('basic_rapier_hit', 'steel', 0.7),
+  basic_long_spear_hit: () => thrustFamily('basic_long_spear_hit', 'sky', 1),
+  basic_grimoire_hit: () => boltFamily('basic_grimoire_hit', 'shadow', 0.7, false),
+  basic_crosier_hit: () => boltFamily('basic_crosier_hit', 'heal', 0.6, false),
+  basic_rapier_hit: () => thrustFamily('basic_rapier_hit', 'blood', 0.7),
   basic_wand_hit: () => boltFamily('basic_wand_hit', 'arcane', 0.6, false),
-  basic_longbow_hit: () => arrowFamily('basic_longbow_hit'),
-  basic_shuriken_hit: () => ({ ...arrowFamily('basic_shuriken_hit', 'steel', 0.6), projectile: { at: 0.02, from: 'sourceChest', to: 'targetChest', element: 'steel', speed: 20, size: 0.5, arc: 0.1, sfx: 'throw' } }),
+  basic_longbow_hit: () => arrowFamily('basic_longbow_hit', 'wind'),
+  basic_shuriken_hit: () => ({ ...arrowFamily('basic_shuriken_hit', 'shadow', 0.6), projectile: { at: 0.02, from: 'sourceChest', to: 'targetChest', element: 'shadow', speed: 20, size: 0.5, arc: 0.1, sfx: 'throw' } }),
   basic_dagger_hit: () => slashFamily('basic_dagger_hit', 'steel', 0.6, 'slash', 2),
   basic_hand_cannon_hit: () => ({ id: 'basic_hand_cannon_hit', element: 'fire', impactAt: 0.02, duration: 0.9, projectile: { at: 0.02, from: 'sourceChest', to: 'targetChest', element: 'fire', speed: 26, size: 0.45, arc: 0.05, sfx: 'cannon' }, steps: explosion(0, 'fire', 0.8, 'targetChest', { afterHit: true }) }),
 };
@@ -751,7 +765,7 @@ const GROUND_MARKS: ReadonlySet<FxStepKind> = new Set<FxStepKind>(['circle', 'ri
  */
 export function withoutGroundMarks(recipe: FxRecipe): FxRecipe {
   const steps = recipe.steps.filter((step) => !(GROUND_MARKS.has(step.kind) && GROUND_ANCHORS.has(step.anchor) && step.p?.ground !== false));
-  return steps.length === recipe.steps.length ? recipe : { ...recipe, steps };
+  return { ...recipe, steps, noFloor: true };
 }
 
 export function listExplicitFxRecipes(): string[] {

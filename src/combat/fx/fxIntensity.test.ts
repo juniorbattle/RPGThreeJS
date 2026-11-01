@@ -28,8 +28,7 @@ describe('FX weight by AP cost', () => {
     expect(cellFlame.p!.width).toBe(1.05); // a cell's footprint, whatever the cost
     expect(cellFlame.p!.height as number).toBeGreaterThan(2.6);
     const seal = scaleStep({ at: 0, kind: 'circle', p: { radius: 1.6 } }, fxIntensity({ ultimate: true }));
-    expect(seal.p!.pulse).toBe(true);
-    expect(scaleStep({ at: 0, kind: 'circle', p: { radius: 1.6 } }, fxIntensity({ ap: 5 })).p!.pulse).toBeUndefined();
+    expect(seal.p!.pulse).toBeUndefined(); // a seal only pulses when its recipe says so
     const flash = scaleStep({ at: 0, kind: 'flash', p: { opacity: 0.3 } }, fxIntensity({ ultimate: true }));
     expect(flash.p!.opacity as number).toBeLessThanOrEqual(0.34);
   });

@@ -7,7 +7,7 @@ const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM 
 const page = await browser.newPage({ viewport: { width: 1440, height: 810 } });
 const logs = [];
 page.on('pageerror', (e) => logs.push('pageerror: ' + e.message));
-await page.goto(`http://127.0.0.1:5173/legacy-combat.html?qa=1&scene=${scene}&dtcap=0.5&son=0`, { waitUntil: 'domcontentloaded' });
+await page.goto(`http://localhost:5173/legacy-combat.html?qa=1&scene=${scene}&dtcap=0.5&son=0`, { waitUntil: 'domcontentloaded' });
 await page.waitForTimeout(8000);
 await page.evaluate(() => { document.querySelectorAll('#tutorial button, #boss-tutorial button').forEach((b) => b.click()); document.querySelector('[data-qa=prepare]')?.click(); });
 await page.waitForTimeout(2500);

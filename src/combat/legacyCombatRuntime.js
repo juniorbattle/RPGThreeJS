@@ -33,6 +33,7 @@ import { CombatCameraDirector, shotFor } from './camera/CombatCameraDirector';
 import { FxEngine } from './fx/FxEngine';
 import { FxDirector } from './fx/FxDirector';
 import { resolveFxRecipe, withoutGroundMarks } from './fx/fxRecipes';
+import { hasSkillMoveFx, skillFxRecipe, skillMoveFxRecipe } from './fx/fxSkills';
 import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
 import { isExhausted } from './combatExhaustion';
 import { resolvePixelSheet, pixelSheetVisibleBounds, PIXEL_PX_PER_UNIT } from './pixel/PixelSpriteSheets';
@@ -191,7 +192,7 @@ const fxEngine=new FxEngine(scene,camera,{
   sfx:()=>{},
   slowmo:(scale,duration)=>{ if(REDUCED_GRAPHICS)return; G.timeScale=scale; G.slowUntil=performance.now()+duration*1000; },
   speedLines:(duration,color)=>showSpeedLines(duration,color),
-  punch:(point,duration)=>cameraPunch(point,duration),
+  punch:(point,duration,hold)=>cameraPunch(point,duration,hold),
 },3);
 const fxDirector=new FxDirector(fxEngine);
 let cameraBaseFov=COMBAT_PRESENTATION.camera.fov;
@@ -1706,7 +1707,7 @@ function fxPower(spec){
 /** Plays the procedural FX recipe for an action; returns null when no preset applies. */
 function playActionFx(spec,u,targets,cx,cz,visualContext={}){
   const presetId=getActionVfxPreset(spec,u); if(!presetId||!u||!u.grp)return null;
-  const preset=getVfxPreset(presetId); const resolvedRecipe=resolveFxRecipe(presetId,preset?.tags||[]); const recipe=spec.key==='attack'?withoutGroundMarks(resolvedRecipe):resolvedRecipe;
+  const preset=getVfxPreset(presetId); const resolvedRecipe=resolveFxRecipe(presetId,preset?.tags||[]); const recipe=skillFxRecipe(spec.key)||(spec.key==='attack'?withoutGroundMarks(resolvedRecipe):resolvedRecipe);
   const point=visualContext.targetPoint?visualContext.targetPoint.clone():new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz));
   const cells=(spec.radius>=1||spec.shape)?aoeCells(u,spec,cx,cz).filter(([gx,gz])=>inBounds(gx,gz)).map(([gx,gz])=>new THREE.Vector3(wX(gx),tileTop(gx,gz),wZ(gz))):[];
   const refs=targets.filter(t=>t&&t.grp).map(fxUnitRef);
@@ -1724,14 +1725,15 @@ function showSpeedLines(duration,color){
 }
 /**
  * Spotlight impact punch: a fast close-up on the hit, then a whip out to the
- * field shot, so the ultimate's wave is seen rolling over the whole grid.
+ * field shot, so the whole result is seen. `hold` keeps the close-up: a
+ * single-target ultimate ends on its target.
  */
-function cameraPunch(point,duration){
+function cameraPunch(point,duration,hold=false){
   if(!G.spotlight||G.spotlight.kind!=='spotlight'||REDUCED_GRAPHICS)return;
   const actor=unitShotPoint(G.active)||{x:point.x,z:point.z};
   void cameraDirector.goTo(shotFor('impact',cameraDirector.baseShot,actor,{x:point.x,y:Math.max(0,point.y-1),z:point.z}),0.1,'impact')
     .then(()=>wait(Math.max(0.12,duration*0.3)))
-    .then(()=>{ if(G.spotlight&&cameraDirector.kind==='impact'){ spotlightRevealField(); return cameraDirector.goTo(shotFor('field',cameraDirector.baseShot,actor,{x:0,z:0}),0.36,'field'); } });
+    .then(()=>{ if(!hold&&G.spotlight&&cameraDirector.kind==='impact'){ spotlightRevealField(); return cameraDirector.goTo(shotFor('field',cameraDirector.baseShot,actor,{x:0,z:0}),0.36,'field'); } });
 }
 /** Field shot: the faded bystanders come back, the wave washes over the whole battlefield. */
 function spotlightRevealField(){
@@ -1762,6 +1764,13 @@ function playActionVfxAt(presetId,u,targetPoint,spec={}){
   const playback=fxDirector.play(resolveFxRecipe(presetId,preset?.tags||[]),{source:fxUnitRef(u),targets:[{position:point.clone(),height:1.6}],point,cells:[point.clone()],power:fxPower(spec)});
   void playback.completion.catch(error=>console.warn('[CombatFx] Movement playback failed safely.',error));
   return {played:true,presetId,impactTime:playback.impactTime,completion:playback.completion};
+}
+/** The departure or arrival of a moving skill, played on the unit itself. */
+function playMoveFx(u,point,spec,phase){
+  const recipe=skillMoveFxRecipe(spec.key,phase); if(!recipe)return false;
+  const ref=fxUnitRef(u),playback=fxDirector.play(recipe,{source:ref,targets:[ref],point:point.clone(),cells:[point.clone()],power:fxPower(spec)});
+  void playback.completion.catch(error=>console.warn('[CombatFx] Movement playback failed safely.',error));
+  return true;
 }
 function playFeedbackVfx(presetId,source,target){
   if(!target)return false;
@@ -1820,18 +1829,19 @@ async function doMove(u,spec,cx,cz){ setFacing(u,cx,cz); const c=cellAt(cx,cz); 
   const motion=scaledSpriteMotionPreset(SPRITE_MOTION_PRESETS[getActionMotionPreset(spec)]||SPRITE_MOTION_PRESETS.melee_light,getActionPresentationTuning(spec));
   actionCam(head); logMsg(u.name+' → '+spec.name);
   if(spec.mode==='teleport'){
-    const departure=u.grp.position.clone().add(new THREE.Vector3(0,0.9,0)),preset=getActionVfxPreset(spec,u);
-    if(preset==='teleport_burst')playActionVfxAt(preset,u,departure,spec); else vfx('dark',departure);
-    if(preset!=='teleport_burst')screenFlash('#b9a0ff',0.14); await tweenP(u.mat,{opacity:0},motion.cast,easeOutCubic); placeUnit(u,cx,cz,true);
-    if(preset==='teleport_burst')playActionVfxAt(preset,u,head,spec); else vfx('dark',head);
-    if(preset!=='teleport_burst')screenFlash('#9fe7ff',0.16); await tweenP(u.mat,{opacity:1},motion.recoil,easeOutCubic);
+    const departure=u.grp.position.clone().add(new THREE.Vector3(0,0.9,0)),preset=getActionVfxPreset(spec,u),ownFx=hasSkillMoveFx(spec.key),shared=!ownFx&&preset==='teleport_burst';
+    if(ownFx)playMoveFx(u,departure,spec,'depart'); else if(shared)playActionVfxAt(preset,u,departure,spec); else vfx('dark',departure);
+    if(!ownFx&&!shared)screenFlash('#b9a0ff',0.14); await tweenP(u.mat,{opacity:0},motion.cast,easeOutCubic); placeUnit(u,cx,cz,true);
+    if(ownFx)playMoveFx(u,head,spec,'arrive'); else if(shared)playActionVfxAt(preset,u,head,spec); else vfx('dark',head);
+    if(!ownFx&&!shared)screenFlash('#9fe7ff',0.16); await tweenP(u.mat,{opacity:1},motion.recoil,easeOutCubic);
   }
   else if(spec.mode==='leap'){
-    const from=u.grp.position.clone(); placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:(from.x+dest.x)/2,y:Math.max(from.y,dest.y)+motion.jumpHeight,z:(from.z+dest.z)/2},motion.jumpUp,easeOutCubic); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.jumpDown,easeInOut);
-    if(!playActionVfxAt(getActionVfxPreset(spec,u),u,head,spec)&&spec.key!=='ar_explosive_retreat')vfx('hit',head);
-    if(spec.key!=='ar_explosive_retreat')screenShake(0.32,0.22);
+    const from=u.grp.position.clone(),ownFx=hasSkillMoveFx(spec.key); if(ownFx)playMoveFx(u,from,spec,'depart'); placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:(from.x+dest.x)/2,y:Math.max(from.y,dest.y)+motion.jumpHeight,z:(from.z+dest.z)/2},motion.jumpUp,easeOutCubic); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.jumpDown,easeInOut);
+    if(ownFx)playMoveFx(u,head,spec,'arrive');
+    else { if(!playActionVfxAt(getActionVfxPreset(spec,u),u,head,spec)&&spec.key!=='ar_explosive_retreat')vfx('hit',head);
+      if(spec.key!=='ar_explosive_retreat')screenShake(0.32,0.22); }
   }
-  else { placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.dash||0.2,easeOutCubic); screenShake(0.5,0.3); if(!playActionVfxAt(getActionVfxPreset(spec,u),u,head,spec)){ screenFlash('#fff0b0',0.16); vfx('hit',head); }
+  else { const ownFx=hasSkillMoveFx(spec.key); if(ownFx)playMoveFx(u,u.grp.position.clone(),spec,'depart'); placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.dash||0.2,easeOutCubic); screenShake(0.5,0.3); if(ownFx)playMoveFx(u,head,spec,'arrive'); else if(!playActionVfxAt(getActionVfxPreset(spec,u),u,head,spec)){ screenFlash('#fff0b0',0.16); vfx('hit',head); }
     if(spec.impact){ const hits=aliveUnits().filter(t=>t.team!==u.team&&(Math.abs(t.gx-cx)+Math.abs(t.gz-cz)===1)); for(const t of hits){ const impactSpec={type:'phys',power:spec.power||8}; const crit=tacticalRnd()<critChance(u,t,impactSpec); let {dmg}=computeDamage(u,t,impactSpec); if(crit)dmg=Math.round(dmg*1.5); floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':'#ffffff',crit); if(crit){ if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); } logMsg('Coup critique !'); } await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.impact.status)applyStatus(t,spec.impact.status,spec.impact.statusTurns); await wait(0.06); } } }
   await wait(0.12); }
 function unitCenter(u){ return {gx:u.size>1?bossCenterGX(u):u.gx,gz:u.size>1?bossCenterGZ(u):u.gz}; }
@@ -1864,8 +1874,9 @@ async function swapUnits(a,b,spec={}){
   const aPos={gx:a.gx,gz:a.gz},bPos={gx:b.gx,gz:b.gz};
   try{
     const aDeparture=a.grp.position.clone().add(new THREE.Vector3(0,0.85,0)),bDeparture=b.grp.position.clone().add(new THREE.Vector3(0,0.85,0));
-    const preset=getActionVfxPreset(spec,a);
-    if(preset==='teleport_burst'){ playActionVfxAt(preset,a,aDeparture,spec); playActionVfxAt(preset,b,bDeparture,spec); }
+    const preset=getActionVfxPreset(spec,a),ownFx=hasSkillMoveFx(spec.key);
+    if(ownFx){ playMoveFx(a,aDeparture,spec,'depart'); playMoveFx(b,bDeparture,spec,'depart'); }
+    else if(preset==='teleport_burst'){ playActionVfxAt(preset,a,aDeparture,spec); playActionVfxAt(preset,b,bDeparture,spec); }
     else { vfx('dark',aDeparture); vfx('dark',bDeparture); }
     killSpriteMotion(a); killSpriteMotion(b);
     await Promise.all([tweenP(a.mat,{opacity:0.2},0.12,easeOutCubic),tweenP(b.mat,{opacity:0.2},0.12,easeOutCubic)]);
@@ -1873,7 +1884,8 @@ async function swapUnits(a,b,spec={}){
     a.gx=bPos.gx; a.gz=bPos.gz; b.gx=aPos.gx; b.gz=aPos.gz;
     a.grp.position.set(wX(a.gx),bCell.topY,wZ(a.gz)); b.grp.position.set(wX(b.gx),aCell.topY,wZ(b.gz));
     const aArrival=a.grp.position.clone().add(new THREE.Vector3(0,0.85,0)),bArrival=b.grp.position.clone().add(new THREE.Vector3(0,0.85,0));
-    if(preset==='teleport_burst'){ playActionVfxAt(preset,a,aArrival,spec); playActionVfxAt(preset,b,bArrival,spec); }
+    if(ownFx){ playMoveFx(a,aArrival,spec,'arrive'); playMoveFx(b,bArrival,spec,'arrive'); }
+    else if(preset==='teleport_burst'){ playActionVfxAt(preset,a,aArrival,spec); playActionVfxAt(preset,b,bArrival,spec); }
     else { vfx('dark',aArrival); vfx('dark',bArrival); }
     await Promise.all([tweenP(a.mat,{opacity:1},0.14,easeOutCubic),tweenP(b.mat,{opacity:1},0.14,easeOutCubic)]);
     return true;
@@ -2684,11 +2696,19 @@ function resetQaMotion(){ clearQaBossIntentPreview(); for(const unit of G.units)
 const STAGE_QA_ACTIONS=[
   {key:'attack',label:'Stage: Attaque'},
   {key:'w_lion_surge',label:'Ultime: Lion'},
+  {key:'p_radiant_judgement',label:'Ultime: Jugement'},
+  {key:'d_devouring_eclipse',label:'Ultime: Éclipse'},
+  {key:'l_firmament_lance',label:'Ultime: Lance'},
   {key:'n_dark_meteor',label:'Ultime: Météore'},
   {key:'w_miracle',label:'Ultime: Miracle'},
+  {key:'r_perfect_duality',label:'Ultime: Dualité'},
+  {key:'e_absolute_harmony',label:'Ultime: Harmonie'},
+  {key:'a_zenith_arrow',label:'Ultime: Zénith'},
+  {key:'ni_silent_assassin',label:'Ultime: Assassinat'},
+  {key:'ro_fault_breaker',label:'Ultime: Casse-Faille'},
+  {key:'ar_artillery_barrage',label:'Ultime: Barrage'},
   {key:'a_arrow_rain',label:'Pluie de flèches'},
   {key:'n_flame_wave',label:'Stage: Vague de Flammes'},
-  {key:'d_devouring_eclipse',label:'Stage: Éclipse Dévorante'},
   {key:'__qa_multi_target',label:'Stage QA: Multi-cibles'},
   {key:'__qa_support_group',label:'Stage QA: Soin de groupe'}
 ];
@@ -2707,7 +2727,8 @@ async function playStageQaScenario(actionKey){
     await executeAction(owner,spec,cx,cz);
     return;
   }
-  const owner=actionKey==='attack'?qaMotionUnit():G.units.find(unit=>unit.alive&&Array.isArray(unit.skills)&&unit.skills.includes(actionKey));
+  // a skill whose class is not deployed plays from the first hero, so every action can be checked
+  const owner=actionKey==='attack'?qaMotionUnit():G.units.find(unit=>unit.alive&&Array.isArray(unit.skills)&&unit.skills.includes(actionKey))||aliveUnits('player')[0];
   if(!owner||!owner.alive){ console.warn('[Stage QA] Aucune unité vivante ne possède',actionKey); return; }
   const enemyTeam=owner.team==='player'?'foe':'player';
   const target=aliveUnits(enemyTeam)[0]||aliveUnits(owner.team).find(unit=>unit!==owner);
@@ -2922,6 +2943,19 @@ async function main(){ applyGraphics(); disposeMotionPreference=onReducedMotionC
       if(area>0){ for(let gx=target.gx-area;gx<=target.gx+area;gx++)for(let gz=target.gz-area;gz<=target.gz+area;gz++)if(inBounds(gx,gz)&&Math.abs(gx-target.gx)+Math.abs(gz-target.gz)<=area)cells.push(new THREE.Vector3(wX(gx),tileTop(gx,gz),wZ(gz))); }
       const playback=fxDirector.play(recipe,{source:fxUnitRef(source),targets:[fxUnitRef(target)],point,cells:cells.length?cells:[point.clone()],power,field:fxField()});
       return {impactTime:playback.impactTime,duration:playback.duration,weight:playback.weight};
+    };
+    _qaHelpers.stagePlay=(key)=>playStageQaScenario(key);
+    // Skill gallery: plays a hero skill's real recipe through the combat path, from its owner onto real targets.
+    _qaHelpers.fxSkill=(key,facing={})=>{
+      const def=SKILL_MAP.get(key); if(!def)return null;
+      const heroes=aliveUnits('player'),foes=aliveUnits('foe');
+      const owner=heroes.find(unit=>(unit.skills||[]).includes(key))||heroes[0];
+      const foe=foes[facing.foe||0]||foes[0]; if(!owner||!foe)return null;
+      const spec={...def,key,ap:def.ap},ally=heroes.find(unit=>unit!==owner)||owner;
+      const helpful=spec.support&&!spec.offensive,mark=spec.self?owner:helpful?ally:foe;
+      const targets=(spec.self||helpful||spec.radius||spec.shape)?affectedUnits(owner,spec,mark.gx,mark.gz):[mark];
+      const played=playActionFx(spec,owner,targets.length?targets:[mark],mark.gx,mark.gz);
+      return played&&{impactTime:played.impactTime,weight:played.weight,duration:fxEngine.time,owner:owner.name,targets:targets.length};
     };
     // Frozen FX clock for exact-moment captures: fxFreeze(true), then fxAdvance(seconds) in 1/60 steps.
     _qaHelpers.unitVisuals=()=>G.units.map(u=>({name:u.name,alive:u.alive,vis:u.grp.visible,sprVis:u.spr?.visible,op:+(u.mat?.opacity??-1).toFixed(2),pos:u.grp.position.toArray().map(v=>+v.toFixed(2)),anim:u.pixelRig?.clock?.name??u._pixelAnim??null}));

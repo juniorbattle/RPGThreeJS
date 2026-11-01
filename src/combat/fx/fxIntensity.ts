@@ -4,7 +4,7 @@ import type { FxAnchor, FxStep } from './fxRecipes';
 /**
  * Visual weight of an action from its AP cost: the dearer the skill, the
  * bigger, brighter and more layered its FX; ultimates and boss signatures
- * cover the whole battlefield (see fieldFinaleSteps).
+ * sweep every cell they really hit (see FxDirector.fieldFinale).
  *
  *   AP 0-1  light     basic weapon hits, quick utility
  *   AP 2    standard
@@ -25,7 +25,7 @@ export interface FxIntensity {
   glow: number;
   /** Screen-shake multiplier. */
   shake: number;
-  /** Field-wide finale (ultimates and boss signatures). */
+  /** Finale over the cells of the action (ultimates and boss signatures). */
   field: boolean;
 }
 
@@ -88,8 +88,6 @@ export function scaleStep(step: FxStep, intensity: FxIntensity): FxStep {
       }
       for (const key of COUNT_KEYS) { const v = num(key); if (v !== undefined) p[key] = Math.round(v * (step.kind === 'shards' ? Math.sqrt(intensity.count) : intensity.count)); }
       if (step.kind === 'burst') { const v = num('speed'); if (v !== undefined) p.speed = v * Math.sqrt(intensity.scale); }
-      // the pulse marks the most powerful skills only
-      if (step.kind === 'circle' && intensity.weight === 'ultimate') p.pulse = true;
   }
   return { ...step, p };
 }
@@ -104,12 +102,11 @@ export function apAccentSteps(at: number, element: FxElement, intensity: FxInten
   const ground: FxAnchor = area ? 'point' : 'targetGround';
   const chest: FxAnchor = area ? 'point' : 'targetChest';
   const steps: FxStep[] = [
-    { at, kind: 'ring', anchor: ground, element, p: { radius: area ? 2.6 : 2.0, duration: 0.5, from: 0.25 } },
+    { at, kind: 'ring', anchor: ground, element, p: { radius: (area ? 2.6 : 2.0) * (w === 'major' ? 1.5 : w === 'heavy' ? 1.25 : 1), duration: 0.5, from: 0.25 } },
     { at, kind: 'burst', anchor: chest, element, p: { count: 18, speed: 3.4, up: 1.6, size: 0.1 } },
   ];
   if (w === 'heavy' || w === 'major') {
     steps.push(
-      { at: at + 0.08, kind: 'ring', anchor: ground, element, p: { radius: area ? 3.6 : 2.9, duration: 0.6 } },
       { at, kind: 'pillar', anchor: ground, element, p: { radius: 0.4, height: 4.5, duration: 0.45 } },
       { at, kind: 'slowmo', p: { scale: 0.55, duration: 0.12 } },
       { at, kind: 'sfx', p: { id: 'impact_heavy', volume: 0.9 } },
@@ -117,7 +114,6 @@ export function apAccentSteps(at: number, element: FxElement, intensity: FxInten
   }
   if (w === 'major') {
     steps.push(
-      { at: at + 0.14, kind: 'ring', anchor: ground, element, p: { radius: area ? 4.8 : 3.8, duration: 0.75 } },
       { at, kind: 'flash', element, p: { opacity: 0.1 } },
       { at, kind: 'motes', anchor: ground, element, p: { count: 30, radius: area ? 1.8 : 1.1, rise: 2.6 } },
     );

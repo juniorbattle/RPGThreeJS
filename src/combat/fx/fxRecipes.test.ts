@@ -68,7 +68,8 @@ describe('procedural combat FX recipes', () => {
       expect(basic.impactAt).toBe(full.impactAt);
     }
     const crit = resolveFxRecipe('critical_hit');
-    expect(withoutGroundMarks(crit)).toBe(crit);
+    expect(withoutGroundMarks(crit).steps).toEqual(crit.steps);
+    expect(withoutGroundMarks(crit).noFloor).toBe(true);
   });
 
   it('keeps martial ultimates martial and spell ultimates magic', () => {

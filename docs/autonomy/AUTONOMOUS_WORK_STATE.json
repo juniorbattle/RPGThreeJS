@@ -1,15 +1,17 @@
 {
-  "status": "MUSIC_AND_SYNTH_CUES_LISTENING_REVIEW",
-  "runStartedAt": "2026-10-31T01:00:00Z",
-  "runEndedAt": "2026-11-01T03:59:34Z",
+  "status": "VFX_SIGNATURES_AND_AUDIO_OPERATOR_REVIEW",
+  "runStartedAt": "2026-11-01T00:00:00Z",
+  "runEndedAt": "2026-11-01T04:54:22Z",
   "activeTask": "MUSIC_OD_2026_10_29_B",
   "activePhase": "RUNTIME_DELIVERED",
-  "activeSubtask": "Musique, ambiances et sources synthétisées des 16 familles livrées ; écoute et choix de l'opérateur",
+  "activeSubtask": "Signatures des 48 compétences livrées ; revue en jeu de l'opérateur, écoute des sons",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "lastPushedCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "completedThisRun": [
-    "Essai des ultimes pixel retiré : effets actuels conservés (OD-2026-10-31-B)"
+    "src/combat/fx/fxSkills.ts : une signature par compétence, départ et arrivée des déplacements",
+    "Plus aucun anneau après un impact ; finale des boss limitée aux cases touchées",
+    "Outils skill-gallery et skill-play, boutons QA des 12 ultimes"
   ],
   "filesChanged": [
     "docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
@@ -25,12 +27,14 @@
   "testsRun": [
     "npm test",
     "npm run build",
-    "contracts:validate"
+    "contracts:validate",
+    "Chromium : 48 compétences capturées, 12 ultimes en action réelle"
   ],
   "testsPassed": [
     "npm test PASS",
     "build PASS",
-    "contracts PASS"
+    "contracts PASS",
+    "Chromium : aucune erreur de page"
   ],
   "testsRemaining": [
     "Écoute et acceptation artistique de l'opérateur"
@@ -42,17 +46,17 @@
     "Retrait des assets du Combat Stage devenus inutiles : accord de l’opérateur requis",
     "Option QA « Tous les héros QA » / stageqa : déploiement bloqué (constat préexistant)"
   ],
-  "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Il me transmet le résumé de ses choix (champ « Choix à me transmettre ») ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
+  "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Revue en jeu des signatures visuelles des 48 compétences (`/legacy-combat.html?qa=1&stageqa=1`, boutons des 12 ultimes) ; je retouche sur ses retours. Il me transmet aussi le résumé de ses choix de sons ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
   "taskQueue": [
-    "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Il me transmet le résumé de ses choix (champ « Choix à me transmettre ») ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
+    "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Revue en jeu des signatures visuelles des 48 compétences (`/legacy-combat.html?qa=1&stageqa=1`, boutons des 12 ultimes) ; je retouche sur ses retours. Il me transmet aussi le résumé de ses choix de sons ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
     "Playtest PC de l'opérateur, liste de corrections, démo figée ; mobile seulement si l'opérateur le veut."
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SET_1_11_0",
-  "runId": "claude-pixel-ultimates-withdrawal-20261031T0100Z",
+  "runId": "claude-vfx-identity-20261101T0000Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-11-01T03:59:34Z",
-  "heartbeat": "2026-11-01T03:59:34Z",
+  "lastHeartbeat": "2026-11-01T04:54:22Z",
+  "heartbeat": "2026-11-01T04:54:22Z",
   "wip": null,
   "uncommittedWork": [],
   "providerTasksPending": [],
@@ -60,10 +64,10 @@
   "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "previousRun": {
-    "runId": "claude-pixel-ultimates-20261031T0000Z",
-    "runEndedAt": "2026-11-01T03:29:52Z",
+    "runId": "claude-pixel-ultimates-withdrawal-20261031T0100Z",
+    "runEndedAt": "2026-11-01T03:59:34Z",
     "activeTask": "MUSIC_OD_2026_10_29_B",
-    "commit": "f5a9abd7"
+    "commit": "10fe977a"
   },
   "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
   "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
@@ -546,16 +550,16 @@
     "rule": "Kept: protocol fields, run identity, current authority, open/deferred items and current scopes; QA jobs registered after the set 1.10.0 amendment commit. Everything else is unchanged in the snapshot."
   },
   "live": {
-    "lastHeartbeat": "2026-11-01T03:59:34Z",
-    "runId": "claude-pixel-ultimates-withdrawal-20261031T0100Z",
+    "lastHeartbeat": "2026-11-01T04:54:22Z",
+    "runId": "claude-vfx-identity-20261101T0000Z",
     "agent": "claude",
-    "status": "MUSIC_AND_SYNTH_CUES_LISTENING_REVIEW",
+    "status": "VFX_SIGNATURES_AND_AUDIO_OPERATOR_REVIEW",
     "wip": null,
-    "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Il me transmet le résumé de ses choix (champ « Choix à me transmettre ») ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
-    "runEndedAt": "2026-11-01T03:59:34Z",
+    "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Revue en jeu des signatures visuelles des 48 compétences (`/legacy-combat.html?qa=1&stageqa=1`, boutons des 12 ultimes) ; je retouche sur ses retours. Il me transmet aussi le résumé de ses choix de sons ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
+    "runEndedAt": "2026-11-01T04:54:22Z",
     "writerStopped": true,
     "activeTask": "MUSIC_OD_2026_10_29_B",
-    "activeSubtask": "Musique, ambiances et sources synthétisées des 16 familles livrées ; écoute et choix de l'opérateur",
+    "activeSubtask": "Signatures des 48 compétences livrées ; revue en jeu de l'opérateur, écoute des sons",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,

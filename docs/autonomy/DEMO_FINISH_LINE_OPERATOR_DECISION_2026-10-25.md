@@ -147,3 +147,13 @@ Après essai, l'opérateur garde les effets actuels : « je pense que nous allon
 - Les recettes procédurales restent les effets d'ultimes de la démo.
 - L'essai pixel est retiré : outil, planches, lecture en combat et choix du labo QA. Il reste dans l'historique Git (`f5a9abd7`).
 - Le lot `combat-fx-sheets` (8 planches) est abandonné. Seul le lot des plans d'arène reste non tranché.
+
+## Mise à jour — OD-2026-11-01-A, 1er novembre 2026
+
+L'opérateur demande que « chaque competences de chaque classe/unites ait sa propre identite visuel surtout pour les ultimes », et signale des cercles hasardeux : « bien apres l'impact il y a plusieurs cercles pulse qui continuent de spawn ».
+
+- Cause des ressemblances : tous les ultimes partageaient une charge, des accents d'impact et une finale plein terrain ; plusieurs compétences partageaient aussi le même preset.
+- Cause des cercles : le battement du grand sceau de la finale et des sceaux d'ultime continuait d'émettre des anneaux après l'impact.
+- Les 48 compétences de héros ont désormais leur signature (`src/combat/fx/fxSkills.ts`), et les déplacements leur départ et leur arrivée. Le contrat des recettes par code reste respecté : les presets et la composition du labo ne changent pas.
+- Plus aucun anneau ne part après un impact. Les signatures de boss gardent une finale, limitée aux cases touchées.
+- La revue artistique en jeu reste celle de l'opérateur.

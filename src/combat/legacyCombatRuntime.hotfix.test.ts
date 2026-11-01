@@ -26,7 +26,7 @@ describe('V10F final hotfix runtime contracts', () => {
   // OD-2026-10-29-A: combat plays procedural recipes only, at leap, teleport and dash points too; the dash plays its own effect.
   it('plays procedural recipes at leap, teleport and dash points, and the dash plays its own effect', () => {
     expect(runtimeSource).toContain('fxDirector.play(resolveFxRecipe(presetId,preset?.tags||[]),{source:fxUnitRef(u),targets:[{position:point.clone(),height:1.6}]');
-    expect(runtimeSource).toContain('screenShake(0.5,0.3); if(!playActionVfxAt(getActionVfxPreset(spec,u),u,head,spec)){ screenFlash');
+    expect(runtimeSource).toContain("screenShake(0.5,0.3); if(ownFx)playMoveFx(u,head,spec,'arrive'); else if(!playActionVfxAt(getActionVfxPreset(spec,u),u,head,spec)){ screenFlash");
   });
 
   it('imports presentation tuning from the shared combatVfxPresentation module', () => {

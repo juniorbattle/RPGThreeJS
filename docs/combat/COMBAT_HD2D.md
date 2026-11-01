@@ -53,40 +53,71 @@ Le **Combat Stage** (scène séparée) est retiré. Les actions se jouent dans l
 
 ## Effets et sons
 
+### Signatures des compétences
+
+Chaque compétence de héros a sa recette écrite à la main (`fxSkills.ts`), jouée telle quelle : ni mise à l'échelle par PA, ni accents d'impact communs, ni finale commune. Une classe possède une couleur et une forme :
+
+| Classe | Couleur | Forme |
+| --- | --- | --- |
+| Guerrier | or et acier | griffes larges, poussière, ruée au sol |
+| Paladin | or blanc sacré | lumière verticale qui tombe, dômes nets |
+| Chevalier noir | violet et sang | tout est aspiré vers l'intérieur, puis la vie revient au lanceur |
+| Lancier | azur | lignes fines et droites qui transpercent |
+| Mage noir | ombre et feu | éclairs, flammes, météore |
+| Mage blanc | vert doux | lumière lente qui monte, ni tremblement ni ralenti |
+| Mage rouge | écarlate et blanc | deux éléments qui se croisent |
+| Enchanteur | violet arcanique | runes en orbite, liens entre alliés |
+| Archer | menthe | flèches en aiguille, plumes |
+| Ninja | venin et noir | entailles fines et rapides, fumée, presque pas de lumière |
+| Voleur | ambre et acier | coups courts, pièges, fissures au sol |
+| Artilleur | feu et fumée | flammes de bouche, obus, débris |
+
+Règles, testées dans `fxSkills.test.ts` :
+
+- deux compétences ne partagent jamais la même silhouette ;
+- un sceau appartient aux sorts, et il s'éteint sur le coup ;
+- une onde au sol apparaît une seule fois, sur le coup : rien de circulaire ne part après l'impact ;
+- un sceau ne génère jamais d'anneau de lui-même : chaque anneau est une étape de sa recette ;
+- un ultime sur une seule cible reste en gros plan (`punch` avec `hold`), les autres reculent au plan `field`.
+
+Les déplacements (téléportations, bonds, charges, échanges) ont leur propre départ et leur propre arrivée (`skillMoveFxRecipe`).
+
 ### Poids visuel selon le coût en PA
 
-Règle : plus une compétence coûte de PA, plus elle se voit ; les ultimes couvrent tout le terrain (`fxIntensity.ts`).
+Cette échelle ne concerne que les recettes partagées : attaques de base, ennemis, signatures de boss, objets (`fxIntensity.ts`).
 
 | Poids | Coût | Ce qui change |
 | --- | --- | --- |
 | léger | 0-1 PA (attaque de base sans élan) | effets à 0,86× |
 | standard | 2 PA | recette telle quelle |
-| fort | 3 PA | 1,16×, + onde au sol et gerbe à l'impact |
-| lourd | 4 PA | 1,32×, + seconde onde, colonne de lumière, arrêt sur image court, son `impact_heavy` |
-| majeur | 5 PA | 1,45×, + troisième onde large, flash, particules |
-| ultime | ultime ou signature de boss | 1,5× et **finale plein terrain** |
+| fort | 3 PA | 1,16×, + une onde au sol et une gerbe à l'impact |
+| lourd | 4 PA | 1,32×, onde plus large, colonne de lumière, arrêt sur image court, son `impact_heavy` |
+| majeur | 5 PA | 1,45×, onde large, flash, particules |
+| signature de boss | signature de boss | 1,5× et **finale sur les cases touchées** |
 
 - Le temps d'une recette ne change jamais (l'impact de gameplay reste au même instant). Tailles, rayons, nombres de particules, lumière et tremblement suivent le poids. La charge avant l'impact grandit moins (racine du facteur), pour ne pas masquer l'acteur.
 - L'attaque de base compte son niveau d'élan (Attaque = 1, Attaque+ = 2, Attaque++ = 3), pas le surcoût des attaques répétées.
-- Finale plein terrain (`FxDirector.fieldFinale`) : un cercle de runes sous toute la plateforme, un flash, puis, quand la caméra s'éloigne, trois ondes qui dépassent les bords, des particules sur tout le terrain et une vague d'éruptions case par case qui part de l'impact (flammes pour le feu, piliers pour le sacré, éclairs, éclats, orbes du vide, entailles selon l'élément). Une recette peut imposer son éruption (`fieldBeat`) : pluie de flèches pour la Flèche du Zénith, explosions pour le Barrage d'Artillerie, entailles pour l'Assassinat Silencieux et la Dualité Parfaite.
-- Caméra : coup d'impact rapproché, puis plan `field` (plus large que la vue tactique). Les unités atténuées réapparaissent pour la vague. Le projecteur reste ouvert jusqu'à la fin de la vague (3 s au plus).
+- Finale des signatures de boss (`FxDirector.fieldFinale`) : un flash, puis, quand la caméra s'éloigne, une onde et une vague d'éruptions case par case qui part de l'impact, seulement sur les cases touchées. Une signature à cible unique n'a pas de finale. Rien ne part après cette vague.
+- Caméra : coup d'impact rapproché, puis plan `field` (plus large que la vue tactique), sauf `hold`. Les unités atténuées réapparaissent à ce moment. Le projecteur reste ouvert jusqu'à la fin de l'effet (3 s au plus).
 - Lisibilité : les effets debout (étoiles, entailles, flammes, piliers, étincelles) se dessinent au-dessus des sprites d'unité et légèrement vers la caméra. Les traces au sol restent sous les pieds. Les entailles traversent la cible, avec une lame sombre dessous pour se détacher de tout fond.
 - Sceaux : réservés aux **compétences magiques** (une recette est magique si elle trace un sceau ; testé). Les compétences martiales et les attaques de base n'en ont jamais. Le motif : anneaux concentriques, bande de glyphes, anneau en tirets et perles, **sans étoile ni polygone** (identité non voulue).
-- Pulsation : seuls les ultimes et signatures de boss pulsent. Sort : le sceau s'éclaire deux fois par battement (0,62 s) et émet un anneau de lumière ; le grand sceau de la finale pulse aussi. Martial (Déferlement du Lion, Lance du Firmament, Flèche du Zénith, Assassinat Silencieux, Casse-Faille, Barrage d'Artillerie, Exécution) : aucune rune, une aura de combat (ondes de choc au rythme du battement, poussière soulevée, particules montantes), et la finale pulse des ondes nues.
+- Pulsation : seule la charge des signatures de boss pulse, et elle s'arrête sur le coup. Un sceau pulsé s'éclaire sans émettre d'anneau.
 - Feu (décors et compétences) : pixel art à la densité des unités (40 px/m), silhouette de flamme animée par un bruit déformé qui monte, crête qui se détache en mèches, base arrondie ; cinq bandes rouge-orangé à blanc chaud, **sans contour sombre** (le feu émet de la lumière), tramage d'un texel aux transitions ; halo chaud additif derrière chaque flamme qui éclaire les alentours ; braises montantes. Fumée en pixel art (24 px/m).
 - Précision : les couleurs des effets sont posées en bandes nettes (pas de dégradé aérographe) ; les cases exactement touchées par une action de zone s'allument (contour et biseau par case), et un coup unique lourd marque la case de sa cible ; les éruptions posées par case (flammes, éclats) gardent la largeur d'une case et ne grandissent qu'en hauteur avec les PA.
 
 - `resolveFxRecipe(presetId, tags)` : recettes explicites pour chaque preset connu (12 ultimes, presets `pilot_*`, signatures de boss, armes de base), sinon une famille choisie par les tags (élément + forme). Tous les presets de `VfxPresets.ts` résolvent (testé).
 - L'impact de gameplay (`impactTime`) tombe après le vol du projectile éventuel. Les recettes d'ultime sont `cinematic`.
-- Primitives (`FxEngine`) : particules carrées, entailles, étoiles d'impact, anneaux, cercles de runes pixel, piliers, traînées, projectiles, éclairs, éclats, dômes, orbes, flammes, fumée, traces au sol, lumière (pool de 3 lumières fixes, donc pas de recompilation), planches générées (`sheet`, ignorées tant qu'elles manquent).
+- Primitives (`FxEngine`) : particules carrées, particules aspirées (`converge`), orbites (`orbit`), entailles, étoiles d'impact, anneaux (y compris vers l'intérieur), cercles de runes pixel, piliers, traînées, projectiles, volées (`rain`), éclairs, éclats, dômes, orbes, flammes, fumée, fissures (`fissure`), traces au sol, lumière (pool de 3 lumières fixes, donc pas de recompilation), planches générées (`sheet`, ignorées tant qu'elles manquent).
 - Temps FX : `G.timeScale` (ralenti) agit sur les tweens, les animations pixel et les effets. Les `wait()` restent en temps réel.
 - Sons : `combatSfx.play(id)` pour chaque repère des recettes (testé). Contexte audio créé au premier geste. `?son=0` le coupe. Le réglage « Effets sonores » est mémorisé (`localStorage`, avec garde).
 - Les spritesheets CartoonCoffee (locales, hors dépôt) ne servent plus que de repli quand aucun preset ne résout. Le VFX Lab les utilise toujours.
 
 ## QA
 
-- `npm run dev`, puis `/legacy-combat.html?qa=1&stageqa=1&scene=<biome>`. Les boutons QA jouent : attaque, ultimes (Lion, Météore, Miracle, Éclipse), pluie de flèches, vague de flammes, multi-cibles, soin de groupe.
-- Galerie FX : `node tools/combat-arena/fx-gallery.mjs <biome> <dossier> "sword_slash@1,sword_slash@5,ultimate_dark_meteor@ult"` joue chaque preset au poids donné, horloge FX figée puis avancée à l'instant voulu (`preset@poids@décalageMs@rayonDeZone`). Aides DEV : `__qaHelpers.fxPreview`, `fxFreeze`, `fxAdvance`, `spotlightState`. `?dtcap=0.5` garde le temps de présentation sur l'horloge réelle en rendu logiciel.
+- `npm run dev`, puis `/legacy-combat.html?qa=1&stageqa=1&scene=<biome>`. Les boutons QA jouent : attaque, les 12 ultimes, pluie de flèches, vague de flammes, multi-cibles, soin de groupe. Une compétence dont la classe n'est pas déployée part du premier héros.
+- Galerie FX : `node tools/combat-arena/fx-gallery.mjs <biome> <dossier> "sword_slash@1,sword_slash@5,ultimate_dark_meteor@ult"` joue chaque preset au poids donné, horloge FX figée puis avancée à l'instant voulu (`preset@poids@décalageMs@rayonDeZone`). Aides DEV : `__qaHelpers.fxPreview`, `fxSkill`, `stagePlay`, `fxFreeze`, `fxAdvance`, `spotlightState`.
+- Galerie des compétences : `node tools/combat-arena/skill-gallery.mjs <sortie.jpg> "w_whirl,n_flame_wave" "-200,50,300"` (horloge FX figée, vue tactique) et `node tools/combat-arena/skill-play.mjs <sortie.jpg> "w_lion_surge" 12` (action réelle, caméra comprise, images lues sur le canvas).
+- `?dtcap=0.5` garde le temps de présentation sur l'horloge réelle en rendu logiciel.
 - `tools/combat-arena/shots.sh <dossier>` : les trois arènes. `action-shots.mjs` : images d'une action dans le temps. `campaign-harness.mjs <combatId>` : démarrage réel via le protocole de la campagne. `probe.mjs` : évaluation d'expressions dans la page.
 - Art généré en local : [mission locale](LOCAL_ART_MISSION.md).
 

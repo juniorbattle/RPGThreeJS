@@ -5,7 +5,7 @@
  */
 export type FxElement =
   | 'steel' | 'blunt' | 'fire' | 'ice' | 'holy' | 'shadow' | 'poison' | 'lightning'
-  | 'nature' | 'arcane' | 'wind' | 'heal' | 'blood' | 'gold' | 'earth' | 'smoke';
+  | 'nature' | 'arcane' | 'wind' | 'heal' | 'blood' | 'gold' | 'earth' | 'smoke' | 'sky';
 
 export interface FxPalette {
   core: string;
@@ -33,6 +33,7 @@ export const FX_PALETTES: Readonly<Record<FxElement, FxPalette>> = Object.freeze
   gold: { core: '#fffbe6', body: '#ffe27a', edge: '#ffb52a', dark: '#8a5a10', light: '#ffd66a' },
   earth: { core: '#fff2d8', body: '#d8b07a', edge: '#8a6438', dark: '#3e2a16', light: '#e8c08a' },
   smoke: { core: '#e8e4f0', body: '#9a94a8', edge: '#5a5468', dark: '#24202c', light: '#b0a8c0' },
+  sky: { core: '#e6f4ff', body: '#86c4ff', edge: '#3a86ff', dark: '#163080', light: '#8cc4ff' },
 });
 
 /** Element inferred from VFX preset tags (first match wins). */
