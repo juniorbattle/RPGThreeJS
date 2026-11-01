@@ -1,17 +1,17 @@
 {
-  "status": "MUSIC_AND_SYNTH_CUES_LISTENING_REVIEW",
-  "runStartedAt": "2026-10-30T00:40:00Z",
-  "runEndedAt": "2026-10-30T00:44:43Z",
+  "status": "MUSIC_SYNTH_AND_PIXEL_ULTIMATES_OPERATOR_REVIEW",
+  "runStartedAt": "2026-10-31T00:00:00Z",
+  "runEndedAt": "2026-11-01T03:29:52Z",
   "activeTask": "MUSIC_OD_2026_10_29_B",
   "activePhase": "RUNTIME_DELIVERED",
-  "activeSubtask": "Musique, ambiances et sources synthétisées des 16 familles livrées ; écoute et choix de l'opérateur",
+  "activeSubtask": "3 ultimes pixel maison en essai ; écoute et verdict de l'opérateur",
   "workingBranch": "dev",
   "lastKnownGoodCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "lastPushedCommit": "dd8cf4691c9e3bcfed32b5e3fac92bebca91ade2",
   "completedThisRun": [
-    "src/audio/synthCues.ts : 16 familles rendues hors ligne (≤ 1 s, crête 0,2)",
-    "UiSoundPlayer : source par famille hors V6, repli sur le fichier, aperçus explicites",
-    "Atelier « Comparer les sons de combat » dans le labo QA"
+    "tools/pixel-fx : 3 planches rendues par code, sans dépendance",
+    "Lecture des planches pixel en combat, désactivée par défaut",
+    "Choix « Effets d’ultimes » dans le labo QA"
   ],
   "filesChanged": [
     "docs/autonomy/DEMO_FINISH_LINE_OPERATOR_DECISION_2026-10-25.md",
@@ -25,17 +25,16 @@
     "docs/autonomy/AUTONOMOUS_WORK_STATE.md"
   ],
   "testsRun": [
-    "vitest ciblés",
     "npm test",
     "npm run build",
     "contracts:validate",
-    "Chromium : rendu des 16 familles, atelier, aperçus par clics réels"
+    "Chromium : 3 ultimes, parcours labo QA vers combat"
   ],
   "testsPassed": [
-    "npm test : 164 fichiers, node:test 26/26",
+    "npm test PASS",
     "build PASS",
     "contracts PASS",
-    "Chromium : 16 rendus, 32 aperçus prêts, chaque aperçu joue son propre tampon"
+    "Chromium : 3 planches visibles, préférence lue par le combat, aucune erreur console"
   ],
   "testsRemaining": [
     "Écoute et acceptation artistique de l'opérateur"
@@ -47,17 +46,17 @@
     "Retrait des assets du Combat Stage devenus inutiles : accord de l’opérateur requis",
     "Option QA « Tous les héros QA » / stageqa : déploiement bloqué (constat préexistant)"
   ],
-  "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Il me transmet le résumé de ses choix (champ « Choix à me transmettre ») ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
+  "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Essai des 3 ultimes pixel maison : « QA rencontres », « Effets d'ultimes → Essai pixel », « Toutes compétences » et « AP plein », puis les compétences Déferlement du Lion, Jugement Radieux et Météore Obscur. Il me transmet ses choix ; je fixe alors les sons par défaut, et selon son verdict j'active les planches pixel, je les corrige ou je les retire. Ensuite playtest PC complet et démo figée.",
   "taskQueue": [
-    "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Il me transmet le résumé de ses choix (champ « Choix à me transmettre ») ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
+    "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Essai des 3 ultimes pixel maison : « QA rencontres », « Effets d'ultimes → Essai pixel », « Toutes compétences » et « AP plein », puis les compétences Déferlement du Lion, Jugement Radieux et Météore Obscur. Il me transmet ses choix ; je fixe alors les sons par défaut, et selon son verdict j'active les planches pixel, je les corrige ou je les retire. Ensuite playtest PC complet et démo figée.",
     "Playtest PC de l'opérateur, liste de corrections, démo figée ; mobile seulement si l'opérateur le veut."
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "PASS_SET_1_11_0",
-  "runId": "claude-synth-cues-20261030T0130Z",
+  "runId": "claude-pixel-ultimates-20261031T0000Z",
   "agent": "claude",
-  "lastHeartbeat": "2026-10-30T00:44:43Z",
-  "heartbeat": "2026-10-30T00:44:43Z",
+  "lastHeartbeat": "2026-11-01T03:29:52Z",
+  "heartbeat": "2026-11-01T03:29:52Z",
   "wip": null,
   "uncommittedWork": [],
   "providerTasksPending": [],
@@ -65,10 +64,10 @@
   "currentHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "latestHandoff": "docs/autonomy/handoffs/2026-10-26T0147Z-claude-vfx-movement-boss.md",
   "previousRun": {
-    "runId": "claude-music-runtime-20261030T0045Z",
-    "runEndedAt": "2026-10-29T23:31:50Z",
+    "runId": "claude-synth-cues-20261030T0130Z",
+    "runEndedAt": "2026-10-30T00:44:43Z",
     "activeTask": "MUSIC_OD_2026_10_29_B",
-    "commit": "93c33424"
+    "commit": "ab28e8e1"
   },
   "lastSnapshotCommit": "54b8baeab5289d4b12c3f02a71fed64b829a20cc",
   "lastSnapshotAt": "2026-10-24T23:30:21.668Z",
@@ -551,16 +550,16 @@
     "rule": "Kept: protocol fields, run identity, current authority, open/deferred items and current scopes; QA jobs registered after the set 1.10.0 amendment commit. Everything else is unchanged in the snapshot."
   },
   "live": {
-    "lastHeartbeat": "2026-10-30T00:44:43Z",
-    "runId": "claude-synth-cues-20261030T0130Z",
+    "lastHeartbeat": "2026-11-01T03:29:52Z",
+    "runId": "claude-pixel-ultimates-20261031T0000Z",
     "agent": "claude",
-    "status": "MUSIC_AND_SYNTH_CUES_LISTENING_REVIEW",
+    "status": "MUSIC_SYNTH_AND_PIXEL_ULTIMATES_OPERATOR_REVIEW",
     "wip": null,
-    "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Il me transmet le résumé de ses choix (champ « Choix à me transmettre ») ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.",
-    "runEndedAt": "2026-10-30T00:44:43Z",
+    "nextAction": "Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Essai des 3 ultimes pixel maison : « QA rencontres », « Effets d'ultimes → Essai pixel », « Toutes compétences » et « AP plein », puis les compétences Déferlement du Lion, Jugement Radieux et Météore Obscur. Il me transmet ses choix ; je fixe alors les sons par défaut, et selon son verdict j'active les planches pixel, je les corrige ou je les retire. Ensuite playtest PC complet et démo figée.",
+    "runEndedAt": "2026-11-01T03:29:52Z",
     "writerStopped": true,
     "activeTask": "MUSIC_OD_2026_10_29_B",
-    "activeSubtask": "Musique, ambiances et sources synthétisées des 16 familles livrées ; écoute et choix de l'opérateur",
+    "activeSubtask": "3 ultimes pixel maison en essai ; écoute et verdict de l'opérateur",
     "runMetrics": {
       "runtimeSourceFilesModified": 0,
       "gameplayFilesModified": 0,

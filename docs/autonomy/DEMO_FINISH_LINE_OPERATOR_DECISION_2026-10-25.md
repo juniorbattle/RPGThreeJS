@@ -129,3 +129,13 @@ Retours de l'opérateur après jeu :
 - Les attaques basiques gardent leur effet d'impact mais n'ont plus de sceau, d'anneau de choc, de pulsation ni de marque de sol. Les compétences, ultimes et signatures de boss ne changent pas ; l'escalade visuelle de l'élan reste.
 - Les personnages des dialogues statiques respirent par code (CSS, sans image ni minuterie), chacun avec sa période et sa phase ; le mouvement réduit du jeu ou du système l'arrête.
 - Musique : les thèmes sont bien structurés mais mal placés. Chaque dialogue a un thème, alors que le contexte, les interlocuteurs et la tension demandent des choix différents ; les musiques génériques par aspect du jeu ne suffisent pas. Chantier ultérieur, à cadrer avec l'opérateur avant tout code.
+
+## Mise à jour — OD-2026-10-31-A, 31 octobre 2026
+
+L'opérateur a écarté l'intégration de pixelfx et retenu des effets écrits pour ce projet : « Oui, 3 ultimes maison ».
+
+- `tools/pixel-fx/` rend trois planches 4×4 par code, sans dépendance ni code tiers, avec les palettes de `fxPalettes.ts` : `holy_pillar`, `lion_slash`, `meteor_impact`.
+- Elles passent par le contrat `combatFxSheets.json` et l'étape `sheet` des ultimes. Aucune image n'est générée par un service.
+- Elles restent désactivées par défaut. Le choix « Effets d'ultimes → Essai pixel » du labo QA écrit la préférence `rpg-threejs:combat-pixel-fx:v1`, hors V6.
+- Limite connue : la planche se dessine par-dessus la scène, donc au-dessus des unités placées devant l'impact.
+- Le verdict de l'opérateur décide de l'activation, d'une correction ou du retrait. Les 5 autres planches du lot ne sont pas commencées.

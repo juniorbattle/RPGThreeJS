@@ -38,6 +38,7 @@ import { PoiMapView } from '../ui/PoiMapView';
 import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
 import { CombatSoundWorkshop } from '../ui/CombatSoundWorkshop';
+import { pixelSheetsTrial, setPixelSheetsTrial } from '../combat/fx/fxSheets';
 import { ExplorationView } from '../ui/ExplorationView';
 import { resolveRefugePresentation } from '../ui/RefugePresentation';
 import { PrologueView } from '../ui/PrologueView';
@@ -109,6 +110,7 @@ interface QaParams {
   inventory: QaInventoryMode;
   graphics: QaGraphicsMode;
   deployLimit: QaDeployMode;
+  ultimateFx: 'current' | 'pixel';
 }
 
 const QA_FULL_CONSUMABLES: Record<string, number> = {
@@ -300,6 +302,7 @@ export class GameApp {
         inventory: 'campaign',
         graphics: this.state.settings.reducedGraphics ? 'reduced' : 'normal',
         deployLimit: 'normal',
+        ultimateFx: pixelSheetsTrial() ? 'pixel' : 'current',
       };
     }
     const p = this.qaParams;
@@ -362,6 +365,11 @@ export class GameApp {
             ${radio('deployLimit', 'normal', 'Limite normale', p.deployLimit === 'normal')}
             ${radio('deployLimit', 'full', 'Tous les héros QA', p.deployLimit === 'full')}
           </fieldset>
+          <fieldset>
+            <legend>Effets d'ultimes</legend>
+            ${radio('ultimateFx', 'current', 'Actuels', p.ultimateFx === 'current')}
+            ${radio('ultimateFx', 'pixel', 'Essai pixel', p.ultimateFx === 'pixel')}
+          </fieldset>
         </div>
         <div class="qa-lab__grid">${encounterCards}</div>
       </section>
@@ -373,6 +381,7 @@ export class GameApp {
         const group = input.name.split('qa-')[1] as keyof QaParams | undefined;
         if (group && this.qaParams) {
           this.qaParams[group] = input.value as never;
+          if (group === 'ultimateFx') setPixelSheetsTrial(input.value === 'pixel');
           this.renderQaLab(message);
         }
       });

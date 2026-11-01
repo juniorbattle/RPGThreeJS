@@ -391,16 +391,18 @@ function charge(element: FxElement, length = 0.6, magic = true): Steps {
   ];
 }
 
-/** Generated-art layer (tools/openai-art FX sheets); skipped while the sheet is absent. */
+/** Frame-sheet layer (tools/pixel-fx, tools/openai-art); skipped while the sheet is absent. */
 const SHEET_FOR: Partial<Record<FxElement, string>> = {
   gold: 'lion_slash', holy: 'holy_pillar', shadow: 'void_implosion', fire: 'meteor_impact',
   ice: 'ice_burst', arcane: 'arcane_sigil', heal: 'heal_bloom', lightning: 'lightning_strike',
 };
+/** Sheets drawn on the floor line play on the impact point instead of the target's chest. */
+const GROUND_SHEETS: ReadonlySet<string> = new Set(['holy_pillar', 'meteor_impact']);
 
 function cinematicHit(at: number, element: FxElement, scale = 1.3): Steps {
   const sheet = SHEET_FOR[element];
   return [
-    ...(sheet ? [s(at, 'sheet', 'targetChest', { id: sheet, size: 4.6 * scale, duration: 0.9 })] : []),
+    ...(sheet ? [s(at, 'sheet', GROUND_SHEETS.has(sheet) ? 'point' : 'targetChest', { id: sheet, size: 4.6 * scale, duration: 0.9 })] : []),
     s(at, 'slowmo', undefined, { scale: 0.3, duration: 0.32 }),
     s(at, 'punch', 'targetChest', { duration: 0.5 }),
     s(at, 'flash', undefined, { opacity: 0.22 }, { element }),

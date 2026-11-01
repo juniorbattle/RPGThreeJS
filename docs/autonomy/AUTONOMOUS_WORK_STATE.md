@@ -6,7 +6,7 @@ Musique générée par code pour les 5 contextes et ambiance des 3 arènes, sous
 
 Scheduler PAUSED. `main` protégé.
 
-UNE prochaine action : Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Il me transmet le résumé de ses choix (champ « Choix à me transmettre ») ; je fixe alors ces sources comme défaut du jeu. Ensuite playtest PC complet et démo figée.
+UNE prochaine action : Écoute de l'opérateur : les 5 musiques et les 3 ambiances en jeu, puis les 16 familles d'effets dans « QA rencontres → Comparer les sons de combat ». Essai des 3 ultimes pixel maison : « QA rencontres », « Effets d'ultimes → Essai pixel », « Toutes compétences » et « AP plein », puis les compétences Déferlement du Lion, Jugement Radieux et Météore Obscur. Il me transmet ses choix ; je fixe alors les sons par défaut, et selon son verdict j'active les planches pixel, je les corrige ou je les retire. Ensuite playtest PC complet et démo figée.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
