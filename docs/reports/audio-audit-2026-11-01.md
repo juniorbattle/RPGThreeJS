@@ -1,5 +1,7 @@
 # Audit audio complet — musique, sons, ambiances et lien avec les VFX
 
+Suite : l'opérateur a tranché le 2026-11-01 ([OD-2026-11-01-B](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md)). Ce rapport garde son état à la base `87d6a49c`.
+
 | Champ | Valeur |
 | --- | --- |
 | `TASK` | `AUDIO-AUDIT-2026-11-01` |

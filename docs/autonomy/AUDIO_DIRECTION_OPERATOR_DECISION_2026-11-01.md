@@ -1,0 +1,76 @@
+# Direction audio de la démo — OD-2026-11-01-B
+
+**APPROVED DECISION.** Le 2026-11-01, l'opérateur a rempli la [fiche d'arbitrages audio](https://claude.ai/artifact/UGe8DMGDn7BURNtcWv3UsK) issue de l'[audit audio](../reports/audio-audit-2026-11-01.md). Cette décision fixe la direction et l'ordre de travail. Elle ne modifie aucun contrat : l'extension demandée passe par l'amendement dédié 1.12.0, dont le texte reste à approuver. Rien ici ne vaut validation à l'oreille.
+
+## Choix de l'opérateur
+
+| Id | Sujet | Choix |
+| --- | --- | --- |
+| A1 | Amendement audio 1.12.0 | Oui, selon mes choix ci-dessous |
+| A2 | Calendrier | Avant le test PC |
+| A3 | Source | Code uniquement |
+| B1 | Référence principale | Tactique sombre, élan Octopath pour les boss. Note : « mais Breath Of Fire 3 est aussi une magnifique reference » |
+| B2 | Motifs | Thème des Sceaux et couleurs de camp |
+| B3 | Combat | Deux niveaux, réflexion et action |
+| B4 | Forme | Environ 1 min 30 |
+| B5 | Récit | Trois humeurs |
+| B6 | Fins | Fanfares et entrée de boss |
+| C1 | Effets par défaut | Actifs dès le premier clic |
+| C2 | Son des compétences | Grammaire à trois couches |
+| C3 | Ultimes et signatures de boss | Sur mesure pour les 20 |
+| C4 | Comparaison fichiers et synthèse | Abandonner la comparaison |
+| C5 | Ambiances | Remonter et étendre |
+| D1 | Validation | Laboratoire d'écoute |
+
+Ajout de l'opérateur, même jour : « ce que j'aime, c'est les transitions, donc durant une melodie qui se boucle, il y a une partie d'une son qui passe vers une transition et change le rythme ou tonalite de la musique afin de revenir sur sa boucle ». Exemples donnés : Breath of Fire 3, Chrono Cross, Final Fantasy 8. Son message s'arrête sur « mais » : une suite reste possible.
+
+## Ligne directrice
+
+**Ton.** Une chronique grave de clan déchu, tenue et sobre, où l'espoir passe par la mélodie. Base tactique sombre (Final Fantasy Tactics, Tactics Ogre), élan orchestre et batterie d'Octopath pour les boss.
+
+**Musique :**
+
+1. **Le pont.** Règle voulue par l'opérateur, valable pour toute piste qui boucle : à un moment écrit, la mélodie passe par une transition qui change le rythme ou la tonalité, puis une reprise prépare le retour à la boucle. Le pont est la signature de la bande-son, pas un ornement.
+2. **Le fil rouge.** Un motif court des Sceaux traverse toutes les pistes, transformé selon le lieu.
+3. **Les couleurs de camp.** Lion : cuivres et quintes. Serpents : demi-tons et mode phrygien. Bois-Clair : luth, flûte, tambour sur cadre. Ombres : chœur et silence. Aucun ajout au canon : ce sont des timbres sur des noms déjà présents dans le jeu.
+4. **La couleur Breath of Fire 3.** Une bande-son d'inspiration jazz (Yoshino Aoki, Akari Kaida). Hypothèse de travail à confirmer : accords enrichis et rythmes syncopés dans les pistes de vie (carte, refuge), là où la base tactique sombre laisse de la place.
+5. **Le tour respire.** Une même piste de combat a un niveau Réflexion et un niveau Action.
+6. **Une vraie forme.** Environ 1 min 30 pour le combat et la carte, en parties distinctes, avec des passages sans mélodie.
+7. **Le récit choisit l'humeur.** Refuge, Tension, Drame, marqués par scène sans toucher au texte.
+8. **Les fins comptent.** Fanfares de victoire et de défaite, entrée de boss enchaînée sur le dialogue.
+9. **La musique laisse la place.** Moins de grave en combat, et une musique qui s'efface sur les ultimes.
+
+**Sons :**
+
+1. **Grammaire à trois couches.** Geste, élément, poids, rendus d'avance en un seul son et calés sur la recette visuelle.
+2. **Sur mesure pour les 20.** Les 12 ultimes et les 8 signatures de boss ont charge, coup et vague.
+3. **Effets actifs au premier clic**, comme la musique.
+4. **Ambiances** remontées et étendues à la carte et au refuge.
+
+**Validation.** Un laboratoire d'écoute dans les outils QA. Seule l'écoute de l'opérateur valide. La comparaison entre fichiers et synthèse est abandonnée : les fichiers restent en secours.
+
+**Source.** Code uniquement. Le rendu visé est un orchestre séquencé, pas un orchestre réel.
+
+**Inspirations.** Des procédés, jamais une mélodie reprise.
+
+## Ordre de travail
+
+| Lot | Contenu | Cadre |
+| --- | --- | --- |
+| 0 | Rétablir les sons des ultimes, donner le bon lancement à chaque compétence, rééquilibrer musique, effets et ambiances, corriger `COMBAT_HD2D.md` | Contrat actuel |
+| 1 | Amendement 1.12.0 | Texte relu, puis approuvé par l'opérateur |
+| 2 | Bus commun, limiteur, atténuation, effets actifs par défaut | Après l'amendement |
+| 3 | Moteur à sections, motif, ponts, thèmes réécrits, deux niveaux de combat, fanfares | Après l'amendement |
+| 4 | Grammaire sonore, repères sur les recettes, les 20 sur mesure | Après l'amendement |
+| 5 | Humeurs de récit, ambiances hors combat | Après l'amendement |
+| 6 | Laboratoire d'écoute, validation, réglages finaux | Opérateur |
+
+Ce chantier passe avant le test PC (A2) : il précède le playtest complet de la ligne d'arrivée OD-2026-10-25-C.
+
+## Inchangé
+
+Vérité du jeu, sauvegardes V6, récompenses, canon, voix et audio vidéo (toujours DEFERRED), planificateur en pause, `main`.
+
+## Sources
+
+[Breath of Fire III, Wikipédia](https://en.wikipedia.org/wiki/Breath_of_Fire_III), [Chrono Cross, Square Enix Music Online](https://squareenixmusic.com/reviews/group/chronocross.html). Aucune source publique consultée ne détaille les modulations de ces trois jeux : les exemples de ponts seront fixés à l'écoute de l'opérateur.

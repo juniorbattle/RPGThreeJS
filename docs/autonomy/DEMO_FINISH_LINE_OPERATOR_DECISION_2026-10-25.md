@@ -163,3 +163,7 @@ Extension du même jour, à la question de l'opérateur sur les ennemis (« Oui,
 - Les 20 compétences ennemies portées par des unités ont leur signature. Tir Entravant et Transpercement n'affichent plus de lianes ni de flèche.
 - Les attaques de base sans arme ont leur effet : une morsure n'est plus un coup d'épée, une pierre n'est plus une flèche.
 - Provocation, Cri de Guerre et Voile de Fumée ne sont portés par aucune unité : ils ne sont pas traités.
+
+## Mise à jour — OD-2026-11-01-B, 1er novembre 2026
+
+Après l'[audit audio](../reports/audio-audit-2026-11-01.md), l'opérateur décide de refaire musique et sons avant le test PC. Le détail est dans la [direction audio](AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md). La piste C n'est donc plus une simple écoute : elle redevient un chantier, et le playtest complet vient après lui. La comparaison des 16 familles est abandonnée.
