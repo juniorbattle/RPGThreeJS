@@ -82,7 +82,7 @@ export class FxDirector {
       const to = this.anchor(proj.to, ctx, firstTarget);
       hitTime = recipeImpactTime({ ...recipe, impactAt: 0 }, from.distanceTo(to));
       engine.after(proj.at, () => {
-        if (proj.sfx) engine.hooks.sfx(proj.sfx);
+        if (proj.sfx) engine.hooks.sfx(proj.sfx, { key: recipe.id, weight: ctx.soundWeight });
         void engine.projectile(from, to, proj.element ?? recipe.element, { speed: proj.speed, size: (proj.size ?? 0.7) * intensity.scale * bodyScale(ctx.source), arc: proj.arc, streak: proj.streak, smoke: proj.smoke });
       });
     }
@@ -96,7 +96,7 @@ export class FxDirector {
     }
     (recipe.marks ?? []).forEach((mark, index) => {
       const cue = markCue(mark, ctx.soundWeight ?? 'l');
-      if (cue) engine.after(mark.at + (mark.afterHit ? hitTime : 0), () => engine.hooks.mark?.(cue, index));
+      if (cue) engine.after(mark.at + (mark.afterHit ? hitTime : 0), () => engine.hooks.mark?.(cue, index, recipe.id));
     });
     if (!authored) {
       for (const accent of apAccentSteps(impactTime, recipe.element, intensity, ctx.cells.length > 1)) {
@@ -245,7 +245,7 @@ export class FxDirector {
     switch (step.kind) {
       case 'shake': hooks.shake(num('magnitude', 0.2), num('duration', 0.2)); return;
       case 'flash': hooks.flash(p.dark === true ? '#06030c' : this.engine.palette(element).core, num('opacity', 0.1), num('duration', 0.18)); return;
-      case 'sfx': hooks.sfx(String(p.id ?? 'hit'), { pitch: num('pitch', 1), volume: num('volume', 1) }); return;
+      case 'sfx': hooks.sfx(String(p.id ?? 'hit'), { pitch: num('pitch', 1), volume: num('volume', 1), key: `${recipe.id}:${step.at}`, weight: ctx.soundWeight }); return;
       case 'slowmo': hooks.slowmo(num('scale', 0.35), num('duration', 0.3)); return;
       case 'speedLines': hooks.speedLines(num('duration', 0.8), this.engine.palette(element).body); return;
       case 'punch': hooks.punch?.(this.anchor(step.anchor, ctx, ctx.targets[0]), num('duration', 0.45), p.hold === true); return;

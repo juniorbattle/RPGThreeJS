@@ -321,6 +321,15 @@ describe('the cue table on the parent owner (OD-2026-11-01-B)', () => {
     now += 100; player.playCombat('fx.not.in.table', 'one', 'd'); expect(contexts[0]!.sources).toHaveLength(3);
   });
 
+  it('plays the marks of two recipes of one action, and each only once', async () => {
+    const renderer = table([composed, 'fx.land.earth.l']);
+    await fight(renderer);
+    player.playCombat(composed, 'one', 'action-1:mark0.a_hawk_leap_depart:'); now += 100;
+    player.playCombat('fx.land.earth.l', 'one', 'action-1:mark0.a_hawk_leap_arrive:'); now += 100;
+    player.playCombat('fx.land.earth.l', 'one', 'action-1:mark0.a_hawk_leap_arrive:');
+    expect(contexts[0]!.sources).toHaveLength(2);
+  });
+
   it('rejects a render over its limit and keeps a signature cue up to 2.5 seconds', async () => {
     const renderer = table([composed, charge], 1.4);
     await fight(renderer);
@@ -363,5 +372,20 @@ describe('the cue table on the parent owner (OD-2026-11-01-B)', () => {
     player.playCombat(composed, 'one', 'a'); expect(music.attenuate).not.toHaveBeenCalled();
     now += 100; player.playCombat(charge, 'one', 'b'); expect(music.attenuate).toHaveBeenLastCalledWith(11.5);
     player.endCombat('one'); expect(music.attenuate).toHaveBeenLastCalledWith(10);
+  });
+
+  it('lets the music back on time when a signature voice is taken by a result', async () => {
+    const music = { setContext: vi.fn(), setAmbience: vi.fn(), setVolume: vi.fn(), setLevel: vi.fn(), attenuate: vi.fn(), dispose: vi.fn() };
+    const renderer = table([charge, blow], 1.5);
+    await fight(renderer, music);
+    (contexts[0] as unknown as { currentTime: number }).currentTime = 10;
+    player.playCombat(charge, 'one', 'a'); now += 100; player.playCombat(blow, 'one', 'b');
+    for (const [i, id] of ['knockout', 'critical'].entries()) { now += 50; player.playCombat(id, 'one', `r${i}`); }
+    now += 50; player.playCombat('defeat', 'one', 'd');
+    expect(player.musicSnapshot().cues.voices).toEqual([blow, 'knockout', 'critical', 'defeat']);
+    music.attenuate.mockClear();
+    now += 50; player.playCombat('victory', 'one', 'v');
+    expect(player.musicSnapshot().cues.voices).toEqual(['knockout', 'critical', 'defeat', 'victory']);
+    expect(music.attenuate).toHaveBeenLastCalledWith(10);
   });
 });

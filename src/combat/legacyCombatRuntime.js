@@ -79,7 +79,6 @@ let COMBAT_ID='standalone';
 const combatAudio=new CombatAudioEmitter(message=>window.parent.postMessage(message,location.origin));
 let soundAction=null;
 function combatCue(id,phase='',target=''){ combatAudio.cue(id,soundAction?`${soundAction}:${phase}:${target}`:undefined); }
-let fxSoundWeight='l';
 let COMBAT_SCENE_ID='forest_route';
 // DEV: ?scene=<arena id> previews another arena in the standalone combat.
 if(import.meta.env.DEV&&new URLSearchParams(location.search).get('scene'))COMBAT_SCENE_ID=new URLSearchParams(location.search).get('scene');
@@ -195,8 +194,8 @@ const camera=new THREE.PerspectiveCamera(COMBAT_PRESENTATION.camera.fov, innerWi
 const fxEngine=new FxEngine(scene,camera,{
   shake:(magnitude,duration)=>screenShake(magnitude,duration,magnitude>0.3),
   flash:(color,opacity)=>screenFlash(color,opacity),
-  sfx:(id)=>{ const cue=sharedStepCue(id,fxSoundWeight); if(cue)combatCue(cue,'step-'+id); },
-  mark:(cue,index)=>combatCue(cue,'mark'+index),
+  sfx:(id,step)=>{ const cue=sharedStepCue(id,step?.weight??'l'); if(cue)combatCue(cue,'step-'+id+'.'+(step?.key??'')); },
+  mark:(cue,index,recipe)=>combatCue(cue,'mark'+index+'.'+recipe),
   slowmo:(scale,duration)=>{ if(REDUCED_GRAPHICS)return; G.timeScale=scale; G.slowUntil=performance.now()+duration*1000; },
   speedLines:(duration,color)=>showSpeedLines(duration,color),
   punch:(point,duration,hold)=>cameraPunch(point,duration,hold),
@@ -1709,6 +1708,8 @@ function fxField(){
  * Visual weight of an action: its AP cost (a basic attack counts its élan
  * level, not the repeat surcharge), ultimates and boss signatures on top.
  */
+/** The weight of an action's sounds: its catalogued cost and the unit's height, never this turn's surcharge. */
+function actionSoundWeight(spec,u){ return soundWeight(spec.key==='attack'?(spec.charge||0)+1:spec.item?1:spec.ap,u?.visualHeight); }
 function fxPower(spec){
   const presentation=getSkillPresentation(spec),tuning=getActionPresentationTuning(spec);
   const ap=spec.key==='attack'?(spec.charge||0)+1:spec.ap;
@@ -1721,8 +1722,7 @@ function playActionFx(spec,u,targets,cx,cz,visualContext={}){
   const point=visualContext.targetPoint?visualContext.targetPoint.clone():new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz));
   const cells=(spec.radius>=1||spec.shape)?aoeCells(u,spec,cx,cz).filter(([gx,gz])=>inBounds(gx,gz)).map(([gx,gz])=>new THREE.Vector3(wX(gx),tileTop(gx,gz),wZ(gz))):[];
   const refs=targets.filter(t=>t&&t.grp).map(fxUnitRef);
-  fxSoundWeight=soundWeight(spec.ap,u.visualHeight);
-  const playback=fxDirector.play(recipe,{source:fxUnitRef(u),targets:refs.length?refs:[{position:point.clone(),height:1.6}],point,cells:cells.length?cells:[point.clone()],power:fxPower(spec),field:fxField(),soundWeight:fxSoundWeight});
+  const playback=fxDirector.play(recipe,{source:fxUnitRef(u),targets:refs.length?refs:[{position:point.clone(),height:1.6}],point,cells:cells.length?cells:[point.clone()],power:fxPower(spec),field:fxField(),soundWeight:actionSoundWeight(spec,u)});
   // the spotlight stays open on the field shot until the ultimate's wave has rolled out
   if(playback.weight==='ultimate'&&G.spotlight)G.spotlight.hold=playback.completion;
   return {played:true,presetId,impactTime:playback.impactTime,completion:playback.completion,cinematic:playback.cinematic,weight:playback.weight};
@@ -1772,14 +1772,14 @@ function playActionVfxAt(presetId,u,targetPoint,spec={}){
   const point=targetPoint.clone?targetPoint.clone():new THREE.Vector3(targetPoint.x,targetPoint.y,targetPoint.z);
   // Leap landings, teleports and dash arrivals play the procedural recipe of their preset.
   const preset=getVfxPreset(presetId);
-  const playback=fxDirector.play(resolveFxRecipe(presetId,preset?.tags||[]),{source:fxUnitRef(u),targets:[{position:point.clone(),height:1.6}],point,cells:[point.clone()],power:fxPower(spec)});
+  const playback=fxDirector.play(resolveFxRecipe(presetId,preset?.tags||[]),{source:fxUnitRef(u),targets:[{position:point.clone(),height:1.6}],point,cells:[point.clone()],power:fxPower(spec),soundWeight:actionSoundWeight(spec,u)});
   void playback.completion.catch(error=>console.warn('[CombatFx] Movement playback failed safely.',error));
   return {played:true,presetId,impactTime:playback.impactTime,completion:playback.completion};
 }
 /** The departure or arrival of a moving skill, played on the unit itself. */
 function playMoveFx(u,point,spec,phase){
   const recipe=skillMoveFxRecipe(spec.key,phase); if(!recipe)return false;
-  const ref=fxUnitRef(u),playback=fxDirector.play(recipe,{source:ref,targets:[ref],point:point.clone(),cells:[point.clone()],power:fxPower(spec)});
+  const ref=fxUnitRef(u),playback=fxDirector.play(recipe,{source:ref,targets:[ref],point:point.clone(),cells:[point.clone()],power:fxPower(spec),soundWeight:actionSoundWeight(spec,u)});
   void playback.completion.catch(error=>console.warn('[CombatFx] Movement playback failed safely.',error));
   return true;
 }

@@ -332,7 +332,8 @@ const drive: readonly Hit[] = [[0, 'kit', 0, 0.82], [0, 'drum', 1, 0.5], [0.5, '
 const driveFill: readonly Hit[] = [[0, 'kit', 0, 0.82], [1, 'kit', 1, 0.5], [2, 'kit', 1, 0.56], [2.5, 'kit', 1, 0.44], [3, 'kit', 1, 0.6], [3.25, 'kit', 1, 0.5], [3.5, 'kit', 1, 0.64], [3.75, 'kit', 1, 0.74], [2, 'cymbal', 1, 0.6]];
 const bossBed: Partial<Section> = {
   pad: { instrument: 'choir', lo: 53, hi: 69, v: 0.42 },
-  bass: { instrument: 'pizz', base: 38, pattern: 'pulse', v: 0.56 },
+  bass: { instrument: 'pizz', base: 38, pattern: 'pulse', v: 0.56, layer: 'action' },
+  arpeggio: { instrument: 'pizz', lo: 50, perBeat: 1, v: 0.4, layer: 'reflection', patterns: [[0, 1, 0, 2]] },
   ostinato: { instrument: 'strings', lo: 50, perBeat: 2, v: 0.5, length: 0.3, layer: 'action', patterns: [[0, 0, 1, 0, 0, 0, 2, 1], [0, 1, 0, 0, 2, 0, 1, 0]] },
   drums: { bar: drive, fill: driveFill, layer: 'action' },
 };
@@ -349,19 +350,20 @@ const boss: ThemeDef = {
     }),
     section('A', 138, 4, 38, 'phrygian', 'Dm | Eb | Dm | Eb | Bb | C | Eb | D5', { ...bossBed,
       lines: [
-        { name: 'lead', instrument: 'brass', v: 0.74, notes: 'D4:1.5 A4:1.5 G4:1 | Eb4:2 D4:2 | F4:1 G4:1 A4:2 | Bb4:1.5 A4:0.5 G4:2 | D5:1.5 C5:1.5 Bb4:1 | C5:2 G4:2 | Bb4:1 A4:1 G4:1 Eb4:1 | D4:4' },
+        { name: 'lead', instrument: 'brass', v: 0.74, layer: 'action', notes: 'D4:1.5 A4:1.5 G4:1 | Eb4:2 D4:2 | F4:1 G4:1 A4:2 | Bb4:1.5 A4:0.5 G4:2 | D5:1.5 C5:1.5 Bb4:1 | C5:2 G4:2 | Bb4:1 A4:1 G4:1 Eb4:1 | D4:4' },
+        { name: 'calm', instrument: 'horn', v: 0.44, layer: 'reflection', plain: true, notes: 'D4:2 A4:2 | G4:2 Eb4:2 | r:4 | r:4 | r:4 | r:4 | r:4 | r:4' },
       ],
     }),
     section('A2', 138, 4, 38, 'phrygian', 'Dm | Eb | Dm | Eb | Bb | C | Eb | D5', { ...bossBed,
       lines: [
         { name: 'lead', instrument: 'strings', v: 0.6, layer: 'action', notes: 'D5:1.5 A5:1.5 G5:1 | Eb5:2 D5:2 | F5:1 G5:1 A5:2 | Bb5:1.5 A5:0.5 G5:2 | D6:1.5 C6:1.5 Bb5:1 | C6:2 G5:2 | Bb5:1 A5:1 G5:1 Eb5:1 | D5:4' },
-        { name: 'call', instrument: 'horn', v: 0.58, notes: 'r:4 | D4:2 A4:2 | r:4 | Eb4:2 Bb4:2 | r:4 | C4:2 G4:2 | r:4 | D4:4' },
+        { name: 'call', instrument: 'horn', v: 0.58, layer: 'action', notes: 'r:4 | D4:2 A4:2 | r:4 | Eb4:2 Bb4:2 | r:4 | C4:2 G4:2 | r:4 | D4:4' },
       ],
     }),
     section('B', 138, 4, 43, 'aeolian', 'Gm | Eb | Cm | D | Gm | Eb | Bb | A', { ...bossBed,
-      bass: { instrument: 'pizz', base: 43, pattern: 'pulse', v: 0.56 },
+      bass: { instrument: 'pizz', base: 43, pattern: 'pulse', v: 0.56, layer: 'action' },
       lines: [
-        { name: 'lead', instrument: 'horn', v: 0.66, notes: 'G4:1 Bb4:1 D5:2 | Eb5:1.5 D5:0.5 Bb4:2 | C5:1 Eb5:1 G5:2 | F#5:2 D5:2 | G4:1 Bb4:1 D5:2 | G5:1.5 F5:0.5 Eb5:2 | D5:1 C5:1 Bb4:2 | A4:4' },
+        { name: 'lead', instrument: 'horn', v: 0.66, layer: 'action', notes: 'G4:1 Bb4:1 D5:2 | Eb5:1.5 D5:0.5 Bb4:2 | C5:1 Eb5:1 G5:2 | F#5:2 D5:2 | G4:1 Bb4:1 D5:2 | G5:1.5 F5:0.5 Eb5:2 | D5:1 C5:1 Bb4:2 | A4:4' },
       ],
     }),
     // no melody: the drive alone

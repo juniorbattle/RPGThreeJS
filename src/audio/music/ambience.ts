@@ -60,8 +60,8 @@ export function startAmbience(ctx: AudioContext, dest: AudioNode, id: AmbienceId
     bed('highpass', 6200, 0.4, 0.03, 0.09); // dry grass
     every((t) => { const f = 1800 + rng() * 1400; for (let i = 0; i < 2; i++) tone(t + i * 0.16, f * (1 - i * 0.08), 'sine', 0.12, 0.022, f * 0.9); }, [4, 9]); // a far bird
   } else if (id === 'refuge') {
-    bed('lowpass', 240, 0.7, 0.34, 0.07); // the hearth's low breath
-    bed('bandpass', 1400, 1, 0.03, 0.2);
+    bed('lowpass', 300, 0.7, 0.5, 0.07); // the hearth's low breath
+    bed('bandpass', 1400, 1, 0.09, 0.2);
     every((t) => { for (let i = 0; i < 3; i++) crackle(t + i * 0.05 * rng()); }, [0.7, 2.2]); // the fire
     every((t) => tone(t, 165, 'sine', 0.3, 0.05, 110, 0.02), [7, 14]); // timber settling
   } else {

@@ -336,11 +336,12 @@ export class UiSoundPlayer {
     return family ? this.buffers.get(family as GameSoundId) : undefined;
   }
 
-  private retire(source: AudioBufferSourceNode, voice: { gain: GainNode | null }): void {
+  private retire(source: AudioBufferSourceNode, voice: { id: string; gain: GainNode | null }): void {
     source.stop();
     source.disconnect();
     voice.gain?.disconnect();
     this.voices.delete(source);
+    if (isSignatureCue(voice.id)) this.attenuate();
   }
 
   /** The music waits under the last signature cue, driven by nothing else. */

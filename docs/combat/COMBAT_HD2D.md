@@ -12,7 +12,7 @@ Labels : CURRENT FACT, sauf mention contraire.
 | Unités | `src/combat/pixel/`, `tools/pixel-sprites/` | Feuilles pixel-art à densité unique (40 px/m), animations idle / move / windup / attack / cast / hurt / ko par-dessus le mouvement codé existant. |
 | Caméra | `src/combat/camera/CombatCameraDirector.ts` | Vue tactique, poussée courte sur chaque action, plan large pour les zones, **projecteur** pour les ultimes et signatures de boss. |
 | Effets | `src/combat/fx/` | Effets procéduraux style Octopath : recettes déclaratives par preset VFX, lumière dynamique, ralenti, speed lines, coup de caméra. |
-| Sons | `src/combat/audio/CombatSfx.ts` | Synthèse WebAudio (aucun fichier). **Non branchée** depuis OD-2026-10-29-A : le combat garde les repères sonores du contrat (`combatCue`). Elle attend l'amendement set 1.11.0, comme l'ambiance par biome. |
+| Sons | `src/audio/cueTable.ts`, `cueDesigns.ts`, `synthCues.ts` | Table fermée de 158 sons (16 familles, 82 composés, 60 de signature), rendus par le propriétaire audio parent ([OD-2026-11-01-B](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md)). `src/combat/audio/CombatSfx.ts` garde les dessins d'origine et reste non branché : son contexte et ses 14 voix ne servent plus. |
 
 Le **Combat Stage** (scène séparée) est retiré. Les actions se jouent dans l'arène. `stage/combatStageProfiles.ts` reste le classificateur utilisé par le VFX Lab.
 
@@ -123,7 +123,7 @@ Cette échelle ne concerne que les recettes partagées : attaques de base avec a
 - L'impact de gameplay (`impactTime`) tombe après le vol du projectile éventuel. Les recettes d'ultime sont `cinematic`.
 - Primitives (`FxEngine`) : particules carrées, particules aspirées (`converge`), orbites (`orbit`), entailles, étoiles d'impact, anneaux (y compris vers l'intérieur), cercles de runes pixel, piliers, traînées, projectiles, volées (`rain`), éclairs, éclats, dômes, orbes, flammes, fumée, fissures (`fissure`), traces au sol, lumière (pool de 3 lumières fixes, donc pas de recompilation), planches générées (`sheet`, ignorées tant qu'elles manquent).
 - Temps FX : `G.timeScale` (ralenti) agit sur les tweens, les animations pixel et les effets. Les `wait()` restent en temps réel.
-- Sons : le combat joue les 16 familles par `combatCue`, relayées au propriétaire audio parent. Les repères `sfx` des recettes et la banque `CombatSfx.ts` ne sont pas branchés (crochet `sfx` vide, [direction audio](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md)). `?son=0` coupe les sons.
+- Sons : le combat émet ses repères par `combatCue`, relayés au propriétaire audio parent. Les recettes portent des repères sonores sur l'horloge FX (`fxSounds.ts`) : geste, élément et poids rendus en un seul son sur le coup, charge, coup et vague pour les 12 ultimes et les 8 signatures de boss. Leur identité vient de la recette seule ; la famille de résultat dit comment le coup a porté. Les étapes `sfx` des recettes partagées passent par le crochet `sfx`, sauf celles qui imitent un coup porté. `?son=0` coupe les sons.
 - Les spritesheets CartoonCoffee (locales, hors dépôt) ne servent plus que de repli quand aucun preset ne résout. Le VFX Lab les utilise toujours.
 
 ## QA

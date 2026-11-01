@@ -107,7 +107,10 @@ class MusicDirector implements MusicHost {
   setContext(id: MusicContextId | null): void {
     if (this.disposed) return;
     // A fanfare keeps the stream against any surface; only mute or a new fight takes it.
-    if (id && this.current?.theme.once && id !== 'combat' && id !== 'boss') { this.held = id; return; }
+    if (id && this.current?.theme.once && id !== 'combat' && id !== 'boss') {
+      if (id !== this.current.theme.id) this.held = id;
+      return;
+    }
     this.held = null;
     if ((this.current?.theme.id ?? null) === id) return;
     const now = this.ctx.currentTime;

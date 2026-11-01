@@ -45,5 +45,5 @@ const result = await page.evaluate(async () => {
 console.log(JSON.stringify(result, null, 1));
 console.log(errors[0] ?? 'no page errors');
 await browser.close();
-const ok = !result.missing.length && !result.overLimit.length && result.bytes <= result.budget && result.worstPeak <= result.target + 1e-6 && result.deterministic;
+const ok = !result.missing.length && !result.overLimit.length && result.bytes <= result.budget && result.worstPeak <= result.target + 1e-6 && result.deterministic && result.longTasks.length === 0;
 process.exit(ok ? 0 : 1);

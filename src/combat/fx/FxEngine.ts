@@ -1,3 +1,4 @@
+import type { Weight } from '../../audio/cueTable';
 import * as THREE from 'three';
 import { FX_PALETTES, type FxElement, type FxPalette } from './fxPalettes';
 import { createFireHaloMaterial, createFireMaterial, FIRE_TEXELS_PER_UNIT } from '../arena/arenaProps';
@@ -17,9 +18,10 @@ export const FX_SHEETS = (fxSheetsJson as { sheets: Record<string, FxSheetEntry>
 export interface FxHooks {
   shake(magnitude: number, duration: number): void;
   flash(color: string, opacity: number, duration?: number): void;
-  sfx(id: string, options?: { volume?: number; pitch?: number; pan?: number }): void;
+  /** `key` tells one step of one recipe from another; `weight` is the action's sound weight class. */
+  sfx(id: string, options?: { volume?: number; pitch?: number; pan?: number; key?: string; weight?: Weight }): void;
   /** A recipe's sound mark, when the FX clock reaches it. */
-  mark?(cue: string, index: number): void;
+  mark?(cue: string, index: number, recipeId: string): void;
   /** Slow motion: FX/tween time scale for `duration` real seconds. */
   slowmo(scale: number, duration: number): void;
   speedLines(duration: number, color: string): void;

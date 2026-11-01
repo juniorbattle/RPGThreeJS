@@ -128,7 +128,7 @@ if(jobOptions.parameters.verifyCombatFx){
     window.__combatFxNative=[];
     const original=AudioBufferSourceNode.prototype.start;
     AudioBufferSourceNode.prototype.start=function(...args){
-      const player=window.__demoQaApp?.uiSounds,id=[...player?.buffers??[]].find(([,buffer])=>buffer===this.buffer)?.[0];
+      const player=window.__demoQaApp?.uiSounds,id=[...player?.buffers??[],...player?.cueBuffers??[]].find(([,buffer])=>buffer===this.buffer)?.[0];
       window.__combatFxNative.push({id,at:performance.now(),voices:player?.voices.size,scope:player?.combatScope??null});return original.apply(this,args);
     };
   });
@@ -2166,7 +2166,7 @@ async function runUiFx(options) {
       await route.fulfill({response,body:source.replace(pattern,(match,name)=>match.replace(';window.addEventListener',`;window.__demoQaApp=${name};window.addEventListener`))});
     });
     const owner=()=>page.evaluate(()=>JSON.parse(JSON.stringify(window.__demoQaApp.state)));
-    const slots=()=>page.evaluate(()=>Object.fromEntries(Object.keys(localStorage).filter(k=>k!=='rpg-threejs:ui-audio:v1').sort().map(k=>[k,localStorage.getItem(k)])));
+    const slots=()=>page.evaluate(()=>Object.fromEntries(Object.keys(localStorage).filter(k=>!k.startsWith('rpg-threejs:ui-audio:')).sort().map(k=>[k,localStorage.getItem(k)])));
     const count=()=>page.evaluate(()=>window.__uiFxStarts.length);
     const press=async(selector,key='Enter')=>{await page.locator(selector).focus();await page.keyboard.press(key);};
     const cue=async(id,action)=>{
@@ -2182,6 +2182,7 @@ async function runUiFx(options) {
     await page.reload({waitUntil:'networkidle'});
     const initialOwner=await owner(),initialSlots=await slots();
     await page.locator('[data-action="sounds"]').click();
+    await page.getByRole('button',{name:'Couper les sons',exact:true}).click();
     await page.getByRole('button',{name:'Activer les sons',exact:true}).click();
     await page.waitForFunction(()=>window.__demoQaApp.uiSounds.buffers.size===8);
     result.assets=[];
@@ -2266,14 +2267,14 @@ async function runUiFx(options) {
   console.log(JSON.stringify({pass:result.pass,scope:result.scope,events:result.events,errors:result.errors}));
 }
 
-/** Scoped opt-in on the existing native pilot; all game actions still use its real controls. */
+/** Effects are on by default since OD-2026-11-01-B; all game actions still use the pilot's real controls. */
 async function prepareCombatSoundProof(){
   const fx=report.combatFx,before=await state(),save=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
-  assert.equal(await page.evaluate(()=>window.__combatFxNative.length),0,'Default-disabled combat lot played on resume');
+  assert.equal(await page.evaluate(()=>window.__combatFxNative.length),0,'A combat cue played on resume');
   await keyboardActivate('.poi-map [data-poi-action="sounds"]');
-  await keyboardActivate('[data-sound-toggle]');
+  if(!await page.evaluate(()=>window.__demoQaApp.uiSounds.enabled))await keyboardActivate('[data-sound-toggle]');
   await page.waitForFunction(()=>window.__demoQaApp.uiSounds.buffers.size===8);
-  assert.equal(await page.evaluate(()=>window.__combatFxNative.length),0,'Enabling queued an automatic cue');
+  assert.equal(await page.evaluate(()=>window.__combatFxNative.length),0,'Opening the settings queued an automatic cue');
   await page.keyboard.press('Escape');assert.deepEqual(await state(),before);
   assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),save);
   fx.settingsPreserveOwnerAndSave=true;fx.defaultSilent=true;
