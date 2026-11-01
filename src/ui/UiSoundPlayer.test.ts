@@ -292,49 +292,76 @@ describe('combat level and outcome (OD-2026-11-01-B)', () => {
   });
 });
 
-describe('synthesized sources for the combat families (OD-2026-10-29-B)', () => {
-  function fakeSynth(duration = 0.3) {
-    const made = new Map<string, { duration: number; synth: string }>();
-    const resolvers: Array<() => void> = [];
-    const renderer = vi.fn((id: string) => new Promise<AudioBuffer | null>(resolve => {
-      resolvers.push(() => { const buffer = { duration, synth: id }; made.set(id, buffer); resolve(buffer as unknown as AudioBuffer); });
-    }));
-    return { renderer, made, finish: async () => { while (resolvers.length) { resolvers.shift()!(); await Promise.resolve(); await Promise.resolve(); } } };
+describe('the cue table on the parent owner (OD-2026-11-01-B)', () => {
+  const composed = 'fx.thrust.sky.l', charge = 'sig.w_lion_surge.charge', blow = 'sig.w_lion_surge.blow', wave = 'sig.w_lion_surge.wave';
+  function table(ready: readonly string[], duration = 0.3) {
+    return vi.fn(async (id: string) => (ready.includes(id) ? { duration, length: 1000, cue: id } as unknown as AudioBuffer : null));
+  }
+  async function fight(renderer: ReturnType<typeof table>, music?: { attenuate: ReturnType<typeof vi.fn> } & Record<string, unknown>) {
+    player = new UiSoundPlayer({ music: music ? () => music as never : null, synth: renderer }); await enable(); player.beginCombat('one');
+    await vi.waitFor(() => expect(contexts[0]?.decodeAudioData).toHaveBeenCalledTimes(24));
+    await vi.waitFor(() => expect(renderer.mock.calls.length).toBeGreaterThanOrEqual(158), { timeout: 8000 });
   }
 
-  it('choosing a source plays nothing; a synthesized family plays once rendered and falls back to its file before', async () => {
-    const synth = fakeSynth();
-    player = new UiSoundPlayer({ music: null, synth: synth.renderer }); await enable(); player.beginCombat('one');
-    await vi.waitFor(() => expect(contexts[0]?.decodeAudioData).toHaveBeenCalledTimes(24));
-    player.setCombatSource('thrust', 'synth');
-    expect(contexts[0]!.sources).toHaveLength(0); await vi.waitFor(() => expect(synth.renderer).toHaveBeenCalledWith('thrust', undefined));
-    player.playCombat('thrust', 'one', 'a'); expect(contexts[0]!.sources[0]!.buffer).not.toHaveProperty('synth');
-    await synth.finish(); await vi.waitFor(() => expect(synth.made.has('thrust')).toBe(true));
-    now += 100; player.playCombat('thrust', 'one', 'b');
-    expect(contexts[0]!.sources[1]!.buffer).toEqual({ duration: 0.3, synth: 'thrust' });
-    expect(JSON.parse(localStorage.getItem('rpg-threejs:combat-fx-source:v1')!)).toEqual(['thrust']);
+  it('renders the whole table once, in the background, and plays nothing by itself', async () => {
+    const renderer = table([composed]);
+    await fight(renderer);
+    expect(renderer).toHaveBeenCalledTimes(158);
+    expect(contexts[0]!.sources).toHaveLength(0);
+    player.beginCombat('two'); await Promise.resolve();
+    expect(renderer).toHaveBeenCalledTimes(158);
   });
 
-  it('previews the exact source asked, never a fallback, and only with effects on', async () => {
-    const synth = fakeSynth();
-    player = new UiSoundPlayer({ music: null, synth: synth.renderer });
-    player.preview('critical', 'file'); expect(contexts).toHaveLength(0);
-    await enable();
-    const ready = player.prepareCombatComparison();
-    await vi.waitFor(() => expect(contexts[0]?.decodeAudioData).toHaveBeenCalledTimes(24));
-    player.preview('critical', 'synth'); expect(contexts[0]!.sources).toHaveLength(0);
-    for (let i = 0; i < 16; i++) await synth.finish();
-    expect(await ready).toBe(true);
-    expect(player.comparisonReady('critical', 'synth')).toBe(true); expect(player.comparisonReady('critical', 'file')).toBe(true);
-    player.preview('critical', 'synth'); expect(contexts[0]!.sources[0]!.buffer).toEqual({ duration: 0.3, synth: 'critical' });
+  it('plays a rendered cue, the file of its family before, and silence without either', async () => {
+    const renderer = table([composed]);
+    await fight(renderer);
+    player.playCombat(composed, 'one', 'a'); expect(contexts[0]!.sources[0]!.buffer).toMatchObject({ cue: composed });
+    now += 100; player.playCombat('fx.blade.steel.l', 'one', 'b'); expect(contexts[0]!.sources[1]!.buffer).toEqual({ duration: 0.2 });
+    now += 100; player.playCombat('thrust', 'one', 'c'); expect(contexts[0]!.sources[2]!.buffer).toEqual({ duration: 0.2 });
+    now += 100; player.playCombat('fx.not.in.table', 'one', 'd'); expect(contexts[0]!.sources).toHaveLength(3);
   });
 
-  it('restores the stored choice, ignores unknown families and rejects a render longer than one second', async () => {
-    localStorage.setItem('rpg-threejs:combat-fx-source:v1', JSON.stringify(['miss', 'not-a-family']));
-    const synth = fakeSynth(1.4);
-    player = new UiSoundPlayer({ music: null, synth: synth.renderer });
-    expect(player.combatSource('miss')).toBe('synth'); expect(player.combatSource('step')).toBe('file');
-    await enable(); await synth.finish();
-    expect(player.comparisonReady('miss', 'synth')).toBe(false);
+  it('rejects a render over its limit and keeps a signature cue up to 2.5 seconds', async () => {
+    const renderer = table([composed, charge], 1.4);
+    await fight(renderer);
+    player.playCombat(composed, 'one', 'a'); expect(contexts[0]!.sources[0]!.buffer).toEqual({ duration: 0.2 });
+    now += 100; player.playCombat(charge, 'one', 'b'); expect(contexts[0]!.sources[1]!.buffer).toMatchObject({ cue: charge });
+  });
+
+  it('keeps the table inside its 32 MB budget', async () => {
+    const renderer = vi.fn(async (id: string) => ({ duration: 1, length: 1024 * 1024 * 2, cue: id }) as unknown as AudioBuffer);
+    await fight(renderer);
+    expect(player.musicSnapshot().cues.bytes).toBeLessThanOrEqual(32 * 1024 * 1024);
+    expect(player.musicSnapshot().cues.rendered).toBe(4);
+  });
+
+  it('keeps at most two signature voices and never takes the voice of a result', async () => {
+    const renderer = table([charge, blow, wave], 1);
+    await fight(renderer);
+    player.playCombat(charge, 'one', 'a'); now += 100; player.playCombat(blow, 'one', 'b');
+    now += 100; player.playCombat(wave, 'one', 'c');
+    expect(player.musicSnapshot().cues.voices).toEqual([blow, wave]);
+    player.playCombat('physical-impact', 'one', 'd'); player.playCombat('miss', 'one', 'e');
+    expect(player.musicSnapshot().cues.voices).toEqual([blow, wave, 'physical-impact', 'miss']);
+    now += 100; player.playCombat(charge, 'one', 'f');
+    expect(player.musicSnapshot().cues.voices).toEqual([wave, 'physical-impact', 'miss', charge]);
+  });
+
+  it('drops a signature cue rather than evict a result when every other voice is taken', async () => {
+    const renderer = table([charge], 1);
+    await fight(renderer);
+    for (const [i, id] of ['physical-impact', 'magic-impact', 'miss', 'critical'].entries()) { player.playCombat(id, 'one', `r${i}`); now += 50; }
+    player.playCombat(charge, 'one', 's');
+    expect(player.musicSnapshot().cues.voices).toEqual(['physical-impact', 'magic-impact', 'miss', 'critical']);
+  });
+
+  it('lowers the music on a signature cue only, holds it to the last one and lets go when the voices stop', async () => {
+    const music = { setContext: vi.fn(), setAmbience: vi.fn(), setVolume: vi.fn(), setLevel: vi.fn(), attenuate: vi.fn(), dispose: vi.fn() };
+    const renderer = table([composed, charge], 1.5);
+    await fight(renderer, music);
+    (contexts[0] as unknown as { currentTime: number }).currentTime = 10;
+    player.playCombat(composed, 'one', 'a'); expect(music.attenuate).not.toHaveBeenCalled();
+    now += 100; player.playCombat(charge, 'one', 'b'); expect(music.attenuate).toHaveBeenLastCalledWith(11.5);
+    player.endCombat('one'); expect(music.attenuate).toHaveBeenLastCalledWith(10);
   });
 });

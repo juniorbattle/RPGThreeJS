@@ -47,6 +47,8 @@ import { captureDeploymentFocus, nextCombatCursor, shouldHandleCombatShortcut, s
 import { onReducedMotionChange, prefersReducedMotion } from '../ui/ReducedMotion';
 import { createCombatRandomStreams, mulberry32 } from './combatRandom';
 import { CombatAudioEmitter, combatLaunchSound } from './CombatAudio';
+import { SIGNATURE_SKILLS, soundWeight } from '../audio/cueTable';
+import { sharedStepCue } from './fx/fxSounds';
 
 // ============================= CONFIG & UTILS =============================
 const CFG = {
@@ -77,6 +79,7 @@ let COMBAT_ID='standalone';
 const combatAudio=new CombatAudioEmitter(message=>window.parent.postMessage(message,location.origin));
 let soundAction=null;
 function combatCue(id,phase='',target=''){ combatAudio.cue(id,soundAction?`${soundAction}:${phase}:${target}`:undefined); }
+let fxSoundWeight='l';
 let COMBAT_SCENE_ID='forest_route';
 // DEV: ?scene=<arena id> previews another arena in the standalone combat.
 if(import.meta.env.DEV&&new URLSearchParams(location.search).get('scene'))COMBAT_SCENE_ID=new URLSearchParams(location.search).get('scene');
@@ -188,11 +191,12 @@ const combatVfxSystem=new VfxSystem();
 
 const camera=new THREE.PerspectiveCamera(COMBAT_PRESENTATION.camera.fov, innerWidth/innerHeight, 0.1, 200);
 // Procedural Octopath-style FX (no spritesheet dependency). Hooks are bound lazily:
-// the helpers are defined further down. Sounds stay with the contract cues (combatCue).
+// the helpers are defined further down. Marks and shared steps reach the parent as typed cues (combatCue).
 const fxEngine=new FxEngine(scene,camera,{
   shake:(magnitude,duration)=>screenShake(magnitude,duration,magnitude>0.3),
   flash:(color,opacity)=>screenFlash(color,opacity),
-  sfx:()=>{},
+  sfx:(id)=>{ const cue=sharedStepCue(id,fxSoundWeight); if(cue)combatCue(cue,'step-'+id); },
+  mark:(cue,index)=>combatCue(cue,'mark'+index),
   slowmo:(scale,duration)=>{ if(REDUCED_GRAPHICS)return; G.timeScale=scale; G.slowUntil=performance.now()+duration*1000; },
   speedLines:(duration,color)=>showSpeedLines(duration,color),
   punch:(point,duration,hold)=>cameraPunch(point,duration,hold),
@@ -1717,7 +1721,8 @@ function playActionFx(spec,u,targets,cx,cz,visualContext={}){
   const point=visualContext.targetPoint?visualContext.targetPoint.clone():new THREE.Vector3(wX(cx),tileTop(cx,cz),wZ(cz));
   const cells=(spec.radius>=1||spec.shape)?aoeCells(u,spec,cx,cz).filter(([gx,gz])=>inBounds(gx,gz)).map(([gx,gz])=>new THREE.Vector3(wX(gx),tileTop(gx,gz),wZ(gz))):[];
   const refs=targets.filter(t=>t&&t.grp).map(fxUnitRef);
-  const playback=fxDirector.play(recipe,{source:fxUnitRef(u),targets:refs.length?refs:[{position:point.clone(),height:1.6}],point,cells:cells.length?cells:[point.clone()],power:fxPower(spec),field:fxField()});
+  fxSoundWeight=soundWeight(spec.ap,u.visualHeight);
+  const playback=fxDirector.play(recipe,{source:fxUnitRef(u),targets:refs.length?refs:[{position:point.clone(),height:1.6}],point,cells:cells.length?cells:[point.clone()],power:fxPower(spec),field:fxField(),soundWeight:fxSoundWeight});
   // the spotlight stays open on the field shot until the ultimate's wave has rolled out
   if(playback.weight==='ultimate'&&G.spotlight)G.spotlight.hold=playback.completion;
   return {played:true,presetId,impactTime:playback.impactTime,completion:playback.completion,cinematic:playback.cinematic,weight:playback.weight};
@@ -1969,7 +1974,7 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   const impactStarted=new Promise(resolve=>{signalImpact=resolve;}),impactFinished=new Promise(resolve=>{finishImpact=resolve;});
   // Align the isolated runtime-frame proof with the real attack choreography,
   // after Stage lead-in/settle rather than consuming it during the transition.
-  const launchSound=combatLaunchSound(spec,getActionMotionPreset(spec)); if(launchSound)combatCue(launchSound,'launch');
+  const launchSound=SIGNATURE_SKILLS.includes(spec.key)?null:combatLaunchSound(spec,getActionMotionPreset(spec)); if(launchSound)combatCue(launchSound,'launch');
   const animation=attackAnim(u,spec,impactCx,impactCz,targets,{...context,onResolveImpact:async()=>{signalImpact(); await impactFinished;}});
   await Promise.race([impactStarted,animation]);
   const _preState=new Map(); _preState.set(u,{alive:u.alive,hp:u.hp,statuses:new Set(Object.keys(u.statuses))}); for(const _t of targets)_preState.set(_t,{alive:_t.alive,hp:_t.hp,statuses:new Set(Object.keys(_t.statuses))});

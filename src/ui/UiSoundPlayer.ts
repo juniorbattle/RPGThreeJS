@@ -1,5 +1,6 @@
+import { CUE_TABLE_MAX_BYTES, cueFamily, isSignatureCue, isTableCue, SIGNATURE_CUE_MAX_SECONDS } from '../audio/cueTable';
 import { createMix, type MixChain } from '../audio/mix';
-import { COMBAT_SOUND_IDS, UI_SOUND_IDS, isCombatSound, soundPriority, type CombatSoundId, type GameSoundId, type TacticalSoundId, type UiSoundId } from './GameSoundCatalog';
+import { COMBAT_SOUND_IDS, TABLE_CUE_IDS, UI_SOUND_IDS, isCombatSound, isResultSound, soundPriority, type GameSoundId, type UiSoundId } from './GameSoundCatalog';
 export { UI_SOUND_IDS } from './GameSoundCatalog';
 export type { UiSoundId } from './GameSoundCatalog';
 export type UiSoundFeedback = (id: UiSoundId) => void;
@@ -29,11 +30,9 @@ export type MusicFactory = (context: AudioContext, output: AudioNode) => MusicHo
 const loadMusic: MusicFactory = async (context, output) => (await import('../audio/music/MusicDirector')).createMusicDirector(context, output);
 const isFanfare = (id: MusicContextId | null): boolean => id === 'victory' || id === 'defeat';
 
-/** Source of a combat family (OD-2026-10-29-B): the accepted file candidate, or its synthesized alternative. */
-export type CombatSoundSource = 'file' | 'synth';
-const SOURCE_PREFERENCE_KEY = 'rpg-threejs:combat-fx-source:v1';
-export type SynthRenderer = (id: CombatSoundId, sampleRate: number) => Promise<AudioBuffer | null>;
-const loadSynth: SynthRenderer = async (id, sampleRate) => (await import('../audio/synthCues')).renderSynthCue(id, sampleRate);
+/** Renders one identity of the cue table, once, ahead of play. */
+export type SynthRenderer = (id: string, sampleRate: number) => Promise<AudioBuffer | null>;
+const loadSynth: SynthRenderer = async (id, sampleRate) => (await import('../audio/synthCues')).renderCue(id, sampleRate);
 
 /**
  * Optional parent-owned presentation: the single audio owner for cues, music and ambience. No gameplay state,
@@ -58,19 +57,17 @@ export class UiSoundPlayer {
   private effectsChoice: boolean | null = null;
   private readonly musicFactory: MusicFactory | null;
   private readonly synthRenderer: SynthRenderer | null;
-  private readonly synthSources = new Set<CombatSoundId>();
-  private readonly synthBuffers = new Map<CombatSoundId, AudioBuffer>();
-  private readonly synthPending = new Set<CombatSoundId>();
-  private synthChain: Promise<void> = Promise.resolve();
-  private comparisonWarming: Promise<void> | null = null;
+  private readonly cueBuffers = new Map<string, AudioBuffer>();
+  private cueBytes = 0;
+  private cueRendering: Promise<void> | null = null;
   private context: AudioContext | null = null;
   private mix: MixChain | null = null;
   private gain: GainNode | null = null;
   private readonly buffers = new Map<GameSoundId, AudioBuffer>();
-  private readonly voices = new Map<AudioBufferSourceNode, { id: GameSoundId; scope?: string }>();
+  private readonly voices = new Map<AudioBufferSourceNode, { id: string; scope?: string; endsAt: number; gain: GainNode | null }>();
   private combatScope: string | null = null;
   private readonly combatEvents = new Set<string>();
-  private readonly combatCadence = new Map<GameSoundId, number>();
+  private readonly combatCadence = new Map<string, number>();
   private combatWarming: Promise<void> | null = null;
   private readonly abort = new AbortController();
   private warming: Promise<void> | null = null;
@@ -93,10 +90,6 @@ export class UiSoundPlayer {
   constructor(options: { music?: MusicFactory | null; synth?: SynthRenderer | null } = {}) {
     this.musicFactory = options.music === undefined ? loadMusic : options.music;
     this.synthRenderer = options.synth === undefined ? loadSynth : options.synth;
-    try {
-      const saved: unknown = JSON.parse(localStorage.getItem(SOURCE_PREFERENCE_KEY) ?? 'null');
-      if (Array.isArray(saved)) for (const id of saved) if ((COMBAT_SOUND_IDS as readonly unknown[]).includes(id)) this.synthSources.add(id as CombatSoundId);
-    } catch { /* Without a stored choice every family plays its file candidate. */ }
     try {
       const current = localStorage.getItem(PREFERENCE_KEY);
       const saved = JSON.parse(current ?? localStorage.getItem(FORMER_PREFERENCE_KEY) ?? 'null');
@@ -128,54 +121,33 @@ export class UiSoundPlayer {
     this.stop(); this.combatScope = scope;
     // Decoding may begin for an already unlocked context, but never creates/resumes one.
     if (this.context && !this.combatWarming) this.combatWarming = this.warm(COMBAT_SOUND_IDS);
-    if (this.context && this.enabled) this.renderSynth([...this.synthSources]);
+    if (this.context && this.enabled) void this.renderCues();
   }
 
-  combatSource(id: CombatSoundId): CombatSoundSource {
-    return this.synthSources.has(id) ? 'synth' : 'file';
-  }
-
-  /** The operator's listening choice; changing it never plays a cue by itself. */
-  setCombatSource(id: CombatSoundId, source: CombatSoundSource): void {
-    if (this.disposed || !(COMBAT_SOUND_IDS as readonly string[]).includes(id)) return;
-    if (source === 'synth') this.synthSources.add(id); else this.synthSources.delete(id);
-    try { localStorage.setItem(SOURCE_PREFERENCE_KEY, JSON.stringify([...this.synthSources])); }
-    catch { /* A denied preference write never blocks the action. */ }
-    if (source === 'synth' && this.context && this.enabled) this.renderSynth([id]);
-  }
-
-  /** Comparison workshop: decodes every file and renders every synthesized family; needs effects on and unlocked audio. */
-  prepareCombatComparison(): Promise<boolean> {
+  /** Dev listening lab: decodes the files and renders the whole table; needs effects on and unlocked audio. */
+  prepareCues(): Promise<boolean> {
     if (this.disposed || !this.enabled || this.context?.state !== 'running') return Promise.resolve(false);
-    this.comparisonWarming ??= this.combatWarming ?? (this.combatWarming = this.warm(COMBAT_SOUND_IDS));
-    this.renderSynth(COMBAT_SOUND_IDS);
-    return Promise.all([this.comparisonWarming, this.synthChain]).then(() => true, () => false);
+    this.combatWarming ??= this.warm(COMBAT_SOUND_IDS);
+    return Promise.all([this.combatWarming, this.renderCues()]).then(() => true, () => false);
   }
 
-  comparisonReady(id: CombatSoundId, source: CombatSoundSource): boolean {
-    return source === 'synth' ? this.synthBuffers.has(id) : this.buffers.has(id);
-  }
-
-  /** Plays one family from one source, on an explicit click in the comparison workshop. */
-  preview(id: CombatSoundId, source: CombatSoundSource): void {
-    this.playSound(id, undefined, source);
-  }
-
-  private renderSynth(ids: readonly CombatSoundId[]): void {
+  /** The table in the background: one render per task, never awaited by play; a failed render leaves the fallback. */
+  private renderCues(): Promise<void> {
     const renderer = this.synthRenderer, context = this.context;
-    if (!renderer || !context) return;
-    for (const id of ids) {
-      if (this.synthBuffers.has(id) || this.synthPending.has(id)) continue;
-      this.synthPending.add(id);
-      // one offline render at a time; a failed render leaves the file candidate in place
-      this.synthChain = this.synthChain.then(async () => {
+    if (!renderer || !context) return Promise.resolve();
+    this.cueRendering ??= (async () => {
+      for (const id of TABLE_CUE_IDS) {
+        await new Promise(resolve => { window.setTimeout(resolve, 0); });
+        if (this.disposed) return;
         try {
           const buffer = await renderer(id, context.sampleRate);
-          if (!this.disposed && buffer && buffer.duration > 0 && buffer.duration <= 1.001) this.synthBuffers.set(id, buffer);
+          const bytes = (buffer?.length ?? 0) * 4;
+          const limit = isSignatureCue(id) ? SIGNATURE_CUE_MAX_SECONDS : 1;
+          if (!this.disposed && buffer && buffer.duration > 0 && buffer.duration <= limit + 0.001 && this.cueBytes + bytes <= CUE_TABLE_MAX_BYTES) { this.cueBuffers.set(id, buffer); this.cueBytes += bytes; }
         } catch { /* silent */ }
-        this.synthPending.delete(id);
-      });
-    }
+      }
+    })();
+    return this.cueRendering;
   }
 
   /** Closing a session stops its cues and returns the level; a fanfare on the music stream plays on. */
@@ -219,7 +191,7 @@ export class UiSoundPlayer {
     this.setMusicContext(outcome);
   }
 
-  playCombat(id: TacticalSoundId, scope: string, eventId: string): void {
+  playCombat(id: string, scope: string, eventId: string): void {
     if (scope !== this.combatScope || this.combatEvents.has(eventId)) return;
     this.combatEvents.add(eventId);
     if (this.combatEvents.size > 512) this.combatEvents.delete(this.combatEvents.values().next().value!);
@@ -258,8 +230,13 @@ export class UiSoundPlayer {
   }
 
   /** Read-only snapshot for tests and dev QA; never part of game state. */
-  musicSnapshot(): { context: MusicContextId | null; scene: string | null; active: boolean; unlocked: boolean; host: unknown } {
-    return { context: this.musicContext, scene: this.musicScene, active: this.musicActive, unlocked: this.context?.state === 'running', host: (this.music as { state?: unknown } | null)?.state ?? null };
+  musicSnapshot(): { context: MusicContextId | null; scene: string | null; active: boolean; unlocked: boolean; host: unknown; level: MusicLevel; cues: { rendered: number; bytes: number; voices: readonly string[] } } {
+    return { context: this.musicContext, scene: this.musicScene, active: this.musicActive, unlocked: this.context?.state === 'running', host: (this.music as { state?: unknown } | null)?.state ?? null, level: this.level, cues: { rendered: this.cueBuffers.size, bytes: this.cueBytes, voices: [...this.voices.values()].map(voice => voice.id) } };
+  }
+
+  /** Dev listening lab: the current track goes to a named section at its next pass. */
+  seekMusic(section: string): void {
+    this.music?.seek?.(section);
   }
 
   /** The presentation context selects the track; audio still waits for a real gesture. */
@@ -316,7 +293,7 @@ export class UiSoundPlayer {
       if (!this.enabled) return;
       if (!this.warming) this.warming = this.warm();
       if (this.combatScope && !this.combatWarming) this.combatWarming = this.warm(COMBAT_SOUND_IDS);
-      if (this.synthSources.size) this.renderSynth([...this.synthSources]);
+      void this.renderCues();
       await this.warming;
     } catch { /* Unsupported/blocked audio is silent, with no gameplay dependency. */ }
   }
@@ -336,7 +313,7 @@ export class UiSoundPlayer {
     return this.musicLoading;
   }
 
-  private async warm(ids: readonly GameSoundId[] = UI_SOUND_IDS): Promise<void> {
+  private async warm(ids: readonly (typeof UI_SOUND_IDS[number] | typeof COMBAT_SOUND_IDS[number])[] = UI_SOUND_IDS): Promise<void> {
     await Promise.all(ids.map(async id => {
       try {
         const response = await fetch(`/assets/audio/${isCombatSound(id) ? 'combat-fx-v1' : 'ui-fx-v1'}/${id}.wav`, { signal: this.abort.signal });
@@ -351,23 +328,49 @@ export class UiSoundPlayer {
     this.playSound(id);
   }
 
-  private playSound(id: GameSoundId, scope?: string, source?: CombatSoundSource): void {
+  /** Rendered first; a cue not rendered yet plays the file of its gesture family, or nothing. Never awaited. */
+  private bufferOf(id: string): AudioBuffer | undefined {
+    const rendered = this.cueBuffers.get(id);
+    if (rendered) return rendered;
+    const family = isTableCue(id) ? cueFamily(id) : id;
+    return family ? this.buffers.get(family as GameSoundId) : undefined;
+  }
+
+  private retire(source: AudioBufferSourceNode, voice: { gain: GainNode | null }): void {
+    source.stop();
+    source.disconnect();
+    voice.gain?.disconnect();
+    this.voices.delete(source);
+  }
+
+  /** The music waits under the last signature cue, driven by nothing else. */
+  private attenuate(): void {
+    const now = this.context?.currentTime ?? 0;
+    const until = [...this.voices.values()].reduce((end, voice) => (isSignatureCue(voice.id) ? Math.max(end, voice.endsAt) : end), now);
+    if (this.musicActive) this.music?.attenuate(until);
+  }
+
+  private playSound(id: string, scope?: string): void {
     if (this.disposed || !this.enabled || this.volume === 0 || document.hidden || this.context?.state !== 'running') return;
     const now = performance.now();
-    // A synthesized family that is not rendered yet falls back to its file; an explicit preview never does.
-    const wanted = source ?? (isCombatSound(id) && this.synthSources.has(id) ? 'synth' : 'file');
-    const buffer = wanted === 'synth' && isCombatSound(id) ? this.synthBuffers.get(id) ?? (source ? undefined : this.buffers.get(id)) : this.buffers.get(id);
+    const buffer = this.bufferOf(id);
     if (!buffer) return;
     if (scope) {
       if (now - (this.combatCadence.get(id) ?? -Infinity) < (id === 'step' ? 120 : 45)) return;
     } else if (now - this.lastPlayedAt < 50) return;
     try {
+      const signature = isSignatureCue(id);
       const ui = !isCombatSound(id), uiVoices = [...this.voices].filter(([, voice]) => !isCombatSound(voice.id));
       const candidates = ui && uiVoices.length >= 2 ? uiVoices : [...this.voices];
-      if (candidates.length && (this.voices.size >= (this.combatScope ? 4 : 2) || ui && uiVoices.length >= 2)) {
-        const [oldest, voice] = candidates.reduce((lowest, candidate) => soundPriority(candidate[1].id) < soundPriority(lowest[1].id) ? candidate : lowest);
+      const signatures = candidates.filter(([, voice]) => isSignatureCue(voice.id));
+      if (signature && signatures.length >= 2) this.retire(...signatures[0]!);
+      else if (candidates.length && (this.voices.size >= (this.combatScope ? 4 : 2) || ui && uiVoices.length >= 2)) {
+        // a signature cue is dropped rather than take the voice of a result
+        const open = signature ? candidates.filter(([, voice]) => !isResultSound(voice.id)) : candidates;
+        if (!open.length) return;
+        const [oldest, voice] = open.reduce((lowest, candidate) => soundPriority(candidate[1].id) < soundPriority(lowest[1].id) ? candidate : lowest);
         if (this.combatScope && soundPriority(voice.id) > soundPriority(id)) return;
-        oldest.stop(); oldest.disconnect(); this.voices.delete(oldest);
+        this.retire(oldest, voice);
       }
       const source = this.context.createBufferSource();
       source.buffer = buffer;
@@ -376,16 +379,19 @@ export class UiSoundPlayer {
       if (voiceGain) { voiceGain.gain.value = 1.1; voiceGain.connect(this.gain!); }
       source.connect(voiceGain ?? this.gain!);
       source.onended = () => { this.voices.delete(source); source.disconnect(); voiceGain?.disconnect(); };
-      this.voices.set(source, { id, scope });
+      this.voices.set(source, { id, scope, endsAt: this.context.currentTime + buffer.duration, gain: voiceGain });
       this.lastPlayedAt = now;
       if (scope) this.combatCadence.set(id, now);
       source.start();
+      if (signature) this.attenuate();
     } catch { /* No sound failure may escape into an owner callback. */ }
   }
 
   stop(): void {
+    const signature = [...this.voices.values()].some(voice => isSignatureCue(voice.id));
     for (const voice of this.voices.keys()) { try { voice.stop(); voice.disconnect(); } catch { /* already ended */ } }
     this.voices.clear();
+    if (signature) this.attenuate();
   }
 
   dispose(): void {
@@ -394,7 +400,7 @@ export class UiSoundPlayer {
     window.removeEventListener('pointerdown', this.gesture, true);
     window.removeEventListener('keydown', this.gesture, true);
     document.removeEventListener('visibilitychange', this.visibility);
-    this.abort.abort(); this.stop(); this.buffers.clear(); this.synthBuffers.clear();
+    this.abort.abort(); this.stop(); this.buffers.clear(); this.cueBuffers.clear();
     if (this.levelTimer !== null) window.clearTimeout(this.levelTimer);
     if (this.levelReturn !== null) window.clearTimeout(this.levelReturn);
     try { this.music?.dispose(); } catch { /* already gone */ }

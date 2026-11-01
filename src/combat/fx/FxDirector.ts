@@ -3,6 +3,8 @@ import type { FxEngine } from './FxEngine';
 import type { FxElement } from './fxPalettes';
 import { recipeImpactTime, type FxAnchor, type FxRecipe, type FxStep } from './fxRecipes';
 import { apAccentSteps, fieldBeatFor, fieldWaveCells, fxIntensity, scaleStep, type FieldBeat, type FxField, type FxIntensity } from './fxIntensity';
+import { markCue } from './fxSounds';
+import type { Weight } from '../../audio/cueTable';
 
 export interface FxUnitRef {
   /** Feet position in world space. */
@@ -22,6 +24,8 @@ export interface FxPlayContext {
   power?: { ap?: number; ultimate?: boolean };
   /** Battle platform of the action. */
   field?: FxField;
+  /** Weight class of the action's sound marks. */
+  soundWeight?: Weight;
 }
 
 export interface FxPlayback {
@@ -90,6 +94,10 @@ export class FxDirector {
       const scaled = scaleStep(step, at < impactTime - 0.2 ? buildUp : intensity);
       engine.after(at, () => this.run(scaled, recipe, ctx));
     }
+    (recipe.marks ?? []).forEach((mark, index) => {
+      const cue = markCue(mark, ctx.soundWeight ?? 'l');
+      if (cue) engine.after(mark.at + (mark.afterHit ? hitTime : 0), () => engine.hooks.mark?.(cue, index));
+    });
     if (!authored) {
       for (const accent of apAccentSteps(impactTime, recipe.element, intensity, ctx.cells.length > 1)) {
         if (recipe.noFloor && accent.kind === 'ring') continue;

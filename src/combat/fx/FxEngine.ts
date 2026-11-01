@@ -18,6 +18,8 @@ export interface FxHooks {
   shake(magnitude: number, duration: number): void;
   flash(color: string, opacity: number, duration?: number): void;
   sfx(id: string, options?: { volume?: number; pitch?: number; pan?: number }): void;
+  /** A recipe's sound mark, when the FX clock reaches it. */
+  mark?(cue: string, index: number): void;
   /** Slow motion: FX/tween time scale for `duration` real seconds. */
   slowmo(scale: number, duration: number): void;
   speedLines(duration: number, color: string): void;

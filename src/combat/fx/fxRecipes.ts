@@ -1,5 +1,6 @@
 import { elementForTags, type FxElement } from './fxPalettes';
 import type { FieldBeat } from './fxIntensity';
+import type { FxSoundMark } from './fxSounds';
 
 /**
  * Declarative combat FX recipes. A recipe is a timeline of primitive steps
@@ -79,6 +80,8 @@ export interface FxRecipe {
   noFloor?: boolean;
   /** Colour of the hit cells, when it differs from the recipe's element. */
   flashElement?: FxElement;
+  /** Sound marks on the FX clock (fxSounds.ts). */
+  marks?: readonly FxSoundMark[];
 }
 
 type Steps = FxStep[];

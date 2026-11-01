@@ -1,5 +1,6 @@
 import type { FxElement } from './fxPalettes';
 import type { FxAnchor, FxProjectile, FxRecipe, FxStep, FxStepKind } from './fxRecipes';
+import { withMoveSound, withSoundMarks } from './fxSounds';
 
 /**
  * Every hero skill and every enemy skill in use has its own signature, written
@@ -948,16 +949,19 @@ const MOVE_RECIPES: Readonly<Record<string, Partial<Record<FxMovePhase, () => Fx
 };
 
 export function skillFxRecipe(skillId: string): FxRecipe | null {
-  return SKILL_RECIPES[skillId]?.() ?? null;
+  const recipe = SKILL_RECIPES[skillId]?.();
+  return recipe ? withSoundMarks(recipe) : null;
 }
 
 export function skillMoveFxRecipe(skillId: string, phase: FxMovePhase): FxRecipe | null {
-  return MOVE_RECIPES[skillId]?.[phase]?.() ?? null;
+  const recipe = MOVE_RECIPES[skillId]?.[phase]?.();
+  return recipe ? withMoveSound(recipe, phase) : null;
 }
 
 /** The basic attack of an enemy that fights with teeth, claws, breath or stones. */
 export function enemyAttackFxRecipe(weaponName: string | undefined): FxRecipe | null {
-  return (weaponName ? ENEMY_ATTACKS[weaponName]?.() : null) ?? null;
+  const recipe = weaponName ? ENEMY_ATTACKS[weaponName]?.() : null;
+  return recipe ? withSoundMarks(recipe) : null;
 }
 
 export function listEnemyAttackWeapons(): string[] {

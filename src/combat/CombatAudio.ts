@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { TACTICAL_SOUND_IDS, type TacticalSoundId, type CombatSoundId } from '../ui/GameSoundCatalog';
+import { TACTICAL_SOUND_IDS, type CombatSoundId } from '../ui/GameSoundCatalog';
 
 /** Presentation messages carry no writable unit, combat result or resource payload. */
 export const combatAudioMessageSchema = z.discriminatedUnion('type', [
@@ -13,7 +13,7 @@ export class CombatAudioEmitter {
   private serial = 0;
   constructor(private readonly send: (message: unknown) => void) {}
   initialize(sessionId?: string): void { this.sessionId = sessionId ?? null; }
-  cue(id: TacticalSoundId, key?: string): void {
+  cue(id: string, key?: string): void {
     if (!this.sessionId) return;
     try { this.send({ type: 'rpg-threejs:combat-sound', sessionId: this.sessionId, id, eventId: key ?? `event:${++this.serial}` }); } catch { /* optional presentation */ }
   }

@@ -1,20 +1,20 @@
 /**
- * Synthesized sources for the sixteen approved combat families (OD-2026-10-29-B): each family is rendered once,
- * offline, into a buffer of at most one second, then played by the parent owner exactly like a decoded file (same
- * voices, priorities, cadence and effects setting). The designs come from the HD-2D combat sound module
- * (`src/combat/audio/CombatSfx.ts`, OD-2026-10-29-A, not wired), trimmed to one second and mapped onto the families.
+ * The cue renderer (OD-2026-10-29-B, OD-2026-11-01-B): every identity of the closed table is rendered once, offline,
+ * into one buffer, then played by the parent owner like a decoded file (same voices, priorities, cadence and effects
+ * setting). The sixteen families lead, their accepted files staying as fallback; composed cues sum gesture, element and
+ * weight; signature cues are written by hand (`cueDesigns.ts`). Each render stays at the file candidates' peak.
  */
-import type { CombatSoundId } from '../ui/GameSoundCatalog';
+import { COMPOSED_CUE_MAX_SECONDS, isSignatureCue, SIGNATURE_CUE_MAX_SECONDS, type Gesture, type SignaturePart, type Weight } from './cueTable';
+import { ELEMENT_LAYERS, GESTURE_LAYERS, SIGNATURE_DESIGNS, WEIGHT_LAYERS, type Primitives } from './cueDesigns';
+import type { FxElement } from '../combat/fx/fxPalettes';
+import { TABLE_CUE_IDS, type CombatSoundId } from '../ui/GameSoundCatalog';
 
-export const SYNTH_CUE_MAX_SECONDS = 1;
+export { TABLE_CUE_IDS };
+
 /** Same headroom as the file candidates (their PCM peaks stay at or below 0.2). */
 const PEAK = 0.2;
-
-interface Primitives {
-  tone(t: number, f: number, type: OscillatorType, dur: number, gain: number, o?: { to?: number; attack?: number }): void;
-  hiss(t: number, dur: number, type: BiquadFilterType, f: number, q: number, gain: number, o?: { to?: number; attack?: number }): void;
-  chime(t: number, notes: readonly number[], step: number, dur: number, gain: number, type?: OscillatorType): void;
-}
+export const cuePeakTarget = (): number => PEAK;
+export const cueMaxSeconds = (id: string): number => (isSignatureCue(id) ? SIGNATURE_CUE_MAX_SECONDS : COMPOSED_CUE_MAX_SECONDS);
 
 const FAMILIES: Readonly<Record<CombatSoundId, (p: Primitives) => void>> = {
   step: (p) => { p.hiss(0, 0.06, 'lowpass', 520, 1, 0.3); p.tone(0, 90, 'sine', 0.06, 0.12, { to: 60 }); },
@@ -35,12 +35,19 @@ const FAMILIES: Readonly<Record<CombatSoundId, (p: Primitives) => void>> = {
   defeat: (p) => { [440, 349, 294].forEach((f, i) => p.tone(i * 0.15, f, 'triangle', i === 2 ? 0.6 : 0.2, 0.18)); },
 };
 
-/** Families with a synthesized design (all sixteen). */
-export const SYNTH_CUE_IDS = Object.keys(FAMILIES) as CombatSoundId[];
+function designOf(id: string): ((p: Primitives) => void) | null {
+  const family = FAMILIES[id as CombatSoundId];
+  if (family) return family;
+  const [kind, a, b, c] = id.split('.');
+  if (kind === 'sig') return SIGNATURE_DESIGNS[a!]?.[b as SignaturePart] ?? null;
+  if (kind !== 'fx') return null;
+  if (!a || !b || !c || !(a in GESTURE_LAYERS) || !(b in ELEMENT_LAYERS) || !(c in WEIGHT_LAYERS)) return null;
+  return (p) => { GESTURE_LAYERS[a as Gesture](p); ELEMENT_LAYERS[b as FxElement](p); WEIGHT_LAYERS[c as Weight](p); };
+}
 
-/** Schedules one family on any context (offline render, or a recording stub in tests). */
-export function scheduleSynthCue(ctx: BaseAudioContext, out: AudioNode, noise: AudioBuffer, id: CombatSoundId, t0 = 0.002): void {
-  FAMILIES[id](primitives(ctx, out, noise, t0));
+/** Schedules one cue on any context (offline render, or a recording stub in tests). */
+export function scheduleCue(ctx: BaseAudioContext, out: AudioNode, noise: AudioBuffer, id: string, t0 = 0.002): void {
+  designOf(id)?.(primitives(ctx, out, noise, t0));
 }
 
 function seededNoise(length: number): Float32Array<ArrayBuffer> {
@@ -91,17 +98,17 @@ function primitives(ctx: BaseAudioContext, out: AudioNode, noise: AudioBuffer, t
   return { tone, hiss, chime };
 }
 
-/** Renders one family offline; trims trailing silence and brings the peak to the file candidates' level. */
-export async function renderSynthCue(id: CombatSoundId, sampleRate: number): Promise<AudioBuffer | null> {
-  if (typeof OfflineAudioContext === 'undefined') return null;
-  const length = Math.round(sampleRate * SYNTH_CUE_MAX_SECONDS);
+/** Renders one cue offline; trims trailing silence and brings the peak to the file candidates' level. */
+export async function renderCue(id: string, sampleRate: number): Promise<AudioBuffer | null> {
+  if (typeof OfflineAudioContext === 'undefined' || !designOf(id)) return null;
+  const length = Math.round(sampleRate * cueMaxSeconds(id));
   const ctx = new OfflineAudioContext(1, length, sampleRate);
-  const noise = ctx.createBuffer(1, Math.round(sampleRate), sampleRate);
+  const noise = ctx.createBuffer(1, Math.round(sampleRate * 3), sampleRate);
   noise.copyToChannel(seededNoise(noise.length), 0);
   const limiter = ctx.createDynamicsCompressor();
   limiter.threshold.value = -9; limiter.knee.value = 6; limiter.ratio.value = 8; limiter.attack.value = 0.003; limiter.release.value = 0.18;
   limiter.connect(ctx.destination);
-  scheduleSynthCue(ctx, limiter, noise, id);
+  scheduleCue(ctx, limiter, noise, id);
   const rendered = await ctx.startRendering();
   const data = rendered.getChannelData(0);
   let peak = 0;
