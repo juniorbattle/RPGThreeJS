@@ -1122,14 +1122,18 @@ function brazier(ctx: PropContext, seed: number): THREE.Group {
   return g;
 }
 
+/** Distance from the pole's axis to the cloth: past the pole's 0.08 radius plus half the bar's depth. */
+const BANNER_HANG = 0.125;
+
 function banner(ctx: PropContext, seed: number, burning: boolean): THREE.Group {
   const g = new THREE.Group();
   const wood = woodMaterial(ctx, true);
   const pole = mesh(new THREE.CylinderGeometry(0.07, 0.08, 4.2, 6), wood, ctx);
   pole.position.y = 2.1;
   g.add(pole);
+  // the bar is fixed to the front of the pole and the cloth hangs from it, so the pole stays behind the cloth
   const bar = mesh(boxGeometry(1.5, 0.08, 0.08, 1), wood, ctx);
-  bar.position.y = 3.9;
+  bar.position.set(0, 3.9, BANNER_HANG);
   g.add(bar);
   const tex = cached(ctx.textures, `banner-${seed}-${burning}`, () => bannerTexture(ctx.palette, seed, burning).toTexture());
   const cloth = new THREE.MeshStandardMaterial({ map: tex, alphaTest: 0.5, side: THREE.DoubleSide, roughness: 0.9 });
@@ -1140,7 +1144,7 @@ function banner(ctx: PropContext, seed: number, burning: boolean): THREE.Group {
       .replace('void main() {', 'uniform float uWave;\nvoid main() {')
       .replace('#include <begin_vertex>', `#include <begin_vertex>
         float sway = (1.0 - uv.y);
-        transformed.z += sin(uWave * 2.1 + position.y * 2.6 + position.x * 1.7) * 0.11 * sway;
+        transformed.z += (sin(uWave * 2.1 + position.y * 2.6 + position.x * 1.7) * 0.5 + 0.5) * 0.18 * sway; // forward only: it never swings back through the pole
         transformed.x += sin(uWave * 1.3 + position.y * 1.9) * 0.05 * sway;`);
   };
   const clothGeo = new THREE.PlaneGeometry(1.25, 2.5, 6, 12);
@@ -1148,7 +1152,8 @@ function banner(ctx: PropContext, seed: number, burning: boolean): THREE.Group {
   const flag = new THREE.Mesh(clothGeo, cloth);
   flag.castShadow = ctx.shadows;
   flag.customDepthMaterial = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepthPacking, map: tex, alphaTest: 0.5 });
-  flag.position.set(0, 3.86, 0.05);
+  flag.position.set(0, 3.86, BANNER_HANG);
+  flag.name = 'arena-banner-cloth';
   flag.raycast = () => {};
   flag.userData.dynamic = true; // vertex-animated: never merged into static decor
   g.add(flag);

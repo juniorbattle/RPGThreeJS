@@ -50,6 +50,13 @@ describe('CombatArena generation', () => {
         expect(coplanarOverlaps(arena.root, COMBAT_EYES)).toEqual([]);
       });
 
+      it('hangs every banner in front of its pole', () => {
+        const cloths: THREE.Object3D[] = [];
+        arena.root.traverse((object) => { if (object.name === 'arena-banner-cloth') cloths.push(object); });
+        expect(cloths.length).toBeGreaterThan(0);
+        for (const cloth of cloths) expect(cloth.position.z).toBeGreaterThan(0.08);
+      });
+
       it('gives every pixel-art decor material its sharp texels', () => {
         const seen = new Set<THREE.Material & { map: THREE.Texture }>();
         arena.root.traverse((object) => {
