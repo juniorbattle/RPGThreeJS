@@ -2075,7 +2075,7 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
       if(next){await poiMove(next);continue;}
       assert.ok(!live.currentNodeId.startsWith('lion-poi-'),'Native pilot exhausted its optional route without a canonical exit');
     }
-    if(await page.locator('.prologue-view').count()){await page.keyboard.press('Enter');}
+    if(await page.locator('.opening-sequence:not(.is-leaving)').count()){await page.keyboard.press('Enter');}
     else if(await page.locator('.cinematic-overlay__skip:visible').count()){await click('.cinematic-overlay__skip:visible');}
     else if(await page.locator('.dialogue-choice:visible:not(:disabled)').count()){await choose();}
     else if(await page.locator('.dialogue:visible').count()){await advanceDialogue();}

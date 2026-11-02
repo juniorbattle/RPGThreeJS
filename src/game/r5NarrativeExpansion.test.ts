@@ -237,7 +237,7 @@ describe('R5 determinism, save compatibility, and pacing evidence', () => {
     ), 0);
     const displayedSteps = resolvedPaths.reduce((total, path) => total + path.length, 0);
     const choiceScreens = resolvedPaths.flat().filter((step) => (step.choices?.length ?? 0) > 0).length;
-    const prologueWords = prologuePanels.reduce((total, panel) => total + wordCount(`${panel.title} ${panel.body}`), 0);
+    const prologueWords = prologuePanels.reduce((total, panel) => total + wordCount(panel.lines.join(' ')), 0);
 
     // Conservative fast-reader model: 240 wpm, short click/decision pauses,
     // three pre-finale fights plus the boss, three refuges, and map transitions.

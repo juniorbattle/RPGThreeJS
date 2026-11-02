@@ -15,7 +15,6 @@ export type ShotPainter = (frame: PaintFrame) => void;
 
 export interface SheetArt { entry: PixelSheetEntry; image: HTMLImageElement }
 export type SheetBook = ReadonlyMap<string, SheetArt>;
-export interface PainterOptions { sheets: SheetBook; marchers: boolean }
 
 type Rgb = readonly [number, number, number];
 interface Light { x: number; y: number; radius: number; color: Rgb; power: number; seed: number }
@@ -325,7 +324,7 @@ function paintMarch(frame: PaintFrame, sheets: Map<string, { entry: PixelSheetEn
   }
 }
 
-function boisClairPainter({ sheets, marchers }: PainterOptions): ShotPainter {
+function boisClairPainter(sheets: SheetBook): ShotPainter {
   const puff = softPuff([34, 22, 26]);
   const sparks = embers(150, 12041), near = embers(26, 3307);
   const random = seeded(808);
@@ -334,17 +333,15 @@ function boisClairPainter({ sheets, marchers }: PainterOptions): ShotPainter {
   for (const [id, art] of sheets) cast.set(id, { entry: art.entry, dark: tintedCanvas(art.image, 'rgba(38,14,8,.56)') });
   return (frame) => {
     const { ctx, camera, seconds, width, height } = frame;
-    if (marchers) {
-      paintLights(frame, VILLAGE);
-      for (const plume of plumes) {
-        const rise = ((plume.phase + (seconds * plume.speed) / 300) % 1);
-        ctx.globalAlpha = 0.16 * Math.sin(rise * Math.PI);
-        const size = plume.size * camera.scale * (1 + rise * 0.8);
-        ctx.drawImage(puff, camera.x + (plume.x - 90 * rise) * camera.scale - size / 2, camera.y + (plume.y - 180 * rise) * camera.scale - size / 2, size, size);
-      }
-      ctx.globalAlpha = 1;
-      paintMarch(frame, cast);
+    paintLights(frame, VILLAGE);
+    for (const plume of plumes) {
+      const rise = ((plume.phase + (seconds * plume.speed) / 300) % 1);
+      ctx.globalAlpha = 0.16 * Math.sin(rise * Math.PI);
+      const size = plume.size * camera.scale * (1 + rise * 0.8);
+      ctx.drawImage(puff, camera.x + (plume.x - 90 * rise) * camera.scale - size / 2, camera.y + (plume.y - 180 * rise) * camera.scale - size / 2, size, size);
     }
+    ctx.globalAlpha = 1;
+    paintMarch(frame, cast);
     ctx.globalCompositeOperation = 'lighter';
     glow(ctx, width * 0.5, height * 0.2, width * 0.75, [190, 66, 20], 0.05 + 0.03 * flicker(seconds, 13));
     ctx.globalCompositeOperation = 'source-over';
@@ -353,7 +350,7 @@ function boisClairPainter({ sheets, marchers }: PainterOptions): ShotPainter {
   };
 }
 
-function shadowPainter({ sheets }: PainterOptions): ShotPainter {
+function shadowPainter(sheets: SheetBook): ShotPainter {
   const puff = softPuff([120, 142, 184]);
   const fall = ash(110, 2293, [150, 156, 170]);
   const random = seeded(61);
@@ -413,10 +410,10 @@ function companyPainter(): ShotPainter {
   };
 }
 
-export function createShotPainter(id: OpeningShotId, options: PainterOptions): ShotPainter {
-  if (id === 'fall') return fallPainter();
-  if (id === 'seals') return sealsPainter();
-  if (id === 'bois-clair') return boisClairPainter(options);
-  if (id === 'shadow') return shadowPainter(options);
+export function createShotPainter(id: OpeningShotId, sheets: SheetBook): ShotPainter {
+  if (id === 'prologue_fall') return fallPainter();
+  if (id === 'prologue_seals') return sealsPainter();
+  if (id === 'prologue_lion') return boisClairPainter(sheets);
+  if (id === 'prologue_shadow') return shadowPainter(sheets);
   return companyPainter();
 }

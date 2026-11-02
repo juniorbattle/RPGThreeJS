@@ -227,16 +227,14 @@ describe('campaign content integrity', () => {
     }
   });
 
-  it('defines a short cinematic prologue backed by existing painted scenes', () => {
-    const prologueScenes = assets.prologueScenes as Record<string, string>;
-    expect(prologuePanels).toHaveLength(5);
+  it('defines the five prologue panels backed by existing tableaux, the first one drawn by code', () => {
+    const prologueScenes = assets.prologueScenes as Record<string, string | undefined>;
+    expect(prologuePanels.map((panel) => panel.id)).toEqual(['prologue_fall', 'prologue_seals', 'prologue_lion', 'prologue_shadow', 'prologue_departure']);
+    expect(prologueScenes.prologue_fall).toBeUndefined();
 
     for (const panel of prologuePanels) {
-      expect(panel.eyebrow.length, `${panel.id}:eyebrow`).toBeGreaterThan(0);
-      expect(panel.title.length, `${panel.id}:title`).toBeGreaterThan(0);
-      expect(panel.body.length, `${panel.id}:body`).toBeGreaterThan(80);
-      expect(prologueScenes[panel.id], panel.id).toBeTruthy();
-      expectPublicAsset(prologueScenes[panel.id]!, panel.id);
+      expect(panel.lines.length, panel.id).toBeGreaterThan(0);
+      if (panel.id !== 'prologue_fall') expectPublicAsset(prologueScenes[panel.id]!, panel.id);
     }
   });
 

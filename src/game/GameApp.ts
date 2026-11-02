@@ -40,7 +40,7 @@ import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
 import { ExplorationView } from '../ui/ExplorationView';
 import { resolveRefugePresentation } from '../ui/RefugePresentation';
-import { PrologueView } from '../ui/PrologueView';
+import { OpeningSequence } from '../ui/opening/OpeningSequence';
 import { sceneTransition } from '../ui/SceneTransition';
 import type { TransitionVariant } from '../ui/SceneTransition';
 import { CinematicPlayer } from '../cinematics/CinematicPlayer';
@@ -146,7 +146,7 @@ export class GameApp {
   private readonly poiMap: PoiMapView;
   private readonly poiEncounter: PoiEncounterView;
   private readonly exploration: ExplorationView;
-  private readonly prologue: PrologueView;
+  private readonly prologue: OpeningSequence;
   private readonly cinematicRegistry = new CinematicRegistry();
   private readonly cinematicPlayer = new CinematicPlayer(this.cinematicRegistry);
   private pendingCombatId: string | null = null;
@@ -223,7 +223,7 @@ export class GameApp {
         this.root.querySelector<HTMLButtonElement>('[data-poi-action="motion"]')?.focus();
       },
     });
-    this.prologue = new PrologueView(root);
+    this.prologue = new OpeningSequence(root);
   }
 
   async start(): Promise<void> {
@@ -324,7 +324,7 @@ export class GameApp {
       <section class="qa-lab ui-screen" aria-label="Laboratoire QA de combat">
         <header class="qa-lab__header">
           <div><p class="eyebrow">Développement local</p><h1>Laboratoire de combat</h1></div>
-          <div class="qa-lab__header-actions"><button type="button" data-qa-opening>Maquette d'ouverture</button><button type="button" data-qa-sounds>Laboratoire d'écoute</button><button type="button" data-qa-back>Retour au titre</button></div>
+          <div class="qa-lab__header-actions"><button type="button" data-qa-sounds>Laboratoire d'écoute</button><button type="button" data-qa-back>Retour au titre</button></div>
         </header>
         <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
@@ -371,9 +371,6 @@ export class GameApp {
     this.chrome.querySelector('[data-qa-back]')?.addEventListener('click', () => this.renderTitle());
     this.chrome.querySelector('[data-qa-sounds]')?.addEventListener('click', () => {
       if (import.meta.env.DEV) void import('../ui/AudioListeningLab').then(({ AudioListeningLab }) => new AudioListeningLab(this.root, this.uiSounds).open());
-    });
-    this.chrome.querySelector('[data-qa-opening]')?.addEventListener('click', () => {
-      if (import.meta.env.DEV) void import('../ui/opening/OpeningMockup').then(({ OpeningMockup }) => new OpeningMockup(this.root, this.uiSounds, { reducedGraphics: this.state.settings.reducedGraphics }).open());
     });
     this.chrome.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((input) => {
       input.addEventListener('change', () => {
@@ -1530,6 +1527,7 @@ export class GameApp {
         this.setMode('PROLOGUE');
         this.canvas.hidden = true;
         prologuePromise = this.prologue.open({ reducedMotion: this.state.settings.reducedGraphics });
+        await this.prologue.ready;
       },
     });
     await this.playOpening(prologuePromise);
@@ -1537,6 +1535,8 @@ export class GameApp {
 
   /** `prologueSeen` reaches the disk with the map's first save: a reload anywhere in here resumes at the first panel. */
   private async playOpening(prologue: Promise<void> | null): Promise<void> {
+    await this.prologue.ready;
+    this.prologue.start();
     await prologue;
     this.state.flags.prologueSeen = true;
     await this.playDialogue('acte_ouverture');
