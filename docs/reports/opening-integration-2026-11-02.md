@@ -46,6 +46,14 @@ Verdict de l'opérateur : « Tableau vivant ».
 
 Validateurs verts : suite complète (169 fichiers vitest et 26 tests `node:test`), `tsc`, build, `contracts:validate`, `cinematics:validate-narrative-staging`, gate LOCKED vide. Relecture indépendante des contrats avant l'intégration : pas d'amendement, sous les conditions reprises dans OD-2026-11-02-A.
 
+## Mouvement réduit
+
+`CURRENT FACT` Retour de l'opérateur le même jour : « je vois uniquement du texte avec une image de fond ». Cause mesurée : les effets d'animation de Windows sont désactivés sur son poste (`SPI_GETCLIENTAREAANIMATION` à faux), le navigateur annonce `prefers-reduced-motion: reduce`, et la première version de la variante réduite retirait tout le dessin : bannière, Serpents, silhouettes, marques. Les passes Playwright ne le montraient pas, car ce navigateur n'hérite pas de ce réglage sans émulation.
+
+`CURRENT FACT` Corrigé : chaque plan se fige sur une image complète, garde ses fondus et n'a aucun mouvement. Vérifié plan par plan en émulant la préférence.
+
+`CURRENT FACT` Le même réglage met le combat en graphismes réduits (`legacyCombatRuntime.js:106`, `:2378`) : pas de bloom ni de bascule de netteté, particules réduites à 45 %, intensité des flashs d'effet à 60 %, pas de ralenti ni de projecteur, arène allégée, ombres des sprites retirées. Le contrat interdit au jeu de passer outre (`UI_AND_ACCESSIBILITY.md:25`).
+
 ## Limites
 
 - Personne n'a confirmé par écrit avoir vu la séquence en temps réel avec le son : le verdict porte sur le choix de version.

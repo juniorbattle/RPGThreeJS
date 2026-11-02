@@ -164,6 +164,29 @@ describe('OpeningSequence', () => {
     system.sequence.close();
   });
 
+  it('keeps each composition under reduced motion, drawn once and frozen', async () => {
+    let drawn = 0;
+    const context = new Proxy({}, {
+      get: (_, key) => {
+        if (key === 'createImageData') return (width: number, height: number) => ({ data: new Uint8ClampedArray(width * height * 4) });
+        if (key === 'createRadialGradient') return () => ({ addColorStop: () => undefined });
+        if (key === 'fillRect' || key === 'drawImage') return () => { drawn += 1; };
+        return () => undefined;
+      },
+      set: () => true,
+    });
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(context as unknown as CanvasRenderingContext2D);
+    const { sequence } = play({ reducedMotion: true });
+    sequence.start();
+    expect(drawn).toBeGreaterThan(0);
+    const still = drawn;
+    await new Promise((resolve) => setTimeout(resolve, 60));
+    expect(drawn).toBe(still);
+    press('Enter');
+    expect(drawn).toBeGreaterThan(still);
+    sequence.close();
+  });
+
   it('keeps the text and the way out when a picture or the canvas is missing', async () => {
     const { sequence, element, done } = play();
     element.querySelector('[data-plate="prologue_seals"]')?.remove();

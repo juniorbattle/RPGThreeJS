@@ -14,6 +14,9 @@ const VANISHING: Partial<Record<OpeningShot['id'], { x: number; y: number }>> = 
   prologue_seals: { x: 1240, y: 430 }, prologue_lion: { x: 948, y: 420 }, prologue_shadow: { x: 700, y: 620 }, prologue_departure: { x: 1000, y: 460 },
 };
 
+/** Under reduced motion each shot holds the moment its composition is fullest: nothing is lost, nothing moves. */
+const STILL_AT: Record<OpeningShot['id'], number> = { prologue_fall: 5.4, prologue_seals: 6, prologue_lion: 11.5, prologue_shadow: 7, prologue_departure: 6 };
+
 function loadImage(url: string): Promise<HTMLImageElement | null> {
   return new Promise((resolve) => {
     const image = new Image();
@@ -27,7 +30,8 @@ function loadImage(url: string): Promise<HTMLImageElement | null> {
  * The opening of a new chronicle (OD-2026-11-02-A): 55 seconds of living tableaux in place of the five read panels.
  * It reads and writes no game state and leaves the music to the `PROLOGUE` mode. A click or Enter moves to the next shot, Passer or Escape leaves. The text runs
  * on the sequence's own clock, never on the sound's, and stays when a picture is slow or missing. Canvas effects are
- * optional: without them the tableaux and the text still play, and reduced motion holds each one still.
+ * optional: without them the tableaux and the text still play. Reduced motion, from the system or the game, freezes
+ * each shot on one full frame and keeps the fades.
  */
 export class OpeningSequence {
   /** Settles once the pictures are in, or after READY_TIMEOUT_MS. Nothing waits on them longer. */
@@ -48,6 +52,7 @@ export class OpeningSequence {
   private frame = 0;
   private lineText = '';
   private reduced = false;
+  private stillOf: OpeningShot['id'] | null = null;
   private width = 0;
   private height = 0;
   private bar = 0;
@@ -137,6 +142,7 @@ export class OpeningSequence {
     this.height = window.innerHeight;
     this.bar = Math.max(this.height * 0.11, (this.height - this.width / 2.39) / 2);
     if (this.canvas) { this.canvas.width = this.width; this.canvas.height = this.height; }
+    this.stillOf = null;
   };
 
   private readonly handleClick = (event: MouseEvent): void => {
@@ -185,7 +191,7 @@ export class OpeningSequence {
     this.lineText = '';
     element.querySelector<HTMLElement>('[data-line]')!.textContent = '';
     element.dataset.panel = next.id;
-    this.painter = this.reduced ? null : createShotPainter(next.id, this.sheets);
+    this.painter = createShotPainter(next.id, this.sheets);
     for (const [id, plate] of this.plates) plate.root.classList.toggle('is-visible', id === next.id);
     element.querySelector<HTMLElement>('[data-cast]')!.classList.toggle('is-visible', next.id === 'prologue_departure');
     this.ctx?.clearRect(0, 0, this.width, this.height);
@@ -211,7 +217,7 @@ export class OpeningSequence {
     const progress = this.reduced ? 1 : this.seconds / shot.seconds;
     const camera = cameraAt(shot, progress, this.width, this.height, this.bar);
     this.placePlate(shot, camera, progress);
-    element.querySelector<HTMLElement>('[data-veil]')!.classList.toggle('is-down', !this.reduced && !last && remaining < CUT_SECONDS || !this.reduced && this.seconds < 0.05);
+    element.querySelector<HTMLElement>('[data-veil]')!.classList.toggle('is-down', !last && remaining < CUT_SECONDS || this.seconds < 0.05);
     const text = this.reduced ? shot.lines.map(line => line.text).join(' ') : shot.lines.filter(line => line.at <= this.seconds).at(-1)?.text ?? '';
     const line = element.querySelector<HTMLElement>('[data-line]')!;
     if (text !== this.lineText) {
@@ -219,15 +225,16 @@ export class OpeningSequence {
       line.textContent = text;
       if (!this.reduced) line.animate?.([{ opacity: 0 }, { opacity: 1 }], { duration: 650, easing: 'ease-out' });
     }
-    line.classList.toggle('is-out', !this.reduced && remaining < CUT_SECONDS + 0.3 || last && this.seconds >= OPENING_BARS_OPEN_AT + 0.6);
+    line.classList.toggle('is-out', remaining < CUT_SECONDS + 0.3 || last && this.seconds >= OPENING_BARS_OPEN_AT + 0.6);
     if (last) {
       for (const actor of this.actors) actor.element.classList.toggle('is-in', this.seconds >= actor.at);
       element.querySelector<HTMLElement>('[data-cast]')!.classList.toggle('is-leaving', this.seconds >= OPENING_ACTOR_FADE_AT);
       element.dataset.bars = this.seconds >= OPENING_BARS_OPEN_AT ? 'open' : 'closed';
     }
-    if (this.reduced || !this.ctx) return;
+    if (!this.ctx || this.reduced && this.stillOf === shot.id) return;
+    this.stillOf = shot.id;
     this.ctx.clearRect(0, 0, this.width, this.height);
-    this.painter?.({ ctx: this.ctx, width: this.width, height: this.height, seconds: this.seconds, dt, camera });
+    this.painter?.({ ctx: this.ctx, width: this.width, height: this.height, seconds: this.reduced ? STILL_AT[shot.id] : this.seconds, dt: this.reduced ? 0 : dt, camera });
   }
 
   private placePlate(shot: OpeningShot, camera: ViewCamera, progress: number): void {
