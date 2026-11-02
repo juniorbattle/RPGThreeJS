@@ -6,7 +6,7 @@ Neuf contextes, ponts écrits, motif des Sceaux, deux niveaux de combat, fanfare
 
 Scheduler PAUSED. `main` protégé.
 
-UNE prochaine action : L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, d'abord sur les sons de compétences. Le playtest PC et ses corrections closent la conception ; viennent ensuite la dernière passe narrative, le passage mobile et la démo figée (OD-2026-11-01-C). Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte.
+UNE prochaine action : L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, d'abord sur les sons de compétences. Le playtest PC et ses corrections closent la conception ; viennent ensuite la dernière passe narrative, le passage mobile et la démo figée (OD-2026-11-01-C). Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte. La fiche d'arbitrages de l'ouverture (rapport `docs/reports/opening-audit-2026-11-02.md`) attend l'opérateur : rien n'est décidé sur une séquence d'ouverture, et elle ne bloque ni l'écoute ni le playtest.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs
