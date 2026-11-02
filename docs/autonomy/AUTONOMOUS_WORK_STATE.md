@@ -6,7 +6,7 @@ Neuf contextes, ponts écrits, motif des Sceaux, deux niveaux de combat, fanfare
 
 Scheduler PAUSED. `main` protégé.
 
-UNE prochaine action : L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, d'abord sur les sons de compétences. Le playtest PC et ses corrections closent la conception ; viennent ensuite la dernière passe narrative, le passage mobile et la démo figée (OD-2026-11-01-C). Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte. Ouverture décidée par OD-2026-11-02-A (`docs/autonomy/OPENING_SEQUENCE_OPERATOR_DECISION_2026-11-02.md`) : corriger les trois défauts du prologue, construire la maquette hors jeu, puis attendre le verdict de l'opérateur en mouvement avant toute intégration.
+UNE prochaine action : L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, d'abord sur les sons de compétences. Le playtest PC et ses corrections closent la conception ; viennent ensuite la dernière passe narrative, le passage mobile et la démo figée (OD-2026-11-01-C). Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte. Ouverture, OD-2026-11-02-A : les trois défauts du prologue sont corrigés et la maquette hors jeu est livrée (`/?qa=1`, QA rencontres, Maquette d'ouverture ; rapport `docs/reports/opening-mockup-2026-11-02.md`). L'opérateur juge en mouvement, y compris la version de Bois-Clair à garder. Aucune intégration avant son verdict. Ce verdict ne bloque ni l'écoute ni le playtest.
 
 <!-- QA_JOBS_START -->
 ## Live QA jobs

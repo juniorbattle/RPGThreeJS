@@ -324,7 +324,7 @@ export class GameApp {
       <section class="qa-lab ui-screen" aria-label="Laboratoire QA de combat">
         <header class="qa-lab__header">
           <div><p class="eyebrow">Développement local</p><h1>Laboratoire de combat</h1></div>
-          <div class="qa-lab__header-actions"><button type="button" data-qa-sounds>Laboratoire d'écoute</button><button type="button" data-qa-back>Retour au titre</button></div>
+          <div class="qa-lab__header-actions"><button type="button" data-qa-opening>Maquette d'ouverture</button><button type="button" data-qa-sounds>Laboratoire d'écoute</button><button type="button" data-qa-back>Retour au titre</button></div>
         </header>
         <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
@@ -371,6 +371,9 @@ export class GameApp {
     this.chrome.querySelector('[data-qa-back]')?.addEventListener('click', () => this.renderTitle());
     this.chrome.querySelector('[data-qa-sounds]')?.addEventListener('click', () => {
       if (import.meta.env.DEV) void import('../ui/AudioListeningLab').then(({ AudioListeningLab }) => new AudioListeningLab(this.root, this.uiSounds).open());
+    });
+    this.chrome.querySelector('[data-qa-opening]')?.addEventListener('click', () => {
+      if (import.meta.env.DEV) void import('../ui/opening/OpeningMockup').then(({ OpeningMockup }) => new OpeningMockup(this.root, this.uiSounds, { reducedGraphics: this.state.settings.reducedGraphics }).open());
     });
     this.chrome.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((input) => {
       input.addEventListener('change', () => {
