@@ -195,7 +195,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
     radial-gradient(circle at 50% 48%, rgba(242,211,139,.08), transparent 34%),
     linear-gradient(180deg, rgba(2,4,9,.58), rgba(2,4,9,.18) 42%, rgba(2,4,9,.78)),
     linear-gradient(90deg, rgba(2,4,9,.78), transparent 38%, rgba(2,4,9,.62)),
-    var(--prologue-bg-image) center/cover no-repeat;
+    var(--prologue-bg-image, none) center/cover no-repeat;
   filter: saturate(.92) contrast(1.05);
   will-change: opacity;
   animation: prologue-panel-in .5s ease both;
@@ -280,6 +280,13 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   font: 700 10px var(--ui-font-title, Cinzel, serif);
   letter-spacing: .14em;
   text-transform: uppercase;
+}
+
+.prologue-view[data-reduced-motion="true"] .prologue-view__painted,
+.prologue-view[data-reduced-motion="true"] .prologue-view__mist,
+.prologue-view[data-reduced-motion="true"] .prologue-view__card { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .prologue-view__painted, .prologue-view__mist, .prologue-view__card { animation: none; }
 }
 
 @keyframes prologue-panel-in {

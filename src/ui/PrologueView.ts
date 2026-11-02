@@ -1,5 +1,6 @@
 import { prologuePanels } from '../game/prologue';
 import { assets } from '../render/assetManifest';
+import { prefersReducedMotion } from './ReducedMotion';
 
 export class PrologueView {
   private element: HTMLElement | null = null;
@@ -8,11 +9,12 @@ export class PrologueView {
 
   constructor(private readonly root: HTMLElement) {}
 
-  open(): Promise<void> {
+  open(options: { reducedMotion?: boolean } = {}): Promise<void> {
     this.close();
     this.index = 0;
     this.element = document.createElement('section');
     this.element.className = 'prologue-view';
+    this.element.dataset.reducedMotion = String(prefersReducedMotion(options.reducedMotion));
     this.element.setAttribute('aria-label', 'Prologue');
     this.element.addEventListener('click', this.handleClick);
     document.addEventListener('keydown', this.handleKeyDown);
@@ -76,8 +78,10 @@ export class PrologueView {
     if (!this.element) return;
     const panel = prologuePanels[this.index];
     if (!panel) return;
-    const scenePath = (assets.prologueScenes as Record<string, string>)[panel.id];
-    this.element.style.setProperty('--prologue-bg-image', `url("${scenePath}")`);
+    // A panel without its image stays readable on the view's dark ground.
+    const scenePath = (assets.prologueScenes as Record<string, string | undefined>)[panel.id];
+    if (scenePath) this.element.style.setProperty('--prologue-bg-image', `url("${scenePath}")`);
+    else this.element.style.removeProperty('--prologue-bg-image');
     this.element.dataset.panel = panel.id;
     this.element.innerHTML = `
       <div class="prologue-view__painted" aria-hidden="true"></div>

@@ -146,10 +146,20 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(chronicle).toContain('this.state = createInitialState()');
     expect(chronicle).toContain('this.state.flags.prologueSeen = false');
     expect(chronicle).toContain('rpg-tutorial-seen');
-    expect(chronicle).toContain("await this.playDialogue('acte_ouverture')");
-    expect(chronicle).toContain('await this.enterCampaignPresentation()');
-    expect(chronicle).not.toContain('enterTravel');
-    expect(chronicle).not.toContain('enterJourney');
+    expect(chronicle).toContain('await this.playOpening(prologuePromise)');
+    const opening = method('private async playOpening');
+    expect(opening).toContain('this.state.flags.prologueSeen = true');
+    expect(opening).toContain("await this.playDialogue('acte_ouverture')");
+    expect(opening).toContain('await this.enterCampaignPresentation()');
+    expect(`${chronicle}${opening}`).not.toContain('enterTravel');
+    expect(`${chronicle}${opening}`).not.toContain('enterJourney');
+  });
+
+  it('replays the opening when a save was left before the map (OD-2026-11-02-A), never on a save without the flag', () => {
+    const resume = method('private async resumeSavedCampaign');
+    expect(resume).toContain('if (this.state.flags.prologueSeen === false) {');
+    expect(resume.indexOf('prologueSeen === false')).toBeLessThan(resume.indexOf('getRunNode(this.state.run)'));
+    expect(resume).toContain('await this.playOpening(this.prologue.open(');
   });
 
   it('resumes a reload without replaying a committed route or a durable finale', () => {

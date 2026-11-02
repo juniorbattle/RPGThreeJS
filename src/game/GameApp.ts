@@ -1526,10 +1526,15 @@ export class GameApp {
         this.chrome.replaceChildren();
         this.setMode('PROLOGUE');
         this.canvas.hidden = true;
-        prologuePromise = this.prologue.open();
+        prologuePromise = this.prologue.open({ reducedMotion: this.state.settings.reducedGraphics });
       },
     });
-    await prologuePromise;
+    await this.playOpening(prologuePromise);
+  }
+
+  /** `prologueSeen` reaches the disk with the map's first save: a reload anywhere in here resumes at the first panel. */
+  private async playOpening(prologue: Promise<void> | null): Promise<void> {
+    await prologue;
     this.state.flags.prologueSeen = true;
     await this.playDialogue('acte_ouverture');
     if (this.usesJourneyPresentation()) {
@@ -1581,6 +1586,11 @@ export class GameApp {
   }
 
   private async resumeSavedCampaign(): Promise<void> {
+    if (this.state.flags.prologueSeen === false) {
+      this.setMode('PROLOGUE');
+      await this.playOpening(this.prologue.open({ reducedMotion: this.state.settings.reducedGraphics }));
+      return;
+    }
     const current = getRunNode(this.state.run);
     if(this.state.run.poiExpedition?.encounter){await this.presentPoiElite();return;}
     const pendingFinaleCombat = resolvePendingLionFinaleCombat(this.state.flags);
