@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { makeNoise, PixelCanvas, seeded } from './pixelArt';
+import { makeNoise, PixelCanvas, seeded, sharpenTexels } from './pixelArt';
 import { arenaBandProps, arenaClutterProps, arenaThemeFor, type ArenaTheme } from './arenaThemes';
 import { cobbleApronTexture, groundTexture, tileSideTexture, tileTopTexture, trampledGroundTexture } from './arenaTextures';
 import { ARENA_GROUND_Y, buildProp, type PropContext } from './arenaProps';
@@ -156,6 +156,10 @@ export class CombatArena {
     this.buildAtmosphere();
     await this.buildFarPlate();
     if (midPlate) await this.buildMidPlate(midPlate);
+    this.root.traverse((object) => {
+      const material = (object as THREE.Mesh).material as THREE.Material | THREE.Material[] | undefined;
+      for (const entry of Array.isArray(material) ? material : material ? [material] : []) sharpenTexels(entry);
+    });
   }
 
   private async buildMidPlate(plate: GeneratedPlate): Promise<void> {

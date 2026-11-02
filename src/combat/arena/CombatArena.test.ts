@@ -4,6 +4,10 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { CombatArena } from './CombatArena';
 import { ARENA_GROUND_Y } from './arenaProps';
 import { ARENA_PLATFORM, ARENA_THEMES } from './arenaThemes';
+import { coplanarOverlaps } from './arenaZFight';
+
+// where the combat camera stands: the tactical view at both ends of its yaw, and the low action shots
+const COMBAT_EYES = [[0, 8.55, 16.2], [3.85, 8.55, 15.7], [-3.85, 8.55, 15.7], [6, 3, 10], [-6, 3, 10]].map(([x, y, z]) => new THREE.Vector3(x, y, z));
 
 async function buildArena(sceneId: string) {
   const arena = new CombatArena({ sceneId, columns: 8, rows: 4, tile: 1.18 });
@@ -40,6 +44,23 @@ describe('CombatArena generation', () => {
         // static decor is merged per material: a few hundred draws at most, shadow pass apart
         expect(meshes).toBeLessThan(420);
         expect(arena.describe().mergedMeshes).toBeGreaterThan(50);
+      });
+
+      it('leaves no two faces fighting for the same pixels', () => {
+        expect(coplanarOverlaps(arena.root, COMBAT_EYES)).toEqual([]);
+      });
+
+      it('gives every pixel-art decor material its sharp texels', () => {
+        const seen = new Set<THREE.Material & { map: THREE.Texture }>();
+        arena.root.traverse((object) => {
+          const material = (object as THREE.Mesh).material;
+          for (const entry of [material ?? []].flat() as Array<THREE.Material & { map: THREE.Texture }>) if (entry.map?.userData.pixelArt) seen.add(entry);
+        });
+        expect(seen.size).toBeGreaterThan(5);
+        for (const material of seen) {
+          expect(material.userData.sharpTexels, material.name).toBe(true);
+          expect(material.map.magFilter).toBe(THREE.LinearFilter);
+        }
       });
     });
   }

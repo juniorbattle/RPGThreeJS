@@ -73,6 +73,26 @@ function boxGeometry(w: number, h: number, d: number, unitsPerRepeat: number): T
   return g;
 }
 
+/**
+ * Arch stone: a box tapered towards the intrados, so neighbours meet on a joint
+ * instead of overlapping on one plane (where they would fight for the same
+ * pixels each time the camera breathes). Texel density stays that of the box.
+ */
+function voussoirGeometry(inner: number, outer: number, h: number, d: number, unitsPerRepeat: number): THREE.BoxGeometry {
+  const g = boxGeometry(outer, h, d, unitsPerRepeat);
+  const position = g.attributes.position as THREE.BufferAttribute;
+  const normal = g.attributes.normal as THREE.BufferAttribute;
+  const uv = g.attributes.uv as THREE.BufferAttribute;
+  const ratio = inner / outer, centre = outer / 2 / unitsPerRepeat;
+  for (let i = 0; i < position.count; i++) {
+    if (position.getY(i) > 0) continue;
+    position.setX(i, position.getX(i) * ratio);
+    if (Math.abs(normal.getX(i)) < 0.5) uv.setX(i, centre + (uv.getX(i) - centre) * ratio);
+  }
+  g.computeVertexNormals();
+  return g;
+}
+
 function cylinderGeometry(rTop: number, rBottom: number, h: number, segments: number, unitsPerRepeat: number): THREE.CylinderGeometry {
   const g = new THREE.CylinderGeometry(rTop, rBottom, h, segments, 1);
   const uv = g.attributes.uv as THREE.BufferAttribute;
@@ -410,12 +430,15 @@ function arch(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
     g.add(pillar);
   }
   const radius = span / 2 + 0.42;
-  const pieces = 9;
+  const pieces = 9, rise = 0.8;
+  const halfStep = Math.tan(Math.PI / pieces / 2);
   for (let i = 0; i < pieces; i++) {
     if (seed % 2 === 1 && i > pieces - 3) continue; // a ruined arch loses its last voussoirs
     const a = Math.PI * (i + 0.5) / pieces;
-    const block = mesh(boxGeometry(0.62, 0.8, 0.85, 1.6), stone, ctx);
-    block.position.set(-Math.cos(a) * radius, pillarH + Math.sin(a) * radius * 0.92, 0);
+    // every other stone stands a little proud: the joints catch a shadow and never share a face
+    const geometry = voussoirGeometry(2 * (radius - rise / 2) * halfStep, 2 * (radius + rise / 2) * halfStep, rise, i % 2 ? 0.8 : 0.76, 1.6);
+    const block = mesh(geometry, stone, ctx);
+    block.position.set(-Math.cos(a) * radius, pillarH + Math.sin(a) * radius, 0);
     block.rotation.z = a - Math.PI / 2;
     g.add(block);
   }
@@ -560,9 +583,10 @@ function facade(kit: HouseKit, width: number, height: number, slots: readonly Fa
   };
   const beam = (w: number, h: number, x: number, y: number, rz = 0, d = 0.07) => add(boxGeometry(w, h, d, 1), kit.beam, x, y, d / 2, rz);
   const n = slots.length, pw = width / n;
-  for (let i = 0; i <= n; i++) beam(0.15, height, -width / 2 + i * pw, height / 2, 0, i === 0 || i === n ? 0.1 : 0.07);
-  beam(width + 0.04, 0.13, 0, 0.065);
-  beam(width + 0.04, 0.13, 0, height - 0.065);
+  // timbers that cross never share a face: plates over posts over braces, the second arm of a cross behind the first
+  for (let i = 0; i <= n; i++) beam(0.15, height - 0.012, -width / 2 + i * pw, height / 2, 0, i === 0 || i === n ? 0.1 : 0.07);
+  beam(width + 0.04, 0.13, 0, 0.065, 0, 0.115);
+  beam(width + 0.04, 0.13, 0, height - 0.065, 0, 0.115);
   slots.forEach((slot, i) => {
     const cx = -width / 2 + (i + 0.5) * pw;
     const inner = pw - 0.15;
@@ -578,8 +602,9 @@ function facade(kit: HouseKit, width: number, height: number, slots: readonly Fa
       return;
     }
     if (slot === 'window') {
-      const ww = Math.min(0.66, inner * 0.62), wh = Math.min(0.84, height * 0.5);
+      const ww = Math.min(0.66, inner * 0.5), wh = Math.min(0.84, height * 0.5);
       const wy = height * 0.56;
+      const shutter = inner / 2 - ww / 2 - 0.09; // open shutters stop short of the posts
       add(new THREE.PlaneGeometry(ww, wh), kit.window, cx, wy, 0.012, 0, false);
       beam(ww + 0.14, 0.08, cx, wy + wh / 2 + 0.04, 0, 0.08);
       beam(0.08, wh, cx - ww / 2 - 0.04, wy, 0, 0.08);
@@ -588,7 +613,7 @@ function facade(kit: HouseKit, width: number, height: number, slots: readonly Fa
       // shutters folded back against the wall (one hangs askew on a burning house)
       for (const side of [-1, 1]) {
         if (kit.burning && side === 1 && rng() < 0.5) continue;
-        const sh = add(boxGeometry(ww / 2, wh, 0.035, 1), kit.shutter, cx + side * (ww / 2 + ww / 4 + 0.09), wy, 0.03);
+        const sh = add(boxGeometry(shutter, wh, 0.035, 1), kit.shutter, cx + side * (ww / 2 + 0.085 + shutter / 2), wy, 0.03);
         if (kit.burning && side === 1) { sh.rotation.z = 0.35; sh.position.y -= 0.08; }
         add(boxGeometry(0.03, wh * 0.9, 0.012, 1), kit.beam, sh.position.x, wy, 0.052, 0, false);
       }
@@ -600,8 +625,8 @@ function facade(kit: HouseKit, width: number, height: number, slots: readonly Fa
       const len = Math.hypot(inner, height - 0.26);
       const a = Math.atan2(height - 0.26, inner);
       const dir = i % 2 === 0 ? 1 : -1;
-      beam(len, 0.11, cx, height / 2, dir * a);
-      if (slot === 'cross') beam(len, 0.11, cx, height / 2, -dir * a);
+      beam(len, 0.11, cx, height / 2, dir * a, 0.058);
+      if (slot === 'cross') beam(len, 0.11, cx, height / 2, -dir * a, 0.046);
       return;
     }
     beam(inner, 0.1, cx, height * 0.45);
@@ -620,17 +645,18 @@ function gable(kit: HouseKit, plaster: THREE.Material, width: number, rise: numb
   for (let i = 0; i < uv.count; i++) uv.setXY(i, pos.getX(i), pos.getY(i));
   const wall = mesh(geo, plaster, kit.ctx);
   g.add(wall);
-  const beam = (w: number, h: number, x: number, y: number, rz = 0) => {
-    const m = mesh(boxGeometry(w, h, 0.07, 1), kit.beam, kit.ctx);
-    m.position.set(x, y, 0.035);
+  const beam = (w: number, h: number, x: number, y: number, rz = 0, d = 0.07, back = 0) => {
+    const m = mesh(boxGeometry(w, h, d - back, 1), kit.beam, kit.ctx);
+    m.position.set(x, y, (d + back) / 2);
     m.rotation.z = rz;
     g.add(m);
   };
+  // as on the facades: the tie over the king post over the struts, at the back as at the front (a burnt roof shows both)
   beam(0.14, rise * 0.86, 0, rise * 0.43);
   const strut = Math.atan2(rise * 0.5, width * 0.32);
-  beam(Math.hypot(width * 0.32, rise * 0.5), 0.1, -width * 0.16, rise * 0.25, strut);
-  beam(Math.hypot(width * 0.32, rise * 0.5), 0.1, width * 0.16, rise * 0.25, -strut);
-  beam(width * 0.62, 0.11, 0, rise * 0.42);
+  beam(Math.hypot(width * 0.32, rise * 0.5), 0.1, -width * 0.16, rise * 0.25, strut, 0.058, 0.006);
+  beam(Math.hypot(width * 0.32, rise * 0.5), 0.1, width * 0.16, rise * 0.25, -strut, 0.046, 0.012);
+  beam(width * 0.62, 0.11, 0, rise * 0.42, 0, 0.085, 0.018);
   const lw = 0.36, lh = 0.44;
   for (const side of [-1, 1]) {
     const m = mesh(new THREE.PlaneGeometry(lw, lh), kit.window, kit.ctx, false);
@@ -689,7 +715,7 @@ function house(ctx: PropContext, rng: Rng, seed: number, burning: boolean): THRE
   g.add(back);
   for (const side of [-1, 1]) {
     const f = facade(kit, d, h1 - plinth, side < 0 ? ['brace', 'window', 'brace'] : ['window', 'plain', 'window']);
-    f.position.set(side * w / 2, plinth, 0); f.rotation.y = side * Math.PI / 2;
+    f.position.set(side * w / 2, plinth - 0.006, 0); f.rotation.y = side * Math.PI / 2; // its plates pass under those of the front and back
     g.add(f);
   }
   if (twoStorey) {
@@ -701,7 +727,7 @@ function house(ctx: PropContext, rng: Rng, seed: number, burning: boolean): THRE
     g.add(upBack);
     for (const side of [-1, 1]) {
       const f = facade(kit, upperD, h2, ['brace', 'window', 'brace']);
-      f.position.set(side * upperW / 2, h1 + 0.1, 0); f.rotation.y = side * Math.PI / 2;
+      f.position.set(side * upperW / 2, h1 + 0.094, 0); f.rotation.y = side * Math.PI / 2;
       g.add(f);
     }
   }
@@ -724,7 +750,7 @@ function house(ctx: PropContext, rng: Rng, seed: number, burning: boolean): THRE
     const slab = (from: number, to: number) => {
       // part of the slope between fractions `from` and `to` of its length (0 = ridge)
       const len = L * (to - from), mid = L * (from + to) / 2;
-      const m = mesh(boxGeometry(len, slabT, roofD, 1.4), roofMat, ctx);
+      const m = mesh(boxGeometry(len, slabT, side > 0 ? roofD : roofD + 0.008, 1.4), roofMat, ctx); // their ends cross at the ridge
       m.position.set(side * (mid * Math.cos(theta)), H + rise - mid * Math.sin(theta) + slabT / 2 / Math.cos(theta), 0);
       m.rotation.z = -side * theta;
       g.add(m);
@@ -746,7 +772,7 @@ function house(ctx: PropContext, rng: Rng, seed: number, burning: boolean): THRE
     // barge boards along the gable edges
     for (const end of [-1, 1]) {
       const m = mesh(boxGeometry(L, 0.18, 0.06, 1), kit.beam, ctx);
-      m.position.set(side * (L / 2) * Math.cos(theta), H + rise - (L / 2) * Math.sin(theta) + 0.02, end * (roofD / 2 + 0.02));
+      m.position.set(side * (L / 2) * Math.cos(theta), H + rise - (L / 2) * Math.sin(theta) + 0.02, end * (roofD / 2 + (side > 0 ? 0.026 : 0.02))); // one board laps the other at the ridge
       m.rotation.z = -side * theta;
       g.add(m);
     }
@@ -794,7 +820,7 @@ function fence(ctx: PropContext, rng: Rng): THREE.Group {
   }
   for (const y of [0.42, 0.85]) {
     const rail = mesh(boxGeometry(length + 0.2, 0.12, 0.08, 1), wood, ctx);
-    rail.position.set(0, y, 0.06);
+    rail.position.set(0, y, 0.085);
     rail.rotation.z = (rng() - 0.5) * 0.05;
     g.add(rail);
   }
@@ -836,9 +862,10 @@ function crate(ctx: PropContext): THREE.Group {
   const batten = litMaterial(ctx, 'crate-batten', repeatTexture(ctx, 'planks-v', () => plankTexture(ctx.palette, 21, true).toTexture({ repeat: true })), { color: '#8a7462' });
   const t = 0.08, e = S / 2 + 0.012;
   // vertical battens on the four corners, horizontal battens round top and bottom
-  for (const x of [-1, 1]) for (const z of [-1, 1]) g.add(at(mesh(boxGeometry(t, S, t, 1), batten, ctx), x * (S / 2 - t / 2 + 0.012), S / 2, z * (S / 2 - t / 2 + 0.012)));
-  for (const y of [t / 2, S - t / 2]) {
-    for (const z of [-1, 1]) g.add(at(mesh(boxGeometry(S + 0.02, t, 0.03, 1), batten, ctx), 0, y, z * e));
+  // (each set stands a few millimetres above the last, so their top faces never lie on one plane)
+  for (const x of [-1, 1]) for (const z of [-1, 1]) g.add(at(mesh(boxGeometry(t, S + 0.008, t, 1), batten, ctx), x * (S / 2 - t / 2 + 0.012), S / 2 + 0.004, z * (S / 2 - t / 2 + 0.012)));
+  for (const y of [t / 2, S - t / 2 + 0.012]) {
+    for (const z of [-1, 1]) g.add(at(mesh(boxGeometry(S + 0.02, t, 0.03, 1), batten, ctx), 0, y + 0.004, z * e));
     for (const x of [-1, 1]) g.add(at(mesh(boxGeometry(0.03, t, S + 0.02, 1), batten, ctx), x * e, y, 0));
   }
   const diag = Math.hypot(S - t * 2, S - t * 2), angle = Math.PI / 4;
@@ -869,7 +896,7 @@ function sack(ctx: PropContext, rng: Rng): THREE.Mesh {
 function cart(ctx: PropContext, rng: Rng): THREE.Group {
   const g = new THREE.Group();
   const wood = woodMaterial(ctx);
-  const bed = mesh(boxGeometry(2.6, 0.18, 1.5, 1), wood, ctx);
+  const bed = mesh(boxGeometry(2.56, 0.18, 1.46, 1), wood, ctx);
   bed.position.y = 0.78;
   g.add(bed);
   for (const side of [-1, 1]) {
@@ -885,8 +912,8 @@ function cart(ctx: PropContext, rng: Rng): THREE.Group {
     hub.position.set(0.3, 0.6, side * 0.9);
     g.add(hub);
   }
-  const back = mesh(boxGeometry(0.08, 0.36, 1.5, 1), wood, ctx);
-  back.position.set(1.28, 1.04, 0);
+  const back = mesh(boxGeometry(0.08, 0.34, 1.34, 1), wood, ctx);
+  back.position.set(1.26, 1.03, 0);
   g.add(back);
   for (const side of [-1, 1]) {
     const shaft = mesh(boxGeometry(2, 0.1, 0.1, 1), wood, ctx);
@@ -964,7 +991,7 @@ function well(ctx: PropContext, seed: number): THREE.Group {
   }
   const roofMat = woodMaterial(ctx);
   for (const side of [-1, 1]) {
-    const plank = mesh(boxGeometry(2.3, 0.07, 0.86, 1), roofMat, ctx);
+    const plank = mesh(boxGeometry(side > 0 ? 2.3 : 2.31, 0.07, 0.86, 1), roofMat, ctx);
     plank.position.set(0, 2.32, side * 0.32);
     plank.rotation.x = side * 0.62;
     g.add(plank);
@@ -995,7 +1022,7 @@ function log(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
   for (const side of [-1, 1]) {
     const cap = mesh(new THREE.CircleGeometry(side < 0 ? r : r * 1.08, 12), ends, ctx, false);
     cap.rotation.y = side * Math.PI / 2;
-    cap.position.set(side * length / 2, r * 0.9, 0);
+    cap.position.set(side * (length / 2 + 0.008), r * 0.9, 0); // just proud of the trunk's own end
     g.add(cap);
   }
   const fern = billboard(ctx, `fern-${seed % 4}`, (k) => drawFern(ctx.palette, seed % 4, k), 0.7, false);

@@ -175,7 +175,8 @@ function updateTweens(dt){
 }
 
 // ============================= RENDERER / SCENE / CAMERA =============================
-const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
+// No antialias: the scene goes through the composer's targets, so the canvas only ever receives one full-screen quad.
+const renderer=new THREE.WebGLRenderer({antialias:false,powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
 renderer.setSize(innerWidth,innerHeight);
 renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;

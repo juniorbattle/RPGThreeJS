@@ -128,8 +128,34 @@ export class PixelCanvas {
     texture.magFilter = options.linear ? THREE.LinearFilter : THREE.NearestFilter;
     texture.minFilter = options.linear ? THREE.LinearFilter : THREE.NearestMipmapLinearFilter;
     texture.generateMipmaps = !options.linear;
+    texture.userData.pixelArt = !options.linear;
     if (options.repeat) texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.anisotropy = 4;
     return texture;
   }
+}
+
+/**
+ * The "sharp bilinear" of the unit sprites, for decor: texels stay square and crisp, and their edges get a
+ * one-screen-pixel blend instead of hopping a whole pixel each time the camera breathes. The mip level still
+ * follows the true UVs, so a texel seam never picks a blurred level.
+ */
+export function sharpenTexels(material: THREE.Material & { map?: THREE.Texture | null }): void {
+  const map = material.map;
+  if (!map?.userData.pixelArt || material.userData.sharpTexels) return;
+  material.userData.sharpTexels = true;
+  map.magFilter = THREE.LinearFilter;
+  map.minFilter = THREE.LinearMipmapLinearFilter;
+  const compile = material.onBeforeCompile, key = material.customProgramCacheKey();
+  material.onBeforeCompile = (shader, renderer) => {
+    compile.call(material, shader, renderer);
+    shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>', `#ifdef USE_MAP
+  vec2 texelSize = vec2(textureSize(map, 0));
+  vec2 texelUv = vMapUv * texelSize;
+  vec2 texelSeam = floor(texelUv + 0.5);
+  texelUv = texelSeam + clamp((texelUv - texelSeam) / max(fwidth(texelUv), vec2(1e-5)), -0.5, 0.5);
+  diffuseColor *= textureGrad(map, texelUv / texelSize, dFdx(vMapUv), dFdy(vMapUv));
+#endif`);
+  };
+  material.customProgramCacheKey = () => `${key}|sharp-texels`;
 }

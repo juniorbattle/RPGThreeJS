@@ -174,6 +174,7 @@ L'opérateur tranche ce qui restait ouvert après la livraison audio.
 
 - **Arènes.** « je trouve que la generation par code est bonne, il y a qq incoherence mais cela reste bon ». Le lot `combat-arena-plates` est abandonné : aucune image d'arène n'est générée, et la mission d'art locale n'a plus aucun lot.
 - **Forêt.** « il y a 2 types d'arbres et je trouve l'abre en forme fleche pas vraimemnt adapte ». L'arbre en flèche quitte la scène forêt, horizon compris ; seul l'arbre feuillu reste. Bois-Clair et le Sanctuaire gardent leurs conifères.
+- **Décors par code.** « de maniere general nous devrions optimiser les decors genere par code et nous assurer que tout est bien integre et proprement, cela nous evitera de creer des images en plus si le resultat est satisfaisant ». L'arche tremblait parce que ses blocs se recouvraient sur un même plan ; le défaut est corrigé dans les trois arènes et gardé par un test. La revue reste à faire en jeu.
 - **Mobile.** « C"est une option necessaire mais il faut optimiser le necessaire pour que l'adaption soient optimale donc a faire quand tout le contenu de la demo sera fini ». Le passage mobile devient nécessaire, une fois tout le contenu fini.
 - **Attaques de base.** « pas necessaire car ce sont des attaques de base a l'arme donc propre a tous ». Pas de son sur mesure. Le souhait d'un effet visuel propre à chaque personnage reste noté, sans priorité. Les retouches de son vont d'abord aux compétences : « concentrons nous sur les sons des competences surtout en priorite ».
 
