@@ -60,14 +60,14 @@
   "blockers": [],
   "remainingWork": [
     "Chantier C : écoute de l'opérateur dans le laboratoire ; appliquer ses retours",
-    "Mission d’art locale (44 images) et passe de performance GPU réelle : au choix de l’opérateur",
+    "Passe de performance GPU réelle : au choix de l’opérateur",
     "Retrait des assets du Combat Stage devenus inutiles : accord de l’opérateur requis",
     "Option QA « Tous les héros QA » / stageqa : déploiement bloqué (constat préexistant)"
   ],
-  "nextAction": "L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, puis playtest PC complet et démo figée. Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte.",
+  "nextAction": "L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, d'abord sur les sons de compétences. Le playtest PC et ses corrections closent la conception ; viennent ensuite la dernière passe narrative, le passage mobile et la démo figée (OD-2026-11-01-C). Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte.",
   "taskQueue": [
-    "L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, puis playtest PC complet et démo figée. Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte.",
-    "Playtest PC de l'opérateur, liste de corrections, démo figée ; mobile seulement si l'opérateur le veut."
+    "L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, d'abord sur les sons de compétences. Le playtest PC et ses corrections closent la conception ; viennent ensuite la dernière passe narrative, le passage mobile et la démo figée (OD-2026-11-01-C). Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte.",
+    "Playtest PC de l'opérateur et corrections, dernière passe narrative, passage mobile, démo figée (OD-2026-11-01-C)."
   ],
   "creditStatus": "AVAILABLE",
   "contractComplianceStatus": "Set 1.12.0, baseline 29aa94862f9cd5f2c73ba9569660ed26c41ceaf8 ; relecture indépendante, deux écarts corrigés",
@@ -573,7 +573,7 @@
     "agent": "claude",
     "status": "AUDIO_DIRECTION_DELIVERED_OPERATOR_LISTENING",
     "wip": null,
-    "nextAction": "L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, puis playtest PC complet et démo figée. Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte.",
+    "nextAction": "L'opérateur écoute dans le laboratoire (`/?qa=1`, QA rencontres, Laboratoire d'écoute) et renvoie l'avis copié. Claude applique ses retours, d'abord sur les sons de compétences. Le playtest PC et ses corrections closent la conception ; viennent ensuite la dernière passe narrative, le passage mobile et la démo figée (OD-2026-11-01-C). Ponts, motif et couleur Breath of Fire 3 restent à confirmer à l'oreille ; la revue en jeu des signatures visuelles reste ouverte.",
     "runEndedAt": "2026-11-01T20:50:00Z",
     "writerStopped": true,
     "activeTask": "PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1",

@@ -434,7 +434,7 @@ export class CombatArena {
       { z: -21.5, width: 66, height: 7, seed: 7, shade: '#d8dcd6' },
     ];
     for (const row of rows) {
-      const sprite = drawTreeLine(this.theme.palette, row.seed + this.theme.id.length, conifer || row.seed === 3, 720, 96);
+      const sprite = drawTreeLine(this.theme.palette, row.seed + this.theme.id.length, conifer, 720, 96);
       const texture = sprite.canvas.toTexture();
       this.ctx.textures.set(`tree-line-${row.seed}`, texture);
       const geometry = new THREE.PlaneGeometry(row.width, row.height);

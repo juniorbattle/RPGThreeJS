@@ -26,6 +26,11 @@ describe('procedural combat arena themes', () => {
     }
   });
 
+  it('keeps the forest to its broadleaf tree', () => {
+    const forest = ARENA_THEMES.forest_route;
+    expect([...forest.props, ...arenaBandProps(forest, seeded(9))].filter((prop) => prop.kind === 'pine')).toEqual([]);
+  });
+
   it('ships a far plate for every theme', () => {
     for (const theme of Object.values(ARENA_THEMES)) expect(theme.farPlate.file).toMatch(/^\/assets\/generated\/combat-arena\/.+-far\.webp$/);
   });

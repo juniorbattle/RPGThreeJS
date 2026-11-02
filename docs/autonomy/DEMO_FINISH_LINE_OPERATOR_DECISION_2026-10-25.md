@@ -167,3 +167,19 @@ Extension du même jour, à la question de l'opérateur sur les ennemis (« Oui,
 ## Mise à jour — OD-2026-11-01-B, 1er novembre 2026
 
 Après l'[audit audio](../reports/audio-audit-2026-11-01.md), l'opérateur décide de refaire musique et sons avant le test PC. Le détail est dans la [direction audio](AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md). La piste C n'est donc plus une simple écoute : elle redevient un chantier, et le playtest complet vient après lui. La comparaison des 16 familles est abandonnée.
+
+## Mise à jour — OD-2026-11-01-C, 1er novembre 2026
+
+L'opérateur tranche ce qui restait ouvert après la livraison audio.
+
+- **Arènes.** « je trouve que la generation par code est bonne, il y a qq incoherence mais cela reste bon ». Le lot `combat-arena-plates` est abandonné : aucune image d'arène n'est générée, et la mission d'art locale n'a plus aucun lot.
+- **Forêt.** « il y a 2 types d'arbres et je trouve l'abre en forme fleche pas vraimemnt adapte ». L'arbre en flèche quitte la scène forêt, horizon compris ; seul l'arbre feuillu reste. Bois-Clair et le Sanctuaire gardent leurs conifères.
+- **Mobile.** « C"est une option necessaire mais il faut optimiser le necessaire pour que l'adaption soient optimale donc a faire quand tout le contenu de la demo sera fini ». Le passage mobile devient nécessaire, une fois tout le contenu fini.
+- **Attaques de base.** « pas necessaire car ce sont des attaques de base a l'arme donc propre a tous ». Pas de son sur mesure. Le souhait d'un effet visuel propre à chaque personnage reste noté, sans priorité. Les retouches de son vont d'abord aux compétences : « concentrons nous sur les sons des competences surtout en priorite ».
+
+**But.** « Le but est vraiment que nous cloturons definitvement tous nos elements de conception du jeu afin de faire un derniere passage narrative pour la logique et la suite ira tout seul ». L'ordre devient :
+
+1. écoute, retouches et revue des effets, puis playtest PC et corrections : la conception est close ;
+2. dernière passe narrative, pour la logique, cadrée avec l'opérateur ;
+3. passage mobile ;
+4. démo figée.
