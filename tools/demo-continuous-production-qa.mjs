@@ -1143,7 +1143,10 @@ async function attack(frame,battle,{support=false,exactAp=null}={}){
     if(attempt.pointerRequired){
       const refunds=before.units.filter(u=>u.team==='foe'&&u.alive&&after.units.some(t=>t.id===u.id&&!t.alive)).length;
       assert.equal(after.attacks,before.attacks+1,'Mounted pointer target must resolve exactly once');
-      assert.equal(after.active.ap,Math.max(0,Math.min(before.active.maxap,before.active.ap+refunds)-native.spec.ap),'Mounted pointer AP/refunds differ');
+      const refundedAp=Math.max(0,Math.min(before.active.maxap,before.active.ap+refunds)-native.spec.ap);
+      // Flux de Mana: a grimoire basic attack may give 2 AP back once its cost is paid
+      const legalAp=native.spec.weaponType==='grimoire'?[refundedAp,Math.min(before.active.maxap,refundedAp+2)]:[refundedAp];
+      assert.ok(legalAp.includes(after.active.ap),`Mounted pointer AP/refunds differ: ${after.active.ap} not in ${legalAp}`);
       battle.battlefieldKeyboard.pointerTarget={cell,spec:native.spec,before,after,refunds,pass:true};
     }
     return true;

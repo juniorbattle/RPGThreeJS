@@ -23,7 +23,7 @@ Run claude-audio-direction-20261101T1918Z (agent claude, session interactive). S
 ## À faire
 
 - L'opérateur écoute et renvoie l'avis du laboratoire. Claude retouche : la plupart des retours se règlent dans `themes.ts` ou `cueDesigns.ts`, puis `tools/audio/measure-cues.mjs` et `capture.mjs`.
-- `tools/demo-continuous-production-qa.mjs` est adapté aux effets actifs par défaut, mais pas relancé en entier : à vérifier au prochain parcours complet.
+- `tools/demo-continuous-production-qa.mjs` passe jusqu'au premier refuge (`tmp/demo/audio-direction-first-refuge-2`, reçu `SUCCEEDED`). Le reste de la campagne n'est pas rejoué : à vérifier au prochain parcours complet.
 - Le message de l'opérateur sur les ponts s'arrêtait sur « mais » : une suite reste possible. Il n'a pas encore nommé de pistes précises.
 
 Scheduler PAUSED. `main` protégé. Aucun contrat modifié après la baseline.
