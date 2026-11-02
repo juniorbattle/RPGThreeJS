@@ -1,5 +1,5 @@
 import type { PixelSheetEntry } from '../../combat/pixel/PixelSpriteSheets';
-import type { OpeningShotId, ViewCamera } from './openingShots';
+import { OPENING_POLE_CRACKS_AT, OPENING_POLE_LANDS_AT, type OpeningShotId, type ViewCamera } from './openingShots';
 
 export interface PaintFrame {
   ctx: CanvasRenderingContext2D;
@@ -28,8 +28,6 @@ function seeded(seed: number): () => number {
     return (state - 1) / 2147483646;
   };
 }
-
-const BANNER_LANDS_AT = 8;
 
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
 const smooth = (value: number) => { const p = clamp01(value); return p * p * (3 - 2 * p); };
@@ -101,6 +99,19 @@ const ash = (count: number, seed: number, color: Rgb) => new MoteField(count, (r
   vx: -6 - random() * 16, vy: 16 + random() * 34, size: random() < 0.3 ? 2 : 1, phase: random() * 6, color,
 }), 'source-over', seeded(seed));
 
+/** A hooded, long-robed walker, drawn for its outline: at this distance a sprite reads as a blot. */
+function robedFigure(): HTMLCanvasElement {
+  const canvas = document.createElement('canvas');
+  canvas.width = 18;
+  canvas.height = 46;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return canvas;
+  ctx.fillStyle = 'rgb(5,6,14)';
+  const rows: ReadonlyArray<readonly [number, number, number, number]> = [[6, 0, 5, 2], [5, 2, 7, 5], [7, 7, 3, 1], [3, 8, 11, 3], [2, 11, 13, 4], [4, 15, 9, 8], [3, 23, 11, 10], [2, 33, 13, 8], [1, 41, 15, 5], [16, 0, 1, 46]];
+  for (const [x, y, width, height] of rows) ctx.fillRect(x, y, width, height);
+  return canvas;
+}
+
 function tintedCanvas(source: HTMLImageElement | HTMLCanvasElement, color: string): CanvasImageSource {
   const canvas = document.createElement('canvas');
   canvas.width = source instanceof HTMLImageElement ? source.naturalWidth : source.width;
@@ -133,9 +144,9 @@ function contactShadow(ctx: CanvasRenderingContext2D, x: number, y: number, radi
   ctx.fill();
 }
 
-/** Worn linen on a broken spar, its hem torn into strips and smouldering. No emblem and no clan's colours (OD-2026-11-02-A, C5). */
+/** Worn linen with a pointed, torn, smouldering hem. No emblem (OD-2026-11-02-A, C5). */
 function bannerCloth(): { canvas: HTMLCanvasElement; shade: CanvasImageSource; width: number; height: number } {
-  const width = 92, height = 262, spar = 7;
+  const width = 92, height = 262;
   const canvas = document.createElement('canvas');
   canvas.width = width;
   canvas.height = height;
@@ -156,8 +167,7 @@ function bannerCloth(): { canvas: HTMLCanvasElement; shade: CanvasImageSource; w
   for (let x = 0; x < width; x += 1) {
     const end = hem(x);
     for (let y = 0; y < height; y += 1) {
-      if (y < spar) { put(x, y, 44 + random() * 14, 30 + random() * 8, 22); continue; }
-      if (y >= end || x < 3 || x >= width - 3) continue;
+      if (y >= end) continue;
       let burn = clamp01(1 - (end - y) / 30);
       let cut = false;
       for (const slit of slits) {
@@ -166,92 +176,223 @@ function bannerCloth(): { canvas: HTMLCanvasElement; shade: CanvasImageSource; w
         burn = Math.max(burn, clamp01(1 - distance / 1.6));
       }
       if (cut) continue;
-      const fold = Math.sin(x * 0.21 + Math.sin(y * 0.018) * 2.4) * 0.26 + Math.sin(x * 0.53 + y * 0.01) * 0.1;
+      const fold = Math.sin(x * 0.21 + Math.sin(y * 0.018) * 2.4) * 0.34 + Math.sin(x * 0.53 + y * 0.01) * 0.12;
       const weave = (x % 2 ? 4 : 0) + (y % 2 ? 3 : 0) + random() * 9;
-      const under = 0.34 + 0.66 * (y / height) ** 1.4;
-      const light = Math.max(0.12, (1 + fold) * under * (1 - burn * 0.86));
-      const trim = y > spar && y <= spar + 4;
-      const [r, g, b] = trim ? [150, 116, 66] : [136, 124, 104];
+      const light = Math.max(0.12, (1 + fold) * (0.62 + 0.38 * (y / height)) * (1 - burn * 0.86));
+      const trim = y <= 5 || x <= 4 || x >= width - 5;
+      const [r, g, b] = trim ? [186, 146, 80] : [128, 118, 104];
       const edge = burn > 0.8 && random() < 0.5 ? (burn - 0.8) * 3 : 0;
       put(x, y, (r + weave) * light + edge * 230, (g + weave) * light + edge * 82, (b + weave) * light * (1 - burn * 0.3));
     }
   }
   ctx.putImageData(image, 0, 0);
-  return { canvas, shade: tintedCanvas(canvas, 'rgb(4,3,6)'), width, height };
+  return { canvas, shade: tintedCanvas(canvas, 'rgb(6,7,18)'), width, height };
 }
 
-/** The cloth drifts down and reaches the ground just before the cut. Returns its middle, for the sparks. */
-function paintBanner(frame: PaintFrame, cloth: ReturnType<typeof bannerCloth>, ground: number): number {
-  const { ctx, width, height, seconds } = frame;
-  const scale = Math.max(2, Math.round(height / 300));
-  const fall = clamp01(seconds / BANNER_LANDS_AT);
-  const clothHeight = cloth.height * scale;
-  const startBottom = -height * 0.06, bottom = startBottom + (ground - startBottom) * (1 - (1 - fall) ** 1.35);
-  const settle = smooth((seconds - BANNER_LANDS_AT) / 1.5);
-  const drawn = clothHeight * (1 - settle * 0.2);
-  const sway = (1 - settle) * Math.sin(seconds * 1.05);
-  const x = width * 0.5 + sway * width * 0.045;
-  const amplitude = (3 + 3 * (1 - fall)) * (1 + settle * 1.6);
-  const time = seconds * (1 - settle);
-  ctx.save();
-  ctx.imageSmoothingEnabled = false;
-  ctx.translate(x, bottom);
-  ctx.rotate(sway * 0.1);
-  for (let column = 0; column < cloth.width; column += 2) {
-    const wave = Math.sin(column * 0.11 + time * 2.4) * amplitude + Math.sin(column * 0.27 - time * 1.7) * amplitude * 0.4;
-    const px = (column - cloth.width / 2) * scale, py = -drawn + Math.round(wave) * scale;
-    const tall = drawn - Math.round(wave) * scale * settle;
-    ctx.drawImage(cloth.canvas, column, 0, 2, cloth.height, px, py, 2 * scale, tall);
-    const slope = Math.cos(column * 0.11 + time * 2.4) * 0.3;
-    if (slope < 0) {
-      ctx.globalAlpha = -slope;
-      ctx.drawImage(cloth.shade, column, 0, 2, cloth.height, px, py, 2 * scale, tall);
-      ctx.globalAlpha = 1;
+interface ClothNode { x: number; y: number; px: number; py: number }
+
+const BANNER = { x: 640, y: 654, ground: 668, height: 470, snapAt: 0.2, barAt: 0.87, clothScale: 1.25, tilt: 1.82 };
+const NODES = 18;
+const STEP = 1 / 60;
+
+/** The standard: a pole that snaps on the word "défaite", and a cloth that really hangs from it, in the wind. */
+class BannerRig {
+  readonly nodes: ClothNode[] = [];
+  private readonly segment: number;
+  private time = 0;
+
+  constructor(private readonly cloth: ReturnType<typeof bannerCloth>) {
+    this.segment = (cloth.height * BANNER.clothScale) / (NODES - 1);
+    const bar = this.along(BANNER.barAt, 0);
+    for (let i = 0; i < NODES; i += 1) this.nodes.push({ x: bar.x, y: bar.y + i * this.segment, px: bar.x, py: bar.y + i * this.segment });
+  }
+
+  angle(t: number): number {
+    const fall = clamp01((t - OPENING_POLE_CRACKS_AT) / (OPENING_POLE_LANDS_AT - OPENING_POLE_CRACKS_AT));
+    return Math.sin(t * 1.3) * 0.012 * (1 - fall) + BANNER.tilt * fall * fall;
+  }
+
+  along(ratio: number, t: number): { x: number; y: number } {
+    const pivotY = BANNER.y - BANNER.height * BANNER.snapAt, reach = (ratio - BANNER.snapAt) * BANNER.height, angle = this.angle(t);
+    return { x: BANNER.x + Math.sin(angle) * reach, y: pivotY - Math.cos(angle) * reach };
+  }
+
+  advance(to: number): void {
+    while (this.time < to) {
+      this.step(this.time);
+      this.time += STEP;
     }
   }
-  ctx.restore();
-  return x;
+
+  private step(t: number): void {
+    const bar = this.along(BANNER.barAt, t);
+    const anchor = this.nodes[0]!;
+    anchor.x = anchor.px = bar.x;
+    anchor.y = anchor.py = bar.y;
+    this.nodes.forEach((node, i) => {
+      if (i === 0) return;
+      const wind = (220 + 170 * Math.sin(t * 1.9 + i * 0.42) + 90 * Math.sin(t * 4.3 + i * 0.9)) * (0.4 + (0.6 * i) / NODES);
+      const vx = (node.x - node.px) * 0.986, vy = (node.y - node.py) * 0.986;
+      node.px = node.x;
+      node.py = node.y;
+      node.x += vx + wind * STEP * STEP;
+      node.y += vy + 420 * STEP * STEP;
+    });
+    for (let pass = 0; pass < 5; pass += 1) {
+      for (let i = 1; i < NODES; i += 1) {
+        const up = this.nodes[i - 1]!, node = this.nodes[i]!;
+        const dx = node.x - up.x, dy = node.y - up.y, length = Math.hypot(dx, dy) || 1, pull = (length - this.segment) / length;
+        if (i > 1) { up.x += dx * pull * 0.5; up.y += dy * pull * 0.5; }
+        node.x -= dx * pull * (i > 1 ? 0.5 : 1);
+        node.y -= dy * pull * (i > 1 ? 0.5 : 1);
+      }
+    }
+    for (const node of this.nodes) {
+      if (node.y <= BANNER.ground) continue;
+      node.y = BANNER.ground;
+      node.px = node.x - (node.x - node.px) * 0.82;
+    }
+  }
+
+  paint({ ctx, camera, seconds }: PaintFrame): void {
+    const at = (x: number, y: number) => ({ x: camera.x + x * camera.scale, y: camera.y + y * camera.scale });
+    const stick = (from: { x: number; y: number }, to: { x: number; y: number }, width: number, color: string) => {
+      const a = at(from.x, from.y), b = at(to.x, to.y);
+      ctx.save();
+      ctx.translate(a.x, a.y);
+      ctx.rotate(Math.atan2(b.y - a.y, b.x - a.x));
+      ctx.fillStyle = color;
+      ctx.fillRect(0, (-width * camera.scale) / 2, Math.hypot(b.x - a.x, b.y - a.y), width * camera.scale);
+      ctx.restore();
+    };
+    const pivot = { x: BANNER.x, y: BANNER.y - BANNER.height * BANNER.snapAt };
+    const angle = this.angle(seconds), bar = this.along(BANNER.barAt, seconds), tip = this.along(1, seconds);
+    const fall = clamp01((seconds - OPENING_POLE_CRACKS_AT) / (OPENING_POLE_LANDS_AT - OPENING_POLE_CRACKS_AT)) ** 2;
+    const acrossX = Math.cos(angle) * (1 - fall) + 0.14 * fall, acrossY = Math.sin(angle) * (1 - fall) + 0.46 * fall;
+    const cross = { x: acrossX * 78, y: acrossY * 78 };
+    stick({ x: BANNER.x, y: BANNER.y }, pivot, 9, 'rgb(62,44,32)');
+    stick(pivot, tip, 9, 'rgb(84,60,42)');
+    stick({ x: bar.x - cross.x, y: bar.y - cross.y }, { x: bar.x + cross.x, y: bar.y + cross.y }, 8, 'rgb(104,76,48)');
+    stick(tip, { x: tip.x + Math.sin(angle) * 34, y: tip.y - Math.cos(angle) * 34 }, 11, 'rgb(208,172,106)');
+    // Each row is a parallelogram sharing its edges with the next, so the cloth bends in one piece. Its width lies
+    // along the crossbar while the pole stands, and flattens onto the paving as it falls.
+    const rowHeight = this.cloth.height / (NODES - 1), width = this.cloth.width * BANNER.clothScale * camera.scale;
+    ctx.save();
+    ctx.imageSmoothingEnabled = false;
+    // A chain folds on itself on a flat line: once down, the cloth is laid out along the paving instead.
+    const settle = smooth((seconds - OPENING_POLE_LANDS_AT) / 0.8);
+    const point = (i: number) => {
+      const node = this.nodes[i]!;
+      const x = bar.x + i * this.segment * 0.94, y = bar.y + (BANNER.ground - bar.y) * clamp01(i / 3) + Math.sin(i * 0.8) * 3;
+      return { x: node.x + (x - node.x) * settle, y: node.y + (y - node.y) * settle };
+    };
+    for (let i = 0; i < NODES - 1; i += 1) {
+      const up = point(i), down = point(i + 1), start = at(up.x, up.y);
+      ctx.setTransform(
+        (acrossX * width) / this.cloth.width, (acrossY * width) / this.cloth.width,
+        ((down.x - up.x) * camera.scale) / rowHeight, ((down.y - up.y) * camera.scale) / rowHeight,
+        start.x - (acrossX * width) / 2, start.y - (acrossY * width) / 2,
+      );
+      ctx.drawImage(this.cloth.canvas, 0, i * rowHeight, this.cloth.width, rowHeight, 0, 0, this.cloth.width, rowHeight * 1.08);
+      ctx.globalAlpha = 0.34 * (0.5 + 0.5 * Math.sin(i * 0.8 - seconds * 3.1));
+      ctx.drawImage(this.cloth.shade, 0, i * rowHeight, this.cloth.width, rowHeight, 0, 0, this.cloth.width, rowHeight * 1.08);
+      ctx.globalAlpha = 1;
+    }
+    ctx.restore();
+  }
+}
+
+/** The leftovers of the fight around the standard. Nothing here belongs to a named clan. */
+const LANCES: ReadonlyArray<{ x: number; y: number; angle: number; length: number; tip: boolean }> = [
+  { x: 470, y: 676, angle: -0.34, length: 190, tip: true }, { x: 530, y: 650, angle: 0.2, length: 120, tip: false },
+  { x: 1236, y: 636, angle: -0.26, length: 170, tip: true }, { x: 1318, y: 672, angle: 0.14, length: 130, tip: true },
+  { x: 1420, y: 640, angle: 0.3, length: 110, tip: false },
+];
+const FIRES: ReadonlyArray<{ x: number; y: number; size: number; seed: number }> = [
+  { x: 420, y: 650, size: 2.4, seed: 1 }, { x: 1290, y: 628, size: 1.6, seed: 2 }, { x: 1380, y: 660, size: 2.2, seed: 3 },
+];
+const BATTLEFIELD: readonly Light[] = [
+  ...FIRES.map((fire) => ({ x: fire.x, y: fire.y - 16, radius: 130 * fire.size, color: FIRE, power: 0.36, seed: fire.seed })),
+  { x: 1220, y: 62, radius: 220, color: MOON, power: 0.12, seed: 7 },
+];
+
+/** Columns of pixels that lick at their own pace: red outside, then orange, then a pale core. */
+function paintFlame(ctx: CanvasRenderingContext2D, x: number, y: number, unit: number, seconds: number, seed: number): void {
+  ctx.globalCompositeOperation = 'lighter';
+  for (let column = -7; column <= 7; column += 1) {
+    const body = 1 - Math.abs(column) / 8;
+    const tall = (10 + 26 * body) * (0.72 + 0.28 * Math.sin(seconds * (8 + (column % 3)) + column * 1.7 + seed)) * unit;
+    const left = x + column * 2 * unit;
+    ctx.fillStyle = rgba([206, 58, 18], 0.85);
+    ctx.fillRect(left, y - tall, 2 * unit, tall);
+    ctx.fillStyle = rgba([255, 134, 40], 0.9);
+    ctx.fillRect(left, y - tall * 0.68, 2 * unit, tall * 0.68);
+    if (Math.abs(column) < 4) {
+      ctx.fillStyle = rgba([255, 226, 150], 0.9);
+      ctx.fillRect(left, y - tall * 0.36, 2 * unit, tall * 0.36);
+    }
+  }
+  ctx.globalCompositeOperation = 'source-over';
 }
 
 function fallPainter(): ShotPainter {
-  const cloth = bannerCloth();
-  const smoke = softPuff([58, 40, 34]);
-  const sparks = embers(46, 913), cinders = ash(70, 317, [120, 112, 104]);
+  const rig = new BannerRig(bannerCloth());
+  const smoke = softPuff([30, 26, 34]);
+  const sparks = embers(70, 913), cinders = ash(80, 317, [150, 150, 164]);
+  const random = seeded(4049);
+  const plumes = Array.from({ length: 22 }, () => ({ fire: FIRES[Math.floor(random() * FIRES.length)]!, size: 70 + random() * 150, speed: 0.05 + random() * 0.05, phase: random() }));
   const bursts: Array<{ x: number; y: number; vx: number; vy: number; life: number }> = [];
-  let burst = false;
+  let cracked = false, landed = false;
+  const scatter = (x: number, y: number, spread: number, count: number) => {
+    for (let i = 0; i < count; i += 1) bursts.push({ x: x + (random() - 0.5) * spread, y, vx: (random() - 0.5) * 190, vy: -60 - random() * 200, life: 0.5 + random() * 1.1 });
+  };
   return (frame) => {
-    const { ctx, width, height, seconds, dt } = frame;
-    const ground = height * 0.78;
-    ctx.globalCompositeOperation = 'lighter';
-    glow(ctx, width / 2, ground + height * 0.05, width * 0.42, [150, 48, 18], 0.28 * flicker(seconds, 2));
-    glow(ctx, width * 0.28, ground + height * 0.08, width * 0.2, [120, 36, 14], 0.2 * flicker(seconds, 4));
-    glow(ctx, width * 0.74, ground + height * 0.07, width * 0.22, [120, 36, 14], 0.2 * flicker(seconds, 6));
-    ctx.globalCompositeOperation = 'source-over';
-    for (let i = 0; i < 6; i += 1) {
-      const size = width * (0.3 + i * 0.05);
-      ctx.globalAlpha = 0.22;
-      ctx.drawImage(smoke, ((i * 0.23 + seconds * 0.012) % 1.3 - 0.3) * width, ground - size * 0.62, size, size * 0.6);
+    const { ctx, camera, width, height, seconds, dt } = frame;
+    const px = (x: number) => camera.x + x * camera.scale, py = (y: number) => camera.y + y * camera.scale;
+    ctx.fillStyle = 'rgba(6,9,22,.3)';
+    ctx.fillRect(0, 0, width, height);
+    paintLights(frame, BATTLEFIELD);
+    for (const plume of plumes) {
+      const rise = (plume.phase + seconds * plume.speed) % 1;
+      ctx.globalAlpha = 0.3 * Math.sin(rise * Math.PI);
+      const size = plume.size * camera.scale * (1 + rise);
+      ctx.drawImage(smoke, px(plume.fire.x + 90 * rise) - size / 2, py(plume.fire.y - 340 * rise) - size / 2, size, size);
     }
     ctx.globalAlpha = 1;
-    cinders.paint(frame, 0.7);
-    const x = paintBanner(frame, cloth, ground + height * 0.05);
-    if (seconds > BANNER_LANDS_AT && !burst) {
-      burst = true;
-      const random = seeded(4049);
-      for (let i = 0; i < 70; i += 1) bursts.push({ x: x + (random() - 0.5) * width * 0.2, y: ground + height * 0.03, vx: (random() - 0.5) * 170, vy: -50 - random() * 190, life: 0.6 + random() * 1.3 });
+    cinders.paint(frame, 0.6);
+    for (const lance of LANCES) {
+      ctx.save();
+      ctx.translate(px(lance.x), py(lance.y));
+      ctx.rotate(lance.angle);
+      ctx.fillStyle = 'rgb(30,22,20)';
+      ctx.fillRect(-3.5 * camera.scale, -lance.length * camera.scale, 7 * camera.scale, lance.length * camera.scale);
+      if (lance.tip) { ctx.fillStyle = 'rgb(168,166,170)'; ctx.fillRect(-4 * camera.scale, (-lance.length - 28) * camera.scale, 8 * camera.scale, 28 * camera.scale); }
+      ctx.restore();
+    }
+    rig.advance(seconds);
+    rig.paint(frame);
+    for (const fire of FIRES) paintFlame(ctx, px(fire.x), py(fire.y), Math.max(1, Math.round(fire.size * camera.scale)), seconds, fire.seed);
+    if (seconds > OPENING_POLE_CRACKS_AT && !cracked) {
+      cracked = true;
+      scatter(px(BANNER.x), py(BANNER.y - BANNER.height * BANNER.snapAt), 20, 26);
+    }
+    if (seconds > OPENING_POLE_LANDS_AT && !landed) {
+      landed = true;
+      const tip = rig.along(1, seconds);
+      scatter(px((BANNER.x + tip.x) / 2), py(BANNER.ground), width * 0.26, 90);
     }
     ctx.globalCompositeOperation = 'lighter';
     for (const spark of bursts) {
       if (spark.life <= 0) continue;
       spark.life -= dt;
-      spark.vy += 120 * dt;
+      spark.vy += 130 * dt;
       spark.x += spark.vx * dt;
       spark.y += spark.vy * dt;
-      ctx.fillStyle = rgba([255, 150, 70], Math.min(1, spark.life));
+      ctx.fillStyle = rgba([255, 158, 74], Math.min(1, spark.life * 1.6));
       ctx.fillRect(Math.round(spark.x), Math.round(spark.y), 3, 3);
     }
     ctx.globalCompositeOperation = 'source-over';
-    sparks.paint(frame, 0.85);
+    sparks.paint(frame, 0.9);
   };
 }
 
@@ -350,7 +491,7 @@ function boisClairPainter(sheets: SheetBook): ShotPainter {
   };
 }
 
-function shadowPainter(sheets: SheetBook): ShotPainter {
+function shadowPainter(): ShotPainter {
   const puff = softPuff([120, 142, 184]);
   const fall = ash(110, 2293, [150, 156, 170]);
   const random = seeded(61);
@@ -360,21 +501,17 @@ function shadowPainter(sheets: SheetBook): ShotPainter {
     { x: 1190, y: 466, radius: 58, color: VIOLET, power: 0.34, seed: 3 }, { x: 1026, y: 492, radius: 46, color: VIOLET, power: 0.34, seed: 4 },
     { x: 1576, y: 472, radius: 58, color: VIOLET, power: 0.34, seed: 5 },
   ];
-  const art = sheets.get('rogue');
-  const shade = art ? tintedCanvas(art.image, 'rgba(5,6,14,1)') : null;
-  const walkers = [0, 1, 2, 3, 4, 5].map((index) => ({ offset: index * 62 + (index % 2) * 17 }));
+  const figure = robedFigure();
+  const walkers = [0, 1, 2, 3, 4, 5, 6].map((index) => ({ offset: index * 50 + (index % 2) * 13 }));
   return (frame) => {
     const { ctx, camera, seconds } = frame;
     paintLights(frame, [{ x: 1066, y: 66, radius: 240, color: MOON, power: 0.14, seed: 7 }, { x: 134, y: 395, radius: 110, color: CANDLE, power: 0.26, seed: 8 }]);
-    if (art && shade) {
-      for (const walker of walkers) {
-        const x = 880 + walker.offset - seconds * 21;
-        if (x < 606 || x > 884) continue;
-        const step = seconds * 3.1 + walker.offset;
-        const scale = 0.42 * camera.scale;
-        const sx = camera.x + x * camera.scale, sy = camera.y + 387 * camera.scale;
-        drawFrame(ctx, art.entry, shade, Math.sin(step) > 0 ? 'idle' : 'idle_b', sx, sy - Math.abs(Math.sin(step)) * 1.6 * scale, scale, true);
-      }
+    for (const walker of walkers) {
+      const x = 880 + walker.offset - seconds * 21;
+      if (x < 606 || x > 884) continue;
+      const lift = Math.abs(Math.sin(seconds * 3.1 + walker.offset)) * 1.4 * camera.scale;
+      const tall = 46 * camera.scale, wide = 18 * camera.scale;
+      ctx.drawImage(figure, camera.x + x * camera.scale - wide / 2, camera.y + 386 * camera.scale - tall - lift, wide, tall);
     }
     for (const band of bands) {
       const x = ((band.x - seconds * band.speed) % 2100 + 2100) % 2100 - 300;
@@ -414,6 +551,6 @@ export function createShotPainter(id: OpeningShotId, sheets: SheetBook): ShotPai
   if (id === 'prologue_fall') return fallPainter();
   if (id === 'prologue_seals') return sealsPainter();
   if (id === 'prologue_lion') return boisClairPainter(sheets);
-  if (id === 'prologue_shadow') return shadowPainter(sheets);
+  if (id === 'prologue_shadow') return shadowPainter();
   return companyPainter();
 }

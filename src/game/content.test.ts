@@ -227,14 +227,13 @@ describe('campaign content integrity', () => {
     }
   });
 
-  it('defines the five prologue panels backed by existing tableaux, the first one drawn by code', () => {
-    const prologueScenes = assets.prologueScenes as Record<string, string | undefined>;
+  it('defines the five prologue panels backed by existing tableaux', () => {
+    const prologueScenes = assets.prologueScenes as Record<string, string>;
     expect(prologuePanels.map((panel) => panel.id)).toEqual(['prologue_fall', 'prologue_seals', 'prologue_lion', 'prologue_shadow', 'prologue_departure']);
-    expect(prologueScenes.prologue_fall).toBeUndefined();
 
     for (const panel of prologuePanels) {
       expect(panel.lines.length, panel.id).toBeGreaterThan(0);
-      if (panel.id !== 'prologue_fall') expectPublicAsset(prologueScenes[panel.id]!, panel.id);
+      expectPublicAsset(prologueScenes[panel.id]!, panel.id);
     }
   });
 

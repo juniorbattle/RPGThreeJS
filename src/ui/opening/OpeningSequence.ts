@@ -2,7 +2,7 @@ import type { SheetArt, ShotPainter } from './openingPainters';
 import { createShotPainter } from './openingPainters';
 import { resolveCharacterAsset } from '../../render/CharacterVisualRegistry';
 import { prefersReducedMotion } from '../ReducedMotion';
-import { cameraAt, OPENING_ACTOR_FADE_AT, OPENING_BARS_OPEN_AT, OPENING_CAST, OPENING_SHEETS, OPENING_SHOTS, type OpeningShot, type ViewCamera } from './openingShots';
+import { cameraAt, OPENING_ACTOR_FADE_AT, OPENING_BARS_OPEN_AT, OPENING_CAST, OPENING_NEXT_CAST, OPENING_POLE_LANDS_AT, OPENING_SHEETS, OPENING_SHOTS, type OpeningShot, type ViewCamera } from './openingShots';
 import './opening-sequence.css';
 
 const CUT_SECONDS = 0.5;
@@ -11,11 +11,11 @@ const LEAVE_MS = 900;
 const PARALLAX_NEAR = 0.05;
 /** Where the ground meets the horizon: the near layer grows from here, as the ground does when a camera moves in. */
 const VANISHING: Partial<Record<OpeningShot['id'], { x: number; y: number }>> = {
-  prologue_seals: { x: 1240, y: 430 }, prologue_lion: { x: 948, y: 420 }, prologue_shadow: { x: 700, y: 620 }, prologue_departure: { x: 1000, y: 460 },
+  prologue_fall: { x: 1040, y: 470 }, prologue_seals: { x: 1240, y: 430 }, prologue_lion: { x: 948, y: 420 }, prologue_shadow: { x: 700, y: 620 }, prologue_departure: { x: 1000, y: 460 },
 };
 
 /** Under reduced motion each shot holds the moment its composition is fullest: nothing is lost, nothing moves. */
-const STILL_AT: Record<OpeningShot['id'], number> = { prologue_fall: 5.4, prologue_seals: 6, prologue_lion: 11.5, prologue_shadow: 7, prologue_departure: 6 };
+const STILL_AT: Record<OpeningShot['id'], number> = { prologue_fall: 7.6, prologue_seals: 6, prologue_lion: 11.5, prologue_shadow: 7, prologue_departure: 6 };
 
 function loadImage(url: string): Promise<HTMLImageElement | null> {
   return new Promise((resolve) => {
@@ -70,7 +70,7 @@ export class OpeningSequence {
     element.setAttribute('aria-label', 'Prologue');
     element.innerHTML = `
       <div class="opening-sequence__scene">
-        ${OPENING_SHOTS.filter(shot => shot.image).map(shot => `<div class="opening-sequence__plate" data-plate="${shot.id}"><img alt="" src="${shot.image}"><img class="is-near" alt="" src="${shot.image}"></div>`).join('')}
+        ${OPENING_SHOTS.map(shot => `<div class="opening-sequence__plate" data-plate="${shot.id}"><img alt="" src="${shot.image}"><img class="is-near" alt="" src="${shot.image}"></div>`).join('')}
         <canvas class="opening-sequence__canvas" aria-hidden="true"></canvas>
         <div class="opening-sequence__cast" data-cast aria-hidden="true"></div>
       </div>
@@ -129,6 +129,10 @@ export class OpeningSequence {
 
   private async prepare(): Promise<void> {
     const pictures = [...this.plates.values()].map(({ far }) => far.decode?.().catch(() => undefined));
+    for (const id of OPENING_NEXT_CAST) {
+      const url = resolveCharacterAsset(id, 'dialogue');
+      if (url) void loadImage(url);
+    }
     const sheets = import('../../combat/pixel/PixelSpriteSheets').then(({ resolvePixelSheet }) => Promise.all(OPENING_SHEETS.map(async (id) => {
       const entry = resolvePixelSheet(id);
       const image = entry && !this.sheets.has(id) ? await loadImage(entry.file) : null;
@@ -216,6 +220,7 @@ export class OpeningSequence {
     const last = shot.id === 'prologue_departure';
     const progress = this.reduced ? 1 : this.seconds / shot.seconds;
     const camera = cameraAt(shot, progress, this.width, this.height, this.bar);
+    if (shot.id === 'prologue_fall' && !this.reduced) camera.y += this.landingShake();
     this.placePlate(shot, camera, progress);
     element.querySelector<HTMLElement>('[data-veil]')!.classList.toggle('is-down', !last && remaining < CUT_SECONDS || this.seconds < 0.05);
     const text = this.reduced ? shot.lines.map(line => line.text).join(' ') : shot.lines.filter(line => line.at <= this.seconds).at(-1)?.text ?? '';
@@ -235,6 +240,12 @@ export class OpeningSequence {
     this.stillOf = shot.id;
     this.ctx.clearRect(0, 0, this.width, this.height);
     this.painter?.({ ctx: this.ctx, width: this.width, height: this.height, seconds: this.reduced ? STILL_AT[shot.id] : this.seconds, dt: this.reduced ? 0 : dt, camera });
+  }
+
+  /** The pole hits the ground: two pixels of weight, gone in a third of a second. */
+  private landingShake(): number {
+    const since = this.seconds - OPENING_POLE_LANDS_AT;
+    return since >= 0 && since < 0.32 ? Math.sin(since * 46) * 3 * (1 - since / 0.32) : 0;
   }
 
   private placePlate(shot: OpeningShot, camera: ViewCamera, progress: number): void {

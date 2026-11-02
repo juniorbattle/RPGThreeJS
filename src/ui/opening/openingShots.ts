@@ -13,16 +13,14 @@ export interface OpeningLine { at: number; text: string }
 export interface OpeningShot {
   id: OpeningShotId;
   seconds: number;
-  image: string | null;
+  image: string;
   from: CameraKey;
   to: CameraKey;
   lines: readonly OpeningLine[];
 }
 
-const NO_CAMERA: CameraKey = { x: IMAGE_WIDTH / 2, y: IMAGE_HEIGHT / 2, zoom: 1 };
-
 const FRAMING: ReadonlyArray<{ id: OpeningShotId; seconds: number; lineAt: readonly number[]; from: CameraKey; to: CameraKey }> = [
-  { id: 'prologue_fall', seconds: 9, lineAt: [0.9, 4.4], from: NO_CAMERA, to: NO_CAMERA },
+  { id: 'prologue_fall', seconds: 9, lineAt: [0.9, 4.4], from: { x: 742, y: 392, zoom: 1.2 }, to: { x: 836, y: 378, zoom: 1.08 } },
   { id: 'prologue_seals', seconds: 12, lineAt: [0.8, 6.2], from: { x: 1085, y: 660, zoom: 1.42 }, to: { x: 950, y: 400, zoom: 1.16 } },
   { id: 'prologue_lion', seconds: 12, lineAt: [3.2], from: { x: 836, y: 392, zoom: 1.02 }, to: { x: 800, y: 408, zoom: 1.12 } },
   { id: 'prologue_shadow', seconds: 10, lineAt: [0.9], from: { x: 950, y: 440, zoom: 1.16 }, to: { x: 722, y: 440, zoom: 1.16 } },
@@ -33,7 +31,7 @@ const scenes = assets.prologueScenes as Partial<Record<OpeningShotId, string>>;
 
 export const OPENING_SHOTS: readonly OpeningShot[] = FRAMING.map(({ lineAt, ...framing }) => ({
   ...framing,
-  image: scenes[framing.id] ?? null,
+  image: scenes[framing.id] ?? '',
   lines: (prologuePanels.find(panel => panel.id === framing.id)?.lines ?? []).map((text, index) => ({ at: lineAt[index] ?? 0, text })),
 }));
 
@@ -47,7 +45,11 @@ export const OPENING_CAST: ReadonlyArray<{ id: string; at: number; left: number;
 
 export const OPENING_ACTOR_FADE_AT = 9.6;
 export const OPENING_BARS_OPEN_AT = 9.9;
-export const OPENING_SHEETS = ['serpent_raider', 'serpent_brute', 'rogue'] as const;
+export const OPENING_POLE_CRACKS_AT = 5;
+export const OPENING_POLE_LANDS_AT = 6.15;
+export const OPENING_SHEETS = ['serpent_raider', 'serpent_brute'] as const;
+/** The cast of the dialogue that follows, loaded with the rest: its first line must not wait for them. */
+export const OPENING_NEXT_CAST = ['sage_seraphine', 'maelor'] as const;
 
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
 

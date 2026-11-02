@@ -101,6 +101,8 @@ function actorElement(
     img.src = image;
     img.alt = '';
     img.draggable = false;
+    // A missing picture leaves the place empty, not the browser's broken-image frame.
+    img.addEventListener('error', () => { img.hidden = true; });
     actor.append(img);
   }
   return actor;

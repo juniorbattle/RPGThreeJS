@@ -44,6 +44,18 @@ describe('NarrativeSceneSurface', () => {
     }
   });
 
+  it('leaves a missing actor picture empty instead of showing a broken image frame', async () => {
+    vi.useFakeTimers();
+    vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue(undefined);
+    const surface = new NarrativeSceneSurface(document.createElement('div'), ALARIC_AUDIENCE_TABLEAU);
+    surface.mount('/audience.webp');
+    await vi.runAllTimersAsync();
+    const image = surface.castLayer.querySelector<HTMLImageElement>('.narrative-cast__actor img')!;
+    expect(image.hidden).toBe(false);
+    image.dispatchEvent(new Event('error'));
+    expect(image.hidden).toBe(true);
+  });
+
   it('bounds initial environment decoding without removing the authored surface', async () => {
     vi.useFakeTimers();
     const decode = vi.spyOn(HTMLImageElement.prototype, 'decode').mockResolvedValue(undefined);

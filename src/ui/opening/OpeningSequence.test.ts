@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { dialogues } from '../../game/content';
 import { prologuePanels } from '../../game/prologue';
 import { OpeningSequence } from './OpeningSequence';
-import { cameraAt, IMAGE_HEIGHT, IMAGE_WIDTH, OPENING_CAST, OPENING_SHOTS } from './openingShots';
+import { cameraAt, IMAGE_HEIGHT, IMAGE_WIDTH, OPENING_CAST, OPENING_POLE_CRACKS_AT, OPENING_POLE_LANDS_AT, OPENING_SHOTS } from './openingShots';
 
 function play(options: { reducedMotion?: boolean } = {}) {
   const root = document.createElement('div');
@@ -48,6 +48,12 @@ describe('opening script (OD-2026-11-02-A)', () => {
     const goal = OPENING_SHOTS.flatMap(shot => shot.lines).find(line => line.text.includes('Tournoi des Grands'))?.text;
     expect(goal).toBeTruthy();
     expect(dialogues.get('acte_ouverture')?.steps.find(step => step.id === '2')?.text).toContain(goal!);
+  });
+
+  it('opens on a neutral ruin: no tableau that carries a faction\'s banner', () => {
+    expect(OPENING_SHOTS[0]?.image).toContain('dragon-roost-area.png');
+    expect(OPENING_POLE_CRACKS_AT).toBeGreaterThan(OPENING_SHOTS[0]!.lines[1]!.at);
+    expect(OPENING_POLE_LANDS_AT).toBeLessThan(OPENING_SHOTS[0]!.seconds - 1);
   });
 
   it('ends on the camp of the dialogue that follows, with no more than four heroes', () => {

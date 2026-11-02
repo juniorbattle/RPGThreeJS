@@ -50,6 +50,10 @@ Le 2026-11-02, à la question de la version de Bois-Clair à garder après l'avo
 - **Son.** La séquence garde le contexte `drama` et n'ouvre aucune ambiance : celle du refuge est réservée à son écran, et celle de Bois-Clair à son biome de combat.
 - **Figurants.** Les Serpents du plan 3 et les silhouettes du plan 4 sont lus comme du décor en mouvement. Le repère de quatre acteurs visibles vaut pour la scène jouée, que le plan 5 respecte. L'opérateur peut demander de les réduire.
 
+## Retour de l'opérateur sur le premier plan
+
+Le 2026-11-02, l'opérateur juge le premier plan peu compréhensible et demande un rendu optimal. Le plan garde ses phrases, sa durée et sa bannière sans emblème, mais se joue désormais sur le tableau `dragon-roost-area`, sans signe de faction, à la place du fond noir. Ce choix d'image n'établit aucun fait : le texte ne nomme pas ce lieu.
+
 ## Ce qui ne change pas
 
 Aucune phrase nouvelle, aucun fait sur le personnage joueur, aucun emblème. Aucune image générée, aucune vidéo. `acte_ouverture`, `camp_departure`, le contexte musical `drama`, les sauvegardes V6 et les autres invariants de la section 8 du rapport restent tenus.

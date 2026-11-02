@@ -54,6 +54,14 @@ Validateurs verts : suite complète (169 fichiers vitest et 26 tests `node:test`
 
 `CURRENT FACT` Le même réglage met le combat en graphismes réduits (`legacyCombatRuntime.js:106`, `:2378`) : pas de bloom ni de bascule de netteté, particules réduites à 45 %, intensité des flashs d'effet à 60 %, pas de ralenti ni de projecteur, arène allégée, ombres des sprites retirées. Le contrat interdit au jeu de passer outre (`UI_AND_ACCESSIBILITY.md:25`).
 
+## Conseillers absents et premier plan
+
+`CURRENT FACT` Retour de l'opérateur le même jour : Séraphine et Maelor absents du premier dialogue, avec de fines lignes verticales. Cause reproduite à l'identique : leurs deux images n'arrivaient pas, et Chrome dessinait le contour d'une image cassée. Le jeu avait perdu son serveur en cours de partie : le serveur de vérification venait d'être arrêté et le port 5173 sert RPGCards, qui répond par une page HTML à toute adresse. Alistair et Marian restaient visibles parce que la séquence les avait déjà chargés. Aucun fichier ne manque.
+
+`CURRENT FACT` Le jeu est renforcé : la séquence charge aussi Séraphine et Maelor, et une image d'acteur manquante laisse sa place vide au lieu du contour cassé.
+
+`CURRENT FACT` Le premier plan, une bannière sur fond noir, n'était pas compréhensible. Il devient une scène sur `dragon-roost-area`, fond sans signe de faction : une bannière sans emblème plantée parmi des lances et des feux, secouée par le vent, dont la hampe casse sur « la défaite » avant qu'elle ne s'abatte. Le tissu est simulé, puis posé à plat une fois au sol. Les silhouettes de l'aqueduc sont redessinées pour se lire comme des personnes.
+
 ## Limites
 
 - Personne n'a confirmé par écrit avoir vu la séquence en temps réel avec le son : le verdict porte sur le choix de version.

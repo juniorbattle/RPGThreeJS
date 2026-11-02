@@ -209,8 +209,8 @@ export const assets = {
     lion_refuge: '/assets/generated/lion-phase/dialogue/lion_refuge.webp',
     forest_fork: '/assets/generated/lion-phase/dialogue/forest_fork.webp',
   },
-  // The first panel has no picture: its banner is drawn by code on black.
   prologueScenes: {
+    prologue_fall: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/dragon-roost-area.png',
     prologue_seals: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png',
     prologue_lion: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png',
     prologue_shadow: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png',
