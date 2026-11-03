@@ -20,7 +20,7 @@ export interface OpeningShot {
 }
 
 const FRAMING: ReadonlyArray<{ id: OpeningShotId; seconds: number; lineAt: readonly number[]; from: CameraKey; to: CameraKey }> = [
-  { id: 'prologue_fall', seconds: 9, lineAt: [0.9, 4.4], from: { x: 742, y: 392, zoom: 1.2 }, to: { x: 836, y: 378, zoom: 1.08 } },
+  { id: 'prologue_fall', seconds: 9, lineAt: [0.9, 4.4], from: { x: 742, y: 430, zoom: 1.2 }, to: { x: 836, y: 440, zoom: 1.08 } },
   { id: 'prologue_seals', seconds: 12, lineAt: [0.8, 6.2], from: { x: 1085, y: 660, zoom: 1.42 }, to: { x: 950, y: 400, zoom: 1.16 } },
   { id: 'prologue_lion', seconds: 12, lineAt: [3.2], from: { x: 836, y: 392, zoom: 1.02 }, to: { x: 800, y: 408, zoom: 1.12 } },
   { id: 'prologue_shadow', seconds: 10, lineAt: [0.9], from: { x: 950, y: 440, zoom: 1.16 }, to: { x: 722, y: 440, zoom: 1.16 } },

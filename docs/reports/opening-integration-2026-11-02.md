@@ -62,6 +62,24 @@ Validateurs verts : suite complète (169 fichiers vitest et 26 tests `node:test`
 
 `CURRENT FACT` Le premier plan, une bannière sur fond noir, n'était pas compréhensible. Il devient une scène sur `dragon-roost-area`, fond sans signe de faction : une bannière sans emblème plantée parmi des lances et des feux, secouée par le vent, dont la hampe casse sur « la défaite » avant qu'elle ne s'abatte. Le tissu est simulé, puis posé à plat une fois au sol. Les silhouettes de l'aqueduc sont redessinées pour se lire comme des personnes.
 
+## Éléments intégrés et mouvement réduit vivant
+
+`CURRENT FACT` Retour de l'opérateur le 2026-11-03, captures à l'appui : « rien ne bouge », des « bugs sur les images », des éléments « mal intégrés ». Trois causes établies :
+
+- Les effets d'animation de Windows sont toujours désactivés (`SPI_GETCLIENTAREAANIMATION` à faux, relu le 2026-11-03). Le jeu passait en mouvement réduit, et cette variante figeait chaque plan sur une image.
+- Les lignes pointillées et le trait blanc du premier plan étaient un défaut : dans l'image figée, les gerbes d'étincelles de la chute étaient dessinées toutes à leur point de départ, donc alignées.
+- Lances, flammes, bannière et silhouettes étaient dessinées en aplats nets, sans le grain ni la lumière du tableau peint.
+
+`CURRENT FACT` Corrections :
+
+- **Couche d'éléments.** Ce que le code ajoute à un tableau est dessiné en pixels de l'image, à la résolution du tableau, assombri par la nuit de la scène puis éclairé par ses propres feux et sa lune, avant d'être posé avec la caméra du tableau (`src/ui/opening/openingLayer.ts`). Le canvas suit la densité de l'écran.
+- **Feux.** Les flammes sont simulées sur le grain du tableau, environ deux pixels, en cinq teintes franches. Elles brûlent aux feux de la bataille, et à la place des feux peints : braseros de la salle du trône, brasero, torches et toits de Bois-Clair, feu du camp. Positions relevées dans les images, puis vérifiées à l'œil.
+- **Premier plan.** Bannière de lin à bordure, coutures et pièces, toujours sans emblème. Ses plis suivent la courbure du tissu simulé. La hampe casse sur « la défaite », tombe en biais, se rattrape sur ses échardes et reste penchée, le tissu pendu à sa traverse. Les lances, les boucliers, deux étendards en lambeaux et des débris sous chaque feu prennent la lumière de la scène. Le cadrage descend pour garder les feux et le sol au-dessus du bandeau.
+- **Silhouettes.** Personnages encapuchonnés avec bâton, liseré de lune et foulée sous la robe.
+- **Bandeaux.** Le format de référence passe de 2,39:1 à 2:1, ce qui rend de l'image aux fenêtres étroites.
+
+`CURRENT FACT` Mouvement réduit, conformément à `UI_AND_ACCESSIBILITY.md:25` et `PRESENTATION_AND_MEDIA.md:26` (fondu doux, sans grand déplacement) : la caméra reste fixe, sans tremblement ni gerbe. La bannière debout se fond dans la bannière brisée sur « la défaite ». Les Serpents apparaissent en fondu à l'endroit où la marche les aurait laissés, et respirent sur place. Le feu, la lumière, la fumée et le vent restent animés sur place. Les silhouettes de l'aqueduc continuent de marcher : petites, lointaines et lentes, elles ne font pas partie des grands déplacements visés par le contrat. Le texte de chaque plan reste affiché d'un bloc.
+
 ## Limites
 
 - Personne n'a confirmé par écrit avoir vu la séquence en temps réel avec le son : le verdict porte sur le choix de version.

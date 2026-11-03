@@ -77,7 +77,7 @@ describe('opening script (OD-2026-11-02-A)', () => {
 
 describe('OpeningSequence', () => {
   it('stays presentation: no game state, no WebGL, no video, no ambience of its own', () => {
-    for (const file of ['OpeningSequence.ts', 'openingPainters.ts', 'openingShots.ts']) {
+    for (const file of ['OpeningSequence.ts', 'openingPainters.ts', 'openingLayer.ts', 'openingShots.ts']) {
       const source = readFileSync(`src/ui/opening/${file}`, 'utf8');
       expect(source, file).not.toMatch(/game\/(store|runSystem|types)|saveAuto|localStorage|prologueSeen|from 'three'|<video|\.mp4|webgl|setMusic/i);
     }
@@ -170,7 +170,7 @@ describe('OpeningSequence', () => {
     system.sequence.close();
   });
 
-  it('keeps each composition under reduced motion, drawn once and frozen', async () => {
+  it('holds the camera under reduced motion while fire, light and wind keep moving', async () => {
     let drawn = 0;
     const context = new Proxy({}, {
       get: (_, key) => {
@@ -182,15 +182,18 @@ describe('OpeningSequence', () => {
       set: () => true,
     });
     vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(context as unknown as CanvasRenderingContext2D);
-    const { sequence } = play({ reducedMotion: true });
-    sequence.start();
-    expect(drawn).toBeGreaterThan(0);
-    const still = drawn;
-    await new Promise((resolve) => setTimeout(resolve, 60));
-    expect(drawn).toBe(still);
-    press('Enter');
-    expect(drawn).toBeGreaterThan(still);
-    sequence.close();
+    const framing = async (reducedMotion: boolean) => {
+      const { sequence, element } = play({ reducedMotion });
+      sequence.start();
+      const plate = element.querySelector<HTMLImageElement>('[data-plate="prologue_fall"] img')!;
+      const before = { transform: plate.style.transform, drawn };
+      await new Promise((resolve) => setTimeout(resolve, 120));
+      const after = { transform: plate.style.transform, drawn };
+      sequence.close();
+      return { held: after.transform === before.transform, painted: after.drawn > before.drawn };
+    };
+    expect(await framing(true)).toEqual({ held: true, painted: true });
+    expect(await framing(false)).toEqual({ held: false, painted: true });
   });
 
   it('keeps the text and the way out when a picture or the canvas is missing', async () => {

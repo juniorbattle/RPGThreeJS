@@ -14,9 +14,6 @@ const VANISHING: Partial<Record<OpeningShot['id'], { x: number; y: number }>> = 
   prologue_fall: { x: 1040, y: 470 }, prologue_seals: { x: 1240, y: 430 }, prologue_lion: { x: 948, y: 420 }, prologue_shadow: { x: 700, y: 620 }, prologue_departure: { x: 1000, y: 460 },
 };
 
-/** Under reduced motion each shot holds the moment its composition is fullest: nothing is lost, nothing moves. */
-const STILL_AT: Record<OpeningShot['id'], number> = { prologue_fall: 7.6, prologue_seals: 6, prologue_lion: 11.5, prologue_shadow: 7, prologue_departure: 6 };
-
 function loadImage(url: string): Promise<HTMLImageElement | null> {
   return new Promise((resolve) => {
     const image = new Image();
@@ -30,8 +27,8 @@ function loadImage(url: string): Promise<HTMLImageElement | null> {
  * The opening of a new chronicle (OD-2026-11-02-A): 55 seconds of living tableaux in place of the five read panels.
  * It reads and writes no game state and leaves the music to the `PROLOGUE` mode. A click or Enter moves to the next shot, Passer or Escape leaves. The text runs
  * on the sequence's own clock, never on the sound's, and stays when a picture is slow or missing. Canvas effects are
- * optional: without them the tableaux and the text still play. Reduced motion, from the system or the game, freezes
- * each shot on one full frame and keeps the fades.
+ * optional: without them the tableaux and the text still play. Reduced motion, from the system or the game, holds the
+ * camera and replaces every fall and march with a fade; fire, light and wind keep moving where they are.
  */
 export class OpeningSequence {
   /** Settles once the pictures are in, or after READY_TIMEOUT_MS. Nothing waits on them longer. */
@@ -52,8 +49,8 @@ export class OpeningSequence {
   private frame = 0;
   private lineText = '';
   private reduced = false;
-  private stillOf: OpeningShot['id'] | null = null;
   private width = 0;
+  private ratio = 1;
   private height = 0;
   private bar = 0;
 
@@ -144,9 +141,10 @@ export class OpeningSequence {
   private readonly measure = (): void => {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
-    this.bar = Math.max(this.height * 0.11, (this.height - this.width / 2.39) / 2);
-    if (this.canvas) { this.canvas.width = this.width; this.canvas.height = this.height; }
-    this.stillOf = null;
+    this.bar = Math.max(this.height * 0.11, (this.height - this.width / 2) / 2);
+    // Drawn at the screen's own resolution, as the painting under it is: never a blurred enlargement.
+    this.ratio = Math.min(2, window.devicePixelRatio || 1);
+    if (this.canvas) { this.canvas.width = Math.round(this.width * this.ratio); this.canvas.height = Math.round(this.height * this.ratio); }
   };
 
   private readonly handleClick = (event: MouseEvent): void => {
@@ -198,7 +196,7 @@ export class OpeningSequence {
     this.painter = createShotPainter(next.id, this.sheets);
     for (const [id, plate] of this.plates) plate.root.classList.toggle('is-visible', id === next.id);
     element.querySelector<HTMLElement>('[data-cast]')!.classList.toggle('is-visible', next.id === 'prologue_departure');
-    this.ctx?.clearRect(0, 0, this.width, this.height);
+    this.clearCanvas();
     this.paint(next, 0);
   }
 
@@ -236,10 +234,14 @@ export class OpeningSequence {
       element.querySelector<HTMLElement>('[data-cast]')!.classList.toggle('is-leaving', this.seconds >= OPENING_ACTOR_FADE_AT);
       element.dataset.bars = this.seconds >= OPENING_BARS_OPEN_AT ? 'open' : 'closed';
     }
-    if (!this.ctx || this.reduced && this.stillOf === shot.id) return;
-    this.stillOf = shot.id;
-    this.ctx.clearRect(0, 0, this.width, this.height);
-    this.painter?.({ ctx: this.ctx, width: this.width, height: this.height, seconds: this.reduced ? STILL_AT[shot.id] : this.seconds, dt: this.reduced ? 0 : dt, camera });
+    if (!this.ctx) return;
+    this.clearCanvas();
+    this.painter?.({ ctx: this.ctx, width: this.width, height: this.height, seconds: this.seconds, dt, camera, reduced: this.reduced });
+  }
+
+  private clearCanvas(): void {
+    this.ctx?.setTransform(this.ratio, 0, 0, this.ratio, 0, 0);
+    this.ctx?.clearRect(0, 0, this.width, this.height);
   }
 
   /** The pole hits the ground: two pixels of weight, gone in a third of a second. */

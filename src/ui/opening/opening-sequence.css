@@ -1,6 +1,6 @@
 /* Opening of a new chronicle (OD-2026-11-02-A). It stays under the launch transition, then fades over the dialogue. */
 .opening-sequence {
-  --opening-bar: max(11vh, calc((100vh - 100vw / 2.39) / 2));
+  --opening-bar: max(11vh, calc((100vh - 100vw / 2) / 2));
   position: fixed;
   inset: 0;
   z-index: 70;

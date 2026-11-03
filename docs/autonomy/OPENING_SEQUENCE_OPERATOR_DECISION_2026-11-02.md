@@ -54,6 +54,8 @@ Le 2026-11-02, à la question de la version de Bois-Clair à garder après l'avo
 
 Le 2026-11-02, l'opérateur juge le premier plan peu compréhensible et demande un rendu optimal. Le plan garde ses phrases, sa durée et sa bannière sans emblème, mais se joue désormais sur le tableau `dragon-roost-area`, sans signe de faction, à la place du fond noir. Ce choix d'image n'établit aucun fait : le texte ne nomme pas ce lieu.
 
+Le 2026-11-03, l'opérateur signale que rien ne bouge et que les éléments sont mal intégrés. Les éléments dessinés prennent désormais le grain et la lumière des tableaux, et les feux peints s'animent. En mouvement réduit, la caméra reste fixe et la chute devient un fondu, mais le feu, la lumière et le vent restent animés. La bannière reste sans emblème, et aucune phrase ne change.
+
 ## Ce qui ne change pas
 
 Aucune phrase nouvelle, aucun fait sur le personnage joueur, aucun emblème. Aucune image générée, aucune vidéo. `acte_ouverture`, `camp_departure`, le contexte musical `drama`, les sauvegardes V6 et les autres invariants de la section 8 du rapport restent tenus.
