@@ -73,7 +73,7 @@ describe('opening script (OD-2026-11-02-A)', () => {
       expect(adviser.at, adviser.id).toBeGreaterThanOrEqual(heroesGone);
       expect(adviser.at, adviser.id).toBeLessThan(OPENING_SHOTS.at(-1)!.seconds - 2);
     }
-    expect(Math.max(...OPENING_CAST.map(actor => actor.at + Math.abs(actor.x - actor.from) / 150))).toBeLessThan(OPENING_ACTOR_FADE_AT - 2);
+    expect(Math.max(...OPENING_CAST.map(actor => actor.at + Math.hypot(actor.x - actor.from, actor.y - (actor.fromY ?? actor.y)) / 150))).toBeLessThan(OPENING_ACTOR_FADE_AT - 2);
   });
 
   it('always covers the view with the image', () => {

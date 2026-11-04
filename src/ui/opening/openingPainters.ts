@@ -1,6 +1,6 @@
 import type { PixelSheetEntry } from '../../combat/pixel/PixelSpriteSheets';
 import { clamp01, flicker, glow, GRAIN, PixelFire, PropLayer, rgba, seeded, smooth, TongueFire, type Light, type Rgb } from './openingLayer';
-import { OPENING_ACTOR_FADE_AT, OPENING_ACTOR_FADE_SECONDS, OPENING_ADVISERS, OPENING_CAST, OPENING_POLE_CRACKS_AT, type CampActor, OPENING_POLE_LANDS_AT, type OpeningShotId, type ViewCamera } from './openingShots';
+import { OPENING_ACTOR_FADE_AT, OPENING_ACTOR_FADE_SECONDS, OPENING_ADVISERS, OPENING_CAST, OPENING_FIGURE_SCALE, OPENING_POLE_CRACKS_AT, type CampActor, OPENING_POLE_LANDS_AT, type OpeningShotId, type ViewCamera } from './openingShots';
 
 export interface PaintFrame {
   ctx: CanvasRenderingContext2D;
@@ -688,6 +688,8 @@ function walkerSprite(step: number, gear: Gear): HTMLCanvasElement {
   return canvas;
 }
 
+/** Image pixels for one cell of a walker: a little above the grain, so each one reads as a person at this distance. */
+const WALKER_CELL = 2.4;
 /** The top of the aqueduct's coping, sloping away to the right, between the two ruins in front of it. */
 const AQUEDUCT = { left: 605, right: 882, deck: (x: number) => 380 + (x - 632) * 0.085, speed: 12 };
 
@@ -734,7 +736,7 @@ function shadowPainter(): ShotPainter {
         if (x < AQUEDUCT.left - 20 || x > AQUEDUCT.right + 4) continue;
         const sprite = sprites[walker.gear]![Math.floor(walked / 3.5) % 4]!;
         const feet = Math.round(AQUEDUCT.deck(x) / GRAIN) * GRAIN;
-        props.drawImage(sprite, x - 3 * GRAIN, feet - sprite.height * GRAIN, sprite.width * GRAIN, sprite.height * GRAIN);
+        props.drawImage(sprite, x - 3 * WALKER_CELL, feet - sprite.height * WALKER_CELL, sprite.width * WALKER_CELL, sprite.height * WALKER_CELL);
       }
       props.restore();
       layer.present(ctx, camera);
@@ -763,7 +765,9 @@ const snap = (value: number) => Math.round(value / GRAIN) * GRAIN;
 /** Steady pace, then the last steps slow to a stop. */
 const arrive = (p: number) => (p - (p > 0.8 ? (p - 0.8) ** 2 / 0.4 : 0)) / 0.9;
 
-interface Placed { art: SheetArt; id: string; x: number; y: number; pose: string; flip: boolean; shown: number }
+interface Placed { art: SheetArt; id: string; x: number; y: number; scale: number; pose: string; flip: boolean; shown: number }
+
+const figureScale = (y: number) => OPENING_FIGURE_SCALE.scale * (1 + (y - OPENING_FIGURE_SCALE.y) * OPENING_FIGURE_SCALE.slope);
 
 /**
  * Where someone of the camp stands at this second, how much of them shows, and the frame they show. The heroes walk in
@@ -771,12 +775,13 @@ interface Placed { art: SheetArt; id: string; x: number; y: number; pose: string
  */
 function placeHero(hero: CampActor, index: number, art: SheetArt, t: number, reduced: boolean, leaves: boolean): Placed {
   const out = leaves ? 1 - smooth((t - OPENING_ACTOR_FADE_AT) / OPENING_ACTOR_FADE_SECONDS) : 1;
-  const duration = Math.abs(hero.x - hero.from) / WALK_SPEED, since = t - hero.at;
+  const fromY = hero.fromY ?? hero.y;
+  const duration = Math.hypot(hero.x - hero.from, hero.y - fromY) / WALK_SPEED, since = t - hero.at;
   const p = reduced || duration === 0 ? 1 : clamp01(since / duration);
-  const x = hero.from + (hero.x - hero.from) * arrive(p);
+  const x = hero.from + (hero.x - hero.from) * arrive(p), y = fromY + (hero.y - fromY) * arrive(p);
   const shown = (leaves && reduced ? smooth((t - hero.at * 0.45) / 0.9) : smooth(since / (duration ? 0.5 : 0.9))) * out;
   // A step every 80 pixels walked: the weight passes from one frame to the other and the body rises a cell.
-  const stride = (Math.abs(x - hero.from) / 80) * Math.PI;
+  const stride = (Math.hypot(x - hero.from, y - fromY) / 80) * Math.PI;
   const walking = p > 0 && p < 1;
   const idle = art.entry.anims.idle;
   let pose = 'idle';
@@ -787,7 +792,7 @@ function placeHero(hero: CampActor, index: number, art: SheetArt, t: number, red
     pose = idle.frames.find((_, k) => (at -= idle.ms[k]!) < 0) ?? 'idle';
   }
   const lift = walking ? Math.round(Math.abs(Math.sin(stride))) * GRAIN : 0;
-  return { art, id: hero.id, x: snap(x), y: snap(hero.y) - lift, pose, flip: hero.facing === 'LEFT', shown };
+  return { art, id: hero.id, x: snap(x), y: snap(y) - lift, scale: figureScale(y), pose, flip: hero.facing === 'LEFT', shown };
 }
 
 /** Their shadow from the fire, laid on the ground and stretched away from it. */
@@ -798,7 +803,7 @@ function castShadow(ctx: CanvasRenderingContext2D, hero: Placed, source: CanvasI
   ctx.save();
   ctx.translate(hero.x, hero.y);
   ctx.transform(1, 0, (-dx / length) * reach, (-dy / length) * reach, 0, 0);
-  ctx.scale(hero.flip ? -GRAIN : GRAIN, GRAIN);
+  ctx.scale(hero.flip ? -hero.scale : hero.scale, hero.scale);
   ctx.drawImage(source, column * cellWidth, 0, cellWidth, cellHeight, -anchorX, -anchorY, cellWidth, cellHeight);
   ctx.restore();
 }
@@ -873,10 +878,13 @@ function companyPainter(sheets: SheetBook): ShotPainter {
       const placed = art ? placeHero(hero, index, art, seconds, reduced, index < OPENING_CAST.length) : null;
       return placed && placed.shown > 0.001 ? [placed] : [];
     }).sort((a, b) => a.y - b.y);
+    // Everyone in the camp stands in front of the fire.
+    fire.advance(dt);
+    fire.draw(props, HEARTH.x, HEARTH.y, GRAIN);
     for (const hero of company) {
-      const [width, height] = hero.art.entry.cell, [anchorX, anchorY] = hero.art.entry.anchor;
+      const [width, height] = hero.art.entry.cell, [anchorX, anchorY] = hero.art.entry.anchor, s = hero.scale;
       props.globalAlpha = hero.shown;
-      props.drawImage(lightHero(hero, seconds), hero.x - (hero.flip ? width - anchorX : anchorX) * GRAIN, hero.y - anchorY * GRAIN, width * GRAIN, height * GRAIN);
+      props.drawImage(lightHero(hero, seconds), hero.x - (hero.flip ? width - anchorX : anchorX) * s, hero.y - anchorY * s, width * s, height * s);
     }
     props.globalAlpha = 1;
     if (company.length) {
@@ -887,20 +895,18 @@ function companyPainter(sheets: SheetBook): ShotPainter {
         const look = lookOf(hero), near = clamp01(1.25 - Math.abs(hero.x - HEARTH.x) / 900);
         props.globalAlpha = hero.shown ** 3 * 0.75 * near * flicker(seconds, 1);
         const towards = hero.x >= HEARTH.x ? -GRAIN : GRAIN;
-        drawFrame(props, hero.art.entry, look.warm, hero.pose, hero.x + towards, hero.y, GRAIN, hero.flip);
+        drawFrame(props, hero.art.entry, look.warm, hero.pose, hero.x + towards, hero.y, hero.scale, hero.flip);
         props.globalAlpha = hero.shown ** 3 * 0.32;
-        drawFrame(props, hero.art.entry, look.cool, hero.pose, hero.x - towards, hero.y - GRAIN, GRAIN, hero.flip);
+        drawFrame(props, hero.art.entry, look.cool, hero.pose, hero.x - towards, hero.y - GRAIN, hero.scale, hero.flip);
       }
       for (const hero of company) {
         props.globalAlpha = hero.shown * 0.3 * (0.85 + 0.15 * flicker(seconds, 1));
         castShadow(props, hero, lookOf(hero).dark);
         props.globalAlpha = 1;
-        contactShadow(props, hero.x, hero.y + 1, 30, 0.5 * hero.shown);
+        contactShadow(props, hero.x, hero.y + 1, 15 * hero.scale, 0.5 * hero.shown);
       }
       props.restore();
     }
-    fire.advance(dt);
-    fire.draw(props, HEARTH.x, HEARTH.y, GRAIN);
     layer.present(ctx, camera);
     ctx.globalCompositeOperation = 'lighter';
     for (const spark of sparks) {

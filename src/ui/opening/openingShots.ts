@@ -37,23 +37,29 @@ export const OPENING_SHOTS: readonly OpeningShot[] = FRAMING.map(({ lineAt, ...f
 
 /**
  * The four heroes gather in the middle of the camp, on its ground, in image pixels: two come from the fire, two from
- * the wagons, and they face each other as they do in the dialogue that follows. `from` is where each one starts walking.
+ * the wagons, and they face each other as they do in the dialogue that follows. Each one starts walking from
+ * (`from`, `fromY`), `fromY` defaulting to where they stop.
  */
-export interface CampActor { id: string; at: number; x: number; y: number; from: number; facing: 'LEFT' | 'RIGHT' }
+export interface CampActor { id: string; at: number; x: number; y: number; from: number; fromY?: number; facing: 'LEFT' | 'RIGHT' }
 export const OPENING_CAST: readonly CampActor[] = [
-  { id: 'alistair', at: 0.4, x: 934, y: 646, from: 1330, facing: 'LEFT' },
-  { id: 'marian', at: 1.1, x: 1040, y: 630, from: 1420, facing: 'LEFT' },
-  { id: 'kestrel', at: 1.8, x: 740, y: 646, from: 400, facing: 'RIGHT' },
-  { id: 'elara', at: 2.5, x: 636, y: 630, from: 330, facing: 'RIGHT' },
+  { id: 'alistair', at: 0.4, x: 942, y: 690, from: 1340, facing: 'LEFT' },
+  { id: 'marian', at: 1.1, x: 1072, y: 672, from: 1440, facing: 'LEFT' },
+  { id: 'kestrel', at: 1.8, x: 730, y: 690, from: 520, fromY: 572, facing: 'RIGHT' },
+  { id: 'elara', at: 2.5, x: 600, y: 672, from: 440, fromY: 566, facing: 'RIGHT' },
 ];
+/**
+ * Image pixels for one sprite pixel where the heroes stand (`y`), and how fast that grows towards the viewer: the
+ * painting's own perspective, read from its tents and crates.
+ */
+export const OPENING_FIGURE_SCALE = { y: 680, scale: 2.5, slope: 0.0012 };
 /**
  * Séraphine and Maelor, who open the dialogue that follows, stand on either side of the fire, on the left where the
  * dialogue puts them. They show once the heroes have faded, so the camp never holds more than four visible actors
  * (PRESENTATION_AND_MEDIA.md), and the dialogue opens on the two of them.
  */
 export const OPENING_ADVISERS: readonly CampActor[] = [
-  { id: 'maelor', at: 8.8, x: 268, y: 586, from: 268, facing: 'RIGHT' },
-  { id: 'sage_seraphine', at: 9, x: 494, y: 598, from: 494, facing: 'RIGHT' },
+  { id: 'maelor', at: 8.8, x: 268, y: 612, from: 268, facing: 'RIGHT' },
+  { id: 'sage_seraphine', at: 9, x: 500, y: 626, from: 500, facing: 'RIGHT' },
 ];
 
 /** The heroes fade from the camp from this second, over OPENING_ACTOR_FADE_SECONDS. */
