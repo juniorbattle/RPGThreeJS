@@ -39,9 +39,15 @@ Aucune note n'accompagne ces choix ; tous suivent la recommandation de la fiche.
 5. Maquette de l'arrivée à Bois-Clair, jugée en mouvement par l'opérateur (C2).
 6. Si elle convainc, les trois autres séquences et le fond animé, avant le playtest PC (A4).
 
-## Question ouverte
+## Question ouverte, tranchée
 
-Le même jour, l'opérateur ajoute : « si tu penses que ces tableaux vivants sont trop compliqués et demandant on peut annuler ». Le diff d'amendement n'est pas encore rédigé : il attend sa réponse à l'évaluation de Claude (continuer avec la maquette comme point d'arrêt, ou annuler).
+Le même jour, l'opérateur ajoute : « si tu penses que ces tableaux vivants sont trop compliqués et demandant on peut annuler ». Claude juge le chantier faisable : le moteur et les fonds existent, et le vrai coût tient aux allers-retours de retouche et au report du playtest PC. Il recommande de continuer avec la maquette comme point d'arrêt. L'opérateur répond « Oui, continuer » : si la maquette ne convainc pas en mouvement, le chantier s'arrête là.
+
+## Texte d'amendement soumis
+
+Le diff réel est enregistré dans [LIVING_TABLEAUX_AMENDMENT_1.13.0.patch](LIVING_TABLEAUX_AMENDMENT_1.13.0.patch). Il touche la constitution, PRESENTATION_AND_MEDIA, AUTHORING_AND_QA, AUTONOMOUS_WORK_PROTOCOL, le README et le manifeste (39 lignes ajoutées, 5 modifiées). `docs/contracts` n'est pas modifié avant l'approbation. Appliqué dans une copie de travail isolée, il passe le validateur de contrats et `git diff --check`.
+
+Relecture indépendante `contracts-guardian` du diff réel, le 2026-11-04 : PASS sur les onze choix et sur les cinq points bloquants du premier brouillon. Sa seule condition est reprise : la séquence du jugement montre Alaric seul, sans le champion. Deux avertissements n'appellent pas de changement : le commit de l'amendement ne doit pas précéder l'approbation de l'opérateur, et la phrase de la constitution couvre le fond animé de façon large.
 
 ## Ce qui ne change pas
 

@@ -1,0 +1,126 @@
+diff --git a/docs/game/GAME_CONSTITUTION.md b/docs/game/GAME_CONSTITUTION.md
+index 199f51a2..2cdf78c7 100644
+--- a/docs/game/GAME_CONSTITUTION.md
++++ b/docs/game/GAME_CONSTITUTION.md
+@@ -18,7 +18,7 @@ Progression currently has no level or XP. Equipment, weapon tiers, two accessory
+ 
+ ## Narrative and media
+ 
+-`STATIC_TABLEAU` is the normal interactive narrative language: staged actors with position, facing, look target, depth, focus, and restaging. Prefer readable compositions, currently up to four visible actors. Dedicated `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md), set1.10.0: production videos are retired. Preserve the eight historical beat identities in [the media contract](../contracts/PRESENTATION_AND_MEDIA.md), with zero active video slots; existing static dialogues/tableaux retain the major moments and agency. `MAIN_EVENT => CINEMATIC_REQUIRED` is superseded. Audio is **DEFERRED** until narrative, presentation, cinematics, and POI navigation structure are demonstrably locked and stable, except the eight operator-accepted UI FX files and audited native events under OD-2026-10-18-F / PRODUCTION-CONTRACTS-UI-FX-1. This bounded exception requires default silence, voluntary enable/mute/volume and real gesture unlock; preferences remain outside gameplay saves, failures never block agency or write game truth. OD-2026-10-19-B / PRODUCTION-CONTRACTS-COMBAT-FX-1 further authorizes the bounded16family nonverbal combat FX pack and audited UI feedback, with shared parent settings, current iframe/session/allowlist validation, directly observed trusted gesture, deduplication and bounded priority playback; new files await operator artistic acceptance. Audio never resolves gameplay or serializes transient state. OD-2026-10-29-B / `PRODUCTION-CONTRACTS-MUSIC-AUDIO-1`, set1.11.0, authorizes code-generated music for five presentation contexts, one synthesized ambience per combat biome and synthesized sources for the existing sixteen combat families, under the same parent owner; effects stay default off, while music and ambience are on by default but silent until the first real gesture. Combat presentation happens in the arena (the Combat Stage scene is retired). Dedicated `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1` / [OD-2026-11-01-B](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md), set 1.12.0, supersedes in that scope only: the five music contexts (nine, listed in PRESENTATION_AND_MEDIA); "default silence", "voluntary enable" and "effects stay default off" (effects, like music and ambience, are on by default and silent until the first real gesture of the session, and a stored choice to turn them off is honoured); the limit to sixteen combat families and the one-second limit for the cues named in COMBAT_AND_VFX; and the Ultimate audio deferral. It authorizes sound for presentation only and does not activate, unlock or change any Ultimate. Voices and cinematic/video audio remain DEFERRED. These exceptions do not infer global acceptance.
++`STATIC_TABLEAU` is the normal interactive narrative language: staged actors with position, facing, look target, depth, focus, and restaging. Prefer readable compositions, currently up to four visible actors. Dedicated `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md), set1.10.0: production videos are retired. Preserve the eight historical beat identities in [the media contract](../contracts/PRESENTATION_AND_MEDIA.md), with zero active video slots; existing static dialogues/tableaux retain the major moments and agency. `MAIN_EVENT => CINEMATIC_REQUIRED` is superseded. Dedicated `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-1` / [OD-2026-11-04-A](../autonomy/LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md), set 1.13.0, adds code-animated living tableaux on existing approved tableaux at the moments listed in PRESENTATION_AND_MEDIA. They precede the static dialogues and tableaux, and may animate their backdrop. They never replace them, and the static dialogues and tableaux keep each moment's text, choices and agency. Audio is **DEFERRED** until narrative, presentation, cinematics, and POI navigation structure are demonstrably locked and stable, except the eight operator-accepted UI FX files and audited native events under OD-2026-10-18-F / PRODUCTION-CONTRACTS-UI-FX-1. This bounded exception requires default silence, voluntary enable/mute/volume and real gesture unlock; preferences remain outside gameplay saves, failures never block agency or write game truth. OD-2026-10-19-B / PRODUCTION-CONTRACTS-COMBAT-FX-1 further authorizes the bounded16family nonverbal combat FX pack and audited UI feedback, with shared parent settings, current iframe/session/allowlist validation, directly observed trusted gesture, deduplication and bounded priority playback; new files await operator artistic acceptance. Audio never resolves gameplay or serializes transient state. OD-2026-10-29-B / `PRODUCTION-CONTRACTS-MUSIC-AUDIO-1`, set1.11.0, authorizes code-generated music for five presentation contexts, one synthesized ambience per combat biome and synthesized sources for the existing sixteen combat families, under the same parent owner; effects stay default off, while music and ambience are on by default but silent until the first real gesture. Combat presentation happens in the arena (the Combat Stage scene is retired). Dedicated `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1` / [OD-2026-11-01-B](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md), set 1.12.0, supersedes in that scope only: the five music contexts (nine, listed in PRESENTATION_AND_MEDIA); "default silence", "voluntary enable" and "effects stay default off" (effects, like music and ambience, are on by default and silent until the first real gesture of the session, and a stored choice to turn them off is honoured); the limit to sixteen combat families and the one-second limit for the cues named in COMBAT_AND_VFX; and the Ultimate audio deferral. It authorizes sound for presentation only and does not activate, unlock or change any Ultimate. Voices and cinematic/video audio remain DEFERRED. These exceptions do not infer global acceptance.
+ 
+ ## Durable boundaries
+ 
+diff --git a/docs/contracts/PRESENTATION_AND_MEDIA.md b/docs/contracts/PRESENTATION_AND_MEDIA.md
+index db62a89a..abc63715 100644
+--- a/docs/contracts/PRESENTATION_AND_MEDIA.md
++++ b/docs/contracts/PRESENTATION_AND_MEDIA.md
+@@ -27,13 +27,13 @@ Facing is authored for readability, never automatically flipped at every speaker
+ 
+ No visible production `...` transition placeholder: use relevant authored title/text or no text. Meaningful ATE captions such as “Pendant ce temps…”, “Au même moment…” and “De l’autre côté…” are selected by simultaneity, place/group change or temporal continuity, never randomly. They introduce no new plot facts. Legitimate authored punctuation is not placeholder copy.
+ 
+-The mandatory pre-judgement campfire is a Journey/narrative preparation boundary under CAMPAIGN_AND_STATE, never a ninth video. The eight identities above remain historical; none authorizes runtime video or new cinematic production. The offline authorizations below describe preserved historical work and are superseded by the retirement section.
++The mandatory pre-judgement campfire is a Journey/narrative preparation boundary under CAMPAIGN_AND_STATE, never a ninth video. The eight identities above remain historical; none authorizes runtime video or new cinematic production; the code-animated living tableaux of set 1.13.0 below are the only exception. The offline authorizations below describe preserved historical work and are superseded by the retirement section.
+ 
+ ## Cinematic retirement — OD-2026-10-24-A
+ 
+ Dedicated `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md), set1.10.0: no production video playback, video preloading, video-derived hold or shipped MP4. Preserve all eight moments through the authored dialogues/tableaux and their existing choices, effects and transitions. No video delay or empty replacement interlude. Retain environment/cast ownership, four-actor cap, V2, Alaric climax, keyboard/focus, OS/game reduced motion and missing-image agency. Preserve canonical IDs, causal order, resolved/revisit behavior and V6; presentation creates no facts.
+ 
+-Stop new cinematic, illustrated-montage and MiniMax production, including pilot generalization. Preserve all existing media, candidates, readers, raw requests/results/hashes and historical receipts/acceptances. Archive shipped videos and their manifest byte-identically outside public rather than destroy them. The earlier eight-slot, video-hold and offline-production permissions are superseded only on this retirement scope; old evidence keeps its actual limits. Static dialogue/NarrativeStage improvement is the presentation continuation, without new canon, choices, outcomes or audio permission. Scheduler state and settings remain unchanged. Independent actual-diff review, amendment commit and a following immutable-baseline commit precede runtime.
++Stop new cinematic, illustrated-montage and MiniMax production, including pilot generalization. Preserve all existing media, candidates, readers, raw requests/results/hashes and historical receipts/acceptances. Archive shipped videos and their manifest byte-identically outside public rather than destroy them. The earlier eight-slot, video-hold and offline-production permissions are superseded only on this retirement scope; old evidence keeps its actual limits. Static dialogue/NarrativeStage improvement is the presentation continuation, without new canon, choices, outcomes or audio permission. Scheduler state and settings remain unchanged. Independent actual-diff review, amendment commit and a following immutable-baseline commit precede runtime. The Living tableaux section below narrows this stop for code-animated sequences on existing approved tableaux only.
+ 
+ ## Offline illustrated candidates — OD-2026-10-21-A
+ 
+@@ -93,3 +93,19 @@ Dedicated `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1`, set 1.12.0, [operator decisi
+ - **Ambience.** The POI map and the refuge each have one synthesized ambience loop, under the rules of the combat biome ambience. The refuge ambience plays on the refuge management surface only, not on every scene that uses the refuge context.
+ - **State.** No audio state is serialized in V6 or any campaign structure: context, mood, section, level, mark, cue, ambience, limiter or attenuation.
+ - **Deferred.** Voices, meaning speech, words and sung text, and cinematic or video audio remain DEFERRED. A wordless synthesized choir is an instrument timbre.
++
++## Living tableaux — OD-2026-11-04-A
++
++Dedicated `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-1` / [OD-2026-11-04-A](../autonomy/LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md), set 1.13.0. For code-animated sequences on existing approved tableaux only, it narrows two rules of the cinematic retirement section: "Stop new cinematic … production, including pilot generalization" and "No video delay or empty replacement interlude". Every other rule of OD-2026-10-24-A stays in force: zero active video; no video playback, preload, video-derived hold or shipped MP4; no generated or new illustrated image; no illustrated montage; no video or keyframe generation; no MiniMax; the eight historical identities and every archive.
++
++- **Medium.** A living tableau is a short sequence animated by code on an existing approved painted tableau. It may use light, fire, smoke, weather, a slow camera, and pixel figures drawn at the tableau's grain from existing Character V2 sheets or portraits. It uses no WebGL, video element, recorded media, generated image or new illustration.
++- **Moments, exhaustively.** `bois_clair_arrival`, before `village_choice`. `bois_clair_saved`, after a `village_defense` victory with `missionSuccess` and without `missionGreed`, before `village_defense_aftermath`. `bois_clair_sacrificed`, after a `village_raid` victory with `missionGreed`, before `village_raid_aftermath`. `lion_judgement`, before `lion_finale_judgement`. These beat ids name the moment only: no video slot is reopened and no video descriptor is activated. A sequence opens no new beat, and replaces no dialogue, choice, tableau or combat. The opening sequence stays governed by OD-2026-11-02-A, with its own length and approved captions; it may share the player's code only.
++- **When it plays.** A sequence plays only when its beat opens live for the first time. A revisit of a beat that RunSystem has resolved, a reload or a resume goes straight to the dialogue, in line with the POI navigation rule that resolved revisits replay no one-shot presentation. This needs no new save field, and nothing transient is serialized.
++- **Length and agency.** At most 30 seconds, or 40 for `lion_judgement`. Click, Enter, or a visible skip control that meets the keyboard and focus rules of UI_AND_ACCESSIBILITY, moves to the next shot or straight to the dialogue. A sequence never blocks input, and never delays a save, reward, choice, combat or defeat recovery. A missing image or a script failure goes straight to the dialogue, which opens on the same first step as without the sequence.
++- **Canon.** No new text: these sequences have no captions. A sequence shows only facts already established at its point of the route, as listed in the moment table that OD-2026-11-04-A approves, and never what the following dialogue says first. It never plays a choice, outcome, verdict or consequence before its canonical owner resolves it. A branch sequence reads the resolved outcome only through the existing presentation trigger. The `lion_judgement` sequence shows Alaric alone, without the champion, and ends before Alaric speaks; the Alaric climax is unchanged.
++- **Cast.** At most four visible narrative actors. Extras are moving scenery: they have no dialogue, focus or facing relation, are drawn behind the narrative actors, number at most twelve, and are never counted as actors or fed to the relational staging planner. Character V2 identities, equipment and authored facing hold.
++- **Animated backdrop.** During the following dialogue, its tableau may keep animated light, fire, smoke and distant extras under the same cast rule. That changes no staging, focus or text.
++- **Reduced motion.** OS or game reduced motion keeps a fixed camera and turns travel into fades. Fire, light and wind may stay animated. Every shot keeps its information.
++- **Audio.** A sequence takes the mood of its following dialogue through the existing mood table, with no new table key tied to the sequence. It adds no track or cue. Cinematic audio and voices stay DEFERRED.
++- **Ownership.** One shared presentation-only player serves these moments. It creates no route, outcome, resource or save field.
++- **Order.** A mockup of `bois_clair_arrival`, judged in motion by the operator, precedes the three other sequences and the animated backdrop. Operator artistic acceptance is by viewing.
+diff --git a/docs/contracts/AUTHORING_AND_QA.md b/docs/contracts/AUTHORING_AND_QA.md
+index feae2eae..69f1b91f 100644
+--- a/docs/contracts/AUTHORING_AND_QA.md
++++ b/docs/contracts/AUTHORING_AND_QA.md
+@@ -6,6 +6,8 @@ Status: **LOCKED**.
+ 
+ Dedicated `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md), set1.10.0: verify zero video/video-derived-hold modes, active video descriptors, video requests/elements/preloads and shipped MP4s, while preserving all historical beat/dialogue/choice identities. Inventory references before archive moves; hash archived media/manifests. Require focused ownership/handoff tests, types, build and one relevant native production continuation with inspected captures and reload. Keep historical source/driver/acceptance records immutable; no global PC/art/balance acceptance inferred. Existing video-specific matrices remain historical and must not be silently weakened or replayed as current proof.
+ 
++Dedicated `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-1` / [OD-2026-11-04-A](../autonomy/LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md), set 1.13.0: each living tableau needs focused tests for first live opening only, resolved revisit, reload and resume, skip by pointer and keyboard, missing-image fallback, reduced motion, the four-actor limit with bounded extras, and the absence of new text. It also needs types, a build, and one native run through its boundary in normal and reduced motion, with inspected captures and a reload at the boundary. Operator artistic acceptance is by viewing; no machine check stands in for it.
++
+ ## Lot E complete delivery — OD-2026-10-15-B
+ 
+ Dedicated `PRODUCTION-CONTRACTS-POI-LOT-E-1`, set 1.4.0, [approved contract/annex/directive](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md). Complete delivery means all 33 fixed POIs, six chests, six stable two-variant ordinary fights, two independent mobile elites and their real Combat/retreat encounters, every approved loop, all three finished atlas layouts and additive V6. A subset, inactive catalogue or fixture is not final delivery. Preserve the 21 canonical contents, the eight historical media identities, audio deferral and physical-engine retirement. OD-2026-10-24-A/set1.10.0 retires all eight videos while retaining their authored moments and historical evidence.
+diff --git a/docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md b/docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md
+index b9611e38..83111c96 100644
+--- a/docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md
++++ b/docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md
+@@ -24,7 +24,7 @@ Dedicated `PRODUCTION-CONTRACTS-POI-V2-RETIREMENT-1`, set 1.3.0. The explicitly
+ 
+ ## Cinematic retirement continuation — OD-2026-10-24-A
+ 
+-Dedicated `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md), set1.10.0 supersedes the historical cinematic production queue and offline illustrated pilot/generalization authorizations. Retire runtime videos through existing static dialogues/tableaux, preserve archives/evidence and gameplay/save authority, then address bounded demonstrated static dialogue/NarrativeStage presentation issues. Do not generate/poll video, keyframes or illustrated cinematic candidates, replace MP4s, or infer artistic acceptance. Dedicated reviewed amendment and committed baseline precede runtime. Preserve the saved scheduler status/cadence/settings; no activation inferred. The historical queue below is not an instruction to restart retired work.
++Dedicated `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md), set1.10.0 supersedes the historical cinematic production queue and offline illustrated pilot/generalization authorizations. Retire runtime videos through existing static dialogues/tableaux, preserve archives/evidence and gameplay/save authority, then address bounded demonstrated static dialogue/NarrativeStage presentation issues. Do not generate/poll video, keyframes or illustrated cinematic candidates, replace MP4s, or infer artistic acceptance. Dedicated reviewed amendment and committed baseline precede runtime. Preserve the saved scheduler status/cadence/settings; no activation inferred. The historical queue below is not an instruction to restart retired work. Code-animated living tableaux are not generated cinematic candidates; set 1.13.0 / [OD-2026-11-04-A](../autonomy/LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md) governs them.
+ 
+ ## Preserved historical ordered initial queue
+ 
+diff --git a/docs/contracts/README.md b/docs/contracts/README.md
+index b38736b3..307765dd 100644
+--- a/docs/contracts/README.md
++++ b/docs/contracts/README.md
+@@ -19,6 +19,8 @@ Status terms: **LOCKED** means the decision is binding; **implemented** means so
+ 
+ ## Approved amendment history
+ 
++Contract set **1.13.0** / `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-1` / [OD-2026-11-04-A](../autonomy/LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md) follows the operator's decision sheet on living tableaux. For code-animated sequences on existing approved tableaux only, it narrows the stop on new cinematic production and the ban on replacement interludes, at four moments: Bois-Clair arrival, Bois-Clair saved or sacrificed, and Alaric's judgement, each before its existing dialogue, plus an animated backdrop during that dialogue. No captions, no new canon, at most four narrative actors with bounded extras, first live opening only with no save field, the existing mood table, and a mockup before the rest. Zero video, no generated image, the eight historical identities, the opening's own decision, V6, truth owners and the Alaric climax are unchanged. Constitution, PRESENTATION_AND_MEDIA, AUTHORING_AND_QA and AUTONOMOUS_WORK_PROTOCOL change only for this scope. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before any runtime work.
++
+ Contract set **1.12.0** / `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1` / [OD-2026-11-01-B](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md) follows the audio audit and the operator's decision sheet. It widens music to nine contexts with sections, bridges, two combat levels and fanfares, sets effects on by default but armed, authorizes composed action cues and sound marks on FX recipes, gives the twelve Ultimates and eight boss signatures their own cues without activating any Ultimate, and adds map and refuge ambience. Code-generated audio only, the single parent owner, the voice caps and the presentation boundary are unchanged. Voices and cinematic or video audio stay DEFERRED. Order: independent review of the actual diff, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before runtime.
+ 
+ Contract set **1.11.0** / `PRODUCTION-CONTRACTS-MUSIC-AUDIO-1` / [OD-2026-10-29-B](../autonomy/MUSIC_AUDIO_OPERATOR_DECISION_2026-10-29.md) authorizes code-generated music for five presentation contexts (on by default, silent until the first real gesture), one synthesized ambience per combat biome and synthesized sources for the existing sixteen combat families. It also records the Combat Stage retirement in favour of the in-arena camera. The constitution and five contracts change only for this scope; gameplay, saves, canon, the eight historical media IDs and the remaining audio deferrals stay. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit records its SHA as the immutable baseline before runtime.
+diff --git a/docs/contracts/contracts.manifest.json b/docs/contracts/contracts.manifest.json
+index 28e0bea3..8ac5b940 100644
+--- a/docs/contracts/contracts.manifest.json
++++ b/docs/contracts/contracts.manifest.json
+@@ -2,7 +2,7 @@
+   "schemaVersion": 1,
+   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
+   "lockedAt": "2026-10-01",
+-  "contractSetVersion": "1.12.0",
++  "contractSetVersion": "1.13.0",
+   "approvedAmendments": [
+     {
+       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
+@@ -194,6 +194,20 @@
+       "constitutionChanged": true,
+       "supersededRule": "Five music contexts and their source rule, effects default off and default silence, the 2-second crossfade for the boss entry, no family beyond the sixteen, the one-second limit for signature cues, the per-family source choice and the Ultimate audio deferral; nine contexts with sections, bridges, two combat levels and fanfares, effects on by default but armed, composed action cues, FX sound marks, signature cues for twelve Ultimates and eight boss signatures without activating any Ultimate, map and refuge ambience",
+       "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator listening acceptance remain separate"
++    },
++    {
++      "taskId": "PRODUCTION-CONTRACTS-LIVING-TABLEAUX-1",
++      "operatorDecisionId": "OD-2026-11-04-A",
++      "operatorDecisionPath": "docs/autonomy/LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md",
++      "approvedAt": "2026-11-04",
++      "changedContracts": [
++        "PRESENTATION_AND_MEDIA",
++        "AUTHORING_AND_QA",
++        "AUTONOMOUS_WORK_PROTOCOL"
++      ],
++      "constitutionChanged": true,
++      "supersededRule": "For code-animated sequences on existing approved tableaux only: the stop on new cinematic production including pilot generalization, and the ban on replacement interludes; four living tableaux (Bois-Clair arrival, saved, sacrificed, Alaric's judgement) before their existing dialogues, with an animated backdrop during them",
++      "implementationAcceptance": "PENDING; mockup of bois_clair_arrival first, then runtime, scoped browser evidence and operator viewing acceptance"
+     }
+   ],
+   "status": "LOCKED",
