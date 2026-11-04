@@ -1,0 +1,80 @@
+diff --git a/docs/contracts/PRESENTATION_AND_MEDIA.md b/docs/contracts/PRESENTATION_AND_MEDIA.md
+index abc63715..cb22a6d9 100644
+--- a/docs/contracts/PRESENTATION_AND_MEDIA.md
++++ b/docs/contracts/PRESENTATION_AND_MEDIA.md
+@@ -27,7 +27,7 @@ Facing is authored for readability, never automatically flipped at every speaker
+ 
+ No visible production `...` transition placeholder: use relevant authored title/text or no text. Meaningful ATE captions such as “Pendant ce temps…”, “Au même moment…” and “De l’autre côté…” are selected by simultaneity, place/group change or temporal continuity, never randomly. They introduce no new plot facts. Legitimate authored punctuation is not placeholder copy.
+ 
+-The mandatory pre-judgement campfire is a Journey/narrative preparation boundary under CAMPAIGN_AND_STATE, never a ninth video. The eight identities above remain historical; none authorizes runtime video or new cinematic production; the code-animated living tableaux of set 1.13.0 below are the only exception. The offline authorizations below describe preserved historical work and are superseded by the retirement section.
++The mandatory pre-judgement campfire is a Journey/narrative preparation boundary under CAMPAIGN_AND_STATE, never a ninth video. The eight identities above remain historical; none authorizes runtime video or new cinematic production; the code-animated living tableaux of sets 1.13.0 and 1.14.0 below are the only exception. The offline authorizations below describe preserved historical work and are superseded by the retirement section.
+ 
+ ## Cinematic retirement — OD-2026-10-24-A
+ 
+@@ -98,14 +98,16 @@ Dedicated `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1`, set 1.12.0, [operator decisi
+ 
+ Dedicated `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-1` / [OD-2026-11-04-A](../autonomy/LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md), set 1.13.0. For code-animated sequences on existing approved tableaux only, it narrows two rules of the cinematic retirement section: "Stop new cinematic … production, including pilot generalization" and "No video delay or empty replacement interlude". Every other rule of OD-2026-10-24-A stays in force: zero active video; no video playback, preload, video-derived hold or shipped MP4; no generated or new illustrated image; no illustrated montage; no video or keyframe generation; no MiniMax; the eight historical identities and every archive.
+ 
++Dedicated `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-2` / [OD-2026-11-04-B](../autonomy/LIVING_TABLEAUX_ENDINGS_OPERATOR_DECISION_2026-11-04.md), set 1.14.0, adds Alaric's audience and the two route endings to these moments under the same rules. Its additions are marked 1.14.0 below.
++
+ - **Medium.** A living tableau is a short sequence animated by code on an existing approved painted tableau. It may use light, fire, smoke, weather, a slow camera, and pixel figures drawn at the tableau's grain from existing Character V2 sheets or portraits. It uses no WebGL, video element, recorded media, generated image or new illustration.
+-- **Moments, exhaustively.** `bois_clair_arrival`, before `village_choice`. `bois_clair_saved`, after a `village_defense` victory with `missionSuccess` and without `missionGreed`, before `village_defense_aftermath`. `bois_clair_sacrificed`, after a `village_raid` victory with `missionGreed`, before `village_raid_aftermath`. `lion_judgement`, before `lion_finale_judgement`. These beat ids name the moment only: no video slot is reopened and no video descriptor is activated. A sequence opens no new beat, and replaces no dialogue, choice, tableau or combat. The opening sequence stays governed by OD-2026-11-02-A, with its own length and approved captions; it may share the player's code only.
++- **Moments, exhaustively.** `bois_clair_arrival`, before `village_choice`. `bois_clair_saved`, after a `village_defense` victory with `missionSuccess` and without `missionGreed`, before `village_defense_aftermath`. `bois_clair_sacrificed`, after a `village_raid` victory with `missionGreed`, before `village_raid_aftermath`. `lion_judgement`, before `lion_finale_judgement`. 1.14.0: `alaric_audience_arrival`, before `lion_briefing`. `serpent_route_ending`, after a `serpent_captain` victory that completes the Serpent pursuit route and after its post-combat dialogue `serpent_general_aftermath`, before `epilogue`. `lion_trial_route_ending`, after a `lion_chief` victory that completes the Lion trial route and after its post-combat dialogue `lion_trial_aftermath`, before `epilogue`. These beat ids name the moment only: no video slot is reopened and no video descriptor is activated. A sequence opens no new beat, and replaces no dialogue, choice, tableau or combat. A sequence at an outcome or route-ending beat takes the place of that beat's static Journey still (a transition still, not a dialogue tableau), which stays its fallback when the sequence cannot show. The opening sequence stays governed by OD-2026-11-02-A, with its own length and approved captions; it may share the player's code only.
+ - **When it plays.** A sequence plays only when its beat opens live for the first time. A revisit of a beat that RunSystem has resolved, a reload or a resume goes straight to the dialogue, in line with the POI navigation rule that resolved revisits replay no one-shot presentation. This needs no new save field, and nothing transient is serialized.
+-- **Length and agency.** At most 30 seconds, or 40 for `lion_judgement`. Click, Enter, or a visible skip control that meets the keyboard and focus rules of UI_AND_ACCESSIBILITY, moves to the next shot or straight to the dialogue. A sequence never blocks input, and never delays a save, reward, choice, combat or defeat recovery. A missing image or a script failure goes straight to the dialogue, which opens on the same first step as without the sequence.
+-- **Canon.** No new text: these sequences have no captions. A sequence shows only facts already established at its point of the route, as listed in the moment table that OD-2026-11-04-A approves, and never what the following dialogue says first. It never plays a choice, outcome, verdict or consequence before its canonical owner resolves it. A branch sequence reads the resolved outcome only through the existing presentation trigger. The `lion_judgement` sequence shows Alaric alone, without the champion, and ends before Alaric speaks; the Alaric climax is unchanged.
++- **Length and agency.** At most 30 seconds, or 40 for `lion_judgement` and, 1.14.0, for `serpent_route_ending` and `lion_trial_route_ending`. Click, Enter, or a visible skip control that meets the keyboard and focus rules of UI_AND_ACCESSIBILITY, moves to the next shot or straight to the dialogue. A sequence never blocks input, and never delays a save, reward, choice, combat or defeat recovery. A missing image or a script failure goes straight to the dialogue, which opens on the same first step as without the sequence.
++- **Canon.** No new text: these sequences have no captions. A sequence shows only facts already established at its point of the route, as listed in the moment table that OD-2026-11-04-A approves, and never what the following dialogue says first. It never plays a choice, outcome, verdict or consequence before its canonical owner resolves it. A branch sequence reads the resolved outcome only through the existing presentation trigger. The `lion_judgement` sequence shows Alaric alone, without the champion, and ends before Alaric speaks; the Alaric climax is unchanged. 1.14.0: the moment table that OD-2026-11-04-B approves lists the facts of its three moments. `alaric_audience_arrival` ends before Alaric speaks and shows neither Bois-Clair nor the Seal. A route ending plays once its aftermath dialogue has resolved the Shadow disclosure, shows only the established facts of its route, and shows neither the Seal nor any fact that the epilogue tells first.
+ - **Cast.** At most four visible narrative actors. Extras are moving scenery: they have no dialogue, focus or facing relation, are drawn behind the narrative actors, number at most twelve, and are never counted as actors or fed to the relational staging planner. Character V2 identities, equipment and authored facing hold.
+-- **Animated backdrop.** During the following dialogue, its tableau may keep animated light, fire, smoke and distant extras under the same cast rule. That changes no staging, focus or text.
++- **Animated backdrop.** During the following dialogue, its tableau may keep animated light, fire, smoke and distant extras under the same cast rule. That changes no staging, focus or text. 1.14.0: the aftermath dialogue just before a route ending, on that ending's tableau, may keep the same backdrop.
+ - **Reduced motion.** OS or game reduced motion keeps a fixed camera and turns travel into fades. Fire, light and wind may stay animated. Every shot keeps its information.
+ - **Audio.** A sequence takes the mood of its following dialogue through the existing mood table, with no new table key tied to the sequence. It adds no track or cue. Cinematic audio and voices stay DEFERRED.
+ - **Ownership.** One shared presentation-only player serves these moments. It creates no route, outcome, resource or save field.
+-- **Order.** A mockup of `bois_clair_arrival`, judged in motion by the operator, precedes the three other sequences and the animated backdrop. Operator artistic acceptance is by viewing.
++- **Order.** A mockup of `bois_clair_arrival`, judged in motion by the operator, precedes the three other sequences and the animated backdrop. Operator artistic acceptance is by viewing. 1.14.0: its three sequences need no new mockup; the operator judges each in motion.
+diff --git a/docs/contracts/README.md b/docs/contracts/README.md
+index 307765dd..a2679dfb 100644
+--- a/docs/contracts/README.md
++++ b/docs/contracts/README.md
+@@ -19,6 +19,8 @@ Status terms: **LOCKED** means the decision is binding; **implemented** means so
+ 
+ ## Approved amendment history
+ 
++Contract set **1.14.0** / `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-2` / [OD-2026-11-04-B](../autonomy/LIVING_TABLEAUX_ENDINGS_OPERATOR_DECISION_2026-11-04.md) extends the living tableaux of set 1.13.0 to three more moments: Alaric's audience before `lion_briefing`, and the Serpent pursuit and Lion trial route endings before the epilogue, at most 40 seconds each for the endings, with the same animated backdrop allowed on the aftermath dialogue just before an ending. It also states that an outcome or route-ending sequence takes the place of its beat's static Journey still, which stays its fallback. The rules of set 1.13.0 hold otherwise: no captions, no new canon, at most four narrative actors with bounded extras, first live opening only with no save field, the existing mood table, zero video and no generated image. Only PRESENTATION_AND_MEDIA changes. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before any runtime work.
++
+ Contract set **1.13.0** / `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-1` / [OD-2026-11-04-A](../autonomy/LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md) follows the operator's decision sheet on living tableaux. For code-animated sequences on existing approved tableaux only, it narrows the stop on new cinematic production and the ban on replacement interludes, at four moments: Bois-Clair arrival, Bois-Clair saved or sacrificed, and Alaric's judgement, each before its existing dialogue, plus an animated backdrop during that dialogue. No captions, no new canon, at most four narrative actors with bounded extras, first live opening only with no save field, the existing mood table, and a mockup before the rest. Zero video, no generated image, the eight historical identities, the opening's own decision, V6, truth owners and the Alaric climax are unchanged. Constitution, PRESENTATION_AND_MEDIA, AUTHORING_AND_QA and AUTONOMOUS_WORK_PROTOCOL change only for this scope. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before any runtime work.
+ 
+ Contract set **1.12.0** / `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1` / [OD-2026-11-01-B](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md) follows the audio audit and the operator's decision sheet. It widens music to nine contexts with sections, bridges, two combat levels and fanfares, sets effects on by default but armed, authorizes composed action cues and sound marks on FX recipes, gives the twelve Ultimates and eight boss signatures their own cues without activating any Ultimate, and adds map and refuge ambience. Code-generated audio only, the single parent owner, the voice caps and the presentation boundary are unchanged. Voices and cinematic or video audio stay DEFERRED. Order: independent review of the actual diff, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before runtime.
+diff --git a/docs/contracts/contracts.manifest.json b/docs/contracts/contracts.manifest.json
+index 8ac5b940..83338399 100644
+--- a/docs/contracts/contracts.manifest.json
++++ b/docs/contracts/contracts.manifest.json
+@@ -2,7 +2,7 @@
+   "schemaVersion": 1,
+   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
+   "lockedAt": "2026-10-01",
+-  "contractSetVersion": "1.13.0",
++  "contractSetVersion": "1.14.0",
+   "approvedAmendments": [
+     {
+       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
+@@ -208,6 +208,18 @@
+       "constitutionChanged": true,
+       "supersededRule": "For code-animated sequences on existing approved tableaux only: the stop on new cinematic production including pilot generalization, and the ban on replacement interludes; four living tableaux (Bois-Clair arrival, saved, sacrificed, Alaric's judgement) before their existing dialogues, with an animated backdrop during them",
+       "implementationAcceptance": "PENDING; mockup of bois_clair_arrival first, then runtime, scoped browser evidence and operator viewing acceptance"
++    },
++    {
++      "taskId": "PRODUCTION-CONTRACTS-LIVING-TABLEAUX-2",
++      "operatorDecisionId": "OD-2026-11-04-B",
++      "operatorDecisionPath": "docs/autonomy/LIVING_TABLEAUX_ENDINGS_OPERATOR_DECISION_2026-11-04.md",
++      "approvedAt": "2026-11-04",
++      "changedContracts": [
++        "PRESENTATION_AND_MEDIA"
++      ],
++      "constitutionChanged": false,
++      "supersededRule": "The exhaustive list of four living tableau moments of set 1.13.0; three more moments (alaric_audience_arrival, serpent_route_ending, lion_trial_route_ending), 40 seconds for the two route endings, the same animated backdrop on the aftermath dialogue before an ending, an outcome or route-ending sequence in place of its static Journey still, and no new mockup",
++      "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator viewing acceptance"
+     }
+   ],
+   "status": "LOCKED",
