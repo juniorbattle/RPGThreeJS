@@ -15,9 +15,9 @@ Contracts: PRESENTATION_AND_MEDIA (tableau), CAMPAIGN_AND_STATE (canon and choic
 
 ## Invariants
 
-Digest of the contracts at set 1.13.0 (baseline `a936cd05358eacd5ade0efcac3753ee65a7c309f`); the contract text wins on any difference.
+Digest of the contracts at set 1.14.0 (baseline `85576d6d9e3af6c8ddc953a1740ecf167592f4a4`); the contract text wins on any difference.
 
-- Living tableaux (set 1.13.0, OD-2026-11-04-A): code-animated sequences at `bois_clair_arrival`, `bois_clair_saved` or `bois_clair_sacrificed`, and `lion_judgement`, each before its dialogue, plus an animated backdrop during it. No captions; only facts established at that point, never what the dialogue says first; four narrative actors with at most twelve extras as scenery (no dialogue, focus or facing relation); `lion_judgement` shows Alaric alone and stops before he speaks.
+- Living tableaux (set 1.13.0, OD-2026-11-04-A): code-animated sequences at `bois_clair_arrival`, `bois_clair_saved` or `bois_clair_sacrificed`, and `lion_judgement`, each before its dialogue, plus an animated backdrop during it. No captions; only facts established at that point, never what the dialogue says first; four narrative actors with at most twelve extras as scenery (no dialogue, focus or facing relation); `lion_judgement` shows Alaric alone and stops before he speaks. Set 1.14.0 (OD-2026-11-04-B) adds `alaric_audience_arrival` before `lion_briefing` (stops before Alaric speaks, shows neither Bois-Clair nor the Seal) and the route endings `serpent_route_ending` and `lion_trial_route_ending` after their aftermath dialogue and before `epilogue`, 40 s at most, showing neither the Seal nor what the epilogue says first; an outcome or ending sequence takes the place of its static Journey still, which stays its fallback.
 
 - Interactive narrative plays as a staged tableau: actors have an authored position, facing, look target, depth and focus, and are restaged when relational/dramatic readability requires it; a new speaker alone does not require a turn.
 - Keep each composition readable: at most four visible actors. Restage rather than cram.

@@ -142,7 +142,7 @@ Waves: 1 is `handoff-governor`, `contracts-guardian`, `qa-evidence-runner`, `ui-
 
 Before declaring a task complete, record PASS or BLOCKED for each concerned row. Never complete a task with an unresolved contract conflict. Also record: contracts read, current manifest contractSetVersion (1.12.0 after OD-2026-11-01-B), LOCKED rules impacted, and confirmation that no LOCKED rule changed in a normal task. A dedicated operator-approved amendment records its exact authorized changes and committed immutable baseline.
 
-Current immutable contract/constitution baseline: `a936cd05358eacd5ade0efcac3753ee65a7c309f`, the dedicated OD-2026-11-04-A living tableaux amendment commit (set 1.13.0). The previous baselines `29aa9486` (set 1.12.0, audio direction), `a4ff05b2` (set 1.11.0, music and audio) and `da69ec63` (set1.10.0, cinematic retirement) are historical. Original `b1e8858` remains historical. Use the Git gate in AGENTS.md/contracts-compliance; no normal task may move this baseline.
+Current immutable contract/constitution baseline: `85576d6d9e3af6c8ddc953a1740ecf167592f4a4`, the dedicated OD-2026-11-04-B living tableaux amendment commit (set 1.14.0). The previous baselines `a936cd05` (set 1.13.0, living tableaux), `29aa9486` (set 1.12.0, audio direction), `a4ff05b2` (set 1.11.0, music and audio) and `da69ec63` (set1.10.0, cinematic retirement) are historical. Original `b1e8858` remains historical. Use the Git gate in AGENTS.md/contracts-compliance; no normal task may move this baseline.
 
 | Row | Contract |
 | --- | --- |
@@ -181,4 +181,4 @@ The operator adopted the current instruction in [RECURRING_RUN_PROMPT.md](RECURR
 
 ## Current retirement — OD-2026-10-24-A
 
-Set1.10.0 supersedes earlier cinematic production directions: zero active video/hold/preload/shipped MP4, eight historical IDs and archived media/proof preserved. No illustrated/video generation or pilot generalization. Code-animated living tableaux follow set 1.13.0 (OD-2026-11-04-A) only. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline a936cd05358eacd5ade0efcac3753ee65a7c309f.
+Set1.10.0 supersedes earlier cinematic production directions: zero active video/hold/preload/shipped MP4, eight historical IDs and archived media/proof preserved. No illustrated/video generation or pilot generalization. Code-animated living tableaux follow sets 1.13.0 and 1.14.0 (OD-2026-11-04-A and OD-2026-11-04-B) only. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline 85576d6d9e3af6c8ddc953a1740ecf167592f4a4.

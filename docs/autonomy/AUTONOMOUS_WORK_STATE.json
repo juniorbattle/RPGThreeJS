@@ -70,7 +70,7 @@
     "Playtest PC de l'opérateur et corrections, dernière passe narrative, passage mobile, démo figée (OD-2026-11-01-C)."
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "Set 1.13.0, baseline a936cd05358eacd5ade0efcac3753ee65a7c309f ; amendement tableaux vivants relu PASS sur son diff réel et approuvé par l'opérateur (OD-2026-11-04-A)",
+  "contractComplianceStatus": "Set 1.14.0, baseline 85576d6d9e3af6c8ddc953a1740ecf167592f4a4 ; amendement des tableaux vivants de l'audience et des fins relu PASS sur son diff réel et approuvé par l'opérateur (OD-2026-11-04-B)",
   "runId": "claude-audio-direction-20261101T1918Z",
   "agent": "claude",
   "lastHeartbeat": "2026-11-01T20:50:00Z",
