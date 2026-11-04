@@ -103,6 +103,20 @@ Le 2026-11-04, l'opérateur répond « Fiche remplie » ; sur la fiche, D1 vaut 
 3. Commit de l'amendement, puis commit opérationnel de la nouvelle baseline.
 4. Les trois séquences et leurs fonds, avant le playtest PC.
 
+## Livraison
+
+`CURRENT FACT` Livrée le 2026-11-04, sur la baseline `85576d6d` :
+
+- **Audience, 26 s** (`src/ui/living/alaricAudience.ts`). Plan 1, 10 s : la salle vide, rais de lumière, bougies, braseros, bannières qui ondulent à peine ; la caméra remonte le tapis. Plan 2, 16 s : Alaric debout devant le trône ; Alistair, Séraphine et Maelor entrent depuis le spectateur et s'arrêtent au pied des marches ; quatre gardes lointains, plus petits que la compagnie et sans lumière, au fond de la salle.
+- **Fin Serpent, 32 s, et fin de l'épreuve, 30 s** (`src/ui/living/routeEndings.ts`). Ruines de nuit : lune et nuages qui passent, brume de la vallée, embruns de la cascade, braseros, bannière déchirée qui bat ; la compagnie immobile sur la mosaïque, puis la caméra remonte vers la lune. Terrasse au couchant : soleil, nuages, embruns, braseros, bannières étoilées ; Alaric sur les marches, la compagnie sur la mosaïque, sans le champion. Aucun artefact ni Sceau visible.
+- **Atmosphère partagée** (`src/ui/living/livingAtmosphere.ts`) : nuages et brume qui dérivent, embruns, lueur lente de la lune ou du soleil, rais de lumière, bannières peintes qui ondulent de quelques pixels.
+- **Dans le jeu.** L'audience joue à la première ouverture en direct de `lion_briefing`, par le déclencheur existant. Chaque fin joue après son dialogue d'après-combat et avant l'épilogue, à la place du moment statique de la Journey, qui reste son repli. Une reprise ou une revisite ouvre le dialogue directement. Aucun champ de sauvegarde.
+- **Fonds animés.** `lion_briefing`, `serpent_general_aftermath`, `lion_trial_aftermath` et l'épilogue. Un fond ne se dessine que si le décor du dialogue montre bien son image (`LIVING_BACKDROP_IMAGES`).
+- **Défaut corrigé en vérifiant.** Une fin suit un dialogue dont la scène reste affichée (couche 9050) : la séquence jouait dessous, invisible. Le calque des tableaux vivants passe à 9150, au-dessus de cette scène et du rideau de transition, et un test fixe cet ordre.
+- **Laboratoire QA.** Trois boutons de plus (`/?qa=1`, QA rencontres) : Audience d'Alaric, Fin Serpent, Fin de l'épreuve.
+
+Vérifications : tests des scripts (durées, distributions, figurants bornés et plus petits, personnages immobiles aux fins, sans champion ni général), du branchement (audience à la première ouverture seulement, fins après le dialogue d'après-combat et avant l'épilogue, repli sur le moment statique), des fonds (image attendue) et de l'ordre des calques ; suite complète (2865 tests et 26 tests node), types, build, validateur et porte sur `85576d6d`. Captures inspectées des trois séquences en mouvement normal et réduit. Parcours réel de l'audience depuis le camp : séquence de 27 s, puis la première réplique d'Alaric sur son fond animé ; après rechargement, le dialogue s'ouvre sans la séquence. Fins : le vrai `GameApp.resolveCombat` reçoit une victoire (le combat final lui-même n'est pas rejoué), puis le dialogue d'après-combat avec son choix, la séquence (30 à 34 s) et l'épilogue sur son fond animé, en mouvement normal (épreuve) et réduit (Serpent). La sauvegarde de ce test n'avait pas la route complète : le rechargement après la fin n'éprouve donc que l'absence de séquence rejouée. Non vu : temps réel avec le son sur le poste de l'opérateur, et une vraie fin de partie jouée de bout en bout.
+
 ## Ce qui ne change pas
 
 Zéro vidéo active, aucune image générée ni illustration nouvelle, pas de MiniMax. Les huit identités historiques et toutes les archives restent. Ni choix, ni issue, ni récompense, ni sauvegarde V6 ne changent. Le sommet d'Alaric, les quatre acteurs, le mouvement réduit, le clavier et le focus restent tenus. Le scheduler reste en pause.

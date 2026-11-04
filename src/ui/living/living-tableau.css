@@ -3,7 +3,11 @@
   --living-bar: max(11vh, calc((100vh - 100vw / 2) / 2));
   position: fixed;
   inset: 0;
-  z-index: 70;
+  /*
+   * Above a narrative stage that is still on screen (9050): a route ending follows its aftermath dialogue, whose stage
+   * stays until the epilogue replaces it (set 1.14.0). Leaving, it fades at 9100, still over the next stage.
+   */
+  z-index: 9150;
   overflow: hidden;
   isolation: isolate;
   outline: none;

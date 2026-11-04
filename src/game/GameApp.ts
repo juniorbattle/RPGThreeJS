@@ -335,7 +335,7 @@ export class GameApp {
           <div class="qa-lab__header-actions"><button type="button" data-qa-sounds>Laboratoire d'écoute</button><button type="button" data-qa-back>Retour au titre</button></div>
         </header>
         <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
-        <div class="qa-lab__header-actions" aria-label="Tableaux vivants"><button type="button" data-qa-living="bois_clair_arrival">Tableau vivant · Arrivée à Bois-Clair</button><button type="button" data-qa-living="bois_clair_saved">Bois-Clair sauvé</button><button type="button" data-qa-living="bois_clair_sacrificed">Bois-Clair sacrifié</button><button type="button" data-qa-living="lion_judgement">Jugement du Lion</button></div>
+        <div class="qa-lab__header-actions" aria-label="Tableaux vivants"><button type="button" data-qa-living="bois_clair_arrival">Tableau vivant · Arrivée à Bois-Clair</button><button type="button" data-qa-living="bois_clair_saved">Bois-Clair sauvé</button><button type="button" data-qa-living="bois_clair_sacrificed">Bois-Clair sacrifié</button><button type="button" data-qa-living="lion_judgement">Jugement du Lion</button><button type="button" data-qa-living="alaric_audience_arrival">Audience d’Alaric</button><button type="button" data-qa-living="serpent_route_ending">Fin Serpent</button><button type="button" data-qa-living="lion_trial_route_ending">Fin de l’épreuve</button></div>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
         <div class="qa-lab__params">
           <fieldset>
@@ -382,7 +382,7 @@ export class GameApp {
     this.chrome.querySelectorAll<HTMLButtonElement>('[data-qa-living]').forEach((button) => button.addEventListener('click', () => {
       if (!import.meta.env.DEV) return;
       const id = button.dataset.qaLiving ?? '';
-      const following = { bois_clair_arrival: 'village_choice', bois_clair_saved: 'village_defense_aftermath', bois_clair_sacrificed: 'village_raid_aftermath', lion_judgement: 'lion_finale_judgement' }[id];
+      const following = { bois_clair_arrival: 'village_choice', bois_clair_saved: 'village_defense_aftermath', bois_clair_sacrificed: 'village_raid_aftermath', lion_judgement: 'lion_finale_judgement', alaric_audience_arrival: 'lion_briefing', serpent_route_ending: 'epilogue', lion_trial_route_ending: 'epilogue' }[id];
       if (!following) return;
       const before = this.uiSounds.musicSnapshot().context;
       void this.playLivingTableau(id, following).then(() => {
@@ -660,10 +660,12 @@ export class GameApp {
   private async attachLivingBackdrop(stageElement: HTMLElement, dialogueId: string): Promise<void> {
     this.livingBackdrop?.dispose();
     this.livingBackdrop = null;
-    const [{ LIVING_BACKDROPS, LIVING_TABLEAUX }, { LivingBackdrop }] = await Promise.all([import('../ui/living/livingTableaux'), import('../ui/living/LivingBackdrop')]);
-    const painter = LIVING_TABLEAUX[LIVING_BACKDROPS[dialogueId] ?? '']?.backdrop?.();
+    const [{ LIVING_BACKDROPS, LIVING_TABLEAUX, livingBackdropFits }, { LivingBackdrop }] = await Promise.all([import('../ui/living/livingTableaux'), import('../ui/living/LivingBackdrop')]);
     const host = stageElement.querySelector<HTMLElement>('.narrative-scene-surface__environment');
-    if (painter && host && !this.disposed) this.livingBackdrop = new LivingBackdrop(host, painter, prefersReducedMotion(this.state.settings.reducedGraphics));
+    // A backdrop is drawn only over the picture it was made for (set 1.14.0).
+    if (!host || !livingBackdropFits(dialogueId, host.style.backgroundImage)) return;
+    const painter = LIVING_TABLEAUX[LIVING_BACKDROPS[dialogueId] ?? '']?.backdrop?.();
+    if (painter && !this.disposed) this.livingBackdrop = new LivingBackdrop(host, painter, prefersReducedMotion(this.state.settings.reducedGraphics));
   }
 
   private async playStandaloneCinematic(trigger: VideoCinematicTrigger, label = ''): Promise<void> {
@@ -1521,11 +1523,12 @@ export class GameApp {
           return;
         }
       }
-      await this.playJourneyCinematic(
-        resolveCin6bLionTrialEnding(result.combatId, result.victory, this.state.flags)
-          ?? resolveCin6aSerpentEnding(result.combatId, result.victory, this.state.flags),
-        'Épilogue',
-      );
+      // The route ending reads the resolved result only through its existing presentation trigger (set 1.14.0); its
+      // living tableau takes the place of the static Journey still, which stays its fallback.
+      const routeEnding = resolveCin6bLionTrialEnding(result.combatId, result.victory, this.state.flags)
+        ?? resolveCin6aSerpentEnding(result.combatId, result.victory, this.state.flags);
+      const livedEnding = routeEnding ? await this.playLivingTableau(routeEnding, 'epilogue') : false;
+      if (!livedEnding) await this.playJourneyCinematic(routeEnding, 'Épilogue');
       await this.playDialogue('epilogue');
       await this.enterCampaignPresentation();
       return;
