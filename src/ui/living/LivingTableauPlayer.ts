@@ -29,6 +29,8 @@ export interface LivingScript {
   /** Characters without a combat sheet, brought down from their dialogue portrait as at the opening's camp. */
   portraits: readonly string[];
   painter(shotId: string, sheets: SheetBook): ShotPainter;
+  /** The same tableau's light, fire and smoke, kept alive behind the dialogue that follows: no figure. */
+  backdrop?(): ShotPainter;
 }
 
 /** How a living tableau ended: played to its end, skipped, or never shown because its picture was missing. */

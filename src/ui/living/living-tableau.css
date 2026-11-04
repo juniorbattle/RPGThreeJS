@@ -39,3 +39,5 @@
   cursor: pointer;
 }
 .living-tableau__skip:focus-visible { outline: 2px solid #f4d98b; outline-offset: 3px; }
+/* The backdrop of the dialogue that follows: inside its environment layer, under its gradient. */
+.living-backdrop { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }

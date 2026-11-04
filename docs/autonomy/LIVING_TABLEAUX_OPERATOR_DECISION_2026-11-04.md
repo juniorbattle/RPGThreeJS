@@ -68,6 +68,21 @@ Vérifications : tests du lecteur et du script (durée, quatre acteurs pris dans
 
 À juger par l'opérateur en mouvement : si la maquette convainc, les trois autres séquences et le fond animé suivent, avant le playtest PC.
 
+## Verdict sur la maquette et livraison
+
+Le 2026-11-04, l'opérateur répond « Elle convainc » à la maquette de l'arrivée. Les trois autres séquences et le fond animé suivent, dans le jeu.
+
+`CURRENT FACT` Livré le 2026-11-04 :
+
+- **Bois-Clair sauvé, 20 s.** Place apaisée au crépuscule, brasero et torches allumés, fumée légère. Alistair et Maelor se tiennent sur la place ; la villageoise fait quelques pas vers eux ; quelques villageois restent à distance ; les derniers Serpents fuient par la porte, entre la palissade tombée et la charrette.
+- **Bois-Clair sacrifié, 20 s.** Ruines, braises, petites flammes et fumée lourde. Maelor près de la charrette, la villageoise à l'écart, trois villageois au loin. Personne ne charge ni ne distribue rien.
+- **Jugement, 28 s.** Plan 1 : bannières et trône, Alaric attend seul. Plan 2 : la compagnie (Alistair, Séraphine, Maelor) entre depuis le spectateur et s'arrête au pied des marches ; la séquence finit avant qu'Alaric parle.
+- **Dans le jeu.** L'arrivée et le jugement jouent quand le moment s'ouvre en direct (`resolveRunNode` hors reprise), avant leur dialogue ; les issues jouent après la victoire, par le déclencheur existant, avant leur dialogue d'après-combat, à la place du moment statique de la Journey. Une reprise ou une revisite résolue ouvre le dialogue directement. Aucun champ de sauvegarde.
+- **Fond animé.** Les quatre dialogues (`village_choice`, `village_defense_aftermath`, `village_raid_aftermath`, `lion_finale_judgement`) montrent les mêmes tableaux que leurs séquences : leur décor garde lumière, feu, fumée et braises, dessinés dans le calque du décor pour en suivre le cadrage, le filtre et la respiration. Aucune figure.
+- **Laboratoire QA.** Un bouton par séquence (`/?qa=1`, QA rencontres).
+
+Vérifications : tests du lecteur, des scripts (durées, distributions, figurants bornés, aucune légende) et du branchement (première ouverture, reprise sans séquence, issues après victoire seulement, rien après une défaite), suite complète, build, contrats et porte. Parcours réel : arrivée jouée en 24 s puis dialogue sur son fond animé ; Échap passe ; reprise après rechargement sans séquence. Captures des quatre séquences inspectées. Non vu : temps réel avec le son sur le poste de l'opérateur.
+
 ## Ce qui ne change pas
 
 Zéro vidéo active, aucune image générée ni illustration nouvelle, aucune vidéo ni image clé générée, pas de MiniMax. Les huit identités historiques et toutes les archives restent. Ni choix, ni issue, ni récompense, ni sauvegarde V6 ne changent. Les quatre acteurs visibles, le sommet d'Alaric, le mouvement réduit, le clavier et le focus restent tenus. Le scheduler reste en pause.

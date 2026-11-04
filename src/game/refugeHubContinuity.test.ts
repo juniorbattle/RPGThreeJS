@@ -113,7 +113,8 @@ it('keeps lion-final-refuge story-only and never opens the refuge hub', async ()
   });
   expect(node.type).toBe('story');
   await app.resolveRunNode(node, false);
-  expect(app.playDialogue).toHaveBeenCalledWith(node.contentId, node.label);
+  // A live arrival (set 1.13.0): the dialogue may open on its living tableau, if it has one.
+  expect(app.playDialogue).toHaveBeenCalledWith(node.contentId, node.label, { live: true });
   expect(exploration.open).not.toHaveBeenCalled();
 });
 

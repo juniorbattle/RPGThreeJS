@@ -74,7 +74,7 @@ export const embers = (count: number, seed: number) => new MoteField(count, (ran
   color: random() < 0.5 ? [255, 150, 60] : random() < 0.6 ? [255, 96, 34] : [255, 206, 120],
 }), 'lighter', seeded(seed));
 
-const ash = (count: number, seed: number, color: Rgb) => new MoteField(count, (random) => ({
+export const ash = (count: number, seed: number, color: Rgb) => new MoteField(count, (random) => ({
   vx: -6 - random() * 16, vy: 16 + random() * 34, size: random() < 0.3 ? 2 : 1, phase: random() * 6, color,
 }), 'source-over', seeded(seed));
 

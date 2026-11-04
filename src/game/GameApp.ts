@@ -36,6 +36,7 @@ import { DialogueView, resolveDialogueBackdrop } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
 import { PoiMapView } from '../ui/PoiMapView';
 import { sceneMood, type NarrativeMood } from '../audio/moods';
+import { prefersReducedMotion } from '../ui/ReducedMotion';
 import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
 import { ExplorationView } from '../ui/ExplorationView';
@@ -99,6 +100,8 @@ type QaDeployMode = 'normal' | 'full';
 
 interface NarrativeDialogueOptions {
   cinematicId?: string;
+  /** The beat opens live for the first time (set 1.13.0): only then may its living tableau play. Never on a resume. */
+  live?: boolean;
   tableau?: NarrativeTableauSpec;
   preserveBackdrop?: boolean;
 }
@@ -162,6 +165,9 @@ export class GameApp {
   });
   private journeyBoundary: JourneyCampaignBoundary | null = null;
   private lastNarrativeCinematicBeat: ResolvedPresentationBeat | undefined;
+  /** The living tableau on screen and the backdrop that keeps its tableau alive under the dialogue (set 1.13.0). */
+  private livingPlayer: { close: () => void } | null = null;
+  private livingBackdrop: { dispose: () => void } | null = null;
   private activeNarrativeStage: NarrativeStage | null = null;
   // Latched after a catastrophic Journey failure so the fallback can never recurse into Journey.
   private journeyUnavailable = false;
@@ -234,6 +240,8 @@ export class GameApp {
 
   dispose(): void {
     this.disposed = true;
+    this.livingPlayer?.close();
+    this.livingBackdrop?.dispose();
     this.soundSettings.close();
     this.uiSounds.dispose();
     this.poiEncounter.close();
@@ -324,9 +332,10 @@ export class GameApp {
       <section class="qa-lab ui-screen" aria-label="Laboratoire QA de combat">
         <header class="qa-lab__header">
           <div><p class="eyebrow">Développement local</p><h1>Laboratoire de combat</h1></div>
-          <div class="qa-lab__header-actions"><button type="button" data-qa-living>Tableau vivant · Bois-Clair</button><button type="button" data-qa-sounds>Laboratoire d'écoute</button><button type="button" data-qa-back>Retour au titre</button></div>
+          <div class="qa-lab__header-actions"><button type="button" data-qa-sounds>Laboratoire d'écoute</button><button type="button" data-qa-back>Retour au titre</button></div>
         </header>
         <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
+        <div class="qa-lab__header-actions" aria-label="Tableaux vivants"><button type="button" data-qa-living="bois_clair_arrival">Tableau vivant · Arrivée à Bois-Clair</button><button type="button" data-qa-living="bois_clair_saved">Bois-Clair sauvé</button><button type="button" data-qa-living="bois_clair_sacrificed">Bois-Clair sacrifié</button><button type="button" data-qa-living="lion_judgement">Jugement du Lion</button></div>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
         <div class="qa-lab__params">
           <fieldset>
@@ -369,20 +378,18 @@ export class GameApp {
       </section>
     `;
     this.chrome.querySelector('[data-qa-back]')?.addEventListener('click', () => this.renderTitle());
-    // Dev-only mockup of the Bois-Clair arrival (set 1.13.0, OD-2026-11-04-A), with the mood of the dialogue it precedes.
-    this.chrome.querySelector('[data-qa-living]')?.addEventListener('click', () => {
+    // Dev-only preview of each living tableau (set 1.13.0, OD-2026-11-04-A), with the mood of the dialogue it precedes.
+    this.chrome.querySelectorAll<HTMLButtonElement>('[data-qa-living]').forEach((button) => button.addEventListener('click', () => {
       if (!import.meta.env.DEV) return;
-      void Promise.all([import('../ui/living/LivingTableauPlayer'), import('../ui/living/boisClairArrival')]).then(async ([{ LivingTableauPlayer }, { BOIS_CLAIR_ARRIVAL }]) => {
-        const before = this.uiSounds.musicSnapshot().context;
-        this.uiSounds.setMusicContext(sceneMood('village_choice'));
-        const player = new LivingTableauPlayer(this.root);
-        const done = player.open(BOIS_CLAIR_ARRIVAL, { reducedMotion: this.state.settings.reducedGraphics });
-        await player.ready;
-        player.start();
-        await done;
+      const id = button.dataset.qaLiving ?? '';
+      const following = { bois_clair_arrival: 'village_choice', bois_clair_saved: 'village_defense_aftermath', bois_clair_sacrificed: 'village_raid_aftermath', lion_judgement: 'lion_finale_judgement' }[id];
+      if (!following) return;
+      const before = this.uiSounds.musicSnapshot().context;
+      void this.playLivingTableau(id, following).then(() => {
         this.uiSounds.setMusicContext(before);
+        this.renderQaLab();
       });
-    });
+    }));
     this.chrome.querySelector('[data-qa-sounds]')?.addEventListener('click', () => {
       if (import.meta.env.DEV) void import('../ui/AudioListeningLab').then(({ AudioListeningLab }) => new AudioListeningLab(this.root, this.uiSounds).open());
     });
@@ -628,6 +635,35 @@ export class GameApp {
       task: async () => undefined,
       holdMs: 0,
     });
+  }
+
+  /**
+   * A living tableau before the dialogue it precedes (set 1.13.0, OD-2026-11-04-A), with that dialogue's mood. It reads
+   * and writes no game state; a missing picture skips it. Returns whether it was shown.
+   */
+  private async playLivingTableau(id: string, followingDialogueId: string): Promise<boolean> {
+    const [{ LIVING_TABLEAUX }, { LivingTableauPlayer }] = await Promise.all([import('../ui/living/livingTableaux'), import('../ui/living/LivingTableauPlayer')]);
+    const script = LIVING_TABLEAUX[id];
+    if (!script || this.disposed) return false;
+    this.setMode('NARRATIVE', { mood: sceneMood(followingDialogueId) });
+    const player = new LivingTableauPlayer(this.root);
+    this.livingPlayer = player;
+    const done = player.open(script, { reducedMotion: this.state.settings.reducedGraphics });
+    await player.ready;
+    player.start();
+    const outcome = await done;
+    if (this.livingPlayer === player) this.livingPlayer = null;
+    return outcome !== 'missing';
+  }
+
+  /** The tableau behind a dialogue that follows a living tableau keeps its light, fire and smoke alive. */
+  private async attachLivingBackdrop(stageElement: HTMLElement, dialogueId: string): Promise<void> {
+    this.livingBackdrop?.dispose();
+    this.livingBackdrop = null;
+    const [{ LIVING_BACKDROPS, LIVING_TABLEAUX }, { LivingBackdrop }] = await Promise.all([import('../ui/living/livingTableaux'), import('../ui/living/LivingBackdrop')]);
+    const painter = LIVING_TABLEAUX[LIVING_BACKDROPS[dialogueId] ?? '']?.backdrop?.();
+    const host = stageElement.querySelector<HTMLElement>('.narrative-scene-surface__environment');
+    if (painter && host && !this.disposed) this.livingBackdrop = new LivingBackdrop(host, painter, prefersReducedMotion(this.state.settings.reducedGraphics));
   }
 
   private async playStandaloneCinematic(trigger: VideoCinematicTrigger, label = ''): Promise<void> {
@@ -1134,7 +1170,7 @@ export class GameApp {
     }
     if (node.type === 'combat' || node.type === 'boss') {
       if (!combatConfigs.has(node.contentId)) {
-        await this.playDialogue(node.contentId, node.label);
+        await this.playDialogue(node.contentId, node.label, { live: !initial });
         if (this.pendingCombatId) await this.flushPendingCombat(node);
         else {
           this.markResolved(node.id);
@@ -1150,7 +1186,7 @@ export class GameApp {
       await this.enterCampaignPresentation();
       return;
     }
-    await this.playDialogue(node.contentId, node.label);
+    await this.playDialogue(node.contentId, node.label, { live: !initial });
     if (this.pendingCombatId) {
       await this.flushPendingCombat(node);
     } else {
@@ -1261,12 +1297,14 @@ export class GameApp {
         tableauTransitionSource = 'VIDEO';
       }
       if (presentationBeat) stage.setPresentationBeat(presentationBeat);
+      if (options.live && options.cinematicId) await this.playLivingTableau(options.cinematicId, sequence.id);
       const firstPresentation = stepPresentation(sequence.steps[0]!);
       await stage.presentDialogueTableau(
         tableau?.stillImage ?? resolveDialogueBackdrop(sequence),
         firstPresentation.phaseId,
         tableauTransitionSource,
       );
+      await this.attachLivingBackdrop(stage.element, sequence.id);
       await openDialogue();
       if (options.preserveBackdrop === true && stage.frozenSurface) {
         this.ensureJourneyBoundary().captureBackdrop(stage.frozenSurface);
@@ -1467,10 +1505,11 @@ export class GameApp {
     changeReputation(this.state, rewards.reputation, `combat:${result.combatId}`);
     Object.assign(this.state.flags, lionBossVictoryFacts(result.combatId));
     this.markResolved(node.id);
-    await this.playJourneyCinematic(
-      resolveCin6aBoisClairAftermath(result.combatId, result.victory, this.state.flags),
-      result.victory ? 'Conséquence' : 'Défaite',
-    );
+    // The Bois-Clair outcome reads the resolved result only through its existing presentation trigger (set 1.13.0).
+    const boisClairAftermath = resolveCin6aBoisClairAftermath(result.combatId, result.victory, this.state.flags);
+    const aftermathDialogue = combatConfigs.get(result.combatId)?.postCombatDialogueId;
+    const livedAftermath = boisClairAftermath && aftermathDialogue ? await this.playLivingTableau(boisClairAftermath, aftermathDialogue) : false;
+    if (!livedAftermath) await this.playJourneyCinematic(boisClairAftermath, result.victory ? 'Conséquence' : 'Défaite');
     if (node.type === 'boss') {
       this.state.run.status = 'completed';
       secureRunLoot(this.state);

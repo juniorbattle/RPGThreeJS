@@ -41,7 +41,7 @@ describe('Bois-Clair arrival script (set 1.13.0, OD-2026-11-04-A)', () => {
     expect(ARRIVAL_ACTORS).toHaveLength(4);
     const speakers = new Set(dialogues.get('village_choice')!.steps.map(step => step.actorId));
     for (const actor of ARRIVAL_ACTORS) expect(speakers.has(actor.id), actor.id).toBe(true);
-    for (const shot of BOIS_CLAIR_ARRIVAL.shots) expect(ARRIVAL_EXTRAS.filter(extra => extra.shot === shot.id).length).toBeLessThanOrEqual(12);
+    for (const extras of Object.values(ARRIVAL_EXTRAS)) expect(extras.length).toBeLessThanOrEqual(12);
     expect(BOIS_CLAIR_ARRIVAL.sheets).not.toContain('villageoise');
     expect(BOIS_CLAIR_ARRIVAL.portraits).toEqual(['villageoise']);
   });
