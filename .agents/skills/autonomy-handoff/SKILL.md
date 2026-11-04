@@ -24,7 +24,7 @@ git --no-optional-locks stash list
 git --no-optional-locks diff --stat
 git --no-optional-locks rev-parse HEAD origin/dev origin/main
 git ls-remote --heads origin dev main "wip/*"
-git --no-optional-locks diff --exit-code 29aa94862f9cd5f2c73ba9569660ed26c41ceaf8 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md
+git --no-optional-locks diff --exit-code a936cd05358eacd5ade0efcac3753ee65a7c309f HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md
 ```
 
 Also read `docs/autonomy/AUTONOMOUS_WORK_STATE.md` and `.json`, the newest file in `docs/autonomy/handoffs/`, and the Codex automation memory (`~/.codex/automations/rpgthreejs-auto-dev-90m/memory.md`). Compare the state with `git status`: live state is refreshed at snapshots, but a cutoff can leave it stale. Examine unlisted work and live.qaJobs receipts/provenance before rerunning QA.
@@ -50,7 +50,7 @@ Git: branch <b> | HEAD <sha> | origin/dev <sha> | stash <n>
 Working tree: <n modified, n untracked> <paths>
 WIP snapshot: <branch@sha | none>
 State files: status=<> task=<> vs lock -> <consistent | stale: ...>
-LOCKED docs: <unchanged since 29aa94862f9cd5f2c73ba9569660ed26c41ceaf8 | CHANGED: ...>
+LOCKED docs: <unchanged since a936cd05358eacd5ade0efcac3753ee65a7c309f | CHANGED: ...>
 Coherence of the work found: <what it does; what was verified; what was not>
 Decision: <READ-ONLY | SNAPSHOT | TAKEOVER (operator order needed if under 105 min)>
 Next action: <precise>
@@ -131,4 +131,4 @@ Closeout: update the state files including the live block, run the quick checks,
 
 ## Current retirement — OD-2026-10-24-A
 
-Set1.10.0 supersedes earlier cinematic production directions: zero active video/hold/preload/shipped MP4, eight historical IDs and archived media/proof preserved. No illustrated/video generation or pilot generalization. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline 29aa94862f9cd5f2c73ba9569660ed26c41ceaf8.
+Set1.10.0 supersedes earlier cinematic production directions: zero active video/hold/preload/shipped MP4, eight historical IDs and archived media/proof preserved. No illustrated/video generation or pilot generalization. Code-animated living tableaux follow set 1.13.0 (OD-2026-11-04-A) only. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline a936cd05358eacd5ade0efcac3753ee65a7c309f.

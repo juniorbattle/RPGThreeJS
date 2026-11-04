@@ -15,7 +15,9 @@ Contracts: PRESENTATION_AND_MEDIA (tableau), CAMPAIGN_AND_STATE (canon and choic
 
 ## Invariants
 
-Digest of the contracts at set 1.12.0 (baseline `29aa94862f9cd5f2c73ba9569660ed26c41ceaf8`); the contract text wins on any difference.
+Digest of the contracts at set 1.13.0 (baseline `a936cd05358eacd5ade0efcac3753ee65a7c309f`); the contract text wins on any difference.
+
+- Living tableaux (set 1.13.0, OD-2026-11-04-A): code-animated sequences at `bois_clair_arrival`, `bois_clair_saved` or `bois_clair_sacrificed`, and `lion_judgement`, each before its dialogue, plus an animated backdrop during it. No captions; only facts established at that point, never what the dialogue says first; four narrative actors with at most twelve extras as scenery (no dialogue, focus or facing relation); `lion_judgement` shows Alaric alone and stops before he speaks.
 
 - Interactive narrative plays as a staged tableau: actors have an authored position, facing, look target, depth and focus, and are restaged when relational/dramatic readability requires it; a new speaker alone does not require a turn.
 - Keep each composition readable: at most four visible actors. Restage rather than cram.
