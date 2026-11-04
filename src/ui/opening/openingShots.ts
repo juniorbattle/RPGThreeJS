@@ -83,7 +83,7 @@ export function easeShot(progress: number): number {
 export interface ViewCamera { scale: number; x: number; y: number }
 
 /** Where the image sits on screen: it always covers the view, and a portrait view fits the band between the bars. */
-export function cameraAt(shot: OpeningShot, progress: number, width: number, height: number, bar: number): ViewCamera {
+export function cameraAt(shot: Pick<OpeningShot, 'from' | 'to'>, progress: number, width: number, height: number, bar: number): ViewCamera {
   const p = easeShot(progress);
   const zoom = shot.from.zoom + (shot.to.zoom - shot.from.zoom) * p;
   const cx = shot.from.x + (shot.to.x - shot.from.x) * p, cy = shot.from.y + (shot.to.y - shot.from.y) * p;

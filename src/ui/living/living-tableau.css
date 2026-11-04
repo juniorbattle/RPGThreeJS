@@ -1,0 +1,41 @@
+/* Living tableaux at key moments (set 1.13.0, OD-2026-11-04-A): same frame as the opening, no caption. */
+.living-tableau {
+  --living-bar: max(11vh, calc((100vh - 100vw / 2) / 2));
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  overflow: hidden;
+  isolation: isolate;
+  outline: none;
+  background: #04050a;
+  opacity: 1;
+  transition: opacity .7s ease;
+}
+.living-tableau.is-leaving { z-index: 9100; opacity: 0; pointer-events: none; }
+.living-tableau__scene { position: absolute; inset: 0; overflow: hidden; }
+.living-tableau__plate { position: absolute; inset: 0; opacity: 0; }
+.living-tableau__plate.is-visible { opacity: 1; }
+.living-tableau__plate img { position: absolute; left: 0; top: 0; width: 1672px; height: 941px; max-width: none; transform-origin: 0 0; will-change: transform; }
+.living-tableau__plate img.is-near { -webkit-mask-image: linear-gradient(to bottom, transparent 70%, #000 84%); mask-image: linear-gradient(to bottom, transparent 70%, #000 84%); }
+.living-tableau__canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.living-tableau__vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 50%, transparent 54%, rgba(2, 3, 8, .62) 100%); }
+.living-tableau__veil { position: absolute; inset: 0; pointer-events: none; background: #04050a; opacity: 0; transition: opacity .5s ease; }
+.living-tableau__veil.is-down { opacity: 1; transition-duration: .26s; }
+.living-tableau__bar { position: absolute; left: 0; right: 0; height: var(--living-bar); background: #04050a; }
+.living-tableau__bar--top { top: 0; }
+.living-tableau__bar--bottom { bottom: 0; }
+.living-tableau__skip {
+  position: absolute;
+  top: max(18px, env(safe-area-inset-top));
+  right: max(22px, env(safe-area-inset-right));
+  border: 1px solid rgba(244, 217, 139, .36);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: rgba(5, 9, 20, .6);
+  color: rgba(244, 217, 139, .86);
+  font: 700 10px var(--ui-font-title, Cinzel, serif);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.living-tableau__skip:focus-visible { outline: 2px solid #f4d98b; outline-offset: 3px; }

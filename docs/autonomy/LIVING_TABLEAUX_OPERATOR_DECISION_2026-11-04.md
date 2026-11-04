@@ -53,6 +53,21 @@ Relecture indépendante `contracts-guardian` du diff réel, le 2026-11-04 : PASS
 
 Le 2026-11-04, à la question « Tu approuves le texte de l'amendement 1.13.0 ? », l'opérateur répond : « J'approuve ». Le correctif relu est appliqué tel quel à la constitution, à PRESENTATION_AND_MEDIA, AUTHORING_AND_QA et AUTONOMOUS_WORK_PROTOCOL, au README et au manifeste (set 1.13.0). Le validateur de contrats passe sur l'arbre amendé. La suite est la maquette de l'arrivée à Bois-Clair (C2).
 
+## Maquette de l'arrivée à Bois-Clair
+
+`CURRENT FACT` Livrée le 2026-11-04 sur le serveur de développement : `/?qa=1`, QA rencontres, bouton « Tableau vivant · Bois-Clair ». Elle n'est pas branchée au jeu. Le lecteur commun (`src/ui/living/LivingTableauPlayer.ts`) emprunte à l'ouverture ses outils de dessin, sa caméra et son calque ; l'ouverture garde son propre lecteur.
+
+- **Plan 1, 9 s.** Les toits et la colline brûlent ; la caméra descend vers la porte. Quatre pillards sortent de la porte avec leurs torches et traversent la place.
+- **Plan 2, 14 s.** La place vue depuis la brèche de la palissade du premier plan. Alistair, Marian et Kestrel entrent par la brèche, depuis le spectateur, et s'arrêtent sur la place, tournés vers la gauche. La villageoise sort de l'ombre du marché, fait quelques pas et s'arrête face à eux. Trois pillards passent au fond.
+- **Lumière.** Les personnages sont éclairés de dos par le village en feu, avec leur ombre portée vers le spectateur.
+- **Mouvement réduit.** La caméra reste fixe, les personnages apparaissent en fondu à leur place, les pillards ne passent pas ; feu, braises et fumée restent animés.
+- **Musique.** L'humeur du dialogue `village_choice`, par la table existante.
+- **Ce qu'elle ne montre pas.** Enfants, captifs, coffres, chapelle, puits : le dialogue les dit en premier. Aucune légende.
+
+Vérifications : tests du lecteur et du script (durée, quatre acteurs pris dans la distribution du dialogue, figurants bornés, aucune légende, Passer, Échap, image manquante, mouvement réduit), suite complète, build, validateur de contrats et porte sur `a936cd05`. Captures inspectées en mouvement normal et réduit (`tmp/opening-audit/lv1` à `lv3`, ignoré).
+
+À juger par l'opérateur en mouvement : si la maquette convainc, les trois autres séquences et le fond animé suivent, avant le playtest PC.
+
 ## Ce qui ne change pas
 
 Zéro vidéo active, aucune image générée ni illustration nouvelle, aucune vidéo ni image clé générée, pas de MiniMax. Les huit identités historiques et toutes les archives restent. Ni choix, ni issue, ni récompense, ni sauvegarde V6 ne changent. Les quatre acteurs visibles, le sommet d'Alaric, le mouvement réduit, le clavier et le focus restent tenus. Le scheduler reste en pause.

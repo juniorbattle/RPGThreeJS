@@ -324,7 +324,7 @@ export class GameApp {
       <section class="qa-lab ui-screen" aria-label="Laboratoire QA de combat">
         <header class="qa-lab__header">
           <div><p class="eyebrow">Développement local</p><h1>Laboratoire de combat</h1></div>
-          <div class="qa-lab__header-actions"><button type="button" data-qa-sounds>Laboratoire d'écoute</button><button type="button" data-qa-back>Retour au titre</button></div>
+          <div class="qa-lab__header-actions"><button type="button" data-qa-living>Tableau vivant · Bois-Clair</button><button type="button" data-qa-sounds>Laboratoire d'écoute</button><button type="button" data-qa-back>Retour au titre</button></div>
         </header>
         <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
@@ -369,6 +369,20 @@ export class GameApp {
       </section>
     `;
     this.chrome.querySelector('[data-qa-back]')?.addEventListener('click', () => this.renderTitle());
+    // Dev-only mockup of the Bois-Clair arrival (set 1.13.0, OD-2026-11-04-A), with the mood of the dialogue it precedes.
+    this.chrome.querySelector('[data-qa-living]')?.addEventListener('click', () => {
+      if (!import.meta.env.DEV) return;
+      void Promise.all([import('../ui/living/LivingTableauPlayer'), import('../ui/living/boisClairArrival')]).then(async ([{ LivingTableauPlayer }, { BOIS_CLAIR_ARRIVAL }]) => {
+        const before = this.uiSounds.musicSnapshot().context;
+        this.uiSounds.setMusicContext(sceneMood('village_choice'));
+        const player = new LivingTableauPlayer(this.root);
+        const done = player.open(BOIS_CLAIR_ARRIVAL, { reducedMotion: this.state.settings.reducedGraphics });
+        await player.ready;
+        player.start();
+        await done;
+        this.uiSounds.setMusicContext(before);
+      });
+    });
     this.chrome.querySelector('[data-qa-sounds]')?.addEventListener('click', () => {
       if (import.meta.env.DEV) void import('../ui/AudioListeningLab').then(({ AudioListeningLab }) => new AudioListeningLab(this.root, this.uiSounds).open());
     });

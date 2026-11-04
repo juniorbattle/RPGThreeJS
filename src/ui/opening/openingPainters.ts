@@ -19,9 +19,9 @@ export type ShotPainter = (frame: PaintFrame) => void;
 export interface SheetArt { entry: PixelSheetEntry; image: HTMLImageElement | HTMLCanvasElement }
 export type SheetBook = ReadonlyMap<string, SheetArt>;
 
-const FIRE: Rgb = [255, 122, 38], CANDLE: Rgb = [255, 190, 96], VIOLET: Rgb = [176, 92, 255], MOON: Rgb = [150, 180, 255];
+export const FIRE: Rgb = [255, 122, 38], CANDLE: Rgb = [255, 190, 96], VIOLET: Rgb = [176, 92, 255], MOON: Rgb = [150, 180, 255];
 
-function paintLights(frame: PaintFrame, lights: readonly Light[], amount = 1): void {
+export function paintLights(frame: PaintFrame, lights: readonly Light[], amount = 1): void {
   const { ctx, camera, seconds } = frame;
   ctx.globalCompositeOperation = 'lighter';
   for (const light of lights) {
@@ -31,7 +31,7 @@ function paintLights(frame: PaintFrame, lights: readonly Light[], amount = 1): v
 }
 
 /** A soft puff, drawn once and stamped many times. */
-function softPuff(color: Rgb): HTMLCanvasElement {
+export function softPuff(color: Rgb): HTMLCanvasElement {
   const canvas = document.createElement('canvas');
   canvas.width = canvas.height = 128;
   const ctx = canvas.getContext('2d');
@@ -69,7 +69,7 @@ class MoteField {
   }
 }
 
-const embers = (count: number, seed: number) => new MoteField(count, (random) => ({
+export const embers = (count: number, seed: number) => new MoteField(count, (random) => ({
   vx: -30 - random() * 46, vy: -44 - random() * 90, size: random() < 0.2 ? 3 : random() < 0.6 ? 2 : 1, phase: random() * 6,
   color: random() < 0.5 ? [255, 150, 60] : random() < 0.6 ? [255, 96, 34] : [255, 206, 120],
 }), 'lighter', seeded(seed));
@@ -78,7 +78,7 @@ const ash = (count: number, seed: number, color: Rgb) => new MoteField(count, (r
   vx: -6 - random() * 16, vy: 16 + random() * 34, size: random() < 0.3 ? 2 : 1, phase: random() * 6, color,
 }), 'source-over', seeded(seed));
 
-function tintedCanvas(source: HTMLImageElement | HTMLCanvasElement, color: string): CanvasImageSource {
+export function tintedCanvas(source: HTMLImageElement | HTMLCanvasElement, color: string): CanvasImageSource {
   const canvas = document.createElement('canvas');
   canvas.width = source instanceof HTMLImageElement ? source.naturalWidth : source.width;
   canvas.height = source instanceof HTMLImageElement ? source.naturalHeight : source.height;
@@ -91,7 +91,7 @@ function tintedCanvas(source: HTMLImageElement | HTMLCanvasElement, color: strin
   return canvas;
 }
 
-function drawFrame(ctx: CanvasRenderingContext2D, entry: PixelSheetEntry, source: CanvasImageSource, frame: string, x: number, y: number, scale: number, flip: boolean, angle = 0): void {
+export function drawFrame(ctx: CanvasRenderingContext2D, entry: PixelSheetEntry, source: CanvasImageSource, frame: string, x: number, y: number, scale: number, flip: boolean, angle = 0): void {
   const [cellWidth, cellHeight] = entry.cell, [anchorX, anchorY] = entry.anchor;
   const column = Math.max(0, entry.cells.indexOf(frame));
   ctx.save();
@@ -103,7 +103,7 @@ function drawFrame(ctx: CanvasRenderingContext2D, entry: PixelSheetEntry, source
   ctx.restore();
 }
 
-function contactShadow(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number, alpha: number): void {
+export function contactShadow(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number, alpha: number): void {
   ctx.fillStyle = `rgba(6,3,4,${alpha})`;
   ctx.beginPath();
   ctx.ellipse(x, y, radius, radius * 0.26, 0, 0, Math.PI * 2);
@@ -111,7 +111,7 @@ function contactShadow(ctx: CanvasRenderingContext2D, x: number, y: number, radi
 }
 
 /** A fire of the tableau, in image pixels: the middle of its root, then its size. */
-interface FireSpot { x: number; y: number; width: number; height: number; base?: number }
+export interface FireSpot { x: number; y: number; width: number; height: number; base?: number }
 
 function kindle(spots: readonly FireSpot[], seed: number): Array<{ spot: FireSpot; fire: PixelFire }> {
   return spots.map((spot, index) => ({ spot, fire: PixelFire.sized(spot.width, spot.height, seed + index * 97, spot.base) }));
@@ -125,7 +125,7 @@ function burn(ctx: CanvasRenderingContext2D, flames: ReturnType<typeof kindle>, 
 }
 
 /** The fires the painter put in the picture, set burning in place on its grain. */
-function paintedFires(spots: readonly FireSpot[], seed: number): (frame: PaintFrame) => void {
+export function paintedFires(spots: readonly FireSpot[], seed: number): (frame: PaintFrame) => void {
   const layer = new PropLayer();
   const flames = kindle(spots, seed);
   return ({ ctx, camera, dt }) => {
@@ -562,7 +562,7 @@ function sealsPainter(): ShotPainter {
   };
 }
 
-const VILLAGE: readonly Light[] = [
+export const VILLAGE: readonly Light[] = [
   { x: 1600, y: 80, radius: 250, color: FIRE, power: 0.34, seed: 1 }, { x: 1340, y: 130, radius: 190, color: FIRE, power: 0.28, seed: 2 },
   { x: 985, y: 170, radius: 260, color: FIRE, power: 0.26, seed: 3 }, { x: 540, y: 170, radius: 170, color: FIRE, power: 0.26, seed: 4 },
   { x: 488, y: 395, radius: 120, color: FIRE, power: 0.36, seed: 5 }, { x: 892, y: 300, radius: 80, color: FIRE, power: 0.34, seed: 6 },
@@ -570,15 +570,15 @@ const VILLAGE: readonly Light[] = [
   { x: 186, y: 530, radius: 110, color: CANDLE, power: 0.28, seed: 9 }, { x: 335, y: 405, radius: 70, color: CANDLE, power: 0.26, seed: 10 },
   { x: 1050, y: 622, radius: 190, color: FIRE, power: 0.12, seed: 11 },
 ];
-/** The brazier, the three torches on posts and the burning roofs of Bois-Clair, where the painter put them. */
-const VILLAGE_FIRES: readonly FireSpot[] = [
+/** The brazier, the three torches on posts and the burning roofs of Bois-Clair, where the painter put them. Shared with the living tableau of the arrival (set 1.13.0). */
+export const VILLAGE_FIRES: readonly FireSpot[] = [
   { x: 492, y: 414, width: 42, height: 56, base: 0.7 },
   { x: 894, y: 318, width: 24, height: 38 }, { x: 1018, y: 350, width: 20, height: 32 }, { x: 1368, y: 438, width: 26, height: 34 },
   { x: 1342, y: 150, width: 44, height: 54 }, { x: 1610, y: 94, width: 60, height: 58 }, { x: 1610, y: 150, width: 34, height: 38 },
   { x: 608, y: 134, width: 54, height: 30, base: 0.8 }, { x: 554, y: 162, width: 36, height: 40 }, { x: 630, y: 228, width: 32, height: 40 },
 ];
 
-const ROAD = { x: 948, y: 436, farScale: 0.42, nearScale: 2.05, nearY: 700 };
+export const ROAD = { x: 948, y: 436, farScale: 0.42, nearScale: 2.05, nearY: 700 };
 
 /** They stream out of the gate and spread across the square, at the tableau's own pixel size, clear of the market's
  * crates, posts and brazier on the left. */
@@ -762,9 +762,9 @@ const CAMP: readonly Light[] = [
 ];
 /** Image pixels a second: an unhurried walk at this distance. */
 const WALK_SPEED = 150;
-const snap = (value: number) => Math.round(value / GRAIN) * GRAIN;
+export const snap = (value: number) => Math.round(value / GRAIN) * GRAIN;
 /** Steady pace, then the last steps slow to a stop. */
-const arrive = (p: number) => (p - (p > 0.8 ? (p - 0.8) ** 2 / 0.4 : 0)) / 0.9;
+export const arrive = (p: number) => (p - (p > 0.8 ? (p - 0.8) ** 2 / 0.4 : 0)) / 0.9;
 
 interface Placed { art: SheetArt; id: string; x: number; y: number; scale: number; pose: string; flip: boolean; shown: number }
 
