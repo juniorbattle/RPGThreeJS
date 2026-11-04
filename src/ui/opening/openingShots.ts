@@ -35,15 +35,30 @@ export const OPENING_SHOTS: readonly OpeningShot[] = FRAMING.map(({ lineAt, ...f
   lines: (prologuePanels.find(panel => panel.id === framing.id)?.lines ?? []).map((text, index) => ({ at: lineAt[index] ?? 0, text })),
 }));
 
-/** The four heroes walk into the camp, facing the middle of the frame as they do in the dialogue that follows. */
-export const OPENING_CAST: ReadonlyArray<{ id: string; at: number; left: number; facing: 'LEFT' | 'RIGHT' }> = [
-  { id: 'alistair', at: 0.7, left: 61, facing: 'LEFT' },
-  { id: 'marian', at: 1.7, left: 80, facing: 'LEFT' },
-  { id: 'kestrel', at: 2.7, left: 39, facing: 'RIGHT' },
-  { id: 'elara', at: 3.7, left: 20, facing: 'RIGHT' },
+/**
+ * The four heroes gather in the middle of the camp, on its ground, in image pixels: two come from the fire, two from
+ * the wagons, and they face each other as they do in the dialogue that follows. `from` is where each one starts walking.
+ */
+export interface CampActor { id: string; at: number; x: number; y: number; from: number; facing: 'LEFT' | 'RIGHT' }
+export const OPENING_CAST: readonly CampActor[] = [
+  { id: 'alistair', at: 0.4, x: 934, y: 646, from: 1330, facing: 'LEFT' },
+  { id: 'marian', at: 1.1, x: 1040, y: 630, from: 1420, facing: 'LEFT' },
+  { id: 'kestrel', at: 1.8, x: 740, y: 646, from: 400, facing: 'RIGHT' },
+  { id: 'elara', at: 2.5, x: 636, y: 630, from: 330, facing: 'RIGHT' },
+];
+/**
+ * Séraphine and Maelor, who open the dialogue that follows, stand on either side of the fire, on the left where the
+ * dialogue puts them. They show once the heroes have faded, so the camp never holds more than four visible actors
+ * (PRESENTATION_AND_MEDIA.md), and the dialogue opens on the two of them.
+ */
+export const OPENING_ADVISERS: readonly CampActor[] = [
+  { id: 'maelor', at: 8.8, x: 268, y: 586, from: 268, facing: 'RIGHT' },
+  { id: 'sage_seraphine', at: 9, x: 494, y: 598, from: 494, facing: 'RIGHT' },
 ];
 
-export const OPENING_ACTOR_FADE_AT = 9.6;
+/** The heroes fade from the camp from this second, over OPENING_ACTOR_FADE_SECONDS. */
+export const OPENING_ACTOR_FADE_AT = 7.6;
+export const OPENING_ACTOR_FADE_SECONDS = 1.1;
 export const OPENING_BARS_OPEN_AT = 9.9;
 export const OPENING_POLE_CRACKS_AT = 5;
 export const OPENING_POLE_LANDS_AT = 6.15;

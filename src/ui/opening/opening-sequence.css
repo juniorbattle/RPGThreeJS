@@ -18,7 +18,8 @@
 .opening-sequence__plate.is-visible { opacity: 1; }
 .opening-sequence__plate img { position: absolute; left: 0; top: 0; width: 1672px; height: 941px; max-width: none; transform-origin: 0 0; will-change: transform; }
 .opening-sequence__plate img.is-near { -webkit-mask-image: linear-gradient(to bottom, transparent 70%, #000 84%); mask-image: linear-gradient(to bottom, transparent 70%, #000 84%); }
-.opening-sequence__canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.opening-sequence__canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; transition: opacity .3s ease; }
+.opening-sequence.is-leaving .opening-sequence__canvas { opacity: 0; }
 .opening-sequence__vignette {
   position: absolute;
   inset: 0;
@@ -64,33 +65,7 @@
   text-transform: uppercase;
   cursor: pointer;
 }
-.opening-sequence__cast { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 1.1s ease; }
-.opening-sequence__cast.is-visible { opacity: 1; }
-.opening-sequence__cast.is-leaving { opacity: 0; }
-.opening-sequence__actor {
-  position: absolute;
-  bottom: -5vh;
-  width: min(36vw, 66vh, 700px);
-  height: 120vh;
-  margin: 0;
-  opacity: 0;
-  filter: saturate(.92) brightness(.9) drop-shadow(0 24px 28px rgba(0, 0, 0, .82));
-  translate: -50% 0;
-  transform: translateX(var(--opening-from, 7vw));
-  transition: opacity .7s ease, transform 1.3s cubic-bezier(.2, .7, .3, 1);
-}
-.opening-sequence__actor[data-facing="RIGHT"] { --opening-from: -7vw; }
-.opening-sequence__actor.is-in { opacity: 1; transform: translateX(0); }
-.opening-sequence__actor img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; image-rendering: pixelated; }
-.opening-sequence__actor[data-facing="LEFT"] img { transform: scaleX(-1); }
-.opening-sequence__actor.is-in img { animation: opening-sequence-step .34s ease-in-out 4; }
-@keyframes opening-sequence-step {
-  50% { translate: 0 -1.1%; }
-}
-.opening-sequence[data-reduced-motion="true"] .opening-sequence__bar,
-.opening-sequence[data-reduced-motion="true"] .opening-sequence__actor { transition: opacity .4s ease; transform: none; }
-.opening-sequence[data-reduced-motion="true"] .opening-sequence__actor.is-in img { animation: none; }
+.opening-sequence[data-reduced-motion="true"] .opening-sequence__bar { transition: opacity .4s ease; transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  .opening-sequence__bar, .opening-sequence__actor { transition: opacity .4s ease; transform: none; }
-  .opening-sequence__actor.is-in img { animation: none; }
+  .opening-sequence__bar { transition: opacity .4s ease; transform: none; }
 }

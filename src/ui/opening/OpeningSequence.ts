@@ -1,8 +1,9 @@
 import type { SheetArt, ShotPainter } from './openingPainters';
 import { createShotPainter } from './openingPainters';
-import { resolveCharacterAsset } from '../../render/CharacterVisualRegistry';
+import { resolveCharacterVisualProfile } from '../../render/CharacterVisualRegistry';
+import { pixelFigure } from './openingLayer';
 import { prefersReducedMotion } from '../ReducedMotion';
-import { cameraAt, OPENING_ACTOR_FADE_AT, OPENING_BARS_OPEN_AT, OPENING_CAST, OPENING_NEXT_CAST, OPENING_POLE_LANDS_AT, OPENING_SHEETS, OPENING_SHOTS, type OpeningShot, type ViewCamera } from './openingShots';
+import { cameraAt, OPENING_ADVISERS, OPENING_BARS_OPEN_AT, OPENING_CAST, OPENING_POLE_LANDS_AT, OPENING_SHEETS, OPENING_SHOTS, type OpeningShot, type ViewCamera } from './openingShots';
 import './opening-sequence.css';
 
 const CUT_SECONDS = 0.5;
@@ -27,8 +28,9 @@ function loadImage(url: string): Promise<HTMLImageElement | null> {
  * The opening of a new chronicle (OD-2026-11-02-A): 55 seconds of living tableaux in place of the five read panels.
  * It reads and writes no game state and leaves the music to the `PROLOGUE` mode. A click or Enter moves to the next shot, Passer or Escape leaves. The text runs
  * on the sequence's own clock, never on the sound's, and stays when a picture is slow or missing. Canvas effects are
- * optional: without them the tableaux and the text still play. Reduced motion, from the system or the game, holds the
- * camera and replaces every fall and march with a fade; fire, light and wind keep moving where they are.
+ * optional: without them the tableaux and the text still play. The heroes of the last shot are drawn in the scene, on
+ * the tableau's grain and in its light. Reduced motion, from the system or the game, holds the camera and replaces every
+ * fall, march and walk with a fade; fire, light and wind keep moving where they are.
  */
 export class OpeningSequence {
   /** Settles once the pictures are in, or after READY_TIMEOUT_MS. Nothing waits on them longer. */
@@ -40,7 +42,6 @@ export class OpeningSequence {
   private ctx: CanvasRenderingContext2D | null = null;
   private canvas: HTMLCanvasElement | null = null;
   private readonly plates = new Map<string, { root: HTMLElement; far: HTMLImageElement; near: HTMLImageElement }>();
-  private actors: Array<{ element: HTMLElement; at: number }> = [];
   private readonly sheets = new Map<string, SheetArt>();
   private painter: ShotPainter | null = null;
   private index = -1;
@@ -69,7 +70,6 @@ export class OpeningSequence {
       <div class="opening-sequence__scene">
         ${OPENING_SHOTS.map(shot => `<div class="opening-sequence__plate" data-plate="${shot.id}"><img alt="" src="${shot.image}"><img class="is-near" alt="" src="${shot.image}"></div>`).join('')}
         <canvas class="opening-sequence__canvas" aria-hidden="true"></canvas>
-        <div class="opening-sequence__cast" data-cast aria-hidden="true"></div>
       </div>
       <div class="opening-sequence__vignette" aria-hidden="true"></div>
       <div class="opening-sequence__veil is-down" data-veil></div>
@@ -87,7 +87,6 @@ export class OpeningSequence {
       const images = root?.querySelectorAll('img');
       if (root && images?.[0] && images[1]) this.plates.set(shot.id, { root, far: images[0], near: images[1] });
     }
-    this.mountCast();
     this.measure();
     window.addEventListener('resize', this.measure);
     element.addEventListener('click', this.handleClick);
@@ -126,15 +125,21 @@ export class OpeningSequence {
 
   private async prepare(): Promise<void> {
     const pictures = [...this.plates.values()].map(({ far }) => far.decode?.().catch(() => undefined));
-    for (const id of OPENING_NEXT_CAST) {
-      const url = resolveCharacterAsset(id, 'dialogue');
-      if (url) void loadImage(url);
-    }
-    const sheets = import('../../combat/pixel/PixelSpriteSheets').then(({ resolvePixelSheet }) => Promise.all(OPENING_SHEETS.map(async (id) => {
-      const entry = resolvePixelSheet(id);
-      const image = entry && !this.sheets.has(id) ? await loadImage(entry.file) : null;
-      if (entry && image) this.sheets.set(id, { entry, image });
-    }))).catch(() => undefined);
+    const sheets = import('../../combat/pixel/PixelSpriteSheets').then(({ resolvePixelSheet, PIXEL_PX_PER_UNIT }) => Promise.all([
+      ...[...OPENING_SHEETS, ...OPENING_CAST.map(hero => hero.id)].map(async (id) => {
+        const entry = resolvePixelSheet(id);
+        const image = entry && !this.sheets.has(id) ? await loadImage(entry.file) : null;
+        if (entry && image) this.sheets.set(id, { entry, image });
+      }),
+      // The advisers have no combat sheet: their portrait, which the dialogue that follows shows too, is brought down
+      // to the heroes' density.
+      ...OPENING_ADVISERS.map(async ({ id }) => {
+        const profile = resolveCharacterVisualProfile(id);
+        const image = profile && !this.sheets.has(id) ? await loadImage(profile.dialogue) : null;
+        const figure = profile && image ? pixelFigure(image, id, profile.worldUnitsPerPixel * PIXEL_PX_PER_UNIT) : null;
+        if (figure) this.sheets.set(id, figure);
+      }),
+    ])).catch(() => undefined);
     await Promise.race([Promise.all([...pictures, sheets]), new Promise((resolve) => window.setTimeout(resolve, READY_TIMEOUT_MS))]);
   }
 
@@ -166,23 +171,6 @@ export class OpeningSequence {
     }
   };
 
-  private mountCast(): void {
-    const cast = this.element?.querySelector<HTMLElement>('[data-cast]');
-    if (!cast) return;
-    this.actors = OPENING_CAST.map(({ id, at, left, facing }) => {
-      const actor = document.createElement('figure');
-      actor.className = 'opening-sequence__actor';
-      actor.dataset.facing = facing;
-      actor.style.left = `${left}%`;
-      const image = document.createElement('img');
-      image.alt = '';
-      image.src = resolveCharacterAsset(id, 'dialogue') ?? '';
-      actor.append(image);
-      cast.append(actor);
-      return { element: actor, at };
-    });
-  }
-
   private nextShot(): void {
     const element = this.element;
     if (!element) return;
@@ -195,7 +183,6 @@ export class OpeningSequence {
     element.dataset.panel = next.id;
     this.painter = createShotPainter(next.id, this.sheets);
     for (const [id, plate] of this.plates) plate.root.classList.toggle('is-visible', id === next.id);
-    element.querySelector<HTMLElement>('[data-cast]')!.classList.toggle('is-visible', next.id === 'prologue_departure');
     this.clearCanvas();
     this.paint(next, 0);
   }
@@ -229,11 +216,7 @@ export class OpeningSequence {
       if (!this.reduced) line.animate?.([{ opacity: 0 }, { opacity: 1 }], { duration: 650, easing: 'ease-out' });
     }
     line.classList.toggle('is-out', remaining < CUT_SECONDS + 0.3 || last && this.seconds >= OPENING_BARS_OPEN_AT + 0.6);
-    if (last) {
-      for (const actor of this.actors) actor.element.classList.toggle('is-in', this.seconds >= actor.at);
-      element.querySelector<HTMLElement>('[data-cast]')!.classList.toggle('is-leaving', this.seconds >= OPENING_ACTOR_FADE_AT);
-      element.dataset.bars = this.seconds >= OPENING_BARS_OPEN_AT ? 'open' : 'closed';
-    }
+    if (last) element.dataset.bars = this.seconds >= OPENING_BARS_OPEN_AT ? 'open' : 'closed';
     if (!this.ctx) return;
     this.clearCanvas();
     this.painter?.({ ctx: this.ctx, width: this.width, height: this.height, seconds: this.seconds, dt, camera, reduced: this.reduced });
@@ -274,8 +257,7 @@ export class OpeningSequence {
     window.removeEventListener('resize', this.measure);
     document.removeEventListener('keydown', this.handleKey);
     element.removeEventListener('click', this.handleClick);
-    // The dialogue that follows opens on another cast.
-    element.querySelector('[data-cast]')?.replaceChildren();
+    // The dialogue that follows opens on another cast: the canvas, heroes and all, goes first (see the stylesheet).
     element.classList.add('is-leaving');
     element.dataset.bars = 'open';
     this.leaving = element;

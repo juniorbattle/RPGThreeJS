@@ -80,6 +80,17 @@ Validateurs verts : suite complète (169 fichiers vitest et 26 tests `node:test`
 
 `CURRENT FACT` Mouvement réduit, conformément à `UI_AND_ACCESSIBILITY.md:25` et `PRESENTATION_AND_MEDIA.md:26` (fondu doux, sans grand déplacement) : la caméra reste fixe, sans tremblement ni gerbe. La bannière debout se fond dans la bannière brisée sur « la défaite ». Les Serpents apparaissent en fondu à l'endroit où la marche les aurait laissés, et respirent sur place. Le feu, la lumière, la fumée et le vent restent animés sur place. Les silhouettes de l'aqueduc continuent de marcher : petites, lointaines et lentes, elles ne font pas partie des grands déplacements visés par le contrat. Le texte de chaque plan reste affiché d'un bloc.
 
+## Camp, conseillers et aqueduc
+
+`CURRENT FACT` Retour de l'opérateur le 2026-11-03 : les silhouettes de l'aqueduc sont à retravailler, et le camp demande un feu animé, les héros au centre de la scène, bien intégrés, puis les conseillers.
+
+- **Héros.** Les portraits de dialogue posés par-dessus l'image sont retirés. Alistair, Marian, Kestrel et Elara sont dessinés dans le tableau avec leurs feuilles pixel de combat, au double exact, donc sur le grain du tableau. Ils se rassemblent au milieu du camp, sur le sol, à l'échelle des tentes et des caisses : deux viennent du feu, deux des chariots, et ils se font face comme dans le dialogue. Lumière par multiplication, chaude côté feu et froide côté nuit, qui garde les noirs de la pixel art ; liseré du feu et de la lune, ombre de contact, ombre portée étirée à l'opposé du feu. En mouvement réduit, ils apparaissent en fondu à leur place et respirent.
+- **Conseillers.** Séraphine et Maelor, qui ouvrent le dialogue suivant, se tiennent de part et d'autre du feu, à gauche, où le dialogue les place. Ils n'ont pas de feuille de combat : leur portrait est réduit à la densité des héros comme le fait `tools/pixel-sprites` pour les unités sans pose (réduction, bords francs, contour, trame de respiration), dans le navigateur, sans fichier nouveau. Le contrat LOCKED `PRESENTATION_AND_MEDIA.md` limite la composition à quatre acteurs visibles : les héros s'effacent de 7,6 s à 8,7 s, puis les conseillers apparaissent à 8,8 s et 9 s, et le dialogue s'ouvre sur eux. Six personnages ensemble demanderaient un amendement.
+- **Feu du camp.** Le feu simulé en masse ronde est remplacé par un feu de langues (`TongueFire`) : cinq langues qui ondulent, s'étirent et lâchent des flammèches, sur le même grain et dans les mêmes cinq teintes. Fumée qui monte du foyer, braises.
+- **Aqueduc.** Les silhouettes de 58 pixels, plus hautes que les arches, sont remplacées par une file de seize personnages encapuchonnés d'une dizaine de cellules, à l'échelle de l'ouvrage, posés sur le tablier relevé dans l'image. Certains portent une lance ou un bâton, aucune bannière. Liseré de lune, quatre pas, sortie et entrée derrière les deux ruines du premier plan, brume éclairée derrière la file.
+
+`CURRENT FACT` Vérifications : suite complète, build, contrats, validateur de mise en scène et porte LOCKED verts. Dans le jeu, la séquence complète atteint le dialogue de Séraphine en 54,9 s, Passer au camp fait d'abord disparaître le canvas, la reprise après rechargement et le mouvement réduit avec une image bloquée tiennent.
+
 ## Limites
 
 - Personne n'a confirmé par écrit avoir vu la séquence en temps réel avec le son : le verdict porte sur le choix de version.

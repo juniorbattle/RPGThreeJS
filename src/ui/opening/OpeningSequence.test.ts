@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { dialogues } from '../../game/content';
 import { prologuePanels } from '../../game/prologue';
 import { OpeningSequence } from './OpeningSequence';
-import { cameraAt, IMAGE_HEIGHT, IMAGE_WIDTH, OPENING_CAST, OPENING_POLE_CRACKS_AT, OPENING_POLE_LANDS_AT, OPENING_SHOTS } from './openingShots';
+import { cameraAt, IMAGE_HEIGHT, IMAGE_WIDTH, OPENING_ACTOR_FADE_AT, OPENING_ACTOR_FADE_SECONDS, OPENING_ADVISERS, OPENING_CAST, OPENING_NEXT_CAST, OPENING_POLE_CRACKS_AT, OPENING_POLE_LANDS_AT, OPENING_SHOTS } from './openingShots';
 
 function play(options: { reducedMotion?: boolean } = {}) {
   const root = document.createElement('div');
@@ -60,6 +60,20 @@ describe('opening script (OD-2026-11-02-A)', () => {
     expect(OPENING_SHOTS.at(-1)?.image).toContain('lion-camp-tableau.png');
     expect(OPENING_SHOTS.at(-1)?.to.zoom).toBe(1);
     expect(OPENING_CAST.map(actor => actor.id)).toEqual(['alistair', 'marian', 'kestrel', 'elara']);
+    // On the camp's ground, in the middle of the picture, facing each other.
+    const xs = OPENING_CAST.map(actor => actor.x);
+    expect(Math.abs((Math.min(...xs) + Math.max(...xs)) / 2 - IMAGE_WIDTH / 2)).toBeLessThan(40);
+    for (const actor of OPENING_CAST) expect(actor.facing === 'RIGHT' ? actor.x < IMAGE_WIDTH / 2 : actor.x > IMAGE_WIDTH / 2, actor.id).toBe(true);
+  });
+
+  it('shows the advisers of the next dialogue only once the heroes have gone: never more than four visible actors', () => {
+    expect(OPENING_ADVISERS.map(actor => actor.id).sort()).toEqual([...OPENING_NEXT_CAST].sort());
+    const heroesGone = OPENING_ACTOR_FADE_AT + OPENING_ACTOR_FADE_SECONDS;
+    for (const adviser of OPENING_ADVISERS) {
+      expect(adviser.at, adviser.id).toBeGreaterThanOrEqual(heroesGone);
+      expect(adviser.at, adviser.id).toBeLessThan(OPENING_SHOTS.at(-1)!.seconds - 2);
+    }
+    expect(Math.max(...OPENING_CAST.map(actor => actor.at + Math.abs(actor.x - actor.from) / 150))).toBeLessThan(OPENING_ACTOR_FADE_AT - 2);
   });
 
   it('always covers the view with the image', () => {
@@ -110,7 +124,9 @@ describe('OpeningSequence', () => {
     press('Escape');
     await first.done;
     expect(first.element.classList.contains('is-leaving')).toBe(true);
-    expect(first.element.querySelector('[data-cast]')?.childElementCount).toBe(0);
+    // The heroes are drawn on the canvas, and the canvas goes first.
+    expect(first.element.querySelector('figure, [data-cast]')).toBeNull();
+    expect(readFileSync('src/ui/opening/opening-sequence.css', 'utf8')).toMatch(/.opening-sequence.is-leaving .opening-sequence__canvas { opacity: 0; }/);
 
     const second = play();
     second.sequence.start();

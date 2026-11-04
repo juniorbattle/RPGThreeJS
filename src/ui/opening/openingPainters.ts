@@ -1,6 +1,6 @@
 import type { PixelSheetEntry } from '../../combat/pixel/PixelSpriteSheets';
-import { clamp01, flicker, glow, GRAIN, PixelFire, PropLayer, rgba, seeded, smooth, type Light, type Rgb } from './openingLayer';
-import { OPENING_POLE_CRACKS_AT, OPENING_POLE_LANDS_AT, type OpeningShotId, type ViewCamera } from './openingShots';
+import { clamp01, flicker, glow, GRAIN, PixelFire, PropLayer, rgba, seeded, smooth, TongueFire, type Light, type Rgb } from './openingLayer';
+import { OPENING_ACTOR_FADE_AT, OPENING_ACTOR_FADE_SECONDS, OPENING_ADVISERS, OPENING_CAST, OPENING_POLE_CRACKS_AT, type CampActor, OPENING_POLE_LANDS_AT, type OpeningShotId, type ViewCamera } from './openingShots';
 
 export interface PaintFrame {
   ctx: CanvasRenderingContext2D;
@@ -16,7 +16,7 @@ export interface PaintFrame {
 
 export type ShotPainter = (frame: PaintFrame) => void;
 
-export interface SheetArt { entry: PixelSheetEntry; image: HTMLImageElement }
+export interface SheetArt { entry: PixelSheetEntry; image: HTMLImageElement | HTMLCanvasElement }
 export type SheetBook = ReadonlyMap<string, SheetArt>;
 
 const FIRE: Rgb = [255, 122, 38], CANDLE: Rgb = [255, 190, 96], VIOLET: Rgb = [176, 92, 255], MOON: Rgb = [150, 180, 255];
@@ -653,36 +653,43 @@ function boisClairPainter(sheets: SheetBook): ShotPainter {
   };
 }
 
-/** A hooded walker with a staff, facing left, feet at (0, 0), in image pixels. The legs swing under the robe. */
-const WALKER: ReadonlyArray<readonly [number, number, number]> = [
-  // x, y, and how much the stride moves the point: the hem follows the legs.
-  [1, -50, 0], [-3, -48, 0], [-6, -44, 0], [-6, -40, 0], [-8, -37, 0], [-10, -30, 0], [-10, -26, 0], [-7, -27, 0], [-7, -21, 0],
-  [-9, 0, 1], [-2, 0, 0.5], [0, -8, 0], [2, 0, -0.5], [9, 0, -1], [12, -3, -0.4], [10, -14, 0], [9, -30, 0], [8, -37, 0], [7, -44, 0], [5, -48, 0],
-];
+/**
+ * A hooded walker in cells of the tableau's grain, facing left: the hood, the cloak trailing behind, then four steps
+ * of the hem and feet. At the aqueduct's distance a person is about ten cells tall.
+ */
+const WALKER_BODY = ['...##.', '..###.', '.####.', '..####', '..####', '..####', '..####', '..####', '..####'];
+const WALKER_STEPS = [['..#..#', '.#...#'], ['..###.', '..##..'], ['..#.#.', '.#..#.'], ['..###.', '...#..']];
+/** Room above the hood for a spear's head. */
+const WALKER_HEADROOM = 4;
+type Gear = 'none' | 'spear' | 'staff';
 
-function paintWalker(ctx: CanvasRenderingContext2D, x: number, y: number, stride: number): void {
-  const swing = Math.sin(stride) * 3;
-  ctx.save();
-  // A little larger than life, so that at this distance they still read as people.
-  ctx.translate(x, y);
-  ctx.scale(1.15, 1.15);
-  ctx.translate(-x, -y);
-  const outline = (dx: number, dy: number, color: string) => {
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    WALKER.forEach(([px, py, follows], index) => {
-      const at = [x + dx + px + follows * swing, y + dy + py] as const;
-      if (index === 0) ctx.moveTo(...at); else ctx.lineTo(...at);
-    });
-    ctx.closePath();
-    ctx.fill();
-  };
-  // Moonlight from the upper right leaves a thin cold edge.
-  outline(1.8, -1.4, 'rgb(72,82,118)');
-  outline(0, 0, 'rgb(12,11,22)');
-  shaft(ctx, x - 13 + swing * 0.6, y + 1, x - 12 + swing * 0.3, y - 60, 3, 'rgb(14,12,22)', 'rgb(66,74,108)');
-  ctx.restore();
+/** One frame of a walker, cell for cell, with a cold edge wherever the moon, up to the right, reaches its outline. */
+function walkerSprite(step: number, gear: Gear): HTMLCanvasElement {
+  const rows = [...Array<string>(WALKER_HEADROOM).fill('......'), ...WALKER_BODY, ...WALKER_STEPS[step]!];
+  const filled = (x: number, y: number) => rows[y]?.[x] === '#';
+  const canvas = document.createElement('canvas');
+  canvas.width = 6;
+  canvas.height = rows.length;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return canvas;
+  rows.forEach((row, y) => [...row].forEach((cell, x) => {
+    if (cell !== '#') return;
+    // The moon is high: it catches the tops, and the right side of the hood and shoulders.
+    ctx.fillStyle = !filled(x, y - 1) || (!filled(x + 1, y) && y < WALKER_HEADROOM + 5) ? 'rgb(62,72,110)' : 'rgb(13,13,26)';
+    ctx.fillRect(x, y, 1, 1);
+  }));
+  // Held upright in the leading hand: a spear with its iron head, or a staff with a knot at the top.
+  const top = gear === 'spear' ? 0 : gear === 'staff' ? 2 : rows.length;
+  for (let y = top; y < rows.length; y += 1) {
+    ctx.fillStyle = gear === 'spear' && y < 2 ? 'rgb(122,132,164)' : 'rgb(20,18,28)';
+    ctx.fillRect(1, y, 1, 1);
+  }
+  if (gear === 'staff') ctx.fillRect(0, 2, 3, 1);
+  return canvas;
 }
+
+/** The top of the aqueduct's coping, sloping away to the right, between the two ruins in front of it. */
+const AQUEDUCT = { left: 605, right: 882, deck: (x: number) => 380 + (x - 632) * 0.085, speed: 12 };
 
 function shadowPainter(): ShotPainter {
   const layer = new PropLayer();
@@ -695,22 +702,41 @@ function shadowPainter(): ShotPainter {
     { x: 1190, y: 466, radius: 58, color: VIOLET, power: 0.34, seed: 3 }, { x: 1026, y: 492, radius: 46, color: VIOLET, power: 0.34, seed: 4 },
     { x: 1576, y: 472, radius: 58, color: VIOLET, power: 0.34, seed: 5 },
   ];
-  const walkers = [0, 1, 2, 3, 4, 5, 6].map((index) => ({ offset: index * 50 + (index % 2) * 13 }));
+  const sprites = (['none', 'spear', 'staff'] as const).map((gear) => [0, 1, 2, 3].map((step) => walkerSprite(step, gear)));
+  // A long file, in twos and threes, that never ends while the shot lasts.
+  let along = 0;
+  const walkers = Array.from({ length: 16 }, () => {
+    along += random() < 0.3 ? 30 + random() * 14 : 15 + random() * 8;
+    return { offset: along, gear: random() < 0.45 ? 1 : random() < 0.4 ? 2 : 0 };
+  });
+  const loop = along + 18;
   return (frame) => {
     const { ctx, camera, seconds } = frame;
     paintLights(frame, [{ x: 1066, y: 66, radius: 240, color: MOON, power: 0.14, seed: 7 }, { x: 134, y: 395, radius: 110, color: CANDLE, power: 0.26, seed: 8 }]);
+    // The mist behind the aqueduct catches the moon, so the file stands out against it.
+    ctx.globalCompositeOperation = 'lighter';
+    for (const [x, width] of [[640, 150], [730, 170], [820, 150]] as const) {
+      ctx.globalAlpha = 0.07;
+      ctx.drawImage(puff, camera.x + (x - width / 2) * camera.scale, camera.y + (AQUEDUCT.deck(x) - 34) * camera.scale, width * camera.scale, 40 * camera.scale);
+    }
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
     const props = layer.begin();
     if (props) {
+      props.save();
+      // They come out from behind the ruin on the right and go behind the one on the left.
+      props.beginPath();
+      props.rect(AQUEDUCT.left, 0, AQUEDUCT.right - AQUEDUCT.left, 941);
+      props.clip();
       for (const walker of walkers) {
-        const x = 880 + walker.offset - seconds * 21;
-        // They come out from behind the ruin and go on along the aqueduct, fading at both ends.
-        const shown = smooth((884 - x) / 26) * smooth((x - 606) / 26);
-        if (shown <= 0) continue;
-        const stride = seconds * 4.2 + walker.offset;
-        props.globalAlpha = shown;
-        paintWalker(props, x, 386 - Math.abs(Math.sin(stride)), stride);
+        const walked = walker.offset + seconds * AQUEDUCT.speed;
+        const x = Math.round((AQUEDUCT.right + 20 - (walked % loop)) / GRAIN) * GRAIN;
+        if (x < AQUEDUCT.left - 20 || x > AQUEDUCT.right + 4) continue;
+        const sprite = sprites[walker.gear]![Math.floor(walked / 3.5) % 4]!;
+        const feet = Math.round(AQUEDUCT.deck(x) / GRAIN) * GRAIN;
+        props.drawImage(sprite, x - 3 * GRAIN, feet - sprite.height * GRAIN, sprite.width * GRAIN, sprite.height * GRAIN);
       }
-      props.globalAlpha = 1;
+      props.restore();
       layer.present(ctx, camera);
     }
     for (const band of bands) {
@@ -724,27 +750,164 @@ function shadowPainter(): ShotPainter {
   };
 }
 
+/** The camp fire, where the painter laid its logs, and the glow it throws on the camp. */
+const HEARTH = { x: 380, y: 512, width: 80, height: 100 };
 const CAMP: readonly Light[] = [
-  { x: 380, y: 496, radius: 250, color: FIRE, power: 0.3, seed: 1 }, { x: 176, y: 336, radius: 90, color: CANDLE, power: 0.22, seed: 2 },
+  { x: HEARTH.x, y: 490, radius: 280, color: FIRE, power: 0.34, seed: 1 }, { x: 176, y: 336, radius: 90, color: CANDLE, power: 0.22, seed: 2 },
   { x: 462, y: 300, radius: 70, color: CANDLE, power: 0.2, seed: 3 }, { x: 1478, y: 358, radius: 90, color: CANDLE, power: 0.22, seed: 4 },
   { x: 1426, y: 524, radius: 90, color: CANDLE, power: 0.24, seed: 5 }, { x: 358, y: 676, radius: 100, color: CANDLE, power: 0.24, seed: 6 },
 ];
-const CAMP_FIRES: readonly FireSpot[] = [{ x: 384, y: 514, width: 82, height: 76, base: 0.66 }];
+/** Image pixels a second: an unhurried walk at this distance. */
+const WALK_SPEED = 150;
+const snap = (value: number) => Math.round(value / GRAIN) * GRAIN;
+/** Steady pace, then the last steps slow to a stop. */
+const arrive = (p: number) => (p - (p > 0.8 ? (p - 0.8) ** 2 / 0.4 : 0)) / 0.9;
 
-function companyPainter(): ShotPainter {
-  const fires = paintedFires(CAMP_FIRES, 4421);
+interface Placed { art: SheetArt; id: string; x: number; y: number; pose: string; flip: boolean; shown: number }
+
+/**
+ * Where someone of the camp stands at this second, how much of them shows, and the frame they show. The heroes walk in
+ * and leave before the advisers show; the advisers are already where they stand.
+ */
+function placeHero(hero: CampActor, index: number, art: SheetArt, t: number, reduced: boolean, leaves: boolean): Placed {
+  const out = leaves ? 1 - smooth((t - OPENING_ACTOR_FADE_AT) / OPENING_ACTOR_FADE_SECONDS) : 1;
+  const duration = Math.abs(hero.x - hero.from) / WALK_SPEED, since = t - hero.at;
+  const p = reduced || duration === 0 ? 1 : clamp01(since / duration);
+  const x = hero.from + (hero.x - hero.from) * arrive(p);
+  const shown = (leaves && reduced ? smooth((t - hero.at * 0.45) / 0.9) : smooth(since / (duration ? 0.5 : 0.9))) * out;
+  // A step every 80 pixels walked: the weight passes from one frame to the other and the body rises a cell.
+  const stride = (Math.abs(x - hero.from) / 80) * Math.PI;
+  const walking = p > 0 && p < 1;
+  const idle = art.entry.anims.idle;
+  let pose = 'idle';
+  if (walking) pose = Math.sin(stride) > 0 ? 'idle' : 'idle_b';
+  else if (idle) {
+    const cycle = idle.ms.reduce((sum, ms) => sum + ms, 0);
+    let at = ((t + index * 0.37) * 1000) % cycle;
+    pose = idle.frames.find((_, k) => (at -= idle.ms[k]!) < 0) ?? 'idle';
+  }
+  const lift = walking ? Math.round(Math.abs(Math.sin(stride))) * GRAIN : 0;
+  return { art, id: hero.id, x: snap(x), y: snap(hero.y) - lift, pose, flip: hero.facing === 'LEFT', shown };
+}
+
+/** Their shadow from the fire, laid on the ground and stretched away from it. */
+function castShadow(ctx: CanvasRenderingContext2D, hero: Placed, source: CanvasImageSource): void {
+  const dx = hero.x - HEARTH.x, dy = hero.y - HEARTH.y, length = Math.hypot(dx, dy) || 1, reach = 0.5;
+  const [cellWidth, cellHeight] = hero.art.entry.cell, [anchorX, anchorY] = hero.art.entry.anchor;
+  const column = Math.max(0, hero.art.entry.cells.indexOf(hero.pose));
+  ctx.save();
+  ctx.translate(hero.x, hero.y);
+  ctx.transform(1, 0, (-dx / length) * reach, (-dy / length) * reach, 0, 0);
+  ctx.scale(hero.flip ? -GRAIN : GRAIN, GRAIN);
+  ctx.drawImage(source, column * cellWidth, 0, cellWidth, cellHeight, -anchorX, -anchorY, cellWidth, cellHeight);
+  ctx.restore();
+}
+
+function companyPainter(sheets: SheetBook): ShotPainter {
+  const layer = new PropLayer();
+  const fire = TongueFire.sized(HEARTH.width, HEARTH.height, 4421);
+  const smoke = softPuff([34, 28, 30]);
   const random = seeded(2741);
   const sparks = Array.from({ length: 30 }, () => ({ phase: random(), offset: (random() - 0.5) * 70, speed: 0.16 + random() * 0.2 }));
+  const plumes = Array.from({ length: 9 }, () => ({ size: 50 + random() * 90, speed: 0.07 + random() * 0.05, phase: random(), drift: 50 + random() * 70 }));
+  const lit = document.createElement('canvas');
+  const litCtx = lit.getContext('2d');
+  // Each hero's figure in the colour of the fire, of the moon and of their shadow, made once.
+  const looks = new Map<string, { warm: CanvasImageSource; cool: CanvasImageSource; dark: CanvasImageSource }>();
+  const lookOf = (hero: Placed) => {
+    let look = looks.get(hero.id);
+    if (!look) {
+      look = { warm: tintedCanvas(hero.art.image, 'rgb(255,178,98)'), cool: tintedCanvas(hero.art.image, 'rgb(128,156,236)'), dark: tintedCanvas(hero.art.image, 'rgb(8,6,12)') };
+      looks.set(hero.id, look);
+    }
+    return look;
+  };
+  /**
+   * The hero's frame in the night of the camp: multiplied by the fire's warmth on the side towards it and by the cold
+   * of the night on the other, so the pixel art keeps its darks, then cut back to the figure.
+   */
+  const lightHero = (hero: Placed, seconds: number): HTMLCanvasElement => {
+    const { entry, image } = hero.art;
+    const [width, height] = entry.cell;
+    lit.width = width;
+    lit.height = height;
+    if (!litCtx) return lit;
+    const column = Math.max(0, entry.cells.indexOf(hero.pose));
+    const figure = () => {
+      litCtx.save();
+      if (hero.flip) { litCtx.translate(width, 0); litCtx.scale(-1, 1); }
+      litCtx.drawImage(image, column * width, 0, width, height, 0, 0, width, height);
+      litCtx.restore();
+    };
+    figure();
+    const near = clamp01(1.3 - Math.abs(hero.x - HEARTH.x) / 800), glowing = 0.9 + 0.1 * flicker(seconds, 1);
+    const warm = (k: number) => `rgb(${Math.round((150 + 105 * near * k) * glowing)},${Math.round((118 + 66 * near * k) * glowing)},${Math.round(104 + 20 * near * k)})`;
+    // From the side that faces the fire to the side the night has.
+    const fromFire = hero.x >= HEARTH.x;
+    const light = litCtx.createLinearGradient(fromFire ? 0 : width, 0, fromFire ? width : 0, 0);
+    light.addColorStop(0, warm(1));
+    light.addColorStop(0.55, warm(0.55));
+    light.addColorStop(1, 'rgb(92,98,142)');
+    litCtx.globalCompositeOperation = 'multiply';
+    litCtx.fillStyle = light;
+    litCtx.fillRect(0, 0, width, height);
+    litCtx.globalCompositeOperation = 'destination-in';
+    figure();
+    litCtx.globalCompositeOperation = 'source-over';
+    return lit;
+  };
   return (frame) => {
-    const { ctx, camera, seconds } = frame;
+    const { ctx, camera, seconds, dt, reduced } = frame;
     paintLights(frame, CAMP);
-    fires(frame);
+    for (const plume of plumes) {
+      const rise = (plume.phase + seconds * plume.speed) % 1;
+      ctx.globalAlpha = 0.2 * Math.sin(rise * Math.PI);
+      const size = plume.size * camera.scale * (1 + rise * 1.4);
+      ctx.drawImage(smoke, camera.x + (HEARTH.x + plume.drift * rise) * camera.scale - size / 2, camera.y + (HEARTH.y - HEARTH.height * 0.8 - 260 * rise) * camera.scale - size / 2, size, size);
+    }
+    ctx.globalAlpha = 1;
+    const props = layer.begin();
+    if (!props) return;
+    const company = [...OPENING_CAST, ...OPENING_ADVISERS].flatMap((hero, index) => {
+      const art = sheets.get(hero.id);
+      const placed = art ? placeHero(hero, index, art, seconds, reduced, index < OPENING_CAST.length) : null;
+      return placed && placed.shown > 0.001 ? [placed] : [];
+    }).sort((a, b) => a.y - b.y);
+    for (const hero of company) {
+      const [width, height] = hero.art.entry.cell, [anchorX, anchorY] = hero.art.entry.anchor;
+      props.globalAlpha = hero.shown;
+      props.drawImage(lightHero(hero, seconds), hero.x - (hero.flip ? width - anchorX : anchorX) * GRAIN, hero.y - anchorY * GRAIN, width * GRAIN, height * GRAIN);
+    }
+    props.globalAlpha = 1;
+    if (company.length) {
+      props.save();
+      // Behind each figure: the fire's edge on the side it faces, the moon's on the other, then the shadows on the ground.
+      props.globalCompositeOperation = 'destination-over';
+      for (const hero of company) {
+        const look = lookOf(hero), near = clamp01(1.25 - Math.abs(hero.x - HEARTH.x) / 900);
+        props.globalAlpha = hero.shown ** 3 * 0.75 * near * flicker(seconds, 1);
+        const towards = hero.x >= HEARTH.x ? -GRAIN : GRAIN;
+        drawFrame(props, hero.art.entry, look.warm, hero.pose, hero.x + towards, hero.y, GRAIN, hero.flip);
+        props.globalAlpha = hero.shown ** 3 * 0.32;
+        drawFrame(props, hero.art.entry, look.cool, hero.pose, hero.x - towards, hero.y - GRAIN, GRAIN, hero.flip);
+      }
+      for (const hero of company) {
+        props.globalAlpha = hero.shown * 0.3 * (0.85 + 0.15 * flicker(seconds, 1));
+        castShadow(props, hero, lookOf(hero).dark);
+        props.globalAlpha = 1;
+        contactShadow(props, hero.x, hero.y + 1, 30, 0.5 * hero.shown);
+      }
+      props.restore();
+    }
+    fire.advance(dt);
+    fire.draw(props, HEARTH.x, HEARTH.y, GRAIN);
+    layer.present(ctx, camera);
     ctx.globalCompositeOperation = 'lighter';
     for (const spark of sparks) {
       const rise = (spark.phase + seconds * spark.speed) % 1;
       ctx.fillStyle = rgba([255, 164, 70], 1 - rise);
       const size = Math.max(2, Math.round(2 * camera.scale));
-      ctx.fillRect(camera.x + (380 + spark.offset * (0.4 + rise) + Math.sin(rise * 9 + spark.offset) * 16) * camera.scale, camera.y + (486 - rise * 210) * camera.scale, size, size);
+      ctx.fillRect(camera.x + (HEARTH.x + spark.offset * (0.4 + rise) + Math.sin(rise * 9 + spark.offset) * 16) * camera.scale, camera.y + (HEARTH.y - 30 - rise * 230) * camera.scale, size, size);
     }
     ctx.globalCompositeOperation = 'source-over';
   };
@@ -755,5 +918,5 @@ export function createShotPainter(id: OpeningShotId, sheets: SheetBook): ShotPai
   if (id === 'prologue_seals') return sealsPainter();
   if (id === 'prologue_lion') return boisClairPainter(sheets);
   if (id === 'prologue_shadow') return shadowPainter();
-  return companyPainter();
+  return companyPainter(sheets);
 }
