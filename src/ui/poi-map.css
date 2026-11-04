@@ -30,7 +30,11 @@
 .poi-marker__check{position:absolute;right:12px;top:-6px;background:#a7d1af;color:#0b291f;border:1px solid #183b30;border-radius:50%;width:19px;height:19px;line-height:18px;font-size:13px;text-shadow:none}.poi-marker__check--neutral{background:#b5bcb0;color:#253732}
 .poi-marker__position{font-size:9px;line-height:1;background:#f2d38e;color:#13232b;text-shadow:none;padding:3px 5px;border-radius:2px;text-transform:uppercase;letter-spacing:.04em}
 .poi-marker--border .poi-marker__name:before{content:'↗ ';color:inherit}.poi-map__map-caption{position:absolute;bottom:7px;left:12px;pointer-events:none;padding:4px 8px;border-radius:3px;background:#10222cea;font-size:10px;color:#e7d1a1;letter-spacing:.04em}
-.poi-map[data-region="0"] .poi-marker--outbound .poi-marker__name{transform:translateY(calc(-100% - 56px))}
+.poi-marker__toward{display:block;font-size:10px;font-weight:500;color:#e9c987;letter-spacing:.03em}.poi-marker[aria-pressed=true] .poi-marker__toward{color:#6a4813}
+/* The first region's exit sits just under the refuge: its name reads to the right, clear of the refuge's own label. */
+.poi-map[data-region="0"] .poi-marker--outbound .poi-marker__name{position:absolute;left:calc(50% + 27px);top:50%;transform:translateY(-50%);width:max-content;max-width:118px;text-align:left}
+.poi-map .poi-marker--far{opacity:.42;filter:saturate(.55)}
+.poi-map .poi-marker--far:hover,.poi-map .poi-marker--far:focus-visible,.poi-map .poi-marker--far[aria-pressed=true]{opacity:.9;filter:none}
 .poi-map__footer{padding:8px 20px;background:linear-gradient(110deg,#0d1c2c,#172735);border-top:1px solid #806c48}
 .poi-map__detail{display:flex;align-items:center;justify-content:space-between;gap:8px 20px;min-width:0;flex-wrap:wrap}.poi-map__selection{min-width:0;flex:1}.poi-map__detail h2{font-family:var(--font-display,serif);font-size:20px;font-weight:500;margin:0 0 2px;color:#f4dfb4}.poi-map__detail-role{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#c3aa75}.poi-map__detail p{font-size:11px;line-height:1.4;margin:2px 0;color:#d5d7cc}.poi-map__detail-actions{display:flex;gap:7px;flex-shrink:0}.poi-map [data-poi-action="move"]:enabled{background:#d9bd83;color:#152630;border-color:#f3dca9;font-weight:600}.poi-map__danger{font-size:12px;color:#ffbd9e}
 .poi-map__legend{font-size:13px;color:#c9b682;line-height:1.8}.poi-map__legend p{margin:2px 0}.poi-map__legend span{display:inline-block;margin-right:12px}
@@ -39,13 +43,15 @@
 .poi-map__panel header{display:flex;justify-content:space-between;align-items:center;gap:10px}.poi-map__panel h2{font-family:var(--font-display,serif);font-size:25px;font-weight:500;color:#f2ddb0;margin:0}.poi-map__panel h3{font-family:var(--font-display,serif);font-size:19px;font-weight:500;color:#f2ddb0;margin:5px 0 9px}.poi-map__panel section{padding-top:20px;margin-top:20px;border-top:1px solid #756445}.poi-map__panel p{font-size:14px;line-height:1.65;color:#d5d7cc}.poi-map__panel button{flex-shrink:0}
 .poi-map__threat-summary{flex-basis:100%;border-top:1px solid #735340;padding-top:4px}.poi-map__threat-summary p{color:#ffd8ba}
 .poi-map__canvas .poi-map__party-layer{z-index:3;overflow:visible}
-.poi-map__pawn{fill:#ffe4a4;stroke:#182635;stroke-width:2;stroke-linejoin:round;filter:drop-shadow(0 2px 3px #000b);pointer-events:none}
+.poi-map__pawn{fill:#ffe4a4;stroke:#182635;stroke-width:2;stroke-linejoin:round;pointer-events:none}
 .poi-map__pawn .poi-map__pawn-shadow{fill:#09131bc9;stroke:none}
+.poi-map__pawn .poi-map__pawn-base{fill:#d9b56a;stroke:#3a2a12;stroke-width:1.4}
+.poi-map__pawn-figure{filter:drop-shadow(0 0 1px #0b1620) drop-shadow(0 2px 2px #000a)}
 .poi-map__traveller .poi-map__pawn-piece{animation:poi-pawn-step .24s ease-in-out infinite}
 .poi-map__wait-note{display:block;font-size:9px;line-height:1.2;color:#d5c59e;margin-top:2px}
 @keyframes poi-pawn-step{50%{transform:translateY(-2px)}}
 .poi-map:not([data-reduced-motion=true]) .poi-marker--current .poi-marker__icon{animation:poi-position-presence 3.6s ease-in-out infinite}
-.poi-marker__icon,.poi-marker__name{transition:background-color .16s,border-color .16s,box-shadow .16s}
+.poi-marker__icon,.poi-marker__name{transition:background-color .16s,border-color .16s,box-shadow .16s}.poi-map .poi-marker{transition:opacity .16s,filter .16s}
 @keyframes poi-position-presence{50%{box-shadow:0 0 24px #f3cf7977}}
 @keyframes poi-panel-entry{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
 @media(max-width:1050px){.poi-map__header{flex-wrap:wrap;padding:7px 12px;gap:5px 12px}.poi-map__header nav{width:100%}.poi-map__header nav button{flex:1}.poi-map__footer{padding:7px 12px}}

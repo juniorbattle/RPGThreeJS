@@ -1,4 +1,5 @@
 import type { PoiMapModel } from '../game/runSystem';
+import { resolvePixelSheet } from '../combat/pixel/PixelSpriteSheets';
 import { LION_POI_POSITIONS, LION_POI_REGIONS, LION_POI_REGION_EXITS, lionPoiMapPhase, lionPoiPathBends } from '../campaign/LionPoiMap';
 import './poi-map.css';
 import { onReducedMotionChange, prefersReducedMotion } from './ReducedMotion';
@@ -17,13 +18,49 @@ const roleLabels={primary:'Jalon principal',structuring:'Étape structurante',se
 const participationLabels={required:'Requis',optional:'Facultatif',alternative:'Alternative exclusive'};
 const icons={primary:'◆',mystery:'◇',combat:'⚔',elite:'♜',chest:'▣',refuge:'⌂'};
 
+/**
+ * Where the map's selection starts: the current point while it still has something to open; otherwise the step the
+ * company would most likely take next: a reachable point the story still needs, leaving the region before turning
+ * back; then the first step on the open roads towards the nearest required point still to do; then an optional point
+ * within reach. Selection only: nothing moves until the player confirms.
+ */
+export function suggestedPoi(model:PoiMapModel):string{
+  const current=model.nodes.find(n=>n.id===model.currentNodeId);
+  if(!current||(current.status==='available'&&current.canActivate))return model.currentNodeId;
+  const rank=(n:PoiMapModel['nodes'][number])=>(n.participation==='required'?0:2)+(n.region>current.region?0:1);
+  const within=model.nodes.filter(n=>n.canMove&&n.status==='available').sort((a,b)=>rank(a)-rank(b));
+  const needed=within.find(n=>n.participation!=='optional');
+  if(needed)return needed.id;
+  const byId=new Map(model.nodes.map(n=>[n.id,n])),firstStep=new Map<string,string>();
+  const queue=model.nodes.filter(n=>n.canMove).map(n=>{firstStep.set(n.id,n.id);return n.id;});
+  for(const id of queue){
+    const node=byId.get(id);
+    if(node?.status==='available'&&node.participation==='required')return firstStep.get(id)!;
+    for(const edge of model.edges){
+      const other=!edge.unlocked?undefined:edge.from===id?edge.to:edge.to===id?edge.from:undefined;
+      if(other&&other!==model.currentNodeId&&!firstStep.has(other)){firstStep.set(other,firstStep.get(id)!);queue.push(other);}
+    }
+  }
+  return within[0]?.id??model.currentNodeId;
+}
+
+/** The company's leader stands on the atlas as a small figure on a gilded base: the pawn reads as this company. */
+const LEADER=resolvePixelSheet('alistair');
+const PAWN_SCALE=0.5;
+function pawnFigure():string{
+  if(!LEADER)return `<circle cx="0" cy="-30" r="6"/><path d="M-5 -23 Q-9 -19 -5 -14 L-8 -6 L8 -6 L5 -14 Q9 -19 5 -23 Z"/>`;
+  const [cellWidth,cellHeight]=LEADER.cell,bounds=LEADER.idleBoundsPx,column=Math.max(0,LEADER.cells.indexOf('idle'));
+  const width=(bounds.right-bounds.left)*PAWN_SCALE,height=(bounds.bottom-bounds.top)*PAWN_SCALE;
+  return `<svg class="poi-map__pawn-sprite" x="${-width/2}" y="${-height+1}" width="${width}" height="${height}" viewBox="${column*cellWidth+bounds.left} ${bounds.top} ${bounds.right-bounds.left} ${bounds.bottom-bounds.top}" preserveAspectRatio="xMidYMax meet"><image href="${LEADER.file}" width="${cellWidth*LEADER.cells.length}" height="${cellHeight}"/></svg>`;
+}
+
 /** Geographical atlas and native intentions only; no writable campaign state. */
 export class PoiMapView {
   private element:HTMLElement|null=null;
   private selectedId='';
   private finishTravel:(()=>void)|null=null;
   constructor(private readonly options:PoiMapOptions){}
-  open(model:PoiMapModel,focusId=model.currentNodeId,reducedMotion=false):void {
+  open(model:PoiMapModel,focusId=suggestedPoi(model),reducedMotion=false):void {
     this.render(model,lionPoiMapPhase(model.currentNodeId),focusId,reducedMotion);
   }
 
@@ -60,9 +97,9 @@ export class PoiMapView {
       <div class="poi-map__viewport">
       <div class="poi-map__atlas-bar">${discovered.length>1?`<div class="poi-map__regions" role="tablist" aria-label="Régions découvertes">${discovered.map(({r,i})=>`<button role="tab" id="poi-region-${i}" data-poi-region="${i}" aria-selected="${i===phase}" tabindex="${i===phase?0:-1}" aria-controls="poi-atlas">${r.shortTitle}</button>`).join('')}</div>`:''}<button data-poi-action="locate">Ma position</button></div>
       <div class="poi-map__land" id="poi-atlas" role="${discovered.length>1?'tabpanel':'region'}" aria-labelledby="${discovered.length>1?`poi-region-${phase}`:'poi-region-title'}" tabindex="0" aria-label="${escape(region.title)}. Carte défilante, glisser ou utiliser les flèches."><div class="poi-map__canvas"><img class="poi-map__geography" src="${region.image}" alt="" draggable="false"/><svg viewBox="0 0 960 520" aria-hidden="true">${paths}</svg>
-      ${nodes.map(n=>{const [x,y]=positions.get(n.id)!;const threat=threats.find(threat=>threat.positionId===n.id);return `<button class="poi-marker poi-marker--${n.status} poi-marker--${n.role} poi-marker--${n.kind} ${n.id===model.currentNodeId?'poi-marker--current':''} ${n.region!==phase?'poi-marker--border':''} ${n.region>phase?'poi-marker--outbound':''} ${threat?'poi-marker--occupied':''}" data-poi-id="${escape(n.id)}" data-poi-reachable="${n.canMove}" style="left:${x/9.6}%;top:${y/5.2}%" aria-label="${escape(n.label)}, ${roleLabels[n.role]}, ${kindLabels[n.kind]}, ${participationLabels[n.participation]}, ${statusLabels[n.status]}${n.id===model.currentNodeId?', position actuelle':''}${n.reusable?', services réutilisables':''}${threat?', passage occupé par '+escape(threat.label):''}"><span class="poi-marker__icon" aria-hidden="true">${icons[n.kind]}</span><span class="poi-marker__name">${escape(n.label)}</span>${n.status==='resolved'?'<span class="poi-marker__check" aria-hidden="true">✓</span>':n.status==='neutralized'?'<span class="poi-marker__check poi-marker__check--neutral" aria-hidden="true">—</span>':''}${n.id===model.currentNodeId?'<span class="poi-marker__position">Vous êtes ici</span>':''}</button>`;}).join('')}
+      ${nodes.map(n=>{const [x,y]=positions.get(n.id)!;const threat=threats.find(threat=>threat.positionId===n.id);return `<button class="poi-marker poi-marker--${n.status} poi-marker--${n.role} poi-marker--${n.kind} ${n.id===model.currentNodeId?'poi-marker--current':''} ${n.region!==phase?'poi-marker--border':''} ${n.region>phase?'poi-marker--outbound':''} ${threat?'poi-marker--occupied':''} ${n.canMove||n.id===model.currentNodeId?'':'poi-marker--far'}" data-poi-id="${escape(n.id)}" data-poi-reachable="${n.canMove}" style="left:${x/9.6}%;top:${y/5.2}%" aria-label="${escape(n.label)}, ${roleLabels[n.role]}, ${kindLabels[n.kind]}, ${participationLabels[n.participation]}, ${statusLabels[n.status]}${n.id===model.currentNodeId?', position actuelle':''}${n.reusable?', services réutilisables':''}${threat?', passage occupé par '+escape(threat.label):''}${n.region>phase?', vers '+escape(LION_POI_REGIONS[n.region]!.shortTitle):''}"><span class="poi-marker__icon" aria-hidden="true">${icons[n.kind]}</span><span class="poi-marker__name">${escape(n.label)}${n.region>phase?`<small class="poi-marker__toward">Vers ${escape(LION_POI_REGIONS[n.region]!.shortTitle)}</small>`:''}</span>${n.status==='resolved'?'<span class="poi-marker__check" aria-hidden="true">✓</span>':n.status==='neutralized'?'<span class="poi-marker__check poi-marker__check--neutral" aria-hidden="true">—</span>':''}${n.id===model.currentNodeId?'<span class="poi-marker__position">Vous êtes ici</span>':''}</button>`;}).join('')}
       ${threats.map(threat=>{const position=positions.get(threat.positionId);if(!position)return '';return `<span class="poi-threat" data-poi-elite-id="${escape(threat.id)}" style="left:${position[0]/9.6}%;top:${position[1]/5.2}%" aria-hidden="true">♜</span>`;}).join('')}
-      <svg class="poi-map__party-layer" viewBox="0 0 960 520" aria-hidden="true">${current.region===phase?(()=>{const [x,y]=positions.get(current.id)!;return `<g class="poi-map__pawn" data-node="${escape(current.id)}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y})"><g class="poi-map__pawn-piece"><ellipse class="poi-map__pawn-shadow" cx="-28" cy="-28" rx="13" ry="4"/><circle cx="-28" cy="-58" r="6"/><path d="M-33 -51 Q-37 -47 -33 -42 L-36 -34 L-20 -34 L-23 -42 Q-19 -47 -23 -51 Z"/><path d="M-37 -34 L-39 -29 Q-28 -25 -17 -29 L-19 -34 Z"/></g></g>`;})():''}</svg></div></div>
+      <svg class="poi-map__party-layer" viewBox="0 0 960 520" aria-hidden="true">${current.region===phase?(()=>{const [x,y]=positions.get(current.id)!;return `<g class="poi-map__pawn" data-node="${escape(current.id)}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y})"><g class="poi-map__pawn-piece" transform="translate(-40 14)"><ellipse class="poi-map__pawn-shadow" cx="1" cy="1" rx="15" ry="4.5"/><ellipse class="poi-map__pawn-base" cx="0" cy="0" rx="12" ry="3.6"/><g class="poi-map__pawn-figure">${pawnFigure()}</g></g></g>`;})():''}</svg></div></div>
       <div class="poi-map__map-caption"><span>${escape(region.title)} · Tour ${model.turn}</span></div></div>
       <footer class="poi-map__footer"><div class="poi-map__detail" aria-live="polite"></div></footer>
       <div class="poi-map__panel-backdrop" hidden><aside class="poi-map__panel" id="poi-map-panel" aria-labelledby="poi-panel-title" tabindex="-1"><header><h2 id="poi-panel-title">Repères de voyage</h2><button data-poi-action="close-panel" aria-label="Fermer les informations">Fermer</button></header><div class="poi-map__panel-detail"></div><section><h3>Explorer la carte</h3><p>Sélectionnez un lieu pour voir son état, puis choisissez « Se rendre ». Les chemins ouverts se parcourent dans les deux sens. Les lieux verrouillés conservent leurs conditions d’accès.</p><p>Glissez ou faites défiler la carte. Au clavier, les flèches passent entre les points d’intérêt ; Entrée sélectionne le lieu. « Ma position » recentre votre emplacement.</p><p>Les régions se découvrent en progressant. « Attendre » avance un tour sans déplacement ; les menaces actives peuvent alors avancer. Cela ne soigne pas la compagnie.</p></section><section><h3>Or et sauvegardes</h3><p>L’or et les objets gagnés sont utilisables immédiatement. En cas de défaite, la dernière sauvegarde de cette partie est rechargée : seuls les changements non sauvegardés sont annulés.</p></section><section class="poi-map__legend"><h3>Légende</h3><p><span>◆ Jalon</span> <span>◉ Structurant</span> <span>◇ Rencontre</span> <span>⚔ Combat</span> <span>▣ Coffre</span> <span>♜ Menace mobile</span> <span>⌂ Refuge</span></p><p>✓ Résolu · — Neutralisé</p></section></aside></div>`;
@@ -190,6 +227,8 @@ export class PoiMapView {
     if(!Number.isFinite(length)||length<=0)return;
     const token=element.querySelector<SVGGElement>('.poi-map__pawn');if(!token)return;
     const position=(distance:number)=>{const p=path.getPointAtLength(distance);token.setAttribute('transform',`translate(${p.x} ${p.y})`);token.dataset.x=String(p.x);token.dataset.y=String(p.y);};
+    const start=path.getPointAtLength(reverse?length:0),end=path.getPointAtLength(reverse?0:length);
+    token.querySelector('.poi-map__pawn-figure')?.setAttribute('transform',end.x<start.x?'scale(-1 1)':'');
     token.classList.add('poi-map__traveller');position(reverse?length:0);
     const duration=Math.max(650,Math.min(1100,length*2));
     element.dataset.travelling='true';element.inert=true; // No reentrant map intent during the short handoff.

@@ -721,7 +721,8 @@ export class GameApp {
     return this.campaignPresentation === 'journey' && !this.journeyUnavailable;
   }
 
-  private showPoiMap(focusId = this.state.run.currentNodeId): void {
+  /** Without an explicit point, the map selects the step the company would most likely take next. */
+  private showPoiMap(focusId?: string): void {
     this.activeNarrativeStage?.prepareGlobalHandoff();
 
     this.disposeJourney();

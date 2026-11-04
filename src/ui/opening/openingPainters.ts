@@ -580,12 +580,13 @@ const VILLAGE_FIRES: readonly FireSpot[] = [
 
 const ROAD = { x: 948, y: 436, farScale: 0.42, nearScale: 2.05, nearY: 700 };
 
-/** They stream out of the gate and spread across the square, at the tableau's own pixel size. */
+/** They stream out of the gate and spread across the square, at the tableau's own pixel size, clear of the market's
+ * crates, posts and brazier on the left. */
 const MARCH: ReadonlyArray<{ unit: string; delay: number; x: number; y: number; torch: boolean }> = [
-  { unit: 'serpent_brute', delay: 0, x: 500, y: 668, torch: true }, { unit: 'serpent_raider', delay: 0.6, x: 700, y: 640, torch: false },
-  { unit: 'serpent_raider', delay: 1.2, x: 360, y: 610, torch: true }, { unit: 'serpent_raider', delay: 1.9, x: 870, y: 672, torch: true },
+  { unit: 'serpent_brute', delay: 0, x: 530, y: 668, torch: true }, { unit: 'serpent_raider', delay: 0.6, x: 700, y: 640, torch: false },
+  { unit: 'serpent_raider', delay: 1.2, x: 460, y: 612, torch: true }, { unit: 'serpent_raider', delay: 1.9, x: 870, y: 672, torch: true },
   { unit: 'serpent_raider', delay: 2.7, x: 590, y: 590, torch: false }, { unit: 'serpent_brute', delay: 3.4, x: 760, y: 566, torch: true },
-  { unit: 'serpent_raider', delay: 4.2, x: 450, y: 548, torch: false }, { unit: 'serpent_raider', delay: 5, x: 650, y: 532, torch: true },
+  { unit: 'serpent_raider', delay: 4.2, x: 960, y: 580, torch: false }, { unit: 'serpent_raider', delay: 5, x: 650, y: 532, torch: true },
   { unit: 'serpent_raider', delay: 5.9, x: 840, y: 520, torch: false }, { unit: 'serpent_raider', delay: 6.8, x: 560, y: 512, torch: true },
   { unit: 'serpent_raider', delay: 7.6, x: 720, y: 498, torch: false }, { unit: 'serpent_brute', delay: 8.5, x: 830, y: 480, torch: true },
 ];

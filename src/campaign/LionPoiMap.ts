@@ -4,8 +4,9 @@ export const LION_POI_REGIONS = Object.freeze([
   {shortTitle:'II · Bois-Clair',title:'La vallée de Bois-Clair',image:'/assets/generated/lion-phase/poi-lot-e/bois-clair.png'},
   {shortTitle:'III · Le Sceau',title:'Les témoins et le jugement',image:'/assets/generated/lion-phase/poi-lot-e/judgement.png'},
 ]);
-/** Off-region destinations are anchored at visible outbound trails, not waterfalls. */
-export const LION_POI_REGION_EXITS:readonly(readonly[number,number])[]=[[650,350],[720,440],[870,430]];
+/** Off-region destinations are anchored at visible outbound trails, not waterfalls. The first region's exit sits on
+ * the trail that leaves the refuge's stairs, away from the points already behind the company. */
+export const LION_POI_REGION_EXITS:readonly(readonly[number,number])[]=[[818,378],[720,440],[870,430]];
 /** Authored layout only. RunSystem/campaign own connections and live eligibility. */
 export const LION_POI_POSITIONS: Readonly<Record<string, readonly [number, number]>> = {
   'lion-camp': [75,305], 'lion-audience': [190,170], 'lion-opening-ambush': [300,275],
@@ -62,7 +63,7 @@ const PATH_BENDS:Readonly<Record<string,readonly(readonly[number,number])[]>>={
   'lion-final-refuge>lion-final-judgement':[[850,320],[885,270],[900,210],[885,160]],
 };
 const REGION_PATH_BENDS:Readonly<Record<number,Readonly<Record<string,readonly(readonly[number,number])[]>>>>={
-  0:{'lion-first-refuge>lion-reserve-trail':[[850,305],[820,330],[770,350],[720,350]]},
+  0:{'lion-first-refuge>lion-reserve-trail':[[876,296],[862,322],[842,350]]},
   1:{'lion-second-refuge>lion-lancer-recruit':[[845,165],[790,225],[745,280],[700,310],[650,330],[680,375]]},
   2:{'lion-second-refuge>lion-lancer-recruit':[[125,115],[185,140],[225,185],[250,215],[225,245],[175,275],[150,305]]},
 };

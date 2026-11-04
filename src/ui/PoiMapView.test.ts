@@ -1,7 +1,8 @@
 // @vitest-environment happy-dom
 import {afterEach,describe,expect,it,vi} from 'vitest';
-import {PoiMapView} from './PoiMapView';
+import {PoiMapView,suggestedPoi} from './PoiMapView';
 import {createInitialState} from '../game/store';
+import type {GameState} from '../game/types';
 import {selectPoiMap, type PoiMapModel} from '../game/runSystem';
 
 afterEach(()=>{document.body.replaceChildren();vi.restoreAllMocks();vi.unstubAllGlobals();});
@@ -168,5 +169,50 @@ describe('POI atlas focus and authority intentions',()=>{
     await vi.waitFor(()=>expect(selectedAction.disabled).toBe(false));expect(onMove).toHaveBeenCalledOnce();
     expect(document.activeElement).toBe(selectedAction);
     expect(document.querySelector('[role="alert"]')!.textContent).toContain('Réessayez');
+  });
+});
+
+/** The operator's 2026-11-03 run: the first refuge secured, the merchant helped, the refugees left behind. */
+function afterFirstRefuge(at:string):GameState{
+  const state=createInitialState();
+  state.resolvedNodeIds=['lion-audience','lion-opening-ambush','lion-nomad-crossroads','lion-poi-opening-supplies','lion-poi-opening-cache','lion-first-trial-event','lion-first-refuge'];
+  Object.assign(state.flags,{lionMissionAccepted:true,ignoredRefugees:true,'refugeSecured:lion-first-refuge':true,'clanArrival:lion-first-refuge':true});
+  state.run.bypassedRouteNodeIds=['lion-refugees'];state.run.traversalBranches={T0:'lion-first-trial-event'};
+  state.run.currentNodeId=state.currentNodeId=at;return state;
+}
+describe('POI atlas guidance',()=>{
+  it('selects the next step without moving anyone: the audience at the start, the road out once the refuge is left',()=>{
+    expect(suggestedPoi(selectPoiMap(createInitialState()))).toBe('lion-audience');
+    expect(suggestedPoi(selectPoiMap(afterFirstRefuge('lion-first-refuge')))).toBe('lion-reserve-trail');
+    // From a point already behind the company, the way back to the refuge comes before the refugees left aside.
+    expect(suggestedPoi(selectPoiMap(afterFirstRefuge('lion-first-trial-combat')))).toBe('lion-first-refuge');
+  });
+  it('opens on that step with its action ready, names the region it leads to and keeps the refuge reopenable',()=>{
+    const root=document.createElement('div');document.body.append(root);
+    const state=afterFirstRefuge('lion-first-refuge'),model=selectPoiMap(state),before=structuredClone(state);
+    new PoiMapView({root,onMove:vi.fn(async()=>{}),onBypass:vi.fn(),onCompany:vi.fn(),onSave:vi.fn(),onMenu:vi.fn(),onReducedMotion:vi.fn()}).open(model);
+    expect(marker('lion-reserve-trail').getAttribute('aria-pressed')).toBe('true');
+    expect(action().disabled).toBe(false);expect(action().textContent).toBe('Se rendre');
+    expect(marker('lion-reserve-trail').textContent).toContain('Vers II · Bois-Clair');
+    marker('lion-first-refuge').focus();expect(action().textContent).toBe('Ouvrir le refuge');
+    expect(state).toEqual(before);
+  });
+  it('dims only the points the company cannot reach from where it stands',()=>{
+    fixture();
+    expect(marker('lion-camp').classList.contains('poi-marker--far')).toBe(false);
+    expect(marker('lion-audience').classList.contains('poi-marker--far')).toBe(false);
+    expect(marker('lion-opening-ambush').classList.contains('poi-marker--far')).toBe(true);
+    expect(marker('lion-first-refuge').classList.contains('poi-marker--far')).toBe(true);
+  });
+  it('shows the company leader as the pawn and turns them along the road while travelling',async()=>{
+    const {view}=fixture(undefined,model=>{model.currentNodeId='lion-audience';});
+    const pawn=document.querySelector<SVGGElement>('.poi-map__pawn')!;
+    expect(pawn.querySelector('image')!.getAttribute('href')).toContain('alistair');
+    const path=document.querySelector<SVGPathElement>('.poi-path[data-from=lion-camp][data-to=lion-audience]')!;
+    Object.defineProperty(path,'getTotalLength',{value:()=>100});
+    Object.defineProperty(path,'getPointAtLength',{value:(distance:number)=>({x:distance,y:20})});
+    const pending=view.animateTravel('lion-audience','lion-camp');
+    expect(pawn.querySelector('.poi-map__pawn-figure')!.getAttribute('transform')).toBe('scale(-1 1)');
+    view.close();await pending;
   });
 });
