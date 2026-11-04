@@ -56,7 +56,7 @@ Le 2026-11-02, l'opérateur juge le premier plan peu compréhensible et demande 
 
 Le 2026-11-03, l'opérateur signale que rien ne bouge et que les éléments sont mal intégrés. Les éléments dessinés prennent désormais le grain et la lumière des tableaux, et les feux peints s'animent. En mouvement réduit, la caméra reste fixe et la chute devient un fondu, mais le feu, la lumière et le vent restent animés. La bannière reste sans emblème, et aucune phrase ne change.
 
-Le 2026-11-03 encore, l'opérateur demande de retravailler les silhouettes de l'aqueduc, d'animer le feu du camp, de placer les héros au centre de la scène, bien intégrés, et d'ajouter les conseillers. Les héros sont dessinés dans le tableau sur son grain et dans sa lumière, au milieu du camp ; le feu brûle en langues ; les silhouettes deviennent une file à l'échelle de l'aqueduc. Séraphine et Maelor apparaissent au feu après le départ des héros, pour tenir le repère de quatre acteurs visibles ; les montrer avec les héros demanderait un amendement.
+Le 2026-11-03 encore, l'opérateur demande de retravailler les silhouettes de l'aqueduc, d'animer le feu du camp, de placer les héros au centre de la scène, bien intégrés, et d'ajouter les conseillers. Les héros sont dessinés dans le tableau sur son grain et dans sa lumière, au milieu du camp ; le feu brûle en langues ; les silhouettes deviennent une file à l'échelle de l'aqueduc. Séraphine et Maelor apparaissent au feu après le départ des héros, pour tenir le repère de quatre acteurs visibles ; les montrer avec les héros demanderait un amendement. À la question, l'opérateur répond « Garder le relais » : pas d'amendement, le relais reste.
 
 ## Ce qui ne change pas
 
