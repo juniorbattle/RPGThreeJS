@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.13.0",
+  "contractSetVersion": "1.14.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -208,6 +208,18 @@
       "constitutionChanged": true,
       "supersededRule": "For code-animated sequences on existing approved tableaux only: the stop on new cinematic production including pilot generalization, and the ban on replacement interludes; four living tableaux (Bois-Clair arrival, saved, sacrificed, Alaric's judgement) before their existing dialogues, with an animated backdrop during them",
       "implementationAcceptance": "PENDING; mockup of bois_clair_arrival first, then runtime, scoped browser evidence and operator viewing acceptance"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-LIVING-TABLEAUX-2",
+      "operatorDecisionId": "OD-2026-11-04-B",
+      "operatorDecisionPath": "docs/autonomy/LIVING_TABLEAUX_ENDINGS_OPERATOR_DECISION_2026-11-04.md",
+      "approvedAt": "2026-11-04",
+      "changedContracts": [
+        "PRESENTATION_AND_MEDIA"
+      ],
+      "constitutionChanged": false,
+      "supersededRule": "The exhaustive list of four living tableau moments of set 1.13.0; three more moments (alaric_audience_arrival, serpent_route_ending, lion_trial_route_ending), 40 seconds for the two route endings, the same animated backdrop on the aftermath dialogue before an ending, an outcome or route-ending sequence in place of its static Journey still, and no new mockup",
+      "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator viewing acceptance"
     }
   ],
   "status": "LOCKED",

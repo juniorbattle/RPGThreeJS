@@ -1,10 +1,25 @@
 # Tableaux vivants de l'audience et des fins — OD-2026-11-04-B
 
-**PROPOSED.** Proposition d'amendement 1.14.0 / `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-2`, en attente des choix et de l'approbation de l'opérateur sur la [fiche d'arbitrages](https://claude.ai/artifact/Hh6x3k5BZh3WjyR9HVXEJm). `docs/contracts` n'est pas modifié.
+**APPROVED DECISION.** Le 2026-11-04, l'opérateur a rempli la [fiche d'arbitrages](https://claude.ai/artifact/Hh6x3k5BZh3WjyR9HVXEJm) : ses huit choix suivent les recommandations, et il approuve le texte de l'amendement 1.14.0 / `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-2` tel quel (D1). Les contrats portent ce texte ; la baseline immuable est fixée par le commit opérationnel qui suit celui de l'amendement.
 
 ## Demande
 
 Le 2026-11-04, après la livraison des quatre tableaux vivants de [OD-2026-11-04-A](LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md), l'opérateur répond « Oui » à la question « Je prépare l'amendement pour ajouter l'audience d'Alaric ? », et ajoute : « je pense que les événements de fin peuvent être intéressants à travailler afin d'animer nos events majeurs jusqu'au bout ».
+
+## Choix de l'opérateur
+
+| Id | Sujet | Choix |
+| --- | --- | --- |
+| A1 | Moments | L'audience et les deux fins de route |
+| A2 | Durée | 30 s pour l'audience, 40 s pour les fins |
+| A3 | Fond animé | `lion_briefing`, les deux dialogues d'après-combat et l'épilogue |
+| B1 | Audience | Alaric debout devant le trône, la compagnie entre, quelques gardes lointains en silhouette |
+| B2 | Fin Serpent | La compagnie immobile, la caméra remonte vers la lune |
+| B3 | Fin de l'épreuve | Alaric sur les marches, Alistair, Séraphine et Maelor sur la mosaïque |
+| C1 | Méthode | Les trois ensemble, jugées dans le labo QA |
+| D1 | Amendement | J'approuve le texte tel quel |
+
+Aucune note n'accompagne ces choix. Le tableau des moments et les plans ci-dessous, tels que corrigés après la relecture, sont donc approuvés.
 
 ## Pourquoi un amendement
 
@@ -76,6 +91,10 @@ Relecture `contracts-guardian` du diff réel et de cette proposition : PASS sur 
 - **Avertissement, texte.** La phrase sur le moment statique de la Journey précise désormais « a transition still, not a dialogue tableau », pour ne pas contredire « replaces no … tableau ». Le correctif est régénéré et revalidé.
 - **Avertissement, audience.** Les gardes ne sont établis par aucun dialogue : figurants lointains, sans lumière, bornés, ou retirés (option B1).
 - **Avertissement, fonds.** Vérifier en jeu que chaque fond dessine sur le tableau de son propre dialogue ; l'image de l'épilogue en jeu est vérifiée (section Plans).
+
+## Approbation
+
+Le 2026-11-04, l'opérateur répond « Fiche remplie » ; sur la fiche, D1 vaut « J'approuve le texte tel quel ». Le correctif relu est appliqué tel quel à PRESENTATION_AND_MEDIA, au README et au manifeste (set 1.14.0). Le validateur de contrats passe sur l'arbre amendé.
 
 ## Ordre de travail
 
