@@ -1,6 +1,6 @@
 # Tableaux vivants aux moments clés — OD-2026-11-04-A
 
-**APPROVED DECISION (choix) ; amendement en attente d'approbation.** Le 2026-11-04, l'opérateur a rempli la [fiche d'arbitrages des tableaux vivants](https://claude.ai/artifact/BYnM5CGndEWtVVSYwBD1nk), issue de la [proposition d'amendement](LIVING_TABLEAUX_AMENDMENT_PROPOSAL_2026-11-04.md). Ces choix fixent le contenu de l'amendement 1.13.0. Ils ne modifient aucun contrat par eux-mêmes : le texte réécrit selon ces choix doit être relu sur son diff réel, puis approuvé par l'opérateur, avant le commit de l'amendement et la nouvelle baseline.
+**APPROVED DECISION.** Le 2026-11-04, l'opérateur a rempli la [fiche d'arbitrages des tableaux vivants](https://claude.ai/artifact/BYnM5CGndEWtVVSYwBD1nk), issue de la [proposition d'amendement](LIVING_TABLEAUX_AMENDMENT_PROPOSAL_2026-11-04.md), puis a approuvé le texte de l'amendement dédié 1.13.0 / `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-1` (section Approbation). Les contrats portent désormais ce texte ; la baseline immuable est fixée par le commit opérationnel qui suit celui de l'amendement.
 
 ## Choix de l'opérateur
 
@@ -48,6 +48,10 @@ Le même jour, l'opérateur ajoute : « si tu penses que ces tableaux vivants so
 Le diff réel est enregistré dans [LIVING_TABLEAUX_AMENDMENT_1.13.0.patch](LIVING_TABLEAUX_AMENDMENT_1.13.0.patch). Il touche la constitution, PRESENTATION_AND_MEDIA, AUTHORING_AND_QA, AUTONOMOUS_WORK_PROTOCOL, le README et le manifeste (39 lignes ajoutées, 5 modifiées). `docs/contracts` n'est pas modifié avant l'approbation. Appliqué dans une copie de travail isolée, il passe le validateur de contrats et `git diff --check`.
 
 Relecture indépendante `contracts-guardian` du diff réel, le 2026-11-04 : PASS sur les onze choix et sur les cinq points bloquants du premier brouillon. Sa seule condition est reprise : la séquence du jugement montre Alaric seul, sans le champion. Deux avertissements n'appellent pas de changement : le commit de l'amendement ne doit pas précéder l'approbation de l'opérateur, et la phrase de la constitution couvre le fond animé de façon large.
+
+## Approbation
+
+Le 2026-11-04, à la question « Tu approuves le texte de l'amendement 1.13.0 ? », l'opérateur répond : « J'approuve ». Le correctif relu est appliqué tel quel à la constitution, à PRESENTATION_AND_MEDIA, AUTHORING_AND_QA et AUTONOMOUS_WORK_PROTOCOL, au README et au manifeste (set 1.13.0). Le validateur de contrats passe sur l'arbre amendé. La suite est la maquette de l'arrivée à Bois-Clair (C2).
 
 ## Ce qui ne change pas
 

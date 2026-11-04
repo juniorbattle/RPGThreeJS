@@ -1,5 +1,7 @@
 # Tableaux vivants aux moments clés : proposition d'amendement
 
+**HISTORICAL — remplacée le 2026-11-04 par [OD-2026-11-04-A](LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md) et l'amendement approuvé 1.13.0, qui font foi.** Texte d'origine :
+
 **PROPOSED — pas en vigueur.** Le 2026-11-03, l'opérateur demande d'intégrer « ce même cutscene runtime animé » de l'ouverture à d'autres endroits clés du jeu, comme Bois-Clair et le jugement d'Alaric. Le 2026-11-04, à la question d'un amendement, il répond « Oui, préparer ». Ce document prépare cet amendement. Il ne modifie aucun contrat et n'autorise aucun code de production. Il ne vaut pas approbation : l'opérateur choisit d'abord sur la fiche d'arbitrages, puis approuve le texte final.
 
 ## Pourquoi un amendement
