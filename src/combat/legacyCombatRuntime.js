@@ -2493,15 +2493,30 @@ function showCombatResult(presentation,onClick){
   action.onclick=()=>{ if(action.disabled)return; action.disabled=true; combatCue('confirm'); onClick(); };
   action.focus();
 }
+// ============================= END BEAT =============================
+// The fight is decided: the company still standing celebrates a moment before the result card (operator, 2026-11-03),
+// and a lost fight leaves the last blow time to land. Presentation only: the outcome is already settled, and the
+// card, its fanfare and the campaign result simply come after the beat.
+const VICTORY_BEAT_S=1.7, DEFEAT_BEAT_S=1.1;
+function celebrateVictory(){
+  G.units.filter(u=>u.team==='player'&&u.alive).forEach((u,i)=>{ window.setTimeout(()=>{
+    if(_runtimeDisposed||!u.alive)return; playPixelAnim(u,'cast'); if(REDUCED_GRAPHICS)return;
+    // Two hops on the spot: the raised weapon is the cheer, the hops its energy.
+    const y=u.grp.position.y, hop=()=>tweenP(u.grp.position,{y:y+0.3},0.15,easeOutCubic).then(()=>tweenP(u.grp.position,{y},0.17,easeInOut));
+    void hop().then(()=>wait(0.06)).then(hop);
+  },i*130); });
+}
+function afterEndBeat(seconds,show){ window.setTimeout(()=>{ if(!_runtimeDisposed)show(); },seconds*1000); }
 function winWave(){ if(G.over)return; restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
-  combatCue('victory'); logMsg('— Vague '+G.wave+' vaincue ! —');
-  if(CAMPAIGN_MODE){
+  combatCue('victory'); logMsg('— Vague '+G.wave+' vaincue ! —'); celebrateVictory();
+  afterEndBeat(VICTORY_BEAT_S,()=>{ if(CAMPAIGN_MODE){
     showCombatResult({tone:'victory',title:'Victoire',subtitle:COMBAT_LABEL,detailLabel:'Objectif sécurisé',detail:COMBAT_OBJECTIVE,buttonLabel:'Continuer la chronique',rewards:COMBAT_REWARDS},()=>notifyCampaignResult(true));
   } else {
     showCombatResult({tone:'wave',title:'Vague '+G.wave+' vaincue',subtitle:'La formation tient encore la ligne.',detailLabel:'Mode escarmouche',detail:'Renforts imminents',buttonLabel:'Vague '+(G.wave+1)+' ▶'},()=>{ dom.banner.className='hidden'; startNextWave(); });
-  } }
+  } }); }
 function endGame(win){ if(G.over)return; combatCue(win?'victory':'defeat'); restoreUnitFocus(); for(const u of G.units)clearBossIntentPresentation(u); G.over=true; G.mode='over'; closeMenus(); clearHL(); if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
-  showCombatResult({tone:win?'victory':'defeat',title:win?'Victoire':'Défaite',subtitle:win?'Élyndra est sauvée !':'Votre équipe a été vaincue…',detailLabel:win?'Issue':CAMPAIGN_MODE?'Sauvegarde':'Nouvel essai',detail:win?'Combat terminé':CAMPAIGN_MODE?'Recharger la dernière sauvegarde de cette partie':'Rejouer le combat',buttonLabel:CAMPAIGN_MODE?(win?'Revenir à la carte':'Recharger la sauvegarde'):'Rejouer'},()=>CAMPAIGN_MODE?notifyCampaignResult(Boolean(win)):location.reload());
+  if(win)celebrateVictory();
+  afterEndBeat(win?VICTORY_BEAT_S:DEFEAT_BEAT_S,()=>showCombatResult({tone:win?'victory':'defeat',title:win?'Victoire':'Défaite',subtitle:win?'Élyndra est sauvée !':'Votre équipe a été vaincue…',detailLabel:win?'Issue':CAMPAIGN_MODE?'Sauvegarde':'Nouvel essai',detail:win?'Combat terminé':CAMPAIGN_MODE?'Recharger la dernière sauvegarde de cette partie':'Rejouer le combat',buttonLabel:CAMPAIGN_MODE?(win?'Revenir à la carte':'Recharger la sauvegarde'):'Rejouer'},()=>CAMPAIGN_MODE?notifyCampaignResult(Boolean(win)):location.reload()));
   logMsg(win?'— VICTOIRE —':'— DÉFAITE —'); }
 
 // ============================= RENDER LOOP =============================

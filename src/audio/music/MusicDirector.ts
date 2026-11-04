@@ -28,7 +28,8 @@ export interface MusicHost {
 
 const LOOKAHEAD = 1.2;
 const FADE_OUT = 1.6;
-const FADE_IN = 1.2;
+/** The incoming track rises on a straight line, so it is heard at once instead of after a near-silent second. */
+const FADE_IN = 0.9;
 /** A fanfare takes the stream quickly, and always ends inside its limit. */
 const FANFARE_LEAD_OUT = 0.7;
 const FANFARE_MAX = 8;
@@ -119,9 +120,9 @@ class MusicDirector implements MusicHost {
     this.current = null;
     if (!theme) return;
     const playing = this.mount(theme);
-    playing.fader.gain.setValueAtTime(0.0001, now);
-    playing.fader.gain.exponentialRampToValueAtTime(theme.gain, now + (theme.once ? 0.08 : FADE_IN));
-    playing.nextPassAt = now + 0.15;
+    playing.fader.gain.setValueAtTime(0, now);
+    playing.fader.gain.linearRampToValueAtTime(theme.gain, now + (theme.once ? 0.08 : FADE_IN));
+    playing.nextPassAt = now + 0.06;
     if (theme.once) {
       playing.onceEndsAt = now + Math.min(FANFARE_MAX, sectionSeconds(sectionAt(theme, 0)) + 0.75);
       playing.fader.gain.setValueAtTime(theme.gain, playing.onceEndsAt - 0.5);

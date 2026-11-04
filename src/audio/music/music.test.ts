@@ -77,11 +77,12 @@ describe('the written music', () => {
     expect(new Set(LOOPING.map(lead)).size).toBeGreaterThanOrEqual(4);
   });
 
-  it('keeps fanfares within 8 seconds and the boss entry within 6', () => {
+  it('keeps fanfares within 8 seconds, the victory short enough not to leave the music behind, and the boss entry within 6', () => {
     for (const id of ['victory', 'defeat'] as const) {
       expect(THEMES[id].once, id).toBe(true);
       expect(sectionSeconds(THEMES[id].sections[0]!), id).toBeLessThan(7.3);
     }
+    expect(sectionSeconds(THEMES.victory.sections[0]!)).toBeLessThan(4.5);
     const entry = THEMES.boss.sections[0]!;
     expect(entry.name).toBe('entry');
     expect(sectionSeconds(entry)).toBeLessThanOrEqual(6);

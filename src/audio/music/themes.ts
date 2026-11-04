@@ -386,16 +386,18 @@ const boss: ThemeDef = {
 };
 
 // ------------------------------------------------------------ fanfares
+// Short on purpose: the next surface waits for the fanfare's end (it is never cut), so a long one leaves the music
+// behind a player who moves on quickly (operator, 2026-11-03).
 
 const victory: ThemeDef = {
   id: 'victory', hall: 'hall', send: 0.3, gain: 0.82, once: true,
   form: [0],
-  sections: [section('fanfare', 104, 4, 41, 'ionian', 'F | Bb C | F', {
+  sections: [section('fanfare', 112, 4, 41, 'ionian', 'F C | F', {
     pad: { instrument: 'strings', lo: 53, hi: 72, v: 0.36 },
     bass: { instrument: 'timpani', base: 41, pattern: 'half', v: 0.6 },
     lines: [
-      { name: 'lead', instrument: 'brass', v: 0.74, notes: 'F4:1 C5:1 Bb4:1 G4:1 | D5:2 E5:2 | F5:4' },
-      { name: 'low', instrument: 'horn', v: 0.56, notes: 'C4:2 F4:2 | F4:2 G4:2 | A4:4' },
+      { name: 'lead', instrument: 'brass', v: 0.74, notes: 'F4:0.5 C5:0.5 Bb4:0.5 G4:0.5 D5:1 E5:1 | F5:4' },
+      { name: 'low', instrument: 'horn', v: 0.56, notes: 'C4:1 F4:1 G4:2 | A4:4' },
     ],
     arpeggio: { instrument: 'harp', lo: 53, perBeat: 4, v: 0.3, patterns: [[0, 1, 2, 3, 4, 5, 6, 5]] },
   })],
@@ -404,7 +406,7 @@ const victory: ThemeDef = {
 const defeat: ThemeDef = {
   id: 'defeat', hall: 'chapel', send: 0.42, gain: 1.3, once: true,
   form: [0],
-  sections: [section('fanfare', 66, 4, 38, 'aeolian', 'Dm | Bb Dm', {
+  sections: [section('fanfare', 78, 4, 38, 'aeolian', 'Dm | Bb Dm', {
     pad: { instrument: 'choir', lo: 53, hi: 69, v: 0.4 },
     bass: { instrument: 'strings', base: 38, pattern: 'whole', v: 0.44 },
     lines: [{ name: 'lead', instrument: 'horn', v: 0.48, notes: 'D4:2 A4:1 G4:1 | E4:1 F4:1 D4:2' }],
