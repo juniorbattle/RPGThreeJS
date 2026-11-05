@@ -624,8 +624,8 @@ const rawDialogues = [
       { id: '2', speaker: 'Pillard Serpent', actorId: 'serpent_raider', expression: 'hostile', tag: 'Menace', text: 'Le Lion n’est pas là. Personne ne vient pour Bois-Clair. Ceux qui prennent les armes meurent les premiers.', side: 'right', next: '2a', effects: [], choices: [] },
       { id: '2a', speaker: 'Kestrel', actorId: 'kestrel', expression: 'stern', tag: 'Plan Serpent', text: 'Ils attendent que nous nous divisions. Les captifs partiront par le vieux pont ; les coffres, par la porte basse. Nous pouvons frapper fort d’un côté, pas tenir les deux avec cette compagnie.', side: 'left', next: '3', effects: [], choices: [] },
       { id: '3', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Urgence', text: 'Si nous courons au pont, les réserves et peut-être les puits brûleront. Les familles que nous sauvons ce soir auront faim demain. Je le sais. Mais les captifs partent maintenant ; ceux-là, nous ne pourrons pas les récupérer après.', side: 'left', next: '4', effects: [], choices: [] },
-      { id: '4', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Survie', text: 'Et si nous perdons le grain, les remèdes et l’eau, les survivants que nous tirerons du pont reviendront vers un village incapable de les nourrir. Tenir la porte basse n’est pas sauver notre bourse ; c’est choisir le lendemain au prix de ceux qui partent ce soir.', side: 'left', next: '4a', effects: [], choices: [] },
-      { id: '4a', speaker: 'Alistair', actorId: 'alistair', expression: 'stern', tag: 'Décision du clan', text: 'Voilà le piège des Serpents : les deux décisions peuvent se défendre, aucune ne sauvera tout le monde. Donnez l’ordre. Nous ne l’habillerons pas ensuite d’une vertu qu’il n’avait pas ; nous porterons son prix ensemble.', side: 'left', next: '5', effects: [], choices: [] },
+      { id: '4', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Intérêt du clan', text: 'Je ne vais pas l’habiller autrement : la porte basse, c’est notre bourse. Les coffres du village partent par là. Si nous les reprenons aux Serpents, ils serviront au clan : avec cet or, nous tenons jusqu’au Sceau. Sans lui, nous arriverons devant Alaric en mendiants.', side: 'left', next: '4a', effects: [], choices: [] },
+      { id: '4a', speaker: 'Alistair', actorId: 'alistair', expression: 'stern', tag: 'Décision du clan', text: 'Voilà le piège des Serpents : des vies d’un côté, de l’or de l’autre, et pas assez de lames pour les deux. Donnez l’ordre. Nous ne l’habillerons pas ensuite d’une vertu qu’il n’avait pas ; nous porterons son prix ensemble.', side: 'left', next: '5', effects: [], choices: [] },
       {
         id: '5',
         speaker: 'Villageoise de Bois-Clair',
@@ -637,12 +637,12 @@ const rawDialogues = [
         effects: [],
         choices: [
           { text: 'Prendre le vieux pont et extraire les captifs.', next: '6', effects: [{ type: 'setFlag', key: 'missionSuccess', value: true }, { type: 'addReputation', amount: 10 }, { type: 'startCombat', combatId: 'village_defense' }], outcomePreview: { mode: 'soft', hints: ['Captifs prioritaires', 'Réserves et puits laissés au sud'] } },
-          { text: 'Prendre la porte basse et sécuriser réserves et puits.', next: '7', effects: [{ type: 'setFlag', key: 'missionSuccess', value: false }, { type: 'setFlag', key: 'missionGreed', value: true }, { type: 'addGold', amount: 200 }, { type: 'addReputation', amount: -10 }, { type: 'startCombat', combatId: 'village_raid' }], outcomePreview: { mode: 'soft', hints: ['Réserves et puits sécurisés', 'Captifs laissés au nord'] } },
+          { text: 'Prendre la porte basse et emporter les coffres pour le clan.', next: '7', effects: [{ type: 'setFlag', key: 'missionSuccess', value: false }, { type: 'setFlag', key: 'missionGreed', value: true }, { type: 'addGold', amount: 200 }, { type: 'addReputation', amount: -10 }, { type: 'startCombat', combatId: 'village_raid' }], outcomePreview: { mode: 'soft', hints: ['Coffres emportés pour le clan', 'Captifs laissés au nord'] } },
         ],
       },
       { id: '6', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'grateful', tag: 'Bois-Clair', text: 'Merci. Le vieux pont mène directement à leurs positions.', side: 'left', next: '6a', effects: [], choices: [] },
       { id: '6a', speaker: 'Alistair', actorId: 'alistair', expression: 'stern', tag: 'Priorité aux vivants', text: 'Les réserves peuvent brûler. Formez deux lignes : la première ouvre le pont, la seconde couvre les familles. Chaque personne sortie de l’encerclement est une partie du village que les Serpents ne prendront pas.', side: 'left', next: '6b', effects: [], choices: [] },
-      { id: '6b', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'stern', tag: 'Coût accepté', text: 'J’ai fait mon objection et vous avez tranché. Je tiendrai les comptes après la bataille. Pour l’instant, je tiens la porte avec vous.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '6b', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'stern', tag: 'Coût accepté', text: 'J’ai fait mon objection et vous avez tranché. Je tiendrai les comptes après la bataille. Pour l’instant, je tiens la ligne avec vous.', side: 'left', next: null, effects: [], choices: [] },
       { id: '7', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'wounded', tag: 'Bois-Clair', text: 'Prenez l’or si vous le voulez… mais ne prétendez plus être nos protecteurs.', side: 'left', next: '7a', effects: [], choices: [] },
       { id: '7a', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'stern', tag: 'Priorité aux réserves', text: 'La porte basse est moins défendue. Nous frappons vite, sécurisons les coffres et gardons assez de force pour sortir du village. Aucun détour, aucune promesse que nous ne pouvons plus tenir.', side: 'left', next: '7b', effects: [], choices: [] },
       { id: '7b', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Prix visible', text: 'Alors regardez bien ceux que nous laissons derrière. Les réserves sauveront peut-être le clan, mais elles ne rendront pas ce moment moins vrai lorsque les survivants parleront.', side: 'left', next: null, effects: [], choices: [] },
@@ -777,12 +777,12 @@ const rawDialogues = [
     steps: [
       {
         id: '1',
-        speaker: 'Jeune dragon',
-        actorId: 'young_dragon_elite',
-        expression: 'hostile',
+        speaker: 'Kestrel',
+        actorId: 'kestrel',
+        expression: 'stern',
         tag: 'Nid sous tension',
-        text: 'Une chaleur verte rampe entre les pierres. Au-dessus du vieux sanctuaire, un jeune dragon protège un nid de gemmes brutes ; chaque mouvement vers le trésor fait monter la lumière sous ses écailles.',
-        side: 'right',
+        text: 'Une chaleur verte rampe entre les pierres. Au-dessus des ruines, un jeune dragon protège un nid de gemmes brutes ; chaque mouvement vers le trésor fait monter la lumière sous ses écailles.',
+        side: 'left',
         effects: [],
         choices: [
           { text: 'Chasser le jeune dragon et prendre les gemmes.', next: '2', effects: [{ type: 'setFlag', key: 'challengedYoungDragon', value: true }, { type: 'startCombat', combatId: 'young_dragon_roost' }] },
@@ -843,7 +843,7 @@ const rawDialogues = [
     steps: [
       {
         id: '1',
-        speaker: 'Oracle Serpent',
+        speaker: 'Oracle déserteur',
         actorId: 'serpent_oracle',
         expression: 'fearful',
         tag: 'Informateur traqué',
@@ -1133,7 +1133,7 @@ const rawDialogues = [
     perspective: 'serpent_general',
     sceneArtId: 'shadow_signs',
     steps: [
-      { id: '1', speaker: 'Oracle Serpent', actorId: 'serpent_oracle', expression: 'fearful', tag: 'Rapport', text: 'Général. La compagnie a franchi le barrage de Valmir. Nos pillards n’ont pas tenu une charge. Ils se battent en formation — pas comme des bandits.', side: 'left', next: '2', effects: [], choices: [] },
+      { id: '1', speaker: 'Oracle Serpent', actorId: 'serpent_oracle', expression: 'fearful', tag: 'Rapport', text: 'Général. Les bêtes que nous avions rabattues sur la chaussée n’ont pas suffi. La compagnie a forcé la route de Bois-Clair en formation — pas comme des bandits.', side: 'left', next: '2', effects: [], choices: [] },
       { id: '2', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'stern', tag: 'Évaluation', text: 'Ils ont cessé de réagir à nos barrages : ils commencent à lire pourquoi ils sont là. Ce n’est plus une troupe qu’on ralentit en ajoutant des hommes. C’est une troupe qu’il faut obliger à révéler ce qu’elle choisit sous pression.', side: 'right', next: '3', effects: [], choices: [] },
       { id: '3', speaker: 'Général Serpent', actorId: 'serpent_general_boss', expression: 'hostile', tag: 'Ordre', text: 'Ne renforcez pas tout. Laissez le vieux pont tentant et chargez la porte basse de réserves. S’ils atteignent Bois-Clair, forcez-les à choisir ce qu’ils sauvent. On apprend davantage d’une compagnie quand elle ne peut pas gagner partout.', side: 'right', next: null, effects: [], choices: [] },
     ],
@@ -1155,7 +1155,7 @@ const rawDialogues = [
     perspective: 'lion_council',
     sceneArtId: 'lion_briefing',
     steps: [
-      { id: '1', speaker: 'Champion du Lion', actorId: 'lion_champion', expression: 'stern', tag: 'Doute', text: 'Des étrangers qui se disent envoyés par le clan déchu. Et on devrait les croire ? Le Sceau n’est pas un prix qu’on remporte pour avoir tué quelques pillards.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '1', speaker: 'Champion du Lion', actorId: 'lion_champion', expression: 'stern', tag: 'Doute', text: 'Les restes du clan déchu. Et on devrait les croire ? Le Sceau n’est pas un prix qu’on remporte pour avoir tué quelques pillards.', side: 'right', next: '2', effects: [], choices: [] },
       { id: '2', speaker: 'Chef Alaric', actorId: 'alaric', expression: 'stern', tag: 'Réponse', text: 'Je ne crois personne. Mais Bois-Clair a vu ce qu’ils ont fait. Les actes parlent. Pas les noms, pas les serments.', side: 'left', next: '3', effects: [], choices: [] },
       { id: '3', speaker: 'Champion du Lion', actorId: 'lion_champion', expression: 'hostile', tag: 'Défi', text: 'Et s’ils échouent ? S’ils prennent l’or et fuient ? Le Sceau tombe dans des mains vides, et le Lion perd la seule chose qui le tient debout.', side: 'right', next: null, effects: [], choices: [] },
     ],
@@ -1186,7 +1186,7 @@ const rawDialogues = [
     id: 'pre_village_defense',
     sceneArtId: 'village_choice',
     steps: [
-      { id: '1', speaker: 'Pillard Serpent', actorId: 'serpent_raider', expression: 'hostile', tag: 'Ultimatum', text: 'Le village brûle déjà. Ceux qui prennent les armes meurent les premiers.', side: 'right', next: '2', effects: [], choices: [] },
+      { id: '1', speaker: 'Pillard Serpent', actorId: 'serpent_raider', expression: 'hostile', tag: 'Ultimatum', text: 'Le pont est tenu. Les captifs passeront de l’autre côté avant que vous ne l’atteigniez.', side: 'right', next: '2', effects: [], choices: [] },
       { id: '2', speaker: 'Pillard Serpent', actorId: 'serpent_raider', expression: 'hostile', tag: 'Menace', text: 'Vous voulez défendre ces paysans ? Montrez-moi ce que vaut le sang du Lion.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
@@ -1195,7 +1195,7 @@ const rawDialogues = [
     sceneArtId: 'village_choice',
     steps: [
       { id: '1', speaker: 'Brute Serpent', actorId: 'serpent_brute', expression: 'hostile', tag: 'Moquerie', text: 'Regardez-les. Ils croient que leurs murs les protègent.', side: 'right', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Brute Serpent', actorId: 'serpent_brute', expression: 'hostile', tag: 'Provocation', text: 'Le Lion n\u2019est pas l\u00e0. Personne ne vient pour Bois-Clair. Prenez ce que vous voulez, et frappez ceux qui regardent.', side: 'right', next: null, effects: [], choices: [] },
+      { id: '2', speaker: 'Brute Serpent', actorId: 'serpent_brute', expression: 'hostile', tag: 'Provocation', text: 'Ces coffres sont à nous. Vous voulez votre part ? Venez la prendre.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -1203,7 +1203,7 @@ const rawDialogues = [
     sceneArtId: 'serpent_duelist_trial',
     steps: [
       { id: '1', speaker: 'Duelliste Serpent', actorId: 'serpent_duelist_elite', expression: 'stern', tag: 'Défi', text: 'Vous avez coup\u00e9 la route. Vous avez dispers\u00e9 mes \u00e9claireurs. Mais ici, c\u2019est entre nous.', side: 'right', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Duelliste Serpent', actorId: 'serpent_duelist_elite', expression: 'stern', tag: 'Provocation', text: 'Une lame. Un adversaire. Pas de tactique, pas de retraite. Si vous survivez, la route est \u00e0 vous.', side: 'right', next: '3', effects: [], choices: [] },
+      { id: '2', speaker: 'Duelliste Serpent', actorId: 'serpent_duelist_elite', expression: 'stern', tag: 'Provocation', text: 'Venez tous, si vous voulez : ma lame suffira pour votre compagnie. Pas de retraite. Si vous survivez, la route est à vous.', side: 'right', next: '3', effects: [], choices: [] },
       { id: '3', speaker: 'Duelliste Serpent', actorId: 'serpent_duelist_elite', expression: 'hostile', tag: 'Engagement', text: 'En garde. Le Lion n\u2019apprendra rien de votre d\u00e9faite.', side: 'right', next: null, effects: [], choices: [] },
     ],
   },
@@ -1320,8 +1320,7 @@ const rawDialogues = [
     sceneArtId: 'lion_finale_judgement',
     steps: [
       { id: '1', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'stern', tag: 'Préparation', text: 'Le camp du Lion est en vue. À partir de ces portes, mes comptes ne corrigeront plus rien : Alaric a déjà des rapports, les absents ont déjà des noms et les témoins ont leur propre mémoire. Nous pouvons seulement entrer avec ce que nous avons fait.', side: 'left', next: '2', effects: [], choices: [] },
-      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Pressentiment', text: 'Les ruines chantent encore. Les Ombres se réveillent. Ce jugement ne concernera pas seulement le Lion et le Serpent — quelque chose de plus ancien nous observe.', side: 'right', next: '3', effects: [], choices: [] },
-      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Rappel', text: 'Notre renommée nous a précédés, mais Alaric a autre chose : les registres de Bois-Clair, les récits de la route, les voix qui ont choisi de parler et ce que nous portons des Ombres. Un nom ouvre une audience. Il ne réécrit pas ces traces.', side: 'left', next: '4', effects: [], choices: [] },
+      { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Pressentiment', text: 'Les ruines chantent encore. Les Ombres se réveillent. Ce jugement ne concernera pas seulement le Lion et le Serpent — quelque chose de plus ancien nous observe.', side: 'right', next: '4', effects: [], choices: [] },
       { id: '4', speaker: 'Marian', actorId: 'marian', expression: 'neutral', tag: 'Ceux qui attendent', text: 'Derrière nous, des familles attendent de savoir si le Lion protégera encore ses routes. Devant nous, un chef attend de savoir si notre clan mérite son Sceau. Ce sont deux questions différentes, même si nos réponses se croisent.', side: 'left', next: '5', effects: [], choices: [] },
       { id: '5', speaker: 'Alistair', actorId: 'alistair', expression: 'stern', tag: 'Avant les portes', text: 'Nous sommes partis comme les restes d’une maison vaincue. Nous revenons avec une compagnie, des alliés possibles, des ennemis certains et une histoire que personne d’autre ne peut raconter à notre place.', side: 'left', next: '6', effects: [], choices: [] },
       { id: '6', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'stern', tag: 'Assumer la route', text: 'Nous avons passé la route à compter des choses différentes : les vivres, les morts, les promesses, les risques. Aucun de ces comptes n’annule les autres. Entrons sans chercher la phrase parfaite ; qu’Alaric juge le tout.', side: 'left', next: null, effects: [], choices: [] },

@@ -58,7 +58,7 @@ export const R5_ADDITIONAL_DIALOGUES = [
     id: 'pre_serpent_patrol',
     sceneArtId: 'forest_fork',
     steps: [
-      line('1', 'Kestrel', 'kestrel', 'stern', 'Patrouille en vue', 'Trois Serpents fouillent la route et marquent les arbres pour la troupe suivante. S’ils atteignent leur cor, tout le secteur saura où nous sommes.', '2'),
+      line('1', 'Kestrel', 'kestrel', 'stern', 'Patrouille en vue', 'Deux Serpents fouillent la route et marquent les arbres pour la troupe suivante. S’ils atteignent leur cor, tout le secteur saura où nous sommes.', '2'),
       line('2', 'Alistair', 'alistair', 'stern', 'Interception', 'Nous les arrêtons ici. Pas pour la gloire : pour que les familles derrière nous gagnent quelques heures sans chasseurs sur leurs traces.', null),
     ],
   },
@@ -183,7 +183,7 @@ export const R5_ADDITIONAL_DIALOGUES = [
     sceneArtId: 'village_choice',
     steps: [
       line('1', 'Villageoise de Bois-Clair', 'villageoise', 'wounded', 'Après Bois-Clair', 'La nuit est tombée, mais personne ne dort. Les survivants dressent des listes : maisons perdues, familles retrouvées, réserves intactes ou dispersées. Votre décision est écrite entre chaque nom.', '2'),
-      line('2', 'Marian', 'marian', 'neutral', 'Ce qui demeure', 'Je peux fermer les blessures. Je ne peux pas décider à la place de ceux qui devront vivre avec ce matin. Ils se souviendront de ce que nous avons protégé — et de ce que nous avons laissé brûler.', '3'),
+      line('2', 'Marian', 'marian', 'neutral', 'Ce qui demeure', 'Je peux fermer les blessures. Je ne peux pas décider à la place de ceux qui devront vivre avec cette nuit. Ils se souviendront de ce que nous avons protégé — et de ce que nous avons laissé brûler.', '3'),
       line('3', 'Alistair', 'alistair', 'stern', 'Devant la bannière', 'Le clan aussi devra vivre avec ce choix. Reconstruire un nom ne signifie pas effacer sa route ; cela signifie pouvoir la raconter sans détour quand Alaric demandera le prix du Sceau.', '4'),
       line('4', 'Intendant Maelor', 'maelor', 'neutral', 'Aube suivante', 'Les comptes sont faits. Rien de ce que nous dirons demain ne changera cette nuit. Reprenons la marche avec les vivants, les absents et les conséquences à nos côtés.', null),
     ],

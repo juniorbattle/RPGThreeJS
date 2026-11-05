@@ -36,9 +36,17 @@ describe('CIN-6D final narrative continuity lock', () => {
     const reviewedDialogues = [...dialogues.values()].filter(sequence => !CAMPAIGN_GRAMMAR_PRESENTATIONS[sequence.id]);
     expect(dialogues.size - reviewedDialogues.length).toBe(2);
     const liveSteps = reviewedDialogues.reduce((total, dialogue) => total + dialogue.steps.length, 0);
+    // The historical audit stays unchanged; OD-2026-11-04-C later retired one audited line.
+    const retiredAfterAudit = ['final_refuge:3'];
+    expect(retiredAfterAudit.every((key) => {
+      const [dialogueId, stepId] = key.split(':');
+      const audited = audit.entries.some((entry: any) => entry.dialogueId === dialogueId && entry.classifications.some((item: any) => item.stepId === stepId));
+      const live = dialogues.get(dialogueId!)?.steps.some((step) => step.id === stepId);
+      return audited && !live;
+    })).toBe(true);
     const auditedSteps = audit.entries.flatMap((entry: any) => entry.classifications);
     expect(audit.summary.dialogues).toBe(reviewedDialogues.length);
-    expect(audit.summary.steps).toBe(liveSteps);
+    expect(audit.summary.steps).toBe(liveSteps + retiredAfterAudit.length);
     expect(audit.summary).toMatchObject({
       dialogues: 73, steps: 251, actionableChoiceStates: 28,
       KEEP: 247, POLISH: 4, MOVE: 0, CONDITIONALIZE: 0, CHANGE_SPEAKER: 0,

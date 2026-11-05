@@ -30,12 +30,61 @@ const alliedSerpentConfrontation: FinalDialoguePresentationPlan = {
   })),
 };
 
+/** OD-2026-11-04-C: Maelor's second line before the gates (`final_refuge:3`) is retired from every plan of that dialogue. */
+const RETIRED_FINAL_REFUGE_STEP = '3';
+
+function withoutStep(plan: FinalDialoguePresentationPlan, stepId: string): FinalDialoguePresentationPlan {
+  return {
+    ...plan,
+    segments: plan.segments.map(segment => ({
+      ...segment,
+      stepIds: segment.stepIds.filter(id => id !== stepId),
+      stepDirections: segment.stepDirections.filter(direction => direction.stepId !== stepId),
+    })),
+  };
+}
+
+function withoutShapeStep(shape: string, stepId: string): string {
+  return shape.split('|').filter(part => !part.startsWith(`${stepId}@`)).join('|');
+}
+
+const reviewedPlans = reviewed as unknown as Readonly<Record<string, FinalDialoguePresentationPlan>>;
+const shapes = reviewedShapes as unknown as Readonly<Record<string, string>>;
+const finalRefugePlan = withoutStep(reviewedPlans.final_refuge!, RETIRED_FINAL_REFUGE_STEP);
+const finalRefugeShape = withoutShapeStep(shapes.final_refuge!, RETIRED_FINAL_REFUGE_STEP);
+const finalRefugeRuntime = Object.fromEntries(Object.entries(runtimePlans.final_refuge ?? {})
+  .map(([shape, plan]) => [withoutShapeStep(shape, RETIRED_FINAL_REFUGE_STEP), withoutStep(plan, RETIRED_FINAL_REFUGE_STEP)]));
+
+/** OD-2026-11-04-C: Kestrel, who opens the road, describes the young dragon's nest; the dragon no longer narrates its own scene. */
+const dragonRoost = reviewedPlans.mystery_dragon_roost!;
+const kestrelDragonRoost: FinalDialoguePresentationPlan = {
+  ...dragonRoost,
+  forbiddenHoldSpeakers: [...dragonRoost.forbiddenHoldSpeakers, 'kestrel'],
+  segments: dragonRoost.segments.map(segment => ({
+    ...segment,
+    visibleCast: ['sage_seraphine', 'maelor', 'kestrel', 'young_dragon_elite'],
+    allowedSpeakers: ['sage_seraphine', 'maelor', 'kestrel', 'young_dragon_elite'],
+    actors: [
+      ...segment.actors.map(actor => actor.actorId === 'maelor' ? { ...actor, screenPosition: 'LEFT' as const } : actor)
+        .filter(actor => actor.actorId !== 'young_dragon_elite'),
+      { actorId: 'kestrel', screenPosition: 'CENTER_LEFT', scale: 1, facing: 'RIGHT', lookTarget: 'young_dragon_elite',
+        group: 'PLAYER_COMPANY', dramaticSide: 'LEFT', depth: 3, narrativeRole: 'LISTENER', entryEffect: 'FADE_IN' },
+      ...segment.actors.filter(actor => actor.actorId === 'young_dragon_elite'),
+    ],
+    stepDirections: segment.stepDirections.map(direction => direction.stepId === '1'
+      ? { stepId: '1', speakerId: 'kestrel', addressedTo: 'sage_seraphine', lookTarget: 'young_dragon_elite', facing: 'RIGHT', resolution: 'AUTHORED_CONVERSATION_TARGET' }
+      : direction),
+  })),
+};
+const kestrelDragonRoostShape = '1@kestrel@2|2@sage_seraphine@0|3@maelor@0';
+
 export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
   ...runtimePlans,
   serpent_pursuit_pre_combat: Object.freeze({
     ...runtimePlans.serpent_pursuit_pre_combat,
     [serpentConfrontationShape]: alliedSerpentConfrontation,
   }),
+  final_refuge: Object.freeze(finalRefugeRuntime),
 });
 
 /** Additive authored static plans; the reviewed cinematic lock remains byte-for-byte intact. */
@@ -64,7 +113,9 @@ export const CAMPAIGN_GRAMMAR_PLANS: Readonly<Record<string, FinalDialoguePresen
   })),
 );
 
-export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({ ...reviewed, ...CAMPAIGN_GRAMMAR_PLANS });
+export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({ ...reviewed, ...CAMPAIGN_GRAMMAR_PLANS,
+  final_refuge: finalRefugePlan, mystery_dragon_roost: kestrelDragonRoost });
 export const FINAL_DIALOGUE_CANONICAL_PRESENTATION_SHAPES = Object.freeze({ ...reviewedShapes,
+  final_refuge: finalRefugeShape, mystery_dragon_roost: kestrelDragonRoostShape,
   ...Object.fromEntries(CAMPAIGN_GRAMMAR_DIALOGUES.map(sequence => [sequence.id, dialoguePresentationShapeSignature(sequence)])),
 });

@@ -8,7 +8,7 @@ describe('Narrative dialogue staging audit', () => {
     expect(audit.summary.totalReachableDialogues).toBe(75);
     expect(audit.summary.stagedDialogues).toBe(audit.summary.totalReachableDialogues);
     expect(audit.summary.stagedDialogueSteps).toBe(audit.summary.totalDialogueSteps);
-    expect(audit.summary.totalDialogueSteps).toBe(257);
+    expect(audit.summary.totalDialogueSteps).toBe(256); // final_refuge:3 retired by OD-2026-11-04-C
     expect(audit.summary.unmappedDialogues).toEqual([]);
     expect(audit.summary.unmappedDialogueSteps).toEqual([]);
     expect(audit.summary.totalStagingRecords).toBe(audit.summary.totalDialogueSteps);
@@ -36,8 +36,8 @@ describe('Narrative dialogue staging audit', () => {
     expect(audit.summary.unresolvedDialogueSpeakerAssociations).toBe(0);
     expect(audit.summary.staticUpperPlacementViolations).toBe(0);
     expect(audit.summary.videoPlacementRegressions).toBe(0);
-    expect(audit.summary.runtimeReachablePresentationSteps).toBe(282);
-    expect(audit.summary.plannedRuntimePresentationSteps).toBe(282);
+    expect(audit.summary.runtimeReachablePresentationSteps).toBe(281);
+    expect(audit.summary.plannedRuntimePresentationSteps).toBe(281);
     expect(audit.summary.explicitLegitimateRuntimeOnlySteps).toBe(0);
     expect(audit.summary.missingRuntimePresentationSteps).toBe(0);
     expect(audit.summary.deadOrUnreachablePresentationSteps).toBe(2);

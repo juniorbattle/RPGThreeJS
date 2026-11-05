@@ -71,12 +71,11 @@ describe('Narrative dialogue presentation adapter', () => {
     expect(resolveRepresentedDialogueActors(threat, threatResolver)).toEqual(['kestrel', 'alistair', 'sage_seraphine']);
   });
 
-  it('records exactly four reviewed display-only reductions', () => {
+  it('records exactly three reviewed display-only reductions (final_refuge:3 retired by OD-2026-11-04-C)', () => {
     expect(NARRATIVE_TEXT_REDUCTIONS.map(({ dialogueId, stepId, classification }) => ({ dialogueId, stepId, classification }))).toEqual([
       { dialogueId: 'village_choice', stepId: '1a', classification: 'VISUAL_REPLACEABLE' },
       { dialogueId: 'village_choice', stepId: '2a', classification: 'VISUAL_REPLACEABLE' },
       { dialogueId: 'final_refuge', stepId: '1', classification: 'REDUNDANT_EXPOSITION' },
-      { dialogueId: 'final_refuge', stepId: '3', classification: 'REDUNDANT_EXPOSITION' },
     ]);
     expect(NARRATIVE_TEXT_REDUCTIONS.every((entry) => entry.reviewed && entry.sourceTextPreserved && entry.rationale.length > 0)).toBe(true);
   });
@@ -96,7 +95,7 @@ describe('Narrative dialogue presentation adapter', () => {
     expect(getNarrativeTextReduction('village_choice', '1a')?.displayText).toMatch(/captifs au nord.*réserves.*puits.*sud/i);
     expect(getNarrativeTextReduction('village_choice', '2a')?.displayText).toMatch(/vieux pont.*porte basse.*deux/i);
     expect(getNarrativeTextReduction('final_refuge', '1')?.displayText).toMatch(/camp du Lion.*Alaric.*témoins.*mémoire/i);
-    expect(getNarrativeTextReduction('final_refuge', '3')?.displayText).toMatch(/renommée.*Bois-Clair.*route.*témoins.*preuves/i);
+    expect(getNarrativeTextReduction('final_refuge', '3')).toBeUndefined();
     expect(getNarrativeTextReduction('lion_briefing', '1')).toBeUndefined();
   });
 
@@ -110,6 +109,6 @@ describe('Narrative dialogue presentation adapter', () => {
       dialogueSurfaceMode: 'STATIC_TABLEAU',
       segmentMode: 'STATIC_TABLEAU',
     });
-    expect(choice.choices?.map((entry) => entry.text)).toEqual(['Prendre le vieux pont et extraire les captifs.', 'Prendre la porte basse et sécuriser réserves et puits.']);
+    expect(choice.choices?.map((entry) => entry.text)).toEqual(['Prendre le vieux pont et extraire les captifs.', 'Prendre la porte basse et emporter les coffres pour le clan.']);
   });
 });

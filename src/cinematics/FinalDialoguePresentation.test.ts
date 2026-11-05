@@ -44,11 +44,11 @@ function readSpec<T>(filename: string): T {
 const plans = FINAL_DIALOGUE_PRESENTATION_PLANS as unknown as Record<string, Plan>;
 
 describe('CIN-6E-A.4R static-tableau-first dialogue lock', () => {
-  it('accounts for all 75 dialogues, 257 canonical steps and 29 actionable choice states', () => {
+  it('accounts for all 75 dialogues, 256 canonical steps and 29 actionable choice states', () => {
     const sequences = [...dialogues.values()];
     expect(FINAL_DIALOGUE_PACING_BASELINE).toBe('ff743b08fb239d55e11ac5cd682950032a06e2e1');
     expect(sequences).toHaveLength(75);
-    expect(sequences.reduce((total, sequence) => total + sequence.steps.length, 0)).toBe(257);
+    expect(sequences.reduce((total, sequence) => total + sequence.steps.length, 0)).toBe(256); // final_refuge:3 retired by OD-2026-11-04-C
     expect(sequences.reduce((total, sequence) => total + sequence.steps.filter((step) => step.choices?.length).length, 0)).toBe(29);
     expect(Object.keys(plans).sort()).toEqual(sequences.map((sequence) => sequence.id).sort());
 

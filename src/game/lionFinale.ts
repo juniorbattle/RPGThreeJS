@@ -248,6 +248,9 @@ function shadowChoiceEffects(disclosure: 'revealed' | 'concealed'): NarrativeEff
   ];
 }
 
+/** OD-2026-11-04-C: Alaric acknowledges the list of the dead carried from Bois-Clair; it does not change the verdict. */
+const CARRIED_NAMES_ECHO = 'Vous avez aussi porté la liste des morts de Bois-Clair. Elle sera lue dans cette salle, nom par nom, comme des personnes et non comme un argument : elle ne pèse pas dans ce jugement.';
+
 function outcomeText(verdict: LionVerdict): string {
   const saved = verdict.reasons.includes('saved_bois_clair');
   const sacrificed = verdict.reasons.includes('sacrificed_bois_clair');
@@ -258,7 +261,7 @@ function outcomeText(verdict: LionVerdict): string {
     return 'Bois-Clair tient encore parce que, lorsque le village s’est ouvert en deux, votre compagnie a choisi le vieux pont et ramené les captifs. Les rumeurs peuvent discuter votre nom ; elles ne peuvent pas rendre ces personnes à nouveau prisonnières.';
   }
   if (sacrificed) {
-    return 'À Bois-Clair, vous avez tenu la porte basse pendant que les captifs partaient vers le nord. Les réserves ont survécu à cette décision. Ceux qui sont partis avec les Serpents aussi.';
+    return 'À Bois-Clair, vous avez pris la porte basse et ses coffres pendant que les captifs partaient vers le nord. Votre bourse a survécu à cette décision. Ceux qui sont partis avec les Serpents aussi.';
   }
   return 'Bois-Clair ne peut pas témoigner d’un secours que votre compagnie n’a pas accompli. Sans ce fait, je ne bâtirai pas une reconnaissance sur ce que vous dites que vous auriez pu devenir.';
 }
@@ -394,7 +397,8 @@ export function buildLionFinaleJudgement(state: Readonly<GameState>): DialogueSe
     ));
   }
 
-  steps.push(makeStep('outcome', 'Chef Alaric', 'alaric', outcomeText(verdict), {
+  const namesEcho = state.flags.r5CarriedBoisClairNames ? ` ${CARRIED_NAMES_ECHO}` : '';
+  steps.push(makeStep('outcome', 'Chef Alaric', 'alaric', `${outcomeText(verdict)}${namesEcho}`, {
     tag: 'Bois-Clair', expression: verdict.reasons.includes('saved_bois_clair') ? 'neutral' : 'stern', side: 'right',
   }));
 

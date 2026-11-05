@@ -22,9 +22,9 @@ describe('OPTION-C-P0 runtime presentation coverage lock', () => {
     expect(census.summary).toMatchObject({
       stateScenarios: 330,
       runtimePresentationVariants: 134,
-      canonicalDialogueSteps: 257,
-      runtimeReachablePresentationSteps: 282,
-      plannedRuntimePresentationSteps: 282,
+      canonicalDialogueSteps: 256, // final_refuge:3 retired by OD-2026-11-04-C
+      runtimeReachablePresentationSteps: 281,
+      plannedRuntimePresentationSteps: 281,
       explicitLegitimateRuntimeOnlySteps: 0,
       missingFromPlan: 0,
       deadOrUnreachable: 2,

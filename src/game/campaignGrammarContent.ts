@@ -22,12 +22,12 @@ export const CAMPAIGN_GRAMMAR_DIALOGUES = [
   dialogueSequenceSchema.parse({
     id: 'first_refuge_gathering', title: 'La compagnie au refuge', sceneArtId: 'lion_briefing',
     steps: [
-      { id: '1', speaker: 'Alistair', actorId: 'alistair', side: 'left',
-        text: 'Nous sommes arrivés. Rassemblons-nous à l’abri ; la route nous a assez dispersés pour aujourd’hui.', next: '2' },
-      { id: '2', speaker: 'Maelor', actorId: 'maelor', side: 'right',
-        text: 'Ce que nous avons rapporté est en sûreté. Prenons le temps de compter nos réserves et de regarder qui a besoin de repos.', next: '3' },
-      { id: '3', speaker: 'Alistair', actorId: 'alistair', side: 'left',
-        text: 'Ce refuge nous donne un peu de répit. Soignons les blessés et préparons la suite ensemble.', next: null },
+      { id: '1', speaker: 'Alistair', actorId: 'alistair', side: 'left', expression: 'stern', tag: 'Refuge du Lion',
+        text: 'Des palissades, des feux et des voyageurs à l’abri. Pour la première fois depuis l’audience, personne ne nous guette depuis les talus. Rassemblons-nous ; ce répit ne durera pas.', next: '2' },
+      { id: '2', speaker: 'Intendant Maelor', actorId: 'maelor', side: 'right', tag: 'Comptes du soir',
+        text: 'J’ai mis à l’abri ce que nous avons rapporté de la route. Comptons nos réserves ce soir : à Bois-Clair, personne n’aura le temps de compter.', next: '3' },
+      { id: '3', speaker: 'Alistair', actorId: 'alistair', side: 'left', expression: 'stern', tag: 'Avant Bois-Clair',
+        text: 'Soignez les blessés et faites reprendre les lames. Bois-Clair brûle encore ; demain, il faudra marcher vite.', next: null },
     ],
   }),
 ];

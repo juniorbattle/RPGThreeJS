@@ -797,7 +797,7 @@ export class ManagementView {
       return this.itemRow(id, quantity, action);
     }).join('');
     return `<div class="shop-view">
-      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Échoppe de Valmir · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>Les achats utilisent votre or disponible.</small></div>
+      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Échoppe du refuge · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>Les achats utilisent votre or disponible.</small></div>
         <div class="shop-toggle">
           <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
           <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>
@@ -835,7 +835,7 @@ export class ManagementView {
       </article>`;
     }).join('');
     return `<div class="shop-view shop-view--forge">
-      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Forge de Valmir · ${getReputationRule(state.reputation).label}</p><h3>Artisan du refuge</h3><small>Les recettes consomment vos objets permanents et l’or du coffre.</small></div>
+      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Forge du refuge · ${getReputationRule(state.reputation).label}</p><h3>Artisan du refuge</h3><small>Les recettes consomment vos objets permanents et l’or du coffre.</small></div>
         <div class="shop-toggle">
           <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
           <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>

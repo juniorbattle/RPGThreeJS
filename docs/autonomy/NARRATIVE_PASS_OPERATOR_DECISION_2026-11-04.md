@@ -56,7 +56,7 @@ C7 et C8 ne changent rien. Les textes exacts sont soumis à l'opérateur avant d
 
 ## Textes soumis à l'opérateur
 
-État : **PROPOSED**, en attente de son accord ([fiche des textes](https://claude.ai/artifact/J51tHdeRvRhJPZMdwgFFhN)). Les identifiants renvoient aux dialogues de `src/game/content.ts`, `src/game/campaignGrammarContent.ts` et `src/game/lionFinale.ts`. Les lignes marquées « extension » vont un peu au-delà de la recommandation de la fiche, pour que la scène reste cohérente ; l'opérateur peut les refuser seules.
+État : **APPROVED et APPLIQUÉ**. Le 2026-11-04, l'opérateur a validé les douze points de la [fiche des textes](https://claude.ai/artifact/J51tHdeRvRhJPZMdwgFFhN) tels quels, extensions comprises, sans note (voir « Livraison »). Les identifiants renvoient aux dialogues de `src/game/content.ts`, `src/game/campaignGrammarContent.ts` et `src/game/lionFinale.ts`. Les lignes marquées « extension » vont un peu au-delà de la recommandation de la fiche, pour que la scène reste cohérente ; l'opérateur peut les refuser seules.
 
 | Id | Décision | Où | Avant | Après |
 | --- | --- | --- | --- | --- |
@@ -86,3 +86,36 @@ C7 et C8 ne changent rien. Les textes exacts sont soumis à l'opérateur avant d
 - Aucun portrait, aucun combat et aucun sprite nouveau n'est créé.
 - Aucune mécanique ne change : drapeaux, or, réputation, combats et verdict restent identiques.
 - Le changement d'orateur (T8) et le retrait d'une réplique (T12) changent la forme de deux dialogues. Leurs plans de présentation sont ajustés par une surcharge écrite à la main dans `src/cinematics/NarrativePresentationPlans.ts`, comme pour la confrontation Serpent. Les plans générés historiques restent intacts.
+
+## Livraison
+
+Le 2026-11-04, après l'accord de l'opérateur sur les douze points, les textes T1 à T19 sont appliqués.
+
+**Fichiers.** Les textes sont dans :
+- `src/game/content.ts` ;
+- `src/game/r5NarrativeContent.ts` ;
+- `src/game/campaignGrammarContent.ts` ;
+- `src/game/lionFinale.ts` ;
+- `src/ui/ManagementView.ts`.
+
+**Ajout de forme.** L'indice d'aperçu du second choix de Bois-Clair passe de « Réserves et puits sécurisés » à « Coffres emportés pour le clan ». Il reprend l'étiquette T1 approuvée.
+
+**Présentation.**
+- `src/cinematics/NarrativePresentationPlans.ts` surcharge deux plans :
+  - le nid du jeune dragon place Kestrel entre Maelor et le dragon, quatre acteurs au plus ;
+  - le dernier refuge retire l'étape 3 de son plan canonique et de ses trois variantes (Cedric, Garen, les deux).
+- La version abrégée de l'étape 3 du dernier refuge est retirée de `NarrativeDialogueAdapter.ts`.
+
+**Verrous de test.** Ils passent de 257 à 256 étapes canoniques et de 282 à 281 étapes jouables. L'audit historique `final_dialogue_quality_audit.json` reste intact ; son test déclare désormais la réplique retirée. Le nouveau test `src/game/narrativePass20261104.test.ts` fixe quatre points :
+- l'étiquette et la mécanique de la porte basse ;
+- l'écho du jugement, sans effet sur le verdict ;
+- Kestrel au nid ;
+- une seule réplique de Maelor au dernier refuge, avec ou sans recrues.
+
+**Vérifications.**
+- `npm test` : 173 fichiers et 2869 tests vitest, plus 26 tests `node:test`, tous verts.
+- `npx tsc --noEmit` et `npm run build` : verts.
+- `npm run contracts:validate` : vert. Le contrôle des contrats verrouillés sur 85576d6d n'affiche rien.
+- `cinematics:validate-narrative-staging` : vert, 75 dialogues et 256 étapes mises en scène.
+- Audit de structure relancé : aucun nouveau défaut.
+- Captures sans erreur de page (Playwright sans fenêtre sur `tools/dialogue/static-tableau-v2-proof.html`), dans des fichiers ignorés par Git sous `tmp/narrative-audit/shots/` : nid du dragon, choix de Bois-Clair, premier et dernier refuge, duelliste, informateur.

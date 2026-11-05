@@ -77,15 +77,6 @@ export const NARRATIVE_TEXT_REDUCTIONS = Object.freeze<NarrativeTextReduction[]>
     sourceTextPreserved: true,
     reviewed: true,
   },
-  {
-    dialogueId: 'final_refuge',
-    stepId: '3',
-    classification: 'REDUNDANT_EXPOSITION',
-    displayText: 'Notre renommée nous a précédés. Alaric a les registres de Bois-Clair, les récits de la route, les témoins et les preuves : un nom ouvre l’audience, il ne réécrit pas les traces.',
-    rationale: 'Earlier tableaux carry the chronology while the complete evidence list and consequence remain explicit.',
-    sourceTextPreserved: true,
-    reviewed: true,
-  },
 ]);
 
 const TEXT_REDUCTION_BY_STEP = new Map(
