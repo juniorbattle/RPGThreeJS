@@ -2304,6 +2304,17 @@ function restoreBattlefieldFocus(){
   const button=[...dom.menu.querySelectorAll('button:not(:disabled)')].find(b=>b.dataset.a===action&&(weaponIndex==null||b.dataset.wi===String(weaponIndex)))||dom.menu.querySelector('button:not(:disabled)');
   button?.focus({preventScroll:true});
 }
+/** Keyboard or controller deployment (OD-2026-11-05-A): the chosen unit waits for a cell, then focus returns to the roster. Focus only. */
+function focusDeploymentField(){ if(!keyboardInput||G.mode!=='deploy')return; const free=(G.deployZone||[]).find(z=>!z.occupant)||(G.deployZone||[])[0]; if(free)focusBattlefield('deploy',free); }
+function restoreDeploymentFocus(toSelected=false){
+  if(!keyboardInput||G.mode!=='deploy'||document.activeElement!==renderer.domElement)return;
+  battlefieldReturnAction=null;
+  const units=[...dom.menu.querySelectorAll('button[data-unit]:not(:disabled)')],placed=deployedIds();
+  const selected=units.find(b=>b.dataset.unit===G.selectedDeployId),next=units.find(b=>!placed.has(b.dataset.unit));
+  const start=dom.menu.querySelector('button[data-d="start"]:not(:disabled)');
+  const target=toSelected?selected:(G.deployedUnits.length<playerDeployLimit()&&next)||start;
+  (target||next||dom.menu.querySelector('button:not(:disabled)'))?.focus({preventScroll:true});
+}
 function updateBattlefieldCursor(){
   if(G.busy||G.over||G.stage)return;
   const c=cellAt(keyboardCell.gx,keyboardCell.gz); if(!c)return;
@@ -2337,6 +2348,7 @@ async function activateBattlefieldCell(c){ if(G.over||G.busy||G.stage)return;
     } else if(!c.occupant&&G.selectedDeployId){ const nu=deployUnit(c.gx,c.gz); if(nu)selectUnit(nu); }
     if(wasPlaced||deployedIds().size!==beforeIds.size)combatCue(wasPlaced&&!c.occupant?'back':'confirm');
     drawDeployZone(); openDeployMenu(); setHint(G.deployedUnits.length+' / '+playerDeployLimit()+' unités placées');
+    if(wasPlaced||deployedIds().size!==beforeIds.size||c.occupant?.team==='player')restoreDeploymentFocus();
   } return; }
   if(G.mode==='move'){ if(c&&(c.gx!==G.active.gx||c.gz!==G.active.gz)&&G.reach.list.some(t=>t.gx===c.gx&&t.gz===c.gz)){ G.movedThisTurn=true; await moveAlong(G.active,buildPath(G.reach.prev,G.active,c.gx,c.gz)); afterSub(); } else announceBattlefieldRejection('Déplacement',c); return; }
   if(G.mode==='target'){ const sp=G.pending.spec; if(sp.self){ await doExecute(sp,G.active.gx,G.active.gz); return; } if(c&&G.pending.keys.has(c.gx+','+c.gz)) await doExecute(sp,c.gx,c.gz); else announceBattlefieldRejection('Ciblage',c); return; }
@@ -2353,7 +2365,8 @@ function bindInput(){ const el=renderer.domElement;
   addEventListener('wheel',e=>{if(shouldPreventCombatWheel(e))e.preventDefault();},{passive:false});
   addEventListener('keydown',e=>{ keyboardInput=true; if(!shouldHandleCombatShortcut(e))return; const k=e.key.toLowerCase();
     if(document.activeElement===el&&(e.key.startsWith('Arrow')||k==='enter'||k===' ')){ e.preventDefault(); if((e.repeat&&(k==='enter'||k===' '))||G.busy||G.over||G.spotlight)return; if(e.key.startsWith('Arrow')){ keyboardCell=nextCombatCursor(keyboardCell||{gx:0,gz:0},e.key,CFG.W,CFG.D); updateBattlefieldCursor(); } else { void activateBattlefieldCell(cellAt(keyboardCell?.gx??0,keyboardCell?.gz??0)); } return; }
-    if(k==='escape'){ if(G.mode==='move'||G.mode==='target')e.preventDefault(); cancelToMenu(); }
+    if(k==='escape'&&G.mode==='deploy'&&document.activeElement===el){ e.preventDefault(); restoreDeploymentFocus(true); }
+    else if(k==='escape'){ if(G.mode==='move'||G.mode==='target')e.preventDefault(); cancelToMenu(); }
     else if(k==='enter'&&G.mode==='menu'&&!G.busy)endTurn();
     else if(k==='m'&&G.mode==='menu')enterMove();
     else if(k==='u'&&G.mode==='menu')undoMove();
@@ -2421,6 +2434,8 @@ function refreshTurnbar(){ dom.turnbar.classList.remove('hidden'); renderObjecti
 function syncActionDockState(){ const selected=selectedCombatAction(G.mode,G.pending?.spec?.key,dom.skillmenu.dataset.kind);
   dom.menu.querySelectorAll('.ico').forEach(button=>{ const active=button.dataset.a===selected; button.classList.toggle('is-selected',active); button.classList.toggle('is-locked',(G.mode==='move'||G.mode==='target')&&!active); button.setAttribute('aria-pressed',active?'true':'false'); }); }
 function closeMenus(retainDock=false){ if(!retainDock)dom.menu.classList.add('hidden'); dom.skillmenu.classList.add('hidden'); dom.skillmenu.dataset.kind=''; syncActionDockState(); }
+/** Keyboard or controller (OD-2026-11-05-A): an opened submenu takes focus on its first enabled row; Retour and Escape bring it back. */
+function focusSubmenu(){ if(keyboardInput)dom.skillmenu.querySelector('button:not(:disabled)')?.focus({preventScroll:true}); }
 function closeSubmenu(){ if(!dom.skillmenu.classList.contains('hidden'))combatCue('back'); const action=dom.skillmenu.dataset.kind,hadFocus=dom.skillmenu.contains(document.activeElement); dom.skillmenu.classList.add('hidden'); dom.skillmenu.dataset.kind=''; syncActionDockState(); if(keyboardInput&&hadFocus){ const button=[...dom.menu.querySelectorAll('button:not(:disabled)')].find(b=>b.dataset.a===action)||dom.menu.querySelector('button:not(:disabled)'); button?.focus({preventScroll:true}); } }
 function tipFor(u,b){ const a=b.dataset.a;
   if(a==='move')return 'Déplacer · MOV '+u.mov;
@@ -2453,11 +2468,11 @@ function openElanMenu(wi){ const u=G.active; if(!u)return; combatCue('confirm');
     const info='×'+sp.elanMul.toFixed(1)+(sp.elanPierce?' · perce '+Math.round(sp.elanPierce*100)+'% END':'')+(ch>=2?' · préc +10%':'');
     h+='<button type="button" class="btn '+dis+'" data-ch="'+ch+'" title="Coût '+sp.ap+' AP · dégâts '+info+'"'+(dis?' disabled':'')+'>'+sp.name+' <small>'+sp.ap+' AP · '+info+'</small></button>'; }
   h+='<button type="button" class="btn" data-ch="_back">Retour</button>';
-  dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const ch=b.dataset.ch; if(ch==='_back'){ closeSubmenu(); return; } enterTarget(getSpec(u,'attack',wi,+ch)); }); }
+  dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const ch=b.dataset.ch; if(ch==='_back'){ closeSubmenu(); return; } enterTarget(getSpec(u,'attack',wi,+ch)); }); focusSubmenu(); }
 function openSkillMenu(){ combatCue('confirm'); const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='skill'; syncActionDockState();
   const skills=u.skills.map(id=>{ const s=SKILLS[id],sp=getSpec(u,id),isRevive=sp.revive||(s.type==='revive'); return {id,name:sp.name,cost:sp.ap,description:s.desc||sp.desc||'',icon:sp.icon||s.icon,upgradeLevel:sp.upgradeLevel,disabled:sp.ap>u.ap||(isRevive&&!G.units.some(x=>!x.alive&&x.downed&&x.team===u.team))}; });
   dom.skillmenu.innerHTML='<div class="ttl">Compétences <small>'+u.ap+' PA</small></div>'+renderCombatSkillRows(skills)+'<button type="button" class="btn combat-menu-back" data-s="_back">Retour</button>';
-  dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const id=b.dataset.s; if(id==='_back'){ closeSubmenu(); return; } enterTarget(getSpec(u,id)); }); }
+  dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const id=b.dataset.s; if(id==='_back'){ closeSubmenu(); return; } enterTarget(getSpec(u,id)); }); focusSubmenu(); }
 function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name:it.name,ap:1+G.itemsUsedThisTurn,range:it.range,radius:it.radius||0,self:false,item:true,desc:it.desc};
   if(it.effect==='heal')  return Object.assign(base,{type:'heal',power:0,heal:true,support:true,flatHeal:it.flatHeal});
   if(it.effect==='revive')return Object.assign(base,{type:'revive',power:it.power||0.5,revive:true,support:true,targetMode:'ally'});
@@ -2471,7 +2486,7 @@ function openItemMenu(){ combatCue('confirm'); const u=G.active; dom.skillmenu.c
   for(const id in ITEMS){ const n=G.inv[id]||0; const it=ITEMS[id]; const hasKoAlly=it.effect!=='revive'||G.units.some(x=>!x.alive&&x.downed&&x.team===u.team); const dis=n<=0||u.ap<nextCost||!hasKoAlly; if(n>0)any=true; h+='<button type="button" class="btn '+(dis?'dis':'')+'" data-i="'+id+'" title="'+escHTML(it.desc)+'"'+(dis?' disabled':'')+'>'+escHTML(it.name)+' <small>×'+n+' · '+nextCost+' AP</small></button>'; }
   if(!any)h+='<div class="btn dis">Sac vide</div>';
   h+='<button type="button" class="btn" data-i="_back">Retour</button>';
-  dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const id=b.dataset.i; if(id==='_back'){ closeSubmenu(); return; } enterTarget(itemSpec(id)); }); }
+  dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const id=b.dataset.i; if(id==='_back'){ closeSubmenu(); return; } enterTarget(itemSpec(id)); }); focusSubmenu(); }
 // ============================= WAVES =============================
 function freeNear(gx,gz){ const c=cellAt(gx,gz); if(c&&c.walkable&&!c.occupant)return c; for(let r=1;r<=7;r++)for(let dx=-r;dx<=r;dx++)for(let dz=-r;dz<=r;dz++){ if(Math.abs(dx)+Math.abs(dz)!==r)continue; const cc=cellAt(gx+dx,gz+dz); if(cc&&cc.walkable&&!cc.occupant)return cc; } return null; }
 function spawnWave(wave){ const k=1+0.18*(wave-1); const foes=DEFS.filter(d=>d.team==='foe'); const list=foes.slice();
@@ -2620,7 +2635,7 @@ function openDeployMenu(){
     '<div class="deploy-pages"><button type="button" aria-label="Page précédente" data-d="prev" '+(G.deployPage===0?'disabled':'')+'>‹</button><span>'+(G.deployPage+1)+' / '+pages+'</span><button type="button" aria-label="Page suivante" data-d="next" '+(G.deployPage>=pages-1?'disabled':'')+'>›</button></div>'+
     '<div class="deploy-actions"><button type="button" data-d="auto">Auto</button><button type="button" data-d="reset" '+(!G.deployedUnits.length?'disabled':'')+'>Retirer tout</button>'+
     '<button type="button" class="deploy-start" data-d="start" '+(!canStartDeployment(G.deployedUnits.length,playerDeployLimit())?'disabled':'')+'>Lancer le combat</button></div>';
-  dom.menu.querySelectorAll('[data-unit]').forEach(b=>b.onclick=()=>{ if(G.selectedDeployId!==b.dataset.unit)combatCue('navigate'); G.selectedDeployId=b.dataset.unit; openDeployMenu(); const d=deployDefById(G.selectedDeployId); if(d)selectUnitData(d); setHint('Placez « '+(d?.name||'unité')+' » sur une case disponible'); });
+  dom.menu.querySelectorAll('[data-unit]').forEach(b=>b.onclick=()=>{ if(G.selectedDeployId!==b.dataset.unit)combatCue('navigate'); G.selectedDeployId=b.dataset.unit; openDeployMenu(); const d=deployDefById(G.selectedDeployId); if(d)selectUnitData(d); setHint('Placez « '+(d?.name||'unité')+' » sur une case disponible'); focusDeploymentField(); });
   dom.menu.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>onDeploy(b.dataset.d,b));
   restoreFocus();
 }

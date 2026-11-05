@@ -10,7 +10,7 @@
   </head>
   <body>
     <div id="combat-parallax" aria-hidden="true"></div>
-    <p id="combat-keyboard-help" class="combat-sr-only">Champ de bataille : flèches pour parcourir les cases, Entrée ou Espace pour sélectionner, Échap pour annuler. Tabulation pour les commandes.</p>
+    <p id="combat-keyboard-help" class="combat-sr-only">Champ de bataille : flèches pour parcourir les cases, Entrée ou Espace pour sélectionner, Échap pour annuler. Tabulation pour les commandes. Manette : croix ou stick pour parcourir, A ou Croix pour sélectionner, B ou Rond pour annuler, LB et RB pour les commandes.</p>
     <p id="combat-cell-status" class="combat-sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
     <div id="ui">
       <div id="turnbar" class="panel campaign-ui-frame campaign-ui-frame--compact hidden" aria-label="Ordre des tours"></div>
@@ -22,7 +22,7 @@
       <button id="settings-btn" class="hud-gear" type="button" title="Réglages" aria-label="Réglages">&#9881;</button>
       <div id="settings" class="panel hidden" role="menu" aria-label="Réglages"></div>
       <div id="panel" class="panel campaign-ui-frame campaign-ui-frame--compact hidden"></div>
-      <div id="menu" class="panel campaign-ui-frame campaign-ui-frame--compact hidden" aria-label="Actions de combat"></div>
+      <div id="menu" class="panel campaign-ui-frame campaign-ui-frame--compact hidden" aria-label="Actions de combat" data-gamepad-home></div>
       <div id="skillmenu" class="panel campaign-ui-frame campaign-ui-frame--compact hidden" aria-label="Choix de combat"></div>
       <div id="action-preview" class="panel campaign-ui-frame campaign-ui-frame--compact hidden" aria-live="polite"></div>
       <div id="help" class="panel hidden">
@@ -31,13 +31,14 @@
           <div class="help-copy">
             <b>Souris</b> sélectionner / cibler · <b>Q/E</b> pivoter · <b>molette</b> zoom<br />
             <b>Clic droit / Échap</b> annuler · <b>Flèches</b> parcourir les cases · <b>Entrée / Espace</b> sélectionner une case<br />
-            <b>M</b> déplacer · <b>A</b> attaquer · <b>U</b> annuler le déplacement
+            <b>M</b> déplacer · <b>A</b> attaquer · <b>U</b> annuler le déplacement<br />
+            <b>Manette</b> croix ou stick parcourir · <b>A / Croix</b> valider · <b>B / Rond</b> annuler · <b>LB / RB</b> commande précédente ou suivante
           </div>
         </details>
       </div>
       <div id="fx"></div>
       <div id="banner" class="hidden"></div>
-      <div id="tutorial" class="hidden">
+      <div id="tutorial" class="hidden" role="dialog" aria-modal="true" aria-label="École du combat">
         <div class="tutorial-backdrop"></div>
         <div class="tutorial-card">
           <div class="tutorial-header">
@@ -98,7 +99,7 @@
             <div class="tutorial-page" data-page="4">
               <div class="tutorial-section">
                 <h3>⌨ Commandes</h3>
-                <p><b>Souris</b> : sélectionner / cibler · <b>Q/E</b> : pivoter caméra · <b>Molette</b> : zoom<br/><b>Échap / Clic droit</b> : annuler · <b>Entrée</b> : fin de tour · <b>M</b> : déplacer · <b>A</b> : attaquer · <b>U</b> : annuler déplacement</p>
+                <p><b>Souris</b> : sélectionner / cibler · <b>Q/E</b> : pivoter caméra · <b>Molette</b> : zoom<br/><b>Échap / Clic droit</b> : annuler · <b>Entrée</b> : fin de tour · <b>M</b> : déplacer · <b>A</b> : attaquer · <b>U</b> : annuler déplacement<br/><b>Manette</b> : croix ou stick pour parcourir · <b>A / Croix</b> : valider · <b>B / Rond</b> : annuler · <b>LB / RB</b> : commande précédente ou suivante</p>
               </div>
             </div>
           </div>
@@ -106,13 +107,13 @@
             <div class="tutorial-dots"></div>
             <div class="tutorial-buttons">
               <button type="button" class="tutorial-btn tutorial-btn--skip" data-action="skip">Passer</button>
-              <button type="button" class="tutorial-btn tutorial-btn--next" data-action="next">Suivant</button>
-              <button type="button" class="tutorial-btn tutorial-btn--start hidden" data-action="start">Commencer</button>
+              <button type="button" class="tutorial-btn tutorial-btn--next" data-action="next" data-gamepad-home>Suivant</button>
+              <button type="button" class="tutorial-btn tutorial-btn--start hidden" data-action="start" data-gamepad-home>Commencer</button>
             </div>
           </div>
         </div>
       </div>
-      <div id="boss-tutorial" class="hidden">
+      <div id="boss-tutorial" class="hidden" role="dialog" aria-modal="true" aria-label="Boss et élites">
         <div class="tutorial-backdrop"></div>
         <div class="tutorial-card">
           <div class="tutorial-header">
@@ -146,7 +147,7 @@
           </div>
           <div class="tutorial-footer">
             <div class="tutorial-buttons">
-              <button type="button" class="tutorial-btn tutorial-btn--start" data-action="start">Au combat</button>
+              <button type="button" class="tutorial-btn tutorial-btn--start" data-action="start" data-gamepad-home>Au combat</button>
             </div>
           </div>
         </div>

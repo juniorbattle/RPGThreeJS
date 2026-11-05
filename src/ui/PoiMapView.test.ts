@@ -183,6 +183,10 @@ function afterFirstRefuge(at:string):GameState{
 describe('POI atlas guidance',()=>{
   it('selects the next step without moving anyone: the audience at the start, the road out once the refuge is left',()=>{
     expect(suggestedPoi(selectPoiMap(createInitialState()))).toBe('lion-audience');
+    // After the audience the camp is reachable again but has nothing left to open: the ambush road comes first.
+    const afterAudience=createInitialState();afterAudience.resolvedNodeIds=['lion-audience'];afterAudience.flags.lionMissionAccepted=true;
+    afterAudience.run.currentNodeId=afterAudience.currentNodeId='lion-audience';
+    expect(suggestedPoi(selectPoiMap(afterAudience))).toBe('lion-opening-ambush');
     expect(suggestedPoi(selectPoiMap(afterFirstRefuge('lion-first-refuge')))).toBe('lion-reserve-trail');
     // From a point already behind the company, the way back to the refuge comes before the refugees left aside.
     expect(suggestedPoi(selectPoiMap(afterFirstRefuge('lion-first-trial-combat')))).toBe('lion-first-refuge');

@@ -373,12 +373,12 @@ describe('native deployment keyboard focus', () => {
     let open: () => void;
     const reset = vi.fn(() => { game.deployedUnits = []; open(); });
     open = new Function('G', 'dom', 'keyboardInput', 'captureDeploymentFocus', 'renderObjective', 'cl', 'playerDeployLimit',
-      'deploymentCard', 'canStartDeployment', 'deployDefById', 'selectUnitData', 'setHint', 'autoDeploy', 'resetDeploy', 'beginBattle',
+      'deploymentCard', 'canStartDeployment', 'deployDefById', 'selectUnitData', 'setHint', 'autoDeploy', 'resetDeploy', 'beginBattle', 'focusDeploymentField',
       'const combatCue=()=>{};' + menuSource + actionSource + ';return openDeployMenu;')(
       game, { menu, skillmenu }, keyboard, captureDeploymentFocus, renderObjective,
       (n: number, min: number, max: number) => Math.max(min, Math.min(max, n)), () => 4,
       (unit: { campaignId: string }) => '<button type="button" data-unit="' + unit.campaignId + '">Hero</button>',
-      (count: number) => count > 0, () => ({ name: 'Hero' }), vi.fn(), vi.fn(), vi.fn(), reset, vi.fn(),
+      (count: number) => count > 0, () => ({ name: 'Hero' }), vi.fn(), vi.fn(), vi.fn(), reset, vi.fn(), vi.fn(),
     );
     open();
     const control = (selector: string) => menu.querySelector<HTMLButtonElement>(selector)!;
@@ -427,5 +427,52 @@ describe('native deployment keyboard focus', () => {
     outside = input.outside;
     input.activate('[data-unit="hero-0"]');
     expect(document.activeElement).toBe(outside);
+  });
+});
+
+describe('keyboard and controller deployment hand-off (OD-2026-11-05-A)', () => {
+  const runtime = readFileSync(new NodeURL('./legacyCombatRuntime.js', import.meta.url), 'utf8');
+  const source = runtime.slice(runtime.indexOf('function focusDeploymentField(){'), runtime.indexOf('\nfunction updateBattlefieldCursor(){'));
+
+  function handOff(keyboard = true) {
+    const menu = document.createElement('div'), canvas = document.createElement('canvas');
+    canvas.tabIndex = 0;
+    menu.innerHTML = '<button type="button" data-unit="a">A</button><button type="button" data-unit="b">B</button><button type="button" data-d="start">Lancer</button>';
+    document.body.replaceChildren(menu, canvas);
+    const game = { mode: 'deploy', deployZone: [{ gx: 0, gz: 1, occupant: null }], deployedUnits: [] as { id: string }[], selectedDeployId: 'a' };
+    const focusBattlefield = vi.fn(() => canvas.focus());
+    const api = new Function('G', 'dom', 'keyboardInput', 'renderer', 'focusBattlefield', 'deployedIds', 'playerDeployLimit',
+      'let battlefieldReturnAction=null;' + source + ';return {focusDeploymentField,restoreDeploymentFocus};')(
+      game, { menu }, keyboard, { domElement: canvas }, focusBattlefield, () => new Set(game.deployedUnits.map(unit => unit.id)), () => 2,
+    ) as { focusDeploymentField: () => void; restoreDeploymentFocus: (toSelected?: boolean) => void };
+    const button = (selector: string) => menu.querySelector<HTMLButtonElement>(selector)!;
+    return { canvas, game, focusBattlefield, button, ...api };
+  }
+
+  it('waits on a free cell for the chosen unit, then returns to the next unit and finally to the start button', () => {
+    const input = handOff();
+    input.focusDeploymentField();
+    expect(input.focusBattlefield).toHaveBeenCalledWith('deploy', input.game.deployZone[0]);
+    expect(document.activeElement).toBe(input.canvas);
+    input.game.deployedUnits.push({ id: 'a' });
+    input.restoreDeploymentFocus();
+    expect(document.activeElement).toBe(input.button('[data-unit="b"]'));
+    input.canvas.focus();
+    input.game.deployedUnits.push({ id: 'b' });
+    input.restoreDeploymentFocus();
+    expect(document.activeElement).toBe(input.button('[data-d="start"]'));
+    input.canvas.focus();
+    input.restoreDeploymentFocus(true);
+    expect(document.activeElement).toBe(input.button('[data-unit="a"]'));
+  });
+
+  it('leaves the mouse flow and focus held elsewhere untouched', () => {
+    const pointer = handOff(false);
+    pointer.focusDeploymentField();
+    expect(pointer.focusBattlefield).not.toHaveBeenCalled();
+    const elsewhere = handOff();
+    elsewhere.button('[data-unit="b"]').focus();
+    elsewhere.restoreDeploymentFocus();
+    expect(document.activeElement).toBe(elsewhere.button('[data-unit="b"]'));
   });
 });

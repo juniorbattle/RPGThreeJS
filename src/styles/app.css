@@ -2876,3 +2876,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .journey-overlay--departure .journey-overlay__title { font-size: 21px; }
 }
 .qa-lab__header-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+/* OD-2026-11-05-A: controller notice, and a focus ring that stays visible while the controller moves focus. */
+.gamepad-toast{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:9300;width:max-content;max-width:min(92vw,760px);padding:10px 16px;transform:translateX(-50%);border:1px solid rgba(244,217,139,.55);border-radius:8px;background:var(--ui-color-surface-strong);color:var(--ui-color-cream);font-size:13px;line-height:1.45;text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .35s ease}
+.gamepad-toast.is-visible{opacity:1}
+:root[data-input="gamepad"] :focus:not(:focus-visible){outline:2px solid var(--ui-color-gold-bright);outline-offset:3px}

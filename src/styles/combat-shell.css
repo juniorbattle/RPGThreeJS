@@ -78,3 +78,5 @@ body.reduced-graphics .tutorial-page.active{animation:none}
   #panel.deploy-preview{top:8px;bottom:auto;max-height:21dvh}
   .combat-result-card{max-height:calc(100dvh - 20px);padding:15px 13px 13px;overflow:hidden}.combat-result-card h1{font-size:31px}.combat-result__subtitle{font-size:12px;margin-bottom:8px}.combat-result__squad{grid-template-columns:1fr 1fr}.combat-result__unit{font-size:10px;padding:6px}
 }
+:root[data-input="gamepad"] :focus:not(:focus-visible){outline:2px solid #f6db91;outline-offset:3px}
+:root[data-input="gamepad"] #combat-battlefield:focus:not(:focus-visible){outline:3px solid #82dfff;outline-offset:-6px}
