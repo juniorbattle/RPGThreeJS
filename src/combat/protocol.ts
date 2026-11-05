@@ -58,6 +58,13 @@ export const combatInitializeMessageSchema = z.object({
 });
 export type CombatInitializeMessage = z.infer<typeof combatInitializeMessageSchema>;
 
+/** The settings menu changed reduced motion during a fight (OD-2026-11-05-B): presentation only. */
+export const combatGraphicsMessageSchema = z.object({
+  type: z.literal('rpg-threejs:combat-graphics'),
+  reducedGraphics: z.boolean(),
+}).strict();
+export type CombatGraphicsMessage = z.infer<typeof combatGraphicsMessageSchema>;
+
 export const combatResultMessageSchema = z.object({
   type: z.literal('rpg-threejs:combat-result'),
   victory: z.boolean(),

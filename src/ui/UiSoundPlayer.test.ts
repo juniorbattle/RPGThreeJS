@@ -104,6 +104,8 @@ it('settings contain focus, support Escape, and restore prior inert/focus state'
   const panel = new UiSoundSettings(root, player); panel.open();
   expect(opener.inert).toBe(true); expect(document.activeElement?.textContent).toBe('Couper les sons');
   expect(document.activeElement?.getAttribute('aria-pressed')).toBe('true');
+  // OD-2026-11-05-B: the sound controls now sit under the « Son » tab, the first stop of the trap.
+  root.querySelector<HTMLButtonElement>('[data-settings-tab="sound"]')!.focus();
   document.activeElement!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', shiftKey: true, bubbles: true, cancelable: true }));
   expect(document.activeElement?.textContent).toBe('Fermer');
   document.activeElement!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));

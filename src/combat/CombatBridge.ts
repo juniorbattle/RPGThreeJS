@@ -5,6 +5,7 @@ import {
   combatInitializedMessageSchema,
   combatReadyMessageSchema,
   toCombatResult,
+  type CombatGraphicsMessage,
   type CombatInitializeMessage,
 } from './protocol';
 
@@ -90,6 +91,13 @@ export class CombatBridge {
       this.resolveResult = resolve;
     });
     return { ready, result };
+  }
+
+  /** Reduced motion changed in the settings menu: the running fight follows it at once. Presentation only. */
+  setReducedGraphics(reduced: boolean): void {
+    if (this.session) this.session.reducedGraphics = reduced;
+    const message: CombatGraphicsMessage = { type: 'rpg-threejs:combat-graphics', reducedGraphics: reduced };
+    this.iframe?.contentWindow?.postMessage(message, window.location.origin);
   }
 
   close(): void {

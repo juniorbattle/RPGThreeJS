@@ -6,7 +6,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { UnitFocusController } from './UnitFocusController';
-import { combatInitializeMessageSchema } from './protocol';
+import { combatGraphicsMessageSchema, combatInitializeMessageSchema } from './protocol';
 import { canStartDeployment, normalizeDeploymentLimit, orderDeploymentCandidates } from './deploymentRules';
 import { getUnitVisualState } from './unitVisualState';
 import { CombatArena } from './arena/CombatArena';
@@ -2391,11 +2391,12 @@ function renderObjective(){ if(!dom.objective)return; dom.objective.classList.re
 function applyGraphics(){ REDUCED_GRAPHICS=prefersReducedMotion(REQUESTED_REDUCED_GRAPHICS); settleReducedCastMotion(); document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); if(typeof bloom!=='undefined'&&bloom)bloom.enabled=!REDUCED_GRAPHICS; if(typeof tiltPass!=='undefined'&&tiltPass)tiltPass.enabled=!REDUCED_GRAPHICS; }
 function renderSettings(){ if(!dom.settings)return;
   dom.settings.innerHTML='<div class="settings__ttl">Réglages</div>'+
-    '<button class="settings__row" type="button" data-s="fxhd" role="menuitemcheckbox" aria-checked="'+(!REQUESTED_REDUCED_GRAPHICS)+'"><span>Effets HD</span><i class="settings__sw'+(!REQUESTED_REDUCED_GRAPHICS?' on':'')+'"></i></button>'+
-    (CAMPAIGN_MODE?'<button class="settings__row" type="button" data-s="sounds"><span>Sons</span><i class="settings__hint">♪</i></button>':'')+
+    // OD-2026-11-05-B: in the campaign, sound and motion live in the game's single settings menu.
+    (CAMPAIGN_MODE?'<button class="settings__row" type="button" data-s="settings" role="menuitem"><span>Son, affichage et commandes</span><i class="settings__hint">⚙</i></button>'
+      :'<button class="settings__row" type="button" data-s="fxhd" role="menuitemcheckbox" aria-checked="'+(!REQUESTED_REDUCED_GRAPHICS)+'"><span>Effets HD</span><i class="settings__sw'+(!REQUESTED_REDUCED_GRAPHICS?' on':'')+'"></i></button>')+
     '<button class="settings__row" type="button" data-s="help" role="menuitem"><span>Aide & commandes</span><i class="settings__hint">?</i></button>';
-  dom.settings.querySelector('[data-s="fxhd"]').onclick=()=>{ REQUESTED_REDUCED_GRAPHICS=!REQUESTED_REDUCED_GRAPHICS; applyGraphics(); renderSettings(); };
-  dom.settings.querySelector('[data-s="sounds"]')?.addEventListener('click',()=>combatAudio.settings());
+  dom.settings.querySelector('[data-s="fxhd"]')?.addEventListener('click',()=>{ REQUESTED_REDUCED_GRAPHICS=!REQUESTED_REDUCED_GRAPHICS; applyGraphics(); renderSettings(); });
+  dom.settings.querySelector('[data-s="settings"]')?.addEventListener('click',()=>{ toggleSettings(false); dom.settingsBtn?.focus({preventScroll:true}); combatAudio.settings(); });
   dom.settings.querySelector('[data-s="help"]').onclick=()=>{ const d=dom.help&&dom.help.querySelector('details'); if(d)d.open=true; toggleSettings(false); };
 }
 function toggleSettings(show){ if(!dom.settings)return; const open=(show==null)?dom.settings.classList.contains('hidden'):show;
@@ -3095,6 +3096,9 @@ function bootCampaign(message){
   main().then(()=>{ window.__BOOTED=true; window.parent.postMessage({type:'rpg-threejs:combat-initialized'},location.origin); }).catch(err=>{ console.error(err); dom.loading.innerHTML='<div style="color:#ff8a7a">Erreur : '+(err&&err.message||err)+'</div>'; });
 }
 if(CAMPAIGN_MODE){
-  addEventListener('message',event=>{ if(event.source!==window.parent||event.origin!==location.origin)return; const parsed=combatInitializeMessageSchema.safeParse(event.data); if(parsed.success&&!window.__BOOTED)bootCampaign(parsed.data); });
+  addEventListener('message',event=>{ if(event.source!==window.parent||event.origin!==location.origin)return;
+    // OD-2026-11-05-B: reduced motion changed in the game's settings menu during the fight.
+    const graphics=combatGraphicsMessageSchema.safeParse(event.data); if(graphics.success){ REQUESTED_REDUCED_GRAPHICS=graphics.data.reducedGraphics; applyGraphics(); if(dom.settings&&!dom.settings.classList.contains('hidden'))renderSettings(); return; }
+    const parsed=combatInitializeMessageSchema.safeParse(event.data); if(parsed.success&&!window.__BOOTED)bootCampaign(parsed.data); });
   window.parent.postMessage({type:'rpg-threejs:combat-ready'},location.origin);
 }else main().then(()=>{ window.__BOOTED=true; }).catch(err=>{ console.error(err); dom.loading.innerHTML='<div style="color:#ff8a7a">Erreur : '+(err&&err.message||err)+'</div>'; });

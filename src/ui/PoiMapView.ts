@@ -7,9 +7,9 @@ import type { UiSoundFeedback } from './UiSoundPlayer';
 
 interface PoiMapOptions {
   root:HTMLElement;onMove:(id:string)=>Promise<void>;onBypass:(id:string)=>void;
-  onCompany:()=>void;onSave:()=>void;onMenu:()=>void;onReducedMotion:()=>void;
+  onCompany:()=>void;onSave:()=>void;onMenu:()=>void;
   onWait?:()=>Promise<void>;onFightElite?:(id:string)=>Promise<void>;
-  onSounds?:()=>void;onSound?:UiSoundFeedback;
+  /** The game's single settings menu (OD-2026-11-05-B). */onSettings?:()=>void;onSound?:UiSoundFeedback;
 }
 const escape=(s:string)=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
 const statusLabels={available:'Disponible',locked:'Verrouillé',resolved:'Résolu',neutralized:'Neutralisé'};
@@ -94,7 +94,7 @@ export class PoiMapView {
     const element=document.createElement('section');element.className='poi-map';
     element.dataset.region=String(phase);element.dataset.reducedMotion=String(reducedMotion);
     element.setAttribute('aria-label','Carte de campagne');
-    element.innerHTML=`<header class="poi-map__header"><div class="poi-map__heading"><span>Carte de campagne</span><h1 id="poi-region-title">${region.shortTitle}</h1></div><p class="poi-map__resources">Or <b>${model.gold}</b><span>·</span> Réputation <b>${model.reputation}</b></p><nav aria-label="Actions de campagne" data-gamepad-menu data-gamepad-back="[data-poi-id][aria-pressed=true]">${this.options.onSounds?'<button data-poi-action="sounds">Sons</button>':''}<button data-poi-action="company">Compagnie</button><button data-poi-action="save">Sauvegarder</button><button data-poi-action="menu">Menu</button><button data-poi-action="motion" aria-pressed="${reducedMotion}">Mouvement réduit</button><button data-poi-action="wait" aria-label="Attendre un tour sans déplacement. Les menaces actives peuvent avancer." title="Avance un tour sans déplacement ; les menaces actives peuvent avancer. Ne soigne pas la compagnie.">Attendre<span class="poi-map__wait-note">1 tour sur place</span></button><button data-poi-action="help" aria-controls="poi-map-panel" aria-expanded="false">Aide</button></nav></header>
+    element.innerHTML=`<header class="poi-map__header"><div class="poi-map__heading"><span>Carte de campagne</span><h1 id="poi-region-title">${region.shortTitle}</h1></div><p class="poi-map__resources">Or <b>${model.gold}</b><span>·</span> Réputation <b>${model.reputation}</b></p><nav aria-label="Actions de campagne" data-gamepad-menu data-gamepad-back="[data-poi-id][aria-pressed=true]">${this.options.onSettings?'<button data-poi-action="settings">Réglages</button>':''}<button data-poi-action="company">Compagnie</button><button data-poi-action="save">Sauvegarder</button><button data-poi-action="menu">Menu</button><button data-poi-action="wait" aria-label="Attendre un tour sans déplacement. Les menaces actives peuvent avancer." title="Avance un tour sans déplacement ; les menaces actives peuvent avancer. Ne soigne pas la compagnie.">Attendre<span class="poi-map__wait-note">1 tour sur place</span></button><button data-poi-action="help" aria-controls="poi-map-panel" aria-expanded="false">Aide</button></nav></header>
       <div class="poi-map__viewport">
       <div class="poi-map__atlas-bar">${discovered.length>1?`<div class="poi-map__regions" role="tablist" aria-label="Régions découvertes">${discovered.map(({r,i})=>`<button role="tab" id="poi-region-${i}" data-poi-region="${i}" aria-selected="${i===phase}" tabindex="${i===phase?0:-1}" aria-controls="poi-atlas">${r.shortTitle}</button>`).join('')}</div>`:''}<button data-poi-action="locate">Ma position</button></div>
       <div class="poi-map__land" id="poi-atlas" role="${discovered.length>1?'tabpanel':'region'}" aria-labelledby="${discovered.length>1?`poi-region-${phase}`:'poi-region-title'}" tabindex="0" aria-label="${escape(region.title)}. Carte défilante, glisser ou utiliser les flèches."><div class="poi-map__canvas"><img class="poi-map__geography" src="${region.image}" alt="" draggable="false"/><svg viewBox="0 0 960 520" aria-hidden="true">${paths}</svg>
@@ -154,7 +154,7 @@ export class PoiMapView {
       switch(button.dataset.poiAction){
         case'help':case'details':openPanel(button);this.options.onSound?.('confirm');break;
         case'close-panel':closePanel();this.options.onSound?.('back');break;
-        case'sounds':this.options.onSounds?.();break;
+        case'settings':this.options.onSettings?.();break;
         case'move':{const restoreFocus=document.activeElement===button;button.disabled=true;void this.options.onMove(this.selectedId).catch(()=>{
           if(this.element===element){const message=document.createElement('p');message.setAttribute('role','alert');
             message.textContent='Déplacement interrompu. Réessayez.';element.querySelector('.poi-map__detail')?.append(message);}
@@ -162,7 +162,7 @@ export class PoiMapView {
           if(restoreFocus&&document.activeElement===document.body)button.focus();}});break;}
         case'bypass':this.options.onBypass(this.selectedId);break;
         case'company':this.options.onSound?.('confirm');this.options.onCompany();break;case'save':this.options.onSave();break;
-        case'menu':this.options.onMenu();break;case'motion':this.options.onReducedMotion();break;
+        case'menu':this.options.onMenu();break;
         case'wait':button.disabled=true;void this.options.onWait?.().finally(()=>{if(button.isConnected)button.disabled=false;});break;
         case'elite-fight':if(button.dataset.eliteId){button.disabled=true;void this.options.onFightElite?.(button.dataset.eliteId).finally(()=>{if(button.isConnected)button.disabled=false;});}break;
         case'locate':this.render(model,lionPoiMapPhase(model.currentNodeId),model.currentNodeId,reducedMotion);break;

@@ -10,7 +10,7 @@ function fixture(onMove=vi.fn(async(_id:string)=>{}),prepare=(model:PoiMapModel)
   const root=document.createElement('div');document.body.append(root);
   const state=createInitialState(),model=selectPoiMap(state),before=structuredClone(state);
   prepare(model);
-  const view=new PoiMapView({root,onMove,onBypass:vi.fn(),onCompany:vi.fn(),onSave:vi.fn(),onMenu:vi.fn(),onReducedMotion:vi.fn(),onSound});
+  const view=new PoiMapView({root,onMove,onBypass:vi.fn(),onCompany:vi.fn(),onSave:vi.fn(),onMenu:vi.fn(),onSound});
   view.open(model);return {view,model,state,before,onMove,onSound,root};
 }
 const marker=(id:string)=>document.querySelector<HTMLButtonElement>(`[data-poi-id="${id}"]`)!;
@@ -194,7 +194,7 @@ describe('POI atlas guidance',()=>{
   it('opens on that step with its action ready, names the region it leads to and keeps the refuge reopenable',()=>{
     const root=document.createElement('div');document.body.append(root);
     const state=afterFirstRefuge('lion-first-refuge'),model=selectPoiMap(state),before=structuredClone(state);
-    new PoiMapView({root,onMove:vi.fn(async()=>{}),onBypass:vi.fn(),onCompany:vi.fn(),onSave:vi.fn(),onMenu:vi.fn(),onReducedMotion:vi.fn()}).open(model);
+    new PoiMapView({root,onMove:vi.fn(async()=>{}),onBypass:vi.fn(),onCompany:vi.fn(),onSave:vi.fn(),onMenu:vi.fn()}).open(model);
     expect(marker('lion-reserve-trail').getAttribute('aria-pressed')).toBe('true');
     expect(action().disabled).toBe(false);expect(action().textContent).toBe('Se rendre');
     expect(marker('lion-reserve-trail').textContent).toContain('Vers II · Bois-Clair');

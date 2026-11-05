@@ -39,6 +39,7 @@ import { sceneMood, type NarrativeMood } from '../audio/moods';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
 import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
+import { readMotionPreference, writeMotionPreference } from '../ui/MotionPreference';
 import { ExplorationView } from '../ui/ExplorationView';
 import { resolveRefugePresentation } from '../ui/RefugePresentation';
 import { OpeningSequence } from '../ui/opening/OpeningSequence';
@@ -190,7 +191,10 @@ export class GameApp {
     private readonly root: HTMLElement,
     private readonly canvas: HTMLCanvasElement,
   ) {
-    this.soundSettings = new UiSoundSettings(root, this.uiSounds);
+    this.soundSettings = new UiSoundSettings(root, this.uiSounds, {
+      motion: { get: () => this.state.settings.reducedGraphics, set: reduced => this.setReducedMotion(reduced) },
+    });
+    this.applyMotionPreference();
     if (import.meta.env.DEV) Object.assign(window, { __rpgMusic: () => this.uiSounds.musicSnapshot() });
     this.chrome.className = 'game-chrome';
     this.root.append(this.chrome);
@@ -208,7 +212,7 @@ export class GameApp {
       },
       onSound: id => this.uiSounds.play(id),
     });
-    this.combat = new CombatBridge(root, { player: this.uiSounds, openSettings: restore => this.soundSettings.open(restore), closeSettings: () => this.soundSettings.close() });
+    this.combat = new CombatBridge(root, { player: this.uiSounds, openSettings: restore => this.openSettings(restore), closeSettings: () => this.soundSettings.close() });
     this.exploration = new ExplorationView({ root, statusHud: this.statusHud, onSound: id => this.uiSounds.play(id) });
     this.poiEncounter = new PoiEncounterView(root, id => this.uiSounds.play(id));
     this.poiMap = new PoiMapView({root,
@@ -218,18 +222,42 @@ export class GameApp {
       onBypass: id => this.ignorePoi(id),
       onCompany: () => void this.openPoiCompany(),
       onSave: () => {if(!this.routeCommitInFlight){this.saves.saveManual(this.state);this.uiSounds.play('saved');}},
-      onSounds: () => this.soundSettings.open(),
+      onSettings: () => this.openSettings(),
       onSound: id => this.uiSounds.play(id),
       onMenu: () => {if(!this.routeCommitInFlight){this.uiSounds.play('back');this.renderTitle();}},
-      onReducedMotion: () => {
-        if(this.routeCommitInFlight)return;
-        this.state.settings.reducedGraphics = !this.state.settings.reducedGraphics;
-        this.uiSounds.play('confirm');
-        this.showPoiMap();
-        this.root.querySelector<HTMLButtonElement>('[data-poi-action="motion"]')?.focus();
-      },
     });
     this.prologue = new OpeningSequence(root);
+  }
+
+  /**
+   * The single settings menu (OD-2026-11-05-B). A motion change made over the map redraws the map once the menu
+   * closes, so the atlas follows the new choice; any other surface reads the setting when it next plays.
+   */
+  private openSettings(returnFocus?: () => void): void {
+    const before = this.state.settings.reducedGraphics;
+    const previous = document.activeElement as HTMLElement | null;
+    this.soundSettings.open(() => {
+      if (this.state.settings.reducedGraphics !== before && document.body.dataset.campaignSurface === 'poi-map' && document.body.dataset.mode === 'travel' && !this.routeCommitInFlight) {
+        this.showPoiMap();
+        this.root.querySelector<HTMLButtonElement>('[data-poi-action="settings"]')?.focus();
+        return;
+      }
+      if (returnFocus) returnFocus();
+      else if (previous?.isConnected && !previous.closest('[inert]')) previous.focus({ preventScroll: true });
+    });
+  }
+
+  /** The player's motion choice lives on this device; the running fight follows it at once. Presentation only. */
+  private setReducedMotion(reduced: boolean): void {
+    this.state.settings.reducedGraphics = reduced;
+    writeMotionPreference(reduced);
+    this.combat.setReducedGraphics(reduced);
+  }
+
+  /** A new or loaded chronicle takes the motion choice stored on this device, when the player made one. */
+  private applyMotionPreference(): void {
+    const stored = readMotionPreference();
+    if (stored !== null) this.state.settings.reducedGraphics = stored;
   }
 
   async start(): Promise<void> {
@@ -276,12 +304,10 @@ export class GameApp {
         <div class="title-screen__actions">
           <button type="button" data-action="new">Nouvelle chronique</button>
           <button type="button" data-action="continue" ${this.saves.hasSave() ? '' : 'disabled'}>Continuer</button>
-          <button type="button" data-action="sounds">Sons</button>
+          <button type="button" data-action="settings">Réglages</button>
           ${this.qaEnabled ? '<button type="button" class="title-screen__qa" data-action="qa">QA rencontres</button>' : ''}
         </div>
         <nav class="title-screen__nav">
-          <span class="title-screen__nav-link">⚙ Options</span>
-          <span class="title-screen__nav-sep"></span>
           <span class="title-screen__nav-link">📖 Crédits</span>
           <span class="title-screen__nav-sep"></span>
           <span class="title-screen__nav-link">◆ Feuille de route</span>
@@ -290,7 +316,7 @@ export class GameApp {
     `;
     this.chrome.querySelector('[data-action="new"]')?.addEventListener('click', () => void this.startNewChronicle());
     this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => void this.continueChronicle());
-    this.chrome.querySelector('[data-action="sounds"]')?.addEventListener('click', () => this.soundSettings.open());
+    this.chrome.querySelector('[data-action="settings"]')?.addEventListener('click', () => this.openSettings());
     this.chrome.querySelector('[data-action="qa"]')?.addEventListener('click', () => this.renderQaLab());
     (this.chrome.querySelector<HTMLButtonElement>('[data-action="continue"]:not(:disabled)')
       ?? this.chrome.querySelector<HTMLButtonElement>('[data-action="new"]'))?.focus();
@@ -1574,6 +1600,7 @@ export class GameApp {
       task: async () => {
         this.saves.clear();
         this.state = createInitialState();
+        this.applyMotionPreference();
         this.state.flags.prologueSeen = false;
         try {
           localStorage.removeItem('rpg-tutorial-seen');
@@ -1628,6 +1655,7 @@ export class GameApp {
       label: 'La chronique reprend',
       task: async () => {
         this.state = this.saves.loadAuto() ?? this.saves.loadManual() ?? createInitialState();
+        this.applyMotionPreference();
         this.prologue.close();
         this.exploration.close();
         this.combat.close();
