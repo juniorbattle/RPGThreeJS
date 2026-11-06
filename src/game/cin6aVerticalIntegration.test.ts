@@ -47,12 +47,17 @@ describe('CIN-6A vertical integration seams', () => {
     const start = resolveNode.indexOf("if (node.type === 'refuge')");
     expect(start).toBeGreaterThan(-1);
     const refuge = resolveNode.slice(start, resolveNode.indexOf("if (node.type === 'shop')", start));
-    expect(refuge.indexOf('resolveCin6aRefugeArrival(node.id)')).toBeLessThan(refuge.indexOf('this.exploration.open'));
+    // The services loop is shared with the final refuge since set 1.15.0 (runRefugeServices).
+    const services = method('private async runRefugeServices');
+    expect(refuge.indexOf('resolveCin6aRefugeArrival(node.id)')).toBeGreaterThan(-1);
+    expect(refuge.indexOf('resolveCin6aRefugeArrival(node.id)')).toBeLessThan(refuge.indexOf('await this.runRefugeServices('));
+    expect(services).toContain('this.exploration.open');
     expect(refuge).not.toContain('resolveCin6aRefugeDeparture(node.id)');
-    expect(refuge.indexOf("if (action === 'continue') break")).toBeLessThan(refuge.indexOf('this.markResolved(node.id)'));
+    expect(services).toContain("if (action === 'continue') break");
+    expect(refuge.indexOf('await this.runRefugeServices(')).toBeLessThan(refuge.indexOf('this.markResolved(node.id)'));
     expect(refuge.indexOf('this.markResolved(node.id)')).toBeLessThan(refuge.indexOf('this.enterCampaignPresentation()'));
     for (const gameplay of ["action === 'rest'", "action === 'shop'", "action === 'clan'", "action === 'skills'"]) {
-      expect(refuge).toContain(gameplay);
+      expect(services).toContain(gameplay);
     }
   });
 

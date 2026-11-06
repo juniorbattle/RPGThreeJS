@@ -109,6 +109,22 @@ Le 2026-11-06, l'opérateur répond « Fiche remplie » ; sur la fiche, B1 vaut 
 3. Commit de l'amendement, puis commit opérationnel qui enregistre son SHA comme nouvelle baseline immuable.
 4. Ensuite seulement, la halte dans le jeu, avec ses tests et une vérification en jeu, avant le playtest PC.
 
+## Livraison
+
+`CURRENT FACT` Livrée le 2026-11-06, sur la baseline `1c00f7a6` :
+
+- **La halte.** Après le dialogue du refuge final, puis ses scènes d'après-nœud existantes, la halte s'ouvre sous le rideau noir, avec le titre « Refuge avant le Sceau ». Elle offre Clan, Shop (échoppe et forge), Amélioration et Repos sur le tableau du refuge final, avec l'indication du nœud pour description. « Reprendre la route » mène à l'écran « Avant le jugement », puis à la carte, comme avant.
+- **Les mêmes services.** La boucle des refuges est partagée (`runRefugeServices`, `src/game/GameApp.ts`) : mêmes écrans de gestion, stock `valmir` partagé, prix selon la réputation, recettes, repos à 15 or par blessé. Le comportement des deux refuges ne change pas.
+- **Rien de plus dans la vérité du jeu.** La halte ne met rien au coffre (la ligne du coffre n'y est pas affichée), ne déplace pas le point de reprise, ne donne ni potion ni récompense et n'ajoute aucun champ de sauvegarde. Le nœud reste `story`.
+- **Le retour.** `src/campaign/LionFinalRefugeServices.ts` déduit l'ouverture des faits existants : le refuge final est résolu, la course est active, et le jugement n'a pas commencé (nœud du jugement ni visité ni résolu, aucune finale choisie). La carte marque alors le refuge final « Refuge réutilisable » et propose « Ouvrir le refuge », comme aux deux refuges. Y revenir, ou l'ouvrir sur place, rouvre la halte sans rejouer le dialogue. Une reprise de partie au refuge final rouvre la halte, puis l'écran « Avant le jugement ».
+- **Tests mis à jour.** Quatre tests portaient l'ancienne règle « le refuge final n'ouvre jamais de halte » ou découpaient la boucle des refuges dans le code source. Ils vérifient désormais la nouvelle règle et la boucle partagée. Les tests du cycle de l'écran « Avant le jugement » passent la halte, couverte par `finalRefugeServicesFlow.test.ts`.
+
+Vérifications :
+
+- Tests des sélecteurs, de la carte, de la présentation, de la vue et du déroulé dans `GameApp` : dialogue, halte puis préparation ; réouverture sans dialogue ; halte fermée une fois le jugement commencé ; halte puis carte si la Journey manque.
+- Suite complète (2920 tests vitest et 26 tests node), types, build, validateur et porte sur `1c00f7a6`.
+- Parcours en navigateur sur le serveur 5181, à 1366 px, à 1366 px en mouvement réduit émulé, et à 390 px : arrivée, dialogue, halte, forge, repos payé (15 or), « Avant le jugement », carte, « Ouvrir le refuge », halte rouverte sans dialogue. La sauvegarde n'a gagné aucun champ et le point de reprise n'a pas bougé. Aucune erreur de page.
+
 ## Ce qui ne change pas
 
 - Le nœud `lion-final-refuge`, son type `story`, ses identifiants, ses liaisons et le dialogue `final_refuge`.

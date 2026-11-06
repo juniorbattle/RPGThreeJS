@@ -101,7 +101,7 @@ it('keeps the second refuge interactive without moving its post-node ATE before 
   expect(state.resolvedNodeIds).toContain(node.id);
 });
 
-it('keeps lion-final-refuge story-only and never opens the refuge hub', async () => {
+it('keeps lion-final-refuge a story node whose dialogue plays before any services halt', async () => {
   const state = createInitialState();
   const node = state.run.graph.nodes.find(candidate => candidate.id === 'lion-final-refuge')!;
   const exploration = { open: vi.fn() };
@@ -115,6 +115,7 @@ it('keeps lion-final-refuge story-only and never opens the refuge hub', async ()
   await app.resolveRunNode(node, false);
   // A live arrival (set 1.13.0): the dialogue may open on its living tableau, if it has one.
   expect(app.playDialogue).toHaveBeenCalledWith(node.contentId, node.label, { live: true });
+  // Set 1.15.0: the services halt opens later, at the campaign boundary (finalRefugeServicesFlow.test.ts).
   expect(exploration.open).not.toHaveBeenCalled();
 });
 

@@ -14,13 +14,16 @@ interface Owner {
   enterCampaignPresentation():Promise<void>;runJourneyBoundary():Promise<void>;
   commitRunNodeChoice(id:string):Promise<boolean>;choosePoi(id:string):Promise<void>;
   resolveRunNode(node:RunNode,initial:boolean):Promise<void>;
+  openFinalRefugeServices():Promise<void>;
 }
 const apps:GameApp[]=[];
 function fixture(preparation=false){
   const root=document.createElement('div');document.body.append(root);
   const app=new GameApp(root,document.createElement('canvas'));apps.push(app);
   const owner=app as unknown as Owner;owner.state=createInitialState();owner.mode='NARRATIVE';
-  if(preparation){owner.state.run.currentNodeId=owner.state.currentNodeId='lion-final-refuge';owner.state.resolvedNodeIds.push('lion-final-refuge');}
+  if(preparation){owner.state.run.currentNodeId=owner.state.currentNodeId='lion-final-refuge';owner.state.resolvedNodeIds.push('lion-final-refuge');
+    // Set 1.15.0 opens the refuge services before this boundary; finalRefugeServicesFlow.test.ts covers them.
+    vi.spyOn(owner,'openFinalRefugeServices').mockResolvedValue();}
   const outcome=deferred<JourneyBoundaryOutcome>(),ready=deferred<void>();
   const boundary={present:vi.fn((_request:JourneyBoundaryRequest)=>outcome.promise),waitUntilSurfaceReady:vi.fn(()=>ready.promise),dispose:vi.fn()};
   owner.journeyBoundary=boundary;return {app,owner,boundary,outcome,ready};

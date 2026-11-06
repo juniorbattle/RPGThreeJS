@@ -13,7 +13,7 @@ const first: RefugePresentation = {
   description: 'Le camp du Lion.', environmentContext: 'dialogue:first_refuge_gathering',
   environmentRole: 'STATIC_TABLEAU',
   background: '/assets/refuge-first-test.png', visualFamily: 'FIRST_REFUGE',
-  gatheringDialogueId: 'first_refuge_gathering',
+  gatheringDialogueId: 'first_refuge_gathering', securesLoot: true,
 };
 
 const second: RefugePresentation = {
@@ -173,4 +173,31 @@ it('reveals the dark fallback and leaves actions usable if background decoding f
   expect(hub.style.visibility).toBe('visible');
   hub.querySelector<HTMLButtonElement>('[data-action="clan"]')!.click();
   expect(await action).toBe('clan');
+});
+
+it('shows no chest line for the final refuge services and signals a ready surface for the curtain (set 1.15.0)', async () => {
+  const state = createInitialState();
+  const hud = new CampaignStatusHud(() => selectCampaignStatus(state));
+  const view = new ExplorationView({ root: document.body, statusHud: hud, backgroundPreloader: readyBackground });
+  const finalServices: RefugePresentation = {
+    ...first, nodeId: 'lion-final-refuge', title: 'Refuge avant le Sceau', visualFamily: 'FINAL_REFUGE',
+    description: 'Rassembler le dossier complet avant de comparaître devant Alaric.', securesLoot: false,
+  };
+  delete finalServices.gatheringDialogueId;
+  let ready = false;
+  const action = view.open(finalServices, 'Neutre', 0, { cost: 15, woundedCount: 1, canRest: true });
+  void view.waitUntilSurfaceReady().then(() => { ready = true; });
+  expect(ready).toBe(false);
+  await settledHub();
+  await settledHub();
+  expect(ready).toBe(true);
+  const hub = document.querySelector<HTMLElement>('.exploration-stop')!;
+  expect(hub.dataset.visualFamily).toBe('FINAL_REFUGE');
+  expect(hub.querySelector('.exploration-stop__secured')).toBeNull();
+  expect(hub.textContent).not.toContain('plac');
+  expect(hub.textContent).toContain('Rassembler le dossier complet avant de comparaître devant Alaric.');
+  expect([...hub.querySelectorAll<HTMLButtonElement>('[data-action]')].map(button => button.dataset.action))
+    .toEqual(['clan', 'shop', 'skills', 'rest', 'continue']);
+  hub.querySelector<HTMLButtonElement>('[data-action="continue"]')!.click();
+  expect(await action).toBe('continue');
 });

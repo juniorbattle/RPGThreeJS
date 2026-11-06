@@ -12,6 +12,7 @@ import {
 import { createPoiChestAdapter } from './poiContentAdapters';
 import { beginPoiEliteEncounter, retreatPoiElite, waitPoiTurn } from './poiExpedition';
 import { LOT_E_ELITES } from '../campaign/LionPoiAuthoring';
+import { areLionFinalRefugeServicesOpen } from '../campaign/LionFinalRefugeServices';
 import { PoiEncounterView } from '../ui/PoiEncounterView';
 import { changeReputation, getReputationRule } from './reputation';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
@@ -40,8 +41,8 @@ import { prefersReducedMotion } from '../ui/ReducedMotion';
 import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
 import { readMotionPreference, writeMotionPreference } from '../ui/MotionPreference';
-import { ExplorationView } from '../ui/ExplorationView';
-import { resolveRefugePresentation } from '../ui/RefugePresentation';
+import { ExplorationView, type ExplorationAction } from '../ui/ExplorationView';
+import { resolveFinalRefugeServicesPresentation, resolveRefugePresentation, type RefugePresentation } from '../ui/RefugePresentation';
 import { OpeningSequence } from '../ui/opening/OpeningSequence';
 import { sceneTransition } from '../ui/SceneTransition';
 import type { TransitionVariant } from '../ui/SceneTransition';
@@ -787,6 +788,12 @@ export class GameApp {
       this.poiMap.close(); delete document.body.dataset.campaignSurface;
       await this.enterJourney(); return;
     }
+    if (areLionFinalRefugeServicesOpen(this.state)) {
+      // Set 1.15.0: the services come first, then the existing preparation boundary and the map.
+      await this.openFinalRefugeServices();
+      if (this.disposed) return;
+      if (this.journeyUnavailable) { this.showPoiMap(); return; }
+    }
     if (!this.journeyUnavailable && this.state.run.currentNodeId === 'lion-final-refuge'
       && this.state.resolvedNodeIds.includes('lion-final-refuge')) {
       this.poiMap.close(); delete document.body.dataset.campaignSurface;
@@ -1147,37 +1154,7 @@ export class GameApp {
       this.disposeNarrativeStage();
       this.statusHud?.hide();
       this.saves.saveAuto(this.state);
-      let refugeMessage = '';
-      while (true) {
-        this.setMode('NARRATIVE', { ambience: 'refuge' });
-        const restCost = getRestCost(this.state);
-        const woundedCount = getWoundedUnitCount(this.state);
-        const action = await this.exploration.open(presentation, getReputationRule(this.state.reputation).label, securedGold, {
-          cost: restCost,
-          woundedCount,
-          canRest: woundedCount > 0 && this.state.gold >= restCost,
-          message: refugeMessage,
-        });
-        refugeMessage = '';
-        securedGold = 0;
-        if (action === 'continue') break;
-        if (action === 'rest') {
-          const costBeforeRest = getRestCost(this.state);
-          const rested = restUnits(this.state);
-          if (rested) this.saves.saveAuto(this.state);
-          if (rested) this.uiSounds.play('recover');
-          refugeMessage = rested
-            ? `Repos effectu&eacute; : ${costBeforeRest} or d&eacute;pens&eacute;.`
-            : getWoundedUnitCount(this.state) === 0
-              ? 'Aucune unit&eacute; bless&eacute;e : le repos est inutile.'
-              : 'Or insuffisant pour soigner la compagnie.';
-          continue;
-        }
-        this.setMode('RESULT');
-        if (action === 'shop') await this.openManagement('shop', 'valmir', 'permanent', false);
-        if (action === 'clan') await this.openManagement('clan', undefined, 'temporary', false);
-        if (action === 'skills') await this.openManagement('skills', undefined, 'temporary', false);
-      }
+      await this.runRefugeServices(presentation, securedGold);
       this.markResolved(node.id);
       if (await this.playPostNodeNarrative(node.id, node)) return;
       await this.enterCampaignPresentation();
@@ -1222,6 +1199,86 @@ export class GameApp {
       if (await this.playPostNodeNarrative(node.id, node)) return;
       await this.enterCampaignPresentation();
     }
+  }
+
+  /**
+   * The refuge services loop shared by the two refuges and, since set 1.15.0, the final refuge:
+   * the same owners, shop stock, prices, recipes and rest cost. Returns once the player continues.
+   * `openFirst` lets a caller open the first hub under its own curtain.
+   */
+  private async runRefugeServices(
+    presentation: RefugePresentation,
+    securedGold: number,
+    openFirst?: (open: () => Promise<ExplorationAction>) => Promise<ExplorationAction>,
+  ): Promise<void> {
+    let refugeMessage = '';
+    let first = true;
+    while (true) {
+      const open = () => {
+        this.setMode('NARRATIVE', { ambience: 'refuge' });
+        const restCost = getRestCost(this.state);
+        const woundedCount = getWoundedUnitCount(this.state);
+        return this.exploration.open(presentation, getReputationRule(this.state.reputation).label, securedGold, {
+          cost: restCost,
+          woundedCount,
+          canRest: woundedCount > 0 && this.state.gold >= restCost,
+          message: refugeMessage,
+        });
+      };
+      const action = first && openFirst ? await openFirst(open) : await open();
+      first = false;
+      refugeMessage = '';
+      securedGold = 0;
+      if (action === 'continue') break;
+      if (action === 'rest') {
+        const costBeforeRest = getRestCost(this.state);
+        const rested = restUnits(this.state);
+        if (rested) this.saves.saveAuto(this.state);
+        if (rested) this.uiSounds.play('recover');
+        refugeMessage = rested
+          ? `Repos effectu&eacute; : ${costBeforeRest} or d&eacute;pens&eacute;.`
+          : getWoundedUnitCount(this.state) === 0
+            ? 'Aucune unit&eacute; bless&eacute;e : le repos est inutile.'
+            : 'Or insuffisant pour soigner la compagnie.';
+        continue;
+      }
+      this.setMode('RESULT');
+      if (action === 'shop') await this.openManagement('shop', 'valmir', 'permanent', false);
+      if (action === 'clan') await this.openManagement('clan', undefined, 'temporary', false);
+      if (action === 'skills') await this.openManagement('skills', undefined, 'temporary', false);
+    }
+  }
+
+  /**
+   * Set 1.15.0 (OD-2026-11-05-E): after the unchanged final refuge dialogue, and on each return
+   * before the judgement, the existing refuge services open on the FINAL_REFUGE plate. Nothing is
+   * secured, granted or saved beyond what those services already own.
+   */
+  private async openFinalRefugeServices(): Promise<void> {
+    const node = getRunNode(this.state.run);
+    const presentation = node ? resolveFinalRefugeServicesPresentation(node) : null;
+    if (!presentation) throw new Error('Missing final refuge services presentation');
+    this.activeNarrativeStage?.prepareGlobalHandoff();
+    await this.runRefugeServices(presentation, 0, async (open) => {
+      let opened: Promise<ExplorationAction> | undefined;
+      await sceneTransition.run({
+        variant: 'travel',
+        label: presentation.title,
+        task: async () => {
+          this.poiMap.close(); delete document.body.dataset.campaignSurface;
+          this.disposeJourney();
+          this.disposeNarrativeStage();
+          this.canvas.hidden = true;
+          this.chrome.replaceChildren();
+          this.statusHud?.hide();
+          this.saves.saveAuto(this.state);
+          await this.exploration.prepareBackground(presentation.background);
+          opened = open();
+          await Promise.race([this.exploration.waitUntilSurfaceReady(), opened]);
+        },
+      });
+      return opened ?? open();
+    });
   }
 
   private async playDialogue(

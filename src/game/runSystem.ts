@@ -3,6 +3,7 @@ import type {
 } from './types';
 import { getLionConductTier, type LionConductTier } from './lionNarrative';
 import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
+import { areLionFinalRefugeServicesAvailable, LION_FINAL_REFUGE_NODE_ID } from '../campaign/LionFinalRefugeServices';
 import { changeReputation } from './reputation';
 import { LION_FIRST_TRIAL, LION_OPENING_LOCAL_ROUTES, openingLocalRoutesUnlocked, LION_POI_METADATA,
   type LionPoiRole, type LionPoiParticipation } from '../campaign/LionPoiTopology';
@@ -802,7 +803,9 @@ export function selectPoiMap(state: GameState): PoiMapModel {
     const neutralized = isPoiNeutralized(state, node.id);
     const status: PoiStatus = state.resolvedNodeIds.includes(node.id) ? 'resolved'
       : neutralized ? 'neutralized' : unlocked.has(node.id) ? 'available' : 'locked';
-    const reusable = node.type === 'refuge' && Boolean(state.flags[`refugeSecured:${node.id}`]);
+    // Set 1.15.0: the resolved final refuge reopens the refuge services until the judgement begins.
+    const reusable = node.type === 'refuge' ? Boolean(state.flags[`refugeSecured:${node.id}`])
+      : node.id === LION_FINAL_REFUGE_NODE_ID && areLionFinalRefugeServicesAvailable(state);
     const kind: PoiKind = node.type === 'chest' ? 'chest' : node.type === 'refuge' ? 'refuge'
       : node.type === 'combat' ? (ELITE_ROUTE_CONTENT_IDS.has(node.contentId) ? 'elite' : 'combat')
       : node.type === 'story' || node.type === 'boss' ? 'primary' : 'mystery';

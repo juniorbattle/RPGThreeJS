@@ -25,8 +25,15 @@ export class ExplorationView {
   private focusNodeId: string | null = null;
   private preferredFocusAction: ExplorationAction = 'clan';
   private readonly backgroundRequests = new Map<string, Promise<RefugeBackgroundReadiness>>();
+  private surfaceReady: Promise<void> = Promise.resolve();
+  private markSurfaceReady: () => void = () => undefined;
 
   constructor(private readonly options: ExplorationViewOptions) {}
+
+  /** Resolves once the last opened hub is visible (or closed), so a curtain can lift on a ready frame. */
+  waitUntilSurfaceReady(): Promise<void> {
+    return this.surfaceReady;
+  }
 
   prepareBackground(backgroundUrl: string): Promise<RefugeBackgroundReadiness> {
     let request = this.backgroundRequests.get(backgroundUrl);
@@ -39,6 +46,7 @@ export class ExplorationView {
 
   open(presentation: RefugePresentation, reputationLabel: string, securedGold: number, rest: RestSummary): Promise<ExplorationAction> {
     this.close();
+    this.surfaceReady = new Promise((resolve) => { this.markSurfaceReady = resolve; });
     if (this.focusNodeId !== presentation.nodeId) this.preferredFocusAction = 'clan';
     this.focusNodeId = presentation.nodeId;
     const restHint = rest.woundedCount <= 0
@@ -62,7 +70,7 @@ export class ExplorationView {
         <p class="eyebrow"></p>
         <h2></h2>
         <p class="exploration-stop__description"></p>
-        <strong class="exploration-stop__secured">+${securedGold} or plac&eacute; dans le coffre</strong>
+        ${presentation.securesLoot ? `<strong class="exploration-stop__secured">+${securedGold} or plac&eacute; dans le coffre</strong>` : ''}
         ${rest.message ? `<em class="exploration-stop__feedback" role="status">${rest.message}</em>` : ''}
       </header>
       <div class="exploration-stop__hotspots">
@@ -98,6 +106,7 @@ export class ExplorationView {
       section.inert = false;
       const preferred = section.querySelector<HTMLButtonElement>(`[data-action="${this.preferredFocusAction}"]:not(:disabled)`);
       (preferred ?? section.querySelector<HTMLButtonElement>('[data-action]:not(:disabled)'))?.focus({ preventScroll: true });
+      this.markSurfaceReady();
     });
     return new Promise((resolve) => {
       section.querySelectorAll<HTMLButtonElement>('[data-action]').forEach((button) => {
@@ -114,6 +123,7 @@ export class ExplorationView {
   }
 
   close(): void {
+    this.markSurfaceReady();
     if (this.element) this.options.statusHud.hide(this.element);
     this.element?.remove();
     this.element = null;

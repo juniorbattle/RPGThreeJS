@@ -185,12 +185,19 @@ describe('CIN-2 campaign presentation bridge', () => {
   it('keeps refuge gameplay unchanged and lion-final-refuge a story node', () => {
     const resolveNode = method('private async resolveRunNode');
     const refuge = resolveNode.slice(0, resolveNode.indexOf("if (node.type === 'shop')"));
-    for (const expected of ['refugeSecured:', 'secureRunLoot(this.state)', "action === 'rest'", "action === 'shop'", "action === 'clan'", "action === 'skills'", "action === 'continue'"]) {
+    for (const expected of ['refugeSecured:', 'secureRunLoot(this.state)', 'await this.runRefugeServices(']) {
       expect(refuge).toContain(expected);
     }
+    // One services loop for the two refuges and the final refuge (set 1.15.0); only refuge nodes secure loot.
+    const services = method('private async runRefugeServices');
+    for (const expected of ["action === 'rest'", "action === 'shop'", "action === 'clan'", "action === 'skills'", "action === 'continue'"]) {
+      expect(services).toContain(expected);
+    }
+    expect(services).not.toContain('secureRunLoot');
+    expect(method('private async openFinalRefugeServices')).not.toContain('secureRunLoot');
     expect(refuge).toContain('await this.enterCampaignPresentation()');
 
-    // lion-final-refuge is narrative, not one of the managed refuge nodes.
+    // lion-final-refuge stays narrative, not one of the managed refuge nodes; it only borrows their services.
     const state = createInitialState();
     const finalRefuge = getRunNode(state.run, 'lion-final-refuge');
     expect(finalRefuge?.type).toBe('story');

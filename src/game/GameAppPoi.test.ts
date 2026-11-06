@@ -73,15 +73,20 @@ describe('GameApp POI owner handoffs',()=>{
     expect(owner.state).toEqual(saved);expect(new SaveRepository().loadAuto()).toEqual(saved);
     expect(document.querySelector('.traversal-road,.traversal-fork-overlay')).toBeNull();app.dispose();
   });
-  it('rebuilds final-refuge preparation on exact V6 reload without opening a hub or securing loot',async()=>{
+  it('rebuilds the final-refuge services then preparation on exact V6 reload without securing loot (set 1.15.0)',async()=>{
     const {app,owner}=fixture();
     owner.state.run.currentNodeId=owner.state.currentNodeId='lion-final-refuge';
     owner.state.resolvedNodeIds.push('lion-final-refuge');owner.state.run.temporaryLoot.gold=17;
     owner.state=migrateState(owner.state);new SaveRepository().saveAuto(owner.state);const before=structuredClone(owner.state);
     vi.spyOn(sceneTransition,'run').mockImplementation(async options=>{await options.task();});
-    const preparation=vi.spyOn(owner,'enterJourney').mockResolvedValue();
+    const order:string[]=[];
+    const exploration=(owner as unknown as {exploration:import('../ui/ExplorationView').ExplorationView}).exploration;
+    vi.spyOn(exploration,'prepareBackground').mockResolvedValue({backgroundUrl:'',backgroundReady:true,naturalWidth:1,naturalHeight:1});
+    const services=vi.spyOn(exploration,'open').mockImplementation(async()=>{order.push('services');return 'continue';});
+    const preparation=vi.spyOn(owner,'enterJourney').mockImplementation(async()=>{order.push('preparation');});
     const resolve=vi.spyOn(owner,'resolveRunNode').mockResolvedValue();
     await owner.continueChronicle();
+    expect(order).toEqual(['services','preparation']);expect(services.mock.calls[0]![2]).toBe(0);
     expect(preparation).toHaveBeenCalledOnce();expect(resolve).not.toHaveBeenCalled();
     expect(document.querySelector('.poi-map,.exploration-stop')).toBeNull();
     expect(owner.state).toEqual(before);expect(new SaveRepository().loadAuto()).toEqual(before);app.dispose();
