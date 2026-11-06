@@ -1,12 +1,25 @@
 # Services du refuge final — OD-2026-11-05-E
 
-**PROPOSED.** Amendement 1.15.0 / `PRODUCTION-CONTRACTS-FINAL-REFUGE-SERVICES-1`, soumis à l'opérateur sur la [fiche d'arbitrages](https://claude.ai/artifact/U69ndhhrdAk9WFvKPpRwjQ). Les contrats restent intacts jusqu'à son approbation.
+**APPROVED DECISION.** Le 2026-11-06, l'opérateur a rempli la [fiche d'arbitrages](https://claude.ai/artifact/U69ndhhrdAk9WFvKPpRwjQ) : ses six choix suivent les recommandations, et il approuve le texte de l'amendement 1.15.0 / `PRODUCTION-CONTRACTS-FINAL-REFUGE-SERVICES-1` tel quel (B1). Les contrats portent ce texte ; la baseline immuable est fixée par le commit opérationnel qui suit celui de l'amendement.
 
 ## Demande
 
 - Le 2026-11-05, OD-2026-11-05-D constate que rien ne se dépense après le second refuge. L'or, le minerai et les gemmes de la région III, et donc de ses combats facultatifs, ne servent à rien.
 - Pour l'opérateur, ces combats doivent être un enjeu : on y gagne de l'argent, au risque de blesser ses héros.
 - À la question « Préparer un amendement de contrat pour ouvrir l'échoppe au refuge final ? », il répond « Oui, prépare-le ».
+
+## Choix de l'opérateur
+
+| Id | Sujet | Choix |
+| --- | --- | --- |
+| A1 | Services | Échoppe et forge, sorts, compagnie, repos payant |
+| A2 | Moment | Après le dialogue, puis à chaque retour avant le jugement |
+| A3 | Décor | Tableau du refuge final |
+| A4 | Stock | Stock partagé |
+| A5 | Garen | Il garde sa Lance du Griffon |
+| B1 | Amendement | J'approuve le texte tel quel |
+
+Aucune note n'accompagne ces choix. La halte décrite ci-dessous, telle que corrigée après la relecture, est donc approuvée.
 
 ## Pourquoi un amendement
 
@@ -84,6 +97,10 @@ Avertissements, et ce qui en a été fait :
 - **W4, pour la mise en œuvre.** `cin2CampaignBridge.test.ts` vérifie que le nœud reste `story`, ce qui reste vrai. Il découpe aussi la branche des refuges : à surveiller si le code de la halte est partagé. L'ambiance de refuge (PRESENTATION_AND_MEDIA, lignes 84 et 93) s'appliquera à la halte.
 
 Le correctif est régénéré avec ces corrections et revalidé.
+
+## Approbation
+
+Le 2026-11-06, l'opérateur répond « Fiche remplie » ; sur la fiche, B1 vaut « J'approuve le texte tel quel ». Le correctif relu est appliqué tel quel à CAMPAIGN_AND_STATE, TRAVERSAL, au README et au manifeste (set 1.15.0), avec une seule correction prévue par W3 : `approvedAt` porte la date de l'approbation, 2026-11-06. Le validateur de contrats et `git diff --check` passent sur l'arbre amendé.
 
 ## Ordre de travail
 

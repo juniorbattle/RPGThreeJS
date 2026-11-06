@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.14.0",
+  "contractSetVersion": "1.15.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -220,6 +220,19 @@
       "constitutionChanged": false,
       "supersededRule": "The exhaustive list of four living tableau moments of set 1.13.0; three more moments (alaric_audience_arrival, serpent_route_ending, lion_trial_route_ending), 40 seconds for the two route endings, the same animated backdrop on the aftermath dialogue before an ending, an outcome or route-ending sequence in place of its static Journey still, and no new mockup",
       "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator viewing acceptance"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-FINAL-REFUGE-SERVICES-1",
+      "operatorDecisionId": "OD-2026-11-05-E",
+      "operatorDecisionPath": "docs/autonomy/FINAL_REFUGE_SERVICES_OPERATOR_DECISION_2026-11-05.md",
+      "approvedAt": "2026-11-06",
+      "changedContracts": [
+        "CAMPAIGN_AND_STATE",
+        "TRAVERSAL"
+      ],
+      "constitutionChanged": false,
+      "supersededRule": "The final refuge as a purely narrative beat with no refuge services and no interactive hub; it now offers the existing refuge services after its unchanged narrative beat and on a return before the judgement, with its story node type, durable IDs and save fields unchanged",
+      "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator playtest acceptance"
     }
   ],
   "status": "LOCKED",

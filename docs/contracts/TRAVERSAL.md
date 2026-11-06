@@ -18,7 +18,7 @@ Campaign structure/relations and RunSystem own movement, accessibility, eligibil
 
 Move in both directions on connected, unlocked edges only. No remote-click teleport or bypass of an obligatory unresolved event. Future primary milestones retain canonical conditions. Distinguish available, active, locked, resolved and neutralized. A visit is not a resolution. Resolved POIs permit passage without repeated dialogue, cinematic, combat, victory, reputation, recruitment or loot. Neutralization derives only from actual canonical incompatibility or explicitly approved exclusive choice; geographically accessible neutralized POIs permit passage but never activation and never count as completed, defeated or rewarded. Do not disable a whole parallel branch merely because it is parallel.
 
-Compatible optional POIs can be ignored and revisited later. Apply authored bypass consequences; bypass is not resolution. Unlocked refuges reuse existing services without replaying arrival decisions or adding free rest; the final narrative refuge remains narrative.
+Compatible optional POIs can be ignored and revisited later. Apply authored bypass consequences; bypass is not resolution. Unlocked refuges reuse existing services without replaying arrival decisions or adding free rest; the final refuge keeps its narrative beat, followed only by the refuge services of set 1.15.0 (CAMPAIGN_AND_STATE).
 
 ## Content and effects
 
