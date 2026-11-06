@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit,
-  getFallenUnitCount, restUnits, sellItem, upgradeSkill, useConsumable,
+  getCraftGoldCost, getFallenUnitCount, getForgeIngredients, getForgeRecipes, restUnits, sellItem, upgradeSkill, useConsumable,
 } from './management';
 import { createInitialState, migrateState } from './store';
 import {
@@ -124,13 +124,14 @@ describe('clan management', () => {
 
   it('crafts fixed shop recipes by consuming permanent ingredients and gold', () => {
     const state = createInitialState();
+    state.reputation = 50;
     state.inventory.weapons.steel_greatsword = 1;
     state.inventory.accessories.strength_ring = 1;
     const beforeGold = state.gold;
 
     expect(canCraftItem(state, 'craft_lion_guard_greatsword')).toBe(true);
     expect(craftItem(state, 'craft_lion_guard_greatsword')).toBe(true);
-    expect(state.gold).toBe(beforeGold - 120);
+    expect(state.gold).toBe(beforeGold - 70);
     expect(state.inventory.weapons.steel_greatsword).toBe(0);
     expect(state.inventory.accessories.strength_ring).toBe(0);
     expect(state.inventory.weapons.lion_guard_greatsword).toBe(1);
@@ -152,6 +153,7 @@ describe('clan management', () => {
     state.inventory.materials.iron_ore = 3;
     state.inventory.weapons.steel_greatsword = 1;
     state.gold = 200;
+    state.reputation = 50;
 
     const recipe: CraftRecipeDefinition = {
       id: 'test_material_recipe',
@@ -198,6 +200,112 @@ describe('clan management', () => {
     expect(craftItem(state, recipe.id)).toBe(false);
 
     craftRecipeById.delete(recipe.id);
+  });
+});
+
+// OD-2026-11-05-C: an affordable forge that works on what the heroes wear and prices its work by reputation.
+describe('affordable forge', () => {
+  const ENTRY_RECIPES = ['craft_steel_greatsword', 'craft_sacred_crosier', 'craft_mystic_grimoire', 'craft_longbow', 'craft_steel_dagger',
+    'craft_life_belt', 'craft_strength_ring', 'craft_magic_pendant', 'craft_agility_boots'];
+  const hero = (state: ReturnType<typeof createInitialState>, id: string) => state.clan.members.find((unit) => unit.definitionId === id)!;
+
+  it('starts a chronicle with 250 gold', () => {
+    expect(createInitialState().gold).toBe(250);
+  });
+
+  it('makes every entry recipe cheaper than the shop, even after selling the novice weapon', () => {
+    for (const id of ENTRY_RECIPES) {
+      const recipe = craftRecipeById.get(id)!;
+      const output = itemById.get(recipe.output.itemId)!;
+      const ore = (recipe.inputs.materials?.iron_ore ?? 0) * itemById.get('iron_ore')!.price;
+      const novice = Object.keys(recipe.inputs.weapons ?? {})[0];
+      const resale = novice ? Math.floor(itemById.get(novice)!.price / 2) : 0;
+      expect(recipe.inputs.gold + ore, id).toBeLessThan(output.price - resale);
+      expect(Object.keys(recipe.inputs.materials ?? {}), id).toEqual(['iron_ore']);
+    }
+  });
+
+  it('upgrades the novice weapon a hero wears in place, so no hero is left unarmed', () => {
+    const state = createInitialState();
+    state.reputation = 50;
+    state.inventory.materials.iron_ore = 2;
+    const alistair = hero(state, 'warrior');
+    expect(getForgeIngredients(state, craftRecipeById.get('craft_steel_greatsword')!)[0]).toMatchObject({ carried: 0, worn: 1 });
+    expect(craftItem(state, 'craft_steel_greatsword')).toBe(true);
+    expect(alistair.equipment.weaponIds).toEqual(['steel_greatsword']);
+    expect(state.inventory.weapons.novice_greatsword ?? 0).toBe(0);
+    expect(state.inventory.weapons.steel_greatsword ?? 0).toBe(0);
+    expect(state.inventory.materials.iron_ore).toBe(0);
+    expect(state.gold).toBe(250 - 90);
+    expect(getEquippedWeaponTier(alistair)).toBe(1);
+  });
+
+  it('takes carried items before worn ones', () => {
+    const state = createInitialState();
+    state.inventory.materials.iron_ore = 2;
+    state.inventory.weapons.novice_greatsword = 1;
+    const alistair = hero(state, 'warrior');
+    expect(craftItem(state, 'craft_steel_greatsword')).toBe(true);
+    expect(alistair.equipment.weaponIds).toEqual(['novice_greatsword']);
+    expect(state.inventory.weapons.novice_greatsword).toBe(0);
+    expect(state.inventory.weapons.steel_greatsword).toBe(1);
+  });
+
+  it('forges the Lion blade from the sword and ring Alistair wears, freeing the ring slot', () => {
+    const state = createInitialState();
+    state.reputation = 50;
+    const alistair = hero(state, 'warrior');
+    alistair.equipment.weaponIds = ['steel_greatsword'];
+    alistair.equipment.accessoryIds = ['strength_ring', null];
+    expect(canCraftItem(state, 'craft_lion_guard_greatsword')).toBe(true);
+    expect(craftItem(state, 'craft_lion_guard_greatsword')).toBe(true);
+    expect(alistair.equipment.weaponIds).toEqual(['lion_guard_greatsword']);
+    expect(alistair.equipment.accessoryIds).toEqual([null, null]);
+    expect(state.inventory.weapons.lion_guard_greatsword ?? 0).toBe(0);
+    expect(state.gold).toBe(250 - 70);
+  });
+
+  it('puts a crafted accessory in the slot its worn ingredients left', () => {
+    const state = createInitialState();
+    const marian = hero(state, 'white_mage');
+    marian.equipment.accessoryIds = ['magic_pendant', 'wisdom_crown'];
+    expect(craftItem(state, 'craft_sage_seal')).toBe(true);
+    expect(marian.equipment.accessoryIds).toEqual(['sage_seal', null]);
+    expect(state.inventory.accessories.sage_seal ?? 0).toBe(0);
+  });
+
+  it('never takes a worn weapon whose wearer could not wield the result', () => {
+    const state = createInitialState();
+    state.inventory.materials.iron_ore = 2;
+    const marian = hero(state, 'white_mage');
+    marian.equipment.weaponIds = ['steel_greatsword'];
+    expect(getForgeIngredients(state, craftRecipeById.get('craft_burn_greatsword')!)[0]).toMatchObject({ carried: 0, worn: 0 });
+    expect(craftItem(state, 'craft_burn_greatsword')).toBe(false);
+    expect(marian.equipment.weaponIds).toEqual(['steel_greatsword']);
+  });
+
+  it('prices the forge by reputation, like the shop', () => {
+    const state = createInitialState();
+    const recipe = craftRecipeById.get('craft_steel_greatsword')!;
+    state.reputation = 30;
+    expect(getCraftGoldCost(state, recipe)).toBe(103);
+    state.reputation = 50;
+    expect(getCraftGoldCost(state, recipe)).toBe(90);
+    state.reputation = 70;
+    expect(getCraftGoldCost(state, recipe)).toBe(81);
+    state.reputation = 50;
+    state.gold = 89;
+    state.inventory.materials.iron_ore = 2;
+    expect(canCraftItem(state, recipe.id)).toBe(false);
+  });
+
+  it('lists accessory recipes and only the weapons someone in the company can wield', () => {
+    const state = createInitialState();
+    const listed = getForgeRecipes(state).map((recipe) => recipe.id);
+    expect(listed).toEqual(expect.arrayContaining(['craft_steel_greatsword', 'craft_sacred_crosier', 'craft_mystic_grimoire', 'craft_longbow', 'craft_life_belt', 'craft_sage_seal']));
+    for (const hidden of ['craft_steel_dagger', 'craft_venom_dagger', 'craft_chill_spear', 'craft_burn_cannon', 'craft_curse_scythe']) expect(listed).not.toContain(hidden);
+    state.clan.members.push(createUnitInstance('rogue'));
+    expect(getForgeRecipes(state).map((recipe) => recipe.id)).toEqual(expect.arrayContaining(['craft_steel_dagger', 'craft_venom_dagger']));
   });
 });
 

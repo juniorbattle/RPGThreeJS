@@ -1,10 +1,10 @@
 import {
-  craftRecipes, getFinalStats, getInnateGift, getLockedSkillReason, getResolvedSkills, getWeaponProfileLabel, getWeaponSkillUnlockLabel,
+  getFinalStats, getInnateGift, getLockedSkillReason, getResolvedSkills, getWeaponProfileLabel, getWeaponSkillUnlockLabel,
   isSkillUnlockedForHero, itemById, items, unitById, weaponById, weapons,
 } from '../game/catalog';
 import {
-  buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit,
-  getSkillUpgradeCost, sellItem, upgradeSkill, useConsumable,
+  buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit, getCraftGoldCost, getForgeIngredients, getForgeRecipes,
+  getSkillUpgradeCost, sellItem, upgradeSkill, useConsumable, type ForgeIngredient,
 } from '../game/management';
 import { getReputationRule, getShopPrice } from '../game/reputation';
 import { assets } from '../render/assetManifest';
@@ -810,14 +810,11 @@ export class ManagementView {
 
   private renderForge(): string {
     const state = this.options.getState();
-    const rows = craftRecipes.map((recipe) => {
+    const rows = getForgeRecipes(state).map((recipe) => {
       const output = itemById.get(recipe.output.itemId);
       const disabled = !canCraftItem(state, recipe.id);
-      const ingredients = [
-        ...Object.entries(recipe.inputs.weapons ?? {}).map(([id, quantity]) => this.ingredientLabel('weapons', id, quantity)),
-        ...Object.entries(recipe.inputs.accessories ?? {}).map(([id, quantity]) => this.ingredientLabel('accessories', id, quantity)),
-        ...Object.entries(recipe.inputs.materials ?? {}).map(([id, quantity]) => this.ingredientLabel('materials', id, quantity)),
-      ].join('');
+      const gold = getCraftGoldCost(state, recipe);
+      const ingredients = getForgeIngredients(state, recipe).map((ingredient) => this.ingredientLabel(ingredient)).join('');
       return `<article class="craft-recipe ui-panel ui-panel--soft">
         <div class="craft-recipe__output">
           <span class="item-row__icon ui-chip">${output?.icon ?? '✦'}</span>
@@ -830,12 +827,12 @@ export class ManagementView {
           <p><b>Créé</b> ${output?.name ?? recipe.output.itemId} ×${recipe.output.quantity}</p>
           <p><b>Effet</b> ${recipe.preview}</p>
         </div>
-        <div class="craft-recipe__ingredients">${ingredients}<span class="ui-chip">${recipe.inputs.gold} or</span></div>
-        <button type="button" class="ui-button ui-button--secondary" data-craft="${recipe.id}" aria-label="${escapeAttribute(`Forger ${output?.name ?? recipe.output.itemId} · ${recipe.inputs.gold} or`)}" ${disabled ? 'disabled' : ''}>Forger</button>
+        <div class="craft-recipe__ingredients">${ingredients}<span class="ui-chip">${gold} or</span></div>
+        <button type="button" class="ui-button ui-button--secondary" data-craft="${recipe.id}" aria-label="${escapeAttribute(`Forger ${output?.name ?? recipe.output.itemId} · ${gold} or`)}" ${disabled ? 'disabled' : ''}>Forger</button>
       </article>`;
     }).join('');
     return `<div class="shop-view shop-view--forge">
-      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Forge du refuge · ${getReputationRule(state.reputation).label}</p><h3>Artisan du refuge</h3><small>Les recettes consomment vos objets permanents et l’or du coffre.</small></div>
+      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Forge du refuge · ${getReputationRule(state.reputation).label}</p><h3>Artisan du refuge</h3><small>La forge prend d’abord les objets du sac, puis ceux que portent les héros : une arme portée est remplacée sur son héros. Ses prix suivent la réputation.</small></div>
         <div class="shop-toggle">
           <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
           <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>
@@ -846,11 +843,11 @@ export class ManagementView {
     </div>`;
   }
 
-  private ingredientLabel(category: 'weapons' | 'accessories' | 'materials', itemId: string, quantity: number): string {
-    const state = this.options.getState();
+  private ingredientLabel({ itemId, quantity, carried, worn }: ForgeIngredient): string {
     const item = itemById.get(itemId);
-    const owned = state.inventory[category][itemId] ?? 0;
-    return `<span class="ui-chip ${owned >= quantity ? '' : 'is-missing'}">${item?.name ?? itemId} ${owned}/${quantity}</span>`;
+    const owned = carried + worn;
+    const usesWorn = carried < quantity && worn > 0;
+    return `<span class="ui-chip ${owned >= quantity ? '' : 'is-missing'}">${item?.name ?? itemId} ${owned}/${quantity}${usesWorn ? ' · porté' : ''}</span>`;
   }
 
   private bind(): void {

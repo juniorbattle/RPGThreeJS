@@ -44,7 +44,8 @@ export function createInitialState(): GameState {
     mysteryAssignments: {},
     seenUniqueEvents: [],
     flags: {},
-    gold: 150,
+    // OD-2026-11-05-C: 250 gold so a generous company can still afford a first weapon at the first refuge.
+    gold: 250,
     reputation: 30,
     reputationHistory: [],
     inventory: {

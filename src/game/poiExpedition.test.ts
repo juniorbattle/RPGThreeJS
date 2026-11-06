@@ -139,7 +139,7 @@ describe('graph-mobile encounters, turns and real owner boundaries',()=>{
     enterPoi(state,'lion-poi-valley-bridge-cache');const encounterId=state.run.poiExpedition!.encounter!.id;
     const combatId=commitPoiEliteFight(state,encounterId)!;
     expect(resolvePoiEliteVictory(state,encounterId,result(combatId))).toBe(true);
-    expect(state.gold).toBe(270);expect(state.run.temporaryLoot.gold).toBe(0);expect(state.resolvedNodeIds).toEqual(resolved);
+    expect(state.gold).toBe(370);expect(state.run.temporaryLoot.gold).toBe(0);expect(state.resolvedNodeIds).toEqual(resolved);
     expect(state.currentNodeId).toBe('lion-valmir-road');expect(state.flags.serpentGeneralDefeated).toBeUndefined();
     expect(resolvePoiEliteVictory(state,encounterId,result(combatId))).toBe(false);
     failRunToCheckpoint(state);const loaded=migrateState(state);

@@ -1,4 +1,4 @@
-import { craftRecipeById, getFinalStats, getResolvedSkills, isSkillUnlockedForHero, itemById, unitById } from './catalog';
+import { craftRecipeById, craftRecipes, getFinalStats, getResolvedSkills, isSkillUnlockedForHero, itemById, unitById } from './catalog';
 import { getShopPrice } from './reputation';
 import type { CraftRecipeDefinition, GameState, InventoryState, ItemCategory, UnitInstance } from './types';
 
@@ -123,40 +123,104 @@ export function sellItem(state: GameState, shopId: string, itemId: string, _useT
   return true;
 }
 
-function hasIngredients(state: GameState, recipe: CraftRecipeDefinition): boolean {
-  for (const [itemId, quantity] of Object.entries(recipe.inputs.weapons ?? {})) {
-    if ((state.inventory.weapons[itemId] ?? 0) < quantity) return false;
-  }
-  for (const [itemId, quantity] of Object.entries(recipe.inputs.accessories ?? {})) {
-    if ((state.inventory.accessories[itemId] ?? 0) < quantity) return false;
-  }
-  for (const [itemId, quantity] of Object.entries(recipe.inputs.materials ?? {})) {
-    if ((state.inventory.materials[itemId] ?? 0) < quantity) return false;
-  }
-  return true;
+export interface ForgeIngredient {
+  category: 'weapons' | 'accessories' | 'materials';
+  itemId: string;
+  quantity: number;
+  carried: number;
+  /** Worn items the recipe may take once the carried ones run out. */
+  worn: number;
+}
+
+/**
+ * Heroes whose worn item the recipe may take (OD-2026-11-05-C). A worn weapon counts only when its wearer can wield the
+ * recipe's weapon, which takes its place, so no hero is ever left unarmed; worn accessories always count.
+ */
+function forgeWearers(state: GameState, recipe: CraftRecipeDefinition, category: 'weapons' | 'accessories', itemId: string): UnitInstance[] {
+  if (category === 'accessories') return state.clan.members.filter((unit) => unit.equipment.accessoryIds.includes(itemId));
+  if (recipe.output.category !== 'weapons') return [];
+  return state.clan.members.filter((unit) => unit.equipment.weaponIds.includes(itemId)
+    && (unitById.get(unit.definitionId)?.allowedWeaponIds.includes(recipe.output.itemId) ?? false));
+}
+
+export function getForgeIngredients(state: GameState, recipe: CraftRecipeDefinition): ForgeIngredient[] {
+  const entry = (category: ForgeIngredient['category'], itemId: string, quantity: number): ForgeIngredient => {
+    const carried = state.inventory[category][itemId] ?? 0;
+    if (category === 'materials') return { category, itemId, quantity, carried, worn: 0 };
+    const wearers = forgeWearers(state, recipe, category, itemId);
+    const worn = category === 'weapons'
+      ? Math.min(wearers.length, recipe.output.quantity)
+      : wearers.reduce((count, unit) => count + unit.equipment.accessoryIds.filter((id) => id === itemId).length, 0);
+    return { category, itemId, quantity, carried, worn };
+  };
+  return [
+    ...Object.entries(recipe.inputs.weapons ?? {}).map(([itemId, quantity]) => entry('weapons', itemId, quantity)),
+    ...Object.entries(recipe.inputs.accessories ?? {}).map(([itemId, quantity]) => entry('accessories', itemId, quantity)),
+    ...Object.entries(recipe.inputs.materials ?? {}).map(([itemId, quantity]) => entry('materials', itemId, quantity)),
+  ];
+}
+
+/** The forge prices its work by reputation, like the refuge shop (OD-2026-11-05-C). */
+export function getCraftGoldCost(state: GameState, recipe: CraftRecipeDefinition): number {
+  return getShopPrice(recipe.inputs.gold, state.reputation);
+}
+
+/** Recipes worth listing: accessories, and weapons that a member of the company can wield. */
+export function getForgeRecipes(state: GameState): CraftRecipeDefinition[] {
+  return craftRecipes.filter((recipe) => recipe.output.category === 'accessories'
+    || state.clan.members.some((unit) => unitById.get(unit.definitionId)?.allowedWeaponIds.includes(recipe.output.itemId)));
 }
 
 export function canCraftItem(state: GameState, recipeId: string): boolean {
   const recipe = craftRecipeById.get(recipeId);
   if (!recipe) return false;
   if (!itemById.has(recipe.output.itemId)) return false;
-  return state.gold >= recipe.inputs.gold && hasIngredients(state, recipe);
+  return state.gold >= getCraftGoldCost(state, recipe)
+    && getForgeIngredients(state, recipe).every((ingredient) => ingredient.carried + ingredient.worn >= ingredient.quantity);
 }
 
+/**
+ * Crafts from carried items first, then worn ones. The crafted weapon takes the place of the worn weapon it consumed; a
+ * crafted accessory takes the first accessory slot the recipe freed; anything else goes to the inventory.
+ */
 export function craftItem(state: GameState, recipeId: string): boolean {
   const recipe = craftRecipeById.get(recipeId);
   if (!recipe || !canCraftItem(state, recipeId)) return false;
-  state.gold -= recipe.inputs.gold;
-  for (const [itemId, quantity] of Object.entries(recipe.inputs.weapons ?? {})) {
-    adjust(state.inventory, 'weapons', itemId, -quantity);
+  state.gold -= getCraftGoldCost(state, recipe);
+  let weaponSlot: { unit: UnitInstance; index: number } | null = null;
+  const freedSlots: Array<{ unit: UnitInstance; slot: 0 | 1 }> = [];
+  for (const ingredient of getForgeIngredients(state, recipe)) {
+    const fromBag = Math.min(ingredient.carried, ingredient.quantity);
+    adjust(state.inventory, ingredient.category, ingredient.itemId, -fromBag);
+    let missing = ingredient.quantity - fromBag;
+    if (missing <= 0 || ingredient.category === 'materials') continue;
+    for (const unit of forgeWearers(state, recipe, ingredient.category, ingredient.itemId)) {
+      if (ingredient.category === 'weapons') {
+        if (missing <= 0 || weaponSlot) break;
+        weaponSlot = { unit, index: unit.equipment.weaponIds.indexOf(ingredient.itemId) };
+        missing -= 1;
+        continue;
+      }
+      for (const slot of [0, 1] as const) {
+        if (missing <= 0 || unit.equipment.accessoryIds[slot] !== ingredient.itemId) continue;
+        unit.equipment.accessoryIds[slot] = null;
+        freedSlots.push({ unit, slot });
+        missing -= 1;
+      }
+    }
   }
-  for (const [itemId, quantity] of Object.entries(recipe.inputs.accessories ?? {})) {
-    adjust(state.inventory, 'accessories', itemId, -quantity);
+  let toInventory = recipe.output.quantity;
+  const changed = new Set(freedSlots.map(({ unit }) => unit));
+  if (weaponSlot && recipe.output.category === 'weapons') {
+    weaponSlot.unit.equipment.weaponIds[weaponSlot.index] = recipe.output.itemId;
+    changed.add(weaponSlot.unit);
+    toInventory -= 1;
+  } else if (recipe.output.category === 'accessories' && freedSlots[0]) {
+    freedSlots[0].unit.equipment.accessoryIds[freedSlots[0].slot] = recipe.output.itemId;
+    toInventory -= 1;
   }
-  for (const [itemId, quantity] of Object.entries(recipe.inputs.materials ?? {})) {
-    adjust(state.inventory, 'materials', itemId, -quantity);
-  }
-  adjust(state.inventory, recipe.output.category, recipe.output.itemId, recipe.output.quantity);
+  if (toInventory > 0) adjust(state.inventory, recipe.output.category, recipe.output.itemId, toInventory);
+  for (const unit of changed) unit.currentHealth = Math.min(unit.currentHealth, getFinalStats(unit).maxHealth);
   return true;
 }
 

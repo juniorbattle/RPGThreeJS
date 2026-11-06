@@ -34,7 +34,7 @@ describe('mechanical GameApp expedition integration, not native battle evidence'
     const saved=new SaveRepository().loadAuto()!;
     expect(saved.resolvedNodeIds.filter(id=>id==='lion-poi-opening-supplies')).toHaveLength(1);
     expect(saved.run.temporaryLoot.inventory.consumables.potion).toBeUndefined();
-    expect(saved.inventory.consumables.potion).toBe(5);expect(saved.gold).toBe(150);
+    expect(saved.inventory.consumables.potion).toBe(5);expect(saved.gold).toBe(250);
     root.querySelector<HTMLButtonElement>('[data-poi-dialog-action=close]')!.click();await pending;
     expect(root.querySelector('.poi-map')).not.toBeNull();expect(owner.state.run.poiExpedition?.pendingStep).toBeUndefined();
     app.dispose();
@@ -56,7 +56,7 @@ describe('mechanical GameApp expedition integration, not native battle evidence'
     expect(canonical).not.toHaveBeenCalled();
     const saved=new SaveRepository().loadAuto()!;
     expect(saved.currentNodeId).toBe('lion-valmir-road');expect(saved.resolvedNodeIds).not.toContain('lion-poi-valley-bridge-cache');
-    expect(saved.gold).toBe(270);expect(saved.run.temporaryLoot.gold).toBe(0);expect(saved.run.poiExpedition?.elites['lion-elite-valley-sentinel']?.defeated).toBe(true);
+    expect(saved.gold).toBe(370);expect(saved.run.temporaryLoot.gold).toBe(0);expect(saved.run.poiExpedition?.elites['lion-elite-valley-sentinel']?.defeated).toBe(true);
     expect(saved.flags.serpentGeneralDefeated).toBeUndefined();expect(saved.run.status).toBe('active');app.dispose();
   });
   it('reload reconstructs an interrupted independent encounter before any underlying chest activation',async()=>{
@@ -146,7 +146,7 @@ describe('mechanical GameApp expedition integration, not native battle evidence'
     const exp=owner.state.run.poiExpedition!;
     expect(root.querySelector('[role=dialog]')).toBeNull();expect(exp.turn).toBe(1);expect(exp.pendingStep).toBeUndefined();
     expect(exp.elites['lion-elite-valley-sentinel']!.positionId).toBe('lion-valmir-road');
-    expect(owner.state.gold).toBe(185);expect(owner.state.inventory.consumables.potion).toBe(5);expect(owner.state.run.temporaryLoot.gold).toBe(0);
+    expect(owner.state.gold).toBe(285);expect(owner.state.inventory.consumables.potion).toBe(5);expect(owner.state.run.temporaryLoot.gold).toBe(0);
     const before=structuredClone(owner.state);owner.showPoiMap();expect(owner.state).toEqual(before);app.dispose();
   });
   it('a saved combat-phase elite resumes its real bridge config without invoking the underlying node resolver',async()=>{
@@ -155,6 +155,6 @@ describe('mechanical GameApp expedition integration, not native battle evidence'
     const canonical=vi.spyOn(owner,'resolveCombat');
     const start=vi.spyOn(owner.combat,'start').mockImplementation(({config})=>({ready:Promise.resolve(),result:Promise.resolve({combatId:config.id,victory:true,participants:[],unitHealth:{}})}));
     await owner.continueChronicle();expect(start.mock.calls[0]?.[0].config.id).toBe('poi_elite_valley_sentinel');expect(canonical).not.toHaveBeenCalled();
-    expect(owner.state.gold).toBe(270);expect(owner.state.run.temporaryLoot.gold).toBe(0);expect(owner.state.resolvedNodeIds).not.toContain('lion-poi-valley-bridge-cache');app.dispose();
+    expect(owner.state.gold).toBe(370);expect(owner.state.run.temporaryLoot.gold).toBe(0);expect(owner.state.resolvedNodeIds).not.toContain('lion-poi-valley-bridge-cache');app.dispose();
   });
 });
