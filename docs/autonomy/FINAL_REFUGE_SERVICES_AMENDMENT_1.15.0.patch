@@ -1,0 +1,101 @@
+diff --git a/docs/contracts/CAMPAIGN_AND_STATE.md b/docs/contracts/CAMPAIGN_AND_STATE.md
+index cf79c9e1..39456097 100644
+--- a/docs/contracts/CAMPAIGN_AND_STATE.md
++++ b/docs/contracts/CAMPAIGN_AND_STATE.md
+@@ -2,6 +2,10 @@
+ 
+ Status: **LOCKED**.
+ 
++## Final refuge services — OD-2026-11-05-E
++
++Dedicated `PRODUCTION-CONTRACTS-FINAL-REFUGE-SERVICES-1`, set 1.15.0, follows the operator's economy decisions OD-2026-11-05-C and OD-2026-11-05-D: gold, materials and gems earned after the second refuge must be spendable before the judgement. The final refuge (`lion-final-refuge`, content `final_refuge`) keeps its narrative preparation beat, which plays first and unchanged. Right after it, the final refuge offers the existing refuge services: the refuge shop and its forge, skill upgrades, the company register and paid rest. While the judgement has not begun, returning to the resolved final refuge reopens them without replaying the dialogue. They reuse the same owners, shared shop stock, reputation prices, recipes and rest cost as the first two refuges, add no free rest and no restock, and continuing follows the existing route toward the judgement. The node keeps its `story` type, durable IDs, branch continuity, travel relations and save/resume authority; the services add no saved field, and their reopening derives from the existing resolved-node state. No new plot, choice, reward, consequence, dialogue line or art: the services panel reuses the node's authored label and hint and the approved `FINAL_REFUGE` environment plate. The beat order stays end of route -> breathing/preparation/context -> judgement, and Alaric's judgement and narrative-climax role are unchanged.
++
+ ## Lot E exploration and persistent threats — OD-2026-10-15-B
+ 
+ Dedicated `PRODUCTION-CONTRACTS-POI-LOT-E-1`, set 1.4.0, approved by [OD-2026-10-15-B](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md). The linked operator contract and authoring annex approve exactly twelve optional fixed nodes (six chests, six two-variant ordinary encounters) in addition to the 21 protected canonical nodes, plus two independent mobile elite actors, not fixed POIs. RunSystem owns their eligibility, stable seed/POI assignments, once-only resolution, immediately usable rewards, turn clock, positions, interceptions and safe retreat. Optional nodes never satisfy a canonical milestone or replace required encounter/victory, exclusive trial, preparation or judgement. Preserve canonical rewards, costs, choices, neutralization and once-only bypass consequences, including detours/backtracking.
+@@ -10,7 +14,7 @@ Persist only versioned expedition truth and necessary encounter/return/idempoten
+ 
+ ## POI navigation amendment — OD-2026-10-13-D
+ 
+-Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), set 1.2.0 supersedes physical navigation. RunSystem validates connected bidirectional movement and activation with mandatory causal ordering. Preserve authored IDs, content and effects. Resolved POIs replay no content/rewards. Neutralized derives from canonical incompatibility and is never completed/victorious/rewarded. Compatible optional events remain revisitable; preserve authored bypass consequences. Visit/bypass is not resolution. Unlocked refuges reuse existing services and costs without arrival replay; final narrative refuge unchanged.
++Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), set 1.2.0 supersedes physical navigation. RunSystem validates connected bidirectional movement and activation with mandatory causal ordering. Preserve authored IDs, content and effects. Resolved POIs replay no content/rewards. Neutralized derives from canonical incompatibility and is never completed/victorious/rewarded. Compatible optional events remain revisitable; preserve authored bypass consequences. Visit/bypass is not resolution. Unlocked refuges reuse existing services and costs without arrival replay; final narrative refuge unchanged except for the services of set 1.15.0.
+ 
+ Eligible variable assignments remain stable per run/POI across reload/revisit; no farming. Chest catalogue/quantities and elite configurations need content approval before placement. Usable holdings and exact last-save defeat restoration remain with existing gameplay/save owners. Audit V6 current/checkpoint IDs, branches, visited/resolved and assignments; derive status from existing facts and explicitly test required durable extensions. Resume old roads at canonical POIs without invented outcomes, cleared progress or visual map state.
+ 
+@@ -18,7 +22,7 @@ The Lion campaign is authored. Keep existing dialogue, nodes, branch identities,
+ 
+ Progression has no level or XP. The current progression channels are equipment, weapon tiers, accessories, skill upgrades, recruitment, and materials. A party member equips one weapon and two accessories. Ultimates stay out of scope until explicitly activated by an operator decision.
+ 
+-Refuges are for preparation. Earned gold and items enter the usable wallet/inventory immediately through gameplay owners, without an additional securing boundary. Preserve first and second refuge continuity and management returns. Do not convert the final refuge into an interactive hub or alter its node type as an incidental presentation change.
++Refuges are for preparation. Earned gold and items enter the usable wallet/inventory immediately through gameplay owners, without an additional securing boundary. Preserve first and second refuge continuity and management returns. Never alter the final refuge's node type; its only services are those of set 1.15.0 above.
+ 
+ Durable campaign facts are saved through versioned schemas and migrations. Preserve durable IDs and compatibility with existing saves. Save route choices, resolved events, inventory and resources through their existing owners; do not serialize animation state, camera, transient Route Risk/Pursuit state, layout, or other visual state. Any changed durable schema requires an explicit migration and resume tests at affected boundaries.
+ 
+@@ -28,7 +32,7 @@ Dedicated `PRODUCTION-CONTRACTS-POI-V2-RETIREMENT-1`, set 1.3.0. Primary, second
+ 
+ ## Preserved manual-playtest amendment — OD-2026-10-03-A
+ 
+-Dedicated task `PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1` locks a mandatory campfire/preparation beat before Alaric's final judgement: end of route -> breathing/preparation/context -> judgement. It is a narrative boundary, not a new Traversal, ninth video or automatic full refuge-management hub. Keep existing durable IDs, branch continuity, final-refuge type and save/resume authority. Reuse approved content; do not invent new plot, choices, rewards or consequences to populate it. A visual campfire alone never authorizes securing loot.
++Dedicated task `PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1` locks a mandatory campfire/preparation beat before Alaric's final judgement: end of route -> breathing/preparation/context -> judgement. It is a narrative boundary, not a new Traversal or ninth video; set 1.15.0 adds only the existing refuge services after it. Keep existing durable IDs, branch continuity, final-refuge type and save/resume authority. Reuse approved content; do not invent new plot, choices, rewards or consequences to populate it. A visual campfire alone never authorizes securing loot.
+ 
+ Dialogue expressing trust, suspicion, gratitude, fear or judgement must match established tracked facts: majorMerits, majorBreaches, witnesses, village outcome, refugees, merchant, shrine, conduct and reputation. A reputation threshold alone is insufficient. Caution may remain when a concrete fact explains it, but repeated positive deeds must not be erased by a generic unknown/suspicious default. Contextual dialogue corrections may acknowledge established facts without adding lore, choices or consequences; factual availability and branch eligibility remain with campaign truth.
+ 
+diff --git a/docs/contracts/README.md b/docs/contracts/README.md
+index a2679dfb..5147e3b3 100644
+--- a/docs/contracts/README.md
++++ b/docs/contracts/README.md
+@@ -19,6 +19,8 @@ Status terms: **LOCKED** means the decision is binding; **implemented** means so
+ 
+ ## Approved amendment history
+ 
++Contract set **1.15.0** / `PRODUCTION-CONTRACTS-FINAL-REFUGE-SERVICES-1` / [OD-2026-11-05-E](../autonomy/FINAL_REFUGE_SERVICES_OPERATOR_DECISION_2026-11-05.md) follows the operator's economy decisions so that gains earned after the second refuge can be spent. Right after its unchanged narrative beat, and again on a return before the judgement, the final refuge offers the existing refuge services: shop and forge, skill upgrades, company register and paid rest, with the same owners, shared stock, prices and costs, no free rest and no restock. Its `story` node type, durable IDs, travel relations, beat order, save fields and Alaric's judgement are unchanged; no new plot, choice, reward, dialogue or art. CAMPAIGN_AND_STATE and TRAVERSAL change only for this scope. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before any runtime work.
++
+ Contract set **1.14.0** / `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-2` / [OD-2026-11-04-B](../autonomy/LIVING_TABLEAUX_ENDINGS_OPERATOR_DECISION_2026-11-04.md) extends the living tableaux of set 1.13.0 to three more moments: Alaric's audience before `lion_briefing`, and the Serpent pursuit and Lion trial route endings before the epilogue, at most 40 seconds each for the endings, with the same animated backdrop allowed on the aftermath dialogue just before an ending. It also states that an outcome or route-ending sequence takes the place of its beat's static Journey still, which stays its fallback. The rules of set 1.13.0 hold otherwise: no captions, no new canon, at most four narrative actors with bounded extras, first live opening only with no save field, the existing mood table, zero video and no generated image. Only PRESENTATION_AND_MEDIA changes. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before any runtime work.
+ 
+ Contract set **1.13.0** / `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-1` / [OD-2026-11-04-A](../autonomy/LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md) follows the operator's decision sheet on living tableaux. For code-animated sequences on existing approved tableaux only, it narrows the stop on new cinematic production and the ban on replacement interludes, at four moments: Bois-Clair arrival, Bois-Clair saved or sacrificed, and Alaric's judgement, each before its existing dialogue, plus an animated backdrop during that dialogue. No captions, no new canon, at most four narrative actors with bounded extras, first live opening only with no save field, the existing mood table, and a mockup before the rest. Zero video, no generated image, the eight historical identities, the opening's own decision, V6, truth owners and the Alaric climax are unchanged. Constitution, PRESENTATION_AND_MEDIA, AUTHORING_AND_QA and AUTONOMOUS_WORK_PROTOCOL change only for this scope. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before any runtime work.
+diff --git a/docs/contracts/TRAVERSAL.md b/docs/contracts/TRAVERSAL.md
+index 22577f75..52d8e1f4 100644
+--- a/docs/contracts/TRAVERSAL.md
++++ b/docs/contracts/TRAVERSAL.md
+@@ -18,7 +18,7 @@ Campaign structure/relations and RunSystem own movement, accessibility, eligibil
+ 
+ Move in both directions on connected, unlocked edges only. No remote-click teleport or bypass of an obligatory unresolved event. Future primary milestones retain canonical conditions. Distinguish available, active, locked, resolved and neutralized. A visit is not a resolution. Resolved POIs permit passage without repeated dialogue, cinematic, combat, victory, reputation, recruitment or loot. Neutralization derives only from actual canonical incompatibility or explicitly approved exclusive choice; geographically accessible neutralized POIs permit passage but never activation and never count as completed, defeated or rewarded. Do not disable a whole parallel branch merely because it is parallel.
+ 
+-Compatible optional POIs can be ignored and revisited later. Apply authored bypass consequences; bypass is not resolution. Unlocked refuges reuse existing services without replaying arrival decisions or adding free rest; the final narrative refuge remains narrative.
++Compatible optional POIs can be ignored and revisited later. Apply authored bypass consequences; bypass is not resolution. Unlocked refuges reuse existing services without replaying arrival decisions or adding free rest; the final refuge keeps its narrative beat, followed only by the refuge services of set 1.15.0 (CAMPAIGN_AND_STATE).
+ 
+ ## Content and effects
+ 
+diff --git a/docs/contracts/contracts.manifest.json b/docs/contracts/contracts.manifest.json
+index 83338399..95d834d0 100644
+--- a/docs/contracts/contracts.manifest.json
++++ b/docs/contracts/contracts.manifest.json
+@@ -2,7 +2,7 @@
+   "schemaVersion": 1,
+   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
+   "lockedAt": "2026-10-01",
+-  "contractSetVersion": "1.14.0",
++  "contractSetVersion": "1.15.0",
+   "approvedAmendments": [
+     {
+       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
+@@ -220,6 +220,19 @@
+       "constitutionChanged": false,
+       "supersededRule": "The exhaustive list of four living tableau moments of set 1.13.0; three more moments (alaric_audience_arrival, serpent_route_ending, lion_trial_route_ending), 40 seconds for the two route endings, the same animated backdrop on the aftermath dialogue before an ending, an outcome or route-ending sequence in place of its static Journey still, and no new mockup",
+       "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator viewing acceptance"
++    },
++    {
++      "taskId": "PRODUCTION-CONTRACTS-FINAL-REFUGE-SERVICES-1",
++      "operatorDecisionId": "OD-2026-11-05-E",
++      "operatorDecisionPath": "docs/autonomy/FINAL_REFUGE_SERVICES_OPERATOR_DECISION_2026-11-05.md",
++      "approvedAt": "2026-11-05",
++      "changedContracts": [
++        "CAMPAIGN_AND_STATE",
++        "TRAVERSAL"
++      ],
++      "constitutionChanged": false,
++      "supersededRule": "The final refuge as a purely narrative beat with no refuge services and no interactive hub; it now offers the existing refuge services after its unchanged narrative beat and on a return before the judgement, with its story node type, durable IDs and save fields unchanged",
++      "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator playtest acceptance"
+     }
+   ],
+   "status": "LOCKED",
