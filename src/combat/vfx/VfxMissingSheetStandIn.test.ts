@@ -77,8 +77,9 @@ describe('missing sprite sheet stand-in', () => {
       expect(rendered.filter(isMissingSpriteSheetStep), action.actionKey).toEqual([]);
       if (preset!.steps.some(isMissingSpriteSheetStep)) gaps.push(action.actionKey);
     }
-    expect(gaps).toHaveLength(31);
-    expect(actions.map((action) => action.actionKey).filter((key) => !gaps.includes(key)).sort()).toEqual(['ni_shadow_step', 'w_charge', 'w_salvation']);
+    // OD-2026-11-05-D: the T2 recipes bring n_teleport, ro_tumble and l_haft_recoil into the demo; combat plays their fxSkills recipes.
+    expect(gaps).toHaveLength(34);
+    expect(actions.map((action) => action.actionKey).filter((key) => !gaps.includes(key)).sort()).toEqual(['ni_shadow_step', 'w_charge', 'w_purify', 'w_salvation']);
   });
 
   it('sizes each stand-in for its engine type and keeps healing green apart', () => {

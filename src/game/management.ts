@@ -165,10 +165,15 @@ export function getCraftGoldCost(state: GameState, recipe: CraftRecipeDefinition
   return getShopPrice(recipe.inputs.gold, state.reputation);
 }
 
+/** Whether the shop and the forge should offer an item: any non-weapon, or a weapon someone in the company can wield. */
+export function isUsefulToCompany(state: GameState, itemId: string): boolean {
+  if (itemById.get(itemId)?.category !== 'weapons') return true;
+  return state.clan.members.some((unit) => unitById.get(unit.definitionId)?.allowedWeaponIds.includes(itemId));
+}
+
 /** Recipes worth listing: accessories, and weapons that a member of the company can wield. */
 export function getForgeRecipes(state: GameState): CraftRecipeDefinition[] {
-  return craftRecipes.filter((recipe) => recipe.output.category === 'accessories'
-    || state.clan.members.some((unit) => unitById.get(unit.definitionId)?.allowedWeaponIds.includes(recipe.output.itemId)));
+  return craftRecipes.filter((recipe) => isUsefulToCompany(state, recipe.output.itemId));
 }
 
 export function canCraftItem(state: GameState, recipeId: string): boolean {

@@ -3,7 +3,7 @@ import {
   isSkillUnlockedForHero, itemById, items, unitById, weaponById, weapons,
 } from '../game/catalog';
 import {
-  buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit, getCraftGoldCost, getForgeIngredients, getForgeRecipes,
+  buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit, getCraftGoldCost, getForgeIngredients, getForgeRecipes, isUsefulToCompany,
   getSkillUpgradeCost, sellItem, upgradeSkill, useConsumable, type ForgeIngredient,
 } from '../game/management';
 import { getReputationRule, getShopPrice } from '../game/reputation';
@@ -787,7 +787,8 @@ export class ManagementView {
     const source = this.shopMode === 'buy'
       ? Object.entries(state.shops[this.shopId]?.stock ?? {})
       : (Object.keys(categoryLabels) as ItemCategory[]).flatMap((category) => Object.entries(state.inventory[category]));
-    const rows = source.filter(([, quantity]) => quantity > 0).map(([id, quantity]) => {
+    // OD-2026-11-05-D: the shop offers only what the company can use; selling still lists everything carried.
+    const rows = source.filter(([id, quantity]) => quantity > 0 && (this.shopMode !== 'buy' || isUsefulToCompany(state, id))).map(([id, quantity]) => {
       const item = itemById.get(id);
       if (!item) return '';
       const price = this.shopMode === 'buy' ? getShopPrice(item.price, state.reputation) : Math.floor(item.price / 2);

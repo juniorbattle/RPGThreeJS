@@ -177,7 +177,9 @@ describe('DemoVfxActionScope — party derivation', () => {
   });
 
   it('does not invent items that no source provides', () => {
-    expect(getObtainableItemIds().has('miracle_crosier')).toBe(false);
+    // OD-2026-11-05-D: the forge now makes the Crosse des Miracles; the shop no longer sells the other classes' weapons.
+    expect(getObtainableItemIds().has('miracle_crosier')).toBe(true);
+    expect(getObtainableItemIds().has('sacred_mace')).toBe(false);
   });
 });
 

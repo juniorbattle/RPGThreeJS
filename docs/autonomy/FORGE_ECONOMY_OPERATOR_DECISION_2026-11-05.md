@@ -10,7 +10,7 @@
 
 - L'échoppe n'existe qu'aux deux refuges ; après le second, il n'y a plus d'achat possible.
 - Le premier sort de chaque héros (2 PA) est offert. Une arme T1 ne débloque donc aucune compétence : elle apporte des dégâts et des PV. Le deuxième sort (3 PA) demande une arme T2.
-- Seuls Alistair (Lame du Lion) et Kestrel (Arc du Vent, Arc d'Éclipse) peuvent obtenir une arme T2, par la forge. Marian, Elara, Cedric et Garen n'ont aucune arme T2 en vente ni en recette : leur deuxième sort reste hors d'atteinte dans la démo. **Point ouvert pour l'opérateur**, non traité ici.
+- Seuls Alistair (Lame du Lion) et Kestrel (Arc du Vent, Arc d'Éclipse) peuvent obtenir une arme T2, par la forge. Marian, Elara, Cedric et Garen n'ont aucune arme T2 en vente ni en recette : leur deuxième sort reste hors d'atteinte dans la démo. **Résolu par OD-2026-11-05-D** ([Armes T2 et échoppe cohérente](FORGE_T2_SHOP_COHERENCE_OPERATOR_DECISION_2026-11-05.md)).
 - L'échoppe n'a qu'un exemplaire de chaque accessoire.
 - Avant ce changement, chaque recette de forge coûtait plus que l'objet qu'elle crée.
 - La forge ne voyait que les objets du sac : une arme ou un accessoire porté comptait « 0/1 ». Exemple : Alistair qui porte son espadon d'acier ne pouvait plus forger la Lame du Lion.

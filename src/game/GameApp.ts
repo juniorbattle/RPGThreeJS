@@ -1,7 +1,7 @@
 import { combatConfigs } from './content';
 import { createInitialState, SaveRepository } from './store';
 import type { CombatConfig, CombatResult, DialogueSequence, GameState, NarrativeEffect, RunNode, UnitInstance } from './types';
-import { createUnitInstance, getItemCategory, toCombatant, itemById } from './catalog';
+import { createRecruitInstance, createUnitInstance, getItemCategory, toCombatant, itemById } from './catalog';
 import { applyCombatProgress } from './combatProgress';
 import {
   creditRunReward, enterRunNode,
@@ -1409,7 +1409,7 @@ export class GameApp {
               && this.state.clan.members.length < this.state.clan.maxSize
               && !this.state.clan.members.some((unit) => unit.id === effect.unitId)
             ) {
-              this.state.clan.members.push(createUnitInstance(effect.unitId));
+              this.state.clan.members.push(createRecruitInstance(effect.unitId));
             }
           }
           break;

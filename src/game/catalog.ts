@@ -27,7 +27,7 @@ export const weapons: WeaponDefinition[] = [
   // Greatsword (Warrior) — T0 Novice / T1 / T2
   { id: 'novice_greatsword', name: 'Espadon novice', description: "Lame d'écuyer pour les premières batailles.", category: 'weapons', price: 90, icon: '⚔', type: 'greatsword', tier: 0, damage: 20, range: 1, accuracyBonus: 5, critBonus: 5 },
   { id: 'steel_greatsword', name: "Espadon d'acier", description: 'Lame équilibrée et plus mordante.', category: 'weapons', price: 170, icon: '⚔', type: 'greatsword', tier: 1, damage: 25, range: 1, accuracyBonus: 7, critBonus: 5, healthBonus: 25 },
-  { id: 'lion_guard_greatsword', name: 'Espadon du Lion', description: 'Lame de garde renforcée par un anneau martial.', category: 'weapons', price: 320, icon: '⚔', type: 'greatsword', tier: 2, damage: 27, range: 1, accuracyBonus: 8, critBonus: 6, healthBonus: 50, skillModifier: { replaces: { w_whirl: 'p_oathwall' } } },
+  { id: 'lion_guard_greatsword', name: 'Espadon du Lion', description: 'Lame de garde renforcée par un anneau martial.', category: 'weapons', price: 340, icon: '⚔', type: 'greatsword', tier: 2, damage: 27, range: 1, accuracyBonus: 8, critBonus: 6, healthBonus: 50, skillModifier: { replaces: { w_whirl: 'p_oathwall' } } },
   // Holy mace (Paladin) — T0 Novice / T1 / T2
   { id: 'novice_mace', name: 'Masse novice', description: 'Masse simple des protecteurs débutants.', category: 'weapons', price: 130, icon: '✚', type: 'holy_mace', tier: 0, damage: 16, range: 1, accuracyBonus: 5, critBonus: 3 },
   { id: 'sacred_mace', name: 'Masse sacrée', description: 'Masse consacrée frappant avec force.', category: 'weapons', price: 220, icon: '✚', type: 'holy_mace', tier: 1, damage: 22, range: 1, accuracyBonus: 7, critBonus: 5, healthBonus: 23 },
@@ -43,7 +43,7 @@ export const weapons: WeaponDefinition[] = [
   // Grimoire (Black Mage) — T0 Novice / T1 / T2
   { id: 'novice_grimoire', name: 'Grimoire novice', description: 'Tome élémentaire pour apprentis mages.', category: 'weapons', price: 100, icon: '✦', type: 'grimoire', tier: 0, damage: 10, range: 1, accuracyBonus: 10, critBonus: 0 },
   { id: 'mystic_grimoire', name: 'Grimoire mystique', description: 'Tome ancien saturé de mana.', category: 'weapons', price: 260, icon: '✦', type: 'grimoire', tier: 1, damage: 18, range: 1, accuracyBonus: 15, critBonus: 5, healthBonus: 13, skillModifier: { replaces: { n_dark_meteor: 'n_flame_wave' } } },
-  { id: 'abyssal_grimoire', name: 'Grimoire des Abysses', description: "Tome interdit débordant d'arcanes noirs.", category: 'weapons', price: 340, icon: '✦', type: 'grimoire', tier: 2, damage: 22, range: 1, accuracyBonus: 18, critBonus: 8, healthBonus: 25 },
+  { id: 'abyssal_grimoire', name: 'Grimoire des Abysses', description: "Tome interdit débordant d'arcanes noirs.", category: 'weapons', price: 380, icon: '✦', type: 'grimoire', tier: 2, damage: 22, range: 1, accuracyBonus: 18, critBonus: 8, healthBonus: 25 },
   // Crosier (White Mage) — T0 Novice / T1 / T2
   { id: 'novice_crosier', name: 'Crosse novice', description: 'Crosse simple pour canaliser les prières.', category: 'weapons', price: 100, icon: '✚', type: 'crosier', tier: 0, damage: 10, range: 1, accuracyBonus: 10, critBonus: 0 },
   { id: 'sacred_crosier', name: 'Crosse sacrée', description: 'Crosse imprégnée de lumière divine.', category: 'weapons', price: 220, icon: '✚', type: 'crosier', tier: 1, damage: 16, range: 1, accuracyBonus: 12, critBonus: 3, healthBonus: 13 },
@@ -59,7 +59,7 @@ export const weapons: WeaponDefinition[] = [
   // Longbow (Archer) — T0 Novice / T1 / T2
   { id: 'novice_longbow', name: 'Arc novice', description: 'Arc court pour les engagements proches.', category: 'weapons', price: 120, icon: '⌁', type: 'longbow', tier: 0, damage: 14, range: 4, minRange: 2, accuracyBonus: 0, critBonus: 5 },
   { id: 'longbow', name: 'Arc long', description: 'Excellente portée et puissance accrue.', category: 'weapons', price: 230, icon: '⌁', type: 'longbow', tier: 1, damage: 22, range: 4, minRange: 2, accuracyBonus: 5, critBonus: 10, healthBonus: 15, skillModifier: { replaces: { a_precise_shot: 'ar_calibrated_shot' } } },
-  { id: 'windstep_longbow', name: 'Arc du Vent', description: "Arc nerveux équilibré par des bottes d'éclaireur.", category: 'weapons', price: 340, icon: '⌁', type: 'longbow', tier: 2, damage: 24, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 12, healthBonus: 30, skillModifier: { replaces: { a_hawk_leap: 'ni_shadow_step' } } },
+  { id: 'windstep_longbow', name: 'Arc du Vent', description: "Arc nerveux équilibré par des bottes d'éclaireur.", category: 'weapons', price: 430, icon: '⌁', type: 'longbow', tier: 2, damage: 24, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 12, healthBonus: 30, skillModifier: { replaces: { a_hawk_leap: 'ni_shadow_step' } } },
   // Shuriken (Ninja) — T0 Novice / T1 / T2
   { id: 'novice_shuriken', name: 'Shuriken novice', description: 'Étoile de lancer pour les ninjas débutants.', category: 'weapons', price: 80, icon: '✦', type: 'shuriken', tier: 0, damage: 12, range: 3, accuracyBonus: 15, critBonus: 10 },
   { id: 'steel_shuriken', name: "Shuriken d'acier", description: 'Shuriken équilibré à la coupe plus profonde.', category: 'weapons', price: 180, icon: '✦', type: 'shuriken', tier: 1, damage: 18, range: 3, accuracyBonus: 15, critBonus: 12, healthBonus: 15 },
@@ -89,7 +89,7 @@ export const items: ItemDefinition[] = [
   { id: 'life_belt', name: 'Ceinture de Vie', description: 'Augmente les PV de 20.', category: 'accessories', icon: '▰', price: 80, modifiers: { maxHealth: 20 } },
   { id: 'agility_boots', name: 'Bottes d’agilité', description: 'Augmente la dextérité de 5.', category: 'accessories', icon: '⌁', price: 150, modifiers: { dexterity: 5 } },
   { id: 'wisdom_crown', name: 'Couronne de Sagesse', description: 'Augmente la magie de 8.', category: 'accessories', icon: '♛', price: 200, modifiers: { magic: 8 } },
-  { id: 'sage_seal', name: 'Sceau du Sage', description: 'Accessoire magique façonné pour stabiliser les arcanes.', category: 'accessories', icon: '✦', price: 310, modifiers: { magic: 10, charisma: 3 }, skillModifier: { replaces: { w_purify: 'e_vigor_rune' } } },
+  { id: 'sage_seal', name: 'Sceau du Sage', description: 'Accessoire magique façonné pour stabiliser les arcanes.', category: 'accessories', icon: '✦', price: 380, modifiers: { magic: 10, charisma: 3 }, skillModifier: { replaces: { w_purify: 'e_vigor_rune' } } },
   { id: 'warding_buckle', name: 'Boucle de Garde', description: 'Fermoir défensif gravé pour tenir la ligne.', category: 'accessories', icon: '▰', price: 240, modifiers: { maxHealth: 15, endurance: 4 } },
   { id: 'potion', name: 'Potion légère', description: 'Restaure 55 PV en combat.', category: 'consumables', icon: '◉', price: 15 },
   { id: 'ether', name: 'Éther', description: 'Restaure 3 AP en combat.', category: 'consumables', icon: '◈', price: 35 },
@@ -296,10 +296,42 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     preview: '+5 dextérité.',
   },
   {
+    id: 'craft_miracle_crosier',
+    name: 'Bénir la Crosse des Miracles',
+    description: 'Enchâsser une gemme rouge dans une crosse sacrée. Portée par un héros, elle est remplacée sur lui.',
+    inputs: { weapons: { sacred_crosier: 1 }, materials: { red_gem: 1 }, gold: 60 },
+    output: { itemId: 'miracle_crosier', category: 'weapons', quantity: 1 },
+    preview: 'T2 crosse : dégâts +4, +12 PV, débloque les compétences à 3 PA.',
+  },
+  {
+    id: 'craft_abyssal_grimoire',
+    name: 'Ouvrir le Grimoire des Abysses',
+    description: 'Sceller une gemme rouge dans un grimoire mystique. Porté par un héros, il est remplacé sur lui.',
+    inputs: { weapons: { mystic_grimoire: 1 }, materials: { red_gem: 1 }, gold: 60 },
+    output: { itemId: 'abyssal_grimoire', category: 'weapons', quantity: 1 },
+    preview: 'T2 grimoire : dégâts +4, +12 PV, débloque les compétences à 3 PA.',
+  },
+  {
+    id: 'craft_hooked_dagger',
+    name: 'Recourber la Dague Crochue',
+    description: 'Recourber une dague d’acier autour d’une gemme rouge. Portée par un héros, elle est remplacée sur lui.',
+    inputs: { weapons: { steel_dagger: 1 }, materials: { red_gem: 1 }, gold: 60 },
+    output: { itemId: 'hooked_dagger', category: 'weapons', quantity: 1 },
+    preview: 'T2 dague : dégâts +4, +17 PV, débloque les compétences à 3 PA.',
+  },
+  {
+    id: 'craft_griffon_spear',
+    name: 'Forger la Lance du Griffon',
+    description: 'Renforcer une lance d’acier d’une gemme rouge pour les charges. Portée par un héros, elle est remplacée sur lui.',
+    inputs: { weapons: { steel_spear: 1 }, materials: { red_gem: 1 }, gold: 60 },
+    output: { itemId: 'griffon_spear', category: 'weapons', quantity: 1 },
+    preview: 'T2 lance : dégâts +4, +20 PV, débloque les compétences à 3 PA.',
+  },
+  {
     id: 'craft_lion_guard_greatsword',
     name: 'Forger la Lame du Lion',
     description: 'Transformer une épée d’acier et un anneau de force en arme défensive de front.',
-    inputs: { weapons: { steel_greatsword: 1 }, accessories: { strength_ring: 1 }, gold: 70 },
+    inputs: { weapons: { steel_greatsword: 1 }, accessories: { strength_ring: 1 }, gold: 60 },
     output: { itemId: 'lion_guard_greatsword', category: 'weapons', quantity: 1 },
     preview: '+27 puissance, précision +8, accorde Rempart.',
   },
@@ -307,7 +339,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     id: 'craft_windstep_longbow',
     name: 'Forger l’Arc du Vent',
     description: 'Assembler un arc long et des bottes d’agilité pour un tireur mobile.',
-    inputs: { weapons: { longbow: 1 }, accessories: { agility_boots: 1 }, gold: 70 },
+    inputs: { weapons: { longbow: 1 }, accessories: { agility_boots: 1 }, gold: 40 },
     output: { itemId: 'windstep_longbow', category: 'weapons', quantity: 1 },
     preview: '+24 puissance, critique +12, accorde Bond.',
   },
@@ -315,7 +347,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     id: 'craft_sage_seal',
     name: 'Façonner le Sceau du Sage',
     description: 'Fusionner deux focalisateurs pour stabiliser les soins et les arcanes.',
-    inputs: { accessories: { magic_pendant: 1, wisdom_crown: 1 }, gold: 70 },
+    inputs: { accessories: { magic_pendant: 1, wisdom_crown: 1 }, gold: 50 },
     output: { itemId: 'sage_seal', category: 'accessories', quantity: 1 },
     preview: '+10 magie, +3 charisme, accorde Régénération.',
   },
@@ -401,6 +433,20 @@ const defaultWeapons: Record<string, string[]> = {
   ninja: ['novice_shuriken'],
   artillerist: ['novice_cannon'],
 };
+
+/** Weapons a recruit brings when no refuge follows his arrival (OD-2026-11-05-D): Garen joins after the last shop. */
+export const RECRUIT_WEAPONS: Readonly<Record<string, string>> = { lancer: 'griffon_spear' };
+
+/** A unit recruited during the campaign: the class's starting kit, or the weapon it brings (RECRUIT_WEAPONS). */
+export function createRecruitInstance(definitionId: string): UnitInstance {
+  const unit = createUnitInstance(definitionId);
+  const weaponId = RECRUIT_WEAPONS[definitionId];
+  if (weaponId && unitById.get(definitionId)?.allowedWeaponIds.includes(weaponId)) {
+    unit.equipment.weaponIds[0] = weaponId;
+    unit.currentHealth = getFinalStats(unit).maxHealth;
+  }
+  return unit;
+}
 
 export function createUnitInstance(definitionId: string, narrativeLocked = false): UnitInstance {
   const definition = unitById.get(definitionId) ?? units[0]!;

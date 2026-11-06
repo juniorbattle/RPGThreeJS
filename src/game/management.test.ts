@@ -1,15 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import {
   buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit,
-  getCraftGoldCost, getFallenUnitCount, getForgeIngredients, getForgeRecipes, restUnits, sellItem, upgradeSkill, useConsumable,
+  getCraftGoldCost, getFallenUnitCount, getForgeIngredients, getForgeRecipes, isUsefulToCompany, restUnits, sellItem, upgradeSkill, useConsumable,
 } from './management';
 import { createInitialState, migrateState } from './store';
 import {
-  createUnitInstance, craftRecipeById, getEquippedWeaponTier, getLockedSkillReason, getMaxUnlockedSkillAp, getResolvedSkills, getUnlockedSkillsForHero,
+  createRecruitInstance, createUnitInstance, craftRecipeById, craftRecipes, getEquippedWeaponTier, getLockedSkillReason, getMaxUnlockedSkillAp, getResolvedSkills, getUnlockedSkillsForHero,
   getWeaponProfileLabel, getWeaponSkillUnlockLabel, isSkillUnlockedForHero, isUltimateUnlockedForHero,
   itemById, toCombatant, unitById, weaponById,
 } from './catalog';
 import type { CraftRecipeDefinition } from './types';
+import { getFinalStats } from './catalog';
+
+const getFinalStatsMax = (unit: Parameters<typeof getFinalStats>[0]) => getFinalStats(unit).maxHealth;
 
 describe('clan management', () => {
   it('swaps equipment without losing inventory items', () => {
@@ -131,7 +134,7 @@ describe('clan management', () => {
 
     expect(canCraftItem(state, 'craft_lion_guard_greatsword')).toBe(true);
     expect(craftItem(state, 'craft_lion_guard_greatsword')).toBe(true);
-    expect(state.gold).toBe(beforeGold - 70);
+    expect(state.gold).toBe(beforeGold - 60);
     expect(state.inventory.weapons.steel_greatsword).toBe(0);
     expect(state.inventory.accessories.strength_ring).toBe(0);
     expect(state.inventory.weapons.lion_guard_greatsword).toBe(1);
@@ -262,7 +265,7 @@ describe('affordable forge', () => {
     expect(alistair.equipment.weaponIds).toEqual(['lion_guard_greatsword']);
     expect(alistair.equipment.accessoryIds).toEqual([null, null]);
     expect(state.inventory.weapons.lion_guard_greatsword ?? 0).toBe(0);
-    expect(state.gold).toBe(250 - 70);
+    expect(state.gold).toBe(250 - 60);
   });
 
   it('puts a crafted accessory in the slot its worn ingredients left', () => {
@@ -306,6 +309,59 @@ describe('affordable forge', () => {
     for (const hidden of ['craft_steel_dagger', 'craft_venom_dagger', 'craft_chill_spear', 'craft_burn_cannon', 'craft_curse_scythe']) expect(listed).not.toContain(hidden);
     state.clan.members.push(createUnitInstance('rogue'));
     expect(getForgeRecipes(state).map((recipe) => recipe.id)).toEqual(expect.arrayContaining(['craft_steel_dagger', 'craft_venom_dagger']));
+  });
+});
+
+// OD-2026-11-05-D: every demo hero can reach a T2 weapon, and the shop and forge stay coherent in what they offer and ask.
+describe('coherent shop and masterwork forge', () => {
+  const DEMO = ['warrior', 'white_mage', 'dark_mage', 'archer', 'rogue', 'lancer'];
+
+  it('gives every demo hero a T2 weapon from the forge, and Garen brings his own since no refuge follows his arrival', () => {
+    for (const id of DEMO) {
+      const allowed = unitById.get(id)!.allowedWeaponIds;
+      const t2 = craftRecipes.filter((recipe) => recipe.output.category === 'weapons' && weaponById.get(recipe.output.itemId)?.tier === 2
+        && allowed.includes(recipe.output.itemId));
+      expect(t2.length, id).toBeGreaterThan(0);
+    }
+    const garen = createRecruitInstance('lancer');
+    expect(garen.equipment.weaponIds).toEqual(['griffon_spear']);
+    expect(getEquippedWeaponTier(garen)).toBe(2);
+    expect(isSkillUnlockedForHero(garen, 'l_haft_recoil')).toBe(true);
+    expect(garen.currentHealth).toBe(getFinalStatsMax(garen));
+    expect(createRecruitInstance('rogue').equipment.weaponIds).toEqual(['novice_dagger']);
+  });
+
+  it('never asks more for a recipe than its result is worth, counting what it consumes', () => {
+    // An input is worth its price, except a novice weapon: nobody sells one, so it is worth what selling it would earn.
+    const worth = (id: string) => (weaponById.get(id)?.tier === 0 ? Math.floor(itemById.get(id)!.price / 2) : itemById.get(id)!.price);
+    for (const recipe of craftRecipes) {
+      const consumed = [...Object.entries(recipe.inputs.weapons ?? {}), ...Object.entries(recipe.inputs.accessories ?? {}), ...Object.entries(recipe.inputs.materials ?? {})]
+        .reduce((sum, [id, quantity]) => sum + worth(id) * quantity, recipe.inputs.gold);
+      expect(consumed, recipe.id).toBeLessThanOrEqual(itemById.get(recipe.output.itemId)!.price);
+    }
+  });
+
+  it('orders the demo weapons novice, then T1, then T2 by price', () => {
+    for (const id of DEMO) {
+      const byTier = new Map<number, number[]>();
+      for (const weaponId of unitById.get(id)!.allowedWeaponIds) {
+        const weapon = weaponById.get(weaponId)!;
+        byTier.set(weapon.tier, [...(byTier.get(weapon.tier) ?? []), weapon.price]);
+      }
+      expect(Math.max(...byTier.get(0)!), id).toBeLessThan(Math.min(...byTier.get(1)!));
+      expect(Math.max(...byTier.get(1)!), id).toBeLessThan(Math.min(...byTier.get(2)!));
+    }
+  });
+
+  it('offers only weapons someone in the company can wield', () => {
+    const state = createInitialState();
+    expect(isUsefulToCompany(state, 'steel_greatsword')).toBe(true);
+    expect(isUsefulToCompany(state, 'steel_dagger')).toBe(false);
+    expect(isUsefulToCompany(state, 'sacred_mace')).toBe(false);
+    expect(isUsefulToCompany(state, 'potion')).toBe(true);
+    expect(isUsefulToCompany(state, 'agility_boots')).toBe(true);
+    state.clan.members.push(createUnitInstance('rogue'));
+    expect(isUsefulToCompany(state, 'steel_dagger')).toBe(true);
   });
 });
 
@@ -665,13 +721,13 @@ describe('weapon affix variants', () => {
     expect(Object.keys(state.inventory.weapons)).toHaveLength(0);
   });
 
-  it('shop stock includes all 12 T1 weapons', () => {
+  it('shop stock holds the T1 weapon of each demo hero and no weapon of another hero (OD-2026-11-05-D)', () => {
     const state = createInitialState();
     const stock = state.shops.valmir!.stock;
-    const t1Weapons = ['steel_greatsword', 'sacred_mace', 'steel_scythe', 'steel_spear', 'mystic_grimoire', 'sacred_crosier', 'steel_rapier', 'orb_scepter', 'longbow', 'steel_shuriken', 'steel_dagger', 'siege_cannon'];
-    for (const id of t1Weapons) {
-      expect(stock[id], id).toBeGreaterThanOrEqual(1);
-    }
+    for (const id of ['steel_greatsword', 'sacred_crosier', 'mystic_grimoire', 'longbow', 'steel_dagger', 'steel_spear']) expect(stock[id], id).toBe(1);
+    for (const id of ['sacred_mace', 'steel_scythe', 'steel_rapier', 'orb_scepter', 'steel_shuriken', 'siege_cannon']) expect(stock[id], id).toBeUndefined();
+    const stockedWeapons = Object.keys(stock).filter((id) => weaponById.has(id));
+    expect(stockedWeapons.every((id) => weaponById.get(id)!.tier === 1)).toBe(true);
   });
 
   it('shop stock includes materials and wisdom_crown', () => {

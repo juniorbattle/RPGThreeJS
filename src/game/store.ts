@@ -72,9 +72,8 @@ export function createInitialState(): GameState {
           grenade_incendiaire: 2, grenade_entravante: 1, grenade_aveuglante: 2,
           iron_ore: 8, red_gem: 2,
           strength_ring: 1, life_belt: 1, agility_boots: 1, magic_pendant: 1, wisdom_crown: 1, warding_buckle: 1,
-          steel_greatsword: 1, sacred_mace: 1, steel_scythe: 1, steel_spear: 1,
-          mystic_grimoire: 1, sacred_crosier: 1, steel_rapier: 1, orb_scepter: 1,
-          longbow: 1, steel_shuriken: 1, steel_dagger: 1, siege_cannon: 1,
+          // OD-2026-11-05-D: the T1 weapons of the six demo heroes only; T2 weapons come from the forge.
+          steel_greatsword: 1, sacred_crosier: 1, mystic_grimoire: 1, longbow: 1, steel_dagger: 1, steel_spear: 1,
         },
       },
     },
