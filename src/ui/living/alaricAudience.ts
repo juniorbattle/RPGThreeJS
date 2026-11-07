@@ -21,9 +21,9 @@ const ALARIC: Walker = { id: 'alaric', at: 0.2, from: [1245, 452], to: [1245, 45
 /** Alaric, and Alistair, Séraphine and Maelor, the company of the briefing's first lines: four narrative actors. */
 export const AUDIENCE_ACTORS: readonly Walker[] = [
   ALARIC,
-  { id: 'alistair', at: 1.0, from: [900, 980], to: [1150, 612], facing: 'RIGHT', speed: 80 },
-  { id: 'sage_seraphine', at: 1.6, from: [1440, 990], to: [1322, 624], facing: 'LEFT', speed: 80 },
-  { id: 'maelor', at: 2.2, from: [800, 990], to: [1062, 642], facing: 'RIGHT', speed: 80 },
+  { id: 'alistair', at: 1.0, from: [880, 980], to: [1095, 612], facing: 'RIGHT', speed: 80 },
+  { id: 'sage_seraphine', at: 1.6, from: [1480, 990], to: [1420, 624], facing: 'LEFT', speed: 80 },
+  { id: 'maelor', at: 2.2, from: [760, 990], to: [960, 642], facing: 'RIGHT', speed: 80 },
 ];
 
 /**

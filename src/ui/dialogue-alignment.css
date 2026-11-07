@@ -209,16 +209,41 @@
   body:has(.dialogue--choice-active) .narrative-scene-surface .narrative-cast__actor { bottom: 29vh; }
 }
 
-/* Journey cast is placed on each painted road, independently of dialogue cast size. */
+/*
+ * Journey cast is placed on each painted road, independently of dialogue cast size. It takes its environment's grade
+ * (a scene may give its own light in --scene-cast-grade) and stands on the ground: a contact shadow lies where the
+ * feet are, about 10.7% of the square portrait's width above the bottom of its frame, instead of a halo below it.
+ */
 .narrative-scene-surface[data-cast-placement-mode="SCENE_INTEGRATED"] .narrative-cast__actor {
+  --scene-actor-width: clamp(175px, 30vw, 310px);
   bottom: var(--tableau-baseline);
-  width: clamp(175px, 30vw, 310px);
+  width: var(--scene-actor-width);
   height: min(70vh, 680px);
-  opacity: .96;
-  filter: saturate(.95) brightness(1.03) drop-shadow(0 16px 20px #0009);
+  opacity: 1;
+  filter: var(--scene-cast-grade, saturate(.9) contrast(1.03) brightness(.9)) drop-shadow(0 2px 3px #0008);
+}
+.narrative-scene-surface[data-cast-placement-mode="SCENE_INTEGRATED"] .narrative-cast__actor::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  bottom: calc(var(--scene-actor-width) * .074);
+  width: calc(var(--scene-actor-width) * .42);
+  height: calc(var(--scene-actor-width) * .068);
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(0, 0, 0, .66), rgba(0, 0, 0, .34) 55%, transparent);
+  pointer-events: none;
+}
+/* Night scenes: moonlight and a distant fire, darker and less saturated than daylight. */
+.narrative-scene-surface:is([data-narrative-scene="CAMP_DEPARTURE_TABLEAU"], [data-narrative-scene="AUDIENCE_ROAD_DEPARTURE_TABLEAU"], [data-narrative-scene="FINAL_REFUGE_PREPARATION_TABLEAU"]) {
+  --scene-cast-grade: saturate(.8) contrast(1.05) brightness(.8);
+}
+/* The judgement hall at the chronicle's end: braziers and candles, gold from the front. */
+.narrative-scene-surface[data-narrative-scene="CHRONICLE_END_TABLEAU"] {
+  --scene-cast-grade: sepia(.2) saturate(.92) contrast(1.04) brightness(.9);
 }
 @media (max-width: 700px) {
   .narrative-scene-surface[data-cast-placement-mode="SCENE_INTEGRATED"] .narrative-cast__actor {
-    width: clamp(180px, 36vw, 230px);
+    --scene-actor-width: clamp(180px, 36vw, 230px);
   }
 }

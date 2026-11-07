@@ -842,11 +842,53 @@ export const FINAL_REFUGE_PREPARATION_TABLEAU = Object.freeze<NarrativeTableauSp
   next: 'RESOLVED_CAMPAIGN_TABLEAU',
 });
 
+/**
+ * The chronicle's terminal boundary, after the epilogue: the judgement node's own hall, where the epilogue is told, with
+ * the company of the judgement tableau standing on its floor above the terminal card. It replaces the generic travel
+ * still, whose road fell behind the card and left the cast standing in front of the forest (PC playtest 2026-11-06).
+ */
+export const CHRONICLE_END_TABLEAU = Object.freeze<NarrativeTableauSpec>({
+  id: 'CHRONICLE_END_TABLEAU',
+  castPlacementMode: 'SCENE_INTEGRATED',
+  sceneCastPlacement: {
+    maelor: { xPercent: 31, bottomVh: 25, scale: .82 },
+    alistair: { xPercent: 43, bottomVh: 24, scale: .86 },
+    sage_seraphine: { xPercent: 57, bottomVh: 25.5, scale: .8 },
+  },
+  grammar: 'AFTERMATH',
+  presentationKey: 'node:lion-final-judgement:arrival',
+  family: 'FINALE',
+  stillImage: demoBoundaryEnvironmentUrl('node:lion-final-judgement:arrival'),
+  media: [],
+  cast: {
+    visualActors: ['maelor', 'alistair', 'sage_seraphine'],
+    eventActors: ['maelor', 'alistair', 'sage_seraphine'],
+    playerRepresentatives: ['alistair'],
+    optionalActors: [],
+    justifiedOffscreen: [],
+  },
+  anchors: [{ id: 'chronicle-end', placement: 'LOWER_RIGHT', safeRegion: SAFE_LOW_RIGHT }],
+  beats: [
+    { id: 'chronicle-end-hall', kind: 'VISUAL', skippable: true },
+    { id: 'chronicle-end', kind: 'CONTEXT_ACTION', anchorId: 'chronicle-end', skippable: false },
+  ],
+  phases: [{
+    id: 'CHRONICLE_END', stepIds: [], layoutProfile: 'CHOICE_SINGLE_ROUTE_CONTINUE', layoutPlacement: 'LOWER_RIGHT',
+    staticCast: stageActors(['maelor', 'alistair', 'sage_seraphine']), mediaSubjects: ['maelor', 'alistair', 'sage_seraphine'],
+    actorRegions: [SAFE_CENTER_WORLD], dialogueSafeZone: SAFE_LOW_RIGHT, choiceSafeZones: [SAFE_LOW_RIGHT], criticalVisualRegions: [SAFE_CENTER_WORLD],
+    negativeSpaceIntent: 'The company stands on the hall floor above the terminal card; the empty throne stays readable between Alistair and Séraphine.',
+    cameraIntent: 'Wide hold on the judgement hall where the epilogue was told.',
+  }],
+  exit: 'RESOLVED_CAMPAIGN_BOUNDARY',
+  next: 'RESOLVED_CAMPAIGN_TABLEAU',
+});
+
 const TABLEAUX_BY_PRESENTATION_KEY = new Map([
   [CAMP_DEPARTURE_TABLEAU.presentationKey!, CAMP_DEPARTURE_TABLEAU],
   [AUDIENCE_ROAD_DEPARTURE_TABLEAU.presentationKey!, AUDIENCE_ROAD_DEPARTURE_TABLEAU],
   [VALMIR_FORK_TABLEAU.presentationKey!, VALMIR_FORK_TABLEAU],
   [FINAL_REFUGE_PREPARATION_TABLEAU.presentationKey!, FINAL_REFUGE_PREPARATION_TABLEAU],
+  [CHRONICLE_END_TABLEAU.presentationKey!, CHRONICLE_END_TABLEAU],
 ]);
 
 const TABLEAUX_BY_DIALOGUE_ID = new Map([

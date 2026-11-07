@@ -17,6 +17,13 @@ export interface Placed { art: SheetArt; id: string; x: number; y: number; scale
 
 export type DepthScale = (y: number) => number;
 
+/**
+ * How tall every figure of a living tableau stands against its painted scene, on top of the scene's own depth scale:
+ * actors and extras alike, so a crowd keeps its proportions. Raised after the operator's PC playtest (2026-11-06), when
+ * the heroes read too small on the route endings.
+ */
+export const LIVING_STATURE = 1.3;
+
 function idlePose(art: SheetArt, t: number, index: number): string {
   const idle = art.entry.anims.idle;
   if (!idle) return 'idle';
@@ -32,11 +39,12 @@ export function placeWalker(walker: Walker, index: number, art: SheetArt, t: num
   const x = fx + (tx - fx) * arrive(p), y = fy + (ty - fy) * arrive(p);
   const shown = reduced ? smooth((t - walker.at * 0.45) / 0.9) : smooth(since / 0.6);
   // A step every so many pixels walked, in proportion to the figure's size on screen.
-  const stride = (Math.hypot(x - fx, y - fy) / (28 * depth(y))) * Math.PI;
+  const scale = depth(y) * LIVING_STATURE;
+  const stride = (Math.hypot(x - fx, y - fy) / (28 * scale)) * Math.PI;
   const walking = p > 0 && p < 1;
   const pose = walking ? (Math.sin(stride) > 0 ? 'idle' : 'idle_b') : idlePose(art, t, index);
   const lift = walking ? Math.round(Math.abs(Math.sin(stride))) * GRAIN : 0;
-  return { art, id: walker.id, x: snap(x), y: snap(y) - lift, scale: depth(y), pose, flip: walker.facing === 'LEFT', shown };
+  return { art, id: walker.id, x: snap(x), y: snap(y) - lift, scale, pose, flip: walker.facing === 'LEFT', shown };
 }
 
 /** How the scene lights its actors: a multiply gradient from top to bottom, the edge colour behind, and where shadows fall from. */
@@ -170,7 +178,7 @@ export class ExtraCrowd {
       const x = extra.from[0] + (extra.to[0] - extra.from[0]) * q, y = extra.from[1] + (extra.to[1] - extra.from[1]) * q;
       const shown = standing ? smooth((seconds - (reduced ? extra.at * 0.45 : extra.at)) / 1.2) : smooth(p / 0.12) * smooth((1 - p) / 0.18);
       if (shown <= 0.001) return;
-      const scale = depth(y), step = seconds * (extra.pace ?? 4) + index * 1.3;
+      const scale = depth(y) * LIVING_STATURE, step = seconds * (extra.pace ?? 4) + index * 1.3;
       const flip = extra.to[0] < extra.from[0];
       const pose = standing ? idlePose(look.art, seconds, index) : Math.sin(step) > 0 ? 'idle' : 'idle_b';
       const lift = standing ? 0 : Math.round(Math.abs(Math.sin(step))) * GRAIN;

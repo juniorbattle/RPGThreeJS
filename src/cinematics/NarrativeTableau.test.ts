@@ -4,6 +4,7 @@ import {
   ALARIC_AUDIENCE_TABLEAU,
   AUDIENCE_ROAD_DEPARTURE_TABLEAU,
   CAMP_DEPARTURE_TABLEAU,
+  CHRONICLE_END_TABLEAU,
   FOREST_AFTERMATH_TABLEAU,
   FOREST_THREAT_TABLEAU,
   NARRATIVE_BEAT_KINDS,
@@ -24,6 +25,20 @@ describe('Narrative Tableau presentation data', () => {
     expect(resolveNarrativeBoundaryTableau('node:lion-valmir-road:arrival')).toBe(VALMIR_FORK_TABLEAU);
     expect(resolveNarrativeBoundaryTableau('edge:lion-audience>lion-opening-ambush')).toBe(AUDIENCE_ROAD_DEPARTURE_TABLEAU);
     expect(resolveNarrativeBoundaryTableau('node:lion-refugees:arrival')).toBeUndefined();
+  });
+
+  it('ends the chronicle in the judgement hall with the company of the judgement tableau, and no new actor', () => {
+    expect(resolveNarrativeBoundaryTableau('node:lion-final-judgement:arrival')).toBe(CHRONICLE_END_TABLEAU);
+    expect(CHRONICLE_END_TABLEAU).toMatchObject({
+      castPlacementMode: 'SCENE_INTEGRATED', exit: 'RESOLVED_CAMPAIGN_BOUNDARY', media: [],
+      cast: { visualActors: ['maelor', 'alistair', 'sage_seraphine'] },
+    });
+    expect(CHRONICLE_END_TABLEAU.stillImage).toContain('lion-judgement-tableau.png');
+    expect(CHRONICLE_END_TABLEAU.boundaryAgency).toBeUndefined();
+    for (const actorId of CHRONICLE_END_TABLEAU.cast.visualActors) {
+      // Each frame stands on the hall floor above the terminal card, which takes the lowest quarter of the screen.
+      expect(CHRONICLE_END_TABLEAU.sceneCastPlacement![actorId]!.bottomVh).toBeGreaterThanOrEqual(24);
+    }
   });
 
   it('keeps the post-audience company departure on its static tableau', () => {

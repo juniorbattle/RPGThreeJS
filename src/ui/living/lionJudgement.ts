@@ -23,9 +23,9 @@ const ALARIC: Walker = { id: 'alaric', at: 0.2, from: [836, 446], to: [836, 446]
 /** Alaric, and three of the company: Alistair, Séraphine and Maelor, as at the audience. Four narrative actors. */
 export const JUDGEMENT_ACTORS: readonly Walker[] = [
   ALARIC,
-  { id: 'alistair', at: 0.6, from: [700, 935], to: [730, 642], facing: 'RIGHT', speed: 80 },
-  { id: 'sage_seraphine', at: 1.2, from: [990, 935], to: [952, 652], facing: 'LEFT', speed: 80 },
-  { id: 'maelor', at: 1.8, from: [560, 945], to: [610, 690], facing: 'RIGHT', speed: 80 },
+  { id: 'alistair', at: 0.6, from: [650, 935], to: [680, 642], facing: 'RIGHT', speed: 80 },
+  { id: 'sage_seraphine', at: 1.2, from: [1045, 935], to: [1005, 652], facing: 'LEFT', speed: 80 },
+  { id: 'maelor', at: 1.8, from: [470, 945], to: [515, 690], facing: 'RIGHT', speed: 80 },
 ];
 
 const BRAZIERS: readonly FireSpot[] = [

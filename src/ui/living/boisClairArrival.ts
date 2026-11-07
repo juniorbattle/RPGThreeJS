@@ -75,8 +75,8 @@ export function boisClairShot(options: { sheets: SheetBook; lights: readonly Lig
  */
 export const ARRIVAL_ACTORS: readonly Walker[] = [
   { id: 'alistair', at: 0.5, from: [1250, 905], to: [1078, 668], facing: 'LEFT', speed: 70 },
-  { id: 'marian', at: 1.1, from: [1350, 930], to: [1196, 652], facing: 'LEFT', speed: 70 },
-  { id: 'kestrel', at: 1.7, from: [1150, 945], to: [964, 690], facing: 'LEFT', speed: 70 },
+  { id: 'marian', at: 1.1, from: [1370, 930], to: [1222, 652], facing: 'LEFT', speed: 70 },
+  { id: 'kestrel', at: 1.7, from: [1130, 945], to: [935, 690], facing: 'LEFT', speed: 70 },
   { id: 'villageoise', at: 6.4, from: [520, 634], to: [660, 640], facing: 'RIGHT', speed: 60 },
 ];
 

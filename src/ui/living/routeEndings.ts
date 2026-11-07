@@ -82,9 +82,9 @@ const RUINS: EndingScene = {
 
 /** Alistair, Séraphine and Maelor on the mosaic, still. No artefact in view: in one branch the proof went to Alaric. */
 export const SERPENT_ENDING_ACTORS: readonly Walker[] = [
-  standing('alistair', 0.4, 870, 680, 'RIGHT'),
-  standing('sage_seraphine', 0.8, 1000, 690, 'LEFT'),
-  standing('maelor', 1.2, 770, 705, 'RIGHT'),
+  standing('alistair', 0.4, 885, 680, 'RIGHT'),
+  standing('sage_seraphine', 0.8, 1055, 690, 'LEFT'),
+  standing('maelor', 1.2, 725, 705, 'RIGHT'),
 ];
 
 export const SERPENT_ROUTE_ENDING: LivingScript = {
@@ -142,9 +142,9 @@ const TERRACE: EndingScene = {
 /** Alaric on the stairs; Alistair, Séraphine and Maelor on the lion mosaic. The champion does not appear. */
 export const TRIAL_ENDING_ACTORS: readonly Walker[] = [
   standing('alaric', 0.2, 838, 392, 'LEFT'),
-  standing('alistair', 0.6, 770, 650, 'RIGHT'),
-  standing('sage_seraphine', 1.0, 925, 660, 'LEFT'),
-  standing('maelor', 1.4, 680, 685, 'RIGHT'),
+  standing('alistair', 0.6, 790, 650, 'RIGHT'),
+  standing('sage_seraphine', 1.0, 965, 660, 'LEFT'),
+  standing('maelor', 1.4, 635, 685, 'RIGHT'),
 ];
 
 export const LION_TRIAL_ROUTE_ENDING: LivingScript = {

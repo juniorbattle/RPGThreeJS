@@ -3,8 +3,10 @@ import { describe, expect, it } from 'vitest';
 import { dialogues } from '../../game/content';
 import { ALARIC_AUDIENCE, AUDIENCE_ACTORS, AUDIENCE_GUARDS, audienceDepth, guardDepth } from './alaricAudience';
 import { LIVING_BACKDROPS, LIVING_TABLEAUX, livingBackdropFits } from './livingTableaux';
-import { LION_TRIAL_ROUTE_ENDING, SERPENT_ROUTE_ENDING, SERPENT_ENDING_ACTORS, TRIAL_ENDING_ACTORS } from './routeEndings';
-import type { Walker } from './livingFigures';
+import { LION_TRIAL_ROUTE_ENDING, SERPENT_ROUTE_ENDING, SERPENT_ENDING_ACTORS, TRIAL_ENDING_ACTORS, ruinsDepth } from './routeEndings';
+import { hallDepth, JUDGEMENT_ACTORS } from './lionJudgement';
+import { LIVING_STATURE, placeWalker, type Walker } from './livingFigures';
+import type { SheetArt } from '../opening/openingPainters';
 import { readFileSync } from 'node:fs';
 
 const livingCss = readFileSync('src/ui/living/living-tableau.css', 'utf8');
@@ -96,5 +98,25 @@ describe('living backdrops of set 1.14.0', () => {
     expect(livingBackdropFits('lion_trial_aftermath', '')).toBe(false);
     // The backdrops of set 1.13.0 keep their behaviour.
     expect(livingBackdropFits('village_choice', '')).toBe(true);
+  });
+});
+
+describe('figure stature after the PC playtest (2026-11-06)', () => {
+  it('raises every placed figure by one shared stature over its scene depth', () => {
+    expect(LIVING_STATURE).toBeGreaterThan(1);
+    const art = { entry: { anims: {}, cells: ['idle'], cell: [64, 96], anchor: [32, 90] }, image: {} } as unknown as SheetArt;
+    for (const [walker, depth] of [[JUDGEMENT_ACTORS[1]!, hallDepth], [SERPENT_ENDING_ACTORS[0]!, ruinsDepth]] as const) {
+      expect(placeWalker(walker, 0, art, 60, true, depth).scale).toBeCloseTo(depth(walker.to[1]) * LIVING_STATURE);
+    }
+  });
+
+  it('keeps Alaric readable between the taller heroes where they face him', () => {
+    for (const actors of [JUDGEMENT_ACTORS, AUDIENCE_ACTORS]) {
+      const alaric = actors.find((actor) => actor.id === 'alaric')!;
+      const heroes = actors.filter((actor) => actor !== alaric);
+      expect(heroes.some((hero) => hero.to[0] < alaric.to[0])).toBe(true);
+      expect(heroes.some((hero) => hero.to[0] > alaric.to[0])).toBe(true);
+      for (const hero of heroes) expect(Math.abs(hero.to[0] - alaric.to[0]), hero.id).toBeGreaterThanOrEqual(140);
+    }
   });
 });

@@ -2,7 +2,7 @@
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { dialogues } from '../game/content';
-import { ALARIC_AUDIENCE_TABLEAU, AUDIENCE_ROAD_DEPARTURE_TABLEAU, CAMP_DEPARTURE_TABLEAU, VALMIR_FORK_TABLEAU, createGenericBoundaryTableau, createGenericNarrativeTableau } from './NarrativeTableau';
+import { ALARIC_AUDIENCE_TABLEAU, AUDIENCE_ROAD_DEPARTURE_TABLEAU, CAMP_DEPARTURE_TABLEAU, CHRONICLE_END_TABLEAU, FINAL_REFUGE_PREPARATION_TABLEAU, VALMIR_FORK_TABLEAU, createGenericBoundaryTableau, createGenericNarrativeTableau } from './NarrativeTableau';
 import { applyFinalDialoguePresentationPlan } from './DialoguePresentationSegments';
 import { createNarrativeDialogueResolver } from './NarrativeDialogueAdapter';
 import { NarrativeSceneSurface, idleBreatheTiming, SCENE_INTEGRATED_ACTOR_BASE_SCALE, THEATRICAL_ACTOR_BASE_SCALE } from './NarrativeSceneSurface';
@@ -249,7 +249,8 @@ describe('NarrativeSceneSurface', () => {
 
   it('requires scene-authored coordinates for each stage-owned journey cast', async () => {
     expect(SCENE_INTEGRATED_ACTOR_BASE_SCALE).toBe(1.4);
-    const tableaux = [CAMP_DEPARTURE_TABLEAU, AUDIENCE_ROAD_DEPARTURE_TABLEAU, VALMIR_FORK_TABLEAU, createGenericBoundaryTableau('test:road', 'single')];
+    const tableaux = [CAMP_DEPARTURE_TABLEAU, AUDIENCE_ROAD_DEPARTURE_TABLEAU, VALMIR_FORK_TABLEAU, FINAL_REFUGE_PREPARATION_TABLEAU,
+      CHRONICLE_END_TABLEAU, createGenericBoundaryTableau('test:road', 'single')];
     for (const tableau of tableaux) {
       expect(tableau.castPlacementMode).toBe('SCENE_INTEGRATED');
       const surface = new NarrativeSceneSurface(document.createElement('div'), tableau, { reducedMotion: true });

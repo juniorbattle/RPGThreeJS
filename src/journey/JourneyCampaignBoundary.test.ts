@@ -223,6 +223,12 @@ describe('journey campaign boundary', () => {
     const pending = boundary.present({ currentNodeId: 'lion-final-judgement', available: [], secondary: SECONDARY, reducedMotion: false });
     await boundary.waitUntilSurfaceReady();
     await flush();
+    // The chronicle ends in the judgement node's own hall, with the company on its floor (PC playtest 2026-11-06).
+    expect(document.querySelector<HTMLElement>('.narrative-stage')?.dataset.narrativeTableau).toBe('CHRONICLE_END_TABLEAU');
+    expect([...document.querySelectorAll<HTMLElement>('.narrative-cast__actor')].map(actor => actor.dataset.actorId))
+      .toEqual(['maelor', 'alistair', 'sage_seraphine']);
+    expect(document.querySelector<HTMLElement>('.narrative-scene-surface__environment')?.style.backgroundImage)
+      .toContain('lion-judgement-tableau.png');
     expect(document.querySelectorAll('[data-journey-choice]')).toHaveLength(0);
     expect(document.querySelector('[data-journey-continue]')?.textContent).toBe('Retour au menu');
     click('[data-journey-continue]');
