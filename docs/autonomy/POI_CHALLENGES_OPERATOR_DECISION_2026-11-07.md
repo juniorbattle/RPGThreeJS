@@ -207,6 +207,39 @@ Relecture contracts-guardian du 2026-11-07, sur une première version : PASS WIT
 
 Remarque de la relecture pour l'opérateur : deux vagues sans soin, à 3 héros au plus, rendent les gardiens nettement plus durs. Toute retouche d'équilibre après ton jeu demandera une nouvelle décision.
 
+### Livraison de G
+
+`CURRENT FACT` Livrée le 2026-11-07 sur `dev`, sur la baseline `74fceb39`.
+
+- **Configuration.** Champ facultatif `waves` (`src/game/types.ts`), à 2 sur les deux configurations de gardien (`src/campaign/LionPoiAuthoring.ts`) et absent partout ailleurs.
+- **Combat tactique** (`legacyCombatRuntime.js`).
+  - `encounterFoeDefs` regroupe la formation de la rencontre. L'apparition initiale ne change pas.
+  - `checkEnd` fait entrer la seconde vague quand la première tombe, en campagne et tant que la compagnie tient debout. `enterCampaignWave` passe par un chemin dédié : ni transition du labo, ni carte de résultat, ni son de victoire, ni message à la campagne.
+  - La seconde vague reprend la même formation, avec les mêmes statistiques. `freeWaveCell` la place sur les cases libres les plus proches, toute l'emprise d'une grande unité comprise, hors de la grille exclue et jamais sur un corps.
+  - Rien n'est rendu, le compte des manches et des objets continue, et les nouveaux ennemis jouent à la manche suivante.
+  - La victoire ne vient qu'après la seconde vague.
+  - L'objectif affiche « Manche n · Vague 1 / 2 ». La bannière et la zone lue par les lecteurs d'écran annoncent « Vague 2 / 2 — des renforts entrent sur le terrain ». Le panneau de déploiement indique « 2 vagues · la seconde entre dès que la première tombe, sans soin entre les deux ».
+  - Labo QA seulement : un bouton « Vaincre la vague » met à terre les ennemis restants par le chemin normal de fin de vague.
+- **Rencontre** (`GameApp.ts`). Le dialogue du gardien annonce les deux vagues.
+
+Vérifications :
+
+- **Tests.**
+  - `src/combat/combatGuardianWaves.test.ts` exécute les vraies fonctions du moteur sur un champ simulé :
+    - deux vagues sur les gardiens seulement ;
+    - seconde vague identique, sans résultat ni rien rendu, placée hors des corps ;
+    - victoire seulement après la seconde vague, une seule vague ailleurs et hors campagne ;
+    - pas de seconde vague si la compagnie est tombée, défaite pendant la seconde vague ;
+    - faits conservés et placement d'une grande unité.
+  - `GameAppPoiExpedition.test.ts` : le dialogue annonce les vagues.
+- **Suite et contrôles.** Suite complète (2983 tests vitest dans 183 fichiers, 26 tests node), types, build, validateur, porte sur `74fceb39`.
+- **Navigateur, serveur 5181, labo QA, Sentinelle de la vallée.**
+  - Le déploiement annonce le défi et les deux vagues, et l'objectif « Manche 1 · Vague 1 / 2 ».
+  - Après la chute de la première vague, la même Brute et le même Pillard entrent sans carte de résultat. L'objectif passe à « 2 / 4 · Vague 2 / 2 » et la bannière annonce les renforts. Les héros gardent leurs PV.
+  - La victoire n'arrive qu'après la seconde vague, avec la récompense habituelle (120 or, 1 gemme, 2 minerais, +1 réputation).
+- **Relecture contracts-guardian de l'implémentation : BLOCKED** sur un point. Le placement ne vérifiait que la case d'ancrage d'une grande unité 2×2. Les formations des deux gardiens n'en comptent aucune, mais le chemin est maintenant sûr pour toute l'emprise, avec un test. Défaite pendant la seconde vague et faits conservés : tests ajoutés.
+- **Non fait.** Le combat de gardien n'a pas été joué de bout en bout depuis la carte avec les deux vagues ; le labo QA en a fourni la preuve.
+
 ## Ce qui ne change pas
 
 - Les dialogues, les choix, les conséquences et l'ordre des lieux d'histoire.

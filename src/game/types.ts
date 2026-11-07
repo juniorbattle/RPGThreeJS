@@ -110,6 +110,8 @@ export const combatConfigSchema = z.object({
     reputation: z.number().int().default(0),
     materials: countRecordSchema.default({}),
   }),
+  /** Set 1.19.0: number of enemy waves, one when absent; two for the stationary guardians only. Static, never saved. */
+  waves: z.number().int().min(1).max(2).optional(),
   /** Set 1.18.0 challenge: the static declaration and its stated text, attached by `withChallenge`. Never saved. */
   challenge: z.object({
     kind: z.enum(['max_heroes', 'no_items', 'max_rounds']),

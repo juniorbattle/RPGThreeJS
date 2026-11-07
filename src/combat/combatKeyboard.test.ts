@@ -374,7 +374,7 @@ describe('native deployment keyboard focus', () => {
     const reset = vi.fn(() => { game.deployedUnits = []; open(); });
     open = new Function('G', 'dom', 'keyboardInput', 'captureDeploymentFocus', 'renderObjective', 'cl', 'playerDeployLimit',
       'deploymentCard', 'canStartDeployment', 'deployDefById', 'selectUnitData', 'setHint', 'autoDeploy', 'resetDeploy', 'beginBattle', 'focusDeploymentField',
-      'const combatCue=()=>{}, COMBAT_CHALLENGE=null, escHTML=String;' + menuSource + actionSource + ';return openDeployMenu;')(
+      'const combatCue=()=>{}, COMBAT_CHALLENGE=null, COMBAT_WAVES=1, CAMPAIGN_MODE=false, escHTML=String;' + menuSource + actionSource + ';return openDeployMenu;')(
       game, { menu, skillmenu }, keyboard, captureDeploymentFocus, renderObjective,
       (n: number, min: number, max: number) => Math.max(min, Math.min(max, n)), () => 4,
       (unit: { campaignId: string }) => '<button type="button" data-unit="' + unit.campaignId + '">Hero</button>',

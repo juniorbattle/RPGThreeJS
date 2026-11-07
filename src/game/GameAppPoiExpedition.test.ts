@@ -125,6 +125,7 @@ describe('mechanical GameApp expedition integration, not native battle evidence'
     const before=structuredClone(owner.state),saved=localStorage.getItem('rpg-threejs:autosave:v6');
     expect(before.run.poiExpedition?.encounter?.phase).toBe('choice');expect(before.run.poiExpedition?.encounter?.kind).toBe('front');
     expect(root.querySelector('[role=dialog]')?.textContent).toContain('Défi · 3 héros au plus · Prime : 2 gemmes rouges');
+    expect(root.querySelector('[role=dialog]')?.textContent).toContain('2 vagues d’ennemis : la seconde entre dès que la première tombe, sans soin entre les deux.');
     app.dispose();await pending;
     expect(owner.state).toEqual(before);expect(localStorage.getItem('rpg-threejs:autosave:v6')).toBe(saved);
     expect(root.querySelector('.poi-map')).toBeNull();expect(root.querySelector('[role=dialog]')).toBeNull();

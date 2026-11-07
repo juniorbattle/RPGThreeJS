@@ -899,6 +899,7 @@ export class GameApp {
       description:encounter.kind==='rear'?'La menace a rejoint votre position. Combattez ou regagnez le point sûr précédent.'
         :'Ce gardien tient le coffre. Combattez, ou restez à votre position sûre.',
       lines:[challenge?`Défi · ${challenge.condition} · Prime : ${challenge.prime} si la condition est tenue.`:'Combat d’élite · Déploiement : 3 unités maximum.',
+        ...((combatConfigs.get(def.combat.id)?.waves??1)>1?[`${combatConfigs.get(def.combat.id)!.waves} vagues d’ennemis : la seconde entre dès que la première tombe, sans soin entre les deux.`]:[]),
         `${def.combat.rewards.temporaryGold} or à la victoire. Le coffre s’ouvre ensuite.`]});
     if(this.disposed||this.state.run.poiExpedition?.encounter?.id!==encounter.id)return;
     if(choice==='retreat'){

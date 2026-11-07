@@ -85,6 +85,8 @@ if(import.meta.env.DEV&&new URLSearchParams(location.search).get('scene'))COMBAT
 let COMBAT_OBJECTIVE='Vaincre tous les ennemis.';
 // Set 1.18.0 challenge, as declared by the campaign: this runtime refuses items and counts rounds; RunSystem decides the prime.
 let COMBAT_CHALLENGE=null;
+// Set 1.19.0: the stationary guardians are fought in two waves; every other fight keeps one.
+let COMBAT_WAVES=1;
 const itemsForbidden=()=>Boolean(COMBAT_CHALLENGE&&COMBAT_CHALLENGE.kind==='no_items');
 let COMBAT_LABEL='Combat tactique';
 let COMBAT_REWARDS=null;
@@ -1107,6 +1109,18 @@ function setFacing(u,tx,tz){ const dx=tx-u.gx, dz=tz-u.gz; if(dx===0&&dz===0)ret
   if(u.facing.dx!==0)u.visualFacingX=u.facing.dx;
   resetUnitSpriteScale(u); }
 
+/** The encounter's enemy formation, on its authored cells. A set 1.19.0 guardian wave fights the same formation again. */
+function encounterFoeDefs(){
+  if(!ENCOUNTER_ENEMY_VISUAL_IDS.length) return DEFS.filter(d=>d.team!=='player');
+  const eliteIds=ENCOUNTER_ENEMY_VISUAL_IDS.filter(id=>VISUAL_UNIT_TEMPLATES[id]?.elite);
+  if(!eliteIds.length) return ENCOUNTER_ENEMY_VISUAL_IDS.map((id,index)=>unitDefFromVisual(id,index)).filter(Boolean);
+  const eliteDef=VISUAL_UNIT_TEMPLATES[eliteIds[0]];
+  return [
+    ...(eliteDef?[{...eliteDef,gx:6,gz:1,weapons:eliteDef.weapons.map(w=>({...w})),skills:eliteDef.skills.slice()}]:[]),
+    ...ENCOUNTER_ENEMY_VISUAL_IDS.filter(id=>!VISUAL_UNIT_TEMPLATES[id]?.elite)
+      .map((id,index)=>unitDefFromVisual(id,index,ESCORT_VISUAL_POSITIONS)).filter(Boolean),
+  ];
+}
 function spawnUnits(){
   if(CHARACTER_SYSTEM_V2_QA){
     const hero=DEFS.find(def=>def.portrait==='/assets/characters/pixel/masters/alistair.png');
@@ -1118,27 +1132,7 @@ function spawnUnits(){
     BOSS_SPAWNED=true;
     return;
   }
-  if(!IS_BOSS_COMBAT){
-    if(ENCOUNTER_ENEMY_VISUAL_IDS.length){
-      const eliteIds=ENCOUNTER_ENEMY_VISUAL_IDS.filter(id=>VISUAL_UNIT_TEMPLATES[id]?.elite);
-      const normalIds=ENCOUNTER_ENEMY_VISUAL_IDS.filter(id=>!VISUAL_UNIT_TEMPLATES[id]?.elite);
-      if(eliteIds.length){
-        const eliteDef=VISUAL_UNIT_TEMPLATES[eliteIds[0]];
-        if(eliteDef) createUnit({...eliteDef,gx:6,gz:1,weapons:eliteDef.weapons.map(w=>({...w})),skills:eliteDef.skills.slice()});
-        normalIds
-          .map((id,index)=>unitDefFromVisual(id,index,ESCORT_VISUAL_POSITIONS))
-          .filter(Boolean)
-          .forEach(def=>createUnit(def));
-      } else {
-        ENCOUNTER_ENEMY_VISUAL_IDS
-          .map((id,index)=>unitDefFromVisual(id,index))
-          .filter(Boolean)
-          .forEach(def=>createUnit(def));
-      }
-    } else {
-      for(const d of DEFS) if(d.team!=='player') createUnit(d);
-    }
-  }
+  if(!IS_BOSS_COMBAT) for(const def of encounterFoeDefs()) createUnit(def);
   if(IS_BOSS_COMBAT&&!BOSS_SPAWNED){
     const bossDef=BOSS_DEFS.find(b=>COMBAT_ID==='lion_chief'&&b.name.includes('Champion'))||BOSS_DEFS[0];
     if(ENCOUNTER_ESCORT_VISUAL_IDS.length){
@@ -1242,7 +1236,7 @@ function endTurn(){ if(G.busy||G.over)return; const u=G.active;
     tickStatusDuration(u); refreshPanel(u);
   }
   restoreUnitFocus(); hideActionPreview(); closeMenus(); clearHL(); G._targetPreviewKey=null; G.pending=null; G.mode='idle'; nextTurn(); }
-function checkEnd(){ if(G.over)return true; if(aliveUnits('foe').length===0){ winWave(); return true; } if(aliveUnits('player').length===0){ endGame(false); return true; } return false; }
+function checkEnd(){ if(G.over)return true; if(aliveUnits('foe').length===0){ if(CAMPAIGN_MODE&&G.wave<COMBAT_WAVES&&aliveUnits('player').length>0){ enterCampaignWave(); return false; } winWave(); return true; } if(aliveUnits('player').length===0){ endGame(false); return true; } return false; }
 
 // ============================= COMBAT & AOE =============================
 function worldToScreen(v,activeCamera){ const p=v.clone().project(activeCamera||camera); return {x:(p.x*0.5+0.5)*innerWidth,y:(-p.y*0.5+0.5)*innerHeight}; }
@@ -2389,7 +2383,7 @@ function toast(t){ setHint('⚠ '+t); }
 function renderObjective(){ if(!dom.objective)return; dom.objective.classList.remove('hidden');
   const foes=G.units.filter(u=>u.team==='foe'),foeAlive=aliveUnits('foe').length,foeDone=Math.max(0,foes.length-foeAlive),deploying=G.mode==='deploy'||!G.round;
   const playerAlive=aliveUnits('player').length,playerTotal=G.deployedUnits.length||G.units.filter(u=>u.team==='player').length||playerDeployLimit();
-  const squadLabel=deploying?'Unités placées':'Escouade debout',squadValue=deploying?(G.deployedUnits.length+' / '+playerDeployLimit()):(playerAlive+' / '+playerTotal),roundLimit=COMBAT_CHALLENGE&&COMBAT_CHALLENGE.kind==='max_rounds'?COMBAT_CHALLENGE.limit:0,roundLabel=deploying?'Déploiement':'Manche '+G.round+(roundLimit?' / '+roundLimit:'');
+  const squadLabel=deploying?'Unités placées':'Escouade debout',squadValue=deploying?(G.deployedUnits.length+' / '+playerDeployLimit()):(playerAlive+' / '+playerTotal),roundLimit=COMBAT_CHALLENGE&&COMBAT_CHALLENGE.kind==='max_rounds'?COMBAT_CHALLENGE.limit:0,roundLabel=deploying?'Déploiement':'Manche '+G.round+(roundLimit?' / '+roundLimit:'')+(CAMPAIGN_MODE&&COMBAT_WAVES>1?' · Vague '+G.wave+' / '+COMBAT_WAVES:'');
   const wasOpen=dom.objective.querySelector('details')?.open;
   dom.objective.innerHTML=renderCombatObjective({title:COMBAT_LABEL||'Combat tactique',condition:COMBAT_OBJECTIVE,challenge:COMBAT_CHALLENGE?{condition:COMBAT_CHALLENGE.condition,prime:COMBAT_CHALLENGE.prime}:undefined,round:roundLabel,foesDone:foeDone,foesTotal:foes.length,squadLabel,squadValue,expanded:wasOpen??deploying}); }
 // ---- Settings (gear) : purely visual toggles, no rules touched ----
@@ -2495,6 +2489,26 @@ function openItemMenu(){ if(itemsForbidden())return; combatCue('confirm'); const
   h+='<button type="button" class="btn" data-i="_back">Retour</button>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const id=b.dataset.i; if(id==='_back'){ closeSubmenu(); return; } enterTarget(itemSpec(id)); }); focusSubmenu(); }
 // ============================= WAVES =============================
+// Set 1.19.0 (OD-2026-11-07-G): a guardian's second wave enters by a dedicated path that is neither the skirmish wave
+// transition nor a result: no result card, cue or campaign message, and the fight goes on. Same formation and stats on the
+// free cells nearest its authored cells (never on a fallen body); the company gets nothing back, the round counter keeps
+// running, and the new enemies act from the next round's turn order.
+function freeWaveCell(gx,gz,size=1){
+  // Every footprint cell must lie in the grid, be walkable, unoccupied and free of a fallen body (large units included).
+  const body=c=>G.units.some(u=>!u.alive&&c.gx>=u.gx&&c.gx<u.gx+(u.size||1)&&c.gz>=u.gz&&c.gz<u.gz+(u.size||1));
+  const fits=(x,z)=>{ for(let dx=0;dx<size;dx++)for(let dz=0;dz<size;dz++){ const c=cellAt(x+dx,z+dz); if(!c||!c.walkable||c.occupant||body(c))return false; } return true; };
+  if(fits(gx,gz))return cellAt(gx,gz);
+  for(let r=1;r<=7;r++)for(let dx=-r;dx<=r;dx++)for(let dz=-r;dz<=r;dz++){ if(Math.abs(dx)+Math.abs(dz)!==r)continue; if(fits(gx+dx,gz+dz))return cellAt(gx+dx,gz+dz); }
+  return null;
+}
+function enterCampaignWave(){
+  G.wave++;
+  for(const def of encounterFoeDefs()){ const cell=freeWaveCell(def.gx,def.gz,def.size||1); if(cell)createUnit({...def,gx:cell.gx,gz:cell.gz}); }
+  const text='Vague '+G.wave+' / '+COMBAT_WAVES+' — des renforts entrent sur le terrain';
+  logMsg('— '+text+' —'); setHint(text);
+  const status=byId('combat-cell-status'); if(status)status.textContent=text;
+  refreshTurnbar();
+}
 function freeNear(gx,gz){ const c=cellAt(gx,gz); if(c&&c.walkable&&!c.occupant)return c; for(let r=1;r<=7;r++)for(let dx=-r;dx<=r;dx++)for(let dz=-r;dz<=r;dz++){ if(Math.abs(dx)+Math.abs(dz)!==r)continue; const cc=cellAt(gx+dx,gz+dz); if(cc&&cc.walkable&&!cc.occupant)return cc; } return null; }
 function spawnWave(wave){ const k=1+0.18*(wave-1); const foes=DEFS.filter(d=>d.team==='foe'); const list=foes.slice();
   if(wave%2===0&&list.length<4)list.push(Object.assign({},foes[0],{name:'Renfort',gx:5,gz:0}));
@@ -2640,6 +2654,7 @@ function openDeployMenu(){
   dom.menu.innerHTML='<div class="deploy-head"><span>DÉPLOIEMENT</span><b aria-live="polite">'+G.deployedUnits.length+' / '+playerDeployLimit()+' prêtes</b></div>'+
     // Set 1.18.0: the objective panel is hidden while deploying, so the challenge is stated here before the fight.
     (COMBAT_CHALLENGE?'<p class="deploy-challenge"><b>Défi</b> · '+escHTML(COMBAT_CHALLENGE.condition)+' · Prime : '+escHTML(COMBAT_CHALLENGE.prime)+' si la condition est tenue</p>':'')+
+    (CAMPAIGN_MODE&&COMBAT_WAVES>1?'<p class="deploy-challenge"><b>'+COMBAT_WAVES+' vagues</b> · la seconde entre dès que la première tombe, sans soin entre les deux</p>':'')+
     '<div class="deploy-list">'+visible.map(deploymentCard).join('')+'</div>'+
     '<div class="deploy-pages"><button type="button" aria-label="Page précédente" data-d="prev" '+(G.deployPage===0?'disabled':'')+'>‹</button><span>'+(G.deployPage+1)+' / '+pages+'</span><button type="button" aria-label="Page suivante" data-d="next" '+(G.deployPage>=pages-1?'disabled':'')+'>›</button></div>'+
     '<div class="deploy-actions"><button type="button" data-d="auto">Auto</button><button type="button" data-d="reset" '+(!G.deployedUnits.length?'disabled':'')+'>Retirer tout</button>'+
@@ -2798,12 +2813,14 @@ function mountQaControls(){
   const controls=document.createElement('aside');
   controls.id='qa-combat-controls';
   controls.setAttribute('aria-label','Outils QA de combat');
-  const legacyButtons=QA_ENABLED?'<div><button type="button" data-qa="prepare">Auto-déployer</button><button type="button" data-qa="victory">Victoire</button><button type="button" data-qa="defeat">Défaite</button></div>':'';
+  const legacyButtons=QA_ENABLED?'<div><button type="button" data-qa="prepare">Auto-déployer</button><button type="button" data-qa="victory">Victoire</button><button type="button" data-qa="clear-wave" title="QA : met à terre les ennemis restants par le chemin normal de fin de vague">Vaincre la vague</button><button type="button" data-qa="defeat">Défaite</button></div>':'';
   const stageButtons=STAGE_QA_ENABLED?'<div>'+STAGE_QA_ACTIONS.map(a=>'<button type="button" data-stage-qa="'+a.key+'">'+a.label+'</button>').join('')+'</div>':'';
   controls.innerHTML='<b>QA combat</b><span>Session isolée</span>'+legacyButtons+stageButtons;
   if(QA_ENABLED){
     controls.querySelector('[data-qa="prepare"]').onclick=()=>qaPrepareCombat();
     controls.querySelector('[data-qa="victory"]').onclick=()=>{ if(!G.over){ qaPrepareCombat(); winWave(); } };
+    // QA only (set 1.19.0): knocks out the remaining enemies, then the normal end check brings in a guardian's next wave.
+    controls.querySelector('[data-qa="clear-wave"]').onclick=()=>{ if(!G.over&&!G.busy&&G.round>0){ for(const u of aliveUnits('foe')){ u.hp=0; void knockOut(u,null); } checkEnd(); } };
     controls.querySelector('[data-qa="defeat"]').onclick=()=>{ if(!G.over){ qaPrepareCombat(); endGame(false); } };
   }
   if(STAGE_QA_ENABLED){
@@ -3090,6 +3107,7 @@ function bootCampaign(message){
   combatAudio.initialize(message.presentationSessionId);
   COMBAT_ID=message.config.id; COMBAT_SCENE_ID=message.config.sceneId||'forest_route'; COMBAT_OBJECTIVE=message.config.objective; COMBAT_LABEL=message.config.encounterLabel;
   COMBAT_REWARDS=message.config.rewards; COMBAT_CHALLENGE=message.config.challenge||null;
+  COMBAT_WAVES=Math.max(1,Math.min(2,Number(message.config.waves)||1));
   MAX_PLAYER_UNITS=normalizeDeploymentLimit(message.config.maxPlayerUnits); CAMPAIGN_SQUAD=message.clan; CAMPAIGN_INVENTORY=message.inventory;
   PREFERRED_UNIT_IDS=message.preferredUnitIds; REQUESTED_REDUCED_GRAPHICS=message.reducedGraphics;
   QA_ENABLED=campaignParams.get('qa')==='1'&&message.devQa===true;

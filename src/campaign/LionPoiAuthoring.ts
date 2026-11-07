@@ -69,6 +69,8 @@ export function lotECombatConfigs(): CombatConfig[] {
       id: elite.combat.id, sceneId: elite.combat.sceneId, objective: 'Affrontez la menace pour libérer le passage.',
       encounterLabel: elite.label, encounterRank: 'elite' as const,
       enemyVisualIds: [...elite.combat.enemies], escortVisualIds: [], maxPlayerUnits: 3,
+      // Set 1.19.0 (OD-2026-11-07-G): the guardian's annex formation is fought twice, with the same stats.
+      waves: 2,
       rewards: rewards(elite.combat.rewards),
     })),
   ];
