@@ -15,7 +15,7 @@ Contracts: PRESENTATION_AND_MEDIA (tableau), CAMPAIGN_AND_STATE (canon and choic
 
 ## Invariants
 
-Digest of the contracts at set 1.15.0 (baseline `1c00f7a6cc6795fa52263ef3b5422079f7d74233`); the contract text wins on any difference.
+Digest of the contracts at set 1.16.0 (baseline `2b2b408223b931e1e9f61554eec1a0e1cb8d9795`); the contract text wins on any difference.
 
 - Living tableaux (set 1.13.0, OD-2026-11-04-A): code-animated sequences at `bois_clair_arrival`, `bois_clair_saved` or `bois_clair_sacrificed`, and `lion_judgement`, each before its dialogue, plus an animated backdrop during it. No captions; only facts established at that point, never what the dialogue says first; four narrative actors with at most twelve extras as scenery (no dialogue, focus or facing relation); `lion_judgement` shows Alaric alone and stops before he speaks. Set 1.14.0 (OD-2026-11-04-B) adds `alaric_audience_arrival` before `lion_briefing` (stops before Alaric speaks, shows neither Bois-Clair nor the Seal) and the route endings `serpent_route_ending` and `lion_trial_route_ending` after their aftermath dialogue and before `epilogue`, 40 s at most, showing neither the Seal nor what the epilogue says first; an outcome or ending sequence takes the place of its static Journey still, which stays its fallback.
 
