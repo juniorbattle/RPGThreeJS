@@ -1041,7 +1041,7 @@ function createUnit(def){
   const u={
     id:++UID, campaignId:def.campaignId||null, combatPoseUnitId:def.combatPoseUnitId||null, portrait:def.portrait||'', team:def.team, kind:def.kind, name:def.name, className:def.className||'',
     maxhp:def.maxhp||def.hp, hp:Math.min(def.hp,def.maxhp||def.hp), str:def.str, mag:def.mag, end:def.end, dex:def.dex, cha:def.cha,
-    mov:def.mov, weapons:def.weapons, skills:def.skills.slice(), lockedSkills:(def.lockedSkills||[]).slice(), skillUpgrades:def.skillUpgrades||{}, ai:def.ai||'aggressive',
+    mov:def.mov, weapons:def.weapons, skills:def.skills.slice(), skillUpgrades:def.skillUpgrades||{}, ai:def.ai||'aggressive',
     ap:QA_FULL_AP?unitMaxAp:0, maxap:unitMaxAp, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false, _ultCooldown:5, _hasStartedTurn:false,
     size:def.size||1, immobile:!!def.immobile, boss:!!def.boss, elite:!!def.elite,
     // Sprites are authored facing right. Foes are mirrored via
@@ -1087,7 +1087,6 @@ function campaignDef(payload,index){
       basicAttackStatus:weapon.basicAttackStatus||null,
     })),
     skills:(payload.skills||[]).filter(id=>SKILLS[id]),
-    lockedSkills:(payload.lockedSkills||[]).filter(locked=>SKILLS[locked.id]),
     skillUpgrades:payload.skillUpgrades||{},
     gx:index%2,gz:index%CFG.D,
   };
@@ -2473,8 +2472,7 @@ function openElanMenu(wi){ const u=G.active; if(!u)return; combatCue('confirm');
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const ch=b.dataset.ch; if(ch==='_back'){ closeSubmenu(); return; } enterTarget(getSpec(u,'attack',wi,+ch)); }); focusSubmenu(); }
 function openSkillMenu(){ combatCue('confirm'); const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='skill'; syncActionDockState();
   const skills=u.skills.map(id=>{ const s=SKILLS[id],sp=getSpec(u,id),isRevive=sp.revive||(s.type==='revive'); return {id,name:sp.name,cost:sp.ap,description:s.desc||sp.desc||'',icon:sp.icon||s.icon,upgradeLevel:sp.upgradeLevel,disabled:sp.ap>u.ap||(isRevive&&!G.units.some(x=>!x.alive&&x.downed&&x.team===u.team))}; });
-  // OD-2026-11-07-B: what the next weapon tier opens, greyed and never castable.
-  for(const locked of u.lockedSkills||[]){ const s=SKILLS[locked.id]; skills.push({id:locked.id,name:s.name,cost:s.ap,description:s.desc||'',icon:s.icon,disabled:true,locked:locked.unlock}); }
+  // OD-2026-11-07-E: only the skills the hero can use; the hero sheet lists the locked ones.
   dom.skillmenu.innerHTML='<div class="ttl">Compétences <small>'+u.ap+' PA</small></div>'+renderCombatSkillRows(skills)+'<button type="button" class="btn combat-menu-back" data-s="_back">Retour</button>';
   dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const id=b.dataset.s; if(id==='_back'){ closeSubmenu(); return; } enterTarget(getSpec(u,id)); }); focusSubmenu(); }
 function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name:it.name,ap:1+G.itemsUsedThisTurn,range:it.range,radius:it.radius||0,self:false,item:true,desc:it.desc};

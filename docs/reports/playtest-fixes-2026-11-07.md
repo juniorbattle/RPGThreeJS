@@ -146,6 +146,14 @@ Deux points de présentation soumis à l'opérateur, qui a retenu les deux recom
   - Vérifié sur les trois onglets des réglages et la rencontre, à 1366 px et 390 px.
 - **Sous-titre.** « HD-2D », une marque déposée de Square Enix, est retiré du sous-titre de l'écran titre et du titre de la page de combat. Le sous-titre devient « Un RPG tactique où chaque serment laisse une trace. »
 
+## Compétences en combat (quatrième retour du jour)
+
+`CURRENT FACT` L'opérateur demande si l'absence de l'ultime dans le menu des compétences du combat est normale. Il juge aussi plus clair de ne pas montrer en combat les compétences que le héros ne possède pas.
+
+- **L'ultime.** Son absence est voulue. Les ultimes à 5 PA restent fermés dans la démo : `isUltimateUnlockedForHero` répond toujours non, et aucune arme ne les ouvre. La fiche du héros les montre avec « Éveil spécial requis ».
+- **Ce qui change (OD-2026-11-07-E).** Le menu des compétences du combat ne liste plus que les compétences ouvertes. Le chemin d'affichage des compétences fermées est retiré de bout en bout : le champ `lockedSkills` du protocole et de `toCombatant`, sa copie dans l'unité de combat, les lignes grisées et leur style. La fiche du héros, dans la Compagnie, garde la liste des compétences fermées avec l'arme qui les ouvre, consultable à la manette. Le tutoriel de combat le dit.
+- **Vérifications.** Test de `toCombatant` : seules les compétences ouvertes partent au combat, sans fermée ni ultime. Suite complète, types, build, validateur. Navigateur : un combat du labo QA avec le mouvement par défaut puis réduit ; le menu de Kestrel ne montre que Tir Précis.
+
 ## Limites
 
 - La passe mobile reprendra la carte sur téléphone : barre de l'atlas sur deux lignes, noms serrés. Elle reprendra aussi les onglets Acheter, Vendre et Forge, empilés à 390 px.

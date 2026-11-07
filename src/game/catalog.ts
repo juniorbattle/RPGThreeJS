@@ -689,11 +689,8 @@ export function toCombatant(
     weapons: unit.equipment.weaponIds
       .map((weaponId) => weaponById.get(weaponId))
       .filter((weapon): weapon is WeaponDefinition => weapon !== undefined),
+    // OD-2026-11-07-E: combat receives only the skills the hero can use; the hero sheet lists the locked ones.
     skills: skillIds,
     skillUpgrades,
-    // Display only (OD-2026-11-07-B): what the next weapon tier opens, greyed in the combat skill menu.
-    lockedSkills: getResolvedSkills(unit)
-      .filter((skillId) => !skillIds.includes(skillId) && (skillById.get(skillId)?.ap ?? ULTIMATE_AP) < ULTIMATE_AP)
-      .map((skillId) => ({ id: skillId, unlock: getLockedSkillReason(unit, skillId).replace('Débloquée avec arme', 'Arme') })),
   };
 }

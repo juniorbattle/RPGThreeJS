@@ -461,8 +461,6 @@ export interface CombatantPayload {
   weapons: WeaponDefinition[];
   skills: string[];
   skillUpgrades: Record<string, number>;
-  /** Display only (OD-2026-11-07-B): skills the hero's weapon does not open yet, with the tier that opens them. */
-  lockedSkills?: { id: string; unlock: string }[];
 }
 
 export interface CombatResult {

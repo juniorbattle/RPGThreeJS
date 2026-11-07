@@ -98,8 +98,6 @@
 .combat-skill__copy small{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;font:400 10px/1.2 var(--campaign-data-font);color:var(--campaign-muted)}
 .combat-skill__cost{font:700 10px var(--campaign-data-font);color:var(--campaign-gold-light);white-space:nowrap}
 /* OD-2026-11-07-B: a skill the weapon does not open yet, greyed with the tier that opens it. */
-.combat-skill[data-locked="true"]{opacity:.55;filter:grayscale(.6)}
-.combat-skill__lock{display:block;font:600 9px var(--campaign-data-font);font-style:normal;color:#b9c1cf;letter-spacing:.04em;text-align:right}
 #skillmenu .combat-menu-back{align-self:flex-end;min-height:28px;padding:5px 9px;font-size:10px}
 #skillmenu .btn:not(.combat-skill){border-radius:3px;font-size:12px}
 

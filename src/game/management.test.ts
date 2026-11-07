@@ -524,13 +524,12 @@ describe('weapon progression', () => {
     expect(payload.skills).toContain('w_break_guard');
     expect(payload.skills).toContain('w_charge');
     expect(payload.skills).not.toContain('w_whirl');
-    // Display only: the combat menu greys what the next tier opens; the ultimate is not listed.
-    expect(payload.lockedSkills).toEqual([{ id: 'w_whirl', unlock: 'Arme T2' }]);
-    expect(combatantPayloadSchema.parse(payload).lockedSkills).toEqual([{ id: 'w_whirl', unlock: 'Arme T2' }]);
-    const row = renderCombatSkillRows([{ id: 'w_whirl', name: 'Tourbillon', cost: 4, description: 'x', disabled: true, locked: 'Arme T2' }]);
-    expect(row).toContain('data-locked="true"');
-    expect(row).toContain('disabled');
-    expect(row).toContain('Arme T2');
+    // OD-2026-11-07-E: combat lists only the skills the hero can use, never a locked one or the ultimate.
+    expect(payload).not.toHaveProperty('lockedSkills');
+    expect(combatantPayloadSchema.parse(payload).skills).toEqual(['w_break_guard', 'w_charge']);
+    const rows = renderCombatSkillRows(payload.skills.map(id => ({ id, name: id, cost: 2, description: 'x', disabled: false })));
+    expect(rows).not.toContain('w_whirl');
+    expect(rows).not.toContain('Arme T');
   });
 
   it('upgradeSkill rejects locked skills', () => {
