@@ -1,0 +1,83 @@
+# Carte lisible, une compétence par palier et chemins engagés — OD-2026-11-07-A, B et C
+
+- **Date** : 2026-11-07 (America/Toronto).
+- **Source** :
+  - Retours du playtest PC, message de l'opérateur du 2026-11-07. La carte des POI semble encore confuse par son design. On est perdu dans le choix des armes, alors que les armes T1 et T2 sont censées offrir de nouvelles compétences en combat. Certains chemins choisis sur la carte devraient forcer à suivre la continuité jusqu'à la résolution du problème, avant d'avoir le choix de découvrir d'autres bifurcations.
+  - [Fiche d'arbitrages](https://claude.ai/artifact/KiqWJYRhASS4YWwBDngwGS) remplie le 2026-11-07 : huit choix, tous recommandés, et une note sur B1. Les diagnostics et les captures sont sur la fiche ; les captures restent sous `tmp/design-review/shots/` (ignoré).
+- **Statut** :
+  - OD-2026-11-07-A et OD-2026-11-07-B : ACTIVE, à livrer sur `dev`. L'opérateur les juge en jouant.
+  - OD-2026-11-07-C : APPROVED IN PRINCIPLE. Le verrou contredit des contrats verrouillés : l'amendement 1.17.0 est préparé, relu, puis son texte est soumis à l'opérateur. Le jeu ne change pas avant son approbation.
+
+## OD-2026-11-07-A — une carte lisible
+
+`APPROVED DECISION` La refonte porte sur la couche de jeu dessinée par-dessus les atlas. Les trois atlas peints restent.
+
+1. **Le parti pris (A1).**
+   - Trois états nets remplacent l'estompage commun :
+     - à faire et accessible : vif, anneau doré ;
+     - déjà fait : sobre, coche verte ;
+     - pas encore ouvert : voir le point 2.
+   - Une bannière « Prochaine étape » marque le lieu d'histoire suivant.
+   - Les liaisons sont plus épaisses et cernées de sombre pour se lire sur la peinture ; les liaisons verrouillées passent en pointillé très discret.
+   - La menace mobile a son propre symbole et sa propre couleur ; ♜ ne désigne plus qu'elle ou que les combats d'élite, jamais les deux.
+   - Une légende courte, juste et repliable reste visible.
+   - Le pion se pose sur son lieu, avec une seule marque de position.
+   - Le panneau du bas dit en clair le type, le risque et la récompense du lieu, à la place du vocabulaire interne (« Alternative exclusive »).
+2. **Les lieux pas encore ouverts (A2).** Un petit point discret, sans nom, relié en pointillé. Le nom apparaît au survol, au focus clavier ou à la sélection.
+3. **Les noms (A3).** Seuls les noms utiles restent affichés en permanence : la position, les lieux accessibles, la prochaine étape et la sélection. Les autres apparaissent au survol, au focus ou à la sélection.
+
+Limites : présentation seule. Les sélecteurs de RunSystem, les règles de déplacement et la sauvegarde ne changent pas. Les contrats `WORLD_AND_CHARACTERS.md` et `UI_AND_ACCESSIBILITY.md` restent tenus : texte en plus de la couleur, cibles d'au moins 44 px, clavier et manette, chemins visibles.
+
+## OD-2026-11-07-B — une compétence par palier
+
+`APPROVED DECISION`
+
+1. **La règle (B1).**
+   - Le palier de l'arme portée ouvre une compétence de plus à chaque niveau :
+     - T0 : la compétence à 2 PA, offerte dès le départ ;
+     - T1 : la compétence à 3 PA ;
+     - T2 : la compétence à 4 PA.
+   - L'ultime à 5 PA reste fermé (`CAMPAIGN_AND_STATE.md`).
+   - Cette règle remplace la phrase d'OD-2026-11-05-C « Une arme T1 ne débloque donc aucune compétence » et celle d'OD-2026-11-05-D « Une arme T2 débloque le deuxième sort du héros, à 3 PA ». Le reste de ces deux décisions est inchangé : recettes, prix, échoppe.
+   - L'opérateur juge l'équilibre en jouant ; prix et combats se retouchent ensuite à sa demande.
+2. **Tout nommer, partout (B2).**
+   - L'échoppe, la forge, le détail d'un objet et la case d'arme nomment la compétence ouverte pour le héros concerné, avec le palier visible.
+   - Une ligne courte explique les paliers.
+   - Les textes faux de la forge sont corrigés : Lame du Lion, Arc du Vent, Sceau du Sage, Anneau de Force, et les armes T2 qui ne nommaient pas leur compétence.
+   - En combat, les compétences encore fermées apparaissent grisées, avec le palier qui les ouvre.
+3. **Jamais plus faible (B3).**
+   - Un remplacement de compétence par un objet ne rend jamais la compétence plus faible.
+   - Le Tir Calibré de l'Arc long est relevé au moins au niveau du Tir Précis qu'il remplace : puissance, critique, aveuglement.
+4. **Note de l'opérateur sur B1.** « Nous ne parvenons pas à consulter parfaitement tous les détails de l'unité sélectionnée, par exemple ses compétences lock/unlock, via la manette. » Ce défaut est corrigé avec B2 : tout le détail d'une unité, compétences fermées comprises, se consulte à la manette.
+5. **En passant.** Le bouton « SHOP » du refuge, resté en anglais, devient « Échoppe ».
+
+## OD-2026-11-07-C — un chemin choisi s'achève avant le reste
+
+`APPROVED DECISION`, sous réserve de l'amendement.
+
+1. **Où commence et où finit l'engagement (C1).** Il commence dès que la compagnie choisit une branche de bifurcation. Il finit au lieu qui résout le chapitre :
+
+   | Bifurcation | Résolution |
+   | --- | --- |
+   | « Rencontre sur la route » ou « Piste contestée » | Refuge du Lion |
+   | « Vieux sanctuaire » ou « Barrage renforcé » | Bois-Clair assiégé |
+   | « Nid du jeune dragon » ou « Ruines infestées » | Signes des Ombres |
+
+   La carte annonce l'engagement (par exemple « Engagé : jusqu'à Bois-Clair assiégé »). Une fois le chapitre résolu, toute la carte se rouvre.
+2. **Ce qui reste permis (C2).**
+   - Seule la suite du chemin est ouverte.
+   - La compagnie, la sauvegarde, l'attente et le choix « Combat ou repli » face à une menace restent disponibles.
+   - Le retour en arrière, le voyage vers un lieu résolu et les lieux annexes sont fermés pendant l'engagement.
+3. **Contrats.**
+   - Ce verrou contredit :
+     - `TRAVERSAL.md` : voyage vers un lieu résolu, déplacement dans les deux sens, lieux facultatifs revisitables ;
+     - `CAMPAIGN_AND_STATE.md` : déplacement connecté dans les deux sens ;
+     - `GAME_CONSTITUTION.md` : revalidation du retour en arrière.
+   - L'amendement 1.17.0 suit la procédure habituelle : proposition et patch validé, relecture contracts-guardian, texte soumis à l'opérateur, puis application, baseline et livraison.
+   - L'engagement se déduit de faits déjà sauvegardés (branches choisies, lieux résolus) : aucun champ de sauvegarde nouveau.
+
+## Ce qui ne change pas
+
+- Le dialogue, les choix, les conséquences, les récompenses et l'ordre des lieux d'histoire.
+- Les menaces mobiles, leurs zones et le choix « Combat ou repli ».
+- La compatibilité des sauvegardes V6.
