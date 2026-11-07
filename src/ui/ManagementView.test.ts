@@ -154,3 +154,30 @@ it('shows the skill an accessory swaps for this hero in its row and its details 
   expect(root.textContent).toContain('Brise-Garde devient Lame Maudite');
   expect(JSON.stringify(state)).toBe(before); view.close(); await closed;
 });
+
+it('names the skill each weapon opens on the sheet, in the inventory, the shop and the forge, and lets every sheet entry take focus (OD-2026-11-07-B)', async () => {
+  const { state, root, view } = setup();
+  state.inventory.weapons.steel_greatsword = 1;
+  const before = JSON.stringify(state);
+  let closed = view.open();
+  expect(root.querySelector('[data-equip-slot="weapon"] .equipment-slot__label')?.textContent).toBe('Arme · T0');
+  expect(root.querySelector('.unit-skill-section__hint')?.textContent).toContain('T1 celle à 3 PA');
+  const locked = [...root.querySelectorAll<HTMLElement>('.unit-skill-locked-row')];
+  expect(locked.map(row => row.getAttribute('aria-label'))).toEqual(['Charge, 3 PA, Débloquée avec arme T1', 'Tourbillon d\'Acier, 4 PA, Débloquée avec arme T2']);
+  expect(locked.every(row => row.tabIndex === 0)).toBe(true);
+  expect([...root.querySelectorAll<HTMLElement>('.skill-card')].every(card => card.tabIndex === 0)).toBe(true);
+  root.querySelector<HTMLButtonElement>('[data-tab="inventory"]')!.click();
+  const row = root.querySelector('[data-item-details="steel_greatsword"]')!;
+  expect(row.querySelector('.item-row__tier')?.textContent).toBe('T1');
+  expect(row.querySelector('.item-row__skill')?.textContent).toBe('Alistair : débloque Charge (3 PA)');
+  view.close(); await closed;
+  closed = view.open('shop', 'valmir', 'permanent');
+  root.querySelector<HTMLButtonElement>('[data-shop-mode="craft"]')!.click();
+  const forge = root.querySelector('.craft-list')!.textContent!;
+  expect(forge).toContain('Compétences Alistair : débloque Charge (3 PA)');
+  expect(forge).toContain('Alistair : débloque Rempart du Serment (4 PA), Tourbillon d\'Acier devient Rempart du Serment');
+  expect(forge).not.toContain('accorde Rempart');
+  expect(forge).not.toContain('débloque les compétences à 3 PA');
+  view.close(); await closed;
+  expect(JSON.stringify(state)).toBe(before);
+});

@@ -6,6 +6,8 @@ import {
   GamepadNavigator,
   GamepadPressTracker,
   gamepadFocusables,
+  gamepadScrollLean,
+  gamepadScrollTarget,
   heldGamepadActions,
   performGamepadAction,
   type GamepadAction,
@@ -281,5 +283,20 @@ describe('controller polling', () => {
     expect(clicked).toHaveBeenCalledTimes(1);
     navigator.dispose();
     Reflect.deleteProperty(window.navigator, 'getGamepads');
+  });
+});
+
+describe('right stick scrolling (OD-2026-11-07-B note)', () => {
+  const pad = (axes: number[]) => ({ connected: true, axes, buttons: [] }) as unknown as Gamepad;
+  it('leans only past a dead zone, on the strongest pad, and never moves focus itself', () => {
+    expect(gamepadScrollLean([pad([0, 0, 0, 0.1])])).toBe(0);
+    expect(gamepadScrollLean([pad([0, 0, 0, 0.8]), pad([0, 0, 0, -0.4])])).toBe(0.8);
+    expect(gamepadScrollLean([pad([0, 0, 0, -0.9])])).toBe(-0.9);
+    expect(gamepadScrollLean([null, pad([0.9, 0.9, 0, Number.NaN])])).toBe(0);
+  });
+  it('scrolls the page when no box around the focus scrolls', () => {
+    const button = document.createElement('button'); document.body.append(button);
+    expect(gamepadScrollTarget(document, button)).toBe(document.scrollingElement);
+    button.remove();
   });
 });

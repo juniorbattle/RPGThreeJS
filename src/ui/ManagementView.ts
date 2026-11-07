@@ -1,5 +1,5 @@
 import {
-  getFinalStats, getInnateGift, getLockedSkillReason, getResolvedSkills, getWeaponProfileLabel, getWeaponSkillUnlockLabel,
+  describeItemSkillEffects, getFinalStats, getInnateGift, getLockedSkillReason, getResolvedSkills, getWeaponOpenedSkill, getWeaponProfileLabel, getWeaponSkillUnlockLabel, WEAPON_TIER_RULE,
   isSkillUnlockedForHero, itemById, items, resolveInitialSkillId, unitById, weaponById, weapons,
 } from '../game/catalog';
 import {
@@ -330,7 +330,8 @@ export class ManagementView {
       ? unit.equipment.weaponIds[slot]!
       : unit.equipment.accessoryIds[slot as 0 | 1] ?? null;
     const item = currentId ? itemById.get(currentId) : null;
-    const label = type === 'weapon' ? 'Arme' : `Accessoire ${slot + 1}`;
+    const weaponTier = type === 'weapon' && currentId ? weaponById.get(currentId)?.tier : undefined;
+    const label = type === 'weapon' ? `Arme${weaponTier !== undefined ? ` · T${weaponTier}` : ''}` : `Accessoire ${slot + 1}`;
     const icon = item?.icon ?? (type === 'weapon' ? '⚔' : '◇');
     const name = item?.name ?? 'Emplacement vide';
     return `<button type="button" class="equipment-slot ui-panel ui-panel--dense" data-equip-slot="${type}" data-equip-slot-index="${slot}">
@@ -401,32 +402,12 @@ export class ManagementView {
     return `<div class="weapon-modal__stat-row"><span class="weapon-modal__stat-label">${label}</span><span class="weapon-modal__stat-value">${value}</span>${deltaHtml}</div>`;
   }
 
-  private getWeaponSkillName(weapon: WeaponDefinition, unit: UnitInstance): string | null {
-    const tier = weapon.tier ?? 0;
-    if (tier <= 0) {
-      const unequipped = { ...unit, equipment: { ...unit.equipment, weaponIds: [] } };
-      const initialId = resolveInitialSkillId(unequipped);
-      return initialId && isSkillUnlockedForHero(unequipped, initialId)
-        ? skillPresentation[initialId]?.name ?? null : null;
-    }
-    const targetAp = tier + 1;
-    const skillIds = getResolvedSkills(unit);
-    for (const id of skillIds) {
-      const s = skillPresentation[id];
-      if (s && s.ap === targetAp) return s.name;
-    }
-    return null;
-  }
-
   private getWeaponProgressionLabel(weapon: WeaponDefinition, unit?: UnitInstance): string {
-    if (unit) {
-      const skillName = this.getWeaponSkillName(weapon, unit);
-      if (skillName) {
-        const ap = Math.max(2, (weapon.tier ?? 0) + 1);
-        const availableInitially = weapon.tier <= 1
-          && this.getWeaponSkillName({ ...weapon, tier: 0 }, unit) === skillName;
-        return `${availableInitially ? 'Disponible' : 'Débloque'} : ${skillName} — ${ap} PA`;
-      }
+    const opened = unit ? getWeaponOpenedSkill(weapon, unit) : null;
+    if (opened) return `${weapon.tier <= 0 ? 'Disponible' : 'Débloque'} : ${opened.name} — ${opened.ap} PA`;
+    if (!unit) {
+      const named = describeItemSkillEffects(weapon.id).join(' · ');
+      if (named) return named;
     }
     return getWeaponSkillUnlockLabel(weapon);
   }
@@ -437,8 +418,8 @@ export class ManagementView {
       if (!weapon) return '';
       const tierLabel = `T${weapon.tier ?? 0}`;
       const profileLabel = getWeaponProfileLabel(weapon);
-      const skillName = this.getWeaponSkillName(weapon, unit);
-      const skillShort = skillName ? `${skillName} ${Math.max(2, (weapon.tier ?? 0) + 1)} PA` : getWeaponSkillUnlockLabel(weapon);
+      const opened = getWeaponOpenedSkill(weapon, unit);
+      const skillShort = opened ? `${opened.name} ${opened.ap} PA` : getWeaponSkillUnlockLabel(weapon);
       const metaParts: string[] = [`${tierLabel} · ${profileLabel}`];
       if (skillShort) metaParts.push(skillShort);
       if (currentWeapon) {
@@ -514,20 +495,21 @@ export class ManagementView {
       const s = skillPresentation[id];
       return s && s.ap !== undefined && s.ap < 5 && isSkillUnlockedForHero(unit, id);
     }).sort((a, b) => (skillPresentation[a]?.ap ?? 0) - (skillPresentation[b]?.ap ?? 0));
+    // Every entry of the sheet takes focus, so a keyboard or a gamepad reaches and scrolls to it (OD-2026-11-07-B note).
     const activeCards = activeSkills.map((id) => {
       const s = skillPresentation[id]!;
-      return `<article class="skill-card skill-card--active"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p></article>`;
+      return `<article class="skill-card skill-card--active" tabindex="0" aria-label="${escapeAttribute(`${s.name}, ${s.ap} PA, disponible. ${s.description}`)}"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p></article>`;
     }).join('');
     const actionsSection = `<div class="unit-skill-section">
       <div class="unit-skill-section__title">Action de base</div>
       <div class="skill-list">
-        <article class="skill-card skill-card--active"><div><strong>Attaque de base</strong><span>1 PA</span></div><p>Frappe avec l'arme équipée.</p></article>
+        <article class="skill-card skill-card--active" tabindex="0" aria-label="Attaque de base, 1 PA. Frappe avec l’arme équipée."><div><strong>Attaque de base</strong><span>1 PA</span></div><p>Frappe avec l'arme équipée.</p></article>
       </div>
     </div>`;
 
     const innateSection = apt ? `<div class="unit-skill-section">
       <div class="unit-skill-section__title">Don inné</div>
-      <article class="skill-card skill-card--passive">
+      <article class="skill-card skill-card--passive" tabindex="0" aria-label="${escapeAttribute(`Don inné : ${apt.name}. ${apt.description}`)}">
         <div><strong>${apt.name}</strong><span class="skill-badge--passive">Passif</span></div>
         <p>${apt.description}</p>
         <small class="skill-card__hint">Disponible dès le début</small>
@@ -541,15 +523,16 @@ export class ManagementView {
     const lockedRows = lockedSkills.map((id) => {
       const s = skillPresentation[id]!;
       const reason = getLockedSkillReason(unit, id);
-      return `<div class="unit-skill-locked-row"><strong>${s.name}</strong><span>${s.ap} PA</span><small>${reason}</small></div>`;
+      return `<div class="unit-skill-locked-row" tabindex="0" aria-label="${escapeAttribute(`${s.name}, ${s.ap} PA, ${reason}`)}"><strong>${s.name}</strong><span>${s.ap} PA</span><small>${reason}</small></div>`;
     }).join('');
     const unlockedCards = activeSkills.map((id) => {
       const s = skillPresentation[id]!;
-      return `<article class="skill-card skill-card--active"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p></article>`;
+      return `<article class="skill-card skill-card--active" tabindex="0" aria-label="${escapeAttribute(`${s.name}, ${s.ap} PA, disponible. ${s.description}`)}"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p></article>`;
     }).join('');
     const hasTechniques = activeSkills.length > 0 || lockedSkills.length > 0;
     const techniquesSection = hasTechniques ? `<div class="unit-skill-section">
       <div class="unit-skill-section__title">Compétences</div>
+      <small class="unit-skill-section__hint">${WEAPON_TIER_RULE}</small>
       ${activeSkills.length > 0 ? `<div class="skill-list">${unlockedCards}</div>` : ''}
       ${lockedSkills.length > 0 ? `<div class="unit-skill-locked-list">${lockedRows}</div>` : ''}
     </div>` : '';
@@ -560,7 +543,7 @@ export class ManagementView {
     });
     const ultimateCards = ultimateSkills.map((id) => {
       const s = skillPresentation[id]!;
-      return `<article class="skill-card skill-card--ultimate"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p><small class="skill-card__lock">Éveil spécial requis</small></article>`;
+      return `<article class="skill-card skill-card--ultimate" tabindex="0" aria-label="${escapeAttribute(`${s.name}, ${s.ap} PA, éveil spécial requis. ${s.description}`)}"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p><small class="skill-card__lock">Éveil spécial requis</small></article>`;
     }).join('');
     const ultimateSection = ultimateSkills.length > 0 ? `<div class="unit-skill-section">
       <div class="unit-skill-section__title">Ultimate</div>
@@ -685,8 +668,10 @@ export class ManagementView {
     if (!item) return '';
     const hasDetails = item.category === 'weapons' || item.category === 'accessories';
     const detailsClass = hasDetails ? ' item-row--details' : '';
+    const tier = item.category === 'weapons' ? weaponById.get(id)?.tier : undefined;
+    const skillLine = hasDetails ? describeItemSkillEffects(id).join(' · ') : '';
     const content = `<span class="item-row__icon ui-chip" aria-hidden="true">${item.icon}</span>
-      <span class="item-row__body"><strong>${item.name}</strong><small>${item.description}</small></span>`;
+      <span class="item-row__body"><strong>${item.name}${tier !== undefined ? ` <span class="item-row__tier">T${tier}</span>` : ''}</strong><small>${item.description}</small>${skillLine ? `<small class="item-row__skill">${skillLine}</small>` : ''}</span>`;
     return `<div class="item-row ui-panel ui-panel--dense${detailsClass}">
       ${hasDetails ? `<button type="button" class="item-row__details" data-item-details="${id}" aria-label="${escapeAttribute(`Voir les détails de ${item.name}`)}">${content}</button>` : content}
       <b>×${quantity}</b>${action}
@@ -791,6 +776,7 @@ export class ManagementView {
       <div class="weapon-modal__progression">
         <span class="weapon-modal__progression-label">Progression</span>
         <p>${progressionLabel}</p>
+        <small class="weapon-modal__tier-rule">${WEAPON_TIER_RULE}</small>
       </div>
     </div>`;
   }
@@ -812,7 +798,7 @@ export class ManagementView {
       return this.itemRow(id, quantity, action);
     }).join('');
     return `<div class="shop-view">
-      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Échoppe du refuge · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>Les achats utilisent votre or disponible.</small></div>
+      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Échoppe du refuge · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>Les achats utilisent votre or disponible. ${WEAPON_TIER_RULE}</small></div>
         <div class="shop-toggle">
           <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
           <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>
@@ -841,13 +827,14 @@ export class ManagementView {
         <div class="craft-recipe__meta">
           <p><b>Créé</b> ${output?.name ?? recipe.output.itemId} ×${recipe.output.quantity}</p>
           <p><b>Effet</b> ${recipe.preview}</p>
+          ${(() => { const named = describeItemSkillEffects(recipe.output.itemId).join(' · '); return named ? `<p class="craft-recipe__skill"><b>Compétences</b> ${named}</p>` : ''; })()}
         </div>
         <div class="craft-recipe__ingredients">${ingredients}<span class="ui-chip">${gold} or</span></div>
         <button type="button" class="ui-button ui-button--secondary" data-craft="${recipe.id}" aria-label="${escapeAttribute(`Forger ${output?.name ?? recipe.output.itemId} · ${gold} or`)}" ${disabled ? 'disabled' : ''}>Forger</button>
       </article>`;
     }).join('');
     return `<div class="shop-view shop-view--forge">
-      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Forge du refuge · ${getReputationRule(state.reputation).label}</p><h3>Artisan du refuge</h3><small>La forge prend d’abord les objets du sac, puis ceux que portent les héros : une arme portée est remplacée sur son héros. Ses prix suivent la réputation.</small></div>
+      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Forge du refuge · ${getReputationRule(state.reputation).label}</p><h3>Artisan du refuge</h3><small>La forge prend d’abord les objets du sac, puis ceux que portent les héros : une arme portée est remplacée sur son héros. Ses prix suivent la réputation. ${WEAPON_TIER_RULE}</small></div>
         <div class="shop-toggle">
           <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
           <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>

@@ -253,7 +253,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Allonger un arc novice et renforcer ses branches de fer. Porté par un héros, il est remplacé sur lui.',
     inputs: { weapons: { novice_longbow: 1 }, materials: { iron_ore: 2 }, gold: 120 },
     output: { itemId: 'longbow', category: 'weapons', quantity: 1 },
-    preview: 'T1 arc : dégâts +8, +15 PV, Tir Précis devient Tir Calibré.',
+    preview: 'T1 arc : dégâts +8, +15 PV.',
   },
   {
     id: 'craft_steel_dagger',
@@ -301,7 +301,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Enchâsser une gemme rouge dans une crosse sacrée. Portée par un héros, elle est remplacée sur lui.',
     inputs: { weapons: { sacred_crosier: 1 }, materials: { red_gem: 1 }, gold: 60 },
     output: { itemId: 'miracle_crosier', category: 'weapons', quantity: 1 },
-    preview: 'T2 crosse : dégâts +4, +12 PV, débloque les compétences à 3 PA.',
+    preview: 'T2 crosse : dégâts +4, +12 PV.',
   },
   {
     id: 'craft_abyssal_grimoire',
@@ -309,7 +309,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Sceller une gemme rouge dans un grimoire mystique. Porté par un héros, il est remplacé sur lui.',
     inputs: { weapons: { mystic_grimoire: 1 }, materials: { red_gem: 1 }, gold: 60 },
     output: { itemId: 'abyssal_grimoire', category: 'weapons', quantity: 1 },
-    preview: 'T2 grimoire : dégâts +4, +12 PV, débloque les compétences à 3 PA.',
+    preview: 'T2 grimoire : dégâts +4, +12 PV.',
   },
   {
     id: 'craft_hooked_dagger',
@@ -317,7 +317,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Recourber une dague d’acier autour d’une gemme rouge. Portée par un héros, elle est remplacée sur lui.',
     inputs: { weapons: { steel_dagger: 1 }, materials: { red_gem: 1 }, gold: 60 },
     output: { itemId: 'hooked_dagger', category: 'weapons', quantity: 1 },
-    preview: 'T2 dague : dégâts +4, +17 PV, débloque les compétences à 3 PA.',
+    preview: 'T2 dague : dégâts +4, +17 PV.',
   },
   {
     id: 'craft_griffon_spear',
@@ -325,7 +325,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Renforcer une lance d’acier d’une gemme rouge pour les charges. Portée par un héros, elle est remplacée sur lui.',
     inputs: { weapons: { steel_spear: 1 }, materials: { red_gem: 1 }, gold: 60 },
     output: { itemId: 'griffon_spear', category: 'weapons', quantity: 1 },
-    preview: 'T2 lance : dégâts +4, +20 PV, débloque les compétences à 3 PA.',
+    preview: 'T2 lance : dégâts +4, +20 PV.',
   },
   {
     id: 'craft_lion_guard_greatsword',
@@ -333,7 +333,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Transformer une épée d’acier et un anneau de force en arme défensive de front.',
     inputs: { weapons: { steel_greatsword: 1 }, accessories: { strength_ring: 1 }, gold: 60 },
     output: { itemId: 'lion_guard_greatsword', category: 'weapons', quantity: 1 },
-    preview: '+27 puissance, précision +8, accorde Rempart.',
+    preview: 'T2 espadon : +27 puissance, précision +8.',
   },
   {
     id: 'craft_windstep_longbow',
@@ -341,7 +341,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Assembler un arc long et des bottes d’agilité pour un tireur mobile.',
     inputs: { weapons: { longbow: 1 }, accessories: { agility_boots: 1 }, gold: 40 },
     output: { itemId: 'windstep_longbow', category: 'weapons', quantity: 1 },
-    preview: '+24 puissance, critique +12, accorde Bond.',
+    preview: 'T2 arc : +24 puissance, critique +12.',
   },
   {
     id: 'craft_sage_seal',
@@ -349,7 +349,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Fusionner deux focalisateurs pour stabiliser les soins et les arcanes.',
     inputs: { accessories: { magic_pendant: 1, wisdom_crown: 1 }, gold: 50 },
     output: { itemId: 'sage_seal', category: 'accessories', quantity: 1 },
-    preview: '+10 magie, +3 charisme, accorde Régénération.',
+    preview: '+10 magie, +3 charisme.',
   },
   {
     id: 'craft_warding_buckle',
@@ -544,11 +544,19 @@ export function getEquippedWeaponTier(unit: { equipment: EquipmentLoadout }): nu
   return weaponById.get(weaponId)?.tier ?? 0;
 }
 
+/**
+ * One skill per weapon tier (OD-2026-11-07-B): T0 holds the 2 AP skill, T1 opens the 3 AP skill, T2 the 4 AP
+ * skill. The 5 AP ultimate stays closed. A hero outside the demo still needs a T1 weapon for any skill.
+ */
 export function getMaxUnlockedSkillAp(tier: number): number {
-  if (tier >= 3) return 4;
-  if (tier >= 2) return 3;
-  if (tier >= 1) return 2;
-  return 0;
+  if (tier >= 2) return 4;
+  if (tier >= 1) return 3;
+  return 2;
+}
+
+/** The weapon tier that opens a skill of this AP cost (2 AP: T0 for a demo hero, T1 otherwise). */
+export function requiredWeaponTierForSkillAp(ap: number): number {
+  return Math.max(0, ap - 2);
 }
 
 export function isUltimateUnlockedForHero(_unit: UnitInstance): boolean {
@@ -560,7 +568,13 @@ export function isSkillUnlockedForHero(unit: { definitionId?: string; equipment:
   if (!skill) return false;
   if (skill.ap >= ULTIMATE_AP) return isUltimateUnlockedForHero(unit as UnitInstance);
   if (isInitialDemoHeroSkill(unit, skillId)) return true;
-  return skill.ap <= getMaxUnlockedSkillAp(getEquippedWeaponTier(unit));
+  const tier = getEquippedWeaponTier(unit);
+  if (tier <= 0 && !isDemoHero(unit)) return false;
+  return skill.ap <= getMaxUnlockedSkillAp(tier);
+}
+
+function isDemoHero(unit: { definitionId?: string }): boolean {
+  return Boolean(unit.definitionId && DEMO_HERO_IDS.has(unit.definitionId));
 }
 
 export function getUnlockedSkillsForHero(unit: { definitionId: string; equipment: EquipmentLoadout }): string[] {
@@ -571,21 +585,71 @@ export function getLockedSkillReason(unit: { definitionId?: string; equipment: E
   const skill = skillById.get(skillId);
   if (!skill) return 'Compétence inconnue';
   if (skill.ap >= ULTIMATE_AP) return 'Ultimate — éveil spécial requis';
-  if (isInitialDemoHeroSkill(unit, skillId)) return '';
-  const maxAp = getMaxUnlockedSkillAp(getEquippedWeaponTier(unit));
-  if (skill.ap <= maxAp) return '';
-  if (skill.ap === 2) return 'Débloquée avec arme T1';
-  if (skill.ap === 3) return 'Débloquée avec arme T2';
-  if (skill.ap === 4) return 'Débloquée avec arme T3';
-  return 'Débloquée avec arme T' + skill.ap;
+  if (isSkillUnlockedForHero(unit, skillId)) return '';
+  return `Débloquée avec arme T${Math.max(1, requiredWeaponTierForSkillAp(skill.ap))}`;
 }
 
 export function getWeaponSkillUnlockLabel(weapon: WeaponDefinition): string {
   if (weapon.tier <= 0) return [...DEMO_HERO_IDS].some(id => unitById.get(id)?.allowedWeaponIds.includes(weapon.id))
     ? 'Compétence initiale disponible' : 'Aucune compétence active';
-  if (weapon.tier === 1) return 'Compétence 2 PA disponible';
-  if (weapon.tier === 2) return 'Débloque : compétence 3 PA';
-  return 'Débloque : compétence 4 PA';
+  return `Débloque : compétence ${getMaxUnlockedSkillAp(weapon.tier)} PA`;
+}
+
+/** The short reminder of the tier rule shown wherever weapons are chosen. */
+export const WEAPON_TIER_RULE = 'Le palier de l’arme ouvre les compétences : T0 celle à 2 PA, T1 celle à 3 PA, T2 celle à 4 PA.';
+
+const skillName = (skillId: string): string => skillById.get(skillId)?.name ?? skillId;
+
+/**
+ * The skill a weapon opens for one hero, swaps included: the skill of the weapon's tier cost once the weapon and
+ * the hero's other equipment apply (T0: the hero's 2 AP skill). Null when the hero cannot wield it.
+ */
+export function getWeaponOpenedSkill(
+  weapon: WeaponDefinition,
+  unit: { definitionId: string; equipment: EquipmentLoadout },
+): { skillId: string; name: string; ap: number } | null {
+  const definition = unitById.get(unit.definitionId);
+  if (!definition?.allowedWeaponIds.includes(weapon.id)) return null;
+  const armed = { ...unit, equipment: { ...unit.equipment, weaponIds: [weapon.id] } };
+  const ap = getMaxUnlockedSkillAp(weapon.tier);
+  const skillId = weapon.tier <= 0
+    ? resolveInitialSkillId(armed)
+    : getResolvedSkills(armed).find((id) => skillById.get(id)?.ap === ap && isSkillUnlockedForHero(armed, id)) ?? null;
+  return skillId ? { skillId, name: skillName(skillId), ap: skillById.get(skillId)?.ap ?? ap } : null;
+}
+
+/** The demo heroes who can wield or wear an item, in roster order. */
+function demoHeroesFor(item: ItemDefinition): UnitDefinition[] {
+  return units.filter((definition) => DEMO_HERO_IDS.has(definition.id)
+    && (item.category !== 'weapons' || definition.allowedWeaponIds.includes(item.id)));
+}
+
+/**
+ * What an item does to skills, named, for one hero or, without one, for each demo hero it concerns
+ * (OD-2026-11-07-B): the skill a weapon opens, and each skill an item swaps. Empty when it touches no skill.
+ */
+export function describeItemSkillEffects(itemId: string, unit?: { definitionId: string; equipment: EquipmentLoadout }): string[] {
+  const item = itemById.get(itemId);
+  if (!item) return [];
+  const weapon = weaponById.get(itemId);
+  const heroes = unit ? [unitById.get(unit.definitionId)].filter((d): d is UnitDefinition => Boolean(d)) : demoHeroesFor(item);
+  const lines: string[] = [];
+  for (const hero of heroes) {
+    const holder = unit ?? { definitionId: hero.id, equipment: { weaponIds: [], accessoryIds: [null, null] } };
+    const prefix = unit ? '' : `${hero.name} : `;
+    const parts: string[] = [];
+    if (weapon) {
+      const opened = getWeaponOpenedSkill(weapon, holder);
+      if (opened && weapon.tier > 0) parts.push(`débloque ${opened.name} (${opened.ap} PA)`);
+      else if (opened) parts.push(`${opened.name} (${opened.ap} PA)`);
+    }
+    for (const [source, replacement] of Object.entries(item.skillModifier?.replaces ?? {})) {
+      if (hero.skillIds.includes(source)) parts.push(`${skillName(source)} devient ${skillName(replacement)}`);
+    }
+    for (const granted of item.skillModifier?.grants ?? []) parts.push(`accorde ${skillName(granted)}`);
+    if (parts.length) lines.push(prefix + parts.join(', '));
+  }
+  return lines;
 }
 
 const MAGICAL_WEAPON_TYPES: WeaponDefinition['type'][] = ['grimoire', 'crosier', 'wand'];
@@ -626,5 +690,9 @@ export function toCombatant(
       .filter((weapon): weapon is WeaponDefinition => weapon !== undefined),
     skills: skillIds,
     skillUpgrades,
+    // Display only (OD-2026-11-07-B): what the next weapon tier opens, greyed in the combat skill menu.
+    lockedSkills: getResolvedSkills(unit)
+      .filter((skillId) => !skillIds.includes(skillId) && (skillById.get(skillId)?.ap ?? ULTIMATE_AP) < ULTIMATE_AP)
+      .map((skillId) => ({ id: skillId, unlock: getLockedSkillReason(unit, skillId).replace('Débloquée avec arme', 'Arme') })),
   };
 }

@@ -213,11 +213,15 @@ describe('DemoVfxActionScope — hero action scoping', () => {
   });
 
   it('scopes skills of units that cannot join as UPCOMING', () => {
-    for (const key of ['p_holy_strike', 'p_interpose', 'p_oathwall']) {
+    for (const key of ['p_holy_strike', 'p_interpose']) {
       const record = getVfxActionScopeRecord(key)!;
       expect(record.scope, key).toBe('UPCOMING');
       expect(record.reason).toMatch(/cannot join/);
     }
+  });
+
+  it('brings Rempart du Serment into the demo through the T2 Espadon du Lion (OD-2026-11-07-B)', () => {
+    expect(getVfxActionScopeRecord('p_oathwall')!.scope).toBe('DEMO');
   });
 
   it('admits a skill only when some obtainable weapon tier unlocks its AP', () => {

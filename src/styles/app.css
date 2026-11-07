@@ -2012,6 +2012,18 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   letter-spacing: .1em;
   text-transform: uppercase;
 }
+/* OD-2026-11-07-B: the tier rule and the skill each item opens or swaps, named wherever weapons are chosen. */
+.unit-skill-section__hint,
+.weapon-modal__tier-rule { display: block; color: #9aa6b8; font-size: 11px; line-height: 1.4; }
+.weapon-modal__tier-rule { margin-top: 6px; }
+.item-row__tier {
+  display: inline-block; margin-left: 6px; padding: 0 5px; border: 1px solid rgba(214,177,106,.45);
+  color: #e3c47e; font: 700 10px var(--ui-font-title); letter-spacing: .06em; vertical-align: 1px;
+}
+.item-row__body .item-row__skill { color: #e3c47e; }
+.craft-recipe__meta .craft-recipe__skill b { color: #e3c47e; }
+.skill-card:focus-visible,
+.unit-skill-locked-row:focus-visible { outline: 2px solid var(--ui-color-gold-bright); outline-offset: 2px; }
 .unit-skill-locked-list { display: grid; gap: 4px; }
 .unit-skill-locked-row {
   display: flex;

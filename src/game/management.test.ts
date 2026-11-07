@@ -7,10 +7,13 @@ import { createInitialState, migrateState } from './store';
 import {
   createRecruitInstance, createUnitInstance, craftRecipeById, craftRecipes, getEquippedWeaponTier, getLockedSkillReason, getMaxUnlockedSkillAp, getResolvedSkills, getUnlockedSkillsForHero,
   getWeaponProfileLabel, getWeaponSkillUnlockLabel, isSkillUnlockedForHero, isUltimateUnlockedForHero, resolveInitialSkillId,
-  itemById, toCombatant, unitById, weaponById,
+  describeItemSkillEffects, getWeaponOpenedSkill, itemById, requiredWeaponTierForSkillAp, toCombatant, unitById, weaponById, weapons,
 } from './catalog';
 import type { CraftRecipeDefinition } from './types';
 import { getFinalStats } from './catalog';
+import { skillById } from './skills';
+import { combatantPayloadSchema } from '../combat/protocol';
+import { renderCombatSkillRows } from '../combat/combatHudPresentation';
 
 const getFinalStatsMax = (unit: Parameters<typeof getFinalStats>[0]) => getFinalStats(unit).maxHealth;
 
@@ -79,8 +82,8 @@ describe('clan management', () => {
     expect(getLockedSkillReason(knight, 'd_cursed_blade')).toBe('');
     // The other skills keep their weapon-tier rule.
     expect(isSkillUnlockedForHero(knight, 'w_charge')).toBe(false);
-    // Lame Maudite is free only in that slot: Morvan's own copy is not a demo hero's initial skill swap.
-    expect(isSkillUnlockedForHero({ definitionId: 'warrior', equipment: { weaponIds: ['novice_greatsword'], accessoryIds: [null, null] } }, 'd_cursed_blade')).toBe(false);
+    // Without the ring, Lame Maudite is not one of Alistair's skills.
+    expect(getUnlockedSkillsForHero({ definitionId: 'warrior', equipment: { weaponIds: ['novice_greatsword'], accessoryIds: [null, null] } })).toEqual(['w_break_guard']);
   });
 
   it('rests wounded units to their calculated maximum health for a gold cost', () => {
@@ -417,33 +420,38 @@ describe('weapon progression', () => {
     expect(getWeaponSkillUnlockLabel(weaponById.get('novice_spear')!)).toBe('Compétence initiale disponible');
   });
 
-  it('T1 hero unlocks only the 2AP skill', () => {
+  it('a T1 weapon opens the 3 AP skill (OD-2026-11-07-B)', () => {
     const state = createInitialState();
     const warrior = state.clan.members[0]!;
     state.inventory.weapons.steel_greatsword = 1;
     equipWeapon(state, warrior.id, 'steel_greatsword');
     expect(getEquippedWeaponTier(warrior)).toBe(1);
-    const unlocked = getUnlockedSkillsForHero(warrior);
-    expect(unlocked).toContain('w_break_guard');
-    expect(unlocked).not.toContain('w_charge');
-    expect(unlocked).not.toContain('w_whirl');
-    expect(unlocked).not.toContain('w_lion_surge');
+    expect(getUnlockedSkillsForHero(warrior)).toEqual(['w_break_guard', 'w_charge']);
   });
 
-  it('T2 hero unlocks 2AP and 3AP skills', () => {
+  it('a T2 weapon opens the 4 AP skill, through its swap: the Espadon du Lion gives Rempart du Serment', () => {
     const state = createInitialState();
     const warrior = state.clan.members[0]!;
     state.inventory.weapons.lion_guard_greatsword = 1;
     equipWeapon(state, warrior.id, 'lion_guard_greatsword');
     expect(getEquippedWeaponTier(warrior)).toBe(2);
     const unlocked = getUnlockedSkillsForHero(warrior);
-    expect(unlocked).toContain('w_break_guard');
-    expect(unlocked).toContain('w_charge');
+    expect(unlocked).toEqual(['w_break_guard', 'w_charge', 'p_oathwall']);
     expect(unlocked).not.toContain('w_whirl');
   });
 
-  it('T3 helper would unlock 4AP skills', () => {
-    expect(getMaxUnlockedSkillAp(3)).toBe(4);
+  it('each weapon tier opens one more skill, with no tier beyond T2 needed', () => {
+    expect([0, 1, 2].map(getMaxUnlockedSkillAp)).toEqual([2, 3, 4]);
+    expect([2, 3, 4].map(requiredWeaponTierForSkillAp)).toEqual([0, 1, 2]);
+    expect(Math.max(...weapons.map(weapon => weapon.tier))).toBe(2);
+    // Every demo hero's 4 AP skill is reachable with a T2 weapon of the demo.
+    for (const id of ['white_mage', 'dark_mage', 'archer', 'rogue', 'lancer']) {
+      const hero = unitById.get(id)!;
+      const t2 = hero.allowedWeaponIds.map(weaponId => weaponById.get(weaponId)).find(weapon => weapon?.tier === 2)!;
+      expect(t2, id).toBeDefined();
+      const opened = getWeaponOpenedSkill(t2, { definitionId: id, equipment: { weaponIds: [], accessoryIds: [null, null] } });
+      expect(opened?.ap, id).toBe(4);
+    }
   });
 
   it('ultimate remains locked regardless of weapon tier', () => {
@@ -454,27 +462,50 @@ describe('weapon progression', () => {
     expect(isUltimateUnlockedForHero(warrior)).toBe(false);
     const unlocked = getUnlockedSkillsForHero(warrior);
     expect(unlocked).not.toContain('w_lion_surge');
-    expect(unlocked).not.toContain('p_oathwall');
   });
 
   it('locked skill reason text is correct', () => {
     const state = createInitialState();
     const warrior = state.clan.members[0]!;
     expect(getLockedSkillReason(warrior, 'w_break_guard')).toBe('');
-    expect(getLockedSkillReason(warrior, 'w_charge')).toBe('Débloquée avec arme T2');
-    expect(getLockedSkillReason(warrior, 'w_whirl')).toBe('Débloquée avec arme T3');
+    expect(getLockedSkillReason(warrior, 'w_charge')).toBe('Débloquée avec arme T1');
+    expect(getLockedSkillReason(warrior, 'w_whirl')).toBe('Débloquée avec arme T2');
     expect(getLockedSkillReason(warrior, 'w_lion_surge')).toBe('Ultimate — éveil spécial requis');
     state.inventory.weapons.steel_greatsword = 1;
     equipWeapon(state, warrior.id, 'steel_greatsword');
     expect(getLockedSkillReason(warrior, 'w_break_guard')).toBe('');
-    expect(getLockedSkillReason(warrior, 'w_charge')).toBe('Débloquée avec arme T2');
+    expect(getLockedSkillReason(warrior, 'w_charge')).toBe('');
+    expect(getLockedSkillReason(warrior, 'w_whirl')).toBe('Débloquée avec arme T2');
   });
 
   it('weapon skill unlock label is correct', () => {
     expect(getWeaponSkillUnlockLabel(weaponById.get('novice_greatsword')!)).toBe('Compétence initiale disponible');
     expect(getWeaponSkillUnlockLabel(weaponById.get('novice_mace')!)).toBe('Aucune compétence active');
-    expect(getWeaponSkillUnlockLabel(weaponById.get('steel_greatsword')!)).toBe('Compétence 2 PA disponible');
-    expect(getWeaponSkillUnlockLabel(weaponById.get('lion_guard_greatsword')!)).toBe('Débloque : compétence 3 PA');
+    expect(getWeaponSkillUnlockLabel(weaponById.get('steel_greatsword')!)).toBe('Débloque : compétence 3 PA');
+    expect(getWeaponSkillUnlockLabel(weaponById.get('lion_guard_greatsword')!)).toBe('Débloque : compétence 4 PA');
+  });
+
+  it('names what each item does to skills, for one hero or for every demo hero it concerns', () => {
+    const bare = { definitionId: 'warrior', equipment: { weaponIds: [] as string[], accessoryIds: [null, null] as [null, null] } };
+    expect(describeItemSkillEffects('steel_greatsword')).toEqual(['Alistair : débloque Charge (3 PA)']);
+    expect(describeItemSkillEffects('steel_greatsword', bare)).toEqual(['débloque Charge (3 PA)']);
+    expect(describeItemSkillEffects('lion_guard_greatsword')).toEqual(['Alistair : débloque Rempart du Serment (4 PA), Tourbillon d\'Acier devient Rempart du Serment']);
+    expect(describeItemSkillEffects('windstep_longbow')).toEqual(['Kestrel : débloque Pluie de Flèches (4 PA), Bond du Faucon devient Pas d\'Ombre']);
+    expect(describeItemSkillEffects('longbow')).toEqual(['Kestrel : débloque Bond du Faucon (3 PA), Tir Précis devient Tir Calibré']);
+    expect(describeItemSkillEffects('strength_ring')).toEqual(['Alistair : Brise-Garde devient Lame Maudite']);
+    expect(describeItemSkillEffects('sage_seal')).toEqual(['Marian : Purification devient Rune de Vigueur']);
+    expect(describeItemSkillEffects('novice_greatsword')).toEqual(['Alistair : Brise-Garde (2 PA)']);
+    expect(describeItemSkillEffects('life_belt')).toEqual([]);
+  });
+
+  it('never lets a swap weaken a skill: the Tir Calibré of the Arc long matches or beats the Tir Précis (OD-2026-11-07-B)', () => {
+    const precise = skillById.get('a_precise_shot')!, calibrated = skillById.get('ar_calibrated_shot')!;
+    expect(calibrated.ap).toBe(precise.ap);
+    expect(calibrated.power).toBeGreaterThanOrEqual(precise.power!);
+    expect(calibrated.crit).toBeGreaterThanOrEqual(precise.crit!);
+    expect(calibrated.acc).toBeGreaterThanOrEqual(precise.acc!);
+    expect(calibrated.status).toBe(precise.status);
+    expect(calibrated.statusTurns).toBeGreaterThanOrEqual(precise.statusTurns!);
   });
 
   it('weapon profile label is correct', () => {
@@ -491,7 +522,15 @@ describe('weapon progression', () => {
     equipWeapon(state, warrior.id, 'steel_greatsword');
     const payload = toCombatant(warrior);
     expect(payload.skills).toContain('w_break_guard');
-    expect(payload.skills).not.toContain('w_charge');
+    expect(payload.skills).toContain('w_charge');
+    expect(payload.skills).not.toContain('w_whirl');
+    // Display only: the combat menu greys what the next tier opens; the ultimate is not listed.
+    expect(payload.lockedSkills).toEqual([{ id: 'w_whirl', unlock: 'Arme T2' }]);
+    expect(combatantPayloadSchema.parse(payload).lockedSkills).toEqual([{ id: 'w_whirl', unlock: 'Arme T2' }]);
+    const row = renderCombatSkillRows([{ id: 'w_whirl', name: 'Tourbillon', cost: 4, description: 'x', disabled: true, locked: 'Arme T2' }]);
+    expect(row).toContain('data-locked="true"');
+    expect(row).toContain('disabled');
+    expect(row).toContain('Arme T2');
   });
 
   it('upgradeSkill rejects locked skills', () => {

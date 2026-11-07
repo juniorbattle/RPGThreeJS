@@ -33,6 +33,8 @@ export const combatantPayloadSchema = z.object({
   weapons: z.array(weaponPayloadSchema).min(1).max(2),
   skills: z.array(z.string()),
   skillUpgrades: z.record(z.number().int().min(0).max(2)),
+  /** Display only: shown greyed in the skill menu with the weapon tier that opens them, never castable. */
+  lockedSkills: z.array(z.object({ id: z.string(), unlock: z.string() })).max(8).optional(),
 });
 
 export const combatReadyMessageSchema = z.object({

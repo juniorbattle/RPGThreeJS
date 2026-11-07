@@ -78,8 +78,9 @@ describe('missing sprite sheet stand-in', () => {
       if (preset!.steps.some(isMissingSpriteSheetStep)) gaps.push(action.actionKey);
     }
     // OD-2026-11-05-D: the T2 recipes bring n_teleport, ro_tumble and l_haft_recoil into the demo; combat plays their fxSkills recipes.
-    expect(gaps).toHaveLength(34);
-    expect(actions.map((action) => action.actionKey).filter((key) => !gaps.includes(key)).sort()).toEqual(['ni_shadow_step', 'w_charge', 'w_purify', 'w_salvation']);
+    // OD-2026-11-07-B: a T2 weapon opens the 4 AP skill, so the 4 AP skills of the demo heroes join the scope too.
+    expect(gaps).toHaveLength(37);
+    expect(actions.map((action) => action.actionKey).filter((key) => !gaps.includes(key)).sort()).toEqual(['n_flame_wave', 'ni_shadow_step', 'p_oathwall', 'w_charge', 'w_purify', 'w_salvation', 'w_sanctuary', 'w_whirl']);
   });
 
   it('sizes each stand-in for its engine type and keeps healing green apart', () => {

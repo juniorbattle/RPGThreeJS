@@ -27,7 +27,7 @@ export const GAMEPAD_BUTTONS: ReadonlyArray<readonly [number, GamepadAction]> = 
 ];
 export const GAMEPAD_REPEAT_DELAY_MS = 380;
 export const GAMEPAD_REPEAT_INTERVAL_MS = 140;
-export const GAMEPAD_CONNECTED_TEXT = 'Manette connectée · A ou Croix : valider · B ou Rond : retour · croix ou stick gauche : se déplacer · LB/RB ou L1/R1 : commande précédente ou suivante · Start ou Options : menu de la carte';
+export const GAMEPAD_CONNECTED_TEXT = 'Manette connectée · A ou Croix : valider · B ou Rond : retour · croix ou stick gauche : se déplacer · stick droit : faire défiler · LB/RB ou L1/R1 : commande précédente ou suivante · Start ou Options : menu de la carte';
 export const GAMEPAD_DISCONNECTED_TEXT = 'Manette déconnectée.';
 
 const STICK_ON = 0.6;
@@ -66,6 +66,31 @@ export function heldGamepadActions(pads: ArrayLike<Gamepad | null>, previous: Re
     if (Math.abs(value) >= (previous.has(direction) ? STICK_OFF : STICK_ON)) held.add(direction);
   }
   return held;
+}
+
+const SCROLL_DEAD_ZONE = 0.25;
+const SCROLL_PX_PER_FRAME = 16;
+
+/** The right stick's vertical lean on the strongest pad, past a dead zone: -1 up to 1 down, 0 at rest. */
+export function gamepadScrollLean(pads: ArrayLike<Gamepad | null>): number {
+  let lean = 0;
+  for (let index = 0; index < pads.length; index += 1) {
+    const pad = pads[index];
+    if (!pad || pad.connected === false) continue;
+    const y = Number.isFinite(pad.axes[3]) ? pad.axes[3]! : 0;
+    if (Math.abs(y) > Math.abs(lean)) lean = y;
+  }
+  return Math.abs(lean) < SCROLL_DEAD_ZONE ? 0 : lean;
+}
+
+/** The panel the right stick scrolls: the nearest scrollable box around the focus, else the open dialog's, else the page. */
+export function gamepadScrollTarget(doc: Document, from: Element | null): Element | null {
+  const view = doc.defaultView;
+  for (let node = from; node && node !== doc.body && node !== doc.documentElement; node = node.parentElement) {
+    const style = view?.getComputedStyle(node);
+    if (style && /(auto|scroll)/.test(style.overflowY) && node.scrollHeight > node.clientHeight + 1) return node;
+  }
+  return doc.scrollingElement;
 }
 
 /** One press per new action, then repeats for a held direction. A press held while the frame was inactive stays mute until released. */
@@ -318,6 +343,12 @@ export class GamepadNavigator {
     const presses = this.tracker.step(held, now, this.isActiveFrame());
     if (presses.length) this.win.document.documentElement.dataset.input = 'gamepad';
     for (const press of presses) performGamepadAction(this.win.document, press.action, press.repeat, this.options.geometry);
+    // The right stick scrolls long panels, such as a hero's whole sheet, without moving focus.
+    const lean = this.isActiveFrame() ? gamepadScrollLean(this.pads()) : 0;
+    if (lean) {
+      const doc = this.win.document;
+      gamepadScrollTarget(doc, doc.activeElement && doc.activeElement !== doc.body ? doc.activeElement : doc.querySelector(MODAL))?.scrollBy({ top: lean * SCROLL_PX_PER_FRAME });
+    }
   }
 
   dispose(): void {
