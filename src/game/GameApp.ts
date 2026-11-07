@@ -7,9 +7,10 @@ import {
   creditRunReward, enterRunNode,
   getAvailableRunNodes, getRunNode, secureRunLoot, travelToResolvedPoi,
   selectPoiMap, enterPoi, bypassPoi, isPoiNeutralized, settlePoiNavigation,
-  commitPoiEliteFight, resolvePoiEliteVictory, runNodesAllowedByCommitment } from './runSystem';
+  commitPoiEliteFight, resolvePoiEliteVictory, runNodesAllowedByCommitment, creditChallengePrime, challengeVerdict,
+  type ChallengeVerdict } from './runSystem';
 import { createPoiChestAdapter } from './poiContentAdapters';
-import { beginPoiEliteEncounter, retreatPoiElite, waitPoiTurn } from './poiExpedition';
+import { beginPoiEliteEncounter, retreatPoiElite } from './poiExpedition';
 import { LOT_E_ELITES } from '../campaign/LionPoiAuthoring';
 import { areLionFinalRefugeServicesOpen } from '../campaign/LionFinalRefugeServices';
 import { PoiEncounterView } from '../ui/PoiEncounterView';
@@ -217,7 +218,6 @@ export class GameApp {
     this.poiEncounter = new PoiEncounterView(root, id => this.uiSounds.play(id));
     this.poiMap = new PoiMapView({root,
       onMove: id => this.choosePoi(id),
-      onWait: () => this.waitOnPoi(),
       onFightElite: id => this.challengePoiElite(id),
       onBypass: id => this.ignorePoi(id),
       onCompany: () => void this.openPoiCompany(),
@@ -322,6 +322,20 @@ export class GameApp {
 
   /** A save is confirmed on screen too, never by its sound alone (UI contract: audio carries no needed information). */
   private showSaveNotice(): void {
+    this.showNotice('Partie sauvegardée', 2600);
+  }
+
+  /** Set 1.18.0: RunSystem's verdict on a challenge prime, kept until the company is back on the map, then stated. */
+  private pendingChallengeVerdict: ChallengeVerdict | null = null;
+  private showChallengeVerdict(verdict: ChallengeVerdict | null): void {
+    if (!verdict) return;
+    this.pendingChallengeVerdict = null;
+    this.showNotice(verdict.held
+      ? `Défi réussi · ${verdict.condition} · +${verdict.prime}`
+      : `Défi manqué · ${verdict.condition} · pas de prime`, 5200);
+  }
+
+  private showNotice(text: string, durationMs: number): void {
     if (!this.saveNotice?.isConnected) {
       this.saveNotice = document.createElement('p');
       this.saveNotice.className = 'save-notice';
@@ -330,10 +344,10 @@ export class GameApp {
       document.body.append(this.saveNotice);
     }
     const notice = this.saveNotice;
-    notice.textContent = 'Partie sauvegardée';
+    notice.textContent = text;
     notice.classList.add('is-visible');
     window.clearTimeout(this.saveNoticeTimer);
-    this.saveNoticeTimer = window.setTimeout(() => { notice.classList.remove('is-visible'); notice.textContent = ''; }, 2600);
+    this.saveNoticeTimer = window.setTimeout(() => { notice.classList.remove('is-visible'); notice.textContent = ''; }, durationMs);
   }
 
   private renderQaLab(message = ''): void {
@@ -833,6 +847,7 @@ export class GameApp {
     const model = selectPoiMap(this.state);
     this.saves.saveAuto(this.state);
     this.poiMap.open(model, focusId, this.state.settings.reducedGraphics);
+    if (this.pendingChallengeVerdict) this.showChallengeVerdict(this.pendingChallengeVerdict);
   }
 
   private async choosePoi(nodeId: string): Promise<void> {
@@ -865,14 +880,6 @@ export class GameApp {
     await this.resolveRunNode(entered.node, false);
   }
 
-  private async waitOnPoi(): Promise<void> {
-    if(this.mode!=='TRAVEL'||this.routeCommitInFlight)return;
-    if(!waitPoiTurn(this.state,selectPoiMap(this.state)))return;
-    this.uiSounds.play('confirm');
-    this.saves.saveAuto(this.state);
-    await this.enterCampaignPresentation();
-  }
-
   private async challengePoiElite(eliteId:string): Promise<void> {
     if(this.mode!=='TRAVEL'||this.routeCommitInFlight)return;
     const threat=selectPoiMap(this.state).threats.find(threat=>threat.id===eliteId&&threat.canFight);
@@ -887,11 +894,12 @@ export class GameApp {
     const def=LOT_E_ELITES.find(def=>def.id===encounter.eliteId)!;
     this.showPoiMap(encounter.targetNodeId);this.setMode('RESULT');
     this.saves.saveAuto(this.state);
+    const challenge=selectPoiMap(this.state).threats.find(threat=>threat.id===def.id)?.challenge;
     const choice=await this.poiEncounter.choose({title:def.label,
       description:encounter.kind==='rear'?'La menace a rejoint votre position. Combattez ou regagnez le point sûr précédent.'
-        :'Ce passage est occupé. Combattez ou restez à votre position sûre.',
-      lines:['Combat d’élite · Déploiement : 3 unités maximum.',
-        `${def.combat.rewards.temporaryGold} or à la victoire. Le lieu conserve son propre contenu.`]});
+        :'Ce gardien tient le coffre. Combattez, ou restez à votre position sûre.',
+      lines:[challenge?`Défi · ${challenge.condition} · Prime : ${challenge.prime} si la condition est tenue.`:'Combat d’élite · Déploiement : 3 unités maximum.',
+        `${def.combat.rewards.temporaryGold} or à la victoire. Le coffre s’ouvre ensuite.`]});
     if(this.disposed||this.state.run.poiExpedition?.encounter?.id!==encounter.id)return;
     if(choice==='retreat'){
       if(!retreatPoiElite(this.state,selectPoiMap(this.state)))throw new Error('Unavailable safe elite retreat');
@@ -908,6 +916,7 @@ export class GameApp {
     this.saves.saveAuto(this.state);
     this.poiMap.close();this.disposeJourney();this.disposeNarrativeStage();
     const config=combatConfigs.get(combatId)!;
+    let verdict:ChallengeVerdict|null=null;
     try{
       let session:ReturnType<CombatBridge['start']>|undefined;
       await sceneTransition.run({variant:'combat',label:config.encounterLabel,task:async()=>{
@@ -921,10 +930,12 @@ export class GameApp {
       this.combat.close();
       if(!result.victory){this.restoreAfterDefeat();return;}
       else if(!resolvePoiEliteVictory(this.state,encounterId,result))throw new Error('Stale elite combat result');
-      // Durable reward and defeated fact commit together before any presentation can be interrupted.
+      // Durable reward, challenge prime and defeated fact commit together before any presentation can be interrupted.
       this.saves.saveAuto(this.state);
+      verdict=challengeVerdict(result);
     }finally{this.routeCommitInFlight=false;}
     await this.enterCampaignPresentation();
+    this.showChallengeVerdict(verdict);
   }
 
   private ignorePoi(nodeId: string): void {
@@ -1611,6 +1622,9 @@ export class GameApp {
       creditRunReward(this.state, { category: 'materials', itemId, quantity });
     }
     changeReputation(this.state, rewards.reputation, `combat:${result.combatId}`);
+    // Set 1.18.0: RunSystem decides the challenge prime with the existing rewards, before the node is marked resolved.
+    // The verdict is stated once the company is back on the map, after any aftermath dialogue.
+    this.pendingChallengeVerdict = creditChallengePrime(this.state, result);
     Object.assign(this.state.flags, lionBossVictoryFacts(result.combatId));
     this.markResolved(node.id);
     // The Bois-Clair outcome reads the resolved result only through its existing presentation trigger (set 1.13.0).

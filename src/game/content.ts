@@ -8,6 +8,7 @@
 import { R5_ADDITIONAL_DIALOGUES } from './r5NarrativeContent';
 import { CAMPAIGN_GRAMMAR_DIALOGUES } from './campaignGrammarContent';
 import { lotECombatConfigs } from '../campaign/LionPoiAuthoring';
+import { withChallenge } from './challenges';
 
 type RawCombatConfig = Omit<CombatConfig, 'enemyVisualIds' | 'escortVisualIds'> &
   Partial<Pick<CombatConfig, 'enemyVisualIds' | 'escortVisualIds'>>;
@@ -1340,7 +1341,8 @@ const rawDialogues = [
 
 export const campaignNodes = rawNodes.map((node) => campaignNodeSchema.parse(node));
 export const combatConfigs = new Map([...rawCombats, ...lotECombatConfigs()].map((combat) => {
-  const parsed = combatConfigSchema.parse({ ...combat, ...combatVisualComposition[combat.id] });
+  // Set 1.18.0: a challenge fight carries its declaration, and a hero cap lowers its deployment limit.
+  const parsed = combatConfigSchema.parse(withChallenge(combatConfigSchema.parse({ ...combat, ...combatVisualComposition[combat.id] })));
   return [parsed.id, parsed];
 }));
 export const dialogues = new Map(rawDialogues.map((dialogue) => {

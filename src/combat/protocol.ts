@@ -33,7 +33,6 @@ export const combatantPayloadSchema = z.object({
   weapons: z.array(weaponPayloadSchema).min(1).max(2),
   skills: z.array(z.string()),
   skillUpgrades: z.record(z.number().int().min(0).max(2)),
-  /** Display only: shown greyed in the skill menu with the weapon tier that opens them, never castable. */
 });
 
 export const combatReadyMessageSchema = z.object({
@@ -73,6 +72,8 @@ export const combatResultMessageSchema = z.object({
   inventory: z.record(z.number().int().nonnegative()),
   participants: z.array(z.string()),
   unitHealth: z.record(z.number().int().nonnegative()),
+  rounds: z.number().int().nonnegative().optional(),
+  itemsUsed: z.number().int().nonnegative().optional(),
 });
 
 export function toCombatResult(value: unknown): CombatResult | null {
@@ -84,5 +85,7 @@ export function toCombatResult(value: unknown): CombatResult | null {
     consumables: parsed.data.inventory,
     participants: parsed.data.participants,
     unitHealth: parsed.data.unitHealth,
+    ...(parsed.data.rounds !== undefined ? { rounds: parsed.data.rounds } : {}),
+    ...(parsed.data.itemsUsed !== undefined ? { itemsUsed: parsed.data.itemsUsed } : {}),
   };
 }

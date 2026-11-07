@@ -46,9 +46,18 @@ describe('POI atlas focus and authority intentions',()=>{
     expect(document.querySelector<SVGGElement>('.poi-map__pawn')!.dataset.node).toBe('lion-reserve-trail');
     document.querySelector<HTMLButtonElement>('[data-poi-region="0"]')!.click();expect(document.querySelector('.poi-map__pawn')).toBeNull();
   });
-  it('explains Wait in visible and accessible text without consuming a turn on focus',()=>{
-    const {state,before}=fixture();const wait=document.querySelector<HTMLButtonElement>('[data-poi-action="wait"]')!;
-    expect(wait.textContent).toContain('1 tour sur place');expect(wait.getAttribute('aria-label')).toContain('menaces actives');wait.focus();expect(state).toEqual(before);
+  it('offers no Wait and shows no turn count (set 1.18.0)',()=>{
+    fixture();
+    expect(document.querySelector('[data-poi-action="wait"]')).toBeNull();
+    expect(document.querySelector('.poi-map__map-caption')!.textContent).not.toMatch(/Tour/);
+    expect(document.querySelector('.poi-map__panel')!.textContent).not.toContain('Attendre');
+  });
+  it('states a challenge place with its condition and prime, in text and on the marker',()=>{
+    fixture(undefined,model=>{const node=model.nodes.find(node=>node.id==='lion-audience')!;node.challenge={condition:'3 héros au plus',prime:'2 gemmes rouges'};});
+    marker('lion-audience').focus();
+    expect(marker('lion-audience').querySelector('.poi-marker__challenge')!.textContent).toBe('Défi');
+    expect(marker('lion-audience').getAttribute('aria-label')).toContain('défi : 3 héros au plus, prime 2 gemmes rouges');
+    expect(document.querySelector('.poi-map__challenge')!.textContent).toContain('3 héros au plus · Prime : 2 gemmes rouges');
   });
   it('keeps the committed destination and focused action intact while hovering another point',async()=>{
     const {onMove,state,before}=fixture();marker('lion-audience').focus();
@@ -124,11 +133,14 @@ describe('POI atlas focus and authority intentions',()=>{
     document.querySelector<HTMLButtonElement>('[data-poi-action="close-panel"]')!.click();
     expect(document.activeElement).toBe(details);expect(action()).toBe(move);expect(onMove).not.toHaveBeenCalled();
   });
-  it('keeps mobile threat intent, next position and available fight outside optional explanations',()=>{
-    fixture(undefined,model=>{model.threats=[{id:'test-threat',label:'Menace',region:0,positionId:'lion-audience',nextPositionId:'lion-opening-ambush',mode:'cyclic_patrol',contested:true,canFight:true}];});
+  it('names a guardian, its post, challenge and available fight outside optional explanations (set 1.18.0)',()=>{
+    fixture(undefined,model=>{model.threats=[{id:'test-threat',label:'Sentinelle',region:0,positionId:'lion-audience',canFight:true,challenge:{condition:'3 héros au plus',prime:'2 gemmes rouges'}}];});
     const summary=document.querySelector('.poi-map__threat-summary')!;
-    expect(summary.textContent).toContain('Passage contesté');expect(summary.textContent).toContain('Audience');expect(summary.textContent).toContain('Piste des bêtes');
-    expect(summary.querySelector('[data-poi-action="elite-fight"]')).not.toBeNull();
+    expect(summary.textContent).toContain('Sentinelle');expect(summary.textContent).toContain('garde « Audience');
+    expect(summary.textContent).toContain('Défi : 3 héros au plus · Prime : 2 gemmes rouges');
+    expect(summary.textContent).not.toMatch(/Patrouille|Traque|contesté|→/);
+    expect(summary.querySelector('[data-poi-action="elite-fight"]')!.textContent).toBe('Affronter le gardien');
+    expect(marker('lion-audience').getAttribute('aria-label')).toContain('gardé par Sentinelle');
     expect(document.querySelector<HTMLElement>('.poi-map__panel-backdrop')!.hidden).toBe(true);
   });
   it('skips travel for unchanged/front-intercept position and for the game reduced-motion setting',()=>{
@@ -259,7 +271,7 @@ describe('a readable map (OD-2026-11-07-A)',()=>{
     expect(legend.open).toBe(window.innerWidth>1050);
     expect(legend.textContent).toContain('Prochaine étape');
     expect(legend.textContent).toContain('✠ Élite');
-    expect(legend.textContent).toContain('Menace mobile');
+    expect(legend.textContent).toContain('Gardien d’un coffre');expect(legend.textContent).toContain('Défi');
     expect(legend.closest('.poi-map__atlas-bar')).not.toBeNull();
     expect(document.querySelector('.poi-map__panel')!.textContent).not.toContain('◉');
   });

@@ -10,6 +10,7 @@ import { LION_FIRST_TRIAL, LION_OPENING_LOCAL_ROUTES, openingLocalRoutesUnlocked
 import { resolveOptionalEncounterIgnoreConsequence } from './OptionalEncounterConsequencePolicy';
 import { LOT_E_POIS, LOT_E_ELITES, makeExpeditionNodes } from '../campaign/LionPoiAuthoring';
 import { applyCombatProgress } from './combatProgress';
+import { challengeFor, challengeForContent, challengeHeld, describeChallenge, type ChallengeText } from './challenges';
 import { initialPoiExpedition, expeditionEdges, recordPoiMovement, eliteAtPoi,
   beginPoiEliteEncounter, settlePoiStep, selectPoiThreats, type PoiThreatView } from './poiExpedition';
 
@@ -705,6 +706,8 @@ export interface PoiMapNode extends RunNode {
   canTravel: boolean;
   /** That route, from the current POI to this one; empty when canTravel is false. Derived, never saved. */
   travelRoute: string[];
+  /** Set 1.18.0: the challenge this place offers, stated in text. Static content, never saved. */
+  challenge?: ChallengeText;
 }
 export interface PoiMapModel {
   currentNodeId: string;
@@ -955,6 +958,7 @@ export function selectPoiMap(state: GameState): PoiMapModel {
       canBypass: active && Boolean(poiOptionalLeg(node.id)) && !neutralized && status === 'available'
         && !state.run.bypassedRouteNodeIds?.includes(node.id) && (canMove || node.id === state.run.currentNodeId) && !committedSteps,
       canTravel: !committedSteps && travelRoutes.has(node.id), travelRoute: committedSteps ? [] : travelRoutes.get(node.id) ?? [],
+      ...(() => { const offered = challengeForContent(node.contentId); return offered ? {challenge: describeChallenge(offered.challenge)} : {}; })(),
     };
   });
   const geography = {nodes, edges:[...state.run.graph.nodes.flatMap(n=>n.links.map(id=>({from:n.id,to:id,unlocked:unlocked.has(n.id)&&unlocked.has(id)}))),
@@ -1060,9 +1064,33 @@ export function resolvePoiEliteVictory(state: GameState, encounterId: string, re
   for(const [itemId,quantity] of Object.entries(def.combat.rewards.materials))
     creditRunReward(state,{category:'materials',itemId,quantity});
   changeReputation(state,def.combat.rewards.reputation,`combat:${result.combatId}`);
+  creditChallengePrime(state,result);
   elite.defeated=true;elite.active=false;
   delete expedition!.encounter;
   return true;
+}
+
+export interface ChallengeVerdict extends ChallengeText { combatId: string; held: boolean; primeRedGems: number }
+
+/**
+ * Set 1.18.0 (COMBAT_AND_VFX): whether a victory held its challenge condition, from the facts the tactical runtime
+ * reported (heroes deployed, rounds, items used) and the static declaration. Pure; presentation reads it, never derives it.
+ */
+export function challengeVerdict(result: CombatResult): ChallengeVerdict | null {
+  const challenge = result.victory ? challengeFor(result.combatId) : undefined;
+  if (!challenge) return null;
+  const held = challengeHeld(challenge, {heroes: result.participants.length, rounds: result.rounds, itemsUsed: result.itemsUsed});
+  return {combatId: result.combatId, held, primeRedGems: challenge.primeRedGems, ...describeChallenge(challenge)};
+}
+
+/**
+ * Credits the prime of a held challenge. Each victory path calls it inside the function that applies the fight's
+ * existing rewards and before its idempotence mark, so a reload or duplicate result never repeats it.
+ */
+export function creditChallengePrime(state: GameState, result: CombatResult): ChallengeVerdict | null {
+  const verdict = challengeVerdict(result);
+  if (verdict?.held) creditRunReward(state, {category: 'materials', itemId: 'red_gem', quantity: verdict.primeRedGems});
+  return verdict;
 }
 
 /** Only authored optional events may be bypassed; this owner applies their existing once-only consequence. */

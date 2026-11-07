@@ -248,7 +248,7 @@ describe('native movement undo focus', () => {
     const place = vi.fn((u, gx, gz) => Object.assign(u, { gx, gz }));
     const api = new Function('G', 'dom', 'renderer', 'keyboardInput', 'restoreUnitFocus', 'placeUnit', 'clearHL',
       'selectUnit', 'setHint', 'closeMenus', 'hasS', 'invCount', 'renderCombatActionDock', 'syncActionDockState',
-      `const combatCue=()=>{};\n${undoSource}\n${menuSource}\nreturn { undo: undoMove, open: openActionMenu };`)(
+      `const combatCue=()=>{}, itemsForbidden=()=>false;\n${undoSource}\n${menuSource}\nreturn { undo: undoMove, open: openActionMenu };`)(
       game, { menu, skillmenu }, { domElement: canvas }, keyboard, vi.fn(), place, vi.fn(), vi.fn(), vi.fn(),
       vi.fn(), () => false, () => 0, renderCombatActionDock, sync,
     ) as { undo: () => void; open: () => void };
@@ -313,7 +313,7 @@ describe('native next-player-turn focus', () => {
        const hideActionPreview=()=>{}, refreshTurnbar=()=>{}, selectUnit=()=>{}, focusCam=()=>{},
        refreshPanel=()=>{}, floatText=()=>{}, logMsg=()=>{}, clearBossIntentPresentation=()=>{},
        setHint=()=>{}, restoreUnitFocus=()=>{}, clearHL=()=>{}, syncActionDockState=()=>{},
-       tickStatusDuration=()=>{}, hasS=()=>false, invCount=()=>0, statusSkips=()=>null,
+       tickStatusDuration=()=>{}, hasS=()=>false, invCount=()=>0, itemsForbidden=()=>false, statusSkips=()=>null,
        wait=async()=>{}, aiTurn=async()=>{};
        ${turns}\n${menuSource}\nreturn { begin:beginTurn, end:endTurn, open:openActionMenu };`)(
       game, { menu, skillmenu }, { domElement: canvas }, keyboard, documentView, renderCombatActionDock,
@@ -374,7 +374,7 @@ describe('native deployment keyboard focus', () => {
     const reset = vi.fn(() => { game.deployedUnits = []; open(); });
     open = new Function('G', 'dom', 'keyboardInput', 'captureDeploymentFocus', 'renderObjective', 'cl', 'playerDeployLimit',
       'deploymentCard', 'canStartDeployment', 'deployDefById', 'selectUnitData', 'setHint', 'autoDeploy', 'resetDeploy', 'beginBattle', 'focusDeploymentField',
-      'const combatCue=()=>{};' + menuSource + actionSource + ';return openDeployMenu;')(
+      'const combatCue=()=>{}, COMBAT_CHALLENGE=null, escHTML=String;' + menuSource + actionSource + ';return openDeployMenu;')(
       game, { menu, skillmenu }, keyboard, captureDeploymentFocus, renderObjective,
       (n: number, min: number, max: number) => Math.max(min, Math.min(max, n)), () => 4,
       (unit: { campaignId: string }) => '<button type="button" data-unit="' + unit.campaignId + '">Hero</button>',

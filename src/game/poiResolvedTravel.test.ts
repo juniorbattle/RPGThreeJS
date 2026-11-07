@@ -73,15 +73,15 @@ describe('travel to resolved POIs (set 1.16.0)', () => {
     expect(state.run.currentNodeId).toBe('lion-first-refuge');
     expect(state.currentNodeId).toBe('lion-first-refuge');
     expect(state.run.poiExpedition!.turn).toBe(before.run.poiExpedition!.turn + 1);
-    expect(state.run.poiExpedition!.pendingStep).toEqual({ step: before.run.poiExpedition!.turn + 1,
-      fromNodeId: route.at(-2), toNodeId: 'lion-first-refuge' });
+    // Set 1.18.0: guardians never move, so a travel leaves no pending step behind.
+    expect(state.run.poiExpedition!.pendingStep).toBeUndefined();
     expect(state.run.poiExpedition!.previousSafeNodeId).toBe(route.at(-2));
     expect(state.resolvedNodeIds).toEqual(before.resolvedNodeIds);
     expect(state.run.visitedNodeIds).toEqual(before.run.visitedNodeIds);
     expect(state.stepCounter).toBe(before.stepCounter);
     expect(state.flags).toEqual(before.flags);
     expect(state.gold).toBe(before.gold);
-    expect(Object.keys(state.run.poiExpedition!).sort()).toEqual(Object.keys({ ...before.run.poiExpedition!, pendingStep: 1, previousSafeNodeId: 1 }).sort());
+    expect(Object.keys(state.run.poiExpedition!).sort()).toEqual(Object.keys({ ...before.run.poiExpedition!, previousSafeNodeId: 1 }).sort());
   });
 
   it('saves and reloads a travel exactly, with only the existing V6 fields', () => {

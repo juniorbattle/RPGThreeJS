@@ -23,6 +23,14 @@ export interface EliteDefinition {
 /** The operator's exact approved annex is the single catalogue; no UI-authored payloads. */
 export const LOT_E_POIS = annex.fixedPoiCandidates as FixedPoiDefinition[];
 export const LOT_E_ELITES = annex.mobileEliteActors as EliteDefinition[];
+/**
+ * Set 1.18.0 (OD-2026-11-07-F): each elite is the stationary guardian of one optional chest. The annex stays unchanged;
+ * this table supersedes only its movement modes and allowed positions.
+ */
+export const GUARD_POSTS: Readonly<Record<string, string>> = {
+  'lion-elite-valley-sentinel': 'lion-poi-valley-bridge-cache',
+  'lion-elite-seal-warden': 'lion-poi-seal-ruin-supplies',
+};
 export const LION_CANONICAL_POI_IDS: readonly string[] = annex.protectedCanonicalIds;
 export const LOT_E_EDGES = LOT_E_POIS.flatMap(poi => poi.edges.map(to => ({from: poi.id, to})));
 

@@ -110,6 +110,14 @@ export const combatConfigSchema = z.object({
     reputation: z.number().int().default(0),
     materials: countRecordSchema.default({}),
   }),
+  /** Set 1.18.0 challenge: the static declaration and its stated text, attached by `withChallenge`. Never saved. */
+  challenge: z.object({
+    kind: z.enum(['max_heroes', 'no_items', 'max_rounds']),
+    limit: z.number().int().positive().optional(),
+    primeRedGems: z.number().int().positive(),
+    condition: z.string(),
+    prime: z.string(),
+  }).optional(),
 });
 export type CombatConfig = z.infer<typeof combatConfigSchema>;
 
@@ -469,6 +477,9 @@ export interface CombatResult {
   consumables?: Record<string, number>;
   participants: string[];
   unitHealth: Record<string, number>;
+  /** Set 1.18.0: facts the tactical runtime reports for a challenge prime. Transient, never saved. */
+  rounds?: number;
+  itemsUsed?: number;
 }
 
 export interface ReputationRule {

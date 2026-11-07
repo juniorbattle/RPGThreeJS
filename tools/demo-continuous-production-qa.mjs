@@ -571,9 +571,8 @@ async function poiNoReplayPath(ids,mixedInputs=false,captureName='poi-native-bac
       }
       if((await state()).currentNodeId===id){reached=true;break;}
       assert.equal(intercepted,true,'Resolved service movement failed without an interception');
-      await waitExpeditionTurn();
-      if(await page.locator('.poi-dialog-backdrop:visible').count())await handleExpeditionDialog(true);
-      expeditionWaitPending=false;
+      // Set 1.18.0: a guardian never moves and Wait is retired, so a retreat cannot be waited out.
+      assert.fail('A stationary guardian blocks a resolved service path (set 1.18.0)');
     }
     assert.equal(reached,true,'Native service return exceeded twelve interception/retry decisions');
   }
@@ -582,7 +581,7 @@ async function poiNoReplayPath(ids,mixedInputs=false,captureName='poi-native-bac
   const expected=structuredClone(before);expected.currentNodeId=ids.at(-1);expected.run.currentNodeId=ids.at(-1);
   const movementTurns=report.expedition.intents.slice(intentStart).reduce((sum,entry)=>sum+entry.turnAfter-entry.turnBefore,0);
   const waitTurns=report.expedition.waits.length-waitStart;
-  assert.equal(after.run.poiExpedition.turn,before.run.poiExpedition.turn+movementTurns+waitTurns,'Resolved movement must count each accepted map edge and explicit Wait once');
+  assert.equal(after.run.poiExpedition.turn,before.run.poiExpedition.turn+movementTurns+waitTurns,'Resolved movement must count each accepted map edge once');
   if(!allowServiceInterceptions)assert.equal(movementTurns,ids.length);
   assert.equal(after.run.poiExpedition.pendingStep,undefined,'Inert passage must settle the deferred turn');
   assert.equal(after.run.poiExpedition.encounter,undefined);
@@ -607,14 +606,6 @@ async function navigateExpedition(target){
   }
   assert.ok(path?.length>1,`No native geographical route from ${live.currentNodeId} to ${target}`);
   await poiMove(path[1],report.expedition.intents.length%2===0);return true;
-}
-let expeditionWaitPending=false;
-async function waitExpeditionTurn(){
-  await verifyExpeditionSettlement();assert.equal(pendingExpeditionProof,undefined);
-  const before=await state();await keyboardActivate('.poi-map [data-poi-action="wait"]');
-  await page.waitForFunction(turn=>window.__demoQaApp.state.run.poiExpedition.turn===turn+1,before.run.poiExpedition.turn);
-  const after=await state();assertExpeditionStep(before,after,1);
-  report.expedition.waits.push({before,after,explicit:true,pass:true});expeditionWaitPending=false;
 }
 async function handleExpeditionDialog(forceRetreat=false){
   const dialog=page.locator('.poi-dialog-backdrop:visible');if(!await dialog.count())return false;
@@ -683,15 +674,11 @@ async function handleExpeditionDialog(forceRetreat=false){
     }
     assert.deepEqual(after,expected,'Native retreat changed facts beyond its exact safe cancellation/return');
     report.expedition.interceptions.push({eliteId:def.id,kind:encounter.kind,choice:'retreat',before:live,after,pass:true});
-    if(encounter.kind==='front'&&(def.region===1||explorationPlan==='complete'))expeditionWaitPending=true;
   }else report.expedition.interceptions.push({eliteId:def.id,kind:encounter.kind,choice:'fight',encounterId:encounter.id,pass:true});
   return true;
 }
 async function explorePoiStep(live){
   if(explorationPlan==='direct')return false;
-  if(expeditionWaitPending){
-    await waitExpeditionTurn();return true;
-  }
   const region=Number(await page.locator('.poi-map').getAttribute('data-region'));
   if(explorationPlan==='complete'&&nativeEquipment&&target==='ending'){
     const recoveries=report.expedition.sealRecoveries??=[];
@@ -843,7 +830,7 @@ async function inspectPoiPresentation(){
   const sizes=[{width:1366,height:768},{width:620,height:780},{width:390,height:844}];
   const layouts=[];
   assert.equal(await page.locator('.poi-map__pawn').getAttribute('data-node'),before.currentNodeId,'Resting pawn does not show actual position');
-  assert.equal(await page.locator('[data-poi-action="wait"]').getAttribute('aria-label'),'Attendre un tour sans déplacement. Les menaces actives peuvent avancer.');
+  assert.equal(await page.locator('[data-poi-action="wait"]').count(),0,'The map Wait is retired (set 1.18.0)');
   for(const size of sizes){
     await page.setViewportSize(size);await keyboardActivate('.poi-map [data-poi-action="locate"]');
     const geometry=await page.locator('.poi-map').evaluate(map=>{

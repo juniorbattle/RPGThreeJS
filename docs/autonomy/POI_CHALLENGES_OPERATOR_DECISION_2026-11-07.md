@@ -105,6 +105,58 @@ Contraintes notées pour l'implémentation :
 - la configuration de combat gagne une déclaration de défi facultative, qui n'est pas un champ de sauvegarde ; « Meute du détour » et « Nid du jeune dragon » passent à 3 héros ;
 - le combat tactique gagne le refus des objets et renvoie le nombre de manches avec l'issue ; le compteur de combat dit « Manche n / 8 », comme le reste de l'interface de combat.
 
+## Livraison
+
+`CURRENT FACT` Livrée le 2026-11-07 sur `dev`, sur la baseline `478cb676`.
+
+- **Gardiens fixes** (`src/game/poiExpedition.ts`, `GUARD_POSTS` dans `src/campaign/LionPoiAuthoring.ts`).
+  - `syncPoiElites` poste chaque gardien quand sa condition d'activation et l'ouverture de son coffre sont réunies, et le diffère si la compagnie se tient sur le poste.
+  - Les gardiens ne bougent plus. `settlePoiStep` ne fait plus que les poster. Un ancien pas en attente est effacé au chargement, et une rencontre sauvegardée garde son gardien jusqu'à sa résolution.
+  - L'annexe JSON du Lot E n'est pas modifiée.
+- **Attente retirée.** `waitPoiTurn`, le bouton « Attendre », le compteur de tours de la carte et les textes d'aide disparaissent. Le tour sauvegardé reste lisible et ne commande plus rien.
+- **Défis** (`src/game/challenges.ts`).
+  - La table fixe déclare les six défis.
+  - `withChallenge` joint la déclaration à la configuration de combat et abaisse la limite de déploiement à 3 héros quand c'est la condition.
+  - RunSystem décide de la prime :
+    - `challengeVerdict` est pur et s'appuie sur les faits renvoyés par le combat ;
+    - `creditChallengePrime` est appelé dans `resolvePoiEliteVictory` avant la marque du gardien vaincu, et dans `resolveCombat` avant la marque du lieu résolu.
+- **Combat tactique** (`legacyCombatRuntime.js`).
+  - En défi « sans objets », tout objet est refusé : menu, bouton grisé « Interdit · défi », usage automatique, exécution.
+  - Le combat compte les manches et renvoie avec l'issue le nombre de manches et d'objets utilisés.
+  - L'en-tête d'objectif affiche le défi, avec « Manche n / 8 » pour le duelliste. Le panneau de déploiement l'annonce aussi, puisque l'objectif y est masqué.
+- **Carte.**
+  - Le gardien est nommé sur son poste : « garde « Cache du pont » · Défi : 3 héros au plus · Prime : 2 gemmes rouges », avec « Affronter le gardien ».
+  - Les lieux de défi portent un badge « Défi » et leur panneau donne la condition et la prime.
+  - La légende et l'aide sont mises à jour. Le verdict (« Défi réussi · … · +2 gemmes rouges » ou « Défi manqué · … · pas de prime ») s'affiche au retour sur la carte.
+
+Vérifications :
+
+- **Tests.**
+  - `src/game/challenges.test.ts` : les six déclarations, les configurations à 3 héros, chaque condition tenue ou non, la prime créditée ou refusée, les faits passés par le protocole, le plafond de 15 gemmes rouges, le texte sur la carte.
+  - `src/game/poiExpedition.test.ts`, réécrit pour les gardiens :
+    - immobilité sur un déplacement, un passage de tour et un rechargement ;
+    - reprise d'une ancienne sauvegarde et rencontre de l'arrière sauvegardée ;
+    - poste différé, Garde des ruines et coffre déjà pillé ;
+    - prime unique, jamais sur un doublon, une défaite ou un repli ;
+    - trajets de voyage qui contournent les postes ;
+    - exploration exhaustive autour de la Sentinelle.
+  - `GameAppPoiExpedition.test.ts` : prime d'un gardien et d'un combat facultatif du Lot E, réussie ou manquée, avec le verdict affiché ; anciennes sauvegardes.
+  - Carte, engagement, voyage et en-tête du combat adaptés.
+- **Suite et contrôles.** Suite complète (2975 tests vitest dans 182 fichiers, 26 tests node), types, build, validateur, porte sur `478cb676`.
+- **Navigateur, serveur 5181.**
+  - Carte de la région II à 1366 px : sans « Attendre » ni tour, Sentinelle nommée sur son coffre.
+  - Rencontre : texte du défi. Combat contre la Sentinelle : déploiement limité à 3.
+  - Labo QA :
+    - troll : objets grisés « Interdit · défi », défi annoncé au déploiement ;
+    - duelliste : « Manche 1 / 8 ».
+  - Carte à 375 px : badge « Défi » sur la Meute du détour, panneau lisible, sans débordement.
+  - Aucune erreur de console.
+- **Relecture contracts-guardian de l'implémentation : PASS WITH WARNINGS.** Réserves traitées :
+  - verdict affiché au retour sur la carte plutôt qu'avant le dialogue d'après-combat ;
+  - tests ajoutés pour le doublon, la défaite, le repli, le combat ordinaire et les trajets ;
+  - refus des objets et compte des manches vérifiés en jeu.
+- **Non fait.** Le pilote QA de bout en bout (`tools/demo-continuous-production-qa.mjs`) est adapté sans être relancé.
+
 ## Ce qui ne change pas
 
 - Les dialogues, les choix, les conséquences et l'ordre des lieux d'histoire.

@@ -83,6 +83,9 @@ let COMBAT_SCENE_ID='forest_route';
 // DEV: ?scene=<arena id> previews another arena in the standalone combat.
 if(import.meta.env.DEV&&new URLSearchParams(location.search).get('scene'))COMBAT_SCENE_ID=new URLSearchParams(location.search).get('scene');
 let COMBAT_OBJECTIVE='Vaincre tous les ennemis.';
+// Set 1.18.0 challenge, as declared by the campaign: this runtime refuses items and counts rounds; RunSystem decides the prime.
+let COMBAT_CHALLENGE=null;
+const itemsForbidden=()=>Boolean(COMBAT_CHALLENGE&&COMBAT_CHALLENGE.kind==='no_items');
 let COMBAT_LABEL='Combat tactique';
 let COMBAT_REWARDS=null;
 let MAX_PLAYER_UNITS=4;
@@ -118,7 +121,9 @@ const notifyCampaignResult=victory=>{
   window.parent.postMessage({
     type:'rpg-threejs:combat-result',victory,combatId:COMBAT_ID,inventory:G.inv,
     participants:G.deployedUnits.map(u=>u.campaignId||u.name),
-    unitHealth:campaignUnitHealth()
+    unitHealth:campaignUnitHealth(),
+    // Facts only (set 1.18.0): the campaign decides any challenge prime from them.
+    rounds:G.round||0, itemsUsed:G.itemsUsedTotal||0
   },location.origin);
 };
 
@@ -127,7 +132,7 @@ const G = {
   units:[], tilesMesh:[], grid:[], order:[], turnIdx:0, round:1,
   mode:'idle', active:null, selected:null, pinnedUnit:null, hover:null, hoverUnit:null,
   movedThisTurn:false, actedThisTurn:false, movedBeforeAct:false, skillMovedThisTurn:false, pending:null, busy:false, over:false, inv:{},
-  basicAttacksThisTurn:0, itemsUsedThisTurn:0,
+  basicAttacksThisTurn:0, itemsUsedThisTurn:0, itemsUsedTotal:0,
   rosterDefs:[],selectedDeployId:null,deployPage:0,deployedUnits:[]
 };
 window.G = G;
@@ -1942,7 +1947,7 @@ function applyAdditionalStatus(u,spec,cx,cz,context={}){
   }
   for(const target of [...new Set(targets)])if(target&&target.alive){ applyStatus(target,spec.additionalStatus,spec.additionalStatusTurns||1); if(spec.additionalStatus==='taunt')target._taunter=u; }
 }
-async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
+async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())return; restoreUnitFocus(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
   const context={origin:{gx:u.gx,gz:u.gz},selectedTargets:selectedTargetsForAction(u,spec,cx,cz)};
   const emptyHybridTarget=allowsEmptyTileHybridTarget(spec)&&context.selectedTargets.length===0;
   if(emptyHybridTarget){
@@ -2055,7 +2060,7 @@ async function executeActionCore(u,spec,cx,cz){ restoreUnitFocus(); hideActionPr
   if(spec.dispelAllies){ const allies=G.units.filter(t=>t.alive&&t.team===u.team); for(const t of allies){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } if(n&&!G.stage)floatText(t,'PURIFIÉ','#7ed957',true); refreshPanel(t); } }
   if(spec.stealBuffs){ for(const t of targets){ if(t.alive&&t.team!==u.team){ for(const s in t.statuses){ if(!isNegative(s)){ u.statuses[s]=t.statuses[s]; delete t.statuses[s]; } } refreshPanel(t); } } refreshPanel(u); }
   if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
-  if(spec.key==='attack'){ G.basicAttacksThisTurn++; } if(spec.item){ G.itemsUsedThisTurn++; }
+  if(spec.key==='attack'){ G.basicAttacksThisTurn++; } if(spec.item){ G.itemsUsedThisTurn++; G.itemsUsedTotal++; }
   if(G.movedThisTurn)G.movedBeforeAct=true; refreshPanel(u);
   await presentActionExit(); G.busy=false; checkEnd();
 }
@@ -2097,7 +2102,7 @@ function bestSupport(u,stands){ const supSpecs=u.skills.map(s=>getSpec(u,s)).fil
       if(spec.cure){ const neg=aff.filter(t=>Object.keys(t.statuses).some(s=>isNegative(s)&&hasS(t,s))); if(neg.length)sc+=neg.length*6; }
       if(!best||sc>best.score) best={score:sc,spec,cx:c.gx,cz:c.gz}; } } }
   return best; }
-function bestItem(u,stands){ if(u.team!=='player')return null; if(u.ap<(1+G.itemsUsedThisTurn))return null; const allies=aliveUnits(u.team); let best=null;
+function bestItem(u,stands){ if(u.team!=='player'||itemsForbidden())return null; if(u.ap<(1+G.itemsUsedThisTurn))return null; const allies=aliveUnits(u.team); let best=null;
   for(const id in ITEMS){ if((G.inv[id]||0)<=0)continue; const spec=itemSpec(id); if(spec.ap>u.ap)continue;
     for(const st of stands){ const sim=simAt(u,st);
       for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz); if(!aff.length)continue;
@@ -2278,7 +2283,7 @@ async function doExecute(spec,cx,cz){ await executeAction(G.active,spec,cx,cz); 
 function afterSub(){ restoreUnitFocus(); hideActionPreview(); G._targetPreviewKey=null; if(G.over)return; G.mode='menu'; selectUnit(G.active); openActionMenu();
   const u=G.active;
   const nextAtkCost=G.basicAttacksThisTurn+1;
-  const canAct = (u.ap>=nextAtkCost) || u.skills.some(s=>getSpec(u,s).ap<=u.ap) || (u.ap>=(G.itemsUsedThisTurn+1) && invCount()>0);
+  const canAct = (u.ap>=nextAtkCost) || u.skills.some(s=>getSpec(u,s).ap<=u.ap) || (!itemsForbidden() && u.ap>=(G.itemsUsedThisTurn+1) && invCount()>0);
   if(!canAct && G.movedThisTurn) setHint('Tour terminé — Entrée pour attendre'); else setHint(u.name+' — choisissez une action'); restoreBattlefieldFocus(); }
 function undoMove(){ if(G.busy||!G.movedThisTurn||G.movedBeforeAct||G.startGX==null)return;
   const returnFocus=keyboardInput&&(dom.menu.contains(document.activeElement)||document.activeElement===renderer.domElement);
@@ -2384,9 +2389,9 @@ function toast(t){ setHint('⚠ '+t); }
 function renderObjective(){ if(!dom.objective)return; dom.objective.classList.remove('hidden');
   const foes=G.units.filter(u=>u.team==='foe'),foeAlive=aliveUnits('foe').length,foeDone=Math.max(0,foes.length-foeAlive),deploying=G.mode==='deploy'||!G.round;
   const playerAlive=aliveUnits('player').length,playerTotal=G.deployedUnits.length||G.units.filter(u=>u.team==='player').length||playerDeployLimit();
-  const squadLabel=deploying?'Unités placées':'Escouade debout',squadValue=deploying?(G.deployedUnits.length+' / '+playerDeployLimit()):(playerAlive+' / '+playerTotal),roundLabel=deploying?'Déploiement':'Manche '+G.round;
+  const squadLabel=deploying?'Unités placées':'Escouade debout',squadValue=deploying?(G.deployedUnits.length+' / '+playerDeployLimit()):(playerAlive+' / '+playerTotal),roundLimit=COMBAT_CHALLENGE&&COMBAT_CHALLENGE.kind==='max_rounds'?COMBAT_CHALLENGE.limit:0,roundLabel=deploying?'Déploiement':'Manche '+G.round+(roundLimit?' / '+roundLimit:'');
   const wasOpen=dom.objective.querySelector('details')?.open;
-  dom.objective.innerHTML=renderCombatObjective({title:COMBAT_LABEL||'Combat tactique',condition:COMBAT_OBJECTIVE,round:roundLabel,foesDone:foeDone,foesTotal:foes.length,squadLabel,squadValue,expanded:wasOpen??deploying}); }
+  dom.objective.innerHTML=renderCombatObjective({title:COMBAT_LABEL||'Combat tactique',condition:COMBAT_OBJECTIVE,challenge:COMBAT_CHALLENGE?{condition:COMBAT_CHALLENGE.condition,prime:COMBAT_CHALLENGE.prime}:undefined,round:roundLabel,foesDone:foeDone,foesTotal:foes.length,squadLabel,squadValue,expanded:wasOpen??deploying}); }
 // ---- Settings (gear) : purely visual toggles, no rules touched ----
 function applyGraphics(){ REDUCED_GRAPHICS=prefersReducedMotion(REQUESTED_REDUCED_GRAPHICS); settleReducedCastMotion(); document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); if(typeof bloom!=='undefined'&&bloom)bloom.enabled=!REDUCED_GRAPHICS; if(typeof tiltPass!=='undefined'&&tiltPass)tiltPass.enabled=!REDUCED_GRAPHICS; }
 function renderSettings(){ if(!dom.settings)return;
@@ -2443,7 +2448,7 @@ function tipFor(u,b){ const a=b.dataset.a;
   if(a==='undo')return 'Annuler le déplacement (U)';
   if(a==='attack'){ const w=u.weapons[+b.dataset.wi||0]; const n=G.basicAttacksThisTurn; return w.name+' · portée '+w.min+'-'+w.max+' · puiss '+w.power+' · crit '+Math.round(w.crit*100)+'% · préc '+Math.round(w.acc*100)+'% · 3 niveaux d\'Élan'+(n>0?' · escalade +'+n+' PA':''); }
   if(a==='skill'){ if(!u.skills.length)return 'Aucune compétence disponible'; if(hasS(u,'silence'))return 'Mutisme · compétences bloquées'; return 'Compétences · '+u.ap+' PA'; }
-  if(a==='item')return 'Objets · sac ×'+invCount()+' · '+(G.itemsUsedThisTurn+1)+' PA';
+  if(a==='item')return itemsForbidden()?'Objets · interdits par le défi':'Objets · sac ×'+invCount()+' · '+(G.itemsUsedThisTurn+1)+' PA';
   if(a==='wait')return 'Attendre · fin de tour'; return ''; }
 function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ closeMenus(); return; }
   dom.menu.classList.remove('hidden'); dom.skillmenu.classList.add('hidden'); dom.skillmenu.dataset.kind='';
@@ -2452,10 +2457,10 @@ function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ 
   const atkDis = u.ap<1+n;
   const atkSub = 'Élan · '+(1+n)+' PA';
   const sklDis = !u.skills.length || hasS(u,'silence');
-  const itmDis = u.ap<(G.itemsUsedThisTurn+1) || invCount()<=0;
+  const itmDis = itemsForbidden() || u.ap<(G.itemsUsedThisTurn+1) || invCount()<=0;
   const actions=[(md&&!G.movedBeforeAct)?{key:'undo',icon:'↩',label:'Annuler',detail:'Déplacement',disabled:false}:{key:'move',icon:'✣',label:'Déplacer',detail:u.mov+' cases',disabled:md||hasS(u,'root')||u.immobile}];
   (u.weapons||[]).forEach((w,i)=>actions.push({key:'attack',icon:w.icon||'⚔',label:'Attaquer',detail:atkSub,disabled:atkDis,weaponIndex:i}));
-  actions.push({key:'skill',icon:'✦',label:'Compétences',detail:u.ap+' PA',disabled:sklDis},{key:'item',icon:'◇',label:'Objet',detail:'×'+invCount()+' · '+(G.itemsUsedThisTurn+1)+' PA',disabled:itmDis},{key:'wait',icon:'⌛',label:'Attendre',detail:'Fin du tour',disabled:false});
+  actions.push({key:'skill',icon:'✦',label:'Compétences',detail:u.ap+' PA',disabled:sklDis},{key:'item',icon:'◇',label:'Objet',detail:itemsForbidden()?'Interdit · défi':'×'+invCount()+' · '+(G.itemsUsedThisTurn+1)+' PA',disabled:itmDis},{key:'wait',icon:'⌛',label:'Attendre',detail:'Fin du tour',disabled:false});
   dom.menu.innerHTML=renderCombatActionDock(actions,null)+'<div class="lbl"></div>';
   const lbl=dom.menu.querySelector('.lbl');
   dom.menu.querySelectorAll('.ico').forEach(b=>{ b.onclick=()=>onMenu(b.dataset.a,b);
@@ -2484,7 +2489,7 @@ function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name
   if(it.effect==='grenade') return Object.assign(base,{type:'mag', power:0,offensive:true,acc:1,flatDmg:it.flatDmg,status:it.status,statusTurns:it.statusTurns,targetMode:'enemy'});
   return base; }
 function invCount(){ let n=0; for(const k in G.inv)n+=G.inv[k]; return n; }
-function openItemMenu(){ combatCue('confirm'); const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='item'; syncActionDockState(); const nextCost=G.itemsUsedThisTurn+1; let h='<div class="ttl">Objets — sac commun · '+u.ap+' PA</div>'; let any=false;
+function openItemMenu(){ if(itemsForbidden())return; combatCue('confirm'); const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='item'; syncActionDockState(); const nextCost=G.itemsUsedThisTurn+1; let h='<div class="ttl">Objets — sac commun · '+u.ap+' PA</div>'; let any=false;
   for(const id in ITEMS){ const n=G.inv[id]||0; const it=ITEMS[id]; const hasKoAlly=it.effect!=='revive'||G.units.some(x=>!x.alive&&x.downed&&x.team===u.team); const dis=n<=0||u.ap<nextCost||!hasKoAlly; if(n>0)any=true; h+='<button type="button" class="btn '+(dis?'dis':'')+'" data-i="'+id+'" title="'+escHTML(it.desc)+'"'+(dis?' disabled':'')+'>'+escHTML(it.name)+' <small>×'+n+' · '+nextCost+' PA</small></button>'; }
   if(!any)h+='<div class="btn dis">Sac vide</div>';
   h+='<button type="button" class="btn" data-i="_back">Retour</button>';
@@ -2633,6 +2638,8 @@ function openDeployMenu(){
   const size=4,pages=Math.max(1,Math.ceil(G.rosterDefs.length/size)); G.deployPage=cl(G.deployPage,0,pages-1);
   const visible=G.rosterDefs.slice(G.deployPage*size,G.deployPage*size+size);
   dom.menu.innerHTML='<div class="deploy-head"><span>DÉPLOIEMENT</span><b aria-live="polite">'+G.deployedUnits.length+' / '+playerDeployLimit()+' prêtes</b></div>'+
+    // Set 1.18.0: the objective panel is hidden while deploying, so the challenge is stated here before the fight.
+    (COMBAT_CHALLENGE?'<p class="deploy-challenge"><b>Défi</b> · '+escHTML(COMBAT_CHALLENGE.condition)+' · Prime : '+escHTML(COMBAT_CHALLENGE.prime)+' si la condition est tenue</p>':'')+
     '<div class="deploy-list">'+visible.map(deploymentCard).join('')+'</div>'+
     '<div class="deploy-pages"><button type="button" aria-label="Page précédente" data-d="prev" '+(G.deployPage===0?'disabled':'')+'>‹</button><span>'+(G.deployPage+1)+' / '+pages+'</span><button type="button" aria-label="Page suivante" data-d="next" '+(G.deployPage>=pages-1?'disabled':'')+'>›</button></div>'+
     '<div class="deploy-actions"><button type="button" data-d="auto">Auto</button><button type="button" data-d="reset" '+(!G.deployedUnits.length?'disabled':'')+'>Retirer tout</button>'+
@@ -2807,7 +2814,7 @@ function mountQaControls(){
 
 // ============================= INIT & BOOT =============================
 async function initGame(){
-  G.inv=CAMPAIGN_MODE?{...CAMPAIGN_INVENTORY}:{potion:3,ether:1,antidote:2,bomb:2}; G.wave=1; G.round=0; G.over=false;
+  G.inv=CAMPAIGN_MODE?{...CAMPAIGN_INVENTORY}:{potion:3,ether:1,antidote:2,bomb:2}; G.wave=1; G.round=0; G.over=false; G.itemsUsedTotal=0;
   await buildWorld(); makeBlobTex(); makeBaseTex(); makeTileTex(); buildSelectors(); buildCursor(); spawnUnits();
   initHud();
   logMsg(CAMPAIGN_MODE?COMBAT_OBJECTIVE:'Préparez votre formation, puis lancez la bataille.');
@@ -3082,7 +3089,7 @@ window.addEventListener('unhandledrejection',e=>console.error(e.reason));
 function bootCampaign(message){
   combatAudio.initialize(message.presentationSessionId);
   COMBAT_ID=message.config.id; COMBAT_SCENE_ID=message.config.sceneId||'forest_route'; COMBAT_OBJECTIVE=message.config.objective; COMBAT_LABEL=message.config.encounterLabel;
-  COMBAT_REWARDS=message.config.rewards;
+  COMBAT_REWARDS=message.config.rewards; COMBAT_CHALLENGE=message.config.challenge||null;
   MAX_PLAYER_UNITS=normalizeDeploymentLimit(message.config.maxPlayerUnits); CAMPAIGN_SQUAD=message.clan; CAMPAIGN_INVENTORY=message.inventory;
   PREFERRED_UNIT_IDS=message.preferredUnitIds; REQUESTED_REDUCED_GRAPHICS=message.reducedGraphics;
   QA_ENABLED=campaignParams.get('qa')==='1'&&message.devQa===true;

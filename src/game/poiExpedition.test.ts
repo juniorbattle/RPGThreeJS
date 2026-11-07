@@ -1,10 +1,11 @@
 import {describe, expect, it} from 'vitest';
 import {createInitialState, migrateState} from './store';
-import {LOT_E_ELITES, LOT_E_POIS, LION_CANONICAL_POI_IDS, poiVariantIndex} from '../campaign/LionPoiAuthoring';
+import {LOT_E_ELITES, LOT_E_POIS, LION_CANONICAL_POI_IDS, GUARD_POSTS, poiVariantIndex} from '../campaign/LionPoiAuthoring';
 import {combatConfigs} from './content';
 import {combatConfigSchema, type CombatResult, type GameState} from './types';
 import {enterPoi, selectPoiMap, settlePoiNavigation, commitPoiEliteFight, resolvePoiEliteVictory, failRunToCheckpoint} from './runSystem';
-import {retreatPoiElite, syncPoiElites, waitPoiTurn} from './poiExpedition';
+import * as expedition from './poiExpedition';
+import {retreatPoiElite, syncPoiElites} from './poiExpedition';
 import {createPoiChestAdapter} from './poiContentAdapters';
 
 /** Explicit mechanical fixtures, never used as native campaign evidence or earned saves. */
@@ -123,7 +124,7 @@ describe('canonical gates and one-time optional contents',()=>{
   });
 });
 
-describe('graph-mobile encounters, turns and real owner boundaries',()=>{
+describe('stationary guardians and real owner boundaries (set 1.18.0)',()=>{
   it('front interception writes no position/visit/branch, cancellation ticks zero and redraw/reload never advance',()=>{
     const state=fixture('lion-valmir-road');selectPoiMap(state);const before=structuredClone(state);
     const id='lion-poi-valley-bridge-cache';
@@ -134,7 +135,7 @@ describe('graph-mobile encounters, turns and real owner boundaries',()=>{
     const resumed=migrateState(state);expect(resumed).toEqual(state);
     expect(retreatPoiElite(state,selectPoiMap(state))).toBe(true);expect(state).toEqual(before);
   });
-  it('front victory rewards only its elite, once; underlying chest stays unopened, defeated survives loss/reload',()=>{
+  it('front victory rewards only its guardian, once; the chest stays unopened, defeated survives loss/reload',()=>{
     const state=fixture('lion-valmir-road');const resolved=[...state.resolvedNodeIds];
     enterPoi(state,'lion-poi-valley-bridge-cache');const encounterId=state.run.poiExpedition!.encounter!.id;
     const combatId=commitPoiEliteFight(state,encounterId)!;
@@ -147,65 +148,96 @@ describe('graph-mobile encounters, turns and real owner boundaries',()=>{
     expect(loaded.run.poiExpedition!.elites['lion-elite-valley-sentinel']?.defeated).toBe(true);
     expect(selectPoiMap(loaded).threats).toHaveLength(0);
   });
-  it('rear interception retreats to the real adjacent safe origin without replay or another turn',()=>{
+  it('never moves on a movement, a settle or a reload, and Wait no longer exists',()=>{
     const state=fixture('lion-valmir-road'),exp=state.run.poiExpedition!;
-    const elite=exp.elites['lion-elite-valley-sentinel']!;
-    elite.positionId='lion-poi-valley-serpent';elite.patrolIndex=1;
-    exp.previousSafeNodeId='lion-reserve-trail';const before=structuredClone(state);
-    expect(waitPoiTurn(state,selectPoiMap(state))).toBe(true);
-    expect(exp.encounter?.kind).toBe('rear');expect(exp.turn).toBe(1);
-    expect(retreatPoiElite(state,selectPoiMap(state))).toBe(true);
-    expect(state.currentNodeId).toBe('lion-reserve-trail');expect(exp.turn).toBe(1);
-    expect(state.resolvedNodeIds).toEqual(before.resolvedNodeIds);expect(state.gold).toBe(before.gold);
-    expect(exp.elites['lion-elite-valley-sentinel']!.positionId).toBe('lion-valmir-road');
+    expect('waitPoiTurn' in expedition).toBe(false);
+    expect(exp.elites['lion-elite-valley-sentinel']).toMatchObject({active:true,positionId:'lion-poi-valley-bridge-cache'});
+    for(const id of ['lion-poi-valley-serpent','lion-valmir-road','lion-poi-valley-serpent']){
+      expect(enterPoi(state,id)?.interception).toBeUndefined();settlePoiNavigation(state);
+      expect(exp.encounter).toBeUndefined();expect(exp.pendingStep).toBeUndefined();
+      expect(exp.elites['lion-elite-valley-sentinel']!.positionId).toBe('lion-poi-valley-bridge-cache');
+    }
+    expect(exp.turn).toBe(3);
+    const loaded=migrateState(JSON.parse(JSON.stringify(state)));
+    expect(loaded.run.poiExpedition!.elites['lion-elite-valley-sentinel']!.positionId).toBe('lion-poi-valley-bridge-cache');
+    expect(selectPoiMap(state).threats).toEqual([{id:'lion-elite-valley-sentinel',label:LOT_E_ELITES[0]!.label,region:1,
+      positionId:'lion-poi-valley-bridge-cache',canFight:true,challenge:{condition:'3 héros au plus',prime:'2 gemmes rouges'}}]);
   });
-  it('rejects the rear threat movement when no safe retreat exists, retaining an explicit fight or alternate route',()=>{
+  it('an older save resumes each guardian at its post and clears its pending step without moving anyone',()=>{
     const state=fixture('lion-valmir-road'),exp=state.run.poiExpedition!,elite=exp.elites['lion-elite-valley-sentinel']!;
     elite.positionId='lion-poi-valley-serpent';elite.patrolIndex=1;
-    expect(waitPoiTurn(state,selectPoiMap(state))).toBe(true);
-    expect(exp.encounter).toBeUndefined();expect(elite.positionId).toBe('lion-poi-valley-serpent');
-    const map=selectPoiMap(state);expect(map.threats[0]?.contested).toBe(true);expect(map.threats[0]?.canFight).toBe(true);
-    expect(map.nodes.some(node=>node.canMove&&node.id!==elite.positionId)).toBe(true);
+    exp.pendingStep={step:4,fromNodeId:'lion-reserve-trail',toNodeId:'lion-valmir-road'};exp.turn=4;
+    const loaded=migrateState(JSON.parse(JSON.stringify(state))),next=loaded.run.poiExpedition!;
+    expect(next.pendingStep).toBeUndefined();expect(next.turn).toBe(4);expect(next.encounter).toBeUndefined();
+    expect(next.elites['lion-elite-valley-sentinel']).toMatchObject({active:true,positionId:'lion-poi-valley-bridge-cache'});
+    expect(loaded.currentNodeId).toBe('lion-valmir-road');
   });
-  it('has no activation in I, spawns only after real prerequisites, and defers a player-occupied spawn',()=>{
+  it('a saved rear encounter resolves under the existing rules without repositioning, then the guardian returns to its post',()=>{
+    const state=fixture('lion-valmir-road'),exp=state.run.poiExpedition!,elite=exp.elites['lion-elite-valley-sentinel']!;
+    elite.positionId='lion-valmir-road';exp.previousSafeNodeId='lion-reserve-trail';
+    exp.encounter={id:'lion-elite-valley-sentinel:2:rear',eliteId:'lion-elite-valley-sentinel',kind:'rear',originNodeId:'lion-valmir-road',
+      targetNodeId:'lion-valmir-road',safeReturnNodeId:'lion-reserve-trail',phase:'choice'};
+    const loaded=migrateState(JSON.parse(JSON.stringify(state)));
+    expect(loaded.run.poiExpedition!.elites['lion-elite-valley-sentinel']!.positionId).toBe('lion-valmir-road');
+    expect(retreatPoiElite(loaded,selectPoiMap(loaded))).toBe(true);expect(loaded.currentNodeId).toBe('lion-reserve-trail');
+    settlePoiNavigation(loaded);
+    expect(loaded.run.poiExpedition!.elites['lion-elite-valley-sentinel']!.positionId).toBe('lion-poi-valley-bridge-cache');
+  });
+  it('has no guardian in I, posts each one once its chest unlocks, and defers a company-occupied post',()=>{
     const state=fixture();expect(selectPoiMap(state).threats).toHaveLength(0);
     state.resolvedNodeIds.push('lion-valmir-road');state.run.currentNodeId=state.currentNodeId='lion-poi-valley-bridge-cache';
     syncPoiElites(state);expect(state.run.poiExpedition!.elites['lion-elite-valley-sentinel']!.active).toBe(false);
     state.run.currentNodeId=state.currentNodeId='lion-valmir-road';syncPoiElites(state);
     expect(state.run.poiExpedition!.elites['lion-elite-valley-sentinel']!.active).toBe(true);
+    const seal=fixture('lion-witnesses');
+    expect(seal.run.poiExpedition!.elites['lion-elite-seal-warden']!.active).toBe(false);
+    seal.resolvedNodeIds.push('lion-final-trial-event','lion-shadow-signs');syncPoiElites(seal);
+    expect(seal.run.poiExpedition!.elites['lion-elite-seal-warden']).toMatchObject({active:true,positionId:'lion-poi-seal-ruin-supplies'});
   });
-  it.each(LOT_E_ELITES.map(elite=>elite.id))('resolved-only bounded zone of %s retains a legal continuation',eliteId=>{
-    const def=LOT_E_ELITES.find(elite=>elite.id===eliteId)!;
-    const initial=fixture(def.activateAfterResolved);
-    // Resolved optional zone permits inert backtracking; this is a graph proof, never played wins.
-    initial.resolvedNodeIds.push(...LOT_E_POIS.filter(poi=>poi.region===def.region).map(poi=>poi.id));
-    const queue=[initial],seen=new Set<string>();let collisions=0;
-    for(let n=0;n<queue.length;n++){
-      const state=queue[n]!,exp=state.run.poiExpedition!,elite=exp.elites[eliteId]!;
-      const key=JSON.stringify([state.currentNodeId,elite.positionId,elite.defeated,exp.previousSafeNodeId,exp.encounter?.kind]);
-      if(seen.has(key))continue;seen.add(key);expect(seen.size).toBeLessThan(500);
-      expect(def.allowedPositions).toContain(elite.positionId);
-      if(exp.encounter){
-        collisions++;const retreat=structuredClone(state);expect(retreatPoiElite(retreat,selectPoiMap(retreat))).toBe(true);queue.push(retreat);
-        const victory=structuredClone(state);expect(winElite(victory)).toBe(true);
-        expect(victory.resolvedNodeIds).toEqual(state.resolvedNodeIds);
-        const defeat=structuredClone(state);failRunToCheckpoint(defeat);expect(defeat.run.poiExpedition!.elites[eliteId]!.defeated).toBe(false);
-        continue;
-      }
-      const map=selectPoiMap(state);
-      const moves=map.nodes.filter(node=>node.canMove&&(!LION_CANONICAL_POI_IDS.includes(node.id)||state.resolvedNodeIds.includes(node.id)));
-      expect(moves.length+Number(map.threats.some(threat=>threat.canFight))).toBeGreaterThan(0);
-      const waiting=structuredClone(state);expect(waitPoiTurn(waiting,selectPoiMap(waiting))).toBe(true);queue.push(waiting);
-      for(const move of moves){const next=structuredClone(state);expect(enterPoi(next,move.id)).not.toBeNull();settlePoiNavigation(next);queue.push(next);}
-    }
-    expect(seen.size).toBeGreaterThan(10);expect(collisions).toBeGreaterThan(0);
+  it('the seal warden guards the ruins reserve: Combat or retreat, then the chest opens after victory',()=>{
+    const state=fixture('lion-shadow-signs');
+    expect(state.run.poiExpedition!.elites['lion-elite-seal-warden']!.active).toBe(true);
+    expect(enterPoi(state,'lion-poi-seal-ruin-supplies')?.interception).toBe(true);
+    expect(winElite(state)).toBe(true);expect(state.currentNodeId).toBe('lion-shadow-signs');
+    const entered=enterPoi(state,'lion-poi-seal-ruin-supplies');expect(entered?.interception).toBeUndefined();expect(entered?.activate).toBe(true);
+    expect(createPoiChestAdapter()(state,'lion-poi-seal-ruin-supplies')).not.toBeNull();
   });
-  it.each(LOT_E_ELITES.map(elite=>elite.id))('exhausts resolution masks, collisions, outcomes and reloads for %s, with a path to a real canonical trial',eliteId=>{
+  it('credits the guardian prime once with its rewards, never on a duplicate, a defeat or a retreat',()=>{
+    const state=fixture('lion-valmir-road'),gems=(target:GameState)=>target.inventory.materials.red_gem??0,start=gems(state);
+    enterPoi(state,'lion-poi-valley-bridge-cache');
+    const retreat=structuredClone(state);expect(retreatPoiElite(retreat,selectPoiMap(retreat))).toBe(true);expect(gems(retreat)).toBe(start);
+    const encounterId=state.run.poiExpedition!.encounter!.id,combatId=commitPoiEliteFight(state,encounterId)!;
+    const held:CombatResult={...result(combatId),participants:['a','b','c'],rounds:4,itemsUsed:0};
+    const defeat=structuredClone(state);expect(resolvePoiEliteVictory(defeat,encounterId,{...held,victory:false})).toBe(false);
+    failRunToCheckpoint(defeat);expect(gems(defeat)).toBe(start);
+    expect(resolvePoiEliteVictory(state,encounterId,held)).toBe(true);expect(gems(state)).toBe(start+1+2);
+    expect(resolvePoiEliteVictory(state,encounterId,held)).toBe(false);expect(gems(state)).toBe(start+3);
+    expect(gems(migrateState(JSON.parse(JSON.stringify(state))))).toBe(start+3);
+  });
+  it('keeps every guarded post out of the intermediate steps of a resolved-POI travel route',()=>{
+    const state=fixture('lion-valmir-road');
+    state.resolvedNodeIds.push(...LOT_E_POIS.filter(poi=>poi.region===1).map(poi=>poi.id));
+    state.run.visitedNodeIds.push(...LOT_E_POIS.filter(poi=>poi.region===1).map(poi=>poi.id));syncPoiElites(state);
+    const posts=selectPoiMap(state).threats.map(threat=>threat.positionId);expect(posts).toEqual(['lion-poi-valley-bridge-cache']);
+    for(const node of selectPoiMap(state).nodes.filter(node=>node.canTravel))
+      expect(node.travelRoute.slice(1,-1).some(id=>posts.includes(id))).toBe(false);
+  });
+  it('a chest already looted in an older save keeps its guardian at its post, optional and fightable from a neighbour',()=>{
+    const state=fixture('lion-valmir-road');state.resolvedNodeIds.push('lion-poi-valley-bridge-cache');syncPoiElites(state);
+    const threat=selectPoiMap(state).threats[0]!;
+    expect(threat.positionId).toBe('lion-poi-valley-bridge-cache');expect(threat.canFight).toBe(true);
+    expect(selectPoiMap(state).nodes.find(node=>node.id==='lion-poi-valley-bridge-cache')?.canTravel).toBe(false);
+  });
+});
+
+describe('exhaustive guardian reachability (set 1.18.0)',()=>{
+  it('exhausts resolution masks, interceptions, outcomes and reloads around the valley sentinel, with a path to a real canonical trial',()=>{
+    const eliteId='lion-elite-valley-sentinel';
     const def=LOT_E_ELITES.find(elite=>elite.id===eliteId)!;
     const optional=LOT_E_POIS.filter(poi=>poi.region===def.region);
-    const goals=def.region===1?['lion-second-trial-event','lion-second-trial-combat']:['lion-final-trial-event','lion-final-trial-combat'];
-    const anchors=def.region===1?['lion-first-refuge','lion-reserve-trail','lion-valmir-road']:['lion-second-refuge','lion-lancer-recruit','lion-witnesses'];
-    const prohibited=def.region===1?['lion-village-choice','lion-second-refuge']:['lion-shadow-signs','lion-final-refuge','lion-final-judgement'];
+    const goals=['lion-second-trial-event','lion-second-trial-combat'];
+    const anchors=['lion-first-refuge','lion-reserve-trail','lion-valmir-road'];
+    const prohibited=['lion-village-choice','lion-second-refuge'];
     const allowed=new Set([...anchors,...goals,...optional.map(poi=>poi.id)]);
     const base=fixture(def.activateAfterResolved);
     const states:GameState[]=[],keys=new Map<string,number>(),reverse=new Map<number,Set<number>>(),terminal=new Set<number>();
@@ -214,7 +246,7 @@ describe('graph-mobile encounters, turns and real owner boundaries',()=>{
       selectPoiMap(state); // Materialize existing adaptive data before comparing durable snapshots.
       const exp=state.run.poiExpedition!;
       const key=JSON.stringify([state.currentNodeId,state.resolvedNodeIds.filter(id=>id.startsWith('lion-poi-')).sort(),
-        Object.values(exp.elites).map(elite=>[elite.active,elite.positionId,elite.patrolIndex,elite.defeated]),
+        Object.values(exp.elites).map(elite=>[elite.active,elite.positionId,elite.defeated]),
         exp.previousSafeNodeId,exp.encounter&&[exp.encounter.eliteId,exp.encounter.kind,exp.encounter.phase,exp.encounter.safeReturnNodeId],
         state.run.traversalBranches]);
       let index=keys.get(key);
@@ -227,14 +259,14 @@ describe('graph-mobile encounters, turns and real owner boundaries',()=>{
       for(let bit=0;bit<optional.length;bit++)if(mask&(1<<bit)){
         state.resolvedNodeIds.push(optional[bit]!.id);state.run.visitedNodeIds.push(optional[bit]!.id);
       }
-      state.visitedNodeIds=[...state.run.visitedNodeIds];add(state);
+      state.visitedNodeIds=[...state.run.visitedNodeIds];syncPoiElites(state);add(state);
     }
     for(let index=0;index<states.length;index++){
       const state=states[index]!,map=selectPoiMap(state),exp=state.run.poiExpedition!;
       const roundtrip=migrateState(JSON.parse(JSON.stringify(state)));
       expect(roundtrip).toEqual(JSON.parse(JSON.stringify(state)));reloads++;
       for(const id of prohibited)expect(map.nodes.find(node=>node.id===id)?.status).toBe('locked');
-      for(const actor of LOT_E_ELITES)expect(actor.allowedPositions).toContain(exp.elites[actor.id]!.positionId);
+      for(const actor of LOT_E_ELITES)expect(exp.elites[actor.id]!.positionId).toBe(GUARD_POSTS[actor.id]);
       if(goals.includes(state.currentNodeId)){
         expect(state.resolvedNodeIds).not.toContain(state.currentNodeId);expect(exp.encounter).toBeUndefined();terminal.add(index);continue;
       }
@@ -250,7 +282,6 @@ describe('graph-mobile encounters, turns and real owner boundaries',()=>{
         failRunToCheckpoint(defeat);expect(defeat.run.poiExpedition!.elites[liveElite]!.defeated).toBe(false);
         expect(defeat.run.temporaryLoot.gold).toBe(0);add(defeat,index);defeats++;continue;
       }
-      const waiting=structuredClone(state);expect(waitPoiTurn(waiting,selectPoiMap(waiting))).toBe(true);add(waiting,index);
       for(const node of map.nodes.filter(node=>node.canMove&&allowed.has(node.id))){
         const enteredState=structuredClone(state),entered=enterPoi(enteredState,node.id);expect(entered).not.toBeNull();
         if(entered!.interception){add(enteredState,index);continue;}
@@ -271,7 +302,7 @@ describe('graph-mobile encounters, turns and real owner boundaries',()=>{
     for(let index=0;index<work.length;index++)for(const prior of reverse.get(work[index]!)??[])
       if(!reachable.has(prior)){reachable.add(prior);work.push(prior);}
     expect(terminal.size).toBeGreaterThan(0);expect(reachable.size).toBe(states.length);
-    expect(states.length).toBeGreaterThan(100);expect(reloads).toBe(states.length);
+    expect(states.length).toBeGreaterThan(20);expect(reloads).toBe(states.length);
     expect(victories).toBeGreaterThan(0);expect(defeats).toBeGreaterThan(0);expect(retreats).toBeGreaterThan(0);
     expect(chests).toBeGreaterThan(0);expect(ordinaryResolutions).toBeGreaterThan(0);
   },60000);

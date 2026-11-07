@@ -158,6 +158,26 @@ describe('combat HUD presentation', () => {
     expect(html).toContain('4 / 4');
   });
 
+  it('states a set 1.18.0 challenge condition and prime under the objective, and a round limit with the round', () => {
+    const html = renderCombatObjective({ title: 'Duel', condition: 'Défaites le duelliste.', challenge: { condition: 'Victoire en 8 manches', prime: '2 gemmes rouges' },
+      round: 'Manche 3 / 8', foesDone: 0, foesTotal: 1, squadLabel: 'Escouade debout', squadValue: '4 / 4', expanded: true });
+    expect(html).toContain('<p class="obj__challenge"><b>Défi</b> · Victoire en 8 manches · Prime : 2 gemmes rouges si la condition est tenue</p>');
+    expect(html).toContain('Manche 3 / 8');
+    expect(renderCombatObjective({ title: 'x', condition: 'y', round: 'Manche 1', foesDone: 0, foesTotal: 1, squadLabel: 's', squadValue: '1', expanded: false }))
+      .not.toContain('obj__challenge');
+  });
+
+  it('refuses items in a no-items challenge everywhere an item can be used, and reports facts with the result (set 1.18.0)', () => {
+    const runtime = readFileSync(resolve('src/combat/legacyCombatRuntime.js'), 'utf8');
+    expect(runtime).toContain("const itemsForbidden=()=>Boolean(COMBAT_CHALLENGE&&COMBAT_CHALLENGE.kind==='no_items');");
+    expect(runtime).toContain('async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())return;');
+    expect(runtime).toContain("function bestItem(u,stands){ if(u.team!=='player'||itemsForbidden())return null;");
+    expect(runtime).toContain('function openItemMenu(){ if(itemsForbidden())return;');
+    expect(runtime).toContain('const itmDis = itemsForbidden() ||');
+    expect(runtime).toContain('rounds:G.round||0, itemsUsed:G.itemsUsedTotal||0');
+    expect(runtime).toContain('COMBAT_CHALLENGE=message.config.challenge||null;');
+  });
+
   it('escapes dynamic runtime text without mutating the supplied objects', () => {
     const hostile = Object.freeze({ ...unit, name: '<script>alert(1)</script>', statuses: [] });
     const html = renderCombatUnitCard(hostile, '');

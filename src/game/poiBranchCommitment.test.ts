@@ -2,7 +2,8 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { createInitialState, SaveRepository } from './store';
 import { activePoiBranchCommitment, bypassPoi, enterPoi as enterOwnerPoi, getAvailableRunNodes, runNodesAllowedByCommitment, selectPoiMap, settlePoiNavigation, travelToResolvedPoi } from './runSystem';
-import { retreatPoiElite, waitPoiTurn } from './poiExpedition';
+import * as expedition from './poiExpedition';
+import { retreatPoiElite } from './poiExpedition';
 import { LOT_E_ELITES } from '../campaign/LionPoiAuthoring';
 import type { GameState } from './types';
 
@@ -82,10 +83,11 @@ describe('branch commitment (set 1.17.0)', () => {
     }
   });
 
-  it('keeps company, save and Wait available while committed', () => {
+  it('keeps the commitment while company and save stay available; Wait no longer exists (set 1.18.0)', () => {
     const state = walkTo('lion-second-trial-event');
     expect(activePoiBranchCommitment(state)).not.toBeNull();
-    expect(waitPoiTurn(state, selectPoiMap(state))).toBe(true);
+    expect('waitPoiTurn' in expedition).toBe(false);
+    settlePoiNavigation(state);
     expect(activePoiBranchCommitment(state)?.targetNodeId).toBe('lion-village-choice');
   });
 

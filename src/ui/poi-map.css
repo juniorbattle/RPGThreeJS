@@ -48,7 +48,10 @@
 .poi-map__pawn .poi-map__pawn-base{fill:#d9b56a;stroke:#3a2a12;stroke-width:1.4}
 .poi-map__pawn-figure{filter:drop-shadow(0 0 1px #0b1620) drop-shadow(0 2px 2px #000a)}
 .poi-map__traveller .poi-map__pawn-piece{animation:poi-pawn-step .24s ease-in-out infinite}
-.poi-map__wait-note{display:block;font-size:9px;line-height:1.2;color:#d5c59e;margin-top:2px}
+/* Set 1.18.0: a challenge place carries a small text badge, readable without colour. */
+.poi-marker__challenge{position:absolute;left:50%;top:-15px;transform:translateX(-50%);padding:0 5px;border:1px solid #f0d58f;border-radius:3px;background:#2a1d0f;color:#f6dc97;font:700 9px/14px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;text-shadow:none;white-space:nowrap;pointer-events:none}
+.poi-map__challenge{color:#f6dc97!important}.poi-map__challenge strong{letter-spacing:.06em;text-transform:uppercase}
+.poi-legend__challenge{display:inline-block;padding:0 4px;border:1px solid #f0d58f;border-radius:3px;color:#f6dc97;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 @keyframes poi-pawn-step{50%{transform:translateY(-2px)}}
 
 .poi-marker__icon,.poi-marker__name{transition:background-color .16s,border-color .16s,box-shadow .16s}.poi-map .poi-marker{transition:opacity .16s,filter .16s}
