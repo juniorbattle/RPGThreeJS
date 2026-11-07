@@ -142,3 +142,15 @@ it('names consumable target and use controls from the catalog', async () => {
   }
   view.close(); await closed;
 });
+
+it('shows the skill an accessory swaps for this hero in its row and its details (playtest 2026-11-06)', async () => {
+  const { state, root, view } = setup(); state.inventory.accessories.strength_ring = 1;
+  const before = JSON.stringify(state), closed = view.open();
+  root.querySelector<HTMLButtonElement>('[data-equip-slot="accessory"][data-equip-slot-index="0"]')!.click();
+  const row = root.querySelector<HTMLButtonElement>('[data-preview-item="strength_ring"]')!;
+  expect(row.querySelector('.weapon-replacement-meta')!.textContent).toContain('+5 FOR · Brise-Garde devient Lame Maudite');
+  row.click();
+  expect(root.textContent).toContain('Effet spécial');
+  expect(root.textContent).toContain('Brise-Garde devient Lame Maudite');
+  expect(JSON.stringify(state)).toBe(before); view.close(); await closed;
+});

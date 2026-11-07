@@ -511,9 +511,31 @@ export function getResolvedSkills(unit: { definitionId: string; equipment: Equip
 const ULTIMATE_AP = 5;
 const DEMO_HERO_IDS = new Set(['warrior', 'white_mage', 'dark_mage', 'archer', 'rogue', 'lancer']);
 
-function isInitialDemoHeroSkill(unit: { definitionId?: string }, skillId: string): boolean {
-  return Boolean(unit.definitionId && DEMO_HERO_IDS.has(unit.definitionId)
-    && unitById.get(unit.definitionId)?.skillIds[0] === skillId);
+/** A skill once the equipment's replacements apply, in the order getResolvedSkills applies them. */
+function resolveEquippedSkillReplacement(equipment: EquipmentLoadout, skillId: string): string {
+  let current = skillId;
+  for (const itemId of [...equipment.weaponIds, ...equipment.accessoryIds]) {
+    const replacement = itemId ? itemById.get(itemId)?.skillModifier?.replaces?.[current] : undefined;
+    if (replacement) current = replacement;
+  }
+  return current;
+}
+
+/**
+ * The skill a demo hero's initial slot holds with this equipment. An item that swaps it (Anneau de
+ * Force: Brise-Garde becomes Lame Maudite) keeps the slot free, as long as the swap costs no more AP.
+ */
+export function resolveInitialSkillId(unit: { definitionId?: string; equipment: EquipmentLoadout }): string | null {
+  const initialId = unit.definitionId ? unitById.get(unit.definitionId)?.skillIds[0] : undefined;
+  if (!initialId) return null;
+  const replacementId = resolveEquippedSkillReplacement(unit.equipment, initialId);
+  const initialAp = skillById.get(initialId)?.ap ?? 0;
+  return (skillById.get(replacementId)?.ap ?? Infinity) <= initialAp ? replacementId : initialId;
+}
+
+function isInitialDemoHeroSkill(unit: { definitionId?: string; equipment: EquipmentLoadout }, skillId: string): boolean {
+  if (!unit.definitionId || !DEMO_HERO_IDS.has(unit.definitionId)) return false;
+  return unitById.get(unit.definitionId)?.skillIds[0] === skillId || resolveInitialSkillId(unit) === skillId;
 }
 
 export function getEquippedWeaponTier(unit: { equipment: EquipmentLoadout }): number {

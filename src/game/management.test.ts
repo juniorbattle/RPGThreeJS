@@ -6,7 +6,7 @@ import {
 import { createInitialState, migrateState } from './store';
 import {
   createRecruitInstance, createUnitInstance, craftRecipeById, craftRecipes, getEquippedWeaponTier, getLockedSkillReason, getMaxUnlockedSkillAp, getResolvedSkills, getUnlockedSkillsForHero,
-  getWeaponProfileLabel, getWeaponSkillUnlockLabel, isSkillUnlockedForHero, isUltimateUnlockedForHero,
+  getWeaponProfileLabel, getWeaponSkillUnlockLabel, isSkillUnlockedForHero, isUltimateUnlockedForHero, resolveInitialSkillId,
   itemById, toCombatant, unitById, weaponById,
 } from './catalog';
 import type { CraftRecipeDefinition } from './types';
@@ -63,6 +63,24 @@ describe('clan management', () => {
     expect(getResolvedSkills(knight)).toContain('d_cursed_blade');
     expect(knight).not.toHaveProperty('level');
     expect(knight).not.toHaveProperty('xp');
+  });
+
+  it('keeps the initial skill slot free when an accessory swaps it, even with a novice weapon (playtest 2026-11-06)', () => {
+    const state = createInitialState();
+    const knight = state.clan.members.find((unit) => unit.id === 'warrior')!;
+    expect(getEquippedWeaponTier(knight)).toBe(0);
+    expect(getUnlockedSkillsForHero(knight)).toEqual(['w_break_guard']);
+    state.inventory.accessories.strength_ring = 1;
+    expect(equipAccessory(state, knight.id, 0, 'strength_ring')).toBe(true);
+    // Anneau de Force: Brise-Garde becomes Lame Maudite (2 AP) and stays usable without a T1 weapon.
+    expect(resolveInitialSkillId(knight)).toBe('d_cursed_blade');
+    expect(getUnlockedSkillsForHero(knight)).toEqual(['d_cursed_blade']);
+    expect(isSkillUnlockedForHero(knight, 'd_cursed_blade')).toBe(true);
+    expect(getLockedSkillReason(knight, 'd_cursed_blade')).toBe('');
+    // The other skills keep their weapon-tier rule.
+    expect(isSkillUnlockedForHero(knight, 'w_charge')).toBe(false);
+    // Lame Maudite is free only in that slot: Morvan's own copy is not a demo hero's initial skill swap.
+    expect(isSkillUnlockedForHero({ definitionId: 'warrior', equipment: { weaponIds: ['novice_greatsword'], accessoryIds: [null, null] } }, 'd_cursed_blade')).toBe(false);
   });
 
   it('rests wounded units to their calculated maximum health for a gold cost', () => {

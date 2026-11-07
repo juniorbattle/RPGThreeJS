@@ -1,6 +1,6 @@
 import {
   getFinalStats, getInnateGift, getLockedSkillReason, getResolvedSkills, getWeaponProfileLabel, getWeaponSkillUnlockLabel,
-  isSkillUnlockedForHero, itemById, items, unitById, weaponById, weapons,
+  isSkillUnlockedForHero, itemById, items, resolveInitialSkillId, unitById, weaponById, weapons,
 } from '../game/catalog';
 import {
   buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit, getCraftGoldCost, getForgeIngredients, getForgeRecipes, isUsefulToCompany,
@@ -386,7 +386,7 @@ export class ManagementView {
           <div class="weapon-modal__replacement-section">
             <div class="weapon-modal__section-title">Remplacer par</div>
             ${available.length > 0
-              ? `<div class="weapon-replacement-list">${available.map((item) => this.renderReplacementCard(item, currentWeapon, isWeaponSlot ? unit : null)).join('')}</div>`
+              ? `<div class="weapon-replacement-list">${available.map((item) => this.renderReplacementCard(item, currentWeapon, unit)).join('')}</div>`
               : '<p class="empty-copy">Aucun objet disponible dans l\'inventaire.</p>'}
           </div>
         `}
@@ -404,8 +404,8 @@ export class ManagementView {
   private getWeaponSkillName(weapon: WeaponDefinition, unit: UnitInstance): string | null {
     const tier = weapon.tier ?? 0;
     if (tier <= 0) {
-      const initialId = unitById.get(unit.definitionId)?.skillIds[0];
       const unequipped = { ...unit, equipment: { ...unit.equipment, weaponIds: [] } };
+      const initialId = resolveInitialSkillId(unequipped);
       return initialId && isSkillUnlockedForHero(unequipped, initialId)
         ? skillPresentation[initialId]?.name ?? null : null;
     }
@@ -470,6 +470,8 @@ export class ManagementView {
       if (granted.length > 0) {
         metaParts.push(granted.map((id) => skillPresentation[id]?.name ?? id).join(', '));
       }
+      const swap = this.skillSwapLabel(item, unit);
+      if (swap) metaParts.push(swap);
       if (item.innateGiftModifier) {
         metaParts.push(`Améliore ${item.innateGiftModifier.label}`);
       }
@@ -716,12 +718,21 @@ export class ManagementView {
       return this.renderWeaponDetails(item, comparisonWeapon, unit);
     }
     if (item.category === 'accessories') {
-      return this.renderAccessoryDetails(item);
+      return this.renderAccessoryDetails(item, unit);
     }
     return '';
   }
 
-  private renderAccessoryDetails(item: ItemDefinition): string {
+  /** An item's skill swaps, limited to the skills this hero has: "Brise-Garde devient Lame Maudite". */
+  private skillSwapLabel(item: ItemDefinition, unit?: UnitInstance | null): string {
+    const base = unit ? unitById.get(unit.definitionId)?.skillIds ?? [] : null;
+    return Object.entries(item.skillModifier?.replaces ?? {})
+      .filter(([source]) => !base || base.includes(source))
+      .map(([source, replacement]) => `${skillPresentation[source]?.name ?? source} devient ${skillPresentation[replacement]?.name ?? replacement}`)
+      .join(', ');
+  }
+
+  private renderAccessoryDetails(item: ItemDefinition, unit?: UnitInstance): string {
     const modifiers = item.modifiers ?? {};
     const labels: Record<string, string> = {
       maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END',
@@ -731,9 +742,10 @@ export class ManagementView {
       this.weaponStatRow(labels[key] ?? key, `+${value}`)
     ).join('');
     const granted = item.skillModifier?.grants ?? [];
-    const grantedLabel = granted.length > 0
-      ? granted.map((id) => skillPresentation[id]?.name ?? id).join(', ')
-      : '';
+    const grantedLabel = [
+      granted.map((id) => skillPresentation[id]?.name ?? id).join(', '),
+      this.skillSwapLabel(item, unit),
+    ].filter(Boolean).join(' · ');
     const innate = item.innateGiftModifier;
     return `<div class="weapon-modal__body">
       ${statRows ? `<div class="weapon-modal__stat-list">${statRows}</div>` : '<p class="empty-copy">Aucun bonus statistique.</p>'}
@@ -767,6 +779,7 @@ export class ManagementView {
       this.weaponStatRow('Critique', `+${weapon.critBonus}`, cmp ? weapon.critBonus - cmp.critBonus : undefined),
     ].filter(Boolean).join('');
     const affixText = formatWeaponAffix(weapon);
+    const swapText = this.skillSwapLabel(item, unit);
     return `<div class="weapon-modal__body">
       <div class="weapon-modal__badges">
         <span class="weapon-modal__tier-badge">${tierLabel}</span>
@@ -774,6 +787,7 @@ export class ManagementView {
       </div>
       <div class="weapon-modal__stat-list">${statRows}</div>
       ${affixText ? `<div class="weapon-modal__affix"><span class="weapon-modal__progression-label">Altération</span><p>${affixText}</p></div>` : ''}
+      ${swapText ? `<div class="weapon-modal__progression"><span class="weapon-modal__progression-label">Effet spécial</span><p>${swapText}</p></div>` : ''}
       <div class="weapon-modal__progression">
         <span class="weapon-modal__progression-label">Progression</span>
         <p>${progressionLabel}</p>
