@@ -118,6 +118,26 @@ Relecture contracts-guardian du 2026-11-07, sur une première version : PASS WIT
 - reprise après un repli ;
 - lecture de la Constitution, consignée.
 
+## Livraison de C
+
+`CURRENT FACT` Livrée le 2026-11-07 sur `dev`, sur la baseline `06a3a75f` :
+
+- **La règle** (`src/game/runSystem.ts`) :
+  - `activePoiBranchCommitment` lit les faits sauvegardés : la branche enregistrée, un lieu de branche résolu, ou, dans une ancienne sauvegarde, la position sur une bifurcation ; le refuge sécurisé compte comme résolution ;
+  - `committedNextSteps` donne les voisins d'un pas plus proches de la cible, sur le plus court chemin entre lieux ouverts, même hors de ce chemin ; sur la cible, il ne reste que l'activation ;
+  - `selectPoiMap` restreint le déplacement, le voyage et le contournement, et expose `commitment`, un fait dérivé jamais sauvegardé ;
+  - la marche, le voyage et le contournement passent tous par ce modèle ; le Journey ne s'engage jamais hors de l'engagement (`runNodesAllowedByCommitment`).
+- **La carte** : un bandeau en texte au bas de la carte, « Engagé : jusqu'à « Bois-Clair assiégé » · Retour, voyage et lieux annexes reprendront ensuite. », focalisable au clavier et à la manette. Un lieu fermé explique pourquoi.
+- **Sans chemin.** Si aucun chemin ne menait à la cible, la règle ne restreindrait rien plutôt que d'immobiliser la compagnie. Un test prouve que ce cas n'arrive jamais sur la carte de la démo : depuis chaque lieu ouvert, pour les trois bifurcations, branche résolue ou non, un chemin existe.
+
+Vérifications :
+
+- Tests (`src/game/poiBranchCommitment.test.ts`) : engagement à l'arrivée, pas suivant seul, activation du lieu courant, voyage et contournement fermés puis rouverts, les trois bifurcations, attente permise, reprise après un repli de sécurité, reprise depuis une nouvelle et deux anciennes formes de sauvegarde, levée par la résolution ou par un refuge sécurisé, conséquence des réfugiés appliquée une fois, absence de cas sans chemin, Journey gardé.
+- Quatre tests de navigation adaptés (`poiNavigation.test.ts`) : ils vérifient toujours la conséquence unique du contournement, la neutralisation sans récompense et les visites, désormais après la résolution du chapitre.
+- Bandeau (`PoiMapView.test.ts`). Suite complète, types, build, validateur, porte sur `06a3a75f`.
+- Navigateur, serveur 5181, à 1366 px avec le mouvement par défaut puis réduit, et à 390 px : bandeau affiché, seul « Bois-Clair assiégé » accessible, « Se rendre » grisé ailleurs avec la raison, bandeau focalisable, aucune erreur de page.
+- Relecture contracts-guardian de l'implémentation : PASS WITH WARNINGS. Les réserves sont traitées : le cas sans chemin est consigné et prouvé impossible sur la démo, le Journey est gardé, et le voyage fermé pendant l'engagement était déjà testé.
+
 ## Ce qui ne change pas
 
 - Le dialogue, les choix, les conséquences, les récompenses et l'ordre des lieux d'histoire.

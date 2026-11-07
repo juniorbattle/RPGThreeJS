@@ -7,8 +7,7 @@ import {
   creditRunReward, enterRunNode,
   getAvailableRunNodes, getRunNode, secureRunLoot, travelToResolvedPoi,
   selectPoiMap, enterPoi, bypassPoi, isPoiNeutralized, settlePoiNavigation,
-  commitPoiEliteFight, resolvePoiEliteVictory,
-} from './runSystem';
+  commitPoiEliteFight, resolvePoiEliteVictory, runNodesAllowedByCommitment } from './runSystem';
 import { createPoiChestAdapter } from './poiContentAdapters';
 import { beginPoiEliteEncounter, retreatPoiElite, waitPoiTurn } from './poiExpedition';
 import { LOT_E_ELITES } from '../campaign/LionPoiAuthoring';
@@ -1072,7 +1071,8 @@ export class GameApp {
       mode: this.mode,
       commitInFlight: this.routeCommitInFlight,
       nodeId,
-      listAvailable: () => getAvailableRunNodes(this.state),
+      // Set 1.17.0: a Journey commit never steps outside a branch commitment.
+      listAvailable: () => runNodesAllowedByCommitment(this.state, getAvailableRunNodes(this.state)),
     });
     if (!decision.authorized) {
       console.warn(`[Campaign] Refused route commit '${nodeId}' (${decision.rejection}).`);

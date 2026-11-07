@@ -91,6 +91,10 @@
 .poi-map:not([data-reduced-motion=true]) .poi-marker--next .poi-marker__icon{animation:poi-next-presence 2.8s ease-in-out infinite}
 @keyframes poi-next-presence{50%{box-shadow:0 0 0 6px #f3cf7966,0 0 26px #f3cf7988,0 3px 0 #07131b99}}
 .poi-map__stakes{color:#e8cf95!important;letter-spacing:.04em}
+/* Set 1.17.0: the branch commitment, stated with text. */
+.poi-map__commitment{margin:0 0 6px;padding:6px 12px;border:1px solid #f3cf79;border-radius:3px;background:#3a2c12;color:#ffe7a8;font-size:12px;line-height:1.4}
+.poi-map__commitment:before{content:"⚑ "}
+.poi-map__commitment:focus-visible{outline:3px solid #ffe7a5;outline-offset:2px}
 .poi-map__legend-box{display:flex;align-items:center;min-width:0;max-width:100%;font-size:11px;color:#e3dccb}
 .poi-map__legend-box summary{cursor:pointer;padding:6px 10px;min-height:44px;display:flex;align-items:center;box-sizing:border-box;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#e7cf98;white-space:nowrap}
 .poi-map__legend-box summary:focus-visible{outline:3px solid #ffe7a5;outline-offset:2px}

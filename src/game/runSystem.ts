@@ -715,6 +715,8 @@ export interface PoiMapModel {
   edges: { from: string; to: string; unlocked: boolean }[];
   threats: PoiThreatView[];
   turn: number;
+  /** Set 1.17.0: the branch commitment that restricts movement, when one does; derived, never saved. */
+  commitment?: PoiBranchCommitment | null;
 }
 
 function poiForkChoice(state: GameState, leg: typeof LION_TRAVERSAL_LEGS[number], ids: readonly string[]): string | undefined {
@@ -810,6 +812,88 @@ function resolvedPoiTravelRoutes(state: GameState, unlocked: ReadonlySet<string>
   return routes;
 }
 
+/**
+ * Set 1.17.0 (OD-2026-11-07-C): the three authored exclusive forks and the POI that resolves each chapter. Once saved
+ * facts show a branch chosen, the company is committed to its target until that POI is resolved.
+ */
+const LION_BRANCH_COMMITMENTS: readonly { legId: string; resolvingNodeId: string }[] = [
+  { legId: 'T0', resolvingNodeId: 'lion-first-refuge' },
+  { legId: 'T1', resolvingNodeId: 'lion-village-choice' },
+  { legId: 'T3', resolvingNodeId: 'lion-shadow-signs' },
+];
+
+export interface PoiBranchCommitment {
+  /** The chosen branch POI. */
+  forkNodeId: string;
+  /** The POI whose resolution releases the commitment. */
+  resolvingNodeId: string;
+  /** Where the next step leads: the chosen branch while it is unresolved, then the resolving POI. */
+  targetNodeId: string;
+}
+
+/** A chapter resolves by the predicate that already unlocks what follows it: its POI resolved, or a secured refuge. */
+function branchChapterResolved(state: GameState, resolvingNodeId: string): boolean {
+  return state.resolvedNodeIds.includes(resolvingNodeId) || Boolean(state.flags[`refugeSecured:${resolvingNodeId}`]);
+}
+
+/**
+ * The commitment in force, from saved facts only: the recorded branch, a resolved branch POI, or an older save's
+ * active encounter at a fork POI. Arrival at an unresolved fork POI therefore commits it. Adds no saved field.
+ */
+export function activePoiBranchCommitment(state: GameState): PoiBranchCommitment | null {
+  if (state.run.status !== 'active') return null;
+  for (const { legId, resolvingNodeId } of LION_BRANCH_COMMITMENTS) {
+    if (branchChapterResolved(state, resolvingNodeId)) continue;
+    const leg = LION_TRAVERSAL_LEGS.find(candidate => candidate.id === legId);
+    const fork = leg?.stages.find(stage => stage.mode === 'IN_TRAVERSAL_FORK');
+    if (!leg || !fork) continue;
+    const choice = poiForkChoice(state, leg, fork.nodeIds);
+    if (!choice || !fork.nodeIds.includes(choice)) continue;
+    return { forkNodeId: choice, resolvingNodeId, targetNodeId: state.resolvedNodeIds.includes(choice) ? resolvingNodeId : choice };
+  }
+  return null;
+}
+
+/**
+ * The POIs one step closer to the commitment's target, on the shortest route of connected edges between unlocked POIs,
+ * whether or not the company stands on that route. Empty on the target itself, where only its activation remains.
+ * Null when no such route exists: the movement rules then stay as they are rather than strand the company.
+ */
+function committedNextSteps(state: GameState, commitment: PoiBranchCommitment, unlocked: ReadonlySet<string>,
+  edges: readonly (readonly [string, string])[]): Set<string> | null {
+  const start = state.run.currentNodeId;
+  if (start === commitment.targetNodeId) return new Set();
+  const adjacency = new Map<string, Set<string>>();
+  const link = (from: string, to: string) => {
+    if (!unlocked.has(from) || !unlocked.has(to)) return;
+    if (!adjacency.has(from)) adjacency.set(from, new Set());
+    adjacency.get(from)!.add(to);
+  };
+  for (const [from, to] of edges) { link(from, to); link(to, from); }
+  const distance = new Map<string, number>([[commitment.targetNodeId, 0]]);
+  const queue = [commitment.targetNodeId];
+  for (const id of queue) {
+    for (const next of adjacency.get(id) ?? []) {
+      if (distance.has(next)) continue;
+      distance.set(next, distance.get(id)! + 1);
+      queue.push(next);
+    }
+  }
+  const here = distance.get(start);
+  if (here === undefined) return null;
+  return new Set([...adjacency.get(start) ?? []].filter(id => distance.get(id) === here - 1));
+}
+
+/**
+ * The legacy Journey successors a branch commitment still allows: all of them when none is in force. The Journey only
+ * commits at the chronicle's end or after the final refuge, past every fork, but it never steps outside a commitment.
+ */
+export function runNodesAllowedByCommitment(state: GameState, nodes: readonly RunNode[]): RunNode[] {
+  const map = selectPoiMap(state);
+  if (!map.commitment) return [...nodes];
+  return nodes.filter(node => map.nodes.some(candidate => candidate.id === node.id && candidate.canMove));
+}
+
 /** Read model uses existing authoritative adaptive assignments, never a presentation-owned variant. */
 export function selectPoiMap(state: GameState): PoiMapModel {
   const unlocked = unlockedPoiIds(state);
@@ -838,11 +922,15 @@ export function selectPoiMap(state: GameState): PoiMapModel {
     if(edge.fromNodeId===state.run.currentNodeId)neighbors.add(edge.toNodeId);
     if(edge.toNodeId===state.run.currentNodeId)neighbors.add(edge.fromNodeId);
   }
-  const travelRoutes = resolvedPoiTravelRoutes(state, unlocked, neighbors, [
+  const movementEdges = [
     ...state.run.graph.nodes.flatMap(node => node.links.map(id => [node.id, id] as const)),
     ...localEdges.filter(edge => edge.unlocked).map(edge => [edge.from, edge.to] as const),
     ...bypassEdges.map(edge => [edge.fromNodeId, edge.toNodeId] as const),
-  ]);
+  ];
+  const travelRoutes = resolvedPoiTravelRoutes(state, unlocked, neighbors, movementEdges);
+  // Set 1.17.0: while committed, only the next step toward the target moves; travel and bypass wait for the resolution.
+  const commitment = activePoiBranchCommitment(state);
+  const committedSteps = commitment ? committedNextSteps(state, commitment, unlocked, movementEdges) : null;
   const nodes = state.run.graph.nodes.map(raw => {
     const active = state.run.status === 'active';
     const node = active && unlocked.has(raw.id) ? resolveAdaptiveNode(state, raw) : raw;
@@ -855,7 +943,8 @@ export function selectPoiMap(state: GameState): PoiMapModel {
     const kind: PoiKind = node.type === 'chest' ? 'chest' : node.type === 'refuge' ? 'refuge'
       : node.type === 'combat' ? (ELITE_ROUTE_CONTENT_IDS.has(node.contentId) ? 'elite' : 'combat')
       : node.type === 'story' || node.type === 'boss' ? 'primary' : 'mystery';
-    const canMove = active && node.id !== state.run.currentNodeId && neighbors.has(node.id) && unlocked.has(node.id);
+    const canMove = active && node.id !== state.run.currentNodeId && neighbors.has(node.id) && unlocked.has(node.id)
+      && (!committedSteps || committedSteps.has(node.id));
     const metadata=LION_POI_METADATA[node.id];
     return { ...node,
       // Saved graph copy is historical; this current rule is presentation-derived, never migrated into saves.
@@ -864,8 +953,8 @@ export function selectPoiMap(state: GameState): PoiMapModel {
       participation:metadata?.participation??'required',status, kind, reusable, canMove,
       canActivate: active && !neutralized && unlocked.has(node.id) && node.depth > 0 && (status === 'available' || reusable),
       canBypass: active && Boolean(poiOptionalLeg(node.id)) && !neutralized && status === 'available'
-        && !state.run.bypassedRouteNodeIds?.includes(node.id) && (canMove || node.id === state.run.currentNodeId),
-      canTravel: travelRoutes.has(node.id), travelRoute: travelRoutes.get(node.id) ?? [],
+        && !state.run.bypassedRouteNodeIds?.includes(node.id) && (canMove || node.id === state.run.currentNodeId) && !committedSteps,
+      canTravel: !committedSteps && travelRoutes.has(node.id), travelRoute: committedSteps ? [] : travelRoutes.get(node.id) ?? [],
     };
   });
   const geography = {nodes, edges:[...state.run.graph.nodes.flatMap(n=>n.links.map(id=>({from:n.id,to:id,unlocked:unlocked.has(n.id)&&unlocked.has(id)}))),
@@ -874,6 +963,7 @@ export function selectPoiMap(state: GameState): PoiMapModel {
   return {currentNodeId:state.run.currentNodeId, gold:state.gold, temporaryGold:state.run.temporaryLoot.gold,
     reputation:state.reputation, nodes,
     edges:geography.edges, threats:selectPoiThreats(state, geography), turn:state.run.poiExpedition?.turn??0,
+    commitment: committedSteps ? commitment : null,
   };
 }
 

@@ -11,7 +11,7 @@
 | `MERGED_IN` | `NONE` |
 | `SUPERSEDES` | `NONE` |
 | `SUPERSEDED_BY` | `NONE` |
-| `PRODUCTION_IMPACT` | La carte des POI se lit d'un coup d'œil. Chaque palier d'arme ouvre une compétence (T1 3 PA, T2 4 PA), nommée partout, y compris en combat. Le Tir Calibré est relevé. La fiche d'unité se parcourt à la manette. Le refuge dit « Échoppe ». Les chemins engagés attendent l'approbation de l'amendement 1.17.0. |
+| `PRODUCTION_IMPACT` | La carte des POI se lit d'un coup d'œil. Chaque palier d'arme ouvre une compétence (T1 3 PA, T2 4 PA), nommée partout, y compris en combat. Le Tir Calibré est relevé. La fiche d'unité se parcourt à la manette. Le refuge dit « Échoppe ». Une branche de bifurcation choisie engage la compagnie jusqu'à la résolution du chapitre (set 1.17.0). |
 | `CANONICAL_DOCS_UPDATED` | `docs/autonomy/MAP_WEAPONS_PATHS_OPERATOR_DECISION_2026-11-07.md`, `docs/autonomy/BRANCH_COMMITMENT_AMENDMENT_1.17.0.patch` (proposition), le registre des décisions et l'état vivant. |
 | `EVIDENCE` | Tests ciblés : `management.test.ts`, `ManagementView.test.ts`, `GamepadNavigator.test.ts`, `PoiMapView.test.ts`, `DemoVfxActionScope.test.ts`, `VfxMissingSheetStandIn.test.ts`. Suite complète, types, build, validateur. Captures avant et après sous `tmp/design-review/` (ignoré) : carte aux régions I, II et III à 1366 px, en mouvement réduit et à 390 px ; écran Compagnie, forge, menu de compétences d'un combat du labo QA. |
 
@@ -73,7 +73,9 @@ Point à juger en jouant : la compagnie devient plus forte plus tôt. Prix et co
 
 ## Chemins engagés (OD-2026-11-07-C)
 
-`PROPOSED FUTURE DESIGN` Le verrou contredit les contrats verrouillés. L'amendement 1.17.0 est préparé et validé sur un arbre d'essai. La relecture contracts-guardian a donné PASS WITH WARNINGS ; toutes ses réserves sont reprises. Le texte est soumis à l'opérateur ; le jeu ne change pas avant son approbation. Voir [la décision](../autonomy/MAP_WEAPONS_PATHS_OPERATOR_DECISION_2026-11-07.md).
+`CURRENT FACT` Le verrou contredisait les contrats verrouillés. L'amendement 1.17.0 a été préparé, relu (PASS WITH WARNINGS, réserves reprises), puis approuvé tel quel par l'opérateur et appliqué (baseline `06a3a75f`).
+
+Dans le jeu, dès que la compagnie pose le pied sur une branche de bifurcation, seule la suite du chemin reste ouverte jusqu'au lieu qui résout le chapitre. Un bandeau au bas de la carte l'annonce, et un lieu fermé dit pourquoi. La compagnie, la sauvegarde, l'attente et Combat ou repli restent. La résolution rouvre toute la carte. Aucun champ de sauvegarde n'est ajouté. Voir la section Livraison de C de [la décision](../autonomy/MAP_WEAPONS_PATHS_OPERATOR_DECISION_2026-11-07.md).
 
 ## Limites
 

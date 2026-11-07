@@ -53,13 +53,17 @@ describe('authoritative connected POI navigation',()=>{
       expect(state.run.bypassedRouteNodeIds).toContain('lion-refugees');
       expect(state.resolvedNodeIds).not.toContain('lion-refugees');
       expect(bypassPoi(state,trial)).toBeNull();expect(enterPoi(state,'lion-first-refuge')).toBeNull();
-      expect(enterPoi(state,'lion-nomad-crossroads')?.activate).toBe(false);
+      // Set 1.17.0: the chosen trial commits the company until the first refuge is resolved; no step back meanwhile.
+      expect(enterPoi(state,'lion-nomad-crossroads')).toBeNull();
       expect(enterPoi(state,trial)?.activate).toBe(true);expect(state.reputation).toBe(reputation-2);
       state.resolvedNodeIds.push(trial);
-      expect(enterPoi(state,'lion-refugees')?.activate).toBe(true);
-      state.resolvedNodeIds.push('lion-refugees');
-      expect(enterPoi(state,trial)?.activate).toBe(false);
+      expect(enterPoi(state,'lion-refugees')).toBeNull();
       expect(enterPoi(state,'lion-first-refuge')?.activate).toBe(true);
+      state.resolvedNodeIds.push('lion-first-refuge');
+      // Released: the compatible refugees are revisitable and the trial does not replay.
+      expect(enterPoi(state,trial)?.activate).toBe(false);
+      expect(enterPoi(state,'lion-refugees')?.activate).toBe(true);
+      expect(state.reputation).toBe(reputation-2);
     }
   });
   it('keeps legacy trial bypass saves resumable without granting a new trial success or clearing an earned refuge',()=>{
@@ -80,6 +84,10 @@ describe('authoritative connected POI navigation',()=>{
   it('preserves both directions of a legitimate bypass connection without replay or mandatory shortcuts',()=>{
     const state=crossroads();expect(bypassPoi(state,'lion-refugees')).not.toBeNull();
     resolveFixture(state,'lion-first-trial-event');
+    // Set 1.17.0: committed to the first refuge first; the bypass connection is checked once the chapter is resolved.
+    expect(node(state,'lion-nomad-crossroads').canMove).toBe(false);
+    resolveFixture(state,'lion-first-refuge');
+    expect(enterPoi(state,'lion-first-trial-event')?.activate).toBe(false);
     const before={flags:structuredClone(state.flags),resolved:[...state.resolvedNodeIds],steps:state.stepCounter,
       gold:state.gold,loot:structuredClone(state.run.temporaryLoot),reputation:state.reputation};
     expect(node(state,'lion-nomad-crossroads').canMove).toBe(true);
@@ -128,6 +136,10 @@ describe('authoritative connected POI navigation',()=>{
       e.unlocked&&((e.from===map.currentNodeId&&e.to===candidate.id)||(e.to===map.currentNodeId&&e.from===candidate.id)))).toBe(true);
     expect(enterPoi(state,'lion-first-trial-event')?.activate).toBe(true);
     state.resolvedNodeIds.push('lion-first-trial-event');
+    // Set 1.17.0: the revisit waits for the chapter's resolution.
+    expect(enterPoi(state,'lion-refugees')).toBeNull();
+    resolveFixture(state,'lion-first-refuge');
+    expect(enterPoi(state,'lion-first-trial-event')?.activate).toBe(false);
     expect(enterPoi(state,'lion-refugees')?.activate).toBe(true);
   });
   it('neutralizes only the incompatible fork without resolving/rewarding it or skipping the chosen battle',()=>{
@@ -137,9 +149,15 @@ describe('authoritative connected POI navigation',()=>{
     expect(state.resolvedNodeIds).not.toContain('lion-first-trial-event');
     expect(enterPoi(state,'lion-first-refuge')).toBeNull();
     state.resolvedNodeIds.push('lion-first-trial-combat');
-    expect(enterPoi(state,'lion-refugees')?.activate).toBe(false);
-    expect(enterPoi(state,'lion-first-trial-event')?.activate).toBe(false);
+    // Set 1.17.0: committed to the first refuge; the other branch and the refugees wait.
+    expect(enterPoi(state,'lion-refugees')).toBeNull();
+    expect(enterPoi(state,'lion-first-trial-event')).toBeNull();
     expect(enterPoi(state,'lion-first-refuge')?.activate).toBe(true);
+    state.resolvedNodeIds.push('lion-first-refuge');
+    // Released: the neutralized branch permits passage without activation or reward.
+    expect(enterPoi(state,'lion-first-trial-event')?.activate).toBe(false);
+    expect(enterPoi(state,'lion-refugees')?.activate).toBe(false);
+    expect(state.resolvedNodeIds).not.toContain('lion-first-trial-event');
   });
   it('materializes eligible adaptive content before first visit, stable across V6 reload',()=>{
     const state=crossroads();state.flags.lionMandateAdvance=true;resolveFixture(state,'lion-refugees');

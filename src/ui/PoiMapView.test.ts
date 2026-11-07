@@ -279,3 +279,28 @@ describe('the next step at a fork (OD-2026-11-07-A)',()=>{
     expect([...root.querySelectorAll<HTMLElement>('.poi-marker--next')].map(m=>m.dataset.poiId).sort()).toEqual(steps);
   });
 });
+
+describe('the branch commitment on the map (set 1.17.0)',()=>{
+  it('states the commitment and its target with text, focusable, and explains why other places are closed',()=>{
+    const state=createInitialState();
+    state.resolvedNodeIds=['lion-audience','lion-opening-ambush','lion-nomad-crossroads','lion-first-trial-event'];
+    state.flags.lionMissionAccepted=true;state.run.traversalBranches={T0:'lion-first-trial-event'};
+    state.run.currentNodeId=state.currentNodeId='lion-first-trial-event';
+    const model=selectPoiMap(state);
+    expect(model.commitment?.resolvingNodeId).toBe('lion-first-refuge');
+    const root=document.createElement('div');document.body.append(root);
+    new PoiMapView({root,onMove:vi.fn(async()=>{}),onBypass:vi.fn(),onCompany:vi.fn(),onSave:vi.fn(),onMenu:vi.fn()}).open(model);
+    const banner=root.querySelector<HTMLElement>('.poi-map__commitment')!;
+    expect(banner.textContent).toBe('Engagé : jusqu’à « Refuge du Lion » · Retour, voyage et lieux annexes reprendront ensuite.');
+    expect(banner.tabIndex).toBe(0);
+    marker('lion-nomad-crossroads').focus();
+    expect(root.querySelector('.poi-map__detail')!.textContent).toContain('Fermé pendant l’engagement');
+    expect(action().disabled).toBe(true);
+    marker('lion-first-refuge').focus();
+    expect(action().disabled).toBe(false);
+  });
+  it('shows no banner when nothing is committed',()=>{
+    fixture();
+    expect(document.querySelector('.poi-map__commitment')).toBeNull();
+  });
+});
