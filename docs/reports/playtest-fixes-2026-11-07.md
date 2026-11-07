@@ -164,7 +164,7 @@ Deux points de présentation soumis à l'opérateur, qui a retenu les deux recom
   - six défis, chacun avec une condition annoncée et une prime de gemmes rouges.
 - **Contrats.** La décision contredisait le jeu 1.4.0 (élites mobiles, attente explicite, récompenses exactes du Lot E). L'opérateur a approuvé l'amendement 1.18.0 tel quel ; baseline immuable `478cb676`.
 - **Livraison.** Gardiens fixes, attente retirée, six défis avec condition et prime décidée par RunSystem, refus des objets et compte des manches en combat, défi annoncé sur la carte, au déploiement et en combat, verdict au retour sur la carte. Détail et vérifications dans [la décision](../autonomy/POI_CHALLENGES_OPERATOR_DECISION_2026-11-07.md#livraison).
-- **Demande suivante.** L'opérateur propose aussi des vagues d'ennemis dans les combats de défi. Cette idée sort du texte 1.18.0 approuvé ; elle sera soumise à part.
+- **Demande suivante.** L'opérateur propose aussi des vagues d'ennemis dans les combats de défi. Cette idée sortait du texte 1.18.0 approuvé. Fiche remplie, quatre recommandations retenues (OD-2026-11-07-G) : deux vagues de la même formation chez les deux gardiens seulement, sans soin entre les deux, récompense et prime inchangées. Amendement 1.19.0 préparé, relu et soumis ; le jeu ne change pas avant son approbation.
 
 ## Limites
 

@@ -1,4 +1,4 @@
-# Défis et gardiens fixes, attente retirée — OD-2026-11-07-F
+# Défis et gardiens fixes, attente retirée, vagues des gardiens — OD-2026-11-07-F et G
 
 - **Date** : 2026-11-07 (America/Toronto).
 - **Source** :
@@ -156,6 +156,56 @@ Vérifications :
   - tests ajoutés pour le doublon, la défaite, le repli, le combat ordinaire et les trajets ;
   - refus des objets et compte des manches vérifiés en jeu.
 - **Non fait.** Le pilote QA de bout en bout (`tools/demo-continuous-production-qa.mjs`) est adapté sans être relancé.
+
+## OD-2026-11-07-G — deux vagues chez les gardiens
+
+- **Source.** Pendant la livraison de F, l'opérateur propose d'intégrer aussi des vagues d'ennemis dans les combats de défi. [Fiche d'arbitrages](https://claude.ai/artifact/38xYq9myvAc8AQjdENQWGe) remplie le 2026-11-07 : quatre choix, tous recommandés, sans note.
+- **Statut.** APPROVED IN PRINCIPLE. Les vagues changent la formation de combats que le jeu 1.18.0 garde inchangée : l'amendement 1.19.0 est préparé, relu, puis son texte est soumis à l'opérateur. Le jeu ne change pas avant son approbation.
+
+`APPROVED DECISION`, sous réserve de l'amendement.
+
+1. **Où (V1).** Seuls les deux gardiens, la Sentinelle de la vallée et la Garde des ruines, se combattent en vagues. Ce sont des troupes. Le troll, le duelliste et le jeune dragon restent des duels, et la Meute du détour une initiation simple.
+2. **Quand (V2).** Dès que la première vague tombe, la seconde entre sur le terrain, sans soin ni résurrection entre les deux.
+3. **Combien (V3).** Deux vagues. La seconde reprend la même formation avec les mêmes statistiques : aucun ennemi nouveau, aucun rééquilibrage.
+4. **Récompense (V4).** Récompense et prime inchangées.
+
+`CURRENT FACT` Le moteur sait déjà enchaîner des vagues, mais seulement dans le mode escarmouche du labo, où la compagnie est soignée entre deux vagues et où les ennemis gagnent 18 % à chaque vague. En campagne, un combat finit à la première vague. Ce mode du labo ne change pas.
+
+### Amendement 1.19.0 proposé
+
+`PROPOSED FUTURE DESIGN` Le texte est dans [`GUARDIAN_WAVES_AMENDMENT_1.19.0.patch`](GUARDIAN_WAVES_AMENDMENT_1.19.0.patch), validé par `npm run contracts:validate` sur un arbre d'essai. Il change `COMBAT_AND_VFX`, `TRAVERSAL` (un simple renvoi), `UI_AND_ACCESSIBILITY` et `AUTHORING_AND_QA`, ainsi que le README et le manifeste. Les contrats du dépôt restent intacts jusqu'à l'approbation de l'opérateur.
+
+Ce qu'il dit, en clair :
+
+- **Les vagues** (`COMBAT_AND_VFX.md`).
+  - Les deux combats de gardien (`poi_elite_valley_sentinel`, `poi_elite_seal_warden`) se jouent en deux vagues, et tous les autres combats en une seule.
+  - Le nombre de vagues est un champ facultatif et fixe de la configuration de combat, à un par défaut et jamais sauvegardé.
+  - Quand tous les ennemis de la première vague sont vaincus, le combat tactique fait entrer la seconde par un chemin dédié, qui n'est ni la transition du labo ni une fin de combat : pas de carte de résultat, pas de son de victoire ni de fanfare, pas de message de résultat à la campagne, et la rencontre reste ouverte.
+  - La seconde vague reprend la même formation avec les mêmes statistiques, sans le renforcement de 18 % du labo. Elle se place sur les cases libres les plus proches de ses cases d'origine, et ses ennemis jouent à partir de l'ordre de la manche suivante. Elle n'utilise que les entrées et les sons existants, sans effet ni son nouveau.
+- **Entre les vagues.** Rien n'est rendu ni remis à zéro : pas de soin, pas de résurrection, pas de PA, d'états ni d'objets rendus, et le compte des manches continue. Les faits renvoyés avec l'issue (manches, objets utilisés, héros déployés) couvrent tout le combat.
+- **L'issue.** La victoire ne vient qu'à la chute de la seconde vague. Une défaite pendant l'une ou l'autre suit les règles existantes. Le combat ne renvoie son issue qu'une fois.
+- **Ce qui ne change pas.** Récompenses, condition de 3 héros, prime, combat unique et décision de RunSystem. Une vague ne donne aucune récompense en plus.
+- **La sauvegarde.** Le nombre de vagues est une configuration fixe, et la vague en cours un état passager du combat, jamais sauvegardé. Un combat de gardien repris depuis une sauvegarde recommence donc à sa première vague.
+- **L'affichage** (`UI_AND_ACCESSIBILITY.md`). La rencontre et le déploiement annoncent les deux vagues en texte. Pendant le combat, l'objectif montre la vague en cours (« Vague 1 / 2 ») et une ligne de texte annonce l'arrivée de la seconde vague. Le tout reste lisible sans la couleur, à 1366 et 390 px, mouvement réduit ou non.
+- **Les tests exigés** (`AUTHORING_AND_QA.md`) :
+  - seuls les gardiens ont deux vagues ;
+  - la seconde n'entre qu'après la chute de la première, identique et sans rien rendre ;
+  - victoire seulement après la seconde, défaite dans l'une ou l'autre selon les règles existantes ;
+  - issue renvoyée une fois, avec des faits qui couvrent les deux vagues ;
+  - un combat de gardien repris depuis une sauvegarde recommence à sa première vague ;
+  - récompenses et primes inchangées ;
+  - vagues lisibles avant et pendant le combat.
+
+Relecture contracts-guardian du 2026-11-07, sur une première version : PASS WITH WARNINGS. Les réserves sont reprises dans le texte ci-dessus :
+
+- le passage à la seconde vague ne doit pas emprunter le seul chemin de vagues existant, qui joue une victoire, affiche un résultat et clôt le combat en campagne ; le texte impose un chemin dédié sans résultat ;
+- l'emplacement de la seconde vague et le moment où ses ennemis jouent sont précisés, et le compte des manches ne repart pas de zéro ;
+- le champ de configuration du nombre de vagues est nommé, et le renforcement du labo écarté ;
+- `TRAVERSAL` reçoit un renvoi, puisqu'il désigne l'annexe comme source des formations des gardiens ;
+- tests ajoutés : reprise d'un combat à sa première vague, faits couvrant les deux vagues ;
+- la relecture signalait aussi que la décision G manquait dans le dossier lié ; elle avait lu la copie d'essai, alors que la décision était déjà consignée dans le dépôt.
+
+Remarque de la relecture pour l'opérateur : deux vagues sans soin, à 3 héros au plus, rendent les gardiens nettement plus durs. Toute retouche d'équilibre après ton jeu demandera une nouvelle décision.
 
 ## Ce qui ne change pas
 
