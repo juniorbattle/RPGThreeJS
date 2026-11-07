@@ -1041,7 +1041,7 @@ function createUnit(def){
   const u={
     id:++UID, campaignId:def.campaignId||null, combatPoseUnitId:def.combatPoseUnitId||null, portrait:def.portrait||'', team:def.team, kind:def.kind, name:def.name, className:def.className||'',
     maxhp:def.maxhp||def.hp, hp:Math.min(def.hp,def.maxhp||def.hp), str:def.str, mag:def.mag, end:def.end, dex:def.dex, cha:def.cha,
-    mov:def.mov, weapons:def.weapons, skills:def.skills.slice(), skillUpgrades:def.skillUpgrades||{}, ai:def.ai||'aggressive',
+    mov:def.mov, weapons:def.weapons, skills:def.skills.slice(), lockedSkills:(def.lockedSkills||[]).slice(), skillUpgrades:def.skillUpgrades||{}, ai:def.ai||'aggressive',
     ap:QA_FULL_AP?unitMaxAp:0, maxap:unitMaxAp, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false, _ultCooldown:5, _hasStartedTurn:false,
     size:def.size||1, immobile:!!def.immobile, boss:!!def.boss, elite:!!def.elite,
     // Sprites are authored facing right. Foes are mirrored via

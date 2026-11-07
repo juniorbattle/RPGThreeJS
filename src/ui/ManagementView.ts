@@ -712,7 +712,7 @@ export class ManagementView {
   private skillSwapLabel(item: ItemDefinition, unit?: UnitInstance | null): string {
     const base = unit ? unitById.get(unit.definitionId)?.skillIds ?? [] : null;
     return Object.entries(item.skillModifier?.replaces ?? {})
-      .filter(([source]) => !base || base.includes(source))
+      .filter(([source]) => (!base || base.includes(source)) && (skillPresentation[source]?.ap ?? 0) < 5)
       .map(([source, replacement]) => `${skillPresentation[source]?.name ?? source} devient ${skillPresentation[replacement]?.name ?? replacement}`)
       .join(', ');
   }

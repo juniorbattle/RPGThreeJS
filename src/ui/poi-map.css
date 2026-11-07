@@ -16,25 +16,25 @@
 .poi-map__geography{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
 .poi-map__canvas:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;box-shadow:inset 0 0 45px #08132280}
 .poi-map__canvas svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
-.poi-path-shadow{fill:none;stroke:#102225;stroke-width:4;stroke-linecap:round;opacity:.3}.poi-path{fill:none;stroke:#c5c1ab;stroke-width:1.2;stroke-linecap:round;stroke-dasharray:2 6;opacity:.48}.poi-path--open{stroke:#d8cb9c;opacity:.6;stroke-dasharray:none;stroke-width:1.4}.poi-path--adjacent{stroke:#efdb9b;opacity:.9;stroke-width:2}.poi-path--selected{stroke:#ffe7ab;opacity:1;stroke-width:3;filter:drop-shadow(0 0 3px #d5a64d)}
+.poi-path-shadow{fill:none;stroke:#081014;stroke-width:3;stroke-linecap:round;opacity:.2}.poi-path-shadow--open{stroke-width:6.5;opacity:.6}.poi-path{fill:none;stroke:#bdb69e;stroke-width:1.5;stroke-linecap:round;stroke-dasharray:1.5 6;opacity:.38}.poi-path--open{stroke:#ead9a6;opacity:.85;stroke-dasharray:none;stroke-width:2.6}.poi-path--adjacent{stroke:#ffe6a6;opacity:1;stroke-width:3.2}.poi-path--selected{stroke:#fff1c4;opacity:1;stroke-width:4.4;filter:drop-shadow(0 0 4px #e2b45c)}
 .poi-map .poi-marker{position:absolute;z-index:2;transform:translate(-50%,-50%);padding:0 4px;background:transparent!important;border:0;display:flex;align-items:center;flex-direction:column;gap:4px;min-width:70px;max-width:142px;text-shadow:0 1px 2px #000;overflow:visible}
 .poi-marker__icon{display:grid;place-items:center;width:44px;height:44px;box-sizing:border-box;background:#10212eef;border:2px solid #baa77a;border-radius:50%;font-size:24px;color:#f2dfb1;box-shadow:0 3px 0 #07131b99,0 1px 12px #0006}
 .poi-marker--primary .poi-marker__icon{border-radius:9px;border-width:2px;width:48px;height:48px;border-color:#f3ce7e;background:#21313a;box-shadow:0 0 0 3px #182329d9,0 3px 0 #0008}
 .poi-marker--structuring .poi-marker__icon{border-style:double;border-width:4px;border-color:#e0c495}
-.poi-marker--combat .poi-marker__icon{color:#ebc3a2}.poi-marker--elite .poi-marker__icon{color:#ffcfad;border-color:#de9774;background:#3a2830}.poi-marker--refuge .poi-marker__icon{color:#dce8d0}
+.poi-marker--combat .poi-marker__icon{color:#ebc3a2}.poi-marker--elite .poi-marker__icon{color:#ecd8ff;border-color:#c7a3e6;background:#2e2638}.poi-marker--refuge .poi-marker__icon{color:#dce8d0}
 .poi-marker__name{font-size:12px;line-height:1.25;font-weight:600;max-width:140px;background:#0b1b29ed;padding:4px 7px;border:1px solid #83734b;border-radius:3px;box-shadow:0 2px 5px #0005}
 .poi-marker--locked .poi-marker__icon{background:#1e2a31;border-color:#84908c;color:#bac2ba}.poi-marker--locked .poi-marker__name{color:#ccd0c5;border-color:#626e65}
 .poi-marker--neutralized .poi-marker__icon{border-style:dashed;color:#c2c9bc;background:#303a3c}.poi-marker--neutralized .poi-marker__name{color:#c2c9bc;border-style:dashed}
 .poi-marker--resolved .poi-marker__icon{border-color:#9ccca7;color:#c4e2c7}.poi-marker--resolved .poi-marker__name{border-color:#7aa58c}
-.poi-marker--current .poi-marker__icon{outline:3px solid #ffdfa0;outline-offset:4px;box-shadow:0 0 20px #f3cf7955}.poi-marker[aria-pressed=true] .poi-marker__name{background:#edd29b;color:#10222e;text-shadow:none;border-color:#ffe4ae}
+.poi-marker[aria-pressed=true] .poi-marker__name{background:#edd29b;color:#10222e;text-shadow:none;border-color:#ffe4ae}
 .poi-marker__check{position:absolute;right:12px;top:-6px;background:#a7d1af;color:#0b291f;border:1px solid #183b30;border-radius:50%;width:19px;height:19px;line-height:18px;font-size:13px;text-shadow:none}.poi-marker__check--neutral{background:#b5bcb0;color:#253732}
 .poi-marker__position{font-size:9px;line-height:1;background:#f2d38e;color:#13232b;text-shadow:none;padding:3px 5px;border-radius:2px;text-transform:uppercase;letter-spacing:.04em}
 .poi-marker--border .poi-marker__name:before{content:'↗ ';color:inherit}.poi-map__map-caption{position:absolute;bottom:7px;left:12px;pointer-events:none;padding:4px 8px;border-radius:3px;background:#10222cea;font-size:10px;color:#e7d1a1;letter-spacing:.04em}
 .poi-marker__toward{display:block;font-size:10px;font-weight:500;color:#e9c987;letter-spacing:.03em}.poi-marker[aria-pressed=true] .poi-marker__toward{color:#6a4813}
 /* The first region's exit sits just under the refuge: its name reads to the right, clear of the refuge's own label. */
 .poi-map[data-region="0"] .poi-marker--outbound .poi-marker__name{position:absolute;left:calc(50% + 27px);top:50%;transform:translateY(-50%);width:max-content;max-width:118px;text-align:left}
-.poi-map .poi-marker--far{opacity:.42;filter:saturate(.55)}
-.poi-map .poi-marker--far:hover,.poi-map .poi-marker--far:focus-visible,.poi-map .poi-marker--far[aria-pressed=true]{opacity:.9;filter:none}
+
+
 .poi-map__footer{padding:8px 20px;background:linear-gradient(110deg,#0d1c2c,#172735);border-top:1px solid #806c48}
 .poi-map__detail{display:flex;align-items:center;justify-content:space-between;gap:8px 20px;min-width:0;flex-wrap:wrap}.poi-map__selection{min-width:0;flex:1}.poi-map__detail h2{font-family:var(--font-display,serif);font-size:20px;font-weight:500;margin:0 0 2px;color:#f4dfb4}.poi-map__detail-role{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#c3aa75}.poi-map__detail p{font-size:11px;line-height:1.4;margin:2px 0;color:#d5d7cc}.poi-map__detail-actions{display:flex;gap:7px;flex-shrink:0}.poi-map [data-poi-action="move"]:enabled{background:#d9bd83;color:#152630;border-color:#f3dca9;font-weight:600}.poi-map__danger{font-size:12px;color:#ffbd9e}
 .poi-map__legend{font-size:13px;color:#c9b682;line-height:1.8}.poi-map__legend p{margin:2px 0}.poi-map__legend span{display:inline-block;margin-right:12px}
@@ -50,7 +50,7 @@
 .poi-map__traveller .poi-map__pawn-piece{animation:poi-pawn-step .24s ease-in-out infinite}
 .poi-map__wait-note{display:block;font-size:9px;line-height:1.2;color:#d5c59e;margin-top:2px}
 @keyframes poi-pawn-step{50%{transform:translateY(-2px)}}
-.poi-map:not([data-reduced-motion=true]) .poi-marker--current .poi-marker__icon{animation:poi-position-presence 3.6s ease-in-out infinite}
+
 .poi-marker__icon,.poi-marker__name{transition:background-color .16s,border-color .16s,box-shadow .16s}.poi-map .poi-marker{transition:opacity .16s,filter .16s}
 @keyframes poi-position-presence{50%{box-shadow:0 0 24px #f3cf7977}}
 @keyframes poi-panel-entry{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
@@ -60,8 +60,8 @@
 .poi-map[data-reduced-motion=true] *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 .poi-marker--chest .poi-marker__icon{border-radius:7px;color:#f7d489;background:#302b25}
 .poi-map__canvas path{stroke-linejoin:round}
-.poi-marker--occupied .poi-marker__icon{border-color:#ee9876}
-.poi-threat{position:absolute;z-index:4;display:grid;place-items:center;width:30px;height:30px;transform:translate(18px,-42px);border:2px solid #f1aa87;border-radius:5px;background:#622f32;color:#fff0cc;font-size:22px;box-shadow:0 2px 10px #100a;pointer-events:none}
+.poi-marker--occupied .poi-marker__icon{border-color:#ff7d63;box-shadow:0 0 0 3px #ff5a404d,0 3px 0 #07131b99}
+.poi-threat{position:absolute;z-index:4;display:grid;place-items:center;width:30px;height:30px;transform:translate(18px,-42px);border:2px solid #ffb199;border-radius:5px;background:#a3302c;color:#fff4dc;font-size:22px;box-shadow:0 2px 10px #100a;pointer-events:none}
 .poi-map:not([data-reduced-motion=true]) .poi-threat{animation:poi-threat-presence 2.8s ease-in-out infinite}
 @keyframes poi-threat-presence{50%{box-shadow:0 0 0 4px #edac8224,0 2px 14px #da6e5259}}
 .poi-map__threat-brief{border-left:2px solid #cf8b6b;padding-left:12px;max-width:320px;font-size:12px;color:#ffd8ba}
@@ -75,3 +75,33 @@
 @media(max-width:1050px){.poi-map__threat-brief{max-width:none}}
 @media(max-width:700px){.poi-map__threat-brief{border-left:0;border-top:1px solid #86624a;padding:6px 0 0;width:100%}.poi-map__threat-brief p{margin:2px 0}.poi-dialog-backdrop{padding:12px}.poi-dialog{padding:20px;max-height:calc(100dvh - 24px)}}
 @media(max-width:700px){.poi-map__header nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}.poi-map__header nav button{white-space:normal;overflow-wrap:anywhere}}
+/* OD-2026-11-07-A: four states read at a glance, the next story step, and names only where they help. */
+.poi-map .poi-marker[data-poi-state=todo] .poi-marker__icon{border-color:#f6d27f;box-shadow:0 0 0 3px #f3cf7980,0 3px 0 #07131b99,0 1px 12px #0006}
+.poi-map .poi-marker[data-poi-state=far]{opacity:.82}
+.poi-map .poi-marker[data-poi-state=done]{opacity:.86}
+.poi-map .poi-marker[data-poi-state=done] .poi-marker__icon{width:36px;height:36px;font-size:19px;border-color:#7fb38d;background:#15262b;color:#b9d8bf;box-shadow:0 2px 0 #07131b99}
+.poi-map .poi-marker[data-poi-state=done] .poi-marker__check{right:16px;top:-4px}
+.poi-map .poi-marker[data-poi-state=closed] .poi-marker__icon{width:16px;height:16px;font-size:0;border:2px solid #23303a;background:#6f7d82;box-shadow:0 1px 4px #0008;margin:14px 0}
+.poi-map .poi-marker:not(.poi-marker--named) .poi-marker__name{display:none}
+.poi-map .poi-marker:not(.poi-marker--named):is(:hover,:focus,[aria-pressed=true]) .poi-marker__name{display:block;position:absolute;top:calc(100% - 4px);left:50%;transform:translateX(-50%);width:max-content;max-width:150px;z-index:6}
+.poi-map .poi-marker:is(:hover,:focus,[aria-pressed=true]){z-index:5;opacity:1}
+.poi-marker__next{order:-1;font-size:10px;font-weight:700;line-height:1;letter-spacing:.06em;text-transform:uppercase;background:#f3cf79;color:#1b1406;text-shadow:none;padding:3px 6px;border-radius:2px;box-shadow:0 2px 6px #0008;white-space:nowrap}
+.poi-marker__next:before{content:"⚑ "}
+.poi-map .poi-marker--next .poi-marker__icon{border-color:#ffe39c;box-shadow:0 0 0 4px #f3cf79b3,0 0 18px #f3cf7966,0 3px 0 #07131b99}
+.poi-map:not([data-reduced-motion=true]) .poi-marker--next .poi-marker__icon{animation:poi-next-presence 2.8s ease-in-out infinite}
+@keyframes poi-next-presence{50%{box-shadow:0 0 0 6px #f3cf7966,0 0 26px #f3cf7988,0 3px 0 #07131b99}}
+.poi-map__stakes{color:#e8cf95!important;letter-spacing:.04em}
+.poi-map__legend-box{display:flex;align-items:center;min-width:0;max-width:100%;font-size:11px;color:#e3dccb}
+.poi-map__legend-box summary{cursor:pointer;padding:6px 10px;min-height:44px;display:flex;align-items:center;box-sizing:border-box;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#e7cf98;white-space:nowrap}
+.poi-map__legend-box summary:focus-visible{outline:3px solid #ffe7a5;outline-offset:2px}
+.poi-map__legend-box ul{list-style:none;margin:0;padding:4px 12px 4px 0;display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px}
+.poi-map__legend-box li{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.poi-legend__mark{display:inline-grid;place-items:center;flex:none;width:18px;height:18px;border-radius:50%;border:2px solid #baa77a;background:#10212e;font-size:11px;color:#f2dfb1;box-sizing:border-box}
+.poi-legend__mark--todo{border-color:#f6d27f;box-shadow:0 0 0 2px #f3cf7980}
+.poi-legend__mark--next{border-radius:2px;background:#f3cf79;border-color:#f3cf79;color:#1b1406}
+.poi-legend__mark--done{border-color:#7fb38d;color:#b9d8bf}
+.poi-legend__mark--closed{width:10px;height:10px;margin:0 4px;border-color:#23303a;background:#6f7d82}
+.poi-legend__mark--threat{border-radius:3px;border-color:#ffb199;background:#a3302c;color:#fff4dc}
+.poi-legend__kinds{color:#e2c8ff}
+@media(max-width:1050px){.poi-map__legend-box ul{display:none}.poi-map__legend-box[open] ul{display:flex;position:absolute;top:calc(100% + 6px);left:0;right:0;background:#101f2cf2;border:1px solid #756445;border-radius:5px;padding:8px 12px}}
+.poi-map__atlas-bar{flex-wrap:wrap}

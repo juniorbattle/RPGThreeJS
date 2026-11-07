@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 import {afterEach,describe,expect,it,vi} from 'vitest';
-import {PoiMapView,suggestedPoi} from './PoiMapView';
+import {nextStorySteps,PoiMapView,poiMarkerState,suggestedPoi} from './PoiMapView';
 import {createInitialState} from '../game/store';
 import type {GameState} from '../game/types';
 import {selectPoiMap, type PoiMapModel} from '../game/runSystem';
@@ -61,8 +61,8 @@ describe('POI atlas focus and authority intentions',()=>{
   });
   it('updates detail and destination from native marker focus, preserving mandatory labels and remote locks',()=>{
     const {onMove,state,before}=fixture();marker('lion-opening-ambush').focus();
-    expect(document.querySelector('.poi-map__detail')!.textContent).toContain('Requis · Verrouillé');
-    expect(marker('lion-opening-ambush').getAttribute('aria-label')).toContain('Verrouillé');
+    expect(document.querySelector('.poi-map__detail')!.textContent).toContain('Étape de l’histoire · Fermé');
+    expect(marker('lion-opening-ambush').getAttribute('aria-label')).toContain('Fermé');
     expect(action().disabled).toBe(true);action().click();expect(onMove).not.toHaveBeenCalled();expect(state).toEqual(before);
   });
   it('browses only earned regions through roving tabs without moving or unlocking campaign content',()=>{
@@ -218,5 +218,64 @@ describe('POI atlas guidance',()=>{
     const pending=view.animateTravel('lion-audience','lion-camp');
     expect(pawn.querySelector('.poi-map__pawn-figure')!.getAttribute('transform')).toBe('scale(-1 1)');
     view.close();await pending;
+  });
+});
+
+describe('a readable map (OD-2026-11-07-A)',()=>{
+  it('reads each point in one of four states and marks the next story step with a banner',()=>{
+    const {model,state,before}=fixture();
+    const camp=model.nodes.find(n=>n.id==='lion-camp')!,ambush=model.nodes.find(n=>n.id==='lion-opening-ambush')!;
+    expect(poiMarkerState(camp,model.currentNodeId)).toBe('todo');
+    expect(poiMarkerState(ambush,model.currentNodeId)).toBe('closed');
+    expect(marker('lion-opening-ambush').dataset.poiState).toBe('closed');
+    const steps=nextStorySteps(model);
+    expect(steps.length).toBeGreaterThan(0);
+    for(const next of steps){
+      expect(marker(next).classList.contains('poi-marker--next')).toBe(true);
+      expect(marker(next).querySelector('.poi-marker__next')?.textContent).toBe('Prochaine étape');
+      expect(marker(next).getAttribute('aria-label')).toContain('prochaine étape');
+    }
+    expect(document.querySelectorAll('.poi-marker--next')).toHaveLength(steps.length);
+    expect(state).toEqual(before);
+  });
+  it('keeps permanent names for the position, the reachable points and the next step only; the rest show on focus',()=>{
+    const {model}=fixture();
+    for(const n of model.nodes.filter(node=>node.region===0)){
+      const named=n.id===model.currentNodeId||n.canMove||nextStorySteps(model).includes(n.id);
+      expect(marker(n.id).classList.contains('poi-marker--named'),n.id).toBe(named);
+      // The name stays in the accessible label either way.
+      expect(marker(n.id).getAttribute('aria-label')).toContain(n.label);
+    }
+  });
+  it('states type, path and state in plain words, with risk and reward for a point still to do, and keeps a visible legend',()=>{
+    fixture();
+    marker('lion-audience').focus();
+    const detail=document.querySelector('.poi-map__detail')!.textContent!;
+    expect(detail).toContain('Jalon · Étape de l’histoire · À faire');
+    expect(detail).toMatch(/Risque [◆◇]{3} · Gain [◆◇]{3}/);
+    expect(detail).not.toContain('Alternative exclusive');
+    const legend=document.querySelector<HTMLDetailsElement>('.poi-map__legend-box')!;
+    // Open on a wide screen; folded on a narrow one, where it would cover the top of the map.
+    expect(legend.open).toBe(window.innerWidth>1050);
+    expect(legend.textContent).toContain('Prochaine étape');
+    expect(legend.textContent).toContain('✠ Élite');
+    expect(legend.textContent).toContain('Menace mobile');
+    expect(legend.closest('.poi-map__atlas-bar')).not.toBeNull();
+    expect(document.querySelector('.poi-map__panel')!.textContent).not.toContain('◉');
+  });
+});
+
+describe('the next step at a fork (OD-2026-11-07-A)',()=>{
+  it('marks both branches of an exclusive choice, so the banner never leans toward one',()=>{
+    const state=createInitialState();
+    state.resolvedNodeIds=['lion-audience','lion-opening-ambush','lion-nomad-crossroads'];
+    state.flags.lionMissionAccepted=true;
+    state.run.currentNodeId=state.currentNodeId='lion-nomad-crossroads';
+    const model=selectPoiMap(state);
+    const steps=nextStorySteps(model).sort();
+    expect(steps).toEqual(['lion-first-trial-combat','lion-first-trial-event']);
+    const root=document.createElement('div');document.body.append(root);
+    new PoiMapView({root,onMove:vi.fn(async()=>{}),onBypass:vi.fn(),onCompany:vi.fn(),onSave:vi.fn(),onMenu:vi.fn()}).open(model);
+    expect([...root.querySelectorAll<HTMLElement>('.poi-marker--next')].map(m=>m.dataset.poiId).sort()).toEqual(steps);
   });
 });

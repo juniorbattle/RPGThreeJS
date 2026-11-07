@@ -644,7 +644,8 @@ export function describeItemSkillEffects(itemId: string, unit?: { definitionId: 
       else if (opened) parts.push(`${opened.name} (${opened.ap} PA)`);
     }
     for (const [source, replacement] of Object.entries(item.skillModifier?.replaces ?? {})) {
-      if (hero.skillIds.includes(source)) parts.push(`${skillName(source)} devient ${skillName(replacement)}`);
+      // A swap of the closed ultimate changes nothing the hero can use: it is not announced.
+      if (hero.skillIds.includes(source) && (skillById.get(source)?.ap ?? 0) < ULTIMATE_AP) parts.push(`${skillName(source)} devient ${skillName(replacement)}`);
     }
     for (const granted of item.skillModifier?.grants ?? []) parts.push(`accorde ${skillName(granted)}`);
     if (parts.length) lines.push(prefix + parts.join(', '));

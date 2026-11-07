@@ -51,6 +51,27 @@ Limites : présentation seule. Les sélecteurs de RunSystem, les règles de dép
 4. **Note de l'opérateur sur B1.** « Nous ne parvenons pas à consulter parfaitement tous les détails de l'unité sélectionnée, par exemple ses compétences lock/unlock, via la manette. » Ce défaut est corrigé avec B2 : tout le détail d'une unité, compétences fermées comprises, se consulte à la manette.
 5. **En passant.** Le bouton « SHOP » du refuge, resté en anglais, devient « Échoppe ».
 
+## Livraison de A et B
+
+`CURRENT FACT` Livrées le 2026-11-07 sur `dev` (baseline des contrats inchangée, `2b2b4082`). Voir [le rapport](../reports/playtest-fixes-2026-11-07.md).
+
+- **Carte (A)** :
+  - quatre états lisibles d'un coup d'œil (`poiMarkerState`, `src/ui/PoiMapView.ts`) : à faire et à portée, à faire plus loin, fait, pas encore ouvert ;
+  - bannière « Prochaine étape » sur chaque branche d'un choix au plus court chemin (`nextStorySteps`) ;
+  - noms permanents pour la position, les lieux à portée et la prochaine étape seulement ;
+  - routes cernées de sombre ;
+  - symbole ✠ pour l'élite fixe, menace mobile ♜ en rouge ;
+  - légende dans la barre de l'atlas, repliée sur un écran étroit ;
+  - pion debout sur son lieu ;
+  - panneau du bas en clair, avec type, chemin, état, risque et gain.
+- **Armes (B)** :
+  - un palier, une compétence (`getMaxUnlockedSkillAp`, `src/game/catalog.ts`) ;
+  - compétences nommées (`describeItemSkillEffects`, `getWeaponOpenedSkill`) sur la fiche, la case d'arme, l'inventaire, l'échoppe, la forge et le détail ;
+  - compétences fermées grisées dans le menu du combat avec leur palier (`lockedSkills`, affichage seul) ;
+  - Tir Calibré relevé ;
+  - entrées de la fiche atteignables à la manette, stick droit pour faire défiler ;
+  - « Échoppe » à la place de « SHOP ».
+
 ## OD-2026-11-07-C — un chemin choisi s'achève avant le reste
 
 `APPROVED DECISION`, sous réserve de l'amendement.
