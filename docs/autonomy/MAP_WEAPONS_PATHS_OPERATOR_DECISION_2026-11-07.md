@@ -6,7 +6,7 @@
   - [Fiche d'arbitrages](https://claude.ai/artifact/KiqWJYRhASS4YWwBDngwGS) remplie le 2026-11-07 : huit choix, tous recommandés, et une note sur B1. Les diagnostics et les captures sont sur la fiche ; les captures restent sous `tmp/design-review/shots/` (ignoré).
 - **Statut** :
   - OD-2026-11-07-A et OD-2026-11-07-B : ACTIVE, à livrer sur `dev`. L'opérateur les juge en jouant.
-  - OD-2026-11-07-C : APPROVED IN PRINCIPLE. Le verrou contredit des contrats verrouillés : l'amendement 1.17.0 est préparé, relu, puis son texte est soumis à l'opérateur. Le jeu ne change pas avant son approbation.
+  - OD-2026-11-07-C : ACTIVE. Le verrou contredisait des contrats verrouillés : l'amendement 1.17.0 a été préparé, relu, puis soumis. L'opérateur a approuvé le texte tel quel le 2026-11-07 ; l'amendement est appliqué.
 
 ## OD-2026-11-07-A — une carte lisible
 
@@ -97,9 +97,9 @@ Limites : présentation seule. Les sélecteurs de RunSystem, les règles de dép
    - La Constitution ne change pas. Sa ligne sur le retour en arrière dit que la campagne et RunSystem le valident ; elle ne garantit pas un retour en arrière libre.
    - L'engagement se déduit de faits déjà sauvegardés (branches choisies, lieux résolus) : aucun champ de sauvegarde nouveau.
 
-## Amendement 1.17.0 proposé
+## Amendement 1.17.0
 
-`PROPOSED FUTURE DESIGN` Le texte est dans [`BRANCH_COMMITMENT_AMENDMENT_1.17.0.patch`](BRANCH_COMMITMENT_AMENDMENT_1.17.0.patch), validé par `npm run contracts:validate` sur un arbre d'essai. Les contrats du dépôt restent intacts jusqu'à l'approbation de l'opérateur.
+`APPROVED DECISION` Le texte est dans [`BRANCH_COMMITMENT_AMENDMENT_1.17.0.patch`](BRANCH_COMMITMENT_AMENDMENT_1.17.0.patch), validé par `npm run contracts:validate`. L'opérateur l'a approuvé tel quel le 2026-11-07 (« Texte approuvé »). Il est appliqué mot pour mot aux contrats, puis sa baseline immuable est enregistrée avant tout changement du jeu.
 
 Ce qu'il dit, en clair :
 

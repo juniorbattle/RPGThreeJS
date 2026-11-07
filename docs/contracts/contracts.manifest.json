@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.16.0",
+  "contractSetVersion": "1.17.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -245,6 +245,20 @@
       ],
       "constitutionChanged": false,
       "supersededRule": "POI movement only edge by edge, with no remote-click travel; the map now also allows one committed movement to a resolved POI over an inert, elite-free route of connected unlocked edges, counted as one turn, with no saved field",
+      "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator playtest acceptance"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-POI-BRANCH-COMMITMENT-1",
+      "operatorDecisionId": "OD-2026-11-07-C",
+      "operatorDecisionPath": "docs/autonomy/MAP_WEAPONS_PATHS_OPERATOR_DECISION_2026-11-07.md",
+      "approvedAt": "2026-11-07",
+      "changedContracts": [
+        "AUTHORING_AND_QA",
+        "CAMPAIGN_AND_STATE",
+        "TRAVERSAL"
+      ],
+      "constitutionChanged": false,
+      "supersededRule": "Free bidirectional movement, travel to resolved POIs and optional revisits at every moment; once saved facts show a branch chosen at an authored exclusive fork, the company is now committed to the next step toward the chosen branch POI and then that chapter's resolving POI until it is resolved, derived from existing saved facts with no saved field",
       "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator playtest acceptance"
     }
   ],
