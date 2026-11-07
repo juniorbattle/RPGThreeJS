@@ -4,7 +4,7 @@
 - **Source** :
   - Retour du playtest PC, message de l'opérateur du 2026-11-07. Le bouton « Attendre » n'est pas utile : il devait servir aux élites qui se déplacent sur la carte, idée abandonnée parce que le jeu est déjà assez dense. Les POI de défi, avec des conditions de combat particulières et des récompenses intéressantes, apportent un défi concret et méritent d'être davantage intégrés.
   - [Fiche d'arbitrages](https://claude.ai/artifact/Aiivi5N6LcD4FdBziVJGNs) remplie le 2026-11-07 : cinq choix, tous recommandés, sans note.
-- **Statut** : APPROVED IN PRINCIPLE. La décision contredit des contrats verrouillés : l'amendement 1.18.0 est préparé, relu, puis son texte est soumis à l'opérateur. Le jeu ne change pas avant son approbation.
+- **Statut** : ACTIVE. La décision contredisait des contrats verrouillés : l'amendement 1.18.0 a été préparé, relu, puis soumis. L'opérateur a approuvé le texte tel quel le 2026-11-07 (« Texte approuvé ») ; l'amendement est appliqué.
 
 ## Constat
 
@@ -60,9 +60,9 @@
 
 La Constitution ne nomme ni les élites ni l'attente : elle ne change pas.
 
-## Amendement 1.18.0 proposé
+## Amendement 1.18.0
 
-`PROPOSED FUTURE DESIGN` Le texte est dans [`POI_CHALLENGES_AMENDMENT_1.18.0.patch`](POI_CHALLENGES_AMENDMENT_1.18.0.patch), validé par `npm run contracts:validate` sur un arbre d'essai. Il change six contrats : `TRAVERSAL`, `CAMPAIGN_AND_STATE`, `COMBAT_AND_VFX`, `UI_AND_ACCESSIBILITY`, `WORLD_AND_CHARACTERS` et `AUTHORING_AND_QA`, ainsi que le README et le manifeste des contrats. Les contrats du dépôt restent intacts jusqu'à l'approbation de l'opérateur.
+`APPROVED DECISION` Le texte est dans [`POI_CHALLENGES_AMENDMENT_1.18.0.patch`](POI_CHALLENGES_AMENDMENT_1.18.0.patch), validé par `npm run contracts:validate` sur un arbre d'essai. Il change six contrats : `TRAVERSAL`, `CAMPAIGN_AND_STATE`, `COMBAT_AND_VFX`, `UI_AND_ACCESSIBILITY`, `WORLD_AND_CHARACTERS` et `AUTHORING_AND_QA`, ainsi que le README et le manifeste des contrats. L'opérateur l'a approuvé tel quel le 2026-11-07. Il est appliqué mot pour mot aux contrats, puis sa baseline immuable est enregistrée avant tout changement du jeu.
 
 Ce qu'il dit, en clair :
 

@@ -2,9 +2,13 @@
 
 Status: **LOCKED**.
 
+## Guardians and challenges — OD-2026-11-07-F
+
+Dedicated `PRODUCTION-CONTRACTS-POI-CHALLENGES-1`, set 1.18.0. The map shows each undefeated guardian on its post as a distinct marker named in text, and marks every challenge place "Défi" with its condition and prime in text, readable without colour. It no longer shows a Wait action, a turn count, a threatened area, a patrol or chase tendency or a contested route. Combat or retreat keeps its intents and focus restoration. The condition and the prime appear before deployment, the round condition stays visible during the fight, and the result says whether the prime was earned. Targets, keyboard, gamepad, responsive bounds and reduced motion follow the rules of this contract.
+
 ## Lot E atlas and interception agency — OD-2026-10-15-B
 
-Dedicated `PRODUCTION-CONTRACTS-POI-LOT-E-1`, set 1.4.0, [operator decision](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md). Display 33 fixed POIs and two visually distinct mobile threat overlays from authoritative selectors. Expose actual position, next-turn threatened area, patrol/chase tendency and contested routes with text as well as color. Present explicit Wait and Combat/retreat intents; a modal or gesture never owns movement, reward, branch, threat tick or resolution. Keep chests distinct and show the owner-attributed once-only popup. Restore safe map focus after cancellation, retreat and combat.
+Dedicated `PRODUCTION-CONTRACTS-POI-LOT-E-1`, set 1.4.0, [operator decision](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md). Display 33 fixed POIs and two visually distinct mobile threat overlays from authoritative selectors. Expose actual position, next-turn threatened area, patrol/chase tendency and contested routes with text as well as color. Present explicit Wait and Combat/retreat intents; a modal or gesture never owns movement, reward, branch, threat tick or resolution. Keep chests distinct and show the owner-attributed once-only popup. Restore safe map focus after cancellation, retreat and combat. Set 1.18.0 above supersedes the mobile threat overlays, threatened area, tendency, contested routes and the Wait intent.
 
 Finalize the three Option C compositions after topology: readable approved routes, relief/water crossings, distinct labels and nonoverlapping threat indicators. Preserve targets at least44px, keyboard spatial navigation, modal focus/escape, touch scrolling/pan, 1366x768 /620 /390x844 bounds and independent OS/game reduced motion. No hover, zoom, selection or art state changes game truth. Technical/capture inspection is separate from operator artistic acceptance.
 
