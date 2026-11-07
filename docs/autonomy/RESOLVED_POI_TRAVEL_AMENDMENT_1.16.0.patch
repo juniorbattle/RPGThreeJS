@@ -1,0 +1,83 @@
+diff --git a/docs/contracts/CAMPAIGN_AND_STATE.md b/docs/contracts/CAMPAIGN_AND_STATE.md
+index 39456097..fe9ce404 100644
+--- a/docs/contracts/CAMPAIGN_AND_STATE.md
++++ b/docs/contracts/CAMPAIGN_AND_STATE.md
+@@ -14,7 +14,7 @@ Persist only versioned expedition truth and necessary encounter/return/idempoten
+ 
+ ## POI navigation amendment — OD-2026-10-13-D
+ 
+-Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), set 1.2.0 supersedes physical navigation. RunSystem validates connected bidirectional movement and activation with mandatory causal ordering. Preserve authored IDs, content and effects. Resolved POIs replay no content/rewards. Neutralized derives from canonical incompatibility and is never completed/victorious/rewarded. Compatible optional events remain revisitable; preserve authored bypass consequences. Visit/bypass is not resolution. Unlocked refuges reuse existing services and costs without arrival replay; final narrative refuge unchanged except for the services of set 1.15.0.
++Dedicated `PRODUCTION-CONTRACTS-POI-NAVIGATION-1` / [OD-2026-10-13-D](../autonomy/POI_NAVIGATION_OPERATOR_DECISION_2026-10-13.md), set 1.2.0 supersedes physical navigation. RunSystem validates connected bidirectional movement, the set 1.16.0 travel to resolved POIs (TRAVERSAL), and activation with mandatory causal ordering. Preserve authored IDs, content and effects. Resolved POIs replay no content/rewards. Neutralized derives from canonical incompatibility and is never completed/victorious/rewarded. Compatible optional events remain revisitable; preserve authored bypass consequences. Visit/bypass is not resolution. Unlocked refuges reuse existing services and costs without arrival replay; final narrative refuge unchanged except for the services of set 1.15.0.
+ 
+ Eligible variable assignments remain stable per run/POI across reload/revisit; no farming. Chest catalogue/quantities and elite configurations need content approval before placement. Usable holdings and exact last-save defeat restoration remain with existing gameplay/save owners. Audit V6 current/checkpoint IDs, branches, visited/resolved and assignments; derive status from existing facts and explicitly test required durable extensions. Resume old roads at canonical POIs without invented outcomes, cleared progress or visual map state.
+ 
+diff --git a/docs/contracts/README.md b/docs/contracts/README.md
+index 5147e3b3..1fa7ec5b 100644
+--- a/docs/contracts/README.md
++++ b/docs/contracts/README.md
+@@ -19,6 +19,8 @@ Status terms: **LOCKED** means the decision is binding; **implemented** means so
+ 
+ ## Approved amendment history
+ 
++Contract set **1.16.0** / `PRODUCTION-CONTRACTS-POI-RESOLVED-TRAVEL-1` / [OD-2026-11-06-A](../autonomy/RESOLVED_POI_TRAVEL_OPERATOR_DECISION_2026-11-06.md) follows the operator's PC playtest. From the map, the company may travel in one committed movement to any resolved POI, over connected, unlocked edges and authored bypass connections whose intermediate POIs are resolved or neutralized and free of mobile elites; a bypassed optional POI is skipped, never entered. It counts as one turn, so each elite moves at most one edge; an occupied destination offers the existing Combat or retreat; a rear encounter keeps the Lot E safe-return rule. Arrival replays no content, no saved field is added, and unresolved, locked and neutralized destinations, causal gates, exclusive choices and recovery links are unchanged. TRAVERSAL and CAMPAIGN_AND_STATE change only for this scope. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before any runtime work.
++
+ Contract set **1.15.0** / `PRODUCTION-CONTRACTS-FINAL-REFUGE-SERVICES-1` / [OD-2026-11-05-E](../autonomy/FINAL_REFUGE_SERVICES_OPERATOR_DECISION_2026-11-05.md) follows the operator's economy decisions so that gains earned after the second refuge can be spent. Right after its unchanged narrative beat, and again on a return before the judgement, the final refuge offers the existing refuge services: shop and forge, skill upgrades, company register and paid rest, with the same owners, shared stock, prices and costs, no free rest and no restock. Its `story` node type, durable IDs, travel relations, beat order, save fields and Alaric's judgement are unchanged; no new plot, choice, reward, dialogue or art. CAMPAIGN_AND_STATE and TRAVERSAL change only for this scope. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before any runtime work.
+ 
+ Contract set **1.14.0** / `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-2` / [OD-2026-11-04-B](../autonomy/LIVING_TABLEAUX_ENDINGS_OPERATOR_DECISION_2026-11-04.md) extends the living tableaux of set 1.13.0 to three more moments: Alaric's audience before `lion_briefing`, and the Serpent pursuit and Lion trial route endings before the epilogue, at most 40 seconds each for the endings, with the same animated backdrop allowed on the aftermath dialogue just before an ending. It also states that an outcome or route-ending sequence takes the place of its beat's static Journey still, which stays its fallback. The rules of set 1.13.0 hold otherwise: no captions, no new canon, at most four narrative actors with bounded extras, first live opening only with no save field, the existing mood table, zero video and no generated image. Only PRESENTATION_AND_MEDIA changes. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before any runtime work.
+diff --git a/docs/contracts/TRAVERSAL.md b/docs/contracts/TRAVERSAL.md
+index 52d8e1f4..d1f43dbc 100644
+--- a/docs/contracts/TRAVERSAL.md
++++ b/docs/contracts/TRAVERSAL.md
+@@ -4,6 +4,10 @@ Status: **LOCKED**. Historical contract ID: `TRAVERSAL`, retained in the eight-c
+ 
+ ## Production navigation
+ 
++### Travel to resolved POIs — OD-2026-11-06-A
++
++Dedicated `PRODUCTION-CONTRACTS-POI-RESOLVED-TRAVEL-1`, set 1.16.0, follows the operator's PC playtest so that moving across known ground stays quick. From the map, the company may travel in one committed movement to any resolved POI. RunSystem finds the shortest route over connected, unlocked edges, including authored bypass connections, whose intermediate POIs are resolved or neutralized and are not occupied by a mobile elite; a bypassed optional POI is skipped, never entered or activated. Without such a route this travel is unavailable and ordinary movement remains. The travel counts as one committed map movement: one turn, after which each mobile elite moves at most one edge. A destination occupied by an elite offers the existing Combat or retreat before anything is committed; retreat or front victory leaves the company at its departure POI. For a later rear encounter, the safe return is the route's last POI before the destination when it qualifies as a safe inert return under the Lot E rule; otherwise the threat movement is rejected as Lot E provides. Arrival replays no content and reuses only what a resolved POI already offers, including the services of reusable refuges and of the set 1.15.0 final refuge. The travel adds no saved field: position, visits and turn remain the existing facts. The map pawn follows the route; reduced motion places it directly. Unresolved, locked and neutralized destinations keep their current rules, and every canonical causal gate, exclusive choice and directed recovery link is preserved.
++
+ ### Lot E graph encounters — OD-2026-10-15-B
+ 
+ Dedicated `PRODUCTION-CONTRACTS-POI-LOT-E-1`, set 1.4.0, [operator decision and exact authoring](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md): twelve optional fixed POIs extend the existing three-region graph. Two distinct elite actors move on their explicitly authorized local edges only, at most one edge per committed map movement or explicit Wait. Persist their versioned gameplay state; no real-time, physical road, caravan, lane or historical Pursuit simulation is reintroduced. Opening map, focus, pan, activity, save/load and redraw do not tick. Arrival content finishes before the pending turn is evaluated; activation is prerequisite-gated and deferred on an occupied spawn.
+@@ -16,7 +20,7 @@ Campaign structure/relations and RunSystem own movement, accessibility, eligibil
+ 
+ ## Connections and visits
+ 
+-Move in both directions on connected, unlocked edges only. No remote-click teleport or bypass of an obligatory unresolved event. Future primary milestones retain canonical conditions. Distinguish available, active, locked, resolved and neutralized. A visit is not a resolution. Resolved POIs permit passage without repeated dialogue, cinematic, combat, victory, reputation, recruitment or loot. Neutralization derives only from actual canonical incompatibility or explicitly approved exclusive choice; geographically accessible neutralized POIs permit passage but never activation and never count as completed, defeated or rewarded. Do not disable a whole parallel branch merely because it is parallel.
++Move in both directions on connected, unlocked edges; set 1.16.0 above adds only travel to resolved POIs over such edges. No other remote-click teleport and no bypass of an obligatory unresolved event. Future primary milestones retain canonical conditions. Distinguish available, active, locked, resolved and neutralized. A visit is not a resolution. Resolved POIs permit passage without repeated dialogue, cinematic, combat, victory, reputation, recruitment or loot. Neutralization derives only from actual canonical incompatibility or explicitly approved exclusive choice; geographically accessible neutralized POIs permit passage but never activation and never count as completed, defeated or rewarded. Do not disable a whole parallel branch merely because it is parallel.
+ 
+ Compatible optional POIs can be ignored and revisited later. Apply authored bypass consequences; bypass is not resolution. Unlocked refuges reuse existing services without replaying arrival decisions or adding free rest; the final refuge keeps its narrative beat, followed only by the refuge services of set 1.15.0 (CAMPAIGN_AND_STATE).
+ 
+diff --git a/docs/contracts/contracts.manifest.json b/docs/contracts/contracts.manifest.json
+index 9911b8a0..5b143f08 100644
+--- a/docs/contracts/contracts.manifest.json
++++ b/docs/contracts/contracts.manifest.json
+@@ -2,7 +2,7 @@
+   "schemaVersion": 1,
+   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
+   "lockedAt": "2026-10-01",
+-  "contractSetVersion": "1.15.0",
++  "contractSetVersion": "1.16.0",
+   "approvedAmendments": [
+     {
+       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
+@@ -233,6 +233,19 @@
+       "constitutionChanged": false,
+       "supersededRule": "The final refuge as a purely narrative beat with no refuge services and no interactive hub; it now offers the existing refuge services after its unchanged narrative beat and on a return before the judgement, with its story node type, durable IDs and save fields unchanged",
+       "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator playtest acceptance"
++    },
++    {
++      "taskId": "PRODUCTION-CONTRACTS-POI-RESOLVED-TRAVEL-1",
++      "operatorDecisionId": "OD-2026-11-06-A",
++      "operatorDecisionPath": "docs/autonomy/RESOLVED_POI_TRAVEL_OPERATOR_DECISION_2026-11-06.md",
++      "approvedAt": "2026-11-06",
++      "changedContracts": [
++        "CAMPAIGN_AND_STATE",
++        "TRAVERSAL"
++      ],
++      "constitutionChanged": false,
++      "supersededRule": "POI movement only edge by edge, with no remote-click travel; the map now also allows one committed movement to a resolved POI over an inert, elite-free route of connected unlocked edges, counted as one turn, with no saved field",
++      "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator playtest acceptance"
+     }
+   ],
+   "status": "LOCKED",

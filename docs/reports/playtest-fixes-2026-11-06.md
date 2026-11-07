@@ -12,7 +12,7 @@
 | `SUPERSEDES` | `NONE` |
 | `SUPERSEDED_BY` | `NONE` |
 | `PRODUCTION_IMPACT` | La compétence initiale d'un héros de la démo reste utilisable quand un équipement la remplace par une compétence qui ne coûte pas plus de PA ; les écrans d'équipement montrent ces remplacements. |
-| `CANONICAL_DOCS_UPDATED` | `NONE` : la règle de la compétence initiale gratuite est déjà celle du code ; aucun contrat ne change. |
+| `CANONICAL_DOCS_UPDATED` | Aucun pour la compétence : sa règle gratuite est déjà celle du code. Pour la carte, `docs/autonomy/RESOLVED_POI_TRAVEL_OPERATOR_DECISION_2026-11-06.md` (PROPOSED), le registre des décisions et l'état vivant. |
 | `EVIDENCE` | Tests ciblés (`management.test.ts`, `ManagementView.test.ts`), suite complète (2922 tests vitest et 26 tests node), types. |
 
 ## Alistair perd sa compétence à 2 PA
@@ -27,3 +27,7 @@ Correction :
 - **L'affichage.** La liste des accessoires et le détail d'un objet indiquent le remplacement pour le héros choisi, par exemple « Brise-Garde devient Lame Maudite ». Il apparaît sous « Effet spécial », comme les compétences accordées.
 
 Seul l'Anneau de Force remplace une compétence initiale sur une arme de palier 0. Les autres remplacements (Arc long, Espadon du Lion, Grimoire mystique, Arc du Vent, Sceau du Sage) portent sur une arme T1 ou plus, ou sur une compétence qui n'est pas initiale. Leur comportement ne change pas.
+
+## Voyager vers un lieu résolu depuis n'importe où
+
+`PROPOSED FUTURE DESIGN` L'opérateur demande qu'un lieu déjà visité et résolu soit accessible de n'importe où sur la carte. Le contrat verrouillé `TRAVERSAL.md`, ligne 19, interdit tout voyage à distance (« No remote-click teleport »). L'amendement 1.16.0 (OD-2026-11-06-A) est donc préparé, relu et soumis sur une [fiche d'arbitrages](https://claude.ai/artifact/BwMyERiU4nuhVnvR329ZXB). Le jeu ne change pas avant l'approbation : voir [la proposition](../autonomy/RESOLVED_POI_TRAVEL_OPERATOR_DECISION_2026-11-06.md).
