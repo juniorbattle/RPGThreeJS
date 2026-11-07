@@ -1,11 +1,12 @@
 import {
   describeItemSkillEffects, getFinalStats, getInnateGift, getLockedSkillReason, getResolvedSkills, getWeaponOpenedSkill, getWeaponProfileLabel, getWeaponSkillUnlockLabel, WEAPON_TIER_RULE,
-  isSkillUnlockedForHero, itemById, items, resolveInitialSkillId, unitById, weaponById, weapons,
+  craftRecipeById, isSkillUnlockedForHero, itemById, items, resolveInitialSkillId, unitById, weaponById, weapons,
 } from '../game/catalog';
 import {
-  buyItem, canCraftItem, craftItem, equipAccessory, equipWeapon, excludeUnit, getCraftGoldCost, getForgeIngredients, getForgeRecipes, isUsefulToCompany,
-  getSkillUpgradeCost, sellItem, upgradeSkill, useConsumable, type ForgeIngredient,
+  buyItem, craftItem, equipAccessory, equipWeapon, excludeUnit, getForgeIngredients, getForgeRecipes, isUsefulToCompany,
+  getSkillUpgradeCost, sellItem, upgradeSkill, useConsumable,
 } from '../game/management';
+import { candidateWearers, currentWearers, freeAccessorySlot, previewCraft, previewEquip, type CraftPreview, type HeroChange } from './shopPreview';
 import { getReputationRule, getShopPrice } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
@@ -15,6 +16,9 @@ import type { UiSoundFeedback } from './UiSoundPlayer';
 
 type ManagementTab = 'clan' | 'inventory' | 'shop' | 'skills';
 type ControlFocusKey = { tag: string; attributes: Array<[string, string]> };
+/** The fiche a shop line or a forge recipe opens: preview, confirmation, then the result (playtest 2026-11-07). */
+interface TradeOutcome { title: string; lines: string[]; change: HeroChange | null; changeHeading: string; equipped: boolean }
+interface TradeState { kind: 'buy' | 'sell' | 'craft'; id: string; stage: 'preview' | 'confirm' | 'done'; outcome: TradeOutcome | null; revision: number }
 
 function escapeAttribute(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -112,6 +116,8 @@ export class ManagementView {
   private activeItemId: string | null = null;
   private activeEquipSlot: { type: 'weapon' | 'accessory'; slot: number } | null = null;
   private previewItemId: string | null = null;
+  private trade: TradeState | null = null;
+  private renderedTradeKey: string | null = null;
   private tab: ManagementTab = 'clan';
   private shopId = 'valmir';
   private shopMode: 'buy' | 'sell' | 'craft' = 'buy';
@@ -171,6 +177,8 @@ export class ManagementView {
     this.activeItemId = null;
     this.activeEquipSlot = null;
     this.previewItemId = null;
+    this.trade = null;
+    this.renderedTradeKey = null;
     this.modalReturnFocus = null;
   }
 
@@ -205,12 +213,13 @@ export class ManagementView {
             ? this.tabButton('skills', 'Amélioration')
             : `${this.tabButton('clan', 'Clan')}
               ${this.tabButton('inventory', 'Inventaire')}
-              ${this.shopEnabled ? this.tabButton('shop', 'Boutique') : ''}`}
+              ${this.shopEnabled ? this.tabButton('shop', 'Échoppe') : ''}`}
         </nav>
         <div class="management__content">${this.renderContent()}</div>
       </div>
       ${this.activeItemId ? this.renderItemModal() : ''}
       ${this.activeEquipSlot ? this.renderEquipSlotModal() : ''}
+      ${this.trade ? this.renderTradeModal() : ''}
     `;
     this.bind();
     this.overlay.querySelectorAll<HTMLElement>('.ui-scroll-panel, .shop-view, .inventory-grid, .inventory-view')
@@ -223,7 +232,13 @@ export class ManagementView {
     const controls = this.focusableControls();
     const restore = restoreKey && controls.find(control => control.tagName === restoreKey.tag
       && restoreKey.attributes.every(([name, value]) => control.getAttribute(name) === value));
-    (restore || controls[0])?.focus({ preventScroll: true });
+    const tradeKey = this.trade ? `${this.trade.kind}:${this.trade.id}:${this.trade.stage}:${this.trade.revision}` : null;
+    const autofocus = tradeKey && tradeKey !== this.renderedTradeKey
+      ? this.overlay.querySelector<HTMLElement>('.item-modal [data-autofocus]:not(:disabled)') : null;
+    this.renderedTradeKey = tradeKey;
+    const listFallback = hadModal && !hasModal && !restore
+      ? this.overlay.querySelector<HTMLElement>('.shop-list [data-trade], .craft-list [data-craft]') : null;
+    (autofocus || restore || listFallback || controls[0])?.focus({ preventScroll: true });
     if (!hasModal) this.modalReturnFocus = null;
   }
 
@@ -244,7 +259,10 @@ export class ManagementView {
     if (event.key === 'Escape') {
       event.preventDefault(); event.stopPropagation();
       this.options.onSound?.('back');
-      if (this.activeEquipSlot) { this.activeEquipSlot = null; this.previewItemId = null; this.render(); }
+      if (this.trade) {
+        if (this.trade.stage === 'confirm') { this.trade.stage = 'preview'; this.trade.revision += 1; } else this.trade = null;
+        this.render();
+      } else if (this.activeEquipSlot) { this.activeEquipSlot = null; this.previewItemId = null; this.render(); }
       else if (this.activeItemId) { this.activeItemId = null; this.render(); }
       else this.close();
       return;
@@ -388,7 +406,7 @@ export class ManagementView {
             <div class="weapon-modal__section-title">Remplacer par</div>
             ${available.length > 0
               ? `<div class="weapon-replacement-list">${available.map((item) => this.renderReplacementCard(item, currentWeapon, unit)).join('')}</div>`
-              : '<p class="empty-copy">Aucun objet disponible dans l\'inventaire.</p>'}
+              : `<p class="empty-copy">${isWeaponSlot ? `Aucune autre arme pour ${unit.name} dans le sac.` : 'Aucun autre accessoire dans le sac.'} L’échoppe et la forge du refuge en proposent ; une arme forgée à partir de celle que porte le héros est équipée aussitôt.</p>`}
           </div>
         `}
       </div>
@@ -781,75 +799,382 @@ export class ManagementView {
     </div>`;
   }
 
+  private shopToggle(): string {
+    const tab = (mode: 'buy' | 'sell' | 'craft', label: string) =>
+      `<button type="button" data-shop-mode="${mode}" class="ui-tab ${this.shopMode === mode ? 'is-active' : ''}">${label}</button>`;
+    return `<div class="shop-toggle">${tab('buy', 'Acheter')}${tab('sell', 'Vendre')}${tab('craft', 'Forge')}</div>`;
+  }
+
   private renderShop(): string {
     const state = this.options.getState();
     if (this.shopMode === 'craft') return this.renderForge();
-    const source = this.shopMode === 'buy'
+    const buying = this.shopMode === 'buy';
+    const source = buying
       ? Object.entries(state.shops[this.shopId]?.stock ?? {})
       : (Object.keys(categoryLabels) as ItemCategory[]).flatMap((category) => Object.entries(state.inventory[category]));
     // OD-2026-11-05-D: the shop offers only what the company can use; selling still lists everything carried.
-    const rows = source.filter(([id, quantity]) => quantity > 0 && (this.shopMode !== 'buy' || isUsefulToCompany(state, id))).map(([id, quantity]) => {
-      const item = itemById.get(id);
-      if (!item) return '';
-      const price = this.shopMode === 'buy' ? getShopPrice(item.price, state.reputation) : Math.floor(item.price / 2);
-      const availableGold = state.gold;
-      const disabled = this.shopMode === 'buy' && availableGold < price;
-      const action = `<button type="button" class="ui-button ui-button--secondary" data-trade="${this.shopMode}" data-item="${id}" aria-label="${escapeAttribute(`${this.shopMode === 'buy' ? 'Acheter' : 'Vendre'} ${item.name} · ${price} or`)}" ${disabled ? 'disabled' : ''}>${price} or</button>`;
-      return this.itemRow(id, quantity, action);
-    }).join('');
+    const rows = source.filter(([id, quantity]) => quantity > 0 && (!buying || isUsefulToCompany(state, id)))
+      .map(([id, quantity]) => this.shopRow(id, quantity)).join('');
+    const intro = buying
+      ? `Choisissez un article : sa fiche montre ce qu’il change pour chaque héros, puis vous confirmez l’achat. ${WEAPON_TIER_RULE}`
+      : 'Choisissez un objet du sac : sa fiche montre le prix de vente, puis vous confirmez la vente.';
     return `<div class="shop-view">
-      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Échoppe du refuge · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>Les achats utilisent votre or disponible. ${WEAPON_TIER_RULE}</small></div>
-        <div class="shop-toggle">
-          <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
-          <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>
-          <button type="button" data-shop-mode="craft" class="ui-tab">Forge</button>
-        </div>
+      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Échoppe du refuge · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>${intro}</small></div>
+        ${this.shopToggle()}
       </div>
       <div class="shop-list">${rows || '<p class="empty-copy">Aucun article disponible.</p>'}</div>
     </div>`;
+  }
+
+  /** One shop line. It opens the item's fiche; nothing is bought or sold before the fiche's confirmation (playtest 2026-11-07). */
+  private shopRow(id: string, quantity: number): string {
+    const state = this.options.getState();
+    const item = itemById.get(id);
+    if (!item) return '';
+    const buying = this.shopMode === 'buy';
+    const price = buying ? getShopPrice(item.price, state.reputation) : Math.floor(item.price / 2);
+    const tier = item.category === 'weapons' ? weaponById.get(id)?.tier : undefined;
+    const skillLine = item.category === 'weapons' || item.category === 'accessories' ? describeItemSkillEffects(id).join(' · ') : '';
+    const owned = state.inventory[item.category][id] ?? 0;
+    const tags: string[] = [];
+    if (buying && state.gold < price) tags.push('<em class="shop-row__tag is-short">Or insuffisant</em>');
+    if (buying && owned > 0) tags.push(`<em class="shop-row__tag">Dans le sac : ${owned}</em>`);
+    const wearers = buying ? currentWearers(state, id).map((unit) => unit.name) : [];
+    if (wearers.length) tags.push(`<em class="shop-row__tag">Équipé : ${wearers.join(', ')}</em>`);
+    const label = `${item.name} · ${buying ? `${price} or · voir et acheter` : `vente ${price} or · voir et vendre`}`;
+    return `<button type="button" class="shop-row" data-trade="${this.shopMode}" data-item="${id}" aria-label="${escapeAttribute(label)}">
+      <span class="item-row__icon ui-chip" aria-hidden="true">${item.icon}</span>
+      <span class="shop-row__body"><strong>${item.name}${tier !== undefined ? ` <span class="item-row__tier">T${tier}</span>` : ''}</strong><small>${item.description}</small>${skillLine ? `<small class="item-row__skill">${skillLine}</small>` : ''}${tags.length ? `<span class="shop-row__tags">${tags.join('')}</span>` : ''}</span>
+      <span class="shop-row__side"><small>${buying ? 'En stock' : 'Dans le sac'} ×${quantity}</small><span class="shop-row__price">${buying ? '' : '+'}${price} or</span></span>
+    </button>`;
   }
 
   private renderForge(): string {
     const state = this.options.getState();
     const rows = getForgeRecipes(state).map((recipe) => {
       const output = itemById.get(recipe.output.itemId);
-      const disabled = !canCraftItem(state, recipe.id);
-      const gold = getCraftGoldCost(state, recipe);
-      const ingredients = getForgeIngredients(state, recipe).map((ingredient) => this.ingredientLabel(ingredient)).join('');
-      return `<article class="craft-recipe ui-panel ui-panel--soft">
+      const preview = previewCraft(state, recipe.id, this.shopId);
+      if (!output || !preview) return '';
+      const tier = output.category === 'weapons' ? weaponById.get(output.id)?.tier : undefined;
+      const named = describeItemSkillEffects(recipe.output.itemId).join(' · ');
+      const effect = preview.wearer && preview.wearer.stats.length
+        ? `${preview.wearer.name}, qui l’équipera aussitôt : ${this.statSummary(preview.wearer)}`
+        : recipe.preview;
+      const missing = preview.missing.map((entry) => entry.itemId === 'gold' ? `${entry.need - entry.have} or` : `${entry.name} ×${entry.need - entry.have}`);
+      return `<article class="craft-recipe ui-panel ui-panel--soft${preview.ready ? ' is-ready' : ''}">
         <div class="craft-recipe__output">
-          <span class="item-row__icon ui-chip">${output?.icon ?? '✦'}</span>
-          <div>
-            <strong>${recipe.name}</strong>
-            <small>${recipe.description}</small>
-          </div>
+          <span class="item-row__icon ui-chip" aria-hidden="true">${output.icon}</span>
+          <div><strong>${recipe.name}</strong><small>Donne : ${output.name}${tier !== undefined ? ` <span class="item-row__tier">T${tier}</span>` : ''}</small></div>
         </div>
         <div class="craft-recipe__meta">
-          <p><b>Créé</b> ${output?.name ?? recipe.output.itemId} ×${recipe.output.quantity}</p>
-          <p><b>Effet</b> ${recipe.preview}</p>
-          ${(() => { const named = describeItemSkillEffects(recipe.output.itemId).join(' · '); return named ? `<p class="craft-recipe__skill"><b>Compétences</b> ${named}</p>` : ''; })()}
+          <p><b>Effet</b> ${effect}</p>
+          ${named ? `<p class="craft-recipe__skill"><b>Compétences</b> ${named}</p>` : ''}
         </div>
-        <div class="craft-recipe__ingredients">${ingredients}<span class="ui-chip">${gold} or</span></div>
-        <button type="button" class="ui-button ui-button--secondary" data-craft="${recipe.id}" aria-label="${escapeAttribute(`Forger ${output?.name ?? recipe.output.itemId} · ${gold} or`)}" ${disabled ? 'disabled' : ''}>Forger</button>
+        <ul class="craft-recipe__needs trade-needs">${this.craftNeeds(recipe.id, preview)}</ul>
+        <p class="craft-recipe__status${preview.ready ? ' is-ready' : ''}">${preview.ready ? 'Prêt à forger' : `Il manque : ${missing.join(', ')}`}</p>
+        <button type="button" class="ui-button${preview.ready ? '' : ' ui-button--secondary'}" data-craft="${recipe.id}" aria-label="${escapeAttribute(`${preview.ready ? 'Forger' : 'Voir ce qu’il manque pour forger'} ${output.name} · ${preview.gold} or`)}">${preview.ready ? 'Forger…' : 'Voir ce qu’il manque'}</button>
       </article>`;
     }).join('');
     return `<div class="shop-view shop-view--forge">
-      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Forge du refuge · ${getReputationRule(state.reputation).label}</p><h3>Artisan du refuge</h3><small>La forge prend d’abord les objets du sac, puis ceux que portent les héros : une arme portée est remplacée sur son héros. Ses prix suivent la réputation. ${WEAPON_TIER_RULE}</small></div>
-        <div class="shop-toggle">
-          <button type="button" data-shop-mode="buy" class="ui-tab ${this.shopMode === 'buy' ? 'is-active' : ''}">Acheter</button>
-          <button type="button" data-shop-mode="sell" class="ui-tab ${this.shopMode === 'sell' ? 'is-active' : ''}">Vendre</button>
-          <button type="button" data-shop-mode="craft" class="ui-tab ${this.shopMode === 'craft' ? 'is-active' : ''}">Forge</button>
-        </div>
+      <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Forge du refuge · ${getReputationRule(state.reputation).label}</p><h3>Artisan du refuge</h3><small>La forge prend d’abord le sac, puis l’objet que porte un héros, qui équipe aussitôt le résultat. Chaque recette montre ce qu’elle prend et ce qu’elle donne ; vous confirmez avant de forger. Prix selon la réputation. ${WEAPON_TIER_RULE}</small></div>
+        ${this.shopToggle()}
       </div>
       <div class="craft-list">${rows}</div>
     </div>`;
   }
 
-  private ingredientLabel({ itemId, quantity, carried, worn }: ForgeIngredient): string {
+  /** Each ingredient and the gold a recipe takes, met or missing, and where it comes from. */
+  private craftNeeds(recipeId: string, preview: CraftPreview): string {
+    const state = this.options.getState();
+    const recipe = craftRecipeById.get(recipeId);
+    if (!recipe) return '';
+    const lines = getForgeIngredients(state, recipe).map((ingredient) => {
+      const consumed = preview.consumed.find((entry) => entry.itemId === ingredient.itemId);
+      const lack = preview.missing.find((entry) => entry.itemId === ingredient.itemId);
+      const sources = [
+        consumed && consumed.fromBag > 0 ? 'dans le sac' : '',
+        consumed?.wornBy.length ? `sur ${consumed.wornBy.join(', ')}` : '',
+        lack ? (lack.inShop ? 'en vente à l’échoppe' : 'gagné en combat') : '',
+      ].filter(Boolean).join(' · ');
+      return this.needLine(!lack, `${itemById.get(ingredient.itemId)?.name ?? ingredient.itemId} ${ingredient.carried + ingredient.worn}/${ingredient.quantity}`, sources);
+    });
+    const enough = state.gold >= preview.gold;
+    lines.push(this.needLine(enough, `${preview.gold} or`, enough ? `vous avez ${state.gold} or` : `il manque ${preview.gold - state.gold} or`));
+    return lines.join('');
+  }
+
+  private needLine(met: boolean, label: string, detail: string): string {
+    return `<li class="${met ? 'is-ok' : 'is-missing'}"><span><i aria-hidden="true">${met ? '✓' : '✗'}</i> ${label}</span>${detail ? `<small>${detail}</small>` : ''}</li>`;
+  }
+
+  /** "Puissance 20 → 25 · PV 145 → 170": the stats a change moves. */
+  private statSummary(change: HeroChange): string {
+    return change.stats.map((stat) => `${stat.label} ${stat.before} → ${stat.after}`).join(' · ');
+  }
+
+  /** What one hero gains or loses: stats before and after, skills opened or closed. */
+  private heroChangeBlock(change: HeroChange, heading: string): string {
+    const rows = change.stats.map((stat) => this.weaponStatRow(stat.label, `${stat.before} → ${stat.after}`, stat.after - stat.before)).join('');
+    const skills = [
+      ...change.gained.map((label) => `<li class="trade-skill is-gained">Nouvelle compétence : ${label}</li>`),
+      ...change.swapped.map((label) => `<li class="trade-skill is-gained">${label}</li>`),
+      ...change.lost.map((label) => `<li class="trade-skill is-lost">Compétence perdue : ${label}</li>`),
+      change.innate ? `<li class="trade-skill is-gained">Améliore le don inné : ${change.innate}</li>` : '',
+    ].join('');
+    return `<section class="trade-hero" aria-label="${escapeAttribute(heading)}">
+      <p class="trade-hero__heading">${heading}</p>
+      ${rows ? `<div class="weapon-modal__stat-list">${rows}</div>` : '<p class="trade-hero__none">Aucune statistique ne change.</p>'}
+      ${skills ? `<ul class="trade-skills">${skills}</ul>` : '<p class="trade-hero__none">Compétences inchangées.</p>'}
+    </section>`;
+  }
+
+  private changeHeading(change: HeroChange): string {
+    return `${change.name} · ${change.replacedName ? `remplace ${change.replacedName}` : `${change.slotLabel} libre`}`;
+  }
+
+  /** What an item would do for the company, before it is bought or sold. */
+  private itemEffectSection(item: ItemDefinition): string {
+    const state = this.options.getState();
+    if (item.category === 'weapons') {
+      const blocks = candidateWearers(state, item.id)
+        .map((unit) => previewEquip(state, unit.id, item.id))
+        .filter((change): change is HeroChange => Boolean(change))
+        .map((change) => this.heroChangeBlock(change, `Si ${change.name} la prend · remplace ${change.replacedName ?? 'rien'}`));
+      const wearers = currentWearers(state, item.id).map((unit) => unit.name);
+      return `<section class="trade-section"><p class="trade-section__title">Ce qu’elle change</p>
+        ${blocks.join('') || `<p class="trade-hero__none">${wearers.length ? `Déjà portée par ${wearers.join(', ')}.` : 'Aucun héros de la compagnie ne la manie.'}</p>`}
+        <small class="weapon-modal__tier-rule">${WEAPON_TIER_RULE}</small>
+      </section>`;
+    }
+    if (item.category === 'accessories') {
+      const labels: Record<string, string> = { maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END', dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPLAC.' };
+      const bonuses = Object.entries(item.modifiers ?? {}).map(([key, value]) => `+${value} ${labels[key] ?? key}`).join(' · ');
+      const skills = describeItemSkillEffects(item.id);
+      return `<section class="trade-section"><p class="trade-section__title">Ce qu’il change</p>
+        <p class="trade-hero__line">Pour le héros qui le porte : <strong>${bonuses || 'aucun bonus de statistique'}</strong>. Chaque héros a deux emplacements d’accessoire.</p>
+        ${skills.length ? `<ul class="trade-skills">${skills.map((line) => `<li class="trade-skill is-gained">${line}</li>`).join('')}</ul>` : ''}
+      </section>`;
+    }
+    const uses = item.category === 'materials'
+      ? item.id === 'red_gem'
+        ? 'Sert à améliorer les compétences (Amélioration, au refuge).'
+        : (() => {
+          const count = getForgeRecipes(state).filter((recipe) => recipe.inputs.materials?.[item.id]).length;
+          return count ? `Sert à la forge : ${count} recette${count > 1 ? 's' : ''} l’utilisent.` : '';
+        })()
+      : '';
+    return `<section class="trade-section"><p class="trade-section__title">Effet</p><p class="trade-hero__line">${item.description}${uses ? ` ${uses}` : ''}</p></section>`;
+  }
+
+  /** After a purchase or a forge that left the item in the bag: equip it on a hero right here. */
+  private tradeEquipSection(itemId: string, autofocus = false): string {
+    const state = this.options.getState();
     const item = itemById.get(itemId);
-    const owned = carried + worn;
-    const usesWorn = carried < quantity && worn > 0;
-    return `<span class="ui-chip ${owned >= quantity ? '' : 'is-missing'}">${item?.name ?? itemId} ${owned}/${quantity}${usesWorn ? ' · porté' : ''}</span>`;
+    if (!item || (item.category !== 'weapons' && item.category !== 'accessories') || (state.inventory[item.category][itemId] ?? 0) < 1) return '';
+    const buttons: string[] = [];
+    const notes: string[] = [];
+    for (const unit of candidateWearers(state, itemId)) {
+      const slot = item.category === 'accessories' ? freeAccessorySlot(unit) : undefined;
+      if (item.category === 'accessories' && slot === null) { notes.push(unit.name); continue; }
+      const change = previewEquip(state, unit.id, itemId, slot ?? undefined);
+      if (!change) continue;
+      const meta = [this.statSummary(change), ...change.gained.map((label) => `débloque ${label}`), ...change.swapped].filter(Boolean).join(' · ');
+      buttons.push(`<button type="button" class="ui-button ui-button--secondary trade-equip__button"${autofocus && !buttons.length ? ' data-autofocus' : ''} data-trade-equip="${unit.id}"${slot !== undefined && slot !== null ? ` data-trade-equip-slot="${slot}"` : ''} aria-label="${escapeAttribute(`Équiper ${item.name} sur ${unit.name}${meta ? ` : ${meta}` : ''}`)}">
+        <span>Équiper sur ${unit.name}</span>${meta ? `<small>${meta}</small>` : ''}</button>`);
+    }
+    if (!buttons.length && !notes.length) return '';
+    return `<section class="trade-section trade-equip"><p class="trade-section__title">Équiper maintenant ?</p>
+      ${buttons.join('')}
+      ${notes.length ? `<p class="trade-hero__none">${notes.join(', ')} : deux accessoires déjà portés, à changer depuis la fiche du héros (Compagnie).</p>` : ''}
+    </section>`;
+  }
+
+  private renderTradeModal(): string {
+    const trade = this.trade;
+    if (!trade) return '';
+    const state = this.options.getState();
+    const recipe = trade.kind === 'craft' ? craftRecipeById.get(trade.id) : undefined;
+    const item = itemById.get(recipe ? recipe.output.itemId : trade.id);
+    if (!item || (trade.kind === 'craft' && !recipe)) return '';
+    const tier = item.category === 'weapons' ? weaponById.get(item.id)?.tier : undefined;
+    const verb = trade.kind === 'buy' ? 'Achat' : trade.kind === 'sell' ? 'Vente' : 'Forge';
+    const title = recipe ? recipe.name : item.name;
+    const subtitle = recipe ? `Donne : ${item.name}` : item.description;
+    const body = trade.kind === 'craft' ? this.craftTradeBody(trade, recipe!.id) : this.shopTradeBody(trade, item);
+    return `<div class="item-modal-overlay" data-trade-close>
+      <div class="item-modal ui-panel weapon-modal trade-modal" role="dialog" aria-modal="true" aria-label="${escapeAttribute(`${verb} · ${item.name}`)}" data-trade-stage="${trade.stage}">
+        <button type="button" class="icon-button ui-icon-button" data-trade-close aria-label="Fermer">×</button>
+        <div class="weapon-modal__header">
+          <span class="item-row__icon ui-chip" aria-hidden="true">${item.icon}</span>
+          <div class="weapon-modal__title-block">
+            <p class="trade-modal__eyebrow">${verb}${tier !== undefined ? ` · arme T${tier}` : ''}</p>
+            <h3 class="weapon-modal__title">${title}</h3>
+            <small class="weapon-modal__subtitle">${subtitle}</small>
+          </div>
+        </div>
+        ${body}
+      </div>
+    </div>`;
+  }
+
+  private shopTradeBody(trade: TradeState, item: ItemDefinition): string {
+    const state = this.options.getState();
+    const buying = trade.kind === 'buy';
+    const price = buying ? getShopPrice(item.price, state.reputation) : Math.floor(item.price / 2);
+    const owned = state.inventory[item.category][item.id] ?? 0;
+    const stock = state.shops[this.shopId]?.stock[item.id] ?? 0;
+    const able = buying ? stock > 0 && state.gold >= price : owned > 0;
+    if (trade.stage === 'done') {
+      const again = item.category === 'consumables' || item.category === 'materials' ? able : false;
+      const equipFirst = buying && !trade.outcome?.equipped && Boolean(this.tradeEquipSection(item.id));
+      return `${this.tradeDone(trade)}
+        ${buying ? this.tradeEquipSection(item.id, equipFirst) : ''}
+        <div class="trade-footer"><div class="weapon-modal__actions">
+          ${again ? `<button type="button" class="ui-button ui-button--secondary" data-trade-step="confirm">${buying ? 'En acheter un autre' : 'En vendre un autre'} · ${price} or</button>` : ''}
+          <button type="button" class="ui-button" data-trade-close${equipFirst ? '' : ' data-autofocus'}>Continuer</button>
+        </div></div>`;
+    }
+    const goldAfter = buying ? state.gold - price : state.gold + price;
+    const summary = `<dl class="trade-summary">
+      <div><dt>${buying ? 'Prix' : 'Prix de vente'}</dt><dd>${price} or</dd></div>
+      <div><dt>Votre or</dt><dd>${state.gold} → ${goldAfter}</dd></div>
+      <div><dt>Dans le sac</dt><dd>${owned} → ${buying ? owned + 1 : Math.max(0, owned - 1)}</dd></div>
+    </dl>`;
+    const warning = buying && state.gold < price ? `<p class="trade-warning" role="note">Il vous manque ${price - state.gold} or.</p>` : '';
+    const action = buying ? 'Acheter' : 'Vendre';
+    const footer = trade.stage === 'confirm'
+      ? `<div class="trade-confirm" role="group" aria-label="Confirmation">
+          <p>Confirmer ${buying ? 'l’achat' : 'la vente'} de <strong>${item.name}</strong> pour <strong>${price} or</strong> ? Votre or passera de ${state.gold} à ${goldAfter}.</p>
+          <div class="weapon-modal__actions">
+            <button type="button" class="ui-button ui-button--secondary" data-trade-step="preview">Annuler</button>
+            <button type="button" class="ui-button" data-trade-confirm data-autofocus>${buying ? 'Confirmer l’achat' : 'Confirmer la vente'}</button>
+          </div>
+        </div>`
+      : `<div class="weapon-modal__actions">
+          <button type="button" class="ui-button ui-button--secondary" data-trade-close${able ? '' : ' data-autofocus'}>Retour</button>
+          <button type="button" class="ui-button" data-trade-step="confirm"${able ? ' data-autofocus' : ' disabled'} aria-label="${escapeAttribute(`${action} ${item.name} · ${price} or`)}">${action} · ${price} or</button>
+        </div>`;
+    return `${buying ? this.itemEffectSection(item) : this.sellNote(item)}
+      ${summary}${warning}
+      <div class="trade-footer">${footer}</div>`;
+  }
+
+  private sellNote(item: ItemDefinition): string {
+    const state = this.options.getState();
+    const wearers = currentWearers(state, item.id).map((unit) => unit.name);
+    return `<section class="trade-section"><p class="trade-section__title">Vente</p>
+      <p class="trade-hero__line">Seul un exemplaire du sac est vendu${wearers.length ? ` ; l’exemplaire équipé sur ${wearers.join(', ')} le reste` : ''}. L’échoppe reprend l’objet à moitié prix.</p>
+    </section>`;
+  }
+
+  private craftTradeBody(trade: TradeState, recipeId: string): string {
+    const state = this.options.getState();
+    const preview = previewCraft(state, recipeId, this.shopId);
+    if (!preview) return '';
+    if (trade.stage === 'done') {
+      const equipFirst = !trade.outcome?.equipped && Boolean(this.tradeEquipSection(preview.outputId));
+      return `${this.tradeDone(trade)}${this.tradeEquipSection(preview.outputId, equipFirst)}
+        <div class="trade-footer"><div class="weapon-modal__actions">
+          <button type="button" class="ui-button" data-trade-close${equipFirst ? '' : ' data-autofocus'}>Continuer</button>
+        </div></div>`;
+    }
+    const output = itemById.get(preview.outputId)!;
+    const gives = preview.wearer
+      ? this.heroChangeBlock(preview.wearer, `${preview.wearer.name} l’équipera aussitôt · remplace ${preview.wearer.replacedName ?? 'rien'}`)
+      : `<p class="trade-hero__line">${output.name} ira dans le sac : vous pourrez l’équiper juste après.</p>`;
+    // The wearer's block already names the skills; without one, the skill each hero would get is listed.
+    const named = preview.wearer ? [] : describeItemSkillEffects(preview.outputId);
+    const missing = preview.missing.map((entry) => entry.itemId === 'gold'
+      ? `${entry.need - entry.have} or`
+      : `${entry.name} ×${entry.need - entry.have}${entry.inShop ? ' (en vente à l’échoppe)' : ''}`);
+    const consumedText = preview.consumed.map((entry) => `${entry.quantity} ${entry.name}${entry.wornBy.length ? ` (sur ${entry.wornBy.join(', ')})` : ''}`).join(', ');
+    const goldAfter = state.gold - preview.gold;
+    const footer = trade.stage === 'confirm'
+      ? `<div class="trade-confirm" role="group" aria-label="Confirmation">
+          <p>Confirmer la forge ? Elle prendra ${consumedText} et <strong>${preview.gold} or</strong>. Votre or passera de ${state.gold} à ${goldAfter}.</p>
+          <div class="weapon-modal__actions">
+            <button type="button" class="ui-button ui-button--secondary" data-trade-step="preview">Annuler</button>
+            <button type="button" class="ui-button" data-trade-confirm data-autofocus>Confirmer la forge</button>
+          </div>
+        </div>`
+      : `<div class="weapon-modal__actions">
+          <button type="button" class="ui-button ui-button--secondary" data-trade-close${preview.ready ? '' : ' data-autofocus'}>Retour</button>
+          <button type="button" class="ui-button" data-trade-step="confirm"${preview.ready ? ' data-autofocus' : ' disabled'} aria-label="${escapeAttribute(`Forger ${output.name} · ${preview.gold} or`)}">Forger · ${preview.gold} or</button>
+        </div>`;
+    return `<section class="trade-section"><p class="trade-section__title">Ce que la forge prend</p><ul class="trade-needs">${this.craftNeeds(recipeId, preview)}</ul></section>
+      <section class="trade-section"><p class="trade-section__title">Ce qu’elle donne</p>${gives}
+        ${named.length ? `<ul class="trade-skills">${named.map((line) => `<li class="trade-skill">${line}</li>`).join('')}</ul>` : ''}
+      </section>
+      ${missing.length ? `<p class="trade-warning" role="note">Il manque : ${missing.join(', ')}.</p>` : ''}
+      <dl class="trade-summary"><div><dt>Coût</dt><dd>${preview.gold} or</dd></div><div><dt>Votre or</dt><dd>${state.gold} → ${preview.ready ? goldAfter : '—'}</dd></div></dl>
+      <div class="trade-footer">${footer}</div>`;
+  }
+
+  private tradeDone(trade: TradeState): string {
+    const outcome = trade.outcome;
+    if (!outcome) return '';
+    return `<div class="trade-done" role="status">
+        <p class="trade-done__title"><span aria-hidden="true">✓</span> ${outcome.title}</p>
+        ${outcome.lines.map((line) => `<p>${line}</p>`).join('')}
+      </div>
+      ${outcome.change ? this.heroChangeBlock(outcome.change, outcome.changeHeading) : ''}`;
+  }
+
+  /** Runs the confirmed trade through its owner (buyItem, sellItem, craftItem) and keeps the fiche open on the result. */
+  private confirmTrade(): void {
+    const trade = this.trade;
+    if (!trade) return;
+    const state = this.options.getState();
+    if (trade.kind === 'craft') {
+      const preview = previewCraft(state, trade.id, this.shopId);
+      if (!preview?.ready || !craftItem(state, trade.id)) { this.options.onSound?.('refused'); return; }
+      const wearer = preview.wearer;
+      trade.outcome = {
+        title: `Forgé : ${preview.outputName}`,
+        lines: wearer
+          ? [`${wearer.name} porte maintenant : ${preview.outputName}.`, ...(wearer.replacedName ? [`La forge a utilisé : ${wearer.replacedName}.`] : [])]
+          : [`Dans le sac : ${state.inventory[itemById.get(preview.outputId)!.category][preview.outputId] ?? 0}.`],
+        change: wearer,
+        changeHeading: wearer ? `${wearer.name} · ${wearer.slotLabel}` : '',
+        equipped: Boolean(wearer),
+      };
+    } else {
+      const item = itemById.get(trade.id);
+      if (!item) return;
+      const price = trade.kind === 'buy' ? getShopPrice(item.price, state.reputation) : Math.floor(item.price / 2);
+      const ok = trade.kind === 'buy'
+        ? buyItem(state, this.shopId, item.id, this.shopWallet === 'temporary')
+        : sellItem(state, this.shopId, item.id, this.shopWallet === 'temporary');
+      if (!ok) { this.options.onSound?.('refused'); return; }
+      const owned = state.inventory[item.category][item.id] ?? 0;
+      trade.outcome = trade.kind === 'buy'
+        ? { title: `Acheté : ${item.name}`, lines: [`Dans le sac : ${owned}. Votre or : ${state.gold}.`], change: null, changeHeading: '', equipped: false }
+        : { title: `Vendu : ${item.name}`, lines: [`+${price} or. Votre or : ${state.gold}. Il en reste ${owned} dans le sac.`], change: null, changeHeading: '', equipped: false };
+    }
+    trade.stage = 'done';
+    trade.revision += 1;
+    this.changed();
+  }
+
+  /** Equips the item the fiche just bought or forged, through equipWeapon or equipAccessory. */
+  private equipFromTrade(unitId: string, slot: 0 | 1 | undefined): void {
+    const trade = this.trade;
+    if (!trade?.outcome) return;
+    const state = this.options.getState();
+    const itemId = trade.kind === 'craft' ? craftRecipeById.get(trade.id)?.output.itemId ?? '' : trade.id;
+    const item = itemById.get(itemId);
+    const unit = state.clan.members.find((candidate) => candidate.id === unitId);
+    const change = item && unit ? previewEquip(state, unitId, itemId, slot) : null;
+    const ok = Boolean(change) && (item?.category === 'weapons'
+      ? equipWeapon(state, unitId, itemId)
+      : slot !== undefined && equipAccessory(state, unitId, slot, itemId));
+    if (!ok || !change || !item) { this.options.onSound?.('refused'); return; }
+    trade.outcome.lines = [...trade.outcome.lines, `${change.name} porte maintenant : ${item.name}.${change.replacedName ? ` ${change.replacedName} retourne dans le sac.` : ''}`];
+    trade.outcome.change = change;
+    trade.outcome.changeHeading = this.changeHeading(change);
+    trade.outcome.equipped = true;
+    trade.revision += 1;
+    this.changed();
   }
 
   private bind(): void {
@@ -956,23 +1281,48 @@ export class ManagementView {
       button.addEventListener('click', () => {
         if(this.shopMode !== button.dataset.shopMode) this.options.onSound?.('navigate');
         this.shopMode = button.dataset.shopMode as 'buy' | 'sell' | 'craft';
+        this.trade = null;
         this.render();
       });
     });
-    this.overlay.querySelectorAll<HTMLButtonElement>('[data-trade]').forEach((button) => {
+    // A shop line or a recipe opens its fiche; the owner action runs only on the fiche's confirmation.
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-trade], [data-craft]').forEach((button) => {
       button.addEventListener('click', () => {
-        const itemId = button.dataset.item ?? '';
-        const ok = button.dataset.trade === 'buy'
-          ? buyItem(this.options.getState(), this.shopId, itemId, this.shopWallet === 'temporary')
-          : sellItem(this.options.getState(), this.shopId, itemId, this.shopWallet === 'temporary');
-        if (ok) this.changed();
-        else this.options.onSound?.('refused');
+        const craft = button.dataset.craft;
+        this.trade = { kind: craft ? 'craft' : button.dataset.trade as 'buy' | 'sell', id: craft ?? button.dataset.item ?? '', stage: 'preview', outcome: null, revision: 0 };
+        this.options.onSound?.('confirm');
+        this.render();
       });
     });
-    this.overlay.querySelectorAll<HTMLButtonElement>('[data-craft]').forEach((button) => {
-      button.addEventListener('click', () => {
-        const recipeId = button.dataset.craft ?? '';
-        if (craftItem(this.options.getState(), recipeId)) this.changed();
+    this.overlay.querySelectorAll<HTMLElement>('[data-trade-close]').forEach((el) => {
+      el.addEventListener('click', (event) => {
+        if (event.target !== el) return;
+        this.options.onSound?.('back');
+        this.trade = null;
+        this.render();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-trade-step]').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        if (!this.trade) return;
+        const stage = button.dataset.tradeStep as 'preview' | 'confirm';
+        if (this.trade.stage === 'done') this.trade.outcome = null;
+        this.trade.stage = stage;
+        this.trade.revision += 1;
+        this.options.onSound?.(stage === 'confirm' ? 'navigate' : 'back');
+        this.render();
+      });
+    });
+    this.overlay.querySelector<HTMLButtonElement>('[data-trade-confirm]')?.addEventListener('click', (event) => {
+      event.stopPropagation();
+      this.confirmTrade();
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-trade-equip]').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const slot = button.dataset.tradeEquipSlot;
+        this.equipFromTrade(button.dataset.tradeEquip ?? '', slot === '0' ? 0 : slot === '1' ? 1 : undefined);
       });
     });
     this.overlay.querySelectorAll<HTMLButtonElement>('[data-upgrade-skill]').forEach((button) => {

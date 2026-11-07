@@ -64,16 +64,35 @@ it('contains Tab in the current dialog and returns from equipment details to the
   expect(root.querySelector<HTMLElement>('.management__shell')!.inert).toBe(false);
   expect(JSON.stringify(state)).toBe(before); view.close(); await closed;
 });
-it('preserves the native trade button after one owner-resolved purchase rerenders the shop', async () => {
-  const { state, root, view } = setup(); state.gold = 10000; state.shops.valmir!.stock.potion = 2;
-  const before = state.inventory.consumables.potion ?? 0;
+it('buys only after the fiche is confirmed, then returns focus to the shop line (playtest 2026-11-07)', async () => {
+  const { state, root, view, onSound } = setup(); state.gold = 10000; state.shops.valmir!.stock.potion = 2;
+  const before = state.inventory.consumables.potion ?? 0, untouched = JSON.stringify(state);
   const closed = view.open('shop', 'valmir', 'permanent');
-  const buy = root.querySelector<HTMLButtonElement>('[data-trade="buy"][data-item="potion"]')!;
-  buy.focus(); buy.click();
+  const line = root.querySelector<HTMLButtonElement>('[data-trade="buy"][data-item="potion"]')!;
+  line.focus(); line.click();
+  // The line opens the fiche; nothing is bought yet, and focus lands on the fiche's primary action.
+  expect(JSON.stringify(state)).toBe(untouched);
+  expect(root.querySelector('.trade-modal')?.getAttribute('aria-label')).toBe('Achat · Potion légère');
+  expect((document.activeElement as HTMLElement).dataset.tradeStep).toBe('confirm');
+  expect(root.querySelector('.trade-summary')?.textContent).toContain('10000 → 9983');
+  (document.activeElement as HTMLButtonElement).click();
+  expect(JSON.stringify(state)).toBe(untouched);
+  expect(root.querySelector('.trade-confirm')?.textContent).toContain('Confirmer l’achat de Potion légère pour 17 or');
+  key('Escape');
+  expect(root.querySelector('[data-trade-stage]')?.getAttribute('data-trade-stage')).toBe('preview');
+  root.querySelector<HTMLButtonElement>('[data-trade-step="confirm"]')!.click();
+  root.querySelector<HTMLButtonElement>('[data-trade-confirm]')!.click();
   expect(state.inventory.consumables.potion).toBe(before + 1);
   expect(state.shops.valmir!.stock.potion).toBe(1);
-  expect((document.activeElement as HTMLElement).dataset.trade).toBe('buy');
+  expect(root.querySelector('.trade-done')?.textContent).toContain('Acheté : Potion légère');
+  // One more goes back through the confirmation.
+  root.querySelector<HTMLButtonElement>('.trade-footer [data-trade-step="confirm"]')!.click();
+  expect(root.querySelector('[data-trade-confirm]')).not.toBeNull();
+  expect(state.inventory.consumables.potion).toBe(before + 1);
+  key('Escape'); key('Escape');
+  expect(root.querySelector('.trade-modal')).toBeNull();
   expect((document.activeElement as HTMLElement).dataset.item).toBe('potion');
+  expect(onSound.mock.calls.filter(([cue]) => cue === 'confirm')).toHaveLength(2);
   view.close(); await closed;
 });
 
@@ -101,15 +120,75 @@ it('returns from equipment preview to the same replacement and preserves the out
   expect(JSON.stringify(state)).toBe(before); view.close(); await closed;
 });
 
-it('names weapon transactions and keeps their clicks separate from details', async () => {
+it('previews a weapon for the hero who wields it, buys it on confirmation and equips it from the fiche (playtest 2026-11-07)', async () => {
   const { state, root, view } = setup(); state.gold = 10000;
   const closed = view.open('shop', 'valmir', 'permanent');
-  const buy = root.querySelector<HTMLButtonElement>('[data-trade="buy"][data-item="steel_greatsword"]')!;
-  expect(buy.getAttribute('aria-label')).toContain('Acheter');
-  expect(buy.getAttribute('aria-label')).toContain(itemById.get('steel_greatsword')!.name);
-  expect(buy.closest('[data-item-details]')).toBeNull();
-  buy.focus(); buy.click(); expect(root.querySelector('.item-modal')).toBeNull();
+  const line = root.querySelector<HTMLButtonElement>('[data-trade="buy"][data-item="steel_greatsword"]')!;
+  expect(line.getAttribute('aria-label')).toContain('acheter');
+  expect(line.getAttribute('aria-label')).toContain(itemById.get('steel_greatsword')!.name);
+  line.click();
+  const fiche = root.querySelector('.trade-modal')!.textContent!;
+  expect(fiche).toContain('Si Alistair la prend · remplace Espadon novice');
+  expect(fiche).toContain('20 → 25');
+  expect(fiche).toContain('Nouvelle compétence : Charge (3 PA)');
+  expect(state.inventory.weapons.steel_greatsword ?? 0).toBe(0);
+  root.querySelector<HTMLButtonElement>('[data-trade-step="confirm"]')!.click();
+  root.querySelector<HTMLButtonElement>('[data-trade-confirm]')!.click();
   expect(state.inventory.weapons.steel_greatsword).toBe(1);
+  const equip = root.querySelector<HTMLButtonElement>('[data-trade-equip="warrior"]')!;
+  expect(document.activeElement).toBe(equip);
+  expect(equip.textContent).toContain('Équiper sur Alistair');
+  equip.click();
+  const alistair = state.clan.members.find(unit => unit.id === 'warrior')!;
+  expect(alistair.equipment.weaponIds).toEqual(['steel_greatsword']);
+  expect(state.inventory.weapons.novice_greatsword).toBe(1);
+  expect(root.querySelector('.trade-done')?.textContent).toContain("Alistair porte maintenant : Espadon d'acier. Espadon novice retourne dans le sac.");
+  expect(root.querySelector('[data-trade-equip]')).toBeNull();
+  expect((document.activeElement as HTMLElement).dataset.tradeClose).toBe('');
+  view.close(); await closed;
+});
+
+it('says the forge equips the hero whose weapon it takes, and lists what a recipe still misses (playtest 2026-11-07)', async () => {
+  const { state, root, view } = setup(); state.gold = 1000; state.inventory.materials.iron_ore = 2;
+  const closed = view.open('shop', 'valmir', 'permanent');
+  root.querySelector<HTMLButtonElement>('[data-shop-mode="craft"]')!.click();
+  const card = root.querySelector('[data-craft="craft_steel_greatsword"]')!.closest('.craft-recipe')!;
+  expect(card.textContent).toContain('Prêt à forger');
+  expect(card.textContent).toContain('Espadon novice 1/1');
+  expect(card.textContent).toContain('sur Alistair');
+  root.querySelector<HTMLButtonElement>('[data-craft="craft_steel_greatsword"]')!.click();
+  expect(root.querySelector('.trade-modal')!.textContent).toContain('Alistair l’équipera aussitôt · remplace Espadon novice');
+  expect(state.inventory.materials.iron_ore).toBe(2);
+  root.querySelector<HTMLButtonElement>('[data-trade-step="confirm"]')!.click();
+  expect(root.querySelector('.trade-confirm')!.textContent).toContain('1 Espadon novice (sur Alistair)');
+  root.querySelector<HTMLButtonElement>('[data-trade-confirm]')!.click();
+  expect(state.clan.members.find(unit => unit.id === 'warrior')!.equipment.weaponIds).toEqual(['steel_greatsword']);
+  expect(root.querySelector('.trade-done')!.textContent).toContain("Alistair porte maintenant : Espadon d'acier.");
+  expect(root.querySelector('.trade-done')!.textContent).toContain('La forge a utilisé : Espadon novice.');
+  key('Escape');
+  // The ore is spent: the next recipe still opens its fiche, says what is missing and cannot be confirmed.
+  root.querySelector<HTMLButtonElement>('[data-craft="craft_sacred_crosier"]')!.click();
+  expect(root.querySelector('.trade-warning')!.textContent).toContain('Minerai de fer ×2 (en vente à l’échoppe)');
+  expect(root.querySelector<HTMLButtonElement>('[data-trade-step="confirm"]')!.disabled).toBe(true);
+  expect((document.activeElement as HTMLElement).dataset.tradeClose).toBe('');
+  view.close(); await closed;
+});
+
+it('confirms a sale and refuses a purchase the company cannot afford (playtest 2026-11-07)', async () => {
+  const { state, root, view } = setup(); state.gold = 5; state.inventory.materials.iron_ore = 3;
+  const closed = view.open('shop', 'valmir', 'permanent');
+  root.querySelector<HTMLButtonElement>('[data-trade="buy"][data-item="potion"]')!.click();
+  expect(root.querySelector('.trade-warning')!.textContent).toContain('Il vous manque');
+  expect(root.querySelector<HTMLButtonElement>('[data-trade-step="confirm"]')!.disabled).toBe(true);
+  key('Escape');
+  root.querySelector<HTMLButtonElement>('[data-shop-mode="sell"]')!.click();
+  root.querySelector<HTMLButtonElement>('[data-trade="sell"][data-item="iron_ore"]')!.click();
+  expect(state.inventory.materials.iron_ore).toBe(3);
+  root.querySelector<HTMLButtonElement>('[data-trade-step="confirm"]')!.click();
+  root.querySelector<HTMLButtonElement>('[data-trade-confirm]')!.click();
+  expect(state.inventory.materials.iron_ore).toBe(2);
+  expect(state.gold).toBe(7);
+  expect(root.querySelector('.trade-done')!.textContent).toContain('Vendu : Minerai de fer');
   view.close(); await closed;
 });
 

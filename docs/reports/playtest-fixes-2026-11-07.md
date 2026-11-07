@@ -11,7 +11,7 @@
 | `MERGED_IN` | `NONE` |
 | `SUPERSEDES` | `NONE` |
 | `SUPERSEDED_BY` | `NONE` |
-| `PRODUCTION_IMPACT` | La carte des POI se lit d'un coup d'œil. Chaque palier d'arme ouvre une compétence (T1 3 PA, T2 4 PA), nommée partout, y compris en combat. Le Tir Calibré est relevé. La fiche d'unité se parcourt à la manette. Le refuge dit « Échoppe ». Une branche de bifurcation choisie engage la compagnie jusqu'à la résolution du chapitre (set 1.17.0). |
+| `PRODUCTION_IMPACT` | La carte des POI se lit d'un coup d'œil. Chaque palier d'arme ouvre une compétence (T1 3 PA, T2 4 PA), nommée partout, y compris en combat. Le Tir Calibré est relevé. La fiche d'unité se parcourt à la manette. Le refuge dit « Échoppe ». Une branche de bifurcation choisie engage la compagnie jusqu'à la résolution du chapitre (set 1.17.0). L'échoppe et la forge passent par une fiche : aperçu par héros, confirmation, puis équipement sur place. |
 | `CANONICAL_DOCS_UPDATED` | `docs/autonomy/MAP_WEAPONS_PATHS_OPERATOR_DECISION_2026-11-07.md`, `docs/autonomy/BRANCH_COMMITMENT_AMENDMENT_1.17.0.patch` (proposition), le registre des décisions et l'état vivant. |
 | `EVIDENCE` | Tests ciblés : `management.test.ts`, `ManagementView.test.ts`, `GamepadNavigator.test.ts`, `PoiMapView.test.ts`, `DemoVfxActionScope.test.ts`, `VfxMissingSheetStandIn.test.ts`. Suite complète, types, build, validateur. Captures avant et après sous `tmp/design-review/` (ignoré) : carte aux régions I, II et III à 1366 px, en mouvement réduit et à 390 px ; écran Compagnie, forge, menu de compétences d'un combat du labo QA. |
 
@@ -77,7 +77,33 @@ Point à juger en jouant : la compagnie devient plus forte plus tôt. Prix et co
 
 Dans le jeu, dès que la compagnie pose le pied sur une branche de bifurcation, seule la suite du chemin reste ouverte jusqu'au lieu qui résout le chapitre. Un bandeau au bas de la carte l'annonce, et un lieu fermé dit pourquoi. La compagnie, la sauvegarde, l'attente et Combat ou repli restent. La résolution rouvre toute la carte. Aucun champ de sauvegarde n'est ajouté. Voir la section Livraison de C de [la décision](../autonomy/MAP_WEAPONS_PATHS_OPERATOR_DECISION_2026-11-07.md).
 
+## Échoppe et forge (second retour du jour)
+
+`CURRENT FACT` L'opérateur forge une arme pour Alistair, veut l'équiper et n'y parvient pas. Il trouve aussi l'échoppe peu claire : pas de confirmation d'achat, pas d'aperçu des compétences et des statistiques obtenues.
+
+La cause, reproduite dans le navigateur : la forge avait déjà équipé l'Espadon d'acier sur Alistair, sans le dire. La carte de recette restait identique, et la fiche du héros affichait « Aucun objet disponible dans l'inventaire » sous « Remplacer par ». On croyait l'arme perdue. Par ailleurs, l'échoppe du refuge s'ouvre sans l'onglet Compagnie : une arme achetée ne s'équipait qu'après être sorti de l'échoppe.
+
+Ce qui change, en présentation seule (`src/ui/ManagementView.ts`, `src/ui/shopPreview.ts`, `src/styles/app.css`). Les règles d'achat, de vente, de forge et d'équipement restent dans `src/game/management.ts`, inchangé :
+
+- **Une fiche par article et par recette.** Une ligne de l'échoppe ou une recette de la forge n'achète plus rien d'un clic : elle ouvre une fiche en trois temps.
+  - **Aperçu.** Pour chaque héros concerné, ce qui change : statistiques avant et après, compétences ouvertes, perdues ou échangées (« Tir Précis devient Tir Calibré »). Puis le prix, l'or avant et après, et le nombre dans le sac.
+  - **Confirmation.** Une phrase résume l'opération, avec Annuler et Confirmer.
+  - **Résultat.** Ce qui a été fait, et pour une arme ou un accessoire, « Équiper sur … » avec le gain attendu.
+- **La forge dit où va l'arme.** « Alistair l'équipera aussitôt · remplace Espadon novice » avant, « Alistair porte maintenant : Espadon d'acier » après. Si l'objet de base vient du sac, le résultat va dans le sac et la fiche propose de l'équiper.
+- **Ce qui manque.** Chaque recette liste ses ingrédients, cochés ou manquants, avec leur provenance : dans le sac, sur tel héros, en vente à l'échoppe, gagné en combat. Une recette incomplète s'ouvre quand même, pour que la manette atteigne la raison. Son bouton Forger reste grisé.
+- **Les aperçus disent vrai.** Ils exécutent les vraies fonctions (`equipWeapon`, `equipAccessory`, `craftItem`) sur une copie privée de l'état et lisent le résultat. Ils ne peuvent donc pas différer de l'action, et l'état réel n'est jamais touché.
+- **Clavier et manette.** La fiche prend le focus sur son action principale. Échap revient de la confirmation à l'aperçu, puis ferme. Fermer rend le focus à la ligne, ou à la première ligne si l'article est épuisé. Le pied de fiche, avec les boutons, reste visible quand la fiche défile.
+- **En passant.**
+  - L'onglet « Boutique » devient « Échoppe », comme le bouton du refuge.
+  - Une fiche de héros sans arme de rechange dit où en trouver.
+
+Vérifications :
+
+- Tests : `src/ui/shopPreview.test.ts` (aperçus, échange de compétence dans les deux sens, accessoire, forge vers le héros ou le sac, recette incomplète, état inchangé) et `src/ui/ManagementView.test.ts` (achat seulement après confirmation, Échap, focus, achat puis équipement depuis la fiche, forge, recette incomplète, vente, achat refusé faute d'or). Suite complète, types, build, validateur, porte sur `06a3a75f`.
+- Navigateur, serveur 5181, au refuge : achat de l'Arc long puis équipement sur Kestrel, forge de l'Espadon d'acier, recette incomplète. Vérifié à 1366 px avec le mouvement par défaut puis réduit, et à 390 px. Aucune erreur de page, aucun défilement horizontal. Captures sous `tmp/design-review/shop/` (ignoré).
+- Le pilote `tools/demo-continuous-production-qa.mjs` passe désormais par la fiche (ouvrir, confirmer, continuer) et lit le prix sur la ligne ; il n'a pas été relancé de bout en bout. `tools/refuge-production-accessibility-qa.mjs` date d'octobre : il suppose encore des recettes et une échoppe disparues depuis. Il reste tel quel.
+
 ## Limites
 
-- La passe mobile reprendra la carte sur téléphone : barre de l'atlas sur deux lignes, noms serrés.
+- La passe mobile reprendra la carte sur téléphone : barre de l'atlas sur deux lignes, noms serrés. Elle reprendra aussi les onglets Acheter, Vendre et Forge, empilés à 390 px.
 - Le classement des actions du labo d'effets compte Tourbillon d'Acier parmi les actions de la démo. En jeu, l'Espadon du Lion, seule arme T2 d'Alistair, le remplace par le Rempart du Serment.

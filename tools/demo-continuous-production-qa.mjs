@@ -174,6 +174,10 @@ async function state(){return page.evaluate(()=>JSON.parse(JSON.stringify(window
 async function activateControl(control){if(touchInput)await control.tap();else await control.click();}
 async function click(selector){const button=page.locator(selector).first();await activateControl(button);report.inputs.push({action:touchInput?'native touch':'click',selector});}
 async function keyboardActivate(selector){const button=page.locator(selector).first();if(touchInput)await button.tap();else {await button.focus();await page.keyboard.press('Enter');}report.inputs.push({action:touchInput?'native touch':'keyboard Enter',selector});}
+// Playtest 2026-11-07: a shop line or a recipe opens a fiche; the owner action runs on its confirmation, then Continue closes it.
+async function confirmTrade(selector){await keyboardActivate(selector);await keyboardActivate('.management .trade-modal [data-trade-step="confirm"]');
+  await keyboardActivate('.management .trade-modal [data-trade-confirm]');await keyboardActivate('.management .trade-modal .trade-footer [data-trade-close]');}
+async function rowPrice(selector){return Number.parseInt((await page.locator(selector).locator('.shop-row__price').innerText()).replace('+',''),10);}
 async function advanceDialogue(){if(touchInput)await activateControl(page.locator('.dialogue:visible .dialogue__box:not(:disabled)').first());else await page.keyboard.press('Enter');}
 async function choose(){
   const dialogue=page.locator('.dialogue:visible');
@@ -911,8 +915,8 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
       const owner=await state(),id=['red_gem','iron_ore'].find(id=>(owner.inventory.materials[id]??0)>0);
       assert.ok(id,'Existing permanent supplies cannot fund the native rest');
       const sell=`.management [data-trade="sell"][data-item="${id}"]`;
-      const price=Number.parseInt(await page.locator(sell).innerText(),10);assert.ok(Number.isInteger(price)&&price>0);
-      await keyboardActivate(sell);const sold=await state(),expected=structuredClone(owner);
+      const price=await rowPrice(sell);assert.ok(Number.isInteger(price)&&price>0);
+      await confirmTrade(sell);const sold=await state(),expected=structuredClone(owner);
       expected.gold+=price;expected.inventory.materials[id]-=1;expected.shops.valmir.stock[id]=(expected.shops.valmir.stock[id]??0)+1;
       assert.deepEqual(sold,expected,'Native rest-funding sale changed unrelated truth or temporary loot');
       assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),sold);
@@ -939,7 +943,7 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
     await keyboardActivate('.management [data-shop-mode="buy"]');
     const buy='.management [data-trade="buy"][data-item="potion"]';
     await page.locator(buy).waitFor({state:'visible'});
-    const price=Number.parseInt(await page.locator(buy).innerText(),10),quantity=2,supplyFunding=[];
+    const price=await rowPrice(buy),quantity=2,supplyFunding=[];
     assert.ok(Number.isInteger(price)&&price>0);assert.ok(rested.shops.valmir.stock.potion>=quantity);
     await keyboardActivate('.management [data-shop-mode="sell"]');
     for(let i=0;i<10&&(await state()).gold<price*quantity;i++){
@@ -947,8 +951,8 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
         .find(([id,category])=>(owner.inventory[category][id]??0)>0);
       assert.ok(item,'Existing permanent supplies cannot fund the native Raid potions');
       const [id,category]=item,sell=`.management [data-trade="sell"][data-item="${id}"]`;
-      const proceeds=Number.parseInt(await page.locator(sell).innerText(),10);assert.ok(Number.isInteger(proceeds)&&proceeds>0);
-      await keyboardActivate(sell);const sold=await state(),expected=structuredClone(owner);
+      const proceeds=await rowPrice(sell);assert.ok(Number.isInteger(proceeds)&&proceeds>0);
+      await confirmTrade(sell);const sold=await state(),expected=structuredClone(owner);
       expected.gold+=proceeds;expected.inventory[category][id]-=1;expected.shops.valmir.stock[id]=(expected.shops.valmir.stock[id]??0)+1;
       assert.deepEqual(sold,expected,'Native potion-funding sale changed unrelated truth or temporary loot');
       assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),sold);
@@ -957,8 +961,8 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
     await keyboardActivate('.management [data-shop-mode="buy"]');
     for(let i=0;i<quantity;i++){
       const owner=await state();assert.ok(owner.gold>=price);assert.equal(await page.locator(buy).isEnabled(),true);
-      assert.equal(Number.parseInt(await page.locator(buy).innerText(),10),price);
-      await keyboardActivate(buy);const bought=await state(),expected=structuredClone(owner);
+      assert.equal(await rowPrice(buy),price);
+      await confirmTrade(buy);const bought=await state(),expected=structuredClone(owner);
       expected.gold-=price;expected.inventory.consumables.potion=(expected.inventory.consumables.potion??0)+1;
       expected.shops.valmir.stock.potion-=1;
       assert.deepEqual(bought,expected,'Native Raid potion purchase changed unrelated V6 truth');
@@ -996,9 +1000,9 @@ async function prepareNativeWeapon(nodeId){
   await keyboardActivate('.exploration-stop [data-action="shop"]');
   const buy=`.management [data-trade="buy"][data-item="${purchaseId}"]`;
   await page.locator(buy).waitFor({state:'visible'});
-  const before=await state(),price=Number.parseInt(await page.locator(buy).innerText(),10);
+  const before=await state(),price=await rowPrice(buy);
   assert.ok(Number.isInteger(price)&&price>0&&before.gold>=price,'Native weapon purchase must be affordable');
-  await keyboardActivate(buy);const bought=await state(),expectedBuy=structuredClone(before);
+  await confirmTrade(buy);const bought=await state(),expectedBuy=structuredClone(before);
   expectedBuy.gold-=price;expectedBuy.inventory.weapons[purchaseId]=(expectedBuy.inventory.weapons[purchaseId]??0)+1;
   expectedBuy.shops.valmir.stock[purchaseId]-=1;assert.deepEqual(bought,expectedBuy,'Native purchase changed unrelated truth');
   let prepared=bought;
@@ -1024,10 +1028,10 @@ async function prepareNativeWeapon(nodeId){
     await keyboardActivate('.management [data-shop-mode="craft"]');
     const craft='.management [data-craft="craft_burn_greatsword"]';
     assert.equal(await page.locator(craft).isEnabled(),true);assert.match(await page.locator(craft).getAttribute('aria-label'),/80 or/);
-    const ingredientText=await page.locator(craft).locator('..').locator('.craft-recipe__ingredients').innerText();
+    const ingredientText=await page.locator(craft).locator('..').locator('.craft-recipe__needs').innerText();
     assert.match(ingredientText,/Minerai de fer \d+\/2/,'Native forge must disclose its real permanent material cost');
     await capture(`${nodeId}-native-earned-forge-ready`);
-    await keyboardActivate(craft);const forged=await state(),expected=structuredClone(beforeForge);
+    await confirmTrade(craft);const forged=await state(),expected=structuredClone(beforeForge);
     expected.gold-=80;expected.inventory.weapons[baseItemId]-=1;
     expected.inventory.materials.iron_ore-=2;expected.inventory.weapons[itemId]=(expected.inventory.weapons[itemId]??0)+1;
     assert.deepEqual(forged,expected,'Native forge must consume only the exact existing permanent recipe inputs');
@@ -1050,9 +1054,9 @@ async function prepareNativeWeapon(nodeId){
   await keyboardActivate('.exploration-stop [data-action="shop"]');
   await keyboardActivate('.management [data-shop-mode="sell"]');
   const sell=`.management [data-trade="sell"][data-item="${old}"]`;
-  const proceeds=Number.parseInt(await page.locator(sell).innerText(),10);
+  const proceeds=await rowPrice(sell);
   assert.ok(Number.isInteger(proceeds)&&proceeds>0,'Native previous weapon sale price missing');
-  await keyboardActivate(sell);const sold=await state(),expectedSell=structuredClone(equipped);
+  await confirmTrade(sell);const sold=await state(),expectedSell=structuredClone(equipped);
   expectedSell.gold+=proceeds;expectedSell.inventory.weapons[old]-=1;expectedSell.shops.valmir.stock[old]=(expectedSell.shops.valmir.stock[old]??0)+1;
   assert.deepEqual(sold,expectedSell,'Native sale changed unrelated truth');
   assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),sold);
@@ -1886,10 +1890,10 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
         await page.locator(buy).waitFor({state:'visible'});
         const entry=await state(),prices=[];
         for(let purchase=0;purchase<4;purchase++){
-          const before=await state(),price=Number.parseInt(await page.locator(buy).textContent(),10);
+          const before=await state(),price=await rowPrice(buy);
           assert.ok(Number.isInteger(price)&&price>0&&before.gold>=price,'Native potion preparation is not affordable');
           assert.equal(await page.locator(buy).isEnabled(),true);
-          await keyboardActivate(buy);
+          await confirmTrade(buy);
           const bought=await state(),expected=structuredClone(before);
           expected.gold-=price;
           expected.inventory.consumables.potion=(expected.inventory.consumables.potion??0)+1;

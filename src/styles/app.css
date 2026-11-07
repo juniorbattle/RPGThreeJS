@@ -2126,6 +2126,116 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   border-color: rgba(255,116,91,.45);
   background: rgba(96,20,20,.22);
 }
+/* Playtest 2026-11-07: a shop line or a recipe opens a fiche (what changes, confirmation, result, equip). */
+.shop-row {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  min-height: 68px;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  border: 1px solid rgba(230,199,126,.18);
+  background: linear-gradient(90deg, rgba(255,255,255,.035), rgba(255,255,255,.01));
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  scroll-margin-block: 8px;
+  transition: border-color .15s, background .15s;
+}
+.shop-row:hover { border-color: rgba(230,199,126,.5); background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); }
+.shop-row:focus-visible { outline: 2px solid var(--ui-color-cream); outline-offset: 3px; }
+.shop-row__body { display: grid; gap: 4px; min-width: 0; }
+.shop-row__body strong { color: #fff0c8; }
+.shop-row__body small { color: #aeb9cc; font-size: 11px; line-height: 1.35; }
+.shop-row__body .item-row__skill { color: #e3c47e; }
+.shop-row__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.shop-row__tag { padding: 1px 7px; border: 1px solid rgba(230,199,126,.28); color: #cbd3df; font-size: 10px; font-style: normal; letter-spacing: .03em; }
+.shop-row__tag.is-short { color: #ffb1a8; border-color: rgba(255,116,91,.45); background: rgba(96,20,20,.22); }
+.shop-row__side { display: grid; justify-items: end; gap: 6px; }
+.shop-row__side small { color: #aeb9cc; font-size: 11px; white-space: nowrap; }
+.shop-row__price {
+  min-width: 76px;
+  padding: 7px 10px;
+  border: 1px solid rgba(217,178,90,.45);
+  background: linear-gradient(#55431f, #30230f);
+  color: var(--ui-color-cream);
+  font: 800 12px var(--ui-font-title);
+  letter-spacing: .06em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.craft-recipe.is-ready { border-color: rgba(230,199,126,.62); }
+.craft-recipe__output > div { display: grid; gap: 3px; min-width: 0; }
+.craft-recipe__status { margin: 0; color: #ffb1a8; font: 700 12px var(--ui-font-title); letter-spacing: .03em; }
+.craft-recipe__status.is-ready { color: #9fdcb2; }
+.trade-needs { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.trade-needs li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 10px;
+  padding: 6px 10px;
+  border: 1px solid rgba(230,199,126,.14);
+  background: rgba(0,0,0,.16);
+  color: #e8dcc0;
+  font-size: 12px;
+}
+.trade-needs li i { color: #6ec88a; font-style: normal; font-weight: 800; }
+.trade-needs li small { color: #aeb9cc; font-size: 11px; }
+.trade-needs li.is-missing { border-color: rgba(255,116,91,.45); background: rgba(96,20,20,.22); color: #ffb1a8; }
+.trade-needs li.is-missing i { color: #ff8a78; }
+.trade-modal {
+  display: grid;
+  gap: 14px;
+  width: min(540px, calc(100vw - 32px));
+  max-width: 540px;
+  max-height: min(90dvh, 780px);
+  padding-bottom: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.trade-modal .weapon-modal__header { margin-bottom: 0; }
+.trade-modal__eyebrow { margin: 0; color: #c4945a; font: 800 9px var(--ui-font-title); letter-spacing: .14em; text-transform: uppercase; }
+.trade-section { display: grid; gap: 8px; }
+.trade-section__title { margin: 0; color: #c4945a; font: 800 11px var(--ui-font-title); letter-spacing: .1em; text-transform: uppercase; }
+.trade-hero { display: grid; gap: 8px; padding: 10px 12px; border: 1px solid rgba(230,199,126,.16); background: rgba(0,0,0,.18); }
+.trade-hero__heading { margin: 0; color: #fff0c8; font: 700 13px var(--ui-font-title); }
+.trade-hero__none,
+.trade-hero__line { margin: 0; color: #cbd3df; font-size: 12px; line-height: 1.45; }
+.trade-hero__none { color: #8a96aa; }
+.trade-hero__line strong { color: #ffe0a0; }
+.trade-skills { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.trade-skill { padding: 5px 10px; border-left: 3px solid rgba(230,199,126,.4); background: rgba(230,199,126,.05); color: #e3c47e; font-size: 12px; line-height: 1.4; }
+.trade-skill.is-gained { border-color: #6ec88a; background: rgba(110,200,138,.07); color: #bfe9cb; }
+.trade-skill.is-lost { border-color: #d88a6e; background: rgba(216,138,110,.07); color: #f0c2b2; }
+.trade-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; margin: 0; }
+.trade-summary div { padding: 8px 10px; border: 1px solid rgba(230,199,126,.16); background: rgba(0,0,0,.2); }
+.trade-summary dt { color: #8a96aa; font: 800 9px var(--ui-font-title); letter-spacing: .12em; text-transform: uppercase; }
+.trade-summary dd { margin: 3px 0 0; color: #ffe0a0; font: 800 15px var(--ui-font-title); }
+.trade-warning { margin: 0; padding: 8px 12px; border: 1px solid rgba(255,116,91,.45); background: rgba(96,20,20,.22); color: #ffb1a8; font-size: 12px; line-height: 1.45; }
+.trade-footer {
+  position: sticky;
+  bottom: 0;
+  display: grid;
+  gap: 10px;
+  margin: 0 -24px;
+  padding: 14px 24px 20px;
+  border-top: 1px solid rgba(230,199,126,.22);
+  background: linear-gradient(180deg, rgba(7,12,22,.97), rgba(4,8,15,.995));
+}
+.trade-footer .weapon-modal__actions { flex-wrap: wrap; margin-top: 0; }
+.trade-confirm { display: grid; gap: 10px; }
+.trade-confirm p { margin: 0; color: #f3e6c4; font-size: 13px; line-height: 1.5; }
+.trade-confirm strong { color: #ffe0a0; }
+.trade-done { display: grid; gap: 4px; padding: 10px 12px; border: 1px solid rgba(110,200,138,.35); border-left: 3px solid #6ec88a; background: rgba(110,200,138,.07); }
+.trade-done p { margin: 0; color: #dfe7d9; font-size: 12px; line-height: 1.45; }
+.trade-done .trade-done__title { color: #bfe9cb; font: 700 14px var(--ui-font-title); }
+.trade-equip__button { display: grid; justify-items: start; gap: 2px; width: 100%; min-height: 44px; text-align: left; }
+.trade-equip__button small { color: #aeb9cc; font: 500 11px/1.35 var(--ui-font-body, inherit); letter-spacing: 0; text-transform: none; }
 .empty-copy { color: var(--ui-color-muted); font-style: italic; padding: 18px; }
 @media (max-width: 800px) {
   .title-screen { padding: max(24px, env(safe-area-inset-top)) 18px max(34px, env(safe-area-inset-bottom)); place-content: center; }
@@ -2223,6 +2333,11 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .item-row { grid-template-columns: 1fr; }
   .item-row .item-row__details { grid-column: 1 / -1; }
   .item-row button { width: 100%; }
+  .shop-row { grid-template-columns: 42px minmax(0, 1fr); }
+  .shop-row__side { grid-column: 2; grid-auto-flow: column; justify-content: space-between; align-items: center; justify-items: start; }
+  .trade-modal { padding-inline: 16px; }
+  .trade-footer { margin-inline: -16px; padding-inline: 16px; }
+  .trade-footer .weapon-modal__actions .ui-button { flex: 1 1 auto; }
 }
 
 @media (max-height: 640px) {
