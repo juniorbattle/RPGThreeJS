@@ -160,7 +160,7 @@ Vérifications :
 ## OD-2026-11-07-G — deux vagues chez les gardiens
 
 - **Source.** Pendant la livraison de F, l'opérateur propose d'intégrer aussi des vagues d'ennemis dans les combats de défi. [Fiche d'arbitrages](https://claude.ai/artifact/38xYq9myvAc8AQjdENQWGe) remplie le 2026-11-07 : quatre choix, tous recommandés, sans note.
-- **Statut.** APPROVED IN PRINCIPLE. Les vagues changent la formation de combats que le jeu 1.18.0 garde inchangée : l'amendement 1.19.0 est préparé, relu, puis son texte est soumis à l'opérateur. Le jeu ne change pas avant son approbation.
+- **Statut.** ACTIVE. Les vagues changeaient la formation de combats que le jeu 1.18.0 garde inchangée : l'amendement 1.19.0 a été préparé, relu, puis soumis. L'opérateur a approuvé le texte tel quel le 2026-11-07 (« Texte approuvé ») ; l'amendement est appliqué.
 
 `APPROVED DECISION`, sous réserve de l'amendement.
 
@@ -171,9 +171,9 @@ Vérifications :
 
 `CURRENT FACT` Le moteur sait déjà enchaîner des vagues, mais seulement dans le mode escarmouche du labo, où la compagnie est soignée entre deux vagues et où les ennemis gagnent 18 % à chaque vague. En campagne, un combat finit à la première vague. Ce mode du labo ne change pas.
 
-### Amendement 1.19.0 proposé
+### Amendement 1.19.0
 
-`PROPOSED FUTURE DESIGN` Le texte est dans [`GUARDIAN_WAVES_AMENDMENT_1.19.0.patch`](GUARDIAN_WAVES_AMENDMENT_1.19.0.patch), validé par `npm run contracts:validate` sur un arbre d'essai. Il change `COMBAT_AND_VFX`, `TRAVERSAL` (un simple renvoi), `UI_AND_ACCESSIBILITY` et `AUTHORING_AND_QA`, ainsi que le README et le manifeste. Les contrats du dépôt restent intacts jusqu'à l'approbation de l'opérateur.
+`APPROVED DECISION` Le texte est dans [`GUARDIAN_WAVES_AMENDMENT_1.19.0.patch`](GUARDIAN_WAVES_AMENDMENT_1.19.0.patch), validé par `npm run contracts:validate` sur un arbre d'essai. Il change `COMBAT_AND_VFX`, `TRAVERSAL` (un simple renvoi), `UI_AND_ACCESSIBILITY` et `AUTHORING_AND_QA`, ainsi que le README et le manifeste. L'opérateur l'a approuvé tel quel le 2026-11-07. Il est appliqué mot pour mot aux contrats, puis sa baseline immuable est enregistrée avant tout changement du jeu.
 
 Ce qu'il dit, en clair :
 
