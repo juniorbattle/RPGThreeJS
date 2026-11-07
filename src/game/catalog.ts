@@ -92,7 +92,7 @@ export const items: ItemDefinition[] = [
   { id: 'sage_seal', name: 'Sceau du Sage', description: 'Accessoire magique façonné pour stabiliser les arcanes.', category: 'accessories', icon: '✦', price: 380, modifiers: { magic: 10, charisma: 3 }, skillModifier: { replaces: { w_purify: 'e_vigor_rune' } } },
   { id: 'warding_buckle', name: 'Boucle de Garde', description: 'Fermoir défensif gravé pour tenir la ligne.', category: 'accessories', icon: '▰', price: 240, modifiers: { maxHealth: 15, endurance: 4 } },
   { id: 'potion', name: 'Potion légère', description: 'Restaure 55 PV en combat.', category: 'consumables', icon: '◉', price: 15 },
-  { id: 'ether', name: 'Éther', description: 'Restaure 3 AP en combat.', category: 'consumables', icon: '◈', price: 35 },
+  { id: 'ether', name: 'Éther', description: 'Restaure 3 PA en combat.', category: 'consumables', icon: '◈', price: 35 },
   { id: 'antidote', name: 'Antidote', description: 'Dissipe les altérations négatives en combat.', category: 'consumables', icon: '✚', price: 10 },
   { id: 'bomb', name: 'Bombe', description: 'Inflige des dégâts de zone en combat.', category: 'consumables', icon: '●', price: 30 },
   { id: 'grenade_incendiaire', name: 'Grenade incendiaire', description: 'Inflige des dégâts à une cible et provoque Brûlure pendant 2 tours en combat.', category: 'consumables', icon: '●', price: 50 },
@@ -130,7 +130,7 @@ export const units: UnitDefinition[] = [
     portrait: '/assets/characters/pixel/masters/dark_mage.png',
     baseStats: { maxHealth: 75, strength: 5, magic: 28, endurance: 7, dexterity: 12, charisma: 14, moveRange: 2 },
     weaponSlotCount: 1,
-    allowedWeaponIds: ['novice_grimoire', 'mystic_grimoire', 'hex_grimoire', 'abyssal_grimoire'], skillIds: ['n_dark_bolt', 'n_teleport', 'n_flame_wave', 'n_dark_meteor'], innateGift: { name: 'Flux de Mana', description: "20% de chance de récupérer 2 AP après une attaque de base." },
+    allowedWeaponIds: ['novice_grimoire', 'mystic_grimoire', 'hex_grimoire', 'abyssal_grimoire'], skillIds: ['n_dark_bolt', 'n_teleport', 'n_flame_wave', 'n_dark_meteor'], innateGift: { name: 'Flux de Mana', description: "20% de chance de récupérer 2 PA après une attaque de base." },
   },
   {
     id: 'archer', name: 'Kestrel', className: 'Archer', combatKind: 'archer',
@@ -584,7 +584,7 @@ export function getUnlockedSkillsForHero(unit: { definitionId: string; equipment
 export function getLockedSkillReason(unit: { definitionId?: string; equipment: EquipmentLoadout }, skillId: string): string {
   const skill = skillById.get(skillId);
   if (!skill) return 'Compétence inconnue';
-  if (skill.ap >= ULTIMATE_AP) return 'Ultimate — éveil spécial requis';
+  if (skill.ap >= ULTIMATE_AP) return 'Ultime — éveil spécial requis';
   if (isSkillUnlockedForHero(unit, skillId)) return '';
   return `Débloquée avec arme T${Math.max(1, requiredWeaponTierForSkillAp(skill.ap))}`;
 }

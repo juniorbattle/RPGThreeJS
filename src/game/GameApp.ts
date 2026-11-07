@@ -132,7 +132,7 @@ const QA_HERO_IDS = [
 const JOURNEY_SECONDARY_ACTIONS: readonly JourneySecondaryActionPresentation[] = Object.freeze([
   { id: 'COMPANY', label: 'Compagnie' },
   { id: 'SAVE', label: 'Sauvegarder' },
-  { id: 'MENU', label: 'Menu' },
+  { id: 'MENU', label: 'Écran titre' },
 ]);
 
 /** Bounded re-presentations after a rejected commit, so a stale callback cannot spin forever. */
@@ -221,10 +221,10 @@ export class GameApp {
       onFightElite: id => this.challengePoiElite(id),
       onBypass: id => this.ignorePoi(id),
       onCompany: () => void this.openPoiCompany(),
-      onSave: () => {if(!this.routeCommitInFlight){this.saves.saveManual(this.state);this.uiSounds.play('saved');}},
+      onSave: () => {if(!this.routeCommitInFlight){this.saves.saveManual(this.state);this.uiSounds.play('saved');this.showSaveNotice();}},
       onSettings: () => this.openSettings(),
       onSound: id => this.uiSounds.play(id),
-      onMenu: () => {if(!this.routeCommitInFlight){this.uiSounds.play('back');this.renderTitle();}},
+      onMenu: () => {if(!this.routeCommitInFlight){this.saves.saveAuto(this.state);this.uiSounds.play('back');this.renderTitle();}},
     });
     this.prologue = new OpeningSequence(root);
   }
@@ -302,16 +302,11 @@ export class GameApp {
         <h1>La Voie<br><span>des Sceaux</span></h1>
         <p class="title-screen__lead">Un RPG tactique HD-2D où chaque serment laisse une trace.</p>
         <div class="title-screen__actions">
-          <button type="button" data-action="new">Nouvelle chronique</button>
-          <button type="button" data-action="continue" ${this.saves.hasSave() ? '' : 'disabled'}>Continuer</button>
+          <button type="button" data-action="new" class="${this.saves.hasSave() ? '' : 'is-primary'}">Nouvelle chronique</button>
+          <button type="button" data-action="continue" class="${this.saves.hasSave() ? 'is-primary' : ''}" ${this.saves.hasSave() ? '' : 'disabled'}>Continuer</button>
           <button type="button" data-action="settings">Réglages</button>
           ${this.qaEnabled ? '<button type="button" class="title-screen__qa" data-action="qa">QA rencontres</button>' : ''}
         </div>
-        <nav class="title-screen__nav">
-          <span class="title-screen__nav-link">📖 Crédits</span>
-          <span class="title-screen__nav-sep"></span>
-          <span class="title-screen__nav-link">◆ Feuille de route</span>
-        </nav>
       </section>
     `;
     this.chrome.querySelector('[data-action="new"]')?.addEventListener('click', () => void this.startNewChronicle());
@@ -320,6 +315,25 @@ export class GameApp {
     this.chrome.querySelector('[data-action="qa"]')?.addEventListener('click', () => this.renderQaLab());
     (this.chrome.querySelector<HTMLButtonElement>('[data-action="continue"]:not(:disabled)')
       ?? this.chrome.querySelector<HTMLButtonElement>('[data-action="new"]'))?.focus();
+  }
+
+  private saveNotice: HTMLElement | null = null;
+  private saveNoticeTimer = 0;
+
+  /** A save is confirmed on screen too, never by its sound alone (UI contract: audio carries no needed information). */
+  private showSaveNotice(): void {
+    if (!this.saveNotice?.isConnected) {
+      this.saveNotice = document.createElement('p');
+      this.saveNotice.className = 'save-notice';
+      this.saveNotice.setAttribute('role', 'status');
+      this.saveNotice.setAttribute('aria-live', 'polite');
+      document.body.append(this.saveNotice);
+    }
+    const notice = this.saveNotice;
+    notice.textContent = 'Partie sauvegardée';
+    notice.classList.add('is-visible');
+    window.clearTimeout(this.saveNoticeTimer);
+    this.saveNoticeTimer = window.setTimeout(() => { notice.classList.remove('is-visible'); notice.textContent = ''; }, 2600);
   }
 
   private renderQaLab(message = ''): void {
@@ -1046,6 +1060,7 @@ export class GameApp {
     if (actionId === 'SAVE') {
       this.saves.saveManual(this.state);
       this.uiSounds.play('saved');
+      this.showSaveNotice();
       return true;
     }
     if (actionId === 'COMPANY') {
@@ -1055,6 +1070,7 @@ export class GameApp {
       return true;
     }
     if (actionId === 'MENU') {
+      this.saves.saveAuto(this.state);
       this.renderTitle();
       return false;
     }

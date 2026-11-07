@@ -103,6 +103,45 @@ Vérifications :
 - Navigateur, serveur 5181, au refuge : achat de l'Arc long puis équipement sur Kestrel, forge de l'Espadon d'acier, recette incomplète. Vérifié à 1366 px avec le mouvement par défaut puis réduit, et à 390 px. Aucune erreur de page, aucun défilement horizontal. Captures sous `tmp/design-review/shop/` (ignoré).
 - Le pilote `tools/demo-continuous-production-qa.mjs` passe désormais par la fiche (ouvrir, confirmer, continuer) et lit le prix sur la ligne ; il n'a pas été relancé de bout en bout. `tools/refuge-production-accessibility-qa.mjs` date d'octobre : il suppose encore des recettes et une échoppe disparues depuis. Il reste tel quel.
 
+## Cohérence de l'interface (troisième demande du jour)
+
+`CURRENT FACT` L'opérateur demande que toute l'interface soit cohérente et bien faite pour le joueur. Une tournée de 25 captures couvre l'écran titre, les réglages, l'ouverture, la carte et ses panneaux, la Compagnie, l'inventaire, le refuge, l'Amélioration, l'échoppe, la forge, une rencontre d'élite et le combat (tutoriel, déploiement, actions, compétences, objets, réglages). Elle s'appuie sur une lecture des textes affichés.
+
+Ce qui était incohérent ou faux, et qui est corrigé :
+
+- **Un seul vocabulaire.**
+  - Le combat écrivait « AP » et « MOV » quand la fiche, la forge et le menu des compétences disent « PA » et « DÉPL. ». Parfois les deux se trouvaient dans la même ligne (« Élan — 1 AP · escalade +1 PA »). Tout dit maintenant « PA », et « cases » pour le déplacement : barre d'actions, menus Élan et Objets, bulles d'aide, textes flottants, panneau d'unité, tutoriel, description de l'Éther et du Flux de Mana.
+  - « Clan » devient « Compagnie », dans le Registre et au refuge.
+  - « Ultimate » devient « Ultime ».
+  - « Halte de run », jargon interne, devient « Halte de la compagnie ».
+  - « Aide & commandes » devient « Aide et commandes ».
+  - « DÉPLAC. » devient « DÉPL. », comme en combat.
+- **Le tutoriel de combat disait faux.**
+  - Il annonçait encore l'ancienne règle des paliers (« une arme T1 débloque la compétence 2 PA »). Il donne maintenant la règle d'OD-2026-11-07-B : T0 celle à 2 PA, T1 celle à 3 PA, T2 celle à 4 PA, compétences fermées visibles et grisées.
+  - Il nommait un bouton inexistant, « Lancer la bataille », au lieu de « Lancer le combat ».
+  - « roster », « escorts » et « tier » sont traduits.
+- **Barre d'actions du combat.** « Élan · dès 1 AP » et « Sac ×7 · dès 1 PA » étaient tronqués. Ils deviennent « Élan · 1 PA » et « ×7 · 1 PA », lisibles en entier.
+- **La sauvegarde se voit.** « Sauvegarder », sur la carte comme au Journey, ne donnait qu'un son, contraire au contrat UI (le son ne porte aucune information nécessaire). Un avis « Partie sauvegardée » s'affiche maintenant quelques secondes, annoncé aux lecteurs d'écran.
+- **Retour à l'écran titre.** Le bouton « Menu » de la carte et du Journey renvoyait sans prévenir à l'écran titre. Il s'appelle désormais « Écran titre » et sauvegarde la partie avant de partir (vérifié : un tour d'attente survit au retour).
+- **Écran titre honnête.**
+  - « Crédits » et « Feuille de route » ressemblaient à des liens mais ne menaient nulle part : ils sont retirés.
+  - Quand une sauvegarde existe, « Continuer » est le bouton principal, et il a déjà le focus.
+- **Réputation.** La carte affiche le palier par son nom (« 30 · Méfiant »), comme le refuge et l'échoppe.
+- **Refuge.** La ligne « +0 or placé dans le coffre » ne s'affiche plus quand rien n'est mis au coffre.
+- **Clarté.**
+  - L'Amélioration explique en clair ce qu'on renforce, au lieu de « compétences résolues par la classe et l'équipement ».
+  - Un inventaire vide d'armes ou d'accessoires rappelle que les objets équipés sont sur la fiche des héros.
+
+Vérifications :
+
+- Tests ajustés à ces libellés : `management.test.ts`, `content.test.ts`, `r0b4KillApRouting.test.ts`, `combatShellPresentation.test.ts`, `ExplorationView.test.ts`. Suite complète, types, build, validateur, porte sur `06a3a75f`.
+- Navigateur, serveur 5181 : nouvelle tournée de captures à 1366 px et 390 px. Contrôles de l'avis de sauvegarde, de la sauvegarde avant l'écran titre et du bouton principal, avec le mouvement par défaut puis réduit. Aucune erreur de page. Captures sous `tmp/design-review/tour/` (avant) et `tmp/design-review/tour-after/` (après), ignorés.
+
+Points laissés à l'opérateur, en présentation seule :
+
+- Les réglages, la rencontre d'élite et l'en-tête de la carte suivent une autre famille visuelle (panneau bleu-vert, titres Alegreya ou Georgia). Le Registre, le refuge, la forge et le combat utilisent le bleu nuit et l'or, avec Cinzel et Inter.
+- Le sous-titre de l'écran titre emploie « HD-2D », une marque déposée de Square Enix.
+
 ## Limites
 
 - La passe mobile reprendra la carte sur téléphone : barre de l'atlas sur deux lignes, noms serrés. Elle reprendra aussi les onglets Acheter, Vendre et Forge, empilés à 390 px.

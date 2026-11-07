@@ -211,7 +211,7 @@ export class ManagementView {
         <nav class="management__tabs">
           ${this.skillsEnabled
             ? this.tabButton('skills', 'Amélioration')
-            : `${this.tabButton('clan', 'Clan')}
+            : `${this.tabButton('clan', 'Compagnie')}
               ${this.tabButton('inventory', 'Inventaire')}
               ${this.shopEnabled ? this.tabButton('shop', 'Échoppe') : ''}`}
         </nav>
@@ -328,7 +328,7 @@ export class ManagementView {
           <div class="stat-grid">
             ${this.stat('PV', `${selected.currentHealth}/${stats.maxHealth}`)}${this.stat('FOR', stats.strength)}${this.stat('MAG', stats.magic)}
             ${this.stat('END', stats.endurance)}${this.stat('DEX', stats.dexterity)}${this.stat('CHA', stats.charisma)}
-            ${this.stat('DÉPLAC.', stats.moveRange)}
+            ${this.stat('DÉPL.', stats.moveRange)}
           </div>
           <div class="equipment">
             <div class="section-title ui-section-title">Équipement</div>
@@ -461,7 +461,7 @@ export class ManagementView {
     if (item.category === 'accessories') {
       const metaParts: string[] = [];
       const modifiers = item.modifiers ?? {};
-      const labels: Record<string, string> = { maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END', dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPLAC.' };
+      const labels: Record<string, string> = { maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END', dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPL.' };
       for (const [key, value] of Object.entries(modifiers)) {
         metaParts.push(`+${value} ${labels[key] ?? key}`);
       }
@@ -564,7 +564,7 @@ export class ManagementView {
       return `<article class="skill-card skill-card--ultimate" tabindex="0" aria-label="${escapeAttribute(`${s.name}, ${s.ap} PA, éveil spécial requis. ${s.description}`)}"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p><small class="skill-card__lock">Éveil spécial requis</small></article>`;
     }).join('');
     const ultimateSection = ultimateSkills.length > 0 ? `<div class="unit-skill-section">
-      <div class="unit-skill-section__title">Ultimate</div>
+      <div class="unit-skill-section__title">Ultime</div>
       <div class="skill-list">${ultimateCards}</div>
     </div>` : '';
 
@@ -614,7 +614,7 @@ export class ManagementView {
         <div class="unit-sheet__identity">
           <p class="eyebrow ui-eyebrow">${definition.className}</p>
           <h3>${selected.name}</h3>
-          <p class="unit-sheet__description">Dépense des gemmes rouges pour renforcer les compétences résolues par la classe et l’équipement.</p>
+          <p class="unit-sheet__description">Dépensez des gemmes rouges pour renforcer les compétences ouvertes de ce héros. Une arme de palier supérieur en ouvre d’autres.</p>
         </div>
         <div class="skill-upgrade-list">${rows || '<p class="empty-copy">Aucune compétence à améliorer.</p>'}</div>
       </section>
@@ -653,7 +653,7 @@ export class ManagementView {
     return `<div class="inventory-view">${(Object.keys(categoryLabels) as ItemCategory[]).map((category) => {
       const rows = Object.entries(state.inventory[category]).filter(([, quantity]) => quantity > 0);
       return `<section class="inventory-group ui-panel ui-panel--soft"><div class="section-title ui-section-title">${categoryLabels[category]}</div>
-        ${rows.length ? rows.map(([id, quantity]) => this.itemRow(id, quantity, category === 'consumables' ? this.consumableAction(id) : '')).join('') : '<p class="empty-copy">Aucun objet.</p>'}
+        ${rows.length ? rows.map(([id, quantity]) => this.itemRow(id, quantity, category === 'consumables' ? this.consumableAction(id) : '')).join('') : `<p class="empty-copy">Aucun objet dans le sac.${category === 'weapons' || category === 'accessories' ? ' Les objets équipés figurent sur la fiche de chaque héros (onglet Compagnie).' : ''}</p>`}
       </section>`;
     }).join('')}</div>`;
   }
@@ -739,7 +739,7 @@ export class ManagementView {
     const modifiers = item.modifiers ?? {};
     const labels: Record<string, string> = {
       maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END',
-      dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPLAC.',
+      dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPL.',
     };
     const statRows = Object.entries(modifiers).map(([key, value]) =>
       this.weaponStatRow(labels[key] ?? key, `+${value}`)
@@ -947,7 +947,7 @@ export class ManagementView {
       </section>`;
     }
     if (item.category === 'accessories') {
-      const labels: Record<string, string> = { maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END', dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPLAC.' };
+      const labels: Record<string, string> = { maxHealth: 'PV', strength: 'FOR', magic: 'MAG', endurance: 'END', dexterity: 'DEX', charisma: 'CHA', moveRange: 'DÉPL.' };
       const bonuses = Object.entries(item.modifiers ?? {}).map(([key, value]) => `+${value} ${labels[key] ?? key}`).join(' · ');
       const skills = describeItemSkillEffects(item.id);
       return `<section class="trade-section"><p class="trade-section__title">Ce qu’il change</p>

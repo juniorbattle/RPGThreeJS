@@ -18,13 +18,13 @@ const INTERACTIVE_REFUGES: Readonly<Record<string, RefugePresentationContent>> =
   'lion-first-refuge': {
     environmentContext: 'dialogue:first_refuge_gathering',
     environmentRole: 'STATIC_TABLEAU',
-    eyebrow: 'Halte de run',
+    eyebrow: 'Halte de la compagnie',
     description: 'Les feux du camp repoussent la brume. La compagnie se rassemble avant de reprendre la route.',
   },
   'lion-second-refuge': {
     environmentContext: 'node:lion-second-refuge',
     environmentRole: 'HOLD_SOURCE',
-    eyebrow: 'Halte de run',
+    eyebrow: 'Halte de la compagnie',
     description: 'Le dernier feu du Lion tient encore dans la brume. La compagnie se prépare pour la suite.',
     // An authored pre-management gathering can occupy the same optional slot later.
   },
@@ -73,7 +73,7 @@ export function resolveFinalRefugeServicesPresentation(node: RunNode): RefugePre
   return {
     environmentContext,
     environmentRole: 'HOLD_SOURCE',
-    eyebrow: 'Halte de run',
+    eyebrow: 'Halte de la compagnie',
     description: node.hint,
     nodeId: node.id,
     title: node.label,

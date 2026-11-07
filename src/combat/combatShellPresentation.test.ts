@@ -33,7 +33,7 @@ describe('combat shell presentation', () => {
     const preview = renderDeploymentPreview(unit, false);
     expect(card).toContain(`--combat-portrait-scale:${COMBAT_PORTRAIT_FRAMING[unit.portrait]!.scale}`);
     expect(preview).toContain('88 / 100');
-    expect(preview).toContain('MOV');
+    expect(preview).toContain('DÉPL');
     expect(unit).toEqual(snapshot);
   });
 

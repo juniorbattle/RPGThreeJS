@@ -32,7 +32,7 @@ export function renderDeploymentPreview(unit: DeploymentPreviewUnit, deployed: b
   const maxhp = unit.maxhp ?? unit.hp;
   const hp = Math.max(0, unit.hp);
   const percent = maxhp > 0 ? Math.max(0, Math.min(100, Math.round(hp / maxhp * 100))) : 0;
-  const stats: [string, number | undefined][] = [['FOR', unit.str], ['MAG', unit.mag], ['END', unit.end], ['DEX', unit.dex], ['MOV', unit.mov]];
+  const stats: [string, number | undefined][] = [['FOR', unit.str], ['MAG', unit.mag], ['END', unit.end], ['DEX', unit.dex], ['DÉPL', unit.mov]];
   return `<div class="deploy-preview__eyebrow">${deployed ? 'Dans la formation' : 'Unité sélectionnée'}</div>` +
     `<div class="deploy-preview__identity"><div class="deploy-preview__portrait combat-shell-portrait">${portrait(unit)}</div><div><strong>${esc(unit.name)}</strong><span>${esc(unit.className || '')}</span></div></div>` +
     `<div class="deploy-preview__health"><span>PV</span><b>${hp} / ${maxhp}</b><div class="deploy-preview__bar" role="meter" aria-label="Points de vie" aria-valuemin="0" aria-valuemax="${maxhp}" aria-valuenow="${hp}"><i style="width:${percent}%"></i></div></div>` +

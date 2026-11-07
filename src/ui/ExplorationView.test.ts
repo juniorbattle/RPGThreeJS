@@ -89,7 +89,8 @@ it('rebuilds the same refuge with the same HUD after management and after Rest',
   expect(document.querySelectorAll('.campaign-status-hud')).toHaveLength(1);
   expect(document.querySelector('.campaign-status-hud')).toBe(hud.element);
   expect(document.body.textContent).toContain('Repos effectué : 30 or dépensé.');
-  expect(document.body.textContent).toContain('+0 or placé dans le coffre');
+  // Nothing secured on a return: no "+0 or" line (UI coherence pass, 2026-11-07).
+  expect(document.body.textContent).not.toContain('placé dans le coffre');
   expect(document.querySelector<HTMLButtonElement>('[data-action="rest"]')!.disabled).toBe(true);
   document.querySelector<HTMLButtonElement>('[data-action="shop"]')!.click();
   expect(await afterRest).toBe('shop');

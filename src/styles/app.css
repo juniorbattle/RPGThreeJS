@@ -124,7 +124,7 @@ button { font: inherit; }
 .title-screen--recovery .title-screen__lead { max-width: 720px; text-align: center; }
 .title-screen--recovery .title-screen__actions { flex-wrap: wrap; justify-content: center; }
 .title-screen--recovery button { min-width: 44px; min-height: 48px; white-space: normal; line-height: 1.3; }
-.title-screen button:first-child { color: #15100a; background: linear-gradient(#f4d98b, #b88c38); }
+.title-screen button.is-primary { color: #15100a; background: linear-gradient(#f4d98b, #b88c38); }
 .title-screen button.title-screen__qa { color: #d9eaff; border-color: rgba(105,215,255,.56); background: linear-gradient(180deg, rgba(24,55,79,.94), rgba(8,18,33,.98)); }
 button:disabled { cursor: not-allowed; opacity: .35; }
 .title-screen small { display: none; }
@@ -2237,6 +2237,27 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .trade-equip__button { display: grid; justify-items: start; gap: 2px; width: 100%; min-height: 44px; text-align: left; }
 .trade-equip__button small { color: #aeb9cc; font: 500 11px/1.35 var(--ui-font-body, inherit); letter-spacing: 0; text-transform: none; }
 .empty-copy { color: var(--ui-color-muted); font-style: italic; padding: 18px; }
+/* UI coherence pass 2026-11-07: a save is confirmed on screen, whatever the sound setting. */
+.save-notice {
+  position: fixed;
+  top: max(78px, calc(env(safe-area-inset-top, 0px) + 72px));
+  left: 50%;
+  z-index: 900;
+  margin: 0;
+  padding: 9px 18px;
+  border: 1px solid rgba(230,199,126,.6);
+  background: linear-gradient(180deg, rgba(14,22,36,.97), rgba(6,10,18,.97));
+  color: #fff0c8;
+  font: 600 13px/1.2 var(--ui-font-body);
+  letter-spacing: .03em;
+  box-shadow: 0 8px 24px #000a;
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+.save-notice.is-visible { opacity: 1; }
+.save-notice:empty { display: none; }
 @media (max-width: 800px) {
   .title-screen { padding: max(24px, env(safe-area-inset-top)) 18px max(34px, env(safe-area-inset-bottom)); place-content: center; }
   .title-screen__sigil { font-size: 38px; }

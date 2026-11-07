@@ -70,11 +70,11 @@ export class ExplorationView {
         <p class="eyebrow"></p>
         <h2></h2>
         <p class="exploration-stop__description"></p>
-        ${presentation.securesLoot ? `<strong class="exploration-stop__secured">+${securedGold} or plac&eacute; dans le coffre</strong>` : ''}
+        ${presentation.securesLoot && securedGold > 0 ? `<strong class="exploration-stop__secured">+${securedGold} or plac&eacute; dans le coffre</strong>` : ''}
         ${rest.message ? `<em class="exploration-stop__feedback" role="status">${rest.message}</em>` : ''}
       </header>
       <div class="exploration-stop__hotspots">
-        <button type="button" data-action="clan"><b>Clan</b><small>G&eacute;rer la compagnie</small></button>
+        <button type="button" data-action="clan"><b>Compagnie</b><small>Fiches, &eacute;quipement et inventaire</small></button>
         <button type="button" data-action="shop"><b>&Eacute;choppe</b><small>&Eacute;changer avec le marchand</small></button>
         <button type="button" data-action="skills"><b>Am&eacute;lioration</b><small>Renforcer les comp&eacute;tences</small></button>
         <button type="button" data-action="rest" ${rest.canRest ? '' : 'disabled'}><b>Repos</b><small>${restHint}${rest.woundedCount > 0 ? '<br>Restaure tous les PV, K.O. inclus.' : ''}</small></button>

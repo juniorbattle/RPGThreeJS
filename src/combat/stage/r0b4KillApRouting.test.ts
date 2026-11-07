@@ -23,10 +23,10 @@ describe('R0B.4 P0 AP kill reward', () => {
     expect(runtimeSource).toContain('src.ap=Math.min(src.maxap,src.ap+1)');
   });
 
-  it('kill AP reward is not suppressed during Stage (+1 AP floatText has no G.stage guard)', () => {
-    expect(runtimeSource).toContain("floatText(src,'+1 AP','#7fd0ff',true)");
+  it('kill AP reward is not suppressed during Stage (+1 PA floatText has no G.stage guard)', () => {
+    expect(runtimeSource).toContain("floatText(src,'+1 PA','#7fd0ff',true)");
     // Verify it's NOT guarded by if(!G.stage)
-    const idx = runtimeSource.indexOf("floatText(src,'+1 AP'");
+    const idx = runtimeSource.indexOf("floatText(src,'+1 PA'");
     const preceding = runtimeSource.substring(Math.max(0, idx - 30), idx);
     expect(preceding).not.toContain('if(!G.stage)');
   });

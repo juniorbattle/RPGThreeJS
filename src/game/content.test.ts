@@ -1211,9 +1211,9 @@ describe('V10C camp departure and consumable clarity', () => {
     }
   });
 
-  it('ether description says 3 AP and mentions combat', () => {
+  it('ether description says 3 PA and mentions combat', () => {
     const ether = itemById.get('ether')!;
-    expect(ether.description).toContain('3 AP');
+    expect(ether.description).toContain('3 PA');
     expect(ether.description).toContain('combat');
   });
 

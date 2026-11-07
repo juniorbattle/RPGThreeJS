@@ -27,7 +27,7 @@ export interface HeroChange {
 
 const WEAPON_STATS = [['Puissance', 'damage'], ['Précision', 'accuracyBonus'], ['Critique', 'critBonus'], ['Portée', 'range']] as const;
 const UNIT_STATS: ReadonlyArray<readonly [string, keyof UnitStats]> = [
-  ['PV', 'maxHealth'], ['FOR', 'strength'], ['MAG', 'magic'], ['END', 'endurance'], ['DEX', 'dexterity'], ['CHA', 'charisma'], ['DÉPLAC.', 'moveRange'],
+  ['PV', 'maxHealth'], ['FOR', 'strength'], ['MAG', 'magic'], ['END', 'endurance'], ['DEX', 'dexterity'], ['CHA', 'charisma'], ['DÉPL.', 'moveRange'],
 ];
 const ULTIMATE_AP = 5;
 

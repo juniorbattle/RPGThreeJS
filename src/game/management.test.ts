@@ -470,7 +470,7 @@ describe('weapon progression', () => {
     expect(getLockedSkillReason(warrior, 'w_break_guard')).toBe('');
     expect(getLockedSkillReason(warrior, 'w_charge')).toBe('Débloquée avec arme T1');
     expect(getLockedSkillReason(warrior, 'w_whirl')).toBe('Débloquée avec arme T2');
-    expect(getLockedSkillReason(warrior, 'w_lion_surge')).toBe('Ultimate — éveil spécial requis');
+    expect(getLockedSkillReason(warrior, 'w_lion_surge')).toBe('Ultime — éveil spécial requis');
     state.inventory.weapons.steel_greatsword = 1;
     equipWeapon(state, warrior.id, 'steel_greatsword');
     expect(getLockedSkillReason(warrior, 'w_break_guard')).toBe('');
