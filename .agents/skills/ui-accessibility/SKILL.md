@@ -13,7 +13,7 @@ Contract: UI_AND_ACCESSIBILITY (`docs/contracts/UI_AND_ACCESSIBILITY.md`), plus 
 
 ## Invariants
 
-Digest of the contract at set 1.17.0 (baseline `06a3a75f1903fcadda9404ab9b62a153076154b6`); the contract text wins on any difference.
+Digest of the contract at set 1.18.0 (baseline `478cb676e6f3e11c736eeb7a6813c3c5599976b6`); the contract text wins on any difference.
 
 - Shared palette: deep navy, brass, warm gold, ivory. Keep the UI compact so the world, tableau or battlefield stays dominant.
 - Status text and numbers are read from runtime truth. Never display made-up combat values or resource totals, or an action that is not really enabled.
