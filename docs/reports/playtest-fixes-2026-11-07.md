@@ -154,6 +154,16 @@ Deux points de présentation soumis à l'opérateur, qui a retenu les deux recom
 - **Ce qui change (OD-2026-11-07-E).** Le menu des compétences du combat ne liste plus que les compétences ouvertes. Le chemin d'affichage des compétences fermées est retiré de bout en bout : le champ `lockedSkills` du protocole et de `toCombatant`, sa copie dans l'unité de combat, les lignes grisées et leur style. La fiche du héros, dans la Compagnie, garde la liste des compétences fermées avec l'arme qui les ouvre, consultable à la manette. Le tutoriel de combat le dit.
 - **Vérifications.** Test de `toCombatant` : seules les compétences ouvertes partent au combat, sans fermée ni ultime. Suite complète, types, build, validateur. Navigateur : un combat du labo QA avec le mouvement par défaut puis réduit ; le menu de Kestrel ne montre que Tir Précis.
 
+## Défis et gardiens (cinquième retour du jour)
+
+`CURRENT FACT` L'opérateur juge « Attendre » inutile : il servait aux élites qui se déplacent, idée abandonnée parce que le jeu est déjà assez dense. Il veut davantage de POI de défi, des combats à conditions particulières et à meilleures récompenses.
+
+- **Constat.** « Attendre » ne sert qu'aux deux élites mobiles. Le jeu n'a pas de mécanique « défi » à part : seules les élites mobiles imposent une condition (3 héros au plus), et la région I n'a aucun combat d'élite.
+- **Fiche d'arbitrages** remplie le 2026-11-07, cinq recommandations retenues (OD-2026-11-07-F, [décision](../autonomy/POI_CHALLENGES_OPERATOR_DECISION_2026-11-07.md)) :
+  - les deux élites deviennent les gardiens fixes de « Cache du pont » et de « Réserve des ruines », et « Attendre » disparaît ;
+  - six défis, chacun avec une condition annoncée et une prime de gemmes rouges.
+- **Contrats.** La décision contredit le jeu 1.4.0 (élites mobiles, attente explicite, récompenses exactes du Lot E). L'amendement 1.18.0 est préparé, relu et soumis à l'opérateur ; le jeu ne change pas avant son approbation.
+
 ## Limites
 
 - La passe mobile reprendra la carte sur téléphone : barre de l'atlas sur deux lignes, noms serrés. Elle reprendra aussi les onglets Acheter, Vendre et Forge, empilés à 390 px.
