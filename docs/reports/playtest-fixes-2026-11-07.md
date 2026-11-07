@@ -166,6 +166,32 @@ Deux points de présentation soumis à l'opérateur, qui a retenu les deux recom
 - **Livraison.** Gardiens fixes, attente retirée, six défis avec condition et prime décidée par RunSystem, refus des objets et compte des manches en combat, défi annoncé sur la carte, au déploiement et en combat, verdict au retour sur la carte. Détail et vérifications dans [la décision](../autonomy/POI_CHALLENGES_OPERATOR_DECISION_2026-11-07.md#livraison).
 - **Demande suivante.** L'opérateur propose aussi des vagues d'ennemis dans les combats de défi. Cette idée sortait du texte 1.18.0 approuvé. Fiche remplie, quatre recommandations retenues (OD-2026-11-07-G) : deux vagues de la même formation chez les deux gardiens seulement, sans soin entre les deux, récompense et prime inchangées. L'opérateur a approuvé l'amendement 1.19.0 tel quel (baseline `74fceb39`). Livré : deux vagues chez les deux gardiens, seconde vague par un chemin sans résultat, objectif « Vague n / 2 », annonce des renforts. Détail dans [la décision](../autonomy/POI_CHALLENGES_OPERATOR_DECISION_2026-11-07.md#livraison-de-g).
 
+## Paliers d'armes et échoppe (sixième retour du jour)
+
+`CURRENT FACT` L'opérateur veut que les armes commencent au palier T1 plutôt que T0, pour la cohérence, et une échoppe totalement cohérente. Deux questions lui ont été posées. Il a retenu les deux recommandations (OD-2026-11-07-H).
+
+- **Paliers lus T1, T2, T3.**
+  - Les armes novices sont T1, l'acier T2, les armes de maître T3, et le palier N ouvre la N-ième compétence.
+  - `weaponTierLabel` (`src/game/catalog.ts`) donne l'étiquette partout : case d'arme, inventaire, échoppe, forge, fiche d'achat, raison d'une compétence fermée (« Débloquée avec arme T2 »), règle des paliers et tutoriel de combat.
+  - Les paliers de données 0, 1 et 2 ne changent pas : statistiques, prix, compétences et sauvegardes sont intacts.
+  - Aucun contrat ne nomme les paliers d'arme. Les « T0 à T4 » des contrats désignent les anciens tronçons de route.
+- **Échoppe et forge cohérentes** (`isUsefulToCompany`, `src/game/management.ts`).
+  - Une arme n'est plus proposée si tous ceux qui peuvent la manier portent une arme de palier supérieur, ou s'ils portent déjà cette arme. Les variantes de même palier restent proposées.
+  - Ainsi, Garen, arrivé avec la Lance du Griffon, ne se voit plus proposer la Lance d'acier ni la Lance à Crochets.
+  - Une fois l'Espadon du Lion forgé, Alistair ne se voit plus proposer l'Espadon d'acier, l'Espadon de Braise ni une seconde fois l'Espadon du Lion.
+- **Nom de recette.** « Forger la Lame du Lion » devient « Forger l'Espadon du Lion », du nom de l'arme qu'elle donne.
+- **Audit sans changement.**
+  - Le stock de l'échoppe ne vend que les armes T2 des six héros de la démo. Les armes T3 viennent de la forge.
+  - Les recettes du canon et de la faux visent des armes qu'aucun héros de la démo ne porte ; le filtre les masquait déjà.
+- **Vérifications.**
+  - Tests : étiquettes, règle des paliers, aperçus de la forge, nom de recette, filtre des armes plus faibles ou déjà portées, Garen.
+  - Suite complète (2985 tests vitest dans 183 fichiers, 26 tests node), types, build, validateur.
+  - Navigateur, serveur 5181, Alistair avec l'Espadon du Lion :
+    - l'échoppe affiche « T2 » sur les armes d'acier et ne propose plus l'Espadon d'acier ;
+    - la forge affiche « T2 » et « T3 » et la règle « T1 celle à 2 PA, T2 celle à 3 PA, T3 celle à 4 PA » ;
+    - la forge ne propose plus ni l'Espadon de Braise ni l'Espadon du Lion ;
+    - aucune erreur de console.
+
 ## Limites
 
 - La passe mobile reprendra la carte sur téléphone : barre de l'atlas sur deux lignes, noms serrés. Elle reprendra aussi les onglets Acheter, Vendre et Forge, empilés à 390 px.

@@ -1,4 +1,4 @@
-import { craftRecipeById, craftRecipes, getFinalStats, getResolvedSkills, isSkillUnlockedForHero, itemById, unitById } from './catalog';
+import { craftRecipeById, craftRecipes, getEquippedWeaponTier, getFinalStats, getResolvedSkills, isSkillUnlockedForHero, itemById, unitById, weaponById } from './catalog';
 import { getShopPrice } from './reputation';
 import type { CraftRecipeDefinition, GameState, InventoryState, ItemCategory, UnitInstance } from './types';
 
@@ -165,10 +165,15 @@ export function getCraftGoldCost(state: GameState, recipe: CraftRecipeDefinition
   return getShopPrice(recipe.inputs.gold, state.reputation);
 }
 
-/** Whether the shop and the forge should offer an item: any non-weapon, or a weapon someone in the company can wield. */
+/**
+ * Whether the shop and the forge should offer an item: any non-weapon, or a weapon that a member who can wield it would
+ * not find weaker than the weapon he holds, nor already holds (OD-2026-11-07-H). Same-tier variants stay on offer.
+ */
 export function isUsefulToCompany(state: GameState, itemId: string): boolean {
   if (itemById.get(itemId)?.category !== 'weapons') return true;
-  return state.clan.members.some((unit) => unitById.get(unit.definitionId)?.allowedWeaponIds.includes(itemId));
+  const tier = weaponById.get(itemId)?.tier ?? 0;
+  return state.clan.members.some((unit) => unitById.get(unit.definitionId)?.allowedWeaponIds.includes(itemId)
+    && getEquippedWeaponTier(unit) <= tier && unit.equipment.weaponIds[0] !== itemId);
 }
 
 /** Recipes worth listing: accessories, and weapons that a member of the company can wield. */

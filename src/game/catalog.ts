@@ -24,60 +24,60 @@ export function getInnateGift(definitionId: string): { name: string; description
 }
 
 export const weapons: WeaponDefinition[] = [
-  // Greatsword (Warrior) — T0 Novice / T1 / T2
+  // Greatsword (Warrior) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_greatsword', name: 'Espadon novice', description: "Lame d'écuyer pour les premières batailles.", category: 'weapons', price: 90, icon: '⚔', type: 'greatsword', tier: 0, damage: 20, range: 1, accuracyBonus: 5, critBonus: 5 },
   { id: 'steel_greatsword', name: "Espadon d'acier", description: 'Lame équilibrée et plus mordante.', category: 'weapons', price: 170, icon: '⚔', type: 'greatsword', tier: 1, damage: 25, range: 1, accuracyBonus: 7, critBonus: 5, healthBonus: 25 },
   { id: 'lion_guard_greatsword', name: 'Espadon du Lion', description: 'Lame de garde renforcée par un anneau martial.', category: 'weapons', price: 340, icon: '⚔', type: 'greatsword', tier: 2, damage: 27, range: 1, accuracyBonus: 8, critBonus: 6, healthBonus: 50, skillModifier: { replaces: { w_whirl: 'p_oathwall' } } },
-  // Holy mace (Paladin) — T0 Novice / T1 / T2
+  // Holy mace (Paladin) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_mace', name: 'Masse novice', description: 'Masse simple des protecteurs débutants.', category: 'weapons', price: 130, icon: '✚', type: 'holy_mace', tier: 0, damage: 16, range: 1, accuracyBonus: 5, critBonus: 3 },
   { id: 'sacred_mace', name: 'Masse sacrée', description: 'Masse consacrée frappant avec force.', category: 'weapons', price: 220, icon: '✚', type: 'holy_mace', tier: 1, damage: 22, range: 1, accuracyBonus: 7, critBonus: 5, healthBonus: 23 },
   { id: 'oath_mace', name: 'Masse du Serment', description: 'Masse de garde renforcée par un serment sacré.', category: 'weapons', price: 340, icon: '✚', type: 'holy_mace', tier: 2, damage: 27, range: 1, accuracyBonus: 8, critBonus: 6, healthBonus: 45 },
-  // Scythe (Dark Knight) — T0 Novice / T1 / T2
+  // Scythe (Dark Knight) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_scythe', name: 'Faux novice', description: 'Faux rudimentaire mais menaçante.', category: 'weapons', price: 100, icon: '☠', type: 'scythe', tier: 0, damage: 20, range: 2, accuracyBonus: 3, critBonus: 8 },
   { id: 'steel_scythe', name: "Faux d'acier", description: 'Faux équilibrée à la lame plus mordante.', category: 'weapons', price: 190, icon: '☠', type: 'scythe', tier: 1, damage: 25, range: 2, accuracyBonus: 5, critBonus: 10, healthBonus: 23 },
   { id: 'eclipse_scythe', name: "Faux de l'Éclipse", description: "Faux imprégnée d'énergie obscure.", category: 'weapons', price: 330, icon: '☠', type: 'scythe', tier: 2, damage: 28, range: 2, accuracyBonus: 5, critBonus: 12, healthBonus: 45 },
-  // Long spear (Lancer) — T0 Novice / T1 / T2
+  // Long spear (Lancer) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_spear', name: 'Lance novice', description: 'Lance de bois pour frapper à distance.', category: 'weapons', price: 110, icon: '↟', type: 'long_spear', tier: 0, damage: 15, range: 2, accuracyBonus: 0, critBonus: 5 },
   { id: 'steel_spear', name: "Lance d'acier", description: 'Lance robuste à longue portée.', category: 'weapons', price: 200, icon: '↟', type: 'long_spear', tier: 1, damage: 20, range: 2, accuracyBonus: 3, critBonus: 5, healthBonus: 20 },
   { id: 'griffon_spear', name: 'Lance du Griffon', description: 'Lance de guerre équilibrée pour les charges.', category: 'weapons', price: 320, icon: '↟', type: 'long_spear', tier: 2, damage: 24, range: 2, accuracyBonus: 5, critBonus: 8, healthBonus: 40 },
-  // Grimoire (Black Mage) — T0 Novice / T1 / T2
+  // Grimoire (Black Mage) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_grimoire', name: 'Grimoire novice', description: 'Tome élémentaire pour apprentis mages.', category: 'weapons', price: 100, icon: '✦', type: 'grimoire', tier: 0, damage: 10, range: 1, accuracyBonus: 10, critBonus: 0 },
   { id: 'mystic_grimoire', name: 'Grimoire mystique', description: 'Tome ancien saturé de mana.', category: 'weapons', price: 260, icon: '✦', type: 'grimoire', tier: 1, damage: 18, range: 1, accuracyBonus: 15, critBonus: 5, healthBonus: 13, skillModifier: { replaces: { n_dark_meteor: 'n_flame_wave' } } },
   { id: 'abyssal_grimoire', name: 'Grimoire des Abysses', description: "Tome interdit débordant d'arcanes noirs.", category: 'weapons', price: 380, icon: '✦', type: 'grimoire', tier: 2, damage: 22, range: 1, accuracyBonus: 18, critBonus: 8, healthBonus: 25 },
-  // Crosier (White Mage) — T0 Novice / T1 / T2
+  // Crosier (White Mage) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_crosier', name: 'Crosse novice', description: 'Crosse simple pour canaliser les prières.', category: 'weapons', price: 100, icon: '✚', type: 'crosier', tier: 0, damage: 10, range: 1, accuracyBonus: 10, critBonus: 0 },
   { id: 'sacred_crosier', name: 'Crosse sacrée', description: 'Crosse imprégnée de lumière divine.', category: 'weapons', price: 220, icon: '✚', type: 'crosier', tier: 1, damage: 16, range: 1, accuracyBonus: 12, critBonus: 3, healthBonus: 13 },
   { id: 'miracle_crosier', name: 'Crosse des Miracles', description: "Crosse rayonnant d'énergie bienveillante.", category: 'weapons', price: 340, icon: '✚', type: 'crosier', tier: 2, damage: 20, range: 1, accuracyBonus: 15, critBonus: 5, healthBonus: 25 },
-  // Rapier (Red Mage) — T0 Novice / T1 / T2
+  // Rapier (Red Mage) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_rapier', name: 'Rapière novice', description: 'Lame fine pour les duellistes en herbe.', category: 'weapons', price: 100, icon: '⚔', type: 'rapier', tier: 0, damage: 14, range: 2, accuracyBonus: 12, critBonus: 8 },
   { id: 'steel_rapier', name: "Rapière d'acier", description: 'Rapière équilibrée à la lame mordante.', category: 'weapons', price: 200, icon: '⚔', type: 'rapier', tier: 1, damage: 20, range: 2, accuracyBonus: 14, critBonus: 10, healthBonus: 18 },
   { id: 'crimson_rapier', name: 'Rapière Cramoisie', description: "Rapière enchantée d'écarlate.", category: 'weapons', price: 320, icon: '⚔', type: 'rapier', tier: 2, damage: 24, range: 2, accuracyBonus: 16, critBonus: 12, healthBonus: 35 },
-  // Wand (Enchanter) — T0 Novice / T1 / T2
+  // Wand (Enchanter) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_wand', name: 'Baguette novice', description: 'Baguette de bois pour les premiers enchantements.', category: 'weapons', price: 100, icon: '✦', type: 'wand', tier: 0, damage: 10, range: 1, accuracyBonus: 10, critBonus: 0 },
   { id: 'orb_scepter', name: 'Sceptre-orbe', description: "Sceptre surmonté d'un orbe focalisateur.", category: 'weapons', price: 240, icon: '✦', type: 'wand', tier: 1, damage: 16, range: 1, accuracyBonus: 14, critBonus: 3, healthBonus: 13 },
   { id: 'harmony_scepter', name: "Sceptre d'Harmonie", description: "Sceptre résonnant d'énergie arcanique.", category: 'weapons', price: 340, icon: '✦', type: 'wand', tier: 2, damage: 20, range: 1, accuracyBonus: 16, critBonus: 5, healthBonus: 25 },
-  // Longbow (Archer) — T0 Novice / T1 / T2
+  // Longbow (Archer) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_longbow', name: 'Arc novice', description: 'Arc court pour les engagements proches.', category: 'weapons', price: 120, icon: '⌁', type: 'longbow', tier: 0, damage: 14, range: 4, minRange: 2, accuracyBonus: 0, critBonus: 5 },
   { id: 'longbow', name: 'Arc long', description: 'Excellente portée et puissance accrue.', category: 'weapons', price: 230, icon: '⌁', type: 'longbow', tier: 1, damage: 22, range: 4, minRange: 2, accuracyBonus: 5, critBonus: 10, healthBonus: 15, skillModifier: { replaces: { a_precise_shot: 'ar_calibrated_shot' } } },
   { id: 'windstep_longbow', name: 'Arc du Vent', description: "Arc nerveux équilibré par des bottes d'éclaireur.", category: 'weapons', price: 430, icon: '⌁', type: 'longbow', tier: 2, damage: 24, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 12, healthBonus: 30, skillModifier: { replaces: { a_hawk_leap: 'ni_shadow_step' } } },
-  // Shuriken (Ninja) — T0 Novice / T1 / T2
+  // Shuriken (Ninja) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_shuriken', name: 'Shuriken novice', description: 'Étoile de lancer pour les ninjas débutants.', category: 'weapons', price: 80, icon: '✦', type: 'shuriken', tier: 0, damage: 12, range: 3, accuracyBonus: 15, critBonus: 10 },
   { id: 'steel_shuriken', name: "Shuriken d'acier", description: 'Shuriken équilibré à la coupe plus profonde.', category: 'weapons', price: 180, icon: '✦', type: 'shuriken', tier: 1, damage: 18, range: 3, accuracyBonus: 15, critBonus: 12, healthBonus: 15 },
   { id: 'shadow_shuriken', name: "Shuriken de l'Ombre", description: "Shuriken enchanté d'énergie occulte.", category: 'weapons', price: 300, icon: '✦', type: 'shuriken', tier: 2, damage: 22, range: 3, accuracyBonus: 18, critBonus: 15, healthBonus: 30 },
-  // Dagger (Rogue) — T0 Novice / T1 / T2
+  // Dagger (Rogue) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_dagger', name: 'Dague novice', description: 'Dague simple pour les rôdeurs en herbe.', category: 'weapons', price: 75, icon: '†', type: 'dagger', tier: 0, damage: 12, range: 1, accuracyBonus: 15, critBonus: 10 },
   { id: 'steel_dagger', name: "Dague d'acier", description: 'Dague équilibrée à la lame plus mordante.', category: 'weapons', price: 170, icon: '†', type: 'dagger', tier: 1, damage: 18, range: 1, accuracyBonus: 17, critBonus: 12, healthBonus: 18 },
   { id: 'hooked_dagger', name: 'Dague Crochue', description: 'Dague recourbée déchirant les défenses.', category: 'weapons', price: 290, icon: '†', type: 'dagger', tier: 2, damage: 22, range: 1, accuracyBonus: 18, critBonus: 15, healthBonus: 35 },
-  // Hand cannon (Artillerist) — T0 Novice / T1 / T2
+  // Hand cannon (Artillerist) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_cannon', name: 'Canon novice', description: 'Canon portatif pour les artilleurs débutants.', category: 'weapons', price: 120, icon: '⌁', type: 'hand_cannon', tier: 0, damage: 14, range: 4, minRange: 2, accuracyBonus: 0, critBonus: 5 },
   { id: 'siege_cannon', name: 'Canon de siège', description: 'Canon lourd à la puissance accrue.', category: 'weapons', price: 240, icon: '⌁', type: 'hand_cannon', tier: 1, damage: 22, range: 4, minRange: 2, accuracyBonus: 5, critBonus: 8, healthBonus: 18 },
   { id: 'barrage_cannon', name: 'Canon de Barrage', description: 'Canon dévastateur à tir multiple.', category: 'weapons', price: 360, icon: '⌁', type: 'hand_cannon', tier: 2, damage: 26, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 10, healthBonus: 35 },
-  // Affix variants — T1
+  // Affix variants — data tier 1 (shown T2)
   { id: 'ember_greatsword', name: 'Espadon de Braise', description: "Espadon d'acier trempé dans des braises de forge.", category: 'weapons', price: 240, icon: '⚔', type: 'greatsword', tier: 1, damage: 25, range: 1, accuracyBonus: 7, critBonus: 5, healthBonus: 25, basicAttackStatus: { status: 'burn', chance: 0.15, turns: 2 } },
   { id: 'venom_dagger', name: 'Dague du Serpent', description: 'Dague fine dont la gorge retient un venin persistant.', category: 'weapons', price: 230, icon: '†', type: 'dagger', tier: 1, damage: 18, range: 1, accuracyBonus: 17, critBonus: 12, healthBonus: 18, basicAttackStatus: { status: 'poison', chance: 0.20, turns: 2 } },
   { id: 'frost_spear', name: 'Lance à Crochets', description: "Lance d'acier munie de crochets qui entravent l'élan adverse.", category: 'weapons', price: 260, icon: '↟', type: 'long_spear', tier: 1, damage: 20, range: 2, accuracyBonus: 3, critBonus: 5, healthBonus: 20, basicAttackStatus: { status: 'slow', chance: 0.15, turns: 2 } },
   { id: 'hex_grimoire', name: 'Grimoire Noirci', description: 'Tome brûlé sur les bords, chargé de malédictions courtes.', category: 'weapons', price: 320, icon: '✦', type: 'grimoire', tier: 1, damage: 18, range: 1, accuracyBonus: 15, critBonus: 5, healthBonus: 13, basicAttackStatus: { status: 'curse', chance: 0.15, turns: 2 } },
-  // Affix variants — T2
+  // Affix variants — data tier 2 (shown T3)
   { id: 'eclipse_longbow', name: "Arc d'Éclipse", description: 'Arc sombre dont les flèches voilent brièvement la vue.', category: 'weapons', price: 390, icon: '⌁', type: 'longbow', tier: 2, damage: 24, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 12, healthBonus: 30, basicAttackStatus: { status: 'blind', chance: 0.20, turns: 2 } },
   { id: 'inferno_cannon', name: 'Canon Incendiaire', description: 'Canon lourd conçu pour projeter des charges embrasées.', category: 'weapons', price: 420, icon: '⌁', type: 'hand_cannon', tier: 2, damage: 26, range: 4, minRange: 2, accuracyBonus: 8, critBonus: 10, healthBonus: 35, basicAttackStatus: { status: 'burn', chance: 0.20, turns: 2 } },
   { id: 'shadow_scythe', name: "Faux de l'Ombre", description: 'Faux obscure qui affaiblit la garde des survivants.', category: 'weapons', price: 390, icon: '☠', type: 'scythe', tier: 2, damage: 28, range: 2, accuracyBonus: 5, critBonus: 12, healthBonus: 45, basicAttackStatus: { status: 'curse', chance: 0.20, turns: 2 } },
@@ -220,7 +220,7 @@ export const weaponById = new Map(weapons.map((weapon) => [weapon.id, weapon]));
 export const unitById = new Map(units.map((unit) => [unit.id, unit]));
 
 // OD-2026-11-05-C: the forge is the affordable path. Entry recipes turn a novice weapon and iron ore into the hero's
-// T1 weapon, or iron ore into a basic accessory, for less than the shop asks; upgrade recipes keep a lighter gold part.
+// tier 1 (shown T2) weapon, or iron ore into a basic accessory, for less than the shop asks; upgrade recipes keep a lighter gold part.
 // Recipes take carried items first, then worn ones (management.ts), and their gold follows reputation like the shop.
 export const craftRecipes: CraftRecipeDefinition[] = [
   {
@@ -229,7 +229,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: "Reforger un espadon novice avec du minerai de fer. Porté par un héros, il est remplacé sur lui.",
     inputs: { weapons: { novice_greatsword: 1 }, materials: { iron_ore: 2 }, gold: 90 },
     output: { itemId: 'steel_greatsword', category: 'weapons', quantity: 1 },
-    preview: 'T1 espadon : dégâts +5, +25 PV.',
+    preview: 'T2 espadon : dégâts +5, +25 PV.',
   },
   {
     id: 'craft_sacred_crosier',
@@ -237,7 +237,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Cercler de fer une crosse novice pour mieux canaliser la lumière. Portée par un héros, elle est remplacée sur lui.',
     inputs: { weapons: { novice_crosier: 1 }, materials: { iron_ore: 2 }, gold: 120 },
     output: { itemId: 'sacred_crosier', category: 'weapons', quantity: 1 },
-    preview: 'T1 crosse : dégâts +6, +13 PV.',
+    preview: 'T2 crosse : dégâts +6, +13 PV.',
   },
   {
     id: 'craft_mystic_grimoire',
@@ -245,7 +245,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Relier un grimoire novice de fermoirs de fer et d’encres de forge. Porté par un héros, il est remplacé sur lui.',
     inputs: { weapons: { novice_grimoire: 1 }, materials: { iron_ore: 2 }, gold: 145 },
     output: { itemId: 'mystic_grimoire', category: 'weapons', quantity: 1 },
-    preview: 'T1 grimoire : dégâts +8, +13 PV.',
+    preview: 'T2 grimoire : dégâts +8, +13 PV.',
   },
   {
     id: 'craft_longbow',
@@ -253,7 +253,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Allonger un arc novice et renforcer ses branches de fer. Porté par un héros, il est remplacé sur lui.',
     inputs: { weapons: { novice_longbow: 1 }, materials: { iron_ore: 2 }, gold: 120 },
     output: { itemId: 'longbow', category: 'weapons', quantity: 1 },
-    preview: 'T1 arc : dégâts +8, +15 PV.',
+    preview: 'T2 arc : dégâts +8, +15 PV.',
   },
   {
     id: 'craft_steel_dagger',
@@ -261,7 +261,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Reforger une dague novice avec du minerai de fer. Portée par un héros, elle est remplacée sur lui.',
     inputs: { weapons: { novice_dagger: 1 }, materials: { iron_ore: 2 }, gold: 95 },
     output: { itemId: 'steel_dagger', category: 'weapons', quantity: 1 },
-    preview: 'T1 dague : dégâts +6, +18 PV.',
+    preview: 'T2 dague : dégâts +6, +18 PV.',
   },
   {
     id: 'craft_life_belt',
@@ -301,7 +301,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Enchâsser une gemme rouge dans une crosse sacrée. Portée par un héros, elle est remplacée sur lui.',
     inputs: { weapons: { sacred_crosier: 1 }, materials: { red_gem: 1 }, gold: 60 },
     output: { itemId: 'miracle_crosier', category: 'weapons', quantity: 1 },
-    preview: 'T2 crosse : dégâts +4, +12 PV.',
+    preview: 'T3 crosse : dégâts +4, +12 PV.',
   },
   {
     id: 'craft_abyssal_grimoire',
@@ -309,7 +309,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Sceller une gemme rouge dans un grimoire mystique. Porté par un héros, il est remplacé sur lui.',
     inputs: { weapons: { mystic_grimoire: 1 }, materials: { red_gem: 1 }, gold: 60 },
     output: { itemId: 'abyssal_grimoire', category: 'weapons', quantity: 1 },
-    preview: 'T2 grimoire : dégâts +4, +12 PV.',
+    preview: 'T3 grimoire : dégâts +4, +12 PV.',
   },
   {
     id: 'craft_hooked_dagger',
@@ -317,7 +317,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Recourber une dague d’acier autour d’une gemme rouge. Portée par un héros, elle est remplacée sur lui.',
     inputs: { weapons: { steel_dagger: 1 }, materials: { red_gem: 1 }, gold: 60 },
     output: { itemId: 'hooked_dagger', category: 'weapons', quantity: 1 },
-    preview: 'T2 dague : dégâts +4, +17 PV.',
+    preview: 'T3 dague : dégâts +4, +17 PV.',
   },
   {
     id: 'craft_griffon_spear',
@@ -325,15 +325,15 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Renforcer une lance d’acier d’une gemme rouge pour les charges. Portée par un héros, elle est remplacée sur lui.',
     inputs: { weapons: { steel_spear: 1 }, materials: { red_gem: 1 }, gold: 60 },
     output: { itemId: 'griffon_spear', category: 'weapons', quantity: 1 },
-    preview: 'T2 lance : dégâts +4, +20 PV.',
+    preview: 'T3 lance : dégâts +4, +20 PV.',
   },
   {
     id: 'craft_lion_guard_greatsword',
-    name: 'Forger la Lame du Lion',
+    name: 'Forger l’Espadon du Lion',
     description: 'Transformer une épée d’acier et un anneau de force en arme défensive de front.',
     inputs: { weapons: { steel_greatsword: 1 }, accessories: { strength_ring: 1 }, gold: 60 },
     output: { itemId: 'lion_guard_greatsword', category: 'weapons', quantity: 1 },
-    preview: 'T2 espadon : +27 puissance, précision +8.',
+    preview: 'T3 espadon : +27 puissance, précision +8.',
   },
   {
     id: 'craft_windstep_longbow',
@@ -341,7 +341,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Assembler un arc long et des bottes d’agilité pour un tireur mobile.',
     inputs: { weapons: { longbow: 1 }, accessories: { agility_boots: 1 }, gold: 40 },
     output: { itemId: 'windstep_longbow', category: 'weapons', quantity: 1 },
-    preview: 'T2 arc : +24 puissance, critique +12.',
+    preview: 'T3 arc : +24 puissance, critique +12.',
   },
   {
     id: 'craft_sage_seal',
@@ -365,7 +365,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: "Renforcer un espadon d'acier avec du minerai pour y sceller une chaleur de forge.",
     inputs: { weapons: { steel_greatsword: 1 }, materials: { iron_ore: 2 }, gold: 45 },
     output: { itemId: 'ember_greatsword', category: 'weapons', quantity: 1 },
-    preview: "T1 espadon, statistiques d'acier, 15% Brûlure sur attaque basique.",
+    preview: "T2 espadon, statistiques d'acier, 15% Brûlure sur attaque basique.",
   },
   {
     id: 'craft_venom_dagger',
@@ -373,7 +373,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Évider une dague d\'acier pour y loger un venin lent.',
     inputs: { weapons: { steel_dagger: 1 }, materials: { iron_ore: 2 }, gold: 45 },
     output: { itemId: 'venom_dagger', category: 'weapons', quantity: 1 },
-    preview: 'T1 dague, statistiques d\'acier, 20% Poison sur attaque basique.',
+    preview: 'T2 dague, statistiques d\'acier, 20% Poison sur attaque basique.',
   },
   {
     id: 'craft_chill_spear',
@@ -381,7 +381,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: "Ajouter des crochets de forge à une lance d'acier pour freiner l'ennemi.",
     inputs: { weapons: { steel_spear: 1 }, materials: { iron_ore: 2 }, gold: 45 },
     output: { itemId: 'frost_spear', category: 'weapons', quantity: 1 },
-    preview: 'T1 lance, statistiques d\'acier, 15% Ralenti sur attaque basique.',
+    preview: 'T2 lance, statistiques d\'acier, 15% Ralenti sur attaque basique.',
   },
   {
     id: 'craft_hex_grimoire',
@@ -389,7 +389,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: "Marquer un grimoire mystique avec des encres de forge instables.",
     inputs: { weapons: { mystic_grimoire: 1 }, materials: { iron_ore: 2 }, gold: 45 },
     output: { itemId: 'hex_grimoire', category: 'weapons', quantity: 1 },
-    preview: 'T1 grimoire, statistiques mystiques, 15% Malédic. sur attaque basique.',
+    preview: 'T2 grimoire, statistiques mystiques, 15% Malédic. sur attaque basique.',
   },
   {
     id: 'craft_blind_longbow',
@@ -397,7 +397,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Monter une gemme rouge sur un arc long pour troubler la vue des cibles.',
     inputs: { weapons: { longbow: 1 }, materials: { red_gem: 1 }, gold: 90 },
     output: { itemId: 'eclipse_longbow', category: 'weapons', quantity: 1 },
-    preview: 'T2 arc, 20% Aveuglé sur attaque basique.',
+    preview: 'T3 arc, 20% Aveuglé sur attaque basique.',
   },
   {
     id: 'craft_burn_cannon',
@@ -405,7 +405,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Renforcer un canon de siège avec une gemme rouge et une chambre de combustion.',
     inputs: { weapons: { siege_cannon: 1 }, materials: { red_gem: 1, iron_ore: 2 }, gold: 90 },
     output: { itemId: 'inferno_cannon', category: 'weapons', quantity: 1 },
-    preview: 'T2 canon, 20% Brûlure sur attaque basique.',
+    preview: 'T3 canon, 20% Brûlure sur attaque basique.',
   },
   {
     id: 'craft_curse_scythe',
@@ -413,7 +413,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Lier une faux d\'acier à une gemme sombre pour affaiblir les survivants.',
     inputs: { weapons: { steel_scythe: 1 }, materials: { red_gem: 1 }, gold: 90 },
     output: { itemId: 'shadow_scythe', category: 'weapons', quantity: 1 },
-    preview: 'T2 faux, 20% Malédic. sur attaque basique.',
+    preview: 'T3 faux, 20% Malédic. sur attaque basique.',
   },
 ];
 
@@ -538,6 +538,14 @@ function isInitialDemoHeroSkill(unit: { definitionId?: string; equipment: Equipm
   return unitById.get(unit.definitionId)?.skillIds[0] === skillId || resolveInitialSkillId(unit) === skillId;
 }
 
+/**
+ * The tier shown to the player (OD-2026-11-07-H): data tiers 0, 1 and 2 read T1, T2 and T3, so tier N opens the N-th
+ * skill. Only the label changes; stats, prices, skills and saves keep the data tiers.
+ */
+export function weaponTierLabel(tier: number): string {
+  return `T${tier + 1}`;
+}
+
 export function getEquippedWeaponTier(unit: { equipment: EquipmentLoadout }): number {
   const weaponId = unit.equipment.weaponIds[0];
   if (!weaponId) return 0;
@@ -545,8 +553,9 @@ export function getEquippedWeaponTier(unit: { equipment: EquipmentLoadout }): nu
 }
 
 /**
- * One skill per weapon tier (OD-2026-11-07-B): T0 holds the 2 AP skill, T1 opens the 3 AP skill, T2 the 4 AP
- * skill. The 5 AP ultimate stays closed. A hero outside the demo still needs a T1 weapon for any skill.
+ * One skill per weapon tier (OD-2026-11-07-B, labels OD-2026-11-07-H): data tier 0 (shown T1) holds the 2 AP skill,
+ * tier 1 (T2) opens the 3 AP skill, tier 2 (T3) the 4 AP skill. The 5 AP ultimate stays closed. A hero outside the demo
+ * still needs a tier 1 (T2) weapon for any skill.
  */
 export function getMaxUnlockedSkillAp(tier: number): number {
   if (tier >= 2) return 4;
@@ -554,7 +563,7 @@ export function getMaxUnlockedSkillAp(tier: number): number {
   return 2;
 }
 
-/** The weapon tier that opens a skill of this AP cost (2 AP: T0 for a demo hero, T1 otherwise). */
+/** The data tier that opens a skill of this AP cost (2 AP: tier 0 for a demo hero, tier 1 otherwise). */
 export function requiredWeaponTierForSkillAp(ap: number): number {
   return Math.max(0, ap - 2);
 }
@@ -586,7 +595,7 @@ export function getLockedSkillReason(unit: { definitionId?: string; equipment: E
   if (!skill) return 'Compétence inconnue';
   if (skill.ap >= ULTIMATE_AP) return 'Ultime — éveil spécial requis';
   if (isSkillUnlockedForHero(unit, skillId)) return '';
-  return `Débloquée avec arme T${Math.max(1, requiredWeaponTierForSkillAp(skill.ap))}`;
+  return `Débloquée avec arme ${weaponTierLabel(Math.max(1, requiredWeaponTierForSkillAp(skill.ap)))}`;
 }
 
 export function getWeaponSkillUnlockLabel(weapon: WeaponDefinition): string {
@@ -596,7 +605,7 @@ export function getWeaponSkillUnlockLabel(weapon: WeaponDefinition): string {
 }
 
 /** The short reminder of the tier rule shown wherever weapons are chosen. */
-export const WEAPON_TIER_RULE = 'Le palier de l’arme ouvre les compétences : T0 celle à 2 PA, T1 celle à 3 PA, T2 celle à 4 PA.';
+export const WEAPON_TIER_RULE = 'Le palier de l’arme ouvre les compétences : T1 celle à 2 PA, T2 celle à 3 PA, T3 celle à 4 PA.';
 
 const skillName = (skillId: string): string => skillById.get(skillId)?.name ?? skillId;
 

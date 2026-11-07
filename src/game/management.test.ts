@@ -8,6 +8,7 @@ import {
   createRecruitInstance, createUnitInstance, craftRecipeById, craftRecipes, getEquippedWeaponTier, getLockedSkillReason, getMaxUnlockedSkillAp, getResolvedSkills, getUnlockedSkillsForHero,
   getWeaponProfileLabel, getWeaponSkillUnlockLabel, isSkillUnlockedForHero, isUltimateUnlockedForHero, resolveInitialSkillId,
   describeItemSkillEffects, getWeaponOpenedSkill, itemById, requiredWeaponTierForSkillAp, toCombatant, unitById, weaponById, weapons,
+  WEAPON_TIER_RULE, weaponTierLabel,
 } from './catalog';
 import type { CraftRecipeDefinition } from './types';
 import { getFinalStats } from './catalog';
@@ -468,14 +469,50 @@ describe('weapon progression', () => {
     const state = createInitialState();
     const warrior = state.clan.members[0]!;
     expect(getLockedSkillReason(warrior, 'w_break_guard')).toBe('');
-    expect(getLockedSkillReason(warrior, 'w_charge')).toBe('Débloquée avec arme T1');
-    expect(getLockedSkillReason(warrior, 'w_whirl')).toBe('Débloquée avec arme T2');
+    // OD-2026-11-07-H: tiers read T1, T2, T3; the novice weapon is T1.
+    expect(getLockedSkillReason(warrior, 'w_charge')).toBe('Débloquée avec arme T2');
+    expect(getLockedSkillReason(warrior, 'w_whirl')).toBe('Débloquée avec arme T3');
     expect(getLockedSkillReason(warrior, 'w_lion_surge')).toBe('Ultime — éveil spécial requis');
     state.inventory.weapons.steel_greatsword = 1;
     equipWeapon(state, warrior.id, 'steel_greatsword');
     expect(getLockedSkillReason(warrior, 'w_break_guard')).toBe('');
     expect(getLockedSkillReason(warrior, 'w_charge')).toBe('');
-    expect(getLockedSkillReason(warrior, 'w_whirl')).toBe('Débloquée avec arme T2');
+    expect(getLockedSkillReason(warrior, 'w_whirl')).toBe('Débloquée avec arme T3');
+  });
+
+  it('shows weapon tiers as T1, T2 and T3 everywhere, from unchanged data tiers (OD-2026-11-07-H)', () => {
+    expect([0, 1, 2].map(weaponTierLabel)).toEqual(['T1', 'T2', 'T3']);
+    expect(WEAPON_TIER_RULE).toBe('Le palier de l’arme ouvre les compétences : T1 celle à 2 PA, T2 celle à 3 PA, T3 celle à 4 PA.');
+    expect(weaponById.get('novice_greatsword')!.tier).toBe(0);
+    expect(weaponById.get('lion_guard_greatsword')!.tier).toBe(2);
+    expect(craftRecipeById.get('craft_steel_greatsword')!.preview).toMatch(/^T2 espadon/);
+    expect(craftRecipeById.get('craft_lion_guard_greatsword')!.preview).toMatch(/^T3 espadon/);
+    expect(craftRecipeById.get('craft_lion_guard_greatsword')!.name).toBe('Forger l’Espadon du Lion');
+    expect(craftRecipes.every(recipe => !/\bT0\b/.test(recipe.preview ?? ''))).toBe(true);
+  });
+
+  it('never offers a weapon weaker than the one every wielder holds; same-tier variants stay (OD-2026-11-07-H)', () => {
+    const state = createInitialState();
+    const warrior = state.clan.members.find(unit => unit.definitionId === 'warrior')!;
+    expect(isUsefulToCompany(state, 'steel_greatsword')).toBe(true);
+    // Alistair already holds the novice greatsword: it is not offered again.
+    expect(isUsefulToCompany(state, 'novice_greatsword')).toBe(false);
+    warrior.equipment.weaponIds[0] = 'steel_greatsword';
+    expect(isUsefulToCompany(state, 'novice_greatsword')).toBe(false);
+    expect(isUsefulToCompany(state, 'ember_greatsword')).toBe(true);
+    warrior.equipment.weaponIds[0] = 'lion_guard_greatsword';
+    expect(isUsefulToCompany(state, 'steel_greatsword')).toBe(false);
+    expect(getForgeRecipes(state).some(recipe => recipe.output.itemId === 'ember_greatsword')).toBe(false);
+    // The weapon he already holds is not offered again either.
+    expect(getForgeRecipes(state).some(recipe => recipe.output.itemId === 'lion_guard_greatsword')).toBe(false);
+    warrior.equipment.weaponIds[0] = 'steel_greatsword';
+    expect(isUsefulToCompany(state, 'steel_greatsword')).toBe(false);
+    expect(getForgeRecipes(state).some(recipe => recipe.output.itemId === 'lion_guard_greatsword')).toBe(true);
+    // Garen arrives with the Lance du Griffon: the steel spear and the hooked spear are no longer offered.
+    state.clan.members.push(createRecruitInstance('lancer'));
+    expect(isUsefulToCompany(state, 'steel_spear')).toBe(false);
+    expect(getForgeRecipes(state).some(recipe => recipe.output.itemId === 'frost_spear')).toBe(false);
+    expect(isUsefulToCompany(state, 'potion')).toBe(true);
   });
 
   it('weapon skill unlock label is correct', () => {

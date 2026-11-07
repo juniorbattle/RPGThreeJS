@@ -1,5 +1,5 @@
 import {
-  describeItemSkillEffects, getFinalStats, getInnateGift, getLockedSkillReason, getResolvedSkills, getWeaponOpenedSkill, getWeaponProfileLabel, getWeaponSkillUnlockLabel, WEAPON_TIER_RULE,
+  describeItemSkillEffects, getFinalStats, getInnateGift, getLockedSkillReason, getResolvedSkills, getWeaponOpenedSkill, getWeaponProfileLabel, getWeaponSkillUnlockLabel, WEAPON_TIER_RULE, weaponTierLabel,
   craftRecipeById, isSkillUnlockedForHero, itemById, items, resolveInitialSkillId, unitById, weaponById, weapons,
 } from '../game/catalog';
 import {
@@ -349,7 +349,7 @@ export class ManagementView {
       : unit.equipment.accessoryIds[slot as 0 | 1] ?? null;
     const item = currentId ? itemById.get(currentId) : null;
     const weaponTier = type === 'weapon' && currentId ? weaponById.get(currentId)?.tier : undefined;
-    const label = type === 'weapon' ? `Arme${weaponTier !== undefined ? ` · T${weaponTier}` : ''}` : `Accessoire ${slot + 1}`;
+    const label = type === 'weapon' ? `Arme${weaponTier !== undefined ? ` · ${weaponTierLabel(weaponTier)}` : ''}` : `Accessoire ${slot + 1}`;
     const icon = item?.icon ?? (type === 'weapon' ? '⚔' : '◇');
     const name = item?.name ?? 'Emplacement vide';
     return `<button type="button" class="equipment-slot ui-panel ui-panel--dense" data-equip-slot="${type}" data-equip-slot-index="${slot}">
@@ -434,7 +434,7 @@ export class ManagementView {
     if (item.category === 'weapons' && unit) {
       const weapon = weaponById.get(item.id);
       if (!weapon) return '';
-      const tierLabel = `T${weapon.tier ?? 0}`;
+      const tierLabel = weaponTierLabel(weapon.tier ?? 0);
       const profileLabel = getWeaponProfileLabel(weapon);
       const opened = getWeaponOpenedSkill(weapon, unit);
       const skillShort = opened ? `${opened.name} ${opened.ap} PA` : getWeaponSkillUnlockLabel(weapon);
@@ -689,7 +689,7 @@ export class ManagementView {
     const tier = item.category === 'weapons' ? weaponById.get(id)?.tier : undefined;
     const skillLine = hasDetails ? describeItemSkillEffects(id).join(' · ') : '';
     const content = `<span class="item-row__icon ui-chip" aria-hidden="true">${item.icon}</span>
-      <span class="item-row__body"><strong>${item.name}${tier !== undefined ? ` <span class="item-row__tier">T${tier}</span>` : ''}</strong><small>${item.description}</small>${skillLine ? `<small class="item-row__skill">${skillLine}</small>` : ''}</span>`;
+      <span class="item-row__body"><strong>${item.name}${tier !== undefined ? ` <span class="item-row__tier">${weaponTierLabel(tier)}</span>` : ''}</strong><small>${item.description}</small>${skillLine ? `<small class="item-row__skill">${skillLine}</small>` : ''}</span>`;
     return `<div class="item-row ui-panel ui-panel--dense${detailsClass}">
       ${hasDetails ? `<button type="button" class="item-row__details" data-item-details="${id}" aria-label="${escapeAttribute(`Voir les détails de ${item.name}`)}">${content}</button>` : content}
       <b>×${quantity}</b>${action}
@@ -768,7 +768,7 @@ export class ManagementView {
   private renderWeaponDetails(item: ItemDefinition, comparisonWeapon?: WeaponDefinition, unit?: UnitInstance): string {
     const weapon = weaponById.get(item.id);
     if (!weapon) return '';
-    const tierLabel = `T${weapon.tier ?? 0}`;
+    const tierLabel = weaponTierLabel(weapon.tier ?? 0);
     const profileLabel = getWeaponProfileLabel(weapon);
     const progressionLabel = this.getWeaponProgressionLabel(weapon, unit);
     const rangeLabel = weapon.minRange ? `${weapon.minRange}–${weapon.range}` : `${weapon.range}`;
@@ -844,7 +844,7 @@ export class ManagementView {
     const label = `${item.name} · ${buying ? `${price} or · voir et acheter` : `vente ${price} or · voir et vendre`}`;
     return `<button type="button" class="shop-row" data-trade="${this.shopMode}" data-item="${id}" aria-label="${escapeAttribute(label)}">
       <span class="item-row__icon ui-chip" aria-hidden="true">${item.icon}</span>
-      <span class="shop-row__body"><strong>${item.name}${tier !== undefined ? ` <span class="item-row__tier">T${tier}</span>` : ''}</strong><small>${item.description}</small>${skillLine ? `<small class="item-row__skill">${skillLine}</small>` : ''}${tags.length ? `<span class="shop-row__tags">${tags.join('')}</span>` : ''}</span>
+      <span class="shop-row__body"><strong>${item.name}${tier !== undefined ? ` <span class="item-row__tier">${weaponTierLabel(tier)}</span>` : ''}</strong><small>${item.description}</small>${skillLine ? `<small class="item-row__skill">${skillLine}</small>` : ''}${tags.length ? `<span class="shop-row__tags">${tags.join('')}</span>` : ''}</span>
       <span class="shop-row__side"><small>${buying ? 'En stock' : 'Dans le sac'} ×${quantity}</small><span class="shop-row__price">${buying ? '' : '+'}${price} or</span></span>
     </button>`;
   }
@@ -864,7 +864,7 @@ export class ManagementView {
       return `<article class="craft-recipe ui-panel ui-panel--soft${preview.ready ? ' is-ready' : ''}">
         <div class="craft-recipe__output">
           <span class="item-row__icon ui-chip" aria-hidden="true">${output.icon}</span>
-          <div><strong>${recipe.name}</strong><small>Donne : ${output.name}${tier !== undefined ? ` <span class="item-row__tier">T${tier}</span>` : ''}</small></div>
+          <div><strong>${recipe.name}</strong><small>Donne : ${output.name}${tier !== undefined ? ` <span class="item-row__tier">${weaponTierLabel(tier)}</span>` : ''}</small></div>
         </div>
         <div class="craft-recipe__meta">
           <p><b>Effet</b> ${effect}</p>
@@ -1007,7 +1007,7 @@ export class ManagementView {
         <div class="weapon-modal__header">
           <span class="item-row__icon ui-chip" aria-hidden="true">${item.icon}</span>
           <div class="weapon-modal__title-block">
-            <p class="trade-modal__eyebrow">${verb}${tier !== undefined ? ` · arme T${tier}` : ''}</p>
+            <p class="trade-modal__eyebrow">${verb}${tier !== undefined ? ` · arme ${weaponTierLabel(tier)}` : ''}</p>
             <h3 class="weapon-modal__title">${title}</h3>
             <small class="weapon-modal__subtitle">${subtitle}</small>
           </div>
