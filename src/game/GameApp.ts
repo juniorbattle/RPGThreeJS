@@ -300,7 +300,7 @@ export class GameApp {
         <div class="title-screen__sigil">✦</div>
         <p class="eyebrow">Chroniques d'Élyndra</p>
         <h1>La Voie<br><span>des Sceaux</span></h1>
-        <p class="title-screen__lead">Un RPG tactique HD-2D où chaque serment laisse une trace.</p>
+        <p class="title-screen__lead">Un RPG tactique où chaque serment laisse une trace.</p>
         <div class="title-screen__actions">
           <button type="button" data-action="new" class="${this.saves.hasSave() ? '' : 'is-primary'}">Nouvelle chronique</button>
           <button type="button" data-action="continue" class="${this.saves.hasSave() ? 'is-primary' : ''}" ${this.saves.hasSave() ? '' : 'disabled'}>Continuer</button>

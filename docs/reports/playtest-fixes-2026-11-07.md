@@ -137,10 +137,14 @@ Vérifications :
 - Tests ajustés à ces libellés : `management.test.ts`, `content.test.ts`, `r0b4KillApRouting.test.ts`, `combatShellPresentation.test.ts`, `ExplorationView.test.ts`. Suite complète, types, build, validateur, porte sur `06a3a75f`.
 - Navigateur, serveur 5181 : nouvelle tournée de captures à 1366 px et 390 px. Contrôles de l'avis de sauvegarde, de la sauvegarde avant l'écran titre et du bouton principal, avec le mouvement par défaut puis réduit. Aucune erreur de page. Captures sous `tmp/design-review/tour/` (avant) et `tmp/design-review/tour-after/` (après), ignorés.
 
-Points laissés à l'opérateur, en présentation seule :
+Deux points de présentation soumis à l'opérateur, qui a retenu les deux recommandations (OD-2026-11-07-D) :
 
-- Les réglages, la rencontre d'élite et l'en-tête de la carte suivent une autre famille visuelle (panneau bleu-vert, titres Alegreya ou Georgia). Le Registre, le refuge, la forge et le combat utilisent le bleu nuit et l'or, avec Cinzel et Inter.
-- Le sous-titre de l'écran titre emploie « HD-2D », une marque déposée de Square Enix.
+- **Familles visuelles.**
+  - Les réglages, la rencontre d'élite et l'en-tête de la carte suivaient une autre famille visuelle : panneau bleu-vert, titres Alegreya ou Georgia.
+  - Le Registre, le refuge, la forge et le combat utilisent le bleu nuit et l'or, avec Cinzel et Inter.
+  - Choix : les réglages et la fenêtre de rencontre prennent le style du Registre (`src/ui/ui-sound.css`, `src/ui/poi-map.css`). La carte garde son style d'atlas.
+  - Vérifié sur les trois onglets des réglages et la rencontre, à 1366 px et 390 px.
+- **Sous-titre.** « HD-2D », une marque déposée de Square Enix, est retiré du sous-titre de l'écran titre et du titre de la page de combat. Le sous-titre devient « Un RPG tactique où chaque serment laisse une trace. »
 
 ## Limites
 

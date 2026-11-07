@@ -9,3 +9,18 @@
 @media (max-width:480px){.ui-settings__controls{grid-template-columns:1fr}.ui-settings__controls dd{margin-bottom:6px}}
 .ui-settings__tabs{display:flex;gap:6px;border-bottom:1px solid #b58d5266}.ui-settings .ui-settings__tabs button{width:auto;flex:1 1 0;border:1px solid transparent;border-bottom:none;border-radius:4px 4px 0 0;background:transparent;color:#d4dbea}.ui-settings .ui-settings__tabs button[aria-selected="true"]{border-color:#b58d52;background:#1a3443;color:#e5c88f;font-weight:700}
 .ui-settings__panel{display:grid;gap:14px;align-content:start;min-height:min(330px,52dvh)}.ui-settings__panel[hidden]{display:none}
+/* Operator choice 2026-11-07: the settings dialog wears the Register's navy, gold, Cinzel and Inter, like the item and shop sheets. */
+.ui-sound-backdrop{background:rgba(3,5,10,.78)}
+.ui-sound-settings{border:1px solid var(--ui-line-gold-strong);border-radius:var(--ui-radius-sm);background:linear-gradient(180deg,rgba(9,15,26,.97),rgba(4,8,15,.96));color:var(--ui-color-cream);font-family:var(--ui-font-body);box-shadow:0 18px 60px #000b}
+.ui-sound-settings h2{font:700 20px/1.15 var(--ui-font-title);letter-spacing:.06em;text-transform:uppercase;color:#fff0c8}
+.ui-sound-settings h3.ui-sound-settings__group{font:700 12px/1.25 var(--ui-font-title);letter-spacing:.1em;text-transform:uppercase;color:#c4945a}
+.ui-sound-settings p{color:#cbd3df;font-size:13px}
+.ui-sound-settings button{border:1px solid var(--ui-line-gold-strong);border-radius:var(--ui-radius-sm);background:linear-gradient(180deg,rgba(23,34,52,.92),rgba(11,17,29,.95));color:var(--ui-color-cream);font:700 11px/1.2 var(--ui-font-body);letter-spacing:.09em;text-transform:uppercase}
+.ui-sound-settings button:hover:not(:disabled){border-color:var(--ui-color-gold-bright)}
+.ui-sound-settings :focus-visible{outline:2px solid var(--ui-color-gold-bright);outline-offset:3px}
+.ui-sound-settings input{accent-color:var(--ui-color-gold)}
+.ui-settings .ui-settings__tabs{border-bottom-color:rgba(230,199,126,.36)}
+.ui-settings .ui-settings__tabs button{border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--ui-color-muted);font:700 11px/1.2 var(--ui-font-title);letter-spacing:.12em}
+.ui-settings .ui-settings__tabs button[aria-selected="true"]{border:0;border-bottom:2px solid var(--ui-color-gold-bright);background:transparent;color:var(--ui-color-gold-bright)}
+.ui-settings .ui-settings__note{border-left-color:rgba(230,199,126,.5);background:rgba(0,0,0,.24);color:var(--ui-color-muted-strong)}
+.ui-settings__controls dt{color:#e3c47e}
