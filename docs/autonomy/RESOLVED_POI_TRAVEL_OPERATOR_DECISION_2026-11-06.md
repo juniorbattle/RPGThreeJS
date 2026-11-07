@@ -1,10 +1,23 @@
 # Voyage vers les lieux résolus — OD-2026-11-06-A
 
-**PROPOSED.** Amendement 1.16.0 / `PRODUCTION-CONTRACTS-POI-RESOLVED-TRAVEL-1`, soumis à l'opérateur sur la [fiche d'arbitrages](https://claude.ai/artifact/BwMyERiU4nuhVnvR329ZXB). Les contrats restent intacts jusqu'à son approbation.
+**APPROVED DECISION.** Le 2026-11-06, l'opérateur a rempli la [fiche d'arbitrages](https://claude.ai/artifact/BwMyERiU4nuhVnvR329ZXB) : ses six choix suivent les recommandations, et il approuve le texte de l'amendement 1.16.0 / `PRODUCTION-CONTRACTS-POI-RESOLVED-TRAVEL-1` tel quel (B1). Les contrats portent ce texte ; la baseline immuable est fixée par le commit opérationnel qui suit celui de l'amendement.
 
 ## Demande
 
 Le 2026-11-06, pendant le playtest PC, l'opérateur écrit : « sur la carte de POI, si nous avons déjà visité et résolu un POI on peut y accéder de n'importe où, ce qui nous facilitera le déplacement ».
+
+## Choix de l'opérateur
+
+| Id | Sujet | Choix |
+| --- | --- | --- |
+| A1 | Destinations | Tout lieu résolu |
+| A2 | Coût | Un tour, comme un pas |
+| A3 | Menaces | Le chemin évite les menaces |
+| A4 | Animation | Le pion suit le chemin |
+| A5 | Portée | Toutes les régions |
+| B1 | Amendement | J'approuve le texte tel quel |
+
+Aucune note n'accompagne ces choix. Le voyage décrit ci-dessous, tel que corrigé après la relecture, est donc approuvé.
 
 ## Pourquoi un amendement
 
@@ -80,6 +93,10 @@ Avertissements, et ce qui en a été fait :
 - **Précision ajoutée.** Après un repli ou une victoire devant une destination occupée, la compagnie reste à son point de départ.
 
 Le correctif est régénéré avec ces corrections et revalidé.
+
+## Approbation
+
+Le 2026-11-06 au soir (heure de Toronto), l'opérateur répond « Fiche remplie » ; sur la fiche, B1 vaut « J'approuve le texte tel quel ». Le correctif relu est appliqué tel quel à TRAVERSAL, CAMPAIGN_AND_STATE, au README et au manifeste (set 1.16.0). `approvedAt` porte déjà le 2026-11-06. Le validateur de contrats et `git diff --check` passent sur l'arbre amendé.
 
 ## Ordre de travail
 

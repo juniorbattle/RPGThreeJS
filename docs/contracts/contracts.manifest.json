@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.15.0",
+  "contractSetVersion": "1.16.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -232,6 +232,19 @@
       ],
       "constitutionChanged": false,
       "supersededRule": "The final refuge as a purely narrative beat with no refuge services and no interactive hub; it now offers the existing refuge services after its unchanged narrative beat and on a return before the judgement, with its story node type, durable IDs and save fields unchanged",
+      "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator playtest acceptance"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-POI-RESOLVED-TRAVEL-1",
+      "operatorDecisionId": "OD-2026-11-06-A",
+      "operatorDecisionPath": "docs/autonomy/RESOLVED_POI_TRAVEL_OPERATOR_DECISION_2026-11-06.md",
+      "approvedAt": "2026-11-06",
+      "changedContracts": [
+        "CAMPAIGN_AND_STATE",
+        "TRAVERSAL"
+      ],
+      "constitutionChanged": false,
+      "supersededRule": "POI movement only edge by edge, with no remote-click travel; the map now also allows one committed movement to a resolved POI over an inert, elite-free route of connected unlocked edges, counted as one turn, with no saved field",
       "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator playtest acceptance"
     }
   ],
