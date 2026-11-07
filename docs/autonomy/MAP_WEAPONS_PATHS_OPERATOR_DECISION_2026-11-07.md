@@ -70,11 +70,32 @@ Limites : présentation seule. Les sélecteurs de RunSystem, les règles de dép
    - Le retour en arrière, le voyage vers un lieu résolu et les lieux annexes sont fermés pendant l'engagement.
 3. **Contrats.**
    - Ce verrou contredit :
-     - `TRAVERSAL.md` : voyage vers un lieu résolu, déplacement dans les deux sens, lieux facultatifs revisitables ;
-     - `CAMPAIGN_AND_STATE.md` : déplacement connecté dans les deux sens ;
-     - `GAME_CONSTITUTION.md` : revalidation du retour en arrière.
-   - L'amendement 1.17.0 suit la procédure habituelle : proposition et patch validé, relecture contracts-guardian, texte soumis à l'opérateur, puis application, baseline et livraison.
+     - `TRAVERSAL.md` : voyage vers un lieu résolu, déplacement dans les deux sens, lieux facultatifs revisitables, critère d'acceptation du retour en arrière ;
+     - `CAMPAIGN_AND_STATE.md` : déplacement connecté dans les deux sens, détours et retours en arrière du Lot E, lieux facultatifs revisitables ;
+     - `AUTHORING_AND_QA.md` : les tests du retour en arrière et des visites.
+   - La Constitution ne change pas. Sa ligne sur le retour en arrière dit que la campagne et RunSystem le valident ; elle ne garantit pas un retour en arrière libre.
    - L'engagement se déduit de faits déjà sauvegardés (branches choisies, lieux résolus) : aucun champ de sauvegarde nouveau.
+
+## Amendement 1.17.0 proposé
+
+`PROPOSED FUTURE DESIGN` Le texte est dans [`BRANCH_COMMITMENT_AMENDMENT_1.17.0.patch`](BRANCH_COMMITMENT_AMENDMENT_1.17.0.patch), validé par `npm run contracts:validate` sur un arbre d'essai. Les contrats du dépôt restent intacts jusqu'à l'approbation de l'opérateur.
+
+Ce qu'il dit, en clair :
+
+- **Le début.** La branche est choisie quand les faits sauvegardés le disent : la branche enregistrée, un lieu de branche résolu, ou, dans une ancienne sauvegarde, une rencontre en cours sur la bifurcation. Arriver sur une bifurcation non résolue engage donc la compagnie.
+- **La cible.** D'abord le lieu de la branche choisie tant qu'il n'est pas résolu, puis le lieu de résolution. RunSystem n'accepte que le pas suivant sur le plus court chemin vers la cible, même si la compagnie se tient hors de ce chemin, et l'activation du lieu où elle se trouve, services d'un refuge compris.
+- **Le reste.** Retour en arrière, voyage, contournement et autres lieux facultatifs attendent la résolution. La compagnie, la sauvegarde, l'attente et Combat ou repli restent. Un repli de sécurité du Lot E peut quitter le chemin : l'engagement reprend d'où se trouve la compagnie.
+- **La carte.** Elle annonce l'engagement et sa cible en texte, lisible sans la couleur, accessible au clavier et à la manette.
+- **La fin.** Une fois le lieu de résolution résolu, selon la règle qui débloque déjà la suite, toutes les autres règles s'appliquent à nouveau.
+- **Les tests exigés.** Seul le pas suivant est accepté ; l'engagement reprend après un repli et depuis une ancienne sauvegarde ; il se lève à la résolution.
+
+Relecture contracts-guardian du 2026-11-07, sur une première version : PASS WITH WARNINGS. Toutes les réserves sont reprises dans le texte ci-dessus :
+
+- phrases verrouillées oubliées : `TRAVERSAL.md` (retraite V2, acceptation, branches parallèles), `CAMPAIGN_AND_STATE.md` (Lot E, survie des visites), `AUTHORING_AND_QA.md` ;
+- cas de blocage : une bifurcation non résolue n'offrait aucun chemin vers le lieu de résolution, encore verrouillé. La cible passe d'abord par la branche choisie ;
+- activation du lieu courant, services du refuge compris ;
+- reprise après un repli ;
+- lecture de la Constitution, consignée.
 
 ## Ce qui ne change pas
 
