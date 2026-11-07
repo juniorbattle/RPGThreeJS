@@ -5,7 +5,7 @@ description: "Use before implementing and before declaring any RPGThreeJS task c
 
 # Contracts compliance
 
-Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `2b2b408223b931e1e9f61554eec1a0e1cb8d9795`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
+Read first: `docs/game/GAME_CONSTITUTION.md`, `docs/contracts/README.md`, `docs/contracts/contracts.manifest.json`, `docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md`, then every contract the task touches. Lock `PRODUCTION-CONTRACTS-LOCK-1`, commit `06a3a75f1903fcadda9404ab9b62a153076154b6`. These documents are authoritative: cite them, never paraphrase them into new doctrine.
 
 ## Orchestration (OD-2026-10-02-C)
 
@@ -14,7 +14,7 @@ The orchestrator applies this skill before implementation and task completion. I
 ## Gates (run them, do not assume)
 
 ```
-git --no-optional-locks diff --exit-code 2b2b408223b931e1e9f61554eec1a0e1cb8d9795 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md   # must print nothing
+git --no-optional-locks diff --exit-code 06a3a75f1903fcadda9404ab9b62a153076154b6 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md   # must print nothing
 git --no-optional-locks status --short -- docs/contracts docs/game/GAME_CONSTITUTION.md                  # must print nothing
 npm run contracts:validate                                                                              # 8 contracts, 8 historical IDs, 0 active videos
 ```
@@ -69,7 +69,7 @@ Current set 1.12.0 derives from PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1 / OD-2026
 
 ## Current retirement — OD-2026-10-24-A
 
-Set 1.10.0 supersedes earlier cinematic production directions, including the offline illustrated permissions of sets 1.8.0 (OD-2026-10-21-A) and 1.9.0 (OD-2026-10-23-B), whose candidates and evidence stay as history: zero active video, hold, preload or shipped MP4; eight historical IDs and archived media and proof preserved; no illustrated or video generation or pilot generalization. Code-animated living tableaux follow sets 1.13.0 and 1.14.0 (OD-2026-11-04-A and OD-2026-11-04-B) only. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline 2b2b408223b931e1e9f61554eec1a0e1cb8d9795.
+Set 1.10.0 supersedes earlier cinematic production directions, including the offline illustrated permissions of sets 1.8.0 (OD-2026-10-21-A) and 1.9.0 (OD-2026-10-23-B), whose candidates and evidence stay as history: zero active video, hold, preload or shipped MP4; eight historical IDs and archived media and proof preserved; no illustrated or video generation or pilot generalization. Code-animated living tableaux follow sets 1.13.0 and 1.14.0 (OD-2026-11-04-A and OD-2026-11-04-B) only. Follow the current static narrative plan and state; preserve scheduler settings. Immutable baseline 06a3a75f1903fcadda9404ab9b62a153076154b6.
 
 ## Current direction — OD-2026-10-24-B
 

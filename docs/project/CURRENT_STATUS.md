@@ -1,6 +1,8 @@
 # Current project status
 
-Current contract update 6 November 2026: [OD-2026-11-06-A](../autonomy/RESOLVED_POI_TRAVEL_OPERATOR_DECISION_2026-11-06.md), set 1.16.0, immutable baseline 2b2b408223b931e1e9f61554eec1a0e1cb8d9795, lets the map travel in one committed movement, counted as one turn, to a resolved POI over connected unlocked edges whose intermediate POIs are resolved or neutralized and free of mobile elites; no saved field, and arrival replays nothing.
+Current contract update 7 November 2026: [OD-2026-11-07-C](../autonomy/MAP_WEAPONS_PATHS_OPERATOR_DECISION_2026-11-07.md), set 1.17.0, immutable baseline 06a3a75f1903fcadda9404ab9b62a153076154b6, commits the company, once it chooses a branch at one of the three authored exclusive forks, to the next step toward that chapter's resolving POI until it is resolved (first refuge, village choice, shadow signs); company management, saving, Wait and Combat or retreat remain, the map states the commitment with text, and no saved field is added.
+
+Previous contract update 6 November 2026: [OD-2026-11-06-A](../autonomy/RESOLVED_POI_TRAVEL_OPERATOR_DECISION_2026-11-06.md), set 1.16.0 (2b2b4082), lets the map travel in one committed movement, counted as one turn, to a resolved POI over connected unlocked edges whose intermediate POIs are resolved or neutralized and free of mobile elites; no saved field, and arrival replays nothing.
 
 Previous contract update 6 November 2026: [OD-2026-11-05-E](../autonomy/FINAL_REFUGE_SERVICES_OPERATOR_DECISION_2026-11-05.md), set 1.15.0 (1c00f7a6), lets the final refuge offer the existing refuge services (shop and forge, skill upgrades, company register, paid rest) after its unchanged dialogue and on each return before the judgement; no new text, reward, image or saved field, and the node stays `story`.
 
