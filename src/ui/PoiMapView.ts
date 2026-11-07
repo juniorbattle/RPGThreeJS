@@ -98,7 +98,7 @@ export class PoiMapView {
       <div class="poi-map__viewport">
       <div class="poi-map__atlas-bar">${discovered.length>1?`<div class="poi-map__regions" role="tablist" aria-label="Régions découvertes">${discovered.map(({r,i})=>`<button role="tab" id="poi-region-${i}" data-poi-region="${i}" aria-selected="${i===phase}" tabindex="${i===phase?0:-1}" aria-controls="poi-atlas">${r.shortTitle}</button>`).join('')}</div>`:''}<button data-poi-action="locate">Ma position</button></div>
       <div class="poi-map__land" id="poi-atlas" role="${discovered.length>1?'tabpanel':'region'}" aria-labelledby="${discovered.length>1?`poi-region-${phase}`:'poi-region-title'}" tabindex="0" aria-label="${escape(region.title)}. Carte défilante, glisser ou utiliser les flèches."><div class="poi-map__canvas"><img class="poi-map__geography" src="${region.image}" alt="" draggable="false"/><svg viewBox="0 0 960 520" aria-hidden="true">${paths}</svg>
-      ${nodes.map(n=>{const [x,y]=positions.get(n.id)!;const threat=threats.find(threat=>threat.positionId===n.id);return `<button class="poi-marker poi-marker--${n.status} poi-marker--${n.role} poi-marker--${n.kind} ${n.id===model.currentNodeId?'poi-marker--current':''} ${n.region!==phase?'poi-marker--border':''} ${n.region>phase?'poi-marker--outbound':''} ${threat?'poi-marker--occupied':''} ${n.canMove||n.id===model.currentNodeId?'':'poi-marker--far'}" data-poi-id="${escape(n.id)}" data-poi-reachable="${n.canMove}" data-gamepad-confirm="[data-poi-action=move],[data-poi-action=details]" style="left:${x/9.6}%;top:${y/5.2}%" aria-label="${escape(n.label)}, ${roleLabels[n.role]}, ${kindLabels[n.kind]}, ${participationLabels[n.participation]}, ${statusLabels[n.status]}${n.id===model.currentNodeId?', position actuelle':''}${n.reusable?', services réutilisables':''}${threat?', passage occupé par '+escape(threat.label):''}${n.region>phase?', vers '+escape(LION_POI_REGIONS[n.region]!.shortTitle):''}"><span class="poi-marker__icon" aria-hidden="true">${icons[n.kind]}</span><span class="poi-marker__name">${escape(n.label)}${n.region>phase?`<small class="poi-marker__toward">Vers ${escape(LION_POI_REGIONS[n.region]!.shortTitle)}</small>`:''}</span>${n.status==='resolved'?'<span class="poi-marker__check" aria-hidden="true">✓</span>':n.status==='neutralized'?'<span class="poi-marker__check poi-marker__check--neutral" aria-hidden="true">—</span>':''}${n.id===model.currentNodeId?'<span class="poi-marker__position">Vous êtes ici</span>':''}</button>`;}).join('')}
+      ${nodes.map(n=>{const [x,y]=positions.get(n.id)!;const threat=threats.find(threat=>threat.positionId===n.id);return `<button class="poi-marker poi-marker--${n.status} poi-marker--${n.role} poi-marker--${n.kind} ${n.id===model.currentNodeId?'poi-marker--current':''} ${n.region!==phase?'poi-marker--border':''} ${n.region>phase?'poi-marker--outbound':''} ${threat?'poi-marker--occupied':''} ${n.canMove||n.canTravel||n.id===model.currentNodeId?'':'poi-marker--far'}" data-poi-id="${escape(n.id)}" data-poi-reachable="${n.canMove}" data-gamepad-confirm="[data-poi-action=move],[data-poi-action=details]" style="left:${x/9.6}%;top:${y/5.2}%" aria-label="${escape(n.label)}, ${roleLabels[n.role]}, ${kindLabels[n.kind]}, ${participationLabels[n.participation]}, ${statusLabels[n.status]}${n.id===model.currentNodeId?', position actuelle':''}${n.reusable?', services réutilisables':''}${n.canTravel?', voyage rapide en 1 tour':''}${threat?', passage occupé par '+escape(threat.label):''}${n.region>phase?', vers '+escape(LION_POI_REGIONS[n.region]!.shortTitle):''}"><span class="poi-marker__icon" aria-hidden="true">${icons[n.kind]}</span><span class="poi-marker__name">${escape(n.label)}${n.region>phase?`<small class="poi-marker__toward">Vers ${escape(LION_POI_REGIONS[n.region]!.shortTitle)}</small>`:''}</span>${n.status==='resolved'?'<span class="poi-marker__check" aria-hidden="true">✓</span>':n.status==='neutralized'?'<span class="poi-marker__check poi-marker__check--neutral" aria-hidden="true">—</span>':''}${n.id===model.currentNodeId?'<span class="poi-marker__position">Vous êtes ici</span>':''}</button>`;}).join('')}
       ${threats.map(threat=>{const position=positions.get(threat.positionId);if(!position)return '';return `<span class="poi-threat" data-poi-elite-id="${escape(threat.id)}" style="left:${position[0]/9.6}%;top:${position[1]/5.2}%" aria-hidden="true">♜</span>`;}).join('')}
       <svg class="poi-map__party-layer" viewBox="0 0 960 520" aria-hidden="true">${current.region===phase?(()=>{const [x,y]=positions.get(current.id)!;return `<g class="poi-map__pawn" data-node="${escape(current.id)}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y})"><g class="poi-map__pawn-piece" transform="translate(-40 14)"><ellipse class="poi-map__pawn-shadow" cx="1" cy="1" rx="15" ry="4.5"/><ellipse class="poi-map__pawn-base" cx="0" cy="0" rx="12" ry="3.6"/><g class="poi-map__pawn-figure">${pawnFigure()}</g></g></g>`;})():''}</svg></div></div>
       <div class="poi-map__map-caption"><span>${escape(region.title)} · Tour ${model.turn}</span></div></div>
@@ -123,15 +123,16 @@ export class PoiMapView {
     };
     const update=()=>{
       const n=model.nodes.find(n=>n.id===this.selectedId)??current;
-      const canMove=n.canMove||(n.id===model.currentNodeId&&n.canActivate);
-      element.querySelector('.poi-map__detail')!.innerHTML=`<div class="poi-map__selection"><h2>${escape(n.label)}</h2><p>${participationLabels[n.participation]} · ${statusLabels[n.status]}${n.id===model.currentNodeId?' · Vous êtes ici':''}${n.reusable?' · Refuge réutilisable':''}</p>${n.status==='locked'?`<p class="poi-map__lock-hint">${escape(n.hint??'')}</p>`:''}</div><div class="poi-map__detail-actions" data-gamepad-back="[data-poi-id][aria-pressed=true]"><button data-poi-action="details" aria-controls="poi-map-panel" aria-expanded="false">Détails</button><button data-poi-action="move" ${canMove?'':'disabled'}>${n.id===model.currentNodeId?(n.reusable?'Ouvrir le refuge':'Ouvrir'):'Se rendre'}</button>${n.canBypass?'<button data-poi-action="bypass">Contourner</button>':''}</div>`;
+      const canMove=n.canMove||(n.id===model.currentNodeId&&n.canActivate)||n.canTravel;
+      element.querySelector('.poi-map__detail')!.innerHTML=`<div class="poi-map__selection"><h2>${escape(n.label)}</h2><p>${participationLabels[n.participation]} · ${statusLabels[n.status]}${n.id===model.currentNodeId?' · Vous êtes ici':''}${n.reusable?' · Refuge réutilisable':''}${n.canTravel?' · Voyage rapide · 1 tour':''}</p>${n.status==='locked'?`<p class="poi-map__lock-hint">${escape(n.hint??'')}</p>`:''}</div><div class="poi-map__detail-actions" data-gamepad-back="[data-poi-id][aria-pressed=true]"><button data-poi-action="details" aria-controls="poi-map-panel" aria-expanded="false">Détails</button><button data-poi-action="move" ${canMove?'':'disabled'}>${n.id===model.currentNodeId?(n.reusable?'Ouvrir le refuge':'Ouvrir'):'Se rendre'}</button>${n.canBypass?'<button data-poi-action="bypass">Contourner</button>':''}</div>`;
       const threatBrief=threats.map(threat=>`<div class="poi-map__threat-brief" data-poi-threat="${escape(threat.id)}"><strong>♜ ${escape(threat.label)}${threat.contested?' · Passage contesté':''}</strong><p>${threat.mode==='cyclic_patrol'?'Patrouille':'Traque locale'} · ${escape(nodeLabel(threat.positionId))} → ${escape(nodeLabel(threat.nextPositionId))}</p></div>`).join('');
       element.querySelector('.poi-map__panel-detail')!.innerHTML=`<section><span class="poi-map__detail-role">${roleLabels[n.role]} · ${participationLabels[n.participation]}</span><h3>${escape(n.label)}</h3><p>${kindLabels[n.kind]} · ${statusLabels[n.status]}${n.reusable?' · Services réutilisables':''}</p><p>${escape(n.hint??'')}</p></section>${threatBrief}`;
       // Threat intent stays visible even with the optional explanations closed.
       if(threats.length)element.querySelector('.poi-map__detail')!.insertAdjacentHTML('beforeend',`<div class="poi-map__threat-summary">${threats.map(threat=>`<p><strong>♜ ${escape(threat.label)}${threat.contested?' · Passage contesté':''}</strong> · ${threat.mode==='cyclic_patrol'?'Patrouille':'Traque locale'} · ${escape(nodeLabel(threat.positionId))} → ${escape(nodeLabel(threat.nextPositionId))}${threat.canFight?` <button data-poi-action="elite-fight" data-elite-id="${escape(threat.id)}">Affronter la menace</button>`:''}</p>`).join('')}</div>`);
       element.querySelectorAll<HTMLButtonElement>('[data-poi-id]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.poiId===n.id)));
-      element.querySelectorAll<SVGPathElement>('.poi-path').forEach(path=>path.classList.toggle('poi-path--selected',n.canMove&&(
-        path.dataset.from===model.currentNodeId&&path.dataset.to===n.id||path.dataset.to===model.currentNodeId&&path.dataset.from===n.id)));
+      const legs=n.canTravel?n.travelRoute.slice(1).map((id,index)=>[n.travelRoute[index]!,id] as const):n.canMove?[[model.currentNodeId,n.id] as const]:[];
+      element.querySelectorAll<SVGPathElement>('.poi-path').forEach(path=>path.classList.toggle('poi-path--selected',legs.some(([from,to])=>
+        path.dataset.from===from&&path.dataset.to===to||path.dataset.to===from&&path.dataset.from===to)));
     };
     const select=(id:string,scroll=false)=>{
       if(this.selectedId!==id){this.selectedId=id;update();}
@@ -216,36 +217,52 @@ export class PoiMapView {
     focus?.focus({preventScroll:true});focus?.scrollIntoView({block:'nearest',inline:'center',behavior:'instant'});
   }
 
-  /** Animate only a movement already committed/saved by RunSystem via GameApp. */
-  animateTravel(from:string,to:string):Promise<void>|undefined{
+  /**
+   * Animate only a movement already committed/saved by RunSystem via GameApp. A set 1.16.0 travel passes its route:
+   * the pawn follows each leg drawn on the displayed region, in one quick eased run, and stops where the drawn
+   * route ends (the map then redraws at the destination). Reduced motion places the pawn directly.
+   */
+  animateTravel(from:string,to:string,route:readonly string[]=[from,to]):Promise<void>|undefined{
     this.finishTravel?.();
     const element=this.element;
     if(!element||from===to||document.hidden||prefersReducedMotion(element.dataset.reducedMotion==='true'))return;
-    const path=[...element.querySelectorAll<SVGPathElement>('.poi-path')].find(p=>
-      (p.dataset.from===from&&p.dataset.to===to)||(p.dataset.from===to&&p.dataset.to===from));
-    if(!path||typeof path.getTotalLength!=='function')return;
-    const length=path.getTotalLength(),reverse=path.dataset.from!==from;
-    if(!Number.isFinite(length)||length<=0)return;
+    const paths=[...element.querySelectorAll<SVGPathElement>('.poi-path')];
+    const legs:{path:SVGPathElement;length:number;reverse:boolean;to:string}[]=[];
+    for(let index=1;index<route.length;index++){
+      const legFrom=route[index-1]!,legTo=route[index]!;
+      const path=paths.find(p=>(p.dataset.from===legFrom&&p.dataset.to===legTo)||(p.dataset.from===legTo&&p.dataset.to===legFrom));
+      if(!path||typeof path.getTotalLength!=='function')break;
+      const length=path.getTotalLength();
+      if(!Number.isFinite(length)||length<=0)break;
+      legs.push({path,length,reverse:path.dataset.from!==legFrom,to:legTo});
+    }
+    if(!legs.length)return;
     const token=element.querySelector<SVGGElement>('.poi-map__pawn');if(!token)return;
-    const position=(distance:number)=>{const p=path.getPointAtLength(distance);token.setAttribute('transform',`translate(${p.x} ${p.y})`);token.dataset.x=String(p.x);token.dataset.y=String(p.y);};
-    const start=path.getPointAtLength(reverse?length:0),end=path.getPointAtLength(reverse?0:length);
-    token.querySelector('.poi-map__pawn-figure')?.setAttribute('transform',end.x<start.x?'scale(-1 1)':'');
-    token.classList.add('poi-map__traveller');position(reverse?length:0);
-    const duration=Math.max(650,Math.min(1100,length*2));
+    const total=legs.reduce((sum,leg)=>sum+leg.length,0);
+    const position=(distance:number)=>{
+      let rest=Math.max(0,Math.min(total,distance)),leg=legs[0]!;
+      for(const candidate of legs){leg=candidate;if(rest<=candidate.length)break;rest-=candidate.length;}
+      const along=Math.min(leg.length,rest),p=leg.path.getPointAtLength(leg.reverse?leg.length-along:along);
+      const ahead=leg.path.getPointAtLength(leg.reverse?0:leg.length),behind=leg.path.getPointAtLength(leg.reverse?leg.length:0);
+      token.querySelector('.poi-map__pawn-figure')?.setAttribute('transform',ahead.x<behind.x?'scale(-1 1)':'');
+      token.setAttribute('transform',`translate(${p.x} ${p.y})`);token.dataset.x=String(p.x);token.dataset.y=String(p.y);};
+    token.classList.add('poi-map__traveller');position(0);
+    // One edge keeps its established pace; a longer route stays quick.
+    const duration=legs.length===1?Math.max(650,Math.min(1100,total*2)):Math.max(900,Math.min(2200,total*1.2));
     element.dataset.travelling='true';element.inert=true; // No reentrant map intent during the short handoff.
     return new Promise(resolve=>{
       let frame=0,start:number|undefined;
-      const finish=()=>{cancelAnimationFrame(frame);clearTimeout(watchdog);unsubscribe();document.removeEventListener('visibilitychange',hidden);position(reverse?0:length);token.dataset.node=to;token.classList.remove('poi-map__traveller');delete element.dataset.travelling;element.inert=false;this.finishTravel=null;resolve();};
+      const finish=()=>{cancelAnimationFrame(frame);clearTimeout(watchdog);unsubscribe();document.removeEventListener('visibilitychange',hidden);position(total);token.dataset.node=legs.at(-1)!.to;token.classList.remove('poi-map__traveller');delete element.dataset.travelling;element.inert=false;this.finishTravel=null;resolve();};
       const hidden=()=>{if(document.hidden)finish();};
       const unsubscribe=onReducedMotionChange(()=>{if(prefersReducedMotion())finish();});
-      const watchdog=window.setTimeout(finish,1500);
+      const watchdog=window.setTimeout(finish,duration+400);
       document.addEventListener('visibilitychange',hidden);
       this.finishTravel=finish;
       const step=(time:number)=>{
         start??=time;
         if(this.element!==element||prefersReducedMotion(element.dataset.reducedMotion==='true')){finish();return;}
         const progress=Math.min(1,(time-start)/duration),eased=progress*progress*(3-2*progress);
-        position(length*(reverse?1-eased:eased));
+        position(total*eased);
         if(progress===1)finish();else frame=requestAnimationFrame(step);
       };
       frame=requestAnimationFrame(step);

@@ -5,7 +5,7 @@ import { createRecruitInstance, createUnitInstance, getItemCategory, toCombatant
 import { applyCombatProgress } from './combatProgress';
 import {
   creditRunReward, enterRunNode,
-  getAvailableRunNodes, getRunNode, secureRunLoot,
+  getAvailableRunNodes, getRunNode, secureRunLoot, travelToResolvedPoi,
   selectPoiMap, enterPoi, bypassPoi, isPoiNeutralized, settlePoiNavigation,
   commitPoiEliteFight, resolvePoiEliteVictory,
 } from './runSystem';
@@ -827,12 +827,19 @@ export class GameApp {
     this.routeCommitInFlight = true;
     const origin = this.state.run.currentNodeId;
     let entered: ReturnType<typeof enterPoi>;
+    let route: string[] | undefined;
     try {
+      // An adjacent move first; otherwise the set 1.16.0 travel to a resolved POI, both revalidated by RunSystem.
       entered = enterPoi(this.state, nodeId);
+      if (!entered) {
+        const travelled = travelToResolvedPoi(this.state, nodeId);
+        entered = travelled;
+        route = travelled?.route;
+      }
       if (!entered) {this.showPoiMap();return;}
       this.saves.saveAuto(this.state);
       if(this.state.run.currentNodeId !== origin) this.uiSounds.play('travel-start');
-      const travel = this.poiMap.animateTravel(origin, this.state.run.currentNodeId);
+      const travel = this.poiMap.animateTravel(origin, this.state.run.currentNodeId, route);
       if (travel) await travel;
     } finally {
       this.routeCommitInFlight = false;

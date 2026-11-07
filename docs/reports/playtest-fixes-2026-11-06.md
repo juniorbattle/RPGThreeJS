@@ -11,9 +11,9 @@
 | `MERGED_IN` | `NONE` |
 | `SUPERSEDES` | `NONE` |
 | `SUPERSEDED_BY` | `NONE` |
-| `PRODUCTION_IMPACT` | La compétence initiale d'un héros de la démo reste utilisable quand un équipement la remplace par une compétence qui ne coûte pas plus de PA ; les écrans d'équipement montrent ces remplacements. |
+| `PRODUCTION_IMPACT` | La compétence initiale d'un héros de la démo reste utilisable quand un équipement la remplace par une compétence qui ne coûte pas plus de PA ; les écrans d'équipement montrent ces remplacements. Depuis la carte, la compagnie voyage en un tour vers un lieu résolu non voisin, par un chemin de lieux résolus ou neutralisés sans menace mobile (set 1.16.0). |
 | `CANONICAL_DOCS_UPDATED` | Aucun pour la compétence : sa règle gratuite est déjà celle du code. Pour la carte, `docs/autonomy/RESOLVED_POI_TRAVEL_OPERATOR_DECISION_2026-11-06.md` (PROPOSED), le registre des décisions et l'état vivant. |
-| `EVIDENCE` | Tests ciblés (`management.test.ts`, `ManagementView.test.ts`), suite complète (2922 tests vitest et 26 tests node), types. |
+| `EVIDENCE` | Compétence : tests ciblés (`management.test.ts`, `ManagementView.test.ts`), suite complète (2922 tests vitest et 26 tests node), types. Voyage : `poiResolvedTravel.test.ts`, suite complète (2929 tests vitest et 26 tests node), build, validateur ; captures ignorées sous `tmp/economy/travel-shots/`. |
 
 ## Alistair perd sa compétence à 2 PA
 
@@ -30,4 +30,4 @@ Seul l'Anneau de Force remplace une compétence initiale sur une arme de palier 
 
 ## Voyager vers un lieu résolu depuis n'importe où
 
-`PROPOSED FUTURE DESIGN` L'opérateur demande qu'un lieu déjà visité et résolu soit accessible de n'importe où sur la carte. Le contrat verrouillé `TRAVERSAL.md`, ligne 19, interdit tout voyage à distance (« No remote-click teleport »). L'amendement 1.16.0 (OD-2026-11-06-A) est donc préparé, relu et soumis sur une [fiche d'arbitrages](https://claude.ai/artifact/BwMyERiU4nuhVnvR329ZXB). Le jeu ne change pas avant l'approbation : voir [la proposition](../autonomy/RESOLVED_POI_TRAVEL_OPERATOR_DECISION_2026-11-06.md).
+`CURRENT FACT` L'opérateur demande qu'un lieu déjà visité et résolu soit accessible de n'importe où sur la carte. Le contrat verrouillé `TRAVERSAL.md`, ligne 19, interdisait tout voyage à distance (« No remote-click teleport »). L'amendement 1.16.0 (OD-2026-11-06-A) a été préparé, relu et soumis sur une [fiche d'arbitrages](https://claude.ai/artifact/BwMyERiU4nuhVnvR329ZXB). L'opérateur a retenu les six recommandations et approuvé le texte. L'amendement est appliqué (baseline `2b2b4082`) et le voyage est livré dans le jeu : voir la section Livraison de [la décision](../autonomy/RESOLVED_POI_TRAVEL_OPERATOR_DECISION_2026-11-06.md).

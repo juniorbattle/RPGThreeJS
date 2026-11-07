@@ -105,6 +105,26 @@ Le 2026-11-06 au soir (heure de Toronto), l'opérateur répond « Fiche remplie 
 3. Commit de l'amendement, puis commit opérationnel qui enregistre son SHA comme nouvelle baseline immuable.
 4. Ensuite seulement, le voyage dans le jeu, avec ses tests et une vérification en jeu.
 
+## Livraison
+
+`CURRENT FACT` Livrée le 2026-11-06, sur la baseline `2b2b4082` :
+
+- **Le chemin.** RunSystem calcule, pour chaque lieu résolu non voisin, le plus court chemin depuis la position (`resolvedPoiTravelRoutes`, `src/game/runSystem.ts`). Il emprunte les liaisons du graphe, les liaisons locales ouvertes et les raccourcis de contournement. Chaque pas mène à un lieu déverrouillé, et seuls les lieux résolus ou neutralisés sans menace mobile sont traversés. La carte reçoit `canTravel` et `travelRoute`, deux faits dérivés qui ne sont jamais sauvegardés.
+- **Le voyage.** `travelToResolvedPoi` revalide le voyage. Une destination occupée ouvre le choix existant Combat ou repli avant tout déplacement. Sinon, l'arrivée passe par le même code que la marche (`commitPoiArrival`, extrait d'`enterPoi` sans en changer le comportement). Le déplacement est enregistré depuis l'avant-dernier lieu du chemin : un seul tour, et le repli d'une rencontre par l'arrière suit la règle du Lot E.
+- **La carte.** Un lieu accessible ainsi n'est plus estompé. Sa sélection affiche « Voyage rapide · 1 tour », le bouton « Se rendre » est actif et toutes les étapes du chemin s'éclairent. Le pion suit le chemin tracé sur la région affichée, en une course rapide. En mouvement réduit, il est placé directement.
+- **Dans le jeu.** `GameApp.choosePoi` tente d'abord un pas voisin, puis le voyage, sauvegarde, puis anime le pion. À l'arrivée, un refuge sécurisé ouvre ses services et le refuge final sa halte ; rien d'autre ne se rejoue.
+
+Vérifications :
+
+- Tests (`src/game/poiResolvedTravel.test.ts`) : destinations et chemins, un tour enregistré depuis l'avant-dernier lieu, aucun fait nouveau, aucun passage par un lieu tenu par une menace, choix Combat ou repli à une destination occupée, refus des destinations non résolues, voisines ou courante, sauvegarde et rechargement exacts, mention et chemin sur la carte, animation avec le chemin dans `GameApp`.
+- Suite complète (2929 tests vitest et 26 tests node), types, build, validateur et porte sur `2b2b4082`.
+- Parcours en navigateur sur le serveur 5181, à 1366 px, avec le mouvement par défaut puis réduit :
+  - voyage de quatre étapes dans la région III, du refuge final au Volontaire de Bois-Clair, compté comme un tour, sans résolution ni pas de plus ;
+  - voyage vers le Refuge du Lion, dans la région I : ses services s'ouvrent, aucun dialogue ne se rejoue, l'or et les drapeaux ne changent pas ;
+  - en mouvement réduit, le pion est placé directement ;
+  - aucune erreur de page.
+- Le chemin contourne la Veille des ruines, tenue par le Garde des ruines. Après le voyage, la menace avance d'une seule case, et les lieux situés derrière elle ne sont plus proposés.
+
 ## Ce qui ne change pas
 
 - Les 33 lieux, leurs identifiants, leurs liaisons et leurs contenus.

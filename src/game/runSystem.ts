@@ -701,6 +701,10 @@ export interface PoiMapNode extends RunNode {
   canMove: boolean;
   canActivate: boolean;
   canBypass: boolean;
+  /** Set 1.16.0: a resolved, non-adjacent POI reachable in one committed movement over an inert, elite-free route. */
+  canTravel: boolean;
+  /** That route, from the current POI to this one; empty when canTravel is false. Derived, never saved. */
+  travelRoute: string[];
 }
 export interface PoiMapModel {
   currentNodeId: string;
@@ -769,6 +773,43 @@ function poiOptionalLeg(nodeId: string): typeof LION_TRAVERSAL_LEGS[number] | un
       || stage.optionalBranchNodeIds?.includes(nodeId))));
 }
 
+/**
+ * Set 1.16.0 (OD-2026-11-06-A): shortest routes from the current POI to every resolved, non-adjacent POI over the
+ * movement edges (graph links, open local edges, authored bypass connections), each hop onto an unlocked POI. Only
+ * resolved or neutralized POIs free of a mobile elite are crossed, so a bypassed optional POI is skipped, never entered.
+ */
+function resolvedPoiTravelRoutes(state: GameState, unlocked: ReadonlySet<string>, neighbors: ReadonlySet<string>,
+  edges: readonly (readonly [string, string])[]): Map<string, string[]> {
+  const routes = new Map<string, string[]>();
+  if (state.run.status !== 'active') return routes;
+  const adjacency = new Map<string, Set<string>>();
+  const link = (from: string, to: string) => {
+    if (!adjacency.has(from)) adjacency.set(from, new Set());
+    adjacency.get(from)!.add(to);
+  };
+  for (const [from, to] of edges) { link(from, to); link(to, from); }
+  const resolved = (id: string) => state.resolvedNodeIds.includes(id);
+  const crossable = (id: string) => (resolved(id) || isPoiNeutralized(state, id)) && !eliteAtPoi(state, id);
+  const start = state.run.currentNodeId;
+  const previous = new Map<string, string | null>([[start, null]]);
+  const queue = [start];
+  for (const id of queue) {
+    if (id !== start && !crossable(id)) continue;
+    for (const next of adjacency.get(id) ?? []) {
+      if (previous.has(next) || !unlocked.has(next)) continue;
+      previous.set(next, id);
+      queue.push(next);
+    }
+  }
+  for (const id of previous.keys()) {
+    if (id === start || neighbors.has(id) || !resolved(id)) continue;
+    const route: string[] = [];
+    for (let step: string | null | undefined = id; step; step = previous.get(step)) route.unshift(step);
+    routes.set(id, route);
+  }
+  return routes;
+}
+
 /** Read model uses existing authoritative adaptive assignments, never a presentation-owned variant. */
 export function selectPoiMap(state: GameState): PoiMapModel {
   const unlocked = unlockedPoiIds(state);
@@ -797,6 +838,11 @@ export function selectPoiMap(state: GameState): PoiMapModel {
     if(edge.fromNodeId===state.run.currentNodeId)neighbors.add(edge.toNodeId);
     if(edge.toNodeId===state.run.currentNodeId)neighbors.add(edge.fromNodeId);
   }
+  const travelRoutes = resolvedPoiTravelRoutes(state, unlocked, neighbors, [
+    ...state.run.graph.nodes.flatMap(node => node.links.map(id => [node.id, id] as const)),
+    ...localEdges.filter(edge => edge.unlocked).map(edge => [edge.from, edge.to] as const),
+    ...bypassEdges.map(edge => [edge.fromNodeId, edge.toNodeId] as const),
+  ]);
   const nodes = state.run.graph.nodes.map(raw => {
     const active = state.run.status === 'active';
     const node = active && unlocked.has(raw.id) ? resolveAdaptiveNode(state, raw) : raw;
@@ -819,6 +865,7 @@ export function selectPoiMap(state: GameState): PoiMapModel {
       canActivate: active && !neutralized && unlocked.has(node.id) && node.depth > 0 && (status === 'available' || reusable),
       canBypass: active && Boolean(poiOptionalLeg(node.id)) && !neutralized && status === 'available'
         && !state.run.bypassedRouteNodeIds?.includes(node.id) && (canMove || node.id === state.run.currentNodeId),
+      canTravel: travelRoutes.has(node.id), travelRoute: travelRoutes.get(node.id) ?? [],
     };
   });
   const geography = {nodes, edges:[...state.run.graph.nodes.flatMap(n=>n.links.map(id=>({from:n.id,to:id,unlocked:unlocked.has(n.id)&&unlocked.has(id)}))),
@@ -842,13 +889,40 @@ export function enterPoi(state: GameState, nodeId: string): { node: RunNode; act
     beginPoiEliteEncounter(state,threat.id,'front',nodeId);
     return {node:getRunNode(state.run,nodeId)!,activate:false,interception:true};
   }
+  return commitPoiArrival(state, map, selected, state.run.currentNodeId);
+}
+
+/**
+ * Set 1.16.0 (OD-2026-11-06-A): one committed movement to a resolved POI over its inert, elite-free route, counted as
+ * one turn. An occupied destination offers the existing front Combat or retreat; the movement is recorded from the
+ * route's last POI, so a later rear encounter keeps the Lot E safe-return rule. Adds no saved field.
+ */
+export function travelToResolvedPoi(state: GameState, nodeId: string):
+  { node: RunNode; activate: boolean; interception?: boolean; route: string[] } | null {
+  if (state.run.status !== 'active' || state.run.poiExpedition?.encounter || state.run.poiExpedition?.pendingStep) return null;
+  const map = selectPoiMap(state);
+  const selected = map.nodes.find(n => n.id === nodeId);
+  if (!selected?.canTravel || selected.travelRoute.length < 3) return null;
+  const route = [...selected.travelRoute];
+  const threat = eliteAtPoi(state, nodeId);
+  if (threat) {
+    beginPoiEliteEncounter(state, threat.id, 'front', nodeId);
+    return {node: getRunNode(state.run, nodeId)!, activate: false, interception: true, route};
+  }
+  return {...commitPoiArrival(state, map, selected, route[route.length - 2]!), route};
+}
+
+/** Shared arrival of a revalidated movement: the same facts whether the company walked one edge or travelled. */
+function commitPoiArrival(state: GameState, map: PoiMapModel, selected: PoiMapNode, fromNodeId: string):
+  { node: RunNode; activate: boolean } {
+  const nodeId = selected.id;
   // Choosing a direct local trial route ignores the compatible refugee encounter.
   // Its authored consequence belongs to this truth owner and is never a UI effect.
   if (LION_FIRST_TRIAL.includes(nodeId)
     && !state.resolvedNodeIds.includes('lion-refugees')) bypassPoi(state,'lion-refugees');
   const node = getRunNode(state.run, nodeId)!;
-  const origin = map.nodes.find(n=>n.id===state.run.currentNodeId);
-  recordPoiMovement(state,state.run.currentNodeId,nodeId,
+  const origin = map.nodes.find(n=>n.id===fromNodeId);
+  recordPoiMovement(state,fromNodeId,nodeId,
     origin?.status==='resolved'||origin?.status==='neutralized'||origin?.id==='lion-camp');
   if (!isPoiNeutralized(state, nodeId)) {
     for (const leg of LION_TRAVERSAL_LEGS) for (const stage of leg.stages) {
