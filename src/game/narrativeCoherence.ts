@@ -518,3 +518,57 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
     },
   };
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Design check for a plateau not built yet
+
+/**
+ * A plateau's map is written first, before any line (brief, Lots 1 to 3). Until the plateau is built, its map is checked
+ * as a design: schema, unique identifiers, every referenced fact declared, and every place and dialogue named with the
+ * prefix of the chapter where it plays. The full validation applies once the plateau's content exists.
+ */
+export function validateConsequenceMapDesign(rawMap: unknown): CoherenceFinding[] {
+  const map = consequenceMapSchema.parse(rawMap);
+  const findings: CoherenceFinding[] = [];
+  const report = (subject: string, message: string) => findings.push({ kind: 'map_mismatch', subject, message });
+  const duplicates = (ids: readonly string[], label: string) => {
+    const seen = new Set<string>();
+    for (const id of ids) {
+      if (seen.has(id)) report(id, `${label} en double.`);
+      seen.add(id);
+    }
+  };
+  const echoes = [...map.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(map.outcomes).flatMap((outcome) => outcome.echoes)];
+  duplicates(map.facts.map((fact) => fact.id), 'Fait');
+  duplicates(map.majorChoices.map((choice) => choice.id), 'Choix');
+  duplicates(echoes.map((echo) => echo.id), 'Écho');
+  const facts = new Set(map.facts.map((fact) => fact.id));
+  const placePrefix = (chapter: string) => `${chapter}-`;
+  const dialoguePrefix = (chapter: string) => `${chapter}_`;
+  for (const choice of map.majorChoices) {
+    if (!choice.nodeId.startsWith(placePrefix(map.plateauId))) report(choice.id, `Lieu hors du plateau « ${choice.nodeId} ».`);
+    if (!choice.dialogueId.startsWith(dialoguePrefix(map.plateauId))) report(choice.id, `Dialogue hors du plateau « ${choice.dialogueId} ».`);
+    duplicates(choice.options.map((option) => String(option.choiceIndex)), `Option de ${choice.id}`);
+    for (const option of choice.options) {
+      for (const fact of [...option.sets, ...option.leadsTo]) if (!facts.has(fact)) report(`${choice.id}:${option.choiceIndex}`, `Fait non déclaré « ${fact} ».`);
+    }
+    const optionFacts = new Set(choice.options.flatMap((option) => [...option.sets, ...option.leadsTo]));
+    for (const option of choice.options) {
+      if (![...option.sets, ...option.leadsTo].some((fact) => choice.echoes.some((echo) => echo.fact === fact))) {
+        report(`${choice.id}:${option.choiceIndex}`, 'Aucun écho prévu pour ce que pose cette option.');
+      }
+    }
+    for (const echo of choice.echoes) if (!optionFacts.has(echo.fact)) report(echo.id, `L’écho montre « ${echo.fact} », que ce choix ne pose pas.`);
+  }
+  for (const [path, outcome] of Object.entries(map.outcomes)) {
+    for (const fact of outcome.facts) if (!facts.has(fact)) report(`outcome:${path}`, `Fait non déclaré « ${fact} ».`);
+  }
+  for (const echo of echoes) {
+    const chapter = echo.chapterId ?? map.plateauId;
+    if (!facts.has(echo.fact)) report(echo.id, `Écho d’un fait non déclaré « ${echo.fact} ».`);
+    if (!echo.state[echo.fact]) report(echo.id, 'L’état de l’écho ne contient pas le fait qu’il montre.');
+    if (!echo.nodeId.startsWith(placePrefix(chapter))) report(echo.id, `Lieu d’écho hors du chapitre « ${echo.nodeId} ».`);
+    if (!echo.dialogueId.startsWith(dialoguePrefix(chapter))) report(echo.id, `Dialogue d’écho hors du chapitre « ${echo.dialogueId} ».`);
+  }
+  return findings;
+}

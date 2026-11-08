@@ -706,6 +706,48 @@
       "missionGreed": true
      },
      "causePhrase": "vous avez pris la porte basse et ses coffres"
+    },
+    {
+     "id": "lion.bois_clair.saved.bear_audience",
+     "fact": "missionSuccess",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "bear",
+     "nodeId": "bear-audience",
+     "dialogueId": "bear_audience",
+     "stepId": "reputation",
+     "state": {
+      "missionSuccess": true
+     },
+     "causePhrase": "vous avez ramené les captifs de Bois-Clair"
+    },
+    {
+     "id": "lion.bois_clair.sacrificed.bear_audience",
+     "fact": "missionGreed",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "bear",
+     "nodeId": "bear-audience",
+     "dialogueId": "bear_audience",
+     "stepId": "reputation",
+     "state": {
+      "missionGreed": true
+     },
+     "causePhrase": "à Bois-Clair, vous avez emporté les coffres"
+    },
+    {
+     "id": "lion.bois_clair.sacrificed.bear_convoy",
+     "fact": "missionGreed",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "bear",
+     "nodeId": "bear-ore-convoy",
+     "dialogueId": "bear_ore_convoy",
+     "stepId": "maelor",
+     "state": {
+      "missionGreed": true
+     },
+     "causePhrase": "À Bois-Clair, la bourse du clan nous a tenus debout"
     }
    ]
   },
@@ -759,6 +801,34 @@
       "silencedWitnesses": true
      },
      "causePhrase": "un silence imposé par vos lames"
+    },
+    {
+     "id": "lion.witnesses.protected.bear_testimony",
+     "fact": "protectedWitnesses",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "bear",
+     "nodeId": "bear-miners-testimony",
+     "dialogueId": "bear_miners_testimony",
+     "stepId": "seraphine",
+     "state": {
+      "protectedWitnesses": true
+     },
+     "causePhrase": "Comme les survivants de Bois-Clair"
+    },
+    {
+     "id": "lion.witnesses.silenced.bear_testimony",
+     "fact": "silencedWitnesses",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "bear",
+     "nodeId": "bear-miners-testimony",
+     "dialogueId": "bear_miners_testimony",
+     "stepId": "seraphine",
+     "state": {
+      "silencedWitnesses": true
+     },
+     "causePhrase": "Les témoins de Bois-Clair se sont tus sous nos lames"
     }
    ]
   },
@@ -918,6 +988,20 @@
       "shadowFragments": true
      },
      "causePhrase": "l’autel brisé pour ses fragments"
+    },
+    {
+     "id": "lion.shadow_altar.evidence.bear_vein",
+     "fact": "shadowEvidence",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "bear",
+     "nodeId": "bear-dark-vein",
+     "dialogueId": "bear_dark_vein",
+     "stepId": "seraphine",
+     "state": {
+      "shadowEvidence": true
+     },
+     "causePhrase": "la même résonance que l’autel des Ombres"
     }
    ]
   },
@@ -1039,6 +1123,40 @@
       "lionTrialWon": true
      },
      "causePhrase": "Vous l’avez gagné selon la loi martiale du clan",
+     "contrast": {
+      "serpentGeneralDefeated": true
+     }
+    },
+    {
+     "id": "lion.judgement_intent.honour.bear_audience",
+     "fact": "serpentGeneralDefeated",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "bear",
+     "nodeId": "bear-audience",
+     "dialogueId": "bear_audience",
+     "stepId": "lion",
+     "state": {
+      "serpentGeneralDefeated": true
+     },
+     "causePhrase": "Alaric vous a reconnu",
+     "contrast": {
+      "lionTrialWon": true
+     }
+    },
+    {
+     "id": "lion.judgement_intent.force.bear_audience",
+     "fact": "lionTrialWon",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "bear",
+     "nodeId": "bear-audience",
+     "dialogueId": "bear_audience",
+     "stepId": "lion",
+     "state": {
+      "lionTrialWon": true
+     },
+     "causePhrase": "le Sceau du Lion, pris par l’épreuve",
      "contrast": {
       "serpentGeneralDefeated": true
      }

@@ -1,0 +1,909 @@
+{
+ "schemaVersion": 1,
+ "plateauId": "bear",
+ "status": "draft",
+ "sources": [
+  "docs/content/feuille_de_route_narrative_condensee.md §3.2 et statut",
+  "docs/autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md",
+  "docs/autonomy/POST_DEMO_LOT_0_OPERATOR_DECISION_2026-11-08.md",
+  "src/campaign/consequences/lion.consequences.json (faits établis du Lion)"
+ ],
+ "facts": [
+  {
+   "id": "bearArrived",
+   "kind": "system",
+   "summary": "La compagnie est arrivée dans les Montagnes de la Résilience ; marqueur de déroulé."
+  },
+  {
+   "id": "bearMandateHonour",
+   "kind": "flag",
+   "summary": "Borin a confié la défense des mines sacrées à la compagnie, qui l’a acceptée sans condition."
+  },
+  {
+   "id": "bearMandateOreShare",
+   "kind": "flag",
+   "summary": "La compagnie a accepté la mission en réclamant une part du minerai."
+  },
+  {
+   "id": "bearRavenOfferRefused",
+   "kind": "flag",
+   "summary": "L’offre secrète du Corbeau a été refusée et rapportée à l’Ours."
+  },
+  {
+   "id": "bearRavenPact",
+   "kind": "flag",
+   "summary": "La compagnie a accepté l’or du Corbeau en promettant de regarder ailleurs."
+  },
+  {
+   "id": "bearMinersRescued",
+   "kind": "flag",
+   "summary": "Les mineurs de l’Ours pris sous l’éboulement ont été dégagés."
+  },
+  {
+   "id": "bearMinersRobbed",
+   "kind": "flag",
+   "summary": "Les mineurs pris au piège ont été dépouillés de leur minerai et laissés là."
+  },
+  {
+   "id": "bearTrapsMarked",
+   "kind": "flag",
+   "summary": "Les pièges du Corbeau ont été désarmés et signalés aux patrouilles de l’Ours."
+  },
+  {
+   "id": "bearTrapsLooted",
+   "kind": "flag",
+   "summary": "La poudre des pièges du Corbeau a été gardée pour la compagnie."
+  },
+  {
+   "id": "bearConvoyReported",
+   "kind": "flag",
+   "summary": "Le convoi de minerai sombre du Corbeau a été marqué et signalé à Borin."
+  },
+  {
+   "id": "bearConvoySeized",
+   "kind": "flag",
+   "summary": "Le minerai sombre du convoi a été saisi pour le clan."
+  },
+  {
+   "id": "bearRelicReturned",
+   "kind": "flag",
+   "summary": "L’ancien artefact des galeries a été rendu au sanctuaire de l’Ours."
+  },
+  {
+   "id": "bearRelicKept",
+   "kind": "flag",
+   "summary": "L’ancien artefact des galeries a été gardé par la compagnie."
+  },
+  {
+   "id": "bearMinesRestored",
+   "kind": "flag",
+   "summary": "Les galeries sacrées ont été reprises au Corbeau et rendues à l’Ours."
+  },
+  {
+   "id": "bearMinesSeized",
+   "kind": "flag",
+   "summary": "La compagnie a chassé le Corbeau pour garder le filon sombre."
+  },
+  {
+   "id": "bearMinesAbandoned",
+   "kind": "flag",
+   "summary": "La compagnie a tenu parole au Corbeau et l’a laissé finir l’extraction."
+  },
+  {
+   "id": "bearMinersProtected",
+   "kind": "flag",
+   "summary": "Les mineurs libérés ont été escortés jusqu’à Borin pour témoigner."
+  },
+  {
+   "id": "bearMinersSilenced",
+   "kind": "flag",
+   "summary": "Les mineurs libérés ont été réduits au silence."
+  },
+  {
+   "id": "bearShrineHonoured",
+   "kind": "flag",
+   "summary": "Les offrandes du sanctuaire de la montagne ont été respectées."
+  },
+  {
+   "id": "bearShrinePlundered",
+   "kind": "flag",
+   "summary": "Les offrandes du sanctuaire de la montagne ont été pillées."
+  },
+  {
+   "id": "bearDarkOreEvidence",
+   "kind": "flag",
+   "summary": "Un éclat du filon sombre a été scellé comme preuve."
+  },
+  {
+   "id": "bearDarkOreShattered",
+   "kind": "flag",
+   "summary": "Le filon sombre a été brisé ; il n’en reste que des débris."
+  },
+  {
+   "id": "bearTrialRequested",
+   "kind": "flag",
+   "summary": "L’épreuve de l’Ours a été demandée volontairement."
+  },
+  {
+   "id": "bearRavenMinersDefeated",
+   "kind": "flag",
+   "summary": "Le chef des mineurs du Corbeau est vaincu : premier boss de la voie de l’honneur."
+  },
+  {
+   "id": "bearMasterSpyDefeated",
+   "kind": "flag",
+   "summary": "Le Maître Espion du Corbeau est vaincu : issue de la voie de l’honneur."
+  },
+  {
+   "id": "bearTrialWon",
+   "kind": "flag",
+   "summary": "Borin et ses guerriers sont vaincus : issue de la voie de la force."
+  },
+  {
+   "id": "bearSealAcknowledged",
+   "kind": "flag",
+   "summary": "Le Sceau de l’Ours est acquis."
+  }
+ ],
+ "majorChoices": [
+  {
+   "id": "bear.mandate",
+   "summary": "À l’audience, accepter de défendre les mines sacrées sans condition, ou réclamer une part du minerai.",
+   "nodeId": "bear-audience",
+   "dialogueId": "bear_audience",
+   "stepId": "mandate",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "bearMandateHonour"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "bearMandateOreShare"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "bear.mandate.honour.judgement",
+     "fact": "bearMandateHonour",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearMandateHonour": true
+     },
+     "causePhrase": "vous avez pris la défense des mines sans rien demander",
+     "stepId": "merits"
+    },
+    {
+     "id": "bear.mandate.share.judgement",
+     "fact": "bearMandateOreShare",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearMandateOreShare": true
+     },
+     "causePhrase": "la part de minerai réclamée à l’audience",
+     "stepId": "stains"
+    }
+   ]
+  },
+  {
+   "id": "bear.raven_offer",
+   "summary": "Un messager du Corbeau offre de l’or pour que la compagnie regarde ailleurs : refuser et prévenir l’Ours, ou accepter.",
+   "nodeId": "bear-raven-messenger",
+   "dialogueId": "bear_raven_messenger",
+   "stepId": "offer",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "bearRavenOfferRefused"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "bearRavenPact"
+     ],
+     "reputation": -2
+    }
+   ],
+   "echoes": [
+    {
+     "id": "bear.raven_offer.refused.judgement",
+     "fact": "bearRavenOfferRefused",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearRavenOfferRefused": true
+     },
+     "causePhrase": "vous avez refusé l’or du Corbeau",
+     "stepId": "merits"
+    },
+    {
+     "id": "bear.raven_offer.pact.judgement",
+     "fact": "bearRavenPact",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearRavenPact": true
+     },
+     "causePhrase": "vous avez accepté l’or du Corbeau",
+     "stepId": "breaches"
+    },
+    {
+     "id": "bear.raven_offer.pact.mines",
+     "fact": "bearRavenPact",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-sacred-mines",
+     "dialogueId": "bear_sacred_mines",
+     "state": {
+      "bearRavenPact": true
+     },
+     "causePhrase": "Vous aviez promis de regarder ailleurs",
+     "stepId": "raven"
+    }
+   ]
+  },
+  {
+   "id": "bear.trapped_miners",
+   "summary": "Des mineurs de l’Ours sont pris sous un éboulement : les dégager, ou prendre leur minerai et poursuivre.",
+   "nodeId": "bear-trapped-miners",
+   "dialogueId": "bear_trapped_miners",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "bearMinersRescued"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "bearMinersRobbed"
+     ],
+     "reputation": -2
+    }
+   ],
+   "echoes": [
+    {
+     "id": "bear.trapped_miners.rescued.judgement",
+     "fact": "bearMinersRescued",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearMinersRescued": true
+     },
+     "causePhrase": "vous avez dégagé les mineurs de l’éboulement",
+     "stepId": "merits"
+    },
+    {
+     "id": "bear.trapped_miners.robbed.judgement",
+     "fact": "bearMinersRobbed",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearMinersRobbed": true
+     },
+     "causePhrase": "des mineurs ont été dépouillés sous l’éboulement",
+     "stepId": "breaches"
+    },
+    {
+     "id": "bear.trapped_miners.rescued.testimony",
+     "fact": "bearMinersRescued",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-miners-testimony",
+     "dialogueId": "bear_miners_testimony",
+     "state": {
+      "bearMinersRescued": true
+     },
+     "causePhrase": "ceux qui nous ont sortis de l’éboulement",
+     "stepId": "open"
+    }
+   ]
+  },
+  {
+   "id": "bear.raven_traps",
+   "summary": "Les pièges du Corbeau sur le sentier : les désarmer et les signaler à l’Ours, ou garder leur poudre.",
+   "nodeId": "bear-first-trial-event",
+   "dialogueId": "bear_raven_traps",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "bearTrapsMarked"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "bearTrapsLooted"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "bear.raven_traps.marked.judgement",
+     "fact": "bearTrapsMarked",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearTrapsMarked": true
+     },
+     "causePhrase": "vous avez signalé les pièges du Corbeau",
+     "stepId": "merits"
+    },
+    {
+     "id": "bear.raven_traps.looted.judgement",
+     "fact": "bearTrapsLooted",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearTrapsLooted": true
+     },
+     "causePhrase": "la poudre des pièges gardée pour vous",
+     "stepId": "stains"
+    }
+   ]
+  },
+  {
+   "id": "bear.ore_convoy",
+   "summary": "Un convoi de minerai sombre du Corbeau : le marquer et prévenir Borin, ou saisir le minerai pour le clan.",
+   "nodeId": "bear-ore-convoy",
+   "dialogueId": "bear_ore_convoy",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "bearConvoyReported"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "bearConvoySeized"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "bear.ore_convoy.reported.judgement",
+     "fact": "bearConvoyReported",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearConvoyReported": true
+     },
+     "causePhrase": "vous avez signalé le convoi du Corbeau",
+     "stepId": "merits"
+    },
+    {
+     "id": "bear.ore_convoy.seized.judgement",
+     "fact": "bearConvoySeized",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearConvoySeized": true
+     },
+     "causePhrase": "le minerai du convoi détourné pour votre clan",
+     "stepId": "stains"
+    }
+   ]
+  },
+  {
+   "id": "bear.ancient_relic",
+   "summary": "Un ancien artefact dans une galerie effondrée : le rendre au sanctuaire de l’Ours, ou le garder.",
+   "nodeId": "bear-second-trial-event",
+   "dialogueId": "bear_ancient_relic",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "bearRelicReturned"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "bearRelicKept"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "bear.ancient_relic.returned.judgement",
+     "fact": "bearRelicReturned",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearRelicReturned": true
+     },
+     "causePhrase": "vous avez rendu l’artefact des galeries",
+     "stepId": "merits"
+    },
+    {
+     "id": "bear.ancient_relic.kept.judgement",
+     "fact": "bearRelicKept",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearRelicKept": true
+     },
+     "causePhrase": "l’artefact des galeries gardé par votre compagnie",
+     "stepId": "stains"
+    }
+   ]
+  },
+  {
+   "id": "bear.mines",
+   "summary": "Les mines sacrées occupées par le Corbeau : les reprendre et les rendre à l’Ours, chasser le Corbeau pour garder le filon sombre, ou, si un pacte existe, laisser le Corbeau finir l’extraction.",
+   "nodeId": "bear-sacred-mines",
+   "dialogueId": "bear_sacred_mines",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "bearMinesRestored"
+     ],
+     "reputation": 1,
+     "leadsTo": [
+      "bearRavenMinersDefeated"
+     ]
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "bearMinesSeized"
+     ],
+     "reputation": -2
+    },
+    {
+     "choiceIndex": 2,
+     "path": "force",
+     "sets": [
+      "bearMinesAbandoned"
+     ],
+     "reputation": -3,
+     "clanRelations": [
+      {
+       "clan": "raven",
+       "stance": "ally"
+      }
+     ]
+    }
+   ],
+   "echoes": [
+    {
+     "id": "bear.mines.restored.judgement",
+     "fact": "bearMinesRestored",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearMinesRestored": true
+     },
+     "causePhrase": "vous avez rendu les galeries sacrées à l’Ours",
+     "stepId": "outcome"
+    },
+    {
+     "id": "bear.mines.seized.judgement",
+     "fact": "bearMinesSeized",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearMinesSeized": true
+     },
+     "causePhrase": "vous avez gardé le filon sombre pour votre clan",
+     "stepId": "outcome"
+    },
+    {
+     "id": "bear.mines.abandoned.judgement",
+     "fact": "bearMinesAbandoned",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearMinesAbandoned": true
+     },
+     "causePhrase": "vous avez laissé le Corbeau vider nos galeries",
+     "stepId": "outcome"
+    }
+   ]
+  },
+  {
+   "id": "bear.miners_testimony",
+   "summary": "Les mineurs libérés veulent témoigner devant Borin : les escorter, ou les faire taire.",
+   "nodeId": "bear-miners-testimony",
+   "dialogueId": "bear_miners_testimony",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "bearMinersProtected"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "bearMinersSilenced"
+     ],
+     "reputation": -2
+    }
+   ],
+   "echoes": [
+    {
+     "id": "bear.miners_testimony.protected.judgement",
+     "fact": "bearMinersProtected",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearMinersProtected": true
+     },
+     "causePhrase": "Les mineurs sont venus dire eux-mêmes ce qu’ils ont vu",
+     "stepId": "witnesses"
+    },
+    {
+     "id": "bear.miners_testimony.silenced.judgement",
+     "fact": "bearMinersSilenced",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearMinersSilenced": true
+     },
+     "causePhrase": "des mineurs se taisent derrière vos lames",
+     "stepId": "witnesses"
+    }
+   ]
+  },
+  {
+   "id": "bear.mountain_shrine",
+   "summary": "Le sanctuaire de la montagne et ses offrandes : les respecter, ou les piller.",
+   "nodeId": "bear-final-trial-event",
+   "dialogueId": "bear_mountain_shrine",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "bearShrineHonoured"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "bearShrinePlundered"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "bear.mountain_shrine.honoured.judgement",
+     "fact": "bearShrineHonoured",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearShrineHonoured": true
+     },
+     "causePhrase": "vous avez respecté les offrandes de la montagne",
+     "stepId": "merits"
+    },
+    {
+     "id": "bear.mountain_shrine.plundered.judgement",
+     "fact": "bearShrinePlundered",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearShrinePlundered": true
+     },
+     "causePhrase": "les offrandes de la montagne ont été pillées",
+     "stepId": "breaches"
+    }
+   ]
+  },
+  {
+   "id": "bear.dark_vein",
+   "summary": "Au fond des galeries, le filon sombre : en sceller un éclat comme preuve, ou le briser.",
+   "nodeId": "bear-dark-vein",
+   "dialogueId": "bear_dark_vein",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "bearDarkOreEvidence"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "neutral",
+     "sets": [
+      "bearDarkOreShattered"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "bear.dark_vein.evidence.judgement",
+     "fact": "bearDarkOreEvidence",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearDarkOreEvidence": true
+     },
+     "causePhrase": "l’éclat du filon sombre",
+     "stepId": "shadow"
+    },
+    {
+     "id": "bear.dark_vein.shattered.judgement",
+     "fact": "bearDarkOreShattered",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_judgement",
+     "state": {
+      "bearDarkOreShattered": true
+     },
+     "causePhrase": "le filon brisé avant qu’on puisse l’étudier",
+     "stepId": "stains"
+    },
+    {
+     "id": "bear.dark_vein.evidence.final_act",
+     "fact": "bearDarkOreEvidence",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-tbd",
+     "dialogueId": "finale_tbd",
+     "state": {
+      "bearDarkOreEvidence": true
+     },
+     "causePhrase": "l’éclat que vous avez rapporté des mines de l’Ours",
+     "chapterId": "finale"
+    }
+   ]
+  },
+  {
+   "id": "bear.judgement_intent",
+   "summary": "Devant Borin, assumer ses actes et réclamer le Sceau, ou demander l’épreuve de l’Ours. La réclamation n’ouvre la traque du Maître Espion que si le verdict le permet ; sinon elle mène à l’épreuve.",
+   "nodeId": "bear-judgement",
+   "dialogueId": "bear_judgement",
+   "stepId": "intent",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "neutral",
+     "sets": [],
+     "reputation": 0,
+     "leadsTo": [
+      "bearMasterSpyDefeated",
+      "bearTrialWon"
+     ]
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [],
+     "reputation": 0,
+     "leadsTo": [
+      "bearTrialRequested",
+      "bearTrialWon"
+     ]
+    }
+   ],
+   "echoes": [
+    {
+     "id": "bear.judgement_intent.honour.epilogue",
+     "fact": "bearMasterSpyDefeated",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_epilogue",
+     "state": {
+      "bearMasterSpyDefeated": true
+     },
+     "causePhrase": "le Maître Espion du Corbeau est tombé",
+     "stepId": "route",
+     "contrast": {
+      "bearTrialWon": true
+     }
+    },
+    {
+     "id": "bear.judgement_intent.force.epilogue",
+     "fact": "bearTrialWon",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_epilogue",
+     "state": {
+      "bearTrialWon": true
+     },
+     "causePhrase": "vous avez pris le Sceau de l’Ours par l’épreuve",
+     "stepId": "route",
+     "contrast": {
+      "bearMasterSpyDefeated": true
+     }
+    }
+   ]
+  }
+ ],
+ "outcomes": {
+  "honour": {
+   "facts": [
+    "bearMasterSpyDefeated"
+   ],
+   "clanRelations": [
+    {
+     "clan": "bear",
+     "stance": "ally"
+    },
+    {
+     "clan": "raven",
+     "stance": "enemy"
+    }
+   ],
+   "relationStatus": "proposed",
+   "echoes": [
+    {
+     "id": "bear.outcome.honour.epilogue",
+     "fact": "bearMasterSpyDefeated",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_epilogue",
+     "state": {
+      "bearMasterSpyDefeated": true
+     },
+     "causePhrase": "Borin a scellé l’alliance de l’Ours",
+     "stepId": "route",
+     "contrast": {
+      "bearTrialWon": true
+     }
+    },
+    {
+     "id": "bear.outcome.honour.final_act",
+     "fact": "bearMasterSpyDefeated",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-tbd",
+     "dialogueId": "finale_tbd",
+     "state": {
+      "bearMasterSpyDefeated": true
+     },
+     "causePhrase": "les guerriers de Borin tiennent parole",
+     "chapterId": "finale"
+    }
+   ]
+  },
+  "force": {
+   "facts": [
+    "bearTrialWon"
+   ],
+   "clanRelations": [
+    {
+     "clan": "bear",
+     "stance": "enemy"
+    },
+    {
+     "clan": "raven",
+     "stance": "enemy"
+    }
+   ],
+   "relationStatus": "proposed",
+   "echoes": [
+    {
+     "id": "bear.outcome.force.epilogue",
+     "fact": "bearTrialWon",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "bear-judgement",
+     "dialogueId": "bear_epilogue",
+     "state": {
+      "bearTrialWon": true
+     },
+     "causePhrase": "l’Ours ne pardonnera pas ce Sceau arraché",
+     "stepId": "route",
+     "contrast": {
+      "bearMasterSpyDefeated": true
+     }
+    },
+    {
+     "id": "bear.outcome.force.final_act",
+     "fact": "bearTrialWon",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-tbd",
+     "dialogueId": "finale_tbd",
+     "state": {
+      "bearTrialWon": true
+     },
+     "causePhrase": "les guerriers de Borin n’ont pas oublié",
+     "chapterId": "finale"
+    }
+   ]
+  }
+ },
+ "exceptions": []
+}

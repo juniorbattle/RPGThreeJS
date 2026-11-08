@@ -5,8 +5,9 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import lionMap from '../campaign/consequences/lion.consequences.json';
+import bearMap from '../campaign/consequences/bear.consequences.json';
 import { consequenceMapSchema, type ConsequenceMap } from '../campaign/consequences/ConsequenceMap';
-import { validateNarrativeCoherence, type SourceFile } from './narrativeCoherence';
+import { validateConsequenceMapDesign, validateNarrativeCoherence, type SourceFile } from './narrativeCoherence';
 import type { DialogueSequence } from './types';
 
 function loadSources(): SourceFile[] {
@@ -34,7 +35,7 @@ describe('the Lion consequence map passes the narrative coherence validator', ()
   it('has no error: every major choice is echoed later by a scene that names its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.stats).toEqual({
-      dialogues: 75, steps: 256, facts: 64, majorChoices: 13, implementedEchoes: 28, plannedEchoes: 0,
+      dialogues: 75, steps: 256, facts: 64, majorChoices: 13, implementedEchoes: 28, plannedEchoes: 8,
     });
   });
 
@@ -130,5 +131,27 @@ describe('each coherence rule fails on a broken case', () => {
       { text: 'Autre choix.', next: null, effects: [] },
     ] })]);
     expect(kinds(map, [reader])).toContain('fact_read_never_set:draftNeverSet');
+  });
+});
+
+describe('the Bear consequence map is written first, as a design (Lot 1)', () => {
+  it('passes the design check: every option has a planned echo and every name sits in its chapter', () => {
+    expect(validateConsequenceMapDesign(bearMap)).toEqual([]);
+    const map = consequenceMapSchema.parse(structuredClone(bearMap));
+    expect(map.status).toBe('draft');
+    expect(map.majorChoices).toHaveLength(11);
+    expect(map.outcomes.honour.clanRelations).toEqual([{ clan: 'bear', stance: 'ally' }, { clan: 'raven', stance: 'enemy' }]);
+    expect(JSON.stringify(map)).not.toMatch(/Kael(?!en)/);
+  });
+
+  it('fails a design that forgets an echo, names a place outside the plateau or echoes an undeclared fact', () => {
+    const map = consequenceMapSchema.parse(structuredClone(bearMap));
+    map.majorChoices[0]!.echoes = map.majorChoices[0]!.echoes.filter((echo) => echo.fact !== 'bearMandateOreShare');
+    map.majorChoices[1]!.nodeId = 'lion-audience';
+    map.majorChoices[2]!.echoes[0]!.fact = 'bearUnknownFact';
+    const subjects = validateConsequenceMapDesign(map).map((finding) => finding.subject);
+    expect(subjects).toContain('bear.mandate:1');
+    expect(subjects).toContain('bear.raven_offer');
+    expect(subjects).toContain('bear.trapped_miners.rescued.judgement');
   });
 });
