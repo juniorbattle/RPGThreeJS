@@ -22,6 +22,8 @@ import {
 } from './plateauProgression';
 import { resolvePlateauFinaleExecution, resolvePendingPlateauFinaleCombat } from './plateauFinale';
 import { getPlateau } from '../campaign/plateaux/PlateauRegistry';
+import { isDraftContent, POST_DEMO_COMBATS } from './postDemoContent';
+import { loadLionEndForBearQa } from '../qa/postDemoQaSaves';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
 import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
 import { resolveLionFinaleExecution, resolveSelectedLionFinaleCombat } from './lionFinale';
@@ -375,9 +377,10 @@ export class GameApp {
     this.prologue.close();
     this.combat.close();
     this.canvas.hidden = true;
-    const encounterCards = [...combatConfigs.values()].map((config) => `
+    // Set 1.20.0: the post-demo draft fights follow the demo's, labelled as drafts.
+    const encounterCards = [...combatConfigs.values(), ...POST_DEMO_COMBATS.values()].map((config) => `
       <button type="button" class="qa-lab__encounter qa-lab__encounter--${config.encounterRank}" data-qa-combat="${config.id}">
-        <span>${config.encounterRank}</span>
+        <span>${isDraftContent(config.id) ? 'brouillon · ' : ''}${config.encounterRank}</span>
         <b>${config.encounterLabel}</b>
         <small>${config.objective}</small>
       </button>
@@ -392,6 +395,7 @@ export class GameApp {
         </header>
         <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
         <div class="qa-lab__header-actions" aria-label="Tableaux vivants"><button type="button" data-qa-living="bois_clair_arrival">Tableau vivant · Arrivée à Bois-Clair</button><button type="button" data-qa-living="bois_clair_saved">Bois-Clair sauvé</button><button type="button" data-qa-living="bois_clair_sacrificed">Bois-Clair sacrifié</button><button type="button" data-qa-living="lion_judgement">Jugement du Lion</button><button type="button" data-qa-living="alaric_audience_arrival">Audience d’Alaric</button><button type="button" data-qa-living="serpent_route_ending">Fin Serpent</button><button type="button" data-qa-living="lion_trial_route_ending">Fin de l’épreuve</button></div>
+        <div class="qa-lab__header-actions" aria-label="Après-démo, brouillon"><button type="button" data-qa-postdemo="honour">Ours (brouillon) · depuis une fin du Lion par l’honneur</button><button type="button" data-qa-postdemo="force">Ours (brouillon) · depuis une fin du Lion par la force</button></div>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
         <div class="qa-lab__params">
           <fieldset>
@@ -434,6 +438,14 @@ export class GameApp {
       </section>
     `;
     this.chrome.querySelector('[data-qa-back]')?.addEventListener('click', () => this.renderTitle());
+    // Set 1.20.0 (post-demo QA): replaces the autosave with a genuine ended demo Lion save, then continues it like any save.
+    this.chrome.querySelectorAll<HTMLButtonElement>('[data-qa-postdemo]').forEach((button) => button.addEventListener('click', () => {
+      if (!import.meta.env.DEV) return;
+      void loadLionEndForBearQa(button.dataset.qaPostdemo === 'force' ? 'force' : 'honour').then((save) => {
+        this.saves.saveAuto(save);
+        void this.continueChronicle();
+      });
+    }));
     // Dev-only preview of each living tableau (set 1.13.0, OD-2026-11-04-A), with the mood of the dialogue it precedes.
     this.chrome.querySelectorAll<HTMLButtonElement>('[data-qa-living]').forEach((button) => button.addEventListener('click', () => {
       if (!import.meta.env.DEV) return;

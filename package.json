@@ -13,6 +13,7 @@
     "test:r7-simulation": "vite-node tools/r7/run-r7-simulation.ts",
     "cinematics:validate-narrative-staging": "vite-node tools/cinematics/validate_narrative_dialogue_staging.ts",
     "narrative:validate": "vite-node --config tools/cinematics/vite-node.config.ts tools/narrative/validate-coherence.ts",
+    "narrative:text-sheet": "vite-node --config tools/cinematics/vite-node.config.ts tools/narrative/plateau-text-sheet.ts",
     "vfx:sync-runtime": "node tools/vfx/sync-runtime-vfx.mjs",
     "vfx:sync-candidate": "node tools/vfx/sync-candidate.mjs",
     "vfx:validate-published": "node tools/vfx/validate-published-registry.mjs"
