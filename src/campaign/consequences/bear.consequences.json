@@ -752,6 +752,20 @@
      },
      "causePhrase": "l’éclat que vous avez rapporté des mines de l’Ours",
      "chapterId": "finale"
+    },
+    {
+     "id": "bear.dark_vein.evidence.dragon_altar",
+     "fact": "bearDarkOreEvidence",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "dragon",
+     "nodeId": "dragon-crystal-altar",
+     "dialogueId": "dragon_crystal_altar",
+     "stepId": "ore",
+     "state": {
+      "bearDarkOreEvidence": true
+     },
+     "causePhrase": "la même souillure que l’éclat du filon sombre"
     }
    ]
   },
@@ -864,6 +878,20 @@
      },
      "causePhrase": "les guerriers de Borin tiennent parole",
      "chapterId": "finale"
+    },
+    {
+     "id": "bear.outcome.honour.dragon_audience",
+     "fact": "bearMasterSpyDefeated",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "dragon",
+     "nodeId": "dragon-audience",
+     "dialogueId": "dragon_audience",
+     "stepId": "seals",
+     "state": {
+      "bearMasterSpyDefeated": true
+     },
+     "causePhrase": "Borin vous a confié le Sceau de l’Ours"
     }
    ]
   },
@@ -911,6 +939,20 @@
      },
      "causePhrase": "les guerriers de Borin n’ont pas oublié",
      "chapterId": "finale"
+    },
+    {
+     "id": "bear.outcome.force.dragon_audience",
+     "fact": "bearTrialWon",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "dragon",
+     "nodeId": "dragon-audience",
+     "dialogueId": "dragon_audience",
+     "stepId": "seals",
+     "state": {
+      "bearTrialWon": true
+     },
+     "causePhrase": "le Sceau de l’Ours arraché à Borin"
     }
    ]
   }

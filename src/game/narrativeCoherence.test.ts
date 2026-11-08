@@ -6,6 +6,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import lionMap from '../campaign/consequences/lion.consequences.json';
 import bearMap from '../campaign/consequences/bear.consequences.json';
+import dragonMap from '../campaign/consequences/dragon.consequences.json';
 import { consequenceMapSchema, type ConsequenceMap } from '../campaign/consequences/ConsequenceMap';
 import { validateConsequenceMapDesign, validateNarrativeCoherence, type SourceFile } from './narrativeCoherence';
 import type { DialogueSequence } from './types';
@@ -35,7 +36,7 @@ describe('the Lion consequence map passes the narrative coherence validator', ()
   it('has no error: every major choice is echoed later by a scene that names its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.stats).toEqual({
-      dialogues: 75, steps: 256, facts: 64, majorChoices: 13, implementedEchoes: 36, plannedEchoes: 0,
+      dialogues: 75, steps: 256, facts: 64, majorChoices: 13, implementedEchoes: 36, plannedEchoes: 2,
     });
   });
 
@@ -140,7 +141,7 @@ describe('the Bear draft passes the narrative coherence validator (Lot 1)', () =
   it('has no error and no exception: every Bear fact set is read, every choice echoed by a scene naming its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 27, plannedEchoes: 3 });
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 27, plannedEchoes: 6 });
   });
 
   it('carries the Lion into the Bear: every Lion echo planned for the Bear is now implemented', () => {
@@ -172,5 +173,24 @@ describe('the Bear consequence map is written first, as a design (Lot 1)', () =>
     expect(subjects).toContain('bear.mandate:1');
     expect(subjects).toContain('bear.raven_offer');
     expect(subjects).toContain('bear.trapped_miners.rescued.judgement');
+  });
+});
+
+describe('the Dragon consequence map is written first, as a design (Lot 2)', () => {
+  it('passes the design check before any line exists, with the roadmap duality and the earlier plateaux echoed', () => {
+    expect(validateConsequenceMapDesign(dragonMap)).toEqual([]);
+    const map = consequenceMapSchema.parse(structuredClone(dragonMap));
+    expect(map.status).toBe('draft');
+    expect(map.majorChoices).toHaveLength(11);
+    expect(map.outcomes.honour.clanRelations).toEqual([{ clan: 'dragon', stance: 'ally' }, { clan: 'wolf', stance: 'enemy' }]);
+    expect(map.outcomes.force.clanRelations).toEqual([{ clan: 'dragon', stance: 'enemy' }, { clan: 'wolf', stance: 'enemy' }]);
+    const alliance = map.majorChoices.find((choice) => choice.id === 'dragon.crystal')!.options[2]!;
+    expect(alliance.clanRelations).toEqual([{ clan: 'wolf', stance: 'ally' }]);
+    // The Lion's Shadows and the Bear's outcome and dark ore are echoed in the Dragon.
+    const intoDragon = [lionMap, bearMap].flatMap((raw) => consequenceMapSchema.parse(structuredClone(raw)).majorChoices
+      .flatMap((choice) => choice.echoes)
+      .concat(Object.values(consequenceMapSchema.parse(structuredClone(raw)).outcomes).flatMap((outcome) => outcome.echoes)))
+      .filter((echo) => echo.chapterId === 'dragon').map((echo) => echo.fact).sort();
+    expect(intoDragon).toEqual(['bearDarkOreEvidence', 'bearMasterSpyDefeated', 'bearTrialWon', 'shadowConcealed', 'shadowRevealed']);
   });
 });

@@ -1,0 +1,949 @@
+{
+ "schemaVersion": 1,
+ "plateauId": "dragon",
+ "status": "draft",
+ "sources": [
+  "docs/content/feuille_de_route_narrative_condensee.md §3.3 et statut",
+  "docs/autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md",
+  "docs/autonomy/POST_DEMO_LOT_0_OPERATOR_DECISION_2026-11-08.md",
+  "docs/autonomy/POST_DEMO_LOT_1_OPERATOR_DECISION_2026-11-08.md",
+  "src/campaign/consequences/lion.consequences.json et bear.consequences.json (faits établis du Lion et de l’Ours)"
+ ],
+ "facts": [
+  {
+   "id": "dragonMandateHonour",
+   "kind": "flag",
+   "summary": "Kaelen a confié la recherche du Cristal d’Écho à la compagnie, qui l’a acceptée sans rien exiger."
+  },
+  {
+   "id": "dragonMandatePrice",
+   "kind": "flag",
+   "summary": "La compagnie a exigé un prix de Kaelen pour l’aider."
+  },
+  {
+   "id": "dragonWolfOfferRefused",
+   "kind": "flag",
+   "summary": "L’émissaire du Loup a été repoussé, et Kaelen prévenu."
+  },
+  {
+   "id": "dragonWolfPact",
+   "kind": "flag",
+   "summary": "La compagnie a scellé un pacte avec l’émissaire du Loup."
+  },
+  {
+   "id": "dragonVillageProtected",
+   "kind": "flag",
+   "summary": "Le hameau terrorisé par le Loup a été protégé."
+  },
+  {
+   "id": "dragonVillageExtorted",
+   "kind": "flag",
+   "summary": "Le hameau a dû payer la compagnie pour sa protection."
+  },
+  {
+   "id": "dragonTrapsDisarmed",
+   "kind": "flag",
+   "summary": "Les pièges du Loup ont été désarmés sur le sentier des pèlerins."
+  },
+  {
+   "id": "dragonTrapsTurned",
+   "kind": "flag",
+   "summary": "Les pièges du Loup ont été retournés contre ses patrouilles, au risque des pèlerins."
+  },
+  {
+   "id": "dragonWolfHeard",
+   "kind": "flag",
+   "summary": "Le guerrier du Loup blessé a été écouté puis relâché ; il a parlé d’un chaman."
+  },
+  {
+   "id": "dragonWolfTortured",
+   "kind": "flag",
+   "summary": "Le guerrier du Loup blessé a été brisé pour lui arracher des réponses."
+  },
+  {
+   "id": "dragonCluesShared",
+   "kind": "flag",
+   "summary": "Les inscriptions sur l’usage du Cristal ont été copiées pour Kaelen."
+  },
+  {
+   "id": "dragonCluesHidden",
+   "kind": "flag",
+   "summary": "Le secret de l’usage du Cristal a été gardé par la compagnie."
+  },
+  {
+   "id": "dragonCrystalRecovered",
+   "kind": "flag",
+   "summary": "Le Cristal d’Écho a été repris au Loup et rapporté à Kaelen."
+  },
+  {
+   "id": "dragonCrystalKept",
+   "kind": "flag",
+   "summary": "Le Cristal d’Écho a été repris au Loup et gardé par la compagnie."
+  },
+  {
+   "id": "dragonWolfAlliance",
+   "kind": "flag",
+   "summary": "Après son pacte, la compagnie a laissé le Cristal d’Écho au Loup."
+  },
+  {
+   "id": "dragonPilgrimsProtected",
+   "kind": "flag",
+   "summary": "Les pèlerins libérés du repaire ont été escortés jusqu’à Kaelen."
+  },
+  {
+   "id": "dragonPilgrimsSilenced",
+   "kind": "flag",
+   "summary": "Les pèlerins libérés ont été réduits au silence."
+  },
+  {
+   "id": "dragonYoungDragonTended",
+   "kind": "flag",
+   "summary": "Le jeune dragon blessé par les Ombres a été soigné."
+  },
+  {
+   "id": "dragonScalesTaken",
+   "kind": "flag",
+   "summary": "Des écailles ont été prises au jeune dragon blessé."
+  },
+  {
+   "id": "dragonShadowEvidence",
+   "kind": "flag",
+   "summary": "Un éclat de la souillure de l’autel a été scellé comme preuve."
+  },
+  {
+   "id": "dragonShadowPurged",
+   "kind": "flag",
+   "summary": "La souillure de l’autel a été effacée sur-le-champ."
+  },
+  {
+   "id": "dragonShamanTraceFound",
+   "kind": "flag",
+   "summary": "Les traces du Chaman des Ombres ont été trouvées au camp déserté du Loup."
+  },
+  {
+   "id": "dragonTrialRequested",
+   "kind": "flag",
+   "summary": "La compagnie a demandé l’épreuve du Dragon."
+  },
+  {
+   "id": "dragonWolfChiefDefeated",
+   "kind": "flag",
+   "summary": "Le chef du Clan du Loup a été vaincu au repaire."
+  },
+  {
+   "id": "dragonShadowShamanDefeated",
+   "kind": "flag",
+   "summary": "Le Chaman des Ombres a été vaincu."
+  },
+  {
+   "id": "dragonTrialWon",
+   "kind": "flag",
+   "summary": "Kaelen et ses gardiens ont été vaincus à l’épreuve."
+  },
+  {
+   "id": "dragonSealAcknowledged",
+   "kind": "flag",
+   "summary": "Le Sceau du Dragon a été obtenu."
+  },
+  {
+   "id": "dragonFinaleHonourSelected",
+   "kind": "system",
+   "summary": "Le jugement de Kaelen a ouvert la voie de l’honneur."
+  },
+  {
+   "id": "dragonFinaleTrialSelected",
+   "kind": "system",
+   "summary": "Le jugement de Kaelen a mené à l’épreuve."
+  }
+ ],
+ "majorChoices": [
+  {
+   "id": "dragon.mandate",
+   "summary": "À l’audience, accepter de rapporter le Cristal d’Écho sans rien exiger, ou exiger un prix de Kaelen.",
+   "nodeId": "dragon-audience",
+   "dialogueId": "dragon_audience",
+   "stepId": "mandate",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "dragonMandateHonour"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "dragonMandatePrice"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "dragon.mandate.honour.judgement",
+     "fact": "dragonMandateHonour",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonMandateHonour": true
+     },
+     "causePhrase": "vous avez répondu à mon appel sans rien exiger",
+     "stepId": "merits"
+    },
+    {
+     "id": "dragon.mandate.price.judgement",
+     "fact": "dragonMandatePrice",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonMandatePrice": true
+     },
+     "causePhrase": "le prix exigé pour votre aide",
+     "stepId": "stains"
+    }
+   ]
+  },
+  {
+   "id": "dragon.wolf_envoy",
+   "summary": "Un émissaire du Loup propose un pacte : le repousser et prévenir Kaelen, ou sceller le pacte.",
+   "nodeId": "dragon-wolf-envoy",
+   "dialogueId": "dragon_wolf_envoy",
+   "stepId": "offer",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "dragonWolfOfferRefused"
+     ],
+     "reputation": 0
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "dragonWolfPact"
+     ],
+     "reputation": -2
+    }
+   ],
+   "echoes": [
+    {
+     "id": "dragon.wolf_envoy.refused.judgement",
+     "fact": "dragonWolfOfferRefused",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonWolfOfferRefused": true
+     },
+     "causePhrase": "vous avez repoussé l’émissaire du Loup",
+     "stepId": "merits"
+    },
+    {
+     "id": "dragon.wolf_envoy.pact.judgement",
+     "fact": "dragonWolfPact",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonWolfPact": true
+     },
+     "causePhrase": "vous avez pactisé avec le Loup",
+     "stepId": "breaches"
+    },
+    {
+     "id": "dragon.wolf_envoy.pact.lair",
+     "fact": "dragonWolfPact",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-wolf-lair",
+     "dialogueId": "dragon_wolf_lair",
+     "state": {
+      "dragonWolfPact": true
+     },
+     "causePhrase": "le pacte scellé avec notre émissaire",
+     "stepId": "pact"
+    }
+   ]
+  },
+  {
+   "id": "dragon.village",
+   "summary": "Un hameau terrorisé par le Loup : le protéger, ou lui faire payer sa protection.",
+   "nodeId": "dragon-terrorized-village",
+   "dialogueId": "dragon_terrorized_village",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "dragonVillageProtected"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "dragonVillageExtorted"
+     ],
+     "reputation": -2
+    }
+   ],
+   "echoes": [
+    {
+     "id": "dragon.village.protected.judgement",
+     "fact": "dragonVillageProtected",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonVillageProtected": true
+     },
+     "causePhrase": "vous avez protégé le hameau que le Loup terrorisait",
+     "stepId": "merits"
+    },
+    {
+     "id": "dragon.village.extorted.judgement",
+     "fact": "dragonVillageExtorted",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonVillageExtorted": true
+     },
+     "causePhrase": "le hameau a payé deux fois, au Loup puis à vous",
+     "stepId": "breaches"
+    },
+    {
+     "id": "dragon.village.protected.vigil",
+     "fact": "dragonVillageProtected",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-final-refuge",
+     "dialogueId": "dragon_vigil",
+     "state": {
+      "dragonVillageProtected": true
+     },
+     "causePhrase": "les gens du hameau ont fait monter du pain et du bois",
+     "stepId": "village"
+    }
+   ]
+  },
+  {
+   "id": "dragon.wolf_traps",
+   "summary": "Des pièges du Loup sur le sentier des pèlerins : les désarmer, ou les retourner contre ses patrouilles au risque des pèlerins.",
+   "nodeId": "dragon-first-trial-event",
+   "dialogueId": "dragon_wolf_traps",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "dragonTrapsDisarmed"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "dragonTrapsTurned"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "dragon.wolf_traps.disarmed.judgement",
+     "fact": "dragonTrapsDisarmed",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonTrapsDisarmed": true
+     },
+     "causePhrase": "vous avez désarmé les pièges tendus sur le sentier des pèlerins",
+     "stepId": "merits"
+    },
+    {
+     "id": "dragon.wolf_traps.turned.judgement",
+     "fact": "dragonTrapsTurned",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonTrapsTurned": true
+     },
+     "causePhrase": "les pièges retournés au risque des pèlerins",
+     "stepId": "stains"
+    }
+   ]
+  },
+  {
+   "id": "dragon.captive_wolf",
+   "summary": "Un guerrier du Loup blessé : l’écouter puis le relâcher, ou le briser pour lui arracher des réponses.",
+   "nodeId": "dragon-captive-wolf",
+   "dialogueId": "dragon_captive_wolf",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "dragonWolfHeard"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "dragonWolfTortured"
+     ],
+     "reputation": -2
+    }
+   ],
+   "echoes": [
+    {
+     "id": "dragon.captive_wolf.heard.judgement",
+     "fact": "dragonWolfHeard",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonWolfHeard": true
+     },
+     "causePhrase": "vous avez écouté le guerrier du Loup au lieu de le briser",
+     "stepId": "merits"
+    },
+    {
+     "id": "dragon.captive_wolf.tortured.judgement",
+     "fact": "dragonWolfTortured",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonWolfTortured": true
+     },
+     "causePhrase": "un guerrier du Loup a été brisé pour quelques mots",
+     "stepId": "breaches"
+    },
+    {
+     "id": "dragon.captive_wolf.heard.traces",
+     "fact": "dragonWolfHeard",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-shaman-traces",
+     "dialogueId": "dragon_shaman_traces",
+     "state": {
+      "dragonWolfHeard": true
+     },
+     "causePhrase": "le guerrier du Loup que vous avez relâché parlait de ce chaman",
+     "stepId": "heard"
+    }
+   ]
+  },
+  {
+   "id": "dragon.crystal_clues",
+   "summary": "Des inscriptions sur l’usage du Cristal : les copier pour Kaelen, ou garder leur secret pour la compagnie.",
+   "nodeId": "dragon-second-trial-event",
+   "dialogueId": "dragon_crystal_clues",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "dragonCluesShared"
+     ],
+     "reputation": 0
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "dragonCluesHidden"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "dragon.crystal_clues.shared.judgement",
+     "fact": "dragonCluesShared",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonCluesShared": true
+     },
+     "causePhrase": "vous m’avez rapporté les inscriptions du Cristal",
+     "stepId": "merits"
+    },
+    {
+     "id": "dragon.crystal_clues.hidden.judgement",
+     "fact": "dragonCluesHidden",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonCluesHidden": true
+     },
+     "causePhrase": "le secret du Cristal gardé pour vous",
+     "stepId": "stains"
+    },
+    {
+     "id": "dragon.crystal_clues.shared.altar",
+     "fact": "dragonCluesShared",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-crystal-altar",
+     "dialogueId": "dragon_crystal_altar",
+     "state": {
+      "dragonCluesShared": true
+     },
+     "causePhrase": "les inscriptions que nous rapportons à Kaelen",
+     "stepId": "clues"
+    }
+   ]
+  },
+  {
+   "id": "dragon.crystal",
+   "summary": "Au repaire du Loup : reprendre le Cristal d’Écho pour Kaelen, le reprendre pour le garder, ou, après le pacte, le laisser au Loup.",
+   "nodeId": "dragon-wolf-lair",
+   "dialogueId": "dragon_wolf_lair",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "dragonCrystalRecovered"
+     ],
+     "reputation": 1,
+     "leadsTo": [
+      "dragonWolfChiefDefeated"
+     ]
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "dragonCrystalKept"
+     ],
+     "reputation": -2,
+     "leadsTo": [
+      "dragonWolfChiefDefeated"
+     ]
+    },
+    {
+     "choiceIndex": 2,
+     "path": "force",
+     "sets": [
+      "dragonWolfAlliance"
+     ],
+     "reputation": -3,
+     "clanRelations": [
+      {
+       "clan": "wolf",
+       "stance": "ally"
+      }
+     ]
+    }
+   ],
+   "echoes": [
+    {
+     "id": "dragon.crystal.recovered.judgement",
+     "fact": "dragonCrystalRecovered",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonCrystalRecovered": true
+     },
+     "causePhrase": "vous avez rapporté le Cristal d’Écho aux Pics",
+     "stepId": "outcome"
+    },
+    {
+     "id": "dragon.crystal.kept.judgement",
+     "fact": "dragonCrystalKept",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonCrystalKept": true
+     },
+     "causePhrase": "vous avez gardé le Cristal d’Écho pour votre clan",
+     "stepId": "outcome"
+    },
+    {
+     "id": "dragon.crystal.alliance.judgement",
+     "fact": "dragonWolfAlliance",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonWolfAlliance": true
+     },
+     "causePhrase": "vous avez laissé le Cristal aux mains du Loup",
+     "stepId": "outcome"
+    }
+   ]
+  },
+  {
+   "id": "dragon.pilgrims",
+   "summary": "Les pèlerins libérés du repaire : les escorter jusqu’à Kaelen, ou les réduire au silence.",
+   "nodeId": "dragon-freed-pilgrims",
+   "dialogueId": "dragon_freed_pilgrims",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "dragonPilgrimsProtected"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "dragonPilgrimsSilenced"
+     ],
+     "reputation": -2
+    }
+   ],
+   "echoes": [
+    {
+     "id": "dragon.pilgrims.protected.judgement",
+     "fact": "dragonPilgrimsProtected",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonPilgrimsProtected": true
+     },
+     "causePhrase": "Les pèlerins sont venus d’eux-mêmes raconter ce qu’ils ont vu au repaire",
+     "stepId": "witnesses"
+    },
+    {
+     "id": "dragon.pilgrims.silenced.judgement",
+     "fact": "dragonPilgrimsSilenced",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonPilgrimsSilenced": true
+     },
+     "causePhrase": "Des pèlerins se taisent derrière vos lames",
+     "stepId": "witnesses"
+    }
+   ]
+  },
+  {
+   "id": "dragon.young_dragon",
+   "summary": "Un jeune dragon blessé par les Ombres : le soigner, ou lui prendre des écailles.",
+   "nodeId": "dragon-final-trial-event",
+   "dialogueId": "dragon_young_dragon",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "dragonYoungDragonTended"
+     ],
+     "reputation": 0
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "dragonScalesTaken"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "dragon.young_dragon.tended.judgement",
+     "fact": "dragonYoungDragonTended",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonYoungDragonTended": true
+     },
+     "causePhrase": "vous avez soigné le jeune dragon blessé",
+     "stepId": "merits"
+    },
+    {
+     "id": "dragon.young_dragon.scales.judgement",
+     "fact": "dragonScalesTaken",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonScalesTaken": true
+     },
+     "causePhrase": "les écailles prises au jeune dragon",
+     "stepId": "stains"
+    }
+   ]
+  },
+  {
+   "id": "dragon.altar_signs",
+   "summary": "La souillure des Ombres sur l’autel du Cristal : en sceller un éclat comme preuve, ou l’effacer sur-le-champ.",
+   "nodeId": "dragon-crystal-altar",
+   "dialogueId": "dragon_crystal_altar",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "dragonShadowEvidence"
+     ],
+     "reputation": 0
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "dragonShadowPurged"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "dragon.altar_signs.evidence.judgement",
+     "fact": "dragonShadowEvidence",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonShadowEvidence": true
+     },
+     "causePhrase": "une énergie sombre l’a touché",
+     "stepId": "shadow"
+    },
+    {
+     "id": "dragon.altar_signs.purged.judgement",
+     "fact": "dragonShadowPurged",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_judgement",
+     "state": {
+      "dragonShadowPurged": true
+     },
+     "causePhrase": "la souillure effacée avant qu’on puisse l’étudier",
+     "stepId": "stains"
+    },
+    {
+     "id": "dragon.altar_signs.evidence.final_act",
+     "fact": "dragonShadowEvidence",
+     "scope": "final_act",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-tbd",
+     "dialogueId": "finale_tbd",
+     "state": {
+      "dragonShadowEvidence": true
+     },
+     "causePhrase": "l’éclat de la souillure du Cristal"
+    }
+   ]
+  },
+  {
+   "id": "dragon.judgement_intent",
+   "summary": "Devant Kaelen, assumer ses actes et réclamer le Sceau, ou demander l’épreuve du Dragon. La réclamation n’ouvre la traque du Chaman des Ombres que si le verdict le permet ; sinon elle mène à l’épreuve.",
+   "nodeId": "dragon-judgement",
+   "dialogueId": "dragon_judgement",
+   "stepId": "intent",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "neutral",
+     "sets": [],
+     "reputation": 0,
+     "leadsTo": [
+      "dragonShadowShamanDefeated",
+      "dragonTrialWon"
+     ]
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [],
+     "reputation": 0,
+     "leadsTo": [
+      "dragonTrialRequested",
+      "dragonTrialWon"
+     ]
+    }
+   ],
+   "echoes": [
+    {
+     "id": "dragon.judgement_intent.honour.epilogue",
+     "fact": "dragonShadowShamanDefeated",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_epilogue",
+     "state": {
+      "dragonShadowShamanDefeated": true
+     },
+     "causePhrase": "le Chaman des Ombres est tombé",
+     "stepId": "route",
+     "contrast": {
+      "dragonTrialWon": true
+     }
+    },
+    {
+     "id": "dragon.judgement_intent.force.epilogue",
+     "fact": "dragonTrialWon",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_epilogue",
+     "state": {
+      "dragonTrialWon": true
+     },
+     "causePhrase": "vous avez pris le Sceau du Dragon par l’épreuve",
+     "stepId": "route",
+     "contrast": {
+      "dragonShadowShamanDefeated": true
+     }
+    }
+   ]
+  }
+ ],
+ "outcomes": {
+  "honour": {
+   "facts": [
+    "dragonShadowShamanDefeated"
+   ],
+   "clanRelations": [
+    {
+     "clan": "dragon",
+     "stance": "ally"
+    },
+    {
+     "clan": "wolf",
+     "stance": "enemy"
+    }
+   ],
+   "relationStatus": "proposed",
+   "echoes": [
+    {
+     "id": "dragon.outcome.honour.epilogue",
+     "fact": "dragonShadowShamanDefeated",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_epilogue",
+     "state": {
+      "dragonShadowShamanDefeated": true
+     },
+     "causePhrase": "Kaelen a scellé l’alliance du Dragon",
+     "stepId": "route",
+     "contrast": {
+      "dragonTrialWon": true
+     }
+    },
+    {
+     "id": "dragon.outcome.honour.final_act",
+     "fact": "dragonShadowShamanDefeated",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-tbd",
+     "dialogueId": "finale_tbd",
+     "state": {
+      "dragonShadowShamanDefeated": true
+     },
+     "causePhrase": "les gardiens de Kaelen tiennent parole",
+     "chapterId": "finale"
+    }
+   ]
+  },
+  "force": {
+   "facts": [
+    "dragonTrialWon"
+   ],
+   "clanRelations": [
+    {
+     "clan": "dragon",
+     "stance": "enemy"
+    },
+    {
+     "clan": "wolf",
+     "stance": "enemy"
+    }
+   ],
+   "relationStatus": "proposed",
+   "echoes": [
+    {
+     "id": "dragon.outcome.force.epilogue",
+     "fact": "dragonTrialWon",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "dragon-judgement",
+     "dialogueId": "dragon_epilogue",
+     "state": {
+      "dragonTrialWon": true
+     },
+     "causePhrase": "le Dragon n’oubliera pas ce Sceau arraché",
+     "stepId": "route",
+     "contrast": {
+      "dragonShadowShamanDefeated": true
+     }
+    },
+    {
+     "id": "dragon.outcome.force.final_act",
+     "fact": "dragonTrialWon",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-tbd",
+     "dialogueId": "finale_tbd",
+     "state": {
+      "dragonTrialWon": true
+     },
+     "causePhrase": "les gardiens de Kaelen n’ont pas oublié",
+     "chapterId": "finale"
+    }
+   ]
+  }
+ },
+ "exceptions": []
+}

@@ -1062,6 +1062,34 @@
       "shadowConcealed": true
      },
      "causePhrase": "L’artefact récupéré reste le secret de votre compagnie"
+    },
+    {
+     "id": "lion.shadow.revealed.dragon_altar",
+     "fact": "shadowRevealed",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "dragon",
+     "nodeId": "dragon-crystal-altar",
+     "dialogueId": "dragon_crystal_altar",
+     "stepId": "lion",
+     "state": {
+      "shadowRevealed": true
+     },
+     "causePhrase": "les preuves des Ombres que nous avons confiées au Lion"
+    },
+    {
+     "id": "lion.shadow.concealed.dragon_altar",
+     "fact": "shadowConcealed",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "dragon",
+     "nodeId": "dragon-crystal-altar",
+     "dialogueId": "dragon_crystal_altar",
+     "stepId": "lion",
+     "state": {
+      "shadowConcealed": true
+     },
+     "causePhrase": "les preuves des Ombres que nous gardons encore pour nous"
     }
    ]
   },
