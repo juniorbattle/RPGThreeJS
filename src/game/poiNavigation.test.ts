@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { createInitialState, SaveRepository } from './store';
 import { bypassPoi, enterPoi as enterOwnerPoi, failRunToCheckpoint, isPoiNeutralized, selectPoiMap, settlePoiNavigation } from './runSystem';
 import type { GameState } from './types';
+import { calibrateLionAmount } from './lionReputationCalibration';
 
 // Pure authority fixtures explicitly mark content resolved; these are not played combat evidence.
 // Complete the preceding mechanical lifecycle boundary before the next intention. Native GameApp
@@ -49,13 +50,13 @@ describe('authoritative connected POI navigation',()=>{
     for(const trial of ['lion-first-trial-event','lion-first-trial-combat']) {
       const state=crossroads();const reputation=state.reputation;
       expect(enterPoi(state,trial)?.activate).toBe(true);
-      expect(state.reputation).toBe(reputation-2);expect(state.flags.ignoredRefugees).toBe(true);
+      expect(state.reputation).toBe(reputation+calibrateLionAmount({ kind: 'consequence', amount: -2 }));expect(state.flags.ignoredRefugees).toBe(true);
       expect(state.run.bypassedRouteNodeIds).toContain('lion-refugees');
       expect(state.resolvedNodeIds).not.toContain('lion-refugees');
       expect(bypassPoi(state,trial)).toBeNull();expect(enterPoi(state,'lion-first-refuge')).toBeNull();
       // Set 1.17.0: the chosen trial commits the company until the first refuge is resolved; no step back meanwhile.
       expect(enterPoi(state,'lion-nomad-crossroads')).toBeNull();
-      expect(enterPoi(state,trial)?.activate).toBe(true);expect(state.reputation).toBe(reputation-2);
+      expect(enterPoi(state,trial)?.activate).toBe(true);expect(state.reputation).toBe(reputation+calibrateLionAmount({ kind: 'consequence', amount: -2 }));
       state.resolvedNodeIds.push(trial);
       expect(enterPoi(state,'lion-refugees')).toBeNull();
       expect(enterPoi(state,'lion-first-refuge')?.activate).toBe(true);
@@ -63,7 +64,7 @@ describe('authoritative connected POI navigation',()=>{
       // Released: the compatible refugees are revisitable and the trial does not replay.
       expect(enterPoi(state,trial)?.activate).toBe(false);
       expect(enterPoi(state,'lion-refugees')?.activate).toBe(true);
-      expect(state.reputation).toBe(reputation-2);
+      expect(state.reputation).toBe(reputation+calibrateLionAmount({ kind: 'consequence', amount: -2 }));
     }
   });
   it('keeps legacy trial bypass saves resumable without granting a new trial success or clearing an earned refuge',()=>{

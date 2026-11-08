@@ -8,6 +8,7 @@ import {
   type ResolvedContextualDialogue,
 } from './contextualDialogue';
 import { buildLionContextualDialogue } from './lionFinale';
+import { playableDialogue } from './playableContent';
 import { REPUTATION_EVENT_DIALOGUE_DEFINITIONS } from './reputationEventContent';
 import type { DialogueExpression, DialogueStep, GameState } from './types';
 
@@ -529,7 +530,9 @@ export function resolveGameDialogue(
   if (!base) return null;
   const definition = CONTEXTUAL_DIALOGUE_DEFINITIONS[dialogueId]
     ?? REPUTATION_EVENT_DIALOGUE_DEFINITIONS[dialogueId];
-  return resolveContextualDialogue(base, state, definition);
+  const resolved = resolveContextualDialogue(base, state, definition);
+  // Set 1.20.0 (OD-2026-11-08-A): the Lion plays under the approved reputation calibration.
+  return { ...resolved, sequence: playableDialogue(resolved.sequence) };
 }
 
 export function resolveGameAteRules(

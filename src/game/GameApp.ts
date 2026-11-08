@@ -15,6 +15,8 @@ import { LOT_E_ELITES } from '../campaign/LionPoiAuthoring';
 import { areLionFinalRefugeServicesOpen } from '../campaign/LionFinalRefugeServices';
 import { PoiEncounterView } from '../ui/PoiEncounterView';
 import { changeReputation, getReputationRule } from './reputation';
+import { calibrateLionAmount } from './lionReputationCalibration';
+import { playableCombatConfig } from './playableContent';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
 import { CLAN_ANCHOR_DIALOGUES } from './campaignGrammarContent';
 import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
@@ -734,7 +736,7 @@ export class GameApp {
 
   private async startQaCombat(combatId: string): Promise<void> {
     if (!this.qaEnabled || !this.qaParams) return;
-    const config = combatConfigs.get(combatId);
+    const config = playableCombatConfig(combatId);
     if (!config) return;
     const p = this.qaParams;
     const narrativeCinematicId = this.usesJourneyPresentation()
@@ -916,7 +918,7 @@ export class GameApp {
     this.routeCommitInFlight=true;
     this.saves.saveAuto(this.state);
     this.poiMap.close();this.disposeJourney();this.disposeNarrativeStage();
-    const config=combatConfigs.get(combatId)!;
+    const config=playableCombatConfig(combatId)!;
     let verdict:ChallengeVerdict|null=null;
     try{
       let session:ReturnType<CombatBridge['start']>|undefined;
@@ -1518,7 +1520,7 @@ export class GameApp {
             const execution = resolveLionFinaleExecution(this.state, effect.intent);
             Object.assign(this.state.flags, execution.flagChanges);
             if (execution.reputationDelta !== 0) {
-              changeReputation(this.state, execution.reputationDelta, `lion-finale:${execution.trialCause ?? execution.route}`);
+              changeReputation(this.state, calibrateLionAmount({ kind: 'finale', amount: execution.reputationDelta }), `lion-finale:${execution.trialCause ?? execution.route}`);
             }
             this.pendingCombatId = execution.combatId;
             // Route selection is a durable boundary. A reload can now resume
@@ -1545,7 +1547,8 @@ export class GameApp {
     // A dialogue may have prepared a passive Journey snapshot. Combat never owns that backdrop.
     this.disposeJourney();
     this.disposeNarrativeStage();
-    const config = combatConfigs.get(combatId);
+    // Set 1.20.0 (OD-2026-11-08-A): a Lion fight plays with its calibrated reputation reward.
+    const config = playableCombatConfig(combatId);
     if (!config) throw new Error(`Missing combat '${combatId}'.`);
     const narrativeTableau = this.usesJourneyPresentation() ? resolveNarrativeCombatTableau(combatId) : undefined;
     const narrativeCinematicId = this.usesJourneyPresentation()

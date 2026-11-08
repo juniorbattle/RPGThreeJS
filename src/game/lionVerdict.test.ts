@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { resolveLionVerdict } from './lionVerdict';
+import { LION_ALARIC_THRESHOLDS } from './lionReputationCalibration';
 
 function verdict(flags: Record<string, boolean>, reputation = 30) {
   return resolveLionVerdict({ flags, reputation });
@@ -181,7 +182,8 @@ describe('Lion cumulative verdict', () => {
   it('is pure, deterministic, and exposes semantic reason ids without prose', () => {
     const input = {
       flags: { lionMandateAdvance: true, missionSuccess: true, protectedWitnesses: true },
-      reputation: 51,
+      // A credible public reputation under the approved post-demo thresholds (OD-2026-11-08-A).
+      reputation: LION_ALARIC_THRESHOLDS.credible,
     };
     const snapshot = structuredClone(input);
     const first = resolveLionVerdict(input);

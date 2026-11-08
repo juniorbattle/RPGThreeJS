@@ -5,6 +5,7 @@ import { getLionConductTier, type LionConductTier } from './lionNarrative';
 import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
 import { areLionFinalRefugeServicesAvailable, LION_FINAL_REFUGE_NODE_ID } from '../campaign/LionFinalRefugeServices';
 import { changeReputation } from './reputation';
+import { calibrateLionAmount } from './lionReputationCalibration';
 import { LION_FIRST_TRIAL, LION_OPENING_LOCAL_ROUTES, openingLocalRoutesUnlocked, LION_POI_METADATA,
   type LionPoiRole, type LionPoiParticipation } from '../campaign/LionPoiTopology';
 import { resolveOptionalEncounterIgnoreConsequence } from './OptionalEncounterConsequencePolicy';
@@ -1090,7 +1091,8 @@ export function resolvePoiEliteVictory(state: GameState, encounterId: string, re
   creditRunReward(state,{gold:def.combat.rewards.temporaryGold});
   for(const [itemId,quantity] of Object.entries(def.combat.rewards.materials))
     creditRunReward(state,{category:'materials',itemId,quantity});
-  changeReputation(state,def.combat.rewards.reputation,`combat:${result.combatId}`);
+  // Set 1.20.0 (OD-2026-11-08-A): the guardian's reward under the approved Lion calibration.
+  changeReputation(state,calibrateLionAmount({kind:'combat',amount:def.combat.rewards.reputation,rank:'elite'}),`combat:${result.combatId}`);
   creditChallengePrime(state,result);
   elite.defeated=true;elite.active=false;
   delete expedition!.encounter;
@@ -1132,7 +1134,7 @@ export function bypassPoi(state: GameState, nodeId: string): { legId: string; no
   state.run.bypassedRouteNodeIds=[...new Set([...(state.run.bypassedRouteNodeIds??[]),nodeId])];
   const consequence=resolveOptionalEncounterIgnoreConsequence(leg.id,node);
   if (consequence && !state.flags[consequence.flag]) {
-    changeReputation(state,consequence.reputation,`traversal-ignore:${node.id}`);
+    changeReputation(state,calibrateLionAmount({kind:'consequence',amount:consequence.reputation}),`traversal-ignore:${node.id}`);
     state.flags[consequence.flag]=true;
   }
   for(const id of node.links) if(!state.run.revealedNodeIds.includes(id))state.run.revealedNodeIds.push(id);

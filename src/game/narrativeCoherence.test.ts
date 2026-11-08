@@ -53,7 +53,7 @@ describe('the Lion consequence map passes the narrative coherence validator', ()
     const map = baseMap();
     const bois = map.majorChoices.find((choice) => choice.id === 'lion.bois_clair')!;
     expect(bois.options.map((option) => option.reputation)).toEqual([10, -10]);
-    expect(map.outcomes.honour.relationStatus).toBe('proposed');
+    expect(map.outcomes.honour.relationStatus).toBe('approved');
     expect(map.outcomes.honour.clanRelations).toEqual([{ clan: 'lion', stance: 'ally' }, { clan: 'serpent', stance: 'enemy' }]);
   });
 });

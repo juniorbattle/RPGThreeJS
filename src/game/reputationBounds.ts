@@ -6,19 +6,20 @@
  * only a perfect run reaches 100, at the end of the game; a consistent honour run reaches Renowned (80) around the third
  * plateau.
  *
- * The calibration is PROPOSED: it applies nowhere until the operator approves it in the Lot 0 package. It changes
- * amounts and thresholds only, never a choice, outcome, route or line, never rewrites a saved value, and the frozen demo
- * keeps its current values. Everything here is read-only analysis of content; it writes no game state.
+ * The calibration was approved in the Lot 0 package (OD-2026-11-08-A) and the game plays it (`lionReputationCalibration`,
+ * `playableContent`). It changes amounts and thresholds only, never a choice, outcome, route or line, never rewrites a
+ * saved value; the frozen demo keeps its values through a Git tag. Read-only analysis of authored content.
  */
 import { combatConfigs, dialogues, POST_NODE_ATE } from './content';
 import { buildLionContextualDialogue, lionBossVictoryFacts, resolveLionFinaleExecution } from './lionFinale';
+import { LION_CALIBRATED_THRESHOLDS, LION_REPUTATION_CALIBRATION, calibrateLionAmount } from './lionReputationCalibration';
 import { resolveOptionalEncounterIgnoreConsequence } from './OptionalEncounterConsequencePolicy';
 import { REPUTATION_EVENT_DEFINITIONS } from './reputationEventContent';
 import { generateRunGraph, lionRouteContentCandidates } from './runSystem';
 import { createInitialState } from './store';
 import { LION_CANONICAL_POI_IDS, LOT_E_ELITES, LOT_E_POIS } from '../campaign/LionPoiAuthoring';
 import {
-  PROPOSED_REPUTATION_BUDGETS,
+  REPUTATION_BUDGETS,
   CAMPAIGN_CHAPTER_IDS,
   type CampaignChapterId,
 } from '../campaign/plateaux/PlateauRegistry';
@@ -47,8 +48,9 @@ export interface ReputationThreshold {
 }
 
 /**
- * Reputation thresholds written in code rather than content. The bounds test checks that these files compare reputation
- * with these values and no others, so a new threshold cannot slip past the calibration.
+ * Reputation thresholds written in code rather than content, with their demo values. The game compares with their
+ * calibrated values (`LION_ALARIC_THRESHOLDS`); the bounds test checks that these files compare reputation with those
+ * constants only, so a new threshold cannot slip past the calibration.
  */
 export const LION_CODE_REPUTATION_THRESHOLDS: readonly ReputationThreshold[] = Object.freeze([
   Object.freeze({
@@ -77,49 +79,30 @@ export const DEMO_LION_REPUTATION: ReputationCalibration = Object.freeze({
   threshold: (threshold: ReputationThreshold) => threshold.value,
 });
 
-/** Proposed scale for the Lion's amounts and for the distance of its thresholds from the starting 30. */
-export const PROPOSED_LION_SCALE = 0.3;
+/** The approved scale for the Lion's amounts and for the distance of its thresholds from the starting 30. */
+export const LION_POST_DEMO_SCALE = LION_REPUTATION_CALIBRATION.scale;
 
 /** The decision's "same proportion" for a threshold: it keeps its distance from the starting 30, scaled by 0.3. */
 export function proportionalLionThreshold(value: number): number {
-  return Math.round(REPUTATION_START + PROPOSED_LION_SCALE * (value - REPUTATION_START));
+  return Math.round(REPUTATION_START + LION_POST_DEMO_SCALE * (value - REPUTATION_START));
 }
 
 /**
- * Recommended calibrated thresholds: for each, the integer near its proportional value that changes the fewest current
- * verdicts over every reachable run (`compareLionThresholds`). Every threshold of the ledger must have an entry here,
- * so a new threshold cannot slip past the operator.
+ * Approved calibrated thresholds (OD-2026-11-08-A): for each, the integer near its proportional value that changes the
+ * fewest current verdicts over every reachable run (`compareLionThresholds`). Cedric 27 (no reachable run affected
+ * between 24 and 29), Garen 24 (8 states, against 17 for the proportional 26), witness escort 35 (7 states), Alaric's
+ * credibility 33 and 42 (76 states, against 83 for 35 and 42). Every threshold of the ledger must have an entry.
  */
-export const PROPOSED_LION_THRESHOLDS: Readonly<Record<string, number>> = Object.freeze({
-  // Cedric (20): no reachable run is affected between 24 and 29; the proportional value stands.
-  'gate:mystery_recruit:1:0': 27,
-  // Garen (15): 24 changes 8 reachable states, the proportional 26 changes 17.
-  'gate:mystery_lancer_recruit:1:0': 24,
-  // Witness escort (45): the proportional 35 is the best fit (7 states, tied with 34).
-  'gate:witnesses_on_road:1:0': 35,
-  // Alaric's credibility (45 and 70): 33 and 42 change 76 reachable states, the proportional 35 and 42 change 83.
-  'code:alaric_credible': 33,
-  'code:alaric_high': 42,
-});
+export const LION_POST_DEMO_THRESHOLDS = LION_CALIBRATED_THRESHOLDS;
 
-/**
- * Proposed post-demo calibration (Lot 0 package, awaiting the operator's approval):
- * - every amount is scaled by 0.3 and rounded, keeping its sign and at least one point, so no choice loses its weight;
- * - a routine victory (an ordinary fight's positive reward) gives no reputation: reputation follows choices, and the
- *   optional fights can no longer fill the gauge; elite and boss rewards and every loss keep a value;
- * - each threshold takes its value from `PROPOSED_LION_THRESHOLDS`.
- */
-export const PROPOSED_LION_REPUTATION: ReputationCalibration = Object.freeze({
-  id: 'lion-post-demo-2026-11-08',
-  status: 'proposed' as const,
-  amount: (source: ReputationSource) => {
-    if (source.amount === 0) return 0;
-    if (source.kind === 'combat' && source.rank === 'normal' && source.amount > 0) return 0;
-    return Math.sign(source.amount) * Math.max(1, Math.round(Math.abs(source.amount) * PROPOSED_LION_SCALE));
-  },
+/** The approved post-demo calibration of the Lion (OD-2026-11-08-A), the one the game plays. */
+export const LION_POST_DEMO_REPUTATION: ReputationCalibration = Object.freeze({
+  id: LION_REPUTATION_CALIBRATION.id,
+  status: LION_REPUTATION_CALIBRATION.status,
+  amount: (source: ReputationSource) => calibrateLionAmount(source),
   threshold: (threshold: ReputationThreshold) => {
-    const value = PROPOSED_LION_THRESHOLDS[threshold.id];
-    if (value === undefined) throw new Error(`No proposed value for reputation threshold '${threshold.id}'.`);
+    const value = LION_CALIBRATED_THRESHOLDS[threshold.id];
+    if (value === undefined) throw new Error(`No calibrated value for reputation threshold '${threshold.id}'.`);
     return value;
   },
 });
@@ -576,8 +559,8 @@ export function projectCampaignReputation(calibration: ReputationCalibration): C
   let honourReachesRenownedIn: CampaignChapterId | null = null;
   const chapters = CAMPAIGN_CHAPTER_IDS.map((id) => {
     const measured = id === 'lion';
-    const perfectMax = measured ? lion.perfectMax : PROPOSED_REPUTATION_BUDGETS[id].perfectMax;
-    const honourFloor = measured ? lion.honourFloor : PROPOSED_REPUTATION_BUDGETS[id].honourFloor;
+    const perfectMax = measured ? lion.perfectMax : REPUTATION_BUDGETS[id].perfectMax;
+    const honourFloor = measured ? lion.honourFloor : REPUTATION_BUDGETS[id].honourFloor;
     perfect += perfectMax;
     honour += honourFloor;
     if (perfectReaches100In === null && perfect >= REPUTATION_MAX) perfectReaches100In = id;

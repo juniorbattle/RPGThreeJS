@@ -7,6 +7,8 @@ import {bypassPoi,selectPoiMap} from './runSystem';
 import {resolveOptionalEncounterIgnoreConsequence} from './OptionalEncounterConsequencePolicy';
 import {CampaignStatusHud,selectCampaignStatus} from '../ui/CampaignStatusHud';
 import {resolveCharacterVisualProfile} from '../render/CharacterVisualRegistry';
+import { calibrateLionAmount } from './lionReputationCalibration';
+import { resolveGameDialogue } from './contextualDialogueContent';
 afterEach(()=>{document.body.replaceChildren();vi.restoreAllMocks();});
 function ignoreHarness(){
  const state=createInitialState();state.run.currentNodeId=state.currentNodeId='lion-nomad-crossroads';
@@ -19,7 +21,7 @@ function ignoreHarness(){
 it('applies authored refugee bypass once in the owner without visits, resolution or saves',()=>{
  const {app,state}=ignoreHarness(),before=state.reputation;
  expect(bypassPoi(state,'lion-opening-ambush')).toBeNull();expect(bypassPoi(state,'lion-refugees')).not.toBeNull();
- expect(bypassPoi(state,'lion-refugees')).toBeNull();expect(state.reputation).toBe(before-2);
+ expect(bypassPoi(state,'lion-refugees')).toBeNull();expect(state.reputation).toBe(before+calibrateLionAmount({ kind: 'consequence', amount: -2 }));
  expect(state.flags.ignoredRefugees).toBe(true);expect(state.run.visitedNodeIds).not.toContain('lion-refugees');
  expect(state.resolvedNodeIds).not.toContain('lion-refugees');expect(app.saves.saveAuto).not.toHaveBeenCalled();
 });
@@ -35,8 +37,9 @@ it.each(['lion-refugees','lion-first-trial-event'])('keeps active %s dialogue ef
 });
 it('applies actual merchant abandonment dialogue once without an additional map ignore effect',async()=>{
  const {app,state}=ignoreHarness(),before=state.reputation;
- await app.applyEffects(dialogues.get('mystery_help')!.steps[0]!.choices![1]!.effects);
- expect(bypassPoi(state,'lion-first-trial-event')).toBeNull();expect(state.reputation).toBe(before-2);
+ // The dialogue as played, under the approved post-demo calibration (OD-2026-11-08-A).
+ await app.applyEffects(resolveGameDialogue('mystery_help',state)!.sequence.steps[0]!.choices![1]!.effects);
+ expect(bypassPoi(state,'lion-first-trial-event')).toBeNull();expect(state.reputation).toBe(before+calibrateLionAmount({ kind: 'choice', amount: -2 }));
  expect(state.flags.abandonedMerchant).toBe(true);expect(app.saves.saveAuto).not.toHaveBeenCalled();
 });
 it.each(['mystery_recruit','roadside_peddler','wolf_pack','chest','gold','ward','obstacle','mystery_treasure'])(

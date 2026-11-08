@@ -6,6 +6,7 @@ import { sceneTransition } from '../ui/SceneTransition';
 import type { GameState, RunNode } from './types';
 import { getRunNode } from './runSystem';
 import type { PoiMapView } from '../ui/PoiMapView';
+import { calibrateLionAmount } from './lionReputationCalibration';
 
 afterEach(()=>{document.body.replaceChildren();localStorage.clear();vi.restoreAllMocks();});
 function fixture() {
@@ -177,7 +178,7 @@ describe('GameApp POI owner handoffs',()=>{
     owner.state.resolvedNodeIds=['lion-audience','lion-opening-ambush','lion-nomad-crossroads'];
     const reputation=owner.state.reputation;
     owner.ignorePoi('lion-refugees');owner.ignorePoi('lion-refugees');
-    expect(owner.state.reputation).toBe(reputation-2);expect(owner.state.flags.ignoredRefugees).toBe(true);
+    expect(owner.state.reputation).toBe(reputation+calibrateLionAmount({ kind: 'consequence', amount: -2 }));expect(owner.state.flags.ignoredRefugees).toBe(true);
     expect(owner.state.resolvedNodeIds).not.toContain('lion-refugees');
     expect(owner.state.run.visitedNodeIds).not.toContain('lion-refugees');app.dispose();
   });

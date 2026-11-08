@@ -6,6 +6,7 @@ import * as expedition from './poiExpedition';
 import { retreatPoiElite } from './poiExpedition';
 import { LOT_E_ELITES } from '../campaign/LionPoiAuthoring';
 import type { GameState } from './types';
+import { calibrateLionAmount } from './lionReputationCalibration';
 
 afterEach(() => localStorage.clear());
 
@@ -141,7 +142,7 @@ describe('branch commitment (set 1.17.0)', () => {
     const reputation = state.reputation;
     expect(enterPoi(state, 'lion-first-trial-event')?.activate).toBe(true);
     expect(state.flags.ignoredRefugees).toBe(true);
-    expect(state.reputation).toBe(reputation - 2);
+    expect(state.reputation).toBe(reputation + calibrateLionAmount({ kind: 'consequence', amount: -2 }));
     expect(bypassPoi(state, 'lion-refugees')).toBeNull();
   });
 

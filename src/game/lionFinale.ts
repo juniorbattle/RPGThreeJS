@@ -1,4 +1,5 @@
 import { dialogueSequenceSchema } from './types';
+import { LION_ALARIC_THRESHOLDS } from './lionReputationCalibration';
 import type {
   DialogueChoice,
   DialogueExpression,
@@ -220,7 +221,8 @@ export function assessAlaricBluff(verdict: LionVerdict): AlaricBluffAssessment {
     };
   }
 
-  const reputationAllowance = verdict.reputation >= 70 ? 2 : verdict.reputation >= 45 ? 1 : 0;
+  const reputationAllowance = verdict.reputation >= LION_ALARIC_THRESHOLDS.high ? 2
+    : verdict.reputation >= LION_ALARIC_THRESHOLDS.credible ? 1 : 0;
   const witnessAllowance = verdict.witnessState === 'supportive' ? 1 : 0;
   const credibilityAllowance = Math.min(2, reputationAllowance + witnessAllowance);
   const minorStainCount = verdict.minorStains.length;

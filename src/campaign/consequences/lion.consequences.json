@@ -1061,7 +1061,7 @@
      "stance": "enemy"
     }
    ],
-   "relationStatus": "proposed",
+   "relationStatus": "approved",
    "echoes": [
     {
      "id": "lion.outcome.honour.epilogue",
@@ -1095,7 +1095,7 @@
      "stance": "enemy"
     }
    ],
-   "relationStatus": "proposed",
+   "relationStatus": "approved",
    "echoes": [
     {
      "id": "lion.outcome.force.epilogue",

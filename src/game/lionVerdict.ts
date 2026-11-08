@@ -1,3 +1,4 @@
+import { LION_ALARIC_THRESHOLDS } from './lionReputationCalibration';
 import {
   resolveLionNarrativeState,
   type LionConductTier,
@@ -122,8 +123,8 @@ function collectContext(
   } else if (shadowKnowledge === 'fragments') {
     context.push(fact('shadow_fragments_only', 'context', 'minor', 'shadowKnowledge'));
   }
-  if (reputation >= 70) context.push(fact('high_public_reputation', 'context', 'important', 'reputation'));
-  else if (reputation >= 45) context.push(fact('credible_public_reputation', 'context', 'important', 'reputation'));
+  if (reputation >= LION_ALARIC_THRESHOLDS.high) context.push(fact('high_public_reputation', 'context', 'important', 'reputation'));
+  else if (reputation >= LION_ALARIC_THRESHOLDS.credible) context.push(fact('credible_public_reputation', 'context', 'important', 'reputation'));
   else context.push(fact('low_public_reputation', 'context', 'minor', 'reputation'));
   return context;
 }
@@ -145,7 +146,7 @@ function chooseRoute(
 
   const hasCredibleSupport = witnessState === 'supportive'
     || (shadowKnowledge === 'evidence' && shadowDisclosure === 'revealed')
-    || reputation >= 45;
+    || reputation >= LION_ALARIC_THRESHOLDS.credible;
   return hasCredibleSupport ? 'serpent_pursuit' : 'lion_trial';
 }
 
