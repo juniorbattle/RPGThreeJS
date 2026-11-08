@@ -766,6 +766,20 @@
       "bearDarkOreEvidence": true
      },
      "causePhrase": "la même souillure que l’éclat du filon sombre"
+    },
+    {
+     "id": "bear.dark_vein.evidence.scorpion_texts",
+     "fact": "bearDarkOreEvidence",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "scorpion",
+     "nodeId": "scorpion-corrupted-texts",
+     "dialogueId": "scorpion_corrupted_texts",
+     "stepId": "traces",
+     "state": {
+      "bearDarkOreEvidence": true
+     },
+     "causePhrase": "éclat du filon sombre de l’Ours"
     }
    ]
   },

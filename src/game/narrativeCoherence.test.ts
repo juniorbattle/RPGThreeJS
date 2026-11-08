@@ -7,6 +7,7 @@ import { describe, expect, it } from 'vitest';
 import lionMap from '../campaign/consequences/lion.consequences.json';
 import bearMap from '../campaign/consequences/bear.consequences.json';
 import dragonMap from '../campaign/consequences/dragon.consequences.json';
+import scorpionMap from '../campaign/consequences/scorpion.consequences.json';
 import { consequenceMapSchema, type ConsequenceMap } from '../campaign/consequences/ConsequenceMap';
 import { validateConsequenceMapDesign, validateNarrativeCoherence, type SourceFile } from './narrativeCoherence';
 import type { DialogueSequence } from './types';
@@ -141,7 +142,7 @@ describe('the Bear draft passes the narrative coherence validator (Lot 1)', () =
   it('has no error and no exception: every Bear fact set is read, every choice echoed by a scene naming its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 30, plannedEchoes: 3 });
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 30, plannedEchoes: 4 });
   });
 
   it('carries the Lion into the Bear: every Lion echo planned for the Bear is now implemented', () => {
@@ -158,7 +159,7 @@ describe('the Dragon draft passes the narrative coherence validator (Lot 2)', ()
   it('has no error and no exception: every Dragon fact set is read, every choice echoed by a scene naming its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 29, plannedEchoes: 3 });
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 29, plannedEchoes: 6 });
   });
 
   it('carries the Lion and the Bear into the Dragon: every echo they hold for the Dragon is implemented', () => {
@@ -213,5 +214,24 @@ describe('the Dragon consequence map is written first, as a design (Lot 2)', () 
       .concat(Object.values(consequenceMapSchema.parse(structuredClone(raw)).outcomes).flatMap((outcome) => outcome.echoes)))
       .filter((echo) => echo.chapterId === 'dragon').map((echo) => echo.fact).sort();
     expect(intoDragon).toEqual(['bearDarkOreEvidence', 'bearMasterSpyDefeated', 'bearTrialWon', 'shadowConcealed', 'shadowRevealed']);
+  });
+});
+
+describe('the Scorpion consequence map is written first, as a design (Lot 3)', () => {
+  it('passes the design check before any line exists, names the chief by his title only, and echoes the earlier plateaux', () => {
+    expect(validateConsequenceMapDesign(scorpionMap)).toEqual([]);
+    const map = consequenceMapSchema.parse(structuredClone(scorpionMap));
+    expect(map.status).toBe('draft');
+    expect(map.majorChoices).toHaveLength(11);
+    expect(JSON.stringify(map)).not.toMatch(/Kael(?!en)/);
+    expect(map.outcomes.honour.clanRelations).toEqual([{ clan: 'scorpion', stance: 'ally' }, { clan: 'phoenix', stance: 'enemy' }]);
+    expect(map.outcomes.force.clanRelations).toEqual([{ clan: 'scorpion', stance: 'enemy' }, { clan: 'phoenix', stance: 'enemy' }]);
+    const protectedCodex = map.majorChoices.find((choice) => choice.id === 'scorpion.codex')!.options[2]!;
+    expect(protectedCodex.clanRelations).toEqual([{ clan: 'phoenix', stance: 'ally' }]);
+    const into = [bearMap, dragonMap].flatMap((raw) => {
+      const parsed = consequenceMapSchema.parse(structuredClone(raw));
+      return [...parsed.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(parsed.outcomes).flatMap((outcome) => outcome.echoes)];
+    }).filter((echo) => echo.chapterId === 'scorpion').map((echo) => echo.fact).sort();
+    expect(into).toEqual(['bearDarkOreEvidence', 'dragonShadowEvidence', 'dragonShadowShamanDefeated', 'dragonTrialWon']);
   });
 });

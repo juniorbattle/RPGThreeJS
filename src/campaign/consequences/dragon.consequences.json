@@ -782,6 +782,20 @@
       "dragonShadowEvidence": true
      },
      "causePhrase": "l’éclat de la souillure du Cristal"
+    },
+    {
+     "id": "dragon.altar_signs.evidence.scorpion_texts",
+     "fact": "dragonShadowEvidence",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "scorpion",
+     "nodeId": "scorpion-corrupted-texts",
+     "dialogueId": "scorpion_corrupted_texts",
+     "stepId": "traces",
+     "state": {
+      "dragonShadowEvidence": true
+     },
+     "causePhrase": "la même souillure que l’éclat de l’autel du Cristal"
     }
    ]
   },
@@ -894,6 +908,20 @@
      },
      "causePhrase": "les gardiens de Kaelen tiennent parole",
      "chapterId": "finale"
+    },
+    {
+     "id": "dragon.outcome.honour.scorpion_audience",
+     "fact": "dragonShadowShamanDefeated",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "scorpion",
+     "nodeId": "scorpion-audience",
+     "dialogueId": "scorpion_audience",
+     "stepId": "seals",
+     "state": {
+      "dragonShadowShamanDefeated": true
+     },
+     "causePhrase": "Kaelen vous a confié le Sceau du Dragon"
     }
    ]
   },
@@ -941,6 +969,20 @@
      },
      "causePhrase": "les gardiens de Kaelen n’ont pas oublié",
      "chapterId": "finale"
+    },
+    {
+     "id": "dragon.outcome.force.scorpion_audience",
+     "fact": "dragonTrialWon",
+     "scope": "later_plateau",
+     "status": "planned",
+     "chapterId": "scorpion",
+     "nodeId": "scorpion-audience",
+     "dialogueId": "scorpion_audience",
+     "stepId": "seals",
+     "state": {
+      "dragonTrialWon": true
+     },
+     "causePhrase": "Sceau du Dragon arraché à Kaelen"
     }
    ]
   }

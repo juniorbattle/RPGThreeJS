@@ -1,0 +1,937 @@
+{
+ "schemaVersion": 1,
+ "plateauId": "scorpion",
+ "status": "draft",
+ "sources": [
+  "docs/content/feuille_de_route_narrative_condensee.md §3.4 et statut (le chef désigné par son titre, P5)",
+  "docs/autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md",
+  "docs/autonomy/POST_DEMO_LOT_0_OPERATOR_DECISION_2026-11-08.md",
+  "docs/autonomy/POST_DEMO_LOT_1_OPERATOR_DECISION_2026-11-08.md",
+  "docs/autonomy/POST_DEMO_LOT_2_OPERATOR_DECISION_2026-11-08.md",
+  "src/campaign/consequences/lion, bear et dragon (faits établis des trois premiers plateaux)"
+ ],
+ "facts": [
+  {
+   "id": "scorpionMandateHonour",
+   "kind": "flag",
+   "summary": "Le Grand Inquisiteur a confié la recherche du codex prophétique à la compagnie, qui l’a acceptée sans marchander."
+  },
+  {
+   "id": "scorpionMandateTerms",
+   "kind": "flag",
+   "summary": "La compagnie a exigé de lire le codex avant le Grand Inquisiteur."
+  },
+  {
+   "id": "scorpionFaithfulFreed",
+   "kind": "flag",
+   "summary": "Un fidèle du Phénix, retenu par des érudits du Scorpion, a été libéré."
+  },
+  {
+   "id": "scorpionFaithfulAbandoned",
+   "kind": "flag",
+   "summary": "Un fidèle du Phénix a été laissé aux interrogatoires des érudits du Scorpion."
+  },
+  {
+   "id": "scorpionOathRefused",
+   "kind": "flag",
+   "summary": "La compagnie n’a rien promis aux fidèles du Phénix."
+  },
+  {
+   "id": "scorpionPhoenixOath",
+   "kind": "flag",
+   "summary": "La compagnie a juré aux fidèles du Phénix de ne pas livrer le codex au Grand Inquisiteur."
+  },
+  {
+   "id": "scorpionRiddleSolved",
+   "kind": "flag",
+   "summary": "L’énigme des sables a été résolue sans briser son mécanisme."
+  },
+  {
+   "id": "scorpionRiddleForced",
+   "kind": "flag",
+   "summary": "Le mécanisme de l’énigme des sables a été brisé."
+  },
+  {
+   "id": "scorpionWardsRespected",
+   "kind": "flag",
+   "summary": "Les sceaux de garde du Phénix ont été levés selon leur rite."
+  },
+  {
+   "id": "scorpionWardsBroken",
+   "kind": "flag",
+   "summary": "Les sceaux de garde du Phénix ont été brisés."
+  },
+  {
+   "id": "scorpionLibraryRespected",
+   "kind": "flag",
+   "summary": "La bibliothèque ensevelie du Phénix a été laissée intacte."
+  },
+  {
+   "id": "scorpionLibraryLooted",
+   "kind": "flag",
+   "summary": "Des rouleaux de la bibliothèque ensevelie ont été emportés pour être vendus."
+  },
+  {
+   "id": "scorpionCodexDelivered",
+   "kind": "flag",
+   "summary": "Le codex prophétique a été pris au Temple du Phénix et rapporté au Grand Inquisiteur."
+  },
+  {
+   "id": "scorpionCodexKept",
+   "kind": "flag",
+   "summary": "Le codex prophétique a été pris au Temple du Phénix et gardé par la compagnie."
+  },
+  {
+   "id": "scorpionCodexProtected",
+   "kind": "flag",
+   "summary": "Fidèle à son serment, la compagnie a laissé le codex au Phénix."
+  },
+  {
+   "id": "scorpionWitnessesProtected",
+   "kind": "flag",
+   "summary": "Les fidèles rescapés du temple ont été escortés jusqu’au Grand Inquisiteur."
+  },
+  {
+   "id": "scorpionWitnessesSilenced",
+   "kind": "flag",
+   "summary": "Les fidèles rescapés du temple ont été réduits au silence."
+  },
+  {
+   "id": "scorpionAshesRespected",
+   "kind": "flag",
+   "summary": "Les cendres sacrées du Phénix ont été respectées."
+  },
+  {
+   "id": "scorpionAshesTaken",
+   "kind": "flag",
+   "summary": "Des braises sacrées ont été emportées."
+  },
+  {
+   "id": "scorpionShadowEvidence",
+   "kind": "flag",
+   "summary": "Une page souillée par les Ombres a été scellée comme preuve."
+  },
+  {
+   "id": "scorpionShadowBurned",
+   "kind": "flag",
+   "summary": "La page souillée a été brûlée sur-le-champ."
+  },
+  {
+   "id": "scorpionProphetTraceFound",
+   "kind": "flag",
+   "summary": "La cellule du Prophète des Ombres a été trouvée."
+  },
+  {
+   "id": "scorpionTrialRequested",
+   "kind": "flag",
+   "summary": "La compagnie a demandé l’épreuve du Scorpion."
+  },
+  {
+   "id": "scorpionGuardianChiefDefeated",
+   "kind": "flag",
+   "summary": "Le chef des gardiens du Phénix a été vaincu au temple."
+  },
+  {
+   "id": "scorpionShadowProphetDefeated",
+   "kind": "flag",
+   "summary": "Le Prophète des Ombres a été vaincu."
+  },
+  {
+   "id": "scorpionTrialWon",
+   "kind": "flag",
+   "summary": "Le Grand Inquisiteur et ses érudits ont été vaincus à l’épreuve."
+  },
+  {
+   "id": "scorpionSealAcknowledged",
+   "kind": "flag",
+   "summary": "Le Sceau du Scorpion a été obtenu."
+  },
+  {
+   "id": "scorpionFinaleHonourSelected",
+   "kind": "system",
+   "summary": "Le jugement du Grand Inquisiteur a ouvert la voie de l’honneur."
+  },
+  {
+   "id": "scorpionFinaleTrialSelected",
+   "kind": "system",
+   "summary": "Le jugement du Grand Inquisiteur a mené à l’épreuve."
+  }
+ ],
+ "majorChoices": [
+  {
+   "id": "scorpion.mandate",
+   "summary": "À l’audience, accepter de rapporter le codex prophétique sans marchander, ou exiger de le lire avant le Grand Inquisiteur.",
+   "nodeId": "scorpion-audience",
+   "dialogueId": "scorpion_audience",
+   "stepId": "mandate",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "scorpionMandateHonour"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "scorpionMandateTerms"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "scorpion.mandate.honour.judgement",
+     "fact": "scorpionMandateHonour",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionMandateHonour": true
+     },
+     "causePhrase": "vous avez accepté ma requête sans marchander",
+     "stepId": "merits"
+    },
+    {
+     "id": "scorpion.mandate.terms.judgement",
+     "fact": "scorpionMandateTerms",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionMandateTerms": true
+     },
+     "causePhrase": "le droit de lire le codex avant moi, que vous avez exigé",
+     "stepId": "stains"
+    }
+   ]
+  },
+  {
+   "id": "scorpion.scholars",
+   "summary": "Des érudits du Scorpion interrogent un fidèle du Phénix : le libérer, ou le leur laisser.",
+   "nodeId": "scorpion-scholars",
+   "dialogueId": "scorpion_scholars",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "scorpionFaithfulFreed"
+     ],
+     "reputation": 0
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "scorpionFaithfulAbandoned"
+     ],
+     "reputation": -2
+    }
+   ],
+   "echoes": [
+    {
+     "id": "scorpion.scholars.freed.judgement",
+     "fact": "scorpionFaithfulFreed",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionFaithfulFreed": true
+     },
+     "causePhrase": "vous avez arraché un fidèle du Phénix à mes érudits",
+     "stepId": "merits"
+    },
+    {
+     "id": "scorpion.scholars.abandoned.judgement",
+     "fact": "scorpionFaithfulAbandoned",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionFaithfulAbandoned": true
+     },
+     "causePhrase": "un fidèle du Phénix a été livré à mes érudits",
+     "stepId": "breaches"
+    },
+    {
+     "id": "scorpion.scholars.freed.traces",
+     "fact": "scorpionFaithfulFreed",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-prophet-traces",
+     "dialogueId": "scorpion_prophet_traces",
+     "state": {
+      "scorpionFaithfulFreed": true
+     },
+     "causePhrase": "fidèle que vous avez arraché aux érudits parlait de ce prophète",
+     "stepId": "freed"
+    }
+   ]
+  },
+  {
+   "id": "scorpion.oath",
+   "summary": "Les fidèles du Phénix demandent un serment : ne rien promettre, ou jurer de ne pas livrer le codex au Grand Inquisiteur.",
+   "nodeId": "scorpion-phoenix-faithful",
+   "dialogueId": "scorpion_phoenix_faithful",
+   "stepId": "oath",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "scorpionOathRefused"
+     ],
+     "reputation": 0
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "scorpionPhoenixOath"
+     ],
+     "reputation": 0
+    }
+   ],
+   "echoes": [
+    {
+     "id": "scorpion.oath.refused.judgement",
+     "fact": "scorpionOathRefused",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionOathRefused": true
+     },
+     "causePhrase": "vous n’avez rien promis au Phénix",
+     "stepId": "merits"
+    },
+    {
+     "id": "scorpion.oath.sworn.judgement",
+     "fact": "scorpionPhoenixOath",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionPhoenixOath": true
+     },
+     "causePhrase": "vous avez juré fidélité au Phénix",
+     "stepId": "breaches"
+    },
+    {
+     "id": "scorpion.oath.sworn.temple",
+     "fact": "scorpionPhoenixOath",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-phoenix-temple",
+     "dialogueId": "scorpion_phoenix_temple",
+     "state": {
+      "scorpionPhoenixOath": true
+     },
+     "causePhrase": "serment fait à nos fidèles",
+     "stepId": "oath"
+    }
+   ]
+  },
+  {
+   "id": "scorpion.riddle",
+   "summary": "L’énigme des sables : chercher la réponse dans les textes, ou briser le mécanisme.",
+   "nodeId": "scorpion-first-trial-event",
+   "dialogueId": "scorpion_sand_riddle",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "scorpionRiddleSolved"
+     ],
+     "reputation": 0
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "scorpionRiddleForced"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "scorpion.riddle.solved.judgement",
+     "fact": "scorpionRiddleSolved",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionRiddleSolved": true
+     },
+     "causePhrase": "vous avez résolu l’énigme des sables sans briser son mécanisme",
+     "stepId": "merits"
+    },
+    {
+     "id": "scorpion.riddle.forced.judgement",
+     "fact": "scorpionRiddleForced",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionRiddleForced": true
+     },
+     "causePhrase": "le mécanisme de l’énigme brisé",
+     "stepId": "stains"
+    }
+   ]
+  },
+  {
+   "id": "scorpion.wards",
+   "summary": "Les sceaux de garde du Phénix sur la route du temple : les lever selon leur rite, ou les briser.",
+   "nodeId": "scorpion-warded-path",
+   "dialogueId": "scorpion_warded_path",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "scorpionWardsRespected"
+     ],
+     "reputation": 0
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "scorpionWardsBroken"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "scorpion.wards.respected.judgement",
+     "fact": "scorpionWardsRespected",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionWardsRespected": true
+     },
+     "causePhrase": "vous avez levé les sceaux du Phénix selon leur rite",
+     "stepId": "merits"
+    },
+    {
+     "id": "scorpion.wards.broken.judgement",
+     "fact": "scorpionWardsBroken",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionWardsBroken": true
+     },
+     "causePhrase": "les sceaux du Phénix brisés sans leur rite",
+     "stepId": "stains"
+    },
+    {
+     "id": "scorpion.wards.respected.vigil",
+     "fact": "scorpionWardsRespected",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-final-refuge",
+     "dialogueId": "scorpion_vigil",
+     "state": {
+      "scorpionWardsRespected": true
+     },
+     "causePhrase": "fidèles du Phénix ont laissé une lampe à notre porte",
+     "stepId": "wards"
+    }
+   ]
+  },
+  {
+   "id": "scorpion.library",
+   "summary": "Une bibliothèque ensevelie du Phénix : la laisser intacte, ou emporter des rouleaux pour les vendre.",
+   "nodeId": "scorpion-second-trial-event",
+   "dialogueId": "scorpion_buried_library",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "scorpionLibraryRespected"
+     ],
+     "reputation": 0
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "scorpionLibraryLooted"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "scorpion.library.respected.judgement",
+     "fact": "scorpionLibraryRespected",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionLibraryRespected": true
+     },
+     "causePhrase": "vous avez laissé intacte la bibliothèque ensevelie",
+     "stepId": "merits"
+    },
+    {
+     "id": "scorpion.library.looted.judgement",
+     "fact": "scorpionLibraryLooted",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionLibraryLooted": true
+     },
+     "causePhrase": "les rouleaux de la bibliothèque vendus",
+     "stepId": "stains"
+    }
+   ]
+  },
+  {
+   "id": "scorpion.codex",
+   "summary": "Au Temple du Phénix : prendre le codex pour le Grand Inquisiteur, le prendre pour le garder, ou, fidèle au serment, le laisser au Phénix.",
+   "nodeId": "scorpion-phoenix-temple",
+   "dialogueId": "scorpion_phoenix_temple",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "scorpionCodexDelivered"
+     ],
+     "reputation": 1,
+     "leadsTo": [
+      "scorpionGuardianChiefDefeated"
+     ]
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "scorpionCodexKept"
+     ],
+     "reputation": -2,
+     "leadsTo": [
+      "scorpionGuardianChiefDefeated"
+     ]
+    },
+    {
+     "choiceIndex": 2,
+     "path": "force",
+     "sets": [
+      "scorpionCodexProtected"
+     ],
+     "reputation": -1,
+     "clanRelations": [
+      {
+       "clan": "phoenix",
+       "stance": "ally"
+      }
+     ]
+    }
+   ],
+   "echoes": [
+    {
+     "id": "scorpion.codex.delivered.judgement",
+     "fact": "scorpionCodexDelivered",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionCodexDelivered": true
+     },
+     "causePhrase": "vous m’avez rapporté le codex prophétique",
+     "stepId": "outcome"
+    },
+    {
+     "id": "scorpion.codex.kept.judgement",
+     "fact": "scorpionCodexKept",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionCodexKept": true
+     },
+     "causePhrase": "vous avez gardé le codex pour votre clan",
+     "stepId": "outcome"
+    },
+    {
+     "id": "scorpion.codex.protected.judgement",
+     "fact": "scorpionCodexProtected",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionCodexProtected": true
+     },
+     "causePhrase": "vous avez laissé le codex au Phénix",
+     "stepId": "outcome"
+    }
+   ]
+  },
+  {
+   "id": "scorpion.witnesses",
+   "summary": "Les fidèles rescapés du temple : les escorter jusqu’au Grand Inquisiteur, ou les réduire au silence.",
+   "nodeId": "scorpion-temple-witnesses",
+   "dialogueId": "scorpion_temple_witnesses",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "scorpionWitnessesProtected"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "scorpionWitnessesSilenced"
+     ],
+     "reputation": -2
+    }
+   ],
+   "echoes": [
+    {
+     "id": "scorpion.witnesses.protected.judgement",
+     "fact": "scorpionWitnessesProtected",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionWitnessesProtected": true
+     },
+     "causePhrase": "Les fidèles rescapés sont venus dire eux-mêmes ce qu’ils ont vu au temple",
+     "stepId": "witnesses"
+    },
+    {
+     "id": "scorpion.witnesses.silenced.judgement",
+     "fact": "scorpionWitnessesSilenced",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionWitnessesSilenced": true
+     },
+     "causePhrase": "Des fidèles se taisent derrière vos lames",
+     "stepId": "witnesses"
+    }
+   ]
+  },
+  {
+   "id": "scorpion.ashes",
+   "summary": "Les cendres sacrées du Phénix : les respecter, ou emporter leurs braises.",
+   "nodeId": "scorpion-final-trial-event",
+   "dialogueId": "scorpion_sacred_ashes",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "scorpionAshesRespected"
+     ],
+     "reputation": 0
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "scorpionAshesTaken"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "scorpion.ashes.respected.judgement",
+     "fact": "scorpionAshesRespected",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionAshesRespected": true
+     },
+     "causePhrase": "vous avez respecté les cendres sacrées",
+     "stepId": "merits"
+    },
+    {
+     "id": "scorpion.ashes.taken.judgement",
+     "fact": "scorpionAshesTaken",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionAshesTaken": true
+     },
+     "causePhrase": "les braises sacrées emportées",
+     "stepId": "stains"
+    }
+   ]
+  },
+  {
+   "id": "scorpion.corrupted_texts",
+   "summary": "Des pages souillées par les Ombres : en sceller une comme preuve, ou la brûler sur-le-champ.",
+   "nodeId": "scorpion-corrupted-texts",
+   "dialogueId": "scorpion_corrupted_texts",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "scorpionShadowEvidence"
+     ],
+     "reputation": 0
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "scorpionShadowBurned"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "scorpion.corrupted_texts.evidence.judgement",
+     "fact": "scorpionShadowEvidence",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionShadowEvidence": true
+     },
+     "causePhrase": "les Ombres écrivent aussi",
+     "stepId": "shadow"
+    },
+    {
+     "id": "scorpion.corrupted_texts.burned.judgement",
+     "fact": "scorpionShadowBurned",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_judgement",
+     "state": {
+      "scorpionShadowBurned": true
+     },
+     "causePhrase": "la page souillée brûlée avant qu’on puisse l’étudier",
+     "stepId": "stains"
+    },
+    {
+     "id": "scorpion.corrupted_texts.evidence.final_act",
+     "fact": "scorpionShadowEvidence",
+     "scope": "final_act",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-tbd",
+     "dialogueId": "finale_tbd",
+     "state": {
+      "scorpionShadowEvidence": true
+     },
+     "causePhrase": "la page souillée du codex"
+    }
+   ]
+  },
+  {
+   "id": "scorpion.judgement_intent",
+   "summary": "Devant le Grand Inquisiteur, assumer ses actes et réclamer le Sceau, ou demander l’épreuve du Scorpion. La réclamation n’ouvre la traque du Prophète des Ombres que si le verdict le permet ; sinon elle mène à l’épreuve.",
+   "nodeId": "scorpion-judgement",
+   "dialogueId": "scorpion_judgement",
+   "stepId": "intent",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "neutral",
+     "sets": [],
+     "reputation": 0,
+     "leadsTo": [
+      "scorpionShadowProphetDefeated",
+      "scorpionTrialWon"
+     ]
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [],
+     "reputation": 0,
+     "leadsTo": [
+      "scorpionTrialRequested",
+      "scorpionTrialWon"
+     ]
+    }
+   ],
+   "echoes": [
+    {
+     "id": "scorpion.judgement_intent.honour.epilogue",
+     "fact": "scorpionShadowProphetDefeated",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_epilogue",
+     "state": {
+      "scorpionShadowProphetDefeated": true
+     },
+     "causePhrase": "le Prophète des Ombres est tombé",
+     "stepId": "route",
+     "contrast": {
+      "scorpionTrialWon": true
+     }
+    },
+    {
+     "id": "scorpion.judgement_intent.force.epilogue",
+     "fact": "scorpionTrialWon",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_epilogue",
+     "state": {
+      "scorpionTrialWon": true
+     },
+     "causePhrase": "vous avez pris le Sceau du Scorpion par l’épreuve",
+     "stepId": "route",
+     "contrast": {
+      "scorpionShadowProphetDefeated": true
+     }
+    }
+   ]
+  }
+ ],
+ "outcomes": {
+  "honour": {
+   "facts": [
+    "scorpionShadowProphetDefeated"
+   ],
+   "clanRelations": [
+    {
+     "clan": "scorpion",
+     "stance": "ally"
+    },
+    {
+     "clan": "phoenix",
+     "stance": "enemy"
+    }
+   ],
+   "relationStatus": "proposed",
+   "echoes": [
+    {
+     "id": "scorpion.outcome.honour.epilogue",
+     "fact": "scorpionShadowProphetDefeated",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_epilogue",
+     "state": {
+      "scorpionShadowProphetDefeated": true
+     },
+     "causePhrase": "le Grand Inquisiteur a scellé l’alliance du Scorpion",
+     "stepId": "route",
+     "contrast": {
+      "scorpionTrialWon": true
+     }
+    },
+    {
+     "id": "scorpion.outcome.honour.final_act",
+     "fact": "scorpionShadowProphetDefeated",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-tbd",
+     "dialogueId": "finale_tbd",
+     "state": {
+      "scorpionShadowProphetDefeated": true
+     },
+     "causePhrase": "les érudits du Grand Inquisiteur tiennent parole",
+     "chapterId": "finale"
+    }
+   ]
+  },
+  "force": {
+   "facts": [
+    "scorpionTrialWon"
+   ],
+   "clanRelations": [
+    {
+     "clan": "scorpion",
+     "stance": "enemy"
+    },
+    {
+     "clan": "phoenix",
+     "stance": "enemy"
+    }
+   ],
+   "relationStatus": "proposed",
+   "echoes": [
+    {
+     "id": "scorpion.outcome.force.epilogue",
+     "fact": "scorpionTrialWon",
+     "scope": "same_plateau",
+     "status": "planned",
+     "nodeId": "scorpion-judgement",
+     "dialogueId": "scorpion_epilogue",
+     "state": {
+      "scorpionTrialWon": true
+     },
+     "causePhrase": "le Scorpion n’oubliera pas ce Sceau arraché",
+     "stepId": "route",
+     "contrast": {
+      "scorpionShadowProphetDefeated": true
+     }
+    },
+    {
+     "id": "scorpion.outcome.force.final_act",
+     "fact": "scorpionTrialWon",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-tbd",
+     "dialogueId": "finale_tbd",
+     "state": {
+      "scorpionTrialWon": true
+     },
+     "causePhrase": "les érudits du Grand Inquisiteur n’ont pas oublié",
+     "chapterId": "finale"
+    }
+   ]
+  }
+ },
+ "exceptions": []
+}
