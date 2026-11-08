@@ -3,7 +3,8 @@
  * Phase 3). Not canon until the operator approves the plateau. Every deed the Grand Inquisiteur weighs is named in the
  * words the consequence map expects: the sage names the merits, a scholar of the Scorpion the breaches and the steward
  * the stains. Credibility before the chief (R3) uses its own thresholds, proposed with the plateau: a company that kept
- * its honour through the Lion, the Bear and the Dragon arrives near 81, a company of force near 21.
+ * its honour through the Lion, the Bear and the Dragon arrives between 81 and 85, a company of force near 18 (measured
+ * by the QA driver from genuine demo saves).
  */
 import type { PlateauFinaleDefinition } from '../../../game/plateauFinale';
 
