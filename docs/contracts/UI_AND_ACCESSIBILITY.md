@@ -2,6 +2,16 @@
 
 Status: **LOCKED**.
 
+## Post-demo surfaces — OD-2026-11-07-I
+
+Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0. The post-demo POI maps, the Tournament encounter board, clan relations, supports, waves and boss phases follow the existing rules:
+- states in text, never by colour alone;
+- keyboard and gamepad paths, and focus;
+- 1366 px desktop and 390 px phone layouts;
+- reduced motion as an in-app setting.
+
+The encounter board states each fight, its order and its result in text. The deployment states each support and the clan that grants it. The objective states the current wave or phase. The 33-POI display rule and the wave text of earlier sets keep governing the Lion; each post-demo map shows its own approved catalogue. Presentation acquires no truth authority.
+
 ## Guardians and challenges — OD-2026-11-07-F
 
 Dedicated `PRODUCTION-CONTRACTS-POI-CHALLENGES-1`, set 1.18.0. The map shows each undefeated guardian on its post as a distinct marker named in text, and marks every challenge place "Défi" with its condition and prime in text, readable without colour. It no longer shows a Wait action, a turn count, a threatened area, a patrol or chase tendency or a contested route. Combat or retreat keeps its intents and focus restoration. The condition and the prime appear before deployment, the round condition stays visible during the fight, and the result says whether the prime was earned. Set 1.19.0 (COMBAT_AND_VFX): the guardian encounter and the deployment state in text that the fight has two waves; during the fight the objective shows the current wave ("Vague 1 / 2") and a text status line announces the second wave, readable without colour, at 1366 and 390 px, with reduced motion on and off. Targets, keyboard, gamepad, responsive bounds and reduced motion follow the rules of this contract.

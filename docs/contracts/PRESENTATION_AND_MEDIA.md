@@ -111,3 +111,18 @@ Dedicated `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-2` / [OD-2026-11-04-B](../autono
 - **Audio.** A sequence takes the mood of its following dialogue through the existing mood table, with no new table key tied to the sequence. It adds no track or cue. Cinematic audio and voices stay DEFERRED.
 - **Ownership.** One shared presentation-only player serves these moments. It creates no route, outcome, resource or save field.
 - **Order.** A mockup of `bois_clair_arrival`, judged in motion by the operator, precedes the three other sequences and the animated backdrop. Operator artistic acceptance is by viewing. 1.14.0: its three sequences need no new mockup; the operator judges each in motion.
+
+## Post-demo moments — OD-2026-11-07-I
+
+Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0, extends the seven moments listed exhaustively above with post-demo moments, for those moments only. They follow the same medium, timing, length, agency, canon, cast, backdrop, reduced-motion, audio and ownership rules, and "No new text" applies unchanged: no captions.
+- **Moments.**
+  - For each post-demo plateau: its arrival, before its chief's first dialogue; and its two outcomes, after the victory that completes its honour path and after the victory that completes its force path, each after its post-combat dialogue.
+  - The Tournament betrayal, before the dialogue in which the breach opens.
+  - The three epilogues, Respect, Fear and Balance, each before its epilogue dialogue.
+
+  The Tournament betrayal and the epilogues last at most 40 seconds, the others at most 30.
+- **Approved tableaux only.** A post-demo sequence plays only on an approved painted tableau. While its tableau is provisional (WORLD_AND_CHARACTERS), the moment goes straight to its dialogue, as for a missing image.
+- **Choices.** The Fear ending's choice between a last fight and accepting one's fate belongs to the dialogue after its sequence, never to the sequence.
+- **Facts.** A moment table lists each moment's established facts. The operator approves it with its plateau, or with the final act for the Tournament betrayal and the epilogues; a moment it leaves out does not play.
+- **Music.** The plateaux and the final act reuse the nine music contexts. The mood table may gain keys for new dialogues under its existing rules, and mood is never computed from route, choice, reputation or relations.
+- **Unchanged.** The eight historical identities, zero active video and every other rule of the cinematic retirement stay in force. No generated or new illustrated image enters a sequence.

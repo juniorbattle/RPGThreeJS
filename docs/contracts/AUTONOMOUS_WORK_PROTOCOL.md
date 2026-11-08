@@ -58,3 +58,17 @@ Dedicated `PRODUCTION-CONTRACTS-MUSIC-AUDIO-1`, set 1.11.0, [operator decision](
 ## Audio direction — OD-2026-11-01-B
 
 Dedicated `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1`, set 1.12.0, [operator decision](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md). For this scope only, it supersedes in this contract's UI FX, combat FX and music sections: default off, default disabled and default silence (read as silent until the first real gesture), the Ultimate deferral, and the one-second limit for the cues named in COMBAT_AND_VFX. Agents may write, compose and tune the music, cues, marks, moods and ambience of this scope. The ban on AI audio services, downloaded or purchased tracks and provider polling is unchanged. Reference works inform techniques only: no melody or arrangement of a reference work is reproduced. The reviewed amendment baseline precedes runtime. Artistic acceptance stays with the operator.
+
+## Post-demo session — OD-2026-11-07-I
+
+Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0.
+- **Branch.** The post-demo session works on a temporary branch from `dev`. It merges `dev` into it at the start of each lot and pushes each green step. Its work reaches `dev` only on the operator's order after a plateau's acceptance. `main` stays forbidden.
+- **Authority.** It holds drafting authority bounded by set 1.20.0 of CAMPAIGN_AND_STATE, and no other canon authority.
+- **Stops.** It stops and waits for the operator:
+  - at each plateau's acceptance and at the end of each lot named in its brief;
+  - before a name, lore fact or contradiction that no decision settles;
+  - before a rule outside set 1.20.0;
+  - before a destructive Git operation;
+  - before anything that needs a secret.
+- **Lock.** The machine-local execution lock does not reach a cloud session; while it runs, no other agent writes its branch.
+- **Brief.** `docs/autonomy/POST_DEMO_CLOUD_SESSION_BRIEF.md`.

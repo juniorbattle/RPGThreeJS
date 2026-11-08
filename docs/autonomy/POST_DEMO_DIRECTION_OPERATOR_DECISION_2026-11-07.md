@@ -87,9 +87,9 @@ Tout le travail de l'après-démo se juge d'abord à cette aune.
   - Il fixe les points où la session s'arrête pour l'opérateur : fin de chaque lot, noms, faits d'histoire, règles hors du cadre.
 - **Canon.** Aucun nom, dialogue ou personnage nouveau n'est fixé par cette décision. Le nom du chef Scorpion, l'identité de l'entité et toutes les répliques restent à valider par l'opérateur.
 
-## Amendement-cadre 1.20.0 — texte soumis
+## Amendement-cadre 1.20.0
 
-État : **PROPOSED**, soumis à l'opérateur le 2026-11-07. Amendement `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, jeu de contrats 1.20.0. Texte exact : [POST_DEMO_FRAMEWORK_AMENDMENT_1.20.0.patch](POST_DEMO_FRAMEWORK_AMENDMENT_1.20.0.patch).
+État : **APPROVED**. Soumis le 2026-11-07, le texte a été approuvé tel quel par l'opérateur le même jour (« Texte approuvé »), avec ses trois extensions. Il est appliqué mot pour mot aux contrats ; seule la date d'approbation du manifeste passe de « PENDING » au 2026-11-07. Amendement `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, jeu de contrats 1.20.0. Texte exact : [POST_DEMO_FRAMEWORK_AMENDMENT_1.20.0.patch](POST_DEMO_FRAMEWORK_AMENDMENT_1.20.0.patch).
 
 Une relecture indépendante de contracts-guardian a rendu « PASS WITH WARNINGS ». Ses huit corrections requises sont appliquées :
 - les limites du son restent celles du jeu 1.12.0 ;
@@ -128,9 +128,9 @@ Trois points vont un peu au-delà des dix-sept choix. L'opérateur peut les refu
 2. Une ambiance sonore par nouveau biome : montagnes de l'Ours, pics du Dragon, désert du Scorpion, arène, capitale, brèche.
 3. La table des humeurs musicales peut recevoir les nouveaux dialogues, selon ses règles actuelles.
 
-Après l'accord de l'opérateur, le patch est appliqué tel quel. Viennent ensuite le commit d'amendement, puis un commit opérationnel qui inscrit son SHA comme baseline immuable. La session cloud peut alors partir.
+Le patch est appliqué tel quel dans le commit d'amendement. Un commit opérationnel inscrit ensuite son SHA comme baseline immuable. La session cloud peut alors partir.
 
 ## Limites
 
-- Aucun contrat n'est modifié tant que l'opérateur n'a pas approuvé le texte ; la baseline 74fceb399dea8cd0c187d97350e3a11af6e04d26 reste en vigueur.
+- Les contrats changent seulement par l'amendement 1.20.0 approuvé ; sa baseline immuable remplace 74fceb399dea8cd0c187d97350e3a11af6e04d26.
 - Aucun code ni aucun texte du jeu ne change.

@@ -2,6 +2,25 @@
 
 Status: **LOCKED**.
 
+## Post-demo authoring and acceptance — OD-2026-11-07-I
+
+Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0. Post-demo content follows the draft rule of CAMPAIGN_AND_STATE. A presentation brief still never mints canon; a draft becomes canon only through the operator's plateau-level approval, and the narrative coherence validator below applies to drafts before that approval.
+- **Delivery package.** Each plateau delivers:
+  - its consequence map: each major choice, the durable fact it sets, its reputation and clan-relation effects, and the later echoes that name their cause;
+  - its text sheet, with every dialogue, choice and effect;
+  - its catalogue of POIs, chests, encounters, guardians and rewards, with its own economy ceiling;
+  - its list of awaited final images;
+  - its evidence.
+- **Acceptance.** A plateau is accepted when all of the following hold:
+  - focused truth and integration tests at the Lion's level pass (gates, branch commitment, once-only, no farming, waves, phases, challenges, supports, victory and defeat, duplicate results);
+  - a narrative coherence validator passes. It fails on a fact set and never read, a fact read and never set, a major choice without a later echo, an echo that does not name its cause, a broken dialogue link, an unknown actor or an unreachable step;
+  - the reputation bounds test passes;
+  - migration and resume tests pass from a demo save and from the end of the previous plateau;
+  - a scripted playthrough of both paths and a browser check succeed;
+  - the full suite, types, build, contract validator and locked-document gate pass;
+  - the operator accepts it by play.
+- **The Lion.** Its delivery gates and economy ceilings of sets 1.4.0 and 1.18.0 keep governing the Lion.
+
 ## Video retirement evidence — OD-2026-10-24-A
 
 Dedicated `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md), set1.10.0: verify zero video/video-derived-hold modes, active video descriptors, video requests/elements/preloads and shipped MP4s, while preserving all historical beat/dialogue/choice identities. Inventory references before archive moves; hash archived media/manifests. Require focused ownership/handoff tests, types, build and one relevant native production continuation with inspected captures and reload. Keep historical source/driver/acceptance records immutable; no global PC/art/balance acceptance inferred. Existing video-specific matrices remain historical and must not be silently weakened or replayed as current proof.

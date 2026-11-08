@@ -2,6 +2,13 @@
 
 Status: **LOCKED**.
 
+## Post-demo world and art — OD-2026-11-07-I
+
+Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0.
+- **Characters.** The clans, chiefs and Shadow agents that the roadmap names (§3.2 to §3.4, §3.6, §3.7), and those of the operator's decisions, may appear in the post-demo plateaux. The Lot E rule "add no lore, named character, faction or cinematic" keeps governing the Lion. The final entity stays unnamed until the operator decides, and demons stay unnamed before the breach. New characters follow the Character V2 family, each with a declared pose and staging role.
+- **Atlases and environments.** Each plateau gets three atlas compositions in the Option C / Pixel Diorama Fantasy direction, and the capital one small map. Each environment family stays recognizable across map, tableau and arena: the Resilience Mountains and their sacred mines, the Celestial Peaks, the Arid Deserts, the arena, the corrupted capital and the breach.
+- **Provisional images.** Until a plateau's final images exist, it may use provisional images: approved Lion backdrops and atlases, reused or cropped, and silhouettes and generic portraits drawn from existing resources. None is generated, and none is a video. Each is marked provisional in its art registry and listed with the final image it awaits. A provisional image is not production art and never sets art direction. The final images, including new characters' Character V2 masters, form a separate lot led with the operator. This narrows, for marked provisional images in post-demo plateaux only, "An asset deficit is a documented blocker for that deliverable, not permission to insert fake production art".
+
 ## Lot E atlas composition — OD-2026-10-15-B
 
 Dedicated `PRODUCTION-CONTRACTS-POI-LOT-E-1`, set 1.4.0, [approved authoring](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md). Adapt the three existing Option C / Pixel Diorama Fantasy atlas compositions to 33 permanent POIs and two separate mobile threat overlays. Finalize approved loops with coherent clearings, relief, river/bridge crossings and legible marker/label space; recompose a background when needed rather than shrink usable targets. Paths and threat presentation never become progression or physical collision authority. Under set 1.18.0 (TRAVERSAL) the two threat overlays become stationary guardian markers on their posts; the atlases and the 33 POIs are unchanged. Reuse the existing bestiary and Character V2 resources; add no lore, named character, faction or cinematic. Inspect three comparable native captures against approved environment style. Technical delivery does not substitute for operator artistic acceptance.

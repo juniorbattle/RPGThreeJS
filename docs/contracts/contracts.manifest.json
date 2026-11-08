@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.19.0",
+  "contractSetVersion": "1.20.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -292,6 +292,25 @@
       "constitutionChanged": false,
       "supersededRule": "Every campaign fight in a single wave with unchanged formations; the two stationary guardian fights now have two waves of the same formation and stats, set by an optional static config field, the second entering by a non-result path once the first has fallen with nothing restored, won only after the second wave, with unchanged rewards and primes and no saved field",
       "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator playtest acceptance"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1",
+      "operatorDecisionId": "OD-2026-11-07-I",
+      "operatorDecisionPath": "docs/autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md",
+      "approvedAt": "2026-11-07",
+      "changedContracts": [
+        "AUTHORING_AND_QA",
+        "AUTONOMOUS_WORK_PROTOCOL",
+        "CAMPAIGN_AND_STATE",
+        "COMBAT_AND_VFX",
+        "PRESENTATION_AND_MEDIA",
+        "TRAVERSAL",
+        "UI_AND_ACCESSIBILITY",
+        "WORLD_AND_CHARACTERS"
+      ],
+      "constitutionChanged": true,
+      "supersededRule": "Content limited to the authored Lion campaign (21 canonical and 12 optional nodes, two guardians, three atlases, seven living-tableau moments, closed biome and cue lists); the post-demo campaign of three Seal plateaux, a three-part final act and three epilogues is now opened as playable drafts that become canon only on per-plateau operator approval, with clan relations, a post-demo Lion reputation recalibration, boss phases, clan supports, marked provisional images and new moments on approved tableaux only",
+      "implementationAcceptance": "PENDING; per-plateau delivery packages, coherence validator, reputation bounds test and operator acceptance by play"
     }
   ],
   "status": "LOCKED",

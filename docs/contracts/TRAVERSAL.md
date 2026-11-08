@@ -4,6 +4,16 @@ Status: **LOCKED**. Historical contract ID: `TRAVERSAL`, retained in the eight-c
 
 ## Production navigation
 
+### Post-demo plateaux — OD-2026-11-07-I
+
+Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0. Each post-demo plateau of CAMPAIGN_AND_STATE has its own authored POI graph in three regions, with:
+- refuges;
+- exclusive forks, each with a branch commitment to the POI that resolves its chapter;
+- optional chests and encounters;
+- challenges and stationary guardians.
+
+The same RunSystem ownership and rules apply as for the Lion: connected movement, activation, once-only resolution, travel to resolved POIs (set 1.16.0), branch commitment (set 1.17.0), guardian posts (set 1.18.0) and waves (set 1.19.0). The plateau-level approval of CAMPAIGN_AND_STATE fixes its catalogue, forks, resolving POIs, guardians and posts. Its size follows the demo duration the operator measures, and by default matches the Lion's: 21 canonical and 12 optional nodes, two guardians. New durable IDs carry their own plateau prefix under the existing conventions; no Lion ID changes. The corrupted capital of the final act is a small POI map under the same rules. The Tournament's encounter board presents its ordered arena fights and their results; RunSystem owns their order and progression. The board is not a POI map and not a second navigation mode. The Lion's clauses below, including its three forks and two guardians, keep governing the Lion.
+
 ### Travel to resolved POIs — OD-2026-11-06-A
 
 Dedicated `PRODUCTION-CONTRACTS-POI-RESOLVED-TRAVEL-1`, set 1.16.0, follows the operator's PC playtest so that moving across known ground stays quick. From the map, the company may travel in one committed movement to any resolved POI, except during a set 1.17.0 branch commitment. RunSystem finds the shortest route over connected, unlocked edges, including authored bypass connections, whose intermediate POIs are resolved or neutralized and are not occupied by a mobile elite; a bypassed optional POI is skipped, never entered or activated. Without such a route this travel is unavailable and ordinary movement remains. The travel counts as one committed map movement: one turn, after which each mobile elite moves at most one edge. Under set 1.18.0 no elite moves after a travel, and the clauses on a later rear encounter apply only to an encounter saved by an older save. A destination occupied by an elite offers the existing Combat or retreat before anything is committed; retreat or front victory leaves the company at its departure POI. For a later rear encounter, the safe return is the route's last POI before the destination when it qualifies as a safe inert return under the Lot E rule; otherwise the threat movement is rejected as Lot E provides. Arrival replays no content and reuses only what a resolved POI already offers, including the services of reusable refuges and of the set 1.15.0 final refuge. The travel adds no saved field: position, visits and turn remain the existing facts. The map pawn follows the route; reduced motion places it directly. Unresolved, locked and neutralized destinations keep their current rules, and every canonical causal gate, exclusive choice and directed recovery link is preserved.
