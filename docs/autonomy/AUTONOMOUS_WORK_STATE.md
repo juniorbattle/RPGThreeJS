@@ -1,3 +1,13 @@
+# Après-démo — Lot 0 livré, arrêt en attente de l’opérateur
+
+Run claude-postdemo-lot0-20261108T0030Z (agent claude, session cloud). [OD-2026-11-07-I](POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md), contrats 1.20.0, baseline `6c965169c2dc153cafd5a8609d914cf8de723ff3`. Branche `post-demo`, créée depuis `origin/dev` (`25ccd2f2`) ; rien n’est poussé sur `dev` ni sur `main`.
+
+Lot 0, fondations sans contenu nouveau ([rapport](../reports/post-demo-lot-0-foundations-2026-11-08.md)) : registre de plateaux (le Lion y passe sans changer ; Ours, Dragon, Scorpion et acte final réservés), enregistrement de campagne versionné dans la sauvegarde V6 avec migration depuis une sauvegarde de la démo, relations de clan, issues et règle R4 possédées par RunSystem, test des bornes de réputation calculé depuis le contenu, carte des conséquences du Lion et validateur de cohérence narrative (`npm run narrative:validate`). L’étalonnage de la réputation du Lion est proposé, pas appliqué. Suite, types, build, contrats et porte du verrou verts, hors 10 échecs d’environnement qui existent déjà sur `origin/dev` dans un clone neuf.
+
+UNE prochaine action : L’opérateur répond au paquet du Lot 0 de l’après-démo (docs/reports/post-demo-lot-0-foundations-2026-11-08.md) : règle des montants du Lion (×0,3, signe gardé, au moins 1, victoires ordinaires à 0), seuils proposés (Cedric 27, Garen 24, témoins 35, crédibilité 33 et 42) ou proportion simple (27, 26, 35, 35, 42), « troisième plateau » = Dragon, budgets Ours 16/13, Dragon 12/10, Scorpion 6/4, acte final 4/3, relations proposées des issues du Lion (honneur : Lion allié, Serpent ennemi ; force : Lion neutre, Serpent ennemi), manière de garder la démo figée à l’intégration, format de la carte des conséquences (docs/content/consequence-map-format.md). Ensuite seulement, Lot 1 sur post-demo : fusionner dev, appliquer l’étalonnage approuvé, brancher la clôture du Lion vers l’Ours, écrire la carte des conséquences de l’Ours avant toute réplique. La démo sur dev reste inchangée et en playtest.
+
+---
+
 # Direction audio livrée — écoute de l’opérateur
 
 Run claude-audio-direction-20261101T1918Z (agent claude, session interactive). [OD-2026-11-01-B](AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md), contrats 1.12.0, baseline `29aa94862f9cd5f2c73ba9569660ed26c41ceaf8`.

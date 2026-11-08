@@ -1,5 +1,7 @@
 # Report authority index
 
+Current post-demo foundations 8 November 2026: [Après-démo, Lot 0](post-demo-lot-0-foundations-2026-11-08.md), OD-2026-11-07-I/set 1.20.0, on the `post-demo` branch only. Plateau registry, versioned campaign record migrated from demo saves, RunSystem clan relations and R4, reputation bounds test with a proposed (not applied) Lion recalibration, consequence map format and narrative coherence validator. Awaiting the operator's answer; the demo on `dev` is unchanged.
+
 Current combat VFX coverage 25 October 2026: [Demo action coverage](combat-vfx-coverage-2026-10-25.md), OD-2026-10-25-B. 3 of 34 demo actions display their sprite effect; 31 point at retired sheets that are skipped, and the procedural fallback is suppressed for them. Published registry empty. Read-only inventory, no runtime change.
 
 Current narrative presentation24October2026: [Video retirement and static continuation](cinematic-retirement-2026-10-24.md), OD24-A/set1.10.0. Zero active/shipped video; eight historical identities and all media/proofs preserved. Scoped native PC opening/camp/POI/audience verified; static narrative finishing remains planned. Earlier cinematic candidate/audit entries below are historical.
