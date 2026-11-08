@@ -25,6 +25,9 @@ import {
   plateauEpilogueDialogueId,
   runPlateauId,
 } from './plateauProgression';
+import { combatConfigs } from './content';
+import { lionBossVictoryFacts, resolvePendingLionFinaleCombat } from './lionFinale';
+import { anyCombatConfig } from './playableContent';
 import { getClanRelation, getClanRelationCauses, isClanMet, selectPoiMap, setClanRelation } from './runSystem';
 import { migrateState, SaveRepository } from './store';
 import type { GameState } from './types';
@@ -136,6 +139,21 @@ describe('plateau progression (set 1.20.0, Lot 1)', () => {
     expect(getClanRelation(state, 'bear')).toBe('enemy');
     expect(getClanRelation(state, 'raven')).toBe('ally');
     expect(getClanRelationCauses(state, 'raven')).toEqual(['bear.arrival', 'bear.mines']);
+  });
+
+  it('delegates every Lion run and fight to the Lion owners, unchanged', () => {
+    const lion = load(midLion);
+    const cases: Record<string, boolean>[] = [{}, { lionFinaleTrialSelected: true }, { lionFinaleSerpentPursuitSelected: true },
+      { lionFinaleTrialSelected: true, lionTrialWon: true }];
+    for (const flags of cases) {
+      lion.flags = { ...flags };
+      expect(pendingPlateauFinaleCombat(lion)).toBe(resolvePendingLionFinaleCombat(lion.flags));
+    }
+    for (const combatId of combatConfigs.keys()) {
+      expect(combatVictoryFacts(combatId)).toEqual(lionBossVictoryFacts(combatId));
+      expect(anyCombatConfig(combatId)).toBe(combatConfigs.get(combatId));
+    }
+    expect(plateauEpilogueDialogueId(lion)).toBe('epilogue');
   });
 
   it('routes the finale owners by plateau: pending fight, victory facts and epilogue', () => {

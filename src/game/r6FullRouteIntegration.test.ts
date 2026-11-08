@@ -409,7 +409,8 @@ describe('R6 runtime ownership and ordering lock', () => {
       source.indexOf('private async continueChronicle'),
       source.indexOf('\n  private setMode', source.indexOf('private async continueChronicle')),
     );
-    expect(continueMethod).toContain('resolvePendingLionFinaleCombat(this.state.flags)');
+    // Set 1.20.0: the plateau's finale owner, which is the Lion's own for every Lion run (plateauProgression.test.ts).
+    expect(continueMethod).toContain('pendingPlateauFinaleCombat(this.state)');
     // POI navigation (14490908, OD-2026-10-13-D) added the neutralized/bypassed conditions; the last-save reload
     // (878241d8, OD-2026-10-18-C) moved the resume branch to resumeSavedCampaign, inside this slice.
     expect(continueMethod).toContain('await this.resumeSavedCampaign()');

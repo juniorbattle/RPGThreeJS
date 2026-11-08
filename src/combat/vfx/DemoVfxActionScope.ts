@@ -129,6 +129,13 @@ const ENEMY_VISUAL_SKILLS: Readonly<Record<string, readonly string[]>> = Object.
   undead_champion: ['enemy_hex', 'boss_guard', 'boss_quake', 'boss_execution'],
   lion_champion: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_apocalypse'],
   seal_guardian: ['enemy_hex', 'boss_guard'],
+  // Set 1.20.0, post-demo Lot 1 — DRAFT Bear families. No demo fight lists them, so the demo scope is unchanged.
+  raven_scout: ['enemy_binding_shot'],
+  raven_miner: ['enemy_heavy_strike'],
+  raven_foreman: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_slam'],
+  corrupted_beast: ['enemy_venom_strike', 'boss_guard', 'boss_quake', 'boss_slam'],
+  depth_beast: ['enemy_hex', 'boss_guard', 'boss_quake', 'boss_slam'],
+  bear_warrior: ['enemy_heavy_strike'],
 });
 
 /**
@@ -139,6 +146,17 @@ const ENEMY_VISUAL_SKILLS: Readonly<Record<string, readonly string[]>> = Object.
 const BOSS_COMBAT_SKILLS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   serpent_captain: ['enemy_hex', 'boss_guard', 'boss_quake', 'boss_titan_slam'],
   lion_chief: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_apocalypse'],
+});
+
+/**
+ * Set 1.20.0, post-demo Lot 1 — DRAFT: mirror of the `BOSS_DEFS` entries chosen by their `combatIds`. Post-demo fights
+ * are not demo fights, so these never enter the demo scope; the post-demo test checks their FX signatures.
+ */
+const POST_DEMO_BOSS_COMBAT_SKILLS: Readonly<Record<string, readonly string[]>> = Object.freeze({
+  bear_mines_defense: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_slam'],
+  bear_mines_seizure: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_slam'],
+  bear_master_spy: ['enemy_binding_shot', 'boss_fortify', 'boss_pin', 'boss_flurry'],
+  bear_borin: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_titan_slam'],
 });
 
 /** Boss combats launched by the Lion finale (`resolveLionFinaleExecution`). */
@@ -153,9 +171,10 @@ const SERPENT_VISUAL_IDS = new Set([
 const ELITE_VISUAL_IDS = new Set([
   'serpent_elite_raider', 'serpent_elite_brute', 'serpent_duelist_elite',
   'forest_troll_elite', 'young_dragon_elite', 'undead_champion', 'lion_champion',
+  'raven_foreman', 'corrupted_beast', 'depth_beast',
 ]);
 
-export const __testing = { ENEMY_VISUAL_SKILLS, BOSS_COMBAT_SKILLS, ELITE_VISUAL_IDS };
+export const __testing = { ENEMY_VISUAL_SKILLS, BOSS_COMBAT_SKILLS, ELITE_VISUAL_IDS, POST_DEMO_BOSS_COMBAT_SKILLS };
 
 // ============================================================ Player reachability
 

@@ -1,7 +1,7 @@
 import type { PoiMapModel } from '../game/runSystem';
 import { ratingScale, runNodePresentation } from './RunNodePresentation';
 import { resolvePixelSheet } from '../combat/pixel/PixelSpriteSheets';
-import { LION_POI_POSITIONS, LION_POI_REGIONS, LION_POI_REGION_EXITS, lionPoiMapPhase, lionPoiPathBends } from '../campaign/LionPoiMap';
+import { poiAtlasForNode } from '../campaign/plateaux/plateauAtlas';
 import './poi-map.css';
 import { onReducedMotionChange, prefersReducedMotion } from './ReducedMotion';
 import { getReputationRule } from '../game/reputation';
@@ -94,21 +94,22 @@ export class PoiMapView {
   private finishTravel:(()=>void)|null=null;
   constructor(private readonly options:PoiMapOptions){}
   open(model:PoiMapModel,focusId=suggestedPoi(model),reducedMotion=false):void {
-    this.render(model,lionPoiMapPhase(model.currentNodeId),focusId,reducedMotion);
+    this.render(model,poiAtlasForNode(model.currentNodeId).phaseOf(model.currentNodeId),focusId,reducedMotion);
   }
 
   private render(model:PoiMapModel,phase:number,focusId:string,reducedMotion:boolean):void {
     this.close();this.selectedId=focusId;
     const current=model.nodes.find(n=>n.id===model.currentNodeId)!;
-    const region=LION_POI_REGIONS[phase]!;
+    const atlas=poiAtlasForNode(model.currentNodeId);
+    const region=atlas.regions[phase]!;
     // Reconstruct discovery from earned facts; no new save or presentation state.
-    const reachedPhase=Math.max(lionPoiMapPhase(model.currentNodeId),...model.nodes.filter(n=>n.status==='resolved').map(n=>n.region));
-    const discovered=LION_POI_REGIONS.map((r,i)=>({r,i})).filter(({i})=>i<=reachedPhase);
+    const reachedPhase=Math.max(atlas.phaseOf(model.currentNodeId),...model.nodes.filter(n=>n.status==='resolved').map(n=>n.region));
+    const discovered=atlas.regions.map((r,i)=>({r,i})).filter(({i})=>i<=reachedPhase);
     const own=new Set(model.nodes.filter(n=>n.region===phase).map(n=>n.id));
     const nodes=model.nodes.filter(n=>own.has(n.id)||model.edges.some(e=>
       (own.has(e.from)&&e.to===n.id)||(own.has(e.to)&&e.from===n.id)));
-    const positions=new Map(nodes.map(n=>[n.id,LION_POI_POSITIONS[n.id]??[850,300] as readonly[number,number]]));
-    for(const n of nodes)if(n.region!==phase)positions.set(n.id,n.region<phase?[80,80]:LION_POI_REGION_EXITS[phase]!);
+    const positions=new Map(nodes.map(n=>[n.id,atlas.positions[n.id]??[850,300] as readonly[number,number]]));
+    for(const n of nodes)if(n.region!==phase)positions.set(n.id,n.region<phase?[80,80]:atlas.exits[phase]!);
     const threats=model.threats.filter(threat=>threat.region===phase);
     const nextSteps=new Set(nextStorySteps(model));
     const nodeLabel=(id:string)=>model.nodes.find(node=>node.id===id)?.label??id;
@@ -117,7 +118,7 @@ export class PoiMapView {
       const key=[e.from,e.to].sort().join(':');if(seen.has(key))return '';seen.add(key);
       const [x,y]=positions.get(e.from)!,[tx,ty]=positions.get(e.to)!;
       const bend=(Math.abs(ty-y)>100?1:-1)*Math.min(48,Math.abs(tx-x)*.22);
-      const bends=lionPoiPathBends(e.from,e.to,phase);
+      const bends=atlas.pathBends(e.from,e.to,phase);
       const d=bends?`M${x} ${y} ${bends.map(([px,py])=>`L${px} ${py}`).join(' ')} L${tx} ${ty}`
         :`M${x} ${y} C${x+(tx-x)*.35} ${y+bend} ${x+(tx-x)*.65} ${ty-bend} ${tx} ${ty}`;
       const neighbor=e.from===model.currentNodeId?e.to:e.to===model.currentNodeId?e.from:undefined;
@@ -131,10 +132,10 @@ export class PoiMapView {
       <div class="poi-map__viewport">
       <div class="poi-map__atlas-bar">${discovered.length>1?`<div class="poi-map__regions" role="tablist" aria-label="Régions découvertes">${discovered.map(({r,i})=>`<button role="tab" id="poi-region-${i}" data-poi-region="${i}" aria-selected="${i===phase}" tabindex="${i===phase?0:-1}" aria-controls="poi-atlas">${r.shortTitle}</button>`).join('')}</div>`:''}<details class="poi-map__legend-box"${window.innerWidth>1050?' open':''}><summary>Légende</summary><ul><li><span class="poi-legend__mark poi-legend__mark--todo" aria-hidden="true">◇</span>À faire, à portée</li><li><span class="poi-legend__mark poi-legend__mark--next" aria-hidden="true">⚑</span>Prochaine étape</li><li><span class="poi-legend__mark poi-legend__mark--done" aria-hidden="true">✓</span>Fait</li><li><span class="poi-legend__mark poi-legend__mark--closed" aria-hidden="true"></span>Pas encore ouvert</li><li><span class="poi-legend__mark poi-legend__mark--threat" aria-hidden="true">♜</span>Gardien d’un coffre</li><li class="poi-legend__kinds">✠ Élite · <span class="poi-legend__challenge">Défi</span> condition et prime</li></ul></details><button data-poi-action="locate">Ma position</button></div>
       <div class="poi-map__land" id="poi-atlas" role="${discovered.length>1?'tabpanel':'region'}" aria-labelledby="${discovered.length>1?`poi-region-${phase}`:'poi-region-title'}" tabindex="0" aria-label="${escape(region.title)}. Carte défilante, glisser ou utiliser les flèches."><div class="poi-map__canvas"><img class="poi-map__geography" src="${region.image}" alt="" draggable="false"/><svg viewBox="0 0 960 520" aria-hidden="true">${paths}</svg>
-      ${nodes.map(n=>{const [x,y]=positions.get(n.id)!;const threat=threats.find(threat=>threat.positionId===n.id);const state=poiMarkerState(n,model.currentNodeId);const isNext=nextSteps.has(n.id);const named=n.id===model.currentNodeId||n.canMove||isNext||n.region!==phase;return `<button class="poi-marker poi-marker--${n.status} poi-marker--${n.role} poi-marker--${n.kind} ${n.id===model.currentNodeId?'poi-marker--current':''} ${named?'poi-marker--named':''} ${isNext?'poi-marker--next':''} ${n.region!==phase?'poi-marker--border':''} ${n.region>phase?'poi-marker--outbound':''} ${threat?'poi-marker--occupied':''} ${n.canMove||n.canTravel||n.id===model.currentNodeId?'':'poi-marker--far'}" data-poi-state="${state}" data-poi-id="${escape(n.id)}" data-poi-reachable="${n.canMove}" data-gamepad-confirm="[data-poi-action=move],[data-poi-action=details]" style="left:${x/9.6}%;top:${y/5.2}%" aria-label="${escape(n.label)}, ${roleLabels[n.role]}, ${kindLabels[n.kind]}, ${participationLabels[n.participation]}, ${statusLabels[n.status]}${n.id===model.currentNodeId?', position actuelle':''}${isNext?', prochaine étape':''}${n.reusable?', services réutilisables':''}${n.canTravel?', voyage rapide en 1 tour':''}${threat?', gardé par '+escape(threat.label):''}${n.challenge&&n.status!=='resolved'?', défi : '+escape(n.challenge.condition)+', prime '+escape(n.challenge.prime):''}${n.region>phase?', vers '+escape(LION_POI_REGIONS[n.region]!.shortTitle):''}">${isNext?'<span class="poi-marker__next" aria-hidden="true">Prochaine étape</span>':''}<span class="poi-marker__icon" aria-hidden="true">${icons[n.kind]}</span>${n.challenge&&n.status!=='resolved'?'<span class="poi-marker__challenge" aria-hidden="true">Défi</span>':''}<span class="poi-marker__name">${escape(n.label)}${n.region>phase?`<small class="poi-marker__toward">Vers ${escape(LION_POI_REGIONS[n.region]!.shortTitle)}</small>`:''}</span>${n.status==='resolved'?'<span class="poi-marker__check" aria-hidden="true">✓</span>':n.status==='neutralized'?'<span class="poi-marker__check poi-marker__check--neutral" aria-hidden="true">—</span>':''}</button>`;}).join('')}
+      ${nodes.map(n=>{const [x,y]=positions.get(n.id)!;const threat=threats.find(threat=>threat.positionId===n.id);const state=poiMarkerState(n,model.currentNodeId);const isNext=nextSteps.has(n.id);const named=n.id===model.currentNodeId||n.canMove||isNext||n.region!==phase;return `<button class="poi-marker poi-marker--${n.status} poi-marker--${n.role} poi-marker--${n.kind} ${n.id===model.currentNodeId?'poi-marker--current':''} ${named?'poi-marker--named':''} ${isNext?'poi-marker--next':''} ${n.region!==phase?'poi-marker--border':''} ${n.region>phase?'poi-marker--outbound':''} ${threat?'poi-marker--occupied':''} ${n.canMove||n.canTravel||n.id===model.currentNodeId?'':'poi-marker--far'}" data-poi-state="${state}" data-poi-id="${escape(n.id)}" data-poi-reachable="${n.canMove}" data-gamepad-confirm="[data-poi-action=move],[data-poi-action=details]" style="left:${x/9.6}%;top:${y/5.2}%" aria-label="${escape(n.label)}, ${roleLabels[n.role]}, ${kindLabels[n.kind]}, ${participationLabels[n.participation]}, ${statusLabels[n.status]}${n.id===model.currentNodeId?', position actuelle':''}${isNext?', prochaine étape':''}${n.reusable?', services réutilisables':''}${n.canTravel?', voyage rapide en 1 tour':''}${threat?', gardé par '+escape(threat.label):''}${n.challenge&&n.status!=='resolved'?', défi : '+escape(n.challenge.condition)+', prime '+escape(n.challenge.prime):''}${n.region>phase?', vers '+escape(atlas.regions[n.region]!.shortTitle):''}">${isNext?'<span class="poi-marker__next" aria-hidden="true">Prochaine étape</span>':''}<span class="poi-marker__icon" aria-hidden="true">${icons[n.kind]}</span>${n.challenge&&n.status!=='resolved'?'<span class="poi-marker__challenge" aria-hidden="true">Défi</span>':''}<span class="poi-marker__name">${escape(n.label)}${n.region>phase?`<small class="poi-marker__toward">Vers ${escape(atlas.regions[n.region]!.shortTitle)}</small>`:''}</span>${n.status==='resolved'?'<span class="poi-marker__check" aria-hidden="true">✓</span>':n.status==='neutralized'?'<span class="poi-marker__check poi-marker__check--neutral" aria-hidden="true">—</span>':''}</button>`;}).join('')}
       ${threats.map(threat=>{const position=positions.get(threat.positionId);if(!position)return '';return `<span class="poi-threat" data-poi-elite-id="${escape(threat.id)}" style="left:${position[0]/9.6}%;top:${position[1]/5.2}%" aria-hidden="true">♜</span>`;}).join('')}
       <svg class="poi-map__party-layer" viewBox="0 0 960 520" aria-hidden="true">${current.region===phase?(()=>{const [x,y]=positions.get(current.id)!;return `<g class="poi-map__pawn" data-node="${escape(current.id)}" data-x="${x}" data-y="${y}" transform="translate(${x} ${y})"><g class="poi-map__pawn-piece" transform="translate(0 1)"><ellipse class="poi-map__pawn-shadow" cx="1" cy="1" rx="15" ry="4.5"/><ellipse class="poi-map__pawn-base" cx="0" cy="0" rx="12" ry="3.6"/><g class="poi-map__pawn-figure">${pawnFigure()}</g></g></g>`;})():''}</svg></div></div>
-      <div class="poi-map__map-caption"><span>${escape(region.title)}</span></div>
+      <div class="poi-map__map-caption"><span>${escape(region.title)}</span>${atlas.provisional?'<small class="poi-map__provisional" data-provisional-art="true">Brouillon · carte provisoire</small>':''}</div>
 </div>
       <footer class="poi-map__footer">${model.commitment?(()=>{const c=model.commitment!;const text=c.targetNodeId===c.forkNodeId?`Engagé sur « ${escape(nodeLabel(c.forkNodeId))} », jusqu’à « ${escape(nodeLabel(c.resolvingNodeId))} »`:`Engagé : jusqu’à « ${escape(nodeLabel(c.resolvingNodeId))} »`;return `<p class="poi-map__commitment" tabindex="0" data-poi-commitment="${escape(c.resolvingNodeId)}">${text} · Retour, voyage et lieux annexes reprendront ensuite.</p>`;})():''}<div class="poi-map__detail" aria-live="polite"></div></footer>
       <div class="poi-map__panel-backdrop" hidden><aside class="poi-map__panel" id="poi-map-panel" aria-labelledby="poi-panel-title" tabindex="-1"><header><h2 id="poi-panel-title">Repères de voyage</h2><button data-poi-action="close-panel" aria-label="Fermer les informations">Fermer</button></header><div class="poi-map__panel-detail"></div><section><h3>Explorer la carte</h3><p>Sélectionnez un lieu pour voir son état, puis choisissez « Se rendre ». Les chemins ouverts se parcourent dans les deux sens. Les lieux verrouillés conservent leurs conditions d’accès.</p><p>Glissez ou faites défiler la carte. Au clavier, les flèches passent entre les points d’intérêt ; Entrée sélectionne le lieu. « Ma position » recentre votre emplacement.</p><p>Les régions se découvrent en progressant. Un gardien ♜ tient un coffre facultatif sans jamais bouger : affrontez-le pour ouvrir le coffre, ou passez votre chemin.</p><p>Un défi annonce une condition (nombre de héros, objets interdits ou nombre de manches) et une prime en gemmes rouges, gagnée si la victoire respecte la condition.</p></section><section><h3>Or et sauvegardes</h3><p>L’or et les objets gagnés sont utilisables immédiatement. En cas de défaite, la dernière sauvegarde de cette partie est rechargée : seuls les changements non sauvegardés sont annulés.</p></section><section class="poi-map__legend"><h3>Légende</h3><p><span>◆ Jalon</span> <span>◇ Rencontre</span> <span>⚔ Combat</span> <span>✠ Élite</span> <span>▣ Coffre</span> <span>⌂ Refuge</span> <span>♜ Gardien</span> <span>Défi : condition et prime</span></p><p>Anneau doré : à faire, à portée · ⚑ Prochaine étape · ✓ Fait · — Écarté (autre branche) · petit point : pas encore ouvert</p></section></aside></div>`;
@@ -200,7 +201,7 @@ export class PoiMapView {
         case'company':this.options.onSound?.('confirm');this.options.onCompany();break;case'save':this.options.onSave();break;
         case'menu':this.options.onMenu();break;
         case'elite-fight':if(button.dataset.eliteId){button.disabled=true;void this.options.onFightElite?.(button.dataset.eliteId).finally(()=>{if(button.isConnected)button.disabled=false;});}break;
-        case'locate':this.render(model,lionPoiMapPhase(model.currentNodeId),model.currentNodeId,reducedMotion);break;
+        case'locate':this.render(model,poiAtlasForNode(model.currentNodeId).phaseOf(model.currentNodeId),model.currentNodeId,reducedMotion);break;
       }
     });
     element.addEventListener('focusin',event=>{const id=(event.target as HTMLElement).dataset.poiId;if(id)select(id,true);});
@@ -228,8 +229,9 @@ export class PoiMapView {
         this.render(model,next,model.nodes.find(n=>n.region===next)!.id,reducedMotion);
         this.element?.querySelector<HTMLButtonElement>(`[data-poi-region="${next}"]`)?.focus();return;}
       const id=active.dataset.poiId;if(!id)return;event.preventDefault();
-      if(event.key==='Home'&&lionPoiMapPhase(model.currentNodeId)!==phase){
-        this.render(model,lionPoiMapPhase(model.currentNodeId),model.currentNodeId,reducedMotion);return;}
+      const currentPhase=poiAtlasForNode(model.currentNodeId).phaseOf(model.currentNodeId);
+      if(event.key==='Home'&&currentPhase!==phase){
+        this.render(model,currentPhase,model.currentNodeId,reducedMotion);return;}
       const [x,y]=positions.get(id)!;
       const candidates=nodes.filter(n=>n.id!==id).map(n=>{const [nx,ny]=positions.get(n.id)!;const dx=nx-x,dy=ny-y;
         const forward=event.key==='ArrowLeft'?-dx:event.key==='ArrowRight'?dx:event.key==='ArrowUp'?-dy:dy;

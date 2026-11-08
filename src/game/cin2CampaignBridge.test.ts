@@ -169,7 +169,8 @@ describe('CIN-2 campaign presentation bridge', () => {
     expect(loader).not.toContain('this.showTravel()');
     expect(loader).not.toContain('this.travel.open()');
     const chronicle = method('private async resumeSavedCampaign');
-    expect(chronicle).toContain('resolvePendingLionFinaleCombat(this.state.flags)');
+    // Set 1.20.0: the plateau's finale owner, which is the Lion's own for every Lion run (plateauProgression.test.ts).
+    expect(chronicle).toContain('pendingPlateauFinaleCombat(this.state)');
     expect(chronicle).toContain('!this.state.resolvedNodeIds.includes(current.id)');
     expect(chronicle).toContain('await this.resolveRunNode(current, true)');
     expect(chronicle).toContain('await this.enterCampaignPresentation()');

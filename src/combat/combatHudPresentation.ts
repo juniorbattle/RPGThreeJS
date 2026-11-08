@@ -48,6 +48,8 @@ export const COMBAT_PORTRAIT_FRAMING: Readonly<Record<string, { scale: number; x
   '/assets/characters/pixel/masters/venom_serpent.png': { scale: 3.1, x: 0, y: -30 },
   '/assets/characters/pixel/masters/village_militia_slinger.png': { scale: 3.25, x: 0, y: 39 },
   '/assets/characters/pixel/masters/village_militia_spearman.png': { scale: 3.2, x: 0, y: 46 },
+  // Set 1.20.0, post-demo Lot 1: the provisional stand-in for Borin, the Bear's draft boss (same framing as the militia).
+  '/assets/characters/pixel/masters/village_militia_brute.png': { scale: 3.2, x: 0, y: 46 },
   '/assets/characters/pixel/masters/wolf.png': { scale: 2.45, x: -21, y: -38 },
   '/assets/characters/pixel/masters/forest_badger.png': { scale: 3.1, x: -23, y: -72 },
   '/assets/characters/pixel/masters/wild_boar.png': { scale: 2.55, x: -12, y: -57 },

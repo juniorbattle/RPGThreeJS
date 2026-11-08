@@ -1,5 +1,6 @@
 import type { RunNode } from '../game/types';
 import { CLAN_ANCHOR_DIALOGUES } from '../game/campaignGrammarContent';
+import { POST_DEMO_REFUGE_PRESENTATION } from '../campaign/plateaux/postDemoRefuges';
 import { demoEnvironmentPlateForContext, type DemoEnvironmentSurfaceRole } from '../render/demoEnvironmentPack';
 
 /**
@@ -41,7 +42,8 @@ export interface RefugePresentation extends RefugePresentationContent {
 
 export function resolveRefugePresentation(node: RunNode): RefugePresentation | null {
   if (node.type !== 'refuge') return null;
-  const content = INTERACTIVE_REFUGES[node.id];
+  // Set 1.20.0: the refuges of a post-demo plateau borrow the demo's refuge plates (provisional, marked).
+  const content: RefugePresentationContent | undefined = INTERACTIVE_REFUGES[node.id] ?? POST_DEMO_REFUGE_PRESENTATION[node.id];
   if (!content) return null;
   const plate = demoEnvironmentPlateForContext(content.environmentContext, content.environmentRole);
   if (plate.visualFamily !== 'FIRST_REFUGE' && plate.visualFamily !== 'SECOND_REFUGE') {
@@ -49,7 +51,7 @@ export function resolveRefugePresentation(node: RunNode): RefugePresentation | n
   }
   return {
     ...content,
-    gatheringDialogueId: CLAN_ANCHOR_DIALOGUES[node.id],
+    gatheringDialogueId: CLAN_ANCHOR_DIALOGUES[node.id] ?? content.gatheringDialogueId,
     nodeId: node.id,
     title: node.label,
     background: plate.publicUrl,

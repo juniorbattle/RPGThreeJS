@@ -8,24 +8,23 @@ import {
   getAvailableRunNodes, getRunNode, secureRunLoot, travelToResolvedPoi,
   selectPoiMap, enterPoi, bypassPoi, isPoiNeutralized, settlePoiNavigation,
   commitPoiEliteFight, resolvePoiEliteVictory, runNodesAllowedByCommitment, creditChallengePrime, challengeVerdict,
-  type ChallengeVerdict } from './runSystem';
+  setClanRelation, topologyForRun, type ChallengeVerdict } from './runSystem';
 import { createPoiChestAdapter } from './poiContentAdapters';
 import { beginPoiEliteEncounter, retreatPoiElite } from './poiExpedition';
-import { LOT_E_ELITES } from '../campaign/LionPoiAuthoring';
 import { areLionFinalRefugeServicesOpen } from '../campaign/LionFinalRefugeServices';
 import { PoiEncounterView } from '../ui/PoiEncounterView';
 import { changeReputation, getReputationRule } from './reputation';
 import { calibrateLionAmount } from './lionReputationCalibration';
-import { playableCombatConfig } from './playableContent';
-import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
-import { CLAN_ANCHOR_DIALOGUES } from './campaignGrammarContent';
-import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
+import { anyCombatConfig, playableCombatConfig } from './playableContent';
 import {
-  lionBossVictoryFacts,
-  resolveLionFinaleExecution,
-  resolvePendingLionFinaleCombat,
-  resolveSelectedLionFinaleCombat,
-} from './lionFinale';
+  closeCurrentPlateau, combatVictoryFacts, completePlateauChronicle, continueCampaign, nextPlayablePlateau,
+  pendingPlateauFinaleCombat, plateauEpilogueDialogueId, plateauFinaleOf,
+} from './plateauProgression';
+import { resolvePlateauFinaleExecution, resolvePendingPlateauFinaleCombat } from './plateauFinale';
+import { getPlateau } from '../campaign/plateaux/PlateauRegistry';
+import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
+import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
+import { resolveLionFinaleExecution, resolveSelectedLionFinaleCombat } from './lionFinale';
 import { ateSeenFlag } from './contextualDialogue';
 import { resolveGameAteRules, resolveGameDialogue } from './contextualDialogueContent';
 import { selectGameReputationEvent } from './reputationEventContent';
@@ -132,6 +131,7 @@ const QA_HERO_IDS = [
 
 // Generic Journey secondary actions wired to the systems that already own them. CAMP is absent on
 // purpose: real refuge nodes own camp gameplay, so a fake generic entry point would be a lie.
+const CONTINUE_CAMPAIGN_ACTION = 'CONTINUE_CAMPAIGN';
 const JOURNEY_SECONDARY_ACTIONS: readonly JourneySecondaryActionPresentation[] = Object.freeze([
   { id: 'COMPANY', label: 'Compagnie' },
   { id: 'SAVE', label: 'Sauvegarder' },
@@ -805,7 +805,7 @@ export class GameApp {
   private hasCompletedPoiChronicle(): boolean {
     return this.state.run.status === 'completed' && Boolean(this.state.endingId)
       && getRunNode(this.state.run)?.links.length === 0
-      && resolvePendingLionFinaleCombat(this.state.flags) === null;
+      && pendingPlateauFinaleCombat(this.state) === null;
   }
 
   private async enterCampaignPresentation(): Promise<void> {
@@ -893,7 +893,7 @@ export class GameApp {
     const encounter=this.state.run.poiExpedition?.encounter;
     if(!encounter)return;
     if(encounter.phase==='combat'){await this.fightPoiElite(encounter.id);return;}
-    const def=LOT_E_ELITES.find(def=>def.id===encounter.eliteId)!;
+    const def=topologyForRun(this.state.run).guardians.find(def=>def.id===encounter.eliteId)!;
     this.showPoiMap(encounter.targetNodeId);this.setMode('RESULT');
     this.saves.saveAuto(this.state);
     const challenge=selectPoiMap(this.state).threats.find(threat=>threat.id===def.id)?.challenge;
@@ -901,7 +901,7 @@ export class GameApp {
       description:encounter.kind==='rear'?'La menace a rejoint votre position. Combattez ou regagnez le point sûr précédent.'
         :'Ce gardien tient le coffre. Combattez, ou restez à votre position sûre.',
       lines:[challenge?`Défi · ${challenge.condition} · Prime : ${challenge.prime} si la condition est tenue.`:'Combat d’élite · Déploiement : 3 unités maximum.',
-        ...((combatConfigs.get(def.combat.id)?.waves??1)>1?[`${combatConfigs.get(def.combat.id)!.waves} vagues d’ennemis : la seconde entre dès que la première tombe, sans soin entre les deux.`]:[]),
+        ...((anyCombatConfig(def.combat.id)?.waves??1)>1?[`${anyCombatConfig(def.combat.id)!.waves} vagues d’ennemis : la seconde entre dès que la première tombe, sans soin entre les deux.`]:[]),
         `${def.combat.rewards.temporaryGold} or à la victoire. Le coffre s’ouvre ensuite.`]});
     if(this.disposed||this.state.run.poiExpedition?.encounter?.id!==encounter.id)return;
     if(choice==='retreat'){
@@ -995,7 +995,7 @@ export class GameApp {
         currentContentId: current?.contentId ?? null,
         ...(current?.label ? { currentLabel: current.label } : {}),
         available,
-        secondary: JOURNEY_SECONDARY_ACTIONS,
+        secondary: this.journeySecondaryActions(available.length === 0),
         reducedMotion: this.state.settings.reducedGraphics,
         ...(current?.id === 'lion-final-refuge'
           ? { presentationOnly: { eyebrow: 'Préparation', title: 'Avant le jugement', continueLabel: 'Carte de campagne' } }
@@ -1069,8 +1069,27 @@ export class GameApp {
     if (this.activeNarrativeStage === stage) this.activeNarrativeStage = null;
   }
 
+  /**
+   * Set 1.20.0 (post-demo): at the end of a chronicle whose next plateau is built, RunSystem offers to continue the
+   * campaign; the boundary only names it. The demo's own actions are unchanged.
+   */
+  private journeySecondaryActions(terminal: boolean): readonly JourneySecondaryActionPresentation[] {
+    const next = terminal ? nextPlayablePlateau(this.state) : null;
+    if (!next) return JOURNEY_SECONDARY_ACTIONS;
+    const plateau = getPlateau(next);
+    const draft = plateau.status === 'draft' ? ' (brouillon)' : '';
+    return [{ id: CONTINUE_CAMPAIGN_ACTION, label: `Continuer : ${plateau.label}${draft}` }, ...JOURNEY_SECONDARY_ACTIONS];
+  }
+
   /** Returns true when the same Journey boundary should be presented again. */
   private async handleJourneySecondary(actionId: string): Promise<boolean> {
+    if (actionId === CONTINUE_CAMPAIGN_ACTION) {
+      if (!continueCampaign(this.state)) return true;
+      this.saves.saveAuto(this.state);
+      this.disposeJourney();
+      this.showPoiMap();
+      return false;
+    }
     if (actionId === 'SAVE') {
       this.saves.saveManual(this.state);
       this.uiSounds.play('saved');
@@ -1142,7 +1161,7 @@ export class GameApp {
   private async resolveRunNode(node: RunNode, initial: boolean): Promise<void> {
     // Pending canonical finale combat survives a resolved story node. Ordinary resolved combats
     // and neutralized branches must be refused before any tactical or narrative entry.
-    const pendingFinale = node.type === 'boss' ? resolvePendingLionFinaleCombat(this.state.flags) : null;
+    const pendingFinale = node.type === 'boss' ? pendingPlateauFinaleCombat(this.state) : null;
     if (node.type !== 'refuge' && !pendingFinale
       && (this.state.resolvedNodeIds.includes(node.id) || isPoiNeutralized(this.state, node.id))) {
       await this.enterCampaignPresentation();
@@ -1174,7 +1193,7 @@ export class GameApp {
         securedGold = secureRunLoot(this.state).gold;
         this.state.flags[securedFlag] = true;
       }
-      const gatheringId = CLAN_ANCHOR_DIALOGUES[node.id];
+      const gatheringId = presentation.gatheringDialogueId;
       const gatheringFlag = `clanArrival:${node.id}`;
       if (gatheringId && !this.state.flags[gatheringFlag]) {
         const sequence = resolveGameDialogue(gatheringId, this.state)!.sequence;
@@ -1204,14 +1223,14 @@ export class GameApp {
       return;
     }
     if (node.type === 'boss') {
-      const pendingFinaleCombat = resolvePendingLionFinaleCombat(this.state.flags);
+      const pendingFinaleCombat = pendingPlateauFinaleCombat(this.state);
       if (pendingFinaleCombat) {
         await this.startCombat(pendingFinaleCombat, node);
         return;
       }
     }
     if (node.type === 'combat' || node.type === 'boss') {
-      if (!combatConfigs.has(node.contentId)) {
+      if (!anyCombatConfig(node.contentId)) {
         await this.playDialogue(node.contentId, node.label, { live: !initial });
         if (this.pendingCombatId) await this.flushPendingCombat(node);
         else {
@@ -1531,6 +1550,32 @@ export class GameApp {
         case 'finishChapter':
           this.state.endingId = effect.endingId;
           this.pendingChapterBeatId = effect.endingId;
+          // Set 1.20.0: RunSystem records the Lion's outcome and relations as the chronicle ends.
+          closeCurrentPlateau(this.state);
+          break;
+        case 'setClanRelation':
+          setClanRelation(this.state, effect.clan, effect.stance, effect.cause);
+          break;
+        case 'resolvePlateauFinale':
+          {
+            const finale = plateauFinaleOf(effect.plateauId);
+            if (!finale) throw new Error(`No finale for plateau '${effect.plateauId}'.`);
+            const existingCombat = resolvePendingPlateauFinaleCombat(finale, this.state.flags);
+            if (existingCombat) {
+              this.pendingCombatId = existingCombat;
+              break;
+            }
+            const execution = resolvePlateauFinaleExecution(finale, this.state, effect.intent);
+            Object.assign(this.state.flags, execution.flagChanges);
+            if (execution.reputationDelta !== 0) {
+              changeReputation(this.state, execution.reputationDelta, `${effect.plateauId}-finale:${execution.trialCause ?? execution.route}`);
+            }
+            this.pendingCombatId = execution.combatId;
+            this.saves.saveAuto(this.state);
+          }
+          break;
+        case 'completePlateau':
+          completePlateauChronicle(this.state, effect.plateauId);
           break;
       }
     }
@@ -1618,7 +1663,7 @@ export class GameApp {
       this.restoreAfterDefeat();
       return;
     }
-    const encounterLimit = combatConfigs.get(result.combatId)?.maxPlayerUnits ?? 4;
+    const encounterLimit = anyCombatConfig(result.combatId)?.maxPlayerUnits ?? 4;
     applyCombatProgress(this.state, result, encounterLimit);
     this.state.currentNodeId = node.id;
     creditRunReward(this.state, { gold: rewards.gold });
@@ -1629,17 +1674,17 @@ export class GameApp {
     // Set 1.18.0: RunSystem decides the challenge prime with the existing rewards, before the node is marked resolved.
     // The verdict is stated once the company is back on the map, after any aftermath dialogue.
     this.pendingChallengeVerdict = creditChallengePrime(this.state, result);
-    Object.assign(this.state.flags, lionBossVictoryFacts(result.combatId));
+    Object.assign(this.state.flags, combatVictoryFacts(result.combatId));
     this.markResolved(node.id);
     // The Bois-Clair outcome reads the resolved result only through its existing presentation trigger (set 1.13.0).
     const boisClairAftermath = resolveCin6aBoisClairAftermath(result.combatId, result.victory, this.state.flags);
-    const aftermathDialogue = combatConfigs.get(result.combatId)?.postCombatDialogueId;
+    const aftermathDialogue = anyCombatConfig(result.combatId)?.postCombatDialogueId;
     const livedAftermath = boisClairAftermath && aftermathDialogue ? await this.playLivingTableau(boisClairAftermath, aftermathDialogue) : false;
     if (!livedAftermath) await this.playJourneyCinematic(boisClairAftermath, result.victory ? 'Conséquence' : 'Défaite');
     if (node.type === 'boss') {
       this.state.run.status = 'completed';
       secureRunLoot(this.state);
-      const bossConfig = combatConfigs.get(result.combatId);
+      const bossConfig = anyCombatConfig(result.combatId);
       if (bossConfig?.postCombatDialogueId) {
         await this.playDialogue(bossConfig.postCombatDialogueId, node.label);
         if (this.pendingCombatId) {
@@ -1653,11 +1698,11 @@ export class GameApp {
         ?? resolveCin6aSerpentEnding(result.combatId, result.victory, this.state.flags);
       const livedEnding = routeEnding ? await this.playLivingTableau(routeEnding, 'epilogue') : false;
       if (!livedEnding) await this.playJourneyCinematic(routeEnding, 'Épilogue');
-      await this.playDialogue('epilogue');
+      await this.playDialogue(plateauEpilogueDialogueId(this.state));
       await this.enterCampaignPresentation();
       return;
     }
-    const combatConfig = combatConfigs.get(result.combatId);
+    const combatConfig = anyCombatConfig(result.combatId);
     if (combatConfig?.postCombatDialogueId) {
       await this.playDialogue(combatConfig.postCombatDialogueId, node.label);
       if (this.pendingCombatId) {
@@ -1779,7 +1824,7 @@ export class GameApp {
     }
     const current = getRunNode(this.state.run);
     if(this.state.run.poiExpedition?.encounter){await this.presentPoiElite();return;}
-    const pendingFinaleCombat = resolvePendingLionFinaleCombat(this.state.flags);
+    const pendingFinaleCombat = pendingPlateauFinaleCombat(this.state);
     if (
       current
       && current.depth > 0

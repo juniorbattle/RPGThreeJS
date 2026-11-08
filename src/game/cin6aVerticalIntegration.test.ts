@@ -63,10 +63,11 @@ describe('CIN-6A vertical integration seams', () => {
 
   it('selects state-specific aftermath after deterministic victory facts and before consequence dialogue', () => {
     const combat = method('private async resolveCombat');
-    const facts = combat.indexOf('Object.assign(this.state.flags, lionBossVictoryFacts(result.combatId))');
+    // Set 1.20.0: the plateau's victory facts, which are the Lion's boss facts for every Lion fight (plateauProgression.test.ts).
+    const facts = combat.indexOf('Object.assign(this.state.flags, combatVictoryFacts(result.combatId))');
     const aftermath = combat.indexOf('resolveCin6aBoisClairAftermath');
     const postDialogue = combat.lastIndexOf('bossConfig?.postCombatDialogueId') > -1
-      ? combat.indexOf('const combatConfig = combatConfigs.get(result.combatId)')
+      ? combat.indexOf('const combatConfig = anyCombatConfig(result.combatId)')
       : -1;
     expect(facts).toBeGreaterThan(-1);
     expect(aftermath).toBeGreaterThan(facts);
@@ -78,7 +79,8 @@ describe('CIN-6A vertical integration seams', () => {
     const bossAftermath = combat.indexOf('bossConfig.postCombatDialogueId');
     const ending = combat.indexOf('resolveCin6aSerpentEnding');
     const lionEnding = combat.indexOf('resolveCin6bLionTrialEnding');
-    const epilogue = combat.indexOf("await this.playDialogue('epilogue')");
+    // Set 1.20.0: the plateau's epilogue, which is 'epilogue' for every Lion run (plateauProgression.test.ts).
+    const epilogue = combat.indexOf('await this.playDialogue(plateauEpilogueDialogueId(this.state))');
     expect(bossAftermath).toBeGreaterThan(-1);
     expect(ending).toBeGreaterThan(bossAftermath);
     expect(lionEnding).toBeGreaterThan(bossAftermath);

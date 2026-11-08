@@ -113,3 +113,5 @@
 .poi-legend__kinds{color:#e2c8ff}
 @media(max-width:1050px){.poi-map__legend-box ul{display:none}.poi-map__legend-box[open] ul{display:flex;position:absolute;top:calc(100% + 6px);left:0;right:0;background:#101f2cf2;border:1px solid #756445;border-radius:5px;padding:8px 12px}}
 .poi-map__atlas-bar{flex-wrap:wrap}
+/* Set 1.20.0 (post-demo): a draft plateau's reused atlas is marked as provisional art. */
+.poi-map__provisional{display:block;margin-top:2px;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#f0b36a}

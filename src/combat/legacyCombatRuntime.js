@@ -731,6 +731,13 @@ const DEFS=[
 const BOSS_DEFS=[
   {team:'foe',kind:'brute',name:'Général Serpent',className:'Général Serpent',portrait:'/assets/characters/pixel/masters/serpent_general_boss.png',hp:450,str:30,mag:8,end:24,dex:9,cha:12,mov:0,weapons:[{name:'Lame Serpent',icon:'⚔️',type:'phys',min:1,max:2,power:18,crit:0.08,acc:0.9}],skills:['enemy_hex','boss_guard','boss_quake','boss_titan_slam'],ai:'aggressive',gx:5,gz:1,size:2,immobile:true,boss:true},
   {team:'foe',kind:'knight',name:'Champion du Lion',className:'Champion du Lion',portrait:'/assets/characters/pixel/masters/lion_champion.png',hp:520,str:28,mag:6,end:27,dex:10,cha:16,mov:0,weapons:[{name:'Lame du Lion',icon:'⚔️',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.92}],skills:['enemy_heavy_strike','boss_guard','boss_quake','boss_apocalypse'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true}
+,
+  // Set 1.20.0, post-demo Lot 1 — DRAFT bosses of the Bear plateau, named by the fights they lead (combatIds). Their
+  // sprites are PROVISIONAL stand-ins (existing masters) until their Character V2 masters exist; every skill is an
+  // existing one with its procedural FX signature, so no new FX is needed. Demo fights never match these combatIds.
+  {team:'foe',kind:'brute',name:'Chef des mineurs du Corbeau',className:'Chef des mineurs',portrait:'/assets/characters/pixel/masters/serpent_elite_brute.png',hp:420,str:27,mag:4,end:22,dex:7,cha:8,mov:0,weapons:[{name:'Pioche de guerre',icon:'◆',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.88}],skills:['enemy_heavy_strike','boss_guard','boss_quake','boss_slam'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true,combatIds:['bear_mines_defense','bear_mines_seizure'],provisionalSprite:true},
+  {team:'foe',kind:'brigand',name:'Maître Espion du Corbeau',className:'Maître Espion',portrait:'/assets/characters/pixel/masters/serpent_duelist_elite.png',hp:460,str:24,mag:10,end:18,dex:24,cha:12,mov:0,weapons:[{name:'Lames de jet',icon:'†',type:'phys',min:2,max:3,power:15,crit:0.2,acc:0.95}],skills:['enemy_binding_shot','boss_fortify','boss_pin','boss_flurry'],ai:'aggressive',gx:5,gz:1,size:2,immobile:true,boss:true,combatIds:['bear_master_spy'],provisionalSprite:true},
+  {team:'foe',kind:'knight',name:'Ancien Ours Borin',className:'Ancien Ours',portrait:'/assets/characters/pixel/masters/village_militia_brute.png',hp:540,str:29,mag:4,end:28,dex:8,cha:16,mov:0,weapons:[{name:'Hache de l’Ours',icon:'⚔',type:'phys',min:1,max:2,power:17,crit:0.06,acc:0.9}],skills:['enemy_heavy_strike','boss_guard','boss_quake','boss_titan_slam'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true,combatIds:['bear_borin'],provisionalSprite:true}
 ];
 // The 2x2 footprint occupies the rightmost two columns (6 and 7).
 for(const bossDef of BOSS_DEFS){ bossDef.gx=6; bossDef.gz=1; }
@@ -770,6 +777,15 @@ const VISUAL_UNIT_TEMPLATES={
   young_dragon_elite:{team:'foe',kind:'brute',name:'Jeune dragon',className:'Jeune dragon',portrait:'/assets/characters/pixel/masters/young_dragon_elite.png',hp:400,str:24,mag:20,end:20,dex:12,cha:10,mov:0,weapons:[{name:'Souffle emeraude',icon:'✦',type:'mag',min:2,max:4,power:17,crit:0.07,acc:0.9}],skills:['enemy_hex','boss_regen','boss_freeze','boss_inferno'],ai:'cautious',size:2,immobile:true,elite:true},
   undead_champion:{team:'foe',kind:'knight',name:'Champion mort-vivant',className:'Champion mort-vivant',portrait:'/assets/characters/pixel/archive/non-demo/undead_champion.png',hp:350,str:26,mag:8,end:23,dex:8,cha:6,mov:0,weapons:[{name:'Onde froide',icon:'✦',type:'mag',min:2,max:3,power:15,crit:0.08,acc:0.9}],skills:['enemy_hex','boss_guard','boss_quake','boss_execution'],ai:'guardian',size:2,immobile:true,elite:true},
   lion_champion:{team:'foe',kind:'knight',name:'Champion du Lion',className:'Champion du Lion',portrait:'/assets/characters/pixel/masters/lion_champion.png',hp:520,str:28,mag:6,end:27,dex:10,cha:16,mov:0,weapons:[{name:'Lame du Lion',icon:'⚔',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.92}],skills:['enemy_heavy_strike','boss_guard','boss_quake','boss_apocalypse'],ai:'guardian',size:2,immobile:true,boss:true},
+  // Set 1.20.0, post-demo Lot 1 — DRAFT enemy families of the Bear plateau (roadmap §3.2): the Raven's scouts and
+  // miners, creatures corrupted near the dark vein, Borin's warriors. PROVISIONAL sprites: existing masters stand in.
+  // Existing skills only, each with its procedural FX signature.
+  raven_scout:{team:'foe',kind:'brigand',name:'Éclaireur du Corbeau',className:'Éclaireur du Corbeau',portrait:'/assets/characters/pixel/masters/serpent_raider.png',hp:82,str:12,mag:3,end:9,dex:18,cha:6,mov:3,weapons:[{name:'Lames de jet',icon:'†',type:'phys',min:1,max:2,power:8,crit:0.16,acc:0.94}],skills:['enemy_binding_shot'],ai:'aggressive',provisionalSprite:true},
+  raven_miner:{team:'foe',kind:'brute',name:'Mineur du Corbeau',className:'Mineur du Corbeau',portrait:'/assets/characters/pixel/masters/serpent_brute.png',hp:122,str:18,mag:2,end:16,dex:6,cha:5,mov:2,weapons:[{name:'Pic de mineur',icon:'◆',type:'phys',min:1,max:1,power:12,crit:0.05,acc:0.86}],skills:['enemy_heavy_strike'],ai:'guardian',provisionalSprite:true},
+  raven_foreman:{team:'foe',kind:'brute',name:'Contremaître du Corbeau',className:'Contremaître du Corbeau',portrait:'/assets/characters/pixel/masters/serpent_elite_brute.png',hp:360,str:26,mag:3,end:22,dex:6,cha:7,mov:0,weapons:[{name:'Masse de contremaître',icon:'◆',type:'phys',min:2,max:3,power:16,crit:0.06,acc:0.84}],skills:['enemy_heavy_strike','boss_guard','boss_quake','boss_slam'],ai:'guardian',size:2,immobile:true,elite:true,provisionalSprite:true},
+  corrupted_beast:{team:'foe',kind:'brute',name:'Bête corrompue',className:'Bête corrompue',portrait:'/assets/characters/pixel/masters/forest_troll_elite.png',hp:400,str:29,mag:6,end:24,dex:6,cha:4,mov:0,weapons:[{name:'Griffes',icon:'◆',type:'phys',min:1,max:2,power:17,crit:0.06,acc:0.85}],skills:['enemy_venom_strike','boss_guard','boss_quake','boss_slam'],ai:'guardian',size:2,immobile:true,elite:true,provisionalSprite:true},
+  depth_beast:{team:'foe',kind:'brute',name:'Bête des profondeurs',className:'Bête des profondeurs',portrait:'/assets/characters/pixel/masters/forest_troll_elite.png',hp:410,str:28,mag:8,end:25,dex:5,cha:4,mov:0,weapons:[{name:'Jet de pierre',icon:'◆',type:'phys',min:2,max:4,power:17,crit:0.04,acc:0.84}],skills:['enemy_hex','boss_guard','boss_quake','boss_slam'],ai:'guardian',size:2,immobile:true,elite:true,provisionalSprite:true},
+  bear_warrior:{team:'foe',kind:'knight',name:'Guerrier de l’Ours',className:'Guerrier de l’Ours',portrait:'/assets/characters/pixel/masters/village_militia_spearman.png',hp:128,str:18,mag:2,end:17,dex:9,cha:9,mov:2,weapons:[{name:'Hache de guerre',icon:'⚔',type:'phys',min:1,max:1,power:12,crit:0.06,acc:0.9}],skills:['enemy_heavy_strike'],ai:'guardian',provisionalSprite:true},
   seal_guardian:{team:'foe',kind:'darkmage',name:'Gardien du Sceau',className:'Gardien du Sceau',portrait:'/assets/characters/pixel/archive/non-demo/seal_guardian.png',hp:90,str:6,mag:20,end:11,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['enemy_hex','boss_guard'],ai:'cautious'}
 };
 const ENEMY_VISUAL_POSITIONS=[[6,0],[7,1],[6,3],[7,2]];
@@ -1134,7 +1150,9 @@ function spawnUnits(){
   }
   if(!IS_BOSS_COMBAT) for(const def of encounterFoeDefs()) createUnit(def);
   if(IS_BOSS_COMBAT&&!BOSS_SPAWNED){
-    const bossDef=BOSS_DEFS.find(b=>COMBAT_ID==='lion_chief'&&b.name.includes('Champion'))||BOSS_DEFS[0];
+    // Set 1.20.0: a post-demo boss is chosen by the fights it leads; demo fights keep their own selection unchanged.
+    const bossDef=BOSS_DEFS.find(b=>b.combatIds?.includes(COMBAT_ID))
+      ||BOSS_DEFS.find(b=>COMBAT_ID==='lion_chief'&&b.name.includes('Champion'))||BOSS_DEFS[0];
     if(ENCOUNTER_ESCORT_VISUAL_IDS.length){
       // A boss is the encounter's only major opponent. Ignore any accidental
       // elite escort so a malformed content entry cannot create boss + elite.

@@ -1,0 +1,52 @@
+/**
+ * Set 1.20.0 (post-demo): the POI atlas of each built plateau, chosen by the durable ID prefix of the company's POI.
+ * Presentation only: positions, region art, trails and the region of a point. RunSystem owns connections and
+ * eligibility. A provisional atlas (a draft plateau on reused art) is marked as such on the map.
+ */
+import { LION_POI_POSITIONS, LION_POI_REGIONS, LION_POI_REGION_EXITS, lionPoiMapPhase, lionPoiPathBends } from '../LionPoiMap';
+import {
+  BEAR_ATLAS_REGIONS,
+  BEAR_POI_POSITIONS,
+  BEAR_POI_REGION_EXITS,
+  bearPoiMapPhase,
+  bearPoiPathBends,
+} from './bear/bearPresentation';
+
+export interface PoiAtlasRegion {
+  shortTitle: string;
+  title: string;
+  image: string;
+}
+
+export interface PoiAtlas {
+  regions: readonly PoiAtlasRegion[];
+  positions: Readonly<Record<string, readonly [number, number]>>;
+  exits: readonly (readonly [number, number])[];
+  phaseOf: (nodeId: string) => number;
+  pathBends: (from: string, to: string, region?: number) => readonly (readonly [number, number])[] | undefined;
+  /** True while the atlas reuses another plateau's art: the map says so. */
+  provisional: boolean;
+}
+
+export const LION_POI_ATLAS: PoiAtlas = Object.freeze({
+  regions: LION_POI_REGIONS,
+  positions: LION_POI_POSITIONS,
+  exits: LION_POI_REGION_EXITS,
+  phaseOf: lionPoiMapPhase,
+  pathBends: lionPoiPathBends,
+  provisional: false,
+});
+
+export const BEAR_POI_ATLAS: PoiAtlas = Object.freeze({
+  regions: BEAR_ATLAS_REGIONS,
+  positions: BEAR_POI_POSITIONS,
+  exits: BEAR_POI_REGION_EXITS,
+  phaseOf: bearPoiMapPhase,
+  pathBends: bearPoiPathBends,
+  provisional: true,
+});
+
+/** The atlas of the plateau that owns a POI; every demo POI is the Lion's. */
+export function poiAtlasForNode(nodeId: string): PoiAtlas {
+  return nodeId.startsWith('bear-') ? BEAR_POI_ATLAS : LION_POI_ATLAS;
+}
