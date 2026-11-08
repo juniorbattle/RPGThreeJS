@@ -22,6 +22,7 @@ import {
   collectLionReputationLedger,
   compareLionThresholds,
   computeLionReputationBounds,
+  computePlateauReputationBounds,
   projectCampaignReputation,
   proportionalLionThreshold,
   type ReputationCalibration,
@@ -135,8 +136,39 @@ describe('the approved post-demo Lion calibration (OD-2026-11-08-A)', () => {
   });
 });
 
+describe('the Bear plateau measured from its draft content (set 1.20.0, Lot 1)', () => {
+  const bear = computePlateauReputationBounds('bear');
+
+  it('fits the approved Bear budget: exactly its perfect maximum, at least its honour floor', () => {
+    const budget = getPlateau('bear').reputationBudget;
+    expect(bear.perfectMax).toBe(budget.perfectMax);
+    expect(bear.honourFloor).toBeGreaterThanOrEqual(budget.honourFloor);
+    expect(bear.honourFloor).toBeLessThanOrEqual(bear.perfectMax);
+    expect({ canonicalMax: bear.canonicalMax, optionalMax: bear.optionalMax, socialMax: bear.socialMax }).toEqual({
+      canonicalMax: 14, optionalMax: 2, socialMax: 0,
+    });
+    expect(bear.failedHonourGates).toEqual([]);
+  });
+
+  it('pays its decisive choice most and lets greed empty the gauge', () => {
+    const mines = bear.nodes.find((node) => node.nodeIds.includes('bear-sacred-mines'))!;
+    expect(Math.max(...bear.nodes.map((node) => node.max))).toBe(mines.max);
+    expect(mines.min).toBeLessThan(0);
+    expect(bear.canonicalMin).toBeLessThan(-bear.canonicalMax);
+  });
+
+  it('gives a routine victory nothing (OD-2026-11-08-A): only elite, boss and the judgement count', () => {
+    const combatSources = bear.nodes.flatMap((node) => node.bestSources).filter((source) => source.startsWith('combat:'));
+    expect(combatSources).toEqual(['combat:bear_mines_defense', 'combat:bear_master_spy']);
+  });
+});
+
 describe('whole-game reputation bounds (set 1.20.0 calibration targets)', () => {
   const projection = projectCampaignReputation(LION_POST_DEMO_REPUTATION);
+
+  it('measures the built Bear from its content and keeps the later chapters at their budgets', () => {
+    expect(projection.chapters.filter((chapter) => chapter.measured).map((chapter) => chapter.id)).toEqual(['lion', 'bear']);
+  });
 
   it('lets only a perfect run reach 100, and only in the final act', () => {
     expect(projection.perfectTotal).toBe(REPUTATION_MAX - REPUTATION_START);

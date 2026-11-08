@@ -21,9 +21,15 @@ import { LION_CANONICAL_POI_IDS, LOT_E_ELITES, LOT_E_POIS } from '../campaign/Li
 import {
   REPUTATION_BUDGETS,
   CAMPAIGN_CHAPTER_IDS,
+  getPlateau,
+  requirePlateauCampaign,
   type CampaignChapterId,
 } from '../campaign/plateaux/PlateauRegistry';
+import { POST_DEMO_REFUGE_GATHERINGS } from '../campaign/plateaux/postDemoRefuges';
 import type { CombatConfig, DialogueSequence, GameState, NarrativeEffect, RunNodeType } from './types';
+import { resolvePlateauFinaleExecution } from './plateauFinale';
+import { combatVictoryFacts, plateauFinaleOf } from './plateauProgression';
+import { getPostDemoCombat, resolvePostDemoDialogue } from './postDemoContent';
 
 export const REPUTATION_START = 30;
 export const REPUTATION_MAX = 100;
@@ -124,8 +130,32 @@ export interface ContentPath {
   flags: Record<string, boolean>;
 }
 
+/**
+ * The content a walk reads. The Lion's is the default; a post-demo plateau reads its own registry, authored at the
+ * post-demo scale, so it is walked with `POST_DEMO_AUTHORED_REPUTATION` and never recalibrated.
+ */
+export interface WalkContent {
+  dialogue: (id: string, state: GameState) => DialogueSequence | undefined;
+  combat: (id: string) => CombatConfig | undefined;
+  victoryFacts: (combatId: string) => Readonly<Record<string, boolean>>;
+}
+
+export const LION_WALK_CONTENT: WalkContent = Object.freeze({
+  dialogue: (id: string, state: GameState) => buildLionContextualDialogue(id, state) ?? dialogues.get(id),
+  combat: (id: string) => combatConfigs.get(id),
+  victoryFacts: lionBossVictoryFacts,
+});
+
+export const POST_DEMO_WALK_CONTENT: WalkContent = Object.freeze({
+  dialogue: (id: string, state: GameState) => resolvePostDemoDialogue(id, state),
+  combat: (id: string) => getPostDemoCombat(id),
+  victoryFacts: combatVictoryFacts,
+});
+
 interface WalkContext {
   calibration: ReputationCalibration;
+  /** Defaults to the Lion's content. */
+  content?: WalkContent;
   /** Reputation on entry, when known: a gated choice then takes its pass or failure branch as the game would. */
   reputation?: number;
   /** State used to build the Lion's state-built dialogues (judgement, aftermaths). */
@@ -151,13 +181,14 @@ function stateAt(path: ContentPath, context: WalkContext): GameState {
   return { ...context.state, flags: { ...context.state.flags, ...path.flags }, reputation };
 }
 
-function resolveDialogue(id: string, state: GameState): DialogueSequence | undefined {
-  return buildLionContextualDialogue(id, state) ?? dialogues.get(id);
+function resolveDialogue(id: string, state: GameState, context?: WalkContext): DialogueSequence | undefined {
+  return (context?.content ?? LION_WALK_CONTENT).dialogue(id, state);
 }
 
 /** A fight's content: its pre-combat dialogue, its reward and the facts of a boss victory, then its aftermath. */
 function runCombat(combatId: string, context: WalkContext, depth: number, entry: ContentPath): ContentPath[] {
-  const config = combatConfigs.get(combatId);
+  const content = context.content ?? LION_WALK_CONTENT;
+  const config = content.combat(combatId);
   if (!config) return [entry];
   const afterPre = config.preCombatDialogueId ? runDialogue(config.preCombatDialogueId, context, depth + 1, entry) : [entry];
   const afterVictory = afterPre.map((path) => {
@@ -165,7 +196,7 @@ function runCombat(combatId: string, context: WalkContext, depth: number, entry:
       ? withSource(path, { id: `combat:${combatId}`, kind: 'combat', amount: config.rewards.reputation,
         rank: config.encounterRank, label: config.encounterLabel }, context)
       : path;
-    return withFlags(rewarded, lionBossVictoryFacts(combatId));
+    return withFlags(rewarded, content.victoryFacts(combatId));
   });
   return config.postCombatDialogueId
     ? afterVictory.flatMap((path) => runDialogue(config.postCombatDialogueId!, context, depth + 1, path))
@@ -194,6 +225,18 @@ function applyEffects(effects: readonly NarrativeEffect[], prefix: string, label
           : path, execution.flagChanges);
         return runCombat(execution.combatId, context, depth, decided);
       });
+    } else if (effect.type === 'resolvePlateauFinale') {
+      const finale = plateauFinaleOf(effect.plateauId);
+      if (!finale) throw new Error(`No finale for plateau '${effect.plateauId}'.`);
+      paths = paths.flatMap((path) => {
+        const execution = resolvePlateauFinaleExecution(finale, stateAt(path, context), effect.intent);
+        const cause = execution.trialCause ? `${execution.route}:${execution.trialCause}` : execution.route;
+        const decided = withFlags(execution.reputationDelta
+          ? withSource(path, { id: `finale:${effect.plateauId}:${cause}`, kind: 'finale', amount: execution.reputationDelta,
+            label: `Issue du jugement de ${effect.plateauId} (${cause})` }, context)
+          : path, execution.flagChanges);
+        return runCombat(execution.combatId, context, depth, decided);
+      });
     }
   }
   return paths;
@@ -201,7 +244,7 @@ function applyEffects(effects: readonly NarrativeEffect[], prefix: string, label
 
 /** Every way through a dialogue from an entry path, following `next` links, each choice and a contest's failure. */
 function runDialogue(dialogueId: string, context: WalkContext, depth: number, entry: ContentPath): ContentPath[] {
-  const sequence = resolveDialogue(dialogueId, stateAt(entry, context));
+  const sequence = resolveDialogue(dialogueId, stateAt(entry, context), context);
   if (!sequence || depth > 6) return [entry];
   const results: ContentPath[] = [];
   const visit = (stepId: string | null | undefined, acc: ContentPath, seen: ReadonlySet<string>) => {
@@ -261,7 +304,7 @@ export function combatPaths(combatId: string, context: WalkContext): ContentPath
 /** Every way through one canonical node's content, as RunSystem routes it by type, then its echo dialogues. */
 export function nodeContentPaths(nodeId: string, candidate: { contentId: string; type: RunNodeType }, context: WalkContext): ContentPath[] {
   const main = candidate.type === 'combat' ? combatPaths(candidate.contentId, context)
-    : resolveDialogue(candidate.contentId, context.state) ? dialoguePaths(candidate.contentId, context) : [EMPTY_PATH];
+    : resolveDialogue(candidate.contentId, context.state, context) ? dialoguePaths(candidate.contentId, context) : [EMPTY_PATH];
   return (POST_NODE_ATE[nodeId] ?? []).reduce(
     (paths, ateId) => paths.flatMap((path) => runDialogue(ateId, context, 0, path)), main);
 }
@@ -435,6 +478,100 @@ export function computeLionReputationBounds(calibration: ReputationCalibration):
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
+// Post-demo plateaux, measured from their own content
+
+/** Post-demo content is authored at the post-demo scale (OD-2026-11-08-A): its amounts and thresholds count as written. */
+export const POST_DEMO_AUTHORED_REPUTATION: ReputationCalibration = Object.freeze({
+  id: 'post-demo-authored',
+  status: 'approved' as const,
+  amount: (source: ReputationSource) => source.amount,
+  threshold: (threshold: ReputationThreshold) => threshold.value,
+});
+
+/** A perfect honour company at a post-demo judgement: the Lion's honour, every merit of the plateau, high reputation. */
+export function perfectHonourPlateauState(chapterId: CampaignChapterId): GameState {
+  const state = perfectHonourJudgementState();
+  const finale = plateauFinaleOf(chapterId);
+  if (!finale) throw new Error(`Plateau '${chapterId}' has no finale.`);
+  state.flags.serpentGeneralDefeated = true;
+  for (const deed of finale.deeds) if (deed.kind === 'merit') state.flags[deed.flag] = true;
+  state.flags[finale.honourFact] = true;
+  state.flags[finale.witnesses.supportiveFlag] = true;
+  state.flags[finale.evidence.flag] = true;
+  return state;
+}
+
+/** A greedy company at a post-demo judgement, to reach its force-path content. */
+export function greedPlateauState(chapterId: CampaignChapterId): GameState {
+  const state = greedJudgementState();
+  const finale = plateauFinaleOf(chapterId);
+  if (!finale) throw new Error(`Plateau '${chapterId}' has no finale.`);
+  state.flags.lionTrialWon = true;
+  for (const deed of finale.deeds) if (deed.kind !== 'merit') state.flags[deed.flag] = true;
+  return state;
+}
+
+export type PlateauReputationBounds = Omit<LionReputationBounds, 'calibrationId'> & { chapterId: CampaignChapterId };
+
+/**
+ * A built post-demo plateau's bounds, measured as the Lion's are: per canonical depth the best branch, the least
+ * favourable branch a consistent honour run is sure of, the worst result; then its optional fights and guardians. Its
+ * refuges hold no reputation event yet, so it has no social gain. Read-only analysis of authored content.
+ */
+export function computePlateauReputationBounds(chapterId: Exclude<CampaignChapterId, 'lion' | 'finale'>): PlateauReputationBounds {
+  const topology = requirePlateauCampaign(chapterId).topology;
+  const route = topology.route ?? [];
+  const gatherings = POST_DEMO_REFUGE_GATHERINGS[chapterId] ?? {};
+  const context: WalkContext = { calibration: POST_DEMO_AUTHORED_REPUTATION, content: POST_DEMO_WALK_CONTENT,
+    state: perfectHonourPlateauState(chapterId) };
+  const greedContext: WalkContext = { ...context, state: greedPlateauState(chapterId) };
+  const pathsOf = (node: (typeof route)[number], walk: WalkContext) => {
+    if (node.type === 'refuge') return gatherings[node.id] ? dialoguePaths(gatherings[node.id]!, walk) : [EMPTY_PATH];
+    return nodeContentPaths(node.id, { contentId: node.contentId, type: node.type }, walk);
+  };
+  const depths = [...new Set(route.map((node) => node.depth))].sort((a, b) => a - b);
+  const nodes: NodeBound[] = depths.map((depth) => {
+    const atDepth = route.filter((node) => node.depth === depth);
+    const branches = atDepth.map((node) => best(pathsOf(node, context)));
+    const top = best(branches);
+    const min = Math.min(...atDepth.flatMap((node) => [...pathsOf(node, context), ...pathsOf(node, greedContext)]).map((path) => path.delta));
+    // A post-demo route node has one content and no drawn variant, so a consistent honour run is sure of its best
+    // branch at every fork: its floor is the step's best gain.
+    return { depth, nodeIds: atDepth.map((node) => node.id), max: top.delta, floor: top.delta,
+      min, bestSources: top.sources, floorGates: top.gates };
+  });
+  const canonicalMax = nodes.reduce((sum, node) => sum + node.max, 0);
+  const canonicalFloor = nodes.reduce((sum, node) => sum + node.floor, 0);
+  const canonicalMin = nodes.reduce((sum, node) => sum + node.min, 0);
+  const optionalMax = [
+    ...topology.optionalPois.filter((poi) => poi.combat).map((poi) => Math.max(...poi.combat!.variants
+      .map((variant) => best(combatPaths(variant.id, context)).delta))),
+    ...topology.guardians.map((guardian) => best(combatPaths(guardian.combat.id, context)).delta),
+  ].reduce((sum, value) => sum + Math.max(0, value), 0);
+  const failedHonourGates: PlateauReputationBounds['failedHonourGates'] = [];
+  let floorRunning = REPUTATION_START;
+  for (const node of nodes) {
+    for (const gate of node.floorGates) {
+      if (floorRunning < gate.value) failedHonourGates.push({ nodeIds: node.nodeIds, ...gate, reputation: floorRunning });
+    }
+    floorRunning += node.floor;
+  }
+  return {
+    chapterId,
+    nodes,
+    canonicalMax,
+    canonicalFloor,
+    canonicalMin,
+    optionalMax,
+    socialMax: 0,
+    perfectMax: canonicalMax + optionalMax,
+    honourFloor: canonicalFloor,
+    perfectReaches100At: null,
+    failedHonourGates,
+  };
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
 // Where the calibration changes a threshold's verdict
 
 export interface GateDivergence {
@@ -550,17 +687,26 @@ export interface CampaignReputationProjection {
   honourReachesRenownedIn: CampaignChapterId | null;
 }
 
-/** The Lion measured from its content under a calibration; the other chapters at their proposed budgets until built. */
+/**
+ * The Lion measured from its content under a calibration, each built post-demo plateau measured from its own content,
+ * and the chapters not built yet at their approved budgets.
+ */
 export function projectCampaignReputation(calibration: ReputationCalibration): CampaignReputationProjection {
   const lion = computeLionReputationBounds(calibration);
+  const measuredOf = (id: CampaignChapterId): { perfectMax: number; honourFloor: number } | null => {
+    if (id === 'lion') return lion;
+    if (id === 'finale' || !getPlateau(id).campaign) return null;
+    return computePlateauReputationBounds(id);
+  };
   let perfect = REPUTATION_START;
   let honour = REPUTATION_START;
   let perfectReaches100In: CampaignChapterId | null = null;
   let honourReachesRenownedIn: CampaignChapterId | null = null;
   const chapters = CAMPAIGN_CHAPTER_IDS.map((id) => {
-    const measured = id === 'lion';
-    const perfectMax = measured ? lion.perfectMax : REPUTATION_BUDGETS[id].perfectMax;
-    const honourFloor = measured ? lion.honourFloor : REPUTATION_BUDGETS[id].honourFloor;
+    const bounds = measuredOf(id);
+    const measured = bounds !== null;
+    const perfectMax = bounds?.perfectMax ?? REPUTATION_BUDGETS[id].perfectMax;
+    const honourFloor = bounds?.honourFloor ?? REPUTATION_BUDGETS[id].honourFloor;
     perfect += perfectMax;
     honour += honourFloor;
     if (perfectReaches100In === null && perfect >= REPUTATION_MAX) perfectReaches100In = id;
