@@ -18,6 +18,13 @@ import {
   dragonPoiMapPhase,
   dragonPoiPathBends,
 } from './dragon/dragonPresentation';
+import {
+  SCORPION_ATLAS_REGIONS,
+  SCORPION_POI_POSITIONS,
+  SCORPION_POI_REGION_EXITS,
+  scorpionPoiMapPhase,
+  scorpionPoiPathBends,
+} from './scorpion/scorpionPresentation';
 
 export interface PoiAtlasRegion {
   shortTitle: string;
@@ -62,9 +69,19 @@ export const DRAGON_POI_ATLAS: PoiAtlas = Object.freeze({
   provisional: true,
 });
 
+export const SCORPION_POI_ATLAS: PoiAtlas = Object.freeze({
+  regions: SCORPION_ATLAS_REGIONS,
+  positions: SCORPION_POI_POSITIONS,
+  exits: SCORPION_POI_REGION_EXITS,
+  phaseOf: scorpionPoiMapPhase,
+  pathBends: scorpionPoiPathBends,
+  provisional: true,
+});
+
 /** The atlas of the plateau that owns a POI; every demo POI is the Lion's. */
 export function poiAtlasForNode(nodeId: string): PoiAtlas {
   if (nodeId.startsWith('bear-')) return BEAR_POI_ATLAS;
   if (nodeId.startsWith('dragon-')) return DRAGON_POI_ATLAS;
+  if (nodeId.startsWith('scorpion-')) return SCORPION_POI_ATLAS;
   return LION_POI_ATLAS;
 }

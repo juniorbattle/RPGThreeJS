@@ -3,7 +3,7 @@
  *
  * Kept apart from the Lion's registries (`content.ts`), so post-demo content is never taken for Lion content, never
  * recalibrated and never counted by the demo's audits. A plateau's entries are playable DRAFTS, identifiable as such,
- * until the operator approves the plateau (the Bear since OD-2026-11-08-B); they reach `dev` only on the operator's
+ * until the operator approves the plateau (the Bear since OD-2026-11-08-B, the Dragon since OD-2026-11-08-C); they reach `dev` only on the operator's
  * order. Every post-demo plateau shows provisional images until the final-image lot.
  */
 import { BEAR_DIALOGUES, BEAR_SCENE_BUILDERS } from '../campaign/plateaux/bear/bearDialogues';
@@ -13,19 +13,23 @@ import { BEAR_STORY_COMBATS, bearOptionalCombats } from '../campaign/plateaux/be
 import { DRAGON_DIALOGUES, DRAGON_SCENE_BUILDERS } from '../campaign/plateaux/dragon/dragonDialogues';
 import { DRAGON_FINALE } from '../campaign/plateaux/dragon/dragonFinale';
 import { DRAGON_STORY_COMBATS, dragonOptionalCombats } from '../campaign/plateaux/dragon/dragonCombat';
+import { SCORPION_DIALOGUES, SCORPION_SCENE_BUILDERS } from '../campaign/plateaux/scorpion/scorpionDialogues';
+import { SCORPION_FINALE } from '../campaign/plateaux/scorpion/scorpionFinale';
+import { SCORPION_STORY_COMBATS, scorpionOptionalCombats } from '../campaign/plateaux/scorpion/scorpionCombat';
 import { getPlateau, type CampaignChapterId } from '../campaign/plateaux/PlateauRegistry';
 import { combatConfigSchema, dialogueSequenceSchema, type CombatConfig, type DialogueSequence, type GameState } from './types';
 import { withChallenge } from './challenges';
 
 export const POST_DEMO_DIALOGUES: ReadonlyMap<string, DialogueSequence> = new Map(
-  [...BEAR_DIALOGUES, ...DRAGON_DIALOGUES].map((dialogue) => {
+  [...BEAR_DIALOGUES, ...DRAGON_DIALOGUES, ...SCORPION_DIALOGUES].map((dialogue) => {
     const parsed = dialogueSequenceSchema.parse(dialogue);
     return [parsed.id, parsed];
   }),
 );
 
 export const POST_DEMO_COMBATS: ReadonlyMap<string, CombatConfig> = new Map(
-  [...BEAR_STORY_COMBATS, ...bearOptionalCombats(), ...DRAGON_STORY_COMBATS, ...dragonOptionalCombats()].map((combat) => {
+  [...BEAR_STORY_COMBATS, ...bearOptionalCombats(), ...DRAGON_STORY_COMBATS, ...dragonOptionalCombats(),
+    ...SCORPION_STORY_COMBATS, ...scorpionOptionalCombats()].map((combat) => {
     const parsed = combatConfigSchema.parse(withChallenge(combatConfigSchema.parse(combat)));
     return [parsed.id, parsed];
   }),
@@ -65,6 +69,7 @@ export function plateauDialogues(chapterId: CampaignChapterId): DialogueSequence
 export const PLATEAU_FINALES: Readonly<Partial<Record<CampaignChapterId, PlateauFinaleDefinition>>> = Object.freeze({
   bear: BEAR_FINALE,
   dragon: DRAGON_FINALE,
+  scorpion: SCORPION_FINALE,
 });
 
 const finaleBuilders = (finale: PlateauFinaleDefinition) => ({
@@ -77,6 +82,8 @@ const SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<GameState>) => Di
   ...finaleBuilders(BEAR_FINALE),
   ...DRAGON_SCENE_BUILDERS,
   ...finaleBuilders(DRAGON_FINALE),
+  ...SCORPION_SCENE_BUILDERS,
+  ...finaleBuilders(SCORPION_FINALE),
 });
 
 export function isPostDemoSceneBuilt(dialogueId: string): boolean {

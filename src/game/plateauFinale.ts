@@ -45,7 +45,8 @@ export interface PlateauFinaleDefinition {
   forceFacts: readonly string[];
   /** The fact the honour path needs, the plateau's Bois-Clair. */
   honourFact: string;
-  outcome: { lines: readonly { flag: string; text: string }[]; noneText: string };
+  /** The outcome line's tag names what the plateau's chief asked for (the Bear's mines, the Dragon's Crystal…). */
+  outcome: { tag: string; lines: readonly { flag: string; text: string }[]; noneText: string };
   witnesses: { supportiveFlag: string; silencedFlag: string; supportive: string; silenced: string; none: string };
   evidence: { flag: string; text: string };
   /** Reputation from which the chief finds the company credible, and highly credible (R3, credibility before a chief). */
@@ -173,7 +174,7 @@ export function buildPlateauJudgement(definition: PlateauFinaleDefinition, state
   const steps: DialogueStep[] = [makeStep('open', definition.chief, definition.opening, { tag: 'Jugement', expression: 'stern' })];
   const outcome = definition.outcome.lines.find((line) => state.flags[line.flag]);
   steps.push(makeStep('outcome', definition.chief, outcome?.text ?? definition.outcome.noneText,
-    { tag: 'Les mines', expression: outcome ? 'neutral' : 'stern' }));
+    { tag: definition.outcome.tag, expression: outcome ? 'neutral' : 'stern' }));
   const merits = verdict.merits.filter((deed) => deed.flag !== definition.honourFact).map((deed) => deed.phrase);
   if (merits.length) steps.push(makeStep('merits', definition.sage, `${definition.meritsLead} ${listFrench(merits)}.`, { tag: 'Mérites', expression: 'stern' }));
   const breaches = verdict.breaches.filter((deed) => !definition.outcome.lines.some((line) => line.flag === deed.flag)).map((deed) => deed.phrase);

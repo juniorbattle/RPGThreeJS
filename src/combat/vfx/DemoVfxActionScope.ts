@@ -142,6 +142,11 @@ const ENEMY_VISUAL_SKILLS: Readonly<Record<string, readonly string[]>> = Object.
   wolf_champion: ['enemy_binding_shot', 'boss_fortify', 'boss_pin', 'boss_flurry'],
   shadow_wyrm: ['enemy_hex', 'boss_regen', 'boss_freeze', 'boss_inferno'],
   dragon_guardian: ['enemy_heavy_strike'],
+  // Set 1.20.0, post-demo Lot 3 — DRAFT Scorpion families, outside the demo scope as well.
+  phoenix_guardian: ['enemy_heavy_strike'],
+  phoenix_flamekeeper: ['enemy_dragon_breath', 'boss_guard', 'boss_regen', 'boss_inferno'],
+  shadow_zealot: ['enemy_dark_bolt', 'boss_fortify', 'boss_freeze', 'boss_execution'],
+  scorpion_scholar: ['enemy_dark_bolt', 'enemy_hex'],
 });
 
 /**
@@ -167,6 +172,10 @@ const POST_DEMO_BOSS_COMBAT_SKILLS: Readonly<Record<string, readonly string[]>> 
   dragon_lair_seizure: ['enemy_heavy_strike', 'boss_fortify', 'boss_pin', 'boss_slam'],
   dragon_shadow_shaman: ['enemy_dark_bolt', 'boss_guard', 'boss_freeze', 'boss_execution'],
   dragon_kaelen: ['enemy_dragon_breath', 'boss_regen', 'boss_quake', 'boss_inferno'],
+  scorpion_temple_assault: ['enemy_heavy_strike', 'boss_guard', 'boss_regen', 'boss_inferno'],
+  scorpion_temple_seizure: ['enemy_heavy_strike', 'boss_guard', 'boss_regen', 'boss_inferno'],
+  scorpion_shadow_prophet: ['enemy_hex', 'boss_fortify', 'boss_freeze', 'boss_execution'],
+  scorpion_inquisitor: ['enemy_dark_bolt', 'boss_regen', 'boss_pin', 'boss_apocalypse'],
 });
 
 /** Boss combats launched by the Lion finale (`resolveLionFinaleExecution`). */
@@ -183,6 +192,7 @@ const ELITE_VISUAL_IDS = new Set([
   'forest_troll_elite', 'young_dragon_elite', 'undead_champion', 'lion_champion',
   'raven_foreman', 'corrupted_beast', 'depth_beast',
   'wolf_champion', 'shadow_wyrm',
+  'phoenix_flamekeeper', 'shadow_zealot',
 ]);
 
 export const __testing = { ENEMY_VISUAL_SKILLS, BOSS_COMBAT_SKILLS, ELITE_VISUAL_IDS, POST_DEMO_BOSS_COMBAT_SKILLS };

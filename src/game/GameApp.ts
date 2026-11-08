@@ -23,7 +23,7 @@ import {
 import { resolvePlateauFinaleExecution, resolvePendingPlateauFinaleCombat } from './plateauFinale';
 import { getPlateau } from '../campaign/plateaux/PlateauRegistry';
 import { isDraftContent, POST_DEMO_COMBATS } from './postDemoContent';
-import { loadBearEndForDragonQa, loadLionEndForBearQa } from '../qa/postDemoQaSaves';
+import { loadBearEndForDragonQa, loadDragonEndForScorpionQa, loadLionEndForBearQa } from '../qa/postDemoQaSaves';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
 import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
 import { resolveLionFinaleExecution, resolveSelectedLionFinaleCombat } from './lionFinale';
@@ -395,7 +395,7 @@ export class GameApp {
         </header>
         <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
         <div class="qa-lab__header-actions" aria-label="Tableaux vivants"><button type="button" data-qa-living="bois_clair_arrival">Tableau vivant · Arrivée à Bois-Clair</button><button type="button" data-qa-living="bois_clair_saved">Bois-Clair sauvé</button><button type="button" data-qa-living="bois_clair_sacrificed">Bois-Clair sacrifié</button><button type="button" data-qa-living="lion_judgement">Jugement du Lion</button><button type="button" data-qa-living="alaric_audience_arrival">Audience d’Alaric</button><button type="button" data-qa-living="serpent_route_ending">Fin Serpent</button><button type="button" data-qa-living="lion_trial_route_ending">Fin de l’épreuve</button></div>
-        <div class="qa-lab__header-actions" aria-label="Après-démo"><button type="button" data-qa-postdemo="honour">Ours · depuis une fin du Lion par l’honneur</button><button type="button" data-qa-postdemo="force">Ours · depuis une fin du Lion par la force</button><button type="button" data-qa-postdemo="dragon-honour">Dragon (brouillon) · depuis une fin de l’Ours par l’honneur</button><button type="button" data-qa-postdemo="dragon-force">Dragon (brouillon) · depuis une fin de l’Ours par la force</button></div>
+        <div class="qa-lab__header-actions" aria-label="Après-démo"><button type="button" data-qa-postdemo="honour">Ours · depuis une fin du Lion par l’honneur</button><button type="button" data-qa-postdemo="force">Ours · depuis une fin du Lion par la force</button><button type="button" data-qa-postdemo="dragon-honour">Dragon · depuis une fin de l’Ours par l’honneur</button><button type="button" data-qa-postdemo="dragon-force">Dragon · depuis une fin de l’Ours par la force</button><button type="button" data-qa-postdemo="scorpion-honour">Scorpion (brouillon) · depuis une fin du Dragon par l’honneur</button><button type="button" data-qa-postdemo="scorpion-force">Scorpion (brouillon) · depuis une fin du Dragon par la force</button></div>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
         <div class="qa-lab__params">
           <fieldset>
@@ -442,9 +442,9 @@ export class GameApp {
     this.chrome.querySelectorAll<HTMLButtonElement>('[data-qa-postdemo]').forEach((button) => button.addEventListener('click', () => {
       if (!import.meta.env.DEV) return;
       const start = button.dataset.qaPostdemo ?? 'honour';
-      const load = start.startsWith('dragon-')
-        ? loadBearEndForDragonQa(start === 'dragon-force' ? 'force' : 'honour')
-        : loadLionEndForBearQa(start === 'force' ? 'force' : 'honour');
+      const route = start.endsWith('force') ? 'force' : 'honour';
+      const load = start.startsWith('scorpion-') ? loadDragonEndForScorpionQa(route)
+        : start.startsWith('dragon-') ? loadBearEndForDragonQa(route) : loadLionEndForBearQa(route);
       void load.then((save) => {
         this.saves.saveAuto(save);
         void this.continueChronicle();

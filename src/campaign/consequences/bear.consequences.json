@@ -771,7 +771,7 @@
      "id": "bear.dark_vein.evidence.scorpion_texts",
      "fact": "bearDarkOreEvidence",
      "scope": "later_plateau",
-     "status": "planned",
+     "status": "implemented",
      "chapterId": "scorpion",
      "nodeId": "scorpion-corrupted-texts",
      "dialogueId": "scorpion_corrupted_texts",

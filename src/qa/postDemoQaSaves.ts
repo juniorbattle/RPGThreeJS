@@ -30,3 +30,17 @@ export async function loadBearEndForDragonQa(route: 'honour' | 'force'): Promise
     : { name: 'QA Bear force', prefer: 'greed', intent: 'claim_recognition',
       answers: { bear_raven_messenger: 'bearRavenOfferRefused', bear_sacred_mines: 'bearMinesSeized' } }).state;
 }
+
+/**
+ * A finished Dragon to play the Scorpion from, played by the QA driver from the matching Bear end: honour (every merit,
+ * the Chaman des Ombres fallen, the altar's shard sealed) or force (the Crystal kept, the Seal taken from Kaelen). DEV QA only.
+ */
+export async function loadDragonEndForScorpionQa(route: 'honour' | 'force'): Promise<GameState> {
+  const { playPlateau } = await import('./plateauDriver');
+  const bearEnd = await loadBearEndForDragonQa(route);
+  return playPlateau('dragon', bearEnd, route === 'honour'
+    ? { name: 'QA Dragon honour', prefer: 'merit', intent: 'claim_recognition', guardianChests: ['dragon-poi-terrace-cache', 'dragon-poi-peak-reserve'],
+      forks: { 'dragon-second-trial': 'combat', 'dragon-final-trial': 'combat' } }
+    : { name: 'QA Dragon force', prefer: 'greed', intent: 'claim_recognition',
+      answers: { dragon_wolf_envoy: 'dragonWolfOfferRefused', dragon_wolf_lair: 'dragonCrystalKept' } }).state;
+}

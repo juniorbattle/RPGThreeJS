@@ -46,6 +46,7 @@ export const DRAGON_FINALE: PlateauFinaleDefinition = Object.freeze<PlateauFinal
   forceFacts: Object.freeze(['dragonCrystalKept', 'dragonWolfAlliance', 'dragonPilgrimsSilenced']),
   honourFact: 'dragonCrystalRecovered',
   outcome: {
+    tag: 'Le Cristal',
     lines: Object.freeze([
       { flag: 'dragonCrystalRecovered', text: 'Le Cristal d’Écho chante de nouveau sur son autel, parce que vous avez rapporté le Cristal d’Écho aux Pics au lieu d’en chercher le prix.' },
       { flag: 'dragonCrystalKept', text: 'Vous avez repris le Cristal au Loup, c’est vrai. Puis vous avez gardé le Cristal d’Écho pour votre clan, comme si l’équilibre des Pics se vendait.' },

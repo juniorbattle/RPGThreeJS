@@ -17,6 +17,7 @@ import { CAMPAIGN_CHAPTER_IDS } from './campaignIds';
 import { LION_PLATEAU_BINDING } from './lionPlateau';
 import { BEAR_PLATEAU_BINDING } from './bear/bearPlateau';
 import { DRAGON_PLATEAU_BINDING } from './dragon/dragonPlateau';
+import { SCORPION_PLATEAU_BINDING } from './scorpion/scorpionPlateau';
 import type { PlateauTopology } from './PlateauTopology';
 
 export { CAMPAIGN_CLAN_IDS, CAMPAIGN_CHAPTER_IDS } from './campaignIds';
@@ -157,11 +158,12 @@ export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([
   }),
   Object.freeze({
     id: 'scorpion', order: 4, kind: 'seal_plateau', idPrefix: 'scorpion-', label: 'Les Déserts Arides',
-    roadmapSections: Object.freeze(['§3.4']), status: 'planned', hostClan: 'scorpion', rivalClan: 'phoenix',
+    // Lot 3: a playable draft until the operator accepts it; its images stay provisional.
+    roadmapSections: Object.freeze(['§3.4']), status: 'draft', hostClan: 'scorpion', rivalClan: 'phoenix',
     // P5: the chief is renamed; until the operator validates a name, texts use his title only.
     chief: Object.freeze({ title: 'Grand Inquisiteur', name: null }),
     reputationBudget: REPUTATION_BUDGETS.scorpion,
-    campaign: null,
+    campaign: SCORPION_PLATEAU_BINDING,
   }),
   Object.freeze({
     id: 'finale', order: 5, kind: 'final_act', idPrefix: 'finale-', label: 'L’acte final',

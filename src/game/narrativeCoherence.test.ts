@@ -142,7 +142,8 @@ describe('the Bear draft passes the narrative coherence validator (Lot 1)', () =
   it('has no error and no exception: every Bear fact set is read, every choice echoed by a scene naming its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 30, plannedEchoes: 4 });
+    // Its dark-ore echo into the Scorpion is implemented since Lot 3; the final act's three stay planned.
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 31, plannedEchoes: 3 });
   });
 
   it('carries the Lion into the Bear: every Lion echo planned for the Bear is now implemented', () => {
@@ -159,7 +160,8 @@ describe('the Dragon draft passes the narrative coherence validator (Lot 2)', ()
   it('has no error and no exception: every Dragon fact set is read, every choice echoed by a scene naming its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 29, plannedEchoes: 6 });
+    // Its three echoes into the Scorpion are implemented since Lot 3; the final act's three stay planned.
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 32, plannedEchoes: 3 });
   });
 
   it('carries the Lion and the Bear into the Dragon: every echo they hold for the Dragon is implemented', () => {
@@ -169,6 +171,31 @@ describe('the Dragon draft passes the narrative coherence validator (Lot 2)', ()
     }).filter((echo) => echo.chapterId === 'dragon');
     expect(into).toHaveLength(5);
     expect(into.every((echo) => echo.status === 'implemented')).toBe(true);
+  });
+});
+
+describe('the Scorpion draft passes the narrative coherence validator (Lot 3)', () => {
+  const report = validateNarrativeCoherence(scorpionMap, sources);
+
+  it('has no error and no exception: every Scorpion fact set is read, every choice echoed by a scene naming its cause', () => {
+    expect(report.errors).toEqual([]);
+    expect(report.excused).toEqual([]);
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 28, plannedEchoes: 3 });
+  });
+
+  it('carries the Bear and the Dragon into the Scorpion: every echo they hold for the Scorpion is implemented', () => {
+    const into = [bearMap, dragonMap].flatMap((raw) => {
+      const map = consequenceMapSchema.parse(structuredClone(raw));
+      return [...map.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(map.outcomes).flatMap((outcome) => outcome.echoes)];
+    }).filter((echo) => echo.chapterId === 'scorpion');
+    expect(into).toHaveLength(4);
+    expect(into.every((echo) => echo.status === 'implemented')).toBe(true);
+  });
+
+  it('keeps only the final act planned: every Scorpion echo inside the plateau is implemented', () => {
+    const map = consequenceMapSchema.parse(structuredClone(scorpionMap));
+    const echoes = [...map.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(map.outcomes).flatMap((outcome) => outcome.echoes)];
+    expect(echoes.filter((echo) => echo.status === 'planned').every((echo) => echo.scope === 'final_act')).toBe(true);
   });
 });
 

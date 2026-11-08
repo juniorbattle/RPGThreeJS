@@ -13,6 +13,7 @@ import midLion from './__fixtures__/demo-v6-mid-lion.json';
 import bearMap from '../campaign/consequences/bear.consequences.json';
 import lionMap from '../campaign/consequences/lion.consequences.json';
 import dragonMap from '../campaign/consequences/dragon.consequences.json';
+import scorpionMap from '../campaign/consequences/scorpion.consequences.json';
 import { consequenceMapSchema } from '../campaign/consequences/ConsequenceMap';
 import { requirePlateauCampaign } from '../campaign/plateaux/PlateauRegistry';
 import {
@@ -45,7 +46,7 @@ function bearRunFrom(fixture: unknown, seed = 20261108): GameState {
 
 describe('plateau progression (set 1.20.0, Lot 1)', () => {
   it('states the outcome relations exactly as the Lion and Bear consequence maps record them', () => {
-    for (const [chapterId, raw] of [['lion', lionMap], ['bear', bearMap], ['dragon', dragonMap]] as const) {
+    for (const [chapterId, raw] of [['lion', lionMap], ['bear', bearMap], ['dragon', dragonMap], ['scorpion', scorpionMap]] as const) {
       const map = consequenceMapSchema.parse(raw);
       const binding = requirePlateauCampaign(chapterId);
       expect(binding.outcomeRelations.honour).toEqual(map.outcomes.honour.clanRelations);
@@ -125,7 +126,8 @@ describe('plateau progression (set 1.20.0, Lot 1)', () => {
     expect(state.endingId).toBe('bear-seal-honour');
     expect(getClanRelation(state, 'bear')).toBe('ally');
     expect(getClanRelation(state, 'raven')).toBe('enemy');
-    // The Dragon is built (Lot 2): the campaign continues into it; the Scorpion is not, so a finished Dragon stops there.
+    // The Dragon (Lot 2) and the Scorpion (Lot 3) are built: the campaign continues into each; the final act is not,
+    // so a finished Scorpion stops there.
     expect(state.campaign!.currentChapterId).toBe('dragon');
     expect(nextPlayablePlateau(state)).toBe('dragon');
     expect(continueCampaign(state, 9)?.id).toBe('dragon-9');
@@ -133,9 +135,38 @@ describe('plateau progression (set 1.20.0, Lot 1)', () => {
     Object.assign(state.flags, combatVictoryFacts('dragon_shadow_shaman'));
     state.run.status = 'completed';
     expect(completePlateauChronicle(state, 'dragon')).toEqual({ chapterId: 'dragon', outcome: 'honour', nextChapterId: 'scorpion' });
+    expect(state.campaign!.currentChapterId).toBe('scorpion');
+    expect(nextPlayablePlateau(state)).toBe('scorpion');
+    expect(continueCampaign(state, 10)?.id).toBe('scorpion-10');
+    expect(state.currentNodeId).toBe('scorpion-camp');
+    expect([getClanRelation(state, 'dragon'), getClanRelation(state, 'wolf')]).toEqual(['ally', 'enemy']);
+    expect([getClanRelation(state, 'scorpion'), getClanRelation(state, 'phoenix')]).toEqual(['neutral', 'neutral']);
+    Object.assign(state.flags, combatVictoryFacts('scorpion_shadow_prophet'));
+    state.run.status = 'completed';
+    expect(completePlateauChronicle(state, 'scorpion')).toEqual({ chapterId: 'scorpion', outcome: 'honour', nextChapterId: 'finale' });
+    expect(state.endingId).toBe('scorpion-seal-honour');
+    expect([getClanRelation(state, 'scorpion'), getClanRelation(state, 'phoenix')]).toEqual(['ally', 'enemy']);
     expect(nextPlayablePlateau(state)).toBeNull();
     expect(continueCampaign(state)).toBeNull();
-    expect(state.campaign!.currentChapterId).toBe('scorpion');
+    expect(state.campaign!.currentChapterId).toBe('finale');
+  });
+
+  it('keeps a codex left to the Phénix under oath against the force outcome of the Scorpion', () => {
+    const state = bearRunFrom(lionForceComplete);
+    for (const [chapterId, victory] of [['bear', 'bear_borin'], ['dragon', 'dragon_kaelen']] as const) {
+      Object.assign(state.flags, combatVictoryFacts(victory));
+      state.run.status = 'completed';
+      expect(completePlateauChronicle(state, chapterId)?.outcome).toBe('force');
+      continueCampaign(state, 11);
+    }
+    expect(runPlateauId(state)).toBe('scorpion');
+    setClanRelation(state, 'phoenix', 'ally', 'scorpion.codex');
+    Object.assign(state.flags, combatVictoryFacts('scorpion_inquisitor'));
+    state.run.status = 'completed';
+    expect(completePlateauChronicle(state, 'scorpion')?.outcome).toBe('force');
+    expect(getClanRelation(state, 'scorpion')).toBe('enemy');
+    expect(getClanRelation(state, 'phoenix')).toBe('ally');
+    expect(getClanRelationCauses(state, 'phoenix')).toEqual(['scorpion.arrival', 'scorpion.codex']);
   });
 
   it('keeps a Raven pact made in the mines against the force outcome', () => {

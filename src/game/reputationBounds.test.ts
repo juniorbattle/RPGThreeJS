@@ -182,11 +182,30 @@ describe('the Dragon plateau measured from its draft content (set 1.20.0, Lot 2)
   });
 });
 
+describe('the Scorpion plateau measured from its draft content (set 1.20.0, Lot 3)', () => {
+  const scorpion = computePlateauReputationBounds('scorpion');
+
+  it('fits the Scorpion budget exactly: +6 at most, +4 for a consistent honour run', () => {
+    expect(getPlateau('scorpion').reputationBudget).toEqual({ perfectMax: scorpion.perfectMax, honourFloor: scorpion.honourFloor });
+    expect({ canonicalMax: scorpion.canonicalMax, optionalMax: scorpion.optionalMax, socialMax: scorpion.socialMax }).toEqual({
+      canonicalMax: 4, optionalMax: 2, socialMax: 0,
+    });
+    expect(scorpion.failedHonourGates).toEqual([]);
+  });
+
+  it('moves less than the Dragon (R2): no fight on the route moves it, only the mandate, the codex, the witnesses and the claim', () => {
+    expect(scorpion.perfectMax).toBeLessThan(computePlateauReputationBounds('dragon').perfectMax);
+    expect(scorpion.canonicalMin).toBeLessThan(-scorpion.canonicalMax);
+    expect(scorpion.nodes.flatMap((node) => node.bestSources)).toEqual(['choice:scorpion_audience:mandate:0',
+      'choice:scorpion_phoenix_temple:choice:0', 'choice:scorpion_temple_witnesses:choice:0', 'finale:scorpion:honour']);
+  });
+});
+
 describe('whole-game reputation bounds (set 1.20.0 calibration targets)', () => {
   const projection = projectCampaignReputation(LION_POST_DEMO_REPUTATION);
 
-  it('measures the built Bear and Dragon from their content and keeps the later chapters at their budgets', () => {
-    expect(projection.chapters.filter((chapter) => chapter.measured).map((chapter) => chapter.id)).toEqual(['lion', 'bear', 'dragon']);
+  it('measures the built Bear, Dragon and Scorpion from their content and keeps the final act at its budget', () => {
+    expect(projection.chapters.filter((chapter) => chapter.measured).map((chapter) => chapter.id)).toEqual(['lion', 'bear', 'dragon', 'scorpion']);
   });
 
   it('lets only a perfect run reach 100, and only in the final act', () => {

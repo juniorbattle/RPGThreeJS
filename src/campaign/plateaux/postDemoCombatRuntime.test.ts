@@ -1,5 +1,5 @@
 /**
- * Set 1.20.0, post-demo Lots 1 and 2: the Bear's and the Dragon's fights exist in the tactical runtime. Every enemy and
+ * Set 1.20.0, post-demo Lots 1 to 3: the Bear's, the Dragon's and the Scorpion's fights exist in the tactical runtime. Every enemy and
  * escort a plateau lists has a runtime template, every boss fight finds its own boss by its combat ID, and every enemy
  * skill and natural attack already has its procedural FX signature, so no plateau adds a new FX (COMBAT_AND_VFX).
  */
@@ -11,6 +11,7 @@ import { combatConfigs } from '../../game/content';
 import { POST_DEMO_COMBATS } from '../../game/postDemoContent';
 import { BEAR_PROVISIONAL_ENEMIES } from './bear/bearPresentation';
 import { DRAGON_PROVISIONAL_ENEMIES } from './dragon/dragonPresentation';
+import { SCORPION_PROVISIONAL_ENEMIES } from './scorpion/scorpionPresentation';
 
 const runtime = readFileSync('src/combat/legacyCombatRuntime.js', 'utf8');
 const templateLine = (id: string) => new RegExp(`\\n  ${id}:\\{team:'foe'[^\\n]*`).exec(runtime)?.[0] ?? '';
@@ -22,10 +23,11 @@ const weaponName = (line: string) => /weapons:\[\{name:'([^']+)'/.exec(line)?.[1
 
 const postDemoCombats = [...POST_DEMO_COMBATS.values()];
 
-describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 and 2)', () => {
+describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 3)', () => {
   it('gives every post-demo enemy and escort a runtime template, and keeps them apart from the demo fights', () => {
     expect(postDemoCombats.some((combat) => combat.id.startsWith('bear_'))).toBe(true);
     expect(postDemoCombats.some((combat) => combat.id.startsWith('dragon_'))).toBe(true);
+    expect(postDemoCombats.some((combat) => combat.id.startsWith('scorpion_'))).toBe(true);
     for (const combat of postDemoCombats) {
       expect(combatConfigs.has(combat.id), combat.id).toBe(false);
       for (const visualId of [...combat.enemyVisualIds, ...combat.escortVisualIds]) {
@@ -37,7 +39,8 @@ describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 and 2)', 
   it('chooses each post-demo boss by its fight, never the demo bosses', () => {
     const bosses = postDemoCombats.filter((combat) => combat.isBoss);
     expect(bosses.map((combat) => combat.id).sort()).toEqual(['bear_borin', 'bear_master_spy', 'bear_mines_defense', 'bear_mines_seizure',
-      'dragon_kaelen', 'dragon_lair_assault', 'dragon_lair_seizure', 'dragon_shadow_shaman']);
+      'dragon_kaelen', 'dragon_lair_assault', 'dragon_lair_seizure', 'dragon_shadow_shaman',
+      'scorpion_inquisitor', 'scorpion_shadow_prophet', 'scorpion_temple_assault', 'scorpion_temple_seizure']);
     for (const combat of bosses) {
       const line = bossLine(combat.id);
       expect(line, combat.id).toContain('provisionalSprite:true');
@@ -54,15 +57,16 @@ describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 and 2)', 
       for (const skillId of list(line, 'skills')) expect(skillFxRecipe(skillId), skillId).not.toBeNull();
     }
     // Natural attacks (claws, stones, thrown blades) play their own recipe; weapons keep the shared weapon sounds.
-    for (const id of ['raven_scout', 'corrupted_beast', 'depth_beast', 'wolf_hunter', 'wolf_champion', 'shadow_wyrm']) {
+    for (const id of ['raven_scout', 'corrupted_beast', 'depth_beast', 'wolf_hunter', 'wolf_champion', 'shadow_wyrm', 'shadow_zealot']) {
       expect(enemyAttackFxRecipe(weaponName(templateLine(id))), id).not.toBeNull();
     }
   });
 
   it('marks every new family as a provisional sprite listed with its awaited final image', () => {
     const families = ['raven_scout', 'raven_miner', 'raven_foreman', 'corrupted_beast', 'depth_beast', 'bear_warrior',
-      'wolf_raider', 'wolf_hunter', 'wolf_champion', 'shadow_wyrm', 'dragon_guardian'];
-    const listed = [...BEAR_PROVISIONAL_ENEMIES, ...DRAGON_PROVISIONAL_ENEMIES];
+      'wolf_raider', 'wolf_hunter', 'wolf_champion', 'shadow_wyrm', 'dragon_guardian',
+      'phoenix_guardian', 'phoenix_flamekeeper', 'shadow_zealot', 'scorpion_scholar'];
+    const listed = [...BEAR_PROVISIONAL_ENEMIES, ...DRAGON_PROVISIONAL_ENEMIES, ...SCORPION_PROVISIONAL_ENEMIES];
     for (const id of families) {
       expect(templateLine(id), id).toContain('provisionalSprite:true');
       expect(__testing.ENEMY_VISUAL_SKILLS[id], id).toEqual(list(templateLine(id), 'skills'));

@@ -61,11 +61,21 @@ const rivalName = plateau.rivalClan ? CAMPAIGN_CLAN_LABELS[plateau.rivalClan] : 
 const PREVIOUS_FORCE: Readonly<Record<string, Readonly<Record<string, boolean>>>> = Object.freeze({
   bear: { serpentGeneralDefeated: false, lionTrialWon: true },
   dragon: { serpentGeneralDefeated: false, lionTrialWon: true, bearMasterSpyDefeated: false, bearTrialWon: true, bearDarkOreEvidence: false },
+  scorpion: { serpentGeneralDefeated: false, lionTrialWon: true, bearMasterSpyDefeated: false, bearTrialWon: true, bearDarkOreEvidence: false,
+    dragonShadowShamanDefeated: false, dragonTrialWon: true, dragonShadowEvidence: false, dragonPilgrimsSilenced: true },
+});
+/** The previous plateaux's honour facts a scene echoes. */
+const PREVIOUS_HONOUR: Readonly<Record<string, Readonly<Record<string, boolean>>>> = Object.freeze({
+  dragon: { bearMasterSpyDefeated: true, bearDarkOreEvidence: true },
+  scorpion: { bearMasterSpyDefeated: true, bearDarkOreEvidence: true, dragonShadowShamanDefeated: true, dragonShadowEvidence: true,
+    dragonPilgrimsProtected: true },
 });
 /** The pact flag that opens the decisive scene's third answer. */
-const PACT_FLAG: Readonly<Record<string, string>> = Object.freeze({ bear: 'bearRavenPact', dragon: 'dragonWolfPact' });
+const PACT_FLAG: Readonly<Record<string, string>> = Object.freeze({ bear: 'bearRavenPact', dragon: 'dragonWolfPact', scorpion: 'scorpionPhoenixOath' });
+/** How that pact is named: the Scorpion's is an oath sworn to the Phénix. */
+const PACT_LABEL: Readonly<Record<string, string>> = Object.freeze({ scorpion: 'serment juré au Phénix' });
 const honour = perfectHonourPlateauState(chapterId);
-if (chapterId === 'dragon') Object.assign(honour.flags, { bearMasterSpyDefeated: true, bearDarkOreEvidence: true });
+Object.assign(honour.flags, PREVIOUS_HONOUR[chapterId] ?? {});
 const greed = greedPlateauState(chapterId);
 Object.assign(greed.flags, PREVIOUS_FORCE[chapterId] ?? {});
 const forceThenHonour = perfectHonourPlateauState(chapterId);
@@ -73,12 +83,19 @@ Object.assign(forceThenHonour.flags, PREVIOUS_FORCE[chapterId] ?? {});
 const pact = greedPlateauState(chapterId);
 Object.assign(pact.flags, PREVIOUS_FORCE[chapterId] ?? {});
 if (PACT_FLAG[chapterId]) pact.flags[PACT_FLAG[chapterId]!] = true;
-const STATES: { label: string; state: GameState }[] = [
-  { label: `plateaux précédents par l’honneur, conduite honorable ici (${hostName})`, state: honour },
-  { label: 'plateaux précédents par la force, conduite avide ici', state: greed },
-  { label: 'plateaux précédents par la force, conduite honorable ici', state: forceThenHonour },
-  { label: `pacte avec le ${rivalName.replace(/^Clan d[eu] ?/, '')}`, state: pact },
+/** Each state with the route its conduct leads to, so the epilogue is printed after that route's victory. */
+const STATES: { label: string; state: GameState; route: 'honour' | 'force' }[] = [
+  { label: `plateaux précédents par l’honneur, conduite honorable ici (${hostName})`, state: honour, route: 'honour' },
+  { label: 'plateaux précédents par la force, conduite avide ici', state: greed, route: 'force' },
+  { label: 'plateaux précédents par la force, conduite honorable ici', state: forceThenHonour, route: 'honour' },
+  { label: PACT_LABEL[chapterId] ?? `pacte avec le ${rivalName.replace(/^Clan d[eu] ?/, '')}`, state: pact, route: 'force' },
 ];
+
+/** The state a scene is built from: the epilogue follows the victory over its route's boss. */
+function stateFor(id: string, entry: (typeof STATES)[number]): GameState {
+  if (id !== finale.epilogueDialogueId) return entry.state;
+  return { ...entry.state, flags: { ...entry.state.flags, ...finale.victoryFacts[finale.combats[entry.route]] } };
+}
 
 function scene(id: string, heading: string): string[] {
   const out = [`### ${heading} — \`${id}\``, ''];
@@ -87,8 +104,9 @@ function scene(id: string, heading: string): string[] {
     return out;
   }
   const printed = new Map<string, string>();
-  for (const { label, state } of STATES) {
-    const text = sequenceText(resolvePostDemoDialogue(id, state)!).join('\n');
+  for (const entry of STATES) {
+    const { label } = entry;
+    const text = sequenceText(resolvePostDemoDialogue(id, stateFor(id, entry))!).join('\n');
     const seen = printed.get(text);
     if (seen) { printed.set(text, `${seen} ; ${label}`); continue; }
     printed.set(text, label);
@@ -111,7 +129,7 @@ function fight(combatId: string): string[] {
 }
 
 const out: string[] = [
-  `# Fiche de texte — ${plateau.label} (${plateau.chief?.title ?? ''} ${plateau.chief?.name ?? ''}) — ${plateau.status === 'canon' ? 'CANON' : 'BROUILLON'}`,
+  `# Fiche de texte — ${plateau.label} (${[plateau.chief?.title, plateau.chief?.name].filter(Boolean).join(' ')}) — ${plateau.status === 'canon' ? 'CANON' : 'BROUILLON'}`,
   '',
   plateau.status === 'canon'
     ? 'Générée par `tools/narrative/plateau-text-sheet.ts` depuis le contenu jouable. Canon : le plateau a été accepté par l’opérateur.'
@@ -167,7 +185,8 @@ for (const poi of binding.topology.optionalPois) {
 for (const guardian of binding.topology.guardians) out.push(`- Gardien **${guardian.label}** (\`${guardian.id}\`) sur \`${guardian.spawnPosition}\`, deux vagues :`, `  ${fight(guardian.combat.id).join('')}`);
 out.push('');
 
-const chiefName = plateau.chief?.name ?? plateau.chief?.title ?? 'le chef';
+// P5: a chief named by his title only is « le Grand Inquisiteur ».
+const chiefName = plateau.chief?.name ?? (plateau.chief?.title ? `le ${plateau.chief.title}` : 'le chef');
 out.push(`## Ce que ${chiefName} pèse au jugement`, '', '| Fait | Nature | Poids | Phrase dite au jugement |', '| --- | --- | --- | --- |');
 for (const deed of finale.deeds) out.push(`| \`${deed.flag}\` | ${deed.kind} (${deed.severity}) | ${finale.conductWeights[deed.flag] ?? 0} | ${deed.phrase} |`);
 out.push('', `Crédibilité devant ${chiefName} (${plateau.status === 'canon' ? 'approuvée' : 'proposée'}) : crédible à ${finale.credibility.credible}, haute à ${finale.credibility.high}. Faits de force : ${finale.forceFacts.map((f) => `\`${f}\``).join(', ')}. Fait d’honneur : \`${finale.honourFact}\`.`, '');

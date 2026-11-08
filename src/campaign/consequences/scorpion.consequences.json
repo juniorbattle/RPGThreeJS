@@ -187,26 +187,26 @@
      "id": "scorpion.mandate.honour.judgement",
      "fact": "scorpionMandateHonour",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
       "scorpionMandateHonour": true
      },
-     "causePhrase": "vous avez accepté ma requête sans marchander",
+     "causePhrase": "vous avez accepté la requête du Grand Inquisiteur sans marchander",
      "stepId": "merits"
     },
     {
      "id": "scorpion.mandate.terms.judgement",
      "fact": "scorpionMandateTerms",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
       "scorpionMandateTerms": true
      },
-     "causePhrase": "le droit de lire le codex avant moi, que vous avez exigé",
+     "causePhrase": "le droit de lire le codex avant le Grand Inquisiteur, exigé à l’audience",
      "stepId": "stains"
     }
    ]
@@ -240,33 +240,33 @@
      "id": "scorpion.scholars.freed.judgement",
      "fact": "scorpionFaithfulFreed",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
       "scorpionFaithfulFreed": true
      },
-     "causePhrase": "vous avez arraché un fidèle du Phénix à mes érudits",
+     "causePhrase": "vous avez arraché un fidèle du Phénix aux érudits du Scorpion",
      "stepId": "merits"
     },
     {
      "id": "scorpion.scholars.abandoned.judgement",
      "fact": "scorpionFaithfulAbandoned",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
       "scorpionFaithfulAbandoned": true
      },
-     "causePhrase": "un fidèle du Phénix a été livré à mes érudits",
+     "causePhrase": "vous avez livré un fidèle du Phénix à nos interrogatoires",
      "stepId": "breaches"
     },
     {
      "id": "scorpion.scholars.freed.traces",
      "fact": "scorpionFaithfulFreed",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-prophet-traces",
      "dialogueId": "scorpion_prophet_traces",
      "state": {
@@ -306,7 +306,7 @@
      "id": "scorpion.oath.refused.judgement",
      "fact": "scorpionOathRefused",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -319,7 +319,7 @@
      "id": "scorpion.oath.sworn.judgement",
      "fact": "scorpionPhoenixOath",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -332,7 +332,7 @@
      "id": "scorpion.oath.sworn.temple",
      "fact": "scorpionPhoenixOath",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-phoenix-temple",
      "dialogueId": "scorpion_phoenix_temple",
      "state": {
@@ -372,7 +372,7 @@
      "id": "scorpion.riddle.solved.judgement",
      "fact": "scorpionRiddleSolved",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -385,7 +385,7 @@
      "id": "scorpion.riddle.forced.judgement",
      "fact": "scorpionRiddleForced",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -425,7 +425,7 @@
      "id": "scorpion.wards.respected.judgement",
      "fact": "scorpionWardsRespected",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -438,7 +438,7 @@
      "id": "scorpion.wards.broken.judgement",
      "fact": "scorpionWardsBroken",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -451,7 +451,7 @@
      "id": "scorpion.wards.respected.vigil",
      "fact": "scorpionWardsRespected",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-final-refuge",
      "dialogueId": "scorpion_vigil",
      "state": {
@@ -491,7 +491,7 @@
      "id": "scorpion.library.respected.judgement",
      "fact": "scorpionLibraryRespected",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -504,7 +504,7 @@
      "id": "scorpion.library.looted.judgement",
      "fact": "scorpionLibraryLooted",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -564,7 +564,7 @@
      "id": "scorpion.codex.delivered.judgement",
      "fact": "scorpionCodexDelivered",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -577,7 +577,7 @@
      "id": "scorpion.codex.kept.judgement",
      "fact": "scorpionCodexKept",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -590,7 +590,7 @@
      "id": "scorpion.codex.protected.judgement",
      "fact": "scorpionCodexProtected",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -630,7 +630,7 @@
      "id": "scorpion.witnesses.protected.judgement",
      "fact": "scorpionWitnessesProtected",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -643,7 +643,7 @@
      "id": "scorpion.witnesses.silenced.judgement",
      "fact": "scorpionWitnessesSilenced",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -683,7 +683,7 @@
      "id": "scorpion.ashes.respected.judgement",
      "fact": "scorpionAshesRespected",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -696,7 +696,7 @@
      "id": "scorpion.ashes.taken.judgement",
      "fact": "scorpionAshesTaken",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -736,7 +736,7 @@
      "id": "scorpion.corrupted_texts.evidence.judgement",
      "fact": "scorpionShadowEvidence",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -749,7 +749,7 @@
      "id": "scorpion.corrupted_texts.burned.judgement",
      "fact": "scorpionShadowBurned",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_judgement",
      "state": {
@@ -806,7 +806,7 @@
      "id": "scorpion.judgement_intent.honour.epilogue",
      "fact": "scorpionShadowProphetDefeated",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_epilogue",
      "state": {
@@ -822,7 +822,7 @@
      "id": "scorpion.judgement_intent.force.epilogue",
      "fact": "scorpionTrialWon",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_epilogue",
      "state": {
@@ -858,7 +858,7 @@
      "id": "scorpion.outcome.honour.epilogue",
      "fact": "scorpionShadowProphetDefeated",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_epilogue",
      "state": {
@@ -905,7 +905,7 @@
      "id": "scorpion.outcome.force.epilogue",
      "fact": "scorpionTrialWon",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "scorpion-judgement",
      "dialogueId": "scorpion_epilogue",
      "state": {

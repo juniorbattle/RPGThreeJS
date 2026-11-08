@@ -45,6 +45,7 @@ export const BEAR_FINALE: PlateauFinaleDefinition = Object.freeze<PlateauFinaleD
   forceFacts: Object.freeze(['bearMinesSeized', 'bearMinesAbandoned', 'bearMinersSilenced']),
   honourFact: 'bearMinesRestored',
   outcome: {
+    tag: 'Les mines',
     lines: Object.freeze([
       { flag: 'bearMinesRestored', text: 'Les galeries respirent de nouveau parce que vous avez rendu les galeries sacrées à l’Ours au lieu d’y planter votre propre bannière. Mes mineurs y redescendront demain.' },
       { flag: 'bearMinesSeized', text: 'Vous avez chassé le Corbeau, c’est vrai. Puis vous avez gardé le filon sombre pour votre clan, dans une montagne qui ne vous appartient pas.' },
