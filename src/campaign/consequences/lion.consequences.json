@@ -1,0 +1,1266 @@
+{
+ "schemaVersion": 1,
+ "plateauId": "lion",
+ "status": "canon",
+ "sources": [
+  "src/game/content.ts",
+  "src/game/campaignGrammarContent.ts",
+  "src/game/r5NarrativeContent.ts",
+  "src/game/lionFinale.ts",
+  "src/game/lionVerdict.ts",
+  "src/game/lionNarrative.ts",
+  "docs/content/feuille_de_route_narrative_condensee.md",
+  "docs/autonomy/NARRATIVE_PASS_OPERATOR_DECISION_2026-11-04.md",
+  "docs/autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md"
+ ],
+ "facts": [
+  {
+   "id": "lionMissionAccepted",
+   "kind": "system",
+   "summary": "La compagnie a accepté la mission d’Alaric ; marqueur de déroulé, lu par les pilotes de QA seulement."
+  },
+  {
+   "id": "chapterStarted",
+   "kind": "system",
+   "summary": "Le chapitre du Lion a commencé après l’audience ; marqueur de déroulé."
+  },
+  {
+   "id": "prologueSeen",
+   "kind": "system",
+   "summary": "L’ouverture a été vue ; marqueur de cycle de vie."
+  },
+  {
+   "id": "refugeSecured:*",
+   "kind": "flag_pattern",
+   "summary": "Un refuge a été atteint et sécurisé ; il rouvre ses services et débloque la suite de la carte."
+  },
+  {
+   "id": "clanArrival:*",
+   "kind": "system",
+   "summary": "Le rassemblement d’arrivée d’un refuge a été joué une fois."
+  },
+  {
+   "id": "ate:*",
+   "kind": "system",
+   "summary": "Un écho contextuel à usage unique a été joué."
+  },
+  {
+   "id": "lionMandateHonour",
+   "kind": "flag",
+   "summary": "Mandat d’Alaric accepté sans marchander."
+  },
+  {
+   "id": "lionMandateAdvance",
+   "kind": "flag",
+   "summary": "Mandat accepté contre une avance réclamée au Lion."
+  },
+  {
+   "id": "alaricDoubt",
+   "kind": "flag",
+   "summary": "Alaric doute de la compagnie (avance réclamée à l’audience, revendication rejetée au jugement)."
+  },
+  {
+   "id": "recruitedCedric",
+   "kind": "flag",
+   "summary": "Cedric, l’éclaireur nomade, a rejoint la compagnie."
+  },
+  {
+   "id": "helpedRefugees",
+   "kind": "flag",
+   "summary": "La compagnie a partagé ses réserves avec les réfugiés et leur a ouvert la route."
+  },
+  {
+   "id": "exploitedRefugees",
+   "kind": "flag",
+   "summary": "La compagnie a vendu l’itinéraire aux réfugiés contre leurs dernières pièces."
+  },
+  {
+   "id": "ignoredRefugees",
+   "kind": "flag",
+   "summary": "La compagnie a contourné les réfugiés sans s’arrêter (choix d’ignorer sur la carte)."
+  },
+  {
+   "id": "helpedMerchant",
+   "kind": "flag",
+   "summary": "Le marchand blessé a reçu des vivres et un chariot réparé."
+  },
+  {
+   "id": "abandonedMerchant",
+   "kind": "flag",
+   "summary": "Le marchand blessé a été laissé sur la route (choix ou contournement)."
+  },
+  {
+   "id": "returnedLostTreasure",
+   "kind": "flag",
+   "summary": "Le chargement du chariot abandonné a été rendu aux réfugiés."
+  },
+  {
+   "id": "claimedLostTreasure",
+   "kind": "flag",
+   "summary": "Le chargement du chariot abandonné a été gardé pour le clan."
+  },
+  {
+   "id": "prioritizedVillage",
+   "kind": "flag",
+   "summary": "Le convoi des réserves a été marqué et la compagnie a filé vers Bois-Clair."
+  },
+  {
+   "id": "prioritizedLoot",
+   "kind": "flag",
+   "summary": "Le convoi des réserves de Bois-Clair a été frappé et ses réserves saisies."
+  },
+  {
+   "id": "shrineRested",
+   "kind": "flag",
+   "summary": "Le foyer du vieux sanctuaire a été entretenu, son reliquaire laissé intact."
+  },
+  {
+   "id": "shrineLooted",
+   "kind": "flag",
+   "summary": "Le reliquaire du vieux sanctuaire a été ouvert et pillé."
+  },
+  {
+   "id": "missionSuccess",
+   "kind": "flag",
+   "summary": "Bois-Clair sauvé : la compagnie a pris le vieux pont et extrait les captifs."
+  },
+  {
+   "id": "missionGreed",
+   "kind": "flag",
+   "summary": "Bois-Clair sacrifié : la compagnie a pris la porte basse et emporté les coffres pour le clan."
+  },
+  {
+   "id": "recruitedLancer",
+   "kind": "flag",
+   "summary": "Garen, le lancier de Bois-Clair, a rejoint la compagnie."
+  },
+  {
+   "id": "protectedWitnesses",
+   "kind": "flag",
+   "summary": "Les témoins de Bois-Clair ont été protégés jusqu’au camp."
+  },
+  {
+   "id": "silencedWitnesses",
+   "kind": "flag",
+   "summary": "Les témoins de Bois-Clair ont été réduits au silence."
+  },
+  {
+   "id": "challengedYoungDragon",
+   "kind": "flag",
+   "summary": "Le jeune dragon a été chassé de son nid pour ses gemmes."
+  },
+  {
+   "id": "sparedYoungDragon",
+   "kind": "flag",
+   "summary": "Le nid du jeune dragon a été scellé et cartographié."
+  },
+  {
+   "id": "preservedShrine",
+   "kind": "flag",
+   "summary": "Le sceau de l’autel des voyageurs a été ravivé."
+  },
+  {
+   "id": "desecratedShrine",
+   "kind": "flag",
+   "summary": "Le sceau de l’autel des voyageurs a été rompu et l’offrande prise."
+  },
+  {
+   "id": "protectedInformant",
+   "kind": "flag",
+   "summary": "L’informateur Serpent déserteur a été protégé de ses chasseurs."
+  },
+  {
+   "id": "betrayedInformant",
+   "kind": "flag",
+   "summary": "L’informateur Serpent déserteur a été vendu à ses anciens alliés."
+  },
+  {
+   "id": "shadowEvidence",
+   "kind": "flag",
+   "summary": "La preuve des Ombres a été transportée intacte (autel stabilisé, ou artefact du général)."
+  },
+  {
+   "id": "shadowFragments",
+   "kind": "flag",
+   "summary": "L’autel des Ombres a été démonté ; il ne reste que des fragments."
+  },
+  {
+   "id": "shadowRevealed",
+   "kind": "flag",
+   "summary": "Les preuves des Ombres ont été confiées au Lion."
+  },
+  {
+   "id": "shadowConcealed",
+   "kind": "flag",
+   "summary": "Les preuves des Ombres ont été gardées au sein du clan."
+  },
+  {
+   "id": "liedToAlaric",
+   "kind": "flag",
+   "summary": "La compagnie a tenté de déformer les faits devant Alaric."
+  },
+  {
+   "id": "brazenLieToAlaric",
+   "kind": "flag",
+   "summary": "La compagnie a nié devant Alaric des faits établis."
+  },
+  {
+   "id": "alaricBluffSucceeded",
+   "kind": "flag",
+   "summary": "Alaric a accepté une présentation plausible de taches mineures."
+  },
+  {
+   "id": "lionTrialRequested",
+   "kind": "flag",
+   "summary": "L’épreuve du Lion a été demandée volontairement."
+  },
+  {
+   "id": "lionFinaleSerpentPursuitSelected",
+   "kind": "system",
+   "summary": "Le combat de la poursuite du Serpent est engagé ; reprise du combat en attente."
+  },
+  {
+   "id": "lionFinaleTrialSelected",
+   "kind": "system",
+   "summary": "Le combat de l’épreuve du Lion est engagé ; reprise du combat en attente."
+  },
+  {
+   "id": "lionSealHonour",
+   "kind": "flag",
+   "summary": "Alaric reconnaît le clan et promet le Sceau par l’honneur."
+  },
+  {
+   "id": "lionSealAcknowledged",
+   "kind": "flag",
+   "summary": "Le Sceau du Lion est acquis."
+  },
+  {
+   "id": "serpentGeneralDefeated",
+   "kind": "flag",
+   "summary": "Le général Serpent est tombé : issue de la voie de l’honneur."
+  },
+  {
+   "id": "lionTrialWon",
+   "kind": "flag",
+   "summary": "Le Champion du Lion est vaincu : issue de la voie de la force."
+  },
+  {
+   "id": "r4FacedRoadsidePressure",
+   "kind": "flag",
+   "summary": "Événement de route : tribut refusé, la route tenue."
+  },
+  {
+   "id": "r4PaidRoadsideTribute",
+   "kind": "flag",
+   "summary": "Événement de route : tribut payé."
+  },
+  {
+   "id": "r4BoughtRoadInformation",
+   "kind": "flag",
+   "summary": "Événement de route : renseignement acheté."
+  },
+  {
+   "id": "r4DeclinedRoadInformation",
+   "kind": "flag",
+   "summary": "Événement de route : renseignement décliné sans menace."
+  },
+  {
+   "id": "r4FundedPublicPetition",
+   "kind": "flag",
+   "summary": "Événement de refuge : provisions de la pétition financées."
+  },
+  {
+   "id": "r4RefusedPublicPetition",
+   "kind": "flag",
+   "summary": "Événement de refuge : pétition refusée publiquement."
+  },
+  {
+   "id": "r4FacedBoisClairAccusation",
+   "kind": "flag",
+   "summary": "Événement de refuge : accusation de Bois-Clair affrontée sans la nier."
+  },
+  {
+   "id": "r4PaidBoisClairReparations",
+   "kind": "flag",
+   "summary": "Événement de refuge : réparations versées aux survivants de Bois-Clair."
+  },
+  {
+   "id": "r5BoughtRefugeSupplies",
+   "kind": "flag",
+   "summary": "Événement de refuge : caisse de remèdes achetée."
+  },
+  {
+   "id": "r5LeftRefugeSupplies",
+   "kind": "flag",
+   "summary": "Événement de refuge : caisse de remèdes laissée aux familles suivantes."
+  },
+  {
+   "id": "r5BoughtSerpentRumour",
+   "kind": "flag",
+   "summary": "Événement de refuge : rumeur Serpent achetée."
+  },
+  {
+   "id": "r5SharedClanFall",
+   "kind": "flag",
+   "summary": "Événement de refuge : chute du clan racontée publiquement."
+  },
+  {
+   "id": "r5AcceptedPoliticalSponsor",
+   "kind": "flag",
+   "summary": "Événement de refuge : soutien public d’un prétendant accepté."
+  },
+  {
+   "id": "r5RefusedPoliticalSponsor",
+   "kind": "flag",
+   "summary": "Événement de refuge : soutien public refusé."
+  },
+  {
+   "id": "r5CarriedBoisClairNames",
+   "kind": "flag",
+   "summary": "Événement de refuge : la liste des morts de Bois-Clair est portée au Lion."
+  },
+  {
+   "id": "r5FundedBoisClairMemorial",
+   "kind": "flag",
+   "summary": "Événement de refuge : mémorial de Bois-Clair financé."
+  },
+  {
+   "id": "r5PaidDisplacedFamilies",
+   "kind": "flag",
+   "summary": "Événement de refuge : or versé au convoi déplacé."
+  },
+  {
+   "id": "r5AcknowledgedDisplacedFamilies",
+   "kind": "flag",
+   "summary": "Événement de refuge : refus reconnu sans acheter l’oubli."
+  }
+ ],
+ "majorChoices": [
+  {
+   "id": "lion.mandate",
+   "summary": "À l’audience, accepter le mandat d’Alaric sans condition ou réclamer une avance.",
+   "nodeId": "lion-audience",
+   "dialogueId": "lion_briefing",
+   "stepId": "3",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "lionMissionAccepted",
+      "lionMandateHonour"
+     ],
+     "reputation": 3
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "lionMissionAccepted",
+      "lionMandateAdvance"
+     ],
+     "reputation": -3
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.mandate.honour.judgement",
+     "fact": "lionMandateHonour",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "merits",
+     "state": {
+      "lionMandateHonour": true
+     },
+     "causePhrase": "vous avez accepté le mandat sans marchander"
+    },
+    {
+     "id": "lion.mandate.advance.judgement",
+     "fact": "lionMandateAdvance",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "stains",
+     "state": {
+      "lionMandateAdvance": true
+     },
+     "causePhrase": "l’avance réclamée avant votre départ"
+    }
+   ]
+  },
+  {
+   "id": "lion.refugees",
+   "summary": "Sur la route des réfugiés, partager les réserves ou vendre l’itinéraire.",
+   "nodeId": "lion-refugees",
+   "dialogueId": "refugee_trial",
+   "stepId": "1",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "helpedRefugees"
+     ],
+     "reputation": 8
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "exploitedRefugees"
+     ],
+     "reputation": -8
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.refugees.helped.judgement",
+     "fact": "helpedRefugees",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "merits",
+     "state": {
+      "helpedRefugees": true
+     },
+     "causePhrase": "vous avez nourri les réfugiés de la route"
+    },
+    {
+     "id": "lion.refugees.exploited.judgement",
+     "fact": "exploitedRefugees",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "breaches",
+     "state": {
+      "exploitedRefugees": true
+     },
+     "causePhrase": "les réfugiés ont payé votre passage"
+    }
+   ]
+  },
+  {
+   "id": "lion.merchant",
+   "summary": "Secourir le marchand blessé ou garder les réserves pour Bois-Clair.",
+   "nodeId": "lion-first-trial-event",
+   "dialogueId": "mystery_help",
+   "stepId": "1",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "helpedMerchant"
+     ],
+     "reputation": 8
+    },
+    {
+     "choiceIndex": 1,
+     "path": "neutral",
+     "sets": [
+      "abandonedMerchant"
+     ],
+     "reputation": -2
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.merchant.helped.judgement",
+     "fact": "helpedMerchant",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "merits",
+     "state": {
+      "helpedMerchant": true
+     },
+     "causePhrase": "vous avez secouru le marchand blessé"
+    },
+    {
+     "id": "lion.merchant.abandoned.judgement",
+     "fact": "abandonedMerchant",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "stains",
+     "state": {
+      "abandonedMerchant": true
+     },
+     "causePhrase": "le marchand laissé sur la route"
+    }
+   ]
+  },
+  {
+   "id": "lion.lost_cargo",
+   "summary": "Rendre le chargement du chariot abandonné ou le garder pour le clan.",
+   "nodeId": "lion-first-trial-event",
+   "dialogueId": "mystery_treasure",
+   "stepId": "1",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "returnedLostTreasure"
+     ],
+     "reputation": 4
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "claimedLostTreasure"
+     ],
+     "reputation": -4
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.lost_cargo.returned.judgement",
+     "fact": "returnedLostTreasure",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "merits",
+     "state": {
+      "returnedLostTreasure": true
+     },
+     "causePhrase": "vous avez rendu le chargement perdu"
+    },
+    {
+     "id": "lion.lost_cargo.claimed.judgement",
+     "fact": "claimedLostTreasure",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "stains",
+     "state": {
+      "claimedLostTreasure": true
+     },
+     "causePhrase": "le chargement perdu gardé pour votre clan"
+    }
+   ]
+  },
+  {
+   "id": "lion.reserves",
+   "summary": "Frapper le convoi des réserves ou le marquer et filer vers Bois-Clair.",
+   "nodeId": "lion-reserve-trail",
+   "dialogueId": "reserve_trail",
+   "stepId": "1",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "force",
+     "sets": [
+      "prioritizedLoot"
+     ],
+     "reputation": -6
+    },
+    {
+     "choiceIndex": 1,
+     "path": "honour",
+     "sets": [
+      "prioritizedVillage"
+     ],
+     "reputation": 4
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.reserves.village.judgement",
+     "fact": "prioritizedVillage",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "merits",
+     "state": {
+      "prioritizedVillage": true
+     },
+     "causePhrase": "vous avez dirigé les réserves vers le village"
+    },
+    {
+     "id": "lion.reserves.loot.judgement",
+     "fact": "prioritizedLoot",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "stains",
+     "state": {
+      "prioritizedLoot": true
+     },
+     "causePhrase": "les réserves détournées avant Bois-Clair"
+    }
+   ]
+  },
+  {
+   "id": "lion.old_shrine",
+   "summary": "Entretenir le vieux sanctuaire ou piller son reliquaire.",
+   "nodeId": "lion-second-trial-event",
+   "dialogueId": "old_shrine_event",
+   "stepId": "1",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "shrineRested"
+     ],
+     "reputation": 2
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "shrineLooted"
+     ],
+     "reputation": -3
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.old_shrine.rested.judgement",
+     "fact": "shrineRested",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "merits",
+     "state": {
+      "shrineRested": true
+     },
+     "causePhrase": "vous avez respecté le sanctuaire"
+    },
+    {
+     "id": "lion.old_shrine.looted.judgement",
+     "fact": "shrineLooted",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "stains",
+     "state": {
+      "shrineLooted": true
+     },
+     "causePhrase": "les reliques prises au vieux sanctuaire"
+    }
+   ]
+  },
+  {
+   "id": "lion.bois_clair",
+   "summary": "Bois-Clair assiégé : le vieux pont et les captifs, ou la porte basse et les coffres pour le clan.",
+   "nodeId": "lion-village-choice",
+   "dialogueId": "village_choice",
+   "stepId": "5",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "missionSuccess"
+     ],
+     "reputation": 10
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "missionGreed"
+     ],
+     "reputation": -10
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.bois_clair.saved.judgement",
+     "fact": "missionSuccess",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "outcome",
+     "state": {
+      "missionSuccess": true
+     },
+     "causePhrase": "votre compagnie a choisi le vieux pont et ramené les captifs"
+    },
+    {
+     "id": "lion.bois_clair.sacrificed.judgement",
+     "fact": "missionGreed",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "outcome",
+     "state": {
+      "missionGreed": true
+     },
+     "causePhrase": "vous avez pris la porte basse et ses coffres"
+    }
+   ]
+  },
+  {
+   "id": "lion.witnesses",
+   "summary": "Protéger les témoins de Bois-Clair jusqu’au camp ou les faire taire.",
+   "nodeId": "lion-witnesses",
+   "dialogueId": "witnesses_on_road",
+   "stepId": "1",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "protectedWitnesses"
+     ],
+     "reputation": 5
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "silencedWitnesses"
+     ],
+     "reputation": -5
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.witnesses.protected.judgement",
+     "fact": "protectedWitnesses",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "witnesses",
+     "state": {
+      "protectedWitnesses": true
+     },
+     "causePhrase": "Les survivants sont venus avec leurs propres signes"
+    },
+    {
+     "id": "lion.witnesses.silenced.judgement",
+     "fact": "silencedWitnesses",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "witnesses",
+     "state": {
+      "silencedWitnesses": true
+     },
+     "causePhrase": "un silence imposé par vos lames"
+    }
+   ]
+  },
+  {
+   "id": "lion.travellers_shrine",
+   "summary": "Raviver le sceau de l’autel des voyageurs ou le rompre pour l’offrande.",
+   "nodeId": "lion-final-trial-event",
+   "dialogueId": "mystery_shrine",
+   "stepId": "1",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "preservedShrine"
+     ],
+     "reputation": 3
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "desecratedShrine"
+     ],
+     "reputation": -4
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.travellers_shrine.preserved.judgement",
+     "fact": "preservedShrine",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "merits",
+     "state": {
+      "preservedShrine": true
+     },
+     "causePhrase": "vous avez respecté le sanctuaire"
+    },
+    {
+     "id": "lion.travellers_shrine.desecrated.judgement",
+     "fact": "desecratedShrine",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "breaches",
+     "state": {
+      "desecratedShrine": true
+     },
+     "causePhrase": "un sanctuaire a été profané"
+    }
+   ]
+  },
+  {
+   "id": "lion.informant",
+   "summary": "Protéger l’informateur Serpent déserteur ou vendre sa route.",
+   "nodeId": "lion-final-trial-event",
+   "dialogueId": "serpent_informant",
+   "stepId": "1",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "protectedInformant"
+     ],
+     "reputation": 4
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "betrayedInformant"
+     ],
+     "reputation": -6
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.informant.protected.judgement",
+     "fact": "protectedInformant",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "merits",
+     "state": {
+      "protectedInformant": true
+     },
+     "causePhrase": "vous avez protégé l’informateur Serpent"
+    },
+    {
+     "id": "lion.informant.betrayed.judgement",
+     "fact": "betrayedInformant",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "breaches",
+     "state": {
+      "betrayedInformant": true
+     },
+     "causePhrase": "l’informateur placé sur votre route a été vendu"
+    }
+   ]
+  },
+  {
+   "id": "lion.shadow_altar",
+   "summary": "Aux signes des Ombres, stabiliser l’autel et emporter la preuve, ou le démonter.",
+   "nodeId": "lion-shadow-signs",
+   "dialogueId": "shadow_signs",
+   "stepId": "1",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "shadowEvidence"
+     ],
+     "reputation": 5
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "shadowFragments"
+     ],
+     "reputation": -2
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.shadow_altar.evidence.judgement",
+     "fact": "shadowEvidence",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "shadow",
+     "state": {
+      "shadowEvidence": true
+     },
+     "causePhrase": "Séraphine porte des preuves qui dépassent cette guerre de clans"
+    },
+    {
+     "id": "lion.shadow_altar.fragments.judgement",
+     "fact": "shadowFragments",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "lion_finale_judgement",
+     "stepId": "stains",
+     "state": {
+      "shadowFragments": true
+     },
+     "causePhrase": "l’autel brisé pour ses fragments"
+    }
+   ]
+  },
+  {
+   "id": "lion.shadow_disclosure",
+   "summary": "Au jugement, révéler les preuves des Ombres au Lion ou les garder au sein du clan.",
+   "nodeId": "lion-final-judgement",
+   "dialogueId": "lion_finale_judgement",
+   "stepId": "shadow",
+   "buildState": {
+    "shadowEvidence": true
+   },
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "shadowRevealed"
+     ],
+     "reputation": 4
+    },
+    {
+     "choiceIndex": 1,
+     "path": "neutral",
+     "sets": [
+      "shadowConcealed"
+     ],
+     "reputation": 0
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.shadow_disclosure.revealed.epilogue",
+     "fact": "shadowRevealed",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "epilogue",
+     "stepId": "2",
+     "state": {
+      "serpentGeneralDefeated": true,
+      "shadowEvidence": true,
+      "shadowRevealed": true
+     },
+     "causePhrase": "Le Lion connaît maintenant la nature de l’artefact récupéré"
+    },
+    {
+     "id": "lion.shadow_disclosure.concealed.epilogue",
+     "fact": "shadowConcealed",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "epilogue",
+     "stepId": "2",
+     "state": {
+      "serpentGeneralDefeated": true,
+      "shadowEvidence": true,
+      "shadowConcealed": true
+     },
+     "causePhrase": "L’artefact récupéré reste le secret de votre compagnie"
+    }
+   ]
+  },
+  {
+   "id": "lion.judgement_intent",
+   "summary": "Devant Alaric, assumer ses actes et réclamer le Sceau, ou demander l’épreuve du Lion. La réclamation n’ouvre la poursuite du Serpent que si le verdict le permet ; sinon elle mène à l’épreuve.",
+   "nodeId": "lion-final-judgement",
+   "dialogueId": "lion_finale_judgement",
+   "stepId": "intent",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "neutral",
+     "sets": [],
+     "reputation": 0,
+     "leadsTo": [
+      "lionSealHonour",
+      "serpentGeneralDefeated",
+      "lionTrialWon"
+     ]
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [],
+     "reputation": 0,
+     "leadsTo": [
+      "lionTrialRequested",
+      "lionTrialWon"
+     ]
+    }
+   ],
+   "echoes": [
+    {
+     "id": "lion.judgement_intent.honour.epilogue",
+     "fact": "serpentGeneralDefeated",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "epilogue",
+     "stepId": "1",
+     "state": {
+      "serpentGeneralDefeated": true
+     },
+     "causePhrase": "le général Serpent est tombé",
+     "contrast": {
+      "lionTrialWon": true
+     }
+    },
+    {
+     "id": "lion.judgement_intent.force.epilogue",
+     "fact": "lionTrialWon",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "epilogue",
+     "stepId": "1",
+     "state": {
+      "lionTrialWon": true
+     },
+     "causePhrase": "Vous l’avez gagné selon la loi martiale du clan",
+     "contrast": {
+      "serpentGeneralDefeated": true
+     }
+    }
+   ]
+  }
+ ],
+ "outcomes": {
+  "honour": {
+   "facts": [
+    "serpentGeneralDefeated"
+   ],
+   "clanRelations": [
+    {
+     "clan": "lion",
+     "stance": "ally"
+    },
+    {
+     "clan": "serpent",
+     "stance": "enemy"
+    }
+   ],
+   "relationStatus": "proposed",
+   "echoes": [
+    {
+     "id": "lion.outcome.honour.epilogue",
+     "fact": "serpentGeneralDefeated",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "epilogue",
+     "stepId": "1",
+     "state": {
+      "serpentGeneralDefeated": true
+     },
+     "causePhrase": "Alaric a reconnu votre clan",
+     "contrast": {
+      "lionTrialWon": true
+     }
+    }
+   ]
+  },
+  "force": {
+   "facts": [
+    "lionTrialWon"
+   ],
+   "clanRelations": [
+    {
+     "clan": "lion",
+     "stance": "neutral"
+    },
+    {
+     "clan": "serpent",
+     "stance": "enemy"
+    }
+   ],
+   "relationStatus": "proposed",
+   "echoes": [
+    {
+     "id": "lion.outcome.force.epilogue",
+     "fact": "lionTrialWon",
+     "scope": "same_plateau",
+     "status": "implemented",
+     "nodeId": "lion-final-judgement",
+     "dialogueId": "epilogue",
+     "stepId": "1",
+     "state": {
+      "lionTrialWon": true
+     },
+     "causePhrase": "Alaric accepte le résultat",
+     "contrast": {
+      "serpentGeneralDefeated": true
+     }
+    }
+   ]
+  }
+ },
+ "exceptions": [
+  {
+   "kind": "unreachable_dialogue",
+   "subject": "roadside_peddler",
+   "reason": "OD-2026-11-04-C, C8 : ancien dialogue jamais montré, gardé tel quel par décision de l’opérateur."
+  },
+  {
+   "kind": "unreachable_dialogue",
+   "subject": "mystery_ambush",
+   "reason": "OD-2026-11-04-C, C8 : ancien dialogue jamais montré, gardé tel quel par décision de l’opérateur."
+  },
+  {
+   "kind": "unreachable_dialogue",
+   "subject": "serpent_duelist_trial",
+   "reason": "OD-2026-11-04-C, C8 : ancien dialogue jamais montré, gardé tel quel par décision de l’opérateur."
+  },
+  {
+   "kind": "unreachable_dialogue",
+   "subject": "mystery_troll_crossing",
+   "reason": "OD-2026-11-04-C, C8 : ancien dialogue jamais montré, gardé tel quel par décision de l’opérateur."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "lionMissionAccepted",
+   "reason": "Marqueur de déroulé de la démo, lu seulement par les pilotes de QA ; aucune conséquence narrative attendue."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "chapterStarted",
+   "reason": "Marqueur de déroulé posé à la fin de l’audience ; aucune conséquence narrative attendue."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "alaricDoubt",
+   "reason": "Doute d’Alaric posé à l’audience (avance réclamée) et au rejet de la revendication ; aucune scène de la démo ne le relit. Candidat à un écho dans l’après-démo, par la relation avec le clan du Lion."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "challengedYoungDragon",
+   "reason": "Choix mineur du nid du jeune dragon : lu seulement par la présentation (Cin6aPresentation), sans écho narratif dans la démo. Candidat à un écho plus tard."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "sparedYoungDragon",
+   "reason": "Choix mineur du nid du jeune dragon : lu seulement par la présentation (Cin6aPresentation), sans écho narratif dans la démo. Candidat à un écho plus tard."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "lionSealHonour",
+   "reason": "Reconnaissance du Sceau par l’honneur ; la démo lit l’issue par serpentGeneralDefeated. État conservé pour la compatibilité V6."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "lionSealAcknowledged",
+   "reason": "Sceau du Lion acquis ; la démo s’arrête là. L’après-démo le lira à la clôture du plateau du Lion (Lot 1)."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "ignoredRefugees",
+   "reason": "Réfugiés contournés : l’effet est immédiat (réputation −2 et son avis) ; aucune scène ne le relit. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r4FacedRoadsidePressure",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r4PaidRoadsideTribute",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r4BoughtRoadInformation",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r4DeclinedRoadInformation",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r4FundedPublicPetition",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r4RefusedPublicPetition",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r4FacedBoisClairAccusation",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r4PaidBoisClairReparations",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r5BoughtRefugeSupplies",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r5LeftRefugeSupplies",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r5BoughtSerpentRumour",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r5SharedClanFall",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r5AcceptedPoliticalSponsor",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r5RefusedPoliticalSponsor",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r5FundedBoisClairMemorial",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r5PaidDisplacedFamilies",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  },
+  {
+   "kind": "fact_set_never_read",
+   "subject": "r5AcknowledgedDisplacedFamilies",
+   "reason": "Issue d’un événement de refuge : son effet immédiat (réputation ou or) est sa seule conséquence dans la démo. Candidat à un écho dans l’après-démo."
+  }
+ ]
+}
