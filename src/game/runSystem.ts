@@ -2,19 +2,17 @@ import type {
   CampaignNode, GameState, InventoryState, RunGraph, RunLoot, RunNode, RunNodeType, RunState, CombatResult,
 } from './types';
 import { getLionConductTier, type LionConductTier } from './lionNarrative';
-import { LION_TRAVERSAL_LEGS } from '../campaign/LionCampaignTravelRelations';
-import { areLionFinalRefugeServicesAvailable, LION_FINAL_REFUGE_NODE_ID } from '../campaign/LionFinalRefugeServices';
 import { changeReputation } from './reputation';
 import { calibrateLionAmount } from './lionReputationCalibration';
-import { LION_FIRST_TRIAL, LION_OPENING_LOCAL_ROUTES, openingLocalRoutesUnlocked, LION_POI_METADATA,
-  type LionPoiRole, type LionPoiParticipation } from '../campaign/LionPoiTopology';
+import type { LionPoiRole, LionPoiParticipation } from '../campaign/LionPoiTopology';
 import { resolveOptionalEncounterIgnoreConsequence } from './OptionalEncounterConsequencePolicy';
-import { LOT_E_POIS, LOT_E_ELITES, makeExpeditionNodes } from '../campaign/LionPoiAuthoring';
+import { makeExpeditionNodes, makeOptionalPoiNodes } from '../campaign/LionPoiAuthoring';
 import { applyCombatProgress } from './combatProgress';
 import { challengeFor, challengeForContent, challengeHeld, describeChallenge, type ChallengeText } from './challenges';
-import { initialPoiExpedition, expeditionEdges, recordPoiMovement, eliteAtPoi,
+import { initialPoiExpedition, recordPoiMovement, eliteAtPoi,
   beginPoiEliteEncounter, settlePoiStep, selectPoiThreats, type PoiThreatView } from './poiExpedition';
-import { PLATEAU_REGISTRY, requirePlateauCampaign, type PlateauCampaignBinding } from '../campaign/plateaux/PlateauRegistry';
+import { plateauCampaignForRun, requirePlateauCampaign, topologyForRun, type CampaignChapterId } from '../campaign/plateaux/PlateauRegistry';
+import { optionalPoiEdges, type PlateauLeg } from '../campaign/plateaux/PlateauTopology';
 
 export { getLionConductScore, getLionConductTier } from './lionNarrative';
 // Set 1.20.0 (post-demo Lot 0): RunSystem owns the campaign record: clan relations, plateau outcomes and the ending.
@@ -490,14 +488,8 @@ const SEEDED_CREATURE_VARIANTS: Readonly<Record<string, readonly string[]>> = {
   'lion-valmir-road': ['road_to_valmir', 'marsh_crossing'],
 };
 
-/**
- * Set 1.20.0 (post-demo Lot 0): the plateau that owns a run, by its durable run ID prefix. Every saved run so far is a
- * Lion run, so an unclaimed ID keeps the Lion's binding rather than strand an old save.
- */
-export function plateauCampaignForRun(run: Pick<RunState, 'id'>): PlateauCampaignBinding {
-  return PLATEAU_REGISTRY.find((entry) => entry.campaign && run.id.startsWith(entry.campaign.runIdPrefix))?.campaign
-    ?? requirePlateauCampaign('lion');
-}
+/** Set 1.20.0: the plateau that owns a run, and its topology, from the plateau registry. */
+export { plateauCampaignForRun, topologyForRun } from '../campaign/plateaux/PlateauRegistry';
 
 function isEliteRouteContent(run: RunState, contentId: string): boolean {
   return plateauCampaignForRun(run).eliteRouteContentIds.includes(contentId);
@@ -636,6 +628,39 @@ export function createRunState(seed = Date.now() & 0x7fffffff): RunState {
   };
 }
 
+/**
+ * Set 1.20.0 (post-demo): a new run of a built plateau. The Lion keeps its own graph and adaptive variants; a post-demo
+ * plateau builds its graph from its authored route and its optional POIs, with a stable variant per seed.
+ */
+export function createPlateauRunState(plateauId: CampaignChapterId, seed = Date.now() & 0x7fffffff): RunState {
+  if (plateauId === 'lion') return createRunState(seed);
+  const binding = requirePlateauCampaign(plateauId);
+  const topology = binding.topology;
+  const route = topology.route ?? [];
+  const nodes: RunNode[] = [
+    ...route.map((template) => ({
+      id: template.id, type: template.type, depth: template.depth, links: [...template.links], contentId: template.contentId,
+      label: template.label, icon: template.icon, x: (template.depth - 7.5) * 1.25, z: template.lane * 1.45,
+      risk: template.risk, reward: template.reward, difficulty: template.difficulty, moralTone: template.moralTone, hint: template.hint,
+    })),
+    ...makeOptionalPoiNodes(topology.optionalPois, seed),
+  ];
+  const start = nodes.find((node) => node.id === topology.startNodeId)!;
+  return {
+    id: `${binding.runIdPrefix}${seed}`,
+    seed,
+    regionId: binding.regionId,
+    status: 'active',
+    currentNodeId: start.id,
+    checkpointNodeId: start.id,
+    revealedNodeIds: [start.id, ...start.links],
+    visitedNodeIds: [start.id],
+    temporaryLoot: { gold: 0, inventory: EMPTY_INVENTORY() },
+    poiExpedition: initialPoiExpedition(topology),
+    graph: { nodes },
+  };
+}
+
 export function getRunNode(run: RunState, nodeId = run.currentNodeId): RunNode | undefined {
   return run.graph.nodes.find((node) => node.id === nodeId);
 }
@@ -692,7 +717,7 @@ export function getAvailableRunNodes(source: RunState | GameState): RunNode[] {
 
 /** Records road choice only. No visit, dialogue, reward, or current-node mutation. */
 export function selectTraversalBranch(run: RunState, legId: string, nodeId: string): boolean {
-  const leg = LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === legId);
+  const leg = topologyForRun(run).legs.find((candidate) => candidate.id === legId);
   const stage = leg?.stages.find((candidate) => candidate.mode === 'IN_TRAVERSAL_FORK' && candidate.nodeIds.includes(nodeId));
   if (!stage || run.traversalBranches?.[legId] || !getAvailableRunNodes(run).some((node) => node.id === nodeId)) return false;
   run.traversalBranches = { ...run.traversalBranches, [legId]: nodeId };
@@ -702,7 +727,7 @@ export function selectTraversalBranch(run: RunState, legId: string, nodeId: stri
 
 /** Canonical opt-out: advance route availability without pretending the event happened. */
 export function bypassTraversalNode(run: RunState, legId: string, nodeId: string): boolean {
-  const leg = LION_TRAVERSAL_LEGS.find((candidate) => candidate.id === legId);
+  const leg = topologyForRun(run).legs.find((candidate) => candidate.id === legId);
   const stage = leg?.stages.find((candidate) => candidate.nodeIds.includes(nodeId));
   const optional = stage?.mode === 'OPTIONAL_INTERRUPT'
     || ((stage?.branchEncounterMode === 'OPTIONAL_INTERRUPT' || stage?.optionalBranchNodeIds?.includes(nodeId))
@@ -759,7 +784,7 @@ export interface PoiMapModel {
   commitment?: PoiBranchCommitment | null;
 }
 
-function poiForkChoice(state: GameState, leg: typeof LION_TRAVERSAL_LEGS[number], ids: readonly string[]): string | undefined {
+function poiForkChoice(state: GameState, leg: PlateauLeg, ids: readonly string[]): string | undefined {
   // A mere historical visit survives defeat and is not an irrevocable branch fact.
   return state.run.traversalBranches?.[leg.id]
     ?? ids.find(id => state.resolvedNodeIds.includes(id))
@@ -768,7 +793,7 @@ function poiForkChoice(state: GameState, leg: typeof LION_TRAVERSAL_LEGS[number]
 }
 
 export function isPoiNeutralized(state: GameState, nodeId: string): boolean {
-  return LION_TRAVERSAL_LEGS.some(leg => leg.stages.some(stage => {
+  return topologyForRun(state.run).legs.some(leg => leg.stages.some(stage => {
     if (stage.mode !== 'IN_TRAVERSAL_FORK' || !stage.nodeIds.includes(nodeId)) return false;
     const choice = poiForkChoice(state, leg, stage.nodeIds);
     return Boolean(choice && stage.nodeIds.includes(choice) && choice !== nodeId);
@@ -782,35 +807,42 @@ function unlockedPoiIds(state: GameState): Set<string> {
   for (const id of plateauCampaignForRun(state.run).refugeNodeIds) {
     if (state.flags[`refugeSecured:${id}`] || state.resolvedNodeIds.includes(id)) unlocked.add(id);
   }
-  if (openingLocalRoutesUnlocked(state.resolvedNodeIds)) {
-    for (const edge of LION_OPENING_LOCAL_ROUTES) unlocked.add(edge.to);
+  const topology = topologyForRun(state.run);
+  if (localRoutesOpen(state, topology.localRoutesRequire)) {
+    for (const edge of topology.localRoutes) unlocked.add(edge.to);
   }
   let changed = true;
   while (changed) {
     changed = false;
     for (const node of state.run.graph.nodes) {
       const cleared = node.depth === 0 || state.resolvedNodeIds.includes(node.id)
-        || Boolean(poiOptionalLeg(node.id) && state.run.bypassedRouteNodeIds?.includes(node.id));
+        || Boolean(poiOptionalLeg(state, node.id) && state.run.bypassedRouteNodeIds?.includes(node.id));
       if (!unlocked.has(node.id) || !cleared || isPoiNeutralized(state, node.id)) continue;
       for (const id of node.links) {
-        if (id === 'lion-first-refuge' && !LION_FIRST_TRIAL.some(trial=>state.resolvedNodeIds.includes(trial))) continue;
+        const gated = topology.gatedTrial;
+        if (gated && id === gated.gatedNodeId && !gated.nodeIds.some(trial=>state.resolvedNodeIds.includes(trial))) continue;
         if (!unlocked.has(id)) { unlocked.add(id); changed = true; }
       }
     }
   }
   // Preserve an authentic old interrupted encounter, never infer its outcome.
   unlocked.add(state.run.currentNodeId);
-  for (const poi of LOT_E_POIS) {
+  for (const poi of topology.optionalPois) {
     if (poi.prerequisiteResolved.every(id => state.resolvedNodeIds.includes(id))) unlocked.add(poi.id);
   }
   return unlocked;
 }
 
-function poiOptionalLeg(nodeId: string): typeof LION_TRAVERSAL_LEGS[number] | undefined {
+function localRoutesOpen(state: GameState, required: readonly string[]): boolean {
+  return required.length > 0 && required.every(id => state.resolvedNodeIds.includes(id));
+}
+
+function poiOptionalLeg(state: GameState, nodeId: string): PlateauLeg | undefined {
+  const topology = topologyForRun(state.run);
   // V2 requires an actual trial. The historical optional-trial bypass field is kept in V6
   // but cannot open the refuge or create a new bypass intent.
-  if (LION_FIRST_TRIAL.includes(nodeId)) return undefined;
-  return LION_TRAVERSAL_LEGS.find(leg => leg.stages.some(stage => stage.nodeIds.includes(nodeId)
+  if (topology.gatedTrial?.nodeIds.includes(nodeId)) return undefined;
+  return topology.legs.find(leg => leg.stages.some(stage => stage.nodeIds.includes(nodeId)
     && (stage.mode === 'OPTIONAL_INTERRUPT' || stage.branchEncounterMode === 'OPTIONAL_INTERRUPT'
       || stage.optionalBranchNodeIds?.includes(nodeId))));
 }
@@ -875,7 +907,7 @@ export function activePoiBranchCommitment(state: GameState): PoiBranchCommitment
   // Set 1.17.0: the plateau's authored forks and the POI that resolves each chapter, from the plateau registry.
   for (const { legId, resolvingNodeId } of plateauCampaignForRun(state.run).branchCommitments) {
     if (branchChapterResolved(state, resolvingNodeId)) continue;
-    const leg = LION_TRAVERSAL_LEGS.find(candidate => candidate.id === legId);
+    const leg = topologyForRun(state.run).legs.find(candidate => candidate.id === legId);
     const fork = leg?.stages.find(stage => stage.mode === 'IN_TRAVERSAL_FORK');
     if (!leg || !fork) continue;
     const choice = poiForkChoice(state, leg, fork.nodeIds);
@@ -927,6 +959,7 @@ export function runNodesAllowedByCommitment(state: GameState, nodes: readonly Ru
 
 /** Read model uses existing authoritative adaptive assignments, never a presentation-owned variant. */
 export function selectPoiMap(state: GameState): PoiMapModel {
+  const topology = topologyForRun(state.run);
   const unlocked = unlockedPoiIds(state);
   const current = getRunNode(state.run);
   const neighbors = new Set([
@@ -934,15 +967,15 @@ export function selectPoiMap(state: GameState): PoiMapModel {
     ...state.run.graph.nodes.filter(n => n.links.includes(state.run.currentNodeId)).map(n => n.id),
   ]);
   const localEdges = [
-    ...LION_OPENING_LOCAL_ROUTES.map(edge=>({...edge, unlocked:openingLocalRoutesUnlocked(state.resolvedNodeIds)})),
-    ...expeditionEdges().map(edge=>({...edge, unlocked:unlocked.has(edge.from)&&unlocked.has(edge.to)})),
+    ...topology.localRoutes.map(edge=>({...edge, unlocked:localRoutesOpen(state, topology.localRoutesRequire)})),
+    ...optionalPoiEdges(topology).map(edge=>({...edge, unlocked:unlocked.has(edge.from)&&unlocked.has(edge.to)})),
   ];
   for (const edge of localEdges.filter(e=>e.unlocked)) {
     if (edge.from===state.run.currentNodeId) neighbors.add(edge.to);
     if (edge.to===state.run.currentNodeId) neighbors.add(edge.from);
   }
   // An authored bypass contracts that optional edge, while the POI itself remains revisitable.
-  const legitimateBypasses = (state.run.bypassedRouteNodeIds ?? []).filter(id=>poiOptionalLeg(id) && !isPoiNeutralized(state,id));
+  const legitimateBypasses = (state.run.bypassedRouteNodeIds ?? []).filter(id=>poiOptionalLeg(state,id) && !isPoiNeutralized(state,id));
   // Geography is derived from durable bypass facts, never from the direction of the current
   // successor query. Each contracted connection remains available from either endpoint.
   const bypassEdges = state.run.graph.nodes.flatMap(origin=>getAvailableRunEdges({
@@ -970,20 +1003,20 @@ export function selectPoiMap(state: GameState): PoiMapModel {
       : neutralized ? 'neutralized' : unlocked.has(node.id) ? 'available' : 'locked';
     // Set 1.15.0: the resolved final refuge reopens the refuge services until the judgement begins.
     const reusable = node.type === 'refuge' ? Boolean(state.flags[`refugeSecured:${node.id}`])
-      : node.id === LION_FINAL_REFUGE_NODE_ID && areLionFinalRefugeServicesAvailable(state);
+      : node.id === topology.finalRefugeNodeId && Boolean(topology.finalRefugeServicesAvailable?.(state));
     const kind: PoiKind = node.type === 'chest' ? 'chest' : node.type === 'refuge' ? 'refuge'
       : node.type === 'combat' ? (isEliteRouteContent(state.run, node.contentId) ? 'elite' : 'combat')
       : node.type === 'story' || node.type === 'boss' ? 'primary' : 'mystery';
     const canMove = active && node.id !== state.run.currentNodeId && neighbors.has(node.id) && unlocked.has(node.id)
       && (!committedSteps || committedSteps.has(node.id));
-    const metadata=LION_POI_METADATA[node.id];
+    const metadata=topology.metadata[node.id];
     return { ...node,
       // Saved graph copy is historical; this current rule is presentation-derived, never migrated into saves.
       hint: node.type === 'chest' ? 'Réserves facultatives · Récompenses utilisables immédiatement, une seule ouverture.' : node.hint,
       region:metadata?.region??0,role:metadata?.role??'secondary',
       participation:metadata?.participation??'required',status, kind, reusable, canMove,
       canActivate: active && !neutralized && unlocked.has(node.id) && node.depth > 0 && (status === 'available' || reusable),
-      canBypass: active && Boolean(poiOptionalLeg(node.id)) && !neutralized && status === 'available'
+      canBypass: active && Boolean(poiOptionalLeg(state, node.id)) && !neutralized && status === 'available'
         && !state.run.bypassedRouteNodeIds?.includes(node.id) && (canMove || node.id === state.run.currentNodeId) && !committedSteps,
       canTravel: !committedSteps && travelRoutes.has(node.id), travelRoute: committedSteps ? [] : travelRoutes.get(node.id) ?? [],
       ...(() => { const offered = challengeForContent(node.contentId); return offered ? {challenge: describeChallenge(offered.challenge)} : {}; })(),
@@ -1040,14 +1073,16 @@ function commitPoiArrival(state: GameState, map: PoiMapModel, selected: PoiMapNo
   const nodeId = selected.id;
   // Choosing a direct local trial route ignores the compatible refugee encounter.
   // Its authored consequence belongs to this truth owner and is never a UI effect.
-  if (LION_FIRST_TRIAL.includes(nodeId)
-    && !state.resolvedNodeIds.includes('lion-refugees')) bypassPoi(state,'lion-refugees');
+  const topology = topologyForRun(state.run);
+  const directBypass = topology.gatedTrial?.bypassOnDirectRouteNodeId;
+  if (directBypass && topology.gatedTrial!.nodeIds.includes(nodeId)
+    && !state.resolvedNodeIds.includes(directBypass)) bypassPoi(state,directBypass);
   const node = getRunNode(state.run, nodeId)!;
   const origin = map.nodes.find(n=>n.id===fromNodeId);
   recordPoiMovement(state,fromNodeId,nodeId,
-    origin?.status==='resolved'||origin?.status==='neutralized'||origin?.id==='lion-camp');
+    origin?.status==='resolved'||origin?.status==='neutralized'||origin?.id===topology.startNodeId);
   if (!isPoiNeutralized(state, nodeId)) {
-    for (const leg of LION_TRAVERSAL_LEGS) for (const stage of leg.stages) {
+    for (const leg of topology.legs) for (const stage of leg.stages) {
       if (stage.mode === 'IN_TRAVERSAL_FORK' && stage.nodeIds.includes(nodeId)
         && !state.run.traversalBranches?.[leg.id]) {
         state.run.traversalBranches = {...state.run.traversalBranches, [leg.id]:nodeId};
@@ -1073,7 +1108,7 @@ export function settlePoiNavigation(state: GameState): void {
 
 export function commitPoiEliteFight(state: GameState, encounterId: string): string|null {
   const encounter=state.run.poiExpedition?.encounter;
-  const def=LOT_E_ELITES.find(def=>def.id===encounter?.eliteId);
+  const def=topologyForRun(state.run).guardians.find(def=>def.id===encounter?.eliteId);
   const elite=def&&state.run.poiExpedition?.elites[def.id];
   if (!encounter||encounter.id!==encounterId||!def||!elite?.active||elite.defeated
     ||state.run.status!=='active'||state.run.currentNodeId!==encounter.originNodeId) return null;
@@ -1083,7 +1118,7 @@ export function commitPoiEliteFight(state: GameState, encounterId: string): stri
 /** A mobile tactical result cannot resolve any RunNode or execute a canonical narrative hook. */
 export function resolvePoiEliteVictory(state: GameState, encounterId: string, result: CombatResult): boolean {
   const expedition=state.run.poiExpedition, encounter=expedition?.encounter;
-  const def=LOT_E_ELITES.find(def=>def.id===encounter?.eliteId);
+  const def=topologyForRun(state.run).guardians.find(def=>def.id===encounter?.eliteId);
   const elite=def&&expedition?.elites[def.id];
   if (!result.victory||!encounter||encounter.id!==encounterId||encounter.phase!=='combat'
     ||!def||!elite?.active||elite.defeated||result.combatId!==def.combat.id||state.run.status!=='active') return false;
@@ -1092,7 +1127,9 @@ export function resolvePoiEliteVictory(state: GameState, encounterId: string, re
   for(const [itemId,quantity] of Object.entries(def.combat.rewards.materials))
     creditRunReward(state,{category:'materials',itemId,quantity});
   // Set 1.20.0 (OD-2026-11-08-A): the guardian's reward under the approved Lion calibration.
-  changeReputation(state,calibrateLionAmount({kind:'combat',amount:def.combat.rewards.reputation,rank:'elite'}),`combat:${result.combatId}`);
+  const lionGuardian = topologyForRun(state.run).plateauId === 'lion';
+  changeReputation(state,lionGuardian ? calibrateLionAmount({kind:'combat',amount:def.combat.rewards.reputation,rank:'elite'})
+    : def.combat.rewards.reputation,`combat:${result.combatId}`);
   creditChallengePrime(state,result);
   elite.defeated=true;elite.active=false;
   delete expedition!.encounter;
@@ -1127,7 +1164,7 @@ export function bypassPoi(state: GameState, nodeId: string): { legId: string; no
   if (state.run.status !== 'active') return null;
   const model = selectPoiMap(state);
   if (!model.nodes.find(n=>n.id===nodeId)?.canBypass) return null;
-  const leg = poiOptionalLeg(nodeId)!;
+  const leg = poiOptionalLeg(state, nodeId)!;
   const node = getRunNode(state.run,nodeId)!;
   const fork = leg.stages.find(s=>s.mode==='IN_TRAVERSAL_FORK' && s.nodeIds.includes(nodeId));
   if (fork && !state.run.traversalBranches?.[leg.id]) state.run.traversalBranches={...state.run.traversalBranches,[leg.id]:nodeId};

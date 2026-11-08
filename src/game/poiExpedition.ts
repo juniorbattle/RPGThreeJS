@@ -1,5 +1,7 @@
-import { LOT_E_ELITES, LOT_E_EDGES, LOT_E_POIS, makeExpeditionNodes, GUARD_POSTS,
-  type EliteDefinition } from '../campaign/LionPoiAuthoring';
+import { makeOptionalPoiNodes, type EliteDefinition } from '../campaign/LionPoiAuthoring';
+import { topologyForRun } from '../campaign/plateaux/PlateauRegistry';
+import { LION_TOPOLOGY } from '../campaign/plateaux/lionPlateau';
+import { optionalPoiEdges, type PlateauTopology } from '../campaign/plateaux/PlateauTopology';
 import { challengeFor, describeChallenge, type ChallengeText } from './challenges';
 import type { GameState, PoiEliteEncounter, PoiExpeditionState } from './types';
 
@@ -12,27 +14,30 @@ export interface PoiThreatView {
   id: string; label: string; region: number; positionId: string; canFight: boolean; challenge?: ChallengeText;
 }
 
-export function initialPoiExpedition(): PoiExpeditionState {
-  return {version: 1, turn: 0, elites: Object.fromEntries(LOT_E_ELITES.map(def => [def.id, {
-    active: false, positionId: GUARD_POSTS[def.id] ?? def.spawnPosition, patrolIndex: def.allowedPositions.indexOf(def.spawnPosition),
+/** Set 1.20.0: the guardians of the plateau's topology, the Lion's by default. */
+export function initialPoiExpedition(topology: PlateauTopology = LION_TOPOLOGY): PoiExpeditionState {
+  return {version: 1, turn: 0, elites: Object.fromEntries(topology.guardians.map(def => [def.id, {
+    active: false, positionId: topology.guardPosts[def.id] ?? def.spawnPosition,
+    patrolIndex: Math.max(0, def.allowedPositions.indexOf(def.spawnPosition)),
     mode: def.mode, lastStep: 0, defeated: false,
   }]))};
 }
 
 /** Add only missing Lot E entries; never reconstruct a canonical fact or assignment. */
 export function migratePoiExpedition(state: GameState): GameState {
+  const topology = topologyForRun(state.run);
   const ids = new Set(state.run.graph.nodes.map(node => node.id));
-  state.run.graph.nodes.push(...makeExpeditionNodes(state.run.seed).filter(node => !ids.has(node.id)));
-  state.run.poiExpedition ??= initialPoiExpedition();
-  const initial = initialPoiExpedition();
-  for (const def of LOT_E_ELITES) state.run.poiExpedition.elites[def.id] ??= initial.elites[def.id]!;
+  state.run.graph.nodes.push(...makeOptionalPoiNodes(topology.optionalPois, state.run.seed).filter(node => !ids.has(node.id)));
+  state.run.poiExpedition ??= initialPoiExpedition(topology);
+  const initial = initialPoiExpedition(topology);
+  for (const def of topology.guardians) state.run.poiExpedition.elites[def.id] ??= initial.elites[def.id]!;
   syncPoiElites(state);
   return state;
 }
 
 /** Set 1.18.0: a post opens once its existing activation condition is met and its chest is unlocked. */
-function postOpen(state: GameState, def: EliteDefinition): boolean {
-  const poi = LOT_E_POIS.find(poi => poi.id === GUARD_POSTS[def.id]);
+function postOpen(state: GameState, topology: PlateauTopology, def: EliteDefinition): boolean {
+  const poi = topology.optionalPois.find(poi => poi.id === topology.guardPosts[def.id]);
   return state.resolvedNodeIds.includes(def.activateAfterResolved)
     && (poi?.prerequisiteResolved ?? []).every(id => state.resolvedNodeIds.includes(id));
 }
@@ -45,12 +50,13 @@ export function syncPoiElites(state: GameState): void {
   const expedition = state.run.poiExpedition;
   if (!expedition) return;
   delete expedition.pendingStep;
-  for (const def of LOT_E_ELITES) {
+  const topology = topologyForRun(state.run);
+  for (const def of topology.guardians) {
     const elite = expedition.elites[def.id];
     if (!elite || expedition.encounter?.eliteId === def.id) continue;
     if (state.run.status !== 'active' || elite.defeated) {elite.active = false; continue;}
-    const post = GUARD_POSTS[def.id]!;
-    elite.active = postOpen(state, def) && state.run.currentNodeId !== post;
+    const post = topology.guardPosts[def.id]!;
+    elite.active = postOpen(state, topology, def) && state.run.currentNodeId !== post;
     if (elite.active) elite.positionId = post;
   }
 }
@@ -62,8 +68,9 @@ export function safePoiReturn(state: GameState, map: ExpeditionGeography, id = s
   if (!id || id === state.run.currentNodeId || !state.run.visitedNodeIds.includes(id)
     || !adjacent(map, state.run.currentNodeId, id)) return undefined;
   const node = map.nodes.find(node => node.id === id);
-  const inert = node?.status === 'resolved' || node?.status === 'neutralized' || id === 'lion-camp';
-  if (!inert || LOT_E_ELITES.some(def => {
+  const topology = topologyForRun(state.run);
+  const inert = node?.status === 'resolved' || node?.status === 'neutralized' || id === topology.startNodeId;
+  if (!inert || topology.guardians.some(def => {
     const elite = state.run.poiExpedition?.elites[def.id];
     return elite?.active && !elite.defeated && elite.positionId === id;
   })) return undefined;
@@ -72,7 +79,7 @@ export function safePoiReturn(state: GameState, map: ExpeditionGeography, id = s
 
 export function eliteAtPoi(state: GameState, id: string): EliteDefinition|undefined {
   if (state.run.status !== 'active') return undefined;
-  return LOT_E_ELITES.find(def => {
+  return topologyForRun(state.run).guardians.find(def => {
     const elite = state.run.poiExpedition?.elites[def.id];
     return elite?.active && !elite.defeated && elite.positionId === id;
   });
@@ -113,7 +120,7 @@ export function retreatPoiElite(state: GameState, map: ExpeditionGeography): boo
 }
 
 export function selectPoiThreats(state: GameState, map: ExpeditionGeography): PoiThreatView[] {
-  return LOT_E_ELITES.flatMap(def => {
+  return topologyForRun(state.run).guardians.flatMap(def => {
     const elite = state.run.poiExpedition?.elites[def.id];
     if (!elite?.active || elite.defeated || state.run.status !== 'active') return [];
     const challenge = challengeFor(def.combat.id);
@@ -123,5 +130,5 @@ export function selectPoiThreats(state: GameState, map: ExpeditionGeography): Po
   });
 }
 
-export function expeditionEdges(): {from: string; to: string}[] {return LOT_E_EDGES;}
-export function isExpeditionPoi(id: string): boolean {return LOT_E_POIS.some(poi => poi.id === id);}
+export function expeditionEdges(topology: PlateauTopology = LION_TOPOLOGY): {from: string; to: string}[] {return optionalPoiEdges(topology);}
+export function isExpeditionPoi(id: string, topology: PlateauTopology = LION_TOPOLOGY): boolean {return topology.optionalPois.some(poi => poi.id === id);}

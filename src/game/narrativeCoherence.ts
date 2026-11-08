@@ -206,13 +206,21 @@ export function scanCodeFlags(sources: readonly SourceFile[]): FlagScan {
 
 function codeMentions(sources: readonly SourceFile[], literal: string): string[] {
   const quoted = [`'${literal}'`, `"${literal}"`, `\`${literal}\``];
+  // Plateau data (src/campaign/plateaux/) names reused scene art; only lifecycle and campaign code plays dialogues.
   return sources.filter((file) => !NON_REFERENCE_FILES.includes(file.path)
     && (file.path.startsWith('src/game/') || file.path.startsWith('src/campaign/'))
+    && !file.path.startsWith('src/campaign/plateaux/')
     && quoted.some((form) => file.text.includes(form))).map((file) => file.path);
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
 // Validator
+
+/** Post-demo facts carry their chapter's name as a prefix (`bearMinesRestored`); every other fact is the Lion's. */
+const POST_DEMO_FACT_PREFIXES = Object.freeze(['bear', 'dragon', 'scorpion', 'finale']);
+export function factChapter(flag: string): string {
+  return POST_DEMO_FACT_PREFIXES.find((prefix) => new RegExp(`^${prefix}[A-Z]`).test(flag)) ?? 'lion';
+}
 
 function matchesFact(factId: string, flag: string): boolean {
   return factId === flag || (factId.endsWith('*') && flag.startsWith(factId.slice(0, -1)));
@@ -403,7 +411,9 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
   const code = scanCodeFlags(sources);
   const sets = (flag: string) => [...(dataSets.get(flag) ?? []), ...(code.writes.get(flag) ?? [])];
   const reads = (flag: string) => [...(dataReads.get(flag) ?? []), ...(code.reads.get(flag) ?? [])];
-  const allFlags = new Set([...dataSets.keys(), ...dataReads.keys(), ...code.reads.keys(), ...code.writes.keys()]);
+  // A map answers for its own chapter's facts; reads from any chapter still count for them.
+  const allFlags = new Set([...dataSets.keys(), ...dataReads.keys(), ...code.reads.keys(), ...code.writes.keys()]
+    .filter((flag) => factChapter(flag) === map.plateauId));
   const declared = (flag: string) => map.facts.find((fact) => matchesFact(fact.id, flag));
   const keysByFact = new Map<string, string[]>();
   for (const flag of allFlags) {

@@ -5,6 +5,7 @@
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { getPlateau } from '../../src/campaign/plateaux/PlateauRegistry';
+import { plateauDialogues } from '../../src/game/postDemoContent';
 import { validateConsequenceMapDesign, validateNarrativeCoherence } from '../../src/game/narrativeCoherence';
 
 const sources = (readdirSync('src', { recursive: true }) as string[])
@@ -16,8 +17,8 @@ const maps = readdirSync('src/campaign/consequences').filter((name) => name.ends
 let failed = false;
 const results = maps.map((name) => {
   const raw = JSON.parse(readFileSync(`src/campaign/consequences/${name}`, 'utf8'));
-  // A plateau not built yet has only its map: it is checked as a design until its content exists.
-  if (getPlateau(raw.plateauId).status === 'planned') {
+  // A plateau not built yet has only its map: it is checked as a design until its dialogues exist.
+  if (getPlateau(raw.plateauId).status === 'planned' || (raw.plateauId !== 'lion' && plateauDialogues(raw.plateauId).length === 0)) {
     const errors = validateConsequenceMapDesign(raw);
     if (errors.length) failed = true;
     return { map: name, ok: errors.length === 0, check: 'design', errors };

@@ -15,6 +15,8 @@
 import type { CampaignChapterId, CampaignClanId, PlateauOutcome, SealPlateauId } from './campaignIds';
 import { CAMPAIGN_CHAPTER_IDS } from './campaignIds';
 import { LION_PLATEAU_BINDING } from './lionPlateau';
+import { BEAR_PLATEAU_BINDING } from './bear/bearPlateau';
+import type { PlateauTopology } from './PlateauTopology';
 
 export { CAMPAIGN_CLAN_IDS, CAMPAIGN_CHAPTER_IDS } from './campaignIds';
 export type { CampaignClanId, CampaignChapterId, SealPlateauId, PlateauOutcome } from './campaignIds';
@@ -74,6 +76,8 @@ export interface PlateauCampaignBinding {
   atlasIds: readonly string[];
   /** Reads the plateau outcome from saved facts; null while no outcome is recorded. */
   resolveOutcome: (flags: Readonly<Record<string, boolean>>) => PlateauOutcome | null;
+  /** The navigation topology RunSystem applies to the plateau's runs. */
+  topology: PlateauTopology;
 }
 
 export interface PlateauChief {
@@ -126,10 +130,11 @@ export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([
   }),
   Object.freeze({
     id: 'bear', order: 2, kind: 'seal_plateau', idPrefix: 'bear-', label: 'Les Montagnes de la Résilience',
-    roadmapSections: Object.freeze(['§3.2']), status: 'planned', hostClan: 'bear', rivalClan: 'raven',
+    // Lot 1: a playable draft, not canon until the operator approves the plateau.
+    roadmapSections: Object.freeze(['§3.2']), status: 'draft', hostClan: 'bear', rivalClan: 'raven',
     chief: Object.freeze({ title: 'Ancien Ours', name: 'Borin' }),
     reputationBudget: REPUTATION_BUDGETS.bear,
-    campaign: null,
+    campaign: BEAR_PLATEAU_BINDING,
   }),
   Object.freeze({
     id: 'dragon', order: 3, kind: 'seal_plateau', idPrefix: 'dragon-', label: 'Les Pics Célestes',
@@ -181,4 +186,18 @@ export function requirePlateauCampaign(id: CampaignChapterId): PlateauCampaignBi
   const binding = getPlateau(id).campaign;
   if (!binding) throw new Error(`Campaign chapter '${id}' is not built yet.`);
   return binding;
+}
+
+/**
+ * The campaign binding of the plateau that owns a run, by its durable run ID prefix. Every run saved by the demo is a
+ * Lion run, so an unclaimed ID keeps the Lion's binding rather than strand an old save.
+ */
+export function plateauCampaignForRun(run: { id: string }): PlateauCampaignBinding {
+  return PLATEAU_REGISTRY.find((entry) => entry.campaign && run.id.startsWith(entry.campaign.runIdPrefix))?.campaign
+    ?? requirePlateauCampaign('lion');
+}
+
+/** The navigation topology of the plateau that owns a run. */
+export function topologyForRun(run: { id: string }): PlateauTopology {
+  return plateauCampaignForRun(run).topology;
 }

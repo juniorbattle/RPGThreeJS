@@ -41,7 +41,12 @@ export function poiVariantIndex(seed: number, poiId: string, count: number): num
 }
 
 export function makeExpeditionNodes(seed: number): RunNode[] {
-  return LOT_E_POIS.map(poi => ({
+  return makeOptionalPoiNodes(LOT_E_POIS, seed);
+}
+
+/** Set 1.20.0: the optional POI nodes of any plateau, with their stable variant per seed. */
+export function makeOptionalPoiNodes(pois: readonly FixedPoiDefinition[], seed: number): RunNode[] {
+  return pois.map(poi => ({
     id: poi.id, type: poi.kind === 'chest' ? 'chest' : 'combat',
     // No return edges are inserted into the directed canonical recovery graph.
     depth: [4,8,13][poi.region]!, links: [], x: 0, z: 0,

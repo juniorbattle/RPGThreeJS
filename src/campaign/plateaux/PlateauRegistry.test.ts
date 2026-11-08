@@ -81,8 +81,11 @@ describe('post-demo plateau registry (set 1.20.0, Lot 0)', () => {
     expect(plateauCampaignForRun({ id: 'legacy-run' })).toBe(lion);
   });
 
-  it('builds no post-demo plateau in Lot 0: the reserved chapters carry no content', () => {
-    for (const id of ['bear', 'dragon', 'scorpion', 'finale'] as const) {
+  it('builds the Bear as a playable draft (Lot 1) while the later chapters stay reserved without content', () => {
+    expect(getPlateau('bear').status).toBe('draft');
+    expect(requirePlateauCampaign('bear').runIdPrefix).toBe('bear-');
+    expect(requirePlateauCampaign('bear').topology.plateauId).toBe('bear');
+    for (const id of ['dragon', 'scorpion', 'finale'] as const) {
       expect(getPlateau(id).status).toBe('planned');
       expect(getPlateau(id).campaign).toBeNull();
       expect(() => requirePlateauCampaign(id)).toThrow(/not built/);

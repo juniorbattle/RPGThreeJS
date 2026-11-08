@@ -8,7 +8,11 @@
 import { CHALLENGES } from '../../game/challenges';
 import { lionBossVictoryFacts } from '../../game/lionFinale';
 import { LION_FINAL_JUDGEMENT_NODE_ID, LION_FINAL_REFUGE_NODE_ID } from '../LionFinalRefugeServices';
-import { LION_CANONICAL_POI_IDS, LOT_E_ELITES, LOT_E_POIS } from '../LionPoiAuthoring';
+import { GUARD_POSTS, LION_CANONICAL_POI_IDS, LOT_E_ELITES, LOT_E_POIS } from '../LionPoiAuthoring';
+import { LION_TRAVERSAL_LEGS } from '../LionCampaignTravelRelations';
+import { LION_FIRST_TRIAL, LION_OPENING_LOCAL_ROUTES, LION_OPENING_REQUIRED, LION_POI_METADATA } from '../LionPoiTopology';
+import { areLionFinalRefugeServicesAvailable } from '../LionFinalRefugeServices';
+import type { PlateauTopology } from './PlateauTopology';
 import { LION_POI_REGIONS } from '../LionPoiMap';
 import type { PlateauCampaignBinding, PlateauOutcome } from './PlateauRegistry';
 
@@ -44,6 +48,23 @@ export const LION_OUTCOME_FACTS: Readonly<Record<PlateauOutcome, string>> = Obje
   force: Object.keys(lionBossVictoryFacts('lion_chief')).find((key) => key === 'lionTrialWon')!,
 });
 
+/** The Lion's topology, read from its existing tables: the navigation rules it had, unchanged (set 1.20.0, Lot 1). */
+export const LION_TOPOLOGY: PlateauTopology = Object.freeze({
+  plateauId: 'lion',
+  startNodeId: 'lion-camp',
+  legs: LION_TRAVERSAL_LEGS,
+  localRoutes: LION_OPENING_LOCAL_ROUTES,
+  localRoutesRequire: LION_OPENING_REQUIRED,
+  // The first refuge requires an actual first trial, and the direct local trial route ignores the refugees.
+  gatedTrial: Object.freeze({ nodeIds: LION_FIRST_TRIAL, gatedNodeId: 'lion-first-refuge', bypassOnDirectRouteNodeId: 'lion-refugees' }),
+  metadata: LION_POI_METADATA,
+  optionalPois: LOT_E_POIS,
+  guardians: LOT_E_ELITES,
+  guardPosts: GUARD_POSTS,
+  finalRefugeNodeId: LION_FINAL_REFUGE_NODE_ID,
+  finalRefugeServicesAvailable: areLionFinalRefugeServicesAvailable,
+});
+
 export const LION_PLATEAU_BINDING: PlateauCampaignBinding = Object.freeze({
   regionId: 'lion-forest',
   runIdPrefix: 'lion-',
@@ -59,4 +80,5 @@ export const LION_PLATEAU_BINDING: PlateauCampaignBinding = Object.freeze({
   guardianIds: Object.freeze(LOT_E_ELITES.map((elite) => elite.id)),
   atlasIds: Object.freeze(LION_POI_REGIONS.map((region) => region.image)),
   resolveOutcome: resolveLionPlateauOutcome,
+  topology: LION_TOPOLOGY,
 });

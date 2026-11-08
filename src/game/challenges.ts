@@ -1,4 +1,5 @@
 import type { CombatConfig } from './types';
+import { BEAR_CHALLENGES } from '../campaign/plateaux/bear/bearCombat';
 
 /**
  * OD-2026-11-07-F (set 1.18.0, COMBAT_AND_VFX): six optional fights are challenges. Each states exactly one condition from
@@ -34,14 +35,17 @@ const CHALLENGE_BY_EVENT: Readonly<Record<string, string>> = {
   mystery_troll_crossing: 'troll_crossing',
 };
 
+/** Set 1.20.0: post-demo challenges, from the closed condition list, with the prime decided by RunSystem. */
+const POST_DEMO_CHALLENGES: Readonly<Record<string, ChallengeDeclaration>> = BEAR_CHALLENGES;
+
 export function challengeFor(combatId: string): ChallengeDeclaration | undefined {
-  return CHALLENGES[combatId];
+  return CHALLENGES[combatId] ?? POST_DEMO_CHALLENGES[combatId];
 }
 
 /** The challenge a place offers, through its own combat or an authored event fight. */
 export function challengeForContent(contentId: string): { combatId: string; challenge: ChallengeDeclaration } | undefined {
-  const combatId = CHALLENGES[contentId] ? contentId : CHALLENGE_BY_EVENT[contentId];
-  return combatId ? { combatId, challenge: CHALLENGES[combatId]! } : undefined;
+  const combatId = challengeFor(contentId) ? contentId : CHALLENGE_BY_EVENT[contentId];
+  return combatId ? { combatId, challenge: challengeFor(combatId)! } : undefined;
 }
 
 export interface ChallengeText { condition: string; prime: string }
