@@ -1,6 +1,15 @@
 # Current project status
 
-Current contract update 7 November 2026: [OD-2026-11-07-G](../autonomy/POI_CHALLENGES_OPERATOR_DECISION_2026-11-07.md), set 1.19.0, immutable baseline 74fceb399dea8cd0c187d97350e3a11af6e04d26, fights the two stationary guardians in two waves of the same formation and stats; the second wave enters once the first falls, with nothing restored for the company, and the fight is won only when it falls; rewards and primes are unchanged and no saved field is added.
+Current contract update 7 November 2026: [OD-2026-11-07-I](../autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md), set 1.20.0, immutable baseline 6c965169c2dc153cafd5a8609d914cf8de723ff3, opens the post-demo campaign:
+- three Seal plateaux on the Lion's template (the Bear, the Dragon and the Scorpion, the Phoenix plateau retired);
+- a three-part final act and three epilogues;
+- a durable relation with each clan beside the unchanged reputation, and a post-demo recalibration of the Lion's reputation;
+- a two-phase final fight and once-per-fight clan supports;
+- marked provisional images, and new living-tableau moments on approved tableaux only.
+
+All of it is written as playable drafts that become canon only on the operator's approval of each plateau. The demo is unchanged.
+
+Previous contract update 7 November 2026: [OD-2026-11-07-G](../autonomy/POI_CHALLENGES_OPERATOR_DECISION_2026-11-07.md), set 1.19.0 (74fceb39), fights the two stationary guardians in two waves of the same formation and stats; the second wave enters once the first falls, with nothing restored for the company, and the fight is won only when it falls; rewards and primes are unchanged and no saved field is added.
 
 Previous contract update 7 November 2026: [OD-2026-11-07-F](../autonomy/POI_CHALLENGES_OPERATOR_DECISION_2026-11-07.md), set 1.18.0 (478cb676), makes the two Lot E elites stationary guardians of two optional chests (valley sentinel at the bridge cache, seal warden at the ruins reserve), retires the map's Wait, turn count and threat zones, and turns six optional fights into challenges with one stated condition (at most three heroes, no items, or victory within N rounds) and a red-gem prime that RunSystem attributes once; no saved field is added.
 
