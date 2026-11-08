@@ -12,6 +12,13 @@ Transcription fidèle du PDF de l'opérateur [`feuille_de_route_narrative_conden
   - Voie de la force : le boss est le Champion d'Alaric.
 - **Monde.** La démo ne nomme ni les autres clans ni les démons ; ce mystère est gardé jusqu'au Tournoi.
 
+**Après la démo (OD-2026-11-07-I, [direction de l'après-démo](../autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md)).**
+
+- **Plateaux de Sceau.** Après le Lion viennent l'Ours (§3.2), le Dragon (§3.3) puis le Scorpion (§3.4), dans cet ordre fixe. Le plateau du Phénix (§3.5) est retiré ; le Phénix reste le clan adverse du Scorpion. Chaque plateau suit le gabarit du Lion.
+- **Chef Scorpion.** Il sera renommé, pour ne plus se confondre avec Kaelen ; le nom reste à valider par l'opérateur.
+- **Phase finale.** Le Tournoi (§3.6) et le Cœur du Chaos (§3.7) forment un seul acte en trois temps : combats d'arène présentés par un tableau des rencontres, fuite par la capitale corrompue sur une petite carte, combat final à la brèche. Le Serpent est l'adversaire de la finale. Maelor, le Fou, s'enfuit par la brèche et forme la première phase du combat final ; l'entité qui suit reste sans nom tant que l'opérateur n'en décide pas.
+- **Alliances et fins.** Chaque clan rencontré garde une relation : allié, neutre ou ennemi. Un clan allié apporte un soutien dans la phase finale, un clan ennemi y ajoute des adversaires. La fin suit les issues des quatre plateaux, la jauge de réputation départageant ; dans la Fin de la Crainte, le joueur choisit entre un dernier combat et l'acceptation de son destin.
+
 ---
 
 # Feuille de Route Narrative - RPG Tactique : La Voie des Sceaux (Version Révisée 2)
