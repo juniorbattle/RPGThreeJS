@@ -2,6 +2,7 @@ import { createUnitInstance, getFinalStats, getItemCategory } from './catalog';
 import { consolidateLegacyLoot, createRunState, enterRunNode, getAvailableRunNodes, getRunNode } from './runSystem';
 import { migratePoiExpedition } from './poiExpedition';
 import { LION_CANONICAL_POI_IDS } from '../campaign/LionPoiAuthoring';
+import { createCampaignProgress, migrateCampaignProgress } from './campaignProgress';
 import {
   gameStateSchema,
   gameStateV1Schema,
@@ -80,6 +81,7 @@ export function createInitialState(): GameState {
     settings: { reducedGraphics: false },
     run,
     endingId: null,
+    campaign: createCampaignProgress(),
   };
 }
 
@@ -117,6 +119,8 @@ function migrateCurrentLionRoute(previous: GameState): GameState {
 export function migrateState(value: unknown): GameState {
   const state = migrateSavedState(value);
   consolidateLegacyLoot(state);
+  // Set 1.20.0: a save without the campaign record derives it from its saved facts; a v1 record is kept as saved.
+  state.campaign = migrateCampaignProgress(state);
   return state;
 }
 

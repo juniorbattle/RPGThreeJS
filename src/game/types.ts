@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { campaignProgressSchema } from './campaignProgressSchema';
 
 export const nodeTypeSchema = z.enum([
   'start', 'story', 'mystery', 'random-combat', 'story-combat',
@@ -374,6 +375,11 @@ export type GameStateV5 = z.infer<typeof gameStateV5Schema>;
 export const gameStateSchema = gameStateV5Schema.extend({
   version: z.literal(6),
   clan: clanStateSchema,
+  /**
+   * Set 1.20.0 (post-demo): the independently versioned campaign record (clan relations, plateau progress and
+   * outcomes, final-act progress, ending). Optional so every demo V6 save still parses; `migrateState` derives it.
+   */
+  campaign: campaignProgressSchema.optional(),
 });
 export type GameState = z.infer<typeof gameStateSchema>;
 

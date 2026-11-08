@@ -1,0 +1,835 @@
+{
+ "version": 6,
+ "currentNodeId": "lion-witnesses",
+ "visitedNodeIds": [
+  "lion-camp",
+  "lion-audience",
+  "lion-opening-ambush",
+  "lion-nomad-crossroads",
+  "lion-refugees",
+  "lion-first-trial-event",
+  "lion-first-refuge",
+  "lion-reserve-trail",
+  "lion-valmir-road",
+  "lion-second-trial-event",
+  "lion-village-choice",
+  "lion-second-refuge",
+  "lion-lancer-recruit",
+  "lion-witnesses"
+ ],
+ "stepCounter": 13,
+ "resolvedNodeIds": [
+  "lion-camp",
+  "lion-audience",
+  "lion-opening-ambush",
+  "lion-nomad-crossroads",
+  "lion-refugees",
+  "lion-first-trial-event",
+  "lion-first-refuge",
+  "lion-reserve-trail",
+  "lion-valmir-road",
+  "lion-second-trial-event",
+  "lion-village-choice",
+  "lion-second-refuge",
+  "lion-lancer-recruit"
+ ],
+ "combatCooldowns": {},
+ "mysteryAssignments": {
+  "lion-first-trial-event": "mystery_help",
+  "lion-first-trial-combat": "forest_patrol",
+  "lion-second-trial-event": "old_shrine_event",
+  "lion-second-trial-combat": "serpent_checkpoint"
+ },
+ "seenUniqueEvents": [],
+ "flags": {
+  "lionMandateHonour": true,
+  "helpedRefugees": true,
+  "helpedMerchant": true,
+  "missionSuccess": true,
+  "prioritizedVillage": true,
+  "refugeSecured:lion-first-refuge": true,
+  "refugeSecured:lion-second-refuge": true,
+  "recruitedCedric": true
+ },
+ "gold": 412,
+ "reputation": 88,
+ "reputationHistory": [
+  {
+   "delta": 3,
+   "source": "narrative",
+   "value": 33
+  },
+  {
+   "delta": 8,
+   "source": "narrative",
+   "value": 41
+  },
+  {
+   "delta": 10,
+   "source": "combat:village_defense",
+   "value": 88
+  }
+ ],
+ "inventory": {
+  "consumables": {
+   "potion": 4,
+   "revive_vial": 1,
+   "antidote": 2
+  },
+  "accessories": {},
+  "materials": {},
+  "weapons": {}
+ },
+ "clan": {
+  "maxSize": 12,
+  "members": [
+   {
+    "id": "warrior",
+    "definitionId": "warrior",
+    "name": "Alistair",
+    "narrativeLocked": true,
+    "equipment": {
+     "weaponIds": [
+      "novice_greatsword"
+     ],
+     "accessoryIds": [
+      null,
+      null
+     ]
+    },
+    "currentHealth": 140,
+    "skillUpgrades": {}
+   },
+   {
+    "id": "white_mage",
+    "definitionId": "white_mage",
+    "name": "Marian",
+    "narrativeLocked": true,
+    "equipment": {
+     "weaponIds": [
+      "novice_crosier"
+     ],
+     "accessoryIds": [
+      null,
+      null
+     ]
+    },
+    "currentHealth": 100,
+    "skillUpgrades": {}
+   },
+   {
+    "id": "dark_mage",
+    "definitionId": "dark_mage",
+    "name": "Elara",
+    "narrativeLocked": true,
+    "equipment": {
+     "weaponIds": [
+      "novice_grimoire"
+     ],
+     "accessoryIds": [
+      null,
+      null
+     ]
+    },
+    "currentHealth": 75,
+    "skillUpgrades": {}
+   },
+   {
+    "id": "archer",
+    "definitionId": "archer",
+    "name": "Kestrel",
+    "narrativeLocked": true,
+    "equipment": {
+     "weaponIds": [
+      "novice_longbow"
+     ],
+     "accessoryIds": [
+      null,
+      null
+     ]
+    },
+    "currentHealth": 90,
+    "skillUpgrades": {}
+   }
+  ]
+ },
+ "deployment": {
+  "unitIds": [
+   "warrior",
+   "white_mage",
+   "dark_mage",
+   "archer"
+  ]
+ },
+ "shops": {
+  "valmir": {
+   "id": "valmir",
+   "stock": {
+    "potion": 10,
+    "antidote": 6,
+    "revive_vial": 2,
+    "ether": 2,
+    "bomb": 2,
+    "grenade_incendiaire": 2,
+    "grenade_entravante": 1,
+    "grenade_aveuglante": 2,
+    "iron_ore": 8,
+    "red_gem": 2,
+    "strength_ring": 1,
+    "life_belt": 1,
+    "agility_boots": 1,
+    "magic_pendant": 1,
+    "wisdom_crown": 1,
+    "warding_buckle": 1,
+    "steel_greatsword": 1,
+    "sacred_crosier": 1,
+    "mystic_grimoire": 1,
+    "longbow": 1,
+    "steel_dagger": 1,
+    "steel_spear": 1
+   }
+  }
+ },
+ "settings": {
+  "reducedGraphics": false
+ },
+ "run": {
+  "id": "lion-20261108",
+  "seed": 20261108,
+  "regionId": "lion-forest",
+  "status": "active",
+  "currentNodeId": "lion-witnesses",
+  "checkpointNodeId": "lion-second-refuge",
+  "revealedNodeIds": [
+   "lion-camp",
+   "lion-audience",
+   "lion-opening-ambush",
+   "lion-nomad-crossroads",
+   "lion-refugees",
+   "lion-first-trial-event",
+   "lion-first-trial-combat",
+   "lion-first-refuge",
+   "lion-reserve-trail",
+   "lion-valmir-road",
+   "lion-second-trial-event",
+   "lion-second-trial-combat",
+   "lion-village-choice",
+   "lion-second-refuge",
+   "lion-lancer-recruit",
+   "lion-witnesses",
+   "lion-final-trial-event",
+   "lion-final-trial-combat"
+  ],
+  "visitedNodeIds": [
+   "lion-camp",
+   "lion-audience",
+   "lion-opening-ambush",
+   "lion-nomad-crossroads",
+   "lion-refugees",
+   "lion-first-trial-event",
+   "lion-first-refuge",
+   "lion-reserve-trail",
+   "lion-valmir-road",
+   "lion-second-trial-event",
+   "lion-village-choice",
+   "lion-second-refuge",
+   "lion-lancer-recruit",
+   "lion-witnesses"
+  ],
+  "temporaryLoot": {
+   "gold": 0,
+   "inventory": {
+    "consumables": {},
+    "accessories": {},
+    "materials": {},
+    "weapons": {}
+   }
+  },
+  "poiExpedition": {
+   "version": 1,
+   "turn": 0,
+   "elites": {
+    "lion-elite-valley-sentinel": {
+     "active": true,
+     "positionId": "lion-poi-valley-bridge-cache",
+     "patrolIndex": 0,
+     "mode": "cyclic_patrol",
+     "lastStep": 0,
+     "defeated": false
+    },
+    "lion-elite-seal-warden": {
+     "active": false,
+     "positionId": "lion-poi-seal-ruin-supplies",
+     "patrolIndex": 2,
+     "mode": "bounded_one_edge_graph_chase",
+     "lastStep": 0,
+     "defeated": false
+    }
+   }
+  },
+  "graph": {
+   "nodes": [
+    {
+     "id": "lion-camp",
+     "type": "story",
+     "depth": 0,
+     "links": [
+      "lion-audience"
+     ],
+     "contentId": "camp_departure",
+     "label": "Camp du Lion",
+     "icon": "◆",
+     "x": -9.375,
+     "z": 0,
+     "risk": 0,
+     "reward": 1,
+     "difficulty": "safe",
+     "moralTone": "neutral",
+     "hint": "La compagnie se rassemble avant de demander le premier Sceau."
+    },
+    {
+     "id": "lion-audience",
+     "type": "story",
+     "depth": 1,
+     "links": [
+      "lion-opening-ambush"
+     ],
+     "contentId": "lion_briefing",
+     "label": "Audience d’Alaric",
+     "icon": "♛",
+     "x": -8.125,
+     "z": 0,
+     "risk": 0,
+     "reward": 2,
+     "difficulty": "safe",
+     "moralTone": "honour",
+     "hint": "Recevoir la mission du Vieux Lion avant de prendre la route."
+    },
+    {
+     "id": "lion-opening-ambush",
+     "type": "combat",
+     "depth": 2,
+     "links": [
+      "lion-nomad-crossroads"
+     ],
+     "contentId": "forest_ambush",
+     "label": "Piste des bêtes",
+     "icon": "⚔",
+     "x": -6.875,
+     "z": 0,
+     "risk": 1,
+     "reward": 2,
+     "difficulty": "standard",
+     "moralTone": "neutral",
+     "hint": "Des créatures affamées rôdent sur la première piste."
+    },
+    {
+     "id": "lion-nomad-crossroads",
+     "type": "event",
+     "depth": 3,
+     "links": [
+      "lion-refugees"
+     ],
+     "contentId": "mystery_recruit",
+     "label": "Croisement du rôdeur",
+     "icon": "◇",
+     "x": -5.625,
+     "z": 0,
+     "risk": 1,
+     "reward": 2,
+     "difficulty": "safe",
+     "moralTone": "pragmatic",
+     "hint": "Un éclaireur nomade propose ses services à la compagnie."
+    },
+    {
+     "id": "lion-refugees",
+     "type": "event",
+     "depth": 4,
+     "links": [
+      "lion-first-trial-event",
+      "lion-first-trial-combat"
+     ],
+     "contentId": "refugee_trial",
+     "label": "Route des réfugiés",
+     "icon": "◇",
+     "x": -4.375,
+     "z": 0,
+     "risk": 1,
+     "reward": 2,
+     "difficulty": "safe",
+     "moralTone": "honour",
+     "hint": "Des familles affamées mettent votre parole à l’épreuve."
+    },
+    {
+     "id": "lion-first-trial-event",
+     "type": "event",
+     "depth": 5,
+     "links": [
+      "lion-first-refuge"
+     ],
+     "contentId": "mystery_help",
+     "label": "Marchand blessé",
+     "icon": "◇",
+     "x": -3.125,
+     "z": -1.0875,
+     "risk": 1,
+     "reward": 2,
+     "difficulty": "safe",
+     "moralTone": "pragmatic",
+     "hint": "Un voyageur blessé demande des ressources alors que Bois-Clair reste devant vous."
+    },
+    {
+     "id": "lion-first-trial-combat",
+     "type": "combat",
+     "depth": 5,
+     "links": [
+      "lion-first-refuge"
+     ],
+     "contentId": "forest_patrol",
+     "label": "Patrouille Serpent",
+     "icon": "⚔",
+     "x": -3.125,
+     "z": 1.0875,
+     "risk": 2,
+     "reward": 2,
+     "difficulty": "standard",
+     "moralTone": "neutral",
+     "hint": "Des éclaireurs Serpent surveillent la route sans renfort élite."
+    },
+    {
+     "id": "lion-first-refuge",
+     "type": "refuge",
+     "depth": 6,
+     "links": [
+      "lion-reserve-trail"
+     ],
+     "contentId": "forest_refuge",
+     "label": "Refuge du Lion",
+     "icon": "⌂",
+     "x": -1.875,
+     "z": 0,
+     "risk": 0,
+     "reward": 1,
+     "difficulty": "safe",
+     "moralTone": "neutral",
+     "hint": "Acheter, améliorer et préparer Bois-Clair."
+    },
+    {
+     "id": "lion-reserve-trail",
+     "type": "event",
+     "depth": 7,
+     "links": [
+      "lion-valmir-road"
+     ],
+     "contentId": "reserve_trail",
+     "label": "Chemin des réserves",
+     "icon": "◇",
+     "x": -0.625,
+     "z": 0,
+     "risk": 2,
+     "reward": 3,
+     "difficulty": "dangerous",
+     "moralTone": "greed",
+     "hint": "Un convoi emporte les réserves de Bois-Clair tandis que le siège continue plus loin."
+    },
+    {
+     "id": "lion-valmir-road",
+     "type": "combat",
+     "depth": 8,
+     "links": [
+      "lion-second-trial-event",
+      "lion-second-trial-combat"
+     ],
+     "contentId": "road_to_valmir",
+     "label": "Route de Bois-Clair",
+     "icon": "⚔",
+     "x": 0.625,
+     "z": 0,
+     "risk": 2,
+     "reward": 2,
+     "difficulty": "standard",
+     "moralTone": "neutral",
+     "hint": "Des créatures ont envahi la voie menant aux habitants menacés."
+    },
+    {
+     "id": "lion-second-trial-event",
+     "type": "event",
+     "depth": 9,
+     "links": [
+      "lion-village-choice"
+     ],
+     "contentId": "old_shrine_event",
+     "label": "Vieux sanctuaire",
+     "icon": "◇",
+     "x": 1.875,
+     "z": -1.0875,
+     "risk": 1,
+     "reward": 3,
+     "difficulty": "safe",
+     "moralTone": "greed",
+     "hint": "Un sanctuaire encore actif offre un abri sûr et un reliquaire plein de ressources."
+    },
+    {
+     "id": "lion-second-trial-combat",
+     "type": "combat",
+     "depth": 9,
+     "links": [
+      "lion-village-choice"
+     ],
+     "contentId": "serpent_checkpoint",
+     "label": "Barrage renforcé",
+     "icon": "⚔",
+     "x": 1.875,
+     "z": 1.0875,
+     "risk": 2,
+     "reward": 3,
+     "difficulty": "standard",
+     "moralTone": "neutral",
+     "hint": "Une troupe Serpent ordinaire verrouille la route du village."
+    },
+    {
+     "id": "lion-village-choice",
+     "type": "story",
+     "depth": 10,
+     "links": [
+      "lion-second-refuge"
+     ],
+     "contentId": "village_choice",
+     "label": "Bois-Clair assiégé",
+     "icon": "⌂",
+     "x": 3.125,
+     "z": 0,
+     "risk": 3,
+     "reward": 4,
+     "difficulty": "decisive",
+     "moralTone": "pragmatic",
+     "hint": "Le village est divisé entre les captifs au nord et ses réserves vitales au sud."
+    },
+    {
+     "id": "lion-second-refuge",
+     "type": "refuge",
+     "depth": 11,
+     "links": [
+      "lion-lancer-recruit"
+     ],
+     "contentId": "forest_refuge",
+     "label": "Dernier feu du Lion",
+     "icon": "⌂",
+     "x": 4.375,
+     "z": 0,
+     "risk": 0,
+     "reward": 1,
+     "difficulty": "safe",
+     "moralTone": "neutral",
+     "hint": "Dernière halte avant de rassembler les conséquences de vos actes."
+    },
+    {
+     "id": "lion-lancer-recruit",
+     "type": "event",
+     "depth": 12,
+     "links": [
+      "lion-witnesses"
+     ],
+     "contentId": "mystery_lancer_recruit",
+     "label": "Volontaire de Bois-Clair",
+     "icon": "◇",
+     "x": 5.625,
+     "z": 0,
+     "risk": 1,
+     "reward": 3,
+     "difficulty": "safe",
+     "moralTone": "honour",
+     "hint": "Un jeune lancier de Bois-Clair veut voir ce que votre clan fera du Sceau."
+    },
+    {
+     "id": "lion-witnesses",
+     "type": "event",
+     "depth": 13,
+     "links": [
+      "lion-final-trial-event",
+      "lion-final-trial-combat"
+     ],
+     "contentId": "witnesses_on_road",
+     "label": "Témoins de Bois-Clair",
+     "icon": "◇",
+     "x": 6.875,
+     "z": 0,
+     "risk": 1,
+     "reward": 2,
+     "difficulty": "safe",
+     "moralTone": "honour",
+     "hint": "Les survivants peuvent confirmer vos actes ou dénoncer votre abandon."
+    },
+    {
+     "id": "lion-final-trial-event",
+     "type": "event",
+     "depth": 14,
+     "links": [
+      "lion-shadow-signs"
+     ],
+     "contentId": "mystery_dragon_roost",
+     "label": "Nid du jeune dragon",
+     "icon": "◇",
+     "x": 8.125,
+     "z": -1.0875,
+     "risk": 2,
+     "reward": 3,
+     "difficulty": "dangerous",
+     "moralTone": "greed",
+     "hint": "Une dernière rencontre mesure ce que vaut encore votre parole."
+    },
+    {
+     "id": "lion-final-trial-combat",
+     "type": "combat",
+     "depth": 14,
+     "links": [
+      "lion-shadow-signs"
+     ],
+     "contentId": "ruins_guardians",
+     "label": "Ruines infestées",
+     "icon": "⚔",
+     "x": 8.125,
+     "z": 1.0875,
+     "risk": 2,
+     "reward": 3,
+     "difficulty": "standard",
+     "moralTone": "neutral",
+     "hint": "Un dernier passage hostile mène aux traces laissées par les Ombres."
+    },
+    {
+     "id": "lion-shadow-signs",
+     "type": "mystery",
+     "depth": 15,
+     "links": [
+      "lion-final-refuge"
+     ],
+     "contentId": "shadow_signs",
+     "label": "Signes des Ombres",
+     "icon": "?",
+     "x": 9.375,
+     "z": 0,
+     "risk": 2,
+     "reward": 4,
+     "difficulty": "dangerous",
+     "moralTone": "mystery",
+     "hint": "Une piste sombre relie les Serpents à une menace plus ancienne."
+    },
+    {
+     "id": "lion-final-refuge",
+     "type": "story",
+     "depth": 16,
+     "links": [
+      "lion-final-judgement"
+     ],
+     "contentId": "final_refuge",
+     "label": "Refuge avant le Sceau",
+     "icon": "⌂",
+     "x": 10.625,
+     "z": 0,
+     "risk": 0,
+     "reward": 1,
+     "difficulty": "safe",
+     "moralTone": "neutral",
+     "hint": "Rassembler le dossier complet avant de comparaître devant Alaric."
+    },
+    {
+     "id": "lion-final-judgement",
+     "type": "boss",
+     "depth": 17,
+     "links": [],
+     "contentId": "lion_finale_judgement",
+     "label": "Jugement du Sceau",
+     "icon": "♛",
+     "x": 11.875,
+     "z": 0,
+     "risk": 3,
+     "reward": 3,
+     "difficulty": "decisive",
+     "moralTone": "pragmatic",
+     "hint": "Alaric rend son verdict. Le Sceau sera accordé par respect ou par force."
+    },
+    {
+     "id": "lion-poi-opening-supplies",
+     "type": "chest",
+     "depth": 4,
+     "links": [],
+     "contentId": "poi_chest_opening_supplies",
+     "label": "Réserve forestière",
+     "icon": "▣",
+     "x": 0,
+     "z": 0,
+     "risk": 0,
+     "reward": 2,
+     "difficulty": "safe",
+     "hint": "Réserves facultatives · Butin temporaire, une seule ouverture."
+    },
+    {
+     "id": "lion-poi-opening-patrol",
+     "type": "combat",
+     "depth": 4,
+     "links": [],
+     "contentId": "poi_opening_patrol_a",
+     "label": "Patrouille en sous-bois",
+     "icon": "⚔",
+     "x": 0,
+     "z": 0,
+     "risk": 2,
+     "reward": 2,
+     "difficulty": "standard",
+     "hint": "Combat facultatif · Formation stable et récompense unique."
+    },
+    {
+     "id": "lion-poi-opening-wolves",
+     "type": "combat",
+     "depth": 4,
+     "links": [],
+     "contentId": "poi_opening_wolves_a",
+     "label": "Meute du détour",
+     "icon": "⚔",
+     "x": 0,
+     "z": 0,
+     "risk": 2,
+     "reward": 2,
+     "difficulty": "standard",
+     "hint": "Combat facultatif · Formation stable et récompense unique."
+    },
+    {
+     "id": "lion-poi-opening-cache",
+     "type": "chest",
+     "depth": 4,
+     "links": [],
+     "contentId": "poi_chest_opening_cache",
+     "label": "Cache du sentier",
+     "icon": "▣",
+     "x": 0,
+     "z": 0,
+     "risk": 0,
+     "reward": 2,
+     "difficulty": "safe",
+     "hint": "Réserves facultatives · Butin temporaire, une seule ouverture."
+    },
+    {
+     "id": "lion-poi-valley-supplies",
+     "type": "chest",
+     "depth": 8,
+     "links": [],
+     "contentId": "poi_chest_valley_supplies",
+     "label": "Dépôt des sentiers",
+     "icon": "▣",
+     "x": 0,
+     "z": 0,
+     "risk": 0,
+     "reward": 2,
+     "difficulty": "safe",
+     "hint": "Réserves facultatives · Butin temporaire, une seule ouverture."
+    },
+    {
+     "id": "lion-poi-valley-marsh",
+     "type": "combat",
+     "depth": 8,
+     "links": [],
+     "contentId": "poi_valley_marsh_a",
+     "label": "Détour des marais",
+     "icon": "⚔",
+     "x": 0,
+     "z": 0,
+     "risk": 2,
+     "reward": 2,
+     "difficulty": "standard",
+     "hint": "Combat facultatif · Formation stable et récompense unique."
+    },
+    {
+     "id": "lion-poi-valley-bridge-cache",
+     "type": "chest",
+     "depth": 8,
+     "links": [],
+     "contentId": "poi_chest_valley_bridge_cache",
+     "label": "Cache du pont",
+     "icon": "▣",
+     "x": 0,
+     "z": 0,
+     "risk": 0,
+     "reward": 2,
+     "difficulty": "safe",
+     "hint": "Réserves facultatives · Butin temporaire, une seule ouverture."
+    },
+    {
+     "id": "lion-poi-valley-serpent",
+     "type": "combat",
+     "depth": 8,
+     "links": [],
+     "contentId": "poi_valley_serpent_a",
+     "label": "Ronde des Serpents",
+     "icon": "⚔",
+     "x": 0,
+     "z": 0,
+     "risk": 2,
+     "reward": 2,
+     "difficulty": "standard",
+     "hint": "Combat facultatif · Formation stable et récompense unique."
+    },
+    {
+     "id": "lion-poi-seal-witness-supplies",
+     "type": "chest",
+     "depth": 13,
+     "links": [],
+     "contentId": "poi_chest_seal_witness_supplies",
+     "label": "Réserves des témoins",
+     "icon": "▣",
+     "x": 0,
+     "z": 0,
+     "risk": 0,
+     "reward": 2,
+     "difficulty": "safe",
+     "hint": "Réserves facultatives · Butin temporaire, une seule ouverture."
+    },
+    {
+     "id": "lion-poi-seal-hunters",
+     "type": "combat",
+     "depth": 13,
+     "links": [],
+     "contentId": "poi_seal_hunters_a",
+     "label": "Chasseurs du passage",
+     "icon": "⚔",
+     "x": 0,
+     "z": 0,
+     "risk": 2,
+     "reward": 2,
+     "difficulty": "standard",
+     "hint": "Combat facultatif · Formation stable et récompense unique."
+    },
+    {
+     "id": "lion-poi-seal-ruin-encounter",
+     "type": "combat",
+     "depth": 13,
+     "links": [],
+     "contentId": "poi_seal_ruin_encounter_b",
+     "label": "Veille des ruines",
+     "icon": "⚔",
+     "x": 0,
+     "z": 0,
+     "risk": 2,
+     "reward": 2,
+     "difficulty": "standard",
+     "hint": "Combat facultatif · Formation stable et récompense unique."
+    },
+    {
+     "id": "lion-poi-seal-ruin-supplies",
+     "type": "chest",
+     "depth": 13,
+     "links": [],
+     "contentId": "poi_chest_seal_ruin_supplies",
+     "label": "Réserve des ruines",
+     "icon": "▣",
+     "x": 0,
+     "z": 0,
+     "risk": 0,
+     "reward": 2,
+     "difficulty": "safe",
+     "hint": "Réserves facultatives · Butin temporaire, une seule ouverture."
+    }
+   ]
+  }
+ },
+ "endingId": null
+}

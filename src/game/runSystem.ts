@@ -16,6 +16,8 @@ import { initialPoiExpedition, expeditionEdges, recordPoiMovement, eliteAtPoi,
 import { PLATEAU_REGISTRY, requirePlateauCampaign, type PlateauCampaignBinding } from '../campaign/plateaux/PlateauRegistry';
 
 export { getLionConductScore, getLionConductTier } from './lionNarrative';
+// Set 1.20.0 (post-demo Lot 0): RunSystem owns the campaign record: clan relations, plateau outcomes and the ending.
+export * from './campaignRelations';
 export type { LionConductTier } from './lionNarrative';
 
 const EMPTY_INVENTORY = (): InventoryState => ({

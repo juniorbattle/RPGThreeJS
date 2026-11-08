@@ -12,13 +12,12 @@
  * section): they carry no content until their own lot builds them as playable drafts, which become canon only on the
  * operator's approval of each plateau.
  */
+import type { CampaignChapterId, CampaignClanId, PlateauOutcome, SealPlateauId } from './campaignIds';
+import { CAMPAIGN_CHAPTER_IDS } from './campaignIds';
 import { LION_PLATEAU_BINDING } from './lionPlateau';
 
-/** The clans named by the roadmap (§3.1 to §3.4) and the operator's post-demo decision. No other clan exists. */
-export const CAMPAIGN_CLAN_IDS = Object.freeze([
-  'lion', 'serpent', 'bear', 'raven', 'dragon', 'wolf', 'scorpion', 'phoenix',
-] as const);
-export type CampaignClanId = typeof CAMPAIGN_CLAN_IDS[number];
+export { CAMPAIGN_CLAN_IDS, CAMPAIGN_CHAPTER_IDS } from './campaignIds';
+export type { CampaignClanId, CampaignChapterId, SealPlateauId, PlateauOutcome } from './campaignIds';
 
 export const CAMPAIGN_CLAN_LABELS: Readonly<Record<CampaignClanId, string>> = Object.freeze({
   lion: 'Clan du Lion',
@@ -31,18 +30,11 @@ export const CAMPAIGN_CLAN_LABELS: Readonly<Record<CampaignClanId, string>> = Ob
   phoenix: 'Clan du Phénix',
 });
 
-export const CAMPAIGN_CHAPTER_IDS = Object.freeze(['lion', 'bear', 'dragon', 'scorpion', 'finale'] as const);
-export type CampaignChapterId = typeof CAMPAIGN_CHAPTER_IDS[number];
-export type SealPlateauId = Exclude<CampaignChapterId, 'finale'>;
-
 /**
  * `canon`: approved content (the Lion demo). `draft`: playable on the post-demo branch, identifiable as draft and not
  * canon until the operator approves the plateau. `planned`: reserved, no content yet.
  */
 export type PlateauAuthoringStatus = 'canon' | 'draft' | 'planned';
-
-/** The two outcomes of a Seal plateau (roadmap §2.3). The Lion's Serpent pursuit is honour, its Lion trial force. */
-export type PlateauOutcome = 'honour' | 'force';
 
 /**
  * The share of the 0–100 reputation a chapter may move on a perfect run and on a consistent honour run. Built chapters
