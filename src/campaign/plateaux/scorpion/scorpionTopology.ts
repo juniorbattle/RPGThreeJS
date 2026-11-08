@@ -1,5 +1,5 @@
 /**
- * Set 1.20.0, post-demo Lot 3 — DRAFT, not canon until the operator approves the Scorpion plateau.
+ * Set 1.20.0, post-demo Lot 3 — canon since the operator accepted the Scorpion plateau (OD-2026-11-08-D).
  *
  * The Scorpion plateau (roadmap §3.4): the Déserts Arides, the Grand Inquisiteur (named by his title only until the
  * operator validates a name, P5), the prophetic codex kept by the Clan du Phénix in its temple. It follows the Bear's

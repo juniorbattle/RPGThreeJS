@@ -1,6 +1,6 @@
 /**
- * Set 1.20.0, post-demo Lot 3 — DRAFT: the Scorpion plateau's fights (COMBAT_AND_VFX "Post-demo combat"). Not canon
- * until the operator approves the plateau. Reputation is authored at the post-demo scale (OD-2026-11-08-A) and is the
+ * Set 1.20.0, post-demo Lot 3 — the Scorpion plateau's fights (COMBAT_AND_VFX "Post-demo combat"), canon since
+ * OD-2026-11-08-D; their balance awaits the operator's PC test. Reputation is authored at the post-demo scale (OD-2026-11-08-A) and is the
  * smallest of the Seal plateaux (R2): no route fight moves it, elite or boss; only the two guardians give +1.
  *
  * Enemy families (roadmap §3.4): the Clan du Phénix's temple guardians and flame keepers, desert creatures, faithful

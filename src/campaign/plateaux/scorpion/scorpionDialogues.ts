@@ -1,6 +1,6 @@
 /**
- * Set 1.20.0, post-demo Lot 3 — DRAFT dialogues of the Scorpion plateau, not canon until the operator approves the
- * plateau. Written from the roadmap (§3.4 and its status: the chief is named by his title only, P5), the facts already
+ * Set 1.20.0, post-demo Lot 3 — dialogues of the Scorpion plateau, canon since OD-2026-11-08-D (accepted by the
+ * operator with the plateau). Written from the roadmap (§3.4 and its status: the chief is named by his title only, P5), the facts already
  * established by the Lion, the Bear and the Dragon, and the operator's decisions only; no clan, place, character, object
  * or lore beyond them. Authored at the post-demo reputation scale (OD-2026-11-08-A), the smallest of the Seal plateaux (R2).
  *

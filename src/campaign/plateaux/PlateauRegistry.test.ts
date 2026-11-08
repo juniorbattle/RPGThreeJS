@@ -81,15 +81,14 @@ describe('post-demo plateau registry (set 1.20.0, Lot 0)', () => {
     expect(plateauCampaignForRun({ id: 'legacy-run' })).toBe(lion);
   });
 
-  it('holds the Bear (OD-2026-11-08-B) and the Dragon (OD-2026-11-08-C) as canon, the Scorpion as a draft, and keeps the final act reserved', () => {
+  it('holds the Bear (OD-2026-11-08-B) and the Dragon (OD-2026-11-08-C) as canon, and the Scorpion (OD-2026-11-08-D) as canon, and keeps the final act reserved', () => {
     expect(getPlateau('bear').status).toBe('canon');
     expect(requirePlateauCampaign('bear').runIdPrefix).toBe('bear-');
     expect(requirePlateauCampaign('bear').topology.plateauId).toBe('bear');
     expect(getPlateau('dragon').status).toBe('canon');
     expect(requirePlateauCampaign('dragon').runIdPrefix).toBe('dragon-');
     expect(requirePlateauCampaign('dragon').topology.plateauId).toBe('dragon');
-    // Lot 3: a playable draft until the operator accepts it.
-    expect(getPlateau('scorpion').status).toBe('draft');
+    expect(getPlateau('scorpion').status).toBe('canon');
     expect(requirePlateauCampaign('scorpion').runIdPrefix).toBe('scorpion-');
     expect(requirePlateauCampaign('scorpion').topology.plateauId).toBe('scorpion');
     expect(getPlateau('finale').status).toBe('planned');

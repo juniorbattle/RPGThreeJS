@@ -7,7 +7,7 @@
 | BASELINE | `1b854e67` sur `post-demo` (Dragon accepté, OD-2026-11-08-C ; jeu de contrats 1.20.0, baseline immuable `6c965169c2dc153cafd5a8609d914cf8de723ff3`) |
 | BRANCH | `post-demo` |
 | HEAD | voir le commit de clôture du lot (ce rapport et l’état) |
-| STATUS | en attente de ton accord : le Scorpion est un brouillon jouable, pas canon |
+| STATUS | accepté : le Scorpion est canon depuis [OD-2026-11-08-D](../autonomy/POST_DEMO_LOT_3_OPERATOR_DECISION_2026-11-08.md) ; il reste sur `post-demo` jusqu’à un ordre d’intégration |
 | MERGED_IN | NONE |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |

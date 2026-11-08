@@ -1,6 +1,7 @@
 /**
- * Set 1.20.0, post-demo Lot 3 — DRAFT: every Scorpion scene can be staged on a provisional tableau, every provisional
- * image is listed with the final image it awaits, the scenes and refuges say they are drafts, and the staging keeps at
+ * Set 1.20.0, post-demo Lot 3 — every Scorpion scene can be staged on a provisional tableau, every provisional image
+ * is listed with the final image it awaits, the scenes and refuges say their images are provisional (canon since
+ * OD-2026-11-08-D), and the staging keeps at
  * most four actors with the company facing the plateau's people.
  */
 import { describe, expect, it } from 'vitest';
@@ -38,12 +39,12 @@ describe('Scorpion scenes on provisional tableaux (set 1.20.0, Lot 3 draft)', ()
     for (const actor of SCORPION_PROVISIONAL_ACTORS) expect(resolveCharacterUnitId(actor.actorId), actor.actorId).toBe(actor.standInUnitId);
   });
 
-  it('marks every Scorpion scene as a draft on provisional images, with a still image', () => {
+  it('marks every Scorpion scene as canon on provisional images (OD-2026-11-08-D), with a still image', () => {
     const state = createInitialState();
     for (const id of scorpionSceneIds) {
       const sequence = resolvePostDemoDialogue(id, state)!;
-      expect(isDraftContent(id), id).toBe(true);
-      expect(provisionalMark(id), id).toBe('Brouillon · image provisoire');
+      expect(isDraftContent(id), id).toBe(false);
+      expect(provisionalMark(id), id).toBe('Image provisoire');
       expect(createGenericNarrativeTableau(sequence).stillImage, id)
         .toBe(demoEnvironmentPlateForContext(SCORPION_PROVISIONAL_SCENES[id]!.environmentContext, 'STATIC_TABLEAU').publicUrl);
     }
@@ -67,10 +68,10 @@ describe('Scorpion scenes on provisional tableaux (set 1.20.0, Lot 3 draft)', ()
     }
   });
 
-  it('marks the Scorpion’s refuges as drafts on provisional art, and its map as provisional', () => {
+  it('marks the Scorpion’s refuges and map as provisional art, no longer as drafts', () => {
     for (const node of SCORPION_ROUTE.filter((candidate) => candidate.type === 'refuge')) {
       const presentation = resolveRefugePresentation({ ...node, links: [...node.links], x: 0, z: 0 } as never)!;
-      expect([presentation.provisional, presentation.draft], node.id).toEqual([true, true]);
+      expect([presentation.provisional, presentation.draft], node.id).toEqual([true, false]);
     }
     expect(poiAtlasForNode('scorpion-camp').provisional).toBe(true);
     expect(poiAtlasForNode('scorpion-camp').regions.map((region) => region.shortTitle)).toEqual(['I · Les dunes', 'II · Les ruines', 'III · Le sanctuaire']);

@@ -248,7 +248,9 @@ describe('the Scorpion consequence map is written first, as a design (Lot 3)', (
   it('passes the design check before any line exists, names the chief by his title only, and echoes the earlier plateaux', () => {
     expect(validateConsequenceMapDesign(scorpionMap)).toEqual([]);
     const map = consequenceMapSchema.parse(structuredClone(scorpionMap));
-    expect(map.status).toBe('draft');
+    // Written as a draft before any line; canon since the operator accepted the Scorpion (OD-2026-11-08-D).
+    expect(map.status).toBe('canon');
+    expect([map.outcomes.honour.relationStatus, map.outcomes.force.relationStatus]).toEqual(['approved', 'approved']);
     expect(map.majorChoices).toHaveLength(11);
     expect(JSON.stringify(map)).not.toMatch(/Kael(?!en)/);
     expect(map.outcomes.honour.clanRelations).toEqual([{ clan: 'scorpion', stance: 'ally' }, { clan: 'phoenix', stance: 'enemy' }]);

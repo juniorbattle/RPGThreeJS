@@ -158,8 +158,8 @@ export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([
   }),
   Object.freeze({
     id: 'scorpion', order: 4, kind: 'seal_plateau', idPrefix: 'scorpion-', label: 'Les Déserts Arides',
-    // Lot 3: a playable draft until the operator accepts it; its images stay provisional.
-    roadmapSections: Object.freeze(['§3.4']), status: 'draft', hostClan: 'scorpion', rivalClan: 'phoenix',
+    // Lot 3: accepted as canon by the operator (OD-2026-11-08-D); its images stay provisional.
+    roadmapSections: Object.freeze(['§3.4']), status: 'canon', hostClan: 'scorpion', rivalClan: 'phoenix',
     // P5: the chief is renamed; until the operator validates a name, texts use his title only.
     chief: Object.freeze({ title: 'Grand Inquisiteur', name: null }),
     reputationBudget: REPUTATION_BUDGETS.scorpion,

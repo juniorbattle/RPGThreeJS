@@ -1,7 +1,7 @@
 {
  "schemaVersion": 1,
  "plateauId": "scorpion",
- "status": "draft",
+ "status": "canon",
  "sources": [
   "docs/content/feuille_de_route_narrative_condensee.md §3.4 et statut (le chef désigné par son titre, P5)",
   "docs/autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md",
@@ -852,7 +852,7 @@
      "stance": "enemy"
     }
    ],
-   "relationStatus": "proposed",
+   "relationStatus": "approved",
    "echoes": [
     {
      "id": "scorpion.outcome.honour.epilogue",
@@ -899,7 +899,7 @@
      "stance": "enemy"
     }
    ],
-   "relationStatus": "proposed",
+   "relationStatus": "approved",
    "echoes": [
     {
      "id": "scorpion.outcome.force.epilogue",
