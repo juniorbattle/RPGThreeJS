@@ -81,11 +81,14 @@ describe('post-demo plateau registry (set 1.20.0, Lot 0)', () => {
     expect(plateauCampaignForRun({ id: 'legacy-run' })).toBe(lion);
   });
 
-  it('holds the Bear as canon (OD-2026-11-08-B) while the later chapters stay reserved without content', () => {
+  it('holds the Bear as canon (OD-2026-11-08-B), builds the Dragon as a draft (Lot 2), and keeps the rest reserved', () => {
     expect(getPlateau('bear').status).toBe('canon');
     expect(requirePlateauCampaign('bear').runIdPrefix).toBe('bear-');
     expect(requirePlateauCampaign('bear').topology.plateauId).toBe('bear');
-    for (const id of ['dragon', 'scorpion', 'finale'] as const) {
+    expect(getPlateau('dragon').status).toBe('draft');
+    expect(requirePlateauCampaign('dragon').runIdPrefix).toBe('dragon-');
+    expect(requirePlateauCampaign('dragon').topology.plateauId).toBe('dragon');
+    for (const id of ['scorpion', 'finale'] as const) {
       expect(getPlateau(id).status).toBe('planned');
       expect(getPlateau(id).campaign).toBeNull();
       expect(() => requirePlateauCampaign(id)).toThrow(/not built/);

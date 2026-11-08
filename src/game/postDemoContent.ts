@@ -10,19 +10,22 @@ import { BEAR_DIALOGUES, BEAR_SCENE_BUILDERS } from '../campaign/plateaux/bear/b
 import { BEAR_FINALE } from '../campaign/plateaux/bear/bearFinale';
 import { buildPlateauEpilogue, buildPlateauJudgement, type PlateauFinaleDefinition } from './plateauFinale';
 import { BEAR_STORY_COMBATS, bearOptionalCombats } from '../campaign/plateaux/bear/bearCombat';
+import { DRAGON_DIALOGUES, DRAGON_SCENE_BUILDERS } from '../campaign/plateaux/dragon/dragonDialogues';
+import { DRAGON_FINALE } from '../campaign/plateaux/dragon/dragonFinale';
+import { DRAGON_STORY_COMBATS, dragonOptionalCombats } from '../campaign/plateaux/dragon/dragonCombat';
 import { getPlateau, type CampaignChapterId } from '../campaign/plateaux/PlateauRegistry';
 import { combatConfigSchema, dialogueSequenceSchema, type CombatConfig, type DialogueSequence, type GameState } from './types';
 import { withChallenge } from './challenges';
 
 export const POST_DEMO_DIALOGUES: ReadonlyMap<string, DialogueSequence> = new Map(
-  [...BEAR_DIALOGUES].map((dialogue) => {
+  [...BEAR_DIALOGUES, ...DRAGON_DIALOGUES].map((dialogue) => {
     const parsed = dialogueSequenceSchema.parse(dialogue);
     return [parsed.id, parsed];
   }),
 );
 
 export const POST_DEMO_COMBATS: ReadonlyMap<string, CombatConfig> = new Map(
-  [...BEAR_STORY_COMBATS, ...bearOptionalCombats()].map((combat) => {
+  [...BEAR_STORY_COMBATS, ...bearOptionalCombats(), ...DRAGON_STORY_COMBATS, ...dragonOptionalCombats()].map((combat) => {
     const parsed = combatConfigSchema.parse(withChallenge(combatConfigSchema.parse(combat)));
     return [parsed.id, parsed];
   }),
@@ -59,12 +62,21 @@ export function plateauDialogues(chapterId: CampaignChapterId): DialogueSequence
 }
 
 /** The finale definition of each built post-demo plateau. */
-export const PLATEAU_FINALES: Readonly<Partial<Record<CampaignChapterId, PlateauFinaleDefinition>>> = Object.freeze({ bear: BEAR_FINALE });
+export const PLATEAU_FINALES: Readonly<Partial<Record<CampaignChapterId, PlateauFinaleDefinition>>> = Object.freeze({
+  bear: BEAR_FINALE,
+  dragon: DRAGON_FINALE,
+});
+
+const finaleBuilders = (finale: PlateauFinaleDefinition) => ({
+  [finale.judgementDialogueId]: (state: Readonly<GameState>) => buildPlateauJudgement(finale, state),
+  [finale.epilogueDialogueId]: (state: Readonly<GameState>) => buildPlateauEpilogue(finale, state),
+});
 
 const SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<GameState>) => DialogueSequence>> = Object.freeze({
   ...BEAR_SCENE_BUILDERS,
-  [BEAR_FINALE.judgementDialogueId]: (state: Readonly<GameState>) => buildPlateauJudgement(BEAR_FINALE, state),
-  [BEAR_FINALE.epilogueDialogueId]: (state: Readonly<GameState>) => buildPlateauEpilogue(BEAR_FINALE, state),
+  ...finaleBuilders(BEAR_FINALE),
+  ...DRAGON_SCENE_BUILDERS,
+  ...finaleBuilders(DRAGON_FINALE),
 });
 
 export function isPostDemoSceneBuilt(dialogueId: string): boolean {

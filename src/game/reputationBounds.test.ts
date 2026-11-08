@@ -163,11 +163,30 @@ describe('the Bear plateau measured from its draft content (set 1.20.0, Lot 1)',
   });
 });
 
+describe('the Dragon plateau measured from its draft content (set 1.20.0, Lot 2)', () => {
+  const dragon = computePlateauReputationBounds('dragon');
+
+  it('fits the approved Dragon budget exactly: +12 at most, +10 for a consistent honour run', () => {
+    expect(getPlateau('dragon').reputationBudget).toEqual({ perfectMax: dragon.perfectMax, honourFloor: dragon.honourFloor });
+    expect({ canonicalMax: dragon.canonicalMax, optionalMax: dragon.optionalMax, socialMax: dragon.socialMax }).toEqual({
+      canonicalMax: 10, optionalMax: 2, socialMax: 0,
+    });
+    expect(dragon.failedHonourGates).toEqual([]);
+  });
+
+  it('moves less than the Bear (R2) and lets greed empty the gauge', () => {
+    expect(dragon.perfectMax).toBeLessThan(computePlateauReputationBounds('bear').perfectMax);
+    expect(dragon.canonicalMin).toBeLessThan(-dragon.canonicalMax);
+    const combatSources = dragon.nodes.flatMap((node) => node.bestSources).filter((source) => source.startsWith('combat:'));
+    expect(combatSources).toEqual(['combat:dragon_corrupted_wyrm', 'combat:dragon_shadow_touched', 'combat:dragon_shadow_shaman']);
+  });
+});
+
 describe('whole-game reputation bounds (set 1.20.0 calibration targets)', () => {
   const projection = projectCampaignReputation(LION_POST_DEMO_REPUTATION);
 
-  it('measures the built Bear from its content and keeps the later chapters at their budgets', () => {
-    expect(projection.chapters.filter((chapter) => chapter.measured).map((chapter) => chapter.id)).toEqual(['lion', 'bear']);
+  it('measures the built Bear and Dragon from their content and keeps the later chapters at their budgets', () => {
+    expect(projection.chapters.filter((chapter) => chapter.measured).map((chapter) => chapter.id)).toEqual(['lion', 'bear', 'dragon']);
   });
 
   it('lets only a perfect run reach 100, and only in the final act', () => {

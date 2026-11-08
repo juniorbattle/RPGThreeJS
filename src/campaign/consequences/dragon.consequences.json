@@ -186,7 +186,7 @@
      "id": "dragon.mandate.honour.judgement",
      "fact": "dragonMandateHonour",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -199,7 +199,7 @@
      "id": "dragon.mandate.price.judgement",
      "fact": "dragonMandatePrice",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -239,7 +239,7 @@
      "id": "dragon.wolf_envoy.refused.judgement",
      "fact": "dragonWolfOfferRefused",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -252,7 +252,7 @@
      "id": "dragon.wolf_envoy.pact.judgement",
      "fact": "dragonWolfPact",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -265,13 +265,13 @@
      "id": "dragon.wolf_envoy.pact.lair",
      "fact": "dragonWolfPact",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-wolf-lair",
      "dialogueId": "dragon_wolf_lair",
      "state": {
       "dragonWolfPact": true
      },
-     "causePhrase": "le pacte scellé avec notre émissaire",
+     "causePhrase": "pacte scellé avec notre émissaire",
      "stepId": "pact"
     }
    ]
@@ -305,7 +305,7 @@
      "id": "dragon.village.protected.judgement",
      "fact": "dragonVillageProtected",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -318,7 +318,7 @@
      "id": "dragon.village.extorted.judgement",
      "fact": "dragonVillageExtorted",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -331,13 +331,13 @@
      "id": "dragon.village.protected.vigil",
      "fact": "dragonVillageProtected",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-final-refuge",
      "dialogueId": "dragon_vigil",
      "state": {
       "dragonVillageProtected": true
      },
-     "causePhrase": "les gens du hameau ont fait monter du pain et du bois",
+     "causePhrase": "du hameau ont fait monter du pain et du bois",
      "stepId": "village"
     }
    ]
@@ -371,7 +371,7 @@
      "id": "dragon.wolf_traps.disarmed.judgement",
      "fact": "dragonTrapsDisarmed",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -384,7 +384,7 @@
      "id": "dragon.wolf_traps.turned.judgement",
      "fact": "dragonTrapsTurned",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -424,7 +424,7 @@
      "id": "dragon.captive_wolf.heard.judgement",
      "fact": "dragonWolfHeard",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -437,7 +437,7 @@
      "id": "dragon.captive_wolf.tortured.judgement",
      "fact": "dragonWolfTortured",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -450,13 +450,13 @@
      "id": "dragon.captive_wolf.heard.traces",
      "fact": "dragonWolfHeard",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-shaman-traces",
      "dialogueId": "dragon_shaman_traces",
      "state": {
       "dragonWolfHeard": true
      },
-     "causePhrase": "le guerrier du Loup que vous avez relâché parlait de ce chaman",
+     "causePhrase": "guerrier du Loup que vous avez relâché parlait de ce chaman",
      "stepId": "heard"
     }
    ]
@@ -490,7 +490,7 @@
      "id": "dragon.crystal_clues.shared.judgement",
      "fact": "dragonCluesShared",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -503,7 +503,7 @@
      "id": "dragon.crystal_clues.hidden.judgement",
      "fact": "dragonCluesHidden",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -516,13 +516,13 @@
      "id": "dragon.crystal_clues.shared.altar",
      "fact": "dragonCluesShared",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-crystal-altar",
      "dialogueId": "dragon_crystal_altar",
      "state": {
       "dragonCluesShared": true
      },
-     "causePhrase": "les inscriptions que nous rapportons à Kaelen",
+     "causePhrase": "inscriptions que nous rapportons à Kaelen",
      "stepId": "clues"
     }
    ]
@@ -576,7 +576,7 @@
      "id": "dragon.crystal.recovered.judgement",
      "fact": "dragonCrystalRecovered",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -589,7 +589,7 @@
      "id": "dragon.crystal.kept.judgement",
      "fact": "dragonCrystalKept",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -602,7 +602,7 @@
      "id": "dragon.crystal.alliance.judgement",
      "fact": "dragonWolfAlliance",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -642,7 +642,7 @@
      "id": "dragon.pilgrims.protected.judgement",
      "fact": "dragonPilgrimsProtected",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -655,7 +655,7 @@
      "id": "dragon.pilgrims.silenced.judgement",
      "fact": "dragonPilgrimsSilenced",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -695,7 +695,7 @@
      "id": "dragon.young_dragon.tended.judgement",
      "fact": "dragonYoungDragonTended",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -708,7 +708,7 @@
      "id": "dragon.young_dragon.scales.judgement",
      "fact": "dragonScalesTaken",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -748,7 +748,7 @@
      "id": "dragon.altar_signs.evidence.judgement",
      "fact": "dragonShadowEvidence",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -761,7 +761,7 @@
      "id": "dragon.altar_signs.purged.judgement",
      "fact": "dragonShadowPurged",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_judgement",
      "state": {
@@ -818,7 +818,7 @@
      "id": "dragon.judgement_intent.honour.epilogue",
      "fact": "dragonShadowShamanDefeated",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_epilogue",
      "state": {
@@ -834,7 +834,7 @@
      "id": "dragon.judgement_intent.force.epilogue",
      "fact": "dragonTrialWon",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_epilogue",
      "state": {
@@ -870,7 +870,7 @@
      "id": "dragon.outcome.honour.epilogue",
      "fact": "dragonShadowShamanDefeated",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_epilogue",
      "state": {
@@ -917,7 +917,7 @@
      "id": "dragon.outcome.force.epilogue",
      "fact": "dragonTrialWon",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "dragon-judgement",
      "dialogueId": "dragon_epilogue",
      "state": {

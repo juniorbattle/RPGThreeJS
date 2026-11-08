@@ -16,6 +16,7 @@ import type { CampaignChapterId, CampaignClanId, PlateauOutcome, SealPlateauId }
 import { CAMPAIGN_CHAPTER_IDS } from './campaignIds';
 import { LION_PLATEAU_BINDING } from './lionPlateau';
 import { BEAR_PLATEAU_BINDING } from './bear/bearPlateau';
+import { DRAGON_PLATEAU_BINDING } from './dragon/dragonPlateau';
 import type { PlateauTopology } from './PlateauTopology';
 
 export { CAMPAIGN_CLAN_IDS, CAMPAIGN_CHAPTER_IDS } from './campaignIds';
@@ -148,10 +149,11 @@ export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([
   }),
   Object.freeze({
     id: 'dragon', order: 3, kind: 'seal_plateau', idPrefix: 'dragon-', label: 'Les Pics Célestes',
-    roadmapSections: Object.freeze(['§3.3']), status: 'planned', hostClan: 'dragon', rivalClan: 'wolf',
+    // Lot 2: a playable draft, not canon until the operator approves the plateau.
+    roadmapSections: Object.freeze(['§3.3']), status: 'draft', hostClan: 'dragon', rivalClan: 'wolf',
     chief: Object.freeze({ title: 'Ancien Dragon', name: 'Kaelen' }),
     reputationBudget: REPUTATION_BUDGETS.dragon,
-    campaign: null,
+    campaign: DRAGON_PLATEAU_BINDING,
   }),
   Object.freeze({
     id: 'scorpion', order: 4, kind: 'seal_plateau', idPrefix: 'scorpion-', label: 'Les Déserts Arides',

@@ -757,7 +757,7 @@
      "id": "bear.dark_vein.evidence.dragon_altar",
      "fact": "bearDarkOreEvidence",
      "scope": "later_plateau",
-     "status": "planned",
+     "status": "implemented",
      "chapterId": "dragon",
      "nodeId": "dragon-crystal-altar",
      "dialogueId": "dragon_crystal_altar",
@@ -883,7 +883,7 @@
      "id": "bear.outcome.honour.dragon_audience",
      "fact": "bearMasterSpyDefeated",
      "scope": "later_plateau",
-     "status": "planned",
+     "status": "implemented",
      "chapterId": "dragon",
      "nodeId": "dragon-audience",
      "dialogueId": "dragon_audience",
@@ -944,7 +944,7 @@
      "id": "bear.outcome.force.dragon_audience",
      "fact": "bearTrialWon",
      "scope": "later_plateau",
-     "status": "planned",
+     "status": "implemented",
      "chapterId": "dragon",
      "nodeId": "dragon-audience",
      "dialogueId": "dragon_audience",
@@ -952,7 +952,7 @@
      "state": {
       "bearTrialWon": true
      },
-     "causePhrase": "le Sceau de l’Ours arraché à Borin"
+     "causePhrase": "Sceau de l’Ours arraché à Borin"
     }
    ]
   }

@@ -136,6 +136,12 @@ const ENEMY_VISUAL_SKILLS: Readonly<Record<string, readonly string[]>> = Object.
   corrupted_beast: ['enemy_venom_strike', 'boss_guard', 'boss_quake', 'boss_slam'],
   depth_beast: ['enemy_hex', 'boss_guard', 'boss_quake', 'boss_slam'],
   bear_warrior: ['enemy_heavy_strike'],
+  // Set 1.20.0, post-demo Lot 2 — DRAFT Dragon families, outside the demo scope as well.
+  wolf_raider: ['enemy_heavy_strike'],
+  wolf_hunter: ['enemy_binding_shot'],
+  wolf_champion: ['enemy_binding_shot', 'boss_fortify', 'boss_pin', 'boss_flurry'],
+  shadow_wyrm: ['enemy_hex', 'boss_regen', 'boss_freeze', 'boss_inferno'],
+  dragon_guardian: ['enemy_heavy_strike'],
 });
 
 /**
@@ -157,6 +163,10 @@ const POST_DEMO_BOSS_COMBAT_SKILLS: Readonly<Record<string, readonly string[]>> 
   bear_mines_seizure: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_slam'],
   bear_master_spy: ['enemy_binding_shot', 'boss_fortify', 'boss_pin', 'boss_flurry'],
   bear_borin: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_titan_slam'],
+  dragon_lair_assault: ['enemy_heavy_strike', 'boss_fortify', 'boss_pin', 'boss_slam'],
+  dragon_lair_seizure: ['enemy_heavy_strike', 'boss_fortify', 'boss_pin', 'boss_slam'],
+  dragon_shadow_shaman: ['enemy_dark_bolt', 'boss_guard', 'boss_freeze', 'boss_execution'],
+  dragon_kaelen: ['enemy_dragon_breath', 'boss_regen', 'boss_quake', 'boss_inferno'],
 });
 
 /** Boss combats launched by the Lion finale (`resolveLionFinaleExecution`). */
@@ -172,6 +182,7 @@ const ELITE_VISUAL_IDS = new Set([
   'serpent_elite_raider', 'serpent_elite_brute', 'serpent_duelist_elite',
   'forest_troll_elite', 'young_dragon_elite', 'undead_champion', 'lion_champion',
   'raven_foreman', 'corrupted_beast', 'depth_beast',
+  'wolf_champion', 'shadow_wyrm',
 ]);
 
 export const __testing = { ENEMY_VISUAL_SKILLS, BOSS_COMBAT_SKILLS, ELITE_VISUAL_IDS, POST_DEMO_BOSS_COMBAT_SKILLS };

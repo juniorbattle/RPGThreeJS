@@ -1,5 +1,5 @@
 import manifestJson from './generated/characterSystemV2Manifest.json';
-import { BEAR_PROVISIONAL_ACTORS } from '../campaign/plateaux/bear/bearPresentation';
+import { POST_DEMO_PROVISIONAL_ACTORS } from '../campaign/plateaux/postDemoPresentation';
 
 export type CharacterScaleFamily = 'SMALL_CREATURE' | 'STANDARD_HUMANOID' | 'LARGE_ELITE_BOSS';
 export type CharacterNonCombatRole = 'master' | 'full' | 'dialogue' | 'ui';
@@ -61,7 +61,7 @@ const identityAliases = new Map<string, string>([
 
 // Set 1.20.0 (WORLD_AND_CHARACTERS "Provisional images"): post-demo characters staged with existing silhouettes until
 // their Character V2 masters exist. Each stand-in is marked provisional in its plateau's presentation registry.
-for (const actor of BEAR_PROVISIONAL_ACTORS) identityAliases.set(actor.actorId, actor.standInUnitId);
+for (const actor of POST_DEMO_PROVISIONAL_ACTORS) identityAliases.set(actor.actorId, actor.standInUnitId);
 
 for (const profile of PROFILES) {
   identityAliases.set(profile.unitId, profile.unitId);

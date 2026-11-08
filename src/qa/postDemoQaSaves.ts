@@ -17,3 +17,16 @@ export async function loadLionEndForBearQa(route: 'honour' | 'force'): Promise<G
   state.reputation = POST_DEMO_QA_LION_END_REPUTATION[route];
   return state;
 }
+
+/**
+ * A finished Bear to play the Dragon from, played by the QA driver from the matching Lion end: honour (every merit, the
+ * Master Spy fallen, the dark ore sealed) or force (the dark ore seized, the Seal taken from Borin). DEV QA only.
+ */
+export async function loadBearEndForDragonQa(route: 'honour' | 'force'): Promise<GameState> {
+  const { playBearPlateau } = await import('./bearPlateauDriver');
+  const lionEnd = await loadLionEndForBearQa(route);
+  return playBearPlateau(lionEnd, route === 'honour'
+    ? { name: 'QA Bear honour', prefer: 'merit', intent: 'claim_recognition', guardianChests: ['bear-poi-mine-lift-cache', 'bear-poi-depths-reserve'] }
+    : { name: 'QA Bear force', prefer: 'greed', intent: 'claim_recognition',
+      answers: { bear_raven_messenger: 'bearRavenOfferRefused', bear_sacred_mines: 'bearMinesSeized' } }).state;
+}

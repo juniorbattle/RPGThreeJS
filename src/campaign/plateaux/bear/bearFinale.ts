@@ -66,6 +66,7 @@ export const BEAR_FINALE: PlateauFinaleDefinition = Object.freeze<PlateauFinaleD
   credibility: { credible: 50, high: 65 },
   opening: 'Vous revenez des galeries. La montagne a déjà parlé avant vous : ses éboulis, ses mineurs, ses feux éteints. Je l’écouterai encore une fois, puis je vous écouterai.',
   intent: 'Vous ne pouvez plus changer ce que la montagne a vu. Dites-moi seulement ce que vous demandez à l’Ours.',
+  trialChoice: 'Demander l’épreuve de l’Ours.',
   meritsLead: 'Il y a aussi ceci, Ancien, et la montagne en garde la trace :',
   breachesLead: 'Et l’Ours n’oubliera pas ce qui pèse contre eux :',
   stainsLead: 'Mes comptes gardent aussi',

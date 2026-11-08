@@ -52,6 +52,8 @@ export interface PlateauFinaleDefinition {
   credibility: { credible: number; high: number };
   opening: string;
   intent: string;
+  /** The judgement's choice that asks for the plateau's trial, in its own words. */
+  trialChoice: string;
   meritsLead: string;
   breachesLead: string;
   stainsLead: string;
@@ -187,7 +189,7 @@ export function buildPlateauJudgement(definition: PlateauFinaleDefinition, state
       { text: 'Assumer nos actes et réclamer le Sceau.', next: null,
         effects: [{ type: 'resolvePlateauFinale', plateauId: definition.plateauId, intent: 'claim_recognition' }],
         outcomePreview: { mode: 'hidden', hints: [] } },
-      { text: `Demander l’épreuve de ${definition.plateauId === 'bear' ? 'l’Ours' : definition.plateauId}.`, next: null,
+      { text: definition.trialChoice, next: null,
         effects: [{ type: 'resolvePlateauFinale', plateauId: definition.plateauId, intent: 'request_trial' }],
         outcomePreview: { mode: 'soft', hints: ['Le Sceau sera jugé par la force'] } },
     ],

@@ -36,7 +36,7 @@ describe('the Lion consequence map passes the narrative coherence validator', ()
   it('has no error: every major choice is echoed later by a scene that names its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.stats).toEqual({
-      dialogues: 75, steps: 256, facts: 64, majorChoices: 13, implementedEchoes: 36, plannedEchoes: 2,
+      dialogues: 75, steps: 256, facts: 64, majorChoices: 13, implementedEchoes: 38, plannedEchoes: 0,
     });
   });
 
@@ -141,7 +141,7 @@ describe('the Bear draft passes the narrative coherence validator (Lot 1)', () =
   it('has no error and no exception: every Bear fact set is read, every choice echoed by a scene naming its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 27, plannedEchoes: 6 });
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 30, plannedEchoes: 3 });
   });
 
   it('carries the Lion into the Bear: every Lion echo planned for the Bear is now implemented', () => {
@@ -149,6 +149,25 @@ describe('the Bear draft passes the narrative coherence validator (Lot 1)', () =
     const toBear = lion.majorChoices.flatMap((choice) => choice.echoes).filter((echo) => echo.chapterId === 'bear');
     expect(toBear).toHaveLength(8);
     expect(toBear.every((echo) => echo.status === 'implemented')).toBe(true);
+  });
+});
+
+describe('the Dragon draft passes the narrative coherence validator (Lot 2)', () => {
+  const report = validateNarrativeCoherence(dragonMap, sources);
+
+  it('has no error and no exception: every Dragon fact set is read, every choice echoed by a scene naming its cause', () => {
+    expect(report.errors).toEqual([]);
+    expect(report.excused).toEqual([]);
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 29, plannedEchoes: 3 });
+  });
+
+  it('carries the Lion and the Bear into the Dragon: every echo they hold for the Dragon is implemented', () => {
+    const into = [lionMap, bearMap].flatMap((raw) => {
+      const map = consequenceMapSchema.parse(structuredClone(raw));
+      return [...map.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(map.outcomes).flatMap((outcome) => outcome.echoes)];
+    }).filter((echo) => echo.chapterId === 'dragon');
+    expect(into).toHaveLength(5);
+    expect(into.every((echo) => echo.status === 'implemented')).toBe(true);
   });
 });
 

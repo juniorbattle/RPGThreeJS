@@ -12,6 +12,7 @@ import lionForceComplete from './__fixtures__/demo-v6-lion-force-complete.json';
 import midLion from './__fixtures__/demo-v6-mid-lion.json';
 import bearMap from '../campaign/consequences/bear.consequences.json';
 import lionMap from '../campaign/consequences/lion.consequences.json';
+import dragonMap from '../campaign/consequences/dragon.consequences.json';
 import { consequenceMapSchema } from '../campaign/consequences/ConsequenceMap';
 import { requirePlateauCampaign } from '../campaign/plateaux/PlateauRegistry';
 import {
@@ -44,7 +45,7 @@ function bearRunFrom(fixture: unknown, seed = 20261108): GameState {
 
 describe('plateau progression (set 1.20.0, Lot 1)', () => {
   it('states the outcome relations exactly as the Lion and Bear consequence maps record them', () => {
-    for (const [chapterId, raw] of [['lion', lionMap], ['bear', bearMap]] as const) {
+    for (const [chapterId, raw] of [['lion', lionMap], ['bear', bearMap], ['dragon', dragonMap]] as const) {
       const map = consequenceMapSchema.parse(raw);
       const binding = requirePlateauCampaign(chapterId);
       expect(binding.outcomeRelations.honour).toEqual(map.outcomes.honour.clanRelations);
@@ -124,10 +125,17 @@ describe('plateau progression (set 1.20.0, Lot 1)', () => {
     expect(state.endingId).toBe('bear-seal-honour');
     expect(getClanRelation(state, 'bear')).toBe('ally');
     expect(getClanRelation(state, 'raven')).toBe('enemy');
-    // The Dragon is not built: the campaign stops here with its record intact.
+    // The Dragon is built (Lot 2): the campaign continues into it; the Scorpion is not, so a finished Dragon stops there.
+    expect(state.campaign!.currentChapterId).toBe('dragon');
+    expect(nextPlayablePlateau(state)).toBe('dragon');
+    expect(continueCampaign(state, 9)?.id).toBe('dragon-9');
+    expect([getClanRelation(state, 'dragon'), getClanRelation(state, 'wolf')]).toEqual(['neutral', 'neutral']);
+    Object.assign(state.flags, combatVictoryFacts('dragon_shadow_shaman'));
+    state.run.status = 'completed';
+    expect(completePlateauChronicle(state, 'dragon')).toEqual({ chapterId: 'dragon', outcome: 'honour', nextChapterId: 'scorpion' });
     expect(nextPlayablePlateau(state)).toBeNull();
     expect(continueCampaign(state)).toBeNull();
-    expect(state.campaign!.currentChapterId).toBe('dragon');
+    expect(state.campaign!.currentChapterId).toBe('scorpion');
   });
 
   it('keeps a Raven pact made in the mines against the force outcome', () => {
