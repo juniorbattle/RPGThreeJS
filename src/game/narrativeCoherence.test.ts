@@ -8,7 +8,8 @@ import lionMap from '../campaign/consequences/lion.consequences.json';
 import bearMap from '../campaign/consequences/bear.consequences.json';
 import dragonMap from '../campaign/consequences/dragon.consequences.json';
 import scorpionMap from '../campaign/consequences/scorpion.consequences.json';
-import { consequenceMapSchema, type ConsequenceMap } from '../campaign/consequences/ConsequenceMap';
+import finaleMap from '../campaign/consequences/finale.consequences.json';
+import { campaignConsequenceMapSchema, consequenceMapSchema, type ConsequenceMap } from '../campaign/consequences/ConsequenceMap';
 import { validateConsequenceMapDesign, validateNarrativeCoherence, type SourceFile } from './narrativeCoherence';
 import type { DialogueSequence } from './types';
 
@@ -37,7 +38,8 @@ describe('the Lion consequence map passes the narrative coherence validator', ()
   it('has no error: every major choice is echoed later by a scene that names its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.stats).toEqual({
-      dialogues: 75, steps: 256, facts: 64, majorChoices: 13, implementedEchoes: 38, plannedEchoes: 0,
+      // Four echoes planned for the final act (Lot 4): the Shadow evidence and the outcome, at the vigil and the rally.
+      dialogues: 75, steps: 256, facts: 64, majorChoices: 13, implementedEchoes: 38, plannedEchoes: 4,
     });
   });
 
@@ -142,8 +144,8 @@ describe('the Bear draft passes the narrative coherence validator (Lot 1)', () =
   it('has no error and no exception: every Bear fact set is read, every choice echoed by a scene naming its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
-    // Its dark-ore echo into the Scorpion is implemented since Lot 3; the final act's three stay planned.
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 31, plannedEchoes: 3 });
+    // Its dark-ore echo into the Scorpion is implemented since Lot 3; the final act's four stay planned (Lot 4).
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 31, plannedEchoes: 4 });
   });
 
   it('carries the Lion into the Bear: every Lion echo planned for the Bear is now implemented', () => {
@@ -160,8 +162,8 @@ describe('the Dragon draft passes the narrative coherence validator (Lot 2)', ()
   it('has no error and no exception: every Dragon fact set is read, every choice echoed by a scene naming its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
-    // Its three echoes into the Scorpion are implemented since Lot 3; the final act's three stay planned.
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 32, plannedEchoes: 3 });
+    // Its three echoes into the Scorpion are implemented since Lot 3; the final act's four stay planned (Lot 4).
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 32, plannedEchoes: 4 });
   });
 
   it('carries the Lion and the Bear into the Dragon: every echo they hold for the Dragon is implemented', () => {
@@ -180,7 +182,8 @@ describe('the Scorpion draft passes the narrative coherence validator (Lot 3)', 
   it('has no error and no exception: every Scorpion fact set is read, every choice echoed by a scene naming its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 28, plannedEchoes: 3 });
+    // The final act's five stay planned (Lot 4).
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 28, plannedEchoes: 5 });
   });
 
   it('carries the Bear and the Dragon into the Scorpion: every echo they hold for the Scorpion is implemented', () => {
@@ -262,5 +265,45 @@ describe('the Scorpion consequence map is written first, as a design (Lot 3)', (
       return [...parsed.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(parsed.outcomes).flatMap((outcome) => outcome.echoes)];
     }).filter((echo) => echo.chapterId === 'scorpion').map((echo) => echo.fact).sort();
     expect(into).toEqual(['bearDarkOreEvidence', 'dragonShadowEvidence', 'dragonShadowShamanDefeated', 'dragonTrialWon']);
+  });
+});
+
+describe('the final act consequence map is written first, as a design (Lot 4)', () => {
+  const map = campaignConsequenceMapSchema.parse(structuredClone(finaleMap));
+  const allEchoes = (raw: unknown) => {
+    const parsed = campaignConsequenceMapSchema.parse(structuredClone(raw));
+    return [...parsed.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(parsed.outcomes ?? {}).flatMap((outcome) => outcome.echoes)];
+  };
+
+  it('passes the design check before any line exists, as a draft with no honour or force outcome of its own (R4 decides the ending)', () => {
+    expect(validateConsequenceMapDesign(finaleMap)).toEqual([]);
+    expect(map.status).toBe('draft');
+    expect(map.outcomes).toBeUndefined();
+    expect(map.majorChoices.map((choice) => choice.id)).toEqual(['finale.raven_verdict', 'finale.wolf_verdict', 'finale.phoenix_verdict',
+      'finale.civilians', 'finale.trapped_citizens']);
+    expect(JSON.stringify(map)).not.toMatch(/Kael(?!en)/);
+  });
+
+  it('makes a champion relevé an unexpected ally and a champion humilié an enemy, as §3.7 allows', () => {
+    for (const clan of ['raven', 'wolf', 'phoenix'] as const) {
+      const verdict = map.majorChoices.find((choice) => choice.id === `finale.${clan}_verdict`)!;
+      expect(verdict.options.map((option) => option.clanRelations)).toEqual([[{ clan, stance: 'ally' }], [{ clan, stance: 'enemy' }]]);
+    }
+  });
+
+  it('names a real place of the final act for every echo the four plateaux hold for it', () => {
+    const into = [lionMap, bearMap, dragonMap, scorpionMap].flatMap(allEchoes).filter((echo) => echo.chapterId === 'finale');
+    expect(into).toHaveLength(17);
+    for (const echo of into) {
+      expect(echo.nodeId, echo.id).not.toBe('finale-tbd');
+      expect(['finale-allied-rally', 'finale-last-refuge', 'finale-bout-serpent'], echo.id).toContain(echo.nodeId);
+      expect(echo.stepId, echo.id).toBeDefined();
+    }
+  });
+
+  it('keeps a Seal plateau stating its honour and force outcomes', () => {
+    const withoutOutcomes = structuredClone(bearMap) as Record<string, unknown>;
+    delete withoutOutcomes.outcomes;
+    expect(() => campaignConsequenceMapSchema.parse(withoutOutcomes)).toThrow(/honour and force outcomes/);
   });
 });

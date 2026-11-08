@@ -580,6 +580,20 @@
      },
      "causePhrase": "vous avez laissé le Corbeau vider nos galeries",
      "stepId": "outcome"
+    },
+    {
+     "id": "bear.mines.kept.betrayal",
+     "fact": "bearMinesSeized",
+     "scope": "final_act",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-bout-serpent",
+     "dialogueId": "finale_betrayal",
+     "stepId": "advice",
+     "state": {
+      "bearMinesSeized": true
+     },
+     "causePhrase": "le filon sombre gardé pour le clan"
     }
    ]
   },
@@ -745,13 +759,14 @@
      "fact": "bearDarkOreEvidence",
      "scope": "final_act",
      "status": "planned",
-     "nodeId": "finale-tbd",
-     "dialogueId": "finale_tbd",
+     "nodeId": "finale-last-refuge",
+     "dialogueId": "finale_last_vigil",
      "state": {
       "bearDarkOreEvidence": true
      },
      "causePhrase": "l’éclat que vous avez rapporté des mines de l’Ours",
-     "chapterId": "finale"
+     "chapterId": "finale",
+     "stepId": "evidence"
     },
     {
      "id": "bear.dark_vein.evidence.dragon_altar",
@@ -885,13 +900,14 @@
      "fact": "bearMasterSpyDefeated",
      "scope": "final_act",
      "status": "planned",
-     "nodeId": "finale-tbd",
-     "dialogueId": "finale_tbd",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
      "state": {
       "bearMasterSpyDefeated": true
      },
      "causePhrase": "les guerriers de Borin tiennent parole",
-     "chapterId": "finale"
+     "chapterId": "finale",
+     "stepId": "bear"
     },
     {
      "id": "bear.outcome.honour.dragon_audience",
@@ -946,13 +962,14 @@
      "fact": "bearTrialWon",
      "scope": "final_act",
      "status": "planned",
-     "nodeId": "finale-tbd",
-     "dialogueId": "finale_tbd",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
      "state": {
       "bearTrialWon": true
      },
      "causePhrase": "les guerriers de Borin n’ont pas oublié",
-     "chapterId": "finale"
+     "chapterId": "finale",
+     "stepId": "bear"
     },
     {
      "id": "bear.outcome.force.dragon_audience",

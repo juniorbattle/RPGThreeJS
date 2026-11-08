@@ -109,8 +109,22 @@ export const consequenceMapSchema = z.object({
   exceptions: z.array(coherenceExceptionSchema).default([]),
 }).strict();
 
+/**
+ * Every map of the campaign, the final act included (post-demo Lot 4). The final act has no honour or force outcome of
+ * its own: the ending follows the four plateau outcomes (R4, Lot 5), so its map may omit `outcomes`. A Seal plateau's
+ * map keeps stating both. An extension of format version 1: every existing map stays valid unchanged.
+ */
+export const campaignConsequenceMapSchema = consequenceMapSchema.extend({
+  outcomes: consequenceMapSchema.shape.outcomes.optional(),
+}).superRefine((map, context) => {
+  if (map.plateauId !== 'finale' && !map.outcomes) {
+    context.addIssue({ code: z.ZodIssueCode.custom, path: ['outcomes'], message: 'A Seal plateau states its honour and force outcomes.' });
+  }
+});
+
 export type ConsequenceFact = z.infer<typeof consequenceFactSchema>;
 export type ConsequenceEcho = z.infer<typeof echoSchema>;
 export type MajorChoice = z.infer<typeof majorChoiceSchema>;
 export type ConsequenceMap = z.infer<typeof consequenceMapSchema>;
+export type CampaignConsequenceMap = z.infer<typeof campaignConsequenceMapSchema>;
 export type CoherenceException = z.infer<typeof coherenceExceptionSchema>;

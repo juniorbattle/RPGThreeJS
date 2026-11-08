@@ -610,6 +610,20 @@
      },
      "causePhrase": "vous avez laissé le Cristal aux mains du Loup",
      "stepId": "outcome"
+    },
+    {
+     "id": "dragon.crystal.kept.betrayal",
+     "fact": "dragonCrystalKept",
+     "scope": "final_act",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-bout-serpent",
+     "dialogueId": "finale_betrayal",
+     "stepId": "advice",
+     "state": {
+      "dragonCrystalKept": true
+     },
+     "causePhrase": "le Cristal gardé pour le clan"
     }
    ]
   },
@@ -776,12 +790,13 @@
      "scope": "final_act",
      "status": "planned",
      "chapterId": "finale",
-     "nodeId": "finale-tbd",
-     "dialogueId": "finale_tbd",
+     "nodeId": "finale-last-refuge",
+     "dialogueId": "finale_last_vigil",
      "state": {
       "dragonShadowEvidence": true
      },
-     "causePhrase": "l’éclat de la souillure du Cristal"
+     "causePhrase": "l’éclat de la souillure du Cristal",
+     "stepId": "evidence"
     },
     {
      "id": "dragon.altar_signs.evidence.scorpion_texts",
@@ -901,13 +916,14 @@
      "fact": "dragonShadowShamanDefeated",
      "scope": "final_act",
      "status": "planned",
-     "nodeId": "finale-tbd",
-     "dialogueId": "finale_tbd",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
      "state": {
       "dragonShadowShamanDefeated": true
      },
      "causePhrase": "les gardiens de Kaelen tiennent parole",
-     "chapterId": "finale"
+     "chapterId": "finale",
+     "stepId": "dragon"
     },
     {
      "id": "dragon.outcome.honour.scorpion_audience",
@@ -962,13 +978,14 @@
      "fact": "dragonTrialWon",
      "scope": "final_act",
      "status": "planned",
-     "nodeId": "finale-tbd",
-     "dialogueId": "finale_tbd",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
      "state": {
       "dragonTrialWon": true
      },
      "causePhrase": "les gardiens de Kaelen n’ont pas oublié",
-     "chapterId": "finale"
+     "chapterId": "finale",
+     "stepId": "dragon"
     },
     {
      "id": "dragon.outcome.force.scorpion_audience",

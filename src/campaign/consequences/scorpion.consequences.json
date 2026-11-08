@@ -598,6 +598,20 @@
      },
      "causePhrase": "vous avez laissé le codex au Phénix",
      "stepId": "outcome"
+    },
+    {
+     "id": "scorpion.codex.kept.betrayal",
+     "fact": "scorpionCodexKept",
+     "scope": "final_act",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-bout-serpent",
+     "dialogueId": "finale_betrayal",
+     "stepId": "advice",
+     "state": {
+      "scorpionCodexKept": true
+     },
+     "causePhrase": "le codex gardé pour le clan"
     }
    ]
   },
@@ -764,12 +778,27 @@
      "scope": "final_act",
      "status": "planned",
      "chapterId": "finale",
-     "nodeId": "finale-tbd",
-     "dialogueId": "finale_tbd",
+     "nodeId": "finale-last-refuge",
+     "dialogueId": "finale_last_vigil",
      "state": {
       "scorpionShadowEvidence": true
      },
-     "causePhrase": "la page souillée du codex"
+     "causePhrase": "la page souillée du codex",
+     "stepId": "evidence"
+    },
+    {
+     "id": "scorpion.corrupted_texts.burned.betrayal",
+     "fact": "scorpionShadowBurned",
+     "scope": "final_act",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-bout-serpent",
+     "dialogueId": "finale_betrayal",
+     "stepId": "advice",
+     "state": {
+      "scorpionShadowBurned": true
+     },
+     "causePhrase": "la page souillée brûlée sur mon conseil"
     }
    ]
   },
@@ -875,13 +904,14 @@
      "fact": "scorpionShadowProphetDefeated",
      "scope": "final_act",
      "status": "planned",
-     "nodeId": "finale-tbd",
-     "dialogueId": "finale_tbd",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
      "state": {
       "scorpionShadowProphetDefeated": true
      },
      "causePhrase": "les érudits du Grand Inquisiteur tiennent parole",
-     "chapterId": "finale"
+     "chapterId": "finale",
+     "stepId": "scorpion"
     }
    ]
   },
@@ -922,13 +952,14 @@
      "fact": "scorpionTrialWon",
      "scope": "final_act",
      "status": "planned",
-     "nodeId": "finale-tbd",
-     "dialogueId": "finale_tbd",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
      "state": {
       "scorpionTrialWon": true
      },
      "causePhrase": "les érudits du Grand Inquisiteur n’ont pas oublié",
-     "chapterId": "finale"
+     "chapterId": "finale",
+     "stepId": "scorpion"
     }
    ]
   }

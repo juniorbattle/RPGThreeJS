@@ -1,0 +1,427 @@
+{
+ "schemaVersion": 1,
+ "plateauId": "finale",
+ "status": "draft",
+ "sources": [
+  "docs/content/feuille_de_route_narrative_condensee.md §3.6, §3.7 et statut (acte final en trois temps, le Serpent en finale, Maelor puis l’entité sans nom)",
+  "docs/autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md (F1 à F4)",
+  "docs/autonomy/POST_DEMO_CLOUD_SESSION_BRIEF.md, Lot 4",
+  "docs/autonomy/POST_DEMO_LOT_0_OPERATOR_DECISION_2026-11-08.md à POST_DEMO_LOT_3_OPERATOR_DECISION_2026-11-08.md",
+  "src/campaign/consequences/lion, bear, dragon et scorpion (faits établis des quatre plateaux)"
+ ],
+ "facts": [
+  {
+   "id": "finaleRavenSpared",
+   "kind": "flag",
+   "summary": "Au Tournoi, la compagnie a relevé le champion du Corbeau qu’elle venait de vaincre."
+  },
+  {
+   "id": "finaleRavenHumiliated",
+   "kind": "flag",
+   "summary": "Au Tournoi, la compagnie a humilié le champion du Corbeau devant les clans."
+  },
+  {
+   "id": "finaleWolfSpared",
+   "kind": "flag",
+   "summary": "Au Tournoi, la compagnie a relevé le champion du Loup qu’elle venait de vaincre."
+  },
+  {
+   "id": "finaleWolfHumiliated",
+   "kind": "flag",
+   "summary": "Au Tournoi, la compagnie a humilié le champion du Loup devant les clans."
+  },
+  {
+   "id": "finalePhoenixSpared",
+   "kind": "flag",
+   "summary": "Au Tournoi, la compagnie a relevé le champion du Phénix qu’elle venait de vaincre."
+  },
+  {
+   "id": "finalePhoenixHumiliated",
+   "kind": "flag",
+   "summary": "Au Tournoi, la compagnie a humilié le champion du Phénix devant les clans."
+  },
+  {
+   "id": "finaleCiviliansProtected",
+   "kind": "flag",
+   "summary": "Quand la brèche s’est ouverte, la compagnie a couvert la fuite des civils de l’arène."
+  },
+  {
+   "id": "finaleCiviliansAbandoned",
+   "kind": "flag",
+   "summary": "Quand la brèche s’est ouverte, la compagnie a fui par les tribunes en laissant la foule."
+  },
+  {
+   "id": "finaleCitizensFreed",
+   "kind": "flag",
+   "summary": "Dans la capitale, la compagnie a dégagé des habitants pris sous les décombres."
+  },
+  {
+   "id": "finaleCitizensLeft",
+   "kind": "flag",
+   "summary": "Dans la capitale, la compagnie a laissé des habitants sous les décombres pour gagner la brèche plus vite."
+  },
+  {
+   "id": "finaleRavenBoutWon",
+   "kind": "system",
+   "summary": "Le combat du Tournoi contre le champion du Corbeau est gagné."
+  },
+  {
+   "id": "finaleWolfBoutWon",
+   "kind": "system",
+   "summary": "Le combat du Tournoi contre le champion du Loup est gagné."
+  },
+  {
+   "id": "finalePhoenixBoutWon",
+   "kind": "system",
+   "summary": "Le combat du Tournoi contre le champion du Phénix est gagné."
+  },
+  {
+   "id": "finaleSerpentChampionFallen",
+   "kind": "system",
+   "summary": "En finale du Tournoi, le champion du Serpent est tombé."
+  },
+  {
+   "id": "finaleBreachOpened",
+   "kind": "system",
+   "summary": "Maelor a ouvert la brèche au cœur de l’arène."
+  },
+  {
+   "id": "finaleArenaEscaped",
+   "kind": "system",
+   "summary": "La compagnie a survécu à l’assaut des démons et quitté l’arène."
+  },
+  {
+   "id": "finaleEntityDefeated",
+   "kind": "flag",
+   "summary": "À la brèche, Maelor puis l’entité qui le suit sont tombés."
+  }
+ ],
+ "majorChoices": [
+  {
+   "id": "finale.raven_verdict",
+   "summary": "Au Tournoi, le champion du Corbeau vaincu : le relever, ou l’humilier devant les clans comme le pousse Maelor. Un clan relevé devient un allié inattendu dans la capitale ; un clan humilié y devient ennemi.",
+   "nodeId": "finale-bout-raven",
+   "dialogueId": "finale_raven_verdict",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "finaleRavenSpared"
+     ],
+     "reputation": 0,
+     "clanRelations": [
+      {
+       "clan": "raven",
+       "stance": "ally"
+      }
+     ]
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "finaleRavenHumiliated"
+     ],
+     "reputation": -1,
+     "clanRelations": [
+      {
+       "clan": "raven",
+       "stance": "enemy"
+      }
+     ]
+    }
+   ],
+   "echoes": [
+    {
+     "id": "finale.raven_verdict.spared.rally",
+     "fact": "finaleRavenSpared",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
+     "state": {
+      "finaleRavenSpared": true
+     },
+     "causePhrase": "le champion du Corbeau que vous avez relevé dans l’arène",
+     "stepId": "raven"
+    },
+    {
+     "id": "finale.raven_verdict.humiliated.rally",
+     "fact": "finaleRavenHumiliated",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
+     "state": {
+      "finaleRavenHumiliated": true
+     },
+     "causePhrase": "le champion du Corbeau humilié devant les clans",
+     "stepId": "raven"
+    }
+   ]
+  },
+  {
+   "id": "finale.wolf_verdict",
+   "summary": "Au Tournoi, le champion du Loup vaincu : le relever, ou l’humilier devant les clans comme le pousse Maelor. Un clan relevé devient un allié inattendu dans la capitale ; un clan humilié y devient ennemi.",
+   "nodeId": "finale-bout-wolf",
+   "dialogueId": "finale_wolf_verdict",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "finaleWolfSpared"
+     ],
+     "reputation": 0,
+     "clanRelations": [
+      {
+       "clan": "wolf",
+       "stance": "ally"
+      }
+     ]
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "finaleWolfHumiliated"
+     ],
+     "reputation": -1,
+     "clanRelations": [
+      {
+       "clan": "wolf",
+       "stance": "enemy"
+      }
+     ]
+    }
+   ],
+   "echoes": [
+    {
+     "id": "finale.wolf_verdict.spared.rally",
+     "fact": "finaleWolfSpared",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
+     "state": {
+      "finaleWolfSpared": true
+     },
+     "causePhrase": "le champion du Loup que vous avez relevé dans l’arène",
+     "stepId": "wolf"
+    },
+    {
+     "id": "finale.wolf_verdict.humiliated.rally",
+     "fact": "finaleWolfHumiliated",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
+     "state": {
+      "finaleWolfHumiliated": true
+     },
+     "causePhrase": "le champion du Loup humilié devant les clans",
+     "stepId": "wolf"
+    }
+   ]
+  },
+  {
+   "id": "finale.phoenix_verdict",
+   "summary": "Au Tournoi, le champion du Phénix vaincu : le relever, ou l’humilier devant les clans comme le pousse Maelor. Un clan relevé devient un allié inattendu dans la capitale ; un clan humilié y devient ennemi.",
+   "nodeId": "finale-bout-phoenix",
+   "dialogueId": "finale_phoenix_verdict",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "finalePhoenixSpared"
+     ],
+     "reputation": 0,
+     "clanRelations": [
+      {
+       "clan": "phoenix",
+       "stance": "ally"
+      }
+     ]
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "finalePhoenixHumiliated"
+     ],
+     "reputation": -1,
+     "clanRelations": [
+      {
+       "clan": "phoenix",
+       "stance": "enemy"
+      }
+     ]
+    }
+   ],
+   "echoes": [
+    {
+     "id": "finale.phoenix_verdict.spared.rally",
+     "fact": "finalePhoenixSpared",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
+     "state": {
+      "finalePhoenixSpared": true
+     },
+     "causePhrase": "le champion du Phénix que vous avez relevé dans l’arène",
+     "stepId": "phoenix"
+    },
+    {
+     "id": "finale.phoenix_verdict.humiliated.rally",
+     "fact": "finalePhoenixHumiliated",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
+     "state": {
+      "finalePhoenixHumiliated": true
+     },
+     "causePhrase": "le champion du Phénix humilié devant les clans",
+     "stepId": "phoenix"
+    }
+   ]
+  },
+  {
+   "id": "finale.civilians",
+   "summary": "La brèche ouverte et les démons dans l’arène : couvrir la fuite des civils, ou fuir par les tribunes en laissant la foule.",
+   "nodeId": "finale-arena-chaos",
+   "dialogueId": "finale_arena_chaos",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "finaleCiviliansProtected"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "finaleCiviliansAbandoned"
+     ],
+     "reputation": -2
+    }
+   ],
+   "echoes": [
+    {
+     "id": "finale.civilians.protected.vigil",
+     "fact": "finaleCiviliansProtected",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-last-refuge",
+     "dialogueId": "finale_last_vigil",
+     "state": {
+      "finaleCiviliansProtected": true
+     },
+     "causePhrase": "les civils que vous avez couverts dans l’arène",
+     "stepId": "civilians"
+    },
+    {
+     "id": "finale.civilians.abandoned.vigil",
+     "fact": "finaleCiviliansAbandoned",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-last-refuge",
+     "dialogueId": "finale_last_vigil",
+     "state": {
+      "finaleCiviliansAbandoned": true
+     },
+     "causePhrase": "la foule laissée dans les tribunes",
+     "stepId": "civilians"
+    },
+    {
+     "id": "finale.civilians.protected.epilogue",
+     "fact": "finaleCiviliansProtected",
+     "scope": "epilogue",
+     "status": "planned",
+     "nodeId": "finale-epilogue",
+     "dialogueId": "finale_epilogue",
+     "state": {
+      "finaleCiviliansProtected": true
+     },
+     "causePhrase": "les civils sauvés de l’arène"
+    },
+    {
+     "id": "finale.civilians.abandoned.epilogue",
+     "fact": "finaleCiviliansAbandoned",
+     "scope": "epilogue",
+     "status": "planned",
+     "nodeId": "finale-epilogue",
+     "dialogueId": "finale_epilogue",
+     "state": {
+      "finaleCiviliansAbandoned": true
+     },
+     "causePhrase": "la foule abandonnée de l’arène"
+    }
+   ]
+  },
+  {
+   "id": "finale.trapped_citizens",
+   "summary": "Dans la capitale corrompue, des habitants pris sous les décombres : les dégager, ou les laisser pour gagner la brèche plus vite.",
+   "nodeId": "finale-trapped-citizens",
+   "dialogueId": "finale_trapped_citizens",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "honour",
+     "sets": [
+      "finaleCitizensFreed"
+     ],
+     "reputation": 1
+    },
+    {
+     "choiceIndex": 1,
+     "path": "force",
+     "sets": [
+      "finaleCitizensLeft"
+     ],
+     "reputation": -1
+    }
+   ],
+   "echoes": [
+    {
+     "id": "finale.trapped_citizens.freed.vigil",
+     "fact": "finaleCitizensFreed",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-last-refuge",
+     "dialogueId": "finale_last_vigil",
+     "state": {
+      "finaleCitizensFreed": true
+     },
+     "causePhrase": "les habitants que vous avez dégagés des décombres",
+     "stepId": "citizens"
+    },
+    {
+     "id": "finale.trapped_citizens.left.vigil",
+     "fact": "finaleCitizensLeft",
+     "scope": "final_act",
+     "status": "planned",
+     "nodeId": "finale-last-refuge",
+     "dialogueId": "finale_last_vigil",
+     "state": {
+      "finaleCitizensLeft": true
+     },
+     "causePhrase": "les habitants laissés sous les décombres",
+     "stepId": "citizens"
+    }
+   ]
+  }
+ ],
+ "exceptions": []
+}

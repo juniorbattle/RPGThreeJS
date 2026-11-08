@@ -12,7 +12,7 @@
 import { assets } from '../render/assetManifest';
 import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
 import { LOT_E_ELITES, LOT_E_POIS, LION_CANONICAL_POI_IDS } from '../campaign/LionPoiAuthoring';
-import { consequenceMapSchema, type ConsequenceEcho, type ConsequenceMap } from '../campaign/consequences/ConsequenceMap';
+import { campaignConsequenceMapSchema, type CampaignConsequenceMap, type ConsequenceEcho } from '../campaign/consequences/ConsequenceMap';
 import { CLAN_ANCHOR_DIALOGUES } from './campaignGrammarContent';
 import { CAMPAIGN_CHAPTER_IDS, getPlateau, plateauForNodeId, type CampaignChapterId } from '../campaign/plateaux/PlateauRegistry';
 import { POST_DEMO_REFUGE_GATHERINGS } from '../campaign/plateaux/postDemoRefuges';
@@ -270,7 +270,7 @@ export interface CoherenceOptions {
 }
 
 export function validateNarrativeCoherence(rawMap: unknown, sources: readonly SourceFile[], options: CoherenceOptions = {}): CoherenceReport {
-  const map: ConsequenceMap = consequenceMapSchema.parse(rawMap);
+  const map: CampaignConsequenceMap = campaignConsequenceMapSchema.parse(rawMap);
   const findings: CoherenceFinding[] = [];
   const report = (kind: CoherenceFindingKind, subject: string, message: string) => findings.push({ kind, subject, message });
 
@@ -563,7 +563,7 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
     }
     for (const echo of choice.echoes) checkEcho(echo, { nodeId: choice.nodeId, dialogueId: choice.dialogueId });
   }
-  for (const [path, outcome] of Object.entries(map.outcomes)) {
+  for (const [path, outcome] of Object.entries(map.outcomes ?? {})) {
     for (const fact of outcome.facts) if (!knownFact(fact)) report('map_mismatch', `outcome:${path}`, `Fait non déclaré « ${fact} ».`);
     for (const echo of outcome.echoes) checkEcho(echo, null);
   }
@@ -587,7 +587,7 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
     if (!used.has(index)) errors.push({ kind: 'stale_exception', subject: entry.subject, message: `Exception ${entry.kind} sans objet.` });
   });
 
-  const echoes = [...map.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(map.outcomes).flatMap((outcome) => outcome.echoes)];
+  const echoes = [...map.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(map.outcomes ?? {}).flatMap((outcome) => outcome.echoes)];
   return {
     plateauId: map.plateauId,
     errors,
@@ -612,7 +612,7 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
  * prefix of the chapter where it plays. The full validation applies once the plateau's content exists.
  */
 export function validateConsequenceMapDesign(rawMap: unknown): CoherenceFinding[] {
-  const map = consequenceMapSchema.parse(rawMap);
+  const map = campaignConsequenceMapSchema.parse(rawMap);
   const findings: CoherenceFinding[] = [];
   const report = (subject: string, message: string) => findings.push({ kind: 'map_mismatch', subject, message });
   const duplicates = (ids: readonly string[], label: string) => {
@@ -622,7 +622,7 @@ export function validateConsequenceMapDesign(rawMap: unknown): CoherenceFinding[
       seen.add(id);
     }
   };
-  const echoes = [...map.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(map.outcomes).flatMap((outcome) => outcome.echoes)];
+  const echoes = [...map.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(map.outcomes ?? {}).flatMap((outcome) => outcome.echoes)];
   duplicates(map.facts.map((fact) => fact.id), 'Fait');
   duplicates(map.majorChoices.map((choice) => choice.id), 'Choix');
   duplicates(echoes.map((echo) => echo.id), 'Écho');
@@ -644,7 +644,7 @@ export function validateConsequenceMapDesign(rawMap: unknown): CoherenceFinding[
     }
     for (const echo of choice.echoes) if (!optionFacts.has(echo.fact)) report(echo.id, `L’écho montre « ${echo.fact} », que ce choix ne pose pas.`);
   }
-  for (const [path, outcome] of Object.entries(map.outcomes)) {
+  for (const [path, outcome] of Object.entries(map.outcomes ?? {})) {
     for (const fact of outcome.facts) if (!facts.has(fact)) report(`outcome:${path}`, `Fait non déclaré « ${fact} ».`);
   }
   for (const echo of echoes) {

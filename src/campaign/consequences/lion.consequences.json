@@ -1090,6 +1090,34 @@
       "shadowConcealed": true
      },
      "causePhrase": "les preuves des Ombres que nous gardons encore pour nous"
+    },
+    {
+     "id": "lion.shadow_disclosure.revealed.final_act",
+     "fact": "shadowRevealed",
+     "scope": "final_act",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-last-refuge",
+     "dialogueId": "finale_last_vigil",
+     "stepId": "evidence",
+     "state": {
+      "shadowRevealed": true
+     },
+     "causePhrase": "les preuves des Ombres confiées à Alaric"
+    },
+    {
+     "id": "lion.shadow_disclosure.concealed.final_act",
+     "fact": "shadowConcealed",
+     "scope": "final_act",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-last-refuge",
+     "dialogueId": "finale_last_vigil",
+     "stepId": "evidence",
+     "state": {
+      "shadowConcealed": true
+     },
+     "causePhrase": "les preuves des Ombres que nous gardons depuis les plaines"
     }
    ]
   },
@@ -1224,6 +1252,20 @@
      "contrast": {
       "lionTrialWon": true
      }
+    },
+    {
+     "id": "lion.outcome.honour.final_act",
+     "fact": "serpentGeneralDefeated",
+     "scope": "final_act",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
+     "stepId": "lion",
+     "state": {
+      "serpentGeneralDefeated": true
+     },
+     "causePhrase": "les guerriers d’Alaric tiennent parole"
     }
    ]
   },
@@ -1258,6 +1300,20 @@
      "contrast": {
       "serpentGeneralDefeated": true
      }
+    },
+    {
+     "id": "lion.outcome.force.final_act",
+     "fact": "lionTrialWon",
+     "scope": "final_act",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-allied-rally",
+     "dialogueId": "finale_allied_rally",
+     "stepId": "lion",
+     "state": {
+      "lionTrialWon": true
+     },
+     "causePhrase": "Alaric garde ses guerriers loin de nous"
     }
    ]
   }
