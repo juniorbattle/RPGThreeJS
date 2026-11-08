@@ -1,7 +1,7 @@
 /**
- * Set 1.20.0, post-demo Lot 1 — DRAFT dialogues of the Bear plateau. Written from the roadmap (§3.2 and its status), the
+ * Set 1.20.0, post-demo Lot 1 — dialogues of the Bear plateau, canon since OD-2026-11-08-B. Written from the roadmap (§3.2 and its status), the
  * demo's established facts and the operator's decisions only; no clan, place, character, object or lore beyond them.
- * Not canon until the operator approves the plateau. Authored at the post-demo reputation scale (OD-2026-11-08-A).
+ * Accepted by the operator with the plateau. Authored at the post-demo reputation scale (OD-2026-11-08-A).
  *
  * Static scenes are plain sequences. State-built scenes carry the echoes that name their cause: the Lion's outcome and
  * Bois-Clair before Borin, Maelor's memory of the coffers, the witnesses and the Shadow altar, the Raven's pact at the

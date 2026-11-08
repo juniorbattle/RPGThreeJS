@@ -155,7 +155,9 @@ describe('the Bear consequence map is written first, as a design (Lot 1)', () =>
   it('passes the design check: every option has a planned echo and every name sits in its chapter', () => {
     expect(validateConsequenceMapDesign(bearMap)).toEqual([]);
     const map = consequenceMapSchema.parse(structuredClone(bearMap));
-    expect(map.status).toBe('draft');
+    // Written as a draft before any line; canon since the operator accepted the Bear (OD-2026-11-08-B).
+    expect(map.status).toBe('canon');
+    expect([map.outcomes.honour.relationStatus, map.outcomes.force.relationStatus]).toEqual(['approved', 'approved']);
     expect(map.majorChoices).toHaveLength(11);
     expect(map.outcomes.honour.clanRelations).toEqual([{ clan: 'bear', stance: 'ally' }, { clan: 'raven', stance: 'enemy' }]);
     expect(JSON.stringify(map)).not.toMatch(/Kael(?!en)/);

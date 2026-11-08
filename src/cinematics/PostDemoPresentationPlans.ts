@@ -1,6 +1,6 @@
 /**
- * Set 1.20.0 (post-demo, Lot 1): the static staging of a DRAFT scene, until its plateau is approved and its scenes get
- * their reviewed plans. Like the campaign-grammar plans, it is one stable local composition per group of lines, built
+ * Set 1.20.0 (post-demo, Lot 1): the static staging of a post-demo scene, draft or canon, until its scenes get their
+ * reviewed plans with the final images (OD-2026-11-08-B). Like the campaign-grammar plans, it is one stable local composition per group of lines, built
  * from the scene as played: every speaker is represented before their line, never more than four actors are visible
  * (a longer cast is restaged in framed subsets), the company holds the left and the plateau's people the right.
  * Presentation only: it reads the sequence and decides no truth.

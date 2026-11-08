@@ -140,8 +140,8 @@ export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([
   }),
   Object.freeze({
     id: 'bear', order: 2, kind: 'seal_plateau', idPrefix: 'bear-', label: 'Les Montagnes de la Résilience',
-    // Lot 1: a playable draft, not canon until the operator approves the plateau.
-    roadmapSections: Object.freeze(['§3.2']), status: 'draft', hostClan: 'bear', rivalClan: 'raven',
+    // Lot 1: accepted as canon by the operator (OD-2026-11-08-B); its images stay provisional.
+    roadmapSections: Object.freeze(['§3.2']), status: 'canon', hostClan: 'bear', rivalClan: 'raven',
     chief: Object.freeze({ title: 'Ancien Ours', name: 'Borin' }),
     reputationBudget: REPUTATION_BUDGETS.bear,
     campaign: BEAR_PLATEAU_BINDING,

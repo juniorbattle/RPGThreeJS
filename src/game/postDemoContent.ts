@@ -1,9 +1,10 @@
 /**
  * Set 1.20.0 (CAMPAIGN_AND_STATE "Drafts and canon"), post-demo: the content registry of the post-demo plateaux.
  *
- * Kept apart from the Lion's registries (`content.ts`), so a draft is never taken for Lion content, never recalibrated
- * and never counted by the demo's audits. Every entry here is a playable DRAFT, identifiable as such, until the
- * operator approves its plateau; it reaches `dev` only on the operator's order.
+ * Kept apart from the Lion's registries (`content.ts`), so post-demo content is never taken for Lion content, never
+ * recalibrated and never counted by the demo's audits. A plateau's entries are playable DRAFTS, identifiable as such,
+ * until the operator approves the plateau (the Bear since OD-2026-11-08-B); they reach `dev` only on the operator's
+ * order. Every post-demo plateau shows provisional images until the final-image lot.
  */
 import { BEAR_DIALOGUES, BEAR_SCENE_BUILDERS } from '../campaign/plateaux/bear/bearDialogues';
 import { BEAR_FINALE } from '../campaign/plateaux/bear/bearFinale';
@@ -37,6 +38,20 @@ export function postDemoChapterOf(contentId: string): CampaignChapterId | null {
 export function isDraftContent(contentId: string): boolean {
   const chapter = postDemoChapterOf(contentId);
   return chapter !== null && getPlateau(chapter).status !== 'canon';
+}
+
+/**
+ * Post-demo content shows provisional images (WORLD_AND_CHARACTERS "Provisional images"), canon or draft, until the
+ * final images of its plateau exist; none does yet.
+ */
+export function hasProvisionalArt(contentId: string): boolean {
+  return postDemoChapterOf(contentId) !== null;
+}
+
+/** The on-screen mark of post-demo content, or null for the Lion's. */
+export function provisionalMark(contentId: string): string | null {
+  if (isDraftContent(contentId)) return 'Brouillon · image provisoire';
+  return hasProvisionalArt(contentId) ? 'Image provisoire' : null;
 }
 
 export function plateauDialogues(chapterId: CampaignChapterId): DialogueSequence[] {

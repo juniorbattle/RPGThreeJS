@@ -81,8 +81,8 @@ describe('post-demo plateau registry (set 1.20.0, Lot 0)', () => {
     expect(plateauCampaignForRun({ id: 'legacy-run' })).toBe(lion);
   });
 
-  it('builds the Bear as a playable draft (Lot 1) while the later chapters stay reserved without content', () => {
-    expect(getPlateau('bear').status).toBe('draft');
+  it('holds the Bear as canon (OD-2026-11-08-B) while the later chapters stay reserved without content', () => {
+    expect(getPlateau('bear').status).toBe('canon');
     expect(requirePlateauCampaign('bear').runIdPrefix).toBe('bear-');
     expect(requirePlateauCampaign('bear').topology.plateauId).toBe('bear');
     for (const id of ['dragon', 'scorpion', 'finale'] as const) {

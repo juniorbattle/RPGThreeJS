@@ -1,6 +1,7 @@
 import type { RunNode } from '../game/types';
 import { CLAN_ANCHOR_DIALOGUES } from '../game/campaignGrammarContent';
 import { POST_DEMO_REFUGE_PRESENTATION } from '../campaign/plateaux/postDemoRefuges';
+import { plateauForNodeId } from '../campaign/plateaux/PlateauRegistry';
 import { demoEnvironmentPlateForContext, type DemoEnvironmentSurfaceRole } from '../render/demoEnvironmentPack';
 
 /**
@@ -38,8 +39,9 @@ export interface RefugePresentation extends RefugePresentationContent {
   visualFamily: 'FIRST_REFUGE' | 'SECOND_REFUGE' | 'FINAL_REFUGE';
   /** Only the two refuge nodes secure loot into the chest; the final refuge services never do. */
   securesLoot: boolean;
-  /** Set 1.20.0: a post-demo refuge on a borrowed demo plate says so on screen. */
+  /** Set 1.20.0: a post-demo refuge on a borrowed demo plate says so on screen, and whether its plateau is a draft. */
   provisional?: boolean;
+  draft?: boolean;
 }
 
 export function resolveRefugePresentation(node: RunNode): RefugePresentation | null {
@@ -59,7 +61,8 @@ export function resolveRefugePresentation(node: RunNode): RefugePresentation | n
     background: plate.publicUrl,
     visualFamily: plate.visualFamily,
     securesLoot: true,
-    ...(POST_DEMO_REFUGE_PRESENTATION[node.id] ? { provisional: true } : {}),
+    ...(POST_DEMO_REFUGE_PRESENTATION[node.id]
+      ? { provisional: true, draft: plateauForNodeId(node.id)?.status === 'draft' } : {}),
   };
 }
 

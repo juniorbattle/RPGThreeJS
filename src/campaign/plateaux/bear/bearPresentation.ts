@@ -1,5 +1,6 @@
 /**
- * Set 1.20.0 (WORLD_AND_CHARACTERS "Provisional images"), post-demo Lot 1 — DRAFT presentation of the Bear plateau.
+ * Set 1.20.0 (WORLD_AND_CHARACTERS "Provisional images"), post-demo Lot 1 — presentation of the Bear plateau.
+ * The plateau is canon (OD-2026-11-08-B); its images stay provisional until the final-image lot.
  *
  * Every image here is PROVISIONAL: approved Lion backdrops and atlases reused, and existing characters standing in as
  * silhouettes for the Bear's new characters. None is generated and none is a video. Each is listed with the final image

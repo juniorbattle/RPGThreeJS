@@ -1,7 +1,7 @@
 /**
- * Set 1.20.0, post-demo Lot 1 — DRAFT: Borin's judgement and the Bear's epilogue (roadmap §3.2, Phase 3). Not canon
- * until the operator approves the plateau. Every deed Borin weighs is named in the words the consequence map expects.
- * Credibility before the chief (R3) uses its own thresholds, proposed for approval with the plateau.
+ * Set 1.20.0, post-demo Lot 1 — Borin's judgement and the Bear's epilogue (roadmap §3.2, Phase 3), canon since
+ * OD-2026-11-08-B. Every deed Borin weighs is named in the words the consequence map expects. Credibility before the
+ * chief (R3) uses its own thresholds, approved with the plateau: credible at 50, high at 65.
  */
 import type { PlateauFinaleDefinition } from '../../../game/plateauFinale';
 

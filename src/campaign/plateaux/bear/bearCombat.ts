@@ -1,6 +1,6 @@
 /**
- * Set 1.20.0, post-demo Lot 1 — DRAFT: the Bear plateau's fights (COMBAT_AND_VFX "Post-demo combat"). Not canon until
- * the operator approves the plateau. Reputation is authored at the post-demo scale (OD-2026-11-08-A): a routine victory
+ * Set 1.20.0, post-demo Lot 1 — the Bear plateau's fights (COMBAT_AND_VFX "Post-demo combat"), canon since
+ * OD-2026-11-08-B; their balance awaits the operator's PC test. Reputation is authored at the post-demo scale (OD-2026-11-08-A): a routine victory
  * gives none; elite and boss fights and the decisive Bois-Clair-like fight at the mines keep a value.
  *
  * Enemy families (roadmap §3.2): the Raven's scouts and miners, the local mountain fauna, creatures corrupted near the

@@ -1,7 +1,7 @@
 {
  "schemaVersion": 1,
  "plateauId": "bear",
- "status": "draft",
+ "status": "canon",
  "sources": [
   "docs/content/feuille_de_route_narrative_condensee.md §3.2 et statut",
   "docs/autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md",
@@ -834,7 +834,7 @@
      "stance": "enemy"
     }
    ],
-   "relationStatus": "proposed",
+   "relationStatus": "approved",
    "echoes": [
     {
      "id": "bear.outcome.honour.epilogue",
@@ -881,7 +881,7 @@
      "stance": "enemy"
     }
    ],
-   "relationStatus": "proposed",
+   "relationStatus": "approved",
    "echoes": [
     {
      "id": "bear.outcome.force.epilogue",

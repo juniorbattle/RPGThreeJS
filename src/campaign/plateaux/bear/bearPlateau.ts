@@ -1,6 +1,6 @@
 /**
- * Set 1.20.0, post-demo Lot 1 — DRAFT: the Bear plateau's campaign binding. Not canon until the operator approves the
- * plateau; it reaches `dev` only on the operator's order. Data only: nothing here imports RunSystem.
+ * Set 1.20.0, post-demo Lot 1 — the Bear plateau's campaign binding, canon since OD-2026-11-08-B. It reaches
+ * `dev` only on the operator's order. Data only: nothing here imports RunSystem.
  */
 import type { PlateauCampaignBinding, PlateauOutcome } from '../PlateauRegistry';
 import { BEAR_CHALLENGES } from './bearCombat';
@@ -29,7 +29,8 @@ export const BEAR_PLATEAU_BINDING: PlateauCampaignBinding = Object.freeze({
   guardianIds: Object.freeze(BEAR_GUARDIANS.map((guardian) => guardian.id)),
   atlasIds: Object.freeze(BEAR_ATLAS_REGIONS.map((region) => region.image)),
   resolveOutcome: resolveBearPlateauOutcome,
-  // Proposed with the plateau, as `bear.consequences.json` records them. A Raven pact made in the mines stands.
+  // Approved with the plateau (OD-2026-11-08-B), as `bear.consequences.json` records them. A Raven pact made in the
+  // mines stands against the force outcome.
   outcomeRelations: Object.freeze({
     honour: Object.freeze([{ clan: 'bear', stance: 'ally' }, { clan: 'raven', stance: 'enemy' }] as const),
     force: Object.freeze([{ clan: 'bear', stance: 'enemy' }, { clan: 'raven', stance: 'enemy' }] as const),

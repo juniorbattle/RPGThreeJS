@@ -1,5 +1,5 @@
 /**
- * Set 1.20.0, post-demo Lot 1 — DRAFT, not canon until the operator approves the Bear plateau.
+ * Set 1.20.0, post-demo Lot 1 — canon since the operator accepted the Bear plateau (OD-2026-11-08-B).
  *
  * The Bear plateau (roadmap §3.2): the Montagnes de la Résilience, the Ancien Ours Borin, the Raven exploiting the
  * sacred mines. It follows the Lion's template (P4) and, by default, its size: 21 canonical nodes in three regions,

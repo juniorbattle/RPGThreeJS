@@ -66,7 +66,7 @@ export class ExplorationView {
     section.inert = true;
     section.innerHTML = `
       <div class="exploration-stop__veil"></div>
-      ${presentation.provisional ? '<div class="dialogue__draft exploration-stop__draft" data-draft-content="true">Brouillon · image provisoire</div>' : ''}
+      ${presentation.provisional ? `<div class="dialogue__draft exploration-stop__draft" data-provisional-art="true">${presentation.draft ? 'Brouillon · image provisoire' : 'Image provisoire'}</div>` : ''}
       <header>
         <p class="eyebrow"></p>
         <h2></h2>

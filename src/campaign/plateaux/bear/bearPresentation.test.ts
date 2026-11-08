@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import { createGenericNarrativeTableau, resolveNarrativeDialogueTableau } from '../../../cinematics/NarrativeTableau';
 import { demoEnvironmentPlateForContext } from '../../../render/demoEnvironmentPack';
 import { createInitialState } from '../../../game/store';
-import { isDraftContent, POST_DEMO_DIALOGUES, postDemoSceneIds, resolvePostDemoDialogue } from '../../../game/postDemoContent';
+import { isDraftContent, POST_DEMO_DIALOGUES, postDemoSceneIds, provisionalMark, resolvePostDemoDialogue } from '../../../game/postDemoContent';
 import { applyFinalDialoguePresentationPlan, resolveFinalDialoguePresentationPlan } from '../../../cinematics/DialoguePresentationSegments';
 import { DRAFT_VISIBLE_ACTOR_CAP } from '../../../cinematics/PostDemoPresentationPlans';
 import { greedPlateauState, perfectHonourPlateauState } from '../../../game/reputationBounds';
@@ -16,7 +16,7 @@ import { BEAR_ATLAS_REGIONS, BEAR_PROVISIONAL_ACTORS, BEAR_PROVISIONAL_ENEMIES, 
 
 const bearSceneIds = [...new Set([...POST_DEMO_DIALOGUES.keys(), ...postDemoSceneIds('bear')])].filter((id) => id.startsWith('bear_'));
 
-describe('Bear scenes on provisional tableaux (set 1.20.0, Lot 1 draft)', () => {
+describe('Bear scenes on provisional tableaux (set 1.20.0, Lot 1, canon since OD-2026-11-08-B)', () => {
   it('lists every Bear scene, and only Bear scenes, with an approved tableau and its awaited final image', () => {
     expect(Object.keys(BEAR_PROVISIONAL_SCENES).sort()).toEqual([...bearSceneIds].sort());
     for (const [id, scene] of Object.entries(BEAR_PROVISIONAL_SCENES)) {
@@ -25,11 +25,12 @@ describe('Bear scenes on provisional tableaux (set 1.20.0, Lot 1 draft)', () => 
     }
   });
 
-  it('stages every Bear scene with a still image, and marks it as draft content', () => {
+  it('stages every Bear scene with a still image, canon now, its images still marked provisional', () => {
     const state = createInitialState();
     for (const id of bearSceneIds) {
       const sequence = resolvePostDemoDialogue(id, state)!;
-      expect(isDraftContent(id), id).toBe(true);
+      expect(isDraftContent(id), id).toBe(false);
+      expect(provisionalMark(id), id).toBe('Image provisoire');
       expect(createGenericNarrativeTableau(sequence).stillImage, id)
         .toBe(demoEnvironmentPlateForContext(BEAR_PROVISIONAL_SCENES[id]!.environmentContext, 'STATIC_TABLEAU').publicUrl);
       expect(resolveNarrativeDialogueTableau(id, sequence)?.dialogueId, id).toBe(id);
@@ -74,6 +75,7 @@ describe('Bear scenes on provisional tableaux (set 1.20.0, Lot 1 draft)', () => 
     for (const node of BEAR_ROUTE.filter((candidate) => candidate.type === 'refuge')) {
       const presentation = resolveRefugePresentation({ ...node, links: [...node.links], x: 0, z: 0 } as never)!;
       expect(presentation.provisional, node.id).toBe(true);
+      expect(presentation.draft, node.id).toBe(false);
       expect(presentation.gatheringDialogueId ?? null, node.id).toBe((BEAR_REFUGE_PRESENTATION as Record<string, { gatheringDialogueId?: string }>)[node.id]?.gatheringDialogueId ?? null);
     }
   });
