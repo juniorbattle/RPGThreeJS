@@ -14,6 +14,11 @@ import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
 import { LOT_E_ELITES, LOT_E_POIS, LION_CANONICAL_POI_IDS } from '../campaign/LionPoiAuthoring';
 import { consequenceMapSchema, type ConsequenceEcho, type ConsequenceMap } from '../campaign/consequences/ConsequenceMap';
 import { CLAN_ANCHOR_DIALOGUES } from './campaignGrammarContent';
+import { CAMPAIGN_CHAPTER_IDS, getPlateau, plateauForNodeId, type CampaignChapterId } from '../campaign/plateaux/PlateauRegistry';
+import { POST_DEMO_REFUGE_GATHERINGS } from '../campaign/plateaux/postDemoRefuges';
+import { anyCombatConfig } from './playableContent';
+import { resolvePlateauFinaleExecution, type PlateauFinaleDefinition } from './plateauFinale';
+import { POST_DEMO_DIALOGUES, PLATEAU_FINALES, builtPlateauScenes, isPostDemoSceneBuilt, postDemoChapterOf, postDemoSceneIds, resolvePostDemoDialogue } from './postDemoContent';
 import { combatConfigs, dialogues, POST_NODE_ATE } from './content';
 import { CONTEXTUAL_DIALOGUE_DEFINITIONS } from './contextualDialogueContent';
 import type { DialogueCondition } from './contextualDialogue';
@@ -145,6 +150,8 @@ function effectsOf(sequence: DialogueSequence): { effects: readonly NarrativeEff
 const NON_REFERENCE_FILES = Object.freeze([
   'src/game/content.ts', 'src/game/r5NarrativeContent.ts', 'src/game/campaignGrammarContent.ts',
   'src/game/reputationBounds.ts', 'src/game/narrativeCoherence.ts',
+  // Reads its plateau's flags through the finale definition, which the validator reads directly.
+  'src/game/plateauFinale.ts',
 ]);
 
 interface FlagScan {
@@ -227,13 +234,27 @@ function matchesFact(factId: string, flag: string): boolean {
 }
 
 function nodeDepth(nodeId: string): number | undefined {
+  const chapter = plateauForNodeId(nodeId);
+  if (chapter && chapter.id !== 'lion') return chapter.campaign?.topology.route?.find((node) => node.id === nodeId)?.depth;
   return generateRunGraph(1).nodes.find((node) => node.id === nodeId)?.depth;
+}
+
+/** The chapter a dialogue belongs to: a post-demo prefix, or the Lion. */
+function dialogueChapter(dialogueId: string): string {
+  return postDemoChapterOf(dialogueId) ?? 'lion';
 }
 
 type DialogueLookup = ReadonlyMap<string, DialogueSequence>;
 
 function resolveDialogueFor(id: string, flags: Readonly<Record<string, boolean>>, lookup: DialogueLookup): DialogueSequence | undefined {
-  return buildLionContextualDialogue(id, stateWithFlags(flags, 60)) ?? lookup.get(id);
+  const state = stateWithFlags(flags, 60);
+  return buildLionContextualDialogue(id, state) ?? (isPostDemoSceneBuilt(id) ? resolvePostDemoDialogue(id, state) : undefined) ?? lookup.get(id);
+}
+
+/** Built post-demo plateaux and their finales. */
+function builtPostDemoChapters(): { id: CampaignChapterId; finale?: PlateauFinaleDefinition }[] {
+  return CAMPAIGN_CHAPTER_IDS.filter((id) => id !== 'lion' && getPlateau(id).campaign)
+    .map((id) => ({ id, finale: PLATEAU_FINALES[id] }));
 }
 
 function echoText(echo: ConsequenceEcho, flags: Readonly<Record<string, boolean>>, lookup: DialogueLookup): string | null {
@@ -253,15 +274,19 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
   const findings: CoherenceFinding[] = [];
   const report = (kind: CoherenceFindingKind, subject: string, message: string) => findings.push({ kind, subject, message });
 
-  const authored = [...dialogues.values(), ...(options.draftDialogues ?? [])];
+  const postDemo = builtPostDemoChapters();
+  const authored = [...dialogues.values(), ...POST_DEMO_DIALOGUES.values(), ...(options.draftDialogues ?? [])];
   const lookup: DialogueLookup = new Map(authored.map((sequence) => [sequence.id, sequence]));
-  const built = builtDialogues();
+  const representativeStates = REPRESENTATIVE_FLAG_SETS.flatMap((flags) => [10, 50, 90].map((reputation) => stateWithFlags(flags, reputation)));
+  const built = [...builtDialogues(), ...postDemo.flatMap((chapter) => builtPlateauScenes(chapter.id, representativeStates))];
   const universe = [...authored, ...built];
 
   // --- Structure: links, actors, reachability, characters (the 75-dialogue audit) ---------------------------------
   const knownActors = new Set(Object.keys(assets.dialogueActors));
   const combatIds = new Set(combatConfigs.keys());
-  for (const sequence of universe) {
+  // Structure findings belong to the chapter of their dialogue; each map answers for its own chapter.
+  const ownSequences = universe.filter((sequence) => dialogueChapter(sequence.id) === map.plateauId);
+  for (const sequence of ownSequences) {
     const stepIds = new Set(sequence.steps.map((step) => step.id));
     const link = (from: string, target: string | null | undefined) => {
       if (target && !stepIds.has(target)) report('broken_link', `${sequence.id}:${from}`, `Lien vers l’étape absente « ${target} ».`);
@@ -284,13 +309,13 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
     }
     for (const { effects, where } of effectsOf(sequence)) {
       for (const effect of effects) {
-        if (effect.type === 'startCombat' && !combatIds.has(effect.combatId)) {
+        if (effect.type === 'startCombat' && !combatIds.has(effect.combatId) && !anyCombatConfig(effect.combatId)) {
           report('broken_link', where, `Combat inconnu « ${effect.combatId} ».`);
         }
       }
     }
   }
-  for (const sequence of authored) {
+  for (const sequence of authored.filter((entry) => dialogueChapter(entry.id) === map.plateauId)) {
     const reachable = new Set<string>();
     const queue = [sequence.steps[0]!.id];
     for (const id of queue) {
@@ -361,11 +386,40 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
     if (!dialogues.has(dialogueId)) report('broken_link', nodeId, `Rassemblement de refuge inconnu « ${dialogueId} ».`);
     referencedDialogues.add(dialogueId);
   }
+  // Post-demo plateaux: their route, fights, refuge gatherings and state-built scenes.
+  for (const chapter of postDemo) {
+    const binding = getPlateau(chapter.id).campaign!;
+    for (const routeNode of binding.topology.route ?? []) {
+      if (routeNode.type === 'combat') {
+        referencedCombats.add(routeNode.contentId);
+        if (!anyCombatConfig(routeNode.contentId)) report('broken_link', routeNode.id, `Combat de lieu inconnu « ${routeNode.contentId} ».`);
+      } else if (routeNode.type !== 'refuge') {
+        referencedDialogues.add(routeNode.contentId);
+        if (!lookup.has(routeNode.contentId) && !isPostDemoSceneBuilt(routeNode.contentId)) report('broken_link', routeNode.id, `Dialogue de lieu inconnu « ${routeNode.contentId} ».`);
+      }
+    }
+    for (const poi of binding.topology.optionalPois) for (const variant of poi.combat?.variants ?? []) referencedCombats.add(variant.id);
+    for (const guardian of binding.topology.guardians) referencedCombats.add(guardian.combat.id);
+    for (const id of postDemoSceneIds(chapter.id)) referencedDialogues.add(id);
+    for (const gathering of Object.values(POST_DEMO_REFUGE_GATHERINGS[chapter.id] ?? {})) referencedDialogues.add(gathering);
+    if (chapter.finale) {
+      referencedCombats.add(chapter.finale.combats.honour);
+      referencedCombats.add(chapter.finale.combats.force);
+    }
+  }
+  for (const combatId of referencedCombats) {
+    const config = combatConfigs.has(combatId) ? undefined : anyCombatConfig(combatId);
+    for (const dialogueId of [config?.preCombatDialogueId, config?.postCombatDialogueId]) {
+      if (!dialogueId) continue;
+      if (!lookup.has(dialogueId) && !isPostDemoSceneBuilt(dialogueId)) report('broken_link', `combat:${combatId}`, `Dialogue de combat inconnu « ${dialogueId} ».`);
+      referencedDialogues.add(dialogueId);
+    }
+  }
   for (const definition of REPUTATION_EVENT_DEFINITIONS) {
     if (!dialogues.has(definition.dialogueId)) report('broken_link', definition.id, `Dialogue d’événement inconnu « ${definition.dialogueId} ».`);
     referencedDialogues.add(definition.dialogueId);
   }
-  for (const sequence of authored) {
+  for (const sequence of authored.filter((entry) => dialogueChapter(entry.id) === map.plateauId)) {
     // A dialogue that shares its ID with a fight is not shown merely because code names that fight.
     const mentioned = !combatIds.has(sequence.id) && codeMentions(sources, sequence.id).length > 0;
     if (referencedDialogues.has(sequence.id) || mentioned) continue;
@@ -393,6 +447,24 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
   for (const key of conditionKeys) add(dataReads, key, 'condition');
   // The Lion's conduct score reads every flag of its weight table (lionNarrative).
   for (const key of Object.keys(LION_CONDUCT_FLAG_WEIGHTS)) add(dataReads, key, 'lionNarrative:conduct');
+  // A post-demo finale reads its deeds, witnesses, evidence and route facts, and records its route and victory facts.
+  for (const chapter of postDemo) {
+    const finale = chapter.finale;
+    if (!finale) continue;
+    for (const key of [...Object.keys(finale.conductWeights), ...finale.deeds.map((deed) => deed.flag), ...finale.forceFacts,
+      finale.honourFact, finale.witnesses.supportiveFlag, finale.witnesses.silencedFlag, finale.evidence.flag,
+      ...finale.outcome.lines.map((line) => line.flag), finale.flags.trialRequested, finale.flags.honourSelected, finale.flags.trialSelected]) {
+      add(dataReads, key, `${chapter.id}:finale`);
+    }
+    for (const flags of REPRESENTATIVE_FLAG_SETS) {
+      for (const intent of ['claim_recognition', 'request_trial'] as const) {
+        for (const key of Object.keys(resolvePlateauFinaleExecution(finale, { flags, reputation: 60 }, intent).flagChanges)) add(dataSets, key, `${chapter.id}:finale:execution`);
+      }
+    }
+    for (const facts of Object.values(finale.victoryFacts)) for (const key of Object.keys(facts)) add(dataSets, key, `${chapter.id}:finale:victory`);
+    // RunSystem reads a plateau's outcome from its victory facts.
+    for (const facts of Object.values(finale.victoryFacts)) for (const key of Object.keys(facts)) add(dataReads, key, `${chapter.id}:outcome`);
+  }
   // RunSystem and the finale record these facts by code paths that can be executed directly.
   for (const flags of REPRESENTATIVE_FLAG_SETS) {
     for (const intent of ['claim_recognition', 'request_trial'] as const) {
@@ -500,7 +572,9 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
   const excused: CoherenceReport['excused'] = [];
   const errors: CoherenceFinding[] = [];
   const used = new Set<number>();
-  for (const finding of findings) {
+  // A state-built scene is checked under several states; report each finding once.
+  const unique = [...new Map(findings.map((finding) => [`${finding.kind}|${finding.subject}|${finding.message}`, finding])).values()];
+  for (const finding of unique) {
     const index = map.exceptions.findIndex((entry) => entry.kind === finding.kind && entry.subject === finding.subject);
     if (index >= 0) {
       used.add(index);
@@ -519,8 +593,8 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
     errors,
     excused,
     stats: {
-      dialogues: authored.length,
-      steps: authored.reduce((sum, sequence) => sum + sequence.steps.length, 0),
+      dialogues: authored.filter((sequence) => dialogueChapter(sequence.id) === map.plateauId).length,
+      steps: authored.filter((sequence) => dialogueChapter(sequence.id) === map.plateauId).reduce((sum, sequence) => sum + sequence.steps.length, 0),
       facts: map.facts.length,
       majorChoices: map.majorChoices.length,
       implementedEchoes: echoes.filter((echo) => echo.status === 'implemented').length,

@@ -10,11 +10,6 @@
  ],
  "facts": [
   {
-   "id": "bearArrived",
-   "kind": "system",
-   "summary": "La compagnie est arrivée dans les Montagnes de la Résilience ; marqueur de déroulé."
-  },
-  {
    "id": "bearMandateHonour",
    "kind": "flag",
    "summary": "Borin a confié la défense des mines sacrées à la compagnie, qui l’a acceptée sans condition."
@@ -143,6 +138,21 @@
    "id": "bearSealAcknowledged",
    "kind": "flag",
    "summary": "Le Sceau de l’Ours est acquis."
+  },
+  {
+   "id": "bearSpyOrdersFound",
+   "kind": "flag",
+   "summary": "Les ordres signés du Maître Espion ont été trouvés au campement du Corbeau."
+  },
+  {
+   "id": "bearFinaleHonourSelected",
+   "kind": "system",
+   "summary": "Le combat contre le Maître Espion est engagé ; reprise du combat en attente."
+  },
+  {
+   "id": "bearFinaleTrialSelected",
+   "kind": "system",
+   "summary": "Le combat de l’épreuve de l’Ours est engagé ; reprise du combat en attente."
   }
  ],
  "majorChoices": [
@@ -175,7 +185,7 @@
      "id": "bear.mandate.honour.judgement",
      "fact": "bearMandateHonour",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -188,7 +198,7 @@
      "id": "bear.mandate.share.judgement",
      "fact": "bearMandateOreShare",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -228,7 +238,7 @@
      "id": "bear.raven_offer.refused.judgement",
      "fact": "bearRavenOfferRefused",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -241,7 +251,7 @@
      "id": "bear.raven_offer.pact.judgement",
      "fact": "bearRavenPact",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -254,7 +264,7 @@
      "id": "bear.raven_offer.pact.mines",
      "fact": "bearRavenPact",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-sacred-mines",
      "dialogueId": "bear_sacred_mines",
      "state": {
@@ -294,7 +304,7 @@
      "id": "bear.trapped_miners.rescued.judgement",
      "fact": "bearMinersRescued",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -307,7 +317,7 @@
      "id": "bear.trapped_miners.robbed.judgement",
      "fact": "bearMinersRobbed",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -320,7 +330,7 @@
      "id": "bear.trapped_miners.rescued.testimony",
      "fact": "bearMinersRescued",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-miners-testimony",
      "dialogueId": "bear_miners_testimony",
      "state": {
@@ -360,7 +370,7 @@
      "id": "bear.raven_traps.marked.judgement",
      "fact": "bearTrapsMarked",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -373,7 +383,7 @@
      "id": "bear.raven_traps.looted.judgement",
      "fact": "bearTrapsLooted",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -413,7 +423,7 @@
      "id": "bear.ore_convoy.reported.judgement",
      "fact": "bearConvoyReported",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -426,7 +436,7 @@
      "id": "bear.ore_convoy.seized.judgement",
      "fact": "bearConvoySeized",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -466,7 +476,7 @@
      "id": "bear.ancient_relic.returned.judgement",
      "fact": "bearRelicReturned",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -479,7 +489,7 @@
      "id": "bear.ancient_relic.kept.judgement",
      "fact": "bearRelicKept",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -536,7 +546,7 @@
      "id": "bear.mines.restored.judgement",
      "fact": "bearMinesRestored",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -549,7 +559,7 @@
      "id": "bear.mines.seized.judgement",
      "fact": "bearMinesSeized",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -562,7 +572,7 @@
      "id": "bear.mines.abandoned.judgement",
      "fact": "bearMinesAbandoned",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -602,7 +612,7 @@
      "id": "bear.miners_testimony.protected.judgement",
      "fact": "bearMinersProtected",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -615,7 +625,7 @@
      "id": "bear.miners_testimony.silenced.judgement",
      "fact": "bearMinersSilenced",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -655,7 +665,7 @@
      "id": "bear.mountain_shrine.honoured.judgement",
      "fact": "bearShrineHonoured",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -668,7 +678,7 @@
      "id": "bear.mountain_shrine.plundered.judgement",
      "fact": "bearShrinePlundered",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -708,7 +718,7 @@
      "id": "bear.dark_vein.evidence.judgement",
      "fact": "bearDarkOreEvidence",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -721,7 +731,7 @@
      "id": "bear.dark_vein.shattered.judgement",
      "fact": "bearDarkOreShattered",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_judgement",
      "state": {
@@ -778,7 +788,7 @@
      "id": "bear.judgement_intent.honour.epilogue",
      "fact": "bearMasterSpyDefeated",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_epilogue",
      "state": {
@@ -794,7 +804,7 @@
      "id": "bear.judgement_intent.force.epilogue",
      "fact": "bearTrialWon",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_epilogue",
      "state": {
@@ -830,7 +840,7 @@
      "id": "bear.outcome.honour.epilogue",
      "fact": "bearMasterSpyDefeated",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_epilogue",
      "state": {
@@ -877,7 +887,7 @@
      "id": "bear.outcome.force.epilogue",
      "fact": "bearTrialWon",
      "scope": "same_plateau",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "bear-judgement",
      "dialogueId": "bear_epilogue",
      "state": {

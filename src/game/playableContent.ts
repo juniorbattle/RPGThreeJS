@@ -6,6 +6,7 @@
 import { combatConfigs, dialogues } from './content';
 import { LION_CONTEXTUAL_DIALOGUE_ALIASES, LION_CONTEXTUAL_DIALOGUE_BUILDERS } from './lionFinale';
 import { calibrateLionCombatConfig, calibrateLionDialogue } from './lionReputationCalibration';
+import { getPostDemoCombat } from './postDemoContent';
 import type { CombatConfig, DialogueSequence } from './types';
 
 /** Every dialogue and fight the demo registered is Lion content. */
@@ -32,5 +33,12 @@ export function playableDialogue(sequence: DialogueSequence): DialogueSequence {
 /** A fight's configuration as played: a Lion fight with its calibrated reputation reward, any other as authored. */
 export function playableCombatConfig(combatId: string): CombatConfig | undefined {
   const config = combatConfigs.get(combatId);
-  return config && isLionCombat(combatId) ? calibrateLionCombatConfig(config) : config;
+  if (config) return isLionCombat(combatId) ? calibrateLionCombatConfig(config) : config;
+  // Set 1.20.0: post-demo fights are authored at the post-demo scale and play as authored.
+  return getPostDemoCombat(combatId);
+}
+
+/** Any fight's configuration, Lion or post-demo, as authored. */
+export function anyCombatConfig(combatId: string): CombatConfig | undefined {
+  return combatConfigs.get(combatId) ?? getPostDemoCombat(combatId);
 }

@@ -35,7 +35,7 @@ describe('the Lion consequence map passes the narrative coherence validator', ()
   it('has no error: every major choice is echoed later by a scene that names its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.stats).toEqual({
-      dialogues: 75, steps: 256, facts: 64, majorChoices: 13, implementedEchoes: 28, plannedEchoes: 8,
+      dialogues: 75, steps: 256, facts: 64, majorChoices: 13, implementedEchoes: 36, plannedEchoes: 0,
     });
   });
 
@@ -131,6 +131,23 @@ describe('each coherence rule fails on a broken case', () => {
       { text: 'Autre choix.', next: null, effects: [] },
     ] })]);
     expect(kinds(map, [reader])).toContain('fact_read_never_set:draftNeverSet');
+  });
+});
+
+describe('the Bear draft passes the narrative coherence validator (Lot 1)', () => {
+  const report = validateNarrativeCoherence(bearMap, sources);
+
+  it('has no error and no exception: every Bear fact set is read, every choice echoed by a scene naming its cause', () => {
+    expect(report.errors).toEqual([]);
+    expect(report.excused).toEqual([]);
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 27, plannedEchoes: 3 });
+  });
+
+  it('carries the Lion into the Bear: every Lion echo planned for the Bear is now implemented', () => {
+    const lion = consequenceMapSchema.parse(structuredClone(lionMap));
+    const toBear = lion.majorChoices.flatMap((choice) => choice.echoes).filter((echo) => echo.chapterId === 'bear');
+    expect(toBear).toHaveLength(8);
+    expect(toBear.every((echo) => echo.status === 'implemented')).toBe(true);
   });
 });
 

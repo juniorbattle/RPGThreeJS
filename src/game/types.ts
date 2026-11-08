@@ -22,6 +22,20 @@ export const narrativeEffectSchema = z.discriminatedUnion('type', [
     intent: z.enum(['claim_recognition', 'request_trial']),
   }),
   baseEffectSchema.extend({ type: z.literal('finishChapter'), endingId: z.string() }),
+  // Set 1.20.0 (post-demo): RunSystem records a clan relation for an authored cause, resolves a plateau's judgement
+  // and closes a plateau. Presentation never applies them itself.
+  baseEffectSchema.extend({
+    type: z.literal('setClanRelation'),
+    clan: z.enum(['lion', 'serpent', 'bear', 'raven', 'dragon', 'wolf', 'scorpion', 'phoenix']),
+    stance: z.enum(['ally', 'neutral', 'enemy']),
+    cause: z.string().min(1),
+  }),
+  baseEffectSchema.extend({
+    type: z.literal('resolvePlateauFinale'),
+    plateauId: z.enum(['bear', 'dragon', 'scorpion']),
+    intent: z.enum(['claim_recognition', 'request_trial']),
+  }),
+  baseEffectSchema.extend({ type: z.literal('completePlateau'), plateauId: z.enum(['bear', 'dragon', 'scorpion']) }),
 ]);
 export type NarrativeEffect = z.infer<typeof narrativeEffectSchema>;
 

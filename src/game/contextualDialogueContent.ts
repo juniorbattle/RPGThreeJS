@@ -9,6 +9,7 @@ import {
 } from './contextualDialogue';
 import { buildLionContextualDialogue } from './lionFinale';
 import { playableDialogue } from './playableContent';
+import { resolvePostDemoDialogue } from './postDemoContent';
 import { REPUTATION_EVENT_DIALOGUE_DEFINITIONS } from './reputationEventContent';
 import type { DialogueExpression, DialogueStep, GameState } from './types';
 
@@ -526,7 +527,9 @@ export function resolveGameDialogue(
   dialogueId: string,
   state: Readonly<GameState>,
 ): ResolvedContextualDialogue | null {
-  const base = buildLionContextualDialogue(dialogueId, state) ?? dialogues.get(dialogueId);
+  // Set 1.20.0: post-demo drafts resolve from their own registry, never from the Lion's.
+  const base = buildLionContextualDialogue(dialogueId, state) ?? dialogues.get(dialogueId)
+    ?? resolvePostDemoDialogue(dialogueId, state);
   if (!base) return null;
   const definition = CONTEXTUAL_DIALOGUE_DEFINITIONS[dialogueId]
     ?? REPUTATION_EVENT_DIALOGUE_DEFINITIONS[dialogueId];

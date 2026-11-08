@@ -1,0 +1,88 @@
+/**
+ * Set 1.20.0, post-demo Lot 1 — DRAFT: Borin's judgement and the Bear's epilogue (roadmap §3.2, Phase 3). Not canon
+ * until the operator approves the plateau. Every deed Borin weighs is named in the words the consequence map expects.
+ * Credibility before the chief (R3) uses its own thresholds, proposed for approval with the plateau.
+ */
+import type { PlateauFinaleDefinition } from '../../../game/plateauFinale';
+
+export const BEAR_FINALE: PlateauFinaleDefinition = Object.freeze<PlateauFinaleDefinition>({
+  plateauId: 'bear',
+  judgementDialogueId: 'bear_judgement',
+  epilogueDialogueId: 'bear_epilogue',
+  judgementSceneArtId: 'lion_finale_judgement',
+  epilogueSceneArtId: 'epilogue',
+  chief: { speaker: 'Ancien Ours Borin', actorId: 'borin', side: 'right' },
+  sage: { speaker: 'Sage Séraphine', actorId: 'sage_seraphine', side: 'left' },
+  steward: { speaker: 'Intendant Maelor', actorId: 'maelor', side: 'left' },
+  guard: { speaker: 'Guerrier de l’Ours', actorId: 'bear_warrior', side: 'right' },
+  conductWeights: Object.freeze({
+    bearMandateHonour: 1, bearRavenOfferRefused: 1, bearMinersRescued: 1, bearTrapsMarked: 1, bearConvoyReported: 1,
+    bearRelicReturned: 1, bearMinesRestored: 2, bearMinersProtected: 1, bearShrineHonoured: 1, bearDarkOreEvidence: 1,
+    bearMandateOreShare: -1, bearRavenPact: -2, bearMinersRobbed: -2, bearTrapsLooted: -1, bearConvoySeized: -1,
+    bearRelicKept: -1, bearMinesSeized: -2, bearMinesAbandoned: -3, bearMinersSilenced: -2, bearShrinePlundered: -1,
+    bearDarkOreShattered: -1,
+  }),
+  deeds: Object.freeze([
+    { flag: 'bearMinesRestored', kind: 'merit', severity: 'decisive', phrase: 'vous avez rendu les galeries sacrées à l’Ours' },
+    { flag: 'bearMandateHonour', kind: 'merit', severity: 'important', phrase: 'vous avez pris la défense des mines sans rien demander' },
+    { flag: 'bearRavenOfferRefused', kind: 'merit', severity: 'important', phrase: 'vous avez refusé l’or du Corbeau' },
+    { flag: 'bearMinersRescued', kind: 'merit', severity: 'important', phrase: 'vous avez dégagé les mineurs de l’éboulement' },
+    { flag: 'bearTrapsMarked', kind: 'merit', severity: 'minor', phrase: 'vous avez signalé les pièges du Corbeau' },
+    { flag: 'bearConvoyReported', kind: 'merit', severity: 'important', phrase: 'vous avez signalé le convoi du Corbeau' },
+    { flag: 'bearRelicReturned', kind: 'merit', severity: 'important', phrase: 'vous avez rendu l’artefact des galeries' },
+    { flag: 'bearShrineHonoured', kind: 'merit', severity: 'important', phrase: 'vous avez respecté les offrandes de la montagne' },
+    { flag: 'bearMinesSeized', kind: 'breach', severity: 'decisive', phrase: 'vous avez gardé le filon sombre pour votre clan' },
+    { flag: 'bearMinesAbandoned', kind: 'breach', severity: 'decisive', phrase: 'vous avez laissé le Corbeau vider nos galeries' },
+    { flag: 'bearRavenPact', kind: 'breach', severity: 'decisive', phrase: 'vous avez accepté l’or du Corbeau' },
+    { flag: 'bearMinersRobbed', kind: 'breach', severity: 'important', phrase: 'des mineurs ont été dépouillés sous l’éboulement' },
+    { flag: 'bearShrinePlundered', kind: 'breach', severity: 'important', phrase: 'les offrandes de la montagne ont été pillées' },
+    { flag: 'bearMandateOreShare', kind: 'stain', severity: 'minor', phrase: 'la part de minerai réclamée à l’audience' },
+    { flag: 'bearTrapsLooted', kind: 'stain', severity: 'minor', phrase: 'la poudre des pièges gardée pour vous' },
+    { flag: 'bearConvoySeized', kind: 'stain', severity: 'minor', phrase: 'le minerai du convoi détourné pour votre clan' },
+    { flag: 'bearRelicKept', kind: 'stain', severity: 'minor', phrase: 'l’artefact des galeries gardé par votre compagnie' },
+    { flag: 'bearDarkOreShattered', kind: 'stain', severity: 'minor', phrase: 'le filon brisé avant qu’on puisse l’étudier' },
+  ]),
+  forceFacts: Object.freeze(['bearMinesSeized', 'bearMinesAbandoned', 'bearMinersSilenced']),
+  honourFact: 'bearMinesRestored',
+  outcome: {
+    lines: Object.freeze([
+      { flag: 'bearMinesRestored', text: 'Les galeries respirent de nouveau parce que vous avez rendu les galeries sacrées à l’Ours au lieu d’y planter votre propre bannière. Mes mineurs y redescendront demain.' },
+      { flag: 'bearMinesSeized', text: 'Vous avez chassé le Corbeau, c’est vrai. Puis vous avez gardé le filon sombre pour votre clan, dans une montagne qui ne vous appartient pas.' },
+      { flag: 'bearMinesAbandoned', text: 'Pendant que mes mineurs attendaient, vous avez laissé le Corbeau vider nos galeries. Vous aviez donné votre parole à des voleurs, et vous l’avez mieux tenue que la mienne.' },
+    ]),
+    noneText: 'Les galeries sacrées n’ont été ni reprises ni défendues. Je ne bâtirai pas une alliance sur ce qui n’a pas eu lieu.',
+  },
+  witnesses: {
+    supportiveFlag: 'bearMinersProtected',
+    silencedFlag: 'bearMinersSilenced',
+    supportive: 'Les mineurs sont venus dire eux-mêmes ce qu’ils ont vu. Personne ne leur a soufflé leurs mots, et c’est pour cela que je les crois.',
+    silenced: 'Je sais pourquoi des mineurs se taisent derrière vos lames. Ne me demandez pas d’appeler ce silence une absence de témoins.',
+    none: 'Aucun mineur n’est venu parler pour vous. Il ne me reste que les traces laissées dans la roche.',
+  },
+  evidence: {
+    flag: 'bearDarkOreEvidence',
+    text: 'Voici l’éclat du filon sombre que nous avons scellé. Il ne ressemble à aucun minerai de cette montagne, Ancien. Ce que le Corbeau creusait ne servait pas seulement le Corbeau.',
+  },
+  credibility: { credible: 50, high: 65 },
+  opening: 'Vous revenez des galeries. La montagne a déjà parlé avant vous : ses éboulis, ses mineurs, ses feux éteints. Je l’écouterai encore une fois, puis je vous écouterai.',
+  intent: 'Vous ne pouvez plus changer ce que la montagne a vu. Dites-moi seulement ce que vous demandez à l’Ours.',
+  meritsLead: 'Il y a aussi ceci, Ancien, et la montagne en garde la trace :',
+  breachesLead: 'Et l’Ours n’oubliera pas ce qui pèse contre eux :',
+  stainsLead: 'Mes comptes gardent aussi',
+  flags: { trialRequested: 'bearTrialRequested', honourSelected: 'bearFinaleHonourSelected', trialSelected: 'bearFinaleTrialSelected', seal: 'bearSealAcknowledged' },
+  combats: { honour: 'bear_master_spy', force: 'bear_borin' },
+  victoryFacts: Object.freeze({
+    bear_mines_defense: Object.freeze({ bearRavenMinersDefeated: true }),
+    bear_mines_seizure: Object.freeze({ bearRavenMinersDefeated: true }),
+    bear_master_spy: Object.freeze({ bearMasterSpyDefeated: true, bearSealAcknowledged: true }),
+    bear_borin: Object.freeze({ bearTrialWon: true, bearSealAcknowledged: true }),
+  }),
+  reputation: { honourClaim: 1, voluntaryTrial: -1, rejectedClaim: 0 },
+  epilogue: {
+    honour: 'Le Sceau de l’Ours est entre vos mains. Borin a scellé l’alliance de l’Ours, et le Maître Espion du Corbeau est tombé dans les galeries qu’il faisait vider.',
+    force: 'Le Sceau de l’Ours est entre vos mains, mais vous avez pris le Sceau de l’Ours par l’épreuve. Les guerriers de Borin vous ont laissé passer ; l’Ours ne pardonnera pas ce Sceau arraché.',
+    evidence: 'L’éclat du filon sombre voyage avec nous, scellé dans un coffre. Encore un poids que les Sceaux nous font porter. Je me demande parfois lequel de ces fardeaux nous mène vraiment quelque part.',
+    noEvidence: 'Le filon est resté au fond de la montagne. Ce que le Corbeau en voulait, nous ne le saurons que plus tard.',
+    chronicle: 'Deux Sceaux. La route du Tournoi des Grands se dessine, et chaque clan que nous croisons se souviendra de la manière dont nous les avons gagnés.',
+  },
+});
