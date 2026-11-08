@@ -155,6 +155,6 @@ out.push('## Ce que Borin pèse au jugement', '', '| Fait | Nature | Poids | Phr
 for (const deed of finale.deeds) out.push(`| \`${deed.flag}\` | ${deed.kind} (${deed.severity}) | ${finale.conductWeights[deed.flag] ?? 0} | ${deed.phrase} |`);
 out.push('', `Crédibilité devant Borin (proposée) : crédible à ${finale.credibility.credible}, haute à ${finale.credibility.high}. Faits de force : ${finale.forceFacts.map((f) => `\`${f}\``).join(', ')}. Fait d’honneur : \`${finale.honourFact}\`.`, '');
 
-const text = `${out.join('\n').replace(/\n{3,}/g, '\n\n')}\n`;
+const text = `${out.join("\n").replace(/\n{3,}/g, "\n\n").trimEnd()}\n`;
 if (output) writeFileSync(output, text);
 else process.stdout.write(text);

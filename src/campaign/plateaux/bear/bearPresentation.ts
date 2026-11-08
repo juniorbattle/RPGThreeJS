@@ -77,13 +77,22 @@ export function bearCounterpartOf(lionId: string): string | undefined {
 export const BEAR_REFUGE_PRESENTATION = Object.freeze({
   'bear-first-refuge': { environmentContext: 'dialogue:first_refuge_gathering', environmentRole: 'STATIC_TABLEAU' as const,
     eyebrow: 'Halte de la compagnie', description: 'Les feux de l’avant-poste tiennent le vent des cols. La compagnie se prépare avant les mines.',
-    gatheringDialogueId: 'bear_outpost_gathering' },
+    gatheringDialogueId: 'bear_outpost_gathering', awaitedFinal: 'Fond de refuge : l’avant-poste de l’Ours dans les cols' },
   'bear-second-refuge': { environmentContext: 'node:lion-second-refuge', environmentRole: 'HOLD_SOURCE' as const,
-    eyebrow: 'Halte de la compagnie', description: 'L’abri des mineurs sent la pierre froide et la fumée. La compagnie reprend son souffle.' },
+    eyebrow: 'Halte de la compagnie', description: 'L’abri des mineurs sent la pierre froide et la fumée. La compagnie reprend son souffle.',
+    awaitedFinal: 'Fond de refuge : l’abri des mineurs près des galeries' },
   'bear-final-refuge': { environmentContext: 'node:lion-second-refuge', environmentRole: 'HOLD_SOURCE' as const,
     eyebrow: 'Avant le jugement', description: 'Une dernière veillée avant de comparaître devant Borin.',
-    gatheringDialogueId: 'bear_vigil' },
+    gatheringDialogueId: 'bear_vigil', awaitedFinal: 'Fond de refuge : la veillée avant le jugement de Borin' },
 });
+
+/**
+ * Shared surfaces a Bear run shows on demo art, beyond its scenes, atlases and refuges: the end of its chronicle stands
+ * in the Lion's judgement hall (the chronicle-end tableau) until the Bear has its own.
+ */
+export const BEAR_PROVISIONAL_SURFACES: readonly { surface: string; standIn: string; awaitedFinal: string }[] = Object.freeze([
+  { surface: 'Fin de chronique (Journey)', standIn: 'salle du jugement du Lion (CHRONICLE_END_TABLEAU)', awaitedFinal: 'Tableau de fin de chronique : la salle de Borin après le jugement' },
+]);
 
 export interface ProvisionalActor {
   actorId: string;

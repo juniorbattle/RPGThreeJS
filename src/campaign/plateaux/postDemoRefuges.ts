@@ -12,6 +12,7 @@ export const POST_DEMO_REFUGE_PRESENTATION: Readonly<Record<string, {
   eyebrow: string;
   description: string;
   gatheringDialogueId?: string;
+  awaitedFinal: string;
 }>> = Object.freeze({ ...BEAR_REFUGE_PRESENTATION });
 
 export const POST_DEMO_REFUGE_GATHERINGS: Readonly<Partial<Record<CampaignChapterId, Readonly<Record<string, string>>>>> = Object.freeze({

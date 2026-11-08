@@ -10,7 +10,9 @@ import { isDraftContent, POST_DEMO_DIALOGUES, postDemoSceneIds, resolvePostDemoD
 import { applyFinalDialoguePresentationPlan, resolveFinalDialoguePresentationPlan } from '../../../cinematics/DialoguePresentationSegments';
 import { DRAFT_VISIBLE_ACTOR_CAP } from '../../../cinematics/PostDemoPresentationPlans';
 import { greedPlateauState, perfectHonourPlateauState } from '../../../game/reputationBounds';
-import { BEAR_PROVISIONAL_SCENES } from './bearPresentation';
+import { resolveRefugePresentation } from '../../../ui/RefugePresentation';
+import { BEAR_ROUTE } from './bearTopology';
+import { BEAR_ATLAS_REGIONS, BEAR_PROVISIONAL_ACTORS, BEAR_PROVISIONAL_ENEMIES, BEAR_PROVISIONAL_SCENES, BEAR_PROVISIONAL_SURFACES, BEAR_REFUGE_PRESENTATION } from './bearPresentation';
 
 const bearSceneIds = [...new Set([...POST_DEMO_DIALOGUES.keys(), ...postDemoSceneIds('bear')])].filter((id) => id.startsWith('bear_'));
 
@@ -62,5 +64,17 @@ describe('Bear scenes on provisional tableaux (set 1.20.0, Lot 1 draft)', () => 
     const sequence = { id: 'lion_briefing', steps: [{ id: 'x', speaker: 'A', actorId: 'alaric', text: 'x', tag: '', expression: 'neutral' as const,
       portrait: '', side: 'center' as const, next: null, effects: [], choices: [] }] };
     expect(() => resolveFinalDialoguePresentationPlan('lion_briefing', sequence)).toThrow(/No authoritative runtime presentation plan/);
+  });
+
+  it('lists every provisional image of the Bear with the final image it awaits, and marks its refuges on screen', () => {
+    for (const entry of [...BEAR_ATLAS_REGIONS, ...BEAR_PROVISIONAL_ACTORS, ...BEAR_PROVISIONAL_ENEMIES, ...BEAR_PROVISIONAL_SURFACES,
+      ...Object.values(BEAR_REFUGE_PRESENTATION), ...Object.values(BEAR_PROVISIONAL_SCENES)]) {
+      expect(entry.awaitedFinal.length, JSON.stringify(entry)).toBeGreaterThan(10);
+    }
+    for (const node of BEAR_ROUTE.filter((candidate) => candidate.type === 'refuge')) {
+      const presentation = resolveRefugePresentation({ ...node, links: [...node.links], x: 0, z: 0 } as never)!;
+      expect(presentation.provisional, node.id).toBe(true);
+      expect(presentation.gatheringDialogueId ?? null, node.id).toBe((BEAR_REFUGE_PRESENTATION as Record<string, { gatheringDialogueId?: string }>)[node.id]?.gatheringDialogueId ?? null);
+    }
   });
 });

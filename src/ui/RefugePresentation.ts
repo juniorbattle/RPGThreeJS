@@ -38,6 +38,8 @@ export interface RefugePresentation extends RefugePresentationContent {
   visualFamily: 'FIRST_REFUGE' | 'SECOND_REFUGE' | 'FINAL_REFUGE';
   /** Only the two refuge nodes secure loot into the chest; the final refuge services never do. */
   securesLoot: boolean;
+  /** Set 1.20.0: a post-demo refuge on a borrowed demo plate says so on screen. */
+  provisional?: boolean;
 }
 
 export function resolveRefugePresentation(node: RunNode): RefugePresentation | null {
@@ -57,6 +59,7 @@ export function resolveRefugePresentation(node: RunNode): RefugePresentation | n
     background: plate.publicUrl,
     visualFamily: plate.visualFamily,
     securesLoot: true,
+    ...(POST_DEMO_REFUGE_PRESENTATION[node.id] ? { provisional: true } : {}),
   };
 }
 

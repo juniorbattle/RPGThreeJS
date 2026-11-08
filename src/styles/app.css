@@ -232,6 +232,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .dialogue__brand--ate { color: rgba(180,200,220,.72); }
 /* Set 1.20.0 (post-demo): a draft scene is marked as such, on provisional images. */
 .dialogue__draft { position: absolute; top: 12px; right: 16px; z-index: 6; padding: 3px 8px; border: 1px solid rgba(240,179,106,.6); border-radius: 3px; background: rgba(16,12,8,.72); color: #f0b36a; font: 700 10px var(--ui-font-title); letter-spacing: .08em; text-transform: uppercase; pointer-events: none; }
+.exploration-stop__draft { top: 18px; right: 18px; }
 .dialogue__brand--ate span::before,
 .dialogue__brand--ate span::after { background: linear-gradient(90deg, transparent, rgba(180,200,220,.45)); }
 .dialogue__brand--ate span::after { background: linear-gradient(90deg, rgba(180,200,220,.45), transparent); }

@@ -256,14 +256,18 @@ class BearDriver {
   }
 }
 
-/** Plays the Bear from a completed Lion run to the Bear's epilogue under a scenario. */
-export function playBearPlateau(lionEnd: GameState, scenario: BearScenario, seed = 20261108): BearPlaythrough {
+/**
+ * Plays the Bear from a completed Lion run to the Bear's epilogue under a scenario, or up to (not into) `stopBefore`,
+ * which leaves a mid-plateau state to save and resume.
+ */
+export function playBearPlateau(lionEnd: GameState, scenario: BearScenario, seed = 20261108, stopBefore?: string): BearPlaythrough {
   const state = structuredClone(lionEnd);
   if (!continueCampaign(state, seed)) throw new Error('The campaign did not continue into the Bear.');
   const reputationStart = state.reputation;
   const driver = new BearDriver(state, scenario);
   driver.arrive();
   for (const step of ROUTE) {
+    if (step === stopBefore) break;
     const nodeId = step.endsWith('-trial') ? driver.forkBranch(`${step}-`) : step;
     driver.visit(nodeId);
     const chest = CHEST_AFTER[step];
