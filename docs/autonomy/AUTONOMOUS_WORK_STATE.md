@@ -1,8 +1,8 @@
-# Après-démo — Lot 2 (le Dragon) en cours
+# Après-démo — Lot 2 (le Dragon) livré en brouillon, en attente de l’opérateur
 
-Run claude-postdemo-lot2-20261108T0600Z (agent claude, session cloud). [OD-2026-11-07-I](POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md), [OD-2026-11-08-A](POST_DEMO_LOT_0_OPERATOR_DECISION_2026-11-08.md) et [OD-2026-11-08-B](POST_DEMO_LOT_1_OPERATOR_DECISION_2026-11-08.md), contrats 1.20.0, baseline `6c965169c2dc153cafd5a8609d914cf8de723ff3`. Branche `post-demo` ; rien sur `dev` ni sur `main`. Lot 0 approuvé ([rapport](../reports/post-demo-lot-0-foundations-2026-11-08.md)) ; Lot 1, l’Ours, accepté comme canon ([rapport](../reports/post-demo-lot-1-bear-2026-11-08.md)).
+Run claude-postdemo-lot2-20261108T0600Z (agent claude, session cloud). [OD-2026-11-07-I](POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md), [OD-2026-11-08-A](POST_DEMO_LOT_0_OPERATOR_DECISION_2026-11-08.md) et [OD-2026-11-08-B](POST_DEMO_LOT_1_OPERATOR_DECISION_2026-11-08.md), contrats 1.20.0, baseline `6c965169c2dc153cafd5a8609d914cf8de723ff3`. Branche `post-demo` ; rien sur `dev` ni sur `main`. Lot 0 approuvé ; Lot 1, l’Ours, canon ([rapport](../reports/post-demo-lot-1-bear-2026-11-08.md)) ; Lot 2, le Dragon : [rapport](../reports/post-demo-lot-2-dragon-2026-11-08.md), [fiche de texte](../reports/post-demo-lot-2-dragon-text-sheet-2026-11-08.md).
 
-UNE prochaine action : Lot 2 (le Dragon) en cours sur post-demo, après OD-2026-11-08-B (l’Ours accepté comme canon, images provisoires, toujours hors de dev). D’abord la carte des conséquences du Dragon, avant toute réplique ; puis carte et rencontres, boss, dialogues en brouillon, images provisoires, vérification et paquet ; arrêt.
+UNE prochaine action : Arrêt de fin de plateau (Lot 2, le Dragon) sur post-demo : paquet présenté (rapport docs/reports/post-demo-lot-2-dragon-2026-11-08.md, fiche de texte, carte des conséquences, liste des images, mode d’emploi). L’opérateur accepte le Dragon ou demande des retouches ; rien n’est canon sans son accord. Ensuite seulement : Lot 3 (le Scorpion). L’Ours (canon) et le Dragon restent hors de dev jusqu’à un ordre d’intégration, après l’étiquette Git sur le dernier commit de démo de dev.
 
 ---
 

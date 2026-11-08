@@ -1,11 +1,11 @@
 /**
  * Set 1.20.0, post-demo: the text sheet of a built post-demo plateau, for the operator's reading. Every scene in route
  * order, every line, every choice with its conditions and effects, every fight with its rewards and challenge, and
- * Borin's judgement as each deed is named. State-built scenes are printed under each state that changes them.
+ * the chief's judgement as each deed is named. State-built scenes are printed under each state that changes them.
  * Read-only: `npm run narrative:text-sheet -- bear [output.md]`.
  */
 import { writeFileSync } from 'node:fs';
-import { requirePlateauCampaign, type CampaignChapterId } from '../../src/campaign/plateaux/PlateauRegistry';
+import { CAMPAIGN_CLAN_LABELS, getPlateau, requirePlateauCampaign, type CampaignChapterId } from '../../src/campaign/plateaux/PlateauRegistry';
 import { POST_DEMO_REFUGE_GATHERINGS } from '../../src/campaign/plateaux/postDemoRefuges';
 import { challengeFor, describeChallenge } from '../../src/game/challenges';
 import { getPostDemoCombat, isPostDemoSceneBuilt, resolvePostDemoDialogue } from '../../src/game/postDemoContent';
@@ -54,17 +54,31 @@ function sequenceText(sequence: DialogueSequence): string[] {
 }
 
 /** The states a state-built scene is printed under: what changes it, never more. */
-const STATES: { label: string; state: GameState }[] = [
-  { label: 'Lion par l’honneur, conduite honorable dans l’Ours', state: perfectHonourPlateauState(chapterId) },
-  { label: 'Lion par la force, conduite avide dans l’Ours', state: greedPlateauState(chapterId) },
-];
-const lionForceHonourBear = perfectHonourPlateauState(chapterId);
-lionForceHonourBear.flags.serpentGeneralDefeated = false;
-lionForceHonourBear.flags.lionTrialWon = true;
-STATES.push({ label: 'Lion par la force, conduite honorable dans l’Ours', state: lionForceHonourBear });
+const plateau = getPlateau(chapterId);
+const hostName = plateau.hostClan ? CAMPAIGN_CLAN_LABELS[plateau.hostClan].replace(/^Clan d[eu]s? ?(l’)?/, '') : chapterId;
+const rivalName = plateau.rivalClan ? CAMPAIGN_CLAN_LABELS[plateau.rivalClan] : 'clan rival';
+/** The previous plateaux's force facts, so a scene that echoes them is printed both ways. */
+const PREVIOUS_FORCE: Readonly<Record<string, Readonly<Record<string, boolean>>>> = Object.freeze({
+  bear: { serpentGeneralDefeated: false, lionTrialWon: true },
+  dragon: { serpentGeneralDefeated: false, lionTrialWon: true, bearMasterSpyDefeated: false, bearTrialWon: true, bearDarkOreEvidence: false },
+});
+/** The pact flag that opens the decisive scene's third answer. */
+const PACT_FLAG: Readonly<Record<string, string>> = Object.freeze({ bear: 'bearRavenPact', dragon: 'dragonWolfPact' });
+const honour = perfectHonourPlateauState(chapterId);
+if (chapterId === 'dragon') Object.assign(honour.flags, { bearMasterSpyDefeated: true, bearDarkOreEvidence: true });
+const greed = greedPlateauState(chapterId);
+Object.assign(greed.flags, PREVIOUS_FORCE[chapterId] ?? {});
+const forceThenHonour = perfectHonourPlateauState(chapterId);
+Object.assign(forceThenHonour.flags, PREVIOUS_FORCE[chapterId] ?? {});
 const pact = greedPlateauState(chapterId);
-pact.flags.bearRavenPact = true;
-STATES.push({ label: 'Pacte avec le Corbeau', state: pact });
+Object.assign(pact.flags, PREVIOUS_FORCE[chapterId] ?? {});
+if (PACT_FLAG[chapterId]) pact.flags[PACT_FLAG[chapterId]!] = true;
+const STATES: { label: string; state: GameState }[] = [
+  { label: `plateaux précédents par l’honneur, conduite honorable ici (${hostName})`, state: honour },
+  { label: 'plateaux précédents par la force, conduite avide ici', state: greed },
+  { label: 'plateaux précédents par la force, conduite honorable ici', state: forceThenHonour },
+  { label: `pacte avec le ${rivalName.replace(/^Clan d[eu] ?/, '')}`, state: pact },
+];
 
 function scene(id: string, heading: string): string[] {
   const out = [`### ${heading} — \`${id}\``, ''];
@@ -97,9 +111,11 @@ function fight(combatId: string): string[] {
 }
 
 const out: string[] = [
-  `# Fiche de texte — ${chapterId === 'bear' ? 'Les Montagnes de la Résilience (l’Ours)' : chapterId} — BROUILLON`,
+  `# Fiche de texte — ${plateau.label} (${plateau.chief?.title ?? ''} ${plateau.chief?.name ?? ''}) — ${plateau.status === 'canon' ? 'CANON' : 'BROUILLON'}`,
   '',
-  'Générée par `tools/narrative/plateau-text-sheet.ts` depuis le contenu jouable. Brouillon : rien ici n’est canon avant l’approbation du plateau par l’opérateur.',
+  plateau.status === 'canon'
+    ? 'Générée par `tools/narrative/plateau-text-sheet.ts` depuis le contenu jouable. Canon : le plateau a été accepté par l’opérateur.'
+    : 'Générée par `tools/narrative/plateau-text-sheet.ts` depuis le contenu jouable. Brouillon : rien ici n’est canon avant l’approbation du plateau par l’opérateur.',
   '',
   '## Parcours, scènes et combats',
   '',
@@ -151,9 +167,10 @@ for (const poi of binding.topology.optionalPois) {
 for (const guardian of binding.topology.guardians) out.push(`- Gardien **${guardian.label}** (\`${guardian.id}\`) sur \`${guardian.spawnPosition}\`, deux vagues :`, `  ${fight(guardian.combat.id).join('')}`);
 out.push('');
 
-out.push('## Ce que Borin pèse au jugement', '', '| Fait | Nature | Poids | Phrase dite au jugement |', '| --- | --- | --- | --- |');
+const chiefName = plateau.chief?.name ?? plateau.chief?.title ?? 'le chef';
+out.push(`## Ce que ${chiefName} pèse au jugement`, '', '| Fait | Nature | Poids | Phrase dite au jugement |', '| --- | --- | --- | --- |');
 for (const deed of finale.deeds) out.push(`| \`${deed.flag}\` | ${deed.kind} (${deed.severity}) | ${finale.conductWeights[deed.flag] ?? 0} | ${deed.phrase} |`);
-out.push('', `Crédibilité devant Borin (proposée) : crédible à ${finale.credibility.credible}, haute à ${finale.credibility.high}. Faits de force : ${finale.forceFacts.map((f) => `\`${f}\``).join(', ')}. Fait d’honneur : \`${finale.honourFact}\`.`, '');
+out.push('', `Crédibilité devant ${chiefName} (${plateau.status === 'canon' ? 'approuvée' : 'proposée'}) : crédible à ${finale.credibility.credible}, haute à ${finale.credibility.high}. Faits de force : ${finale.forceFacts.map((f) => `\`${f}\``).join(', ')}. Fait d’honneur : \`${finale.honourFact}\`.`, '');
 
 const text = `${out.join("\n").replace(/\n{3,}/g, "\n\n").trimEnd()}\n`;
 if (output) writeFileSync(output, text);
