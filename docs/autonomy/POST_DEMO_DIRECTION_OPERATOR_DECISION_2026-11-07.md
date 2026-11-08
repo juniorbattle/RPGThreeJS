@@ -32,7 +32,7 @@ Tout le travail de l'après-démo se juge d'abord à cette aune.
 | R1 | Ce que mesure la réputation | La jauge reste inchangée, plus une relation par clan (allié, neutre ou ennemi) ; note ci-dessous |
 | R2 | Gain et perte | La jauge passe d'un plateau à l'autre sans remise à zéro ; les montants sont plus petits ensuite (voir la correction plus bas) |
 | R3 | Ce qu'elle change | Les quatre effets actuels, plus les alliances au Tournoi et à la fin ; aucun bonus de combat |
-| R4 | Choix de la fin | Les issues des quatre plateaux décident ; la jauge départage |
+| R4 | Choix de la fin | Les issues des quatre plateaux décident, la jauge départage, selon la règle de la fiche : trois ou quatre fois l'honneur donnent le Respect, sauf si la jauge est sous 40 (alors l'Équilibre) ; trois ou quatre fois la force donnent la Crainte, sauf si la jauge est à 60 ou plus (alors l'Équilibre) ; deux et deux donnent l'Équilibre |
 | P1 | Nombre de plateaux | Trois plateaux après le Lion, pour quatre Sceaux, livrés un par un |
 | P2 | Plateau retiré | Le Phénix ; il reste le clan adverse du Scorpion |
 | P3 | Ordre | Un ordre fixe : l'Ours, le Dragon, puis le Scorpion |
@@ -68,7 +68,7 @@ Tout le travail de l'après-démo se juge d'abord à cette aune.
 
 **Correction de la recommandation R2.** La fiche disait à la fois « la démo ne change pas » et « le joueur d'honneur atteint Renommé vers le troisième plateau plutôt qu'à la fin du Lion ». Ces deux phrases ne tiennent pas ensemble, puisque le Lion seul mène à 100. Pour que 100 récompense un parcours parfait sur tout le jeu, et pour que Renommé arrive vers le troisième plateau, il faut réduire les montants du Lion et y déplacer ses seuils dans la même proportion : Cedric à 20, escorte des témoins à 45, crédibilité devant Alaric à 45 et 70.
 
-**Décision ouverte.** Quand faire ce réétalonnage : dans l'après-démo, le Lion devenant le premier plateau du jeu complet et la démo figée gardant ses valeurs, ou dès maintenant dans la démo. La question est posée à l'opérateur le 2026-11-07.
+**Moment du réétalonnage.** Le 2026-11-07, l'opérateur a choisi l'après-démo. Le Lion y devient le premier plateau du jeu complet, avec ses montants et ses seuils réétalonnés. La démo garde ses valeurs actuelles pendant le playtest et une fois figée.
 
 **Objectif retenu pour l'étalonnage :**
 - un parcours parfait atteint 100 à la fin du jeu, pas avant ;
@@ -81,12 +81,56 @@ Tout le travail de l'après-démo se juge d'abord à cette aune.
 - **Session cloud.**
   - Elle ne démarre qu'une fois le texte de l'amendement-cadre (S1) approuvé et appliqué aux contrats.
   - D'ici là, le gel des contenus, des systèmes et des images nouveaux reste en vigueur, et la démo ne change pas.
-- **Brief.**
-  - Le brief de la session sera écrit dans le dépôt, pour qu'une session cloud partie de `dev` le lise.
-  - Il reprend le principe de l'opérateur, ces dix-sept choix, l'étalonnage de la réputation, le travail plateau par plateau et les points où la session s'arrête pour l'opérateur : textes, noms, images finales, acceptation de chaque plateau.
+- **Brief.** Le brief de la session est écrit dans le dépôt : [POST_DEMO_CLOUD_SESSION_BRIEF.md](POST_DEMO_CLOUD_SESSION_BRIEF.md).
+  - Il reprend le principe de l'opérateur, ces dix-sept choix et l'étalonnage de la réputation.
+  - Il fixe l'ordre des lots : fondations, l'Ours, le Dragon, le Scorpion, l'acte final, les fins.
+  - Il fixe les points où la session s'arrête pour l'opérateur : fin de chaque lot, noms, faits d'histoire, règles hors du cadre.
 - **Canon.** Aucun nom, dialogue ou personnage nouveau n'est fixé par cette décision. Le nom du chef Scorpion, l'identité de l'entité et toutes les répliques restent à valider par l'opérateur.
+
+## Amendement-cadre 1.20.0 — texte soumis
+
+État : **PROPOSED**, soumis à l'opérateur le 2026-11-07. Amendement `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, jeu de contrats 1.20.0. Texte exact : [POST_DEMO_FRAMEWORK_AMENDMENT_1.20.0.patch](POST_DEMO_FRAMEWORK_AMENDMENT_1.20.0.patch).
+
+Une relecture indépendante de contracts-guardian a rendu « PASS WITH WARNINGS ». Ses huit corrections requises sont appliquées :
+- les limites du son restent celles du jeu 1.12.0 ;
+- le combat final a deux phases seulement ;
+- la règle R4 est citée comme choisie ;
+- les nouveaux montants du Lion sont d'abord approuvés par l'opérateur ;
+- l'extension des moments est explicite ;
+- le chef Scorpion est désigné par son titre ;
+- la session s'arrête à l'acceptation de chaque plateau ;
+- les règles d'affichage propres au Lion sont préservées.
+
+Ses suggestions facultatives (combat contre les clans, ni vidéo ni image générée, validateur appliqué aux brouillons) sont reprises aussi.
+
+Ce que le texte ouvre, contrat par contrat :
+- **Constitution.** Trois phrases :
+  - la campagne de l'après-démo, en brouillons qui ne deviennent canon qu'à l'approbation de chaque plateau ;
+  - le tableau des rencontres du Tournoi, qui n'est pas un second mode de navigation ;
+  - les soutiens de clan, qui ne sont ni des Ultimes ni de la progression ;
+  - les nouveaux moments de tableaux vivants, sur des tableaux approuvés seulement.
+- **CAMPAIGN_AND_STATE.** La portée (trois plateaux dans l'ordre choisi, l'acte final, trois épilogues) et le gabarit du Lion. La règle des brouillons et l'approbation globale de chaque plateau. La réputation et les relations de clan, la règle de fin R4, l'étalonnage du Lion, les faits durables et leur migration, les soutiens, l'acte final.
+- **TRAVERSAL.** Chaque plateau a sa carte de lieux en trois régions, avec les mêmes règles que le Lion ; sa taille par défaut est celle du Lion. La capitale est une petite carte de lieux. Le tableau des rencontres présente seulement les combats ; leur ordre appartient à `RunSystem`.
+- **WORLD_AND_CHARACTERS.** Les clans et les chefs de la feuille de route, l'entité sans nom, les nouveaux atlas, les images provisoires marquées. Les images finales forment un lot à part.
+- **COMBAT_AND_VFX.**
+  - Défis et vagues des gardiens pour les nouveaux plateaux.
+  - Combat final en deux phases, Maelor puis l'entité, par le chemin sans résultat des vagues.
+  - Soutiens de clan utilisables une fois, adversaires ajoutés par les clans ennemis.
+  - Signatures procédurales pour les nouvelles compétences et une ambiance par nouveau biome.
+  - Les autres sons de boss et toute autre règle nouvelle sont proposés à l'opérateur.
+- **PRESENTATION_AND_MEDIA.** Des tableaux vivants pour l'arrivée et les deux issues de chaque plateau, la trahison du Tournoi et les trois épilogues. Chacun ne joue que sur un tableau approuvé et seulement si l'opérateur l'a gardé dans la table des moments. Le choix de la Fin de la Crainte se fait dans le dialogue qui suit le tableau.
+- **UI_AND_ACCESSIBILITY.** Les mêmes règles d'accessibilité pour les nouvelles surfaces.
+- **AUTHORING_AND_QA.** Le paquet de livraison de chaque plateau. Les conditions d'acceptation, dont le validateur de cohérence narrative et le test des bornes de réputation.
+- **AUTONOMOUS_WORK_PROTOCOL.** La branche de la session, son autorité d'écriture bornée, ses arrêts et le brief.
+
+Trois points vont un peu au-delà des dix-sept choix. L'opérateur peut les refuser chacun seul :
+1. Les tableaux vivants de l'arrivée et des issues de chaque plateau, et celui de la trahison au Tournoi, précisent les « grands moments » de S1. La fiche ne nommait que les épilogues (F5).
+2. Une ambiance sonore par nouveau biome : montagnes de l'Ours, pics du Dragon, désert du Scorpion, arène, capitale, brèche.
+3. La table des humeurs musicales peut recevoir les nouveaux dialogues, selon ses règles actuelles.
+
+Après l'accord de l'opérateur, le patch est appliqué tel quel. Viennent ensuite le commit d'amendement, puis un commit opérationnel qui inscrit son SHA comme baseline immuable. La session cloud peut alors partir.
 
 ## Limites
 
-- Aucun contrat n'est modifié ; la baseline 74fceb399dea8cd0c187d97350e3a11af6e04d26 reste en vigueur.
+- Aucun contrat n'est modifié tant que l'opérateur n'a pas approuvé le texte ; la baseline 74fceb399dea8cd0c187d97350e3a11af6e04d26 reste en vigueur.
 - Aucun code ni aucun texte du jeu ne change.

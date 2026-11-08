@@ -1,0 +1,274 @@
+diff --git a/docs/contracts/AUTHORING_AND_QA.md b/docs/contracts/AUTHORING_AND_QA.md
+index fc4261b4..d285de60 100644
+--- a/docs/contracts/AUTHORING_AND_QA.md
++++ b/docs/contracts/AUTHORING_AND_QA.md
+@@ -2,6 +2,25 @@
+ 
+ Status: **LOCKED**.
+ 
++## Post-demo authoring and acceptance — OD-2026-11-07-I
++
++Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0. Post-demo content follows the draft rule of CAMPAIGN_AND_STATE. A presentation brief still never mints canon; a draft becomes canon only through the operator's plateau-level approval, and the narrative coherence validator below applies to drafts before that approval.
++- **Delivery package.** Each plateau delivers:
++  - its consequence map: each major choice, the durable fact it sets, its reputation and clan-relation effects, and the later echoes that name their cause;
++  - its text sheet, with every dialogue, choice and effect;
++  - its catalogue of POIs, chests, encounters, guardians and rewards, with its own economy ceiling;
++  - its list of awaited final images;
++  - its evidence.
++- **Acceptance.** A plateau is accepted when all of the following hold:
++  - focused truth and integration tests at the Lion's level pass (gates, branch commitment, once-only, no farming, waves, phases, challenges, supports, victory and defeat, duplicate results);
++  - a narrative coherence validator passes. It fails on a fact set and never read, a fact read and never set, a major choice without a later echo, an echo that does not name its cause, a broken dialogue link, an unknown actor or an unreachable step;
++  - the reputation bounds test passes;
++  - migration and resume tests pass from a demo save and from the end of the previous plateau;
++  - a scripted playthrough of both paths and a browser check succeed;
++  - the full suite, types, build, contract validator and locked-document gate pass;
++  - the operator accepts it by play.
++- **The Lion.** Its delivery gates and economy ceilings of sets 1.4.0 and 1.18.0 keep governing the Lion.
++
+ ## Video retirement evidence — OD-2026-10-24-A
+ 
+ Dedicated `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md), set1.10.0: verify zero video/video-derived-hold modes, active video descriptors, video requests/elements/preloads and shipped MP4s, while preserving all historical beat/dialogue/choice identities. Inventory references before archive moves; hash archived media/manifests. Require focused ownership/handoff tests, types, build and one relevant native production continuation with inspected captures and reload. Keep historical source/driver/acceptance records immutable; no global PC/art/balance acceptance inferred. Existing video-specific matrices remain historical and must not be silently weakened or replayed as current proof.
+diff --git a/docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md b/docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md
+index 83111c96..5dd1a436 100644
+--- a/docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md
++++ b/docs/contracts/AUTONOMOUS_WORK_PROTOCOL.md
+@@ -58,3 +58,17 @@ Dedicated `PRODUCTION-CONTRACTS-MUSIC-AUDIO-1`, set 1.11.0, [operator decision](
+ ## Audio direction — OD-2026-11-01-B
+ 
+ Dedicated `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1`, set 1.12.0, [operator decision](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md). For this scope only, it supersedes in this contract's UI FX, combat FX and music sections: default off, default disabled and default silence (read as silent until the first real gesture), the Ultimate deferral, and the one-second limit for the cues named in COMBAT_AND_VFX. Agents may write, compose and tune the music, cues, marks, moods and ambience of this scope. The ban on AI audio services, downloaded or purchased tracks and provider polling is unchanged. Reference works inform techniques only: no melody or arrangement of a reference work is reproduced. The reviewed amendment baseline precedes runtime. Artistic acceptance stays with the operator.
++
++## Post-demo session — OD-2026-11-07-I
++
++Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0.
++- **Branch.** The post-demo session works on a temporary branch from `dev`. It merges `dev` into it at the start of each lot and pushes each green step. Its work reaches `dev` only on the operator's order after a plateau's acceptance. `main` stays forbidden.
++- **Authority.** It holds drafting authority bounded by set 1.20.0 of CAMPAIGN_AND_STATE, and no other canon authority.
++- **Stops.** It stops and waits for the operator:
++  - at each plateau's acceptance and at the end of each lot named in its brief;
++  - before a name, lore fact or contradiction that no decision settles;
++  - before a rule outside set 1.20.0;
++  - before a destructive Git operation;
++  - before anything that needs a secret.
++- **Lock.** The machine-local execution lock does not reach a cloud session; while it runs, no other agent writes its branch.
++- **Brief.** `docs/autonomy/POST_DEMO_CLOUD_SESSION_BRIEF.md`.
+diff --git a/docs/contracts/CAMPAIGN_AND_STATE.md b/docs/contracts/CAMPAIGN_AND_STATE.md
+index 26dd1911..5d5569b0 100644
+--- a/docs/contracts/CAMPAIGN_AND_STATE.md
++++ b/docs/contracts/CAMPAIGN_AND_STATE.md
+@@ -2,6 +2,20 @@
+ 
+ Status: **LOCKED**.
+ 
++## Post-demo framework — OD-2026-11-07-I
++
++Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1` / [OD-2026-11-07-I](../autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md), set 1.20.0, follows the operator's post-demo decision sheet. It opens the production of the campaign after the Lion demo within the bounds below. Every other locked rule stays in force, and the Lion's clauses keep governing the Lion except for the reputation calibration below.
++
++- **Scope.** Three Seal plateaux follow the Lion in a fixed order: the Bear against the Raven, the Dragon against the Wolf, the Scorpion against the Phoenix, as §3.2 to §3.4 of the operator's narrative roadmap (`docs/content/feuille_de_route_narrative_condensee.md`) and its status describe them. The Phoenix plateau of §3.5 is retired; the Phoenix stays the Scorpion's rival clan. One final act in three parts follows: the Tournament of the Great as arena fights presented on an encounter board, the escape and the corrupted capital on a small POI map, and the final fight at the breach; then three epilogues. The game has four Seals.
++- **Template.** Each plateau follows the Lion's template: three POI regions, refuges with the existing services and costs, exclusive forks with branch commitment, optional chests and encounters, challenges, stationary guardians, an honour path with two boss fights and a force path with one (§2.3 of the roadmap). Plateaux are built and delivered one at a time, and each needs the operator's acceptance before the next is built.
++- **Drafts and canon.** Post-demo dialogue, choices, stages, outcomes, rewards, encounters, chests, guardians and placements are written from four sources only: the roadmap, its status, the demo's established facts and the operator's decisions. No clan, place, character, object or lore that they do not contain is added; demo facts take precedence over the roadmap. Until the operator approves a plateau, its content is a playable draft on a temporary branch from `dev`, identifiable as draft in code, and is not canon; it reaches `dev` only on the operator's order. The operator approves each plateau's texts, choices, outcomes, rewards, catalogue and placements once, as a whole. This plateau-level approval replaces, for post-demo plateaux only, the per-chest and per-elite approval of sets 1.2.0 and 1.4.0 and the rule "Do not invent new canonical choices, encounters, stages, outcomes, or rewards" below, which keep governing the Lion. Names that the roadmap leaves open or that a decision changes, such as the Scorpion chief and the final entity, come from the operator, or from proposals he validates. Until then the Scorpion chief is designated by his title, never by "Kael" or "Kaelen".
++- **Reputation and clan relations.** The 0–100 reputation, its five bands and its effects carry across plateaux without reset: shop and forge prices, choice locks, credibility before a chief, refuge event weights. RunSystem owns a durable relation with each clan met, ally, neutral or enemy, set mainly by a plateau's outcome and by authored choices; the Tournament and the final act read it. Reputation and relations give no combat stat bonus.
++- **Ending.** As the operator chose on the sheet (R4), the ending follows the outcomes of the four plateaux; the Lion's Serpent pursuit route counts as honour and its Lion trial route as force. Three or four honour outcomes give Respect, or Balance when reputation is below 40. Three or four force outcomes give Fear, or Balance when reputation is 60 or more. Two and two give Balance.
++- **Calibration.** In the post-demo game, the Lion's reputation amounts and its reputation thresholds (recruitment at 20, witness escort at 45, Alaric's credibility at 45 and 70) are recalibrated to new values that the operator approves in the delivery package of the foundations lot before they apply. Only a perfect run reaches 100, at the end of the game; a consistent honour run reaches Renowned (80) around the third plateau. A test computes these bounds from content. The calibration changes amounts and thresholds only, never a choice, outcome, route or line, and never rewrites a saved value; a frozen demo build keeps its current values.
++- **Durable facts.** Clan relations, plateau progress and outcomes, final-act progress and the chosen ending are durable facts, saved through a versioned schema with an explicit migration and resume tests. A demo save resumes at its saved point, with every clan neutral until met and no Lion fact changed. Waves, boss phases, used supports and every visual or transient state are never saved.
++- **Supports and progression.** A clan support is an authored aid of an allied clan, usable once per final-act fight (COMBAT_AND_VFX). It is not progression, a level, XP or an Ultimate. Progression keeps its current channels, and Ultimates stay closed.
++- **Final act.** The Serpent is always the Tournament finalist. Maelor opens the breach and forms the first phase of the final fight; an entity that stays unnamed until the operator decides forms the next. In the Fear ending, a dialogue choice after its epilogue sequence offers a last survival fight against the clans or the acceptance of one's fate. Alaric's judgement keeps its role as the Lion's climax.
++
+ ## Final refuge services — OD-2026-11-05-E
+ 
+ Dedicated `PRODUCTION-CONTRACTS-FINAL-REFUGE-SERVICES-1`, set 1.15.0, follows the operator's economy decisions OD-2026-11-05-C and OD-2026-11-05-D: gold, materials and gems earned after the second refuge must be spendable before the judgement. The final refuge (`lion-final-refuge`, content `final_refuge`) keeps its narrative preparation beat, which plays first and unchanged. Right after it, the final refuge offers the existing refuge services: the refuge shop and its forge, skill upgrades, the company register and paid rest. While the judgement has not begun, returning to the resolved final refuge reopens them without replaying the dialogue. They reuse the same owners, shared shop stock, reputation prices, recipes and rest cost as the first two refuges, add no free rest and no restock, and continuing follows the existing route toward the judgement. The node keeps its `story` type, durable IDs, branch continuity, travel relations and save/resume authority; the services add no saved field, and their reopening derives from the existing resolved-node state. No new plot, choice, reward, consequence, dialogue line or art: the services panel reuses the node's authored label and hint and the approved `FINAL_REFUGE` environment plate. The beat order stays end of route -> breathing/preparation/context -> judgement, and Alaric's judgement and narrative-climax role are unchanged.
+diff --git a/docs/contracts/COMBAT_AND_VFX.md b/docs/contracts/COMBAT_AND_VFX.md
+index af825503..5c258bc8 100644
+--- a/docs/contracts/COMBAT_AND_VFX.md
++++ b/docs/contracts/COMBAT_AND_VFX.md
+@@ -2,6 +2,20 @@
+ 
+ Status: **LOCKED**.
+ 
++## Post-demo combat — OD-2026-11-07-I
++
++Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0. The tactical runtime keeps resolving every fight, and presentation shows only resolved events. Four heroes at most; Ultimates stay closed.
++- **Configs.** Each plateau's enemy families (its clans, and the fauna and corrupted creatures its roadmap section cites), guardians, challenges and bosses get their own authored configs, approved with the plateau.
++- **Challenges and waves.** Post-demo challenges use the closed condition list of set 1.18.0, with the prime decided by RunSystem. Post-demo guardian fights use the two-wave rule of set 1.19.0. This extends, to post-demo fights only, the six challenge fights of set 1.18.0 and "every other fight keeps a single wave" of set 1.19.0.
++- **Boss phases.** The final fight at the breach has two phases: Maelor, then the entity. When a phase's foes fall, the next phase enters by the same non-result path as a wave, with nothing restored or reset for the company. The fight is won when the last phase falls. The current phase is transient and never saved, and a resumed fight starts from its first phase.
++- **Clan supports.** Before a final-act fight, RunSystem decides its supports from the saved clan relations, and the deployment states them. Each support is usable once in that fight, through the runtime's normal action legality, AP and targeting. It is an authored effect of an existing family (healing, damage, status, protection) and adds no stat system. Its use is transient and never saved. Before the fight, RunSystem adds the authored foes of each enemy clan to the formation.
++- **New rules.** Any other new combat rule, including phases for another boss, is proposed to the operator, not built.
++- **Sound and FX.**
++  - New enemy skills get procedural FX recipes and signatures under the existing rules.
++  - One synthesized ambience per new combat biome joins the closed list of set 1.11.0: Bear mountains, Dragon peaks, Scorpion desert, the Tournament arena, the corrupted capital and the breach.
++  - Signature cues for post-demo bosses are proposed to the operator.
++  - The closed cue table keeps its set 1.12.0 bounds of 160 identities, 32 MB and 50 ms; any growth beyond them is proposed to the operator, not built.
++
+ ## Guardian waves — OD-2026-11-07-G
+ 
+ Dedicated `PRODUCTION-CONTRACTS-POI-GUARDIAN-WAVES-1`, set 1.19.0, follows the operator's decision sheet. The two stationary guardian fights of TRAVERSAL set 1.18.0 (`poi_elite_valley_sentinel`, `poi_elite_seal_warden`) are fought in two waves; every other fight keeps a single wave. The wave count is an optional static combat-config field, one by default, set to two for these two fights only, and never saved. When every enemy of the first wave is defeated, the tactical runtime brings in the second wave by a dedicated path that is neither the skirmish wave transition nor a result: no result card, no victory cue or fanfare, no campaign result message, and the encounter stays open. The second wave is the same annex formation with the same stats, without the QA lab's per-wave scaling, placed on the free cells nearest its annex cells; its enemies act from the next round's turn order, with existing entrances and sounds only and no new FX or sound. Between the waves nothing is restored or reset for the company: no healing, reviving, AP, status or item refill, and the round counter continues without reset; the reported facts (rounds, items used, heroes deployed) cover the whole fight. The fight is won only when the second wave falls; a defeat during either wave follows the existing defeat rules; the runtime reports the outcome once, after the last wave or the defeat. The guardians' rewards, three-hero challenge condition, prime, once-only rule and RunSystem's prime decision are unchanged, and a wave adds no reward. The current wave is transient fight state, never saved: a guardian fight resumed through the existing combat-phase continuation starts again from its first wave. The skirmish waves of the QA lab are unchanged. Presentation states the two waves before the fight and the current wave during it; it acquires no truth authority.
+diff --git a/docs/contracts/PRESENTATION_AND_MEDIA.md b/docs/contracts/PRESENTATION_AND_MEDIA.md
+index cb22a6d9..c60eb3b6 100644
+--- a/docs/contracts/PRESENTATION_AND_MEDIA.md
++++ b/docs/contracts/PRESENTATION_AND_MEDIA.md
+@@ -111,3 +111,18 @@ Dedicated `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-2` / [OD-2026-11-04-B](../autono
+ - **Audio.** A sequence takes the mood of its following dialogue through the existing mood table, with no new table key tied to the sequence. It adds no track or cue. Cinematic audio and voices stay DEFERRED.
+ - **Ownership.** One shared presentation-only player serves these moments. It creates no route, outcome, resource or save field.
+ - **Order.** A mockup of `bois_clair_arrival`, judged in motion by the operator, precedes the three other sequences and the animated backdrop. Operator artistic acceptance is by viewing. 1.14.0: its three sequences need no new mockup; the operator judges each in motion.
++
++## Post-demo moments — OD-2026-11-07-I
++
++Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0, extends the seven moments listed exhaustively above with post-demo moments, for those moments only. They follow the same medium, timing, length, agency, canon, cast, backdrop, reduced-motion, audio and ownership rules, and "No new text" applies unchanged: no captions.
++- **Moments.**
++  - For each post-demo plateau: its arrival, before its chief's first dialogue; and its two outcomes, after the victory that completes its honour path and after the victory that completes its force path, each after its post-combat dialogue.
++  - The Tournament betrayal, before the dialogue in which the breach opens.
++  - The three epilogues, Respect, Fear and Balance, each before its epilogue dialogue.
++
++  The Tournament betrayal and the epilogues last at most 40 seconds, the others at most 30.
++- **Approved tableaux only.** A post-demo sequence plays only on an approved painted tableau. While its tableau is provisional (WORLD_AND_CHARACTERS), the moment goes straight to its dialogue, as for a missing image.
++- **Choices.** The Fear ending's choice between a last fight and accepting one's fate belongs to the dialogue after its sequence, never to the sequence.
++- **Facts.** A moment table lists each moment's established facts. The operator approves it with its plateau, or with the final act for the Tournament betrayal and the epilogues; a moment it leaves out does not play.
++- **Music.** The plateaux and the final act reuse the nine music contexts. The mood table may gain keys for new dialogues under its existing rules, and mood is never computed from route, choice, reputation or relations.
++- **Unchanged.** The eight historical identities, zero active video and every other rule of the cinematic retirement stay in force. No generated or new illustrated image enters a sequence.
+diff --git a/docs/contracts/README.md b/docs/contracts/README.md
+index 6ce0e010..3a38f49b 100644
+--- a/docs/contracts/README.md
++++ b/docs/contracts/README.md
+@@ -19,6 +19,22 @@ Status terms: **LOCKED** means the decision is binding; **implemented** means so
+ 
+ ## Approved amendment history
+ 
++Contract set **1.20.0** / `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1` / [OD-2026-11-07-I](../autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md) follows the operator's post-demo decision sheet. It opens the campaign after the Lion demo:
++- three Seal plateaux on the Lion's template, the Bear, the Dragon and the Scorpion in that order, with the Phoenix plateau retired;
++- a three-part final act: the Tournament on an encounter board, the corrupted capital on a small POI map, a final fight in phases;
++- three epilogues chosen by the four plateau outcomes, reputation turning a lopsided result into Balance at set thresholds;
++- a durable relation with each clan, beside an unchanged 0–100 reputation carried without reset, and a post-demo recalibration of the Lion's amounts and thresholds so that only a perfect run reaches 100 (CAMPAIGN_AND_STATE).
++
++Content is written as playable drafts from the roadmap, its status, the demo's facts and the operator's decisions, and becomes canon only through the operator's approval of each plateau, delivered one at a time.
++- TRAVERSAL generalizes POI graphs, forks, branch commitment and guardians to each plateau and the capital.
++- WORLD_AND_CHARACTERS admits the roadmap's clans and chiefs, new atlases, and marked provisional images, with final images as a separate lot.
++- COMBAT_AND_VFX adds post-demo challenges and waves, boss phases by a non-result path, once-per-fight clan supports, enemy-clan foes, new biome ambiences and a larger cue bound.
++- PRESENTATION_AND_MEDIA adds living-tableau moments on approved tableaux only.
++- UI_AND_ACCESSIBILITY, AUTHORING_AND_QA and AUTONOMOUS_WORK_PROTOCOL add accessible surfaces, plateau acceptance with a narrative coherence validator, and the session's branch and stop rules.
++- The Constitution gains three sentences.
++
++Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before any runtime work.
++
+ Contract set **1.19.0** / `PRODUCTION-CONTRACTS-POI-GUARDIAN-WAVES-1` / [OD-2026-11-07-G](../autonomy/POI_CHALLENGES_OPERATOR_DECISION_2026-11-07.md) follows the operator's decision sheet on waves. The two stationary guardian fights of set 1.18.0 are fought in two waves of the same annex formation with the same stats, set by an optional static config field that defaults to one; the second wave enters once the first has fallen, by a dedicated path that is not a result, with nothing restored or reset for the company, and the fight is won only when it falls (COMBAT_AND_VFX; TRAVERSAL gains a pointer). Every other fight keeps one wave. Rewards, the three-hero condition, primes and RunSystem's decision are unchanged, and nothing is saved: a resumed guardian fight starts again from its first wave. The encounter, deployment and objective state the waves in text (UI_AND_ACCESSIBILITY), and AUTHORING_AND_QA adds the matching tests. The Constitution is unchanged. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before any runtime work.
+ 
+ Contract set **1.18.0** / `PRODUCTION-CONTRACTS-POI-CHALLENGES-1` / [OD-2026-11-07-F](../autonomy/POI_CHALLENGES_OPERATOR_DECISION_2026-11-07.md) follows the operator's PC playtest. The two Lot E elites stop moving and become stationary guardians of two optional chests, the valley sentinel at the bridge cache and the seal warden at the ruins reserve, posted once their activation is met and their chest unlocked, with the unchanged front and contested Combat or retreat, formations, three-hero cap, rewards and once-only rule; explicit Wait, the map turn count, threat zones and new rear interceptions retire, including after a travel (TRAVERSAL). Six optional fights become challenges with one stated condition each (at most three heroes, no items, or victory within N rounds) and a prime of two red gems, one for the initiation, that RunSystem decides from reported combat facts and attributes once on a victory that holds the condition (COMBAT_AND_VFX). The map, deployment, combat HUD and result state conditions and primes in text (UI_AND_ACCESSIBILITY); the atlases and the 33 POIs are unchanged (WORLD_AND_CHARACTERS). Older saves resume with guardians at their post or inactive, an old pending step clears without moving anyone, and no saved field is added (CAMPAIGN_AND_STATE). AUTHORING_AND_QA replaces the Wait, collision and threat-zone tests with guardian and challenge tests, and raises the conditional Lot E red_gem ceiling from 10 to 15. The Constitution is unchanged: it names neither the elites nor Wait. Order: independent actual-diff review, operator approval, amendment commit, then a following operational commit that records its SHA as the immutable baseline before any runtime work.
+diff --git a/docs/contracts/TRAVERSAL.md b/docs/contracts/TRAVERSAL.md
+index c9aa681a..cc074122 100644
+--- a/docs/contracts/TRAVERSAL.md
++++ b/docs/contracts/TRAVERSAL.md
+@@ -4,6 +4,16 @@ Status: **LOCKED**. Historical contract ID: `TRAVERSAL`, retained in the eight-c
+ 
+ ## Production navigation
+ 
++### Post-demo plateaux — OD-2026-11-07-I
++
++Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0. Each post-demo plateau of CAMPAIGN_AND_STATE has its own authored POI graph in three regions, with:
++- refuges;
++- exclusive forks, each with a branch commitment to the POI that resolves its chapter;
++- optional chests and encounters;
++- challenges and stationary guardians.
++
++The same RunSystem ownership and rules apply as for the Lion: connected movement, activation, once-only resolution, travel to resolved POIs (set 1.16.0), branch commitment (set 1.17.0), guardian posts (set 1.18.0) and waves (set 1.19.0). The plateau-level approval of CAMPAIGN_AND_STATE fixes its catalogue, forks, resolving POIs, guardians and posts. Its size follows the demo duration the operator measures, and by default matches the Lion's: 21 canonical and 12 optional nodes, two guardians. New durable IDs carry their own plateau prefix under the existing conventions; no Lion ID changes. The corrupted capital of the final act is a small POI map under the same rules. The Tournament's encounter board presents its ordered arena fights and their results; RunSystem owns their order and progression. The board is not a POI map and not a second navigation mode. The Lion's clauses below, including its three forks and two guardians, keep governing the Lion.
++
+ ### Travel to resolved POIs — OD-2026-11-06-A
+ 
+ Dedicated `PRODUCTION-CONTRACTS-POI-RESOLVED-TRAVEL-1`, set 1.16.0, follows the operator's PC playtest so that moving across known ground stays quick. From the map, the company may travel in one committed movement to any resolved POI, except during a set 1.17.0 branch commitment. RunSystem finds the shortest route over connected, unlocked edges, including authored bypass connections, whose intermediate POIs are resolved or neutralized and are not occupied by a mobile elite; a bypassed optional POI is skipped, never entered or activated. Without such a route this travel is unavailable and ordinary movement remains. The travel counts as one committed map movement: one turn, after which each mobile elite moves at most one edge. Under set 1.18.0 no elite moves after a travel, and the clauses on a later rear encounter apply only to an encounter saved by an older save. A destination occupied by an elite offers the existing Combat or retreat before anything is committed; retreat or front victory leaves the company at its departure POI. For a later rear encounter, the safe return is the route's last POI before the destination when it qualifies as a safe inert return under the Lot E rule; otherwise the threat movement is rejected as Lot E provides. Arrival replays no content and reuses only what a resolved POI already offers, including the services of reusable refuges and of the set 1.15.0 final refuge. The travel adds no saved field: position, visits and turn remain the existing facts. The map pawn follows the route; reduced motion places it directly. Unresolved, locked and neutralized destinations keep their current rules, and every canonical causal gate, exclusive choice and directed recovery link is preserved.
+diff --git a/docs/contracts/UI_AND_ACCESSIBILITY.md b/docs/contracts/UI_AND_ACCESSIBILITY.md
+index 2cf4386a..376bbd22 100644
+--- a/docs/contracts/UI_AND_ACCESSIBILITY.md
++++ b/docs/contracts/UI_AND_ACCESSIBILITY.md
+@@ -2,6 +2,16 @@
+ 
+ Status: **LOCKED**.
+ 
++## Post-demo surfaces — OD-2026-11-07-I
++
++Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0. The post-demo POI maps, the Tournament encounter board, clan relations, supports, waves and boss phases follow the existing rules:
++- states in text, never by colour alone;
++- keyboard and gamepad paths, and focus;
++- 1366 px desktop and 390 px phone layouts;
++- reduced motion as an in-app setting.
++
++The encounter board states each fight, its order and its result in text. The deployment states each support and the clan that grants it. The objective states the current wave or phase. The 33-POI display rule and the wave text of earlier sets keep governing the Lion; each post-demo map shows its own approved catalogue. Presentation acquires no truth authority.
++
+ ## Guardians and challenges — OD-2026-11-07-F
+ 
+ Dedicated `PRODUCTION-CONTRACTS-POI-CHALLENGES-1`, set 1.18.0. The map shows each undefeated guardian on its post as a distinct marker named in text, and marks every challenge place "Défi" with its condition and prime in text, readable without colour. It no longer shows a Wait action, a turn count, a threatened area, a patrol or chase tendency or a contested route. Combat or retreat keeps its intents and focus restoration. The condition and the prime appear before deployment, the round condition stays visible during the fight, and the result says whether the prime was earned. Set 1.19.0 (COMBAT_AND_VFX): the guardian encounter and the deployment state in text that the fight has two waves; during the fight the objective shows the current wave ("Vague 1 / 2") and a text status line announces the second wave, readable without colour, at 1366 and 390 px, with reduced motion on and off. Targets, keyboard, gamepad, responsive bounds and reduced motion follow the rules of this contract.
+diff --git a/docs/contracts/WORLD_AND_CHARACTERS.md b/docs/contracts/WORLD_AND_CHARACTERS.md
+index 0981cdcd..b94e86fd 100644
+--- a/docs/contracts/WORLD_AND_CHARACTERS.md
++++ b/docs/contracts/WORLD_AND_CHARACTERS.md
+@@ -2,6 +2,13 @@
+ 
+ Status: **LOCKED**.
+ 
++## Post-demo world and art — OD-2026-11-07-I
++
++Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0.
++- **Characters.** The clans, chiefs and Shadow agents that the roadmap names (§3.2 to §3.4, §3.6, §3.7), and those of the operator's decisions, may appear in the post-demo plateaux. The Lot E rule "add no lore, named character, faction or cinematic" keeps governing the Lion. The final entity stays unnamed until the operator decides, and demons stay unnamed before the breach. New characters follow the Character V2 family, each with a declared pose and staging role.
++- **Atlases and environments.** Each plateau gets three atlas compositions in the Option C / Pixel Diorama Fantasy direction, and the capital one small map. Each environment family stays recognizable across map, tableau and arena: the Resilience Mountains and their sacred mines, the Celestial Peaks, the Arid Deserts, the arena, the corrupted capital and the breach.
++- **Provisional images.** Until a plateau's final images exist, it may use provisional images: approved Lion backdrops and atlases, reused or cropped, and silhouettes and generic portraits drawn from existing resources. None is generated, and none is a video. Each is marked provisional in its art registry and listed with the final image it awaits. A provisional image is not production art and never sets art direction. The final images, including new characters' Character V2 masters, form a separate lot led with the operator. This narrows, for marked provisional images in post-demo plateaux only, "An asset deficit is a documented blocker for that deliverable, not permission to insert fake production art".
++
+ ## Lot E atlas composition — OD-2026-10-15-B
+ 
+ Dedicated `PRODUCTION-CONTRACTS-POI-LOT-E-1`, set 1.4.0, [approved authoring](../autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md). Adapt the three existing Option C / Pixel Diorama Fantasy atlas compositions to 33 permanent POIs and two separate mobile threat overlays. Finalize approved loops with coherent clearings, relief, river/bridge crossings and legible marker/label space; recompose a background when needed rather than shrink usable targets. Paths and threat presentation never become progression or physical collision authority. Under set 1.18.0 (TRAVERSAL) the two threat overlays become stationary guardian markers on their posts; the atlases and the 33 POIs are unchanged. Reuse the existing bestiary and Character V2 resources; add no lore, named character, faction or cinematic. Inspect three comparable native captures against approved environment style. Technical delivery does not substitute for operator artistic acceptance.
+diff --git a/docs/contracts/contracts.manifest.json b/docs/contracts/contracts.manifest.json
+index e986fe3f..b4ec0333 100644
+--- a/docs/contracts/contracts.manifest.json
++++ b/docs/contracts/contracts.manifest.json
+@@ -2,7 +2,7 @@
+   "schemaVersion": 1,
+   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
+   "lockedAt": "2026-10-01",
+-  "contractSetVersion": "1.19.0",
++  "contractSetVersion": "1.20.0",
+   "approvedAmendments": [
+     {
+       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
+@@ -292,6 +292,25 @@
+       "constitutionChanged": false,
+       "supersededRule": "Every campaign fight in a single wave with unchanged formations; the two stationary guardian fights now have two waves of the same formation and stats, set by an optional static config field, the second entering by a non-result path once the first has fallen with nothing restored, won only after the second wave, with unchanged rewards and primes and no saved field",
+       "implementationAcceptance": "PENDING; runtime, scoped browser evidence and operator playtest acceptance"
++    },
++    {
++      "taskId": "PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1",
++      "operatorDecisionId": "OD-2026-11-07-I",
++      "operatorDecisionPath": "docs/autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md",
++      "approvedAt": "PENDING",
++      "changedContracts": [
++        "AUTHORING_AND_QA",
++        "AUTONOMOUS_WORK_PROTOCOL",
++        "CAMPAIGN_AND_STATE",
++        "COMBAT_AND_VFX",
++        "PRESENTATION_AND_MEDIA",
++        "TRAVERSAL",
++        "UI_AND_ACCESSIBILITY",
++        "WORLD_AND_CHARACTERS"
++      ],
++      "constitutionChanged": true,
++      "supersededRule": "Content limited to the authored Lion campaign (21 canonical and 12 optional nodes, two guardians, three atlases, seven living-tableau moments, closed biome and cue lists); the post-demo campaign of three Seal plateaux, a three-part final act and three epilogues is now opened as playable drafts that become canon only on per-plateau operator approval, with clan relations, a post-demo Lion reputation recalibration, boss phases, clan supports, marked provisional images and new moments on approved tableaux only",
++      "implementationAcceptance": "PENDING; per-plateau delivery packages, coherence validator, reputation bounds test and operator acceptance by play"
+     }
+   ],
+   "status": "LOCKED",
+diff --git a/docs/game/GAME_CONSTITUTION.md b/docs/game/GAME_CONSTITUTION.md
+index 2cdf78c7..3aa3b4de 100644
+--- a/docs/game/GAME_CONSTITUTION.md
++++ b/docs/game/GAME_CONSTITUTION.md
+@@ -10,15 +10,15 @@ The final visual direction is modern pixel art / HD-2D fantasy JRPG and tactical
+ 
+ ## Campaign and play
+ 
+-Under OD-2026-10-13-D / `PRODUCTION-CONTRACTS-POI-NAVIGATION-1`, set 1.2.0, the illustrated connected POI map is the sole final production navigation. Playable Traversal T0/T1/T3 is superseded on navigation only. Preserve authored content, T0–T4 durable identities, required causal ordering and V6 compatibility. Temporary internal migration compatibility never becomes a permanent second player mode. Campaign and RunSystem revalidate connected movement, backtracking and activation. Resolved POIs replay no effects; neutralized is distinct from resolved; unlocked refuges reuse existing services.
++Under OD-2026-10-13-D / `PRODUCTION-CONTRACTS-POI-NAVIGATION-1`, set 1.2.0, the illustrated connected POI map is the sole final production navigation. Playable Traversal T0/T1/T3 is superseded on navigation only. Preserve authored content, T0–T4 durable identities, required causal ordering and V6 compatibility. Temporary internal migration compatibility never becomes a permanent second player mode. Campaign and RunSystem revalidate connected movement, backtracking and activation. Resolved POIs replay no effects; neutralized is distinct from resolved; unlocked refuges reuse existing services. Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1` / [OD-2026-11-07-I](../autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md), set 1.20.0, opens the post-demo campaign under CAMPAIGN_AND_STATE: three more Seal plateaux on the Lion's template, a three-part final act and three epilogues, written as drafts that become canon only on the operator's approval of each plateau. The Tournament's encounter board presents an ordered series of arena fights beside the POI maps; it is not a second navigation mode.
+ 
+ Tactical Combat resolves gameplay. Combat Stage and VFX present resolved events and never calculate or duplicate damage, AP, statuses, or outcomes. Refuges prepare the party. Gameplay owners credit earned gold and items immediately to usable holdings. On defeat, restore the last valid actual save of the selected game, including its rewards, spending and resolution facts together; only unsaved changes are undone. OD-2026-10-18-C / PRODUCTION-CONTRACTS-LAST-SAVE-RELOAD-1 supersedes the former unsecured-loot/checkpoint-loss rule.
+ 
+-Progression currently has no level or XP. Equipment, weapon tiers, two accessory slots, skill upgrades, recruitment, and materials carry progression. Exactly one weapon is equipped. Ultimates remain outside scope pending an explicit decision.
++Progression currently has no level or XP. Equipment, weapon tiers, two accessory slots, skill upgrades, recruitment, and materials carry progression. Exactly one weapon is equipped. Ultimates remain outside scope pending an explicit decision. The clan supports of set 1.20.0 are neither Ultimates nor progression.
+ 
+ ## Narrative and media
+ 
+-`STATIC_TABLEAU` is the normal interactive narrative language: staged actors with position, facing, look target, depth, focus, and restaging. Prefer readable compositions, currently up to four visible actors. Dedicated `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md), set1.10.0: production videos are retired. Preserve the eight historical beat identities in [the media contract](../contracts/PRESENTATION_AND_MEDIA.md), with zero active video slots; existing static dialogues/tableaux retain the major moments and agency. `MAIN_EVENT => CINEMATIC_REQUIRED` is superseded. Dedicated `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-1` / [OD-2026-11-04-A](../autonomy/LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md), set 1.13.0, adds code-animated living tableaux on existing approved tableaux at the moments listed in PRESENTATION_AND_MEDIA. They precede the static dialogues and tableaux, and may animate their backdrop. They never replace them, and the static dialogues and tableaux keep each moment's text, choices and agency. Audio is **DEFERRED** until narrative, presentation, cinematics, and POI navigation structure are demonstrably locked and stable, except the eight operator-accepted UI FX files and audited native events under OD-2026-10-18-F / PRODUCTION-CONTRACTS-UI-FX-1. This bounded exception requires default silence, voluntary enable/mute/volume and real gesture unlock; preferences remain outside gameplay saves, failures never block agency or write game truth. OD-2026-10-19-B / PRODUCTION-CONTRACTS-COMBAT-FX-1 further authorizes the bounded16family nonverbal combat FX pack and audited UI feedback, with shared parent settings, current iframe/session/allowlist validation, directly observed trusted gesture, deduplication and bounded priority playback; new files await operator artistic acceptance. Audio never resolves gameplay or serializes transient state. OD-2026-10-29-B / `PRODUCTION-CONTRACTS-MUSIC-AUDIO-1`, set1.11.0, authorizes code-generated music for five presentation contexts, one synthesized ambience per combat biome and synthesized sources for the existing sixteen combat families, under the same parent owner; effects stay default off, while music and ambience are on by default but silent until the first real gesture. Combat presentation happens in the arena (the Combat Stage scene is retired). Dedicated `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1` / [OD-2026-11-01-B](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md), set 1.12.0, supersedes in that scope only: the five music contexts (nine, listed in PRESENTATION_AND_MEDIA); "default silence", "voluntary enable" and "effects stay default off" (effects, like music and ambience, are on by default and silent until the first real gesture of the session, and a stored choice to turn them off is honoured); the limit to sixteen combat families and the one-second limit for the cues named in COMBAT_AND_VFX; and the Ultimate audio deferral. It authorizes sound for presentation only and does not activate, unlock or change any Ultimate. Voices and cinematic/video audio remain DEFERRED. These exceptions do not infer global acceptance.
++`STATIC_TABLEAU` is the normal interactive narrative language: staged actors with position, facing, look target, depth, focus, and restaging. Prefer readable compositions, currently up to four visible actors. Dedicated `PRODUCTION-CONTRACTS-CINEMATIC-RETIREMENT-1` / [OD-2026-10-24-A](../autonomy/CINEMATIC_RETIREMENT_OPERATOR_DECISION_2026-10-24.md), set1.10.0: production videos are retired. Preserve the eight historical beat identities in [the media contract](../contracts/PRESENTATION_AND_MEDIA.md), with zero active video slots; existing static dialogues/tableaux retain the major moments and agency. `MAIN_EVENT => CINEMATIC_REQUIRED` is superseded. Dedicated `PRODUCTION-CONTRACTS-LIVING-TABLEAUX-1` / [OD-2026-11-04-A](../autonomy/LIVING_TABLEAUX_OPERATOR_DECISION_2026-11-04.md), set 1.13.0, adds code-animated living tableaux on existing approved tableaux at the moments listed in PRESENTATION_AND_MEDIA. They precede the static dialogues and tableaux, and may animate their backdrop. They never replace them, and the static dialogues and tableaux keep each moment's text, choices and agency. Set 1.20.0 adds the post-demo moments listed there, on approved tableaux only. Audio is **DEFERRED** until narrative, presentation, cinematics, and POI navigation structure are demonstrably locked and stable, except the eight operator-accepted UI FX files and audited native events under OD-2026-10-18-F / PRODUCTION-CONTRACTS-UI-FX-1. This bounded exception requires default silence, voluntary enable/mute/volume and real gesture unlock; preferences remain outside gameplay saves, failures never block agency or write game truth. OD-2026-10-19-B / PRODUCTION-CONTRACTS-COMBAT-FX-1 further authorizes the bounded16family nonverbal combat FX pack and audited UI feedback, with shared parent settings, current iframe/session/allowlist validation, directly observed trusted gesture, deduplication and bounded priority playback; new files await operator artistic acceptance. Audio never resolves gameplay or serializes transient state. OD-2026-10-29-B / `PRODUCTION-CONTRACTS-MUSIC-AUDIO-1`, set1.11.0, authorizes code-generated music for five presentation contexts, one synthesized ambience per combat biome and synthesized sources for the existing sixteen combat families, under the same parent owner; effects stay default off, while music and ambience are on by default but silent until the first real gesture. Combat presentation happens in the arena (the Combat Stage scene is retired). Dedicated `PRODUCTION-CONTRACTS-AUDIO-DIRECTION-1` / [OD-2026-11-01-B](../autonomy/AUDIO_DIRECTION_OPERATOR_DECISION_2026-11-01.md), set 1.12.0, supersedes in that scope only: the five music contexts (nine, listed in PRESENTATION_AND_MEDIA); "default silence", "voluntary enable" and "effects stay default off" (effects, like music and ambience, are on by default and silent until the first real gesture of the session, and a stored choice to turn them off is honoured); the limit to sixteen combat families and the one-second limit for the cues named in COMBAT_AND_VFX; and the Ultimate audio deferral. It authorizes sound for presentation only and does not activate, unlock or change any Ultimate. Voices and cinematic/video audio remain DEFERRED. These exceptions do not infer global acceptance.
+ 
+ ## Durable boundaries
+ 
