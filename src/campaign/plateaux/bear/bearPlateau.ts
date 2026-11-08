@@ -29,5 +29,10 @@ export const BEAR_PLATEAU_BINDING: PlateauCampaignBinding = Object.freeze({
   guardianIds: Object.freeze(BEAR_GUARDIANS.map((guardian) => guardian.id)),
   atlasIds: Object.freeze(BEAR_ATLAS_REGIONS.map((region) => region.image)),
   resolveOutcome: resolveBearPlateauOutcome,
+  // Proposed with the plateau, as `bear.consequences.json` records them. A Raven pact made in the mines stands.
+  outcomeRelations: Object.freeze({
+    honour: Object.freeze([{ clan: 'bear', stance: 'ally' }, { clan: 'raven', stance: 'enemy' }] as const),
+    force: Object.freeze([{ clan: 'bear', stance: 'enemy' }, { clan: 'raven', stance: 'enemy' }] as const),
+  }),
   topology: BEAR_TOPOLOGY,
 });

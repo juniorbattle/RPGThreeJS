@@ -1,5 +1,6 @@
 import { createUnitInstance, getFinalStats, getItemCategory } from './catalog';
-import { consolidateLegacyLoot, createRunState, enterRunNode, getAvailableRunNodes, getRunNode } from './runSystem';
+import { consolidateLegacyLoot, createPlateauRunState, createRunState, enterRunNode, getAvailableRunNodes, getRunNode } from './runSystem';
+import { plateauIdForRun, requirePlateauCampaign } from '../campaign/plateaux/PlateauRegistry';
 import { migratePoiExpedition } from './poiExpedition';
 import { LION_CANONICAL_POI_IDS } from '../campaign/LionPoiAuthoring';
 import { createCampaignProgress, migrateCampaignProgress } from './campaignProgress';
@@ -94,6 +95,20 @@ function hasCurrentLionRoute(state: GameState): boolean {
     && Math.max(...nodes.map((node) => node.depth)) === 17;
 }
 
+/**
+ * Set 1.20.0 (post-demo): a run of a later plateau is kept as saved while its graph still holds that plateau's route.
+ * A draft route that changed since the save restarts the plateau from its first POI, keeping every saved fact.
+ */
+function migrateCurrentRoute(previous: GameState): GameState {
+  const plateauId = plateauIdForRun(previous.run);
+  if (plateauId === 'lion') return hasCurrentLionRoute(previous) ? previous : migrateCurrentLionRoute(previous);
+  const nodes = previous.run.graph.nodes;
+  const binding = requirePlateauCampaign(plateauId);
+  if ([...binding.canonicalNodeIds, ...binding.optionalNodeIds].every((id) => nodes.some((node) => node.id === id))) return previous;
+  const run = createPlateauRunState(plateauId, previous.run.seed);
+  return gameStateSchema.parse({ ...previous, currentNodeId: run.currentNodeId, visitedNodeIds: [...run.visitedNodeIds], run });
+}
+
 function migrateCurrentLionRoute(previous: GameState): GameState {
   const previousNode = getRunNode(previous.run);
   const targetDepth = Math.min(18, previousNode?.depth ?? previous.resolvedNodeIds.length);
@@ -127,7 +142,7 @@ export function migrateState(value: unknown): GameState {
 function migrateSavedState(value: unknown): GameState {
   const normalized = normalizeLegacyEquipment(value);
   const current = gameStateSchema.safeParse(normalized);
-  if (current.success) return migratePoiExpedition(hasCurrentLionRoute(current.data) ? current.data : migrateCurrentLionRoute(current.data));
+  if (current.success) return migratePoiExpedition(migrateCurrentRoute(current.data));
   const v5 = gameStateV5Schema.safeParse(normalized);
   if (v5.success) return migratePoiExpedition(migrateV5(v5.data));
   const v4 = gameStateV4Schema.safeParse(normalized);

@@ -57,6 +57,11 @@ export interface PlateauBranchCommitment {
   resolvingNodeId: string;
 }
 
+export interface PlateauOutcomeRelation {
+  clan: CampaignClanId;
+  stance: 'ally' | 'neutral' | 'enemy';
+}
+
 /** What RunSystem reads about a built chapter. Data only: no function here may import RunSystem. */
 export interface PlateauCampaignBinding {
   regionId: string;
@@ -76,6 +81,11 @@ export interface PlateauCampaignBinding {
   atlasIds: readonly string[];
   /** Reads the plateau outcome from saved facts; null while no outcome is recorded. */
   resolveOutcome: (flags: Readonly<Record<string, boolean>>) => PlateauOutcome | null;
+  /**
+   * The clan relations each outcome sets, exactly as the plateau's consequence map states them (a test holds the two
+   * equal). A relation an authored choice of the same plateau already set is kept: the outcome never overrides it.
+   */
+  outcomeRelations: Readonly<Record<PlateauOutcome, readonly PlateauOutcomeRelation[]>>;
   /** The navigation topology RunSystem applies to the plateau's runs. */
   topology: PlateauTopology;
 }
@@ -195,6 +205,11 @@ export function requirePlateauCampaign(id: CampaignChapterId): PlateauCampaignBi
 export function plateauCampaignForRun(run: { id: string }): PlateauCampaignBinding {
   return PLATEAU_REGISTRY.find((entry) => entry.campaign && run.id.startsWith(entry.campaign.runIdPrefix))?.campaign
     ?? requirePlateauCampaign('lion');
+}
+
+/** The chapter that owns a run, by the same rule as its binding: an unclaimed (demo) run ID is the Lion's. */
+export function plateauIdForRun(run: { id: string }): CampaignChapterId {
+  return PLATEAU_REGISTRY.find((entry) => entry.campaign && run.id.startsWith(entry.campaign.runIdPrefix))?.id ?? 'lion';
 }
 
 /** The navigation topology of the plateau that owns a run. */

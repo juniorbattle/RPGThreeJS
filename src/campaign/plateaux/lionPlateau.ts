@@ -80,5 +80,10 @@ export const LION_PLATEAU_BINDING: PlateauCampaignBinding = Object.freeze({
   guardianIds: Object.freeze(LOT_E_ELITES.map((elite) => elite.id)),
   atlasIds: Object.freeze(LION_POI_REGIONS.map((region) => region.image)),
   resolveOutcome: resolveLionPlateauOutcome,
+  // Approved on the Lot 0 sheet (OD-2026-11-08-A, point 5), as `lion.consequences.json` records them.
+  outcomeRelations: Object.freeze({
+    honour: Object.freeze([{ clan: 'lion', stance: 'ally' }, { clan: 'serpent', stance: 'enemy' }] as const),
+    force: Object.freeze([{ clan: 'lion', stance: 'neutral' }, { clan: 'serpent', stance: 'enemy' }] as const),
+  }),
   topology: LION_TOPOLOGY,
 });
