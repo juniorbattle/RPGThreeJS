@@ -3034,7 +3034,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 
 /* Set 1.20.0 (UI_AND_ACCESSIBILITY "Post-demo surfaces"), post-demo Lot 4: the Tournament's encounter board. States in
    text, native buttons for keyboard and gamepad, one column at phone width. The backdrop is a provisional image. */
-.tournament-board { position: absolute; inset: 0; display: grid; grid-template-rows: auto auto 1fr auto; gap: 18px; padding: clamp(18px, 4vw, 48px); overflow-y: auto; color: var(--ui-color-cream); background: linear-gradient(rgba(8,10,16,.78), rgba(8,10,16,.9)), var(--tournament-board-backdrop, none) center / cover no-repeat, #0b0d14; }
+.tournament-board { position: absolute; inset: 0; pointer-events: auto; display: grid; grid-template-rows: auto auto 1fr auto; gap: 18px; padding: clamp(18px, 4vw, 48px); overflow-y: auto; color: var(--ui-color-cream); background: linear-gradient(rgba(8,10,16,.78), rgba(8,10,16,.9)), var(--tournament-board-backdrop, none) center / cover no-repeat, #0b0d14; }
 .tournament-board__mark { justify-self: end; margin: 0; padding: 3px 8px; border: 1px solid rgba(240,179,106,.6); border-radius: 3px; background: rgba(16,12,8,.72); color: #f0b36a; font: 700 10px var(--ui-font-title); letter-spacing: .08em; text-transform: uppercase; }
 .tournament-board__header { display: grid; gap: 6px; max-width: 760px; }
 .tournament-board__eyebrow { margin: 0; color: var(--gold-bright); font: 700 12px var(--ui-font-title); letter-spacing: .14em; text-transform: uppercase; }
