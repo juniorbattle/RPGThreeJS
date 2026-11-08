@@ -21,6 +21,8 @@ import {
   stageActors,
 } from './NarrativeTableau';
 import type { CinematicReductionClassification } from './CinematicReductionPolicy';
+import { isDraftContent } from '../game/postDemoContent';
+import { postDemoDraftPresentationPlan } from './PostDemoPresentationPlans';
 
 export type DialoguePresentationSegmentMode = 'STATIC_TABLEAU';
 export type DialoguePreludeTransition = 'NONE' | 'VIDEO_TO_TABLEAU' | 'TRAVEL_TO_TABLEAU' | 'HOLD_TO_TABLEAU' | 'TABLEAU_RESTAGE';
@@ -92,6 +94,8 @@ export function resolveFinalDialoguePresentationPlan(
     const signature = dialoguePresentationShapeSignature(sequence);
     const runtimePlan = RUNTIME_PLANS[dialogueId]?.[signature]
       ?? (CANONICAL_SHAPES[dialogueId] === signature ? PLANS[dialogueId] : undefined);
+    // Set 1.20.0: a post-demo draft scene is staged by the draft plan until its plateau's scenes are reviewed.
+    if (!runtimePlan && isDraftContent(dialogueId)) return postDemoDraftPresentationPlan(sequence);
     if (!runtimePlan) {
       throw new Error(`No authoritative runtime presentation plan for ${dialogueId} shape '${signature}'.`);
     }

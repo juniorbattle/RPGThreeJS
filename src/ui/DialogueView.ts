@@ -1,4 +1,5 @@
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
+import { isDraftContent } from '../game/postDemoContent';
 import { assets } from '../render/assetManifest';
 import type { Contest, DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../game/types';
 import { resolveContestOutcome } from '../game/contestResolution';
@@ -113,6 +114,9 @@ export class DialogueView {
     if (!cinematicOverlay) {
       this.overlay.style.setProperty('--dialogue-bg-image', `url("${resolveDialogueBackdrop(sequence)}")`);
     }
+    // Set 1.20.0: a post-demo draft scene says it is a draft on provisional images, until its plateau is approved.
+    const draft = isDraftContent(sequence.id)
+      ? '<div class="dialogue__draft" data-draft-content="true">Brouillon · image provisoire</div>' : '';
     const brandText = sequence.title ?? "Chroniques d'Élyndra";
     const brandClass = sequence.title ? 'dialogue__brand dialogue__brand--ate' : 'dialogue__brand';
     this.overlay.innerHTML = `
@@ -120,6 +124,7 @@ export class DialogueView {
       <div class="dialogue__backdrop" aria-hidden="true"></div>
       <div class="ui-environment-layer ui-environment-layer--fog" aria-hidden="true"></div>
       <div class="${brandClass}" aria-hidden="true"><span>${brandText}</span></div>
+      ${draft}
       <div class="dialogue__stage" aria-hidden="true">
         <div class="dialogue__portrait dialogue__portrait--left"></div>
         <div class="dialogue__portrait dialogue__portrait--right"></div>

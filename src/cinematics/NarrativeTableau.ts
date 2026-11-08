@@ -1,4 +1,5 @@
 import type { DialogueSequence } from '../game/types';
+import { BEAR_PROVISIONAL_SCENES } from '../campaign/plateaux/bear/bearPresentation';
 import { CAMPAIGN_GRAMMAR_PRESENTATIONS } from '../game/campaignGrammarContent';
 import {
   demoBoundaryEnvironmentUrl,
@@ -454,7 +455,9 @@ export function createGenericNarrativeTableau(sequence: DialogueSequence, additi
     grammar: family === 'PRE_COMBAT' ? 'THREAT' : family === 'AFTERMATH' ? 'AFTERMATH' : 'APPROACH',
     dialogueId: sequence.id,
     family,
-    stillImage: demoEnvironmentUrlForContext(CAMPAIGN_GRAMMAR_PRESENTATIONS[sequence.id]?.environmentContext ?? `dialogue:${sequence.id}`, 'STATIC_TABLEAU'),
+    stillImage: demoEnvironmentUrlForContext(CAMPAIGN_GRAMMAR_PRESENTATIONS[sequence.id]?.environmentContext
+      // Set 1.20.0: a post-demo draft scene borrows an approved tableau, marked provisional (WORLD_AND_CHARACTERS).
+      ?? BEAR_PROVISIONAL_SCENES[sequence.id]?.environmentContext ?? `dialogue:${sequence.id}`, 'STATIC_TABLEAU'),
     media: [],
     cast: {
       visualActors: visibleActors,

@@ -116,19 +116,33 @@ export const BEAR_PROVISIONAL_ENEMIES: readonly { unitId: string; standInPortrai
 ]);
 
 /** Dialogue backdrops: approved Lion scenes reused provisionally, keyed by the Bear dialogue that shows them. */
-export const BEAR_PROVISIONAL_SCENES: Readonly<Record<string, { sceneArtId: string; awaitedFinal: string }>> = Object.freeze({
-  bear_arrival: { sceneArtId: 'forest_fork', awaitedFinal: 'Tableau : la compagnie au pied des Montagnes de la Résilience' },
-  bear_audience: { sceneArtId: 'lion_briefing', awaitedFinal: 'Tableau : la salle de l’Ancien Ours Borin' },
-  bear_raven_messenger: { sceneArtId: 'mystery_ambush', awaitedFinal: 'Tableau : le messager du Corbeau à l’écart du sentier' },
-  bear_trapped_miners: { sceneArtId: 'forest_fork', awaitedFinal: 'Tableau : l’éboulement et les mineurs pris au piège' },
-  bear_raven_traps: { sceneArtId: 'forest_fork', awaitedFinal: 'Tableau : les pièges du Corbeau sur le sentier' },
-  bear_ore_convoy: { sceneArtId: 'reserve_trail', awaitedFinal: 'Tableau : le convoi de minerai sombre' },
-  bear_ancient_relic: { sceneArtId: 'mystery_shrine', awaitedFinal: 'Tableau : la galerie effondrée et l’artefact' },
-  bear_sacred_mines: { sceneArtId: 'shadow_signs', awaitedFinal: 'Tableau : l’entrée des mines sacrées occupées par le Corbeau' },
-  bear_raven_camp: { sceneArtId: 'mystery_ambush', awaitedFinal: 'Tableau : le campement abandonné du Corbeau' },
-  bear_miners_testimony: { sceneArtId: 'witnesses_on_road', awaitedFinal: 'Tableau : les mineurs libérés' },
-  bear_mountain_shrine: { sceneArtId: 'mystery_shrine', awaitedFinal: 'Tableau : le sanctuaire de la montagne' },
-  bear_dark_vein: { sceneArtId: 'shadow_signs', awaitedFinal: 'Tableau : le filon sombre au fond des galeries' },
-  bear_judgement: { sceneArtId: 'lion_finale_judgement', awaitedFinal: 'Tableau : le jugement de Borin' },
-  bear_epilogue: { sceneArtId: 'epilogue', awaitedFinal: 'Tableau : le Sceau de l’Ours' },
+/**
+ * Every scene of the Bear and the approved Lion tableau it borrows until its own final tableau exists: the narrative
+ * stage reads `environmentContext` for the scene's still image. Each entry names the final image it awaits.
+ */
+export const BEAR_PROVISIONAL_SCENES: Readonly<Record<string, { environmentContext: string; awaitedFinal: string }>> = Object.freeze({
+  bear_arrival: { environmentContext: 'dialogue:post_opening_trail', awaitedFinal: 'Tableau : la compagnie au pied des Montagnes de la Résilience' },
+  bear_audience: { environmentContext: 'dialogue:lion_briefing', awaitedFinal: 'Tableau : la salle de l’Ancien Ours Borin' },
+  bear_raven_messenger: { environmentContext: 'dialogue:mystery_ambush', awaitedFinal: 'Tableau : le messager du Corbeau à l’écart du sentier' },
+  bear_trapped_miners: { environmentContext: 'dialogue:refugee_trial', awaitedFinal: 'Tableau : l’éboulement et les mineurs pris au piège' },
+  bear_raven_traps: { environmentContext: 'dialogue:pre_opening_trail', awaitedFinal: 'Tableau : les pièges du Corbeau sur le sentier' },
+  bear_outpost_gathering: { environmentContext: 'dialogue:first_refuge_gathering', awaitedFinal: 'Tableau : la compagnie à l’avant-poste de l’Ours' },
+  bear_ore_convoy: { environmentContext: 'dialogue:reserve_trail', awaitedFinal: 'Tableau : le convoi de minerai sombre' },
+  bear_ancient_relic: { environmentContext: 'dialogue:mystery_shrine', awaitedFinal: 'Tableau : la galerie effondrée et l’artefact' },
+  bear_sacred_mines: { environmentContext: 'dialogue:shadow_signs', awaitedFinal: 'Tableau : l’entrée des mines sacrées occupées par le Corbeau' },
+  bear_pre_mines_defense: { environmentContext: 'dialogue:pre_ruins_guardians', awaitedFinal: 'Tableau : le Corbeau retranché dans les galeries' },
+  bear_mines_defense_aftermath: { environmentContext: 'dialogue:post_ruins_guardians', awaitedFinal: 'Tableau : les galeries rendues à l’Ours' },
+  bear_pre_mines_seizure: { environmentContext: 'dialogue:pre_ruins_guardians', awaitedFinal: 'Tableau : le Corbeau retranché devant le filon' },
+  bear_mines_seizure_aftermath: { environmentContext: 'dialogue:post_ruins_guardians', awaitedFinal: 'Tableau : le filon sombre aux mains de la compagnie' },
+  bear_raven_camp: { environmentContext: 'dialogue:mystery_ambush', awaitedFinal: 'Tableau : le campement abandonné du Corbeau' },
+  bear_miners_testimony: { environmentContext: 'dialogue:witnesses_on_road', awaitedFinal: 'Tableau : les mineurs libérés' },
+  bear_mountain_shrine: { environmentContext: 'dialogue:old_shrine_event', awaitedFinal: 'Tableau : le sanctuaire de la montagne' },
+  bear_dark_vein: { environmentContext: 'dialogue:shadow_signs', awaitedFinal: 'Tableau : le filon sombre au fond des galeries' },
+  bear_vigil: { environmentContext: 'dialogue:final_refuge', awaitedFinal: 'Tableau : la veillée avant le jugement de Borin' },
+  bear_judgement: { environmentContext: 'dialogue:lion_finale_judgement', awaitedFinal: 'Tableau : le jugement de Borin' },
+  bear_master_spy_pre_combat: { environmentContext: 'dialogue:serpent_pursuit_pre_combat', awaitedFinal: 'Tableau : la traque du Maître Espion du Corbeau' },
+  bear_master_spy_aftermath: { environmentContext: 'dialogue:serpent_general_aftermath', awaitedFinal: 'Tableau : la chute du Maître Espion' },
+  bear_borin_pre_combat: { environmentContext: 'dialogue:pre_lion_chief', awaitedFinal: 'Tableau : Borin et ses guerriers face à la compagnie' },
+  bear_trial_aftermath: { environmentContext: 'dialogue:lion_trial_aftermath', awaitedFinal: 'Tableau : l’épreuve de l’Ours achevée' },
+  bear_epilogue: { environmentContext: 'dialogue:epilogue', awaitedFinal: 'Tableau : le Sceau de l’Ours' },
 });
