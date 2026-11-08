@@ -101,7 +101,8 @@ describe('final act QA driver (set 1.20.0, Lot 4 draft)', () => {
     const { state } = run;
     expect(state.endingId).toBe('finale-breach');
     expect(said(run, 'finale_betrayal')).toContain(
-      'le filon sombre gardé pour le clan, le Cristal gardé pour le clan, le codex gardé pour le clan et la page souillée brûlée sur mon conseil');
+      'le filon sombre gardé pour le clan, le Cristal gardé pour le clan, le codex gardé pour le clan et la page souillée brûlée sur mon conseil. '
+      + 'Et dans cette arène encore, les champions du Corbeau, du Loup et du Phénix humiliés devant les clans.');
     for (const clan of ['raven', 'wolf', 'phoenix', 'bear', 'dragon', 'scorpion', 'serpent'] as const) expect(getClanRelation(state, clan), clan).toBe('enemy');
     expect(getClanRelation(state, 'lion')).toBe('neutral');
     // An enemy clan is a redoubtable opponent at the Tournament, and its foes fill the capital's formations.

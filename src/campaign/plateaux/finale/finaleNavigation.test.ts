@@ -19,6 +19,7 @@ import {
 import { createInitialState } from '../../../game/store';
 import type { CombatResult, GameState } from '../../../game/types';
 import { FINALE_GUARDIANS, FINALE_OPTIONAL_POIS, FINALE_ROUTE } from './finaleTopology';
+import { FINALE_SCENE_BUILDERS } from './finaleDialogues';
 import { FINALE_PLATEAU_BINDING } from './finalePlateau';
 
 function finaleState(): GameState {
@@ -86,5 +87,22 @@ describe('the corrupted capital (set 1.20.0, Lot 4 draft)', () => {
     expect(resolvePoiEliteVictory(state, encounter.id, result)).toBe(true);
     expect(state.reputation).toBe(reputation + 1);
     expect(enterPoi(state, 'finale-poi-reserve')?.activate).toBe(true);
+  });
+});
+
+describe('the betrayal names the advice the company followed (set 1.20.0, Lot 4 draft)', () => {
+  const adviceLine = (flags: Record<string, boolean>) => {
+    const state = finaleState();
+    Object.assign(state.flags, flags);
+    return FINALE_SCENE_BUILDERS.finale_betrayal!(state).steps.find((step) => step.id === 'advice')!.text;
+  };
+
+  it('counts a champion humiliated at the Tournament as advice followed, even after honourable plateaux', () => {
+    expect(adviceLine({})).toBe('Vous ne m’avez jamais écouté. Peu importe : il me suffisait d’entrer avec vous dans cette arène.');
+    expect(adviceLine({ finaleWolfHumiliated: true })).toBe(
+      'Dans cette arène, vous m’avez enfin écouté : le champion du Loup humilié devant les clans. Vous avez servi ceux que je sers.');
+    expect(adviceLine({ bearMinesSeized: true, finaleRavenHumiliated: true, finalePhoenixHumiliated: true })).toBe(
+      'Vous m’avez écouté plus souvent que vous ne le croyez : le filon sombre gardé pour le clan. '
+      + 'Et dans cette arène encore, les champions du Corbeau et du Phénix humiliés devant les clans. Chaque fois, vous avez servi ceux que je sers.');
   });
 });

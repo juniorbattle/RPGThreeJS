@@ -6,7 +6,7 @@
  * hosts and the demons stay unnamed. Authored at the post-demo reputation scale (OD-2026-11-08-A), the smallest share (R2).
  *
  * Static scenes are plain sequences. State-built scenes carry the echoes that name their cause: Maelor's advice the
- * company followed, at the betrayal; the allied chiefs and the clans relevés or humiliés, at the rally; the evidence of
+ * company followed on the plateaux and the champions humiliated on his counsel at the Tournament, at the betrayal; the allied chiefs and the clans relevés or humiliés, at the rally; the evidence of
  * the Shadows, the civilians and the citizens, at the last vigil.
  */
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../../../game/types';
@@ -175,11 +175,30 @@ function listFrench(items: readonly string[]): string {
   return items.length <= 1 ? items[0] ?? '' : `${items.slice(0, -1).join(', ')} et ${items.at(-1)}`;
 }
 
+/** The champions humiliated at the Tournament, as Maelor urged at each verdict. */
+function humiliatedChampions(flags: Readonly<Record<string, boolean>>): string | null {
+  const clans = [
+    flags.finaleRavenHumiliated ? 'du Corbeau' : null,
+    flags.finaleWolfHumiliated ? 'du Loup' : null,
+    flags.finalePhoenixHumiliated ? 'du Phénix' : null,
+  ].filter((item): item is string => item !== null);
+  if (!clans.length) return null;
+  return clans.length === 1 ? `le champion ${clans[0]} humilié devant les clans` : `les champions ${listFrench(clans)} humiliés devant les clans`;
+}
+
+function betrayalAdviceLine(flags: Readonly<Record<string, boolean>>): string {
+  const advice = followedAdvice(flags);
+  const arena = humiliatedChampions(flags);
+  if (advice.length && arena) {
+    return `Vous m’avez écouté plus souvent que vous ne le croyez : ${listFrench(advice)}. Et dans cette arène encore, ${arena}. Chaque fois, vous avez servi ceux que je sers.`;
+  }
+  if (advice.length) return `Vous m’avez écouté plus souvent que vous ne le croyez : ${listFrench(advice)}. Chaque fois, vous avez servi ceux que je sers.`;
+  if (arena) return `Dans cette arène, vous m’avez enfin écouté : ${arena}. Vous avez servi ceux que je sers.`;
+  return 'Vous ne m’avez jamais écouté. Peu importe : il me suffisait d’entrer avec vous dans cette arène.';
+}
+
 function finaleBetrayal(state: Readonly<GameState>): DialogueSequence {
-  const advice = followedAdvice(state.flags);
-  const adviceLine = advice.length
-    ? `Vous m’avez écouté plus souvent que vous ne le croyez : ${listFrench(advice)}. Chaque fois, vous avez servi ceux que je sers.`
-    : 'Vous ne m’avez jamais écouté. Peu importe : il me suffisait d’entrer avec vous dans cette arène.';
+  const adviceLine = betrayalAdviceLine(state.flags);
   return scene('finale_betrayal', 'shadow_signs', 'La trahison', [
     say('open', KESTREL, 'Éclaireuse', 'Le champion du Serpent tombe… et Maelor s’avance au milieu de l’arène, un artefact à la main.', 'reveal', { expression: 'fearful' }),
     say('reveal', MAELOR_TRAITOR, 'Trahison', 'Vous avez cherché les Ombres Silencieuses dans chaque clan. Elles marchaient avec vous depuis le premier Sceau.', 'advice', { expression: 'hostile' }),
