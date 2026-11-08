@@ -1,8 +1,8 @@
-# Après-démo — Lot 2 (le Dragon) livré en brouillon, en attente de l’opérateur
+# Après-démo — Lot 3 (le Scorpion) en cours
 
-Run claude-postdemo-lot2-20261108T0600Z (agent claude, session cloud). [OD-2026-11-07-I](POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md), [OD-2026-11-08-A](POST_DEMO_LOT_0_OPERATOR_DECISION_2026-11-08.md) et [OD-2026-11-08-B](POST_DEMO_LOT_1_OPERATOR_DECISION_2026-11-08.md), contrats 1.20.0, baseline `6c965169c2dc153cafd5a8609d914cf8de723ff3`. Branche `post-demo` ; rien sur `dev` ni sur `main`. Lot 0 approuvé ; Lot 1, l’Ours, canon ([rapport](../reports/post-demo-lot-1-bear-2026-11-08.md)) ; Lot 2, le Dragon : [rapport](../reports/post-demo-lot-2-dragon-2026-11-08.md), [fiche de texte](../reports/post-demo-lot-2-dragon-text-sheet-2026-11-08.md).
+Run claude-postdemo-lot3-20261108T1500Z (agent claude, session cloud). [OD-2026-11-07-I](POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md), [OD-2026-11-08-A](POST_DEMO_LOT_0_OPERATOR_DECISION_2026-11-08.md), [OD-2026-11-08-B](POST_DEMO_LOT_1_OPERATOR_DECISION_2026-11-08.md) et [OD-2026-11-08-C](POST_DEMO_LOT_2_OPERATOR_DECISION_2026-11-08.md), contrats 1.20.0, baseline `6c965169c2dc153cafd5a8609d914cf8de723ff3`. Branche `post-demo` ; rien sur `dev` ni sur `main`. Lot 0 approuvé ; l’Ours ([rapport](../reports/post-demo-lot-1-bear-2026-11-08.md)) et le Dragon ([rapport](../reports/post-demo-lot-2-dragon-2026-11-08.md)) canon.
 
-UNE prochaine action : Arrêt de fin de plateau (Lot 2, le Dragon) sur post-demo : paquet présenté (rapport docs/reports/post-demo-lot-2-dragon-2026-11-08.md, fiche de texte, carte des conséquences, liste des images, mode d’emploi). L’opérateur accepte le Dragon ou demande des retouches ; rien n’est canon sans son accord. Ensuite seulement : Lot 3 (le Scorpion). L’Ours (canon) et le Dragon restent hors de dev jusqu’à un ordre d’intégration, après l’étiquette Git sur le dernier commit de démo de dev.
+UNE prochaine action : Lot 3 (le Scorpion) en cours sur post-demo, après OD-2026-11-08-C (le Dragon accepté comme canon, images provisoires, hors de dev avec l’Ours). D’abord la carte des conséquences du Scorpion, avant toute réplique ; le chef reste « Grand Inquisiteur » (P5) ; puis carte et rencontres, boss, dialogues en brouillon, images provisoires, vérification et paquet ; arrêt.
 
 ---
 

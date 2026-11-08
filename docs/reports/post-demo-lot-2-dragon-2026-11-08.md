@@ -7,7 +7,7 @@
 | BASELINE | `e7167f89` sur `post-demo` (Ours accepté, OD-2026-11-08-B ; jeu de contrats 1.20.0, baseline immuable `6c965169c2dc153cafd5a8609d914cf8de723ff3`) |
 | BRANCH | `post-demo` |
 | HEAD | voir le commit de clôture du lot (ce rapport et l’état) |
-| STATUS | review : en attente de l’acceptation du plateau par l’opérateur (arrêt de fin de plateau) |
+| STATUS | accepté : le Dragon est canon depuis [OD-2026-11-08-C](../autonomy/POST_DEMO_LOT_2_OPERATOR_DECISION_2026-11-08.md) ; il reste sur `post-demo` jusqu’à un ordre d’intégration |
 | MERGED_IN | NONE |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |

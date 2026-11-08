@@ -1,5 +1,5 @@
 /**
- * Set 1.20.0, post-demo Lot 2 — DRAFT, not canon until the operator approves the Dragon plateau.
+ * Set 1.20.0, post-demo Lot 2 — canon since the operator accepted the Dragon plateau (OD-2026-11-08-C).
  *
  * The Dragon plateau (roadmap §3.3): the Pics Célestes, the Ancien Dragon Kaelen, the Cristal d'Écho stolen by the Clan
  * du Loup. It follows the Bear's template (the Lion's size): 21 canonical nodes in three regions, three exclusive forks

@@ -1,6 +1,6 @@
 /**
- * Set 1.20.0, post-demo Lot 2 — DRAFT: the Dragon plateau's campaign binding. Not canon until the operator approves the
- * plateau; it reaches `dev` only on the operator's order. Data only: nothing here imports RunSystem.
+ * Set 1.20.0, post-demo Lot 2 — the Dragon plateau's campaign binding, canon since OD-2026-11-08-C. It reaches `dev`
+ * only on the operator's order. Data only: nothing here imports RunSystem.
  */
 import type { PlateauCampaignBinding, PlateauOutcome } from '../PlateauRegistry';
 import { DRAGON_CHALLENGES } from './dragonCombat';
@@ -29,7 +29,8 @@ export const DRAGON_PLATEAU_BINDING: PlateauCampaignBinding = Object.freeze({
   guardianIds: Object.freeze(DRAGON_GUARDIANS.map((guardian) => guardian.id)),
   atlasIds: Object.freeze(DRAGON_ATLAS_REGIONS.map((region) => region.image)),
   resolveOutcome: resolveDragonPlateauOutcome,
-  // Proposed with the plateau, as `dragon.consequences.json` records them. A Wolf pact kept at the lair stands.
+  // Approved with the plateau (OD-2026-11-08-C), as `dragon.consequences.json` records them. A Wolf pact kept at the
+  // lair stands against the force outcome.
   outcomeRelations: Object.freeze({
     honour: Object.freeze([{ clan: 'dragon', stance: 'ally' }, { clan: 'wolf', stance: 'enemy' }] as const),
     force: Object.freeze([{ clan: 'dragon', stance: 'enemy' }, { clan: 'wolf', stance: 'enemy' }] as const),

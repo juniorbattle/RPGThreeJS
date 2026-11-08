@@ -1,6 +1,6 @@
 /**
- * Set 1.20.0, post-demo Lot 2 — DRAFT: the Dragon plateau's fights (COMBAT_AND_VFX "Post-demo combat"). Not canon
- * until the operator approves the plateau. Reputation is authored at the post-demo scale (OD-2026-11-08-A) and smaller
+ * Set 1.20.0, post-demo Lot 2 — the Dragon plateau's fights (COMBAT_AND_VFX "Post-demo combat"), canon since
+ * OD-2026-11-08-C; their balance awaits the operator's PC test. Reputation is authored at the post-demo scale (OD-2026-11-08-A) and smaller
  * than the Bear's (R2): a routine victory gives none; the two elite fights and the Chaman des Ombres give +1.
  *
  * Enemy families (roadmap §3.3): the Clan du Loup's patrols, raiders, hunters and their wolves; mountain creatures,

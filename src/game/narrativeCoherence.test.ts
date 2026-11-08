@@ -199,7 +199,9 @@ describe('the Dragon consequence map is written first, as a design (Lot 2)', () 
   it('passes the design check before any line exists, with the roadmap duality and the earlier plateaux echoed', () => {
     expect(validateConsequenceMapDesign(dragonMap)).toEqual([]);
     const map = consequenceMapSchema.parse(structuredClone(dragonMap));
-    expect(map.status).toBe('draft');
+    // Written as a draft before any line; canon since the operator accepted the Dragon (OD-2026-11-08-C).
+    expect(map.status).toBe('canon');
+    expect([map.outcomes.honour.relationStatus, map.outcomes.force.relationStatus]).toEqual(['approved', 'approved']);
     expect(map.majorChoices).toHaveLength(11);
     expect(map.outcomes.honour.clanRelations).toEqual([{ clan: 'dragon', stance: 'ally' }, { clan: 'wolf', stance: 'enemy' }]);
     expect(map.outcomes.force.clanRelations).toEqual([{ clan: 'dragon', stance: 'enemy' }, { clan: 'wolf', stance: 'enemy' }]);

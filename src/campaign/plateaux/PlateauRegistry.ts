@@ -149,8 +149,8 @@ export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([
   }),
   Object.freeze({
     id: 'dragon', order: 3, kind: 'seal_plateau', idPrefix: 'dragon-', label: 'Les Pics Célestes',
-    // Lot 2: a playable draft, not canon until the operator approves the plateau.
-    roadmapSections: Object.freeze(['§3.3']), status: 'draft', hostClan: 'dragon', rivalClan: 'wolf',
+    // Lot 2: accepted as canon by the operator (OD-2026-11-08-C); its images stay provisional.
+    roadmapSections: Object.freeze(['§3.3']), status: 'canon', hostClan: 'dragon', rivalClan: 'wolf',
     chief: Object.freeze({ title: 'Ancien Dragon', name: 'Kaelen' }),
     reputationBudget: REPUTATION_BUDGETS.dragon,
     campaign: DRAGON_PLATEAU_BINDING,

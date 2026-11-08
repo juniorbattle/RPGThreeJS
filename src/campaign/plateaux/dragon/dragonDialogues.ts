@@ -1,7 +1,7 @@
 /**
- * Set 1.20.0, post-demo Lot 2 — DRAFT dialogues of the Dragon plateau. Written from the roadmap (§3.3 and its status),
+ * Set 1.20.0, post-demo Lot 2 — dialogues of the Dragon plateau, canon since OD-2026-11-08-C. Written from the roadmap (§3.3 and its status),
  * the facts already established by the Lion and the Bear, and the operator's decisions only; no clan, place, character,
- * object or lore beyond them. Not canon until the operator approves the plateau. Authored at the post-demo reputation
+ * object or lore beyond them. Accepted by the operator with the plateau. Authored at the post-demo reputation
  * scale (OD-2026-11-08-A), smaller than the Bear's (R2).
  *
  * Static scenes are plain sequences. State-built scenes carry the echoes that name their cause: the Bear's Seal before

@@ -38,12 +38,12 @@ describe('Dragon scenes on provisional tableaux (set 1.20.0, Lot 2 draft)', () =
     for (const actor of DRAGON_PROVISIONAL_ACTORS) expect(resolveCharacterUnitId(actor.actorId), actor.actorId).toBe(actor.standInUnitId);
   });
 
-  it('marks every Dragon scene as a draft on provisional images, with a still image', () => {
+  it('marks every Dragon scene as canon on provisional images (OD-2026-11-08-C), with a still image', () => {
     const state = createInitialState();
     for (const id of dragonSceneIds) {
       const sequence = resolvePostDemoDialogue(id, state)!;
-      expect(isDraftContent(id), id).toBe(true);
-      expect(provisionalMark(id), id).toBe('Brouillon · image provisoire');
+      expect(isDraftContent(id), id).toBe(false);
+      expect(provisionalMark(id), id).toBe('Image provisoire');
       expect(createGenericNarrativeTableau(sequence).stillImage, id)
         .toBe(demoEnvironmentPlateForContext(DRAGON_PROVISIONAL_SCENES[id]!.environmentContext, 'STATIC_TABLEAU').publicUrl);
     }
@@ -67,10 +67,10 @@ describe('Dragon scenes on provisional tableaux (set 1.20.0, Lot 2 draft)', () =
     }
   });
 
-  it('marks the Dragon’s refuges and map as drafts on provisional art', () => {
+  it('marks the Dragon’s refuges and map as provisional art, no longer as drafts', () => {
     for (const node of DRAGON_ROUTE.filter((candidate) => candidate.type === 'refuge')) {
       const presentation = resolveRefugePresentation({ ...node, links: [...node.links], x: 0, z: 0 } as never)!;
-      expect([presentation.provisional, presentation.draft], node.id).toEqual([true, true]);
+      expect([presentation.provisional, presentation.draft], node.id).toEqual([true, false]);
     }
     expect(poiAtlasForNode('dragon-camp').provisional).toBe(true);
     expect(poiAtlasForNode('dragon-camp').regions.map((region) => region.shortTitle)).toEqual(['I · Les contreforts', 'II · Les terrasses', 'III · Les cimes']);

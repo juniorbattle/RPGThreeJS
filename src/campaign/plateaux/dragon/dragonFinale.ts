@@ -1,7 +1,7 @@
 /**
- * Set 1.20.0, post-demo Lot 2 — DRAFT: Kaelen's judgement and the Dragon's epilogue (roadmap §3.3, Phase 3). Not canon
- * until the operator approves the plateau. Every deed Kaelen weighs is named in the words the consequence map expects.
- * Credibility before the chief (R3) uses its own thresholds, proposed for approval with the plateau: a company that
+ * Set 1.20.0, post-demo Lot 2 — Kaelen's judgement and the Dragon's epilogue (roadmap §3.3, Phase 3), canon since
+ * OD-2026-11-08-C. Every deed Kaelen weighs is named in the words the consequence map expects.
+ * Credibility before the chief (R3) uses its own thresholds, approved with the plateau: a company that
  * kept its honour through the Lion and the Bear arrives near 71, a company of force near 25.
  */
 import type { PlateauFinaleDefinition } from '../../../game/plateauFinale';
