@@ -13,6 +13,7 @@ import { applyCombatProgress } from './combatProgress';
 import { challengeFor, challengeForContent, challengeHeld, describeChallenge, type ChallengeText } from './challenges';
 import { initialPoiExpedition, expeditionEdges, recordPoiMovement, eliteAtPoi,
   beginPoiEliteEncounter, settlePoiStep, selectPoiThreats, type PoiThreatView } from './poiExpedition';
+import { PLATEAU_REGISTRY, requirePlateauCampaign, type PlateauCampaignBinding } from '../campaign/plateaux/PlateauRegistry';
 
 export { getLionConductScore, getLionConductTier } from './lionNarrative';
 export type { LionConductTier } from './lionNarrative';
@@ -486,11 +487,22 @@ const SEEDED_CREATURE_VARIANTS: Readonly<Record<string, readonly string[]>> = {
   'lion-valmir-road': ['road_to_valmir', 'marsh_crossing'],
 };
 
-const ELITE_ROUTE_CONTENT_IDS = new Set(['troll_crossing', 'serpent_duelist_trial', 'young_dragon_roost']);
+/**
+ * Set 1.20.0 (post-demo Lot 0): the plateau that owns a run, by its durable run ID prefix. Every saved run so far is a
+ * Lion run, so an unclaimed ID keeps the Lion's binding rather than strand an old save.
+ */
+export function plateauCampaignForRun(run: Pick<RunState, 'id'>): PlateauCampaignBinding {
+  return PLATEAU_REGISTRY.find((entry) => entry.campaign && run.id.startsWith(entry.campaign.runIdPrefix))?.campaign
+    ?? requirePlateauCampaign('lion');
+}
+
+function isEliteRouteContent(run: RunState, contentId: string): boolean {
+  return plateauCampaignForRun(run).eliteRouteContentIds.includes(contentId);
+}
 
 function completedEliteEncounter(state: GameState): boolean {
   const resolved = new Set(state.resolvedNodeIds);
-  return state.run.graph.nodes.some((node) => resolved.has(node.id) && ELITE_ROUTE_CONTENT_IDS.has(node.contentId));
+  return state.run.graph.nodes.some((node) => resolved.has(node.id) && isEliteRouteContent(state.run, node.contentId));
 }
 
 function selectAdaptiveVariant(state: GameState, nodeId: string): AdaptiveRouteVariant | null {
@@ -742,7 +754,7 @@ export function isPoiNeutralized(state: GameState, nodeId: string): boolean {
 function unlockedPoiIds(state: GameState): Set<string> {
   const unlocked = new Set(state.run.graph.nodes.filter(n => n.depth === 0).map(n => n.id));
   // A legitimately earned old refuge stays earned, including pre-V2 optional-trial saves.
-  for (const id of ['lion-first-refuge','lion-second-refuge']) {
+  for (const id of plateauCampaignForRun(state.run).refugeNodeIds) {
     if (state.flags[`refugeSecured:${id}`] || state.resolvedNodeIds.includes(id)) unlocked.add(id);
   }
   if (openingLocalRoutesUnlocked(state.resolvedNodeIds)) {
@@ -815,16 +827,6 @@ function resolvedPoiTravelRoutes(state: GameState, unlocked: ReadonlySet<string>
   return routes;
 }
 
-/**
- * Set 1.17.0 (OD-2026-11-07-C): the three authored exclusive forks and the POI that resolves each chapter. Once saved
- * facts show a branch chosen, the company is committed to its target until that POI is resolved.
- */
-const LION_BRANCH_COMMITMENTS: readonly { legId: string; resolvingNodeId: string }[] = [
-  { legId: 'T0', resolvingNodeId: 'lion-first-refuge' },
-  { legId: 'T1', resolvingNodeId: 'lion-village-choice' },
-  { legId: 'T3', resolvingNodeId: 'lion-shadow-signs' },
-];
-
 export interface PoiBranchCommitment {
   /** The chosen branch POI. */
   forkNodeId: string;
@@ -845,7 +847,8 @@ function branchChapterResolved(state: GameState, resolvingNodeId: string): boole
  */
 export function activePoiBranchCommitment(state: GameState): PoiBranchCommitment | null {
   if (state.run.status !== 'active') return null;
-  for (const { legId, resolvingNodeId } of LION_BRANCH_COMMITMENTS) {
+  // Set 1.17.0: the plateau's authored forks and the POI that resolves each chapter, from the plateau registry.
+  for (const { legId, resolvingNodeId } of plateauCampaignForRun(state.run).branchCommitments) {
     if (branchChapterResolved(state, resolvingNodeId)) continue;
     const leg = LION_TRAVERSAL_LEGS.find(candidate => candidate.id === legId);
     const fork = leg?.stages.find(stage => stage.mode === 'IN_TRAVERSAL_FORK');
@@ -944,7 +947,7 @@ export function selectPoiMap(state: GameState): PoiMapModel {
     const reusable = node.type === 'refuge' ? Boolean(state.flags[`refugeSecured:${node.id}`])
       : node.id === LION_FINAL_REFUGE_NODE_ID && areLionFinalRefugeServicesAvailable(state);
     const kind: PoiKind = node.type === 'chest' ? 'chest' : node.type === 'refuge' ? 'refuge'
-      : node.type === 'combat' ? (ELITE_ROUTE_CONTENT_IDS.has(node.contentId) ? 'elite' : 'combat')
+      : node.type === 'combat' ? (isEliteRouteContent(state.run, node.contentId) ? 'elite' : 'combat')
       : node.type === 'story' || node.type === 'boss' ? 'primary' : 'mystery';
     const canMove = active && node.id !== state.run.currentNodeId && neighbors.has(node.id) && unlocked.has(node.id)
       && (!committedSteps || committedSteps.has(node.id));
