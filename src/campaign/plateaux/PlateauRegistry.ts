@@ -106,10 +106,13 @@ export interface PlateauDefinition {
  * distance from the starting 30 to 100, so only a perfect run reaches 100, and only in the final act.
  */
 export const PROPOSED_REPUTATION_BUDGETS: Readonly<Record<CampaignChapterId, ReputationBudget>> = Object.freeze({
-  lion: Object.freeze({ perfectMax: 29, honourFloor: 23 }),
-  bear: Object.freeze({ perfectMax: 16, honourFloor: 14 }),
-  dragon: Object.freeze({ perfectMax: 13, honourFloor: 13 }),
-  scorpion: Object.freeze({ perfectMax: 8, honourFloor: 6 }),
+  // Measured from the Lion's content under the proposed calibration (reputation bounds test).
+  lion: Object.freeze({ perfectMax: 32, honourFloor: 27 }),
+  // Targets: smaller amounts plateau after plateau (R2); a consistent honour run reaches 80 at the Dragon's end.
+  bear: Object.freeze({ perfectMax: 16, honourFloor: 13 }),
+  dragon: Object.freeze({ perfectMax: 12, honourFloor: 10 }),
+  scorpion: Object.freeze({ perfectMax: 6, honourFloor: 4 }),
+  // The last points of a perfect run come in the final act, so 100 is reached only at the end of the game.
   finale: Object.freeze({ perfectMax: 4, honourFloor: 3 }),
 });
 

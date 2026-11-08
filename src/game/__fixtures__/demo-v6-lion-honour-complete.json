@@ -61,7 +61,7 @@
   "refugeSecured:lion-first-refuge": true,
   "refugeSecured:lion-second-refuge": true,
   "recruitedCedric": true,
-  "witnessesProtected": true,
+  "protectedWitnesses": true,
   "shadowEvidence": true,
   "shadowRevealed": true,
   "lionSealHonour": true,

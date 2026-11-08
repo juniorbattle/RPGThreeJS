@@ -535,6 +535,28 @@ function selectAdaptiveVariant(state: GameState, nodeId: string): AdaptiveRouteV
   return null;
 }
 
+/**
+ * Read-only (set 1.20.0, post-demo Lot 0): every content a canonical Lion node can hold in a new run, from its template,
+ * its seeded creature variants and its adaptive variants. The reputation bounds test reads it; nothing here assigns.
+ * The legacy lancer variant kept for old `mysteryAssignments` is excluded, as for new run generation.
+ */
+export function lionRouteContentCandidates(nodeId: string): { contentId: string; type: RunNodeType }[] {
+  const template = LION_ROUTE_TEMPLATE.find((node) => node.id === nodeId);
+  if (!template) return [];
+  const seeded = SEEDED_CREATURE_VARIANTS[nodeId];
+  if (seeded) return seeded.map((contentId) => ({ contentId, type: template.type }));
+  const adaptive = [
+    ...Object.values(FIRST_EVENT_VARIANTS), MANDATE_FIRST_EVENT_HONOUR, MANDATE_FIRST_EVENT_ADVANCE,
+    ...Object.values(FIRST_COMBAT_VARIANTS), MANDATE_FIRST_COMBAT_HONOUR, MANDATE_FIRST_COMBAT_ADVANCE,
+    SECOND_EVENT_VARIANT, ...Object.values(SECOND_COMBAT_VARIANTS), MANDATE_SECOND_COMBAT_ADVANCE,
+    ...Object.values(FINAL_EVENT_VARIANTS), FINAL_EVENT_AFTER_ELITE, ...Object.values(FINAL_COMBAT_VARIANTS),
+  ];
+  // Adaptive content IDs are distinct across nodes, so a node's candidates are the adaptive variants it accepts.
+  const accepted = adaptive.filter((variant) => adaptiveVariantByContentId(nodeId, variant.contentId));
+  const candidates = accepted.length ? accepted : [template];
+  return [...new Map(candidates.map((variant) => [variant.contentId, { contentId: variant.contentId, type: variant.type }])).values()];
+}
+
 function adaptiveVariantByContentId(nodeId: string, contentId: string): AdaptiveRouteVariant | null {
   const candidates = nodeId === 'lion-first-trial-event'
     ? [...Object.values(FIRST_EVENT_VARIANTS), MANDATE_FIRST_EVENT_HONOUR, MANDATE_FIRST_EVENT_ADVANCE]
