@@ -1,5 +1,5 @@
 /**
- * Set 1.20.0, post-demo — QA driver of a built post-demo plateau (the Bear, the Dragon).
+ * Set 1.20.0, post-demo — QA driver of a built post-demo chapter (the Bear, the Dragon, the Scorpion, the final act).
  *
  * Plays a plateau from the end of the previous one to its epilogue through the real owners: RunSystem for movement, refuges,
  * guardians, the closing of the plateau and the campaign record; the game's dialogue resolution for every scene,
@@ -32,7 +32,13 @@ import {
 } from '../game/runSystem';
 import { requirePlateauCampaign } from '../campaign/plateaux/PlateauRegistry';
 import type { PostDemoSealPlateauId } from '../game/plateauFinale';
-import type { DialogueChoice, DialogueSequence, GameState, NarrativeEffect, RunNode } from '../game/types';
+import { finalActCombatConfig, isTournamentNodeId, nextTournamentStep, tournamentBoard } from '../game/finalAct';
+import { FINALE_TOURNAMENT_ARRIVAL, type TournamentEntry } from '../campaign/plateaux/finale/finaleTournament';
+import finaleMap from '../campaign/consequences/finale.consequences.json';
+import type { CombatConfig, DialogueChoice, DialogueSequence, GameState, NarrativeEffect, RunNode } from '../game/types';
+
+/** A post-demo chapter the driver plays: a Seal plateau, or the final act. */
+export type DrivenChapterId = PostDemoSealPlateauId | 'finale';
 
 export type FinaleIntent = 'claim_recognition' | 'request_trial';
 
@@ -45,7 +51,7 @@ export interface PlateauScenario {
   intent: FinaleIntent;
   /** Optional guardian chests to take on the way, after the route POI that opens them. */
   guardianChests?: readonly string[];
-  /** A fork's branch by its prefix (`dragon-second-trial`), when it differs from the preference's default. */
+  /** A fork's branch by its prefix (`dragon-second-trial`, or `finale-fork`), when it differs from the preference's default. */
   forks?: Readonly<Record<string, 'event' | 'combat'>>;
 }
 
@@ -56,6 +62,8 @@ export interface PlateauPlaythrough {
   lines: PlayedLine[];
   decisions: { dialogueId: string; stepId: string; text: string }[];
   fights: string[];
+  /** Every fight as RunSystem prepared it before the tactical runtime (the final act's supports and enemy-clan foes). */
+  configs: CombatConfig[];
   reputationStart: number;
 }
 
@@ -75,12 +83,20 @@ class PlateauDriver {
   readonly lines: PlayedLine[] = [];
   readonly decisions: PlateauPlaythrough['decisions'] = [];
   readonly fights: string[] = [];
+  readonly configs: CombatConfig[] = [];
   private pendingCombatId: string | null = null;
   private readonly merits: ReadonlySet<string>;
   private readonly greed: ReadonlySet<string>;
 
   constructor(private readonly state: GameState, private readonly scenario: PlateauScenario,
-    private readonly chapterId: PostDemoSealPlateauId) {
+    private readonly chapterId: DrivenChapterId) {
+    if (chapterId === 'finale') {
+      // The final act has no judgement: its consequence map's honour and force options name the facts of each policy.
+      const options = finaleMap.majorChoices.flatMap((choice) => choice.options);
+      this.merits = new Set(options.filter((option) => option.path === 'honour').flatMap((option) => option.sets));
+      this.greed = new Set(options.filter((option) => option.path === 'force').flatMap((option) => option.sets));
+      return;
+    }
     const finale = plateauFinaleOf(chapterId)!;
     this.merits = new Set([...finale.deeds.filter((deed) => deed.kind === 'merit').map((deed) => deed.flag),
       finale.honourFact, finale.witnesses.supportiveFlag, finale.evidence.flag]);
@@ -157,17 +173,20 @@ class PlateauDriver {
 
   /** A won fight, resolved as GameApp resolves it: pre-combat scene, rewards, victory facts, aftermath. */
   private fight(combatId: string, node: RunNode): void {
-    const config = playableCombatConfig(combatId);
-    if (!config) throw new Error(`Missing fight '${combatId}'`);
+    const playable = playableCombatConfig(combatId);
+    if (!playable) throw new Error(`Missing fight '${combatId}'`);
+    const config = finalActCombatConfig(this.state, playable);
     if (config.preCombatDialogueId) this.playDialogue(config.preCombatDialogueId);
     this.fights.push(combatId);
+    this.configs.push(config);
     creditRunReward(this.state, { gold: config.rewards.gold });
     for (const [itemId, quantity] of Object.entries(config.rewards.materials ?? {})) {
       creditRunReward(this.state, { category: 'materials', itemId, quantity });
     }
     changeReputation(this.state, config.rewards.reputation, `combat:${combatId}`);
     Object.assign(this.state.flags, combatVictoryFacts(combatId));
-    this.markResolved(node.id);
+    // As GameApp: a Tournament fight belongs to the board, not to the map.
+    if (!isTournamentNodeId(node.id)) this.markResolved(node.id);
     if (node.type === 'boss') {
       this.state.run.status = 'completed';
       secureRunLoot(this.state);
@@ -226,7 +245,7 @@ class PlateauDriver {
       this.postNode(node);
       return;
     }
-    if (node.type === 'combat' && playableCombatConfig(node.contentId)) { this.fight(node.contentId, node); this.postNode(node); return; }
+    if ((node.type === 'combat' || node.type === 'boss') && playableCombatConfig(node.contentId)) { this.fight(node.contentId, node); this.postNode(node); return; }
     this.playDialogue(node.contentId);
     if (this.pendingCombatId) { this.flush(node); this.postNode(node); return; }
     this.markResolved(node.id);
@@ -240,6 +259,31 @@ class PlateauDriver {
     this.markResolved(start.id);
   }
 
+  /**
+   * The final act's Tournament, played as GameApp plays its board: its opening scene once, then each step RunSystem names
+   * next (a fight, the scene that opens an entry, the scene after a won fight), up to (not into) `stopBefore`.
+   * Returns false when it stopped early.
+   */
+  playTournament(stopBefore?: string): boolean {
+    if (!tournamentBoard(this.state).entered) this.playDialogue(FINALE_TOURNAMENT_ARRIVAL.dialogueId);
+    for (let step = nextTournamentStep(this.state); step; step = nextTournamentStep(this.state)) {
+      if (step.entry.nodeId === stopBefore) return false;
+      const node = boardNode(step.entry);
+      if (step.action === 'fight') { this.fight(step.entry.combatId, node); continue; }
+      this.playDialogue(step.action === 'opening' ? step.entry.openingDialogueId! : step.entry.afterDialogueId!);
+      this.flush(node);
+    }
+    return true;
+  }
+
+  /** A fork whose branches share no prefix (the final act's): the event for merit, the fight for greed. */
+  forkByType(nodeIds: readonly string[], key: string): string {
+    const branches = selectPoiMap(this.state).nodes.filter((node) => node.canMove && nodeIds.includes(node.id));
+    const wanted = this.scenario.forks?.[key] ?? (this.scenario.prefer === 'merit' ? 'event' : 'combat');
+    return branches.find((node) => node.kind === wanted || (wanted === 'combat' && node.kind === 'elite'))?.id
+      ?? branches.find((node) => (wanted === 'event') === (node.kind !== 'combat'))?.id ?? branches[0]!.id;
+  }
+
   /** A fork: the first branch RunSystem lets the company move to that the scenario's policy would take. */
   forkBranch(prefix: string): string {
     const branches = selectPoiMap(this.state).nodes.filter((node) => node.canMove && node.id.startsWith(prefix)).map((node) => node.id);
@@ -250,18 +294,24 @@ class PlateauDriver {
   }
 }
 
-/** The route in play order: one entry per depth, a fork named by its common prefix (`bear-first-trial`). */
-function playOrder(chapterId: PostDemoSealPlateauId): string[] {
+/** A Tournament entry as the place its fight and scenes happen (not a POI). */
+function boardNode(entry: TournamentEntry): RunNode {
+  return { id: entry.nodeId, type: 'combat', depth: 0, links: [], contentId: entry.combatId, label: entry.label, icon: '⚔', x: 0, z: 0 };
+}
+
+/** The route in play order: one entry per depth, a fork named by its common prefix (`bear-first-trial`) or its nodes. */
+function playOrder(chapterId: DrivenChapterId): (string | readonly string[])[] {
   const route = requirePlateauCampaign(chapterId).topology.route ?? [];
   const depths = [...new Set(route.map((node) => node.depth))].sort((a, b) => a - b).slice(1);
   return depths.map((depth) => {
     const nodes = route.filter((node) => node.depth === depth);
-    return nodes.length > 1 ? nodes[0]!.id.replace(/-(event|combat)$/, '') : nodes[0]!.id;
+    if (nodes.length === 1) return nodes[0]!.id;
+    return nodes.every((node) => /-(event|combat)$/.test(node.id)) ? nodes[0]!.id.replace(/-(event|combat)$/, '') : nodes.map((node) => node.id);
   });
 }
 
 /** The guardian chest each route POI opens: the chest a guardian holds, after the route POI it requires. */
-function chestsAfter(chapterId: PostDemoSealPlateauId): Record<string, string> {
+function chestsAfter(chapterId: DrivenChapterId): Record<string, string> {
   const topology = requirePlateauCampaign(chapterId).topology;
   return Object.fromEntries(topology.guardians.flatMap((guardian) => {
     const chest = topology.optionalPois.find((poi) => poi.id === guardian.spawnPosition);
@@ -274,7 +324,7 @@ function chestsAfter(chapterId: PostDemoSealPlateauId): Record<string, string> {
  * Plays a plateau from the completed run of the previous one to its epilogue under a scenario, or up to (not into)
  * `stopBefore`, which leaves a mid-plateau state to save and resume.
  */
-export function playPlateau(chapterId: PostDemoSealPlateauId, previousEnd: GameState, scenario: PlateauScenario, seed = 20261108,
+export function playPlateau(chapterId: DrivenChapterId, previousEnd: GameState, scenario: PlateauScenario, seed = 20261108,
   stopBefore?: string): PlateauPlaythrough {
   const state = structuredClone(previousEnd);
   if (!continueCampaign(state, seed)) throw new Error(`The campaign did not continue into ${chapterId}.`);
@@ -282,16 +332,21 @@ export function playPlateau(chapterId: PostDemoSealPlateauId, previousEnd: GameS
   const reputationStart = state.reputation;
   const driver = new PlateauDriver(state, scenario, chapterId);
   const chests = chestsAfter(chapterId);
+  const done = (): PlateauPlaythrough => ({ state, lines: driver.lines, decisions: driver.decisions, fights: driver.fights,
+    configs: driver.configs, reputationStart });
+  // The final act opens on its Tournament; the capital's first POI follows once the arena is left.
+  if (chapterId === 'finale' && !driver.playTournament(stopBefore)) return done();
   driver.arrive();
   for (const step of playOrder(chapterId)) {
-    if (step === stopBefore) break;
-    const nodeId = step.endsWith('-trial') ? driver.forkBranch(`${step}-`) : step;
+    if (step === stopBefore || (Array.isArray(step) && step.includes(stopBefore ?? ''))) break;
+    const nodeId = Array.isArray(step) ? driver.forkByType(step, 'finale-fork')
+      : (step as string).endsWith('-trial') ? driver.forkBranch(`${step}-`) : step as string;
     driver.visit(nodeId);
-    const chest = chests[step];
+    const chest = typeof step === 'string' ? chests[step] : undefined;
     if (chest && scenario.guardianChests?.includes(chest)) {
       driver.visit(chest);
-      driver.visit(step);
+      driver.visit(step as string);
     }
   }
-  return { state, lines: driver.lines, decisions: driver.decisions, fights: driver.fights, reputationStart };
+  return done();
 }

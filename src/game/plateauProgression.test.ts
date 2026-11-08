@@ -126,8 +126,7 @@ describe('plateau progression (set 1.20.0, Lot 1)', () => {
     expect(state.endingId).toBe('bear-seal-honour');
     expect(getClanRelation(state, 'bear')).toBe('ally');
     expect(getClanRelation(state, 'raven')).toBe('enemy');
-    // The Dragon (Lot 2) and the Scorpion (Lot 3) are built: the campaign continues into each; the final act is not,
-    // so a finished Scorpion stops there.
+    // The Dragon (Lot 2), the Scorpion (Lot 3) and the final act (Lot 4) are built: the campaign continues into each.
     expect(state.campaign!.currentChapterId).toBe('dragon');
     expect(nextPlayablePlateau(state)).toBe('dragon');
     expect(continueCampaign(state, 9)?.id).toBe('dragon-9');
@@ -146,9 +145,20 @@ describe('plateau progression (set 1.20.0, Lot 1)', () => {
     expect(completePlateauChronicle(state, 'scorpion')).toEqual({ chapterId: 'scorpion', outcome: 'honour', nextChapterId: 'finale' });
     expect(state.endingId).toBe('scorpion-seal-honour');
     expect([getClanRelation(state, 'scorpion'), getClanRelation(state, 'phoenix')]).toEqual(['ally', 'enemy']);
+    expect(state.campaign!.currentChapterId).toBe('finale');
+    expect(nextPlayablePlateau(state)).toBe('finale');
+    expect(continueCampaign(state, 12)?.id).toBe('finale-12');
+    expect(state.currentNodeId).toBe('finale-arena-gate');
+    // The final act has no honour or force outcome: it closes once the breach is won, and the chronicle stops there.
+    state.run.status = 'completed';
+    expect(completePlateauChronicle(state, 'finale')).toBeNull();
+    expect(state.campaign!.chapters.finale.status).toBe('active');
+    Object.assign(state.flags, combatVictoryFacts('finale_breach'));
+    expect(completePlateauChronicle(state, 'finale')).toBeNull();
+    expect(state.campaign!.chapters.finale.status).toBe('completed');
+    expect(state.endingId).toBe('finale-breach');
     expect(nextPlayablePlateau(state)).toBeNull();
     expect(continueCampaign(state)).toBeNull();
-    expect(state.campaign!.currentChapterId).toBe('finale');
   });
 
   it('keeps a codex left to the Phénix under oath against the force outcome of the Scorpion', () => {

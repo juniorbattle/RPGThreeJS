@@ -62,8 +62,9 @@ describe('combat HUD presentation', () => {
     const portraitFields = [...(runtime + recruits).matchAll(/portrait\s*:\s*'([^']+\.png)'/g)].map(match => match[1]!);
     const bossPortraits = [...runtime.matchAll(/(?:serpent_captain|serpent_general_boss|alaric|lion_chief):'([^']+\.png)'/g)].map(match => match[1]!);
     const reachable = [...new Set([...portraitFields, ...bossPortraits])].sort();
-    // 36 demo portraits, plus the provisional stand-in of the Bear's draft boss Borin (set 1.20.0, post-demo Lot 1).
-    expect(reachable).toHaveLength(37);
+    // 36 demo portraits, plus the provisional stand-in of the Bear's boss Borin (set 1.20.0, post-demo Lot 1) and the
+    // three of the final act's demons and entity (Lot 4).
+    expect(reachable).toHaveLength(40);
     expect(Object.keys(COMBAT_PORTRAIT_FRAMING).sort()).toEqual(reachable);
     for (const portrait of reachable) {
       expect(existsSync(resolve('public', portrait.slice(1))), portrait).toBe(true);

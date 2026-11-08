@@ -2,6 +2,7 @@ import type { CombatConfig } from './types';
 import { BEAR_CHALLENGES } from '../campaign/plateaux/bear/bearCombat';
 import { DRAGON_CHALLENGES } from '../campaign/plateaux/dragon/dragonCombat';
 import { SCORPION_CHALLENGES } from '../campaign/plateaux/scorpion/scorpionCombat';
+import { FINALE_CHALLENGES } from '../campaign/plateaux/finale/finaleCombat';
 
 /**
  * OD-2026-11-07-F (set 1.18.0, COMBAT_AND_VFX): six optional fights are challenges. Each states exactly one condition from
@@ -39,7 +40,7 @@ const CHALLENGE_BY_EVENT: Readonly<Record<string, string>> = {
 
 /** Set 1.20.0: post-demo challenges, from the closed condition list, with the prime decided by RunSystem. */
 const POST_DEMO_CHALLENGES: Readonly<Record<string, ChallengeDeclaration>> = Object.freeze({ ...BEAR_CHALLENGES, ...DRAGON_CHALLENGES,
-  ...SCORPION_CHALLENGES });
+  ...SCORPION_CHALLENGES, ...FINALE_CHALLENGES });
 
 export function challengeFor(combatId: string): ChallengeDeclaration | undefined {
   return CHALLENGES[combatId] ?? POST_DEMO_CHALLENGES[combatId];

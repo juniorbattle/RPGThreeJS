@@ -26,6 +26,7 @@ import {
   recordPlateauOutcome,
   setClanRelation,
 } from './campaignRelations';
+import { completeFinalAct, finaleVictoryFacts } from './finalAct';
 import { lionBossVictoryFacts, resolvePendingLionFinaleCombat } from './lionFinale';
 import { plateauVictoryFacts, resolvePendingPlateauFinaleCombat, type PlateauFinaleDefinition } from './plateauFinale';
 import { PLATEAU_FINALES, postDemoChapterOf } from './postDemoContent';
@@ -53,13 +54,18 @@ export function pendingPlateauFinaleCombat(state: Pick<GameState, 'run' | 'flags
 /** The durable facts a won fight records: the Lion's boss facts, or a post-demo plateau's victory facts. */
 export function combatVictoryFacts(combatId: string): Readonly<Record<string, boolean>> {
   const chapterId = postDemoChapterOf(combatId);
+  if (chapterId === 'finale') return finaleVictoryFacts(combatId);
   const finale = chapterId ? plateauFinaleOf(chapterId) : undefined;
   return finale ? plateauVictoryFacts(finale, combatId) : lionBossVictoryFacts(combatId);
 }
 
-/** The epilogue the run's boss victory leads to. */
+/** The scene that closes the final act until its epilogues exist (Lot 5). */
+export const FINAL_ACT_CLOSING_DIALOGUE_ID = 'finale_act_end';
+
+/** The epilogue the run's boss victory leads to; the final act's closing scene after the breach. */
 export function plateauEpilogueDialogueId(state: Pick<GameState, 'run'>): string {
   const chapterId = runPlateauId(state);
+  if (chapterId === 'finale') return FINAL_ACT_CLOSING_DIALOGUE_ID;
   return chapterId === 'lion' ? 'epilogue' : plateauFinaleOf(chapterId)?.epilogueDialogueId ?? 'epilogue';
 }
 
@@ -116,6 +122,11 @@ export function closeCurrentPlateau(state: GameState): PlateauClosure | null {
  */
 export function completePlateauChronicle(state: GameState, plateauId: CampaignChapterId): PlateauClosure | null {
   if (plateauId === 'lion' || runPlateauId(state) !== plateauId) return null;
+  // The final act has no honour or force outcome: it closes once the breach is won (Lot 4); R4 decides the ending (Lot 5).
+  if (plateauId === 'finale') {
+    completeFinalAct(state);
+    return null;
+  }
   const closure = closeCurrentPlateau(state);
   if (closure) state.endingId = `${closure.chapterId}-seal-${closure.outcome}`;
   return closure;

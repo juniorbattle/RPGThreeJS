@@ -147,6 +147,11 @@ const ENEMY_VISUAL_SKILLS: Readonly<Record<string, readonly string[]>> = Object.
   phoenix_flamekeeper: ['enemy_dragon_breath', 'boss_guard', 'boss_regen', 'boss_inferno'],
   shadow_zealot: ['enemy_dark_bolt', 'boss_fortify', 'boss_freeze', 'boss_execution'],
   scorpion_scholar: ['enemy_dark_bolt', 'enemy_hex'],
+  // Set 1.20.0, post-demo Lot 4 — DRAFT final-act families, outside the demo scope as well.
+  raven_champion: ['enemy_binding_shot', 'boss_fortify', 'boss_pin', 'boss_flurry'],
+  phoenix_champion: ['enemy_heavy_strike', 'boss_guard', 'boss_regen', 'boss_inferno'],
+  breach_demon: ['enemy_hex'],
+  demon_brute: ['enemy_hex', 'boss_guard', 'boss_quake', 'boss_slam'],
 });
 
 /**
@@ -176,6 +181,10 @@ const POST_DEMO_BOSS_COMBAT_SKILLS: Readonly<Record<string, readonly string[]>> 
   scorpion_temple_seizure: ['enemy_heavy_strike', 'boss_guard', 'boss_regen', 'boss_inferno'],
   scorpion_shadow_prophet: ['enemy_hex', 'boss_fortify', 'boss_freeze', 'boss_execution'],
   scorpion_inquisitor: ['enemy_dark_bolt', 'boss_regen', 'boss_pin', 'boss_apocalypse'],
+  finale_serpent_final: ['enemy_venom_strike', 'boss_fortify', 'boss_quake', 'boss_titan_slam'],
+  finale_arena_assault: ['enemy_hex', 'boss_regen', 'boss_quake', 'boss_inferno'],
+  // The breach's first phase (Maelor); its second phase (the entity) is checked by its own phase.
+  finale_breach: ['enemy_dark_bolt', 'boss_fortify', 'boss_freeze', 'boss_execution'],
 });
 
 /** Boss combats launched by the Lion finale (`resolveLionFinaleExecution`). */
@@ -193,6 +202,7 @@ const ELITE_VISUAL_IDS = new Set([
   'raven_foreman', 'corrupted_beast', 'depth_beast',
   'wolf_champion', 'shadow_wyrm',
   'phoenix_flamekeeper', 'shadow_zealot',
+  'raven_champion', 'phoenix_champion', 'demon_brute',
 ]);
 
 export const __testing = { ENEMY_VISUAL_SKILLS, BOSS_COMBAT_SKILLS, ELITE_VISUAL_IDS, POST_DEMO_BOSS_COMBAT_SKILLS };

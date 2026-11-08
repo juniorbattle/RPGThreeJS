@@ -14,7 +14,7 @@ export interface FixedPoiDefinition {
   combat?: {sceneId: string; variants: {id: string; enemyVisualIds: string[]}[]; rewards: PoiRewards};
 }
 export interface EliteDefinition {
-  id: string; label: string; region: 1|2; activateAfterResolved: string;
+  id: string; label: string; region: 0|1|2; activateAfterResolved: string;
   allowedPositions: string[]; spawnPosition: string;
   mode: 'cyclic_patrol'|'bounded_one_edge_graph_chase';
   combat: {id: string; sceneId: string; enemies: string[]; rewards: PoiRewards};

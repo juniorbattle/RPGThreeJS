@@ -248,7 +248,8 @@ describe('native movement undo focus', () => {
     const place = vi.fn((u, gx, gz) => Object.assign(u, { gx, gz }));
     const api = new Function('G', 'dom', 'renderer', 'keyboardInput', 'restoreUnitFocus', 'placeUnit', 'clearHL',
       'selectUnit', 'setHint', 'closeMenus', 'hasS', 'invCount', 'renderCombatActionDock', 'syncActionDockState',
-      `const combatCue=()=>{}, itemsForbidden=()=>false;\n${undoSource}\n${menuSource}\nreturn { undo: undoMove, open: openActionMenu };`)(
+      // Set 1.20.0: no clan support outside the final act.
+      `const combatCue=()=>{}, itemsForbidden=()=>false, unusedSupports=()=>[], COMBAT_SUPPORTS=[];\n${undoSource}\n${menuSource}\nreturn { undo: undoMove, open: openActionMenu };`)(
       game, { menu, skillmenu }, { domElement: canvas }, keyboard, vi.fn(), place, vi.fn(), vi.fn(), vi.fn(),
       vi.fn(), () => false, () => 0, renderCombatActionDock, sync,
     ) as { undo: () => void; open: () => void };
@@ -313,7 +314,7 @@ describe('native next-player-turn focus', () => {
        const hideActionPreview=()=>{}, refreshTurnbar=()=>{}, selectUnit=()=>{}, focusCam=()=>{},
        refreshPanel=()=>{}, floatText=()=>{}, logMsg=()=>{}, clearBossIntentPresentation=()=>{},
        setHint=()=>{}, restoreUnitFocus=()=>{}, clearHL=()=>{}, syncActionDockState=()=>{},
-       tickStatusDuration=()=>{}, hasS=()=>false, invCount=()=>0, itemsForbidden=()=>false, statusSkips=()=>null,
+       tickStatusDuration=()=>{}, hasS=()=>false, invCount=()=>0, itemsForbidden=()=>false, unusedSupports=()=>[], COMBAT_SUPPORTS=[], statusSkips=()=>null,
        wait=async()=>{}, aiTurn=async()=>{};
        ${turns}\n${menuSource}\nreturn { begin:beginTurn, end:endTurn, open:openActionMenu };`)(
       game, { menu, skillmenu }, { domElement: canvas }, keyboard, documentView, renderCombatActionDock,

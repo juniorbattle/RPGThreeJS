@@ -5,6 +5,7 @@
 import { BEAR_REFUGE_PRESENTATION } from './bear/bearPresentation';
 import { DRAGON_REFUGE_PRESENTATION } from './dragon/dragonPresentation';
 import { SCORPION_REFUGE_PRESENTATION } from './scorpion/scorpionPresentation';
+import { FINALE_REFUGE_PRESENTATION } from './finale/finalePresentation';
 import type { CampaignChapterId } from './campaignIds';
 
 /** The refuge presentation of every built post-demo plateau, by refuge node. */
@@ -16,7 +17,7 @@ export const POST_DEMO_REFUGE_PRESENTATION: Readonly<Record<string, {
   gatheringDialogueId?: string;
   awaitedFinal: string;
 }>> = Object.freeze({ ...BEAR_REFUGE_PRESENTATION, ...DRAGON_REFUGE_PRESENTATION,
-  ...SCORPION_REFUGE_PRESENTATION });
+  ...SCORPION_REFUGE_PRESENTATION, ...FINALE_REFUGE_PRESENTATION });
 
 function gatherings(refuges: object): Readonly<Record<string, string>> {
   return Object.freeze(Object.fromEntries(Object.entries(refuges as Record<string, { gatheringDialogueId?: string }>)
@@ -27,4 +28,5 @@ export const POST_DEMO_REFUGE_GATHERINGS: Readonly<Partial<Record<CampaignChapte
   bear: gatherings(BEAR_REFUGE_PRESENTATION),
   dragon: gatherings(DRAGON_REFUGE_PRESENTATION),
   scorpion: gatherings(SCORPION_REFUGE_PRESENTATION),
+  finale: gatherings(FINALE_REFUGE_PRESENTATION),
 });

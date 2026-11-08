@@ -38,8 +38,8 @@ describe('the Lion consequence map passes the narrative coherence validator', ()
   it('has no error: every major choice is echoed later by a scene that names its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.stats).toEqual({
-      // Four echoes planned for the final act (Lot 4): the Shadow evidence and the outcome, at the vigil and the rally.
-      dialogues: 75, steps: 256, facts: 64, majorChoices: 13, implementedEchoes: 38, plannedEchoes: 4,
+      // Plus four echoes in the final act (Lot 4): the Shadow evidence and the outcome, at the vigil and the rally.
+      dialogues: 75, steps: 256, facts: 64, majorChoices: 13, implementedEchoes: 42, plannedEchoes: 0,
     });
   });
 
@@ -144,8 +144,8 @@ describe('the Bear draft passes the narrative coherence validator (Lot 1)', () =
   it('has no error and no exception: every Bear fact set is read, every choice echoed by a scene naming its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
-    // Its dark-ore echo into the Scorpion is implemented since Lot 3; the final act's four stay planned (Lot 4).
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 31, plannedEchoes: 4 });
+    // Its dark-ore echo into the Scorpion is implemented since Lot 3, its four into the final act since Lot 4.
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 35, plannedEchoes: 0 });
   });
 
   it('carries the Lion into the Bear: every Lion echo planned for the Bear is now implemented', () => {
@@ -162,8 +162,8 @@ describe('the Dragon draft passes the narrative coherence validator (Lot 2)', ()
   it('has no error and no exception: every Dragon fact set is read, every choice echoed by a scene naming its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
-    // Its three echoes into the Scorpion are implemented since Lot 3; the final act's four stay planned (Lot 4).
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 32, plannedEchoes: 4 });
+    // Its three echoes into the Scorpion are implemented since Lot 3, its four into the final act since Lot 4.
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 36, plannedEchoes: 0 });
   });
 
   it('carries the Lion and the Bear into the Dragon: every echo they hold for the Dragon is implemented', () => {
@@ -182,8 +182,8 @@ describe('the Scorpion draft passes the narrative coherence validator (Lot 3)', 
   it('has no error and no exception: every Scorpion fact set is read, every choice echoed by a scene naming its cause', () => {
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
-    // The final act's five stay planned (Lot 4).
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 28, plannedEchoes: 5 });
+    // Plus its five echoes into the final act, implemented since Lot 4.
+    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11, implementedEchoes: 33, plannedEchoes: 0 });
   });
 
   it('carries the Bear and the Dragon into the Scorpion: every echo they hold for the Scorpion is implemented', () => {
@@ -195,7 +195,7 @@ describe('the Scorpion draft passes the narrative coherence validator (Lot 3)', 
     expect(into.every((echo) => echo.status === 'implemented')).toBe(true);
   });
 
-  it('keeps only the final act planned: every Scorpion echo inside the plateau is implemented', () => {
+  it('keeps nothing planned: every Scorpion echo, the final act’s included, is implemented', () => {
     const map = consequenceMapSchema.parse(structuredClone(scorpionMap));
     const echoes = [...map.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(map.outcomes).flatMap((outcome) => outcome.echoes)];
     expect(echoes.filter((echo) => echo.status === 'planned').every((echo) => echo.scope === 'final_act')).toBe(true);
@@ -291,9 +291,10 @@ describe('the final act consequence map is written first, as a design (Lot 4)', 
     }
   });
 
-  it('names a real place of the final act for every echo the four plateaux hold for it', () => {
+  it('names a real place of the final act for every echo the four plateaux hold for it, all implemented', () => {
     const into = [lionMap, bearMap, dragonMap, scorpionMap].flatMap(allEchoes).filter((echo) => echo.chapterId === 'finale');
     expect(into).toHaveLength(17);
+    expect(into.every((echo) => echo.status === 'implemented')).toBe(true);
     for (const echo of into) {
       expect(echo.nodeId, echo.id).not.toBe('finale-tbd');
       expect(['finale-allied-rally', 'finale-last-refuge', 'finale-bout-serpent'], echo.id).toContain(echo.nodeId);
@@ -305,5 +306,15 @@ describe('the final act consequence map is written first, as a design (Lot 4)', 
     const withoutOutcomes = structuredClone(bearMap) as Record<string, unknown>;
     delete withoutOutcomes.outcomes;
     expect(() => campaignConsequenceMapSchema.parse(withoutOutcomes)).toThrow(/honour and force outcomes/);
+  });
+});
+
+describe('the final act draft passes the narrative coherence validator (Lot 4)', () => {
+  const report = validateNarrativeCoherence(finaleMap, sources);
+
+  it('has no error and no exception: every fact read, every choice echoed by a scene naming its cause, the epilogues planned', () => {
+    expect(report.errors).toEqual([]);
+    expect(report.excused).toEqual([]);
+    expect(report.stats).toMatchObject({ facts: 18, majorChoices: 5, implementedEchoes: 10, plannedEchoes: 2 });
   });
 });

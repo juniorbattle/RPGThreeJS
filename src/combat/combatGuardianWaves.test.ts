@@ -29,10 +29,11 @@ function battle(waves: number, campaign = true) {
   const createUnit = vi.fn((def: Unit) => { const unit = { ...def, alive: true }; G.units.push(unit); cells.get(`${def.gx},${def.gz}`)!.occupant = unit; return unit; });
   const winWave = vi.fn(), endGame = vi.fn(), setHint = vi.fn(), logMsg = vi.fn(), refreshTurnbar = vi.fn();
   const status = { textContent: '' };
-  const api = new Function('G', 'CAMPAIGN_MODE', 'COMBAT_WAVES', 'ENCOUNTER_ENEMY_VISUAL_IDS', 'VISUAL_UNIT_TEMPLATES', 'DEFS', 'unitDefFromVisual',
+  // Set 1.20.0: a guardian fight has no boss phase.
+  const api = new Function('G', 'CAMPAIGN_MODE', 'COMBAT_WAVES', 'COMBAT_PHASES', 'enterCampaignPhase', 'ENCOUNTER_ENEMY_VISUAL_IDS', 'VISUAL_UNIT_TEMPLATES', 'DEFS', 'unitDefFromVisual',
     'ESCORT_VISUAL_POSITIONS', 'createUnit', 'cellAt', 'aliveUnits', 'winWave', 'endGame', 'setHint', 'logMsg', 'byId', 'refreshTurnbar',
     `${source}\nreturn { checkEnd };`)(
-    G, campaign, waves, [], {}, formation, () => null, [], createUnit, (gx: number, gz: number) => cells.get(`${gx},${gz}`),
+    G, campaign, waves, [], () => { throw new Error('no phase'); }, [], {}, formation, () => null, [], createUnit, (gx: number, gz: number) => cells.get(`${gx},${gz}`),
     (team: string) => G.units.filter(unit => unit.team === team && unit.alive), winWave, endGame, setHint, logMsg, () => status, refreshTurnbar,
   ) as { checkEnd: () => boolean };
   return { api, G, hero, formation, createUnit, winWave, setHint, status, refreshTurnbar };

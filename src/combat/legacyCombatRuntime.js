@@ -87,6 +87,10 @@ let COMBAT_OBJECTIVE='Vaincre tous les ennemis.';
 let COMBAT_CHALLENGE=null;
 // Set 1.19.0: the stationary guardians are fought in two waves; every other fight keeps one.
 let COMBAT_WAVES=1;
+// Set 1.20.0 (COMBAT_AND_VFX): the final fight's later phases, and the clan supports RunSystem derived for a final-act
+// fight. Both static for the fight; the current phase and the supports used are never saved.
+let COMBAT_PHASES=[];
+let COMBAT_SUPPORTS=[];
 const itemsForbidden=()=>Boolean(COMBAT_CHALLENGE&&COMBAT_CHALLENGE.kind==='no_items');
 let COMBAT_LABEL='Combat tactique';
 let COMBAT_REWARDS=null;
@@ -747,7 +751,13 @@ const BOSS_DEFS=[
   // existing skills only, as for the Bear and the Dragon.
   {team:'foe',kind:'knight',name:'Chef des gardiens du Phénix',className:'Chef des gardiens',portrait:'/assets/characters/pixel/masters/serpent_elite_brute.png',hp:440,str:27,mag:10,end:24,dex:8,cha:10,mov:0,weapons:[{name:'Lance de flamme',icon:'↟',type:'phys',min:1,max:2,power:16,crit:0.06,acc:0.9}],skills:['enemy_heavy_strike','boss_guard','boss_regen','boss_inferno'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true,combatIds:['scorpion_temple_assault','scorpion_temple_seizure'],provisionalSprite:true},
   {team:'foe',kind:'darkmage',name:'Prophète des Ombres',className:'Prophète des Ombres',portrait:'/assets/characters/pixel/archive/non-demo/seal_guardian.png',hp:470,str:6,mag:28,end:18,dex:14,cha:18,mov:0,weapons:[{name:'Onde froide',icon:'✦',type:'mag',min:2,max:3,power:16,crit:0.08,acc:0.92}],skills:['enemy_hex','boss_fortify','boss_freeze','boss_execution'],ai:'cautious',gx:5,gz:1,size:2,immobile:true,boss:true,combatIds:['scorpion_shadow_prophet'],provisionalSprite:true},
-  {team:'foe',kind:'darkmage',name:'Grand Inquisiteur',className:'Grand Inquisiteur',portrait:'/assets/characters/pixel/masters/serpent_duelist_elite.png',hp:560,str:16,mag:28,end:24,dex:14,cha:18,mov:0,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:17,crit:0.08,acc:0.92}],skills:['enemy_dark_bolt','boss_regen','boss_pin','boss_apocalypse'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true,combatIds:['scorpion_inquisitor'],provisionalSprite:true}
+  {team:'foe',kind:'darkmage',name:'Grand Inquisiteur',className:'Grand Inquisiteur',portrait:'/assets/characters/pixel/masters/serpent_duelist_elite.png',hp:560,str:16,mag:28,end:24,dex:14,cha:18,mov:0,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:17,crit:0.08,acc:0.92}],skills:['enemy_dark_bolt','boss_regen','boss_pin','boss_apocalypse'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true,combatIds:['scorpion_inquisitor'],provisionalSprite:true},
+  // Set 1.20.0, post-demo Lot 4 — DRAFT bosses of the final act, chosen by their combatIds; the breach's two bosses also
+  // by their phase (COMBAT_AND_VFX "Boss phases"). Provisional sprites and existing skills only.
+  {team:'foe',kind:'brute',name:'Champion du Serpent',className:'Champion du Serpent',portrait:'/assets/characters/pixel/masters/serpent_elite_brute.png',hp:480,str:29,mag:8,end:24,dex:10,cha:12,mov:0,weapons:[{name:'Lame Serpent',icon:'⚔',type:'phys',min:1,max:2,power:17,crit:0.08,acc:0.9}],skills:['enemy_venom_strike','boss_fortify','boss_quake','boss_titan_slam'],ai:'aggressive',gx:5,gz:1,size:2,immobile:true,boss:true,combatIds:['finale_serpent_final'],provisionalSprite:true},
+  {team:'foe',kind:'brute',name:'Champion changé en démon',className:'Démon de la brèche',portrait:'/assets/characters/pixel/archive/non-demo/troll.png',hp:520,str:30,mag:18,end:24,dex:9,cha:6,mov:0,weapons:[{name:'Griffes',icon:'◆',type:'phys',min:1,max:2,power:18,crit:0.06,acc:0.88}],skills:['enemy_hex','boss_regen','boss_quake','boss_inferno'],ai:'aggressive',gx:5,gz:1,size:2,immobile:true,boss:true,combatIds:['finale_arena_assault'],provisionalSprite:true},
+  {team:'foe',kind:'darkmage',name:'Maelor',className:'Maelor',portrait:'/assets/characters/pixel/masters/maelor.png',hp:500,str:10,mag:28,end:20,dex:14,cha:18,mov:0,weapons:[{name:'Onde froide',icon:'✦',type:'mag',min:2,max:3,power:16,crit:0.08,acc:0.92}],skills:['enemy_dark_bolt','boss_fortify','boss_freeze','boss_execution'],ai:'cautious',gx:5,gz:1,size:2,immobile:true,boss:true,combatIds:['finale_breach'],phase:1,provisionalSprite:true},
+  {team:'foe',kind:'darkmage',name:'Entité de la brèche',className:'Entité',portrait:'/assets/characters/pixel/archive/non-demo/shrine_apparition.png',hp:620,str:20,mag:30,end:26,dex:12,cha:20,mov:0,weapons:[{name:'Onde froide',icon:'✦',type:'mag',min:2,max:3,power:18,crit:0.08,acc:0.92}],skills:['enemy_hex','boss_regen','boss_apocalypse','boss_inferno'],ai:'guardian',gx:5,gz:1,size:2,immobile:true,boss:true,combatIds:['finale_breach'],phase:2,provisionalSprite:true}
 ];
 // The 2x2 footprint occupies the rightmost two columns (6 and 7).
 for(const bossDef of BOSS_DEFS){ bossDef.gx=6; bossDef.gz=1; }
@@ -808,6 +818,12 @@ const VISUAL_UNIT_TEMPLATES={
   phoenix_guardian:{team:'foe',kind:'knight',name:'Gardien du Phénix',className:'Gardien du Phénix',portrait:'/assets/characters/pixel/masters/village_militia_spearman.png',hp:128,str:17,mag:8,end:17,dex:10,cha:10,mov:2,weapons:[{name:'Lance du temple',icon:'↟',type:'phys',min:1,max:2,power:12,crit:0.06,acc:0.9}],skills:['enemy_heavy_strike'],ai:'guardian',provisionalSprite:true},
   phoenix_flamekeeper:{team:'foe',kind:'knight',name:'Gardien de flamme',className:'Gardien de flamme',portrait:'/assets/characters/pixel/masters/lion_champion.png',hp:390,str:22,mag:20,end:22,dex:9,cha:12,mov:0,weapons:[{name:'Flamme du temple',icon:'✦',type:'mag',min:1,max:3,power:16,crit:0.06,acc:0.9}],skills:['enemy_dragon_breath','boss_guard','boss_regen','boss_inferno'],ai:'guardian',size:2,immobile:true,elite:true,provisionalSprite:true},
   shadow_zealot:{team:'foe',kind:'darkmage',name:'Fidèle égaré',className:'Fidèle égaré',portrait:'/assets/characters/pixel/archive/non-demo/undead_champion.png',hp:360,str:12,mag:24,end:20,dex:10,cha:6,mov:0,weapons:[{name:'Onde froide',icon:'✦',type:'mag',min:2,max:3,power:15,crit:0.08,acc:0.9}],skills:['enemy_dark_bolt','boss_fortify','boss_freeze','boss_execution'],ai:'cautious',size:2,immobile:true,elite:true,provisionalSprite:true},
+  // Set 1.20.0, post-demo Lot 4 — DRAFT enemy families of the final act (roadmap §3.6, §3.7): the rival clans' champions at
+  // the Tournament and the demons of the breach, unnamed as the roadmap leaves them. PROVISIONAL sprites.
+  raven_champion:{team:'foe',kind:'brigand',name:'Champion du Corbeau',className:'Champion du Corbeau',portrait:'/assets/characters/pixel/masters/serpent_duelist_elite.png',hp:340,str:24,mag:6,end:16,dex:22,cha:9,mov:0,weapons:[{name:'Lames de jet',icon:'†',type:'phys',min:2,max:3,power:14,crit:0.2,acc:0.95}],skills:['enemy_binding_shot','boss_fortify','boss_pin','boss_flurry'],ai:'aggressive',size:2,immobile:true,elite:true,provisionalSprite:true},
+  phoenix_champion:{team:'foe',kind:'knight',name:'Champion du Phénix',className:'Champion du Phénix',portrait:'/assets/characters/pixel/masters/lion_champion.png',hp:360,str:23,mag:16,end:22,dex:10,cha:12,mov:0,weapons:[{name:'Lance du temple',icon:'↟',type:'phys',min:1,max:2,power:15,crit:0.06,acc:0.9}],skills:['enemy_heavy_strike','boss_guard','boss_regen','boss_inferno'],ai:'guardian',size:2,immobile:true,elite:true,provisionalSprite:true},
+  breach_demon:{team:'foe',kind:'brute',name:'Démon de la brèche',className:'Démon de la brèche',portrait:'/assets/characters/pixel/archive/non-demo/giant_mygale.png',hp:112,str:17,mag:10,end:13,dex:12,cha:4,mov:2,weapons:[{name:'Griffes',icon:'◆',type:'phys',min:1,max:1,power:11,crit:0.08,acc:0.9}],skills:['enemy_hex'],ai:'aggressive',provisionalSprite:true},
+  demon_brute:{team:'foe',kind:'brute',name:'Démon massif',className:'Démon massif',portrait:'/assets/characters/pixel/masters/forest_troll_elite.png',hp:420,str:30,mag:10,end:25,dex:6,cha:4,mov:0,weapons:[{name:'Griffes',icon:'◆',type:'phys',min:1,max:2,power:17,crit:0.06,acc:0.86}],skills:['enemy_hex','boss_guard','boss_quake','boss_slam'],ai:'guardian',size:2,immobile:true,elite:true,provisionalSprite:true},
   scorpion_scholar:{team:'foe',kind:'darkmage',name:'Érudit du Scorpion',className:'Érudit du Scorpion',portrait:'/assets/characters/pixel/masters/serpent_oracle.png',hp:84,str:4,mag:20,end:10,dex:12,cha:10,mov:2,weapons:[{name:'Bâton',icon:'✦',type:'mag',min:1,max:3,power:9,crit:0.05,acc:0.95}],skills:['enemy_dark_bolt','enemy_hex'],ai:'cautious',provisionalSprite:true},
   seal_guardian:{team:'foe',kind:'darkmage',name:'Gardien du Sceau',className:'Gardien du Sceau',portrait:'/assets/characters/pixel/archive/non-demo/seal_guardian.png',hp:90,str:6,mag:20,end:11,dex:10,cha:16,mov:2,weapons:[{name:'Sceau',icon:'✦',type:'mag',min:1,max:3,power:8,crit:0.04,acc:0.94}],skills:['enemy_hex','boss_guard'],ai:'cautious'}
 };
@@ -1174,7 +1190,7 @@ function spawnUnits(){
   if(!IS_BOSS_COMBAT) for(const def of encounterFoeDefs()) createUnit(def);
   if(IS_BOSS_COMBAT&&!BOSS_SPAWNED){
     // Set 1.20.0: a post-demo boss is chosen by the fights it leads; demo fights keep their own selection unchanged.
-    const bossDef=BOSS_DEFS.find(b=>b.combatIds?.includes(COMBAT_ID))
+    const bossDef=BOSS_DEFS.find(b=>b.combatIds?.includes(COMBAT_ID)&&(b.phase||1)===1)
       ||BOSS_DEFS.find(b=>COMBAT_ID==='lion_chief'&&b.name.includes('Champion'))||BOSS_DEFS[0];
     if(ENCOUNTER_ESCORT_VISUAL_IDS.length){
       // A boss is the encounter's only major opponent. Ignore any accidental
@@ -1277,7 +1293,7 @@ function endTurn(){ if(G.busy||G.over)return; const u=G.active;
     tickStatusDuration(u); refreshPanel(u);
   }
   restoreUnitFocus(); hideActionPreview(); closeMenus(); clearHL(); G._targetPreviewKey=null; G.pending=null; G.mode='idle'; nextTurn(); }
-function checkEnd(){ if(G.over)return true; if(aliveUnits('foe').length===0){ if(CAMPAIGN_MODE&&G.wave<COMBAT_WAVES&&aliveUnits('player').length>0){ enterCampaignWave(); return false; } winWave(); return true; } if(aliveUnits('player').length===0){ endGame(false); return true; } return false; }
+function checkEnd(){ if(G.over)return true; if(aliveUnits('foe').length===0){ if(CAMPAIGN_MODE&&G.wave<COMBAT_WAVES&&aliveUnits('player').length>0){ enterCampaignWave(); return false; } if(CAMPAIGN_MODE&&G.phase<=COMBAT_PHASES.length&&aliveUnits('player').length>0){ enterCampaignPhase(); return false; } winWave(); return true; } if(aliveUnits('player').length===0){ endGame(false); return true; } return false; }
 
 // ============================= COMBAT & AOE =============================
 function worldToScreen(v,activeCamera){ const p=v.clone().project(activeCamera||camera); return {x:(p.x*0.5+0.5)*innerWidth,y:(-p.y*0.5+0.5)*innerHeight}; }
@@ -2095,7 +2111,7 @@ async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())r
   if(spec.dispelAllies){ const allies=G.units.filter(t=>t.alive&&t.team===u.team); for(const t of allies){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } if(n&&!G.stage)floatText(t,'PURIFIÉ','#7ed957',true); refreshPanel(t); } }
   if(spec.stealBuffs){ for(const t of targets){ if(t.alive&&t.team!==u.team){ for(const s in t.statuses){ if(!isNegative(s)){ u.statuses[s]=t.statuses[s]; delete t.statuses[s]; } } refreshPanel(t); } } refreshPanel(u); }
   if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
-  if(spec.key==='attack'){ G.basicAttacksThisTurn++; } if(spec.item){ G.itemsUsedThisTurn++; G.itemsUsedTotal++; }
+  if(spec.key==='attack'){ G.basicAttacksThisTurn++; } if(spec.item){ G.itemsUsedThisTurn++; G.itemsUsedTotal++; } if(spec.clanSupportId)G.supportsUsed.add(spec.clanSupportId);
   if(G.movedThisTurn)G.movedBeforeAct=true; refreshPanel(u);
   await presentActionExit(); G.busy=false; checkEnd();
 }
@@ -2424,7 +2440,7 @@ function toast(t){ setHint('⚠ '+t); }
 function renderObjective(){ if(!dom.objective)return; dom.objective.classList.remove('hidden');
   const foes=G.units.filter(u=>u.team==='foe'),foeAlive=aliveUnits('foe').length,foeDone=Math.max(0,foes.length-foeAlive),deploying=G.mode==='deploy'||!G.round;
   const playerAlive=aliveUnits('player').length,playerTotal=G.deployedUnits.length||G.units.filter(u=>u.team==='player').length||playerDeployLimit();
-  const squadLabel=deploying?'Unités placées':'Escouade debout',squadValue=deploying?(G.deployedUnits.length+' / '+playerDeployLimit()):(playerAlive+' / '+playerTotal),roundLimit=COMBAT_CHALLENGE&&COMBAT_CHALLENGE.kind==='max_rounds'?COMBAT_CHALLENGE.limit:0,roundLabel=deploying?'Déploiement':'Manche '+G.round+(roundLimit?' / '+roundLimit:'')+(CAMPAIGN_MODE&&COMBAT_WAVES>1?' · Vague '+G.wave+' / '+COMBAT_WAVES:'');
+  const squadLabel=deploying?'Unités placées':'Escouade debout',squadValue=deploying?(G.deployedUnits.length+' / '+playerDeployLimit()):(playerAlive+' / '+playerTotal),roundLimit=COMBAT_CHALLENGE&&COMBAT_CHALLENGE.kind==='max_rounds'?COMBAT_CHALLENGE.limit:0,roundLabel=deploying?'Déploiement':'Manche '+G.round+(roundLimit?' / '+roundLimit:'')+(CAMPAIGN_MODE&&COMBAT_WAVES>1?' · Vague '+G.wave+' / '+COMBAT_WAVES:'')+(CAMPAIGN_MODE&&COMBAT_PHASES.length?' · Phase '+G.phase+' / '+(COMBAT_PHASES.length+1):'');
   const wasOpen=dom.objective.querySelector('details')?.open;
   dom.objective.innerHTML=renderCombatObjective({title:COMBAT_LABEL||'Combat tactique',condition:COMBAT_OBJECTIVE,challenge:COMBAT_CHALLENGE?{condition:COMBAT_CHALLENGE.condition,prime:COMBAT_CHALLENGE.prime}:undefined,round:roundLabel,foesDone:foeDone,foesTotal:foes.length,squadLabel,squadValue,expanded:wasOpen??deploying}); }
 // ---- Settings (gear) : purely visual toggles, no rules touched ----
@@ -2484,6 +2500,7 @@ function tipFor(u,b){ const a=b.dataset.a;
   if(a==='attack'){ const w=u.weapons[+b.dataset.wi||0]; const n=G.basicAttacksThisTurn; return w.name+' · portée '+w.min+'-'+w.max+' · puiss '+w.power+' · crit '+Math.round(w.crit*100)+'% · préc '+Math.round(w.acc*100)+'% · 3 niveaux d\'Élan'+(n>0?' · escalade +'+n+' PA':''); }
   if(a==='skill'){ if(!u.skills.length)return 'Aucune compétence disponible'; if(hasS(u,'silence'))return 'Mutisme · compétences bloquées'; return 'Compétences · '+u.ap+' PA'; }
   if(a==='item')return itemsForbidden()?'Objets · interdits par le défi':'Objets · sac ×'+invCount()+' · '+(G.itemsUsedThisTurn+1)+' PA';
+  if(a==='support')return 'Soutiens des clans alliés · '+unusedSupports().length+' restant(s), chacun une fois dans ce combat';
   if(a==='wait')return 'Attendre · fin de tour'; return ''; }
 function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ closeMenus(); return; }
   dom.menu.classList.remove('hidden'); dom.skillmenu.classList.add('hidden'); dom.skillmenu.dataset.kind='';
@@ -2493,16 +2510,17 @@ function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ 
   const atkSub = 'Élan · '+(1+n)+' PA';
   const sklDis = !u.skills.length || hasS(u,'silence');
   const itmDis = itemsForbidden() || u.ap<(G.itemsUsedThisTurn+1) || invCount()<=0;
+  const supportsLeft=unusedSupports(), supDis=!supportsLeft.some(support=>getSpec(u,support.skillId).ap<=u.ap);
   const actions=[(md&&!G.movedBeforeAct)?{key:'undo',icon:'↩',label:'Annuler',detail:'Déplacement',disabled:false}:{key:'move',icon:'✣',label:'Déplacer',detail:u.mov+' cases',disabled:md||hasS(u,'root')||u.immobile}];
   (u.weapons||[]).forEach((w,i)=>actions.push({key:'attack',icon:w.icon||'⚔',label:'Attaquer',detail:atkSub,disabled:atkDis,weaponIndex:i}));
-  actions.push({key:'skill',icon:'✦',label:'Compétences',detail:u.ap+' PA',disabled:sklDis},{key:'item',icon:'◇',label:'Objet',detail:itemsForbidden()?'Interdit · défi':'×'+invCount()+' · '+(G.itemsUsedThisTurn+1)+' PA',disabled:itmDis},{key:'wait',icon:'⌛',label:'Attendre',detail:'Fin du tour',disabled:false});
+  actions.push({key:'skill',icon:'✦',label:'Compétences',detail:u.ap+' PA',disabled:sklDis},{key:'item',icon:'◇',label:'Objet',detail:itemsForbidden()?'Interdit · défi':'×'+invCount()+' · '+(G.itemsUsedThisTurn+1)+' PA',disabled:itmDis},...(COMBAT_SUPPORTS.length?[{key:'support',icon:'✧',label:'Soutiens',detail:supportsLeft.length+' restant'+(supportsLeft.length>1?'s':''),disabled:supDis}]:[]),{key:'wait',icon:'⌛',label:'Attendre',detail:'Fin du tour',disabled:false});
   dom.menu.innerHTML=renderCombatActionDock(actions,null)+'<div class="lbl"></div>';
   const lbl=dom.menu.querySelector('.lbl');
   dom.menu.querySelectorAll('.ico').forEach(b=>{ b.onclick=()=>onMenu(b.dataset.a,b);
     b.onmouseenter=()=>{ lbl.textContent=tipFor(u,b); lbl.classList.add('on'); };
     b.onmouseleave=()=>{ lbl.classList.remove('on'); }; }); syncActionDockState(); }
 function onMenu(a,b){ if(G.mode==='move'||G.mode==='target'){ if(b.classList.contains('is-selected'))cancelToMenu(); return; } if(b.disabled)return; const u=G.active; selectUnit(u);
-  if(a==='move')enterMove(); else if(a==='undo')undoMove(); else if(a==='attack')openElanMenu(+b.dataset.wi||0); else if(a==='skill')openSkillMenu(); else if(a==='item')openItemMenu(); else if(a==='wait')endTurn(); }
+  if(a==='move')enterMove(); else if(a==='undo')undoMove(); else if(a==='attack')openElanMenu(+b.dataset.wi||0); else if(a==='skill')openSkillMenu(); else if(a==='item')openItemMenu(); else if(a==='support')openSupportMenu(); else if(a==='wait')endTurn(); }
 function openElanMenu(wi){ const u=G.active; if(!u)return; combatCue('confirm'); dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='attack'; syncActionDockState(); const n=G.basicAttacksThisTurn;
   let h='<div class="ttl">Élan — '+u.ap+' PA'+(n>0?' · escalade +'+n+' PA':'')+'</div>';
   for(let ch=0;ch<3;ch++){ const sp=getSpec(u,'attack',wi,ch); const dis=sp.ap>u.ap?'dis':'';
@@ -2524,6 +2542,17 @@ function itemSpec(id){ const it=ITEMS[id]; const base={key:'item',itemId:id,name
   if(it.effect==='grenade') return Object.assign(base,{type:'mag', power:0,offensive:true,acc:1,flatDmg:it.flatDmg,status:it.status,statusTurns:it.statusTurns,targetMode:'enemy'});
   return base; }
 function invCount(){ let n=0; for(const k in G.inv)n+=G.inv[k]; return n; }
+// Set 1.20.0 (COMBAT_AND_VFX "Clan supports"): each support is an existing skill, usable once in the fight through the
+// normal action legality, AP and targeting. It is not an item: it never touches the bag, the item counters or a challenge.
+function unusedSupports(){ return COMBAT_SUPPORTS.filter(support=>!G.supportsUsed?.has(support.id)); }
+function openSupportMenu(){ combatCue('confirm'); const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='support'; syncActionDockState();
+  let h='<div class="ttl">Soutiens des clans — '+u.ap+' PA</div>';
+  for(const support of COMBAT_SUPPORTS){ const used=G.supportsUsed.has(support.id); const spec=getSpec(u,support.skillId); const dis=used||spec.ap>u.ap;
+    h+='<button type="button" class="btn '+(dis?'dis':'')+'" data-s="'+escHTML(support.id)+'" title="'+escHTML(SKILLS[support.skillId].desc||'')+'"'+(dis?' disabled':'')+'>'+escHTML(support.clanLabel)+' : '+escHTML(support.label)+' <small>'+(used?'utilisé':spec.ap+' PA')+'</small></button>'; }
+  h+='<button type="button" class="btn" data-s="_back">Retour</button>';
+  dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const id=b.dataset.s; if(id==='_back'){ closeSubmenu(); return; }
+    const support=COMBAT_SUPPORTS.find(entry=>entry.id===id); if(!support||G.supportsUsed.has(id))return;
+    enterTarget({...getSpec(u,support.skillId),clanSupportId:support.id,name:support.label}); }); focusSubmenu(); }
 function openItemMenu(){ if(itemsForbidden())return; combatCue('confirm'); const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='item'; syncActionDockState(); const nextCost=G.itemsUsedThisTurn+1; let h='<div class="ttl">Objets — sac commun · '+u.ap+' PA</div>'; let any=false;
   for(const id in ITEMS){ const n=G.inv[id]||0; const it=ITEMS[id]; const hasKoAlly=it.effect!=='revive'||G.units.some(x=>!x.alive&&x.downed&&x.team===u.team); const dis=n<=0||u.ap<nextCost||!hasKoAlly; if(n>0)any=true; h+='<button type="button" class="btn '+(dis?'dis':'')+'" data-i="'+id+'" title="'+escHTML(it.desc)+'"'+(dis?' disabled':'')+'>'+escHTML(it.name)+' <small>×'+n+' · '+nextCost+' PA</small></button>'; }
   if(!any)h+='<div class="btn dis">Sac vide</div>';
@@ -2546,6 +2575,21 @@ function enterCampaignWave(){
   G.wave++;
   for(const def of encounterFoeDefs()){ const cell=freeWaveCell(def.gx,def.gz,def.size||1); if(cell)createUnit({...def,gx:cell.gx,gz:cell.gz}); }
   const text='Vague '+G.wave+' / '+COMBAT_WAVES+' — des renforts entrent sur le terrain';
+  logMsg('— '+text+' —'); setHint(text);
+  const status=byId('combat-cell-status'); if(status)status.textContent=text;
+  refreshTurnbar();
+}
+// Set 1.20.0 (COMBAT_AND_VFX "Boss phases"): the final fight's next phase enters by the wave's non-result path once the
+// previous phase's foes fall: no result, nothing restored or reset for the company, the round counter keeps running. Its
+// boss is chosen by the fight and its phase, on the free cells nearest its authored cells.
+function enterCampaignPhase(){
+  const phase=COMBAT_PHASES[G.phase-1]; G.phase++;
+  const bossDef=BOSS_DEFS.find(b=>b.combatIds?.includes(COMBAT_ID)&&b.phase===G.phase);
+  if(bossDef){ const cell=freeWaveCell(6,1,2); if(cell)createUnit({...bossDef,combatPoseUnitId:phase.bossVisualId||null,gx:cell.gx,gz:cell.gz,size:2,immobile:true,boss:true}); }
+  (phase.escortVisualIds||[]).filter(id=>!VISUAL_UNIT_TEMPLATES[id]?.elite)
+    .map((id,index)=>unitDefFromVisual(id,index,ESCORT_VISUAL_POSITIONS)).filter(Boolean)
+    .forEach(def=>{ const cell=freeWaveCell(def.gx,def.gz,def.size||1); if(cell)createUnit({...def,gx:cell.gx,gz:cell.gz}); });
+  const text='Phase '+G.phase+' / '+(COMBAT_PHASES.length+1)+' — '+phase.label;
   logMsg('— '+text+' —'); setHint(text);
   const status=byId('combat-cell-status'); if(status)status.textContent=text;
   refreshTurnbar();
@@ -2696,6 +2740,8 @@ function openDeployMenu(){
     // Set 1.18.0: the objective panel is hidden while deploying, so the challenge is stated here before the fight.
     (COMBAT_CHALLENGE?'<p class="deploy-challenge"><b>Défi</b> · '+escHTML(COMBAT_CHALLENGE.condition)+' · Prime : '+escHTML(COMBAT_CHALLENGE.prime)+' si la condition est tenue</p>':'')+
     (CAMPAIGN_MODE&&COMBAT_WAVES>1?'<p class="deploy-challenge"><b>'+COMBAT_WAVES+' vagues</b> · la seconde entre dès que la première tombe, sans soin entre les deux</p>':'')+
+    (CAMPAIGN_MODE&&COMBAT_PHASES.length?'<p class="deploy-challenge"><b>'+(COMBAT_PHASES.length+1)+' phases</b> · '+COMBAT_PHASES.map(phase=>escHTML(phase.label)).join(', ')+' entre dès que la phase précédente tombe, sans soin entre les deux</p>':'')+
+    (CAMPAIGN_MODE&&COMBAT_SUPPORTS.length?'<p class="deploy-challenge"><b>Soutiens</b> · '+COMBAT_SUPPORTS.map(support=>escHTML(support.clanLabel)+' : '+escHTML(support.label)+' ('+escHTML(SKILLS[support.skillId].name)+')').join(' · ')+' · chacun une fois dans ce combat</p>':'')+
     '<div class="deploy-list">'+visible.map(deploymentCard).join('')+'</div>'+
     '<div class="deploy-pages"><button type="button" aria-label="Page précédente" data-d="prev" '+(G.deployPage===0?'disabled':'')+'>‹</button><span>'+(G.deployPage+1)+' / '+pages+'</span><button type="button" aria-label="Page suivante" data-d="next" '+(G.deployPage>=pages-1?'disabled':'')+'>›</button></div>'+
     '<div class="deploy-actions"><button type="button" data-d="auto">Auto</button><button type="button" data-d="reset" '+(!G.deployedUnits.length?'disabled':'')+'>Retirer tout</button>'+
@@ -2872,7 +2918,7 @@ function mountQaControls(){
 
 // ============================= INIT & BOOT =============================
 async function initGame(){
-  G.inv=CAMPAIGN_MODE?{...CAMPAIGN_INVENTORY}:{potion:3,ether:1,antidote:2,bomb:2}; G.wave=1; G.round=0; G.over=false; G.itemsUsedTotal=0;
+  G.inv=CAMPAIGN_MODE?{...CAMPAIGN_INVENTORY}:{potion:3,ether:1,antidote:2,bomb:2}; G.wave=1; G.phase=1; G.supportsUsed=new Set(); G.round=0; G.over=false; G.itemsUsedTotal=0;
   await buildWorld(); makeBlobTex(); makeBaseTex(); makeTileTex(); buildSelectors(); buildCursor(); spawnUnits();
   initHud();
   logMsg(CAMPAIGN_MODE?COMBAT_OBJECTIVE:'Préparez votre formation, puis lancez la bataille.');
@@ -3149,6 +3195,8 @@ function bootCampaign(message){
   COMBAT_ID=message.config.id; COMBAT_SCENE_ID=message.config.sceneId||'forest_route'; COMBAT_OBJECTIVE=message.config.objective; COMBAT_LABEL=message.config.encounterLabel;
   COMBAT_REWARDS=message.config.rewards; COMBAT_CHALLENGE=message.config.challenge||null;
   COMBAT_WAVES=Math.max(1,Math.min(2,Number(message.config.waves)||1));
+  COMBAT_PHASES=Array.isArray(message.config.phases)?message.config.phases.slice(0,1):[];
+  COMBAT_SUPPORTS=Array.isArray(message.config.supports)?message.config.supports.filter(support=>SKILLS[support.skillId]):[];
   MAX_PLAYER_UNITS=normalizeDeploymentLimit(message.config.maxPlayerUnits); CAMPAIGN_SQUAD=message.clan; CAMPAIGN_INVENTORY=message.inventory;
   PREFERRED_UNIT_IDS=message.preferredUnitIds; REQUESTED_REDUCED_GRAPHICS=message.reducedGraphics;
   QA_ENABLED=campaignParams.get('qa')==='1'&&message.devQa===true;

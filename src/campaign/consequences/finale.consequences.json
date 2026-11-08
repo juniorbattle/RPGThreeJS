@@ -61,6 +61,11 @@
    "summary": "Dans la capitale, la compagnie a laissé des habitants sous les décombres pour gagner la brèche plus vite."
   },
   {
+   "id": "finaleTournamentEntered",
+   "kind": "system",
+   "summary": "La compagnie est entrée au Tournoi des Grands avec ses quatre Sceaux."
+  },
+  {
    "id": "finaleRavenBoutWon",
    "kind": "system",
    "summary": "Le combat du Tournoi contre le champion du Corbeau est gagné."
@@ -138,7 +143,7 @@
      "id": "finale.raven_verdict.spared.rally",
      "fact": "finaleRavenSpared",
      "scope": "final_act",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-allied-rally",
      "dialogueId": "finale_allied_rally",
      "state": {
@@ -151,7 +156,7 @@
      "id": "finale.raven_verdict.humiliated.rally",
      "fact": "finaleRavenHumiliated",
      "scope": "final_act",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-allied-rally",
      "dialogueId": "finale_allied_rally",
      "state": {
@@ -203,7 +208,7 @@
      "id": "finale.wolf_verdict.spared.rally",
      "fact": "finaleWolfSpared",
      "scope": "final_act",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-allied-rally",
      "dialogueId": "finale_allied_rally",
      "state": {
@@ -216,7 +221,7 @@
      "id": "finale.wolf_verdict.humiliated.rally",
      "fact": "finaleWolfHumiliated",
      "scope": "final_act",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-allied-rally",
      "dialogueId": "finale_allied_rally",
      "state": {
@@ -268,7 +273,7 @@
      "id": "finale.phoenix_verdict.spared.rally",
      "fact": "finalePhoenixSpared",
      "scope": "final_act",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-allied-rally",
      "dialogueId": "finale_allied_rally",
      "state": {
@@ -281,7 +286,7 @@
      "id": "finale.phoenix_verdict.humiliated.rally",
      "fact": "finalePhoenixHumiliated",
      "scope": "final_act",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-allied-rally",
      "dialogueId": "finale_allied_rally",
      "state": {
@@ -321,7 +326,7 @@
      "id": "finale.civilians.protected.vigil",
      "fact": "finaleCiviliansProtected",
      "scope": "final_act",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-last-refuge",
      "dialogueId": "finale_last_vigil",
      "state": {
@@ -334,7 +339,7 @@
      "id": "finale.civilians.abandoned.vigil",
      "fact": "finaleCiviliansAbandoned",
      "scope": "final_act",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-last-refuge",
      "dialogueId": "finale_last_vigil",
      "state": {
@@ -398,7 +403,7 @@
      "id": "finale.trapped_citizens.freed.vigil",
      "fact": "finaleCitizensFreed",
      "scope": "final_act",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-last-refuge",
      "dialogueId": "finale_last_vigil",
      "state": {
@@ -411,7 +416,7 @@
      "id": "finale.trapped_citizens.left.vigil",
      "fact": "finaleCitizensLeft",
      "scope": "final_act",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-last-refuge",
      "dialogueId": "finale_last_vigil",
      "state": {

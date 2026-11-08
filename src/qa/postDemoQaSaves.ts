@@ -44,3 +44,17 @@ export async function loadDragonEndForScorpionQa(route: 'honour' | 'force'): Pro
     : { name: 'QA Dragon force', prefer: 'greed', intent: 'claim_recognition',
       answers: { dragon_wolf_envoy: 'dragonWolfOfferRefused', dragon_wolf_lair: 'dragonCrystalKept' } }).state;
 }
+
+/**
+ * A finished Scorpion to play the final act from, played by the QA driver from the matching Dragon end: honour (every
+ * merit, the Prophète des Ombres fallen, the soiled page sealed) or force (the codex kept, the Seal taken from the Grand
+ * Inquisiteur). DEV QA only.
+ */
+export async function loadScorpionEndForFinaleQa(route: 'honour' | 'force'): Promise<GameState> {
+  const { playPlateau } = await import('./plateauDriver');
+  const dragonEnd = await loadDragonEndForScorpionQa(route);
+  return playPlateau('scorpion', dragonEnd, route === 'honour'
+    ? { name: 'QA Scorpion honour', prefer: 'merit', intent: 'claim_recognition', guardianChests: ['scorpion-poi-ruin-cache', 'scorpion-poi-sanctum-reserve'] }
+    : { name: 'QA Scorpion force', prefer: 'greed', intent: 'claim_recognition',
+      answers: { scorpion_phoenix_faithful: 'scorpionOathRefused', scorpion_phoenix_temple: 'scorpionCodexKept' } }).state;
+}

@@ -16,6 +16,9 @@ import { campaignConsequenceMapSchema, type CampaignConsequenceMap, type Consequ
 import { CLAN_ANCHOR_DIALOGUES } from './campaignGrammarContent';
 import { CAMPAIGN_CHAPTER_IDS, getPlateau, plateauForNodeId, type CampaignChapterId } from '../campaign/plateaux/PlateauRegistry';
 import { POST_DEMO_REFUGE_GATHERINGS } from '../campaign/plateaux/postDemoRefuges';
+import { FINALE_TOURNAMENT, FINALE_TOURNAMENT_ARRIVAL } from '../campaign/plateaux/finale/finaleTournament';
+import { FINALE_VICTORY_FACTS } from '../campaign/plateaux/finale/finaleCombat';
+import { FINAL_ACT_CLOSING_DIALOGUE_ID } from './plateauProgression';
 import { anyCombatConfig } from './playableContent';
 import { resolvePlateauFinaleExecution, type PlateauFinaleDefinition } from './plateauFinale';
 import { POST_DEMO_DIALOGUES, PLATEAU_FINALES, builtPlateauScenes, isPostDemoSceneBuilt, postDemoChapterOf, postDemoSceneIds, resolvePostDemoDialogue } from './postDemoContent';
@@ -235,7 +238,12 @@ function matchesFact(factId: string, flag: string): boolean {
 
 function nodeDepth(nodeId: string): number | undefined {
   const chapter = plateauForNodeId(nodeId);
-  if (chapter && chapter.id !== 'lion') return chapter.campaign?.topology.route?.find((node) => node.id === nodeId)?.depth;
+  if (chapter && chapter.id !== 'lion') {
+    // The final act's Tournament board comes before its map: its places take the depths before the first POI.
+    const board = chapter.campaign?.boardNodeIds ?? [];
+    if (board.includes(nodeId)) return board.indexOf(nodeId) - board.length;
+    return chapter.campaign?.topology.route?.find((node) => node.id === nodeId)?.depth;
+  }
   return generateRunGraph(1).nodes.find((node) => node.id === nodeId)?.depth;
 }
 
@@ -390,7 +398,8 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
   for (const chapter of postDemo) {
     const binding = getPlateau(chapter.id).campaign!;
     for (const routeNode of binding.topology.route ?? []) {
-      if (routeNode.type === 'combat') {
+      // The final act's breach is a boss node whose content is its fight; a plateau's judgement is a dialogue.
+      if (routeNode.type === 'combat' || (routeNode.type === 'boss' && anyCombatConfig(routeNode.contentId))) {
         referencedCombats.add(routeNode.contentId);
         if (!anyCombatConfig(routeNode.contentId)) report('broken_link', routeNode.id, `Combat de lieu inconnu « ${routeNode.contentId} ».`);
       } else if (routeNode.type !== 'refuge') {
@@ -405,6 +414,16 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
     if (chapter.finale) {
       referencedCombats.add(chapter.finale.combats.honour);
       referencedCombats.add(chapter.finale.combats.force);
+    }
+    // The final act's Tournament board: its opening scene, its entries' scenes and fights, and the act's closing scene.
+    if (chapter.id === 'finale') {
+      referencedDialogues.add(FINALE_TOURNAMENT_ARRIVAL.dialogueId);
+      referencedDialogues.add(FINAL_ACT_CLOSING_DIALOGUE_ID);
+      for (const entry of FINALE_TOURNAMENT) {
+        referencedCombats.add(entry.combatId);
+        if (entry.openingDialogueId) referencedDialogues.add(entry.openingDialogueId);
+        if (entry.afterDialogueId) referencedDialogues.add(entry.afterDialogueId);
+      }
     }
   }
   for (const combatId of referencedCombats) {
@@ -464,6 +483,15 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
     for (const facts of Object.values(finale.victoryFacts)) for (const key of Object.keys(facts)) add(dataSets, key, `${chapter.id}:finale:victory`);
     // RunSystem reads a plateau's outcome from its victory facts.
     for (const facts of Object.values(finale.victoryFacts)) for (const key of Object.keys(facts)) add(dataReads, key, `${chapter.id}:outcome`);
+  }
+  // The final act's board reads each entry's victory and the facts of the scene that follows it, and its opening fact;
+  // its fights record their victory facts (RunSystem, `finalAct.ts`).
+  for (const entry of FINALE_TOURNAMENT) {
+    for (const key of [entry.victoryFlag, ...(entry.afterFlags ?? [])]) add(dataReads, key, 'finalAct:board');
+  }
+  add(dataReads, FINALE_TOURNAMENT_ARRIVAL.flag, 'finalAct:board');
+  for (const [combatId, facts] of Object.entries(FINALE_VICTORY_FACTS)) {
+    for (const key of Object.keys(facts)) add(dataSets, key, `finalAct:victory:${combatId}`);
   }
   // RunSystem and the finale record these facts by code paths that can be executed directly.
   for (const flags of REPRESENTATIVE_FLAG_SETS) {

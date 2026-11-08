@@ -81,7 +81,7 @@ describe('post-demo plateau registry (set 1.20.0, Lot 0)', () => {
     expect(plateauCampaignForRun({ id: 'legacy-run' })).toBe(lion);
   });
 
-  it('holds the Bear (OD-2026-11-08-B) and the Dragon (OD-2026-11-08-C) as canon, and the Scorpion (OD-2026-11-08-D) as canon, and keeps the final act reserved', () => {
+  it('holds the Bear (OD-2026-11-08-B) and the Dragon (OD-2026-11-08-C) as canon, and the Scorpion (OD-2026-11-08-D) as canon, and the final act as a draft', () => {
     expect(getPlateau('bear').status).toBe('canon');
     expect(requirePlateauCampaign('bear').runIdPrefix).toBe('bear-');
     expect(requirePlateauCampaign('bear').topology.plateauId).toBe('bear');
@@ -91,9 +91,12 @@ describe('post-demo plateau registry (set 1.20.0, Lot 0)', () => {
     expect(getPlateau('scorpion').status).toBe('canon');
     expect(requirePlateauCampaign('scorpion').runIdPrefix).toBe('scorpion-');
     expect(requirePlateauCampaign('scorpion').topology.plateauId).toBe('scorpion');
-    expect(getPlateau('finale').status).toBe('planned');
-    expect(getPlateau('finale').campaign).toBeNull();
-    expect(() => requirePlateauCampaign('finale')).toThrow(/not built/);
+    // Lot 4: a playable draft until the operator accepts it; its Tournament board precedes its capital map.
+    expect(getPlateau('finale').status).toBe('draft');
+    expect(requirePlateauCampaign('finale').runIdPrefix).toBe('finale-');
+    expect(requirePlateauCampaign('finale').boardNodeIds).toEqual(['finale-bout-raven', 'finale-bout-wolf', 'finale-bout-phoenix',
+      'finale-bout-serpent', 'finale-arena-chaos']);
+    expect(requirePlateauCampaign('finale').resolveOutcome({ finaleEntityDefeated: true })).toBeNull();
   });
 
   it('reads the Lion outcome from its boss victory facts: Serpent pursuit is honour, Lion trial is force', () => {

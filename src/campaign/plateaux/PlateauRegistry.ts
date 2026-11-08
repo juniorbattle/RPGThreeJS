@@ -18,6 +18,7 @@ import { LION_PLATEAU_BINDING } from './lionPlateau';
 import { BEAR_PLATEAU_BINDING } from './bear/bearPlateau';
 import { DRAGON_PLATEAU_BINDING } from './dragon/dragonPlateau';
 import { SCORPION_PLATEAU_BINDING } from './scorpion/scorpionPlateau';
+import { FINALE_PLATEAU_BINDING } from './finale/finalePlateau';
 import type { PlateauTopology } from './PlateauTopology';
 
 export { CAMPAIGN_CLAN_IDS, CAMPAIGN_CHAPTER_IDS } from './campaignIds';
@@ -90,6 +91,8 @@ export interface PlateauCampaignBinding {
   outcomeRelations: Readonly<Record<PlateauOutcome, readonly PlateauOutcomeRelation[]>>;
   /** The navigation topology RunSystem applies to the plateau's runs. */
   topology: PlateauTopology;
+  /** The final act's Tournament board, in order: places that are not POIs (TRAVERSAL "Post-demo surfaces"). */
+  boardNodeIds?: readonly string[];
 }
 
 export interface PlateauChief {
@@ -167,10 +170,11 @@ export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([
   }),
   Object.freeze({
     id: 'finale', order: 5, kind: 'final_act', idPrefix: 'finale-', label: 'L’acte final',
-    roadmapSections: Object.freeze(['§3.6', '§3.7']), status: 'planned', hostClan: null, rivalClan: null,
+    // Lot 4: a playable draft until the operator accepts it; its images stay provisional.
+    roadmapSections: Object.freeze(['§3.6', '§3.7']), status: 'draft', hostClan: null, rivalClan: null,
     chief: null,
     reputationBudget: REPUTATION_BUDGETS.finale,
-    campaign: null,
+    campaign: FINALE_PLATEAU_BINDING,
   }),
 ] satisfies readonly PlateauDefinition[]);
 

@@ -201,11 +201,22 @@ describe('the Scorpion plateau measured from its draft content (set 1.20.0, Lot 
   });
 });
 
+describe('the final act measured from its draft content (set 1.20.0, Lot 4)', () => {
+  const finale = computePlateauReputationBounds('finale');
+
+  it('fits the final act budget exactly: +4 at most, +3 for a consistent honour run, so only a perfect run reaches 100', () => {
+    expect(getPlateau('finale').reputationBudget).toEqual({ perfectMax: finale.perfectMax, honourFloor: finale.honourFloor });
+    expect({ canonicalMax: finale.canonicalMax, optionalMax: finale.optionalMax }).toEqual({ canonicalMax: 3, optionalMax: 1 });
+    expect(finale.nodes.flatMap((node) => node.bestSources)).toEqual(['choice:finale_arena_chaos:choice:0',
+      'choice:finale_trapped_citizens:choice:0', 'combat:finale_breach']);
+  });
+});
+
 describe('whole-game reputation bounds (set 1.20.0 calibration targets)', () => {
   const projection = projectCampaignReputation(LION_POST_DEMO_REPUTATION);
 
-  it('measures the built Bear, Dragon and Scorpion from their content and keeps the final act at its budget', () => {
-    expect(projection.chapters.filter((chapter) => chapter.measured).map((chapter) => chapter.id)).toEqual(['lion', 'bear', 'dragon', 'scorpion']);
+  it('measures every chapter from its content: the Lion, the three plateaux and the final act', () => {
+    expect(projection.chapters.filter((chapter) => chapter.measured).map((chapter) => chapter.id)).toEqual(['lion', 'bear', 'dragon', 'scorpion', 'finale']);
   });
 
   it('lets only a perfect run reach 100, and only in the final act', () => {

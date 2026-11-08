@@ -25,6 +25,13 @@ import {
   scorpionPoiMapPhase,
   scorpionPoiPathBends,
 } from './scorpion/scorpionPresentation';
+import {
+  FINALE_ATLAS_REGIONS,
+  FINALE_POI_POSITIONS,
+  FINALE_POI_REGION_EXITS,
+  finalePoiMapPhase,
+  finalePoiPathBends,
+} from './finale/finalePresentation';
 
 export interface PoiAtlasRegion {
   shortTitle: string;
@@ -78,10 +85,20 @@ export const SCORPION_POI_ATLAS: PoiAtlas = Object.freeze({
   provisional: true,
 });
 
+export const FINALE_POI_ATLAS: PoiAtlas = Object.freeze({
+  regions: FINALE_ATLAS_REGIONS,
+  positions: FINALE_POI_POSITIONS,
+  exits: FINALE_POI_REGION_EXITS,
+  phaseOf: finalePoiMapPhase,
+  pathBends: finalePoiPathBends,
+  provisional: true,
+});
+
 /** The atlas of the plateau that owns a POI; every demo POI is the Lion's. */
 export function poiAtlasForNode(nodeId: string): PoiAtlas {
   if (nodeId.startsWith('bear-')) return BEAR_POI_ATLAS;
   if (nodeId.startsWith('dragon-')) return DRAGON_POI_ATLAS;
   if (nodeId.startsWith('scorpion-')) return SCORPION_POI_ATLAS;
+  if (nodeId.startsWith('finale-')) return FINALE_POI_ATLAS;
   return LION_POI_ATLAS;
 }

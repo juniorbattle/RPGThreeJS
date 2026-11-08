@@ -23,7 +23,7 @@ import {
 import { resolvePlateauFinaleExecution, resolvePendingPlateauFinaleCombat } from './plateauFinale';
 import { getPlateau } from '../campaign/plateaux/PlateauRegistry';
 import { isDraftContent, POST_DEMO_COMBATS } from './postDemoContent';
-import { loadBearEndForDragonQa, loadDragonEndForScorpionQa, loadLionEndForBearQa } from '../qa/postDemoQaSaves';
+import { loadBearEndForDragonQa, loadDragonEndForScorpionQa, loadLionEndForBearQa, loadScorpionEndForFinaleQa } from '../qa/postDemoQaSaves';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
 import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
 import { resolveLionFinaleExecution, resolveSelectedLionFinaleCombat } from './lionFinale';
@@ -39,6 +39,11 @@ import { CombatBridge } from '../combat/CombatBridge';
 import { DialogueView, resolveDialogueBackdrop } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
 import { PoiMapView } from '../ui/PoiMapView';
+import { openTournamentBoard } from '../ui/TournamentBoardView';
+import { finalActCombatConfig, isTournamentComplete, isTournamentNodeId, nextTournamentStep, tournamentBoard } from './finalAct';
+import { FINALE_TOURNAMENT_ARRIVAL } from '../campaign/plateaux/finale/finaleTournament';
+import { demoEnvironmentPlateForContext } from '../render/demoEnvironmentPack';
+import { provisionalMark } from './postDemoContent';
 import { sceneMood, type NarrativeMood } from '../audio/moods';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
 import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
@@ -395,7 +400,7 @@ export class GameApp {
         </header>
         <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
         <div class="qa-lab__header-actions" aria-label="Tableaux vivants"><button type="button" data-qa-living="bois_clair_arrival">Tableau vivant · Arrivée à Bois-Clair</button><button type="button" data-qa-living="bois_clair_saved">Bois-Clair sauvé</button><button type="button" data-qa-living="bois_clair_sacrificed">Bois-Clair sacrifié</button><button type="button" data-qa-living="lion_judgement">Jugement du Lion</button><button type="button" data-qa-living="alaric_audience_arrival">Audience d’Alaric</button><button type="button" data-qa-living="serpent_route_ending">Fin Serpent</button><button type="button" data-qa-living="lion_trial_route_ending">Fin de l’épreuve</button></div>
-        <div class="qa-lab__header-actions" aria-label="Après-démo"><button type="button" data-qa-postdemo="honour">Ours · depuis une fin du Lion par l’honneur</button><button type="button" data-qa-postdemo="force">Ours · depuis une fin du Lion par la force</button><button type="button" data-qa-postdemo="dragon-honour">Dragon · depuis une fin de l’Ours par l’honneur</button><button type="button" data-qa-postdemo="dragon-force">Dragon · depuis une fin de l’Ours par la force</button><button type="button" data-qa-postdemo="scorpion-honour">Scorpion · depuis une fin du Dragon par l’honneur</button><button type="button" data-qa-postdemo="scorpion-force">Scorpion · depuis une fin du Dragon par la force</button></div>
+        <div class="qa-lab__header-actions" aria-label="Après-démo"><button type="button" data-qa-postdemo="honour">Ours · depuis une fin du Lion par l’honneur</button><button type="button" data-qa-postdemo="force">Ours · depuis une fin du Lion par la force</button><button type="button" data-qa-postdemo="dragon-honour">Dragon · depuis une fin de l’Ours par l’honneur</button><button type="button" data-qa-postdemo="dragon-force">Dragon · depuis une fin de l’Ours par la force</button><button type="button" data-qa-postdemo="scorpion-honour">Scorpion · depuis une fin du Dragon par l’honneur</button><button type="button" data-qa-postdemo="scorpion-force">Scorpion · depuis une fin du Dragon par la force</button><button type="button" data-qa-postdemo="finale-honour">Acte final (brouillon) · depuis une fin du Scorpion par l’honneur</button><button type="button" data-qa-postdemo="finale-force">Acte final (brouillon) · depuis une fin du Scorpion par la force</button></div>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
         <div class="qa-lab__params">
           <fieldset>
@@ -443,7 +448,8 @@ export class GameApp {
       if (!import.meta.env.DEV) return;
       const start = button.dataset.qaPostdemo ?? 'honour';
       const route = start.endsWith('force') ? 'force' : 'honour';
-      const load = start.startsWith('scorpion-') ? loadDragonEndForScorpionQa(route)
+      const load = start.startsWith('finale-') ? loadScorpionEndForFinaleQa(route)
+        : start.startsWith('scorpion-') ? loadDragonEndForScorpionQa(route)
         : start.startsWith('dragon-') ? loadBearEndForDragonQa(route) : loadLionEndForBearQa(route);
       void load.then((save) => {
         this.saves.saveAuto(save);
@@ -828,6 +834,17 @@ export class GameApp {
     if(this.disposed)return;
     settlePoiNavigation(this.state);
     if(this.state.run.poiExpedition?.encounter){await this.presentPoiElite();return;}
+    // Set 1.20.0 (post-demo Lot 4): the final act opens on the Tournament's board; once the arena is left, on the
+    // capital's first scene, then its map.
+    if (runPlateauId(this.state) === 'finale' && this.state.run.status !== 'completed') {
+      if (!isTournamentComplete(this.state)) { await this.showTournamentBoard(); return; }
+      const start = getRunNode(this.state.run);
+      if (start && start.depth === 0 && !this.state.resolvedNodeIds.includes(start.id)) {
+        this.setMode('RESULT');
+        await this.resolveRunNode(start, false);
+        return;
+      }
+    }
     // Existing terminal and preparation presentation retain agency; navigation stays on the map.
     if (this.hasCompletedPoiChronicle()) {
       this.poiMap.close(); delete document.body.dataset.campaignSurface;
@@ -845,6 +862,51 @@ export class GameApp {
       await this.enterJourney(); return;
     }
     this.showPoiMap();
+  }
+
+  /** Set 1.20.0 (post-demo Lot 4): the Tournament's board, read from RunSystem; it opens on the Tournament's scene once. */
+  private async showTournamentBoard(): Promise<void> {
+    this.disposeJourney();
+    this.exploration.close();
+    this.poiMap.close();
+    if (!tournamentBoard(this.state).entered) {
+      this.setMode('RESULT');
+      await this.playDialogue(FINALE_TOURNAMENT_ARRIVAL.dialogueId, 'L’Arène des Destins');
+    }
+    this.disposeNarrativeStage();
+    this.setMode('TRAVEL');
+    document.body.dataset.campaignSurface = 'tournament-board';
+    this.canvas.hidden = true;
+    this.saves.saveAuto(this.state);
+    openTournamentBoard(this.chrome, tournamentBoard(this.state), nextTournamentStep(this.state), {
+      onNext: () => void this.playTournamentStep(),
+      onCompany: () => void this.openTournamentCompany(),
+      onSave: () => { this.saves.saveManual(this.state); this.uiSounds.play('saved'); this.showSaveNotice(); },
+      onSettings: () => this.openSettings(),
+      onMenu: () => { this.saves.saveAuto(this.state); this.uiSounds.play('back'); this.renderTitle(); },
+    }, {
+      backdrop: demoEnvironmentPlateForContext('dialogue:lion_finale_judgement', 'STATIC_TABLEAU').publicUrl,
+      mark: provisionalMark(FINALE_TOURNAMENT_ARRIVAL.dialogueId) ?? 'Image provisoire',
+    });
+  }
+
+  private async openTournamentCompany(): Promise<void> {
+    await this.openManagement('clan', undefined, 'temporary', false);
+    await this.showTournamentBoard();
+  }
+
+  /** Plays the step RunSystem names next on the board: a fight, the scene that opens an entry, or the one after it. */
+  private async playTournamentStep(): Promise<void> {
+    if (this.mode !== 'TRAVEL' || this.routeCommitInFlight) return;
+    const step = nextTournamentStep(this.state);
+    if (!step) { await this.enterCampaignPresentation(); return; }
+    const { entry } = step;
+    const node: RunNode = { id: entry.nodeId, type: 'combat', depth: 0, links: [], contentId: entry.combatId, label: entry.label, icon: '⚔', x: 0, z: 0 };
+    this.setMode('RESULT');
+    if (step.action === 'fight') { await this.startCombat(entry.combatId, node); return; }
+    await this.playDialogue(step.action === 'opening' ? entry.openingDialogueId! : entry.afterDialogueId!, entry.label);
+    if (this.pendingCombatId) { await this.flushPendingCombat(node); return; }
+    await this.enterCampaignPresentation();
   }
 
   private usesJourneyPresentation(): boolean {
@@ -1103,6 +1165,8 @@ export class GameApp {
       if (!continueCampaign(this.state)) return true;
       this.saves.saveAuto(this.state);
       this.disposeJourney();
+      // The final act opens on the Tournament (post-demo Lot 4).
+      if (runPlateauId(this.state) === 'finale') { this.setMode('RESULT'); await this.enterCampaignPresentation(); return false; }
       // The new plateau opens on its first POI's scene, then its map.
       const start = getRunNode(this.state.run);
       if (start) { this.setMode('RESULT'); await this.resolveRunNode(start, false); } else this.showPoiMap();
@@ -1611,8 +1675,10 @@ export class GameApp {
     this.disposeJourney();
     this.disposeNarrativeStage();
     // Set 1.20.0 (OD-2026-11-08-A): a Lion fight plays with its calibrated reputation reward.
-    const config = playableCombatConfig(combatId);
-    if (!config) throw new Error(`Missing combat '${combatId}'.`);
+    const playable = playableCombatConfig(combatId);
+    if (!playable) throw new Error(`Missing combat '${combatId}'.`);
+    // Set 1.20.0 (post-demo Lot 4): RunSystem adds a final-act fight's clan supports and enemy-clan foes; never saved.
+    const config = finalActCombatConfig(this.state, playable);
     const narrativeTableau = this.usesJourneyPresentation() ? resolveNarrativeCombatTableau(combatId) : undefined;
     const narrativeCinematicId = this.usesJourneyPresentation()
       ? resolveVideoCinematicTrigger({ hook: 'beforeCombat', combatId })
@@ -1683,7 +1749,9 @@ export class GameApp {
     }
     const encounterLimit = anyCombatConfig(result.combatId)?.maxPlayerUnits ?? 4;
     applyCombatProgress(this.state, result, encounterLimit);
-    this.state.currentNodeId = node.id;
+    // Set 1.20.0 (post-demo Lot 4): a Tournament fight belongs to the board, not to the map.
+    const onBoard = isTournamentNodeId(node.id);
+    if (!onBoard) this.state.currentNodeId = node.id;
     creditRunReward(this.state, { gold: rewards.gold });
     for (const [itemId, quantity] of Object.entries(rewards.materials ?? {})) {
       creditRunReward(this.state, { category: 'materials', itemId, quantity });
@@ -1693,7 +1761,7 @@ export class GameApp {
     // The verdict is stated once the company is back on the map, after any aftermath dialogue.
     this.pendingChallengeVerdict = creditChallengePrime(this.state, result);
     Object.assign(this.state.flags, combatVictoryFacts(result.combatId));
-    this.markResolved(node.id);
+    if (!onBoard) this.markResolved(node.id);
     // The Bois-Clair outcome reads the resolved result only through its existing presentation trigger (set 1.13.0).
     const boisClairAftermath = resolveCin6aBoisClairAftermath(result.combatId, result.victory, this.state.flags);
     const aftermathDialogue = anyCombatConfig(result.combatId)?.postCombatDialogueId;
@@ -1843,8 +1911,10 @@ export class GameApp {
     const current = getRunNode(this.state.run);
     if(this.state.run.poiExpedition?.encounter){await this.presentPoiElite();return;}
     const pendingFinaleCombat = pendingPlateauFinaleCombat(this.state);
+    // Set 1.20.0 (post-demo Lot 4): a save made during the Tournament resumes on its board, never on the capital's POI.
+    const inTournament = runPlateauId(this.state) === 'finale' && !isTournamentComplete(this.state);
     if (
-      current
+      current && !inTournament
       // Set 1.20.0: a post-demo plateau's first POI is a scene of its own, resumed like any other unresolved POI.
       && (current.depth > 0 || runPlateauId(this.state) !== 'lion')
       && (pendingFinaleCombat !== null || (!this.state.resolvedNodeIds.includes(current.id)

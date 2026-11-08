@@ -35,7 +35,7 @@ export const narrativeEffectSchema = z.discriminatedUnion('type', [
     plateauId: z.enum(['bear', 'dragon', 'scorpion']),
     intent: z.enum(['claim_recognition', 'request_trial']),
   }),
-  baseEffectSchema.extend({ type: z.literal('completePlateau'), plateauId: z.enum(['bear', 'dragon', 'scorpion']) }),
+  baseEffectSchema.extend({ type: z.literal('completePlateau'), plateauId: z.enum(['bear', 'dragon', 'scorpion', 'finale']) }),
 ]);
 export type NarrativeEffect = z.infer<typeof narrativeEffectSchema>;
 
@@ -127,6 +127,25 @@ export const combatConfigSchema = z.object({
   }),
   /** Set 1.19.0: number of enemy waves, one when absent; two for the stationary guardians only. Static, never saved. */
   waves: z.number().int().min(1).max(2).optional(),
+  /**
+   * Set 1.20.0 (COMBAT_AND_VFX "Boss phases"): the phases that follow the first, for the final fight at the breach only.
+   * Each enters by the wave's non-result path once the previous phase's foes fall. Static; the current phase is never saved.
+   */
+  phases: z.array(z.object({
+    label: z.string(),
+    bossVisualId: z.string(),
+    escortVisualIds: z.array(z.string()).default([]),
+  })).max(1).optional(),
+  /**
+   * Set 1.20.0 (COMBAT_AND_VFX "Clan supports"): the supports RunSystem derived from the allied clans before a final-act
+   * fight, each an existing skill usable once through the normal action legality, AP and targeting. Never saved.
+   */
+  supports: z.array(z.object({
+    id: z.string(),
+    clanLabel: z.string(),
+    label: z.string(),
+    skillId: z.string(),
+  })).max(8).optional(),
   /** Set 1.18.0 challenge: the static declaration and its stated text, attached by `withChallenge`. Never saved. */
   challenge: z.object({
     kind: z.enum(['max_heroes', 'no_items', 'max_rounds']),

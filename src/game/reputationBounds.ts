@@ -26,6 +26,7 @@ import {
   type CampaignChapterId,
 } from '../campaign/plateaux/PlateauRegistry';
 import { POST_DEMO_REFUGE_GATHERINGS } from '../campaign/plateaux/postDemoRefuges';
+import { FINALE_TOURNAMENT } from '../campaign/plateaux/finale/finaleTournament';
 import type { CombatConfig, DialogueSequence, GameState, NarrativeEffect, RunNodeType } from './types';
 import { resolvePlateauFinaleExecution } from './plateauFinale';
 import { combatVictoryFacts, plateauFinaleOf } from './plateauProgression';
@@ -303,7 +304,9 @@ export function combatPaths(combatId: string, context: WalkContext): ContentPath
 
 /** Every way through one canonical node's content, as RunSystem routes it by type, then its echo dialogues. */
 export function nodeContentPaths(nodeId: string, candidate: { contentId: string; type: RunNodeType }, context: WalkContext): ContentPath[] {
-  const main = candidate.type === 'combat' ? combatPaths(candidate.contentId, context)
+  // A boss node whose content is a fight (the final act's breach) walks as that fight; a judgement is a dialogue.
+  const isFight = candidate.type === 'combat' || (candidate.type === 'boss' && Boolean((context.content ?? LION_WALK_CONTENT).combat(candidate.contentId)));
+  const main = isFight ? combatPaths(candidate.contentId, context)
     : resolveDialogue(candidate.contentId, context.state, context) ? dialoguePaths(candidate.contentId, context) : [EMPTY_PATH];
   return (POST_NODE_ATE[nodeId] ?? []).reduce(
     (paths, ateId) => paths.flatMap((path) => runDialogue(ateId, context, 0, path)), main);
@@ -518,19 +521,31 @@ export type PlateauReputationBounds = Omit<LionReputationBounds, 'calibrationId'
  * favourable branch a consistent honour run is sure of, the worst result; then its optional fights and guardians. Its
  * refuges hold no reputation event yet, so it has no social gain. Read-only analysis of authored content.
  */
-export function computePlateauReputationBounds(chapterId: Exclude<CampaignChapterId, 'lion' | 'finale'>): PlateauReputationBounds {
+export function computePlateauReputationBounds(chapterId: Exclude<CampaignChapterId, 'lion'>): PlateauReputationBounds {
   const topology = requirePlateauCampaign(chapterId).topology;
   const route = topology.route ?? [];
   const gatherings = POST_DEMO_REFUGE_GATHERINGS[chapterId] ?? {};
-  const context: WalkContext = { calibration: POST_DEMO_AUTHORED_REPUTATION, content: POST_DEMO_WALK_CONTENT,
-    state: perfectHonourPlateauState(chapterId) };
-  const greedContext: WalkContext = { ...context, state: greedPlateauState(chapterId) };
+  // The final act has no judgement: its scenes are built from an honour company and a greedy one at its start.
+  const honourState = chapterId === 'finale' ? Object.assign(perfectHonourJudgementState(), {}) : perfectHonourPlateauState(chapterId);
+  if (chapterId === 'finale') honourState.flags.serpentGeneralDefeated = true;
+  const greedState = chapterId === 'finale' ? greedJudgementState() : greedPlateauState(chapterId);
+  if (chapterId === 'finale') greedState.flags.lionTrialWon = true;
+  const context: WalkContext = { calibration: POST_DEMO_AUTHORED_REPUTATION, content: POST_DEMO_WALK_CONTENT, state: honourState };
+  const greedContext: WalkContext = { ...context, state: greedState };
   const pathsOf = (node: (typeof route)[number], walk: WalkContext) => {
     if (node.type === 'refuge') return gatherings[node.id] ? dialoguePaths(gatherings[node.id]!, walk) : [EMPTY_PATH];
     return nodeContentPaths(node.id, { contentId: node.contentId, type: node.type }, walk);
   };
   const depths = [...new Set(route.map((node) => node.depth))].sort((a, b) => a - b);
-  const nodes: NodeBound[] = depths.map((depth) => {
+  // The final act's Tournament board comes first: one step per entry, its opening scene and fight, then its verdict.
+  const board: NodeBound[] = chapterId === 'finale' ? FINALE_TOURNAMENT.map((entry, index) => {
+    const paths = (walk: WalkContext) => entry.openingDialogueId ? dialoguePaths(entry.openingDialogueId, walk) : combatPaths(entry.combatId, walk);
+    const top = best(paths(context));
+    const min = Math.min(...[...paths(context), ...paths(greedContext)].map((path) => path.delta));
+    return { depth: index - FINALE_TOURNAMENT.length, nodeIds: [entry.nodeId], max: top.delta, floor: top.delta, min,
+      bestSources: top.sources, floorGates: top.gates };
+  }) : [];
+  const nodes: NodeBound[] = [...board, ...depths.map((depth) => {
     const atDepth = route.filter((node) => node.depth === depth);
     const branches = atDepth.map((node) => best(pathsOf(node, context)));
     const top = best(branches);
@@ -539,7 +554,7 @@ export function computePlateauReputationBounds(chapterId: Exclude<CampaignChapte
     // branch at every fork: its floor is the step's best gain.
     return { depth, nodeIds: atDepth.map((node) => node.id), max: top.delta, floor: top.delta,
       min, bestSources: top.sources, floorGates: top.gates };
-  });
+  })];
   const canonicalMax = nodes.reduce((sum, node) => sum + node.max, 0);
   const canonicalFloor = nodes.reduce((sum, node) => sum + node.floor, 0);
   const canonicalMin = nodes.reduce((sum, node) => sum + node.min, 0);
@@ -695,7 +710,7 @@ export function projectCampaignReputation(calibration: ReputationCalibration): C
   const lion = computeLionReputationBounds(calibration);
   const measuredOf = (id: CampaignChapterId): { perfectMax: number; honourFloor: number } | null => {
     if (id === 'lion') return lion;
-    if (id === 'finale' || !getPlateau(id).campaign) return null;
+    if (!getPlateau(id).campaign) return null;
     return computePlateauReputationBounds(id);
   };
   let perfect = REPUTATION_START;

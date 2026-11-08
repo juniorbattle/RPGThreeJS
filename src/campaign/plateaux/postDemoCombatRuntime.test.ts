@@ -1,5 +1,5 @@
 /**
- * Set 1.20.0, post-demo Lots 1 to 3: the Bear's, the Dragon's and the Scorpion's fights exist in the tactical runtime. Every enemy and
+ * Set 1.20.0, post-demo Lots 1 to 4: the Bear's, the Dragon's, the Scorpion's and the final act's fights exist in the tactical runtime. Every enemy and
  * escort a plateau lists has a runtime template, every boss fight finds its own boss by its combat ID, and every enemy
  * skill and natural attack already has its procedural FX signature, so no plateau adds a new FX (COMBAT_AND_VFX).
  */
@@ -12,6 +12,9 @@ import { POST_DEMO_COMBATS } from '../../game/postDemoContent';
 import { BEAR_PROVISIONAL_ENEMIES } from './bear/bearPresentation';
 import { DRAGON_PROVISIONAL_ENEMIES } from './dragon/dragonPresentation';
 import { SCORPION_PROVISIONAL_ENEMIES } from './scorpion/scorpionPresentation';
+import { FINALE_PROVISIONAL_ENEMIES } from './finale/finalePresentation';
+import { CLAN_SUPPORTS } from './finale/finaleCombat';
+import { skillById } from '../../game/skills';
 
 const runtime = readFileSync('src/combat/legacyCombatRuntime.js', 'utf8');
 const templateLine = (id: string) => new RegExp(`\\n  ${id}:\\{team:'foe'[^\\n]*`).exec(runtime)?.[0] ?? '';
@@ -23,7 +26,7 @@ const weaponName = (line: string) => /weapons:\[\{name:'([^']+)'/.exec(line)?.[1
 
 const postDemoCombats = [...POST_DEMO_COMBATS.values()];
 
-describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 3)', () => {
+describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 4)', () => {
   it('gives every post-demo enemy and escort a runtime template, and keeps them apart from the demo fights', () => {
     expect(postDemoCombats.some((combat) => combat.id.startsWith('bear_'))).toBe(true);
     expect(postDemoCombats.some((combat) => combat.id.startsWith('dragon_'))).toBe(true);
@@ -40,6 +43,7 @@ describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 3)', (
     const bosses = postDemoCombats.filter((combat) => combat.isBoss);
     expect(bosses.map((combat) => combat.id).sort()).toEqual(['bear_borin', 'bear_master_spy', 'bear_mines_defense', 'bear_mines_seizure',
       'dragon_kaelen', 'dragon_lair_assault', 'dragon_lair_seizure', 'dragon_shadow_shaman',
+      'finale_arena_assault', 'finale_breach', 'finale_serpent_final',
       'scorpion_inquisitor', 'scorpion_shadow_prophet', 'scorpion_temple_assault', 'scorpion_temple_seizure']);
     for (const combat of bosses) {
       const line = bossLine(combat.id);
@@ -65,12 +69,35 @@ describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 3)', (
   it('marks every new family as a provisional sprite listed with its awaited final image', () => {
     const families = ['raven_scout', 'raven_miner', 'raven_foreman', 'corrupted_beast', 'depth_beast', 'bear_warrior',
       'wolf_raider', 'wolf_hunter', 'wolf_champion', 'shadow_wyrm', 'dragon_guardian',
-      'phoenix_guardian', 'phoenix_flamekeeper', 'shadow_zealot', 'scorpion_scholar'];
-    const listed = [...BEAR_PROVISIONAL_ENEMIES, ...DRAGON_PROVISIONAL_ENEMIES, ...SCORPION_PROVISIONAL_ENEMIES];
+      'phoenix_guardian', 'phoenix_flamekeeper', 'shadow_zealot', 'scorpion_scholar',
+      'raven_champion', 'phoenix_champion', 'breach_demon', 'demon_brute'];
+    const listed = [...BEAR_PROVISIONAL_ENEMIES, ...DRAGON_PROVISIONAL_ENEMIES, ...SCORPION_PROVISIONAL_ENEMIES,
+      ...FINALE_PROVISIONAL_ENEMIES];
     for (const id of families) {
       expect(templateLine(id), id).toContain('provisionalSprite:true');
       expect(__testing.ENEMY_VISUAL_SKILLS[id], id).toEqual(list(templateLine(id), 'skills'));
       expect(listed.some((enemy) => enemy.unitId === id), id).toBe(true);
     }
+  });
+
+  it('fights the breach in two phases: Maelor first, then the entity, each chosen by the fight and its phase', () => {
+    const bosses = runtime.slice(runtime.indexOf('const BOSS_DEFS=['), runtime.indexOf('const BOSS_PORTRAITS='))
+      .split('\n').filter((line) => line.includes("combatIds:['finale_breach']"));
+    expect(bosses.map((line) => /name:'([^']+)'/.exec(line)?.[1])).toEqual(['Maelor', 'Entité de la brèche']);
+    expect(bosses.map((line) => /phase:(\d)/.exec(line)?.[1])).toEqual(['1', '2']);
+    for (const line of bosses) for (const skillId of list(line, 'skills')) expect(skillFxRecipe(skillId), skillId).not.toBeNull();
+    const breach = POST_DEMO_COMBATS.get('finale_breach')!;
+    expect(breach.phases).toEqual([{ label: 'L’entité de la brèche', bossVisualId: 'breach_entity', escortVisualIds: ['breach_demon', 'breach_demon'] }]);
+    expect(postDemoCombats.filter((combat) => combat.phases).map((combat) => combat.id)).toEqual(['finale_breach']);
+  });
+
+  it('gives each clan support an existing, non-Ultimate skill with its procedural FX signature', () => {
+    for (const [clan, support] of Object.entries(CLAN_SUPPORTS)) {
+      const skill = skillById.get(support!.skillId);
+      expect(skill, clan).toBeDefined();
+      expect(skill!.ap, clan).toBeLessThanOrEqual(4);
+      expect(skillFxRecipe(support!.skillId), clan).not.toBeNull();
+    }
+    expect(Object.keys(CLAN_SUPPORTS)).not.toContain('serpent');
   });
 });
