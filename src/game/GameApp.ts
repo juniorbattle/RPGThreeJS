@@ -18,7 +18,7 @@ import { calibrateLionAmount } from './lionReputationCalibration';
 import { anyCombatConfig, playableCombatConfig } from './playableContent';
 import {
   closeCurrentPlateau, combatVictoryFacts, completePlateauChronicle, continueCampaign, nextPlayablePlateau,
-  pendingPlateauFinaleCombat, plateauEpilogueDialogueId, plateauFinaleOf,
+  pendingPlateauFinaleCombat, plateauEpilogueDialogueId, plateauFinaleOf, runPlateauId,
 } from './plateauProgression';
 import { resolvePlateauFinaleExecution, resolvePendingPlateauFinaleCombat } from './plateauFinale';
 import { getPlateau } from '../campaign/plateaux/PlateauRegistry';
@@ -1087,7 +1087,9 @@ export class GameApp {
       if (!continueCampaign(this.state)) return true;
       this.saves.saveAuto(this.state);
       this.disposeJourney();
-      this.showPoiMap();
+      // The new plateau opens on its first POI's scene, then its map.
+      const start = getRunNode(this.state.run);
+      if (start) { this.setMode('RESULT'); await this.resolveRunNode(start, false); } else this.showPoiMap();
       return false;
     }
     if (actionId === 'SAVE') {
@@ -1827,7 +1829,8 @@ export class GameApp {
     const pendingFinaleCombat = pendingPlateauFinaleCombat(this.state);
     if (
       current
-      && current.depth > 0
+      // Set 1.20.0: a post-demo plateau's first POI is a scene of its own, resumed like any other unresolved POI.
+      && (current.depth > 0 || runPlateauId(this.state) !== 'lion')
       && (pendingFinaleCombat !== null || (!this.state.resolvedNodeIds.includes(current.id)
         && !isPoiNeutralized(this.state, current.id)
         && !this.state.run.bypassedRouteNodeIds?.includes(current.id)))
