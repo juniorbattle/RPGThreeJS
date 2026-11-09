@@ -1,6 +1,6 @@
 /**
- * Set 1.20.0 (TRAVERSAL "Post-demo surfaces", CAMPAIGN_AND_STATE "Final act"), post-demo Lot 4 — DRAFT, not canon until
- * the operator approves the final act.
+ * Set 1.20.0 (TRAVERSAL "Post-demo surfaces", CAMPAIGN_AND_STATE "Final act"), post-demo Lot 4 — canon since the
+ * operator accepted the final act (OD-2026-11-09-A).
  *
  * The Tournament of the Great (roadmap §3.6): ordered arena fights presented on an encounter board, then the final
  * against the Serpent's champion, Maelor's betrayal and the breach, and the escape from the arena. The board is not a

@@ -1,6 +1,6 @@
 /**
- * Set 1.20.0, post-demo Lot 4 — DRAFT: the final act's campaign binding. Not canon until the operator approves the final
- * act; it reaches `dev` only on the operator's order. Data only: nothing here imports RunSystem.
+ * Set 1.20.0, post-demo Lot 4 — the final act's campaign binding, canon since OD-2026-11-09-A. It reaches `dev` only on
+ * the operator's order. Data only: nothing here imports RunSystem.
  *
  * The final act has no honour or force outcome of its own: the ending follows the four plateau outcomes (R4, Lot 5).
  * Its run holds the capital's small map; the Tournament before it is a board RunSystem reads from saved facts.

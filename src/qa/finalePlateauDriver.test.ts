@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 /**
- * Set 1.20.0, post-demo Lot 4: the QA driver plays the final act (DRAFT) from ends of the Scorpion that the driver itself
+ * Set 1.20.0, post-demo Lot 4: the QA driver plays the final act (canon since OD-2026-11-09-A) from ends of the Scorpion that the driver itself
  * played, through the Bear and the Dragon, from genuine demo saves whose Lion chronicle ended. Each scenario checks the
  * Tournament board RunSystem keeps, the relations the verdicts set, the supports and enemy-clan foes RunSystem prepares
  * before each fight, the reputation the act moves, and that the scenes name the causes, the four plateaux's included.
@@ -47,7 +47,7 @@ const config = (run: PlateauPlaythrough, combatId: string) => run.configs.find((
 const HONOUR: PlateauScenario = { name: 'honour', prefer: 'merit', intent: 'claim_recognition', guardianChests: ['finale-poi-reserve'] };
 const GREED: PlateauScenario = { name: 'greed', prefer: 'greed', intent: 'claim_recognition' };
 
-describe('final act QA driver (set 1.20.0, Lot 4 draft)', () => {
+describe('final act QA driver (set 1.20.0, Lot 4)', () => {
   it('opens on the Tournament board RunSystem keeps, in order, and stops before the final', () => {
     const run = playPlateau('finale', honourEnd, HONOUR, 20261111, 'finale-bout-serpent');
     expect(run.state.run.id).toBe('finale-20261111');

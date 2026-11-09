@@ -1,5 +1,6 @@
 /**
- * Set 1.20.0 (WORLD_AND_CHARACTERS "Provisional images"), post-demo Lot 4 — DRAFT presentation of the final act.
+ * Set 1.20.0 (WORLD_AND_CHARACTERS "Provisional images"), post-demo Lot 4 — presentation of the final act.
+ * The act is canon (OD-2026-11-09-A); its images stay provisional until the final-image lot.
  *
  * Every image here is PROVISIONAL: approved Lion backdrops and atlases reused, and existing characters standing in as
  * silhouettes for the final act's new characters. None is generated and none is a video. Each is listed with the final

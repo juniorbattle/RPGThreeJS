@@ -41,7 +41,7 @@ function play(state: GameState, id: string): void {
 const canMove = (state: GameState) => selectPoiMap(state).nodes.filter((node) => node.canMove).map((node) => node.id).sort();
 const status = (state: GameState, id: string) => selectPoiMap(state).nodes.find((node) => node.id === id)?.status;
 
-describe('the corrupted capital (set 1.20.0, Lot 4 draft)', () => {
+describe('the corrupted capital (set 1.20.0, Lot 4)', () => {
   it('builds a small map: 7 route POIs, 4 optional POIs and one guardian, all with the finale- prefix', () => {
     const state = finaleState();
     expect(state.run.id).toBe('finale-20261111');
@@ -90,7 +90,7 @@ describe('the corrupted capital (set 1.20.0, Lot 4 draft)', () => {
   });
 });
 
-describe('the betrayal names the advice the company followed (set 1.20.0, Lot 4 draft)', () => {
+describe('the betrayal names the advice the company followed (set 1.20.0, Lot 4)', () => {
   const adviceLine = (flags: Record<string, boolean>) => {
     const state = finaleState();
     Object.assign(state.flags, flags);

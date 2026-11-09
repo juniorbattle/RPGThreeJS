@@ -1,5 +1,5 @@
 /**
- * Set 1.20.0, post-demo Lot 4 — DRAFT dialogues of the final act, not canon until the operator approves it. Written
+ * Set 1.20.0, post-demo Lot 4 — dialogues of the final act, canon since OD-2026-11-09-A (accepted by the operator). Written
  * from the roadmap (§3.6, §3.7 and its status), the operator's decisions (F1 to F4: the Serpent always the finalist,
  * Maelor opening the breach and fleeing through it, an entity that stays unnamed and speaks no line) and the facts
  * established by the four plateaux only; no clan, place, character, object or lore beyond them. The capital, the arena's

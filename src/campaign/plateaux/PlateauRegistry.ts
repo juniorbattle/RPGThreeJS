@@ -170,8 +170,8 @@ export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([
   }),
   Object.freeze({
     id: 'finale', order: 5, kind: 'final_act', idPrefix: 'finale-', label: 'L’acte final',
-    // Lot 4: a playable draft until the operator accepts it; its images stay provisional.
-    roadmapSections: Object.freeze(['§3.6', '§3.7']), status: 'draft', hostClan: null, rivalClan: null,
+    // Lot 4: accepted as canon by the operator (OD-2026-11-09-A); its images stay provisional.
+    roadmapSections: Object.freeze(['§3.6', '§3.7']), status: 'canon', hostClan: null, rivalClan: null,
     chief: null,
     reputationBudget: REPUTATION_BUDGETS.finale,
     campaign: FINALE_PLATEAU_BINDING,

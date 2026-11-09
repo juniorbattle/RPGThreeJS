@@ -275,9 +275,10 @@ describe('the final act consequence map is written first, as a design (Lot 4)', 
     return [...parsed.majorChoices.flatMap((choice) => choice.echoes), ...Object.values(parsed.outcomes ?? {}).flatMap((outcome) => outcome.echoes)];
   };
 
-  it('passes the design check before any line exists, as a draft with no honour or force outcome of its own (R4 decides the ending)', () => {
+  it('passes the design check, with no honour or force outcome of its own (R4 decides the ending)', () => {
     expect(validateConsequenceMapDesign(finaleMap)).toEqual([]);
-    expect(map.status).toBe('draft');
+    // Written as a draft before any line; canon since the operator accepted the final act (OD-2026-11-09-A).
+    expect(map.status).toBe('canon');
     expect(map.outcomes).toBeUndefined();
     expect(map.majorChoices.map((choice) => choice.id)).toEqual(['finale.raven_verdict', 'finale.wolf_verdict', 'finale.phoenix_verdict',
       'finale.civilians', 'finale.trapped_citizens']);
@@ -309,7 +310,7 @@ describe('the final act consequence map is written first, as a design (Lot 4)', 
   });
 });
 
-describe('the final act draft passes the narrative coherence validator (Lot 4)', () => {
+describe('the final act passes the narrative coherence validator (Lot 4)', () => {
   const report = validateNarrativeCoherence(finaleMap, sources);
 
   it('has no error and no exception: every fact read, every choice echoed by a scene naming its cause, the epilogues planned', () => {

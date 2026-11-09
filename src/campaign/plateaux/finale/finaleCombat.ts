@@ -1,6 +1,6 @@
 /**
- * Set 1.20.0, post-demo Lot 4 — DRAFT: the final act's fights (COMBAT_AND_VFX "Post-demo combat"). Not canon until the
- * operator approves the final act. Reputation is authored at the post-demo scale (OD-2026-11-08-A) and is the smallest
+ * Set 1.20.0, post-demo Lot 4 — the final act's fights (COMBAT_AND_VFX "Post-demo combat"), canon since OD-2026-11-09-A;
+ * their balance awaits the operator's PC test. Reputation is authored at the post-demo scale (OD-2026-11-08-A) and is the smallest
  * share of the game (R2): only the victory at the breach and the guardian give +1; two choices give the rest.
  *
  * Enemy families (roadmap §3.6 and §3.7): the champions of the rival clans at the Tournament, the Serpent's champion in
@@ -9,8 +9,8 @@
  * the only boss fight with phases. Provisional sprites (see `finalePresentation.ts`); the tactical runtime resolves
  * every fight.
  *
- * Clan supports and enemy-clan foes are PROPOSED to the operator (F3) and derived by RunSystem before each final-act
- * fight from the saved clan relations; nothing about them is saved.
+ * Clan supports and enemy-clan foes (F3) are approved with the final act (OD-2026-11-09-A) and derived by RunSystem
+ * before each final-act fight from the saved clan relations; nothing about them is saved.
  */
 import type { ChallengeDeclaration } from '../../../game/challenges';
 import type { CombatConfig } from '../../../game/types';
@@ -84,7 +84,7 @@ export const FINALE_VICTORY_FACTS: Readonly<Record<string, Readonly<Record<strin
 });
 
 // ---------------------------------------------------------------------------------------------------------------------
-// Clan supports and enemy-clan foes (F3), PROPOSED to the operator
+// Clan supports and enemy-clan foes (F3), approved with the final act (OD-2026-11-09-A)
 
 export interface ClanSupportDefinition {
   readonly label: string;

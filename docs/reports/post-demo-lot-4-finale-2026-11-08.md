@@ -7,7 +7,7 @@
 | BASELINE | `9adfaf6b` sur `post-demo` (Scorpion accepté, OD-2026-11-08-D ; jeu de contrats 1.20.0, baseline immuable `6c965169c2dc153cafd5a8609d914cf8de723ff3`) |
 | BRANCH | `post-demo` |
 | HEAD | voir le commit de clôture du lot (ce rapport et l’état) |
-| STATUS | brouillon jouable, en attente de l’acceptation de l’opérateur |
+| STATUS | accepté : l’acte final est canon depuis [OD-2026-11-09-A](../autonomy/POST_DEMO_LOT_4_OPERATOR_DECISION_2026-11-09.md) ; il reste sur `post-demo` jusqu’à un ordre d’intégration |
 | MERGED_IN | NONE |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |

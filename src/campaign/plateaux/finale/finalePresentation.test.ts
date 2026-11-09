@@ -1,7 +1,7 @@
 /**
- * Set 1.20.0, post-demo Lot 4 — DRAFT: every final-act scene can be staged on a provisional tableau, every provisional image
+ * Set 1.20.0, post-demo Lot 4 — every final-act scene can be staged on a provisional tableau, every provisional image
  * is listed with the final image it awaits, the scenes and refuges say their images are provisional (canon since
- * OD-2026-11-08-D), and the staging keeps at
+ * OD-2026-11-09-A), and the staging keeps at
  * most four actors with the company facing the plateau's people.
  */
 import { describe, expect, it } from 'vitest';
@@ -37,7 +37,7 @@ function finaleGreedState(): ReturnType<typeof greedJudgementState> {
 }
 const finaleSceneIds = [...new Set([...POST_DEMO_DIALOGUES.keys(), ...postDemoSceneIds('finale')])].filter((id) => id.startsWith('finale_'));
 
-describe('final-act scenes on provisional tableaux (set 1.20.0, Lot 4 draft)', () => {
+describe('final-act scenes on provisional tableaux (set 1.20.0, Lot 4)', () => {
   it('lists every final-act scene, and only them, with an approved tableau and its awaited final image', () => {
     expect(Object.keys(FINALE_PROVISIONAL_SCENES).sort()).toEqual([...finaleSceneIds].sort());
     for (const [id, scene] of Object.entries(FINALE_PROVISIONAL_SCENES)) {
@@ -53,12 +53,12 @@ describe('final-act scenes on provisional tableaux (set 1.20.0, Lot 4 draft)', (
     for (const actor of FINALE_PROVISIONAL_ACTORS) expect(resolveCharacterUnitId(actor.actorId), actor.actorId).toBe(actor.standInUnitId);
   });
 
-  it('marks every final-act scene as a draft on provisional images, with a still image', () => {
+  it('marks every final-act scene as canon on provisional images (OD-2026-11-09-A), with a still image', () => {
     const state = createInitialState();
     for (const id of finaleSceneIds) {
       const sequence = resolvePostDemoDialogue(id, state)!;
-      expect(isDraftContent(id), id).toBe(true);
-      expect(provisionalMark(id), id).toBe('Brouillon · image provisoire');
+      expect(isDraftContent(id), id).toBe(false);
+      expect(provisionalMark(id), id).toBe('Image provisoire');
       expect(createGenericNarrativeTableau(sequence).stillImage, id)
         .toBe(demoEnvironmentPlateForContext(FINALE_PROVISIONAL_SCENES[id]!.environmentContext, 'STATIC_TABLEAU').publicUrl);
     }
@@ -82,10 +82,10 @@ describe('final-act scenes on provisional tableaux (set 1.20.0, Lot 4 draft)', (
     }
   });
 
-  it('marks the final act’s refuge as a draft on provisional art, and its single map as provisional', () => {
+  it('marks the final act’s refuge and single map as provisional art, no longer as drafts', () => {
     for (const node of FINALE_ROUTE.filter((candidate) => candidate.type === 'refuge')) {
       const presentation = resolveRefugePresentation({ ...node, links: [...node.links], x: 0, z: 0 } as never)!;
-      expect([presentation.provisional, presentation.draft], node.id).toEqual([true, true]);
+      expect([presentation.provisional, presentation.draft], node.id).toEqual([true, false]);
     }
     expect(poiAtlasForNode('finale-arena-gate').provisional).toBe(true);
     expect(poiAtlasForNode('finale-arena-gate').regions.map((region) => region.shortTitle)).toEqual(['La capitale corrompue']);

@@ -1,6 +1,6 @@
 /**
- * Set 1.20.0 (TRAVERSAL "Post-demo plateaux"), post-demo Lot 4 — DRAFT, not canon until the operator approves the final
- * act.
+ * Set 1.20.0 (TRAVERSAL "Post-demo plateaux"), post-demo Lot 4 — canon since the operator accepted the final act
+ * (OD-2026-11-09-A).
  *
  * The corrupted capital (roadmap §3.7, Phase 1): the escape from the arena and the road to the breach, a small POI map
  * under the plateaux's rules (connected movement, once-only resolution, one exclusive fork with branch commitment, a
