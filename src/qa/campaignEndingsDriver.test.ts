@@ -14,6 +14,8 @@ import { migrateState, SaveRepository } from '../game/store';
 import type { GameState } from '../game/types';
 import { playBearPlateau } from './bearPlateauDriver';
 import { playPlateau, type PlateauPlaythrough, type PlateauScenario } from './plateauDriver';
+import { loadEpilogueStartQa } from './postDemoQaSaves';
+import { nextEpilogueStep } from '../game/finalAct';
 
 function lionEnd(fixture: unknown, reputation: number): GameState {
   const state = migrateState(structuredClone(fixture));
@@ -122,5 +124,13 @@ describe('complete campaigns reach the ending R4 decides (set 1.20.0, Lot 5 draf
     expect(resumed.campaign!.finalAct.stage).toBe('completed');
     expect(resumed.endingId).toBe('ending-fear-fate');
     localStorage.clear();
+  });
+
+  it('opens each ending at the start of its epilogue for the QA lab, the ending already recorded by RunSystem', async () => {
+    for (const ending of ['respect', 'fear', 'balance'] as const) {
+      const state = await loadEpilogueStartQa(ending);
+      expect([state.campaign!.ending, state.campaign!.finalAct.stage], ending).toEqual([ending, 'epilogue']);
+      expect(nextEpilogueStep(state), ending).toEqual({ kind: 'dialogue', dialogueId: `finale_epilogue_${ending}` });
+    }
   });
 });

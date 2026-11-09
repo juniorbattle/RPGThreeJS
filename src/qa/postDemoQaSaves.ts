@@ -58,3 +58,27 @@ export async function loadScorpionEndForFinaleQa(route: 'honour' | 'force'): Pro
     : { name: 'QA Scorpion force', prefer: 'greed', intent: 'claim_recognition',
       answers: { scorpion_phoenix_faithful: 'scorpionOathRefused', scorpion_phoenix_temple: 'scorpionCodexKept' } }).state;
 }
+
+/**
+ * Post-demo Lot 5 (DRAFT endings): a complete campaign played by the QA driver, stopped at the start of its ending's
+ * epilogue, just after the act's closing scene: Respect (four honour outcomes), Fear (four force outcomes) or Balance
+ * (two and two). The ending is the one RunSystem recorded; only the epilogue's own steps are left to play. DEV QA only.
+ */
+export async function loadEpilogueStartQa(ending: 'respect' | 'fear' | 'balance'): Promise<GameState> {
+  const { playBearPlateau } = await import('./bearPlateauDriver');
+  const { playPlateau } = await import('./plateauDriver');
+  const honour = { prefer: 'merit', intent: 'claim_recognition' } as const;
+  const force = { prefer: 'greed', intent: 'request_trial' } as const;
+  const [lion, bear, dragon, scorpion] = ending === 'respect' ? ['honour', honour, honour, honour] as const
+    : ending === 'fear' ? ['force', force, force, force] as const : ['honour', honour, force, force] as const;
+  const afterBear = playBearPlateau(await loadLionEndForBearQa(lion), { name: 'QA Bear', ...bear }).state;
+  const afterDragon = playPlateau('dragon', afterBear, { name: 'QA Dragon', ...dragon,
+    ...(dragon === honour ? { forks: { 'dragon-second-trial': 'combat' as const, 'dragon-final-trial': 'combat' as const } } : {}) }).state;
+  const afterScorpion = playPlateau('scorpion', afterDragon, { name: 'QA Scorpion', ...scorpion }).state;
+  const state = playPlateau('finale', afterScorpion, { name: 'QA finale', prefer: ending === 'fear' ? 'greed' : 'merit', intent: 'claim_recognition' }, 20261111).state;
+  // Back to the moment the act's closing scene ended: the ending recorded, its epilogue not yet played.
+  state.campaign!.finalAct.stage = 'epilogue';
+  state.endingId = 'finale-breach';
+  for (const key of ['finaleFearLastStand', 'finaleFearFateAccepted', 'finaleLastStandWon']) delete state.flags[key];
+  return state;
+}

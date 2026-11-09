@@ -228,6 +228,9 @@ const out: string[] = [
     ? 'Générée par `tools/narrative/plateau-text-sheet.ts` depuis le contenu jouable. Canon : le plateau a été accepté par l’opérateur.'
     : 'Générée par `tools/narrative/plateau-text-sheet.ts` depuis le contenu jouable. Brouillon : rien ici n’est canon avant l’approbation du plateau par l’opérateur.',
   '',
+  ...(isFinalAct && EPILOGUE_STATUS === 'draft'
+    ? ['**Les fins (Lot 5) restent un brouillon** : la section « Les fins », après la clôture de l’acte, attend l’approbation de l’opérateur.', '']
+    : []),
   '## Parcours, scènes et combats',
   '',
 ];
