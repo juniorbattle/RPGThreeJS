@@ -32,7 +32,9 @@ import {
 } from '../game/runSystem';
 import { requirePlateauCampaign } from '../campaign/plateaux/PlateauRegistry';
 import type { PostDemoSealPlateauId } from '../game/plateauFinale';
-import { finalActCombatConfig, isTournamentNodeId, nextTournamentStep, tournamentBoard } from '../game/finalAct';
+import {
+  completeCampaignEnding, finalActCombatConfig, isEpilogueCombat, isTournamentNodeId, nextEpilogueStep, nextTournamentStep, tournamentBoard,
+} from '../game/finalAct';
 import { FINALE_TOURNAMENT_ARRIVAL, type TournamentEntry } from '../campaign/plateaux/finale/finaleTournament';
 import finaleMap from '../campaign/consequences/finale.consequences.json';
 import type { CombatConfig, DialogueChoice, DialogueSequence, GameState, NarrativeEffect, RunNode } from '../game/types';
@@ -53,6 +55,8 @@ export interface PlateauScenario {
   guardianChests?: readonly string[];
   /** A fork's branch by its prefix (`dragon-second-trial`, or `finale-fork`), when it differs from the preference's default. */
   forks?: Readonly<Record<string, 'event' | 'combat'>>;
+  /** QA only (Lot 5): runs once the breach is won, before the act closes and R4 reads the reputation; for the gauge's limits. */
+  beforeClosing?: (state: GameState) => void;
 }
 
 export interface PlayedLine { dialogueId: string; stepId: string; speaker: string; text: string }
@@ -145,6 +149,7 @@ class PlateauDriver {
           break;
         }
         case 'completePlateau': completePlateauChronicle(this.state, effect.plateauId); break;
+        case 'completeEpilogue': completeCampaignEnding(this.state); break;
         default: throw new Error(`The Bear driver does not expect a '${effect.type}' effect.`);
       }
     }
@@ -185,17 +190,32 @@ class PlateauDriver {
     }
     changeReputation(this.state, config.rewards.reputation, `combat:${combatId}`);
     Object.assign(this.state.flags, combatVictoryFacts(combatId));
+    // As GameApp: the Fear ending's last stand belongs to the epilogue, after the run has ended (Lot 5).
+    if (isEpilogueCombat(combatId)) return;
     // As GameApp: a Tournament fight belongs to the board, not to the map.
     if (!isTournamentNodeId(node.id)) this.markResolved(node.id);
     if (node.type === 'boss') {
       this.state.run.status = 'completed';
       secureRunLoot(this.state);
       if (config.postCombatDialogueId) this.playDialogue(config.postCombatDialogueId);
+      this.scenario.beforeClosing?.(this.state);
       this.playDialogue(plateauEpilogueDialogueId(this.state));
+      this.playEpilogue(node);
       return;
     }
     if (config.postCombatDialogueId) this.playDialogue(config.postCombatDialogueId);
     this.flush(node);
+  }
+
+  /** As GameApp (Lot 5): each epilogue step RunSystem names, until the chronicle closes. */
+  private playEpilogue(node: RunNode): void {
+    for (let guard = 0; guard < 8; guard += 1) {
+      const step = nextEpilogueStep(this.state);
+      if (!step) return;
+      if (step.kind === 'combat') this.fight(step.combatId, node);
+      else this.playDialogue(step.dialogueId);
+    }
+    throw new Error('The epilogue did not close.');
   }
 
   private flush(node: RunNode): void {

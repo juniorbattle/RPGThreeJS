@@ -18,6 +18,7 @@ import { CAMPAIGN_CHAPTER_IDS, getPlateau, plateauForNodeId, type CampaignChapte
 import { POST_DEMO_REFUGE_GATHERINGS } from '../campaign/plateaux/postDemoRefuges';
 import { FINALE_TOURNAMENT, FINALE_TOURNAMENT_ARRIVAL } from '../campaign/plateaux/finale/finaleTournament';
 import { FINALE_VICTORY_FACTS } from '../campaign/plateaux/finale/finaleCombat';
+import { EPILOGUE_DIALOGUE_IDS, EPILOGUE_VICTORY_FACTS, FEAR_CLOSE_DIALOGUE_ID, LAST_STAND_COMBAT_ID } from '../campaign/plateaux/finale/finaleEpilogues';
 import { FINAL_ACT_CLOSING_DIALOGUE_ID } from './plateauProgression';
 import { anyCombatConfig } from './playableContent';
 import { resolvePlateauFinaleExecution, type PlateauFinaleDefinition } from './plateauFinale';
@@ -419,6 +420,9 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
     if (chapter.id === 'finale') {
       referencedDialogues.add(FINALE_TOURNAMENT_ARRIVAL.dialogueId);
       referencedDialogues.add(FINAL_ACT_CLOSING_DIALOGUE_ID);
+      // Lot 5: RunSystem names the ending's epilogue, the Fear ending's last stand and its closing scene.
+      for (const id of [...Object.values(EPILOGUE_DIALOGUE_IDS), FEAR_CLOSE_DIALOGUE_ID]) referencedDialogues.add(id);
+      referencedCombats.add(LAST_STAND_COMBAT_ID);
       for (const entry of FINALE_TOURNAMENT) {
         referencedCombats.add(entry.combatId);
         if (entry.openingDialogueId) referencedDialogues.add(entry.openingDialogueId);
@@ -490,7 +494,7 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
     for (const key of [entry.victoryFlag, ...(entry.afterFlags ?? [])]) add(dataReads, key, 'finalAct:board');
   }
   add(dataReads, FINALE_TOURNAMENT_ARRIVAL.flag, 'finalAct:board');
-  for (const [combatId, facts] of Object.entries(FINALE_VICTORY_FACTS)) {
+  for (const [combatId, facts] of Object.entries({ ...FINALE_VICTORY_FACTS, ...EPILOGUE_VICTORY_FACTS })) {
     for (const key of Object.keys(facts)) add(dataSets, key, `finalAct:victory:${combatId}`);
   }
   // RunSystem and the finale record these facts by code paths that can be executed directly.

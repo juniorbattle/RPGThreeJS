@@ -102,12 +102,12 @@
    "summary": "À la brèche, Maelor puis l’entité qui le suit sont tombés."
   },
   {
-   "id": "endingFearLastStand",
+   "id": "finaleFearLastStand",
    "kind": "flag",
    "summary": "Dans la Fin de la Crainte, la compagnie a choisi de se battre seule contre tous plutôt que de livrer Alistair."
   },
   {
-   "id": "endingFearFateAccepted",
+   "id": "finaleFearFateAccepted",
    "kind": "flag",
    "summary": "Dans la Fin de la Crainte, Alistair a accepté son destin et s’est livré aux clans."
   },
@@ -368,7 +368,7 @@
      "id": "finale.civilians.protected.epilogue_respect",
      "fact": "finaleCiviliansProtected",
      "scope": "epilogue",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-breach",
      "dialogueId": "finale_epilogue_respect",
      "stepId": "civilians",
@@ -384,7 +384,7 @@
      "id": "finale.civilians.protected.epilogue_fear",
      "fact": "finaleCiviliansProtected",
      "scope": "epilogue",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-breach",
      "dialogueId": "finale_epilogue_fear",
      "stepId": "civilians",
@@ -400,7 +400,7 @@
      "id": "finale.civilians.protected.epilogue_balance",
      "fact": "finaleCiviliansProtected",
      "scope": "epilogue",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-breach",
      "dialogueId": "finale_epilogue_balance",
      "stepId": "civilians",
@@ -416,7 +416,7 @@
      "id": "finale.civilians.abandoned.epilogue_respect",
      "fact": "finaleCiviliansAbandoned",
      "scope": "epilogue",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-breach",
      "dialogueId": "finale_epilogue_respect",
      "stepId": "civilians",
@@ -432,7 +432,7 @@
      "id": "finale.civilians.abandoned.epilogue_fear",
      "fact": "finaleCiviliansAbandoned",
      "scope": "epilogue",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-breach",
      "dialogueId": "finale_epilogue_fear",
      "stepId": "civilians",
@@ -448,7 +448,7 @@
      "id": "finale.civilians.abandoned.epilogue_balance",
      "fact": "finaleCiviliansAbandoned",
      "scope": "epilogue",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-breach",
      "dialogueId": "finale_epilogue_balance",
      "stepId": "civilians",
@@ -526,7 +526,7 @@
      "choiceIndex": 0,
      "path": "neutral",
      "sets": [
-      "endingFearLastStand"
+      "finaleFearLastStand"
      ],
      "leadsTo": [
       "finaleLastStandWon"
@@ -537,7 +537,7 @@
      "choiceIndex": 1,
      "path": "neutral",
      "sets": [
-      "endingFearFateAccepted"
+      "finaleFearFateAccepted"
      ],
      "reputation": 0
     }
@@ -545,35 +545,35 @@
    "echoes": [
     {
      "id": "finale.fear_fate.last_stand.close",
-     "fact": "endingFearLastStand",
+     "fact": "finaleFearLastStand",
      "scope": "epilogue",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-breach",
      "dialogueId": "finale_fear_close",
      "stepId": "fate",
      "state": {
-      "endingFearLastStand": true,
+      "finaleFearLastStand": true,
       "finaleLastStandWon": true
      },
      "causePhrase": "seuls contre tous",
      "contrast": {
-      "endingFearFateAccepted": true
+      "finaleFearFateAccepted": true
      }
     },
     {
      "id": "finale.fear_fate.accepted.close",
-     "fact": "endingFearFateAccepted",
+     "fact": "finaleFearFateAccepted",
      "scope": "epilogue",
-     "status": "planned",
+     "status": "implemented",
      "nodeId": "finale-breach",
      "dialogueId": "finale_fear_close",
      "stepId": "fate",
      "state": {
-      "endingFearFateAccepted": true
+      "finaleFearFateAccepted": true
      },
      "causePhrase": "accepté votre destin",
      "contrast": {
-      "endingFearLastStand": true,
+      "finaleFearLastStand": true,
       "finaleLastStandWon": true
      }
     }
@@ -581,8 +581,8 @@
   }
  ],
  "draftIds": [
-  "endingFearLastStand",
-  "endingFearFateAccepted",
+  "finaleFearLastStand",
+  "finaleFearFateAccepted",
   "finaleLastStandWon",
   "finale.civilians.protected.epilogue_respect",
   "finale.civilians.protected.epilogue_fear",

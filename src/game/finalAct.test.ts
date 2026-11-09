@@ -6,7 +6,10 @@
  */
 import { describe, expect, it } from 'vitest';
 import { POST_DEMO_COMBATS } from './postDemoContent';
-import { completeFinalAct, finalActCombatConfig, isTournamentComplete, nextTournamentStep, tournamentBoard } from './finalAct';
+import {
+  campaignEndingId, completeCampaignEnding, completeFinalAct, finalActCombatConfig, isTournamentComplete, nextEpilogueStep, nextTournamentStep,
+  tournamentBoard,
+} from './finalAct';
 import { createInitialState } from './store';
 import { meetClan, setClanRelation } from './campaignRelations';
 import type { GameState } from './types';
@@ -78,5 +81,71 @@ describe('the end of the final act (set 1.20.0, Lot 4)', () => {
     expect(state.endingId).toBe('finale-breach');
     expect(state.campaign!.chapters.finale.status).toBe('completed');
     expect(completeFinalAct(state)).toBe(false);
+  });
+});
+
+/** A won breach whose four plateaux ended on the given outcomes, at the given reputation, the act not yet closed. */
+function wonBreach(outcomes: readonly ('honour' | 'force')[], reputation: number, stances: Parameters<typeof withRelations>[0] = {}): GameState {
+  const state = withRelations(stances);
+  (['lion', 'bear', 'dragon', 'scorpion'] as const).forEach((chapter, index) => {
+    state.campaign!.chapters[chapter] = { status: 'completed', outcome: outcomes[index]! };
+  });
+  state.campaign!.currentChapterId = 'finale';
+  state.campaign!.chapters.finale.status = 'active';
+  state.run = { ...state.run, id: 'finale-20261111', status: 'completed' };
+  state.flags.finaleEntityDefeated = true;
+  state.reputation = reputation;
+  return state;
+}
+
+describe('the endings (set 1.20.0, Lot 5 draft)', () => {
+  it('records the ending R4 decides when the act closes, and names its epilogue', () => {
+    const respect = wonBreach(['honour', 'honour', 'honour', 'force'], 70);
+    expect(nextEpilogueStep(respect)).toBeNull();
+    expect(completeFinalAct(respect)).toBe(true);
+    expect([respect.campaign!.ending, respect.campaign!.finalAct.stage]).toEqual(['respect', 'epilogue']);
+    expect(nextEpilogueStep(respect)).toEqual({ kind: 'dialogue', dialogueId: 'finale_epilogue_respect' });
+    const balance = wonBreach(['honour', 'honour', 'honour', 'honour'], 39);
+    completeFinalAct(balance);
+    expect(nextEpilogueStep(balance)).toEqual({ kind: 'dialogue', dialogueId: 'finale_epilogue_balance' });
+  });
+
+  it('leads the Fear ending through its choice: the last stand then the closing scene, or the closing scene', () => {
+    const state = wonBreach(['force', 'force', 'force', 'force'], 10);
+    completeFinalAct(state);
+    expect(nextEpilogueStep(state)).toEqual({ kind: 'dialogue', dialogueId: 'finale_epilogue_fear' });
+    expect(completeCampaignEnding(state)).toBe(false);
+    state.flags.finaleFearLastStand = true;
+    expect(nextEpilogueStep(state)).toEqual({ kind: 'combat', combatId: 'finale_last_stand' });
+    expect(completeCampaignEnding(state)).toBe(false);
+    state.flags.finaleLastStandWon = true;
+    expect(nextEpilogueStep(state)).toEqual({ kind: 'dialogue', dialogueId: 'finale_fear_close' });
+    expect(completeCampaignEnding(state)).toBe(true);
+    expect([state.campaign!.finalAct.stage, state.endingId]).toEqual(['completed', 'ending-fear-last-stand']);
+    expect(nextEpilogueStep(state)).toBeNull();
+    expect(completeCampaignEnding(state)).toBe(false);
+    const fate = wonBreach(['force', 'force', 'force', 'honour'], 10);
+    completeFinalAct(fate);
+    fate.flags.finaleFearFateAccepted = true;
+    expect(nextEpilogueStep(fate)).toEqual({ kind: 'dialogue', dialogueId: 'finale_fear_close' });
+    expect(completeCampaignEnding(fate)).toBe(true);
+    expect(fate.endingId).toBe('ending-fear-fate');
+    expect(campaignEndingId('balance', {})).toBe('ending-balance');
+  });
+
+  it('ends the chronicle at the breach when the record lacks the four outcomes, as only a corrupted record does', () => {
+    const state = wonBreach(['honour', 'honour', 'honour', 'honour'], 70);
+    delete state.campaign!.chapters.scorpion.outcome;
+    completeFinalAct(state);
+    expect([state.campaign!.ending, state.campaign!.finalAct.stage, nextEpilogueStep(state)]).toEqual([null, 'completed', null]);
+  });
+
+  it('prepares the last stand alone against all: no support, the Serpent’s raider and the other enemy clans’ foes, four at most', () => {
+    const state = withRelations({ lion: 'ally', bear: 'enemy', raven: 'enemy', dragon: 'enemy', wolf: 'enemy', scorpion: 'enemy', serpent: 'enemy' });
+    const config = finalActCombatConfig(state, combat('finale_last_stand'));
+    expect(config.supports).toBeUndefined();
+    expect(config.enemyVisualIds).toEqual(['serpent_raider', 'bear_warrior', 'raven_scout', 'dragon_guardian']);
+    const few = finalActCombatConfig(withRelations({ bear: 'enemy', serpent: 'enemy' }), combat('finale_last_stand'));
+    expect(few.enemyVisualIds).toEqual(['serpent_raider', 'bear_warrior']);
   });
 });

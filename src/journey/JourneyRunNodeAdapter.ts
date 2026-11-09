@@ -26,6 +26,8 @@ export interface JourneyBoundaryPlan {
 export interface JourneyBoundaryContext {
   currentLabel?: string;
   secondary?: readonly JourneySecondaryActionPresentation[];
+  /** Set 1.20.0 (post-demo Lot 5): the words of a closed chronicle's end, read from RunSystem's recorded ending. */
+  terminal?: { eyebrow: string; title: string; caption: string };
 }
 
 export const JOURNEY_CONTINUE_LABEL = 'Continuer';
@@ -87,9 +89,9 @@ export function planJourneyBoundary(
       singleNodeId: null,
       presentation: {
         mode: 'terminal',
-        eyebrow: 'Fin de route',
-        title: 'La chronique s’achève ici',
-        caption: 'Aucune route ne poursuit cette chronique.',
+        eyebrow: context.terminal?.eyebrow ?? 'Fin de route',
+        title: context.terminal?.title ?? 'La chronique s’achève ici',
+        caption: context.terminal?.caption ?? 'Aucune route ne poursuit cette chronique.',
         ...(context.currentLabel ? { context: `Depuis : ${context.currentLabel}` } : {}),
         choices: [],
         continueLabel: JOURNEY_TERMINAL_LABEL,

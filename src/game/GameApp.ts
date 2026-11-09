@@ -40,7 +40,11 @@ import { DialogueView, resolveDialogueBackdrop } from '../ui/DialogueView';
 import { ManagementView } from '../ui/ManagementView';
 import { PoiMapView } from '../ui/PoiMapView';
 import { openTournamentBoard } from '../ui/TournamentBoardView';
-import { finalActCombatConfig, isTournamentComplete, isTournamentNodeId, nextTournamentStep, tournamentBoard } from './finalAct';
+import {
+  completeCampaignEnding, finalActCombatConfig, isEpilogueCombat, isTournamentComplete, isTournamentNodeId, nextEpilogueStep,
+  nextTournamentStep, tournamentBoard, type EpilogueStep,
+} from './finalAct';
+import { ENDING_LABELS } from '../campaign/plateaux/finale/finaleEpilogues';
 import { FINALE_TOURNAMENT_ARRIVAL } from '../campaign/plateaux/finale/finaleTournament';
 import { demoEnvironmentPlateForContext } from '../render/demoEnvironmentPack';
 import { provisionalMark } from './postDemoContent';
@@ -845,6 +849,9 @@ export class GameApp {
         return;
       }
     }
+    // Set 1.20.0 (post-demo Lot 5): once the breach is won, RunSystem names each step of the ending's epilogue.
+    const epilogue = nextEpilogueStep(this.state);
+    if (epilogue) { await this.playEpilogueStep(epilogue); return; }
     // Existing terminal and preparation presentation retain agency; navigation stays on the map.
     if (this.hasCompletedPoiChronicle()) {
       this.poiMap.close(); delete document.body.dataset.campaignSurface;
@@ -862,6 +869,25 @@ export class GameApp {
       await this.enterJourney(); return;
     }
     this.showPoiMap();
+  }
+
+  /**
+   * Set 1.20.0 (post-demo Lot 5): plays the epilogue step RunSystem names, then returns to the campaign boundary, which
+   * asks RunSystem again. A scene that left the epilogue where it was ends the presentation at the chronicle's end.
+   */
+  private async playEpilogueStep(step: EpilogueStep): Promise<void> {
+    this.poiMap.close(); delete document.body.dataset.campaignSurface;
+    this.disposeJourney();
+    this.saves.saveAuto(this.state);
+    const node = getRunNode(this.state.run);
+    if (!node) return;
+    this.setMode('RESULT');
+    if (step.kind === 'combat') { await this.startCombat(step.combatId, node); return; }
+    await this.playDialogue(step.dialogueId, node.label);
+    this.saves.saveAuto(this.state);
+    const next = nextEpilogueStep(this.state);
+    if (next && JSON.stringify(next) === JSON.stringify(step)) { await this.enterJourney(); return; }
+    await this.enterCampaignPresentation();
   }
 
   /** Set 1.20.0 (post-demo Lot 4): the Tournament's board, read from RunSystem; it opens on the Tournament's scene once. */
@@ -1074,6 +1100,7 @@ export class GameApp {
         ...(current?.label ? { currentLabel: current.label } : {}),
         available,
         secondary: this.journeySecondaryActions(available.length === 0),
+        ...this.chronicleEndWords(),
         reducedMotion: this.state.settings.reducedGraphics,
         ...(current?.id === 'lion-final-refuge'
           ? { presentationOnly: { eyebrow: 'Préparation', title: 'Avant le jugement', continueLabel: 'Carte de campagne' } }
@@ -1157,6 +1184,14 @@ export class GameApp {
     const plateau = getPlateau(next);
     const draft = plateau.status === 'draft' ? ' (brouillon)' : '';
     return [{ id: CONTINUE_CAMPAIGN_ACTION, label: `Continuer : ${plateau.label}${draft}` }, ...JOURNEY_SECONDARY_ACTIONS];
+  }
+
+  /** Set 1.20.0 (post-demo Lot 5): the end of a chronicle that reached its ending names that ending. */
+  private chronicleEndWords(): { terminal?: { eyebrow: string; title: string; caption: string } } {
+    const progress = this.state.campaign;
+    if (!progress?.ending || progress.finalAct.stage !== 'completed') return {};
+    return { terminal: { eyebrow: 'Fin de la chronique', title: ENDING_LABELS[progress.ending],
+      caption: 'Quatre Sceaux, la brèche refermée : la Voie des Sceaux s’achève ici.' } };
   }
 
   /** Returns true when the same Journey boundary should be presented again. */
@@ -1659,6 +1694,9 @@ export class GameApp {
         case 'completePlateau':
           completePlateauChronicle(this.state, effect.plateauId);
           break;
+        case 'completeEpilogue':
+          completeCampaignEnding(this.state);
+          break;
       }
     }
   }
@@ -1751,7 +1789,9 @@ export class GameApp {
     applyCombatProgress(this.state, result, encounterLimit);
     // Set 1.20.0 (post-demo Lot 4): a Tournament fight belongs to the board, not to the map.
     const onBoard = isTournamentNodeId(node.id);
-    if (!onBoard) this.state.currentNodeId = node.id;
+    // Set 1.20.0 (post-demo Lot 5): the Fear ending's last stand belongs to the epilogue, after the run has ended.
+    const inEpilogue = isEpilogueCombat(result.combatId);
+    if (!onBoard && !inEpilogue) this.state.currentNodeId = node.id;
     creditRunReward(this.state, { gold: rewards.gold });
     for (const [itemId, quantity] of Object.entries(rewards.materials ?? {})) {
       creditRunReward(this.state, { category: 'materials', itemId, quantity });
@@ -1761,6 +1801,7 @@ export class GameApp {
     // The verdict is stated once the company is back on the map, after any aftermath dialogue.
     this.pendingChallengeVerdict = creditChallengePrime(this.state, result);
     Object.assign(this.state.flags, combatVictoryFacts(result.combatId));
+    if (inEpilogue) { this.saves.saveAuto(this.state); await this.enterCampaignPresentation(); return; }
     if (!onBoard) this.markResolved(node.id);
     // The Bois-Clair outcome reads the resolved result only through its existing presentation trigger (set 1.13.0).
     const boisClairAftermath = resolveCin6aBoisClairAftermath(result.combatId, result.victory, this.state.flags);

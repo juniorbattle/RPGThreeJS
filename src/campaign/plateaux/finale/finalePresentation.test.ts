@@ -17,9 +17,11 @@ import { resolveRefugePresentation } from '../../../ui/RefugePresentation';
 import { poiAtlasForNode } from '../plateauAtlas';
 import { FINALE_ROUTE } from './finaleTopology';
 import {
-  FINALE_ATLAS_REGIONS, FINALE_PROVISIONAL_ACTORS, FINALE_PROVISIONAL_ENEMIES, FINALE_PROVISIONAL_SCENES, FINALE_PROVISIONAL_SURFACES,
-  FINALE_REFUGE_PRESENTATION,
+  FINALE_ATLAS_REGIONS, FINALE_MOMENTS, FINALE_PROVISIONAL_ACTORS, FINALE_PROVISIONAL_ENEMIES, FINALE_PROVISIONAL_SCENES, FINALE_PROVISIONAL_SURFACES,
+  FINALE_REFUGE_PRESENTATION, finaleMomentPlays,
 } from './finalePresentation';
+import { EPILOGUE_CONTENT_IDS } from './finaleEpilogues';
+import { setClanRelation } from '../../../game/runSystem';
 
 /** An honourable company and a greedy one at the final act, every evidence and verdict set, to build its scenes. */
 function finaleHonourState(): ReturnType<typeof perfectHonourJudgementState> {
@@ -36,6 +38,15 @@ function finaleGreedState(): ReturnType<typeof greedJudgementState> {
   return state;
 }
 const finaleSceneIds = [...new Set([...POST_DEMO_DIALOGUES.keys(), ...postDemoSceneIds('finale')])].filter((id) => id.startsWith('finale_'));
+const actSceneIds = finaleSceneIds.filter((id) => !EPILOGUE_CONTENT_IDS.has(id));
+const epilogueSceneIds = finaleSceneIds.filter((id) => EPILOGUE_CONTENT_IDS.has(id));
+/** Every clan on the company's side, as the saved relations say: the endings' fullest cast. */
+function alliedEverywhere(): ReturnType<typeof perfectHonourJudgementState> {
+  const state = finaleHonourState();
+  for (const clan of ['lion', 'bear', 'dragon', 'scorpion', 'raven', 'wolf', 'phoenix'] as const) setClanRelation(state, clan, 'ally', 'qa');
+  Object.assign(state.flags, { finaleCiviliansProtected: true, finaleFearLastStand: true, finaleLastStandWon: true });
+  return state;
+}
 
 describe('final-act scenes on provisional tableaux (set 1.20.0, Lot 4)', () => {
   it('lists every final-act scene, and only them, with an approved tableau and its awaited final image', () => {
@@ -55,7 +66,7 @@ describe('final-act scenes on provisional tableaux (set 1.20.0, Lot 4)', () => {
 
   it('marks every final-act scene as canon on provisional images (OD-2026-11-09-A), with a still image', () => {
     const state = createInitialState();
-    for (const id of finaleSceneIds) {
+    for (const id of actSceneIds) {
       const sequence = resolvePostDemoDialogue(id, state)!;
       expect(isDraftContent(id), id).toBe(false);
       expect(provisionalMark(id), id).toBe('Image provisoire');
@@ -64,8 +75,32 @@ describe('final-act scenes on provisional tableaux (set 1.20.0, Lot 4)', () => {
     }
   });
 
+  it('marks the endings as drafts on provisional images inside the canon act (Lot 5), with a still image', () => {
+    const state = createInitialState();
+    expect(epilogueSceneIds.sort()).toEqual(['finale_epilogue_balance', 'finale_epilogue_fear', 'finale_epilogue_respect', 'finale_fear_close']);
+    for (const id of [...epilogueSceneIds, 'finale_last_stand']) {
+      expect(isDraftContent(id), id).toBe(true);
+      expect(provisionalMark(id), id).toBe('Brouillon · image provisoire');
+    }
+    for (const id of epilogueSceneIds) {
+      expect(createGenericNarrativeTableau(resolvePostDemoDialogue(id, state)!).stillImage, id)
+        .toBe(demoEnvironmentPlateForContext(FINALE_PROVISIONAL_SCENES[id]!.environmentContext, 'STATIC_TABLEAU').publicUrl);
+    }
+  });
+
+  it('proposes a moment table for the betrayal and the three epilogues, none of which plays on a provisional tableau', () => {
+    expect(FINALE_MOMENTS.map((moment) => moment.beforeDialogueId)).toEqual(['finale_betrayal', 'finale_epilogue_respect', 'finale_epilogue_fear', 'finale_epilogue_balance']);
+    for (const moment of FINALE_MOMENTS) {
+      expect(resolvePostDemoDialogue(moment.beforeDialogueId, createInitialState()), moment.id).toBeDefined();
+      expect(moment.facts.length, moment.id).toBeGreaterThan(0);
+      expect([moment.status, moment.tableau, finaleMomentPlays(moment)], moment.id).toEqual(['proposed', 'provisional', false]);
+    }
+    expect(finaleMomentPlays({ ...FINALE_MOMENTS[1]!, status: 'approved' })).toBe(false);
+    expect(finaleMomentPlays({ ...FINALE_MOMENTS[1]!, status: 'approved', tableau: 'approved' })).toBe(true);
+  });
+
   it('stages every final-act scene with at most four visible actors, the company facing the plateau’s people', () => {
-    for (const state of [createInitialState(), finaleHonourState(), finaleGreedState()]) {
+    for (const state of [createInitialState(), finaleHonourState(), finaleGreedState(), alliedEverywhere()]) {
       for (const id of finaleSceneIds) {
         const sequence = resolvePostDemoDialogue(id, state)!;
         const plan = resolveFinalDialoguePresentationPlan(id, sequence)!;

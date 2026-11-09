@@ -87,4 +87,41 @@ export const FINALE_PROVISIONAL_SCENES: Readonly<Record<string, { environmentCon
   finale_breach_confrontation: { environmentContext: 'dialogue:serpent_pursuit_pre_combat', awaitedFinal: 'Tableau : Maelor au cœur de la brèche' },
   finale_breach_aftermath: { environmentContext: 'dialogue:serpent_general_aftermath', awaitedFinal: 'Tableau : la brèche vacille après la chute de l’entité' },
   finale_act_end: { environmentContext: 'dialogue:epilogue', awaitedFinal: 'Tableau : la capitale au matin, avant les épilogues' },
+  // Lot 5 (DRAFT endings).
+  finale_epilogue_respect: { environmentContext: 'dialogue:epilogue', awaitedFinal: 'Tableau vivant : le Respect, la brèche refermée avec les alliés et les clans rassemblés' },
+  finale_epilogue_fear: { environmentContext: 'dialogue:shadow_signs', awaitedFinal: 'Tableau vivant : la Crainte, la compagnie seule devant les bannières des clans' },
+  finale_epilogue_balance: { environmentContext: 'dialogue:final_refuge', awaitedFinal: 'Tableau vivant : l’Équilibre, une paix fragile entre les clans' },
+  finale_fear_close: { environmentContext: 'dialogue:serpent_general_aftermath', awaitedFinal: 'Tableau : la fin de la Crainte, après le dernier combat ou le destin accepté' },
 });
+
+/**
+ * Set 1.20.0 (PRESENTATION_AND_MEDIA "Post-demo moments"), post-demo Lot 5 — PROPOSED moment table of the final act: the
+ * Tournament betrayal and the three epilogues, each with the established facts it may show. The operator approves it
+ * with the endings. A moment plays only on an approved painted tableau and only once approved here; while its tableau
+ * is provisional, it goes straight to its dialogue. No caption, no choice: the Fear ending's choice stays in its dialogue.
+ */
+export interface FinaleMoment {
+  readonly id: string;
+  readonly beforeDialogueId: string;
+  readonly maxSeconds: 40;
+  readonly facts: readonly string[];
+  readonly status: 'proposed' | 'approved';
+  readonly tableau: 'provisional' | 'approved';
+}
+
+export const FINALE_MOMENTS: readonly FinaleMoment[] = Object.freeze([
+  { id: 'finale_betrayal_moment', beforeDialogueId: 'finale_betrayal', maxSeconds: 40, status: 'proposed', tableau: 'provisional',
+    facts: ['Le champion du Serpent tombe en finale du Tournoi', 'Maelor s’avance au milieu de l’arène, un artefact à la main',
+      'La brèche s’ouvre au cœur de l’arène', 'Le champion du Serpent se relève, changé en démon'] },
+  { id: 'finale_respect_moment', beforeDialogueId: 'finale_epilogue_respect', maxSeconds: 40, status: 'proposed', tableau: 'provisional',
+    facts: ['La brèche se referme', 'Les bannières alliées tiennent la ligne autour de la brèche', 'Les clans se rassemblent sous la bannière de la compagnie'] },
+  { id: 'finale_fear_moment', beforeDialogueId: 'finale_epilogue_fear', maxSeconds: 40, status: 'proposed', tableau: 'provisional',
+    facts: ['La brèche se referme', 'La compagnie se tient seule', 'Les bannières des clans approchent'] },
+  { id: 'finale_balance_moment', beforeDialogueId: 'finale_epilogue_balance', maxSeconds: 40, status: 'proposed', tableau: 'provisional',
+    facts: ['La brèche se referme', 'Des bannières à ses côtés, d’autres à distance', 'Le monde tient encore, marqué par le conflit'] },
+]);
+
+/** A moment plays only once approved and on an approved tableau; until then, its dialogue plays directly. */
+export function finaleMomentPlays(moment: FinaleMoment): boolean {
+  return moment.status === 'approved' && moment.tableau === 'approved';
+}

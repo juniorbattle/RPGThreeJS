@@ -339,7 +339,7 @@ describe('the endings are written map first, as drafts in canon maps (Lot 5)', (
       for (const echo of echoesOf(map).filter((candidate) => candidate.scope === 'epilogue')) expect(map.draftIds, echo.id).toContain(echo.id);
     }
     const finale = parse(finaleMap);
-    expect(finale.draftIds).toEqual(expect.arrayContaining(['endingFearLastStand', 'endingFearFateAccepted', 'finaleLastStandWon', 'finale.fear_fate']));
+    expect(finale.draftIds).toEqual(expect.arrayContaining(['finaleFearLastStand', 'finaleFearFateAccepted', 'finaleLastStandWon', 'finale.fear_fate']));
   });
 
   it('names each plateau outcome in the Seals’ recital of the three epilogues, and offers the Fear ending its choice', () => {
@@ -353,8 +353,15 @@ describe('the endings are written map first, as drafts in canon maps (Lot 5)', (
     }
     const fear = parse(finaleMap).majorChoices.find((choice) => choice.id === 'finale.fear_fate')!;
     expect(fear.dialogueId).toBe('finale_epilogue_fear');
-    expect(fear.options.map((option) => option.sets)).toEqual([['endingFearLastStand'], ['endingFearFateAccepted']]);
+    expect(fear.options.map((option) => option.sets)).toEqual([['finaleFearLastStand'], ['finaleFearFateAccepted']]);
     expect(fear.options.every((option) => option.reputation === 0)).toBe(true);
+  });
+
+  it('plans nothing any more: every echo of the five maps, the endings’ included, is implemented and checked', () => {
+    for (const raw of [lionMap, bearMap, dragonMap, scorpionMap, finaleMap]) {
+      expect(echoesOf(parse(raw)).filter((echo) => echo.status === 'planned').map((echo) => echo.id)).toEqual([]);
+      expect(validateNarrativeCoherence(raw, sources).errors).toEqual([]);
+    }
   });
 
   it('checks a draft choice whose echoes are all planned as a design only, and fully once one is implemented', () => {

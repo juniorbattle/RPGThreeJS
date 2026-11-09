@@ -4,7 +4,7 @@
  * Kept apart from the Lion's registries (`content.ts`), so post-demo content is never taken for Lion content, never
  * recalibrated and never counted by the demo's audits. A plateau's entries are playable DRAFTS, identifiable as such,
  * until the operator approves the plateau (the Bear since OD-2026-11-08-B, the Dragon since OD-2026-11-08-C, the Scorpion since
- * OD-2026-11-08-D); they reach `dev` only on the operator's
+ * OD-2026-11-08-D, the final act since OD-2026-11-09-A, its endings still drafts); they reach `dev` only on the operator's
  * order. Every post-demo plateau shows provisional images until the final-image lot.
  */
 import { BEAR_DIALOGUES, BEAR_SCENE_BUILDERS } from '../campaign/plateaux/bear/bearDialogues';
@@ -19,6 +19,7 @@ import { SCORPION_FINALE } from '../campaign/plateaux/scorpion/scorpionFinale';
 import { SCORPION_STORY_COMBATS, scorpionOptionalCombats } from '../campaign/plateaux/scorpion/scorpionCombat';
 import { FINALE_DIALOGUES, FINALE_SCENE_BUILDERS } from '../campaign/plateaux/finale/finaleDialogues';
 import { FINALE_STORY_COMBATS, finaleOptionalCombats } from '../campaign/plateaux/finale/finaleCombat';
+import { EPILOGUE_COMBATS, EPILOGUE_CONTENT_IDS, EPILOGUE_SCENE_BUILDERS, EPILOGUE_STATUS } from '../campaign/plateaux/finale/finaleEpilogues';
 import { getPlateau, type CampaignChapterId } from '../campaign/plateaux/PlateauRegistry';
 import { combatConfigSchema, dialogueSequenceSchema, type CombatConfig, type DialogueSequence, type GameState } from './types';
 import { withChallenge } from './challenges';
@@ -32,7 +33,7 @@ export const POST_DEMO_DIALOGUES: ReadonlyMap<string, DialogueSequence> = new Ma
 
 export const POST_DEMO_COMBATS: ReadonlyMap<string, CombatConfig> = new Map(
   [...BEAR_STORY_COMBATS, ...bearOptionalCombats(), ...DRAGON_STORY_COMBATS, ...dragonOptionalCombats(),
-    ...SCORPION_STORY_COMBATS, ...scorpionOptionalCombats(), ...FINALE_STORY_COMBATS, ...finaleOptionalCombats()].map((combat) => {
+    ...SCORPION_STORY_COMBATS, ...scorpionOptionalCombats(), ...FINALE_STORY_COMBATS, ...finaleOptionalCombats(), ...EPILOGUE_COMBATS].map((combat) => {
     const parsed = combatConfigSchema.parse(withChallenge(combatConfigSchema.parse(combat)));
     return [parsed.id, parsed];
   }),
@@ -44,10 +45,15 @@ export function postDemoChapterOf(contentId: string): CampaignChapterId | null {
   return chapter ?? null;
 }
 
-/** A draft is post-demo content whose plateau the operator has not approved yet. */
+/**
+ * A draft is post-demo content whose plateau the operator has not approved yet, or, inside the canon final act, the
+ * endings of Lot 5 until he approves them.
+ */
 export function isDraftContent(contentId: string): boolean {
   const chapter = postDemoChapterOf(contentId);
-  return chapter !== null && getPlateau(chapter).status !== 'canon';
+  if (chapter === null) return false;
+  if (EPILOGUE_CONTENT_IDS.has(contentId)) return EPILOGUE_STATUS === 'draft' || getPlateau(chapter).status !== 'canon';
+  return getPlateau(chapter).status !== 'canon';
 }
 
 /**
@@ -88,6 +94,7 @@ const SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<GameState>) => Di
   ...SCORPION_SCENE_BUILDERS,
   ...finaleBuilders(SCORPION_FINALE),
   ...FINALE_SCENE_BUILDERS,
+  ...EPILOGUE_SCENE_BUILDERS,
 });
 
 export function isPostDemoSceneBuilt(dialogueId: string): boolean {

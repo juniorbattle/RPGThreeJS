@@ -15,6 +15,8 @@ import { greedJudgementState, greedPlateauState, perfectHonourJudgementState, pe
 import { FINALE_TOURNAMENT, FINALE_TOURNAMENT_ARRIVAL } from '../../src/campaign/plateaux/finale/finaleTournament';
 import { CLAN_FOES, CLAN_SUPPORTS, FINALE_ENEMY_CLAN_RULES } from '../../src/campaign/plateaux/finale/finaleCombat';
 import { FINAL_ACT_CLOSING_DIALOGUE_ID } from '../../src/game/plateauProgression';
+import { ENDING_LABELS, EPILOGUE_DIALOGUE_IDS, EPILOGUE_STATUS, FEAR_CLOSE_DIALOGUE_ID, LAST_STAND_COMBAT_ID } from '../../src/campaign/plateaux/finale/finaleEpilogues';
+import { setClanRelation } from '../../src/game/runSystem';
 import { skillById } from '../../src/game/skills';
 import finaleMap from '../../src/campaign/consequences/finale.consequences.json';
 import { createInitialState } from '../../src/game/store';
@@ -38,6 +40,7 @@ function effectText(effect: NarrativeEffect): string {
     case 'setClanRelation': return `relation ${effect.clan} → ${effect.stance} (cause \`${effect.cause}\`)`;
     case 'resolvePlateauFinale': return `issue du jugement : ${effect.intent === 'claim_recognition' ? 'réclamer le Sceau' : 'demander l’épreuve'}`;
     case 'completePlateau': return `clôture du plateau ${effect.plateauId}`;
+    case 'completeEpilogue': return 'fin de la chronique';
     default: return effect.type;
   }
 }
@@ -139,6 +142,70 @@ function scene(id: string, heading: string): string[] {
   return out;
 }
 
+/**
+ * Lot 5: the endings, printed after the act's closing scene under the states that change them: R4's outcomes, the saved
+ * relations and the civilians of the arena. The Fear ending prints its choice, the last stand and both closing scenes.
+ */
+function endingState(outcomes: readonly ('honour' | 'force')[], reputation: number, civilians: 'protected' | 'abandoned'): GameState {
+  const state = outcomes.filter((outcome) => outcome === 'honour').length >= 2 ? perfectHonourJudgementState() : greedJudgementState();
+  const plateaux = ['lion', 'bear', 'dragon', 'scorpion'] as const;
+  const facts = [['serpentGeneralDefeated', 'lionTrialWon'], ['bearMasterSpyDefeated', 'bearTrialWon'], ['dragonShadowShamanDefeated', 'dragonTrialWon'],
+    ['scorpionShadowProphetDefeated', 'scorpionTrialWon']] as const;
+  plateaux.forEach((chapter, index) => {
+    const outcome = outcomes[index]!;
+    state.campaign!.chapters[chapter] = { status: 'completed', outcome };
+    state.flags[facts[index]![outcome === 'honour' ? 0 : 1]] = true;
+    const stance = outcome === 'honour' ? 'ally' : chapter === 'lion' ? 'neutral' : 'enemy';
+    setClanRelation(state, chapter, stance, 'sheet');
+  });
+  const rivals = ['raven', 'wolf', 'phoenix'] as const;
+  for (const clan of rivals) setClanRelation(state, clan, outcomes.filter((outcome) => outcome === 'honour').length >= 3 ? 'ally' : 'enemy', 'sheet');
+  setClanRelation(state, 'serpent', 'enemy', 'sheet');
+  state.flags[civilians === 'protected' ? 'finaleCiviliansProtected' : 'finaleCiviliansAbandoned'] = true;
+  state.reputation = reputation;
+  return state;
+}
+
+function printedUnder(id: string, states: readonly { label: string; state: GameState }[]): string[] {
+  const out = [`### ${id === FEAR_CLOSE_DIALOGUE_ID ? 'Clôture de la Crainte' : 'Épilogue'} — \`${id}\``, ''];
+  const printed = new Map<string, string>();
+  for (const { label, state } of states) {
+    const text = sequenceText(resolvePostDemoDialogue(id, state)!).join('\n');
+    const seen = printed.get(text);
+    printed.set(text, seen ? `${seen} ; ${label}` : label);
+  }
+  for (const [text, labels] of printed) out.push(`*Construite selon l’état — ${labels} :*`, '', text, '');
+  return out;
+}
+
+function endings(): string[] {
+  const out = [`## Les fins — ${EPILOGUE_STATUS === 'draft' ? 'BROUILLON (Lot 5)' : 'CANON'}`, '',
+    'RunSystem enregistre la fin quand l’acte se clôt (R4) : trois ou quatre fois l’honneur donnent le Respect, sauf si la jauge est sous 40 (alors l’Équilibre) ; trois ou quatre fois la force donnent la Crainte, sauf si la jauge est à 60 ou plus (alors l’Équilibre) ; deux et deux donnent l’Équilibre. Dans le Lion, l’honneur est la route du Général Serpent, la force celle de l’épreuve. Tant que leurs tableaux sont provisoires, les tableaux vivants des épilogues ne jouent pas : chaque fin passe directement à son dialogue.', ''];
+  out.push(`## ${ENDING_LABELS.respect}`, '', ...printedUnder(EPILOGUE_DIALOGUE_IDS.respect, [
+    { label: 'quatre fois l’honneur, civils couverts', state: endingState(['honour', 'honour', 'honour', 'honour'], 88, 'protected') },
+    { label: 'trois fois l’honneur (le Lion par l’épreuve), foule laissée', state: endingState(['force', 'honour', 'honour', 'honour'], 70, 'abandoned') },
+  ]));
+  out.push(`## ${ENDING_LABELS.balance}`, '', ...printedUnder(EPILOGUE_DIALOGUE_IDS.balance, [
+    { label: 'deux et deux, civils couverts', state: endingState(['honour', 'honour', 'force', 'force'], 50, 'protected') },
+    { label: 'quatre fois l’honneur mais une jauge sous 40', state: endingState(['honour', 'honour', 'honour', 'honour'], 35, 'protected') },
+    { label: 'quatre fois la force mais une jauge à 60 ou plus', state: endingState(['force', 'force', 'force', 'force'], 65, 'abandoned') },
+  ]));
+  out.push(`## ${ENDING_LABELS.fear}`, '', ...printedUnder(EPILOGUE_DIALOGUE_IDS.fear, [
+    { label: 'quatre fois la force, foule laissée', state: endingState(['force', 'force', 'force', 'force'], 10, 'abandoned') },
+    { label: 'trois fois la force (le Lion par l’honneur), civils couverts', state: endingState(['honour', 'force', 'force', 'force'], 30, 'protected') },
+  ]));
+  out.push('Premier choix : le dernier combat, sans soutien ; RunSystem y ajoute les adversaires des clans ennemis (voir la dernière section).', '', ...fight(LAST_STAND_COMBAT_ID), '');
+  const stand = endingState(['force', 'force', 'force', 'force'], 10, 'abandoned');
+  Object.assign(stand.flags, { finaleFearLastStand: true, finaleLastStandWon: true });
+  const fate = endingState(['force', 'force', 'force', 'force'], 10, 'abandoned');
+  fate.flags.finaleFearFateAccepted = true;
+  out.push(...printedUnder(FEAR_CLOSE_DIALOGUE_ID, [
+    { label: 'après le dernier combat gagné', state: stand },
+    { label: 'destin accepté', state: fate },
+  ]));
+  return out;
+}
+
 function fight(combatId: string): string[] {
   const config = getPostDemoCombat(combatId);
   if (!config) return [];
@@ -208,7 +275,10 @@ for (const node of route) {
       if (config.postCombatDialogueId && !dialogueSeen.has(config.postCombatDialogueId)) { dialogueSeen.add(config.postCombatDialogueId); out.push(...scene(config.postCombatDialogueId, 'Après le combat')); }
     }
   }
-  if (isFinalAct && node.id === binding.judgementNodeId) out.push(...scene(FINAL_ACT_CLOSING_DIALOGUE_ID, 'Clôture de l’acte final'));
+  if (isFinalAct && node.id === binding.judgementNodeId) {
+    out.push(...scene(FINAL_ACT_CLOSING_DIALOGUE_ID, 'Clôture de l’acte final'));
+    out.push(...endings());
+  }
   if (finale && node.id === binding.judgementNodeId) {
     for (const combatId of [finale.combats.honour, finale.combats.force]) {
       const config = getPostDemoCombat(combatId)!;
@@ -237,7 +307,7 @@ if (finale) {
   for (const deed of finale.deeds) out.push(`| \`${deed.flag}\` | ${deed.kind} (${deed.severity}) | ${finale.conductWeights[deed.flag] ?? 0} | ${deed.phrase} |`);
   out.push('', `Crédibilité devant ${chiefName} (${plateau.status === 'canon' ? 'approuvée' : 'proposée'}) : crédible à ${finale.credibility.credible}, haute à ${finale.credibility.high}. Faits de force : ${finale.forceFacts.map((f) => `\`${f}\``).join(', ')}. Fait d’honneur : \`${finale.honourFact}\`.`, '');
 } else {
-  out.push('## Soutiens des clans alliés et adversaires des clans ennemis (proposés)', '',
+  out.push(`## Soutiens des clans alliés et adversaires des clans ennemis (${plateau.status === 'canon' ? 'approuvés, OD-2026-11-09-A' : 'proposés'})`, '',
     'Avant chaque combat de l’acte final, RunSystem lit les relations sauvegardées : chaque clan allié offre son soutien, utilisable une fois dans le combat (sauf le clan que la compagnie affronte au Tournoi) ; chaque clan ennemi ajoute un adversaire. Rien de cela n’est sauvegardé.', '',
     '| Clan | Soutien (allié) | Effet (compétence existante) | Adversaire (ennemi) |', '| --- | --- | --- | --- |');
   for (const clan of ['lion', 'bear', 'dragon', 'scorpion', 'raven', 'wolf', 'phoenix', 'serpent'] as const) {
@@ -246,7 +316,8 @@ if (finale) {
     out.push(`| ${CAMPAIGN_CLAN_LABELS[clan]} | ${support?.label ?? '—'} | ${skill ? `${skill.name} (${support!.family}, ${skill.ap} PA) : ${skill.description}` : '—'} | ${CLAN_FOES[clan] ? `\`${CLAN_FOES[clan]}\`` : '— (jamais ennemi)'} |`);
   }
   out.push('', 'Clans ennemis pris en compte par combat : au Tournoi, le seul clan affronté ; dans l’arène en flammes, aucun ; dans la capitale et à la brèche, tous, dans l’ordre où la compagnie les a rencontrés, dans la limite des places libres (quatre adversaires, ou un boss et trois escortes).', '',
-    Object.entries(FINALE_ENEMY_CLAN_RULES).map(([combatId, rule]) => `- \`${combatId}\` : ${rule === 'none' ? 'aucun' : rule === 'all' ? 'tous' : rule.map((clan) => CAMPAIGN_CLAN_LABELS[clan]).join(', ')}`).join('\n'), '');
+    Object.entries(FINALE_ENEMY_CLAN_RULES).map(([combatId, rule]) => `- \`${combatId}\` : ${rule === 'none' ? 'aucun' : rule === 'all' ? 'tous' : rule.map((clan) => CAMPAIGN_CLAN_LABELS[clan]).join(', ')}`).join('\n'), '',
+    `- \`${LAST_STAND_COMBAT_ID}\` (Lot 5, brouillon) : aucun soutien ; le pillard du Serpent, puis tous les autres clans ennemis, quatre adversaires au plus.`, '');
 }
 
 const text = `${out.join("\n").replace(/\n{3,}/g, "\n\n").trimEnd()}\n`;

@@ -58,6 +58,8 @@ export interface JourneyBoundaryRequest {
   reducedMotion?: boolean;
   /** Local continuation has no canonical route agency, even on a single-node edge. */
   presentationOnly?: { eyebrow?: string; title?: string; continueLabel: string };
+  /** Set 1.20.0 (post-demo Lot 5): the words of a closed chronicle's end. */
+  terminal?: { eyebrow: string; title: string; caption: string };
 }
 
 /** A local continuation borrows the planned agency's utilities and context, but offers no route. */
@@ -147,6 +149,7 @@ export class JourneyCampaignBoundary {
     const plan = planJourneyBoundary(request.available, {
       ...(request.currentLabel ? { currentLabel: request.currentLabel } : {}),
       ...(request.secondary ? { secondary: request.secondary } : {}),
+      ...(request.terminal ? { terminal: request.terminal } : {}),
     });
     const playId = cinematicId && isApprovedProductionVideo(cinematicId) && !this.presentedKeys.has(key) ? cinematicId : undefined;
     const resolvedPresentationBeat = resolveBoundaryPrimaryPresentation(context, playId);

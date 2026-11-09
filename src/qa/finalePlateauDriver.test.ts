@@ -70,7 +70,9 @@ describe('final act QA driver (set 1.20.0, Lot 4)', () => {
     const run = playPlateau('finale', honourEnd, HONOUR, 20261111);
     const { state } = run;
     expect(state.run.status).toBe('completed');
-    expect(state.endingId).toBe('finale-breach');
+    // Four honour outcomes: R4 gives Respect, whose epilogue closes the chronicle (Lot 5).
+    expect(state.campaign!.ending).toBe('respect');
+    expect(state.endingId).toBe('ending-respect');
     expect(state.campaign!.chapters.finale.status).toBe('completed');
     for (const clan of ['lion', 'bear', 'dragon', 'scorpion', 'raven', 'wolf', 'phoenix'] as const) expect(getClanRelation(state, clan), clan).toBe('ally');
     expect(getClanRelation(state, 'serpent')).toBe('enemy');
@@ -99,7 +101,8 @@ describe('final act QA driver (set 1.20.0, Lot 4)', () => {
   it('plays a greedy final act: Maelor names the advice the company followed, the enemy clans add their foes', () => {
     const run = playPlateau('finale', forceEnd, GREED, 20261112);
     const { state } = run;
-    expect(state.endingId).toBe('finale-breach');
+    // Four force outcomes: R4 gives Fear; the driver's first answer is the last stand (Lot 5).
+    expect(state.endingId).toBe('ending-fear-last-stand');
     expect(said(run, 'finale_betrayal')).toContain(
       'le filon sombre gardé pour le clan, le Cristal gardé pour le clan, le codex gardé pour le clan et la page souillée brûlée sur mon conseil. '
       + 'Et dans cette arène encore, les champions du Corbeau, du Loup et du Phénix humiliés devant les clans.');

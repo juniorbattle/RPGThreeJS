@@ -36,6 +36,8 @@ export const narrativeEffectSchema = z.discriminatedUnion('type', [
     intent: z.enum(['claim_recognition', 'request_trial']),
   }),
   baseEffectSchema.extend({ type: z.literal('completePlateau'), plateauId: z.enum(['bear', 'dragon', 'scorpion', 'finale']) }),
+  // Set 1.20.0 (post-demo Lot 5): RunSystem closes the chronicle once the ending's epilogue has played.
+  baseEffectSchema.extend({ type: z.literal('completeEpilogue') }),
 ]);
 export type NarrativeEffect = z.infer<typeof narrativeEffectSchema>;
 
