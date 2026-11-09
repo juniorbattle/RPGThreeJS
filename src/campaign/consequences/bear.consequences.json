@@ -922,6 +922,57 @@
       "bearMasterSpyDefeated": true
      },
      "causePhrase": "Borin vous a confié le Sceau de l’Ours"
+    },
+    {
+     "id": "bear.outcome.honour.epilogue_respect",
+     "fact": "bearMasterSpyDefeated",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_respect",
+     "stepId": "seals",
+     "state": {
+      "bearMasterSpyDefeated": true
+     },
+     "causePhrase": "le Sceau de l’Ours, que Borin nous a confié",
+     "contrast": {
+      "bearTrialWon": true
+     }
+    },
+    {
+     "id": "bear.outcome.honour.epilogue_fear",
+     "fact": "bearMasterSpyDefeated",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_fear",
+     "stepId": "seals",
+     "state": {
+      "bearMasterSpyDefeated": true
+     },
+     "causePhrase": "le Sceau de l’Ours, que Borin nous a confié",
+     "contrast": {
+      "bearTrialWon": true
+     }
+    },
+    {
+     "id": "bear.outcome.honour.epilogue_balance",
+     "fact": "bearMasterSpyDefeated",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_balance",
+     "stepId": "seals",
+     "state": {
+      "bearMasterSpyDefeated": true
+     },
+     "causePhrase": "le Sceau de l’Ours, que Borin nous a confié",
+     "contrast": {
+      "bearTrialWon": true
+     }
     }
    ]
   },
@@ -984,9 +1035,68 @@
       "bearTrialWon": true
      },
      "causePhrase": "Sceau de l’Ours arraché à Borin"
+    },
+    {
+     "id": "bear.outcome.force.epilogue_respect",
+     "fact": "bearTrialWon",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_respect",
+     "stepId": "seals",
+     "state": {
+      "bearTrialWon": true
+     },
+     "causePhrase": "le Sceau de l’Ours, arraché à Borin",
+     "contrast": {
+      "bearMasterSpyDefeated": true
+     }
+    },
+    {
+     "id": "bear.outcome.force.epilogue_fear",
+     "fact": "bearTrialWon",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_fear",
+     "stepId": "seals",
+     "state": {
+      "bearTrialWon": true
+     },
+     "causePhrase": "le Sceau de l’Ours, arraché à Borin",
+     "contrast": {
+      "bearMasterSpyDefeated": true
+     }
+    },
+    {
+     "id": "bear.outcome.force.epilogue_balance",
+     "fact": "bearTrialWon",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_balance",
+     "stepId": "seals",
+     "state": {
+      "bearTrialWon": true
+     },
+     "causePhrase": "le Sceau de l’Ours, arraché à Borin",
+     "contrast": {
+      "bearMasterSpyDefeated": true
+     }
     }
    ]
   }
  },
+ "draftIds": [
+  "bear.outcome.honour.epilogue_respect",
+  "bear.outcome.honour.epilogue_fear",
+  "bear.outcome.honour.epilogue_balance",
+  "bear.outcome.force.epilogue_respect",
+  "bear.outcome.force.epilogue_fear",
+  "bear.outcome.force.epilogue_balance"
+ ],
  "exceptions": []
 }

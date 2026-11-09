@@ -938,6 +938,57 @@
       "dragonShadowShamanDefeated": true
      },
      "causePhrase": "Kaelen vous a confié le Sceau du Dragon"
+    },
+    {
+     "id": "dragon.outcome.honour.epilogue_respect",
+     "fact": "dragonShadowShamanDefeated",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_respect",
+     "stepId": "seals",
+     "state": {
+      "dragonShadowShamanDefeated": true
+     },
+     "causePhrase": "le Sceau du Dragon, que Kaelen nous a confié",
+     "contrast": {
+      "dragonTrialWon": true
+     }
+    },
+    {
+     "id": "dragon.outcome.honour.epilogue_fear",
+     "fact": "dragonShadowShamanDefeated",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_fear",
+     "stepId": "seals",
+     "state": {
+      "dragonShadowShamanDefeated": true
+     },
+     "causePhrase": "le Sceau du Dragon, que Kaelen nous a confié",
+     "contrast": {
+      "dragonTrialWon": true
+     }
+    },
+    {
+     "id": "dragon.outcome.honour.epilogue_balance",
+     "fact": "dragonShadowShamanDefeated",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_balance",
+     "stepId": "seals",
+     "state": {
+      "dragonShadowShamanDefeated": true
+     },
+     "causePhrase": "le Sceau du Dragon, que Kaelen nous a confié",
+     "contrast": {
+      "dragonTrialWon": true
+     }
     }
    ]
   },
@@ -1000,9 +1051,68 @@
       "dragonTrialWon": true
      },
      "causePhrase": "Sceau du Dragon arraché à Kaelen"
+    },
+    {
+     "id": "dragon.outcome.force.epilogue_respect",
+     "fact": "dragonTrialWon",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_respect",
+     "stepId": "seals",
+     "state": {
+      "dragonTrialWon": true
+     },
+     "causePhrase": "le Sceau du Dragon, arraché à Kaelen",
+     "contrast": {
+      "dragonShadowShamanDefeated": true
+     }
+    },
+    {
+     "id": "dragon.outcome.force.epilogue_fear",
+     "fact": "dragonTrialWon",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_fear",
+     "stepId": "seals",
+     "state": {
+      "dragonTrialWon": true
+     },
+     "causePhrase": "le Sceau du Dragon, arraché à Kaelen",
+     "contrast": {
+      "dragonShadowShamanDefeated": true
+     }
+    },
+    {
+     "id": "dragon.outcome.force.epilogue_balance",
+     "fact": "dragonTrialWon",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_balance",
+     "stepId": "seals",
+     "state": {
+      "dragonTrialWon": true
+     },
+     "causePhrase": "le Sceau du Dragon, arraché à Kaelen",
+     "contrast": {
+      "dragonShadowShamanDefeated": true
+     }
     }
    ]
   }
  },
+ "draftIds": [
+  "dragon.outcome.honour.epilogue_respect",
+  "dragon.outcome.honour.epilogue_fear",
+  "dragon.outcome.honour.epilogue_balance",
+  "dragon.outcome.force.epilogue_respect",
+  "dragon.outcome.force.epilogue_fear",
+  "dragon.outcome.force.epilogue_balance"
+ ],
  "exceptions": []
 }

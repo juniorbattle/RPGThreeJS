@@ -1266,6 +1266,57 @@
       "serpentGeneralDefeated": true
      },
      "causePhrase": "les guerriers d’Alaric tiennent parole"
+    },
+    {
+     "id": "lion.outcome.honour.epilogue_respect",
+     "fact": "serpentGeneralDefeated",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_respect",
+     "stepId": "seals",
+     "state": {
+      "serpentGeneralDefeated": true
+     },
+     "causePhrase": "le Sceau du Lion, qu’Alaric nous a confié",
+     "contrast": {
+      "lionTrialWon": true
+     }
+    },
+    {
+     "id": "lion.outcome.honour.epilogue_fear",
+     "fact": "serpentGeneralDefeated",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_fear",
+     "stepId": "seals",
+     "state": {
+      "serpentGeneralDefeated": true
+     },
+     "causePhrase": "le Sceau du Lion, qu’Alaric nous a confié",
+     "contrast": {
+      "lionTrialWon": true
+     }
+    },
+    {
+     "id": "lion.outcome.honour.epilogue_balance",
+     "fact": "serpentGeneralDefeated",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_balance",
+     "stepId": "seals",
+     "state": {
+      "serpentGeneralDefeated": true
+     },
+     "causePhrase": "le Sceau du Lion, qu’Alaric nous a confié",
+     "contrast": {
+      "lionTrialWon": true
+     }
     }
    ]
   },
@@ -1314,10 +1365,69 @@
       "lionTrialWon": true
      },
      "causePhrase": "Alaric garde ses guerriers loin de nous"
+    },
+    {
+     "id": "lion.outcome.force.epilogue_respect",
+     "fact": "lionTrialWon",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_respect",
+     "stepId": "seals",
+     "state": {
+      "lionTrialWon": true
+     },
+     "causePhrase": "le Sceau du Lion, gagné contre son Champion",
+     "contrast": {
+      "serpentGeneralDefeated": true
+     }
+    },
+    {
+     "id": "lion.outcome.force.epilogue_fear",
+     "fact": "lionTrialWon",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_fear",
+     "stepId": "seals",
+     "state": {
+      "lionTrialWon": true
+     },
+     "causePhrase": "le Sceau du Lion, gagné contre son Champion",
+     "contrast": {
+      "serpentGeneralDefeated": true
+     }
+    },
+    {
+     "id": "lion.outcome.force.epilogue_balance",
+     "fact": "lionTrialWon",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_balance",
+     "stepId": "seals",
+     "state": {
+      "lionTrialWon": true
+     },
+     "causePhrase": "le Sceau du Lion, gagné contre son Champion",
+     "contrast": {
+      "serpentGeneralDefeated": true
+     }
     }
    ]
   }
  },
+ "draftIds": [
+  "lion.outcome.honour.epilogue_respect",
+  "lion.outcome.honour.epilogue_fear",
+  "lion.outcome.honour.epilogue_balance",
+  "lion.outcome.force.epilogue_respect",
+  "lion.outcome.force.epilogue_fear",
+  "lion.outcome.force.epilogue_balance"
+ ],
  "exceptions": [
   {
    "kind": "unreachable_dialogue",

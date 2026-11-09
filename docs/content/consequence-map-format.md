@@ -29,7 +29,8 @@ Pour chaque plateau de l'après-démo, la carte s'écrit d'abord, avant toute r�
 | `sources` | Les documents et fichiers dont la carte est tirée : la feuille de route, son statut, les faits de la démo, les décisions de l'opérateur |
 | `facts` | Chaque fait durable : identifiant, nature, résumé en clair |
 | `majorChoices` | Chaque choix important : où il se trouve, ses options, ses échos |
-| `outcomes` | Les deux issues du plateau (honneur, force) : les faits qui les enregistrent, leurs effets sur les relations de clan, leurs échos |
+| `outcomes` | Les deux issues du plateau (honneur, force) : les faits qui les enregistrent, leurs effets sur les relations de clan, leurs échos. La carte de l’acte final n’en a pas : la fin suit les issues des quatre plateaux (R4, Lot 4) |
+| `draftIds` | Facultatif (Lot 5). Les faits, choix et échos ajoutés en brouillon à une carte déjà canon, jusqu’à leur approbation ; `status` décrit le reste de la carte |
 | `exceptions` | Les écarts connus, chacun avec sa raison |
 
 ### Faits
@@ -86,6 +87,7 @@ Il refuse enfin :
 
 - Une carte `draft` et ses échos sont des propositions. Rien ne devient canon sans l'approbation du plateau par l'opérateur.
 - Les effets de relation d'une issue portent `relationStatus` : `proposed` jusqu'à l'approbation, puis `approved`.
+- Un ajout à une carte canon (les fins du Lot 5) est listé dans `draftIds` jusqu’à son approbation. Il s’écrit aussi carte d’abord : tant que tous les échos d’un choix en brouillon sont `planned`, le validateur vérifie ce choix et les faits en brouillon qu’il pose comme une conception, puis entièrement dès qu’un écho est réalisé.
 - La réputation des options est écrite en valeurs de la démo. Le réétalonnage du Lion, s'il est approuvé, se lit dans le rapport des bornes. Il ne change pas la carte.
 
 ## Exemple : Bois-Clair dans la carte du Lion

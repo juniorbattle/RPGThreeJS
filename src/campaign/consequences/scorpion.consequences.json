@@ -912,6 +912,57 @@
      "causePhrase": "les érudits du Grand Inquisiteur tiennent parole",
      "chapterId": "finale",
      "stepId": "scorpion"
+    },
+    {
+     "id": "scorpion.outcome.honour.epilogue_respect",
+     "fact": "scorpionShadowProphetDefeated",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_respect",
+     "stepId": "seals",
+     "state": {
+      "scorpionShadowProphetDefeated": true
+     },
+     "causePhrase": "le Sceau du Scorpion, que le Grand Inquisiteur nous a confié",
+     "contrast": {
+      "scorpionTrialWon": true
+     }
+    },
+    {
+     "id": "scorpion.outcome.honour.epilogue_fear",
+     "fact": "scorpionShadowProphetDefeated",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_fear",
+     "stepId": "seals",
+     "state": {
+      "scorpionShadowProphetDefeated": true
+     },
+     "causePhrase": "le Sceau du Scorpion, que le Grand Inquisiteur nous a confié",
+     "contrast": {
+      "scorpionTrialWon": true
+     }
+    },
+    {
+     "id": "scorpion.outcome.honour.epilogue_balance",
+     "fact": "scorpionShadowProphetDefeated",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_balance",
+     "stepId": "seals",
+     "state": {
+      "scorpionShadowProphetDefeated": true
+     },
+     "causePhrase": "le Sceau du Scorpion, que le Grand Inquisiteur nous a confié",
+     "contrast": {
+      "scorpionTrialWon": true
+     }
     }
    ]
   },
@@ -960,9 +1011,68 @@
      "causePhrase": "les érudits du Grand Inquisiteur n’ont pas oublié",
      "chapterId": "finale",
      "stepId": "scorpion"
+    },
+    {
+     "id": "scorpion.outcome.force.epilogue_respect",
+     "fact": "scorpionTrialWon",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_respect",
+     "stepId": "seals",
+     "state": {
+      "scorpionTrialWon": true
+     },
+     "causePhrase": "le Sceau du Scorpion, arraché au Grand Inquisiteur",
+     "contrast": {
+      "scorpionShadowProphetDefeated": true
+     }
+    },
+    {
+     "id": "scorpion.outcome.force.epilogue_fear",
+     "fact": "scorpionTrialWon",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_fear",
+     "stepId": "seals",
+     "state": {
+      "scorpionTrialWon": true
+     },
+     "causePhrase": "le Sceau du Scorpion, arraché au Grand Inquisiteur",
+     "contrast": {
+      "scorpionShadowProphetDefeated": true
+     }
+    },
+    {
+     "id": "scorpion.outcome.force.epilogue_balance",
+     "fact": "scorpionTrialWon",
+     "scope": "epilogue",
+     "status": "planned",
+     "chapterId": "finale",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_balance",
+     "stepId": "seals",
+     "state": {
+      "scorpionTrialWon": true
+     },
+     "causePhrase": "le Sceau du Scorpion, arraché au Grand Inquisiteur",
+     "contrast": {
+      "scorpionShadowProphetDefeated": true
+     }
     }
    ]
   }
  },
+ "draftIds": [
+  "scorpion.outcome.honour.epilogue_respect",
+  "scorpion.outcome.honour.epilogue_fear",
+  "scorpion.outcome.honour.epilogue_balance",
+  "scorpion.outcome.force.epilogue_respect",
+  "scorpion.outcome.force.epilogue_fear",
+  "scorpion.outcome.force.epilogue_balance"
+ ],
  "exceptions": []
 }

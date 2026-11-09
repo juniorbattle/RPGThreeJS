@@ -530,7 +530,17 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
     if (setters.length && !readers.length) report('fact_set_never_read', factId, `Posé par ${setters.join(', ')}, lu nulle part.`);
     if (readers.length && !setters.length) report('fact_read_never_set', factId, `Lu par ${readers.join(', ')}, posé nulle part.`);
   }
+  // Post-demo Lot 5: a draft added to a canon map is written map first. While every echo of a draft choice is still
+  // planned, the choice and the draft facts it sets are checked as a design only, as a plateau not built yet.
+  const drafts = new Set(map.draftIds ?? []);
+  const designOnlyChoices = new Set(map.majorChoices
+    .filter((choice) => drafts.has(choice.id) && choice.echoes.every((echo) => echo.status === 'planned'))
+    .map((choice) => choice.id));
+  const designOnlyFacts = new Set(map.majorChoices.filter((choice) => designOnlyChoices.has(choice.id))
+    .flatMap((choice) => choice.options.flatMap((option) => [...option.sets, ...option.leadsTo]))
+    .filter((fact) => drafts.has(fact)));
   for (const fact of map.facts) {
+    if (designOnlyFacts.has(fact.id)) continue;
     if (![...allFlags].some((flag) => matchesFact(fact.id, flag))) report('map_mismatch', fact.id, 'Fait de la carte introuvable dans le contenu ou le code.');
   }
 
@@ -563,6 +573,7 @@ export function validateNarrativeCoherence(rawMap: unknown, sources: readonly So
     }
   };
   for (const choice of map.majorChoices) {
+    if (designOnlyChoices.has(choice.id)) continue;
     const sequence = resolveDialogueFor(choice.dialogueId, choice.buildState, lookup);
     const step = sequence?.steps.find((candidate) => candidate.id === choice.stepId);
     if (!step?.choices?.length) {
@@ -675,6 +686,9 @@ export function validateConsequenceMapDesign(rawMap: unknown): CoherenceFinding[
   for (const [path, outcome] of Object.entries(map.outcomes ?? {})) {
     for (const fact of outcome.facts) if (!facts.has(fact)) report(`outcome:${path}`, `Fait non déclaré « ${fact} ».`);
   }
+  const knownIds = new Set([...facts, ...map.majorChoices.map((choice) => choice.id), ...echoes.map((echo) => echo.id)]);
+  for (const draftId of map.draftIds ?? []) if (!knownIds.has(draftId)) report(draftId, 'Brouillon qui ne désigne aucun fait, choix ou écho de la carte.');
+  if (map.draftIds) duplicates(map.draftIds, 'Brouillon');
   for (const echo of echoes) {
     const chapter = echo.chapterId ?? map.plateauId;
     if (!facts.has(echo.fact)) report(echo.id, `Écho d’un fait non déclaré « ${echo.fact} ».`);

@@ -106,6 +106,11 @@ export const consequenceMapSchema = z.object({
   facts: z.array(consequenceFactSchema),
   majorChoices: z.array(majorChoiceSchema),
   outcomes: z.object({ honour: outcomeSchema, force: outcomeSchema }).strict(),
+  /**
+   * Post-demo Lot 5: facts, major choices and echoes added as drafts to a map that is already canon, until the
+   * operator approves them; the map's own `status` keeps describing the rest. Optional: every earlier map stays valid.
+   */
+  draftIds: z.array(id).optional(),
   exceptions: z.array(coherenceExceptionSchema).default([]),
 }).strict();
 

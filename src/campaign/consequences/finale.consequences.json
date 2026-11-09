@@ -7,7 +7,8 @@
   "docs/autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md (F1 à F4)",
   "docs/autonomy/POST_DEMO_CLOUD_SESSION_BRIEF.md, Lot 4",
   "docs/autonomy/POST_DEMO_LOT_0_OPERATOR_DECISION_2026-11-08.md à POST_DEMO_LOT_3_OPERATOR_DECISION_2026-11-08.md",
-  "src/campaign/consequences/lion, bear, dragon et scorpion (faits établis des quatre plateaux)"
+  "src/campaign/consequences/lion, bear, dragon et scorpion (faits établis des quatre plateaux)",
+  "R4 et F5 : docs/autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md ; les trois fins du §2.6 et du §3.7, phase 3 (Lot 5)"
  ],
  "facts": [
   {
@@ -99,6 +100,21 @@
    "id": "finaleEntityDefeated",
    "kind": "flag",
    "summary": "À la brèche, Maelor puis l’entité qui le suit sont tombés."
+  },
+  {
+   "id": "endingFearLastStand",
+   "kind": "flag",
+   "summary": "Dans la Fin de la Crainte, la compagnie a choisi de se battre seule contre tous plutôt que de livrer Alistair."
+  },
+  {
+   "id": "endingFearFateAccepted",
+   "kind": "flag",
+   "summary": "Dans la Fin de la Crainte, Alistair a accepté son destin et s’est livré aux clans."
+  },
+  {
+   "id": "finaleLastStandWon",
+   "kind": "system",
+   "summary": "Le dernier combat de survie contre les clans est gagné."
   }
  ],
  "majorChoices": [
@@ -349,28 +365,100 @@
      "stepId": "civilians"
     },
     {
-     "id": "finale.civilians.protected.epilogue",
+     "id": "finale.civilians.protected.epilogue_respect",
      "fact": "finaleCiviliansProtected",
      "scope": "epilogue",
      "status": "planned",
-     "nodeId": "finale-epilogue",
-     "dialogueId": "finale_epilogue",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_respect",
+     "stepId": "civilians",
      "state": {
       "finaleCiviliansProtected": true
      },
-     "causePhrase": "les civils sauvés de l’arène"
+     "causePhrase": "les civils sauvés de l’arène",
+     "contrast": {
+      "finaleCiviliansAbandoned": true
+     }
     },
     {
-     "id": "finale.civilians.abandoned.epilogue",
+     "id": "finale.civilians.protected.epilogue_fear",
+     "fact": "finaleCiviliansProtected",
+     "scope": "epilogue",
+     "status": "planned",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_fear",
+     "stepId": "civilians",
+     "state": {
+      "finaleCiviliansProtected": true
+     },
+     "causePhrase": "les civils sauvés de l’arène",
+     "contrast": {
+      "finaleCiviliansAbandoned": true
+     }
+    },
+    {
+     "id": "finale.civilians.protected.epilogue_balance",
+     "fact": "finaleCiviliansProtected",
+     "scope": "epilogue",
+     "status": "planned",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_balance",
+     "stepId": "civilians",
+     "state": {
+      "finaleCiviliansProtected": true
+     },
+     "causePhrase": "les civils sauvés de l’arène",
+     "contrast": {
+      "finaleCiviliansAbandoned": true
+     }
+    },
+    {
+     "id": "finale.civilians.abandoned.epilogue_respect",
      "fact": "finaleCiviliansAbandoned",
      "scope": "epilogue",
      "status": "planned",
-     "nodeId": "finale-epilogue",
-     "dialogueId": "finale_epilogue",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_respect",
+     "stepId": "civilians",
      "state": {
       "finaleCiviliansAbandoned": true
      },
-     "causePhrase": "la foule abandonnée de l’arène"
+     "causePhrase": "la foule abandonnée de l’arène",
+     "contrast": {
+      "finaleCiviliansProtected": true
+     }
+    },
+    {
+     "id": "finale.civilians.abandoned.epilogue_fear",
+     "fact": "finaleCiviliansAbandoned",
+     "scope": "epilogue",
+     "status": "planned",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_fear",
+     "stepId": "civilians",
+     "state": {
+      "finaleCiviliansAbandoned": true
+     },
+     "causePhrase": "la foule abandonnée de l’arène",
+     "contrast": {
+      "finaleCiviliansProtected": true
+     }
+    },
+    {
+     "id": "finale.civilians.abandoned.epilogue_balance",
+     "fact": "finaleCiviliansAbandoned",
+     "scope": "epilogue",
+     "status": "planned",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_epilogue_balance",
+     "stepId": "civilians",
+     "state": {
+      "finaleCiviliansAbandoned": true
+     },
+     "causePhrase": "la foule abandonnée de l’arène",
+     "contrast": {
+      "finaleCiviliansProtected": true
+     }
     }
    ]
   },
@@ -426,7 +514,85 @@
      "stepId": "citizens"
     }
    ]
+  },
+  {
+   "id": "finale.fear_fate",
+   "summary": "Dans la Fin de la Crainte, les clans exigent qu’on leur livre Alistair pour acheter leur paix : se battre seuls contre tous, ou accepter son destin (F5).",
+   "nodeId": "finale-breach",
+   "dialogueId": "finale_epilogue_fear",
+   "stepId": "choice",
+   "options": [
+    {
+     "choiceIndex": 0,
+     "path": "neutral",
+     "sets": [
+      "endingFearLastStand"
+     ],
+     "leadsTo": [
+      "finaleLastStandWon"
+     ],
+     "reputation": 0
+    },
+    {
+     "choiceIndex": 1,
+     "path": "neutral",
+     "sets": [
+      "endingFearFateAccepted"
+     ],
+     "reputation": 0
+    }
+   ],
+   "echoes": [
+    {
+     "id": "finale.fear_fate.last_stand.close",
+     "fact": "endingFearLastStand",
+     "scope": "epilogue",
+     "status": "planned",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_fear_close",
+     "stepId": "fate",
+     "state": {
+      "endingFearLastStand": true,
+      "finaleLastStandWon": true
+     },
+     "causePhrase": "seuls contre tous",
+     "contrast": {
+      "endingFearFateAccepted": true
+     }
+    },
+    {
+     "id": "finale.fear_fate.accepted.close",
+     "fact": "endingFearFateAccepted",
+     "scope": "epilogue",
+     "status": "planned",
+     "nodeId": "finale-breach",
+     "dialogueId": "finale_fear_close",
+     "stepId": "fate",
+     "state": {
+      "endingFearFateAccepted": true
+     },
+     "causePhrase": "accepté votre destin",
+     "contrast": {
+      "endingFearLastStand": true,
+      "finaleLastStandWon": true
+     }
+    }
+   ]
   }
+ ],
+ "draftIds": [
+  "endingFearLastStand",
+  "endingFearFateAccepted",
+  "finaleLastStandWon",
+  "finale.civilians.protected.epilogue_respect",
+  "finale.civilians.protected.epilogue_fear",
+  "finale.civilians.protected.epilogue_balance",
+  "finale.civilians.abandoned.epilogue_respect",
+  "finale.civilians.abandoned.epilogue_fear",
+  "finale.civilians.abandoned.epilogue_balance",
+  "finale.fear_fate",
+  "finale.fear_fate.last_stand.close",
+  "finale.fear_fate.accepted.close"
  ],
  "exceptions": []
 }
