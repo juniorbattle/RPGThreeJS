@@ -92,6 +92,16 @@ describe('journey RunNode adapter', () => {
     expect(plan.presentation.continueLabel).not.toBe(JOURNEY_CONTINUE_LABEL);
   });
 
+  it('lets a chronicle end that continues the campaign name its main action (2026-11-09)', () => {
+    const plan = planJourneyBoundary([], { terminal: { eyebrow: 'Fin de chapitre', title: 'La route continue',
+      caption: 'Prochaine étape.', continueLabel: 'Continuer : Les Montagnes de la Résilience' } });
+    expect(plan.kind).toBe('terminal');
+    expect(plan.presentation.title).toBe('La route continue');
+    expect(plan.presentation.continueLabel).toBe('Continuer : Les Montagnes de la Résilience');
+    expect(planJourneyBoundary([], { terminal: { eyebrow: 'E', title: 'T', caption: 'C' } }).presentation.continueLabel)
+      .toBe(JOURNEY_TERMINAL_LABEL);
+  });
+
   it('reaches a real terminal boundary at the end of the authored route', () => {
     const state = createInitialState();
     const judgement = getRunNode(state.run, 'lion-final-judgement');

@@ -21,7 +21,6 @@ import {
   pendingPlateauFinaleCombat, plateauEpilogueDialogueId, plateauFinaleOf, runPlateauId,
 } from './plateauProgression';
 import { resolvePlateauFinaleExecution, resolvePendingPlateauFinaleCombat } from './plateauFinale';
-import { getPlateau } from '../campaign/plateaux/PlateauRegistry';
 import { isDraftContent, POST_DEMO_COMBATS } from './postDemoContent';
 import { loadBearEndForDragonQa, loadDragonEndForScorpionQa, loadEpilogueStartQa, loadLionEndForBearQa, loadScorpionEndForFinaleQa } from '../qa/postDemoQaSaves';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
@@ -44,7 +43,7 @@ import {
   completeCampaignEnding, finalActCombatConfig, isEpilogueCombat, isTournamentComplete, isTournamentNodeId, nextEpilogueStep,
   nextTournamentStep, tournamentBoard, type EpilogueStep,
 } from './finalAct';
-import { ENDING_LABELS } from '../campaign/plateaux/finale/finaleEpilogues';
+import { chronicleEndWords, type ChronicleEndWords } from './chronicleEndWords';
 import { FINALE_TOURNAMENT_ARRIVAL } from '../campaign/plateaux/finale/finaleTournament';
 import { demoEnvironmentPlateForContext } from '../render/demoEnvironmentPack';
 import { provisionalMark } from './postDemoContent';
@@ -142,7 +141,6 @@ const QA_HERO_IDS = [
 
 // Generic Journey secondary actions wired to the systems that already own them. CAMP is absent on
 // purpose: real refuge nodes own camp gameplay, so a fake generic entry point would be a lie.
-const CONTINUE_CAMPAIGN_ACTION = 'CONTINUE_CAMPAIGN';
 const JOURNEY_SECONDARY_ACTIONS: readonly JourneySecondaryActionPresentation[] = Object.freeze([
   { id: 'COMPANY', label: 'Compagnie' },
   { id: 'SAVE', label: 'Sauvegarder' },
@@ -1100,8 +1098,8 @@ export class GameApp {
         currentContentId: current?.contentId ?? null,
         ...(current?.label ? { currentLabel: current.label } : {}),
         available,
-        secondary: this.journeySecondaryActions(available.length === 0),
-        ...this.chronicleEndWords(),
+        secondary: JOURNEY_SECONDARY_ACTIONS,
+        ...this.chronicleEndWords(available.length === 0),
         reducedMotion: this.state.settings.reducedGraphics,
         ...(current?.id === 'lion-final-refuge'
           ? { presentationOnly: { eyebrow: 'Préparation', title: 'Avant le jugement', continueLabel: 'Carte de campagne' } }
@@ -1124,6 +1122,11 @@ export class GameApp {
         return;
       }
       if (outcome.kind === 'terminal') {
+        // A chronicle whose next plateau is built continues the campaign; one that ends returns to the title.
+        if (nextPlayablePlateau(this.state)) {
+          if (await this.continueIntoNextPlateau()) continue;
+          return;
+        }
         this.renderTitle();
         return;
       }
@@ -1176,38 +1179,30 @@ export class GameApp {
   }
 
   /**
-   * Set 1.20.0 (post-demo): at the end of a chronicle whose next plateau is built, RunSystem offers to continue the
-   * campaign; the boundary only names it. The demo's own actions are unchanged.
+   * Set 1.20.0: the end panel's words. A closed campaign names its ending; a chronicle whose next plateau is built says
+   * that the route goes on, and its main action continues the campaign (playtest defect of 2026-11-09: the panel said
+   * that no route followed while the continuation hid in the header).
    */
-  private journeySecondaryActions(terminal: boolean): readonly JourneySecondaryActionPresentation[] {
-    const next = terminal ? nextPlayablePlateau(this.state) : null;
-    if (!next) return JOURNEY_SECONDARY_ACTIONS;
-    const plateau = getPlateau(next);
-    const draft = plateau.status === 'draft' ? ' (brouillon)' : '';
-    return [{ id: CONTINUE_CAMPAIGN_ACTION, label: `Continuer : ${plateau.label}${draft}` }, ...JOURNEY_SECONDARY_ACTIONS];
+  private chronicleEndWords(terminal: boolean): { terminal?: ChronicleEndWords } {
+    const words = chronicleEndWords(this.state, terminal);
+    return words ? { terminal: words } : {};
   }
 
-  /** Set 1.20.0 (post-demo Lot 5): the end of a chronicle that reached its ending names that ending. */
-  private chronicleEndWords(): { terminal?: { eyebrow: string; title: string; caption: string } } {
-    const progress = this.state.campaign;
-    if (!progress?.ending || progress.finalAct.stage !== 'completed') return {};
-    return { terminal: { eyebrow: 'Fin de la chronique', title: ENDING_LABELS[progress.ending],
-      caption: 'Quatre Sceaux, la brèche refermée : la Voie des Sceaux s’achève ici.' } };
+  /** Continues the campaign into the next plateau. Returns true when the same Journey boundary should be presented again. */
+  private async continueIntoNextPlateau(): Promise<boolean> {
+    if (!continueCampaign(this.state)) return true;
+    this.saves.saveAuto(this.state);
+    this.disposeJourney();
+    // The final act opens on the Tournament (post-demo Lot 4).
+    if (runPlateauId(this.state) === 'finale') { this.setMode('RESULT'); await this.enterCampaignPresentation(); return false; }
+    // The new plateau opens on its first POI's scene, then its map.
+    const start = getRunNode(this.state.run);
+    if (start) { this.setMode('RESULT'); await this.resolveRunNode(start, false); } else this.showPoiMap();
+    return false;
   }
 
   /** Returns true when the same Journey boundary should be presented again. */
   private async handleJourneySecondary(actionId: string): Promise<boolean> {
-    if (actionId === CONTINUE_CAMPAIGN_ACTION) {
-      if (!continueCampaign(this.state)) return true;
-      this.saves.saveAuto(this.state);
-      this.disposeJourney();
-      // The final act opens on the Tournament (post-demo Lot 4).
-      if (runPlateauId(this.state) === 'finale') { this.setMode('RESULT'); await this.enterCampaignPresentation(); return false; }
-      // The new plateau opens on its first POI's scene, then its map.
-      const start = getRunNode(this.state.run);
-      if (start) { this.setMode('RESULT'); await this.resolveRunNode(start, false); } else this.showPoiMap();
-      return false;
-    }
     if (actionId === 'SAVE') {
       this.saves.saveManual(this.state);
       this.uiSounds.play('saved');

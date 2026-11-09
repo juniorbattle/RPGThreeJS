@@ -58,8 +58,8 @@ export interface JourneyBoundaryRequest {
   reducedMotion?: boolean;
   /** Local continuation has no canonical route agency, even on a single-node edge. */
   presentationOnly?: { eyebrow?: string; title?: string; continueLabel: string };
-  /** Set 1.20.0 (post-demo Lot 5): the words of a closed chronicle's end. */
-  terminal?: { eyebrow: string; title: string; caption: string };
+  /** Set 1.20.0: the words of a chronicle's end, and the main action's label when the campaign continues. */
+  terminal?: { eyebrow: string; title: string; caption: string; continueLabel?: string };
 }
 
 /** A local continuation borrows the planned agency's utilities and context, but offers no route. */
