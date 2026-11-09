@@ -75,12 +75,12 @@ describe('final-act scenes on provisional tableaux (set 1.20.0, Lot 4)', () => {
     }
   });
 
-  it('marks the endings as drafts on provisional images inside the canon act (Lot 5), with a still image', () => {
+  it('marks the endings as canon on provisional images (OD-2026-11-09-B), with a still image', () => {
     const state = createInitialState();
     expect(epilogueSceneIds.sort()).toEqual(['finale_epilogue_balance', 'finale_epilogue_fear', 'finale_epilogue_respect', 'finale_fear_close']);
     for (const id of [...epilogueSceneIds, 'finale_last_stand']) {
-      expect(isDraftContent(id), id).toBe(true);
-      expect(provisionalMark(id), id).toBe('Brouillon · image provisoire');
+      expect(isDraftContent(id), id).toBe(false);
+      expect(provisionalMark(id), id).toBe('Image provisoire');
     }
     for (const id of epilogueSceneIds) {
       expect(createGenericNarrativeTableau(resolvePostDemoDialogue(id, state)!).stillImage, id)
@@ -88,14 +88,14 @@ describe('final-act scenes on provisional tableaux (set 1.20.0, Lot 4)', () => {
     }
   });
 
-  it('proposes a moment table for the betrayal and the three epilogues, none of which plays on a provisional tableau', () => {
+  it('holds the approved moment table of the betrayal and the three epilogues, none of which plays on a provisional tableau', () => {
     expect(FINALE_MOMENTS.map((moment) => moment.beforeDialogueId)).toEqual(['finale_betrayal', 'finale_epilogue_respect', 'finale_epilogue_fear', 'finale_epilogue_balance']);
     for (const moment of FINALE_MOMENTS) {
       expect(resolvePostDemoDialogue(moment.beforeDialogueId, createInitialState()), moment.id).toBeDefined();
       expect(moment.facts.length, moment.id).toBeGreaterThan(0);
-      expect([moment.status, moment.tableau, finaleMomentPlays(moment)], moment.id).toEqual(['proposed', 'provisional', false]);
+      expect([moment.status, moment.tableau, finaleMomentPlays(moment)], moment.id).toEqual(['approved', 'provisional', false]);
     }
-    expect(finaleMomentPlays({ ...FINALE_MOMENTS[1]!, status: 'approved' })).toBe(false);
+    expect(finaleMomentPlays({ ...FINALE_MOMENTS[1]!, status: 'proposed', tableau: 'approved' })).toBe(false);
     expect(finaleMomentPlays({ ...FINALE_MOMENTS[1]!, status: 'approved', tableau: 'approved' })).toBe(true);
   });
 

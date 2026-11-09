@@ -1,6 +1,6 @@
 /**
- * Set 1.20.0, post-demo Lot 5 — DRAFT: the three endings (roadmap §2.6 and §3.7, phase 3; F5) and the Fear ending's
- * choice. Not canon until the operator approves them; the final act they follow is canon (OD-2026-11-09-A). Written
+ * Set 1.20.0, post-demo Lot 5 — the three endings (roadmap §2.6 and §3.7, phase 3; F5) and the Fear ending's choice,
+ * canon since OD-2026-11-09-B, like the final act they follow (OD-2026-11-09-A). Written
  * from the roadmap, its status, the demo's established facts (the landless clan, its lost lands, the four Seals) and the
  * operator's decisions only: no clan, place, character, object or lore beyond them. The entity stays unnamed.
  *
@@ -15,8 +15,8 @@ import type { CombatConfig, DialogueChoice, DialogueSequence, DialogueStep, Game
 import type { CampaignClanId } from '../campaignIds';
 import { FINALE_CLAN_ORDER } from './finaleCombat';
 
-/** The endings are drafts until the operator approves them, though the final act is canon. */
-export const EPILOGUE_STATUS: 'draft' | 'canon' = 'draft';
+/** The endings are canon since the operator accepted them (OD-2026-11-09-B); their images stay provisional. */
+export const EPILOGUE_STATUS: 'draft' | 'canon' = 'canon';
 
 export type EpilogueEndingId = 'respect' | 'fear' | 'balance';
 

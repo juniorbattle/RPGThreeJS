@@ -1420,14 +1420,6 @@
    ]
   }
  },
- "draftIds": [
-  "lion.outcome.honour.epilogue_respect",
-  "lion.outcome.honour.epilogue_fear",
-  "lion.outcome.honour.epilogue_balance",
-  "lion.outcome.force.epilogue_respect",
-  "lion.outcome.force.epilogue_fear",
-  "lion.outcome.force.epilogue_balance"
- ],
  "exceptions": [
   {
    "kind": "unreachable_dialogue",

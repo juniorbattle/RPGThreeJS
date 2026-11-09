@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 /**
- * Set 1.20.0, post-demo Lot 5 (DRAFT endings): complete campaigns simulated by the QA driver, from genuine demo saves
+ * Set 1.20.0, post-demo Lot 5 (endings, canon since OD-2026-11-09-B): complete campaigns simulated by the QA driver, from genuine demo saves
  * whose Lion chronicle ended, through the Bear, the Dragon, the Scorpion and the final act, to the ending R4 decides:
  * all honour, all force (both answers of the Fear ending), two and two, three and one, and the gauge's limits that turn a
  * lopsided result into Balance. Each run checks the recorded ending, the closed chronicle and that the epilogue names
@@ -42,7 +42,7 @@ const finale = (end: GameState, scenario: Partial<PlateauScenario> = {}) =>
 const allHonour = sealEnd(lionEnd(lionHonourComplete, 57), HONOUR, HONOUR, HONOUR);
 const allForce = sealEnd(lionEnd(lionForceComplete, 40), FORCE, FORCE, FORCE);
 
-describe('complete campaigns reach the ending R4 decides (set 1.20.0, Lot 5 draft)', () => {
+describe('complete campaigns reach the ending R4 decides (set 1.20.0, Lot 5)', () => {
   it('all honour: Respect, the allies close the breach and the four Seals are named as confided', () => {
     expect(selectPlateauOutcomes(allHonour).map((entry) => entry.outcome)).toEqual(['honour', 'honour', 'honour', 'honour']);
     const run = finale(allHonour);

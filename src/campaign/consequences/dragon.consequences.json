@@ -1106,13 +1106,5 @@
    ]
   }
  },
- "draftIds": [
-  "dragon.outcome.honour.epilogue_respect",
-  "dragon.outcome.honour.epilogue_fear",
-  "dragon.outcome.honour.epilogue_balance",
-  "dragon.outcome.force.epilogue_respect",
-  "dragon.outcome.force.epilogue_fear",
-  "dragon.outcome.force.epilogue_balance"
- ],
  "exceptions": []
 }

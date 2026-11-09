@@ -1090,13 +1090,5 @@
    ]
   }
  },
- "draftIds": [
-  "bear.outcome.honour.epilogue_respect",
-  "bear.outcome.honour.epilogue_fear",
-  "bear.outcome.honour.epilogue_balance",
-  "bear.outcome.force.epilogue_respect",
-  "bear.outcome.force.epilogue_fear",
-  "bear.outcome.force.epilogue_balance"
- ],
  "exceptions": []
 }

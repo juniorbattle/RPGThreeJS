@@ -327,19 +327,18 @@ describe('the final act passes the narrative coherence validator (Lot 4)', () =>
   });
 });
 
-describe('the endings are written map first, as drafts in canon maps (Lot 5)', () => {
+describe('the endings, written map first as drafts in canon maps, canon since OD-2026-11-09-B (Lot 5)', () => {
   const parse = (raw: unknown) => campaignConsequenceMapSchema.parse(structuredClone(raw));
   const echoesOf = (map: ReturnType<typeof parse>) => [...map.majorChoices.flatMap((choice) => choice.echoes),
     ...Object.values(map.outcomes ?? {}).flatMap((outcome) => outcome.echoes)];
 
-  it('marks every Lot 5 addition as a draft, each naming an existing fact, choice or echo', () => {
+  it('keeps no draft any more: the endings’ additions are canon, and a draft list must name what the map holds', () => {
     for (const raw of [lionMap, bearMap, dragonMap, scorpionMap, finaleMap]) {
-      const map = parse(raw);
-      expect(validateConsequenceMapDesign(raw).filter((finding) => finding.message.startsWith('Brouillon'))).toEqual([]);
-      for (const echo of echoesOf(map).filter((candidate) => candidate.scope === 'epilogue')) expect(map.draftIds, echo.id).toContain(echo.id);
+      expect(parse(raw).draftIds, parse(raw).plateauId).toBeUndefined();
+      expect(parse(raw).status).toBe('canon');
     }
-    const finale = parse(finaleMap);
-    expect(finale.draftIds).toEqual(expect.arrayContaining(['finaleFearLastStand', 'finaleFearFateAccepted', 'finaleLastStandWon', 'finale.fear_fate']));
+    const broken = { ...structuredClone(finaleMap), draftIds: ['finale.fear_fate', 'finale.unknown'] };
+    expect(validateConsequenceMapDesign(broken).map((finding) => finding.subject)).toEqual(['finale.unknown']);
   });
 
   it('names each plateau outcome in the Seals’ recital of the three epilogues, and offers the Fear ending its choice', () => {
@@ -365,7 +364,9 @@ describe('the endings are written map first, as drafts in canon maps (Lot 5)', (
   });
 
   it('checks a draft choice whose echoes are all planned as a design only, and fully once one is implemented', () => {
-    const map = structuredClone(finaleMap) as { majorChoices: { id: string; echoes: { status: string }[] }[]; draftIds: string[] };
+    // As the endings were written: the Fear ending's choice and its facts listed as drafts, their echoes still planned.
+    const map = { ...structuredClone(finaleMap), draftIds: ['finaleFearLastStand', 'finaleFearFateAccepted', 'finaleLastStandWon', 'finale.fear_fate'] } as
+      { majorChoices: { id: string; echoes: { status: string }[] }[]; draftIds: string[] };
     const fear = map.majorChoices.find((choice) => choice.id === 'finale.fear_fate')!;
     for (const echo of fear.echoes) echo.status = 'planned';
     expect(validateNarrativeCoherence(map, sources).errors.filter((finding) => finding.subject.startsWith('finale.fear_fate'))).toEqual([]);

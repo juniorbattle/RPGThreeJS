@@ -580,19 +580,5 @@
    ]
   }
  ],
- "draftIds": [
-  "finaleFearLastStand",
-  "finaleFearFateAccepted",
-  "finaleLastStandWon",
-  "finale.civilians.protected.epilogue_respect",
-  "finale.civilians.protected.epilogue_fear",
-  "finale.civilians.protected.epilogue_balance",
-  "finale.civilians.abandoned.epilogue_respect",
-  "finale.civilians.abandoned.epilogue_fear",
-  "finale.civilians.abandoned.epilogue_balance",
-  "finale.fear_fate",
-  "finale.fear_fate.last_stand.close",
-  "finale.fear_fate.accepted.close"
- ],
  "exceptions": []
 }

@@ -1066,13 +1066,5 @@
    ]
   }
  },
- "draftIds": [
-  "scorpion.outcome.honour.epilogue_respect",
-  "scorpion.outcome.honour.epilogue_fear",
-  "scorpion.outcome.honour.epilogue_balance",
-  "scorpion.outcome.force.epilogue_respect",
-  "scorpion.outcome.force.epilogue_fear",
-  "scorpion.outcome.force.epilogue_balance"
- ],
  "exceptions": []
 }

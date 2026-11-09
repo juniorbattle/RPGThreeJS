@@ -147,7 +147,7 @@ export function finalActCombatConfig(state: GameState, config: CombatConfig): Co
 }
 
 /**
- * Post-demo Lot 5 (DRAFT): the Fear ending's last stand. Alone against all: no clan supports, and beside the Serpent's
+ * Post-demo Lot 5 (canon since OD-2026-11-09-B): the Fear ending's last stand. Alone against all: no clan supports, and beside the Serpent's
  * raider already in its formation, the foes of the other enemy clans, in the order the company met them, up to four foes.
  */
 function lastStandCombatConfig(state: GameState, config: CombatConfig): CombatConfig {
@@ -176,7 +176,7 @@ export function completeFinalAct(state: GameState): boolean {
 export type EpilogueStep = { kind: 'dialogue'; dialogueId: string } | { kind: 'combat'; combatId: string };
 
 /**
- * Post-demo Lot 5 (DRAFT): the epilogue's next step, read from saved facts only, or null when there is none (the act is
+ * Post-demo Lot 5 (canon since OD-2026-11-09-B): the epilogue's next step, read from saved facts only, or null when there is none (the act is
  * not in its epilogue, or the chronicle has closed). The recorded ending names its epilogue; in the Fear ending, the
  * choice that follows it leads to the last stand, then to the closing scene, or straight to the closing scene.
  */

@@ -60,7 +60,7 @@ export async function loadScorpionEndForFinaleQa(route: 'honour' | 'force'): Pro
 }
 
 /**
- * Post-demo Lot 5 (DRAFT endings): a complete campaign played by the QA driver, stopped at the start of its ending's
+ * Post-demo Lot 5 (endings, canon since OD-2026-11-09-B): a complete campaign played by the QA driver, stopped at the start of its ending's
  * epilogue, just after the act's closing scene: Respect (four honour outcomes), Fear (four force outcomes) or Balance
  * (two and two). The ending is the one RunSystem recorded; only the epilogue's own steps are left to play. DEV QA only.
  */

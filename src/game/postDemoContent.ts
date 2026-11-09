@@ -4,7 +4,7 @@
  * Kept apart from the Lion's registries (`content.ts`), so post-demo content is never taken for Lion content, never
  * recalibrated and never counted by the demo's audits. A plateau's entries are playable DRAFTS, identifiable as such,
  * until the operator approves the plateau (the Bear since OD-2026-11-08-B, the Dragon since OD-2026-11-08-C, the Scorpion since
- * OD-2026-11-08-D, the final act since OD-2026-11-09-A, its endings still drafts); they reach `dev` only on the operator's
+ * OD-2026-11-08-D, the final act since OD-2026-11-09-A, its endings since OD-2026-11-09-B); they reach `dev` only on the operator's
  * order. Every post-demo plateau shows provisional images until the final-image lot.
  */
 import { BEAR_DIALOGUES, BEAR_SCENE_BUILDERS } from '../campaign/plateaux/bear/bearDialogues';

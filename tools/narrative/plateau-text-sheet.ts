@@ -320,7 +320,7 @@ if (finale) {
   }
   out.push('', 'Clans ennemis pris en compte par combat : au Tournoi, le seul clan affronté ; dans l’arène en flammes, aucun ; dans la capitale et à la brèche, tous, dans l’ordre où la compagnie les a rencontrés, dans la limite des places libres (quatre adversaires, ou un boss et trois escortes).', '',
     Object.entries(FINALE_ENEMY_CLAN_RULES).map(([combatId, rule]) => `- \`${combatId}\` : ${rule === 'none' ? 'aucun' : rule === 'all' ? 'tous' : rule.map((clan) => CAMPAIGN_CLAN_LABELS[clan]).join(', ')}`).join('\n'), '',
-    `- \`${LAST_STAND_COMBAT_ID}\` (Lot 5, brouillon) : aucun soutien ; le pillard du Serpent, puis tous les autres clans ennemis, quatre adversaires au plus.`, '');
+    `- \`${LAST_STAND_COMBAT_ID}\` (Lot 5${EPILOGUE_STATUS === 'draft' ? ', brouillon' : ''}) : aucun soutien ; le pillard du Serpent, puis tous les autres clans ennemis, quatre adversaires au plus.`, '');
 }
 
 const text = `${out.join("\n").replace(/\n{3,}/g, "\n\n").trimEnd()}\n`;
