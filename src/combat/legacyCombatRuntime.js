@@ -36,7 +36,7 @@ import { resolveFxRecipe, withoutGroundMarks } from './fx/fxRecipes';
 import { enemyAttackFxRecipe, hasSkillMoveFx, skillFxRecipe, skillMoveFxRecipe } from './fx/fxSkills';
 import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
 import { isExhausted } from './combatExhaustion';
-import { BOSS_HEAVY_COOLDOWN, bossApReserve, bossTempoProfile, settleActionAp } from './combatTempo';
+import { BOSS_ELITE_AP_REGEN, BOSS_HEAVY_COOLDOWN, BOSS_ULTIMATE_COOLDOWN, bossApReserve, bossTempoProfile, settleActionAp } from './combatTempo';
 import { resolvePixelSheet, pixelSheetVisibleBounds, PIXEL_PX_PER_UNIT } from './pixel/PixelSpriteSheets';
 import { PixelSpriteRig } from './pixel/PixelSpriteMaterial';
 import { combatLargeUnitPresenceScale } from './combatPresencePresentation';
@@ -1107,7 +1107,7 @@ function createUnit(def){
     id:++UID, campaignId:def.campaignId||null, combatPoseUnitId:def.combatPoseUnitId||null, portrait:def.portrait||'', team:def.team, kind:def.kind, name:def.name, className:def.className||'',
     maxhp:def.maxhp||def.hp, hp:Math.min(def.hp,def.maxhp||def.hp), str:def.str, mag:def.mag, end:def.end, dex:def.dex, cha:def.cha,
     mov:def.mov, weapons:def.weapons, skills:def.skills.slice(), skillUpgrades:def.skillUpgrades||{}, ai:def.ai||'aggressive',
-    ap:QA_FULL_AP?unitMaxAp:0, maxap:unitMaxAp, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false, _ultCooldown:5, _hasStartedTurn:false,
+    ap:QA_FULL_AP?unitMaxAp:0, maxap:unitMaxAp, gx:def.gx, gz:def.gz, alive:true, statuses:{}, gardeAP:0, _souffle:false, _ultCooldown:BOSS_ULTIMATE_COOLDOWN, _hasStartedTurn:false,
     size:def.size||1, immobile:!!def.immobile, boss:!!def.boss, elite:!!def.elite,
     // Sprites are authored facing right. Foes are mirrored via
     // visualFacingX so they face the player team at combat start.
@@ -1272,12 +1272,12 @@ function buildOrder(){ return aliveUnits().sort((a,b)=> (effDEX(b)-effDEX(a)) ||
 function startRound(){ if(checkEnd())return; G.round++; G.order=buildOrder(); G.turnIdx=-1; logMsg('— Manche '+G.round+' —'); nextTurn(); }
 function nextTurn(){ if(G.over||checkEnd())return; G.turnIdx++; if(G.turnIdx>=G.order.length){ startRound(); return; } const u=G.order[G.turnIdx]; if(!u||!u.alive){ nextTurn(); return; } beginTurn(u); }
 async function beginTurn(u){ if(G.over)return; u._hasStartedTurn=true; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.skillMovedThisTurn=false; G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz; u._usedUtility=false; u._statusPulseStartedAt=_t;
-  const regen=(u.boss||u.elite)?2:1; u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
+  const regen=(u.boss||u.elite)?BOSS_ELITE_AP_REGEN:1; u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
   if(regen>0) setTimeout(()=>{ if(u.alive)floatText(u,'+'+regen+' PA','#7fd0ff'); },120);
   refreshTurnbar(); selectUnit(u); focusCam(u);
   await tickStatusDamage(u); if(G.over)return; if(!u.alive){ nextTurn(); return; }
   const sk=statusSkips(u); if(!hasS(u,'taunt'))u._taunter=null; refreshPanel(u);
-  if(sk){ if((u.boss||u.elite)&&u._ultCooldown<5){u._ultCooldown=5;clearBossIntentPresentation(u);} floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); for(const s in u.statuses){ if(STATUS[s]&&STATUS[s].skip){ u.statuses[s]--; if(u.statuses[s]<=0)delete u.statuses[s]; } } refreshPanel(u); if(G.over)return; nextTurn(); return; }
+  if(sk){ if((u.boss||u.elite)&&u._ultCooldown<BOSS_ULTIMATE_COOLDOWN){u._ultCooldown=BOSS_ULTIMATE_COOLDOWN;clearBossIntentPresentation(u);} floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); for(const s in u.statuses){ if(STATUS[s]&&STATUS[s].skip){ u.statuses[s]--; if(u.statuses[s]<=0)delete u.statuses[s]; } } refreshPanel(u); if(G.over)return; nextTurn(); return; }
   if(u._ultCooldown>0)u._ultCooldown--;
   if(u.team==='player'){ combatCue('player-turn'); G.mode='menu'; setHint(u.name+' — à vous de jouer'); openActionMenu();
     if(turnReturnFocus){ turnReturnFocus=false;
@@ -2153,12 +2153,12 @@ function skillHasDamage(spec){ if(spec.offensive&&(spec.power||0)>0)return true;
 function skillHasSupport(spec){ if(spec.heal||spec.support||spec.cure||spec.apRestore)return true; if(spec.effects&&spec.effects.some(e=>e.kind==='heal'||e.kind==='status'||e.kind==='dispel'||e.kind==='ap_restore'))return true; return false; }
 function simAt(u,st){ return Object.assign(Object.create(Object.getPrototypeOf(u)),u,{gx:st.gx,gz:st.gz}); }
 function nearestDist(st,arr){ let m=1e9; for(const a of arr){ const d=Math.abs(st.gx-a.gx)+Math.abs(st.gz-a.gz); if(d<m)m=d; } return m; }
-// Boss and elite tempo. Their ultimate cooldown (5 turns) drives one cycle that escalates: light actions, the heavy
-// skill two turns before the ultimate, a held charge (the CHARGE telegraph), then the ultimate as soon as the cooldown
+// Boss and elite tempo. Their ultimate cooldown (4 turns, operator decision 2026-11-11) drives one cycle that escalates:
+// a light action, the heavy skill two turns before the ultimate, a held charge (the CHARGE telegraph), then the ultimate as soon as the cooldown
 // reaches 0. The AI keeps an AP reserve for the next step instead of spending everything, so it does not end its turns
 // on 0 AP (Essoufflé, open to a breaking critical) and still reaches its ultimate. Rules mirrored from beginTurn
 // (boss and elite regen) and endTurn (Souffle +1 PA when a turn ends with AP left).
-const BOSS_TEMPO_RULES=Object.freeze({regen:2,breath:1,chargeHold:3});
+const BOSS_TEMPO_RULES=Object.freeze({regen:BOSS_ELITE_AP_REGEN,breath:1,chargeHold:3});
 function bossTempoOf(u){
   if(!(u.boss||u.elite))return null;
   if(!u._tempoProfile)u._tempoProfile=bossTempoProfile(u.skills.map(id=>SKILLS[id]).filter(def=>def&&(def.offensive||(def.effects&&def.effects.some(e=>e.kind==='damage')))).map(def=>def.ap));
@@ -2265,7 +2265,7 @@ async function aiTurn(u){
     if(spec.ap>=5&&(u.boss||u.elite)&&u._ultCooldown>0)break;
     if(pick.type==='support')u._usedUtility=true;
     await executeAction(u,spec,pick.best.cx,pick.best.cz); await wait(0.2);
-    if(spec.ap>=5&&(u.boss||u.elite)){u._ultCooldown=5;clearBossIntentPresentation(u);}
+    if(spec.ap>=5&&(u.boss||u.elite)){u._ultCooldown=BOSS_ULTIMATE_COOLDOWN;clearBossIntentPresentation(u);}
   }
   endTurn();
 }

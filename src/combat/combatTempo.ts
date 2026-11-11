@@ -27,6 +27,14 @@ export interface BossTempoRules {
   chargeHold: number;
 }
 
+/**
+ * Operator decision after the 2026-11-11 PC playtest: a boss or elite cycle lasts four turns (light action, heavy skill,
+ * CHARGE, ultimate), and bosses and elites regenerate 3 AP per turn so that cycle is affordable without ending a turn
+ * Essoufflé. The cooldown is set after each ultimate and decremented at the start of each turn.
+ */
+export const BOSS_ULTIMATE_COOLDOWN = 4;
+export const BOSS_ELITE_AP_REGEN = 3;
+
 /** The cooldown turn on which the heavy skill is planned (two turns before the ultimate). */
 export const BOSS_HEAVY_COOLDOWN = 2;
 
