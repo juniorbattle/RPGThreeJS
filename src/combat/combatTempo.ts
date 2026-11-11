@@ -70,3 +70,30 @@ export function bossApReserve(cooldown: number, profile: BossTempoProfile, rules
   };
   return endReserve(Math.max(0, Math.floor(cooldown)));
 }
+
+/**
+ * Fury (set 1.21.0, OD-2026-11-11-B): a boss or elite below half its maximum HP. Derived from current HP, never saved.
+ */
+export const FURY_HP_RATIO = 0.5;
+
+export function isInFury(unit: { alive: boolean; boss?: boolean; elite?: boolean; hp: number; maxhp: number } | null | undefined): boolean {
+  return Boolean(unit && unit.alive && (unit.boss || unit.elite) && unit.hp > 0 && unit.maxhp > 0 && unit.hp < unit.maxhp * FURY_HP_RATIO);
+}
+
+/**
+ * Whether a unit in Fury takes its free basic attack now: at most once per turn, after the first offensive action it
+ * resolves in that turn, never on its ultimate's turn, after a support action, or while Brisé, Entravé or Muet.
+ */
+export function furyStrikeAllowed(input: {
+  inFury: boolean;
+  firstOffensiveActionThisTurn: boolean;
+  usedThisTurn: boolean;
+  castUltimateThisTurn: boolean;
+  staggered: boolean;
+  rooted: boolean;
+  silenced: boolean;
+  fightOpen: boolean;
+}): boolean {
+  return input.inFury && input.firstOffensiveActionThisTurn && !input.usedThisTurn && !input.castUltimateThisTurn
+    && !input.staggered && !input.rooted && !input.silenced && input.fightOpen;
+}
