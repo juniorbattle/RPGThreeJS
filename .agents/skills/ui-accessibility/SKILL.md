@@ -13,7 +13,7 @@ Contract: UI_AND_ACCESSIBILITY (`docs/contracts/UI_AND_ACCESSIBILITY.md`), plus 
 
 ## Invariants
 
-Digest of the contract at set 1.21.0 (baseline `470216d179e2cf6e2840e0c48f4f431a5dbb65d4`); the contract text wins on any difference.
+Digest of the contract at set 1.22.0 (baseline `5a61d319e449e8328fe63449516b554da96f43b7`); the contract text wins on any difference.
 
 - Shared palette: deep navy, brass, warm gold, ivory. Keep the UI compact so the world, tableau or battlefield stays dominant.
 - Status text and numbers are read from runtime truth. Never display made-up combat values or resource totals, or an action that is not really enabled.
@@ -29,9 +29,9 @@ Digest of the contract at set 1.21.0 (baseline `470216d179e2cf6e2840e0c48f4f431a
 
 ## Reduced motion model
 
-Two sources: the game setting (`state.settings.reducedGraphics`, passed as `reducedMotion` by `GameApp`) and the OS `prefers-reduced-motion`. Either one requests less motion, and an explicit game value of `false` must never switch off the OS request. JavaScript reads this through one shared helper in `src/ui/` rather than ad-hoc `matchMedia` calls. CSS keeps `@media (prefers-reduced-motion: reduce)` blocks in `app.css` and `poi-map.css`. Verify OS-only and game-setting reduction separately in the current native campaign driver. Physical Traversal QA labs were retired under OD-2026-10-15-A.
+One source since set 1.22.0 (OD-2026-11-11-E): the in-game setting (`state.settings.reducedGraphics`, passed as `reducedMotion` by `GameApp`, kept on the device by `MotionPreference.ts`, off by default). The OS `prefers-reduced-motion` no longer requests reduced motion; CSS-only motion follows the `body.motion-reduced` class that `GameApp` sets from the setting. JavaScript reads this through one shared helper in `src/ui/` rather than ad-hoc `matchMedia` calls. CSS keeps `@media (prefers-reduced-motion: reduce)` blocks in `app.css` and `poi-map.css`. Verify OS-only and game-setting reduction separately in the current native campaign driver. Physical Traversal QA labs were retired under OD-2026-10-15-A.
 
-Historical item8 acceptance remains scoped to its source/proof. Active manual-playtest acceptance includes cast/scene transitions with OS-only reduction and normal game settings; do not certify new transitions using old captures.
+Historical item8 acceptance remains scoped to its source/proof. Active acceptance covers normal motion and the in-game reduced motion, and checks that an emulated OS preference alone leaves motion on (set 1.22.0); do not certify new transitions using old captures.
 
 ## Verify
 

@@ -27,7 +27,7 @@ Contract: PRESENTATION_AND_MEDIA (`docs/contracts/PRESENTATION_AND_MEDIA.md`, se
 - No video playback, preload, video-derived hold, video delay or empty replacement interlude. A historical moment plays through its authored dialogue or tableau with the same choices, effects and transitions.
 - The stage owns cast and background; one primary surface at a time and at most four visible actors.
 - Fallback and missing images preserve agency; resolved revisits replay no one-shot narrative presentation or effect (OD-2026-10-13-D).
-- Character V2, the Alaric climax, keyboard and focus continuity, game and OS reduced motion, canonical IDs, causal order and V6 are unchanged. Presentation creates no fact and saves no transient state.
+- Character V2, the Alaric climax, keyboard and focus continuity, the in-game reduced motion (set 1.22.0), canonical IDs, causal order and V6 are unchanged. Presentation creates no fact and saves no transient state.
 - The pre-judgement campfire is a Journey/narrative preparation boundary under CAMPAIGN_AND_STATE, never a video.
 
 ## Scope limits

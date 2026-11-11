@@ -65,7 +65,7 @@
     "Playtest PC de l'opérateur et corrections, dernière passe narrative, passage mobile, démo figée (OD-2026-11-01-C)."
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "Set 1.21.0, baseline 470216d179e2cf6e2840e0c48f4f431a5dbb65d4 ; amendement Furie des boss et élites demandé par l'opérateur dans la session, relu par contracts-guardian (PASS WITH WARNINGS, précisions reprises) (OD-2026-11-11-B) ; set 1.20.0 (6c965169) en vigueur pour le reste",
+  "contractComplianceStatus": "Set 1.22.0, baseline 5a61d319e449e8328fe63449516b554da96f43b7 ; amendement de l’audit final (barème par plateau, rupture de la CHARGE, Garde des boss, mouvement réduit par le seul réglage du jeu) approuvé par l’opérateur (« Textes approuvés »), relu par contracts-guardian (PASS WITH WARNINGS, précisions reprises) (OD-2026-11-11-E) ; set 1.21.0 (470216d1, Furie) et set 1.20.0 (6c965169) en vigueur pour le reste",
   "runId": "claude-postdemo-integration-20261109T0323Z",
   "agent": "claude",
   "lastHeartbeat": "2026-11-09T03:30:00Z",
