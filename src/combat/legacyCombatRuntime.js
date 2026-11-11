@@ -663,7 +663,7 @@ function buildTileTex(fillA,fillB,strokeA,strokeB,cornerA,glowA,lw=1.45,cornerLe
 function makeTileTex(){ hlTextures={
   range:buildTileTex('rgba(255,250,240,0.42)','rgba(220,215,200,0.24)','rgba(255,248,232,0.94)','rgba(80,78,68,0.72)','rgba(255,245,220,0.90)','rgba(240,235,210,0.56)',1.9,14),
   move:buildTileTex('rgba(214,246,232,0.46)','rgba(93,178,157,0.26)','rgba(210,255,238,0.97)','rgba(48,116,112,0.74)','rgba(220,255,236,0.92)','rgba(136,235,205,0.66)',2.1,16),
-  path:buildTileTex('rgba(226,252,255,0.62)','rgba(120,210,232,0.40)','rgba(236,255,255,1.0)','rgba(40,104,124,0.90)','rgba(232,255,255,1.0)','rgba(160,236,255,0.86)',2.8,20),
+  path:buildTileTex('rgba(255,246,214,0.66)','rgba(232,196,110,0.44)','rgba(255,248,214,1.0)','rgba(110,84,30,0.92)','rgba(255,244,200,1.0)','rgba(250,214,130,0.90)',2.8,20),
   hover:buildTileTex('rgba(255,250,220,0.58)','rgba(231,215,155,0.38)','rgba(255,248,195,1.0)','rgba(92,83,46,0.95)','rgba(255,252,200,1.0)','rgba(248,228,160,0.94)',3.2,24),
   target:buildTileTex('rgba(255,198,150,0.62)','rgba(200,70,56,0.42)','rgba(255,222,165,1.0)','rgba(110,30,26,0.96)','rgba(255,200,130,1.0)','rgba(255,120,80,0.95)',3.4,26),
   target_ally:buildTileTex('rgba(210,255,220,0.58)','rgba(110,200,130,0.38)','rgba(230,255,238,1.0)','rgba(40,100,60,0.96)','rgba(230,255,232,1.0)','rgba(150,240,170,0.92)',3.2,24),
@@ -2350,7 +2350,7 @@ function previewMovePath(c){
   const key=c?cellKey(c.gx,c.gz):'none'; if(G._movePreviewKey===key)return; G._movePreviewKey=key;
   drawReach(); if(!c||!G.reach||!G.active||hoverState(c)!=='move')return;
   const path=buildPath(G.reach.prev,G.active,c.gx,c.gz);
-  path.forEach(([gx,gz],index)=>{ const last=index===path.length-1; addHL(gx,gz,last?0xd8fbff:0xa8ecff,COMBAT_PRESENTATION.arena.moveTileOpacity,last?'hover':'path'); });
+  path.forEach(([gx,gz],index)=>{ const last=index===path.length-1; addHL(gx,gz,last?0xfff1c2:0xffdf8a,COMBAT_PRESENTATION.arena.moveTileOpacity,last?'hover':'path'); });
 }
 function drawReach(){ clearHL(); const keys=new Set(G.reach.list.map(t=>cellKey(t.gx,t.gz))); addInvalidTiles(keys,true); for(const t of G.reach.list){ if(t.gx===G.active.gx&&t.gz===G.active.gz)continue; addHL(t.gx,t.gz,CFG.COL.move,COMBAT_PRESENTATION.arena.moveTileOpacity,'move'); } }
 function enterMove(){ if(G.movedThisTurn||G.busy)return; if(G.active.immobile){ toast('Immobile — deplacement impossible'); combatCue('refused'); return; } if(hasS(G.active,'root')){ toast('Entravé — déplacement impossible'); combatCue('refused'); return; } combatCue('confirm'); G.mode='move'; G.reach=reachableStand(G.active); G._movePreviewKey=null; unitFocus.focusMove(G.units,G.active); closeMenus(true); drawReach(); setHint('Déplacement — choisissez une case'); focusBattlefield('move',G.active); }
