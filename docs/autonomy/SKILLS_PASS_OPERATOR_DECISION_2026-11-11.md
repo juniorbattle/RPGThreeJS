@@ -37,14 +37,21 @@
 9. **D10, Repli de Hampe.** Garder son déplacement seul sur une case vide.
 10. **Estompage du ciblage.** Inchangé : 1 pour la cible survolée, 0,82 pour une cible valide, 0,42 hors portée.
 
-## Ouvert
+## D8, décidé ensuite — OD-2026-11-11-D
 
-`UNDECIDED` **D8, Sceau du Sage.** Il remplace Purification (3 PA) par la Rune de Vigueur (2 PA), que la règle des paliers ouvre dès T1. La réponse à la question de l'opérateur est dans le rapport, section 9. Les deux options :
+À l'origine `UNDECIDED`, tranché le même jour (voir la fin de cette section). **D8, Sceau du Sage.** Il remplace Purification (3 PA) par la Rune de Vigueur (2 PA), que la règle des paliers ouvre dès T1. La réponse à la question de l'opérateur est dans le rapport, section 9. Les deux options :
 
 - **A** : garder.
 - **B** : une compétence remplaçante garde le palier de celle qu'elle remplace.
 
 La recommandation est B. Rien n'est changé avant sa réponse.
+
+`APPROVED DECISION` Réponse de l'opérateur : « je suis ton raisonnement ». L'option B est retenue sous le numéro OD-2026-11-11-D.
+
+- Une compétence obtenue par l'équipement garde le palier de la compétence qu'elle remplace.
+- Une compétence propre du héros garde son propre coût, même quand une arme lui substitue l'Ultime fermé (Grimoire mystique).
+- Une compétence accordée sans remplacement garde aussi son propre coût.
+- Seul effet sur le contenu actuel : avec le Sceau du Sage, la Rune de Vigueur s'ouvre avec une arme T2 et non plus T1, et la Crosse sacrée l'annonce. Tous les autres échanges (Anneau de Force, Arc long, Arc du Vent, Espadon du Lion) gardent leur palier.
 
 ## Mise en œuvre
 

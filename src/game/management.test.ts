@@ -87,6 +87,24 @@ describe('clan management', () => {
     expect(getUnlockedSkillsForHero({ definitionId: 'warrior', equipment: { weaponIds: ['novice_greatsword'], accessoryIds: [null, null] } })).toEqual(['w_break_guard']);
   });
 
+  it('opens a swapped skill with the weapon tier of the slot it replaces (operator decision 2026-11-11, D8)', () => {
+    const marian = (weaponId: string, accessory: string | null) => ({ definitionId: 'white_mage', equipment: { weaponIds: [weaponId], accessoryIds: [accessory, null] as [string | null, string | null] } });
+    // Sceau du Sage: Rune de Vigueur (2 AP) takes the 3 AP slot of Purification, so a T2 weapon opens it, not a T1.
+    expect(getUnlockedSkillsForHero(marian('novice_crosier', 'sage_seal'))).toEqual(['w_salvation']);
+    expect(isSkillUnlockedForHero(marian('novice_crosier', 'sage_seal'), 'e_vigor_rune')).toBe(false);
+    expect(getLockedSkillReason(marian('novice_crosier', 'sage_seal'), 'e_vigor_rune')).toBe('Débloquée avec arme T2');
+    expect(getUnlockedSkillsForHero(marian('sacred_crosier', 'sage_seal'))).toEqual(['w_salvation', 'e_vigor_rune']);
+    expect(getWeaponOpenedSkill(weaponById.get('sacred_crosier')!, marian('novice_crosier', 'sage_seal'))).toEqual({ skillId: 'e_vigor_rune', name: 'Rune de Vigueur', ap: 2 });
+    // Without the seal, the tiers are unchanged.
+    expect(getUnlockedSkillsForHero(marian('novice_crosier', null))).toEqual(['w_salvation']);
+    expect(getUnlockedSkillsForHero(marian('sacred_crosier', null))).toEqual(['w_salvation', 'w_purify']);
+    // A swap of the same cost keeps its slot as before (Anneau de Force, Arc long, Arc du Vent, Espadon du Lion).
+    expect(getUnlockedSkillsForHero({ definitionId: 'archer', equipment: { weaponIds: ['windstep_longbow'], accessoryIds: [null, null] } }).sort()).toEqual(['a_arrow_rain', 'a_precise_shot', 'ni_shadow_step']);
+    expect(getUnlockedSkillsForHero({ definitionId: 'warrior', equipment: { weaponIds: ['lion_guard_greatsword'], accessoryIds: ['strength_ring', null] } }).sort()).toEqual(['d_cursed_blade', 'p_oathwall', 'w_charge']);
+    // A hero's own skill keeps its own cost, even when a weapon swaps the closed ultimate for it (Grimoire mystique).
+    expect(getUnlockedSkillsForHero({ definitionId: 'dark_mage', equipment: { weaponIds: ['mystic_grimoire'], accessoryIds: [null, null] } })).toEqual(['n_dark_bolt', 'n_teleport']);
+  });
+
   it('rests wounded units to their calculated maximum health for a gold cost', () => {
     const state = createInitialState();
     state.clan.members[0]!.currentHealth = 12;

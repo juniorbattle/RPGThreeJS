@@ -7,7 +7,7 @@
 | BASELINE | `4d8e1d0d` sur `dev`, puis `origin/playtest-combat` fusionnée en avance rapide (`d1bfdb10`) avant toute modification du runtime ; jeu de contrats 1.20.0, baseline immuable `6c965169c2dc153cafd5a8609d914cf8de723ff3` |
 | BRANCH | `playtest-skills` (créée depuis `origin/dev`), intégrée dans `dev` par fusion sur l’ordre de l’opérateur du 2026-11-11 |
 | HEAD | `08b72cd2` (dernier commit de la passe) |
-| STATUS | merged : décisions de l’opérateur du 2026-11-11 appliquées (section 9, OD-2026-11-11-C) ; D8 en attente |
+| STATUS | merged : décisions de l’opérateur du 2026-11-11 appliquées (section 9, OD-2026-11-11-C) ; D8 tranché ensuite (OD-2026-11-11-D), livré sur `playtest-skills` |
 | MERGED_IN | `dev` : commit de fusion `80c7c150` sur l’intégration de l’échoppe, puis fusion avec l’intégration de `playtest-combat` (`4d1ec003`, cycle à quatre tours, Furie, amendement 1.21.0). |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |
@@ -176,7 +176,7 @@ Aucun coût ni puissance de base n’a changé. Ces corrections changent toutefo
 
 ## 5. Points soumis à ta décision
 
-Tes réponses du 2026-11-11 et leur mise en œuvre sont en section 9. Il reste D8 ouvert. Le texte de cette section est celui de la proposition, gardé tel quel.
+Tes réponses du 2026-11-11 et leur mise en œuvre sont en section 9, D8 compris (tranché ensuite). Le texte de cette section est celui de la proposition, gardé tel quel.
 
 - **D1. Tir ami des zones offensives.**
   - Concerne Tourbillon, Saut du Griffon, Pluie de Flèches, Sceau d’Entrave et Mâchoire +2.
@@ -281,7 +281,7 @@ Tes réponses : D1 à D6 « validé » (mes recommandations), D7 « vraiment él
 | D5 | Cercle Écarlate +1 : soin +4 PV. | `skills.ts` (`flatHealBonus:4`) : soin de 12 PV + CHA/4, puis 16. | `skillsPass.test.ts` « D3, D5, D7 » |
 | D6 | Lance : garder le contact, diagonales comprises. | Descriptions de la Lance novice et de la Lance d’acier : « frappe au contact, diagonales comprises » au lieu de « à distance » et « longue portée ». | `ManagementView.test.ts` « gives a long spear… » |
 | D7 | Vague de Flammes +2 vraiment élargie. | `skills.ts` (rayon +0,7) : cône de 4 cases, puis 9. | `skillsPass.test.ts` « D3, D5, D7 » |
-| D8 | Question posée en retour. | Rien de changé (ci-dessous). | — |
+| D8 | Question posée en retour, puis « je suis ton raisonnement » : option B (OD-2026-11-11-D). | `skillSlotAp` dans `src/game/catalog.ts`. Une compétence remplaçante prend le coût du slot qu’elle remplace, et ce coût décide du palier (`isSkillUnlockedForHero`, `getLockedSkillReason`, `getWeaponOpenedSkill`). Sur les 344 combinaisons héros × arme × accessoire, seul le Mage Blanc avec le Sceau du Sage change : la Rune de Vigueur n’est plus ouverte en T1 (« Débloquée avec arme T2 »), et la Crosse sacrée l’annonce. | `management.test.ts` « opens a swapped skill with the weapon tier of the slot it replaces… » |
 | D9 | Refuser une action monocible validée sans cible. | `actionLacksTarget` dans `activateBattlefieldCell` : « Ciblage refusé — aucune cible sur cette case », signal sonore de refus, aucun PA dépensé. Restent valides sur une case vide : les zones, les déplacements, les actions sur soi et le déplacement seul de Pas d’Ombre et de Repli de Hampe (D10). Frappe Consacrée ne se lance donc plus sur une case vide pour sa seule barrière. | `skillsPass.test.ts` « D9 » ; `combatKeyboard.test.ts` « refuses a single-target action on an empty cell… » |
 | D10 | Garder le déplacement seul de Repli de Hampe. | Rien à changer. | — |
 

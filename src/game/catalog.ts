@@ -533,6 +533,19 @@ export function resolveInitialSkillId(unit: { definitionId?: string; equipment: 
   return (skillById.get(replacementId)?.ap ?? Infinity) <= initialAp ? replacementId : initialId;
 }
 
+/**
+ * The cost of the slot a skill fills, which decides the weapon tier that opens it (OD-2026-11-11-C, D8). An equipment swap
+ * keeps the slot of the skill it replaces (Sceau du Sage: Rune de Vigueur takes the 3 AP slot of Purification and opens
+ * with a T2 weapon). A hero's own skill, or a granted one, keeps its own cost.
+ */
+function skillSlotAp(unit: { definitionId?: string; equipment: EquipmentLoadout }, skillId: string): number {
+  const own = skillById.get(skillId)?.ap ?? Infinity;
+  const definition = unit.definitionId ? unitById.get(unit.definitionId) : undefined;
+  if (!definition || definition.skillIds.includes(skillId)) return own;
+  const source = definition.skillIds.find((id) => id !== skillId && resolveEquippedSkillReplacement(unit.equipment, id) === skillId);
+  return source ? (skillById.get(source)?.ap ?? own) : own;
+}
+
 function isInitialDemoHeroSkill(unit: { definitionId?: string; equipment: EquipmentLoadout }, skillId: string): boolean {
   if (!unit.definitionId || !DEMO_HERO_IDS.has(unit.definitionId)) return false;
   return unitById.get(unit.definitionId)?.skillIds[0] === skillId || resolveInitialSkillId(unit) === skillId;
@@ -579,7 +592,7 @@ export function isSkillUnlockedForHero(unit: { definitionId?: string; equipment:
   if (isInitialDemoHeroSkill(unit, skillId)) return true;
   const tier = getEquippedWeaponTier(unit);
   if (tier <= 0 && !isDemoHero(unit)) return false;
-  return skill.ap <= getMaxUnlockedSkillAp(tier);
+  return skillSlotAp(unit, skillId) <= getMaxUnlockedSkillAp(tier);
 }
 
 function isDemoHero(unit: { definitionId?: string }): boolean {
@@ -595,7 +608,7 @@ export function getLockedSkillReason(unit: { definitionId?: string; equipment: E
   if (!skill) return 'Compétence inconnue';
   if (skill.ap >= ULTIMATE_AP) return 'Ultime — éveil spécial requis';
   if (isSkillUnlockedForHero(unit, skillId)) return '';
-  return `Débloquée avec arme ${weaponTierLabel(Math.max(1, requiredWeaponTierForSkillAp(skill.ap)))}`;
+  return `Débloquée avec arme ${weaponTierLabel(Math.max(1, requiredWeaponTierForSkillAp(skillSlotAp(unit, skillId))))}`;
 }
 
 export function getWeaponSkillUnlockLabel(weapon: WeaponDefinition): string {
@@ -623,7 +636,7 @@ export function getWeaponOpenedSkill(
   const ap = getMaxUnlockedSkillAp(weapon.tier);
   const skillId = weapon.tier <= 0
     ? resolveInitialSkillId(armed)
-    : getResolvedSkills(armed).find((id) => skillById.get(id)?.ap === ap && isSkillUnlockedForHero(armed, id)) ?? null;
+    : getResolvedSkills(armed).find((id) => skillSlotAp(armed, id) === ap && isSkillUnlockedForHero(armed, id)) ?? null;
   return skillId ? { skillId, name: skillName(skillId), ap: skillById.get(skillId)?.ap ?? ap } : null;
 }
 
