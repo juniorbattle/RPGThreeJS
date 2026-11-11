@@ -101,26 +101,72 @@ export function upgradeSkill(state: GameState, unitId: string, skillId: string):
   return true;
 }
 
-export function buyItem(state: GameState, shopId: string, itemId: string, _useTemporaryLoot = true): boolean {
+/** The unit price the refuge shop asks for an item today, by reputation (OD-2026-11-05-C). */
+export function getBuyUnitPrice(state: GameState, itemId: string): number | null {
+  const item = itemById.get(itemId);
+  return item ? getShopPrice(item.price, state.reputation) : null;
+}
+
+/** The shop takes an item back at half its base price, whatever the reputation. */
+export function getSellUnitPrice(itemId: string): number | null {
+  const item = itemById.get(itemId);
+  return item ? Math.floor(item.price / 2) : null;
+}
+
+/** How many of an item the company can buy in one go: bounded by the shop's stock and the gold it holds. */
+export function getMaxBuyQuantity(state: GameState, shopId: string, itemId: string): number {
+  const stock = state.shops[shopId]?.stock[itemId] ?? 0;
+  const price = getBuyUnitPrice(state, itemId);
+  if (price === null || stock < 1) return 0;
+  return Math.max(0, Math.min(stock, Math.floor(state.gold / price)));
+}
+
+/** How many of an item the company can sell in one go: only what the bag carries, never what a hero wears. */
+export function getMaxSellQuantity(state: GameState, shopId: string, itemId: string): number {
+  const item = itemById.get(itemId);
+  if (!state.shops[shopId] || !item) return 0;
+  return Math.max(0, state.inventory[item.category][itemId] ?? 0);
+}
+
+function validQuantity(quantity: number): boolean {
+  return Number.isInteger(quantity) && quantity >= 1;
+}
+
+/**
+ * Buys `quantity` of an item in one transaction (playtest 2026-11-11): either every unit is bought at today's
+ * reputation price and the exact total is debited, or nothing changes.
+ */
+export function buyItems(state: GameState, shopId: string, itemId: string, quantity: number): boolean {
   const shop = state.shops[shopId];
   const item = itemById.get(itemId);
-  const price = item ? getShopPrice(item.price, state.reputation) : 0;
-  const availableGold = state.gold;
-  if (!shop || !item || (shop.stock[itemId] ?? 0) < 1 || availableGold < price) return false;
-  state.gold -= price;
-  shop.stock[itemId] = (shop.stock[itemId] ?? 0) - 1;
-  adjust(state.inventory, item.category, itemId, 1);
+  const price = getBuyUnitPrice(state, itemId);
+  if (!shop || !item || price === null || !validQuantity(quantity)) return false;
+  if (quantity > getMaxBuyQuantity(state, shopId, itemId)) return false;
+  state.gold -= price * quantity;
+  shop.stock[itemId] = (shop.stock[itemId] ?? 0) - quantity;
+  adjust(state.inventory, item.category, itemId, quantity);
   return true;
 }
 
-export function sellItem(state: GameState, shopId: string, itemId: string, _useTemporaryLoot = true): boolean {
+/** Sells `quantity` carried units of an item in one transaction, or nothing at all. */
+export function sellItems(state: GameState, shopId: string, itemId: string, quantity: number): boolean {
   const shop = state.shops[shopId];
   const item = itemById.get(itemId);
-  if (!shop || !item || (state.inventory[item.category][itemId] ?? 0) < 1) return false;
-  adjust(state.inventory, item.category, itemId, -1);
-  shop.stock[itemId] = (shop.stock[itemId] ?? 0) + 1;
-  state.gold += Math.floor(item.price / 2);
+  const price = getSellUnitPrice(itemId);
+  if (!shop || !item || price === null || !validQuantity(quantity)) return false;
+  if (quantity > getMaxSellQuantity(state, shopId, itemId)) return false;
+  adjust(state.inventory, item.category, itemId, -quantity);
+  shop.stock[itemId] = (shop.stock[itemId] ?? 0) + quantity;
+  state.gold += price * quantity;
   return true;
+}
+
+export function buyItem(state: GameState, shopId: string, itemId: string, _useTemporaryLoot = true): boolean {
+  return buyItems(state, shopId, itemId, 1);
+}
+
+export function sellItem(state: GameState, shopId: string, itemId: string, _useTemporaryLoot = true): boolean {
+  return sellItems(state, shopId, itemId, 1);
 }
 
 export interface ForgeIngredient {

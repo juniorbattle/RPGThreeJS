@@ -3057,3 +3057,45 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .tournament-board__actions button { flex: 1 1 100%; }
 }
 @media (prefers-reduced-motion: reduce) { .tournament-board { animation: none; } }
+
+/* Playtest 2026-11-11: shop and forge filters by type, forge readiness, and quantity on the buy or sell fiche. */
+.shop-filters { display: flex; flex-wrap: wrap; gap: 8px; max-width: 1120px; margin: 0 0 16px; }
+.shop-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid rgba(230,199,126,.28);
+  background: rgba(0,0,0,.24);
+  color: #cbd3df;
+  font: 700 12px var(--ui-font-title);
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: border-color .15s, background .15s, color .15s;
+}
+.shop-filter:hover { border-color: rgba(230,199,126,.55); color: #fff0c8; }
+.shop-filter:focus-visible { outline: 2px solid var(--ui-color-cream); outline-offset: 3px; }
+.shop-filter.is-active { border-color: rgba(246,219,145,.8); background: linear-gradient(#55431f, #30230f); color: var(--ui-color-cream); }
+.shop-filter__count { min-width: 22px; padding: 1px 6px; border: 1px solid rgba(230,199,126,.3); background: rgba(0,0,0,.25); color: #ffe0a0; font-size: 11px; text-align: center; }
+.shop-filter--toggle { margin-left: auto; }
+.shop-group { margin-bottom: 14px; }
+.shop-group__title { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; color: #c4945a; font: 800 11px var(--ui-font-title); letter-spacing: .12em; text-transform: uppercase; }
+.shop-group__title span { color: #8a96aa; letter-spacing: .04em; }
+.craft-group { max-width: 1120px; margin-bottom: 18px; }
+.craft-group--later .shop-group__title { color: #8a96aa; }
+.trade-quantity__row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.trade-quantity__step { min-width: 48px; min-height: 44px; padding: 6px 12px; font-size: 20px; line-height: 1; }
+.trade-quantity__max { min-height: 44px; }
+.trade-quantity__value { min-width: 56px; padding: 8px 10px; border: 1px solid rgba(230,199,126,.4); background: rgba(0,0,0,.3); color: #ffe0a0; font: 800 20px var(--ui-font-title); text-align: center; }
+.trade-quantity__limit { color: #aeb9cc; font-size: 12px; line-height: 1.4; }
+.management[data-reduced-motion="true"],
+.management[data-reduced-motion="true"] *,
+.management[data-reduced-motion="true"] *::before,
+.management[data-reduced-motion="true"] *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+@media (max-width: 560px) {
+  .shop-filters { gap: 6px; }
+  .shop-filter { flex: 1 1 auto; justify-content: center; padding-inline: 10px; }
+  .shop-filter--toggle { flex-basis: 100%; margin-left: 0; }
+  .trade-quantity__max { flex: 1 1 auto; }
+}

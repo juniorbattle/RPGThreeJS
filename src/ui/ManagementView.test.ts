@@ -5,6 +5,7 @@ import { getResolvedSkills, isSkillUnlockedForHero, itemById } from '../game/cat
 import { equipWeapon } from '../game/management';
 import { skillById } from '../game/skills';
 import { ManagementView } from './ManagementView';
+import { performGamepadAction, type GamepadGeometry } from './GamepadNavigator';
 
 afterEach(() => document.body.replaceChildren());
 function setup(onSound = vi.fn()) {
@@ -259,4 +260,152 @@ it('names the skill each weapon opens on the sheet, in the inventory, the shop a
   expect(forge).not.toContain('débloque les compétences à 3 PA');
   view.close(); await closed;
   expect(JSON.stringify(state)).toBe(before);
+});
+
+it('buys several units with one confirmation, within the gold and the stock (playtest 2026-11-11)', async () => {
+  const { state, root, view, onSound } = setup(); state.gold = 60; state.shops.valmir!.stock.potion = 10;
+  const bag = state.inventory.consumables.potion ?? 0, untouched = JSON.stringify(state);
+  const closed = view.open('shop', 'valmir', 'permanent');
+  root.querySelector<HTMLButtonElement>('[data-trade="buy"][data-item="potion"]')!.click();
+  const picker = root.querySelector('.trade-quantity')!;
+  expect(picker.getAttribute('aria-label')).toBe('Quantité à acheter');
+  expect(picker.textContent).toContain('Jusqu’à 3 : votre or (60)');
+  const more = root.querySelector<HTMLButtonElement>('[data-trade-qty="more"]')!;
+  more.focus(); more.click();
+  expect(root.querySelector('.trade-quantity__value')!.textContent).toBe('2');
+  expect((document.activeElement as HTMLElement).dataset.tradeQty).toBe('more');
+  expect(root.querySelector('.trade-summary')!.textContent).toContain('Total ×2');
+  expect(root.querySelector('.trade-summary')!.textContent).toContain('60 → 26');
+  key('+');
+  // At the limit, plus and max turn off and focus moves on rather than being lost.
+  expect(root.querySelector('.trade-quantity__value')!.textContent).toBe('3');
+  expect(root.querySelector<HTMLButtonElement>('[data-trade-qty="more"]')!.disabled).toBe(true);
+  expect(root.querySelector<HTMLButtonElement>('[data-trade-qty="max"]')!.disabled).toBe(true);
+  expect(document.activeElement?.closest('.item-modal')).not.toBeNull();
+  expect((document.activeElement as HTMLButtonElement).disabled).toBe(false);
+  const buy = root.querySelector<HTMLButtonElement>('.trade-footer [data-trade-step="confirm"]')!;
+  expect(buy.textContent).toContain('Acheter ×3 · 51 or');
+  expect(JSON.stringify(state)).toBe(untouched);
+  buy.click();
+  expect(root.querySelector('.trade-confirm')!.textContent).toContain('Confirmer l’achat de 3 × Potion légère pour 51 or');
+  expect(JSON.stringify(state)).toBe(untouched);
+  root.querySelector<HTMLButtonElement>('[data-trade-confirm]')!.click();
+  expect(state.gold).toBe(9);
+  expect(state.inventory.consumables.potion).toBe(bag + 3);
+  expect(state.shops.valmir!.stock.potion).toBe(7);
+  expect(root.querySelector('.trade-done')!.textContent).toContain('Acheté : 3 × Potion légère');
+  // Nothing more is affordable: no « again » offer.
+  expect(root.querySelector('.trade-footer [data-trade-step="confirm"]')).toBeNull();
+  expect(onSound.mock.calls.filter(([cue]) => cue === 'refused')).toHaveLength(0);
+  view.close(); await closed;
+});
+
+it('jumps to the maximum the stock allows, steps back down, and sells a quantity too (playtest 2026-11-11)', async () => {
+  const { state, root, view } = setup(); state.gold = 10000; state.shops.valmir!.stock.antidote = 4;
+  state.inventory.materials.iron_ore = 5;
+  const closed = view.open('shop', 'valmir', 'permanent');
+  root.querySelector<HTMLButtonElement>('[data-trade="buy"][data-item="antidote"]')!.click();
+  expect(root.querySelector('.trade-quantity')!.textContent).toContain('Jusqu’à 4 : tout le stock');
+  expect(root.querySelector<HTMLButtonElement>('[data-trade-qty="less"]')!.disabled).toBe(true);
+  root.querySelector<HTMLButtonElement>('[data-trade-qty="max"]')!.click();
+  expect(root.querySelector('.trade-quantity__value')!.textContent).toBe('4');
+  key('-');
+  expect(root.querySelector('.trade-quantity__value')!.textContent).toBe('3');
+  key('Escape');
+  root.querySelector<HTMLButtonElement>('[data-shop-mode="sell"]')!.click();
+  root.querySelector<HTMLButtonElement>('[data-trade="sell"][data-item="iron_ore"]')!.click();
+  expect(root.querySelector('.trade-quantity')!.getAttribute('aria-label')).toBe('Quantité à vendre');
+  root.querySelector<HTMLButtonElement>('[data-trade-qty="max"]')!.click();
+  const unit = Math.floor(itemById.get('iron_ore')!.price / 2);
+  expect(root.querySelector('.trade-footer [data-trade-step="confirm"]')!.textContent).toContain(`Vendre ×5 · ${5 * unit} or`);
+  root.querySelector<HTMLButtonElement>('.trade-footer [data-trade-step="confirm"]')!.click();
+  root.querySelector<HTMLButtonElement>('[data-trade-confirm]')!.click();
+  expect(state.inventory.materials.iron_ore).toBe(0);
+  expect(state.gold).toBe(10000 + 5 * unit);
+  expect(root.querySelector('.trade-done')!.textContent).toContain('Vendu : 5 × Minerai de fer');
+  view.close(); await closed;
+});
+
+it('filters the shop by type with pressed toggles that keep focus, and changes no truth (playtest 2026-11-11)', async () => {
+  const { state, root, view } = setup(); const before = JSON.stringify(state);
+  const closed = view.open('shop', 'valmir', 'permanent');
+  const chips = [...root.querySelectorAll<HTMLButtonElement>('[data-shop-filter]')];
+  expect(chips.map((chip) => chip.dataset.shopFilter)).toEqual(['all', 'weapons', 'accessories', 'consumables', 'materials']);
+  expect(chips[0]!.getAttribute('aria-pressed')).toBe('true');
+  expect(root.querySelectorAll('.shop-group__title').length).toBe(4);
+  const consumables = root.querySelector<HTMLButtonElement>('[data-shop-filter="consumables"]')!;
+  expect(consumables.getAttribute('aria-label')).toMatch(/^Consommables · \d+ articles$/);
+  consumables.focus(); consumables.click();
+  expect((document.activeElement as HTMLElement).dataset.shopFilter).toBe('consumables');
+  expect(root.querySelector('[data-shop-filter="consumables"]')!.getAttribute('aria-pressed')).toBe('true');
+  const rows = [...root.querySelectorAll<HTMLElement>('.shop-list [data-trade]')];
+  expect(rows.length).toBeGreaterThan(0);
+  expect(rows.every((row) => itemById.get(row.dataset.item!)!.category === 'consumables')).toBe(true);
+  // The filter belongs to each list: selling starts on « Tout ».
+  root.querySelector<HTMLButtonElement>('[data-shop-mode="sell"]')!.click();
+  expect(root.querySelector('[data-shop-filter="all"]')!.getAttribute('aria-pressed')).toBe('true');
+  root.querySelector<HTMLButtonElement>('[data-shop-mode="buy"]')!.click();
+  expect(root.querySelector('[data-shop-filter="consumables"]')!.getAttribute('aria-pressed')).toBe('true');
+  expect(JSON.stringify(state)).toBe(before);
+  view.close(); await closed;
+  // Reopening the register starts unfiltered.
+  const again = view.open('shop', 'valmir', 'permanent');
+  expect(root.querySelector('[data-shop-filter="all"]')!.getAttribute('aria-pressed')).toBe('true');
+  view.close(); await again;
+});
+
+it('splits the forge into what can be forged now and what cannot yet, filtered by result (playtest 2026-11-11)', async () => {
+  const { state, root, view } = setup(); state.gold = 1000; state.inventory.materials.iron_ore = 2;
+  const before = JSON.stringify(state);
+  const closed = view.open('shop', 'valmir', 'permanent');
+  root.querySelector<HTMLButtonElement>('[data-shop-mode="craft"]')!.click();
+  const ready = root.querySelector('.craft-group--ready')!, later = root.querySelector('.craft-group--later')!;
+  expect(ready.querySelector('.shop-group__title')!.textContent).toContain('Forgeable maintenant');
+  expect(later.querySelector('.shop-group__title')!.textContent).toContain('Pas encore forgeable');
+  expect(ready.querySelectorAll('.craft-recipe.is-ready').length).toBe(ready.querySelectorAll('.craft-recipe').length);
+  expect(later.querySelectorAll('.craft-recipe.is-ready').length).toBe(0);
+  const accessories = root.querySelector<HTMLButtonElement>('[data-forge-filter="accessories"]')!;
+  accessories.focus(); accessories.click();
+  expect((document.activeElement as HTMLElement).dataset.forgeFilter).toBe('accessories');
+  const outputs = [...root.querySelectorAll<HTMLElement>('[data-craft]')].map((button) => button.dataset.craft!);
+  expect(outputs.length).toBeGreaterThan(0);
+  expect(outputs.every((id) => id.startsWith('craft_') && !id.includes('greatsword'))).toBe(true);
+  root.querySelector<HTMLButtonElement>('[data-forge-filter="all"]')!.click();
+  const toggle = root.querySelector<HTMLButtonElement>('[data-forge-ready]')!;
+  toggle.focus(); toggle.click();
+  expect(root.querySelector('[data-forge-ready]')!.getAttribute('aria-pressed')).toBe('true');
+  expect((document.activeElement as HTMLElement).dataset.forgeReady).toBe('');
+  expect(root.querySelector('.craft-group--later')).toBeNull();
+  expect(root.querySelectorAll('.craft-recipe').length).toBe(root.querySelectorAll('.craft-recipe.is-ready').length);
+  expect(JSON.stringify(state)).toBe(before);
+  view.close(); await closed;
+});
+
+it('drives the quantity, the filters and the confirmation from a pad through the keyboard path (playtest 2026-11-11)', async () => {
+  const { state, root, view } = setup(); state.gold = 10000; state.shops.valmir!.stock.potion = 5;
+  const bag = state.inventory.consumables.potion ?? 0;
+  // Every control gets a distinct visible box so the pad sees it as reachable.
+  let slot = 0; const boxes = new WeakMap<Element, { left: number; top: number; width: number; height: number }>();
+  const geometry: GamepadGeometry = { rect: (element) => {
+    if (!boxes.has(element)) boxes.set(element, { left: 10, top: 10 + (slot += 50), width: 40, height: 40 });
+    return boxes.get(element)!;
+  } };
+  const closed = view.open('shop', 'valmir', 'permanent');
+  root.querySelector<HTMLButtonElement>('[data-shop-filter="consumables"]')!.focus();
+  performGamepadAction(document, 'confirm', false, geometry);
+  expect(root.querySelector('[data-shop-filter="consumables"]')!.getAttribute('aria-pressed')).toBe('true');
+  root.querySelector<HTMLButtonElement>('[data-trade="buy"][data-item="potion"]')!.focus();
+  performGamepadAction(document, 'confirm', false, geometry);
+  root.querySelector<HTMLButtonElement>('[data-trade-qty="more"]')!.focus();
+  performGamepadAction(document, 'confirm', false, geometry);
+  performGamepadAction(document, 'confirm', false, geometry);
+  expect(root.querySelector('.trade-quantity__value')!.textContent).toBe('3');
+  root.querySelector<HTMLButtonElement>('.trade-footer [data-trade-step="confirm"]')!.focus();
+  performGamepadAction(document, 'confirm', false, geometry);
+  expect((document.activeElement as HTMLElement).dataset.tradeConfirm).toBe('');
+  performGamepadAction(document, 'confirm', false, geometry);
+  expect(state.inventory.consumables.potion).toBe(bag + 3);
+  performGamepadAction(document, 'back', false, geometry);
+  expect(root.querySelector('.trade-modal')).toBeNull();
+  view.close(); await closed;
 });
