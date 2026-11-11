@@ -81,14 +81,57 @@ Tests : `src/combat/UnitFocusController.test.ts` (estompage du déplacement, niv
 
 Captures (dossier ignoré `docs/reports/evidence/playtest-combat-2026-11-11/`, 1366 × 768) : `move-path-*.png` (déplacement, case (3,1) survolée à la souris depuis (1,2) : chemin doré par (2,2) et (3,2), autres unités à 0,62), `target-*.png` (ciblage d’une attaque) et `move-*.png` (essai abandonné à 0,36, gardé pour la comparaison), pour trois cas : sans réduction (`normal`), réglage du jeu (`game-reduced`, `&reduced=1`) et mouvement réduit du système émulé (`os-reduced`, `reducedMotion: 'reduce'`).
 
+## 4. Suite du 2026-11-11 : décisions de l’opérateur
+
+L’opérateur a répondu au rapport : cycle de 4 tours, Furie validée, régénération de 3 PA pour les boss et élites, amendement et construction dans cette session ([décision](../autonomy/BOSS_TEMPO_AND_FURY_OPERATOR_DECISION_2026-11-11.md)).
+
+**OD-2026-11-11-A, cycle de 4 tours, sans amendement** (aucun contrat ne fixe ces valeurs ; vérifié par contracts-guardian).
+- Le cycle est : action légère, attaque lourde, « CHARGE », ultime. La recharge de l’ultime vaut 4 au début du combat, après l’ultime et après un tour sauté (`BOSS_ULTIMATE_COOLDOWN`, `src/combat/combatTempo.ts`).
+- Boss et élites régénèrent 3 PA par tour (`BOSS_ELITE_AP_REGEN`). Avec 2 PA, l’action légère suivie de l’attaque lourde juste après un ultime laissait le boss à 0 PA, donc Essoufflé.
+- Le tutoriel « Boss & Élites » dit 3 PA et décrit le cycle.
+
+| Recharge | Rôle | Réserve en fin de tour |
+| --- | --- | --- |
+| 3 | action légère | 1 PA |
+| 2 | **attaque lourde** (4 PA), favorisée | 1 PA |
+| 1 | **CHARGE**, action légère possible en gardant 3 PA | 3 PA |
+| 0 | **ultime** | tout |
+
+**OD-2026-11-11-B, Furie, amendement 1.21.0.**
+- L’amendement `PRODUCTION-CONTRACTS-BOSS-FURY-1` touche COMBAT_AND_VFX et UI_AND_ACCESSIBILITY, plus l’historique et le manifeste. La relecture de contracts-guardian a donné PASS WITH WARNINGS ; ses précisions sont reprises dans le texte.
+- Commit `470216d1` ; baseline immuable inscrite ensuite dans les documents opérationnels. Porte désormais : `git diff --exit-code 470216d179e2cf6e2840e0c48f4f431a5dbb65d4 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md`.
+- La règle : un boss ou une élite strictement sous la moitié de ses PV maximum, une fois par tour au plus, après la première action offensive qu’il résout dans ce tour, enchaîne une attaque de base gratuite, sans se déplacer, sur une cible à portée.
+  - L’attaque coûte 0 PA, n’entre pas dans l’escalade et se résout normalement (raté, critique, élimination et son +1 PA).
+  - Jamais le tour de l’ultime, ni après un soutien, ni si l’unité est Brisée, Entravée ou Muette.
+- Code : `isInFury`, `furyStrikeAllowed` (`combatTempo.ts`), et `bestFuryAttack` et `furyStrike` dans le moteur. L’IA ne choisit que la cible.
+- Texte : un état dérivé « Furie » (code FUR) sur l’unité et dans sa fiche, et deux lignes de journal (« … entre en Furie ! », « … — Furie : attaque supplémentaire. »). Aucun son, effet ou champ de sauvegarde nouveau.
+
+**Preuve.**
+- `src/combat/combatBossTempo.test.ts`, cycle de 4 tours : ultimes aux tours 4, 8 et 12 ; lourdes aux tours 2, 6 et 10 ; « CHARGE » visible aux tours 3, 7 et 11 avec au moins 3 PA gardés. Pour tous les kits de boss et d’élite, aucun tour fini à 0 PA hors ultime.
+- `src/combat/combatFury.test.ts` couvre :
+  - le seuil de PV ;
+  - une seule attaque par tour ;
+  - les exclusions ;
+  - le coût nul hors escalade ;
+  - la résolution par le chemin normal des actions ;
+  - l’annonce en texte.
+- Trace d’un vrai combat dans le laboratoire QA (`/legacy-combat.html?qa=1&boss=bear_borin`). Borin a été mis à 243 / 540 PV et le Chevalier placé à portée par le script QA ; les héros passent leur tour :
+  - manche 1 : Attaque+, puis Furie ;
+  - manche 2 : Onde de Choc, puis Furie ;
+  - manche 3 (CHARGE) : Attaque+, puis Furie ;
+  - manche 4 : Frappe du Titan, sans Furie ;
+  - manche 5 : Garde (soutien), sans Furie ;
+  - manche 6 : Onde de Choc ;
+  - manche 8 : Frappe du Titan.
+  La ligne « entre en Furie » n’apparaît pas dans cette trace, parce que les PV ont été réglés directement sans dégâts ; le test la couvre.
+
 ## Comment vérifier en jeu
 
 1. **PA à l’élimination.** Un héros à 5 / 5 PA lance une attaque de niveau 3 (3 PA) qui tue : il doit rester à **3 PA**, et sa prochaine attaque de base repart au coût de base.
 2. **Boss.** `/?qa=1` → « QA rencontres » → un boss, par exemple Ancien Ours Borin. Sur une dizaine de manches :
-   - l’attaque lourde arrive le 3ᵉ tour du boss ;
-   - « CHARGE » s’affiche le 4ᵉ ;
-   - l’ultime tombe le 5ᵉ, puis tous les cinq tours.
-   Le boss n’est Essoufflé qu’après son ultime. Un Brisé ne lui fait sauter qu’un tour.
+   - action légère au 1er tour du boss, attaque lourde au 2e, « CHARGE » au 3e, ultime au 4e, puis tous les quatre tours ;
+   - Essoufflé seulement juste après l’ultime, et un Brisé ne fait sauter qu’un tour ;
+   - sous la moitié de ses PV, l’état « Furie » s’affiche et le boss enchaîne une attaque gratuite après sa première action offensive du tour, jamais le tour de son ultime.
 3. **Lisibilité.** Choisis Déplacement : les autres unités passent en retrait sans disparaître, et le chemin vers la case survolée se dessine. Choisis une attaque ou une compétence : seules les cibles valides restent nettes, et celle survolée est pleinement visible. À vérifier aussi avec le réglage « mouvement réduit » du jeu, et sur ton PC tel quel (réduction par le système).
 
 ## Vérifications
@@ -105,9 +148,9 @@ Captures (dossier ignoré `docs/reports/evidence/playtest-combat-2026-11-11/`, 1
 
 | Ligne | Verdict | Preuve |
 | --- | --- | --- |
-| GAME_CONSTITUTION | PASS | Le combat tactique reste seul maître de la résolution ; la présentation n’invente rien. |
-| COMBAT | PASS | Corrections dans le moteur existant ; aucune règle nouvelle construite ; l’attaque double est proposée. |
-| SAVE | PASS | Aucun champ ajouté ; le règlement et le profil de cycle sont transitoires. |
-| UI / ACCESSIBILITY | PASS | États déjà en texte (CHARGE, ULTIME, Brisé, Essoufflé) ; estompage et chemin statiques, valables en mouvement réduit. |
+| GAME_CONSTITUTION | PASS | Inchangée ; le combat tactique reste seul maître de la résolution (Furie comprise) ; la présentation n’invente rien. |
+| COMBAT | PASS | Corrections dans le moteur existant ; la seule règle nouvelle, la Furie, est construite après l’amendement 1.21.0 demandé par l’opérateur (OD-2026-11-11-B), relu par contracts-guardian ; cycle et régénération sans amendement (OD-2026-11-11-A). |
+| SAVE | PASS | Aucun champ ajouté ; le règlement, le profil de cycle et la Furie (déduite des PV) sont transitoires. |
+| UI / ACCESSIBILITY | PASS | États en texte (CHARGE, ULTIME, Brisé, Essoufflé, Furie) ; journal de la Furie ; estompage et chemin statiques, valables en mouvement réduit. |
 | NARRATIVE / CAMPAIGN | N/A | Aucun texte ni canon touché. |
-| REPOSITORY_GOVERNANCE | PASS | Branche `playtest-combat` depuis `origin/dev` ; ni `main` ni `dev` ; état autonome inchangé. |
+| REPOSITORY_GOVERNANCE | PASS | Branche `playtest-combat` depuis `origin/dev` ; ni `main` ni `dev` ; amendement dédié puis commit de baseline séparé ; porte vide sur `470216d1` ; état autonome inchangé (à mettre à jour à l’intégration avec le jeu 1.21.0). |
