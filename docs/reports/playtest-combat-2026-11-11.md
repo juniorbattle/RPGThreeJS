@@ -11,8 +11,8 @@
 | MERGED_IN | NONE |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |
-| PRODUCTION_IMPACT | Le +1 PA d’une élimination est crédité après le coût de l’action. L’IA des boss et élites suit un cycle de cinq tours avec réserve de PA. « Brisé » fait sauter un tour et non plus deux. En choisissant une case, les autres unités restent lisibles (0,62) et le chemin survolé est tracé. |
-| CANONICAL_DOCS_UPDATED | NONE : aucune règle de contrat, aucun texte de canon, aucun champ de sauvegarde. L’état autonome (`docs/autonomy/AUTONOMOUS_WORK_STATE.*`) sera mis à jour à l’intégration, car une autre session travaille en parallèle sur l’échoppe. |
+| PRODUCTION_IMPACT | Le +1 PA d’une élimination est crédité après le coût de l’action. Boss et élites suivent un cycle de 4 tours (action légère, attaque lourde, CHARGE, ultime) avec réserve de PA, régénèrent 3 PA et entrent en Furie sous la moitié de leurs PV (jeu de contrats 1.21.0). « Brisé » fait sauter un tour et non plus deux. En choisissant une case, les autres unités restent lisibles (0,62) et le chemin survolé est tracé. |
+| CANONICAL_DOCS_UPDATED | Amendement 1.21.0 (`PRODUCTION-CONTRACTS-BOSS-FURY-1`, OD-2026-11-11-B) : `docs/contracts/COMBAT_AND_VFX.md`, `UI_AND_ACCESSIBILITY.md`, `README.md`, `contracts.manifest.json`, `docs/autonomy/OPERATOR_DECISIONS.md`, `docs/autonomy/BOSS_TEMPO_AND_FURY_OPERATOR_DECISION_2026-11-11.md` ; puis la baseline `470216d1` dans `AGENTS.md`, les skills, `MULTI_AGENT_PROTOCOL.md`, `RECURRING_RUN_PROMPT.md` et `docs/project/CURRENT_STATUS.md`. Aucun texte de canon, aucun champ de sauvegarde. L’état autonome (`docs/autonomy/AUTONOMOUS_WORK_STATE.*`) sera mis à jour à l’intégration, car une autre session travaille en parallèle sur l’échoppe. |
 | EVIDENCE | Tests unitaires (ci-dessous), trace d’un vrai combat de boss dans le laboratoire QA, captures de la sélection en jeu (`docs/reports/evidence/playtest-combat-2026-11-11/`, dossier ignoré, non promu). |
 
 ## 1. Le PA rendu à l’élimination (défaut, corrigé)
@@ -24,6 +24,8 @@
 Test : `src/combat/combatKillAp.test.ts` (cas exact du test PC, crédit hors action, action non payée, câblage des quatre paiements).
 
 ## 2. Boss et élites inactifs, trop souvent essoufflés ou brisés (corrigé dans les règles existantes)
+
+> **Suite.** Le cycle de 5 tours décrit ci-dessous a été remplacé le même jour par le cycle de 4 tours décidé par l’opérateur (section 4).
 
 **CURRENT FACT, le schéma défini dans le code.** Chaque boss et élite a une recharge d’ultime de 5 tours (`_ultCooldown`). Un avertissement « CHARGE » apparaît quand la recharge vaut ≤ 1 et que l’unité a ≥ 3 PA, puis « ULTIME » à recharge 0 et ≥ 5 PA (`bossIntentPresentation.ts`). Chaque kit a une attaque lourde à 4 PA (Onde de Choc, Gel, Transpercement) et un ultime à 5 PA, qui est la signature du boss. L’unité régénère 2 PA par tour et reprend son souffle (+1 PA) si elle finit son tour avec des PA.
 
@@ -53,7 +55,7 @@ Test : `src/combat/combatKillAp.test.ts` (cas exact du test PC, crédit hors act
 - Trace d’un vrai combat dans le laboratoire QA (`/legacy-combat.html?qa=1&boss=bear_borin`, les héros passent leur tour) : Ancien Ours Borin joue Onde de Choc aux manches 3 et 8 et Frappe du Titan (ultime) aux manches 5 et 10. Il finit chaque autre tour avec 2 à 5 PA. Aucun Essoufflé ni Brisé hors de la fenêtre d’après l’ultime.
 - Limite : aux tours « légers », un boss immobile dont les héros restent hors de portée (attaques de base de 1-2 cases, Frappe lourde au contact) garde ses PA. Il n’a légitimement rien à frapper.
 
-### Attaquer deux fois par tour : en attente de ta décision
+### Attaquer deux fois par tour : proposition (validée ensuite, section 4)
 
 **CURRENT FACT.** Dans les règles actuelles, une unité, boss compris, peut déjà enchaîner plusieurs actions dans un tour tant que ses PA le permettent (deuxième attaque de base à +1 PA d’escalade). La réserve laisse ce cas se produire quand le budget du tour le permet. C’est rare, à 2 PA de régénération par tour.
 
