@@ -179,7 +179,7 @@ describe('facts in the combat menu', () => {
     expect(fn('openSkillMenu')).toContain('facts:describeSkillFacts(sp)');
     expect(fn('openSupportMenu')).toContain("describeSkillFacts(spec)");
     const html = renderCombatSkillRows([{ id: 'w_break_guard', name: 'Brise-Garde', cost: 2, description: 'Frappe.', facts: describeSkillFactsAt(skillById.get('w_break_guard')!, 2), disabled: false, upgradeLevel: 2 }]);
-    expect(html).toContain('<small class="combat-skill__facts">Portée 1 · Dégâts physiques, puissance 12 · Malédiction 3 tours (END −30 %)</small>');
+    expect(html.replace(/\u00a0/g, ' ')).toContain('<small class="combat-skill__facts">Portée 1 · Dégâts physiques, puissance 12 · Malédiction 3 tours (END −30 %)</small>');
     expect(html).toContain('title="Frappe. Portée 1');
   });
 

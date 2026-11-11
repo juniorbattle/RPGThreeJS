@@ -124,15 +124,15 @@ export function resolveSkillSpec(def: SkillDefinition, upgradeLevel = 0): SkillS
 
 /** The game's status names, as the unit's status row shows them, and what each one does (runtime STATUS table). */
 export const STATUS_FACTS: Readonly<Record<string, { label: string; effect: string; skipsTurn?: true }>> = Object.freeze({
-  burn: { label: 'Brûlure', effect: 'perd 6 % de ses PV max + 8 par tour' },
-  poison: { label: 'Poison', effect: 'perd 5 % de ses PV max + 6 par tour' },
-  regen: { label: 'Régénération', effect: 'regagne 8 % de ses PV max + 6 par tour' },
-  slow: { label: 'Ralenti', effect: 'DEX −35 %' },
-  boost: { label: 'Force', effect: 'FOR et MAG +40 %' },
-  weak: { label: 'Affaibli', effect: 'FOR et MAG −25 %' },
-  barrier: { label: 'Barrière', effect: 'END +40 %' },
-  curse: { label: 'Malédiction', effect: 'END −30 %' },
-  staggered: { label: 'Brisé', effect: 'END −60 %, passe son tour', skipsTurn: true },
+  burn: { label: 'Brûlure', effect: 'perd 6 % de ses PV max + 8 par tour' },
+  poison: { label: 'Poison', effect: 'perd 5 % de ses PV max + 6 par tour' },
+  regen: { label: 'Régénération', effect: 'regagne 8 % de ses PV max + 6 par tour' },
+  slow: { label: 'Ralenti', effect: 'DEX −35 %' },
+  boost: { label: 'Force', effect: 'FOR et MAG +40 %' },
+  weak: { label: 'Affaibli', effect: 'FOR et MAG −25 %' },
+  barrier: { label: 'Barrière', effect: 'END +40 %' },
+  curse: { label: 'Malédiction', effect: 'END −30 %' },
+  staggered: { label: 'Brisé', effect: 'END −60 %, passe son tour', skipsTurn: true },
   blind: { label: 'Aveuglement', effect: 'précision −30' },
   root: { label: 'Entravé', effect: 'ne peut plus se déplacer' },
   silence: { label: 'Mutisme', effect: 'compétences bloquées' },
@@ -158,17 +158,19 @@ export function zoneCellCount(radius: number | undefined, shape?: string): numbe
   return count || 1;
 }
 
-const percent = (value: number): string => `${Math.round(value * 100)} %`;
+/** A no-break space keeps a number with its unit (« 30 % », « 2 tours ») on one line of the narrow menus. */
+const NBSP = '\u00a0';
+const percent = (value: number): string => `${Math.round(value * 100)}${NBSP}%`;
 const span = (range: number[] | undefined): string => {
   const [min = 0, max = min] = range ?? [];
   return min === max ? `${min}` : `${min}-${max}`;
 };
-const cases = (count: number): string => `${count} case${count > 1 ? 's' : ''}`;
+const cases = (count: number): string => `${count}${NBSP}case${count > 1 ? 's' : ''}`;
 
 function statusClause(status: string, turns: number | undefined, who?: string): string {
   const facts = STATUS_FACTS[status];
   const n = effectiveStatusTurns(status, turns);
-  const core = `${facts?.label ?? status} ${n} tour${n > 1 ? 's' : ''}${facts ? ` (${facts.effect})` : ''}`;
+  const core = `${facts?.label ?? status} ${n}${NBSP}tour${n > 1 ? 's' : ''}${facts ? ` (${facts.effect})` : ''}`;
   return who ? `${core} : ${who}` : core;
 }
 

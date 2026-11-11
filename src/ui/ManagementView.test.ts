@@ -267,8 +267,8 @@ it('states each open skill in numbers at the hero level, the élan of the basic 
   const before = JSON.stringify(state);
   let closed = view.open();
   const card = [...root.querySelectorAll<HTMLElement>('.skill-card--active')].find(entry => entry.textContent!.includes('Brise-Garde'))!;
-  expect(card.querySelector('.skill-card__facts')!.textContent).toBe('Portée 1 · Dégâts physiques, puissance 12 · Malédiction 3 tours (END −30 %)');
-  expect(card.getAttribute('aria-label')).toContain('Malédiction 3 tours');
+  expect(card.querySelector('.skill-card__facts')!.textContent!.replace(/\u00a0/g, ' ')).toBe('Portée 1 · Dégâts physiques, puissance 12 · Malédiction 3 tours (END −30 %)');
+  expect(card.getAttribute('aria-label')!.replace(/\u00a0/g, ' ')).toContain('Malédiction 3 tours');
   const basic = [...root.querySelectorAll<HTMLElement>('.skill-card--active')].find(entry => entry.textContent!.includes('Attaque de base'))!;
   expect(basic.textContent).toContain('1-3 PA');
   expect(basic.textContent).toContain('Élan : 1, 2 ou 3 PA');
@@ -276,7 +276,7 @@ it('states each open skill in numbers at the hero level, the élan of the basic 
   unit.skillUpgrades.w_break_guard = 1;
   closed = view.open('skills');
   const upgrade = root.querySelector<HTMLButtonElement>('[data-upgrade-skill="w_break_guard"]')!.closest('.skill-upgrade-card')!;
-  const [current, next] = [...upgrade.querySelectorAll('.skill-upgrade-card__body p')].map(p => p.textContent!);
+  const [current, next] = [...upgrade.querySelectorAll('.skill-upgrade-card__body p')].map(p => p.textContent!.replace(/\u00a0/g, ' '));
   expect(current).toContain('Puissance +2.');
   expect(current).toContain('Portée 1 · Dégâts physiques, puissance 12 · Malédiction 2 tours');
   expect(next).toContain('Malédiction prolongée d’un tour.');

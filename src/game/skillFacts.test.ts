@@ -47,7 +47,7 @@ describe('skill facts mirror the runtime spec (skills pass 2026-11-11)', () => {
         if (status[stat] == null) continue;
         const change = Math.round((status[stat] - 1) * 100);
         expect(facts.effect, key).toContain(`${word}`);
-        expect(facts.effect, key).toContain(`${change > 0 ? '+' : '−'}${Math.abs(change)} %`);
+        expect(facts.effect.replace(/\u00a0/g, ' '), key).toContain(`${change > 0 ? '+' : '−'}${Math.abs(change)} %`);
       }
     }
     expect(STATUS_FACTS.root!.label).toBe('Entravé');
@@ -67,7 +67,8 @@ describe('skill facts mirror the runtime spec (skills pass 2026-11-11)', () => {
 });
 
 describe('skill facts say what each skill does', () => {
-  const facts = (id: string, level = 0) => describeSkillFactsAt(skillById.get(id)!, level);
+  // The facts keep numbers and units together with no-break spaces; the expectations read with plain spaces.
+  const facts = (id: string, level = 0) => describeSkillFactsAt(skillById.get(id)!, level).replace(/\u00a0/g, ' ');
 
   it('state range, damage and the status with its turns and effect, at the hero level', () => {
     expect(facts('w_break_guard')).toBe('Portée 1 · Dégâts physiques, puissance 10 · Malédiction 2 tours (END −30 %)');
