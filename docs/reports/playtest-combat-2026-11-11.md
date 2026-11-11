@@ -137,12 +137,12 @@ L’opérateur a répondu au rapport : cycle de 4 tours, Furie validée, régén
 ## Vérifications
 
 - Tests unitaires du combat : tous verts, sauf 5 tests préexistants de `src/combat/vfx/spritesheetPng.test.ts`. Ils lisent `public/assets/vfx/megapack-runtime/`, des PNG commerciaux synchronisés localement et jamais commités (`.gitignore`), absents d’un clone neuf ; ils échouent de même sur `4d8e1d0d`.
-- `npm test` : 3 178 tests passent, 23 sont ignorés, 10 échouent dans 3 fichiers, tous préexistants et environnementaux. Je n’ai touché à aucun de ces fichiers ni à `tools/`.
+- `npm test` (relancé après la Furie) : 3 184 tests passent, 23 sont ignorés, 10 échouent dans 3 fichiers, tous préexistants et environnementaux. Je n’ai touché à aucun de ces fichiers ni à `tools/`.
   - `src/combat/vfx/spritesheetPng.test.ts` (5) : PNG commerciaux locaux, voir ci-dessus.
   - `tools/cinematics/cin4_media.test.mjs` (1) : le test attend un chemin Windows `C:…`.
   - `tools/cinematics/cin6ea3_pilot_e_regate.test.mjs` (4) : médias sous `tmp/`, ignorés et absents du clone.
 - `npx tsc --noEmit` : vert. `npm run build` : vert. `npm run contracts:validate` : 8 contrats, 8 identifiants historiques, zéro vidéo active, archives identiques.
-- Porte : `git diff --exit-code 6c965169c2dc153cafd5a8609d914cf8de723ff3 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md` n’imprime rien.
+- Porte : vide sur `6c965169` avant l’amendement ; vide sur la nouvelle baseline `470216d179e2cf6e2840e0c48f4f431a5dbb65d4` après.
 
 ## Conformité
 
