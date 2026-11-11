@@ -5,14 +5,14 @@
 | `TASK` | `claude-playtest-shop-20261111T0455Z` |
 | `DOMAIN` | Gestion au refuge : `src/game/management.ts` (propriétaire de l'achat et de la vente), `src/ui/ManagementView.ts` et `src/ui/shopFilters.ts` (présentation), `src/styles/app.css` |
 | `BASELINE` | `4d8e1d0d` sur `dev` |
-| `BRANCH` | `playtest-shop` (créée depuis `origin/dev`) |
-| `HEAD` | voir `git log playtest-shop` (commits de cette tâche) |
-| `STATUS` | review |
-| `MERGED_IN` | `NONE` |
+| `BRANCH` | `playtest-shop` (créée depuis `origin/dev`), intégrée dans `dev` par avance rapide sur l’ordre de l’opérateur du 2026-11-11 |
+| `HEAD` | `757e08a3` |
+| `STATUS` | merged |
+| `MERGED_IN` | `dev` par avance rapide jusqu’à `757e08a3` (aucun commit de fusion) |
 | `SUPERSEDES` | `NONE` |
 | `SUPERSEDED_BY` | `NONE` |
 | `PRODUCTION_IMPACT` | La fiche d'achat et la fiche de vente de l'échoppe proposent une quantité (−, +, Max, touches + et −) bornée par le stock, l'or ou le sac, montrent le prix unitaire, le total et l'or après, puis demandent une seule confirmation. L'achat ou la vente de toute la quantité est atomique et passe par le propriétaire (`buyItems`, `sellItems`). L'échoppe filtre par type (armes, accessoires, consommables, matériaux) et groupe par type sous « Tout ». La forge filtre par type de résultat (armes, accessoires), sépare « Forgeable maintenant » de « Pas encore forgeable » et peut masquer ce qui n'est pas encore forgeable. Le réglage de jeu « mouvement réduit » coupe aussi les transitions du registre. Aucun objet, prix, recette ni champ de sauvegarde nouveau. |
-| `CANONICAL_DOCS_UPDATED` | `NONE` : aucune règle de jeu ne change (prix par la réputation, vente à moitié prix du prix de base, stock partagé, OD-2026-11-05-C, OD-2026-11-05-D et OD-2026-11-07-H inchangés) ; l'état vivant sera mis à jour à l'intégration, une autre session travaillant en parallèle sur le combat. |
+| `CANONICAL_DOCS_UPDATED` | `NONE` : aucune règle de jeu ne change (prix par la réputation, vente à moitié prix du prix de base, stock partagé, OD-2026-11-05-C, OD-2026-11-05-D et OD-2026-11-07-H inchangés) ; l'état vivant (`docs/autonomy/AUTONOMOUS_WORK_STATE.md` et `.json`) reçoit une phrase à l'intégration. |
 | `EVIDENCE` | Tests : `src/game/managementQuantity.test.ts` (6), `src/ui/shopFilters.test.ts` (5), `src/ui/ManagementView.test.ts` (5 nouveaux, 18 au total). `npm test` : 3175 réussis, 10 échecs déjà présents sur `dev` sans ce changement (fichiers ignorés `tmp/cinematics/…`, PNG `megapack-runtime` absents du clone, chemin Windows dans `cin4_media`). `npx tsc --noEmit`, `npm run build`, `npm run contracts:validate` et la porte des contrats passent. Navigateur : build de production, sauvegarde V6 amorcée au premier refuge, clavier seul, à 1366×768, 390×844 et 1366×768 avec le réglage de jeu « mouvement réduit » ; résultat `playtest-shop-2026-11-11/browser-result.json`, huit captures et le pilote `playtest-shop-2026-11-11/shop-qa.mjs`. Limite : pas de manette physique ; le chemin manette est couvert par un test qui passe chaque appui par `performGamepadAction`. |
 
 ## Le retour
