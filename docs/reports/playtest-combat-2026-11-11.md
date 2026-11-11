@@ -6,9 +6,9 @@
 | DOMAIN | Combat tactique (résolution et IA), présentation du combat |
 | BASELINE | `4d8e1d0d` sur `dev` (jeu de contrats 1.20.0, baseline immuable `6c965169c2dc153cafd5a8609d914cf8de723ff3`) |
 | BRANCH | `playtest-combat` |
-| HEAD | le commit de ce rapport, sur `playtest-combat` |
-| STATUS | review : en attente du test de l’opérateur et de l’intégration à `dev` |
-| MERGED_IN | NONE |
+| HEAD | le commit d’intégration de ce rapport, sur `dev` et `playtest-combat` |
+| STATUS | merged : intégré à `dev` sur ordre de l’opérateur le 2026-11-11 (fusion de `dev` dans `playtest-combat` pour garder le SHA de la baseline `470216d1`, puis avance rapide de `dev`) |
+| MERGED_IN | `dev` (commit d’intégration de ce rapport) |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |
 | PRODUCTION_IMPACT | Le +1 PA d’une élimination est crédité après le coût de l’action. Boss et élites suivent un cycle de 4 tours (action légère, attaque lourde, CHARGE, ultime) avec réserve de PA, régénèrent 3 PA et entrent en Furie sous la moitié de leurs PV (jeu de contrats 1.21.0). « Brisé » fait sauter un tour et non plus deux. En choisissant une case, les autres unités restent lisibles (0,62) et le chemin survolé est tracé. |
