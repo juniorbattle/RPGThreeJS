@@ -21,6 +21,7 @@ import { getLabAction } from './vfx/CombatVfxLab';
 import { getResolvedCarouselStatusFrame, getStatusIndicatorAsset, getStatusIndicatorEmphasis, getVisibleStatusIndicators, resolveStatusCarousel } from './statusPresentation';
 import { skillById as SKILL_MAP } from '../game/skills';
 import { getSkillPresentation } from './skillPresentation';
+import { describeSkillFacts } from '../game/skillFacts';
 import { getBasicAttackVfxPreset } from './vfx/VfxActionRegistry';
 import { ACTION_PRESENTATION_TIERS, getActionVisualTier, getActionPresentationTuning } from './combatVfxPresentation';
 import { UNIT_MOTION_PRESETS, beginUnitMotion, cancelUnitMotion, createCanonicalUnitMotionBaseline, isUnitMotionCurrent, onceAsync } from './unitMotion';
@@ -36,6 +37,7 @@ import { resolveFxRecipe, withoutGroundMarks } from './fx/fxRecipes';
 import { enemyAttackFxRecipe, hasSkillMoveFx, skillFxRecipe, skillMoveFxRecipe } from './fx/fxSkills';
 import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
 import { isExhausted } from './combatExhaustion';
+import { BOSS_HEAVY_COOLDOWN, bossApReserve, bossTempoProfile, settleActionAp } from './combatTempo';
 import { resolvePixelSheet, pixelSheetVisibleBounds, PIXEL_PX_PER_UNIT } from './pixel/PixelSpriteSheets';
 import { PixelSpriteRig } from './pixel/PixelSpriteMaterial';
 import { combatLargeUnitPresenceScale } from './combatPresencePresentation';
@@ -138,12 +140,13 @@ const G = {
   units:[], tilesMesh:[], grid:[], order:[], turnIdx:0, round:1,
   mode:'idle', active:null, selected:null, pinnedUnit:null, hover:null, hoverUnit:null,
   movedThisTurn:false, actedThisTurn:false, movedBeforeAct:false, skillMovedThisTurn:false, pending:null, busy:false, over:false, inv:{},
-  basicAttacksThisTurn:0, itemsUsedThisTurn:0, itemsUsedTotal:0,
+  basicAttacksThisTurn:0, itemsUsedThisTurn:0, itemsUsedTotal:0, actionSettlement:null,
   rosterDefs:[],selectedDeployId:null,deployPage:0,deployedUnits:[]
 };
 window.G = G;
 const unitFocus=new UnitFocusController({
   dimOpacity:COMBAT_PRESENTATION.units.focusDimOpacity,
+  moveDimOpacity:COMBAT_PRESENTATION.units.focusMoveDimOpacity,
   bossDimFloor:COMBAT_PRESENTATION.units.focusBossFloor,
   eliteDimFloor:COMBAT_PRESENTATION.units.focusEliteFloor,
 });
@@ -661,6 +664,7 @@ function buildTileTex(fillA,fillB,strokeA,strokeB,cornerA,glowA,lw=1.45,cornerLe
 function makeTileTex(){ hlTextures={
   range:buildTileTex('rgba(255,250,240,0.42)','rgba(220,215,200,0.24)','rgba(255,248,232,0.94)','rgba(80,78,68,0.72)','rgba(255,245,220,0.90)','rgba(240,235,210,0.56)',1.9,14),
   move:buildTileTex('rgba(214,246,232,0.46)','rgba(93,178,157,0.26)','rgba(210,255,238,0.97)','rgba(48,116,112,0.74)','rgba(220,255,236,0.92)','rgba(136,235,205,0.66)',2.1,16),
+  path:buildTileTex('rgba(255,246,214,0.66)','rgba(232,196,110,0.44)','rgba(255,248,214,1.0)','rgba(110,84,30,0.92)','rgba(255,244,200,1.0)','rgba(250,214,130,0.90)',2.8,20),
   hover:buildTileTex('rgba(255,250,220,0.58)','rgba(231,215,155,0.38)','rgba(255,248,195,1.0)','rgba(92,83,46,0.95)','rgba(255,252,200,1.0)','rgba(248,228,160,0.94)',3.2,24),
   target:buildTileTex('rgba(255,198,150,0.62)','rgba(200,70,56,0.42)','rgba(255,222,165,1.0)','rgba(110,30,26,0.96)','rgba(255,200,130,1.0)','rgba(255,120,80,0.95)',3.4,26),
   target_ally:buildTileTex('rgba(210,255,220,0.58)','rgba(110,200,130,0.38)','rgba(230,255,238,1.0)','rgba(40,100,60,0.96)','rgba(230,255,232,1.0)','rgba(150,240,170,0.92)',3.2,24),
@@ -669,9 +673,9 @@ function makeTileTex(){ hlTextures={
   invalid:buildTileTex('rgba(160,156,122,0.20)','rgba(94,98,83,0.10)','rgba(186,186,148,0.66)','rgba(63,68,54,0.52)','rgba(176,176,132,0.56)','rgba(130,130,104,0.28)',1.4,0)
 }; hlTex=hlTextures.range; }
 function clearHL(){ for(const m of hlMeshes){ hlGroup.remove(m); m.material.dispose(); } hlMeshes.length=0; }
-function addHL(gx,gz,color,op=0.45,kind='range'){ const c=cellAt(gx,gz); if(!c)return; const boost=kind==='target'||kind==='target_ally'?1.40:(kind==='hover'?1.36:(kind==='move'?1.34:(kind==='range_max'?1.30:(kind==='aoe'?1.22:(kind==='invalid'?1.16:1.26))))),finalOp=Math.min(1,op*boost);
+function addHL(gx,gz,color,op=0.45,kind='range'){ const c=cellAt(gx,gz); if(!c)return; const boost=kind==='target'||kind==='target_ally'?1.40:(kind==='hover'?1.36:(kind==='path'?1.36:(kind==='move'?1.34:(kind==='range_max'?1.30:(kind==='aoe'?1.22:(kind==='invalid'?1.16:1.26)))))),finalOp=Math.min(1,op*boost);
   const m=new THREE.Mesh(hlGeo,new THREE.MeshBasicMaterial({map:hlTextures[kind]||hlTex,color,transparent:true,opacity:finalOp,depthWrite:false,depthTest:false,side:THREE.DoubleSide,blending:THREE.NormalBlending,fog:false,toneMapped:false}));
-  const ro=kind==='hover'?COMBAT_RENDER_LAYERS.TILE_TARGET+1:(kind==='target'||kind==='target_ally'?COMBAT_RENDER_LAYERS.TILE_TARGET:(kind==='aoe'?COMBAT_RENDER_LAYERS.TILE_ACTION+1:(kind==='range_max'?COMBAT_RENDER_LAYERS.TILE_ACTION+.5:COMBAT_RENDER_LAYERS.TILE_ACTION))),yOff=kind==='hover'?0.072:(kind==='target'||kind==='target_ally'?0.070:0.068);
+  const ro=kind==='hover'?COMBAT_RENDER_LAYERS.TILE_TARGET+1:(kind==='target'||kind==='target_ally'?COMBAT_RENDER_LAYERS.TILE_TARGET:(kind==='aoe'||kind==='path'?COMBAT_RENDER_LAYERS.TILE_ACTION+1:(kind==='range_max'?COMBAT_RENDER_LAYERS.TILE_ACTION+.5:COMBAT_RENDER_LAYERS.TILE_ACTION))),yOff=kind==='hover'?0.072:(kind==='target'||kind==='target_ally'?0.070:0.068);
   m.rotation.x=-Math.PI/2; m.position.set(wX(gx),c.topY+yOff,wZ(gz)); m.renderOrder=ro; m.userData.baseOp=finalOp; m.userData.pulse=kind==='target'||kind==='target_ally'||kind==='hover'?0.018:(kind==='aoe'?0.028:(kind==='range_max'?0.016:(kind==='invalid'?0.006:0.012))); hlGroup.add(m); hlMeshes.push(m); return m; }
 function addRingHL(gx,gz,color,op=0.62,ringScale=1,cgx=null,cgz=null){ const c=cellAt(gx,gz); if(!c)return;
   const px=cgx!=null?wX(cgx):wX(gx), pz=cgz!=null?wZ(cgz):wZ(gz);
@@ -1472,7 +1476,7 @@ function castTelegraph(u,spec,skipBurst){ const c=u.cell(); if(!c)return; const 
   tween(m.scale,{x:1.7,y:1.7,z:1.7},0.5,easeOutCubic);
   tween(m.material,{opacity:.9},0.12,easeOutCubic,()=>tween(m.material,{opacity:0},0.36,easeOutCubic,()=>{ scene.remove(m); m.geometry.dispose(); m.material.dispose(); }));
   if(!skipBurst) burst(new THREE.Vector3(wX(ux),c.topY+0.5,wZ(uz)),col); }
-function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; const dexBonus=Math.max(0,(effDEX(att)-effDEX(tgt))/2); const exhaustBonus=isBreakOpen(tgt)?20:0; return cl(base+dexBonus+exhaustBonus,1,90)/100; }
+function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; const backBonus=spec&&spec.backCritBonus&&orientMult(att,tgt).lab==='DOS'?spec.backCritBonus*100:0; const dexBonus=Math.max(0,(effDEX(att)-effDEX(tgt))/2); const exhaustBonus=isBreakOpen(tgt)?20:0; return cl(base+backBonus+dexBonus+exhaustBonus,1,90)/100; }
 function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; if(spec.weaponType==='longbow'){ const dist=Math.abs((att.size>1?bossCenterGX(att):att.gx)-tgt.gx)+Math.abs((att.size>1?bossCenterGZ(att):att.gz)-tgt.gz); if(dist>=spec.range[1])acc+=5; } return tacticalRnd()*100<cl(acc,5,95); }
 
 // A zone blow lands as a volley: the next target is struck a beat after the last, not after its whole reaction. A knock-out keeps its own beat.
@@ -1489,16 +1493,34 @@ async function applyDamage(u,dmg,src,opts={}){
   screenShake(willKnockOut?0.26:0.16,willKnockOut?0.2:0.16,willKnockOut);
   refreshPanel(u);
   if(willKnockOut){
-    if(src&&src.alive){
-      src.ap=Math.min(src.maxap,src.ap+1);
-      if(src===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
-      floatText(src,'+1 PA','#7fd0ff',true); refreshPanel(src);
-    }
+    if(src&&src.alive){ creditKnockOutAp(src); floatText(src,'+1 PA','#7fd0ff',true); refreshPanel(src); }
     checkEnd();
   }
 }
+// +1 PA per knock-out. During its own action the striker is credited after the action's cost is paid, so a kill never
+// loses its AP to the cap (5/5 PA, 3 PA skill that kills: 3 PA left, not 2), and the kill's reset of the attack and
+// item surcharges survives the action's own count.
+function creditKnockOutAp(src){
+  const pending=G.actionSettlement;
+  if(pending&&pending.unit===src){ pending.knockOuts++; return; }
+  src.ap=Math.min(src.maxap,src.ap+1);
+  if(src===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
+}
+function payActionCost(u,spec){
+  const pending=G.actionSettlement&&G.actionSettlement.unit===u?G.actionSettlement:null,knockOuts=pending?pending.knockOuts:0;
+  u.ap=settleActionAp({ap:u.ap,maxap:u.maxap,cost:spec.ap>0?spec.ap:0,knockOuts});
+  if(pending)G.actionSettlement=null;
+  return knockOuts;
+}
+function settleUnpaidKnockOuts(u){
+  const pending=G.actionSettlement; G.actionSettlement=null;
+  if(!pending||pending.unit!==u||!pending.knockOuts)return;
+  u.ap=settleActionAp({ap:u.ap,maxap:u.maxap,cost:0,knockOuts:pending.knockOuts});
+  if(u===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
+  refreshPanel(u);
+}
 function applyHeal(u,amt){ if(!u.alive)return; stageRevealUnit(u); const hpBefore=u.hp; u.hp=Math.min(u.maxhp,u.hp+amt); if(u.hp>hpBefore)combatCue('recover','heal',u.id); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
-function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; stageRevealUnit(t); const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1?2:requestedTurns; const before=t.statuses[st]||0; t.statuses[st]=Math.max(before,effectiveTurns); if(t.statuses[st]>before)combatCue(isNegative(st)?'status-negative':'support','status-'+st,t.id); if(!G.stage)floatText(t,(d.name||st).toUpperCase(),d.col||'#fff',false,0.5); refreshPanel(t); }
+function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; stageRevealUnit(t); const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1&&!d.skip?2:requestedTurns; const before=t.statuses[st]||0; t.statuses[st]=Math.max(before,effectiveTurns); if(t.statuses[st]>before)combatCue(isNegative(st)?'status-negative':'support','status-'+st,t.id); if(!G.stage)floatText(t,(d.name||st).toUpperCase(),d.col||'#fff',false,0.5); refreshPanel(t); }
 async function knockOut(u,src){
   const baseline=motionBaseline(u),away=src?motionDirection(u,{source:src,reaction:true},true):{x:0,z:0},state=getUnitVisualState(u.team,false,true),sign=spriteScaleSign(u.spr),scale=largeUnitSpriteScale(u),outlineScale=scale*1.1;
   killSpriteMotion(u); const epoch=beginUnitMotion(u); u.alive=false; u.downed=true; combatCue('knockout','ko',u.id); clearBossIntentPresentation(u);
@@ -1551,6 +1573,7 @@ function applySkillUpgrade(u,skillId,spec){
       if(up.healMultiplier&&out.effects)for(const effect of out.effects)if(effect.kind==='heal'){if(typeof effect.power==='number')effect.power*=1+up.healMultiplier;if(typeof effect.healPercent==='number')effect.healPercent+=up.healMultiplier;}
       if(up.revivePercent!=null&&out.revive) out.power=up.revivePercent;
       if(up.critBonus) out.crit=(out.crit||0)+up.critBonus;
+      if(up.backCritBonus) out.backCritBonus=(out.backCritBonus||0)+up.backCritBonus;
       if(up.hpCostReduction&&out.hpCostPercent) out.hpCostPercent=Math.max(0,out.hpCostPercent-up.hpCostReduction);
       if(up.hpCostReduction&&out.effects)for(const effect of out.effects)if(effect.kind==='hp_cost'&&effect.hpCostPercent)effect.hpCostPercent=Math.max(0,effect.hpCostPercent-up.hpCostReduction);
       if(up.lifestealBonus&&out.lifestealPercent) out.lifestealPercent+=up.lifestealBonus;
@@ -1641,10 +1664,14 @@ function lineCells(u,cx,cz,radius){ const d=dirTo(u,cx,cz); const R=Math.max(1,M
 function coneCells(u,cx,cz,radius){ const d=dirTo(u,cx,cz); const R=radius+0.001; const out=[]; for(let gx=Math.ceil(cx-radius);gx<=Math.floor(cx+radius);gx++)for(let gz=Math.ceil(cz-radius);gz<=Math.floor(cz+radius);gz++){ if(!inBounds(gx,gz)||eud(gx,gz,cx,cz)>R)continue; const vx=gx-cx,vz=gz-cz; if(vx===0&&vz===0){out.push([gx,gz]);continue;} if((vx*d.dx+vz*d.dz)/Math.hypot(vx,vz)>=0.34)out.push([gx,gz]); } return out.length?out:[[cx,cz]]; }
 function aoeCells(u,spec,cx,cz){ const sh=spec.shape||'circle'; if(sh==='line')return lineCells(u,cx,cz,spec.radius); if(sh==='cone')return coneCells(u,cx,cz,spec.radius); return aoeTiles(cx,cz,spec.radius); }
 function canAffectUnit(caster,spec,target){ if(!target)return false; if(spec.offensive&&target===caster&&!spec.allowSelfDamage)return false; return true; }
+// Operator decision 2026-11-11 (D1): a hero's offensive zone spares the hero's allies, unless the skill says it can hit
+// them (allowSelfDamage). Enemy zones and items keep striking every unit of the zone.
+function zoneSparesAllies(caster,spec){ return Boolean(caster&&caster.team==='player'&&spec.offensive&&!spec.allowSelfDamage&&!spec.item&&((spec.radius||0)>=1||spec.shape)); }
 function affectedUnits(u,spec,cx,cz){
   if(spec.revive||spec.targetMode==='ally'||spec.targetMode==='enemy')return selectedTargetsForAction(u,spec,cx,cz);
   const targets=areaUnits(u,spec,cx,cz);
   if(spec.heal||spec.support)return targets.filter(t=>t.team===u.team);
+  if(zoneSparesAllies(u,spec)&&!(spec.effects||[]).some(effect=>effect.target==='allies'||effect.target==='all'))return targets.filter(t=>t.team!==u.team);
   return targets;
 }
 function effectTargets(u,spec,cx,cz,effect,context={}){
@@ -1659,10 +1686,11 @@ function effectTargets(u,spec,cx,cz,effect,context={}){
   if(t==='all')return all;
   return all;
 }
-function previewAccuracy(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return 100; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; return Math.round(cl(acc,5,95)); }
-function previewPower(att,tgt,spec){ if(spec.heal)return Math.max(1,spec.healPercent!=null?Math.round(tgt.maxhp*spec.healPercent):(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(att)*spec.power))+Math.floor(effCHA(att)/4)); if(spec.apRestore)return spec.apRestore; if(spec.flatDmg)return Math.max(1,Math.round(spec.flatDmg)); if((spec.power||0)<=0)return 0; const K=12,isMag=spec.type==='mag'; const atk=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); if(spec.penetration) def=Math.max(1,def*(1-spec.penetration)); let d=Math.sqrt(spec.power*K*atk/def)*2*orientMult(att,tgt).m*dmgTakenMul(tgt); if(spec.elanMul) d*=spec.elanMul; if(spec.damageMultiplier)d*=spec.damageMultiplier; if(spec.bonusVsSize&&tgt.size>1)d*=spec.bonusVsSize; if(spec.bonusVsAfflicted&&Object.keys(tgt.statuses).some(s=>isNegative(s)))d*=spec.bonusVsAfflicted; return Math.max(1,Math.round(d)); }
+function previewAccuracy(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return 100; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; if(spec.weaponType==='longbow'&&targetDistance(att,{},tgt.gx,tgt.gz)>=spec.range[1])acc+=5; return Math.round(cl(acc,5,95)); }
+function isCrosierAllyHeal(att,tgt,spec){ return Boolean(spec.key==='attack'&&spec.weaponType==='crosier'&&tgt&&tgt.team===att.team); }
+function previewPower(att,tgt,spec){ if(isCrosierAllyHeal(att,tgt,spec))return Math.max(1,Math.round(effMAG(att)*0.5)); const healEffect=spec.heal&&spec.effects?spec.effects.find(effect=>effect.kind==='heal'):null; if(healEffect)return Math.max(1,healEffect.healPercent!=null?Math.round(tgt.maxhp*healEffect.healPercent):(healEffect.flatHeal!=null?healEffect.flatHeal:Math.round(effMAG(att)*(healEffect.power||spec.power||1)))+Math.floor(effCHA(att)/4)); if(spec.heal)return Math.max(1,spec.healPercent!=null?Math.round(tgt.maxhp*spec.healPercent):(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(att)*spec.power))+Math.floor(effCHA(att)/4)); if(spec.apRestore)return spec.apRestore; if(spec.flatDmg)return Math.max(1,Math.round(spec.flatDmg)); if((spec.power||0)<=0)return 0; const K=12,isMag=spec.weaponType==='rapier'?targetDistance(att,{},tgt.gx,tgt.gz)>=2:spec.type==='mag'; const atk=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); if(spec.penetration) def=Math.max(1,def*(1-spec.penetration)); const orient=orientMult(att,tgt); let d=Math.sqrt(spec.power*K*atk/def)*2*(spec.weaponType==='dagger'&&orient.lab==='DOS'?1.45:orient.m)*dmgTakenMul(tgt); if(spec.elanMul) d*=spec.elanMul; if(spec.damageMultiplier)d*=spec.damageMultiplier; if(spec.bonusVsSize&&tgt.size>1)d*=spec.bonusVsSize; if(spec.bonusVsAfflicted&&Object.keys(tgt.statuses).some(s=>isNegative(s)))d*=spec.bonusVsAfflicted; return Math.max(1,Math.round(d)); }
 function hideActionPreview(){ dom.actionPreview.classList.add('hidden'); dom.actionPreview.innerHTML=''; }
-function showActionPreview(att,spec,targets,cx,cz){ const primary=targets[0]||null; const helpful=Boolean(spec.heal||spec.support||spec.revive||spec.apRestore||spec.cure); const alliesHit=targets.filter(t=>t.team===att.team&&!helpful).length; const estimate=primary?previewPower(att,primary,spec):0; const accuracy=primary?previewAccuracy(att,primary,spec):null; const valueLabel=spec.heal?'Soin':spec.apRestore?'AP':'Dégâts'; const targetLabel=primary?primary.name:(spec.type==='move'?('Case '+cx+','+cz):(helpful?'Ciblez un allié':'Ciblez un ennemi'));
+function showActionPreview(att,spec,targets,cx,cz){ const primary=targets[0]||null; const crosierHeal=isCrosierAllyHeal(att,primary,spec); const helpful=Boolean(spec.heal||spec.support||spec.revive||spec.apRestore||spec.cure||crosierHeal); const alliesHit=targets.filter(t=>t.team===att.team&&!helpful).filter(()=>!(spec.effects&&spec.effects.length)||spec.effects.some(effect=>effect.kind==='damage'&&effect.target==='all')).length; const estimate=primary?previewPower(att,primary,spec):0; const accuracy=primary?previewAccuracy(att,primary,spec):null; const valueLabel=spec.heal||crosierHeal?'Soin':spec.apRestore?'AP':'Dégâts'; const targetLabel=primary?primary.name:(spec.type==='move'?('Case '+cx+','+cz):(helpful?'Ciblez un allié':'Ciblez un ennemi'));
   dom.actionPreview.innerHTML=renderCombatActionPreview({attacker:att.name,action:spec.name,target:targetLabel,targetCount:targets.length,helpful,cost:spec.ap,accuracy,estimate,valueLabel,alliesHit});
   dom.actionPreview.classList.toggle('is-helpful',helpful); dom.actionPreview.classList.remove('hidden'); }
 
@@ -1910,7 +1938,7 @@ async function doMove(u,spec,cx,cz){ setFacing(u,cx,cz); const c=cellAt(cx,cz); 
       if(spec.key!=='ar_explosive_retreat')screenShake(0.32,0.22); }
   }
   else { const ownFx=hasSkillMoveFx(spec.key); if(ownFx)playMoveFx(u,u.grp.position.clone(),spec,'depart'); placeUnit(u,cx,cz); await tweenP(u.grp.position,{x:dest.x,y:dest.y,z:dest.z},motion.dash||0.2,easeOutCubic); screenShake(0.5,0.3); if(ownFx)playMoveFx(u,head,spec,'arrive'); else if(!playActionVfxAt(getActionVfxPreset(spec,u),u,head,spec)){ screenFlash('#fff0b0',0.16); vfx('hit',head); }
-    if(spec.impact){ const hits=aliveUnits().filter(t=>t.team!==u.team&&(Math.abs(t.gx-cx)+Math.abs(t.gz-cz)===1)); for(const t of hits){ const impactSpec={type:'phys',power:spec.power||8}; const crit=tacticalRnd()<critChance(u,t,impactSpec); let {dmg}=computeDamage(u,t,impactSpec); if(crit)dmg=Math.round(dmg*1.5); floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':'#ffffff',crit); if(crit){ if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); } logMsg('Coup critique !'); } await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.impact.status)applyStatus(t,spec.impact.status,spec.impact.statusTurns); await wait(0.06); } } }
+    if(spec.impact){ const hits=aliveUnits().filter(t=>t.team!==u.team&&(Math.abs(t.gx-cx)+Math.abs(t.gz-cz)===1)); for(const t of hits){ const impactSpec={type:'phys',power:spec.power||8}; const crit=tacticalRnd()<critChance(u,t,impactSpec); let {dmg}=computeDamage(u,t,impactSpec); if(crit)dmg=Math.round(dmg*1.5); if(spec.damageMultiplier)dmg=Math.round(dmg*spec.damageMultiplier); floatText(t,(crit?'✦ ':'')+'-'+dmg,crit?'#ffd700':'#ffffff',crit); if(crit){ if(!playFeedbackVfx('critical_hit',u,t)){ screenShake(0.5,0.3); screenFlash('#fff3b0',0.18); vfx('crit',t.grp.position.clone().add(new THREE.Vector3(0,1,0))); } logMsg('Coup critique !'); } await applyDamage(t,dmg,u); if(G.over)break; if(t.alive&&crit&&isBreakOpen(t)){ applyStatus(t,'staggered',1); logMsg('Coup critique sur cible essoufflée — Brisé !'); } if(t.alive&&spec.impact.status)applyStatus(t,spec.impact.status,spec.impact.statusTurns); await wait(0.06); } } }
   await wait(0.12); }
 function unitCenter(u){ return {gx:u.size>1?bossCenterGX(u):u.gx,gz:u.size>1?bossCenterGZ(u):u.gz}; }
 function isFreeSkillTile(gx,gz){ const c=cellAt(gx,gz); return !!(c&&c.walkable&&!c.occupant); }
@@ -1973,7 +2001,7 @@ async function performSkillMovement(u,spec,cx,cz,context={}){
     return true;
   }
   if(spec.mode==='retreat'){
-    const threat=selected||aliveUnits().filter(target=>target.team!==u.team).sort((a,b)=>{ const ac=unitCenter(a),bc=unitCenter(b); return Math.abs(ac.gx-u.gx)+Math.abs(ac.gz-u.gz)-Math.abs(bc.gx-u.gx)-Math.abs(bc.gz-u.gz); })[0]||null;
+    const threat=(selected&&selected!==u?selected:null)||aliveUnits().filter(target=>target.team!==u.team).sort((a,b)=>{ const ac=unitCenter(a),bc=unitCenter(b); return Math.abs(ac.gx-u.gx)+Math.abs(ac.gz-u.gz)-Math.abs(bc.gx-u.gx)-Math.abs(bc.gz-u.gz); })[0]||null;
     const dest=findRetreatDestination(u,threat,1);
     if(!dest){ toast('Aucun repli possible'); return false; }
     await doMove(u,{...spec,type:'move',mode:'leap',dest:true,impact:null,ap:0},dest.gx,dest.gz);
@@ -1998,23 +2026,23 @@ function applyAdditionalStatus(u,spec,cx,cz,context={}){
   }
   for(const target of [...new Set(targets)])if(target&&target.alive){ applyStatus(target,spec.additionalStatus,spec.additionalStatusTurns||1); if(spec.additionalStatus==='taunt')target._taunter=u; }
 }
-async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())return; restoreUnitFocus(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
+async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())return; restoreUnitFocus(); hideActionPreview(); G.busy=true; closeMenus(); clearHL(); G.actionSettlement={unit:u,knockOuts:0};
   const context={origin:{gx:u.gx,gz:u.gz},selectedTargets:selectedTargetsForAction(u,spec,cx,cz)};
   const emptyHybridTarget=allowsEmptyTileHybridTarget(spec)&&context.selectedTargets.length===0;
   if(emptyHybridTarget){
     const moveSpec=spec.mode==='strike'?{...spec,type:'move',mode:'teleport',dest:true,impact:null,ap:0}:{...spec,type:'move',mode:'leap',dest:true,impact:null,ap:0};
     await doMove(u,moveSpec,cx,cz);
-    if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;
+    payActionCost(u,spec); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;
     restoreUnitVisualBaseline(u); refreshPanel(u); await restoreCam(); G.busy=false; checkEnd(); return;
   }
   const isStandaloneMove=spec.type==='move'&&(!spec.effects||spec.effects.length===0)&&!['swap','strike','retreat'].includes(spec.mode);
-  if(isStandaloneMove){ await doMove(u,spec,cx,cz); applyAdditionalStatus(u,spec,cx,cz,context); if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz; refreshPanel(u); await restoreCam(); G.busy=false; checkEnd(); return; }
+  if(isStandaloneMove){ await doMove(u,spec,cx,cz); applyAdditionalStatus(u,spec,cx,cz,context); payActionCost(u,spec); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz; refreshPanel(u); await restoreCam(); G.busy=false; checkEnd(); return; }
   const pureSwapAction=isPureSwapAction(spec);
   if(pureSwapAction){
     const moved=await performSkillMovement(u,spec,cx,cz,context); if(!moved){ await restoreCam(); G.busy=false; return; }
     G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;
     applyAdditionalStatus(u,spec,cx,cz,context);
-    if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
+    payActionCost(u,spec);
     restoreUnitVisualBaseline(u); for(const t of context.selectedTargets)restoreUnitVisualBaseline(t);
     refreshPanel(u); await restoreCam(); G.busy=false; checkEnd(); return;
   }
@@ -2110,8 +2138,9 @@ async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())r
   if(spec.selfHealPercent&&u.alive){ const healAmt=Math.round(u.maxhp*spec.selfHealPercent); if(healAmt>0)applyHeal(u,healAmt); }
   if(spec.dispelAllies){ const allies=G.units.filter(t=>t.alive&&t.team===u.team); for(const t of allies){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } if(n&&!G.stage)floatText(t,'PURIFIÉ','#7ed957',true); refreshPanel(t); } }
   if(spec.stealBuffs){ for(const t of targets){ if(t.alive&&t.team!==u.team){ for(const s in t.statuses){ if(!isNegative(s)){ u.statuses[s]=t.statuses[s]; delete t.statuses[s]; } } refreshPanel(t); } } refreshPanel(u); }
-  if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
+  const knockOutsThisAction=payActionCost(u,spec);
   if(spec.key==='attack'){ G.basicAttacksThisTurn++; } if(spec.item){ G.itemsUsedThisTurn++; G.itemsUsedTotal++; } if(spec.clanSupportId)G.supportsUsed.add(spec.clanSupportId);
+  if(knockOutsThisAction>0&&u===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
   if(G.movedThisTurn)G.movedBeforeAct=true; refreshPanel(u);
   await presentActionExit(); G.busy=false; checkEnd();
 }
@@ -2120,6 +2149,7 @@ async function executeAction(u,spec,cx,cz){
   combatAudio.level('action');
   try { await executeActionCore(u,spec,cx,cz); }
   finally {
+    settleUnpaidKnockOuts(u);
     try { if(G.spotlight)await presentActionExit(); else restoreUnitFocus(); }
     finally { combatAudio.level('reflection'); soundAction=null; if(u&&u.alive)restoreUnitVisualBaseline(u); G.busy=false; }
   }
@@ -2130,7 +2160,23 @@ function skillHasDamage(spec){ if(spec.offensive&&(spec.power||0)>0)return true;
 function skillHasSupport(spec){ if(spec.heal||spec.support||spec.cure||spec.apRestore)return true; if(spec.effects&&spec.effects.some(e=>e.kind==='heal'||e.kind==='status'||e.kind==='dispel'||e.kind==='ap_restore'))return true; return false; }
 function simAt(u,st){ return Object.assign(Object.create(Object.getPrototypeOf(u)),u,{gx:st.gx,gz:st.gz}); }
 function nearestDist(st,arr){ let m=1e9; for(const a of arr){ const d=Math.abs(st.gx-a.gx)+Math.abs(st.gz-a.gz); if(d<m)m=d; } return m; }
-function bestOffense(u,stands,taunter){ const specs=[]; const isBE=!!(u.boss||u.elite),saving=isBE&&u._ultCooldown===0&&u.ap<5,forceUlt=isBE&&u._ultCooldown===0&&u.ap>=5,onCD=isBE&&u._ultCooldown>0; (u.weapons||[]).forEach((w,i)=>{ for(let ch=0;ch<3;ch++){ const s=getSpec(u,'attack',i,ch); if(s.ap<=u.ap&&!(saving&&s.ap>=4)&&!(forceUlt&&s.ap<5)&&!(onCD&&s.ap>=5))specs.push(s); } }); specs.push(...u.skills.filter(s=>{ const def=SKILLS[s]; if(!def||!(def.offensive||(def.effects&&def.effects.some(e=>e.kind==='damage')))||def.ap>u.ap)return false; if(saving&&def.ap>=4)return false; if(forceUlt&&def.ap<5)return false; if(onCD&&def.ap>=5)return false; return true; }).map(s=>getSpec(u,s))); let best=null;
+// Boss and elite tempo. Their ultimate cooldown (5 turns) drives one cycle that escalates: light actions, the heavy
+// skill two turns before the ultimate, a held charge (the CHARGE telegraph), then the ultimate as soon as the cooldown
+// reaches 0. The AI keeps an AP reserve for the next step instead of spending everything, so it does not end its turns
+// on 0 AP (Essoufflé, open to a breaking critical) and still reaches its ultimate. Rules mirrored from beginTurn
+// (boss and elite regen) and endTurn (Souffle +1 PA when a turn ends with AP left).
+const BOSS_TEMPO_RULES=Object.freeze({regen:2,breath:1,chargeHold:3});
+function bossTempoOf(u){
+  if(!(u.boss||u.elite))return null;
+  if(!u._tempoProfile)u._tempoProfile=bossTempoProfile(u.skills.map(id=>SKILLS[id]).filter(def=>def&&(def.offensive||(def.effects&&def.effects.some(e=>e.kind==='damage')))).map(def=>def.ap));
+  return u._tempoProfile;
+}
+function bossSpendableAp(u){
+  const profile=bossTempoOf(u); if(!profile)return u.ap;
+  if(profile.ultimateCost!==null&&u._ultCooldown===0&&u.ap>=profile.ultimateCost)return u.ap;
+  return Math.max(0,u.ap-bossApReserve(u._ultCooldown,profile,{maxap:u.maxap,...BOSS_TEMPO_RULES}));
+}
+function bestOffense(u,stands,taunter){ const specs=[]; const isBE=!!(u.boss||u.elite),forceUlt=isBE&&u._ultCooldown===0&&u.ap>=5,onCD=isBE&&u._ultCooldown>0,budget=isBE?bossSpendableAp(u):u.ap,tempo=isBE?bossTempoOf(u):null,heavyTurn=Boolean(tempo&&tempo.heavyCost!==null&&u._ultCooldown===BOSS_HEAVY_COOLDOWN); (u.weapons||[]).forEach((w,i)=>{ for(let ch=0;ch<3;ch++){ const s=getSpec(u,'attack',i,ch); if(s.ap<=budget&&!(forceUlt&&s.ap<5)&&!(onCD&&s.ap>=5))specs.push(s); } }); specs.push(...u.skills.filter(s=>{ const def=SKILLS[s]; if(!def||!(def.offensive||(def.effects&&def.effects.some(e=>e.kind==='damage')))||def.ap>budget)return false; if(forceUlt&&def.ap<5)return false; if(onCD&&def.ap>=5)return false; return true; }).map(s=>getSpec(u,s))); let best=null;
   for(const st of stands){ const sim=simAt(u,st);
     for(const spec of specs){ for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz);
       const en=aff.filter(t=>t.team!==u.team), al=aff.filter(t=>t.team===u.team&&t!==u);
@@ -2140,9 +2186,10 @@ function bestOffense(u,stands,taunter){ const specs=[]; const isBE=!!(u.boss||u.
       if(taunter&&en.includes(taunter))score+=50;
       if(en.length>1)score+=8*en.length;
       if(spec.status&&en.length>0){ const newT=en.filter(t=>!hasS(t,spec.status)); const sv={curse:15,weak:15,blind:12,root:10,burn:8,poison:8,slow:8}[spec.status]||5; score+=sv*newT.length; }
+      if(heavyTurn&&spec.ap===tempo.heavyCost&&spec.key!=='attack')score+=12;
       if(!best||score>best.score) best={score,st,spec,cx:c.gx,cz:c.gz}; } } }
   return best; }
-function bestSupport(u,stands){ const supSpecs=u.skills.map(s=>getSpec(u,s)).filter(s=>skillHasSupport(s)&&s.ap<=u.ap); if(!supSpecs.length)return null;
+function bestSupport(u,stands){ const budget=(u.boss||u.elite)?bossSpendableAp(u):u.ap; const supSpecs=u.skills.map(s=>getSpec(u,s)).filter(s=>skillHasSupport(s)&&s.ap<=budget); if(!supSpecs.length)return null;
   const allies=aliveUnits(u.team).filter(a=>a!==u); const wounded=[u,...allies].filter(a=>a.alive&&a.hp<a.maxhp*0.75);
   let best=null;
   for(const spec of supSpecs){ for(const st of stands){ const sim=simAt(u,st);
@@ -2212,7 +2259,7 @@ async function aiTurn(u){
     let pick=null;
     const isBE=!!(u.boss||u.elite),forceUlt=isBE&&u._ultCooldown===0&&u.ap>=5;
     const utilPhase=(isBE&&!forceUlt&&!u._usedUtility&&u.ap>=2)||(prof==='cautious'&&!u._usedUtility&&u.ap>=2);
-    if(forceUlt&&actBest&&actBest.score>0){ pick={type:'offense',best:actBest}; }
+    if(forceUlt){ pick=actBest&&actBest.score>0?{type:'offense',best:actBest}:null; } // a ready ultimate is held, never traded for a lesser action
     else if(utilPhase&&supBest&&supBest.score>10&&tacticalRnd()<(isBE?0.4:0.25)){ pick={type:'support',best:supBest}; }
     else if(prof==='healer'&&supBest&&supBest.score>5){ pick={type:'support',best:supBest}; }
     else if(u.hp<u.maxhp*0.3&&itmBest&&itmBest.score>5){ pick={type:'item',best:itmBest}; }
@@ -2226,7 +2273,6 @@ async function aiTurn(u){
     if(pick.type==='support')u._usedUtility=true;
     await executeAction(u,spec,pick.best.cx,pick.best.cz); await wait(0.2);
     if(spec.ap>=5&&(u.boss||u.elite)){u._ultCooldown=5;clearBossIntentPresentation(u);}
-    if((u.boss||u.elite)&&u._ultCooldown===0&&u.ap<5)break;
   }
   endTurn();
 }
@@ -2305,8 +2351,16 @@ function pickCell(ev){ ndc.x=(ev.clientX/innerWidth)*2-1; ndc.y=-(ev.clientY/inn
   const hits=ray.intersectObjects(G.tilesMesh,false); if(!hits.length)return null; const m=hits[0].object; return cellAt(m.userData.gx,m.userData.gz); }
 function pickUnit(ev){ const c=pickCell(ev); return (c&&c.occupant&&c.occupant.alive)?c.occupant:null; }
 
+// Move preview (presentation only): the hovered reachable cell shows the exact path the move will take, from the same
+// reach map and buildPath as moveAlong, so the angle of arrival reads before committing. Nothing is resolved here.
+function previewMovePath(c){
+  const key=c?cellKey(c.gx,c.gz):'none'; if(G._movePreviewKey===key)return; G._movePreviewKey=key;
+  drawReach(); if(!c||!G.reach||!G.active||hoverState(c)!=='move')return;
+  const path=buildPath(G.reach.prev,G.active,c.gx,c.gz);
+  path.forEach(([gx,gz],index)=>{ const last=index===path.length-1; addHL(gx,gz,last?0xfff1c2:0xffdf8a,COMBAT_PRESENTATION.arena.moveTileOpacity,last?'hover':'path'); });
+}
 function drawReach(){ clearHL(); const keys=new Set(G.reach.list.map(t=>cellKey(t.gx,t.gz))); addInvalidTiles(keys,true); for(const t of G.reach.list){ if(t.gx===G.active.gx&&t.gz===G.active.gz)continue; addHL(t.gx,t.gz,CFG.COL.move,COMBAT_PRESENTATION.arena.moveTileOpacity,'move'); } }
-function enterMove(){ if(G.movedThisTurn||G.busy)return; if(G.active.immobile){ toast('Immobile — deplacement impossible'); combatCue('refused'); return; } if(hasS(G.active,'root')){ toast('Entravé — déplacement impossible'); combatCue('refused'); return; } combatCue('confirm'); G.mode='move'; G.reach=reachableStand(G.active); unitFocus.focus(G.units,G.active); closeMenus(true); drawReach(); setHint('Déplacement — choisissez une case'); focusBattlefield('move',G.active); }
+function enterMove(){ if(G.movedThisTurn||G.busy)return; if(G.active.immobile){ toast('Immobile — deplacement impossible'); combatCue('refused'); return; } if(hasS(G.active,'root')){ toast('Entravé — déplacement impossible'); combatCue('refused'); return; } combatCue('confirm'); G.mode='move'; G.reach=reachableStand(G.active); G._movePreviewKey=null; unitFocus.focusMove(G.units,G.active); closeMenus(true); drawReach(); setHint('Déplacement — choisissez une case'); focusBattlefield('move',G.active); }
 function drawRange(){ hideActionPreview(); clearHL(); const sp=G.pending.spec,keys=new Set(G.pending.centers.map(c=>cellKey(c.gx,c.gz))); addInvalidTiles(keys,false); const helpful=Boolean(sp.heal||sp.support||sp.revive||sp.cure); const rangeCol=helpful?0x6aff7a:0xff6a5a; const maxR=sp.range[1]||0; const ux=G.active.size>1?bossCenterGX(G.active):G.active.gx, uz=G.active.size>1?bossCenterGZ(G.active):G.active.gz; for(const c of G.pending.centers){ const md=Math.abs(c.gx-ux)+Math.abs(c.gz-uz); if(maxR>0&&md===maxR){ addHL(c.gx,c.gz,0xffd84a,COMBAT_PRESENTATION.arena.rangeTileOpacity,'range_max'); } else { addHL(c.gx,c.gz,rangeCol,COMBAT_PRESENTATION.arena.rangeTileOpacity,'range'); } }
   for(const c of G.pending.centers){ const occ=cellAt(c.gx,c.gz)?.occupant; if(!occ||!occ.alive||!G.active)continue; const isAlly=occ.team===G.active.team; if(helpful&&!isAlly)continue; if(!helpful&&isAlly)continue;
     const tk=helpful?'target_ally':'target',tc=helpful?0x7edf7a:CFG.COL.foe; addHL(c.gx,c.gz,tc,COMBAT_PRESENTATION.arena.targetTileOpacity,tk);
@@ -2315,7 +2369,7 @@ function previewAt(cx,cz){ drawRange(); const sp=G.pending.spec,hoverCell=cellAt
   const targets=affectedUnits(G.active,sp,cx,cz); unitFocus.preview(targets); showActionPreview(G.active,sp,targets,cx,cz);
   for(const [gx,gz] of aoeCells(G.active,sp,cx,cz)){ const occ=cellAt(gx,gz)?.occupant; const aoeCol=helpful?0x6aff7a:0xff6a5a; let col=sp.type==='move'?CFG.COL.move:aoeCol,op=COMBAT_PRESENTATION.arena.rangeTileOpacity,kind='aoe';
     if(occ&&G.active&&occ===G.active&&sp.offensive&&!sp.allowSelfDamage){ addHL(gx,gz,0xf7edcf,COMBAT_PRESENTATION.arena.rangeTileOpacity*.72,'range'); continue; }
-    if(occ&&occ.alive){ const isAlly=occ.team===G.active.team; if(helpful&&isAlly){ col=0x7edf7a; op=COMBAT_PRESENTATION.arena.targetTileOpacity; kind='target_ally'; } else if(!helpful&&!isAlly){ col=CFG.COL.foe; op=COMBAT_PRESENTATION.arena.targetTileOpacity; kind='target'; } else if(!helpful&&isAlly){ col=0xff9a52; op=COMBAT_PRESENTATION.arena.rangeTileOpacity*.8; kind='aoe'; } else { col=aoeCol; op=COMBAT_PRESENTATION.arena.rangeTileOpacity; kind='aoe'; } }
+    if(occ&&occ.alive){ const isAlly=occ.team===G.active.team; if(helpful&&isAlly){ col=0x7edf7a; op=COMBAT_PRESENTATION.arena.targetTileOpacity; kind='target_ally'; } else if(!helpful&&!isAlly){ col=CFG.COL.foe; op=COMBAT_PRESENTATION.arena.targetTileOpacity; kind='target'; } else if(!helpful&&isAlly&&!zoneSparesAllies(G.active,sp)){ col=0xff9a52; op=COMBAT_PRESENTATION.arena.rangeTileOpacity*.8; kind='aoe'; } else { col=aoeCol; op=COMBAT_PRESENTATION.arena.rangeTileOpacity; kind='aoe'; } }
     else if(sp.revive){ const ko=G.units.find(x=>!x.alive&&x.downed&&x.gx===gx&&x.gz===gz); if(ko){col=0x7edf7a;op=COMBAT_PRESENTATION.arena.targetTileOpacity;kind='target_ally';} }
     addHL(gx,gz,col,op,kind); if(occ&&occ.alive&&G.active&&occ.team!==G.active.team&&!helpful)addRingHL(gx,gz,CFG.COL.foe,COMBAT_PRESENTATION.arena.targetTileOpacity+.18); if(occ&&occ.alive&&G.active&&occ.team===G.active.team&&helpful)addRingHL(gx,gz,0x7edf7a,COMBAT_PRESENTATION.arena.targetTileOpacity+.18); } }
 function enterTarget(spec){ if(G.busy)return;
@@ -2382,18 +2436,22 @@ function updateBattlefieldCursor(){
 }
 function hoverBattlefieldCell(c){ const hoveredUnit=(c&&c.occupant&&c.occupant.alive)?c.occupant:null; G.hover=c; G.hoverUnit=hoveredUnit; if(c)moveCursor(c.gx,c.gz); else if(cursorMesh)cursorMesh.visible=false;
   if(G.mode==='move'||G.mode==='target')unitFocus.hover(hoveredUnit);
+  if(G.mode==='move')previewMovePath(c);
   if(G.mode==='target'){ const sp=G.pending.spec; const targetCell=hoveredUnit?.cell?.()||c,previewKey=sp.key+':'+(targetCell?targetCell.gx+','+targetCell.gz:'none'); if(G._targetPreviewKey===previewKey)return; G._targetPreviewKey=previewKey; if(sp.self)previewAt(G.active.gx,G.active.gz); else if(targetCell&&G.pending.keys.has(targetCell.gx+','+targetCell.gz)){ previewAt(targetCell.gx,targetCell.gz); const target=affectedUnits(G.active,sp,targetCell.gx,targetCell.gz)[0]||hoveredUnit; if(target)transientInspect(target); } else { unitFocus.preview([]); drawRange(); restoreInspection(); } }
   else if((G.mode==='menu'||G.mode==='idle')&&hoveredUnit)transientInspect(hoveredUnit);
   else if((G.mode==='menu'||G.mode==='idle')&&c?.occupant?.alive)transientInspect(c.occupant);
   else if(G.mode==='menu'||G.mode==='idle')restoreInspection(); }
 function onPointerMove(ev){ if(G.busy||G.over)return; const c=pickCell(ev); if(c)keyboardCell={gx:c.gx,gz:c.gz}; hoverBattlefieldCell(c); }
 async function onClick(ev){ if(G.over)return; if(ev.button!==0){ cancelToMenu(); return; } if(G.busy)return; await activateBattlefieldCell(pickCell(ev)); }
-function announceBattlefieldRejection(action,c){
+function announceBattlefieldRejection(action,c,reason='choisissez une case disponible'){
   combatCue('refused');
-  setHint(action+' refusé — choisissez une case disponible');
+  setHint(action+' refusé — '+reason);
   const status=byId('combat-cell-status');
-  if(status)status.textContent=(c?'Case '+(c.gx+1)+', '+(c.gz+1)+' — ':'')+action+' refusé — choisissez une case disponible';
+  if(status)status.textContent=(c?'Case '+(c.gx+1)+', '+(c.gz+1)+' — ':'')+action+' refusé — '+reason;
 }
+// Operator decision 2026-11-11 (D9): zones, moves, self actions and the empty-cell move of a strike or retreat stay
+// valid on an empty cell; any other action needs a unit it would affect.
+function actionLacksTarget(u,spec,cx,cz){ return !spec.self&&!spec.dest&&spec.type!=='move'&&!((spec.radius||0)>=1||spec.shape)&&!allowsEmptyTileHybridTarget(spec)&&affectedUnits(u,spec,cx,cz).length===0; }
 async function activateBattlefieldCell(c){ if(G.over||G.busy||G.stage)return;
   if(G.mode==='deploy'){ if(c&&inZone(c.gx,c.gz)){
     const wasPlaced=c.occupant?.team==='player',beforeIds=deployedIds();
@@ -2407,7 +2465,7 @@ async function activateBattlefieldCell(c){ if(G.over||G.busy||G.stage)return;
     if(wasPlaced||deployedIds().size!==beforeIds.size||c.occupant?.team==='player')restoreDeploymentFocus();
   } return; }
   if(G.mode==='move'){ if(c&&(c.gx!==G.active.gx||c.gz!==G.active.gz)&&G.reach.list.some(t=>t.gx===c.gx&&t.gz===c.gz)){ G.movedThisTurn=true; await moveAlong(G.active,buildPath(G.reach.prev,G.active,c.gx,c.gz)); afterSub(); } else announceBattlefieldRejection('Déplacement',c); return; }
-  if(G.mode==='target'){ const sp=G.pending.spec; if(sp.self){ await doExecute(sp,G.active.gx,G.active.gz); return; } if(c&&G.pending.keys.has(c.gx+','+c.gz)) await doExecute(sp,c.gx,c.gz); else announceBattlefieldRejection('Ciblage',c); return; }
+  if(G.mode==='target'){ const sp=G.pending.spec; if(sp.self){ await doExecute(sp,G.active.gx,G.active.gz); return; } if(c&&G.pending.keys.has(c.gx+','+c.gz)){ if(actionLacksTarget(G.active,sp,c.gx,c.gz)){ announceBattlefieldRejection('Ciblage',c,'aucune cible sur cette case'); return; } await doExecute(sp,c.gx,c.gz); } else announceBattlefieldRejection('Ciblage',c); return; }
   if((G.mode==='menu'||G.mode==='idle')&&c&&c.occupant){ if(G.selected!==c.occupant)combatCue('navigate'); G.pinnedUnit=c.occupant.alive?c.occupant:null; selectUnit(c.occupant); }
 }
 
@@ -2497,7 +2555,7 @@ function closeSubmenu(){ if(!dom.skillmenu.classList.contains('hidden'))combatCu
 function tipFor(u,b){ const a=b.dataset.a;
   if(a==='move')return 'Déplacer · jusqu’à '+u.mov+' cases';
   if(a==='undo')return 'Annuler le déplacement (U)';
-  if(a==='attack'){ const w=u.weapons[+b.dataset.wi||0]; const n=G.basicAttacksThisTurn; return w.name+' · portée '+w.min+'-'+w.max+' · puiss '+w.power+' · crit '+Math.round(w.crit*100)+'% · préc '+Math.round(w.acc*100)+'% · 3 niveaux d\'Élan'+(n>0?' · escalade +'+n+' PA':''); }
+  if(a==='attack'){ const w=u.weapons[+b.dataset.wi||0]; const n=G.basicAttacksThisTurn; const reach=getSpec(u,'attack',+b.dataset.wi||0,0); return w.name+' · portée '+(reach.extendedMelee?'1 (diagonales comprises)':(reach.range[0]===reach.range[1]?reach.range[0]:reach.range[0]+'-'+reach.range[1]))+' · puiss '+w.power+' · crit '+Math.round(w.crit*100)+'% · préc '+Math.round(w.acc*100)+'% · 3 niveaux d\'Élan'+(n>0?' · escalade +'+n+' PA':''); }
   if(a==='skill'){ if(!u.skills.length)return 'Aucune compétence disponible'; if(hasS(u,'silence'))return 'Mutisme · compétences bloquées'; return 'Compétences · '+u.ap+' PA'; }
   if(a==='item')return itemsForbidden()?'Objets · interdits par le défi':'Objets · sac ×'+invCount()+' · '+(G.itemsUsedThisTurn+1)+' PA';
   if(a==='support')return 'Soutiens des clans alliés · '+unusedSupports().length+' restant(s), chacun une fois dans ce combat';
@@ -2529,7 +2587,7 @@ function openElanMenu(wi){ const u=G.active; if(!u)return; combatCue('confirm');
   h+='<button type="button" class="btn" data-ch="_back">Retour</button>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const ch=b.dataset.ch; if(ch==='_back'){ closeSubmenu(); return; } enterTarget(getSpec(u,'attack',wi,+ch)); }); focusSubmenu(); }
 function openSkillMenu(){ combatCue('confirm'); const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='skill'; syncActionDockState();
-  const skills=u.skills.map(id=>{ const s=SKILLS[id],sp=getSpec(u,id),isRevive=sp.revive||(s.type==='revive'); return {id,name:sp.name,cost:sp.ap,description:s.desc||sp.desc||'',icon:sp.icon||s.icon,upgradeLevel:sp.upgradeLevel,disabled:sp.ap>u.ap||(isRevive&&!G.units.some(x=>!x.alive&&x.downed&&x.team===u.team))}; });
+  const skills=u.skills.map(id=>{ const s=SKILLS[id],sp=getSpec(u,id),isRevive=sp.revive||(s.type==='revive'); return {id,name:sp.name,cost:sp.ap,description:s.desc||sp.desc||'',facts:describeSkillFacts(sp),icon:sp.icon||s.icon,upgradeLevel:sp.upgradeLevel,disabled:sp.ap>u.ap||(isRevive&&!G.units.some(x=>!x.alive&&x.downed&&x.team===u.team))}; });
   // OD-2026-11-07-E: only the skills the hero can use; the hero sheet lists the locked ones.
   dom.skillmenu.innerHTML='<div class="ttl">Compétences <small>'+u.ap+' PA</small></div>'+renderCombatSkillRows(skills)+'<button type="button" class="btn combat-menu-back" data-s="_back">Retour</button>';
   dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const id=b.dataset.s; if(id==='_back'){ closeSubmenu(); return; } enterTarget(getSpec(u,id)); }); focusSubmenu(); }
@@ -2548,7 +2606,7 @@ function unusedSupports(){ return COMBAT_SUPPORTS.filter(support=>!G.supportsUse
 function openSupportMenu(){ combatCue('confirm'); const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='support'; syncActionDockState();
   let h='<div class="ttl">Soutiens des clans — '+u.ap+' PA</div>';
   for(const support of COMBAT_SUPPORTS){ const used=G.supportsUsed.has(support.id); const spec=getSpec(u,support.skillId); const dis=used||spec.ap>u.ap;
-    h+='<button type="button" class="btn '+(dis?'dis':'')+'" data-s="'+escHTML(support.id)+'" title="'+escHTML(SKILLS[support.skillId].desc||'')+'"'+(dis?' disabled':'')+'>'+escHTML(support.clanLabel)+' : '+escHTML(support.label)+' <small>'+(used?'utilisé':spec.ap+' PA')+'</small></button>'; }
+    h+='<button type="button" class="btn '+(dis?'dis':'')+'" data-s="'+escHTML(support.id)+'" title="'+escHTML((SKILLS[support.skillId].desc||'')+' '+describeSkillFacts(spec))+'"'+(dis?' disabled':'')+'>'+escHTML(support.clanLabel)+' : '+escHTML(support.label)+' <small>'+(used?'utilisé':spec.ap+' PA')+'</small></button>'; }
   h+='<button type="button" class="btn" data-s="_back">Retour</button>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const id=b.dataset.s; if(id==='_back'){ closeSubmenu(); return; }
     const support=COMBAT_SUPPORTS.find(entry=>entry.id===id); if(!support||G.supportsUsed.has(id))return;

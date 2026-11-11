@@ -98,6 +98,9 @@ const unitPresentation = {
   activeRingIntensity: 1,
   activeBaseOpacity: 0.12,
   focusDimOpacity: 0.42,
+  // Operator playtest 2026-11-11: at 0.42 a pixel sprite all but vanishes, which suits a target choice but hid allies and
+  // foes (obstacles, back attacks) while a move destination was chosen. Move selection recedes them less.
+  focusMoveDimOpacity: 0.62,
   focusBossFloor: 0.6,
   focusEliteFloor: 0.55,
   protectFromFog: true,

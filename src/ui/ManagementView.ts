@@ -14,7 +14,8 @@ import {
 import { getReputationRule, getShopPrice } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
-import { skills as SKILL_DEFS } from '../game/skills';
+import { skills as SKILL_DEFS, skillById } from '../game/skills';
+import { describeSkillFactsAt } from '../game/skillFacts';
 import type { GameState, InnateGiftModifier, ItemCategory, ItemDefinition, UnitDefinition, UnitInstance, WeaponDefinition } from '../game/types';
 import type { UiSoundFeedback } from './UiSoundPlayer';
 import { prefersReducedMotion } from './ReducedMotion';
@@ -115,6 +116,20 @@ Object.assign(skillPresentation, {
   leap: { name: 'Bond', ap: 1, description: 'Déplacement rapide vers une case libre.' },
   charge: { name: 'Charge', ap: 2, description: 'Fonce en ligne droite et perturbe l\u2019arrivée.' },
 });
+
+/** The basic attack as the combat runtime resolves it: three levels of élan and a surcharge for each repeat (getSpec). */
+const BASIC_ATTACK_TEXT = 'Frappe avec l’arme équipée. Élan : 1, 2 ou 3 PA pour des dégâts ×1, ×1,4 ou ×1,6 (au niveau 3, +10 % de précision et 50 % de la défense ignorée). Chaque attaque de plus dans le même tour coûte 1 PA de plus, jusqu’à une élimination.';
+/** A long spear's basic attack reaches the adjacent cells, diagonals included, whatever the weapon's listed range. */
+const LONG_SPEAR_REACH = '1 (diagonales comprises)';
+
+function skillFactsFor(skillId: string, level: number): string {
+  const def = skillById.get(skillId);
+  return def ? describeSkillFactsAt(def, level) : '';
+}
+
+function withFacts(text: string, facts: string): string {
+  return facts ? `${text}<small class="skill-card__facts">${facts}</small>` : text;
+}
 
 export class ManagementView {
   private overlay: HTMLElement | null = null;
@@ -535,15 +550,10 @@ export class ManagementView {
       const s = skillPresentation[id];
       return s && s.ap !== undefined && s.ap < 5 && isSkillUnlockedForHero(unit, id);
     }).sort((a, b) => (skillPresentation[a]?.ap ?? 0) - (skillPresentation[b]?.ap ?? 0));
-    // Every entry of the sheet takes focus, so a keyboard or a gamepad reaches and scrolls to it (OD-2026-11-07-B note).
-    const activeCards = activeSkills.map((id) => {
-      const s = skillPresentation[id]!;
-      return `<article class="skill-card skill-card--active" tabindex="0" aria-label="${escapeAttribute(`${s.name}, ${s.ap} PA, disponible. ${s.description}`)}"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p></article>`;
-    }).join('');
     const actionsSection = `<div class="unit-skill-section">
       <div class="unit-skill-section__title">Action de base</div>
       <div class="skill-list">
-        <article class="skill-card skill-card--active" tabindex="0" aria-label="Attaque de base, 1 PA. Frappe avec l’arme équipée."><div><strong>Attaque de base</strong><span>1 PA</span></div><p>Frappe avec l'arme équipée.</p></article>
+        <article class="skill-card skill-card--active" tabindex="0" aria-label="${escapeAttribute(`Attaque de base, 1 à 3 PA. ${BASIC_ATTACK_TEXT}`)}"><div><strong>Attaque de base</strong><span>1-3 PA</span></div><p>${BASIC_ATTACK_TEXT}</p></article>
       </div>
     </div>`;
 
@@ -565,9 +575,11 @@ export class ManagementView {
       const reason = getLockedSkillReason(unit, id);
       return `<div class="unit-skill-locked-row" tabindex="0" aria-label="${escapeAttribute(`${s.name}, ${s.ap} PA, ${reason}`)}"><strong>${s.name}</strong><span>${s.ap} PA</span><small>${reason}</small></div>`;
     }).join('');
+    // Every entry of the sheet takes focus, so a keyboard or a gamepad reaches and scrolls to it (OD-2026-11-07-B note).
     const unlockedCards = activeSkills.map((id) => {
       const s = skillPresentation[id]!;
-      return `<article class="skill-card skill-card--active" tabindex="0" aria-label="${escapeAttribute(`${s.name}, ${s.ap} PA, disponible. ${s.description}`)}"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p></article>`;
+      const facts = skillFactsFor(id, unit.skillUpgrades[id] ?? 0);
+      return `<article class="skill-card skill-card--active" tabindex="0" aria-label="${escapeAttribute(`${s.name}, ${s.ap} PA, disponible. ${s.description} ${facts}`)}"><div><strong>${s.name}</strong><span>${s.ap} PA</span></div><p>${s.description}</p>${facts ? `<small class="skill-card__facts">${facts}</small>` : ''}</article>`;
     }).join('');
     const hasTechniques = activeSkills.length > 0 || lockedSkills.length > 0;
     const techniquesSection = hasTechniques ? `<div class="unit-skill-section">
@@ -605,8 +617,8 @@ export class ManagementView {
       const level = Math.max(0, Math.min(2, selected.skillUpgrades[skillId] ?? 0));
       const cost = getSkillUpgradeCost(level);
       const disabled = cost === null || gems < cost;
-      const effect = this.skillUpgradeEffect(skillId, level);
-      const next = cost === null ? 'Niveau maximal atteint.' : this.skillUpgradeEffect(skillId, level + 1);
+      const effect = withFacts(this.skillUpgradeEffect(skillId, level), skillFactsFor(skillId, level));
+      const next = cost === null ? 'Niveau maximal atteint.' : withFacts(this.skillUpgradeEffect(skillId, level + 1), skillFactsFor(skillId, level + 1));
       return `<article class="skill-upgrade-card ui-panel ui-panel--soft">
         <div class="skill-upgrade-card__head">
           <div><strong>${skill.name}</strong><small>${skill.description}</small></div>
@@ -793,7 +805,7 @@ export class ManagementView {
     const tierLabel = weaponTierLabel(weapon.tier ?? 0);
     const profileLabel = getWeaponProfileLabel(weapon);
     const progressionLabel = this.getWeaponProgressionLabel(weapon, unit);
-    const rangeLabel = weapon.minRange ? `${weapon.minRange}–${weapon.range}` : `${weapon.range}`;
+    const rangeLabel = weapon.type === 'long_spear' ? LONG_SPEAR_REACH : weapon.minRange ? `${weapon.minRange}–${weapon.range}` : `${weapon.range}`;
     const showRange = weapon.range > 1 || weapon.minRange;
     const cmp = comparisonWeapon;
     const statRows = [

@@ -588,6 +588,8 @@ export interface SkillUpgrade {
   hpCostReduction?: number;
   lifestealBonus?: number;
   critBonus?: number;
+  /** Critical chance added only to a blow from behind (operator decision 2026-11-11, D4). */
+  backCritBonus?: number;
   selfHealPercent?: number;
   minRangeReduction?: number;
   stealBuffs?: boolean;

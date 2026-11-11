@@ -8,7 +8,10 @@ export interface FocusableUnit {
 }
 
 export interface UnitFocusPolicy {
+  /** Units that are neither active, hovered nor a valid target of the chosen action. */
   dimOpacity: number;
+  /** Other units while a move destination is chosen: dimmed, yet still readable as obstacles and threats. */
+  moveDimOpacity: number;
   validTargetOpacity: number;
   dimShadowOpacity: number;
   validTargetShadowOpacity: number;
@@ -17,8 +20,11 @@ export interface UnitFocusPolicy {
   eliteDimFloor: number;
 }
 
+// Operator playtest 2026-11-11: units recede less while a move destination is chosen (moveDimOpacity), so allies and foes
+// stay readable as obstacles and back-attack angles; a target choice keeps the strong fade of dimOpacity.
 export const DEFAULT_UNIT_FOCUS_POLICY: Readonly<UnitFocusPolicy> = Object.freeze({
   dimOpacity: 0.42,
+  moveDimOpacity: 0.62,
   validTargetOpacity: 0.82,
   dimShadowOpacity: 0.22,
   validTargetShadowOpacity: 0.42,
@@ -40,10 +46,17 @@ export class UnitFocusController {
   private validTargets = new Set<FocusableUnit>();
   private highlighted = new Set<FocusableUnit>();
   private hovered: FocusableUnit | null = null;
+  private dimOpacity: number;
   private readonly policy: UnitFocusPolicy;
 
   constructor(policy: Partial<UnitFocusPolicy> = {}) {
     this.policy = { ...DEFAULT_UNIT_FOCUS_POLICY, ...policy };
+    this.dimOpacity = this.policy.dimOpacity;
+  }
+
+  /** Dims for a move: every other unit at the move dim opacity. */
+  focusMove(units: FocusableUnit[], active: FocusableUnit): void {
+    this.focus(units, active, [], this.policy.moveDimOpacity);
   }
 
   private opacityFloor(unit: FocusableUnit): number {
@@ -65,6 +78,7 @@ export class UnitFocusController {
     dimOpacity = this.policy.dimOpacity,
   ): void {
     this.restore();
+    this.dimOpacity = dimOpacity;
     this.activeUnit = active;
     this.hovered = null;
     this.highlighted = new Set();
@@ -119,7 +133,7 @@ export class UnitFocusController {
         this.setBodyOpacity(unit, this.policy.validTargetOpacity);
         unit.blob.material.opacity = Math.min(snapshot.shadow, this.policy.validTargetShadowOpacity);
       } else {
-        this.setBodyOpacity(unit, this.policy.dimOpacity);
+        this.setBodyOpacity(unit, this.dimOpacity);
         unit.blob.material.opacity = Math.min(snapshot.shadow, this.policy.dimShadowOpacity);
       }
     }
