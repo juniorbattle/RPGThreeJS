@@ -33,6 +33,7 @@
             <b>Clic droit / Échap</b> annuler · <b>Flèches</b> parcourir les cases · <b>Entrée / Espace</b> sélectionner une case<br />
             <b>M</b> déplacer · <b>A</b> attaquer · <b>U</b> annuler le déplacement<br />
             <b>Manette</b> croix ou stick parcourir · <b>A / Croix</b> valider · <b>B / Rond</b> annuler · <b>LB / RB</b> commande précédente ou suivante
+            <button type="button" class="help-replay" data-replay-tutorial>Revoir l’École du combat</button>
           </div>
         </details>
       </div>
@@ -53,7 +54,7 @@
               </div>
               <div class="tutorial-section">
                 <h3>⌛ Tours et PA</h3>
-                <p>Chaque unité agit à son tour, selon sa <b>DEX</b>. Vous avez <b>5 PA</b> max. Les attaques, compétences et objets coûtent des PA. Le <b>déplacement est gratuit</b> (jusqu’à votre portée DÉPL, une fois par tour). Les PA se régénèrent au début de chaque tour (1 PA, ou 2 pour les boss/élites).</p>
+                <p>Chaque unité agit à son tour, selon sa <b>DEX</b>. Vous avez <b>5 PA</b> max. Les attaques, compétences et objets coûtent des PA. Le <b>déplacement est gratuit</b> (jusqu’à votre portée DÉPL, une fois par tour). Au début de son tour, une unité regagne <b>1 PA</b> ; les boss et les élites en regagnent <b>3</b>. Mettre un ennemi hors de combat rend <b>+1 PA</b>, compté après le coût de l’action, et remet l’escalade à zéro.</p>
               </div>
             </div>
             <div class="tutorial-page" data-page="1">
@@ -62,8 +63,8 @@
                 <p>En attaquant, choisissez votre niveau d'<b>Élan</b> :</p>
                 <ul>
                   <li><b>Attaque</b> (1 PA) — coup normal, ×1.0 dégâts</li>
-                  <li><b>Attaque+</b> (2 PA) — coup renforcé, ×1.5 dégâts</li>
-                  <li><b>Attaque++</b> (3 PA) — coup maximal, ×2.0 dégâts + 10% précision</li>
+                  <li><b>Attaque+</b> (2 PA) — coup renforcé, ×1,4 dégâts</li>
+                  <li><b>Attaque++</b> (3 PA) — coup maximal, ×1,6 dégâts, +10 % de précision, ignore la moitié de la défense</li>
                 </ul>
                 <p>Chaque attaque successive dans le même tour coûte <b>+1 PA</b> (escalade). Plus vous frappez, plus ça coûte cher.</p>
               </div>
@@ -93,7 +94,11 @@
               </div>
               <div class="tutorial-section">
                 <h3>⚑ Altérations</h3>
-                <p>Brûlure/Poison (dégâts/tour), Ralenti (DEX−), Étourdi (tour sauté), Aveuglé (précision−), Malédiction (END−), Barrière (END+), etc. Les altérations se cumulent et durent plusieurs tours.</p>
+                <p>Brûlure et Poison (dégâts à chaque tour), Régénération (soin à chaque tour), Ralenti (DEX−), Affaibli (FOR et MAG−), Malédiction (END−), Aveuglement (précision−), Barrière (END+), Force (FOR et MAG+), Provocation (vise en priorité celui qui l’a provoqué), <b>Entravé</b> (ne peut plus se déplacer), <b>Mutisme</b> (aucune compétence ni soutien de clan). Les altérations durent plusieurs tours.</p>
+              </div>
+              <div class="tutorial-section">
+                <h3>◈ Essoufflé et Brisé</h3>
+                <p>Une unité qui a vidé ses PA est <b>Essoufflée</b> jusqu’à son prochain tour. Un coup critique sur une cible essoufflée la <b>Brise</b> : elle perd son prochain tour et son END s’effondre. Gardez un PA pour ne pas vous exposer.</p>
               </div>
             </div>
             <div class="tutorial-page" data-page="4">
@@ -124,16 +129,18 @@
             <div class="tutorial-page active" data-page="0">
               <div class="tutorial-section">
                 <h3>♚ Unités colossales</h3>
-                <p>Les <b>boss</b> et <b>élites</b> sont des unités <b>2×2 cases</b> : elles occupent quatre cellules et ne peuvent pas se déplacer. Elles attaquent à <b>distance</b> (portée 2-4) et régénèrent <b>3 PA/tour</b> au lieu de 1. Leur cycle dure <b>4 tours</b> : action légère, attaque lourde, <b>CHARGE</b>, puis <b>ULTIME</b>.</p>
+                <p>Les <b>boss</b> et <b>élites</b> sont des unités <b>2×2 cases</b> : elles occupent quatre cellules et ne peuvent pas se déplacer. Elles frappent de loin : certaines de leurs compétences portent jusqu’à <b>7 cases</b>. Elles regagnent <b>3 PA par tour</b> et en gardent en réserve pour leur cycle de <b>4 tours</b> : action légère, attaque lourde, <b>CHARGE</b>, puis <b>ULTIME</b>. Un badge annonce la CHARGE puis l’ULTIME : écartez vos héros et préparez vos soins.</p>
               </div>
               <div class="tutorial-section">
                 <h3>⚔ Compétences dévastatrices</h3>
                 <ul>
-                  <li><b>Frappe Sismique</b> — coup de zone autour de la cible</li>
-                  <li><b>Rugissement</b> — affaiblit tous les ennemis à portée</li>
-                  <li><b>Onde de Choc</b> — explosion magique à distance + étourdissement</li>
-                  <li><b>Garde</b> — se protège avec une barrière (END+)</li>
+                  <li><b>Attaque lourde</b> (4 PA) — un coup puissant, souvent de zone ou porteur d’une altération</li>
+                  <li><b>Ultime</b> (5 PA) — le coup le plus dévastateur du boss, propre à chacun</li>
                 </ul>
+              </div>
+              <div class="tutorial-section">
+                <h3>✹ Furie</h3>
+                <p>Sous la <b>moitié de leurs PV</b>, boss et élites entrent en <b>Furie</b> : une fois par tour, après leur première action offensive, ils portent une <b>attaque de base gratuite</b>. Jamais pendant le tour de leur ultime, ni s’ils sont Brisés, Entravés ou sous Mutisme.</p>
               </div>
               <div class="tutorial-section">
                 <h3>🛡 Stratégie</h3>

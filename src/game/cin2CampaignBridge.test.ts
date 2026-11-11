@@ -100,7 +100,7 @@ describe('CIN-2 campaign presentation bridge', () => {
     const secondary = method('private async handleJourneySecondary');
     expect(secondary).toContain('this.saves.saveManual(this.state)');
     expect(secondary).toContain("this.openManagement('clan', undefined, 'temporary', false)");
-    expect(secondary).toContain('this.renderTitle()');
+    expect(secondary).toContain('this.returnToTitle()');
     // A secondary action can never enter a route.
     expect(secondary).not.toContain('commitRunNodeChoice');
     expect(secondary).not.toContain('enterRunNode');

@@ -103,7 +103,7 @@ describe('CIN-6.7 NarrativeStage campaign integration', () => {
     expect(start).toContain('await this.playDialogue(config.preCombatDialogueId, node.label, {');
     expect(start).toContain('preserveBackdrop: false');
     expect(start).toContain('this.activeNarrativeStage?.prepareGlobalHandoff()');
-    const task = start.slice(start.indexOf('task: async () => {'));
+    const task = start.slice(start.indexOf('const mountCombat = async () => {'));
     expect(task.indexOf('this.disposeJourney()')).toBeLessThan(task.indexOf("this.setMode('COMBAT')"));
     expect(task.indexOf('this.disposeNarrativeStage()')).toBeLessThan(task.indexOf("this.setMode('COMBAT')"));
     expect(task).toContain('this.chrome.replaceChildren()');

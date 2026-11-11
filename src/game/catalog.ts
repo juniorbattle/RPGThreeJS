@@ -389,7 +389,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: "Marquer un grimoire mystique avec des encres de forge instables.",
     inputs: { weapons: { mystic_grimoire: 1 }, materials: { iron_ore: 2 }, gold: 45 },
     output: { itemId: 'hex_grimoire', category: 'weapons', quantity: 1 },
-    preview: 'T2 grimoire, statistiques mystiques, 15% Malédic. sur attaque basique.',
+    preview: 'T2 grimoire, statistiques mystiques, 15% Malédiction sur attaque basique.',
   },
   {
     id: 'craft_blind_longbow',
@@ -413,7 +413,7 @@ export const craftRecipes: CraftRecipeDefinition[] = [
     description: 'Lier une faux d\'acier à une gemme sombre pour affaiblir les survivants.',
     inputs: { weapons: { steel_scythe: 1 }, materials: { red_gem: 1 }, gold: 90 },
     output: { itemId: 'shadow_scythe', category: 'weapons', quantity: 1 },
-    preview: 'T3 faux, 20% Malédic. sur attaque basique.',
+    preview: 'T3 faux, 20% Malédiction sur attaque basique.',
   },
 ];
 

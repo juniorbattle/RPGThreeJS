@@ -150,6 +150,9 @@ const JOURNEY_SECONDARY_ACTIONS: readonly JourneySecondaryActionPresentation[] =
 /** Bounded re-presentations after a rejected commit, so a stale callback cannot spin forever. */
 const JOURNEY_MAX_REJECTIONS = 3;
 
+/** How long a dialogue takes to fade into the map (final audit 2026-11-11, A5). */
+const STAGE_CROSSFADE_MS = 480;
+
 export class GameApp {
   private disposed = false;
   private mode: AppMode = 'TITLE';
@@ -235,7 +238,7 @@ export class GameApp {
       onSave: () => {if(!this.routeCommitInFlight){this.saves.saveManual(this.state);this.uiSounds.play('saved');this.showSaveNotice();}},
       onSettings: () => this.openSettings(),
       onSound: id => this.uiSounds.play(id),
-      onMenu: () => {if(!this.routeCommitInFlight){this.saves.saveAuto(this.state);this.uiSounds.play('back');this.renderTitle();}},
+      onMenu: () => {if(!this.routeCommitInFlight){this.saves.saveAuto(this.state);this.uiSounds.play('back');this.returnToTitle();}},
     });
     this.prologue = new OpeningSequence(root);
   }
@@ -263,12 +266,22 @@ export class GameApp {
     this.state.settings.reducedGraphics = reduced;
     writeMotionPreference(reduced);
     this.combat.setReducedGraphics(reduced);
+    this.syncMotionClass();
+  }
+
+  /**
+   * The in-game choice reaches the CSS-only animations (curtain, overlays, screen entries) through one body class,
+   * beside the OS media query (final audit 2026-11-11, A5).
+   */
+  private syncMotionClass(): void {
+    document.body.classList.toggle('motion-reduced', this.state.settings.reducedGraphics === true);
   }
 
   /** A new or loaded chronicle takes the motion choice stored on this device, when the player made one. */
   private applyMotionPreference(): void {
     const stored = readMotionPreference();
     if (stored !== null) this.state.settings.reducedGraphics = stored;
+    this.syncMotionClass();
   }
 
   async start(): Promise<void> {
@@ -320,12 +333,42 @@ export class GameApp {
         </div>
       </section>
     `;
-    this.chrome.querySelector('[data-action="new"]')?.addEventListener('click', () => void this.startNewChronicle());
+    this.chrome.querySelector('[data-action="new"]')?.addEventListener('click', () => {
+      if (this.saves.hasSave()) this.confirmNewChronicle();
+      else void this.startNewChronicle();
+    });
     this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => void this.continueChronicle());
     this.chrome.querySelector('[data-action="settings"]')?.addEventListener('click', () => this.openSettings());
     this.chrome.querySelector('[data-action="qa"]')?.addEventListener('click', () => this.renderQaLab());
     (this.chrome.querySelector<HTMLButtonElement>('[data-action="continue"]:not(:disabled)')
       ?? this.chrome.querySelector<HTMLButtonElement>('[data-action="new"]'))?.focus();
+  }
+
+  /**
+   * Final audit 2026-11-11 (A3): a new chronicle erases every save, so with a chronicle in progress the title asks
+   * first. Keeping the chronicle is the default focus; Escape keeps it too.
+   */
+  private confirmNewChronicle(): void {
+    const actions = this.chrome.querySelector<HTMLElement>('.title-screen__actions');
+    if (!actions) return;
+    actions.outerHTML = `
+      <div class="title-screen__confirm" role="alertdialog" aria-modal="false" aria-labelledby="new-chronicle-warning">
+        <p id="new-chronicle-warning">Une nouvelle chronique efface la chronique en cours et toutes ses sauvegardes.</p>
+        <div class="title-screen__actions">
+          <button type="button" data-action="confirm-new">Effacer et commencer</button>
+          <button type="button" data-action="keep-chronicle" class="is-primary">Garder ma chronique</button>
+        </div>
+      </div>`;
+    const panel = this.chrome.querySelector<HTMLElement>('.title-screen__confirm');
+    const keep = () => { this.uiSounds.play('back'); this.renderTitle(); };
+    panel?.querySelector('[data-action="confirm-new"]')?.addEventListener('click', () => void this.startNewChronicle());
+    panel?.querySelector('[data-action="keep-chronicle"]')?.addEventListener('click', keep);
+    panel?.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      event.preventDefault();
+      keep();
+    });
+    panel?.querySelector<HTMLButtonElement>('[data-action="keep-chronicle"]')?.focus();
   }
 
   private saveNotice: HTMLElement | null = null;
@@ -908,7 +951,7 @@ export class GameApp {
       onCompany: () => void this.openTournamentCompany(),
       onSave: () => { this.saves.saveManual(this.state); this.uiSounds.play('saved'); this.showSaveNotice(); },
       onSettings: () => this.openSettings(),
-      onMenu: () => { this.saves.saveAuto(this.state); this.uiSounds.play('back'); this.renderTitle(); },
+      onMenu: () => { this.saves.saveAuto(this.state); this.uiSounds.play('back'); this.returnToTitle(); },
     }, {
       backdrop: demoEnvironmentPlateForContext('dialogue:lion_finale_judgement', 'STATIC_TABLEAU').publicUrl,
       mark: provisionalMark(FINALE_TOURNAMENT_ARRIVAL.dialogueId) ?? 'Image provisoire',
@@ -940,10 +983,18 @@ export class GameApp {
 
   /** Without an explicit point, the map selects the step the company would most likely take next. */
   private showPoiMap(focusId?: string): void {
-    this.activeNarrativeStage?.prepareGlobalHandoff();
+    const leavingStage = this.activeNarrativeStage;
+    leavingStage?.prepareGlobalHandoff();
 
     this.disposeJourney();
-    this.disposeNarrativeStage();
+    // Final audit 2026-11-11 (A5): a dialogue crossfades into the map instead of cutting; under a curtain, in reduced
+    // motion, or with no stage, the stage goes at once as before.
+    if (leavingStage && !sceneTransition.isActive && !prefersReducedMotion(this.state.settings.reducedGraphics)) {
+      this.activeNarrativeStage = null;
+      leavingStage.element.classList.add('narrative-stage--leaving');
+      leavingStage.element.setAttribute('aria-hidden', 'true');
+      window.setTimeout(() => leavingStage.dispose(), STAGE_CROSSFADE_MS);
+    } else this.disposeNarrativeStage();
     this.exploration.close();
     this.setMode('TRAVEL');
     document.body.dataset.campaignSurface = 'poi-map';
@@ -1025,15 +1076,16 @@ export class GameApp {
     let verdict:ChallengeVerdict|null=null;
     try{
       let session:ReturnType<CombatBridge['start']>|undefined;
-      await sceneTransition.run({variant:'combat',label:config.encounterLabel,task:async()=>{
+      const mountCombat=async()=>{
         this.setMode('COMBAT');this.chrome.replaceChildren();
         session=this.combat.start({config,clan:this.state.clan.members.filter(unit=>unit.currentHealth>0).map(unit=>toCombatant(unit)),
           inventory:this.state.inventory.consumables,preferredUnitIds:this.state.deployment.unitIds,
-          reducedGraphics:this.state.settings.reducedGraphics});
+          reducedGraphics:this.state.settings.reducedGraphics,holdOnResult:true});
         await session.ready;
-      }});
+      };
+      if(!await sceneTransition.run({variant:'combat',label:config.encounterLabel,task:mountCombat}))await mountCombat();
       const result=await session!.result;
-      this.combat.close();
+      await this.closeCombatUnderCurtain(result.victory);
       if(!result.victory){this.restoreAfterDefeat();return;}
       else if(!resolvePoiEliteVictory(this.state,encounterId,result))throw new Error('Stale elite combat result');
       // Durable reward, challenge prime and defeated fact commit together before any presentation can be interrupted.
@@ -1127,7 +1179,7 @@ export class GameApp {
           if (await this.continueIntoNextPlateau()) continue;
           return;
         }
-        this.renderTitle();
+        this.returnToTitle();
         return;
       }
       return;
@@ -1217,7 +1269,7 @@ export class GameApp {
     }
     if (actionId === 'MENU') {
       this.saves.saveAuto(this.state);
-      this.renderTitle();
+      this.returnToTitle();
       return false;
     }
     return true;
@@ -1743,31 +1795,51 @@ export class GameApp {
       ? undefined
       : this.cinematicInterlude({ hook: 'beforeCombat', combatId });
     this.activeNarrativeStage?.prepareGlobalHandoff();
-    await sceneTransition.run({
+    const mountCombat = async () => {
+      this.disposeJourney();
+      this.disposeNarrativeStage();
+      this.setMode('COMBAT');
+      this.chrome.replaceChildren();
+      const combatSession = this.combat.start({
+        config,
+        clan: combatants,
+        inventory: this.state.inventory.consumables,
+        preferredUnitIds: this.state.deployment.unitIds,
+        reducedGraphics: this.state.settings.reducedGraphics,
+        devQa: this.cin6aGoldenQaEnabled,
+        holdOnResult: true,
+      });
+      resolveCombatStart(combatSession);
+      await combatSession.ready;
+    };
+    const curtained = await sceneTransition.run({
       variant,
       label: config.encounterLabel,
       interlude,
       ...(interlude ? { holdMs: 0 } : {}),
-      task: async () => {
-        this.disposeJourney();
-        this.disposeNarrativeStage();
-        this.setMode('COMBAT');
-        this.chrome.replaceChildren();
-        const combatSession = this.combat.start({
-          config,
-          clan: combatants,
-          inventory: this.state.inventory.consumables,
-          preferredUnitIds: this.state.deployment.unitIds,
-          reducedGraphics: this.state.settings.reducedGraphics,
-          devQa: this.cin6aGoldenQaEnabled,
-        });
-        resolveCombatStart(combatSession);
-        await combatSession.ready;
-      },
+      task: mountCombat,
     });
+    // Final audit 2026-11-11 (A4): a curtain already up must never leave the fight unmounted and the game waiting.
+    if (!curtained) await mountCombat();
     const combatSession = await combatStarted;
     const result = await combatSession.result;
+    await this.closeCombatUnderCurtain(result.victory);
     await this.resolveCombat(result, node, config.rewards);
+  }
+
+  /**
+   * Final audit 2026-11-11 (A5): the fight leaves under the shared curtain. The frame is closed under black and the
+   * curtain stays up until the next surface sets its mode (setMode) or the next transition lifts it.
+   */
+  private async closeCombatUnderCurtain(victory: boolean): Promise<void> {
+    await sceneTransition.cover({ variant: 'result', label: victory ? 'Victoire' : 'Défaite' });
+    this.combat.close();
+  }
+
+  /** Every return to the title from play goes under the shared curtain (final audit 2026-11-11, A5). */
+  private returnToTitle(): void {
+    void sceneTransition.run({ variant: 'fade', task: async () => this.renderTitle(), holdMs: 200 })
+      .then((curtained) => { if (!curtained) this.renderTitle(); });
   }
 
   private async resolveCombat(
@@ -1911,7 +1983,7 @@ export class GameApp {
       this.setMode('TRAVEL'); this.chrome.replaceChildren();
       void this.resumeSavedCampaign();
     });
-    this.chrome.querySelector('[data-action="defeat-menu"]')?.addEventListener('click', () => this.renderTitle());
+    this.chrome.querySelector('[data-action="defeat-menu"]')?.addEventListener('click', () => this.returnToTitle());
     this.chrome.querySelector<HTMLButtonElement>('button')?.focus();
   }
 
@@ -1978,6 +2050,8 @@ export class GameApp {
     if (mode !== 'NARRATIVE' && mode !== 'JOURNEY') this.statusHud?.hide();
     this.mode = mode;
     document.body.dataset.mode = mode.toLowerCase();
+    // A curtain held over a fight's exit lifts once the next surface has painted (final audit 2026-11-11, A5).
+    if (mode !== 'COMBAT' && sceneTransition.isHeld) sceneTransition.releaseWhenReady();
     document.body.classList.remove('mode-entering');
     void document.body.offsetWidth;
     document.body.classList.add('mode-entering');

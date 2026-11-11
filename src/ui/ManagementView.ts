@@ -36,9 +36,9 @@ const STATUS_LABELS: Record<string, string> = {
   poison: 'Poison',
   slow: 'Ralenti',
   root: 'Entravé',
-  blind: 'Aveuglé',
+  blind: 'Aveuglement',
   weak: 'Affaibli',
-  curse: 'Malédic.',
+  curse: 'Malédiction',
 };
 
 function formatWeaponAffix(weapon: WeaponDefinition): string | null {

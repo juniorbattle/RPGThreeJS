@@ -249,7 +249,7 @@ async function campaignTabTo(frame,selector,key){
   throw Error('Native campaign Tab could not reach '+selector);
 }
 async function campaignDeploymentKeyboard(frame,entry){
-  const before=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const before=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
   const inputs=[],key=async value=>{await page.keyboard.press(value);inputs.push(value);};
   await campaignTabTo(frame,'#menu [data-unit]',key);await key('Enter');
   const rosterFocus=await frame.evaluate(()=>{const e=document.activeElement,r=e.getBoundingClientRect();return{
@@ -268,14 +268,14 @@ async function campaignDeploymentKeyboard(frame,entry){
   await key('Space');assert.equal(await frame.evaluate(()=>G.deployedUnits.length),count,'Mounted keyboard removal failed');
   await campaignTabTo(frame,'#menu [data-d="auto"]',key);await key('Enter');
   assert.deepEqual(await state(),before,'Mounted deployment changed owner truth');
-  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),saved,'Mounted deployment wrote autosave');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),saved,'Mounted deployment wrote autosave');
   await capture(`combat-${entry.index}-native-deployment-focus`);
   entry.deploymentKeyboard={inputs,rosterFocus,cell,manualPlacement:true,manualRemoval:true,ownerUnchanged:true,autosaveUnchanged:true,pass:true};
 }
 async function campaignBattlefieldKeyboard(frame,entry){
   await frame.waitForFunction(()=>G.mode==='menu'&&!G.busy&&G.active?.team==='player');
   const ownerBefore=await state(),before=await combatState(frame);
-  const autosaveBefore=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const autosaveBefore=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
   const inputs=[];
   const key=async value=>{await page.keyboard.press(value);inputs.push(value);report.inputs.push({action:'native campaign battlefield key',key:value,nodeId:entry.nodeId});};
   const canvas=frame.locator('#combat-battlefield');
@@ -347,7 +347,7 @@ async function campaignBattlefieldKeyboard(frame,entry){
   const gameplay=snapshot=>{const {diagnostics,...truth}=snapshot;return truth;};
   assert.deepEqual(gameplay(after),gameplay(before),'Campaign keyboard inspection/cancel changed tactical truth');
   assert.deepEqual(ownerAfter,ownerBefore,'Campaign keyboard inspection/cancel changed owner V6 truth');
-  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Campaign keyboard inspection/cancel wrote autosave');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),autosaveBefore,'Campaign keyboard inspection/cancel wrote autosave');
   await capture(`combat-${entry.index}-native-keyboard-return`);
   entry.battlefieldKeyboard={method:'ACTUAL_TAB_CAMPAIGN_IFRAME_NATIVE_ACTIONS',inputs,focus,cursorBefore,cursor,moveRejected,targetRejected,restored,submenus,before,after,renderDiagnosticsExcludedFromTruth:true,ownerUnchanged:true,autosaveUnchanged:true,pass:true};
   if(!fullControls)return;
@@ -380,7 +380,7 @@ async function campaignBattlefieldKeyboard(frame,entry){
     assert.ok(focused.enabled&&focused.visible&&focused.outline!=='none','Mounted Undo focus invisible');
     assert.ok(focused.x>=0&&focused.y>=0&&focused.right<=viewport[0]+1&&focused.bottom<=viewport[1]+1,'Mounted Undo focus clipped');
     assert.deepEqual(await state(),ownerBefore,'Mounted Undo changed campaign truth');
-    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Mounted Undo wrote autosave');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),autosaveBefore,'Mounted Undo wrote autosave');
     entry.actions.push({kind:'keyboard-undo',origin,before:moved,after:undone});
     entry.battlefieldKeyboard.undo.push({origin,focused,before:moved,after:undone,pass:true});
     await capture(`combat-${entry.index}-native-undo-${origin}`);
@@ -400,7 +400,7 @@ async function campaignBattlefieldKeyboard(frame,entry){
   assert.equal(attacked.active.ap,Math.max(0,Math.min(moved.active.maxap,moved.active.ap+refunds)-legal.spec.ap),'Mounted native attack AP/refunds differ');
   assert.ok(await frame.evaluate(()=>document.activeElement.matches('#menu button:not(:disabled)')),'Mounted legal target lost enabled dock focus');
   assert.deepEqual(await state(),ownerBefore,'Mounted tactical actions changed campaign owner before resolution');
-  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Mounted tactical actions wrote autosave');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),autosaveBefore,'Mounted tactical actions wrote autosave');
   entry.actions.push({kind:'keyboard-attack',cell:legal.cell,spec:legal.spec,before:moved,after:attacked});
   entry.battlefieldKeyboard.legalTarget={...legal,before:moved,after:attacked,refunds,pass:true};
   const waiting=await frame.evaluate(()=>({id:G.active.campaignId,ap:G.active.ap,maxap:G.active.maxap,
@@ -414,7 +414,7 @@ async function campaignBattlefieldKeyboard(frame,entry){
   assert.equal(waited.souffle,waiting.ap>=1,'Mounted keyboard Wait breath differs');
   assert.ok(waited.round>waiting.round||waited.turnIdx!==waiting.turnIdx,'Mounted keyboard Wait did not advance the turn');
   assert.deepEqual(await state(),ownerBefore,'Mounted keyboard Wait changed campaign owner before resolution');
-  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Mounted keyboard Wait wrote autosave');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),autosaveBefore,'Mounted keyboard Wait wrote autosave');
   entry.actions.push({kind:'keyboard-wait',before:waiting,after:waited});
   entry.battlefieldKeyboard.wait={before:waiting,after:waited,expectedWaitAp,pass:true};
   async function nextPlayerFocus(previous,label){
@@ -428,7 +428,7 @@ async function campaignBattlefieldKeyboard(frame,entry){
     assert.ok(focused.enabled&&focused.visible&&focused.outline!=='none','Next player turn lost automatic visible enabled dock focus');
     assert.ok(focused.x>=0&&focused.y>=0&&focused.right<=viewport[0]+1&&focused.bottom<=viewport[1]+1,'Next player turn focus clipped');
     assert.deepEqual(await state(),ownerBefore,'Next turn focus changed campaign truth');
-    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),autosaveBefore,'Next turn focus wrote autosave');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),autosaveBefore,'Next turn focus wrote autosave');
     await capture(`combat-${entry.index}-native-next-turn-${label}`);
     return {...focused,pass:true};
   }
@@ -456,7 +456,7 @@ async function campaignParentKeyboardReturn(entry){
     return e&&stage&&e===document.activeElement&&e.getClientRects().length&&!e.closest('[inert]');
   },selector,{timeout:30000});
   const control=page.locator(selector);
-  const ownerBefore=await state(),autosaveBefore=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const ownerBefore=await state(),autosaveBefore=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
   assert.ok(ownerBefore.resolvedNodeIds.includes(entry.nodeId),'Parent focus precedes resolved opening truth');
   const focus=await control.evaluate(e=>{const r=e.getBoundingClientRect(),style=getComputedStyle(e);return{
     active:e===document.activeElement,visible:e.matches(':focus-visible'),outline:style.outlineStyle,outlineWidth:style.outlineWidth,
@@ -469,7 +469,7 @@ async function campaignParentKeyboardReturn(entry){
   assert.equal(tabAway,true,'Parent Tab must leave dialogue control');
   await page.keyboard.press('Shift+Tab');
   assert.equal(await control.evaluate(e=>e.isConnected&&e===document.activeElement),true,'Parent Shift+Tab must return to same dialogue control');
-  const ownerAfter=await state(),autosaveAfter=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const ownerAfter=await state(),autosaveAfter=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
   assert.deepEqual(ownerAfter,ownerBefore,'Parent Tab navigation changed settled campaign truth');
   assert.equal(autosaveAfter,autosaveBefore,'Parent Tab navigation wrote autosave');
   assert.equal(await page.locator('iframe.combat-frame').count(),0);
@@ -508,7 +508,7 @@ async function poiMove(id,pointer=false){
     const reduced=await page.evaluate(()=>matchMedia('(prefers-reduced-motion: reduce)').matches||window.__demoQaApp.state.settings.reducedGraphics);
     const sample=()=>page.evaluate(()=>{const token=document.querySelector('.poi-map__traveller');return token?{
       x:token.getAttribute('data-x'),y:token.getAttribute('data-y'),inert:document.querySelector('.poi-map').inert,
-      current:window.__demoQaApp.state.currentNodeId,saved:JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')).currentNodeId}:null;});
+      current:window.__demoQaApp.state.currentNodeId,saved:JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6:campaign')).currentNodeId}:null;});
     const first=await sample();
     if(reduced)assert.equal(first,null,'Reduced motion mounted a travel token');
     else if(id!==before.currentNodeId&&!(await state()).run.poiExpedition?.encounter){
@@ -611,7 +611,7 @@ async function handleExpeditionDialog(forceRetreat=false){
   const dialog=page.locator('.poi-dialog-backdrop:visible');if(!await dialog.count())return false;
   const live=await state(),encounter=live.run.poiExpedition?.encounter;
   if(explorationPlan==='complete'&&encounter&&!(report.expedition.encounterReloads??=[]).some(entry=>entry.eliteId===encounter.eliteId&&entry.kind===encounter.kind)){
-    const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+    const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
     assert.deepEqual(JSON.parse(saved),live,'Native interception choice was not saved before modal agency');
     await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
     await dialog.waitFor({state:'visible'});
@@ -639,7 +639,7 @@ async function handleExpeditionDialog(forceRetreat=false){
     const expected=structuredClone(intent.economyBefore.inventory);
     for(const [id,count] of Object.entries(def.chestLoot.temporaryItems))expected.consumables[id]=(expected.consumables[id]??0)+count;
     assert.deepEqual(live.inventory,expected);
-    assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),live,'Chest must save before popup acknowledgement');
+    assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),live,'Chest must save before popup acknowledgement');
     report.expedition.chests.push({id:def.id,gold:def.chestLoot.temporaryGold,items:def.chestLoot.temporaryItems,immediatelyUsable:true,turn:live.run.poiExpedition.turn});
     await capture(`chest-${def.id}`);
     if(explorationPlan==='complete'&&!report.expedition.chestReload){
@@ -648,7 +648,7 @@ async function handleExpeditionDialog(forceRetreat=false){
       const resumed=await state();assertCanonicalMatch(resumed,live,'Interrupted chest reload repeated a reward or changed canonical facts');
       assertExpeditionStep(live,resumed,0);await verifyExpeditionSettlement();
       assert.equal(await page.locator('.poi-dialog-backdrop:visible').count(),0,'Attributed chest reopened its reward popup');
-      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),resumed);
+      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),resumed);
       await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
       await page.locator('.poi-map:visible').waitFor();assert.deepEqual(await state(),resumed,'Second chest reload advanced another turn or repeated attribution');
       report.expedition.chestReload={id:def.id,before:live,after:resumed,exactCanonical:true,grantOnce:true,settledOnce:true};
@@ -697,7 +697,7 @@ async function explorePoiStep(live){
       if(live.currentNodeId!==recovery.origin){await navigateExpedition(recovery.origin);return true;}
       const expected=structuredClone(recovery.rested);expected.currentNodeId=expected.run.currentNodeId=recovery.origin;
       assertCanonicalMatch(live,expected,'Paid seal recovery return changed canonical facts, loot or checkpoint');
-      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),live);
+      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),live);
       recovery.after=live;recovery.complete=true;return true;
     }
   }
@@ -826,7 +826,7 @@ async function inspectPoiAtlas(){
   if(jobOptions.parameters.verifyPoiPresentation)await inspectPoiPresentation();
 }
 async function inspectPoiPresentation(){
-  const before=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const before=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
   const sizes=[{width:1366,height:768},{width:620,height:780},{width:390,height:844}];
   const layouts=[];
   assert.equal(await page.locator('.poi-map__pawn').getAttribute('data-node'),before.currentNodeId,'Resting pawn does not show actual position');
@@ -864,7 +864,7 @@ async function inspectPoiPresentation(){
   const gameAnimation=await page.locator('.poi-marker--current .poi-marker__icon').evaluate(e=>getComputedStyle(e).animationName);assert.equal(gameAnimation,'none');
   await keyboardActivate('.poi-map [data-poi-action="motion"]');
   assert.deepEqual(await state(),before,'Drawer/layout/motion review changed unrelated owner facts');
-  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),saved,'Drawer/layout/motion review changed saved bytes');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),saved,'Drawer/layout/motion review changed saved bytes');
   report.poiPresentation={pass:true,layouts,osAnimation,gameAnimation,ownerUnchanged:true,savedBytesUnchanged:true};
 }
 async function returnToPoiMap(){
@@ -906,7 +906,7 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
       await confirmTrade(sell);const sold=await state(),expected=structuredClone(owner);
       expected.gold+=price;expected.inventory.materials[id]-=1;expected.shops.valmir.stock[id]=(expected.shops.valmir.stock[id]??0)+1;
       assert.deepEqual(sold,expected,'Native rest-funding sale changed unrelated truth or temporary loot');
-      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),sold);
+      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),sold);
       funding.push({id,price,before:owner,after:sold});
     }
     await keyboardActivate('.management [data-action="close"]');await hub.waitFor({state:'visible'});
@@ -922,7 +922,7 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
   assert.deepEqual(rested,expectedRest,'Native post-Valmir rest changed unrelated earned truth');
   assert.equal(await rest.count(),0,'Native rest did not restore the full party');
   assert.ok(rested.clan.members.every(u=>u.currentHealth>0));
-  assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),rested,'Paid post-Valmir rest was not persisted exactly');
+  assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),rested,'Paid post-Valmir rest was not persisted exactly');
   await capture(`poi-after-${prefix}-${cost?'paid-rest':'already-healthy'}`);
   let prepared=rested,supplyPurchase=null;
   if(postTrial&&routePlan==='sacrifice'){
@@ -942,7 +942,7 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
       await confirmTrade(sell);const sold=await state(),expected=structuredClone(owner);
       expected.gold+=proceeds;expected.inventory[category][id]-=1;expected.shops.valmir.stock[id]=(expected.shops.valmir.stock[id]??0)+1;
       assert.deepEqual(sold,expected,'Native potion-funding sale changed unrelated truth or temporary loot');
-      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),sold);
+      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),sold);
       supplyFunding.push({id,category,price:proceeds});
     }
     await keyboardActivate('.management [data-shop-mode="buy"]');
@@ -953,7 +953,7 @@ async function preparePoiCompanyAfterValmir(milestone='lion-valmir-road'){
       expected.gold-=price;expected.inventory.consumables.potion=(expected.inventory.consumables.potion??0)+1;
       expected.shops.valmir.stock.potion-=1;
       assert.deepEqual(bought,expected,'Native Raid potion purchase changed unrelated V6 truth');
-      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),bought);
+      assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),bought);
     }
     await keyboardActivate('.management [data-action="close"]');await hub.waitFor({state:'visible'});
     prepared=await state();supplyPurchase={quantity,price,funding:supplyFunding,before:rested,after:prepared,exactAutosave:true};
@@ -1005,7 +1005,7 @@ async function prepareNativeWeapon(nodeId){
     hero.equipment.weaponIds[0]=purchaseId;hero.currentHealth=Math.min(hero.currentHealth,140);
     expected.inventory.weapons[purchaseId]-=1;expected.inventory.weapons[baseItemId]=(expected.inventory.weapons[baseItemId]??0)+1;
     assert.deepEqual(swapped,expected,'Native substitute equipment must return the actual steel blade without healing');
-    assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),swapped);
+    assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),swapped);
     prepared=swapped;await keyboardActivate('.management [data-action="close"]');
     await keyboardActivate('.exploration-stop [data-action="shop"]');
   }
@@ -1022,7 +1022,7 @@ async function prepareNativeWeapon(nodeId){
     expected.gold-=80;expected.inventory.weapons[baseItemId]-=1;
     expected.inventory.materials.iron_ore-=2;expected.inventory.weapons[itemId]=(expected.inventory.weapons[itemId]??0)+1;
     assert.deepEqual(forged,expected,'Native forge must consume only the exact existing permanent recipe inputs');
-    assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),forged);
+    assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),forged);
     (report.nativeForgePreparation??=[]).push({nodeId,recipeId:'craft_burn_greatsword',cost:80,iron:2,baseItemId,itemId,reuseEquippedBase,purchaseId,before:beforeForge,after:forged,temporaryLootUnchanged:true});
     await capture(`${nodeId}-native-earned-forge`);prepared=forged;
   }
@@ -1046,7 +1046,7 @@ async function prepareNativeWeapon(nodeId){
   await confirmTrade(sell);const sold=await state(),expectedSell=structuredClone(equipped);
   expectedSell.gold+=proceeds;expectedSell.inventory.weapons[old]-=1;expectedSell.shops.valmir.stock[old]=(expectedSell.shops.valmir.stock[old]??0)+1;
   assert.deepEqual(sold,expectedSell,'Native sale changed unrelated truth');
-  assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),sold);
+  assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),sold);
   (report.nativeWeaponPreparation??=[]).push({nodeId,itemId,purchaseId,unitId,price,old,proceeds,before,bought,equipped,sold});
   await capture(`${nodeId}-native-${forge?'ember-forged':'steel'}-equipment`);
   await keyboardActivate('.management [data-action="close"]');
@@ -1079,7 +1079,7 @@ async function cellClick(frame,cell,attempt){
 }
 async function settled(frame){await frame.waitForFunction(()=>window.G.over||!window.G.busy&&window.G.mode==='menu',null,{timeout:30000});}
 async function verifyTouchDeployment(frame,entry){
-  const owner=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const owner=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
   const deployed=await frame.evaluate(()=>G.deployedUnits.map(u=>u.campaignId||u.id));
   const expected=await frame.evaluate(()=>G.rosterDefs.map(u=>u.campaignId||u.id));
   const seen=new Set(),controls=[];
@@ -1098,7 +1098,7 @@ async function verifyTouchDeployment(frame,entry){
   }
   assert.deepEqual([...seen].sort(),[...expected].sort(),'Native touch pagination did not expose the entire roster');
   await first();assert.deepEqual(await frame.evaluate(()=>G.deployedUnits.map(u=>u.campaignId||u.id)),deployed);
-  assert.deepEqual(await state(),owner);assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),saved);
+  assert.deepEqual(await state(),owner);assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),saved);
   entry.deploymentTouch={controls,roster:[...seen],deployed,exactOwnerUnchanged:true,exactSaveUnchanged:true,nativePagination:true};
 }
 async function attack(frame,battle,{support=false,exactAp=null}={}){
@@ -1288,7 +1288,7 @@ async function move(frame,battle,{support=false,supportRange=3,salvationRange=nu
   }}await cancel(frame);return false;
 }
 async function verifyDeploymentHealth(frame,entry,phase){
-  const owner=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const owner=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
   const truth=()=>frame.evaluate(()=>({roster:G.rosterDefs.map(u=>({id:u.campaignId||u.name,name:u.name,hp:u.hp,maxhp:u.maxhp})),
     deployed:G.deployedUnits.map(u=>({id:u.campaignId||u.name,hp:u.hp,maxhp:u.maxhp,ap:u.ap,gx:u.gx,gz:u.gz}))}));
   const before=await truth(),rows=[];
@@ -1319,7 +1319,7 @@ async function verifyDeploymentHealth(frame,entry,phase){
   }
   assert.deepEqual(await truth(),before,'Roster inspection changed tactical health or deployment');
   assert.deepEqual(await state(),owner,'Roster inspection changed campaign truth');
-  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),saved,'Roster inspection changed saved bytes');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),saved,'Roster inspection changed saved bytes');
   entry.deploymentHealth??=[];entry.deploymentHealth.push({phase,expected:before.roster,rows,pass:true});
   await capture(`combat-${entry.index}-deployment-health-${phase}`);
 }
@@ -1411,7 +1411,7 @@ async function battle(){
     assert.deepEqual(entry.nativeDeploymentIds,picks,'Native deployment does not match selected party');
     entry.deployed=entry.nativeDeploymentIds.length;
   }
-  entry.autosaveBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
+  entry.autosaveBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')));
   if(jobOptions.parameters.verifyDeploymentHealth)await verifyDeploymentHealth(frame,entry,'deployed');
   if(touchInput)await verifyTouchDeployment(frame,entry);
   await capture(`combat-${entry.index}-deployment`);
@@ -1484,7 +1484,7 @@ async function battle(){
   entry.resultText=await frame.locator('.combat-result-card').innerText();
   entry.resultControlBounds=await frame.locator('#combat-result-action').boundingBox();
   if(process.env.DEMO_QA_VERIFY_RESULT_HEALTH==='1'){
-    const owner=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+    const owner=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
     entry.resultHealth=await frame.evaluate(()=>{
       const rect=e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height};};
       return {expected:G.deployedUnits.map(u=>({name:u.name,alive:u.alive,hp:u.hp,maxhp:u.maxhp})),
@@ -1509,7 +1509,7 @@ async function battle(){
     }
     const r=entry.resultControlBounds;assert.ok(r&&r.width>=44&&r.height>=44&&r.x>=0&&r.y>=0&&r.x+r.width<=viewport[0]+1&&r.y+r.height<=viewport[1]+1,'Native result action clipped');
     assert.deepEqual(await state(),owner,'Result inspection changed campaign truth');
-    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),saved,'Result inspection changed saved bytes');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),saved,'Result inspection changed saved bytes');
     observed.pass=true;
   }
   if(touchInput){
@@ -1520,10 +1520,10 @@ async function battle(){
     assert.equal(entry.nodeId,defeatNodeId,'Defeat occurred before the requested native recovery boundary');
     assert.equal(entry.result.units.filter(u=>u.team==='player'&&u.alive).length,0);
     assert.ok(entry.actions.length>0,'Native defeat requires actual player actions');
-    const savedBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
+    const savedBefore=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')));
     assert.deepEqual(savedBefore,entry.autosaveBefore,'Combat altered autosave before defeat acknowledgement');
-    const referenceBytes=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
-    const manualBytes=await page.evaluate(()=>localStorage.getItem('rpg-threejs:manual:v6'));
+    const referenceBytes=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
+    const manualBytes=await page.evaluate(()=>localStorage.getItem('rpg-threejs:manual:v6:campaign'));
     const action=frame.getByRole('button',{name:'Recharger la sauvegarde',exact:true});
     await action.focus();assert.equal(await action.evaluate(e=>e===document.activeElement),true);
     const bounds=await action.boundingBox();assert.ok(bounds&&bounds.x>=0&&bounds.y>=0&&bounds.x+bounds.width<=viewport[0]&&bounds.y+bounds.height<=viewport[1]);
@@ -1533,8 +1533,8 @@ async function battle(){
     await element.waitFor({state:'detached',timeout:30000});
     const resume=page.locator('[data-action="resume-save"]');await resume.waitFor({state:'visible'});
     const recovered=await state();assert.deepEqual(recovered,savedBefore,'Defeat did not restore the exact full last saved timeline');
-    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),referenceBytes,'Loss overwrote the reference autosave');
-    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:manual:v6')),manualBytes,'Loss changed a manual slot');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),referenceBytes,'Loss overwrote the reference autosave');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:manual:v6:campaign')),manualBytes,'Loss changed a manual slot');
     assert.equal(await resume.evaluate(e=>e===document.activeElement),true,'Recovery action lost focus');
     const recoveryBounds=await resume.boundingBox();assert.ok(recoveryBounds&&recoveryBounds.width>=44&&recoveryBounds.height>=44&&recoveryBounds.x>=0&&recoveryBounds.y>=0&&recoveryBounds.x+recoveryBounds.width<=viewport[0]&&recoveryBounds.y+recoveryBounds.height<=viewport[1]);
     await capture('native-defeat-exact-last-save');
@@ -1544,7 +1544,7 @@ async function battle(){
     await resumedFrame.locator('#menu [data-d="start"]').waitFor({state:'visible'});
     const resumed=await state();assert.deepEqual(resumed,recovered,'Explicit recovery changed saved pending combat facts');
     assert.equal(await page.evaluate(()=>window.__demoQaApp.combat.session.config.id),entry.combatId,'Recovery resumed another combat');
-    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),referenceBytes,'Pending combat continuation overwrote reference bytes');
+    assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),referenceBytes,'Pending combat continuation overwrote reference bytes');
     await capture('native-defeat-saved-combat-resumed');
     entry.pass=true;entry.outcome='defeat';entry.ownerAfter=recovered;
     report.defeatRecovery={nodeId:entry.nodeId,savedBefore,recovered,resumed,expected:savedBefore,
@@ -1607,9 +1607,9 @@ try{
     for(const asset of manifest.candidates){const response=await page.request.get(`http://127.0.0.1:${port}/assets/audio/combat-fx-v1/${asset.file}`);assert.equal(response.status(),200);const digest=createHash('sha256').update(await response.body()).digest('hex');assert.equal(digest,asset.sha256);report.combatFx.httpAssets.push({id:asset.id,sha256:digest,status:200});}
   }
   await page.goto(`http://127.0.0.1:${port}/`,{waitUntil:'networkidle'});
-  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),null);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),null);
   if(earnedText){
-    await page.evaluate(text=>localStorage.setItem('rpg-threejs:autosave:v6',text),earnedText);
+    await page.evaluate(text=>localStorage.setItem('rpg-threejs:autosave:v6:campaign',text),earnedText);
     await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
     await page.waitForFunction(nodeId=>window.__demoQaApp?.state.currentNodeId===nodeId,JSON.parse(earnedText).currentNodeId);
     const original=JSON.parse(earnedText),resumed=await state(),preserved=structuredClone(resumed);
@@ -1662,7 +1662,7 @@ try{
       live=await state();assert.equal(live.currentNodeId,'lion-final-refuge');
       if(!report.preparation){
         await page.waitForFunction(()=>!document.body.classList.contains('scene-transition--locked'));
-        const before=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+        const before=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
         if(touchInput){const bounds=await page.locator(preparationContinue).boundingBox();assert.ok(bounds&&bounds.width>=44&&bounds.height>=44,'Preparation touch action below44px');}
         assert.equal((await page.locator('.journey-overlay__title').textContent()).trim(),'Avant le jugement');
         assert.equal(await page.locator('.exploration-stop:visible,iframe.combat-frame').count(),0);
@@ -1729,7 +1729,7 @@ try{
             `Second refuge requires verified native ${combatId} victory at ${id}`);
         }
       }
-      const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+      const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
       assert.deepEqual(JSON.parse(saved),live,'Earned refuge agency precedes durable owner truth');
       if(jobOptions.parameters.verifyRefugeRest){
         assert.equal(nodeId,'lion-first-refuge');assert.ok(priorProof);
@@ -1746,7 +1746,7 @@ try{
           assert.ok(unit);assert.equal(row.hp[0],unit.currentHealth);assert.ok(row.hp[1]>0);}
         await keyboardActivate('.management [data-action="close"]');await hub.waitFor();
         assert.deepEqual(await state(),live,'Reading clan health changed owner truth');
-        assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),saved);
+        assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),saved);
         const cost=Number(restText.match(/(\d+)\s*or/)?.[1]);assert.equal(cost,wounded.length*15);
         assert.match(restText,new RegExp(`${wounded.length} unités? blessées?`));
         assert.ok(cost>0&&live.gold>=cost);assert.equal(await page.locator(restSelector).isEnabled(),true);
@@ -1766,7 +1766,7 @@ try{
         const after=await state(),expected=structuredClone(before);expected.gold-=cost;
         for(const unit of expected.clan.members)unit.currentHealth=roster.find(row=>row.id===unit.id).hp[1];
         assert.deepEqual(after,expected,'Native rest must only debit its total and fully heal the clan');
-        assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),after);
+        assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),after);
         assert.equal(await page.locator(restSelector).isDisabled(),true);
         assert.match(await page.locator(restSelector).innerText(),/Compagnie en pleine forme/);
         assert.equal(await page.locator('.exploration-stop [data-action="clan"]').evaluate(e=>e===document.activeElement),true);
@@ -1774,7 +1774,7 @@ try{
         await keyboardActivate('.exploration-stop [data-action="continue"]');await returnToPoiMap();
         await verifyExpeditionSettlement();assert.equal(pendingExpeditionProof,undefined);
         const departed=await state();
-        const reloadSave=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+        const reloadSave=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
         assert.deepEqual(JSON.parse(reloadSave),departed);
         await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
         await page.locator('.poi-map:visible').waitFor();report.resumed=await state();assert.deepEqual(report.resumed,departed);
@@ -1868,7 +1868,7 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
         for(const [index,member] of expected.clan.members.entries())member.currentHealth=rested.clan.members[index].currentHealth;
         assert.deepEqual(rested,expected,'Native seal rest must change only paid gold and health');
         assert.equal(await rest.count(),0,'Paid native recovery did not restore the party');
-        assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),rested);
+        assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),rested);
         Object.assign(sealRecovery,{servicesBefore,rested,cost:nativeRestCost,phase:'return-to-origin',exactSavedOwner:true});
       }
       if(nodeId==='lion-first-refuge'&&target==='defeat-recovery'){
@@ -1890,7 +1890,7 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
         }
         const prepared=await state();await capture(`${nodeId}-native-potion-stock`);
         await keyboardActivate('.management [data-action="close"]');await hub.waitFor({state:'visible'});
-        const saved=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')));
+        const saved=JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')));
         assert.deepEqual(saved,prepared,'Native potion preparation was not saved before departure');
         await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
         if(await page.locator('.poi-map:visible').count())await poiMove(nodeId,true);
@@ -1914,7 +1914,7 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
       assert.equal(live.run.status,'completed');assert.ok(live.resolvedNodeIds.includes('lion-final-judgement'));
       assert.equal(live.run.temporaryLoot.gold,0);
       assert.equal(live.endingId,finalePlan==='serpent'?'lion-seal-serpent-truth':'lion-seal-trial-truth');
-      const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+      const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
       assert.deepEqual(JSON.parse(saved),live);await writeFile(resolve(output,'earned-ending-v6.json'),saved+'\n');
       await page.reload({waitUntil:'networkidle'});await click('.title-screen [data-action="continue"]');
       await page.waitForFunction(id=>window.__demoQaApp?.state.endingId===id,live.endingId);
@@ -1925,14 +1925,14 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
       await capture(`ending-${live.endingId}-resumed`);
       const menu=page.locator('.journey-overlay--terminal [data-journey-continue]');
       assert.equal((await menu.textContent()).trim(),'Retour au menu');
-      const menuSave=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+      const menuSave=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
       await keyboardActivate('.journey-overlay--terminal [data-journey-continue]');
       await page.locator('.title-screen:visible').waitFor({timeout:30000});
       assert.equal(await page.locator('.poi-map:visible,.traversal-road:visible,.journey-overlay:visible,.dialogue:visible,iframe.combat-frame').count(),0);
       const focused=await page.locator('.title-screen [data-action="continue"]:not(:disabled)').evaluate(e=>e===document.activeElement);
       assert.equal(focused,true,'Terminal return must focus native title Continue');
       assert.deepEqual(await state(),live,'Terminal return changed ending owner');
-      assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),menuSave,'Terminal return changed save bytes');
+      assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),menuSave,'Terminal return changed save bytes');
       report.terminalMenu={nativeKeyboard:!touchInput,nativeTouch:touchInput,titleVisible:true,continueFocused:true,ownerUnchanged:true,savedBytesUnchanged:true};
       await capture(`ending-${live.endingId}-native-menu`);
       assert.deepEqual(report.errors,[]);report.pass=true;break;
@@ -1946,7 +1946,7 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
         const earnedHere=report.battles.slice(report.inheritedBattleCount??0).some(b=>b.nodeId===checkpointPoiId&&b.pass&&b.outcome==='victory')
           ||report.expedition.chests.some(chest=>chest.id===checkpointPoiId);
         assert.ok(earnedHere,'An intermediate checkpoint requires a newly completed native optional activity');
-        const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));assert.deepEqual(JSON.parse(saved),live);
+        const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));assert.deepEqual(JSON.parse(saved),live);
         await capture('expedition-checkpoint-earned');
         await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
         await page.locator('.poi-map:visible').waitFor();report.resumed=await state();assert.deepEqual(report.resumed,live);
@@ -1973,7 +1973,7 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
           expected.inventory.consumables.potion-=1;expected.clan.members.find(u=>u.id==='dark_mage').currentHealth+=55;
           assert.deepEqual(after,expected,'Newly gained usable potion changed unrelated facts');
           await capture('last-save-immediate-inventory-use');await keyboardActivate('.management [data-action="close"]');
-          assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'))),after);
+          assert.deepEqual(JSON.parse(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'))),after);
           report.lastSavePreparation.supplies={before,after,nativeUse:true};continue;
         }
         await navigateExpedition(defeatNodeId);continue;
@@ -1991,7 +1991,7 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
         assert.equal(live.run.traversalBranches.T1,live.currentNodeId);assert.ok(!live.resolvedNodeIds.includes('lion-second-trial-event'));
         assert.ok((await page.locator('.poi-map [data-poi-id="lion-second-trial-event"]').getAttribute('class')).includes('poi-marker--neutralized'));
         await capture('poi-second-trial-resolved-neutralized');
-        const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));assert.deepEqual(JSON.parse(saved),live);
+        const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));assert.deepEqual(JSON.parse(saved),live);
         await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');
         await page.locator('.poi-map:visible').waitFor();report.resumed=await state();assert.deepEqual(report.resumed,live);
         await writeFile(resolve(output,'earned-second-trial-v6.json'),saved+'\n');await capture('poi-second-trial-native-reloaded');
@@ -2007,7 +2007,7 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
         &&live.resolvedNodeIds.includes(live.currentNodeId)&&!report.poi.valmirRefugePreparation){
         await preparePoiCompanyAfterValmir();
         if(target==='valmir'){
-          const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),before=await state();
+          const saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),before=await state();
           assert.ok(before.gold>0);assert.equal(before.run.checkpointNodeId,'lion-first-refuge');
           const earned=report.battles.slice(report.inheritedBattleCount??0).find(b=>b.nodeId===before.currentNodeId&&b.pass&&b.outcome==='victory');
           assert.ok(earned&&earned.ownerAfter.gold>earned.ownerBefore.gold,'Missing newly earned native Valmir gold');
@@ -2114,7 +2114,7 @@ report.poi.secondRefuge={resolved:true,checkpointExact:true,exclusiveAlternative
   await capture('failure-state',10000).catch(()=>{});
   report.lastState=await state().catch(()=>null);process.exitCode=1;
 }finally{
-  const save=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')).catch(()=>null);
+  const save=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')).catch(()=>null);
   if(save)await writeFile(resolve(output,'last-earned-autosave-v6.json'),save+'\n');
   const live=await state().catch(()=>null);
   if(live)await writeFile(resolve(output,'last-earned-owner-state-v6.json'),JSON.stringify(live,null,2)+'\n');
@@ -2172,7 +2172,7 @@ async function runUiFx(options) {
     const capture=async(name)=>{await page.screenshot({path:resolve(output,name)});result.captures.push(name);};
     await page.goto(`http://127.0.0.1:${port}/`,{waitUntil:'networkidle'});
     assert.equal(await page.evaluate(()=>window.__demoQaApp.uiSounds.context),null);
-    await page.evaluate(text=>localStorage.setItem('rpg-threejs:autosave:v6',text),earnedText);
+    await page.evaluate(text=>localStorage.setItem('rpg-threejs:autosave:v6:campaign',text),earnedText);
     await page.reload({waitUntil:'networkidle'});
     const initialOwner=await owner(),initialSlots=await slots();
     await page.locator('[data-action="sounds"]').click();
@@ -2226,7 +2226,7 @@ async function runUiFx(options) {
     result.nativePotion={id,before:potionBefore.clan.members.find(u=>u.id===id).currentHealth,after:unit.currentHealth,oneCue:true};
     await cue('back',()=>page.keyboard.press('Escape'));await page.locator('.poi-map:visible').waitFor();
     const savedOwner=await owner();await cue('saved',()=>page.locator('.poi-map [data-poi-action="save"]').click());
-    assert.deepEqual(await owner(),savedOwner);assert.deepEqual(JSON.parse((await slots())['rpg-threejs:manual:v6']),savedOwner);
+    assert.deepEqual(await owner(),savedOwner);assert.deepEqual(JSON.parse((await slots())['rpg-threejs:manual:v6:campaign']),savedOwner);
     const destinations=await page.locator('.poi-map [data-poi-reachable="true"]').evaluateAll(nodes=>nodes.map(n=>n.dataset.poiId));
     const destination=destinations.find(id=>id!==savedOwner.currentNodeId&&savedOwner.resolvedNodeIds.includes(id));assert.ok(destination,'No earned adjacent resolved return');
     await cue('navigate',()=>page.locator(`[data-poi-id="${destination}"]`).click());
@@ -2263,14 +2263,14 @@ async function runUiFx(options) {
 
 /** Effects are on by default since OD-2026-11-01-B; all game actions still use the pilot's real controls. */
 async function prepareCombatSoundProof(){
-  const fx=report.combatFx,before=await state(),save=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const fx=report.combatFx,before=await state(),save=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
   assert.equal(await page.evaluate(()=>window.__combatFxNative.length),0,'A combat cue played on resume');
   await keyboardActivate('.poi-map [data-poi-action="sounds"]');
   if(!await page.evaluate(()=>window.__demoQaApp.uiSounds.enabled))await keyboardActivate('[data-sound-toggle]');
   await page.waitForFunction(()=>window.__demoQaApp.uiSounds.buffers.size===8);
   assert.equal(await page.evaluate(()=>window.__combatFxNative.length),0,'Opening the settings queued an automatic cue');
   await page.keyboard.press('Escape');assert.deepEqual(await state(),before);
-  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),save);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),save);
   fx.settingsPreserveOwnerAndSave=true;fx.defaultSilent=true;
   // Use already-earned potions through the real inventory, no manufactured HP/AP/equipment.
   await keyboardActivate('.poi-map [data-poi-action="company"]');
@@ -2288,7 +2288,7 @@ async function prepareCombatSoundProof(){
   await keyboardActivate('.management [data-action="close"]');fx.prepared=true;
 }
 async function verifyCombatSoundSettings(frame,entry){
-  const fx=report.combatFx,before=await state(),save=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const fx=report.combatFx,before=await state(),save=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
   await page.waitForFunction(()=>window.__demoQaApp.uiSounds.buffers.size===24);
   // Controlled presentation-only suspension, followed by a REAL native iframe key gesture.
   // This proves gesture relay, not hidden/suspend visibility acceptance.
@@ -2313,7 +2313,7 @@ async function verifyCombatSoundSettings(frame,entry){
   await open();await page.locator('#ui-sound-volume').focus();await page.keyboard.press('Home');for(let i=0;i<10;i++)await page.keyboard.press('ArrowRight');
   assert.equal(await page.evaluate(()=>window.__demoQaApp.uiSounds.volume),.5);await page.keyboard.press('Escape');
   fx.muteAndVolumeZero=true;fx.focusRestored=true;assert.deepEqual(await state(),before);
-  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6')),save);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign')),save);
   // Close settings using the same combat control before the standard deployment pilot.
   if(await frame.locator('#settings:not(.hidden)').count())await activateControl(frame.locator('#settings-btn'));
   entry.audioSettingsVerified=true;
@@ -2328,7 +2328,7 @@ async function finishCombatSoundProof(){
   assert.ok(fx.playedIds.some(id=>['light-blade','heavy-weapon','thrust','bow-release','magic-cast'].includes(id)),'No action launch cue played');
   assert.ok(battleEvents.every(e=>e.voices<=4),'Combat voice cap exceeded');
   assert.equal(await page.evaluate(()=>window.__demoQaApp.uiSounds.voices.size),0,'Closing combat left session voices');
-  const live=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6'));
+  const live=await state(),saved=await page.evaluate(()=>localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
   assert.equal(live.currentNodeId,checkpointPoiId);assert.deepEqual(JSON.parse(saved),live);await capture('combat-audio-earned-return');
   await page.reload({waitUntil:'networkidle'});await keyboardActivate('.title-screen [data-action="continue"]');await page.locator('.poi-map:visible').waitFor();
   assert.deepEqual(await state(),live,'Audio lot altered exact V6 reload');await page.waitForTimeout(150);

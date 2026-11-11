@@ -50,9 +50,9 @@ describe('GameApp POI owner handoffs',()=>{
     const {app,owner}=fixture();owner.mode='TRAVEL';let finish!:()=>void;
     vi.spyOn(owner.poiMap,'animateTravel').mockImplementation(()=>new Promise<void>(resolve=>{finish=resolve;}));
     const content=vi.spyOn(owner,'resolveRunNode').mockResolvedValue();
-    const pending=owner.choosePoi('lion-audience');const saved=localStorage.getItem('rpg-threejs:autosave:v6');
+    const pending=owner.choosePoi('lion-audience');const saved=localStorage.getItem('rpg-threejs:autosave:v6:campaign');
     app.dispose();finish();await pending;
-    expect(content).not.toHaveBeenCalled();expect(localStorage.getItem('rpg-threejs:autosave:v6')).toBe(saved);expect(owner.routeCommitInFlight).toBe(false);
+    expect(content).not.toHaveBeenCalled();expect(localStorage.getItem('rpg-threejs:autosave:v6:campaign')).toBe(saved);expect(owner.routeCommitInFlight).toBe(false);
   });
   it.each([
     ['lion-nomad-crossroads',true],['lion-reserve-trail',true],['lion-witnesses',true],
@@ -65,7 +65,7 @@ describe('GameApp POI owner handoffs',()=>{
     if(resolved)owner.state.resolvedNodeIds.push(id);
     owner.state=migrateState(owner.state); // Initialize only the newly versioned expedition facts.
     new SaveRepository().saveAuto(owner.state);const saved=structuredClone(owner.state);
-    vi.spyOn(sceneTransition,'run').mockImplementation(async options=>{await options.task();});
+    vi.spyOn(sceneTransition,'run').mockImplementation(async options => { await options.task(); return true; });
     const encounter=vi.spyOn(owner,'resolveRunNode').mockResolvedValue();
     const map=vi.spyOn(owner,'enterCampaignPresentation').mockResolvedValue();
     await owner.continueChronicle();
@@ -79,7 +79,7 @@ describe('GameApp POI owner handoffs',()=>{
     owner.state.run.currentNodeId=owner.state.currentNodeId='lion-final-refuge';
     owner.state.resolvedNodeIds.push('lion-final-refuge');owner.state.run.temporaryLoot.gold=17;
     owner.state=migrateState(owner.state);new SaveRepository().saveAuto(owner.state);const before=structuredClone(owner.state);
-    vi.spyOn(sceneTransition,'run').mockImplementation(async options=>{await options.task();});
+    vi.spyOn(sceneTransition,'run').mockImplementation(async options => { await options.task(); return true; });
     const order:string[]=[];
     const exploration=(owner as unknown as {exploration:import('../ui/ExplorationView').ExplorationView}).exploration;
     vi.spyOn(exploration,'prepareBackground').mockResolvedValue({backgroundUrl:'',backgroundReady:true,naturalWidth:1,naturalHeight:1});
@@ -100,7 +100,7 @@ describe('GameApp POI owner handoffs',()=>{
     owner.state.flags.serpentGeneralDefeated=true;
     new SaveRepository().saveAuto(owner.state);const before=structuredClone(owner.state);
     document.body.dataset.campaignSurface='poi-map';
-    vi.spyOn(sceneTransition,'run').mockImplementation(async options=>{await options.task();});
+    vi.spyOn(sceneTransition,'run').mockImplementation(async options => { await options.task(); return true; });
     const terminal=vi.spyOn(owner,'enterJourney').mockResolvedValue();
     const resolve=vi.spyOn(owner,'resolveRunNode').mockResolvedValue();
     await owner.continueChronicle();
@@ -135,7 +135,7 @@ describe('GameApp POI owner handoffs',()=>{
     owner.state.run.bypassedRouteNodeIds=['lion-refugees'];
     owner.state.resolvedNodeIds=['lion-audience','lion-opening-ambush','lion-nomad-crossroads'];
     new SaveRepository().saveAuto(owner.state);
-    vi.spyOn(sceneTransition,'run').mockImplementation(async options=>{await options.task();});
+    vi.spyOn(sceneTransition,'run').mockImplementation(async options => { await options.task(); return true; });
     const resolve=vi.spyOn(owner,'resolveRunNode').mockResolvedValue();
     await owner.continueChronicle();
     expect(resolve).not.toHaveBeenCalled();expect(document.querySelector('.poi-map')).not.toBeNull();

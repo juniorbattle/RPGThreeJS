@@ -119,6 +119,10 @@ button { font: inherit; }
   font-size: 11px;
   font-weight: 700;
 }
+.title-screen__confirm { display: grid; justify-items: center; gap: 14px; max-width: 560px; }
+.title-screen__confirm p { margin: 0; color: #f1e4c4; font: 500 15px/1.6 Inter, sans-serif; text-align: center; }
+.title-screen__confirm .title-screen__actions { flex-wrap: wrap; justify-content: center; }
+.title-screen__confirm [data-action="confirm-new"] { border-color: rgba(229, 132, 112, .7); }
 .title-screen--recovery { animation: none; }
 .title-screen--recovery h1 { font-size: clamp(40px, 8vw, 64px); line-height: 1.05; }
 .title-screen--recovery .title-screen__lead { max-width: 720px; text-align: center; }
@@ -2826,6 +2830,8 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .narrative-utility-dock .journey-overlay__secondary-action { padding-inline:6px; font-size:9px; letter-spacing:.04em; }
 }
 
+.narrative-stage--leaving { opacity:0; pointer-events:none; transition:opacity 460ms cubic-bezier(.45,0,.62,1); }
+
 @media (prefers-reduced-motion: reduce) {
   .narrative-stage,.narrative-stage * { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
   .dialogue--narrative .dialogue__box { translate:none !important; }
@@ -3064,6 +3070,15 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .tournament-board__actions button { flex: 1 1 100%; }
 }
 @media (prefers-reduced-motion: reduce) { .tournament-board { animation: none; } }
+
+/* Final audit 2026-11-11 (A5): the in-game reduced-motion choice, beside the OS query above, for CSS-only motion. */
+body.motion-reduced .cinematic-overlay, body.motion-reduced .cinematic-overlay * { animation:none !important; transition:none !important; }
+body.motion-reduced .journey-overlay, body.motion-reduced .journey-overlay * { animation:none !important; transition:none !important; }
+body.motion-reduced .scene-transition, body.motion-reduced .scene-transition * { animation:none !important; }
+body.motion-reduced .narrative-stage, body.motion-reduced .narrative-stage * { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+body.motion-reduced .narrative-media-transition, body.motion-reduced .narrative-media-transition * { animation:none !important; transition:none !important; }
+body.motion-reduced .tournament-board, body.motion-reduced .ui-screen { animation:none; }
+body.motion-reduced.mode-entering::before { animation:none; }
 
 /* Playtest 2026-11-11: shop and forge filters by type, forge readiness, and quantity on the buy or sell fiche. */
 .shop-filters { display: flex; flex-wrap: wrap; gap: 8px; max-width: 1120px; margin: 0 0 16px; }

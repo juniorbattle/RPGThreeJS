@@ -131,7 +131,8 @@ describe('boss and elite tempo (operator playtest 2026-11-11)', () => {
     applyStatus(boss, 'staggered', 1);
     applyStatus(boss, 'burn', 1);
     expect(boss.statuses).toEqual({ staggered: 1, burn: 2 });
-    // beginTurn consumes one skip turn per skipped turn.
-    expect(runtime).toContain("for(const s in u.statuses){ if(STATUS[s]&&STATUS[s].skip){ u.statuses[s]--; if(u.statuses[s]<=0)delete u.statuses[s]; } }");
+    // A skipped turn counts as that unit's turn for every status: one skip turn is consumed, and poison, burn or a
+    // barrier tick down as at the end of a played turn (final audit 2026-11-11, A8).
+    expect(runtime).toContain('await wait(0.7); tickStatusDuration(u);');
   });
 });

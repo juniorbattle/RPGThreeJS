@@ -20,6 +20,8 @@ interface CombatSession {
   devQa?: boolean;
   qaFullAp?: boolean;
   qaDeployAll?: boolean;
+  /** Keep the frame on result: the owner closes it under the exit curtain (final audit 2026-11-11, A5). */
+  holdOnResult?: boolean;
 }
 
 interface CombatStart {
@@ -165,6 +167,11 @@ export class CombatBridge {
     // The fallback when the combat document sent no outcome; the owner ignores a second one.
     try { if (this.audioSession) this.audio?.player.playMusicOutcome(this.audioSession, result.victory ? 'victory' : 'defeat'); } catch { /* Music never affects the result. */ }
     const resolve = this.resolveResult;
+    if (this.session?.holdOnResult) {
+      this.resolveResult = null;
+      resolve?.(result);
+      return;
+    }
     this.close();
     resolve?.(result);
   };

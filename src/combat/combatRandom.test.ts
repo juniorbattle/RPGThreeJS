@@ -22,21 +22,22 @@ async function ownerProc(weapon: string, rolls: number[], basicDmg = 40) {
   const events: unknown[] = []; let count = 0;
   const u = { alive: true, team: 'player', gx: 1, gz: 1, hp: 50, maxhp: 100, ap: 1, maxap: 5 };
   const targets = [{ alive: true, team: 'enemy', gx: 2, gz: 1 }, { alive: true, team: 'enemy', gx: 3, gz: 1 }];
-  const execute = new Function('u', 'spec', 'targets', 'basicDmg', 'tacticalRnd', 'isBreakOpen', 'applyStatus', 'applyHeal', 'aliveUnits', 'floatText', 'applyDamage', 'refreshPanel',
+  const execute = new Function('u', 'spec', 'targets', 'basicDmg', 'tacticalRnd', 'isBreakOpen', 'applyStatus', 'applyHeal', 'aliveUnits', 'floatText', 'applyDamage', 'refreshPanel', 'grantAp',
     `return (async()=>{${procSource}})();`);
   await execute(u, { key: 'attack', weaponType: weapon }, targets, basicDmg,
     () => { const roll = rolls[count++]; if (roll === undefined) throw Error('Unexpected owner draw'); return roll; },
     () => false, (t: unknown, status: string, turns: number) => events.push(['status', t, status, turns]),
     (_t: unknown, amount: number) => events.push(['heal', amount]), () => targets,
-    () => {}, (_t: unknown, amount: number) => events.push(['damage', amount]), () => {});
+    () => {}, (_t: unknown, amount: number) => events.push(['damage', amount]), () => {},
+    (t: { ap: number; maxap: number }, amount: number) => { t.ap = Math.min(t.maxap, t.ap + amount); return true; });
   return { events, count, ap: u.ap };
 }
 
 function ownerAI(roll: number, forceUltimate = false) {
-  return new Function('u', 'prof', 'actBest', 'supBest', 'itmBest', 'tacticalRnd',
+  return new Function('u', 'prof', 'actBest', 'supBest', 'itmBest', 'tacticalRnd', 'hasS',
     `${aiSource}; return pick.type;`)(
     { boss: true, ap: 5, _ultCooldown: forceUltimate ? 0 : 1, hp: 100, maxhp: 100 },
-    'cautious', { score: 20 }, { score: 11 }, null, () => roll,
+    'cautious', { score: 20 }, { score: 11 }, null, () => roll, () => false,
   );
 }
 

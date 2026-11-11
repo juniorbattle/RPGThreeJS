@@ -7,12 +7,12 @@
 | BASELINE | `6d528545` sur `dev` (jeu de contrats 1.21.0, baseline immuable `470216d179e2cf6e2840e0c48f4f431a5dbb65d4`) |
 | BRANCH | `dev` |
 | HEAD | le commit de ce rapport |
-| STATUS | review : constats livrés à l’opérateur le 2026-11-11 ; aucune correction appliquée |
+| STATUS | merged : constats livrés à l’opérateur le 2026-11-11 ; les défauts A1 à A8 sont corrigés le même jour sur son accord (section « Corrections appliquées ») ; B1 à B10 attendent ses arbitrages |
 | MERGED_IN | NONE (rapport seul) |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |
-| PRODUCTION_IMPACT | NONE : audit en lecture seule |
-| CANONICAL_DOCS_UPDATED | NONE : les corrections et arbitrages attendent l’accord de l’opérateur |
+| PRODUCTION_IMPACT | Audit en lecture seule, puis les corrections A1 à A8 (section « Corrections appliquées ») : règles du Mutisme, textes et accès de l’École du combat, confirmation de « Nouvelle chronique », rideau partagé, garde du labo VFX et contenu de `dist`, clé de stockage des sauvegardes, petits défauts. Aucun champ de sauvegarde nouveau, aucun canon nouveau. |
+| CANONICAL_DOCS_UPDATED | `docs/autonomy/AUTONOMOUS_WORK_STATE.md` et `.json` (nextAction, remainingWork). Contrats inchangés. |
 | EVIDENCE | Vérification complète sur le poste de l’opérateur (ci-dessous) ; passe navigateur sur `localhost:5174` (titre, ouverture, premiers dialogues, labo de rencontres, entrée dans le combat du Général Serpent, console sans erreur) ; cinq audits de lecture du code en parallèle (narration, combat, progression, interface, structure), dont les constats marqués « vérifié » ont été recontrôlés dans le code ou à l’écran. Page de synthèse privée de l’opérateur : https://claude.ai/artifact/Nd5v8dgZyMTAsVUg5nJPuw |
 
 ## Verdict
@@ -66,3 +66,50 @@ Limites : aucun tour de combat joué, car le panneau du navigateur était trop p
 3. Lot des décisions.
 4. Images finales (Codex), finalisation, puis test final sur PC.
 5. Passe mobile, puis nettoyage C1 à C5.
+
+## Corrections appliquées (A1 à A8, 2026-11-11, sur l’accord de l’opérateur)
+
+**APPROVED DECISION.** L’opérateur a répondu « Oui, corrige A1–A8 ». Aucun contrat ni canon n’est modifié. Le seul texte de dialogue touché est la faute de A8.
+
+- **A1.** `isSkillSpec` distingue les compétences des attaques d’arme et des objets. Sous Mutisme :
+  - `bestOffense` n’offre que les attaques d’arme, sans ultime forcé ;
+  - `bestSupport` ne renvoie rien ;
+  - la boucle d’IA ne retient plus un ultime prêt ;
+  - `executeActionCore` refuse toute compétence ;
+  - le bouton et le menu des soutiens de clan sont désactivés.
+- **A2.** `legacy-combat.html` :
+  - régénération à 1 PA, et 3 pour les boss et les élites ;
+  - +1 PA par élimination ;
+  - Élan à ×1,0 / ×1,4 / ×1,6 (+10 % de précision et moitié de la défense ignorée au niveau 3) ;
+  - liste réelle des altérations, avec Entravé et Mutisme, et une section « Essoufflé et Brisé » ;
+  - fiche des boss : portée jusqu’à 7 cases, réserve et badge, attaque lourde et ultime décrits sans liste périmée, section « Furie ».
+
+  Dans l’aide du combat, « Revoir l’École du combat » rouvre le tutoriel, suivi de la fiche des boss dans un combat de boss ou d’élite. Les écouteurs sont liés une seule fois. Échap ferme la fiche ouverte au lieu d’annuler l’action. Le panneau d’aide recevait `pointer-events: none` de `#ui` et ne s’ouvrait pas à la souris : il a désormais `pointer-events: auto`.
+- **A3.** Avec une sauvegarde présente, « Nouvelle chronique » ouvre une confirmation (`role="alertdialog"`). Le focus est sur « Garder ma chronique » ; Échap garde aussi la chronique. Seul « Effacer et commencer » efface.
+- **A4.** `SceneTransition` bloque `keydown` et `keyup` en capture tant que le rideau couvre, hors interlude. Le navigateur de manette envoie un `keydown` annulable avant son clic. `run()` renvoie `false` quand une transition est déjà en cours. `startCombat` et `fightPoiElite` montent alors le combat directement au lieu d’attendre indéfiniment.
+- **A5.** `SceneTransition.cover()`, `releaseWhenReady()` et `release()` gèrent un rideau tenu :
+  - Sortie de combat : `CombatBridge` garde le cadre au résultat (`holdOnResult`). GameApp couvre (« Victoire » ou « Défaite »), ferme le combat sous le noir, puis le rideau se lève quand la surface suivante pose son mode (`setMode`) ou qu’une transition suivante le reprend. Il tombe au plus tard après 6 s.
+  - Retours au titre depuis le jeu : ils passent sous le rideau.
+  - Dialogue vers carte : fondu de 460 ms, immédiat en mouvement réduit.
+  - Réglage du jeu : la classe `body.motion-reduced` le transmet aux animations CSS (rideau, Journey, scène narrative, tournoi, entrées d’écran), à côté de la requête média de l’OS, que le contrat garde (voir B8).
+- **A6.** `VFX_LAB_ENABLED` exige `import.meta.env.DEV`. Le plugin `exclude-local-only-public-assets` retire `assets/vfx/megapack-runtime` de `dist` après le build : 270 Mo contre 671 Mo.
+- **A7.** Ce build écrit `rpg-threejs:autosave:v6:campaign` et `rpg-threejs:manual:v6:campaign`. Il lit encore les clés V6 partagées, puis les plus anciennes. « Nouvelle chronique » efface toutes ces clés. Les tests et les quatre pilotes QA qui lisent la sauvegarde suivent la nouvelle clé.
+- **A8.**
+  - La carte ne dit plus « 1 tour ».
+  - « Laisser quelques provisions » exige 40 or.
+  - Un tour sauté compte pour toutes les altérations (`tickStatusDuration`).
+  - Les PA qu’une action donne à son auteur (grimoire, rendu de PA sur soi) sont crédités après le coût (`grantAp`, `settleActionAp` avec `bonusAp`).
+  - Le texte flottant, la Compagnie et le catalogue disent Régénération, Force, Malédiction, Aveuglement et Provocation, comme les fiches.
+  - « personne de blessé ».
+
+Vérification :
+- garde des contrats vide, `contracts:validate` et `narrative:validate` sans erreur ;
+- `tsc` ; vitest 3279/3279 (218 fichiers), puis 1774/1774 sur `src/combat` et `src/ui` après le correctif du panneau d’aide ; tests node 26/26 ; build ;
+- nouveaux tests : `src/combat/combatAuditFixes.test.ts`, `src/game/newChronicleConfirm.test.ts`, les gardes du rideau dans `src/ui/SceneTransition.test.ts`, et la sauvegarde partagée dans `src/game/campaignProgress.test.ts`.
+
+Navigateur sur `localhost:5174` :
+- la confirmation de « Nouvelle chronique » prend le focus, et Échap garde la chronique ;
+- dans le combat du Général Serpent : nouvelle fiche des boss, Échap la ferme sans annuler le déploiement, et « Revoir l’École du combat » au clic rouvre le tutoriel puis la fiche des boss ;
+- console sans erreur, hors la reconnexion WebSocket du serveur de développement après son redémarrage.
+
+Non vérifié à la main : la sortie d’un vrai combat de campagne sous le rideau (couverte par les tests unitaires du rideau et par les tests GameApp existants).

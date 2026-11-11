@@ -23,7 +23,7 @@ function fixture(current='lion-nomad-crossroads'){
     owner.state.run.checkpointNodeId='lion-first-refuge';owner.state.flags['refugeSecured:lion-first-refuge']=true;
   }
   syncPoiElites(owner.state);owner.showPoiMap();
-  vi.spyOn(sceneTransition,'run').mockImplementation(async options=>{await options.task();});
+  vi.spyOn(sceneTransition,'run').mockImplementation(async options => { await options.task(); return true; });
   return {app,owner,root};
 }
 function savedRearEncounter(owner:{state:GameState}):void {
@@ -122,12 +122,12 @@ describe('mechanical GameApp expedition integration, not native battle evidence'
   it('disposing a front interception preserves the exact saved choice for a new app instead of applying a synthetic retreat',async()=>{
     const {app,owner,root}=fixture('lion-valmir-road');
     const pending=owner.choosePoi('lion-poi-valley-bridge-cache');
-    const before=structuredClone(owner.state),saved=localStorage.getItem('rpg-threejs:autosave:v6');
+    const before=structuredClone(owner.state),saved=localStorage.getItem('rpg-threejs:autosave:v6:campaign');
     expect(before.run.poiExpedition?.encounter?.phase).toBe('choice');expect(before.run.poiExpedition?.encounter?.kind).toBe('front');
     expect(root.querySelector('[role=dialog]')?.textContent).toContain('Défi · 3 héros au plus · Prime : 2 gemmes rouges');
     expect(root.querySelector('[role=dialog]')?.textContent).toContain('2 vagues d’ennemis : la seconde entre dès que la première tombe, sans soin entre les deux.');
     app.dispose();await pending;
-    expect(owner.state).toEqual(before);expect(localStorage.getItem('rpg-threejs:autosave:v6')).toBe(saved);
+    expect(owner.state).toEqual(before);expect(localStorage.getItem('rpg-threejs:autosave:v6:campaign')).toBe(saved);
     expect(root.querySelector('.poi-map')).toBeNull();expect(root.querySelector('[role=dialog]')).toBeNull();
     const replacement=new GameApp(root,document.createElement('canvas'));
     const resumedOwner=replacement as unknown as typeof owner;
@@ -140,10 +140,10 @@ describe('mechanical GameApp expedition integration, not native battle evidence'
   it('disposing an attributed chest preserves it without saving or redrawing, then resumes without another popup',async()=>{
     const {app,owner,root}=fixture('lion-reserve-trail');
     const pending=owner.choosePoi('lion-poi-valley-supplies');
-    const before=structuredClone(owner.state),saved=localStorage.getItem('rpg-threejs:autosave:v6');
+    const before=structuredClone(owner.state),saved=localStorage.getItem('rpg-threejs:autosave:v6:campaign');
     expect(root.querySelector('[role=dialog]')).not.toBeNull();expect(before.run.poiExpedition?.pendingStep).toBeUndefined();
     app.dispose();await pending;
-    expect(owner.state).toEqual(before);expect(localStorage.getItem('rpg-threejs:autosave:v6')).toBe(saved);
+    expect(owner.state).toEqual(before);expect(localStorage.getItem('rpg-threejs:autosave:v6:campaign')).toBe(saved);
     expect(root.querySelector('.poi-map')).toBeNull();expect(root.querySelector('[role=dialog]')).toBeNull();
     const replacement=new GameApp(root,document.createElement('canvas'));
     const resumedOwner=replacement as unknown as typeof owner;await resumedOwner.continueChronicle();
@@ -156,12 +156,12 @@ describe('mechanical GameApp expedition integration, not native battle evidence'
     const {app,owner,root}=fixture('lion-valmir-road');owner.state.gold=115;
     let reference='';let expected!:GameState;
     vi.spyOn(owner.combat,'start').mockImplementation(({config})=>{
-      reference=localStorage.getItem('rpg-threejs:autosave:v6')!;expected=JSON.parse(reference);
+      reference=localStorage.getItem('rpg-threejs:autosave:v6:campaign')!;expected=JSON.parse(reference);
       owner.state.gold=1;owner.state.inventory.consumables.potion=0;owner.state.settings.reducedGraphics=true;
       return {ready:Promise.resolve(),result:Promise.resolve({combatId:config.id,victory:false,participants:[],unitHealth:{}})};
     });
     const pending=owner.choosePoi('lion-poi-valley-bridge-cache');root.querySelector<HTMLButtonElement>('[data-poi-dialog-action=fight]')!.click();await pending;
-    expect(localStorage.getItem('rpg-threejs:autosave:v6')).toBe(reference);
+    expect(localStorage.getItem('rpg-threejs:autosave:v6:campaign')).toBe(reference);
     expected.settings.reducedGraphics=true;expect(owner.state).toEqual(expected);
     expect(owner.state.currentNodeId).toBe('lion-valmir-road');expect(owner.state.run.poiExpedition!.encounter!.phase).toBe('combat');
     expect(owner.state.run.poiExpedition!.elites['lion-elite-valley-sentinel']!.defeated).toBe(false);

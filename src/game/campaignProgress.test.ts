@@ -28,6 +28,7 @@ import { createInitialState, migrateState, SaveRepository } from './store';
 import { gameStateSchema, type GameState } from './types';
 
 const DEMO_AUTO_KEY = 'rpg-threejs:autosave:v6';
+const CAMPAIGN_AUTO_KEY = 'rpg-threejs:autosave:v6:campaign';
 const fixtures = { midLion, lionHonourComplete, lionForceComplete } as const;
 const demoSchema = gameStateSchema.omit({ campaign: true }).strict();
 
@@ -78,15 +79,29 @@ describe('campaign record migration from a demo V6 save (set 1.20.0, Lot 0)', ()
     expect(force.reputation).toBe(lionForceComplete.reputation);
   });
 
-  it('loads a demo save from the demo key, writes the record and reloads it unchanged', () => {
-    localStorage.setItem(DEMO_AUTO_KEY, JSON.stringify(midLion));
+  it('loads a demo save from the demo key, writes the record to its own slot and reloads it unchanged', () => {
+    const demoBytes = JSON.stringify(midLion);
+    localStorage.setItem(DEMO_AUTO_KEY, demoBytes);
     const saves = new SaveRepository();
     const loaded = saves.loadAuto()!;
     expect(withoutCampaign(loaded)).toEqual(midLion);
     saves.saveAuto(loaded);
-    const stored = JSON.parse(localStorage.getItem(DEMO_AUTO_KEY)!);
+    const stored = JSON.parse(localStorage.getItem(CAMPAIGN_AUTO_KEY)!);
     expect(stored.campaign.version).toBe(1);
     expect(saves.loadAuto()).toEqual(loaded);
+    // Final audit 2026-11-11 (A7): the frozen demo's own slot is never rewritten by this build.
+    expect(localStorage.getItem(DEMO_AUTO_KEY)).toBe(demoBytes);
+  });
+
+  it('keeps a post-demo chronicle when the frozen demo later writes its shared slot on the same origin', () => {
+    const saves = new SaveRepository();
+    const chronicle = createInitialState();
+    recordPlateauOutcome(chronicle, 'lion', 'honour');
+    saves.saveAuto(chronicle);
+    localStorage.setItem(DEMO_AUTO_KEY, JSON.stringify(midLion));
+    expect(saves.loadAuto()?.campaign?.chapters.lion.outcome).toBe('honour');
+    saves.clear();
+    expect(saves.hasSave()).toBe(false);
   });
 
   it('keeps relations and outcomes across a save and a load', () => {

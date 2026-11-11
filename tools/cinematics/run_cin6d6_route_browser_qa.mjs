@@ -133,7 +133,7 @@ async function installNodeSave(page, nodeId, flags = {}, reputation = 60, seed =
       state.currentNodeId = id; state.visitedNodeIds = [...state.run.visitedNodeIds]; state.stepCounter++;
     }
     await page.goto(`${BASE_URL}/?presentation=narrative&media=video`, { waitUntil: 'domcontentloaded' });
-    await page.evaluate((fixture) => localStorage.setItem('rpg-threejs:autosave:v6', JSON.stringify(fixture)), state);
+    await page.evaluate((fixture) => localStorage.setItem('rpg-threejs:autosave:v6:campaign', JSON.stringify(fixture)), state);
     await page.reload({ waitUntil: 'domcontentloaded' });
     return;
   }
@@ -309,7 +309,7 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
       const segment = await dialogue.getAttribute('data-dialogue-segment');
       trace.refugeeAcknowledgementSegments ??= [];
       if (!trace.refugeeAcknowledgementSegments.some(entry => entry.segment === segment)) {
-        const before = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
+        const before = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
         await page.waitForFunction(id => {
           const dialogue = document.querySelector(`.dialogue[data-dialogue-sequence="${id}"]`);
           const text = dialogue?.querySelector('.dialogue__text');
@@ -345,7 +345,7 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
         }
         const capture = `${trace.capturePrefix}-acknowledgement-${segment.replace('/', '-')}.png`;
         await page.screenshot({ path: resolve(OUTPUT_DIR, capture), fullPage: false });
-        if (!before || before !== await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'))) {
+        if (!before || before !== await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6:campaign'))) {
           throw new Error('Observing refugee acknowledgement changed stored V6.');
         }
         trace.refugeeAcknowledgementSegments.push({ ...observation, presentation, capture, savedTruthUnchanged: true });
@@ -355,7 +355,7 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
       const stepId = await dialogue.getAttribute('data-dialogue-step');
       trace.villageTableau ??= [];
       if (['1', '3', '5'].includes(stepId) && !trace.villageTableau.some(entry => entry.stepId === stepId)) {
-        const savedBefore = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
+        const savedBefore = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
         await page.waitForFunction(() => {
           const dialogue = document.querySelector('.dialogue[data-dialogue-sequence="village_choice"]');
           const text = dialogue?.querySelector('.dialogue__text');
@@ -385,7 +385,7 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
         const presentation = await readPresentation(page); assertDialogueTableau(presentation, 'Village relational tableau');
         const capture = `${trace.capturePrefix}-tableau-${stepId}.png`;
         await page.screenshot({ path: resolve(OUTPUT_DIR, capture) });
-        if (!savedBefore || savedBefore !== await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'))) {
+        if (!savedBefore || savedBefore !== await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6:campaign'))) {
           throw new Error('Observing village tableau changed stored V6 truth.');
         }
         trace.villageTableau.push({ ...observation, presentation, capture, savedTruthUnchanged: true });
@@ -404,7 +404,7 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
       const stepId = await dialogue.getAttribute('data-dialogue-step');
       trace.serpentTableau ??= [];
       if (!trace.serpentTableau.some(entry => entry.stepId === stepId)) {
-        const before = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
+        const before = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6:campaign')));
         await page.waitForFunction(() => {
           const actors = [...document.querySelectorAll('.narrative-stage .narrative-cast__actor')];
           const dialogue = document.querySelector('.dialogue[data-dialogue-sequence="serpent_pursuit_pre_combat"]');
@@ -466,7 +466,7 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
         }
         const presentation = await readPresentation(page);
         assertDialogueTableau(presentation, 'Serpent confrontation');
-        const after = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
+        const after = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6:campaign')));
         if (JSON.stringify(before) !== JSON.stringify(after)) throw new Error('Observing Serpent tableau changed saved truth.');
         trace.serpentTableau.push({ ...observation, presentation, capture, savedTruthUnchanged: true });
       }
@@ -474,7 +474,7 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
     if (PRODUCTION && sequenceId === 'ate_lion_council_doubt' && trace?.capturePrefix === 'witnesses-protected'
       && !trace.councilOpening && await dialogue.getAttribute('data-dialogue-step') === '1') {
       const expectedText = 'Les survivants de Bois-Clair ont choisi de parler librement. Leur témoignage compte, mais il ne suffit pas à leur remettre le Sceau.';
-      const before = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
+      const before = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6:campaign')));
       // The owner persists this node after its ATE; inspect native live facts without writing them.
       const witnessFlags = await page.evaluate(() => ({ protected: window.__cin8App.state.flags.protectedWitnesses,
         silenced: window.__cin8App.state.flags.silencedWitnesses }));
@@ -502,7 +502,7 @@ async function finishDialogue(page, sequenceId, choiceIndex = 0, trace = undefin
       assertDialogueTableau(presentation, 'council opening');
       const capture = `${trace.capturePrefix}-council-opening.png`;
       await page.screenshot({ path: resolve(OUTPUT_DIR, capture), fullPage: false });
-      const after = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
+      const after = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6:campaign')));
       if (JSON.stringify(before) !== JSON.stringify(after)) {
         throw new Error('Observing council opening changed saved truth.');
       }
@@ -556,7 +556,7 @@ async function flipMountedOpeningOsMotion(page) {
     return { osReduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
       gameReduced: window.__cin8App.state.settings.reducedGraphics,
       actors: [...surface.querySelectorAll('.narrative-cast__actor')].map(actor => actor.dataset.actorId),
-      saved: localStorage.getItem('rpg-threejs:autosave:v6') };
+      saved: localStorage.getItem('rpg-threejs:autosave:v6:campaign') };
   });
   if (before.osReduced || before.gameReduced || before.actors.length !== 4
     || !before.saved || JSON.parse(before.saved).version !== 6) throw new Error('Mounted opening must start with normal motion and stored V6.');
@@ -570,7 +570,7 @@ async function flipMountedOpeningOsMotion(page) {
       sameMountedSurface: surface === window.__openingPreFlipSurface && surface.isConnected,
       stepId: document.querySelector('.dialogue')?.dataset.dialogueStep,
       actors: [...surface.querySelectorAll('.narrative-cast__actor')].map(actor => actor.dataset.actorId),
-      saved: localStorage.getItem('rpg-threejs:autosave:v6') };
+      saved: localStorage.getItem('rpg-threejs:autosave:v6:campaign') };
     delete window.__openingPreFlipSurface;
     return proof;
   });
@@ -590,7 +590,7 @@ async function observeOpeningCastTransition(page) {
     return !dialogue?.classList.contains('dialogue--preparing-step')
       && text?.dataset.finalText && text.querySelector('.dialogue__text-reveal')?.textContent === text.dataset.finalText;
   });
-  const savedBefore = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
+  const savedBefore = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
   if (!savedBefore || JSON.parse(savedBefore).version !== 6) throw new Error('Opening requires a stored V6 autosave.');
   await page.screenshot({ path: resolve(OUTPUT_DIR, 'opening-cast-before.png') });
   await page.evaluate(() => {
@@ -663,7 +663,7 @@ async function observeOpeningCastTransition(page) {
   if (JSON.stringify(finalCast.map(actor => [actor.id, actor.facing])) !== JSON.stringify([
     ['kestrel', 'RIGHT'], ['elara', 'RIGHT'], ['maelor', 'LEFT'], ['sage_seraphine', 'LEFT'],
   ])) throw new Error(`Opening authored facing differs: ${JSON.stringify(finalCast)}`);
-  const savedAfter = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
+  const savedAfter = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
   if (savedBefore !== savedAfter) throw new Error('Effect-free opening cast replacement changed stored V6 truth.');
   const presentation = await readPresentation(page); assertDialogueTableau(presentation, 'opening replacement');
   await page.screenshot({ path: resolve(OUTPUT_DIR, 'opening-cast-after.png') });
@@ -739,7 +739,7 @@ async function winCombat(page, trace) {
 
 async function loadSavedTruth(page) {
   return page.evaluate(async (production) => {
-    const state = production ? JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6'))
+    const state = production ? JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6:campaign'))
       : new (await import('/src/game/store.ts')).SaveRepository().loadAuto();
     return state ? {
       currentNodeId: state.currentNodeId,
@@ -793,12 +793,12 @@ async function checkPreludeInterruption(page, sequenceId, trace) {
     src: video.currentSrc, currentTime: video.currentTime, paused: video.paused,
   }));
   if (!APPROVED_VIDEO_IDS.some((id) => interrupted.src.endsWith(`/${id}.mp4`))) throw new Error('Unapproved interruption source');
-  const before = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
+  const before = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6:campaign')));
   await page.screenshot({ path: resolve(OUTPUT_DIR, `${trace.capturePrefix}-prelude-interrupt.png`) });
   await page.reload({ waitUntil: 'networkidle' });
   await continueSavedNode(page);
   await waitForDialogueSequence(page, sequenceId, trace);
-  const after = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6')));
+  const after = await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6:campaign')));
   if (JSON.stringify(before) !== JSON.stringify(after)) throw new Error('Unresolved prelude reload changed saved truth before player choice');
   const tableau = await readPresentation(page);
   assertDialogueTableau(tableau, 'unresolved prelude resume');

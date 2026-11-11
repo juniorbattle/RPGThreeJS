@@ -1,8 +1,8 @@
 /// <reference types="vitest/config" />
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import { configDefaults } from 'vitest/config';
-import { existsSync, readFileSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+import { existsSync, readFileSync, rmSync, statSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 import {
   resolveMegaPackRoot,
   validateMegaPackRoot,
@@ -30,6 +30,25 @@ const HISTORICAL_CINEMATIC_TESTS = [
   'tools/cinematics/cin6ea_finalization.test.mjs',
   'tools/cinematics/cin6ea_preproduction.test.mjs',
 ];
+
+/**
+ * Local-only public folders that must never ship (final audit 2026-11-11, A6). Vite copies public/ wholesale, so the
+ * licensed VFX megapack runtime PNGs acquired on this machine (gitignored, development preview only) would land in
+ * dist/. Production combat plays procedural FX recipes and never reads them.
+ */
+const LOCAL_ONLY_PUBLIC_DIRS = ['assets/vfx/megapack-runtime'];
+
+function excludeLocalOnlyPublicAssets(): Plugin {
+  let outDir = 'dist';
+  return {
+    name: 'exclude-local-only-public-assets',
+    apply: 'build',
+    configResolved(config) { outDir = resolve(config.root, config.build.outDir); },
+    closeBundle() {
+      for (const dir of LOCAL_ONLY_PUBLIC_DIRS) rmSync(join(outDir, dir), { recursive: true, force: true });
+    },
+  };
+}
 
 function vfxDevAcquisitionPlugin(options: VfxDevPluginOptions): Plugin {
   const { megaPackRoot } = options;
@@ -304,7 +323,7 @@ export default defineConfig(({ mode }) => {
   );
 
   return {
-    plugins: [vfxDevAcquisitionPlugin({ megaPackRoot })],
+    plugins: [vfxDevAcquisitionPlugin({ megaPackRoot }), excludeLocalOnlyPublicAssets()],
     build: {
       rollupOptions: {
         input: {

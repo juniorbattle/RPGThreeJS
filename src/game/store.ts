@@ -21,8 +21,13 @@ import {
   type UnitInstanceV5,
 } from './types';
 
-const AUTO_KEY = 'rpg-threejs:autosave:v6';
-const MANUAL_KEY = 'rpg-threejs:manual:v6';
+// Final audit 2026-11-11 (A7): this build writes its own V6 slots. The frozen demo (tag demo-frozen-2026-11-09) still
+// writes the shared V6 keys and drops the campaign record it does not know, so on the same origin it could rebuild a
+// post-demo chronicle as a Lion route and overwrite it. The shared keys stay readable, so a demo save still continues.
+const AUTO_KEY = 'rpg-threejs:autosave:v6:campaign';
+const MANUAL_KEY = 'rpg-threejs:manual:v6:campaign';
+const SHARED_V6_AUTO_KEY = 'rpg-threejs:autosave:v6';
+const SHARED_V6_MANUAL_KEY = 'rpg-threejs:manual:v6';
 const V5_AUTO_KEY = 'rpg-threejs:autosave:v5';
 const V5_MANUAL_KEY = 'rpg-threejs:manual:v5';
 const V4_AUTO_KEY = 'rpg-threejs:autosave:v4';
@@ -294,11 +299,11 @@ function migrateV4(previous: GameStateV4): GameState {
 
 export class SaveRepository {
   loadAuto(): GameState | null {
-    return this.load(AUTO_KEY) ?? this.load(V5_AUTO_KEY) ?? this.load(V4_AUTO_KEY) ?? this.load(V3_AUTO_KEY) ?? this.load(V2_AUTO_KEY) ?? this.load(LEGACY_AUTO_KEY);
+    return this.load(AUTO_KEY) ?? this.load(SHARED_V6_AUTO_KEY) ?? this.load(V5_AUTO_KEY) ?? this.load(V4_AUTO_KEY) ?? this.load(V3_AUTO_KEY) ?? this.load(V2_AUTO_KEY) ?? this.load(LEGACY_AUTO_KEY);
   }
 
   loadManual(): GameState | null {
-    return this.load(MANUAL_KEY) ?? this.load(V5_MANUAL_KEY) ?? this.load(V4_MANUAL_KEY) ?? this.load(V3_MANUAL_KEY) ?? this.load(V2_MANUAL_KEY) ?? this.load(LEGACY_MANUAL_KEY);
+    return this.load(MANUAL_KEY) ?? this.load(SHARED_V6_MANUAL_KEY) ?? this.load(V5_MANUAL_KEY) ?? this.load(V4_MANUAL_KEY) ?? this.load(V3_MANUAL_KEY) ?? this.load(V2_MANUAL_KEY) ?? this.load(LEGACY_MANUAL_KEY);
   }
 
   /** Read-only recovery selection: never cross the selected game identity or write a slot. */
@@ -317,12 +322,12 @@ export class SaveRepository {
   }
 
   hasSave(): boolean {
-    return [AUTO_KEY, MANUAL_KEY, V5_AUTO_KEY, V5_MANUAL_KEY, V4_AUTO_KEY, V4_MANUAL_KEY, V3_AUTO_KEY, V3_MANUAL_KEY, V2_AUTO_KEY, V2_MANUAL_KEY, LEGACY_AUTO_KEY, LEGACY_MANUAL_KEY]
+    return [AUTO_KEY, MANUAL_KEY, SHARED_V6_AUTO_KEY, SHARED_V6_MANUAL_KEY, V5_AUTO_KEY, V5_MANUAL_KEY, V4_AUTO_KEY, V4_MANUAL_KEY, V3_AUTO_KEY, V3_MANUAL_KEY, V2_AUTO_KEY, V2_MANUAL_KEY, LEGACY_AUTO_KEY, LEGACY_MANUAL_KEY]
       .some((key) => localStorage.getItem(key) !== null);
   }
 
   clear(): void {
-    for (const key of [AUTO_KEY, MANUAL_KEY, V5_AUTO_KEY, V5_MANUAL_KEY, V4_AUTO_KEY, V4_MANUAL_KEY, V3_AUTO_KEY, V3_MANUAL_KEY, V2_AUTO_KEY, V2_MANUAL_KEY, LEGACY_AUTO_KEY, LEGACY_MANUAL_KEY]) {
+    for (const key of [AUTO_KEY, MANUAL_KEY, SHARED_V6_AUTO_KEY, SHARED_V6_MANUAL_KEY, V5_AUTO_KEY, V5_MANUAL_KEY, V4_AUTO_KEY, V4_MANUAL_KEY, V3_AUTO_KEY, V3_MANUAL_KEY, V2_AUTO_KEY, V2_MANUAL_KEY, LEGACY_AUTO_KEY, LEGACY_MANUAL_KEY]) {
       localStorage.removeItem(key);
     }
   }

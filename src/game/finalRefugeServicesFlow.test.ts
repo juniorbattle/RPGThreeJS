@@ -24,7 +24,7 @@ function fixture(actions: readonly string[] = ['continue']) {
   owner.state = createInitialState();
   const order: string[] = [];
   const opens: Array<{ presentation: any; securedGold: number; rest: any }> = [];
-  const transition = vi.spyOn(sceneTransition, 'run').mockImplementation(async options => { await options.task(); });
+  const transition = vi.spyOn(sceneTransition, 'run').mockImplementation(async options => { await options.task(); return true; });
   vi.spyOn(owner.exploration, 'prepareBackground').mockResolvedValue({ backgroundUrl: '', backgroundReady: true, naturalWidth: 1, naturalHeight: 1 });
   vi.spyOn(owner.exploration, 'waitUntilSurfaceReady').mockResolvedValue();
   const open = vi.spyOn(owner.exploration, 'open').mockImplementation(async (presentation, _reputation, securedGold, rest) => {

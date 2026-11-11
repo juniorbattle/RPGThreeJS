@@ -575,7 +575,7 @@ async function runContextualProduction() {
         }
         if (nightWatch) scenario.expected = resolveGameDialogue(scenario.sequence, state).sequence.steps[0].text;
         await page.goto(`http://127.0.0.1:${port}/?presentation=narrative&media=video`, { waitUntil: 'domcontentloaded' });
-        await page.evaluate(fixture => localStorage.setItem('rpg-threejs:autosave:v6', JSON.stringify(fixture)), state);
+        await page.evaluate(fixture => localStorage.setItem('rpg-threejs:autosave:v6:campaign', JSON.stringify(fixture)), state);
         await page.reload({ waitUntil: 'domcontentloaded' });
         await page.waitForFunction(() => window.__contextualApp);
         await page.evaluate(() => {
@@ -635,7 +635,7 @@ async function runContextualProduction() {
                 && text?.dataset.finalText && text.querySelector('.dialogue__text-reveal')?.textContent === text.dataset.finalText;
             }, null, { timeout: 15000 });
             if (sequence === scenario.sequence && (councilContinuation ? step in councilSteps : step === '1')) {
-              const before = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6'));
+              const before = await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6:campaign'));
               const ownerBefore = (councilContinuation || nightWatch) ? await page.evaluate(() => JSON.stringify(window.__contextualApp.state)) : null;
               assert.ok(typeof before === 'string' && before.length > 0, 'Stored save missing at observation');
               assert.equal(JSON.parse(before).version, 6, 'Observation requires an existing V6 save');
@@ -691,7 +691,7 @@ async function runContextualProduction() {
               else assert.equal(observation.facts.exploitedRefugees, true);
               const capture = `${cell}-${scenario.id}-${councilContinuation ? `step-${step}-` : ''}${observation.segment.replace('/', '-')}.png`;
               await page.screenshot({ path: resolve(output, capture) });
-              assert.equal(await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6')), before, 'Observation changed stored save');
+              assert.equal(await page.evaluate(() => localStorage.getItem('rpg-threejs:autosave:v6:campaign')), before, 'Observation changed stored save');
               if (councilContinuation || nightWatch) assert.equal(await page.evaluate(() => JSON.stringify(window.__contextualApp.state)), ownerBefore, 'Observation changed live owner state');
               assert.ok(!segments.some(entry => entry.segment === observation.segment && (!councilContinuation || entry.step === step)), 'Keyboard did not advance the observed page');
               segments.push({ ...observation, savedBytesUnchanged: true, capture });

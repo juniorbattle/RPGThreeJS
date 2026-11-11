@@ -180,7 +180,7 @@ async function run(nodeId, viewport, osReduced) {
         match.replace(';window.addEventListener', `;window.__refugeQaApp=${name};window.addEventListener`)) });
     });
     await page.goto(`http://127.0.0.1:${port}/`, { waitUntil: 'domcontentloaded' });
-    await page.evaluate(state => localStorage.setItem('rpg-threejs:autosave:v6', JSON.stringify(state)), fixture(nodeId));
+    await page.evaluate(state => localStorage.setItem('rpg-threejs:autosave:v6:campaign', JSON.stringify(state)), fixture(nodeId));
     await page.reload({ waitUntil: 'networkidle' });
     await activate(page, '.title-screen [data-action="continue"]'); await hubReady(page);
     const arrival = await truth(page), layout = await geometry(page); assertGeometry(layout);
@@ -189,7 +189,7 @@ async function run(nodeId, viewport, osReduced) {
     assert.equal(arrival.gold, 625); assert.equal(arrival.temporaryLoot.gold, 0);
     assert.equal(arrival.flags[`refugeSecured:${nodeId}`], true);
     const entryOwner = await ownerState(page);
-    assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6'))), entryOwner,
+    assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6:campaign'))), entryOwner,
       'Initial refuge agency precedes durable consolidation');
     await page.reload({ waitUntil: 'networkidle' });
     await activate(page, '.title-screen [data-action="continue"]'); await hubReady(page);
@@ -339,7 +339,7 @@ async function run(nodeId, viewport, osReduced) {
       await page.screenshot({ path: resolve(output, `${name}-potion-owner-result.png`) });
       await activate(page, '.management [data-action="close"]'); await hubReady(page);
       assert.deepEqual(await ownerState(page), owner, 'Potion return changed owner truth');
-      assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6'))), owner,
+      assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6:campaign'))), owner,
         'Potion owner result was not persisted on the management close boundary');
       services.push({ action: 'consumable', keyboardReachable: true, ownerResolvedOperations: ['potion'], savedOnManagementClose: true });
     }
@@ -350,7 +350,7 @@ async function run(nodeId, viewport, osReduced) {
     const rested = await truth(page); assert.equal(rested.gold, live.gold - restCost);
     assert.equal(models.getWoundedUnitCount(await page.evaluate(() => window.__refugeQaApp.state)), 0);
     assert.equal(await page.locator('.exploration-stop [data-action="rest"]').isDisabled(), true);
-    assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6'))), await ownerState(page),
+    assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('rpg-threejs:autosave:v6:campaign'))), await ownerState(page),
       'Successful rest was not saved before reopening agency');
     const beforeReload = await truth(page);
     await page.reload({ waitUntil: 'networkidle' });

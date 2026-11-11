@@ -6,7 +6,7 @@ import {buyItem,useConsumable} from './management';
 import {GameApp} from './GameApp';
 import type {GameState,CombatResult,CombatConfig,RunNode} from './types';
 
-const auto='rpg-threejs:autosave:v6',manual='rpg-threejs:manual:v6';
+const auto='rpg-threejs:autosave:v6:campaign',manual='rpg-threejs:manual:v6:campaign';
 afterEach(()=>{localStorage.clear();document.body.replaceChildren();vi.restoreAllMocks();});
 describe('last actual save is the complete recovery authority',()=>{
   it.each(['active','completed'] as const)('consolidates only the remaining legacy pool once for a %s V6 without moving checkpoint or facts',status=>{

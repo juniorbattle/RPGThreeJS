@@ -4,10 +4,13 @@
  * owner of resolution; these helpers only compute numbers from values it passes.
  */
 
-/** AP a unit keeps after paying an action, then receiving +1 AP per knock-out it scored during that action. */
-export function settleActionAp(input: { ap: number; maxap: number; cost: number; knockOuts: number }): number {
+/**
+ * AP a unit keeps after paying an action, then receiving +1 AP per knock-out it scored during that action and any AP
+ * the action gave the unit itself (a grimoire's gift, an AP restore on oneself: final audit 2026-11-11, A8).
+ */
+export function settleActionAp(input: { ap: number; maxap: number; cost: number; knockOuts: number; bonusAp?: number }): number {
   const paid = Math.max(0, input.ap - Math.max(0, input.cost || 0));
-  return Math.min(input.maxap, paid + Math.max(0, input.knockOuts || 0));
+  return Math.min(input.maxap, paid + Math.max(0, input.knockOuts || 0) + Math.max(0, input.bonusAp || 0));
 }
 
 export interface BossTempoProfile {

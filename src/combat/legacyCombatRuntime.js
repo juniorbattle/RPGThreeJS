@@ -117,7 +117,7 @@ let REQUESTED_REDUCED_GRAPHICS=campaignParams.get('reduced')==='1';
 let REDUCED_GRAPHICS=prefersReducedMotion(REQUESTED_REDUCED_GRAPHICS);
 let disposeMotionPreference=()=>{};
 const STAGE_QA_ENABLED=import.meta.env.DEV&&campaignParams.get('stageqa')==='1';
-const VFX_LAB_ENABLED=campaignParams.get('vfxlab')==='1';
+const VFX_LAB_ENABLED=import.meta.env.DEV&&campaignParams.get('vfxlab')==='1'; // development only (final audit 2026-11-11, A6)
 let disposeVfxComposerPanel=()=>{};
 function campaignUnitHealth(){
   const out={};
@@ -843,20 +843,21 @@ function unitDefFromVisual(id,index,positions=ENEMY_VISUAL_POSITIONS){
 }
 
 // ============================= STATUS EFFECTS =============================
+// Names match the unit cards (statusPresentation.ts) so the floating text and the HUD say the same word (final audit 2026-11-11, A8).
 const STATUS={
   burn:   {name:'Brûlure', col:'#ff9a52', dot:u=>Math.ceil(u.maxhp*0.06)+8},
   poison: {name:'Poison',  col:'#9bd45a', dot:u=>Math.ceil(u.maxhp*0.05)+6},
-  regen:  {name:'Régén.',  col:'#7ed957', hot:u=>Math.ceil(u.maxhp*0.08)+6},
+  regen:  {name:'Régénération',  col:'#7ed957', hot:u=>Math.ceil(u.maxhp*0.08)+6},
   slow:   {name:'Ralenti', col:'#7fd0ff', dex:0.65},
-  boost:  {name:'Force+',  col:'#ffd27a', str:1.4, mag:1.4},
+  boost:  {name:'Force',  col:'#ffd27a', str:1.4, mag:1.4},
   weak:   {name:'Affaibli',col:'#c9a0ff', str:0.75, mag:0.75},
   barrier:{name:'Barrière',col:'#9fe7ff', end:1.4},
-  curse:  {name:'Malédic.',col:'#b06aff', end:0.7},
+  curse:  {name:'Malédiction',col:'#b06aff', end:0.7},
   staggered:{name:'Brisé', col:'#ff6a4a', end:0.4, skip:true},
-  blind:  {name:'Aveuglé', col:'#8aa0b8', acc:-0.4},
+  blind:  {name:'Aveuglement', col:'#8aa0b8', acc:-0.4},
   root:   {name:'Entravé', col:'#c98a52', noMove:true},
   silence:{name:'Mutisme', col:'#d08ad0', noSkill:true},
-  taunt:  {name:'Provoqué',col:'#ff7a3a'}
+  taunt:  {name:'Provocation',col:'#ff7a3a'}
 };
 // Innate gifts are class-based, not weapon-based. The combat runtime keys by
 // weaponType because each class can only equip one weapon type, making it a
@@ -1278,7 +1279,7 @@ async function beginTurn(u){ if(G.over)return; u._hasStartedTurn=true; G.active=
   refreshTurnbar(); selectUnit(u); focusCam(u);
   await tickStatusDamage(u); if(G.over)return; if(!u.alive){ nextTurn(); return; }
   const sk=statusSkips(u); if(!hasS(u,'taunt'))u._taunter=null; refreshPanel(u);
-  if(sk){ if((u.boss||u.elite)&&u._ultCooldown<BOSS_ULTIMATE_COOLDOWN){u._ultCooldown=BOSS_ULTIMATE_COOLDOWN;clearBossIntentPresentation(u);} floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); for(const s in u.statuses){ if(STATUS[s]&&STATUS[s].skip){ u.statuses[s]--; if(u.statuses[s]<=0)delete u.statuses[s]; } } refreshPanel(u); if(G.over)return; nextTurn(); return; }
+  if(sk){ if((u.boss||u.elite)&&u._ultCooldown<BOSS_ULTIMATE_COOLDOWN){u._ultCooldown=BOSS_ULTIMATE_COOLDOWN;clearBossIntentPresentation(u);} floatText(u,sk.name.toUpperCase()+' !',sk.col,true); logMsg(u.name+' est '+sk.name.toLowerCase()+' — tour passé.'); await wait(0.7); tickStatusDuration(u); /* a skipped turn still counts for every status (final audit 2026-11-11, A8) */ refreshPanel(u); if(G.over)return; nextTurn(); return; }
   if(u._ultCooldown>0)u._ultCooldown--;
   if(u.team==='player'){ combatCue('player-turn'); G.mode='menu'; setHint(u.name+' — à vous de jouer'); openActionMenu();
     if(turnReturnFocus){ turnReturnFocus=false;
@@ -1508,17 +1509,24 @@ function creditKnockOutAp(src){
   src.ap=Math.min(src.maxap,src.ap+1);
   if(src===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
 }
+// AP an action gives the acting unit itself is credited after its cost too, like a knock-out (final audit
+// 2026-11-11, A8: a grimoire's +2 PA at 5/5 PA was lost to the cap). Returns whether the unit gains anything.
+function grantAp(t,amount){
+  const pending=G.actionSettlement;
+  if(pending&&pending.unit===t){ pending.bonusAp=(pending.bonusAp||0)+amount; return amount>0; }
+  const before=t.ap; t.ap=Math.min(t.maxap,t.ap+amount); return t.ap>before;
+}
 function payActionCost(u,spec){
   const pending=G.actionSettlement&&G.actionSettlement.unit===u?G.actionSettlement:null,knockOuts=pending?pending.knockOuts:0;
-  u.ap=settleActionAp({ap:u.ap,maxap:u.maxap,cost:spec.ap>0?spec.ap:0,knockOuts});
+  u.ap=settleActionAp({ap:u.ap,maxap:u.maxap,cost:spec.ap>0?spec.ap:0,knockOuts,bonusAp:pending?pending.bonusAp||0:0});
   if(pending)G.actionSettlement=null;
   return knockOuts;
 }
 function settleUnpaidKnockOuts(u){
   const pending=G.actionSettlement; G.actionSettlement=null;
-  if(!pending||pending.unit!==u||!pending.knockOuts)return;
-  u.ap=settleActionAp({ap:u.ap,maxap:u.maxap,cost:0,knockOuts:pending.knockOuts});
-  if(u===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
+  if(!pending||pending.unit!==u||(!pending.knockOuts&&!pending.bonusAp))return;
+  u.ap=settleActionAp({ap:u.ap,maxap:u.maxap,cost:0,knockOuts:pending.knockOuts,bonusAp:pending.bonusAp||0});
+  if(pending.knockOuts&&u===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
   refreshPanel(u);
 }
 function applyHeal(u,amt){ if(!u.alive)return; stageRevealUnit(u); const hpBefore=u.hp; u.hp=Math.min(u.maxhp,u.hp+amt); syncFuryAnnouncement(u); if(u.hp>hpBefore)combatCue('recover','heal',u.id); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
@@ -2028,7 +2036,7 @@ function applyAdditionalStatus(u,spec,cx,cz,context={}){
   }
   for(const target of [...new Set(targets)])if(target&&target.alive){ applyStatus(target,spec.additionalStatus,spec.additionalStatusTurns||1); if(spec.additionalStatus==='taunt')target._taunter=u; }
 }
-async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())return; restoreUnitFocus(); hideActionPreview(); G.busy=true; closeMenus(); clearHL(); G.actionSettlement={unit:u,knockOuts:0};
+async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())return; if(isSkillSpec(spec)&&hasS(u,'silence'))return;restoreUnitFocus(); hideActionPreview(); G.busy=true; closeMenus(); clearHL(); G.actionSettlement={unit:u,knockOuts:0};
   const context={origin:{gx:u.gx,gz:u.gz},selectedTargets:selectedTargetsForAction(u,spec,cx,cz)};
   const emptyHybridTarget=allowsEmptyTileHybridTarget(spec)&&context.selectedTargets.length===0;
   if(emptyHybridTarget){
@@ -2098,7 +2106,7 @@ async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())r
       } else if(eff.kind==='lifesteal'){
         // processed after all damage effects
       } else if(eff.kind==='ap_restore'){
-        for(const t of etgts){ const previousAp=t.ap; t.ap=Math.min(t.maxap,t.ap+(eff.apRestore||spec.apRestore||1)); if(t.ap>previousAp)combatCue('support','ap',t.id); floatText(t,'+'+(eff.apRestore||spec.apRestore||1)+' PA','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); }
+        for(const t of etgts){ if(grantAp(t,eff.apRestore||spec.apRestore||1))combatCue('support','ap',t.id); floatText(t,'+'+(eff.apRestore||spec.apRestore||1)+' PA','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); }
       }
       await wait(0.1);
     }
@@ -2107,7 +2115,7 @@ async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())r
     if(lsEffect&&totalDamageDealt>0&&u.alive){ const lsPct=lsEffect.lifestealPercent||0; const healAmt=Math.round(totalDamageDealt*lsPct); if(healAmt>0){ applyHeal(u,healAmt); } }
   } else if(spec.heal){ for(const t of targets)applyHeal(t,spec.healPercent!=null?Math.round(t.maxhp*spec.healPercent):(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(u)*spec.power))+Math.floor(effCHA(u)/4)); await wait(0.25); }
   else if(spec.revive){ let revived=0; for(const t of targets){ if(!t.alive&&t.downed&&t.team===u.team){ reviveUnit(t,Math.round(t.maxhp*spec.power)); revived++; } } if(revived>0&&spec.item&&spec.itemId)G.inv[spec.itemId]=Math.max(0,(G.inv[spec.itemId]||0)-1); await wait(0.25); }
-  else if(spec.apRestore){ for(const t of targets){ const previousAp=t.ap; t.ap=Math.min(t.maxap,t.ap+spec.apRestore); if(t.ap>previousAp)combatCue('support','ap',t.id); floatText(t,'+'+spec.apRestore+' PA','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); } await wait(0.25); }
+  else if(spec.apRestore){ for(const t of targets){ if(grantAp(t,spec.apRestore))combatCue('support','ap',t.id); floatText(t,'+'+spec.apRestore+' PA','#7fd0ff',true); flashUnit(t,'#bfe0ff'); refreshPanel(t); } await wait(0.25); }
   else if(spec.cure){ for(const t of targets){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } if(n)combatCue('support','cleanse',t.id); if(!G.stage)floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); flashUnit(t,'#bfffc0'); refreshPanel(t); } await wait(0.25); }
   else { let basicDmg=0; for(const t of targets){ const friendly=t.team===u.team;
       if(spec.key==='attack'&&spec.weaponType==='crosier'&&friendly&&t.alive){ const healAmt=Math.max(1,Math.round(effMAG(u)*0.5)); applyHeal(t,healAmt); await wait(0.1); continue; }
@@ -2127,7 +2135,7 @@ async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())r
     if(spec.key==='attack'&&spec.weaponType==='greatsword'&&u.alive&&basicDmg>0&&tacticalRnd()<(0.20+(isBreakOpen(targets[0])?0.20:0))){ const t=targets[0]; if(t&&t.alive){ applyStatus(t,'curse',2); } }
     if(spec.key==='attack'&&spec.weaponType==='holy_mace'&&u.alive&&basicDmg>0&&tacticalRnd()<0.20){ applyHeal(u,Math.max(1,Math.round(u.maxhp*0.08))); }
     if(spec.key==='attack'&&spec.weaponType==='long_spear'&&u.alive&&basicDmg>0&&tacticalRnd()<0.25){ const t=targets[0]; if(t){ const dx=Math.sign(t.gx-u.gx),dz=Math.sign(t.gz-u.gz); const pierceTgt=aliveUnits().find(st=>st.team!==u.team&&st.alive&&st.gx===t.gx+dx&&st.gz===t.gz+dz); if(pierceTgt){ const pd=Math.max(1,Math.round(basicDmg*0.75)); floatText(pierceTgt,'PERCE ! -'+pd,'#ffaa6a',true); await applyDamage(pierceTgt,pd,u); } } }
-    if(spec.key==='attack'&&spec.weaponType==='grimoire'&&u.alive&&basicDmg>0&&tacticalRnd()<0.20){ u.ap=Math.min(u.maxap,u.ap+2); floatText(u,'+2 PA','#7fd0ff',true); refreshPanel(u); }
+    if(spec.key==='attack'&&spec.weaponType==='grimoire'&&u.alive&&basicDmg>0&&tacticalRnd()<0.20){ grantAp(u,2); floatText(u,'+2 PA','#7fd0ff',true); refreshPanel(u); }
     if(spec.key==='attack'&&spec.weaponType==='wand'&&u.alive&&basicDmg>0&&tacticalRnd()<(0.25+(isBreakOpen(targets[0])?0.20:0))){ const t=targets[0]; if(t&&t.alive){ const neg=['burn','poison','slow','weak','curse','blind','root','silence']; const rs=neg[Math.floor(tacticalRnd()*neg.length)]; applyStatus(t,rs,2); } }
     if(spec.key==='attack'&&spec.weaponType==='shuriken'&&u.alive&&basicDmg>0&&tacticalRnd()<0.25){ const t=targets[0]; if(t&&t.alive){ floatText(u,'DOUBLE !','#ffd27a',true); const sd=Math.max(1,Math.round(basicDmg*0.75)); floatText(t,'-'+sd,'#ffd27a'); await applyDamage(t,sd,u); } }
     if(spec.key==='attack'&&spec.basicAttackStatus&&basicDmg>0){ for(const t of targets){ if(t.alive&&t.team!==u.team&&tacticalRnd()<spec.basicAttackStatus.chance){ applyStatus(t,spec.basicAttackStatus.status,spec.basicAttackStatus.turns); } } }
@@ -2178,7 +2186,9 @@ function bossSpendableAp(u){
   if(profile.ultimateCost!==null&&u._ultCooldown===0&&u.ap>=profile.ultimateCost)return u.ap;
   return Math.max(0,u.ap-bossApReserve(u._ultCooldown,profile,{maxap:u.maxap,...BOSS_TEMPO_RULES}));
 }
-function bestOffense(u,stands,taunter){ const specs=[]; const isBE=!!(u.boss||u.elite),forceUlt=isBE&&u._ultCooldown===0&&u.ap>=5,onCD=isBE&&u._ultCooldown>0,budget=isBE?bossSpendableAp(u):u.ap,tempo=isBE?bossTempoOf(u):null,heavyTurn=Boolean(tempo&&tempo.heavyCost!==null&&u._ultCooldown===BOSS_HEAVY_COOLDOWN); (u.weapons||[]).forEach((w,i)=>{ for(let ch=0;ch<3;ch++){ const s=getSpec(u,'attack',i,ch); if(s.ap<=budget&&!(forceUlt&&s.ap<5)&&!(onCD&&s.ap>=5))specs.push(s); } }); specs.push(...u.skills.filter(s=>{ const def=SKILLS[s]; if(!def||!(def.offensive||(def.effects&&def.effects.some(e=>e.kind==='damage')))||def.ap>budget)return false; if(forceUlt&&def.ap<5)return false; if(onCD&&def.ap>=5)return false; return true; }).map(s=>getSpec(u,s))); let best=null;
+// Mutisme (noSkill) blocks every skill, for every team (final audit 2026-11-11, A1): weapon attacks and items stay.
+function isSkillSpec(spec){ return !!spec&&!spec.item&&spec.key!=='attack'&&!!SKILLS[spec.key]; }
+function bestOffense(u,stands,taunter){ const specs=[]; const silenced=hasS(u,'silence'),isBE=!!(u.boss||u.elite),forceUlt=isBE&&!silenced&&u._ultCooldown===0&&u.ap>=5,onCD=isBE&&u._ultCooldown>0,budget=isBE?bossSpendableAp(u):u.ap,tempo=isBE?bossTempoOf(u):null,heavyTurn=Boolean(tempo&&tempo.heavyCost!==null&&u._ultCooldown===BOSS_HEAVY_COOLDOWN); (u.weapons||[]).forEach((w,i)=>{ for(let ch=0;ch<3;ch++){ const s=getSpec(u,'attack',i,ch); if(s.ap<=budget&&!(forceUlt&&s.ap<5)&&!(onCD&&s.ap>=5))specs.push(s); } }); specs.push(...u.skills.filter(s=>{ const def=SKILLS[s]; if(silenced||!def||!(def.offensive||(def.effects&&def.effects.some(e=>e.kind==='damage')))||def.ap>budget)return false; if(forceUlt&&def.ap<5)return false; if(onCD&&def.ap>=5)return false; return true; }).map(s=>getSpec(u,s))); let best=null;
   for(const st of stands){ const sim=simAt(u,st);
     for(const spec of specs){ for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz);
       const en=aff.filter(t=>t.team!==u.team), al=aff.filter(t=>t.team===u.team&&t!==u);
@@ -2191,7 +2201,7 @@ function bestOffense(u,stands,taunter){ const specs=[]; const isBE=!!(u.boss||u.
       if(heavyTurn&&spec.ap===tempo.heavyCost&&spec.key!=='attack')score+=12;
       if(!best||score>best.score) best={score,st,spec,cx:c.gx,cz:c.gz}; } } }
   return best; }
-function bestSupport(u,stands){ const budget=(u.boss||u.elite)?bossSpendableAp(u):u.ap; const supSpecs=u.skills.map(s=>getSpec(u,s)).filter(s=>skillHasSupport(s)&&s.ap<=budget); if(!supSpecs.length)return null;
+function bestSupport(u,stands){ if(hasS(u,'silence'))return null; const budget=(u.boss||u.elite)?bossSpendableAp(u):u.ap; const supSpecs=u.skills.map(s=>getSpec(u,s)).filter(s=>skillHasSupport(s)&&s.ap<=budget); if(!supSpecs.length)return null;
   const allies=aliveUnits(u.team).filter(a=>a!==u); const wounded=[u,...allies].filter(a=>a.alive&&a.hp<a.maxhp*0.75);
   let best=null;
   for(const spec of supSpecs){ for(const st of stands){ const sim=simAt(u,st);
@@ -2259,7 +2269,7 @@ async function aiTurn(u){
     const itmBest=bestItem(u,here);
     // Priority: healer prefers support; low-HP units prefer items; otherwise offense
     let pick=null;
-    const isBE=!!(u.boss||u.elite),forceUlt=isBE&&u._ultCooldown===0&&u.ap>=5;
+    const isBE=!!(u.boss||u.elite),forceUlt=isBE&&!hasS(u,'silence')&&u._ultCooldown===0&&u.ap>=5;
     const utilPhase=(isBE&&!forceUlt&&!u._usedUtility&&u.ap>=2)||(prof==='cautious'&&!u._usedUtility&&u.ap>=2);
     if(forceUlt){ pick=actBest&&actBest.score>0?{type:'offense',best:actBest}:null; } // a ready ultimate is held, never traded for a lesser action
     else if(utilPhase&&supBest&&supBest.score>10&&tacticalRnd()<(isBE?0.4:0.25)){ pick={type:'support',best:supBest}; }
@@ -2497,7 +2507,7 @@ function bindInput(){ const el=renderer.domElement;
   el.addEventListener('pointerdown',onClick);
   el.addEventListener('contextmenu',e=>{ e.preventDefault(); cancelToMenu(); });
   addEventListener('wheel',e=>{if(shouldPreventCombatWheel(e))e.preventDefault();},{passive:false});
-  addEventListener('keydown',e=>{ keyboardInput=true; if(!shouldHandleCombatShortcut(e))return; const k=e.key.toLowerCase();
+  addEventListener('keydown',e=>{ keyboardInput=true; const tutorialCard=openTutorialCard(); if(tutorialCard){ if(e.key==='Escape'){ e.preventDefault(); if(tutorialCard===dom.tutorial)closeTutorial(); else closeBossTutorial(); } return; } if(!shouldHandleCombatShortcut(e))return; const k=e.key.toLowerCase();
     if(document.activeElement===el&&(e.key.startsWith('Arrow')||k==='enter'||k===' ')){ e.preventDefault(); if((e.repeat&&(k==='enter'||k===' '))||G.busy||G.over||G.spotlight)return; if(e.key.startsWith('Arrow')){ keyboardCell=nextCombatCursor(keyboardCell||{gx:0,gz:0},e.key,CFG.W,CFG.D); updateBattlefieldCursor(); } else { void activateBattlefieldCell(cellAt(keyboardCell?.gx??0,keyboardCell?.gz??0)); } return; }
     if(k==='escape'&&G.mode==='deploy'&&document.activeElement===el){ e.preventDefault(); restoreDeploymentFocus(true); }
     else if(k==='escape'){ if(G.mode==='move'||G.mode==='target')e.preventDefault(); cancelToMenu(); }
@@ -2588,7 +2598,7 @@ function openActionMenu(){ const u=G.active; if(!u||u.team!=='player'||G.over){ 
   const atkSub = 'Élan · '+(1+n)+' PA';
   const sklDis = !u.skills.length || hasS(u,'silence');
   const itmDis = itemsForbidden() || u.ap<(G.itemsUsedThisTurn+1) || invCount()<=0;
-  const supportsLeft=unusedSupports(), supDis=!supportsLeft.some(support=>getSpec(u,support.skillId).ap<=u.ap);
+  const supportsLeft=unusedSupports(), supDis=hasS(u,'silence')||!supportsLeft.some(support=>getSpec(u,support.skillId).ap<=u.ap);
   const actions=[(md&&!G.movedBeforeAct)?{key:'undo',icon:'↩',label:'Annuler',detail:'Déplacement',disabled:false}:{key:'move',icon:'✣',label:'Déplacer',detail:u.mov+' cases',disabled:md||hasS(u,'root')||u.immobile}];
   (u.weapons||[]).forEach((w,i)=>actions.push({key:'attack',icon:w.icon||'⚔',label:'Attaquer',detail:atkSub,disabled:atkDis,weaponIndex:i}));
   actions.push({key:'skill',icon:'✦',label:'Compétences',detail:u.ap+' PA',disabled:sklDis},{key:'item',icon:'◇',label:'Objet',detail:itemsForbidden()?'Interdit · défi':'×'+invCount()+' · '+(G.itemsUsedThisTurn+1)+' PA',disabled:itmDis},...(COMBAT_SUPPORTS.length?[{key:'support',icon:'✧',label:'Soutiens',detail:supportsLeft.length+' restant'+(supportsLeft.length>1?'s':''),disabled:supDis}]:[]),{key:'wait',icon:'⌛',label:'Attendre',detail:'Fin du tour',disabled:false});
@@ -2625,7 +2635,7 @@ function invCount(){ let n=0; for(const k in G.inv)n+=G.inv[k]; return n; }
 function unusedSupports(){ return COMBAT_SUPPORTS.filter(support=>!G.supportsUsed?.has(support.id)); }
 function openSupportMenu(){ combatCue('confirm'); const u=G.active; dom.skillmenu.classList.remove('hidden'); dom.skillmenu.dataset.kind='support'; syncActionDockState();
   let h='<div class="ttl">Soutiens des clans — '+u.ap+' PA</div>';
-  for(const support of COMBAT_SUPPORTS){ const used=G.supportsUsed.has(support.id); const spec=getSpec(u,support.skillId); const dis=used||spec.ap>u.ap;
+  for(const support of COMBAT_SUPPORTS){ const used=G.supportsUsed.has(support.id); const spec=getSpec(u,support.skillId); const dis=used||spec.ap>u.ap||hasS(u,'silence');
     h+='<button type="button" class="btn '+(dis?'dis':'')+'" data-s="'+escHTML(support.id)+'" title="'+escHTML((SKILLS[support.skillId].desc||'')+' '+describeSkillFacts(spec))+'"'+(dis?' disabled':'')+'>'+escHTML(support.clanLabel)+' : '+escHTML(support.label)+' <small>'+(used?'utilisé':spec.ap+' PA')+'</small></button>'; }
   h+='<button type="button" class="btn" data-s="_back">Retour</button>';
   dom.skillmenu.innerHTML=h; dom.skillmenu.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{ if(b.disabled)return; const id=b.dataset.s; if(id==='_back'){ closeSubmenu(); return; }
@@ -2876,16 +2886,29 @@ function closeTutorial(){
     dom.bossTutorial.querySelector('[data-action="start"]')?.addEventListener('click',closeBossTutorial);
   }
 }
-function showTutorial(){
-  if(!dom.tutorial||TUTORIAL_SEEN)return;
-  dom.tutorial.classList.remove('hidden');
-  tutGoTo(0);
+let tutorialBound=false;
+function bindTutorial(){
+  if(tutorialBound||!dom.tutorial)return;
+  tutorialBound=true;
   dom.tutorial.querySelector('[data-action="next"]')?.addEventListener('click',()=>{
     if(tutorialPage<TUTORIAL_PAGES-1)tutGoTo(tutorialPage+1);
   });
   dom.tutorial.querySelector('[data-action="skip"]')?.addEventListener('click',closeTutorial);
   dom.tutorial.querySelector('[data-action="start"]')?.addEventListener('click',closeTutorial);
 }
+/** Once per chronicle, or again on request from the help panel (final audit 2026-11-11, A2). */
+function showTutorial(force=false){
+  if(!dom.tutorial||(TUTORIAL_SEEN&&!force))return;
+  bindTutorial();
+  dom.tutorial.classList.remove('hidden');
+  tutGoTo(0);
+  dom.tutorial.querySelector('[data-action="next"]')?.focus({preventScroll:true});
+}
+function isBossOrEliteEncounter(){ return IS_BOSS_COMBAT||ENCOUNTER_ENEMY_VISUAL_IDS.some(id=>VISUAL_UNIT_TEMPLATES[id]?.elite); }
+function replayTutorial(){ if(isBossOrEliteEncounter()&&dom.bossTutorial)bossTutorialQueued=true; showTutorial(true); }
+document.querySelector('[data-replay-tutorial]')?.addEventListener('click',replayTutorial);
+/** The open tutorial card, if any: Escape closes it instead of reaching the battlefield shortcuts. */
+function openTutorialCard(){ return [dom.tutorial,dom.bossTutorial].find(card=>card&&!card.classList.contains('hidden'))||null; }
 
 let BOSS_TUTORIAL_SEEN=false;
 try{ BOSS_TUTORIAL_SEEN=localStorage.getItem('rpg-boss-tutorial-seen')==='1'; }catch(e){}
@@ -2897,8 +2920,7 @@ function closeBossTutorial(){
 }
 function showBossTutorial(){
   if(!dom.bossTutorial||BOSS_TUTORIAL_SEEN)return;
-  const isElite=ENCOUNTER_ENEMY_VISUAL_IDS.some(id=>VISUAL_UNIT_TEMPLATES[id]?.elite);
-  if(!IS_BOSS_COMBAT&&!isElite)return;
+  if(!isBossOrEliteEncounter())return;
   if(!dom.tutorial||dom.tutorial.classList.contains('hidden')){
     dom.bossTutorial.classList.remove('hidden');
     dom.bossTutorial.querySelector('[data-action="start"]')?.addEventListener('click',closeBossTutorial);

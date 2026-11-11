@@ -92,3 +92,88 @@ describe('scene transition interlude', () => {
     },
   );
 });
+
+describe('scene transition guards (final audit 2026-11-11, A4 and A5)', () => {
+  it('blocks keyboard and gamepad keydowns while the curtain covers, and only then', async () => {
+    vi.useFakeTimers();
+    const transition = new SceneTransition();
+    const seen: string[] = [];
+    const listener = (event: KeyboardEvent) => { seen.push(event.key); };
+    document.addEventListener('keydown', listener);
+    const press = () => document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }));
+    try {
+      const run = transition.run({ variant: 'fade', task: async () => { press(); }, holdMs: 0 });
+      press();
+      await vi.runAllTimersAsync();
+      await run;
+      expect(seen).toEqual([]);
+      press();
+      expect(seen).toEqual(['Enter']);
+    } finally {
+      document.removeEventListener('keydown', listener);
+    }
+  });
+
+  it('reports a refused second transition instead of silently dropping its task', async () => {
+    vi.useFakeTimers();
+    const transition = new SceneTransition();
+    const first = transition.run({ variant: 'fade', task: async () => undefined, holdMs: 0 });
+    const secondTask = vi.fn(async () => undefined);
+    const second = transition.run({ variant: 'combat', task: secondTask });
+    await vi.runAllTimersAsync();
+    await expect(second).resolves.toBe(false);
+    await expect(first).resolves.toBe(true);
+    expect(secondTask).not.toHaveBeenCalled();
+  });
+
+  it('holds the curtain over a swap and lifts it once the next surface has painted', async () => {
+    vi.useFakeTimers();
+    vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => window.setTimeout(() => callback(0), 16));
+    try {
+      const transition = new SceneTransition();
+      const covered = transition.cover({ variant: 'result', label: 'Victoire' });
+      await vi.advanceTimersByTimeAsync(700);
+      await expect(covered).resolves.toBe(true);
+      expect(transition.isHeld).toBe(true);
+      expect(document.querySelector('.scene-transition__label')?.textContent).toBe('Victoire');
+      expect(document.body.classList.contains('scene-transition--locked')).toBe(true);
+      transition.releaseWhenReady();
+      await vi.advanceTimersByTimeAsync(400);
+      expect(document.querySelector('.scene-transition')).not.toBeNull(); // the minimum hold is honoured
+      await vi.runAllTimersAsync();
+      expect(transition.isHeld).toBe(false);
+      expect(transition.isActive).toBe(false);
+      expect(document.querySelector('.scene-transition')).toBeNull();
+      expect(document.body.classList.contains('scene-transition--locked')).toBe(false);
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
+  it('lets the next transition run its task under a held curtain and lift it once', async () => {
+    vi.useFakeTimers();
+    const transition = new SceneTransition();
+    const covered = transition.cover({ variant: 'result' });
+    await vi.advanceTimersByTimeAsync(700);
+    await covered;
+    const task = vi.fn(async () => { expect(document.querySelectorAll('.scene-transition')).toHaveLength(1); });
+    const run = transition.run({ variant: 'travel', task, holdMs: 0 });
+    await vi.runAllTimersAsync();
+    await expect(run).resolves.toBe(true);
+    expect(task).toHaveBeenCalledOnce();
+    expect(document.querySelector('.scene-transition')).toBeNull();
+    expect(transition.isActive).toBe(false);
+  });
+
+  it('never leaves a held curtain up when no surface answers', async () => {
+    vi.useFakeTimers();
+    const transition = new SceneTransition();
+    const covered = transition.cover({ variant: 'result' });
+    await vi.advanceTimersByTimeAsync(700);
+    await covered;
+    await vi.advanceTimersByTimeAsync(6_000);
+    await vi.runAllTimersAsync();
+    expect(transition.isHeld).toBe(false);
+    expect(document.querySelector('.scene-transition')).toBeNull();
+  });
+});

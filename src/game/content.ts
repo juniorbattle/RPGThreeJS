@@ -791,7 +791,7 @@ const rawDialogues = [
         ],
       },
       { id: '2', speaker: 'Sage Séraphine', actorId: 'sage_seraphine', expression: 'mystical', tag: 'Gemme vive', text: 'Ses écailles résonnent avec les Sceaux. Ce combat peut nous enrichir, ou nous annoncer aux Ombres.', side: 'left', next: null, effects: [], choices: [] },
-      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Marque', text: 'Un jeune dragon vivant, un nid cartographié et personne blessé : ce n’est pas abandonner un trésor. C’est refuser de convertir chaque avantage en butin immédiat.', side: 'left', next: null, effects: [], choices: [] },
+      { id: '3', speaker: 'Intendant Maelor', actorId: 'maelor', expression: 'neutral', tag: 'Marque', text: 'Un jeune dragon vivant, un nid cartographié et personne de blessé : ce n’est pas abandonner un trésor. C’est refuser de convertir chaque avantage en butin immédiat.', side: 'left', next: null, effects: [], choices: [] },
     ],
   },
   {
@@ -1057,7 +1057,7 @@ const rawDialogues = [
         next: null,
         effects: [],
         choices: [
-          { text: 'Laisser quelques provisions aux villageois.', next: '2', effects: [{ type: 'addGold', amount: -40 }, { type: 'addReputation', amount: 3 }], outcomePreview: { mode: 'soft', hints: ['Votre conduite sera jugée', 'Une part d\u2019honneur demeure'] } },
+          { text: 'Laisser quelques provisions aux villageois.', next: '2', requiresGold: 40, effects: [{ type: 'addGold', amount: -40 }, { type: 'addReputation', amount: 3 }], outcomePreview: { mode: 'soft', hints: ['Votre conduite sera jugée', 'Une part d\u2019honneur demeure'] } },
           { text: 'Partir avec tout. Ils ne sont pas notre problème.', next: '3', effects: [{ type: 'addReputation', amount: -5 }], outcomePreview: { mode: 'soft', hints: ['Votre nom sera terni', 'Maelor approuve ce calcul'] } },
         ],
       },

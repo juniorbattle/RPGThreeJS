@@ -139,9 +139,9 @@ describe('travel on the map and in GameApp (set 1.16.0)', () => {
     const destination = model.nodes.find(candidate => candidate.canTravel && candidate.region === 2)!;
     const marker = root.querySelector<HTMLButtonElement>(`[data-poi-id="${destination.id}"]`)!;
     expect(marker.classList.contains('poi-marker--far')).toBe(false);
-    expect(marker.getAttribute('aria-label')).toContain('voyage rapide en 1 tour');
+    expect(marker.getAttribute('aria-label')).toContain('voyage rapide possible');
     marker.click();
-    expect(root.querySelector('.poi-map__selection')!.textContent).toContain('Voyage rapide · 1 tour');
+    expect(root.querySelector('.poi-map__selection')!.textContent).toContain('Voyage rapide');
     const move = root.querySelector<HTMLButtonElement>('[data-poi-action="move"]')!;
     expect(move.disabled).toBe(false);
     expect(move.textContent).toBe('Se rendre');
@@ -158,7 +158,7 @@ describe('travel on the map and in GameApp (set 1.16.0)', () => {
       enterCampaignPresentation(): Promise<void> };
     owner.state = walkTo('lion-final-refuge'); owner.mode = 'TRAVEL';
     const route = node(owner.state, 'lion-first-refuge').travelRoute;
-    vi.spyOn(sceneTransition, 'run').mockImplementation(async options => { await options.task(); });
+    vi.spyOn(sceneTransition, 'run').mockImplementation(async options => { await options.task(); return true; });
     const animation = vi.spyOn(owner.poiMap, 'animateTravel').mockImplementation(() => {
       expect(new SaveRepository().loadAuto()!.currentNodeId).toBe('lion-first-refuge');
       return undefined;
