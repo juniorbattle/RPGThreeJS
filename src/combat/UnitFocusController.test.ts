@@ -101,4 +101,22 @@ describe('UnitFocusController', () => {
     expect(revived.mat.opacity).toBe(1);
     expect(revived.blob.material.opacity).toBe(0.62);
   });
+
+  it('recedes other units less while a move destination is chosen (operator playtest 2026-11-11) and keeps that level across hover changes', () => {
+    const active = unit();
+    const other = unit();
+    const focus = new UnitFocusController();
+
+    focus.focusMove([active, other], active);
+    expect(other.mat.opacity).toBe(0.62);
+    focus.hover(other);
+    expect(other.mat.opacity).toBe(1);
+    focus.hover(null);
+    expect(other.mat.opacity).toBe(0.62);
+
+    focus.focus([active, other], active);
+    focus.hover(other);
+    focus.hover(null);
+    expect(other.mat.opacity).toBe(0.42);
+  });
 });

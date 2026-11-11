@@ -145,6 +145,7 @@ const G = {
 window.G = G;
 const unitFocus=new UnitFocusController({
   dimOpacity:COMBAT_PRESENTATION.units.focusDimOpacity,
+  moveDimOpacity:COMBAT_PRESENTATION.units.focusMoveDimOpacity,
   bossDimFloor:COMBAT_PRESENTATION.units.focusBossFloor,
   eliteDimFloor:COMBAT_PRESENTATION.units.focusEliteFloor,
 });
@@ -662,6 +663,7 @@ function buildTileTex(fillA,fillB,strokeA,strokeB,cornerA,glowA,lw=1.45,cornerLe
 function makeTileTex(){ hlTextures={
   range:buildTileTex('rgba(255,250,240,0.42)','rgba(220,215,200,0.24)','rgba(255,248,232,0.94)','rgba(80,78,68,0.72)','rgba(255,245,220,0.90)','rgba(240,235,210,0.56)',1.9,14),
   move:buildTileTex('rgba(214,246,232,0.46)','rgba(93,178,157,0.26)','rgba(210,255,238,0.97)','rgba(48,116,112,0.74)','rgba(220,255,236,0.92)','rgba(136,235,205,0.66)',2.1,16),
+  path:buildTileTex('rgba(226,252,255,0.62)','rgba(120,210,232,0.40)','rgba(236,255,255,1.0)','rgba(40,104,124,0.90)','rgba(232,255,255,1.0)','rgba(160,236,255,0.86)',2.8,20),
   hover:buildTileTex('rgba(255,250,220,0.58)','rgba(231,215,155,0.38)','rgba(255,248,195,1.0)','rgba(92,83,46,0.95)','rgba(255,252,200,1.0)','rgba(248,228,160,0.94)',3.2,24),
   target:buildTileTex('rgba(255,198,150,0.62)','rgba(200,70,56,0.42)','rgba(255,222,165,1.0)','rgba(110,30,26,0.96)','rgba(255,200,130,1.0)','rgba(255,120,80,0.95)',3.4,26),
   target_ally:buildTileTex('rgba(210,255,220,0.58)','rgba(110,200,130,0.38)','rgba(230,255,238,1.0)','rgba(40,100,60,0.96)','rgba(230,255,232,1.0)','rgba(150,240,170,0.92)',3.2,24),
@@ -670,9 +672,9 @@ function makeTileTex(){ hlTextures={
   invalid:buildTileTex('rgba(160,156,122,0.20)','rgba(94,98,83,0.10)','rgba(186,186,148,0.66)','rgba(63,68,54,0.52)','rgba(176,176,132,0.56)','rgba(130,130,104,0.28)',1.4,0)
 }; hlTex=hlTextures.range; }
 function clearHL(){ for(const m of hlMeshes){ hlGroup.remove(m); m.material.dispose(); } hlMeshes.length=0; }
-function addHL(gx,gz,color,op=0.45,kind='range'){ const c=cellAt(gx,gz); if(!c)return; const boost=kind==='target'||kind==='target_ally'?1.40:(kind==='hover'?1.36:(kind==='move'?1.34:(kind==='range_max'?1.30:(kind==='aoe'?1.22:(kind==='invalid'?1.16:1.26))))),finalOp=Math.min(1,op*boost);
+function addHL(gx,gz,color,op=0.45,kind='range'){ const c=cellAt(gx,gz); if(!c)return; const boost=kind==='target'||kind==='target_ally'?1.40:(kind==='hover'?1.36:(kind==='path'?1.36:(kind==='move'?1.34:(kind==='range_max'?1.30:(kind==='aoe'?1.22:(kind==='invalid'?1.16:1.26)))))),finalOp=Math.min(1,op*boost);
   const m=new THREE.Mesh(hlGeo,new THREE.MeshBasicMaterial({map:hlTextures[kind]||hlTex,color,transparent:true,opacity:finalOp,depthWrite:false,depthTest:false,side:THREE.DoubleSide,blending:THREE.NormalBlending,fog:false,toneMapped:false}));
-  const ro=kind==='hover'?COMBAT_RENDER_LAYERS.TILE_TARGET+1:(kind==='target'||kind==='target_ally'?COMBAT_RENDER_LAYERS.TILE_TARGET:(kind==='aoe'?COMBAT_RENDER_LAYERS.TILE_ACTION+1:(kind==='range_max'?COMBAT_RENDER_LAYERS.TILE_ACTION+.5:COMBAT_RENDER_LAYERS.TILE_ACTION))),yOff=kind==='hover'?0.072:(kind==='target'||kind==='target_ally'?0.070:0.068);
+  const ro=kind==='hover'?COMBAT_RENDER_LAYERS.TILE_TARGET+1:(kind==='target'||kind==='target_ally'?COMBAT_RENDER_LAYERS.TILE_TARGET:(kind==='aoe'||kind==='path'?COMBAT_RENDER_LAYERS.TILE_ACTION+1:(kind==='range_max'?COMBAT_RENDER_LAYERS.TILE_ACTION+.5:COMBAT_RENDER_LAYERS.TILE_ACTION))),yOff=kind==='hover'?0.072:(kind==='target'||kind==='target_ally'?0.070:0.068);
   m.rotation.x=-Math.PI/2; m.position.set(wX(gx),c.topY+yOff,wZ(gz)); m.renderOrder=ro; m.userData.baseOp=finalOp; m.userData.pulse=kind==='target'||kind==='target_ally'||kind==='hover'?0.018:(kind==='aoe'?0.028:(kind==='range_max'?0.016:(kind==='invalid'?0.006:0.012))); hlGroup.add(m); hlMeshes.push(m); return m; }
 function addRingHL(gx,gz,color,op=0.62,ringScale=1,cgx=null,cgz=null){ const c=cellAt(gx,gz); if(!c)return;
   const px=cgx!=null?wX(cgx):wX(gx), pz=cgz!=null?wZ(cgz):wZ(gz);
@@ -2342,8 +2344,16 @@ function pickCell(ev){ ndc.x=(ev.clientX/innerWidth)*2-1; ndc.y=-(ev.clientY/inn
   const hits=ray.intersectObjects(G.tilesMesh,false); if(!hits.length)return null; const m=hits[0].object; return cellAt(m.userData.gx,m.userData.gz); }
 function pickUnit(ev){ const c=pickCell(ev); return (c&&c.occupant&&c.occupant.alive)?c.occupant:null; }
 
+// Move preview (presentation only): the hovered reachable cell shows the exact path the move will take, from the same
+// reach map and buildPath as moveAlong, so the angle of arrival reads before committing. Nothing is resolved here.
+function previewMovePath(c){
+  const key=c?cellKey(c.gx,c.gz):'none'; if(G._movePreviewKey===key)return; G._movePreviewKey=key;
+  drawReach(); if(!c||!G.reach||!G.active||hoverState(c)!=='move')return;
+  const path=buildPath(G.reach.prev,G.active,c.gx,c.gz);
+  path.forEach(([gx,gz],index)=>{ const last=index===path.length-1; addHL(gx,gz,last?0xd8fbff:0xa8ecff,COMBAT_PRESENTATION.arena.moveTileOpacity,last?'hover':'path'); });
+}
 function drawReach(){ clearHL(); const keys=new Set(G.reach.list.map(t=>cellKey(t.gx,t.gz))); addInvalidTiles(keys,true); for(const t of G.reach.list){ if(t.gx===G.active.gx&&t.gz===G.active.gz)continue; addHL(t.gx,t.gz,CFG.COL.move,COMBAT_PRESENTATION.arena.moveTileOpacity,'move'); } }
-function enterMove(){ if(G.movedThisTurn||G.busy)return; if(G.active.immobile){ toast('Immobile — deplacement impossible'); combatCue('refused'); return; } if(hasS(G.active,'root')){ toast('Entravé — déplacement impossible'); combatCue('refused'); return; } combatCue('confirm'); G.mode='move'; G.reach=reachableStand(G.active); unitFocus.focus(G.units,G.active); closeMenus(true); drawReach(); setHint('Déplacement — choisissez une case'); focusBattlefield('move',G.active); }
+function enterMove(){ if(G.movedThisTurn||G.busy)return; if(G.active.immobile){ toast('Immobile — deplacement impossible'); combatCue('refused'); return; } if(hasS(G.active,'root')){ toast('Entravé — déplacement impossible'); combatCue('refused'); return; } combatCue('confirm'); G.mode='move'; G.reach=reachableStand(G.active); G._movePreviewKey=null; unitFocus.focusMove(G.units,G.active); closeMenus(true); drawReach(); setHint('Déplacement — choisissez une case'); focusBattlefield('move',G.active); }
 function drawRange(){ hideActionPreview(); clearHL(); const sp=G.pending.spec,keys=new Set(G.pending.centers.map(c=>cellKey(c.gx,c.gz))); addInvalidTiles(keys,false); const helpful=Boolean(sp.heal||sp.support||sp.revive||sp.cure); const rangeCol=helpful?0x6aff7a:0xff6a5a; const maxR=sp.range[1]||0; const ux=G.active.size>1?bossCenterGX(G.active):G.active.gx, uz=G.active.size>1?bossCenterGZ(G.active):G.active.gz; for(const c of G.pending.centers){ const md=Math.abs(c.gx-ux)+Math.abs(c.gz-uz); if(maxR>0&&md===maxR){ addHL(c.gx,c.gz,0xffd84a,COMBAT_PRESENTATION.arena.rangeTileOpacity,'range_max'); } else { addHL(c.gx,c.gz,rangeCol,COMBAT_PRESENTATION.arena.rangeTileOpacity,'range'); } }
   for(const c of G.pending.centers){ const occ=cellAt(c.gx,c.gz)?.occupant; if(!occ||!occ.alive||!G.active)continue; const isAlly=occ.team===G.active.team; if(helpful&&!isAlly)continue; if(!helpful&&isAlly)continue;
     const tk=helpful?'target_ally':'target',tc=helpful?0x7edf7a:CFG.COL.foe; addHL(c.gx,c.gz,tc,COMBAT_PRESENTATION.arena.targetTileOpacity,tk);
@@ -2419,6 +2429,7 @@ function updateBattlefieldCursor(){
 }
 function hoverBattlefieldCell(c){ const hoveredUnit=(c&&c.occupant&&c.occupant.alive)?c.occupant:null; G.hover=c; G.hoverUnit=hoveredUnit; if(c)moveCursor(c.gx,c.gz); else if(cursorMesh)cursorMesh.visible=false;
   if(G.mode==='move'||G.mode==='target')unitFocus.hover(hoveredUnit);
+  if(G.mode==='move')previewMovePath(c);
   if(G.mode==='target'){ const sp=G.pending.spec; const targetCell=hoveredUnit?.cell?.()||c,previewKey=sp.key+':'+(targetCell?targetCell.gx+','+targetCell.gz:'none'); if(G._targetPreviewKey===previewKey)return; G._targetPreviewKey=previewKey; if(sp.self)previewAt(G.active.gx,G.active.gz); else if(targetCell&&G.pending.keys.has(targetCell.gx+','+targetCell.gz)){ previewAt(targetCell.gx,targetCell.gz); const target=affectedUnits(G.active,sp,targetCell.gx,targetCell.gz)[0]||hoveredUnit; if(target)transientInspect(target); } else { unitFocus.preview([]); drawRange(); restoreInspection(); } }
   else if((G.mode==='menu'||G.mode==='idle')&&hoveredUnit)transientInspect(hoveredUnit);
   else if((G.mode==='menu'||G.mode==='idle')&&c?.occupant?.alive)transientInspect(c.occupant);
