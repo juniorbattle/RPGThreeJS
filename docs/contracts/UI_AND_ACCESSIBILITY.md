@@ -2,6 +2,10 @@
 
 Status: **LOCKED**.
 
+## Reduced motion is the in-game setting — OD-2026-11-11-E
+
+Dedicated `PRODUCTION-CONTRACTS-FINAL-AUDIT-1`, set 1.22.0. Reduced motion is the in-game setting alone: it is off by default, the player changes it in Réglages, and the choice is kept on the device outside the saves. The operating system's reduced-motion preference no longer requests it. This supersedes "independent OS/game reduced motion" (Option C compositions), "OS or game reduction independently requests reduced motion" (set 1.3.0), "OS reduced motion and game reduction each request the reduced-motion alternative; explicit game false cannot suppress the OS" and "normal and OS-only reduced motion" (`PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1`), and the OS half of every other "OS or game reduced motion" or "OS/game reduced motion" clause, including those of PRESENTATION_AND_MEDIA. Every reduced-motion alternative those clauses define stays as written, now requested by the in-game setting. Browser evidence covers normal motion and the in-game reduced motion, and checks that an emulated OS preference alone leaves motion on. The settings menu no longer says that the OS keeps motion reduced.
+
 ## Boss and elite Fury — OD-2026-11-11-B
 
 Dedicated `PRODUCTION-CONTRACTS-BOSS-FURY-1`, set 1.21.0 (COMBAT_AND_VFX). A boss or elite in Fury shows a "Furie" state on the unit and in its unit card or equivalent unit detail, in text and readable without colour; the combat log states when it enters Fury and each Fury attack. Keyboard, gamepad, responsive bounds and reduced motion follow the rules of this contract; presentation acquires no truth authority.

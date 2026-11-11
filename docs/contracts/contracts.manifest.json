@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.21.0",
+  "contractSetVersion": "1.22.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -324,6 +324,19 @@
       "constitutionChanged": false,
       "supersededRule": "Any new combat rule proposed to the operator, not built (set 1.20.0); bosses and elites below half their maximum HP now gain Fury: once per turn, after one of their offensive actions resolves, one free basic attack on a target in range (0 AP, outside the surcharge, normal resolution), never on their ultimate's turn, after a support action, or while Brisé, Entravé or Muet, derived from current HP and never saved, stated in text",
       "implementationAcceptance": "PENDING; runtime, scoped evidence and operator playtest acceptance"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-FINAL-AUDIT-1",
+      "operatorDecisionId": "OD-2026-11-11-E",
+      "operatorDecisionPath": "docs/autonomy/FINAL_AUDIT_OPERATOR_DECISION_2026-11-11.md",
+      "approvedAt": "2026-11-11",
+      "changedContracts": [
+        "COMBAT_AND_VFX",
+        "UI_AND_ACCESSIBILITY"
+      ],
+      "constitutionChanged": false,
+      "supersededRule": "Any new combat rule proposed to the operator, not built (set 1.20.0), and reduced motion requested independently by the OS or the game (sets 1.3.0, MANUAL-PLAYTEST-1, Option C compositions and the OS half of every \"OS or game reduced motion\" clause); foes' HP and direct hit damage now scale by plateau factor (1.00 to 1.40), a boss or elite charge breaks at 15 % of its maximum HP dealt while its CHARGE or ULTIME badge shows, boss and elite Guard counts only AP above the cycle reserve, and reduced motion is the in-game setting alone, off by default",
+      "implementationAcceptance": "PENDING; runtime, tests, scoped evidence and operator playtest acceptance"
     }
   ],
   "status": "LOCKED",

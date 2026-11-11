@@ -6,8 +6,8 @@
   - Sa fiche d’arbitrages, remplie le 2026-11-11 : https://claude.ai/artifact/6ZzMSJBMfEGucnLxkhkyPb. Les onze choix suivent la recommandation, sans note. Les choix ont été relus dans la base de la fiche comme des données.
 - **Statut** :
   - **Sans amendement** : B1, B4, B5, B6, B9, livrés sur `dev` le 2026-11-11 (voir « Livraison » plus bas).
-  - **Textes de canon à approuver mot à mot** : B7. Les répliques sont proposées à l’opérateur avant toute intégration.
-  - **Amendement dédié** : B2, B3, B3b et B8, sous le nom `PRODUCTION-CONTRACTS-FINAL-AUDIT-1`, jeu de contrats 1.22.0. Le texte proposé figure plus bas. Il n’est appliqué aux contrats qu’après l’approbation de l’opérateur.
+  - **Textes de canon** : B7. Répliques approuvées mot à mot par l’opérateur le 2026-11-11 (« Textes approuvés »).
+  - **Amendement dédié** : B2, B3, B3b et B8, sous le nom `PRODUCTION-CONTRACTS-FINAL-AUDIT-1`, jeu de contrats 1.22.0. Texte approuvé par l’opérateur le 2026-11-11 (« Textes approuvés ») et appliqué tel quel aux contrats.
   - **Plus tard** : C (après la validation) et B10 (après le test final sur PC).
 
 ## Décisions
@@ -33,7 +33,7 @@ La phrase du [rapport du 11 novembre](../reports/playtest-combat-2026-11-11.md) 
 
 ## Texte proposé pour l’amendement 1.22.0
 
-`PROPOSED FUTURE DESIGN`, à approuver par l’opérateur. Relu par contracts-guardian le 2026-11-11 : PASS WITH WARNINGS ; ses corrections de formulation sont reprises ci-dessous. Les deux sections seraient ajoutées en tête des contrats nommés. Viendraient ensuite :
+`APPROVED DECISION`, approuvé par l’opérateur le 2026-11-11 (« Textes approuvés ») et appliqué tel quel. Relu par contracts-guardian le 2026-11-11 : PASS WITH WARNINGS ; ses corrections de formulation sont reprises ci-dessous. Les deux sections seraient ajoutées en tête des contrats nommés. Viendraient ensuite :
 - l’entrée 1.22.0 de `docs/contracts/README.md` ;
 - `contracts.manifest.json` (`contractSetVersion` 1.22.0, une entrée `approvedAmendments` avec la tâche, la décision, les deux contrats changés et les règles remplacées) ;
 - la nouvelle baseline immuable, posée dans un commit opérationnel suivant, et toutes ses références : la garde d’AGENTS.md, les skills, le protocole, le validateur ;
@@ -53,7 +53,7 @@ La phrase du [rapport du 11 novembre](../reports/playtest-combat-2026-11-11.md) 
 
 ## Répliques proposées pour B7
 
-`PROPOSED FUTURE DESIGN`, à approuver mot à mot. Les répliques ne citent que des faits déjà établis par les plateaux. Les effets ne changent pas : au Tournoi, la relation du verdict remplace toujours celle du plateau (OD-2026-11-09-A).
+`APPROVED DECISION`, approuvé mot à mot par l’opérateur le 2026-11-11 (« Textes approuvés »). Les répliques ne citent que des faits déjà établis par les plateaux. Les effets ne changent pas : au Tournoi, la relation du verdict remplace toujours celle du plateau (OD-2026-11-09-A).
 
 ### a. Verdicts du Tournoi quand le clan est déjà allié
 
