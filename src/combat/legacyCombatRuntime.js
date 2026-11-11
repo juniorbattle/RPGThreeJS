@@ -36,6 +36,7 @@ import { resolveFxRecipe, withoutGroundMarks } from './fx/fxRecipes';
 import { enemyAttackFxRecipe, hasSkillMoveFx, skillFxRecipe, skillMoveFxRecipe } from './fx/fxSkills';
 import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
 import { isExhausted } from './combatExhaustion';
+import { BOSS_HEAVY_COOLDOWN, bossApReserve, bossTempoProfile, settleActionAp } from './combatTempo';
 import { resolvePixelSheet, pixelSheetVisibleBounds, PIXEL_PX_PER_UNIT } from './pixel/PixelSpriteSheets';
 import { PixelSpriteRig } from './pixel/PixelSpriteMaterial';
 import { combatLargeUnitPresenceScale } from './combatPresencePresentation';
@@ -138,7 +139,7 @@ const G = {
   units:[], tilesMesh:[], grid:[], order:[], turnIdx:0, round:1,
   mode:'idle', active:null, selected:null, pinnedUnit:null, hover:null, hoverUnit:null,
   movedThisTurn:false, actedThisTurn:false, movedBeforeAct:false, skillMovedThisTurn:false, pending:null, busy:false, over:false, inv:{},
-  basicAttacksThisTurn:0, itemsUsedThisTurn:0, itemsUsedTotal:0,
+  basicAttacksThisTurn:0, itemsUsedThisTurn:0, itemsUsedTotal:0, actionSettlement:null,
   rosterDefs:[],selectedDeployId:null,deployPage:0,deployedUnits:[]
 };
 window.G = G;
@@ -1489,13 +1490,31 @@ async function applyDamage(u,dmg,src,opts={}){
   screenShake(willKnockOut?0.26:0.16,willKnockOut?0.2:0.16,willKnockOut);
   refreshPanel(u);
   if(willKnockOut){
-    if(src&&src.alive){
-      src.ap=Math.min(src.maxap,src.ap+1);
-      if(src===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
-      floatText(src,'+1 PA','#7fd0ff',true); refreshPanel(src);
-    }
+    if(src&&src.alive){ creditKnockOutAp(src); floatText(src,'+1 PA','#7fd0ff',true); refreshPanel(src); }
     checkEnd();
   }
+}
+// +1 PA per knock-out. During its own action the striker is credited after the action's cost is paid, so a kill never
+// loses its AP to the cap (5/5 PA, 3 PA skill that kills: 3 PA left, not 2), and the kill's reset of the attack and
+// item surcharges survives the action's own count.
+function creditKnockOutAp(src){
+  const pending=G.actionSettlement;
+  if(pending&&pending.unit===src){ pending.knockOuts++; return; }
+  src.ap=Math.min(src.maxap,src.ap+1);
+  if(src===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
+}
+function payActionCost(u,spec){
+  const pending=G.actionSettlement&&G.actionSettlement.unit===u?G.actionSettlement:null,knockOuts=pending?pending.knockOuts:0;
+  u.ap=settleActionAp({ap:u.ap,maxap:u.maxap,cost:spec.ap>0?spec.ap:0,knockOuts});
+  if(pending)G.actionSettlement=null;
+  return knockOuts;
+}
+function settleUnpaidKnockOuts(u){
+  const pending=G.actionSettlement; G.actionSettlement=null;
+  if(!pending||pending.unit!==u||!pending.knockOuts)return;
+  u.ap=settleActionAp({ap:u.ap,maxap:u.maxap,cost:0,knockOuts:pending.knockOuts});
+  if(u===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
+  refreshPanel(u);
 }
 function applyHeal(u,amt){ if(!u.alive)return; stageRevealUnit(u); const hpBefore=u.hp; u.hp=Math.min(u.maxhp,u.hp+amt); if(u.hp>hpBefore)combatCue('recover','heal',u.id); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
 function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; stageRevealUnit(t); const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1?2:requestedTurns; const before=t.statuses[st]||0; t.statuses[st]=Math.max(before,effectiveTurns); if(t.statuses[st]>before)combatCue(isNegative(st)?'status-negative':'support','status-'+st,t.id); if(!G.stage)floatText(t,(d.name||st).toUpperCase(),d.col||'#fff',false,0.5); refreshPanel(t); }
@@ -1998,23 +2017,23 @@ function applyAdditionalStatus(u,spec,cx,cz,context={}){
   }
   for(const target of [...new Set(targets)])if(target&&target.alive){ applyStatus(target,spec.additionalStatus,spec.additionalStatusTurns||1); if(spec.additionalStatus==='taunt')target._taunter=u; }
 }
-async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())return; restoreUnitFocus(); hideActionPreview(); G.busy=true; closeMenus(); clearHL();
+async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())return; restoreUnitFocus(); hideActionPreview(); G.busy=true; closeMenus(); clearHL(); G.actionSettlement={unit:u,knockOuts:0};
   const context={origin:{gx:u.gx,gz:u.gz},selectedTargets:selectedTargetsForAction(u,spec,cx,cz)};
   const emptyHybridTarget=allowsEmptyTileHybridTarget(spec)&&context.selectedTargets.length===0;
   if(emptyHybridTarget){
     const moveSpec=spec.mode==='strike'?{...spec,type:'move',mode:'teleport',dest:true,impact:null,ap:0}:{...spec,type:'move',mode:'leap',dest:true,impact:null,ap:0};
     await doMove(u,moveSpec,cx,cz);
-    if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;
+    payActionCost(u,spec); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;
     restoreUnitVisualBaseline(u); refreshPanel(u); await restoreCam(); G.busy=false; checkEnd(); return;
   }
   const isStandaloneMove=spec.type==='move'&&(!spec.effects||spec.effects.length===0)&&!['swap','strike','retreat'].includes(spec.mode);
-  if(isStandaloneMove){ await doMove(u,spec,cx,cz); applyAdditionalStatus(u,spec,cx,cz,context); if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz; refreshPanel(u); await restoreCam(); G.busy=false; checkEnd(); return; }
+  if(isStandaloneMove){ await doMove(u,spec,cx,cz); applyAdditionalStatus(u,spec,cx,cz,context); payActionCost(u,spec); G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz; refreshPanel(u); await restoreCam(); G.busy=false; checkEnd(); return; }
   const pureSwapAction=isPureSwapAction(spec);
   if(pureSwapAction){
     const moved=await performSkillMovement(u,spec,cx,cz,context); if(!moved){ await restoreCam(); G.busy=false; return; }
     G.skillMovedThisTurn=true; if(G.movedThisTurn)G.movedBeforeAct=true; G.startGX=u.gx; G.startGZ=u.gz;
     applyAdditionalStatus(u,spec,cx,cz,context);
-    if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
+    payActionCost(u,spec);
     restoreUnitVisualBaseline(u); for(const t of context.selectedTargets)restoreUnitVisualBaseline(t);
     refreshPanel(u); await restoreCam(); G.busy=false; checkEnd(); return;
   }
@@ -2110,8 +2129,9 @@ async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())r
   if(spec.selfHealPercent&&u.alive){ const healAmt=Math.round(u.maxhp*spec.selfHealPercent); if(healAmt>0)applyHeal(u,healAmt); }
   if(spec.dispelAllies){ const allies=G.units.filter(t=>t.alive&&t.team===u.team); for(const t of allies){ let n=0; for(const s in t.statuses){ if(isNegative(s)){ delete t.statuses[s]; n++; } } if(n&&!G.stage)floatText(t,'PURIFIÉ','#7ed957',true); refreshPanel(t); } }
   if(spec.stealBuffs){ for(const t of targets){ if(t.alive&&t.team!==u.team){ for(const s in t.statuses){ if(!isNegative(s)){ u.statuses[s]=t.statuses[s]; delete t.statuses[s]; } } refreshPanel(t); } } refreshPanel(u); }
-  if(spec.ap>0)u.ap=Math.max(0,u.ap-spec.ap);
+  const knockOutsThisAction=payActionCost(u,spec);
   if(spec.key==='attack'){ G.basicAttacksThisTurn++; } if(spec.item){ G.itemsUsedThisTurn++; G.itemsUsedTotal++; } if(spec.clanSupportId)G.supportsUsed.add(spec.clanSupportId);
+  if(knockOutsThisAction>0&&u===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }
   if(G.movedThisTurn)G.movedBeforeAct=true; refreshPanel(u);
   await presentActionExit(); G.busy=false; checkEnd();
 }
@@ -2120,6 +2140,7 @@ async function executeAction(u,spec,cx,cz){
   combatAudio.level('action');
   try { await executeActionCore(u,spec,cx,cz); }
   finally {
+    settleUnpaidKnockOuts(u);
     try { if(G.spotlight)await presentActionExit(); else restoreUnitFocus(); }
     finally { combatAudio.level('reflection'); soundAction=null; if(u&&u.alive)restoreUnitVisualBaseline(u); G.busy=false; }
   }
