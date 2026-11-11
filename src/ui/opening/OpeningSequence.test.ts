@@ -172,7 +172,7 @@ describe('OpeningSequence', () => {
     sequence.close();
   });
 
-  it('holds every line at once under reduced motion, from the game setting or the system', () => {
+  it('holds every line at once under the in-game reduced motion; the system preference alone no longer does (set 1.22.0)', () => {
     const shown = OPENING_SHOTS[0]!.lines.map(line => line.text).join(' ');
     const game = play({ reducedMotion: true });
     game.sequence.start();
@@ -182,7 +182,7 @@ describe('OpeningSequence', () => {
     vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: true } as MediaQueryList);
     const system = play({ reducedMotion: false });
     system.sequence.start();
-    expect(system.element.dataset.reducedMotion).toBe('true');
+    expect(system.element.dataset.reducedMotion).toBe('false');
     system.sequence.close();
   });
 

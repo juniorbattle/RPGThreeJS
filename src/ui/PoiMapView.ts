@@ -291,7 +291,7 @@ export class PoiMapView {
       let frame=0,start:number|undefined;
       const finish=()=>{cancelAnimationFrame(frame);clearTimeout(watchdog);unsubscribe();document.removeEventListener('visibilitychange',hidden);position(total);token.dataset.node=legs.at(-1)!.to;token.classList.remove('poi-map__traveller');delete element.dataset.travelling;element.inert=false;this.finishTravel=null;resolve();};
       const hidden=()=>{if(document.hidden)finish();};
-      const unsubscribe=onReducedMotionChange(()=>{if(prefersReducedMotion())finish();});
+      const unsubscribe=onReducedMotionChange(()=>{if(prefersReducedMotion(element.dataset.reducedMotion==='true'))finish();});
       const watchdog=window.setTimeout(finish,duration+400);
       document.addEventListener('visibilitychange',hidden);
       this.finishTravel=finish;

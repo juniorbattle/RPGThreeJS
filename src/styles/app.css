@@ -2724,12 +2724,11 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .journey-overlay--branch .journey-overlay__choice b { font-size:13px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .cinematic-overlay,.cinematic-overlay * { animation:none !important; transition:none !important; }
-  .cinematic-overlay__video { display:none; }
-  .journey-overlay,.journey-overlay * { animation:none !important; transition:none !important; }
-  .scene-transition,.scene-transition * { animation:none !important; }
-}
+/* In-game reduced motion only (set 1.22.0, OD-2026-11-11-E): the OS preference no longer requests it. */
+body.motion-reduced .cinematic-overlay, body.motion-reduced .cinematic-overlay * { animation:none !important; transition:none !important; }
+body.motion-reduced .cinematic-overlay__video { display:none; }
+body.motion-reduced .journey-overlay, body.motion-reduced .journey-overlay * { animation:none !important; transition:none !important; }
+body.motion-reduced .scene-transition, body.motion-reduced .scene-transition * { animation:none !important; }
 
 .narrative-stage { position:fixed; inset:0; z-index:9050; overflow:hidden; isolation:isolate; background:#02050c; color:#f4ead1; }
 .narrative-stage--handoff { z-index:8900; }
@@ -2839,10 +2838,9 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 
 .narrative-stage--leaving { opacity:0; pointer-events:none; transition:opacity 460ms cubic-bezier(.45,0,.62,1); }
 
-@media (prefers-reduced-motion: reduce) {
-  .narrative-stage,.narrative-stage * { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
-  .dialogue--narrative .dialogue__box { translate:none !important; }
-}
+/* In-game reduced motion only (set 1.22.0, OD-2026-11-11-E): the OS preference no longer requests it. */
+body.motion-reduced .narrative-stage, body.motion-reduced .narrative-stage * { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+body.motion-reduced .dialogue--narrative .dialogue__box { translate:none !important; }
 
 /* CIN-6.7.1 — one scene-first animated-book language for every non-combat beat. */
 .narrative-scene-surface { overflow:hidden; background:#07101c; }
@@ -2955,18 +2953,16 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .dialogue--narrative .dialogue-choice[data-narrative-choice-lane] { grid-column:1; grid-row:auto; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .narrative-scene-surface__environment,.narrative-scene-surface__atmosphere { animation:none !important; transform:none; translate:none; }
-  .narrative-cast__actor { animation:none !important; translate:none !important; }
-  .narrative-cast__actor img { animation:none !important; }
-  .narrative-media-transition,.narrative-media-transition * { animation:none !important; transition:none !important; }
-}
+/* In-game reduced motion only (set 1.22.0, OD-2026-11-11-E): the OS preference no longer requests it. */
+body.motion-reduced .narrative-scene-surface__environment, body.motion-reduced .narrative-scene-surface__atmosphere { animation:none !important; transform:none; translate:none; }
+body.motion-reduced .narrative-cast__actor { animation:none !important; translate:none !important; }
+body.motion-reduced .narrative-cast__actor img { animation:none !important; }
+body.motion-reduced .narrative-media-transition, body.motion-reduced .narrative-media-transition * { animation:none !important; transition:none !important; }
 
 
 @media (max-width: 760px) {
 }
-@media (prefers-reduced-motion: reduce) {
-}
+
 /* Shared campaign readout: compact campaign frame. */
 .campaign-status-hud {
   position: absolute; z-index: 32; top: 20px; left: 24px;
@@ -3076,7 +3072,8 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   .tournament-board__entry { grid-template-columns: 32px minmax(0, 1fr); grid-template-areas: "order label" "order status" "order result"; }
   .tournament-board__actions button { flex: 1 1 100%; }
 }
-@media (prefers-reduced-motion: reduce) { .tournament-board { animation: none; } }
+/* In-game reduced motion only (set 1.22.0, OD-2026-11-11-E): the OS preference no longer requests it. */
+body.motion-reduced .tournament-board { animation: none; }
 
 /* Final audit 2026-11-11 (A5): the in-game reduced-motion choice, beside the OS query above, for CSS-only motion. */
 body.motion-reduced .cinematic-overlay, body.motion-reduced .cinematic-overlay * { animation:none !important; transition:none !important; }

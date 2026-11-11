@@ -22,12 +22,15 @@ describe('DialogueView narrative boundaries', () => {
     box.click(); await completed; expect(onSound).toHaveBeenCalledExactlyOnceWith('confirm');
     expect(JSON.stringify(state)).toBe(before); root.remove();
   });
-  it('reveals dialogue immediately for OS reduced motion with normal graphics', () => {
+  it('keeps the typewriter when only the OS asks for less motion, and reveals at once under the game setting (set 1.22.0)', () => {
     const preference = vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: true } as MediaQueryList);
     const root = document.createElement('div');
     const view = new DialogueView({ root, getState: createInitialState, applyEffects: async () => undefined });
     const sequence = dialogues.get('lion_briefing')!;
     void view.play(sequence, { reducedMotion: false });
+    expect(root.querySelector('.dialogue__text-reveal')?.textContent).not.toBe(sequence.steps[0]!.text);
+    view.close();
+    void view.play(sequence, { reducedMotion: true });
     expect(root.querySelector('.dialogue__text-reveal')?.textContent).toBe(sequence.steps[0]!.text);
     view.close();
     preference.mockRestore();

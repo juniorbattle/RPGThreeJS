@@ -64,10 +64,11 @@ describe('single settings menu', () => {
     expect(dialog.querySelector('[data-motion-system]')).toBeNull();
   });
 
-  it('says so when the system already asks for less motion, and hides the display part without a motion owner', () => {
+  it('no longer mentions the system preference, which no longer reduces motion (set 1.22.0), and hides the display part without a motion owner', () => {
     mediaQuery(true);
     new UiSoundSettings(root, player, { motion: { get: () => false, set: vi.fn() } }).open();
-    expect(root.querySelector('[data-motion-system]')?.textContent).toContain('Votre système demande moins d’animations');
+    expect(root.querySelector('[data-motion-system]')).toBeNull();
+    expect(root.querySelector('[data-motion-toggle]')?.getAttribute('aria-pressed')).toBe('false');
     root.replaceChildren();
     new UiSoundSettings(root, player).open();
     expect(root.querySelector('[data-motion-toggle]')).toBeNull();

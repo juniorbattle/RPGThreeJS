@@ -11,7 +11,6 @@ export interface SettingsMenuOptions {
   motion?: MotionSettingAccess;
 }
 
-const SYSTEM_MOTION_NOTE = 'Votre système demande moins d’animations : le jeu les réduit déjà, quel que soit ce réglage. Pour tout voir, réactivez les effets d’animation du système (sous Windows : Paramètres › Accessibilité › Effets visuels).';
 
 /**
  * The game's single settings menu (OD-2026-11-05-B): sound, display and controls in one dialog, opened from the title,
@@ -28,7 +27,6 @@ export class UiSoundSettings {
     const siblings = [...this.root.children].map(child => ({ child: child as HTMLElement, inert: (child as HTMLElement).inert }));
     for (const { child } of siblings) child.inert = true;
     const motion = this.options.motion;
-    const systemReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
     const element = document.createElement('div'); element.className = 'ui-sound-backdrop';
     const tabs: ReadonlyArray<readonly [string, string]> = [['sound', 'Son'], ...(motion ? [['display', 'Affichage'] as const] : []), ['controls', 'Commandes']];
     const panel = (id: string, body: string) => `<div class="ui-settings__panel" role="tabpanel" id="ui-settings-panel-${id}" aria-labelledby="ui-settings-tab-${id}"${id === 'sound' ? '' : ' hidden'}>${body}</div>`;
@@ -37,7 +35,7 @@ export class UiSoundSettings {
       + `<div class="ui-settings__tabs" role="tablist" aria-label="Rubriques des réglages">${tabs.map(([id, label]) => `<button type="button" role="tab" id="ui-settings-tab-${id}" data-settings-tab="${id}" aria-controls="ui-settings-panel-${id}" aria-selected="${id === 'sound'}" tabindex="${id === 'sound' ? 0 : -1}">${label}</button>`).join('')}</div>`
       + panel('sound', `<h3 class="ui-sound-settings__group">Effets sonores</h3><p>Sons des menus, de la campagne et des combats. Ils sont actifs et démarrent à votre première action. Vous pouvez jouer entièrement sans son.</p><button type="button" data-sound-toggle aria-pressed="${this.player.enabled}"></button><label for="ui-sound-volume">Volume des sons <output id="ui-sound-value"></output></label><input id="ui-sound-volume" type="range" min="0" max="100" step="5" value="${Math.round(this.player.volume * 100)}">`
         + `<h3 class="ui-sound-settings__group">Musique</h3><p>Musique générée par le jeu. Elle ne démarre qu'après votre première action.</p><button type="button" data-music-toggle aria-pressed="${this.player.musicEnabled}"></button><label for="ui-music-volume">Volume de la musique <output id="ui-music-value"></output></label><input id="ui-music-volume" type="range" min="0" max="100" step="5" value="${Math.round(this.player.musicVolume * 100)}">`)
-      + (motion ? panel('display', `<p>Le mouvement réduit garde une caméra fixe, remplace les déplacements par des fondus et allège les effets des combats. Il s’applique aussi au combat en cours.</p><button type="button" data-motion-toggle aria-pressed="${motion.get()}"></button>${systemReduced ? `<p class="ui-settings__note" data-motion-system>${SYSTEM_MOTION_NOTE}</p>` : ''}`) : '')
+      + (motion ? panel('display', `<p>Le mouvement réduit garde une caméra fixe, remplace les déplacements par des fondus et allège les effets des combats. Il s’applique aussi au combat en cours.</p><button type="button" data-motion-toggle aria-pressed="${motion.get()}"></button>`) : '')
       + panel('controls', `<dl class="ui-settings__controls">`
         + `<dt>Clavier</dt><dd>Flèches ou Tabulation pour se déplacer, Entrée pour valider, Échap pour revenir.</dd>`
         + `<dt>Manette</dt><dd>Croix ou stick gauche pour se déplacer, A ou Croix pour valider, B ou Rond pour revenir, LB/RB ou L1/R1 pour la commande voisine, Start ou Options pour le menu de la carte.</dd>`

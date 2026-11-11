@@ -220,9 +220,9 @@ describe('NarrativeActorFramePlayer', () => {
     expect(vi.getTimerCount()).toBe(0);
   });
 
-  it('shows the fixed master under game or OS reduction without loading frames or running a clock', async () => {
+  it('shows the fixed master under the in-game reduction without loading frames or running a clock (set 1.22.0)', async () => {
     vi.useFakeTimers();
-    for (const [game, os] of [[true, false], [false, true]] as const) {
+    for (const [game, os] of [[true, false], [true, true]] as const) {
       stubMotion(os); stubVisibility();
       const decoded = decodedSources();
       const { actor, image } = stagedActor();
@@ -238,7 +238,7 @@ describe('NarrativeActorFramePlayer', () => {
     }
   });
 
-  it('applies an OS preference change at once in both directions and removes both listeners on dispose', async () => {
+  it('ignores the OS preference and its changes (set 1.22.0), and removes its visibility listener on dispose', async () => {
     vi.useFakeTimers();
     const motion = stubMotion(false); stubVisibility();
     const removed = vi.spyOn(document, 'removeEventListener');
@@ -251,13 +251,9 @@ describe('NarrativeActorFramePlayer', () => {
     await vi.advanceTimersByTimeAsync(200);
     expect(source(image)).toBe('/frames/a1.png');
     motion.set(true);
-    expect(actor.dataset.frameAnimationState).toBe('STILL_REDUCED_MOTION');
-    expect(source(image)).toBe('/masters/alistair.png');
-    expect(vi.getTimerCount()).toBe(0);
-    motion.set(false);
     expect(actor.dataset.frameAnimationState).toBe('PLAYING');
     expect(source(image)).toBe('/frames/a1.png');
-    expect(vi.getTimerCount()).toBe(1);
+    expect(motion.listeners.size).toBe(0);
     player.dispose();
     expect(motion.listeners.size).toBe(0);
     expect(visibilityCalls(removed)).toBe(1);
@@ -355,12 +351,12 @@ describe('NarrativeActorFramePlayer', () => {
     expect(visibilityCalls(added)).toBe(0);
     expect(vi.getTimerCount()).toBe(0);
     bound.sync('IDLE_PHASE', [actor]);
-    expect(motion.listeners.size).toBe(1);
+    expect(motion.listeners.size).toBe(0); // the OS preference is no longer observed (set 1.22.0)
     expect(visibilityCalls(added)).toBe(1);
     bound.dispose();
   });
 
-  it('leaves the masters in place when the optional layer fails', () => {
+  it('no longer depends on the MediaQueryList of an older WebView, which it does not read since set 1.22.0', () => {
     vi.useFakeTimers();
     stubVisibility();
     // An older WebView whose MediaQueryList has no addEventListener.
@@ -368,10 +364,9 @@ describe('NarrativeActorFramePlayer', () => {
     const { actor, image } = stagedActor();
     const player = new NarrativeActorFramePlayer([IDLE], false);
     expect(() => player.sync('IDLE_PHASE', [actor])).not.toThrow();
-    expect(source(image)).toBe('/masters/alistair.png');
-    expect(actor.dataset.frameAnimation).toBeUndefined();
-    expect(vi.getTimerCount()).toBe(0);
+    expect(source(image)).toBe('/masters/alistair.png'); // the master stays until the frames are ready
     expect(() => player.sync('IDLE_PHASE', [actor])).not.toThrow();
+    player.dispose();
   });
 });
 

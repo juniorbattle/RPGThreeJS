@@ -150,10 +150,16 @@ describe('POI atlas focus and authority intentions',()=>{
     expect(view.animateTravel('lion-camp','lion-audience')).toBeUndefined();
     expect(document.querySelector('.poi-map__traveller')).toBeNull();expect(onMove).not.toHaveBeenCalled();expect(state).toEqual(before);
   });
-  it('honors OS-only reduction even with the game setting false',()=>{
+  it('keeps the travel animation when only the OS asks for less motion (set 1.22.0, the game setting alone decides)',async()=>{
     vi.stubGlobal('matchMedia',()=>({matches:true}));const {view}=fixture();
-    expect(view.animateTravel('lion-camp','lion-audience')).toBeUndefined();
-    expect(document.querySelector('.poi-map__traveller')).toBeNull();
+    const path=document.querySelector<SVGPathElement>('.poi-path[data-from="lion-camp"][data-to="lion-audience"]')!;
+    Object.defineProperty(path,'getTotalLength',{value:()=>100});
+    Object.defineProperty(path,'getPointAtLength',{value:(distance:number)=>({x:distance,y:20})});
+    let step!:(time:number)=>void;vi.stubGlobal('requestAnimationFrame',(callback:(time:number)=>void)=>{step=callback;return 1;});vi.stubGlobal('cancelAnimationFrame',vi.fn());
+    const pending=view.animateTravel('lion-camp','lion-audience');
+    expect(pending).toBeInstanceOf(Promise);
+    expect(document.querySelector('.poi-map__traveller')).not.toBeNull();
+    step(0);step(1500);await pending;view.close();
   });
   it.each([false,true])('moves only the art token along the existing path and settles cleanly (reverse=%s)',async reverse=>{
     const {view,state,before,onMove}=fixture();

@@ -297,13 +297,13 @@ describe('CIN-6D.6 presentation runtime', () => {
     expect(surface.asset).toBe('/static.webp');
   });
 
-  it('uses static travel art for OS reduced motion with normal graphics', () => {
+  it('keeps living travel art when only the OS asks for less motion, and the static art under the game setting (set 1.22.0)', () => {
     vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: true } as MediaQueryList);
-    const surface = new TravelStillSurface(document.createElement('div'), beat('edge:lion-audience>lion-opening-ambush'), {
-      source: { kind: 'LIVING_STILL', assetId: '/living.webp', staticFallbackAssetId: '/static.webp' },
-      reducedMotion: false,
-    });
-    expect(surface.asset).toBe('/static.webp');
+    const source = { kind: 'LIVING_STILL' as const, assetId: '/living.webp', staticFallbackAssetId: '/static.webp' };
+    const living = new TravelStillSurface(document.createElement('div'), beat('edge:lion-audience>lion-opening-ambush'), { source, reducedMotion: false });
+    expect(living.asset).toBe('/living.webp');
+    const still = new TravelStillSurface(document.createElement('div'), beat('edge:lion-audience>lion-opening-ambush'), { source, reducedMotion: true });
+    expect(still.asset).toBe('/static.webp');
   });
 
   it('keeps one primary surface and cleans it on release/dispose', async () => {

@@ -66,7 +66,8 @@
     -webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 52%,transparent 38%,#000 92%);mask-image:radial-gradient(ellipse 60% 55% at 50% 52%,transparent 38%,#000 92%);mix-blend-mode:screen}
   #fx-speedlines.on{opacity:.55;animation:fx-speedlines-spin .9s linear infinite}
   @keyframes fx-speedlines-spin{to{transform:rotate(2deg) scale(1.03)}}
-  @media (prefers-reduced-motion:reduce){#fx-speedlines{display:none}}
+  /* In-game reduced motion only (set 1.22.0, OD-2026-11-11-E): the OS preference no longer requests it. */
+body.reduced-graphics #fx-speedlines {display:none}
   #ui.staging #menu,#ui.staging #skillmenu,#ui.staging #hud-right-stack,#ui.staging #settings-btn,#ui.staging #help{opacity:0;transition:opacity .3s}
   body:has(#stagevig.on)::before{opacity:.3}
   #stagetitle{position:fixed;top:30px;left:50%;z-index:20;pointer-events:none;

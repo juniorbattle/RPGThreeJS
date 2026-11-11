@@ -363,7 +363,7 @@ describe('NarrativeSceneSurface', () => {
     vi.useRealTimers();
   });
 
-  it.each([false, true])('reads live OS motion between cast replacements with game reduction=%s', async (gameReduced) => {
+  it.each([false, true])('ignores a live OS request between cast replacements; the game reduction (%s) alone decides (set 1.22.0)', async (gameReduced) => {
     vi.useFakeTimers();
     let osReduced = false;
     vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: osReduced })));
@@ -377,24 +377,19 @@ describe('NarrativeSceneSurface', () => {
     const surface = new NarrativeSceneSurface(document.createElement('div'), tableau, { reducedMotion: gameReduced });
     const first = surface.setPhase('FIRST'); await vi.runAllTimersAsync(); await first;
     osReduced = true;
-    const reduced = surface.setPhase('NEXT');
-    expect(surface.castLayer.firstElementChild?.getAttribute('data-exit-effect')).toBe('FADE_OUT');
-    await vi.advanceTimersByTimeAsync(180);
-    expect(surface.element.dataset.castTransition).toBe('BREATH');
-    await vi.advanceTimersByTimeAsync(40);
-    expect(surface.castLayer.firstElementChild?.getAttribute('data-entry-effect')).toBe('FADE_IN');
-    await vi.runAllTimersAsync(); await reduced;
-    osReduced = false;
-    const restored = surface.setPhase('FIRST');
+    const next = surface.setPhase('NEXT');
+    expect(surface.castLayer.firstElementChild?.getAttribute('data-exit-effect')).toBe(gameReduced ? 'FADE_OUT' : 'SLIDE_OUT_LEFT');
+    await vi.runAllTimersAsync(); await next;
+    const back = surface.setPhase('FIRST');
     expect(surface.castLayer.firstElementChild?.getAttribute('data-exit-effect')).toBe(gameReduced ? 'FADE_OUT' : 'SLIDE_OUT_RIGHT');
-    await vi.runAllTimersAsync(); await restored;
+    await vi.runAllTimersAsync(); await back;
     expect(surface.castLayer.firstElementChild?.getAttribute('data-entry-effect')).toBe(gameReduced ? 'FADE_IN' : 'SLIDE_IN_LEFT');
     expect(surface.castLayer.firstElementChild?.getAttribute('data-facing')).toBe(base.staticCast[0]!.facing);
     expect(surface.castLayer.childElementCount).toBe(1);
     surface.dispose();
   });
 
-  it('reads an OS request arriving during departure before mounting the replacement', async () => {
+  it('ignores an OS request arriving during departure: the replacement keeps its slide (set 1.22.0)', async () => {
     vi.useFakeTimers();
     let osReduced = false;
     vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: osReduced })));
@@ -409,7 +404,7 @@ describe('NarrativeSceneSurface', () => {
     await vi.advanceTimersByTimeAsync(100);
     osReduced = true;
     await vi.advanceTimersByTimeAsync(120);
-    expect(surface.castLayer.firstElementChild?.getAttribute('data-entry-effect')).toBe('FADE_IN');
+    expect(surface.castLayer.firstElementChild?.getAttribute('data-entry-effect')).not.toBe('FADE_IN');
     await vi.runAllTimersAsync(); await replacement;
     surface.dispose();
   });

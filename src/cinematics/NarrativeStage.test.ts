@@ -95,7 +95,7 @@ describe('NarrativeStage', () => {
     vi.unstubAllGlobals();
   });
 
-  it.each([false, true])('uses the current OS request when constructing a surface after initial reduction=%s', async (initialReduction) => {
+  it.each([false, true])('ignores the OS request (initially %s) when constructing a surface: the game setting alone decides (set 1.22.0)', async (initialReduction) => {
     vi.useFakeTimers();
     let osReduced = initialReduction;
     vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: osReduced })));
@@ -109,7 +109,7 @@ describe('NarrativeStage', () => {
     const presented = stage.presentPaintedFallback('Audience');
     await vi.runAllTimersAsync(); await presented;
     const actor = stage.element.querySelector('.narrative-cast__actor');
-    expect(actor?.getAttribute('data-entry-effect')).toBe(osReduced ? 'FADE_IN' : 'SLIDE_IN_LEFT');
+    expect(actor?.getAttribute('data-entry-effect')).toBe('SLIDE_IN_LEFT');
     expect(actor?.getAttribute('data-facing')).toBe(base.staticCast[0]!.facing);
     expect(stage.element.querySelectorAll('.narrative-cast__actor')).toHaveLength(1);
     stage.dispose();
@@ -128,13 +128,13 @@ describe('NarrativeStage', () => {
     expect(document.querySelector('.narrative-stage')).toBeNull();
   });
 
-  it('keeps OS reduced-motion fallback and agency usable with normal graphics', async () => {
-    vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: true } as MediaQueryList);
+  it('keeps the in-game reduced-motion fallback and agency usable (set 1.22.0)', async () => {
+    vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: false } as MediaQueryList);
     const registry = new CinematicRegistry(manifest);
     const player = new CinematicPlayer(registry);
-    const stage = new NarrativeStage({ player, registry, reducedMotion: false, transitionRevealMs: 0 });
+    const stage = new NarrativeStage({ player, registry, reducedMotion: true, transitionRevealMs: 0 });
     stage.setTableau(CAMP_DEPARTURE_TABLEAU);
-    await expect(stage.presentCinematic('intro', { reducedMotion: false })).resolves.toMatchObject({
+    await expect(stage.presentCinematic('intro', { reducedMotion: true })).resolves.toMatchObject({
       reason: 'reduced-motion', played: false,
     });
     expect(stage.currentMediaSurfaceKind).toBe('FALLBACK');
@@ -375,7 +375,8 @@ describe('NarrativeStage', () => {
     const css = readFileSync(resolve(process.cwd(), 'src/styles/app.css'), 'utf8');
     expect(css).toContain('@media (max-width:900px),(max-height:780px)');
     expect(css).toContain('@media (max-width:680px)');
-    expect(css).toMatch(/@media \(prefers-reduced-motion: reduce\)[\s\S]*\.narrative-stage,\.narrative-stage \*/);
+    expect(css).toContain('body.motion-reduced .narrative-stage, body.motion-reduced .narrative-stage *');
+    expect(css).not.toContain('prefers-reduced-motion'); // set 1.22.0: the in-game setting alone
     expect(css).toContain('.dialogue--spatial-choice .dialogue__choices');
     expect(css).toContain('.narrative-utility-dock');
     expect(css).toContain('.dialogue--narrative.dialogue--choice-active .dialogue__box { display:none; }');

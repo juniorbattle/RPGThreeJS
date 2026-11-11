@@ -66,6 +66,5 @@
   cursor: pointer;
 }
 .opening-sequence[data-reduced-motion="true"] .opening-sequence__bar { transition: opacity .4s ease; transform: none; }
-@media (prefers-reduced-motion: reduce) {
-  .opening-sequence__bar { transition: opacity .4s ease; transform: none; }
-}
+/* In-game reduced motion only (set 1.22.0, OD-2026-11-11-E): the OS preference no longer requests it. */
+body.motion-reduced .opening-sequence__bar { transition: opacity .4s ease; transform: none; }

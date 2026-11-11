@@ -11,10 +11,12 @@ function preference(matches: boolean) {
   return query as EventTarget & { matches: boolean };
 }
 
-describe('shared motion preference', () => {
-  it('keeps OS reduction when the game explicitly requests normal graphics', () => {
+describe('shared motion preference (in-game setting only since set 1.22.0, OD-2026-11-11-E)', () => {
+  it('ignores the OS preference: the game setting alone requests reduced motion', () => {
     preference(true);
-    expect(prefersReducedMotion(false)).toBe(true);
+    expect(prefersReducedMotion(false)).toBe(false);
+    expect(prefersReducedMotion()).toBe(false);
+    expect(prefersReducedMotion(true)).toBe(true);
   });
 
   it('keeps game reduction when the OS requests normal motion', () => {
@@ -23,20 +25,15 @@ describe('shared motion preference', () => {
     expect(prefersReducedMotion(false)).toBe(false);
   });
 
-  it('refreshes the effective preference on OS changes and stops after disposal', () => {
+  it('no longer reacts to OS changes, and its cleanup stays harmless', () => {
     const query = preference(false);
     const observed: boolean[] = [];
     const dispose = onReducedMotionChange(() => observed.push(prefersReducedMotion(false)));
     query.matches = true;
     query.dispatchEvent(new Event('change'));
-    query.matches = false;
-    query.dispatchEvent(new Event('change'));
-    expect(observed).toEqual([true, false]);
+    expect(observed).toEqual([]);
     dispose();
     dispose();
-    query.matches = true;
-    query.dispatchEvent(new Event('change'));
-    expect(observed).toEqual([true, false]);
   });
 
   it('keeps the game preference and harmless cleanup when matchMedia is unavailable', () => {
