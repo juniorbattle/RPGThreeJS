@@ -1517,7 +1517,7 @@ function settleUnpaidKnockOuts(u){
   refreshPanel(u);
 }
 function applyHeal(u,amt){ if(!u.alive)return; stageRevealUnit(u); const hpBefore=u.hp; u.hp=Math.min(u.maxhp,u.hp+amt); if(u.hp>hpBefore)combatCue('recover','heal',u.id); floatText(u,'+'+amt,'#7ed957'); flashUnit(u,'#bfffc0'); refreshPanel(u); }
-function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; stageRevealUnit(t); const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1?2:requestedTurns; const before=t.statuses[st]||0; t.statuses[st]=Math.max(before,effectiveTurns); if(t.statuses[st]>before)combatCue(isNegative(st)?'status-negative':'support','status-'+st,t.id); if(!G.stage)floatText(t,(d.name||st).toUpperCase(),d.col||'#fff',false,0.5); refreshPanel(t); }
+function applyStatus(t,st,turns){ const d=STATUS[st]; if(!d)return; stageRevealUnit(t); const requestedTurns=turns||2; const effectiveTurns=requestedTurns<=1&&!d.skip?2:requestedTurns; const before=t.statuses[st]||0; t.statuses[st]=Math.max(before,effectiveTurns); if(t.statuses[st]>before)combatCue(isNegative(st)?'status-negative':'support','status-'+st,t.id); if(!G.stage)floatText(t,(d.name||st).toUpperCase(),d.col||'#fff',false,0.5); refreshPanel(t); }
 async function knockOut(u,src){
   const baseline=motionBaseline(u),away=src?motionDirection(u,{source:src,reaction:true},true):{x:0,z:0},state=getUnitVisualState(u.team,false,true),sign=spriteScaleSign(u.spr),scale=largeUnitSpriteScale(u),outlineScale=scale*1.1;
   killSpriteMotion(u); const epoch=beginUnitMotion(u); u.alive=false; u.downed=true; combatCue('knockout','ko',u.id); clearBossIntentPresentation(u);
@@ -2151,7 +2151,23 @@ function skillHasDamage(spec){ if(spec.offensive&&(spec.power||0)>0)return true;
 function skillHasSupport(spec){ if(spec.heal||spec.support||spec.cure||spec.apRestore)return true; if(spec.effects&&spec.effects.some(e=>e.kind==='heal'||e.kind==='status'||e.kind==='dispel'||e.kind==='ap_restore'))return true; return false; }
 function simAt(u,st){ return Object.assign(Object.create(Object.getPrototypeOf(u)),u,{gx:st.gx,gz:st.gz}); }
 function nearestDist(st,arr){ let m=1e9; for(const a of arr){ const d=Math.abs(st.gx-a.gx)+Math.abs(st.gz-a.gz); if(d<m)m=d; } return m; }
-function bestOffense(u,stands,taunter){ const specs=[]; const isBE=!!(u.boss||u.elite),saving=isBE&&u._ultCooldown===0&&u.ap<5,forceUlt=isBE&&u._ultCooldown===0&&u.ap>=5,onCD=isBE&&u._ultCooldown>0; (u.weapons||[]).forEach((w,i)=>{ for(let ch=0;ch<3;ch++){ const s=getSpec(u,'attack',i,ch); if(s.ap<=u.ap&&!(saving&&s.ap>=4)&&!(forceUlt&&s.ap<5)&&!(onCD&&s.ap>=5))specs.push(s); } }); specs.push(...u.skills.filter(s=>{ const def=SKILLS[s]; if(!def||!(def.offensive||(def.effects&&def.effects.some(e=>e.kind==='damage')))||def.ap>u.ap)return false; if(saving&&def.ap>=4)return false; if(forceUlt&&def.ap<5)return false; if(onCD&&def.ap>=5)return false; return true; }).map(s=>getSpec(u,s))); let best=null;
+// Boss and elite tempo. Their ultimate cooldown (5 turns) drives one cycle that escalates: light actions, the heavy
+// skill two turns before the ultimate, a held charge (the CHARGE telegraph), then the ultimate as soon as the cooldown
+// reaches 0. The AI keeps an AP reserve for the next step instead of spending everything, so it does not end its turns
+// on 0 AP (Essoufflé, open to a breaking critical) and still reaches its ultimate. Rules mirrored from beginTurn
+// (boss and elite regen) and endTurn (Souffle +1 PA when a turn ends with AP left).
+const BOSS_TEMPO_RULES=Object.freeze({regen:2,breath:1,chargeHold:3});
+function bossTempoOf(u){
+  if(!(u.boss||u.elite))return null;
+  if(!u._tempoProfile)u._tempoProfile=bossTempoProfile(u.skills.map(id=>SKILLS[id]).filter(def=>def&&(def.offensive||(def.effects&&def.effects.some(e=>e.kind==='damage')))).map(def=>def.ap));
+  return u._tempoProfile;
+}
+function bossSpendableAp(u){
+  const profile=bossTempoOf(u); if(!profile)return u.ap;
+  if(profile.ultimateCost!==null&&u._ultCooldown===0&&u.ap>=profile.ultimateCost)return u.ap;
+  return Math.max(0,u.ap-bossApReserve(u._ultCooldown,profile,{maxap:u.maxap,...BOSS_TEMPO_RULES}));
+}
+function bestOffense(u,stands,taunter){ const specs=[]; const isBE=!!(u.boss||u.elite),forceUlt=isBE&&u._ultCooldown===0&&u.ap>=5,onCD=isBE&&u._ultCooldown>0,budget=isBE?bossSpendableAp(u):u.ap,tempo=isBE?bossTempoOf(u):null,heavyTurn=Boolean(tempo&&tempo.heavyCost!==null&&u._ultCooldown===BOSS_HEAVY_COOLDOWN); (u.weapons||[]).forEach((w,i)=>{ for(let ch=0;ch<3;ch++){ const s=getSpec(u,'attack',i,ch); if(s.ap<=budget&&!(forceUlt&&s.ap<5)&&!(onCD&&s.ap>=5))specs.push(s); } }); specs.push(...u.skills.filter(s=>{ const def=SKILLS[s]; if(!def||!(def.offensive||(def.effects&&def.effects.some(e=>e.kind==='damage')))||def.ap>budget)return false; if(forceUlt&&def.ap<5)return false; if(onCD&&def.ap>=5)return false; return true; }).map(s=>getSpec(u,s))); let best=null;
   for(const st of stands){ const sim=simAt(u,st);
     for(const spec of specs){ for(const c of rangeCells(sim,spec)){ const aff=affectedUnits(sim,spec,c.gx,c.gz);
       const en=aff.filter(t=>t.team!==u.team), al=aff.filter(t=>t.team===u.team&&t!==u);
@@ -2161,9 +2177,10 @@ function bestOffense(u,stands,taunter){ const specs=[]; const isBE=!!(u.boss||u.
       if(taunter&&en.includes(taunter))score+=50;
       if(en.length>1)score+=8*en.length;
       if(spec.status&&en.length>0){ const newT=en.filter(t=>!hasS(t,spec.status)); const sv={curse:15,weak:15,blind:12,root:10,burn:8,poison:8,slow:8}[spec.status]||5; score+=sv*newT.length; }
+      if(heavyTurn&&spec.ap===tempo.heavyCost&&spec.key!=='attack')score+=12;
       if(!best||score>best.score) best={score,st,spec,cx:c.gx,cz:c.gz}; } } }
   return best; }
-function bestSupport(u,stands){ const supSpecs=u.skills.map(s=>getSpec(u,s)).filter(s=>skillHasSupport(s)&&s.ap<=u.ap); if(!supSpecs.length)return null;
+function bestSupport(u,stands){ const budget=(u.boss||u.elite)?bossSpendableAp(u):u.ap; const supSpecs=u.skills.map(s=>getSpec(u,s)).filter(s=>skillHasSupport(s)&&s.ap<=budget); if(!supSpecs.length)return null;
   const allies=aliveUnits(u.team).filter(a=>a!==u); const wounded=[u,...allies].filter(a=>a.alive&&a.hp<a.maxhp*0.75);
   let best=null;
   for(const spec of supSpecs){ for(const st of stands){ const sim=simAt(u,st);
@@ -2233,7 +2250,7 @@ async function aiTurn(u){
     let pick=null;
     const isBE=!!(u.boss||u.elite),forceUlt=isBE&&u._ultCooldown===0&&u.ap>=5;
     const utilPhase=(isBE&&!forceUlt&&!u._usedUtility&&u.ap>=2)||(prof==='cautious'&&!u._usedUtility&&u.ap>=2);
-    if(forceUlt&&actBest&&actBest.score>0){ pick={type:'offense',best:actBest}; }
+    if(forceUlt){ pick=actBest&&actBest.score>0?{type:'offense',best:actBest}:null; } // a ready ultimate is held, never traded for a lesser action
     else if(utilPhase&&supBest&&supBest.score>10&&tacticalRnd()<(isBE?0.4:0.25)){ pick={type:'support',best:supBest}; }
     else if(prof==='healer'&&supBest&&supBest.score>5){ pick={type:'support',best:supBest}; }
     else if(u.hp<u.maxhp*0.3&&itmBest&&itmBest.score>5){ pick={type:'item',best:itmBest}; }
@@ -2247,7 +2264,6 @@ async function aiTurn(u){
     if(pick.type==='support')u._usedUtility=true;
     await executeAction(u,spec,pick.best.cx,pick.best.cz); await wait(0.2);
     if(spec.ap>=5&&(u.boss||u.elite)){u._ultCooldown=5;clearBossIntentPresentation(u);}
-    if((u.boss||u.elite)&&u._ultCooldown===0&&u.ap<5)break;
   }
   endTurn();
 }
