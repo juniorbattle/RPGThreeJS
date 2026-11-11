@@ -69,6 +69,7 @@ describe('+1 PA for a knock-out (operator playtest 2026-11-11)', () => {
     expect(runtime.match(/payActionCost\(u,spec\)/g)?.length).toBe(5); // the definition and the four payment sites
     expect(runtime).not.toContain('u.ap=Math.max(0,u.ap-spec.ap)');
     expect(runtime).toContain("if(knockOutsThisAction>0&&u===G.active){ G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; }");
-    expect(runtime).toMatch(/try \{ await executeActionCore\(u,spec,cx,cz\); \}\n {2}finally \{\n {4}settleUnpaidKnockOuts\(u\);/);
+    // \r?\n: the operator's Windows checkout has CRLF line endings (core.autocrlf=true).
+    expect(runtime).toMatch(/try \{ await executeActionCore\(u,spec,cx,cz\); \}\r?\n {2}finally \{\r?\n {4}settleUnpaidKnockOuts\(u\);/);
   });
 });
