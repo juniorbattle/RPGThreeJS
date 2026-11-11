@@ -2,6 +2,10 @@
 
 Status: **LOCKED**.
 
+## Boss and elite Fury — OD-2026-11-11-B
+
+Dedicated `PRODUCTION-CONTRACTS-BOSS-FURY-1`, set 1.21.0 (COMBAT_AND_VFX). A boss or elite in Fury shows a "Furie" state on the unit and in its unit card or equivalent unit detail, in text and readable without colour; the combat log states when it enters Fury and each Fury attack. Keyboard, gamepad, responsive bounds and reduced motion follow the rules of this contract; presentation acquires no truth authority.
+
 ## Post-demo surfaces — OD-2026-11-07-I
 
 Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0. The post-demo POI maps, the Tournament encounter board, clan relations, supports, waves and boss phases follow the existing rules:

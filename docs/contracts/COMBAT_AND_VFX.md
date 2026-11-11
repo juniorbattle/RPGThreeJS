@@ -2,6 +2,14 @@
 
 Status: **LOCKED**.
 
+## Boss and elite Fury — OD-2026-11-11-B
+
+Dedicated `PRODUCTION-CONTRACTS-BOSS-FURY-1`, set 1.21.0, [operator decision](../autonomy/BOSS_TEMPO_AND_FURY_OPERATOR_DECISION_2026-11-11.md), follows the operator's PC playtest. It adds one combat rule, Fury, as an exception to the "New rules" bullet of set 1.20.0, which otherwise stays in force.
+- **Who and when.** A boss or an elite is in Fury while its current HP is below half its maximum HP. Fury is derived from current HP; it is transient and never saved.
+- **Rule.** At most once per turn of that unit, after the first offensive action (one that targets foes to damage or afflict them) it resolves in that turn, if it is still standing and the fight is still open, the tactical runtime gives it one free basic attack, without moving, on a target in range, if one exists: it costs 0 AP, does not count toward the basic-attack surcharge, and resolves by the normal basic-attack rules (hit, critical, damage, knock-out and the +1 AP of a knock-out).
+- **Exclusions.** No Fury attack on the turn the unit casts its ultimate, after a support action (healing, protection or a buff), or while it is Brisé (staggered, turn skipped), Entravé (root) or Muet (silence).
+- **Truth and presentation.** The tactical runtime alone decides Fury and resolves its attack; the AI only picks its target. The attack plays the existing basic-attack presentation, with no new FX recipe, sound family or cue identity. Every other rule of this contract is unchanged, including the four-hero limit, closed Ultimates and the boss phases of set 1.20.0.
+
 ## Post-demo combat — OD-2026-11-07-I
 
 Dedicated `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1`, set 1.20.0. The tactical runtime keeps resolving every fight, and presentation shows only resolved events. Four heroes at most; Ultimates stay closed.

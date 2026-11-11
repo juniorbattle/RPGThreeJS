@@ -19,6 +19,8 @@ Status terms: **LOCKED** means the decision is binding; **implemented** means so
 
 ## Approved amendment history
 
+Contract set **1.21.0** / `PRODUCTION-CONTRACTS-BOSS-FURY-1` / [OD-2026-11-11-B](../autonomy/BOSS_TEMPO_AND_FURY_OPERATOR_DECISION_2026-11-11.md) follows the operator's PC playtest. Bosses and elites below half their maximum HP are in Fury: once per turn, after one of their offensive actions resolves, the tactical runtime gives them one free basic attack (0 AP, outside the surcharge, normal resolution) on a target in range, never on their ultimate's turn, after a support action, or while Brisé, Entravé or Muet; Fury is derived from current HP and never saved (COMBAT_AND_VFX). The unit and its card state "Furie" in text and the log records it (UI_AND_ACCESSIBILITY). No FX, sound, saved field or other rule changes; the constitution is unchanged.
+
 Contract set **1.20.0** / `PRODUCTION-CONTRACTS-POST-DEMO-FRAMEWORK-1` / [OD-2026-11-07-I](../autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md) follows the operator's post-demo decision sheet. It opens the campaign after the Lion demo:
 - three Seal plateaux on the Lion's template, the Bear, the Dragon and the Scorpion in that order, with the Phoenix plateau retired;
 - a three-part final act: the Tournament on an encounter board, the corrupted capital on a small POI map, a final fight in phases;
