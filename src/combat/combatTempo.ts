@@ -27,6 +27,14 @@ export interface BossTempoRules {
   chargeHold: number;
 }
 
+/**
+ * Operator decision after the 2026-11-11 PC playtest: a boss or elite cycle lasts four turns (light action, heavy skill,
+ * CHARGE, ultimate), and bosses and elites regenerate 3 AP per turn so that cycle is affordable without ending a turn
+ * Essoufflé. The cooldown is set after each ultimate and decremented at the start of each turn.
+ */
+export const BOSS_ULTIMATE_COOLDOWN = 4;
+export const BOSS_ELITE_AP_REGEN = 3;
+
 /** The cooldown turn on which the heavy skill is planned (two turns before the ultimate). */
 export const BOSS_HEAVY_COOLDOWN = 2;
 
@@ -61,4 +69,31 @@ export function bossApReserve(cooldown: number, profile: BossTempoProfile, rules
     return Math.min(rules.maxap, need);
   };
   return endReserve(Math.max(0, Math.floor(cooldown)));
+}
+
+/**
+ * Fury (set 1.21.0, OD-2026-11-11-B): a boss or elite below half its maximum HP. Derived from current HP, never saved.
+ */
+export const FURY_HP_RATIO = 0.5;
+
+export function isInFury(unit: { alive: boolean; boss?: boolean; elite?: boolean; hp: number; maxhp: number } | null | undefined): boolean {
+  return Boolean(unit && unit.alive && (unit.boss || unit.elite) && unit.hp > 0 && unit.maxhp > 0 && unit.hp < unit.maxhp * FURY_HP_RATIO);
+}
+
+/**
+ * Whether a unit in Fury takes its free basic attack now: at most once per turn, after the first offensive action it
+ * resolves in that turn, never on its ultimate's turn, after a support action, or while Brisé, Entravé or Muet.
+ */
+export function furyStrikeAllowed(input: {
+  inFury: boolean;
+  firstOffensiveActionThisTurn: boolean;
+  usedThisTurn: boolean;
+  castUltimateThisTurn: boolean;
+  staggered: boolean;
+  rooted: boolean;
+  silenced: boolean;
+  fightOpen: boolean;
+}): boolean {
+  return input.inFury && input.firstOffensiveActionThisTurn && !input.usedThisTurn && !input.castUltimateThisTurn
+    && !input.staggered && !input.rooted && !input.silenced && input.fightOpen;
 }

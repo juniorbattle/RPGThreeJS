@@ -13,7 +13,7 @@ Contract: UI_AND_ACCESSIBILITY (`docs/contracts/UI_AND_ACCESSIBILITY.md`), plus 
 
 ## Invariants
 
-Digest of the contract at set 1.20.0 (baseline `6c965169c2dc153cafd5a8609d914cf8de723ff3`); the contract text wins on any difference.
+Digest of the contract at set 1.21.0 (baseline `470216d179e2cf6e2840e0c48f4f431a5dbb65d4`); the contract text wins on any difference.
 
 - Shared palette: deep navy, brass, warm gold, ivory. Keep the UI compact so the world, tableau or battlefield stays dominant.
 - Status text and numbers are read from runtime truth. Never display made-up combat values or resource totals, or an action that is not really enabled.
@@ -22,6 +22,7 @@ Digest of the contract at set 1.20.0 (baseline `6c965169c2dc153cafd5a8609d914cf8
 - Keyboard operation, a visible focus indicator, meaningful labels and reduced-motion support are required from the first iteration.
 - POI map (OD-2026-10-13-D, OD-2026-10-15-A/B): POI roles and states (available, active, resolved, neutralized, locked, reusable refuge) and mobile threats (position, next-turn area, tendency, contested routes) are shown with text as well as colour. Wait and Combat-or-retreat are explicit intents; no modal, gesture, hover, zoom or selection owns movement, reward, branch, threat tick or resolution. Restore safe map focus after cancellation, retreat and combat. Map targets are at least 44px; paths, labels and threat indicators stay separated at 1366x768, 620px and 390x844.
 - A media fallback keeps the player's agency and never depends on motion to carry information.
+- Boss and elite Fury (OD-2026-11-11-B, set 1.21.0): a boss or elite below half its maximum HP shows a "Furie" state on the unit and in its unit card, in text and readable without colour; the combat log states the entry into Fury and each Fury attack.
 - Sound (OD-2026-10-18-F, OD-2026-10-19-B): default silence, accessible enable, mute and volume, real gesture unlock, preferences outside gameplay saves, no cue on load, reload, restored preference or programmatic focus, and audio failure never blocks agency.
 - Effects (OD-2026-11-01-B): on by default but armed only; a stored choice to turn them off is honoured, a volume change alone never turns them off, and settings show and announce the real state. The listening lab exists only in dev builds.
 - Music (OD-2026-10-29-B): music volume and mute on every settings surface where music plays, title included, keyboard reachable, labelled, state announced, focus restored. Music is on by default but armed only: nothing sounds before the first real gesture, even with a restored preference; un-muting is a gesture and resumes the current context. Music and ambience never carry information the player needs.

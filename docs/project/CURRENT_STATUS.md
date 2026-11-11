@@ -1,6 +1,8 @@
 # Current project status
 
-Current contract update 7 November 2026: [OD-2026-11-07-I](../autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md), set 1.20.0, immutable baseline 6c965169c2dc153cafd5a8609d914cf8de723ff3, opens the post-demo campaign:
+Current contract update 11 November 2026: [OD-2026-11-11-B](../autonomy/BOSS_TEMPO_AND_FURY_OPERATOR_DECISION_2026-11-11.md), set 1.21.0, immutable baseline 470216d179e2cf6e2840e0c48f4f431a5dbb65d4, gives bosses and elites below half their maximum HP a Fury: one free basic attack per turn after their first offensive action, never on their ultimate's turn, after a support action or while Brisé, Entravé or Muet, stated in text and never saved. [OD-2026-11-11-A](../autonomy/BOSS_TEMPO_AND_FURY_OPERATOR_DECISION_2026-11-11.md), without amendment, sets the boss and elite cycle to four turns and their regeneration to 3 AP. [Report](../reports/playtest-combat-2026-11-11.md).
+
+Previous contract update 7 November 2026: [OD-2026-11-07-I](../autonomy/POST_DEMO_DIRECTION_OPERATOR_DECISION_2026-11-07.md), set 1.20.0, immutable baseline 6c965169c2dc153cafd5a8609d914cf8de723ff3, opens the post-demo campaign:
 - three Seal plateaux on the Lion's template (the Bear, the Dragon and the Scorpion, the Phoenix plateau retired);
 - a three-part final act and three epilogues;
 - a durable relation with each clan beside the unchanged reputation, and a post-demo recalibration of the Lion's reputation;

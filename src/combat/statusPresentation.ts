@@ -3,6 +3,7 @@ export type StatusPolarity = 'negative' | 'positive' | 'state';
 export type StatusPresentationKey =
   | 'staggered'
   | 'exhausted'
+  | 'fury'
   | 'root'
   | 'silence'
   | 'curse'
@@ -48,6 +49,8 @@ export interface VisibleStatusIndicator extends StatusPresentation {
 
 export interface VisibleStatusOptions {
   exhausted?: boolean;
+  /** Boss or elite below half its maximum HP (set 1.21.0, OD-2026-11-11-B), derived like Essoufflé. */
+  fury?: boolean;
   maxVisible?: number;
 }
 
@@ -58,6 +61,7 @@ export interface VisibleStatusResult {
 
 export interface CarouselStatusOptions {
   exhausted?: boolean;
+  fury?: boolean;
   phaseOffsetMs?: number;
   reducedGraphics?: boolean;
 }
@@ -109,6 +113,7 @@ const RUNTIME_INDICATOR_URLS: Partial<Record<StatusPresentationKey, string>> = {
 const definitions: StatusPresentation[] = [
   { key: 'staggered', shortCode: 'BRI', label: 'Brisé', priority: 1, color: '#fff1dc', backgroundColor: '#9d351f', borderColor: '#ff8455', cue: 'cracked_diamond', polarity: 'state', pulseProfile: 'urgent', indicatorAssetId: 'status_staggered_indicator', indicatorUrl: RUNTIME_INDICATOR_URLS.staggered, carouselHoldMs: 1500, carouselTransitionMs: 220, spriteScale: 1.08, reducedGraphicsScale: .98 },
   { key: 'exhausted', shortCode: 'ESS', label: 'Essoufflé', priority: 2, color: '#fff5c8', backgroundColor: '#796d36', borderColor: '#dcc96d', cue: 'fatigue_pulse', polarity: 'state', pulseProfile: 'calm', indicatorAssetId: 'status_exhausted_indicator', indicatorUrl: RUNTIME_INDICATOR_URLS.exhausted, carouselHoldMs: 1250, carouselTransitionMs: 200, spriteScale: 1.03, reducedGraphicsScale: .98 },
+  { key: 'fury', shortCode: 'FUR', label: 'Furie', priority: 2.5, color: '#ffe6d6', backgroundColor: '#8a2a1c', borderColor: '#ff7a52', cue: 'fury_mark', polarity: 'state', pulseProfile: 'urgent', indicatorAssetId: 'status_fury_indicator', carouselHoldMs: 1250, carouselTransitionMs: 200, spriteScale: .92, reducedGraphicsScale: .92 },
   { key: 'root', shortCode: 'ENT', label: 'Entravé', priority: 3, color: '#e3f6a3', backgroundColor: '#476531', borderColor: '#91bd52', cue: 'root_knot', polarity: 'negative', pulseProfile: 'normal', indicatorAssetId: 'status_root_indicator', indicatorUrl: RUNTIME_INDICATOR_URLS.root, carouselHoldMs: 1050, carouselTransitionMs: 200, spriteScale: 1, reducedGraphicsScale: .96 },
   { key: 'silence', shortCode: 'MUT', label: 'Mutisme', priority: 4, color: '#e2d9ff', backgroundColor: '#4b3f74', borderColor: '#9b83df', cue: 'sealed_rune', polarity: 'negative', pulseProfile: 'normal', indicatorAssetId: 'status_silence_indicator', indicatorUrl: RUNTIME_INDICATOR_URLS.silence, carouselHoldMs: 1050, carouselTransitionMs: 200, spriteScale: 1, reducedGraphicsScale: .96 },
   { key: 'curse', shortCode: 'MAL', label: 'Malédiction', priority: 5, color: '#f0c9ff', backgroundColor: '#5b286b', borderColor: '#bd67e6', cue: 'dark_rune', polarity: 'negative', pulseProfile: 'normal', indicatorAssetId: 'status_curse_indicator', indicatorUrl: RUNTIME_INDICATOR_URLS.curse, carouselHoldMs: 1050, carouselTransitionMs: 200, spriteScale: 1, reducedGraphicsScale: .96 },
@@ -150,7 +155,7 @@ export function getStatusShortCode(key: string): string | undefined {
 
 export function getVisibleStatusIndicators(
   statuses: Record<string, number | undefined> = {},
-  { exhausted = false, maxVisible = 3 }: VisibleStatusOptions = {},
+  { exhausted = false, fury = false, maxVisible = 3 }: VisibleStatusOptions = {},
 ): VisibleStatusResult {
   const indicators: VisibleStatusIndicator[] = [];
   for (const [key, turns] of Object.entries(statuses)) {
@@ -162,6 +167,11 @@ export function getVisibleStatusIndicators(
   if (exhausted && !indicators.some((indicator) => indicator.key === 'staggered')) {
     const exhaustedPresentation = getStatusPresentation('exhausted');
     if (exhaustedPresentation) indicators.push({ ...exhaustedPresentation, derived: true });
+  }
+
+  if (fury) {
+    const furyPresentation = getStatusPresentation('fury');
+    if (furyPresentation) indicators.push({ ...furyPresentation, derived: true });
   }
 
   indicators.sort((left, right) => left.priority - right.priority || left.key.localeCompare(right.key));
@@ -179,15 +189,16 @@ function carouselSignature(indicators: readonly VisibleStatusIndicator[]): strin
 export function resolveStatusCarousel(
   statuses: Record<string, number | undefined> = {},
   exhausted = false,
+  fury = false,
 ): ResolvedStatusCarousel {
-  const indicators = getVisibleStatusIndicators(statuses, { exhausted, maxVisible: Number.POSITIVE_INFINITY }).visible;
+  const indicators = getVisibleStatusIndicators(statuses, { exhausted, fury, maxVisible: Number.POSITIVE_INFINITY }).visible;
   return { indicators, signature: carouselSignature(indicators) };
 }
 
 export function getResolvedCarouselStatusFrame(
   model: ResolvedStatusCarousel,
   elapsedMs = 0,
-  { phaseOffsetMs = 0, reducedGraphics = false }: Omit<CarouselStatusOptions, 'exhausted'> = {},
+  { phaseOffsetMs = 0, reducedGraphics = false }: Omit<CarouselStatusOptions, 'exhausted' | 'fury'> = {},
 ): CarouselStatusFrame | null {
   const { indicators, signature } = model;
   if (!indicators.length) return null;
@@ -262,9 +273,9 @@ export function getStatusIndicatorEmphasis({
 export function getCarouselStatusFrame(
   statuses: Record<string, number | undefined> = {},
   elapsedMs = 0,
-  { exhausted = false, phaseOffsetMs = 0, reducedGraphics = false }: CarouselStatusOptions = {},
+  { exhausted = false, fury = false, phaseOffsetMs = 0, reducedGraphics = false }: CarouselStatusOptions = {},
 ): CarouselStatusFrame | null {
-  return getResolvedCarouselStatusFrame(resolveStatusCarousel(statuses, exhausted), elapsedMs, {
+  return getResolvedCarouselStatusFrame(resolveStatusCarousel(statuses, exhausted, fury), elapsedMs, {
     phaseOffsetMs,
     reducedGraphics,
   });

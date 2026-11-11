@@ -12,7 +12,7 @@
     - D10 : « On garde ».
   - Sur l'estompage des unités pendant le ciblage : « on peut les laisser à 0,82 si les hors portées sont déjà à 0,42 ».
   - Ordre d'intégration : « OK POUSSE dans dev ».
-- **Numéro** : OD-2026-11-11-C. La session `playtest-combat` a pris A et B (cycle des boss, Furie) sur sa branche, pas encore intégrée.
+- **Numéro** : OD-2026-11-11-C, après A et B de la session `playtest-combat` (cycle des boss, Furie).
 - **Statut** : ACTIVE, sans amendement. Ce sont des réglages de compétences, de ciblage et de textes, soumis à l'opérateur avant d'être construits, comme le veut COMBAT_AND_VFX section 1.20.0. Le choix est le même que pour OD-2026-11-11-A.
 
 ## Décisions

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.20.0",
+  "contractSetVersion": "1.21.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -311,6 +311,19 @@
       "constitutionChanged": true,
       "supersededRule": "Content limited to the authored Lion campaign (21 canonical and 12 optional nodes, two guardians, three atlases, seven living-tableau moments, closed biome and cue lists); the post-demo campaign of three Seal plateaux, a three-part final act and three epilogues is now opened as playable drafts that become canon only on per-plateau operator approval, with clan relations, a post-demo Lion reputation recalibration, boss phases, clan supports, marked provisional images and new moments on approved tableaux only",
       "implementationAcceptance": "PENDING; per-plateau delivery packages, coherence validator, reputation bounds test and operator acceptance by play"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-BOSS-FURY-1",
+      "operatorDecisionId": "OD-2026-11-11-B",
+      "operatorDecisionPath": "docs/autonomy/BOSS_TEMPO_AND_FURY_OPERATOR_DECISION_2026-11-11.md",
+      "approvedAt": "2026-11-11",
+      "changedContracts": [
+        "COMBAT_AND_VFX",
+        "UI_AND_ACCESSIBILITY"
+      ],
+      "constitutionChanged": false,
+      "supersededRule": "Any new combat rule proposed to the operator, not built (set 1.20.0); bosses and elites below half their maximum HP now gain Fury: once per turn, after one of their offensive actions resolves, one free basic attack on a target in range (0 AP, outside the surcharge, normal resolution), never on their ultimate's turn, after a support action, or while Brisé, Entravé or Muet, derived from current HP and never saved, stated in text",
+      "implementationAcceptance": "PENDING; runtime, scoped evidence and operator playtest acceptance"
     }
   ],
   "status": "LOCKED",

@@ -1,21 +1,21 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { skillById } from '../game/skills';
-import { BOSS_HEAVY_COOLDOWN, bossApReserve, bossTempoProfile } from './combatTempo';
+import { BOSS_ELITE_AP_REGEN, BOSS_HEAVY_COOLDOWN, BOSS_ULTIMATE_COOLDOWN, bossApReserve, bossTempoProfile } from './combatTempo';
 import { resolveBossIntentVisualState } from './bossIntentPresentation';
 
 const runtime = readFileSync(new URL('./legacyCombatRuntime.js', import.meta.url), 'utf8');
 const tempoSource = runtime.slice(runtime.indexOf('const BOSS_TEMPO_RULES='), runtime.indexOf('\nfunction bestOffense('));
 const applyStatusSource = runtime.slice(runtime.indexOf('function applyStatus(t,st,turns){'), runtime.indexOf('\nasync function knockOut('));
 const SKILLS: Record<string, { ap: number; offensive?: boolean; effects?: { kind: string }[] }> = Object.fromEntries(skillById);
-const RULES = { maxap: 5, regen: 2, breath: 1, chargeHold: 3 };
+const RULES = { maxap: 5, regen: 3, breath: 1, chargeHold: 3 };
 
 type Boss = { boss?: boolean; elite?: boolean; skills: string[]; ap: number; maxap: number; _ultCooldown: number; _tempoProfile?: unknown };
 
 function runtimeTempo() {
-  return new Function('SKILLS', 'bossTempoProfile', 'bossApReserve',
+  return new Function('SKILLS', 'bossTempoProfile', 'bossApReserve', 'BOSS_ELITE_AP_REGEN',
     tempoSource + ';return {BOSS_TEMPO_RULES,bossTempoOf,bossSpendableAp};',
-  )(SKILLS, bossTempoProfile, bossApReserve) as {
+  )(SKILLS, bossTempoProfile, bossApReserve, BOSS_ELITE_AP_REGEN) as {
     BOSS_TEMPO_RULES: { regen: number; breath: number; chargeHold: number };
     bossTempoOf(u: Boss): ReturnType<typeof bossTempoProfile> | null;
     bossSpendableAp(u: Boss): number;
@@ -26,7 +26,7 @@ function runtimeTempo() {
  * Mirrors beginTurn (regen, then cooldown decrement), the AI budget and endTurn (Souffle) over a number of turns.
  * Each turn spends what the runtime budget allows: the ultimate when ready, the heavy skill on its turn, else light actions.
  */
-function simulate(skills: string[], turns: number, start = { ap: 0, cooldown: 5 }) {
+function simulate(skills: string[], turns: number, start = { ap: 0, cooldown: BOSS_ULTIMATE_COOLDOWN }) {
   const tempo = runtimeTempo();
   const unit: Boss = { boss: true, skills, ap: start.ap, maxap: 5, _ultCooldown: start.cooldown };
   const profile = tempo.bossTempoOf(unit)!;
@@ -39,7 +39,7 @@ function simulate(skills: string[], turns: number, start = { ap: 0, cooldown: 5 
     let action = 'hold';
     const budget = tempo.bossSpendableAp(unit);
     if (profile.ultimateCost !== null && cooldown === 0 && unit.ap >= profile.ultimateCost) {
-      unit.ap -= profile.ultimateCost; unit._ultCooldown = 5; action = 'ultimate';
+      unit.ap -= profile.ultimateCost; unit._ultCooldown = BOSS_ULTIMATE_COOLDOWN; action = 'ultimate';
     } else if (cooldown === BOSS_HEAVY_COOLDOWN && profile.heavyCost !== null && budget >= profile.heavyCost) {
       unit.ap -= profile.heavyCost; action = 'heavy';
     } else if (budget > 0) {
@@ -65,24 +65,31 @@ describe('boss and elite tempo (operator playtest 2026-11-11)', () => {
 
   it('keeps a reserve that never plans an Essoufflé turn and holds the charge before the ultimate', () => {
     const profile = { ultimateCost: 5, heavyCost: 4 };
-    expect([4, 3, 2, 1, 0].map(cd => bossApReserve(cd, profile, RULES))).toEqual([1, 2, 1, 3, 3]);
+    expect([3, 2, 1, 0].map(cd => bossApReserve(cd, profile, RULES))).toEqual([1, 1, 3, 3]);
     expect(bossApReserve(1, { ultimateCost: 5, heavyCost: null }, RULES)).toBe(3);
     expect(bossApReserve(3, { ultimateCost: null, heavyCost: null }, RULES)).toBe(1);
   });
 
   it('mirrors the runtime regen and Souffle it plans with', () => {
-    expect(runtime).toContain('const regen=(u.boss||u.elite)?2:1;');
+    expect(runtime).toContain('const regen=(u.boss||u.elite)?BOSS_ELITE_AP_REGEN:1;');
     expect(runtime).toContain("if(u.ap>=1){ u.ap=Math.min(u.maxap,u.ap+1); u._souffle=true;");
-    expect(runtimeTempo().BOSS_TEMPO_RULES).toEqual({ regen: 2, breath: 1, chargeHold: 3 });
+    expect(runtimeTempo().BOSS_TEMPO_RULES).toEqual({ regen: 3, breath: 1, chargeHold: 3 });
+    // Operator decision 2026-11-11: four-turn cycle, 3 AP regeneration for bosses and elites.
+    expect(BOSS_ULTIMATE_COOLDOWN).toBe(4);
+    expect(BOSS_ELITE_AP_REGEN).toBe(3);
+    expect(runtime).toContain('_ultCooldown:BOSS_ULTIMATE_COOLDOWN,');
+    expect(runtime).toContain('{u._ultCooldown=BOSS_ULTIMATE_COOLDOWN;clearBossIntentPresentation(u);}');
+    expect(runtime).not.toMatch(/_ultCooldown=5|_ultCooldown<5|_ultCooldown:5/);
   });
 
-  it('escalates every five turns: light, light, heavy, charge, ultimate', () => {
-    const log = simulate(['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_titan_slam'], 15);
-    expect(log.filter(t => t.action === 'ultimate').map(t => t.turn)).toEqual([5, 10, 15]);
-    expect(log.filter(t => t.action === 'heavy').map(t => t.turn)).toEqual([3, 8, 13]);
-    expect(log.slice(0, 5).map(t => t.action)).toEqual(['light1', 'light2', 'heavy', 'light1', 'ultimate']);
-    // The CHARGE telegraph is up on the turn before each ultimate.
-    expect(log.filter(t => t.charge).map(t => t.turn)).toEqual([4, 9, 14]);
+  it('escalates every four turns: light, heavy, charge, ultimate', () => {
+    const log = simulate(['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_titan_slam'], 12);
+    expect(log.filter(t => t.action === 'ultimate').map(t => t.turn)).toEqual([4, 8, 12]);
+    expect(log.filter(t => t.action === 'heavy').map(t => t.turn)).toEqual([2, 6, 10]);
+    expect(log.slice(0, 4).map(t => t.action)).toEqual(['light2', 'heavy', 'light2', 'ultimate']);
+    // The CHARGE telegraph is up on the turn before each ultimate, and the boss keeps it while it acts lightly.
+    expect(log.filter(t => t.charge).map(t => t.turn)).toEqual([3, 7, 11]);
+    expect(log.filter(t => t.charge).every(t => t.endAp >= 3)).toBe(true);
     // It ends a turn on 0 AP only right after its ultimate.
     expect(log.filter(t => t.endAp === 0).map(t => t.action)).toEqual(['ultimate', 'ultimate', 'ultimate']);
   });
@@ -92,8 +99,8 @@ describe('boss and elite tempo (operator playtest 2026-11-11)', () => {
       .filter(kit => kit.some(id => (SKILLS[id]?.ap ?? 0) >= 5)); // kits without a 5 AP skill have no ultimate to pace
     expect(kits.length).toBeGreaterThanOrEqual(15);
     for (const kit of kits) {
-      const log = simulate(kit, 10);
-      expect(log.filter(t => t.action === 'ultimate').map(t => t.turn), kit.join(',')).toEqual([5, 10]);
+      const log = simulate(kit, 8);
+      expect(log.filter(t => t.action === 'ultimate').map(t => t.turn), kit.join(',')).toEqual([4, 8]);
       expect(log.filter(t => t.endAp === 0 && t.action !== 'ultimate'), kit.join(',')).toEqual([]);
     }
   });
@@ -101,7 +108,7 @@ describe('boss and elite tempo (operator playtest 2026-11-11)', () => {
   it('spends a full AP pool at once when the cooldown is far, and everything on a ready ultimate', () => {
     const tempo = runtimeTempo();
     const borin = ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_titan_slam'];
-    expect(tempo.bossSpendableAp({ boss: true, skills: borin, ap: 5, maxap: 5, _ultCooldown: 4 })).toBe(4);
+    expect(tempo.bossSpendableAp({ boss: true, skills: borin, ap: 5, maxap: 5, _ultCooldown: 3 })).toBe(4);
     expect(tempo.bossSpendableAp({ boss: true, skills: borin, ap: 5, maxap: 5, _ultCooldown: 0 })).toBe(5);
     expect(tempo.bossSpendableAp({ boss: true, skills: borin, ap: 4, maxap: 5, _ultCooldown: 0 })).toBe(1);
   });

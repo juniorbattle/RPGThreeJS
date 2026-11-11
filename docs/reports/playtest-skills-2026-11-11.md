@@ -6,9 +6,9 @@
 | DOMAIN | Combat tactique (définitions, exécution, textes et aperçus des actions), fiche du héros |
 | BASELINE | `4d8e1d0d` sur `dev`, puis `origin/playtest-combat` fusionnée en avance rapide (`d1bfdb10`) avant toute modification du runtime ; jeu de contrats 1.20.0, baseline immuable `6c965169c2dc153cafd5a8609d914cf8de723ff3` |
 | BRANCH | `playtest-skills` (créée depuis `origin/dev`), intégrée dans `dev` par fusion sur l’ordre de l’opérateur du 2026-11-11 |
-| HEAD | `08b72cd2` (dernier commit de la passe ; `68b5a51a`, fusion de `745d597d` de `playtest-combat`, reste hors de `dev`) |
+| HEAD | `08b72cd2` (dernier commit de la passe) |
 | STATUS | merged : décisions de l’opérateur du 2026-11-11 appliquées (section 9, OD-2026-11-11-C) ; D8 en attente |
-| MERGED_IN | `dev`, commit de fusion `80c7c150` (sur `f1181c22`, l’intégration de l’échoppe). Les premiers commits de `playtest-combat`, jusqu’à `d1bfdb10`, sur lesquels la passe s’appuie, entrent dans `dev` avec elle. |
+| MERGED_IN | `dev` : commit de fusion `80c7c150` sur l’intégration de l’échoppe, puis fusion avec l’intégration de `playtest-combat` (`4d1ec003`, cycle à quatre tours, Furie, amendement 1.21.0). |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |
 | PRODUCTION_IMPACT | Sept actions mal exécutées corrigées (Lame Arcanique +2, Rempart du Serment, cinq améliorations de zone sans effet, Charge, Repli Explosif). Décisions de l’opérateur appliquées : les zones offensives des héros épargnent leurs alliés, Charge +2, Coup Sournois +2 de dos, Cercle Écarlate +1, Vague de Flammes +2, refus d’une action monocible sans cible. Le menu de combat, la fiche du héros et l’écran d’amélioration affichent une fiche chiffrée générée depuis la définition réelle, au niveau du héros. Aperçus et infobulles corrigés. Textes réécrits. États « Racines » et « Silence » renommés « Entravé » et « Mutisme ». |

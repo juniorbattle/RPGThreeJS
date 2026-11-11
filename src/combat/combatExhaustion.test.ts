@@ -15,7 +15,7 @@ describe('Essoufflé participation', () => {
   it('marks first real beginTurn before unchanged AP regeneration and shares the predicate', () => {
     expect(runtime).toContain('_hasStartedTurn:false');
     expect(runtime).toMatch(/async function beginTurn\(u\)\{ if\(G.over\)return; u\._hasStartedTurn=true;/);
-    expect(runtime).toContain('const regen=(u.boss||u.elite)?2:1; u.ap=Math.min(u.maxap,u.ap+regen)');
+    expect(runtime).toContain('const regen=(u.boss||u.elite)?BOSS_ELITE_AP_REGEN:1; u.ap=Math.min(u.maxap,u.ap+regen)');
     expect(runtime).toContain('ap:QA_FULL_AP?unitMaxAp:0');
     expect(runtime.match(/exhausted:isExhausted\(u\)/g)?.length).toBeGreaterThanOrEqual(2);
     expect(runtime).toContain('const group=u.statusIndicatorGroup,exhausted=isExhausted(u)');
