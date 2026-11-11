@@ -37,7 +37,7 @@ import { resolveFxRecipe, withoutGroundMarks } from './fx/fxRecipes';
 import { enemyAttackFxRecipe, hasSkillMoveFx, skillFxRecipe, skillMoveFxRecipe } from './fx/fxSkills';
 import { resolveStrategicUnitVisual } from './stage/CombatPoseRegistry';
 import { isExhausted } from './combatExhaustion';
-import { BOSS_ELITE_AP_REGEN, BOSS_HEAVY_COOLDOWN, BOSS_ULTIMATE_COOLDOWN, bossApReserve, bossTempoProfile, furyStrikeAllowed, isInFury, settleActionAp } from './combatTempo';
+import { BOSS_ELITE_AP_REGEN, BOSS_HEAVY_COOLDOWN, BOSS_ULTIMATE_COOLDOWN, bossApReserve, bossGuardAp, bossTempoProfile, chargeBreakPercent, chargeBreakThreshold, furyStrikeAllowed, isInFury, settleActionAp } from './combatTempo';
 import { resolvePixelSheet, pixelSheetVisibleBounds, PIXEL_PX_PER_UNIT } from './pixel/PixelSpriteSheets';
 import { PixelSpriteRig } from './pixel/PixelSpriteMaterial';
 import { combatLargeUnitPresenceScale } from './combatPresencePresentation';
@@ -47,6 +47,7 @@ import { isActionPublished, playActionVfx as playPublishedActionVfx, getPublishe
 import { combatHudCameraFov, renderCombatActionDock, renderCombatActionPreview, renderCombatObjective, renderCombatSkillRows, renderCombatStatuses, renderCombatTurnOrder, renderCombatUnitCard, selectedCombatAction } from './combatHudPresentation';
 import { captureDeploymentFocus, nextCombatCursor, shouldHandleCombatShortcut, shouldPreventCombatWheel } from './combatKeyboard';
 import { onReducedMotionChange, prefersReducedMotion } from '../ui/ReducedMotion';
+import { plateauFoeFactor, scaleFoeValue } from './plateauScaling';
 import { createCombatRandomStreams, mulberry32 } from './combatRandom';
 import { CombatAudioEmitter, combatLaunchSound } from './CombatAudio';
 import { SIGNATURE_SKILLS, soundWeight } from '../audio/cueTable';
@@ -977,11 +978,13 @@ function syncStatusIndicators(u,time){
 }
 const bossIntentBadgeTextures=new Map();
 const bossIntentColors=Object.freeze({ultimateAccent:new THREE.Color(0xff4d36),ultimateDark:new THREE.Color(0x8c160f),chargeAccent:new THREE.Color(0xf2b84b),chargeDark:new THREE.Color(0x9a5b16)});
-function bossIntentBadgeTexture(label,boss){
-  const key=(boss?'boss:':'elite:')+label; if(bossIntentBadgeTextures.has(key))return bossIntentBadgeTextures.get(key);
+// The badge names the intent, then the charge-break progress in text (set 1.22.0, B3), readable without colour.
+function bossIntentBadgeTexture(label,boss,breakPercent=0){
+  const key=(boss?'boss:':'elite:')+label+':'+breakPercent; if(bossIntentBadgeTextures.has(key))return bossIntentBadgeTextures.get(key);
   const canvas=document.createElement('canvas'); canvas.width=256; canvas.height=96; const ctx=canvas.getContext('2d'),ultimate=label==='ULTIME',accent=ultimate?'#ff6b4a':'#f2c86b';
-  ctx.clearRect(0,0,256,96); ctx.fillStyle=boss?'rgba(28,8,8,.9)':'rgba(24,12,18,.86)'; ctx.strokeStyle=accent; ctx.lineWidth=boss?6:4; ctx.beginPath(); ctx.roundRect(9,12,238,72,18); ctx.fill(); ctx.stroke();
-  ctx.fillStyle=accent; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.font=(boss?'700 34px ':'700 30px ')+'Cinzel, Georgia, serif'; ctx.fillText(label,128,50);
+  ctx.clearRect(0,0,256,96); ctx.fillStyle=boss?'rgba(28,8,8,.9)':'rgba(24,12,18,.86)'; ctx.strokeStyle=accent; ctx.lineWidth=boss?6:4; ctx.beginPath(); ctx.roundRect(9,6,238,84,18); ctx.fill(); ctx.stroke();
+  ctx.fillStyle=accent; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.font=(boss?'700 30px ':'700 27px ')+'Cinzel, Georgia, serif'; ctx.fillText(label,128,36);
+  ctx.fillStyle='#f4ead1'; ctx.font='600 19px Inter, system-ui, sans-serif'; ctx.fillText('Rupture '+breakPercent+' %',128,68);
   const texture=new THREE.CanvasTexture(canvas); texture.colorSpace=THREE.SRGBColorSpace; texture.needsUpdate=true; bossIntentBadgeTextures.set(key,texture); return texture;
 }
 function ensureBossIntentBadge(u){
@@ -999,7 +1002,7 @@ function syncBossIntentPresentation(u,time){
   const state=resolveBossIntentVisualState({alive:u.alive,boss:u.boss,elite:u.elite,ap:u.ap,cooldown:u._ultCooldown,previewLevel:u._bossIntentPreview},REDUCED_GRAPHICS);
   if(!state){ clearBossIntentPresentation(u); return; }
   const badge=ensureBossIntentBadge(u),pulse=0.5+0.5*Math.sin(time*(state.level==='ultimate'?7.2:4.6)),boss=Boolean(u.boss||(!u.elite&&u._bossIntentPreview));
-  u.focusOpacityFloor=state.minOpacity; u.mat.opacity=Math.max(u.mat.opacity,state.minOpacity); const texture=bossIntentBadgeTexture(state.label,boss); if(badge.material.map!==texture){badge.material.map=texture;badge.material.needsUpdate=true;} badge.material.opacity=.86+.14*pulse; badge.visible=true;
+  u.focusOpacityFloor=state.minOpacity; u.mat.opacity=Math.max(u.mat.opacity,state.minOpacity); const texture=bossIntentBadgeTexture(state.label,boss,Math.floor(chargeBreakPercent(u._chargeBreak?.dealt||0,u.maxhp)/5)*5); if(badge.material.map!==texture){badge.material.map=texture;badge.material.needsUpdate=true;} badge.material.opacity=.86+.14*pulse; badge.visible=true;
   badge.position.set(0,statusBadgeAnchorY(u)+(boss?.62:.52),.08); badge.scale.set(state.badgeScale*2.15,state.badgeScale*.72,1);
   const accent=state.level==='ultimate'?bossIntentColors.ultimateAccent:bossIntentColors.chargeAccent,dark=state.level==='ultimate'?bossIntentColors.ultimateDark:bossIntentColors.chargeDark;
   if(u.teamRing){ u.teamRing.material.color.copy(accent).lerp(dark,pulse*.32); u.teamRing.material.opacity=Math.max(u.teamRing.material.opacity,.82+state.ringPulse*pulse); }
@@ -1076,7 +1079,10 @@ function resetUnitSpriteScale(u){
   u.spr.scale.set(scaleX,spriteScale,1);
   if(u.outline)u.outline.scale.set(scaleX<0?-outlineScale:outlineScale,outlineScale,1);
 }
+// Set 1.22.0 (OD-2026-11-11-E, final audit B2): the factor of the fight's plateau, 1.00 without one. Transient.
+var PLATEAU_FOE_FACTOR=1;
 function createUnit(def){
+  if(def.team==='foe'&&PLATEAU_FOE_FACTOR!==1){ const baseMax=def.maxhp||def.hp; def={...def,maxhp:scaleFoeValue(baseMax,PLATEAU_FOE_FACTOR),hp:scaleFoeValue(Math.min(def.hp,baseMax),PLATEAU_FOE_FACTOR)}; }
   const strategicVisual=strategicVisualFor(def);
   const s=externalSpriteCache.get(strategicVisual?.src||def.portrait)||externalSpriteCache.get(def.portrait)||SPR[def.kind];
   const pixelEntry=resolvePixelSheet(strategicVisual?.unitId)||resolvePixelSheet(def.portrait);
@@ -1276,7 +1282,7 @@ function tickStatusDuration(u){ for(const s in u.statuses){ u.statuses[s]--; if(
 function buildOrder(){ return aliveUnits().sort((a,b)=> (effDEX(b)-effDEX(a)) || (a.team===b.team? a.id-b.id : (a.team==='player'?-1:1))); }
 function startRound(){ if(checkEnd())return; G.round++; G.order=buildOrder(); G.turnIdx=-1; logMsg('— Manche '+G.round+' —'); nextTurn(); }
 function nextTurn(){ if(G.over||checkEnd())return; G.turnIdx++; if(G.turnIdx>=G.order.length){ startRound(); return; } const u=G.order[G.turnIdx]; if(!u||!u.alive){ nextTurn(); return; } beginTurn(u); }
-async function beginTurn(u){ if(G.over)return; u._hasStartedTurn=true; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.skillMovedThisTurn=false; G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz; u._usedUtility=false; u._offensiveActedThisTurn=false; u._furyUsed=false; u._castUltThisTurn=false; u._statusPulseStartedAt=_t;
+async function beginTurn(u){ if(G.over)return; u._hasStartedTurn=true; u._chargeBreak=null; G.active=u; G.pinnedUnit=null; hideActionPreview(); G.movedThisTurn=false; G.actedThisTurn=false; G.movedBeforeAct=false; G.skillMovedThisTurn=false; G.basicAttacksThisTurn=0; G.itemsUsedThisTurn=0; G.startGX=u.gx; G.startGZ=u.gz; u._usedUtility=false; u._offensiveActedThisTurn=false; u._furyUsed=false; u._castUltThisTurn=false; u._statusPulseStartedAt=_t;
   const regen=(u.boss||u.elite)?BOSS_ELITE_AP_REGEN:1; u.ap=Math.min(u.maxap,u.ap+regen); u._souffle=false; u.gardeAP=0;
   if(regen>0) setTimeout(()=>{ if(u.alive)floatText(u,'+'+regen+' PA','#7fd0ff'); },120);
   refreshTurnbar(); selectUnit(u); focusCam(u);
@@ -1296,7 +1302,9 @@ function endTurn(){ if(G.busy||G.over)return; const u=G.active;
   if(u&&u.alive){
     if(u.ap>=1){ u.ap=Math.min(u.maxap,u.ap+1); u._souffle=true; floatText(u,'SOUFFLE +1 PA','#7fd0ff',true); logMsg(u.name+' reprend son souffle (+1 PA).'); }
     else u._souffle=false;
-    u.gardeAP=u.ap;
+    // Set 1.22.0 (OD-2026-11-11-E, B3b): a boss or elite guards only with the AP above its cycle reserve.
+    if(u.boss||u.elite){ const profile=bossTempoOf(u); u.gardeAP=profile?bossGuardAp(u.ap,bossApReserve(u._ultCooldown,profile,{maxap:u.maxap,...BOSS_TEMPO_RULES})):u.ap; }
+    else u.gardeAP=u.ap;
     if(u.gardeAP>0){ const bonus=Math.min(u.gardeAP,5)*3; setTimeout(()=>{ if(u.alive)floatText(u,'GARDE +'+bonus+' END','#9fe7ff'); },380); }
     tickStatusDuration(u); refreshPanel(u);
   }
@@ -1470,7 +1478,7 @@ async function playSpriteMotion(u,presetId,context={}){
 function orientMult(att,tgt){ const ax=(att.size>1?bossCenterGX(att):att.gx)-tgt.gx, az=(att.size>1?bossCenterGZ(att):att.gz)-tgt.gz; const len=Math.hypot(ax,az)||1; const d=tgt.facing.dx*(ax/len)+tgt.facing.dz*(az/len); if(d>0.55)return{m:1.0,lab:'face'}; if(d<-0.55)return{m:1.3,lab:'DOS'}; return{m:1.15,lab:'flanc'}; }
 function computeDamage(att,tgt,spec){ const K=12; let isMag=spec.type==='mag';
   if(spec.weaponType==='rapier'){ const dist=Math.abs((att.size>1?bossCenterGX(att):att.gx)-tgt.gx)+Math.abs((att.size>1?bossCenterGZ(att):att.gz)-tgt.gz); isMag=dist>=2; }
-  const atkStat=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); if(spec.penetration) def=Math.max(1,def*(1-spec.penetration)); const o=orientMult(att,tgt); let om=o.m; if(spec.weaponType==='dagger'&&o.lab==='DOS')om=1.45; let d=Math.sqrt(spec.power*K*atkStat/def)*2*om*dmgTakenMul(tgt)*tacticalRnd(0.92,1.08); if(spec.elanMul) d*=spec.elanMul; return {dmg:Math.max(1,Math.round(d)),lab:o.lab}; }
+  const atkStat=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); if(spec.penetration) def=Math.max(1,def*(1-spec.penetration)); const o=orientMult(att,tgt); let om=o.m; if(spec.weaponType==='dagger'&&o.lab==='DOS')om=1.45; let d=Math.sqrt(spec.power*K*atkStat/def)*2*om*dmgTakenMul(tgt)*tacticalRnd(0.92,1.08); if(spec.elanMul) d*=spec.elanMul; if(att.team==='foe') d*=PLATEAU_FOE_FACTOR; return {dmg:Math.max(1,Math.round(d)),lab:o.lab}; }
 const FX_COL={phys:0xff7a4a,mag:0xb06aff,heal:0x7ed957,buff:0xffd27a,debuff:0xb06aff,move:0x5ad1ff};
 function fxColor(spec){ return FX_COL[spec.heal?'heal':(spec.revive?'heal':spec.type)]||0xfff0b0; }
 function castTelegraph(u,spec,skipBurst){ const c=u.cell(); if(!c)return; const col=fxColor(spec);
@@ -1485,9 +1493,23 @@ function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return t
 
 // A zone blow lands as a volley: the next target is struck a beat after the last, not after its whole reaction. A knock-out keeps its own beat.
 const ZONE_HIT_BEAT=0.08;
+// Set 1.22.0 (OD-2026-11-11-E, final audit B3): while a boss or elite shows CHARGE or ULTIME, and until its next turn
+// begins, the company's damage adds up; at 15 % of its maximum HP the charge breaks: no ultimate, full cooldown, badge
+// cleared, said in the log. At most once per window; transient, never saved.
+function chargeWindowOpen(u){ return Boolean((u.boss||u.elite)&&resolveBossIntentVisualState({alive:u.alive,boss:u.boss,elite:u.elite,ap:u.ap,cooldown:u._ultCooldown})); }
+function trackChargeBreak(u,amount,src){
+  if(!u.alive||!src||src.team!=='player'||amount<=0||!chargeWindowOpen(u))return;
+  if(!u._chargeBreak)u._chargeBreak={dealt:0,broken:false};
+  const progress=u._chargeBreak; if(progress.broken)return;
+  progress.dealt+=amount;
+  if(progress.dealt<chargeBreakThreshold(u.maxhp))return;
+  progress.broken=true; u._ultCooldown=BOSS_ULTIMATE_COOLDOWN; clearBossIntentPresentation(u);
+  floatText(u,'CHARGE BRISÉE','#ffd27a',true); logMsg(u.name+' : charge brisée, son ultime est annulé.'); refreshPanel(u);
+}
 async function applyDamage(u,dmg,src,opts={}){
   stageRevealUnit(u);
   const hpBefore=u.hp; u.hp=Math.max(0,u.hp-dmg); syncFuryAnnouncement(u);
+  trackChargeBreak(u,hpBefore-u.hp,src);
   if(u.hp<hpBefore)combatCue(opts.critical?'critical':opts.magic?'magic-impact':'physical-impact','impact',u.id);
   const willKnockOut=u.hp<=0&&u.alive;
   if(willKnockOut)playFeedbackVfx('kill_spark',src,u);
@@ -3316,6 +3338,7 @@ function bootCampaign(message){
   GRID_DEBUG_ENABLED=QA_ENABLED&&campaignParams.get('grid')==='1';
   QA_FULL_AP=QA_ENABLED&&message.qaFullAp===true;
   QA_DEPLOY_ALL=QA_ENABLED&&message.qaDeployAll===true;
+  PLATEAU_FOE_FACTOR=plateauFoeFactor(message.plateauId);
   IS_BOSS_COMBAT=!!message.config.isBoss; BOSS_SPAWNED=false;
   ENCOUNTER_ENEMY_VISUAL_IDS=Array.isArray(message.config.enemyVisualIds)?message.config.enemyVisualIds:[];
   ENCOUNTER_BOSS_VISUAL_ID=message.config.bossVisualId||'';

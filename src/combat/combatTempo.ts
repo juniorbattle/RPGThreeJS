@@ -100,3 +100,24 @@ export function furyStrikeAllowed(input: {
   return input.inFury && input.firstOffensiveActionThisTurn && !input.usedThisTurn && !input.castUltimateThisTurn
     && !input.staggered && !input.rooted && !input.silenced && input.fightOpen;
 }
+
+/** Set 1.22.0 (OD-2026-11-11-E, final audit B3): share of its maximum HP that breaks a boss or elite's charge. */
+export const CHARGE_BREAK_RATIO = 0.15;
+
+/** Damage the company must deal during one CHARGE or ULTIME window to break the charge. */
+export function chargeBreakThreshold(maxhp: number): number {
+  return Math.max(1, Math.ceil(Math.max(0, maxhp) * CHARGE_BREAK_RATIO));
+}
+
+/** Whole-percent progress toward the break, shown on the badge in text (0 to 100). */
+export function chargeBreakPercent(dealt: number, maxhp: number): number {
+  return Math.min(100, Math.floor((100 * Math.max(0, dealt)) / chargeBreakThreshold(maxhp)));
+}
+
+/**
+ * Set 1.22.0 (OD-2026-11-11-E, final audit B3b): a boss or elite's Guard counts only the AP above its cycle reserve
+ * (`bossApReserve` for its current cooldown, at the end of its turn after the Souffle); other units guard with every AP.
+ */
+export function bossGuardAp(ap: number, reserve: number): number {
+  return Math.max(0, Math.floor(ap) - Math.max(0, Math.floor(reserve)));
+}

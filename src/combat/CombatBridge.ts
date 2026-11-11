@@ -1,6 +1,7 @@
 import type { CombatantPayload, CombatConfig, CombatResult } from '../game/types';
 import { combatAudioMessageSchema } from './CombatAudio';
 import type { UiSoundPlayer } from '../ui/UiSoundPlayer';
+import type { ScaledPlateauId } from './plateauScaling';
 import {
   combatInitializedMessageSchema,
   combatReadyMessageSchema,
@@ -22,6 +23,8 @@ interface CombatSession {
   qaDeployAll?: boolean;
   /** Keep the frame on result: the owner closes it under the exit curtain (final audit 2026-11-11, A5). */
   holdOnResult?: boolean;
+  /** Set 1.22.0 (OD-2026-11-11-E): the plateau RunSystem names for this fight; foes scale by its factor. */
+  plateauId?: ScaledPlateauId;
 }
 
 interface CombatStart {
@@ -152,6 +155,7 @@ export class CombatBridge {
         devQa: Boolean(this.session.devQa && import.meta.env.DEV),
         qaFullAp: Boolean(this.session.qaFullAp && import.meta.env.DEV),
         qaDeployAll: Boolean(this.session.qaDeployAll && import.meta.env.DEV),
+        ...(this.session.plateauId ? { plateauId: this.session.plateauId } : {}),
       };
       this.iframe?.contentWindow?.postMessage(message, window.location.origin);
       return;

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { SCALED_PLATEAU_IDS, type ScaledPlateauId } from './plateauScaling';
 import { combatConfigSchema, unitStatsSchema, type CombatResult } from '../game/types';
 
 export const weaponPayloadSchema = z.object({
@@ -55,6 +56,8 @@ export const combatInitializeMessageSchema = z.object({
   devQa: z.boolean().default(false),
   qaFullAp: z.boolean().default(false),
   qaDeployAll: z.boolean().default(false),
+  /** Set 1.22.0 (OD-2026-11-11-E): the fight's plateau, named by RunSystem; foes scale by its factor. */
+  plateauId: z.enum(SCALED_PLATEAU_IDS as [ScaledPlateauId, ...ScaledPlateauId[]]).optional(),
 });
 export type CombatInitializeMessage = z.infer<typeof combatInitializeMessageSchema>;
 

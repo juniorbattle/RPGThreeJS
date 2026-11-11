@@ -1111,7 +1111,7 @@ export class GameApp {
         this.setMode('COMBAT');this.chrome.replaceChildren();
         session=this.combat.start({config,clan:this.state.clan.members.filter(unit=>unit.currentHealth>0).map(unit=>toCombatant(unit)),
           inventory:this.state.inventory.consumables,preferredUnitIds:this.state.deployment.unitIds,
-          reducedGraphics:this.state.settings.reducedGraphics,holdOnResult:true});
+          reducedGraphics:this.state.settings.reducedGraphics,holdOnResult:true,plateauId:runPlateauId(this.state)});
         await session.ready;
       };
       if(!await sceneTransition.run({variant:'combat',label:config.encounterLabel,task:mountCombat}))await mountCombat();
@@ -1839,6 +1839,8 @@ export class GameApp {
         reducedGraphics: this.state.settings.reducedGraphics,
         devQa: this.cin6aGoldenQaEnabled,
         holdOnResult: true,
+        // Set 1.22.0 (OD-2026-11-11-E, B2): RunSystem names the fight's plateau; foes scale by its factor.
+        plateauId: runPlateauId(this.state),
       });
       resolveCombatStart(combatSession);
       await combatSession.ready;
