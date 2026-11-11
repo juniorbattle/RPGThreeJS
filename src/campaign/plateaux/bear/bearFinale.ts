@@ -65,6 +65,11 @@ export const BEAR_FINALE: PlateauFinaleDefinition = Object.freeze<PlateauFinaleD
     text: 'Voici l’éclat du filon sombre que nous avons scellé. Il ne ressemble à aucun minerai de cette montagne, Ancien. Ce que le Corbeau creusait ne servait pas seulement le Corbeau.',
   },
   credibility: { credible: 50, high: 65 },
+  credibilityLines: {
+    high: 'Votre nom est arrivé ici avant vous, et il pèse lourd. Quand vous parlez, la montagne ne se méfie pas.',
+    credible: 'On parle de vous dans les vallées, et pas seulement en mal. Je veux bien vous croire sur parole.',
+    low: 'Votre nom est arrivé avant vous, et il ne plaide pas pour vous. Vos paroles ne pèseront que ce que pèsent vos actes.',
+  },
   opening: 'Vous revenez des galeries. La montagne a déjà parlé avant vous : ses éboulis, ses mineurs, ses feux éteints. Je l’écouterai encore une fois, puis je vous écouterai.',
   intent: 'Vous ne pouvez plus changer ce que la montagne a vu. Dites-moi seulement ce que vous demandez à l’Ours.',
   trialChoice: 'Demander l’épreuve de l’Ours.',

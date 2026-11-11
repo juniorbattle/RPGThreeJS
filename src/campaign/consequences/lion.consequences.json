@@ -1458,16 +1458,6 @@
   },
   {
    "kind": "fact_set_never_read",
-   "subject": "challengedYoungDragon",
-   "reason": "Choix mineur du nid du jeune dragon : lu seulement par la présentation (Cin6aPresentation), sans écho narratif dans la démo. Candidat à un écho plus tard."
-  },
-  {
-   "kind": "fact_set_never_read",
-   "subject": "sparedYoungDragon",
-   "reason": "Choix mineur du nid du jeune dragon : lu seulement par la présentation (Cin6aPresentation), sans écho narratif dans la démo. Candidat à un écho plus tard."
-  },
-  {
-   "kind": "fact_set_never_read",
    "subject": "lionSealHonour",
    "reason": "Reconnaissance du Sceau par l’honneur ; la démo lit l’issue par serpentGeneralDefeated. État conservé pour la compatibilité V6."
   },

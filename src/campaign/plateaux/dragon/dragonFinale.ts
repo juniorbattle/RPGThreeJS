@@ -66,6 +66,11 @@ export const DRAGON_FINALE: PlateauFinaleDefinition = Object.freeze<PlateauFinal
     text: 'Voici l’éclat de la souillure que nous avons scellé près de l’autel. Le Cristal n’a pas seulement été volé, Ancien : une énergie sombre l’a touché.',
   },
   credibility: { credible: 60, high: 75 },
+  credibilityLines: {
+    high: 'Les Pics connaissent votre nom, et ils le prononcent avec respect. Votre parole a du poids devant moi.',
+    credible: 'Votre nom a monté les sentiers avant vous. Il ne suffit pas, mais je ne le repousse pas.',
+    low: 'Votre nom est monté jusqu’ici, et il sent la cendre. Ne comptez pas sur lui pour parler à votre place.',
+  },
   opening: 'Vous revenez des cimes. Les Pics ont déjà parlé avant vous : leurs pèlerins, leurs bêtes, leur autel fendu. Je les ai écoutés. Je vous écouterai ensuite.',
   intent: 'Ce que les Pics ont vu ne changera plus. Dites-moi seulement ce que vous demandez au Dragon.',
   trialChoice: 'Demander l’épreuve du Dragon.',

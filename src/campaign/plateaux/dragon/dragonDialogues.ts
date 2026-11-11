@@ -143,17 +143,6 @@ export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     say('1', MAELOR, 'Intendant', 'Le Cristal est à nous. Le Dragon devra traiter avec ceux qui tiennent l’équilibre de ses pics.'),
     say('2', MARIAN, 'Soigneuse', 'Ou il viendra le reprendre, et nous n’aurons pas le droit de nous en plaindre.', null, { expression: 'stern' }),
   ])),
-  scene('dragon_young_dragon', 'mystery_shrine', 'Nid du jeune dragon', [
-    say('1', KESTREL, 'Éclaireuse', 'Un nid dans la roche. Un jeune dragon, blessé, le flanc noirci par une souillure qui n’est pas une brûlure.', '2', { expression: 'fearful' }),
-    say('2', SERAPHINE, 'Sage', 'La même énergie sombre que sur les créatures des crêtes. Il peut guérir, si nous l’aidons.', '3', { expression: 'mystical' }),
-    say('3', MAELOR, 'Intendant', 'Ses écailles valent une armure entière chez un bon forgeron. Il ne les sentira pas.', 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous ?', null, { choices: [
-      choice('Soigner le jeune dragon.', 'tended', [flag('dragonYoungDragonTended')], ['Le jeune dragon soigné']),
-      choice('Prendre ses écailles.', 'scales', [flag('dragonScalesTaken'), item('red_gem', 1), reputation(-1)], ['Une gemme rouge', 'Un jeune dragon dépouillé']),
-    ] }),
-    say('tended', MARIAN, 'Soigneuse', 'La souillure recule sous mes mains. Il nous regarde partir sans crainte.', null, { expression: 'grateful' }),
-    say('scales', MARIAN, 'Soigneuse', 'Il ne se défend même pas. Je ne sais pas ce qui est le pire.', null, { expression: 'wounded' }),
-  ]),
   scene('dragon_shaman_aftermath', 'lion_finale_judgement', 'Le Chaman des Ombres vaincu', chained([
     say('1', SHAMAN, 'Vaincu', 'Le Cristal… n’était qu’un écho. Ceux que je sers écoutent d’autres échos, partout où vos Sceaux vous mènent.', null, { expression: 'wounded' }),
     say('2', SERAPHINE, 'Sage', 'Les Ombres, derrière un troisième clan. Le Loup n’était qu’une main de plus, comme le Corbeau avant lui.', null, { expression: 'mystical' }),
@@ -305,6 +294,30 @@ function dragonShamanPreCombat(state: Readonly<GameState>): DialogueSequence {
 }
 
 /** The Dragon's state-built scenes, by dialogue ID. The judgement and epilogue come from the plateau finale engine. */
+/**
+ * OD-2026-11-11-E (final audit B7b), line approved word for word by the operator: the young dragon met in the Lion's
+ * lands is remembered here, without saying it is the same dragon. Without either Lion fact, the scene is unchanged.
+ */
+function dragonYoungDragon(state: Readonly<GameState>): DialogueSequence {
+  const lionNest = state.flags.sparedYoungDragon
+    ? say('lion', KESTREL, 'Éclaireuse', 'Ce n’est pas le premier jeune dragon que nous croisons. Dans les terres du Lion, nous avions scellé un nid sans y toucher.', '3')
+    : state.flags.challengedYoungDragon
+      ? say('lion', SERAPHINE, 'Sage', 'Dans les terres du Lion, nous avons chassé un jeune dragon pour ses gemmes. Celui-ci ne pourrait même pas se défendre.', '3', { expression: 'stern' })
+      : null;
+  return scene('dragon_young_dragon', 'mystery_shrine', 'Nid du jeune dragon', [
+    say('1', KESTREL, 'Éclaireuse', 'Un nid dans la roche. Un jeune dragon, blessé, le flanc noirci par une souillure qui n’est pas une brûlure.', '2', { expression: 'fearful' }),
+    say('2', SERAPHINE, 'Sage', 'La même énergie sombre que sur les créatures des crêtes. Il peut guérir, si nous l’aidons.', lionNest ? 'lion' : '3', { expression: 'mystical' }),
+    ...(lionNest ? [lionNest] : []),
+    say('3', MAELOR, 'Intendant', 'Ses écailles valent une armure entière chez un bon forgeron. Il ne les sentira pas.', 'choice'),
+    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous ?', null, { choices: [
+      choice('Soigner le jeune dragon.', 'tended', [flag('dragonYoungDragonTended')], ['Le jeune dragon soigné']),
+      choice('Prendre ses écailles.', 'scales', [flag('dragonScalesTaken'), item('red_gem', 1), reputation(-1)], ['Une gemme rouge', 'Un jeune dragon dépouillé']),
+    ] }),
+    say('tended', MARIAN, 'Soigneuse', 'La souillure recule sous mes mains. Il nous regarde partir sans crainte.', null, { expression: 'grateful' }),
+    say('scales', MARIAN, 'Soigneuse', 'Il ne se défend même pas. Je ne sais pas ce qui est le pire.', null, { expression: 'wounded' }),
+  ]);
+}
+
 export const DRAGON_SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<GameState>) => DialogueSequence>> = Object.freeze({
   dragon_audience: dragonAudience,
   dragon_wolf_lair: dragonWolfLair,
@@ -313,6 +326,7 @@ export const DRAGON_SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<Gam
   dragon_crystal_altar: dragonCrystalAltar,
   dragon_vigil: dragonVigil,
   dragon_shaman_pre_combat: dragonShamanPreCombat,
+  dragon_young_dragon: dragonYoungDragon,
 });
 
 /** Static Dragon dialogues registered in the post-demo content registry. */

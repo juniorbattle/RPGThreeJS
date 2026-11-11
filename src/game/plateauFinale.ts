@@ -51,6 +51,8 @@ export interface PlateauFinaleDefinition {
   evidence: { flag: string; text: string };
   /** Reputation from which the chief finds the company credible, and highly credible (R3, credibility before a chief). */
   credibility: { credible: number; high: number };
+  /** OD-2026-11-11-E (final audit B7c), approved word for word: the chief says the company's credibility at the judgement. */
+  credibilityLines: { high: string; credible: string; low: string };
   opening: string;
   intent: string;
   /** The judgement's choice that asks for the plateau's trial, in its own words. */
@@ -183,6 +185,7 @@ export function buildPlateauJudgement(definition: PlateauFinaleDefinition, state
   if (stains.length) steps.push(makeStep('stains', definition.steward, `${definition.stainsLead} ${listFrench(stains)}.`, { tag: 'Réserves' }));
   const witnessText = definition.witnesses[verdict.witnessState];
   steps.push(makeStep('witnesses', definition.chief, witnessText, { tag: 'Témoins', expression: verdict.witnessState === 'silenced' ? 'hostile' : 'stern' }));
+  steps.push(makeStep('credibility', definition.chief, definition.credibilityLines[verdict.credibility], { tag: 'Crédibilité', expression: 'stern' }));
   if (verdict.hasEvidence) steps.push(makeStep('shadow', definition.sage, definition.evidence.text, { tag: 'Ombres', expression: 'mystical' }));
   steps.push(makeStep('intent', definition.chief, definition.intent, {
     tag: 'Intention', expression: 'stern',

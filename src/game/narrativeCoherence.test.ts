@@ -49,7 +49,8 @@ describe('the Lion consequence map passes the narrative coherence validator', ()
       counts[finding.kind] = (counts[finding.kind] ?? 0) + 1;
       return counts;
     }, {});
-    expect(byKind).toEqual({ unreachable_dialogue: 4, fact_set_never_read: 25 });
+    // OD-2026-11-11-E (final audit B7b): the young dragon's two facts are now read by the Dragon plateau.
+    expect(byKind).toEqual({ unreachable_dialogue: 4, fact_set_never_read: 23 });
     expect(report.excused.filter((finding) => finding.kind === 'unreachable_dialogue').map((finding) => finding.subject).sort())
       .toEqual(['mystery_ambush', 'mystery_troll_crossing', 'roadside_peddler', 'serpent_duelist_trial']);
     for (const finding of report.excused) expect(finding.reason.length).toBeGreaterThan(20);

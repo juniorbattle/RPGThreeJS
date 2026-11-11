@@ -59,22 +59,35 @@ function chained(steps: (DialogueStep | null)[]): DialogueStep[] {
     ? step : { ...step, next: present[index + 1]!.id });
 }
 
+/**
+ * OD-2026-11-11-E (final audit B7a), lines approved word for word by the operator: when the plateau already made this clan
+ * an ally, the champion, the relevant outcome line and the hints say so. The effects are unchanged: the Tournament's
+ * relation still replaces the plateau's (OD-2026-11-09-A).
+ */
+interface AllianceEcho { flag: string; plea: string; spared: string; humiliated: string }
+
 function verdict(clan: 'raven' | 'wolf' | 'phoenix', facts: { spared: string; humiliated: string }, label: string, champion: Who,
-  open: string, plea: string, spared: string, humiliated: string): DialogueSequence {
+  open: string, plea: string, spared: string, humiliated: string, alliance: AllianceEcho) {
+  return (state: Readonly<GameState>): DialogueSequence => verdictScene(clan, facts, label, champion, open, plea, spared, humiliated,
+    state.flags[alliance.flag] ? alliance : null);
+}
+
+function verdictScene(clan: 'raven' | 'wolf' | 'phoenix', facts: { spared: string; humiliated: string }, label: string, champion: Who,
+  open: string, plea: string, spared: string, humiliated: string, alliance: AllianceEcho | null): DialogueSequence {
   const clanName = label.replace(/^du /, '');
   return scene(`finale_${clan}_verdict`, 'pre_lion_chief', `Tournoi : ${label}`, [
     say('1', KESTREL, 'Arène', open, '2', { expression: 'stern' }),
-    say('2', champion, clanName, plea, '3', { expression: 'wounded' }),
+    say('2', champion, clanName, alliance?.plea ?? plea, '3', { expression: 'wounded' }),
     say('3', MAELOR, 'Intendant', 'Humiliez-le devant les clans. Qu’ils sachent tous qui nous sommes. Dans cette arène, la victoire justifie tout.', '4'),
     say('4', SERAPHINE, 'Sage', 'Le Tournoi est une épreuve de force, mais aussi de sagesse. Un adversaire relevé devant tous peut devenir un allié.', 'choice', { expression: 'mystical' }),
     say('choice', ALISTAIR, 'Verdict', 'Toute l’arène attend notre geste.', null, { expression: 'stern', choices: [
       choice(`Relever le champion ${label}.`, 'spared', [flag(facts.spared), relation(clan, 'ally')],
-        [`Le clan ${label} s’en souviendra`, 'Un allié inattendu, peut-être']),
+        alliance ? [`Le clan ${label} reste votre allié`, 'Une parole tenue deux fois'] : [`Le clan ${label} s’en souviendra`, 'Un allié inattendu, peut-être']),
       choice('L’humilier devant les clans.', 'humiliated', [flag(facts.humiliated), reputation(-1), relation(clan, 'enemy')],
-        ['Les tribunes acclament', `Le clan ${label} ne l’oubliera pas`]),
+        alliance ? ['Les tribunes acclament', 'Une alliance trahie'] : ['Les tribunes acclament', `Le clan ${label} ne l’oubliera pas`]),
     ] }),
-    say('spared', champion, clanName, spared, null, { expression: 'grateful' }),
-    say('humiliated', MARIAN, 'Soigneuse', humiliated, null, { expression: 'wounded' }),
+    say('spared', champion, clanName, alliance?.spared ?? spared, null, { expression: 'grateful' }),
+    say('humiliated', MARIAN, 'Soigneuse', alliance?.humiliated ?? humiliated, null, { expression: 'wounded' }),
   ]);
 }
 
@@ -90,21 +103,37 @@ export const FINALE_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     say('4', MAELOR, 'Intendant', 'Écrasez-les tous, sans pitié. Personne ne se souvient de la manière, seulement de la victoire.', null),
     say('5', ALISTAIR, 'Clan sans terre', 'Nous nous souviendrons, nous.', null, { expression: 'stern' }),
   ])),
-  verdict('raven', { spared: 'finaleRavenSpared', humiliated: 'finaleRavenHumiliated' }, 'du Corbeau', RAVEN_CHAMPION,
+]);
+
+const RAVEN_VERDICT = verdict('raven', { spared: 'finaleRavenSpared', humiliated: 'finaleRavenHumiliated' }, 'du Corbeau', RAVEN_CHAMPION,
     'Le champion du Corbeau est à terre. Ses lames ont glissé hors de sa portée.',
     'Achevez ce que vous avez commencé. Le Corbeau ne demande rien à personne.',
     'Vous auriez pu m’écraser devant tous. Le Corbeau se souviendra de cette main tendue.',
-    'Les tribunes ont ri. Le Corbeau, lui, ne rira pas.'),
-  verdict('wolf', { spared: 'finaleWolfSpared', humiliated: 'finaleWolfHumiliated' }, 'du Loup', WOLF_CHAMPION,
+    'Les tribunes ont ri. Le Corbeau, lui, ne rira pas.',
+    { flag: 'bearMinesAbandoned',
+      plea: 'Dans les galeries de l’Ours, vous avez tenu parole au Corbeau. Ici, l’arène ne connaît pas les dettes. Faites de moi ce que vous voudrez.',
+      spared: 'Deux fois que vous tenez parole envers le Corbeau. Il ne l’oubliera pas.',
+      humiliated: 'Il nous croyait alliés. Ce que le Corbeau nous devait, nous venons de l’effacer.' });
+const WOLF_VERDICT = verdict('wolf', { spared: 'finaleWolfSpared', humiliated: 'finaleWolfHumiliated' }, 'du Loup', WOLF_CHAMPION,
     'Le champion du Loup ne se relève pas. La foule hurle son nom, ou le nôtre.',
     'Le Loup ne supplie pas. Faites ce que vous avez à faire.',
     'Un étranger qui relève un loup… Le Loup n’oublie jamais une dette.',
-    'Il a quitté l’arène sous les huées. Le Loup a de la mémoire.'),
-  verdict('phoenix', { spared: 'finalePhoenixSpared', humiliated: 'finalePhoenixHumiliated' }, 'du Phénix', PHOENIX_CHAMPION,
+    'Il a quitté l’arène sous les huées. Le Loup a de la mémoire.',
+    { flag: 'dragonWolfAlliance',
+      plea: 'Aux Pics, vous avez laissé le Cristal au Loup. Je n’attendais pas de vous retrouver de l’autre côté de l’arène. Finissez-en.',
+      spared: 'Le Cristal hier, ma vie aujourd’hui. La dette du Loup envers vous ne fait que grandir.',
+      humiliated: 'Le Loup avait choisi de nous faire confiance. Il ne refera pas cette erreur.' });
+const PHOENIX_VERDICT = verdict('phoenix', { spared: 'finalePhoenixSpared', humiliated: 'finalePhoenixHumiliated' }, 'du Phénix', PHOENIX_CHAMPION,
     'Le champion du Phénix a posé un genou au sol. Sa flamme vacille encore.',
     'Le Phénix renaît de ses cendres. Faites de moi ce que vous voudrez.',
     'Vous m’avez relevé quand vous pouviez me briser. Le Phénix saura ce que vaut votre geste.',
-    'Ses fidèles ont détourné les yeux. Le Phénix gardera cette honte.'),
+    'Ses fidèles ont détourné les yeux. Le Phénix gardera cette honte.',
+    { flag: 'scorpionCodexProtected',
+      plea: 'Au temple, vous avez laissé notre codex en paix. Je ne pensais pas plier un jour le genou devant vous.',
+      spared: 'Vous avez épargné notre flamme au temple, et moi dans cette arène. Le Phénix vous restera fidèle.',
+      humiliated: 'Au temple, ils nous avaient crus. Le Phénix ne croira plus notre parole.' });
+
+const FINALE_STATIC_TAIL: readonly DialogueSequence[] = Object.freeze([
   scene('finale_pre_serpent_final', 'pre_lion_chief', 'Finale du Tournoi', chained([
     say('1', SERPENT_CHAMPION, 'Serpent', 'Depuis les plaines du Lion, le Serpent attend ce combat. Venez chercher votre victoire.', null, { expression: 'hostile' }),
     say('2', ALISTAIR, 'Finale', 'Alors finissons-en.', null, { expression: 'stern' }),
@@ -281,10 +310,13 @@ function finaleLastVigil(state: Readonly<GameState>): DialogueSequence {
 
 /** The final act's state-built scenes, by dialogue ID. */
 export const FINALE_SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<GameState>) => DialogueSequence>> = Object.freeze({
+  finale_raven_verdict: RAVEN_VERDICT,
+  finale_wolf_verdict: WOLF_VERDICT,
+  finale_phoenix_verdict: PHOENIX_VERDICT,
   finale_betrayal: finaleBetrayal,
   finale_allied_rally: finaleAlliedRally,
   finale_last_vigil: finaleLastVigil,
 });
 
 /** Static final-act dialogues registered in the post-demo content registry. */
-export const FINALE_DIALOGUES: readonly DialogueSequence[] = FINALE_STATIC_DIALOGUES;
+export const FINALE_DIALOGUES: readonly DialogueSequence[] = [...FINALE_STATIC_DIALOGUES, ...FINALE_STATIC_TAIL];

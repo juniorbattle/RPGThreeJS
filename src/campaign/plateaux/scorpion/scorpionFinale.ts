@@ -68,6 +68,11 @@ export const SCORPION_FINALE: PlateauFinaleDefinition = Object.freeze<PlateauFin
     text: 'Voici la page souillée que nous avons scellée. Les Ombres ne se contentent pas de voler ou de souiller, Grand Inquisiteur : les Ombres écrivent aussi, et elles écrivent dans la foi des autres.',
   },
   credibility: { credible: 70, high: 85 },
+  credibilityLines: {
+    high: 'Mes érudits ont aussi noté ce que l’on dit de vous, et cela vous honore. Votre parole entre dans mes registres sans réserve.',
+    credible: 'Ce que l’on dit de vous ne vous accuse pas. Je prendrai votre parole pour ce qu’elle vaut, et elle vaut quelque chose.',
+    low: 'Ce que l’on dit de vous remplit une page que je préférerais ne pas lire. Ici, votre parole devra se prouver.',
+  },
   opening: 'Vous revenez du temple. Mes érudits ont noté chacun de vos pas dans ce désert, et le désert a gardé le reste. Je les ai lus. Je vous écouterai ensuite.',
   intent: 'Ce qui est consigné ne s’efface pas. Dites-moi seulement ce que vous demandez au Scorpion.',
   trialChoice: 'Demander l’épreuve du Scorpion.',
