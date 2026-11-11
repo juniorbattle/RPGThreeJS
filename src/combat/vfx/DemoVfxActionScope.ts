@@ -127,7 +127,7 @@ const ENEMY_VISUAL_SKILLS: Readonly<Record<string, readonly string[]>> = Object.
   forest_troll_elite: ['enemy_hex', 'boss_guard', 'boss_quake', 'boss_slam'],
   young_dragon_elite: ['enemy_hex', 'boss_regen', 'boss_freeze', 'boss_inferno'],
   undead_champion: ['enemy_hex', 'boss_guard', 'boss_quake', 'boss_execution'],
-  lion_champion: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_apocalypse'],
+  lion_champion: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_execution'],
   seal_guardian: ['enemy_hex', 'boss_guard'],
   // Set 1.20.0, post-demo Lot 1 — DRAFT Bear families. No demo fight lists them, so the demo scope is unchanged.
   raven_scout: ['enemy_binding_shot'],
@@ -160,8 +160,8 @@ const ENEMY_VISUAL_SKILLS: Readonly<Record<string, readonly string[]>> = Object.
  * `BOSS_DEFS[0]` (Général Serpent).
  */
 const BOSS_COMBAT_SKILLS: Readonly<Record<string, readonly string[]>> = Object.freeze({
-  serpent_captain: ['enemy_hex', 'boss_guard', 'boss_quake', 'boss_titan_slam'],
-  lion_chief: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_apocalypse'],
+  serpent_captain: ['enemy_hex', 'boss_guard', 'boss_quake', 'boss_flurry'],
+  lion_chief: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_execution'],
 });
 
 /**
@@ -171,20 +171,20 @@ const BOSS_COMBAT_SKILLS: Readonly<Record<string, readonly string[]>> = Object.f
 const POST_DEMO_BOSS_COMBAT_SKILLS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   bear_mines_defense: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_slam'],
   bear_mines_seizure: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_slam'],
-  bear_master_spy: ['enemy_binding_shot', 'boss_fortify', 'boss_pin', 'boss_flurry'],
+  bear_master_spy: ['enemy_binding_shot', 'boss_fortify', 'boss_pin', 'boss_execution'],
   bear_borin: ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_titan_slam'],
   dragon_lair_assault: ['enemy_heavy_strike', 'boss_fortify', 'boss_pin', 'boss_slam'],
   dragon_lair_seizure: ['enemy_heavy_strike', 'boss_fortify', 'boss_pin', 'boss_slam'],
-  dragon_shadow_shaman: ['enemy_dark_bolt', 'boss_guard', 'boss_freeze', 'boss_execution'],
+  dragon_shadow_shaman: ['enemy_dark_bolt', 'boss_guard', 'boss_freeze', 'boss_apocalypse'],
   dragon_kaelen: ['enemy_dragon_breath', 'boss_regen', 'boss_quake', 'boss_inferno'],
-  scorpion_temple_assault: ['enemy_heavy_strike', 'boss_guard', 'boss_regen', 'boss_inferno'],
-  scorpion_temple_seizure: ['enemy_heavy_strike', 'boss_guard', 'boss_regen', 'boss_inferno'],
-  scorpion_shadow_prophet: ['enemy_hex', 'boss_fortify', 'boss_freeze', 'boss_execution'],
+  scorpion_temple_assault: ['enemy_heavy_strike', 'boss_regen', 'boss_pin', 'boss_titan_slam'],
+  scorpion_temple_seizure: ['enemy_heavy_strike', 'boss_regen', 'boss_pin', 'boss_titan_slam'],
+  scorpion_shadow_prophet: ['enemy_hex', 'boss_fortify', 'boss_freeze', 'boss_inferno'],
   scorpion_inquisitor: ['enemy_dark_bolt', 'boss_regen', 'boss_pin', 'boss_apocalypse'],
-  finale_serpent_final: ['enemy_venom_strike', 'boss_fortify', 'boss_quake', 'boss_titan_slam'],
-  finale_arena_assault: ['enemy_hex', 'boss_regen', 'boss_quake', 'boss_inferno'],
+  finale_serpent_final: ['enemy_venom_strike', 'boss_fortify', 'boss_pin', 'boss_flurry'],
+  finale_arena_assault: ['enemy_hex', 'boss_regen', 'boss_pin', 'boss_inferno'],
   // The breach's first phase (Maelor); its second phase (the entity) is checked by its own phase.
-  finale_breach: ['enemy_dark_bolt', 'boss_fortify', 'boss_freeze', 'boss_execution'],
+  finale_breach: ['enemy_dark_bolt', 'boss_fortify', 'boss_freeze', 'boss_inferno'],
 });
 
 /** Boss combats launched by the Lion finale (`resolveLionFinaleExecution`). */

@@ -114,7 +114,7 @@ export const FINALE_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     say('2', MARIAN, 'Soigneuse', 'Les civils ne sortiront jamais seuls. Il faut quelqu’un entre eux et ces choses.', '3', { expression: 'fearful' }),
     say('3', SERAPHINE, 'Sage', 'Si nous restons, il faudra tenir l’arène le temps qu’ils passent. Le champion changé en démon ne nous laissera pas partir sans combat.', 'choice', { expression: 'stern' }),
     say('choice', ALISTAIR, 'Décision', 'Que faisons-nous ?', null, { expression: 'stern', choices: [
-      choice('Couvrir la fuite des civils.', null, [flag('finaleCiviliansProtected'), reputation(1), fight('finale_arena_assault')],
+      choice('Couvrir la fuite des civils.', null, [flag('finaleCiviliansProtected'), reputation(3), fight('finale_arena_assault')],
         ['Combat contre le champion changé en démon', 'Les civils couverts']),
       choice('Fuir par les tribunes, sans les attendre.', null, [flag('finaleCiviliansAbandoned'), reputation(-2), fight('finale_arena_assault')],
         ['Combat contre le champion changé en démon', 'La foule laissée derrière vous']),

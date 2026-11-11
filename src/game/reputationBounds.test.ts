@@ -38,9 +38,13 @@ describe('the demo keeps its reputation values (OD-2026-11-07-I, R1 check)', () 
     expect(demo.canonicalMax).toBe(90);
     expect(demo.optionalMax).toBe(6);
     expect(demo.socialMax).toBe(5);
-    expect(demo.perfectMax).toBe(101);
+    // OD-2026-11-11-E (B6): the seed-drawn social events are a bonus outside the perfect budget; the demo's values
+    // themselves are unchanged (96 by choices and optional fights, 101 with the two best social events).
+    expect(demo.perfectMax).toBe(96);
+    expect(demo.perfectMax + demo.socialMax).toBe(101);
     expect(REPUTATION_START + demo.canonicalFloor).toBeGreaterThanOrEqual(REPUTATION_MAX);
-    expect(demo.perfectReaches100At).toBe('lion-witnesses');
+    // By choices alone (OD-2026-11-11-E), the demo's perfect run reaches 100 at the last trial, still before the judgement.
+    expect(demo.perfectReaches100At).toBe('lion-final-trial-event | lion-final-trial-combat');
   });
 
   it('keeps the demo values in authored content, while the game plays the approved calibration', () => {
@@ -100,8 +104,9 @@ describe('the Lion reputation ledger is read from content', () => {
 describe('the approved post-demo Lion calibration (OD-2026-11-08-A)', () => {
   const lion = computeLionReputationBounds(LION_POST_DEMO_REPUTATION);
 
-  it('gives the Lion at most +32 and a consistent honour run +27, as its registry budget states', () => {
-    expect(lion.perfectMax).toBe(32);
+  it('gives the Lion at most +30 by its choices (the seed-drawn social events are a bonus, OD-2026-11-11-E) and a consistent honour run +27, as its registry budget states', () => {
+    expect(lion.perfectMax).toBe(30);
+    expect(lion.socialMax).toBe(2);
     expect(lion.honourFloor).toBe(27);
     expect(getPlateau('lion').reputationBudget).toEqual({ perfectMax: lion.perfectMax, honourFloor: lion.honourFloor });
     expect(lion.perfectReaches100At).toBeNull();
@@ -204,9 +209,9 @@ describe('the Scorpion plateau measured from its draft content (set 1.20.0, Lot 
 describe('the final act measured from its draft content (set 1.20.0, Lot 4)', () => {
   const finale = computePlateauReputationBounds('finale');
 
-  it('fits the final act budget exactly: +4 at most, +3 for a consistent honour run, so only a perfect run reaches 100', () => {
+  it('fits the final act budget exactly: +6 at most, +5 for a consistent honour run (covering the civilians gives +3 since OD-2026-11-11-E), so only a perfect run reaches 100', () => {
     expect(getPlateau('finale').reputationBudget).toEqual({ perfectMax: finale.perfectMax, honourFloor: finale.honourFloor });
-    expect({ canonicalMax: finale.canonicalMax, optionalMax: finale.optionalMax }).toEqual({ canonicalMax: 3, optionalMax: 1 });
+    expect({ canonicalMax: finale.canonicalMax, optionalMax: finale.optionalMax }).toEqual({ canonicalMax: 5, optionalMax: 1 });
     expect(finale.nodes.flatMap((node) => node.bestSources)).toEqual(['choice:finale_arena_chaos:choice:0',
       'choice:finale_trapped_citizens:choice:0', 'combat:finale_breach']);
   });

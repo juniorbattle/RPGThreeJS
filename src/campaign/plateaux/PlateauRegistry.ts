@@ -126,13 +126,15 @@ export interface PlateauDefinition {
  */
 export const REPUTATION_BUDGETS: Readonly<Record<CampaignChapterId, ReputationBudget>> = Object.freeze({
   // Measured from the Lion's content under the approved calibration (reputation bounds test).
-  lion: Object.freeze({ perfectMax: 32, honourFloor: 27 }),
+  // OD-2026-11-11-E (final audit B6): the two points of the seed-drawn social events left the perfect budget...
+  lion: Object.freeze({ perfectMax: 30, honourFloor: 27 }),
   // Targets: smaller amounts plateau after plateau (R2); a consistent honour run reaches 80 at the Dragon's end.
   bear: Object.freeze({ perfectMax: 16, honourFloor: 13 }),
   dragon: Object.freeze({ perfectMax: 12, honourFloor: 10 }),
   scorpion: Object.freeze({ perfectMax: 6, honourFloor: 4 }),
   // The last points of a perfect run come in the final act, so 100 is reached only at the end of the game.
-  finale: Object.freeze({ perfectMax: 4, honourFloor: 3 }),
+  // ...and moved to a fixed choice of the final act, covering the civilians' flight (+1 became +3).
+  finale: Object.freeze({ perfectMax: 6, honourFloor: 5 }),
 });
 
 export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([

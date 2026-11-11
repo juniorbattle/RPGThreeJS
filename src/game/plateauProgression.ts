@@ -31,6 +31,7 @@ import { lionBossVictoryFacts, resolvePendingLionFinaleCombat } from './lionFina
 import { plateauVictoryFacts, resolvePendingPlateauFinaleCombat, type PlateauFinaleDefinition } from './plateauFinale';
 import { PLATEAU_FINALES, postDemoChapterOf } from './postDemoContent';
 import { createPlateauRunState, secureRunLoot } from './runSystem';
+import { restockShopForPlateau } from './shopRestock';
 import type { GameState, RunState } from './types';
 
 /** The chapter that owns the current run. */
@@ -171,5 +172,7 @@ export function continueCampaign(state: GameState, seed = Date.now() & 0x7ffffff
   state.visitedNodeIds = [...run.visitedNodeIds];
   state.endingId = null;
   meetPlateauClans(state, chapterId);
+  // OD-2026-11-11-E (final audit B5): the refuge shop is restocked for the new plateau.
+  restockShopForPlateau(state, chapterId);
   return run;
 }

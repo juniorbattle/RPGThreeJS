@@ -272,17 +272,19 @@ describe('DemoVfxActionScope — enemy action scoping', () => {
     }
   });
 
-  it('admits the finale boss signature moves', () => {
-    expect(getVfxActionScope('boss_titan_slam')).toBe('DEMO');
-    expect(getVfxActionScope('boss_apocalypse')).toBe('DEMO');
+  it('admits the Lion boss signature moves', () => {
+    // Final audit 2026-11-11 (OD-2026-11-11-E, B1 and B4): the Général Serpent ends on Rafale Mortelle, the Lion
+    // Champion on Exécution; Frappe du Titan and Apocalypse now belong to post-demo bosses only.
+    expect(getVfxActionScope('boss_flurry')).toBe('DEMO');
+    expect(getVfxActionScope('boss_execution')).toBe('DEMO');
   });
 
   it('excludes enemy skills carried only by unused templates', () => {
     // `troll` and `young_wyrm` templates are never referenced by a combat config.
     expect(getVfxActionScope('enemy_crush')).toBe('UPCOMING');
     expect(getVfxActionScope('enemy_dragon_breath')).toBe('UPCOMING');
-    // `undead_champion` is authored but never deployed.
-    expect(getVfxActionScope('boss_execution')).toBe('UPCOMING');
+    // Apocalypse is carried only by post-demo bosses since the final audit (OD-2026-11-11-E).
+    expect(getVfxActionScope('boss_apocalypse')).toBe('UPCOMING');
   });
 
   it('ties every DEMO enemy reason to a reachable combat', () => {

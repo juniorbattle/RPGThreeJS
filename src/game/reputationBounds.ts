@@ -461,7 +461,9 @@ export function computeLionReputationBounds(calibration: ReputationCalibration):
     }
     running += node.max;
     floorRunning += node.floor;
-    if (perfectReaches100At === null && running + optionalMax + socialMax >= REPUTATION_MAX) {
+    // OD-2026-11-11-E (final audit B6): the social events are drawn from the run's seed, so they are a bonus outside the
+    // perfect budget; a perfect run reaches 100 by its choices alone.
+    if (perfectReaches100At === null && running + optionalMax >= REPUTATION_MAX) {
       perfectReaches100At = node.nodeIds.join(' | ');
     }
   }
@@ -473,7 +475,7 @@ export function computeLionReputationBounds(calibration: ReputationCalibration):
     canonicalMin,
     optionalMax,
     socialMax,
-    perfectMax: canonicalMax + optionalMax + socialMax,
+    perfectMax: canonicalMax + optionalMax,
     honourFloor: canonicalFloor,
     perfectReaches100At,
     failedHonourGates,
