@@ -1476,7 +1476,7 @@ function castTelegraph(u,spec,skipBurst){ const c=u.cell(); if(!c)return; const 
   tween(m.scale,{x:1.7,y:1.7,z:1.7},0.5,easeOutCubic);
   tween(m.material,{opacity:.9},0.12,easeOutCubic,()=>tween(m.material,{opacity:0},0.36,easeOutCubic,()=>{ scene.remove(m); m.geometry.dispose(); m.material.dispose(); }));
   if(!skipBurst) burst(new THREE.Vector3(wX(ux),c.topY+0.5,wZ(uz)),col); }
-function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; const dexBonus=Math.max(0,(effDEX(att)-effDEX(tgt))/2); const exhaustBonus=isBreakOpen(tgt)?20:0; return cl(base+dexBonus+exhaustBonus,1,90)/100; }
+function critChance(att,tgt,spec){ const base=(spec&&spec.crit!=null)?spec.crit*100:5; const backBonus=spec&&spec.backCritBonus&&orientMult(att,tgt).lab==='DOS'?spec.backCritBonus*100:0; const dexBonus=Math.max(0,(effDEX(att)-effDEX(tgt))/2); const exhaustBonus=isBreakOpen(tgt)?20:0; return cl(base+backBonus+dexBonus+exhaustBonus,1,90)/100; }
 function rollHit(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)return true; let acc=(spec.acc!=null?spec.acc:0.9)*100+Math.floor(effDEX(att)/2)-Math.floor(effDEX(tgt)/3); if(hasS(att,'blind'))acc-=30; if(spec.weaponType==='longbow'){ const dist=Math.abs((att.size>1?bossCenterGX(att):att.gx)-tgt.gx)+Math.abs((att.size>1?bossCenterGZ(att):att.gz)-tgt.gz); if(dist>=spec.range[1])acc+=5; } return tacticalRnd()*100<cl(acc,5,95); }
 
 // A zone blow lands as a volley: the next target is struck a beat after the last, not after its whole reaction. A knock-out keeps its own beat.
@@ -1573,6 +1573,7 @@ function applySkillUpgrade(u,skillId,spec){
       if(up.healMultiplier&&out.effects)for(const effect of out.effects)if(effect.kind==='heal'){if(typeof effect.power==='number')effect.power*=1+up.healMultiplier;if(typeof effect.healPercent==='number')effect.healPercent+=up.healMultiplier;}
       if(up.revivePercent!=null&&out.revive) out.power=up.revivePercent;
       if(up.critBonus) out.crit=(out.crit||0)+up.critBonus;
+      if(up.backCritBonus) out.backCritBonus=(out.backCritBonus||0)+up.backCritBonus;
       if(up.hpCostReduction&&out.hpCostPercent) out.hpCostPercent=Math.max(0,out.hpCostPercent-up.hpCostReduction);
       if(up.hpCostReduction&&out.effects)for(const effect of out.effects)if(effect.kind==='hp_cost'&&effect.hpCostPercent)effect.hpCostPercent=Math.max(0,effect.hpCostPercent-up.hpCostReduction);
       if(up.lifestealBonus&&out.lifestealPercent) out.lifestealPercent+=up.lifestealBonus;
@@ -1663,10 +1664,14 @@ function lineCells(u,cx,cz,radius){ const d=dirTo(u,cx,cz); const R=Math.max(1,M
 function coneCells(u,cx,cz,radius){ const d=dirTo(u,cx,cz); const R=radius+0.001; const out=[]; for(let gx=Math.ceil(cx-radius);gx<=Math.floor(cx+radius);gx++)for(let gz=Math.ceil(cz-radius);gz<=Math.floor(cz+radius);gz++){ if(!inBounds(gx,gz)||eud(gx,gz,cx,cz)>R)continue; const vx=gx-cx,vz=gz-cz; if(vx===0&&vz===0){out.push([gx,gz]);continue;} if((vx*d.dx+vz*d.dz)/Math.hypot(vx,vz)>=0.34)out.push([gx,gz]); } return out.length?out:[[cx,cz]]; }
 function aoeCells(u,spec,cx,cz){ const sh=spec.shape||'circle'; if(sh==='line')return lineCells(u,cx,cz,spec.radius); if(sh==='cone')return coneCells(u,cx,cz,spec.radius); return aoeTiles(cx,cz,spec.radius); }
 function canAffectUnit(caster,spec,target){ if(!target)return false; if(spec.offensive&&target===caster&&!spec.allowSelfDamage)return false; return true; }
+// Operator decision 2026-11-11 (D1): a hero's offensive zone spares the hero's allies, unless the skill says it can hit
+// them (allowSelfDamage). Enemy zones and items keep striking every unit of the zone.
+function zoneSparesAllies(caster,spec){ return Boolean(caster&&caster.team==='player'&&spec.offensive&&!spec.allowSelfDamage&&!spec.item&&((spec.radius||0)>=1||spec.shape)); }
 function affectedUnits(u,spec,cx,cz){
   if(spec.revive||spec.targetMode==='ally'||spec.targetMode==='enemy')return selectedTargetsForAction(u,spec,cx,cz);
   const targets=areaUnits(u,spec,cx,cz);
   if(spec.heal||spec.support)return targets.filter(t=>t.team===u.team);
+  if(zoneSparesAllies(u,spec)&&!(spec.effects||[]).some(effect=>effect.target==='allies'||effect.target==='all'))return targets.filter(t=>t.team!==u.team);
   return targets;
 }
 function effectTargets(u,spec,cx,cz,effect,context={}){
@@ -1685,7 +1690,7 @@ function previewAccuracy(att,tgt,spec){ if(spec.support||spec.heal||spec.revive)
 function isCrosierAllyHeal(att,tgt,spec){ return Boolean(spec.key==='attack'&&spec.weaponType==='crosier'&&tgt&&tgt.team===att.team); }
 function previewPower(att,tgt,spec){ if(isCrosierAllyHeal(att,tgt,spec))return Math.max(1,Math.round(effMAG(att)*0.5)); const healEffect=spec.heal&&spec.effects?spec.effects.find(effect=>effect.kind==='heal'):null; if(healEffect)return Math.max(1,healEffect.healPercent!=null?Math.round(tgt.maxhp*healEffect.healPercent):(healEffect.flatHeal!=null?healEffect.flatHeal:Math.round(effMAG(att)*(healEffect.power||spec.power||1)))+Math.floor(effCHA(att)/4)); if(spec.heal)return Math.max(1,spec.healPercent!=null?Math.round(tgt.maxhp*spec.healPercent):(spec.flatHeal!=null?spec.flatHeal:Math.round(effMAG(att)*spec.power))+Math.floor(effCHA(att)/4)); if(spec.apRestore)return spec.apRestore; if(spec.flatDmg)return Math.max(1,Math.round(spec.flatDmg)); if((spec.power||0)<=0)return 0; const K=12,isMag=spec.weaponType==='rapier'?targetDistance(att,{},tgt.gx,tgt.gz)>=2:spec.type==='mag'; const atk=isMag?effMAG(att):effSTR(att); let def=Math.max(1,effEND(tgt)+Math.floor((isMag?effMAG(tgt):effSTR(tgt))/4)); if(spec.elanPierce) def=Math.max(1,def*(1-spec.elanPierce)); if(spec.penetration) def=Math.max(1,def*(1-spec.penetration)); const orient=orientMult(att,tgt); let d=Math.sqrt(spec.power*K*atk/def)*2*(spec.weaponType==='dagger'&&orient.lab==='DOS'?1.45:orient.m)*dmgTakenMul(tgt); if(spec.elanMul) d*=spec.elanMul; if(spec.damageMultiplier)d*=spec.damageMultiplier; if(spec.bonusVsSize&&tgt.size>1)d*=spec.bonusVsSize; if(spec.bonusVsAfflicted&&Object.keys(tgt.statuses).some(s=>isNegative(s)))d*=spec.bonusVsAfflicted; return Math.max(1,Math.round(d)); }
 function hideActionPreview(){ dom.actionPreview.classList.add('hidden'); dom.actionPreview.innerHTML=''; }
-function showActionPreview(att,spec,targets,cx,cz){ const primary=targets[0]||null; const crosierHeal=isCrosierAllyHeal(att,primary,spec); const helpful=Boolean(spec.heal||spec.support||spec.revive||spec.apRestore||spec.cure||crosierHeal); const alliesHit=targets.filter(t=>t.team===att.team&&!helpful).length; const estimate=primary?previewPower(att,primary,spec):0; const accuracy=primary?previewAccuracy(att,primary,spec):null; const valueLabel=spec.heal||crosierHeal?'Soin':spec.apRestore?'AP':'Dégâts'; const targetLabel=primary?primary.name:(spec.type==='move'?('Case '+cx+','+cz):(helpful?'Ciblez un allié':'Ciblez un ennemi'));
+function showActionPreview(att,spec,targets,cx,cz){ const primary=targets[0]||null; const crosierHeal=isCrosierAllyHeal(att,primary,spec); const helpful=Boolean(spec.heal||spec.support||spec.revive||spec.apRestore||spec.cure||crosierHeal); const alliesHit=targets.filter(t=>t.team===att.team&&!helpful).filter(()=>!(spec.effects&&spec.effects.length)||spec.effects.some(effect=>effect.kind==='damage'&&effect.target==='all')).length; const estimate=primary?previewPower(att,primary,spec):0; const accuracy=primary?previewAccuracy(att,primary,spec):null; const valueLabel=spec.heal||crosierHeal?'Soin':spec.apRestore?'AP':'Dégâts'; const targetLabel=primary?primary.name:(spec.type==='move'?('Case '+cx+','+cz):(helpful?'Ciblez un allié':'Ciblez un ennemi'));
   dom.actionPreview.innerHTML=renderCombatActionPreview({attacker:att.name,action:spec.name,target:targetLabel,targetCount:targets.length,helpful,cost:spec.ap,accuracy,estimate,valueLabel,alliesHit});
   dom.actionPreview.classList.toggle('is-helpful',helpful); dom.actionPreview.classList.remove('hidden'); }
 
@@ -2364,7 +2369,7 @@ function previewAt(cx,cz){ drawRange(); const sp=G.pending.spec,hoverCell=cellAt
   const targets=affectedUnits(G.active,sp,cx,cz); unitFocus.preview(targets); showActionPreview(G.active,sp,targets,cx,cz);
   for(const [gx,gz] of aoeCells(G.active,sp,cx,cz)){ const occ=cellAt(gx,gz)?.occupant; const aoeCol=helpful?0x6aff7a:0xff6a5a; let col=sp.type==='move'?CFG.COL.move:aoeCol,op=COMBAT_PRESENTATION.arena.rangeTileOpacity,kind='aoe';
     if(occ&&G.active&&occ===G.active&&sp.offensive&&!sp.allowSelfDamage){ addHL(gx,gz,0xf7edcf,COMBAT_PRESENTATION.arena.rangeTileOpacity*.72,'range'); continue; }
-    if(occ&&occ.alive){ const isAlly=occ.team===G.active.team; if(helpful&&isAlly){ col=0x7edf7a; op=COMBAT_PRESENTATION.arena.targetTileOpacity; kind='target_ally'; } else if(!helpful&&!isAlly){ col=CFG.COL.foe; op=COMBAT_PRESENTATION.arena.targetTileOpacity; kind='target'; } else if(!helpful&&isAlly){ col=0xff9a52; op=COMBAT_PRESENTATION.arena.rangeTileOpacity*.8; kind='aoe'; } else { col=aoeCol; op=COMBAT_PRESENTATION.arena.rangeTileOpacity; kind='aoe'; } }
+    if(occ&&occ.alive){ const isAlly=occ.team===G.active.team; if(helpful&&isAlly){ col=0x7edf7a; op=COMBAT_PRESENTATION.arena.targetTileOpacity; kind='target_ally'; } else if(!helpful&&!isAlly){ col=CFG.COL.foe; op=COMBAT_PRESENTATION.arena.targetTileOpacity; kind='target'; } else if(!helpful&&isAlly&&!zoneSparesAllies(G.active,sp)){ col=0xff9a52; op=COMBAT_PRESENTATION.arena.rangeTileOpacity*.8; kind='aoe'; } else { col=aoeCol; op=COMBAT_PRESENTATION.arena.rangeTileOpacity; kind='aoe'; } }
     else if(sp.revive){ const ko=G.units.find(x=>!x.alive&&x.downed&&x.gx===gx&&x.gz===gz); if(ko){col=0x7edf7a;op=COMBAT_PRESENTATION.arena.targetTileOpacity;kind='target_ally';} }
     addHL(gx,gz,col,op,kind); if(occ&&occ.alive&&G.active&&occ.team!==G.active.team&&!helpful)addRingHL(gx,gz,CFG.COL.foe,COMBAT_PRESENTATION.arena.targetTileOpacity+.18); if(occ&&occ.alive&&G.active&&occ.team===G.active.team&&helpful)addRingHL(gx,gz,0x7edf7a,COMBAT_PRESENTATION.arena.targetTileOpacity+.18); } }
 function enterTarget(spec){ if(G.busy)return;
@@ -2438,12 +2443,15 @@ function hoverBattlefieldCell(c){ const hoveredUnit=(c&&c.occupant&&c.occupant.a
   else if(G.mode==='menu'||G.mode==='idle')restoreInspection(); }
 function onPointerMove(ev){ if(G.busy||G.over)return; const c=pickCell(ev); if(c)keyboardCell={gx:c.gx,gz:c.gz}; hoverBattlefieldCell(c); }
 async function onClick(ev){ if(G.over)return; if(ev.button!==0){ cancelToMenu(); return; } if(G.busy)return; await activateBattlefieldCell(pickCell(ev)); }
-function announceBattlefieldRejection(action,c){
+function announceBattlefieldRejection(action,c,reason='choisissez une case disponible'){
   combatCue('refused');
-  setHint(action+' refusé — choisissez une case disponible');
+  setHint(action+' refusé — '+reason);
   const status=byId('combat-cell-status');
-  if(status)status.textContent=(c?'Case '+(c.gx+1)+', '+(c.gz+1)+' — ':'')+action+' refusé — choisissez une case disponible';
+  if(status)status.textContent=(c?'Case '+(c.gx+1)+', '+(c.gz+1)+' — ':'')+action+' refusé — '+reason;
 }
+// Operator decision 2026-11-11 (D9): zones, moves, self actions and the empty-cell move of a strike or retreat stay
+// valid on an empty cell; any other action needs a unit it would affect.
+function actionLacksTarget(u,spec,cx,cz){ return !spec.self&&!spec.dest&&spec.type!=='move'&&!((spec.radius||0)>=1||spec.shape)&&!allowsEmptyTileHybridTarget(spec)&&affectedUnits(u,spec,cx,cz).length===0; }
 async function activateBattlefieldCell(c){ if(G.over||G.busy||G.stage)return;
   if(G.mode==='deploy'){ if(c&&inZone(c.gx,c.gz)){
     const wasPlaced=c.occupant?.team==='player',beforeIds=deployedIds();
@@ -2457,7 +2465,7 @@ async function activateBattlefieldCell(c){ if(G.over||G.busy||G.stage)return;
     if(wasPlaced||deployedIds().size!==beforeIds.size||c.occupant?.team==='player')restoreDeploymentFocus();
   } return; }
   if(G.mode==='move'){ if(c&&(c.gx!==G.active.gx||c.gz!==G.active.gz)&&G.reach.list.some(t=>t.gx===c.gx&&t.gz===c.gz)){ G.movedThisTurn=true; await moveAlong(G.active,buildPath(G.reach.prev,G.active,c.gx,c.gz)); afterSub(); } else announceBattlefieldRejection('Déplacement',c); return; }
-  if(G.mode==='target'){ const sp=G.pending.spec; if(sp.self){ await doExecute(sp,G.active.gx,G.active.gz); return; } if(c&&G.pending.keys.has(c.gx+','+c.gz)) await doExecute(sp,c.gx,c.gz); else announceBattlefieldRejection('Ciblage',c); return; }
+  if(G.mode==='target'){ const sp=G.pending.spec; if(sp.self){ await doExecute(sp,G.active.gx,G.active.gz); return; } if(c&&G.pending.keys.has(c.gx+','+c.gz)){ if(actionLacksTarget(G.active,sp,c.gx,c.gz)){ announceBattlefieldRejection('Ciblage',c,'aucune cible sur cette case'); return; } await doExecute(sp,c.gx,c.gz); } else announceBattlefieldRejection('Ciblage',c); return; }
   if((G.mode==='menu'||G.mode==='idle')&&c&&c.occupant){ if(G.selected!==c.occupant)combatCue('navigate'); G.pinnedUnit=c.occupant.alive?c.occupant:null; selectUnit(c.occupant); }
 }
 

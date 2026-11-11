@@ -37,8 +37,8 @@ export const weapons: WeaponDefinition[] = [
   { id: 'steel_scythe', name: "Faux d'acier", description: 'Faux équilibrée à la lame plus mordante.', category: 'weapons', price: 190, icon: '☠', type: 'scythe', tier: 1, damage: 25, range: 2, accuracyBonus: 5, critBonus: 10, healthBonus: 23 },
   { id: 'eclipse_scythe', name: "Faux de l'Éclipse", description: "Faux imprégnée d'énergie obscure.", category: 'weapons', price: 330, icon: '☠', type: 'scythe', tier: 2, damage: 28, range: 2, accuracyBonus: 5, critBonus: 12, healthBonus: 45 },
   // Long spear (Lancer) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
-  { id: 'novice_spear', name: 'Lance novice', description: 'Lance de bois pour frapper à distance.', category: 'weapons', price: 110, icon: '↟', type: 'long_spear', tier: 0, damage: 15, range: 2, accuracyBonus: 0, critBonus: 5 },
-  { id: 'steel_spear', name: "Lance d'acier", description: 'Lance robuste à longue portée.', category: 'weapons', price: 200, icon: '↟', type: 'long_spear', tier: 1, damage: 20, range: 2, accuracyBonus: 3, critBonus: 5, healthBonus: 20 },
+  { id: 'novice_spear', name: 'Lance novice', description: 'Lance de bois qui frappe au contact, diagonales comprises.', category: 'weapons', price: 110, icon: '↟', type: 'long_spear', tier: 0, damage: 15, range: 2, accuracyBonus: 0, critBonus: 5 },
+  { id: 'steel_spear', name: "Lance d'acier", description: 'Lance robuste qui frappe au contact, diagonales comprises.', category: 'weapons', price: 200, icon: '↟', type: 'long_spear', tier: 1, damage: 20, range: 2, accuracyBonus: 3, critBonus: 5, healthBonus: 20 },
   { id: 'griffon_spear', name: 'Lance du Griffon', description: 'Lance de guerre équilibrée pour les charges.', category: 'weapons', price: 320, icon: '↟', type: 'long_spear', tier: 2, damage: 24, range: 2, accuracyBonus: 5, critBonus: 8, healthBonus: 40 },
   // Grimoire (Black Mage) — data tiers 0 / 1 / 2, shown T1 Novice / T2 / T3
   { id: 'novice_grimoire', name: 'Grimoire novice', description: 'Tome élémentaire pour apprentis mages.', category: 'weapons', price: 100, icon: '✦', type: 'grimoire', tier: 0, damage: 10, range: 1, accuracyBonus: 10, critBonus: 0 },

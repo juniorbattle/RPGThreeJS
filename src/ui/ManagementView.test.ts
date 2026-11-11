@@ -291,6 +291,9 @@ it('gives a long spear the reach its basic attack really has (skills pass 2026-1
   const closed = view.open('inventory');
   root.querySelector<HTMLButtonElement>('[data-item-details="steel_spear"]')!.click();
   expect(root.textContent).toContain('Portée1 (diagonales comprises)');
+  // Operator decision 2026-11-11 (D6): the lance keeps its contact reach and its description no longer promises range.
+  expect(root.textContent).toContain('Lance robuste qui frappe au contact, diagonales comprises.');
+  expect(root.textContent).not.toContain('longue portée');
   key('Escape');
   root.querySelector<HTMLButtonElement>('[data-item-details="longbow"]')!.click();
   expect(root.textContent).toContain('Portée2–4');

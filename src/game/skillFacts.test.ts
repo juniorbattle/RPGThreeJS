@@ -78,15 +78,26 @@ describe('skill facts say what each skill does', () => {
     expect(facts('w_charge')).toContain('Frappe les ennemis adjacents à l’arrivée : dégâts physiques, puissance 11, +10 %');
   });
 
-  it('warn of friendly fire wherever the runtime hits allies, and only there', () => {
+  it('warn of friendly fire wherever the runtime hits allies, and say a hero zone spares them otherwise (operator decision D1)', () => {
     for (const def of USABLE_HERO_SKILLS) for (const level of LEVELS) {
       const spec = resolveSkillSpec(def, level);
       const zone = (spec.radius ?? 0) >= 1 || Boolean(spec.shape);
-      const genericOffensiveZone = zone && spec.offensive && !spec.effects?.length;
-      expect(describeSkillFacts(spec).includes('alliés compris') || describeSkillFacts(spec).includes('alliés et lanceur compris'), `${def.id} level ${level}`)
-        .toBe(Boolean(genericOffensiveZone));
-      if (genericOffensiveZone && level === 0 && def.ap < 5) expect(def.description, def.id).toContain('alliés compris');
+      const genericOffensiveZone = Boolean(zone && spec.offensive && !spec.effects?.length);
+      const hero = describeSkillFacts(spec), foe = describeSkillFacts(spec, 'foe');
+      const warns = (text: string) => text.includes('alliés compris') || text.includes('alliés et lanceur compris');
+      expect(warns(hero), `${def.id} level ${level}`).toBe(genericOffensiveZone && Boolean(spec.allowSelfDamage));
+      expect(hero.includes('épargne les alliés'), `${def.id} level ${level}`).toBe(genericOffensiveZone && !spec.allowSelfDamage);
+      expect(warns(foe), `${def.id} level ${level} as a foe`).toBe(genericOffensiveZone);
+      if (genericOffensiveZone && level === 0) expect(def.description, def.id).toContain(spec.allowSelfDamage ? 'alliés compris' : 'ennemis');
     }
+  });
+
+  it('state the operator decisions of 2026-11-11 in the facts', () => {
+    expect(facts('w_charge', 2)).toContain('puissance 13');
+    expect(facts('ro_sneak_attack', 2)).toContain('critique 20 %, critique +80 % sur un coup de dos (90 % au plus)');
+    expect(facts('r_scarlet_circle', 1)).toContain('Soin de 16 PV + CHA/4');
+    expect(facts('n_flame_wave', 2)).toContain('Cône de 9 cases');
+    expect(facts('a_arrow_rain')).toContain('Zone de 5 cases, épargne les alliés');
   });
 
   it('keep each open hero skill description short enough for the two lines of the combat menu', () => {

@@ -7,11 +7,11 @@
 | BASELINE | `4d8e1d0d` sur `dev`, puis `origin/playtest-combat` fusionnée en avance rapide (`d1bfdb10`) avant toute modification du runtime ; jeu de contrats 1.20.0, baseline immuable `6c965169c2dc153cafd5a8609d914cf8de723ff3` |
 | BRANCH | `playtest-skills` |
 | HEAD | le commit de ce rapport, sur `playtest-skills` |
-| STATUS | review : en attente de ton test et de tes décisions, puis de l’intégration à `dev` |
+| STATUS | review : décisions de l’opérateur du 2026-11-11 appliquées (section 9), D8 en attente ; puis ton test et l’intégration à `dev` |
 | MERGED_IN | NONE |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |
-| PRODUCTION_IMPACT | Sept actions mal exécutées corrigées (Lame Arcanique +2, Rempart du Serment, cinq améliorations de zone sans effet, Charge, Repli Explosif). Le menu de combat, la fiche du héros et l’écran d’amélioration affichent une fiche chiffrée générée depuis la définition réelle, au niveau du héros. Aperçus et infobulles corrigés. Textes réécrits. États « Racines » et « Silence » renommés « Entravé » et « Mutisme ». |
+| PRODUCTION_IMPACT | Sept actions mal exécutées corrigées (Lame Arcanique +2, Rempart du Serment, cinq améliorations de zone sans effet, Charge, Repli Explosif). Décisions de l’opérateur appliquées : les zones offensives des héros épargnent leurs alliés, Charge +2, Coup Sournois +2 de dos, Cercle Écarlate +1, Vague de Flammes +2, refus d’une action monocible sans cible. Le menu de combat, la fiche du héros et l’écran d’amélioration affichent une fiche chiffrée générée depuis la définition réelle, au niveau du héros. Aperçus et infobulles corrigés. Textes réécrits. États « Racines » et « Silence » renommés « Entravé » et « Mutisme ». |
 | CANONICAL_DOCS_UPDATED | NONE : aucun contrat, aucun texte de canon narratif, aucun champ de sauvegarde. L’état autonome (`docs/autonomy/AUTONOMOUS_WORK_STATE.*`) et l’index des rapports seront mis à jour à l’intégration, car deux autres sessions travaillent en parallèle. |
 | EVIDENCE | Tests unitaires ci-dessous (dont une comparaison automatique de chaque compétence à chaque niveau avec le vrai `getSpec` du runtime). Laboratoire QA du combat (`/legacy-combat.html?qa=1`) : menu des compétences à 1366 × 768 sans et avec mouvement réduit du jeu (`&reduced=1`), et à 390 × 844 ; zéro erreur console, aucun débordement horizontal. Captures et `result.json` dans `docs/reports/evidence/playtest-skills-2026-11-11/` (dossier ignoré, non promu). |
 
@@ -174,9 +174,9 @@ Aucun coût ni puissance de base n’a changé. Ces corrections changent toutefo
 
 `playtest-combat` a modifié `applyDamage`, le règlement des PA, `executeAction`, l’IA (`aiTurn`, `bestOffense`), l’estompage des unités et le tracé du déplacement. Aucune ligne n’est commune. Le point le plus proche : leur test `combatKillAp.test.ts` compte cinq occurrences de `payActionCost(u,spec)`, et je n’en ai ajouté aucune.
 
-## 5. En attente de ta décision
+## 5. Points soumis à ta décision
 
-Pour chaque point, le texte dit aujourd’hui la vérité sur le comportement actuel. Rien n’est construit avant ton choix.
+Tes réponses du 2026-11-11 et leur mise en œuvre sont en section 9. Il reste D8 ouvert. Le texte de cette section est celui de la proposition, gardé tel quel.
 
 - **D1. Tir ami des zones offensives.**
   - Concerne Tourbillon, Saut du Griffon, Pluie de Flèches, Sceau d’Entrave et Mâchoire +2.
@@ -262,8 +262,48 @@ Pour chaque point, le texte dit aujourd’hui la vérité sur le comportement ac
 | Ligne | Verdict | Preuve |
 | --- | --- | --- |
 | GAME_CONSTITUTION | PASS | Le combat tactique reste seul maître de la résolution. La fiche lit la spec, ne décide rien et n’écrit rien. |
-| COMBAT | PASS | Corrections dans le moteur existant, au service des définitions existantes. Aucune règle nouvelle construite ; D2, D4 et D9 sont proposées. Aucun Ultime ouvert. |
+| COMBAT | PASS | Corrections dans le moteur existant, au service des définitions existantes. Les règles nouvelles (D1, D4, D9) ont été proposées puis validées par toi avant d’être construites (COMBAT_AND_VFX 1.20.0). D2 n’est pas construite. Aucun Ultime ouvert. |
 | SAVE | PASS | Aucun champ ajouté. Les niveaux d’amélioration sauvegardés gardent leur sens. |
 | UI / ACCESSIBILITY | PASS | Les états sont dits en texte, avec un nom unique par état. Fiche statique, valable en mouvement réduit. Vérifié à 1366 et à 390 px. Libellés `aria-label` des cartes enrichis. |
 | NARRATIVE / CAMPAIGN | PASS | Aucun nom de compétence, de héros ni de lieu changé ; seules les descriptions d’actions et deux libellés d’état. |
 | REPOSITORY_GOVERNANCE | PASS | Branche `playtest-skills` depuis `origin/dev` (avec `origin/playtest-combat`). Ni `main` ni `dev`. État autonome inchangé. |
+
+## 9. Tes décisions du 2026-11-11 et leur mise en œuvre
+
+Tes réponses : D1 à D6 « validé » (mes recommandations), D7 « vraiment élargi », D8 « que propose la Rune de Vigueur ? », D9 « refuser », D10 « on garde ».
+
+| Point | Décision | Mise en œuvre | Test |
+| --- | --- | --- | --- |
+| D1 | Les zones offensives des héros épargnent leurs alliés. | `zoneSparesAllies` et `affectedUnits` (runtime). Sont concernés Tourbillon, Saut du Griffon, Pluie de Flèches, Sceau d’Entrave, Mâchoire +2, et les soutiens qui les réutilisent. Gardent le tir ami : les compétences écrites « peut toucher les alliés » (Vague de Flammes, Grenade Incendiaire, Météore et Barrage), les zones ennemies et les objets (Bombe). La zone dessinée sous le curseur ne marque plus un allié épargné, et l’avertissement « ⚠ allié touché » ne compte plus que les alliés vraiment frappés : Cercle Écarlate, qui les soigne, ne les annonce plus. Textes et fiches disent « épargne les alliés ». | `skillsPass.test.ts` « D1 » ; `skillFacts.test.ts` (tir ami annoncé ou épargne dite, pour chaque compétence et chaque niveau) |
+| D2 | Garder « PV contre Force ». | Rien à changer : c’est l’état livré. | comparaison `getSpec` |
+| D3 | Charge +2 : puissance +2. | `skills.ts` : puissance 11 au niveau 2 devient 13 à l’impact. | `skillsPass.test.ts` « D3, D5, D7 » |
+| D4 | Coup Sournois +2 : le bonus de critique ne vaut que de dos. | Nouveau champ d’amélioration `backCritBonus`, lu par `applySkillUpgrade` et `critChance` (runtime). Le critique passe de 20 % à 90 % (plafond) de dos, et reste à 20 % de face ou de flanc. | `skillsPass.test.ts` « D4 » |
+| D5 | Cercle Écarlate +1 : soin +4 PV. | `skills.ts` (`flatHealBonus:4`) : soin de 12 PV + CHA/4, puis 16. | `skillsPass.test.ts` « D3, D5, D7 » |
+| D6 | Lance : garder le contact, diagonales comprises. | Descriptions de la Lance novice et de la Lance d’acier : « frappe au contact, diagonales comprises » au lieu de « à distance » et « longue portée ». | `ManagementView.test.ts` « gives a long spear… » |
+| D7 | Vague de Flammes +2 vraiment élargie. | `skills.ts` (rayon +0,7) : cône de 4 cases, puis 9. | `skillsPass.test.ts` « D3, D5, D7 » |
+| D8 | Question posée en retour. | Rien de changé (ci-dessous). | — |
+| D9 | Refuser une action monocible validée sans cible. | `actionLacksTarget` dans `activateBattlefieldCell` : « Ciblage refusé — aucune cible sur cette case », signal sonore de refus, aucun PA dépensé. Restent valides sur une case vide : les zones, les déplacements, les actions sur soi et le déplacement seul de Pas d’Ombre et de Repli de Hampe (D10). Frappe Consacrée ne se lance donc plus sur une case vide pour sa seule barrière. | `skillsPass.test.ts` « D9 » ; `combatKeyboard.test.ts` « refuses a single-target action on an empty cell… » |
+| D10 | Garder le déplacement seul de Repli de Hampe. | Rien à changer. | — |
+
+**Ce que D1 ne change pas.** Une compétence monocible validée sur la case d’un allié le frappe toujours, comme avant (par exemple Brise-Garde). D1 parlait des zones. Si tu veux que les héros ne puissent jamais frapper un allié, c’est une petite règle de plus à valider. L’attaque de base de la crosse, qui soigne un allié, resterait permise.
+
+**D8, ta question : ce que propose la Rune de Vigueur.**
+
+- **Rune de Vigueur** (compétence de l’Enchanteur, 2 PA) : elle donne **Force** à un allié à 0-3 cases, ou à soi-même. Force donne FOR et MAG +40 % pendant 3 tours. L’amélioration +1 porte la portée à 0-4, la +2 prolonge Force à 4 tours.
+- **Purification** (3 PA), qu’elle remplace : elle soigne 20 % des PV max d’un allié à 0-3 cases et dissipe ses altérations. L’amélioration +1 porte le soin à 35 %, la +2 à 50 % et l’étend aux alliés adjacents.
+- **Le Sceau du Sage** (accessoire, 380 or) donne MAG +10 et CHA +3, et échange Purification contre la Rune.
+- **Effet par palier.** Sans le Sceau, le Mage Blanc a Lumière Salvatrice en T1, ajoute Purification en T2, puis Sanctuaire en T3. Avec le Sceau, il a Lumière Salvatrice **et** la Rune dès T1, rien de nouveau en T2, puis Sanctuaire en T3.
+- **Ce qu’il perd** : le soin avec purification d’une cible. Lumière Salvatrice +2 purifie toutefois tous les alliés, et Sanctuaire soigne en zone.
+- **Ce qu’il gagne** : dès T1, un renfort offensif pour un allié (la FOR d’un guerrier ou la MAG d’un mage noir). Sur lui-même, la Rune n’augmente pas ses soins en pourcentage. Elle n’augmente que le soin de son attaque de base à la crosse (MAG × 0,5).
+- **Options.** **A**, garder : un vrai choix d’équipement, un soutien offensif plus tôt en échange de la purification. **B**, la compétence remplaçante garde le palier de celle qu’elle remplace : la Rune ne s’ouvrirait qu’en T2 et le Mage Blanc n’aurait qu’une compétence en T1.
+- **Recommandation : B.** Elle garde intacte la règle « le palier de l’arme ouvre les compétences ».
+
+**Vérifications de cette étape.**
+
+- Tous les tests des décisions **échouent sur l’état précédent** (7 sur 7), puis passent.
+- `combatKeyboard.test.ts` découpe `activateBattlefieldCell` ; son harnais reçoit maintenant les fonctions qu’appelle la nouvelle vérification (règle de la skill `combat-vfx-sprites`). 57 sur 57.
+- `npm test` : 3 207 tests passent, 23 sont ignorés. Les 10 échecs restants sont les mêmes trois fichiers environnementaux qu’en section 7. `node --test tools/qa/qa-job.test.mjs` : 26 sur 26.
+- `npx tsc --noEmit`, `npm run build` et `npm run contracts:validate` passent. La porte n’imprime rien.
+- **Laboratoire QA, D9 au clavier** (comme à la manette), `/legacy-combat.html?qa=1`, 1366 × 768. L’Archère choisit Attaque, le curseur passe sur une case vide à portée (« Case 2, 1 — vide — disponible »), Entrée. Le statut et le bandeau disent « Ciblage refusé — aucune cible sur cette case », les PA restent à 1, zéro erreur console. Capture `d9-empty-cell-refused-1366.png`, résultat `d9-result.json`.
+- **Laboratoire QA, menu des compétences** (1366 px normal et réduit, 390 px) : Pluie de Flèches affiche « Zone de 5 cases, épargne les alliés ». Aucune ligne coupée, zéro erreur console.
+- Vite démarré sur le port 5197 pour ces contrôles, puis arrêté (PID 9650).

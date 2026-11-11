@@ -43,6 +43,8 @@ export interface SkillSpec {
   revive?: boolean;
   penetration?: number;
   crit?: number;
+  /** Critical chance added only to a blow from behind (Coup Sournois +2, operator decision 2026-11-11). */
+  backCritBonus?: number;
   effects?: SkillSpecEffect[];
   flatHeal?: number;
   flatDmg?: number;
@@ -99,6 +101,7 @@ export function resolveSkillSpec(def: SkillDefinition, upgradeLevel = 0): SkillS
       }
       if (up.revivePercent != null && out.revive) out.power = up.revivePercent;
       if (up.critBonus) out.crit = (out.crit || 0) + up.critBonus;
+      if (up.backCritBonus) out.backCritBonus = (out.backCritBonus || 0) + up.backCritBonus;
       if (up.hpCostReduction && out.hpCostPercent) out.hpCostPercent = Math.max(0, out.hpCostPercent - up.hpCostReduction);
       if (up.hpCostReduction && out.effects) for (const effect of out.effects) if (effect.kind === 'hp_cost' && effect.hpCostPercent) effect.hpCostPercent = Math.max(0, effect.hpCostPercent - up.hpCostReduction);
       if (up.lifestealBonus && out.lifestealPercent) out.lifestealPercent += up.lifestealBonus;
@@ -178,7 +181,8 @@ function damageModifiers(spec: SkillSpec): string[] {
   const out: string[] = [];
   if (spec.damageMultiplier && spec.damageMultiplier !== 1) out.push(`${spec.damageMultiplier > 1 ? '+' : '−'}${percent(Math.abs(spec.damageMultiplier - 1))}`);
   if (spec.penetration) out.push(`ignore ${percent(Math.min(1, spec.penetration))} de la défense`);
-  if (spec.crit != null) out.push(spec.crit >= 0.9 ? 'critique 90 % (plafond)' : `critique ${percent(spec.crit)}`);
+  if (spec.crit != null) out.push(spec.crit >= 0.9 ? `critique ${percent(0.9)} (plafond)` : `critique ${percent(spec.crit)}`);
+  if (spec.backCritBonus) out.push(`critique +${percent(spec.backCritBonus)} sur un coup de dos (${percent(0.9)} au plus)`);
   if (spec.bonusVsSize) out.push(`+${percent(spec.bonusVsSize - 1)} contre une grande cible`);
   if (spec.bonusVsAfflicted) out.push(`+${percent(spec.bonusVsAfflicted - 1)} contre une cible sous altération`);
   return out;
@@ -208,14 +212,19 @@ function casterCanBeInZone(spec: SkillSpec): boolean {
 /** Who a friendly-fire zone touches besides the foes: allies, and the caster when the skill allows it and can reach him. */
 const friendlyFire = (spec: SkillSpec): string => (spec.allowSelfDamage && casterCanBeInZone(spec) ? 'alliés et lanceur compris' : 'alliés compris');
 
-function targetClause(spec: SkillSpec): string {
+/** The side a skill is cast by: the runtime's zoneSparesAllies spares a hero's allies, never an enemy's. */
+export type SkillCasterTeam = 'player' | 'foe';
+/** Operator decision 2026-11-11 (D1), as the runtime's zoneSparesAllies: a hero's offensive zone without « peut toucher les alliés » spares allies. */
+const sparesAllies = (spec: SkillSpec, team: SkillCasterTeam): boolean => team === 'player' && Boolean(spec.offensive) && !spec.allowSelfDamage && hasZone(spec);
+
+function targetClause(spec: SkillSpec, team: SkillCasterTeam): string {
   const r = span(spec.range);
   const hybrid = isHybrid(spec) ? ' (ou case libre : déplacement seul)' : '';
   if (spec.self) {
     if (!hasZone(spec)) return 'Sur soi';
     const around = zoneCellCount(spec.radius, spec.shape) - 1;
     if (!spec.offensive || spec.allowSelfDamage) return `Soi et les ${cases(around)} autour`;
-    return `Les ${cases(around)} autour de soi${spec.effects?.length ? '' : ', alliés compris'}`;
+    return `Les ${cases(around)} autour de soi${spec.effects?.length ? '' : sparesAllies(spec, team) ? ', épargne les alliés' : ', alliés compris'}`;
   }
   if (spec.mode === 'dash') return `Case libre en ligne droite à ${r}`;
   if (spec.mode === 'swap') return `Allié à ${r}`;
@@ -228,20 +237,20 @@ function targetClause(spec: SkillSpec): string {
 }
 
 /** Who a zone touches when the skill has no effect list: every unit but the caster for an offensive one. */
-function genericZoneWho(spec: SkillSpec): string {
+function genericZoneWho(spec: SkillSpec, team: SkillCasterTeam): string {
   if (spec.heal || spec.support) return 'alliés';
   if (isPureMove(spec)) return '';
-  return friendlyFire(spec);
+  return sparesAllies(spec, team) ? 'épargne les alliés' : friendlyFire(spec);
 }
 
-function zoneClause(spec: SkillSpec): string | null {
+function zoneClause(spec: SkillSpec, team: SkillCasterTeam): string | null {
   if (spec.self || !hasZone(spec)) return null;
   if (isPureMove(spec) && !spec.additionalStatus) return null;
   const count = zoneCellCount(spec.radius, spec.shape);
   const kind = spec.shape === 'line' ? `Ligne de ${cases(count)}` : spec.shape === 'cone' ? `Cône de ${cases(count)}` : `Zone de ${cases(count)}`;
   const where = zoneAtArrival(spec) ? ' autour de l’arrivée' : spec.targetMode === 'ally' || spec.targetMode === 'enemy' ? ' autour de la cible' : '';
   const effectsHitAll = spec.effects?.some((effect) => effect.target === 'all');
-  const who = spec.effects?.length ? (effectsHitAll ? friendlyFire(spec) : '') : genericZoneWho(spec);
+  const who = spec.effects?.length ? (effectsHitAll ? friendlyFire(spec) : '') : genericZoneWho(spec, team);
   return `${kind}${where}${who ? `, ${who}` : ''}`;
 }
 
@@ -271,10 +280,10 @@ function healAmount(source: { healPercent?: number; flatHeal?: number; power?: n
   return `MAG × ${Math.round((source.power || 1) * 100) / 100} + CHA/4`;
 }
 
-/** One line of facts for a resolved skill spec, clauses joined by « · ». */
-export function describeSkillFacts(spec: SkillSpec): string {
-  const parts: string[] = [targetClause(spec)];
-  const zone = zoneClause(spec);
+/** One line of facts for a resolved skill spec, clauses joined by « · ». A hero casts it unless `team` says otherwise. */
+export function describeSkillFacts(spec: SkillSpec, team: SkillCasterTeam = 'player'): string {
+  const parts: string[] = [targetClause(spec, team)];
+  const zone = zoneClause(spec, team);
   if (zone) parts.push(zone);
   const mods = damageModifiers(spec);
   const withMods = (head: string) => [head, ...mods].join(', ');
@@ -301,7 +310,7 @@ export function describeSkillFacts(spec: SkillSpec): string {
     parts.push(withMods(`Dégâts ${damageType(spec.type)}, puissance ${spec.power}`));
   }
   if (!spec.effects?.length && !(spec.mode === 'dash' && spec.impact) && spec.status) {
-    const who = spec.self ? '' : hasZone(spec) ? (spec.support ? 'alliés de la zone' : 'unités touchées') : '';
+    const who = spec.self ? '' : hasZone(spec) ? (spec.support ? 'alliés de la zone' : sparesAllies(spec, team) ? 'ennemis touchés' : 'unités touchées') : '';
     parts.push(statusClause(spec.status, spec.statusTurns, who || undefined));
   }
   if (spec.additionalStatus) parts.push(statusClause(spec.additionalStatus, spec.additionalStatusTurns || 1, additionalWho(spec)));
@@ -314,6 +323,6 @@ export function describeSkillFacts(spec: SkillSpec): string {
 }
 
 /** The facts of a catalogue skill at an upgrade level, for screens outside combat. */
-export function describeSkillFactsAt(def: SkillDefinition, upgradeLevel = 0): string {
-  return describeSkillFacts(resolveSkillSpec(def, upgradeLevel));
+export function describeSkillFactsAt(def: SkillDefinition, upgradeLevel = 0, team: SkillCasterTeam = 'player'): string {
+  return describeSkillFacts(resolveSkillSpec(def, upgradeLevel), team);
 }

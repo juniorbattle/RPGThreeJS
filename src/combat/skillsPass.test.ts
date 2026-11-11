@@ -32,14 +32,14 @@ function field(units: Unit[]) {
   const applied: Array<[string, string, number]> = [];
   const source = ['skillUpgradeLevel', 'applySkillUpgrade', 'getSpec', 'unitAtTargetCell', 'selectedTargetsForAction', 'areaUnits', 'targetDistance',
     'allowsEmptyTileHybridTarget', 'aoeTiles', 'dirTo', 'lineCells', 'coneCells', 'aoeCells', 'canAffectUnit', 'affectedUnits', 'effectTargets',
-    'applyAdditionalStatus'].map(fn).join('\n');
+    'applyAdditionalStatus', 'zoneSparesAllies', 'actionLacksTarget'].map(fn).join('\n');
   const api = new Function('SKILLS', 'G', 'cellAt', 'inBounds', 'eud', 'bossCenterGX', 'bossCenterGZ', 'applyStatus',
-    `${source}\nreturn { getSpec, affectedUnits, effectTargets, applyAdditionalStatus, selectedTargetsForAction };`,
+    `${source}\nreturn { getSpec, affectedUnits, effectTargets, applyAdditionalStatus, selectedTargetsForAction, actionLacksTarget };`,
   )(RUNTIME_SKILLS, G, cellAt, (gx: number, gz: number) => gx >= 0 && gz >= 0 && gx < 8 && gz < 4,
     (x1: number, z1: number, x2: number, z2: number) => Math.hypot(x1 - x2, z1 - z2), (u: Unit) => u.gx, (u: Unit) => u.gz,
     (t: Unit, st: string, n: number) => { applied.push([t.id, st, n]); });
   return { ...api, applied } as {
-    getSpec(u: Unit, id: string): any; affectedUnits(u: Unit, spec: any, cx: number, cz: number): Unit[];
+    getSpec(u: Unit, id: string): any; affectedUnits(u: Unit, spec: any, cx: number, cz: number): Unit[]; actionLacksTarget(u: Unit, spec: any, cx: number, cz: number): boolean;
     effectTargets(u: Unit, spec: any, cx: number, cz: number, effect: any, context?: any): Unit[];
     applyAdditionalStatus(u: Unit, spec: any, cx: number, cz: number, context: any): void;
     selectedTargetsForAction(u: Unit, spec: any, cx: number, cz: number): Unit[]; applied: Array<[string, string, number]>;
@@ -76,10 +76,10 @@ describe('execution fixes of the skills pass', () => {
     }
   });
 
-  it('Mâchoire à Ressort +2 strikes the units adjacent to its target, allies included, never the caster', () => {
+  it('Mâchoire à Ressort +2 strikes the enemies adjacent to its target, never an ally or the caster', () => {
     const rogue = unit('rogue', 'player', 1, 1, { skillUpgrades: { ro_jaw_trap: 2 } }), foe = unit('brute', 'foe', 2, 1), foe2 = unit('mage', 'foe', 3, 1), ally = unit('kestrel', 'player', 2, 2);
     const f = field([rogue, foe, foe2, ally]);
-    expect(ids(f.affectedUnits(rogue, f.getSpec(rogue, 'ro_jaw_trap'), 2, 1))).toEqual(['brute', 'kestrel', 'mage']);
+    expect(ids(f.affectedUnits(rogue, f.getSpec(rogue, 'ro_jaw_trap'), 2, 1))).toEqual(['brute', 'mage']);
     expect(ids(f.affectedUnits(rogue, f.getSpec({ ...rogue, skillUpgrades: {} }, 'ro_jaw_trap'), 2, 1))).toEqual(['brute']);
   });
 
@@ -188,5 +188,65 @@ describe('facts in the combat menu', () => {
     for (const def of skills) for (const level of [0, 1, 2]) {
       expect(describeSkillFacts(f.getSpec(unit('u', 'player', 0, 0, { skillUpgrades: { [def.id]: level } }), def.id)), `${def.id} ${level}`).toBe(describeSkillFactsAt(def, level));
     }
+  });
+});
+
+describe('operator decisions of 2026-11-11', () => {
+  it('D1: a hero offensive zone spares the hero allies, unless the skill says it can hit them; enemy zones still strike their side', () => {
+    const knight = unit('alistair', 'player', 3, 1), ally = unit('kestrel', 'player', 3, 2), foe = unit('brute', 'foe', 4, 1);
+    const f = field([knight, ally, foe]);
+    const whirl = f.getSpec({ ...knight, skillUpgrades: {} }, 'w_whirl');
+    expect(ids(f.affectedUnits(knight, whirl, 3, 1))).toEqual(['brute']);
+    // « peut toucher les alliés » keeps its friendly fire.
+    const mage = unit('mage', 'player', 2, 1), f2 = field([mage, unit('kestrel', 'player', 3, 1), unit('brute', 'foe', 4, 1)]);
+    const flames = f2.getSpec({ ...mage, skillUpgrades: { n_flame_wave: 2 } }, 'n_flame_wave');
+    expect(ids(f2.affectedUnits(mage, flames, 3, 1))).toEqual(['brute', 'kestrel']);
+    // An enemy zone (the Troll's Écrasement) still strikes the enemy's own allies.
+    const troll = unit('troll', 'foe', 5, 1), escort = unit('goblin', 'foe', 5, 2), hero = unit('alistair', 'player', 4, 1);
+    const f3 = field([troll, escort, hero]);
+    expect(ids(f3.affectedUnits(troll, f3.getSpec({ ...troll, skillUpgrades: {} }, 'enemy_crush'), 5, 1))).toEqual(['alistair', 'goblin']);
+    // A zone that heals allies (Cercle Écarlate) keeps them among its targets.
+    const lyra = unit('lyra', 'player', 1, 1), f4 = field([lyra, unit('kestrel', 'player', 3, 2), unit('brute', 'foe', 3, 1)]);
+    expect(ids(f4.affectedUnits(lyra, f4.getSpec({ ...lyra, skillUpgrades: {} }, 'r_scarlet_circle'), 3, 1))).toEqual(['brute', 'kestrel']);
+    expect(fn('previewAt')).toContain("else if(!helpful&&isAlly&&!zoneSparesAllies(G.active,sp)){ col=0xff9a52;");
+    expect(fn('showActionPreview')).toContain("spec.effects.some(effect=>effect.kind==='damage'&&effect.target==='all')");
+  });
+
+  it('D3, D5, D7: Charge +2 strikes harder, Cercle Écarlate +1 heals 4 more, Vague de Flammes +2 widens to 9 cells', () => {
+    const f = field([]);
+    const level = (id: string, n: number) => f.getSpec(unit('u', 'player', 0, 0, { skillUpgrades: { [id]: n } }), id);
+    expect(level('w_charge', 2).power).toBe(13);
+    expect(level('r_scarlet_circle', 1).effects.find((effect: any) => effect.kind === 'heal').flatHeal).toBe(16);
+    const flames = level('n_flame_wave', 2);
+    expect(zoneCellCount(flames.radius, flames.shape)).toBe(9);
+  });
+
+  it('D4: Coup Sournois +2 adds its critical bonus to a blow from behind only', () => {
+    const critChance = (lab: string) => new Function('orientMult', 'effDEX', 'isBreakOpen', 'cl', `${fn('critChance')}\nreturn critChance;`)(
+      () => ({ m: 1, lab }), () => 10, () => false, (v: number, a: number, b: number) => Math.max(a, Math.min(b, v)),
+    ) as (att: unknown, tgt: unknown, spec: any) => number;
+    const spec = field([]).getSpec(unit('rogue', 'player', 0, 0, { skillUpgrades: { ro_sneak_attack: 2 } }), 'ro_sneak_attack');
+    expect(spec).toMatchObject({ crit: 0.2, backCritBonus: 0.8 });
+    expect(critChance('DOS')({}, {}, spec)).toBe(0.9);
+    expect(critChance('face')({}, {}, spec)).toBe(0.2);
+    expect(critChance('flanc')({}, {}, spec)).toBe(0.2);
+  });
+
+  it('D9: a single-target action confirmed on a cell it would affect nothing on is refused, other actions stay valid', () => {
+    const knight = unit('alistair', 'player', 2, 1), cleric = unit('clerc', 'player', 1, 2), foe = unit('brute', 'foe', 3, 1);
+    const f = field([knight, cleric, foe]);
+    const skill = (id: string) => f.getSpec({ ...knight, skillUpgrades: {} }, id);
+    const sword = { key: 'attack', type: 'phys', power: 10, range: [1, 1], radius: 0, offensive: true };
+    expect(f.actionLacksTarget(knight, skill('w_break_guard'), 2, 0)).toBe(true);
+    expect(f.actionLacksTarget(knight, skill('p_holy_strike'), 2, 0)).toBe(true);
+    expect(f.actionLacksTarget(knight, sword, 2, 0)).toBe(true);
+    expect(f.actionLacksTarget(knight, skill('w_break_guard'), 3, 1)).toBe(false);
+    expect(f.actionLacksTarget(cleric, { ...sword, weaponType: 'crosier' }, 2, 1)).toBe(false);
+    expect(f.actionLacksTarget(knight, skill('w_whirl'), 2, 1)).toBe(false);
+    expect(f.actionLacksTarget(knight, skill('a_arrow_rain'), 6, 3)).toBe(false);
+    expect(f.actionLacksTarget(knight, skill('n_teleport'), 4, 3)).toBe(false);
+    expect(f.actionLacksTarget(knight, skill('ni_shadow_step'), 2, 3)).toBe(false);
+    expect(f.actionLacksTarget(knight, skill('l_haft_recoil'), 2, 2)).toBe(false);
+    expect(fn('activateBattlefieldCell')).toContain("if(actionLacksTarget(G.active,sp,c.gx,c.gz)){ announceBattlefieldRejection('Ciblage',c,'aucune cible sur cette case'); return; } await doExecute(sp,c.gx,c.gz);");
   });
 });

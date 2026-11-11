@@ -113,7 +113,8 @@ describe('native battlefield rejection feedback', () => {
   const announcementStart = runtime.indexOf('function announceBattlefieldRejection(');
   const announcement = announcementStart < 0 ? '' : runtime.slice(announcementStart, runtime.indexOf('async function activateBattlefieldCell('));
 
-  function nativeInput(mode: 'move' | 'target', keyboard = true, self = false) {
+  // The target cell holds a unit unless `emptyTarget`: a single-target action on an empty cell is refused (operator decision 2026-11-11, D9).
+  function nativeInput(mode: 'move' | 'target', keyboard = true, self = false, emptyTarget = false) {
     const status = document.createElement('div');
     status.id = 'combat-cell-status';
     status.textContent = 'Case 8, 4 — indisponible';
@@ -128,9 +129,10 @@ describe('native battlefield rejection feedback', () => {
       pending: { spec: { key: 'attack', self }, keys: new Set(['1,0']) },
     };
     const move = vi.fn(async () => undefined), execute = vi.fn(async () => undefined), after = vi.fn(), cue = vi.fn();
-    const activate = new Function('G', 'keyboardInput', 'byId', 'moveAlong', 'buildPath', 'afterSub', 'doExecute', 'combatCue',
+    const activate = new Function('G', 'keyboardInput', 'byId', 'moveAlong', 'buildPath', 'afterSub', 'doExecute', 'combatCue', 'affectedUnits', 'allowsEmptyTileHybridTarget',
       `const setHint=()=>{};\n${announcement}\n${activation}\nreturn activateBattlefieldCell;`)(
       game, keyboard, (id: string) => document.getElementById(id), move, () => ['native path'], after, execute, cue,
+      () => (emptyTarget ? [] : [{ id: 'brute' }]), () => false,
     ) as (cell: { gx: number; gz: number } | null) => Promise<void>;
     return { game, status, canvas, move, execute, after, cue, activate };
   }
@@ -144,6 +146,15 @@ describe('native battlefield rejection feedback', () => {
     expect(input.move).not.toHaveBeenCalled();
     expect(input.execute).not.toHaveBeenCalled();
     expect(input.after).not.toHaveBeenCalled();
+  });
+
+  it('refuses a single-target action on an empty cell without spending AP (operator decision 2026-11-11, D9)', async () => {
+    const input = nativeInput('target', true, false, true), before = structuredClone(input.game);
+    await input.activate({ gx: 1, gz: 0 });
+    expect(input.status.textContent).toBe('Case 2, 1 — Ciblage refusé — aucune cible sur cette case');
+    expect(input.cue.mock.calls).toEqual([['refused']]);
+    expect(input.game).toEqual(before);
+    expect(input.execute).not.toHaveBeenCalled();
   });
 
   it('rejects the current movement cell rather than committing a zero-distance move', async () => {
