@@ -88,7 +88,7 @@ describe('boss and elite tempo (operator playtest 2026-11-11)', () => {
   });
 
   it('reaches its ultimate in time for every authored boss and elite kit', () => {
-    const kits = [...runtime.matchAll(/skills:\[([^\]]*boss_[^\]]*)\]/g)].map(m => [...m[1].matchAll(/'([^']+)'/g)].map(x => x[1]))
+    const kits = [...runtime.matchAll(/skills:\[([^\]]*boss_[^\]]*)\]/g)].map(m => [...String(m[1]).matchAll(/'([^']+)'/g)].map(x => String(x[1])))
       .filter(kit => kit.some(id => (SKILLS[id]?.ap ?? 0) >= 5)); // kits without a 5 AP skill have no ultimate to pace
     expect(kits.length).toBeGreaterThanOrEqual(15);
     for (const kit of kits) {
