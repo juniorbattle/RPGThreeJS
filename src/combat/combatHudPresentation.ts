@@ -159,9 +159,10 @@ export function renderCombatActionDock(actions: readonly CombatHudAction[], sele
   }).join('');
 }
 
-export interface CombatHudSkill { id: string; name: string; cost: number; description: string; icon?: string; disabled: boolean; upgradeLevel?: number }
+/** `facts` is the runtime's own line for the spec the hero fights with (range, zone, damage, statuses and turns). */
+export interface CombatHudSkill { id: string; name: string; cost: number; description: string; facts?: string; icon?: string; disabled: boolean; upgradeLevel?: number }
 export function renderCombatSkillRows(skills: readonly CombatHudSkill[]): string {
-  return skills.map(skill => `<button type="button" class="btn combat-skill campaign-ui-button campaign-ui-button--${skill.disabled ? 'disabled' : 'secondary'}${skill.disabled ? ' dis' : ''}" data-s="${combatHudEscape(skill.id)}"${skill.disabled ? ' disabled' : ''} title="${combatHudEscape(skill.description)}"><span class="combat-skill__icon" aria-hidden="true">${combatHudEscape(skill.icon || '✦')}</span><span class="combat-skill__copy"><b>${combatHudEscape(skill.name)}${skill.upgradeLevel ? ` +${skill.upgradeLevel}` : ''}</b><small>${combatHudEscape(skill.description)}</small></span><span class="combat-skill__cost">${skill.cost} PA</span></button>`).join('');
+  return skills.map(skill => `<button type="button" class="btn combat-skill campaign-ui-button campaign-ui-button--${skill.disabled ? 'disabled' : 'secondary'}${skill.disabled ? ' dis' : ''}" data-s="${combatHudEscape(skill.id)}"${skill.disabled ? ' disabled' : ''} title="${combatHudEscape([skill.description, skill.facts].filter(Boolean).join(' '))}"><span class="combat-skill__icon" aria-hidden="true">${combatHudEscape(skill.icon || '✦')}</span><span class="combat-skill__copy"><b>${combatHudEscape(skill.name)}${skill.upgradeLevel ? ` +${skill.upgradeLevel}` : ''}</b><small>${combatHudEscape(skill.description)}</small>${skill.facts ? `<small class="combat-skill__facts">${combatHudEscape(skill.facts)}</small>` : ''}</span><span class="combat-skill__cost">${skill.cost} PA</span></button>`).join('');
 }
 
 export interface CombatHudPreview { attacker: string; action: string; target: string; targetCount: number; helpful: boolean; cost?: number; accuracy?: number | null; estimate?: number; valueLabel?: string; alliesHit?: number }

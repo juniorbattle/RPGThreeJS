@@ -1622,6 +1622,13 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   letter-spacing: .1em;
   text-transform: uppercase;
 }
+.skill-card__facts {
+  display: block;
+  margin-top: 4px;
+  color: #e6c77e;
+  font: 600 10px/1.4 var(--ui-font-title);
+  letter-spacing: .02em;
+}
 .skill-card__hint {
   display: block;
   margin-top: 2px;

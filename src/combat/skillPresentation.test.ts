@@ -210,9 +210,11 @@ describe('hero skill action contracts', () => {
   });
 
   it('keeps healing, purification and hybrid ultimates as real multi-effect actions', () => {
+    // Skills pass 2026-11-11: Purification reads its zone (radius 0, the selected ally) so its +2 zone reaches adjacent allies.
+    expect(skillById.get('w_purify')).toMatchObject({ radius: 0, targetMode: 'ally' });
     expect(skillById.get('w_purify')?.effects).toEqual(expect.arrayContaining([
-      expect.objectContaining({ kind: 'heal', targetSource: 'selected' }),
-      expect.objectContaining({ kind: 'dispel', dispelType: 'negative', targetSource: 'selected' }),
+      expect.objectContaining({ kind: 'heal', target: 'allies' }),
+      expect.objectContaining({ kind: 'dispel', dispelType: 'negative', target: 'allies' }),
     ]));
     expect(skillById.get('p_holy_strike')?.effects).toEqual(expect.arrayContaining([
       expect.objectContaining({ kind: 'damage', target: 'enemies' }),
