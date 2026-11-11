@@ -33,19 +33,62 @@ La phrase du [rapport du 11 novembre](../reports/playtest-combat-2026-11-11.md) 
 
 ## Texte proposé pour l’amendement 1.22.0
 
-`PROPOSED FUTURE DESIGN`, à approuver par l’opérateur. Les sections ci-dessous seraient ajoutées en tête des contrats nommés. Ensuite viendraient `docs/contracts/README.md`, `contracts.manifest.json`, la nouvelle baseline immuable et ses références (AGENTS.md, skills, protocole).
+`PROPOSED FUTURE DESIGN`, à approuver par l’opérateur. Relu par contracts-guardian le 2026-11-11 : PASS WITH WARNINGS ; ses corrections de formulation sont reprises ci-dessous. Les deux sections seraient ajoutées en tête des contrats nommés. Viendraient ensuite :
+- l’entrée 1.22.0 de `docs/contracts/README.md` ;
+- `contracts.manifest.json` (`contractSetVersion` 1.22.0, une entrée `approvedAmendments` avec la tâche, la décision, les deux contrats changés et les règles remplacées) ;
+- la nouvelle baseline immuable, posée dans un commit opérationnel suivant, et toutes ses références : la garde d’AGENTS.md, les skills, le protocole, le validateur ;
+- la mise à jour des skills `ui-accessibility`, `combat-vfx-sprites` et `cinematics-journey`, qui décrivent encore le mouvement réduit par l’OS.
 
 ### COMBAT_AND_VFX.md — « Final audit combat rules — OD-2026-11-11-E »
 
 > Dedicated `PRODUCTION-CONTRACTS-FINAL-AUDIT-1`, set 1.22.0, [operator decision](../autonomy/FINAL_AUDIT_OPERATOR_DECISION_2026-11-11.md), follows the final audit. It adds two combat rules and changes one, as exceptions to the "New rules" bullet of set 1.20.0, which otherwise stays in force.
-> - **Plateau scaling.** When a fight starts, the tactical runtime multiplies each foe's maximum and starting HP, and the damage each foe deals, by the factor of the fight's plateau: Lion 1.00, Bear 1.10, Dragon 1.20, Scorpion 1.30, final act 1.40. The plateau comes from the fight's authored configuration. The factor is transient and never saved. Formations, foe counts, skills, AI, heroes, rewards and the frozen demo are unchanged. The operator may retune the five factors by an operator decision without a new amendment.
-> - **Charge break.** From the moment a boss or an elite shows its CHARGE warning until the start of its next turn, the runtime adds up the damage the company deals to it. If that total reaches 15 % of its maximum HP, the charge breaks: the ultimate is not cast, the cycle restarts as after an ultimate, and the combat log and the CHARGE badge say so in text. While the warning is up, the badge shows the break progress in text, readable without colour. A charge breaks at most once. Brisé keeps its own effect on the cycle, and Fury is unchanged.
-> - **Guard reserve.** For a boss or an elite, the AP its cycle keeps in reserve (the tempo reserve of OD-2026-11-11-A) do not count toward Guard. Only AP above that reserve give the +3 END per AP. Every other unit keeps the existing Guard rule.
+> - **Plateau scaling.** RunSystem names the fight's plateau in the combat launch request; a fight launched without one uses 1.00. The tactical runtime multiplies each foe's maximum and starting HP, and the direct damage of each hit a foe deals, by the plateau's factor: Lion 1.00, Bear 1.10, Dragon 1.20, Scorpion 1.30, final act 1.40. Scaled values are rounded to an integer, with a minimum of 1, and the damage preview shows the scaled value. Foes that enter later (a second wave, a boss phase) are scaled the same way. Damage over time, clan supports, heroes, formations, foe counts, skills, AI, rewards and the frozen demo are unchanged. The factor is transient and never saved. The five factors are this contract's values; any change to them requires a new amendment.
+> - **Charge break.** While a boss or an elite's intent badge shows CHARGE or ULTIME, and until it casts its ultimate or its next turn begins, whichever comes first, the runtime adds up the damage the company deals to it. Damage dealt before the badge appeared does not count, and the progress starts from zero each time the window opens. If the total reaches 15 % of the unit's maximum HP, the charge breaks: the ultimate is not cast, the ultimate cooldown returns to its full value and the badge clears, as after a skipped turn, and the combat log says so in text. While the window is open, the badge shows the break progress in text, readable without colour. A charge breaks at most once per window. The progress is transient and never saved; a resumed fight starts without it. Brisé keeps its own effect on the cycle, and Fury is unchanged.
+> - **Guard reserve.** For a boss or an elite, Guard counts only the AP above its cycle reserve (`bossApReserve` for its current ultimate cooldown, evaluated at the end of its turn after the Souffle): Guard is those AP, capped at 5, at +3 END per AP, and the Guard feedback text shows that amount. Every other unit keeps the existing Guard rule.
 > - **Truth and presentation.** The tactical runtime alone decides the factor, the break and Guard; presentation shows only resolved events, with the existing feedback text and cues and no new FX recipe, sound family or cue identity. Every other rule of this contract is unchanged, including the four-hero limit, closed Ultimates, Fury and the boss phases of set 1.20.0.
 
 ### UI_AND_ACCESSIBILITY.md — « Reduced motion is the in-game setting — OD-2026-11-11-E »
 
-> Dedicated `PRODUCTION-CONTRACTS-FINAL-AUDIT-1`, set 1.22.0. Reduced motion is the in-game setting alone: it is off by default, the player changes it in Réglages, and the choice is kept on the device outside the saves. The operating system's reduced-motion preference no longer requests it. This supersedes "OS or game reduction independently requests reduced motion" (set 1.3.0), "OS reduced motion and game reduction each request the reduced-motion alternative; explicit game false cannot suppress the OS" (`PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1`) and the OS half of every other "OS or game reduced motion" clause, including the living tableaux of PRESENTATION_AND_MEDIA. Every reduced-motion alternative those clauses define stays as written, now requested by the in-game setting. Browser evidence covers normal motion and the in-game reduced motion, and checks that an emulated OS preference alone leaves motion on. The settings menu stops saying the OS keeps motion reduced.
+> Dedicated `PRODUCTION-CONTRACTS-FINAL-AUDIT-1`, set 1.22.0. Reduced motion is the in-game setting alone: it is off by default, the player changes it in Réglages, and the choice is kept on the device outside the saves. The operating system's reduced-motion preference no longer requests it. This supersedes "independent OS/game reduced motion" (Option C compositions), "OS or game reduction independently requests reduced motion" (set 1.3.0), "OS reduced motion and game reduction each request the reduced-motion alternative; explicit game false cannot suppress the OS" and "normal and OS-only reduced motion" (`PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1`), and the OS half of every other "OS or game reduced motion" or "OS/game reduced motion" clause, including those of PRESENTATION_AND_MEDIA. Every reduced-motion alternative those clauses define stays as written, now requested by the in-game setting. Browser evidence covers normal motion and the in-game reduced motion, and checks that an emulated OS preference alone leaves motion on. The settings menu no longer says that the OS keeps motion reduced.
+
+## Répliques proposées pour B7
+
+`PROPOSED FUTURE DESIGN`, à approuver mot à mot. Les répliques ne citent que des faits déjà établis par les plateaux. Les effets ne changent pas : au Tournoi, la relation du verdict remplace toujours celle du plateau (OD-2026-11-09-A).
+
+### a. Verdicts du Tournoi quand le clan est déjà allié
+
+La variante ne joue que si l’alliance du plateau existe : `bearMinesAbandoned` pour le Corbeau, `dragonWolfAlliance` pour le Loup, `scorpionCodexProtected` pour le Phénix. Elle remplace trois répliques : la supplique du champion, sa réponse s’il est relevé, et la réponse de Marian s’il est humilié. Les indices des deux choix changent aussi.
+
+| Clan | Supplique (remplace l’actuelle) | Relevé | Humilié (Marian) |
+| --- | --- | --- | --- |
+| Corbeau | « Dans les galeries de l’Ours, vous avez tenu parole au Corbeau. Ici, l’arène ne connaît pas les dettes. Faites de moi ce que vous voudrez. » | « Deux fois que vous tenez parole envers le Corbeau. Il ne l’oubliera pas. » | « Il nous croyait alliés. Ce que le Corbeau nous devait, nous venons de l’effacer. » |
+| Loup | « Aux Pics, vous avez laissé le Cristal au Loup. Je n’attendais pas de vous retrouver de l’autre côté de l’arène. Finissez-en. » | « Le Cristal hier, ma vie aujourd’hui. La dette du Loup envers vous ne fait que grandir. » | « Le Loup avait choisi de nous faire confiance. Il ne refera pas cette erreur. » |
+| Phénix | « Au temple, vous avez laissé notre codex en paix. Je ne pensais pas plier un jour le genou devant vous. » | « Vous avez épargné notre flamme au temple, et moi dans cette arène. Le Phénix vous restera fidèle. » | « Au temple, ils nous avaient crus. Le Phénix ne croira plus notre parole. » |
+
+Indices des choix dans cette variante :
+- Relever le champion : « Le clan … reste votre allié » et « Une parole tenue deux fois ».
+- L’humilier : « Les tribunes acclament » et « Une alliance trahie ».
+
+### b. Le jeune dragon du Lion, rappelé au plateau du Dragon
+
+Une réplique s’insère dans la scène « Nid du jeune dragon », après la remarque de Séraphine. Elle ne dit pas que c’est le même dragon.
+
+| Fait du Lion | Locuteur | Réplique |
+| --- | --- | --- |
+| `sparedYoungDragon` | Kestrel | « Ce n’est pas le premier jeune dragon que nous croisons. Dans les terres du Lion, nous avions scellé un nid sans y toucher. » |
+| `challengedYoungDragon` | Séraphine | « Dans les terres du Lion, nous avons chassé un jeune dragon pour ses gemmes. Celui-ci ne pourrait même pas se défendre. » |
+
+Sans l’un de ces faits, la scène reste telle qu’elle est.
+
+### c. La crédibilité dite au jugement
+
+Une réplique du chef s’insère après celle des témoins. Le palier vient du calcul existant (`plateauFinale.ts` : 50 et 65 pour l’Ours, 60 et 75 pour le Dragon, 70 et 85 pour le Scorpion) ; la règle ne change pas.
+
+| Chef | Crédibilité haute | Crédible | Basse |
+| --- | --- | --- | --- |
+| Ancien Ours Borin | « Votre nom est arrivé ici avant vous, et il pèse lourd. Quand vous parlez, la montagne ne se méfie pas. » | « On parle de vous dans les vallées, et pas seulement en mal. Je veux bien vous croire sur parole. » | « Votre nom est arrivé avant vous, et il ne plaide pas pour vous. Vos paroles ne pèseront que ce que pèsent vos actes. » |
+| Ancien Dragon Kaelen | « Les Pics connaissent votre nom, et ils le prononcent avec respect. Votre parole a du poids devant moi. » | « Votre nom a monté les sentiers avant vous. Il ne suffit pas, mais je ne le repousse pas. » | « Votre nom est monté jusqu’ici, et il sent la cendre. Ne comptez pas sur lui pour parler à votre place. » |
+| Grand Inquisiteur | « Mes érudits ont aussi noté ce que l’on dit de vous, et cela vous honore. Votre parole entre dans mes registres sans réserve. » | « Ce que l’on dit de vous ne vous accuse pas. Je prendrai votre parole pour ce qu’elle vaut, et elle vaut quelque chose. » | « Ce que l’on dit de vous remplit une page que je préférerais ne pas lire. Ici, votre parole devra se prouver. » |
 
 ## Suite
 
