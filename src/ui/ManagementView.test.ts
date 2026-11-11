@@ -281,9 +281,8 @@ it('buys several units with one confirmation, within the gold and the stock (pla
   expect(root.querySelector('.trade-quantity__value')!.textContent).toBe('3');
   expect(root.querySelector<HTMLButtonElement>('[data-trade-qty="more"]')!.disabled).toBe(true);
   expect(root.querySelector<HTMLButtonElement>('[data-trade-qty="max"]')!.disabled).toBe(true);
-  expect(document.activeElement?.closest('.item-modal')).not.toBeNull();
-  expect((document.activeElement as HTMLButtonElement).disabled).toBe(false);
   const buy = root.querySelector<HTMLButtonElement>('.trade-footer [data-trade-step="confirm"]')!;
+  expect(document.activeElement).toBe(buy);
   expect(buy.textContent).toContain('Acheter ×3 · 51 or');
   expect(JSON.stringify(state)).toBe(untouched);
   buy.click();
@@ -309,6 +308,7 @@ it('jumps to the maximum the stock allows, steps back down, and sells a quantity
   expect(root.querySelector<HTMLButtonElement>('[data-trade-qty="less"]')!.disabled).toBe(true);
   root.querySelector<HTMLButtonElement>('[data-trade-qty="max"]')!.click();
   expect(root.querySelector('.trade-quantity__value')!.textContent).toBe('4');
+  expect((document.activeElement as HTMLElement).dataset.tradeStep).toBe('confirm');
   key('-');
   expect(root.querySelector('.trade-quantity__value')!.textContent).toBe('3');
   key('Escape');

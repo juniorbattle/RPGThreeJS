@@ -1272,7 +1272,7 @@ export class ManagementView {
     this.render();
     const pressed = this.overlay?.querySelector<HTMLButtonElement>(`[data-trade-qty="${step}"]`);
     if (pressed && !pressed.disabled) pressed.focus({ preventScroll: true });
-    else this.overlay?.querySelector<HTMLButtonElement>(`[data-trade-qty="${step === 'less' ? 'more' : 'less'}"]:not(:disabled), .trade-footer [data-trade-step="confirm"]:not(:disabled)`)?.focus({ preventScroll: true });
+    else this.overlay?.querySelector<HTMLButtonElement>(step === 'less' ? '[data-trade-qty="more"]:not(:disabled)' : '.trade-footer [data-trade-step="confirm"]:not(:disabled)')?.focus({ preventScroll: true });
   }
 
   /** Equips the item the fiche just bought or forged, through equipWeapon or equipAccessory. */
