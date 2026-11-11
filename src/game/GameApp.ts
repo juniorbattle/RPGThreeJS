@@ -49,6 +49,7 @@ import { demoEnvironmentPlateForContext } from '../render/demoEnvironmentPack';
 import { provisionalMark } from './postDemoContent';
 import { sceneMood, type NarrativeMood } from '../audio/moods';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
+import { CREDITS_LINES, hasCredits } from '../ui/credits';
 import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
 import { readMotionPreference, writeMotionPreference } from '../ui/MotionPreference';
@@ -329,6 +330,7 @@ export class GameApp {
           <button type="button" data-action="new" class="${this.saves.hasSave() ? '' : 'is-primary'}">Nouvelle chronique</button>
           <button type="button" data-action="continue" class="${this.saves.hasSave() ? 'is-primary' : ''}" ${this.saves.hasSave() ? '' : 'disabled'}>Continuer</button>
           <button type="button" data-action="settings">Réglages</button>
+          ${hasCredits() ? '<button type="button" data-action="credits">Crédits</button>' : ''}
           ${this.qaEnabled ? '<button type="button" class="title-screen__qa" data-action="qa">QA rencontres</button>' : ''}
         </div>
       </section>
@@ -339,9 +341,38 @@ export class GameApp {
     });
     this.chrome.querySelector('[data-action="continue"]')?.addEventListener('click', () => void this.continueChronicle());
     this.chrome.querySelector('[data-action="settings"]')?.addEventListener('click', () => this.openSettings());
+    this.chrome.querySelector('[data-action="credits"]')?.addEventListener('click', () => this.showCredits());
     this.chrome.querySelector('[data-action="qa"]')?.addEventListener('click', () => this.renderQaLab());
     (this.chrome.querySelector<HTMLButtonElement>('[data-action="continue"]:not(:disabled)')
       ?? this.chrome.querySelector<HTMLButtonElement>('[data-action="new"]'))?.focus();
+  }
+
+  /** The credits, from the operator's text only (OD-2026-11-11-E, final audit B9); Retour or Escape goes back. */
+  private showCredits(): void {
+    const section = document.createElement('section');
+    section.className = 'title-screen title-screen--credits ui-screen';
+    section.setAttribute('aria-labelledby', 'credits-title');
+    const title = document.createElement('h1');
+    title.id = 'credits-title';
+    title.textContent = 'Crédits';
+    const list = document.createElement('div');
+    list.className = 'title-screen__credits';
+    for (const line of CREDITS_LINES) {
+      const row = document.createElement('p');
+      row.textContent = line || ' ';
+      list.append(row);
+    }
+    const actions = document.createElement('div');
+    actions.className = 'title-screen__actions';
+    const back = document.createElement('button');
+    back.type = 'button';
+    back.textContent = 'Retour';
+    back.addEventListener('click', () => this.renderTitle());
+    actions.append(back);
+    section.append(title, list, actions);
+    section.addEventListener('keydown', (event) => { if (event.key === 'Escape') { event.preventDefault(); this.renderTitle(); } });
+    this.chrome.replaceChildren(section);
+    back.focus();
   }
 
   /**
@@ -1992,7 +2023,8 @@ export class GameApp {
       variant: 'launch',
       label: 'La chronique reprend',
       task: async () => {
-        this.state = this.saves.loadAuto() ?? this.saves.loadManual() ?? createInitialState();
+        // OD-2026-11-11-E (final audit B9): the most recent of the automatic and manual saves.
+        this.state = this.saves.loadLatest() ?? createInitialState();
         this.applyMotionPreference();
         this.prologue.close();
         this.exploration.close();

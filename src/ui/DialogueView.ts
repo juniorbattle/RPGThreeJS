@@ -1,4 +1,5 @@
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
+import { hasReadLine, markLineRead } from './ReadLines';
 import { provisionalMark } from '../game/postDemoContent';
 import { assets } from '../render/assetManifest';
 import type { Contest, DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../game/types';
@@ -93,6 +94,9 @@ export class DialogueView {
   private displaySegmentIndex = 0;
   private choiceScreenLanes: readonly NarrativeChoiceScreenLane[] = [];
   private stepTransitionInFlight = false;
+  /** Whether the current line had been shown on this device before this visit (OD-2026-11-11-E, final audit B9). */
+  private currentWasRead = false;
+  private fastForwarding = false;
 
   constructor(private readonly options: DialogueViewOptions) {}
 
@@ -142,12 +146,16 @@ export class DialogueView {
         <span class="dialogue__outcomes" aria-label="Conséquences"></span>
         <span class="dialogue__continue">Continuer ◆</span>
       </button>
+      <button class="dialogue__skip" type="button" hidden>Avance rapide ›› <span class="dialogue__skip-hint">répliques déjà lues</span></button>
     `;
     const card = this.overlay.querySelector<HTMLButtonElement>('.dialogue__box');
     if (card) decorateCampaignFrame(card, 'compact');
     (options.root ?? this.options.root).append(this.overlay);
     this.overlay.querySelector<HTMLButtonElement>('.dialogue__box')?.addEventListener('click', () => {
       void this.advancePresentation();
+    });
+    this.overlay.querySelector<HTMLButtonElement>('.dialogue__skip')?.addEventListener('click', () => {
+      void this.fastForward();
     });
     const completion = new Promise<void>((resolve) => {
       this.resolvePlay = resolve;
@@ -169,6 +177,8 @@ export class DialogueView {
     this.displaySegmentIndex = 0;
     this.choiceScreenLanes = [];
     this.stepTransitionInFlight = false;
+    this.currentWasRead = false;
+    this.fastForwarding = false;
     this.resolvePlay?.();
     this.resolvePlay = null;
   }
@@ -201,6 +211,8 @@ export class DialogueView {
     if (this.overlay !== overlay || this.sequence?.steps.find((candidate) => candidate.id === id) !== step) return;
     this.current = step;
     this.choiceLocked = false;
+    this.currentWasRead = this.sequence ? hasReadLine(this.sequence.id, step.id) : false;
+    if (this.sequence) markLineRead(this.sequence.id, step.id);
     const left = this.overlay.querySelector<HTMLElement>('.dialogue__portrait--left');
     const right = this.overlay.querySelector<HTMLElement>('.dialogue__portrait--right');
     const center = this.overlay.querySelector<HTMLElement>('.dialogue__portrait--center');
@@ -271,6 +283,7 @@ export class DialogueView {
         : 'Continuer ◆';
     this.typeText(text, this.displaySegments[0]!);
     this.updateAccessibleLabel(box);
+    this.syncFastForward();
     this.playOptions.onStepChange?.(step, presentation);
 
     if (step.effects.length && !this.appliedStepIds.has(step.id)) {
@@ -506,6 +519,37 @@ export class DialogueView {
     label.textContent = descriptor.label;
     badge.append(icon, label);
     return badge;
+  }
+
+  /** The fast-forward control shows on a line already read that leads on without a choice. */
+  private syncFastForward(): void {
+    const skip = this.overlay?.querySelector<HTMLButtonElement>('.dialogue__skip');
+    if (!skip) return;
+    skip.hidden = !(this.currentWasRead && this.current && !this.current.choices?.length);
+  }
+
+  /**
+   * Skips the lines already read, up to the next choice, the next unread line or the end of the scene. Each skipped
+   * line still goes through showStep, so its effects apply exactly as when it is read.
+   */
+  private async fastForward(): Promise<void> {
+    if (this.fastForwarding || !this.overlay) return;
+    this.fastForwarding = true;
+    this.options.onSound?.('confirm');
+    try {
+      for (let guard = 0; guard < 400; guard += 1) {
+        const step = this.current;
+        if (!this.overlay || !step || !this.currentWasRead || step.choices?.length || this.stepTransitionInFlight) break;
+        await this.advance(step.next ?? null);
+        if (this.current === step) break;
+      }
+    } finally {
+      this.fastForwarding = false;
+      this.syncFastForward();
+      const target = this.overlay?.querySelector<HTMLButtonElement>('.dialogue__choices button:not([disabled])')
+        ?? this.overlay?.querySelector<HTMLButtonElement>('.dialogue__box');
+      target?.focus({ preventScroll: true });
+    }
   }
 
   private async advance(next: string | null): Promise<void> {

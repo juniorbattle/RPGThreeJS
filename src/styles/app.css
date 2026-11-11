@@ -119,6 +119,8 @@ button { font: inherit; }
   font-size: 11px;
   font-weight: 700;
 }
+.title-screen__credits { max-height: 52vh; overflow-y: auto; margin: 0 0 24px; text-align: center; color: #e4dcc8; font: 400 15px/1.7 Inter, sans-serif; }
+.title-screen__credits p { margin: 0; }
 .title-screen__confirm { display: grid; justify-items: center; gap: 14px; max-width: 560px; }
 .title-screen__confirm p { margin: 0; color: #f1e4c4; font: 500 15px/1.6 Inter, sans-serif; text-align: center; }
 .title-screen__confirm .title-screen__actions { flex-wrap: wrap; justify-content: center; }
@@ -237,6 +239,11 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 /* Set 1.20.0 (post-demo): a draft scene is marked as such, on provisional images. */
 .dialogue__draft { position: absolute; top: 12px; right: 16px; z-index: 6; padding: 3px 8px; border: 1px solid rgba(240,179,106,.6); border-radius: 3px; background: rgba(16,12,8,.72); color: #f0b36a; font: 700 10px var(--ui-font-title); letter-spacing: .08em; text-transform: uppercase; pointer-events: none; }
 .exploration-stop__draft { top: 18px; right: 18px; }
+/* OD-2026-11-11-E (final audit B9): fast-forward over lines already read, below the provisional-art mark. */
+.dialogue__skip { position: absolute; top: 44px; right: 16px; z-index: 30; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid rgba(244, 217, 139, .55); border-radius: 4px; background: rgba(10, 14, 24, .82); color: var(--cream, #f4ead1); font: 700 12px var(--ui-font-title, Inter, sans-serif); letter-spacing: .06em; text-transform: uppercase; cursor: pointer; pointer-events: auto; }
+.dialogue__skip:hover, .dialogue__skip:focus-visible { border-color: var(--gold-bright, #f4d98b); }
+.dialogue__skip-hint { font: 500 11px Inter, sans-serif; letter-spacing: 0; text-transform: none; color: #c8d2e4; }
+@media (max-width: 600px) { .dialogue__skip-hint { display: none; } }
 .dialogue__brand--ate span::before,
 .dialogue__brand--ate span::after { background: linear-gradient(90deg, transparent, rgba(180,200,220,.45)); }
 .dialogue__brand--ate span::after { background: linear-gradient(90deg, rgba(180,200,220,.45), transparent); }

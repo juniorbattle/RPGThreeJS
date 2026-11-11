@@ -28,6 +28,11 @@ const AUTO_KEY = 'rpg-threejs:autosave:v6:campaign';
 const MANUAL_KEY = 'rpg-threejs:manual:v6:campaign';
 const SHARED_V6_AUTO_KEY = 'rpg-threejs:autosave:v6';
 const SHARED_V6_MANUAL_KEY = 'rpg-threejs:manual:v6';
+/**
+ * When each slot was last written (final audit 2026-11-11, OD-2026-11-11-E B9), so "Continuer" and the defeat recovery
+ * take the most recent save. It sits beside the slots, never inside a save: the V6 schema is unchanged.
+ */
+const SAVE_TIMES_KEY = 'rpg-threejs:save-times:v1';
 const V5_AUTO_KEY = 'rpg-threejs:autosave:v5';
 const V5_MANUAL_KEY = 'rpg-threejs:manual:v5';
 const V4_AUTO_KEY = 'rpg-threejs:autosave:v4';
@@ -306,19 +311,28 @@ export class SaveRepository {
     return this.load(MANUAL_KEY) ?? this.load(SHARED_V6_MANUAL_KEY) ?? this.load(V5_MANUAL_KEY) ?? this.load(V4_MANUAL_KEY) ?? this.load(V3_MANUAL_KEY) ?? this.load(V2_MANUAL_KEY) ?? this.load(LEGACY_MANUAL_KEY);
   }
 
+  /** The most recent of the two slots; the automatic one first when their times are unknown or equal. */
+  loadLatest(): GameState | null {
+    return this.manualIsNewer() ? this.loadManual() ?? this.loadAuto() : this.loadAuto() ?? this.loadManual();
+  }
+
   /** Read-only recovery selection: never cross the selected game identity or write a slot. */
   loadRecovery(current: GameState): GameState | null {
     const sameGame = (saved: GameState | null) => saved && saved.run.id === current.run.id
       && saved.run.seed === current.run.seed ? saved : null;
-    return sameGame(this.loadAuto()) ?? sameGame(this.loadManual());
+    return this.manualIsNewer()
+      ? sameGame(this.loadManual()) ?? sameGame(this.loadAuto())
+      : sameGame(this.loadAuto()) ?? sameGame(this.loadManual());
   }
 
   saveAuto(state: GameState): void {
     localStorage.setItem(AUTO_KEY, JSON.stringify(gameStateSchema.parse(state)));
+    this.stamp('auto');
   }
 
   saveManual(state: GameState): void {
     localStorage.setItem(MANUAL_KEY, JSON.stringify(gameStateSchema.parse(state)));
+    this.stamp('manual');
   }
 
   hasSave(): boolean {
@@ -327,9 +341,38 @@ export class SaveRepository {
   }
 
   clear(): void {
+    localStorage.removeItem(SAVE_TIMES_KEY);
     for (const key of [AUTO_KEY, MANUAL_KEY, SHARED_V6_AUTO_KEY, SHARED_V6_MANUAL_KEY, V5_AUTO_KEY, V5_MANUAL_KEY, V4_AUTO_KEY, V4_MANUAL_KEY, V3_AUTO_KEY, V3_MANUAL_KEY, V2_AUTO_KEY, V2_MANUAL_KEY, LEGACY_AUTO_KEY, LEGACY_MANUAL_KEY]) {
       localStorage.removeItem(key);
     }
+  }
+
+  private times(): { auto?: number; manual?: number } {
+    try {
+      const value = JSON.parse(localStorage.getItem(SAVE_TIMES_KEY) ?? '{}') as { auto?: unknown; manual?: unknown };
+      return {
+        ...(typeof value.auto === 'number' ? { auto: value.auto } : {}),
+        ...(typeof value.manual === 'number' ? { manual: value.manual } : {}),
+      };
+    } catch {
+      return {};
+    }
+  }
+
+  private manualIsNewer(): boolean {
+    const { auto, manual } = this.times();
+    return manual !== undefined && (auto === undefined || manual > auto);
+  }
+
+  /** Two saves in the same millisecond still order: the later write wins. */
+  private stamp(slot: 'auto' | 'manual'): void {
+    try {
+      const times = this.times();
+      const other = slot === 'auto' ? times.manual : times.auto;
+      const now = Date.now();
+      times[slot] = other !== undefined && now <= other ? other + 1 : now;
+      localStorage.setItem(SAVE_TIMES_KEY, JSON.stringify(times));
+    } catch { /* The order is a convenience: a refused write keeps the automatic slot first. */ }
   }
 
   private load(key: string): GameState | null {

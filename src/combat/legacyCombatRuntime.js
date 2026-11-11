@@ -2541,13 +2541,22 @@ function renderSettings(){ if(!dom.settings)return;
     // OD-2026-11-05-B: in the campaign, sound and motion live in the game's single settings menu.
     (CAMPAIGN_MODE?'<button class="settings__row" type="button" data-s="settings" role="menuitem"><span>Son, affichage et commandes</span><i class="settings__hint">⚙</i></button>'
       :'<button class="settings__row" type="button" data-s="fxhd" role="menuitemcheckbox" aria-checked="'+(!REQUESTED_REDUCED_GRAPHICS)+'"><span>Effets HD</span><i class="settings__sw'+(!REQUESTED_REDUCED_GRAPHICS?' on':'')+'"></i></button>')+
-    '<button class="settings__row" type="button" data-s="help" role="menuitem"><span>Aide et commandes</span><i class="settings__hint">?</i></button>';
+    '<button class="settings__row" type="button" data-s="help" role="menuitem"><span>Aide et commandes</span><i class="settings__hint">?</i></button>'+
+    // OD-2026-11-11-E (final audit B9): leave a fight as a defeat, after a second, explicit confirmation.
+    (CAMPAIGN_MODE&&!G.over?(abandonArmed
+      ?'<button class="settings__row settings__row--danger" type="button" data-s="abandon-confirm" role="menuitem"><span>Confirmer : abandonner (la dernière sauvegarde sera rechargée)</span><i class="settings__hint">!</i></button>'
+      :'<button class="settings__row" type="button" data-s="abandon" role="menuitem"><span>Abandonner le combat</span><i class="settings__hint">⚑</i></button>'):'');
   dom.settings.querySelector('[data-s="fxhd"]')?.addEventListener('click',()=>{ REQUESTED_REDUCED_GRAPHICS=!REQUESTED_REDUCED_GRAPHICS; applyGraphics(); renderSettings(); });
   dom.settings.querySelector('[data-s="settings"]')?.addEventListener('click',()=>{ toggleSettings(false); dom.settingsBtn?.focus({preventScroll:true}); combatAudio.settings(); });
   dom.settings.querySelector('[data-s="help"]').onclick=()=>{ const d=dom.help&&dom.help.querySelector('details'); if(d)d.open=true; toggleSettings(false); };
+  dom.settings.querySelector('[data-s="abandon"]')?.addEventListener('click',()=>{ abandonArmed=true; renderSettings(); dom.settings.querySelector('[data-s="abandon-confirm"]')?.focus({preventScroll:true}); });
+  dom.settings.querySelector('[data-s="abandon-confirm"]')?.addEventListener('click',abandonCombat);
 }
+var abandonArmed=false; // var: renderSettings may run before this line during start-up
+/** Abandoning ends the fight as a defeat: the defeat screen then reloads the last save of this chronicle. */
+function abandonCombat(){ abandonArmed=false; toggleSettings(false); if(G.over||G.busy)return; logMsg('La compagnie abandonne le combat.'); endGame(false); }
 function toggleSettings(show){ if(!dom.settings)return; const open=(show==null)?dom.settings.classList.contains('hidden'):show;
-  if(open){ renderSettings(); dom.settings.classList.remove('hidden'); } else dom.settings.classList.add('hidden');
+  if(open){ renderSettings(); dom.settings.classList.remove('hidden'); } else { dom.settings.classList.add('hidden'); abandonArmed=false; }
   if(dom.settingsBtn)dom.settingsBtn.classList.toggle('is-open',open); }
 function initLogPanel(){ if(!dom.log||dom.log.dataset.ready)return; dom.log.innerHTML='<button type="button" class="log-toggle" aria-expanded="false"><span>Journal</span><b>0</b></button><div class="log-body"></div>'; dom.log.dataset.ready='1'; dom.log.classList.add('is-collapsed'); dom.log.classList.remove('is-open','hidden'); const button=dom.log.querySelector('.log-toggle'); if(button)button.onclick=()=>toggleLogPanel(); }
 function toggleLogPanel(show){ if(!dom.log)return; initLogPanel(); const open=show==null?dom.log.classList.contains('is-collapsed'):show; dom.log.classList.toggle('is-collapsed',!open); dom.log.classList.toggle('is-open',open); const button=dom.log.querySelector('.log-toggle'); if(button)button.setAttribute('aria-expanded',open?'true':'false'); }

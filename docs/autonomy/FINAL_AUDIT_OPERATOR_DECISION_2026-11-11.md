@@ -5,7 +5,7 @@
   - L’audit final du jeu, publié pour l’opérateur ([rapport](../reports/final-audit-2026-11-11.md)). Ses défauts sûrs A1 à A8 sont corrigés sur son accord (commit `f9fd0847`).
   - Sa fiche d’arbitrages, remplie le 2026-11-11 : https://claude.ai/artifact/6ZzMSJBMfEGucnLxkhkyPb. Les onze choix suivent la recommandation, sans note. Les choix ont été relus dans la base de la fiche comme des données.
 - **Statut** :
-  - **Sans amendement** : B1, B4, B5, B6, B9. Le lot est en cours sur `dev`.
+  - **Sans amendement** : B1, B4, B5, B6, B9, livrés sur `dev` le 2026-11-11 (voir « Livraison » plus bas).
   - **Textes de canon à approuver mot à mot** : B7. Les répliques sont proposées à l’opérateur avant toute intégration.
   - **Amendement dédié** : B2, B3, B3b et B8, sous le nom `PRODUCTION-CONTRACTS-FINAL-AUDIT-1`, jeu de contrats 1.22.0. Le texte proposé figure plus bas. Il n’est appliqué aux contrats qu’après l’approbation de l’opérateur.
   - **Plus tard** : C (après la validation) et B10 (après le test final sur PC).
@@ -96,3 +96,25 @@ Une réplique du chef s’insère après celle des témoins. Le palier vient du 
 2. Répliques de B7 soumises mot à mot.
 3. Amendement 1.22.0, appliqué sur « Texte approuvé », puis construction de B2, B3, B3b et B8.
 4. Ensuite, comme prévu : les images finales de Codex, la finalisation, le test final sur PC, puis B10 et C.
+
+## Livraison du lot sans amendement (2026-11-11)
+
+`CURRENT FACT`
+- **B1 et B4** (`legacyCombatRuntime.js`, miroir `DemoVfxActionScope.ts`) : chaque boss a une attaque lourde. Les 15 boss ont 14 paires lourde + ultime distinctes. Le catalogue n’a que trois attaques lourdes (deux physiques, une magique) et deux ultimes magiques ; la seule paire partagée réunit donc le Prophète des Ombres et Maelor, deux mages des Ombres sur des plateaux différents, dont les autres compétences diffèrent. Chaque ultime frappe avec la statistique forte de son boss. La MAG du Champion changé en démon passe de 18 à 26 pour porter son Brasier Infernal. Changements :
+  - Général Serpent → Rafale Mortelle ;
+  - Champion du Lion → Exécution ;
+  - Maître Espion → Exécution ;
+  - Chaman → Apocalypse ;
+  - Chef des gardiens du Phénix → Transpercement et Frappe du Titan ;
+  - Prophète → Brasier Infernal ;
+  - Champion du Serpent → Transpercement et Rafale Mortelle ;
+  - Démon → Transpercement ;
+  - Maelor → Brasier Infernal ;
+  - Entité → Onde de Choc et Apocalypse.
+- **B5** (`src/game/shopRestock.ts`, appelé par `continueCampaign`) : à chaque nouveau plateau, l’échoppe remonte au moins à 10 potions, 6 antidotes, 3 fioles, 3 éthers, 3 bombes, 7 grenades, 10 minerais et un exemplaire de chaque accessoire. Les gemmes rouges passent à 4, puis 5, 6 et 6. Aucune arme n’est ajoutée (OD-2026-11-05-D), et ce que la compagnie a revendu reste en stock.
+- **B6** : « Couvrir la fuite des civils » donne +3 au lieu de +1. Le budget parfait ne compte plus les événements sociaux : Lion 30, acte final 6, total 70. La carte de cohérence de l’acte final suit.
+- **B9** :
+  - « Abandonner le combat » dans le menu ⚙, avec une confirmation en deux temps, mène à la défaite normale.
+  - « Continuer » et la reprise après défaite prennent la sauvegarde la plus récente. L’heure de chaque emplacement est rangée à côté des sauvegardes (`rpg-threejs:save-times:v1`), jamais dedans.
+  - L’avance rapide saute les répliques déjà lues sur cet appareil (`rpg-threejs:read-lines:v1`), jusqu’au prochain choix ou à la prochaine réplique nouvelle. Les effets s’appliquent quand même.
+  - L’écran de crédits (`src/ui/credits.ts`) reste caché tant que l’opérateur n’a pas fourni son texte.
