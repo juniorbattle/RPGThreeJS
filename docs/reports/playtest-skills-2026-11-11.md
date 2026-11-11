@@ -7,7 +7,7 @@
 | BASELINE | `4d8e1d0d` sur `dev`, puis `origin/playtest-combat` fusionnée en avance rapide (`d1bfdb10`) avant toute modification du runtime ; jeu de contrats 1.20.0, baseline immuable `6c965169c2dc153cafd5a8609d914cf8de723ff3` |
 | BRANCH | `playtest-skills` (créée depuis `origin/dev`), intégrée dans `dev` par fusion sur l’ordre de l’opérateur du 2026-11-11 |
 | HEAD | `08b72cd2` (dernier commit de la passe) |
-| STATUS | merged : décisions de l’opérateur du 2026-11-11 appliquées (section 9, OD-2026-11-11-C) ; D8 tranché ensuite (OD-2026-11-11-D), livré sur `playtest-skills` |
+| STATUS | merged : décisions de l’opérateur du 2026-11-11 appliquées (section 9, OD-2026-11-11-C) ; D8 tranché ensuite (OD-2026-11-11-D), intégré à `dev` |
 | MERGED_IN | `dev` : commit de fusion `80c7c150` sur l’intégration de l’échoppe, puis fusion avec l’intégration de `playtest-combat` (`4d1ec003`, cycle à quatre tours, Furie, amendement 1.21.0). |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |
