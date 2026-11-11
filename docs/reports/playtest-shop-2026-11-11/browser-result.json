@@ -1,0 +1,639 @@
+{
+ "recordedAt": "2026-11-11T04:59:41.010Z",
+ "cases": [
+  {
+   "name": "1366x768",
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found) @ /favicon.ico",
+    "Failed to load resource: the server responded with a status of 404 (Not Found) @ /favicon.ico"
+   ],
+   "reducedAttr": "false",
+   "transition": "0.15s, 0.15s, 0.15s",
+   "filters": {
+    "overflowX": false,
+    "boxes": [
+     {
+      "text": "Tout 20",
+      "x": 92,
+      "right": 194.828125,
+      "w": 102.828125,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Armes 4",
+      "x": 202.828125,
+      "right": 306.3125,
+      "w": 103.484375,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Accessoires 6",
+      "x": 314.3125,
+      "right": 460.578125,
+      "w": 146.265625,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Consommables 8",
+      "x": 468.578125,
+      "right": 635.765625,
+      "w": 167.1875,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Matériaux 2",
+      "x": 643.765625,
+      "right": 778.421875,
+      "w": 134.65625,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     }
+    ]
+   },
+   "filterFocus": {
+    "tag": "BUTTON",
+    "data": {
+     "shopFilter": "consumables"
+    },
+    "visible": true,
+    "outline": "solid",
+    "outlineWidth": "2px",
+    "boxShadow": "none"
+   },
+   "consumableRows": 8,
+   "pressed": "true",
+   "qtyFocus": {
+    "tag": "BUTTON",
+    "data": {
+     "tradeQty": "more"
+    },
+    "visible": true,
+    "outline": "solid",
+    "outlineWidth": "2px",
+    "boxShadow": "none"
+   },
+   "qtyValue": "3",
+   "quantityBoxes": {
+    "overflowX": false,
+    "boxes": [
+     {
+      "text": "−",
+      "x": 438,
+      "right": 486,
+      "w": 48,
+      "h": 44,
+      "font": 20,
+      "clipped": false
+     },
+     {
+      "text": "3",
+      "x": 494,
+      "right": 550,
+      "w": 56,
+      "h": 45,
+      "font": 20,
+      "clipped": false
+     },
+     {
+      "text": "+",
+      "x": 558,
+      "right": 606,
+      "w": 48,
+      "h": 44,
+      "font": 20,
+      "clipped": false
+     },
+     {
+      "text": "Max ×7",
+      "x": 614,
+      "right": 697,
+      "w": 83,
+      "h": 44,
+      "font": 11,
+      "clipped": false
+     },
+     {
+      "text": "Retour",
+      "x": 673.59375,
+      "right": 758.1875,
+      "w": 84.59375,
+      "h": 36,
+      "font": 11,
+      "clipped": false
+     },
+     {
+      "text": "Acheter ×3 · 51 or",
+      "x": 768.1875,
+      "right": 928,
+      "w": 159.8125,
+      "h": 36,
+      "font": 11,
+      "clipped": false
+     }
+    ]
+   },
+   "qtyAfterPlus": "4",
+   "limitText": "Jusqu’à 7 : votre or (125). Touches + et − du clavier aussi.",
+   "buttonText": "Acheter ×4 · 68 or",
+   "confirmText": "Confirmer l’achat de 4 × Potion légère pour 68 or ? Votre or passera de 125 à 57.",
+   "doneText": "✓ Acheté : 4 × Potion légère 68 or payés. Dans le sac : 8. Votre or : 57.",
+   "goldDelta": -68,
+   "potionDelta": 4,
+   "stockDelta": -4,
+   "saveKeys": true,
+   "sellButton": "Vendre ×3 · 6 or",
+   "forgeGroups": [
+    "Forgeable maintenant 2",
+    "Pas encore forgeable 15"
+   ],
+   "forgeChips": {
+    "overflowX": false,
+    "boxes": [
+     {
+      "text": "Tout 17",
+      "x": 92,
+      "right": 191.09375,
+      "w": 99.09375,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Armes 11",
+      "x": 199.09375,
+      "right": 304.828125,
+      "w": 105.734375,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Accessoires 6",
+      "x": 312.828125,
+      "right": 459.09375,
+      "w": 146.265625,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "☐ Forgeable maintenant 2",
+      "x": 968.28125,
+      "right": 1212,
+      "w": 243.71875,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     }
+    ]
+   },
+   "forgeReadyFocus": {
+    "tag": "BUTTON",
+    "data": {
+     "forgeReady": ""
+    },
+    "visible": true,
+    "outline": "solid",
+    "outlineWidth": "2px",
+    "boxShadow": "none"
+   },
+   "forgeAfterFilter": {
+    "groups": [
+     "Forgeable maintenant 2"
+    ],
+    "empty": []
+   }
+  },
+  {
+   "name": "390x844",
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found) @ /favicon.ico"
+   ],
+   "reducedAttr": "false",
+   "transition": "0.15s, 0.15s, 0.15s",
+   "filters": {
+    "overflowX": false,
+    "boxes": [
+     {
+      "text": "Tout 20",
+      "x": 14,
+      "right": 115.96875,
+      "w": 101.96875,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Armes 4",
+      "x": 121.96875,
+      "right": 224.59375,
+      "w": 102.625,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Accessoires 6",
+      "x": 230.59375,
+      "right": 376,
+      "w": 145.40625,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Consommables 8",
+      "x": 14,
+      "right": 208.265625,
+      "w": 194.265625,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Matériaux 2",
+      "x": 214.265625,
+      "right": 376,
+      "w": 161.734375,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     }
+    ]
+   },
+   "filterFocus": {
+    "tag": "BUTTON",
+    "data": {
+     "shopFilter": "consumables"
+    },
+    "visible": true,
+    "outline": "solid",
+    "outlineWidth": "2px",
+    "boxShadow": "none"
+   },
+   "consumableRows": 8,
+   "pressed": "true",
+   "qtyFocus": {
+    "tag": "BUTTON",
+    "data": {
+     "tradeQty": "more"
+    },
+    "visible": true,
+    "outline": "solid",
+    "outlineWidth": "2px",
+    "boxShadow": "none"
+   },
+   "qtyValue": "3",
+   "quantityBoxes": {
+    "overflowX": false,
+    "boxes": [
+     {
+      "text": "−",
+      "x": 33,
+      "right": 81,
+      "w": 48,
+      "h": 44,
+      "font": 20,
+      "clipped": false
+     },
+     {
+      "text": "3",
+      "x": 89,
+      "right": 145,
+      "w": 56,
+      "h": 45,
+      "font": 20,
+      "clipped": false
+     },
+     {
+      "text": "+",
+      "x": 153,
+      "right": 201,
+      "w": 48,
+      "h": 44,
+      "font": 20,
+      "clipped": false
+     },
+     {
+      "text": "Max ×7",
+      "x": 209,
+      "right": 357,
+      "w": 148,
+      "h": 44,
+      "font": 11,
+      "clipped": false
+     },
+     {
+      "text": "Retour",
+      "x": 33,
+      "right": 152.390625,
+      "w": 119.390625,
+      "h": 36,
+      "font": 11,
+      "clipped": false
+     },
+     {
+      "text": "Acheter ×3 · 51 or",
+      "x": 162.390625,
+      "right": 357,
+      "w": 194.609375,
+      "h": 36,
+      "font": 11,
+      "clipped": false
+     }
+    ]
+   },
+   "qtyAfterPlus": "4",
+   "limitText": "Jusqu’à 7 : votre or (125). Touches + et − du clavier aussi.",
+   "buttonText": "Acheter ×4 · 68 or",
+   "confirmText": "Confirmer l’achat de 4 × Potion légère pour 68 or ? Votre or passera de 125 à 57.",
+   "doneText": "✓ Acheté : 4 × Potion légère 68 or payés. Dans le sac : 8. Votre or : 57.",
+   "goldDelta": -68,
+   "potionDelta": 4,
+   "stockDelta": -4,
+   "saveKeys": true,
+   "sellButton": "Vendre ×3 · 6 or",
+   "forgeGroups": [
+    "Forgeable maintenant 2",
+    "Pas encore forgeable 15"
+   ],
+   "forgeChips": {
+    "overflowX": false,
+    "boxes": [
+     {
+      "text": "Tout 17",
+      "x": 14,
+      "right": 112.71875,
+      "w": 98.71875,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Armes 11",
+      "x": 118.71875,
+      "right": 224.09375,
+      "w": 105.375,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Accessoires 6",
+      "x": 230.09375,
+      "right": 376,
+      "w": 145.90625,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "☐ Forgeable maintenant 2",
+      "x": 14,
+      "right": 376,
+      "w": 362,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     }
+    ]
+   },
+   "forgeReadyFocus": {
+    "tag": "BUTTON",
+    "data": {
+     "forgeReady": ""
+    },
+    "visible": true,
+    "outline": "solid",
+    "outlineWidth": "2px",
+    "boxShadow": "none"
+   },
+   "forgeAfterFilter": {
+    "groups": [
+     "Forgeable maintenant 2"
+    ],
+    "empty": []
+   }
+  },
+  {
+   "name": "1366x768-game-reduced",
+   "errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found) @ /favicon.ico"
+   ],
+   "reducedAttr": "true",
+   "transition": "0s",
+   "filters": {
+    "overflowX": false,
+    "boxes": [
+     {
+      "text": "Tout 20",
+      "x": 92,
+      "right": 194.828125,
+      "w": 102.828125,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Armes 4",
+      "x": 202.828125,
+      "right": 306.3125,
+      "w": 103.484375,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Accessoires 6",
+      "x": 314.3125,
+      "right": 460.578125,
+      "w": 146.265625,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Consommables 8",
+      "x": 468.578125,
+      "right": 635.765625,
+      "w": 167.1875,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Matériaux 2",
+      "x": 643.765625,
+      "right": 778.421875,
+      "w": 134.65625,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     }
+    ]
+   },
+   "filterFocus": {
+    "tag": "BUTTON",
+    "data": {
+     "shopFilter": "consumables"
+    },
+    "visible": true,
+    "outline": "solid",
+    "outlineWidth": "2px",
+    "boxShadow": "none"
+   },
+   "consumableRows": 8,
+   "pressed": "true",
+   "qtyFocus": {
+    "tag": "BUTTON",
+    "data": {
+     "tradeQty": "more"
+    },
+    "visible": true,
+    "outline": "solid",
+    "outlineWidth": "2px",
+    "boxShadow": "none"
+   },
+   "qtyValue": "3",
+   "quantityBoxes": {
+    "overflowX": false,
+    "boxes": [
+     {
+      "text": "−",
+      "x": 438,
+      "right": 486,
+      "w": 48,
+      "h": 44,
+      "font": 20,
+      "clipped": false
+     },
+     {
+      "text": "3",
+      "x": 494,
+      "right": 550,
+      "w": 56,
+      "h": 45,
+      "font": 20,
+      "clipped": false
+     },
+     {
+      "text": "+",
+      "x": 558,
+      "right": 606,
+      "w": 48,
+      "h": 44,
+      "font": 20,
+      "clipped": false
+     },
+     {
+      "text": "Max ×7",
+      "x": 614,
+      "right": 697,
+      "w": 83,
+      "h": 44,
+      "font": 11,
+      "clipped": false
+     },
+     {
+      "text": "Retour",
+      "x": 673.59375,
+      "right": 758.1875,
+      "w": 84.59375,
+      "h": 36,
+      "font": 11,
+      "clipped": false
+     },
+     {
+      "text": "Acheter ×3 · 51 or",
+      "x": 768.1875,
+      "right": 928,
+      "w": 159.8125,
+      "h": 36,
+      "font": 11,
+      "clipped": false
+     }
+    ]
+   },
+   "qtyAfterPlus": "4",
+   "limitText": "Jusqu’à 7 : votre or (125). Touches + et − du clavier aussi.",
+   "buttonText": "Acheter ×4 · 68 or",
+   "confirmText": "Confirmer l’achat de 4 × Potion légère pour 68 or ? Votre or passera de 125 à 57.",
+   "doneText": "✓ Acheté : 4 × Potion légère 68 or payés. Dans le sac : 8. Votre or : 57.",
+   "goldDelta": -68,
+   "potionDelta": 4,
+   "stockDelta": -4,
+   "saveKeys": true,
+   "sellButton": "Vendre ×3 · 6 or",
+   "forgeGroups": [
+    "Forgeable maintenant 2",
+    "Pas encore forgeable 15"
+   ],
+   "forgeChips": {
+    "overflowX": false,
+    "boxes": [
+     {
+      "text": "Tout 17",
+      "x": 92,
+      "right": 191.09375,
+      "w": 99.09375,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Armes 11",
+      "x": 199.09375,
+      "right": 304.828125,
+      "w": 105.734375,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "Accessoires 6",
+      "x": 312.828125,
+      "right": 459.09375,
+      "w": 146.265625,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     },
+     {
+      "text": "☐ Forgeable maintenant 2",
+      "x": 968.28125,
+      "right": 1212,
+      "w": 243.71875,
+      "h": 44,
+      "font": 12,
+      "clipped": false
+     }
+    ]
+   },
+   "forgeReadyFocus": {
+    "tag": "BUTTON",
+    "data": {
+     "forgeReady": ""
+    },
+    "visible": true,
+    "outline": "solid",
+    "outlineWidth": "2px",
+    "boxShadow": "none"
+   },
+   "forgeAfterFilter": {
+    "groups": [
+     "Forgeable maintenant 2"
+    ],
+    "empty": []
+   }
+  }
+ ]
+}

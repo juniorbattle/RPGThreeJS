@@ -3,22 +3,28 @@ import {
   craftRecipeById, isSkillUnlockedForHero, itemById, items, resolveInitialSkillId, unitById, weaponById, weapons,
 } from '../game/catalog';
 import {
-  buyItem, craftItem, equipAccessory, equipWeapon, excludeUnit, getForgeIngredients, getForgeRecipes, isUsefulToCompany,
-  getSkillUpgradeCost, sellItem, upgradeSkill, useConsumable,
+  buyItems, craftItem, equipAccessory, equipWeapon, excludeUnit, getBuyUnitPrice, getForgeIngredients, getForgeRecipes,
+  getMaxBuyQuantity, getMaxSellQuantity, getSellUnitPrice, getSkillUpgradeCost, sellItems, upgradeSkill, useConsumable,
 } from '../game/management';
 import { candidateWearers, currentWearers, freeAccessorySlot, previewCraft, previewEquip, type CraftPreview, type HeroChange } from './shopPreview';
+import {
+  filterForgeEntries, filterShopEntries, forgeEntries, forgeFilterCounts, SHOP_CATEGORY_LABELS, shopEntries, shopFilterCounts,
+  type ForgeEntry, type ForgeFilter, type ShopFilter,
+} from './shopFilters';
 import { getReputationRule, getShopPrice } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import { skills as SKILL_DEFS } from '../game/skills';
 import type { GameState, InnateGiftModifier, ItemCategory, ItemDefinition, UnitDefinition, UnitInstance, WeaponDefinition } from '../game/types';
 import type { UiSoundFeedback } from './UiSoundPlayer';
+import { prefersReducedMotion } from './ReducedMotion';
 
 type ManagementTab = 'clan' | 'inventory' | 'shop' | 'skills';
 type ControlFocusKey = { tag: string; attributes: Array<[string, string]> };
 /** The fiche a shop line or a forge recipe opens: preview, confirmation, then the result (playtest 2026-11-07). */
 interface TradeOutcome { title: string; lines: string[]; change: HeroChange | null; changeHeading: string; equipped: boolean }
-interface TradeState { kind: 'buy' | 'sell' | 'craft'; id: string; stage: 'preview' | 'confirm' | 'done'; outcome: TradeOutcome | null; revision: number }
+/** `quantity` is how many units a purchase or a sale covers, chosen on the fiche and confirmed once (playtest 2026-11-11). */
+interface TradeState { kind: 'buy' | 'sell' | 'craft'; id: string; stage: 'preview' | 'confirm' | 'done'; outcome: TradeOutcome | null; revision: number; quantity: number }
 
 function escapeAttribute(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -121,6 +127,10 @@ export class ManagementView {
   private tab: ManagementTab = 'clan';
   private shopId = 'valmir';
   private shopMode: 'buy' | 'sell' | 'craft' = 'buy';
+  /** View-only list filters (playtest 2026-11-11); never saved, reset each time the register opens. */
+  private shopFilters: Record<'buy' | 'sell', ShopFilter> = { buy: 'all', sell: 'all' };
+  private forgeFilter: ForgeFilter = 'all';
+  private forgeReadyOnly = false;
   private shopEnabled = false;
   private shopOnly = false;
   private skillsEnabled = false;
@@ -144,10 +154,14 @@ export class ManagementView {
         : initialTab;
     this.shopId = shopId ?? 'valmir';
     this.shopWallet = shopWallet;
+    this.shopFilters = { buy: 'all', sell: 'all' };
+    this.forgeFilter = 'all';
+    this.forgeReadyOnly = false;
     this.selectedUnitId = this.options.getState().clan.members[0]?.id ?? '';
     this.overlay = document.createElement('section');
     this.overlay.className = `management ui-screen ui-screen--dialog${this.shopOnly ? ' management--shop-only' : ''}`;
     applyScreenEnvironment(this.overlay, 'management');
+    this.overlay.dataset.reducedMotion = String(prefersReducedMotion(this.options.getState().settings.reducedGraphics));
     this.overlay.setAttribute('role', 'dialog');
     this.overlay.setAttribute('aria-modal', 'true');
     this.overlay.setAttribute('aria-label', 'Registre de Compagnie');
@@ -191,6 +205,8 @@ export class ManagementView {
     const scrollEls = this.overlay.querySelectorAll<HTMLElement>('.ui-scroll-panel, .shop-view, .inventory-grid, .inventory-view');
     const savedScrolls = Array.from(scrollEls).map((el) => el.scrollTop);
     const state = this.options.getState();
+    // The game's motion setting, or the OS request, turns off the register's transitions (UI contract, reduced motion).
+    this.overlay.dataset.reducedMotion = String(prefersReducedMotion(state.settings.reducedGraphics));
     const gems = state.inventory.materials.red_gem ?? 0;
     this.overlay.innerHTML = `
       <div class="management__veil"></div>
@@ -265,6 +281,12 @@ export class ManagementView {
       } else if (this.activeEquipSlot) { this.activeEquipSlot = null; this.previewItemId = null; this.render(); }
       else if (this.activeItemId) { this.activeItemId = null; this.render(); }
       else this.close();
+      return;
+    }
+    if ((event.key === '+' || event.key === '-') && this.trade?.stage === 'preview' && this.trade.kind !== 'craft'
+      && this.overlay?.querySelector('[data-trade-qty]')) {
+      event.preventDefault();
+      this.changeTradeQuantity(event.key === '+' ? 'more' : 'less');
       return;
     }
     if (event.key !== 'Tab') return;
@@ -808,22 +830,38 @@ export class ManagementView {
   private renderShop(): string {
     const state = this.options.getState();
     if (this.shopMode === 'craft') return this.renderForge();
-    const buying = this.shopMode === 'buy';
-    const source = buying
-      ? Object.entries(state.shops[this.shopId]?.stock ?? {})
-      : (Object.keys(categoryLabels) as ItemCategory[]).flatMap((category) => Object.entries(state.inventory[category]));
+    const mode = this.shopMode;
+    const buying = mode === 'buy';
     // OD-2026-11-05-D: the shop offers only what the company can use; selling still lists everything carried.
-    const rows = source.filter(([id, quantity]) => quantity > 0 && (!buying || isUsefulToCompany(state, id)))
-      .map(([id, quantity]) => this.shopRow(id, quantity)).join('');
+    const entries = shopEntries(state, this.shopId, mode);
+    const filter = this.shopFilters[mode];
+    const shown = filterShopEntries(entries, filter);
+    const groups = filter === 'all'
+      ? [...new Set(shown.map((entry) => entry.category))].map((category) => ({ category, rows: shown.filter((entry) => entry.category === category) }))
+      : [{ category: filter, rows: shown }];
+    const rows = groups.map(({ category, rows: lines }) => lines.length ? `<section class="shop-group" aria-label="${escapeAttribute(`${SHOP_CATEGORY_LABELS[category]} · ${lines.length}`)}">
+        ${filter === 'all' ? `<p class="shop-group__title">${SHOP_CATEGORY_LABELS[category]} <span>${lines.length}</span></p>` : ''}
+        ${lines.map((entry) => this.shopRow(entry.id, entry.quantity)).join('')}
+      </section>` : '').join('');
+    const chips = shopFilterCounts(entries, filter).map(({ filter: value, count }) =>
+      this.filterChip('data-shop-filter', value, value === 'all' ? 'Tout' : SHOP_CATEGORY_LABELS[value], count, filter === value, 'article')).join('');
     const intro = buying
-      ? `Choisissez un article : sa fiche montre ce qu’il change pour chaque héros, puis vous confirmez l’achat. ${WEAPON_TIER_RULE}`
-      : 'Choisissez un objet du sac : sa fiche montre le prix de vente, puis vous confirmez la vente.';
+      ? `Choisissez un article : sa fiche montre ce qu’il change pour chaque héros, la quantité à prendre et le prix total, puis vous confirmez l’achat. ${WEAPON_TIER_RULE}`
+      : 'Choisissez un objet du sac : sa fiche montre le prix de vente et la quantité à vendre, puis vous confirmez la vente.';
+    const empty = entries.length ? 'Aucun article de ce type.' : buying ? 'Aucun article disponible.' : 'Le sac est vide.';
     return `<div class="shop-view">
       <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Échoppe du refuge · ${getReputationRule(state.reputation).label}</p><h3>Le Comptoir du Cerf</h3><small>${intro}</small></div>
         ${this.shopToggle()}
       </div>
-      <div class="shop-list">${rows || '<p class="empty-copy">Aucun article disponible.</p>'}</div>
+      <div class="shop-filters" role="group" aria-label="${buying ? 'Filtrer les articles par type' : 'Filtrer le sac par type'}">${chips}</div>
+      <div class="shop-list">${rows || `<p class="empty-copy">${empty}</p>`}</div>
     </div>`;
+  }
+
+  /** One filter button: a toggle that says what it shows and how many lines, never an action on game truth. */
+  private filterChip(attribute: string, value: string, label: string, count: number, pressed: boolean, noun: string): string {
+    const spoken = `${label} · ${count} ${noun}${count > 1 ? 's' : ''}`;
+    return `<button type="button" class="shop-filter${pressed ? ' is-active' : ''}" ${attribute}="${value}" aria-pressed="${pressed}" aria-label="${escapeAttribute(spoken)}">${label} <span class="shop-filter__count">${count}</span></button>`;
   }
 
   /** One shop line. It opens the item's fiche; nothing is bought or sold before the fiche's confirmation (playtest 2026-11-07). */
@@ -851,36 +889,59 @@ export class ManagementView {
 
   private renderForge(): string {
     const state = this.options.getState();
-    const rows = getForgeRecipes(state).map((recipe) => {
-      const output = itemById.get(recipe.output.itemId);
-      const preview = previewCraft(state, recipe.id, this.shopId);
-      if (!output || !preview) return '';
-      const tier = output.category === 'weapons' ? weaponById.get(output.id)?.tier : undefined;
-      const named = describeItemSkillEffects(recipe.output.itemId).join(' · ');
-      const effect = preview.wearer && preview.wearer.stats.length
-        ? `${preview.wearer.name}, qui l’équipera aussitôt : ${this.statSummary(preview.wearer)}`
-        : recipe.preview;
-      const missing = preview.missing.map((entry) => entry.itemId === 'gold' ? `${entry.need - entry.have} or` : `${entry.name} ×${entry.need - entry.have}`);
-      return `<article class="craft-recipe ui-panel ui-panel--soft${preview.ready ? ' is-ready' : ''}">
-        <div class="craft-recipe__output">
-          <span class="item-row__icon ui-chip" aria-hidden="true">${output.icon}</span>
-          <div><strong>${recipe.name}</strong><small>Donne : ${output.name}${tier !== undefined ? ` <span class="item-row__tier">${weaponTierLabel(tier)}</span>` : ''}</small></div>
-        </div>
-        <div class="craft-recipe__meta">
-          <p><b>Effet</b> ${effect}</p>
-          ${named ? `<p class="craft-recipe__skill"><b>Compétences</b> ${named}</p>` : ''}
-        </div>
-        <ul class="craft-recipe__needs trade-needs">${this.craftNeeds(recipe.id, preview)}</ul>
-        <p class="craft-recipe__status${preview.ready ? ' is-ready' : ''}">${preview.ready ? 'Prêt à forger' : `Il manque : ${missing.join(', ')}`}</p>
-        <button type="button" class="ui-button${preview.ready ? '' : ' ui-button--secondary'}" data-craft="${recipe.id}" aria-label="${escapeAttribute(`${preview.ready ? 'Forger' : 'Voir ce qu’il manque pour forger'} ${output.name} · ${preview.gold} or`)}">${preview.ready ? 'Forger…' : 'Voir ce qu’il manque'}</button>
-      </article>`;
-    }).join('');
+    const entries = forgeEntries(state);
+    const { ready, later } = filterForgeEntries(entries, this.forgeFilter, this.forgeReadyOnly);
+    const group = (title: string, list: ForgeEntry[], modifier: string) => list.length
+      ? `<section class="craft-group craft-group--${modifier}" aria-label="${escapeAttribute(`${title} · ${list.length}`)}">
+          <p class="shop-group__title">${title} <span>${list.length}</span></p>
+          <div class="craft-list">${list.map((entry) => this.craftCard(entry.recipe.id)).join('')}</div>
+        </section>`
+      : '';
+    const labels: Record<ForgeFilter, string> = { all: 'Tout', weapons: 'Armes', accessories: 'Accessoires' };
+    const chips = forgeFilterCounts(entries, this.forgeReadyOnly).map(({ filter, count }) =>
+      this.filterChip('data-forge-filter', filter, labels[filter], count, this.forgeFilter === filter, 'recette')).join('');
+    const readyCount = filterForgeEntries(entries, this.forgeFilter, true).ready.length;
+    const readyToggle = `<button type="button" class="shop-filter shop-filter--toggle${this.forgeReadyOnly ? ' is-active' : ''}" data-forge-ready aria-pressed="${this.forgeReadyOnly}" aria-label="${escapeAttribute(`Seulement ce qui est forgeable maintenant · ${readyCount} recette${readyCount > 1 ? 's' : ''}`)}"><span aria-hidden="true">${this.forgeReadyOnly ? '☑' : '☐'}</span> Forgeable maintenant <span class="shop-filter__count">${readyCount}</span></button>`;
+    const body = group('Forgeable maintenant', ready, 'ready') + group('Pas encore forgeable', later, 'later');
+    const empty = this.forgeReadyOnly && entries.length
+      ? 'Rien n’est forgeable maintenant avec ce filtre : décochez « Forgeable maintenant » pour voir ce qu’il manque.'
+      : entries.length ? 'Aucune recette de ce type.' : 'Aucune recette utile à la compagnie.';
     return `<div class="shop-view shop-view--forge">
       <div class="shop-view__intro"><div><p class="eyebrow ui-eyebrow">Forge du refuge · ${getReputationRule(state.reputation).label}</p><h3>Artisan du refuge</h3><small>La forge prend d’abord le sac, puis l’objet que porte un héros, qui équipe aussitôt le résultat. Chaque recette montre ce qu’elle prend et ce qu’elle donne ; vous confirmez avant de forger. Prix selon la réputation. ${WEAPON_TIER_RULE}</small></div>
         ${this.shopToggle()}
       </div>
-      <div class="craft-list">${rows}</div>
+      <div class="shop-filters" role="group" aria-label="Filtrer les recettes par type de résultat">${chips}${readyToggle}</div>
+      ${body || `<p class="empty-copy">${empty}</p>`}
     </div>`;
+  }
+
+  /** One recipe card of the forge list; its button opens the recipe's fiche. */
+  private craftCard(recipeId: string): string {
+    const state = this.options.getState();
+    const recipe = craftRecipeById.get(recipeId);
+    if (!recipe) return '';
+    const output = itemById.get(recipe.output.itemId);
+    const preview = previewCraft(state, recipe.id, this.shopId);
+    if (!output || !preview) return '';
+    const tier = output.category === 'weapons' ? weaponById.get(output.id)?.tier : undefined;
+    const named = describeItemSkillEffects(recipe.output.itemId).join(' · ');
+    const effect = preview.wearer && preview.wearer.stats.length
+      ? `${preview.wearer.name}, qui l’équipera aussitôt : ${this.statSummary(preview.wearer)}`
+      : recipe.preview;
+    const missing = preview.missing.map((entry) => entry.itemId === 'gold' ? `${entry.need - entry.have} or` : `${entry.name} ×${entry.need - entry.have}`);
+    return `<article class="craft-recipe ui-panel ui-panel--soft${preview.ready ? ' is-ready' : ''}">
+      <div class="craft-recipe__output">
+        <span class="item-row__icon ui-chip" aria-hidden="true">${output.icon}</span>
+        <div><strong>${recipe.name}</strong><small>Donne : ${output.name}${tier !== undefined ? ` <span class="item-row__tier">${weaponTierLabel(tier)}</span>` : ''}</small></div>
+      </div>
+      <div class="craft-recipe__meta">
+        <p><b>Effet</b> ${effect}</p>
+        ${named ? `<p class="craft-recipe__skill"><b>Compétences</b> ${named}</p>` : ''}
+      </div>
+      <ul class="craft-recipe__needs trade-needs">${this.craftNeeds(recipe.id, preview)}</ul>
+      <p class="craft-recipe__status${preview.ready ? ' is-ready' : ''}">${preview.ready ? 'Prêt à forger' : `Il manque : ${missing.join(', ')}`}</p>
+      <button type="button" class="ui-button${preview.ready ? '' : ' ui-button--secondary'}" data-craft="${recipe.id}" aria-label="${escapeAttribute(`${preview.ready ? 'Forger' : 'Voir ce qu’il manque pour forger'} ${output.name} · ${preview.gold} or`)}">${preview.ready ? 'Forger…' : 'Voir ce qu’il manque'}</button>
+    </article>`;
   }
 
   /** Each ingredient and the gold a recipe takes, met or missing, and where it comes from. */
@@ -1017,34 +1078,69 @@ export class ManagementView {
     </div>`;
   }
 
+  /**
+   * Prices and limits of a purchase or sale, read from the owner (management.ts): unit price at today's reputation,
+   * how many the stock, the gold or the bag allow, and the fiche's quantity kept within them.
+   */
+  private tradeQuantity(trade: TradeState, item: ItemDefinition): { unit: number; max: number; quantity: number; total: number; reason: string } {
+    const state = this.options.getState();
+    const buying = trade.kind === 'buy';
+    const unit = (buying ? getBuyUnitPrice(state, item.id) : getSellUnitPrice(item.id)) ?? 0;
+    const max = buying ? getMaxBuyQuantity(state, this.shopId, item.id) : getMaxSellQuantity(state, this.shopId, item.id);
+    const stock = state.shops[this.shopId]?.stock[item.id] ?? 0;
+    const quantity = Math.max(1, Math.min(trade.quantity, Math.max(1, max)));
+    const reason = !buying ? 'tout ce que porte le sac' : max >= stock ? 'tout le stock' : `votre or (${state.gold})`;
+    return { unit, max, quantity, total: unit * quantity, reason };
+  }
+
+  /** The quantity picker of a buy or sell fiche: minus, plus and maximum, each a plain button reachable by keyboard and pad. */
+  private quantityPicker(trade: TradeState, item: ItemDefinition): string {
+    const { max, quantity, total, reason } = this.tradeQuantity(trade, item);
+    if (max <= 1) return '';
+    const verb = trade.kind === 'buy' ? 'acheter' : 'vendre';
+    return `<section class="trade-section trade-quantity" role="group" aria-label="${escapeAttribute(`Quantité à ${verb}`)}">
+      <p class="trade-section__title">Quantité à ${verb}</p>
+      <div class="trade-quantity__row">
+        <button type="button" class="ui-button ui-button--secondary trade-quantity__step" data-trade-qty="less"${quantity <= 1 ? ' disabled' : ''} aria-label="${escapeAttribute(`Un de moins · quantité ${quantity}`)}">−</button>
+        <output class="trade-quantity__value" aria-live="polite" aria-label="${escapeAttribute(`Quantité ${quantity} sur ${max}, total ${total} or`)}">${quantity}</output>
+        <button type="button" class="ui-button ui-button--secondary trade-quantity__step" data-trade-qty="more"${quantity >= max ? ' disabled' : ''} aria-label="${escapeAttribute(`Un de plus · quantité ${quantity}`)}">+</button>
+        <button type="button" class="ui-button ui-button--secondary trade-quantity__max" data-trade-qty="max"${quantity >= max ? ' disabled' : ''} aria-label="${escapeAttribute(`Le maximum · ${max}`)}">Max ×${max}</button>
+      </div>
+      <small class="trade-quantity__limit">Jusqu’à ${max} : ${reason}. Touches + et − du clavier aussi.</small>
+    </section>`;
+  }
+
   private shopTradeBody(trade: TradeState, item: ItemDefinition): string {
     const state = this.options.getState();
     const buying = trade.kind === 'buy';
-    const price = buying ? getShopPrice(item.price, state.reputation) : Math.floor(item.price / 2);
+    const { unit: price, max, quantity, total } = this.tradeQuantity(trade, item);
     const owned = state.inventory[item.category][item.id] ?? 0;
     const stock = state.shops[this.shopId]?.stock[item.id] ?? 0;
-    const able = buying ? stock > 0 && state.gold >= price : owned > 0;
+    const able = max > 0;
+    const named = `${quantity > 1 ? `${quantity} × ` : ''}${item.name}`;
     if (trade.stage === 'done') {
       const again = item.category === 'consumables' || item.category === 'materials' ? able : false;
       const equipFirst = buying && !trade.outcome?.equipped && Boolean(this.tradeEquipSection(item.id));
       return `${this.tradeDone(trade)}
         ${buying ? this.tradeEquipSection(item.id, equipFirst) : ''}
         <div class="trade-footer"><div class="weapon-modal__actions">
-          ${again ? `<button type="button" class="ui-button ui-button--secondary" data-trade-step="confirm">${buying ? 'En acheter un autre' : 'En vendre un autre'} · ${price} or</button>` : ''}
+          ${again ? `<button type="button" class="ui-button ui-button--secondary" data-trade-step="confirm" aria-label="${escapeAttribute(`${buying ? 'En acheter encore' : 'En vendre encore'} ${named} · ${total} or`)}">${buying ? 'En acheter encore' : 'En vendre encore'}${quantity > 1 ? ` ×${quantity}` : ''} · ${total} or</button>` : ''}
           <button type="button" class="ui-button" data-trade-close${equipFirst ? '' : ' data-autofocus'}>Continuer</button>
         </div></div>`;
     }
-    const goldAfter = buying ? state.gold - price : state.gold + price;
+    const goldAfter = buying ? state.gold - total : state.gold + total;
     const summary = `<dl class="trade-summary">
-      <div><dt>${buying ? 'Prix' : 'Prix de vente'}</dt><dd>${price} or</dd></div>
+      <div><dt>${buying ? 'Prix unitaire' : 'Prix de vente'}</dt><dd>${price} or</dd></div>
+      ${max > 1 || quantity > 1 ? `<div><dt>Total ×${quantity}</dt><dd>${total} or</dd></div>` : ''}
       <div><dt>Votre or</dt><dd>${state.gold} → ${goldAfter}</dd></div>
-      <div><dt>Dans le sac</dt><dd>${owned} → ${buying ? owned + 1 : Math.max(0, owned - 1)}</dd></div>
+      <div><dt>Dans le sac</dt><dd>${owned} → ${buying ? owned + quantity : Math.max(0, owned - quantity)}</dd></div>
+      ${buying ? `<div><dt>En stock</dt><dd>${stock} → ${Math.max(0, stock - quantity)}</dd></div>` : ''}
     </dl>`;
-    const warning = buying && state.gold < price ? `<p class="trade-warning" role="note">Il vous manque ${price - state.gold} or.</p>` : '';
+    const warning = buying && stock > 0 && state.gold < price ? `<p class="trade-warning" role="note">Il vous manque ${price - state.gold} or.</p>` : '';
     const action = buying ? 'Acheter' : 'Vendre';
     const footer = trade.stage === 'confirm'
       ? `<div class="trade-confirm" role="group" aria-label="Confirmation">
-          <p>Confirmer ${buying ? 'l’achat' : 'la vente'} de <strong>${item.name}</strong> pour <strong>${price} or</strong> ? Votre or passera de ${state.gold} à ${goldAfter}.</p>
+          <p>Confirmer ${buying ? 'l’achat' : 'la vente'} de <strong>${named}</strong> pour <strong>${total} or</strong> ? Votre or passera de ${state.gold} à ${goldAfter}.</p>
           <div class="weapon-modal__actions">
             <button type="button" class="ui-button ui-button--secondary" data-trade-step="preview">Annuler</button>
             <button type="button" class="ui-button" data-trade-confirm data-autofocus>${buying ? 'Confirmer l’achat' : 'Confirmer la vente'}</button>
@@ -1052,9 +1148,10 @@ export class ManagementView {
         </div>`
       : `<div class="weapon-modal__actions">
           <button type="button" class="ui-button ui-button--secondary" data-trade-close${able ? '' : ' data-autofocus'}>Retour</button>
-          <button type="button" class="ui-button" data-trade-step="confirm"${able ? ' data-autofocus' : ' disabled'} aria-label="${escapeAttribute(`${action} ${item.name} · ${price} or`)}">${action} · ${price} or</button>
+          <button type="button" class="ui-button" data-trade-step="confirm"${able ? ' data-autofocus' : ' disabled'} aria-label="${escapeAttribute(`${action} ${named} · ${total} or`)}">${action}${quantity > 1 ? ` ×${quantity}` : ''} · ${total} or</button>
         </div>`;
     return `${buying ? this.itemEffectSection(item) : this.sellNote(item)}
+      ${trade.stage === 'preview' && able ? this.quantityPicker(trade, item) : ''}
       ${summary}${warning}
       <div class="trade-footer">${footer}</div>`;
   }
@@ -1063,7 +1160,7 @@ export class ManagementView {
     const state = this.options.getState();
     const wearers = currentWearers(state, item.id).map((unit) => unit.name);
     return `<section class="trade-section"><p class="trade-section__title">Vente</p>
-      <p class="trade-hero__line">Seul un exemplaire du sac est vendu${wearers.length ? ` ; l’exemplaire équipé sur ${wearers.join(', ')} le reste` : ''}. L’échoppe reprend l’objet à moitié prix.</p>
+      <p class="trade-hero__line">Seuls les exemplaires du sac se vendent${wearers.length ? ` ; l’exemplaire équipé sur ${wearers.join(', ')} le reste` : ''}. L’échoppe reprend l’objet à moitié prix.</p>
     </section>`;
   }
 
@@ -1141,19 +1238,41 @@ export class ManagementView {
     } else {
       const item = itemById.get(trade.id);
       if (!item) return;
-      const price = trade.kind === 'buy' ? getShopPrice(item.price, state.reputation) : Math.floor(item.price / 2);
+      // One confirmation covers the whole quantity; the owner buys or sells all of it or nothing.
+      const { quantity, total } = this.tradeQuantity(trade, item);
       const ok = trade.kind === 'buy'
-        ? buyItem(state, this.shopId, item.id, this.shopWallet === 'temporary')
-        : sellItem(state, this.shopId, item.id, this.shopWallet === 'temporary');
+        ? buyItems(state, this.shopId, item.id, quantity)
+        : sellItems(state, this.shopId, item.id, quantity);
       if (!ok) { this.options.onSound?.('refused'); return; }
+      trade.quantity = quantity;
       const owned = state.inventory[item.category][item.id] ?? 0;
+      const named = `${quantity > 1 ? `${quantity} × ` : ''}${item.name}`;
       trade.outcome = trade.kind === 'buy'
-        ? { title: `Acheté : ${item.name}`, lines: [`Dans le sac : ${owned}. Votre or : ${state.gold}.`], change: null, changeHeading: '', equipped: false }
-        : { title: `Vendu : ${item.name}`, lines: [`+${price} or. Votre or : ${state.gold}. Il en reste ${owned} dans le sac.`], change: null, changeHeading: '', equipped: false };
+        ? { title: `Acheté : ${named}`, lines: [`${quantity > 1 ? `${total} or payés. ` : ''}Dans le sac : ${owned}. Votre or : ${state.gold}.`], change: null, changeHeading: '', equipped: false }
+        : { title: `Vendu : ${named}`, lines: [`+${total} or. Votre or : ${state.gold}. Il en reste ${owned} dans le sac.`], change: null, changeHeading: '', equipped: false };
     }
     trade.stage = 'done';
     trade.revision += 1;
     this.changed();
+  }
+
+  /**
+   * Moves the fiche's quantity within what the owner allows; nothing is bought or sold here. When the pressed button
+   * reaches its limit and turns off, focus moves to the fiche's main action rather than being lost.
+   */
+  private changeTradeQuantity(step: 'less' | 'more' | 'max'): void {
+    const trade = this.trade;
+    const item = trade && trade.kind !== 'craft' && trade.stage === 'preview' ? itemById.get(trade.id) : undefined;
+    if (!trade || !item) return;
+    const { max, quantity } = this.tradeQuantity(trade, item);
+    const next = step === 'max' ? max : Math.max(1, Math.min(max, quantity + (step === 'more' ? 1 : -1)));
+    if (max < 1 || next === quantity) { this.options.onSound?.('refused'); return; }
+    trade.quantity = next;
+    this.options.onSound?.('navigate');
+    this.render();
+    const pressed = this.overlay?.querySelector<HTMLButtonElement>(`[data-trade-qty="${step}"]`);
+    if (pressed && !pressed.disabled) pressed.focus({ preventScroll: true });
+    else this.overlay?.querySelector<HTMLButtonElement>(step === 'less' ? '[data-trade-qty="more"]:not(:disabled)' : '.trade-footer [data-trade-step="confirm"]:not(:disabled)')?.focus({ preventScroll: true });
   }
 
   /** Equips the item the fiche just bought or forged, through equipWeapon or equipAccessory. */
@@ -1285,11 +1404,40 @@ export class ManagementView {
         this.render();
       });
     });
+    // List filters change only what the list shows (playtest 2026-11-11); focus stays on the pressed filter.
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-shop-filter]').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (this.shopMode === 'craft') return;
+        const filter = button.dataset.shopFilter as ShopFilter;
+        if (this.shopFilters[this.shopMode] !== filter) this.options.onSound?.('navigate');
+        this.shopFilters[this.shopMode] = filter;
+        this.render();
+      });
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-forge-filter]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.forgeFilter as ForgeFilter;
+        if (this.forgeFilter !== filter) this.options.onSound?.('navigate');
+        this.forgeFilter = filter;
+        this.render();
+      });
+    });
+    this.overlay.querySelector<HTMLButtonElement>('[data-forge-ready]')?.addEventListener('click', () => {
+      this.forgeReadyOnly = !this.forgeReadyOnly;
+      this.options.onSound?.('navigate');
+      this.render();
+    });
+    this.overlay.querySelectorAll<HTMLButtonElement>('[data-trade-qty]').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        this.changeTradeQuantity(button.dataset.tradeQty as 'less' | 'more' | 'max');
+      });
+    });
     // A shop line or a recipe opens its fiche; the owner action runs only on the fiche's confirmation.
     this.overlay.querySelectorAll<HTMLButtonElement>('[data-trade], [data-craft]').forEach((button) => {
       button.addEventListener('click', () => {
         const craft = button.dataset.craft;
-        this.trade = { kind: craft ? 'craft' : button.dataset.trade as 'buy' | 'sell', id: craft ?? button.dataset.item ?? '', stage: 'preview', outcome: null, revision: 0 };
+        this.trade = { kind: craft ? 'craft' : button.dataset.trade as 'buy' | 'sell', id: craft ?? button.dataset.item ?? '', stage: 'preview', outcome: null, revision: 0, quantity: 1 };
         this.options.onSound?.('confirm');
         this.render();
       });
