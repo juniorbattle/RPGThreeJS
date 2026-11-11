@@ -67,7 +67,7 @@ Variantes possibles : seuil à 50 % des PV ou dès le début du combat ; élites
 
 - **Constat mesuré.** Le moteur estompe à 0,42 (`COMBAT_PRESENTATION.units.focusDimOpacity`) toute unité qui n’est ni active, ni survolée, ni cible valide. La réponse des sprites pixel est non linéaire (`pixelFocusResponse` : ≈ 38 % de couverture, teinte assombrie et désaturée). Sur les captures, une unité à 0,42 a presque disparu, et on ne voit plus que son anneau. C’est le bon effet pour un **ciblage** : seules les cibles valides (0,82) et celle survolée (1) restent nettes. Je n’ai donc pas renforcé cet estompage. Un essai à 0,30 les rendait totalement invisibles, et il a été abandonné.
 - **Déplacement : le vrai défaut.** Le même 0,42 s’appliquait en choisissant une case : alliés et ennemis disparaissaient, alors qu’il faut les voir pour lire les obstacles et les angles d’attaque de dos (« DOS ! »). Les autres unités passent à **0,62** pendant le choix d’une case (≈ 65 % de couverture, en retrait mais lisibles ; nouveau réglage `focusMoveDimOpacity`). L’unité survolée revient à 1.
-- **Chemin du déplacement.** La case survolée affiche **le chemin exact** du déplacement, calculé par la même carte d’accessibilité et le même `buildPath` que le mouvement réel, avec la destination en surbrillance. On lit l’angle d’arrivée avant de valider. Le clavier et la manette suivent le même chemin, puisque le curseur appelle le même survol.
+- **Chemin du déplacement.** La case survolée affiche **le chemin exact** du déplacement, calculé par la même carte d’accessibilité et le même `buildPath` que le mouvement réel, tracé en ivoire doré, bien distinct des cases de portée sarcelle, avec la destination en surbrillance. On lit l’angle d’arrivée avant de valider. Le clavier et la manette suivent le même chemin, puisque le curseur appelle le même survol.
 - Correction associée : après un survol, l’estompage reprenait la valeur générale au lieu de celle de l’action en cours ; il garde désormais celle de l’action.
 - **Pas de mouvement de caméra**, par choix :
   - COMBAT_AND_VFX borne le cadrage, l’arène devant toujours remplir le fond.
@@ -77,7 +77,7 @@ Variantes possibles : seuil à 50 % des PV ou dès le début du combat ; élites
 
 Tests : `src/combat/UnitFocusController.test.ts` (estompage du déplacement, niveau conservé après un survol) et `src/combat/combatSelectionReadability.test.ts` (chemin exact, redessin seulement quand la case change, aucun chemin vers une case inaccessible, couverture du déplacement > 60 % et du ciblage < 45 %, aucun appel de résolution ni de caméra).
 
-Captures (dossier ignoré `docs/reports/evidence/playtest-combat-2026-11-11/`, 1366 × 768) : `move-path-*.png` (déplacement, case survolée à la souris), `target-*.png` (ciblage d’une attaque) et `move-*.png` (essai abandonné à 0,36, gardé pour la comparaison), pour trois cas : sans réduction (`normal`), réglage du jeu (`game-reduced`, `&reduced=1`) et mouvement réduit du système émulé (`os-reduced`, `reducedMotion: 'reduce'`).
+Captures (dossier ignoré `docs/reports/evidence/playtest-combat-2026-11-11/`, 1366 × 768) : `move-path-*.png` (déplacement, case (3,1) survolée à la souris depuis (1,2) : chemin doré par (2,2) et (3,2), autres unités à 0,62), `target-*.png` (ciblage d’une attaque) et `move-*.png` (essai abandonné à 0,36, gardé pour la comparaison), pour trois cas : sans réduction (`normal`), réglage du jeu (`game-reduced`, `&reduced=1`) et mouvement réduit du système émulé (`os-reduced`, `reducedMotion: 'reduce'`).
 
 ## Comment vérifier en jeu
 
