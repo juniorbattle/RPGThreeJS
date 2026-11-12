@@ -347,8 +347,9 @@ export default defineConfig(({ mode }) => {
     },
     test: {
       // tmp/ and output/ hold ignored QA outputs and archived source copies; their tests are not the current suite.
-      // qa-job.test.mjs is a node:test suite run by `npm test` itself.
-      exclude: [...configDefaults.exclude, 'tmp/**', 'output/**', 'tools/qa/qa-job.test.mjs', ...HISTORICAL_CINEMATIC_TESTS],
+      // qa-job.test.mjs is a node:test suite run by `npm test` itself. .claude/ holds session worktrees, whole copies of
+      // the repository whose tests would run twice (and fail on the Git-ignored media a fresh worktree lacks).
+      exclude: [...configDefaults.exclude, 'tmp/**', 'output/**', '.claude/**','tools/qa/qa-job.test.mjs', ...HISTORICAL_CINEMATIC_TESTS],
       // Several full-catalogue audits take 2-3 s alone and passed the 5 s default under full-suite parallel load.
       testTimeout: 20_000,
     },

@@ -1,8 +1,11 @@
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { buildPlan, COVERED_FACE_RULE, heraldryFor, openAiKey, PILOT_IDS } from './finalImages';
+import {
+  appendToLog, buildPlan, CLOSED_INTERIOR_RULE, combatWeaponOf, COVERED_FACE_RULE, heraldryFor, NOTHING_BUILT_FAR_RULE, openAiKey, PILOT_IDS,
+  SACRED_OBJECT_RULES, SHADOWS_COLOUR_RULE, weaponRule,
+} from './finalImages';
 import { ATLAS_LAYOUTS, CREATURE_IDS, CREATURE_REFS, CIVILIAN_REFS, IDENTITY, LIGHT_REFS, STAGING } from './finalImagesStaging';
 
 describe('final images plan (OD-2026-11-11-F, F1)', () => {
@@ -45,7 +48,7 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
   });
 
   it('gives another clan named by a brief its own sign: the Raven in the Bear’s mountains, the Serpent’s champion', () => {
-    expect(heraldryFor('bear', 'Sprite de l’éclaireur du Corbeau')).toBe('Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.');
+    expect(heraldryFor('bear', 'Sprite de l’éclaireur du Corbeau')).toBe('Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear, and the other clans’ places show none of the Bear clan’s carvings, emblems or objects; never a lion.');
     expect(heraldryFor('bear', 'Tableau : la salle de l’Ancien Ours Borin')).toBe('Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.');
     expect(heraldryFor('dragon', 'Tableau : les pièges du Loup')).toContain('the Wolf clan’s people, camps and banners show a wolf');
     expect(heraldryFor('finale', 'Sprite de boss du champion du Serpent')).toContain('the Serpent clan’s people, camps and banners show a serpent');
@@ -162,7 +165,90 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
     expect(source).toContain("loadEnv('production', root, 'OPENAI_')");
     // The key only travels in the request header: never into the log, the plan or the console.
     expect(source).toContain('headers: { Authorization: `Bearer ${key}` }');
-    expect(source).not.toMatch(/log\.push\(\{[^}]*\bkey\b/);
+    expect(source).not.toMatch(/(?:log|newEntries)\.push\(\{[^}]*\bkey\b/);
     expect(source).not.toMatch(/console\.(log|error)\([^)]*\bkey\b/);
+  });
+});
+
+describe('final images tool: fixes learned from the Bear and Dragon runs (2026-11-12)', () => {
+  const plan = buildPlan();
+  const prompt = (id: string) => plan.find((item) => item.id === id)!.prompt;
+
+  it('appends each run’s entries to log.json, so two runs at once keep each other’s', () => {
+    const root = mkdtempSync(join(tmpdir(), 'final-images-log-'));
+    const log = join(root, 'log.json');
+    try {
+      appendToLog(log, []);
+      expect(JSON.parse(readFileSync(log, 'utf8'))).toEqual([]);
+      // Two runs interleaved, as the Dragon's two passes were: each writes only its new entries, after reading the file.
+      appendToLog(log, [{ id: 'first-run:a' }]);
+      appendToLog(log, [{ id: 'second-run:a' }]);
+      appendToLog(log, [{ id: 'first-run:b' }]);
+      appendToLog(log, []);
+      expect(JSON.parse(readFileSync(log, 'utf8')).map((entry: { id: string }) => entry.id)).toEqual(['first-run:a', 'second-run:a', 'first-run:b']);
+      expect(readdirSync(root)).toEqual(['log.json']);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+    // The run no longer rewrites the log from the copy it read at start.
+    const source = readFileSync(join(process.cwd(), 'tools', 'art', 'finalImages.ts'), 'utf8');
+    expect(source).toContain('appendToLog(logPath, newEntries.splice(0))');
+    expect(source).not.toMatch(/writeFileSync\(logPath/);
+  });
+
+  it('keeps closed interiors closed and shows nothing built far away outside unless the staging names it', () => {
+    for (const [id, staging] of Object.entries(STAGING)) {
+      const closed = staging.light === 'interior' && !staging.skyVisible;
+      expect(prompt(id).includes(CLOSED_INTERIOR_RULE), id).toBe(closed);
+      expect(prompt(id).includes(NOTHING_BUILT_FAR_RULE), id).toBe(!closed);
+    }
+    expect(prompt('dragon:refuge:dragon-second-refuge')).toContain('no window and no opening onto the outside');
+    expect(prompt('dragon:scene:dragon_terrorized_village')).toContain(NOTHING_BUILT_FAR_RULE);
+  });
+
+  it('keeps the host clan’s carvings and objects out of another clan’s place', () => {
+    expect(prompt('dragon:scene:dragon_wolf_lair')).toContain('the other clans’ places show none of the Dragon clan’s carvings, emblems or objects');
+    expect(heraldryFor('scorpion', 'Tableau : le Temple du Phénix')).toContain('the other clans’ places show none of the Scorpion clan’s carvings, emblems or objects');
+  });
+
+  it('never draws the Shadows in purple, wherever a brief names them or their corruption', () => {
+    for (const id of ['dragon:enemy:shadow_wyrm', 'dragon:actor:shadow_shaman', 'scorpion:actor:shadow_prophet',
+      'scorpion:enemy:shadow_zealot', 'scorpion:scene:scorpion_corrupted_texts']) expect(prompt(id), id).toContain(SHADOWS_COLOUR_RULE);
+    expect(prompt('bear:scene:bear_arrival')).not.toContain(SHADOWS_COLOUR_RULE);
+  });
+
+  it('gives no character anything that could pass for the plateau’s sacred object', () => {
+    for (const item of plan.filter((candidate) => candidate.kind === 'character' && !CREATURE_IDS.includes(candidate.id))) {
+      const rule = SACRED_OBJECT_RULES[item.chapter];
+      if (rule) expect(item.prompt, item.id).toContain(rule);
+    }
+    expect(prompt('dragon:actor:kaelen')).toContain('nothing that could pass for the Echo Crystal');
+    expect(prompt('scorpion:actor:grand_inquisitor')).toContain('nothing that could pass for the Phoenix’s prophetic codex');
+    expect(prompt('bear:actor:borin')).not.toContain('could pass for');
+  });
+
+  it('puts each unit’s combat weapon in its hands, read from the combat runtime', () => {
+    expect(prompt('dragon:enemy:wolf_hunter')).toContain('« Fronde » (a sling): show that weapon clearly in hand');
+    expect(prompt('dragon:enemy:wolf_champion')).toContain('« Lames de jet » (throwing knives)');
+    expect(prompt('scorpion:actor:phoenix_guardian_chief')).toContain('« Lance de flamme » (a spear)');
+    expect(prompt('scorpion:enemy:phoenix_guardian')).toContain('« Lance du temple » (a spear)');
+    expect(prompt('scorpion:actor:scorpion_scholar')).toContain('« Bâton » (a staff)');
+    expect(prompt('scorpion:actor:grand_inquisitor')).toContain('fights with magic (« Sceau »)');
+    expect(prompt('scorpion:actor:shadow_prophet')).toContain('fights with magic (« Onde froide »)');
+    expect(prompt('finale:enemy:serpent_champion')).toContain('« Lame Serpent » (a blade)');
+    expect(prompt('finale:enemy:demon_brute')).toContain('its own claws');
+    // A character who never fights, and a beast, get no weapon sentence.
+    expect(prompt('scorpion:actor:phoenix_faithful')).not.toContain('In combat it fights');
+    expect(prompt('dragon:enemy:shadow_wyrm')).not.toContain('In combat it fights');
+    // A keyed unit wins over a boss line; a boss is found by its chapter's combats and its portrait.
+    const source = [
+      "  {team:'foe',name:'Boss',portrait:'/assets/x/stand_in.png',weapons:[{name:'Grande hache',type:'phys'}],combatIds:['scorpion_trial']},",
+      "  {team:'foe',name:'Other',portrait:'/assets/x/stand_in.png',weapons:[{name:'Fronde',type:'phys'}],combatIds:['bear_trial']},",
+      "  guard:{team:'foe',name:'Guard',weapons:[{name:'Lance',type:'phys'}]},",
+    ].join('\n');
+    expect(combatWeaponOf('scorpion', 'guard', null, source)).toEqual({ name: 'Lance', type: 'phys' });
+    expect(combatWeaponOf('scorpion', 'boss', 'stand_in', source)).toEqual({ name: 'Grande hache', type: 'phys' });
+    expect(combatWeaponOf('dragon', 'boss', 'stand_in', source)).toBeNull();
+    expect(weaponRule({ name: 'Onde froide', type: 'mag' })).toMatch(/^In combat it fights with magic/);
   });
 });

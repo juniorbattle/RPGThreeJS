@@ -35,8 +35,10 @@ BASELINE = 456
 ELITE_HEIGHT = 412
 STANDARD_HEIGHT = 345
 BEAST_WIDTH = 430
+# Every unit of size 2 in src/combat/legacyCombatRuntime.js (bosses and elites), plateau by plateau. The Scorpion has no beast.
 ELITES = {'borin', 'raven_miner_chief', 'raven_master_spy', 'raven_foreman',
-          'kaelen', 'wolf_chief', 'shadow_shaman', 'wolf_champion'}
+          'kaelen', 'wolf_chief', 'shadow_shaman', 'wolf_champion',
+          'grand_inquisitor', 'phoenix_guardian_chief', 'shadow_prophet', 'phoenix_flamekeeper', 'shadow_zealot'}
 BEASTS = {'corrupted_beast', 'depth_beast', 'shadow_wyrm'}
 
 

@@ -16,7 +16,7 @@
  * Options for run: --model <name> (default: the project's earlier approved image model), --quality <low|medium|high> (default high), --force (redo
  * images already generated), --concurrency <1-6> (requests at once, default 1). tmp/ is ignored by Git.
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import * as bear from '../../src/campaign/plateaux/bear/bearPresentation';
 import * as dragon from '../../src/campaign/plateaux/dragon/dragonPresentation';
@@ -90,7 +90,74 @@ export function heraldryFor(chapter: Chapter, awaitedFinal: string): string {
   if (!others.length && SHADOWS.test(awaitedFinal)) return 'The Shadows belong to no clan: no banner, shield, medallion or carved emblem of any clan; never a lion.';
   if (!host) return others.length ? `Each clan keeps its own sign: ${theirs}; other banners mix the signs of several clans.` : 'Any banners mix the signs of several clans; no single emblem dominates.';
   if (!others.length) return `Any banner, shield, medallion or carved emblem shows the ${host.english} clan’s sign, ${host.sign}; never a lion.`;
-  return `Each clan keeps its own sign: ${theirs}; the ${host.english} clan’s own places show ${host.sign}; never a lion.`;
+  // The Dragon's first run put the host clan's carved pillars and bronze bells in the Wolf's cave.
+  return `Each clan keeps its own sign: ${theirs}; the ${host.english} clan’s own places show ${host.sign}, and the other clans’ places show none of the ${host.english} clan’s carvings, emblems or objects; never a lion.`;
+}
+
+/**
+ * Generic rules learned from the Dragon's redos (9 in its run, 10 at integration), applied by the tool to every plateau
+ * so each new staging does not have to repeat them. The plateau's own lines and looks still say what is specific.
+ */
+/** The Dragon's pilgrims' shelter, staged closed, opened onto the sky through a window. */
+export const CLOSED_INTERIOR_RULE = 'Indoors or underground: a closed space with no window and no opening onto the outside; no snow, no frost, no daylight, no sky.';
+/** The Dragon's hamlet showed a fortified town far away; the first Bear run copied the Lion's distant castles. */
+export const NOTHING_BUILT_FAR_RULE = 'No castle, fortress, monastery, town or city anywhere in view, even far away on the horizon, unless the staging names it.';
+/** The Dragon's wyrm came out with purple veins and eyes. */
+export const SHADOWS_COLOUR_RULE = 'The Shadows’ corruption is black like cold, frozen ink: never purple, violet or magenta, no purple glow.';
+// \p{L} rather than \w: « souillées » and « corrompu » carry accented letters.
+const NAMES_SHADOWS = /(^|[^\p{L}])(Ombres?|Shadows?|corrupt\p{L}*|corromp\p{L}*|souill\p{L}*|dark energy|dark magic)([^\p{L}]|$)/iu;
+
+/**
+ * A plateau's sacred object belongs to no character: Kaelen's first sprite held a staff set with a blue crystal that read
+ * as the Echo Crystal. Canon objects only (the Dragon's Echo Crystal, the Phoenix's prophetic codex).
+ */
+export const SACRED_OBJECT_RULES: Readonly<Partial<Record<Chapter, string>>> = Object.freeze({
+  dragon: 'The character holds and carries nothing that could pass for the Echo Crystal: no crystal, orb or glowing gem in hand, on a staff or at the belt.',
+  scorpion: 'The character holds and carries nothing that could pass for the Phoenix’s prophetic codex: no book, codex, tome or bound pages in hand or at the belt.',
+});
+
+export interface CombatWeapon { name: string; type: 'phys' | 'mag' }
+
+const RUNTIME = join(ROOT, 'src', 'combat', 'legacyCombatRuntime.js');
+
+/**
+ * The weapon a unit fights with in combat, read from the combat runtime (src/combat/legacyCombatRuntime.js): a unit listed
+ * by its ID, else a boss of this chapter (listed by name with its combats) whose portrait is the unit's final master or
+ * its combat stand-in. The Dragon's hunter was drawn with a bow and its champion with a long sword, while they fight with a
+ * sling and throwing blades.
+ */
+export function combatWeaponOf(chapter: Chapter, unitId: string, standIn: string | null, source: string = readFileSync(RUNTIME, 'utf8')): CombatWeapon | null {
+  const weapon = (line: string): CombatWeapon | null => {
+    const found = /weapons:\[\{name:'([^']+)'[^}]*?type:'(phys|mag)'/.exec(line);
+    return found ? { name: found[1]!, type: found[2] as CombatWeapon['type'] } : null;
+  };
+  const lines = source.split('\n');
+  const keyed = new RegExp(`(^|[\\s{,])${unitId}:\\{`);
+  for (const line of lines) if (keyed.test(line) && weapon(line)) return weapon(line);
+  const portraits = [`/post-demo/${chapter}/${unitId}.png`, ...(standIn ? [`/${standIn}.png`] : [])];
+  for (const line of lines) {
+    if (!line.includes(`combatIds:['${chapter}_`)) continue;
+    const portrait = /portrait:'([^']+)'/.exec(line)?.[1] ?? '';
+    if (portraits.some((ending) => portrait.endsWith(ending)) && weapon(line)) return weapon(line);
+  }
+  return null;
+}
+
+/** English for the weapon words of the combat runtime, so the image model draws the right one. */
+const WEAPON_WORDS: readonly [RegExp, string][] = [
+  [/lames? de jet/i, 'throwing knives'], [/arbal[eè]te/i, 'a crossbow'], [/fronde/i, 'a sling'], [/\barc\b/i, 'a bow'],
+  [/lance/i, 'a spear'], [/hache/i, 'an axe'], [/marteau/i, 'a war hammer'], [/masse/i, 'a mace'], [/[ée]p[ée]e/i, 'a sword'],
+  [/\blames?\b/i, 'a blade'], [/dague|couteau/i, 'a dagger'], [/pioche|\bpic\b/i, 'a pickaxe'], [/b[âa]ton/i, 'a staff'],
+  [/fl[ée]au/i, 'a flail'],
+];
+/** Natural weapons: the demons fight with their claws, which no hand holds. */
+const NATURAL_WEAPONS = /griffes?|crocs?|serres?/i;
+
+export function weaponRule(weapon: CombatWeapon): string {
+  if (NATURAL_WEAPONS.test(weapon.name)) return `In combat it fights with « ${weapon.name} » (its own claws): show them clearly, and no weapon in hand.`;
+  const english = WEAPON_WORDS.find(([pattern]) => pattern.test(weapon.name))?.[1];
+  if (english) return `In combat it fights with « ${weapon.name} » (${english}): show that weapon clearly in hand, and no other kind of weapon.`;
+  return `In combat it fights with magic (« ${weapon.name} »), not with a blade, axe, spear, bow or sling: it carries none of them.`;
 }
 
 /** Approved Lion art used as style references (Character V2 masters and approved tableaux). */
@@ -139,12 +206,19 @@ function plateOf(context: string): string | null {
 
 const masterOf = (unitId: string) => `public/assets/characters/pixel/masters/${unitId}.png`;
 
-function promptFor(id: string, kind: Kind, chapter: Chapter, awaitedFinal: string): string {
+/** Sentences joined with spaces, the empty ones left out. */
+const sentences = (...parts: (string | false | null | undefined)[]) => parts.filter(Boolean).join(' ');
+
+function promptFor(id: string, kind: Kind, chapter: Chapter, awaitedFinal: string, weapon: CombatWeapon | null = null): string {
+  const look = PROPOSED_LOOKS[id] ?? STAGED_LOOKS[id] ?? '';
+  const shadows = NAMES_SHADOWS.test(`${awaitedFinal} ${STAGING[id]?.line ?? ''} ${look}`) && SHADOWS_COLOUR_RULE;
   if (CREATURE_IDS.includes(id)) {
-    return `${STYLE} One single full-body creature sprite, an animal and not a person: no armour, no clothing, no weapon, no shield, no banner. Three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. Subject: ${awaitedFinal}.`;
+    return sentences(`${STYLE} One single full-body creature sprite, an animal and not a person: no armour, no clothing, no weapon, no shield, no banner. Three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. Subject: ${awaitedFinal}.`, shadows);
   }
   if (kind === 'character') {
-    return `${STYLE} One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. ${COVERED_FACE_RULE} Subject: ${awaitedFinal}. Setting of the character: ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
+    return sentences(`${STYLE} One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. ${COVERED_FACE_RULE} Subject: ${awaitedFinal}.`,
+      weapon && weaponRule(weapon), SACRED_OBJECT_RULES[chapter], shadows,
+      `Setting of the character: ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`);
   }
   const layout = ATLAS_LAYOUTS[id];
   if (layout) {
@@ -157,9 +231,15 @@ function promptFor(id: string, kind: Kind, chapter: Chapter, awaitedFinal: strin
   if (staging) {
     // A staged backdrop: its own place and light, the plateau's identity instead of the shared setting sentence, and
     // banners only where the staging names them.
-    return `${STYLE} A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: ${staging.line} ${IDENTITY[chapter] ?? SETTINGS[chapter]} ${staging.light === 'interior' && !staging.skyVisible ? 'Indoors and underground: no snow, no frost, no daylight, no sky. ' : ''}No banners, flags or emblems unless the staging names them. ${heraldryFor(chapter, `${awaitedFinal} ${staging.line}`)}`;
+    // A closed interior stays closed; an exterior or a hall open onto the sky shows nothing built far away that the
+    // staging does not name.
+    const closed = staging.light === 'interior' && !staging.skyVisible;
+    return sentences(`${STYLE} A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: ${staging.line} ${IDENTITY[chapter] ?? SETTINGS[chapter]}`,
+      closed ? CLOSED_INTERIOR_RULE : NOTHING_BUILT_FAR_RULE, shadows,
+      `No banners, flags or emblems unless the staging names them. ${heraldryFor(chapter, `${awaitedFinal} ${staging.line}`)}`);
   }
-  return `${STYLE} A wide environment tableau, eye-level establishing view of the place, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Leave open ground in the lower half for them. Scene: ${awaitedFinal}. ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
+  return sentences(`${STYLE} A wide environment tableau, eye-level establishing view of the place, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Leave open ground in the lower half for them. Scene: ${awaitedFinal}. ${SETTINGS[chapter]}`,
+    shadows, heraldryFor(chapter, awaitedFinal));
 }
 
 /** Style references: by light for a staged backdrop, beasts for a creature, civilians for a civilian. */
@@ -172,15 +252,17 @@ function referencesFor(id: string, kind: Kind): readonly string[] {
   return staging ? LIGHT_REFS[staging.light] : BACKDROP_STYLE_REFS;
 }
 
-function brief(chapter: Chapter, group: string, key: string, kind: Kind, awaitedFinal: string, standIn: string | null): FinalImageBrief {
+function brief(chapter: Chapter, group: string, key: string, kind: Kind, awaitedFinal: string, standIn: string | null,
+  combatStandIn: string | null = null): FinalImageBrief {
   const character = kind === 'character';
   const id = `${chapter}:${group}:${key}`;
   // Style references only: the stand-in shows another place or person and would be copied; it stays on the review page.
   const samePlaceAs = STAGING[id]?.samePlaceAs;
+  const weapon = character && !CREATURE_IDS.includes(id) ? combatWeaponOf(chapter, key, combatStandIn) : null;
   return {
     id, chapter, kind, awaitedFinal, standIn,
     size: character ? '1024x1024' : '1536x1024', transparent: character,
-    references: [...referencesFor(id, kind)], prompt: promptFor(id, kind, chapter, awaitedFinal),
+    references: [...referencesFor(id, kind)], prompt: promptFor(id, kind, chapter, awaitedFinal, weapon),
     notes: PROPOSED_LOOKS[id] ?? STAGED_LOOKS[id] ?? '', ...(samePlaceAs ? { samePlaceAs } : {}),
   };
 }
@@ -219,14 +301,16 @@ export function buildPlan(): FinalImageBrief[] {
     }
     module.atlases.forEach((atlas, index) => plan.push(brief(chapter, 'atlas', String(index + 1), 'atlas', atlas.awaitedFinal, atlas.image ? `public${atlas.image}` : null)));
     const characters = new Set<string>();
+    // A boss listed as an actor fights under its enemy entry's stand-in portrait: that is how the combat runtime lists it.
+    const combatStandIn = new Map(module.enemies.map((enemy) => [enemy.unitId, enemy.standInPortrait]));
     for (const actor of module.actors) {
       characters.add(actor.actorId);
-      plan.push(brief(chapter, 'actor', actor.actorId, 'character', actor.awaitedFinal, masterOf(actor.standInUnitId)));
+      plan.push(brief(chapter, 'actor', actor.actorId, 'character', actor.awaitedFinal, masterOf(actor.standInUnitId), combatStandIn.get(actor.actorId) ?? null));
     }
     for (const enemy of module.enemies) {
       if (characters.has(enemy.unitId)) continue;
       characters.add(enemy.unitId);
-      plan.push(brief(chapter, 'enemy', enemy.unitId, 'character', enemy.awaitedFinal, masterOf(enemy.standInPortrait)));
+      plan.push(brief(chapter, 'enemy', enemy.unitId, 'character', enemy.awaitedFinal, masterOf(enemy.standInPortrait), enemy.standInPortrait));
     }
   }
   return plan;
@@ -249,6 +333,19 @@ function readPlan(): FinalImageBrief[] {
 }
 
 const fileOf = (id: string) => `${id.replace(/[^a-zA-Z0-9_-]+/g, '__')}.png`;
+
+/**
+ * Appends a run's new entries to log.json, reading the file again first. Each run used to rewrite the whole log from the
+ * copy it read at start, so two runs at once (two passes of the Dragon) could drop each other's entries. The file is
+ * written to a temporary name and renamed over the log, so another run never reads it half written.
+ */
+export function appendToLog(logPath: string, entries: readonly unknown[]): void {
+  if (!entries.length && existsSync(logPath)) return;
+  const current = existsSync(logPath) ? JSON.parse(readFileSync(logPath, 'utf8')) as unknown[] : [];
+  const temporary = `${logPath}.${process.pid}.tmp`;
+  writeFileSync(temporary, `${JSON.stringify([...current, ...entries], null, 2)}\n`);
+  renameSync(temporary, logPath);
+}
 
 /** The brief's references, plus the generated image of the same place when it exists (Borin's hall from one image to the next). */
 function referencesOf(item: FinalImageBrief): string[] {
@@ -322,7 +419,7 @@ async function main(): Promise<void> {
   const model = option('--model') ?? 'gpt-image-2.5-sunburst-2026-09-08';
   const quality = option('--quality') ?? 'high';
   const logPath = join(OUT_DIR, 'log.json');
-  const log = existsSync(logPath) ? JSON.parse(readFileSync(logPath, 'utf8')) as unknown[] : [];
+  const newEntries: unknown[] = [];
   const pending = selected.filter((item) => {
     const skip = existsSync(join(OUT_DIR, 'out', fileOf(item.id))) && !args.includes('--force');
     if (skip) console.log(`Already generated: ${item.id}`);
@@ -332,7 +429,7 @@ async function main(): Promise<void> {
   // interrupted run keeps what it made.
   const concurrency = Math.max(1, Math.min(6, Number(option('--concurrency') ?? 1) || 1));
   const save = () => {
-    writeFileSync(logPath, `${JSON.stringify(log, null, 2)}\n`);
+    appendToLog(logPath, newEntries.splice(0));
     writeFileSync(join(OUT_DIR, 'review.html'), reviewPage(selected));
   };
   let next = 0;
@@ -342,7 +439,7 @@ async function main(): Promise<void> {
       const item = pending[next++]!;
       try {
         writeFileSync(join(OUT_DIR, 'out', fileOf(item.id)), await generate(item, key, model, quality));
-        log.push({ id: item.id, model, quality, size: item.size, prompt: item.prompt, notes: item.notes, references: referencesOf(item), at: new Date().toISOString() });
+        newEntries.push({ id: item.id, model, quality, size: item.size, prompt: item.prompt, notes: item.notes, references: referencesOf(item), at: new Date().toISOString() });
         console.log(`done: ${item.id}`);
       } catch (error) {
         failed += 1;
