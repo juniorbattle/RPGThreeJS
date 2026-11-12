@@ -132,7 +132,7 @@
       "worldUnitsPerPixel": 0.00625,
       "master": {
         "src": "/assets/characters/pixel/masters/archer.png",
-        "sha256": "cf9f50e30fe534ea9637857be43774ad19a39dbb721b0834a9bec54dd9e0c022",
+        "sha256": "916d4e1a3e1f448bbade7242d0d47bd572653bc63efaf165dad6a7ca87f24ec7",
         "sourceSizePx": {
           "width": 512,
           "height": 512
@@ -146,7 +146,7 @@
       "poses": {
         "prepare": {
           "src": "/assets/characters/pixel/combat/archer/prepare.png",
-          "sha256": "475ddd427dc2e3d8ced69fbe58be01721ab42b0a0bd7dd20b024e2829ae13a7c",
+          "sha256": "a95113b64963e4c8befc231118f2046cce2bfa5d39de43ced1edcf0f6ce0a6ac",
           "sourceSizePx": {
             "width": 512,
             "height": 512
@@ -166,7 +166,7 @@
         },
         "dash": {
           "src": "/assets/characters/pixel/combat/archer/dash.png",
-          "sha256": "322abe150cc9e047ba969f0336577579b1cb5c45e470a2d0ccb9cc1829c56473",
+          "sha256": "18fe5f8e2f358deed4bbf996cdcba302556eb74cd4bebf5155b438a7270097de",
           "sourceSizePx": {
             "width": 512,
             "height": 512
@@ -186,7 +186,7 @@
         },
         "attack": {
           "src": "/assets/characters/pixel/combat/archer/attack.png",
-          "sha256": "de42a96e9a98ddd9b18505b49c46c27040b8a360998562926b37211557ef6649",
+          "sha256": "1b319ce6226b040a86c5ad73428f2926bdfdec4b066266a8d10020dd5a763053",
           "sourceSizePx": {
             "width": 512,
             "height": 512
@@ -206,7 +206,7 @@
         },
         "cast": {
           "src": "/assets/characters/pixel/combat/archer/cast.png",
-          "sha256": "338601e9197a863c5444fb4e99503c645c2480ed091907d7fa1c8b9db1d0e280",
+          "sha256": "f773c72b5570046c187167268e5beb9995bd8631202cc431ec4792e7ec086283",
           "sourceSizePx": {
             "width": 512,
             "height": 512

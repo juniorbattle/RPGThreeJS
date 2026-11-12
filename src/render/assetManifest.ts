@@ -118,7 +118,7 @@ export const assets = {
     alistair: { category: 'playable_hero', factionId: 'lion', rarity: 'unique', recruitTier: 'core', colorPalette: ['emerald', 'steel', 'gold'], silhouetteNotes: 'Frontline knight, wide defensive stance.' },
     marian: { category: 'playable_hero', factionId: 'lion', rarity: 'unique', recruitTier: 'core', colorPalette: ['white', 'gold', 'silver'], silhouetteNotes: 'Sacred cleric with staff and protective robes.' },
     elara: { category: 'playable_hero', factionId: 'lion', rarity: 'unique', recruitTier: 'core', colorPalette: ['arcane blue', 'cyan', 'gold'], silhouetteNotes: 'Arcane caster with pointed hat and glowing staff.' },
-    kestrel: { category: 'playable_hero', factionId: 'lion', rarity: 'unique', recruitTier: 'core', colorPalette: ['forest green', 'leather brown', 'night blue'], silhouetteNotes: 'Mobile hooded archer.' },
+    kestrel: { category: 'playable_hero', factionId: 'lion', rarity: 'unique', recruitTier: 'core', colorPalette: ['night blue', 'leather brown', 'antique gold'], silhouetteNotes: 'Mobile hooded archer.' },
     cedric: { category: 'playable_hero', factionId: 'neutral', rarity: 'unique', recruitTier: 'optional', colorPalette: ['sand', 'muted green', 'light leather'], silhouetteNotes: 'Nomad scout, lighter than Kestrel.' },
     lancer: { category: 'playable_hero', factionId: 'lion', rarity: 'unique', recruitTier: 'optional', colorPalette: ['steel', 'emerald', 'gold'], silhouetteNotes: 'Young Lion militiaman with spear and shield.' },
     alaric: { category: 'boss', factionId: 'lion', rarity: 'boss', colorPalette: ['royal blue', 'gold', 'ivory'], silhouetteNotes: 'Giant lion-chief boss, 2x2 board presence.' },
