@@ -11,7 +11,7 @@
 | MERGED_IN | `origin/dev` (poussée normale, OD-2026-10-12-A) |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |
-| PRODUCTION_IMPACT | NONE : aucun code du jeu ne change. Les briefs des prochaines générations changent, ainsi que les tests que vitest lance. Les images de l’Ours et du Dragon déjà intégrées ne sont pas touchées. |
+| PRODUCTION_IMPACT | Commit `7a67d926` : aucun code du jeu ne change. Seuls les briefs des prochaines générations et les tests que vitest lance changent. Les images de l’Ours et du Dragon déjà intégrées restent intactes. Commit suivant (§ 5) : le nom et l’icône de deux armes en combat, celles de Borin et du guerrier de l’Ours. Statistiques, effets, sons et sauvegardes sont inchangés. |
 | CANONICAL_DOCS_UPDATED | NONE : la session principale reporte ce résultat dans l’état autonome et les décisions. La fiche du Scorpion et `tools/art/finalImagesStaging.ts` reviennent à la session parallèle du Scorpion. |
 | EVIDENCE | `npx vitest run tools/art/finalImages.test.ts` (19 tests), suite complète, tsc, build, contrats, validateur narratif (résultats ci-dessous). |
 
@@ -46,14 +46,24 @@ Ces règles viennent des reprises du Dragon : 9 dans sa passe, 10 à l’intégr
 
 Les règles s’insèrent avant le signe de clan, qui termine toujours le brief. Les règles propres aux lignes et aux aspects du Scorpion appartiennent à la session parallèle du Scorpion.
 
-## 5. Ce que la lecture des armes a révélé sur l’Ours déjà intégré
+## 5. Ce que la lecture des armes a révélé sur l’Ours déjà intégré, et la correction
 
-Ce point est à trancher par l’opérateur. Rien n’est changé.
+La lecture des armes a révélé sur l’Ours le même écart que sur le Dragon :
+- **Borin** combattait avec « Hache de l’Ours », alors que son aspect validé et son image intégrée lui donnent un marteau de guerre ;
+- **Le guerrier de l’Ours** combattait avec « Hache de guerre », alors que son aspect lui donne une lance et un bouclier rond.
 
-- **Borin** combat avec « Hache de l’Ours » (une hache), mais son aspect validé et son image intégrée lui donnent un marteau de guerre.
-- **Le guerrier de l’Ours** combat avec « Hache de guerre », mais son aspect lui donne une lance et un bouclier rond.
+**Décision de l’opérateur, le 2026-11-12 : « Renommer les armes ».** Les images, déjà validées et intégrées, restent telles quelles. Dans `src/combat/legacyCombatRuntime.js`, deux noms d’arme changent, et leur icône suit celle de leur famille :
+- Borin : « Marteau de l’Ours », icône ◆, comme la masse du contremaître ;
+- le guerrier : « Lance de guerre », icône ↟, comme les autres lances.
 
-C’est le même écart que sur le Dragon. On peut corriger l’image, ce qui demande une reprise et une republication, ou le nom de l’arme dans les données de combat. À la prochaine génération de ces deux personnages, leur brief contiendrait à la fois l’aspect validé et l’arme de combat, qui se contredisent : il faudra trancher d’abord.
+Rien d’autre ne change :
+- les statistiques, la portée et le type sont identiques ;
+- l’effet de l’attaque de base reste le même. `getActionVfxPreset` regarde la portée avant le mot « marteau » : Borin, à portée 2, garde son effet, et le guerrier garde le coup de lame ;
+- le son ne dépend pas du nom ;
+- le tableau des attaques naturelles (`ENEMY_ATTACKS`) ne connaît pas ces armes ;
+- l’icône sert seulement à l’affichage.
+
+**Nouveau test** (`tools/art/finalImages.test.ts`, en fin de fichier) : quand l’aspect d’un personnage nomme une arme, ce doit être celle de son unité de combat. Sept personnages de l’Ours et du Dragon sont vérifiés. Remettre l’ancien nom du guerrier fait échouer le test.
 
 ## 6. Vérifications
 

@@ -252,3 +252,25 @@ describe('final images tool: fixes learned from the Bear and Dragon runs (2026-1
     expect(weaponRule({ name: 'Onde froide', type: 'mag' })).toMatch(/^In combat it fights with magic/);
   });
 });
+
+describe('final images: looks and combat weapons agree', () => {
+  it('draws every character that fights with the weapon of its combat unit (Borin’s hammer, the Bear warrior’s spear)', () => {
+    const plan = buildPlan();
+    const NOUNS = ['crossbow', 'sling', 'bow', 'spear', 'axe', 'hammer', 'mace', 'sword', 'dagger', 'pickaxe', 'staff', 'knives', 'blade', 'flail'];
+    const named = (text: string, noun: string) => new RegExp(`\\b${noun}s?\\b`, 'i').test(text);
+    let checked = 0;
+    for (const item of plan) {
+      const fights = /In combat it fights with « ([^»]+) » \((?:an? )?(?:war )?([^)]+)\)/.exec(item.prompt);
+      if (!fights || !item.notes) continue;
+      const noun = fights[2]!.split(' ').pop()!;
+      // A look that names no weapon leaves it to the weapon sentence; one that names weapons must name this one.
+      if (!NOUNS.some((candidate) => named(item.notes, candidate))) continue;
+      expect(named(item.notes, noun), `${item.id}: « ${fights[1]} » (${noun}) but the look says: ${item.notes}`).toBe(true);
+      checked += 1;
+    }
+    expect(checked).toBeGreaterThanOrEqual(7);
+    const prompt = (id: string) => plan.find((item) => item.id === id)!.prompt;
+    expect(prompt('bear:actor:borin')).toContain('« Marteau de l’Ours » (a war hammer)');
+    expect(prompt('bear:actor:bear_warrior')).toContain('« Lance de guerre » (a spear)');
+  });
+});
