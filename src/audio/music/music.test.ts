@@ -226,5 +226,10 @@ describe('the sample bank and instruments', () => {
     expect(ambienceForScene('bear_mountain_pass')).toBe('forest_route');
     expect(ambienceForScene('bear_mine_galleries')).toBe('lion_sanctum');
     expect(ambienceForScene('bear_hall_terrace')).toBe('lion_sanctum');
+    // so do the Dragon's: the bed of the Lion arena each one replaces
+    expect(ambienceForScene('dragon_peak_trail')).toBe('forest_route');
+    expect(ambienceForScene('dragon_hall_esplanade')).toBe('forest_route');
+    expect(ambienceForScene('dragon_snowy_summit')).toBe('lion_sanctum');
+    expect(ambienceForScene('dragon_wolf_cave')).toBe('lion_sanctum');
   });
 });

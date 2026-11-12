@@ -2,10 +2,11 @@ import * as THREE from 'three';
 import { seeded, type Rng } from './pixelArt';
 import type { ArenaPalette, ArenaProp } from './arenaThemes';
 import {
-  bannerTexture, barkTexture, barrelLidTexture, bearReliefTexture, burlapTexture, coalsTexture, columnTexture, graniteTexture, gravestoneTexture, lanternTexture, lionReliefTexture,
-  logEndTexture, metalTexture, oreTexture, plankTexture, plasterTexture, roofTexture, snowTexture, stoneBlockTexture, strawTexture, windowTextures,
+  bannerTexture, barkTexture, barrelLidTexture, bearReliefTexture, burlapTexture, coalsTexture, columnTexture, dragonReliefTexture, graniteTexture, gravestoneTexture, hideTexture,
+  lanternTexture, limestoneTexture, lionReliefTexture, logEndTexture, metalTexture, oreTexture, peltTexture, plankTexture, plasterTexture, roofTexture, snowTexture, stoneBlockTexture,
+  strawTexture, verdigrisTexture, windowTextures,
 } from './arenaTextures';
-import { DECOR_TEXELS_PER_UNIT, drawBush, drawDeadTree, drawFern, drawGrass, drawPine, drawTree, type DecorSprite } from './arenaSprites';
+import { DECOR_TEXELS_PER_UNIT, drawBush, drawDeadTree, drawDragonStatue, drawFern, drawGrass, drawPine, drawTree, drawTwistedPine, type DecorSprite } from './arenaSprites';
 
 /** Shared, per-arena caches and animated hooks collected while building props. */
 export interface PropContext {
@@ -28,17 +29,20 @@ export interface PropContext {
   /** Snow on rocks, conifers and the tops of masonry (the Bear's mountains). */
   snow?: boolean;
   /** Sign on the banners: the lion unless the arena says otherwise. */
-  emblem?: 'lion' | 'bear';
+  emblem?: 'lion' | 'bear' | 'dragon' | 'wolf';
+  /** The living rock of cliffs and boulders: the Bear's granite unless the arena says otherwise (the Dragon's limestone). */
+  rock?: 'granite' | 'limestone';
 }
 
 /** Height of the ground around the raised battle platform (tile tops stay at y = 0). */
 export const ARENA_GROUND_Y = -0.16;
 
-const BILLBOARD_CONTACT: Partial<Record<ArenaProp['kind'], number>> = { tree: 1.0, pine: 0.85, dead_tree: 0.7, bush: 0.75, fern: 0.5 };
-const NO_CONTACT = new Set<ArenaProp['kind']>(['fire', 'smoke', 'grass', 'rails', 'snowdrift']);
+const BILLBOARD_CONTACT: Partial<Record<ArenaProp['kind'], number>> = { tree: 1.0, pine: 0.85, dead_tree: 0.7, bush: 0.75, fern: 0.5, twisted_pine: 0.8 };
+const NO_CONTACT = new Set<ArenaProp['kind']>(['fire', 'smoke', 'grass', 'rails', 'snowdrift', 'pelt']);
 const WEEDS_PER_KIND: Partial<Record<ArenaProp['kind'], number>> = {
   house: 9, wall: 5, arch: 4, column: 3, broken_column: 3, stairs: 3, statue: 4, obelisk: 3, well: 3, gravestone: 2, barrel: 1, crate: 1, rock: 2,
   cliff: 6, snow_rock: 2, bear_pillar: 3, hall_gate: 8, mine_frame: 3, winch: 2, minecart: 1, ore_pile: 1,
+  rock_needle: 4, terrace_wall: 5, cairn: 2, bell_post: 1, dragon_stele: 3, dragon_statue: 2, balustrade: 3, dragon_gate: 8, stalagmite: 2, stakes: 2,
 };
 const _box = new THREE.Box3();
 
@@ -1259,6 +1263,7 @@ function hash3(x: number, y: number, z: number, seed: number): number {
 }
 
 function graniteMaterial(ctx: PropContext, seed: number): THREE.MeshStandardMaterial {
+  if (ctx.rock === 'limestone') return limestoneMaterial(ctx, seed);
   const key = `granite-${seed % 3}`;
   const texture = repeatTexture(ctx, key, () => graniteTexture(ctx.palette, 500 + (seed % 3)).toTexture({ repeat: true }));
   return cached(ctx.materials, `${key}-flat`, () => new THREE.MeshStandardMaterial({ map: texture, roughness: 1, flatShading: true })) as THREE.MeshStandardMaterial;
@@ -1608,6 +1613,400 @@ function hallGate(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
   return g;
 }
 
+// ---------------------------------------------------------------- the Dragon's peaks
+
+function limestoneMaterial(ctx: PropContext, seed: number): THREE.MeshStandardMaterial {
+  const key = `limestone-${seed % 3}`;
+  const texture = repeatTexture(ctx, key, () => limestoneTexture(ctx.palette, 520 + (seed % 3)).toTexture({ repeat: true }));
+  return cached(ctx.materials, `${key}-flat`, () => new THREE.MeshStandardMaterial({ map: texture, roughness: 1, flatShading: true })) as THREE.MeshStandardMaterial;
+}
+
+function bronzeMaterial(ctx: PropContext, side: THREE.Side = THREE.FrontSide): THREE.MeshStandardMaterial {
+  const texture = repeatTexture(ctx, 'verdigris', () => verdigrisTexture(9).toTexture({ repeat: true }));
+  return litMaterial(ctx, `verdigris-${side}`, texture, { metalness: 0.3, roughness: 0.6, side });
+}
+
+function dragonReliefMaterial(ctx: PropContext, seed: number): THREE.MeshStandardMaterial {
+  const key = `dragon-relief-${seed % 2}`;
+  return litMaterial(ctx, key, cached(ctx.textures, key, () => dragonReliefTexture(ctx.palette, 90 + (seed % 2)).toTexture()), { roughness: 0.92 });
+}
+
+function twistedPine(ctx: PropContext, seed: number, scale: number, castShadow: boolean): THREE.Object3D {
+  return billboard(ctx, `twisted-pine-${seed % 3}${ctx.snow ? '-snow' : ''}`, (k) => drawTwistedPine(ctx.palette, seed % 3, k, Boolean(ctx.snow)), scale, castShadow);
+}
+
+/** A rock needle: a tall pillar of living limestone in tapering drums, snow on its ledges up high, a twisted pine on even tops. */
+function rockNeedle(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  let y = 0, w = 1.7 + rng() * 0.4, d = 1.5 + rng() * 0.3;
+  const drums = 3 + (seed % 2);
+  for (let i = 0; i < drums; i++) {
+    const h = 2.6 + rng() * 0.8;
+    const part = graniteMesh(ctx, cragGeometry(w, h, d, seed * 9 + i), seed + i, 0.5);
+    part.position.set((rng() - 0.5) * 0.2, y, (rng() - 0.5) * 0.2);
+    part.rotation.y = (rng() - 0.5) * 0.8;
+    g.add(part);
+    y += h * 0.7;
+    w *= 0.84; d *= 0.86;
+  }
+  if (seed % 2 === 0) {
+    const pine = twistedPine(ctx, seed, 0.6, false);
+    pine.position.y = y + 0.15;
+    g.add(pine);
+  }
+  return g;
+}
+
+/** A dry-stone retaining wall of the terraces: rough courses, capstones set each at its own height, snow along the crown up high. */
+function terraceWall(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = stoneMaterial(ctx, seed, ctx.snow ? 0.4 : 0);
+  const L = 4.6, H = 0.95, D = 0.9;
+  g.add(at(mesh(boxGeometry(L, H, D, 1.6), stone, ctx), 0, H / 2, 0));
+  let x = -L / 2 + 0.1, i = 0;
+  while (x < L / 2 - 0.4) {
+    const cw = Math.min(0.5 + rng() * 0.5, L / 2 - 0.1 - x);
+    const ch = 0.16 + (i % 2) * 0.03;
+    const cap = mesh(boxGeometry(cw - 0.04, ch, D + 0.08 + (i % 3) * 0.02, 1.6), stone, ctx);
+    cap.position.set(x + cw / 2, H + ch / 2, (rng() - 0.5) * 0.06);
+    g.add(cap);
+    x += cw; i++;
+  }
+  if (ctx.snow) g.add(at(mesh(boxGeometry(L - 0.24, 0.08, D - 0.12, 1.6), snowMaterial(ctx), ctx), 0, H + 0.2, 0));
+  return g;
+}
+
+/** A pilgrims' cairn: flat stones stacked smaller and smaller. */
+function cairn(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  let y = 0, r = 0.42 + rng() * 0.1;
+  const count = 4 + (seed % 3);
+  for (let i = 0; i < count; i++) {
+    const stone = graniteMesh(ctx, boulderGeometry(r, 0.45, seed * 7 + i), seed + i, 0.6);
+    stone.position.set((rng() - 0.5) * 0.08, y + r * 0.2, (rng() - 0.5) * 0.08);
+    stone.rotation.y = rng() * 3;
+    g.add(stone);
+    y += r * 0.42; r *= 0.8;
+  }
+  return g;
+}
+
+/** A verdigris bronze bell: a flared body under a round crown, a rolled lip and its clapper. Hangs from y = 0. */
+function bronzeBell(ctx: PropContext): THREE.Group {
+  const g = new THREE.Group();
+  const bronze = bronzeMaterial(ctx);
+  g.add(at(mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.1, 4), litMaterial(ctx, 'bell-cord', null, { color: '#3a2a18', roughness: 1 }), ctx, false), 0, -0.05, 0));
+  g.add(at(mesh(new THREE.SphereGeometry(0.13, 10, 5, 0, Math.PI * 2, 0, Math.PI / 2), bronze, ctx), 0, -0.2, 0));
+  g.add(at(mesh(new THREE.CylinderGeometry(0.13, 0.25, 0.36, 12, 1), bronze, ctx), 0, -0.38, 0));
+  const lip = mesh(new THREE.TorusGeometry(0.25, 0.028, 4, 14), bronze, ctx, false);
+  lip.rotation.x = Math.PI / 2;
+  lip.position.y = -0.56;
+  g.add(lip);
+  g.add(at(mesh(new THREE.SphereGeometry(0.05, 6, 4), litMaterial(ctx, 'metal-dark', null, { color: '#2a2622', roughness: 0.7 }), ctx, false), 0, -0.6, 0));
+  return g;
+}
+
+/** A bronze bell of the Dragon's climbs, hung from the arm of a timber post with a bronze cap. */
+function bellPost(ctx: PropContext): THREE.Group {
+  const g = new THREE.Group();
+  const wood = woodMaterial(ctx, true);
+  const H = 2.7;
+  g.add(at(mesh(boxGeometry(0.2, H, 0.2, 1), wood, ctx), 0, H / 2, 0));
+  g.add(at(mesh(boxGeometry(0.9, 0.12, 0.14, 1), woodMaterial(ctx), ctx), 0.36, H - 0.2, 0));
+  const cap = mesh(new THREE.ConeGeometry(0.2, 0.2, 4), bronzeMaterial(ctx), ctx);
+  cap.rotation.y = Math.PI / 4;
+  cap.position.y = H + 0.1;
+  g.add(cap);
+  const bell = bronzeBell(ctx);
+  bell.position.set(0.66, H - 0.26, 0);
+  g.add(bell);
+  return g;
+}
+
+/** A bronze brazier of the Dragon: a round verdigris cauldron on three short feet, two ring handles, coals and a flame. */
+function bronzeBrazier(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const bronze = bronzeMaterial(ctx);
+  const rimY = 0.95;
+  for (let i = 0; i < 3; i++) {
+    const a = (i / 3) * Math.PI * 2 + 0.5;
+    g.add(at(mesh(new THREE.CylinderGeometry(0.07, 0.05, 0.66, 6), bronze, ctx), Math.cos(a) * 0.36, 0.33, Math.sin(a) * 0.36));
+  }
+  const bowl = mesh(new THREE.SphereGeometry(0.56, 14, 7, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), bronzeMaterial(ctx, THREE.DoubleSide), ctx);
+  bowl.scale.y = 0.75;
+  bowl.position.y = rimY;
+  g.add(bowl);
+  const rim = mesh(new THREE.TorusGeometry(0.56, 0.035, 5, 20), bronze, ctx, false);
+  rim.rotation.x = Math.PI / 2;
+  rim.position.y = rimY;
+  g.add(rim);
+  for (const side of [-1, 1]) {
+    const handle = mesh(new THREE.TorusGeometry(0.11, 0.025, 4, 10), bronze, ctx, false);
+    handle.rotation.y = Math.PI / 2;
+    handle.position.set(side * 0.64, rimY + 0.04, 0);
+    g.add(handle);
+  }
+  const coals = new THREE.Mesh(new THREE.CircleGeometry(0.5, 16), new THREE.MeshBasicMaterial({ map: cached(ctx.textures, 'coals', () => coalsTexture(7).toTexture()), toneMapped: false, fog: false }));
+  coals.rotation.x = -Math.PI / 2;
+  coals.position.y = rimY - 0.04;
+  coals.raycast = () => {};
+  g.add(coals);
+  ctx.animated.push((t) => { (coals.material as THREE.MeshBasicMaterial).color.setScalar(1.15 + Math.sin(t * 3.1 + seed) * 0.15); });
+  const flame = fireBillboard(ctx, seed + 30, 0.9, 1.3, { color: '#ffa055', intensity: 7, distance: 8.5 });
+  flame.position.y = rimY - 0.06;
+  g.add(flame);
+  return g;
+}
+
+/** A carved stone of the Dragon's ways: a limestone stele on a stepped base, the winged dragon in relief front and back, a bronze cap. */
+function dragonStele(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = stoneMaterial(ctx, seed, ctx.snow ? 0.3 : 0);
+  g.add(at(mesh(boxGeometry(1.9, 0.36, 1.2, 1.6), stone, ctx), 0, 0.18, 0));
+  g.add(at(mesh(boxGeometry(1.5, 0.3, 0.9, 1.6), stone, ctx), 0, 0.51, 0));
+  const W = 1.12, H = 2.0, D = 0.42, foot = 0.66;
+  g.add(at(mesh(boxGeometry(W, H, D, 1.6), stone, ctx), 0, foot + H / 2, 0));
+  for (const side of [1, -1]) {
+    const panel = mesh(new THREE.PlaneGeometry(W - 0.14, H - 0.12), dragonReliefMaterial(ctx, seed), ctx, false);
+    panel.position.set(0, foot + H / 2, side * (D / 2 + 0.006));
+    if (side < 0) panel.rotation.y = Math.PI;
+    g.add(panel);
+  }
+  g.add(at(mesh(boxGeometry(W + 0.24, 0.16, D + 0.2, 1), bronzeMaterial(ctx), ctx), 0, foot + H + 0.08, 0));
+  const tip = mesh(new THREE.ConeGeometry(0.46, 0.34, 4), bronzeMaterial(ctx), ctx);
+  tip.rotation.y = Math.PI / 4;
+  tip.position.y = foot + H + 0.33;
+  g.add(tip);
+  if (ctx.snow) g.add(at(mesh(boxGeometry(1.78, 0.06, 1.08, 1.6), snowMaterial(ctx), ctx), 0, 0.37, 0));
+  return g;
+}
+
+/** A winged dragon carved in limestone on its pedestal: a moulded base, a shaft with the dragon's relief and a bronze band. */
+function dragonStatue(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = stoneMaterial(ctx, seed, 0);
+  g.add(at(mesh(boxGeometry(1.3, 0.3, 1.3, 1.6), stone, ctx), 0, 0.15, 0));
+  g.add(at(mesh(boxGeometry(0.95, 1.5, 0.95, 1.6), stone, ctx), 0, 1.05, 0));
+  g.add(at(mesh(boxGeometry(1.2, 0.24, 1.2, 1.6), stone, ctx), 0, 1.92, 0));
+  g.add(at(mesh(new THREE.PlaneGeometry(0.62, 1.12), dragonReliefMaterial(ctx, seed), ctx, false), 0, 1.0, 0.481));
+  g.add(at(mesh(boxGeometry(1.0, 0.1, 1.0, 1), bronzeMaterial(ctx), ctx), 0, 1.7, 0));
+  const statue = billboard(ctx, `dragon-statue-${seed % 2}`, (k) => drawDragonStatue(ctx.palette, seed % 2, k), 1, true);
+  statue.position.y = 2.04;
+  g.add(statue);
+  return g;
+}
+
+/** A limestone balustrade over the drop, along x: a plinth, turned balusters, a moulded rail, square end posts with their caps. */
+function balustrade(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = stoneMaterial(ctx, seed, 0);
+  const L = 3.6;
+  g.add(at(mesh(boxGeometry(L, 0.22, 0.5, 1.6), stone, ctx), 0, 0.11, 0));
+  g.add(at(mesh(boxGeometry(L - 0.1, 0.16, 0.44, 1.6), stone, ctx), 0, 1.0, 0));
+  for (const side of [-1, 1]) {
+    g.add(at(mesh(boxGeometry(0.5, 1.28, 0.6, 1.6), stone, ctx), side * (L / 2 - 0.1), 0.64, 0));
+    g.add(at(mesh(boxGeometry(0.62, 0.14, 0.72, 1.6), stone, ctx), side * (L / 2 - 0.1), 1.35, 0));
+  }
+  for (let x = -L / 2 + 0.6; x <= L / 2 - 0.6; x += 0.3) g.add(at(mesh(new THREE.CylinderGeometry(0.075, 0.1, 0.72, 6), stone, ctx), x, 0.58, 0));
+  return g;
+}
+
+/**
+ * The front of Kaelen's hall carved into the cliff: two square pillars proud of the walls, each with the winged dragon
+ * in relief, verdigris bands and a bronze bell on a bracket; a deep doorway with the clan's banner inside under a
+ * stepped lintel (no arch); the living rock above and to either side.
+ */
+function dragonGate(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = stoneMaterial(ctx, seed, 0), bronze = bronzeMaterial(ctx);
+  const doorW = 3.2, doorH = 3.8, wallD = 1.2;
+  for (const side of [-1, 1]) {
+    g.add(at(mesh(boxGeometry(2.6, 4.8, wallD, 1.6), stone, ctx), side * (doorW / 2 + 1.3), 2.4, wallD / 2));
+    // the pillar stands 4 cm into the doorway, so its inner face never lies on the wall's
+    const px = side * (doorW / 2 + 0.32), pz = wallD + 0.26;
+    g.add(at(mesh(boxGeometry(0.72, doorH + 0.2, 0.72, 1.6), stone, ctx), px, (doorH + 0.2) / 2, pz));
+    g.add(at(mesh(new THREE.PlaneGeometry(0.6, 1.08), dragonReliefMaterial(ctx, seed + (side > 0 ? 1 : 0)), ctx, false), px, 1.9, pz + 0.366));
+    for (const y of [0.5, 3.2]) g.add(at(mesh(boxGeometry(0.8, 0.14, 0.8, 1), bronze, ctx), px, y, pz));
+    g.add(at(mesh(boxGeometry(0.1, 0.1, 0.72, 1), bronze, ctx), px, doorH - 0.3, pz + 0.5));
+    const bell = bronzeBell(ctx);
+    bell.position.set(px, doorH - 0.35, pz + 0.78);
+    bell.scale.setScalar(0.8);
+    g.add(bell);
+  }
+  // a stepped lintel and a proud cornice over the doorway
+  g.add(at(mesh(boxGeometry(doorW + 0.4, 0.8, wallD + 0.1, 1.6), stone, ctx), 0, doorH + 0.42, wallD / 2 + 0.05));
+  g.add(at(mesh(boxGeometry(doorW + 2.2, 0.42, wallD + 0.5, 1.6), stone, ctx), 0, doorH + 1.07, wallD / 2 + 0.25));
+  // the doorway: darkness within, the clan's banner hanging in it
+  g.add(at(mesh(boxGeometry(doorW, doorH, 0.2, 1), darkMaterial(ctx), ctx, false), 0, doorH / 2, 0.1));
+  const flag = banner(ctx, seed + 20, false);
+  flag.position.set(0, -0.35, 0.45);
+  flag.scale.setScalar(0.85);
+  g.add(flag);
+  // the living rock the hall is carved into
+  const above = graniteMesh(ctx, cragGeometry(10.4, 3.4, 2.6, seed * 7), seed, 0.5);
+  above.position.set(0, 4.6, -0.5);
+  above.rotation.y = (rng() - 0.5) * 0.1;
+  g.add(above);
+  for (const side of [-1, 1]) {
+    const flank = graniteMesh(ctx, cragGeometry(3.6, 7.6, 2.8, seed * 7 + side + 3), seed + 1, 0.5);
+    flank.position.set(side * 5.9, 0, -0.3);
+    flank.rotation.y = side * 0.08 + (rng() - 0.5) * 0.06;
+    g.add(flank);
+  }
+  return g;
+}
+
+// ---------------------------------------------------------------- the Wolf's cave
+
+function boneMaterial(ctx: PropContext): THREE.MeshStandardMaterial {
+  return litMaterial(ctx, 'bone', null, { color: '#d4c9ae', roughness: 0.85 });
+}
+
+/** A stalagmite of the Wolf's cave: a cluster of knobbly limestone cones rising from the floor, the tallest in the middle. */
+function stalagmite(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const material = graniteMaterial(ctx, seed);
+  const count = 2 + (seed % 3);
+  for (let i = 0; i < count; i++) {
+    const h = i === 0 ? 2.4 + rng() * 0.6 : 0.9 + rng() * 1.1, r = h * (0.22 + rng() * 0.06);
+    const geometry = new THREE.ConeGeometry(r, h, 7, 3);
+    const pos = geometry.attributes.position as THREE.BufferAttribute;
+    for (let v = 0; v < pos.count; v++) {
+      const x = pos.getX(v), y = pos.getY(v), z = pos.getZ(v);
+      if (y > h / 2 - 1e-4) continue;
+      const k = 0.8 + hash3(x, y, z, seed + i) * 0.4;
+      pos.setXYZ(v, x * k, y, z * k);
+    }
+    const uv = geometry.attributes.uv as THREE.BufferAttribute;
+    for (let v = 0; v < uv.count; v++) uv.setXY(v, uv.getX(v) * (Math.PI * 2 * r) / 1.6, uv.getY(v) * h / 1.6);
+    geometry.computeVertexNormals();
+    const cone = mesh(geometry, material, ctx);
+    cone.position.set(i === 0 ? 0 : (rng() - 0.5) * 1.3, h / 2 - 0.05, i === 0 ? 0 : (rng() - 0.3) * 0.8);
+    g.add(cone);
+  }
+  return g;
+}
+
+/** Hides hung across a recess of the Wolf's cave: two stakes, a crossbar lashed to them, three hides bowing a little. */
+function hideCurtain(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const wood = woodMaterial(ctx, true);
+  const H = 2.8, span = 3.0;
+  for (const side of [-1, 1]) {
+    const pole = mesh(new THREE.CylinderGeometry(0.06, 0.08, H + 0.2, 6), wood, ctx);
+    pole.position.set(side * span / 2, (H + 0.2) / 2, 0);
+    pole.rotation.z = side * -0.05;
+    g.add(pole);
+  }
+  const bar = mesh(new THREE.CylinderGeometry(0.05, 0.05, span + 0.5, 6), wood, ctx);
+  bar.rotation.z = Math.PI / 2;
+  bar.position.set(0, H - 0.1, 0.08);
+  g.add(bar);
+  for (let i = 0; i < 3; i++) {
+    const key = `hide-${(seed + i) % 3}`;
+    const texture = cached(ctx.textures, key, () => hideTexture(30 + ((seed + i) % 3)).toTexture());
+    const material = litMaterial(ctx, `${key}-mat`, texture, { alphaTest: 0.5, side: THREE.DoubleSide, roughness: 1 });
+    const w = 0.95 + rng() * 0.15, h = (w * 40) / 24 * (0.9 + rng() * 0.15);
+    const geometry = new THREE.PlaneGeometry(w, h, 2, 3);
+    geometry.translate(0, -h / 2, 0);
+    const pos = geometry.attributes.position as THREE.BufferAttribute;
+    for (let v = 0; v < pos.count; v++) pos.setZ(v, Math.sin((pos.getX(v) / w + 0.5) * Math.PI) * 0.06 - (pos.getY(v) / h) * 0.05);
+    geometry.computeVertexNormals();
+    const hide = mesh(geometry, material, ctx);
+    hide.position.set(-span / 2 + 0.55 + i * (span - 1.1) / 2, H - 0.12, 0.14 + i * 0.04);
+    hide.rotation.y = (rng() - 0.5) * 0.2;
+    g.add(hide);
+  }
+  return g;
+}
+
+/** A horned beast's skull: cranium, snout, dark sockets and two horns. */
+function beastSkull(ctx: PropContext): THREE.Group {
+  const g = new THREE.Group();
+  const bone = boneMaterial(ctx);
+  g.add(at(mesh(boxGeometry(0.26, 0.2, 0.24, 1), bone, ctx), 0, 0.1, 0));
+  g.add(at(mesh(boxGeometry(0.3, 0.12, 0.14, 1), bone, ctx), 0.24, 0.07, 0));
+  for (const side of [-1, 1]) {
+    g.add(at(mesh(boxGeometry(0.07, 0.05, 0.02, 1), darkMaterial(ctx), ctx, false), 0.07, 0.13, side * 0.121));
+    const horn = mesh(new THREE.ConeGeometry(0.04, 0.34, 5), bone, ctx);
+    horn.position.set(-0.06, 0.26, side * 0.13);
+    horn.rotation.set(side * 0.9, 0, 0.5);
+    g.add(horn);
+  }
+  return g;
+}
+
+/** Sharpened stakes driven into the cave floor in a ragged fan, leaning out, a beast's skull on the middle one. */
+function stakes(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const wood = woodMaterial(ctx, true), tipMaterial = litMaterial(ctx, 'stake-tip', null, { color: ctx.palette.wood[3], roughness: 0.9 });
+  const count = 5 + (seed % 3);
+  for (let i = 0; i < count; i++) {
+    const middle = i === Math.floor(count / 2);
+    const h = middle ? 2.2 : 1.1 + rng() * 0.9, r = 0.07 + rng() * 0.03;
+    const stake = new THREE.Group();
+    stake.add(at(mesh(new THREE.CylinderGeometry(r, r * 1.1, h, 6), wood, ctx), 0, h / 2, 0));
+    stake.add(at(mesh(new THREE.ConeGeometry(r, 0.3, 6), tipMaterial, ctx), 0, h + 0.15, 0));
+    const x = (i - (count - 1) / 2) * 0.34 + (rng() - 0.5) * 0.08;
+    stake.position.set(x, -0.1, (rng() - 0.5) * 0.3);
+    if (middle) {
+      const skull = beastSkull(ctx);
+      skull.position.set(-0.12, h - 0.05, 0.02);
+      skull.rotation.y = -Math.PI / 2 + (rng() - 0.5) * 0.4;
+      stake.add(skull);
+    } else {
+      stake.rotation.set((rng() - 0.5) * 0.2 - 0.12, 0, x * -0.22);
+    }
+    g.add(stake);
+  }
+  return g;
+}
+
+/** A heap of gnawed bones: long bones with knobbed ends, a few standing ribs, a horned beast's skull. */
+function bones(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const bone = boneMaterial(ctx);
+  const count = 5 + (seed % 3);
+  for (let i = 0; i < count; i++) {
+    const L = 0.45 + rng() * 0.35;
+    const b = new THREE.Group();
+    b.add(mesh(new THREE.CylinderGeometry(0.035, 0.035, L, 5), bone, ctx));
+    for (const end of [-1, 1]) b.add(at(mesh(new THREE.SphereGeometry(0.06, 5, 4), bone, ctx), 0, end * L / 2, 0));
+    b.rotation.set(Math.PI / 2 + (rng() - 0.5) * 0.3, 0, rng() * Math.PI);
+    b.position.set((rng() - 0.5) * 0.9, 0.06 + i * 0.025, (rng() - 0.5) * 0.6);
+    g.add(b);
+  }
+  for (let i = 0; i < 3; i++) {
+    const rib = mesh(new THREE.TorusGeometry(0.28 - i * 0.03, 0.022, 4, 10, Math.PI * 0.8), bone, ctx);
+    rib.rotation.y = Math.PI / 2;
+    rib.position.set(0.32 + i * 0.13, 0.01, -0.18);
+    g.add(rib);
+  }
+  const skull = beastSkull(ctx);
+  skull.position.set(-0.4, 0.02, 0.24);
+  skull.rotation.y = rng() * 2;
+  g.add(skull);
+  return g;
+}
+
+/** A wolf pelt thrown on the floor, its folds lifting it a little off the ground. */
+function pelt(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const key = `pelt-${seed % 2}`;
+  const texture = cached(ctx.textures, key, () => peltTexture(50 + (seed % 2)).toTexture());
+  const material = litMaterial(ctx, `${key}-mat`, texture, { alphaTest: 0.5, side: THREE.DoubleSide, roughness: 1 });
+  const geometry = new THREE.PlaneGeometry(1.8, 1.2, 8, 6);
+  geometry.rotateX(-Math.PI / 2);
+  const pos = geometry.attributes.position as THREE.BufferAttribute;
+  for (let v = 0; v < pos.count; v++) {
+    const x = pos.getX(v), z = pos.getZ(v);
+    pos.setY(v, 0.06 + Math.max(0, Math.sin(x * 3.1 + seed) * Math.cos(z * 2.3)) * 0.07 + hash3(x, 0, z, seed) * 0.02);
+  }
+  geometry.computeVertexNormals();
+  g.add(mesh(geometry, material, ctx, false));
+  return g;
+}
+
 // ---------------------------------------------------------------- dispatch
 
 export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | null {
@@ -1671,13 +2070,28 @@ export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | n
     case 'winch': object = winch(ctx); break;
     case 'bear_pillar': object = bearPillar(ctx, seed); break;
     case 'hall_gate': object = hallGate(ctx, rng, seed); break;
+    case 'rock_needle': object = rockNeedle(ctx, rng, seed); break;
+    case 'twisted_pine': object = twistedPine(ctx, seed, s, true); break;
+    case 'terrace_wall': object = terraceWall(ctx, rng, seed); break;
+    case 'cairn': object = cairn(ctx, rng, seed); break;
+    case 'bell_post': object = bellPost(ctx); break;
+    case 'bronze_brazier': object = bronzeBrazier(ctx, seed); break;
+    case 'dragon_stele': object = dragonStele(ctx, seed); break;
+    case 'dragon_statue': object = dragonStatue(ctx, seed); break;
+    case 'balustrade': object = balustrade(ctx, seed); break;
+    case 'dragon_gate': object = dragonGate(ctx, rng, seed); break;
+    case 'stalagmite': object = stalagmite(ctx, rng, seed); break;
+    case 'hide_curtain': object = hideCurtain(ctx, rng, seed); break;
+    case 'stakes': object = stakes(ctx, rng, seed); break;
+    case 'bones': object = bones(ctx, rng, seed); break;
+    case 'pelt': object = pelt(ctx, seed); break;
     default: object = null;
   }
   if (!object) return null;
   // props stand on the ground, a centimetre sunk so no seam shows at their foot
   object.position.set(prop.x, ARENA_GROUND_Y - 0.01, prop.z);
   if (prop.kind !== 'fire' && prop.kind !== 'smoke' && !ctx.billboards.includes(object)) object.rotation.y = prop.r ?? 0;
-  const sizedByBuilder = ['tree', 'pine', 'dead_tree', 'bush', 'fern', 'grass', 'fire'].includes(prop.kind);
+  const sizedByBuilder = ['tree', 'pine', 'dead_tree', 'bush', 'fern', 'grass', 'fire', 'twisted_pine'].includes(prop.kind);
   if (!sizedByBuilder) object.scale.setScalar(s);
   object.name = `arena-prop:${prop.kind}`;
   groundProp(ctx, prop, object, rng);

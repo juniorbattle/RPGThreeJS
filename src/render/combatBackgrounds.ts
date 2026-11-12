@@ -21,8 +21,9 @@ function paintedCombatScene(id: string, texture: string, fallback: [string, stri
 }
 
 /**
- * An arena with no painted backdrop: the coded arena (`src/combat/arena/`) draws its own far plate. The Bear's arenas
- * are coded only (OD-2026-11-01-C dropped the arena plates), so none of them falls back on the Lion's forest ruins.
+ * An arena with no painted backdrop: the coded arena (`src/combat/arena/`) draws its own far plate. The Bear's and the
+ * Dragon's arenas are coded only (OD-2026-11-01-C dropped the arena plates), so none of them falls back on the Lion's
+ * forest ruins.
  */
 function codedArenaOnly(id: string): BackgroundSceneConfig {
   return { id, enabled: false, layers: [] };
@@ -35,6 +36,10 @@ export const combatBackgrounds: Record<string, BackgroundSceneConfig> = {
   bear_mountain_pass: codedArenaOnly('bear-mountain-pass-coded'),
   bear_mine_galleries: codedArenaOnly('bear-mine-galleries-coded'),
   bear_hall_terrace: codedArenaOnly('bear-hall-terrace-coded'),
+  dragon_peak_trail: codedArenaOnly('dragon-peak-trail-coded'),
+  dragon_snowy_summit: codedArenaOnly('dragon-snowy-summit-coded'),
+  dragon_hall_esplanade: codedArenaOnly('dragon-hall-esplanade-coded'),
+  dragon_wolf_cave: codedArenaOnly('dragon-wolf-cave-coded'),
 };
 
 export const forestCombatBackground: BackgroundSceneConfig = {

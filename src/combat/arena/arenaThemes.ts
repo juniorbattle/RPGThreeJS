@@ -8,13 +8,21 @@
  * The Lion's three arenas serve the demo. The Bear plateau has its own three (snowy pass, mine galleries, the terrace
  * before Borin's hall), coded only (OD-2026-11-01-C dropped the arena plates): granite, wind-driven snow, slate,
  * timber and iron, amber only from fire, the Bear's sign on its banners and none of the Lion's motifs.
+ *
+ * The Dragon plateau has four, coded only as well, on its validated identity (`IDENTITY.dragon`): pale limestone, a
+ * sea of clouds and rock needles, powder snow on the summits, short yellowed grass and wind-twisted pines lower down,
+ * verdigris bronze and jade, bronze bells and braziers, carved dragons always winged and four-legged. The trail of the
+ * terraces, the snowy summits and the esplanade before Kaelen's hall carry the Dragon's sign; the Wolf's cave carries
+ * the Wolf's (hide curtains, stakes, bones, pelts, iron braziers) and none of the Dragon's carvings or bells.
  */
 export type ArenaSceneId =
   | 'forest_route' | 'bois_clair_burning' | 'lion_sanctum'
-  | 'bear_mountain_pass' | 'bear_mine_galleries' | 'bear_hall_terrace';
+  | 'bear_mountain_pass' | 'bear_mine_galleries' | 'bear_hall_terrace'
+  | 'dragon_peak_trail' | 'dragon_snowy_summit' | 'dragon_hall_esplanade' | 'dragon_wolf_cave';
 
-export type TileStyle = 'mossy_flagstone' | 'packed_earth' | 'sanctum_marble' | 'hewn_granite' | 'snowy_granite';
-export type GroundStyle = 'forest_floor' | 'village_mud' | 'sanctum_rubble' | 'snow_scree' | 'mine_floor' | 'snow_terrace';
+export type TileStyle = 'mossy_flagstone' | 'packed_earth' | 'sanctum_marble' | 'hewn_granite' | 'snowy_granite'
+  | 'limestone_flag' | 'snowy_limestone' | 'dressed_limestone' | 'cave_flag';
+export type GroundStyle = 'forest_floor' | 'village_mud' | 'sanctum_rubble' | 'snow_scree' | 'mine_floor' | 'snow_terrace' | 'dry_grass_snow';
 
 export type ArenaPropKind =
   | 'tree' | 'pine' | 'dead_tree' | 'bush' | 'fern' | 'rock' | 'grass'
@@ -24,14 +32,19 @@ export type ArenaPropKind =
   | 'fire' | 'smoke' | 'statue' | 'well' | 'log' | 'debris'
   // the Bear's mountains
   | 'snow_rock' | 'snowdrift' | 'cliff' | 'beam' | 'mine_frame' | 'minecart' | 'rails' | 'ore_pile' | 'winch'
-  | 'bear_pillar' | 'hall_gate';
+  | 'bear_pillar' | 'hall_gate'
+  // the Dragon's peaks
+  | 'rock_needle' | 'twisted_pine' | 'terrace_wall' | 'cairn' | 'bell_post' | 'bronze_brazier' | 'dragon_stele'
+  | 'dragon_statue' | 'balustrade' | 'dragon_gate'
+  // the Wolf's cave
+  | 'stalagmite' | 'hide_curtain' | 'stakes' | 'bones' | 'pelt';
 
 /** The sound family a scene plays: a new arena borrows an existing one, since new sound awaits the operator's ear. */
 export type ArenaSoundFamily = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum';
 /** The clan sign on an arena's banners and carved reliefs. */
-export type ArenaEmblem = 'lion' | 'bear';
+export type ArenaEmblem = 'lion' | 'bear' | 'dragon' | 'wolf';
 /** What grows or lies at the foot of the platform and of the masonry. */
-export type ArenaFringe = 'vegetation' | 'alpine' | 'snow' | 'rubble';
+export type ArenaFringe = 'vegetation' | 'alpine' | 'snow' | 'rubble' | 'grass';
 
 export interface ArenaProp {
   kind: ArenaPropKind;
@@ -88,7 +101,9 @@ export interface ArenaTheme {
    * Far plate (sky + distant scenery), placed as a wall behind the diorama: a painted file for the Lion's arenas, or
    * painted in code (`procedural`) for the arenas that have no plate.
    */
-  farPlate: { file?: string; procedural?: 'peaks' | 'cave'; width: number; bottomY: number; z: number; tint: string };
+  farPlate: {
+    file?: string; procedural?: 'peaks' | 'cave' | 'clouds_day' | 'clouds_dusk' | 'lair'; width: number; bottomY: number; z: number; tint: string;
+  };
   /** Ambience and sound mapping the scene plays (its own id for the Lion's arenas). */
   sound: ArenaSoundFamily;
   /** Sign on the banners (the lion by default). */
@@ -99,8 +114,15 @@ export interface ArenaTheme {
   interior?: boolean;
   /** Fringe of the platform and the masonry (vegetation by default). */
   fringe?: ArenaFringe;
-  /** Apron around the platform: worn earth by default, cobbles in the village, granite flags on a terrace. */
+  /**
+   * Apron around the platform: worn earth by default, cobbles in the village, flags on a terrace (with whatever the
+   * palette's "moss" is in the joints: snow before Borin's hall, dry grass before Kaelen's).
+   */
   apron?: 'flagstone';
+  /** The living rock of cliffs, boulders and outcrops: the Bear's granite by default, the Dragon's pale limestone. */
+  rock?: 'granite' | 'limestone';
+  /** Horizon between the band and the far plate: tree lines or ridges by default, the sea of clouds on the Dragon's peaks. */
+  horizon?: 'clouds';
   /** Multiplier applied to pixel sprites so they sit in the arena light. */
   spriteTint: string;
   spriteRim: string;
@@ -367,6 +389,188 @@ const BEAR_SNOW_PALETTE: ArenaPalette = {
   ink: '#0b0d10',
 };
 
+/** The pilgrims' trail across the Dragon's terraces: limestone, yellowed grass, twisted pines, a carved waymark. */
+const DRAGON_TRAIL_PROPS: ArenaProp[] = [
+  // Back: the rock needles rising from the clouds at the edges, the terraces stepping up toward them.
+  { kind: 'rock_needle', x: -13.6, z: -15.6, s: 1.1, v: 1 },
+  { kind: 'rock_needle', x: 14.6, z: -16.6, s: 1.2, v: 2 },
+  { kind: 'rock_needle', x: -19.0, z: -19.0, s: 1.35, v: 3 },
+  { kind: 'rock_needle', x: 19.6, z: -20.0, s: 1.4, v: 4 },
+  { kind: 'rock_needle', x: -8.6, z: -21.0, s: 0.95, v: 5 },
+  { kind: 'rock_needle', x: 9.2, z: -22.0, s: 1.0, v: 6 },
+  { kind: 'terrace_wall', x: -4.0, z: -6.6, s: 1, r: 0.05, v: 1 },
+  { kind: 'terrace_wall', x: 4.2, z: -7.0, s: 1, r: -0.06, v: 2 },
+  { kind: 'terrace_wall', x: -7.4, z: -10.2, s: 1.1, r: 0.12, v: 3 },
+  { kind: 'terrace_wall', x: 7.6, z: -10.6, s: 1.1, r: -0.1, v: 4 },
+  { kind: 'twisted_pine', x: -7.8, z: -5.8, s: 1.15, v: 1 },
+  { kind: 'twisted_pine', x: 8.4, z: -5.4, s: 1.2, v: 2 },
+  { kind: 'twisted_pine', x: -12.4, z: -9.2, s: 1.35, v: 3 },
+  { kind: 'twisted_pine', x: 12.8, z: -9.6, s: 1.35, v: 0 },
+  { kind: 'twisted_pine', x: 1.8, z: -11.6, s: 1.1, v: 1 },
+  { kind: 'dragon_stele', x: -1.2, z: -5.2, s: 0.9, v: 1 },
+  { kind: 'cairn', x: 1.6, z: -4.4, s: 0.9, v: 1 },
+  { kind: 'snow_rock', x: -5.8, z: -4.3, s: 1.05, v: 1 },
+  { kind: 'snow_rock', x: 5.6, z: -4.5, s: 1.15, v: 2 },
+  { kind: 'snow_rock', x: 3.2, z: -5.6, s: 0.7, v: 3 },
+  { kind: 'banner', x: -3.6, z: -4.4, s: 1, v: 1 },
+  { kind: 'grass', x: 3.8, z: -3.8, s: 1, v: 1 },
+  { kind: 'grass', x: -2.4, z: -3.7, s: 1, v: 2 },
+  // Flanks.
+  { kind: 'snow_rock', x: -7.2, z: 0.6, s: 1.35, v: 5 },
+  { kind: 'snow_rock', x: 7.6, z: -1.3, s: 1.3, v: 6 },
+  { kind: 'twisted_pine', x: -9.4, z: -1.6, s: 1.1, v: 2 },
+  { kind: 'twisted_pine', x: 9.9, z: 1.8, s: 1.15, v: 3 },
+  { kind: 'banner', x: 7.0, z: 2.2, s: 0.95, v: 2 },
+  { kind: 'cairn', x: -6.4, z: -1.7, s: 1, v: 2 },
+  { kind: 'cairn', x: 6.3, z: 0.4, s: 0.85, v: 3 },
+  { kind: 'snowdrift', x: -6.6, z: 3.0, s: 0.8, v: 3 },
+  { kind: 'grass', x: -6.0, z: 2.0, s: 1.1, v: 2 },
+  { kind: 'grass', x: 6.1, z: 2.6, s: 1, v: 0 },
+  { kind: 'grass', x: 6.8, z: -2.6, s: 1, v: 1 },
+  // Foreground framing (blurred by the tilt-shift band).
+  { kind: 'snow_rock', x: -6.8, z: 5.6, s: 1.3, v: 7 },
+  { kind: 'grass', x: -3.6, z: 6.2, s: 1.3, v: 1 },
+  { kind: 'rock', x: 4.2, z: 6.4, s: 0.8, v: 2 },
+  { kind: 'grass', x: 7.2, z: 5.8, s: 1.4, v: 2 },
+];
+
+/** The snowy summits above the clouds: powder snow, rock needles, bronze bells on their posts, a carved dragon stone. */
+const DRAGON_SUMMIT_PROPS: ArenaProp[] = [
+  // Back: snow-capped needles at the edges, the carved stone and the bells of the climb to the altar.
+  { kind: 'rock_needle', x: -13.0, z: -14.6, s: 1.1, v: 7 },
+  { kind: 'rock_needle', x: 13.8, z: -15.6, s: 1.15, v: 8 },
+  { kind: 'rock_needle', x: -18.6, z: -18.6, s: 1.4, v: 9 },
+  { kind: 'rock_needle', x: 19.2, z: -19.4, s: 1.4, v: 10 },
+  { kind: 'rock_needle', x: -8.0, z: -21.2, s: 1.0, v: 11 },
+  { kind: 'rock_needle', x: 8.6, z: -22.0, s: 1.05, v: 12 },
+  { kind: 'dragon_stele', x: -0.3, z: -7.4, s: 1.1, v: 2 },
+  { kind: 'bell_post', x: -3.2, z: -5.4, s: 1, v: 1 },
+  { kind: 'bell_post', x: 2.8, z: -5.6, s: 1, v: 2 },
+  { kind: 'bronze_brazier', x: -1.6, z: -4.5, s: 0.9, v: 1 },
+  { kind: 'bronze_brazier', x: 1.2, z: -4.6, s: 0.9, v: 2 },
+  { kind: 'banner', x: -4.8, z: -4.2, s: 1, v: 3 },
+  { kind: 'banner', x: 4.8, z: -4.4, s: 1, v: 4 },
+  { kind: 'snow_rock', x: -6.2, z: -4.8, s: 1.15, v: 8 },
+  { kind: 'snow_rock', x: 6.2, z: -5.0, s: 1.2, v: 9 },
+  { kind: 'twisted_pine', x: -7.6, z: -7.0, s: 1.1, v: 4 },
+  { kind: 'twisted_pine', x: 8.2, z: -6.6, s: 1.15, v: 5 },
+  { kind: 'twisted_pine', x: -12.0, z: -9.0, s: 1.3, v: 6 },
+  { kind: 'twisted_pine', x: 12.6, z: -9.4, s: 1.3, v: 7 },
+  { kind: 'snowdrift', x: 0.2, z: -9.2, s: 1.2, v: 1 },
+  { kind: 'snowdrift', x: -7.6, z: -3.0, s: 1.2, v: 2 },
+  // Flanks.
+  { kind: 'snow_rock', x: -7.4, z: 0.4, s: 1.4, v: 10 },
+  { kind: 'snow_rock', x: 7.6, z: -1.2, s: 1.3, v: 11 },
+  { kind: 'bell_post', x: 6.6, z: 2.2, s: 0.95, v: 3 },
+  { kind: 'bronze_brazier', x: -6.0, z: 2.4, s: 0.95, v: 3 },
+  { kind: 'cairn', x: 6.3, z: 0.1, s: 0.9, v: 4 },
+  { kind: 'cairn', x: -6.4, z: -1.8, s: 0.85, v: 5 },
+  { kind: 'snowdrift', x: -6.6, z: 3.4, s: 1.2, v: 3 },
+  { kind: 'snowdrift', x: 7.0, z: 3.8, s: 1.1, v: 4 },
+  { kind: 'twisted_pine', x: -9.4, z: -1.8, s: 1.1, v: 1 },
+  { kind: 'twisted_pine', x: 9.8, z: 1.6, s: 1.1, v: 2 },
+  // Foreground framing.
+  { kind: 'snowdrift', x: -5.8, z: 6.0, s: 1.5, v: 5 },
+  { kind: 'snow_rock', x: 7.0, z: 5.8, s: 1.3, v: 12 },
+  { kind: 'cairn', x: -7.8, z: 4.8, s: 1.1, v: 6 },
+];
+
+/** The esplanade before Kaelen's hall: the hall in the cliff, winged dragons on their pedestals, bronze, balustrades over the clouds. */
+const DRAGON_ESPLANADE_PROPS: ArenaProp[] = [
+  // Back: the hall's front carved into the mountain, its steps, the dragons that guard it.
+  { kind: 'dragon_gate', x: -0.4, z: -9.6, s: 1.1, v: 1 },
+  { kind: 'cliff', x: -9.6, z: -10.2, s: 1.5, v: 31 },
+  { kind: 'cliff', x: 9.4, z: -10.6, s: 1.5, v: 32 },
+  { kind: 'cliff', x: -15.6, z: -13.4, s: 1.8, v: 33 },
+  { kind: 'cliff', x: 16.0, z: -13.8, s: 1.8, v: 34 },
+  { kind: 'stairs', x: -0.4, z: -6.1, s: 1.1, v: 5 },
+  { kind: 'dragon_statue', x: -3.9, z: -5.6, s: 1, v: 1 },
+  { kind: 'dragon_statue', x: 3.1, z: -5.7, s: 1, v: 2 },
+  { kind: 'bronze_brazier', x: -2.4, z: -4.4, s: 1, v: 4 },
+  { kind: 'bronze_brazier', x: 1.6, z: -4.4, s: 1, v: 5 },
+  { kind: 'banner', x: -5.8, z: -4.2, s: 1.05, v: 5 },
+  { kind: 'banner', x: 5.0, z: -4.4, s: 1.05, v: 6 },
+  { kind: 'twisted_pine', x: -7.6, z: -6.4, s: 1.15, v: 8 },
+  { kind: 'twisted_pine', x: 7.8, z: -6.8, s: 1.2, v: 9 },
+  // Flanks: the balustrades over the clouds, a dragon on each end post, bronze against the wind.
+  { kind: 'balustrade', x: -7.6, z: -0.2, s: 1, r: Math.PI / 2, v: 1 },
+  { kind: 'balustrade', x: 7.8, z: 0.2, s: 1, r: -Math.PI / 2, v: 2 },
+  { kind: 'dragon_statue', x: -7.6, z: 2.6, s: 0.85, v: 3 },
+  { kind: 'dragon_statue', x: 7.8, z: -2.4, s: 0.85, v: 4 },
+  { kind: 'bronze_brazier', x: -6.1, z: 2.6, s: 0.95, v: 6 },
+  { kind: 'bronze_brazier', x: 6.2, z: -1.6, s: 0.95, v: 7 },
+  { kind: 'cairn', x: 6.4, z: 2.6, s: 0.8, v: 7 },
+  { kind: 'grass', x: -6.2, z: -1.8, s: 1, v: 1 },
+  { kind: 'grass', x: 6.4, z: 3.4, s: 1, v: 2 },
+  { kind: 'grass', x: -6.6, z: 3.8, s: 1.1, v: 0 },
+  // Foreground framing.
+  { kind: 'balustrade', x: -6.0, z: 6.2, s: 1, r: 0.06, v: 3 },
+  { kind: 'snow_rock', x: 7.0, z: 5.8, s: 1.2, v: 13 },
+  { kind: 'grass', x: 3.6, z: 6.4, s: 1.3, v: 1 },
+];
+
+/** The Wolf's lair: a rough cave of hide curtains and stakes, bones and pelts, iron braziers and the Wolf's banners. */
+const WOLF_CAVE_PROPS: ArenaProp[] = [
+  // Back: the cave's walls and stalagmites, the hides hung across its recesses, the Wolf's banners.
+  { kind: 'cliff', x: -8.2, z: -9.8, s: 1.3, v: 41 },
+  { kind: 'cliff', x: 0.4, z: -12.0, s: 1.4, v: 42 },
+  { kind: 'cliff', x: 8.8, z: -10.2, s: 1.3, v: 43 },
+  { kind: 'cliff', x: -14.2, z: -12.4, s: 1.6, v: 44 },
+  { kind: 'cliff', x: 14.8, z: -12.8, s: 1.6, v: 45 },
+  { kind: 'stalagmite', x: -5.6, z: -7.4, s: 1.1, v: 1 },
+  { kind: 'stalagmite', x: 6.0, z: -7.8, s: 1.15, v: 2 },
+  { kind: 'stalagmite', x: -10.8, z: -6.6, s: 1.3, v: 3 },
+  { kind: 'stalagmite', x: 11.0, z: -7.0, s: 1.25, v: 4 },
+  { kind: 'stalagmite', x: 1.6, z: -8.8, s: 0.9, v: 5 },
+  { kind: 'hide_curtain', x: -2.8, z: -7.2, s: 1, v: 1 },
+  { kind: 'hide_curtain', x: 3.6, z: -7.6, s: 1, r: -0.1, v: 2 },
+  { kind: 'banner', x: -1.4, z: -4.8, s: 1, v: 7 },
+  { kind: 'banner', x: 1.8, z: -4.9, s: 1, v: 8 },
+  { kind: 'brazier', x: -4.6, z: -4.4, s: 1, v: 11 },
+  { kind: 'brazier', x: 4.4, z: -4.5, s: 1, v: 12 },
+  { kind: 'stakes', x: -6.8, z: -5.0, s: 1, v: 1 },
+  { kind: 'stakes', x: 7.0, z: -5.4, s: 1, v: 2 },
+  { kind: 'bones', x: 2.9, z: -4.3, s: 0.9, v: 1 },
+  // Flanks.
+  { kind: 'pelt', x: -6.2, z: -0.8, s: 1, r: 0.4, v: 1 },
+  { kind: 'pelt', x: 6.3, z: 0.6, s: 0.95, r: -0.5, v: 2 },
+  { kind: 'stakes', x: -7.4, z: 1.6, s: 0.9, v: 3 },
+  { kind: 'brazier', x: 6.0, z: -1.8, s: 1, v: 13 },
+  { kind: 'brazier', x: -6.0, z: 2.8, s: 1, v: 14 },
+  { kind: 'crate', x: 6.5, z: 2.6, s: 0.95, r: -0.2, v: 2 },
+  { kind: 'crate', x: 7.2, z: 3.3, s: 0.7, r: 0.5, v: 3 },
+  { kind: 'barrel', x: -7.8, z: 0.0, s: 0.9, v: 1 },
+  { kind: 'bones', x: 6.9, z: -3.0, s: 1, v: 2 },
+  { kind: 'stalagmite', x: -8.8, z: 3.6, s: 1.1, v: 6 },
+  { kind: 'rock', x: 8.4, z: 1.0, s: 1.1, v: 1 },
+  // Foreground framing.
+  { kind: 'stalagmite', x: -6.6, z: 5.6, s: 1.3, v: 7 },
+  { kind: 'crate', x: 4.4, z: 6.2, s: 1.1, r: 0.3, v: 4 },
+  { kind: 'bones', x: -3.4, z: 6.4, s: 1, v: 3 },
+  { kind: 'rock', x: 7.0, z: 5.6, s: 1.3, v: 2 },
+];
+
+/**
+ * Pale limestone, powder snow and yellowed grass for the Dragon's peaks. The cloth is deep jade and the trim pale jade
+ * and verdigris, never red-and-gold; the "moss" packed into joints and drifts is snow, as on the Bear's mountains.
+ */
+const DRAGON_PEAK_PALETTE: ArenaPalette = {
+  stone: ['#5d564b', '#7c7465', '#9b9280', '#b9b09b', '#d2c9b3', '#e8e1cd'],
+  stoneDark: ['#2d2923', '#413b32', '#564f44'],
+  moss: ['#8e9aae', '#acb7c8', '#cad2de', '#e3e8ef', '#f6f8fb'],
+  dirt: ['#392f24', '#514536', '#6a5c49', '#85765e'],
+  // short yellowed grass, never a lush green
+  grass: ['#3c3418', '#584c22', '#786a2e', '#98863a', '#b6a04a', '#d0bb66'],
+  foliage: ['#121a16', '#1a261e', '#243327', '#304130', '#3e5038', '#506040', '#66734c'],
+  bark: ['#1c1612', '#2c231c', '#3e3328', '#524536', '#685a47'],
+  wood: ['#2a2017', '#3e3022', '#55432f', '#6e583e'],
+  cloth: ['#0c2422', '#123632', '#1a4a44', '#245e56'],
+  trim: ['#3d675b', '#5d8c7b', '#8db9a3', '#cde4d4'],
+  plaster: ['#8a8170', '#a69d89', '#c2b9a3'],
+  roof: ['#3a3a36', '#4e4e48', '#64645c'],
+  ink: '#14110d',
+};
+
 export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.freeze({
   forest_route: {
     id: 'forest_route',
@@ -588,10 +792,147 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
     motes: { color: '#f4f8ff', count: 90, rise: -0.3, size: 0.065, glow: false },
     mist: { color: '#e6edf5', opacity: 0.2, layers: [[-11.5, 1.4, 48], [-16, 2.4, 62]] },
   },
+  dragon_peak_trail: {
+    id: 'dragon_peak_trail',
+    sound: 'forest_route',
+    label: 'Pics Célestes — sentier des terrasses',
+    tile: 'limestone_flag',
+    ground: 'dry_grass_snow',
+    palette: DRAGON_PEAK_PALETTE,
+    light: {
+      hemiSky: '#e3ecff', hemiGround: '#6a6048', hemiIntensity: 2.15,
+      sunColor: '#fff3dc', sunIntensity: 5.0, sunPosition: [-9, 15, 7],
+      fillColor: '#a7bde6', fillIntensity: 1.0, exposure: 0.98,
+    },
+    fog: { color: '#b6c3d2', density: 0.011 },
+    background: '#b4c4d6',
+    farPlate: { procedural: 'clouds_day', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#f6f3ea',
+    spriteRim: '#5a5440',
+    props: DRAGON_TRAIL_PROPS,
+    emblem: 'dragon',
+    rock: 'limestone',
+    horizon: 'clouds',
+    fringe: 'alpine',
+    band: { kinds: ['twisted_pine', 'snow_rock', 'twisted_pine', 'cairn'], count: 16, z: [-9, -20], halfWidth: 26, gap: 5, scale: [0.9, 1.4] },
+    clutter: { kinds: ['snow_rock', 'grass', 'cairn', 'grass', 'rock', 'grass'], count: 34, z: [-3.6, -16], halfWidth: 16, scale: [0.7, 1.2], gap: 2.4 },
+    motes: { color: '#fff6d8', count: 50, rise: 0.05, size: 0.06, glow: false },
+    mist: { color: '#f2f5fa', opacity: 0.22, layers: [[-10, 1.4, 48], [-16, 2.6, 64]] },
+  },
+  dragon_snowy_summit: {
+    id: 'dragon_snowy_summit',
+    sound: 'lion_sanctum',
+    label: 'Pics Célestes — cimes enneigées au couchant',
+    tile: 'snowy_limestone',
+    ground: 'snow_scree',
+    palette: DRAGON_PEAK_PALETTE,
+    light: {
+      hemiSky: '#cbbde6', hemiGround: '#5e5060', hemiIntensity: 1.85,
+      sunColor: '#ffb27c', sunIntensity: 4.7, sunPosition: [-10, 9, 6],
+      fillColor: '#8e9fdc', fillIntensity: 1.0, exposure: 1.0,
+    },
+    fog: { color: '#b9a3b6', density: 0.012 },
+    background: '#c2a2a8',
+    farPlate: { procedural: 'clouds_dusk', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#fbefe6',
+    spriteRim: '#6a5c80',
+    props: DRAGON_SUMMIT_PROPS,
+    emblem: 'dragon',
+    rock: 'limestone',
+    horizon: 'clouds',
+    snow: true,
+    fringe: 'snow',
+    band: { kinds: ['snow_rock', 'twisted_pine', 'snowdrift', 'snow_rock'], count: 16, z: [-9, -20], halfWidth: 26, gap: 5, scale: [0.9, 1.4] },
+    clutter: { kinds: ['snowdrift', 'snow_rock', 'cairn', 'snowdrift', 'snow_rock'], count: 30, z: [-3.6, -16], halfWidth: 16, scale: [0.7, 1.2], gap: 2.4 },
+    motes: { color: '#fff4ec', count: 130, rise: -0.4, size: 0.065, glow: false },
+    mist: { color: '#f4e6ea', opacity: 0.3, layers: [[-9.5, 1.4, 48], [-15.5, 2.6, 64]] },
+  },
+  dragon_hall_esplanade: {
+    id: 'dragon_hall_esplanade',
+    sound: 'forest_route',
+    label: 'Salle de Kaelen — esplanade au-dessus des nuages',
+    tile: 'dressed_limestone',
+    // the terrace pattern, whose "snow" is this palette's dry grass and lichen
+    ground: 'snow_terrace',
+    palette: {
+      ...DRAGON_PEAK_PALETTE,
+      // dressed limestone, a shade lighter than the wild rock; dry grass and lichen in the joints instead of snow
+      stone: ['#615a4e', '#827969', '#a29884', '#c0b69f', '#d8cfb8', '#ece6d3'],
+      moss: ['#4f4622', '#6e622e', '#8e7f3a', '#ad9c4c', '#c8b766'],
+    },
+    light: {
+      hemiSky: '#e6eeff', hemiGround: '#6e6448', hemiIntensity: 2.1,
+      sunColor: '#fff0d2', sunIntensity: 5.2, sunPosition: [-8, 16, 7],
+      fillColor: '#a9bde4', fillIntensity: 0.95, exposure: 0.97,
+    },
+    fog: { color: '#b9c6d6', density: 0.0105 },
+    background: '#b7c7d9',
+    farPlate: { procedural: 'clouds_day', width: 46, bottomY: -2.2, z: -27, tint: '#f6f6f4' },
+    spriteTint: '#f8f4ea',
+    spriteRim: '#5c5640',
+    props: DRAGON_ESPLANADE_PROPS,
+    emblem: 'dragon',
+    rock: 'limestone',
+    horizon: 'clouds',
+    fringe: 'grass',
+    apron: 'flagstone',
+    band: { kinds: ['rock_needle', 'twisted_pine', 'cliff', 'rock_needle'], count: 14, z: [-11, -20], halfWidth: 26, gap: 6, scale: [1.0, 1.5] },
+    clutter: { kinds: ['grass', 'cairn', 'grass', 'snow_rock', 'grass'], count: 18, z: [-3.8, -12], halfWidth: 14, scale: [0.7, 1.1], gap: 5 },
+    motes: { color: '#fff6d8', count: 40, rise: 0.04, size: 0.06, glow: false },
+    mist: { color: '#f4f6fa', opacity: 0.26, layers: [[-12, 1.4, 50], [-16.5, 2.4, 64]] },
+  },
+  dragon_wolf_cave: {
+    id: 'dragon_wolf_cave',
+    sound: 'lion_sanctum',
+    label: 'Repaire du Loup — caverne',
+    tile: 'cave_flag',
+    // packed earth with straw in this palette's "gravel" tones and soot where the fires burn
+    ground: 'mine_floor',
+    palette: {
+      stone: ['#1b1815', '#29241f', '#39322b', '#4b4238', '#5f5547', '#766b5a'],
+      stoneDark: ['#0a0908', '#12100d', '#1b1814'],
+      // soot and ash in the joints
+      moss: ['#141210', '#1e1b17', '#2a2620', '#36312a', '#433d34'],
+      dirt: ['#16120e', '#241d16', '#33291f', '#433629', '#554534'],
+      // trampled straw where the cave meets its walls
+      grass: ['#2a2416', '#3c331f', '#524629', '#6a5b35', '#837143', '#9c8752'],
+      foliage: ['#0d0e0c', '#151612', '#1d1f19', '#262920', '#303328', '#3b3f31', '#474b3b'],
+      bark: ['#1a130e', '#291f16', '#3a2c1f', '#4d3b2a', '#614c37'],
+      wood: ['#1c140e', '#2c2016', '#3e2e1f', '#52402b'],
+      // the Wolf's banners: soot-black cloth, bone and ash, never red-and-gold
+      cloth: ['#121110', '#1c1a18', '#272421', '#33302c'],
+      trim: ['#55504a', '#807a70', '#b0a999', '#ddd6c6'],
+      plaster: ['#3c3832', '#504a42', '#665e54'],
+      roof: ['#1a1816', '#26231f', '#33302a'],
+      ink: '#070605',
+    },
+    light: {
+      hemiSky: '#8e8a94', hemiGround: '#1e1712', hemiIntensity: 1.75,
+      sunColor: '#ffc690', sunIntensity: 3.6, sunPosition: [-6, 14, 6],
+      fillColor: '#6e7894', fillIntensity: 0.55, exposure: 1.12,
+    },
+    fog: { color: '#1c1612', density: 0.026 },
+    background: '#09080a',
+    farPlate: { procedural: 'lair', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#f6e6d0',
+    spriteRim: '#6e4622',
+    props: WOLF_CAVE_PROPS,
+    emblem: 'wolf',
+    rock: 'limestone',
+    interior: true,
+    fringe: 'rubble',
+    band: { kinds: ['stalagmite', 'cliff', 'stalagmite', 'crate', 'cliff'], count: 16, z: [-9, -18], halfWidth: 22, gap: 5, scale: [1.0, 1.4] },
+    clutter: { kinds: ['rock', 'bones', 'stalagmite', 'crate', 'barrel', 'rock'], count: 24, z: [-3.8, -14], halfWidth: 14, scale: [0.7, 1.1], gap: 5.2 },
+    motes: { color: '#e0a868', count: 70, rise: 0.12, size: 0.06, glow: true },
+    mist: { color: '#3c3028', opacity: 0.4, layers: [[-7.5, 1.0, 40], [-12.5, 2.0, 56]] },
+  },
 });
 
 /** The arenas of the Bear plateau, one per place its fights take place. */
 export const BEAR_ARENA_IDS = Object.freeze(['bear_mountain_pass', 'bear_mine_galleries', 'bear_hall_terrace'] as const);
+
+/** The arenas of the Dragon plateau: the terraces' trail, the snowy summits, Kaelen's esplanade and the Wolf's cave. */
+export const DRAGON_ARENA_IDS = Object.freeze(['dragon_peak_trail', 'dragon_snowy_summit', 'dragon_hall_esplanade', 'dragon_wolf_cave'] as const);
 
 /** Deterministic mid-ground band props for a theme (kept off the far plate's centre gap). */
 export function arenaBandProps(theme: ArenaTheme, rng: () => number): ArenaProp[] {

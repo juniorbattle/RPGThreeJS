@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ARENA_THEMES } from './arenaThemes';
-import { bannerTexture, bearReliefTexture, columnTexture, lionReliefTexture, plasterTexture, windowTextures } from './arenaTextures';
+import { bannerTexture, bearReliefTexture, columnTexture, dragonReliefTexture, dragonShape, lionReliefTexture, plasterTexture, windowTextures, wolfShape } from './arenaTextures';
 
 const pal = ARENA_THEMES.lion_sanctum.palette;
 
@@ -70,6 +70,57 @@ describe('arena pixel textures', () => {
       expect(r - b).toBeLessThan(10);
       expect(Math.abs(r - g)).toBeLessThan(12);
     }
+  });
+
+  it('draws the Dragon’s sign as a winged dragon on four legs, never a serpent', () => {
+    let wing = 0;
+    for (let y = 0; y < 34; y++) for (let x = 0; x < 26; x++) if (dragonShape(x + 0.5, y + 0.5) >= 2) wing++;
+    expect(wing).toBeGreaterThan(60);
+    // just under the body, the four legs (and the tail behind them) cross the row as separate strokes
+    let runs = 0, inside = false;
+    for (let x = 0; x < 26; x += 0.25) {
+      const solid = dragonShape(x, 27) === 1;
+      if (solid && !inside) runs++;
+      inside = solid;
+    }
+    expect(runs).toBeGreaterThanOrEqual(4);
+    // the wolf's sign is a head with its ears and fangs, not the dragon
+    let differs = 0;
+    for (let y = 0; y < 34; y++) for (let x = 0; x < 26; x++) if (Boolean(wolfShape(x + 0.5, y + 0.5)) !== Boolean(dragonShape(x + 0.5, y + 0.5))) differs++;
+    expect(differs).toBeGreaterThan(150);
+  });
+
+  it('paints the Dragon’s banners in jade and the Wolf’s in soot and bone, never the Lion’s gold', () => {
+    const dragonPal = ARENA_THEMES.dragon_peak_trail.palette, wolfPal = ARENA_THEMES.dragon_wolf_cave.palette;
+    const gold = (r: number, g: number, b: number) => r - b > 40 && g - b > 25;
+    for (const [banner, other] of [[bannerTexture(dragonPal, 1, false, 'dragon'), bannerTexture(dragonPal, 1)], [bannerTexture(wolfPal, 7, false, 'wolf'), bannerTexture(wolfPal, 7, false, 'bear')]] as const) {
+      expect([banner.width, banner.height]).toEqual([40, 80]);
+      let differs = 0;
+      for (let y = 0; y < 80; y++) for (let x = 0; x < 40; x++) {
+        const [r, g, b, a] = banner.get(x, y);
+        if (a) expect(gold(r, g, b), `${x},${y}`).toBe(false);
+        if (banner.get(x, y).join() !== other.get(x, y).join()) differs++;
+      }
+      // neither the lion's banner nor the bear's
+      expect(differs).toBeGreaterThan(200);
+    }
+    // the dragon's cloth is jade: greener and bluer than it is red
+    let jade = 0;
+    const dragon = bannerTexture(dragonPal, 1, false, 'dragon');
+    for (let y = 8; y < 60; y++) for (let x = 5; x < 35; x++) { const [r, g, b] = dragon.get(x, y); if (g > r + 15 && b > r + 10) jade++; }
+    expect(jade).toBeGreaterThan(600);
+  });
+
+  it('carves the Dragon’s relief in limestone with a verdigris inlay, no gold and no glow', () => {
+    const relief = dragonReliefTexture(ARENA_THEMES.dragon_hall_esplanade.palette, 90);
+    expect([relief.width, relief.height]).toEqual([40, 72]);
+    let verdigris = 0;
+    for (let y = 0; y < relief.height; y++) for (let x = 0; x < relief.width; x++) {
+      const [r, g, b] = relief.get(x, y);
+      expect(r - b > 40 && g - b > 25, `${x},${y}`).toBe(false);
+      if (g > r + 20) verdigris++;
+    }
+    expect(verdigris).toBeGreaterThan(100);
   });
 
   it('wraps the fluted column texture seamlessly (four whole flutes per repeat)', () => {

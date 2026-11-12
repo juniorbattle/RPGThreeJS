@@ -185,10 +185,77 @@ function tileHewnGranite(pal: ArenaPalette, seed: number, snow: boolean): PixelC
   return pc;
 }
 
+/**
+ * Limestone slab for the Dragon's arenas: pale flags of uneven size, smooth and weathered, with what the place lays in
+ * their joints: yellowed grass on the terraces' trail, powder snow on the summits, ash in the Wolf's cave (darkened
+ * there, with a few wet glints).
+ */
+function tileLimestone(pal: ArenaPalette, seed: number, joint: 'grass' | 'snow' | 'ash'): PixelCanvas {
+  const pc = new PixelCanvas(TILE_TEXELS, TILE_TEXELS);
+  const rng = seeded(seed);
+  pc.fill(rgb(pal.stoneDark[0]));
+  const stones: Rect[] = [];
+  splitStones(rng, { x: 0, y: 0, w: TILE_TEXELS, h: TILE_TEXELS }, 3, stones);
+  for (const s of stones) paintStone(pc, rng, s, pal, (joint === 'ash' ? 0.4 : 0.5) + rng() * 0.24, 0);
+  // weathering pits: a dark hollow with a lit lower lip
+  for (let k = 0; k < 5; k++) {
+    const x = 2 + Math.floor(rng() * 44), y = 2 + Math.floor(rng() * 43);
+    pc.set(x, y, rgb(pal.stoneDark[2])); pc.set(x, y + 1, ramp(pal.stone, 0.85));
+  }
+  const n = makeNoise(rng, 6), wet = makeNoise(rng, 4);
+  const offset = joint === 'snow' ? 0.22 : joint === 'grass' ? 0.1 : 0.06;
+  for (let y = 0; y < TILE_TEXELS; y++) for (let x = 0; x < TILE_TEXELS; x++) {
+    const stone = stones.find((s) => x >= s.x && x < s.x + s.w && y >= s.y && y < s.y + s.h);
+    if (!stone) continue;
+    const edge = Math.min(x - stone.x, y - stone.y, stone.x + stone.w - 1 - x, stone.y + stone.h - 1 - y);
+    const v = n(x / 3, y / 3) - edge * 0.14 + offset;
+    if (joint === 'ash' && wet(x / 9, y / 9) > 0.7) {
+      // a wet patch: darker stone, a glint of firelight here and there
+      const [r, g, b] = pc.get(x, y);
+      pc.set(x, y, (x * 5 + y * 3) % 23 === 0 ? ramp(pal.stone, 0.9) : mixRgb([r, g, b], rgb(pal.stoneDark[0]), 0.45));
+    }
+    if (v <= 0.62) continue;
+    if (joint === 'grass') pc.set(x, y, shadeTone(pal.grass, Math.min(1, 0.3 + (v - 0.62) * 1.6), x, y));
+    else if (joint === 'snow') pc.set(x, y, shadeTone(pal.moss, Math.min(1, 0.55 + (v - 0.62) * 1.6), x, y));
+    else pc.set(x, y, shadeTone(pal.moss, 0.25 + (v - 0.62) * 1.2, x, y));
+  }
+  return pc;
+}
+
+/**
+ * Dressed limestone of Kaelen's esplanade: two courses of large squared flags, a lit bevel and a shaded lip, the
+ * palette's dry grass and lichen lodged only in a few joints.
+ */
+function tileDressedLimestone(pal: ArenaPalette, seed: number): PixelCanvas {
+  const pc = new PixelCanvas(TILE_TEXELS, TILE_TEXELS);
+  const rng = seeded(seed);
+  pc.fill(rgb(pal.stoneDark[0]));
+  // named slabs, not "flags": the narrative validator reads `flags.<name>` anywhere in src as a story fact
+  const slabs: Rect[] = [];
+  for (const [y, h] of [[0, 24], [24, 24]] as const) {
+    const cut = 18 + Math.floor(rng() * 13);
+    slabs.push({ x: 0, y, w: cut, h }, { x: cut, y, w: TILE_TEXELS - cut, h });
+  }
+  for (const slab of slabs) paintStone(pc, rng, slab, pal, 0.56 + rng() * 0.16, 0);
+  const n = makeNoise(rng, 6);
+  for (let y = 0; y < TILE_TEXELS; y++) for (let x = 0; x < TILE_TEXELS; x++) {
+    const slab = slabs.find((f) => x >= f.x && x < f.x + f.w && y >= f.y && y < f.y + f.h);
+    if (!slab) continue;
+    const edge = Math.min(x - slab.x, y - slab.y, slab.x + slab.w - 1 - x, slab.y + slab.h - 1 - y);
+    const v = n(x / 3, y / 3) - edge * 0.2;
+    if (v > 0.66) pc.set(x, y, shadeTone(pal.moss, Math.min(1, 0.3 + (v - 0.66) * 1.8), x, y));
+  }
+  return pc;
+}
+
 export function tileTopTexture(style: TileStyle, pal: ArenaPalette, seed: number): PixelCanvas {
   if (style === 'packed_earth') return tileEarth(pal, seed);
   if (style === 'sanctum_marble') return tileMarble(pal, seed);
   if (style === 'hewn_granite' || style === 'snowy_granite') return tileHewnGranite(pal, seed, style === 'snowy_granite');
+  if (style === 'limestone_flag') return tileLimestone(pal, seed, 'grass');
+  if (style === 'snowy_limestone') return tileLimestone(pal, seed, 'snow');
+  if (style === 'cave_flag') return tileLimestone(pal, seed, 'ash');
+  if (style === 'dressed_limestone') return tileDressedLimestone(pal, seed);
   return tileFlagstone(pal, seed);
 }
 
@@ -237,6 +304,11 @@ export function groundTexture(style: GroundStyle, pal: ArenaPalette, seed = 7): 
       const level = bare ? 0.42 + (mid - 0.5) * 0.3 + (lx === 1 || ly === 1 ? 0.14 : 0) - (lx === 15 || ly === 15 ? 0.16 : 0)
         : 0.68 + (mid - 0.5) * 0.26 + (fine - 0.5) * 0.12;
       pc.set(x, y, shadeTone(bare ? pal.stone : pal.moss, Math.max(0, Math.min(1, level)), x, y));
+    } else if (style === 'dry_grass_snow') {
+      // the Dragon's terraces: short yellowed grass, pale scree where the slope breaks, thin snow lying in the hollows
+      if (big < 0.26) pc.set(x, y, shadeTone(pal.stone, Math.max(0, Math.min(1, 0.46 + (fine - 0.5) * 0.5 + (mid - 0.5) * 0.4)), x, y));
+      else if (big > 0.7 && mid > 0.5) pc.set(x, y, shadeTone(pal.moss, Math.max(0, Math.min(1, 0.62 + (fine - 0.5) * 0.3)), x, y));
+      else pc.set(x, y, shadeTone(pal.grass, Math.max(0, Math.min(1, 0.54 + (big - 0.5) * 0.3 + (mid - 0.5) * 0.25 + (fine - 0.5) * 0.3)), x, y));
     } else if (style === 'village_mud') {
       const rut = Math.abs(((y + n1(x / 16, 0) * 10) % 32) - 16) < 2;
       let level = 0.42 + (mid - 0.5) * 0.45 + (fine - 0.5) * 0.25 - (rut ? 0.2 : 0);
@@ -521,8 +593,10 @@ function bearBannerHem(x: number, W: number, H: number): number {
  * Heraldic banner (40×80, the decor's 32 texels/m): house cloth, border and the house sign. The lion's banners keep
  * their gold border and swallowtail; the Bear's are slate and bone, with an angular band and a three-pointed hem.
  */
-export function bannerTexture(pal: ArenaPalette, seed: number, burning = false, emblem: 'lion' | 'bear' = 'lion'): PixelCanvas {
+export function bannerTexture(pal: ArenaPalette, seed: number, burning = false, emblem: 'lion' | 'bear' | 'dragon' | 'wolf' = 'lion'): PixelCanvas {
   if (emblem === 'bear') return bearBannerTexture(pal, seed);
+  if (emblem === 'dragon') return dragonBannerTexture(pal, seed);
+  if (emblem === 'wolf') return wolfBannerTexture(pal, seed);
   const W = 40, H = 80;
   const pc = new PixelCanvas(W, H);
   const rng = seeded(seed);
@@ -595,6 +669,265 @@ export function bearReliefTexture(pal: ArenaPalette, seed: number): PixelCanvas 
   for (let y = H - 2; y > 0; y--) for (let x = W - 2; x > 0; x--) {
     if (relief.has((y - 1) * W + x - 1) && !relief.has(y * W + x) && Math.min(x, y, W - 1 - x, H - 1 - y) > 3) pc.set(x, y, rgb(pal.stoneDark[0]));
   }
+  return pc;
+}
+
+// ---------------------------------------------------------------- the Dragon's and the Wolf's signs
+
+function inPoly(px: number, py: number, pts: ReadonlyArray<readonly [number, number]>): boolean {
+  let inside = false;
+  for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+    const [xi, yi] = pts[i]!, [xj, yj] = pts[j]!;
+    if ((yi > py) !== (yj > py) && px < ((xj - xi) * (py - yi)) / (yj - yi) + xi) inside = !inside;
+  }
+  return inside;
+}
+
+/** The sign's grid, shared by the lion and the bear so a banner takes any of them. */
+export const SIGIL_W = 26, SIGIL_H = 34;
+
+const DRAGON_NEAR_WING: ReadonlyArray<readonly [number, number]> = [
+  [12.2, 18.6], [14.6, 10.4], [17.4, 3.6], [22.8, 0.6], [25.4, 2.6], [24.2, 5.6], [25.6, 9.2], [23.6, 10.8], [23.8, 14.6],
+  [21.6, 14.4], [19.4, 17.4], [17.0, 16.4], [15.0, 19.0],
+];
+const DRAGON_FAR_WING: ReadonlyArray<readonly [number, number]> = [
+  [10.6, 17.4], [10.2, 10.4], [11.4, 4.4], [13.6, 1.2], [14.4, 5.0], [15.6, 8.4], [13.8, 10.0], [13.6, 13.6],
+];
+const DRAGON_SPINES: ReadonlyArray<ReadonlyArray<readonly [number, number]>> = [
+  [[7.4, 10.6], [9.2, 11.0], [7.6, 12.4]], [[7.8, 13.2], [9.6, 13.8], [8.0, 15.0]], [[8.8, 15.8], [10.6, 16.4], [9.2, 17.4]],
+];
+
+/**
+ * The Dragon clan's sign: a Western dragon passant, facing left: four legs on the ground (the far foreleg lifted), a
+ * long neck rising to a horned head with its jaw open, two membranous wings lifted high over the back, a spade-tipped
+ * tail. Never a serpent. 0 empty, 1 body and wing bones, 2 the near wing's membrane, 3 the far wing behind the neck.
+ * Sampled in continuous grid units, so a relief or a statue draws it larger from the same strokes.
+ */
+export function dragonShape(px: number, py: number): 0 | 1 | 2 | 3 {
+  if (Math.hypot(px - 4.6, py - 7.9) < 0.55) return 0; // eye
+  // head, snout and an open jaw, horns swept back, spines down the neck
+  if (inEllipse(px, py, 5.2, 8.4, 2.6, 1.9) || inStroke(px, py, [[4.4, 8.6], [0.8, 9.6]], 2.4, 1.6)
+    || inStroke(px, py, [[4.6, 10.2], [1.4, 11.4]], 1.2, 0.8)) return 1;
+  if (inStroke(px, py, [[6.4, 7.2], [9.0, 5.0], [10.8, 5.0]], 1.1, 0.35) || inStroke(px, py, [[5.6, 6.8], [7.0, 4.4]], 0.8, 0.3)) return 1;
+  if (DRAGON_SPINES.some((spine) => inPoly(px, py, spine))) return 1;
+  // neck, chest and body
+  if (inStroke(px, py, [[8.4, 18.0], [6.2, 13.0], [6.6, 9.4]], 3.6, 2.6) || inEllipse(px, py, 8.6, 19.6, 3.2, 3.4)
+    || inEllipse(px, py, 14.0, 21.0, 6.5, 3.6) || inEllipse(px, py, 18.4, 22.4, 3.4, 3.2)) return 1;
+  // the four legs: the near foreleg planted, the far one lifted, both hind legs planted; claws on the planted feet
+  if (inStroke(px, py, [[9.0, 22.0], [8.2, 26.5], [7.4, 30.5]], 2.6, 1.8) || inEllipse(px, py, 6.4, 31.2, 1.8, 0.8)
+    || inStroke(px, py, [[11.0, 22.5], [12.4, 26.6], [10.6, 29.4]], 2.2, 1.6) || inEllipse(px, py, 9.8, 29.8, 1.3, 0.9)
+    || inStroke(px, py, [[18.8, 24.0], [17.2, 27.6], [18.4, 30.8]], 2.8, 1.8) || inEllipse(px, py, 17.8, 31.3, 2.2, 0.85)
+    || inStroke(px, py, [[20.6, 23.8], [22.2, 27.4], [21.4, 30.6]], 2.3, 1.6) || inEllipse(px, py, 21.6, 31.2, 1.9, 0.8)) return 1;
+  for (const [cx, cy] of [[4.5, 31.6], [15.6, 31.7], [8.4, 30.4]] as const) if (inEllipse(px, py, cx, cy, 0.7, 0.3)) return 1;
+  // the tail, swinging out behind and curling down to its spade
+  if (inStroke(px, py, [[20.0, 21.0], [23.8, 21.6], [25.4, 24.6], [24.6, 27.6]], 2.4, 0.9) || inPoly(px, py, [[23.6, 27.0], [25.8, 28.4], [23.4, 30.0]])) return 1;
+  // the near wing: arm and finger bones over the membrane, scalloped between the tips
+  if (inStroke(px, py, [[12.6, 18.2], [14.6, 10.4], [17.4, 3.6], [22.8, 0.6]], 1.6, 0.6) || inEllipse(px, py, 16.8, 2.6, 0.5, 0.9)
+    || [[25.4, 2.6], [25.6, 9.2], [23.8, 14.6], [19.4, 17.4]].some(([x, y]) => inStroke(px, py, [[17.4, 3.6], [x!, y!]], 0.8, 0.45))) return 1;
+  if (inPoly(px, py, DRAGON_NEAR_WING)) return 2;
+  if (inPoly(px, py, DRAGON_FAR_WING)) return 3;
+  return 0;
+}
+
+/**
+ * The Wolf clan's sign: a wolf's head facing left, ears pricked, jaws open in a snarl on its fangs, the neck's ruff
+ * cut off in ragged tufts. 0 empty, 1 head and fur, 2 the far ear, the inner ear, the brow and the ruff's strands
+ * (the fur's shade), 3 the dark of the open mouth.
+ */
+export function wolfShape(px: number, py: number): 0 | 1 | 2 | 3 {
+  if (inEllipse(px, py, 12.4, 11.4, 1.0, 0.5)) return 0; // eye
+  // fangs over the dark of the open mouth
+  if (inPoly(px, py, [[5.6, 15.6], [6.8, 15.6], [6.2, 17.4]]) || inPoly(px, py, [[9.0, 15.6], [10.2, 15.6], [9.6, 17.2]])
+    || inPoly(px, py, [[7.2, 18.0], [8.2, 18.0], [7.7, 16.6]])) return 1;
+  if (inPoly(px, py, [[4.4, 15.6], [11.4, 15.2], [11.6, 17.4], [5.0, 17.9]])) return 3; // the open mouth
+  if (inStroke(px, py, [[10.6, 10.0], [14.4, 10.6]], 0.8, 0.8)) return 2; // brow
+  if (inPoly(px, py, [[13.8, 8.2], [14.2, 3.6], [16.0, 7.8]])) return 2; // inner ear
+  if (inEllipse(px, py, 14.8, 12.4, 5.2, 4.6) || inPoly(px, py, [[12.6, 9.0], [13.8, 1.2], [17.4, 8.2]])
+    || inStroke(px, py, [[11.4, 12.6], [4.0, 14.2]], 4.6, 3.2) || inEllipse(px, py, 3.0, 13.8, 1.5, 1.3)
+    || inStroke(px, py, [[11.6, 18.2], [5.0, 18.9]], 2.8, 1.8) || inEllipse(px, py, 12.0, 16.4, 2.8, 2.6)) return 1;
+  if (inPoly(px, py, [[16.8, 8.8], [20.4, 2.4], [21.0, 10.0]])) return 2; // far ear
+  const ruff = inPoly(px, py, [
+    [10.6, 18.6], [13.0, 20.6], [11.4, 24.6], [14.2, 23.4], [13.4, 27.6], [16.6, 25.2], [17.0, 29.8], [19.4, 26.0],
+    [21.6, 29.2], [22.4, 24.6], [24.6, 25.8], [23.0, 20.2], [21.4, 13.8], [18.6, 9.6],
+  ]);
+  if (ruff) return Math.sin(px * 0.9 + py * 1.7) > 0.72 ? 2 : 1;
+  return 0;
+}
+
+interface SigilTones { lit: number; mid: number; shade: number; part2: number; part3: number }
+
+/** Paints a sign at (ox, oy), `scale` times the banner size: lit up-left edges, shaded down-right edges, each part its tone. */
+function paintSigil(pc: PixelCanvas, shape: (px: number, py: number) => number, ox: number, oy: number, tones: readonly string[], levels: SigilTones,
+  scale = 1, flip = false, onPixel?: (x: number, y: number) => void): void {
+  const W = Math.round(SIGIL_W * scale), H = Math.round(SIGIL_H * scale);
+  const part = (x: number, y: number) => (x < 0 || y < 0 || x >= W || y >= H ? 0 : shape(((flip ? W - 1 - x : x) + 0.5) / scale, (y + 0.5) / scale));
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const p = part(x, y);
+    if (!p) continue;
+    // the light comes from the upper left whichever way the sign faces
+    const lit = part(x - 1, y) !== p || part(x, y - 1) !== p;
+    const shade = part(x + 1, y) === 0 || part(x, y + 1) === 0;
+    const t = p === 2 ? (lit ? levels.part2 + 0.16 : levels.part2) : p === 3 ? levels.part3 : lit ? levels.lit : shade ? levels.shade : levels.mid;
+    pc.set(ox + x, oy + y, ramp(tones, t));
+    onPixel?.(ox + x, oy + y);
+  }
+}
+
+/** Shape and tones of the Dragon's sign, for the statues drawn in `arenaSprites`. */
+export function paintDragonSigil(pc: PixelCanvas, ox: number, oy: number, tones: readonly string[], scale: number, flip: boolean, onPixel?: (x: number, y: number) => void): void {
+  paintSigil(pc, dragonShape, ox, oy, tones, { lit: 0.96, mid: 0.7, shade: 0.3, part2: 0.46, part3: 0.24 }, scale, flip, onPixel);
+}
+
+/**
+ * The Dragon's banner (40×80): deep jade cloth with a pale jade border, a cloud-scroll band above a straight hem
+ * fringed with tassels, and the winged dragon in pale jade. No gold.
+ */
+function dragonBannerTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const W = 40, H = 80;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    if (y > H - 5 && (x % 3 === 2 || y > H - 2 + (x % 2))) continue; // tasselled fringe
+    const fold = Math.sin(x * 0.45) * 0.12;
+    let c = shadeTone(pal.cloth, 0.6 + fold + (n(x / 6, y / 6) - 0.5) * 0.2, x, y);
+    const scroll = Math.abs(y - (H - 15) - Math.round(Math.sin(x * 0.55) * 2.2)) < 1; // a band of rolling clouds
+    if (x <= 3 && x >= 2 || x >= W - 4 && x <= W - 3 || (y >= 4 && y <= 5) || scroll || y > H - 6) c = shadeTone(pal.trim, x <= 3 || y <= 5 ? 0.8 : 0.5, x, y);
+    pc.set(x, y, c);
+  }
+  paintSigil(pc, dragonShape, 7, 14, pal.trim, { lit: 1, mid: 0.72, shade: 0.36, part2: 0.42, part3: 0.22 });
+  return pc;
+}
+
+/** The Wolf's banner (40×80): soot-black cloth torn at the hem and the edges, a crude bone stitching, the wolf's head in bone. */
+function wolfBannerTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const W = 40, H = 80;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), tear = makeNoise(rng, 16);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    // ragged hem in long tongues, nicks along the edges, a hole or two
+    const hem = H - 4 - Math.abs(Math.sin(x * 0.7 + seed)) * 9 - tear(x / 2, 3) * 6;
+    if (y > hem) continue;
+    if ((x < 2 || x > W - 3) && tear(x, y / 3) > 0.7 && y > 8) continue;
+    if (y > 50 && tear(x / 3 + 5, y / 3) > 0.86) continue;
+    const fold = Math.sin(x * 0.45) * 0.12;
+    let c = shadeTone(pal.cloth, 0.55 + fold + (n(x / 6, y / 6) - 0.5) * 0.24, x, y);
+    if ((y === 4 || y === 6) && x % 3 !== 0) c = shadeTone(pal.trim, 0.5, x, y); // stitched sleeve
+    if (y >= hem - 1) c = shadeTone(pal.cloth, 0.25, x, y); // frayed edge
+    pc.set(x, y, c);
+  }
+  paintSigil(pc, wolfShape, 7, 14, pal.trim, { lit: 1, mid: 0.74, shade: 0.4, part2: 0.46, part3: 0 });
+  return pc;
+}
+
+/**
+ * Carved panel of the Dragon's steles, pedestals and hall: a dressed limestone face with a bevelled frame and a thin
+ * verdigris inlay, cloud-scroll grooves above and below, and the winged dragon in relief at 1.3 times the banner's
+ * size, standing proud with its shadow to the lower right. Stone and verdigris only: no gold, no glow.
+ */
+export function dragonReliefTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const W = 40, H = 72;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const edge = Math.min(x, y, W - 1 - x, H - 1 - y);
+    let level = 0.46 + (n(x / 4, y / 4) - 0.5) * 0.16;
+    if (edge < 3) level = edge === 0 ? 0.14 : x < W - 3 && y < H - 3 && (x < 3 || y < 3) ? 0.82 : 0.3;
+    else if (edge === 3) level = 0.24;
+    let c = shadeTone(pal.stone, level, x, y);
+    if (edge === 4) c = (x + y) % 2 ? rgb('#3d6a5c') : rgb('#5d8f7c'); // verdigris inlay
+    if (edge > 4 && rng() < 0.04) c = rgb(pal.stoneDark[2]);
+    pc.set(x, y, c);
+  }
+  // cloud-scroll grooves: a dark cut with a lit lower lip
+  for (const top of [8, H - 10]) for (let x = 6; x < W - 6; x++) {
+    const y = top + Math.round(Math.sin(x * 0.7) * 1.6);
+    pc.set(x, y, rgb(pal.stoneDark[1]));
+    pc.set(x, y + 1, ramp(pal.stone, 0.9));
+  }
+  const relief = new Set<number>();
+  const scale = 1.3, ox = Math.round((W - SIGIL_W * scale) / 2), oy = 13;
+  paintSigil(pc, dragonShape, ox, oy, pal.stone, { lit: 1, mid: 0.74, shade: 0.34, part2: 0.56, part3: 0.4 }, scale, false, (x, y) => relief.add(y * W + x));
+  for (let y = H - 2; y > 0; y--) for (let x = W - 2; x > 0; x--) {
+    if (relief.has((y - 1) * W + x - 1) && !relief.has(y * W + x) && Math.min(x, y, W - 1 - x, H - 1 - y) > 4) pc.set(x, y, rgb(pal.stoneDark[1]));
+  }
+  return pc;
+}
+
+/** Pale limestone for needles, cliffs and boulders: smooth weathered faces, vertical runnels, faint bedding and pits (seamless). */
+export function limestoneTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const S = 32;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), fine = makeNoise(rng, 16);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    let level = 0.56 + (n(x / 4, y / 4) - 0.5) * 0.28 + (fine(x / 2, y / 2) - 0.5) * 0.1;
+    const runnel = Math.abs(Math.sin(x * 0.59 + n(x / 4, y / 10) * 3));
+    if (runnel < 0.13) level -= 0.18; else if (runnel < 0.24) level += 0.08; // a runnel and its lit lip
+    if ((y + Math.round(n(x / 8, 1) * 3)) % 11 === 0) level -= 0.1; // bedding
+    let c = shadeTone(pal.stone, Math.max(0.05, Math.min(0.95, level)), x, y);
+    if (rng() < 0.02) c = rgb(pal.stoneDark[2]);
+    pc.set(x, y, c);
+  }
+  return pc;
+}
+
+/** Verdigris bronze: green-blue patina in broad patches, the brown bronze showing through where it wears (seamless). */
+export function verdigrisTexture(seed: number): PixelCanvas {
+  const S = 16;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 4), fine = makeNoise(rng, 8);
+  const patina = ['#24463c', '#386858', '#578e7a', '#84b6a0'] as const;
+  const bronze = ['#3e2f1c', '#5e4628', '#7e6036'] as const;
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const v = n(x / 4, y / 4), f = fine(x / 2, y / 2);
+    pc.set(x, y, v < 0.3 ? shadeTone(bronze, 0.3 + f * 0.6, x, y) : shadeTone(patina, Math.max(0, Math.min(1, 0.25 + (v - 0.3) * 0.9 + (f - 0.5) * 0.3)), x, y));
+  }
+  return pc;
+}
+
+/** A hide hung in the Wolf's cave (24×40): scraped leather with darker patches, a fur edge on top, a ragged outline. */
+export function hideTexture(seed: number): PixelCanvas {
+  const W = 24, H = 40;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), edge = makeNoise(rng, 16);
+  const leather = ['#2e2014', '#47321f', '#62472c', '#7d5f3c', '#97784f'] as const;
+  const fur = ['#26221e', '#3c3630', '#575048', '#726a5f'] as const;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const inset = 1 + edge(x / 3, y / 4) * 2.4 + (y > H - 8 ? (y - (H - 8)) * 0.5 * Math.abs(Math.sin(x * 0.6 + seed)) : 0);
+    if (x < inset || x > W - 1 - inset || y > H - 1 - edge(x / 2, 7) * 3) continue;
+    const furry = y < 5 + edge(x / 2, 1) * 2;
+    const c = furry ? shadeTone(fur, 0.3 + edge(x, y) * 0.6, x, y) : shadeTone(leather, Math.max(0, Math.min(1, 0.55 + (n(x / 4, y / 5) - 0.5) * 0.5 - (x > W - 5 ? 0.15 : 0))), x, y);
+    pc.set(x, y, c);
+  }
+  for (let y = 9; y < H - 6; y += 4) pc.set(2 + (y % 3), y, rgb('#1a120b')); // lacing holes down one side
+  return pc;
+}
+
+/** A grey wolf pelt stretched flat, seen from above (48×32): body, four legs, the head and tail, a darker stripe down the back. */
+export function peltTexture(seed: number): PixelCanvas {
+  const W = 48, H = 32;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), tuft = makeNoise(rng, 16);
+  const fur = ['#252527', '#3b3b3e', '#56565a', '#77777b', '#9c9ca0', '#c2c2c4'] as const;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const px = x + 0.5, py = y + 0.5;
+    const ragged = (tuft(x / 2, y / 2) - 0.5) * 1.6;
+    const inside = inEllipse(px, py, 24, 16, 15 + ragged, 8 + ragged)
+      || inStroke(px, py, [[14, 12], [8, 4]], 4.4, 3.0) || inStroke(px, py, [[14, 20], [8, 28]], 4.4, 3.0)
+      || inStroke(px, py, [[33, 12], [39, 4]], 4.4, 3.0) || inStroke(px, py, [[33, 20], [39, 28]], 4.4, 3.0)
+      || inEllipse(px, py, 6.5, 16, 4.6, 3.6) || inStroke(px, py, [[39, 16], [46.5, 16]], 3.4, 1.6);
+    if (!inside) continue;
+    const stripe = Math.abs(py - 16) < 2.4 + (tuft(x / 3, 2) - 0.5) * 2;
+    const level = 0.55 + (n(x / 5, y / 5) - 0.5) * 0.3 - (stripe ? 0.32 : 0) + (Math.abs(py - 16) > 6 ? 0.12 : 0) + (tuft(x, y) - 0.5) * 0.18;
+    pc.set(x, y, shadeTone(fur, Math.max(0, Math.min(1, level)), x, y));
+  }
+  pc.set(4, 15, rgb('#0c0c0d')); pc.set(4, 17, rgb('#0c0c0d')); // the empty eyes
   return pc;
 }
 

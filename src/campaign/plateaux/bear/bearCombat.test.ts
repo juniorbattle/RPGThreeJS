@@ -32,10 +32,10 @@ describe('Bear fights in the Bear arenas', () => {
     }
   });
 
-  it('leaves the Dragon, Scorpion and final-act fights in the arenas they had', () => {
+  it('keeps its arenas to the Bear: no other plateau fights in one', () => {
     const others = combats.filter((combat) => postDemoChapterOf(combat.id) !== 'bear');
     expect(others.length).toBeGreaterThan(0);
-    for (const combat of others) expect(['forest_route', 'bois_clair_burning', 'lion_sanctum'], combat.id).toContain(combat.sceneId);
+    for (const combat of others) expect(bearArenas, combat.id).not.toContain(combat.sceneId);
   });
 
   it('never writes a scene id into the saved state', () => {

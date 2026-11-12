@@ -4,8 +4,8 @@ import { makeNoise, PixelCanvas, seeded, sharpenTexels } from './pixelArt';
 import { arenaBandProps, arenaClutterProps, arenaThemeFor, type ArenaTheme } from './arenaThemes';
 import { cobbleApronTexture, flagApronTexture, groundTexture, tileSideTexture, tileTopTexture, trampledGroundTexture } from './arenaTextures';
 import { ARENA_GROUND_Y, buildProp, type PropContext } from './arenaProps';
-import { drawFern, drawGrass, drawRidgeLine, drawRubble, drawSnowTuft, drawTreeLine, DECOR_TEXELS_PER_UNIT, type DecorSprite } from './arenaSprites';
-import { drawCavePlate, drawPeaksPlate } from './arenaFarPlates';
+import { drawCloudBank, drawFern, drawGrass, drawRidgeLine, drawRubble, drawSnowTuft, drawTreeLine, DECOR_TEXELS_PER_UNIT, type DecorSprite } from './arenaSprites';
+import { drawCavePlate, drawCloudsPlate, drawLairPlate, drawPeaksPlate } from './arenaFarPlates';
 import platesJson from '../../render/generated/combatArenaPlates.json';
 
 interface GeneratedPlate { file: string; aspect: number; width: number; z: number; bottomY: number }
@@ -128,6 +128,7 @@ export class CombatArena {
       weeds: [],
       snow: Boolean(this.theme.snow),
       emblem: this.theme.emblem ?? 'lion',
+      rock: this.theme.rock ?? 'granite',
     };
   }
 
@@ -398,7 +399,7 @@ export class CombatArena {
     const sprites: DecorSprite[] = fringe === 'alpine' ? [drawGrass(pal, 1), drawSnowTuft(pal, 3)]
       : fringe === 'snow' ? [drawSnowTuft(pal, 1), drawSnowTuft(pal, 3)]
         : fringe === 'rubble' ? [drawRubble(pal, 1), drawRubble(pal, 3)]
-          : [drawGrass(pal, 1), drawGrass(pal, 3)];
+          : [drawGrass(pal, 1), drawGrass(pal, 3)]; // vegetation, and the dry grass of Kaelen's esplanade
     const atlasW = sprites.reduce((w, sp) => w + sp.canvas.width, 0), atlasH = Math.max(...sprites.map((sp) => sp.canvas.height));
     const atlas = new PixelCanvas(atlasW, atlasH);
     const frames: Array<{ u0: number; u1: number; v1: number; w: number; h: number; ax: number }> = [];
@@ -441,6 +442,7 @@ export class CombatArena {
    */
   private buildTreeLines(): void {
     if (this.ctx.reduced) return;
+    if (this.theme.horizon === 'clouds') { this.buildCloudBanks(); return; }
     if (this.theme.snow || this.theme.interior) { this.buildRidgeLines(); return; }
     const conifer = this.theme.id !== 'forest_route';
     const rows: Array<{ z: number; width: number; height: number; seed: number; shade: string }> = [
@@ -482,6 +484,30 @@ export class CombatArena {
       mesh.position.set(0, -0.2 + row.height / 2, row.z);
       mesh.raycast = () => {};
       mesh.name = 'arena-ridge-line';
+      this.root.add(mesh);
+    }
+  }
+
+  /**
+   * The Dragon's horizon in place of the tree lines: two banks of the sea of clouds the terraces look over, fogged
+   * into the arena's light (rose at dusk on the summits).
+   */
+  private buildCloudBanks(): void {
+    const rows: Array<{ z: number; width: number; height: number; seed: number; shade: string }> = [
+      { z: -25, width: 74, height: 7, seed: 3, shade: '#e4e8ee' },
+      { z: -21.5, width: 66, height: 5, seed: 7, shade: '#f4f6f8' },
+    ];
+    for (const row of rows) {
+      const sprite = drawCloudBank(this.theme.palette, row.seed + this.theme.id.length, 720, 96);
+      const texture = sprite.canvas.toTexture();
+      this.ctx.textures.set(`cloud-bank-${row.seed}`, texture);
+      const geometry = new THREE.PlaneGeometry(row.width, row.height);
+      this.geometries.push(geometry);
+      const material = new THREE.MeshBasicMaterial({ map: texture, alphaTest: 0.5, fog: true, color: row.shade });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(0, -0.2 + row.height / 2, row.z);
+      mesh.raycast = () => {};
+      mesh.name = 'arena-cloud-bank';
       this.root.add(mesh);
     }
   }
@@ -603,6 +629,7 @@ export class CombatArena {
       kinds.push({ sprite, material, scale });
     };
     if (fringe === 'rubble') { add('edge-rubble-1', drawRubble(pal, 2), [0.8, 1.2]); add('edge-rubble-2', drawRubble(pal, 5), [0.7, 1.1]); }
+    else if (fringe === 'grass') { add('edge-grass', drawGrass(pal, 2), [0.8, 1.3]); add('edge-grass-2', drawGrass(pal, 4), [0.7, 1.1]); }
     else {
       add('edge-snow-1', drawSnowTuft(pal, 2), [0.8, 1.3]);
       add('edge-snow-2', drawSnowTuft(pal, 5), [0.7, 1.1]);
@@ -680,7 +707,10 @@ export class CombatArena {
     let painted = 0;
     if (plate.procedural) {
       // painted in code: the arenas without a plate (OD-2026-11-01-C)
-      const canvas = plate.procedural === 'cave' ? drawCavePlate(this.theme) : drawPeaksPlate(this.theme, 7 + this.theme.id.length);
+      const canvas = plate.procedural === 'cave' ? drawCavePlate(this.theme)
+        : plate.procedural === 'lair' ? drawLairPlate(this.theme)
+          : plate.procedural === 'clouds_day' || plate.procedural === 'clouds_dusk' ? drawCloudsPlate(this.theme, 13 + this.theme.id.length, plate.procedural === 'clouds_dusk')
+            : drawPeaksPlate(this.theme, 7 + this.theme.id.length);
       texture = canvas.toTexture();
       painted = canvas.height / canvas.width;
     } else if (!happy && plate.file) {

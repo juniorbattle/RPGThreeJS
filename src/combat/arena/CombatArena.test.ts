@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { CombatArena } from './CombatArena';
 import { ARENA_GROUND_Y } from './arenaProps';
-import { ARENA_PLATFORM, ARENA_THEMES } from './arenaThemes';
+import { ARENA_PLATFORM, ARENA_THEMES, BEAR_ARENA_IDS, DRAGON_ARENA_IDS } from './arenaThemes';
 import { coplanarOverlaps } from './arenaZFight';
 
 // where the combat camera stands: the tactical view at both ends of its yaw, and the low action shots
@@ -17,16 +17,26 @@ async function buildArena(sceneId: string) {
 }
 
 describe('CombatArena in reduced graphics', () => {
-  it('builds the Bear arenas without their band, clutter, horizon and atmosphere', async () => {
-    for (const sceneId of ['bear_mountain_pass', 'bear_mine_galleries', 'bear_hall_terrace']) {
+  it('builds the Bear and Dragon arenas without their band, clutter, horizon and atmosphere', async () => {
+    for (const sceneId of [...BEAR_ARENA_IDS, ...DRAGON_ARENA_IDS]) {
       const arena = new CombatArena({ sceneId, columns: 8, rows: 4, tile: 1.18, reducedGraphics: true });
       await arena.build();
       expect(arena.theme.id).toBe(sceneId);
       expect(arena.describe().atmosphere).toBe(0);
       expect(arena.describe().farPlate, sceneId).toBe(true);
+      expect(arena.root.children.some((o) => o.name === 'arena-cloud-bank' || o.name === 'arena-ridge-line' || o.name === 'arena-tree-line'), sceneId).toBe(false);
       arena.dispose();
     }
-  }, 60000);
+  }, 120000);
+
+  it('closes the Dragon’s peaks on the sea of clouds and the Wolf’s cave on its rock', async () => {
+    const horizons = [['dragon_peak_trail', 'arena-cloud-bank'], ['dragon_snowy_summit', 'arena-cloud-bank'], ['dragon_hall_esplanade', 'arena-cloud-bank'], ['dragon_wolf_cave', 'arena-ridge-line']] as const;
+    for (const [sceneId, horizon] of horizons) {
+      const arena = await buildArena(sceneId);
+      expect(arena.root.children.filter((o) => o.name === horizon).length, sceneId).toBe(2);
+      arena.dispose();
+    }
+  }, 120000);
 });
 
 describe('CombatArena generation', () => {

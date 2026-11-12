@@ -15,9 +15,9 @@ const TRACKS: ReadonlyArray<{ id: MusicContextId; label: string }> = [
   { id: 'combat', label: 'Combat' }, { id: 'boss', label: 'Boss' }, { id: 'victory', label: 'Fanfare de victoire' }, { id: 'defeat', label: 'Fanfare de défaite' },
 ];
 const AMBIENCES: ReadonlyArray<{ id: string; label: string }> = [
-  // the Bear's arenas borrow these beds (OD-2026-11-01-B: new sound awaits the operator's ear)
-  { id: 'forest_route', label: 'Route forestière · col de l’Ours' }, { id: 'bois_clair_burning', label: 'Bois-Clair en feu' },
-  { id: 'lion_sanctum', label: 'Sanctuaire du Lion · galeries et salle de l’Ours' },
+  // the Bear's and the Dragon's arenas borrow these beds (OD-2026-11-01-B: new sound awaits the operator's ear)
+  { id: 'forest_route', label: 'Route forestière · col de l’Ours · sentier et esplanade du Dragon' }, { id: 'bois_clair_burning', label: 'Bois-Clair en feu' },
+  { id: 'lion_sanctum', label: 'Sanctuaire du Lion · galeries et salle de l’Ours · cimes du Dragon et repaire du Loup' },
   { id: 'map', label: 'Carte' }, { id: 'refuge', label: 'Refuge' },
 ];
 const LAB_SCOPE = 'listening-lab';

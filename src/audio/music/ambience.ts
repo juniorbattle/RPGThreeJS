@@ -85,8 +85,9 @@ const AMBIENCES: readonly AmbienceId[] = ['forest_route', 'bois_clair_burning', 
 
 /**
  * The ambience of a scene, with the arena's own fallback (`arenaThemeFor`): an unknown scene is the forest route. An
- * arena without an ambience of its own plays the one its theme borrows (the Bear's pass the forest route, its galleries
- * and hall the sanctum): new sound awaits the operator's ear (OD-2026-11-01-B).
+ * arena without an ambience of its own plays the one its theme borrows (the Bear's pass and the Dragon's trail and
+ * esplanade the forest route; the Bear's galleries and hall, the Dragon's summits and the Wolf's cave the sanctum): new
+ * sound awaits the operator's ear (OD-2026-11-01-B).
  */
 export function ambienceForScene(sceneId: string | null | undefined): AmbienceId {
   return AMBIENCES.find((id) => id === sceneId) ?? arenaThemeFor(sceneId).sound;

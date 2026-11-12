@@ -127,21 +127,21 @@ const encounter = (id: string, region: 0 | 1 | 2, label: string, prerequisiteRes
 export const DRAGON_OPTIONAL_POIS: readonly FixedPoiDefinition[] = Object.freeze([
   chest('dragon-poi-foothill-supplies', 0, 'Réserve des contreforts', ['dragon-wolf-envoy'], ['dragon-wolf-envoy', 'dragon-poi-foothill-wolves'], 35, { potion: 1 }),
   encounter('dragon-poi-foothill-wolves', 0, 'Meute des contreforts', ['dragon-wolf-envoy'], ['dragon-poi-foothill-supplies', 'dragon-terrorized-village'],
-    'forest_route', [['wolf', 'wolf'], ['wolf', 'wolf', 'wolf']], 30, {}),
+    'dragon_peak_trail', [['wolf', 'wolf'], ['wolf', 'wolf', 'wolf']], 30, {}),
   encounter('dragon-poi-foothill-beasts', 0, 'Bêtes du ravin', ['dragon-wolf-envoy'], ['dragon-wolf-envoy', 'dragon-poi-foothill-cache'],
-    'forest_route', [['wild_boar', 'forest_badger'], ['wild_boar', 'wild_boar']], 25, { iron_ore: 1 }),
+    'dragon_peak_trail', [['wild_boar', 'forest_badger'], ['wild_boar', 'wild_boar']], 25, { iron_ore: 1 }),
   chest('dragon-poi-foothill-cache', 0, 'Cache du sentier', ['dragon-wolf-envoy'], ['dragon-poi-foothill-beasts', 'dragon-wolf-envoy'], 45, { antidote: 1 }),
   chest('dragon-poi-terrace-supplies', 1, 'Dépôt des terrasses', ['dragon-captive-wolf'], ['dragon-captive-wolf', 'dragon-poi-terrace-ravine'], 40, { iron_ore: 2 }),
   encounter('dragon-poi-terrace-ravine', 1, 'Ravine des crêtes', ['dragon-captive-wolf'], ['dragon-poi-terrace-supplies', 'dragon-cliff-road'],
-    'forest_route', [['young_wyrm', 'cave_rat', 'cave_rat'], ['wild_boar', 'young_wyrm']], 35, {}),
+    'dragon_peak_trail', [['young_wyrm', 'cave_rat', 'cave_rat'], ['wild_boar', 'young_wyrm']], 35, {}),
   chest('dragon-poi-terrace-cache', 1, 'Cache du Loup', ['dragon-cliff-road'], ['dragon-cliff-road', 'dragon-poi-terrace-raiders'], 65, { red_gem: 1, potion: 1 }),
   encounter('dragon-poi-terrace-raiders', 1, 'Pillards du Loup', ['dragon-cliff-road'], ['dragon-poi-terrace-cache', 'dragon-cliff-road'],
-    'forest_route', [['wolf_raider', 'wolf'], ['wolf_raider', 'wolf_hunter']], 40, { iron_ore: 1 }),
+    'dragon_peak_trail', [['wolf_raider', 'wolf'], ['wolf_raider', 'wolf_hunter']], 40, { iron_ore: 1 }),
   chest('dragon-poi-peak-supplies', 2, 'Réserves des cimes', ['dragon-shaman-traces'], ['dragon-shaman-traces', 'dragon-freed-pilgrims'], 45, { ether: 1 }),
   encounter('dragon-poi-peak-hunters', 2, 'Chasseurs du Loup', ['dragon-freed-pilgrims'], ['dragon-freed-pilgrims', 'dragon-final-trial-event'],
-    'lion_sanctum', [['wolf_hunter', 'wolf_raider', 'wolf'], ['wolf_raider', 'wolf_hunter', 'wolf_raider']], 45, {}),
+    'dragon_snowy_summit', [['wolf_hunter', 'wolf_raider', 'wolf'], ['wolf_raider', 'wolf_hunter', 'wolf_raider']], 45, {}),
   encounter('dragon-poi-peak-watch', 2, 'Veille des cimes', ['dragon-freed-pilgrims'], ['dragon-freed-pilgrims', 'dragon-final-trial-combat'],
-    'lion_sanctum', [['young_wyrm', 'wolf', 'wolf'], ['wolf', 'young_wyrm', 'wolf']], 45, { iron_ore: 1 }),
+    'dragon_snowy_summit', [['young_wyrm', 'wolf', 'wolf'], ['wolf', 'young_wyrm', 'wolf']], 45, { iron_ore: 1 }),
   chest('dragon-poi-peak-reserve', 2, 'Réserve des cimes gardée', ['dragon-crystal-altar'], ['dragon-crystal-altar'], 75, { red_gem: 1, revive_vial: 1 }),
 ]);
 
@@ -150,13 +150,13 @@ export const DRAGON_GUARDIANS: readonly EliteDefinition[] = Object.freeze<EliteD
   {
     id: 'dragon-guardian-terrace', label: 'Champion du Loup', region: 1, activateAfterResolved: 'dragon-cliff-road',
     allowedPositions: ['dragon-poi-terrace-cache'], spawnPosition: 'dragon-poi-terrace-cache', mode: 'cyclic_patrol',
-    combat: { id: 'dragon_guardian_champion', sceneId: 'forest_route', enemies: ['wolf_champion', 'wolf_raider', 'wolf'],
+    combat: { id: 'dragon_guardian_champion', sceneId: 'dragon_peak_trail', enemies: ['wolf_champion', 'wolf_raider', 'wolf'],
       rewards: { temporaryGold: 65, reputation: 1, materials: { iron_ore: 2 } } },
   },
   {
     id: 'dragon-guardian-peak', label: 'Wyrm des cimes', region: 2, activateAfterResolved: 'dragon-freed-pilgrims',
     allowedPositions: ['dragon-poi-peak-reserve'], spawnPosition: 'dragon-poi-peak-reserve', mode: 'cyclic_patrol',
-    combat: { id: 'dragon_guardian_wyrm', sceneId: 'lion_sanctum', enemies: ['shadow_wyrm', 'young_wyrm', 'young_wyrm'],
+    combat: { id: 'dragon_guardian_wyrm', sceneId: 'dragon_snowy_summit', enemies: ['shadow_wyrm', 'young_wyrm', 'young_wyrm'],
       rewards: { temporaryGold: 75, reputation: 1, materials: { red_gem: 1 } } },
   },
 ]);

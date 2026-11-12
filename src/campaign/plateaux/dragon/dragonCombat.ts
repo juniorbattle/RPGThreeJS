@@ -15,20 +15,28 @@ import { DRAGON_GUARDIANS, DRAGON_OPTIONAL_POIS } from './dragonTopology';
 type DragonCombatInput = Omit<CombatConfig, 'enemyVisualIds' | 'escortVisualIds' | 'encounterRank' | 'maxPlayerUnits'>
   & Partial<Pick<CombatConfig, 'enemyVisualIds' | 'escortVisualIds' | 'encounterRank' | 'maxPlayerUnits'>>;
 
-const PEAKS = 'forest_route';
-const LAIR = 'lion_sanctum';
+/**
+ * The Dragon's own coded arenas (`src/combat/arena/arenaThemes.ts`, no arena plate since OD-2026-11-01-C), by where
+ * each fight takes place: the trail across the foothills and terraces (regions I and II), the snowy summits of the
+ * climb to the altar (region III, where the shaman is run down), the Wolf's cave for the two lair fights, and the
+ * esplanade before Kaelen's hall for his trial (`dragon_kaelen_pre_combat` shows it). Presentation only.
+ */
+const TRAIL = 'dragon_peak_trail';
+const SUMMIT = 'dragon_snowy_summit';
+const LAIR = 'dragon_wolf_cave';
+const ESPLANADE = 'dragon_hall_esplanade';
 
 export const DRAGON_STORY_COMBATS: readonly DragonCombatInput[] = Object.freeze<DragonCombatInput[]>([
-  { id: 'dragon_wolf_patrol', sceneId: PEAKS, objective: 'Dispersez la patrouille du Loup qui tient le premier sentier.',
+  { id: 'dragon_wolf_patrol', sceneId: TRAIL, objective: 'Dispersez la patrouille du Loup qui tient le premier sentier.',
     encounterLabel: 'Patrouille du Loup', enemyVisualIds: ['wolf_raider', 'wolf', 'wolf'],
     rewards: { gold: 25, reputation: 0, materials: {} } },
-  { id: 'dragon_wolf_scouts', sceneId: PEAKS, objective: 'Chassez les éclaireurs du Loup avant qu’ils ne préviennent le repaire.',
+  { id: 'dragon_wolf_scouts', sceneId: TRAIL, objective: 'Chassez les éclaireurs du Loup avant qu’ils ne préviennent le repaire.',
     encounterLabel: 'Éclaireurs du Loup', enemyVisualIds: ['wolf_hunter', 'wolf_raider', 'wolf'],
     rewards: { gold: 35, reputation: 0, materials: {} } },
-  { id: 'dragon_crest_creatures', sceneId: PEAKS, objective: 'Repoussez les créatures qui harcèlent la route des terrasses.',
+  { id: 'dragon_crest_creatures', sceneId: TRAIL, objective: 'Repoussez les créatures qui harcèlent la route des terrasses.',
     encounterLabel: 'Créatures des crêtes', enemyVisualIds: ['young_wyrm', 'wild_boar', 'cave_rat'],
     rewards: { gold: 40, reputation: 0, materials: { iron_ore: 1 } } },
-  { id: 'dragon_corrupted_wyrm', sceneId: LAIR, objective: 'Abattez le wyrm rendu fou par une énergie sombre.',
+  { id: 'dragon_corrupted_wyrm', sceneId: TRAIL, objective: 'Abattez le wyrm rendu fou par une énergie sombre.',
     encounterLabel: 'Wyrm corrompu', encounterRank: 'elite', enemyVisualIds: ['shadow_wyrm', 'cave_rat'],
     rewards: { gold: 65, reputation: 1, materials: { iron_ore: 1 } } },
   { id: 'dragon_lair_assault', sceneId: LAIR, objective: 'Prenez le repaire du Loup et reprenez le Cristal d’Écho pour Kaelen.',
@@ -39,14 +47,14 @@ export const DRAGON_STORY_COMBATS: readonly DragonCombatInput[] = Object.freeze<
     encounterLabel: 'Prise du Cristal', encounterRank: 'boss', isBoss: true, bossVisualId: 'wolf_chief',
     escortVisualIds: ['wolf_raider', 'wolf_hunter'], preCombatDialogueId: 'dragon_pre_lair_seizure',
     postCombatDialogueId: 'dragon_lair_seizure_aftermath', rewards: { gold: 150, reputation: -1, materials: { iron_ore: 2 } } },
-  { id: 'dragon_shadow_touched', sceneId: LAIR, objective: 'Frayez-vous un passage parmi les bêtes sous l’emprise des Ombres.',
+  { id: 'dragon_shadow_touched', sceneId: SUMMIT, objective: 'Frayez-vous un passage parmi les bêtes sous l’emprise des Ombres.',
     encounterLabel: 'Bêtes sous l’emprise des Ombres', encounterRank: 'elite', enemyVisualIds: ['corrupted_beast', 'wolf', 'wolf'],
     rewards: { gold: 65, reputation: 1, materials: { red_gem: 1 } } },
-  { id: 'dragon_shadow_shaman', sceneId: LAIR, objective: 'Traquez le Chaman des Ombres avant qu’il ne quitte les Pics.',
+  { id: 'dragon_shadow_shaman', sceneId: SUMMIT, objective: 'Traquez le Chaman des Ombres avant qu’il ne quitte les Pics.',
     encounterLabel: 'Chaman des Ombres', encounterRank: 'boss', isBoss: true, bossVisualId: 'shadow_shaman',
     escortVisualIds: ['wolf_raider', 'wolf'], preCombatDialogueId: 'dragon_shaman_pre_combat',
     postCombatDialogueId: 'dragon_shaman_aftermath', rewards: { gold: 110, reputation: 1, materials: { red_gem: 1 } } },
-  { id: 'dragon_kaelen', sceneId: PEAKS, objective: 'Affrontez Kaelen et ses gardiens pour le Sceau du Dragon.',
+  { id: 'dragon_kaelen', sceneId: ESPLANADE, objective: 'Affrontez Kaelen et ses gardiens pour le Sceau du Dragon.',
     encounterLabel: 'Épreuve du Dragon', encounterRank: 'boss', isBoss: true, bossVisualId: 'kaelen',
     escortVisualIds: ['dragon_guardian', 'dragon_guardian'], preCombatDialogueId: 'dragon_kaelen_pre_combat',
     postCombatDialogueId: 'dragon_trial_aftermath', rewards: { gold: 90, reputation: 0, materials: {} } },

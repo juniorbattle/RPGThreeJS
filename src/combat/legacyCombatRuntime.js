@@ -117,6 +117,11 @@ const SCENE_AMBIENCE={
   bear_mountain_pass:{fog:0xa3b1c2,density:0.01,count:150,color:0xf4f8ff,size:0.07,opacity:0.5,area:[9.4,5.4],y:[0.1,4.6],rise:[-0.55,-0.3],drift:0.6,wind:0.9,glow:0.05,glowColor:0xdfe8ff,mistColor:0xe8eef6,mistOpacity:0.1,rayColor:0xf4f6ff,rayOpacity:0.03},
   bear_mine_galleries:{fog:0x1a1714,density:0.014,count:70,color:0xd9b080,size:0.06,opacity:0.4,area:[9.0,5.0],y:[0.2,3.6],rise:[0.03,0.09],drift:0.22,glow:0.07,glowColor:0xd98a3a,mistColor:0x4a4038,mistOpacity:0.16,rayColor:0xffb070,rayOpacity:0},
   bear_hall_terrace:{fog:0x9eacbd,density:0.01,count:100,color:0xf4f8ff,size:0.065,opacity:0.45,area:[9.2,5.2],y:[0.1,4.4],rise:[-0.42,-0.24],drift:0.45,wind:0.5,glow:0.05,glowColor:0xdfe8ff,mistColor:0xe8eef6,mistOpacity:0.08,rayColor:0xf4f6ff,rayOpacity:0.03},
+  // The Dragon's arenas: grass seeds on the wind over the terraces and the esplanade, powder snow blown across the summits at dusk, embers over the Wolf's braziers.
+  dragon_peak_trail:{fog:0xb6c3d2,density:0.01,count:50,color:0xfff3d0,size:0.055,opacity:0.4,area:[9.4,5.4],y:[0.2,4.2],rise:[0.02,0.08],drift:0.5,wind:0.45,glow:0.05,glowColor:0xfff0d0,mistColor:0xf2f5fa,mistOpacity:0.1,rayColor:0xfff2d6,rayOpacity:0.05},
+  dragon_snowy_summit:{fog:0xa9a6c4,density:0.01,count:130,color:0xfff4ec,size:0.065,opacity:0.48,area:[9.4,5.4],y:[0.1,4.6],rise:[-0.5,-0.28],drift:0.55,wind:0.8,glow:0.08,glowColor:0xffc8a0,mistColor:0xf4e6ea,mistOpacity:0.1,rayColor:0xffd6b4,rayOpacity:0.05},
+  dragon_hall_esplanade:{fog:0xb9c6d6,density:0.01,count:40,color:0xfff3d0,size:0.055,opacity:0.38,area:[9.2,5.2],y:[0.2,4.2],rise:[0.02,0.07],drift:0.45,wind:0.35,glow:0.06,glowColor:0xfff0d0,mistColor:0xf4f6fa,mistOpacity:0.08,rayColor:0xfff2d6,rayOpacity:0.06},
+  dragon_wolf_cave:{fog:0x1c1612,density:0.014,count:70,color:0xe0a868,size:0.06,opacity:0.42,area:[9.0,5.0],y:[0.2,3.6],rise:[0.08,0.2],drift:0.24,glow:0.08,glowColor:0xd98a3a,mistColor:0x4a3a30,mistOpacity:0.16,rayColor:0xffb070,rayOpacity:0},
 };
 let REQUESTED_REDUCED_GRAPHICS=campaignParams.get('reduced')==='1';
 let REDUCED_GRAPHICS=prefersReducedMotion(REQUESTED_REDUCED_GRAPHICS);

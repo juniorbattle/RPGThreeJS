@@ -1,5 +1,6 @@
 import { bayer, makeNoise, mixRgb, PixelCanvas, rgb, seeded, type Rgb, type Rng } from './pixelArt';
 import type { ArenaPalette } from './arenaThemes';
+import { paintDragonSigil, SIGIL_H, SIGIL_W } from './arenaTextures';
 
 /** Texels per world unit for decor billboards (units use 40). */
 export const DECOR_TEXELS_PER_UNIT = 32;
@@ -367,6 +368,86 @@ export function drawRubble(pal: ArenaPalette, seed: number, scale = 1): DecorSpr
       pc.set(x, y, tone(pal.stone, Math.max(0, Math.min(1, light)), x, y));
     }
   }
+  pc.outline(rgb(pal.ink));
+  return { canvas: pc, anchor: [Math.round(W / 2), H - 2] };
+}
+
+/**
+ * A wind-twisted pine of the Dragon's peaks: a gnarled trunk leaning and doubling back, a few bare limbs reaching out
+ * with the wind, each ending in a flat pad of needles, lit on top and dark beneath. With `snow`, the pads carry snow.
+ */
+export function drawTwistedPine(pal: ArenaPalette, seed: number, scale = 1, snow = false): DecorSprite {
+  const k = scale;
+  const W = Math.round(150 * k), H = Math.round(150 * k);
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed * 4421 + 17);
+  const n = makeNoise(rng, 16);
+  const lean = (seed % 2 === 0 ? 1 : -1) * (14 + rng() * 10) * k;
+  const base = { x: W / 2 - lean * 0.6, y: H - 3 };
+  const top = { x: W / 2 + lean, y: H * 0.34 };
+  paintTrunk(pc, rng, base, top, 12 * k, 5 * k, pal.bark);
+  const pads: Array<{ x: number; y: number; rx: number; ry: number }> = [{ x: top.x, y: top.y - 4 * k, rx: 30 * k, ry: 9 * k }];
+  const limbs = 3 + Math.floor(rng() * 2);
+  for (let i = 0; i < limbs; i++) {
+    const t = 0.3 + (i / limbs) * 0.55;
+    const sx = base.x + (top.x - base.x) * t, sy = base.y - (base.y - top.y) * t;
+    const dir = i % 2 === 0 ? Math.sign(lean) : -Math.sign(lean);
+    const len = (26 + rng() * 22) * k * (dir === Math.sign(lean) ? 1.25 : 0.75); // the wind side reaches further
+    const ex = sx + dir * len, ey = sy - (6 + rng() * 14) * k;
+    paintLimb(pc, sx, sy, ex, ey, 5 * k, 2 * k, pal.bark);
+    pads.push({ x: ex, y: ey - 2 * k, rx: (16 + rng() * 10) * k, ry: (5 + rng() * 3) * k });
+  }
+  const ft = pal.foliage;
+  for (const pad of pads.sort((a, b) => a.y - b.y)) {
+    for (let y = Math.floor(pad.y - pad.ry - 3 * k); y <= Math.ceil(pad.y + pad.ry); y++) for (let x = Math.floor(pad.x - pad.rx - 3); x <= Math.ceil(pad.x + pad.rx + 3); x++) {
+      const dx = (x - pad.x) / pad.rx, dy = (y - pad.y) / pad.ry;
+      const tufts = Math.abs(((x + seed * 3) % Math.max(3, Math.round(4 * k))) - 2) * 0.14; // needle tufts along the top edge
+      if (dx * dx + (dy < 0 ? dy * dy * (1 + tufts) : dy * dy * 1.8) > 1 + (n(x / 4, y / 3) - 0.5) * 0.4) continue;
+      const light = 0.62 - dy * 0.42 - dx * 0.16 + (n(x / 2, y / 2) - 0.5) * 0.24;
+      if (snow && dy < -0.35 + (n(x / 3, 4) - 0.5) * 0.4) { pc.set(x, y, tone(pal.moss, Math.max(0, Math.min(1, 0.9 - Math.max(0, dx) * 0.4)), x, y)); continue; }
+      pc.set(x, y, tone(ft, Math.max(0, Math.min(1, light)), x, y, 0, ft.length - 2));
+    }
+  }
+  pc.outline(rgb(ft[0]));
+  return { canvas: pc, anchor: [Math.round(base.x), base.y] };
+}
+
+/**
+ * Cloud banks for the horizon of the Dragon's peaks: rounded cumulus tops in the palette's snow ramp, lit from the upper
+ * left and blue in their hollows; the arena's fog warms or cools them (the sea of clouds the terraces look over).
+ */
+export function drawCloudBank(pal: ArenaPalette, seed: number, width = 720, height = 96): DecorSprite {
+  const pc = new PixelCanvas(width, height);
+  const rng = seeded(seed * 5113 + 41);
+  const n = makeNoise(rng, 32);
+  const puffs: Array<{ x: number; y: number; r: number }> = [];
+  for (let x = -20; x < width + 20; x += 18 + rng() * 26) puffs.push({ x, y: height * (0.5 + n(x / 60, 1) * 0.3), r: 14 + rng() * 22 });
+  for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
+    let best = -1, shade = 0;
+    for (const p of puffs) {
+      if (Math.abs(x - p.x) > p.r) continue;
+      const dx = (x - p.x) / p.r, dy = (y - p.y) / p.r;
+      const d = dx * dx + dy * dy;
+      if (y >= p.y || d <= 1) {
+        const lit = y >= p.y ? 0.35 - (y - p.y) / height : 0.82 - dx * 0.3 - dy * 0.3 - d * 0.25;
+        if (lit > best) { best = lit; shade = lit; }
+      }
+    }
+    if (best < -0.5) continue;
+    pc.set(x, y, tone(pal.moss, Math.max(0, Math.min(1, shade + (n(x / 5, y / 5) - 0.5) * 0.12)), x, y));
+  }
+  return { canvas: pc, anchor: [Math.round(width / 2), height - 1] };
+}
+
+/**
+ * A carved dragon for the pedestals of Kaelen's esplanade: the clan's winged, four-legged sign cut in the round in pale
+ * limestone, outlined like the rest of the decor; odd variants face the other way.
+ */
+export function drawDragonStatue(pal: ArenaPalette, seed: number, scale = 1): DecorSprite {
+  const s = 1.7 * scale;
+  const W = Math.round(SIGIL_W * s) + 2, H = Math.round(SIGIL_H * s) + 2;
+  const pc = new PixelCanvas(W, H);
+  paintDragonSigil(pc, 1, 1, pal.stone, s, seed % 2 === 1);
   pc.outline(rgb(pal.ink));
   return { canvas: pc, anchor: [Math.round(W / 2), H - 2] };
 }
