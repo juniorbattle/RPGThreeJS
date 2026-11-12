@@ -79,12 +79,15 @@ const CLAN_SIGNS: readonly { name: string; english: string; sign: string }[] = [
   { name: 'Serpent', english: 'Serpent', sign: 'a serpent' },
 ];
 const HOST_CLAN: Record<Chapter, string | null> = { bear: 'Bear', dragon: 'Dragon', scorpion: 'Scorpion', finale: null };
+const SHADOWS = /(^|[^\p{L}])(Ombres|Shadows)([^\p{L}]|$)/u;
 const namesClan = (text: string, name: string) => new RegExp(`(^|[^\\p{L}])${name}([^\\p{L}]|$)`, 'u').test(text);
 
 export function heraldryFor(chapter: Chapter, awaitedFinal: string): string {
   const host = CLAN_SIGNS.find((clan) => clan.english === HOST_CLAN[chapter]);
   const others = CLAN_SIGNS.filter((clan) => clan !== host && (namesClan(awaitedFinal, clan.name) || namesClan(awaitedFinal, clan.english)));
   const theirs = others.map((clan) => `the ${clan.english} clan’s people, camps and banners show ${clan.sign}`).join('; ');
+  // The Shadows are no clan: a brief naming them and no clan gets no sign (the host clan's would dress the shaman as a Dragon).
+  if (!others.length && SHADOWS.test(awaitedFinal)) return 'The Shadows belong to no clan: no banner, shield, medallion or carved emblem of any clan; never a lion.';
   if (!host) return others.length ? `Each clan keeps its own sign: ${theirs}; other banners mix the signs of several clans.` : 'Any banners mix the signs of several clans; no single emblem dominates.';
   if (!others.length) return `Any banner, shield, medallion or carved emblem shows the ${host.english} clan’s sign, ${host.sign}; never a lion.`;
   return `Each clan keeps its own sign: ${theirs}; the ${host.english} clan’s own places show ${host.sign}; never a lion.`;
@@ -154,7 +157,7 @@ function promptFor(id: string, kind: Kind, chapter: Chapter, awaitedFinal: strin
   if (staging) {
     // A staged backdrop: its own place and light, the plateau's identity instead of the shared setting sentence, and
     // banners only where the staging names them.
-    return `${STYLE} A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: ${staging.line} ${IDENTITY[chapter] ?? SETTINGS[chapter]} ${staging.light === 'interior' ? 'Indoors and underground: no snow, no frost, no daylight, no sky. ' : ''}No banners, flags or emblems unless the staging names them. ${heraldryFor(chapter, `${awaitedFinal} ${staging.line}`)}`;
+    return `${STYLE} A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: ${staging.line} ${IDENTITY[chapter] ?? SETTINGS[chapter]} ${staging.light === 'interior' && !staging.skyVisible ? 'Indoors and underground: no snow, no frost, no daylight, no sky. ' : ''}No banners, flags or emblems unless the staging names them. ${heraldryFor(chapter, `${awaitedFinal} ${staging.line}`)}`;
   }
   return `${STYLE} A wide environment tableau, eye-level establishing view of the place, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Leave open ground in the lower half for them. Scene: ${awaitedFinal}. ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
 }
