@@ -2,7 +2,7 @@ import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'no
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { buildPlan, COVERED_FACE_RULE, openAiKey, PILOT_IDS } from './finalImages';
+import { buildPlan, COVERED_FACE_RULE, heraldryFor, openAiKey, PILOT_IDS } from './finalImages';
 
 describe('final images plan (OD-2026-11-11-F, F1)', () => {
   const plan = buildPlan();
@@ -38,9 +38,18 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
   it('tells every brief to keep the references’ style but not their Lion heraldry, and names the clan’s own sign', () => {
     for (const item of plan) {
       expect(item.prompt, item.id).toContain('never copy their heraldry');
-      if (item.chapter !== 'finale') expect(item.prompt, item.id).toMatch(/clan’s sign, an? (bear|dragon|scorpion); never a lion\.$/);
+      if (item.chapter !== 'finale') expect(item.prompt, item.id).toMatch(/never a lion\.$/);
     }
     expect(plan.find((item) => item.id === 'bear:scene:bear_audience')!.prompt).toContain('the Bear clan’s sign, a bear');
+  });
+
+  it('gives another clan named by a brief its own sign: the Raven in the Bear’s mountains, the Serpent’s champion', () => {
+    expect(heraldryFor('bear', 'Sprite de l’éclaireur du Corbeau')).toBe('Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.');
+    expect(heraldryFor('bear', 'Tableau : la salle de l’Ancien Ours Borin')).toBe('Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.');
+    expect(heraldryFor('dragon', 'Tableau : les pièges du Loup')).toContain('the Wolf clan’s people, camps and banners show a wolf');
+    expect(heraldryFor('finale', 'Sprite de boss du champion du Serpent')).toContain('the Serpent clan’s people, camps and banners show a serpent');
+    expect(heraldryFor('scorpion', 'Tableau : le nid de serpents')).not.toContain('Serpent clan');
+    expect(plan.find((item) => item.id === 'bear:enemy:raven_scout')!.prompt).toContain('show a raven');
   });
 
   it('keeps every character’s face covered, the operator’s standing rule (OD-2026-11-11-G)', () => {

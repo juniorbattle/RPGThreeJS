@@ -54,6 +54,18 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 - Régénération (accord de l’opérateur, 2026-11-12) de l’audience et de Borin, avec cette correction et la règle des visages couverts (OD-2026-11-11-G). L’audience devient une salle du trône : statue d’ours sur le trône, mosaïque et bannières à l’ours. Borin porte un heaume fermé surmonté d’une tête d’ours ; ses médaillons, son tabard et son marteau montrent l’ours, vérifiés au zoom. Les premières versions sont gardées dans `tmp/final-images/v1-lion-heraldry/`.
 - Avis attendu de l’opérateur : les quatre décors se ressemblent beaucoup (place enneigée, montagnes, bannières, braseros). Les apparences proposées pour Borin et le guerrier sont encore à confirmer.
 
+## Lot de l’Ours (2026-11-12)
+
+`CURRENT FACT` — à la demande de l’opérateur (« lance l’Ours »), les 36 images restantes de l’Ours ont été générées, sans échec. Les 42 images de l’Ours sont dans `tmp/final-images/out/`, avec `review.html`. Rien n’est intégré.
+- Outil : `--chapter <nom>` choisit toutes les images d’un chapitre pas encore générées ; `--concurrency <1-6>` lance plusieurs requêtes à la fois ; le journal et la page de relecture sont réécrits après chaque image. Chaque clan nommé par une fiche garde son propre signe : le Corbeau chez l’Ours, le Loup chez le Dragon, le Phénix chez le Scorpion, le champion du Serpent.
+- Respecté partout : les visages sont couverts (casques, capuches) ; les bannières du Corbeau portent un corbeau là où la fiche le nomme, l’ours ailleurs ; aucun lion.
+- Bons : les trois atlas, distincts et lisibles, le troisième montrant les galeries souterraines ; le campement du Corbeau ; la relique ; les personnages du Corbeau (éclaireur, mineur, contremaître, messager, chef des mineurs, Maître Espion), Borin et le guerrier.
+- À refaire :
+  - les deux bêtes d’élite (bête corrompue, bête des profondeurs), dessinées comme des chevaliers de l’Ours : les fiches de personnage ne distinguent pas une créature d’une personne ;
+  - le mineur de l’Ours, dessiné en chevalier à l’épée ;
+  - la plupart des 24 scènes et les refuges, qui reprennent la même composition : place enneigée de nuit, montagnes, bannières, braseros. Les scènes souterraines (filon sombre, éboulement, galeries tenues par le Corbeau) et la salle de Borin (veillée, jugement, avant-combat) sont dessinées en extérieur. Cause : la fiche d’un décor n’a qu’une ligne de sujet, le même cadre (« vue d’ensemble à hauteur d’œil, sol libre en bas ») et les deux mêmes références.
+- Proposition à confirmer : une ligne de mise en scène par décor (intérieur ou extérieur, heure, éléments tirés des répliques de la scène), soumise à l’opérateur avant de régénérer ; une variante « créature » pour les bêtes.
+
 ## Rencontres des six héros (2026-11-11, nuit)
 
 `CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.

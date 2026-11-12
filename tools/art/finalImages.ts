@@ -8,12 +8,13 @@
  *
  *   npx vite-node tools/art/finalImages.ts -- run --pilot          (the six Bear images agreed for the pilot)
  *   npx vite-node tools/art/finalImages.ts -- run --ids id1,id2    (any images of the plan)
+ *   npx vite-node tools/art/finalImages.ts -- run --chapter bear   (every image of one chapter not yet generated)
  *     Calls the OpenAI image edit endpoint with the operator's key, OPENAI_API_KEY, taken from the terminal or else from the
  *     project's Git-ignored .env.local (only the OPENAI_ variables are loaded). The tool never prints or stores it. It writes tmp/final-images/out/<id>.png, log.json and review.html (current stand-in
  *     beside the generated image). Nothing is integrated: only images the operator accepts are integrated afterwards.
  *
  * Options for run: --model <name> (default: the project's earlier approved image model), --quality <low|medium|high> (default high), --force (redo
- * images already generated). tmp/ is ignored by Git.
+ * images already generated), --concurrency <1-6> (requests at once, default 1). tmp/ is ignored by Git.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
@@ -57,14 +58,30 @@ const STYLE = 'Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixe
 
 /**
  * The pilot showed the Lion references' heraldry leaking into Bear images (lion banners, lion medallions): every brief
- * names the clan whose signs the place or person may show.
+ * names the clan whose signs the place or person may show. A brief that names another clan (the Raven in the Bear's
+ * mountains, the Wolf in the Dragon's peaks, the Phoenix in the Scorpion's desert, the Serpent's champion) gives that
+ * clan's people, camps and banners its own sign, and the host clan's places keep theirs.
  */
-const HERALDRY: Record<Chapter, string> = {
-  bear: 'Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.',
-  dragon: 'Any banner, shield, medallion or carved emblem shows the Dragon clan’s sign, a dragon; never a lion.',
-  scorpion: 'Any banner, shield, medallion or carved emblem shows the Scorpion clan’s sign, a scorpion; never a lion.',
-  finale: 'Any banners mix the signs of several clans; no single emblem dominates.',
-};
+const CLAN_SIGNS: readonly { name: string; english: string; sign: string }[] = [
+  { name: 'Ours', english: 'Bear', sign: 'a bear' },
+  { name: 'Corbeau', english: 'Raven', sign: 'a raven' },
+  { name: 'Dragon', english: 'Dragon', sign: 'a dragon' },
+  { name: 'Loup', english: 'Wolf', sign: 'a wolf' },
+  { name: 'Scorpion', english: 'Scorpion', sign: 'a scorpion' },
+  { name: 'Phénix', english: 'Phoenix', sign: 'a phoenix' },
+  { name: 'Serpent', english: 'Serpent', sign: 'a serpent' },
+];
+const HOST_CLAN: Record<Chapter, string | null> = { bear: 'Bear', dragon: 'Dragon', scorpion: 'Scorpion', finale: null };
+const namesClan = (text: string, name: string) => new RegExp(`(^|[^\\p{L}])${name}([^\\p{L}]|$)`, 'u').test(text);
+
+export function heraldryFor(chapter: Chapter, awaitedFinal: string): string {
+  const host = CLAN_SIGNS.find((clan) => clan.english === HOST_CLAN[chapter]);
+  const others = CLAN_SIGNS.filter((clan) => clan !== host && namesClan(awaitedFinal, clan.name));
+  const theirs = others.map((clan) => `the ${clan.english} clan’s people, camps and banners show ${clan.sign}`).join('; ');
+  if (!host) return others.length ? `Each clan keeps its own sign: ${theirs}; other banners mix the signs of several clans.` : 'Any banners mix the signs of several clans; no single emblem dominates.';
+  if (!others.length) return `Any banner, shield, medallion or carved emblem shows the ${host.english} clan’s sign, ${host.sign}; never a lion.`;
+  return `Each clan keeps its own sign: ${theirs}; the ${host.english} clan’s own places show ${host.sign}; never a lion.`;
+}
 
 /** Approved Lion art used as style references (Character V2 masters and approved tableaux). */
 const BACKDROP_STYLE_REFS = [
@@ -114,12 +131,12 @@ const masterOf = (unitId: string) => `public/assets/characters/pixel/masters/${u
 
 function promptFor(kind: Kind, chapter: Chapter, awaitedFinal: string): string {
   if (kind === 'character') {
-    return `${STYLE} One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. ${COVERED_FACE_RULE} Subject: ${awaitedFinal}. Setting of the character: ${SETTINGS[chapter]} ${HERALDRY[chapter]}`;
+    return `${STYLE} One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. ${COVERED_FACE_RULE} Subject: ${awaitedFinal}. Setting of the character: ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
   }
   if (kind === 'atlas') {
-    return `${STYLE} An illustrated top-down region map of a fantasy land, painted like a game atlas, with paths and landmarks but no lettering. Region: ${awaitedFinal}. ${SETTINGS[chapter]} ${HERALDRY[chapter]}`;
+    return `${STYLE} An illustrated top-down region map of a fantasy land, painted like a game atlas, with paths and landmarks but no lettering. Region: ${awaitedFinal}. ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
   }
-  return `${STYLE} A wide environment tableau, eye-level establishing view of the place, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Leave open ground in the lower half for them. Scene: ${awaitedFinal}. ${SETTINGS[chapter]} ${HERALDRY[chapter]}`;
+  return `${STYLE} A wide environment tableau, eye-level establishing view of the place, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Leave open ground in the lower half for them. Scene: ${awaitedFinal}. ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
 }
 
 function brief(chapter: Chapter, group: string, key: string, kind: Kind, awaitedFinal: string, standIn: string | null): FinalImageBrief {
@@ -248,29 +265,48 @@ async function main(): Promise<void> {
   const key = found.key;
   console.log(`OpenAI access: ${found.source} (value never shown).`);
   const plan = readPlan();
-  const ids = args.includes('--pilot') ? [...PILOT_IDS] : (option('--ids') ?? '').split(',').map((id) => id.trim()).filter(Boolean);
-  if (!ids.length) throw new Error('Choose images with --pilot or --ids id1,id2.');
+  const chapter = option('--chapter');
+  const ids = args.includes('--pilot') ? [...PILOT_IDS]
+    : chapter ? plan.filter((item) => item.chapter === chapter).map((item) => item.id)
+      : (option('--ids') ?? '').split(',').map((id) => id.trim()).filter(Boolean);
+  if (!ids.length) throw new Error('Choose images with --pilot, --chapter bear|dragon|scorpion|finale or --ids id1,id2.');
   const selected = ids.map((id) => { const item = plan.find((candidate) => candidate.id === id); if (!item) throw new Error(`Not in the plan: ${id}`); return item; });
   // The model of the project's earlier approved OpenAI images (tools/cinematics/specs/cin6ea3_pilot_e_image_gate.json).
   const model = option('--model') ?? 'gpt-image-2.5-sunburst-2026-09-08';
   const quality = option('--quality') ?? 'high';
   const logPath = join(OUT_DIR, 'log.json');
   const log = existsSync(logPath) ? JSON.parse(readFileSync(logPath, 'utf8')) as unknown[] : [];
-  for (const item of selected) {
-    const out = join(OUT_DIR, 'out', fileOf(item.id));
-    if (existsSync(out) && !args.includes('--force')) { console.log(`Already generated: ${item.id}`); continue; }
-    process.stdout.write(`Generating ${item.id}… `);
-    try {
-      writeFileSync(out, await generate(item, key, model, quality));
-      log.push({ id: item.id, model, quality, size: item.size, prompt: item.prompt, notes: item.notes, references: item.references, at: new Date().toISOString() });
-      console.log('done');
-    } catch (error) {
-      console.log(`failed: ${error instanceof Error ? error.message : String(error)}`);
+  const pending = selected.filter((item) => {
+    const skip = existsSync(join(OUT_DIR, 'out', fileOf(item.id))) && !args.includes('--force');
+    if (skip) console.log(`Already generated: ${item.id}`);
+    return !skip;
+  });
+  // A few requests at once (--concurrency, default 1); the log and the review page are rewritten after each image, so an
+  // interrupted run keeps what it made.
+  const concurrency = Math.max(1, Math.min(6, Number(option('--concurrency') ?? 1) || 1));
+  const save = () => {
+    writeFileSync(logPath, `${JSON.stringify(log, null, 2)}\n`);
+    writeFileSync(join(OUT_DIR, 'review.html'), reviewPage(selected));
+  };
+  let next = 0;
+  let failed = 0;
+  const worker = async () => {
+    while (next < pending.length) {
+      const item = pending[next++]!;
+      try {
+        writeFileSync(join(OUT_DIR, 'out', fileOf(item.id)), await generate(item, key, model, quality));
+        log.push({ id: item.id, model, quality, size: item.size, prompt: item.prompt, notes: item.notes, references: item.references, at: new Date().toISOString() });
+        console.log(`done: ${item.id}`);
+      } catch (error) {
+        failed += 1;
+        console.log(`failed: ${item.id}: ${error instanceof Error ? error.message : String(error)}`);
+      }
+      save();
     }
-  }
-  writeFileSync(logPath, `${JSON.stringify(log, null, 2)}\n`);
-  writeFileSync(join(OUT_DIR, 'review.html'), reviewPage(selected));
-  console.log('Review page: tmp/final-images/review.html');
+  };
+  await Promise.all(Array.from({ length: Math.min(concurrency, pending.length) }, worker));
+  save();
+  console.log(`Finished: ${pending.length - failed} generated, ${failed} failed. Review page: tmp/final-images/review.html`);
 }
 
 // Runs as a command (vite-node); a test that imports buildPlan does not start it.
