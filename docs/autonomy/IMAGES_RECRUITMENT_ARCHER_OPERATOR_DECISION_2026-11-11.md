@@ -117,8 +117,27 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   - La marque provisoire s’arrête pour l’Ours (`POST_DEMO_FINAL_ART_CHAPTERS`).
 - **Vérifié dans le navigateur** (serveur `preview_start`, piloté par Playwright) : l’arrivée sur son décor, la carte I sur le nouvel atlas sans « Carte provisoire », l’audience avec Borin et son portrait, la fin de chronique dans la salle de Borin, quatre combats (défense des mines, épreuve de Borin, bête corrompue, bête des profondeurs) avec les nouvelles planches. Aucune erreur de console ni requête en échec.
 - **Non vu en jeu** : les refuges (couverts par les tests, fond définitif sans marque).
-- **Hors du lot d’images** : les combats de l’Ours se jouent dans les arènes codées du Lion (`forest_route`, `lion_sanctum`), dont le sanctuaire montre des bannières au lion.
+- **Hors du lot d’images** : les combats de l’Ours se jouent dans les arènes codées du Lion (`forest_route`, `lion_sanctum`), dont le sanctuaire montre des bannières au lion. Réglé le même jour : voir « Arènes de l’Ours ».
 - **Tests** : le registre de l’Ours vérifie chaque fichier, l’absence de marque, la fin de chronique, les portraits et les planches ; l’outil vérifie le tracé des atlas. Validation complète verte.
+
+## Arènes de l’Ours (2026-11-12)
+
+`CURRENT FACT` — à la demande de l’opérateur, une session parallèle (worktree, branche `claude/bear-arenas-045c51`) a donné aux combats de l’Ours leurs propres arènes codées. Le travail est poussé sur `dev` (`7d5e590a` pour le code et les tests, rapport `docs/reports/bear-arenas-2026-11-12.md`). L’opérateur l’a validé (« excellent »), puis la session a été archivée.
+- **Trois arènes**, toutes codées (OD-2026-11-01-C : ni image générée ni plaque) :
+  - `bear_mountain_pass` : le col enneigé ;
+  - `bear_mine_galleries` : les galeries de mine ;
+  - `bear_hall_terrace` : le parvis de la salle de Borin, pour `bear_borin` seul.
+- **Répartition** : les 23 combats de l’Ours, POI et gardiens compris, sont répartis entre ces trois arènes ; la liste figure dans le rapport.
+- **Identité de l’Ours** : granit, neige, bois et fer ; l’ours dressé sur chaque bannière et chaque relief ; plans lointains dessinés en code ; aucun motif du Lion.
+- **Présentation seule** : grille, plateforme, résolution et sauvegardes sont inchangées. Aucun identifiant de scène n’est sauvegardé.
+- **Aucun son nouveau** : le col reprend `forest_route`, les galeries et le parvis reprennent `lion_sanctum`.
+- **Les autres arènes** : celles du Lion sont identiques (comparaison du graphe de scène, des géométries et des pixels des textures). Le Dragon, le Scorpion et l’acte final gardent leurs arènes, et un test le vérifie.
+- **Vérifié** :
+  - dans le navigateur (labo QA, rendu logiciel) : le col, les galeries, le parvis de Borin et le sanctuaire du Lion ;
+  - suite complète repassée dans le checkout principal après fusion, au commit du Dragon : 3 344 tests.
+- **Reste à juger sur le PC de l’opérateur** :
+  - le rendu sur une vraie carte graphique ;
+  - le col et le parvis, volontairement clairs et voilés. Sur la capture du col, les ennemis se lisent moins bien, en partie parce que la capture est prise en mode déplacement.
 
 ## Préparation du Dragon (2026-11-12)
 
@@ -193,4 +212,4 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 - **Portraits** : les maîtres Character V2 des six héros entreront dans le lot des images finales, après le pilote.
 - **Essai en jeu** : les six rencontres et leurs secondes chances sont à juger lors du test PC final.
 - **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Celles du Dragon sont soumises depuis le 2026-11-12.
-- **Arènes de l’Ours** : une session parallèle donne aux combats de l’Ours leurs propres arènes codées, aux signes de l’Ours. Son résultat sera consigné ici.
+- **Arènes du Dragon, du Scorpion et de l’acte final** : leurs combats jouent encore dans les arènes codées du Lion. Chacun pourra recevoir les siennes, comme l’Ours, à la demande de l’opérateur.
