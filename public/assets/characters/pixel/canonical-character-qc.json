@@ -3479,5 +3479,284 @@
         "floor_artifact_pixels": 0
       }
     }
+  },
+  "grand_inquisitor": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [121, 44, 390, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [121, 44, 390, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [121, 44, 390, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "phoenix_guardian_chief": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [140, 44, 372, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 95,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [140, 44, 372, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 95,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [140, 44, 372, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 95,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "shadow_prophet": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [97, 44, 415, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 6,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [97, 44, 415, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 6,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [97, 44, 415, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 6,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "phoenix_flamekeeper": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [136, 44, 375, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 159,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [136, 44, 375, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 159,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [136, 44, 375, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 159,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "shadow_zealot": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [121, 44, 391, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 1,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [121, 44, 391, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 1,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [121, 44, 391, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 1,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "phoenix_guardian": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [156, 111, 355, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 38,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [156, 111, 355, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 38,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [156, 111, 355, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 38,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "scorpion_scholar": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [169, 111, 342, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 1,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [169, 111, 342, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 1,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [169, 111, 342, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 1,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "phoenix_faithful": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [149, 111, 362, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 1,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [149, 111, 362, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 1,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [149, 111, 362, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 1,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "phoenix_captive": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [188, 111, 324, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [188, 111, 324, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [188, 111, 324, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
   }
 }

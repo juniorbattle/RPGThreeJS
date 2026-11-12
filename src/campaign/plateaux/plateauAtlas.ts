@@ -84,7 +84,8 @@ export const SCORPION_POI_ATLAS: PoiAtlas = Object.freeze({
   exits: SCORPION_POI_REGION_EXITS,
   phaseOf: scorpionPoiMapPhase,
   pathBends: scorpionPoiPathBends,
-  provisional: true,
+  // OD-2026-11-11-F (F1): the Scorpion's own atlases, on the Lion atlases' layout.
+  provisional: false,
 });
 
 export const FINALE_POI_ATLAS: PoiAtlas = Object.freeze({

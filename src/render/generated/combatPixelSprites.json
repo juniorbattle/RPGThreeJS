@@ -1973,6 +1973,105 @@
       "colors": 41,
       "sha256": "fc05094c1274488b49e901ed6753cf64f626de0de7ea0c5dcb07d038d2aa3874"
     },
+    "grand_inquisitor": {
+      "file": "/assets/characters/pixel/combat-sprites/grand_inquisitor.png",
+      "cell": [
+        118,
+        177
+      ],
+      "anchor": [
+        59,
+        174
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/scorpion/grand_inquisitor.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "4cc3d98806350cae2d3d4eff16ecfc9c7bf7bb0a96d69c79e7707bbb94f0ef77"
+      },
+      "figureHeightPx": 172,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 116,
+        "bottom": 175
+      },
+      "colors": 41,
+      "sha256": "09b12e31fcd8e7d28ec4a48c946adec03c823b9e71ed51cca9118d218a40a3e3"
+    },
     "gunnar": {
       "file": "/assets/characters/pixel/combat-sprites/gunnar.png",
       "cell": [
@@ -2696,6 +2795,501 @@
       "colors": 41,
       "sha256": "b4ddfa3f623f447677cc28feb489cdf580487954a3c63543bd90a8a90c455805"
     },
+    "phoenix_captive": {
+      "file": "/assets/characters/pixel/combat-sprites/phoenix_captive.png",
+      "cell": [
+        38,
+        88
+      ],
+      "anchor": [
+        19,
+        85
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/scorpion/phoenix_captive.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "38a290e7690c890375bc4454eba28d4369b5d44a8d8aac5a64e317eb3c2973b6"
+      },
+      "figureHeightPx": 83,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 36,
+        "bottom": 86
+      },
+      "colors": 41,
+      "sha256": "2e4b8fe71cb553365867ec89042906207cab1e3ae0fd55b169fceee41ac9c28f"
+    },
+    "phoenix_faithful": {
+      "file": "/assets/characters/pixel/combat-sprites/phoenix_faithful.png",
+      "cell": [
+        56,
+        88
+      ],
+      "anchor": [
+        28,
+        85
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/scorpion/phoenix_faithful.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "544430396a27a89e42a8dc9a8c8d9ba9528d1a911c60152b928a1adba5962383"
+      },
+      "figureHeightPx": 83,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 54,
+        "bottom": 86
+      },
+      "colors": 41,
+      "sha256": "d2e38ee9d74ece6a596ebb260de5f915403dd78321576706ef9e2316ff0046de"
+    },
+    "phoenix_flamekeeper": {
+      "file": "/assets/characters/pixel/combat-sprites/phoenix_flamekeeper.png",
+      "cell": [
+        99,
+        165
+      ],
+      "anchor": [
+        49,
+        162
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/scorpion/phoenix_flamekeeper.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "a010c92f4f665e09e6bced801768113096227f581b03461fb32897a3cb77c292"
+      },
+      "figureHeightPx": 160,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 97,
+        "bottom": 163
+      },
+      "colors": 41,
+      "sha256": "5eb17b3e9414e3c11f5e1b2b480e18c1e656050cdedbbf12bea4f61b5681dd6c"
+    },
+    "phoenix_guardian": {
+      "file": "/assets/characters/pixel/combat-sprites/phoenix_guardian.png",
+      "cell": [
+        57,
+        94
+      ],
+      "anchor": [
+        28,
+        91
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/scorpion/phoenix_guardian.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "ff1bcf43ac6678079469eb7a0e23c256303512f1ee1fd2f7a18b0d1750158dc7"
+      },
+      "figureHeightPx": 89,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 55,
+        "bottom": 92
+      },
+      "colors": 41,
+      "sha256": "e72dc8cf751dfe457e20a3ec91c64d28e251296ffc472c17f5529087ca15bed1"
+    },
+    "phoenix_guardian_chief": {
+      "file": "/assets/characters/pixel/combat-sprites/phoenix_guardian_chief.png",
+      "cell": [
+        100,
+        173
+      ],
+      "anchor": [
+        50,
+        170
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/scorpion/phoenix_guardian_chief.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "e15d95dee71b2aa0b0467abe9e407cfa9dee98dc069194ee8d1786f50ce61c76"
+      },
+      "figureHeightPx": 168,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 98,
+        "bottom": 171
+      },
+      "colors": 41,
+      "sha256": "3aa16d9a494fbfa65c36086e3127e3f8d22aa6d91df1a4d7052f47b6ac402dd2"
+    },
     "raven_foreman": {
       "file": "/assets/characters/pixel/combat-sprites/raven_foreman.png",
       "cell": [
@@ -3399,6 +3993,105 @@
       "colors": 41,
       "sha256": "b0d0225fcdca24a0ef4997ea23aba93baa86f11f96d1619418d90f2d6493ecde"
     },
+    "scorpion_scholar": {
+      "file": "/assets/characters/pixel/combat-sprites/scorpion_scholar.png",
+      "cell": [
+        47,
+        89
+      ],
+      "anchor": [
+        23,
+        86
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/scorpion/scorpion_scholar.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "7e40530d2b3705844fce096eb8a03347bdba7dc5017733a0c3c5c67bdac96e20"
+      },
+      "figureHeightPx": 84,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 45,
+        "bottom": 87
+      },
+      "colors": 41,
+      "sha256": "e4f64c938b33065eea636e978396f18c9a4b9a3c2059446dd43ff3706677b669"
+    },
     "serpent_brute": {
       "file": "/assets/characters/pixel/combat-sprites/serpent_brute.png",
       "cell": [
@@ -4053,6 +4746,105 @@
       "colors": 41,
       "sha256": "f941ded1ae571ff2e0e34f36f078904bf80766dbcbd5d609a7b54390a608057c"
     },
+    "shadow_prophet": {
+      "file": "/assets/characters/pixel/combat-sprites/shadow_prophet.png",
+      "cell": [
+        132,
+        168
+      ],
+      "anchor": [
+        66,
+        165
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/scorpion/shadow_prophet.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "f190e64fae0dc2b48cb6575274fccb5d570595951e12f2579c8657410055bc1b"
+      },
+      "figureHeightPx": 163,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 130,
+        "bottom": 166
+      },
+      "colors": 41,
+      "sha256": "b6e506740a720a701168b9a7c99c97b1b2e26f3db3868f672ce8318c428f295e"
+    },
     "shadow_shaman": {
       "file": "/assets/characters/pixel/combat-sprites/shadow_shaman.png",
       "cell": [
@@ -4250,6 +5042,105 @@
       },
       "colors": 41,
       "sha256": "9b7356fc681044f78ec0af7d8f5988f51558ace152ceb7af4a8c59ea62bae455"
+    },
+    "shadow_zealot": {
+      "file": "/assets/characters/pixel/combat-sprites/shadow_zealot.png",
+      "cell": [
+        110,
+        166
+      ],
+      "anchor": [
+        55,
+        163
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/scorpion/shadow_zealot.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "3eb4b1a084118a8f0f487e06ff4188da99ed6baac7d74801d5ce99b2b3f44f0c"
+      },
+      "figureHeightPx": 161,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 108,
+        "bottom": 164
+      },
+      "colors": 41,
+      "sha256": "e9c13e489a9c651fdd2533ff8e06d4ab2de7d5b303cccf5d1eecd3ea0cca8f89"
     },
     "skeleton": {
       "file": "/assets/characters/pixel/combat-sprites/skeleton.png",

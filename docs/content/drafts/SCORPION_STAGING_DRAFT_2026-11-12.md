@@ -1,6 +1,6 @@
 # Identité et mise en scène des images du Scorpion — brouillon à valider (2026-11-12)
 
-Statut : **VALIDÉ** par l’opérateur le 2026-11-12 (OD-2026-11-11-F, F1), tel quel (« Validate as is »), avant d’avoir vu les témoins d’identité. Chaque question ci-dessous prend donc sa recommandation. Rien n’est encore généré : les témoins, puis le lot, partent du dépôt principal, qui a la clé OpenAI.
+Statut : **VALIDÉ** par l’opérateur le 2026-11-12 (OD-2026-11-11-F, F1), tel quel (« Validate as is »), avant d’avoir vu les témoins d’identité. Chaque question ci-dessous prend donc sa recommandation. Les témoins puis le lot sont générés le même jour depuis le dépôt principal, qui a la clé OpenAI, et les images sont intégrées au jeu le 2026-11-12 sur l’ordre de l’opérateur (« Intègre le Scorpion »).
 
 On suit la méthode validée pour l’Ours et le Dragon :
 - une identité propre au plateau ;

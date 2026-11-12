@@ -6,7 +6,7 @@
  */
 import { BEAR_CHRONICLE_END_IMAGE, BEAR_PROVISIONAL_ACTORS, BEAR_PROVISIONAL_SCENES, type ProvisionalActor } from './bear/bearPresentation';
 import { DRAGON_CHRONICLE_END_IMAGE, DRAGON_PROVISIONAL_ACTORS, DRAGON_PROVISIONAL_SCENES } from './dragon/dragonPresentation';
-import { SCORPION_PROVISIONAL_ACTORS, SCORPION_PROVISIONAL_SCENES } from './scorpion/scorpionPresentation';
+import { SCORPION_CHRONICLE_END_IMAGE, SCORPION_PROVISIONAL_ACTORS, SCORPION_PROVISIONAL_SCENES } from './scorpion/scorpionPresentation';
 import { FINALE_PROVISIONAL_ACTORS, FINALE_PROVISIONAL_SCENES } from './finale/finalePresentation';
 import type { CampaignChapterId } from './campaignIds';
 
@@ -23,12 +23,13 @@ export const POST_DEMO_PROVISIONAL_ACTORS: readonly ProvisionalActor[] = Object.
 /**
  * The plateaux whose final images are all integrated (OD-2026-11-11-F, F1): their content no longer carries the
  * "Image provisoire" mark. The Bear since the operator's acceptance of 2026-11-12, the Dragon since his order of the same
- * day to integrate it.
+ * day to integrate it, the Scorpion since his order of the same day (« Intègre le Scorpion »).
  */
-export const POST_DEMO_FINAL_ART_CHAPTERS: ReadonlySet<CampaignChapterId> = new Set<CampaignChapterId>(['bear', 'dragon']);
+export const POST_DEMO_FINAL_ART_CHAPTERS: ReadonlySet<CampaignChapterId> = new Set<CampaignChapterId>(['bear', 'dragon', 'scorpion']);
 
 /** The chronicle-end hall of a plateau with its own, by the plateau's terminal node. */
 export const POST_DEMO_CHRONICLE_END_IMAGES: Readonly<Record<string, string>> = Object.freeze({
   'bear-judgement': BEAR_CHRONICLE_END_IMAGE,
   'dragon-judgement': DRAGON_CHRONICLE_END_IMAGE,
+  'scorpion-judgement': SCORPION_CHRONICLE_END_IMAGE,
 });

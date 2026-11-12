@@ -31,6 +31,12 @@ const CROP_OVERRIDES: Readonly<Record<string, Partial<Omit<DialoguePortrait, 'sr
   wolf_chief: { cropY: '45%' },
   shadow_shaman: { cropY: '45%' },
   wolf_champion: { cropY: '45%' },
+  // The Scorpion's tall final masters, framed the same way.
+  grand_inquisitor: { cropY: '45%' },
+  phoenix_guardian_chief: { cropY: '45%' },
+  shadow_prophet: { cropY: '45%' },
+  phoenix_flamekeeper: { cropY: '45%' },
+  shadow_zealot: { cropY: '45%' },
 };
 
 export function resolveDialoguePortrait(actorId: string | undefined): DialoguePortrait | undefined {

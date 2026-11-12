@@ -89,6 +89,17 @@ MASTER_ONLY = {
     'wolf_captive': ('post-demo/dragon/wolf_captive.png', 2.1),
     'dragon_villager': ('post-demo/dragon/dragon_villager.png', 2.05),
     'dragon_pilgrim': ('post-demo/dragon/dragon_pilgrim.png', 2.05),
+    # OD-2026-11-11-F (F1): the Scorpion plateau's final characters, sized like the Dragon's (bosses, the flame keeper and
+    # the faithful led astray as tall as the elites they replace).
+    'grand_inquisitor': ('post-demo/scorpion/grand_inquisitor.png', 4.3),
+    'phoenix_guardian_chief': ('post-demo/scorpion/phoenix_guardian_chief.png', 4.2),
+    'shadow_prophet': ('post-demo/scorpion/shadow_prophet.png', 4.1),
+    'phoenix_flamekeeper': ('post-demo/scorpion/phoenix_flamekeeper.png', 4.0),
+    'shadow_zealot': ('post-demo/scorpion/shadow_zealot.png', 4.0),
+    'phoenix_guardian': ('post-demo/scorpion/phoenix_guardian.png', 2.2),
+    'scorpion_scholar': ('post-demo/scorpion/scorpion_scholar.png', 2.1),
+    'phoenix_faithful': ('post-demo/scorpion/phoenix_faithful.png', 2.05),
+    'phoenix_captive': ('post-demo/scorpion/phoenix_captive.png', 2.05),
 }
 
 

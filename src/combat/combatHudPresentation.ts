@@ -69,6 +69,14 @@ export const COMBAT_PORTRAIT_FRAMING: Readonly<Record<string, { scale: number; x
   '/assets/characters/pixel/post-demo/dragon/wolf_raider.png': { scale: 3.2, x: 0, y: 46 },
   '/assets/characters/pixel/post-demo/dragon/wolf_hunter.png': { scale: 3.2, x: 0, y: 46 },
   '/assets/characters/pixel/post-demo/dragon/shadow_wyrm.png': { scale: 2.3, x: -62, y: 0 },
+  // OD-2026-11-11-F (F1): the Scorpion's final masters, framed like the Dragon's of the same height.
+  '/assets/characters/pixel/post-demo/scorpion/grand_inquisitor.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/scorpion/phoenix_guardian_chief.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/scorpion/shadow_prophet.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/scorpion/phoenix_flamekeeper.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/scorpion/shadow_zealot.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/scorpion/phoenix_guardian.png': { scale: 3.2, x: 0, y: 46 },
+  '/assets/characters/pixel/post-demo/scorpion/scorpion_scholar.png': { scale: 3.2, x: 0, y: 46 },
   // Set 1.20.0, post-demo Lot 4: Maelor at the breach, and the provisional stand-ins of the final act's demons and its entity.
   '/assets/characters/pixel/masters/maelor.png': { scale: 3.2, x: 0, y: 46 },
   '/assets/characters/pixel/archive/non-demo/giant_mygale.png': { scale: 2.4, x: 0, y: 50 },

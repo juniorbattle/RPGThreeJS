@@ -47,9 +47,9 @@ describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 4)', (
       'scorpion_inquisitor', 'scorpion_shadow_prophet', 'scorpion_temple_assault', 'scorpion_temple_seizure']);
     for (const combat of bosses) {
       const line = bossLine(combat.id);
-      // The Bear's and the Dragon's bosses stand on their final masters (OD-2026-11-11-F); the other plateaux keep
-      // provisional stand-ins.
-      const chapter = /^(bear|dragon)_/.exec(combat.id)?.[1];
+      // The Bear's, the Dragon's and the Scorpion's bosses stand on their final masters (OD-2026-11-11-F); the final act
+      // keeps provisional stand-ins.
+      const chapter = /^(bear|dragon|scorpion)_/.exec(combat.id)?.[1];
       if (chapter) {
         expect(line, combat.id).not.toContain('provisionalSprite');
         expect(line, combat.id).toContain(`portrait:'/assets/characters/pixel/post-demo/${chapter}/`);
@@ -82,6 +82,7 @@ describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 4)', (
     const finalChapter = new Map([
       ...BEAR_PROVISIONAL_ENEMIES.filter((enemy) => enemy.master).map((enemy) => [enemy.unitId, 'bear'] as const),
       ...DRAGON_PROVISIONAL_ENEMIES.filter((enemy) => enemy.master).map((enemy) => [enemy.unitId, 'dragon'] as const),
+      ...SCORPION_PROVISIONAL_ENEMIES.filter((enemy) => enemy.master).map((enemy) => [enemy.unitId, 'scorpion'] as const),
     ]);
     for (const id of families) {
       const chapter = finalChapter.get(id);

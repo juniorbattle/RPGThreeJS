@@ -350,6 +350,31 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 - **Planche** : `tmp/final-images/sheets/scorpion-review.jpg`.
 - **À l’opérateur** : juger le lot. Rien n’est intégré avant son accord.
 
+## Intégration du Scorpion (2026-11-12)
+
+`CURRENT FACT` — l’opérateur a vu la planche et a dit : « Intègre le Scorpion ». Les 40 images du Scorpion sont dans le jeu telles que relues, sans nouvelle reprise, et le plateau ne porte plus la marque « Image provisoire ». Les cinq points laissés à son jugement restent tels quels.
+- **Publication** : `tools/art/publish_final_images.py scorpion`.
+  - Décors et atlas en WebP qualité 95, 23 Mo, dans `public/assets/generated/post-demo/scorpion/`.
+  - Neuf maîtres 512×512, dans `public/assets/characters/pixel/post-demo/scorpion/`. Les élites sont à la taille des élites : Grand Inquisiteur, chef des gardiens, Prophète, gardien de flamme, fidèle égaré.
+  - Provenance des 40 fichiers dans `tools/art/provenance/scorpion-final-images.json`, chacun sur sa génération la plus récente.
+  - Contrôle qualité des neuf maîtres propre : ni magenta, ni violet parasite, rien sous la ligne des pieds. Les entrées sont ajoutées à `canonical-character-qc.json` dans le format du fichier.
+- **Branchements, présentation seule, sans champ de sauvegarde**, comme pour l’Ours et le Dragon :
+  - registre du Scorpion (`scorpionPresentation.ts`, avec `image` et `master`) et atlas non provisoires (`plateauAtlas.ts`) ;
+  - fin de chronique du Scorpion dans la salle des registres (`POST_DEMO_CHRONICLE_END_IMAGES`) ;
+  - marque provisoire retirée (`POST_DEMO_FINAL_ART_CHAPTERS`) ;
+  - portraits et figures dans `assetManifest`, et contrôle qualité des personnages ;
+  - planches de combat « maître seul » de `build_combat_sprites.py` ;
+  - sept modèles de combat sans `provisionalSprite` : les trois boss, gardien, gardien de flamme, fidèle égaré, érudit ;
+  - cadrage des vignettes de combat ; portraits de dialogue des grands maîtres recadrés sur le casque.
+- **Vérifié dans le navigateur** (serveur `preview_start`), sans erreur de console ni requête en échec :
+  - le passage de la fin du Dragon à l’arrivée du Scorpion sur son décor, sans marque provisoire ;
+  - la carte I sur le nouvel atlas, sans « Carte provisoire » ;
+  - l’audience dans la salle des registres, avec la figure et la carte de dialogue du Grand Inquisiteur ;
+  - cinq combats sur leurs nouvelles planches : l’assaut du temple (chef des gardiens et gardiens), le gardien de flamme, le fidèle égaré, le Prophète et l’épreuve du Grand Inquisiteur avec ses érudits.
+- **Non vus en jeu** : les refuges et la fin de chronique, couverts par les tests.
+- **Hors du lot d’images** : les combats du Scorpion se jouent encore dans les arènes codées du Lion, bannières au lion comprises. Une session parallèle leur donne leurs propres arènes.
+- **Tests** : le registre du Scorpion vérifie chaque fichier, l’absence de marque, la fin de chronique, les portraits et les planches. Les tests du moteur de combat et du cadrage des vignettes tiennent compte des sept nouveaux portraits. Le test de l’Ours, qui prenait le Scorpion comme exemple de plateau sans salle de fin de chronique, prend désormais l’acte final.
+
 ## Rencontres des six héros (2026-11-11, nuit)
 
 `CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.
@@ -367,5 +392,5 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 `PROPOSED FUTURE DESIGN`, à confirmer par l’opérateur :
 - **Portraits** : les maîtres Character V2 des six héros entreront dans le lot des images finales, après le pilote.
 - **Essai en jeu** : les six rencontres et leurs secondes chances sont à juger lors du test PC final.
-- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Le Dragon est intégré depuis le 2026-11-12 ; les 40 images du Scorpion sont générées et relues le même jour, en attente du jugement de l’opérateur avant intégration.
+- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Le Dragon est intégré depuis le 2026-11-12 ; les 40 images du Scorpion sont générées, relues et intégrées le même jour ; l’acte final vient ensuite.
 - **Arènes du Scorpion et de l’acte final** : leurs combats jouent encore dans les arènes codées du Lion. Chacun pourra recevoir les siennes, comme l’Ours et le Dragon, à la demande de l’opérateur.
