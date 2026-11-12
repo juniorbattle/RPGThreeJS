@@ -222,5 +222,9 @@ describe('the sample bank and instruments', () => {
     expect(ambienceForScene('unknown_scene')).toBe('forest_route');
     expect(ambienceForScene('map')).toBe('map');
     expect(ambienceForScene('refuge')).toBe('refuge');
+    // the Bear's arenas borrow existing beds: no new sound before the operator listens (OD-2026-11-01-B)
+    expect(ambienceForScene('bear_mountain_pass')).toBe('forest_route');
+    expect(ambienceForScene('bear_mine_galleries')).toBe('lion_sanctum');
+    expect(ambienceForScene('bear_hall_terrace')).toBe('lion_sanctum');
   });
 });

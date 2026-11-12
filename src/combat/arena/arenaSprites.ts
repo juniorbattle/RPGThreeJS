@@ -141,8 +141,11 @@ export function drawTree(pal: ArenaPalette, seed: number, scale = 1): DecorSprit
   return { canvas: pc, anchor: [Math.round(base.x), base.y] };
 }
 
-/** Conifer: overlapping triangular skirts with drooping corners, zigzag needle edge, lit from the left. */
-export function drawPine(pal: ArenaPalette, seed: number, scale = 1): DecorSprite {
+/**
+ * Conifer: overlapping triangular skirts with drooping corners, zigzag needle edge, lit from the left. With `snow`,
+ * each skirt carries a ridge of snow along its lit upper edge (the Bear's mountains).
+ */
+export function drawPine(pal: ArenaPalette, seed: number, scale = 1, snow = false): DecorSprite {
   const k = scale;
   const W = Math.round(108 * k), H = Math.round(240 * k);
   const pc = new PixelCanvas(W, H);
@@ -175,6 +178,10 @@ export function drawPine(pal: ArenaPalette, seed: number, scale = 1): DecorSprit
         const dash = (y + Math.floor((x + t) / 3)) % 3 === 0;
         let light = 0.66 - u * 0.26 - v * 0.48 - p * 0.04 + (ridge ? 0.24 : 0) + (dash ? -0.07 : 0);
         if (y > lower - 1.4) light -= 0.28;
+        if (snow && y - upper < ((u < 0 ? 5 : 3) + n(x / 3, t * 5) * 2) * k && v < 0.45) {
+          pc.set(x, y, tone(pal.moss, Math.max(0, Math.min(1, 0.92 - Math.max(0, u) * 0.5 - v * 0.6)), x, y));
+          continue;
+        }
         pc.set(x, y, tone(ft, Math.max(0, Math.min(1, light)), x, y, 0, ft.length - 2));
       }
     }
@@ -313,6 +320,80 @@ export function drawTreeLine(pal: ArenaPalette, seed: number, conifer: boolean, 
     const depth = (y - (ridge[x] ?? 0)) / height;
     const lit = (n(x / 6, y / 6) - 0.5) * 0.6 + 0.6 - depth * 1.4;
     pc.set(x, y, rgb(tones[lit > 0.55 ? 2 : lit > 0.2 ? 1 : 0]));
+  }
+  return { canvas: pc, anchor: [Math.round(width / 2), height - 1] };
+}
+
+/** A clump of wind-packed snow at the foot of a stone, lit up-left, with a few dry stalks poking through. */
+export function drawSnowTuft(pal: ArenaPalette, seed: number, scale = 1): DecorSprite {
+  const k = scale;
+  const W = Math.round(40 * k), H = Math.round(18 * k);
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed * 1709 + 23);
+  const n = makeNoise(rng, 8);
+  const lumps = 3 + Math.floor(rng() * 2);
+  for (let i = 0; i < lumps; i++) {
+    const cx = (8 + (i / Math.max(1, lumps - 1)) * 24 + (rng() - 0.5) * 4) * k, r = (5 + rng() * 4) * k;
+    for (let y = Math.floor(H - 2 - r); y <= H - 2; y++) for (let x = Math.floor(cx - r * 1.4); x <= Math.ceil(cx + r * 1.4); x++) {
+      const dx = (x - cx) / (r * 1.4), dy = (y - (H - 2)) / r;
+      if (dx * dx + dy * dy > 1 + (n(x / 3, y / 3) - 0.5) * 0.3) continue;
+      const light = 0.8 - dx * 0.25 + dy * 0.35;
+      pc.set(x, y, tone(pal.moss, Math.max(0, Math.min(1, light)), x, y));
+    }
+  }
+  for (let b = 0; b < 4; b++) {
+    const x0 = (4 + rng() * 32) * k, h = (5 + rng() * 7) * k;
+    for (let i = 0; i < h; i++) pc.set(x0 + (rng() - 0.5), H - 3 - i, tone(pal.grass, 0.3 + (i / h) * 0.5, Math.round(x0), i));
+  }
+  pc.outline(rgb(pal.moss[0]));
+  return { canvas: pc, anchor: [Math.round(W / 2), H - 2] };
+}
+
+/** Rubble: a few stone chips and pebbles at the foot of a wall underground, lit up-left. */
+export function drawRubble(pal: ArenaPalette, seed: number, scale = 1): DecorSprite {
+  const k = scale;
+  const W = Math.round(40 * k), H = Math.round(16 * k);
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed * 2389 + 31);
+  const chips = 5 + Math.floor(rng() * 3);
+  for (let i = 0; i < chips; i++) {
+    const cx = (5 + rng() * 30) * k, r = (1.6 + rng() * 3.2) * k, cy = H - 2 - r * 0.7;
+    const facets = 5 + Math.floor(rng() * 3), phase = rng() * 6;
+    for (let y = Math.floor(cy - r); y <= Math.ceil(cy + r); y++) for (let x = Math.floor(cx - r); x <= Math.ceil(cx + r); x++) {
+      const a = Math.atan2(y - cy, x - cx), d = Math.hypot(x - cx, (y - cy) * 1.25);
+      const edge = r * (0.82 + 0.18 * Math.cos(Math.round((a + phase) / (Math.PI * 2 / facets)) * (Math.PI * 2 / facets) - a - phase));
+      if (d > edge || y > H - 2) continue;
+      const light = 0.55 - ((x - cx) / r) * 0.25 - ((y - cy) / r) * 0.3;
+      pc.set(x, y, tone(pal.stone, Math.max(0, Math.min(1, light)), x, y));
+    }
+  }
+  pc.outline(rgb(pal.ink));
+  return { canvas: pc, anchor: [Math.round(W / 2), H - 2] };
+}
+
+/**
+ * Distant ridge line for the Bear's arenas: a jagged granite silhouette whose up-left facets catch the light, with
+ * snow on the crests outdoors; underground, the same rock heaps fall into the dark (the tree line's mountain twin).
+ */
+export function drawRidgeLine(pal: ArenaPalette, seed: number, snow: boolean, width = 720, height = 96): DecorSprite {
+  const pc = new PixelCanvas(width, height);
+  const rng = seeded(seed * 3911 + 29);
+  const n = makeNoise(rng, 32), fine = makeNoise(rng, 64);
+  const ridge: number[] = [];
+  for (let x = 0; x < width; x++) {
+    const big = 1 - Math.abs(n(x / 40, 1) * 2 - 1); // ridged noise: sharp crests
+    ridge.push(Math.max(2, height * (0.62 - big * 0.5) + (fine(x / 6, 2) - 0.5) * 6));
+  }
+  const tones = snow ? pal.stone.slice(0, 4) : pal.stone.slice(0, 3);
+  for (let x = 0; x < width; x++) {
+    const top = ridge[x] ?? height;
+    const slope = ((ridge[Math.min(width - 1, x + 2)] ?? top) - (ridge[Math.max(0, x - 2)] ?? top)) / 4;
+    for (let y = Math.floor(top); y < height; y++) {
+      const depth = (y - top) / height;
+      const lit = slope < 0 ? 0.62 : 0.3;
+      if (snow && depth < 0.16 + fine(x / 5, y / 9) * 0.14) { pc.set(x, y, tone(pal.moss, slope < 0 ? 0.85 : 0.45, x, y)); continue; }
+      pc.set(x, y, tone(tones, Math.max(0, Math.min(1, lit - depth * 0.9 + (fine(x / 3, y / 3) - 0.5) * 0.2)), x, y));
+    }
   }
   return { canvas: pc, anchor: [Math.round(width / 2), height - 1] };
 }

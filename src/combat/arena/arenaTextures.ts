@@ -132,9 +132,63 @@ function tileMarble(pal: ArenaPalette, seed: number): PixelCanvas {
   return pc;
 }
 
+/**
+ * A tooled granite block: grain of light and dark specks, a lit top-left bevel, chisel marks in pairs (a dark cut and
+ * its lit lip) and the grout on its lower and right edges.
+ */
+function paintGraniteBlock(pc: PixelCanvas, rng: Rng, r: Rect, pal: ArenaPalette, base: number): void {
+  const noise = makeNoise(rng, 8);
+  for (let j = 0; j < r.h; j++) for (let i = 0; i < r.w; i++) {
+    const x = r.x + i, y = r.y + j;
+    let level = base + (noise(i / 3.5, j / 3.5) - 0.5) * 0.2;
+    if (i <= 1 || j <= 1) level += 0.14;
+    if (i >= r.w - 2 || j >= r.h - 2) level -= 0.18;
+    const grain = rng();
+    let c = shadeTone(pal.stone, Math.max(0.05, Math.min(0.95, level)), x, y);
+    if (grain < 0.03) c = ramp(pal.stone, level + 0.22);
+    else if (grain > 0.975) c = ramp(pal.stone, level - 0.22);
+    pc.set(x, y, c);
+  }
+  for (let i = 0; i < r.w; i++) pc.set(r.x + i, r.y + r.h - 1, rgb(pal.stoneDark[0]));
+  for (let j = 0; j < r.h; j++) pc.set(r.x + r.w - 1, r.y + j, rgb(pal.stoneDark[0]));
+  const marks = 2 + Math.floor(rng() * 2);
+  for (let k = 0; k < marks; k++) {
+    const x = r.x + 3 + Math.floor(rng() * Math.max(1, r.w - 7)), y = r.y + 3 + Math.floor(rng() * Math.max(1, r.h - 7));
+    for (let t = 0; t < 3; t++) { pc.set(x + t, y + t, rgb(pal.stoneDark[2])); pc.set(x + t, y + t + 1, ramp(pal.stone, base + 0.22)); }
+  }
+  if (rng() < 0.35) crack(pc, rng, r.x + 2 + Math.floor(rng() * Math.max(1, r.w - 4)), r.y + 2, 4 + Math.floor(rng() * 8), rgb(pal.stoneDark[1]), r);
+}
+
+/**
+ * Hewn granite slab for the Bear's arenas: two courses of big tooled blocks in running bond, snow packed into the
+ * joints outdoors (the palette's "moss" is snow there) or soot and ore dust underground.
+ */
+function tileHewnGranite(pal: ArenaPalette, seed: number, snow: boolean): PixelCanvas {
+  const pc = new PixelCanvas(TILE_TEXELS, TILE_TEXELS);
+  const rng = seeded(seed);
+  pc.fill(rgb(pal.stoneDark[0]));
+  const blocks: Rect[] = [];
+  for (const [y, h] of [[0, 24], [24, 24]] as const) {
+    const cut = 16 + Math.floor(rng() * 17);
+    blocks.push({ x: 0, y, w: cut, h }, { x: cut, y, w: TILE_TEXELS - cut, h });
+  }
+  for (const block of blocks) paintGraniteBlock(pc, rng, block, pal, 0.4 + rng() * 0.22);
+  const drift = makeNoise(rng, 6);
+  for (let y = 0; y < TILE_TEXELS; y++) for (let x = 0; x < TILE_TEXELS; x++) {
+    const block = blocks.find((b) => x >= b.x && x < b.x + b.w && y >= b.y && y < b.y + b.h);
+    if (!block) continue;
+    const joint = Math.min(x - block.x, y - block.y, block.x + block.w - 1 - x, block.y + block.h - 1 - y);
+    // packed into the joints and the corners, a few drifts reaching onto the slab
+    const v = drift(x / 3, y / 3) - joint * 0.12 + (snow ? 0.2 : 0.1);
+    if (v > 0.62) pc.set(x, y, shadeTone(pal.moss, snow ? Math.min(1, 0.55 + (v - 0.62) * 1.6) : 0.25 + (v - 0.62) * 1.2, x, y));
+  }
+  return pc;
+}
+
 export function tileTopTexture(style: TileStyle, pal: ArenaPalette, seed: number): PixelCanvas {
   if (style === 'packed_earth') return tileEarth(pal, seed);
   if (style === 'sanctum_marble') return tileMarble(pal, seed);
+  if (style === 'hewn_granite' || style === 'snowy_granite') return tileHewnGranite(pal, seed, style === 'snowy_granite');
   return tileFlagstone(pal, seed);
 }
 
@@ -159,6 +213,30 @@ export function groundTexture(style: GroundStyle, pal: ArenaPalette, seed = 7): 
       const dirt = big < 0.26 && mid < 0.55;
       const level = 0.42 + (big - 0.5) * 0.3 + (mid - 0.5) * 0.22 + (fine - 0.5) * 0.16;
       pc.set(x, y, dirt ? shadeTone(pal.dirt, Math.max(0, Math.min(1, level + 0.1)), x, y) : shadeTone(pal.grass, Math.max(0, Math.min(1, level)), x, y));
+    } else if (style === 'snow_scree') {
+      // wind-packed snow with its ripples; where the wind strips it, scree and dry grass
+      const ripple = Math.sin(((x * 2 + y) / S) * Math.PI * 12 + n1((x / S) * 8, (y / S) * 8) * 3) > 0.84;
+      if (big < 0.3) {
+        pc.set(x, y, mid > 0.52 ? shadeTone(pal.stone, Math.max(0, Math.min(1, 0.3 + (fine - 0.5) * 0.5 + (mid - 0.5) * 0.4)), x, y)
+          : shadeTone(pal.grass, Math.max(0, Math.min(1, 0.35 + (fine - 0.5) * 0.6)), x, y));
+      } else {
+        const level = 0.66 + (mid - 0.5) * 0.28 + (fine - 0.5) * 0.12 - (ripple ? 0.14 : 0) - (big < 0.36 ? 0.18 : 0);
+        pc.set(x, y, shadeTone(pal.moss, Math.max(0, Math.min(1, level)), x, y));
+      }
+    } else if (style === 'mine_floor') {
+      // packed earth and ore dust, gravel patches, soot where the carts turn
+      let c = shadeTone(pal.dirt, Math.max(0, Math.min(1, 0.42 + (big - 0.5) * 0.3 + (mid - 0.5) * 0.25 + (fine - 0.5) * 0.15)), x, y);
+      if (mid > 0.66) c = shadeTone(pal.grass, Math.max(0, Math.min(1, 0.25 + fine * 0.45)), x, y);
+      if (big < 0.24) c = mixRgb(c, rgb(pal.stoneDark[0]), 0.5);
+      pc.set(x, y, c);
+    } else if (style === 'snow_terrace') {
+      // the terrace's granite flags under the snow, swept bare in patches
+      const cx = Math.floor(x / 16), cy = Math.floor((y + (cx % 2) * 8) / 16);
+      const lx = x % 16, ly = (y + (cx % 2) * 8) % 16;
+      const bare = n1(cx + 0.5, cy + 0.5) > 0.5 && big > 0.4 && lx > 0 && ly > 0;
+      const level = bare ? 0.42 + (mid - 0.5) * 0.3 + (lx === 1 || ly === 1 ? 0.14 : 0) - (lx === 15 || ly === 15 ? 0.16 : 0)
+        : 0.68 + (mid - 0.5) * 0.26 + (fine - 0.5) * 0.12;
+      pc.set(x, y, shadeTone(bare ? pal.stone : pal.moss, Math.max(0, Math.min(1, level)), x, y));
     } else if (style === 'village_mud') {
       const rut = Math.abs(((y + n1(x / 16, 0) * 10) % 32) - 16) < 2;
       let level = 0.42 + (mid - 0.5) * 0.45 + (fine - 0.5) * 0.25 - (rut ? 0.2 : 0);
@@ -391,8 +469,60 @@ function paintLion(pc: PixelCanvas, ox: number, oy: number, tones: readonly stri
   }
 }
 
-/** Heraldic banner (40×80, the decor's 32 texels/m): house cloth, gold border and the rampant lion. */
-export function bannerTexture(pal: ArenaPalette, seed: number, burning = false): PixelCanvas {
+const BEAR_W = 26, BEAR_H = 34;
+
+/**
+ * The Bear clan's sign: a bear risen on its hind legs, facing left, forepaws raised and jaw open, on the lion's 26×34
+ * grid so a banner takes either sign. 0 empty, 1 body, 2 the shoulder hump and the ear (the fur's shade). Sampled in
+ * continuous grid units, so a carved relief draws it larger from the same strokes.
+ */
+function bearShape(px: number, py: number): 0 | 1 | 2 {
+  if (Math.hypot(px - 7.6, py - 6.0) < 0.62) return 0; // eye
+  if (Math.hypot(px - 2.5, py - 7.3) < 0.62) return 0; // nose
+  if (inEllipse(px, py, 10.4, 3.6, 1.55, 1.35)) return 2; // round ear
+  if (inEllipse(px, py, 8.6, 7.0, 3.9, 3.4) || inEllipse(px, py, 4.6, 8.2, 2.4, 1.7)) return 1; // head, short muzzle
+  if (inEllipse(px, py, 13.6, 10.8, 4.8, 3.8)) return 2; // shoulder hump
+  if (inEllipse(px, py, 13.6, 17.0, 6.4, 7.6) || inEllipse(px, py, 14.4, 23.2, 6.0, 4.6)
+    || inStroke(px, py, [[10.8, 12.6], [7.2, 13.4], [4.0, 11.6]], 4.6, 3.6) || inEllipse(px, py, 3.4, 11.4, 2.0, 1.8)
+    || inStroke(px, py, [[11.0, 17.4], [7.6, 18.8], [4.8, 18.0]], 4.4, 3.4) || inEllipse(px, py, 4.2, 17.8, 1.9, 1.7)
+    || inStroke(px, py, [[11.8, 25.0], [11.0, 28.4], [11.2, 31.2]], 5.6, 4.6) || inEllipse(px, py, 10.0, 32.2, 3.0, 1.3)
+    || inStroke(px, py, [[17.4, 25.0], [18.2, 28.6], [17.8, 31.2]], 5.4, 4.4) || inEllipse(px, py, 17.0, 32.2, 3.0, 1.3)
+    || inEllipse(px, py, 20.6, 21.6, 1.2, 1.1)) return 1;
+  // claws on the forepaws
+  for (const [cx, cy] of [[1.2, 11.4], [2.2, 17.8]] as const) if ([-0.8, 0, 0.8].some((dy) => inEllipse(px, py, cx, cy + dy, 0.6, 0.26))) return 1;
+  return 0;
+}
+
+interface BearTones { lit: number; mid: number; shade: number; fur: number }
+const BANNER_BEAR: BearTones = { lit: 1, mid: 0.7, shade: 0.34, fur: 0.45 };
+
+/** Paints the bear at (ox, oy), `scale` times the banner size: lit up-left edges, shaded down-right edges, darker fur. */
+function paintBear(pc: PixelCanvas, ox: number, oy: number, tones: readonly string[], levels: BearTones, scale = 1, onPixel?: (x: number, y: number) => void): void {
+  const W = Math.round(BEAR_W * scale), H = Math.round(BEAR_H * scale);
+  const part = (x: number, y: number) => (x < 0 || y < 0 || x >= W || y >= H ? 0 : bearShape((x + 0.5) / scale, (y + 0.5) / scale));
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const p = part(x, y);
+    if (!p) continue;
+    const lit = !part(x - 1, y) || !part(x, y - 1);
+    const shade = !part(x + 1, y) || !part(x, y + 1);
+    const t = lit ? levels.lit : shade ? levels.shade : p === 2 ? levels.fur : levels.mid;
+    pc.set(ox + x, oy + y, ramp(tones, t));
+    onPixel?.(ox + x, oy + y);
+  }
+}
+
+/** The bottom of a Bear banner: three points, the middle one longest. */
+function bearBannerHem(x: number, W: number, H: number): number {
+  const local = ((x + 0.5) / (W / 3)) % 1;
+  return H - 1 - Math.abs(local - 0.5) * 2 * 10 - (Math.floor((x + 0.5) / (W / 3)) === 1 ? 0 : 2);
+}
+
+/**
+ * Heraldic banner (40×80, the decor's 32 texels/m): house cloth, border and the house sign. The lion's banners keep
+ * their gold border and swallowtail; the Bear's are slate and bone, with an angular band and a three-pointed hem.
+ */
+export function bannerTexture(pal: ArenaPalette, seed: number, burning = false, emblem: 'lion' | 'bear' = 'lion'): PixelCanvas {
+  if (emblem === 'bear') return bearBannerTexture(pal, seed);
   const W = 40, H = 80;
   const pc = new PixelCanvas(W, H);
   const rng = seeded(seed);
@@ -412,6 +542,144 @@ export function bannerTexture(pal: ArenaPalette, seed: number, burning = false):
     if (pc.alpha(x, y) && !pc.alpha(x, y + 1) && y > H - 30) { pc.set(x, y, rgb('#ff8a2a')); pc.set(x, y - 1, rgb('#2a120c')); }
   }
   paintLion(pc, 7, 16, pal.trim);
+  return pc;
+}
+
+function bearBannerTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const W = 40, H = 80;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    if (y > bearBannerHem(x, W, H)) continue;
+    const fold = Math.sin(x * 0.45) * 0.12;
+    let c = shadeTone(pal.cloth, 0.6 + fold + (n(x / 6, y / 6) - 0.5) * 0.2, x, y);
+    const dy = y - (H - 24), zig = Math.abs(((x + 4) % 8) - 4);
+    const band = dy >= 0 && dy <= 5 && (dy === zig || dy === zig + 1);
+    const hem = y > bearBannerHem(x, W, H) - 2;
+    if (x <= 3 && x >= 2 || x >= W - 4 && x <= W - 3 || (y >= 4 && y <= 5) || band || hem) c = shadeTone(pal.trim, x <= 3 || y <= 5 ? 0.8 : 0.5, x, y);
+    pc.set(x, y, c);
+  }
+  paintBear(pc, 7, 14, pal.trim, BANNER_BEAR);
+  return pc;
+}
+
+/**
+ * Carved panel of the Bear's pillars and hall: a dressed granite face with a bevelled frame, angular bands above and
+ * below, and the house bear in relief at 1.3 times the banner's size, standing proud with its shadow to the lower
+ * right (stone only: no gold, no glow).
+ */
+export function bearReliefTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const W = 40, H = 72;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const edge = Math.min(x, y, W - 1 - x, H - 1 - y);
+    let level = 0.32 + (n(x / 4, y / 4) - 0.5) * 0.16;
+    if (edge < 3) level = edge === 0 ? 0.1 : x < W - 3 && y < H - 3 && (x < 3 || y < 3) ? 0.6 : 0.2;
+    else if (edge === 3) level = 0.16;
+    let c = shadeTone(pal.stone, level, x, y);
+    if (edge > 3 && rng() < 0.05) c = rgb(pal.stoneDark[1]);
+    pc.set(x, y, c);
+  }
+  // angular bands, cut into the stone: a dark groove with a lit lower lip
+  for (const top of [6, H - 12]) for (let x = 5; x < W - 5; x++) {
+    const zig = Math.abs(((x + 3) % 6) - 3);
+    pc.set(x, top + zig, rgb(pal.stoneDark[0]));
+    pc.set(x, top + zig + 1, ramp(pal.stone, 0.66));
+  }
+  const relief = new Set<number>();
+  const scale = 1.3, ox = Math.round((W - BEAR_W * scale) / 2), oy = 13;
+  paintBear(pc, ox, oy, pal.stone, { lit: 0.96, mid: 0.68, shade: 0.2, fur: 0.5 }, scale, (x, y) => relief.add(y * W + x));
+  for (let y = H - 2; y > 0; y--) for (let x = W - 2; x > 0; x--) {
+    if (relief.has((y - 1) * W + x - 1) && !relief.has(y * W + x) && Math.min(x, y, W - 1 - x, H - 1 - y) > 3) pc.set(x, y, rgb(pal.stoneDark[0]));
+  }
+  return pc;
+}
+
+/** Rough granite for outcrops and hewn masses: salt-and-pepper grain, faint strata and a few fissures (seamless). */
+export function graniteTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const S = 32;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), fine = makeNoise(rng, 16);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const level = 0.46 + (n(x / 4, y / 4) - 0.5) * 0.34 + (fine(x / 2, y / 2) - 0.5) * 0.12 + Math.sin((y / S) * Math.PI * 6 + n(x / 4, 2) * 2) * 0.04;
+    const grain = rng();
+    let c = shadeTone(pal.stone, Math.max(0.05, Math.min(0.95, level)), x, y);
+    if (grain < 0.06) c = ramp(pal.stone, level + 0.3);
+    else if (grain > 0.93) c = rgb(pal.stoneDark[1]);
+    pc.set(x, y, c);
+  }
+  for (let k = 0; k < 3; k++) crack(pc, rng, 2 + Math.floor(rng() * 28), 1 + Math.floor(rng() * 20), 6 + Math.floor(rng() * 10), rgb(pal.stoneDark[0]), { x: 0, y: 0, w: S, h: S });
+  return pc;
+}
+
+/** Wind-packed snow: broad soft drifts in the snow ramp, blue dimples and a few sparkling texels (seamless). */
+export function snowTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const S = 32;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 4), fine = makeNoise(rng, 16);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    pc.set(x, y, shadeTone(pal.moss, Math.max(0, Math.min(1, 0.72 + (n(x / 8, y / 8) - 0.5) * 0.32 + (fine(x / 2, y / 2) - 0.5) * 0.12)), x, y));
+  }
+  for (let k = 0; k < 10; k++) pc.set(Math.floor(rng() * S), Math.floor(rng() * S), rgb(pal.moss[pal.moss.length - 1]));
+  for (let k = 0; k < 8; k++) pc.set(Math.floor(rng() * S), Math.floor(rng() * S), rgb(pal.moss[1]));
+  return pc;
+}
+
+/** Ore-bearing rock: dark granite crossed by dull black veins, a few cold glints beside them (no crystal, no glow). */
+export function oreTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const S = 32;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), vein = makeNoise(rng, 4);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const v = Math.abs(Math.sin(((x + y * 0.6) / S) * Math.PI * 4 + vein(x / 8, y / 8) * 5));
+    const level = 0.3 + (n(x / 4, y / 4) - 0.5) * 0.3;
+    pc.set(x, y, v < 0.13 ? rgb('#060607') : shadeTone(pal.stone, Math.max(0.04, Math.min(0.9, level)), x, y));
+    if (v >= 0.13 && v < 0.2 && rng() < 0.08) pc.set(x, y, ramp(pal.stone, 0.95));
+  }
+  return pc;
+}
+
+/**
+ * The terrace before the Bear's hall around the platform: big granite flags in staggered courses, the snow swept
+ * toward a ragged alpha-cut edge and lodged in the joints (u spans x, v spans z).
+ */
+export function flagApronTexture(pal: ArenaPalette, seed: number, w = 384, h = 256): PixelCanvas {
+  const pc = new PixelCanvas(w, h);
+  const rng = seeded(seed);
+  const n1 = makeNoise(rng, 8), n2 = makeNoise(rng, 16);
+  const k = w / 192;
+  const course = Math.round(19 * k), flag = Math.round(27 * k);
+  const shades = Array.from({ length: 64 }, () => rng());
+  const offsets = Array.from({ length: 64 }, () => Math.round(rng() * flag));
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const u = (x / (w - 1)) * 2 - 1, v = (y / (h - 1)) * 2 - 1;
+    const box = Math.max(Math.abs(u) / 0.9, Math.abs(v) / 0.84);
+    const edge = box + (n1(x / (6 * k), y / (6 * k)) - 0.5) * 0.4 + (n2(x / (2.5 * k), y / (2.5 * k)) - 0.5) * 0.12;
+    if (edge > 1) continue;
+    const row = Math.floor(y / course);
+    const sx = x + (offsets[row & 63] ?? 0);
+    const col = Math.floor(sx / flag);
+    const lx = sx % flag, ly = y % course;
+    const joint = lx < Math.max(1, Math.round(k * 0.6)) || ly < Math.max(1, Math.round(k * 0.6));
+    const snow = (edge - 0.5) * 1.9 + (n1(x / (4 * k) + 5, y / (4 * k)) - 0.5) * 0.7;
+    let c: Rgb;
+    if (snow > 0.35 || (joint && snow > 0.05)) {
+      c = shadeTone(pal.moss, Math.max(0, Math.min(1, 0.62 + (n2(x / (3 * k), y / (3 * k)) - 0.5) * 0.3 - (joint ? 0.12 : 0))), x, y);
+    } else if (joint) {
+      c = rgb(pal.stoneDark[0]);
+    } else {
+      const lit = lx < 2 * k || ly < 2 * k ? 0.12 : lx > flag - 2 * k || ly > course - 2 * k ? -0.12 : 0;
+      const level = 0.42 + ((shades[(row * 7 + col) & 63] ?? 0.5) - 0.5) * 0.22 + lit + (n2(x / (2 * k), y / (2 * k)) - 0.5) * 0.12;
+      c = shadeTone(pal.stone, Math.max(0.05, Math.min(0.95, level)), x, y);
+    }
+    pc.set(x, y, c);
+  }
   return pc;
 }
 

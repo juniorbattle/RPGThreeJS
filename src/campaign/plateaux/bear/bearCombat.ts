@@ -7,6 +7,10 @@
  * dark vein, and Borin's warriors on the force path. Bosses: the chief of the Raven miners, then the Raven's Master Spy
  * on the honour path; Borin and his warriors on the force path. Their sprites are provisional stand-ins (see
  * `bearPresentation.ts`). The tactical runtime resolves every fight; nothing here computes an outcome.
+ *
+ * Each fight plays in one of the Bear's own coded arenas (`src/combat/arena/arenaThemes.ts`): the snowy pass on the
+ * mountain trails, the mine galleries underground and the terrace before Borin's hall for his trial. A scene id is
+ * static presentation, never saved.
  */
 import type { ChallengeDeclaration } from '../../../game/challenges';
 import type { CombatConfig } from '../../../game/types';
@@ -15,8 +19,9 @@ import { BEAR_GUARDIANS, BEAR_OPTIONAL_POIS } from './bearTopology';
 type BearCombatInput = Omit<CombatConfig, 'enemyVisualIds' | 'escortVisualIds' | 'encounterRank' | 'maxPlayerUnits'>
   & Partial<Pick<CombatConfig, 'enemyVisualIds' | 'escortVisualIds' | 'encounterRank' | 'maxPlayerUnits'>>;
 
-const MOUNTAIN = 'forest_route';
-const GALLERIES = 'lion_sanctum';
+const MOUNTAIN = 'bear_mountain_pass';
+const GALLERIES = 'bear_mine_galleries';
+const HALL = 'bear_hall_terrace';
 
 export const BEAR_STORY_COMBATS: readonly BearCombatInput[] = Object.freeze<BearCombatInput[]>([
   { id: 'bear_pass_beasts', sceneId: MOUNTAIN, objective: 'Repoussez les bêtes affamées qui barrent le premier col.',
@@ -46,7 +51,7 @@ export const BEAR_STORY_COMBATS: readonly BearCombatInput[] = Object.freeze<Bear
     encounterLabel: 'Maître Espion du Corbeau', encounterRank: 'boss', isBoss: true, bossVisualId: 'raven_master_spy',
     escortVisualIds: ['raven_scout', 'raven_scout'], preCombatDialogueId: 'bear_master_spy_pre_combat',
     postCombatDialogueId: 'bear_master_spy_aftermath', rewards: { gold: 100, reputation: 1, materials: { red_gem: 1 } } },
-  { id: 'bear_borin', sceneId: MOUNTAIN, objective: 'Affrontez Borin et ses guerriers pour le Sceau de l’Ours.',
+  { id: 'bear_borin', sceneId: HALL, objective: 'Affrontez Borin et ses guerriers pour le Sceau de l’Ours.',
     encounterLabel: 'Épreuve de l’Ours', encounterRank: 'boss', isBoss: true, bossVisualId: 'borin',
     escortVisualIds: ['bear_warrior', 'bear_warrior'], preCombatDialogueId: 'bear_borin_pre_combat',
     postCombatDialogueId: 'bear_trial_aftermath', rewards: { gold: 80, reputation: 0, materials: {} } },
