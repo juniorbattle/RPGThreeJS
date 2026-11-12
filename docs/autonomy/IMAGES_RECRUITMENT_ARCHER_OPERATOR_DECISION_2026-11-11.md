@@ -244,6 +244,26 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   - dans le dépôt principal, après la fusion : 3 374 tests sans échec, ainsi que les contrats, le validateur narratif, les types et le build. Les 10 échecs vus dans le worktree venaient de médias ignorés par Git, absents d’un worktree neuf.
 - **Non vérifié** : le rendu sur un vrai GPU (captures en rendu logiciel), le mouvement réduit du jeu activé, les autres combats du Dragon en jeu (couverts par le test d’affectation) et le mobile. Le jugement artistique revient à l’opérateur.
 
+## Corrections de l’outil d’images (2026-11-12)
+
+`CURRENT FACT` — l’opérateur a demandé de corriger les erreurs et ajustements relevés sur l’Ours et le Dragon. Une session parallèle s’en est chargée dans le dépôt principal : commit `7a67d926`, rapport `docs/reports/final-images-tool-fixes-2026-11-12.md`.
+- **Journal des générations** : il est en ajout seul. Chaque passe relit le fichier puis le remplace d’un bloc ; deux passes simultanées ne perdent plus d’entrées.
+- **Vitest** exclut `.claude/**`, pour qu’un worktree de session ne fasse plus tourner de tests en double.
+- **Publication** : les cinq élites du Scorpion sont à leur taille dans `tools/art/publish_final_images.py`.
+- **Six règles générales dans chaque brief**, tirées des 19 reprises du Dragon :
+  - aucun signe du clan hôte dans les lieux d’un autre clan ;
+  - pas de château, de forteresse, de monastère ni de ville en vue, sauf si la ligne en nomme un ;
+  - une salle close n’a ni fenêtre ni ouverture ;
+  - aucun personnage ne porte d’objet qu’on pourrait prendre pour l’objet sacré du plateau ;
+  - jamais de violet pour les Ombres ;
+  - chaque personnage tient son arme de combat, lue dans `legacyCombatRuntime.js`.
+- **Armes de l’Ours** (OD-2026-11-12-A). La lecture des armes a montré que Borin et le guerrier de l’Ours combattaient avec des haches, alors que leurs images intégrées montrent un marteau et une lance. L’opérateur a choisi de renommer les armes (« Renommer les armes »), dans le commit `0224bea9` :
+  - Borin : « Marteau de l’Ours » ;
+  - le guerrier : « Lance de guerre ».
+
+  Seuls le nom et l’icône changent. Un test vérifie désormais que chaque aspect écrit nomme l’arme de combat de son unité.
+- **Vérifié** : 3 389 tests après fusion avec la fiche du Scorpion ; le combat de Borin en jeu, sans erreur. La session a été archivée sur la demande de l’opérateur.
+
 ## Préparation du Scorpion (2026-11-12)
 
 `CURRENT FACT` — l’opérateur a demandé de préparer le Scorpion avec la méthode du Dragon, en appliquant d’avance toutes les leçons des reprises de l’Ours et du Dragon. Une session parallèle, dans son worktree, a fait ce travail (`4bf11f77`).
