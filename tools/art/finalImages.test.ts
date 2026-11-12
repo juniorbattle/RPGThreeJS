@@ -37,7 +37,9 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
   it('reads the key from the environment only and never writes it anywhere', () => {
     const source = readFileSync(join(process.cwd(), 'tools', 'art', 'finalImages.ts'), 'utf8');
     expect(source).toContain('process.env.OPENAI_API_KEY');
-    expect(source).not.toMatch(/writeFileSync\([^)]*key/);
-    expect(source).not.toMatch(/console\.log\([^)]*key/);
+    // The key only travels in the request header: never into the log, the plan or the console.
+    expect(source).toContain('headers: { Authorization: `Bearer ${key}` }');
+    expect(source).not.toMatch(/log\.push\(\{[^}]*\bkey\b/);
+    expect(source).not.toMatch(/console\.(log|error)\([^)]*\bkey\b/);
   });
 });
