@@ -1,14 +1,19 @@
 /**
  * Set 1.20.0 (WORLD_AND_CHARACTERS "Provisional images"), post-demo Lot 1 — presentation of the Bear plateau.
- * The plateau is canon (OD-2026-11-08-B); its images stay provisional until the final-image lot.
+ * The plateau is canon (OD-2026-11-08-B).
  *
- * Every image here is PROVISIONAL: approved Lion backdrops and atlases reused, and existing characters standing in as
- * silhouettes for the Bear's new characters. None is generated and none is a video. Each is listed with the final image
- * it awaits; the final images form a separate lot led with the operator. A provisional image is not production art and
- * never sets art direction. Presentation only: no game truth.
+ * FINAL IMAGES (OD-2026-11-11-F, F1; accepted by the operator on 2026-11-12, « Oui, intègre-le »): every scene, refuge,
+ * atlas, the chronicle end and the Bear's eleven characters show the plateau's own final images, made by
+ * tools/art/finalImages.ts and published by tools/art/publish_final_images.py (provenance in
+ * tools/art/provenance/bear-final-images.json). Each entry keeps the reused Lion art or stand-in it replaced and the
+ * brief it was made from (`awaitedFinal`). The atlases keep the Lion atlases' layout, so the POI positions below stay
+ * valid. Presentation only: no game truth.
  */
-import { LION_POI_POSITIONS, LION_POI_REGIONS, LION_POI_REGION_EXITS, lionPoiPathBends } from '../../LionPoiMap';
+import { LION_POI_POSITIONS, LION_POI_REGION_EXITS, lionPoiPathBends } from '../../LionPoiMap';
 import { BEAR_POI_METADATA } from './bearTopology';
+
+const FINAL_IMAGES = '/assets/generated/post-demo/bear';
+const FINAL_CHARACTERS = '/assets/characters/pixel/post-demo/bear';
 
 /** The Bear's POIs stand where their Lion counterparts stand on the reused Lion atlases. */
 const LION_COUNTERPART: Readonly<Record<string, string>> = Object.freeze({
@@ -33,16 +38,17 @@ export interface ProvisionalAtlasRegion {
   shortTitle: string;
   title: string;
   image: string;
-  provisional: true;
+  /** False once the plateau's own atlas replaces the reused Lion atlas. */
+  provisional: boolean;
   awaitedFinal: string;
 }
 
 export const BEAR_ATLAS_REGIONS: readonly ProvisionalAtlasRegion[] = Object.freeze([
-  { shortTitle: 'I · Les cols', title: 'Des cols à l’avant-poste de l’Ours', image: LION_POI_REGIONS[0]!.image, provisional: true,
+  { shortTitle: 'I · Les cols', title: 'Des cols à l’avant-poste de l’Ours', image: `${FINAL_IMAGES}/atlases/region-1.webp`, provisional: false,
     awaitedFinal: 'Atlas I de l’Ours : les cols des Montagnes de la Résilience jusqu’à l’avant-poste' },
-  { shortTitle: 'II · Les mines', title: 'La route des mines sacrées', image: LION_POI_REGIONS[1]!.image, provisional: true,
+  { shortTitle: 'II · Les mines', title: 'La route des mines sacrées', image: `${FINAL_IMAGES}/atlases/region-2.webp`, provisional: false,
     awaitedFinal: 'Atlas II de l’Ours : la route des mines et l’entrée des galeries sacrées' },
-  { shortTitle: 'III · Le Sceau', title: 'Les galeries et le jugement de Borin', image: LION_POI_REGIONS[2]!.image, provisional: true,
+  { shortTitle: 'III · Le Sceau', title: 'Les galeries et le jugement de Borin', image: `${FINAL_IMAGES}/atlases/region-3.webp`, provisional: false,
     awaitedFinal: 'Atlas III de l’Ours : les galeries profondes, le filon sombre et la salle de Borin' },
 ]);
 
@@ -74,25 +80,31 @@ export function bearCounterpartOf(lionId: string): string | undefined {
   return BEAR_FOR_LION[lionId];
 }
 
-/** Refuge hubs of the Bear plateau, on reused Lion refuge plates. */
+/**
+ * Refuge hubs of the Bear plateau on their final images (`image`); the Lion refuge plate they replaced still gives the
+ * refuge its visual family.
+ */
 export const BEAR_REFUGE_PRESENTATION = Object.freeze({
   'bear-first-refuge': { environmentContext: 'dialogue:first_refuge_gathering', environmentRole: 'STATIC_TABLEAU' as const,
     eyebrow: 'Halte de la compagnie', description: 'Les feux de l’avant-poste tiennent le vent des cols. La compagnie se prépare avant les mines.',
-    gatheringDialogueId: 'bear_outpost_gathering', awaitedFinal: 'Fond de refuge : l’avant-poste de l’Ours dans les cols' },
+    gatheringDialogueId: 'bear_outpost_gathering', awaitedFinal: 'Fond de refuge : l’avant-poste de l’Ours dans les cols',
+    image: `${FINAL_IMAGES}/refuges/bear-first-refuge.webp` },
   'bear-second-refuge': { environmentContext: 'node:lion-second-refuge', environmentRole: 'HOLD_SOURCE' as const,
     eyebrow: 'Halte de la compagnie', description: 'L’abri des mineurs sent la pierre froide et la fumée. La compagnie reprend son souffle.',
-    awaitedFinal: 'Fond de refuge : l’abri des mineurs près des galeries' },
+    awaitedFinal: 'Fond de refuge : l’abri des mineurs près des galeries', image: `${FINAL_IMAGES}/refuges/bear-second-refuge.webp` },
   'bear-final-refuge': { environmentContext: 'node:lion-second-refuge', environmentRole: 'HOLD_SOURCE' as const,
     eyebrow: 'Avant le jugement', description: 'Une dernière veillée avant de comparaître devant Borin.',
-    gatheringDialogueId: 'bear_vigil', awaitedFinal: 'Fond de refuge : la veillée avant le jugement de Borin' },
+    gatheringDialogueId: 'bear_vigil', awaitedFinal: 'Fond de refuge : la veillée avant le jugement de Borin',
+    image: `${FINAL_IMAGES}/refuges/bear-final-refuge.webp` },
 });
 
-/**
- * Shared surfaces a Bear run shows on demo art, beyond its scenes, atlases and refuges: the end of its chronicle stands
- * in the Lion's judgement hall (the chronicle-end tableau) until the Bear has its own.
- */
-export const BEAR_PROVISIONAL_SURFACES: readonly { surface: string; standIn: string; awaitedFinal: string }[] = Object.freeze([
-  { surface: 'Fin de chronique (Journey)', standIn: 'salle du jugement du Lion (CHRONICLE_END_TABLEAU)', awaitedFinal: 'Tableau de fin de chronique : la salle de Borin après le jugement' },
+/** The end of a Bear chronicle: Borin's hall after the judgement, the company on its floor (the chronicle-end staging). */
+export const BEAR_CHRONICLE_END_IMAGE = `${FINAL_IMAGES}/surfaces/chronicle-end.webp`;
+
+/** Shared surfaces of a Bear run beyond its scenes, atlases and refuges, with the demo art they replaced. */
+export const BEAR_PROVISIONAL_SURFACES: readonly { surface: string; standIn: string; awaitedFinal: string; image?: string }[] = Object.freeze([
+  { surface: 'Fin de chronique (Journey)', standIn: 'salle du jugement du Lion (CHRONICLE_END_TABLEAU)', awaitedFinal: 'Tableau de fin de chronique : la salle de Borin après le jugement',
+    image: BEAR_CHRONICLE_END_IMAGE },
 ]);
 
 export interface ProvisionalActor {
@@ -100,37 +112,38 @@ export interface ProvisionalActor {
   /** The existing Character V2 unit that stands in for this character until its master exists. */
   standInUnitId: string;
   awaitedFinal: string;
+  /** The character's own final master, once it exists: it then replaces the stand-in everywhere. */
+  master?: string;
 }
 
-/** New characters of the Bear plateau, staged with existing silhouettes until their Character V2 masters exist. */
+/** New characters of the Bear plateau, on their final masters; `standInUnitId` keeps the silhouette they replaced. */
 export const BEAR_PROVISIONAL_ACTORS: readonly ProvisionalActor[] = Object.freeze([
-  { actorId: 'borin', standInUnitId: 'village_militia_brute', awaitedFinal: 'Master Character V2 de l’Ancien Ours Borin, portrait et sprite de boss' },
-  { actorId: 'bear_warrior', standInUnitId: 'village_militia_spearman', awaitedFinal: 'Sprite et portrait du guerrier de l’Ours' },
-  { actorId: 'bear_miner', standInUnitId: 'villageois', awaitedFinal: 'Portrait du mineur de l’Ours' },
-  { actorId: 'raven_messenger', standInUnitId: 'serpent_raider', awaitedFinal: 'Portrait du messager du Corbeau' },
-  { actorId: 'raven_miner_chief', standInUnitId: 'serpent_elite_brute', awaitedFinal: 'Master Character V2 du chef des mineurs du Corbeau, sprite de boss' },
-  { actorId: 'raven_master_spy', standInUnitId: 'serpent_duelist_elite', awaitedFinal: 'Master Character V2 du Maître Espion du Corbeau, sprite de boss' },
+  { actorId: 'borin', standInUnitId: 'village_militia_brute', awaitedFinal: 'Master Character V2 de l’Ancien Ours Borin, portrait et sprite de boss', master: `${FINAL_CHARACTERS}/borin.png` },
+  { actorId: 'bear_warrior', standInUnitId: 'village_militia_spearman', awaitedFinal: 'Sprite et portrait du guerrier de l’Ours', master: `${FINAL_CHARACTERS}/bear_warrior.png` },
+  { actorId: 'bear_miner', standInUnitId: 'villageois', awaitedFinal: 'Portrait du mineur de l’Ours', master: `${FINAL_CHARACTERS}/bear_miner.png` },
+  { actorId: 'raven_messenger', standInUnitId: 'serpent_raider', awaitedFinal: 'Portrait du messager du Corbeau', master: `${FINAL_CHARACTERS}/raven_messenger.png` },
+  { actorId: 'raven_miner_chief', standInUnitId: 'serpent_elite_brute', awaitedFinal: 'Master Character V2 du chef des mineurs du Corbeau, sprite de boss', master: `${FINAL_CHARACTERS}/raven_miner_chief.png` },
+  { actorId: 'raven_master_spy', standInUnitId: 'serpent_duelist_elite', awaitedFinal: 'Master Character V2 du Maître Espion du Corbeau, sprite de boss', master: `${FINAL_CHARACTERS}/raven_master_spy.png` },
 ]);
 
-/** Enemy families of the Bear plateau and the existing sprites standing in for them in combat. */
-export const BEAR_PROVISIONAL_ENEMIES: readonly { unitId: string; standInPortrait: string; awaitedFinal: string }[] = Object.freeze([
-  { unitId: 'raven_scout', standInPortrait: 'serpent_raider', awaitedFinal: 'Sprite de l’éclaireur du Corbeau' },
-  { unitId: 'raven_miner', standInPortrait: 'serpent_brute', awaitedFinal: 'Sprite du mineur du Corbeau' },
-  { unitId: 'raven_foreman', standInPortrait: 'serpent_elite_brute', awaitedFinal: 'Sprite d’élite du contremaître du Corbeau' },
-  { unitId: 'corrupted_beast', standInPortrait: 'forest_troll_elite', awaitedFinal: 'Sprite d’élite de la bête corrompue des montagnes' },
-  { unitId: 'depth_beast', standInPortrait: 'forest_troll_elite', awaitedFinal: 'Sprite d’élite de la bête des profondeurs' },
-  { unitId: 'bear_warrior', standInPortrait: 'village_militia_spearman', awaitedFinal: 'Sprite du guerrier de l’Ours' },
-  { unitId: 'raven_miner_chief', standInPortrait: 'serpent_elite_brute', awaitedFinal: 'Sprite de boss du chef des mineurs du Corbeau' },
-  { unitId: 'raven_master_spy', standInPortrait: 'serpent_duelist_elite', awaitedFinal: 'Sprite de boss du Maître Espion du Corbeau' },
-  { unitId: 'borin', standInPortrait: 'village_militia_brute', awaitedFinal: 'Sprite de boss de l’Ancien Ours Borin' },
+/** Enemy families of the Bear plateau on their final masters; `standInPortrait` keeps the sprite they replaced in combat. */
+export const BEAR_PROVISIONAL_ENEMIES: readonly { unitId: string; standInPortrait: string; awaitedFinal: string; master?: string }[] = Object.freeze([
+  { unitId: 'raven_scout', standInPortrait: 'serpent_raider', awaitedFinal: 'Sprite de l’éclaireur du Corbeau', master: `${FINAL_CHARACTERS}/raven_scout.png` },
+  { unitId: 'raven_miner', standInPortrait: 'serpent_brute', awaitedFinal: 'Sprite du mineur du Corbeau', master: `${FINAL_CHARACTERS}/raven_miner.png` },
+  { unitId: 'raven_foreman', standInPortrait: 'serpent_elite_brute', awaitedFinal: 'Sprite d’élite du contremaître du Corbeau', master: `${FINAL_CHARACTERS}/raven_foreman.png` },
+  { unitId: 'corrupted_beast', standInPortrait: 'forest_troll_elite', awaitedFinal: 'Sprite d’élite de la bête corrompue des montagnes', master: `${FINAL_CHARACTERS}/corrupted_beast.png` },
+  { unitId: 'depth_beast', standInPortrait: 'forest_troll_elite', awaitedFinal: 'Sprite d’élite de la bête des profondeurs', master: `${FINAL_CHARACTERS}/depth_beast.png` },
+  { unitId: 'bear_warrior', standInPortrait: 'village_militia_spearman', awaitedFinal: 'Sprite du guerrier de l’Ours', master: `${FINAL_CHARACTERS}/bear_warrior.png` },
+  { unitId: 'raven_miner_chief', standInPortrait: 'serpent_elite_brute', awaitedFinal: 'Sprite de boss du chef des mineurs du Corbeau', master: `${FINAL_CHARACTERS}/raven_miner_chief.png` },
+  { unitId: 'raven_master_spy', standInPortrait: 'serpent_duelist_elite', awaitedFinal: 'Sprite de boss du Maître Espion du Corbeau', master: `${FINAL_CHARACTERS}/raven_master_spy.png` },
+  { unitId: 'borin', standInPortrait: 'village_militia_brute', awaitedFinal: 'Sprite de boss de l’Ancien Ours Borin', master: `${FINAL_CHARACTERS}/borin.png` },
 ]);
 
-/** Dialogue backdrops: approved Lion scenes reused provisionally, keyed by the Bear dialogue that shows them. */
 /**
- * Every scene of the Bear and the approved Lion tableau it borrows until its own final tableau exists: the narrative
- * stage reads `environmentContext` for the scene's still image. Each entry names the final image it awaits.
+ * Every scene of the Bear, keyed by the dialogue that shows it, with its final tableau (`image`, which the narrative
+ * stage shows) and the approved Lion tableau it replaced (`environmentContext`).
  */
-export const BEAR_PROVISIONAL_SCENES: Readonly<Record<string, { environmentContext: string; awaitedFinal: string }>> = Object.freeze({
+const BEAR_SCENE_BRIEFS: Readonly<Record<string, { environmentContext: string; awaitedFinal: string }>> = Object.freeze({
   bear_arrival: { environmentContext: 'dialogue:post_opening_trail', awaitedFinal: 'Tableau : la compagnie au pied des Montagnes de la Résilience' },
   bear_audience: { environmentContext: 'dialogue:lion_briefing', awaitedFinal: 'Tableau : la salle de l’Ancien Ours Borin' },
   bear_raven_messenger: { environmentContext: 'dialogue:mystery_ambush', awaitedFinal: 'Tableau : le messager du Corbeau à l’écart du sentier' },
@@ -156,3 +169,7 @@ export const BEAR_PROVISIONAL_SCENES: Readonly<Record<string, { environmentConte
   bear_trial_aftermath: { environmentContext: 'dialogue:lion_trial_aftermath', awaitedFinal: 'Tableau : l’épreuve de l’Ours achevée' },
   bear_epilogue: { environmentContext: 'dialogue:epilogue', awaitedFinal: 'Tableau : le Sceau de l’Ours' },
 });
+
+export const BEAR_PROVISIONAL_SCENES: Readonly<Record<string, { environmentContext: string; awaitedFinal: string; image?: string }>> = Object.freeze(
+  Object.fromEntries(Object.entries(BEAR_SCENE_BRIEFS).map(([key, scene]) => [key, Object.freeze({ ...scene, image: `${FINAL_IMAGES}/scenes/${key}.webp` })])),
+);

@@ -1,5 +1,5 @@
 import type { DialogueSequence } from '../game/types';
-import { POST_DEMO_PROVISIONAL_SCENES } from '../campaign/plateaux/postDemoPresentation';
+import { POST_DEMO_CHRONICLE_END_IMAGES, POST_DEMO_PROVISIONAL_SCENES } from '../campaign/plateaux/postDemoPresentation';
 import { CAMPAIGN_GRAMMAR_PRESENTATIONS } from '../game/campaignGrammarContent';
 import {
   demoBoundaryEnvironmentUrl,
@@ -455,8 +455,10 @@ export function createGenericNarrativeTableau(sequence: DialogueSequence, additi
     grammar: family === 'PRE_COMBAT' ? 'THREAT' : family === 'AFTERMATH' ? 'AFTERMATH' : 'APPROACH',
     dialogueId: sequence.id,
     family,
-    stillImage: demoEnvironmentUrlForContext(CAMPAIGN_GRAMMAR_PRESENTATIONS[sequence.id]?.environmentContext
-      // Set 1.20.0: a post-demo draft scene borrows an approved tableau, marked provisional (WORLD_AND_CHARACTERS).
+    // OD-2026-11-11-F (F1): a post-demo scene with its final tableau shows it; one without borrows an approved tableau,
+    // marked provisional (set 1.20.0, WORLD_AND_CHARACTERS).
+    stillImage: (CAMPAIGN_GRAMMAR_PRESENTATIONS[sequence.id] ? undefined : POST_DEMO_PROVISIONAL_SCENES[sequence.id]?.image)
+      ?? demoEnvironmentUrlForContext(CAMPAIGN_GRAMMAR_PRESENTATIONS[sequence.id]?.environmentContext
       ?? POST_DEMO_PROVISIONAL_SCENES[sequence.id]?.environmentContext ?? `dialogue:${sequence.id}`, 'STATIC_TABLEAU'),
     media: [],
     cast: {
@@ -901,7 +903,19 @@ const TABLEAUX_BY_DIALOGUE_ID = new Map([
 ]);
 
 export function resolveNarrativeBoundaryTableau(presentationKey: string): NarrativeTableauSpec | undefined {
-  return TABLEAUX_BY_PRESENTATION_KEY.get(presentationKey);
+  return TABLEAUX_BY_PRESENTATION_KEY.get(presentationKey) ?? postDemoChronicleEnd(presentationKey);
+}
+
+/**
+ * OD-2026-11-11-F (F1): a post-demo plateau with its own chronicle-end hall ends there, with the Lion's chronicle-end
+ * staging (the company on the hall floor above the terminal card). Presentation only.
+ */
+function postDemoChronicleEnd(presentationKey: string): NarrativeTableauSpec | undefined {
+  const nodeId = /^node:(.+):arrival$/.exec(presentationKey)?.[1];
+  const image = nodeId ? POST_DEMO_CHRONICLE_END_IMAGES[nodeId] : undefined;
+  if (!image) return undefined;
+  return Object.freeze({ ...CHRONICLE_END_TABLEAU, id: `${nodeId!.replace(/[^a-z0-9]+/gi, '_').toUpperCase()}_CHRONICLE_END_TABLEAU`,
+    presentationKey, stillImage: image });
 }
 
 export function resolveNarrativeDialogueTableau(

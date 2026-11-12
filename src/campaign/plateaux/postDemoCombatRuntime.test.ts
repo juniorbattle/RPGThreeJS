@@ -47,7 +47,11 @@ describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 4)', (
       'scorpion_inquisitor', 'scorpion_shadow_prophet', 'scorpion_temple_assault', 'scorpion_temple_seizure']);
     for (const combat of bosses) {
       const line = bossLine(combat.id);
-      expect(line, combat.id).toContain('provisionalSprite:true');
+      // The Bear's bosses stand on their final masters (OD-2026-11-11-F); the other plateaux keep provisional stand-ins.
+      if (combat.id.startsWith('bear_')) {
+        expect(line, combat.id).not.toContain('provisionalSprite');
+        expect(line, combat.id).toContain("portrait:'/assets/characters/pixel/post-demo/bear/");
+      } else expect(line, combat.id).toContain('provisionalSprite:true');
       expect(list(line, 'skills'), combat.id).toEqual([...__testing.POST_DEMO_BOSS_COMBAT_SKILLS[combat.id]!]);
     }
     for (const demo of ['serpent_captain', 'lion_chief']) expect(bossLine(demo)).toBe('');
@@ -66,15 +70,19 @@ describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 4)', (
     }
   });
 
-  it('marks every new family as a provisional sprite listed with its awaited final image', () => {
+  it('marks every new family without its final sprite as provisional, each listed with its awaited final image', () => {
     const families = ['raven_scout', 'raven_miner', 'raven_foreman', 'corrupted_beast', 'depth_beast', 'bear_warrior',
       'wolf_raider', 'wolf_hunter', 'wolf_champion', 'shadow_wyrm', 'dragon_guardian',
       'phoenix_guardian', 'phoenix_flamekeeper', 'shadow_zealot', 'scorpion_scholar',
       'raven_champion', 'phoenix_champion', 'breach_demon', 'demon_brute'];
     const listed = [...BEAR_PROVISIONAL_ENEMIES, ...DRAGON_PROVISIONAL_ENEMIES, ...SCORPION_PROVISIONAL_ENEMIES,
       ...FINALE_PROVISIONAL_ENEMIES];
+    const bearFinal = new Set(BEAR_PROVISIONAL_ENEMIES.filter((enemy) => enemy.master).map((enemy) => enemy.unitId));
     for (const id of families) {
-      expect(templateLine(id), id).toContain('provisionalSprite:true');
+      if (bearFinal.has(id)) {
+        expect(templateLine(id), id).not.toContain('provisionalSprite');
+        expect(templateLine(id), id).toContain(`portrait:'/assets/characters/pixel/post-demo/bear/${id}.png'`);
+      } else expect(templateLine(id), id).toContain('provisionalSprite:true');
       expect(__testing.ENEMY_VISUAL_SKILLS[id], id).toEqual(list(templateLine(id), 'skills'));
       expect(listed.some((enemy) => enemy.unitId === id), id).toBe(true);
     }

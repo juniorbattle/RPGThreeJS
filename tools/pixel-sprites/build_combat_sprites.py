@@ -62,6 +62,19 @@ MASTER_ONLY = {
     'gunnar': ('archive/non-demo/gunnar.png', 2.06),
     'troll': ('archive/non-demo/troll.png', 4.2),
     'undead_champion': ('archive/non-demo/undead_champion.png', 4.3),
+    # OD-2026-11-11-F (F1): the Bear plateau's final characters (tools/art/publish_final_images.py). Bosses and elites
+    # stand as tall as the elites they replace; the two beasts are four-legged, as wide as an elite.
+    'borin': ('post-demo/bear/borin.png', 4.3),
+    'raven_miner_chief': ('post-demo/bear/raven_miner_chief.png', 4.2),
+    'raven_master_spy': ('post-demo/bear/raven_master_spy.png', 4.1),
+    'raven_foreman': ('post-demo/bear/raven_foreman.png', 4.0),
+    'corrupted_beast': ('post-demo/bear/corrupted_beast.png', 3.0),
+    'depth_beast': ('post-demo/bear/depth_beast.png', 2.7),
+    'bear_warrior': ('post-demo/bear/bear_warrior.png', 2.2),
+    'raven_scout': ('post-demo/bear/raven_scout.png', 2.1),
+    'raven_miner': ('post-demo/bear/raven_miner.png', 2.2),
+    'raven_messenger': ('post-demo/bear/raven_messenger.png', 2.1),
+    'bear_miner': ('post-demo/bear/bear_miner.png', 2.05),
 }
 
 

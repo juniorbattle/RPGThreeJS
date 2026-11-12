@@ -64,7 +64,8 @@ export const BEAR_POI_ATLAS: PoiAtlas = Object.freeze({
   exits: BEAR_POI_REGION_EXITS,
   phaseOf: bearPoiMapPhase,
   pathBends: bearPoiPathBends,
-  provisional: true,
+  // OD-2026-11-11-F (F1): the Bear's own atlases, on the Lion atlases' layout.
+  provisional: false,
 });
 
 export const DRAGON_POI_ATLAS: PoiAtlas = Object.freeze({

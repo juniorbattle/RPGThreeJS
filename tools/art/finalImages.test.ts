@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { buildPlan, COVERED_FACE_RULE, heraldryFor, openAiKey, PILOT_IDS } from './finalImages';
-import { CREATURE_IDS, CREATURE_REFS, CIVILIAN_REFS, IDENTITY, LIGHT_REFS, STAGING } from './finalImagesStaging';
+import { ATLAS_LAYOUTS, CREATURE_IDS, CREATURE_REFS, CIVILIAN_REFS, IDENTITY, LIGHT_REFS, STAGING } from './finalImagesStaging';
 
 describe('final images plan (OD-2026-11-11-F, F1)', () => {
   const plan = buildPlan();
@@ -84,6 +84,16 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
     expect(plan.find((item) => item.id === 'bear:scene:bear_trial_aftermath')!.samePlaceAs).toBe('bear:scene:bear_borin_pre_combat');
     expect(plan.find((item) => item.id === 'bear:scene:bear_mines_defense_aftermath')!.prompt).toContain('show a raven');
     expect(plan.find((item) => item.id === 'bear:scene:bear_raven_camp')!.prompt).toContain('cols enneigés');
+  });
+
+  it('repaints each Bear atlas on the Lion atlas whose POI positions it keeps', () => {
+    for (const [id, layout] of Object.entries(ATLAS_LAYOUTS)) {
+      const item = plan.find((candidate) => candidate.id === id)!;
+      expect(item.references, id).toEqual([layout.lionAtlas]);
+      expect(item.prompt, id).toContain('keep exactly the position, width and course of every road');
+      expect(item.prompt, id).toContain(layout.line);
+    }
+    expect(Object.keys(ATLAS_LAYOUTS)).toEqual(['bear:atlas:1', 'bear:atlas:2', 'bear:atlas:3']);
   });
 
   it('draws the beasts as animals from beast references, and the miner as a civilian', () => {

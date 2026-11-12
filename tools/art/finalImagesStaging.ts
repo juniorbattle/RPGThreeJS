@@ -77,3 +77,17 @@ export const STAGED_LOOKS: Readonly<Record<string, string>> = Object.freeze({
   'bear:enemy:corrupted_beast': 'A great four-legged mountain beast, massive, shaggy and with curved horns, driven mad: black veins showing under its fur, burning eyes, foam at the mouth. Not a bear and not a wolf. Nothing specific to one clan: it must fit any mountain land.',
   'bear:enemy:depth_beast': 'A blind creature of the deep mine galleries, pale-skinned, with long digging claws and a back bristling with shards of black stone.',
 });
+
+/**
+ * A plateau's POIs stand at the positions of their Lion counterparts, so its atlas keeps the Lion atlas's layout: the
+ * first Bear atlases, drawn freely, put the markers on cliffs and rivers. The Lion atlas, letterboxed by
+ * tools/art/atlas_layout.py, is sent as the layout to repaint; the result is cropped back to the Lion atlas's frame.
+ */
+export const ATLAS_LAYOUTS: Readonly<Record<string, { lionAtlas: string; line: string }>> = Object.freeze({
+  'bear:atlas:1': { lionAtlas: 'public/assets/generated/lion-phase/poi-lot-e/lion-opening.png',
+    line: 'Region I of the Bear’s mountains: the first passes of the Mountains of Resilience, from the foot of the mountains up to the small Bear outpost in a pass.' },
+  'bear:atlas:2': { lionAtlas: 'public/assets/generated/lion-phase/poi-lot-e/bois-clair.png',
+    line: 'Region II of the Bear’s mountains: the road of the sacred mines, climbing to the carved entrance of the Bear’s sacred galleries, with winches and mine works along it.' },
+  'bear:atlas:3': { lionAtlas: 'public/assets/generated/lion-phase/poi-lot-e/judgement.png',
+    line: 'Region III of the Bear’s mountains: the high ground above the deep galleries, with mine shafts and gallery mouths, and the Bear chieftain’s hall carved into a cliff.' },
+});

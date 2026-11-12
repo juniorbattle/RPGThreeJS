@@ -9,6 +9,7 @@
  */
 import { BEAR_DIALOGUES, BEAR_SCENE_BUILDERS } from '../campaign/plateaux/bear/bearDialogues';
 import { BEAR_FINALE } from '../campaign/plateaux/bear/bearFinale';
+import { POST_DEMO_FINAL_ART_CHAPTERS } from '../campaign/plateaux/postDemoPresentation';
 import { buildPlateauEpilogue, buildPlateauJudgement, type PlateauFinaleDefinition } from './plateauFinale';
 import { BEAR_STORY_COMBATS, bearOptionalCombats } from '../campaign/plateaux/bear/bearCombat';
 import { DRAGON_DIALOGUES, DRAGON_SCENE_BUILDERS } from '../campaign/plateaux/dragon/dragonDialogues';
@@ -58,10 +59,11 @@ export function isDraftContent(contentId: string): boolean {
 
 /**
  * Post-demo content shows provisional images (WORLD_AND_CHARACTERS "Provisional images"), canon or draft, until the
- * final images of its plateau exist; none does yet.
+ * final images of its plateau are integrated (the Bear's since 2026-11-12, OD-2026-11-11-F).
  */
 export function hasProvisionalArt(contentId: string): boolean {
-  return postDemoChapterOf(contentId) !== null;
+  const chapter = postDemoChapterOf(contentId);
+  return chapter !== null && !POST_DEMO_FINAL_ART_CHAPTERS.has(chapter);
 }
 
 /** The on-screen mark of post-demo content, or null for the Lion's. */

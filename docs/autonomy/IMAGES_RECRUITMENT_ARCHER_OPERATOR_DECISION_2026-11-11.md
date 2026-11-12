@@ -95,6 +95,31 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   - le mineur est un civil encapuchonné, visage couvert.
 - **À l’opérateur** : juger le lot ; rien n’est intégré avant son accord.
 
+## Intégration de l’Ours (2026-11-12)
+
+`CURRENT FACT` — l’opérateur a accepté le lot (« Oui, intègre-le ») : les 42 images de l’Ours sont dans le jeu, et le plateau ne porte plus la marque « Image provisoire ».
+- **Atlas refaits avant l’intégration.**
+  - Les lieux de l’Ours sont placés aux coordonnées de leurs pendants du Lion. Or les premiers atlas, peints librement et d’avant l’identité de l’Ours, posaient ces lieux sur des falaises et des rivières.
+  - `tools/art/atlas_layout.py` met l’atlas du Lion au format du modèle. L’outil le donne comme tracé à repeindre (`ATLAS_LAYOUTS`), puis le résultat est recadré sur le cadre exact de l’atlas du Lion.
+  - Superposition vérifiée : routes et repères tombent sur les chemins et les clairières, l’audience sur la salle de l’Ours.
+- **Publication** : `tools/art/publish_final_images.py bear`.
+  - Décors et atlas en WebP qualité 95 : 26 Mo au lieu de 98 en PNG, comme les plaques d’arène. Ils sont dans `public/assets/generated/post-demo/bear/` (`scenes/`, `refuges/`, `surfaces/`, `atlases/`).
+  - Onze maîtres 512×512 à l’échelle Character V2 (pieds ligne 456), dans `public/assets/characters/pixel/post-demo/bear/`.
+  - Provenance de chaque fichier (brief, modèle, date, empreinte) dans `tools/art/provenance/bear-final-images.json`.
+- **Branchements, présentation seule, sans champ de sauvegarde** :
+  - registre de l’Ours, avec `image`, `master` et des atlas non provisoires (`bearPresentation.ts`) ;
+  - scène du dialogue (`NarrativeTableau`) ;
+  - refuges, dont le fond définitif garde la famille visuelle de la plaque du Lion (`RefugePresentation`) ;
+  - fin de chronique de l’Ours : la salle de Borin, avec la mise en scène de la fin du Lion. Avant, c’était un décor de voyage générique.
+  - Portraits et figures : `assetManifest` et contrôle qualité des personnages. L’alias vers la silhouette de remplacement est retiré.
+  - Planches de combat « maître seul » de `build_combat_sprites.py`, lancé par `py -3` ; modèles de combat sans `provisionalSprite`.
+  - Cadrage des vignettes de combat et des portraits de dialogue.
+  - La marque provisoire s’arrête pour l’Ours (`POST_DEMO_FINAL_ART_CHAPTERS`).
+- **Vérifié dans le navigateur** (serveur `preview_start`, piloté par Playwright) : l’arrivée sur son décor, la carte I sur le nouvel atlas sans « Carte provisoire », l’audience avec Borin et son portrait, la fin de chronique dans la salle de Borin, quatre combats (défense des mines, épreuve de Borin, bête corrompue, bête des profondeurs) avec les nouvelles planches. Aucune erreur de console ni requête en échec.
+- **Non vu en jeu** : les refuges (couverts par les tests, fond définitif sans marque).
+- **Hors du lot d’images** : les combats de l’Ours se jouent dans les arènes codées du Lion (`forest_route`, `lion_sanctum`), dont le sanctuaire montre des bannières au lion.
+- **Tests** : le registre de l’Ours vérifie chaque fichier, l’absence de marque, la fin de chronique, les portraits et les planches ; l’outil vérifie le tracé des atlas. Validation complète verte.
+
 ## Rencontres des six héros (2026-11-11, nuit)
 
 `CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.

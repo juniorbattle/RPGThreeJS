@@ -1,0 +1,593 @@
+{
+  "bear:actor:bear_miner": {
+    "file": "/assets/characters/pixel/post-demo/bear/bear_miner.png",
+    "sha256": "15c66b39f517af88380b79f312b58c3acc482220d60357255b97038443bf4924",
+    "awaitedFinal": "Portrait du mineur de l’Ours",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:11:55.133Z",
+    "references": [
+      "public/assets/characters/pixel/masters/survivor.png",
+      "public/assets/characters/pixel/masters/refugee.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. Subject: Portrait du mineur de l’Ours. Setting of the character: Les Montagnes de la Résilience, terres du clan de l’Ours : cols enneigés, avant-postes de pierre, galeries de mines sacrées et filon sombre. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": "A civilian miner of the Bear clan, not a soldier: a leather hood and a cloth wrapped against the dust cover his face, a leather apron over plain wool, a pickaxe on his shoulder, a lantern at his belt, rock dust on his clothes. No armour, no sword, no shield."
+  },
+  "bear:actor:bear_warrior": {
+    "file": "/assets/characters/pixel/post-demo/bear/bear_warrior.png",
+    "sha256": "d72beb84a7f246323c6db7738f4cf53344164b155342fcb30d4dbe6be0a31804",
+    "awaitedFinal": "Sprite et portrait du guerrier de l’Ours",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T04:37:41.306Z",
+    "references": [
+      "public/assets/characters/pixel/masters/alistair.png",
+      "public/assets/characters/pixel/masters/lion_champion.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the palette, texture, outline and level of detail of the reference images exactly. No text, no letters, no labels, no UI, no watermark, no frame. One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. Subject: Sprite et portrait du guerrier de l’Ours. Setting of the character: Les Montagnes de la Résilience, terres du clan de l’Ours : cols enneigés, avant-postes de pierre, galeries de mines sacrées et filon sombre.",
+    "notes": "PROPOSAL, to confirm: a human warrior of the Bear clan, fur-lined mail, round wooden shield and spear, mountain colours (stone grey, brown, snow white)."
+  },
+  "bear:actor:borin": {
+    "file": "/assets/characters/pixel/post-demo/bear/borin.png",
+    "sha256": "df0c311a680fe422d59f2a72a358f5628b24b5a00d8297e0a4cbbc981f578290",
+    "awaitedFinal": "Master Character V2 de l’Ancien Ours Borin, portrait et sprite de boss",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T05:01:15.750Z",
+    "references": [
+      "public/assets/characters/pixel/masters/alistair.png",
+      "public/assets/characters/pixel/masters/lion_champion.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the palette, texture, outline and level of detail of the reference images exactly. The reference images set the style only: never copy their heraldry, emblems or banners. No text, no letters, no labels, no UI, no watermark, no frame. One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. Subject: Master Character V2 de l’Ancien Ours Borin, portrait et sprite de boss. Setting of the character: Les Montagnes de la Résilience, terres du clan de l’Ours : cols enneigés, avant-postes de pierre, galeries de mines sacrées et filon sombre. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": "PROPOSAL, to confirm: a human elder chieftain of the Bear clan (a man, not an animal), broad-shouldered and slightly stooped with age, a heavy grey-streaked bear-fur mantle over worn stone-grey armour, a closed helm crowned with a bear’s head that hides his face, a war hammer."
+  },
+  "bear:actor:raven_master_spy": {
+    "file": "/assets/characters/pixel/post-demo/bear/raven_master_spy.png",
+    "sha256": "6148c3495a01cb6decb46ffb219269c130db2b43abc8da83eee3506455d1dc07",
+    "awaitedFinal": "Master Character V2 du Maître Espion du Corbeau, sprite de boss",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T05:28:52.977Z",
+    "references": [
+      "public/assets/characters/pixel/masters/alistair.png",
+      "public/assets/characters/pixel/masters/lion_champion.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the palette, texture, outline and level of detail of the reference images exactly. The reference images set the style only: never copy their heraldry, emblems or banners. No text, no letters, no labels, no UI, no watermark, no frame. One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. Subject: Master Character V2 du Maître Espion du Corbeau, sprite de boss. Setting of the character: Les Montagnes de la Résilience, terres du clan de l’Ours : cols enneigés, avant-postes de pierre, galeries de mines sacrées et filon sombre. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:actor:raven_messenger": {
+    "file": "/assets/characters/pixel/post-demo/bear/raven_messenger.png",
+    "sha256": "628186ef11b3202f34f11869491e7caaa1818f83eb8954ba1ebf9378492a0e0b",
+    "awaitedFinal": "Portrait du messager du Corbeau",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T05:28:28.122Z",
+    "references": [
+      "public/assets/characters/pixel/masters/alistair.png",
+      "public/assets/characters/pixel/masters/lion_champion.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the palette, texture, outline and level of detail of the reference images exactly. The reference images set the style only: never copy their heraldry, emblems or banners. No text, no letters, no labels, no UI, no watermark, no frame. One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. Subject: Portrait du messager du Corbeau. Setting of the character: Les Montagnes de la Résilience, terres du clan de l’Ours : cols enneigés, avant-postes de pierre, galeries de mines sacrées et filon sombre. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:actor:raven_miner_chief": {
+    "file": "/assets/characters/pixel/post-demo/bear/raven_miner_chief.png",
+    "sha256": "b65aeae1a29c965d13571c1859ef573eada0fe21ab274d822e3bd3e681dacae5",
+    "awaitedFinal": "Master Character V2 du chef des mineurs du Corbeau, sprite de boss",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T05:28:32.904Z",
+    "references": [
+      "public/assets/characters/pixel/masters/alistair.png",
+      "public/assets/characters/pixel/masters/lion_champion.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the palette, texture, outline and level of detail of the reference images exactly. The reference images set the style only: never copy their heraldry, emblems or banners. No text, no letters, no labels, no UI, no watermark, no frame. One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. Subject: Master Character V2 du chef des mineurs du Corbeau, sprite de boss. Setting of the character: Les Montagnes de la Résilience, terres du clan de l’Ours : cols enneigés, avant-postes de pierre, galeries de mines sacrées et filon sombre. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:atlas:1": {
+    "file": "/assets/generated/post-demo/bear/atlases/region-1.webp",
+    "sha256": "4fe4f139ef050036d22a4f8185c1cca5b8d26514af9fc9ecb5817d7935b294b5",
+    "awaitedFinal": "Atlas I de l’Ours : les cols des Montagnes de la Résilience jusqu’à l’avant-poste",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T16:09:28.070Z",
+    "references": [
+      "tmp/final-images/layouts/bear__atlas__1.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. An illustrated top-down region map of a fantasy land, painted like a game atlas, with no lettering. The reference image is this region’s existing map layout: repaint it completely in the identity below, but keep exactly the position, width and course of every road, path and crossing, and every clearing or site where a road meets another, so that map markers placed on the original still fall on the same roads and clearings. Sites stay open, readable clearings or small settlements. Streams of the layout become icy mountain torrents. Paint the blurred bands at the top and bottom as more terrain. Region: Region I of the Bear’s mountains: the first passes of the Mountains of Resilience, from the foot of the mountains up to the small Bear outpost in a pass. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:atlas:2": {
+    "file": "/assets/generated/post-demo/bear/atlases/region-2.webp",
+    "sha256": "6bd4de1e7a1b06408f07ae7c81780312cf52719d99d1618386a7abe8f6fe21c9",
+    "awaitedFinal": "Atlas II de l’Ours : la route des mines et l’entrée des galeries sacrées",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T16:09:25.576Z",
+    "references": [
+      "tmp/final-images/layouts/bear__atlas__2.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. An illustrated top-down region map of a fantasy land, painted like a game atlas, with no lettering. The reference image is this region’s existing map layout: repaint it completely in the identity below, but keep exactly the position, width and course of every road, path and crossing, and every clearing or site where a road meets another, so that map markers placed on the original still fall on the same roads and clearings. Sites stay open, readable clearings or small settlements. Streams of the layout become icy mountain torrents. Paint the blurred bands at the top and bottom as more terrain. Region: Region II of the Bear’s mountains: the road of the sacred mines, climbing to the carved entrance of the Bear’s sacred galleries, with winches and mine works along it. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:atlas:3": {
+    "file": "/assets/generated/post-demo/bear/atlases/region-3.webp",
+    "sha256": "ab268686dd437b895293a3623c4e628b3ad36686a06840c8b2059e8161b2539e",
+    "awaitedFinal": "Atlas III de l’Ours : les galeries profondes, le filon sombre et la salle de Borin",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T16:09:27.608Z",
+    "references": [
+      "tmp/final-images/layouts/bear__atlas__3.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. An illustrated top-down region map of a fantasy land, painted like a game atlas, with no lettering. The reference image is this region’s existing map layout: repaint it completely in the identity below, but keep exactly the position, width and course of every road, path and crossing, and every clearing or site where a road meets another, so that map markers placed on the original still fall on the same roads and clearings. Sites stay open, readable clearings or small settlements. Streams of the layout become icy mountain torrents. Paint the blurred bands at the top and bottom as more terrain. Region: Region III of the Bear’s mountains: the high ground above the deep galleries, with mine shafts and gallery mouths, and the Bear chieftain’s hall carved into a cliff. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:enemy:corrupted_beast": {
+    "file": "/assets/characters/pixel/post-demo/bear/corrupted_beast.png",
+    "sha256": "af77b202e257616bea8c2d3a10c13b3e1c794f36967023400122c61532a14ef8",
+    "awaitedFinal": "Sprite d’élite de la bête corrompue des montagnes",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:05:09.429Z",
+    "references": [
+      "public/assets/characters/pixel/masters/wolf.png",
+      "public/assets/characters/pixel/masters/wild_boar.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. One single full-body creature sprite, an animal and not a person: no armour, no clothing, no weapon, no shield, no banner. Three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. Subject: Sprite d’élite de la bête corrompue des montagnes.",
+    "notes": "A great four-legged mountain beast, massive, shaggy and with curved horns, driven mad: black veins showing under its fur, burning eyes, foam at the mouth. Not a bear and not a wolf. Nothing specific to one clan: it must fit any mountain land."
+  },
+  "bear:enemy:depth_beast": {
+    "file": "/assets/characters/pixel/post-demo/bear/depth_beast.png",
+    "sha256": "ed4c8deeaa3b1e97684c1bff731db41f2e53559694979aa2607e4bd1305a293b",
+    "awaitedFinal": "Sprite d’élite de la bête des profondeurs",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:11:35.172Z",
+    "references": [
+      "public/assets/characters/pixel/masters/wolf.png",
+      "public/assets/characters/pixel/masters/wild_boar.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. One single full-body creature sprite, an animal and not a person: no armour, no clothing, no weapon, no shield, no banner. Three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. Subject: Sprite d’élite de la bête des profondeurs.",
+    "notes": "A blind creature of the deep mine galleries, pale-skinned, with long digging claws and a back bristling with shards of black stone."
+  },
+  "bear:enemy:raven_foreman": {
+    "file": "/assets/characters/pixel/post-demo/bear/raven_foreman.png",
+    "sha256": "428867829103a8ecb408b6d4328dd090abf4d122a29c147ec9ed57045698db5e",
+    "awaitedFinal": "Sprite d’élite du contremaître du Corbeau",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T05:29:26.992Z",
+    "references": [
+      "public/assets/characters/pixel/masters/alistair.png",
+      "public/assets/characters/pixel/masters/lion_champion.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the palette, texture, outline and level of detail of the reference images exactly. The reference images set the style only: never copy their heraldry, emblems or banners. No text, no letters, no labels, no UI, no watermark, no frame. One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. Subject: Sprite d’élite du contremaître du Corbeau. Setting of the character: Les Montagnes de la Résilience, terres du clan de l’Ours : cols enneigés, avant-postes de pierre, galeries de mines sacrées et filon sombre. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:enemy:raven_miner": {
+    "file": "/assets/characters/pixel/post-demo/bear/raven_miner.png",
+    "sha256": "787481c1b6e91b499b2aa81539c527173413d07f6e45647edd8aaec349355b6c",
+    "awaitedFinal": "Sprite du mineur du Corbeau",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T05:29:06.006Z",
+    "references": [
+      "public/assets/characters/pixel/masters/alistair.png",
+      "public/assets/characters/pixel/masters/lion_champion.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the palette, texture, outline and level of detail of the reference images exactly. The reference images set the style only: never copy their heraldry, emblems or banners. No text, no letters, no labels, no UI, no watermark, no frame. One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. Subject: Sprite du mineur du Corbeau. Setting of the character: Les Montagnes de la Résilience, terres du clan de l’Ours : cols enneigés, avant-postes de pierre, galeries de mines sacrées et filon sombre. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:enemy:raven_scout": {
+    "file": "/assets/characters/pixel/post-demo/bear/raven_scout.png",
+    "sha256": "ab34fcc5ce415fb74b29696a4c93e7a3dd9002a3bcc3facdad9c21431f78543e",
+    "awaitedFinal": "Sprite de l’éclaireur du Corbeau",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T05:28:59.946Z",
+    "references": [
+      "public/assets/characters/pixel/masters/alistair.png",
+      "public/assets/characters/pixel/masters/lion_champion.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the palette, texture, outline and level of detail of the reference images exactly. The reference images set the style only: never copy their heraldry, emblems or banners. No text, no letters, no labels, no UI, no watermark, no frame. One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. Subject: Sprite de l’éclaireur du Corbeau. Setting of the character: Les Montagnes de la Résilience, terres du clan de l’Ours : cols enneigés, avant-postes de pierre, galeries de mines sacrées et filon sombre. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:refuge:bear-final-refuge": {
+    "file": "/assets/generated/post-demo/bear/refuges/bear-final-refuge.webp",
+    "sha256": "4842d4045a9343018078fd03effcce00a94e57534e7b79c2a2b4688147491790",
+    "awaitedFinal": "Fond de refuge : la veillée avant le jugement de Borin",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:11:15.748Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/final-refuge-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Night: a single campfire on a rocky ledge high in the mountains; far across the valley, the lit openings of the Bear chieftain’s hall carved into the mountainside, where the company will be judged tomorrow. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:refuge:bear-first-refuge": {
+    "file": "/assets/generated/post-demo/bear/refuges/bear-first-refuge.webp",
+    "sha256": "c496b6a592c6d4983beda303126d8d184395cad05187e9558e1c62a2c1b96375",
+    "awaitedFinal": "Fond de refuge : l’avant-poste de l’Ours dans les cols",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:14:58.437Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/final-refuge-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png",
+      "tmp/final-images/out/bear__scene__bear_outpost_gathering.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: The same small Bear outpost in a mountain pass at night: low rough stone walls, one squat watchtower, fires lit in braziers against the wind, the courtyard cleared for the company to rest. A single Bear banner above the gate. Not a fortress or a city. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:refuge:bear-second-refuge": {
+    "file": "/assets/generated/post-demo/bear/refuges/bear-second-refuge.webp",
+    "sha256": "fc1bca142773b31d685abb8b7a7ab46420aeecd56f35efb88ff95fd2fdf929fa",
+    "awaitedFinal": "Fond de refuge : l’abri des mineurs près des galeries",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:10:58.344Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Interior of the miners’ shelter near the galleries: a low room hewn in the rock, a smoky central hearth, straw pallets, tools hanging on the walls, lanterns. Cold stone and smoke. Indoors only: no sky. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. Indoors and underground: no snow, no frost, no daylight, no sky. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_ancient_relic": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_ancient_relic.webp",
+    "sha256": "9aab5f196045b7216ded08dbab74c1e8cb003fd7827cab31fa7de9777706df02",
+    "awaitedFinal": "Tableau : la galerie effondrée et l’artefact",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:08:30.180Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Underground, by the light of a single torch: a mine gallery collapsed long ago, rotten beams, fallen blocks, thick dust. In the middle ground, half buried in the dust, a small statuette of a rearing bear carved in dark stone, set with one red gem. No sky, no hanging crystal, no magic glow. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. Indoors and underground: no snow, no frost, no daylight, no sky. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_arrival": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_arrival.webp",
+    "sha256": "33c65de86727295be4f2c66c83fbab78156594996669933514d138c8301681ce",
+    "awaitedFinal": "Tableau : la compagnie au pied des Montagnes de la Résilience",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:07:47.382Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Exterior, cold clear morning. The foot of the mountains: a trail of earth and stones starts climbing toward snowy passes far away, between scattered firs and boulders; snow only on the heights. Wild and empty: no buildings, no structures, no lanterns, no banner anywhere; nobody waits for the company here. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_audience": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_audience.webp",
+    "sha256": "7fa5fdd89fbaf59f7de30f4d397385d2c99ab213ac16cf40878c8b23dbbab96c",
+    "awaitedFinal": "Tableau : la salle de l’Ancien Ours Borin",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:05:10.883Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Interior of the Bear chieftain’s hall, hewn into the mountain rock: a long low hall of rough granite under heavy dark timber beams, a glowing central fire pit, fur hides on the walls, carved bear reliefs on squat pillars, a massive stone seat at the far end. A few Bear banners hang near the seat. Indoors only: no sky, no window onto a landscape. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_borin_pre_combat": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_borin_pre_combat.webp",
+    "sha256": "3fd96785a4f39ba5299e05922a12872f2413e02bdaabe448f01ca68edc608f61",
+    "awaitedFinal": "Tableau : Borin et ses guerriers face à la compagnie",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:10:14.013Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Daylight: a cleared stone terrace before the Bear chieftain’s hall, open to the sky under the peaks, the hall’s heavy doors set in the rock behind, snow swept to the edges. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_dark_vein": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_dark_vein.webp",
+    "sha256": "8297318fc666e3382fd01546ab6485858f1d7bdf933c65d2796cd658c7414be0",
+    "awaitedFinal": "Tableau : le filon sombre au fond des galeries",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:09:25.265Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: The very bottom of the mine galleries, deep underground, no sky: a rock wall crossed by a dull black vein that swallows the light of the torches set in the timber props; the shadows seem to ripple around it. No crystals, no purple glow. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. Indoors and underground: no snow, no frost, no daylight, no sky. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_epilogue": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_epilogue.webp",
+    "sha256": "82e431a79237eb5ca2c530be9341fe98b27964b58f2191a4b4a41337d1b4cf93",
+    "awaitedFinal": "Tableau : le Sceau de l’Ours",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:10:56.843Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-trial-tableau-aftermath.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/roadside-event-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Dawn over the Mountains of Resilience seen from the high pass, the trail running down toward the distant lowlands. Calm, open and neutral. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_judgement": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_judgement.webp",
+    "sha256": "80f9ba4a20e3f2aded3012add88129dba90208cc7cfff6d71d335108401b4a20",
+    "awaitedFinal": "Tableau : le jugement de Borin",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:09:59.953Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png",
+      "tmp/final-images/out/bear__scene__bear_audience.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Interior of the Bear chieftain’s hall, the same hall as the audience: rough granite hewn into the rock, heavy timber beams, fur hides, carved bear reliefs, the fire pit burning lower; seen closer to the massive stone seat at the far end. A few Bear banners near the seat. Indoors only: no sky. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. Indoors and underground: no snow, no frost, no daylight, no sky. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_master_spy_aftermath": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_master_spy_aftermath.webp",
+    "sha256": "c519e8aa1d1616ee55d884ce026fcddc82e734693485e5a1fed6eb446ba9ca45",
+    "awaitedFinal": "Tableau : la chute du Maître Espion",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:10:10.428Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-trial-tableau-aftermath.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/roadside-event-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: The same high mine gallery opening onto the snowy peaks, after the fight: overturned crates, snow settling, stillness, cold dusk light at the opening. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_master_spy_pre_combat": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_master_spy_pre_combat.webp",
+    "sha256": "366b7479194c5df4b6c6deef86ee48b9020b4faff2a3ee57da38b52133130e6f",
+    "awaitedFinal": "Tableau : la traque du Maître Espion du Corbeau",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:10:36.171Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-trial-tableau-aftermath.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/roadside-event-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: High galleries near the summits: a mine gallery opening onto the snowy peaks, the wind blowing snow inside, cold dusk light at the opening and torchlight within. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_miners_testimony": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_miners_testimony.webp",
+    "sha256": "2a7174520400d4bb89eb684a3c8e7ea570c4a5c7d0c9844d488e4998b738b53a",
+    "awaitedFinal": "Tableau : les mineurs libérés",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:16:17.066Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Pale early morning on a mountain trail coming down from the mine galleries toward the valleys: abandoned Raven carts on the roadside, miners’ tools laid on a rock. Open wild slopes: no fortress or town in view. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_mines_defense_aftermath": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_mines_defense_aftermath.webp",
+    "sha256": "73e371a08d5da09e885b7208106d1c2f2ce294f62ed8cc6fdfb2fe8665edba49",
+    "awaitedFinal": "Tableau : les galeries rendues à l’Ours",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:14:56.909Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png",
+      "tmp/final-images/out/bear__scene__bear_pre_mines_defense.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Deep underground, the same timber-propped mine chamber after the fight, no sky: the barricade broken apart, Raven banners torn down on the floor, the carved Bear reliefs visible again, calm torchlight. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. Indoors and underground: no snow, no frost, no daylight, no sky. No banners, flags or emblems unless the staging names them. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_mines_seizure_aftermath": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_mines_seizure_aftermath.webp",
+    "sha256": "b776f110808ca6a11b6356ac7e124038b76bc6a739690a07a44fa5a2b38f32ff",
+    "awaitedFinal": "Tableau : le filon sombre aux mains de la compagnie",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:14:59.353Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png",
+      "tmp/final-images/out/bear__scene__bear_pre_mines_seizure.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Deep underground, the same gallery after the fight, no sky: the barricade broken, mine carts loaded with black stones, the dull black vein at the back. No banner anywhere. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. Indoors and underground: no snow, no frost, no daylight, no sky. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_mountain_shrine": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_mountain_shrine.webp",
+    "sha256": "b936bf67b749a6803b92128a18dd974112ee08b83cc679b1c353b5eb33299f6c",
+    "awaitedFinal": "Tableau : le sanctuaire de la montagne",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:16:14.139Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Daylight, wind and light snow: a small stone shrine set against the rock face with a carved bear; at its foot, offerings: miners’ tools, polished stones, a purse of old coins. Intimate and small: no temple, no grand stairway, no other building or structure in view. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_ore_convoy": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_ore_convoy.webp",
+    "sha256": "a4d4371c294ecbec96c28a2eb653365b6cbaf2276aa6eb3aac2cb0a7b70955c0",
+    "awaitedFinal": "Tableau : le convoi de minerai sombre",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:08:33.481Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Overcast day, seen from a rocky lookout: a mountain road winding down from the mine galleries in hairpin bends to a stone bridge over a dry ravine, a milestone at the roadside, deep cart ruts with a few black stones fallen in them. No carts, no animals. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_outpost_gathering": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_outpost_gathering.webp",
+    "sha256": "e2574407a02717462836ef6644aded2c2d5f7313cf137e98dc693d57af0be764",
+    "awaitedFinal": "Tableau : la compagnie à l’avant-poste de l’Ours",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:07:51.321Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-trial-tableau-aftermath.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/roadside-event-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: The courtyard of a small Bear outpost in a mountain pass at dusk: low walls of rough stone, one squat watchtower, guarded fires in braziers, the wind flattening their smoke. A single Bear banner above the gate. A small outpost, not a fortress or a city. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_pre_mines_defense": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_pre_mines_defense.webp",
+    "sha256": "9f5f7c0415614f72f290f605b8ab209a430869929b3de1e878172a5c5b2393fd",
+    "awaitedFinal": "Tableau : le Corbeau retranché dans les galeries",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:08:35.704Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Deep underground inside the mine, no sky: a large timber-propped mine chamber with rails, a winch above a descending shaft, a barricade of overturned carts and crates, Raven banners nailed over carved Bear reliefs. Torchlight only. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. Indoors and underground: no snow, no frost, no daylight, no sky. No banners, flags or emblems unless the staging names them. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_pre_mines_seizure": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_pre_mines_seizure.webp",
+    "sha256": "821e631b6198f9b6ca55be5e3ef197ba77b47ec16007703fdd4bf22c3b4a58a6",
+    "awaitedFinal": "Tableau : le Corbeau retranché devant le filon",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:09:15.096Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Deeper underground, no sky: a Raven barricade of carts and crates across a mine gallery whose rails run down toward the back, where a dull black vein crosses the rock, still small and far away. Torchlight only. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. Indoors and underground: no snow, no frost, no daylight, no sky. No banners, flags or emblems unless the staging names them. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_raven_camp": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_raven_camp.webp",
+    "sha256": "b8367d6d05f1b4b34983611ae9a3aff282f7ce424de8ee07e8c7799c8edb855b",
+    "awaitedFinal": "Tableau : le campement abandonné du Corbeau",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T05:24:44.180Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the palette, texture, outline and level of detail of the reference images exactly. The reference images set the style only: never copy their heraldry, emblems or banners. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, eye-level establishing view of the place, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Leave open ground in the lower half for them. Scene: Tableau : le campement abandonné du Corbeau. Les Montagnes de la Résilience, terres du clan de l’Ours : cols enneigés, avant-postes de pierre, galeries de mines sacrées et filon sombre. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_raven_messenger": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_raven_messenger.webp",
+    "sha256": "014accc35c8d329a9fd945866dbac1377a183f57f30573807ea79b34bbccf3da",
+    "awaitedFinal": "Tableau : le messager du Corbeau à l’écart du sentier",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:15:36.974Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Under snow-laden firs away from the trail, grey overcast day: a small clearing of pine needles and melting snow, the trail glimpsed between the trunks in the background. Wild forest only: no building or structure anywhere, even far away; no banner. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_raven_traps": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_raven_traps.webp",
+    "sha256": "d4e24392d8adbe8a13bcfee836afbb38ef328fec36e1470093ad8643bc0501db",
+    "awaitedFinal": "Tableau : les pièges du Corbeau sur le sentier",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:15:38.871Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: A narrow mountain trail between boulders, hard high-altitude daylight, snow along the edges: thin tripwires stretched across the path at ankle height, leather skins of powder tucked under stones. Wild mountainside only: no building or structure anywhere, even far away; no banner. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_sacred_mines": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_sacred_mines.webp",
+    "sha256": "ad5a2ccc5d5ad6257ffef9a09cc2baad522645e749a04feea9693e4adcbb83a8",
+    "awaitedFinal": "Tableau : l’entrée des mines sacrées occupées par le Corbeau",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:08:37.541Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Exterior, grey day: the entrance of the Bear’s sacred mine galleries hewn into a cliff face, great carved bears on either side. In front, the Raven’s worksite: tents, winches, empty carts, and Raven banners planted in front of the Bear carvings. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Each clan keeps its own sign: the Raven clan’s people, camps and banners show a raven; the Bear clan’s own places show a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_trapped_miners": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_trapped_miners.webp",
+    "sha256": "e5ad4f46734dd4e0c7d72eabbb454fd5b8f1f5ee1006d7bf66ca9d70d238404b",
+    "awaitedFinal": "Tableau : l’éboulement et les mineurs pris au piège",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:07:46.403Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/valmir-road-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/witness-road-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Exterior mountainside by day, dust still settling: the mouth of a mine gallery blocked by a rockfall of big boulders, broken timber props sticking out of it; sacks of ore set on the ground to one side. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_trial_aftermath": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_trial_aftermath.webp",
+    "sha256": "95d0727c936ebae7a1d20ac409807f95bb89813f56d0c1243f1b08959f7236a9",
+    "awaitedFinal": "Tableau : l’épreuve de l’Ours achevée",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:15:03.361Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-trial-tableau-aftermath.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/roadside-event-tableau.png",
+      "tmp/final-images/out/bear__scene__bear_borin_pre_combat.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: The same stone terrace before the Bear chieftain’s hall at sunset: trampled snow, broken spears on the ground. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:scene:bear_vigil": {
+    "file": "/assets/generated/post-demo/bear/scenes/bear_vigil.webp",
+    "sha256": "05a7e1d2731935b05e2c372801bea6031a022f8eb6acba3c1bdf96db7e85acc7",
+    "awaitedFinal": "Tableau : la veillée avant le jugement de Borin",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:10:33.360Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/final-refuge-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Night: a single campfire on a rocky ledge high in the mountains; far across the valley, the lit openings of the Bear chieftain’s hall carved into the mountainside, where the company will be judged tomorrow. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  },
+  "bear:surface:chronicle-end": {
+    "file": "/assets/generated/post-demo/bear/surfaces/chronicle-end.webp",
+    "sha256": "5450b2d5bcd515bd6e77fc8de29b9a3a77f60984792d8b14ab1f82fe76c983fd",
+    "awaitedFinal": "Tableau de fin de chronique : la salle de Borin après le jugement",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-12T15:11:18.722Z",
+    "references": [
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png",
+      "public/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png",
+      "tmp/final-images/out/bear__scene__bear_audience.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: Interior of the Bear chieftain’s hall after the judgement, the same hall as the audience: empty and quiet, embers glowing in the fire pit, the stone seat empty. Indoors only: no sky, no terrace. Visual identity of the Bear clan’s mountains, distinct from the Lion’s green lowlands: a harsh high-altitude land of bare granite, scree, ice and wind-driven snow. Palette: cold slate and granite greys, blue-white snow, dark weathered timber, iron and soot black, warm amber only from fires, torches and lanterns, small touches of rust and fur brown. Bear building is massive, low and squat: rough-hewn granite blocks built into and carved out of the living rock, heavy timber props and beams, plank walkways, iron chains and winches, fur hides, angular carved reliefs of bears. Never the Lion’s motifs: no Gothic arches, pointed windows or slender spires, no aqueducts, no waterfalls or rivers, no fairy-tale castles on the horizon, no lush green forest, no red-and-gold. Indoors and underground: no snow, no frost, no daylight, no sky. No banners, flags or emblems unless the staging names them. Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.",
+    "notes": ""
+  }
+}

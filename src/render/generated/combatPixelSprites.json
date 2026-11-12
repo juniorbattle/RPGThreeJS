@@ -319,6 +319,303 @@
       "colors": 41,
       "sha256": "c094f186fa72dd090c54043e4f5a69d7cb42c0c2c067cf5ea3b6d8c7b5655896"
     },
+    "bear_miner": {
+      "file": "/assets/characters/pixel/combat-sprites/bear_miner.png",
+      "cell": [
+        48,
+        88
+      ],
+      "anchor": [
+        24,
+        85
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/bear/bear_miner.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "15c66b39f517af88380b79f312b58c3acc482220d60357255b97038443bf4924"
+      },
+      "figureHeightPx": 83,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 46,
+        "bottom": 86
+      },
+      "colors": 41,
+      "sha256": "6115232bcbf9bde9818eba8f696a544f17982e563ad5f23c68467ce5d03add07"
+    },
+    "bear_warrior": {
+      "file": "/assets/characters/pixel/combat-sprites/bear_warrior.png",
+      "cell": [
+        59,
+        93
+      ],
+      "anchor": [
+        29,
+        90
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/bear/bear_warrior.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "d72beb84a7f246323c6db7738f4cf53344164b155342fcb30d4dbe6be0a31804"
+      },
+      "figureHeightPx": 88,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 57,
+        "bottom": 91
+      },
+      "colors": 41,
+      "sha256": "24452b9c0b8e640f6e6a552bce853bfcf4b5a319be8991d1e632b2a6f21035ae"
+    },
+    "borin": {
+      "file": "/assets/characters/pixel/combat-sprites/borin.png",
+      "cell": [
+        117,
+        178
+      ],
+      "anchor": [
+        58,
+        175
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/bear/borin.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "df0c311a680fe422d59f2a72a358f5628b24b5a00d8297e0a4cbbc981f578290"
+      },
+      "figureHeightPx": 173,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 115,
+        "bottom": 176
+      },
+      "colors": 41,
+      "sha256": "03197c2aa8cdcb80ccf7a3ec290c1d88a796265236b2fe00fe1a9e30d34d86d4"
+    },
     "cave_bat": {
       "file": "/assets/characters/pixel/combat-sprites/cave_bat.png",
       "cell": [
@@ -537,6 +834,105 @@
       "colors": 41,
       "sha256": "5916ea8b8ada54cd3085ac2734a0a7e94869bbd9de91048a8bd7dc528c02c017"
     },
+    "corrupted_beast": {
+      "file": "/assets/characters/pixel/combat-sprites/corrupted_beast.png",
+      "cell": [
+        161,
+        126
+      ],
+      "anchor": [
+        80,
+        123
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/bear/corrupted_beast.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "af77b202e257616bea8c2d3a10c13b3e1c794f36967023400122c61532a14ef8"
+      },
+      "figureHeightPx": 121,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 159,
+        "bottom": 124
+      },
+      "colors": 41,
+      "sha256": "38bc6bcfa9170c5e1dd370a0adef54bc3ebd8d40e63b8bbf8a14df8b97c0fd1e"
+    },
     "dark_mage": {
       "file": "/assets/characters/pixel/combat-sprites/dark_mage.png",
       "cell": [
@@ -645,6 +1041,105 @@
       },
       "colors": 41,
       "sha256": "32d9b87a5785a2db61e47a9def74d639fa2b19d067f3309eb358ca66cc87bc48"
+    },
+    "depth_beast": {
+      "file": "/assets/characters/pixel/combat-sprites/depth_beast.png",
+      "cell": [
+        134,
+        114
+      ],
+      "anchor": [
+        67,
+        111
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/bear/depth_beast.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "ed4c8deeaa3b1e97684c1bff731db41f2e53559694979aa2607e4bd1305a293b"
+      },
+      "figureHeightPx": 109,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 132,
+        "bottom": 112
+      },
+      "colors": 41,
+      "sha256": "b2cb9d2c915715b62ef6e7e263206fcf56ce43db5296b72302e727baa2376afd"
     },
     "eldwin": {
       "file": "/assets/characters/pixel/combat-sprites/eldwin.png",
@@ -1804,6 +2299,600 @@
       },
       "colors": 41,
       "sha256": "b4ddfa3f623f447677cc28feb489cdf580487954a3c63543bd90a8a90c455805"
+    },
+    "raven_foreman": {
+      "file": "/assets/characters/pixel/combat-sprites/raven_foreman.png",
+      "cell": [
+        104,
+        166
+      ],
+      "anchor": [
+        52,
+        163
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/bear/raven_foreman.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "428867829103a8ecb408b6d4328dd090abf4d122a29c147ec9ed57045698db5e"
+      },
+      "figureHeightPx": 161,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 102,
+        "bottom": 164
+      },
+      "colors": 41,
+      "sha256": "06e5da87db2636606a730fc03d6505050380806e5218256c60afab4c548017e7"
+    },
+    "raven_master_spy": {
+      "file": "/assets/characters/pixel/combat-sprites/raven_master_spy.png",
+      "cell": [
+        119,
+        170
+      ],
+      "anchor": [
+        59,
+        167
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/bear/raven_master_spy.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "6148c3495a01cb6decb46ffb219269c130db2b43abc8da83eee3506455d1dc07"
+      },
+      "figureHeightPx": 165,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 117,
+        "bottom": 168
+      },
+      "colors": 41,
+      "sha256": "7287afd11b40f8ebb3069545f86e8c623b8cc2ea1f28470ae02249994198667c"
+    },
+    "raven_messenger": {
+      "file": "/assets/characters/pixel/combat-sprites/raven_messenger.png",
+      "cell": [
+        63,
+        90
+      ],
+      "anchor": [
+        31,
+        87
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/bear/raven_messenger.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "628186ef11b3202f34f11869491e7caaa1818f83eb8954ba1ebf9378492a0e0b"
+      },
+      "figureHeightPx": 85,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 61,
+        "bottom": 88
+      },
+      "colors": 41,
+      "sha256": "42d38047acedad2d8de04adc9a260c8c236e97dca26bd8d938031cc9861bd791"
+    },
+    "raven_miner": {
+      "file": "/assets/characters/pixel/combat-sprites/raven_miner.png",
+      "cell": [
+        62,
+        94
+      ],
+      "anchor": [
+        31,
+        91
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/bear/raven_miner.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "787481c1b6e91b499b2aa81539c527173413d07f6e45647edd8aaec349355b6c"
+      },
+      "figureHeightPx": 89,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 60,
+        "bottom": 92
+      },
+      "colors": 41,
+      "sha256": "a253be4a1a878291096fe767e770f0dca0a5112e9b5cc967b44446b6244f5401"
+    },
+    "raven_miner_chief": {
+      "file": "/assets/characters/pixel/combat-sprites/raven_miner_chief.png",
+      "cell": [
+        113,
+        175
+      ],
+      "anchor": [
+        56,
+        172
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/bear/raven_miner_chief.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "b65aeae1a29c965d13571c1859ef573eada0fe21ab274d822e3bd3e681dacae5"
+      },
+      "figureHeightPx": 170,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 111,
+        "bottom": 173
+      },
+      "colors": 41,
+      "sha256": "5c771f4b14d9944b66b5b7bfea3e304506ffc2a429f54b49e055f97bc29b6cf9"
+    },
+    "raven_scout": {
+      "file": "/assets/characters/pixel/combat-sprites/raven_scout.png",
+      "cell": [
+        55,
+        90
+      ],
+      "anchor": [
+        27,
+        87
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/bear/raven_scout.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "ab34fcc5ce415fb74b29696a4c93e7a3dd9002a3bcc3facdad9c21431f78543e"
+      },
+      "figureHeightPx": 85,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 53,
+        "bottom": 88
+      },
+      "colors": 41,
+      "sha256": "5fa9136fda18ba7ebcbdabf9f4948f25200160c783b16b2e6213f2f068335b78"
     },
     "rogue": {
       "file": "/assets/characters/pixel/combat-sprites/rogue.png",

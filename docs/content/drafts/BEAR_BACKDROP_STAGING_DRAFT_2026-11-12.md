@@ -1,6 +1,6 @@
 # Mise en scène des images de l’Ours — brouillon à valider (2026-11-12)
 
-Statut : **VALIDÉ** par l’opérateur le 2026-11-12 (« Ok pour ton audit »), avec une consigne : « il faut pas que tout cela soit trop ressemblant avec les premières images du plateau Lion (démo), il faut que nous apportions une variété ressemblante aux premières images mais qui apporte une identité nouvelle propre à la thématique » (OD-2026-11-11-F, F1). Les lignes, traduites en anglais, sont dans `tools/art/finalImagesStaging.ts`. Rien n’est intégré au jeu.
+Statut : **VALIDÉ** par l’opérateur le 2026-11-12 (« Ok pour ton audit »), avec une consigne : « il faut pas que tout cela soit trop ressemblant avec les premières images du plateau Lion (démo), il faut que nous apportions une variété ressemblante aux premières images mais qui apporte une identité nouvelle propre à la thématique » (OD-2026-11-11-F, F1). Les lignes, traduites en anglais, sont dans `tools/art/finalImagesStaging.ts`. Les images qui en sont issues sont intégrées au jeu depuis le 2026-11-12, sur l’accord de l’opérateur (« Oui, intègre-le »).
 
 ## Identité de l’Ours (ajoutée sur la consigne de l’opérateur)
 

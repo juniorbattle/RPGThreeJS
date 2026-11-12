@@ -49,7 +49,17 @@ export const COMBAT_PORTRAIT_FRAMING: Readonly<Record<string, { scale: number; x
   '/assets/characters/pixel/masters/village_militia_slinger.png': { scale: 3.25, x: 0, y: 39 },
   '/assets/characters/pixel/masters/village_militia_spearman.png': { scale: 3.2, x: 0, y: 46 },
   // Set 1.20.0, post-demo Lot 1: the provisional stand-in for Borin, the Bear's draft boss (same framing as the militia).
-  '/assets/characters/pixel/masters/village_militia_brute.png': { scale: 3.2, x: 0, y: 46 },
+  // OD-2026-11-11-F (F1): the Bear's final masters, framed like the V2 masters of the same height (elites on the
+  // elite brute, humanoids on the militia); the two beasts on their heads, at the right of the figure.
+  '/assets/characters/pixel/post-demo/bear/borin.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/bear/raven_miner_chief.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/bear/raven_master_spy.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/bear/raven_foreman.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/bear/bear_warrior.png': { scale: 3.2, x: 0, y: 46 },
+  '/assets/characters/pixel/post-demo/bear/raven_scout.png': { scale: 3.2, x: 0, y: 46 },
+  '/assets/characters/pixel/post-demo/bear/raven_miner.png': { scale: 3.2, x: 0, y: 46 },
+  '/assets/characters/pixel/post-demo/bear/corrupted_beast.png': { scale: 2.2, x: -51, y: -3 },
+  '/assets/characters/pixel/post-demo/bear/depth_beast.png': { scale: 2.3, x: -62, y: -20 },
   // Set 1.20.0, post-demo Lot 4: Maelor at the breach, and the provisional stand-ins of the final act's demons and its entity.
   '/assets/characters/pixel/masters/maelor.png': { scale: 3.2, x: 0, y: 46 },
   '/assets/characters/pixel/archive/non-demo/giant_mygale.png': { scale: 2.4, x: 0, y: 50 },

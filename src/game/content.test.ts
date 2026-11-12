@@ -498,7 +498,7 @@ describe('campaign content integrity', () => {
       allPaths.push(profile.full, profile.dialogue, profile.ui, profile.fallback);
     }
     for (const path of allPaths) {
-      expect(path, `path:${path}`).toMatch(/\/assets\/characters\/pixel\/(?:full|masters|archive\/non-demo)\//);
+      expect(path, `path:${path}`).toMatch(/\/assets\/characters\/pixel\/(?:full|masters|archive\/non-demo|post-demo\/(?:bear|dragon|scorpion|finale))\//);
       expectPublicAsset(path, `path:${path}`);
     }
   });

@@ -60,8 +60,9 @@ const identityAliases = new Map<string, string>([
 ]);
 
 // Set 1.20.0 (WORLD_AND_CHARACTERS "Provisional images"): post-demo characters staged with existing silhouettes until
-// their Character V2 masters exist. Each stand-in is marked provisional in its plateau's presentation registry.
-for (const actor of POST_DEMO_PROVISIONAL_ACTORS) identityAliases.set(actor.actorId, actor.standInUnitId);
+// their masters exist. Each stand-in is marked provisional in its plateau's presentation registry. A character with its
+// final master (OD-2026-11-11-F) takes no alias: the asset manifest and its combat sheet carry it.
+for (const actor of POST_DEMO_PROVISIONAL_ACTORS) if (!actor.master) identityAliases.set(actor.actorId, actor.standInUnitId);
 
 for (const profile of PROFILES) {
   identityAliases.set(profile.unitId, profile.unitId);

@@ -58,10 +58,11 @@ export function resolveRefugePresentation(node: RunNode): RefugePresentation | n
     gatheringDialogueId: CLAN_ANCHOR_DIALOGUES[node.id] ?? content.gatheringDialogueId,
     nodeId: node.id,
     title: node.label,
-    background: plate.publicUrl,
+    // OD-2026-11-11-F (F1): a post-demo refuge with its final image shows it; the borrowed plate keeps the family.
+    background: POST_DEMO_REFUGE_PRESENTATION[node.id]?.image ?? plate.publicUrl,
     visualFamily: plate.visualFamily,
     securesLoot: true,
-    ...(POST_DEMO_REFUGE_PRESENTATION[node.id]
+    ...(POST_DEMO_REFUGE_PRESENTATION[node.id] && !POST_DEMO_REFUGE_PRESENTATION[node.id]!.image
       ? { provisional: true, draft: plateauForNodeId(node.id)?.status === 'draft' } : {}),
   };
 }

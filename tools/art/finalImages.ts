@@ -24,7 +24,7 @@ import * as scorpion from '../../src/campaign/plateaux/scorpion/scorpionPresenta
 import * as finale from '../../src/campaign/plateaux/finale/finalePresentation';
 import { loadEnv } from 'vite';
 import { demoEnvironmentPlateForContext } from '../../src/render/demoEnvironmentPack';
-import { CIVILIAN_IDS, CIVILIAN_REFS, CREATURE_IDS, CREATURE_REFS, IDENTITY, LIGHT_REFS, STAGED_LOOKS, STAGING } from './finalImagesStaging';
+import { ATLAS_LAYOUTS, CIVILIAN_IDS, CIVILIAN_REFS, CREATURE_IDS, CREATURE_REFS, IDENTITY, LIGHT_REFS, STAGED_LOOKS, STAGING } from './finalImagesStaging';
 
 type Chapter = 'bear' | 'dragon' | 'scorpion' | 'finale';
 type Kind = 'backdrop' | 'atlas' | 'character';
@@ -143,6 +143,10 @@ function promptFor(id: string, kind: Kind, chapter: Chapter, awaitedFinal: strin
   if (kind === 'character') {
     return `${STYLE} One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. ${COVERED_FACE_RULE} Subject: ${awaitedFinal}. Setting of the character: ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
   }
+  const layout = ATLAS_LAYOUTS[id];
+  if (layout) {
+    return `${STYLE} An illustrated top-down region map of a fantasy land, painted like a game atlas, with no lettering. The reference image is this region’s existing map layout: repaint it completely in the identity below, but keep exactly the position, width and course of every road, path and crossing, and every clearing or site where a road meets another, so that map markers placed on the original still fall on the same roads and clearings. Sites stay open, readable clearings or small settlements. Streams of the layout become icy mountain torrents. Paint the blurred bands at the top and bottom as more terrain. Region: ${layout.line} ${IDENTITY[chapter] ?? SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
+  }
   if (kind === 'atlas') {
     return `${STYLE} An illustrated top-down region map of a fantasy land, painted like a game atlas, with paths and landmarks but no lettering. Region: ${awaitedFinal}. ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
   }
@@ -160,6 +164,7 @@ function referencesFor(id: string, kind: Kind): readonly string[] {
   if (CREATURE_IDS.includes(id)) return CREATURE_REFS;
   if (CIVILIAN_IDS.includes(id)) return CIVILIAN_REFS;
   if (kind === 'character') return CHARACTER_STYLE_REFS;
+  if (ATLAS_LAYOUTS[id]) return [ATLAS_LAYOUTS[id]!.lionAtlas];
   const staging = STAGING[id];
   return staging ? LIGHT_REFS[staging.light] : BACKDROP_STYLE_REFS;
 }
@@ -244,6 +249,13 @@ const fileOf = (id: string) => `${id.replace(/[^a-zA-Z0-9_-]+/g, '__')}.png`;
 
 /** The brief's references, plus the generated image of the same place when it exists (Borin's hall from one image to the next). */
 function referencesOf(item: FinalImageBrief): string[] {
+  const layout = ATLAS_LAYOUTS[item.id];
+  if (layout) {
+    // The letterboxed layout (tools/art/atlas_layout.py prepare) replaces the Lion atlas it was made from.
+    const prepared = ['tmp', 'final-images', 'layouts', fileOf(item.id)].join('/');
+    if (!existsSync(join(ROOT, prepared))) throw new Error(`No layout for ${item.id}: run py -3 tools/art/atlas_layout.py prepare ${layout.lionAtlas} ${prepared}`);
+    return [prepared];
+  }
   const samePlace = item.samePlaceAs ? ['tmp', 'final-images', 'out', fileOf(item.samePlaceAs)].join('/') : null;
   return samePlace && existsSync(join(ROOT, samePlace)) ? [...item.references, samePlace] : [...item.references];
 }

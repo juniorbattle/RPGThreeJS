@@ -16,6 +16,8 @@ export const POST_DEMO_REFUGE_PRESENTATION: Readonly<Record<string, {
   description: string;
   gatheringDialogueId?: string;
   awaitedFinal: string;
+  /** The refuge's final image, once it exists; until then the borrowed demo plate shows, marked provisional. */
+  image?: string;
 }>> = Object.freeze({ ...BEAR_REFUGE_PRESENTATION, ...DRAGON_REFUGE_PRESENTATION,
   ...SCORPION_REFUGE_PRESENTATION, ...FINALE_REFUGE_PRESENTATION });
 

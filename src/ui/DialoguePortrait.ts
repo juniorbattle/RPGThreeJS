@@ -21,6 +21,11 @@ const CROP_OVERRIDES: Readonly<Record<string, Partial<Omit<DialoguePortrait, 'sr
   shrine_apparition: { cropY: '60%' },
   forest_troll_elite: { cropY: '50%' },
   young_dragon_elite: { cropX: '-50%', cropY: '82%' },
+  // OD-2026-11-11-F (F1): the Bear's tall final masters, framed like the elites of the same height.
+  borin: { cropY: '45%' },
+  raven_miner_chief: { cropY: '45%' },
+  raven_master_spy: { cropY: '45%' },
+  raven_foreman: { cropY: '45%' },
 };
 
 export function resolveDialoguePortrait(actorId: string | undefined): DialoguePortrait | undefined {
