@@ -120,6 +120,25 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 - **Hors du lot d’images** : les combats de l’Ours se jouent dans les arènes codées du Lion (`forest_route`, `lion_sanctum`), dont le sanctuaire montre des bannières au lion.
 - **Tests** : le registre de l’Ours vérifie chaque fichier, l’absence de marque, la fin de chronique, les portraits et les planches ; l’outil vérifie le tracé des atlas. Validation complète verte.
 
+## Préparation du Dragon (2026-11-12)
+
+`PROPOSED FUTURE DESIGN` — l’opérateur a demandé de préparer le Dragon, et de confier les arènes de l’Ours à une session parallèle.
+- **Brouillon soumis** : `docs/content/drafts/DRAGON_STAGING_DRAFT_2026-11-12.md`. Il contient :
+  - l’identité du Dragon : haut, ouvert, pierre claire et ciel, là où l’Ours est bas, clos, sombre et éclairé au feu ;
+  - celle du Loup, et la marque des Ombres ;
+  - 28 lignes de mise en scène tirées des répliques, 12 aspects de personnages et 3 tracés d’atlas sur ceux du Lion.
+- **Kaelen est un ancien humain** au masque de dragon, et non un véritable dragon : l’opérateur l’a tranché le 2026-11-12 (« Ancien humain »), selon la recommandation. Le détail de son aspect reste à valider avec la fiche.
+- **Questions ouvertes** :
+  - la couleur du Cristal d’Écho (bleu glacé proposé) ;
+  - l’identité elle-même.
+- **Outil prêt pour la génération** :
+  - les lignes, les aspects et les tracés sont dans `tools/art/finalImagesStaging.ts` ;
+  - une ligne peut garder le ciel en intérieur (`skyVisible`) pour les salles ouvertes du Dragon ;
+  - une fiche qui nomme les Ombres sans clan ne reçoit aucun signe de clan ;
+  - le wyrm est traité en créature, le villageois et le pèlerin en civils.
+- **Témoins d’identité** (non intégrés, `tmp/final-images/out/`) : le pied des Pics, l’ermitage, le repaire du Loup. Le premier ermitage montrait un dragon serpentin d’Orient. L’identité demande désormais des dragons d’Occident, ailés comme le jeune dragon du jeu, et l’ermitage est régénéré.
+- **À l’opérateur** : valider ou corriger le brouillon. Rien d’autre n’est généré avant son accord.
+
 ## Rencontres des six héros (2026-11-11, nuit)
 
 `CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.
@@ -137,4 +156,5 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 `PROPOSED FUTURE DESIGN`, à confirmer par l’opérateur :
 - **Portraits** : les maîtres Character V2 des six héros entreront dans le lot des images finales, après le pilote.
 - **Essai en jeu** : les six rencontres et leurs secondes chances sont à juger lors du test PC final.
-- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours.
+- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Celles du Dragon sont soumises depuis le 2026-11-12.
+- **Arènes de l’Ours** : une session parallèle donne aux combats de l’Ours leurs propres arènes codées, aux signes de l’Ours. Son résultat sera consigné ici.

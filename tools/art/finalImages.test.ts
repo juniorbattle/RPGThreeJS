@@ -74,10 +74,12 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
       const item = plan.find((candidate) => candidate.id === id);
       expect(item, id).toBeDefined();
       expect(item!.prompt, id).toContain(staging.line);
-      expect(item!.prompt, id).toContain(IDENTITY.bear!);
+      expect(item!.prompt, id).toContain(IDENTITY[item!.chapter]!);
       expect(item!.prompt, id).not.toContain('cols enneigés');
       expect(item!.references, id).toEqual(LIGHT_REFS[staging.light]);
-      if (staging.light === 'interior') expect(item!.prompt, id).toContain('no snow, no frost, no daylight, no sky');
+      const indoorsRule = 'no snow, no frost, no daylight, no sky';
+      if (staging.light === 'interior' && !staging.skyVisible) expect(item!.prompt, id).toContain(indoorsRule);
+      else expect(item!.prompt, id).not.toContain(indoorsRule);
     }
     expect(plan.find((item) => item.id === 'bear:scene:bear_judgement')!.samePlaceAs).toBe('bear:scene:bear_audience');
     for (const item of plan.filter((candidate) => candidate.samePlaceAs)) expect(STAGING[item.samePlaceAs!], item.id).toBeDefined();
@@ -93,7 +95,35 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
       expect(item.prompt, id).toContain('keep exactly the position, width and course of every road');
       expect(item.prompt, id).toContain(layout.line);
     }
-    expect(Object.keys(ATLAS_LAYOUTS)).toEqual(['bear:atlas:1', 'bear:atlas:2', 'bear:atlas:3']);
+    expect(Object.keys(ATLAS_LAYOUTS)).toEqual(['bear:atlas:1', 'bear:atlas:2', 'bear:atlas:3', 'dragon:atlas:1', 'dragon:atlas:2', 'dragon:atlas:3']);
+  });
+
+  it('prepares every Dragon image with its own identity, staging and proposed looks, for the operator to validate', () => {
+    const dragon = plan.filter((item) => item.chapter === 'dragon');
+    const backdrops = dragon.filter((item) => item.kind === 'backdrop');
+    expect(backdrops).toHaveLength(28);
+    expect(backdrops.filter((item) => !STAGING[item.id]).map((item) => item.id)).toEqual([]);
+    for (const item of dragon.filter((candidate) => candidate.kind === 'character')) {
+      expect(item.notes, item.id).toMatch(/^PROPOSAL, to confirm/);
+    }
+    expect(IDENTITY.dragon).toContain('never a purple glow');
+    expect(IDENTITY.dragon).toContain('Never the Bear’s');
+    // Kaelen's hall opens onto the sky, unlike the Bear's closed halls; the judgement and the chronicle end share it.
+    const hall = plan.find((item) => item.id === 'dragon:scene:dragon_audience')!;
+    expect(hall.prompt).not.toContain('no daylight, no sky');
+    expect(hall.prompt).toContain('the Dragon clan’s sign, a dragon');
+    expect(plan.find((item) => item.id === 'dragon:scene:dragon_judgement')!.samePlaceAs).toBe('dragon:scene:dragon_audience');
+    expect(plan.find((item) => item.id === 'dragon:surface:chronicle-end')!.samePlaceAs).toBe('dragon:scene:dragon_audience');
+    expect(plan.find((item) => item.id === 'dragon:refuge:dragon-second-refuge')!.prompt).toContain('no daylight, no sky');
+    expect(plan.find((item) => item.id === 'dragon:scene:dragon_lair_seizure_aftermath')!.samePlaceAs).toBe('dragon:scene:dragon_wolf_lair');
+    expect(plan.find((item) => item.id === 'dragon:scene:dragon_wolf_lair')!.prompt).toContain('show a wolf');
+    // The Shadows are no clan: the shaman never wears the host clan's dragon.
+    const shaman = plan.find((item) => item.id === 'dragon:actor:shadow_shaman')!;
+    expect(shaman.prompt).toContain('The Shadows belong to no clan');
+    expect(shaman.prompt).not.toContain('a dragon;');
+    expect(plan.find((item) => item.id === 'dragon:actor:wolf_chief')!.prompt).toContain('show a wolf');
+    expect(plan.find((item) => item.id === 'dragon:actor:dragon_pilgrim')!.references).toEqual(CIVILIAN_REFS);
+    expect(plan.find((item) => item.id === 'dragon:enemy:shadow_wyrm')!.references).toEqual(CREATURE_REFS);
   });
 
   it('draws the beasts as animals from beast references, and the miner as a civilian', () => {
