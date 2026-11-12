@@ -225,8 +225,24 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   - la fin de chronique dans la salle de Kaelen ;
   - six combats avec les nouvelles planches et vignettes : assaut du repaire, épreuve de Kaelen, wyrm corrompu, Chaman des Ombres, éclaireurs du Loup, avant et après le nouveau chasseur.
 - **Non vu en jeu** : les refuges, couverts par les tests.
-- **Hors du lot d’images** : les combats du Dragon se jouent encore dans les arènes codées du Lion, dont le sanctuaire montre des bannières au lion. L’Ours a reçu les siennes le même jour.
+- **Hors du lot d’images** : les combats du Dragon se jouaient encore dans les arènes codées du Lion, dont le sanctuaire montre des bannières au lion. Réglé le même jour : voir « Arènes du Dragon ».
 - **Tests** : le registre du Dragon vérifie chaque fichier, l’absence de marque, la fin de chronique, les portraits et les planches. Les tests du moteur de combat et du cadrage des vignettes tiennent compte des huit nouveaux portraits.
+
+## Arènes du Dragon (2026-11-12)
+
+`CURRENT FACT` — l’opérateur a lancé la carte proposée (« Arènes codées du Dragon »). Une session parallèle, dans son worktree, a donné aux combats du Dragon leurs propres arènes codées. C’est poussé sur `dev` : `2174b4bb` pour le code et les tests, `1f22aa7b` pour le rapport (`docs/reports/dragon-arenas-2026-11-12.md`).
+- **Quatre arènes**, toutes codées (OD-2026-11-01-C : ni image générée ni plaque) :
+  - le sentier des terrasses (`dragon_peak_trail`) : patrouille et éclaireurs du Loup, créatures des crêtes, wyrm corrompu, combats facultatifs des contreforts et des terrasses, gardien champion du Loup ;
+  - les cimes enneigées au couchant (`dragon_snowy_summit`) : bêtes sous l’emprise des Ombres, Chaman des Ombres, combats facultatifs des cimes, gardien wyrm des cimes ;
+  - le repaire du Loup (`dragon_wolf_cave`), sous le signe du Loup, sans sculpture de dragon ni cloche : les deux combats du repaire ;
+  - l’esplanade devant la salle de Kaelen (`dragon_hall_esplanade`) : l’épreuve de Kaelen.
+- **Identité** : calcaire pâle, herbe jaunie, pins tordus, bronze vert-de-gris, cloches, mer de nuages, et un dragon ailé à quatre pattes sculpté dans chaque arène du Dragon. Aucun motif du Lion.
+- **Son** : chaque arène reprend une ambiance existante, aucun son nouveau. Seul le combat du wyrm corrompu change d’ambiance, puisqu’il se tient désormais sur les terrasses.
+- **Ce qui ne change pas** : la grille, la plateforme, la résolution des combats et les sauvegardes. Les arènes du Lion et de l’Ours restent identiques à l’octet. Le Scorpion et l’acte final gardent les arènes du Lion, et un test le vérifie.
+- **Vérifié** :
+  - dans le navigateur de la session : les quatre arènes et un combat du Lion, sans erreur ;
+  - dans le dépôt principal, après la fusion : 3 374 tests sans échec, ainsi que les contrats, le validateur narratif, les types et le build. Les 10 échecs vus dans le worktree venaient de médias ignorés par Git, absents d’un worktree neuf.
+- **Non vérifié** : le rendu sur un vrai GPU (captures en rendu logiciel), le mouvement réduit du jeu activé, les autres combats du Dragon en jeu (couverts par le test d’affectation) et le mobile. Le jugement artistique revient à l’opérateur.
 
 ## Rencontres des six héros (2026-11-11, nuit)
 
@@ -246,4 +262,4 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 - **Portraits** : les maîtres Character V2 des six héros entreront dans le lot des images finales, après le pilote.
 - **Essai en jeu** : les six rencontres et leurs secondes chances sont à juger lors du test PC final.
 - **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Le Dragon est intégré depuis le 2026-11-12 ; le Scorpion vient ensuite.
-- **Arènes du Dragon, du Scorpion et de l’acte final** : leurs combats jouent encore dans les arènes codées du Lion. Chacun pourra recevoir les siennes, comme l’Ours, à la demande de l’opérateur. Le Dragon, désormais intégré, est le prochain candidat.
+- **Arènes du Scorpion et de l’acte final** : leurs combats jouent encore dans les arènes codées du Lion. Chacun pourra recevoir les siennes, comme l’Ours et le Dragon, à la demande de l’opérateur.
