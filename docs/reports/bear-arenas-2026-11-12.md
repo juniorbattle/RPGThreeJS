@@ -49,7 +49,7 @@ Correspondances inchangées pour le son, sans aucun son nouveau (OD-2026-11-01-B
 | Portail des documents verrouillés | vide |
 | `npm run -s contracts:validate` | 8 contrats, zéro vidéo active |
 | `npx tsc --noEmit` | OK |
-| `npx vitest run` | 3 210 tests passent ; 10 échouent dans 4 fichiers (`spritesheetPng`, trois tests de cinématiques historiques), qui lisent des médias ignorés par Git absents d’un worktree neuf (présents dans le checkout principal) : sans lien avec cette tâche |
+| `npx vitest run` | 3 212 tests passent après la fusion d’`origin/dev` ; 10 échouent dans 4 fichiers (`spritesheetPng`, trois tests de cinématiques historiques), qui lisent des médias ignorés par Git absents d’un worktree neuf (présents dans le checkout principal) : sans lien avec cette tâche |
 | `node --test tools/qa/qa-job.test.mjs` | 26/26 lancé seul (un échec quand il tournait en même temps que vitest et le build, non reproduit seul) |
 | `npm run -s build` | OK |
 | `git diff --check` | OK |
@@ -62,7 +62,7 @@ En navigateur (laboratoire QA, `/?qa=1`, 1600 × 900, Chromium SwiftShader), zé
 - `tmp/bear-arenas/combat-bear_raven_scouts.png` : col enneigé ;
 - `tmp/bear-arenas/combat-bear_mines_defense.png` et `combat-bear_guardian_depths.png` : galeries ;
 - `tmp/bear-arenas/combat-bear_borin.png` : parvis de la salle de Borin ;
-- `tmp/bear-arenas/combat-lion_chief.png` et `combat-forest_patrol.png` : arènes du Lion, inchangées ;
-- les vues de déploiement correspondantes (`*-deploy.png`).
+- `tmp/bear-arenas/combat-lion_chief.png` : sanctuaire du Lion, inchangé (bannières au lion, stèle au soleil, arches) ; la route forestière et Bois-Clair ne sont prouvés que par la comparaison du graphe de scène ci-dessus ;
+- les vues de déploiement correspondantes (`*-deploy.png`) ; pour les combats de boss, l’encart « Boss & Élites » y couvre encore l’arène.
 
 Non vérifié : le rendu sur le PC de l’opérateur (GPU réel, pas SwiftShader), le réglage « mouvement réduit » du jeu en navigateur (testé en unitaire seulement), et le mobile. La lecture artistique reste à l’opérateur.
