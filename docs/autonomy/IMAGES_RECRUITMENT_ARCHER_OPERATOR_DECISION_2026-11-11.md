@@ -244,6 +244,35 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   - dans le dépôt principal, après la fusion : 3 374 tests sans échec, ainsi que les contrats, le validateur narratif, les types et le build. Les 10 échecs vus dans le worktree venaient de médias ignorés par Git, absents d’un worktree neuf.
 - **Non vérifié** : le rendu sur un vrai GPU (captures en rendu logiciel), le mouvement réduit du jeu activé, les autres combats du Dragon en jeu (couverts par le test d’affectation) et le mobile. Le jugement artistique revient à l’opérateur.
 
+## Préparation du Scorpion (2026-11-12)
+
+`PROPOSED FUTURE DESIGN` — l’opérateur a demandé de préparer le Scorpion avec la méthode du Dragon, en appliquant d’avance toutes les leçons des reprises de l’Ours et du Dragon. Une session parallèle, dans son worktree, a fait ce travail.
+- **Brouillon soumis**, à valider : `docs/content/drafts/SCORPION_STAGING_DRAFT_2026-11-12.md`. Il contient :
+  - **l’identité du Scorpion** : plat, brûlé, ocre et ambre, la terre crue et l’ombre faite contre le soleil. Le Lion est vert et gothique, l’Ours en granit sous la neige, le Dragon en calcaire pâle au-dessus des nuages ;
+  - **celle du Phénix** dans le même désert : pierre taillée couleur de cendre, colonnes sculptées de phénix, lampes allumées en plein jour, flamme safran au cœur blanc. Un lieu du Phénix ne montre aucun scorpion, et un lieu du Scorpion aucun phénix ;
+  - **la marque des Ombres** : une encre noire et froide, jamais violette ;
+  - 28 lignes de mise en scène tirées des répliques, 9 aspects de personnages proposés, chacun avec son arme de combat, et 3 tracés d’atlas sur ceux du Lion.
+- **Le chef n’est nommé que par son titre**, « Grand Inquisiteur ».
+- **Questions ouvertes**, chacune avec sa recommandation :
+  - l’aspect du Grand Inquisiteur (un érudit masqué de cuivre au bâton à dard de scorpion) ;
+  - la couleur de la flamme du Phénix (safran au cœur blanc) ;
+  - l’aspect du codex (cuir gris cendre, fermoirs de bronze, sans lueur propre) ;
+  - la salle du Grand Inquisiteur (salle des registres éclairée par de hauts claustras) ;
+  - les fidèles égarés (des fidèles du Phénix perdus, sans emblème) ;
+  - les identités elles-mêmes.
+- **Outil prêt pour la génération** :
+  - les lignes, les aspects et les tracés sont dans `tools/art/finalImagesStaging.ts` ;
+  - le fidèle du Phénix et le fidèle captif sont traités en civils ;
+  - chaque ligne d’atlas du désert contredit la phrase de l’outil qui change les ruisseaux du tracé en torrents glacés ;
+  - tests : `tools/art/finalImagesScorpion.test.ts`.
+- **Témoins d’identité : pas encore générés.** Le worktree de la session n’avait pas accès à la clé OpenAI, ni dans le terminal ni dans un `.env.local`, qui n’a pas été copié. Ils se lancent depuis le dépôt principal :
+
+  ```bash
+  npx vite-node tools/art/finalImages.ts plan
+  npx vite-node tools/art/finalImages.ts run --ids scorpion:scene:scorpion_arrival,scorpion:scene:scorpion_oasis_gathering,scorpion:scene:scorpion_phoenix_temple --concurrency 3
+  ```
+- **Rien d’autre n’est généré** avant la validation de l’opérateur.
+
 ## Rencontres des six héros (2026-11-11, nuit)
 
 `CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.
