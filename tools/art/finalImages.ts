@@ -73,12 +73,18 @@ const BACKDROP_STYLE_REFS = [
 ];
 
 /**
+ * Standing operator rule (OD-2026-11-11-G): no character of the game shows a face. Masks, closed helmets or hoods cover
+ * it, as on every approved Character V2 master (Alistair's closed helmet, Elara's shadowed face and two eyes, Maelor's hood).
+ */
+export const COVERED_FACE_RULE = 'If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face.';
+
+/**
  * Looks the canon does not describe yet: PROPOSALS for the operator to confirm or rewrite before a run (a new
  * character's look is part of the final-image lot led with the operator). They go into the brief's notes.
  */
 const PROPOSED_LOOKS: Record<string, string> = {
-  'bear:actor:borin': 'PROPOSAL, to confirm: a human elder chieftain of the Bear clan (a man, not an animal), broad-shouldered, grey braided beard, heavy bear-fur mantle over stone-grey armour, a war hammer.',
-  'bear:actor:bear_warrior': 'PROPOSAL, to confirm: a human warrior of the Bear clan, fur-lined mail, round wooden shield and spear, mountain colours (stone grey, brown, snow white).',
+  'bear:actor:borin': 'PROPOSAL, to confirm: a human elder chieftain of the Bear clan (a man, not an animal), broad-shouldered and slightly stooped with age, a heavy grey-streaked bear-fur mantle over worn stone-grey armour, a closed helm crowned with a bear’s head that hides his face, a war hammer.',
+  'bear:actor:bear_warrior': 'PROPOSAL, to confirm: a human warrior of the Bear clan, a closed helmet, fur-lined mail, round wooden shield and spear, mountain colours (stone grey, brown, snow white).',
 };
 const CHARACTER_STYLE_REFS = [
   'public/assets/characters/pixel/masters/alistair.png',
@@ -108,7 +114,7 @@ const masterOf = (unitId: string) => `public/assets/characters/pixel/masters/${u
 
 function promptFor(kind: Kind, chapter: Chapter, awaitedFinal: string): string {
   if (kind === 'character') {
-    return `${STYLE} One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. Subject: ${awaitedFinal}. Setting of the character: ${SETTINGS[chapter]} ${HERALDRY[chapter]}`;
+    return `${STYLE} One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. ${COVERED_FACE_RULE} Subject: ${awaitedFinal}. Setting of the character: ${SETTINGS[chapter]} ${HERALDRY[chapter]}`;
   }
   if (kind === 'atlas') {
     return `${STYLE} An illustrated top-down region map of a fantasy land, painted like a game atlas, with paths and landmarks but no lettering. Region: ${awaitedFinal}. ${SETTINGS[chapter]} ${HERALDRY[chapter]}`;

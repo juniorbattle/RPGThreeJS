@@ -2,7 +2,7 @@ import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'no
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { buildPlan, openAiKey, PILOT_IDS } from './finalImages';
+import { buildPlan, COVERED_FACE_RULE, openAiKey, PILOT_IDS } from './finalImages';
 
 describe('final images plan (OD-2026-11-11-F, F1)', () => {
   const plan = buildPlan();
@@ -41,6 +41,16 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
       if (item.chapter !== 'finale') expect(item.prompt, item.id).toMatch(/clan’s sign, an? (bear|dragon|scorpion); never a lion\.$/);
     }
     expect(plan.find((item) => item.id === 'bear:scene:bear_audience')!.prompt).toContain('the Bear clan’s sign, a bear');
+  });
+
+  it('keeps every character’s face covered, the operator’s standing rule (OD-2026-11-11-G)', () => {
+    const characters = plan.filter((item) => item.kind === 'character');
+    expect(characters.length).toBeGreaterThan(40);
+    for (const item of characters) {
+      expect(item.prompt, item.id).toContain(COVERED_FACE_RULE);
+      expect(item.notes, item.id).not.toMatch(/beard|bare face|bare-headed/i);
+    }
+    expect(plan.find((item) => item.id === 'bear:actor:borin')!.notes).toContain('hides his face');
   });
 
   it('takes the key from the terminal, else from .env.local, loading nothing but the OPENAI_ variables', () => {

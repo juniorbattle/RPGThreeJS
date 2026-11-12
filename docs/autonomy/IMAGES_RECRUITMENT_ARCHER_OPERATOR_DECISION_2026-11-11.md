@@ -38,12 +38,20 @@ npx vite-node tools/art/finalImages.ts -- run --pilot
 
 Le modèle par défaut est celui des images OpenAI déjà approuvées par le projet (`gpt-image-2.5-sunburst-2026-09-08`, d’après `tools/cinematics/specs/cin6ea3_pilot_e_image_gate.json`). Si ton compte ne le propose pas, ajoute par exemple `--model gpt-image-1`. Ouvrir ensuite `tmp/final-images/review.html`. Pour changer une apparence avant de lancer, il suffit de modifier le champ `notes` de la fiche dans `tmp/final-images/plan.json`.
 
+## Règle permanente : visages couverts (OD-2026-11-11-G)
+
+`CURRENT FACT` — Consigne de l’opérateur, à garder pour toujours : « comme nos personnages en totalité, pas de trait facial ; généralement ils ont soit des masques, casques ou simplement des capuches qui couvrent leur visage ; cette règle doit rester ».
+- Elle généralise ce que suivent déjà les maîtres Character V2 approuvés : le casque fermé d’Alistair (« No visible face, skin, or hair »), le visage d’Elara dans l’ombre avec deux yeux, la capuche de Maelor, le visage dissimulé de Cedric.
+- Toute image de personnage, aujourd’hui ou plus tard, la respecte. Dans `tools/art/finalImages.ts`, chaque fiche de personnage contient `COVERED_FACE_RULE` : visage entièrement couvert par un casque fermé, un masque ou l’ombre d’une capuche, au plus deux petits yeux lumineux dans l’ombre ; ni nez, ni bouche, ni peau du visage, ni barbe. Un test le vérifie pour les 46 fiches.
+- L’apparence proposée pour Borin perd sa barbe et prend un heaume fermé surmonté d’une tête d’ours ; le guerrier de l’Ours porte un casque fermé.
+
 ## Pilote d’images (2026-11-11, nuit)
 
 `CURRENT FACT` — Claude a lancé le pilote à la demande de l’opérateur. Les six images de l’Ours sont dans `tmp/final-images/out/` (ignoré par Git), avec `log.json` et `review.html`. Rien n’est intégré.
 - Modèle par défaut, qualité haute : quatre décors en 1536×1024 et deux personnages en 1024×1024 sur fond transparent. Clé lue dans l’environnement du terminal, jamais affichée.
 - Constat : l’héraldique des références du Lion a fui. Les bannières de l’audience montrent un lion dressé, et Borin porte des médaillons à tête de lion (épaules, ceinture, marteau). Le guerrier de l’Ours et les trois autres décors montrent bien l’ours.
-- Correction dans l’outil : chaque fiche précise que les références donnent le style seulement, jamais leur héraldique, et nomme le signe du clan du lieu (l’ours, le dragon, le scorpion, jamais le lion ; plusieurs clans pour l’acte final). Les deux images fautives ne sont pas régénérées sans l’accord de l’opérateur.
+- Correction dans l’outil : chaque fiche précise que les références donnent le style seulement, jamais leur héraldique, et nomme le signe du clan du lieu (l’ours, le dragon, le scorpion, jamais le lion ; plusieurs clans pour l’acte final).
+- Régénération (accord de l’opérateur, 2026-11-12) de l’audience et de Borin, avec cette correction et la règle des visages couverts (OD-2026-11-11-G). L’audience devient une salle du trône : statue d’ours sur le trône, mosaïque et bannières à l’ours. Borin porte un heaume fermé surmonté d’une tête d’ours ; ses médaillons, son tabard et son marteau montrent l’ours, vérifiés au zoom. Les premières versions sont gardées dans `tmp/final-images/v1-lion-heraldry/`.
 - Avis attendu de l’opérateur : les quatre décors se ressemblent beaucoup (place enneigée, montagnes, bannières, braseros). Les apparences proposées pour Borin et le guerrier sont encore à confirmer.
 
 ## Rencontres des six héros (2026-11-11, nuit)
