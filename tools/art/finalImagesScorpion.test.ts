@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { buildPlan, CLOSED_INTERIOR_RULE, COVERED_FACE_RULE, SACRED_OBJECT_RULES } from './finalImages';
+import { ATLAS_STREAMS, buildPlan, CLOSED_INTERIOR_RULE, COVERED_FACE_RULE, heraldryFor, NO_CLAN_RULE, SACRED_OBJECT_RULES } from './finalImages';
 import { ATLAS_LAYOUTS, CIVILIAN_IDS, CIVILIAN_REFS, IDENTITY, LIGHT_REFS, STAGED_LOOKS, STAGING } from './finalImagesStaging';
 
 /**
@@ -123,6 +123,17 @@ describe('Scorpion final images, prepared for the operator’s validation (OD-20
     expect([...PHOENIX_PLACES, ...SCORPION_PLACES].length).toBeLessThan(backdrops.length);
   });
 
+  it('gives the caravan shelter, staged with no emblem of any clan, no clan sign at all', () => {
+    // Its first image had scorpions carved on its pillars: the host clan's sentence asked for its sign on any carved emblem.
+    const shelter = find('scorpion:refuge:scorpion-second-refuge');
+    expect(STAGING[shelter.id]!.line).toContain('no emblem of any clan');
+    expect(shelter.prompt).toContain(NO_CLAN_RULE);
+    expect(shelter.prompt).not.toContain('shows the Scorpion clan’s sign');
+    expect(heraldryFor('scorpion', 'A shelter: no emblem of any clan.')).toBe(NO_CLAN_RULE);
+    // Only that line says it: every other brief of the plan keeps its clan sentence.
+    expect(plan.filter((item) => item.prompt.includes(NO_CLAN_RULE)).map((item) => item.id)).toEqual([shelter.id]);
+  });
+
   it('gives the Prophet, the faithful led astray and the Prophet’s dunes no clan sign, and the Shadows their cold black ink', () => {
     for (const id of ['scorpion:actor:shadow_prophet', 'scorpion:enemy:shadow_zealot', PROPHET_DUNE, S('scorpion_prophet_aftermath')]) {
       const prompt = find(id).prompt;
@@ -153,8 +164,10 @@ describe('Scorpion final images, prepared for the operator’s validation (OD-20
       expect(item.references, id).toEqual([layout.lionAtlas]);
       expect(item.prompt, id).toContain(layout.line);
       expect(item.prompt, id).toContain(IDENTITY.scorpion!);
-      // The tool turns every stream into an icy torrent; each desert line overrides it.
-      expect(layout.line, id).toContain('do not become icy torrents');
+      // The tool's stream sentence is the desert's own (ATLAS_STREAMS): dry wadis, never icy torrents.
+      expect(item.prompt, id).toContain(ATLAS_STREAMS.scorpion!);
+      expect(item.prompt, id).not.toMatch(/icy|torrent/i);
+      expect(layout.line, id).toMatch(/dry (riverbeds?|ravines)/);
       expect(layout.line, id).toMatch(/No other (camp|temple)/);
     }
     expect(scorpion.filter((item) => item.kind === 'atlas').map((item) => item.id)).toEqual(Object.keys(lion));

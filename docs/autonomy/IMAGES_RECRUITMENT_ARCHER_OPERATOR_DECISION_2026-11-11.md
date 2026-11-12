@@ -294,6 +294,62 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   ```
 - **Suite** : générer les trois témoins depuis le dépôt principal, les comparer à l’Ours et au Dragon, puis lancer le lot du Scorpion (28 décors, 9 personnages, 3 atlas), comme pour le Dragon.
 
+## Images du Scorpion (2026-11-12)
+
+`CURRENT FACT` — l’opérateur a validé la fiche telle quelle (« Validate as is »), puis a dit « on enchaîne ». Les 40 images du Scorpion (28 décors, 9 personnages, 3 atlas) sont générées depuis le dépôt principal et relues ; aucune n’est intégrée.
+- **Outil, avant la génération** : la phrase des atlas sur les ruisseaux du tracé dépend désormais du plateau (`ATLAS_STREAMS` dans `tools/art/finalImages.ts`).
+  - L’Ours et le Dragon gardent mot pour mot leurs torrents glacés : leurs briefs sont identiques à l’octet.
+  - Le Scorpion reçoit des oueds secs. Ses trois lignes d’atlas ne contredisent plus l’outil.
+- **Témoins d’identité** : le bord du désert, l’oasis et le temple du Phénix tiennent l’identité. Mis à côté de l’Ours et du Dragon intégrés, aucun ne dérive (`tmp/final-images/sheets/scorpion-identity-vs-bear-dragon.jpg`).
+- **Génération** :
+  - les sept lieux que d’autres images reprennent passent d’abord : la salle des registres, l’oasis, le temple, le sanctuaire des cendres, la veillée, la crête du Prophète et la cour ;
+  - en même temps, les 21 images qui ne dépendent d’aucun d’eux ;
+  - puis leurs 11 paires.
+
+  Aucun échec d’appel. Le journal garde 47 entrées : 40 images et 7 reprises.
+- **Les 7 reprises et leurs raisons.** Les premières versions sont dans `tmp/final-images/out-v1/`. Chaque brief fautif est corrigé dans `tools/art/finalImagesStaging.ts`, ou dans l’outil quand l’outil était en cause.
+  - Le sanctuaire des cendres avait une douzaine de lampes allumées et des colonnes bâties, alors que la ligne veut des lampes froides et la seule lueur des braises. La ligne exclut désormais toute flamme et tout pilier. Repris avant que les pages souillées ne s’en servent de référence.
+  - Les pages souillées, même lieu, avaient encore deux braseros allumés, et la page déchirée se voyait mal. Elles sont désormais sans flamme, la niche et sa page vues de près.
+  - La cour du Grand Inquisiteur avait une fontaine pleine d’eau, des mesas au-dessus de ses murs et un livre sur un lutrin, visible par la porte. Sa ligne et celle de sa suite veulent désormais un bassin sec, des portes closes et le seul ciel au-dessus des arcades. La cour a été reprise avant sa suite.
+  - L’abri des caravanes portait deux scorpions sculptés sur ses piliers, alors que la ligne ne veut aucun emblème de clan. La cause était dans l’outil : la phrase de héraldique du clan hôte demandait son signe sur tout emblème sculpté. Une ligne qui dit « no emblem of any clan » reçoit désormais une règle sans aucun clan (`NO_CLAN_RULE`), et l’abri devient une petite salle aux murs nus.
+  - La bibliothèque ensevelie avait, au fond, des voûtes en ogive, motif du Lion, et des lampes allumées dans un lieu abandonné. La ligne demande désormais des arcs en plein cintre, des lampes froides et la seule lumière de la brèche.
+  - L’épilogue montrait une oasis de palmiers, alors que la ligne veut des dunes sans fin et un seul arbre épineux. Il ne montre plus ni eau ni palmier.
+  - Le Grand Inquisiteur portait un heaume d’acier gris à visière, au lieu du masque de cuivre validé. Il porte désormais un masque de cuivre sombre.
+- **Relecture de Claude** :
+  - l’identité tient : terre crue ocre, dunes et mesas, ombre faite contre le soleil ; le Phénix en pierre couleur de cendre, sa flamme safran au cœur blanc. Aucun motif du Lion, de l’Ours ou du Dragon, et aucun pixel violet dans les images des Ombres ;
+  - chaque lieu qui revient reste le même d’une image à l’autre :
+    - la salle des registres (audience, jugement, fin de chronique) ;
+    - l’oasis et son refuge ;
+    - le temple et ses quatre variantes ;
+    - les cendres et les pages souillées ;
+    - la veillée et le dernier refuge ;
+    - la crête du Prophète et sa chute ;
+    - la cour de l’épreuve et sa suite ;
+  - le codex, relié de cuir gris cendre, repose sur son lutrin avant les combats du temple. Après eux, le lutrin est vide ;
+  - aucun scorpion dans les lieux du Phénix, aucun phénix dans ceux du Scorpion ;
+  - les intérieurs clos restent clos. Seules la salle des registres et la bibliothèque reçoivent le jour, par en haut ;
+  - rien de bâti dans les scènes sauvages ; l’épilogue est un belvédère sauvage ;
+  - les scènes de dunes ont chacune leur cadrage ;
+  - tous les visages sont couverts, et chacun tient son arme de combat :
+    - le Grand Inquisiteur, son bâton à dard de cuivre ;
+    - l’érudit, son bâton ;
+    - le chef des gardiens, sa lance de flamme ;
+    - les gardiens, leur lance du temple ;
+    - le gardien de flamme, son bâton à brasier ;
+    - le Prophète et le fidèle égaré, l’encre noire de leurs mains.
+
+    Personne ne porte de livre. Le Prophète ne porte aucun signe de clan. Les deux fidèles du Phénix sont des civils, sans arme ;
+  - les trois atlas, recadrés sur le cadre du Lion, ont été superposés à ses lieux : chaque repère tombe sur une piste ou une clairière (`tmp/atlas-check/scorpion-*.png`). Chaque site est dessiné comme ses scènes le montrent ; l’oasis est la seule eau.
+- **Points laissés au jugement de l’opérateur** :
+  - le masque du Grand Inquisiteur est de cuivre, mais garde une forme de heaume à fente ;
+  - les trois images de la salle des registres ont presque le même cadrage, et la fin de chronique n’est pas plus sombre que le jugement ;
+  - l’atlas I garde un pont de planches au lieu d’une chaussée de pierre ;
+  - les ponts de l’atlas III gardent leurs arches, en plein cintre ;
+  - la bibliothèque ensevelie et l’abri des caravanes restent plus vastes que « petits ».
+- **Pour l’intégration, après accord** : `tools/art/publish_final_images.py scorpion`, puis les mêmes branchements que pour le Dragon.
+- **Planche** : `tmp/final-images/sheets/scorpion-review.jpg`.
+- **À l’opérateur** : juger le lot. Rien n’est intégré avant son accord.
+
 ## Rencontres des six héros (2026-11-11, nuit)
 
 `CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.
@@ -311,5 +367,5 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 `PROPOSED FUTURE DESIGN`, à confirmer par l’opérateur :
 - **Portraits** : les maîtres Character V2 des six héros entreront dans le lot des images finales, après le pilote.
 - **Essai en jeu** : les six rencontres et leurs secondes chances sont à juger lors du test PC final.
-- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Le Dragon est intégré depuis le 2026-11-12 ; le Scorpion vient ensuite.
+- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Le Dragon est intégré depuis le 2026-11-12 ; les 40 images du Scorpion sont générées et relues le même jour, en attente du jugement de l’opérateur avant intégration.
 - **Arènes du Scorpion et de l’acte final** : leurs combats jouent encore dans les arènes codées du Lion. Chacun pourra recevoir les siennes, comme l’Ours et le Dragon, à la demande de l’opérateur.

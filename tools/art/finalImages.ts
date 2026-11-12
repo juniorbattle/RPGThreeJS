@@ -82,7 +82,14 @@ const HOST_CLAN: Record<Chapter, string | null> = { bear: 'Bear', dragon: 'Drago
 const SHADOWS = /(^|[^\p{L}])(Ombres|Shadows)([^\p{L}]|$)/u;
 const namesClan = (text: string, name: string) => new RegExp(`(^|[^\\p{L}])${name}([^\\p{L}]|$)`, 'u').test(text);
 
+/** A place whose staging gives it no clan (the Scorpion's caravan shelter, open to any traveller). */
+const NO_CLAN = /no emblem of any clan/i;
+export const NO_CLAN_RULE = 'This place belongs to no clan: no banner, shield, medallion, carving, relief or painted emblem of any clan on any wall, pillar or object; never a lion.';
+
 export function heraldryFor(chapter: Chapter, awaitedFinal: string): string {
+  // The Scorpion's caravan shelter, staged with no emblem of any clan, came out with scorpions carved on its pillars: the
+  // host clan's sentence below asked for its sign on any carved emblem.
+  if (NO_CLAN.test(awaitedFinal)) return NO_CLAN_RULE;
   const host = CLAN_SIGNS.find((clan) => clan.english === HOST_CLAN[chapter]);
   const others = CLAN_SIGNS.filter((clan) => clan !== host && (namesClan(awaitedFinal, clan.name) || namesClan(awaitedFinal, clan.english)));
   const theirs = others.map((clan) => `the ${clan.english} clan’s people, camps and banners show ${clan.sign}`).join('; ');
@@ -209,6 +216,16 @@ const masterOf = (unitId: string) => `public/assets/characters/pixel/masters/${u
 /** Sentences joined with spaces, the empty ones left out. */
 const sentences = (...parts: (string | false | null | undefined)[]) => parts.filter(Boolean).join(' ');
 
+/**
+ * What the streams of a Lion layout become on each plateau's atlas. The sentence was written for the Bear's mountains and
+ * fits the Dragon's peaks; the Scorpion's desert has no water but its oasis. The finale has no atlas layout yet.
+ */
+export const ATLAS_STREAMS: Readonly<Partial<Record<Chapter, string>>> = Object.freeze({
+  bear: 'Streams of the layout become icy mountain torrents.',
+  dragon: 'Streams of the layout become icy mountain torrents.',
+  scorpion: 'Streams, rivers and waterfalls of the layout become dry wadis: beds of cracked pale clay and sand with no water at all.',
+});
+
 function promptFor(id: string, kind: Kind, chapter: Chapter, awaitedFinal: string, weapon: CombatWeapon | null = null): string {
   const look = PROPOSED_LOOKS[id] ?? STAGED_LOOKS[id] ?? '';
   const shadows = NAMES_SHADOWS.test(`${awaitedFinal} ${STAGING[id]?.line ?? ''} ${look}`) && SHADOWS_COLOUR_RULE;
@@ -222,7 +239,8 @@ function promptFor(id: string, kind: Kind, chapter: Chapter, awaitedFinal: strin
   }
   const layout = ATLAS_LAYOUTS[id];
   if (layout) {
-    return `${STYLE} An illustrated top-down region map of a fantasy land, painted like a game atlas, with no lettering. The reference image is this region’s existing map layout: repaint it completely in the identity below, but keep exactly the position, width and course of every road, path and crossing, and every clearing or site where a road meets another, so that map markers placed on the original still fall on the same roads and clearings. Sites stay open, readable clearings or small settlements. Streams of the layout become icy mountain torrents. Paint the blurred bands at the top and bottom as more terrain. Region: ${layout.line} ${IDENTITY[chapter] ?? SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
+    return sentences(`${STYLE} An illustrated top-down region map of a fantasy land, painted like a game atlas, with no lettering. The reference image is this region’s existing map layout: repaint it completely in the identity below, but keep exactly the position, width and course of every road, path and crossing, and every clearing or site where a road meets another, so that map markers placed on the original still fall on the same roads and clearings. Sites stay open, readable clearings or small settlements.`,
+      ATLAS_STREAMS[chapter], `Paint the blurred bands at the top and bottom as more terrain. Region: ${layout.line} ${IDENTITY[chapter] ?? SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`);
   }
   if (kind === 'atlas') {
     return `${STYLE} An illustrated top-down region map of a fantasy land, painted like a game atlas, with paths and landmarks but no lettering. Region: ${awaitedFinal}. ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;

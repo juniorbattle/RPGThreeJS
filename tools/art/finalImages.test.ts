@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
-  appendToLog, buildPlan, CLOSED_INTERIOR_RULE, combatWeaponOf, COVERED_FACE_RULE, heraldryFor, NOTHING_BUILT_FAR_RULE, openAiKey, PILOT_IDS,
+  appendToLog, ATLAS_STREAMS, buildPlan, CLOSED_INTERIOR_RULE, combatWeaponOf, COVERED_FACE_RULE, heraldryFor, NOTHING_BUILT_FAR_RULE, openAiKey, PILOT_IDS,
   SACRED_OBJECT_RULES, SHADOWS_COLOUR_RULE, weaponRule,
 } from './finalImages';
 import { ATLAS_LAYOUTS, CREATURE_IDS, CREATURE_REFS, CIVILIAN_REFS, IDENTITY, LIGHT_REFS, STAGING } from './finalImagesStaging';
@@ -97,6 +97,12 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
       expect(item.references, id).toEqual([layout.lionAtlas]);
       expect(item.prompt, id).toContain('keep exactly the position, width and course of every road');
       expect(item.prompt, id).toContain(layout.line);
+      // Each plateau says what the layout's streams become: icy torrents in the Bear's and the Dragon's mountains, the
+      // sentence they were generated with, dry wadis in the Scorpion's desert.
+      expect(ATLAS_STREAMS[item.chapter], id).toBeDefined();
+      expect(item.prompt, id).toContain(`Sites stay open, readable clearings or small settlements. ${ATLAS_STREAMS[item.chapter]} Paint the blurred bands`);
+      if (item.chapter === 'bear' || item.chapter === 'dragon') expect(ATLAS_STREAMS[item.chapter], id).toBe('Streams of the layout become icy mountain torrents.');
+      else expect(item.prompt, id).not.toContain('icy');
     }
     expect(Object.keys(ATLAS_LAYOUTS)).toEqual(['bear:atlas:1', 'bear:atlas:2', 'bear:atlas:3', 'dragon:atlas:1', 'dragon:atlas:2', 'dragon:atlas:3',
       'scorpion:atlas:1', 'scorpion:atlas:2', 'scorpion:atlas:3']);
