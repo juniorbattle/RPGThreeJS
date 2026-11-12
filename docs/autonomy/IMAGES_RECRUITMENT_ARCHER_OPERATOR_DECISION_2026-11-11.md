@@ -246,20 +246,21 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 
 ## Préparation du Scorpion (2026-11-12)
 
-`PROPOSED FUTURE DESIGN` — l’opérateur a demandé de préparer le Scorpion avec la méthode du Dragon, en appliquant d’avance toutes les leçons des reprises de l’Ours et du Dragon. Une session parallèle, dans son worktree, a fait ce travail.
-- **Brouillon soumis**, à valider : `docs/content/drafts/SCORPION_STAGING_DRAFT_2026-11-12.md`. Il contient :
+`CURRENT FACT` — l’opérateur a demandé de préparer le Scorpion avec la méthode du Dragon, en appliquant d’avance toutes les leçons des reprises de l’Ours et du Dragon. Une session parallèle, dans son worktree, a fait ce travail (`4bf11f77`).
+- **Validé tel quel** par l’opérateur le 2026-11-12 (« Validate as is »), avant d’avoir vu les témoins d’identité. Chaque question ouverte prend sa recommandation. La génération n’est pas lancée.
+- **Fiche** : `docs/content/drafts/SCORPION_STAGING_DRAFT_2026-11-12.md`. Elle contient :
   - **l’identité du Scorpion** : plat, brûlé, ocre et ambre, la terre crue et l’ombre faite contre le soleil. Le Lion est vert et gothique, l’Ours en granit sous la neige, le Dragon en calcaire pâle au-dessus des nuages ;
   - **celle du Phénix** dans le même désert : pierre taillée couleur de cendre, colonnes sculptées de phénix, lampes allumées en plein jour, flamme safran au cœur blanc. Un lieu du Phénix ne montre aucun scorpion, et un lieu du Scorpion aucun phénix ;
   - **la marque des Ombres** : une encre noire et froide, jamais violette ;
   - 28 lignes de mise en scène tirées des répliques, 9 aspects de personnages proposés, chacun avec son arme de combat, et 3 tracés d’atlas sur ceux du Lion.
 - **Le chef n’est nommé que par son titre**, « Grand Inquisiteur ».
-- **Questions ouvertes**, chacune avec sa recommandation :
-  - l’aspect du Grand Inquisiteur (un érudit masqué de cuivre au bâton à dard de scorpion) ;
-  - la couleur de la flamme du Phénix (safran au cœur blanc) ;
-  - l’aspect du codex (cuir gris cendre, fermoirs de bronze, sans lueur propre) ;
-  - la salle du Grand Inquisiteur (salle des registres éclairée par de hauts claustras) ;
-  - les fidèles égarés (des fidèles du Phénix perdus, sans emblème) ;
-  - les identités elles-mêmes.
+- **Questions tranchées par la validation** (la recommandation de chacune) :
+  - le Grand Inquisiteur est un érudit masqué de cuivre, au bâton à dard de scorpion ;
+  - la flamme du Phénix est safran, au cœur blanc ;
+  - le codex est relié de cuir gris cendre, avec des fermoirs de bronze, et n’a pas de lueur propre ;
+  - la salle du Grand Inquisiteur est une salle des registres éclairée par de hauts claustras ;
+  - les fidèles égarés sont des fidèles du Phénix perdus, sans emblème ;
+  - les identités restent telles qu’écrites.
 - **Outil prêt pour la génération** :
   - les lignes, les aspects et les tracés sont dans `tools/art/finalImagesStaging.ts` ;
   - le fidèle du Phénix et le fidèle captif sont traités en civils ;
@@ -271,7 +272,7 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   npx vite-node tools/art/finalImages.ts plan
   npx vite-node tools/art/finalImages.ts run --ids scorpion:scene:scorpion_arrival,scorpion:scene:scorpion_oasis_gathering,scorpion:scene:scorpion_phoenix_temple --concurrency 3
   ```
-- **Rien d’autre n’est généré** avant la validation de l’opérateur.
+- **Suite** : générer les trois témoins depuis le dépôt principal, les comparer à l’Ours et au Dragon, puis lancer le lot du Scorpion (28 décors, 9 personnages, 3 atlas), comme pour le Dragon.
 
 ## Rencontres des six héros (2026-11-11, nuit)
 
