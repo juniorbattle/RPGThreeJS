@@ -39,13 +39,20 @@ npx vite-node tools/art/finalImages.ts -- run --pilot
 
 Le modèle par défaut est celui des images OpenAI déjà approuvées par le projet (`gpt-image-2.5-sunburst-2026-09-08`, d’après `tools/cinematics/specs/cin6ea3_pilot_e_image_gate.json`). Si ton compte ne le propose pas, ajoute par exemple `--model gpt-image-1`. Ouvrir ensuite `tmp/final-images/review.html`. Pour changer une apparence avant de lancer, il suffit de modifier le champ `notes` de la fiche dans `tmp/final-images/plan.json`.
 
+## Rencontres des six héros (2026-11-11, nuit)
+
+`CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.
+- `src/campaign/plateaux/heroMeetings.ts` : chaque rencontre se joue juste après une scène de choix existante, sur ses deux issues, sans en changer une réplique.
+  - L’Ours : Gunnar l’Artilleur après le Convoi de minerai (120 or) ; Aldric le Paladin après le Sanctuaire de la montagne (réputation 55 ; offrandes pillées : rendre les 50 or).
+  - Le Dragon : Lyra la Mage Rouge après le Hameau terrorisé (réputation 45 ; protection payée : rendre les 60 or) ; Talon le Ninja après les Pièges du Loup (150 or).
+  - Le Scorpion : Eldwin l’Enchanteur après les Érudits (réputation 60 si le fidèle est libéré ; fermé pour toute la partie s’il est abandonné) ; Morvan le Chevalier Noir après la Bibliothèque ensevelie (180 or, réputation 65 au plus).
+- `src/game/refugeRecruitment.ts` : la seconde chance vaut pour les huit héros recrutables. Chacun des six attend au refuge que nomme sa réplique d’adieu, aux conditions de sa rencontre plus le supplément approuvé : Refuge des mineurs (Gunnar, 180 or), Veillée avant le Sceau (Aldric, +60 or), Ermitage des contreforts (Lyra, +60 or), Abri des pèlerins (Talon, 220 or), Oasis des érudits (Eldwin, +80 or), Abri des caravanes (Morvan, 260 or). Cedric et Garen, dont les répliques ne nomment aucun refuge, restent proposés dans n’importe quel refuge.
+- Le plafond de recrues de `GameApp` (deux sur tout le jeu) est remplacé par `canRecruit` : un héros recrutable, absent de la compagnie, et une place libre. Les huit recrues possibles, deux par chapitre, plus les quatre du départ, font les 12 membres maximum.
+- Les six héros parlent avec leur portrait d’archive (`public/assets/characters/pixel/archive/non-demo/`) jusqu’aux images finales. Les choix de recrutement sous réputation sont exclus du contrôle des bornes de réputation des plateaux ; l’étalonnage du Lion ne change pas.
+- Tests : `src/campaign/plateaux/heroMeetings.test.ts` (rencontres reliées aux deux issues, conditions, huit recrues jusqu’à 12, seconde chance au bon refuge). Validateur narratif vert sur les cinq cartes.
+
 ## Suite
 
 `PROPOSED FUTURE DESIGN`, à confirmer par l’opérateur :
-- **Rencontres des six héros** : deux par plateau de l’après-démo, chacune avec sa seconde chance au refuge.
-  - L’Ours : Gunnar l’Artilleur, près des galeries, et Aldric le Paladin.
-  - Le Dragon : Lyra la Mage Rouge et Talon le Ninja.
-  - Le Scorpion : Eldwin l’Enchanteur, parmi les érudits, et Morvan le Chevalier Noir.
-  - Chaque scène sera écrite en brouillon et soumise mot à mot.
-- **Règle à revoir** : le plafond de recrues de `GameApp` (aujourd’hui deux héros recrutés au plus, sur tout le jeu) devra devenir « deux par plateau » ; la compagnie compte au plus 12 membres.
-- **Portraits** : leurs maîtres Character V2 entreront dans le lot des images finales, après le pilote.
+- **Portraits** : les maîtres Character V2 des six héros entreront dans le lot des images finales, après le pilote.
+- **Essai en jeu** : les six rencontres et leurs secondes chances sont à juger lors du test PC final.

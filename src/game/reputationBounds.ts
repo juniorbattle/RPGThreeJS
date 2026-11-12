@@ -117,7 +117,8 @@ export const LION_POST_DEMO_REPUTATION: ReputationCalibration = Object.freeze({
 // ---------------------------------------------------------------------------------------------------------------------
 // Walking content
 
-interface Gate { thresholdId: string; value: number }
+/** A passed reputation condition; `recruit` marks a recruitment's, which the post-demo honour path does not require. */
+interface Gate { thresholdId: string; value: number; recruit?: boolean }
 
 /** One way through a piece of content: the player's decisions, the reputation it moves, the gates it passed. */
 export interface ContentPath {
@@ -274,7 +275,9 @@ function runDialogue(dialogueId: string, context: WalkContext, depth: number, en
         const known = context.reputation !== undefined;
         const passes = !threshold || !known || stateAt(base, context).reputation >= calibrated;
         if (passes) {
-          const gated = threshold ? { ...decided, gates: [...decided.gates, { thresholdId: threshold.id, value: calibrated }] } : decided;
+          // A recruitment's condition is marked (OD-2026-11-11-F): the post-demo plateaux keep it out of their honour path.
+          const recruit = choice.effects.some((effect) => effect.type === 'recruitUnit');
+          const gated = threshold ? { ...decided, gates: [...decided.gates, { thresholdId: threshold.id, value: calibrated, ...(recruit ? { recruit } : {}) }] } : decided;
           for (const path of applyEffects(choice.effects, `choice:${decision}`, choiceLabel, context, depth, gated)) {
             visit(choice.next, path, nextSeen);
           }
@@ -568,7 +571,8 @@ export function computePlateauReputationBounds(chapterId: Exclude<CampaignChapte
   const failedHonourGates: PlateauReputationBounds['failedHonourGates'] = [];
   let floorRunning = REPUTATION_START;
   for (const node of nodes) {
-    for (const gate of node.floorGates) {
+    // Recruiting a hero met in the plateau is optional (OD-2026-11-11-F): its condition is not an honour gate.
+    for (const gate of node.floorGates.filter((candidate) => !candidate.recruit)) {
       if (floorRunning < gate.value) failedHonourGates.push({ nodeIds: node.nodeIds, ...gate, reputation: floorRunning });
     }
     floorRunning += node.floor;

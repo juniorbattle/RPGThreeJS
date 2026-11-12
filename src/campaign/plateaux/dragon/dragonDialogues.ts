@@ -8,6 +8,7 @@
  * Kaelen, the Wolf's pact at the lair, the Wolf warrior who was heard, the inscriptions brought back, the Lion's Shadow
  * evidence and the Bear's dark ore at the altar, the hamlet at the vigil, and the shaman's traces.
  */
+import { LYRA_MEETING, TALON_MEETING, withMeeting } from '../heroMeetings';
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../../../game/types';
 
 interface Who { speaker: string; actorId: string; side: 'left' | 'right' }
@@ -77,7 +78,7 @@ export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     say('warned', KESTREL, 'Éclaireuse', 'Je fais porter un message à l’ermitage. Kaelen saura qu’un émissaire du Loup descend jusqu’ici.', null),
     say('pact', ENVOY, 'Pacte', 'Alors nous nous reverrons au repaire. Le Loup tient parole à ceux qui la tiennent.', null),
   ]),
-  scene('dragon_terrorized_village', 'forest_fork', 'Hameau terrorisé', [
+  scene('dragon_terrorized_village', 'forest_fork', 'Hameau terrorisé', withMeeting([
     say('1', MARIAN, 'Soigneuse', 'Des portes barricadées, des enfants cachés dans les granges. Ce hameau attend une attaque.', '2', { expression: 'fearful' }),
     say('2', VILLAGER, 'Contreforts', 'Le Loup descend chaque nuit depuis la disparition du Cristal. Il prend les bêtes, les réserves, et il revient toujours. Le Dragon reste là-haut.', '3', { expression: 'fearful' }),
     say('3', MAELOR, 'Intendant', 'Ces gens paieraient cher pour dormir tranquilles. Une protection a un prix, et personne d’autre ne la leur offre.', '4'),
@@ -88,8 +89,8 @@ export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     ] }),
     say('protected', VILLAGER, 'Gratitude', 'Le Loup a vu vos feux et il a tourné bride. C’est la première nuit que nous dormons depuis des semaines.', null, { expression: 'grateful' }),
     say('extorted', MARIAN, 'Soigneuse', 'Ils ont vidé leur dernier coffre pour nous. Ils nous regardent comme ils regardent le Loup.', null, { expression: 'wounded' }),
-  ]),
-  scene('dragon_wolf_traps', 'forest_fork', 'Pièges du Loup', [
+  ], LYRA_MEETING)),
+  scene('dragon_wolf_traps', 'forest_fork', 'Pièges du Loup', withMeeting([
     say('1', KESTREL, 'Éclaireuse', 'Des collets d’acier sous la neige, en travers du sentier des pèlerins. Le Loup les a posés pour ceux qui montent prier le Dragon.', '2', { expression: 'stern' }),
     say('2', MAELOR, 'Intendant', 'Déplaçons-les sur les sentiers du Loup. Ses patrouilles y tomberont, et le repaire sera moins gardé.', '3'),
     say('3', MARIAN, 'Soigneuse', 'Les pèlerins passent aussi par là. Un collet ne distingue pas un loup d’un enfant.', 'choice', { expression: 'stern' }),
@@ -99,7 +100,7 @@ export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     ] }),
     say('disarmed', KESTREL, 'Éclaireuse', 'Le sentier est sûr. Les pèlerins pourront monter sans regarder où ils posent les pieds.', null),
     say('turned', KESTREL, 'Éclaireuse', 'Les collets attendent le Loup, maintenant. J’espère que personne d’autre ne passera par là.', null),
-  ]),
+  ], TALON_MEETING)),
   scene('dragon_hermitage_gathering', 'lion_refuge', 'Ermitage des contreforts', chained([
     say('1', ALISTAIR, 'Ermitage', 'Un ermitage du Dragon, accroché à la paroi. Les moines nous laissent le feu sans poser de questions.'),
     say('2', MAELOR, 'Intendant', 'Sans poser de questions, et sans rien nous dire non plus. Le Dragon garde même ses silences.'),

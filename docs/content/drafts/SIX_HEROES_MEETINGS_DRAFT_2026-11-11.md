@@ -1,4 +1,6 @@
-# Rencontres des six héros — brouillons à approuver
+# Rencontres des six héros — textes approuvés
+
+`CURRENT FACT` — approuvé mot à mot par l’opérateur le 2026-11-11 (« Textes approuvés ») et intégré dans `src/campaign/plateaux/heroMeetings.ts` et `src/game/refugeRecruitment.ts`. Texte d’origine du brouillon :
 
 `PROPOSED FUTURE DESIGN` — OD-2026-11-11-F, F2, avec la note de l’opérateur « prend aussi en compte les 6 autres héros ». Ces répliques sont du canon : rien n’est intégré avant l’approbation de l’opérateur, mot à mot. Elles ne citent que des faits déjà établis par les plateaux : lieux, clans, choix. Pour chaque héros, elles n’ajoutent qu’un nom, un métier et une raison d’être là.
 

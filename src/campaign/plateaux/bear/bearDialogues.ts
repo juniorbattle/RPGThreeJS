@@ -7,6 +7,7 @@
  * Bois-Clair before Borin, Maelor's memory of the coffers, the witnesses and the Shadow altar, the Raven's pact at the
  * mines, the rescued miners, and the Master Spy's orders.
  */
+import { ALDRIC_MEETING, GUNNAR_MEETING, withMeeting } from '../heroMeetings';
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../../../game/types';
 
 interface Who { speaker: string; actorId: string; side: 'left' | 'right' }
@@ -132,7 +133,7 @@ export const BEAR_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze(
     say('2', KESTREL, 'Ordres', 'Des ordres, pliés dans un coffre. La même écriture partout, la même signature : le Maître Espion. Celui qui dirigeait les mineurs recevait ses ordres de plus haut.', null, { expression: 'stern', effects: [flag('bearSpyOrdersFound')] }),
     say('3', SERAPHINE, 'Sage', 'Le Maître Espion du Corbeau. Borin voudra lire ces ordres, et nous aussi.', null, { expression: 'mystical' }),
   ])),
-  scene('bear_mountain_shrine', 'mystery_shrine', 'Sanctuaire de la montagne', [
+  scene('bear_mountain_shrine', 'mystery_shrine', 'Sanctuaire de la montagne', withMeeting([
     say('1', SERAPHINE, 'Sage', 'Un sanctuaire de l’Ours. Des offrandes laissées à la montagne : des outils de mineur, des pierres polies, une bourse de pièces anciennes.', '2', { expression: 'mystical' }),
     say('2', MAELOR, 'Intendant', 'Personne ne viendra les compter avant des mois. Les offrandes ne nourrissent personne.', '3'),
     say('3', MARIAN, 'Soigneuse', 'Ce sont des prières, Maelor. Pas une caisse.', 'choice', { expression: 'stern' }),
@@ -142,7 +143,7 @@ export const BEAR_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze(
     ] }),
     say('honoured', SERAPHINE, 'Sage', 'La montagne garde ce qu’on lui donne. Laissons-lui au moins cela.', null),
     say('plundered', MAELOR, 'Intendant', 'Cinquante pièces. La montagne ne réclamera rien ; ses gardiens, peut-être.', null),
-  ]),
+  ], ALDRIC_MEETING)),
   scene('bear_vigil', 'lion_refuge', 'Veillée avant le Sceau', chained([
     say('1', ALISTAIR, 'Veillée', 'Borin nous attend demain. Tout ce que nous avons fait dans ces montagnes sera posé devant lui.', null, { expression: 'stern' }),
     say('2', SERAPHINE, 'Sage', 'Ce qui comptera, ce ne sont pas nos mots devant lui, mais ce que ses mineurs et sa montagne diront de nous.', null, { expression: 'mystical' }),
@@ -196,7 +197,7 @@ function bearAudience(state: Readonly<GameState>): DialogueSequence {
 function bearOreConvoy(state: Readonly<GameState>): DialogueSequence {
   const greed = state.flags.missionGreed
     ? ' À Bois-Clair, la bourse du clan nous a tenus debout. Je ne vois pas pourquoi la montagne serait différente.' : '';
-  return scene('bear_ore_convoy', 'reserve_trail', 'Convoi de minerai', [
+  return scene('bear_ore_convoy', 'reserve_trail', 'Convoi de minerai', withMeeting([
     say('open', KESTREL, 'Éclaireuse', 'Un convoi descend des galeries : des chariots bâchés, chargés de pierres noires qui ne brillent pas. Escorte légère, deux gardes et un conducteur.', 'maelor', { expression: 'stern' }),
     say('maelor', MAELOR, 'Intendant', `Du minerai volé à l’Ours. Si nous le prenons, personne ne le rendra jamais à Borin de toute façon. Autant qu’il serve à quelqu’un.${greed}`, 'seraphine'),
     say('seraphine', SERAPHINE, 'Sage', 'Ce minerai ne ressemble à rien de ce que j’ai vu. Borin doit savoir ce que le Corbeau emporte, avant que nous décidions de ce qu’il vaut.', 'choice', { expression: 'mystical' }),
@@ -206,7 +207,7 @@ function bearOreConvoy(state: Readonly<GameState>): DialogueSequence {
     ] }),
     say('reported', KESTREL, 'Éclaireuse', 'Je les suis jusqu’au pont et je laisse notre signe sur la dernière borne. Les éclaireurs de l’Ours sauront où chercher.', null),
     say('seized', KESTREL, 'Éclaireuse', 'Les gardes s’enfuient sans combattre. Les chariots sont à nous. Ce minerai sent la pierre froide… et autre chose.', null),
-  ]);
+  ], GUNNAR_MEETING));
 }
 
 function bearSacredMines(state: Readonly<GameState>): DialogueSequence {

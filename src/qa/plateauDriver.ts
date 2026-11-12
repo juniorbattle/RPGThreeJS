@@ -9,6 +9,8 @@
  *
  * QA tooling: it never runs in the game and owns no truth.
  */
+import { createRecruitInstance } from '../game/catalog';
+import { canRecruit } from '../game/refugeRecruitment';
 import { combatVictoryFacts, completePlateauChronicle, continueCampaign, plateauEpilogueDialogueId, plateauFinaleOf } from '../game/plateauProgression';
 import { resolvePlateauFinaleExecution, resolvePendingPlateauFinaleCombat } from '../game/plateauFinale';
 import { resolveGameAteRules, resolveGameDialogue } from '../game/contextualDialogueContent';
@@ -150,6 +152,8 @@ class PlateauDriver {
         }
         case 'completePlateau': completePlateauChronicle(this.state, effect.plateauId); break;
         case 'completeEpilogue': completeCampaignEnding(this.state); break;
+        // OD-2026-11-11-F (F2): a hero met in a plateau joins as in the game, under the same recruitment rule.
+        case 'recruitUnit': if (canRecruit(this.state, effect.unitId)) this.state.clan.members.push(createRecruitInstance(effect.unitId)); break;
         default: throw new Error(`The Bear driver does not expect a '${effect.type}' effect.`);
       }
     }

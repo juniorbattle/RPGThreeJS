@@ -51,7 +51,7 @@ import { sceneMood, type NarrativeMood } from '../audio/moods';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
 import { CREDITS_LINES, hasCredits } from '../ui/credits';
 import { RefugeHireView } from '../ui/RefugeHireView';
-import { hireAtRefuge, refugeHireOffers } from './refugeRecruitment';
+import { canRecruit, hireAtRefuge, refugeHireOffers } from './refugeRecruitment';
 import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
 import { readMotionPreference, writeMotionPreference } from '../ui/MotionPreference';
@@ -1727,17 +1727,8 @@ export class GameApp {
           }
           break;
         case 'recruitUnit':
-          {
-            const coreIds = new Set(['warrior', 'white_mage', 'dark_mage', 'archer']);
-            const chapterRecruits = this.state.clan.members.filter((m) => !coreIds.has(m.definitionId)).length;
-            if (
-              chapterRecruits < 2
-              && this.state.clan.members.length < this.state.clan.maxSize
-              && !this.state.clan.members.some((unit) => unit.id === effect.unitId)
-            ) {
-              this.state.clan.members.push(createRecruitInstance(effect.unitId));
-            }
-          }
+          // OD-2026-11-11-F (F2): eight recruitable heroes, two per plateau; refugeRecruitment.ts owns the rule.
+          if (canRecruit(this.state, effect.unitId)) this.state.clan.members.push(createRecruitInstance(effect.unitId));
           break;
         case 'startCombat':
           this.pendingCombatId = effect.combatId;

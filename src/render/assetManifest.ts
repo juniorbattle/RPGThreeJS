@@ -185,6 +185,13 @@ export const assets = {
     chroniqueur: '/assets/characters/pixel/archive/non-demo/chroniqueur.png',
     sage_seraphine: '/assets/characters/pixel/masters/sage_seraphine.png',
     shrine_apparition: '/assets/characters/pixel/archive/non-demo/shrine_apparition.png',
+    // OD-2026-11-11-F (F2): the six heroes met in the post-demo plateaux, on their archive portraits until their final images.
+    aldric: '/assets/characters/pixel/archive/non-demo/aldric.png',
+    morvan: '/assets/characters/pixel/archive/non-demo/morvan.png',
+    lyra: '/assets/characters/pixel/archive/non-demo/lyra.png',
+    eldwin: '/assets/characters/pixel/archive/non-demo/eldwin.png',
+    talon: '/assets/characters/pixel/archive/non-demo/talon.png',
+    gunnar: '/assets/characters/pixel/archive/non-demo/gunnar.png',
   },
   dialogueScenes: {
     acte_ouverture: '/assets/generated/lion-phase/dialogue/camp_departure.webp',

@@ -8,6 +8,7 @@
  * the Grand Inquisiteur, the oath sworn to the Phénix at its temple, the freed faithful at the Prophet's cell, the Bear's
  * dark ore and the Dragon's altar shard beside the soiled page, the Phénix's wards at the vigil, and the Prophet's traces.
  */
+import { ELDWIN_MEETING, MORVAN_MEETING, withMeeting } from '../heroMeetings';
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../../../game/types';
 
 interface Who { speaker: string; actorId: string; side: 'left' | 'right' }
@@ -62,7 +63,7 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
     say('2', SERAPHINE, 'Sage', 'Le Clan du Scorpion garde ici des secrets plus anciens que ses dunes. Ses érudits savent beaucoup, et ils ne disent jamais tout.', null, { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Un clan qui collectionne les secrets. Voyons ce qu’il est prêt à échanger contre les nôtres.'),
   ])),
-  scene('scorpion_scholars', 'mystery_ambush', 'Érudits du Scorpion', [
+  scene('scorpion_scholars', 'mystery_ambush', 'Érudits du Scorpion', withMeeting([
     say('1', KESTREL, 'Éclaireuse', 'Un camp d’érudits du Scorpion sur la piste du temple. Ils ont attaché un fidèle du Phénix au pied d’une tente, et ils l’interrogent depuis l’aube.', '2', { expression: 'stern' }),
     say('2', SCHOLAR, 'Scorpion', 'Il connaît les passages du temple. Il finira par les dire. Le Grand Inquisiteur nous a laissé le temps qu’il faudra.', '3'),
     say('3', CAPTIVE, 'Phénix', 'Je ne dirai rien du temple. Faites de moi ce que vous voudrez.', '4', { expression: 'hostile' }),
@@ -76,7 +77,7 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
     say('freed2', SCHOLAR, 'Scorpion', 'Le Grand Inquisiteur saura qui nous a pris notre témoin.', null, { expression: 'hostile' }),
     say('abandoned', SCHOLAR, 'Scorpion', 'Prenez ceci pour la route. Le Scorpion sait remercier ceux qui ne le gênent pas.', 'abandoned2'),
     say('abandoned2', MARIAN, 'Soigneuse', 'Il nous a regardés partir. Je n’oublierai pas ce regard.', null, { expression: 'wounded' }),
-  ]),
+  ], ELDWIN_MEETING)),
   scene('scorpion_phoenix_faithful', 'witnesses_on_road', 'Fidèles du Phénix', [
     say('1', KESTREL, 'Éclaireuse', 'Des fidèles du Phénix gardent la route de leur temple. Ils ne portent pas d’armes, seulement des lampes allumées en plein jour.', '2', { expression: 'stern' }),
     say('2', FAITHFUL, 'Phénix', 'Vous marchez vers le temple, et nous savons qui vous envoie. Le Scorpion veut notre codex depuis toujours. Il le lirait comme il lit tout : pour s’en servir.', '3'),
@@ -118,7 +119,7 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
     say('respected', SERAPHINE, 'Sage', 'Les sceaux s’éteignent un à un, sans fumée. Les fidèles du Phénix sauront que quelqu’un a respecté leur rite.', null, { expression: 'mystical' }),
     say('broken', KESTREL, 'Éclaireuse', 'Les sceaux ont volé en éclats. La route est ouverte, et noire de suie.', null),
   ]),
-  scene('scorpion_buried_library', 'mystery_shrine', 'Bibliothèque ensevelie', [
+  scene('scorpion_buried_library', 'mystery_shrine', 'Bibliothèque ensevelie', withMeeting([
     say('1', KESTREL, 'Éclaireuse', 'Une bibliothèque du Phénix, à moitié ensevelie. Le sable a gardé ses rouleaux mieux que n’importe quel gardien.', '2'),
     say('2', SERAPHINE, 'Sage', 'Des siècles de textes. Les déplacer les tuerait ; les lire ici prendrait des années.', '3', { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Quelques rouleaux bien choisis valent une fortune chez les érudits du Scorpion. Ils ne demanderont pas d’où ils viennent.', '4'),
@@ -129,7 +130,7 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
     ] }),
     say('respected', SERAPHINE, 'Sage', 'Je recouvre l’entrée de sable. Elle a attendu des siècles ; elle attendra encore.', null, { expression: 'mystical' }),
     say('looted', MAELOR, 'Intendant', 'Un érudit du Scorpion campait près des ruines. Il a payé les rouleaux sans discuter, et sans demander d’où ils venaient.', null),
-  ]),
+  ], MORVAN_MEETING)),
   scene('scorpion_pre_temple_assault', 'shadow_signs', 'Assaut du temple', chained([
     say('1', GUARDIAN_CHIEF, 'Phénix', 'Le Scorpion lit tout et ne comprend rien. Ce codex ne quittera pas sa flamme tant que je respire.', null, { expression: 'hostile' }),
   ])),
