@@ -137,7 +137,43 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   - une fiche qui nomme les Ombres sans clan ne reçoit aucun signe de clan ;
   - le wyrm est traité en créature, le villageois et le pèlerin en civils.
 - **Témoins d’identité** (non intégrés, `tmp/final-images/out/`) : le pied des Pics, l’ermitage, le repaire du Loup. Le premier ermitage montrait un dragon serpentin d’Orient. L’identité demande désormais des dragons d’Occident, ailés comme le jeune dragon du jeu, et l’ermitage est régénéré.
-- **À l’opérateur** : valider ou corriger le brouillon. Rien d’autre n’est généré avant son accord.
+- **Validé** le 2026-11-12 (« Ancien humain », puis « Lance le Dragon »).
+
+## Images du Dragon (2026-11-12)
+
+`CURRENT FACT` — l’opérateur a validé la fiche, Cristal bleu glacé compris. Les 43 images du Dragon sont générées et relues ; aucune n’est intégrée.
+- **Trois passes, sans échec** :
+  - les quatre lieux que d’autres images reprennent : salle de Kaelen, veillée, arête du Chaman, esplanade de l’épreuve. Ils servent ensuite de référence à leurs paires ;
+  - les 31 images indépendantes de ces lieux, en même temps ;
+  - une passe de 14 : les 5 images de ces lieux (jugement, fin de chronique, refuge de la veillée, Chaman vaincu, Sceau arraché) et 9 reprises.
+- **Les 9 reprises et leurs raisons.** Chaque brief fautif est corrigé dans `tools/art/finalImagesStaging.ts` ; les premières versions sont dans `tmp/final-images/out-v1/`.
+  - Les quatre images du repaire avant et après le combat montraient des piliers sculptés de dragons et des cloches de bronze dans la caverne du Loup. La ligne précise désormais : « caverne du Loup, sans sculpture du Dragon, ni pilier, ni cloche ».
+  - Le hameau montrait un bourg fortifié au loin. La ligne exclut désormais château, forteresse, monastère et bourg en vue.
+  - Le Sceau du Dragon reprenait l’esplanade pavée à mosaïque de l’autel ; c’est désormais un belvédère sauvage.
+  - L’abri des pèlerins s’ouvrait sur le ciel par une fenêtre, alors que la fiche le veut clos. Il devient une salle close, sans fenêtre.
+  - Kaelen tenait un bâton serti d’un cristal bleu, qu’on aurait pu prendre pour le Cristal d’Écho. Il ne porte plus ni cristal ni gemme.
+  - Le wyrm avait des veines et des yeux violets, que l’identité exclut. Il a désormais des veines noires et des yeux pâles, sans violet.
+- **Relecture de Claude** :
+  - l’identité tient : pierre claire, mer de nuages, bronze vert-de-gris, dragons d’Occident ailés. Aucun motif du Lion ou de l’Ours, aucune pagode ;
+  - chaque lieu qui revient reste le même d’une image à l’autre :
+    - la salle de Kaelen (audience, jugement, fin de chronique), seul intérieur ouvert sur le ciel ;
+    - l’ermitage et son refuge ;
+    - le repaire et ses quatre variantes ;
+    - la veillée et son refuge ;
+    - l’arête du Chaman et l’esplanade de l’épreuve ;
+  - le Cristal luit en bleu glacé sur l’autel du repaire. Il manque sur l’autel fendu du sommet, d’où suinte la souillure noire ;
+  - les bannières du Loup portent un loup, et le chaman ne porte aucun signe de clan ;
+  - tous les visages sont couverts (masques, heaumes, têtes de loup, voiles), sauf le wyrm, dessiné en créature. Kaelen est l’ancien humain choisi, en robe d’écailles et masque-heaume de dragon en bronze ;
+  - les trois atlas ont été recadrés sur le cadre du Lion, puis superposés à ses lieux : chaque repère tombe sur une route ou une clairière (`tmp/atlas-check/dragon-*.png`).
+- **Points laissés au jugement de l’opérateur** :
+  - l’atlas I dessine l’ermitage comme un camp palissadé ;
+  - l’atlas III montre un sanctuaire au cristal près du sommet ;
+  - les scènes de sentier (pied des Pics, pièges, guerrier blessé, inscriptions, pèlerins) ont des compositions voisines : sentier à gauche, mer de nuages à droite ;
+  - la veillée place la salle de Kaelen plus près que « loin en contrebas ».
+- **Journal** : `tmp/final-images/log.json` garde l’entrée de chaque image. Deux passes l’ont écrit en même temps ; j’ai vérifié qu’aucune entrée ne s’est perdue.
+- **Pour l’intégration, après accord** : `tools/art/publish_final_images.py` devra connaître les élites du Dragon (Kaelen, chef du Loup, Chaman, champion du Loup) et compter le wyrm parmi les bêtes.
+- **Planche** : `tmp/final-images/sheets/dragon-review.jpg`.
+- **À l’opérateur** : juger le lot. Rien n’est intégré avant son accord.
 
 ## Rencontres des six héros (2026-11-11, nuit)
 
