@@ -8,8 +8,8 @@
  *
  *   npx vite-node tools/art/finalImages.ts -- run --pilot          (the six Bear images agreed for the pilot)
  *   npx vite-node tools/art/finalImages.ts -- run --ids id1,id2    (any images of the plan)
- *     Calls the OpenAI image edit endpoint with the operator's key from the OPENAI_API_KEY environment variable, which this
- *     tool never prints or stores, and writes tmp/final-images/out/<id>.png, log.json and review.html (current stand-in
+ *     Calls the OpenAI image edit endpoint with the operator's key, OPENAI_API_KEY, taken from the terminal or else from the
+ *     project's Git-ignored .env.local (only the OPENAI_ variables are loaded). The tool never prints or stores it. It writes tmp/final-images/out/<id>.png, log.json and review.html (current stand-in
  *     beside the generated image). Nothing is integrated: only images the operator accepts are integrated afterwards.
  *
  * Options for run: --model <name> (default: the project's earlier approved image model), --quality <low|medium|high> (default high), --force (redo
@@ -21,6 +21,7 @@ import * as bear from '../../src/campaign/plateaux/bear/bearPresentation';
 import * as dragon from '../../src/campaign/plateaux/dragon/dragonPresentation';
 import * as scorpion from '../../src/campaign/plateaux/scorpion/scorpionPresentation';
 import * as finale from '../../src/campaign/plateaux/finale/finalePresentation';
+import { loadEnv } from 'vite';
 import { demoEnvironmentPlateForContext } from '../../src/render/demoEnvironmentPack';
 
 type Chapter = 'bear' | 'dragon' | 'scorpion' | 'finale';
@@ -52,7 +53,18 @@ const SETTINGS: Record<Chapter, string> = {
   finale: 'La capitale des clans : l’Arène des Destins, la capitale en flammes, la brèche.',
 };
 
-const STYLE = 'Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the palette, texture, outline and level of detail of the reference images exactly. No text, no letters, no labels, no UI, no watermark, no frame.';
+const STYLE = 'Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the palette, texture, outline and level of detail of the reference images exactly. The reference images set the style only: never copy their heraldry, emblems or banners. No text, no letters, no labels, no UI, no watermark, no frame.';
+
+/**
+ * The pilot showed the Lion references' heraldry leaking into Bear images (lion banners, lion medallions): every brief
+ * names the clan whose signs the place or person may show.
+ */
+const HERALDRY: Record<Chapter, string> = {
+  bear: 'Any banner, shield, medallion or carved emblem shows the Bear clan’s sign, a bear; never a lion.',
+  dragon: 'Any banner, shield, medallion or carved emblem shows the Dragon clan’s sign, a dragon; never a lion.',
+  scorpion: 'Any banner, shield, medallion or carved emblem shows the Scorpion clan’s sign, a scorpion; never a lion.',
+  finale: 'Any banners mix the signs of several clans; no single emblem dominates.',
+};
 
 /** Approved Lion art used as style references (Character V2 masters and approved tableaux). */
 const BACKDROP_STYLE_REFS = [
@@ -96,12 +108,12 @@ const masterOf = (unitId: string) => `public/assets/characters/pixel/masters/${u
 
 function promptFor(kind: Kind, chapter: Chapter, awaitedFinal: string): string {
   if (kind === 'character') {
-    return `${STYLE} One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. Subject: ${awaitedFinal}. Setting of the character: ${SETTINGS[chapter]}`;
+    return `${STYLE} One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. Subject: ${awaitedFinal}. Setting of the character: ${SETTINGS[chapter]} ${HERALDRY[chapter]}`;
   }
   if (kind === 'atlas') {
-    return `${STYLE} An illustrated top-down region map of a fantasy land, painted like a game atlas, with paths and landmarks but no lettering. Region: ${awaitedFinal}. ${SETTINGS[chapter]}`;
+    return `${STYLE} An illustrated top-down region map of a fantasy land, painted like a game atlas, with paths and landmarks but no lettering. Region: ${awaitedFinal}. ${SETTINGS[chapter]} ${HERALDRY[chapter]}`;
   }
-  return `${STYLE} A wide environment tableau, eye-level establishing view of the place, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Leave open ground in the lower half for them. Scene: ${awaitedFinal}. ${SETTINGS[chapter]}`;
+  return `${STYLE} A wide environment tableau, eye-level establishing view of the place, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Leave open ground in the lower half for them. Scene: ${awaitedFinal}. ${SETTINGS[chapter]} ${HERALDRY[chapter]}`;
 }
 
 function brief(chapter: Chapter, group: string, key: string, kind: Kind, awaitedFinal: string, standIn: string | null): FinalImageBrief {
@@ -163,6 +175,17 @@ export function buildPlan(): FinalImageBrief[] {
   return plan;
 }
 
+/**
+ * The operator's OpenAI key: OPENAI_API_KEY from the terminal, else the same variable from the project's env files
+ * (.env.local, Git-ignored), read by Vite's own loader with only the OPENAI_ prefix. Returns where it came from, never
+ * prints it.
+ */
+export function openAiKey(root: string = ROOT): { key: string; source: string } | null {
+  if (process.env.OPENAI_API_KEY) return { key: process.env.OPENAI_API_KEY, source: 'the terminal' };
+  const fromFiles = loadEnv('production', root, 'OPENAI_').OPENAI_API_KEY;
+  return fromFiles ? { key: fromFiles, source: 'the project env file (.env.local)' } : null;
+}
+
 function readPlan(): FinalImageBrief[] {
   if (!existsSync(PLAN)) throw new Error('No plan yet: run "plan" first.');
   return JSON.parse(readFileSync(PLAN, 'utf8')) as FinalImageBrief[];
@@ -214,8 +237,10 @@ async function main(): Promise<void> {
     return;
   }
   if (command !== 'run') throw new Error(`Unknown command "${command}": use plan or run.`);
-  const key = process.env.OPENAI_API_KEY;
-  if (!key) throw new Error('Set OPENAI_API_KEY in this terminal first; the tool never prints or stores it.');
+  const found = openAiKey();
+  if (!found) throw new Error('No OPENAI_API_KEY in this terminal or in .env.local; the tool never prints or stores it.');
+  const key = found.key;
+  console.log(`OpenAI access: ${found.source} (value never shown).`);
   const plan = readPlan();
   const ids = args.includes('--pilot') ? [...PILOT_IDS] : (option('--ids') ?? '').split(',').map((id) => id.trim()).filter(Boolean);
   if (!ids.length) throw new Error('Choose images with --pilot or --ids id1,id2.');

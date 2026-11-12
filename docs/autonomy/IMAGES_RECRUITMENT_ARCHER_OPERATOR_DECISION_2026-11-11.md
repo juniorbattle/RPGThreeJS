@@ -24,20 +24,27 @@
   - L’étape **plan**, sans réseau, écrit `tmp/final-images/plan.json` : 162 fiches (106 décors, 10 atlas, 46 personnages).
   - Chaque fiche contient le brief, la taille et des références de style tirées de l’art approuvé du Lion. L’image provisoire n’est jamais envoyée en référence, car c’est un autre lieu ou un autre personnage ; elle figure seulement sur la planche de relecture.
   - Les deux personnages du pilote portent une apparence **proposée**, marquée « PROPOSAL, to confirm » : le canon ne décrit pas encore Borin ni le guerrier de l’Ours.
-  - L’étape **run** appelle OpenAI avec la clé lue dans `OPENAI_API_KEY`, jamais écrite ni affichée. Elle produit `tmp/final-images/out/`, `log.json` et `review.html`.
+  - L’étape **run** appelle OpenAI avec la clé `OPENAI_API_KEY`, jamais écrite ni affichée. Elle la prend dans le terminal, sinon dans `.env.local` (ignoré par Git), que l’outil charge lui-même avec le lecteur de Vite, limité aux variables `OPENAI_` : aucun agent n’ouvre le fichier (demande de l’opérateur, 2026-11-11). Elle produit `tmp/final-images/out/`, `log.json` et `review.html`.
 - **F2, première partie** : `src/game/refugeRecruitment.ts` et l’entrée « Engager » du refuge (`src/ui/RefugeHireView.ts`). Cedric (80 or au lieu de 50) et Garen (60 or au lieu de gratuit), rencontrés mais pas recrutés, peuvent y être engagés aux conditions de réputation calibrées de leur rencontre. Aucune réplique nouvelle.
 
-## Lancer le pilote d’images (opérateur)
+## Lancer le pilote d’images
 
-Dans un terminal PowerShell ouvert sur le dépôt :
+Avec la clé dans `.env.local` (`OPENAI_API_KEY=…`), Claude ou l’opérateur lance, dans un terminal ouvert sur le dépôt (sinon, définir d’abord `$env:OPENAI_API_KEY` dans le terminal) :
 
 ```powershell
-$env:OPENAI_API_KEY = "<ta clé>"
 npx vite-node tools/art/finalImages.ts -- plan
 npx vite-node tools/art/finalImages.ts -- run --pilot
 ```
 
 Le modèle par défaut est celui des images OpenAI déjà approuvées par le projet (`gpt-image-2.5-sunburst-2026-09-08`, d’après `tools/cinematics/specs/cin6ea3_pilot_e_image_gate.json`). Si ton compte ne le propose pas, ajoute par exemple `--model gpt-image-1`. Ouvrir ensuite `tmp/final-images/review.html`. Pour changer une apparence avant de lancer, il suffit de modifier le champ `notes` de la fiche dans `tmp/final-images/plan.json`.
+
+## Pilote d’images (2026-11-11, nuit)
+
+`CURRENT FACT` — Claude a lancé le pilote à la demande de l’opérateur. Les six images de l’Ours sont dans `tmp/final-images/out/` (ignoré par Git), avec `log.json` et `review.html`. Rien n’est intégré.
+- Modèle par défaut, qualité haute : quatre décors en 1536×1024 et deux personnages en 1024×1024 sur fond transparent. Clé lue dans l’environnement du terminal, jamais affichée.
+- Constat : l’héraldique des références du Lion a fui. Les bannières de l’audience montrent un lion dressé, et Borin porte des médaillons à tête de lion (épaules, ceinture, marteau). Le guerrier de l’Ours et les trois autres décors montrent bien l’ours.
+- Correction dans l’outil : chaque fiche précise que les références donnent le style seulement, jamais leur héraldique, et nomme le signe du clan du lieu (l’ours, le dragon, le scorpion, jamais le lion ; plusieurs clans pour l’acte final). Les deux images fautives ne sont pas régénérées sans l’accord de l’opérateur.
+- Avis attendu de l’opérateur : les quatre décors se ressemblent beaucoup (place enneigée, montagnes, bannières, braseros). Les apparences proposées pour Borin et le guerrier sont encore à confirmer.
 
 ## Rencontres des six héros (2026-11-11, nuit)
 
