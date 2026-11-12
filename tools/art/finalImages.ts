@@ -12,7 +12,7 @@
  *     tool never prints or stores, and writes tmp/final-images/out/<id>.png, log.json and review.html (current stand-in
  *     beside the generated image). Nothing is integrated: only images the operator accepts are integrated afterwards.
  *
- * Options for run: --model <name> (default gpt-image-1), --quality <low|medium|high> (default high), --force (redo
+ * Options for run: --model <name> (default: the project's earlier approved image model), --quality <low|medium|high> (default high), --force (redo
  * images already generated). tmp/ is ignored by Git.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -220,7 +220,8 @@ async function main(): Promise<void> {
   const ids = args.includes('--pilot') ? [...PILOT_IDS] : (option('--ids') ?? '').split(',').map((id) => id.trim()).filter(Boolean);
   if (!ids.length) throw new Error('Choose images with --pilot or --ids id1,id2.');
   const selected = ids.map((id) => { const item = plan.find((candidate) => candidate.id === id); if (!item) throw new Error(`Not in the plan: ${id}`); return item; });
-  const model = option('--model') ?? 'gpt-image-1';
+  // The model of the project's earlier approved OpenAI images (tools/cinematics/specs/cin6ea3_pilot_e_image_gate.json).
+  const model = option('--model') ?? 'gpt-image-2.5-sunburst-2026-09-08';
   const quality = option('--quality') ?? 'high';
   const logPath = join(OUT_DIR, 'log.json');
   const log = existsSync(logPath) ? JSON.parse(readFileSync(logPath, 'utf8')) as unknown[] : [];

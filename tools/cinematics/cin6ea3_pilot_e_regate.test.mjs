@@ -44,8 +44,14 @@ describe('CIN-6E-A.3 Pilot E fidelity and dynamic regate', () => {
     expect(imageGate.gates).toHaveLength(13);
     expect(imageGate.gates.every((gate) => gate.status === 'PASS')).toBe(true);
     expect(imageGate.agentImageVerdict).toBe('OPERATOR_APPROVED');
+    // A reference that a later operator decision replaced keeps its recorded hash as history; its current file must match
+    // the Character V2 manifest instead (OD-2026-11-11-F: Kestrel's master moved from green to night blue).
+    const superseded = { 'public/assets/characters/pixel/masters/archer.png': 'OD-2026-11-11-F' };
+    const v2Manifest = readJson('public/assets/characters/pixel/character-system-v2-manifest.json');
+    const v2MasterSha = (path) => JSON.stringify(v2Manifest).match(new RegExp(`"src":"/${path.replace(/^public\//, '').replace(/[.*+?^${}()|[\]\\/]/g, '\\$&')}","sha256":"([0-9a-f]{64})"`))?.[1];
     for (const reference of Object.values(imageGate.canonicalReferences)) {
-      expect(sha256(reference.path)).toBe(reference.sha256);
+      if (superseded[reference.path]) expect(sha256(reference.path)).toBe(v2MasterSha(reference.path));
+      else expect(sha256(reference.path)).toBe(reference.sha256);
     }
   });
 

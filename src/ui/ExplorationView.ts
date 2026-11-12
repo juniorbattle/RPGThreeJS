@@ -11,13 +11,15 @@ interface ExplorationViewOptions {
   backgroundPreloader?: (backgroundUrl: string) => Promise<RefugeBackgroundReadiness>;
 }
 
-export type ExplorationAction = 'continue' | 'shop' | 'clan' | 'skills' | 'rest';
+export type ExplorationAction = 'continue' | 'shop' | 'clan' | 'skills' | 'rest' | 'hire';
 
 interface RestSummary {
   cost: number;
   woundedCount: number;
   canRest: boolean;
   message?: string;
+  /** OD-2026-11-11-F (F2): heroes met but not recruited who wait at the refuge; the entry shows only when there are some. */
+  hireCount?: number;
 }
 
 export class ExplorationView {
@@ -78,6 +80,7 @@ export class ExplorationView {
         <button type="button" data-action="clan"><b>Compagnie</b><small>Fiches, &eacute;quipement et inventaire</small></button>
         <button type="button" data-action="shop"><b>&Eacute;choppe</b><small>&Eacute;changer avec le marchand</small></button>
         <button type="button" data-action="skills"><b>Am&eacute;lioration</b><small>Renforcer les comp&eacute;tences</small></button>
+        ${rest.hireCount ? `<button type="button" data-action="hire"><b>Engager</b><small>${rest.hireCount} compagnon${rest.hireCount > 1 ? 's' : ''} rencontr&eacute;${rest.hireCount > 1 ? 's' : ''} sans &ecirc;tre recrut&eacute;${rest.hireCount > 1 ? 's' : ''}</small></button>` : ''}
         <button type="button" data-action="rest" ${rest.canRest ? '' : 'disabled'}><b>Repos</b><small>${restHint}${rest.woundedCount > 0 ? '<br>Restaure tous les PV, K.O. inclus.' : ''}</small></button>
         <button type="button" data-action="continue" class="exploration-stop__continue"><b>Reprendre la route</b><small>Quitter le refuge</small></button>
       </div>
@@ -86,7 +89,7 @@ export class ExplorationView {
     section.querySelector<HTMLElement>('h2')!.textContent = presentation.title;
     section.querySelector<HTMLElement>('.exploration-stop__description')!.textContent = presentation.description;
     const icons: Record<ExplorationAction, CampaignIcon> = {
-      clan: 'clan', shop: 'merchant', skills: 'upgrade', rest: 'rest', continue: 'destination',
+      clan: 'clan', shop: 'merchant', skills: 'upgrade', rest: 'rest', continue: 'destination', hire: 'reward',
     };
     section.querySelectorAll<HTMLButtonElement>('[data-action]').forEach((button) => {
       button.prepend(createCampaignIcon(icons[button.dataset.action as ExplorationAction]));

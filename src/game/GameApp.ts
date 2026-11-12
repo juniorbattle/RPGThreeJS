@@ -50,6 +50,8 @@ import { provisionalMark } from './postDemoContent';
 import { sceneMood, type NarrativeMood } from '../audio/moods';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
 import { CREDITS_LINES, hasCredits } from '../ui/credits';
+import { RefugeHireView } from '../ui/RefugeHireView';
+import { hireAtRefuge, refugeHireOffers } from './refugeRecruitment';
 import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
 import { readMotionPreference, writeMotionPreference } from '../ui/MotionPreference';
@@ -167,6 +169,7 @@ export class GameApp {
   private readonly poiEncounter: PoiEncounterView;
   private readonly exploration: ExplorationView;
   private readonly prologue: OpeningSequence;
+  private readonly refugeHire: RefugeHireView;
   private readonly cinematicRegistry = new CinematicRegistry();
   private readonly cinematicPlayer = new CinematicPlayer(this.cinematicRegistry);
   private pendingCombatId: string | null = null;
@@ -242,6 +245,7 @@ export class GameApp {
       onMenu: () => {if(!this.routeCommitInFlight){this.saves.saveAuto(this.state);this.uiSounds.play('back');this.returnToTitle();}},
     });
     this.prologue = new OpeningSequence(root);
+    this.refugeHire = new RefugeHireView(root);
   }
 
   /**
@@ -1475,6 +1479,7 @@ export class GameApp {
           woundedCount,
           canRest: woundedCount > 0 && this.state.gold >= restCost,
           message: refugeMessage,
+          hireCount: refugeHireOffers(this.state).length,
         });
       };
       const action = first && openFirst ? await openFirst(open) : await open();
@@ -1482,6 +1487,18 @@ export class GameApp {
       refugeMessage = '';
       securedGold = 0;
       if (action === 'continue') break;
+      if (action === 'hire') {
+        // OD-2026-11-11-F (F2): a hero met but not recruited, engaged at the refuge; refugeRecruitment.ts decides.
+        const offers = refugeHireOffers(this.state);
+        const chosen = await this.refugeHire.open(offers, this.state.gold);
+        const offer = offers.find((candidate) => candidate.unitId === chosen);
+        if (chosen && offer && hireAtRefuge(this.state, chosen)) {
+          this.saves.saveAuto(this.state);
+          this.uiSounds.play('saved');
+          refugeMessage = `${offer.name} rejoint la compagnie pour ${offer.price} or.`;
+        }
+        continue;
+      }
       if (action === 'rest') {
         const costBeforeRest = getRestCost(this.state);
         const rested = restUnits(this.state);
