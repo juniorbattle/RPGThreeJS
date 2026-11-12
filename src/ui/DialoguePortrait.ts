@@ -26,6 +26,11 @@ const CROP_OVERRIDES: Readonly<Record<string, Partial<Omit<DialoguePortrait, 'sr
   raven_miner_chief: { cropY: '45%' },
   raven_master_spy: { cropY: '45%' },
   raven_foreman: { cropY: '45%' },
+  // The Dragon's tall final masters, framed the same way.
+  kaelen: { cropY: '45%' },
+  wolf_chief: { cropY: '45%' },
+  shadow_shaman: { cropY: '45%' },
+  wolf_champion: { cropY: '45%' },
 };
 
 export function resolveDialoguePortrait(actorId: string | undefined): DialoguePortrait | undefined {

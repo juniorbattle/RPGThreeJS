@@ -60,6 +60,15 @@ export const COMBAT_PORTRAIT_FRAMING: Readonly<Record<string, { scale: number; x
   '/assets/characters/pixel/post-demo/bear/raven_miner.png': { scale: 3.2, x: 0, y: 46 },
   '/assets/characters/pixel/post-demo/bear/corrupted_beast.png': { scale: 2.2, x: -51, y: -3 },
   '/assets/characters/pixel/post-demo/bear/depth_beast.png': { scale: 2.3, x: -62, y: -20 },
+  // OD-2026-11-11-F (F1): the Dragon's final masters, framed like the Bear's of the same height; the wyrm on its head.
+  '/assets/characters/pixel/post-demo/dragon/kaelen.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/dragon/wolf_chief.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/dragon/shadow_shaman.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/dragon/wolf_champion.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/dragon/dragon_guardian.png': { scale: 3.2, x: 0, y: 46 },
+  '/assets/characters/pixel/post-demo/dragon/wolf_raider.png': { scale: 3.2, x: 0, y: 46 },
+  '/assets/characters/pixel/post-demo/dragon/wolf_hunter.png': { scale: 3.2, x: 0, y: 46 },
+  '/assets/characters/pixel/post-demo/dragon/shadow_wyrm.png': { scale: 2.3, x: -62, y: 0 },
   // Set 1.20.0, post-demo Lot 4: Maelor at the breach, and the provisional stand-ins of the final act's demons and its entity.
   '/assets/characters/pixel/masters/maelor.png': { scale: 3.2, x: 0, y: 46 },
   '/assets/characters/pixel/archive/non-demo/giant_mygale.png': { scale: 2.4, x: 0, y: 50 },

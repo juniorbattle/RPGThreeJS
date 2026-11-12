@@ -1141,6 +1141,303 @@
       "colors": 41,
       "sha256": "b2cb9d2c915715b62ef6e7e263206fcf56ce43db5296b72302e727baa2376afd"
     },
+    "dragon_guardian": {
+      "file": "/assets/characters/pixel/combat-sprites/dragon_guardian.png",
+      "cell": [
+        51,
+        94
+      ],
+      "anchor": [
+        25,
+        91
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/dragon/dragon_guardian.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "fc826ddc8d2fba2429227a342c1fd820a0aaba1b73695fed35996194f7584e6a"
+      },
+      "figureHeightPx": 89,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 49,
+        "bottom": 92
+      },
+      "colors": 41,
+      "sha256": "9a442bfeeef635e22df44833a1645f30c1a18fcb0b1d7b37861a0b49be4d571a"
+    },
+    "dragon_pilgrim": {
+      "file": "/assets/characters/pixel/combat-sprites/dragon_pilgrim.png",
+      "cell": [
+        52,
+        88
+      ],
+      "anchor": [
+        26,
+        85
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/dragon/dragon_pilgrim.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "a91c749f02c69e2b95afaee5b38aec1a891e807972d2aad7968b6fa54fba2f9c"
+      },
+      "figureHeightPx": 83,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 50,
+        "bottom": 86
+      },
+      "colors": 41,
+      "sha256": "e67c47c2337d975942e45d3a21fab64d9f69ebd2cc3cefacb3a80381e414375d"
+    },
+    "dragon_villager": {
+      "file": "/assets/characters/pixel/combat-sprites/dragon_villager.png",
+      "cell": [
+        48,
+        88
+      ],
+      "anchor": [
+        24,
+        85
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/dragon/dragon_villager.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "18a8d3bb5e42ac5def5a95b6027280f9635e4d122287cddb5d5e5b9ae1051468"
+      },
+      "figureHeightPx": 83,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 46,
+        "bottom": 86
+      },
+      "colors": 41,
+      "sha256": "ce8cee62aa5ada7dd0c978073040a3894567edd4f02de3e21e67efedb3062da2"
+    },
     "eldwin": {
       "file": "/assets/characters/pixel/combat-sprites/eldwin.png",
       "cell": [
@@ -1774,6 +2071,105 @@
       },
       "colors": 41,
       "sha256": "88b453e9fa11c42e03b321616d7d3a9a798a327a78875acca0aa210eb06c5dac"
+    },
+    "kaelen": {
+      "file": "/assets/characters/pixel/combat-sprites/kaelen.png",
+      "cell": [
+        121,
+        176
+      ],
+      "anchor": [
+        60,
+        173
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/dragon/kaelen.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "445cdd3fc1fee281860fcb93c300a2dc75e206cbd33179989cd64dc24a7ac06b"
+      },
+      "figureHeightPx": 171,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 119,
+        "bottom": 174
+      },
+      "colors": 41,
+      "sha256": "9720d7376de6d22e82a17bfa1327df8eb4b11b3c768b27d8210e88fa75226e4e"
     },
     "lancer": {
       "file": "/assets/characters/pixel/combat-sprites/lancer.png",
@@ -3657,6 +4053,204 @@
       "colors": 41,
       "sha256": "f941ded1ae571ff2e0e34f36f078904bf80766dbcbd5d609a7b54390a608057c"
     },
+    "shadow_shaman": {
+      "file": "/assets/characters/pixel/combat-sprites/shadow_shaman.png",
+      "cell": [
+        125,
+        169
+      ],
+      "anchor": [
+        62,
+        166
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/dragon/shadow_shaman.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "e781a606aaeec6c9a8fc7993ac6d4e400030233ae41c5411361ea30be571962e"
+      },
+      "figureHeightPx": 164,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 123,
+        "bottom": 167
+      },
+      "colors": 40,
+      "sha256": "8ad4a0b55d888b1c5bb5ee2f49e460ad5a2575d66053f71a69cd17dbb4830f23"
+    },
+    "shadow_wyrm": {
+      "file": "/assets/characters/pixel/combat-sprites/shadow_wyrm.png",
+      "cell": [
+        197,
+        126
+      ],
+      "anchor": [
+        98,
+        123
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/dragon/shadow_wyrm.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "2807680087e95f6a1b9739e135a7a50c22468673c5422f243b1895f97669e8e9"
+      },
+      "figureHeightPx": 121,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 195,
+        "bottom": 124
+      },
+      "colors": 41,
+      "sha256": "9b7356fc681044f78ec0af7d8f5988f51558ace152ceb7af4a8c59ea62bae455"
+    },
     "skeleton": {
       "file": "/assets/characters/pixel/combat-sprites/skeleton.png",
       "cell": [
@@ -4716,6 +5310,600 @@
       },
       "colors": 41,
       "sha256": "055aff877a55f89c4b2e079c7005f5f74dcb363433749cad0e99e0a19d492384"
+    },
+    "wolf_captive": {
+      "file": "/assets/characters/pixel/combat-sprites/wolf_captive.png",
+      "cell": [
+        57,
+        90
+      ],
+      "anchor": [
+        28,
+        87
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/dragon/wolf_captive.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "545068c1afb1454ed668c3b633fe7b4ce08d42a4c85e587234d7350f0bdb886e"
+      },
+      "figureHeightPx": 85,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 55,
+        "bottom": 88
+      },
+      "colors": 41,
+      "sha256": "5600cfef954bedabd08362e7998a8eee52f9e883f4da5729f1ce1ccddc125c56"
+    },
+    "wolf_champion": {
+      "file": "/assets/characters/pixel/combat-sprites/wolf_champion.png",
+      "cell": [
+        109,
+        166
+      ],
+      "anchor": [
+        54,
+        163
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/dragon/wolf_champion.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "cafabd5c661e32235aadaf28da32a01d1e2a0ae6f8b9722327c8d995783a1cfa"
+      },
+      "figureHeightPx": 161,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 107,
+        "bottom": 164
+      },
+      "colors": 41,
+      "sha256": "60c5552b57994a8661b3f61d1a287aad0753d7a7b9a7a79782f16e34b70e36cb"
+    },
+    "wolf_chief": {
+      "file": "/assets/characters/pixel/combat-sprites/wolf_chief.png",
+      "cell": [
+        112,
+        174
+      ],
+      "anchor": [
+        56,
+        171
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/dragon/wolf_chief.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "88b2e71a59d7ef263c538ad8cfe050f829d550a083999bee21e1cd3b56053fd2"
+      },
+      "figureHeightPx": 169,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 110,
+        "bottom": 172
+      },
+      "colors": 41,
+      "sha256": "744cdb9ebfd78b0be37763d06727a2756be906dec5e388dca1260ad39137e958"
+    },
+    "wolf_envoy": {
+      "file": "/assets/characters/pixel/combat-sprites/wolf_envoy.png",
+      "cell": [
+        61,
+        89
+      ],
+      "anchor": [
+        30,
+        86
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/dragon/wolf_envoy.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "5de25e60d788ce34df7c7ce750867fb35b4ceb9bb8b3adfe0f5952a2a2dd5846"
+      },
+      "figureHeightPx": 84,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 59,
+        "bottom": 87
+      },
+      "colors": 41,
+      "sha256": "21db28cde5668b918389869aefeff262aeb00c3b01becac89a9cfe2cf757f76d"
+    },
+    "wolf_hunter": {
+      "file": "/assets/characters/pixel/combat-sprites/wolf_hunter.png",
+      "cell": [
+        59,
+        90
+      ],
+      "anchor": [
+        29,
+        87
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/dragon/wolf_hunter.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "c5a4c722d7863723f15d2c7a1e2ec0c6a8c93ba5f6fd48d29177321eaa8a4562"
+      },
+      "figureHeightPx": 85,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 57,
+        "bottom": 88
+      },
+      "colors": 41,
+      "sha256": "97a93bb482cf596a5669e5b03e780b11690f00a3670504e801ed10b9de12d0f3"
+    },
+    "wolf_raider": {
+      "file": "/assets/characters/pixel/combat-sprites/wolf_raider.png",
+      "cell": [
+        60,
+        92
+      ],
+      "anchor": [
+        30,
+        89
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/dragon/wolf_raider.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "4f6256e1189f59a3826c9228e58c2a44a9424eada0c72d2e5f367f3569daaec4"
+      },
+      "figureHeightPx": 87,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 58,
+        "bottom": 90
+      },
+      "colors": 41,
+      "sha256": "676db5d6385bc5b45bc38641de2994a050bab8006e985fe8b9f4c0ecb92736f5"
     },
     "young_dragon_elite": {
       "file": "/assets/characters/pixel/combat-sprites/young_dragon_elite.png",

@@ -1,15 +1,20 @@
 /**
  * Set 1.20.0 (WORLD_AND_CHARACTERS "Provisional images"), post-demo Lot 2 — presentation of the Dragon plateau.
- * The plateau is canon (OD-2026-11-08-C); its images stay provisional until the final-image lot.
+ * The plateau is canon (OD-2026-11-08-C).
  *
- * Every image here is PROVISIONAL: approved Lion backdrops and atlases reused, and existing characters standing in as
- * silhouettes for the Dragon's new characters. None is generated and none is a video. Each is listed with the final
- * image it awaits; the final images form a separate lot led with the operator. A provisional image is not production art
- * and never sets art direction. Presentation only: no game truth.
+ * FINAL IMAGES (OD-2026-11-11-F, F1; staging validated by the operator on 2026-11-12, « Lance le Dragon », batch
+ * integrated on his order, « continue l'intégration du Dragon »): every scene, refuge, atlas, the chronicle end and the
+ * Dragon's twelve characters show the plateau's own final images, made by tools/art/finalImages.ts and published by
+ * tools/art/publish_final_images.py (provenance in tools/art/provenance/dragon-final-images.json). Each entry keeps the
+ * reused Lion art or stand-in it replaced and the brief it was made from (`awaitedFinal`). The atlases keep the Lion
+ * atlases' layout, so the POI positions below stay valid. Presentation only: no game truth.
  */
-import { LION_POI_POSITIONS, LION_POI_REGIONS, LION_POI_REGION_EXITS, lionPoiPathBends } from '../../LionPoiMap';
+import { LION_POI_POSITIONS, LION_POI_REGION_EXITS, lionPoiPathBends } from '../../LionPoiMap';
 import type { ProvisionalActor, ProvisionalAtlasRegion } from '../bear/bearPresentation';
 import { DRAGON_POI_METADATA } from './dragonTopology';
+
+const FINAL_IMAGES = '/assets/generated/post-demo/dragon';
+const FINAL_CHARACTERS = '/assets/characters/pixel/post-demo/dragon';
 
 /** The Dragon's POIs stand where their Lion counterparts stand on the reused Lion atlases, as the Bear's do. */
 const LION_COUNTERPART: Readonly<Record<string, string>> = Object.freeze({
@@ -31,11 +36,11 @@ const LION_COUNTERPART: Readonly<Record<string, string>> = Object.freeze({
 });
 
 export const DRAGON_ATLAS_REGIONS: readonly ProvisionalAtlasRegion[] = Object.freeze([
-  { shortTitle: 'I · Les contreforts', title: 'Des contreforts à l’ermitage du Dragon', image: LION_POI_REGIONS[0]!.image, provisional: true,
+  { shortTitle: 'I · Les contreforts', title: 'Des contreforts à l’ermitage du Dragon', image: `${FINAL_IMAGES}/atlases/region-1.webp`, provisional: false,
     awaitedFinal: 'Atlas I du Dragon : les contreforts des Pics Célestes jusqu’à l’ermitage' },
-  { shortTitle: 'II · Les terrasses', title: 'Les terrasses et le repaire du Loup', image: LION_POI_REGIONS[1]!.image, provisional: true,
+  { shortTitle: 'II · Les terrasses', title: 'Les terrasses et le repaire du Loup', image: `${FINAL_IMAGES}/atlases/region-2.webp`, provisional: false,
     awaitedFinal: 'Atlas II du Dragon : les terrasses, la paroi gravée et le repaire du Loup' },
-  { shortTitle: 'III · Les cimes', title: 'Les cimes et le jugement de Kaelen', image: LION_POI_REGIONS[2]!.image, provisional: true,
+  { shortTitle: 'III · Les cimes', title: 'Les cimes et le jugement de Kaelen', image: `${FINAL_IMAGES}/atlases/region-3.webp`, provisional: false,
     awaitedFinal: 'Atlas III du Dragon : les cimes, l’autel du Cristal et la salle de Kaelen' },
 ]);
 
@@ -55,53 +60,62 @@ export function dragonPoiMapPhase(nodeId: string): number {
   return DRAGON_POI_METADATA[nodeId]?.region ?? 0;
 }
 
-/** Refuge hubs of the Dragon plateau, on reused Lion refuge plates. */
+/**
+ * Refuge hubs of the Dragon plateau on their final images (`image`); the Lion refuge plate they replaced still gives the
+ * refuge its visual family.
+ */
 export const DRAGON_REFUGE_PRESENTATION = Object.freeze({
   'dragon-first-refuge': { environmentContext: 'dialogue:first_refuge_gathering', environmentRole: 'STATIC_TABLEAU' as const,
     eyebrow: 'Halte de la compagnie', description: 'Les moines de l’ermitage laissent le feu à la compagnie. Elle se prépare avant les terrasses.',
-    gatheringDialogueId: 'dragon_hermitage_gathering', awaitedFinal: 'Fond de refuge : l’ermitage du Dragon accroché à la paroi' },
+    gatheringDialogueId: 'dragon_hermitage_gathering', awaitedFinal: 'Fond de refuge : l’ermitage du Dragon accroché à la paroi',
+    image: `${FINAL_IMAGES}/refuges/dragon-first-refuge.webp` },
   'dragon-second-refuge': { environmentContext: 'node:lion-second-refuge', environmentRole: 'HOLD_SOURCE' as const,
     eyebrow: 'Halte de la compagnie', description: 'L’abri des pèlerins sent la neige et l’encens. La compagnie reprend son souffle.',
-    awaitedFinal: 'Fond de refuge : l’abri des pèlerins sous les cimes' },
+    awaitedFinal: 'Fond de refuge : l’abri des pèlerins sous les cimes', image: `${FINAL_IMAGES}/refuges/dragon-second-refuge.webp` },
   'dragon-final-refuge': { environmentContext: 'node:lion-second-refuge', environmentRole: 'HOLD_SOURCE' as const,
     eyebrow: 'Avant le jugement', description: 'Une dernière veillée avant de comparaître devant Kaelen.',
-    gatheringDialogueId: 'dragon_vigil', awaitedFinal: 'Fond de refuge : la veillée sur les Pics avant le jugement de Kaelen' },
+    gatheringDialogueId: 'dragon_vigil', awaitedFinal: 'Fond de refuge : la veillée sur les Pics avant le jugement de Kaelen',
+    image: `${FINAL_IMAGES}/refuges/dragon-final-refuge.webp` },
 });
 
-/** Shared surfaces a Dragon run shows on demo art, beyond its scenes, atlases and refuges. */
-export const DRAGON_PROVISIONAL_SURFACES: readonly { surface: string; standIn: string; awaitedFinal: string }[] = Object.freeze([
-  { surface: 'Fin de chronique (Journey)', standIn: 'salle du jugement du Lion (CHRONICLE_END_TABLEAU)', awaitedFinal: 'Tableau de fin de chronique : la salle de Kaelen après le jugement' },
+/** The end of a Dragon chronicle: Kaelen's hall after the judgement, the company on its floor (the chronicle-end staging). */
+export const DRAGON_CHRONICLE_END_IMAGE = `${FINAL_IMAGES}/surfaces/chronicle-end.webp`;
+
+/** Shared surfaces of a Dragon run beyond its scenes, atlases and refuges, with the demo art they replaced. */
+export const DRAGON_PROVISIONAL_SURFACES: readonly { surface: string; standIn: string; awaitedFinal: string; image?: string }[] = Object.freeze([
+  { surface: 'Fin de chronique (Journey)', standIn: 'salle du jugement du Lion (CHRONICLE_END_TABLEAU)', awaitedFinal: 'Tableau de fin de chronique : la salle de Kaelen après le jugement',
+    image: DRAGON_CHRONICLE_END_IMAGE },
 ]);
 
-/** New characters of the Dragon plateau, staged with existing silhouettes until their Character V2 masters exist. */
+/** New characters of the Dragon plateau, on their final masters; `standInUnitId` keeps the silhouette they replaced. */
 export const DRAGON_PROVISIONAL_ACTORS: readonly ProvisionalActor[] = Object.freeze([
-  { actorId: 'kaelen', standInUnitId: 'survivor', awaitedFinal: 'Master Character V2 de l’Ancien Dragon Kaelen, portrait et sprite de boss' },
-  { actorId: 'dragon_guardian', standInUnitId: 'village_militia_spearman', awaitedFinal: 'Sprite et portrait du gardien du Dragon' },
-  { actorId: 'dragon_villager', standInUnitId: 'villageois', awaitedFinal: 'Portrait du villageois des contreforts' },
-  { actorId: 'dragon_pilgrim', standInUnitId: 'villageoise', awaitedFinal: 'Portrait du pèlerin du Dragon' },
-  { actorId: 'wolf_envoy', standInUnitId: 'refugee', awaitedFinal: 'Portrait de l’émissaire du Loup' },
-  { actorId: 'wolf_captive', standInUnitId: 'serpent_raider', awaitedFinal: 'Portrait du guerrier du Loup blessé' },
-  { actorId: 'wolf_chief', standInUnitId: 'serpent_elite_brute', awaitedFinal: 'Master Character V2 du chef du Clan du Loup, sprite de boss' },
-  { actorId: 'shadow_shaman', standInUnitId: 'serpent_oracle', awaitedFinal: 'Master Character V2 du Chaman des Ombres, sprite de boss' },
+  { actorId: 'kaelen', standInUnitId: 'survivor', awaitedFinal: 'Master Character V2 de l’Ancien Dragon Kaelen, portrait et sprite de boss', master: `${FINAL_CHARACTERS}/kaelen.png` },
+  { actorId: 'dragon_guardian', standInUnitId: 'village_militia_spearman', awaitedFinal: 'Sprite et portrait du gardien du Dragon', master: `${FINAL_CHARACTERS}/dragon_guardian.png` },
+  { actorId: 'dragon_villager', standInUnitId: 'villageois', awaitedFinal: 'Portrait du villageois des contreforts', master: `${FINAL_CHARACTERS}/dragon_villager.png` },
+  { actorId: 'dragon_pilgrim', standInUnitId: 'villageoise', awaitedFinal: 'Portrait du pèlerin du Dragon', master: `${FINAL_CHARACTERS}/dragon_pilgrim.png` },
+  { actorId: 'wolf_envoy', standInUnitId: 'refugee', awaitedFinal: 'Portrait de l’émissaire du Loup', master: `${FINAL_CHARACTERS}/wolf_envoy.png` },
+  { actorId: 'wolf_captive', standInUnitId: 'serpent_raider', awaitedFinal: 'Portrait du guerrier du Loup blessé', master: `${FINAL_CHARACTERS}/wolf_captive.png` },
+  { actorId: 'wolf_chief', standInUnitId: 'serpent_elite_brute', awaitedFinal: 'Master Character V2 du chef du Clan du Loup, sprite de boss', master: `${FINAL_CHARACTERS}/wolf_chief.png` },
+  { actorId: 'shadow_shaman', standInUnitId: 'serpent_oracle', awaitedFinal: 'Master Character V2 du Chaman des Ombres, sprite de boss', master: `${FINAL_CHARACTERS}/shadow_shaman.png` },
 ]);
 
-/** Enemy families of the Dragon plateau and the existing sprites standing in for them in combat. */
-export const DRAGON_PROVISIONAL_ENEMIES: readonly { unitId: string; standInPortrait: string; awaitedFinal: string }[] = Object.freeze([
-  { unitId: 'wolf_raider', standInPortrait: 'serpent_raider', awaitedFinal: 'Sprite du pillard du Loup' },
-  { unitId: 'wolf_hunter', standInPortrait: 'village_militia_slinger', awaitedFinal: 'Sprite du chasseur du Loup' },
-  { unitId: 'wolf_champion', standInPortrait: 'serpent_duelist_elite', awaitedFinal: 'Sprite d’élite du champion du Loup' },
-  { unitId: 'shadow_wyrm', standInPortrait: 'young_dragon_elite', awaitedFinal: 'Sprite d’élite du wyrm corrompu des cimes' },
-  { unitId: 'dragon_guardian', standInPortrait: 'village_militia_spearman', awaitedFinal: 'Sprite du gardien du Dragon' },
-  { unitId: 'wolf_chief', standInPortrait: 'serpent_elite_brute', awaitedFinal: 'Sprite de boss du chef du Clan du Loup' },
-  { unitId: 'shadow_shaman', standInPortrait: 'serpent_oracle', awaitedFinal: 'Sprite de boss du Chaman des Ombres' },
-  { unitId: 'kaelen', standInPortrait: 'seal_guardian', awaitedFinal: 'Sprite de boss de l’Ancien Dragon Kaelen' },
+/** Enemy families of the Dragon plateau on their final masters; `standInPortrait` keeps the sprite they replaced in combat. */
+export const DRAGON_PROVISIONAL_ENEMIES: readonly { unitId: string; standInPortrait: string; awaitedFinal: string; master?: string }[] = Object.freeze([
+  { unitId: 'wolf_raider', standInPortrait: 'serpent_raider', awaitedFinal: 'Sprite du pillard du Loup', master: `${FINAL_CHARACTERS}/wolf_raider.png` },
+  { unitId: 'wolf_hunter', standInPortrait: 'village_militia_slinger', awaitedFinal: 'Sprite du chasseur du Loup', master: `${FINAL_CHARACTERS}/wolf_hunter.png` },
+  { unitId: 'wolf_champion', standInPortrait: 'serpent_duelist_elite', awaitedFinal: 'Sprite d’élite du champion du Loup', master: `${FINAL_CHARACTERS}/wolf_champion.png` },
+  { unitId: 'shadow_wyrm', standInPortrait: 'young_dragon_elite', awaitedFinal: 'Sprite d’élite du wyrm corrompu des cimes', master: `${FINAL_CHARACTERS}/shadow_wyrm.png` },
+  { unitId: 'dragon_guardian', standInPortrait: 'village_militia_spearman', awaitedFinal: 'Sprite du gardien du Dragon', master: `${FINAL_CHARACTERS}/dragon_guardian.png` },
+  { unitId: 'wolf_chief', standInPortrait: 'serpent_elite_brute', awaitedFinal: 'Sprite de boss du chef du Clan du Loup', master: `${FINAL_CHARACTERS}/wolf_chief.png` },
+  { unitId: 'shadow_shaman', standInPortrait: 'serpent_oracle', awaitedFinal: 'Sprite de boss du Chaman des Ombres', master: `${FINAL_CHARACTERS}/shadow_shaman.png` },
+  { unitId: 'kaelen', standInPortrait: 'seal_guardian', awaitedFinal: 'Sprite de boss de l’Ancien Dragon Kaelen', master: `${FINAL_CHARACTERS}/kaelen.png` },
 ]);
 
 /**
- * Every scene of the Dragon and the approved Lion tableau it borrows until its own final tableau exists: the narrative
- * stage reads `environmentContext` for the scene's still image. Each entry names the final image it awaits.
+ * Every scene of the Dragon, keyed by the dialogue that shows it, with its final tableau (`image`, which the narrative
+ * stage shows) and the approved Lion tableau it replaced (`environmentContext`).
  */
-export const DRAGON_PROVISIONAL_SCENES: Readonly<Record<string, { environmentContext: string; awaitedFinal: string }>> = Object.freeze({
+const DRAGON_SCENE_BRIEFS: Readonly<Record<string, { environmentContext: string; awaitedFinal: string }>> = Object.freeze({
   dragon_arrival: { environmentContext: 'dialogue:post_opening_trail', awaitedFinal: 'Tableau : la compagnie au pied des Pics Célestes' },
   dragon_audience: { environmentContext: 'dialogue:lion_briefing', awaitedFinal: 'Tableau : la salle de l’Ancien Dragon Kaelen' },
   dragon_wolf_envoy: { environmentContext: 'dialogue:mystery_ambush', awaitedFinal: 'Tableau : l’émissaire du Loup sous un drapeau de trêve' },
@@ -127,3 +141,7 @@ export const DRAGON_PROVISIONAL_SCENES: Readonly<Record<string, { environmentCon
   dragon_trial_aftermath: { environmentContext: 'dialogue:lion_trial_aftermath', awaitedFinal: 'Tableau : l’épreuve du Dragon achevée' },
   dragon_epilogue: { environmentContext: 'dialogue:epilogue', awaitedFinal: 'Tableau : le Sceau du Dragon' },
 });
+
+export const DRAGON_PROVISIONAL_SCENES: Readonly<Record<string, { environmentContext: string; awaitedFinal: string; image?: string }>> = Object.freeze(
+  Object.fromEntries(Object.entries(DRAGON_SCENE_BRIEFS).map(([key, scene]) => [key, Object.freeze({ ...scene, image: `${FINAL_IMAGES}/scenes/${key}.webp` })])),
+);

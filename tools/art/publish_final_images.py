@@ -35,8 +35,9 @@ BASELINE = 456
 ELITE_HEIGHT = 412
 STANDARD_HEIGHT = 345
 BEAST_WIDTH = 430
-ELITES = {'borin', 'raven_miner_chief', 'raven_master_spy', 'raven_foreman'}
-BEASTS = {'corrupted_beast', 'depth_beast'}
+ELITES = {'borin', 'raven_miner_chief', 'raven_master_spy', 'raven_foreman',
+          'kaelen', 'wolf_chief', 'shadow_shaman', 'wolf_champion'}
+BEASTS = {'corrupted_beast', 'depth_beast', 'shadow_wyrm'}
 
 
 def file_of(item_id: str) -> str:

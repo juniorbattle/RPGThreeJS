@@ -47,10 +47,12 @@ describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 4)', (
       'scorpion_inquisitor', 'scorpion_shadow_prophet', 'scorpion_temple_assault', 'scorpion_temple_seizure']);
     for (const combat of bosses) {
       const line = bossLine(combat.id);
-      // The Bear's bosses stand on their final masters (OD-2026-11-11-F); the other plateaux keep provisional stand-ins.
-      if (combat.id.startsWith('bear_')) {
+      // The Bear's and the Dragon's bosses stand on their final masters (OD-2026-11-11-F); the other plateaux keep
+      // provisional stand-ins.
+      const chapter = /^(bear|dragon)_/.exec(combat.id)?.[1];
+      if (chapter) {
         expect(line, combat.id).not.toContain('provisionalSprite');
-        expect(line, combat.id).toContain("portrait:'/assets/characters/pixel/post-demo/bear/");
+        expect(line, combat.id).toContain(`portrait:'/assets/characters/pixel/post-demo/${chapter}/`);
       } else expect(line, combat.id).toContain('provisionalSprite:true');
       expect(list(line, 'skills'), combat.id).toEqual([...__testing.POST_DEMO_BOSS_COMBAT_SKILLS[combat.id]!]);
     }
@@ -77,11 +79,15 @@ describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 4)', (
       'raven_champion', 'phoenix_champion', 'breach_demon', 'demon_brute'];
     const listed = [...BEAR_PROVISIONAL_ENEMIES, ...DRAGON_PROVISIONAL_ENEMIES, ...SCORPION_PROVISIONAL_ENEMIES,
       ...FINALE_PROVISIONAL_ENEMIES];
-    const bearFinal = new Set(BEAR_PROVISIONAL_ENEMIES.filter((enemy) => enemy.master).map((enemy) => enemy.unitId));
+    const finalChapter = new Map([
+      ...BEAR_PROVISIONAL_ENEMIES.filter((enemy) => enemy.master).map((enemy) => [enemy.unitId, 'bear'] as const),
+      ...DRAGON_PROVISIONAL_ENEMIES.filter((enemy) => enemy.master).map((enemy) => [enemy.unitId, 'dragon'] as const),
+    ]);
     for (const id of families) {
-      if (bearFinal.has(id)) {
+      const chapter = finalChapter.get(id);
+      if (chapter) {
         expect(templateLine(id), id).not.toContain('provisionalSprite');
-        expect(templateLine(id), id).toContain(`portrait:'/assets/characters/pixel/post-demo/bear/${id}.png'`);
+        expect(templateLine(id), id).toContain(`portrait:'/assets/characters/pixel/post-demo/${chapter}/${id}.png'`);
       } else expect(templateLine(id), id).toContain('provisionalSprite:true');
       expect(__testing.ENEMY_VISUAL_SKILLS[id], id).toEqual(list(templateLine(id), 'skills'));
       expect(listed.some((enemy) => enemy.unitId === id), id).toBe(true);

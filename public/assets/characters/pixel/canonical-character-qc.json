@@ -3107,5 +3107,377 @@
         "floor_artifact_pixels": 0
       }
     }
+  },
+  "kaelen": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [118, 44, 393, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 6,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [118, 44, 393, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 6,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [118, 44, 393, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 6,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "dragon_guardian": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [166, 111, 346, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 11,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [166, 111, 346, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 11,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [166, 111, 346, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 11,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "dragon_villager": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [167, 111, 344, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [167, 111, 344, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [167, 111, 344, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "dragon_pilgrim": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [160, 111, 352, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [160, 111, 352, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [160, 111, 352, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "wolf_envoy": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [142, 111, 369, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 8,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [142, 111, 369, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 8,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [142, 111, 369, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 8,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "wolf_captive": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [150, 111, 362, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 7,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [150, 111, 362, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 7,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [150, 111, 362, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 7,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "wolf_chief": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [125, 44, 386, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 44,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [125, 44, 386, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 44,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [125, 44, 386, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 44,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "shadow_shaman": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [105, 44, 406, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 13,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [105, 44, 406, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 13,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [105, 44, 406, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 13,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "wolf_raider": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [145, 111, 366, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 56,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [145, 111, 366, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 56,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [145, 111, 366, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 56,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "wolf_hunter": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [145, 111, 367, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 8,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [145, 111, 367, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 8,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [145, 111, 367, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 8,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "wolf_champion": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [123, 44, 389, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 169,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [123, 44, 389, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 169,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [123, 44, 389, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 169,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "shadow_wyrm": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [41, 184, 471, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 5,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [41, 184, 471, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 5,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [41, 184, 471, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 5,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
   }
 }

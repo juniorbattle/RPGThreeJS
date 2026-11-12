@@ -75,6 +75,20 @@ MASTER_ONLY = {
     'raven_miner': ('post-demo/bear/raven_miner.png', 2.2),
     'raven_messenger': ('post-demo/bear/raven_messenger.png', 2.1),
     'bear_miner': ('post-demo/bear/bear_miner.png', 2.05),
+    # OD-2026-11-11-F (F1): the Dragon plateau's final characters, sized like the Bear's (bosses and the Wolf's champion
+    # as tall as the elites they replace; the wyrm, long and four-legged, as wide as an elite beast).
+    'kaelen': ('post-demo/dragon/kaelen.png', 4.3),
+    'wolf_chief': ('post-demo/dragon/wolf_chief.png', 4.2),
+    'shadow_shaman': ('post-demo/dragon/shadow_shaman.png', 4.1),
+    'wolf_champion': ('post-demo/dragon/wolf_champion.png', 4.0),
+    'shadow_wyrm': ('post-demo/dragon/shadow_wyrm.png', 3.0),
+    'dragon_guardian': ('post-demo/dragon/dragon_guardian.png', 2.2),
+    'wolf_raider': ('post-demo/dragon/wolf_raider.png', 2.15),
+    'wolf_hunter': ('post-demo/dragon/wolf_hunter.png', 2.1),
+    'wolf_envoy': ('post-demo/dragon/wolf_envoy.png', 2.1),
+    'wolf_captive': ('post-demo/dragon/wolf_captive.png', 2.1),
+    'dragon_villager': ('post-demo/dragon/dragon_villager.png', 2.05),
+    'dragon_pilgrim': ('post-demo/dragon/dragon_pilgrim.png', 2.05),
 }
 
 

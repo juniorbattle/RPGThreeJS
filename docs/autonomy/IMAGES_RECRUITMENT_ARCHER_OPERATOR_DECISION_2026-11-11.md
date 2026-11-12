@@ -194,6 +194,40 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 - **Planche** : `tmp/final-images/sheets/dragon-review.jpg`.
 - **À l’opérateur** : juger le lot. Rien n’est intégré avant son accord.
 
+## Intégration du Dragon (2026-11-12)
+
+`CURRENT FACT` — l’opérateur a demandé : « corrige dans une session puis continue l’intégration du Dragon ». Les 43 images du Dragon sont dans le jeu, et le plateau ne porte plus la marque « Image provisoire ».
+- **Corrections, dans une session parallèle** (« Corrections des images du Dragon », même dépôt, sans commit de sa part). Elle a régénéré dix images ; les versions précédentes sont dans `tmp/final-images/out-v2/`.
+  - Les quatre points laissés au jugement :
+    - l’atlas I montre désormais l’ermitage en pierre sur sa falaise, sans palissade ;
+    - l’atlas III n’a plus de sanctuaire au cristal ;
+    - les pièges, le guerrier blessé, les inscriptions et les pèlerins ont chacun leur cadrage : les marches vues de près, les terrasses le long de leur bord, la paroi de face, le sentier qui descend vers le spectateur ;
+    - la veillée et son refuge mettent la salle de Kaelen loin en contrebas.
+  - Deux sprites mis en accord avec l’arme de leur unité en combat, que l’intégration a révélé : le chasseur du Loup tient une fronde (« Fronde ») au lieu d’un arc, et le champion porte des lames de jet (« Lames de jet ») au lieu d’une épée longue. Les données de combat restent inchangées.
+  - Les superpositions des atlas I et III sont vérifiées : chaque repère reste sur une route ou une clairière.
+- **Publication** : `tools/art/publish_final_images.py dragon`, puis les dix corrections republiées avec `--ids`.
+  - Décors et atlas en WebP qualité 95, 27 Mo, dans `public/assets/generated/post-demo/dragon/`.
+  - Douze maîtres 512×512, dans `public/assets/characters/pixel/post-demo/dragon/` : élites à la taille des élites (Kaelen, chef du Loup, Chaman, champion du Loup), le wyrm parmi les bêtes.
+  - Provenance des 43 fichiers dans `tools/art/provenance/dragon-final-images.json`, chacun sur sa génération la plus récente.
+  - Contrôle qualité des douze maîtres propre : ni magenta, ni violet parasite, rien sous la ligne des pieds.
+- **Branchements, présentation seule, sans champ de sauvegarde**, comme pour l’Ours :
+  - registre du Dragon (`dragonPresentation.ts`, avec `image` et `master`) et atlas non provisoires (`plateauAtlas.ts`) ;
+  - fin de chronique du Dragon dans la salle de Kaelen (`POST_DEMO_CHRONICLE_END_IMAGES`) ;
+  - marque provisoire retirée (`POST_DEMO_FINAL_ART_CHAPTERS`) ;
+  - portraits et figures dans `assetManifest`, et contrôle qualité des personnages ;
+  - planches de combat « maître seul » de `build_combat_sprites.py` ;
+  - huit modèles de combat sans `provisionalSprite` ;
+  - cadrage des vignettes de combat ; portraits de dialogue des grands maîtres recadrés sur le casque.
+- **Vérifié dans le navigateur** (serveur `preview_start`, piloté par Playwright), sans erreur de console ni requête en échec :
+  - le passage de la fin de l’Ours à l’arrivée du Dragon sur son décor ;
+  - la carte I sur le nouvel atlas, sans « Carte provisoire », avant et après la correction ;
+  - l’audience avec Kaelen, sa figure et sa carte de dialogue ;
+  - la fin de chronique dans la salle de Kaelen ;
+  - six combats avec les nouvelles planches et vignettes : assaut du repaire, épreuve de Kaelen, wyrm corrompu, Chaman des Ombres, éclaireurs du Loup, avant et après le nouveau chasseur.
+- **Non vu en jeu** : les refuges, couverts par les tests.
+- **Hors du lot d’images** : les combats du Dragon se jouent encore dans les arènes codées du Lion, dont le sanctuaire montre des bannières au lion. L’Ours a reçu les siennes le même jour.
+- **Tests** : le registre du Dragon vérifie chaque fichier, l’absence de marque, la fin de chronique, les portraits et les planches. Les tests du moteur de combat et du cadrage des vignettes tiennent compte des huit nouveaux portraits.
+
 ## Rencontres des six héros (2026-11-11, nuit)
 
 `CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.
@@ -211,5 +245,5 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 `PROPOSED FUTURE DESIGN`, à confirmer par l’opérateur :
 - **Portraits** : les maîtres Character V2 des six héros entreront dans le lot des images finales, après le pilote.
 - **Essai en jeu** : les six rencontres et leurs secondes chances sont à juger lors du test PC final.
-- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Celles du Dragon sont soumises depuis le 2026-11-12.
-- **Arènes du Dragon, du Scorpion et de l’acte final** : leurs combats jouent encore dans les arènes codées du Lion. Chacun pourra recevoir les siennes, comme l’Ours, à la demande de l’opérateur.
+- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Le Dragon est intégré depuis le 2026-11-12 ; le Scorpion vient ensuite.
+- **Arènes du Dragon, du Scorpion et de l’acte final** : leurs combats jouent encore dans les arènes codées du Lion. Chacun pourra recevoir les siennes, comme l’Ours, à la demande de l’opérateur. Le Dragon, désormais intégré, est le prochain candidat.
