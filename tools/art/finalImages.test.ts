@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { buildPlan, COVERED_FACE_RULE, heraldryFor, openAiKey, PILOT_IDS } from './finalImages';
+import { CREATURE_IDS, CREATURE_REFS, CIVILIAN_REFS, IDENTITY, LIGHT_REFS, STAGING } from './finalImagesStaging';
 
 describe('final images plan (OD-2026-11-11-F, F1)', () => {
   const plan = buildPlan();
@@ -38,7 +39,7 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
   it('tells every brief to keep the references’ style but not their Lion heraldry, and names the clan’s own sign', () => {
     for (const item of plan) {
       expect(item.prompt, item.id).toContain('never copy their heraldry');
-      if (item.chapter !== 'finale') expect(item.prompt, item.id).toMatch(/never a lion\.$/);
+      if (item.chapter !== 'finale' && !CREATURE_IDS.includes(item.id)) expect(item.prompt, item.id).toMatch(/never a lion\.$/);
     }
     expect(plan.find((item) => item.id === 'bear:scene:bear_audience')!.prompt).toContain('the Bear clan’s sign, a bear');
   });
@@ -53,13 +54,50 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
   });
 
   it('keeps every character’s face covered, the operator’s standing rule (OD-2026-11-11-G)', () => {
-    const characters = plan.filter((item) => item.kind === 'character');
+    const characters = plan.filter((item) => item.kind === 'character' && !CREATURE_IDS.includes(item.id));
     expect(characters.length).toBeGreaterThan(40);
     for (const item of characters) {
       expect(item.prompt, item.id).toContain(COVERED_FACE_RULE);
       expect(item.notes, item.id).not.toMatch(/beard|bare face|bare-headed/i);
     }
     expect(plan.find((item) => item.id === 'bear:actor:borin')!.notes).toContain('hides his face');
+  });
+
+  it('keeps the demo’s technique but not its palette, buildings or landmarks (operator, 2026-11-12)', () => {
+    for (const item of plan) expect(item.prompt, item.id).toContain('never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition');
+  });
+
+  it('stages every Bear backdrop the first run got wrong, with the Bear’s own identity and light-matched references', () => {
+    const backdrops = plan.filter((item) => item.chapter === 'bear' && item.kind === 'backdrop');
+    expect(backdrops.filter((item) => !STAGING[item.id]).map((item) => item.id)).toEqual(['bear:scene:bear_raven_camp']);
+    for (const [id, staging] of Object.entries(STAGING)) {
+      const item = plan.find((candidate) => candidate.id === id);
+      expect(item, id).toBeDefined();
+      expect(item!.prompt, id).toContain(staging.line);
+      expect(item!.prompt, id).toContain(IDENTITY.bear!);
+      expect(item!.prompt, id).not.toContain('cols enneigés');
+      expect(item!.references, id).toEqual(LIGHT_REFS[staging.light]);
+      if (staging.light === 'interior') expect(item!.prompt, id).toContain('no snow, no frost, no daylight, no sky');
+    }
+    expect(plan.find((item) => item.id === 'bear:scene:bear_judgement')!.samePlaceAs).toBe('bear:scene:bear_audience');
+    for (const item of plan.filter((candidate) => candidate.samePlaceAs)) expect(STAGING[item.samePlaceAs!], item.id).toBeDefined();
+    expect(plan.find((item) => item.id === 'bear:scene:bear_trial_aftermath')!.samePlaceAs).toBe('bear:scene:bear_borin_pre_combat');
+    expect(plan.find((item) => item.id === 'bear:scene:bear_mines_defense_aftermath')!.prompt).toContain('show a raven');
+    expect(plan.find((item) => item.id === 'bear:scene:bear_raven_camp')!.prompt).toContain('cols enneigés');
+  });
+
+  it('draws the beasts as animals from beast references, and the miner as a civilian', () => {
+    for (const id of CREATURE_IDS) {
+      const item = plan.find((candidate) => candidate.id === id)!;
+      expect(item.references).toEqual(CREATURE_REFS);
+      expect(item.prompt).toContain('an animal and not a person');
+      expect(item.prompt).not.toContain(COVERED_FACE_RULE);
+      expect(item.notes.length).toBeGreaterThan(40);
+    }
+    const miner = plan.find((item) => item.id === 'bear:actor:bear_miner')!;
+    expect(miner.references).toEqual(CIVILIAN_REFS);
+    expect(miner.prompt).toContain(COVERED_FACE_RULE);
+    expect(miner.notes).toMatch(/not a soldier/);
   });
 
   it('takes the key from the terminal, else from .env.local, loading nothing but the OPENAI_ variables', () => {

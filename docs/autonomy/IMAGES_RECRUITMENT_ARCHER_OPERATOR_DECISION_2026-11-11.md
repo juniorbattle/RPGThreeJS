@@ -66,6 +66,35 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   - la plupart des 24 scènes et les refuges, qui reprennent la même composition : place enneigée de nuit, montagnes, bannières, braseros. Les scènes souterraines (filon sombre, éboulement, galeries tenues par le Corbeau) et la salle de Borin (veillée, jugement, avant-combat) sont dessinées en extérieur. Cause : la fiche d’un décor n’a qu’une ligne de sujet, le même cadre (« vue d’ensemble à hauteur d’œil, sol libre en bas ») et les deux mêmes références.
 - Proposition à confirmer : une ligne de mise en scène par décor (intérieur ou extérieur, heure, éléments tirés des répliques de la scène), soumise à l’opérateur avant de régénérer ; une variante « créature » pour les bêtes.
 
+## Mise en scène et identité de l’Ours (2026-11-12)
+
+`CURRENT FACT` — l’opérateur a validé les mises en scène (`docs/content/drafts/BEAR_BACKDROP_STAGING_DRAFT_2026-11-12.md`), avec une consigne : « il faut pas que tout cela soit trop ressemblant avec les premières images du plateau Lion (démo), il faut que nous apportions une variété ressemblante aux premières images mais qui apporte une identité nouvelle propre à la thématique ».
+- **Cause de la ressemblance** : l’outil demandait de copier « exactement » la palette des références du Lion. D’où les cascades, aqueducs et châteaux à l’horizon dans tout le lot, et une audience calquée sur la salle d’Alaric.
+- **Règle désormais appliquée par l’outil** :
+  - les références ne donnent que la technique du pixel art (densité, contours, tramage, lumière, détail) ;
+  - chaque plateau a son identité : pays, palette, bâti, et motifs du Lion interdits (`IDENTITY` dans `tools/art/finalImagesStaging.ts`).
+  - Celle de l’Ours : granit nu, neige chassée par le vent, gris froids, bois sombre, fer, ambre des seuls feux ; bâti massif et trapu taillé dans la roche ; ni arcs gothiques, ni aqueducs, ni cascades, ni rouge et or.
+- **Outil** :
+  - une ligne de mise en scène par décor ;
+  - deux références choisies selon la lumière (jour, crépuscule, nuit au feu, intérieur) ;
+  - ni neige ni ciel sous terre ;
+  - des bannières seulement là où la ligne en nomme ;
+  - les lieux qui se répondent prennent l’image déjà générée de leur pendant comme référence de plus : la salle de Borin, avant et après chaque combat, l’avant-poste et son refuge, la veillée et son refuge ;
+  - une variante « créature » (références loup et sanglier) et une variante « civil » (survivant, réfugiée).
+- **Régénéré : 30 images**, en trois passes, sans échec.
+  - Cinq témoins d’abord : audience, filon, arrivée, refuge, bête corrompue.
+  - Puis les 22 décors restants, la bête des profondeurs et le mineur.
+  - Puis une passe ciblée de 8 images : les paires d’un même lieu et les scènes sauvages où des bâtiments apparaissaient au loin.
+  - Restent du premier lot : le campement du Corbeau, les trois atlas et les huit personnages qui tenaient.
+  - Les premières versions sont gardées dans `tmp/final-images/out-v1/`, les planches dans `tmp/final-images/sheets/` (anciennes dans `sheets/v1/`).
+- **Relecture de Claude** :
+  - chaque scène montre son lieu : souterrains sans ciel, salle de Borin en intérieur et la même d’une image à l’autre, sentiers sauvages sans bâtiment ;
+  - les heures varient : matin, jour gris, crépuscule, nuit au feu, aube ;
+  - la relique est l’ours de pierre sombre à la gemme rouge du texte ;
+  - les bêtes sont des bêtes : une grande bête cornue aux veines rougeâtres, une créature pâle hérissée d’éclats noirs ;
+  - le mineur est un civil encapuchonné, visage couvert.
+- **À l’opérateur** : juger le lot ; rien n’est intégré avant son accord.
+
 ## Rencontres des six héros (2026-11-11, nuit)
 
 `CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.
@@ -83,3 +112,4 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 `PROPOSED FUTURE DESIGN`, à confirmer par l’opérateur :
 - **Portraits** : les maîtres Character V2 des six héros entreront dans le lot des images finales, après le pilote.
 - **Essai en jeu** : les six rencontres et leurs secondes chances sont à juger lors du test PC final.
+- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours.

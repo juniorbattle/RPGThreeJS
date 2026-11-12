@@ -1,6 +1,25 @@
 # Mise en scène des images de l’Ours — brouillon à valider (2026-11-12)
 
-Statut : **PROPOSITION**, à valider par l’opérateur avant toute régénération (OD-2026-11-11-F, F1). Rien n’est intégré au jeu.
+Statut : **VALIDÉ** par l’opérateur le 2026-11-12 (« Ok pour ton audit »), avec une consigne : « il faut pas que tout cela soit trop ressemblant avec les premières images du plateau Lion (démo), il faut que nous apportions une variété ressemblante aux premières images mais qui apporte une identité nouvelle propre à la thématique » (OD-2026-11-11-F, F1). Les lignes, traduites en anglais, sont dans `tools/art/finalImagesStaging.ts`. Rien n’est intégré au jeu.
+
+## Identité de l’Ours (ajoutée sur la consigne de l’opérateur)
+
+**Ce qu’on garde de la démo** : la technique du pixel art (densité, contours, tramage, rendu de la lumière, niveau de détail). Les références ne transmettent plus que cela. L’outil demandait jusque-là d’en copier « exactement » la palette, d’où les cascades, aqueducs, châteaux à l’horizon et la salle dorée du Lion dans le premier lot de l’Ours.
+
+**Ce qui est propre à l’Ours** :
+- **Pays** : haute montagne rude, granit nu, éboulis, glace et neige chassée par le vent.
+- **Palette** :
+  - gris froids d’ardoise et de granit, neige bleutée, bois sombre patiné, fer et suie ;
+  - ambre chaud seulement pour les feux, torches et lanternes ;
+  - touches de rouille et de brun de fourrure.
+- **Bâti** :
+  - massif, bas et trapu : blocs de granit brut bâtis dans la roche vive ou taillés à même elle ;
+  - étais et poutres lourds, passerelles de planches, chaînes et treuils de fer ;
+  - peaux de bête, ours sculptés en reliefs anguleux.
+- **Jamais les motifs du Lion** : ni arcs gothiques, fenêtres en ogive ou flèches élancées, ni aqueducs, cascades ou rivières, ni château de conte à l’horizon, ni forêt verte luxuriante, ni rouge et or.
+- **Sous terre et en intérieur** : ni neige, ni givre, ni jour, ni ciel.
+
+**L’audience refaite aussi.** Elle reprenait presque la salle d’Alaric (salle dorée, trône au fond, emblème au sol). Elle devient une longue salle basse de granit sous de lourdes poutres, avec une fosse à feu, des peaux, des ours sculptés et un siège de pierre. Une fois générée, elle sert de référence au jugement et à la fin de chronique, pour que la salle de Borin reste la même.
 
 ## Pourquoi
 
@@ -29,7 +48,6 @@ Les mentions **(proposition)** marquent ce que le texte ne dit pas : heure, lieu
 
 ## Ce qui reste tel quel
 
-- **Audience de Borin.** La salle est en intérieur, avec piliers et bannières de l’Ours. Elle tient.
 - **Campement du Corbeau.** On y voit tentes et bannière du Corbeau. Elle tient.
 - **Les trois atlas, les six personnages du Corbeau, Borin et le guerrier.** Ils tiennent.
 
@@ -161,4 +179,4 @@ Les mentions **(proposition)** marquent ce que le texte ne dit pas : heure, lieu
     - Le dos hérissé d’éclats de pierre noire.
     - Source : « Des créatures corrompues gardent la descente vers le filon ».
 
-Total à régénérer : 29 images, soit 26 décors et 3 personnages (le n° 18 compte pour deux).
+Total à régénérer : 30 images, soit 26 décors, l’audience et 3 personnages (le n° 18 compte pour deux).

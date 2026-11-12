@@ -24,6 +24,7 @@ import * as scorpion from '../../src/campaign/plateaux/scorpion/scorpionPresenta
 import * as finale from '../../src/campaign/plateaux/finale/finalePresentation';
 import { loadEnv } from 'vite';
 import { demoEnvironmentPlateForContext } from '../../src/render/demoEnvironmentPack';
+import { CIVILIAN_IDS, CIVILIAN_REFS, CREATURE_IDS, CREATURE_REFS, IDENTITY, LIGHT_REFS, STAGED_LOOKS, STAGING } from './finalImagesStaging';
 
 type Chapter = 'bear' | 'dragon' | 'scorpion' | 'finale';
 type Kind = 'backdrop' | 'atlas' | 'character';
@@ -40,6 +41,8 @@ export interface FinalImageBrief {
   references: string[];
   prompt: string;
   notes: string;
+  /** Another brief of the same place, whose generated image joins the references when it exists. */
+  samePlaceAs?: string;
 }
 
 const ROOT = resolve(import.meta.dirname ?? '.', '..', '..');
@@ -54,7 +57,11 @@ const SETTINGS: Record<Chapter, string> = {
   finale: 'La capitale des clans : l’Arène des Destins, la capitale en flammes, la brèche.',
 };
 
-const STYLE = 'Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the palette, texture, outline and level of detail of the reference images exactly. The reference images set the style only: never copy their heraldry, emblems or banners. No text, no letters, no labels, no UI, no watermark, no frame.';
+/**
+ * The references give the demo's pixel-art technique only (operator, 2026-11-12): each plateau keeps its own palette,
+ * building and landmarks, set by its identity and its staging.
+ */
+const STYLE = 'Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame.';
 
 /**
  * The pilot showed the Lion references' heraldry leaking into Bear images (lion banners, lion medallions): every brief
@@ -76,7 +83,7 @@ const namesClan = (text: string, name: string) => new RegExp(`(^|[^\\p{L}])${nam
 
 export function heraldryFor(chapter: Chapter, awaitedFinal: string): string {
   const host = CLAN_SIGNS.find((clan) => clan.english === HOST_CLAN[chapter]);
-  const others = CLAN_SIGNS.filter((clan) => clan !== host && namesClan(awaitedFinal, clan.name));
+  const others = CLAN_SIGNS.filter((clan) => clan !== host && (namesClan(awaitedFinal, clan.name) || namesClan(awaitedFinal, clan.english)));
   const theirs = others.map((clan) => `the ${clan.english} clan’s people, camps and banners show ${clan.sign}`).join('; ');
   if (!host) return others.length ? `Each clan keeps its own sign: ${theirs}; other banners mix the signs of several clans.` : 'Any banners mix the signs of several clans; no single emblem dominates.';
   if (!others.length) return `Any banner, shield, medallion or carved emblem shows the ${host.english} clan’s sign, ${host.sign}; never a lion.`;
@@ -129,25 +136,44 @@ function plateOf(context: string): string | null {
 
 const masterOf = (unitId: string) => `public/assets/characters/pixel/masters/${unitId}.png`;
 
-function promptFor(kind: Kind, chapter: Chapter, awaitedFinal: string): string {
+function promptFor(id: string, kind: Kind, chapter: Chapter, awaitedFinal: string): string {
+  if (CREATURE_IDS.includes(id)) {
+    return `${STYLE} One single full-body creature sprite, an animal and not a person: no armour, no clothing, no weapon, no shield, no banner. Three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. Subject: ${awaitedFinal}.`;
+  }
   if (kind === 'character') {
     return `${STYLE} One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. ${COVERED_FACE_RULE} Subject: ${awaitedFinal}. Setting of the character: ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
   }
   if (kind === 'atlas') {
     return `${STYLE} An illustrated top-down region map of a fantasy land, painted like a game atlas, with paths and landmarks but no lettering. Region: ${awaitedFinal}. ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
   }
+  const staging = STAGING[id];
+  if (staging) {
+    // A staged backdrop: its own place and light, the plateau's identity instead of the shared setting sentence, and
+    // banners only where the staging names them.
+    return `${STYLE} A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: ${staging.line} ${IDENTITY[chapter] ?? SETTINGS[chapter]} ${staging.light === 'interior' ? 'Indoors and underground: no snow, no frost, no daylight, no sky. ' : ''}No banners, flags or emblems unless the staging names them. ${heraldryFor(chapter, `${awaitedFinal} ${staging.line}`)}`;
+  }
   return `${STYLE} A wide environment tableau, eye-level establishing view of the place, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Leave open ground in the lower half for them. Scene: ${awaitedFinal}. ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`;
+}
+
+/** Style references: by light for a staged backdrop, beasts for a creature, civilians for a civilian. */
+function referencesFor(id: string, kind: Kind): readonly string[] {
+  if (CREATURE_IDS.includes(id)) return CREATURE_REFS;
+  if (CIVILIAN_IDS.includes(id)) return CIVILIAN_REFS;
+  if (kind === 'character') return CHARACTER_STYLE_REFS;
+  const staging = STAGING[id];
+  return staging ? LIGHT_REFS[staging.light] : BACKDROP_STYLE_REFS;
 }
 
 function brief(chapter: Chapter, group: string, key: string, kind: Kind, awaitedFinal: string, standIn: string | null): FinalImageBrief {
   const character = kind === 'character';
-  // Style references only: the stand-in shows another place or person and would be copied; it stays on the review page.
-  const references = character ? CHARACTER_STYLE_REFS : BACKDROP_STYLE_REFS;
   const id = `${chapter}:${group}:${key}`;
+  // Style references only: the stand-in shows another place or person and would be copied; it stays on the review page.
+  const samePlaceAs = STAGING[id]?.samePlaceAs;
   return {
     id, chapter, kind, awaitedFinal, standIn,
     size: character ? '1024x1024' : '1536x1024', transparent: character,
-    references: [...references], prompt: promptFor(kind, chapter, awaitedFinal), notes: PROPOSED_LOOKS[id] ?? '',
+    references: [...referencesFor(id, kind)], prompt: promptFor(id, kind, chapter, awaitedFinal),
+    notes: PROPOSED_LOOKS[id] ?? STAGED_LOOKS[id] ?? '', ...(samePlaceAs ? { samePlaceAs } : {}),
   };
 }
 
@@ -216,6 +242,12 @@ function readPlan(): FinalImageBrief[] {
 
 const fileOf = (id: string) => `${id.replace(/[^a-zA-Z0-9_-]+/g, '__')}.png`;
 
+/** The brief's references, plus the generated image of the same place when it exists (Borin's hall from one image to the next). */
+function referencesOf(item: FinalImageBrief): string[] {
+  const samePlace = item.samePlaceAs ? ['tmp', 'final-images', 'out', fileOf(item.samePlaceAs)].join('/') : null;
+  return samePlace && existsSync(join(ROOT, samePlace)) ? [...item.references, samePlace] : [...item.references];
+}
+
 async function generate(item: FinalImageBrief, key: string, model: string, quality: string): Promise<Buffer> {
   const form = new FormData();
   form.append('model', model);
@@ -224,7 +256,7 @@ async function generate(item: FinalImageBrief, key: string, model: string, quali
   form.append('quality', quality);
   form.append('n', '1');
   if (item.transparent) form.append('background', 'transparent');
-  for (const reference of item.references) {
+  for (const reference of referencesOf(item)) {
     const bytes = readFileSync(join(ROOT, reference));
     form.append('image[]', new Blob([bytes], { type: 'image/png' }), reference.split('/').pop());
   }
@@ -295,7 +327,7 @@ async function main(): Promise<void> {
       const item = pending[next++]!;
       try {
         writeFileSync(join(OUT_DIR, 'out', fileOf(item.id)), await generate(item, key, model, quality));
-        log.push({ id: item.id, model, quality, size: item.size, prompt: item.prompt, notes: item.notes, references: item.references, at: new Date().toISOString() });
+        log.push({ id: item.id, model, quality, size: item.size, prompt: item.prompt, notes: item.notes, references: referencesOf(item), at: new Date().toISOString() });
         console.log(`done: ${item.id}`);
       } catch (error) {
         failed += 1;
