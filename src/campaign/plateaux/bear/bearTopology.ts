@@ -127,21 +127,21 @@ const encounter = (id: string, region: 0 | 1 | 2, label: string, prerequisiteRes
 export const BEAR_OPTIONAL_POIS: readonly FixedPoiDefinition[] = Object.freeze([
   chest('bear-poi-pass-supplies', 0, 'Réserve du col', ['bear-raven-messenger'], ['bear-raven-messenger', 'bear-poi-pass-patrol'], 30, { potion: 1 }),
   encounter('bear-poi-pass-patrol', 0, 'Éclaireurs du col', ['bear-raven-messenger'], ['bear-poi-pass-supplies', 'bear-trapped-miners'],
-    'forest_route', [['raven_scout', 'raven_scout'], ['raven_scout', 'raven_scout', 'raven_scout']], 25, {}),
+    'bear_mountain_pass', [['raven_scout', 'raven_scout'], ['raven_scout', 'raven_scout', 'raven_scout']], 25, {}),
   encounter('bear-poi-pass-beasts', 0, 'Bêtes du détour', ['bear-raven-messenger'], ['bear-raven-messenger', 'bear-poi-pass-cache'],
-    'forest_route', [['wild_boar', 'forest_badger'], ['wild_boar', 'wild_boar']], 20, { iron_ore: 1 }),
+    'bear_mountain_pass', [['wild_boar', 'forest_badger'], ['wild_boar', 'wild_boar']], 20, { iron_ore: 1 }),
   chest('bear-poi-pass-cache', 0, 'Cache du sentier', ['bear-raven-messenger'], ['bear-poi-pass-beasts', 'bear-raven-messenger'], 40, { antidote: 1 }),
   chest('bear-poi-mine-supplies', 1, 'Dépôt des mineurs', ['bear-ore-convoy'], ['bear-ore-convoy', 'bear-poi-mine-gully'], 35, { iron_ore: 2 }),
   encounter('bear-poi-mine-gully', 1, 'Ravine des éboulis', ['bear-ore-convoy'], ['bear-poi-mine-supplies', 'bear-mine-road'],
-    'forest_route', [['cave_rat', 'cave_rat', 'wild_boar'], ['wild_boar', 'forest_badger', 'cave_rat']], 30, {}),
+    'bear_mountain_pass', [['cave_rat', 'cave_rat', 'wild_boar'], ['wild_boar', 'forest_badger', 'cave_rat']], 30, {}),
   chest('bear-poi-mine-lift-cache', 1, 'Cache du monte-charge', ['bear-mine-road'], ['bear-mine-road', 'bear-poi-mine-ravens'], 60, { red_gem: 1, potion: 1 }),
   encounter('bear-poi-mine-ravens', 1, 'Ronde du Corbeau', ['bear-mine-road'], ['bear-poi-mine-lift-cache', 'bear-mine-road'],
-    'forest_route', [['raven_scout', 'raven_miner'], ['raven_miner', 'raven_miner']], 35, { iron_ore: 1 }),
+    'bear_mountain_pass', [['raven_scout', 'raven_miner'], ['raven_miner', 'raven_miner']], 35, { iron_ore: 1 }),
   chest('bear-poi-depths-supplies', 2, 'Réserves des galeries', ['bear-raven-camp'], ['bear-raven-camp', 'bear-miners-testimony'], 40, { ether: 1 }),
   encounter('bear-poi-depths-hunters', 2, 'Traqueurs du Corbeau', ['bear-miners-testimony'], ['bear-miners-testimony', 'bear-final-trial-event'],
-    'lion_sanctum', [['raven_scout', 'raven_miner', 'raven_scout'], ['raven_miner', 'raven_scout', 'raven_miner']], 40, {}),
+    'bear_mine_galleries', [['raven_scout', 'raven_miner', 'raven_scout'], ['raven_miner', 'raven_scout', 'raven_miner']], 40, {}),
   encounter('bear-poi-depths-watch', 2, 'Veille des profondeurs', ['bear-miners-testimony'], ['bear-miners-testimony', 'bear-final-trial-combat'],
-    'lion_sanctum', [['cave_rat', 'skeleton', 'cave_rat'], ['skeleton', 'cave_rat', 'skeleton']], 40, { iron_ore: 1 }),
+    'bear_mine_galleries', [['cave_rat', 'skeleton', 'cave_rat'], ['skeleton', 'cave_rat', 'skeleton']], 40, { iron_ore: 1 }),
   chest('bear-poi-depths-reserve', 2, 'Réserve des profondeurs', ['bear-dark-vein'], ['bear-dark-vein'], 70, { red_gem: 1, revive_vial: 1 }),
 ]);
 
@@ -150,13 +150,13 @@ export const BEAR_GUARDIANS: readonly EliteDefinition[] = Object.freeze<EliteDef
   {
     id: 'bear-guardian-lift', label: 'Contremaître du Corbeau', region: 1, activateAfterResolved: 'bear-mine-road',
     allowedPositions: ['bear-poi-mine-lift-cache'], spawnPosition: 'bear-poi-mine-lift-cache', mode: 'cyclic_patrol',
-    combat: { id: 'bear_guardian_foreman', sceneId: 'forest_route', enemies: ['raven_foreman', 'raven_miner', 'raven_scout'],
+    combat: { id: 'bear_guardian_foreman', sceneId: 'bear_mountain_pass', enemies: ['raven_foreman', 'raven_miner', 'raven_scout'],
       rewards: { temporaryGold: 60, reputation: 1, materials: { iron_ore: 2 } } },
   },
   {
     id: 'bear-guardian-depths', label: 'Bête des profondeurs', region: 2, activateAfterResolved: 'bear-miners-testimony',
     allowedPositions: ['bear-poi-depths-reserve'], spawnPosition: 'bear-poi-depths-reserve', mode: 'cyclic_patrol',
-    combat: { id: 'bear_guardian_depths', sceneId: 'lion_sanctum', enemies: ['depth_beast', 'cave_rat', 'cave_rat'],
+    combat: { id: 'bear_guardian_depths', sceneId: 'bear_mine_galleries', enemies: ['depth_beast', 'cave_rat', 'cave_rat'],
       rewards: { temporaryGold: 70, reputation: 1, materials: { red_gem: 1 } } },
   },
 ]);

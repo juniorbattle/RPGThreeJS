@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ARENA_THEMES } from './arenaThemes';
-import { bannerTexture, columnTexture, lionReliefTexture, plasterTexture, windowTextures } from './arenaTextures';
+import { bannerTexture, bearReliefTexture, columnTexture, lionReliefTexture, plasterTexture, windowTextures } from './arenaTextures';
 
 const pal = ARENA_THEMES.lion_sanctum.palette;
 
@@ -43,6 +43,33 @@ describe('arena pixel textures', () => {
       return sum / 1024;
     };
     expect(mean(true)).toBeLessThan(mean(false));
+  });
+
+  it('paints the Bear’s sign on its banners in bone on slate, never the lion and never gold', () => {
+    const bearPal = ARENA_THEMES.bear_mountain_pass.palette;
+    const bear = bannerTexture(bearPal, 1, false, 'bear');
+    const lion = bannerTexture(bearPal, 1);
+    expect([bear.width, bear.height]).toEqual([40, 80]);
+    let differs = 0, warm = 0;
+    for (let y = 0; y < 80; y++) for (let x = 0; x < 40; x++) {
+      const [r, g, b, a] = bear.get(x, y);
+      if (a && r - b > 30 && g - b > 15) warm++;
+      if (bear.get(x, y).join() !== lion.get(x, y).join()) differs++;
+    }
+    expect(warm).toBe(0);
+    expect(differs).toBeGreaterThan(200);
+    // the lion’s banner is unchanged by the emblem parameter
+    expect(bannerTexture(pal, 4).data).toEqual(bannerTexture(pal, 4, false, 'lion').data);
+  });
+
+  it('carves the Bear’s relief in grey stone only (no gold, no glow)', () => {
+    const relief = bearReliefTexture(ARENA_THEMES.bear_hall_terrace.palette, 70);
+    expect([relief.width, relief.height]).toEqual([40, 72]);
+    for (let y = 0; y < relief.height; y++) for (let x = 0; x < relief.width; x++) {
+      const [r, g, b] = relief.get(x, y);
+      expect(r - b).toBeLessThan(10);
+      expect(Math.abs(r - g)).toBeLessThan(12);
+    }
   });
 
   it('wraps the fluted column texture seamlessly (four whole flutes per repeat)', () => {

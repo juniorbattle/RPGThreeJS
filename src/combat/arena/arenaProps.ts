@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import { seeded, type Rng } from './pixelArt';
 import type { ArenaPalette, ArenaProp } from './arenaThemes';
 import {
-  bannerTexture, barkTexture, barrelLidTexture, burlapTexture, coalsTexture, columnTexture, gravestoneTexture, lanternTexture, lionReliefTexture, logEndTexture, metalTexture, plankTexture,
-  plasterTexture, roofTexture, stoneBlockTexture, strawTexture, windowTextures,
+  bannerTexture, barkTexture, barrelLidTexture, bearReliefTexture, burlapTexture, coalsTexture, columnTexture, graniteTexture, gravestoneTexture, lanternTexture, lionReliefTexture,
+  logEndTexture, metalTexture, oreTexture, plankTexture, plasterTexture, roofTexture, snowTexture, stoneBlockTexture, strawTexture, windowTextures,
 } from './arenaTextures';
 import { DECOR_TEXELS_PER_UNIT, drawBush, drawDeadTree, drawFern, drawGrass, drawPine, drawTree, type DecorSprite } from './arenaSprites';
 
@@ -25,15 +25,20 @@ export interface PropContext {
   contacts: Array<{ x: number; z: number; rx: number; rz: number; strength: number }>;
   /** Weed tufts at the foot of walls and masonry (baked into one mesh by the arena). */
   weeds: Array<{ x: number; z: number; s: number; v: number }>;
+  /** Snow on rocks, conifers and the tops of masonry (the Bear's mountains). */
+  snow?: boolean;
+  /** Sign on the banners: the lion unless the arena says otherwise. */
+  emblem?: 'lion' | 'bear';
 }
 
 /** Height of the ground around the raised battle platform (tile tops stay at y = 0). */
 export const ARENA_GROUND_Y = -0.16;
 
 const BILLBOARD_CONTACT: Partial<Record<ArenaProp['kind'], number>> = { tree: 1.0, pine: 0.85, dead_tree: 0.7, bush: 0.75, fern: 0.5 };
-const NO_CONTACT = new Set<ArenaProp['kind']>(['fire', 'smoke', 'grass']);
+const NO_CONTACT = new Set<ArenaProp['kind']>(['fire', 'smoke', 'grass', 'rails', 'snowdrift']);
 const WEEDS_PER_KIND: Partial<Record<ArenaProp['kind'], number>> = {
   house: 9, wall: 5, arch: 4, column: 3, broken_column: 3, stairs: 3, statue: 4, obelisk: 3, well: 3, gravestone: 2, barrel: 1, crate: 1, rock: 2,
+  cliff: 6, snow_rock: 2, bear_pillar: 3, hall_gate: 8, mine_frame: 3, winch: 2, minecart: 1, ore_pile: 1,
 };
 const _box = new THREE.Box3();
 
@@ -1135,7 +1140,8 @@ function banner(ctx: PropContext, seed: number, burning: boolean): THREE.Group {
   const bar = mesh(boxGeometry(1.5, 0.08, 0.08, 1), wood, ctx);
   bar.position.set(0, 3.9, BANNER_HANG);
   g.add(bar);
-  const tex = cached(ctx.textures, `banner-${seed}-${burning}`, () => bannerTexture(ctx.palette, seed, burning).toTexture());
+  const emblem = ctx.emblem ?? 'lion';
+  const tex = cached(ctx.textures, `banner-${seed}-${burning}${emblem === 'lion' ? '' : `-${emblem}`}`, () => bannerTexture(ctx.palette, seed, burning, emblem).toTexture());
   const cloth = new THREE.MeshStandardMaterial({ map: tex, alphaTest: 0.5, side: THREE.DoubleSide, roughness: 0.9 });
   const time = { value: 0 };
   cloth.onBeforeCompile = (shader) => {
@@ -1244,6 +1250,364 @@ function smoke(ctx: PropContext, seed: number, tint: string, width = 3.2, height
   return m;
 }
 
+// ---------------------------------------------------------------- the Bear's mountains
+
+/** A stable pseudo-random value per vertex position: faces sharing a corner move it together, so nothing cracks open. */
+function hash3(x: number, y: number, z: number, seed: number): number {
+  const h = Math.sin(Math.round(x * 1000) * 12.9898 + Math.round(y * 1000) * 78.233 + Math.round(z * 1000) * 37.719 + seed * 4.123) * 43758.5453;
+  return h - Math.floor(h);
+}
+
+function graniteMaterial(ctx: PropContext, seed: number): THREE.MeshStandardMaterial {
+  const key = `granite-${seed % 3}`;
+  const texture = repeatTexture(ctx, key, () => graniteTexture(ctx.palette, 500 + (seed % 3)).toTexture({ repeat: true }));
+  return cached(ctx.materials, `${key}-flat`, () => new THREE.MeshStandardMaterial({ map: texture, roughness: 1, flatShading: true })) as THREE.MeshStandardMaterial;
+}
+
+function snowMaterial(ctx: PropContext): THREE.MeshStandardMaterial {
+  const texture = repeatTexture(ctx, 'snow', () => snowTexture(ctx.palette, 41).toTexture({ repeat: true }));
+  return cached(ctx.materials, 'snow-flat', () => new THREE.MeshStandardMaterial({ map: texture, roughness: 0.9, flatShading: true })) as THREE.MeshStandardMaterial;
+}
+
+function ironMaterial(ctx: PropContext): THREE.MeshStandardMaterial {
+  return litMaterial(ctx, 'metal', repeatTexture(ctx, 'metal', () => metalTexture(5).toTexture({ repeat: true })), { metalness: 0.45, roughness: 0.55 });
+}
+
+function darkMaterial(ctx: PropContext): THREE.MeshStandardMaterial {
+  return litMaterial(ctx, 'gallery-dark', null, { color: '#050506', roughness: 1 });
+}
+
+function oreMaterial(ctx: PropContext): THREE.MeshStandardMaterial {
+  const texture = repeatTexture(ctx, 'ore', () => oreTexture(ctx.palette, 61).toTexture({ repeat: true }));
+  return cached(ctx.materials, 'ore-flat', () => new THREE.MeshStandardMaterial({ map: texture, roughness: 0.82, metalness: 0.1, flatShading: true })) as THREE.MeshStandardMaterial;
+}
+
+function reliefMaterial(ctx: PropContext, seed: number): THREE.MeshStandardMaterial {
+  const key = `bear-relief-${seed % 2}`;
+  return litMaterial(ctx, key, cached(ctx.textures, key, () => bearReliefTexture(ctx.palette, 70 + (seed % 2)).toTexture()), { roughness: 0.92 });
+}
+
+/** A rough boulder: a dodecahedron pushed in and out at each corner, squashed, its UVs at the stone's texel density. */
+function boulderGeometry(radius: number, squash: number, seed: number): THREE.BufferGeometry {
+  const g = new THREE.DodecahedronGeometry(radius, 0);
+  const pos = g.attributes.position as THREE.BufferAttribute;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+    const k = 0.78 + hash3(x, y, z, seed) * 0.42;
+    pos.setXYZ(i, x * k, Math.max(-radius * 0.3, y * k * squash), z * k);
+  }
+  const uv = g.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * (Math.PI * 2 * radius) / 1.6, uv.getY(i) * (Math.PI * radius) / 1.6);
+  g.computeVertexNormals();
+  return g;
+}
+
+/** A block of living rock: a box whose top corners drop and pull in by different amounts, standing on y = 0. */
+function cragGeometry(w: number, h: number, d: number, seed: number): THREE.BufferGeometry {
+  const g = boxGeometry(w, h, d, 1.6).toNonIndexed();
+  g.translate(0, h / 2, 0);
+  const pos = g.attributes.position as THREE.BufferAttribute;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+    if (y < h * 0.99) continue;
+    const k = hash3(x, 0, z, seed);
+    pos.setXYZ(i, x * (0.76 + k * 0.14), h * (0.7 + hash3(z, 1, x, seed) * 0.3), z * (0.8 + k * 0.12));
+  }
+  g.computeVertexNormals();
+  return g;
+}
+
+/** Splits a geometry: faces turned up past `threshold` take the snow, as a second mesh merged like the rest. */
+function splitSnow(geometry: THREE.BufferGeometry, threshold: number): [THREE.BufferGeometry, THREE.BufferGeometry | null] {
+  const g = geometry.index ? geometry.toNonIndexed() : geometry;
+  const pos = g.attributes.position as THREE.BufferAttribute, uv = g.attributes.uv as THREE.BufferAttribute;
+  const parts = { rock: { p: [] as number[], u: [] as number[] }, snow: { p: [] as number[], u: [] as number[] } };
+  const a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3(), n = new THREE.Vector3(), t = new THREE.Vector3();
+  for (let i = 0; i + 2 < pos.count; i += 3) {
+    a.fromBufferAttribute(pos, i); b.fromBufferAttribute(pos, i + 1); c.fromBufferAttribute(pos, i + 2);
+    n.subVectors(b, a).cross(t.subVectors(c, a)).normalize();
+    const part = n.y > threshold ? parts.snow : parts.rock;
+    for (let k = 0; k < 3; k++) {
+      part.p.push(pos.getX(i + k), pos.getY(i + k), pos.getZ(i + k));
+      part.u.push(uv.getX(i + k), uv.getY(i + k));
+    }
+  }
+  const build = (part: { p: number[]; u: number[] }) => {
+    if (!part.p.length) return null;
+    const out = new THREE.BufferGeometry();
+    out.setAttribute('position', new THREE.Float32BufferAttribute(part.p, 3));
+    out.setAttribute('uv', new THREE.Float32BufferAttribute(part.u, 2));
+    out.computeVertexNormals();
+    return out;
+  };
+  return [build(parts.rock) ?? g, build(parts.snow)];
+}
+
+/** Granite in the arena's light; outdoors in the Bear's mountains, its up-turned faces carry snow. */
+function graniteMesh(ctx: PropContext, geometry: THREE.BufferGeometry, seed: number, threshold = 0.55): THREE.Group {
+  const g = new THREE.Group();
+  if (!ctx.snow) { g.add(mesh(geometry, graniteMaterial(ctx, seed), ctx)); return g; }
+  const [rock, snow] = splitSnow(geometry, threshold);
+  g.add(mesh(rock, graniteMaterial(ctx, seed), ctx));
+  if (snow) g.add(mesh(snow, snowMaterial(ctx), ctx));
+  return g;
+}
+
+/** A granite boulder with a smaller stone leaning on it, snow on their tops outdoors. */
+function snowRock(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const main = graniteMesh(ctx, boulderGeometry(0.85, 0.72, seed), seed);
+  main.position.y = 0.32;
+  main.rotation.y = rng() * Math.PI;
+  g.add(main);
+  const side = graniteMesh(ctx, boulderGeometry(0.42, 0.85, seed + 7), seed + 1);
+  side.position.set(0.72 + rng() * 0.2, 0.14, 0.36);
+  side.rotation.y = rng() * 3;
+  g.add(side);
+  return g;
+}
+
+/** A drift of wind-packed snow: a low lopsided mound, longer on its lee side. */
+function snowdrift(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const geometry = new THREE.SphereGeometry(1, 12, 5, 0, Math.PI * 2, 0, Math.PI / 2);
+  const pos = geometry.attributes.position as THREE.BufferAttribute;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+    const k = 0.85 + hash3(x, y, z, seed) * 0.3;
+    pos.setXYZ(i, x * 1.5 * k * (x < 0 ? 1 : 1.35), y * 0.34 * k, z * 0.9 * k);
+  }
+  const uv = geometry.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * 5, uv.getY(i) * 1.2);
+  geometry.computeVertexNormals();
+  const drift = mesh(geometry, snowMaterial(ctx), ctx, false);
+  drift.position.y = -0.04;
+  g.add(drift);
+  return g;
+}
+
+/** A granite outcrop: tall blocks of living rock with broken tops (snow on them outdoors) and stones fallen at the foot. */
+function cliff(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const blocks: Array<[number, number, number, number, number]> = [
+    [0, 3.2, 4.4, 2.6, 0], [1.9, 2.2, 3.0, 2.0, 0.35], [-1.8, 2.0, 2.2, 1.7, -0.4], [0.7, 1.3, 1.2, 1.2, 0.8],
+  ];
+  blocks.forEach(([x, w, h, d, r], i) => {
+    const part = graniteMesh(ctx, cragGeometry(w * (0.85 + rng() * 0.3), h * (0.85 + rng() * 0.3), d, seed * 5 + i), seed + i, 0.5);
+    part.position.set(x, 0, i === 3 ? 1.5 : (rng() - 0.5) * 0.6);
+    part.rotation.y = r + (rng() - 0.5) * 0.3;
+    g.add(part);
+  });
+  for (let k = 0; k < 3; k++) {
+    const stone = graniteMesh(ctx, boulderGeometry(0.3 + rng() * 0.25, 0.8, seed * 13 + k), seed + k);
+    stone.position.set((rng() - 0.5) * 3.4, 0.1, 1.4 + rng() * 0.8);
+    stone.rotation.y = rng() * 3;
+    g.add(stone);
+  }
+  return g;
+}
+
+/** Squared timbers left on the ground: one or two baulks, an iron cramp on the lower one. */
+function timberBeam(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const wood = woodMaterial(ctx);
+  g.add(at(mesh(boxGeometry(2.4, 0.26, 0.28, 1), wood, ctx), 0, 0.13, 0));
+  g.add(at(mesh(boxGeometry(0.06, 0.04, 0.34, 1), ironMaterial(ctx), ctx, false), 0.8, 0.28, 0));
+  if (seed % 2 === 0) {
+    const top = mesh(boxGeometry(1.8, 0.24, 0.26, 1), wood, ctx);
+    top.position.set(-0.3, 0.38, 0.06);
+    top.rotation.y = 0.5 + rng() * 0.3;
+    g.add(top);
+  }
+  return g;
+}
+
+/** A lantern hung on a short chain: iron cage over warm glass, a little cap, its flickering light. */
+function hangingLantern(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const iron = litMaterial(ctx, 'metal-dark', null, { color: '#2a2622', roughness: 0.7 });
+  g.add(at(mesh(boxGeometry(0.03, 0.34, 0.03, 1), iron, ctx, false), 0, -0.17, 0));
+  const pane = cached(ctx.textures, 'lantern-pane', () => lanternTexture().toTexture());
+  const cage = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.3, 0.2), new THREE.MeshBasicMaterial({ map: pane, toneMapped: false, fog: false }));
+  cage.position.y = -0.5;
+  cage.raycast = () => {};
+  g.add(cage);
+  const cap = mesh(new THREE.ConeGeometry(0.2, 0.16, 4), iron, ctx);
+  cap.position.y = -0.3;
+  cap.rotation.y = Math.PI / 4;
+  g.add(cap);
+  ctx.lights.push({ anchor: cage, color: '#ffbf6a', intensity: 5, distance: 7, flicker: 0.12 });
+  ctx.animated.push((t) => { (cage.material as THREE.MeshBasicMaterial).color.setScalar(1.05 + Math.sin(t * 7 + seed) * 0.08 + Math.sin(t * 12.3 + seed * 2) * 0.04); });
+  return g;
+}
+
+/** A timber set of the galleries: two posts, a cap beam, braces, iron plates and a lantern; odd sets open on a dark gallery mouth. */
+function mineFrame(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const post = woodMaterial(ctx, true), wood = woodMaterial(ctx), iron = ironMaterial(ctx);
+  const span = 2.6, postH = 3.0;
+  for (const side of [-1, 1]) {
+    g.add(at(mesh(boxGeometry(0.34, postH, 0.34, 1), post, ctx), side * span / 2, postH / 2, 0));
+    g.add(at(mesh(boxGeometry(0.4, 0.4, 0.04, 1), iron, ctx, false), side * span / 2, postH - 0.12, 0.19));
+    const brace = mesh(boxGeometry(0.16, 1.0, 0.16, 1), post, ctx);
+    brace.position.set(side * (span / 2 - 0.36), postH - 0.36, 0);
+    brace.rotation.z = side * 0.78;
+    g.add(brace);
+  }
+  g.add(at(mesh(boxGeometry(span + 0.7, 0.4, 0.44, 1), wood, ctx), 0, postH + 0.2, 0));
+  const lamp = hangingLantern(ctx, seed);
+  lamp.position.set(0.55, postH, 0.34);
+  g.add(lamp);
+  if (seed % 2 === 1) {
+    // the gallery mouth: darkness behind the set, under a roof of lagging planks
+    g.add(at(mesh(boxGeometry(span - 0.3, postH - 0.05, 1.4, 1), darkMaterial(ctx), ctx, false), 0, (postH - 0.05) / 2, -0.8));
+    g.add(at(mesh(boxGeometry(span + 0.3, 0.12, 1.4, 1), wood, ctx), 0, postH + 0.08, -0.85));
+  }
+  return g;
+}
+
+/** An ore cart: a plank tub with iron corners and rim on its chassis and four iron wheels, heaped with dark ore. */
+function minecart(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const wood = woodMaterial(ctx), iron = ironMaterial(ctx), dark = litMaterial(ctx, 'metal-dark', null, { color: '#2a2622', roughness: 0.7 });
+  const L = 1.3, D = 0.86, H = 0.62, base = 0.34;
+  g.add(at(mesh(boxGeometry(L - 0.12, 0.1, D - 0.24, 1), dark, ctx), 0, base - 0.05, 0));
+  g.add(at(mesh(boxGeometry(L, H, D, 1), wood, ctx), 0, base + H / 2, 0));
+  for (const x of [-1, 1]) for (const z of [-1, 1]) g.add(at(mesh(boxGeometry(0.07, H - 0.06, 0.07, 1), iron, ctx, false), x * (L / 2 + 0.012), base + H / 2 - 0.03, z * (D / 2 + 0.012)));
+  for (const z of [-1, 1]) g.add(at(mesh(boxGeometry(L + 0.04, 0.07, 0.07, 1), iron, ctx, false), 0, base + H - 0.02, z * (D / 2 + 0.012)));
+  for (const x of [-1, 1]) g.add(at(mesh(boxGeometry(0.07, 0.07, D + 0.04, 1), iron, ctx, false), x * (L / 2 + 0.012), base + H - 0.016, 0));
+  for (const x of [-1, 1]) for (const z of [-1, 1]) {
+    const wheel = mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.08, 10), dark, ctx);
+    wheel.rotation.x = Math.PI / 2;
+    wheel.position.set(x * 0.42, 0.17, z * (D / 2 + 0.01));
+    g.add(wheel);
+  }
+  const ore = oreMaterial(ctx);
+  for (let i = 0; i < 5; i++) {
+    const lump = mesh(boulderGeometry(0.2 + rng() * 0.07, 0.8, seed * 17 + i), ore, ctx);
+    lump.position.set((i - 2) * 0.24 + (rng() - 0.5) * 0.08, base + H + 0.02 + (i % 2) * 0.06, (rng() - 0.5) * 0.3);
+    lump.rotation.y = rng() * 3;
+    g.add(lump);
+  }
+  return g;
+}
+
+/** A length of mine track along x: timber sleepers under two iron rails. */
+function rails(ctx: PropContext, rng: Rng): THREE.Group {
+  const g = new THREE.Group();
+  const wood = woodMaterial(ctx), iron = ironMaterial(ctx);
+  const L = 7.2, gauge = 0.76, sleepers = 12;
+  for (let i = 0; i < sleepers; i++) {
+    const sleeper = mesh(boxGeometry(0.24, 0.08, 1.12, 1), wood, ctx);
+    sleeper.position.set(-L / 2 + 0.3 + i * (L - 0.6) / (sleepers - 1), 0.04 + (i % 2) * 0.004, 0);
+    sleeper.rotation.y = (rng() - 0.5) * 0.08;
+    g.add(sleeper);
+  }
+  for (const side of [-1, 1]) g.add(at(mesh(boxGeometry(L, 0.08, 0.07, 1), iron, ctx), 0, 0.12, side * gauge / 2));
+  return g;
+}
+
+/** A heap of dark ore lumps, a few granite stones among them. */
+function orePile(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const ore = oreMaterial(ctx);
+  const count = 7 + Math.floor(rng() * 3);
+  for (let i = 0; i < count; i++) {
+    const r = 0.22 + rng() * 0.24, a = rng() * Math.PI * 2, d = rng() * 0.62;
+    const lump = mesh(boulderGeometry(r, 0.8, seed * 11 + i), i % 4 === 0 ? graniteMaterial(ctx, seed) : ore, ctx);
+    lump.position.set(Math.cos(a) * d, r * 0.45 + (d < 0.3 ? 0.24 : 0), Math.sin(a) * d * 0.8);
+    lump.rotation.y = rng() * 3;
+    g.add(lump);
+  }
+  return g;
+}
+
+/** The winch over a shaft: a timber gantry, a rope drum with iron bands and its crank, a bucket hung over the shaft's timber collar. */
+function winch(ctx: PropContext): THREE.Group {
+  const g = new THREE.Group();
+  const post = woodMaterial(ctx, true), wood = woodMaterial(ctx), iron = ironMaterial(ctx);
+  const H = 2.9, span = 2.2;
+  for (const side of [-1, 1]) {
+    g.add(at(mesh(boxGeometry(0.28, H, 0.28, 1), post, ctx), side * span / 2, H / 2, 0));
+    const strut = mesh(boxGeometry(0.18, 2.2, 0.18, 1), post, ctx);
+    strut.position.set(side * (span / 2 + 0.42), 1.0, 0);
+    strut.rotation.z = side * 0.42;
+    g.add(strut);
+  }
+  g.add(at(mesh(boxGeometry(span + 0.6, 0.3, 0.34, 1), wood, ctx), 0, H + 0.15, 0));
+  const drum = mesh(cylinderGeometry(0.3, 0.3, span - 0.3, 12, 1), post, ctx);
+  drum.rotation.z = Math.PI / 2;
+  drum.position.y = 1.75;
+  g.add(drum);
+  for (const x of [-0.5, 0.5]) {
+    const band = mesh(new THREE.CylinderGeometry(0.32, 0.32, 0.06, 12, 1, true), iron, ctx, false);
+    band.rotation.z = Math.PI / 2;
+    band.position.set(x, 1.75, 0);
+    g.add(band);
+  }
+  // the crank stands proud of the post's face, so the two never share a plane
+  g.add(at(mesh(boxGeometry(0.08, 0.5, 0.08, 1), iron, ctx), span / 2 + 0.14, 1.55, 0.22));
+  g.add(at(mesh(boxGeometry(0.06, 0.06, 0.3, 1), iron, ctx), span / 2 + 0.14, 1.33, 0.34));
+  g.add(at(mesh(new THREE.CylinderGeometry(0.025, 0.025, 1.0, 5), litMaterial(ctx, 'rope', null, { color: '#3a2a18', roughness: 1 }), ctx, false), 0.1, 1.25, 0.31));
+  g.add(at(mesh(cylinderGeometry(0.24, 0.2, 0.36, 10, 1), post, ctx), 0.1, 0.57, 0.31));
+  // the shaft: a timber collar round its darkness
+  g.add(at(mesh(boxGeometry(1.1, 0.06, 1.1, 1), darkMaterial(ctx), ctx, false), 0, 0.03, 0.31));
+  for (const z of [-1, 1]) g.add(at(mesh(boxGeometry(1.5, 0.18, 0.2, 1), wood, ctx), 0, 0.09, 0.31 + z * 0.65));
+  for (const x of [-1, 1]) g.add(at(mesh(boxGeometry(0.2, 0.17, 1.1, 1), wood, ctx), x * 0.65, 0.095, 0.31));
+  return g;
+}
+
+/** The Bear's carved pillar: squat dressed granite with a wide base and capital, the house bear in relief on its face. */
+function bearPillar(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = stoneMaterial(ctx, seed, 0.25);
+  g.add(at(mesh(boxGeometry(1.6, 0.42, 1.4, 1.6), stone, ctx), 0, 0.21, 0));
+  g.add(at(mesh(boxGeometry(1.16, 2.3, 0.96, 1.6), stone, ctx), 0, 0.42 + 1.15, 0));
+  g.add(at(mesh(boxGeometry(1.5, 0.44, 1.3, 1.6), stone, ctx), 0, 2.72 + 0.22, 0));
+  g.add(at(mesh(new THREE.PlaneGeometry(0.96, 1.74), reliefMaterial(ctx, seed), ctx, false), 0, 0.42 + 1.15, 0.486));
+  if (ctx.snow) g.add(at(mesh(boxGeometry(1.56, 0.1, 1.36, 1.6), snowMaterial(ctx), ctx), 0, 3.16 + 0.05, 0));
+  return g;
+}
+
+/**
+ * The front of Borin's hall, hewn into the mountain: a dressed doorway between two walls of granite blocks, the
+ * heavy timber doors set back and strapped with iron, the house bear carved either side, the living rock above.
+ */
+function hallGate(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = stoneMaterial(ctx, seed, 0.25);
+  const doorW = 3.0, doorH = 3.6, wallD = 1.2;
+  for (const side of [-1, 1]) {
+    g.add(at(mesh(boxGeometry(2.8, 4.6, wallD, 1.6), stone, ctx), side * (doorW / 2 + 1.4), 2.3, wallD / 2));
+    g.add(at(mesh(new THREE.PlaneGeometry(1.5, 2.7), reliefMaterial(ctx, seed + (side > 0 ? 1 : 0)), ctx, false), side * (doorW / 2 + 1.4), 2.2, wallD + 0.006));
+    g.add(at(mesh(boxGeometry(0.5, doorH, 0.5, 1.6), stone, ctx), side * (doorW / 2 + 0.2), doorH / 2, wallD + 0.1));
+  }
+  g.add(at(mesh(boxGeometry(doorW, 1.0, wallD, 1.6), stone, ctx), 0, doorH + 0.5, wallD / 2));
+  // the lintel stone hangs a little below the block over the door, so their undersides never share a plane
+  g.add(at(mesh(boxGeometry(doorW + 1.5, 0.6, 0.56, 1.6), stone, ctx), 0, doorH + 0.25, wallD + 0.12));
+  // the doors, set back in the rock
+  const leaf = woodMaterial(ctx, true), iron = ironMaterial(ctx);
+  for (const side of [-1, 1]) {
+    g.add(at(mesh(boxGeometry(doorW / 2 - 0.04, doorH - 0.04, 0.16, 1), leaf, ctx), side * doorW / 4, (doorH - 0.04) / 2, 0.25));
+    for (const y of [0.7, 1.8, 2.9]) g.add(at(mesh(boxGeometry(doorW / 2 - 0.2, 0.1, 0.04, 1), iron, ctx, false), side * doorW / 4, y, 0.35));
+    const ring = mesh(new THREE.TorusGeometry(0.12, 0.025, 4, 10), iron, ctx, false);
+    ring.position.set(side * 0.22, 1.6, 0.4);
+    g.add(ring);
+  }
+  // the living rock the hall is hewn into
+  const above = graniteMesh(ctx, cragGeometry(9.6, 3.0, 2.6, seed * 7), seed, 0.5);
+  above.position.set(0, 4.4, -0.4);
+  above.rotation.y = (rng() - 0.5) * 0.1;
+  g.add(above);
+  for (const side of [-1, 1]) {
+    const flank = graniteMesh(ctx, cragGeometry(3.4, 7.0, 2.8, seed * 7 + side + 3), seed + 1, 0.5);
+    flank.position.set(side * 5.6, 0, -0.3);
+    flank.rotation.y = side * 0.08 + (rng() - 0.5) * 0.06;
+    g.add(flank);
+  }
+  return g;
+}
+
 // ---------------------------------------------------------------- dispatch
 
 export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | null {
@@ -1253,7 +1617,7 @@ export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | n
   let object: THREE.Object3D | null = null;
   switch (prop.kind) {
     case 'tree': object = billboard(ctx, `tree-${seed % 5}`, (k) => drawTree(ctx.palette, seed % 5, k), s, true); break;
-    case 'pine': object = billboard(ctx, `pine-${seed % 4}`, (k) => drawPine(ctx.palette, seed % 4, k), s, true); break;
+    case 'pine': object = billboard(ctx, `pine-${seed % 4}${ctx.snow ? '-snow' : ''}`, (k) => drawPine(ctx.palette, seed % 4, k, Boolean(ctx.snow)), s, true); break;
     case 'dead_tree': {
       const tree = billboard(ctx, `dead-${seed % 3}-${!!prop.burning}`, (k) => drawDeadTree(ctx.palette, seed % 3, !!prop.burning, k), s, true);
       if (!prop.burning) { object = tree; break; }
@@ -1296,6 +1660,17 @@ export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | n
     case 'gravestone': object = gravestone(ctx, seed); break;
     case 'fire': object = fireBillboard(ctx, seed, 1.6 * s, 2.2 * s, { color: '#ff7a2a', intensity: 8, distance: 11 }); break;
     case 'smoke': object = smoke(ctx, seed, '#3b3030'); break;
+    case 'snow_rock': object = snowRock(ctx, rng, seed); break;
+    case 'snowdrift': object = snowdrift(ctx, seed); break;
+    case 'cliff': object = cliff(ctx, rng, seed); break;
+    case 'beam': object = timberBeam(ctx, rng, seed); break;
+    case 'mine_frame': object = mineFrame(ctx, seed); break;
+    case 'minecart': object = minecart(ctx, rng, seed); break;
+    case 'rails': object = rails(ctx, rng); break;
+    case 'ore_pile': object = orePile(ctx, rng, seed); break;
+    case 'winch': object = winch(ctx); break;
+    case 'bear_pillar': object = bearPillar(ctx, seed); break;
+    case 'hall_gate': object = hallGate(ctx, rng, seed); break;
     default: object = null;
   }
   if (!object) return null;

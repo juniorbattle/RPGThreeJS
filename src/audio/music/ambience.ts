@@ -3,6 +3,7 @@
  * refuge, under the music volume and mute. Filtered noise beds with slow movement and sparse seeded accents. Adapted
  * from the HD-2D combat sound module (`src/combat/audio/CombatSfx.ts`, OD-2026-10-29-A), which is not wired.
  */
+import { arenaThemeFor } from '../../combat/arena/arenaThemes';
 import { seededRandom } from './theory';
 
 export type AmbienceId = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum' | 'map' | 'refuge';
@@ -82,7 +83,11 @@ export function startAmbience(ctx: AudioContext, dest: AudioNode, id: AmbienceId
 
 const AMBIENCES: readonly AmbienceId[] = ['forest_route', 'bois_clair_burning', 'lion_sanctum', 'map', 'refuge'];
 
-/** The ambience of a scene, with the arena's own fallback (`arenaThemeFor`): an unknown scene is the forest route. */
+/**
+ * The ambience of a scene, with the arena's own fallback (`arenaThemeFor`): an unknown scene is the forest route. An
+ * arena without an ambience of its own plays the one its theme borrows (the Bear's pass the forest route, its galleries
+ * and hall the sanctum): new sound awaits the operator's ear (OD-2026-11-01-B).
+ */
 export function ambienceForScene(sceneId: string | null | undefined): AmbienceId {
-  return AMBIENCES.find((id) => id === sceneId) ?? 'forest_route';
+  return AMBIENCES.find((id) => id === sceneId) ?? arenaThemeFor(sceneId).sound;
 }

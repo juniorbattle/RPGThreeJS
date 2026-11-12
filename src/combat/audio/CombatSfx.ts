@@ -7,6 +7,8 @@
  * Every FX recipe cue (`slash`, `explosion`, `holy`…) has a recipe here, so a
  * sound fires on the same FX-time tick as the visual it belongs to.
  */
+import { arenaThemeFor, type ArenaSoundFamily } from '../arena/arenaThemes';
+
 export type CombatSfxId =
   | 'slash' | 'heavy_slash' | 'hit' | 'blunt' | 'thrust' | 'bow' | 'arrow_hit' | 'throw' | 'cannon'
   | 'cast' | 'whoosh' | 'magic_hit' | 'explosion' | 'fire_burst' | 'breath' | 'thunder' | 'ice' | 'earth'
@@ -14,7 +16,13 @@ export type CombatSfxId =
   | 'bite' | 'poison' | 'dash' | 'ultimate_charge' | 'ultimate_hit' | 'meteor' | 'miracle' | 'crit' | 'ko'
   | 'step' | 'ui' | 'turn' | 'victory' | 'defeat' | 'impact_heavy' | 'field_wave';
 
-export type CombatAmbienceId = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum';
+/** The three synthesized arena beds; every arena plays one of them (`ArenaTheme.sound`). */
+export type CombatAmbienceId = ArenaSoundFamily;
+
+/** The bed a combat scene plays: its own for the Lion's arenas, the one its theme borrows for the others. */
+export function combatAmbienceForScene(sceneId: string | null | undefined): CombatAmbienceId {
+  return arenaThemeFor(sceneId).sound;
+}
 
 export interface CombatSfxSettings {
   volume: number;

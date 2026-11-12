@@ -2,9 +2,10 @@ import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { makeNoise, PixelCanvas, seeded, sharpenTexels } from './pixelArt';
 import { arenaBandProps, arenaClutterProps, arenaThemeFor, type ArenaTheme } from './arenaThemes';
-import { cobbleApronTexture, groundTexture, tileSideTexture, tileTopTexture, trampledGroundTexture } from './arenaTextures';
+import { cobbleApronTexture, flagApronTexture, groundTexture, tileSideTexture, tileTopTexture, trampledGroundTexture } from './arenaTextures';
 import { ARENA_GROUND_Y, buildProp, type PropContext } from './arenaProps';
-import { drawFern, drawGrass, drawTreeLine, DECOR_TEXELS_PER_UNIT } from './arenaSprites';
+import { drawFern, drawGrass, drawRidgeLine, drawRubble, drawSnowTuft, drawTreeLine, DECOR_TEXELS_PER_UNIT, type DecorSprite } from './arenaSprites';
+import { drawCavePlate, drawPeaksPlate } from './arenaFarPlates';
 import platesJson from '../../render/generated/combatArenaPlates.json';
 
 interface GeneratedPlate { file: string; aspect: number; width: number; z: number; bottomY: number }
@@ -125,6 +126,8 @@ export class CombatArena {
       shadows: true,
       contacts: [],
       weeds: [],
+      snow: Boolean(this.theme.snow),
+      emblem: this.theme.emblem ?? 'lion',
     };
   }
 
@@ -389,7 +392,13 @@ export class CombatArena {
   private buildWeeds(): void {
     const weeds = this.ctx.weeds;
     if (!weeds.length) return;
-    const sprites = [drawGrass(this.theme.palette, 1), drawGrass(this.theme.palette, 3)];
+    const pal = this.theme.palette;
+    const fringe = this.theme.fringe ?? 'vegetation';
+    // what grows (or lies) at the foot of the masonry: grass, dry grass and snow, snow, or rubble underground
+    const sprites: DecorSprite[] = fringe === 'alpine' ? [drawGrass(pal, 1), drawSnowTuft(pal, 3)]
+      : fringe === 'snow' ? [drawSnowTuft(pal, 1), drawSnowTuft(pal, 3)]
+        : fringe === 'rubble' ? [drawRubble(pal, 1), drawRubble(pal, 3)]
+          : [drawGrass(pal, 1), drawGrass(pal, 3)];
     const atlasW = sprites.reduce((w, sp) => w + sp.canvas.width, 0), atlasH = Math.max(...sprites.map((sp) => sp.canvas.height));
     const atlas = new PixelCanvas(atlasW, atlasH);
     const frames: Array<{ u0: number; u1: number; v1: number; w: number; h: number; ax: number }> = [];
@@ -432,6 +441,7 @@ export class CombatArena {
    */
   private buildTreeLines(): void {
     if (this.ctx.reduced) return;
+    if (this.theme.snow || this.theme.interior) { this.buildRidgeLines(); return; }
     const conifer = this.theme.id !== 'forest_route';
     const rows: Array<{ z: number; width: number; height: number; seed: number; shade: string }> = [
       { z: -25, width: 74, height: 9, seed: 3, shade: '#b8c0c4' },
@@ -448,6 +458,30 @@ export class CombatArena {
       mesh.position.set(0, -0.2 + row.height / 2, row.z);
       mesh.raycast = () => {};
       mesh.name = 'arena-tree-line';
+      this.root.add(mesh);
+    }
+  }
+
+  /**
+   * The Bear's horizon in place of the tree lines: two fogged granite ridges, snow on their crests outdoors; underground
+   * the same heaps of rock fall into the dark in front of the back wall.
+   */
+  private buildRidgeLines(): void {
+    const rows: Array<{ z: number; width: number; height: number; seed: number; shade: string }> = [
+      { z: -25, width: 74, height: 9, seed: 3, shade: '#b8c0c4' },
+      { z: -21.5, width: 66, height: 7, seed: 7, shade: '#d8dcd6' },
+    ];
+    for (const row of rows) {
+      const sprite = drawRidgeLine(this.theme.palette, row.seed + this.theme.id.length, Boolean(this.theme.snow), 720, 96);
+      const texture = sprite.canvas.toTexture();
+      this.ctx.textures.set(`ridge-line-${row.seed}`, texture);
+      const geometry = new THREE.PlaneGeometry(row.width, row.height);
+      this.geometries.push(geometry);
+      const material = new THREE.MeshBasicMaterial({ map: texture, alphaTest: 0.5, fog: true, color: row.shade });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(0, -0.2 + row.height / 2, row.z);
+      mesh.raycast = () => {};
+      mesh.name = 'arena-ridge-line';
       this.root.add(mesh);
     }
   }
@@ -490,10 +524,12 @@ export class CombatArena {
     });
   }
 
-  /** Worn earth around the platform and a path toward the back; a cobbled square in the village. */
+  /** Worn earth around the platform and a path toward the back; a cobbled square in the village; granite flags on a terrace. */
   private buildTrampledApron(): void {
     const village = this.theme.ground === 'village_mud';
-    const texture = (village ? cobbleApronTexture(this.theme.palette, 1301) : trampledGroundTexture(this.theme.palette, 1201 + this.theme.id.length)).toTexture();
+    const canvas = this.theme.apron === 'flagstone' ? flagApronTexture(this.theme.palette, 1301)
+      : village ? cobbleApronTexture(this.theme.palette, 1301) : trampledGroundTexture(this.theme.palette, 1201 + this.theme.id.length);
+    const texture = canvas.toTexture();
     this.ctx.textures.set('apron', texture);
     const { width, depth } = this.platformSize;
     const w = width + 7.5, d = depth + 9;
@@ -512,6 +548,7 @@ export class CombatArena {
   /** Grass and ferns hugging the curb so the platform grows out of the ground. */
   private buildEdgeVegetation(): void {
     if (this.ctx.reduced) return;
+    if ((this.theme.fringe ?? 'vegetation') !== 'vegetation') { this.buildEdgeFringe(); return; }
     const { width, depth } = this.platformSize;
     const rng = seeded(77 + this.theme.id.length);
     const grassKey = 'edge-grass';
@@ -545,6 +582,51 @@ export class CombatArena {
       const useFern = rng() < 0.25 && this.theme.id !== 'bois_clair_burning';
       const m = useFern ? make(fern, fernTex, 0.7 + rng() * 0.3) : make(grass, grassTex, 0.8 + rng() * 0.5);
       m.position.set(x, -0.15, z);
+      this.root.add(m);
+    }
+  }
+
+  /**
+   * The Bear's fringe along the curb: dry grass and wind-packed snow on the pass, snow on the swept terrace, rubble and
+   * stone chips in the galleries.
+   */
+  private buildEdgeFringe(): void {
+    const { width, depth } = this.platformSize;
+    const pal = this.theme.palette, fringe = this.theme.fringe;
+    const rng = seeded(77 + this.theme.id.length);
+    const kinds: Array<{ sprite: DecorSprite; material: THREE.Material; scale: [number, number] }> = [];
+    const add = (key: string, sprite: DecorSprite, scale: [number, number]) => {
+      const texture = sprite.canvas.toTexture();
+      this.ctx.textures.set(key, texture);
+      const material = new THREE.MeshLambertMaterial({ map: texture, alphaTest: 0.5, side: THREE.DoubleSide });
+      this.ctx.materials.set(key, material);
+      kinds.push({ sprite, material, scale });
+    };
+    if (fringe === 'rubble') { add('edge-rubble-1', drawRubble(pal, 2), [0.8, 1.2]); add('edge-rubble-2', drawRubble(pal, 5), [0.7, 1.1]); }
+    else {
+      add('edge-snow-1', drawSnowTuft(pal, 2), [0.8, 1.3]);
+      add('edge-snow-2', drawSnowTuft(pal, 5), [0.7, 1.1]);
+      if (fringe === 'alpine') add('edge-grass', drawGrass(pal, 2), [0.8, 1.3]);
+    }
+    for (let i = 0; i < 34; i++) {
+      const edge = Math.floor(rng() * 4);
+      const t = rng() - 0.5;
+      const out = 0.3 + rng() * 0.6;
+      let x = 0, z = 0;
+      if (edge === 0) { x = t * (width + 1); z = -(depth / 2 + out); }
+      else if (edge === 1) { x = t * (width + 1); z = depth / 2 + out; }
+      else if (edge === 2) { x = -(width / 2 + out); z = t * depth; }
+      else { x = width / 2 + out; z = t * depth; }
+      const kind = kinds[Math.floor(rng() * kinds.length)] ?? kinds[0]!;
+      const scale = kind.scale[0] + (kind.scale[1] - kind.scale[0]) * rng();
+      const w = kind.sprite.canvas.width / DECOR_TEXELS_PER_UNIT * scale, h = kind.sprite.canvas.height / DECOR_TEXELS_PER_UNIT * scale;
+      const geo = new THREE.PlaneGeometry(w, h);
+      geo.translate(0, h / 2 - (kind.sprite.canvas.height - kind.sprite.anchor[1]) / DECOR_TEXELS_PER_UNIT * scale, 0);
+      this.geometries.push(geo);
+      const m = new THREE.Mesh(geo, kind.material);
+      m.raycast = () => {};
+      m.position.set(x, -0.15, z);
+      this.ctx.billboards.push(m);
       this.root.add(m);
     }
   }
@@ -595,7 +677,13 @@ export class CombatArena {
     const plate = this.theme.farPlate;
     const happy = typeof window === 'undefined' || /happy-?dom/i.test(window.navigator?.userAgent ?? '');
     let texture: THREE.Texture | null = null;
-    if (!happy) {
+    let painted = 0;
+    if (plate.procedural) {
+      // painted in code: the arenas without a plate (OD-2026-11-01-C)
+      const canvas = plate.procedural === 'cave' ? drawCavePlate(this.theme) : drawPeaksPlate(this.theme, 7 + this.theme.id.length);
+      texture = canvas.toTexture();
+      painted = canvas.height / canvas.width;
+    } else if (!happy && plate.file) {
       try {
         texture = await new THREE.TextureLoader().loadAsync(plate.file);
         texture.colorSpace = THREE.SRGBColorSpace;
@@ -607,7 +695,7 @@ export class CombatArena {
       }
     }
     const image = texture?.image as { width?: number; height?: number } | undefined;
-    const aspect = image?.width && image?.height ? image.height / image.width : 0.35;
+    const aspect = painted || (image?.width && image?.height ? image.height / image.width : 0.35);
     const height = plate.width * aspect;
     const geometry = new THREE.PlaneGeometry(plate.width, height);
     this.geometries.push(geometry);

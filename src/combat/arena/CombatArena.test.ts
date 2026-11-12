@@ -16,6 +16,19 @@ async function buildArena(sceneId: string) {
   return arena;
 }
 
+describe('CombatArena in reduced graphics', () => {
+  it('builds the Bear arenas without their band, clutter, horizon and atmosphere', async () => {
+    for (const sceneId of ['bear_mountain_pass', 'bear_mine_galleries', 'bear_hall_terrace']) {
+      const arena = new CombatArena({ sceneId, columns: 8, rows: 4, tile: 1.18, reducedGraphics: true });
+      await arena.build();
+      expect(arena.theme.id).toBe(sceneId);
+      expect(arena.describe().atmosphere).toBe(0);
+      expect(arena.describe().farPlate, sceneId).toBe(true);
+      arena.dispose();
+    }
+  }, 60000);
+});
+
 describe('CombatArena generation', () => {
   for (const sceneId of Object.keys(ARENA_THEMES)) {
     describe(sceneId, () => {

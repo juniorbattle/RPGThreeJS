@@ -113,6 +113,10 @@ const SCENE_AMBIENCE={
   forest_route:{fog:0x52635c,density:0.012,count:96,color:0xf3d983,size:0.082,opacity:0.5,area:[9.2,5.1],y:[0.28,3.55],rise:[0.05,0.15],drift:0.34,glow:0.1,glowColor:0xd8f0a8,mistColor:0xb9d7bd,mistOpacity:0.16,rayColor:0xf3d29a,rayOpacity:0.09},
   bois_clair_burning:{fog:0x5a3c32,density:0.014,count:132,color:0xffa24f,size:0.09,opacity:0.62,area:[9.6,5.5],y:[0.16,4.4],rise:[0.14,0.38],drift:0.52,glow:0.22,glowColor:0xff8136,mistColor:0x8b5f46,mistOpacity:0.2,rayColor:0xff9a3f,rayOpacity:0.15},
   lion_sanctum:{fog:0x4d445e,density:0.011,count:118,color:0xf7d98d,size:0.084,opacity:0.56,area:[9.1,5.2],y:[0.24,3.9],rise:[0.06,0.19],drift:0.28,glow:0.2,glowColor:0xd9b86a,mistColor:0xd3b978,mistOpacity:0.17,rayColor:0xffe1a1,rayOpacity:0.12},
+  // The Bear's arenas: wind-driven snow on the pass and the terrace (negative rise: it falls), dust lit by the torches in the galleries.
+  bear_mountain_pass:{fog:0xa3b1c2,density:0.01,count:150,color:0xf4f8ff,size:0.07,opacity:0.5,area:[9.4,5.4],y:[0.1,4.6],rise:[-0.55,-0.3],drift:0.6,wind:0.9,glow:0.05,glowColor:0xdfe8ff,mistColor:0xe8eef6,mistOpacity:0.1,rayColor:0xf4f6ff,rayOpacity:0.03},
+  bear_mine_galleries:{fog:0x1a1714,density:0.014,count:70,color:0xd9b080,size:0.06,opacity:0.4,area:[9.0,5.0],y:[0.2,3.6],rise:[0.03,0.09],drift:0.22,glow:0.07,glowColor:0xd98a3a,mistColor:0x4a4038,mistOpacity:0.16,rayColor:0xffb070,rayOpacity:0},
+  bear_hall_terrace:{fog:0x9eacbd,density:0.01,count:100,color:0xf4f8ff,size:0.065,opacity:0.45,area:[9.2,5.2],y:[0.1,4.4],rise:[-0.42,-0.24],drift:0.45,wind:0.5,glow:0.05,glowColor:0xdfe8ff,mistColor:0xe8eef6,mistOpacity:0.08,rayColor:0xf4f6ff,rayOpacity:0.03},
 };
 let REQUESTED_REDUCED_GRAPHICS=campaignParams.get('reduced')==='1';
 let REDUCED_GRAPHICS=prefersReducedMotion(REQUESTED_REDUCED_GRAPHICS);
@@ -637,8 +641,11 @@ function buildSceneAmbience(sceneId){
     for(let i=0;i<p.count;i++){
       let y=attr.getY(i)+spd[i]*dt;
       if(y>p.y[1]){ y=p.y[0]; attr.setX(i,rnd(-p.area[0],p.area[0])); attr.setZ(i,rnd(-p.area[1],p.area[1])); }
+      else if(y<p.y[0]){ y=p.y[1]; attr.setX(i,rnd(-p.area[0],p.area[0])); attr.setZ(i,rnd(-p.area[1],p.area[1])); } // falling snow
       attr.setY(i,y);
-      attr.setX(i,attr.getX(i)+Math.sin(t*0.72+phase[i])*p.drift*dt*0.1);
+      let x=attr.getX(i)+Math.sin(t*0.72+phase[i])*p.drift*dt*0.1+(p.wind||0)*dt;
+      if(p.wind&&x>p.area[0])x-=p.area[0]*2; // the wind carries it across and round again
+      attr.setX(i,x);
       attr.setZ(i,attr.getZ(i)+Math.cos(t*0.36+phase[i])*p.drift*dt*0.035);
     }
     attr.needsUpdate=true;
