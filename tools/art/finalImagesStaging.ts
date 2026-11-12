@@ -121,8 +121,8 @@ export const STAGED_LOOKS: Readonly<Record<string, string>> = Object.freeze({
   'bear:actor:bear_miner': 'A civilian miner of the Bear clan, not a soldier: a leather hood and a cloth wrapped against the dust cover his face, a leather apron over plain wool, a pickaxe on his shoulder, a lantern at his belt, rock dust on his clothes. No armour, no sword, no shield.',
   'bear:enemy:corrupted_beast': 'A great four-legged mountain beast, massive, shaggy and with curved horns, driven mad: black veins showing under its fur, burning eyes, foam at the mouth. Not a bear and not a wolf. Nothing specific to one clan: it must fit any mountain land.',
   'bear:enemy:depth_beast': 'A blind creature of the deep mine galleries, pale-skinned, with long digging claws and a back bristling with shards of black stone.',
-  // The Dragon's characters, PROPOSALS awaiting the operator's validation. Kaelen: reading A of the draft (a human elder);
-  // reading B (a true ancient dragon) would move him to the creatures.
+  // The Dragon's characters, PROPOSALS awaiting the operator's validation. Kaelen is a human elder, the operator's choice of
+  // 2026-11-12 (« Ancien humain »); the details of his look stay a proposal.
   'dragon:actor:kaelen': 'PROPOSAL, to confirm: the very old human chief of the Dragon clan (a man, not a dragon), tall and thin, a long pale robe embroidered with scales of verdigris bronze, a closed mask-helm of verdigris bronze shaped like a dragon’s head that hides his face, a long staff topped with a coiled dragon.',
   'dragon:actor:dragon_guardian': 'PROPOSAL, to confirm: a guardian warrior of the Dragon clan, a closed bronze helm shaped like a dragon’s head, scale armour of verdigris bronze over pale cloth, a long spear with a broad blade.',
   'dragon:actor:dragon_villager': 'PROPOSAL, to confirm: a civilian villager of the foothills, not a soldier: a hood and a wool scarf cover his face, a sheepskin vest over plain wool, a herder’s staff. No armour, no weapon.',

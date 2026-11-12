@@ -127,8 +127,8 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   - l’identité du Dragon : haut, ouvert, pierre claire et ciel, là où l’Ours est bas, clos, sombre et éclairé au feu ;
   - celle du Loup, et la marque des Ombres ;
   - 28 lignes de mise en scène tirées des répliques, 12 aspects de personnages et 3 tracés d’atlas sur ceux du Lion.
+- **Kaelen est un ancien humain** au masque de dragon, et non un véritable dragon : l’opérateur l’a tranché le 2026-11-12 (« Ancien humain »), selon la recommandation. Le détail de son aspect reste à valider avec la fiche.
 - **Questions ouvertes** :
-  - Kaelen : ancien humain au masque de dragon (recommandé) ou véritable dragon ;
   - la couleur du Cristal d’Écho (bleu glacé proposé) ;
   - l’identité elle-même.
 - **Outil prêt pour la génération** :

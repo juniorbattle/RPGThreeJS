@@ -6,7 +6,7 @@ Les mentions **(proposition)** marquent ce que le texte ne dit pas : heure, lieu
 
 ## Questions à trancher
 
-1. **Qui est Kaelen ?** Le texte l’appelle « Ancien Dragon Kaelen », chef du Clan du Dragon. La feuille de route dit « un être d’une sagesse millénaire ». En combat, il souffle (`enemy_dragon_breath`) et occupe deux cases. Le texte permet deux lectures :
+1. **Qui est Kaelen ?** — **Tranché le 2026-11-12 : lecture A, un ancien humain** (« Ancien humain »). Son aspect détaillé (robe, masque-heaume, bâton) reste une proposition à valider avec le reste de la fiche. Le texte l’appelle « Ancien Dragon Kaelen », chef du Clan du Dragon. La feuille de route dit « un être d’une sagesse millénaire ». En combat, il souffle (`enemy_dragon_breath`) et occupe deux cases. Le texte permet deux lectures :
    - **A. Un ancien humain**, chef du clan comme Borin l’est de l’Ours. Il porte un masque-heaume en tête de dragon, de bronze vert-de-gris, qui cache son visage. **Recommandé**, pour trois raisons :
      - les clans sont des peuples (le Loup, l’Ours, le Corbeau), et chacun a un chef humain ;
      - la règle des visages couverts s’applique telle quelle ;
@@ -178,7 +178,7 @@ Les mentions **(proposition)** marquent ce que le texte ne dit pas : heure, lieu
 Tous ont le visage couvert (OD-2026-11-11-G), sauf le wyrm, dessiné en créature.
 
 24. **Kaelen** (`kaelen`)
-    - Selon la question 1. Lecture A : un très vieil homme, grand et maigre.
+    - Un ancien humain (question 1, tranchée par l’opérateur) : un très vieil homme, grand et maigre.
       - Longue robe claire brodée d’écailles de bronze vert-de-gris.
       - Un masque-heaume de bronze en tête de dragon cache son visage.
       - Un long bâton surmonté d’un dragon enroulé.
