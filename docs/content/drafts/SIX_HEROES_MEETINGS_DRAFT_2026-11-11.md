@@ -28,7 +28,7 @@ Les héros d’embranchement se manquent si la compagnie prend l’autre branche
 
 *Après « Convoi de minerai », quel que soit le choix.*
 
-- **Kestrel** (Éclaireuse) : Quelqu’un nous suit depuis le pont. Un homme, une gueule de canon sanglée dans le dos, et assez de poudre pour faire sauter une colline.
+- **Kestrel** (Éclaireuse) : Quelqu’un nous suit depuis le pont. Un homme encapuchonné, un canon de poing à la ceinture et assez de poudre pour faire sauter une colline.
 - **Gunnar** (Artilleur) : Gunnar. Je faisais sauter la roche pour les mineurs de l’Ours, avant que le Corbeau prenne les galeries. Depuis, ma poudre ne sert à personne.
 - **Gunnar**, si le convoi a été signalé : Vous avez marqué ce convoi au lieu de le vider. Les mineurs vous le rendront. Moi, je ne suis pas mineur : je me loue.
 - **Gunnar**, si le minerai a été saisi : Vous avez pris le minerai. Bonne prise. Moi, je ne vole rien : je me loue.
