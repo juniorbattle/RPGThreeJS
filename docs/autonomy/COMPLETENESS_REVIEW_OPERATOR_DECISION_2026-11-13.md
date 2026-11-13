@@ -91,3 +91,20 @@ La session de présentation a soumis ses options sur une fiche privée (https://
 - **Reporter à la dette technique** : reste du Combat Stage, TravelView, CombatSfx, lab du Composer et chaîne de lecture vidéo (C2, C13, C14, C18).
 - **Garder** : C8, C10 à C12, C16 et C17.
 - **Principes.** Les preuves des rapports ne sont pas compactées (P1). Les candidats cinématiques restent sous OD-2026-10-24-A (P2). L’historique Git n’est pas réécrit.
+
+## Validations du lot combat (même jour)
+
+- **C3 et C4, validés.** Dans la session de combat, à la question « Valides-tu les quatre nouvelles attaques lourdes et le Démon, comme dans le brouillon ? », l'opérateur a répondu « Yes, all four ». Brouillon : `docs/content/drafts/NEW_BOSS_SKILLS_DRAFT_2026-11-13.md`. Entrent en jeu :
+  - Kaelen : « Foudre Céleste » (aveugle) ;
+  - le Grand Inquisiteur : « Sentence » (Mutisme) ;
+  - Maelor : « Serment rompu » (dissipe les effets positifs de la cible) ;
+  - l'Entité : « Étreinte de la brèche » (Entravé) ;
+  - le Démon : Gel en attaque lourde et Frappe du Titan en ultime.
+
+  Chaque compétence a son effet propre. Un test verrouille les 15 couples attaque lourde + ultime distincts des boss (5572af4b).
+- **Grandeur et impact.** Six effets sont remis à l'échelle de leur rang, sans toucher aux statistiques (a9e3dc73). Les captures avant et après sont dans `docs/reports/bilan-combat-2026-11-13.md`.
+- **C1, C2 et C5** sont livrés (307b5a19, 2578a659).
+- **Démon de la brèche.** À la remarque de l'opérateur sur son encombrement, rapportée par la session de combat, il se tient maintenant centré sur sa case : ses pieds s'ancrent entre ses deux pieds, et sa hauteur passe de 2,2 à 1,95 (3b1a02aa).
+- **Encore ouverts pour l'opérateur.**
+  - L'arme de la Bête corrompue : « Charge » est proposée au lieu de « Griffes ».
+  - Le libellé « PURIFIÉ », repris de la dissipation existante, s'affiche quand Serment rompu retire les protections d'un héros.
