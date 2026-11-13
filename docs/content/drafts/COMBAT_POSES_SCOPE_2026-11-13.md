@@ -1,6 +1,6 @@
 # Poses de combat des nouvelles unités : cadrage
 
-Statut : **VALIDÉ** le 2026-11-13 (OD-2026-11-13-A). À « Valides-tu ce périmètre et le pilote sur Aldric ? », tu as répondu « Oui, lance Aldric » ; je lis les six recommandations comme retenues, sauf Q4 : tu as choisi les effets incrustés comme la démo (§8). Puis « Oui, lance les héros » et « travail sans arrêt » : **les 6 héros et les 9 combattants de l'Ours ont leurs 4 poses en jeu (§9)**. Les 23 autres unités attendent des crédits OpenAI : le compte n'en a plus (§9). Runs `claude-combat-poses-scope-20261113T0638Z`, `claude-combat-poses-pilot-20261113T0653Z`, `claude-combat-poses-heroes-20261113T0734Z`.
+Statut : **VALIDÉ** le 2026-11-13 (OD-2026-11-13-A), **lot terminé**. À « Valides-tu ce périmètre et le pilote sur Aldric ? », tu as répondu « Oui, lance Aldric » ; je lis les six recommandations comme retenues, sauf Q4 : tu as choisi les effets incrustés comme la démo (§8). Puis « Oui, lance les héros » et « travail sans arrêt ». **Les 38 unités du périmètre ont leurs 4 poses en jeu** : les héros et l'Ours (§9), puis, après l'ajout de crédits, le Dragon, le Scorpion, l'acte final et Maelor (§10). Il te reste à les juger en jeu. Les armes de quatre Corbeaux portent désormais le nom de l'arme de leur maître (« Renommer les armes », §11). Runs `claude-combat-poses-scope-20261113T0638Z`, `claude-combat-poses-pilot-20261113T0653Z`, `claude-combat-poses-heroes-20261113T0734Z`, `claude-combat-poses-foes-20261113T0908Z`, `claude-raven-weapons-20261113T1316Z`.
 
 Ta demande : « les nouveaux personnages/unités utilisés en combat doivent avoir leurs 4 poses nécessaires comme ceux déjà présents ». Ce document dit quelles unités sont concernées, comment les 27 unités de la démo ont eu leurs poses, les méthodes possibles, ce que ça coûte et la décision qu'il te faut prendre. Six questions t'attendent à la fin, chacune avec ma recommandation.
 
@@ -346,6 +346,8 @@ Tes consignes : « Oui, lance les héros », puis faire les héros avec la direc
   - le chef des mineurs tient un marteau, là où il dit « Pioche de guerre ».
 
   Comme pour Borin et le guerrier (OD-2026-11-12-A), on pourrait renommer ces armes ; ce serait à toi de le décider.
+
+  **Tranché le 2026-11-13 : « Renommer les armes »** (OD-2026-11-13-D, §11).
 - **Eldwin** est le seul effet violet : rose et violet arcane, la couleur de ses propres sorts. Toutes les Ombres restent en encre noire.
 
 ### Bloqué : plus de crédits OpenAI
@@ -360,3 +362,67 @@ npx vite-node tools/art/finalImages.ts -- poses --units kaelen,wolf_chief,shadow
 ```
 
 - Viendront ensuite `--step fx`, la normalisation, la relecture à une seule échelle, la construction, les tests de présentation du Dragon, du Scorpion et de l'acte final (et Maelor, qui recevra sa première planche de combat), puis le contrôle en combat.
+
+## 10. Lot du Dragon, du Scorpion, de l'acte final et de Maelor (2026-11-13)
+
+Tu as répondu « Crédits ajoutés ». La génération a repris où elle s'était arrêtée : 95 appels, aucun échec, aucune reprise nécessaire.
+
+### En jeu
+
+- **23 unités de plus** ont leurs 4 poses. Avec le §9, ce sont **les 38 unités du périmètre**.
+  - Dragon : Kaelen, le chef du Loup, le Chaman des Ombres, le champion du Loup, le wyrm corrompu, le gardien du Dragon, le pillard et le chasseur du Loup.
+  - Scorpion : le Grand Inquisiteur, le chef des gardiens du Phénix, le Prophète des Ombres, le gardien de flamme, le fidèle égaré, le gardien du Phénix et l'érudit du Scorpion.
+  - Acte final : les champions du Serpent, du Corbeau et du Phénix, le champion changé en démon, l'entité de la brèche, le démon massif et les démons de la brèche.
+- **Maelor** a sa première planche de combat. À la brèche, il combattait jusqu'ici sur son maître HD, à une autre densité que tous les autres ; il joue maintenant ses poses comme eux. Sa planche est rangée sous la clé `maelor`, avec son maître pour alias. Les tableaux vivants et l'ouverture, qui le montrent par son portrait, ne changent pas.
+- **Effets**, comme les ennemis du §9 : chaque incantation, et l'attaque pour les lames et la magie.
+  - Les Ombres et la brèche (Chaman, Prophète, fidèle égaré, wyrm, démons, entité, Maelor) sont en encre noire froide à liseré blanc, jamais violette.
+  - Le Phénix est en flammes, le Dragon en cristal de glace, le Scorpion en ambre et sable, le Serpent en venin.
+- Il ne reste plus que 12 planches à maître seul : les 10 civils et les 2 unités d'archive, exclus du périmètre.
+
+### Vérifications
+
+- **Relecture de chaque image** : identité, arme, visage couvert, direction vers la droite et couleur d'effet tiennent pour les 23 unités.
+- **Planches à une seule échelle** : cohérentes, à environ 10 % près. Deux mesures du heaume accrochaient au bas de leur plage (0,65 là où le dessin est à 1,5), ce qui faussait cinq unités (Kaelen, le wyrm, le gardien du Dragon, l'entité, le champion du Phénix). Le normaliseur ne garde plus que les mesures plausibles, entre 0,8 et 1,45 fois l'échelle de la toile de référence.
+- **En combat**, dans le navigateur : l'épreuve de Kaelen, l'assaut du repaire du Loup, l'épreuve de l'Inquisiteur, l'assaut du temple du Phénix, la finale du Tournoi, la grande place aux démons et la brèche. Chaque unité y joue ses quatre poses, sans erreur de console.
+- **Tableau vivant** « Ours · force » (laboratoire QA) : Borin et ses guerriers restent à leur taille dans le tableau, sur leurs nouvelles planches. Les figures y sont placées par l'ancre des pieds, désormais au centre des pieds plutôt qu'au centre de la silhouette ; l'écart n'est que de quelques pixels.
+- **Tests** :
+  - les tests de présentation du Dragon, du Scorpion et de l'acte final attendent désormais les poses de leurs combattants, et Maelor sa planche ;
+  - la suite vitest complète passe (238 fichiers) ;
+  - le test `node:test` du travailleur QA détaché a échoué une fois, quand la machine était chargée par les combats de contrôle, puis passe seul (26 sur 26).
+
+### Ce que tu verras peut-être
+
+- **Taille** : quelques incantations et attaques à grand effet peuvent paraître jusqu'à 10 à 20 % plus grandes que le maître (l'Inquisiteur, l'érudit, le champion du Serpent, l'entité). Les mesures se recoupent, mais l'aura trompe l'œil. Un écart se corrige pose par pose dans `tools/pixel-sprites/poses/overrides.json`, puis on relance la normalisation et la construction de l'unité.
+- **Coût** : 95 appels pour ce lot ; avec les héros, l'Ours et les reprises, environ 230 appels en tout, au plus bas de mon estimation.
+
+## 11. Armes du Corbeau renommées (2026-11-13)
+
+À « Veux-tu renommer les armes des quatre Corbeaux comme leurs maîtres ? », tu as répondu « Renommer les armes » (OD-2026-11-13-D), comme pour Borin et le guerrier de l'Ours (OD-2026-11-12-A). Les maîtres et leurs poses restent tels quels. Dans `src/combat/legacyCombatRuntime.js`, quatre noms d'arme changent, et leur icône suit celle de leur famille.
+
+| Unité | Avant | Après |
+| --- | --- | --- |
+| Éclaireur du Corbeau | « Lames de jet » † | « Épée d’éclaireur » ⚔ |
+| Maître Espion du Corbeau | « Lames de jet » † | « Épée du Maître Espion » ⚔ |
+| Contremaître du Corbeau | « Masse de contremaître » ◆ | « Épée de contremaître » ⚔ |
+| Chef des mineurs du Corbeau | « Pioche de guerre » ◆ | « Marteau de guerre » ◆ |
+
+### Ce qui ne change pas
+
+- **Statistiques, portée et type** : identiques. Le Maître Espion et le contremaître frappent toujours de 2 à 3 cases, l'éclaireur et le chef des mineurs de 1 à 2.
+- **Compétences** : les mêmes. L'éclaireur et le Maître Espion gardent leurs tirs (`enemy_binding_shot`, et `boss_pin` pour le Maître Espion), que le renommage ne touche pas.
+- **Son** : le même relâché d'arc qu'avant.
+- **Contremaître et chef des mineurs** : même effet d'attaque de base. Leur arme portait déjà à 2 cases, et c'est la portée qui choisit l'effet, avant le nom.
+
+### Ce qui change pour l'éclaireur et le Maître Espion
+
+« Lames de jet » avait son propre effet, de petites lames d'acier lancées. Sous un nom d'épée, l'éclaireur et le Maître Espion prennent l'effet commun des armes qui portent à 2 cases ou plus : une traînée d'acier un peu plus grande file jusqu'à la cible. C'est déjà celui du Champion du Lion, du Général Serpent et de Borin. Le test des effets ennemis veut d'ailleurs qu'une épée n'ait pas d'effet à elle (`fxSkills.test.ts`).
+
+### Vérifications
+
+- **Tests** :
+  - `tools/art/combatPoses.test.ts` vérifie que les six combattants de l'Ours portent en combat l'arme que leurs poses dessinent, et que leur brief d'image la demande ;
+  - l'empreinte des 125 briefs de l'Ours, du Dragon et du Scorpion (`finalImagesFinale.test.ts`) est mise à jour. Seules les phrases d'arme des quatre Corbeaux changent : en les remettant, on retrouve l'ancienne empreinte ;
+  - `postDemoCombatRuntime.test.ts` ne range plus l'éclaireur parmi les attaques naturelles : il vérifie que son épée n'a pas d'effet à elle et prend donc l'effet commun ;
+  - la suite complète passe.
+- **En combat**, dans le navigateur, sur la traque du Maître Espion, la défense des mines et le gardien contremaître : les quatre noms et icônes sont en place. Pendant le tour ennemi, le Maître Espion frappe de l'épée avec sa traînée incrustée, et la traînée d'acier file jusqu'à Elara. Aucune erreur de console.
+- **Briefs d'image** : à la prochaine génération, ces quatre unités demanderont l'arme que leur maître tient.

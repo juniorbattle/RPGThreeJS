@@ -2,6 +2,7 @@ import { soundWeight } from '../audio/cueTable';
 import type { MusicPart } from '../audio/music/parts';
 import { trackFor } from '../audio/music/plateauTracks';
 import { OWN_CONTEXTS } from '../audio/music/plateaux/score';
+import type { PostDemoAmbienceId } from '../audio/music/ambiencePostDemo';
 import { sectionSeconds, THEMES, type MusicContextId } from '../audio/music/themes';
 import { combatLaunchSound } from '../combat/CombatAudio';
 import { enemyAttackFxRecipe, listEnemyAttackWeapons, listSkillFxRecipes, skillFxRecipe } from '../combat/fx/fxSkills';
@@ -18,10 +19,7 @@ const TRACKS: ReadonlyArray<{ id: MusicContextId; label: string }> = [
   { id: 'combat', label: 'Combat' }, { id: 'boss', label: 'Boss' }, { id: 'victory', label: 'Fanfare de victoire' }, { id: 'defeat', label: 'Fanfare de défaite' },
 ];
 const AMBIENCES: ReadonlyArray<{ id: string; label: string }> = [
-  // the Bear's, the Dragon's, the Scorpion's and the final act's arenas borrow these beds (OD-2026-11-01-B: new sound awaits the operator's ear)
-  { id: 'forest_route', label: 'Route forestière · col de l’Ours · sentier et esplanade du Dragon · piste des dunes, ruines du Phénix et cour des registres · Arène des Destins' },
-  { id: 'bois_clair_burning', label: 'Bois-Clair en feu · arène en flammes, rues, grande place et remparts de la capitale' },
-  { id: 'lion_sanctum', label: 'Sanctuaire du Lion · galeries et salle de l’Ours · cimes du Dragon et repaire du Loup · temple et sanctuaire du Phénix, crête des dunes · cœur de la brèche' },
+  { id: 'forest_route', label: 'Route forestière' }, { id: 'bois_clair_burning', label: 'Bois-Clair en feu' }, { id: 'lion_sanctum', label: 'Sanctuaire du Lion' },
   { id: 'map', label: 'Carte' }, { id: 'refuge', label: 'Refuge' },
 ];
 /**
@@ -40,6 +38,15 @@ const SKETCH_SCENES: ReadonlyArray<{ part: Exclude<MusicPart, 'lion'>; context: 
   { part: 'finale', context: 'combat', scene: 'finale_destiny_arena', label: 'Acte final · Combat du Tournoi (bannières des clans)' },
   { part: 'finale', context: 'boss', scene: 'finale_destiny_arena', label: 'Acte final · Finale du Tournoi' },
   { part: 'finale', context: 'boss', scene: 'finale_breach_heart', label: 'Acte final · Boss, entrée de Maelor au cœur de la brèche' },
+];
+/** The post-demo plateaux's six combat biomes (set 1.20.0), each with the arenas that play it. */
+const PLATEAU_AMBIENCES: ReadonlyArray<{ id: PostDemoAmbienceId; label: string }> = [
+  { id: 'bear_mountains', label: 'Montagnes de l’Ours · col enneigé, galeries sacrées, parvis de la salle de Borin' },
+  { id: 'dragon_peaks', label: 'Pics du Dragon · sentier des terrasses, cimes enneigées, esplanade de Kaelen, repaire du Loup' },
+  { id: 'scorpion_desert', label: 'Désert du Scorpion · piste et crête des dunes, ruines, temple et sanctuaire du Phénix, cour des registres' },
+  { id: 'tournament_arena', label: 'Arène du Tournoi · Arène des Destins le jour du Tournoi' },
+  { id: 'corrupted_capital', label: 'Capitale corrompue · rues en flammes, grande place, remparts, cratère de la brèche refermée' },
+  { id: 'breach', label: 'La brèche · Arène des Destins la nuit de la trahison, cœur de la brèche' },
 ];
 const LAB_SCOPE = 'listening-lab';
 const FLIGHT = 0.5;
@@ -106,10 +113,11 @@ export class AudioListeningLab {
       ...SKETCH_SCENES.map(({ part, context, scene, label }) => ({ key: `esquisse:${part}:${context}:${scene}`, label, buttons: sketchButtons(part, context, scene) })),
     ];
     const ambienceRows: Row[] = AMBIENCES.map(({ id, label }) => ({ key: `ambiance:${id}`, label, buttons: [{ act: `ambience:${id}`, text: 'Jouer' }] }));
+    const plateauRows: Row[] = PLATEAU_AMBIENCES.map(({ id, label }) => ({ key: `ambiance:${id}`, label, buttons: [{ act: `ambience:${id}`, text: 'Jouer' }] }));
     const skillRows: Row[] = listSkillFxRecipes().map(id => ({ key: `compétence:${id}`, label: skillLabel(id), buttons: [{ act: `skill:${id}`, text: 'Jouer' }] }));
     const attackRows: Row[] = listEnemyAttackWeapons().map(name => ({ key: `attaque:${name}`, label: name, buttons: [{ act: `attack:${name}`, text: 'Jouer' }] }));
     const table = (title: string, rows: readonly Row[]) => `<h3 class="ui-sound-settings__group">${title}</h3><div class="audio-lab__table"><table><tbody>${rows.map(row => `<tr data-row="${row.key}" data-label="${row.label}"><th scope="row">${row.label}</th><td>${row.buttons.map(button => `<button type="button" data-act="${button.act}" aria-label="${button.text} : ${row.label}">${button.text}</button>`).join(' ')}</td><td><select data-verdict aria-label="Avis : ${row.label}"><option value="">—</option><option value="bien">Bien</option><option value="à revoir">À revoir</option></select></td><td><input data-note type="text" aria-label="Note : ${row.label}"></td></tr>`).join('')}</tbody></table></div>`;
-    element.innerHTML = `<section class="ui-sound-settings audio-lab" role="dialog" aria-modal="true" aria-labelledby="audio-lab-title"><h2 id="audio-lab-title">Laboratoire d'écoute</h2><p data-lab-status role="status"></p><p><button type="button" data-act="stop">Arrêter tout</button></p>${table('Musiques', trackRows)}${table('Esquisses : identités des plateaux (non branchées au jeu, à valider à l’oreille)', sketchRows)}${table('Ambiances', ambienceRows)}${table('Compétences', skillRows)}${table('Attaques ennemies', attackRows)}<label for="audio-lab-summary">Avis à me transmettre</label><textarea id="audio-lab-summary" readonly rows="5"></textarea><button type="button" data-lab-close>Fermer</button></section>`;
+    element.innerHTML = `<section class="ui-sound-settings audio-lab" role="dialog" aria-modal="true" aria-labelledby="audio-lab-title"><h2 id="audio-lab-title">Laboratoire d'écoute</h2><p data-lab-status role="status"></p><p><button type="button" data-act="stop">Arrêter tout</button></p>${table('Musiques', trackRows)}${table('Esquisses : identités des plateaux (non branchées au jeu, à valider à l’oreille)', sketchRows)}${table('Ambiances', ambienceRows)}${table('Ambiances des plateaux', plateauRows)}${table('Compétences', skillRows)}${table('Attaques ennemies', attackRows)}<label for="audio-lab-summary">Avis à me transmettre</label><textarea id="audio-lab-summary" readonly rows="5"></textarea><button type="button" data-lab-close>Fermer</button></section>`;
     this.root.append(element); this.element = element;
     this.restore = () => {
       for (const { child, inert } of siblings) if (child.isConnected) child.inert = inert;
