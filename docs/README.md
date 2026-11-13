@@ -1,6 +1,6 @@
 # Documentation authority
 
-The [game constitution](game/GAME_CONSTITUTION.md) and [locked production contracts](contracts/README.md) record the operator's approved target. Current set **1.4.0**, approved dedicated amendment **PRODUCTION-CONTRACTS-POI-LOT-E-1** / [OD-2026-10-15-B](autonomy/LOT_E_OPERATOR_DECISION_2026-10-15.md), immutable baseline `f9d8fde3f721fdf8da4b1e56a56bc51f20f2fef8`. Lot E adds the approved optional exploration and mobile threats. The earlier POI V2 decision permanently retires the physical engine; original lock and earlier amendments remain historical.
+The [game constitution](game/GAME_CONSTITUTION.md) and [locked production contracts](contracts/README.md) record the operator's approved target. Current set **1.23.0**, approved dedicated amendment **PRODUCTION-CONTRACTS-PLATEAU-MUSIC-1** / [OD-2026-11-13-E](autonomy/PLATEAU_MUSIC_OPERATOR_DECISION_2026-11-13.md), immutable baseline `6228a34fd69a01406ecf0fb7168a53f92a267d7b`. Earlier sets stay in force where later sets do not supersede them; the [contracts index](contracts/README.md) lists them. The POI V2 decision permanently retires the physical engine; the original lock remains historical.
 
 1. **Explicit operator decisions and locked contracts are the approved target.** Current source describes implementation and may still drift from that target.
 2. **Production source and runtime are executable evidence.** Verify current behavior against checked-out source and a production run.

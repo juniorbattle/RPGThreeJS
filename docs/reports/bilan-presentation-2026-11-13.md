@@ -7,7 +7,7 @@
 | BASELINE | `b2830891` sur `dev`, puis `0d96db98` fusionné (jeu de contrats 1.23.0, baseline immuable `6228a34fd69a01406ecf0fb7168a53f92a267d7b`) |
 | BRANCH | worktree `claude/nifty-pike-5623dd`, publié sur `dev` |
 | HEAD | le commit de ce rapport |
-| STATUS | merged : livré sur `origin/dev` ; seconde phase (couleurs de Talon et de Kestrel, inventaire du nettoyage global) ouverte par les remarques de l'opérateur |
+| STATUS | merged : livré sur `origin/dev` ; seconde phase (couleurs de Talon et de Kestrel, inventaire du nettoyage global) soumise à l’opérateur sur une fiche d’arbitrages |
 | MERGED_IN | `dev` |
 | SUPERSEDES | NONE (applique `docs/autonomy/COMPLETENESS_REVIEW_OPERATOR_DECISION_2026-11-13.md`) |
 | SUPERSEDED_BY | NONE |
@@ -161,6 +161,27 @@ Ces fichiers lisent des fichiers locaux ignorés par Git : les PNG de `public/as
 
 - Le verrou `.git/codex-autonomy.lock` existait à vide au départ, écrit par une autre session du même lot ; il n'a pas été modifié, quatre sessions travaillant en parallèle par décision de la session parente.
 - La piste de chaque moment est lue dans l'état de la musique, pas écoutée : l'acceptation à l'oreille reste celle de l'opérateur.
-- **Seconde phase**, ouverte par les remarques de l'opérateur (même décision) :
-  - comparer les bleus de Talon et de Kestrel, avec captures et options, sans rien recolorer ;
-  - dresser l'inventaire classé du nettoyage global et le soumettre avant toute suppression.
+## Seconde phase : soumise à l'opérateur
+
+Les remarques de l'opérateur, enregistrées dans la décision le même jour, confient deux tâches de plus à cette session. Les deux sont soumises sur une fiche d'arbitrages privée (https://claude.ai/artifact/ScehruYEVzu6FGSRk4h8Js). Rien n'est recoloré ni supprimé avant ses choix.
+
+- **Bleus de Talon et de Kestrel.** Les mesures portent sur les images du jeu, lues dans le navigateur :
+
+  | Image | Bleu dans la silhouette | Teinte moyenne du bleu | Saturation |
+  | --- | --- | --- | --- |
+  | Talon, portrait | 64 % | 228° | 0,48 |
+  | Talon, planche de combat | 52 % | 234° | 0,46 |
+  | Kestrel, portrait | 32 % | 222° | 0,25 |
+  | Kestrel, planche de combat | 29 % | 222° | 0,22 |
+
+  Dans la compagnie, le violet est déjà pris par Elara (240 à 270°) et Eldwin (270 à 300°), et le vert est libre. Talon n'apparaît que par son portrait et sa planche de combat ; Kestrel figure dans la démo et dans des images de scène approuvées. Les aperçus recolorent seulement les teintes bleues : Talon violet, Talon ardoise, Kestrel vert. Recommandation : Talon ardoise.
+- **Nettoyage global.** L'inventaire classé est dans `docs/audits/global-cleanup-inventory-2026-11-13.md`, fait en lecture seule sur les 4 371 fichiers suivis :
+
+  | Catégorie | Fichiers | Taille |
+  | --- | --- | --- |
+  | A, supprimable sans risque | 9 | 0,1 Mo |
+  | B, gardé par une règle | 2 974 | 2 014 Mo |
+  | C, à trancher | 251 | 113 Mo |
+
+  Le dépôt Git (6 Go) ne maigrit pas sans réécriture de l'historique, que OD-2026-11-11-E exclut. Le levier concret est le build : environ 60 Mo de `public/` que le jeu ne lit jamais partent à chaque version.
+- **`docs/README.md`** annonçait encore le jeu de contrats 1.4.0 ; il donne maintenant 1.23.0 et sa baseline.
