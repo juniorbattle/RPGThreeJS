@@ -13,6 +13,7 @@
  */
 import type { ProvisionalActor, ProvisionalAtlasRegion } from '../bear/bearPresentation';
 import { FINALE_POI_METADATA } from './finaleTopology';
+import { postDemoMomentPlays, type PostDemoMoment } from '../postDemoMoments';
 
 const FINAL_IMAGES = '/assets/generated/post-demo/finale';
 const FINAL_CHARACTERS = '/assets/characters/pixel/post-demo/finale';
@@ -121,33 +122,29 @@ export const FINALE_PROVISIONAL_SCENES: Readonly<Record<string, { environmentCon
 );
 
 /**
- * Set 1.20.0 (PRESENTATION_AND_MEDIA "Post-demo moments"), post-demo Lot 5 — the moment table of the final act, approved
- * with the endings (OD-2026-11-09-B): the Tournament betrayal and the three epilogues, each with the established facts it
- * may show. A moment plays only on an approved painted tableau; while its tableau is provisional, it goes straight to its
- * dialogue. No caption, no choice: the Fear ending's choice stays in its dialogue.
+ * Set 1.20.0 (PRESENTATION_AND_MEDIA "Post-demo moments"), post-demo Lot 5 — the moment table of the final act: the
+ * Tournament betrayal and the three epilogues, each with the established facts it may show. First approved with the
+ * endings (OD-2026-11-09-B), its facts are held to the contract since the operator validated
+ * PLATEAU_MOMENTS_DRAFT_2026-11-13 as is (questions 2 A and 3 A): a sequence never shows what its dialogue says first,
+ * and the betrayal comes "before the dialogue in which the breach opens". So the betrayal plays in the arena after the
+ * final, before Maelor steps forward; each epilogue opens on the capital at dawn, the breach still open and wavering, before
+ * it closes. Their tableaux are the act's integrated final images. No caption, no choice: the Fear ending's choice stays in
+ * its dialogue.
  */
-export interface FinaleMoment {
-  readonly id: string;
-  readonly beforeDialogueId: string;
-  readonly maxSeconds: 40;
-  readonly facts: readonly string[];
-  readonly status: 'proposed' | 'approved';
-  readonly tableau: 'provisional' | 'approved';
-}
+export type FinaleMoment = PostDemoMoment;
+
+const BEFORE_THE_EPILOGUE = Object.freeze(['La brèche vacille, encore ouverte au-dessus de la capitale', 'La compagnie doit la refermer']);
 
 export const FINALE_MOMENTS: readonly FinaleMoment[] = Object.freeze([
-  { id: 'finale_betrayal_moment', beforeDialogueId: 'finale_betrayal', maxSeconds: 40, status: 'approved', tableau: 'provisional',
-    facts: ['Le champion du Serpent tombe en finale du Tournoi', 'Maelor s’avance au milieu de l’arène, un artefact à la main',
-      'La brèche s’ouvre au cœur de l’arène', 'Le champion du Serpent se relève, changé en démon'] },
-  { id: 'finale_respect_moment', beforeDialogueId: 'finale_epilogue_respect', maxSeconds: 40, status: 'approved', tableau: 'provisional',
-    facts: ['La brèche se referme', 'Les bannières alliées tiennent la ligne autour de la brèche', 'Les clans se rassemblent sous la bannière de la compagnie'] },
-  { id: 'finale_fear_moment', beforeDialogueId: 'finale_epilogue_fear', maxSeconds: 40, status: 'approved', tableau: 'provisional',
-    facts: ['La brèche se referme', 'La compagnie se tient seule', 'Les bannières des clans approchent'] },
-  { id: 'finale_balance_moment', beforeDialogueId: 'finale_epilogue_balance', maxSeconds: 40, status: 'approved', tableau: 'provisional',
-    facts: ['La brèche se referme', 'Des bannières à ses côtés, d’autres à distance', 'Le monde tient encore, marqué par le conflit'] },
-]);
+  { id: 'finale_betrayal_moment', beforeDialogueId: 'finale_betrayal', sceneId: 'finale_pre_serpent_final', maxSeconds: 40, status: 'approved', tableau: 'approved',
+    facts: ['La compagnie remporte la finale du Tournoi contre le champion du Serpent', 'L’Arène des Destins, ses tribunes pleines et les bannières des clans'] },
+  { id: 'finale_respect_moment', beforeDialogueId: 'finale_epilogue_respect', sceneId: 'finale_act_end', maxSeconds: 40, status: 'approved', tableau: 'approved',
+    facts: BEFORE_THE_EPILOGUE },
+  { id: 'finale_fear_moment', beforeDialogueId: 'finale_epilogue_fear', sceneId: 'finale_act_end', maxSeconds: 40, status: 'approved', tableau: 'approved',
+    facts: BEFORE_THE_EPILOGUE },
+  { id: 'finale_balance_moment', beforeDialogueId: 'finale_epilogue_balance', sceneId: 'finale_act_end', maxSeconds: 40, status: 'approved', tableau: 'approved',
+    facts: BEFORE_THE_EPILOGUE },
+] satisfies FinaleMoment[]);
 
 /** A moment plays only once approved and on an approved tableau; until then, its dialogue plays directly. */
-export function finaleMomentPlays(moment: FinaleMoment): boolean {
-  return moment.status === 'approved' && moment.tableau === 'approved';
-}
+export const finaleMomentPlays = postDemoMomentPlays;

@@ -41,11 +41,12 @@ import { PoiMapView } from '../ui/PoiMapView';
 import { openTournamentBoard } from '../ui/TournamentBoardView';
 import {
   completeCampaignEnding, finalActCombatConfig, isEpilogueCombat, isTournamentComplete, isTournamentNodeId, nextEpilogueStep,
-  nextTournamentStep, tournamentBoard, type EpilogueStep,
+  nextTournamentStep, tournamentBoard, tournamentEntryOfCombat, type EpilogueStep,
 } from './finalAct';
 import { chronicleEndWords, type ChronicleEndWords } from './chronicleEndWords';
 import { FINALE_TOURNAMENT_ARRIVAL } from '../campaign/plateaux/finale/finaleTournament';
 import { FINALE_TOURNAMENT_BOARD_IMAGE } from '../campaign/plateaux/finale/finalePresentation';
+import { postDemoMomentAfter, postDemoMomentBefore } from '../campaign/plateaux/postDemoPresentation';
 import { provisionalMark } from './postDemoContent';
 import { sceneMood, type NarrativeMood } from '../audio/moods';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
@@ -189,6 +190,13 @@ export class GameApp {
   /** The living tableau on screen and the backdrop that keeps its tableau alive under the dialogue (set 1.13.0). */
   private livingPlayer: { close: () => void } | null = null;
   private livingBackdrop: { dispose: () => void } | null = null;
+  /**
+   * Set 1.20.0 ("Post-demo moments"): a moment plays only when its beat opens live. These remember, in memory only and
+   * never in a save, the Tournament scene that follows a fight just won and an epilogue reached from the breach just won,
+   * so a reload or a resume opens the dialogue directly.
+   */
+  private liveBoardDialogueId: string | null = null;
+  private liveEpilogue = false;
   private activeNarrativeStage: NarrativeStage | null = null;
   // Latched after a catastrophic Journey failure so the fallback can never recurse into Journey.
   private journeyUnavailable = false;
@@ -814,8 +822,9 @@ export class GameApp {
    * and writes no game state; a missing picture skips it. Returns whether it was shown.
    */
   private async playLivingTableau(id: string, followingDialogueId: string): Promise<boolean> {
-    const { LIVING_TABLEAUX } = await import('../ui/living/livingTableaux');
-    const script = LIVING_TABLEAUX[id];
+    const [{ LIVING_TABLEAUX }, { POST_DEMO_LIVING_TABLEAUX }] = await Promise.all([import('../ui/living/livingTableaux'), import('../ui/living/postDemoLiving')]);
+    // The Lion's seven moments, then the post-demo moments whose script is registered (set 1.20.0).
+    const script = LIVING_TABLEAUX[id] ?? POST_DEMO_LIVING_TABLEAUX[id];
     return script ? this.presentLivingScript(script, followingDialogueId) : false;
   }
 
@@ -838,12 +847,22 @@ export class GameApp {
   private async attachLivingBackdrop(stageElement: HTMLElement, dialogueId: string): Promise<void> {
     this.livingBackdrop?.dispose();
     this.livingBackdrop = null;
-    const [{ LIVING_BACKDROPS, LIVING_TABLEAUX, livingBackdropFits }, { LivingBackdrop }] = await Promise.all([import('../ui/living/livingTableaux'), import('../ui/living/LivingBackdrop')]);
+    const [{ LIVING_BACKDROPS, LIVING_TABLEAUX, livingBackdropFits }, { postDemoBackdropFor }, { LivingBackdrop }] = await Promise.all([
+      import('../ui/living/livingTableaux'), import('../ui/living/postDemoLiving'), import('../ui/living/LivingBackdrop'),
+    ]);
     const host = stageElement.querySelector<HTMLElement>('.narrative-scene-surface__environment');
-    // A backdrop is drawn only over the picture it was made for (set 1.14.0).
-    if (!host || !livingBackdropFits(dialogueId, host.style.backgroundImage)) return;
-    const painter = LIVING_TABLEAUX[LIVING_BACKDROPS[dialogueId] ?? '']?.backdrop?.();
-    if (painter && !this.disposed) this.livingBackdrop = new LivingBackdrop(host, painter, prefersReducedMotion(this.state.settings.reducedGraphics));
+    if (!host) return;
+    const reduced = prefersReducedMotion(this.state.settings.reducedGraphics);
+    // A backdrop is drawn only over the picture it was made for (set 1.14.0), a post-demo one at its painting's size (1.20.0).
+    const lionId = LIVING_BACKDROPS[dialogueId];
+    if (lionId) {
+      if (!livingBackdropFits(dialogueId, host.style.backgroundImage)) return;
+      const painter = LIVING_TABLEAUX[lionId]?.backdrop?.();
+      if (painter && !this.disposed) this.livingBackdrop = new LivingBackdrop(host, painter, reduced);
+      return;
+    }
+    const postDemo = postDemoBackdropFor(dialogueId, host.style.backgroundImage);
+    if (postDemo && !this.disposed) this.livingBackdrop = new LivingBackdrop(host, postDemo.backdrop(), reduced, postDemo.frame);
   }
 
   private async playStandaloneCinematic(trigger: VideoCinematicTrigger, label = ''): Promise<void> {
@@ -979,7 +998,9 @@ export class GameApp {
     if (!node) return;
     this.setMode('RESULT');
     if (step.kind === 'combat') { await this.startCombat(step.combatId, node); return; }
-    await this.playDialogue(step.dialogueId, node.label);
+    const live = this.liveEpilogue;
+    this.liveEpilogue = false;
+    await this.playDialogue(step.dialogueId, node.label, live ? { live: true } : {});
     this.saves.saveAuto(this.state);
     const next = nextEpilogueStep(this.state);
     if (next && JSON.stringify(next) === JSON.stringify(step)) { await this.enterJourney(); return; }
@@ -1027,7 +1048,10 @@ export class GameApp {
     const node: RunNode = { id: entry.nodeId, type: 'combat', depth: 0, links: [], contentId: entry.combatId, label: entry.label, icon: '⚔', x: 0, z: 0 };
     this.setMode('RESULT');
     if (step.action === 'fight') { await this.startCombat(entry.combatId, node); return; }
-    await this.playDialogue(step.action === 'opening' ? entry.openingDialogueId! : entry.afterDialogueId!, entry.label);
+    const dialogueId = step.action === 'opening' ? entry.openingDialogueId! : entry.afterDialogueId!;
+    const live = step.action === 'after' && this.liveBoardDialogueId === dialogueId;
+    this.liveBoardDialogueId = null;
+    await this.playDialogue(dialogueId, entry.label, live ? { live: true } : {});
     if (this.pendingCombatId) { await this.flushPendingCombat(node); return; }
     await this.enterCampaignPresentation();
   }
@@ -1671,7 +1695,9 @@ export class GameApp {
         tableauTransitionSource = 'VIDEO';
       }
       if (presentationBeat) stage.setPresentationBeat(presentationBeat);
-      if (options.live && options.cinematicId) await this.playLivingTableau(options.cinematicId, sequence.id);
+      // Set 1.20.0: a post-demo arrival, the Tournament betrayal or an epilogue opens with its moment, when it has one.
+      const livingId = options.live ? options.cinematicId ?? postDemoMomentBefore(sequence.id)?.id : undefined;
+      if (livingId) await this.playLivingTableau(livingId, sequence.id);
       const firstPresentation = stepPresentation(sequence.steps[0]!);
       await stage.presentDialogueTableau(
         tableau?.stillImage ?? resolveDialogueBackdrop(sequence),
@@ -1932,6 +1958,8 @@ export class GameApp {
     Object.assign(this.state.flags, combatVictoryFacts(result.combatId));
     if (inEpilogue) { this.saves.saveAuto(this.state); await this.enterCampaignPresentation(); return; }
     if (!onBoard) this.markResolved(node.id);
+    // Set 1.20.0: the scene after a Tournament fight won live may open with its moment (the betrayal after the final).
+    if (onBoard) this.liveBoardDialogueId = tournamentEntryOfCombat(result.combatId)?.afterDialogueId ?? null;
     // The Bois-Clair outcome reads the resolved result only through its existing presentation trigger (set 1.13.0).
     const boisClairAftermath = resolveCin6aBoisClairAftermath(result.combatId, result.victory, this.state.flags);
     const aftermathDialogue = anyCombatConfig(result.combatId)?.postCombatDialogueId;
@@ -1952,9 +1980,14 @@ export class GameApp {
       // living tableau takes the place of the static Journey still, which stays its fallback.
       const routeEnding = resolveCin6bLionTrialEnding(result.combatId, result.victory, this.state.flags)
         ?? resolveCin6aSerpentEnding(result.combatId, result.victory, this.state.flags);
-      const livedEnding = routeEnding ? await this.playLivingTableau(routeEnding, 'epilogue') : false;
+      // Set 1.20.0: a post-demo plateau's honour or force outcome, after its post-combat dialogue and before its epilogue.
+      const outcome = routeEnding ? undefined : postDemoMomentAfter(bossConfig?.postCombatDialogueId);
+      const livedEnding = routeEnding ? await this.playLivingTableau(routeEnding, 'epilogue')
+        : outcome ? await this.playLivingTableau(outcome.id, plateauEpilogueDialogueId(this.state)) : false;
       if (!livedEnding) await this.playJourneyCinematic(routeEnding, 'Épilogue');
       await this.playDialogue(plateauEpilogueDialogueId(this.state));
+      // The final act's epilogue is reached from here, live: it may open with its moment.
+      this.liveEpilogue = runPlateauId(this.state) === 'finale';
       await this.enterCampaignPresentation();
       return;
     }
