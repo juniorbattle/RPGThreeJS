@@ -65,6 +65,11 @@ Les trois combats sont de rang normal et rapportent 0 de réputation (échelle d
 - `npx tsc --noEmit` : propre.
 - `npm run narrative:validate` : les cinq cartes `ok`, sans erreur. Le Lion passe de 48 à 50 échos, chaque plateau de 29 à 30 faits, et l'acte final reçoit 19 échos des quatre plateaux au lieu de 17 (comptes mis à jour dans `narrativeCoherence.test.ts`).
 - `npm test` : 3446 tests verts sur 3456, 240 fichiers verts sur 244. Les 10 échecs, dans 4 fichiers, viennent de médias ignorés par git qui manquent à ce worktree mais existent dans le dossier principal : `public/assets/vfx/megapack-runtime/*.png` pour `spritesheetPng.test.ts`, `tmp/cinematics/...` pour trois tests de `tools/cinematics/`. Ce n'est pas une régression : ces fichiers ne touchent pas au récit.
+- Après la fusion de `origin/dev` (`bbc93f01`, dont le commit de la suite d'un combat de Tournoi en direct et celui de la fin de l'acte sans Maelor), `tsc`, `narrative:validate` et tous les tests du récit restent verts. La suite vitest complète montre trois échecs hérités, reproduits à l'identique dans un worktree temporaire sur `origin/dev` seul, sans ce lot :
+  - `src/campaign/plateaux/finale/finalePresentation.test.ts` : place de Maelor à la fin de la chronique ;
+  - `src/game/GameAppLivingTableaux.test.ts` et `src/game/cin67NarrativeStageIntegration.test.ts` : suite de Bois-Clair après un raid gagné.
+
+  Ils sont signalés à la session parente. `arenaTextures.test.ts` et le test des instruments des plateaux ont cédé une fois sous la charge de la suite complète ; ils passent seuls.
 - `npm run build` : propre (avertissement de taille de bloc hérité).
 - `npm run contracts:validate` : vert. Garde `git diff --exit-code 6228a34f… HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md` : vide.
 - Tests nouveaux : `src/campaign/plateaux/plateauForks.test.ts` (8 tests).
