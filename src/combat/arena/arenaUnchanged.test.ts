@@ -1,10 +1,10 @@
 // @vitest-environment happy-dom
 /**
- * The Lion's, the Bear's and the Dragon's arenas stay as the operator validated them while other plateaux get theirs:
- * each one, in full and in reduced graphics, is digested (theme data, scene graph, transforms, geometry, materials and
- * every pixel of every texture painted in code) and compared with the digest recorded when the Scorpion's arenas were
- * added (2026-11-12). A deliberate change to one of these arenas updates its line: run this file with
- * `ARENA_DIGEST_PRINT=1` to print the new digests.
+ * The Lion's, the Bear's, the Dragon's and the Scorpion's arenas stay as the operator validated them while other
+ * plateaux get theirs: each one, in full and in reduced graphics, is digested (theme data, scene graph, transforms,
+ * geometry, materials and every pixel of every texture painted in code) and compared with the digest recorded when the
+ * next plateau's arenas were added (the Scorpion's on 2026-11-12, the final act's on 2026-11-13). A deliberate change to
+ * one of these arenas updates its line: run this file with `ARENA_DIGEST_PRINT=1` to print the new digests.
  */
 import * as THREE from 'three';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -33,6 +33,19 @@ const RECORDED: Readonly<Record<string, string>> = {
   'dragon_hall_esplanade:reduced': 'b46a3cd8ef8dc74e',
   dragon_wolf_cave: 'f8a56d5b211ba9a3',
   'dragon_wolf_cave:reduced': 'a87ff02ac20093d6',
+  // recorded on `dev` at `c9f67e9c`, before the final act's arenas were added (2026-11-13)
+  scorpion_dune_track: '8228bf6f85ea42f9',
+  'scorpion_dune_track:reduced': '6683817271cd7ef4',
+  scorpion_dune_crest: '11726987126bbd6d',
+  'scorpion_dune_crest:reduced': '8842c2a2a071254c',
+  scorpion_phoenix_ruins: '09432520c3f0f73c',
+  'scorpion_phoenix_ruins:reduced': '5a86cc1439c5978a',
+  scorpion_phoenix_temple: '31a02b303d455480',
+  'scorpion_phoenix_temple:reduced': '69fb026c811f05fc',
+  scorpion_ash_sanctuary: '9e56e13d8529705f',
+  'scorpion_ash_sanctuary:reduced': 'fb6630f8d78180dc',
+  scorpion_records_court: '62118126fb398ff6',
+  'scorpion_records_court:reduced': 'fb141d93deab0b81',
 };
 
 function fnv(text: string): string {
@@ -91,9 +104,10 @@ async function digest(sceneId: string, reduced: boolean): Promise<string> {
 }
 
 const UNCHANGED = ['forest_route', 'bois_clair_burning', 'lion_sanctum', 'bear_mountain_pass', 'bear_mine_galleries', 'bear_hall_terrace',
-  'dragon_peak_trail', 'dragon_snowy_summit', 'dragon_hall_esplanade', 'dragon_wolf_cave'] as const;
+  'dragon_peak_trail', 'dragon_snowy_summit', 'dragon_hall_esplanade', 'dragon_wolf_cave',
+  'scorpion_dune_track', 'scorpion_dune_crest', 'scorpion_phoenix_ruins', 'scorpion_phoenix_temple', 'scorpion_ash_sanctuary', 'scorpion_records_court'] as const;
 
-describe('the Lion’s, the Bear’s and the Dragon’s arenas', () => {
+describe('the Lion’s, the Bear’s, the Dragon’s and the Scorpion’s arenas', () => {
   const toTexture = PixelCanvas.prototype.toTexture;
   const found: Record<string, string> = {};
   beforeAll(() => {

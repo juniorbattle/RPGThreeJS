@@ -60,7 +60,8 @@ export const FINALE_OPTIONAL_POIS: readonly FixedPoiDefinition[] = Object.freeze
     contentId: 'poi_chest_finale_armoury', chestLoot: { temporaryGold: 60, temporaryItems: { potion: 2 } } },
   { id: 'finale-poi-ruins', label: 'Maisons effondrées', region: 0, kind: 'combat', role: 'secondary', participation: 'optional',
     prerequisiteResolved: ['finale-burning-streets'], edges: ['finale-poi-armoury', 'finale-allied-rally'],
-    combat: { sceneId: 'forest_route', variants: [{ id: 'finale_poi_ruins_a', enemyVisualIds: ['breach_demon', 'breach_demon'] },
+    // the collapsed houses lie in the burning streets that run down from the arena
+    combat: { sceneId: 'finale_burning_streets', variants: [{ id: 'finale_poi_ruins_a', enemyVisualIds: ['breach_demon', 'breach_demon'] },
       { id: 'finale_poi_ruins_b', enemyVisualIds: ['breach_demon', 'cave_rat', 'breach_demon'] }],
     // Post-demo scale: a routine victory gives no reputation.
     rewards: { temporaryGold: 50, reputation: 0, materials: { iron_ore: 1 } } } },
@@ -77,7 +78,8 @@ export const FINALE_GUARDIANS: readonly EliteDefinition[] = Object.freeze<EliteD
   {
     id: 'finale-guardian-ramparts', label: 'Démon des remparts', region: 0, activateAfterResolved: 'finale-allied-rally',
     allowedPositions: ['finale-poi-reserve'], spawnPosition: 'finale-poi-reserve', mode: 'cyclic_patrol',
-    combat: { id: 'finale_guardian_ramparts', sceneId: 'lion_sanctum', enemies: ['demon_brute', 'breach_demon', 'breach_demon'],
+    // fought at the foot of the ramparts, by the reserve it guards
+    combat: { id: 'finale_guardian_ramparts', sceneId: 'finale_rampart_reserve', enemies: ['demon_brute', 'breach_demon', 'breach_demon'],
       rewards: { temporaryGold: 90, reputation: 1, materials: { red_gem: 1 } } },
   },
 ]);

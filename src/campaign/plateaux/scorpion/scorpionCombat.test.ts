@@ -3,10 +3,10 @@
  * plate since OD-2026-11-01-C), by where each scene stages it: the dune track of region I, the road through the Phoenix's
  * ruins in region II, the temple's nave for the codex, the sanctuary of the sacred ashes in region III, the dune crest
  * at dusk where the Prophet is run down, the court of the house of records for the Grand Inquisiteur's trial. The other
- * plateaux keep their arenas, the final act keeps the Lion's, and a scene id is static presentation that never reaches a save.
+ * plateaux keep their arenas, the final act has its own, and a scene id is static presentation that never reaches a save.
  */
 import { describe, expect, it } from 'vitest';
-import { ARENA_THEMES, BEAR_ARENA_IDS, DRAGON_ARENA_IDS, SCORPION_ARENA_IDS, type ArenaSceneId } from '../../../combat/arena/arenaThemes';
+import { ARENA_THEMES, BEAR_ARENA_IDS, DRAGON_ARENA_IDS, FINALE_ARENA_IDS, SCORPION_ARENA_IDS, type ArenaSceneId } from '../../../combat/arena/arenaThemes';
 import { POST_DEMO_COMBATS, postDemoChapterOf } from '../../../game/postDemoContent';
 import { createInitialState } from '../../../game/store';
 
@@ -47,7 +47,7 @@ describe('Scorpion fights in the Scorpion arenas', () => {
     expect(scene('scorpion_inquisitor')).toBe('scorpion_records_court');
   });
 
-  it('keeps its arenas to the Scorpion, the Bear and the Dragon in theirs, and the final act in the Lion’s', () => {
+  it('keeps its arenas to the Scorpion, the Bear, the Dragon and the final act in theirs', () => {
     const others = combats.filter((combat) => postDemoChapterOf(combat.id) !== 'scorpion');
     expect(others.length).toBeGreaterThan(0);
     for (const combat of others) expect(scorpionArenas, combat.id).not.toContain(combat.sceneId);
@@ -56,7 +56,7 @@ describe('Scorpion fights in the Scorpion arenas', () => {
     for (const combat of combats.filter((c) => postDemoChapterOf(c.id) === 'dragon')) expect(dragon, combat.id).toContain(combat.sceneId);
     const finale = combats.filter((combat) => postDemoChapterOf(combat.id) === 'finale');
     expect(finale.length).toBeGreaterThan(0);
-    for (const combat of finale) expect(['forest_route', 'bois_clair_burning', 'lion_sanctum'], combat.id).toContain(combat.sceneId);
+    for (const combat of finale) expect(FINALE_ARENA_IDS as readonly string[], combat.id).toContain(combat.sceneId);
   });
 
   it('never writes a scene id into the saved state', () => {

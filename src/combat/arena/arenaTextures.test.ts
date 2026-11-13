@@ -1,9 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { ARENA_THEMES } from './arenaThemes';
+import { ARENA_THEMES, CLAN_BANNER_COLOURS } from './arenaThemes';
 import { createFireMaterial } from './arenaProps';
 import {
-  bannerTexture, bearReliefTexture, columnTexture, dragonReliefTexture, dragonShape, inkStainTexture, lionReliefTexture, phoenixReliefTexture, phoenixShape, plasterTexture,
-  scorpionReliefTexture, scorpionShape, wardCircleTexture, windowTextures, wolfShape,
+  archWindowTextures, bannerTexture, bearReliefTexture, breachTearTexture, brickTexture, columnTexture, dragonReliefTexture, dragonShape, driedInkTexture, inkStainTexture,
+  lionReliefTexture, phoenixReliefTexture, phoenixShape, plasterTexture, ravenShape, scorpionReliefTexture, scorpionShape, serpentShape, standsTexture, wardCircleTexture,
+  windowTextures, wolfShape,
 } from './arenaTextures';
 import type { PixelCanvas } from './pixelArt';
 
@@ -218,6 +219,95 @@ describe('arena pixel textures', () => {
     expect(saffron.fragmentShader).not.toContain('vec4(0.86, 0.27, 0.08, 0.78)');
     expect(saffron.fragmentShader).toContain('if (f > 0.7) c = vec4(1.0, 1.0, 0.95, 1.0);');
     expect(saffron.fragmentShader).not.toContain('vec4(1.0, 0.97, 0.84, 1.0)');
+  });
+
+  it('draws the Raven’s sign as a standing raven and the Serpent’s as a coiled serpent with no legs or wings, unlike every other sign', () => {
+    const grid = (shape: (px: number, py: number) => number) => {
+      const cells: number[] = [];
+      for (let y = 0; y < 34; y++) for (let x = 0; x < 26; x++) cells.push(shape(x + 0.5, y + 0.5));
+      return cells;
+    };
+    const raven = grid(ravenShape), serpent = grid(serpentShape);
+    expect(raven.filter(Boolean).length).toBeGreaterThan(180);
+    expect(serpent.filter(Boolean).length).toBeGreaterThan(180);
+    // the raven stands on two legs: two separate strokes cross the row under its body and tail
+    let runs = 0, inside = false;
+    for (let x = 0; x < 26; x += 0.25) { const solid = ravenShape(x, 28.2) > 0; if (solid && !inside) runs++; inside = solid; }
+    expect(runs).toBe(2);
+    // the serpent's coils fill its foot from side to side, its forked tongue reaches out on the left
+    expect(Array.from({ length: 26 }, (_, x) => serpentShape(x + 0.5, 30)).filter(Boolean).length).toBeGreaterThan(16);
+    expect(serpent.filter((p) => p === 3).length).toBeGreaterThan(2);
+    for (const other of [scorpionShape, phoenixShape, dragonShape, wolfShape].map(grid)) {
+      expect(raven.filter((p, i) => Boolean(p) !== Boolean(other[i])).length).toBeGreaterThan(150);
+      expect(serpent.filter((p, i) => Boolean(p) !== Boolean(other[i])).length).toBeGreaterThan(150);
+    }
+    expect(raven.filter((p, i) => Boolean(p) !== Boolean(serpent[i])).length).toBeGreaterThan(150);
+  });
+
+  it('paints every clan’s banner in its own colours, the Raven’s in steel blue and the Serpent’s in green, and burns them the lion’s way', () => {
+    const city = ARENA_THEMES.finale_destiny_arena.palette;
+    const clan = (emblem: keyof typeof CLAN_BANNER_COLOURS, burning = false) => bannerTexture({ ...city, ...CLAN_BANNER_COLOURS[emblem] }, 3, burning, emblem);
+    const raven = clan('raven'), serpent = clan('serpent');
+    let blue = 0, green = 0;
+    for (let y = 20; y < 60; y++) for (let x = 5; x < 35; x++) {
+      const [r, g, b] = raven.get(x, y); if (b > r + 8) blue++;
+      const [sr, sg, sb] = serpent.get(x, y); if (sg > sr + 6 && sg >= sb) green++;
+    }
+    expect(blue).toBeGreaterThan(400);
+    expect(green).toBeGreaterThan(400);
+    for (const emblem of Object.keys(CLAN_BANNER_COLOURS) as Array<keyof typeof CLAN_BANNER_COLOURS>) {
+      const whole = clan(emblem), burnt = clan(emblem, true);
+      for (const texel of texels(whole)) expect(isPurple(texel), emblem).toBe(false);
+      // burning tears holes in its hem and leaves a glowing edge
+      expect(texels(burnt).length, emblem).toBeLessThan(texels(whole).length);
+      expect(texels(burnt).some(([r, g, b]) => r > 240 && g > 120 && b < 80), emblem).toBe(true);
+    }
+  });
+
+  it('lays the capital’s brick red to rust in pale mortar, sooting it on demand, and seats the stands’ crowd with no face, never purple', () => {
+    const city = ARENA_THEMES.finale_destiny_arena.palette;
+    const clean = brickTexture(city, 600), sooty = brickTexture(city, 600, 0.4);
+    expect([clean.width, clean.height]).toEqual([32, 32]);
+    const red = texels(clean).filter(([r, g, b]) => r - g > 30 && r - b > 30).length;
+    expect(red).toBeGreaterThan(500);
+    const mean = (pc: PixelCanvas) => texels(pc).reduce((sum, [r, g, b]) => sum + r + g + b, 0) / texels(pc).length;
+    expect(mean(sooty)).toBeLessThan(mean(clean));
+    // seamless: the first and last columns and rows continue each other's courses (both mortar or both brick)
+    const isMortar = (pc: PixelCanvas, x: number, y: number) => { const [r, g, b] = pc.get(x, y); return Math.abs(r - b) < 16 && Math.abs(r - g) < 16; };
+    let breaks = 0;
+    for (let y = 0; y < 32; y++) if (isMortar(clean, 0, y) !== isMortar(clean, 31, y) && y % 4 === 3) breaks++;
+    expect(breaks).toBe(0);
+    const full = standsTexture(city, 620, true), empty = standsTexture(city, 620, false);
+    let differs = 0;
+    for (let y = 0; y < 32; y++) for (let x = 0; x < 64; x++) if (full.get(x, y).join() !== empty.get(x, y).join()) differs++;
+    expect(differs).toBeGreaterThan(300);
+    // no skin tone in the crowd: hoods, caps and the shadow under them
+    const skin = texels(full).filter(([r, g, b]) => r > 170 && r - b > 40 && g - b > 20 && r - g < 60).length;
+    expect(skin).toBe(0);
+    for (const pc of [clean, sooty, full, empty, archWindowTextures(city, false).face, archWindowTextures(city, true).face]) {
+      for (const texel of texels(pc)) expect(isPurple(texel)).toBe(false);
+    }
+  });
+
+  it('opens the breach as a void of cold black ink with a thin cold white rim, and leaves only dull dried ink where it closed', () => {
+    const tear = breachTearTexture(1);
+    expect([tear.width, tear.height]).toEqual([80, 320]);
+    const all = texels(tear);
+    const black = all.filter(([r, g, b]) => r + g + b < 30).length, white = all.filter(([r, g, b]) => r > 220 && g > 220 && b > 230).length;
+    expect(black).toBeGreaterThan(white * 4);
+    expect(white).toBeGreaterThan(300);
+    for (const texel of all) {
+      expect(isPurple(texel)).toBe(false);
+      expect(texel[0]).toBeLessThanOrEqual(texel[2]); // cold: never warmer in red than in blue
+    }
+    for (const seed of [0, 1, 2]) {
+      const scar = texels(driedInkTexture(seed));
+      expect(scar.length).toBeGreaterThan(800);
+      for (const [r, g, b] of scar) {
+        expect(Math.max(r, g, b)).toBeLessThan(120); // a dull grey, nothing glows
+        expect(r).toBeLessThanOrEqual(g);
+      }
+    }
   });
 
   it('wraps the fluted column texture seamlessly (four whole flutes per repeat)', () => {

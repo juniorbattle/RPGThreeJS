@@ -530,13 +530,30 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   - l’épilogue du Respect sur son décor ;
   - les portraits de dialogue des quatre champions et la carte de la capitale, lus dans le jeu chargé.
 - **Non vus en jeu** : les autres scènes, le refuge, la fin de chronique et les autres combats, couverts par les tests.
-- **Hors du lot d’images** : les combats de l’acte final se jouent encore dans les arènes codées du Lion, bannières au lion comprises, comme les tests le vérifient.
+- **Hors du lot d’images** : les combats de l’acte final se jouaient encore dans les arènes codées du Lion, bannières au lion comprises ; ils ont depuis leurs propres arènes (« Arènes de l’acte final »).
 - **Tests mis à jour** :
   - le registre de l’acte final vérifie chaque fichier, l’absence de marque, le tableau des rencontres, la fin de chronique, les portraits et les planches ;
   - le test du runtime vérifie que plus aucune unité n’a de sprite provisoire ;
   - le cadrage des vignettes compte 68 portraits ;
   - le test du tableau des rencontres vérifie un fond final sans marque ;
   - le test de l’Ours, qui prenait l’acte final comme exemple de plateau sans fin de chronique, prend un nœud qui ne termine rien.
+
+## Arènes de l’acte final (2026-11-13)
+
+`CURRENT FACT` — sur la demande de la session de l’acte final, une session parallèle, dans son worktree, a donné aux douze combats de l’acte final leurs propres arènes codées. C’est poussé sur `dev` (rapport `docs/reports/finale-arenas-2026-11-13.md`). La session avait atteint la limite d’usage en cours de route ; ses commits intermédiaires, jamais poussés, sont fondus dans la fusion.
+- **Sept arènes**, toutes codées (OD-2026-11-01-C : ni image générée ni plaque), sur l’identité validée (la seule ville du jeu, en brique rouge, pierre grise pâle et ardoise bleu-noir) :
+  - l’Arène des Destins le jour du Tournoi (`finale_destiny_arena`), sous un ciel voilé : sable ratissé, gradins pleins d’une foule sans visage, tribune d’honneur sous son auvent rayé, et les huit bannières des clans en une rangée, chacune avec son seul signe : les trois manches et la finale contre le Serpent ;
+  - la même arène la nuit de la trahison (`finale_arena_breach`) : gradins vides en feu, une bannière sur deux brûle, la brèche dressée sur le sable : l’assaut des démons ;
+  - les rues en flammes (`finale_burning_streets`), maisons de brique en feu, une effondrée : les rues en flammes et les « Maisons effondrées » ;
+  - la grande place sous la fumée du lendemain (`finale_smoke_square`) : la place des démons ;
+  - le pied des remparts près de la réserve (`finale_rampart_reserve`), courtine et tour ronde à sommet plat crénelé : le démon des remparts ;
+  - le cœur de la brèche avant l’aube (`finale_breach_heart`), cratère de pavés éclatés, la brèche d’encre noire au liseré blanc comme lumière principale : Maelor puis l’entité ;
+  - le même cratère au crépuscule, brèche refermée (`finale_breach_scar`), avec seulement des cicatrices d’encre séchée : le dernier combat de la fin « La Crainte ».
+- **Bannières** : seulement dans l’Arène des Destins, une par clan, dans l’ordre de l’image de référence. Le lion d’or sur rouge du Lion y est le seul motif du Lion de l’acte, et le seul rouge et or. Le corbeau (acier pâle sur bleu acier) et le serpent lové (bronze terni sur vert profond) sont dessinés pour l’occasion ; les six autres clans reprennent les couleurs de leurs arènes. La bannière de la compagnie n’apparaît nulle part : son emblème reste une décision ouverte.
+- **Son** : aucun son nouveau. L’Arène des Destins le jour reprend l’ambiance de plein air de la route forestière ; l’arène en flammes, les rues, la place et les remparts celle de Bois-Clair en feu ; la brèche, ouverte ou refermée, garde celle du sanctuaire du Lion. Le laboratoire d’écoute l’indique.
+- **Ce qui ne change pas** : la grille, la plateforme, la résolution des combats et les sauvegardes. Les arènes du Lion, de l’Ours, du Dragon et du Scorpion restent identiques à l’octet ; `arenaUnchanged.test.ts` fige désormais aussi les six arènes du Scorpion.
+- **Vérifié** : les tests d’arène et de placement (identité de l’acte, aucun violet peint, aucun motif d’un plateau, brèche seulement où elle est ouverte, chaque combat dans son arène) ; dans le navigateur de la session (`preview_start`, port 5174, 1600 × 900), un combat par arène, sans erreur de page ni de console ; la suite complète, les validateurs, les types et le build (voir le rapport).
+- **Non vérifié** : le rendu sur un vrai GPU, le mouvement réduit du jeu activé, les autres combats de l’acte final en jeu (couverts par le test d’affectation) et le mobile. Le jugement artistique revient à l’opérateur : densité de la foule, teinte des rues de nuit, cicatrice d’encre discrète sous la lumière du crépuscule.
 
 ## Rencontres des six héros (2026-11-11, nuit)
 

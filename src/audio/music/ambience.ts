@@ -88,7 +88,9 @@ const AMBIENCES: readonly AmbienceId[] = ['forest_route', 'bois_clair_burning', 
  * arena without an ambience of its own plays the one its theme borrows (the Bear's pass, the Dragon's trail and
  * esplanade, the Scorpion's dune track, the Phoenix's ruins and the court of the house of records the forest route; the
  * Bear's galleries and hall, the Dragon's summits, the Wolf's cave, the Phoenix's temple and sanctuary and the dune
- * crest at dusk the sanctum): new sound awaits the operator's ear (OD-2026-11-01-B).
+ * crest at dusk the sanctum; the final act's Arena of Destinies on the Tournament's day the forest route, the arena in
+ * flames, the burning streets, the great square and the ramparts the burning village, the heart of the breach before
+ * dawn and at dusk the sanctum): new sound awaits the operator's ear (OD-2026-11-01-B).
  */
 export function ambienceForScene(sceneId: string | null | undefined): AmbienceId {
   return AMBIENCES.find((id) => id === sceneId) ?? arenaThemeFor(sceneId).sound;

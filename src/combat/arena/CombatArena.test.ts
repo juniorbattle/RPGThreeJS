@@ -3,12 +3,39 @@ import * as THREE from 'three';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { CombatArena } from './CombatArena';
 import { ARENA_GROUND_Y, type PropContext } from './arenaProps';
-import { ARENA_PLATFORM, ARENA_THEMES, BEAR_ARENA_IDS, DRAGON_ARENA_IDS, SCORPION_ARENA_IDS } from './arenaThemes';
+import { ARENA_PLATFORM, ARENA_THEMES, BEAR_ARENA_IDS, DRAGON_ARENA_IDS, FINALE_ARENA_IDS, SCORPION_ARENA_IDS } from './arenaThemes';
 import { coplanarOverlaps } from './arenaZFight';
 import { PixelCanvas } from './pixelArt';
 
-/** The validated staging shows no banner in the Phoenix's ruins and sanctuary, nor on the wild dune crest at dusk. */
-const BANNERLESS = new Set(['scorpion_phoenix_ruins', 'scorpion_ash_sanctuary', 'scorpion_dune_crest']);
+/**
+ * The validated staging shows no banner in the Phoenix's ruins and sanctuary, nor on the wild dune crest at dusk; in the
+ * final act the clans' banners fly only in the Arena of Destinies (the streets, the square, the ramparts and the breach
+ * show none).
+ */
+const BANNERLESS = new Set(['scorpion_phoenix_ruins', 'scorpion_ash_sanctuary', 'scorpion_dune_crest',
+  'finale_burning_streets', 'finale_smoke_square', 'finale_rampart_reserve', 'finale_breach_heart', 'finale_breach_scar']);
+
+/** Every opaque texel painted in code while building an arena, and the arena (spied on `PixelCanvas.toTexture`). */
+async function buildPainted(sceneId: string): Promise<{ arena: CombatArena; painted: PixelCanvas[] }> {
+  const painted: PixelCanvas[] = [];
+  const toTexture = PixelCanvas.prototype.toTexture;
+  const spy = vi.spyOn(PixelCanvas.prototype, 'toTexture').mockImplementation(function (this: PixelCanvas, options) {
+    painted.push(this);
+    return toTexture.call(this, options);
+  });
+  const arena = await buildArena(sceneId);
+  spy.mockRestore();
+  return { arena, painted };
+}
+
+function purpleTexels(painted: readonly PixelCanvas[]): number {
+  let purple = 0;
+  for (const pc of painted) for (let i = 0; i < pc.data.length; i += 4) {
+    const r = pc.data[i]!, g = pc.data[i + 1]!, b = pc.data[i + 2]!, a = pc.data[i + 3]!;
+    if (a && r - g > 12 && b - g > 12) purple++;
+  }
+  return purple;
+}
 
 // where the combat camera stands: the tactical view at both ends of its yaw, and the low action shots
 const COMBAT_EYES = [[0, 8.55, 16.2], [3.85, 8.55, 15.7], [-3.85, 8.55, 15.7], [6, 3, 10], [-6, 3, 10]].map(([x, y, z]) => new THREE.Vector3(x, y, z));
@@ -21,8 +48,8 @@ async function buildArena(sceneId: string) {
 }
 
 describe('CombatArena in reduced graphics', () => {
-  it('builds the Bear, Dragon and Scorpion arenas without their band, clutter, horizon and atmosphere', async () => {
-    for (const sceneId of [...BEAR_ARENA_IDS, ...DRAGON_ARENA_IDS, ...SCORPION_ARENA_IDS]) {
+  it('builds the Bear, Dragon, Scorpion and final act arenas without their band, clutter, horizon and atmosphere', async () => {
+    for (const sceneId of [...BEAR_ARENA_IDS, ...DRAGON_ARENA_IDS, ...SCORPION_ARENA_IDS, ...FINALE_ARENA_IDS]) {
       const arena = new CombatArena({ sceneId, columns: 8, rows: 4, tile: 1.18, reducedGraphics: true });
       await arena.build();
       expect(arena.theme.id).toBe(sceneId);
@@ -31,7 +58,7 @@ describe('CombatArena in reduced graphics', () => {
       expect(arena.root.children.some((o) => /^arena-(cloud-bank|ridge-line|tree-line|dune-line)$/.test(o.name)), sceneId).toBe(false);
       arena.dispose();
     }
-  }, 180000);
+  }, 240000);
 
   it('closes the Scorpion’s open arenas on dune crests, its sanctuary on its rock, and its nave and court on their walls', async () => {
     const horizons: Array<[string, string | null]> = [
@@ -93,6 +120,43 @@ describe('the Scorpion’s arenas as built', () => {
       arena.dispose();
     }
   }, 180000);
+});
+
+describe('the final act’s arenas as built', () => {
+  afterEach(() => { vi.restoreAllMocks(); });
+
+  it('flies each clan’s banner once in the Arena of Destinies, the lion only there, and never paints a purple texel', async () => {
+    for (const sceneId of FINALE_ARENA_IDS) {
+      const { arena, painted } = await buildPainted(sceneId);
+      const keys = [...(arena as unknown as { ctx: PropContext }).ctx.textures.keys()];
+      const banners = keys.filter((key) => key.startsWith('banner-'));
+      if (sceneId === 'finale_destiny_arena' || sceneId === 'finale_arena_breach') {
+        // eight banners in their own clans' colours, each sign once; the lion's is the act's only Lion motif
+        expect(banners.length, sceneId).toBe(8);
+        expect(banners.every((key) => key.includes('-clan-')), sceneId).toBe(true);
+        expect(new Set(banners.map((key) => key.split('-clan-')[1])).size, sceneId).toBe(8);
+        expect(banners.filter((key) => key.endsWith('-clan-lion')).length, sceneId).toBe(1);
+      } else expect(banners, sceneId).toEqual([]);
+      // no carved lion, no other plateau's relief anywhere in the act
+      expect(keys.filter((key) => /relief/.test(key)), sceneId).toEqual([]);
+      // the breach stands only where it is open
+      const tears: THREE.Object3D[] = [];
+      arena.root.traverse((object) => { if (object.name === 'arena-breach-tear') tears.push(object); });
+      expect(tears.length, sceneId).toBe(sceneId === 'finale_arena_breach' || sceneId === 'finale_breach_heart' ? 1 : 0);
+      expect(painted.length, sceneId).toBeGreaterThan(10);
+      expect(purpleTexels(painted), sceneId).toBe(0);
+      arena.dispose();
+    }
+  }, 240000);
+
+  it('closes every view of the capital on its own walls and far plate, with no tree line, ridge, cloud bank or dune crest', async () => {
+    for (const sceneId of FINALE_ARENA_IDS) {
+      const arena = await buildArena(sceneId);
+      expect(arena.root.children.filter((o) => /^arena-(cloud-bank|ridge-line|tree-line|dune-line)$/.test(o.name)).map((o) => o.name), sceneId).toEqual([]);
+      expect(arena.describe().farPlate, sceneId).toBe(true);
+      arena.dispose();
+    }
+  }, 240000);
 });
 
 describe('CombatArena generation', () => {
