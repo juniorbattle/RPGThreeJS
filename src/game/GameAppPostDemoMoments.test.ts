@@ -7,6 +7,7 @@ import type { CombatResult, GameState, RunNode } from './types';
 import { POST_DEMO_LIVING_BACKDROPS, POST_DEMO_LIVING_TABLEAUX, postDemoBackdropFor } from '../ui/living/postDemoLiving';
 import { LivingBackdrop } from '../ui/living/LivingBackdrop';
 import { POST_DEMO_FRAME } from '../ui/living/plateauArrivals';
+import { postDemoMomentBefore } from '../campaign/plateaux/postDemoPresentation';
 
 afterEach(() => { vi.restoreAllMocks(); document.body.replaceChildren(); });
 
@@ -99,11 +100,16 @@ describe('post-demo moments in the game (set 1.20.0)', () => {
     const owner = app(state);
 
     await owner.resolveCombat(victory('finale_serpent_final'), { id: 'finale-bout-serpent', type: 'combat', depth: 0, links: [], contentId: 'finale_serpent_final', label: 'Finale', icon: '⚔', x: 0, z: 0 }, noReward);
-    expect(owner.liveBoardDialogueId).toBe('finale_betrayal');
-    (owner as unknown as { mode: string }).mode = 'TRAVEL';
-    await owner.playTournamentStep();
-    expect(owner.playDialogue).toHaveBeenCalledWith('finale_betrayal', 'Finale : champion du Serpent', { live: true });
+    // OD-2026-11-13-F (Q1): the final's aftermath is the betrayal itself, opened live right after the fight with its
+    // moment (the full playthrough showed it played without it, as a plain aftermath).
+    expect(owner.playDialogue).toHaveBeenCalledWith('finale_betrayal', 'Finale', { live: true });
     expect(owner.liveBoardDialogueId).toBeNull();
+    // A verdict after a bout opens live too; it has no moment, so nothing else changes for it.
+    const bout = app(plateauState('finale'));
+    await bout.resolveCombat(victory('finale_raven_bout'), { id: 'finale-bout-raven', type: 'combat', depth: 0, links: [], contentId: 'finale_raven_bout', label: 'Corbeau', icon: '⚔', x: 0, z: 0 }, noReward);
+    expect(bout.playDialogue).toHaveBeenCalledWith('finale_raven_verdict', 'Corbeau', { live: true });
+    expect(postDemoMomentBefore('finale_raven_verdict')).toBeUndefined();
+    expect(postDemoMomentBefore('finale_betrayal')?.id).toBe('finale_betrayal_moment');
     // After a reload the same step opens its dialogue directly.
     const resumed = app(state);
     (resumed as unknown as { mode: string }).mode = 'TRAVEL';
