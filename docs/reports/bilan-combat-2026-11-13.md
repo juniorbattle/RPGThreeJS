@@ -115,6 +115,28 @@ Validations de l'opérateur dans cette session :
 - **Contrats** : `npm run contracts:validate` vert ; la garde `git diff --exit-code 6228a34f… HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md` est vide.
 - **Table des sons** : toujours 158 identités sur 160. Aucune signature nouvelle.
 
+## Hors combat : registre et portrait de l'orateur (ajout du même jour)
+
+La session de récit a donné aux six héros recrutables une pose de repos dans les tableaux, sur l'accord de l'opérateur (champ `tableau` de `characterProfiles`). Ce lot a vérifié le résultat et cherché les autres écrans hors combat.
+
+- **Tableaux** : les six héros mesurent de 46 à 49 vh, avec 8 vh sous les pieds, comme les héros de la démo (48 à 53 vh). Vérifié dans `dragon_wolf_traps`, `bear_mountain_shrine` et `scorpion_buried_library`, en normal et en mouvement réduit. Rien à rééchantillonner. Les autres personnages de l'après-démo suivent déjà la règle de la démo. Aucun des six héros ne figure dans un tableau vivant.
+- **Deux écrans montraient encore le master d'action** :
+  - le registre de compagnie (portrait en pied et vignette) ;
+  - le portrait de l'orateur dans la boîte de dialogue, qui coupait le chapeau de Lyra et la tête de Gunnar, et où la faux de Morvan remplissait le cadre.
+- **Décision de l'opérateur**, sur les captures avant/après : « Oui, les deux ».
+- **Changement** :
+  - `ManagementView.ts` lit d'abord `tableau`, pour le portrait en pied comme pour la vignette. La vignette prend le cadrage `upper-body` des héros de la compagnie, et la figure est marquée `REST_POSE_FULL_BODY`.
+  - `DialoguePortrait.ts` lit d'abord `tableau`, avec le cadrage par défaut, réglé pour les toiles de la compagnie.
+  - Le combat garde son master (`ui`) et ses planches.
+- **Tests** : `CharacterUiIntegration.test.ts` vérifie le registre (clic sur chaque héros) et le portrait de l'orateur pour les six héros et pour Alistair. Le commentaire de `tableauActorFraming.test.ts` est mis à jour.
+- **Navigateur** : vrais clics sur chaque héros dans le registre, et une vraie réplique de chaque rencontre jouée par `DialogueView`, en normal et en mouvement réduit. Le rendu est identique dans les deux modes.
+- **Preuves** : `bilan-combat-2026-11-13/hors-combat-registre-avant-apres.jpg`, `hors-combat-registre-apres.jpg`, `hors-combat-portrait-orateur-avant.jpg` (simulation calculée à partir du CSS exact) et `hors-combat-portrait-orateur-apres.jpg`.
+- **Vérifications** :
+  - `npx tsc --noEmit`, `npm run build`, `npm run contracts:validate` et la garde des contrats : verts.
+  - node:test : 26/26.
+  - vitest : 3 487 tests passent. Les 6 échecs sont tous dans 3 fichiers historiques de `tools/cinematics/`. Ils lisent des médias ignorés par Git (`tmp/cinematics/`) ou cherchent ffprobe, absents de ce worktree. Aucun ne touche à ce changement.
+- **Reste tel quel** : le portrait de scène de l'ancien mode de dialogue, qui lit `dialogue`. Il ne s'affiche que hors scène narrative, et les rencontres se jouent sur leur tableau.
+
 ## Ouvert
 
 - **Le libellé « PURIFIÉ »**, en vert, s'affiche quand Serment rompu retire les protections d'un héros. C'est le libellé existant de la dissipation, le même que pour Casse-Faille. Un libellé propre, par exemple « DISSIPÉ », demanderait un texte nouveau, donc l'accord de l'opérateur.

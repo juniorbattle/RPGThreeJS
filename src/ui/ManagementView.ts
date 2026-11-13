@@ -74,6 +74,8 @@ interface CharacterAssetProfile {
   full: string;
   ui: string;
   uiCropMode: string;
+  /** A recruitable hero's rest pose, framed like the company's masters (tools/art/frame_tableau_actors.py). */
+  tableau?: string;
 }
 
 function characterProfile(definition: UnitDefinition): CharacterAssetProfile | undefined {
@@ -81,16 +83,25 @@ function characterProfile(definition: UnitDefinition): CharacterAssetProfile | u
   return profiles[definition.visualProfileId];
 }
 
+// Off combat, a hero with a rest pose shows it in the register, at the company's stature and with the company's
+// upper-body thumbnail crop (operator, 2026-11-13: « Oui, les deux »); combat keeps its master and its sheets.
 function unitFullPortrait(definition: UnitDefinition): string {
-  return characterProfile(definition)?.full ?? definition.portrait;
+  const profile = characterProfile(definition);
+  return profile?.tableau ?? profile?.full ?? definition.portrait;
+}
+
+function unitFigureOwnership(definition: UnitDefinition): string {
+  return characterProfile(definition)?.tableau ? 'REST_POSE_FULL_BODY' : 'MASTER_FULL_BODY';
 }
 
 function unitUiPortrait(definition: UnitDefinition): string {
-  return characterProfile(definition)?.ui ?? definition.portrait;
+  const profile = characterProfile(definition);
+  return profile?.tableau ?? profile?.ui ?? definition.portrait;
 }
 
 function unitUiCropMode(definition: UnitDefinition): string {
-  return characterProfile(definition)?.uiCropMode ?? 'contain';
+  const profile = characterProfile(definition);
+  return profile?.tableau ? 'upper-body' : profile?.uiCropMode ?? 'contain';
 }
 
 const skillPresentation: Record<string, { name: string; description: string; ap?: number }> = Object.fromEntries(
@@ -353,7 +364,7 @@ export class ManagementView {
         <section class="unit-stage" data-feature-presentation="MASTER_SHOWCASE" aria-label="Personnage sélectionné">
           <div class="unit-stage__banner" aria-hidden="true"><span>⚜</span></div>
           <div class="unit-stage__aura" aria-hidden="true"></div>
-          <div class="unit-stage__figure" data-asset-ownership="MASTER_FULL_BODY"><img src="${unitFullPortrait(definition)}" alt="${selected.name}"></div>
+          <div class="unit-stage__figure" data-asset-ownership="${unitFigureOwnership(definition)}"><img src="${unitFullPortrait(definition)}" alt="${selected.name}"></div>
           <div class="unit-stage__base" aria-hidden="true"></div>
           <div class="unit-stage__caption"><span>Unité active</span><strong>${selected.name}</strong></div>
         </section>
