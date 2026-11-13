@@ -106,7 +106,7 @@ La session de présentation a soumis ses options sur une fiche privée (https://
 - **C1, C2 et C5** sont livrés (307b5a19, 2578a659).
 - **Démon de la brèche.** À la remarque de l'opérateur sur son encombrement, rapportée par la session de combat, il se tient maintenant centré sur sa case : ses pieds s'ancrent entre ses deux pieds, et sa hauteur passe de 2,2 à 1,95 (3b1a02aa).
 - **Encore ouverts pour l'opérateur.**
-  - L'arme de la Bête corrompue : « Charge » est proposée au lieu de « Griffes ».
+  - ~~L'arme de la Bête corrompue~~ : tranchée le même jour. À « Renommer l'arme de la Bête corrompue en « Charge » ? », l'opérateur a répondu « Yes, « Charge » ». Elle combat avec « Charge » ◆ au lieu de « Griffes », avec l'effet de coup de bélier, sans changement de statistiques ni de portée (6c60d25d). Le test arme/image n'a plus d'exception.
   - Le libellé « PURIFIÉ », repris de la dissipation existante, s'affiche quand Serment rompu retire les protections d'un héros.
 
 ## Validations du lot récit (même jour)
