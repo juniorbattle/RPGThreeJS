@@ -49,6 +49,14 @@ Tu as demandé que les moments animés soient traités proprement sur tous les p
 
 Tant qu’aucun script n’est inscrit, chaque moment va droit à son dialogue. Les douze autres séquences, et l’entrée de l’arrivée chez Borin dans le jeu, attendent que tu juges la maquette en mouvement (4 A).
 
+**Maquette jugée le 2026-11-13** : « Elle convainc ». Les treize séquences sont inscrites dans le jeu, avec leurs fonds animés.
+
+**Rotation des héros (2026-11-13).** Tu as ajouté une règle : à chaque plateau, un héros du clan accompagne les conseillers aux rencontres décisives, à tour de rôle, comme Alistair au Lion. Tes choix :
+- Ours : Marian ; Dragon : Elara ; Scorpion : Kestrel ; acte final : toute la compagnie, Alistair compris.
+- Portée : les rencontres avec le chef. Le héros prend les répliques d’Alistair à l’arrivée au pied du plateau, à l’audience, dans « Nous l’assumerons » avant l’épreuve et à la veillée, et il entre dans les tableaux vivants du plateau. Le texte ne change pas. Alistair garde les décisions de la route.
+
+Les tables ci-dessous nomment encore Alistair dans les mouvements proposés : dans le jeu, le héros du plateau le remplace.
+
 1. **Les tables de l’Ours, du Dragon et du Scorpion.**
    - **A. Les valider telles qu’écrites ci-dessous (recommandé).** Elles suivent le modèle du Lion :
      - à l’arrivée, le chef attend debout devant son siège, la compagnie entre et la séquence finit avant qu’il parle, comme l’audience d’Alaric ;

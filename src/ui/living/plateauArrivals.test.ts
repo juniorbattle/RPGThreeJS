@@ -8,7 +8,7 @@ import { resolvePixelSheet } from '../../combat/pixel/PixelSpriteSheets';
 import { cameraAt, OPENING_FRAME } from '../opening/openingShots';
 import { ALARIC_AUDIENCE } from './alaricAudience';
 import { LivingTableauPlayer } from './LivingTableauPlayer';
-import { LIVING_MOCKUPS } from './livingMockups';
+import { POST_DEMO_LIVING_TABLEAUX } from './postDemoLiving';
 import { LIVING_TABLEAUX } from './livingTableaux';
 import { LIVING_STATURE, placeWalker, type Walker } from './livingFigures';
 import {
@@ -28,7 +28,7 @@ const still = (walker: Walker) => walker.from[0] === walker.to[0] && walker.from
 
 afterEach(() => document.body.replaceChildren());
 
-describe('the Borin arrival mock-up (PLATEAU_MOMENTS_DRAFT_2026-11-13, QA lab only)', () => {
+describe('the Borin arrival (built as the mock-up of PLATEAU_MOMENTS_DRAFT_2026-11-13)', () => {
   it('plays at most 30 seconds on the approved painting of Borin’s hall, at that painting’s own size', () => {
     expect(BEAR_ARRIVAL.id).toBe('bear_arrival_moment');
     expect(BEAR_ARRIVAL.shots.reduce((sum, shot) => sum + shot.seconds, 0)).toBeLessThanOrEqual(30);
@@ -38,9 +38,9 @@ describe('the Borin arrival mock-up (PLATEAU_MOMENTS_DRAFT_2026-11-13, QA lab on
     for (const shot of BEAR_ARRIVAL.shots) expect([shot.image, shot.frame]).toEqual([BEAR_HALL_IMAGE, POST_DEMO_FRAME]);
   });
 
-  it('is a QA-lab mock-up only: not one of the game’s living tableaux, and it takes the mood of Borin’s audience', () => {
+  it('joins the game’s post-demo living tableaux once judged in motion, apart from the Lion’s seven', () => {
     expect(Object.keys(LIVING_TABLEAUX)).not.toContain('bear_arrival_moment');
-    expect(LIVING_MOCKUPS.bear_arrival_moment).toEqual({ script: BEAR_ARRIVAL, following: 'bear_audience' });
+    expect(POST_DEMO_LIVING_TABLEAUX.bear_arrival_moment).toBe(BEAR_ARRIVAL);
   });
 
   it('keeps the four narrative actors of the audience: Borin waiting in place, the company walking in from the viewer', () => {
@@ -56,7 +56,7 @@ describe('the Borin arrival mock-up (PLATEAU_MOMENTS_DRAFT_2026-11-13, QA lab on
       expect(Math.abs(hero.to[0] - borin.to[0]), hero.id).toBeGreaterThanOrEqual(140);
     }
     // Every figure comes from an existing sheet or portrait, Borin and the warriors from their combat sheets.
-    for (const id of ['alistair', 'borin', 'bear_warrior']) expect(resolvePixelSheet(id), id).toBeDefined();
+    for (const id of ['marian', 'borin', 'bear_warrior']) expect(resolvePixelSheet(id), id).toBeDefined();
     expect(BEAR_ARRIVAL.portraits).toEqual(['sage_seraphine', 'maelor']);
   });
 
@@ -67,8 +67,8 @@ describe('the Borin arrival mock-up (PLATEAU_MOMENTS_DRAFT_2026-11-13, QA lab on
     const art = { entry: { anims: {}, cells: ['idle'], cell: [117, 178], anchor: [58, 175] }, image: {} } as unknown as SheetArt;
     expect(placeWalker(borin, 0, art, 30, true, bearHallDepth).scale).toBeCloseTo(bearHallDepth(borin.to[1]) * LIVING_STATURE * BORIN_STATURE);
     // A walker without a stature keeps the shared one, as every Lion tableau does.
-    const alistair = BEAR_ARRIVAL_ACTORS[1]!;
-    expect(placeWalker(alistair, 1, art, 30, true, bearHallDepth).scale).toBeCloseTo(bearHallDepth(alistair.to[1]) * LIVING_STATURE);
+    const marian = BEAR_ARRIVAL_ACTORS[1]!;
+    expect(placeWalker(marian, 1, art, 30, true, bearHallDepth).scale).toBeCloseTo(bearHallDepth(marian.to[1]) * LIVING_STATURE);
   });
 
   it('keeps the warriors far off as scenery: at most twelve, standing, smaller than the company, never speakers', () => {
