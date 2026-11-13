@@ -174,6 +174,7 @@ Dans la démo, `prepare` est presque le maître : même attitude debout, recalé
 5. La même identité : armure, couleurs, proportions, casque ou capuche fermé (OD-2026-11-11-G), et la même arme, dans la même main, que le moteur de combat.
 6. Les Ombres jamais violettes, pourpres ni magenta.
 7. Après réduction, la même hauteur à l'écran qu'aujourd'hui (Borin 173 px, un guerrier de l'Ours 88 px) et une silhouette lisible.
+8. Depuis ta remarque du 2026-11-13 (§8), `attack` et `cast` portent un effet incrusté comme la démo (`characterBoundFx` vrai) : une traînée sur l'arme pour l'attaque, une aura pour l'incantation. Leurs couleurs sont celles de l'élément des compétences de l'unité dans les effets procéduraux (`src/combat/fx/fxPalettes.ts`), et l'encre noire et froide pour les Ombres, jamais violette.
 
 ## 3. Méthodes possibles
 
@@ -220,6 +221,12 @@ F1 remplace cette route pour les images finales. Prompts et références n'aurai
 - **Si `prepare` est aussi générée** : 152 images (Q3).
 - **Appels** : les images finales ont pris 242 appels pour 157 images (×1,54), et 51 appels pour les 41 personnages (×1,24), tous en `gpt-image-2.5-sunburst-2026-09-08`, qualité haute. Les poses ajoutent un risque de dérive entre poses : je compte ×1,3 à ×1,5, soit 150 à 170 appels, sur ton compte OpenAI.
 - **Passes par lot** : 1) les `dash` du lot ; 2) les `attack` et `cast`, avec la `dash` acceptée en référence ; 3) les reprises. Environ 15 passes pour les 5 lots.
+- **Avec les effets incrustés (après le pilote, §8)** : je recommande deux temps pour `attack` et `cast`.
+  - D'abord la pose sans effet, qui se mesure bien sur le maître.
+  - Ensuite l'effet, ajouté par retouche de cette pose. Au pilote, la retouche n'a pas bougé le dessin (échelle 0,999, plus de 400 points appariés), alors que l'effet généré directement cache les parties rigides et fausse la mesure.
+  - Coût : 5 appels par unité, soit 190 au premier passage et environ 230 à 260 avec les reprises.
+  - Bonus : chaque pose existe aussi sans effet, si tu changes d'avis.
+  - Autre choix : l'effet dès le premier appel, à 3 appels par unité, mais une échelle à corriger plus souvent à la main.
 - **Relecture** : une planche par lot (maître et 3 poses de chaque unité, à côté de l'unité de la démo de la même famille), puis ton verdict, puis 2 à 4 combats vérifiés en jeu à l'intégration, comme pour les images finales.
 
 ### Ce qui change dans le code (à l'intégration de chaque lot, pas avant)
@@ -244,7 +251,7 @@ F1 remplace cette route pour les images finales. Prompts et références n'aurai
   - `COMBAT_AND_VFX.md:65` : les planches pixel de combat « derive from Character System V2 poses or masters », et les maîtres restent l'autorité de la mise en scène narrative.
   - La ligne rouge des cinématiques (aucune image illustrée de cinématique) ne vise pas des poses de combat.
 - **Vérifié le 2026-11-13** : `npm run -s contracts:validate` valide les 8 contrats ; la porte `git diff --exit-code 5a61d319… HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md` n'affiche rien.
-- **Effets incrustés** : les poses de la démo en portent (`characterBoundFx`). Le registre précise que ce n'est vrai que « for effects approved as physically attached to the actor ». Sans effet incrusté (Q4), rien de plus à approuver, et les effets procéduraux de chaque compétence (OD-2026-11-01-A) ne se doublent pas.
+- **Effets incrustés** : les poses de la démo en portent (`characterBoundFx`). Le registre précise que ce n'est vrai que « for effects approved as physically attached to the actor ». Ta remarque du 2026-11-13 les retient pour les nouvelles unités, comme pour la démo. Chaque effet est approuvé à la relecture de son lot. En combat, ils s'ajoutent aux effets procéduraux des compétences (OD-2026-11-01-A), comme pour les unités de la démo.
 
 ## 6. Pilote proposé (seulement après ton accord)
 
@@ -260,7 +267,7 @@ F1 remplace cette route pour les images finales. Prompts et références n'aurai
 | Q1 | Quelles unités ? | Les 37 combattants des 49, plus Maelor : **38**. Les 10 civils et les 2 archives sont exclus. | Sans Maelor (37) ; seulement héros, boss et élites (29). |
 | Q2 | Quelle méthode ? | **A** : l'outil des images finales, une pose par appel, maître (et `dash` acceptée) en référence. | B, une bande de 3 poses par appel. |
 | Q3 | Faut-il générer `prepare` ? | **Non** : le maître validé sert de `prepare`, comme dans la démo. 114 images. | Générer les 4 poses (152) ; ou seulement une `prepare` plus calme pour les 6 héros, dont le maître est déjà en action (+6). |
-| Q4 | Des effets incrustés dans `attack` et `cast` ? | **Aucun** : les effets procéduraux s'en chargent, et ça écarte le risque de lueur violette. | Comme la démo (traînée, aura), à approuver pose par pose. |
+| Q4 | Des effets incrustés dans `attack` et `cast` ? | **Aucun** : les effets procéduraux s'en chargent, et ça écarte le risque de lueur violette. **Tranché le 2026-11-13 : comme la démo** (§8). | Comme la démo (traînée, aura), à approuver pose par pose. |
 | Q5 | Dans quel ordre ? | **Les héros d'abord**, puis l'Ours, le Dragon, le Scorpion et l'acte final avec Maelor. Chaque lot est relu puis intégré avant le suivant. | Plateau par plateau, chaque héros avec le plateau de sa rencontre ; ou les boss et élites de tous les plateaux d'abord. |
 | Q6 | Quel pilote ? | **Aldric**, 3 images, à côté d'Alistair. | Le guerrier de l'Ours. |
 
@@ -283,7 +290,13 @@ Ta réponse : « Oui, lance Aldric ». Planche : [`assets/COMBAT_POSES_PILOT_ALD
      - Désormais, chaque pose est ramenée à l'échelle du maître, et la planche montre les HD à une seule échelle.
      - L'attaque reste la mesure la moins sûre (4 mesures, de 1,09 à 1,52), parce que le bouclier y est tourné. La planche à une seule échelle sert de contrôle, et le lot permettra une correction à la main.
   2. **Repos et incantation se ressemblent** : le maître d'Aldric lève déjà sa masse, et sa pose `cast` aussi. C'est le cas que Q3 évoque pour les héros, dont les maîtres sont en action : une `prepare` plus calme les distinguerait, pour une image de plus par héros.
-  3. **Effets** : les poses d'Alistair portent leurs effets (traînée de feu, aura), celles d'Aldric n'en ont pas (Q4). En combat, les effets procéduraux de ses compétences les remplacent.
+  3. **Effets, ajoutés après ta remarque** : tu as relevé que tu avais intégré des effets aux poses `attack` et `cast` de la démo. J'ai donc refait les deux poses d'Aldric avec leur effet, par retouche des poses déjà faites (2 appels, les 2 reprises prévues).
+     - Attaque : un arc de lumière sacrée suit la masse, avec des étincelles.
+     - Incantation : des rubans de lumière autour du corps, des rayons, des éclats et un anneau au sol.
+     - Couleurs : celles de la palette `holy` de ses compétences (blanc chaud, or pâle, or profond).
+     - Le dessin n'a pas bougé (échelle 0,999 face à la pose sans effet), donc les poses gardent leur échelle mesurée.
+     - Planche avec effets : [`assets/COMBAT_POSES_PILOT_ALDRIC_FX_2026-11-13.jpg`](assets/COMBAT_POSES_PILOT_ALDRIC_FX_2026-11-13.jpg) ; celle sans effet reste à côté.
+     - Limite : l'aura de l'incantation est plus chargée que celle d'Alistair. En pixel, son anneau au sol devient une bande jaune épaisse, et l'or de l'effet se mêle à l'or de l'armure. Pour le lot, je demanderais des rubans plus fins et plus rares, et un anneau plus mince.
   4. **Frange** : le fond transparent du modèle laisse un liseré semi-transparent, que le seuil d'alpha du constructeur retire. Rien à reprendre à la main.
 - **Rien n'est intégré** : aucune planche du jeu, aucun fichier de `public/` ou de `src/`, aucun outil suivi par Git n'a changé.
-- **Suite, après ton verdict** : j'ajoute le type `pose` à l'outil, le normaliseur et la table des unités posées. J'intègre Aldric et le vérifie en combat, puis je lance les cinq autres héros.
+- **Suite, après ton verdict** : j'ajoute le type `pose` à l'outil (pose, puis effet par retouche), le normaliseur et la table des unités posées. J'intègre Aldric et le vérifie en combat, puis je lance les cinq autres héros.
