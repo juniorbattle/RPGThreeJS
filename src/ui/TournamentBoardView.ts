@@ -4,7 +4,8 @@
  * Presentation only. It shows the board RunSystem derives from saved facts (`tournamentBoard`): each fight, its order
  * and its result stated in text, never by colour alone, and one button for the step RunSystem names next. It is not a
  * POI map and not a second navigation mode. Native buttons carry keyboard and gamepad focus; the layout stacks at phone
- * width. The backdrop is a provisional image, marked as such.
+ * width. The backdrop is the final act's own image of the arena seen from its stands (OD-2026-11-11-F, F1); a provisional
+ * backdrop would carry its mark, and a final one carries none.
  */
 import type { TournamentBoard, TournamentStep } from '../game/finalAct';
 
@@ -29,7 +30,13 @@ export function tournamentStepLabel(step: TournamentStep | null): string {
   return step.entry.kind === 'final' ? 'Disputer la finale' : `Combattre : ${step.entry.label}`;
 }
 
-export function renderTournamentBoard(board: TournamentBoard, step: TournamentStep | null, options: { backdrop?: string; mark: string }): string {
+export interface TournamentBoardOptions {
+  backdrop?: string;
+  /** The provisional-image mark, only while the backdrop is provisional. */
+  mark?: string | null;
+}
+
+export function renderTournamentBoard(board: TournamentBoard, step: TournamentStep | null, options: TournamentBoardOptions): string {
   const rows = board.entries.map((entry, index) => `<li class="tournament-board__entry tournament-board__entry--${entry.status}" data-board-entry="${escape(entry.nodeId)}" data-board-status="${entry.status}"${entry.status === 'next' || entry.status === 'after' ? ' aria-current="step"' : ''}>
       <span class="tournament-board__order" aria-hidden="true">${index + 1}</span>
       <span class="tournament-board__label">${escape(entry.label)}</span>
@@ -37,7 +44,7 @@ export function renderTournamentBoard(board: TournamentBoard, step: TournamentSt
       <span class="tournament-board__result">${escape(entry.result)}</span>
     </li>`).join('');
   return `<section class="tournament-board ui-screen" aria-labelledby="tournament-board-title"${options.backdrop ? ` style="--tournament-board-backdrop:url('${escape(options.backdrop)}')"` : ''}>
-    <p class="tournament-board__mark" data-provisional-art>${escape(options.mark)}</p>
+    ${options.mark ? `<p class="tournament-board__mark" data-provisional-art>${escape(options.mark)}</p>` : ''}
     <header class="tournament-board__header">
       <p class="tournament-board__eyebrow">Tournoi des Grands</p>
       <h1 id="tournament-board-title">L’Arène des Destins</h1>
@@ -56,7 +63,7 @@ export function renderTournamentBoard(board: TournamentBoard, step: TournamentSt
 
 /** Renders the board in a container and wires its buttons; focus goes to the next step. */
 export function openTournamentBoard(container: HTMLElement, board: TournamentBoard, step: TournamentStep | null,
-  handlers: TournamentBoardHandlers, options: { backdrop?: string; mark: string }): void {
+  handlers: TournamentBoardHandlers, options: TournamentBoardOptions): void {
   container.innerHTML = renderTournamentBoard(board, step, options);
   const actions: Record<string, () => void> = {
     next: handlers.onNext, company: handlers.onCompany, save: handlers.onSave, settings: handlers.onSettings, menu: handlers.onMenu,

@@ -27,6 +27,15 @@ describe('the Tournament encounter board (set 1.20.0, Lot 4)', () => {
     expect(root.querySelector('[data-provisional-art]')!.textContent).toBe('Brouillon · image provisoire');
   });
 
+  it('shows the final act’s own arena with no provisional mark once its image is final (OD-2026-11-11-F, F1)', () => {
+    const state = createInitialState();
+    const root = document.createElement('div');
+    root.innerHTML = renderTournamentBoard(tournamentBoard(state), nextTournamentStep(state),
+      { backdrop: '/assets/generated/post-demo/finale/surfaces/tableau-des-rencontres-du-tournoi.webp', mark: null });
+    expect(root.querySelector('[data-provisional-art]')).toBeNull();
+    expect(root.querySelector('.tournament-board')!.getAttribute('style')).toContain('tableau-des-rencontres-du-tournoi.webp');
+  });
+
   it('names the next step as RunSystem gives it, and wires native buttons with focus on it', () => {
     const state = createInitialState();
     expect(tournamentStepLabel(nextTournamentStep(state))).toBe('Combattre : Champion du Corbeau');

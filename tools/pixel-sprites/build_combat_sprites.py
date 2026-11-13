@@ -100,6 +100,18 @@ MASTER_ONLY = {
     'scorpion_scholar': ('post-demo/scorpion/scorpion_scholar.png', 2.1),
     'phoenix_faithful': ('post-demo/scorpion/phoenix_faithful.png', 2.05),
     'phoenix_captive': ('post-demo/scorpion/phoenix_captive.png', 2.05),
+    # OD-2026-11-11-F (F1): the final act's final characters, sized like the Scorpion's (bosses and champions as tall as the
+    # elites they replace; the champion changed into a demon and the massive demon, broad and hunched, a little lower so
+    # that they keep the width of an elite). Maelor and the Wolf's champion keep their existing sheets.
+    'serpent_champion': ('post-demo/finale/serpent_champion.png', 4.2),
+    'breach_entity': ('post-demo/finale/breach_entity.png', 4.3),
+    'demon_champion': ('post-demo/finale/demon_champion.png', 4.0),
+    'raven_champion': ('post-demo/finale/raven_champion.png', 4.0),
+    'phoenix_champion': ('post-demo/finale/phoenix_champion.png', 4.0),
+    'demon_brute': ('post-demo/finale/demon_brute.png', 3.4),
+    'breach_demon': ('post-demo/finale/breach_demon.png', 2.2),
+    'finale_civilian': ('post-demo/finale/finale_civilian.png', 2.05),
+    'finale_citizen': ('post-demo/finale/finale_citizen.png', 2.05),
 }
 
 

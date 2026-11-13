@@ -498,6 +498,46 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 - **Planche** : `tmp/final-images/sheets/finale-review.jpg`.
 - **À l’opérateur** : juger le lot. Rien n’est intégré avant son accord.
 
+## Intégration de l’acte final (2026-11-13)
+
+`CURRENT FACT` — l’opérateur a vu la planche et a dit : « Intègre l’acte final ». Les 32 images de l’acte final sont dans le jeu telles que relues, sans nouvelle reprise. L’acte final ne porte plus la marque « Image provisoire ». C’est le dernier chapitre : aucun plateau n’a plus d’image provisoire, et aucune unité de combat n’a plus de sprite provisoire. Les points laissés à son jugement restent tels quels.
+- **Publication** : `tools/art/publish_final_images.py finale`.
+  - Les six élites et boss de l’acte final, de taille 2 en combat, sont ajoutés à `ELITES` : les champions du Corbeau, du Phénix et du Serpent, le champion changé en démon, le démon massif et l’entité.
+  - Décors, surfaces et atlas en WebP qualité 95, dans `public/assets/generated/post-demo/finale/`.
+  - Neuf maîtres 512×512, dans `public/assets/characters/pixel/post-demo/finale/`. Aucun n’est rogné : le plus large, le démon massif, fait 399 px.
+  - Provenance des 32 fichiers dans `tools/art/provenance/finale-final-images.json`.
+  - Contrôle qualité des treize profils ajoutés, propre : coins transparents, ni magenta, ni fond blanc, ni violet, rien sous la ligne des pieds. Les entrées sont ajoutées à `canonical-character-qc.json`.
+- **Branchements, présentation seule, sans champ de sauvegarde**, comme pour le Scorpion :
+  - registre de l’acte final (`finalePresentation.ts`, avec `image` et `master`), atlas non provisoire (`plateauAtlas.ts`) ;
+  - fin de chronique de l’acte final au cœur de la brèche (`POST_DEMO_CHRONICLE_END_IMAGES`, nœud `finale-breach`) ;
+  - marque provisoire retirée (`POST_DEMO_FINAL_ART_CHAPTERS`) ;
+  - portraits et figures dans `assetManifest` ; contrôle qualité des personnages ;
+  - planches de combat « maître seul » de `build_combat_sprites.py`. Les neuf planches sont ajoutées, et aucune planche existante ne change ;
+  - huit unités de combat sans `provisionalSprite` : les champions du Corbeau, du Phénix et du Serpent, le champion changé en démon, le démon de la brèche, le démon massif, l’entité, et Maelor sur son maître approuvé ;
+  - cadrage des vignettes de combat. Les deux doublures de démons qui ne servaient plus en sortent ;
+  - portraits de dialogue des champions recadrés sur le casque.
+- **Ce qui diffère du Scorpion** :
+  - le tableau des rencontres du Tournoi prend son propre fond, l’arène vue des gradins. Sa marque « Image provisoire » était forcée dans `GameApp` ; elle n’apparaît plus que si l’image de l’acte est encore provisoire (`TournamentBoardView`) ;
+  - selon la recommandation 8 A :
+    - le portrait du champion du Loup reprend le maître du Dragon ;
+    - Maelor garde son maître approuvé ;
+    - chaque champion parle avec le maître de son sprite de combat.
+- **Les moments des fins ne jouent pas encore.** La trahison et les trois épilogues ont désormais leurs tableaux peints. Leurs tableaux vivants appartiennent à la passe de finition : la table des moments garde `tableau: 'provisional'`, donc chaque moment va droit à son dialogue, comme avant.
+- **Vérifié dans le navigateur** (serveur `preview_start` sur le port 5174), sans erreur de console ni requête en échec :
+  - le passage de la fin du Scorpion à l’arrivée dans l’Arène des Destins, sur son décor, sans marque ;
+  - le tableau des rencontres sur son fond, sans marque ;
+  - le combat contre le champion du Corbeau, sur sa planche finale ;
+  - l’épilogue du Respect sur son décor ;
+  - les portraits de dialogue des quatre champions et la carte de la capitale, lus dans le jeu chargé.
+- **Non vus en jeu** : les autres scènes, le refuge, la fin de chronique et les autres combats, couverts par les tests.
+- **Hors du lot d’images** : les combats de l’acte final se jouent encore dans les arènes codées du Lion, bannières au lion comprises, comme les tests le vérifient.
+- **Tests mis à jour** :
+  - le registre de l’acte final vérifie chaque fichier, l’absence de marque, le tableau des rencontres, la fin de chronique, les portraits et les planches ;
+  - le test du runtime vérifie que plus aucune unité n’a de sprite provisoire ;
+  - le cadrage des vignettes compte 68 portraits ;
+  - le test du tableau des rencontres vérifie un fond final sans marque ;
+  - le test de l’Ours, qui prenait l’acte final comme exemple de plateau sans fin de chronique, prend un nœud qui ne termine rien.
+
 ## Rencontres des six héros (2026-11-11, nuit)
 
 `CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.
@@ -515,5 +555,5 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 `PROPOSED FUTURE DESIGN`, à confirmer par l’opérateur :
 - **Portraits** : les maîtres Character V2 des six héros entreront dans le lot des images finales, après le pilote.
 - **Essai en jeu** : les six rencontres et leurs secondes chances sont à juger lors du test PC final.
-- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Le Dragon est intégré depuis le 2026-11-12 ; les 40 images du Scorpion sont générées, relues et intégrées le même jour ; l’identité et la mise en scène de l’acte final sont validées telles quelles le 2026-11-12, et ses 32 images sont générées et relues le même jour, sans être intégrées.
+- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Le Dragon est intégré depuis le 2026-11-12 ; les 40 images du Scorpion sont générées, relues et intégrées le même jour ; l’identité et la mise en scène de l’acte final sont validées telles quelles le 2026-11-12, et ses 32 images sont générées et relues le même jour, puis intégrées le 2026-11-13 sur son ordre.
 - **Arènes du Scorpion et de l’acte final** : leurs combats jouent encore dans les arènes codées du Lion. Chacun pourra recevoir les siennes, comme l’Ours et le Dragon, à la demande de l’opérateur.

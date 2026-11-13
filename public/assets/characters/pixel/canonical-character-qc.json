@@ -3758,5 +3758,408 @@
         "floor_artifact_pixels": 0
       }
     }
+  },
+  "finale_raven_champion": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [123, 44, 388, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 106,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [123, 44, 388, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 106,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [123, 44, 388, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 106,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "finale_wolf_champion": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [123, 44, 389, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 169,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [123, 44, 389, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 169,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [123, 44, 389, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 169,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "finale_phoenix_champion": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [151, 44, 360, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 80,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [151, 44, 360, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 80,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [151, 44, 360, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 80,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "finale_serpent_champion": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [123, 44, 389, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 25,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [123, 44, 389, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 25,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [123, 44, 389, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 25,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "finale_civilian": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [186, 111, 326, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [186, 111, 326, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [186, 111, 326, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "finale_citizen": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [172, 111, 340, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [172, 111, 340, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [172, 111, 340, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 0,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "raven_champion": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [123, 44, 388, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 106,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [123, 44, 388, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 106,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [123, 44, 388, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 106,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "phoenix_champion": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [151, 44, 360, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 80,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [151, 44, 360, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 80,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [151, 44, 360, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 80,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "serpent_champion": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [123, 44, 389, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 25,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [123, 44, 389, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 25,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [123, 44, 389, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 25,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "demon_champion": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [73, 44, 439, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 13,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [73, 44, 439, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 13,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [73, 44, 439, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 13,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "breach_demon": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [113, 111, 399, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 10,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [113, 111, 399, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 10,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [113, 111, 399, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 10,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "demon_brute": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [56, 44, 455, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 18,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [56, 44, 455, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 18,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [56, 44, 455, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 18,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
+  },
+  "breach_entity": {
+    "variants": {
+      "full": {
+        "alpha_bbox": [101, 44, 411, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 43,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "dialogue": {
+        "alpha_bbox": [101, 44, 411, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 43,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      },
+      "ui": {
+        "alpha_bbox": [101, 44, 411, 456],
+        "corner_alpha": [0, 0, 0, 0],
+        "magenta_pixels": 0,
+        "white_pixels": 43,
+        "white_background_pixels": 0,
+        "artifact_violet_pixels": 0,
+        "floor_artifact_pixels": 0
+      }
+    }
   }
 }

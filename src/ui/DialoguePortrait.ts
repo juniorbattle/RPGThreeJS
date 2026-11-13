@@ -37,6 +37,11 @@ const CROP_OVERRIDES: Readonly<Record<string, Partial<Omit<DialoguePortrait, 'sr
   shadow_prophet: { cropY: '45%' },
   phoenix_flamekeeper: { cropY: '45%' },
   shadow_zealot: { cropY: '45%' },
+  // The final act's champions, who speak with the tall masters of their combat sprites, framed the same way.
+  finale_raven_champion: { cropY: '45%' },
+  finale_wolf_champion: { cropY: '45%' },
+  finale_phoenix_champion: { cropY: '45%' },
+  finale_serpent_champion: { cropY: '45%' },
 };
 
 export function resolveDialoguePortrait(actorId: string | undefined): DialoguePortrait | undefined {

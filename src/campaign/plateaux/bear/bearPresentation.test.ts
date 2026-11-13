@@ -92,7 +92,8 @@ describe('Bear scenes on their final tableaux (set 1.20.0, Lot 1, canon since OD
     const end = resolveNarrativeBoundaryTableau('node:bear-judgement:arrival')!;
     expect(end.stillImage).toBe(BEAR_CHRONICLE_END_IMAGE);
     expect(end.sceneCastPlacement).toEqual(resolveNarrativeBoundaryTableau('node:lion-final-judgement:arrival')!.sceneCastPlacement);
-    expect(resolveNarrativeBoundaryTableau('node:finale-breach:arrival')).toBeUndefined();
+    // Every post-demo plateau now has its own chronicle end; a node that ends no chronicle has none.
+    expect(resolveNarrativeBoundaryTableau('node:bear-arrival:arrival')).toBeUndefined();
     for (const node of BEAR_ROUTE.filter((candidate) => candidate.type === 'refuge')) {
       const presentation = resolveRefugePresentation({ ...node, links: [...node.links], x: 0, z: 0 } as never)!;
       const image = (BEAR_REFUGE_PRESENTATION as Record<string, { image?: string }>)[node.id]!.image!;

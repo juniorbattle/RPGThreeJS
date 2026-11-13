@@ -94,7 +94,8 @@ export const FINALE_POI_ATLAS: PoiAtlas = Object.freeze({
   exits: FINALE_POI_REGION_EXITS,
   phaseOf: finalePoiMapPhase,
   pathBends: finalePoiPathBends,
-  provisional: true,
+  // OD-2026-11-11-F (F1): the final act's own atlas, on the layout of the Lion's third atlas.
+  provisional: false,
 });
 
 /** The atlas of the plateau that owns a POI; every demo POI is the Lion's. */

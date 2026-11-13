@@ -1,18 +1,25 @@
 /**
  * Set 1.20.0 (WORLD_AND_CHARACTERS "Provisional images"), post-demo Lot 4 — presentation of the final act.
- * The act is canon (OD-2026-11-09-A); its images stay provisional until the final-image lot.
+ * The act is canon (OD-2026-11-09-A).
  *
- * Every image here is PROVISIONAL: approved Lion backdrops and atlases reused, and existing characters standing in as
- * silhouettes for the final act's new characters. None is generated and none is a video. Each is listed with the final
- * image it awaits; the final images form a separate lot led with the operator. Presentation only: no game truth.
+ * FINAL IMAGES (OD-2026-11-11-F, F1; identity and staging validated by the operator on 2026-11-12, « Valider tel quel »,
+ * batch integrated on his order of 2026-11-13, « Intègre l’acte final »): every scene, the refuge, the atlas, the
+ * Tournament's board, the chronicle end and the final act's characters show its own final images, made by
+ * tools/art/finalImages.ts and published by tools/art/publish_final_images.py (provenance in
+ * tools/art/provenance/finale-final-images.json). Two characters keep a master that already exists: the Wolf's champion
+ * (the Dragon's) and Maelor (his approved master); each champion's portrait is the master of his combat sprite. Each entry
+ * keeps the reused Lion art or stand-in it replaced and the brief it was made from (`awaitedFinal`). The atlas keeps the
+ * layout of the Lion's third atlas, so the POI positions below stay valid. Presentation only: no game truth.
  */
-import { LION_POI_REGIONS } from '../../LionPoiMap';
 import type { ProvisionalActor, ProvisionalAtlasRegion } from '../bear/bearPresentation';
 import { FINALE_POI_METADATA } from './finaleTopology';
 
-/** The capital is a single small map, drawn for now on the Lion's third atlas. */
+const FINAL_IMAGES = '/assets/generated/post-demo/finale';
+const FINAL_CHARACTERS = '/assets/characters/pixel/post-demo/finale';
+
+/** The capital is a single small map, repainted on the layout of the Lion's third atlas. */
 export const FINALE_ATLAS_REGIONS: readonly ProvisionalAtlasRegion[] = Object.freeze([
-  { shortTitle: 'La capitale corrompue', title: 'De l’arène en flammes à la brèche', image: LION_POI_REGIONS[2]!.image, provisional: true,
+  { shortTitle: 'La capitale corrompue', title: 'De l’arène en flammes à la brèche', image: `${FINAL_IMAGES}/atlases/region-1.webp`, provisional: false,
     awaitedFinal: 'Atlas de la capitale corrompue : l’arène, les rues en flammes, la place des démons et la brèche' },
 ]);
 
@@ -32,46 +39,61 @@ export function finalePoiMapPhase(nodeId: string): number {
   return FINALE_POI_METADATA[nodeId]?.region ?? 0;
 }
 
-/** The final act's refuge, on a reused Lion refuge plate. */
+/** The final act's refuge on its final image (`image`); the Lion refuge plate it replaced still gives it its visual family. */
 export const FINALE_REFUGE_PRESENTATION = Object.freeze({
   'finale-last-refuge': { environmentContext: 'node:lion-second-refuge', environmentRole: 'HOLD_SOURCE' as const,
     eyebrow: 'Avant la brèche', description: 'Une maison encore debout, à quelques rues de la brèche. La compagnie s’y prépare une dernière fois.',
-    gatheringDialogueId: 'finale_last_vigil', awaitedFinal: 'Fond de refuge : la dernière veillée dans la capitale, avant la brèche' },
+    gatheringDialogueId: 'finale_last_vigil', awaitedFinal: 'Fond de refuge : la dernière veillée dans la capitale, avant la brèche',
+    image: `${FINAL_IMAGES}/refuges/finale-last-refuge.webp` },
 });
 
-/** Shared surfaces a final-act run shows on demo art, beyond its scenes, atlas and refuge. */
-export const FINALE_PROVISIONAL_SURFACES: readonly { surface: string; standIn: string; awaitedFinal: string }[] = Object.freeze([
-  { surface: 'Tableau des rencontres du Tournoi', standIn: 'salle du jugement du Lion (fond du tableau)', awaitedFinal: 'Fond du tableau des rencontres : l’Arène des Destins vue des tribunes' },
-  { surface: 'Fin de chronique (Journey)', standIn: 'salle du jugement du Lion (CHRONICLE_END_TABLEAU)', awaitedFinal: 'Tableau de fin de l’acte final : la brèche vaincue, avant les épilogues' },
-]);
+/** The Tournament's encounter board: the Arena of Destinies seen from its stands. */
+export const FINALE_TOURNAMENT_BOARD_IMAGE = `${FINAL_IMAGES}/surfaces/tableau-des-rencontres-du-tournoi.webp`;
 
-/** New characters of the final act, staged with existing silhouettes until their Character V2 masters exist. */
-export const FINALE_PROVISIONAL_ACTORS: readonly ProvisionalActor[] = Object.freeze([
-  { actorId: 'finale_raven_champion', standInUnitId: 'serpent_duelist_elite', awaitedFinal: 'Portrait et sprite d’élite du champion du Corbeau' },
-  { actorId: 'finale_wolf_champion', standInUnitId: 'serpent_raider', awaitedFinal: 'Portrait du champion du Loup' },
-  { actorId: 'finale_phoenix_champion', standInUnitId: 'lion_champion', awaitedFinal: 'Portrait et sprite d’élite du champion du Phénix' },
-  { actorId: 'finale_serpent_champion', standInUnitId: 'serpent_elite_brute', awaitedFinal: 'Master Character V2 du champion du Serpent, sprite de boss et sa forme démoniaque' },
-  { actorId: 'finale_civilian', standInUnitId: 'villageoise', awaitedFinal: 'Portrait d’une spectatrice de l’arène' },
-  { actorId: 'finale_citizen', standInUnitId: 'villageois', awaitedFinal: 'Portrait d’un habitant de la capitale' },
-]);
+/** The end of the final act's chronicle: the heart of the breach after the fight, before the epilogues. */
+export const FINALE_CHRONICLE_END_IMAGE = `${FINAL_IMAGES}/surfaces/chronicle-end.webp`;
 
-/** Enemy families of the final act and the existing sprites standing in for them in combat. */
-export const FINALE_PROVISIONAL_ENEMIES: readonly { unitId: string; standInPortrait: string; awaitedFinal: string }[] = Object.freeze([
-  { unitId: 'raven_champion', standInPortrait: 'serpent_duelist_elite', awaitedFinal: 'Sprite d’élite du champion du Corbeau' },
-  { unitId: 'phoenix_champion', standInPortrait: 'lion_champion', awaitedFinal: 'Sprite d’élite du champion du Phénix' },
-  { unitId: 'serpent_champion', standInPortrait: 'serpent_elite_brute', awaitedFinal: 'Sprite de boss du champion du Serpent' },
-  { unitId: 'demon_champion', standInPortrait: 'troll', awaitedFinal: 'Sprite de boss du champion du Serpent changé en démon' },
-  { unitId: 'breach_demon', standInPortrait: 'giant_mygale', awaitedFinal: 'Sprite des démons sortis de la brèche' },
-  { unitId: 'demon_brute', standInPortrait: 'forest_troll_elite', awaitedFinal: 'Sprite d’élite du démon massif de la capitale' },
-  { unitId: 'maelor_traitor', standInPortrait: 'maelor', awaitedFinal: 'Sprite de boss de Maelor à la brèche' },
-  { unitId: 'breach_entity', standInPortrait: 'shrine_apparition', awaitedFinal: 'Sprite de boss de l’entité de la brèche (sans nom tant que l’opérateur n’en décide pas)' },
+/** Shared surfaces of a final-act run beyond its scenes, atlas and refuge, with the demo art they replaced. */
+export const FINALE_PROVISIONAL_SURFACES: readonly { surface: string; standIn: string; awaitedFinal: string; image?: string }[] = Object.freeze([
+  { surface: 'Tableau des rencontres du Tournoi', standIn: 'salle du jugement du Lion (fond du tableau)', awaitedFinal: 'Fond du tableau des rencontres : l’Arène des Destins vue des tribunes',
+    image: FINALE_TOURNAMENT_BOARD_IMAGE },
+  { surface: 'Fin de chronique (Journey)', standIn: 'salle du jugement du Lion (CHRONICLE_END_TABLEAU)', awaitedFinal: 'Tableau de fin de l’acte final : la brèche vaincue, avant les épilogues',
+    image: FINALE_CHRONICLE_END_IMAGE },
 ]);
 
 /**
- * Every scene of the final act and the approved Lion tableau it borrows until its own final tableau exists: the narrative
- * stage reads `environmentContext` for the scene's still image. Each entry names the final image it awaits.
+ * New characters of the final act, on their final masters; `standInUnitId` keeps the silhouette they replaced. Each
+ * champion speaks with the master of his combat sprite, the Wolf's with the Dragon's champion.
  */
-export const FINALE_PROVISIONAL_SCENES: Readonly<Record<string, { environmentContext: string; awaitedFinal: string }>> = Object.freeze({
+export const FINALE_PROVISIONAL_ACTORS: readonly ProvisionalActor[] = Object.freeze([
+  { actorId: 'finale_raven_champion', standInUnitId: 'serpent_duelist_elite', awaitedFinal: 'Portrait et sprite d’élite du champion du Corbeau', master: `${FINAL_CHARACTERS}/raven_champion.png` },
+  { actorId: 'finale_wolf_champion', standInUnitId: 'serpent_raider', awaitedFinal: 'Portrait du champion du Loup', master: '/assets/characters/pixel/post-demo/dragon/wolf_champion.png' },
+  { actorId: 'finale_phoenix_champion', standInUnitId: 'lion_champion', awaitedFinal: 'Portrait et sprite d’élite du champion du Phénix', master: `${FINAL_CHARACTERS}/phoenix_champion.png` },
+  { actorId: 'finale_serpent_champion', standInUnitId: 'serpent_elite_brute', awaitedFinal: 'Master Character V2 du champion du Serpent, sprite de boss et sa forme démoniaque', master: `${FINAL_CHARACTERS}/serpent_champion.png` },
+  { actorId: 'finale_civilian', standInUnitId: 'villageoise', awaitedFinal: 'Portrait d’une spectatrice de l’arène', master: `${FINAL_CHARACTERS}/finale_civilian.png` },
+  { actorId: 'finale_citizen', standInUnitId: 'villageois', awaitedFinal: 'Portrait d’un habitant de la capitale', master: `${FINAL_CHARACTERS}/finale_citizen.png` },
+]);
+
+/**
+ * Enemy families of the final act on their final masters; `standInPortrait` keeps the sprite they replaced in combat.
+ * Maelor keeps his approved master at the breach.
+ */
+export const FINALE_PROVISIONAL_ENEMIES: readonly { unitId: string; standInPortrait: string; awaitedFinal: string; master?: string }[] = Object.freeze([
+  { unitId: 'raven_champion', standInPortrait: 'serpent_duelist_elite', awaitedFinal: 'Sprite d’élite du champion du Corbeau', master: `${FINAL_CHARACTERS}/raven_champion.png` },
+  { unitId: 'phoenix_champion', standInPortrait: 'lion_champion', awaitedFinal: 'Sprite d’élite du champion du Phénix', master: `${FINAL_CHARACTERS}/phoenix_champion.png` },
+  { unitId: 'serpent_champion', standInPortrait: 'serpent_elite_brute', awaitedFinal: 'Sprite de boss du champion du Serpent', master: `${FINAL_CHARACTERS}/serpent_champion.png` },
+  { unitId: 'demon_champion', standInPortrait: 'troll', awaitedFinal: 'Sprite de boss du champion du Serpent changé en démon', master: `${FINAL_CHARACTERS}/demon_champion.png` },
+  { unitId: 'breach_demon', standInPortrait: 'giant_mygale', awaitedFinal: 'Sprite des démons sortis de la brèche', master: `${FINAL_CHARACTERS}/breach_demon.png` },
+  { unitId: 'demon_brute', standInPortrait: 'forest_troll_elite', awaitedFinal: 'Sprite d’élite du démon massif de la capitale', master: `${FINAL_CHARACTERS}/demon_brute.png` },
+  { unitId: 'maelor_traitor', standInPortrait: 'maelor', awaitedFinal: 'Sprite de boss de Maelor à la brèche', master: '/assets/characters/pixel/masters/maelor.png' },
+  { unitId: 'breach_entity', standInPortrait: 'shrine_apparition', awaitedFinal: 'Sprite de boss de l’entité de la brèche (sans nom tant que l’opérateur n’en décide pas)', master: `${FINAL_CHARACTERS}/breach_entity.png` },
+]);
+
+/**
+ * Every scene of the final act, keyed by the dialogue that shows it, with its final tableau (`image`, which the narrative
+ * stage shows) and the approved Lion tableau it replaced (`environmentContext`).
+ */
+const FINALE_SCENE_BRIEFS: Readonly<Record<string, { environmentContext: string; awaitedFinal: string }>> = Object.freeze({
   finale_arrival: { environmentContext: 'dialogue:lion_briefing', awaitedFinal: 'Tableau : l’Arène des Destins, la compagnie admise avec ses quatre Sceaux' },
   finale_raven_verdict: { environmentContext: 'dialogue:pre_lion_chief', awaitedFinal: 'Tableau : le champion du Corbeau à terre devant les tribunes' },
   finale_wolf_verdict: { environmentContext: 'dialogue:pre_lion_chief', awaitedFinal: 'Tableau : le champion du Loup à terre devant les tribunes' },
@@ -93,6 +115,10 @@ export const FINALE_PROVISIONAL_SCENES: Readonly<Record<string, { environmentCon
   finale_epilogue_balance: { environmentContext: 'dialogue:final_refuge', awaitedFinal: 'Tableau vivant : l’Équilibre, une paix fragile entre les clans' },
   finale_fear_close: { environmentContext: 'dialogue:serpent_general_aftermath', awaitedFinal: 'Tableau : la fin de la Crainte, après le dernier combat ou le destin accepté' },
 });
+
+export const FINALE_PROVISIONAL_SCENES: Readonly<Record<string, { environmentContext: string; awaitedFinal: string; image?: string }>> = Object.freeze(
+  Object.fromEntries(Object.entries(FINALE_SCENE_BRIEFS).map(([key, scene]) => [key, Object.freeze({ ...scene, image: `${FINAL_IMAGES}/scenes/${key}.webp` })])),
+);
 
 /**
  * Set 1.20.0 (PRESENTATION_AND_MEDIA "Post-demo moments"), post-demo Lot 5 — the moment table of the final act, approved

@@ -62,10 +62,10 @@ describe('combat HUD presentation', () => {
     const portraitFields = [...(runtime + recruits).matchAll(/portrait\s*:\s*'([^']+\.png)'/g)].map(match => match[1]!);
     const bossPortraits = [...runtime.matchAll(/(?:serpent_captain|serpent_general_boss|alaric|lion_chief):'([^']+\.png)'/g)].map(match => match[1]!);
     const reachable = [...new Set([...portraitFields, ...bossPortraits])].sort();
-    // 36 demo portraits, the three of the final act's demons and entity (set 1.20.0, Lot 4), the nine final masters of
-    // the Bear's fighters (OD-2026-11-11-F), which replace the stand-in Borin borrowed, the eight of the Dragon's and the
-    // seven of the Scorpion's (their stand-ins stay in use elsewhere).
-    expect(reachable).toHaveLength(63);
+    // 36 demo portraits and Maelor's, the nine final masters of the Bear's fighters (OD-2026-11-11-F), which replace the
+    // stand-in Borin borrowed, the eight of the Dragon's, the seven of the Scorpion's and the seven of the final act's,
+    // which replace the stand-ins of its demons and its entity (the other stand-ins stay in use elsewhere).
+    expect(reachable).toHaveLength(68);
     expect(Object.keys(COMBAT_PORTRAIT_FRAMING).sort()).toEqual(reachable);
     for (const portrait of reachable) {
       expect(existsSync(resolve('public', portrait.slice(1))), portrait).toBe(true);

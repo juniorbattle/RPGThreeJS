@@ -45,7 +45,7 @@ import {
 } from './finalAct';
 import { chronicleEndWords, type ChronicleEndWords } from './chronicleEndWords';
 import { FINALE_TOURNAMENT_ARRIVAL } from '../campaign/plateaux/finale/finaleTournament';
-import { demoEnvironmentPlateForContext } from '../render/demoEnvironmentPack';
+import { FINALE_TOURNAMENT_BOARD_IMAGE } from '../campaign/plateaux/finale/finalePresentation';
 import { provisionalMark } from './postDemoContent';
 import { sceneMood, type NarrativeMood } from '../audio/moods';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
@@ -988,8 +988,9 @@ export class GameApp {
       onSettings: () => this.openSettings(),
       onMenu: () => { this.saves.saveAuto(this.state); this.uiSounds.play('back'); this.returnToTitle(); },
     }, {
-      backdrop: demoEnvironmentPlateForContext('dialogue:lion_finale_judgement', 'STATIC_TABLEAU').publicUrl,
-      mark: provisionalMark(FINALE_TOURNAMENT_ARRIVAL.dialogueId) ?? 'Image provisoire',
+      // OD-2026-11-11-F (F1): the final act's own arena; the mark shows only while the act's art is provisional.
+      backdrop: FINALE_TOURNAMENT_BOARD_IMAGE,
+      mark: provisionalMark(FINALE_TOURNAMENT_ARRIVAL.dialogueId),
     });
   }
 

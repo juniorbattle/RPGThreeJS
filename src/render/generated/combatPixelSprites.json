@@ -616,6 +616,204 @@
       "colors": 41,
       "sha256": "03197c2aa8cdcb80ccf7a3ec290c1d88a796265236b2fe00fe1a9e30d34d86d4"
     },
+    "breach_demon": {
+      "file": "/assets/characters/pixel/combat-sprites/breach_demon.png",
+      "cell": [
+        79,
+        93
+      ],
+      "anchor": [
+        39,
+        90
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/finale/breach_demon.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "71789a373b32071af3567fa86a2d8d56440e9f7930e0a22f977cea8bac765b8f"
+      },
+      "figureHeightPx": 88,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 77,
+        "bottom": 91
+      },
+      "colors": 41,
+      "sha256": "ffa9a6e54dccc1610a18d797bffc1fde75856e57adaf595fda65afc65db966ca"
+    },
+    "breach_entity": {
+      "file": "/assets/characters/pixel/combat-sprites/breach_entity.png",
+      "cell": [
+        133,
+        177
+      ],
+      "anchor": [
+        66,
+        174
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/finale/breach_entity.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "0925b97ce2e8345314ea1159eb9092fe6aa11a1bd651c966b91df9de5652d38c"
+      },
+      "figureHeightPx": 172,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 131,
+        "bottom": 175
+      },
+      "colors": 39,
+      "sha256": "3bb45485e33dc86c587f020848d6fb074f17219aeafa164ad851781864a62fbb"
+    },
     "cave_bat": {
       "file": "/assets/characters/pixel/combat-sprites/cave_bat.png",
       "cell": [
@@ -1041,6 +1239,204 @@
       },
       "colors": 41,
       "sha256": "32d9b87a5785a2db61e47a9def74d639fa2b19d067f3309eb358ca66cc87bc48"
+    },
+    "demon_brute": {
+      "file": "/assets/characters/pixel/combat-sprites/demon_brute.png",
+      "cell": [
+        138,
+        142
+      ],
+      "anchor": [
+        69,
+        139
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/finale/demon_brute.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "b3d161e298bc108b372daddbe0e4097de72acf6f7a668fe6e73c3f4739fe1494"
+      },
+      "figureHeightPx": 137,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 136,
+        "bottom": 140
+      },
+      "colors": 41,
+      "sha256": "544ff663d9541d2693550469162a3abf2c3cb4879c3b6d6cb888e45f04ef65ea"
+    },
+    "demon_champion": {
+      "file": "/assets/characters/pixel/combat-sprites/demon_champion.png",
+      "cell": [
+        148,
+        167
+      ],
+      "anchor": [
+        74,
+        164
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/finale/demon_champion.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "a62650848d08c07867807cc9c13880176cfe78c34760376640b8284100a5dd02"
+      },
+      "figureHeightPx": 162,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 146,
+        "bottom": 165
+      },
+      "colors": 41,
+      "sha256": "e7c9d7a317822a66967d7732f147ff5dd5fdb7feaec07e633a2c7437ade5f15f"
     },
     "depth_beast": {
       "file": "/assets/characters/pixel/combat-sprites/depth_beast.png",
@@ -1536,6 +1932,204 @@
       },
       "colors": 41,
       "sha256": "e4784e1b8da79c38cb8e6e00e16b4ba8c61e8a8e4735de2510423d1f805550ae"
+    },
+    "finale_citizen": {
+      "file": "/assets/characters/pixel/combat-sprites/finale_citizen.png",
+      "cell": [
+        46,
+        88
+      ],
+      "anchor": [
+        23,
+        85
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/finale/finale_citizen.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "ced59260bc114a7dc72e5bc3703b798389a6e53db45ec946e397bad4c89c31e5"
+      },
+      "figureHeightPx": 83,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 44,
+        "bottom": 86
+      },
+      "colors": 41,
+      "sha256": "7c997b0e3b22fa6d6cc15dc09faa65ace0a82bc84f41455144b7ff7e1c3f7558"
+    },
+    "finale_civilian": {
+      "file": "/assets/characters/pixel/combat-sprites/finale_civilian.png",
+      "cell": [
+        39,
+        88
+      ],
+      "anchor": [
+        19,
+        85
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/finale/finale_civilian.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "e9a0e739b493855abb40c965f6757547a48b4a01be29572d883be77ac2e4c2ed"
+      },
+      "figureHeightPx": 83,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 37,
+        "bottom": 86
+      },
+      "colors": 41,
+      "sha256": "d47ff48c6d09087b07b8609a20faccb9b18963bd2d015bec6f2f0eacf3295e4d"
     },
     "forest_badger": {
       "file": "/assets/characters/pixel/combat-sprites/forest_badger.png",
@@ -2894,6 +3488,105 @@
       "colors": 41,
       "sha256": "2e4b8fe71cb553365867ec89042906207cab1e3ae0fd55b169fceee41ac9c28f"
     },
+    "phoenix_champion": {
+      "file": "/assets/characters/pixel/combat-sprites/phoenix_champion.png",
+      "cell": [
+        87,
+        165
+      ],
+      "anchor": [
+        43,
+        162
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/finale/phoenix_champion.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "c330990334606f707503e0c7a6d3cf09079e1ff49d83c9b3de067bab87b8106f"
+      },
+      "figureHeightPx": 160,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 85,
+        "bottom": 163
+      },
+      "colors": 41,
+      "sha256": "7218a270264757cba4f457815cbb343f65750daa934c03df60a0d368c6479e22"
+    },
     "phoenix_faithful": {
       "file": "/assets/characters/pixel/combat-sprites/phoenix_faithful.png",
       "cell": [
@@ -3289,6 +3982,105 @@
       },
       "colors": 41,
       "sha256": "3aa16d9a494fbfa65c36086e3127e3f8d22aa6d91df1a4d7052f47b6ac402dd2"
+    },
+    "raven_champion": {
+      "file": "/assets/characters/pixel/combat-sprites/raven_champion.png",
+      "cell": [
+        108,
+        166
+      ],
+      "anchor": [
+        54,
+        163
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/finale/raven_champion.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "9398100085bb2c78dc79c4ebe3795f27c4db0ac9c4dc27b2f0967fb2ae957221"
+      },
+      "figureHeightPx": 161,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 106,
+        "bottom": 164
+      },
+      "colors": 41,
+      "sha256": "43c7c17d10d145f2b1df1131cce93367dd97b658ad8cfc1b4ee1261a7cb098ff"
     },
     "raven_foreman": {
       "file": "/assets/characters/pixel/combat-sprites/raven_foreman.png",
@@ -4200,6 +4992,105 @@
       },
       "colors": 41,
       "sha256": "99d5f5a80fef348d1dc2f57fa60cec4b561280edc687059afd3d5f099ab0c193"
+    },
+    "serpent_champion": {
+      "file": "/assets/characters/pixel/combat-sprites/serpent_champion.png",
+      "cell": [
+        114,
+        174
+      ],
+      "anchor": [
+        57,
+        171
+      ],
+      "presenceScale": 1.0,
+      "cells": [
+        "idle",
+        "idle_b"
+      ],
+      "anims": {
+        "idle": {
+          "frames": [
+            "idle",
+            "idle_b"
+          ],
+          "ms": [
+            680,
+            680
+          ],
+          "loop": true
+        },
+        "move": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": true
+        },
+        "windup": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            120
+          ],
+          "loop": false
+        },
+        "attack": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "cast": {
+          "frames": [
+            "idle"
+          ],
+          "ms": [
+            200
+          ],
+          "loop": false
+        },
+        "hurt": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            220
+          ],
+          "loop": false
+        },
+        "ko": {
+          "frames": [
+            "idle_b"
+          ],
+          "ms": [
+            400
+          ],
+          "loop": false
+        }
+      },
+      "aliases": [
+        "/assets/characters/pixel/post-demo/finale/serpent_champion.png"
+      ],
+      "masterOnly": true,
+      "source": {
+        "master": "d64024d98f0ae594894a40d5b868bdb32cc6da57ccb9b6b1d0bde0d32368370e"
+      },
+      "figureHeightPx": 169,
+      "idleBoundsPx": {
+        "left": 2,
+        "top": 2,
+        "right": 112,
+        "bottom": 172
+      },
+      "colors": 41,
+      "sha256": "4c3d02e0e3ee5fdb45a23bb469206a02b53297f9e30a7f49279639dbaae79140"
     },
     "serpent_duelist_elite": {
       "file": "/assets/characters/pixel/combat-sprites/serpent_duelist_elite.png",

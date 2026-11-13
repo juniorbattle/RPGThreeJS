@@ -1,6 +1,6 @@
 # Identité et mise en scène des images de l’acte final — brouillon à valider (2026-11-12)
 
-Statut : **VALIDÉ** par l’opérateur le 2026-11-12 (OD-2026-11-11-F, F1), tel quel (« Valider tel quel »), après avoir vu les trois témoins d’identité et leur planche. Chaque question ci-dessous prend donc sa recommandation. Le lot est généré et relu le même jour sur son ordre (« Lance le lot »), et rien n’est intégré : voir « Images de l’acte final » dans `docs/autonomy/IMAGES_RECRUITMENT_ARCHER_OPERATOR_DECISION_2026-11-11.md`.
+Statut : **VALIDÉ** par l’opérateur le 2026-11-12 (OD-2026-11-11-F, F1), tel quel (« Valider tel quel »), après avoir vu les trois témoins d’identité et leur planche. Chaque question ci-dessous prend donc sa recommandation. Le lot est généré et relu le même jour sur son ordre (« Lance le lot »), puis intégré au jeu le 2026-11-13 sur son ordre (« Intègre l’acte final ») : voir « Images de l’acte final » et « Intégration de l’acte final » dans `docs/autonomy/IMAGES_RECRUITMENT_ARCHER_OPERATOR_DECISION_2026-11-11.md`.
 
 On suit la méthode validée pour l’Ours, le Dragon et le Scorpion :
 - une identité propre à l’acte final ;

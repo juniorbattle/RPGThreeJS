@@ -77,10 +77,16 @@ export const COMBAT_PORTRAIT_FRAMING: Readonly<Record<string, { scale: number; x
   '/assets/characters/pixel/post-demo/scorpion/shadow_zealot.png': { scale: 2.65, x: 0, y: 61 },
   '/assets/characters/pixel/post-demo/scorpion/phoenix_guardian.png': { scale: 3.2, x: 0, y: 46 },
   '/assets/characters/pixel/post-demo/scorpion/scorpion_scholar.png': { scale: 3.2, x: 0, y: 46 },
-  // Set 1.20.0, post-demo Lot 4: Maelor at the breach, and the provisional stand-ins of the final act's demons and its entity.
+  // Set 1.20.0, post-demo Lot 4: Maelor at the breach, on his approved master.
   '/assets/characters/pixel/masters/maelor.png': { scale: 3.2, x: 0, y: 46 },
-  '/assets/characters/pixel/archive/non-demo/giant_mygale.png': { scale: 2.4, x: 0, y: 50 },
-  '/assets/characters/pixel/archive/non-demo/shrine_apparition.png': { scale: 2.6, x: 0, y: 38 },
+  // OD-2026-11-11-F (F1): the final act's final masters, framed like the Scorpion's of the same height.
+  '/assets/characters/pixel/post-demo/finale/serpent_champion.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/finale/demon_champion.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/finale/breach_entity.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/finale/raven_champion.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/finale/phoenix_champion.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/finale/demon_brute.png': { scale: 2.65, x: 0, y: 61 },
+  '/assets/characters/pixel/post-demo/finale/breach_demon.png': { scale: 3.2, x: 0, y: 46 },
   '/assets/characters/pixel/masters/wolf.png': { scale: 2.45, x: -21, y: -38 },
   '/assets/characters/pixel/masters/forest_badger.png': { scale: 3.1, x: -23, y: -72 },
   '/assets/characters/pixel/masters/wild_boar.png': { scale: 2.55, x: -12, y: -57 },
