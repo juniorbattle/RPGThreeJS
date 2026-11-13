@@ -33,19 +33,51 @@ export const SCENE_MOODS: Readonly<Record<string, NarrativeMood>> = Object.fromE
 ]);
 
 /**
- * Set 1.20.0 ("Post-demo moments", "Music"): keys for new post-demo dialogues, under the same rules. Validated by the
- * operator on 2026-11-13 (PLATEAU_MOMENTS_DRAFT_2026-11-13, question 5 A): the dialogues that follow a living tableau, or
- * keep its backdrop, take the mood of their Lion counterpart, so a sequence and its dialogue share it. The audiences as
- * `lion_briefing`, the post-combat dialogues and epilogues as `serpent_general_aftermath` and `epilogue`, the betrayal as
- * `shadow_signs`. Every other post-demo dialogue keeps the refuge context.
+ * Set 1.20.0 ("Post-demo moments", "Music"): the mood of every post-demo dialogue, under the same rules. Each takes the
+ * mood of its Lion counterpart, the approved Lion dialogue whose tableau its scene replaced (`environmentContext` in the
+ * plateau's scene briefs), so a scene sounds like the Lion scene it was drawn from:
+ * - the dialogues that follow a living tableau, or keep its backdrop, since 2026-11-13 (PLATEAU_MOMENTS_DRAFT_2026-11-13,
+ *   question 5 A): the audiences as `lion_briefing`, the post-combat dialogues and epilogues as `serpent_general_aftermath`
+ *   and `epilogue`, the betrayal as `shadow_signs`; the epilogues of fear and balance keep `epilogue`'s drama;
+ * - every other one by OD-2026-11-13-F (P1): the pre-combat and pre-boss scenes, judgements, vigils, the breach and the
+ *   end of the act take tension or drama, and the arrivals, gatherings and shrines whose counterpart is a refuge scene
+ *   stay in the refuge context.
+ * The lists were computed from the scene briefs, not by hand. A refuge dialogue is listed explicitly too, so every
+ * post-demo dialogue has a decided mood and a new one has to be placed (moods.test.ts).
  */
-export const POST_DEMO_SCENE_MOODS: Readonly<Record<string, NarrativeMood>> = Object.freeze({
-  bear_audience: 'tension', dragon_audience: 'tension', scorpion_audience: 'tension', finale_betrayal: 'tension',
-  bear_master_spy_aftermath: 'drama', bear_trial_aftermath: 'drama', bear_epilogue: 'drama',
-  dragon_shaman_aftermath: 'drama', dragon_trial_aftermath: 'drama', dragon_epilogue: 'drama',
-  scorpion_prophet_aftermath: 'drama', scorpion_trial_aftermath: 'drama', scorpion_epilogue: 'drama',
-  finale_epilogue_respect: 'drama', finale_epilogue_fear: 'drama', finale_epilogue_balance: 'drama',
-});
+const postDemoRefuge: readonly string[] = [
+  'bear_ancient_relic', 'bear_arrival', 'bear_mountain_shrine', 'bear_outpost_gathering',
+  'dragon_arrival', 'dragon_crystal_clues', 'dragon_hermitage_gathering',
+  'scorpion_arrival', 'scorpion_buried_library', 'scorpion_oasis_gathering', 'scorpion_sacred_ashes', 'scorpion_sand_riddle', 'scorpion_warded_path',
+  'finale_capital_arrival',
+];
+
+const postDemoTension: readonly string[] = [
+  'bear_audience', 'bear_borin_pre_combat', 'bear_dark_vein', 'bear_master_spy_pre_combat', 'bear_mines_defense_aftermath',
+  'bear_mines_seizure_aftermath', 'bear_ore_convoy', 'bear_pre_mines_defense', 'bear_pre_mines_seizure', 'bear_raven_camp', 'bear_raven_messenger',
+  'bear_raven_traps', 'bear_sacred_mines', 'bear_vigil',
+  'dragon_audience', 'dragon_captive_wolf', 'dragon_crystal_altar', 'dragon_kaelen_pre_combat', 'dragon_lair_assault_aftermath',
+  'dragon_lair_seizure_aftermath', 'dragon_pre_lair_assault', 'dragon_pre_lair_seizure', 'dragon_shaman_pre_combat', 'dragon_shaman_traces',
+  'dragon_vigil', 'dragon_wolf_envoy', 'dragon_wolf_lair', 'dragon_wolf_traps', 'dragon_young_dragon',
+  'scorpion_audience', 'scorpion_corrupted_texts', 'scorpion_inquisitor_pre_combat', 'scorpion_phoenix_temple', 'scorpion_pre_temple_assault',
+  'scorpion_pre_temple_seizure', 'scorpion_prophet_pre_combat', 'scorpion_prophet_traces', 'scorpion_scholars', 'scorpion_temple_assault_aftermath',
+  'scorpion_temple_seizure_aftermath', 'scorpion_vigil',
+  'finale_allied_rally', 'finale_arena_assault_aftermath', 'finale_arena_chaos', 'finale_arrival', 'finale_betrayal', 'finale_breach_confrontation',
+  'finale_last_vigil', 'finale_phoenix_verdict', 'finale_pre_serpent_final', 'finale_raven_verdict', 'finale_wolf_verdict',
+];
+
+const postDemoDrama: readonly string[] = [
+  'bear_epilogue', 'bear_judgement', 'bear_master_spy_aftermath', 'bear_miners_testimony', 'bear_trapped_miners', 'bear_trial_aftermath',
+  'dragon_epilogue', 'dragon_freed_pilgrims', 'dragon_judgement', 'dragon_shaman_aftermath', 'dragon_terrorized_village', 'dragon_trial_aftermath',
+  'scorpion_epilogue', 'scorpion_judgement', 'scorpion_phoenix_faithful', 'scorpion_prophet_aftermath', 'scorpion_temple_witnesses',
+  'scorpion_trial_aftermath',
+  'finale_act_end', 'finale_breach_aftermath', 'finale_epilogue_balance', 'finale_epilogue_fear', 'finale_epilogue_respect', 'finale_fear_close',
+  'finale_trapped_citizens',
+];
+
+export const POST_DEMO_SCENE_MOODS: Readonly<Record<string, NarrativeMood>> = Object.freeze(Object.fromEntries([
+  ...postDemoRefuge.map((id) => [id, 'refuge']), ...postDemoTension.map((id) => [id, 'tension']), ...postDemoDrama.map((id) => [id, 'drama']),
+]));
 
 export const sceneMood = (dialogueId: string | null | undefined): NarrativeMood =>
   (dialogueId ? SCENE_MOODS[dialogueId] ?? POST_DEMO_SCENE_MOODS[dialogueId] : undefined) ?? 'refuge';

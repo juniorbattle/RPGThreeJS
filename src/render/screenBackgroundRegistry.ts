@@ -46,7 +46,8 @@ export const screenEnvironments: Record<ScreenEnvironmentId, ScreenEnvironmentPr
   management: {
     id: 'management',
     mainImage: assets.screens.management.background,
-    fallback: 'linear-gradient(110deg, rgba(3, 6, 12, 0.96), rgba(10, 17, 29, 0.8))',
+    // OD-2026-11-13-F (P3): a lighter veil, so the refuge of the part in progress reads around the register's opaque panel.
+    fallback: 'linear-gradient(110deg, rgba(3, 6, 12, 0.4), rgba(10, 17, 29, 0.16))',
     overlayType: overlayPresets.premiumNight,
     vignetteType: vignettePresets.medium,
     fogProfile: fogPresets.low,
@@ -82,7 +83,11 @@ export function getScreenEnvironment(id: ScreenEnvironmentId): ScreenEnvironment
   return screenEnvironments[id];
 }
 
-export function applyScreenEnvironment(element: HTMLElement, id: ScreenEnvironmentId): ScreenEnvironmentPreset {
+/**
+ * `mainImage` replaces the preset's image for one screen without changing its overlay, veil or motion: the company register
+ * and the shop show the refuge of the part in progress (OD-2026-11-13-F, P3, `companyBackdrop`).
+ */
+export function applyScreenEnvironment(element: HTMLElement, id: ScreenEnvironmentId, mainImage?: string): ScreenEnvironmentPreset {
   const preset = getScreenEnvironment(id);
   element.dataset.screenEnv = preset.id;
   element.dataset.overlay = preset.overlayType;
@@ -91,7 +96,7 @@ export function applyScreenEnvironment(element: HTMLElement, id: ScreenEnvironme
   element.dataset.particles = preset.particleProfile;
   element.dataset.heroStaging = preset.heroStagingProfile;
   element.dataset.motion = preset.motionPolicy;
-  element.style.setProperty('--screen-bg-image', `url("${preset.mainImage}")`);
+  element.style.setProperty('--screen-bg-image', `url("${mainImage ?? preset.mainImage}")`);
   element.style.setProperty('--screen-bg-fallback', preset.fallback);
   return preset;
 }

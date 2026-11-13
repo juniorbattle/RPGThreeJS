@@ -1088,10 +1088,12 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   place-items: center;
   padding: clamp(10px, 2vw, 28px);
   pointer-events: auto;
+  /* OD-2026-11-13-F (P3): the register and the shop stand on the refuge of the part in progress (companyBackdrop.ts),
+     under a veil light enough for it to read around the opaque panel. */
   background:
-    linear-gradient(180deg, rgba(1,3,8,.48), rgba(2,4,10,.82)),
+    linear-gradient(180deg, rgba(1,3,8,.2), rgba(2,4,10,.48)),
     var(--screen-bg-fallback, linear-gradient(115deg, rgba(4,8,16,.98), rgba(10,18,31,.9))),
-    var(--screen-bg-image, url('/assets/generated/forest-pilot/forest-dawn-far.webp')) center / cover no-repeat;
+    var(--screen-bg-image, none) center / cover no-repeat #04070d;
   color: var(--ui-color-cream);
 }
 .management[data-screen-env]::before,
@@ -1104,7 +1106,7 @@ button:disabled { cursor: not-allowed; opacity: .35; }
   background:
     radial-gradient(circle at 50% 16%, rgba(246,219,145,.12), transparent 34%),
     radial-gradient(circle at 18% 70%, rgba(114,199,255,.08), transparent 34%),
-    linear-gradient(90deg, rgba(0,0,0,.7), rgba(3,8,16,.24) 40%, rgba(0,0,0,.72));
+    linear-gradient(90deg, rgba(0,0,0,.44), rgba(3,8,16,.1) 40%, rgba(0,0,0,.46));
   backdrop-filter: blur(5px) saturate(.92);
 }
 .management__shell {
@@ -3075,7 +3077,7 @@ body.motion-reduced .narrative-media-transition, body.motion-reduced .narrative-
 /* In-game reduced motion only (set 1.22.0, OD-2026-11-11-E): the OS preference no longer requests it. */
 body.motion-reduced .tournament-board { animation: none; }
 
-/* Final audit 2026-11-11 (A5): the in-game reduced-motion choice, beside the OS query above, for CSS-only motion. */
+/* Final audit 2026-11-11 (A5): the in-game reduced-motion choice drives CSS-only motion; no OS query requests it any more (set 1.22.0). */
 body.motion-reduced .cinematic-overlay, body.motion-reduced .cinematic-overlay * { animation:none !important; transition:none !important; }
 body.motion-reduced .journey-overlay, body.motion-reduced .journey-overlay * { animation:none !important; transition:none !important; }
 body.motion-reduced .scene-transition, body.motion-reduced .scene-transition * { animation:none !important; }

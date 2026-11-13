@@ -68,6 +68,10 @@ describe('journey QA scenarios', () => {
     expect(ids).not.toContain('serpent_general_reveal');
     expect(ids).not.toContain('lion_judgement');
     expect(ids).not.toContain('lion_champion');
+    // Zero active video: no QA descriptor names a media file, retired or not (OD-2026-11-13-F, Q2).
+    for (const descriptor of JOURNEY_QA_MANIFEST.cinematics) {
+      for (const source of descriptor.sources) expect(source.src, descriptor.id).not.toMatch(/\.(?:mp4|webm|mov)$|^\/assets\//);
+    }
   });
 
   it('1 · proves the full Journey session lifecycle', async () => {
@@ -101,10 +105,11 @@ describe('journey QA scenarios', () => {
     expectNoResidue(outcome);
   });
 
-  it('5 · reaches the same agency boundary after a skip', async () => {
+  it('5 · reaches the same agency boundary after a skip, without any video (OD-2026-10-24-A)', async () => {
     const outcome = await run('journey-skip');
-    expect(outcome.result?.reason).toBe('skipped');
-    expect(outcome.details).toMatchObject({ reachedFreeze: true, reachedAgency: true });
+    // A hold ends as a placeholder; it ended long before its 30 s hold, so the Skip ended it.
+    expect(outcome.result?.reason).toBe('placeholder');
+    expect(outcome.details).toMatchObject({ endedBeforeHold: true, reachedFreeze: true, reachedAgency: true });
     expect(outcome.commit).toEqual({ kind: 'choice', id: 'qa-route-onward' });
     expect(outcome.trace).toEqual(['IDLE', 'PLAYING', 'FREEZE', 'AGENCY', 'TRANSITIONING', 'DISPOSED']);
     expectNoResidue(outcome);

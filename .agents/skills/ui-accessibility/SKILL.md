@@ -9,7 +9,7 @@ Contract: UI_AND_ACCESSIBILITY (`docs/contracts/UI_AND_ACCESSIBILITY.md`), plus 
 
 ## Ownership
 
-`src/ui/` (views, `design-system/`, `theme/` tokens, `SceneTransition`, `RefugePresentation`, `CampaignStatusHud`) and `src/styles/` (`app.css`, `poi-map.css`). CSS also lives in `src/ui/theme/*.css`, `src/ui/design-system/campaign-ui.css` and `src/ui/dialogue-alignment.css`: search all of them for a class before editing. This layer is presentation only: status labels and numbers come from runtime truth.
+`src/ui/` (views, `design-system/`, `theme/` tokens, `SceneTransition`, `RefugePresentation`, `companyBackdrop`, `CampaignStatusHud`) and `src/styles/` (`app.css`, the combat sheets). CSS also lives in `src/ui/poi-map.css`, `src/ui/theme/*.css`, `src/ui/design-system/campaign-ui.css`, `src/ui/dialogue-alignment.css`, `src/ui/living/living-tableau.css`, `src/ui/opening/opening-sequence.css` and `src/ui/ui-sound.css`: search all of them for a class before editing. This layer is presentation only: status labels and numbers come from runtime truth.
 
 ## Invariants
 
@@ -20,7 +20,7 @@ Digest of the contract at set 1.23.0 (baseline `6228a34fd69a01406ecf0fb7168a53f9
 - At every handoff a single component owns focus, overlays and lifecycle.
 - At desktop, intermediate and narrow widths, navigation, choices, status and critical combat controls stay usable. Measure real bounds, clipping, overlap, scrolling and hit targets in the choice, reward, combat, refuge and map states.
 - Keyboard operation, a visible focus indicator, meaningful labels and reduced-motion support are required from the first iteration.
-- POI map (OD-2026-10-13-D, OD-2026-10-15-A/B): POI roles and states (available, active, resolved, neutralized, locked, reusable refuge) and mobile threats (position, next-turn area, tendency, contested routes) are shown with text as well as colour. Wait and Combat-or-retreat are explicit intents; no modal, gesture, hover, zoom or selection owns movement, reward, branch, threat tick or resolution. Restore safe map focus after cancellation, retreat and combat. Map targets are at least 44px; paths, labels and threat indicators stay separated at 1366x768, 620px and 390x844.
+- POI map (OD-2026-10-13-D, OD-2026-10-15-A/B, set 1.18.0): POI roles and states (available, active, resolved, neutralized, locked, reusable refuge) are shown with text as well as colour. Each undefeated guardian is a distinct marker named in text on its post, and every challenge place is marked "Défi" with its condition and prime in text; the map shows no Wait action, turn count, threatened area, tendency or contested route any more. Combat-or-retreat is an explicit intent; no modal, gesture, hover, zoom or selection owns movement, reward, branch or resolution. Restore safe map focus after cancellation, retreat and combat. Map targets are at least 44px; paths, labels and guardian markers stay separated at 1366x768, 620px and 390x844.
 - A media fallback keeps the player's agency and never depends on motion to carry information.
 - Boss and elite Fury (OD-2026-11-11-B, set 1.21.0): a boss or elite below half its maximum HP shows a "Furie" state on the unit and in its unit card, in text and readable without colour; the combat log states the entry into Fury and each Fury attack.
 - Sound (OD-2026-10-18-F, OD-2026-10-19-B): default silence, accessible enable, mute and volume, real gesture unlock, preferences outside gameplay saves, no cue on load, reload, restored preference or programmatic focus, and audio failure never blocks agency.
@@ -29,14 +29,14 @@ Digest of the contract at set 1.23.0 (baseline `6228a34fd69a01406ecf0fb7168a53f9
 
 ## Reduced motion model
 
-One source since set 1.22.0 (OD-2026-11-11-E): the in-game setting (`state.settings.reducedGraphics`, passed as `reducedMotion` by `GameApp`, kept on the device by `MotionPreference.ts`, off by default). The OS `prefers-reduced-motion` no longer requests reduced motion; CSS-only motion follows the `body.motion-reduced` class that `GameApp` sets from the setting. JavaScript reads this through one shared helper in `src/ui/` rather than ad-hoc `matchMedia` calls. CSS keeps `@media (prefers-reduced-motion: reduce)` blocks in `app.css` and `poi-map.css`. Verify OS-only and game-setting reduction separately in the current native campaign driver. Physical Traversal QA labs were retired under OD-2026-10-15-A.
+One source since set 1.22.0 (OD-2026-11-11-E): the in-game setting (`state.settings.reducedGraphics`, passed as `reducedMotion` by `GameApp`, kept on the device by `MotionPreference.ts`, off by default). The OS `prefers-reduced-motion` no longer requests reduced motion; CSS-only motion follows the `body.motion-reduced` class that `GameApp` sets from the setting. JavaScript reads this through one shared helper in `src/ui/` rather than ad-hoc `matchMedia` calls. No stylesheet under `src/` has a `@media (prefers-reduced-motion)` block any more: CSS reduces motion under `body.motion-reduced` or a view's own `data-reduced-motion="true"`, and `NarrativeStage.test.ts` keeps the media query out of `app.css`. Verify the game setting on and off, and that an emulated OS preference alone (`reducedMotion: 'reduce'` in Playwright) leaves motion on. Physical Traversal QA labs were retired under OD-2026-10-15-A.
 
 Historical item8 acceptance remains scoped to its source/proof. Active acceptance covers normal motion and the in-game reduced motion, and checks that an emulated OS preference alone leaves motion on (set 1.22.0); do not certify new transitions using old captures.
 
 ## Verify
 
 - Focused: `npx vitest run src/ui` and the touched suites, then `npx tsc --noEmit`.
-- Browser: drivers, ports and outputs are in the `qa-evidence` skill. Test desktop (1366x768 for the map), 620x780 and 390x844; keyboard-only paths; visible focus and labels; OS reduce on and off; game setting on and off; failed media loads.
+- Browser: drivers, ports and outputs are in the `qa-evidence` skill. Test desktop (1366x768 for the map), 620x780 and 390x844; keyboard-only paths; visible focus and labels; game setting on and off; an emulated OS reduce that must change nothing; failed media loads.
 - Read real bounds from the page (`getBoundingClientRect` against the viewport) and inspect the captures.
 
 ## Hazards
@@ -55,4 +55,4 @@ Contracts read; files and owners affected; invariants at risk (contract section 
 
 ## OD-2026-10-03-A transition review
 
-Inspect cast exit/breath/entry continuity, gentle fade/pause/focus alternative, meaningful transition text, dialogue responsive bounds and retained/restored focus. Test normal and OS-only reduced motion at desktop/intermediate/narrow widths. Coordinate grouping/facing/copy with narrative-tableau; do not decide dialogue facts or reopen the historical cinematic identities.
+Inspect cast exit/breath/entry continuity, gentle fade/pause/focus alternative, meaningful transition text, dialogue responsive bounds and retained/restored focus. Test normal motion, the in-game reduced motion and an emulated OS preference alone (motion stays on, set 1.22.0) at desktop/intermediate/narrow widths. Coordinate grouping/facing/copy with narrative-tableau; do not decide dialogue facts or reopen the historical cinematic identities.
