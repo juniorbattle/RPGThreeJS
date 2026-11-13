@@ -375,6 +375,24 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 - **Hors du lot d’images** : les combats du Scorpion se jouent encore dans les arènes codées du Lion, bannières au lion comprises. Une session parallèle leur donne leurs propres arènes.
 - **Tests** : le registre du Scorpion vérifie chaque fichier, l’absence de marque, la fin de chronique, les portraits et les planches. Les tests du moteur de combat et du cadrage des vignettes tiennent compte des sept nouveaux portraits. Le test de l’Ours, qui prenait le Scorpion comme exemple de plateau sans salle de fin de chronique, prend désormais l’acte final.
 
+## Arènes du Scorpion (2026-11-12)
+
+`CURRENT FACT` — l’opérateur a lancé la carte proposée (« Arènes codées du Scorpion »). Une session parallèle, dans son worktree, a donné aux 23 combats du Scorpion leurs propres arènes codées. C’est poussé sur `dev` : `19ea7224` pour le code et les tests, `3b539405` pour le rapport (`docs/reports/scorpion-arenas-2026-11-12.md`). La session avait atteint la limite d’usage en cours de route ; son commit intermédiaire, jamais poussé, est fondu dans `19ea7224`.
+- **Six arènes**, toutes codées (OD-2026-11-01-C : ni image générée ni plaque) :
+  - la piste des dunes (`scorpion_dune_track`), sous les bannières du Scorpion : bêtes des dunes, éclaireurs du Phénix, combats facultatifs des serpents et araignées des dunes ;
+  - les ruines du Phénix (`scorpion_phoenix_ruins`), sans bannière : sentinelles du temple, gardien de flamme, combats facultatifs de la ronde du Phénix et des serpents des ruines, gardien de flamme du POI ;
+  - la nef du temple du Phénix (`scorpion_phoenix_temple`), avec la flamme safran au cœur blanc : l’assaut du temple et sa prise. Le codex n’y est pas posé, car l’arène sert aux deux issues ;
+  - le sanctuaire des cendres (`scorpion_ash_sanctuary`), sans bannière : fidèles égarés, gardes du sanctuaire, gardien fidèle égaré ;
+  - la crête des dunes au crépuscule (`scorpion_dune_crest`), sans signe de clan, avec l’encre noire des Ombres et les feuillets du Prophète : le Prophète des Ombres et la « Veille des sables » ;
+  - la cour de la maison des registres (`scorpion_records_court`) : l’épreuve du Grand Inquisiteur.
+- **Signes séparés** : le temple, les ruines et le sanctuaire ne montrent que le phénix ; la piste et la cour que le scorpion. Un test le vérifie, un autre qu’aucun texel n’est violet. Aucun motif du Lion.
+- **Son** : aucun son nouveau. La piste, les ruines et la cour reprennent l’ambiance de la route forestière ; le temple, le sanctuaire et la crête celle du sanctuaire du Lion.
+- **Ce qui ne change pas** : la grille, la plateforme, la résolution des combats et les sauvegardes. Les arènes du Lion, de l’Ours et du Dragon restent identiques à l’octet, contrôlé deux fois, et un nouveau test (`arenaUnchanged.test.ts`) fige leur empreinte. L’acte final garde les arènes du Lion, et un test le vérifie.
+- **Vérifié** :
+  - dans le navigateur de la session, à 1600 × 900 : un combat par arène et le duel du Lion, sans erreur de page ni de console ;
+  - dans le dépôt principal, après la fusion : 3 433 tests sans échec, ainsi que le validateur narratif, les contrats, les types et le build. Les 10 échecs vus dans le worktree venaient de médias ignorés par Git, absents d’un worktree neuf.
+- **Non vérifié** : le rendu sur un vrai GPU, le mouvement réduit du jeu activé, les autres combats du Scorpion en jeu (couverts par le test d’affectation) et le mobile. Dans la cour, le bandeau de tour cache le haut de la bannière tant qu’il est affiché. Le jugement artistique revient à l’opérateur.
+
 ## Rencontres des six héros (2026-11-11, nuit)
 
 `CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.
