@@ -1929,7 +1929,8 @@ export class GameApp {
       // live here, so the betrayal after the final plays its approved moment; the board step stays for a resume.
       const live = onBoard && this.liveBoardDialogueId === combatConfig.postCombatDialogueId;
       if (live) this.liveBoardDialogueId = null;
-      await this.playDialogue(combatConfig.postCombatDialogueId, node.label, live ? { live: true } : {});
+      if (live) await this.playDialogue(combatConfig.postCombatDialogueId, node.label, { live: true });
+      else await this.playDialogue(combatConfig.postCombatDialogueId, node.label);
       if (this.pendingCombatId) {
         await this.flushPendingCombat(node);
         return;

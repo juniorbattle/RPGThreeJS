@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "task": "OD-2026-11-13-F-Q1",
+  "runId": "claude-bilan-partie-complete-20261113T1645Z",
+  "driver": "tools/full-chronicle-browser-qa.mjs",
+  "method": "Real UI clicks with the unit tests QA policy; every fight won with the tactical runtime DEV QA Victoire control (runtime end path, real CombatResult), result card clicked; living tableaux left with Passer.",
+  "final": [
+    {
+      "run": "pass3-respect-default",
+      "commit": "bbc93f016d6fabd0ddf5b8ba62278a46b1eb1ad7",
+      "start": "new",
+      "plan": "respect",
+      "osMotion": "no-preference",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "pass": true,
+      "durationSeconds": 1489,
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "failedRequests": 0,
+      "coveredControls": 0,
+      "chapters": [
+        {
+          "chapter": "lion",
+          "reputationOnArrival": 30
+        },
+        {
+          "chapter": "bear",
+          "reputationOnArrival": 59
+        },
+        {
+          "chapter": "dragon",
+          "reputationOnArrival": 73
+        },
+        {
+          "chapter": "scorpion",
+          "reputationOnArrival": 83
+        },
+        {
+          "chapter": "finale",
+          "reputationOnArrival": 90
+        }
+      ],
+      "fights": [
+        "lion:forest_ambush",
+        "lion:road_to_valmir",
+        "lion:village_defense",
+        "lion:young_dragon_roost",
+        "lion:serpent_captain",
+        "bear:bear_pass_beasts",
+        "bear:bear_raven_patrol",
+        "bear:bear_mines_defense",
+        "bear:bear_master_spy",
+        "dragon:dragon_wolf_patrol",
+        "dragon:dragon_crest_creatures",
+        "dragon:dragon_corrupted_wyrm",
+        "dragon:dragon_lair_assault",
+        "dragon:dragon_shadow_touched",
+        "dragon:dragon_shadow_shaman",
+        "scorpion:scorpion_dune_beasts",
+        "scorpion:scorpion_temple_sentinels",
+        "scorpion:scorpion_temple_assault",
+        "scorpion:scorpion_shadow_prophet",
+        "finale:finale_raven_bout",
+        "finale:finale_wolf_bout",
+        "finale:finale_phoenix_bout",
+        "finale:finale_serpent_final",
+        "finale:finale_arena_assault",
+        "finale:finale_burning_streets",
+        "finale:finale_breach"
+      ],
+      "answers": 58,
+      "dialogues": 113,
+      "refuges": 13,
+      "livingTableauxLeftWithPasser": [
+        "lion:lion-audience",
+        "lion:lion-village-choice",
+        "lion:lion-final-judgement",
+        "bear:bear-audience",
+        "bear:bear-judgement",
+        "dragon:dragon-audience",
+        "dragon:dragon-judgement",
+        "scorpion:scorpion-audience",
+        "scorpion:scorpion-judgement",
+        "finale:finale-arena-gate",
+        "finale:finale-breach"
+      ],
+      "endPanels": [
+        "lion: Carte de campagne",
+        "lion: Continuer : Les Montagnes de la Résilience",
+        "bear: Continuer : Les Pics Célestes",
+        "dragon: Continuer : Les Déserts Arides",
+        "scorpion: Continuer : L’acte final",
+        "finale: Retour au menu"
+      ],
+      "end": {
+        "ending": "respect",
+        "endingId": "ending-respect",
+        "reputation": 92,
+        "stage": "completed"
+      }
+    },
+    {
+      "run": "pass3-fear-reduce",
+      "commit": "bbc93f016d6fabd0ddf5b8ba62278a46b1eb1ad7",
+      "start": "lion-end",
+      "plan": "fearLastStand",
+      "osMotion": "reduce",
+      "viewport": {
+        "width": 1440,
+        "height": 810
+      },
+      "pass": true,
+      "durationSeconds": 1337,
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "failedRequests": 0,
+      "coveredControls": 0,
+      "chapters": [
+        {
+          "chapter": "bear",
+          "reputationOnArrival": 19
+        },
+        {
+          "chapter": "dragon",
+          "reputationOnArrival": 7
+        },
+        {
+          "chapter": "scorpion",
+          "reputationOnArrival": 0
+        },
+        {
+          "chapter": "finale",
+          "reputationOnArrival": 0
+        }
+      ],
+      "fights": [
+        "bear:bear_pass_beasts",
+        "bear:bear_raven_scouts",
+        "bear:bear_raven_patrol",
+        "bear:bear_corrupted_beast",
+        "bear:bear_mines_seizure",
+        "bear:bear_gallery_guardians",
+        "bear:bear_borin",
+        "dragon:dragon_wolf_patrol",
+        "dragon:dragon_wolf_scouts",
+        "dragon:dragon_crest_creatures",
+        "dragon:dragon_corrupted_wyrm",
+        "dragon:dragon_lair_seizure",
+        "dragon:dragon_shadow_touched",
+        "dragon:dragon_kaelen",
+        "scorpion:scorpion_dune_beasts",
+        "scorpion:scorpion_phoenix_scouts",
+        "scorpion:scorpion_temple_sentinels",
+        "scorpion:scorpion_flamekeeper",
+        "scorpion:scorpion_temple_seizure",
+        "scorpion:scorpion_lost_faithful",
+        "scorpion:scorpion_inquisitor",
+        "finale:finale_raven_bout",
+        "finale:finale_wolf_bout",
+        "finale:finale_phoenix_bout",
+        "finale:finale_serpent_final",
+        "finale:finale_arena_assault",
+        "finale:finale_burning_streets",
+        "finale:finale_demon_square",
+        "finale:finale_breach",
+        "finale:finale_last_stand"
+      ],
+      "answers": 32,
+      "dialogues": 67,
+      "refuges": 10,
+      "livingTableauxLeftWithPasser": [
+        "bear:bear-audience",
+        "bear:bear-judgement",
+        "dragon:dragon-audience",
+        "dragon:dragon-judgement",
+        "scorpion:scorpion-audience",
+        "scorpion:scorpion-judgement",
+        "finale:finale-arena-gate",
+        "finale:finale-breach"
+      ],
+      "endPanels": [
+        "lion: Continuer : Les Montagnes de la Résilience",
+        "bear: Continuer : Les Pics Célestes",
+        "dragon: Continuer : Les Déserts Arides",
+        "scorpion: Continuer : L’acte final",
+        "finale: Retour au menu"
+      ],
+      "end": {
+        "ending": "fear",
+        "endingId": "ending-fear-last-stand",
+        "reputation": 1,
+        "stage": "completed"
+      }
+    }
+  ],
+  "earlier": [
+    {
+      "run": "pass1b-respect-default",
+      "commit": "51dff190bad1827277411c002a66c9b44aaac0ca",
+      "pass": true,
+      "durationSeconds": 1453,
+      "consoleErrors": 0,
+      "end": {
+        "ending": "respect",
+        "endingId": "ending-respect",
+        "reputation": 92,
+        "stage": "completed"
+      }
+    },
+    {
+      "run": "pass1-fear-from-lion-end",
+      "commit": "51dff190bad1827277411c002a66c9b44aaac0ca",
+      "pass": true,
+      "durationSeconds": 1290,
+      "consoleErrors": 0,
+      "end": {
+        "ending": "fear",
+        "endingId": "ending-fear-last-stand",
+        "reputation": 1,
+        "stage": "completed"
+      }
+    }
+  ],
+  "interrupted": [
+    {
+      "run": "pass2-respect-default",
+      "commit": "bb0d8d2a",
+      "reason": "Vite reloaded the page when GameApp.ts was edited mid-run; not a game defect, not counted"
+    },
+    {
+      "run": "pass2-fear-reduce",
+      "commit": "bb0d8d2a",
+      "reason": "same reload"
+    }
+  ]
+}
