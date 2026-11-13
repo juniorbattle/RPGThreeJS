@@ -96,4 +96,22 @@ Les trois combats sont de rang normal et rapportent 0 de réputation (échelle d
 - L'équilibre des trois combats attend le test sur PC de l'opérateur. Le Scorpion oppose trois mages dès la région I.
 - Le pilote QA ne joue pas la défaite. Comme pour tout combat, une défaite ramène au dernier point de sauvegarde, avant le choix.
 - La dernière passe narrative sur les moments à forte tension, ajoutée par l'opérateur au même lot, suit dans un brouillon séparé.
-- Remarque de l'opérateur pendant la vérification : les sprites de Lyra et de Gunnar paraissent trop grands dans les tableaux par rapport à la compagnie, et leur pose de repos semble inadaptée. Elle est traitée à part, dans un travail de présentation.
+- Remarque de l'opérateur pendant la vérification : les sprites de Lyra et de Gunnar paraissent trop grands dans les tableaux par rapport à la compagnie, et leur pose de repos semble inadaptée. Voir la section suivante.
+
+## Remarque de l'opérateur : taille et pose des héros dans les tableaux
+
+`CURRENT FACT`, taille corrigée.
+- **Cause.** Le tableau ajuste chaque image, en `contain`, dans des cadres de même largeur (`.narrative-cast__actor`). Les masters de la compagnie et des plateaux sont des toiles de 512×512 où le personnage occupe environ 66 % de la hauteur, au-dessus d'une marge de 10,9 %. Ceux des six héros recrutables (`archive/non-demo`, 640×768) le font occuper 84 %, au-dessus d'une marge de 4,4 %. Ils paraissaient donc environ 1,5 fois plus grands, et plus bas.
+- **Correction.** `tools/art/frame_tableau_actors.py` recadre chaque master sans rééchantillonnage ni aucun pixel modifié. Le personnage est posé sur une toile carrée de 997 px où une unité de hauteur (`worldHeight` de la table des poses) prend la même part que sur les masters de la compagnie, avec la même marge sous les pieds. Les images sont dans `public/assets/characters/pixel/tableau/`.
+- **Portée.** Le champ `tableau` des six profils (`assetManifest.ts`) n'est lu que par le tableau (`actorImage`, `NarrativeSceneSurface.ts`). Portraits, registre de compagnie et combat ne changent pas. Test : `src/cinematics/tableauActorFraming.test.ts`.
+- **Mesure dans la page** (scène du hameau, dev) : Lyra 270 px, Alistair 286, Kestrel 275, Marian 308 avec son bâton. Les pieds sont alignés entre 698 et 704 px. Le volet du navigateur était masqué : les captures n'étaient pas fiables, la mesure vient du DOM.
+
+`UNDECIDED`, pose de repos. Une planche des personnages des tableaux montre que la compagnie et tous les personnages des plateaux ont une pose de repos. Seuls les six héros recrutables sont en pose d'action, car leur master, d'une autre chaîne, sert aussi de pose `prepare` en combat (OD-2026-11-13-A) :
+- Aldric lève son marteau ;
+- Morvan brandit sa faux ;
+- Lyra lance un sort ;
+- Eldwin incante ;
+- Talon saute, shuriken en main ;
+- Gunnar pointe son canon.
+
+Leur donner une pose de repos demande de générer six images avec l'outil des images finales. La question est posée à l'opérateur.
