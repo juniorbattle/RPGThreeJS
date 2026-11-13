@@ -52,6 +52,19 @@ Statut : `APPROVED DECISION`. L'opérateur a demandé un bilan concret du jeu co
 
   L'image de la spectatrice de l'arène reste en réserve, documentée.
 
+## Remarques de l'opérateur au lancement des lots (même jour)
+
+L'opérateur a validé le découpage en quatre lots (« sinon pour le reste je valide ton résumé ») et a ajouté quatre remarques. Chacune est transmise à la session concernée.
+
+- **Couleurs de Talon et de Kestrel.** « je constate que le heros ninja et archer ont quasi la meme couleur... a faire attention ». Talon, le ninja, et Kestrel, l'archère, sont tous deux encapuchonnés en bleu nuit. La session de présentation compare leurs silhouettes et propose des options avec captures : décaler la teinte de Talon, décaler celle de Kestrel, ou garder. Rien n'est recoloré sans l'accord de l'opérateur.
+- **Grandeur et impact des compétences.** « il faut s'assurer que nos competences soit bien construit dans leur execution et leur effet vfx en respectant la direction de grandeur et impact surtout pour les competences haut niveau/ultimes ». La session de combat proportionne les compétences nouvelles ou changées à leur rang. Elle audite aussi l'échelle base, légère, lourde, ultime de toutes les compétences en jeu : ampleur de l'effet, charge, impact, caméra, son. Les ultimes et les attaques lourdes passent en premier. Elle corrige les effets trop faibles sans toucher aux statistiques ; une retouche qui change l'identité d'une compétence passe d'abord par l'opérateur.
+- **Nettoyage global.** « On profitera aussi pour faire un nettoyage globale afin de conserver uniquement l'essentiel car il y a beacuoup d'elements temporaires ». Q2 s'élargit à tout le dépôt, en seconde phase de la session de présentation :
+  - d'abord un inventaire classé (supprimable sans risque, gardé par une règle, à trancher), soumis à l'opérateur ;
+  - puis les suppressions, dans des commits dédiés.
+
+  Les lignes rouges d'`AGENTS.md` restent : identifiants historiques, moments canoniques et archives de médias et de preuves gardés, fichiers `legacy*` inventoriés avant toute action, contrats intouchés.
+- **Récit des moments à enjeu.** « Le recit globale doit etre optimale surtout lors des moments de tensions ou a enjeux marquantes ». La session de récit ajoute à N1, N2 et N3 la dernière passe narrative prévue par la feuille de route. Elle inventorie les moments de forte tension du prologue aux trois fins, puis propose des retouches mot à mot classées par impact (texte actuel, texte proposé). Rien n'entre dans le jeu sans validation, et aucun canon nouveau n'est inventé.
+
 ## Ordre proposé ensuite
 
 1. Les corrections ci-dessus.
