@@ -9,12 +9,15 @@ import { prefersReducedMotion } from '../ui/ReducedMotion';
 interface DialogueAssetProfile {
   full: string;
   dialogue: string;
+  /** A master re-framed on the company's canvas convention, for the tableau only (operator remark, 2026-11-13). */
+  tableau?: string;
 }
 
-function actorImage(actorId: string): string | undefined {
+export function actorImage(actorId: string): string | undefined {
   const profiles = assets.characterProfiles as Record<string, DialogueAssetProfile | undefined>;
   const actors = assets.dialogueActors as Record<string, string | undefined>;
-  return resolveCharacterAsset(actorId, 'full') ?? profiles[actorId]?.full ?? profiles[actorId]?.dialogue ?? actors[actorId];
+  return profiles[actorId]?.tableau ?? resolveCharacterAsset(actorId, 'full') ?? profiles[actorId]?.full ?? profiles[actorId]?.dialogue
+    ?? actors[actorId];
 }
 
 type NarrativeStaticCastState = 'ACTIVE' | 'LISTENING' | 'BACKGROUND';
