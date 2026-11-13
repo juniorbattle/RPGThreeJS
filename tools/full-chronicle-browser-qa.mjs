@@ -144,6 +144,9 @@ async function chapterBookkeeping(state) {
   const chapter = await page.evaluate(() => window.__fullQaPolicy.chapter());
   if (!seenChapters.has(chapter) && state.surface === 'poi-map') {
     seenChapters.add(chapter);
+    // The map comes in by a crossfade from the last scene: the capture waits for the leaving stage to be gone.
+    await page.waitForFunction(() => !document.querySelector('.narrative-stage--leaving'), null, { timeout: 5000 }).catch(() => undefined);
+    await page.waitForTimeout(600);
     report.chapters.push({ chapter, runId: state.runId, reputation: state.reputation, at: Math.round((Date.now() - started) / 1000) });
     await capture(`${chapter}-map`);
   }
