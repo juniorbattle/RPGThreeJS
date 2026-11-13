@@ -65,7 +65,7 @@
     "Playtest PC de l'opérateur et corrections, dernière passe narrative, passage mobile, démo figée (OD-2026-11-01-C)."
   ],
   "creditStatus": "AVAILABLE",
-  "contractComplianceStatus": "Set 1.23.0, baseline 6228a34fd69a01406ecf0fb7168a53f92a267d7b ; amendement de la musique des parties (pistes propres à l’Ours, au Dragon, au Scorpion et à l’acte final, partie lue au seul préfixe de l’identifiant présenté, sans option B) approuvé par l’opérateur (« J’écoute et je valide »), relu par contracts-guardian (PASS WITH WARNINGS, aucun changement de fond) (OD-2026-11-13-E) ; set 1.22.0 (5a61d319, audit final), set 1.21.0 (470216d1, Furie) et set 1.20.0 (6c965169) en vigueur pour le reste",
+  "contractComplianceStatus": "Set 1.24.0, baseline 133814bac45cc31c8eda7aa0fa1acb16a9ca7e35 ; amendement des figurants muets des tableaux ordinaires (maîtres civils existants seulement, dialogues approuvés par id, sans option B) approuvé mot à mot par l’opérateur (« Oui, sans option B »), relu par contracts-guardian (PASS WITH WARNINGS, aucun changement de fond) (OD-2026-11-13-G) ; set 1.23.0 (6228a34f) : amendement de la musique des parties (pistes propres à l’Ours, au Dragon, au Scorpion et à l’acte final, partie lue au seul préfixe de l’identifiant présenté, sans option B) approuvé par l’opérateur (« J’écoute et je valide »), relu par contracts-guardian (PASS WITH WARNINGS, aucun changement de fond) (OD-2026-11-13-E) ; set 1.22.0 (5a61d319, audit final), set 1.21.0 (470216d1, Furie) et set 1.20.0 (6c965169) en vigueur pour le reste",
   "runId": "claude-bilan-presentation-20261113T1644Z",
   "agent": "claude",
   "lastHeartbeat": "2026-11-13T17:16:30Z",
@@ -91,7 +91,7 @@
     "workflowFiles": 9,
     "productProgress": 0
   },
-  "contractSetVersion": "1.23.0",
+  "contractSetVersion": "1.24.0",
   "autonomyScope": "Authorized missing six-hero skills, tactical controls, narrative presentation, accessibility and PC finishing. No physical Traversal restoration; no autonomous Lot E economy/elite/art adjustment; operator controls scheduler activation.",
   "operatorPriority": "OD-2026-10-25-B : Composer VFX et actions de compétence du combat tactique et du Combat Stage, une famille à la fois ; pilote narratif Alistair en pause ; puis Bois-Clair, playtest PC et mobile ; zéro vidéo",
   "operatorAuthorization": "OD-2026-10-25-A : Claude écrivain principal interactif, agent claude sous le même verrou, dev seulement, serveurs en mode mixte, protocole interactif allégé ; tests et état d'abord, puis nettoyage et pilote Alistair (frames Codex, lecteur Claude). Aucun amendement de contrat. OD-2026-10-25-B : priorité au Composer VFX et aux actions de combat, pilote Alistair en pause, art opérateur, aucun amendement.",
