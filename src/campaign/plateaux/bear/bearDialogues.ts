@@ -153,10 +153,6 @@ export const BEAR_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze(
     say('1', SPY, 'Vaincu', 'Le minerai… n’en était qu’une part. Ceux que nous servons ont besoin de bien d’autres choses, et vos Sceaux n’y changeront rien.', null, { expression: 'wounded' }),
     say('2', SERAPHINE, 'Sage', 'Les Ombres, encore, derrière un autre clan. Le Corbeau n’était qu’une main de plus.', null, { expression: 'mystical' }),
   ])),
-  scene('bear_borin_pre_combat', 'lion_finale_judgement', 'Épreuve de l’Ours', chained([
-    say('1', BORIN, 'Ancien Ours', 'Vous voulez mon Sceau par la force ? Alors gagnez-le selon la loi de la montagne : mes guerriers et moi, contre votre compagnie.', null, { expression: 'hostile' }),
-    say('2', MARIAN, 'Épreuve', 'Nous l’assumerons.', null, { expression: 'stern' }),
-  ])),
   scene('bear_trial_aftermath', 'lion_finale_judgement', 'Le Sceau arraché', chained([
     say('1', BORIN, 'Ancien Ours', 'Le Sceau est à vous. La montagne l’a vu, mes guerriers aussi. Ne revenez pas chercher autre chose ici.', null, { expression: 'wounded' }),
   ])),
@@ -295,6 +291,20 @@ function bearMasterSpyPreCombat(state: Readonly<GameState>): DialogueSequence {
   ]));
 }
 
+/**
+ * Last narrative pass (C2, C3), approved word for word on 2026-11-13: when the company claimed the Seal and was refused,
+ * Borin says so instead of « by force »; the line for a requested trial is unchanged.
+ */
+function bearBorinPreCombat(state: Readonly<GameState>): DialogueSequence {
+  const refused = Boolean(state.flags.bearFinaleTrialSelected && !state.flags.bearTrialRequested);
+  return scene('bear_borin_pre_combat', 'lion_finale_judgement', 'Épreuve de l’Ours', chained([
+    say('1', BORIN, 'Ancien Ours', refused
+      ? 'Vous réclamez mon Sceau, mais la montagne ne vous le confie pas. Alors gagnez-le selon sa loi : mes guerriers et moi, contre votre compagnie.'
+      : 'Vous voulez mon Sceau par la force ? Alors gagnez-le selon la loi de la montagne : mes guerriers et moi, contre votre compagnie.', null, { expression: 'hostile' }),
+    say('2', MARIAN, 'Épreuve', 'Nous l’assumerons.', null, { expression: 'stern' }),
+  ]));
+}
+
 /** The Bear's state-built scenes, by dialogue ID. The judgement and epilogue come from the plateau finale engine. */
 export const BEAR_SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<GameState>) => DialogueSequence>> = Object.freeze({
   bear_audience: bearAudience,
@@ -303,6 +313,7 @@ export const BEAR_SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<GameS
   bear_miners_testimony: bearMinersTestimony,
   bear_dark_vein: bearDarkVein,
   bear_master_spy_pre_combat: bearMasterSpyPreCombat,
+  bear_borin_pre_combat: bearBorinPreCombat,
 });
 
 /** Static Bear dialogues registered in the post-demo content registry. */

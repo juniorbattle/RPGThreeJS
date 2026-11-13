@@ -98,6 +98,28 @@ Les trois combats sont de rang normal et rapportent 0 de réputation (échelle d
 - La dernière passe narrative sur les moments à forte tension, ajoutée par l'opérateur au même lot, suit dans un brouillon séparé.
 - Remarque de l'opérateur pendant la vérification : les sprites de Lyra et de Gunnar paraissent trop grands dans les tableaux par rapport à la compagnie, et leur pose de repos semble inadaptée. Voir la section suivante.
 
+## Dernière passe narrative des moments à enjeu
+
+`APPROVED DECISION` puis `CURRENT FACT`. Remarque de l'opérateur au lancement des lots : « Le recit globale doit etre optimale surtout lors des moments de tensions ou a enjeux marquantes ».
+- **Inventaire.** 35 moments, du prologue aux trois fins, en annexe : `docs/content/drafts/HIGH_STAKES_MOMENTS_INVENTORY_2026-11-13.md`. Le brouillon `docs/content/drafts/HIGH_STAKES_NARRATIVE_PASS_DRAFT_2026-11-13.md` porte la grille en cinq critères pour 17 moments et les retouches mot à mot, texte actuel et texte proposé.
+- **Fiche.** Les retouches ont été soumises sur une fiche d'arbitrages privée (https://claude.ai/artifact/R9fw53FQzStpwffR6GdC1q). L'opérateur a accepté les treize (A1 à D2), sans note. Pour les figurants (E1), il a choisi « Amendement, sprites existants ».
+- **Écrit dans le jeu, mot à mot.**
+  - A1 : le mobile de Maelor dans toutes les variantes de `advice`.
+  - A2 : Marian ferme la trahison sur « Je dis seulement… ».
+  - A3 et A4 : la réponse de Marian à la brèche et les derniers mots de Maelor.
+  - A5 : la fin de l'acte boucle sur Bois-Clair.
+  - B1 : « Notre clan » dans le Respect et l'Équilibre.
+  - B2 : la brèche de la Crainte.
+  - C1 : `finale_pre_serpent_final` construite depuis l'état, avec la réplique de Kestrel selon l'issue du Lion.
+  - C2 et C3 : les trois avant-épreuves construites depuis l'état. La variante du refus est lue depuis les drapeaux du jugement (`*FinaleTrialSelected` sans `*TrialRequested`), et la réponse de la compagnie change au Dragon et au Scorpion.
+  - C4 : le ralliement à la première personne.
+  - D1 : les témoins du Dragon et du Scorpion.
+  - D2 : la villageoise de Bois-Clair.
+- **Cohérence.** Les quatre échos `final_act` du ralliement nomment leur cause par les nouvelles phrases. `narrative:validate` passe sur les cinq cartes.
+- **Tests.** `src/campaign/plateaux/narrativePass.test.ts` (10 tests) fixe chaque retouche dans ses conditions. Les tests qui citaient les anciens textes ont été adaptés : navigation de l'acte final, rotation des héros (par l'étape et non plus par le texte), pilote de l'acte final.
+- **E1.** L'amendement des figurants est une tâche dédiée sur les contrats. Il sort du périmètre de cette session, qui ne touche pas aux contrats ; il est proposé à part.
+- **Limite.** Pas de vérification au navigateur pour ces retouches de texte (le volet était fermé). La couverture vient des tests, des validateurs et des pilotes QA.
+
 ## Limite de quatre acteurs visibles (constat transmis par la session parente)
 
 `CURRENT FACT`. La session parente signalait que `createGenericNarrativeTableau` garde jusqu'à sept acteurs (`.slice(0, 7)`), et que `dragon_wolf_traps` en montrerait cinq. J'ai calculé chaque composition que le jeu met en scène, par le même chemin que `GameApp` (tableau du dialogue, puis `applyFinalDialoguePresentationPlan`) :

@@ -117,6 +117,13 @@ L'opérateur a demandé une proposition pour « habiller nos événements avec l
   - la règle des visages couverts vérifiée sur chaque sprite réutilisé ;
   - des variantes générées seulement si la reprise des sprites ne suffit pas.
 
-## Validations de l'opérateur
+## Validations de l'opérateur (2026-11-13)
 
-À remplir à la lecture de la fiche.
+L'opérateur a rempli la fiche et a dit « Fiche remplie ». Ses choix ont été relus dans la base de la fiche, sans aucune note.
+- A1, A2, A3, A4, A5 : « Accepter ».
+- B1, B2 : « Accepter ».
+- C1, C2, C3, C4 : « Accepter ».
+- D1, D2 : « Accepter ».
+- E1 : « Amendement, sprites existants ». Les figurants dans les tableaux ordinaires demandent un amendement de PRESENTATION_AND_MEDIA, mené par une tâche dédiée et approuvée par l'opérateur. Il se limite aux sprites existants, sans variante générée. La session de récit ne touche pas aux contrats ; la tâche est proposée à part.
+
+Statut : les treize retouches A1 à D2 sont validées mot à mot et écrites dans le jeu.

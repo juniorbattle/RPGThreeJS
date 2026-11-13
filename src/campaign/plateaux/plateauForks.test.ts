@@ -215,7 +215,7 @@ describe('Maelor recalls Bois-Clair at the betrayal (OD-2026-11-13-F, N2)', () =
     expect(stepOf(betrayal({}), 'advice')!.text)
       .toBe('Vous ne m’avez jamais écouté. Peu importe : il me suffisait d’entrer avec vous dans cette arène.');
     expect(stepOf(betrayal({ missionGreed: true, bearMinesSeized: true }), 'advice')!.text)
-      .toBe('Vous m’avez écouté plus souvent que vous ne le croyez : le filon sombre gardé pour le clan. Chaque fois, vous avez servi ceux que je sers.');
+      .toBe('Vous m’avez écouté plus souvent que vous ne le croyez : le filon sombre gardé pour le clan. Chaque fois, vous avez servi ceux que je sers, et vos Sceaux m’ont ouvert cette arène.');
   });
 });
 

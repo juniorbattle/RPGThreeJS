@@ -90,8 +90,9 @@ describe('final act QA driver (set 1.20.0, Lot 4)', () => {
     // The scenes name their causes.
     expect(said(run, 'finale_betrayal')).toContain('Vous ne m’avez jamais écouté');
     const rally = said(run, 'finale_allied_rally');
-    for (const phrase of ['les guerriers d’Alaric tiennent parole', 'les guerriers de Borin tiennent parole', 'les gardiens de Kaelen tiennent parole',
-      'les érudits du Grand Inquisiteur tiennent parole', 'le champion du Corbeau que vous avez relevé dans l’arène']) expect(rally, phrase).toContain(phrase);
+    // The rally in the first person (last narrative pass C4, approved on 2026-11-13).
+    for (const phrase of ['Mes guerriers marchent avec vous', 'Mes guerriers tiendront cette rue avec vous', 'Mes gardiens sont à vos côtés',
+      'le Scorpion se tient avec vous', 'le champion du Corbeau que vous avez relevé dans l’arène']) expect(rally, phrase).toContain(phrase);
     const vigil = said(run, 'finale_last_vigil');
     for (const phrase of ['l’éclat que vous avez rapporté des mines de l’Ours', 'l’éclat de la souillure du Cristal', 'la page souillée du codex',
       'les civils que vous avez couverts dans l’arène', 'les habitants que vous avez dégagés des décombres']) expect(vigil, phrase).toContain(phrase);

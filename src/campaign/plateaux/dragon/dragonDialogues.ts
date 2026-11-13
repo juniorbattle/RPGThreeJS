@@ -137,10 +137,6 @@ export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     say('1', SHAMAN, 'Vaincu', 'Le Cristal… n’était qu’un écho. Ceux que je sers écoutent d’autres échos, partout où vos Sceaux vous mènent.', null, { expression: 'wounded' }),
     say('2', SERAPHINE, 'Sage', 'Les Ombres, derrière un troisième clan. Le Loup n’était qu’une main de plus, comme le Corbeau avant lui.', null, { expression: 'mystical' }),
   ])),
-  scene('dragon_kaelen_pre_combat', 'lion_finale_judgement', 'Épreuve du Dragon', chained([
-    say('1', KAELEN, 'Ancien Dragon', 'Vous voulez mon Sceau sans le mériter. Alors prouvez votre force à ceux qui gardent l’équilibre : mes gardiens et moi, contre votre compagnie.', null, { expression: 'hostile' }),
-    say('2', ELARA, 'Épreuve', 'Nous l’assumerons.', null, { expression: 'stern' }),
-  ])),
   scene('dragon_trial_aftermath', 'lion_finale_judgement', 'Le Sceau arraché', chained([
     say('1', KAELEN, 'Ancien Dragon', 'Le Sceau est à vous. Les Pics l’ont vu. Ne comptez plus sur la sagesse du Dragon le jour où vous en aurez besoin.', null, { expression: 'wounded' }),
   ])),
@@ -253,7 +249,8 @@ function dragonFreedPilgrims(state: Readonly<GameState>): DialogueSequence {
       choice('Escorter les pèlerins jusqu’à Kaelen.', 'protected', [flag('dragonPilgrimsProtected'), reputation(1)], ['Des témoins libres devant Kaelen']),
       choice('Les faire taire, quel qu’en soit le prix.', 'silenced', [flag('dragonPilgrimsSilenced'), reputation(-2)], ['Aucun témoin devant Kaelen', 'Un acte que les Pics retiendront']),
     ] }),
-    say('protected', PILGRIM, 'Escorte', 'Merci. Nous marcherons avec vous, mais nous parlerons pour nous.', null, { expression: 'grateful' }),
+    // Last narrative pass (D1), approved on 2026-11-13: the witnesses no longer share one line across the plateaux.
+    say('protected', PILGRIM, 'Escorte', 'Merci. Nous monterons avec vous, mais devant l’Ancien Kaelen, nos mots seront les nôtres.', null, { expression: 'grateful' }),
     say('silenced', MARIAN, 'Soigneuse', 'Ils se taisent. Les Pics, eux, ne se tairont pas.', null, { expression: 'wounded' }),
   ]);
 }
@@ -310,6 +307,20 @@ function dragonShamanPreCombat(state: Readonly<GameState>): DialogueSequence {
   ]));
 }
 
+/**
+ * Last narrative pass (C2, C3), approved word for word on 2026-11-13: when the company claimed the Seal and was refused,
+ * Kaelen says so instead of « by force »; the line for a requested trial is unchanged.
+ */
+function dragonKaelenPreCombat(state: Readonly<GameState>): DialogueSequence {
+  const refused = Boolean(state.flags.dragonFinaleTrialSelected && !state.flags.dragonTrialRequested);
+  return scene('dragon_kaelen_pre_combat', 'lion_finale_judgement', 'Épreuve du Dragon', chained([
+    say('1', KAELEN, 'Ancien Dragon', refused
+      ? 'Vous réclamez mon Sceau, et les Pics ne vous le confient pas. Alors prouvez votre force à ceux qui gardent l’équilibre : mes gardiens et moi, contre votre compagnie.'
+      : 'Vous voulez mon Sceau sans le mériter. Alors prouvez votre force à ceux qui gardent l’équilibre : mes gardiens et moi, contre votre compagnie.', null, { expression: 'hostile' }),
+    say('2', ELARA, 'Épreuve', 'Que les Pics regardent, alors.', null, { expression: 'stern' }),
+  ]));
+}
+
 /** The Dragon's state-built scenes, by dialogue ID. The judgement and epilogue come from the plateau finale engine. */
 /**
  * OD-2026-11-11-E (final audit B7b), line approved word for word by the operator: the young dragon met in the Lion's
@@ -344,6 +355,7 @@ export const DRAGON_SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<Gam
   dragon_crystal_altar: dragonCrystalAltar,
   dragon_vigil: dragonVigil,
   dragon_shaman_pre_combat: dragonShamanPreCombat,
+  dragon_kaelen_pre_combat: dragonKaelenPreCombat,
   dragon_young_dragon: dragonYoungDragon,
 });
 
