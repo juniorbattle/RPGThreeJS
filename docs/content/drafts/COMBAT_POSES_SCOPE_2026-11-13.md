@@ -1,6 +1,6 @@
 # Poses de combat des nouvelles unités : cadrage
 
-Statut : **VALIDÉ** le 2026-11-13 (OD-2026-11-13-A), **lot terminé**. À « Valides-tu ce périmètre et le pilote sur Aldric ? », tu as répondu « Oui, lance Aldric » ; je lis les six recommandations comme retenues, sauf Q4 : tu as choisi les effets incrustés comme la démo (§8). Puis « Oui, lance les héros » et « travail sans arrêt ». **Les 38 unités du périmètre ont leurs 4 poses en jeu** : les héros et l'Ours (§9), puis, après l'ajout de crédits, le Dragon, le Scorpion, l'acte final et Maelor (§10). Il te reste à les juger en jeu et à trancher les armes du Corbeau (§9). Runs `claude-combat-poses-scope-20261113T0638Z`, `claude-combat-poses-pilot-20261113T0653Z`, `claude-combat-poses-heroes-20261113T0734Z`, `claude-combat-poses-foes-20261113T0908Z`.
+Statut : **VALIDÉ** le 2026-11-13 (OD-2026-11-13-A), **lot terminé**. À « Valides-tu ce périmètre et le pilote sur Aldric ? », tu as répondu « Oui, lance Aldric » ; je lis les six recommandations comme retenues, sauf Q4 : tu as choisi les effets incrustés comme la démo (§8). Puis « Oui, lance les héros » et « travail sans arrêt ». **Les 38 unités du périmètre ont leurs 4 poses en jeu** : les héros et l'Ours (§9), puis, après l'ajout de crédits, le Dragon, le Scorpion, l'acte final et Maelor (§10). Il te reste à les juger en jeu. Les armes de quatre Corbeaux portent désormais le nom de l'arme de leur maître (« Renommer les armes », §11). Runs `claude-combat-poses-scope-20261113T0638Z`, `claude-combat-poses-pilot-20261113T0653Z`, `claude-combat-poses-heroes-20261113T0734Z`, `claude-combat-poses-foes-20261113T0908Z`, `claude-raven-weapons-20261113T1316Z`.
 
 Ta demande : « les nouveaux personnages/unités utilisés en combat doivent avoir leurs 4 poses nécessaires comme ceux déjà présents ». Ce document dit quelles unités sont concernées, comment les 27 unités de la démo ont eu leurs poses, les méthodes possibles, ce que ça coûte et la décision qu'il te faut prendre. Six questions t'attendent à la fin, chacune avec ma recommandation.
 
@@ -346,6 +346,8 @@ Tes consignes : « Oui, lance les héros », puis faire les héros avec la direc
   - le chef des mineurs tient un marteau, là où il dit « Pioche de guerre ».
 
   Comme pour Borin et le guerrier (OD-2026-11-12-A), on pourrait renommer ces armes ; ce serait à toi de le décider.
+
+  **Tranché le 2026-11-13 : « Renommer les armes »** (OD-2026-11-13-D, §11).
 - **Eldwin** est le seul effet violet : rose et violet arcane, la couleur de ses propres sorts. Toutes les Ombres restent en encre noire.
 
 ### Bloqué : plus de crédits OpenAI
@@ -392,3 +394,35 @@ Tu as répondu « Crédits ajoutés ». La génération a repris où elle s'éta
 
 - **Taille** : quelques incantations et attaques à grand effet peuvent paraître jusqu'à 10 à 20 % plus grandes que le maître (l'Inquisiteur, l'érudit, le champion du Serpent, l'entité). Les mesures se recoupent, mais l'aura trompe l'œil. Un écart se corrige pose par pose dans `tools/pixel-sprites/poses/overrides.json`, puis on relance la normalisation et la construction de l'unité.
 - **Coût** : 95 appels pour ce lot ; avec les héros, l'Ours et les reprises, environ 230 appels en tout, au plus bas de mon estimation.
+
+## 11. Armes du Corbeau renommées (2026-11-13)
+
+À « Veux-tu renommer les armes des quatre Corbeaux comme leurs maîtres ? », tu as répondu « Renommer les armes » (OD-2026-11-13-D), comme pour Borin et le guerrier de l'Ours (OD-2026-11-12-A). Les maîtres et leurs poses restent tels quels. Dans `src/combat/legacyCombatRuntime.js`, quatre noms d'arme changent, et leur icône suit celle de leur famille.
+
+| Unité | Avant | Après |
+| --- | --- | --- |
+| Éclaireur du Corbeau | « Lames de jet » † | « Épée d’éclaireur » ⚔ |
+| Maître Espion du Corbeau | « Lames de jet » † | « Épée du Maître Espion » ⚔ |
+| Contremaître du Corbeau | « Masse de contremaître » ◆ | « Épée de contremaître » ⚔ |
+| Chef des mineurs du Corbeau | « Pioche de guerre » ◆ | « Marteau de guerre » ◆ |
+
+### Ce qui ne change pas
+
+- **Statistiques, portée et type** : identiques. Le Maître Espion et le contremaître frappent toujours de 2 à 3 cases, l'éclaireur et le chef des mineurs de 1 à 2.
+- **Compétences** : les mêmes. L'éclaireur et le Maître Espion gardent leurs tirs (`enemy_binding_shot`, et `boss_pin` pour le Maître Espion), que le renommage ne touche pas.
+- **Son** : le même relâché d'arc qu'avant.
+- **Contremaître et chef des mineurs** : même effet d'attaque de base. Leur arme portait déjà à 2 cases, et c'est la portée qui choisit l'effet, avant le nom.
+
+### Ce qui change pour l'éclaireur et le Maître Espion
+
+« Lames de jet » avait son propre effet, de petites lames d'acier lancées. Sous un nom d'épée, l'éclaireur et le Maître Espion prennent l'effet commun des armes qui portent à 2 cases ou plus : une traînée d'acier un peu plus grande file jusqu'à la cible. C'est déjà celui du Champion du Lion, du Général Serpent et de Borin. Le test des effets ennemis veut d'ailleurs qu'une épée n'ait pas d'effet à elle (`fxSkills.test.ts`).
+
+### Vérifications
+
+- **Tests** :
+  - `tools/art/combatPoses.test.ts` vérifie que les six combattants de l'Ours portent en combat l'arme que leurs poses dessinent, et que leur brief d'image la demande ;
+  - l'empreinte des 125 briefs de l'Ours, du Dragon et du Scorpion (`finalImagesFinale.test.ts`) est mise à jour. Seules les phrases d'arme des quatre Corbeaux changent : en les remettant, on retrouve l'ancienne empreinte ;
+  - `postDemoCombatRuntime.test.ts` ne range plus l'éclaireur parmi les attaques naturelles : il vérifie que son épée n'a pas d'effet à elle et prend donc l'effet commun ;
+  - la suite complète passe.
+- **En combat**, dans le navigateur, sur la traque du Maître Espion, la défense des mines et le gardien contremaître : les quatre noms et icônes sont en place. Pendant le tour ennemi, le Maître Espion frappe de l'épée avec sa traînée incrustée, et la traînée d'acier file jusqu'à Elara. Aucune erreur de console.
+- **Briefs d'image** : à la prochaine génération, ces quatre unités demanderont l'arme que leur maître tient.
