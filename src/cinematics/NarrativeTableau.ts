@@ -914,8 +914,33 @@ function postDemoChronicleEnd(presentationKey: string): NarrativeTableauSpec | u
   const nodeId = /^node:(.+):arrival$/.exec(presentationKey)?.[1];
   const image = nodeId ? POST_DEMO_CHRONICLE_END_IMAGES[nodeId] : undefined;
   if (!image) return undefined;
-  return Object.freeze({ ...CHRONICLE_END_TABLEAU, id: `${nodeId!.replace(/[^a-z0-9]+/gi, '_').toUpperCase()}_CHRONICLE_END_TABLEAU`,
-    presentationKey, stillImage: image });
+  const tableau: NarrativeTableauSpec = { ...CHRONICLE_END_TABLEAU, id: `${nodeId!.replace(/[^a-z0-9]+/gi, '_').toUpperCase()}_CHRONICLE_END_TABLEAU`,
+    presentationKey, stillImage: image };
+  return Object.freeze(nodeId === FINAL_ACT_END_NODE_ID ? withoutActor(tableau, FINAL_ACT_END_ABSENT) : tableau);
+}
+
+/** The final act's chronicle ends at the breach. */
+const FINAL_ACT_END_NODE_ID = 'finale-breach';
+/**
+ * OD-2026-11-13-F (Q1, full playthrough): Maelor betrays the company at the Tournament and flees through the breach, so
+ * the final act's end panel no longer shows him beside Alistair and Séraphine. Presentation only: the same hall staging,
+ * one actor fewer.
+ */
+const FINAL_ACT_END_ABSENT: NarrativeOffscreenSpec = Object.freeze({
+  actorId: 'maelor', reason: 'Maelor betrayed the company at the Tournament and fled through the breach.' });
+
+/** A tableau with one actor taken off its stage and stated off screen, every other placement unchanged. */
+function withoutActor(tableau: NarrativeTableauSpec, absent: NarrativeOffscreenSpec): NarrativeTableauSpec {
+  const keep = (ids: readonly string[]) => ids.filter((id) => id !== absent.actorId);
+  const placement = Object.fromEntries(Object.entries(tableau.sceneCastPlacement ?? {}).filter(([id]) => id !== absent.actorId));
+  return {
+    ...tableau,
+    sceneCastPlacement: placement,
+    cast: { ...tableau.cast, visualActors: keep(tableau.cast.visualActors), eventActors: keep(tableau.cast.eventActors),
+      justifiedOffscreen: [...tableau.cast.justifiedOffscreen, absent] },
+    phases: tableau.phases?.map((phase) => ({ ...phase,
+      staticCast: stageActors(keep(phase.staticCast.map((actor) => actor.actorId))), mediaSubjects: keep(phase.mediaSubjects) })),
+  };
 }
 
 export function resolveNarrativeDialogueTableau(
