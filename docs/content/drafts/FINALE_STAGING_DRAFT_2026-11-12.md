@@ -1,6 +1,6 @@
 # Identité et mise en scène des images de l’acte final — brouillon à valider (2026-11-12)
 
-Statut : **VALIDÉ** par l’opérateur le 2026-11-12 (OD-2026-11-11-F, F1), tel quel (« Valider tel quel »), après avoir vu les trois témoins d’identité et leur planche. Chaque question ci-dessous prend donc sa recommandation. Rien n’est généré au-delà des trois témoins, et rien n’est intégré : le lot attend l’ordre de l’opérateur.
+Statut : **VALIDÉ** par l’opérateur le 2026-11-12 (OD-2026-11-11-F, F1), tel quel (« Valider tel quel »), après avoir vu les trois témoins d’identité et leur planche. Chaque question ci-dessous prend donc sa recommandation. Le lot est généré et relu le même jour sur son ordre (« Lance le lot »), et rien n’est intégré : voir « Images de l’acte final » dans `docs/autonomy/IMAGES_RECRUITMENT_ARCHER_OPERATOR_DECISION_2026-11-11.md`.
 
 On suit la méthode validée pour l’Ours, le Dragon et le Scorpion :
 - une identité propre à l’acte final ;
@@ -363,7 +363,7 @@ Elles sont dans `tmp/final-images/out/`, les premières versions dans `tmp/final
 
 ## Lancer le lot
 
-La validation fixe ce qui se génère. Le lot attend ton ordre.
+La validation fixe ce qui se génère. Le lot a suivi cette marche le 2026-11-12, avec quatre corrections de lignes en route : les bannières de l’arène, celles du ralliement, la peau du champion changé en démon et la brèche presque refermée des épilogues.
 - **Ne se génèrent pas** (8 A), car leurs maîtres existent déjà :
   - le portrait du champion du Loup, qui reprend `public/assets/characters/pixel/post-demo/dragon/wolf_champion.png` ;
   - le sprite de Maelor à la brèche, qui reprend `public/assets/characters/pixel/masters/maelor.png`.

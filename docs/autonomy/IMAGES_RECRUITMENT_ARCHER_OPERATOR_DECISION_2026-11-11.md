@@ -431,6 +431,73 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   - reste un défaut de détail : la reprise de l’arène a deux loups et pas de lion. Elle est reprise au début du lot.
 - **Suite** : sur l’ordre de l’opérateur, le lot de l’acte final se génère, est relu, puis intégré sur son ordre. Il compte 22 décors (2 déjà faits, l’arène à reprendre), 9 personnages et 1 atlas. Le portrait du champion du Loup et le sprite de Maelor reprennent leurs maîtres, et le sprite de chaque champion sert aussi à son portrait.
 
+## Images de l’acte final (2026-11-12)
+
+`CURRENT FACT` — l’opérateur a dit « Lance le lot ». Les 32 images de l’acte final sont générées depuis le dépôt principal et relues ; aucune n’est intégrée.
+- **Ce qui est généré** :
+  - 22 décors ;
+  - 9 personnages ;
+  - 1 atlas.
+
+  Selon la recommandation 8 A, deux maîtres sont repris sans génération : le portrait du champion du Loup (`post-demo/dragon/wolf_champion.png`) et le sprite de Maelor (`masters/maelor.png`). Le sprite de chaque champion du Corbeau, du Phénix et du Serpent sert aussi à son portrait.
+- **Génération** :
+  - deux vagues : d’abord l’arène reprise, la dernière maison et les images qui ne dépendent d’aucun lieu ; ensuite les 16 scènes qui reprennent un lieu ;
+  - aucun échec d’appel ;
+  - le journal garde 41 entrées pour l’acte final : 32 images et 9 reprises, témoins compris.
+- **Les reprises du lot et leurs raisons.** Les versions précédentes sont dans `tmp/final-images/out-v1/`. Chaque brief fautif est corrigé dans `tools/art/finalImagesStaging.ts`.
+  - **L’arène**, l’image de référence des huit scènes du Tournoi, est reprise deux fois.
+    - Sa deuxième version avait deux loups et pas de lion. La troisième avait sept bannières en haut, toujours sans lion, et deux doublons au premier plan.
+    - La cause était en partie dans l’identité : elle interdisait tout rouge et or, donc la bannière du Lion. L’identité fait désormais une exception pour cette seule bannière.
+    - La ligne de l’arène veut désormais exactement huit bannières, en une rangée sur le bord du fond et dans un ordre donné, et aucun mât au premier plan.
+    - La quatrième version a les huit signes justes ; les sept scènes du Tournoi qui la reprennent aussi.
+  - **Le ralliement** inventait des blasons sans clan (un arbre blanc, un cerf, une étoile) et une bannière violette. Il montrait aussi la brèche en losange flottant, du côté de l’arène.
+    - Les bannières des scènes qui dépendent de la partie ne portent désormais que les signes des clans, petits, jamais d’autre emblème ni de violet.
+    - La vue descend vers la ville basse, où se dresse la brèche.
+  - **Le champion changé en démon** avait des fissures rougeoyantes de lave et beaucoup de bronze. Il a désormais une peau noire mate, sans aucune lueur.
+  - **Les trois épilogues** recopiaient la brèche grande ouverte de leur image de référence, alors que chacun commence par « La brèche se referme ». Leurs lignes ne veulent plus qu’une mince ligne de lumière blanche, sans colonne noire.
+- **Relecture de Claude** :
+  - l’identité tient d’un bout à l’autre :
+    - l’arène de brique rouge et de pierre pâle sous un ciel voilé, ses huit bannières ;
+    - la ville en flammes la nuit ;
+    - la brèche d’encre noire au liseré blanc ;
+    - les rues effondrées ;
+    - la salle de la dernière veillée et sa fenêtre sur la brèche ;
+  - aucun motif de l’Ours, du Dragon ni du Scorpion ;
+  - au plus 0,11 % de pixels violets, le ciel nocturne ;
+  - chaque lieu qui revient reste le même :
+    - l’arène et ses huit scènes ;
+    - la vue des portes, de nuit puis au matin ;
+    - la maison de la veillée et le refuge ;
+    - le cœur de la brèche et ses six suites ;
+  - la brèche grandit d’une scène à l’autre : étroite à la trahison, plus large dans le chaos, dressée au-dessus des gradins en flammes, puis vacillante, réduite à une couture, refermée en cicatrice à la fin de la Crainte ;
+  - les fins montrent chacune leurs faits :
+    - le Respect, un cercle de bannières autour du cratère ;
+    - la Crainte, le cratère vide et des bannières qui approchent ;
+    - l’Équilibre, des bannières proches et d’autres au loin ;
+  - aucune bannière de la compagnie ;
+  - les visages sont couverts. Chacun tient son arme de combat :
+    - le Corbeau, ses lames de jet ;
+    - le Phénix, sa lance du temple à la flamme safran ;
+    - le Serpent, sa lame courbe ;
+    - les démons, leurs griffes ;
+    - l’entité, l’encre de ses mains.
+
+    Les démons et l’entité sont noirs d’encre, sans visage, aux yeux blancs. La spectatrice et l’habitant sont des civils, sans arme ;
+  - l’atlas, recadré sur le cadre de `judgement`, a été superposé à ses onze points : chaque repère tombe sur une rue ou une place (`tmp/atlas-check/finale-1-markers.png`). On y voit l’arène en bas à gauche, la grande place tachée d’encre, le marché, la maison encore debout et la brèche en haut à droite.
+- **Points laissés au jugement de l’opérateur** :
+  - dans l’arène de référence, la ville monte derrière l’arène au lieu de descendre la colline, un petit viaduc reste à droite, et la foule du premier plan est lisible ;
+  - le ralliement montre encore l’arène au loin, contre sa ligne. Les sept images du cœur de la brèche la montrent aussi, sur la colline, comme le premier témoin ;
+  - la brèche qui vacille n’est pas visiblement plus étroite que dans la confrontation ;
+  - le recadrage de l’atlas coupe une partie du rempart en haut ;
+  - le champion changé en démon garde plus de plaques de bronze que « deux ou trois » ;
+  - l’écharpe de l’habitant est rouge plutôt que noircie de suie.
+- **Pour l’intégration, après accord** :
+  - ajouter les élites de l’acte final, de taille 2 en combat, à `ELITES` dans `tools/art/publish_final_images.py` : les champions du Corbeau, du Phénix et du Serpent, le champion changé en démon, le démon massif et l’entité ;
+  - `py -3 tools/art/publish_final_images.py finale`, sans les portraits de champion ni les deux maîtres repris ;
+  - les mêmes branchements que pour le Scorpion : le portrait de chaque champion pointe sur le maître de son sprite, et celui du Loup sur le maître du Dragon.
+- **Planche** : `tmp/final-images/sheets/finale-review.jpg`.
+- **À l’opérateur** : juger le lot. Rien n’est intégré avant son accord.
+
 ## Rencontres des six héros (2026-11-11, nuit)
 
 `CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.
@@ -448,5 +515,5 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 `PROPOSED FUTURE DESIGN`, à confirmer par l’opérateur :
 - **Portraits** : les maîtres Character V2 des six héros entreront dans le lot des images finales, après le pilote.
 - **Essai en jeu** : les six rencontres et leurs secondes chances sont à juger lors du test PC final.
-- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Le Dragon est intégré depuis le 2026-11-12 ; les 40 images du Scorpion sont générées, relues et intégrées le même jour ; l’identité et la mise en scène de l’acte final sont validées telles quelles le 2026-11-12, et son lot attend l’ordre de l’opérateur.
+- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Le Dragon est intégré depuis le 2026-11-12 ; les 40 images du Scorpion sont générées, relues et intégrées le même jour ; l’identité et la mise en scène de l’acte final sont validées telles quelles le 2026-11-12, et ses 32 images sont générées et relues le même jour, sans être intégrées.
 - **Arènes du Scorpion et de l’acte final** : leurs combats jouent encore dans les arènes codées du Lion. Chacun pourra recevoir les siennes, comme l’Ours et le Dragon, à la demande de l’opérateur.

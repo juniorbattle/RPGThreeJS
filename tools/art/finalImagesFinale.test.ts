@@ -116,7 +116,7 @@ describe('final act images, prepared for the operator’s validation (OD-2026-11
     expect(STAGING[LAST_HOUSE]!.line).toContain('a few streets from the breach');
   });
 
-  it('gives the breach’s heart the Shadows’ no-clan rule, and the run’s banners no readable sign and no place in the middle', () => {
+  it('gives the breach’s heart the Shadows’ no-clan rule, and the run’s banners the clans’ own signs only and no place in the middle', () => {
     for (const id of BREACH_PLACES) {
       const prompt = find(id).prompt;
       expect(prompt, id).toContain('The Shadows belong to no clan');
@@ -125,10 +125,17 @@ describe('final act images, prepared for the operator’s validation (OD-2026-11
     for (const id of RUN_BANNER_SCENES) {
       const line = STAGING[id]!.line;
       expect(line, id).toContain('banners of several clans');
-      expect(line, id).toContain('their signs small and hard to make out, none raised above the others and none in the middle');
-      // No clan is named, so no run sees another run's allies; the company's own banner (an open decision) is never shown.
+      // The rally's first image invented a tree, a stag and a star, and a purple banner: only the clans' own signs now.
+      expect(line, id).toContain('each showing only one of the clans’ own signs');
+      expect(line, id).toContain('never any other emblem such as a tree, a stag, a star or a sword, and no purple banner');
+      expect(line, id).toContain('none raised above the others and none in the middle');
+      // No clan is named as such, so no run's allies are singled out; the company's own banner (an open decision) is never shown.
       expect(find(id).prompt, id).toContain('Any banners mix the signs of several clans; no single emblem dominates.');
       expect(line, id).not.toMatch(/company’s banner|landless clan/);
+    }
+    // The endings show the breach closing (« La brèche se referme »): their first images copied the open breach of their reference.
+    for (const id of RUN_BANNER_SCENES.slice(1)) {
+      expect(STAGING[id]!.line, id).toContain('the breach almost closed: no black tear is left in the sky, only a single thin vertical line of cold white light');
     }
     // No final-act line borrows the Scorpion's shelter rule: that brief stays the only one with it.
     for (const item of finale) expect(item.prompt, item.id).not.toContain(NO_CLAN_RULE);
