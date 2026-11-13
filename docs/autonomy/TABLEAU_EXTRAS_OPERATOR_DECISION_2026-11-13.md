@@ -42,3 +42,17 @@ La Constitution ne change pas.
 **Ce qui ne change pas.** Le texte des dialogues, la mise en scène, la limite de quatre acteurs, les tableaux vivants et leurs décors animés, les sauvegardes V6 et la vérité de jeu. Aucune image générée.
 
 **Acceptation.** L'acceptation artistique reste à l'opérateur, en regardant les tableaux.
+
+## Livraison (2026-11-13)
+
+`CURRENT FACT` Tâche dédiée, run `claude-tableau-extras-20261113T2014Z` :
+- décision inscrite : `2b8e9c75` ;
+- amendement appliqué : `133814ba`, jeu de contrats 1.24.0 ;
+- baseline immuable `133814bac45cc31c8eda7aa0fa1acb16a9ca7e35` inscrite dans `93d138b2` (AGENTS.md, protocole, invite récurrente, skills, `docs/README.md`, état, statut du projet) ;
+- figurants dans le jeu : `src/cinematics/TableauExtras.ts` et `NarrativeSceneSurface.ts`, avec leur test `TableauExtras.test.ts`.
+
+**Vérifié dans le vrai jeu, avec de vrais clics :** huit dialogues habillés des quatre parties, en réglages par défaut, avec le mouvement réduit du système émulé et avec le réglage du jeu. Le détail est dans `docs/reports/tableau-extras-2026-11-13.md`.
+
+Mêmes figurants que dans la liste validée. Seules les places de `refugee_trial` et de `village_choice` sont ajustées en jeu, pour rester visibles quand une réplique d'Alistair passe à Cédric.
+
+**Non vérifié dans le vrai jeu :** les deux dialogues de réputation à Bois-Clair, la veillée et les deux issues de Bois-Clair. Ils sont couverts par la page d'épreuve et par les tests.
