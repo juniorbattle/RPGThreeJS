@@ -14,14 +14,18 @@
  *     beside the generated image). Nothing is integrated: only images the operator accepts are integrated afterwards.
  *
  *   npx vite-node tools/art/finalImages.ts -- poses --group heroes --step pose|fx   (combat poses, OD-2026-11-13-A)
+ *
+ *   npx vite-node tools/art/finalImages.ts -- rest --units lyra   (tableau rest poses of the recruitable heroes, 2026-11-13)
+ *     Draws each hero standing at rest from its master, for the dialogue tableaux, into tmp/tableau-rest/out/.
  *     Draws the three combat poses of the units of tools/art/combatPosesTable.ts (--group or --units id1,id2), then adds
  *     their baked effects (--step fx), into tmp/combat-poses/out/. --poses dash,attack limits the poses, --force redoes them.
  *
  * Options for run: --model <name> (default: the project's earlier approved image model), --quality <low|medium|high> (default high), --force (redo
  * images already generated), --concurrency <1-6> (requests at once, default 1). tmp/ is ignored by Git.
  */
+import { execSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import * as bear from '../../src/campaign/plateaux/bear/bearPresentation';
 import * as dragon from '../../src/campaign/plateaux/dragon/dragonPresentation';
 import * as scorpion from '../../src/campaign/plateaux/scorpion/scorpionPresentation';
@@ -548,6 +552,69 @@ async function runPoses(args: string[], option: (name: string) => string | undef
   console.log(`Finished${failed ? ` with ${failed} failed` : ''}. Outputs in tmp/combat-poses/out/.`);
 }
 
+/**
+ * Tableau rest poses of the six recruitable heroes (operator's choice of 2026-11-13: « Générer, pilote sur Lyra »). Their
+ * masters are action poses, unlike the company's and every plateau character's; the dialogue tableaux need them standing
+ * at rest. One call per hero, the master as the first reference and a company master as the second, for the pose only.
+ * Outputs go to tmp/tableau-rest/out/ (ignored by Git); nothing is integrated before the operator accepts the image.
+ */
+export const REST_DIR = join(ROOT, 'tmp', 'tableau-rest');
+export const REST_POSE_REFERENCE = 'public/assets/characters/pixel/masters/alistair.png';
+export const restOut = (unitId: string) => ['tmp', 'tableau-rest', 'out', `${unitId}__rest.png`].join('/');
+
+export function restPrompt(unitId: string): string {
+  const unit = POSE_UNITS[unitId];
+  if (!unit || unit.group !== 'heroes') throw new Error(`Not a recruitable hero: ${unitId}`);
+  return sentences(STYLE,
+    `The first attached image is our own game character: ${unit.look}`,
+    'The second attached image is another character of our game, given only to show the standing rest pose every character takes in our dialogue scenes: copy that kind of pose and framing, never its look, colours or weapon.',
+    'Draw the first character again, standing calmly at rest in a dialogue scene: upright, weight on both feet, the body turned three-quarters, the arms lowered and relaxed, the weapon held at rest, lowered or carried, never attacking, casting, aiming or leaping.',
+    'Keep everything identical to the first image: the same body, armour and clothes, the same colours, the same proportions and the same weapon.',
+    unit.intrinsic,
+    'One single full-body sprite, never cropped, the feet on a ground line near the bottom of the canvas, with empty space all around it, on a fully transparent background.',
+    COVERED_FACE_RULE,
+    'The helmet, mask or hood stays in place.',
+    unit.intrinsic ? NO_OTHER_EFFECTS : NO_EFFECTS);
+}
+
+/** The project's env file lives in the main checkout; a worktree session reads it there, through the same loader. */
+function mainCheckoutRoot(): string | null {
+  try {
+    const common = execSync('git rev-parse --path-format=absolute --git-common-dir', { cwd: ROOT, encoding: 'utf8' }).trim();
+    return dirname(common);
+  } catch {
+    return null;
+  }
+}
+
+async function runRest(args: string[], option: (name: string) => string | undefined): Promise<void> {
+  const main = mainCheckoutRoot();
+  const found = openAiKey() ?? (main ? openAiKey(main) : null);
+  if (!found) throw new Error('No OPENAI_API_KEY in this terminal or in .env.local; the tool never prints or stores it.');
+  console.log(`OpenAI access: ${found.source} (value never shown).`);
+  const units = (option('--units') ?? '').split(',').map((id) => id.trim()).filter(Boolean);
+  if (!units.length) throw new Error('Choose heroes with --units lyra or --units aldric,morvan,eldwin,talon,gunnar.');
+  const model = option('--model') ?? 'gpt-image-2.5-sunburst-2026-09-08';
+  const quality = option('--quality') ?? 'high';
+  mkdirSync(join(REST_DIR, 'out'), { recursive: true });
+  let failed = 0;
+  await Promise.all(units.map(async (unitId) => {
+    const out = restOut(unitId);
+    if (existsSync(join(ROOT, out)) && !args.includes('--force')) { console.log(`Already generated: ${out}`); return; }
+    const prompt = restPrompt(unitId);
+    const references = [POSE_UNITS[unitId]!.master, REST_POSE_REFERENCE];
+    try {
+      writeFileSync(join(ROOT, out), await requestImage(prompt, '1024x1024', true, references, found.key, model, quality));
+      appendToLog(join(REST_DIR, 'log.json'), [{ unitId, prompt, references, model, quality, out, at: new Date().toISOString() }]);
+      console.log(`done: ${out}`);
+    } catch (error) {
+      failed += 1;
+      console.log(`failed: ${out}: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }));
+  console.log(`Finished${failed ? ` with ${failed} failed` : ''}. Outputs in tmp/tableau-rest/out/.`);
+}
+
 function reviewPage(items: FinalImageBrief[]): string {
   const rows = items.map((item) => {
     const out = join(OUT_DIR, 'out', fileOf(item.id));
@@ -572,6 +639,7 @@ async function main(): Promise<void> {
     return;
   }
   if (command === 'poses') return runPoses(args, option);
+  if (command === 'rest') return runRest(args, option);
   if (command === 'poses-table') { writePoseTable(); console.log('Pose table written: tmp/combat-poses/units.json'); return; }
   if (command !== 'run') throw new Error(`Unknown command "${command}": use plan, run or poses.`);
   const found = openAiKey();

@@ -1,0 +1,86 @@
+{
+  "tableau-rest:lyra": {
+    "file": "/assets/characters/pixel/tableau/lyra.png",
+    "sha256": "12333e23569621ae075d40f2ea91a9eb23369b4b07c551e0b129886ab413cb8c",
+    "use": "Pose de repos du héros dans les tableaux de dialogue ; recadrée sans rééchantillonnage par tools/art/frame_tableau_actors.py --rest",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-13T19:16:24.583Z",
+    "references": [
+      "public/assets/characters/pixel/archive/non-demo/lyra.png",
+      "public/assets/characters/pixel/masters/alistair.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. The first attached image is our own game character: Lyra, a red mage hero: a long crimson-and-gold coat with a ruffled white collar and wide skirts, a wide crimson hat with a white feather, the face hidden by a dark mask under the hat, crimson boots, and a slender rapier. The second attached image is another character of our game, given only to show the standing rest pose every character takes in our dialogue scenes: copy that kind of pose and framing, never its look, colours or weapon. Draw the first character again, standing calmly at rest in a dialogue scene: upright, weight on both feet, the body turned three-quarters, the arms lowered and relaxed, the weapon held at rest, lowered or carried, never attacking, casting, aiming or leaping. Keep everything identical to the first image: the same body, armour and clothes, the same colours, the same proportions and the same weapon. One single full-body sprite, never cropped, the feet on a ground line near the bottom of the canvas, with empty space all around it, on a fully transparent background. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. The helmet, mask or hood stays in place. Absolutely no visual effects: no glow, no aura, no light rays, no sparks, no particles, no motion trails, no speed lines, no magic circle, no shadow on the ground. Effects are added later.",
+    "approval": "Opérateur, 2026-11-13 : « Générer, pilote sur Lyra », puis « Valider, lancer les cinq »"
+  },
+  "tableau-rest:aldric": {
+    "file": "/assets/characters/pixel/tableau/aldric.png",
+    "sha256": "12b9a48f38097288832f7711630753ae1b13f4274226159ff6ff342f6e2e9307",
+    "use": "Pose de repos du héros dans les tableaux de dialogue ; recadrée sans rééchantillonnage par tools/art/frame_tableau_actors.py --rest",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-13T19:21:32.384Z",
+    "references": [
+      "public/assets/characters/pixel/archive/non-demo/aldric.png",
+      "public/assets/characters/pixel/masters/alistair.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. The first attached image is our own game character: Aldric, a paladin hero: a knight in white-and-gold plate armour with a closed golden helm crowned with sun rays, a royal-blue and gold tabard and cape, a blue shield with a gold cross, and a gold flanged mace. The second attached image is another character of our game, given only to show the standing rest pose every character takes in our dialogue scenes: copy that kind of pose and framing, never its look, colours or weapon. Draw the first character again, standing calmly at rest in a dialogue scene: upright, weight on both feet, the body turned three-quarters, the arms lowered and relaxed, the weapon held at rest, lowered or carried, never attacking, casting, aiming or leaping. Keep everything identical to the first image: the same body, armour and clothes, the same colours, the same proportions and the same weapon. One single full-body sprite, never cropped, the feet on a ground line near the bottom of the canvas, with empty space all around it, on a fully transparent background. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. The helmet, mask or hood stays in place. Absolutely no visual effects: no glow, no aura, no light rays, no sparks, no particles, no motion trails, no speed lines, no magic circle, no shadow on the ground. Effects are added later.",
+    "approval": "Opérateur, 2026-11-13 : « Intégrer les cinq »"
+  },
+  "tableau-rest:morvan": {
+    "file": "/assets/characters/pixel/tableau/morvan.png",
+    "sha256": "f819e1a34cad39c607431b669007cc5e775f1e21940fe7194f0c9acd314b70f0",
+    "use": "Pose de repos du héros dans les tableaux de dialogue ; recadrée sans rééchantillonnage par tools/art/frame_tableau_actors.py --rest",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-13T19:21:31.159Z",
+    "references": [
+      "public/assets/characters/pixel/archive/non-demo/morvan.png",
+      "public/assets/characters/pixel/masters/alistair.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. The first attached image is our own game character: Morvan, a dark knight hero: spiked black and dark crimson plate armour, a closed black helm with a pointed crest, a long tattered crimson cape, and a long war scythe with a curved blade. The second attached image is another character of our game, given only to show the standing rest pose every character takes in our dialogue scenes: copy that kind of pose and framing, never its look, colours or weapon. Draw the first character again, standing calmly at rest in a dialogue scene: upright, weight on both feet, the body turned three-quarters, the arms lowered and relaxed, the weapon held at rest, lowered or carried, never attacking, casting, aiming or leaping. Keep everything identical to the first image: the same body, armour and clothes, the same colours, the same proportions and the same weapon. One single full-body sprite, never cropped, the feet on a ground line near the bottom of the canvas, with empty space all around it, on a fully transparent background. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. The helmet, mask or hood stays in place. Absolutely no visual effects: no glow, no aura, no light rays, no sparks, no particles, no motion trails, no speed lines, no magic circle, no shadow on the ground. Effects are added later.",
+    "approval": "Opérateur, 2026-11-13 : « Intégrer les cinq »"
+  },
+  "tableau-rest:eldwin": {
+    "file": "/assets/characters/pixel/tableau/eldwin.png",
+    "sha256": "4351e4ae283e55085fe7c67a91471545c779bc2fbb0e0459a68b570d60d70089",
+    "use": "Pose de repos du héros dans les tableaux de dialogue ; recadrée sans rééchantillonnage par tools/art/frame_tableau_actors.py --rest",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-13T19:21:31.170Z",
+    "references": [
+      "public/assets/characters/pixel/archive/non-demo/eldwin.png",
+      "public/assets/characters/pixel/masters/alistair.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. The first attached image is our own game character: Eldwin, an enchanter hero: layered violet, lilac and white robes trimmed with gold, a tall pointed violet hood whose shadow hides the face, and an ornate golden scepter topped with a glowing orb. The second attached image is another character of our game, given only to show the standing rest pose every character takes in our dialogue scenes: copy that kind of pose and framing, never its look, colours or weapon. Draw the first character again, standing calmly at rest in a dialogue scene: upright, weight on both feet, the body turned three-quarters, the arms lowered and relaxed, the weapon held at rest, lowered or carried, never attacking, casting, aiming or leaping. Keep everything identical to the first image: the same body, armour and clothes, the same colours, the same proportions and the same weapon. One single full-body sprite, never cropped, the feet on a ground line near the bottom of the canvas, with empty space all around it, on a fully transparent background. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. The helmet, mask or hood stays in place. Absolutely no visual effects: no glow, no aura, no light rays, no sparks, no particles, no motion trails, no speed lines, no magic circle, no shadow on the ground. Effects are added later.",
+    "approval": "Opérateur, 2026-11-13 : « Intégrer les cinq »"
+  },
+  "tableau-rest:talon": {
+    "file": "/assets/characters/pixel/tableau/talon.png",
+    "sha256": "ddbb7683bc3bd80375fe89ee5d59d9c70f7631716845f2233f6972babd26c31d",
+    "use": "Pose de repos du héros dans les tableaux de dialogue ; recadrée sans rééchantillonnage par tools/art/frame_tableau_actors.py --rest",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-13T19:21:37.062Z",
+    "references": [
+      "public/assets/characters/pixel/archive/non-demo/talon.png",
+      "public/assets/characters/pixel/masters/alistair.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. The first attached image is our own game character: Talon, a ninja hero: dark slate-grey cloth and silver steel armour plates, a deep slate-grey hood and a mask covering the face, long slate-grey scarf ends flowing, and a large four-pointed steel shuriken. The second attached image is another character of our game, given only to show the standing rest pose every character takes in our dialogue scenes: copy that kind of pose and framing, never its look, colours or weapon. Draw the first character again, standing calmly at rest in a dialogue scene: upright, weight on both feet, the body turned three-quarters, the arms lowered and relaxed, the weapon held at rest, lowered or carried, never attacking, casting, aiming or leaping. Keep everything identical to the first image: the same body, armour and clothes, the same colours, the same proportions and the same weapon. One single full-body sprite, never cropped, the feet on a ground line near the bottom of the canvas, with empty space all around it, on a fully transparent background. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. The helmet, mask or hood stays in place. Absolutely no visual effects: no glow, no aura, no light rays, no sparks, no particles, no motion trails, no speed lines, no magic circle, no shadow on the ground. Effects are added later.",
+    "approval": "Opérateur, 2026-11-13 : « Intégrer les cinq »"
+  },
+  "tableau-rest:gunnar": {
+    "file": "/assets/characters/pixel/tableau/gunnar.png",
+    "sha256": "f4a9df035e831ac631ec285b21be33c2ea46866e2d4a7cea68df6dbd863c7b98",
+    "use": "Pose de repos du héros dans les tableaux de dialogue ; recadrée sans rééchantillonnage par tools/art/frame_tableau_actors.py --rest",
+    "model": "gpt-image-2.5-sunburst-2026-09-08",
+    "quality": "high",
+    "generatedAt": "2026-11-13T19:21:33.844Z",
+    "references": [
+      "public/assets/characters/pixel/archive/non-demo/gunnar.png",
+      "public/assets/characters/pixel/masters/alistair.png"
+    ],
+    "prompt": "Modern pixel art, HD-2D fantasy tactical RPG, rich painterly pixel detail, cinematic lighting. Match the pixel-art technique of the reference images: pixel density, outlines, dithering, rendering of light and level of detail. The reference images set the technique only: never copy their heraldry, emblems, banners, palette, architecture, landmarks or composition. No text, no letters, no labels, no UI, no watermark, no frame. The first attached image is our own game character: Gunnar, an artillerist hero: a long burnt-orange coat over bronze and brown armour plates, an orange hood and a dark mask covering the face, ammunition belts and pouches, and a heavy brass hand cannon. The second attached image is another character of our game, given only to show the standing rest pose every character takes in our dialogue scenes: copy that kind of pose and framing, never its look, colours or weapon. Draw the first character again, standing calmly at rest in a dialogue scene: upright, weight on both feet, the body turned three-quarters, the arms lowered and relaxed, the weapon held at rest, lowered or carried, never attacking, casting, aiming or leaping. Keep everything identical to the first image: the same body, armour and clothes, the same colours, the same proportions and the same weapon. One single full-body sprite, never cropped, the feet on a ground line near the bottom of the canvas, with empty space all around it, on a fully transparent background. If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face. The helmet, mask or hood stays in place. Absolutely no visual effects: no glow, no aura, no light rays, no sparks, no particles, no motion trails, no speed lines, no magic circle, no shadow on the ground. Effects are added later.",
+    "approval": "Opérateur, 2026-11-13 : « Intégrer les cinq »"
+  }
+}

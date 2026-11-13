@@ -106,12 +106,16 @@ Les trois combats sont de rang normal et rapportent 0 de réputation (échelle d
 - **Portée.** Le champ `tableau` des six profils (`assetManifest.ts`) n'est lu que par le tableau (`actorImage`, `NarrativeSceneSurface.ts`). Portraits, registre de compagnie et combat ne changent pas. Test : `src/cinematics/tableauActorFraming.test.ts`.
 - **Mesure dans la page** (scène du hameau, dev) : Lyra 270 px, Alistair 286, Kestrel 275, Marian 308 avec son bâton. Les pieds sont alignés entre 698 et 704 px. Le volet du navigateur était masqué : les captures n'étaient pas fiables, la mesure vient du DOM.
 
-`UNDECIDED`, pose de repos. Une planche des personnages des tableaux montre que la compagnie et tous les personnages des plateaux ont une pose de repos. Seuls les six héros recrutables sont en pose d'action, car leur master, d'une autre chaîne, sert aussi de pose `prepare` en combat (OD-2026-11-13-A) :
-- Aldric lève son marteau ;
-- Morvan brandit sa faux ;
-- Lyra lance un sort ;
-- Eldwin incante ;
-- Talon saute, shuriken en main ;
-- Gunnar pointe son canon.
+`APPROVED DECISION` puis `CURRENT FACT`, pose de repos. Une planche des personnages des tableaux montre que la compagnie et tous les personnages des plateaux ont une pose de repos. Seuls les six héros recrutables étaient en pose d'action, car leur master, d'une autre chaîne, sert aussi de pose `prepare` en combat (OD-2026-11-13-A) :
+- Aldric levait son marteau ;
+- Morvan brandissait sa faux ;
+- Lyra lançait un sort ;
+- Eldwin incantait ;
+- Talon sautait, shuriken en main ;
+- Gunnar pointait son canon.
 
-Leur donner une pose de repos demande de générer six images avec l'outil des images finales. La question est posée à l'opérateur.
+L'opérateur a choisi « Générer, pilote sur Lyra ». Il a validé le pilote (« Valider, lancer les cinq »), puis les cinq autres (« Intégrer les cinq »), sur planches avant/après.
+- **Génération.** Commande `rest` de `tools/art/finalImages.ts` : un appel par héros, le master en première référence et le master d'Alistair en seconde, pour la pose seulement. La règle des visages couverts (OD-2026-11-11-G) est dans chaque prompt, et chaque pose a été vérifiée sur planche. La clé du projet est lue par l'outil depuis le `.env.local` du dossier principal, jamais affichée.
+- **Intégration.** `frame_tableau_actors.py --rest` cadre chaque pose, sans rééchantillonnage, sur la convention de la compagnie, mesurée sur sa propre hauteur debout. Provenance et empreintes : `tools/art/provenance/tableau-rest-poses.json`, vérifiées par `tableauActorFraming.test.ts`.
+- **Portée.** Seul le tableau change. Le combat garde ses quatre poses, le portrait et le registre gardent le master.
+- **Limite.** Le volet du navigateur a été fermé pendant l'intégration. Le contrôle dans la page a été fait sur le recadrage du master (même convention : 63 à 67 % de la toile, même marge) ; il n'a pas été refait sur les poses de repos.
