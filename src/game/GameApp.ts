@@ -49,6 +49,7 @@ import { FINALE_TOURNAMENT_BOARD_IMAGE } from '../campaign/plateaux/finale/final
 import { POST_DEMO_MOMENTS, postDemoMomentAfter, postDemoMomentBefore } from '../campaign/plateaux/postDemoPresentation';
 import { provisionalMark } from './postDemoContent';
 import { sceneMood, type NarrativeMood } from '../audio/moods';
+import { gameMusicWhere, PLATEAU_MUSIC_IN_GAME } from '../audio/music/parts';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
 import type { LivingScript } from '../ui/living/LivingTableauPlayer';
 import { CREDITS_LINES, hasCredits } from '../ui/credits';
@@ -840,7 +841,7 @@ export class GameApp {
   private async presentLivingScript(script: LivingScript, followingDialogueId: string): Promise<boolean> {
     const { LivingTableauPlayer } = await import('../ui/living/LivingTableauPlayer');
     if (this.disposed) return false;
-    this.setMode('NARRATIVE', { mood: sceneMood(followingDialogueId) });
+    this.setMode('NARRATIVE', { mood: sceneMood(followingDialogueId), musicId: followingDialogueId });
     const player = new LivingTableauPlayer(this.root);
     this.livingPlayer = player;
     const done = player.open(script, { reducedMotion: this.state.settings.reducedGraphics });
@@ -1662,7 +1663,7 @@ export class GameApp {
     stage.bindDialogue(sequence);
     stage.element.dataset.dialogueCastAlignment = alignment.status;
     const openDialogue = async () => {
-      this.setMode('NARRATIVE', { mood: sceneMood(sequence.id) });
+      this.setMode('NARRATIVE', { mood: sceneMood(sequence.id), musicId: sequence.id });
       await this.dialogue.play(sequence, {
         mode: 'narrative-stage',
         root: stage.dialogueLayer,
@@ -2141,13 +2142,16 @@ export class GameApp {
     await this.enterCampaignPresentation();
   }
 
-  private setMode(mode: AppMode, surface: { mood?: NarrativeMood; ambience?: string } = {}): void {
+  private setMode(mode: AppMode, surface: { mood?: NarrativeMood; ambience?: string; musicId?: string } = {}): void {
     this.soundSettings.close();
     // Music follows the presentation surface and the scene's mood only; combat picks combat or boss itself
     // (CombatBridge). It is optional presentation: a failure never blocks the transition.
     try {
       const music = surface.mood ?? MODE_MUSIC[mode];
-      if (music) this.uiSounds.setMusicContext(music);
+      // PLATEAU_MUSIC_DRAFT_2026-11-13, off until its amendment is in force: the part of the game is the prefix of the
+      // presented id, the authored dialogue's or else the POI whose atlas the map shows; nothing else, nothing saved.
+      const where = PLATEAU_MUSIC_IN_GAME ? gameMusicWhere(surface.musicId ?? (this.state ? getRunNode(this.state.run)?.id : null)) : {};
+      if (music) { if (where.part) this.uiSounds.setMusicContext(music, where); else this.uiSounds.setMusicContext(music); }
       if (mode !== 'COMBAT' && mode !== 'MANAGEMENT') this.uiSounds.setMusicScene(surface.ambience ?? MODE_AMBIENCE[mode] ?? null);
     } catch { /* silent */ }
     if (mode !== 'NARRATIVE' && mode !== 'JOURNEY') this.statusHud?.hide();

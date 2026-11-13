@@ -1,4 +1,7 @@
 import { soundWeight } from '../audio/cueTable';
+import type { MusicPart } from '../audio/music/parts';
+import { trackFor } from '../audio/music/plateauTracks';
+import { OWN_CONTEXTS } from '../audio/music/plateaux/score';
 import type { PostDemoAmbienceId } from '../audio/music/ambiencePostDemo';
 import { sectionSeconds, THEMES, type MusicContextId } from '../audio/music/themes';
 import { combatLaunchSound } from '../combat/CombatAudio';
@@ -18,6 +21,23 @@ const TRACKS: ReadonlyArray<{ id: MusicContextId; label: string }> = [
 const AMBIENCES: ReadonlyArray<{ id: string; label: string }> = [
   { id: 'forest_route', label: 'Route forestière' }, { id: 'bois_clair_burning', label: 'Bois-Clair en feu' }, { id: 'lion_sanctum', label: 'Sanctuaire du Lion' },
   { id: 'map', label: 'Carte' }, { id: 'refuge', label: 'Refuge' },
+];
+/**
+ * Sketches of the plateaux's own music (PLATEAU_MUSIC_DRAFT_2026-11-13), dev only and not wired into the game: each
+ * part's six tracks, and the tracks a combat scene asks instead. Only the operator's ear validates them.
+ */
+const SKETCH_PARTS: ReadonlyArray<{ id: Exclude<MusicPart, 'lion'>; label: string }> = [
+  { id: 'bear', label: 'Ours' }, { id: 'dragon', label: 'Dragon' }, { id: 'scorpion', label: 'Scorpion' }, { id: 'finale', label: 'Acte final' },
+];
+const CONTEXT_LABEL: Readonly<Record<string, string>> = { map: 'Carte', refuge: 'Refuge', tension: 'Tension', drama: 'Drame', combat: 'Combat', boss: 'Boss' };
+const SKETCH_SCENES: ReadonlyArray<{ part: Exclude<MusicPart, 'lion'>; context: 'combat' | 'boss'; scene: string; label: string }> = [
+  { part: 'bear', context: 'boss', scene: 'bear_hall_terrace', label: 'Ours · Boss, entrée de Borin' },
+  { part: 'dragon', context: 'boss', scene: 'dragon_hall_esplanade', label: 'Dragon · Boss, entrée de Kaelen' },
+  { part: 'scorpion', context: 'boss', scene: 'scorpion_records_court', label: 'Scorpion · Boss, entrée du Grand Inquisiteur' },
+  { part: 'scorpion', context: 'boss', scene: 'scorpion_dune_crest', label: 'Scorpion · Boss, entrée du Prophète des Ombres' },
+  { part: 'finale', context: 'combat', scene: 'finale_destiny_arena', label: 'Acte final · Combat du Tournoi (bannières des clans)' },
+  { part: 'finale', context: 'boss', scene: 'finale_destiny_arena', label: 'Acte final · Finale du Tournoi' },
+  { part: 'finale', context: 'boss', scene: 'finale_breach_heart', label: 'Acte final · Boss, entrée de Maelor au cœur de la brèche' },
 ];
 /** The post-demo plateaux's six combat biomes (set 1.20.0), each with the arenas that play it. */
 const PLATEAU_AMBIENCES: ReadonlyArray<{ id: PostDemoAmbienceId; label: string }> = [
@@ -82,12 +102,22 @@ export class AudioListeningLab {
       if (id === 'combat' || id === 'boss') buttons.push({ act: 'level:reflection', text: 'Réflexion' }, { act: 'level:action', text: 'Action' });
       return { key: `piste:${id}`, label, buttons };
     });
+    const sketchButtons = (part: string, context: string, scene = '') => {
+      const buttons = [{ act: `sketch:${part}:${context}:${scene}`, text: 'Début' }, { act: `sketchsection:${part}:${context}:${scene}:bridge`, text: part === 'finale' && context === 'boss' && !scene ? 'Pont (l’entité)' : 'Pont' }];
+      if (context === 'boss') buttons.push({ act: `sketchentry:${part}:${context}:${scene}`, text: 'Entrée' });
+      if (context === 'combat' || context === 'boss') buttons.push({ act: 'sketchlevel:reflection', text: 'Réflexion' }, { act: 'sketchlevel:action', text: 'Action' });
+      return buttons;
+    };
+    const sketchRows: Row[] = [
+      ...SKETCH_PARTS.flatMap(({ id, label }) => OWN_CONTEXTS.map((context) => ({ key: `esquisse:${id}:${context}`, label: `${label} · ${CONTEXT_LABEL[context]}`, buttons: sketchButtons(id, context) }))),
+      ...SKETCH_SCENES.map(({ part, context, scene, label }) => ({ key: `esquisse:${part}:${context}:${scene}`, label, buttons: sketchButtons(part, context, scene) })),
+    ];
     const ambienceRows: Row[] = AMBIENCES.map(({ id, label }) => ({ key: `ambiance:${id}`, label, buttons: [{ act: `ambience:${id}`, text: 'Jouer' }] }));
     const plateauRows: Row[] = PLATEAU_AMBIENCES.map(({ id, label }) => ({ key: `ambiance:${id}`, label, buttons: [{ act: `ambience:${id}`, text: 'Jouer' }] }));
     const skillRows: Row[] = listSkillFxRecipes().map(id => ({ key: `compétence:${id}`, label: skillLabel(id), buttons: [{ act: `skill:${id}`, text: 'Jouer' }] }));
     const attackRows: Row[] = listEnemyAttackWeapons().map(name => ({ key: `attaque:${name}`, label: name, buttons: [{ act: `attack:${name}`, text: 'Jouer' }] }));
     const table = (title: string, rows: readonly Row[]) => `<h3 class="ui-sound-settings__group">${title}</h3><div class="audio-lab__table"><table><tbody>${rows.map(row => `<tr data-row="${row.key}" data-label="${row.label}"><th scope="row">${row.label}</th><td>${row.buttons.map(button => `<button type="button" data-act="${button.act}" aria-label="${button.text} : ${row.label}">${button.text}</button>`).join(' ')}</td><td><select data-verdict aria-label="Avis : ${row.label}"><option value="">—</option><option value="bien">Bien</option><option value="à revoir">À revoir</option></select></td><td><input data-note type="text" aria-label="Note : ${row.label}"></td></tr>`).join('')}</tbody></table></div>`;
-    element.innerHTML = `<section class="ui-sound-settings audio-lab" role="dialog" aria-modal="true" aria-labelledby="audio-lab-title"><h2 id="audio-lab-title">Laboratoire d'écoute</h2><p data-lab-status role="status"></p><p><button type="button" data-act="stop">Arrêter tout</button></p>${table('Musiques', trackRows)}${table('Ambiances', ambienceRows)}${table('Ambiances des plateaux', plateauRows)}${table('Compétences', skillRows)}${table('Attaques ennemies', attackRows)}<label for="audio-lab-summary">Avis à me transmettre</label><textarea id="audio-lab-summary" readonly rows="5"></textarea><button type="button" data-lab-close>Fermer</button></section>`;
+    element.innerHTML = `<section class="ui-sound-settings audio-lab" role="dialog" aria-modal="true" aria-labelledby="audio-lab-title"><h2 id="audio-lab-title">Laboratoire d'écoute</h2><p data-lab-status role="status"></p><p><button type="button" data-act="stop">Arrêter tout</button></p>${table('Musiques', trackRows)}${table('Esquisses : identités des plateaux (non branchées au jeu, à valider à l’oreille)', sketchRows)}${table('Ambiances', ambienceRows)}${table('Ambiances des plateaux', plateauRows)}${table('Compétences', skillRows)}${table('Attaques ennemies', attackRows)}<label for="audio-lab-summary">Avis à me transmettre</label><textarea id="audio-lab-summary" readonly rows="5"></textarea><button type="button" data-lab-close>Fermer</button></section>`;
     this.root.append(element); this.element = element;
     this.restore = () => {
       for (const { child, inert } of siblings) if (child.isConnected) child.inert = inert;
@@ -131,9 +161,21 @@ export class AudioListeningLab {
   }
 
   private act(act: string, status: HTMLElement): void {
-    const [kind, value, extra] = act.split(':');
+    const [kind, value, extra, scene, section] = act.split(':');
     for (const timer of this.timers) window.clearTimeout(timer);
     this.timers = [];
+    if (kind === 'sketch' || kind === 'sketchsection' || kind === 'sketchentry') {
+      const where = { part: value as MusicPart, scene: scene || null }, context = extra as MusicContextId;
+      if (kind === 'sketchentry') this.player.setMusicContext(null);
+      this.player.setMusicContext(context, where);
+      const theme = trackFor(context, where);
+      if (kind === 'sketchsection') {
+        this.player.seekMusic(section!);
+        const written = theme.sections.find(candidate => candidate.name === section);
+        status.textContent = `Esquisse ${theme.track}, pont : ${written ? `${written.bpm} à la note de base, ${written.beatsPerBar} temps, ${written.mode}, ${Math.round(sectionSeconds(written))} s` : ''}. Il commence à la prochaine partie.`;
+      } else status.textContent = `Esquisse ${theme.track}${kind === 'sketchentry' ? ', entrée puis la boucle' : ''}.`;
+      return;
+    }
     if (kind === 'stop') { this.player.setMusicContext(null); this.player.setMusicScene(null); this.player.stop(); status.textContent = 'Arrêté.'; return; }
     if (kind === 'track') { this.player.setMusicContext(value as MusicContextId); status.textContent = `Piste : ${value}.`; return; }
     if (kind === 'section') {
@@ -144,7 +186,7 @@ export class AudioListeningLab {
       return;
     }
     if (kind === 'entry') { this.player.setMusicContext(null); this.player.setMusicContext('boss'); status.textContent = 'Entrée de boss, puis la piste.'; return; }
-    if (kind === 'level') { this.player.setMusicLevel(LAB_SCOPE, value as 'reflection' | 'action'); status.textContent = value === 'action' ? 'Niveau Action.' : 'Niveau Réflexion.'; return; }
+    if (kind === 'level' || kind === 'sketchlevel') { this.player.setMusicLevel(LAB_SCOPE, value as 'reflection' | 'action'); status.textContent = value === 'action' ? 'Niveau Action.' : 'Niveau Réflexion.'; return; }
     if (kind === 'ambience') { this.player.setMusicScene(value!); status.textContent = `Ambiance : ${value}.`; return; }
     const recipe = kind === 'skill' ? skillFxRecipe(value!) : kind === 'attack' ? enemyAttackFxRecipe(value) : null;
     if (!recipe) return;

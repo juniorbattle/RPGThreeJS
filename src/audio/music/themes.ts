@@ -25,7 +25,7 @@ export type Instrument = SampledInstrument | VoiceInstrument;
 export type Layer = 'reflection' | 'action';
 
 /** One percussion hit inside a bar: beat, instrument, variant (drums) or pitch (timpani), velocity. */
-export type Hit = readonly [beat: number, instrument: 'drum' | 'kit' | 'frame' | 'cymbal' | 'timpani', variantOrPitch: number, velocity: number];
+export type Hit = readonly [beat: number, instrument: 'drum' | 'kit' | 'frame' | 'cymbal' | 'timpani' | 'anvil' | 'goblet' | 'zill' | 'bell', variantOrPitch: number, velocity: number];
 
 /** A written line: `A4:1.5 E5:0.5 r:2 | …`, note and beats, bars apart. */
 export interface Line { name: string; instrument: Instrument; notes: string; v: number; layer?: Layer; cycles?: 'odd' | 'even'; plain?: boolean }
@@ -53,6 +53,11 @@ export interface Section {
 
 export interface ThemeDef {
   id: MusicContextId;
+  /**
+   * A plateau's own track for this context (`bear/map`, `finale/boss@breach`): it names the track and seeds its
+   * variations. The Lion's nine tracks have none, so their variations are seeded as before.
+   */
+  track?: string;
   sections: readonly Section[];
   /** Section indices in playing order; a one-shot plays them once, a track loops from `loopFrom`. */
   form: readonly number[];

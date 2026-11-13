@@ -7,7 +7,9 @@
  */
 import { freq, seededRandom } from './theory';
 
-export type VoiceInstrument = 'strings' | 'flute' | 'reed' | 'horn' | 'brass' | 'choir';
+export type VoiceInstrument = 'strings' | 'flute' | 'reed' | 'horn' | 'brass' | 'choir'
+  /** The plateaux's timbres: the Bear's low choir, the Dragon's high choir, the Scorpion's breathy flute, the breach's glass. */
+  | 'lowChoir' | 'airChoir' | 'ney' | 'glass';
 
 /** A scheduled note: absolute start `t` and duration `d` in seconds, MIDI pitch `m`, velocity `v` (0..1). */
 export interface TimedNote { t: number; d: number; m: number; v: number }
@@ -79,6 +81,38 @@ export const PROFILES: Readonly<Record<VoiceInstrument, Profile>> = {
     // an open "ah": formants near 700, 1150 and 2600 Hz
     filters: [{ type: 'highpass', f: 120, q: 0.7 }, { type: 'peaking', f: 700, q: 4, g: 9 }, { type: 'peaking', f: 1150, q: 5, g: 7 }, { type: 'peaking', f: 2600, q: 5, g: 4 }, { type: 'lowpass', f: 4000, q: 0.7 }],
     voices: [-8, 0, 8], ensemble: true,
+  },
+  // the plateaux (sketches awaiting the operator's ear): the Lion's six profiles above stay as they are
+  // the Bear: a low men's choir on a closed "oh", formants near 400, 800 and 2500 Hz, slow to speak
+  lowChoir: {
+    harmonics: Array.from({ length: 20 }, (_, i) => 1 / (i + 1) ** 1.1),
+    k: 0, b: 0, oversample: 'none', pressure: [1, 1], attack: 0.6, burst: 1, release: 0.8, glide: 0.1, hold: 0.05,
+    vibrato: { cents: 6, hz: 4.6, delay: 0.5 }, breath: { level: 0, rel: 2, q: 0.8 }, level: 0.2,
+    filters: [{ type: 'highpass', f: 70, q: 0.7 }, { type: 'peaking', f: 400, q: 4, g: 9 }, { type: 'peaking', f: 800, q: 5, g: 6 }, { type: 'peaking', f: 2500, q: 5, g: 2 }, { type: 'lowpass', f: 3000, q: 0.7 }],
+    voices: [-9, 0, 9], ensemble: true,
+  },
+  // the Dragon: a high choir on "ou", soft and airy, with breath in it
+  airChoir: {
+    harmonics: Array.from({ length: 12 }, (_, i) => 1 / (i + 1) ** 1.6),
+    k: 0, b: 0, oversample: 'none', pressure: [1, 1], attack: 0.7, burst: 1, release: 1, glide: 0.1, hold: 0.06,
+    vibrato: { cents: 8, hz: 5.2, delay: 0.4 }, breath: { level: 0.06, rel: 3, q: 1 }, level: 0.2,
+    filters: [{ type: 'highpass', f: 200, q: 0.7 }, { type: 'peaking', f: 320, q: 4, g: 6 }, { type: 'peaking', f: 900, q: 5, g: 4 }, { type: 'peaking', f: 3000, q: 2, g: 3 }, { type: 'lowpass', f: 5500, q: 0.7 }],
+    voices: [-7, 7], ensemble: true,
+  },
+  // the Scorpion: an end-blown reed flute, more breath than tone, wide slow vibrato and slides between notes
+  ney: {
+    harmonics: [1, 0.35, 0.18, 0.08, 0.04, 0.02],
+    k: 1, b: 0.03, oversample: 'none', pressure: [0.2, 0.55], attack: 0.09, burst: 1.05, release: 0.12, glide: 0.03, hold: 0.02,
+    vibrato: { cents: 18, hz: 4.6, delay: 0.25 }, breath: { level: 0.32, rel: 2, q: 0.9 }, level: 0.48,
+    filters: [{ type: 'highpass', f: 180, q: 0.7 }, { type: 'peaking', f: 700, q: 1, g: 2 }, { type: 'peaking', f: 2000, q: 1, g: -2 }, { type: 'lowpass', f: 5000, q: 0.7 }],
+  },
+  // the breach: a glass harmonica, nearly pure, slow to bloom, two voices beating against each other
+  glass: {
+    harmonics: [1, 0.04, 0.16, 0.02, 0.05],
+    k: 0, b: 0, oversample: 'none', pressure: [1, 1], attack: 0.35, burst: 1, release: 1.4, glide: 0.02, hold: 0.1,
+    vibrato: { cents: 4, hz: 3.3, delay: 0.2 }, breath: { level: 0, rel: 2, q: 0.8 }, level: 0.3,
+    filters: [{ type: 'highpass', f: 200, q: 0.7 }, { type: 'peaking', f: 1800, q: 2, g: 2 }, { type: 'lowpass', f: 7000, q: 0.7 }],
+    voices: [-4, 4],
   },
 };
 

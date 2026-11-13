@@ -6,16 +6,19 @@
  * (`UiSoundPlayer`), which decides when audio may start; this module never starts audio by itself.
  */
 import { ambienceForScene, startAmbience, type AmbienceId } from './ambience';
-import { choose, plan, sampleRateOf, SAMPLED_INSTRUMENTS, compute, type PlanItem, type SampledInstrument } from './bank';
+import { ALL_SAMPLED_INSTRUMENTS, choose, plan, sampleRateOf, SAMPLED_INSTRUMENTS, compute, type PlanItem, type SampledInstrument } from './bank';
 import { composePass, type MusicEvent } from './compose';
 import { impulseResponse, type HallId } from './hall';
-import { beatTime, sectionAt, sectionSeconds, THEMES, type Layer, type MusicContextId, type ThemeDef } from './themes';
+import type { MusicWhere } from './parts';
+import { trackFor } from './plateauTracks';
+import { beatTime, sectionAt, sectionSeconds, type Layer, type MusicContextId, type ThemeDef } from './themes';
 import { body, playPhrase, type TimedNote, type VoiceInstrument } from './voices';
 
 export type MusicLevel = Layer;
 
 export interface MusicHost {
-  setContext(id: MusicContextId | null): void;
+  /** `where` names a part and a combat scene; without it, the Lion's tracks play exactly as before. */
+  setContext(id: MusicContextId | null, where?: MusicWhere): void;
   setAmbience(sceneId: string | null): void;
   setVolume(volume: number): void;
   setLevel(level: MusicLevel): void;
@@ -23,7 +26,23 @@ export interface MusicHost {
   dispose(): void;
   /** Dev listening lab: the current track resumes from a named section at the next pass. */
   seek(section: string): boolean;
-  readonly state: { context: MusicContextId | null; ambience: AmbienceId | null; pass: number; samples: number; section: string | null; level: MusicLevel };
+  readonly state: { context: MusicContextId | null; track: string | null; ambience: AmbienceId | null; pass: number; samples: number; section: string | null; level: MusicLevel };
+}
+
+/** The Lion's rooms, loaded with its bank when music starts; a plateau's rooms and instruments load on first need. */
+const LION_HALLS: readonly HallId[] = ['hall', 'chapel', 'field'];
+
+/** The sampled instruments a track plays, for loading them before its first notes. */
+function sampledOf(theme: ThemeDef): Set<SampledInstrument> {
+  const out = new Set<SampledInstrument>();
+  const add = (instrument: string | undefined) => { if (instrument && SAMPLED.has(instrument)) out.add(instrument as SampledInstrument); };
+  for (const s of theme.sections) {
+    for (const line of s.lines ?? []) add(line.instrument);
+    add(s.bass?.instrument);
+    add(s.arpeggio?.instrument);
+    for (const hit of [...(s.drums?.bar ?? []), ...(s.drums?.fill ?? [])]) add(hit[1]);
+  }
+  return out;
 }
 
 const LOOKAHEAD = 1.2;
@@ -37,10 +56,13 @@ const FANFARE_MAX = 8;
 const ATTENUATION = 10 ** (-5 / 20);
 const ATTENUATION_ATTACK = 0.05;
 const ATTENUATION_RELEASE = 0.9;
-const SAMPLE_LEVEL: Readonly<Record<SampledInstrument, number>> = { harp: 0.5, lute: 0.5, pizz: 0.5, timpani: 0.5, drum: 0.5, kit: 0.42, frame: 0.42, cymbal: 0.3 };
+const SAMPLE_LEVEL: Readonly<Record<SampledInstrument, number>> = {
+  harp: 0.5, lute: 0.5, pizz: 0.5, timpani: 0.5, drum: 0.5, kit: 0.42, frame: 0.42, cymbal: 0.3,
+  bell: 0.42, dulcimer: 0.46, anvil: 0.36, goblet: 0.42, zill: 0.3,
+};
 /** A level change rides on the gains, so it costs nothing on the audio clock. */
 const LEVEL_TAU = 0.14;
-const SAMPLED = new Set<string>(SAMPLED_INSTRUMENTS);
+const SAMPLED = new Set<string>(ALL_SAMPLED_INSTRUMENTS);
 /** Leaves room for the cues: at the default volume, combat sits near -22 LUFS. */
 const volumeCurve = (v: number): number => Math.max(0, Math.min(1, v)) ** 1.5 * 0.5;
 
@@ -75,11 +97,13 @@ class MusicDirector implements MusicHost {
   private current: Playing | null = null;
   private fading: Playing[] = [];
   /** The surface that asked for its track while a fanfare plays. */
-  private held: MusicContextId | null = null;
+  private held: { id: MusicContextId; where: MusicWhere } | null = null;
   private level: MusicLevel = 'reflection';
   private timer: number | null = null;
-  private worker: Worker | null = null;
-  private fallbackTimer: number | null = null;
+  private readonly workers = new Set<Worker>();
+  /** What has been asked of the bank: the Lion's set at start, a plateau's on its track's first mount. */
+  private readonly requestedInstruments = new Set<SampledInstrument>();
+  private readonly requestedHalls = new Set<HallId>();
   private ambience: { id: AmbienceId; stop: () => void } | null = null;
   private disposed = false;
 
@@ -94,7 +118,7 @@ class MusicDirector implements MusicHost {
     this.ambienceBus = ctx.createGain();
     this.ambienceBus.gain.value = 2.2;
     this.ambienceBus.connect(this.master);
-    this.loadBank();
+    this.loadBank(SAMPLED_INSTRUMENTS, LION_HALLS);
     this.timer = window.setInterval(() => this.tick(), 50);
   }
 
@@ -102,20 +126,20 @@ class MusicDirector implements MusicHost {
     let samples = 0;
     for (const entry of this.bank.values()) samples += entry.buffers.length;
     const playing = this.current;
-    return { context: playing?.theme.id ?? null, ambience: this.ambience?.id ?? null, pass: playing?.pass ?? 0, samples, section: playing ? sectionAt(playing.theme, Math.max(0, playing.pass - 1)).name : null, level: this.level };
+    return { context: playing?.theme.id ?? null, track: playing ? playing.theme.track ?? playing.theme.id : null, ambience: this.ambience?.id ?? null, pass: playing?.pass ?? 0, samples, section: playing ? sectionAt(playing.theme, Math.max(0, playing.pass - 1)).name : null, level: this.level };
   }
 
-  setContext(id: MusicContextId | null): void {
+  setContext(id: MusicContextId | null, where: MusicWhere = {}): void {
     if (this.disposed) return;
     // A fanfare keeps the stream against any surface; only mute or a new fight takes it.
     if (id && this.current?.theme.once && id !== 'combat' && id !== 'boss') {
-      if (id !== this.current.theme.id) this.held = id;
+      if (id !== this.current.theme.id) this.held = { id, where };
       return;
     }
     this.held = null;
-    if ((this.current?.theme.id ?? null) === id) return;
+    const theme = id ? trackFor(id, where) : null;
+    if ((this.current?.theme ?? null) === theme) return;
     const now = this.ctx.currentTime;
-    const theme = id ? THEMES[id] : null;
     if (this.current) this.fadeOut(this.current, now, theme?.once ? FANFARE_LEAD_OUT : FADE_OUT);
     this.current = null;
     if (!theme) return;
@@ -180,10 +204,10 @@ class MusicDirector implements MusicHost {
     if (this.disposed) return;
     this.disposed = true;
     if (this.timer !== null) window.clearInterval(this.timer);
-    if (this.fallbackTimer !== null) window.clearTimeout(this.fallbackTimer);
     for (const id of this.pendingTasks) window.clearTimeout(id);
     this.pendingTasks.clear();
-    this.worker?.terminate();
+    for (const worker of this.workers) worker.terminate();
+    this.workers.clear();
     this.ambience?.stop();
     this.ambience = null;
     for (const playing of [this.current, ...this.fading]) if (playing) this.unmount(playing);
@@ -194,6 +218,10 @@ class MusicDirector implements MusicHost {
   }
 
   private mount(theme: ThemeDef): Playing {
+    // a plateau's room and instruments are computed on its first mount; the Lion's are already asked for
+    const instruments = [...sampledOf(theme)].filter((instrument) => !this.requestedInstruments.has(instrument));
+    const halls = this.requestedHalls.has(theme.hall) ? [] : [theme.hall];
+    if (instruments.length || halls.length) this.loadBank(instruments, halls);
     const fader = this.ctx.createGain();
     let tone: BiquadFilterNode | null = null;
     if (theme.lowCut) {
@@ -268,7 +296,7 @@ class MusicDirector implements MusicHost {
       this.current = null;
       const held = this.held;
       this.held = null;
-      if (held) this.setContext(held);
+      if (held) this.setContext(held.id, held.where);
       return;
     }
     // a long suspension (hidden page) must not replay the missed passes in a burst
@@ -338,21 +366,22 @@ class MusicDirector implements MusicHost {
   }
 
   /** Rooms and bank are computed off the main thread; without workers, one result per task keeps frames short. */
-  private loadBank(): void {
-    const items = plan(SAMPLED_INSTRUMENTS);
-    const halls: HallId[] = ['hall', 'chapel', 'field'];
+  private loadBank(instruments: readonly SampledInstrument[], halls: readonly HallId[]): void {
+    for (const instrument of instruments) this.requestedInstruments.add(instrument);
+    for (const hall of halls) this.requestedHalls.add(hall);
+    const items = plan(instruments);
     try {
       if (typeof Worker === 'undefined') throw new Error('no worker');
       const worker = new Worker(new URL('./bank.worker.ts', import.meta.url), { type: 'module' });
       worker.onmessage = (event: MessageEvent<{ item?: PlanItem; data?: Float32Array<ArrayBuffer>; hall?: HallId; left?: Float32Array<ArrayBuffer>; right?: Float32Array<ArrayBuffer>; done?: boolean }>) => {
         const m = event.data;
-        if (m.done) { worker.terminate(); this.worker = null; return; }
+        if (m.done) { worker.terminate(); this.workers.delete(worker); return; }
         if (m.hall && m.left && m.right) this.addReverb(m.hall, m.left, m.right);
         else if (m.item && m.data) this.addSample(m.item, m.data);
       };
-      worker.onerror = () => { worker.terminate(); this.worker = null; };
-      worker.postMessage({ contextRate: this.ctx.sampleRate, halls, items });
-      this.worker = worker;
+      worker.onerror = () => { worker.terminate(); this.workers.delete(worker); };
+      worker.postMessage({ contextRate: this.ctx.sampleRate, halls: [...halls], items });
+      this.workers.add(worker);
     } catch {
       const jobs: Array<() => void> = [
         ...halls.map((hall) => () => { const [l, r] = impulseResponse(this.ctx.sampleRate, hall); this.addReverb(hall, l, r); }),
@@ -361,9 +390,9 @@ class MusicDirector implements MusicHost {
       const next = (i: number) => {
         if (this.disposed || i >= jobs.length) return;
         jobs[i]!();
-        this.fallbackTimer = window.setTimeout(() => next(i + 1), 0);
+        this.task(() => next(i + 1));
       };
-      this.fallbackTimer = window.setTimeout(() => next(0), 0);
+      this.task(() => next(0));
     }
   }
 }

@@ -1,10 +1,10 @@
 // Offline measure of the final limiter (OD-2026-11-01-B): sample peak of the loudest mix, and gain of a quiet mix.
-// Needs the dev server on 5173. Usage: node tools/audio/limiter-peak.mjs
+// Needs the dev server on 5173 (BASE_URL overrides it). Usage: node tools/audio/limiter-peak.mjs
 import { chromium } from 'playwright';
 
 const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM || undefined });
 const page = await browser.newPage();
-await page.goto('http://localhost:5173/', { waitUntil: 'domcontentloaded' });
+await page.goto(process.env.BASE_URL ?? 'http://localhost:5173/', { waitUntil: 'domcontentloaded' });
 const result = await page.evaluate(async () => {
   const { createMix, LIMITER_CEILING } = await import('/src/audio/mix.ts');
   const rate = 48000, seconds = 3;

@@ -42,6 +42,20 @@ it('starts nothing by itself, then plays what is asked through the parent owner'
   press(dialog, 'ambience:breach'); expect(player.setMusicScene).toHaveBeenLastCalledWith('breach');
 });
 
+it('offers the plateaux\'s sketches apart, each part\'s six tracks and the scene tracks, through the parent owner', () => {
+  const { player, dialog } = lab();
+  expect(dialog.querySelectorAll('tr[data-row^="esquisse:"]')).toHaveLength(4 * 6 + 7);
+  expect(player.setMusicContext).not.toHaveBeenCalled();
+  press(dialog, 'sketch:bear:map:');
+  expect(player.setMusicContext).toHaveBeenLastCalledWith('map', { part: 'bear', scene: null });
+  press(dialog, 'sketchsection:dragon:combat::bridge');
+  expect(player.setMusicContext).toHaveBeenLastCalledWith('combat', { part: 'dragon', scene: null }); expect(player.seekMusic).toHaveBeenLastCalledWith('bridge');
+  press(dialog, 'sketchentry:bear:boss:bear_hall_terrace');
+  expect(player.setMusicContext.mock.calls.slice(-2)).toEqual([[null], ['boss', { part: 'bear', scene: 'bear_hall_terrace' }]]);
+  dialog.querySelector<HTMLButtonElement>('tr[data-row="esquisse:scorpion:combat"] [data-act="sketchlevel:action"]')!.click();
+  expect(player.setMusicLevel).toHaveBeenLastCalledWith('listening-lab', 'action');
+});
+
 it('plays an action as the game does: launch, marks on the FX clock, then the result family', () => {
   vi.useFakeTimers();
   const { player, dialog } = lab();
