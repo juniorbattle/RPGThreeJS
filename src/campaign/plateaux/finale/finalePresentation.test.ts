@@ -158,15 +158,20 @@ describe('final-act scenes on their final tableaux (set 1.20.0, Lot 4; final ima
     }
     for (const enemy of FINALE_PROVISIONAL_ENEMIES) {
       if (enemy.unitId === 'maelor_traitor') {
-        // Maelor keeps his approved master at the breach, as he already fought on it (postDemoCombatRuntime.test.ts).
+        // Maelor keeps his approved master at the breach (postDemoCombatRuntime.test.ts), which now carries his first combat
+        // sheet, with its four poses (OD-2026-11-13-A), instead of the bare master.
         expect(enemy.master).toBe('/assets/characters/pixel/masters/maelor.png');
         expect(publicFile(enemy.master!)).toBe(true);
+        expect(resolvePixelSheet(enemy.master)?.unitId).toBe('maelor');
+        expect(resolvePixelSheet(enemy.master)?.cells).toEqual(['idle', 'idle_b', 'dash', 'attack', 'cast']);
         continue;
       }
       expect(enemy.master, enemy.unitId).toBe(`${FINAL_CHARACTERS}/${enemy.unitId}.png`);
       expect(publicFile(enemy.master!), enemy.unitId).toBe(true);
       expect(resolvePixelSheet(enemy.master)?.unitId, enemy.unitId).toBe(enemy.unitId);
-      expect(resolvePixelSheet(enemy.master)?.masterOnly, enemy.unitId).toBe(true);
+      // OD-2026-11-13-A: each fighter of the final act has its four combat poses, its master as prepare plus dash, attack and cast.
+      expect(resolvePixelSheet(enemy.master)?.masterOnly, enemy.unitId).toBeUndefined();
+      expect(resolvePixelSheet(enemy.master)?.cells, enemy.unitId).toEqual(['idle', 'idle_b', 'dash', 'attack', 'cast']);
     }
   });
 });
