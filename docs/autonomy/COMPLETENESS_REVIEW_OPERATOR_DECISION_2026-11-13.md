@@ -142,3 +142,8 @@ L'opérateur a rempli la fiche de la session de récit (https://claude.ai/artifa
 
 - **Les 13 retouches mot à mot sont acceptées**, sans note : A1 à A5, B1, B2, C1 à C4, D1 et D2. Elles viennent de la dernière passe sur 35 moments à enjeu (`docs/content/drafts/HIGH_STAKES_MOMENTS_INVENTORY_2026-11-13.md`, `docs/content/drafts/HIGH_STAKES_NARRATIVE_PASS_DRAFT_2026-11-13.md`). La session de récit les applique.
 - **E1, figurants : « Amendement, sprites existants ».** Une tâche dédiée d'amendement de contrats (session « Amendement des figurants dans les tableaux ») propose le texte de l'amendement et la liste des dialogues à habiller. Elle n'utilise que les sprites civils existants, avec les plafonds des tableaux vivants. L'opérateur valide le texte mot à mot, puis vient la relecture indépendante, le commit d'amendement et le commit de baseline.
+
+## Livraisons de fin de journée
+
+- **Les 13 retouches sont écrites mot à mot dans le jeu** (573732a0). Le test `src/campaign/plateaux/narrativePass.test.ts` les fixe. `narrative:validate` passe.
+- **Poses de repos hors combat, étendues au registre de compagnie et au portrait de celui qui parle.** La session de combat a demandé s'il fallait aussi les utiliser dans ces deux écrans. L'opérateur a répondu « Oui, les deux ». Les poses y sont à la stature et au cadrage de la compagnie ; le combat garde les maîtres (187f5072).
