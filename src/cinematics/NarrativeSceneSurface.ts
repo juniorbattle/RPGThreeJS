@@ -5,6 +5,7 @@ import { createGenericNarrativeTableau, type NarrativeActorEntryEffect, type Nar
 import { resolveStaticTableauActorTuning, resolveStaticTableauComposition, type StaticTableauCompositionProfile } from './StaticTableauComposition';
 import { NarrativeActorFramePlayer, resolveNarrativeActorFrameBindings, type NarrativeActorFrameBinding } from './NarrativeActorFrames';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
+import { EXTRA_MASTER_FEET_ROW, EXTRA_MASTER_SIZE, TABLEAU_EXTRAS_CAP, tableauExtrasFor, tableauExtraSprite, type TableauExtrasEntry } from './TableauExtras';
 
 interface DialogueAssetProfile {
   full: string;
@@ -111,9 +112,56 @@ function actorElement(
   return actor;
 }
 
+/**
+ * The silent extras of an ordinary tableau (set 1.24.0): a plane laid over the painting exactly as the environment layer
+ * covers it, so each extra stands on the ground it was placed on whatever the screen. It lives inside the environment
+ * layer, behind every actor, and shares its framing, its grade and its slow breathing. No actor id, no focus, no text.
+ */
+function extrasPlane(entry: TableauExtrasEntry, reduced: boolean): { plane: HTMLElement; count: number } {
+  const { width, height } = entry.frame;
+  const plane = document.createElement('div');
+  plane.className = 'narrative-extras__plane';
+  plane.style.setProperty('--extras-plane-ratio', `${(width / height).toFixed(5)}`);
+  plane.style.setProperty('--extras-light', `${entry.light}`);
+  const feet = (EXTRA_MASTER_SIZE - EXTRA_MASTER_FEET_ROW) / EXTRA_MASTER_SIZE;
+  const shown = entry.extras.slice(0, TABLEAU_EXTRAS_CAP).filter((extra) => !(reduced && extra.pass));
+  shown.forEach((extra, index) => {
+    const source = tableauExtraSprite(entry.part, extra.id);
+    if (!source) return;
+    const size = (extra.size / height) * 100;
+    const figure = document.createElement('span');
+    figure.className = 'narrative-extra';
+    figure.dataset.extraId = extra.id;
+    figure.dataset.extraMotion = extra.pass ? 'passing' : 'standing';
+    figure.dataset.facing = extra.facing;
+    figure.style.left = `${((extra.x / width) * 100).toFixed(3)}%`;
+    figure.style.bottom = `${(((height - extra.y) / height) * 100 - feet * size).toFixed(3)}%`;
+    figure.style.height = `${size.toFixed(3)}%`;
+    if (extra.pass) {
+      figure.style.setProperty('--extra-pass-from', figure.style.left);
+      figure.style.setProperty('--extra-pass-to', `${((extra.pass.to / width) * 100).toFixed(3)}%`);
+      figure.style.setProperty('--extra-pass-seconds', `${extra.pass.seconds}s`);
+      figure.style.setProperty('--extra-pass-delay', `${-(extra.pass.delay ?? 0)}s`);
+    }
+    const { delaySeconds, periodSeconds } = idleBreatheTiming(`${extra.id}:${index}`);
+    figure.style.setProperty('--narrative-breathe-delay', `${delaySeconds}s`);
+    figure.style.setProperty('--narrative-breathe-period', `${periodSeconds}s`);
+    const img = document.createElement('img');
+    img.src = source;
+    img.alt = '';
+    img.draggable = false;
+    img.addEventListener('error', () => { figure.hidden = true; });
+    figure.append(img);
+    plane.append(figure);
+  });
+  return { plane, count: plane.childElementCount };
+}
+
 export class NarrativeSceneSurface {
   readonly element = document.createElement('div');
   readonly environmentLayer = document.createElement('div');
+  /** Set 1.24.0: the silent extras, inside the environment layer and behind the cast; empty for most tableaux. */
+  readonly extrasLayer = document.createElement('div');
   readonly castLayer = document.createElement('div');
   readonly atmosphereLayer = document.createElement('div');
   readonly focusLayer = document.createElement('div');
@@ -152,6 +200,8 @@ export class NarrativeSceneSurface {
     this.element.dataset.tableauFamily = tableau.family ?? 'FALLBACK';
     if (tableau.tableauBackgroundId) this.element.dataset.tableauBackgroundId = tableau.tableauBackgroundId;
     this.environmentLayer.className = 'narrative-scene-surface__environment';
+    this.extrasLayer.className = 'narrative-scene-surface__extras';
+    this.extrasLayer.setAttribute('aria-hidden', 'true');
     this.castLayer.className = 'narrative-scene-surface__cast narrative-cast';
     this.castLayer.dataset.cropPolicy = 'BOTTOM_INTENTIONAL';
     this.castLayer.setAttribute('aria-hidden', 'true');
@@ -168,8 +218,26 @@ export class NarrativeSceneSurface {
     const selected = image ?? this.tableau.stillImage;
     this.preparedImage = selected;
     if (selected) this.environmentLayer.style.backgroundImage = `url("${selected}")`;
+    this.syncExtras(selected);
     const first = phaseId ? this.phases.find((phase) => phase.id === phaseId) : this.phases[0];
     if (first) this.phasePreparation = this.setPhase(first.id);
+  }
+
+  /** Extras show only over the painting their dialogue placed them on (set 1.24.0); any other picture keeps none. */
+  private syncExtras(image: string | undefined): void {
+    const entry = tableauExtrasFor(this.tableau.dialogueId, image);
+    this.extrasLayer.replaceChildren();
+    if (!entry) {
+      this.extrasLayer.remove();
+      delete this.element.dataset.tableauExtras;
+      return;
+    }
+    const { plane, count } = extrasPlane(entry, prefersReducedMotion(this.gameReducedMotion));
+    this.extrasLayer.append(plane);
+    this.extrasLayer.dataset.extrasCount = `${count}`;
+    // First in the environment layer: a living backdrop's light and smoke, added later, pass in front of them.
+    this.environmentLayer.prepend(this.extrasLayer);
+    this.element.dataset.tableauExtras = `${count}`;
   }
 
   mount(image?: string, phaseId?: string): void {
@@ -191,6 +259,7 @@ export class NarrativeSceneSurface {
       const sources = [
         this.preparedImage,
         ...Array.from(this.castLayer.querySelectorAll<HTMLImageElement>('img')).map((image) => image.src),
+        ...Array.from(this.extrasLayer.querySelectorAll<HTMLImageElement>('img')).map((image) => image.src),
       ].filter((source): source is string => Boolean(source));
       const decoded = Promise.allSettled(sources.map(async (source) => {
         const image = new Image();

@@ -2853,6 +2853,18 @@ body.motion-reduced .dialogue--narrative .dialogue__box { translate:none !import
 .narrative-scene-surface { overflow:hidden; background:#07101c; }
 .narrative-scene-surface__environment { position:absolute; inset:-1.5%; background-color:#07101c; background-position:center; background-repeat:no-repeat; background-size:cover; filter:saturate(.9) contrast(1.05) brightness(.84); transform:scale(1.03); animation:narrative-still-breathe 18s ease-in-out infinite alternate; }
 .narrative-scene-surface__environment::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(2,4,9,.18),transparent 35%,rgba(2,4,9,.56) 90%),radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.38)); }
+/* Set 1.24.0: silent extras of an ordinary tableau, on a plane that covers the painting as the layer's background does. */
+.narrative-scene-surface__extras { position:absolute; inset:0; overflow:hidden; pointer-events:none; container-type:size; }
+.narrative-extras__plane { position:absolute; left:50%; top:50%; width:max(100cqw,calc(100cqh * var(--extras-plane-ratio,1.7778))); height:max(100cqh,calc(100cqw / var(--extras-plane-ratio,1.7778))); transform:translate(-50%,-50%); }
+.narrative-extra { position:absolute; aspect-ratio:1; transform:translateX(-50%); }
+.narrative-extra::before { content:''; position:absolute; left:31%; right:31%; bottom:9.4%; height:3.2%; border-radius:50%; background:radial-gradient(ellipse at center,rgba(0,0,0,.6),transparent 72%); }
+.narrative-extra img { --narrative-breathe-lift:-.12%; --narrative-breathe-grow:1.008; position:relative; display:block; width:100%; height:100%; image-rendering:pixelated; image-rendering:crisp-edges; filter:brightness(var(--extras-light,.72)) saturate(.78); transform-origin:50% 89%; animation:narrative-actor-breathe var(--narrative-breathe-period,5s) ease-in-out var(--narrative-breathe-delay,0s) infinite; }
+.narrative-extra[data-facing="LEFT"] img { transform:scaleX(-1); }
+.narrative-extra[data-extra-motion="passing"] { animation:narrative-extra-pass var(--extra-pass-seconds,24s) linear var(--extra-pass-delay,0s) infinite; }
+.narrative-extra[data-extra-motion="passing"] img { animation:narrative-extra-step .62s ease-in-out infinite alternate; }
+.narrative-scene-surface[data-reduced-motion="true"] .narrative-extra, .narrative-scene-surface[data-reduced-motion="true"] .narrative-extra img { animation:none; }
+@keyframes narrative-extra-pass { 0% { left:var(--extra-pass-from); opacity:0; } 9% { opacity:1; } 88% { opacity:1; } 100% { left:var(--extra-pass-to); opacity:0; } }
+@keyframes narrative-extra-step { from { translate:0 0; } to { translate:0 -1.1%; } }
 /* Portrait framing keeps the authored campfire visible beside, rather than behind, the company. */
 @media (max-aspect-ratio: 1/1) {
   .narrative-scene-surface[data-narrative-scene="FINAL_REFUGE_PREPARATION_TABLEAU"] .narrative-scene-surface__environment { background-position:left center; }
@@ -2964,6 +2976,8 @@ body.motion-reduced .dialogue--narrative .dialogue__box { translate:none !import
 body.motion-reduced .narrative-scene-surface__environment, body.motion-reduced .narrative-scene-surface__atmosphere { animation:none !important; transform:none; translate:none; }
 body.motion-reduced .narrative-cast__actor { animation:none !important; translate:none !important; }
 body.motion-reduced .narrative-cast__actor img { animation:none !important; }
+body.motion-reduced .narrative-extra, body.motion-reduced .narrative-extra img { animation:none !important; }
+body.motion-reduced .narrative-extra[data-extra-motion="passing"] { display:none; }
 body.motion-reduced .narrative-media-transition, body.motion-reduced .narrative-media-transition * { animation:none !important; transition:none !important; }
 
 
