@@ -1,6 +1,6 @@
 import type { PixelSheetEntry } from '../../combat/pixel/PixelSpriteSheets';
 import { clamp01, flicker, glow, GRAIN, PixelFire, PropLayer, rgba, seeded, smooth, TongueFire, type Light, type Rgb } from './openingLayer';
-import { OPENING_ACTOR_FADE_AT, OPENING_ACTOR_FADE_SECONDS, OPENING_ADVISERS, OPENING_CAST, OPENING_FIGURE_SCALE, OPENING_POLE_CRACKS_AT, type CampActor, OPENING_POLE_LANDS_AT, type OpeningShotId, type ViewCamera } from './openingShots';
+import { OPENING_ACTOR_FADE_AT, OPENING_ACTOR_FADE_SECONDS, OPENING_ADVISERS, OPENING_CAST, OPENING_FIGURE_SCALE, OPENING_FRAME, OPENING_POLE_CRACKS_AT, type CampActor, type ImageFrame, OPENING_POLE_LANDS_AT, type OpeningShotId, type ViewCamera } from './openingShots';
 
 export interface PaintFrame {
   ctx: CanvasRenderingContext2D;
@@ -125,8 +125,8 @@ function burn(ctx: CanvasRenderingContext2D, flames: ReturnType<typeof kindle>, 
 }
 
 /** The fires the painter put in the picture, set burning in place on its grain. */
-export function paintedFires(spots: readonly FireSpot[], seed: number): (frame: PaintFrame) => void {
-  const layer = new PropLayer();
+export function paintedFires(spots: readonly FireSpot[], seed: number, size: ImageFrame = OPENING_FRAME): (frame: PaintFrame) => void {
+  const layer = new PropLayer(size);
   const flames = kindle(spots, seed);
   return ({ ctx, camera, dt }) => {
     const props = layer.begin();
