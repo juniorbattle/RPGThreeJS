@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ambienceForScene } from './ambience';
+import { POST_DEMO_AMBIENCES } from './ambiencePostDemo';
 import { choose, DEFS, plan, SAMPLED_INSTRUMENTS, type SampledInstrument } from './bank';
 import { composePass, harmonyOf, parseLine } from './compose';
 import { harp, lute, pizzicato, drumKit, timpani, warDrum } from './instruments';
@@ -222,27 +223,16 @@ describe('the sample bank and instruments', () => {
     expect(ambienceForScene('unknown_scene')).toBe('forest_route');
     expect(ambienceForScene('map')).toBe('map');
     expect(ambienceForScene('refuge')).toBe('refuge');
-    // the Bear's arenas borrow existing beds: no new sound before the operator listens (OD-2026-11-01-B)
-    expect(ambienceForScene('bear_mountain_pass')).toBe('forest_route');
-    expect(ambienceForScene('bear_mine_galleries')).toBe('lion_sanctum');
-    expect(ambienceForScene('bear_hall_terrace')).toBe('lion_sanctum');
-    // so do the Dragon's: the bed of the Lion arena each one replaces
-    expect(ambienceForScene('dragon_peak_trail')).toBe('forest_route');
-    expect(ambienceForScene('dragon_hall_esplanade')).toBe('forest_route');
-    expect(ambienceForScene('dragon_snowy_summit')).toBe('lion_sanctum');
-    expect(ambienceForScene('dragon_wolf_cave')).toBe('lion_sanctum');
-    // and the Scorpion's: the bed of the Lion arena most of its fights there replaced
-    expect(ambienceForScene('scorpion_dune_track')).toBe('forest_route');
-    expect(ambienceForScene('scorpion_phoenix_ruins')).toBe('forest_route');
-    expect(ambienceForScene('scorpion_records_court')).toBe('forest_route');
-    expect(ambienceForScene('scorpion_phoenix_temple')).toBe('lion_sanctum');
-    expect(ambienceForScene('scorpion_ash_sanctuary')).toBe('lion_sanctum');
-    expect(ambienceForScene('scorpion_dune_crest')).toBe('lion_sanctum');
-    // and the final act's: the open air of the Tournament's day, the burning village's fires for the burning city, the
-    // night the breach played under before
-    expect(ambienceForScene('finale_destiny_arena')).toBe('forest_route');
-    for (const id of ['finale_arena_breach', 'finale_burning_streets', 'finale_smoke_square', 'finale_rampart_reserve']) expect(ambienceForScene(id), id).toBe('bois_clair_burning');
-    expect(ambienceForScene('finale_breach_heart')).toBe('lion_sanctum');
-    expect(ambienceForScene('finale_breach_scar')).toBe('lion_sanctum');
+    // each post-demo arena plays its plateau's biome (set 1.20.0)
+    for (const id of ['bear_mountain_pass', 'bear_mine_galleries', 'bear_hall_terrace']) expect(ambienceForScene(id), id).toBe('bear_mountains');
+    for (const id of ['dragon_peak_trail', 'dragon_hall_esplanade', 'dragon_snowy_summit', 'dragon_wolf_cave']) expect(ambienceForScene(id), id).toBe('dragon_peaks');
+    for (const id of ['scorpion_dune_track', 'scorpion_phoenix_ruins', 'scorpion_records_court', 'scorpion_phoenix_temple', 'scorpion_ash_sanctuary', 'scorpion_dune_crest']) {
+      expect(ambienceForScene(id), id).toBe('scorpion_desert');
+    }
+    expect(ambienceForScene('finale_destiny_arena')).toBe('tournament_arena');
+    for (const id of ['finale_arena_breach', 'finale_breach_heart']) expect(ambienceForScene(id), id).toBe('breach');
+    for (const id of ['finale_burning_streets', 'finale_smoke_square', 'finale_rampart_reserve', 'finale_breach_scar']) expect(ambienceForScene(id), id).toBe('corrupted_capital');
+    // and a biome asked by name (the listening lab) plays itself
+    for (const id of POST_DEMO_AMBIENCES) expect(ambienceForScene(id)).toBe(id);
   });
 });

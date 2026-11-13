@@ -58,25 +58,18 @@ describe('procedural combat arena themes', () => {
     expect(ARENA_THEMES.dragon_snowy_summit.farPlate.procedural).toBe('clouds_dusk');
   });
 
-  it('gives every arena a sound family of its own or one it borrows, with no new sound for the Bear', () => {
+  it('gives the Lion’s arenas their own ambience and every post-demo arena its plateau’s biome, from the closed list', () => {
     for (const id of ['forest_route', 'bois_clair_burning', 'lion_sanctum'] as const) expect(ARENA_THEMES[id].sound).toBe(id);
-    expect(ARENA_THEMES.bear_mountain_pass.sound).toBe('forest_route');
-    expect(ARENA_THEMES.bear_mine_galleries.sound).toBe('lion_sanctum');
-    expect(ARENA_THEMES.bear_hall_terrace.sound).toBe('lion_sanctum');
-    // the Dragon's borrow the bed of the Lion arena each replaces: the trail and the esplanade the forest route, the
-    // summits and the Wolf's cave the sanctum
-    expect(ARENA_THEMES.dragon_peak_trail.sound).toBe('forest_route');
-    expect(ARENA_THEMES.dragon_hall_esplanade.sound).toBe('forest_route');
-    expect(ARENA_THEMES.dragon_snowy_summit.sound).toBe('lion_sanctum');
-    expect(ARENA_THEMES.dragon_wolf_cave.sound).toBe('lion_sanctum');
-    // the Scorpion's borrow the bed of the Lion arena most of their fights played in: no new sound either
-    for (const id of ['scorpion_dune_track', 'scorpion_phoenix_ruins', 'scorpion_records_court'] as const) expect(ARENA_THEMES[id].sound, id).toBe('forest_route');
-    for (const id of ['scorpion_phoenix_temple', 'scorpion_ash_sanctuary', 'scorpion_dune_crest'] as const) expect(ARENA_THEMES[id].sound, id).toBe('lion_sanctum');
-    // the final act's borrow the bed that fits each place: the open air of the Tournament's day, the fires of the burning
-    // city, the night the breach played under before
-    expect(ARENA_THEMES.finale_destiny_arena.sound).toBe('forest_route');
-    for (const id of ['finale_arena_breach', 'finale_burning_streets', 'finale_smoke_square', 'finale_rampart_reserve'] as const) expect(ARENA_THEMES[id].sound, id).toBe('bois_clair_burning');
-    for (const id of ['finale_breach_heart', 'finale_breach_scar'] as const) expect(ARENA_THEMES[id].sound, id).toBe('lion_sanctum');
+    for (const id of BEAR_ARENA_IDS) expect(ARENA_THEMES[id].sound, id).toBe('bear_mountains');
+    // the Wolf's cave too: it lies in the Dragon's peaks
+    for (const id of DRAGON_ARENA_IDS) expect(ARENA_THEMES[id].sound, id).toBe('dragon_peaks');
+    // the Phoenix's temple and sanctuary too: they stand in the same desert
+    for (const id of SCORPION_ARENA_IDS) expect(ARENA_THEMES[id].sound, id).toBe('scorpion_desert');
+    // the final act: the Tournament's day, the breach wherever the tear stands open, the corrupted city elsewhere
+    expect(ARENA_THEMES.finale_destiny_arena.sound).toBe('tournament_arena');
+    for (const id of ['finale_arena_breach', 'finale_breach_heart'] as const) expect(ARENA_THEMES[id].sound, id).toBe('breach');
+    for (const id of ['finale_burning_streets', 'finale_smoke_square', 'finale_rampart_reserve', 'finale_breach_scar'] as const) expect(ARENA_THEMES[id].sound, id).toBe('corrupted_capital');
+    expect(new Set(FINALE_ARENA_IDS.map((id) => ARENA_THEMES[id].sound))).toEqual(new Set(['tournament_arena', 'breach', 'corrupted_capital']));
   });
 
   it('dresses the final act’s arenas in the capital’s identity, with no plateau’s motifs, never purple', () => {

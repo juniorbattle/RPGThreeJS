@@ -25,7 +25,9 @@ it('offers every track, bridge, level, ambience, skill and enemy attack', () => 
   expect(dialog.querySelectorAll('tr[data-row^="piste:"]')).toHaveLength(9);
   expect(dialog.querySelectorAll('[data-act^="section:"]')).toHaveLength(7);
   expect(dialog.querySelectorAll('[data-act="level:action"]')).toHaveLength(2);
-  expect(dialog.querySelectorAll('tr[data-row^="ambiance:"]')).toHaveLength(5);
+  expect(dialog.querySelectorAll('tr[data-row^="ambiance:"]')).toHaveLength(11);
+  // the post-demo plateaux's six biomes, in their own section
+  for (const id of ['bear_mountains', 'dragon_peaks', 'scorpion_desert', 'tournament_arena', 'corrupted_capital', 'breach']) expect(dialog.querySelector(`[data-act="ambience:${id}"]`), id).not.toBeNull();
   expect(dialog.querySelectorAll('tr[data-row^="compétence:"]')).toHaveLength(listSkillFxRecipes().length);
   expect(dialog.querySelectorAll('tr[data-row^="attaque:"]')).toHaveLength(14);
 });
@@ -37,6 +39,7 @@ it('starts nothing by itself, then plays what is asked through the parent owner'
   expect(player.setMusicContext).toHaveBeenLastCalledWith('combat'); expect(player.seekMusic).toHaveBeenCalledWith('bridge');
   press(dialog, 'level:action'); expect(player.setMusicLevel).toHaveBeenLastCalledWith('listening-lab', 'action');
   press(dialog, 'ambience:refuge'); expect(player.setMusicScene).toHaveBeenLastCalledWith('refuge');
+  press(dialog, 'ambience:breach'); expect(player.setMusicScene).toHaveBeenLastCalledWith('breach');
 });
 
 it('plays an action as the game does: launch, marks on the FX clock, then the result family', () => {

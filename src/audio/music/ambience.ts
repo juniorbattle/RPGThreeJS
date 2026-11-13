@@ -1,16 +1,33 @@
 /**
- * Synthesized ambience (OD-2026-10-29-B, OD-2026-11-01-B): one low loop per combat arena, plus the POI map and the
+ * Synthesized ambience (OD-2026-10-29-B, OD-2026-11-01-B): one low loop per combat biome, plus the POI map and the
  * refuge, under the music volume and mute. Filtered noise beds with slow movement and sparse seeded accents. Adapted
- * from the HD-2D combat sound module (`src/combat/audio/CombatSfx.ts`, OD-2026-10-29-A), which is not wired.
+ * from the HD-2D combat sound module (`src/combat/audio/CombatSfx.ts`, OD-2026-10-29-A), which is not wired. The
+ * post-demo plateaux's six biomes (OD-2026-11-07-I, set 1.20.0) are written in `ambiencePostDemo.ts` on the same
+ * fader, clock and stop; the demo's five beds keep their seed, their noise and their code.
  */
 import { arenaThemeFor } from '../../combat/arena/arenaThemes';
+import { isPostDemoAmbience, playPostDemoAmbience, POST_DEMO_AMBIENCES, POST_DEMO_NOISE_SECONDS, postDemoSeed, type PostDemoAmbienceId } from './ambiencePostDemo';
 import { seededRandom } from './theory';
 
-export type AmbienceId = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum' | 'map' | 'refuge';
+export type AmbienceId = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum' | 'map' | 'refuge' | PostDemoAmbienceId;
 
-export function startAmbience(ctx: AudioContext, dest: AudioNode, id: AmbienceId): () => void {
-  const rng = seededRandom(0xa3b1 + id.length * 977);
-  const noise = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+/** The clock the accents follow: the audio clock and the page's timers, or a virtual clock for an offline render. */
+export interface AmbienceClock {
+  now(): number;
+  after(seconds: number, fn: () => void): unknown;
+  cancel(handle: unknown): void;
+}
+
+const liveClock = (ctx: BaseAudioContext): AmbienceClock => ({
+  now: () => ctx.currentTime,
+  after: (seconds, fn) => window.setTimeout(fn, seconds * 1000),
+  cancel: (handle) => window.clearTimeout(handle as number),
+});
+
+export function startAmbience(ctx: BaseAudioContext, dest: AudioNode, id: AmbienceId, clock: AmbienceClock = liveClock(ctx)): () => void {
+  const postDemo = isPostDemoAmbience(id);
+  const rng = seededRandom(postDemo ? postDemoSeed(id) : 0xa3b1 + id.length * 977);
+  const noise = ctx.createBuffer(1, ctx.sampleRate * (postDemo ? POST_DEMO_NOISE_SECONDS : 2), ctx.sampleRate);
   const data = noise.getChannelData(0);
   for (let i = 0; i < data.length; i++) data[i] = rng() * 2 - 1;
   const out = ctx.createGain();
@@ -42,12 +59,14 @@ export function startAmbience(ctx: AudioContext, dest: AudioNode, id: AmbienceId
     const g = ctx.createGain(); g.gain.setValueAtTime(0.12, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.03);
     src.connect(f).connect(g).connect(out); src.start(t, rng() * 1.5, 0.05);
   };
-  const timers: number[] = [];
-  const every = (fn: (t: number) => void, range: [number, number]) => {
-    const next = () => { timers.push(window.setTimeout(() => { fn(ctx.currentTime + 0.05); next(); }, (range[0] + rng() * (range[1] - range[0])) * 1000)); };
+  const timers: unknown[] = [];
+  const every = (fn: (t: number) => void, range: readonly [number, number]) => {
+    const next = () => { timers.push(clock.after(range[0] + rng() * (range[1] - range[0]), () => { fn(clock.now() + 0.05); next(); })); };
     next();
   };
-  if (id === 'forest_route') {
+  if (postDemo) {
+    playPostDemoAmbience({ ctx, out, rng, noise, loops, every }, id);
+  } else if (id === 'forest_route') {
     bed('bandpass', 420, 0.6, 0.35, 0.05); // wind in the canopy
     bed('highpass', 5200, 0.4, 0.04, 0.11); // leaves
     every((t) => { const f = 2400 + rng() * 1600; for (let i = 0; i < 3; i++) tone(t + i * 0.09, f * (1 + i * 0.06), 'sine', 0.07, 0.03, f * 1.3); }, [2.5, 6]);
@@ -71,7 +90,7 @@ export function startAmbience(ctx: AudioContext, dest: AudioNode, id: AmbienceId
     every((t) => tone(t, 196, 'sine', 2.4, 0.03, undefined, 0.8), [9, 16]); // a far bell
   }
   return () => {
-    for (const timer of timers) window.clearTimeout(timer);
+    for (const timer of timers) clock.cancel(timer);
     const now = ctx.currentTime;
     out.gain.cancelScheduledValues(now);
     out.gain.setValueAtTime(Math.max(0.0001, out.gain.value), now);
@@ -81,16 +100,15 @@ export function startAmbience(ctx: AudioContext, dest: AudioNode, id: AmbienceId
   };
 }
 
-const AMBIENCES: readonly AmbienceId[] = ['forest_route', 'bois_clair_burning', 'lion_sanctum', 'map', 'refuge'];
+const AMBIENCES: readonly AmbienceId[] = ['forest_route', 'bois_clair_burning', 'lion_sanctum', 'map', 'refuge', ...POST_DEMO_AMBIENCES];
 
 /**
- * The ambience of a scene, with the arena's own fallback (`arenaThemeFor`): an unknown scene is the forest route. An
- * arena without an ambience of its own plays the one its theme borrows (the Bear's pass, the Dragon's trail and
- * esplanade, the Scorpion's dune track, the Phoenix's ruins and the court of the house of records the forest route; the
- * Bear's galleries and hall, the Dragon's summits, the Wolf's cave, the Phoenix's temple and sanctuary and the dune
- * crest at dusk the sanctum; the final act's Arena of Destinies on the Tournament's day the forest route, the arena in
- * flames, the burning streets, the great square and the ramparts the burning village, the heart of the breach before
- * dawn and at dusk the sanctum): new sound awaits the operator's ear (OD-2026-11-01-B).
+ * The ambience of a scene, with the arena's own fallback (`arenaThemeFor`): an unknown scene is the forest route. A
+ * Lion arena plays its own bed; every post-demo arena plays its plateau's biome (`ArenaTheme.sound`): the Bear's three
+ * arenas the Bear's mountains, the Dragon's four the Dragon's peaks, the Scorpion's six the Scorpion's desert; in the
+ * final act, the Arena of Destinies on the Tournament's day the Tournament arena, the breach wherever the tear stands
+ * open on the field (the arena on the night of the betrayal, the heart of the breach), and the corrupted capital in
+ * its streets, its great square, at its ramparts and in the crater once the tear has closed.
  */
 export function ambienceForScene(sceneId: string | null | undefined): AmbienceId {
   return AMBIENCES.find((id) => id === sceneId) ?? arenaThemeFor(sceneId).sound;

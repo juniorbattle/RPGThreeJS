@@ -80,11 +80,25 @@ function material(m: THREE.Material): string {
   return parts.join('|');
 }
 
+/**
+ * The ambience each arena played when its digest was recorded. The post-demo ambiences (2026-11-13) changed what these
+ * arenas play, not what they show: the digest reads each theme with the sound it had then, so every pixel is still
+ * checked against the same record (the sound itself is checked in `arenaThemes.test.ts` and `music.test.ts`).
+ */
+const RECORDED_SOUND: Readonly<Partial<Record<ArenaSceneId, string>>> = {
+  bear_mountain_pass: 'forest_route', bear_mine_galleries: 'lion_sanctum', bear_hall_terrace: 'lion_sanctum',
+  dragon_peak_trail: 'forest_route', dragon_snowy_summit: 'lion_sanctum', dragon_hall_esplanade: 'forest_route', dragon_wolf_cave: 'lion_sanctum',
+  scorpion_dune_track: 'forest_route', scorpion_dune_crest: 'lion_sanctum', scorpion_phoenix_ruins: 'forest_route', scorpion_phoenix_temple: 'lion_sanctum',
+  scorpion_ash_sanctuary: 'lion_sanctum', scorpion_records_court: 'forest_route',
+};
+
 async function digest(sceneId: string, reduced: boolean): Promise<string> {
   const arena = new CombatArena({ sceneId, columns: 8, rows: 4, tile: 1.18, reducedGraphics: reduced });
   await arena.build();
   arena.root.updateMatrixWorld(true);
-  const lines: string[] = [JSON.stringify(ARENA_THEMES[sceneId as ArenaSceneId]), JSON.stringify(arena.describe())];
+  const theme = ARENA_THEMES[sceneId as ArenaSceneId];
+  // the spread keeps every key in its place: the text is the one recorded
+  const lines: string[] = [JSON.stringify({ ...theme, sound: RECORDED_SOUND[sceneId as ArenaSceneId] ?? theme.sound }), JSON.stringify(arena.describe())];
   arena.root.traverse((o) => {
     const mesh = o as THREE.Mesh & THREE.InstancedMesh & THREE.PointLight;
     const parts: unknown[] = [o.name, o.type, ...o.position.toArray().map(f), f(o.rotation.x), f(o.rotation.y), f(o.rotation.z), ...o.scale.toArray().map(f),

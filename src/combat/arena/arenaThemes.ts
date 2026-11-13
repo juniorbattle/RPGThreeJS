@@ -75,8 +75,12 @@ export type ArenaPropKind =
   // the breach
   | 'breach_tear' | 'ink_scar';
 
-/** The sound family a scene plays: a new arena borrows an existing one, since new sound awaits the operator's ear. */
-export type ArenaSoundFamily = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum';
+/**
+ * The ambience a scene plays: the Lion's three combat biomes (set 1.11.0), and the six post-demo biomes of the closed
+ * list (set 1.20.0), one per plateau and three for the final act (`src/audio/music/ambiencePostDemo.ts`).
+ */
+export type ArenaSoundFamily = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum'
+  | 'bear_mountains' | 'dragon_peaks' | 'scorpion_desert' | 'tournament_arena' | 'corrupted_capital' | 'breach';
 /** The clan sign on an arena's banners and carved reliefs. */
 export type ArenaEmblem = 'lion' | 'bear' | 'dragon' | 'wolf' | 'scorpion' | 'phoenix' | 'raven' | 'serpent';
 /** What grows or lies at the foot of the platform and of the masonry. */
@@ -148,7 +152,7 @@ export interface ArenaTheme {
       | 'arena_day' | 'arena_night' | 'city_night' | 'city_smoke' | 'ramparts' | 'breach_dawn' | 'breach_dusk';
     width: number; bottomY: number; z: number; tint: string;
   };
-  /** Ambience and sound mapping the scene plays (its own id for the Lion's arenas). */
+  /** The ambience the scene plays: its own id for the Lion's arenas, its plateau's biome for the post-demo ones. */
   sound: ArenaSoundFamily;
   /** Sign on the banners (the lion by default). */
   emblem?: ArenaEmblem;
@@ -1245,7 +1249,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   bear_mountain_pass: {
     id: 'bear_mountain_pass',
-    sound: 'forest_route',
+    sound: 'bear_mountains',
     label: 'Montagnes de l’Ours — col enneigé',
     tile: 'snowy_granite',
     ground: 'snow_scree',
@@ -1271,7 +1275,8 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   bear_mine_galleries: {
     id: 'bear_mine_galleries',
-    sound: 'lion_sanctum',
+    // the galleries are dug into the same mountain: its wind down the shafts, the braziers, the winch chains
+    sound: 'bear_mountains',
     label: 'Mines sacrées de l’Ours — galeries étayées',
     tile: 'hewn_granite',
     ground: 'mine_floor',
@@ -1313,7 +1318,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   bear_hall_terrace: {
     id: 'bear_hall_terrace',
-    sound: 'lion_sanctum',
+    sound: 'bear_mountains',
     label: 'Salle de Borin — parvis taillé dans le roc',
     tile: 'snowy_granite',
     ground: 'snow_terrace',
@@ -1344,7 +1349,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   dragon_peak_trail: {
     id: 'dragon_peak_trail',
-    sound: 'forest_route',
+    sound: 'dragon_peaks',
     label: 'Pics Célestes — sentier des terrasses',
     tile: 'limestone_flag',
     ground: 'dry_grass_snow',
@@ -1371,7 +1376,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   dragon_snowy_summit: {
     id: 'dragon_snowy_summit',
-    sound: 'lion_sanctum',
+    sound: 'dragon_peaks',
     label: 'Pics Célestes — cimes enneigées au couchant',
     tile: 'snowy_limestone',
     ground: 'snow_scree',
@@ -1399,7 +1404,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   dragon_hall_esplanade: {
     id: 'dragon_hall_esplanade',
-    sound: 'forest_route',
+    sound: 'dragon_peaks',
     label: 'Salle de Kaelen — esplanade au-dessus des nuages',
     tile: 'dressed_limestone',
     // the terrace pattern, whose "snow" is this palette's dry grass and lichen
@@ -1433,7 +1438,8 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   dragon_wolf_cave: {
     id: 'dragon_wolf_cave',
-    sound: 'lion_sanctum',
+    // the Wolf’s lair lies in the Dragon’s peaks: their high wind at the cave’s mouth, their bells far across the valley
+    sound: 'dragon_peaks',
     label: 'Repaire du Loup — caverne',
     tile: 'cave_flag',
     // packed earth with straw in this palette's "gravel" tones and soot where the fires burn
@@ -1478,7 +1484,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   scorpion_dune_track: {
     id: 'scorpion_dune_track',
-    sound: 'forest_route',
+    sound: 'scorpion_desert',
     label: 'Déserts Arides — piste des dunes',
     tile: 'sand_flag',
     ground: 'desert_sand',
@@ -1505,7 +1511,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   scorpion_dune_crest: {
     id: 'scorpion_dune_crest',
-    sound: 'lion_sanctum',
+    sound: 'scorpion_desert',
     label: 'Déserts Arides — crête des dunes au crépuscule',
     tile: 'sand_flag',
     ground: 'desert_sand',
@@ -1532,7 +1538,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   scorpion_phoenix_ruins: {
     id: 'scorpion_phoenix_ruins',
-    sound: 'forest_route',
+    sound: 'scorpion_desert',
     label: 'Ruines du Phénix — route des sceaux de garde',
     tile: 'sand_flag',
     ground: 'desert_sand',
@@ -1560,7 +1566,8 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   scorpion_phoenix_temple: {
     id: 'scorpion_phoenix_temple',
-    sound: 'lion_sanctum',
+    // the temple stands in the same desert (IDENTITY.scorpion): its dry wind through the doors
+    sound: 'scorpion_desert',
     label: 'Temple du Phénix — la nef de la flamme',
     tile: 'dressed_sandstone',
     // the nave's flags, whose "snow" is this palette's grey ash
@@ -1596,7 +1603,8 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   scorpion_ash_sanctuary: {
     id: 'scorpion_ash_sanctuary',
-    sound: 'lion_sanctum',
+    // dug into the desert’s red rock: its dry wind through the entrance
+    sound: 'scorpion_desert',
     label: 'Sanctuaire du Phénix — les cendres sacrées',
     tile: 'cave_flag',
     // the hewn floor: packed earth, grit and ash in this palette's "gravel" tones
@@ -1635,7 +1643,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   scorpion_records_court: {
     id: 'scorpion_records_court',
-    sound: 'forest_route',
+    sound: 'scorpion_desert',
     label: 'Maison des registres — cour du Grand Inquisiteur',
     tile: 'dressed_sandstone',
     // the court's flags under the sun, whose "snow" is this palette's blown sand
@@ -1668,8 +1676,8 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   finale_destiny_arena: {
     id: 'finale_destiny_arena',
-    // the open-air bed of the day: wind over the stands (no crickets, no night bell, no fire)
-    sound: 'forest_route',
+    // the Tournament’s day: open air, the stands’ wordless murmur, banners and masts
+    sound: 'tournament_arena',
     label: 'Arène des Destins — la piste du Tournoi',
     tile: 'raked_sand',
     ground: 'arena_sand',
@@ -1693,8 +1701,8 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   finale_arena_breach: {
     id: 'finale_arena_breach',
-    // the burning village's bed: the fires' roar, crackles, a distant collapse
-    sound: 'bois_clair_burning',
+    // the tear stands open on the sand: the breach, not the empty, burning stands’ crowd
+    sound: 'breach',
     label: 'Arène des Destins en flammes — la brèche',
     tile: 'raked_sand',
     ground: 'arena_sand',
@@ -1718,7 +1726,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   finale_burning_streets: {
     id: 'finale_burning_streets',
-    sound: 'bois_clair_burning',
+    sound: 'corrupted_capital',
     label: 'La capitale en flammes — les rues de brique',
     tile: 'cobbles',
     ground: 'cobbled_street',
@@ -1743,7 +1751,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   finale_smoke_square: {
     id: 'finale_smoke_square',
-    sound: 'bois_clair_burning',
+    sound: 'corrupted_capital',
     label: 'La capitale sous la fumée — la grande place',
     tile: 'cobbles',
     ground: 'cobbled_street',
@@ -1770,7 +1778,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   finale_rampart_reserve: {
     id: 'finale_rampart_reserve',
-    sound: 'bois_clair_burning',
+    sound: 'corrupted_capital',
     label: 'Les remparts — la réserve',
     tile: 'cobbles',
     ground: 'cobbled_street',
@@ -1795,8 +1803,7 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   finale_breach_heart: {
     id: 'finale_breach_heart',
-    // the night bed the breach played under before (wind, a far bell): new sound awaits the operator's ear
-    sound: 'lion_sanctum',
+    sound: 'breach',
     label: 'Le cœur de la brèche — la ville basse avant l’aube',
     tile: 'shattered_paving',
     ground: 'rubble_paving',
@@ -1821,7 +1828,8 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
   },
   finale_breach_scar: {
     id: 'finale_breach_scar',
-    sound: 'lion_sanctum',
+    // the tear has closed: what is left is the city it scarred, not the breach’s own sound
+    sound: 'corrupted_capital',
     label: 'Le cœur de la brèche refermée — au crépuscule',
     tile: 'shattered_paving',
     ground: 'rubble_paving',
