@@ -98,6 +98,33 @@ Les trois combats sont de rang normal et rapportent 0 de réputation (échelle d
 - La dernière passe narrative sur les moments à forte tension, ajoutée par l'opérateur au même lot, suit dans un brouillon séparé.
 - Remarque de l'opérateur pendant la vérification : les sprites de Lyra et de Gunnar paraissent trop grands dans les tableaux par rapport à la compagnie, et leur pose de repos semble inadaptée. Voir la section suivante.
 
+## Dernière passe narrative des moments à enjeu
+
+`APPROVED DECISION` puis `CURRENT FACT`. Remarque de l'opérateur au lancement des lots : « Le recit globale doit etre optimale surtout lors des moments de tensions ou a enjeux marquantes ».
+- **Inventaire.** 35 moments, du prologue aux trois fins, en annexe : `docs/content/drafts/HIGH_STAKES_MOMENTS_INVENTORY_2026-11-13.md`. Le brouillon `docs/content/drafts/HIGH_STAKES_NARRATIVE_PASS_DRAFT_2026-11-13.md` porte la grille en cinq critères pour 17 moments et les retouches mot à mot, texte actuel et texte proposé.
+- **Fiche.** Les retouches ont été soumises sur une fiche d'arbitrages privée (https://claude.ai/artifact/R9fw53FQzStpwffR6GdC1q). L'opérateur a accepté les treize (A1 à D2), sans note. Pour les figurants (E1), il a choisi « Amendement, sprites existants ».
+- **Écrit dans le jeu, mot à mot.**
+  - A1 : le mobile de Maelor dans toutes les variantes de `advice`.
+  - A2 : Marian ferme la trahison sur « Je dis seulement… ».
+  - A3 et A4 : la réponse de Marian à la brèche et les derniers mots de Maelor.
+  - A5 : la fin de l'acte boucle sur Bois-Clair.
+  - B1 : « Notre clan » dans le Respect et l'Équilibre.
+  - B2 : la brèche de la Crainte.
+  - C1 : `finale_pre_serpent_final` construite depuis l'état, avec la réplique de Kestrel selon l'issue du Lion.
+  - C2 et C3 : les trois avant-épreuves construites depuis l'état. La variante du refus est lue depuis les drapeaux du jugement (`*FinaleTrialSelected` sans `*TrialRequested`), et la réponse de la compagnie change au Dragon et au Scorpion.
+  - C4 : le ralliement à la première personne.
+  - D1 : les témoins du Dragon et du Scorpion.
+  - D2 : la villageoise de Bois-Clair.
+- **Cohérence.** Les quatre échos `final_act` du ralliement nomment leur cause par les nouvelles phrases. `narrative:validate` passe sur les cinq cartes.
+- **Tests.** `src/campaign/plateaux/narrativePass.test.ts` (10 tests) fixe chaque retouche dans ses conditions. Les tests qui citaient les anciens textes ont été adaptés : navigation de l'acte final, rotation des héros (par l'étape et non plus par le texte), pilote de l'acte final.
+- **Navigateur** (dev, port 5181, sauvegardes du pilote QA). La finale et la brèche ont été lancées et gagnées par de vrais clics, avec le bouton QA « Victoire » ; les répliques ont défilé par script sur le bouton « Continuer ».
+  - C1 : avant la finale, Kestrel dit « Leur général court toujours, depuis les terres du Lion… » (variante du général resté libre).
+  - A1 et A2 : la trahison montre la fin des conseils (« Chaque fois, vous avez servi ceux que je sers, … ») et Marian ferme la scène (« “Je dis seulement…” … »).
+  - A3 et A4 : à la brèche, Marian répond, puis Maelor dit « Alors venez. Je compterai ce qu’il restera de vous. ».
+  - B2 : la Crainte s'ouvre sur « … et personne ne s’en réjouit avec nous. ».
+  - Limite : A5 a joué, mais le défilement a coupé la réplique avant « depuis Bois-Clair ». B1, C2 à C4, D1 et D2 ne sont pas revus au navigateur ; leurs textes exacts sont fixés par `narrativePass.test.ts`.
+- **E1.** La session parente a lancé la tâche dédiée à l'amendement (« Amendement des figurants dans les tableaux »), à partir de la section E du brouillon. Cette section porte maintenant les dialogues pressentis, les sprites civils par lieu et l'état des visages couverts.
+
 ## Limite de quatre acteurs visibles (constat transmis par la session parente)
 
 `CURRENT FACT`. La session parente signalait que `createGenericNarrativeTableau` garde jusqu'à sept acteurs (`.slice(0, 7)`), et que `dragon_wolf_traps` en montrerait cinq. J'ai calculé chaque composition que le jeu met en scène, par le même chemin que `GameApp` (tableau du dialogue, puis `applyFinalDialoguePresentationPlan`) :

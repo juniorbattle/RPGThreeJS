@@ -154,6 +154,8 @@ function outcomeCounts(state: Readonly<GameState>): { honour: number; force: num
 
 const COUNT_WORDS: Readonly<Record<number, string>> = Object.freeze({ 2: 'Deux', 3: 'Trois', 4: 'Quatre' });
 
+// Last narrative pass (B1, B2), approved word for word on 2026-11-13: Séraphine says « notre clan » to the end, and the Fear
+// ending's victory over the Shadows says its price.
 function epilogueRespect(state: Readonly<GameState>): DialogueSequence {
   const flags = state.flags;
   const allies = clansOf(state, 'ally');
@@ -171,7 +173,7 @@ function epilogueRespect(state: Readonly<GameState>): DialogueSequence {
     civiliansStep(flags, 'Dans la foule qui vous acclame, il y a les civils sauvés de l’arène.',
       'Ils acclament, mais certains n’oublient pas la foule abandonnée de l’arène.'),
     say('alistair', ALISTAIR, 'Clan sans terre', 'Nous ne reconstruirons pas seuls. Chaque clan portera sa part du fardeau, et la justice vaudra pour tous.', { expression: 'stern' }),
-    say('clan', SERAPHINE, 'Le clan', 'Votre clan avait perdu ses terres et sa place. Aujourd’hui, il retrouve son honneur, et devient un pilier de la nouvelle alliance.', { expression: 'grateful' }),
+    say('clan', SERAPHINE, 'Le clan', 'Notre clan avait perdu ses terres et sa place. Aujourd’hui, il retrouve son honneur, et devient un pilier de la nouvelle alliance.', { expression: 'grateful' }),
     say('close', ALISTAIR, 'Le Respect', 'Alors rentrons. Il y a tant à reconstruire.', { effects: [COMPLETE] }),
   ]) };
 }
@@ -200,7 +202,7 @@ function epilogueBalance(state: Readonly<GameState>): DialogueSequence {
     civiliansStep(flags, 'Dans la capitale, les civils sauvés de l’arène parlent de nous avec gratitude. D’autres, avec méfiance.',
       'Dans la capitale, on parle encore de la foule abandonnée de l’arène.'),
     say('peace', ALISTAIR, 'Clan sans terre', 'Alors il faudra négocier. Une paix fragile vaut mieux qu’une guerre de plus, même si elle nous coûte une part de ce que nous croyions.', { expression: 'stern' }),
-    say('clan', SERAPHINE, 'Le clan', 'Votre clan regagne une part de son honneur. Le reste, il faudra le mériter, dans un monde encore divisé.'),
+    say('clan', SERAPHINE, 'Le clan', 'Notre clan regagne une part de son honneur. Le reste, il faudra le mériter, dans un monde encore divisé.'),
     say('close', KESTREL, 'L’Équilibre', 'Respectés, et craints. Il faudra apprendre à marcher entre les deux.', { effects: [COMPLETE] }),
   ]) };
 }
@@ -210,7 +212,7 @@ function epilogueFear(state: Readonly<GameState>): DialogueSequence {
   const allies = clansOf(state, 'ally');
   const enemies = clansOf(state, 'enemy');
   return { id: EPILOGUE_DIALOGUE_IDS.fear, sceneArtId: 'shadow_signs', title: ENDING_LABELS.fear, steps: chained([
-    say('breach', SERAPHINE, 'La brèche', 'La brèche se referme. Les Ombres Silencieuses sont vaincues.', { expression: 'mystical' }),
+    say('breach', SERAPHINE, 'La brèche', 'La brèche se referme. Les Ombres Silencieuses sont vaincues, et personne ne s’en réjouit avec nous.', { expression: 'mystical' }),
     say('alone', KESTREL, 'Personne', allies.length
       ? `Peu de bannières sont restées, et elles se tiennent à distance : ${banners(allies)}.`
       : 'Autour de nous, aucune bannière alliée. Personne n’a voulu tenir la ligne à nos côtés.', { expression: 'stern' }),

@@ -135,10 +135,6 @@ const PHOENIX_VERDICT = verdict('phoenix', { spared: 'finalePhoenixSpared', humi
       humiliated: 'Au temple, ils nous avaient crus. Le Phénix ne croira plus notre parole.' });
 
 const FINALE_STATIC_TAIL: readonly DialogueSequence[] = Object.freeze([
-  scene('finale_pre_serpent_final', 'pre_lion_chief', 'Finale du Tournoi', chained([
-    say('1', SERPENT_CHAMPION, 'Serpent', 'Depuis les plaines du Lion, le Serpent attend ce combat. Venez chercher votre victoire.', null, { expression: 'hostile' }),
-    say('2', ALISTAIR, 'Finale', 'Alors finissons-en.', null, { expression: 'stern' }),
-  ])),
   scene('finale_arena_chaos', 'shadow_signs', 'La brèche s’ouvre', [
     say('1', KESTREL, 'Éclaireuse', 'Des démons sortent de la brèche. Dans les tribunes, la foule se piétine pour atteindre les portes.', '2', { expression: 'fearful' }),
     say('2', MARIAN, 'Soigneuse', 'Les civils ne sortiront jamais seuls. Il faut quelqu’un entre eux et ces choses.', '3', { expression: 'fearful' }),
@@ -174,8 +170,10 @@ const FINALE_STATIC_TAIL: readonly DialogueSequence[] = Object.freeze([
   scene('finale_breach_confrontation', 'serpent_pursuit_pre_combat', 'La brèche', chained([
     say('1', MAELOR_TRAITOR, 'Maelor', 'Vous voilà. Quatre Sceaux, des clans derrière vous ou contre vous… et toujours la même question : à quoi vous servaient-ils vraiment ?', null, { expression: 'hostile' }),
     say('2', SERAPHINE, 'Sage', 'Ce qui se tient derrière lui n’a aucun nom que je connaisse. Il faudra l’abattre quand même.', null, { expression: 'fearful' }),
+    // Last narrative pass (A3, A4), approved word for word on 2026-11-13: Maelor's question answered, his last words his own.
+    say('2b', MARIAN, 'Soigneuse', 'Ils nous servaient à refermer ce que tu ouvres.', null, { expression: 'stern' }),
     say('3', ALISTAIR, 'Clan sans terre', 'Tu as marché avec nous depuis le début, Maelor. Ici, ça s’arrête.', null, { expression: 'stern' }),
-    say('4', MAELOR_TRAITOR, 'Maelor', 'Alors venez.', null, { expression: 'hostile' }),
+    say('4', MAELOR_TRAITOR, 'Maelor', 'Alors venez. Je compterai ce qu’il restera de vous.', null, { expression: 'hostile' }),
   ])),
   scene('finale_breach_aftermath', 'serpent_general_aftermath', 'La brèche vacille', chained([
     say('1', KESTREL, 'Éclaireuse', 'Maelor est tombé le premier. Il n’a rien dit de plus.', null, { expression: 'stern' }),
@@ -183,7 +181,8 @@ const FINALE_STATIC_TAIL: readonly DialogueSequence[] = Object.freeze([
     say('3', ALISTAIR, 'Clan sans terre', 'Alors il reste une chose à faire.', null, { expression: 'stern' }),
   ])),
   scene('finale_act_end', 'epilogue', 'Avant les épilogues', chained([
-    say('1', SERAPHINE, 'Chronique', 'Refermer la brèche, maintenant. Ce qui suivra dépendra de tout ce que nous avons fait depuis le premier Sceau.', null,
+    // Last narrative pass (A5), approved on 2026-11-13: the act closes on the first mission.
+    say('1', SERAPHINE, 'Chronique', 'Refermer la brèche, maintenant. Ce qui suivra dépendra de tout ce que nous avons fait depuis Bois-Clair.', null,
       { expression: 'stern', effects: [{ type: 'completePlateau', plateauId: 'finale' }] }),
   ])),
 ]);
@@ -237,10 +236,10 @@ function betrayalAdviceLine(flags: Readonly<Record<string, boolean>>): string {
   const advice = followedAdvice(flags);
   const arena = humiliatedChampions(flags);
   if (advice.length && arena) {
-    return `Vous m’avez écouté plus souvent que vous ne le croyez : ${listFrench(advice)}. Et dans cette arène encore, ${arena}. Chaque fois, vous avez servi ceux que je sers.`;
+    return `Vous m’avez écouté plus souvent que vous ne le croyez : ${listFrench(advice)}. Et dans cette arène encore, ${arena}. Chaque fois, vous avez servi ceux que je sers, et vos Sceaux m’ont ouvert cette arène.`;
   }
-  if (advice.length) return `Vous m’avez écouté plus souvent que vous ne le croyez : ${listFrench(advice)}. Chaque fois, vous avez servi ceux que je sers.`;
-  if (arena) return `Dans cette arène, vous m’avez enfin écouté : ${arena}. Vous avez servi ceux que je sers.`;
+  if (advice.length) return `Vous m’avez écouté plus souvent que vous ne le croyez : ${listFrench(advice)}. Chaque fois, vous avez servi ceux que je sers, et vos Sceaux m’ont ouvert cette arène.`;
+  if (arena) return `Dans cette arène, vous m’avez enfin écouté : ${arena}. Vous avez servi ceux que je sers, et vos Sceaux m’ont ouvert cette arène.`;
   // OD-2026-11-13-F (N2): after the Bois-Clair line, the fallback no longer says he was never heeded.
   if (boisClairLine(flags)) return 'Depuis, vous ne m’avez plus écouté. Peu importe : il me suffisait d’entrer avec vous dans cette arène.';
   return 'Vous ne m’avez jamais écouté. Peu importe : il me suffisait d’entrer avec vous dans cette arène.';
@@ -257,29 +256,45 @@ function finaleBetrayal(state: Readonly<GameState>): DialogueSequence {
     say('breach', MAELOR_TRAITOR, 'La brèche', 'Regardez.', 'champion', { expression: 'hostile', effects: [flag('finaleBreachOpened')] }),
     say('champion', SERAPHINE, 'Sage', 'La brèche… Elle s’ouvre au cœur de l’arène. Le champion du Serpent se relève, et ce n’est plus un homme.', 'flee', { expression: 'fearful' }),
     say('flee', MAELOR_TRAITOR, 'Maelor', 'Nous nous reverrons au cœur de la brèche.', 'alistair', { expression: 'hostile' }),
-    say('alistair', ALISTAIR, 'Clan sans terre', 'Maelor !', null, { expression: 'stern' }),
+    say('alistair', ALISTAIR, 'Clan sans terre', 'Maelor !', 'marian', { expression: 'stern' }),
+    // Last narrative pass (A2), approved word for word on 2026-11-13: his « Je dis seulement… » of every audience, paid.
+    say('marian', MARIAN, 'Soigneuse', '“Je dis seulement…” Il nous l’a répété à chaque Sceau. C’était pour eux qu’il parlait.', null, { expression: 'wounded' }),
   ]);
+}
+
+/** Last narrative pass (C1), approved word for word on 2026-11-13: the Tournament's final remembers the Lion's outcome. */
+function finalePreSerpentFinal(state: Readonly<GameState>): DialogueSequence {
+  const lion = state.flags.serpentGeneralDefeated
+    ? say('lion', KESTREL, 'Éclaireuse', 'Leur général est tombé sous nos lames, dans les terres du Lion. Le Serpent ne l’a pas oublié.', null, { expression: 'stern' })
+    : state.flags.lionTrialWon
+      ? say('lion', KESTREL, 'Éclaireuse', 'Leur général court toujours, depuis les terres du Lion. Le Serpent n’en a pas fini avec nous.', null, { expression: 'stern' })
+      : null;
+  return scene('finale_pre_serpent_final', 'pre_lion_chief', 'Finale du Tournoi', chained([
+    say('1', SERPENT_CHAMPION, 'Serpent', 'Depuis les plaines du Lion, le Serpent attend ce combat. Venez chercher votre victoire.', null, { expression: 'hostile' }),
+    lion,
+    say('2', ALISTAIR, 'Finale', 'Alors finissons-en.', null, { expression: 'stern' }),
+  ]));
 }
 
 function finaleAlliedRally(state: Readonly<GameState>): DialogueSequence {
   const flags = state.flags;
   const lion = flags.serpentGeneralDefeated
-    ? say('lion', ALARIC, 'Le Lion', 'Le Lion n’a pas oublié votre jugement : les guerriers d’Alaric tiennent parole.', null, { expression: 'stern' })
+    ? say('lion', ALARIC, 'Le Lion', 'Le Lion n’a pas oublié votre jugement. Mes guerriers marchent avec vous.', null, { expression: 'stern' })
     : flags.lionTrialWon
       ? say('lion', KESTREL, 'Le Lion', 'Pas de bannière du Lion. Alaric garde ses guerriers loin de nous.', null)
       : null;
   const bear = flags.bearMasterSpyDefeated
-    ? say('bear', BORIN, 'L’Ours', 'Vous avez rendu leurs galeries à mes mineurs, et les guerriers de Borin tiennent parole.', null, { expression: 'stern' })
+    ? say('bear', BORIN, 'L’Ours', 'Vous avez rendu leurs galeries à mes mineurs. Mes guerriers tiendront cette rue avec vous.', null, { expression: 'stern' })
     : flags.bearTrialWon
       ? say('bear', KESTREL, 'L’Ours', 'Des guerriers de l’Ours rôdent dans les rues : les guerriers de Borin n’ont pas oublié le Sceau arraché.', null, { expression: 'stern' })
       : null;
   const dragon = flags.dragonShadowShamanDefeated
-    ? say('dragon', KAELEN, 'Le Dragon', 'Le Dragon pèse longtemps, et il n’oublie pas : les gardiens de Kaelen tiennent parole.', null, { expression: 'stern' })
+    ? say('dragon', KAELEN, 'Le Dragon', 'Le Dragon pèse longtemps, et il n’oublie pas. Mes gardiens sont à vos côtés.', null, { expression: 'stern' })
     : flags.dragonTrialWon
       ? say('dragon', KESTREL, 'Le Dragon', 'Des gardiens du Dragon barrent une rue : les gardiens de Kaelen n’ont pas oublié l’épreuve.', null, { expression: 'stern' })
       : null;
   const scorpion = flags.scorpionShadowProphetDefeated
-    ? say('scorpion', INQUISITOR, 'Le Scorpion', 'Mes érudits ont tout consigné, même ceci : les érudits du Grand Inquisiteur tiennent parole.', null, { expression: 'stern' })
+    ? say('scorpion', INQUISITOR, 'Le Scorpion', 'Mes érudits ont tout consigné, même ceci : le Scorpion se tient avec vous.', null, { expression: 'stern' })
     : flags.scorpionTrialWon
       ? say('scorpion', KESTREL, 'Le Scorpion', 'Des érudits du Scorpion nous observent depuis les toits : les érudits du Grand Inquisiteur n’ont pas oublié.', null, { expression: 'stern' })
       : null;
@@ -335,6 +350,7 @@ export const FINALE_SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<Gam
   finale_raven_verdict: RAVEN_VERDICT,
   finale_wolf_verdict: WOLF_VERDICT,
   finale_phoenix_verdict: PHOENIX_VERDICT,
+  finale_pre_serpent_final: finalePreSerpentFinal,
   finale_betrayal: finaleBetrayal,
   finale_allied_rally: finaleAlliedRally,
   finale_last_vigil: finaleLastVigil,

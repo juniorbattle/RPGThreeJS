@@ -2,7 +2,8 @@
  * Operator remarks (2026-11-13): the six recruitable heroes stood about 1.5 times taller than the company in the static
  * dialogue tableaux, because their masters fill a taller canvas, and they stood in action poses. The tableau now shows
  * each hero's rest pose, drawn from its master and accepted by the operator, framed without resampling on the company's
- * canvas convention (tools/art/frame_tableau_actors.py); portraits, the company register and combat keep their pictures.
+ * canvas convention (tools/art/frame_tableau_actors.py). The company register and the speaker's portrait show the same rest
+ * pose since the operator's « Oui, les deux » (src/ui/CharacterUiIntegration.test.ts); combat keeps the master in `ui`.
  */
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
@@ -15,7 +16,7 @@ const HEROES = ['aldric', 'morvan', 'lyra', 'eldwin', 'talon', 'gunnar'] as cons
 const profiles = assets.characterProfiles as Record<string, { full: string; dialogue: string; ui: string; tableau?: string }>;
 
 describe('the recruitable heroes framed like the company in the tableaux (operator remark, 2026-11-13)', () => {
-  it('shows each hero’s re-framed picture in the tableau, and keeps its portrait and its master elsewhere', () => {
+  it('shows each hero’s re-framed picture in the tableau, and keeps its master in the profile for combat', () => {
     for (const hero of HEROES) {
       const tableau = `/assets/characters/pixel/tableau/${hero}.png`;
       expect(profiles[hero]?.tableau, hero).toBe(tableau);

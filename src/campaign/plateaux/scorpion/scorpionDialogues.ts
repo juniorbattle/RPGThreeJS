@@ -145,10 +145,6 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
     say('1', PROPHET, 'Vaincu', 'Les prophéties… ne sont que des mots. Ceux que je sers n’ont besoin que de mots, et d’un clan prêt à y croire.', null, { expression: 'wounded' }),
     say('2', SERAPHINE, 'Sage', 'Les Ombres, derrière un quatrième clan. Le Phénix n’a pas choisi seul sa haine du Scorpion : on la lui a soufflée.', null, { expression: 'mystical' }),
   ])),
-  scene('scorpion_inquisitor_pre_combat', 'lion_finale_judgement', 'Épreuve du Scorpion', chained([
-    say('1', INQUISITOR, 'Grand Inquisiteur', 'Vous voulez mon Sceau par la force plutôt que par ma confiance. Soit. Seule la vérité, même amère, peut sauver ce monde ; voyons ce que vaut la vôtre. Mes érudits et moi, contre votre compagnie.', null, { expression: 'hostile' }),
-    say('2', KESTREL, 'Épreuve', 'Nous l’assumerons.', null, { expression: 'stern' }),
-  ])),
   scene('scorpion_trial_aftermath', 'lion_finale_judgement', 'Le Sceau arraché', chained([
     say('1', INQUISITOR, 'Grand Inquisiteur', 'Le Sceau est à vous. Mes érudits l’ont consigné. Ne comptez plus sur le savoir du Scorpion le jour où vous en aurez besoin.', null, { expression: 'wounded' }),
   ])),
@@ -267,7 +263,8 @@ function scorpionTempleWitnesses(state: Readonly<GameState>): DialogueSequence {
       choice('Escorter les fidèles jusqu’au Grand Inquisiteur.', 'protected', [flag('scorpionWitnessesProtected'), reputation(1)], ['Des témoins libres devant le Grand Inquisiteur']),
       choice('Les réduire au silence, quel qu’en soit le prix.', 'silenced', [flag('scorpionWitnessesSilenced'), reputation(-2)], ['Aucun témoin devant le Grand Inquisiteur', 'Un acte que le désert retiendra']),
     ] }),
-    say('protected', FAITHFUL, 'Escorte', 'Merci. Nous marcherons avec vous, mais nous parlerons pour nous.', null, { expression: 'grateful' }),
+    // Last narrative pass (D1), approved on 2026-11-13: the witnesses no longer share one line across the plateaux.
+    say('protected', FAITHFUL, 'Escorte', 'Merci. Nous vous suivrons, mais devant le Grand Inquisiteur, c’est le Phénix qui parlera.', null, { expression: 'grateful' }),
     say('silenced', MARIAN, 'Soigneuse', 'Ils se taisent. Le désert, lui, garde toutes les traces.', null, { expression: 'wounded' }),
   ]);
 }
@@ -319,6 +316,20 @@ function scorpionProphetPreCombat(state: Readonly<GameState>): DialogueSequence 
   ]));
 }
 
+/**
+ * Last narrative pass (C2, C3), approved word for word on 2026-11-13: when the company claimed the Seal and was refused,
+ * the Grand Inquisiteur says so instead of « by force »; the line for a requested trial is unchanged.
+ */
+function scorpionInquisitorPreCombat(state: Readonly<GameState>): DialogueSequence {
+  const refused = Boolean(state.flags.scorpionFinaleTrialSelected && !state.flags.scorpionTrialRequested);
+  return scene('scorpion_inquisitor_pre_combat', 'lion_finale_judgement', 'Épreuve du Scorpion', chained([
+    say('1', INQUISITOR, 'Grand Inquisiteur', refused
+      ? 'Vous réclamez mon Sceau, mais rien dans mes registres ne me permet de vous le confier. Seule la vérité, même amère, peut sauver ce monde ; voyons ce que vaut la vôtre. Mes érudits et moi, contre votre compagnie.'
+      : 'Vous voulez mon Sceau par la force plutôt que par ma confiance. Soit. Seule la vérité, même amère, peut sauver ce monde ; voyons ce que vaut la vôtre. Mes érudits et moi, contre votre compagnie.', null, { expression: 'hostile' }),
+    say('2', KESTREL, 'Épreuve', 'Qu’ils consignent aussi ceci.', null, { expression: 'stern' }),
+  ]));
+}
+
 /** The Scorpion's state-built scenes, by dialogue ID. The judgement and epilogue come from the plateau finale engine. */
 export const SCORPION_SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<GameState>) => DialogueSequence>> = Object.freeze({
   scorpion_audience: scorpionAudience,
@@ -329,6 +340,7 @@ export const SCORPION_SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<G
   scorpion_corrupted_texts: scorpionCorruptedTexts,
   scorpion_vigil: scorpionVigil,
   scorpion_prophet_pre_combat: scorpionProphetPreCombat,
+  scorpion_inquisitor_pre_combat: scorpionInquisitorPreCombat,
 });
 
 /** Static Scorpion dialogues registered in the post-demo content registry. */

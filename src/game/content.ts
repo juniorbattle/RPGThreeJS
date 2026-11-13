@@ -620,7 +620,7 @@ const rawDialogues = [
     id: 'village_choice',
     sceneArtId: 'village_choice',
     steps: [
-      { id: '1', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'fearful', tag: 'En détresse', text: 'Ils emmènent les enfants vers le nord. Les coffres du village brûlent déjà. Aidez-nous — ils reviendront avant la nuit.', side: 'left', next: '1a', effects: [], choices: [] },
+      { id: '1', speaker: 'Villageoise de Bois-Clair', actorId: 'villageoise', expression: 'fearful', tag: 'En détresse', text: 'Ils emmènent les enfants vers le nord. Ils emportent déjà les coffres du village. Aidez-nous — ils reviendront avant la nuit.', side: 'left', next: '1a', effects: [], choices: [] },
       { id: '1a', speaker: 'Marian', actorId: 'marian', expression: 'fearful', tag: 'Village divisé', text: 'Les blessés remplissent la chapelle, mais les flammes coupent la place en deux. Au nord, les captifs. Au sud, les réserves et les puits que les Serpents veulent empoisonner avant leur retraite.', side: 'left', next: '2', effects: [], choices: [] },
       { id: '2', speaker: 'Pillard Serpent', actorId: 'serpent_raider', expression: 'hostile', tag: 'Menace', text: 'Le Lion n’est pas là. Personne ne vient pour Bois-Clair. Ceux qui prennent les armes meurent les premiers.', side: 'right', next: '2a', effects: [], choices: [] },
       { id: '2a', speaker: 'Kestrel', actorId: 'kestrel', expression: 'stern', tag: 'Plan Serpent', text: 'Ils attendent que nous nous divisions. Les captifs partiront par le vieux pont ; les coffres, par la porte basse. Nous pouvons frapper fort d’un côté, pas tenir les deux avec cette compagnie.', side: 'left', next: '3', effects: [], choices: [] },

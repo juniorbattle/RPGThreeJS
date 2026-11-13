@@ -22,7 +22,8 @@ describe('the hero who accompanies the advisers, plateau by plateau', () => {
       expect(steps(arrival)[0]!.actorId).toBe(hero);
       expect(steps(audience).find((step) => step.id === 'alistair')!.actorId).toBe(hero);
       expect(steps(audience).find((step) => step.id === 'alistair')!.tag).toBe('Clan sans terre');
-      expect(steps(trial).find((step) => step.text === 'Nous l’assumerons.')!.actorId).toBe(hero);
+      // The company's answer to the chief's trial (its words differ by plateau since the last narrative pass, C3).
+      expect(steps(trial).find((step) => step.id === '2')!.actorId).toBe(hero);
       expect(steps(vigil)[0]!.actorId).toBe(hero);
       expect(steps(road).find((step) => step.id === 'choice')!.actorId).toBe('alistair');
       for (const id of [arrival, audience, trial, vigil]) expect(steps(id).some((step) => step.actorId === 'alistair'), id).toBe(false);
