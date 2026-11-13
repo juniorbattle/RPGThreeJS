@@ -30,7 +30,7 @@ vitest loads `vite.config.ts`, which prints `[VFX Preview]` lines. They are harm
 | `tools/combat-arena/decor-stability.mjs` | args `<label> [encounter label]`; env `DECOR_VIEWPORT`, `DECOR_DPR`; runs on the real GPU (`--use-angle=d3d11`), needs the dev server on 5173 | `tmp/decor-stability/`: screenshot, flip and step heat maps | none of its own |
 | `tools/dialogue/run-dialogue-ui-staging-qa.mjs` | spawns vite with `--strictPort` | read the script | read the script |
 
-Other drivers (`tools/ui-*-qa.mjs`, `tools/refuge-hub-continuity-1-qa.mjs`, `tools/combat-*-qa.mjs`): read the script header for flags, ports and output before running.
+Other drivers (`tools/ui-*-qa.mjs`, `tools/refuge-hub-continuity-1-qa.mjs`, `tools/combat-*-production-qa.mjs`): read the script header for flags, ports and output before running.
 
 Historical only: `tools/cinematics/run_eight_slot_browser_qa.mjs` and `run_production_eight_slot_media_qa.mjs` certify the production videos retired by OD-2026-10-24-A. Their past results keep their own scope; do not replay them as current proof.
 
