@@ -49,6 +49,7 @@ import { FINALE_TOURNAMENT_BOARD_IMAGE } from '../campaign/plateaux/finale/final
 import { provisionalMark } from './postDemoContent';
 import { sceneMood, type NarrativeMood } from '../audio/moods';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
+import type { LivingScript } from '../ui/living/LivingTableauPlayer';
 import { CREDITS_LINES, hasCredits } from '../ui/credits';
 import { RefugeHireView } from '../ui/RefugeHireView';
 import { canRecruit, hireAtRefuge, refugeHireOffers } from './refugeRecruitment';
@@ -479,7 +480,7 @@ export class GameApp {
           <div class="qa-lab__header-actions"><button type="button" data-qa-sounds>Laboratoire d'écoute</button><button type="button" data-qa-back>Retour au titre</button></div>
         </header>
         <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
-        <div class="qa-lab__header-actions" aria-label="Tableaux vivants"><button type="button" data-qa-living="bois_clair_arrival">Tableau vivant · Arrivée à Bois-Clair</button><button type="button" data-qa-living="bois_clair_saved">Bois-Clair sauvé</button><button type="button" data-qa-living="bois_clair_sacrificed">Bois-Clair sacrifié</button><button type="button" data-qa-living="lion_judgement">Jugement du Lion</button><button type="button" data-qa-living="alaric_audience_arrival">Audience d’Alaric</button><button type="button" data-qa-living="serpent_route_ending">Fin Serpent</button><button type="button" data-qa-living="lion_trial_route_ending">Fin de l’épreuve</button></div>
+        <div class="qa-lab__header-actions" aria-label="Tableaux vivants"><button type="button" data-qa-living="bois_clair_arrival">Tableau vivant · Arrivée à Bois-Clair</button><button type="button" data-qa-living="bois_clair_saved">Bois-Clair sauvé</button><button type="button" data-qa-living="bois_clair_sacrificed">Bois-Clair sacrifié</button><button type="button" data-qa-living="lion_judgement">Jugement du Lion</button><button type="button" data-qa-living="alaric_audience_arrival">Audience d’Alaric</button><button type="button" data-qa-living="serpent_route_ending">Fin Serpent</button><button type="button" data-qa-living="lion_trial_route_ending">Fin de l’épreuve</button><button type="button" data-qa-living-mockup="bear_arrival_moment">Maquette · Arrivée chez Borin</button></div>
         <div class="qa-lab__header-actions" aria-label="Après-démo"><button type="button" data-qa-postdemo="honour">Ours · depuis une fin du Lion par l’honneur</button><button type="button" data-qa-postdemo="force">Ours · depuis une fin du Lion par la force</button><button type="button" data-qa-postdemo="dragon-honour">Dragon · depuis une fin de l’Ours par l’honneur</button><button type="button" data-qa-postdemo="dragon-force">Dragon · depuis une fin de l’Ours par la force</button><button type="button" data-qa-postdemo="scorpion-honour">Scorpion · depuis une fin du Dragon par l’honneur</button><button type="button" data-qa-postdemo="scorpion-force">Scorpion · depuis une fin du Dragon par la force</button><button type="button" data-qa-postdemo="finale-honour">Acte final · depuis une fin du Scorpion par l’honneur</button><button type="button" data-qa-postdemo="finale-force">Acte final · depuis une fin du Scorpion par la force</button><button type="button" data-qa-postdemo="ending-respect">Fin · le Respect</button><button type="button" data-qa-postdemo="ending-fear">Fin · la Crainte</button><button type="button" data-qa-postdemo="ending-balance">Fin · l’Équilibre</button></div>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
         <div class="qa-lab__params">
@@ -545,6 +546,18 @@ export class GameApp {
       if (!following) return;
       const before = this.uiSounds.musicSnapshot().context;
       void this.playLivingTableau(id, following).then(() => {
+        this.uiSounds.setMusicContext(before);
+        this.renderQaLab();
+      });
+    }));
+    // Dev-only mock-ups of proposed post-demo living tableaux (PLATEAU_MOMENTS_DRAFT_2026-11-13), not wired to the game.
+    this.chrome.querySelectorAll<HTMLButtonElement>('[data-qa-living-mockup]').forEach((button) => button.addEventListener('click', () => {
+      if (!import.meta.env.DEV) return;
+      const id = button.dataset.qaLivingMockup ?? '';
+      const before = this.uiSounds.musicSnapshot().context;
+      void import('../ui/living/livingMockups').then(async ({ LIVING_MOCKUPS }) => {
+        const mockup = LIVING_MOCKUPS[id];
+        if (mockup) await this.presentLivingScript(mockup.script, mockup.following);
         this.uiSounds.setMusicContext(before);
         this.renderQaLab();
       });
@@ -801,9 +814,15 @@ export class GameApp {
    * and writes no game state; a missing picture skips it. Returns whether it was shown.
    */
   private async playLivingTableau(id: string, followingDialogueId: string): Promise<boolean> {
-    const [{ LIVING_TABLEAUX }, { LivingTableauPlayer }] = await Promise.all([import('../ui/living/livingTableaux'), import('../ui/living/LivingTableauPlayer')]);
+    const { LIVING_TABLEAUX } = await import('../ui/living/livingTableaux');
     const script = LIVING_TABLEAUX[id];
-    if (!script || this.disposed) return false;
+    return script ? this.presentLivingScript(script, followingDialogueId) : false;
+  }
+
+  /** Plays one living tableau script with the mood of the dialogue it precedes; the QA lab's mock-ups use it directly. */
+  private async presentLivingScript(script: LivingScript, followingDialogueId: string): Promise<boolean> {
+    const { LivingTableauPlayer } = await import('../ui/living/LivingTableauPlayer');
+    if (this.disposed) return false;
     this.setMode('NARRATIVE', { mood: sceneMood(followingDialogueId) });
     const player = new LivingTableauPlayer(this.root);
     this.livingPlayer = player;

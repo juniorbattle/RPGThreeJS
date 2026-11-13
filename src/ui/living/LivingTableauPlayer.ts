@@ -1,6 +1,6 @@
 import type { SheetArt, SheetBook, ShotPainter } from '../opening/openingPainters';
 import { pixelFigure } from '../opening/openingLayer';
-import { cameraAt, type CameraKey, type ViewCamera } from '../opening/openingShots';
+import { cameraAt, OPENING_FRAME, type CameraKey, type ImageFrame, type ViewCamera } from '../opening/openingShots';
 import { resolveCharacterVisualProfile } from '../../render/CharacterVisualRegistry';
 import { prefersReducedMotion } from '../ReducedMotion';
 import './living-tableau.css';
@@ -14,6 +14,8 @@ export interface LivingShot {
   to: CameraKey;
   /** Where the ground meets the horizon: the near layer grows from here as the camera moves in. */
   vanishing: { x: number; y: number };
+  /** The painting's size in image pixels when it is not the Lion's 1672 × 941 (the post-demo tableaux are 1536 × 1024). */
+  frame?: ImageFrame;
 }
 
 /**
@@ -40,6 +42,12 @@ const CUT_SECONDS = 0.45;
 const READY_TIMEOUT_MS = 5000;
 const LEAVE_MS = 700;
 const PARALLAX_NEAR = 0.05;
+
+/** A plate shows its painting at its own size; the Lion's size stays the stylesheet's, so its tableaux are unchanged. */
+function plateSize(shot: LivingShot): string {
+  const frame = shot.frame;
+  return frame && (frame.width !== OPENING_FRAME.width || frame.height !== OPENING_FRAME.height) ? ` style="width:${frame.width}px;height:${frame.height}px"` : '';
+}
 
 function loadImage(url: string): Promise<HTMLImageElement | null> {
   return new Promise((resolve) => {
@@ -96,7 +104,7 @@ export class LivingTableauPlayer {
     element.setAttribute('aria-label', script.label);
     element.innerHTML = `
       <div class="living-tableau__scene">
-        ${script.shots.map(shot => `<div class="living-tableau__plate" data-plate="${shot.id}"><img alt="" src="${shot.image}"><img class="is-near" alt="" src="${shot.image}"></div>`).join('')}
+        ${script.shots.map(shot => { const size = plateSize(shot); return `<div class="living-tableau__plate" data-plate="${shot.id}"><img alt="" src="${shot.image}"${size}><img class="is-near" alt="" src="${shot.image}"${size}></div>`; }).join('')}
         <canvas class="living-tableau__canvas" aria-hidden="true"></canvas>
       </div>
       <div class="living-tableau__vignette" aria-hidden="true"></div>
@@ -224,7 +232,7 @@ export class LivingTableauPlayer {
     const element = this.element;
     if (!element) return;
     const progress = this.reduced ? 1 : this.seconds / shot.seconds;
-    const camera = cameraAt(shot, progress, this.width, this.height, this.bar);
+    const camera = cameraAt(shot, progress, this.width, this.height, this.bar, shot.frame);
     this.placePlate(shot, camera, progress);
     const last = this.script?.shots.at(-1) === shot;
     element.querySelector<HTMLElement>('[data-veil]')!.classList.toggle('is-down', !last && shot.seconds - this.seconds < CUT_SECONDS || this.seconds < 0.05);

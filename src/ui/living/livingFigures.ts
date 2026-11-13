@@ -7,8 +7,12 @@ import { clamp01, flicker, GRAIN, PixelFire, smooth, type Rgb } from '../opening
  * their place and breathe there, lit by the scene, and extras who pass or stand as moving scenery.
  */
 
-/** A narrative actor: where they start, where they stop, and when. Under reduced motion they fade in where they stop. */
-export interface Walker { id: string; at: number; from: readonly [number, number]; to: readonly [number, number]; facing: 'LEFT' | 'RIGHT'; speed: number }
+/**
+ * A narrative actor: where they start, where they stop, and when. Under reduced motion they fade in where they stop.
+ * `stature` brings a figure drawn from a larger sheet back to its height among the others: a post-demo chief comes from a
+ * boss sheet two cells high, and stands in a tableau as a tall man, not a giant.
+ */
+export interface Walker { id: string; at: number; from: readonly [number, number]; to: readonly [number, number]; facing: 'LEFT' | 'RIGHT'; speed: number; stature?: number }
 
 /** An extra: no dialogue, focus or facing relation, drawn behind the actors. `from` equal to `to` stands in place. */
 export interface Extra { id: string; at: number; seconds: number; from: readonly [number, number]; to: readonly [number, number]; torch?: boolean; pace?: number }
@@ -39,7 +43,7 @@ export function placeWalker(walker: Walker, index: number, art: SheetArt, t: num
   const x = fx + (tx - fx) * arrive(p), y = fy + (ty - fy) * arrive(p);
   const shown = reduced ? smooth((t - walker.at * 0.45) / 0.9) : smooth(since / 0.6);
   // A step every so many pixels walked, in proportion to the figure's size on screen.
-  const scale = depth(y) * LIVING_STATURE;
+  const scale = depth(y) * LIVING_STATURE * (walker.stature ?? 1);
   const stride = (Math.hypot(x - fx, y - fy) / (28 * scale)) * Math.PI;
   const walking = p > 0 && p < 1;
   const pose = walking ? (Math.sin(stride) > 0 ? 'idle' : 'idle_b') : idlePose(art, t, index);

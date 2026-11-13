@@ -1,6 +1,7 @@
 import type { PaintFrame } from '../opening/openingPainters';
 import { softPuff } from '../opening/openingPainters';
 import { glow, GRAIN, PropLayer, seeded, type Rgb } from '../opening/openingLayer';
+import { OPENING_FRAME, type ImageFrame } from '../opening/openingShots';
 
 /**
  * Weather and light for the living tableaux of set 1.14.0 (OD-2026-11-04-B), in image pixels: clouds and mist that
@@ -92,15 +93,15 @@ export interface Banner { x: number; y: number; width: number; height: number; a
  * Painted banners stirring in the wind: the picture's own cloth, redrawn row by row and shifted by a wave that grows
  * from the pole to the hem. A few pixels at most, on the tableau's grain, so the painting stays the painting.
  */
-export function bannerSway(src: string, banners: readonly Banner[], seed: number) {
+export function bannerSway(src: string, banners: readonly Banner[], seed: number, frame: ImageFrame = OPENING_FRAME) {
   const image = new Image();
   image.src = src;
-  const layer = new PropLayer();
+  const layer = new PropLayer(frame);
   return ({ ctx, camera, seconds }: PaintFrame) => {
     if (!image.complete || !image.naturalWidth) return;
     const props = layer.begin();
     if (!props) return;
-    const k = image.naturalWidth / 1672;
+    const k = image.naturalWidth / frame.width;
     banners.forEach((banner, index) => {
       for (let row = 0; row < banner.height; row += GRAIN) {
         const reach = row / banner.height;

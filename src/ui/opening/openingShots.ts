@@ -5,6 +5,10 @@ import { assets } from '../../render/assetManifest';
 export const IMAGE_WIDTH = 1672;
 export const IMAGE_HEIGHT = 941;
 
+/** The size of a painting in image pixels: the opening's and the Lion's tableaux, unless a shot says otherwise. */
+export interface ImageFrame { width: number; height: number }
+export const OPENING_FRAME: ImageFrame = Object.freeze({ width: IMAGE_WIDTH, height: IMAGE_HEIGHT });
+
 export type OpeningShotId = ProloguePanel['id'];
 
 export interface CameraKey { x: number; y: number; zoom: number }
@@ -82,14 +86,17 @@ export function easeShot(progress: number): number {
 
 export interface ViewCamera { scale: number; x: number; y: number }
 
-/** Where the image sits on screen: it always covers the view, and a portrait view fits the band between the bars. */
-export function cameraAt(shot: Pick<OpeningShot, 'from' | 'to'>, progress: number, width: number, height: number, bar: number): ViewCamera {
+/**
+ * Where the image sits on screen: it always covers the view, and a portrait view fits the band between the bars. A
+ * painting of another size (the post-demo tableaux, 1536 × 1024) passes its own frame.
+ */
+export function cameraAt(shot: Pick<OpeningShot, 'from' | 'to'>, progress: number, width: number, height: number, bar: number, frame: ImageFrame = OPENING_FRAME): ViewCamera {
   const p = easeShot(progress);
   const zoom = shot.from.zoom + (shot.to.zoom - shot.from.zoom) * p;
   const cx = shot.from.x + (shot.to.x - shot.from.x) * p, cy = shot.from.y + (shot.to.y - shot.from.y) * p;
-  const fit = Math.max(width / IMAGE_WIDTH, (width >= height ? height : height - bar * 2) / IMAGE_HEIGHT);
+  const fit = Math.max(width / frame.width, (width >= height ? height : height - bar * 2) / frame.height);
   const scale = fit * zoom;
-  const x = Math.min(0, Math.max(width - IMAGE_WIDTH * scale, width / 2 - cx * scale));
-  const y = Math.min(0, Math.max(height - IMAGE_HEIGHT * scale, height / 2 - cy * scale));
+  const x = Math.min(0, Math.max(width - frame.width * scale, width / 2 - cx * scale));
+  const y = Math.min(0, Math.max(height - frame.height * scale, height / 2 - cy * scale));
   return { scale, x, y };
 }

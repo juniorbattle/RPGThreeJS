@@ -1,5 +1,5 @@
 import type { PixelSheetEntry } from '../../combat/pixel/PixelSpriteSheets';
-import { IMAGE_HEIGHT, IMAGE_WIDTH, type ViewCamera } from './openingShots';
+import { OPENING_FRAME, type ImageFrame, type ViewCamera } from './openingShots';
 
 export type Rgb = readonly [number, number, number];
 export interface Light { x: number; y: number; radius: number; color: Rgb; power: number; seed: number }
@@ -342,9 +342,10 @@ export class PropLayer {
   /** Only a layer that is lit needs this second canvas: it is made on the first `shade`. */
   private lit: { canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D | null } | null = null;
 
-  constructor() {
-    this.canvas.width = IMAGE_WIDTH;
-    this.canvas.height = IMAGE_HEIGHT;
+  /** The layer has the painting's own size: the opening's by default, or a post-demo tableau's. */
+  constructor(frame: ImageFrame = OPENING_FRAME) {
+    this.canvas.width = frame.width;
+    this.canvas.height = frame.height;
     this.ctx = this.canvas.getContext('2d');
   }
 
@@ -365,8 +366,8 @@ export class PropLayer {
     const { ctx, canvas } = this;
     if (!this.lit) {
       const lit = document.createElement('canvas');
-      lit.width = IMAGE_WIDTH;
-      lit.height = IMAGE_HEIGHT;
+      lit.width = canvas.width;
+      lit.height = canvas.height;
       this.lit = { canvas: lit, ctx: lit.getContext('2d') };
     }
     const { canvas: lit, ctx: litCtx } = this.lit;
