@@ -6100,7 +6100,7 @@
       "group": "heroes",
       "master": "public/assets/characters/pixel/archive/non-demo/talon.png",
       "worldHeight": 2.05,
-      "masterSha256": "e27a6d2daca531c2a112875094bf91cc36cde056fa46d8bb64cfbc739fd0440f",
+      "masterSha256": "8a41d0d88698738ff6d8eab4e3dafb9172145e4cd78bb74697ee7eb8c0cac9e4",
       "masterFigureHeightPx": 580,
       "storeScale": 0.56552,
       "poses": {
