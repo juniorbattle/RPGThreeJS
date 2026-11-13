@@ -51,6 +51,26 @@ export function withMeeting(steps: readonly DialogueStep[], meeting: HeroMeeting
   return [...steps.map((step) => meeting.links[step.id] ? { ...step, next: meeting.links[step.id]! } : step), ...meeting.steps];
 }
 
+/**
+ * OD-2026-11-13-F (N1): the part of a meeting that follows the given host steps only, every line unchanged. A host
+ * scene whose branch leads to a fight keeps the other branch's part, and the same scene, reopened after the victory,
+ * plays the fight branch's part: the hero reacts to what has really happened.
+ */
+export function withMeetingPart(steps: readonly DialogueStep[], meeting: HeroMeeting, hostIds: readonly string[]): DialogueStep[] {
+  const links = Object.fromEntries(Object.entries(meeting.links).filter(([host]) => hostIds.includes(host)));
+  const reachable = new Set<string>();
+  const pending = Object.values(links);
+  while (pending.length) {
+    const id = pending.pop()!;
+    if (reachable.has(id)) continue;
+    reachable.add(id);
+    const step = meeting.steps.find((candidate) => candidate.id === id);
+    if (step?.next) pending.push(step.next);
+    for (const option of step?.choices ?? []) if (option.next) pending.push(option.next);
+  }
+  return withMeeting(steps, { ...meeting, links, steps: meeting.steps.filter((step) => reachable.has(step.id)) });
+}
+
 // ---------------------------------------------------------------------------------------------------------------------
 // Ours
 

@@ -41,6 +41,11 @@
    "summary": "Le hameau a dû payer la compagnie pour sa protection."
   },
   {
+   "id": "dragonVillageRaidRepelled",
+   "kind": "system",
+   "summary": "Le raid du Loup sur le hameau a été repoussé (OD-2026-11-13-F, N1) : fait technique qui rouvre la scène du hameau après le combat ; aucun jugement ne le lit."
+  },
+  {
    "id": "dragonTrapsDisarmed",
    "kind": "flag",
    "summary": "Les pièges du Loup ont été désarmés sur le sentier des pèlerins."
@@ -289,7 +294,10 @@
      "sets": [
       "dragonVillageProtected"
      ],
-     "reputation": 1
+     "reputation": 1,
+     "leadsTo": [
+      "dragonVillageRaidRepelled"
+     ]
     },
     {
      "choiceIndex": 1,

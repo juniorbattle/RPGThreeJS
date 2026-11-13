@@ -60,6 +60,11 @@
    "summary": "Le minerai sombre du convoi a été saisi pour le clan."
   },
   {
+   "id": "bearConvoyEscortDefeated",
+   "kind": "system",
+   "summary": "L’escorte du convoi a été vaincue (OD-2026-11-13-F, N1) : fait technique qui rouvre la scène du convoi après le combat ; aucun jugement ne le lit."
+  },
+  {
    "id": "bearRelicReturned",
    "kind": "flag",
    "summary": "L’ancien artefact des galeries a été rendu au sanctuaire de l’Ours."
@@ -415,7 +420,10 @@
      "sets": [
       "bearConvoySeized"
      ],
-     "reputation": -1
+     "reputation": -1,
+     "leadsTo": [
+      "bearConvoyEscortDefeated"
+     ]
     }
    ],
    "echoes": [

@@ -79,6 +79,8 @@ export const BEAR_FINALE: PlateauFinaleDefinition = Object.freeze<PlateauFinaleD
   flags: { trialRequested: 'bearTrialRequested', honourSelected: 'bearFinaleHonourSelected', trialSelected: 'bearFinaleTrialSelected', seal: 'bearSealAcknowledged' },
   combats: { honour: 'bear_master_spy', force: 'bear_borin' },
   victoryFacts: Object.freeze({
+    // OD-2026-11-13-F (N1): a technical fact that reopens the convoy scene after the fight; no judgement reads it.
+    bear_convoy_escort: Object.freeze({ bearConvoyEscortDefeated: true }),
     bear_mines_defense: Object.freeze({ bearRavenMinersDefeated: true }),
     bear_mines_seizure: Object.freeze({ bearRavenMinersDefeated: true }),
     bear_master_spy: Object.freeze({ bearMasterSpyDefeated: true, bearSealAcknowledged: true }),

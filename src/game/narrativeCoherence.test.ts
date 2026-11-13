@@ -41,7 +41,7 @@ describe('the Lion consequence map passes the narrative coherence validator', ()
     // Plus four echoes in the final act (Lot 4): the Shadow evidence and the outcome, at the vigil and the rally; and six
     // in the epilogues (Lot 5): its outcome named in the Seals' recital of each ending.
     expect(rest).toEqual({ dialogues: 75, steps: 256, facts: 64, majorChoices: 13 });
-    expect(implementedEchoes + plannedEchoes).toBe(48);
+    expect(implementedEchoes + plannedEchoes).toBe(50); // OD-2026-11-13-F (N2): Bois-Clair's coffers and silenced witnesses echoed at the betrayal.
   });
 
   it('documents every known gap as an exception with its reason', () => {
@@ -148,7 +148,7 @@ describe('the Bear draft passes the narrative coherence validator (Lot 1)', () =
     expect(report.excused).toEqual([]);
     // Its dark-ore echo into the Scorpion is implemented since Lot 3, its four into the final act since Lot 4; plus six
     // in the epilogues (Lot 5).
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11 });
+    expect(report.stats).toMatchObject({ facts: 30, majorChoices: 11 }); // with the fork's technical victory fact (OD-2026-11-13-F, N1)
     expect(report.stats.implementedEchoes + report.stats.plannedEchoes).toBe(41);
   });
 
@@ -167,7 +167,7 @@ describe('the Dragon draft passes the narrative coherence validator (Lot 2)', ()
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
     // Its three echoes into the Scorpion are implemented since Lot 3, its four into the final act since Lot 4.
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11 });
+    expect(report.stats).toMatchObject({ facts: 30, majorChoices: 11 }); // with the fork's technical victory fact (OD-2026-11-13-F, N1)
     expect(report.stats.implementedEchoes + report.stats.plannedEchoes).toBe(42);
   });
 
@@ -188,7 +188,7 @@ describe('the Scorpion draft passes the narrative coherence validator (Lot 3)', 
     expect(report.errors).toEqual([]);
     expect(report.excused).toEqual([]);
     // Plus its five echoes into the final act, implemented since Lot 4, and six in the epilogues (Lot 5).
-    expect(report.stats).toMatchObject({ facts: 29, majorChoices: 11 });
+    expect(report.stats).toMatchObject({ facts: 30, majorChoices: 11 }); // with the fork's technical victory fact (OD-2026-11-13-F, N1)
     expect(report.stats.implementedEchoes + report.stats.plannedEchoes).toBe(39);
   });
 
@@ -300,7 +300,7 @@ describe('the final act consequence map is written first, as a design (Lot 4)', 
 
   it('names a real place of the final act for every echo the four plateaux hold for it, all implemented', () => {
     const into = [lionMap, bearMap, dragonMap, scorpionMap].flatMap(allEchoes).filter((echo) => echo.chapterId === 'finale' && echo.scope !== 'epilogue');
-    expect(into).toHaveLength(17);
+    expect(into).toHaveLength(19); // the two Lion echoes at the betrayal (OD-2026-11-13-F, N2) included
     expect(into.every((echo) => echo.status === 'implemented')).toBe(true);
     for (const echo of into) {
       expect(echo.nodeId, echo.id).not.toBe('finale-tbd');

@@ -80,6 +80,8 @@ export const DRAGON_FINALE: PlateauFinaleDefinition = Object.freeze<PlateauFinal
   flags: { trialRequested: 'dragonTrialRequested', honourSelected: 'dragonFinaleHonourSelected', trialSelected: 'dragonFinaleTrialSelected', seal: 'dragonSealAcknowledged' },
   combats: { honour: 'dragon_shadow_shaman', force: 'dragon_kaelen' },
   victoryFacts: Object.freeze({
+    // OD-2026-11-13-F (N1): a technical fact that reopens the hamlet scene after the fight; no judgement reads it.
+    dragon_village_raid: Object.freeze({ dragonVillageRaidRepelled: true }),
     dragon_lair_assault: Object.freeze({ dragonWolfChiefDefeated: true }),
     dragon_lair_seizure: Object.freeze({ dragonWolfChiefDefeated: true }),
     dragon_shadow_shaman: Object.freeze({ dragonShadowShamanDefeated: true, dragonSealAcknowledged: true }),
