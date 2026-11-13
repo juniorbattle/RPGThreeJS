@@ -70,11 +70,30 @@ Soit 15 dialogues et 43 figurants, quatre au plus par tableau. C'est bien en des
 | `finale_arrival`, `finale_arena_chaos`, verdicts du Tournoi | la foule est déjà peinte dans les tribunes ; des civils sur le sable de l'arène seraient faux |
 | `finale_capital_arrival`, `finale_allied_rally` | le texte ne place aucun civil : les démons tiennent les rues, et les bannières sont celles des clans |
 | `first_refuge_gathering`, `ate_first_refuge_watch` | la scène du premier refuge est une décision ouverte de l'opérateur |
-| `bear_outpost_gathering`, `dragon_hermitage_gathering`, `scorpion_oasis_gathering` | les gens nommés sont des guerriers de l'Ours, des moines ou des érudits, pour qui il n'existe aucun sprite civil |
+| `bear_outpost_gathering`, `scorpion_oasis_gathering`, `scorpion_scholars` | les gens nommés sont des guerriers de l'Ours ou des érudits du Scorpion, pas des civils : voir l'option B |
+| `dragon_hermitage_gathering` | les gens nommés sont des moines, et aucun sprite de moine n'existe |
 | camp et cour du Lion, `final_refuge` | des soldats du Lion, pas des civils ; au refuge final, « des familles attendent » derrière la compagnie, pas sur place |
 | dialogues de route, de ruines, d'avant-combat et de repaire | lieux sauvages ou ennemis, sans civils dans le texte |
 
 Ainsi, l'acte final n'a aucun dialogue habillé : ses civils sont peints dans les tribunes, ou la scène les dit absents. L'habiller demanderait d'écrire un fait nouveau.
+
+La session de récit a laissé des pistes dans la section E de son brouillon (`HIGH_STAKES_NARRATIVE_PASS_DRAFT_2026-11-13.md`). Elles sont toutes reprises ou écartées ci-dessus, avec leur raison. Le rassemblement du camp du Lion n'a que des soldats du Lion. Les miliciens ont bien le visage couvert, vérifié en grand, mais ils restent écartés pour la raison donnée en section 1.
+
+### Option B : les figures génériques que le texte nomme
+
+L'opérateur avait parlé de « civils et personnages génériques ». La tâche s'en tient aux civils, comme son brief le demande. Mais trois scènes nomment des figures génériques du clan hôte, dont le sprite existe et a le visage couvert (vérifié en grand) :
+
+| Dialogue | Ce que dit le texte | Figurants possibles |
+| --- | --- | --- |
+| `bear_outpost_gathering` | « Les guerriers de l'Ours ne nous quittent pas des yeux. » | deux ou trois `bear_warrior` (heaume fermé) |
+| `scorpion_oasis_gathering` | « Une oasis tenue par les érudits du Scorpion. » | deux `scorpion_scholar` (capuche et voile) |
+| `scorpion_scholars` | « Un camp d'érudits du Scorpion sur la piste du temple. » | deux `scorpion_scholar` en retrait de celui qui parle |
+
+Si l'opérateur prend l'option B, seule la puce « Sprites » du texte d'amendement change :
+
+> - **Sprites.** Only existing approved masters of the dialogue's own part, unchanged: its civilians (the Lion's villagers, refugees, survivor and wounded merchant, the Bear's miner, the Dragon's villager and pilgrim, the Scorpion's faithful and captive, and the final act's citizen and spectator) and, where the dialogue's lines name them, the generic members of its host clan (the Bear's warriors, the Scorpion's scholars). No generated or new image, variant, recolour or named character. Every reused master keeps a covered face (OD-2026-11-11-G).
+
+Les phrases du `README` et du manifeste qui disent « civilian masters » deviennent alors « civilian masters and the generic clan members its lines name ».
 
 ## 3. Rendu proposé
 
@@ -140,6 +159,7 @@ Le texte de la villageoise sur la première maquette est encore l'ancien. La ses
 
 1. Le texte d'amendement de la section 4, mot à mot.
 2. La liste de la section 2 : les 15 dialogues et leurs figurants, dont la reprise du sprite du témoin dans l'Ours, le Dragon et le Scorpion. L'acte final reste sans figurants.
+3. L'option B : non par défaut, comme le brief. Avec l'option B, trois dialogues s'ajoutent et la puce « Sprites » prend la formulation de rechange.
 
 Ensuite viennent la relecture indépendante du diff réel, le commit de la décision, le commit d'amendement, le commit de baseline, puis l'intégration au jeu et la vérification dans le navigateur.
 
