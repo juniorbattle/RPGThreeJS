@@ -168,7 +168,7 @@ Dans la démo, `prepare` est presque le maître : même attitude debout, recalé
 ### Ce qu'une pose doit satisfaire
 
 1. PNG RGBA, coins transparents, aucun pixel #FF00FF, aucun fond blanc, aucun artefact violet, aucune ombre au sol.
-2. La même échelle que le maître sur toutes les poses : un seul facteur par unité, jamais de redimensionnement pose par pose (rejet de la doctrine).
+2. Le même corps, à la même taille que le maître, dans toutes les poses. Le modèle dessine chaque pose à sa propre échelle (pilote, §8). Chaque pose est donc ramenée à l'échelle du maître, mesurée sur ses parties rigides (bouclier, heaume, tête d'arme) ; elle n'est jamais calée sur une boîte, ce que la doctrine rejette.
 3. Les pieds sur une seule ligne, l'ancre aux pieds : 512×512, ou 640×512 pour une attaque large.
 4. Le même côté que le maître ; `dash` et `attack` partent vers l'avant.
 5. La même identité : armure, couleurs, proportions, casque ou capuche fermé (OD-2026-11-11-G), et la même arme, dans la même main, que le moteur de combat.
@@ -187,7 +187,7 @@ Il s'agit d'ajouter un type `pose` à `tools/art/finalImages.ts` : un plan des p
 - **Le reste** : la règle de couleur des Ombres, le style, un fond transparent, la consigne « tourné vers la droite, en entier, pieds sur la ligne du bas, aucun effet ». L'attaque se génère en 1536×1024 pour laisser la place à la lance ou à la faux.
 - **Pour** : l'outil a produit les 157 images finales acceptées, avec le même modèle, sur le même compte. Les règles sont dans le code et sous test. Chaque appel est tracé (modèle, prompt, références). Une pose ratée se refait seule, et l'ordre de la doctrine (`dash`, puis `attack`, puis `cast`) est respecté.
 - **Contre** : 3 appels par unité. Des poses générées séparément peuvent dériver : un emblème, une teinte, la forme d'une arme. Le fond transparent du modèle peut laisser des franges, qu'un contrôle doit attraper.
-- **Risques** : la dérive se voit surtout sur les boss (environ 170 px à l'écran) ; les petites unités (85 à 90 px) l'absorbent. Les armes de jet (lames de jet, fronde, shuriken) sont difficiles à lire en attaque. Une capuche peut s'ouvrir dans une pose d'incantation. L'échelle et la ligne des pieds sont réglées par un normaliseur, jamais pose par pose.
+- **Risques** : la dérive se voit surtout sur les boss (environ 170 px à l'écran) ; les petites unités (85 à 90 px) l'absorbent. Les armes de jet (lames de jet, fronde, shuriken) sont difficiles à lire en attaque. Une capuche peut s'ouvrir dans une pose d'incantation. Le modèle dessine chaque pose à sa propre échelle : un normaliseur mesure chaque pose sur ses parties rigides et la ramène à celle du maître. Une pose tournée montre moins de parties reconnaissables, et sa mesure est moins sûre ; la planche de relecture, qui montre toutes les poses à une seule échelle, sert de contrôle.
 
 ### B. Une bande de 3 poses par appel, par la route `tools/openai-art/`
 
@@ -225,7 +225,7 @@ F1 remplace cette route pour les images finales. Prompts et références n'aurai
 ### Ce qui change dans le code (à l'intégration de chaque lot, pas avant)
 
 1. `tools/art/finalImages.ts` : le type `pose` (plan, exécution, planche). L'empreinte des briefs déjà validés reste identique, et le test le vérifie (`finalImagesFinale.test.ts`).
-2. Un normaliseur, par exemple `tools/pixel-sprites/normalize_final_poses.py`. Il fait le contrôle (coins, magenta, violet, sol), applique un facteur d'échelle par unité tiré du maître, cale la ligne des pieds et le canevas, et écrit les poses HD avec leurs empreintes.
+2. Un normaliseur, par exemple `tools/pixel-sprites/normalize_final_poses.py`. Il fait le contrôle (coins, magenta, violet, sol). Il ramène chaque pose à l'échelle du maître, mesurée sur ses parties rigides par appariement de points et par gabarits du heaume et de l'arme, avec une correction à la main possible pose par pose. Il cale ensuite la ligne des pieds et le canevas, et écrit les poses HD avec leurs empreintes. Il utilise OpenCV (`cv2`) : la bibliothèque est déjà installée sur ce poste, mais aucun outil du dépôt ne s'en sert encore.
 3. `build_combat_sprites.py` : une table des unités posées remplace leurs lignes de `MASTER_ONLY`, avec `idle` égal au maître. Elle garde `aliases`, sans quoi le moteur ne retrouve pas la planche par le portrait, et garde la hauteur actuelle à l'écran. Elle produit les 5 cellules et les animations par défaut.
 4. Maelor : une entrée avec un alias sur `masters/maelor.png`, pour qu'il quitte son maître HD en combat. L'exception de `finalePresentation.test.ts` est mise à jour.
 5. Tests : les 4 tests de présentation des plateaux attendent aujourd'hui `masterOnly === true` (`bearPresentation.test.ts:120` et ses équivalents). Ils attendront les cellules `dash`, `attack` et `cast`.
@@ -273,12 +273,15 @@ Ta réponse : « Oui, lance Aldric ». Planche : [`assets/COMBAT_POSES_PILOT_ALD
 - **Production** : 3 images, `gpt-image-2.5-sunburst-2026-09-08`, qualité haute, fond transparent. `dash` et `cast` en 1024×1024, `attack` en 1536×1024. Toutes ont pour référence le maître d'Aldric, posé sur le canevas de sortie ; `attack` et `cast` ont en plus la `dash` acceptée. Aucune reprise sur les 2 prévues.
 - **Outil** : un script jetable, `tmp/combat-poses-pilot/pilot.ts`, qui reprend les règles de `tools/art/finalImages.ts` (visage couvert, règle d'arme, lecture de la clé jamais affichée) sans le modifier. Les sorties et le journal (prompt, empreintes des références et des images, jetons) sont dans `tmp/combat-poses-pilot/`, ignoré par Git.
 - **La planche montre** :
-  - les HD d'Aldric (son maître en `prepare`, puis ses 3 poses) au-dessus des 4 poses d'Alistair ;
+  - les HD d'Aldric (son maître en `prepare`, puis ses 3 poses), toutes ramenées à l'échelle du maître et posées sur une même ligne de sol, au-dessus des 4 poses d'Alistair, elles aussi à une seule échelle ;
   - la planche pixel d'Aldric, construite avec les fonctions de `build_combat_sprites.py` : une palette de 41 couleurs, une seule échelle, les pieds alignés, une figure de 84 px (85 aujourd'hui) ;
   - à côté, la planche d'Alistair et la planche « maître seul » actuelle d'Aldric.
 - **Ce qui tient** : dans les 3 poses, la même identité (heaume fermé à couronne solaire, armure blanc et or, tabard et cape bleu et or, bouclier bleu à croix d'or, masse à tête en cage), le visage couvert et la même arme. Les poses vont vers la droite, sans aucun effet. Le contrôle donne des coins transparents, aucun pixel magenta et aucun pixel plein sur les bords.
 - **Ce qu'il faut savoir** :
-  1. **Échelle** : le modèle a dessiné les poses environ 15 % plus petites que le maître (0,80 à 0,87 selon la surface pleine), bien que le maître ait été posé à l'échelle voulue sur le canevas. Un facteur unique pour l'unité (la médiane, 0,846) les ramène à la bonne taille. Le normaliseur du lot fera de même, jamais pose par pose. L'écart entre les poses (±4 %) tient en partie à la cape.
+  1. **Échelle, corrigée après ta remarque** : le modèle dessine chaque pose à sa propre échelle, et plus grande que le maître, bien que le maître ait été posé à la taille voulue sur le canevas. Mesuré sur les parties rigides (`tmp/combat-poses-pilot/measure_scale.py`), `dash` est à 1,10 fois le maître, `cast` à 1,10 et `attack` à 1,245.
+     - Ma première planche se trompait de trois façons. Elle appliquait à toute l'unité un seul facteur, tiré de la surface, si bien que l'attaque restait environ 13 % trop grande. Elle réduisait chaque vignette HD à sa propre taille, ce qui brouillait la comparaison. Et j'avais écrit à tort « plus petites ».
+     - Désormais, chaque pose est ramenée à l'échelle du maître, et la planche montre les HD à une seule échelle.
+     - L'attaque reste la mesure la moins sûre (4 mesures, de 1,09 à 1,52), parce que le bouclier y est tourné. La planche à une seule échelle sert de contrôle, et le lot permettra une correction à la main.
   2. **Repos et incantation se ressemblent** : le maître d'Aldric lève déjà sa masse, et sa pose `cast` aussi. C'est le cas que Q3 évoque pour les héros, dont les maîtres sont en action : une `prepare` plus calme les distinguerait, pour une image de plus par héros.
   3. **Effets** : les poses d'Alistair portent leurs effets (traînée de feu, aura), celles d'Aldric n'en ont pas (Q4). En combat, les effets procéduraux de ses compétences les remplacent.
   4. **Frange** : le fond transparent du modèle laisse un liseré semi-transparent, que le seuil d'alpha du constructeur retire. Rien à reprendre à la main.
