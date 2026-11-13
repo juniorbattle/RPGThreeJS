@@ -46,7 +46,7 @@ import {
 import { chronicleEndWords, type ChronicleEndWords } from './chronicleEndWords';
 import { FINALE_TOURNAMENT_ARRIVAL } from '../campaign/plateaux/finale/finaleTournament';
 import { FINALE_TOURNAMENT_BOARD_IMAGE } from '../campaign/plateaux/finale/finalePresentation';
-import { postDemoMomentAfter, postDemoMomentBefore } from '../campaign/plateaux/postDemoPresentation';
+import { POST_DEMO_MOMENTS, postDemoMomentAfter, postDemoMomentBefore } from '../campaign/plateaux/postDemoPresentation';
 import { provisionalMark } from './postDemoContent';
 import { sceneMood, type NarrativeMood } from '../audio/moods';
 import { prefersReducedMotion } from '../ui/ReducedMotion';
@@ -157,6 +157,14 @@ const JOURNEY_MAX_REJECTIONS = 3;
 
 /** How long a dialogue takes to fade into the map (final audit 2026-11-11, A5). */
 const STAGE_CROSSFADE_MS = 480;
+
+/** The QA lab's buttons for the post-demo living tableaux (set 1.20.0), by moment. */
+const POST_DEMO_QA_MOMENTS: readonly (readonly [string, string])[] = [
+  ['bear_arrival_moment', 'Ours · arrivée'], ['bear_honour_moment', 'Ours · honneur'], ['bear_force_moment', 'Ours · force'],
+  ['dragon_arrival_moment', 'Dragon · arrivée'], ['dragon_honour_moment', 'Dragon · honneur'], ['dragon_force_moment', 'Dragon · force'],
+  ['scorpion_arrival_moment', 'Scorpion · arrivée'], ['scorpion_honour_moment', 'Scorpion · honneur'], ['scorpion_force_moment', 'Scorpion · force'],
+  ['finale_betrayal_moment', 'Trahison'], ['finale_respect_moment', 'Respect'], ['finale_fear_moment', 'Crainte'], ['finale_balance_moment', 'Équilibre'],
+];
 
 export class GameApp {
   private disposed = false;
@@ -488,7 +496,8 @@ export class GameApp {
           <div class="qa-lab__header-actions"><button type="button" data-qa-sounds>Laboratoire d'écoute</button><button type="button" data-qa-back>Retour au titre</button></div>
         </header>
         <p class="qa-lab__lead">Mode QA isolé : aucun résultat, récompense, PV ou objet consommé n'est appliqué à la chronique.</p>
-        <div class="qa-lab__header-actions" aria-label="Tableaux vivants"><button type="button" data-qa-living="bois_clair_arrival">Tableau vivant · Arrivée à Bois-Clair</button><button type="button" data-qa-living="bois_clair_saved">Bois-Clair sauvé</button><button type="button" data-qa-living="bois_clair_sacrificed">Bois-Clair sacrifié</button><button type="button" data-qa-living="lion_judgement">Jugement du Lion</button><button type="button" data-qa-living="alaric_audience_arrival">Audience d’Alaric</button><button type="button" data-qa-living="serpent_route_ending">Fin Serpent</button><button type="button" data-qa-living="lion_trial_route_ending">Fin de l’épreuve</button><button type="button" data-qa-living-mockup="bear_arrival_moment">Maquette · Arrivée chez Borin</button></div>
+        <div class="qa-lab__header-actions" aria-label="Tableaux vivants"><button type="button" data-qa-living="bois_clair_arrival">Tableau vivant · Arrivée à Bois-Clair</button><button type="button" data-qa-living="bois_clair_saved">Bois-Clair sauvé</button><button type="button" data-qa-living="bois_clair_sacrificed">Bois-Clair sacrifié</button><button type="button" data-qa-living="lion_judgement">Jugement du Lion</button><button type="button" data-qa-living="alaric_audience_arrival">Audience d’Alaric</button><button type="button" data-qa-living="serpent_route_ending">Fin Serpent</button><button type="button" data-qa-living="lion_trial_route_ending">Fin de l’épreuve</button></div>
+        <div class="qa-lab__header-actions" aria-label="Tableaux vivants de l’après-démo">${POST_DEMO_QA_MOMENTS.map(([id, label]) => `<button type="button" data-qa-living-postdemo="${id}">${label}</button>`).join('')}</div>
         <div class="qa-lab__header-actions" aria-label="Après-démo"><button type="button" data-qa-postdemo="honour">Ours · depuis une fin du Lion par l’honneur</button><button type="button" data-qa-postdemo="force">Ours · depuis une fin du Lion par la force</button><button type="button" data-qa-postdemo="dragon-honour">Dragon · depuis une fin de l’Ours par l’honneur</button><button type="button" data-qa-postdemo="dragon-force">Dragon · depuis une fin de l’Ours par la force</button><button type="button" data-qa-postdemo="scorpion-honour">Scorpion · depuis une fin du Dragon par l’honneur</button><button type="button" data-qa-postdemo="scorpion-force">Scorpion · depuis une fin du Dragon par la force</button><button type="button" data-qa-postdemo="finale-honour">Acte final · depuis une fin du Scorpion par l’honneur</button><button type="button" data-qa-postdemo="finale-force">Acte final · depuis une fin du Scorpion par la force</button><button type="button" data-qa-postdemo="ending-respect">Fin · le Respect</button><button type="button" data-qa-postdemo="ending-fear">Fin · la Crainte</button><button type="button" data-qa-postdemo="ending-balance">Fin · l’Équilibre</button></div>
         ${message ? `<p class="qa-lab__result">${message}</p>` : ''}
         <div class="qa-lab__params">
@@ -558,14 +567,13 @@ export class GameApp {
         this.renderQaLab();
       });
     }));
-    // Dev-only mock-ups of proposed post-demo living tableaux (PLATEAU_MOMENTS_DRAFT_2026-11-13), not wired to the game.
-    this.chrome.querySelectorAll<HTMLButtonElement>('[data-qa-living-mockup]').forEach((button) => button.addEventListener('click', () => {
+    // Dev-only preview of each post-demo living tableau (set 1.20.0), with the mood of the dialogue it precedes.
+    this.chrome.querySelectorAll<HTMLButtonElement>('[data-qa-living-postdemo]').forEach((button) => button.addEventListener('click', () => {
       if (!import.meta.env.DEV) return;
-      const id = button.dataset.qaLivingMockup ?? '';
+      const moment = POST_DEMO_MOMENTS.find((candidate) => candidate.id === button.dataset.qaLivingPostdemo);
+      if (!moment) return;
       const before = this.uiSounds.musicSnapshot().context;
-      void import('../ui/living/livingMockups').then(async ({ LIVING_MOCKUPS }) => {
-        const mockup = LIVING_MOCKUPS[id];
-        if (mockup) await this.presentLivingScript(mockup.script, mockup.following);
+      void this.playLivingTableau(moment.id, moment.beforeDialogueId).then(() => {
         this.uiSounds.setMusicContext(before);
         this.renderQaLab();
       });

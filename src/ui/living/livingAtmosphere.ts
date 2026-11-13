@@ -93,7 +93,7 @@ export interface Banner { x: number; y: number; width: number; height: number; a
  * Painted banners stirring in the wind: the picture's own cloth, redrawn row by row and shifted by a wave that grows
  * from the pole to the hem. A few pixels at most, on the tableau's grain, so the painting stays the painting.
  */
-export function bannerSway(src: string, banners: readonly Banner[], seed: number, frame: ImageFrame = OPENING_FRAME) {
+export function bannerSway(src: string, banners: readonly Banner[], seed: number, frame: ImageFrame = OPENING_FRAME, strength?: (seconds: number) => number) {
   const image = new Image();
   image.src = src;
   const layer = new PropLayer(frame);
@@ -102,10 +102,12 @@ export function bannerSway(src: string, banners: readonly Banner[], seed: number
     const props = layer.begin();
     if (!props) return;
     const k = image.naturalWidth / frame.width;
+    // A rising wind (the betrayal's gust) multiplies the sway; without one, the cloth stirs as it always has.
+    const wind = strength ? strength(seconds) : 1;
     banners.forEach((banner, index) => {
       for (let row = 0; row < banner.height; row += GRAIN) {
         const reach = row / banner.height;
-        const shift = Math.round(banner.amplitude * reach * Math.sin(seconds * 1.4 + row * 0.03 + seed + index * 1.7));
+        const shift = Math.round(banner.amplitude * wind * reach * Math.sin(seconds * 1.4 + row * 0.03 + seed + index * 1.7));
         if (shift === 0) continue;
         props.drawImage(image, banner.x * k, (banner.y + row) * k, banner.width * k, GRAIN * k, banner.x + shift, banner.y + row, banner.width, GRAIN);
       }

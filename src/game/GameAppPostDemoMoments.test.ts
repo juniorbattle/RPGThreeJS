@@ -55,9 +55,9 @@ const victory = (combatId: string): CombatResult => ({ combatId, victory: true, 
 const noReward = { gold: 0, reputation: 0, materials: {} };
 
 describe('post-demo moments in the game (set 1.20.0)', () => {
-  it('registers no script before the operator judges the Borin mock-up, and no backdrop', () => {
-    expect(Object.keys(POST_DEMO_LIVING_TABLEAUX)).toEqual([]);
-    expect(Object.keys(POST_DEMO_LIVING_BACKDROPS)).toEqual([]);
+  it('registers the thirteen scripts once the Borin mock-up convinced, and the backdrops of their dialogues', () => {
+    expect(Object.keys(POST_DEMO_LIVING_TABLEAUX)).toHaveLength(13);
+    expect(Object.keys(POST_DEMO_LIVING_BACKDROPS)).toHaveLength(13);
   });
 
   for (const [plateau, honour, force] of [

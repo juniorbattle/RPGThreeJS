@@ -57,7 +57,7 @@ function chained(steps: (DialogueStep | null)[]): DialogueStep[] {
 
 export const BEAR_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze([
   scene('bear_arrival', 'forest_fork', 'Pied des Montagnes', chained([
-    say('1', ALISTAIR, 'Montagnes de la Résilience', 'Les Montagnes de la Résilience. Le Sceau du Lion pèse dans notre coffre, et pourtant ici personne ne nous attend.', null, { expression: 'stern' }),
+    say('1', MARIAN, 'Montagnes de la Résilience', 'Les Montagnes de la Résilience. Le Sceau du Lion pèse dans notre coffre, et pourtant ici personne ne nous attend.', null, { expression: 'stern' }),
     say('2', SERAPHINE, 'Sage', 'Le Clan de l’Ours garde ces pentes depuis plus longtemps que nos chroniques. Il ne juge pas un étranger sur un Sceau, mais sur ce qu’il fait de sa montagne.', null, { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Alors montrons-lui ce que nous valons, et voyons ce que sa montagne peut nous donner en retour.'),
   ])),
@@ -145,7 +145,7 @@ export const BEAR_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze(
     say('plundered', MAELOR, 'Intendant', 'Cinquante pièces. La montagne ne réclamera rien ; ses gardiens, peut-être.', null),
   ], ALDRIC_MEETING)),
   scene('bear_vigil', 'lion_refuge', 'Veillée avant le Sceau', chained([
-    say('1', ALISTAIR, 'Veillée', 'Borin nous attend demain. Tout ce que nous avons fait dans ces montagnes sera posé devant lui.', null, { expression: 'stern' }),
+    say('1', MARIAN, 'Veillée', 'Borin nous attend demain. Tout ce que nous avons fait dans ces montagnes sera posé devant lui.', null, { expression: 'stern' }),
     say('2', SERAPHINE, 'Sage', 'Ce qui comptera, ce ne sont pas nos mots devant lui, mais ce que ses mineurs et sa montagne diront de nous.', null, { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Deux Sceaux, bientôt. Plus nous en portons, plus les clans nous regardent comme une menace. Il faudra un jour décider à quoi ils nous servent vraiment.'),
   ])),
@@ -155,7 +155,7 @@ export const BEAR_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze(
   ])),
   scene('bear_borin_pre_combat', 'lion_finale_judgement', 'Épreuve de l’Ours', chained([
     say('1', BORIN, 'Ancien Ours', 'Vous voulez mon Sceau par la force ? Alors gagnez-le selon la loi de la montagne : mes guerriers et moi, contre votre compagnie.', null, { expression: 'hostile' }),
-    say('2', ALISTAIR, 'Épreuve', 'Nous l’assumerons.', null, { expression: 'stern' }),
+    say('2', MARIAN, 'Épreuve', 'Nous l’assumerons.', null, { expression: 'stern' }),
   ])),
   scene('bear_trial_aftermath', 'lion_finale_judgement', 'Le Sceau arraché', chained([
     say('1', BORIN, 'Ancien Ours', 'Le Sceau est à vous. La montagne l’a vu, mes guerriers aussi. Ne revenez pas chercher autre chose ici.', null, { expression: 'wounded' }),
@@ -184,7 +184,7 @@ function bearAudience(state: Readonly<GameState>): DialogueSequence {
     say('request', BORIN, 'Requête', 'Repoussez le Corbeau hors des galeries, et le Sceau de l’Ours entendra votre nom. Échouez, ou servez-vous en chemin, et la montagne s’en souviendra.', 'seraphine', { expression: 'stern' }),
     say('seraphine', SERAPHINE, 'Sage', 'Ces mines ne sont pas qu’un trésor, Ancien Borin. Si le Corbeau creuse au-delà de ce que la montagne supporte, l’équilibre de ces vallées tombera avec ses galeries. Avant de tirer l’épée, sachons pourquoi il creuse si profond.', 'maelor', { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', 'Ou laissons l’Ours et le Corbeau s’user l’un contre l’autre. Deux clans affaiblis devant des mines ouvertes… Je dis seulement ce que tout le monde pensera en voyant ces galeries.', 'alistair'),
-    say('alistair', ALISTAIR, 'Clan sans terre', 'Nous ne sommes pas venus vider la montagne d’un autre clan.', 'mandate', { expression: 'stern' }),
+    say('alistair', MARIAN, 'Clan sans terre', 'Nous ne sommes pas venus vider la montagne d’un autre clan.', 'mandate', { expression: 'stern' }),
     say('mandate', BORIN, 'Mandat', 'Alors, étrangers. Défendrez-vous les mines de l’Ours ?', null, { expression: 'stern', choices: [
       choice('Défendre les mines sans condition.', 'accepted', [flag('bearMandateHonour'), reputation(1)], ['Parole claire devant l’Ours', 'Borin observe votre conduite']),
       choice('Accepter, contre une part du minerai repris.', 'share', [flag('bearMandateOreShare'), gold(50), reputation(-1)], ['50 or d’avance', 'Chaque part réclamée pèsera dans le jugement']),
