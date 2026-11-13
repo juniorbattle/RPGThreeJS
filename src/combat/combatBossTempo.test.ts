@@ -136,6 +136,34 @@ describe('boss and elite tempo (operator playtest 2026-11-11)', () => {
     }
   });
 
+  it('gives the fifteen bosses distinct heavy + ultimate pairs struck with their strong stat (B1, B4, OD-2026-11-13-F C3 and C4)', () => {
+    const bosses = authoredBossesAndElites().filter((unit) => unit.boss && unit.id === unit.name) as (AuthoredUnit & { str: number; mag: number })[];
+    expect(bosses).toHaveLength(15);
+    const pairs = new Map<string, string>();
+    for (const boss of bosses) {
+      const offensive = boss.skills.map((id) => ({ id, ...SKILLS[id]! })).filter((def) => def.offensive) as { id: string; ap: number; type?: string }[];
+      const heavy = offensive.find((def) => def.ap === 4)!, ultimate = offensive.find((def) => def.ap === 5)!;
+      const pair = `${heavy.id}+${ultimate.id}`;
+      expect(pairs.get(pair), `${boss.name} shares ${pair}`).toBeUndefined();
+      pairs.set(pair, boss.name);
+      const strong = boss.str > boss.mag ? 'phys' : 'mag';
+      expect(ultimate.type, `${boss.name}: ultimate on the strong stat`).toBe(strong);
+      // The Demon keeps Gel on its MAG 26 beside its FOR 30: the one heavy attack on the weaker stat, approved with the draft.
+      if (boss.name !== 'Champion changé en démon') expect(heavy.type, `${boss.name}: heavy attack on the strong stat`).toBe(strong);
+    }
+    // The four magic heavy attacks approved by the operator, each on its own boss.
+    expect([...pairs.keys()].filter((pair) => /boss_(celestial_bolt|sentence|broken_oath|breach_grip)/.test(pair)).map((pair) => pairs.get(pair)))
+      .toEqual(['Ancien Dragon Kaelen', 'Grand Inquisiteur', 'Maelor', 'Entité de la brèche']);
+  });
+
+  it('never counts an effect aimed at the enemies as a support for the AI (Serment rompu)', () => {
+    const source = runtime.slice(runtime.indexOf('function skillHasSupport(spec){'), runtime.indexOf('\n', runtime.indexOf('function skillHasSupport(spec){')));
+    const skillHasSupport = new Function(`${source};return skillHasSupport;`)() as (spec: unknown) => boolean;
+    expect(skillHasSupport(SKILLS.boss_broken_oath)).toBe(false);
+    expect(skillHasSupport(SKILLS.boss_regen)).toBe(true);
+    expect(skillHasSupport({ effects: [{ kind: 'dispel', target: 'allies', dispelType: 'negative' }] })).toBe(true);
+  });
+
   it('spends a full AP pool at once when the cooldown is far, and everything on a ready ultimate', () => {
     const tempo = runtimeTempo();
     const borin = ['enemy_heavy_strike', 'boss_guard', 'boss_quake', 'boss_titan_slam'];

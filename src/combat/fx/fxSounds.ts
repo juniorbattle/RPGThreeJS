@@ -18,7 +18,7 @@ export interface FxSoundMark {
   cue?: string;
 }
 
-/** The gesture of every signature that has no cues of its own: 43 skills and the 14 enemy attacks. */
+/** The gesture of every signature that has no cues of its own: 47 skills and the 14 enemy attacks. */
 const RECIPE_GESTURES: Readonly<Record<string, Gesture>> = {
   w_break_guard: 'heavy', w_whirl: 'heavy', p_holy_strike: 'blade', p_interpose: 'ward', p_oathwall: 'ward', d_cursed_blade: 'blade', d_blood_pact: 'ward',
   l_long_thrust: 'thrust', l_haft_recoil: 'thrust', l_griffon_jump: 'thrust', n_dark_bolt: 'cast', n_flame_wave: 'cast',
@@ -27,6 +27,7 @@ const RECIPE_GESTURES: Readonly<Record<string, Gesture>> = {
   ro_sneak_attack: 'blade', ro_jaw_trap: 'heavy', ar_calibrated_shot: 'gun', ar_explosive_retreat: 'gun', ar_incendiary_grenade: 'throw',
   enemy_heavy_strike: 'heavy', enemy_crush: 'heavy', enemy_dark_bolt: 'cast', enemy_hex: 'cast', enemy_venom_strike: 'blade', enemy_binding_shot: 'shot', enemy_dragon_breath: 'breath',
   boss_guard: 'ward', boss_regen: 'mend', boss_fortify: 'ward', boss_freeze: 'cast', boss_pin: 'shot',
+  boss_celestial_bolt: 'cast', boss_sentence: 'cast', boss_broken_oath: 'cast', boss_breach_grip: 'cast',
   attack_bite: 'bite', attack_mandibles: 'bite', attack_fangs: 'bite', attack_claws: 'bite', attack_tongue: 'bite', attack_ram: 'heavy',
   attack_rock: 'throw', attack_sling: 'throw', attack_thrown_blades: 'throw', attack_breath: 'breath', attack_emerald_breath: 'breath', attack_cold_wave: 'breath', attack_seal: 'cast',
 };

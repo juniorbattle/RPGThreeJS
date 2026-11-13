@@ -96,8 +96,8 @@ describe('the closed cue table', () => {
 describe('sound marks', () => {
   const marksOf = (recipe: FxRecipe): readonly FxSoundMark[] => recipe.marks ?? [];
 
-  it('sit on all 63 recipes and the 14 enemy attacks, and every mark resolves to a table cue at every weight', () => {
-    expect(skills).toHaveLength(63);
+  it('sit on all 67 recipes and the 14 enemy attacks, and every mark resolves to a table cue at every weight', () => {
+    expect(skills).toHaveLength(67);
     expect(listEnemyAttackWeapons()).toHaveLength(14);
     for (const recipe of [...skills, ...attacks]) {
       expect(marksOf(recipe).length, recipe.id).toBeGreaterThan(0);

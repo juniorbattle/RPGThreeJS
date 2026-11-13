@@ -78,7 +78,7 @@ describe('skill signatures', () => {
   });
 
   it('cover every enemy skill in use, boss signatures as cinematics with a charge', () => {
-    expect(USED_ENEMY_SKILLS).toHaveLength(20);
+    expect(USED_ENEMY_SKILLS).toHaveLength(24);
     for (const id of USED_ENEMY_SKILLS) {
       const recipe = skillFxRecipe(id);
       expect(recipe, id).not.toBeNull();
