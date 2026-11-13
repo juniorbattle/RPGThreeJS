@@ -103,7 +103,7 @@ Tests et validation :
 
 - **Garde des contrats.** `git diff --exit-code 5a61d319e449e8328fe63449516b554da96f43b7 HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md` n'affiche rien. `npm run -s contracts:validate` valide les 8 contrats verrouillés et les 8 identifiants médias historiques.
 - **Types et build.** `npx tsc --noEmit` passe. `npm run -s build` passe (seulement l'avertissement habituel sur la taille des morceaux).
-- **Suite vitest complète.** 3 406 tests passent. Les 10 échecs sont tous connus d'un worktree neuf : il y manque des médias ignorés par Git (`public/assets/vfx/megapack-runtime/*.png` pour `spritesheetPng.test.ts`, des fichiers `tmp/cinematics/…` pour trois tests historiques de `tools/cinematics/`). Aucun ne touche l'audio ni les arènes.
+- **Suite vitest complète.** 3 406 tests passent, puis 3 407 après la fusion d’`origin/dev` (`6b9647d5` : poses de combat du Dragon, du Scorpion et de l’acte final, noms d’armes du Corbeau ; aucun fichier commun), où la garde, le validateur, `tsc`, le build et `qa-job` ont été relancés avec le même résultat. Les 10 échecs sont tous connus d'un worktree neuf : il y manque des médias ignorés par Git (`public/assets/vfx/megapack-runtime/*.png` pour `spritesheetPng.test.ts`, des fichiers `tmp/cinematics/…` pour trois tests historiques de `tools/cinematics/`). Aucun ne touche l'audio ni les arènes.
 - **`node --test tools/qa/qa-job.test.mjs`**, lancé seul : 26 sur 26.
 - **Tests ciblés.**
   - `src/audio/lionAudioUnchanged.test.ts` (nouveau) : le son de la démo est identique à l'octet ; les empreintes ont été enregistrées avant le changement.
