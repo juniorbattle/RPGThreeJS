@@ -147,7 +147,7 @@ export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([
   }),
   Object.freeze({
     id: 'bear', order: 2, kind: 'seal_plateau', idPrefix: 'bear-', label: 'Les Montagnes de la Résilience',
-    // Lot 1: accepted as canon by the operator (OD-2026-11-08-B); its images stay provisional.
+    // Lot 1: accepted as canon by the operator (OD-2026-11-08-B); final images integrated 2026-11-12 (OD-2026-11-11-F).
     roadmapSections: Object.freeze(['§3.2']), status: 'canon', hostClan: 'bear', rivalClan: 'raven',
     chief: Object.freeze({ title: 'Ancien Ours', name: 'Borin' }),
     reputationBudget: REPUTATION_BUDGETS.bear,
@@ -155,7 +155,7 @@ export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([
   }),
   Object.freeze({
     id: 'dragon', order: 3, kind: 'seal_plateau', idPrefix: 'dragon-', label: 'Les Pics Célestes',
-    // Lot 2: accepted as canon by the operator (OD-2026-11-08-C); its images stay provisional.
+    // Lot 2: accepted as canon by the operator (OD-2026-11-08-C); final images integrated 2026-11-12 (OD-2026-11-11-F).
     roadmapSections: Object.freeze(['§3.3']), status: 'canon', hostClan: 'dragon', rivalClan: 'wolf',
     chief: Object.freeze({ title: 'Ancien Dragon', name: 'Kaelen' }),
     reputationBudget: REPUTATION_BUDGETS.dragon,
@@ -163,7 +163,7 @@ export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([
   }),
   Object.freeze({
     id: 'scorpion', order: 4, kind: 'seal_plateau', idPrefix: 'scorpion-', label: 'Les Déserts Arides',
-    // Lot 3: accepted as canon by the operator (OD-2026-11-08-D); its images stay provisional.
+    // Lot 3: accepted as canon by the operator (OD-2026-11-08-D); final images integrated 2026-11-12 (OD-2026-11-11-F).
     roadmapSections: Object.freeze(['§3.4']), status: 'canon', hostClan: 'scorpion', rivalClan: 'phoenix',
     // P5: the chief is renamed; until the operator validates a name, texts use his title only.
     chief: Object.freeze({ title: 'Grand Inquisiteur', name: null }),
@@ -172,7 +172,7 @@ export const PLATEAU_REGISTRY: readonly PlateauDefinition[] = Object.freeze([
   }),
   Object.freeze({
     id: 'finale', order: 5, kind: 'final_act', idPrefix: 'finale-', label: 'L’acte final',
-    // Lot 4: accepted as canon by the operator (OD-2026-11-09-A); its images stay provisional.
+    // Lot 4: accepted as canon by the operator (OD-2026-11-09-A); final images integrated 2026-11-13 (OD-2026-11-11-F).
     roadmapSections: Object.freeze(['§3.6', '§3.7']), status: 'canon', hostClan: null, rivalClan: null,
     chief: null,
     reputationBudget: REPUTATION_BUDGETS.finale,

@@ -203,12 +203,14 @@ export const assets = {
     forest_troll_elite: { category: 'elite_monster', species: 'troll', rarity: 'elite', artStatus: 'approved', colorPalette: ['moss green', 'stone grey', 'leather brown'], silhouetteNotes: 'Massive forest troll used as a secondary high-risk challenge.' },
     young_dragon_elite: { category: 'elite_monster', species: 'dragon', rarity: 'elite', artStatus: 'approved', colorPalette: ['emerald', 'gold', 'cream'], silhouetteNotes: 'Rare young dragon challenge, large silhouette without boss footprint.' },
     shrine_apparition: { category: 'story_npc', factionId: 'shadows', rarity: 'unique', colorPalette: ['ivory', 'gold', 'spectral light'], silhouetteNotes: 'Mystical apparition tied to ancient shrines.' },
-    aldric: { category: 'playable_hero', factionId: 'lion', rarity: 'unique', recruitTier: 'optional', colorPalette: ['gold', 'ivory', 'steel'], silhouetteNotes: 'Paladin knight with holy aura and shield.' },
-    morvan: { category: 'playable_hero', factionId: 'lion', rarity: 'unique', recruitTier: 'late', colorPalette: ['dark gold', 'black', 'wine'], silhouetteNotes: 'Dark knight wielding cursed blade.' },
-    lyra: { category: 'playable_hero', factionId: 'lion', rarity: 'unique', recruitTier: 'late', colorPalette: ['crimson', 'silver', 'gold'], silhouetteNotes: 'Red mage hybrid casting both steel and spells.' },
-    eldwin: { category: 'playable_hero', factionId: 'neutral', rarity: 'unique', recruitTier: 'late', colorPalette: ['teal', 'parchment', 'silver'], silhouetteNotes: 'Enchanter scholar with runes and seals.' },
-    talon: { category: 'playable_hero', factionId: 'neutral', rarity: 'unique', recruitTier: 'late', colorPalette: ['midnight', 'silver', 'violet'], silhouetteNotes: 'Ninja guardian with silent step and venom blade.' },
-    gunnar: { category: 'playable_hero', factionId: 'neutral', rarity: 'unique', recruitTier: 'late', colorPalette: ['steel', 'olive', 'copper'], silhouetteNotes: 'Artillerist with crossbow and explosive ordnance.' },
+    // OD-2026-11-13-F (P2): the six heroes met in the post-demo plateaux. Their portraits are their final images (covered faces,
+    // combat poses built on them); they stay at their archive paths, which combat poses, HUD scales and the runtime name.
+    aldric: { category: 'playable_hero', factionId: 'lion', rarity: 'unique', recruitTier: 'optional', artStatus: 'approved', colorPalette: ['gold', 'ivory', 'steel'], silhouetteNotes: 'Paladin knight with holy aura and shield.' },
+    morvan: { category: 'playable_hero', factionId: 'lion', rarity: 'unique', recruitTier: 'late', artStatus: 'approved', colorPalette: ['dark gold', 'black', 'wine'], silhouetteNotes: 'Dark knight wielding cursed blade.' },
+    lyra: { category: 'playable_hero', factionId: 'lion', rarity: 'unique', recruitTier: 'late', artStatus: 'approved', colorPalette: ['crimson', 'silver', 'gold'], silhouetteNotes: 'Red mage hybrid casting both steel and spells.' },
+    eldwin: { category: 'playable_hero', factionId: 'neutral', rarity: 'unique', recruitTier: 'late', artStatus: 'approved', colorPalette: ['teal', 'parchment', 'silver'], silhouetteNotes: 'Enchanter scholar with runes and seals.' },
+    talon: { category: 'playable_hero', factionId: 'neutral', rarity: 'unique', recruitTier: 'late', artStatus: 'approved', colorPalette: ['midnight', 'silver', 'violet'], silhouetteNotes: 'Ninja guardian with silent step and venom blade.' },
+    gunnar: { category: 'playable_hero', factionId: 'neutral', rarity: 'unique', recruitTier: 'late', artStatus: 'approved', colorPalette: ['steel', 'olive', 'copper'], silhouetteNotes: 'Artillerist with crossbow and explosive ordnance.' },
     // OD-2026-11-11-F (F1): the Bear plateau's final characters (tools/art/publish_final_images.py), accepted 2026-11-12.
     borin: { category: 'boss', factionId: 'bear', rarity: 'boss', artStatus: 'approved', colorPalette: ['stone grey', 'fur brown', 'antique gold'], silhouetteNotes: 'Ancien Ours Borin, elder chieftain under a bear-crowned closed helm and a heavy fur mantle, war hammer; 2x2 board presence.' },
     bear_warrior: { category: 'faction_enemy', factionId: 'bear', rarity: 'generic', artStatus: 'approved', colorPalette: ['stone grey', 'fur brown', 'snow white'], silhouetteNotes: 'Bear clan warrior, closed helmet, fur-lined mail, round bear shield and spear.' },
@@ -285,7 +287,7 @@ export const assets = {
     chroniqueur: '/assets/characters/pixel/archive/non-demo/chroniqueur.png',
     sage_seraphine: '/assets/characters/pixel/masters/sage_seraphine.png',
     shrine_apparition: '/assets/characters/pixel/archive/non-demo/shrine_apparition.png',
-    // OD-2026-11-11-F (F2): the six heroes met in the post-demo plateaux, on their archive portraits until their final images.
+    // OD-2026-11-11-F (F2): the six heroes met in the post-demo plateaux; their archive portraits are their final images (OD-2026-11-13-F, P2).
     aldric: '/assets/characters/pixel/archive/non-demo/aldric.png',
     morvan: '/assets/characters/pixel/archive/non-demo/morvan.png',
     lyra: '/assets/characters/pixel/archive/non-demo/lyra.png',
@@ -405,7 +407,9 @@ export const assets = {
       background: '/assets/generated/forest-pilot/forest-dawn-far.webp',
     },
     management: {
-      background: '/assets/generated/forest-pilot/forest-dawn-far.webp',
+      // OD-2026-11-13-F (P3): the register and the shop show the refuge of the part in progress (src/ui/companyBackdrop.ts);
+      // the Lion's first refuge is only the fallback of a run without a refuge.
+      background: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png',
     },
     combat: {
       background: '/assets/generated/lion-phase/combat/forest_route.webp',

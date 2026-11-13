@@ -14,6 +14,7 @@ import {
 import { getReputationRule, getShopPrice } from '../game/reputation';
 import { assets } from '../render/assetManifest';
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
+import { companyBackdrop } from './companyBackdrop';
 import { skills as SKILL_DEFS, skillById } from '../game/skills';
 import { describeSkillFactsAt } from '../game/skillFacts';
 import type { GameState, InnateGiftModifier, ItemCategory, ItemDefinition, UnitDefinition, UnitInstance, WeaponDefinition } from '../game/types';
@@ -175,7 +176,7 @@ export class ManagementView {
     this.selectedUnitId = this.options.getState().clan.members[0]?.id ?? '';
     this.overlay = document.createElement('section');
     this.overlay.className = `management ui-screen ui-screen--dialog${this.shopOnly ? ' management--shop-only' : ''}`;
-    applyScreenEnvironment(this.overlay, 'management');
+    applyScreenEnvironment(this.overlay, 'management', companyBackdrop(this.options.getState()));
     this.overlay.dataset.reducedMotion = String(prefersReducedMotion(this.options.getState().settings.reducedGraphics));
     this.overlay.setAttribute('role', 'dialog');
     this.overlay.setAttribute('aria-modal', 'true');

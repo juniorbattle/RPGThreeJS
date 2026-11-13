@@ -17,10 +17,13 @@ import {
  * the campaign, a save, or the shipped `public/assets/cinematics/manifest.json`. The same functions
  * back the browser QA lab and the automated test suite, so what is asserted is what is clicked.
  *
- * The candidate descriptors below point at paths that intentionally do not exist so the preloader
- * remains non-fatal when local media is missing. The dedicated skip descriptor uses one reviewed
- * CIN-6A local source under a QA-only ID to prove a real video Skip reaches the same agency seam.
+ * Zero active video (OD-2026-10-24-A, Q2 of OD-2026-11-13-F): no descriptor names a media file. The
+ * two candidates only exercise the preloader's bookkeeping on an empty data URI that holds no frame
+ * and requests nothing; the skip descriptor is a long hold, so only the player's Skip ends it in time
+ * and reaches the same agency seam as any presentation.
  */
+const NO_MEDIA_WEBM = 'data:video/webm;base64,';
+
 export const JOURNEY_QA_MANIFEST: VideoCinematicManifest = Object.freeze({
   version: 1 as const,
   cinematics: Object.freeze([
@@ -35,18 +38,19 @@ export const JOURNEY_QA_MANIFEST: VideoCinematicManifest = Object.freeze({
     {
       id: 'journey-qa-candidate-a',
       title: 'Candidat A (QA)',
-      sources: [{ src: '/assets/cinematics/qa/journey-qa-candidate-a.webm', type: 'video/webm' as const }],
+      sources: [{ src: NO_MEDIA_WEBM, type: 'video/webm' as const }],
     },
     {
       id: 'journey-qa-candidate-b',
       title: 'Candidat B (QA)',
-      sources: [{ src: '/assets/cinematics/qa/journey-qa-candidate-b.webm', type: 'video/webm' as const }],
+      sources: [{ src: NO_MEDIA_WEBM, type: 'video/webm' as const }],
     },
     {
-      id: 'journey-qa-real-skip',
-      title: 'Voyage réel à passer (QA)',
-      sources: [{ src: '/assets/cinematics/camp_departure.mp4', type: 'video/mp4' as const }],
-      durationMs: 12_000,
+      id: 'journey-qa-skip-hold',
+      title: 'Étape à passer (QA)',
+      sources: [],
+      fallbackText: 'Surface de présentation gelée — Passer mène à la même frontière.',
+      placeholderOnly: true,
     },
   ]),
 });
@@ -226,14 +230,17 @@ async function runSecondary(context: JourneyQaScenarioContext): Promise<JourneyQ
 
 async function runSkip(context: JourneyQaScenarioContext): Promise<JourneyQaScenarioOutcome> {
   const harness = createHarness('journey-skip', context);
-  const presentPromise = harness.session.presentCinematic('journey-qa-real-skip', {
-    placeholderDurationMs: context.holdDurationMs ?? SKIP_HOLD_MS,
-    // This scenario proves the explicit Skip control even on a host whose OS/browser prefers
-    // reduced motion. Reduced-motion bypass has its own dedicated scenario below.
+  const startedAt = performance.now();
+  const presentPromise = harness.session.presentCinematic('journey-qa-skip-hold', {
+    // Always the long hold, so only the player's Skip can end it before the hold elapses.
+    placeholderDurationMs: SKIP_HOLD_MS,
+    // This scenario proves the explicit Skip control whatever the host's motion preference.
+    // Reduced-motion bypass has its own dedicated scenario below.
     reducedMotion: false,
   });
   context.onInteractive?.(harness.root);
   const result = await presentPromise;
+  const endedBeforeHold = performance.now() - startedAt < SKIP_HOLD_MS;
   const frozen = harness.session.state;
   const commitPromise = harness.session.requestAgency({
     title: 'Présentation passée',
@@ -247,7 +254,7 @@ async function runSkip(context: JourneyQaScenarioContext): Promise<JourneyQaScen
     summary: `skip → ${result.reason} · ${frozen} → ${agencyState} · commit=${commit.kind}`,
     result,
     commit,
-    details: { reachedFreeze: frozen === 'FREEZE', reachedAgency: agencyState === 'AGENCY' },
+    details: { endedBeforeHold, reachedFreeze: frozen === 'FREEZE', reachedAgency: agencyState === 'AGENCY' },
   });
 }
 
