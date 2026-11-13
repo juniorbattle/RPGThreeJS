@@ -391,7 +391,7 @@ export const POSE_UNITS: Readonly<Record<string, PoseUnit>> = Object.freeze({
     weapon: 'It fights with its huge claws: no weapon in hand.',
     actions: clawBiped, colour: 'ink',
     fx: { cast: 'thin wisps of cold black ink rising around it as it roars' } },
-  breach_demon: { group: 'finale', master: finale('breach_demon'), worldHeight: 2.2, body: 'creature',
+  breach_demon: { group: 'finale', master: finale('breach_demon'), worldHeight: 1.95, body: 'creature',
     look: 'a gaunt demon of the breach: a thin black body, long curved horns, long clawed fingers, two small glowing white eyes.',
     weapon: 'It fights with its long claws: no weapon in hand.',
     actions: clawBiped, colour: 'ink',
