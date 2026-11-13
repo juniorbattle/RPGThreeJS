@@ -134,10 +134,12 @@ describe('final-act scenes on their final tableaux (set 1.20.0, Lot 4; final ima
     }
     expect(FINALE_PROVISIONAL_SURFACES.map((surface) => surface.image)).toEqual([FINALE_TOURNAMENT_BOARD_IMAGE, FINALE_CHRONICLE_END_IMAGE]);
     for (const image of [FINALE_TOURNAMENT_BOARD_IMAGE, FINALE_CHRONICLE_END_IMAGE]) expect(publicFile(image), image).toBe(true);
-    // The act's chronicle ends at the breach, on the Lion's chronicle-end staging.
+    // The act's chronicle ends at the breach, on the Lion's chronicle-end staging, without Maelor, who betrayed at the
+    // Tournament and fled through the breach (OD-2026-11-13-F, Q1).
     const end = resolveNarrativeBoundaryTableau('node:finale-breach:arrival')!;
     expect(end.stillImage).toBe(FINALE_CHRONICLE_END_IMAGE);
-    expect(end.sceneCastPlacement).toEqual(resolveNarrativeBoundaryTableau('node:lion-final-judgement:arrival')!.sceneCastPlacement);
+    const { maelor: _traitor, ...lionCompany } = resolveNarrativeBoundaryTableau('node:lion-final-judgement:arrival')!.sceneCastPlacement!;
+    expect(end.sceneCastPlacement).toEqual(lionCompany);
   });
 
   it('shows the final act’s characters on their own masters: dialogue portrait, staged figure and combat sheet', () => {
