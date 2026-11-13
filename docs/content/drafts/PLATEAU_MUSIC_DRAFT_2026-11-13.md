@@ -2,13 +2,13 @@
 
 Statut : **VALIDÉ** par l’opérateur le 2026-11-13, tel quel (« J’écoute et je valide »). Chaque question ci-dessous prend donc sa recommandation (voir « Questions à trancher »), dont l’approbation du texte d’amendement 1.23.0.
 
-**Reste à faire, hors de cette session.** Appliquer l’amendement est une tâche dédiée :
-1. relecture indépendante du diff réel ;
-2. commit d’amendement des contrats ;
-3. décision opérateur dans `docs/autonomy/` ;
-4. commit opérationnel qui inscrit la nouvelle baseline immuable.
+**Appliqué le 2026-11-13** par la tâche dédiée `PRODUCTION-CONTRACTS-PLATEAU-MUSIC-1` :
+1. décision opérateur [OD-2026-11-13-E](../../autonomy/PLATEAU_MUSIC_OPERATOR_DECISION_2026-11-13.md), avec ta citation ;
+2. relecture indépendante du diff réel par contracts-guardian : PASS WITH WARNINGS, aucun changement de fond ;
+3. commit d’amendement `6228a34f` (jeu de contrats 1.23.0, sans l’option B) ;
+4. commit opérationnel `052bc2ca` qui inscrit `6228a34f` comme baseline immuable.
 
-Ensuite seulement, le jeu demande les pistes des plateaux : `PLATEAU_MUSIC_IN_GAME = true`, puis une vérification dans le navigateur. Jusque-là, le jeu joue la musique du Lion partout.
+Le jeu demande maintenant les pistes de chaque partie : `PLATEAU_MUSIC_IN_GAME = true` (commit `252cc189`). Une carte, un dialogue, un combat et un boss de chaque partie ont été vérifiés dans le navigateur, et le Lion n’a pas changé (voir le rapport). L’acceptation reste à ton oreille.
 
 Tu as demandé : « on va travailler l’ambiance sonore et la musique pour chaque plateau, cela donne une identité propre à chaque partie du jeu ». Ce brouillon propose :
 - un verdict sur le contrat, avec le texte d’amendement à approuver ;

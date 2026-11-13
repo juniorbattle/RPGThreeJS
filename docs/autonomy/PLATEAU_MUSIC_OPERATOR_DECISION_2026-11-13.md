@@ -34,3 +34,17 @@ La Constitution ne change pas.
 **Ce qui ne change pas.** Les neuf contextes musicaux, toutes les autres règles de la direction audio (set 1.12.0), la table fermée des sons, les ambiances, les sauvegardes et la vérité de jeu. Les pistes du Lion restent identiques à l’octet, vérifiées par un test d’empreinte. Ni voix, ni son enregistré ou généré par IA.
 
 **Acceptation.** L’acceptation artistique reste à l’opérateur, par l’écoute, partie par partie. Aucune mesure ni l’existence du laboratoire d’écoute ne vaut acceptation.
+
+## Livraison (2026-11-13)
+
+`CURRENT FACT` Tâche dédiée, run `claude-plateau-music-amend-20261113T1524Z` :
+- décision inscrite : `0f61a39e` ;
+- amendement appliqué : `6228a34f`, jeu de contrats 1.23.0 ;
+- baseline immuable `6228a34fd69a01406ecf0fb7168a53f92a267d7b` inscrite dans `052bc2ca` (AGENTS.md, protocole, invite récurrente, skills, état, statut du projet) ;
+- interrupteur `PLATEAU_MUSIC_IN_GAME = true` : `252cc189`.
+
+**Vérifié dans le navigateur, avec un vrai geste.** Pour chacune des parties Ours, Dragon, Scorpion et acte final : une carte, un dialogue, un combat et un boss, chacun sur la piste de sa partie, et l’entrée propre des chefs. Le Tournoi joue son arène. Le Lion, le titre et la fanfare de victoire sont inchangés. Le détail est dans `docs/reports/plateau-music-2026-11-13.md`.
+
+Garde, validateur, types, suite (hors les 10 échecs connus des médias absents d’un worktree neuf), `qa-job` et build : verts.
+
+**Non vérifié** : l’écoute elle-même, le niveau Action dans un combat de plateau et une reprise de sauvegarde.
