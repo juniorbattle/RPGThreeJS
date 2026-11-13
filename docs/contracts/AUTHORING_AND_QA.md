@@ -102,3 +102,7 @@ Required before acceptance, in addition to the code-generated music evidence:
 - one browser check with a real gesture through title, map, refuge, tension, drama, combat, an Ultimate, boss, victory and defeat, with map and refuge ambience.
 
 The listening lab is the operator's acceptance surface. Its existence, and any measurement, never count as acceptance.
+
+## Plateau music evidence — OD-2026-11-13-E
+
+Dedicated `PRODUCTION-CONTRACTS-PLATEAU-MUSIC-1`, set 1.23.0. Required before acceptance, in addition to the audio direction evidence: the Lion's tracks, voices, samples and rooms byte-identical, by a fingerprint test; the part of every presented surface and combat scene, read from its id prefix only; every plateau track under the existing rules of sections, bridges, levels, a boss entry of at most 6 seconds and the fanfare rules; the -1 dBFS peak measured on each part's loudest mix; one browser check with a real gesture through one map, one dialogue, one combat and one boss of each part. The listening lab is the acceptance surface; the operator accepts each part by ear.
