@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 import { seeded, type Rng } from './pixelArt';
-import type { ArenaEmblem, ArenaPalette, ArenaProp } from './arenaThemes';
+import { CLAN_BANNER_COLOURS, type ArenaEmblem, type ArenaPalette, type ArenaProp } from './arenaThemes';
 import {
-  ashEmberTextures, awningTexture, bannerTexture, barkTexture, barrelLidTexture, bearReliefTexture, burlapTexture, coalsTexture, columnTexture, dragonReliefTexture, graniteTexture,
+  archDoorTexture, archWindowTextures, ashEmberTextures, awningTexture, bannerTexture, breachTearTexture, brickTexture, driedInkTexture, grilleTexture, honourAwningTexture,
+  railingTexture, rubbleTexture, standsTexture, barkTexture, barrelLidTexture, bearReliefTexture, burlapTexture, coalsTexture, columnTexture, dragonReliefTexture, graniteTexture,
   gravestoneTexture, hideTexture, inkStainTexture, jarTexture, lanternTexture, latticeTexture, leafTexture, limestoneTexture, lionReliefTexture, logEndTexture, metalTexture,
   mudBrickTexture, nicheTexture, oreTexture, peltTexture, phoenixReliefTexture, plankTexture, plasterTexture, roofTexture, sandstoneTexture, sandTexture, scorpionReliefTexture,
   snowTexture, stoneBlockTexture, strawTexture, verdigrisTexture, wardCircleTexture, windowTextures,
@@ -38,21 +39,24 @@ export interface PropContext {
   rock?: 'granite' | 'limestone' | 'sandstone';
   /** Indoors (the Phoenix's nave): every column stands, no sand drifts against the masonry. */
   interior?: boolean;
-  /** The lamps of the niches and steles are cold and sooted (the Phoenix's sanctuary). */
+  /** The lamps of the niches and steles are cold and sooted (the Phoenix's sanctuary), the street lanterns out by day. */
   unlitLamps?: boolean;
+  /** The Arena of Destinies' stands are full (the Tournament's day). */
+  crowd?: boolean;
 }
 
 /** Height of the ground around the raised battle platform (tile tops stay at y = 0). */
 export const ARENA_GROUND_Y = -0.16;
 
 const BILLBOARD_CONTACT: Partial<Record<ArenaProp['kind'], number>> = { tree: 1.0, pine: 0.85, dead_tree: 0.7, bush: 0.75, fern: 0.5, twisted_pine: 0.8, thorn_tree: 0.8, thorn_scrub: 0.55 };
-const NO_CONTACT = new Set<ArenaProp['kind']>(['fire', 'smoke', 'grass', 'rails', 'snowdrift', 'pelt', 'dry_tuft', 'dune', 'ward_circle', 'ink_stain', 'loose_leaves']);
+const NO_CONTACT = new Set<ArenaProp['kind']>(['fire', 'smoke', 'grass', 'rails', 'snowdrift', 'pelt', 'dry_tuft', 'dune', 'ward_circle', 'ink_stain', 'loose_leaves', 'breach_tear', 'ink_scar']);
 const WEEDS_PER_KIND: Partial<Record<ArenaProp['kind'], number>> = {
   house: 9, wall: 5, arch: 4, column: 3, broken_column: 3, stairs: 3, statue: 4, obelisk: 3, well: 3, gravestone: 2, barrel: 1, crate: 1, rock: 2,
   cliff: 6, snow_rock: 2, bear_pillar: 3, hall_gate: 8, mine_frame: 3, winch: 2, minecart: 1, ore_pile: 1,
   rock_needle: 4, terrace_wall: 5, cairn: 2, bell_post: 1, dragon_stele: 3, dragon_statue: 2, balustrade: 3, dragon_gate: 8, stalagmite: 2, stakes: 2,
   phoenix_column: 3, fallen_column: 2, ruin_wall: 5, phoenix_stele: 2, niche_wall: 4, flame_hearth: 3, phoenix_relief: 4, clay_jars: 1, awning: 1,
   mudbrick_arcade: 6, records_gate: 8, dry_basin: 2,
+  brick_house: 7, brick_ruin: 5, arena_stand: 6, rampart_wall: 6, round_tower: 5, wall_stair: 3, paving_slabs: 1, iron_lantern: 1,
 };
 const _box = new THREE.Box3();
 
@@ -1156,21 +1160,27 @@ function brazier(ctx: PropContext, seed: number): THREE.Group {
 /** Distance from the pole's axis to the cloth: past the pole's 0.08 radius plus half the bar's depth. */
 const BANNER_HANG = 0.125;
 
-function banner(ctx: PropContext, seed: number, burning: boolean, withPole = true): THREE.Group {
+/**
+ * A banner on its pole. `clan` dresses it in that clan's own colours and sign (the Arena of Destinies' masts), whatever
+ * the arena's emblem; `raise` lifts the bar and cloth on a taller mast.
+ */
+function banner(ctx: PropContext, seed: number, burning: boolean, withPole = true, clan?: ArenaEmblem, raise = 0): THREE.Group {
   const g = new THREE.Group();
   const wood = woodMaterial(ctx, true);
   // without its pole, the bar is fixed to a wall (the Scorpion's banner over the doorway of the hall of records)
   if (withPole) {
-    const pole = mesh(new THREE.CylinderGeometry(0.07, 0.08, 4.2, 6), wood, ctx);
-    pole.position.y = 2.1;
+    const pole = mesh(new THREE.CylinderGeometry(0.07, 0.08, 4.2 + raise, 6), wood, ctx);
+    pole.position.y = (4.2 + raise) / 2;
     g.add(pole);
   }
   // the bar is fixed to the front of the pole and the cloth hangs from it, so the pole stays behind the cloth
   const bar = mesh(boxGeometry(1.5, 0.08, 0.08, 1), wood, ctx);
-  bar.position.set(0, 3.9, BANNER_HANG);
+  bar.position.set(0, 3.9 + raise, BANNER_HANG);
   g.add(bar);
-  const emblem = ctx.emblem ?? 'lion';
-  const tex = cached(ctx.textures, `banner-${seed}-${burning}${emblem === 'lion' ? '' : `-${emblem}`}`, () => bannerTexture(ctx.palette, seed, burning, emblem).toTexture());
+  const emblem = clan ?? ctx.emblem ?? 'lion';
+  const key = clan ? `banner-${seed}-${burning}-clan-${clan}` : `banner-${seed}-${burning}${emblem === 'lion' ? '' : `-${emblem}`}`;
+  const pal = clan ? { ...ctx.palette, ...CLAN_BANNER_COLOURS[clan] } : ctx.palette;
+  const tex = cached(ctx.textures, key, () => bannerTexture(pal, seed, burning, emblem).toTexture());
   const cloth = new THREE.MeshStandardMaterial({ map: tex, alphaTest: 0.5, side: THREE.DoubleSide, roughness: 0.9 });
   const time = { value: 0 };
   cloth.onBeforeCompile = (shader) => {
@@ -1187,12 +1197,18 @@ function banner(ctx: PropContext, seed: number, burning: boolean, withPole = tru
   const flag = new THREE.Mesh(clothGeo, cloth);
   flag.castShadow = ctx.shadows;
   flag.customDepthMaterial = new THREE.MeshDepthMaterial({ depthPacking: THREE.RGBADepthPacking, map: tex, alphaTest: 0.5 });
-  flag.position.set(0, 3.86, BANNER_HANG);
+  flag.position.set(0, 3.86 + raise, BANNER_HANG);
   flag.name = 'arena-banner-cloth';
   flag.raycast = () => {};
   flag.userData.dynamic = true; // vertex-animated: never merged into static decor
   g.add(flag);
   ctx.animated.push((t) => { time.value = t + seed; });
+  if (burning && clan) {
+    // a clan's banner burning on its mast: the fire eats its hem
+    const fire = fireBillboard(ctx, seed + 40, 0.55, 0.85);
+    fire.position.set(0.15, 3.86 + raise - 2.45, BANNER_HANG + 0.06);
+    g.add(fire);
+  }
   return g;
 }
 
@@ -2607,6 +2623,516 @@ function looseLeaves(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
   return g;
 }
 
+// ---------------------------------------------------------------- the capital of the clans
+
+function brickMaterial(ctx: PropContext, seed: number, soot: number): THREE.MeshStandardMaterial {
+  const key = `brick-${seed % 2}-${soot}`;
+  return litMaterial(ctx, key, repeatTexture(ctx, key, () => brickTexture(ctx.palette, 600 + (seed % 2), soot).toTexture({ repeat: true })));
+}
+
+function rubbleMaterial(ctx: PropContext): THREE.MeshStandardMaterial {
+  return litMaterial(ctx, 'rubble', repeatTexture(ctx, 'rubble', () => rubbleTexture(ctx.palette, 611).toTexture({ repeat: true })), { roughness: 1 });
+}
+
+function slateMaterial(ctx: PropContext, burning: boolean): THREE.MeshStandardMaterial {
+  const key = `slate-${burning}`;
+  const texture = cached(ctx.textures, key, () => {
+    const t = roofTexture(ctx.palette, 43, burning).toTexture({ repeat: true });
+    t.center.set(0.5, 0.5); t.rotation = Math.PI / 2; // the courses of slate run along the eaves
+    return t;
+  });
+  return litMaterial(ctx, key, texture);
+}
+
+function archWindowMaterial(ctx: PropContext, burning: boolean): THREE.MeshStandardMaterial {
+  const key = `arch-window-${burning}`;
+  return cached(ctx.materials, key, () => {
+    const { face, glow } = archWindowTextures(ctx.palette, burning);
+    const map = face.toTexture(), emissiveMap = glow.toTexture();
+    ctx.textures.set(key, map);
+    ctx.textures.set(`${key}-glow`, emissiveMap);
+    const material = new THREE.MeshStandardMaterial({ map, emissiveMap, emissive: '#ffffff', emissiveIntensity: burning ? 1.1 : 0, alphaTest: 0.5, roughness: 0.6 });
+    if (burning) ctx.animated.push((t) => { material.emissiveIntensity = 0.95 + Math.sin(t * 8.7) * 0.14 + Math.sin(t * 13.3) * 0.07; });
+    return material;
+  }) as THREE.MeshStandardMaterial;
+}
+
+/** Box-projected UVs at `unitsPerRepeat` metres per repeat, for extruded and other built shapes. */
+function projectUVs(geometry: THREE.BufferGeometry, unitsPerRepeat: number): THREE.BufferGeometry {
+  geometry.computeVertexNormals();
+  const pos = geometry.attributes.position as THREE.BufferAttribute, normal = geometry.attributes.normal as THREE.BufferAttribute;
+  const uv = new Float32Array(pos.count * 2);
+  for (let i = 0; i < pos.count; i++) {
+    const nx = Math.abs(normal.getX(i)), ny = Math.abs(normal.getY(i)), nz = Math.abs(normal.getZ(i));
+    const [u, v] = nz >= nx && nz >= ny ? [pos.getX(i), pos.getY(i)] : nx >= ny ? [pos.getZ(i), pos.getY(i)] : [pos.getX(i), pos.getZ(i)];
+    uv[i * 2] = u / unitsPerRepeat; uv[i * 2 + 1] = v / unitsPerRepeat;
+  }
+  geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+  return geometry;
+}
+
+/** A wall `w`×`h`, `depth` thick toward −z from its face at z = 0, pierced by round-arched openings (centre x, width, spring height). */
+function archedWall(w: number, h: number, depth: number, openings: ReadonlyArray<readonly [number, number, number]>): THREE.BufferGeometry {
+  const shape = new THREE.Shape();
+  shape.moveTo(-w / 2, 0);
+  for (const [x, width, spring] of [...openings].sort((a, b) => a[0] - b[0])) {
+    const r = width / 2;
+    shape.lineTo(x - r, 0); shape.lineTo(x - r, spring); shape.absarc(x, spring, r, Math.PI, 0, true); shape.lineTo(x + r, 0);
+  }
+  shape.lineTo(w / 2, 0); shape.lineTo(w / 2, h); shape.lineTo(-w / 2, h); shape.lineTo(-w / 2, 0);
+  const geometry = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: false, curveSegments: 10 });
+  geometry.translate(0, 0, -depth);
+  return projectUVs(geometry, 1);
+}
+
+/** A heap of fallen masonry: a lopsided mound of rubble, `w`×`d`, `h` high, its rim sunk under the ground. */
+function rubbleMound(ctx: PropContext, seed: number, w: number, d: number, h: number): THREE.Mesh {
+  const geometry = new THREE.SphereGeometry(1, 14, 6, 0, Math.PI * 2, 0, Math.PI / 2);
+  const pos = geometry.attributes.position as THREE.BufferAttribute;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+    const k = 0.8 + hash3(x, y, z, seed) * 0.4;
+    pos.setXYZ(i, x * w / 2 * k, y * h * k, z * d / 2 * k);
+  }
+  const uv = geometry.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, pos.getX(i), pos.getZ(i) + pos.getY(i));
+  geometry.computeVertexNormals();
+  const heap = mesh(geometry, rubbleMaterial(ctx), ctx);
+  heap.position.y = -0.05;
+  return heap;
+}
+
+/** Loose bricks, shards of slate and a broken beam strewn around a heap. */
+function strewnMasonry(ctx: PropContext, rng: Rng, seed: number, g: THREE.Group, spread: number, count: number): void {
+  const brick = brickMaterial(ctx, seed, 0.3), slate = slateMaterial(ctx, false);
+  for (let i = 0; i < count; i++) {
+    const isSlate = i % 3 === 2;
+    const piece = mesh(isSlate ? boxGeometry(0.3, 0.025, 0.2, 1) : boxGeometry(0.24, 0.08, 0.12, 1), isSlate ? slate : brick, ctx, false);
+    piece.position.set((rng() - 0.5) * spread * 2, 0.04 + i * 0.002, (rng() - 0.5) * spread * 1.4);
+    piece.rotation.set((rng() - 0.5) * 0.4, rng() * Math.PI, (rng() - 0.5) * 0.4);
+    g.add(piece);
+  }
+}
+
+/**
+ * A tall narrow house of the capital: a plinth of pale stone, three or four storeys of red brick, pale stone quoins at its
+ * corners and string courses at its floors, round-arched windows with dark wooden shutters, a round-arched door, an iron
+ * balcony, a steep slate roof with its gable toward the street and a brick chimney. Burning, the fire shows through a hole
+ * in the slates and behind two windows, smoke pours from the roof and soot blackens the brick. No timber framing.
+ */
+function brickHouse(ctx: PropContext, rng: Rng, seed: number, burning: boolean): THREE.Group {
+  const g = new THREE.Group();
+  const variant = seed % 3;
+  const w = variant === 1 ? 3.4 : variant === 2 ? 3.0 : 3.2, d = 3.6, front = d / 2;
+  const storeys = variant === 2 ? 4 : 3, storeyH = 2.2, plinth = 0.5;
+  const H = plinth + storeys * storeyH;
+  const brick = brickMaterial(ctx, seed, burning ? 0.4 : 0.12), stone = stoneMaterial(ctx, seed, 0);
+  const add = (geometry: THREE.BufferGeometry, material: THREE.Material, x: number, y: number, z: number, cast = true) => g.add(at(mesh(geometry, material, ctx, cast), x, y, z));
+  add(boxGeometry(w + 0.08, plinth, d + 0.08, 1.6), stone, 0, plinth / 2, 0);
+  add(boxGeometry(w, H - plinth, d, 1), brick, 0, plinth + (H - plinth) / 2, 0);
+  // string courses at the floors and a cornice at the eaves
+  for (let k = 1; k <= storeys; k++) add(boxGeometry(w + 0.12, k === storeys ? 0.18 : 0.12, d + 0.12, 1.6), stone, 0, plinth + k * storeyH - (k === storeys ? 0.07 : 0), 0);
+  // quoins at the two front corners, long and short in turn, between the string courses
+  for (let k = 0; k < storeys; k++) {
+    const y0 = plinth + k * storeyH + 0.12;
+    for (let i = 0; y0 + i * 0.32 + 0.26 < plinth + (k + 1) * storeyH - 0.1; i++) {
+      const long = i % 2 === 0, bx = long ? 0.36 : 0.2, bz = long ? 0.2 : 0.36;
+      for (const side of [-1, 1]) add(boxGeometry(bx, 0.26, bz, 1.6), stone, side * (w / 2 + 0.025 - bx / 2), y0 + i * 0.32 + 0.13, front + 0.025 - bz / 2, false);
+    }
+  }
+  // the windows, and on the ground floor the door
+  const window = archWindowMaterial(ctx, burning), plain = archWindowMaterial(ctx, false);
+  const door = litMaterial(ctx, 'arch-door', cached(ctx.textures, 'arch-door', () => archDoorTexture(ctx.palette).toTexture()), { alphaTest: 0.5 });
+  const cols = [-w / 4 - 0.05, w / 4 + 0.05];
+  const lit = burning ? new Set([1 + (seed % 2), 3]) : new Set<number>();
+  for (let k = 0; k < storeys; k++) cols.forEach((cx, c) => {
+    const y = plinth + k * storeyH + 1.15;
+    if (k === 0 && c === seed % 2) {
+      add(new THREE.PlaneGeometry(1.05, 1.68), door, cx, 0.9, front + 0.05, false);
+      return;
+    }
+    const slot = k * 2 + c, glowing = lit.has(slot);
+    add(new THREE.PlaneGeometry(1.05, 1.155), glowing ? window : plain, cx, y, front + 0.006, false);
+    if (glowing) {
+      const fire = fireBillboard(ctx, seed * 13 + slot, 0.5, 0.75);
+      fire.position.set(cx, y - 0.42, front + 0.08);
+      g.add(fire);
+    }
+  });
+  // an iron balcony before the first floor's window
+  if (variant !== 2) {
+    const cx = cols[1 - (seed % 2)]!, by = plinth + storeyH;
+    add(boxGeometry(1.4, 0.1, 0.55, 1.6), stone, cx, by + 0.11, front + 0.275);
+    for (const dx of [-0.55, 0.55]) add(boxGeometry(0.12, 0.2, 0.4, 1.6), stone, cx + dx, by - 0.17, front + 0.2, false);
+    const rail = litMaterial(ctx, 'iron-railing', cached(ctx.textures, 'iron-railing', () => railingTexture().toTexture()), { alphaTest: 0.5, side: THREE.DoubleSide, metalness: 0.3, roughness: 0.6 });
+    add(new THREE.PlaneGeometry(1.36, 0.68), rail, cx, by + 0.16 + 0.34, front + 0.53, false);
+    for (const dx of [-0.67, 0.67]) {
+      const side = mesh(new THREE.PlaneGeometry(0.46, 0.68), rail, ctx, false);
+      side.position.set(cx + dx, by + 0.16 + 0.34, front + 0.3);
+      side.rotation.y = Math.PI / 2;
+      g.add(side);
+    }
+  }
+  // the gables, front and back, and the steep slate roof
+  const rise = 2.4;
+  for (const side of [1, -1]) {
+    const shape = new THREE.Shape();
+    shape.moveTo(-w / 2, 0); shape.lineTo(w / 2, 0); shape.lineTo(0, rise); shape.lineTo(-w / 2, 0);
+    const gable = mesh(projectUVs(new THREE.ShapeGeometry(shape), 1), brick, ctx);
+    gable.position.set(0, H, side * front);
+    if (side < 0) gable.rotation.y = Math.PI;
+    g.add(gable);
+  }
+  add(new THREE.PlaneGeometry(0.63, 0.69), plain, 0, H + 0.62, front + 0.006, false);
+  const eave = 0.26, theta = Math.atan2(rise, w / 2), L = (w / 2 + eave) / Math.cos(theta), roofD = d + 0.6, slabT = 0.14;
+  const slate = slateMaterial(ctx, burning);
+  const holed = burning;
+  for (const side of [-1, 1]) {
+    const slab = (from: number, to: number) => {
+      const len = L * (to - from), mid = L * (from + to) / 2;
+      const m = mesh(boxGeometry(len, slabT, side > 0 ? roofD : roofD + 0.008, 1), slate, ctx);
+      m.position.set(side * (mid * Math.cos(theta)), H + rise - mid * Math.sin(theta) + slabT / 2 / Math.cos(theta), 0);
+      m.rotation.z = -side * theta;
+      g.add(m);
+    };
+    if (holed && side === (seed % 2 ? 1 : -1)) {
+      slab(0, 0.28); slab(0.7, 1);
+      const charred = litMaterial(ctx, 'charred-rafter', null, { color: '#1e1814', roughness: 1 });
+      for (let k = 0; k < 3; k++) {
+        const r = mesh(boxGeometry(L * 0.44, 0.1, 0.1, 1), charred, ctx);
+        r.position.set(side * L * 0.49 * Math.cos(theta), H + rise - L * 0.49 * Math.sin(theta) - 0.03, -roofD / 2 + 0.7 + k * (roofD - 1.4) / 2);
+        r.rotation.z = -side * theta + (k === 1 ? 0.1 : 0);
+        g.add(r);
+      }
+      const gapFire = fireBillboard(ctx, seed + 23, 1.4, 2.0, { color: '#ff7a2a', intensity: 9, distance: 12 });
+      gapFire.position.set(side * L * 0.49 * Math.cos(theta), H + rise - L * 0.49 * Math.sin(theta) - 0.1, 0.2);
+      g.add(gapFire);
+      const plume = smoke(ctx, seed + 5, '#2a2422', 2.6, 8);
+      plume.position.set(side * L * 0.49 * Math.cos(theta), H + rise - 0.2, -0.3);
+      g.add(plume);
+    } else slab(0, 1);
+  }
+  // a brick chimney through the roof, capped with stone
+  const chimX = (seed % 2 ? -1 : 1) * w * 0.24, roofY = H + rise - Math.abs(chimX) * Math.tan(theta);
+  add(boxGeometry(0.5, 1.6, 0.5, 1), brick, chimX, roofY + 0.3, -0.6);
+  add(boxGeometry(0.66, 0.1, 0.66, 1.6), stone, chimX, roofY + 1.15, -0.6);
+  return g;
+}
+
+/**
+ * A house fallen in on itself: its back wall still standing to the first floor with a jagged top, the stub of a side
+ * wall, a dark window opening, charred beams leaning out of a heap of brick, slate and plaster spilling toward the street.
+ */
+function brickRuin(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const brick = brickMaterial(ctx, seed, 0.45), stone = stoneMaterial(ctx, seed, 0);
+  const w = 3.5, back = -1.5;
+  for (let i = 0; i < 7; i++) {
+    const h = 1.2 + Math.max(0, 3.8 - Math.abs(i - 2 - (seed % 3)) * 0.9) + rng() * 0.5;
+    g.add(at(mesh(boxGeometry(0.5, h, 0.4, 1), brick, ctx), -w / 2 + 0.25 + i * 0.5, h / 2, back));
+  }
+  g.add(at(mesh(boxGeometry(w + 0.08, 0.45, 0.48, 1.6), stone, ctx), 0, 0.225, back));
+  for (let i = 0; i < 4; i++) {
+    const h = 0.9 + rng() * 1.3;
+    g.add(at(mesh(boxGeometry(0.4, h, 0.5, 1), brick, ctx), -w / 2 + 0.2, h / 2, back + 0.45 + i * 0.5));
+  }
+  g.add(at(mesh(new THREE.PlaneGeometry(0.7, 1.0), darkMaterial(ctx), ctx, false), 0.4, 1.9, back + 0.206));
+  const charred = litMaterial(ctx, 'charred-rafter', null, { color: '#1e1814', roughness: 1 });
+  for (let i = 0; i < 3; i++) {
+    const beam = mesh(boxGeometry(2.6 + rng(), 0.14, 0.14, 1), charred, ctx);
+    beam.position.set(-0.8 + i * 0.9, 0.9 + rng() * 0.4, -0.4 + rng() * 0.6);
+    beam.rotation.set((rng() - 0.5) * 0.3, rng() * Math.PI, 0.35 + rng() * 0.3);
+    g.add(beam);
+  }
+  const heap = rubbleMound(ctx, seed, 3.8, 3.0, 1.1);
+  heap.position.z = 0.4;
+  g.add(heap);
+  strewnMasonry(ctx, rng, seed, g, 1.8, 9);
+  return g;
+}
+
+/** A small heap of fallen masonry, a few loose bricks and slates around it. */
+function rubbleHeap(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  g.add(rubbleMound(ctx, seed, 1.4, 1.1, 0.5));
+  strewnMasonry(ctx, rng, seed, g, 0.9, 6);
+  return g;
+}
+
+/** Paving stones heaved up at the crater's rim, tilted out of the ground, and a few setts torn loose. */
+function pavingSlabs(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = stoneMaterial(ctx, seed, 0);
+  for (let i = 0; i < 4; i++) {
+    const slab = mesh(boxGeometry(0.85 + rng() * 0.35, 0.16, 0.6 + rng() * 0.2, 1.6), stone, ctx);
+    const a = (i / 4) * Math.PI * 2 + rng();
+    slab.position.set(Math.cos(a) * 0.7, 0.12 + rng() * 0.14, Math.sin(a) * 0.5);
+    slab.rotation.set((rng() - 0.5) * 1.2, a + rng() * 0.5, (rng() - 0.5) * 1.0);
+    g.add(slab);
+  }
+  for (let i = 0; i < 4; i++) {
+    const sett = mesh(boxGeometry(0.2, 0.12, 0.16, 1.6), stone, ctx, false);
+    sett.position.set((rng() - 0.5) * 2.4, 0.06, (rng() - 0.5) * 1.6);
+    sett.rotation.set((rng() - 0.5) * 0.5, rng() * Math.PI, (rng() - 0.5) * 0.5);
+    g.add(sett);
+  }
+  return g;
+}
+
+/** A wrought-iron street lantern: a post on its base, a scrolled bracket, a glazed lantern lit at night or cold by day. */
+function ironLantern(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const iron = litMaterial(ctx, 'metal-dark', null, { color: '#2a2622', roughness: 0.7 });
+  g.add(at(mesh(boxGeometry(0.24, 0.3, 0.24, 1), iron, ctx), 0, 0.15, 0));
+  g.add(at(mesh(new THREE.CylinderGeometry(0.045, 0.06, 2.6, 6), iron, ctx), 0, 1.6, 0));
+  g.add(at(mesh(boxGeometry(0.64, 0.05, 0.05, 1), iron, ctx), 0.3, 2.82, 0));
+  const scroll = mesh(new THREE.TorusGeometry(0.13, 0.016, 4, 8, Math.PI), iron, ctx, false);
+  scroll.position.set(0.2, 2.68, 0);
+  scroll.rotation.z = Math.PI;
+  g.add(scroll);
+  g.add(at(mesh(new THREE.CylinderGeometry(0.01, 0.01, 0.16, 4), iron, ctx, false), 0.58, 2.74, 0));
+  const lit = !ctx.unlitLamps;
+  const pane = lit
+    ? cached(ctx.materials, 'iron-lantern-lit', () => new THREE.MeshBasicMaterial({ map: cached(ctx.textures, 'lantern-pane', () => lanternTexture().toTexture()), toneMapped: false, fog: false }))
+    : litMaterial(ctx, 'iron-lantern-cold', null, { color: '#1c1e22', roughness: 0.4, metalness: 0.2 });
+  const cage = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.3, 0.2), pane);
+  cage.position.set(0.58, 2.5, 0);
+  cage.raycast = () => {};
+  g.add(cage);
+  const cap = mesh(new THREE.ConeGeometry(0.2, 0.16, 4), iron, ctx);
+  cap.position.set(0.58, 2.73, 0);
+  cap.rotation.y = Math.PI / 4;
+  g.add(cap);
+  if (lit) {
+    ctx.lights.push({ anchor: cage, color: '#ffbf6a', intensity: 5, distance: 7, flicker: 0.12 });
+    const basic = pane as THREE.MeshBasicMaterial;
+    ctx.animated.push((t) => { basic.color.setScalar(1.05 + Math.sin(t * 7 + seed) * 0.08 + Math.sin(t * 12.3 + seed * 2) * 0.04); });
+  }
+  return g;
+}
+
+/**
+ * A run of the Arena of Destinies' stands, 10.8 m along x, facing +z: the low wall of pale stone ringing the sand, the
+ * steep bank of stone benches rising behind it (full on the Tournament's day, empty and sooted by night) and at its top a
+ * gallery of round brick arches on pale stone piers. Variant 1 opens a great round-arched gate with its iron grille in
+ * the wall; variant 2 sets the honour stand in its middle, under an awning striped in undyed linen and slate grey.
+ * Burning, fires run along the benches and the gallery smokes.
+ */
+function arenaStand(ctx: PropContext, rng: Rng, seed: number, burning: boolean): THREE.Group {
+  const g = new THREE.Group();
+  // runs overlap where they meet: each variant sits a few centimetres higher so their copings never share a plane
+  const L = 10.8, kind = seed % 3, lift = kind * 0.03;
+  const stone = stoneMaterial(ctx, seed, 0), brick = brickMaterial(ctx, seed, burning ? 0.35 : 0);
+  const add = (geometry: THREE.BufferGeometry, material: THREE.Material, x: number, y: number, z: number, cast = true) => g.add(at(mesh(geometry, material, ctx, cast), x, y, z));
+  const wallH = 1.5, wallD = 0.5;
+  // the low wall ringing the sand, with its coping
+  const gx = kind === 1 ? (seed % 2 ? -1.8 : 1.8) : null;
+  const runs: Array<[number, number]> = gx === null ? [[-L / 2, L / 2]] : [[-L / 2, gx - 1.5], [gx + 1.5, L / 2]];
+  for (const [a, b] of runs) {
+    add(boxGeometry(b - a, wallH, wallD, 1.6), stone, (a + b) / 2, wallH / 2, -wallD / 2);
+    add(boxGeometry(b - a, 0.12 + lift, wallD + 0.16, 1.6), stone, (a + b) / 2, wallH + (0.12 + lift) / 2, -wallD / 2 + 0.04, false);
+  }
+  if (gx !== null) {
+    // the great gate: a block of pale stone pierced by a round arch, its iron grille lowered
+    const frame = mesh(archedWall(3.0, 3.6, 0.9, [[0, 2.0, 2.0]]), stone, ctx);
+    frame.position.set(gx, 0, 0.2);
+    g.add(frame);
+    const grille = litMaterial(ctx, 'gate-grille', repeatTexture(ctx, 'gate-grille', () => grilleTexture().toTexture({ repeat: true })), { roughness: 0.8, metalness: 0.2 });
+    const bars = new THREE.PlaneGeometry(2.0, 3.0);
+    const uv = bars.attributes.uv as THREE.BufferAttribute;
+    for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * 2, uv.getY(i) * 2);
+    add(bars, grille, gx, 1.5, -0.3, false);
+  }
+  // the bank of benches, from the top of the wall back up to the gallery
+  const z0 = -wallD, y0 = wallH + 0.12 + lift, z1 = -4.2, y1 = 5.0 + lift;
+  const slope = Math.atan2(y1 - y0, z0 - z1), Ls = Math.hypot(y1 - y0, z0 - z1);
+  const normal = new THREE.Vector3(0, Math.cos(slope), Math.sin(slope));
+  const mid = new THREE.Vector3(0, (y0 + y1) / 2, (z0 + z1) / 2);
+  const bank = mesh(boxGeometry(L, 0.3, Ls, 1.6), stone, ctx);
+  bank.position.copy(mid).addScaledVector(normal, -0.15);
+  bank.rotation.x = slope;
+  g.add(bank);
+  const crowd = Boolean(ctx.crowd) && !burning;
+  const key = `stands-${crowd}-${burning}-${seed % 2}`;
+  const benches = litMaterial(ctx, key, repeatTexture(ctx, key, () => standsTexture(ctx.palette, 620 + (seed % 2), crowd, burning ? 0.5 : 0).toTexture({ repeat: true })), { roughness: 0.95 });
+  const seats = new THREE.PlaneGeometry(L, Ls);
+  const suv = seats.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < suv.count; i++) suv.setXY(i, suv.getX(i) * L / 2, suv.getY(i) * Ls);
+  const face = mesh(seats, benches, ctx, false);
+  face.position.copy(mid).addScaledVector(normal, 0.006);
+  face.rotation.x = slope - Math.PI / 2;
+  g.add(face);
+  // the gallery at the top: round brick arches on pale stone piers, darkness behind them, a stone cornice
+  const arches = 5, span = L / arches;
+  const openings = Array.from({ length: arches }, (_, i) => [-L / 2 + span * (i + 0.5), 1.4, 1.7] as const);
+  const gallery = mesh(archedWall(L, 3.4, 0.5, openings), brick, ctx);
+  gallery.position.set(0, y1, z1);
+  g.add(gallery);
+  for (let i = 0; i <= arches; i++) add(boxGeometry(0.5, 2.4, 0.08, 1.6), stone, -L / 2 + span * i + (i === 0 ? 0.25 : i === arches ? -0.25 : 0), y1 + 1.2, z1 + 0.04, false);
+  add(boxGeometry(L, 0.2, 0.62, 1.6), stone, 0, y1 + 3.5, z1 - 0.21);
+  add(boxGeometry(L, 3.4, 0.2, 1), darkMaterial(ctx), 0, y1 + 1.7, z1 - 1.2, false);
+  if (kind === 2) {
+    // the honour stand, projecting over the sand from the middle of the run
+    add(boxGeometry(3.8, 2.6, 1.8, 1), brick, 0, 1.3, -0.2);
+    for (const side of [-1, 1]) for (let i = 0; i < 7; i++) {
+      const long = i % 2 === 0, bx = long ? 0.36 : 0.2, bz = long ? 0.2 : 0.36;
+      add(boxGeometry(bx, 0.3, bz, 1.6), stone, side * (1.925 - bx / 2), 0.2 + i * 0.35, 0.725 - bz / 2, false);
+    }
+    add(boxGeometry(4.0, 0.14, 2.0, 1.6), stone, 0, 2.67, -0.2);
+    add(boxGeometry(3.8, 0.8, 0.25, 1), brick, 0, 3.14, 0.575);
+    add(boxGeometry(3.92, 0.1, 0.37, 1.6), stone, 0, 3.59, 0.575);
+    for (const x of [-1.72, -0.57, 0.57, 1.72]) add(boxGeometry(0.24, 2.3, 0.24, 1.6), stone, x, 2.74 + 1.15, 0.47);
+    add(new THREE.PlaneGeometry(3.6, 2.4), darkMaterial(ctx), 0, 3.95, -1.096, false);
+    if (!burning) {
+      const awningKey = 'honour-awning';
+      const cloth = litMaterial(ctx, awningKey, repeatTexture(ctx, awningKey, () => honourAwningTexture(ctx.palette, 47).toTexture({ repeat: true })), { side: THREE.DoubleSide, roughness: 1 });
+      const roof = new THREE.PlaneGeometry(4.3, 2.4, 6, 2);
+      roof.rotateX(-Math.PI / 2);
+      const pos = roof.attributes.position as THREE.BufferAttribute, ruv = roof.attributes.uv as THREE.BufferAttribute;
+      for (let i = 0; i < pos.count; i++) {
+        const x = pos.getX(i), z = pos.getZ(i), t = (z + 1.2) / 2.4;
+        pos.setY(i, 5.55 - t * 0.5 - Math.sin((x / 4.3 + 0.5) * Math.PI) * Math.sin(t * Math.PI) * 0.06);
+        ruv.setXY(i, x + 2.15, z + 1.2);
+      }
+      roof.computeVertexNormals();
+      const awning = mesh(roof, cloth, ctx);
+      awning.position.z = -0.25;
+      g.add(awning);
+      const valance = new THREE.PlaneGeometry(4.3, 0.3);
+      const vuv = valance.attributes.uv as THREE.BufferAttribute;
+      for (let i = 0; i < vuv.count; i++) vuv.setXY(i, vuv.getX(i) * 4.3, vuv.getY(i) * 0.3);
+      add(valance, cloth, 0, 4.92, 0.955, false);
+    } else {
+      const fire = fireBillboard(ctx, seed + 61, 1.4, 1.6, { color: '#ff7a2a', intensity: 8, distance: 10 });
+      fire.position.set(0.6, 3.64, 0.6);
+      g.add(fire);
+    }
+  }
+  if (burning) {
+    for (let i = 0; i < 4; i++) {
+      const t = 0.3 + rng() * 0.5, x = -L / 2 + 1.2 + i * (L - 2.4) / 3 + (rng() - 0.5) * 0.8;
+      if (kind === 2 && Math.abs(x) < 2.2) continue;
+      const fire = fireBillboard(ctx, seed * 7 + i, 1.3, 1.8, i === 1 ? { color: '#ff7a2a', intensity: 8, distance: 12 } : undefined);
+      fire.position.set(x, y0 + (y1 - y0) * t, z0 + (z1 - z0) * t + 0.15);
+      g.add(fire);
+    }
+    const plume = smoke(ctx, seed + 9, '#2e2624', 3.4, 9);
+    plume.position.set((rng() - 0.5) * 4, y1 + 2, z1 - 0.6);
+    g.add(plume);
+  }
+  return g;
+}
+
+/**
+ * A run of the capital's curtain wall, 8.4 m along x: a battered plinth of pale stone, the wall of the same red brick as
+ * the houses, a stone string course, arrow slits, and a crenellated parapet whose merlons are capped with stone.
+ */
+function rampartWall(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const L = 8.4, D = 1.8, H = 5.6 + (seed % 2) * 0.04;
+  const brick = brickMaterial(ctx, seed, 0.2), stone = stoneMaterial(ctx, seed, 0);
+  const add = (geometry: THREE.BufferGeometry, material: THREE.Material, x: number, y: number, z: number, cast = true) => g.add(at(mesh(geometry, material, ctx, cast), x, y, z));
+  g.add(at(mesh(taperedBox(L, 1.2, D + 0.5, 0.88), stone, ctx), 0, 0, 0));
+  add(boxGeometry(L, H, D, 1), brick, 0, H / 2, 0);
+  add(boxGeometry(L + 0.04, 0.16, D + 0.12, 1.6), stone, 0, H - 1.0, 0);
+  for (let x = -L / 2 + 1.4; x < L / 2 - 0.6; x += 2.8) add(new THREE.PlaneGeometry(0.12, 0.7), darkMaterial(ctx), x, 3.0, D / 2 + 0.006, false);
+  add(boxGeometry(L, 0.5, 0.45, 1), brick, 0, H + 0.25, D / 2 - 0.225);
+  for (let x = -L / 2 + 0.7; x < L / 2; x += 1.4) {
+    add(boxGeometry(0.7, 0.6, 0.45, 1), brick, x, H + 0.8, D / 2 - 0.225);
+    add(boxGeometry(0.78, 0.08, 0.53, 1.6), stone, x, H + 1.14, D / 2 - 0.225, false);
+  }
+  return g;
+}
+
+/** A round tower of the ramparts: a stone plinth, a brick drum with a string course and arrow slits, a corbelled crenellated top. No roof. */
+function roundTower(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const brick = brickMaterial(ctx, seed, 0.2), stone = stoneMaterial(ctx, seed, 0);
+  const add = (geometry: THREE.BufferGeometry, material: THREE.Material, x: number, y: number, z: number, cast = true) => g.add(at(mesh(geometry, material, ctx, cast), x, y, z));
+  add(cylinderGeometry(2.6, 2.75, 1.0, 20, 1.6), stone, 0, 0.5, 0);
+  add(cylinderGeometry(2.3, 2.3, 6.4, 20, 1), brick, 0, 4.2, 0);
+  add(cylinderGeometry(2.42, 2.42, 0.18, 20, 1.6), stone, 0, 5.4, 0, false);
+  add(cylinderGeometry(2.55, 2.3, 0.4, 20, 1.6), stone, 0, 7.6, 0);
+  add(cylinderGeometry(2.55, 2.55, 0.6, 20, 1), brick, 0, 8.1, 0);
+  for (let i = 0; i < 12; i++) {
+    const a = (i / 12) * Math.PI * 2;
+    const merlon = mesh(boxGeometry(0.62, 0.6, 0.42, 1), brick, ctx);
+    merlon.position.set(Math.sin(a) * 2.34, 8.7, Math.cos(a) * 2.34);
+    merlon.rotation.y = a;
+    g.add(merlon);
+  }
+  for (const [a, y] of [[0, 3.2], [-0.5, 4.6], [0.5, 4.6], [0, 6.4]] as const) {
+    const slit = mesh(boxGeometry(0.14, 0.8, 0.08, 1), darkMaterial(ctx), ctx, false);
+    slit.position.set(Math.sin(a) * 2.3, y, Math.cos(a) * 2.3);
+    slit.rotation.y = a;
+    g.add(slit);
+  }
+  return g;
+}
+
+/** A stone stair climbing along the curtain wall to its walk: solid steps rising toward +x, 1.2 m deep. */
+function wallStair(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = stoneMaterial(ctx, seed, 0);
+  for (let i = 0; i < 16; i++) {
+    const h = 0.32 * (i + 1);
+    g.add(at(mesh(boxGeometry(0.36, h, 1.2, 1.6), stone, ctx), -2.88 + i * 0.36 + 0.18, h / 2, 0));
+  }
+  return g;
+}
+
+// ---------------------------------------------------------------- the breach
+
+/**
+ * The breach: a tall tear of cold black ink standing in the air with a thin cold white rim, its ink seeping out at its
+ * foot, a faint cold halo behind it and the cold white light of its rim on everything around. Nothing shows inside.
+ */
+function breachTear(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const W = 2.5, H = 10;
+  const key = `breach-tear-${seed % 2}`;
+  const texture = cached(ctx.textures, key, () => breachTearTexture(1 + (seed % 2)).toTexture());
+  const material = cached(ctx.materials, key, () => new THREE.MeshBasicMaterial({ map: texture, alphaTest: 0.5, side: THREE.DoubleSide, toneMapped: false, fog: false }));
+  const tear = new THREE.Mesh(new THREE.PlaneGeometry(W, H), material);
+  tear.position.set(0, H / 2 - 0.3, 0);
+  tear.name = 'arena-breach-tear';
+  tear.userData.dynamic = true;
+  tear.raycast = () => {};
+  g.add(tear);
+  const halo = createFireHaloMaterial(seed, 0.4);
+  halo.uniforms.uColor!.value.set('#bcd0ec');
+  const glow = new THREE.Mesh(new THREE.PlaneGeometry(W * 3.2, H * 1.1), halo);
+  glow.position.set(0, H * 0.45, -0.06);
+  glow.renderOrder = 5;
+  glow.raycast = () => {};
+  g.add(glow);
+  ctx.animated.push((t) => { halo.uniforms.uTime!.value = t * 0.35; });
+  const anchor = new THREE.Object3D();
+  anchor.position.set(0, 2.6, 0.5);
+  g.add(anchor);
+  ctx.lights.push({ anchor, color: '#dce8ff', intensity: 9, distance: 14, flicker: 0.05 });
+  return g;
+}
+
+/** Where the breach stood: a long scar of the Shadows' ink dried grey-black on the stones, matte, cracked. */
+function inkScar(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const key = `ink-scar-${seed % 3}`;
+  const texture = cached(ctx.textures, key, () => driedInkTexture(seed % 3).toTexture());
+  const material = cached(ctx.materials, key, () => new THREE.MeshStandardMaterial({
+    map: texture, alphaTest: 0.5, roughness: 1, polygonOffset: true, polygonOffsetFactor: -5, polygonOffsetUnits: -5,
+  }));
+  const geometry = new THREE.PlaneGeometry(4.0, 1.5);
+  geometry.rotateX(-Math.PI / 2);
+  const m = new THREE.Mesh(geometry, material);
+  m.position.y = 0.03;
+  m.renderOrder = 2;
+  m.receiveShadow = ctx.shadows;
+  m.raycast = () => {};
+  g.add(m);
+  return g;
+}
+
 // ---------------------------------------------------------------- dispatch
 
 export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | null {
@@ -2654,7 +3180,7 @@ export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | n
     case 'debris': object = debris(ctx, rng); break;
     case 'lantern': object = lantern(ctx, seed); break;
     case 'brazier': object = brazier(ctx, seed); break;
-    case 'banner': object = banner(ctx, seed, !!prop.burning); break;
+    case 'banner': object = banner(ctx, seed, !!prop.burning, true, prop.emblem); break;
     case 'candles': object = candles(ctx, rng, seed); break;
     case 'gravestone': object = gravestone(ctx, seed); break;
     case 'fire': object = fireBillboard(ctx, seed, 1.6 * s, 2.2 * s, { color: '#ff7a2a', intensity: 8, distance: 11 }); break;
@@ -2705,6 +3231,18 @@ export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | n
     case 'phoenix_relief': object = phoenixReliefWall(ctx, seed); break;
     case 'ink_stain': object = inkStain(ctx, rng, seed); break;
     case 'loose_leaves': object = looseLeaves(ctx, rng, seed); break;
+    case 'brick_house': object = brickHouse(ctx, rng, seed, !!prop.burning); break;
+    case 'brick_ruin': object = brickRuin(ctx, rng, seed); break;
+    case 'rubble': object = rubbleHeap(ctx, rng, seed); break;
+    case 'paving_slabs': object = pavingSlabs(ctx, rng, seed); break;
+    case 'iron_lantern': object = ironLantern(ctx, seed); break;
+    case 'arena_stand': object = arenaStand(ctx, rng, seed, !!prop.burning); break;
+    case 'clan_mast': object = banner(ctx, seed, !!prop.burning, true, prop.emblem ?? ctx.emblem ?? 'lion', 1.2); break;
+    case 'rampart_wall': object = rampartWall(ctx, seed); break;
+    case 'round_tower': object = roundTower(ctx, seed); break;
+    case 'wall_stair': object = wallStair(ctx, seed); break;
+    case 'breach_tear': object = breachTear(ctx, seed); break;
+    case 'ink_scar': object = inkScar(ctx, seed); break;
     default: object = null;
   }
   if (!object) return null;

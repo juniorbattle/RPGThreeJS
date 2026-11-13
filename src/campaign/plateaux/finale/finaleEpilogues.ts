@@ -51,7 +51,8 @@ type EpilogueCombatInput = Omit<CombatConfig, 'enemyVisualIds' | 'escortVisualId
   & Partial<Pick<CombatConfig, 'enemyVisualIds' | 'escortVisualIds' | 'encounterRank' | 'maxPlayerUnits'>>;
 
 export const EPILOGUE_COMBATS: readonly EpilogueCombatInput[] = Object.freeze<EpilogueCombatInput[]>([
-  { id: LAST_STAND_COMBAT_ID, sceneId: 'lion_sanctum', objective: 'Tenez, seuls contre tous : abattez ceux que les clans envoient.',
+  // at the heart of the breach at dusk, the breach closed (the image of `finale_fear_close` serves both answers)
+  { id: LAST_STAND_COMBAT_ID, sceneId: 'finale_breach_scar', objective: 'Tenez, seuls contre tous : abattez ceux que les clans envoient.',
     encounterLabel: 'Seuls contre tous', encounterRank: 'elite', enemyVisualIds: ['serpent_raider'],
     rewards: { gold: 0, reputation: 0, materials: {} } },
 ]);

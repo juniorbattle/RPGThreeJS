@@ -9,6 +9,11 @@
  * the only boss fight with phases. Provisional sprites (see `finalePresentation.ts`); the tactical runtime resolves
  * every fight.
  *
+ * Each fight plays in the final act's own coded arena (`src/combat/arena/arenaThemes.ts`, 2026-11-13), where its scene
+ * stages it: the Arena of Destinies on the Tournament's day for the bouts and the final, the same arena burning under the
+ * breach for the assault, the burning streets, the great square under the next day's smoke, the heart of the breach
+ * before dawn. A scene id is static presentation and never reaches a save.
+ *
  * Clan supports and enemy-clan foes (F3) are approved with the final act (OD-2026-11-09-A) and derived by RunSystem
  * before each final-act fight from the saved clan relations; nothing about them is saved.
  */
@@ -20,30 +25,29 @@ import { FINALE_GUARDIANS, FINALE_OPTIONAL_POIS } from './finaleTopology';
 type FinaleCombatInput = Omit<CombatConfig, 'enemyVisualIds' | 'escortVisualIds' | 'encounterRank' | 'maxPlayerUnits'>
   & Partial<Pick<CombatConfig, 'enemyVisualIds' | 'escortVisualIds' | 'encounterRank' | 'maxPlayerUnits'>>;
 
-const ARENA = 'lion_sanctum';
-const CAPITAL = 'forest_route';
+const TOURNAMENT = 'finale_destiny_arena';
 
 export const FINALE_STORY_COMBATS: readonly FinaleCombatInput[] = Object.freeze<FinaleCombatInput[]>([
-  { id: 'finale_raven_bout', sceneId: ARENA, objective: 'Battez le champion du Corbeau dans l’arène.', encounterLabel: 'Tournoi : le Corbeau',
+  { id: 'finale_raven_bout', sceneId: TOURNAMENT, objective: 'Battez le champion du Corbeau dans l’arène.', encounterLabel: 'Tournoi : le Corbeau',
     encounterRank: 'elite', enemyVisualIds: ['raven_champion', 'raven_scout'], postCombatDialogueId: 'finale_raven_verdict',
     rewards: { gold: 60, reputation: 0, materials: {} } },
-  { id: 'finale_wolf_bout', sceneId: ARENA, objective: 'Battez le champion du Loup dans l’arène.', encounterLabel: 'Tournoi : le Loup',
+  { id: 'finale_wolf_bout', sceneId: TOURNAMENT, objective: 'Battez le champion du Loup dans l’arène.', encounterLabel: 'Tournoi : le Loup',
     encounterRank: 'elite', enemyVisualIds: ['wolf_champion', 'wolf_hunter'], postCombatDialogueId: 'finale_wolf_verdict',
     rewards: { gold: 60, reputation: 0, materials: {} } },
-  { id: 'finale_phoenix_bout', sceneId: ARENA, objective: 'Battez le champion du Phénix dans l’arène.', encounterLabel: 'Tournoi : le Phénix',
+  { id: 'finale_phoenix_bout', sceneId: TOURNAMENT, objective: 'Battez le champion du Phénix dans l’arène.', encounterLabel: 'Tournoi : le Phénix',
     encounterRank: 'elite', enemyVisualIds: ['phoenix_champion', 'phoenix_guardian'], postCombatDialogueId: 'finale_phoenix_verdict',
     rewards: { gold: 60, reputation: 0, materials: {} } },
-  { id: 'finale_serpent_final', sceneId: ARENA, objective: 'Remportez la finale du Tournoi contre le champion du Serpent.',
+  { id: 'finale_serpent_final', sceneId: TOURNAMENT, objective: 'Remportez la finale du Tournoi contre le champion du Serpent.',
     encounterLabel: 'Finale du Tournoi', encounterRank: 'boss', isBoss: true, bossVisualId: 'serpent_champion', escortVisualIds: ['serpent_raider'],
     preCombatDialogueId: 'finale_pre_serpent_final', postCombatDialogueId: 'finale_betrayal', rewards: { gold: 100, reputation: 0, materials: {} } },
-  { id: 'finale_arena_assault', sceneId: ARENA, objective: 'Survivez à l’assaut des démons et quittez l’arène.', encounterLabel: 'L’arène en flammes',
+  { id: 'finale_arena_assault', sceneId: 'finale_arena_breach', objective: 'Survivez à l’assaut des démons et quittez l’arène.', encounterLabel: 'L’arène en flammes',
     encounterRank: 'boss', isBoss: true, bossVisualId: 'demon_champion', escortVisualIds: ['breach_demon', 'breach_demon'],
     postCombatDialogueId: 'finale_arena_assault_aftermath', rewards: { gold: 0, reputation: 0, materials: {} } },
-  { id: 'finale_burning_streets', sceneId: CAPITAL, objective: 'Frayez-vous un chemin dans les rues en flammes.', encounterLabel: 'Rues en flammes',
+  { id: 'finale_burning_streets', sceneId: 'finale_burning_streets', objective: 'Frayez-vous un chemin dans les rues en flammes.', encounterLabel: 'Rues en flammes',
     enemyVisualIds: ['breach_demon', 'breach_demon'], rewards: { gold: 60, reputation: 0, materials: {} } },
-  { id: 'finale_demon_square', sceneId: CAPITAL, objective: 'Abattez le démon qui tient la grande place.', encounterLabel: 'Place des démons',
+  { id: 'finale_demon_square', sceneId: 'finale_smoke_square', objective: 'Abattez le démon qui tient la grande place.', encounterLabel: 'Place des démons',
     encounterRank: 'elite', enemyVisualIds: ['demon_brute', 'breach_demon'], rewards: { gold: 80, reputation: 0, materials: { red_gem: 1 } } },
-  { id: 'finale_breach', sceneId: ARENA, objective: 'Abattez Maelor, puis ce qui le suit hors de la brèche.', encounterLabel: 'La brèche',
+  { id: 'finale_breach', sceneId: 'finale_breach_heart', objective: 'Abattez Maelor, puis ce qui le suit hors de la brèche.', encounterLabel: 'La brèche',
     encounterRank: 'boss', isBoss: true, bossVisualId: 'maelor_traitor', escortVisualIds: ['breach_demon'],
     phases: [{ label: 'L’entité de la brèche', bossVisualId: 'breach_entity', escortVisualIds: ['breach_demon', 'breach_demon'] }],
     preCombatDialogueId: 'finale_breach_confrontation', postCombatDialogueId: 'finale_breach_aftermath', rewards: { gold: 0, reputation: 1, materials: {} } },

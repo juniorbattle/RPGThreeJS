@@ -3,7 +3,8 @@ import type { ArenaTheme } from './arenaThemes';
 
 /**
  * Far plates painted in code, for the arenas that have no painted plate (OD-2026-11-01-C dropped the arena plates):
- * the Bear's snowy peaks under a clear sky, and the dark back wall of its mine galleries. Pixel art in the decor's
+ * the Bear's snowy peaks under a clear sky, and the dark back wall of its mine galleries; and the others' since, down to
+ * the final act's arena, city, ramparts and breach. Pixel art in the decor's
  * language (flat tone clusters, a dither only where two tones meet), shown with nearest filtering.
  */
 
@@ -546,6 +547,252 @@ export function drawCourtPlate(theme: ArenaTheme, seed = 31): PixelCanvas {
     for (let y = top - 8; y < top; y++) pc.set(x, y, copper);
     pc.set(x + 1, top - 8, copper); pc.set(x + 2, top - 7, copper); pc.set(x + 2, top - 6, copper); pc.set(x + 1, top - 5, copper); // the curled tail
   }
+  fadeFoot(pc, 0.9);
+  return pc;
+}
+
+// ---------------------------------------------------------------- the final act: the capital of the clans
+
+/** Paints the breach far away: a tall narrow tear of black ink with a thin cold white rim, a faint cold haze round it. */
+function farBreach(pc: PixelCanvas, cx: number, top: number, foot: number, half: number, seed: number): void {
+  const n = makeNoise(seeded(seed), 16);
+  for (let y = Math.max(0, Math.floor(top - 20)); y < Math.min(pc.height, foot + 20); y++) for (let x = Math.max(0, Math.floor(cx - half * 4)); x < Math.min(pc.width, cx + half * 4); x++) {
+    const t = clamp((y - top) / (foot - top));
+    const w = half * Math.pow(Math.sin(Math.PI * Math.min(1, 0.05 + t)), 0.8) * (0.8 + n(seed, y / 14) * 0.4);
+    const bend = Math.sin(t * 5 + seed) * half * 0.4;
+    const d = Math.abs(x - cx - bend) - w;
+    if (y >= top && y <= foot && d < -1) pc.set(x, y, rgb('#040506'));
+    else if (y >= top && y <= foot && d < 0.4) pc.set(x, y, rgb('#e8f0fc'));
+    else if (d < half * 2.5 && bayer(x, y) < (1 - d / (half * 2.5)) * 0.35) pc.set(x, y, mixRgb(pc.get(x, y) as unknown as Rgb, rgb('#b8c8de'), 0.25));
+  }
+}
+
+/** A column of smoke rising and leaning with the wind, in two tones, its edge dithered. */
+function smokeColumn(pc: PixelCanvas, x0: number, foot: number, height: number, width: number, tones: readonly Rgb[], seed: number): void {
+  const n = makeNoise(seeded(seed), 16);
+  for (let y = Math.max(0, Math.floor(foot - height)); y < Math.min(pc.height, foot); y++) {
+    const t = (foot - y) / height;
+    const cx = x0 + t * t * height * 0.5, w = width * (0.5 + t * 1.4);
+    for (let x = Math.max(0, Math.floor(cx - w)); x < Math.min(pc.width, cx + w); x++) {
+      const v = n(x / 10, y / 10) - Math.abs(x - cx) / w * 0.8 - t * 0.25;
+      if (v > 0.12 || (v > 0.04 && bayer(x, y) < 0.5)) pc.set(x, y, tones[v > 0.3 ? 1 : 0]!);
+    }
+  }
+}
+
+/** A glow of fire on the plate: an orange heat in dithered rings round a few flame texels. */
+function fireGlow(pc: PixelCanvas, cx: number, cy: number, r: number): void {
+  sunGlow(pc, cx, cy, r, 1.6, rgb('#ff7a2a'), 0.55);
+  for (let i = 0; i < 6; i++) {
+    const x = Math.round(cx + (i - 2.5) * 2), h = 3 + ((i * 7) % 5);
+    for (let y = 0; y < h; y++) pc.set(x, Math.round(cy) - y, y < h - 2 ? rgb('#ffb04a') : rgb('#e0601c'));
+  }
+}
+
+/**
+ * The far side of the Arena of Destinies from its sand: tiers of round red-brick arches on pale stone piers under a
+ * stone rim, the steep stands below them; by day under an even veil of grey-white cloud, the stands full of a distant
+ * crowd (dots of muted cloth, no face); by night empty, sooted, burning in places under a black sky full of smoke.
+ */
+export function drawArenaPlate(theme: ArenaTheme, night: boolean, seed = 37): PixelCanvas {
+  const W = 960, H = 300;
+  const pal = theme.palette;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const haze = rgb(theme.background);
+  const zenith = night ? rgb('#0a0d14') : rgb('#c4c8ce'), horizon = night ? rgb('#2e1e18') : rgb('#e2e4e7');
+  const sky = [0, 0.25, 0.5, 0.75, 1].map((t) => mixRgb(zenith, horizon, t));
+  const veil = makeNoise(rng, 16);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const v = veil(x / 60, y / 14);
+    pc.set(x, y, pick(sky, y / (H * 0.5) + (v - 0.5) * (night ? 0.2 : 0.3), x, y));
+  }
+  const curve = (x: number) => Math.round(-12 * ((x - W / 2) / (W / 2)) ** 2);
+  const rim = Math.round(H * 0.36), tier2 = Math.round(H * 0.55), standsTop = Math.round(H * 0.7);
+  const stone = pal.stone.map((c) => mixRgb(rgb(c), haze, night ? 0.35 : 0.3));
+  const brick = pal.plaster.map((c) => mixRgb(rgb(c), haze, night ? 0.35 : 0.3));
+  const dark = mixRgb(rgb('#0e0c0b'), haze, 0.25);
+  const crowd = ['#4a4e56', '#5c5446', '#6a5a48', '#4c5a50', '#6c4a40', '#7a705e', '#3e4450'].map((c) => mixRgb(rgb(c), haze, 0.35));
+  for (let x = 0; x < W; x++) {
+    const off = curve(x);
+    for (let y = Math.max(0, rim + off); y < H; y++) {
+      const ly = y - off;
+      let c: Rgb;
+      if (ly < rim + 5) c = pick(stone, ly < rim + 2 ? 0.85 : 0.45, x, y); // the rim's cornice
+      else if (ly < standsTop) {
+        // two storeys of round arches: each bay 26 px, a pier of pale stone, an arch opening onto darkness
+        const top = ly < tier2 ? rim + 5 : tier2, bottom = ly < tier2 ? tier2 : standsTop;
+        const bx = (x + 13) % 26, local = ly - top, span = bottom - top;
+        const pier = bx < 6;
+        const archTop = top + span * 0.28;
+        const inOpening = !pier && ly > archTop - 0 && (ly > archTop + 4 || Math.hypot(bx - 16, ly - (archTop + 4)) < 10) && local < span - 3;
+        if (local < 2 || local >= span - 2) c = pick(stone, local < 2 ? 0.7 : 0.35, x, y); // string courses
+        else if (inOpening) c = dark;
+        else if (pier) c = pick(stone, bx < 2 ? 0.75 : 0.5, x, y);
+        else c = pick(brick, 0.45 + ((ly % 4) === 3 ? -0.2 : 0) + (bx === 6 ? 0.15 : 0), x, y);
+      } else {
+        // the stands: rows of benches falling toward the sand
+        const row = (ly - standsTop) % 7;
+        c = pick(stone, row === 0 ? 0.8 : row < 3 ? 0.5 : 0.3, x, y);
+        if (!night && row >= 1 && row <= 5 && ((x * 7 + Math.floor((ly - standsTop) / 7) * 13) % 5) < 3) c = crowd[(x * 3 + ly * 5) % crowd.length]!;
+        if (night && veil(x / 20 + 3, ly / 8) > 0.66) c = mixRgb(c, rgb('#0c0a09'), 0.6); // soot
+      }
+      pc.set(x, y, c);
+    }
+  }
+  if (night) {
+    const r = seeded(seed * 3 + 1);
+    for (let i = 0; i < 9; i++) {
+      const x = 40 + r() * (W - 80), y = rim + curve(x) + 20 + r() * (H * 0.45);
+      fireGlow(pc, x, y, 16 + r() * 14);
+    }
+    const smokeTones = [rgb('#1a1615'), rgb('#26201d')];
+    for (let i = 0; i < 5; i++) smokeColumn(pc, 80 + i * 190 + r() * 60, rim + 30, 120, 18, smokeTones, seed + i);
+  }
+  fadeFoot(pc, 0.9);
+  return pc;
+}
+
+/** One row of the capital's houses far off: brick fronts with their windows, steep slate gables, sunk in the haze. */
+function houseRow(pc: PixelCanvas, pal: ArenaTheme['palette'], haze: Rgb, base: number, height: number, hazeMix: number, seed: number, night: boolean): void {
+  const r = seeded(seed);
+  const W = pc.width;
+  const brick = pal.plaster.map((c) => mixRgb(rgb(c), haze, hazeMix)), slate = pal.roof.map((c) => mixRgb(rgb(c), haze, hazeMix));
+  for (let x0 = -10 - r() * 20; x0 < W; ) {
+    const w = 16 + Math.round(r() * 20), h = Math.round(height * (0.7 + r() * 0.5)), rise = Math.round(w * 0.6);
+    const top = base - h;
+    for (let x = Math.max(0, Math.floor(x0)); x < Math.min(W, x0 + w); x++) {
+      const lx = x - x0;
+      for (let y = Math.max(0, top - rise); y < pc.height; y++) {
+        if (y < top) {
+          if (Math.abs(lx - w / 2) > (y - (top - rise)) / rise * (w / 2) + 0.5) continue;
+          pc.set(x, y, pick(slate, lx < w / 2 ? 0.75 : 0.3, x, y));
+        } else {
+          const win = lx % 6 >= 2 && lx % 6 <= 3 && (y - top) % 8 >= 2 && (y - top) % 8 <= 5 && lx > 1 && lx < w - 2;
+          const litWin = night && win && r() < 0.02;
+          pc.set(x, y, win ? (litWin || (night && ((x * 13 + y * 7) % 23 === 0)) ? rgb('#e08a3a') : mixRgb(rgb('#0c0b0a'), haze, hazeMix)) : pick(brick, lx === 0 ? 0.7 : 0.4, x, y));
+        }
+      }
+    }
+    x0 += w + Math.round(r() * 3);
+  }
+}
+
+/** The capital's ramparts far off: a line of wall with round towers whose tops are flat and crenellated, never a spire. */
+function farRamparts(pc: PixelCanvas, pal: ArenaTheme['palette'], haze: Rgb, base: number, seed: number): void {
+  const r = seeded(seed);
+  const brick = pal.plaster.map((c) => mixRgb(rgb(c), haze, 0.6));
+  const wallTop = base - 10;
+  const towers: number[] = [];
+  for (let x = 30 + r() * 60; x < pc.width; x += 120 + r() * 120) towers.push(x);
+  for (let x = 0; x < pc.width; x++) {
+    const tower = towers.find((t) => Math.abs(x - t) < 8);
+    const top = tower !== undefined ? wallTop - 12 : wallTop;
+    const merlon = Math.floor(x / 4) % 2 === 0 ? 2 : 0;
+    for (let y = top - merlon; y < base + 6; y++) pc.set(x, y, pick(brick, tower !== undefined && x < tower ? 0.7 : 0.4, x, y));
+  }
+}
+
+/**
+ * The capital seen down its streets: the sky (by night black with smoke and red with the fires, by day grey under the
+ * smoke), three rows of brick houses and slate roofs falling toward the lower city, the ramparts far off, and above the
+ * lower city's roofs the breach, taller than any building. `ramparts`: the sky over the curtain wall, the breach far
+ * beyond it, smoke rising from the town.
+ */
+export function drawCityPlate(theme: ArenaTheme, mode: 'night' | 'smoke' | 'ramparts', seed = 41): PixelCanvas {
+  const W = 960, H = 300;
+  const pal = theme.palette;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const night = mode === 'night';
+  const haze = rgb(theme.background);
+  const zenith = night ? rgb('#0b0e15') : rgb('#6a6764'), horizon = night ? rgb('#46261a') : rgb('#aaa49c');
+  const sky = [0, 0.2, 0.4, 0.6, 0.8, 1].map((t) => mixRgb(zenith, horizon, t));
+  const banks = makeNoise(rng, 16);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    let c = pick(sky, y / (H * 0.66), x, y);
+    const v = banks(x / 50, y / 12);
+    if (v > 0.58 && y < H * 0.6) c = mixRgb(c, night ? rgb('#16120f') : rgb('#5a5551'), v > 0.68 ? 0.6 : 0.3); // banks of smoke
+    pc.set(x, y, c);
+  }
+  if (mode === 'ramparts') {
+    farBreach(pc, W * 0.27, H * 0.12, H * 0.66, 6, seed);
+    farRamparts(pc, pal, haze, Math.round(H * 0.74), seed + 3);
+    const tones = [rgb('#4a4542'), rgb('#5c5652')];
+    for (let i = 0; i < 4; i++) smokeColumn(pc, 120 + i * 230 + rng() * 60, H * 0.72, 150, 16, tones, seed + 9 + i);
+    fadeFoot(pc, 0.9);
+    return pc;
+  }
+  farRamparts(pc, pal, haze, Math.round(H * 0.6), seed + 3);
+  farBreach(pc, W * 0.5, H * 0.08, H * 0.64, 7, seed);
+  houseRow(pc, pal, haze, Math.round(H * 0.68), 18, 0.62, seed + 11, night);
+  houseRow(pc, pal, haze, Math.round(H * 0.76), 24, 0.45, seed + 12, night);
+  houseRow(pc, pal, haze, Math.round(H * 0.86), 30, 0.28, seed + 13, night);
+  const r = seeded(seed * 5 + 2);
+  if (night) for (let i = 0; i < 10; i++) fireGlow(pc, r() * W, H * (0.62 + r() * 0.2), 14 + r() * 16);
+  const tones = night ? [rgb('#1c1715'), rgb('#2a221e')] : [rgb('#4e4946'), rgb('#625c58')];
+  for (let i = 0; i < 6; i++) smokeColumn(pc, 40 + i * 170 + r() * 50, H * (0.66 + r() * 0.12), 140, 14, tones, seed + 20 + i);
+  fadeFoot(pc, 0.9);
+  return pc;
+}
+
+/**
+ * The lower city round the heart of the breach: broken brick walls with empty windows and charred rafters, the Arena of
+ * Destinies far off on its hill. Before dawn under a dark slate sky, the fires still glowing far behind; at dusk under a
+ * long warm light with a thinning smoke.
+ */
+export function drawBreachPlate(theme: ArenaTheme, mode: 'dawn' | 'dusk', seed = 43): PixelCanvas {
+  const W = 960, H = 300;
+  const pal = theme.palette;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const dawn = mode === 'dawn';
+  const haze = rgb(theme.background);
+  const zenith = dawn ? rgb('#101722') : rgb('#4c4e52'), horizon = dawn ? rgb('#3c4858') : rgb('#c89068');
+  const sky = [0, 0.2, 0.4, 0.6, 0.8, 1].map((t) => mixRgb(zenith, horizon, t));
+  const banks = makeNoise(rng, 16);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    let c = pick(sky, y / (H * 0.66), x, y);
+    if (banks(x / 60, y / 10) > 0.62 && y < H * 0.55) c = mixRgb(c, dawn ? rgb('#1a1e26') : rgb('#8a7468'), 0.35);
+    pc.set(x, y, c);
+  }
+  if (!dawn) sunGlow(pc, W * 0.18, H * 0.62, 120, 2.6, rgb('#ffc890'), 0.5);
+  // the Arena of Destinies on its hill, far off: a round wall of arches
+  {
+    const cx = W * 0.74, top = H * 0.38, half = 70;
+    const brick = pal.plaster.map((c) => mixRgb(rgb(c), haze, 0.55));
+    for (let x = Math.floor(cx - half); x < cx + half; x++) {
+      const t = (x - cx) / half, rise = Math.round(top + t * t * 8);
+      for (let y = rise; y < H * 0.66; y++) {
+        const arch = (x % 9) > 2 && ((y - rise) % 14) > 4 && ((y - rise) % 14) < 12;
+        pc.set(x, y, arch ? mixRgb(dawn ? rgb('#3a1c10') : rgb('#1e1a18'), haze, 0.3) : pick(brick, t < 0 ? 0.7 : 0.35, x, y));
+      }
+    }
+    if (dawn) for (let i = 0; i < 3; i++) fireGlow(pc, cx - 40 + i * 40, top + 18, 18);
+  }
+  // two rows of broken walls round the crater, far to near
+  const r = seeded(seed + 7);
+  for (const [base, height, hazeMix] of [[0.74, 34, 0.5], [0.9, 56, 0.25]] as const) {
+    const brick = pal.plaster.map((c) => mixRgb(rgb(c), haze, hazeMix));
+    const hole = mixRgb(dawn ? rgb('#0a0c10') : rgb('#2a2220'), haze, hazeMix * 0.6);
+    for (let x0 = -r() * 30; x0 < W; ) {
+      const w = 24 + Math.round(r() * 40), h = Math.round(height * (0.5 + r() * 0.6));
+      for (let x = Math.max(0, Math.floor(x0)); x < Math.min(W, x0 + w); x++) {
+        const lx = x - x0;
+        const jag = Math.round(Math.abs(Math.sin(lx * 0.7 + x0)) * 8 + (lx / w) * h * 0.4 * (r() < 0.5 ? 1 : -0.3));
+        for (let y = Math.max(0, Math.round(H * base) - h + jag); y < H; y++) {
+          const win = lx % 10 >= 3 && lx % 10 <= 6 && (y - (H * base - h)) % 16 >= 4 && (y - (H * base - h)) % 16 <= 10;
+          pc.set(x, y, win ? hole : pick(brick, lx < 3 ? 0.7 : 0.38, x, y));
+        }
+      }
+      // a charred rafter jutting out of the top of the wall
+      if (r() < 0.5) for (let i = 0; i < 14; i++) pc.set(Math.round(x0 + w * 0.5 + i), Math.round(H * base - h - i * 0.6), rgb('#1a1412'));
+      x0 += w + 6 + Math.round(r() * 30);
+    }
+  }
+  if (dawn) for (let i = 0; i < 6; i++) fireGlow(pc, 60 + i * 160 + r() * 40, H * 0.72, 18 + r() * 12);
+  const tones = dawn ? [rgb('#1c1e24'), rgb('#262a30')] : [rgb('#8a786c'), rgb('#9c8a7c')];
+  for (let i = 0; i < (dawn ? 5 : 3); i++) smokeColumn(pc, 100 + i * 200 + r() * 60, H * 0.72, dawn ? 150 : 110, dawn ? 16 : 10, tones, seed + 30 + i);
   fadeFoot(pc, 0.9);
   return pc;
 }

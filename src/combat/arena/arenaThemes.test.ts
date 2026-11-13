@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
-  ARENA_PLATFORM, ARENA_THEMES, arenaBandProps, arenaClutterProps, arenaThemeFor, BEAR_ARENA_IDS, DRAGON_ARENA_IDS, propCrowdsPlatform, SCORPION_ARENA_IDS,
-  type ArenaPropKind, type ArenaTheme,
+  ARENA_CLAN_ORDER, ARENA_PLATFORM, ARENA_THEMES, arenaBandProps, arenaClutterProps, arenaThemeFor, BEAR_ARENA_IDS, CLAN_BANNER_COLOURS, DRAGON_ARENA_IDS, FINALE_ARENA_IDS,
+  propCrowdsPlatform, SCORPION_ARENA_IDS, type ArenaPropKind, type ArenaTheme,
 } from './arenaThemes';
 import { seeded } from './pixelArt';
 
@@ -14,7 +14,9 @@ describe('procedural combat arena themes', () => {
   it('provides one arena per combat scene and falls back to the forest route', () => {
     expect(Object.keys(ARENA_THEMES).sort()).toEqual([
       'bear_hall_terrace', 'bear_mine_galleries', 'bear_mountain_pass', 'bois_clair_burning',
-      'dragon_hall_esplanade', 'dragon_peak_trail', 'dragon_snowy_summit', 'dragon_wolf_cave', 'forest_route', 'lion_sanctum',
+      'dragon_hall_esplanade', 'dragon_peak_trail', 'dragon_snowy_summit', 'dragon_wolf_cave',
+      'finale_arena_breach', 'finale_breach_heart', 'finale_breach_scar', 'finale_burning_streets', 'finale_destiny_arena', 'finale_rampart_reserve', 'finale_smoke_square',
+      'forest_route', 'lion_sanctum',
       'scorpion_ash_sanctuary', 'scorpion_dune_crest', 'scorpion_dune_track', 'scorpion_phoenix_ruins', 'scorpion_phoenix_temple', 'scorpion_records_court',
     ]);
     expect(arenaThemeFor('unknown').id).toBe('forest_route');
@@ -43,12 +45,12 @@ describe('procedural combat arena themes', () => {
     expect([...forest.props, ...arenaBandProps(forest, seeded(9))].filter((prop) => prop.kind === 'pine')).toEqual([]);
   });
 
-  it('ships a far plate for every theme: painted for the Lion, painted in code for the Bear, the Dragon and the Scorpion (no arena plate, OD-2026-11-01-C)', () => {
+  it('ships a far plate for every theme: painted for the Lion, painted in code for the others (no arena plate, OD-2026-11-01-C)', () => {
     for (const id of ['forest_route', 'bois_clair_burning', 'lion_sanctum'] as const) {
       expect(ARENA_THEMES[id].farPlate.file).toMatch(/^\/assets\/generated\/combat-arena\/.+-far\.webp$/);
       expect(ARENA_THEMES[id].farPlate.procedural).toBeUndefined();
     }
-    for (const id of [...BEAR_ARENA_IDS, ...DRAGON_ARENA_IDS, ...SCORPION_ARENA_IDS]) {
+    for (const id of [...BEAR_ARENA_IDS, ...DRAGON_ARENA_IDS, ...SCORPION_ARENA_IDS, ...FINALE_ARENA_IDS]) {
       expect(ARENA_THEMES[id].farPlate.file, id).toBeUndefined();
       expect(ARENA_THEMES[id].farPlate.procedural, id).toBeDefined();
     }
@@ -70,6 +72,77 @@ describe('procedural combat arena themes', () => {
     // the Scorpion's borrow the bed of the Lion arena most of their fights played in: no new sound either
     for (const id of ['scorpion_dune_track', 'scorpion_phoenix_ruins', 'scorpion_records_court'] as const) expect(ARENA_THEMES[id].sound, id).toBe('forest_route');
     for (const id of ['scorpion_phoenix_temple', 'scorpion_ash_sanctuary', 'scorpion_dune_crest'] as const) expect(ARENA_THEMES[id].sound, id).toBe('lion_sanctum');
+    // the final act's borrow the bed that fits each place: the open air of the Tournament's day, the fires of the burning
+    // city, the night the breach played under before
+    expect(ARENA_THEMES.finale_destiny_arena.sound).toBe('forest_route');
+    for (const id of ['finale_arena_breach', 'finale_burning_streets', 'finale_smoke_square', 'finale_rampart_reserve'] as const) expect(ARENA_THEMES[id].sound, id).toBe('bois_clair_burning');
+    for (const id of ['finale_breach_heart', 'finale_breach_scar'] as const) expect(ARENA_THEMES[id].sound, id).toBe('lion_sanctum');
+  });
+
+  it('dresses the final act’s arenas in the capital’s identity, with no plateau’s motifs, never purple', () => {
+    // the Lion’s Gothic masonry, stele, graves, half-timbered houses, wooden lanterns and green country; the Bear’s granite,
+    // snow and mines; the Dragon’s limestone, bells and pines; the Wolf’s lair; the Scorpion’s desert and the Phoenix’s places
+    const forbidden: ArenaPropKind[] = [
+      'arch', 'column', 'broken_column', 'obelisk', 'statue', 'candles', 'gravestone', 'tree', 'bush', 'fern', 'house', 'well', 'haystack', 'log', 'wall', 'pine',
+      'grass', 'lantern', 'fence', 'stairs', 'rock',
+      'mine_frame', 'minecart', 'rails', 'ore_pile', 'winch', 'bear_pillar', 'hall_gate', 'beam', 'snowdrift', 'snow_rock', 'cliff',
+      'bell_post', 'bronze_brazier', 'dragon_stele', 'dragon_statue', 'dragon_gate', 'rock_needle', 'twisted_pine', 'terrace_wall', 'balustrade', 'cairn',
+      'stalagmite', 'hide_curtain', 'stakes', 'bones', 'pelt',
+      'dune', 'thorn_tree', 'thorn_scrub', 'dry_tuft', 'awning', 'clay_jars', 'mudbrick_arcade', 'records_gate', 'dry_basin', 'loose_leaves',
+      'phoenix_column', 'fallen_column', 'ruin_wall', 'phoenix_stele', 'ward_circle', 'flame_hearth', 'niche_wall', 'ash_basin', 'phoenix_relief',
+    ];
+    for (const id of FINALE_ARENA_IDS) {
+      const theme = ARENA_THEMES[id];
+      const kinds = kindsOf(theme);
+      for (const kind of forbidden) expect(kinds.has(kind), `${id}:${kind}`).toBe(false);
+      expect(theme.snow, id).toBeUndefined();
+      expect(theme.rock, id).toBeUndefined();
+      // red brick to rust (the palette's "plaster"), blue-black slate (its "roof"), pale grey stone dressings
+      for (const hex of theme.palette.plaster) { const [r, g, b] = rgbOf(hex); expect(r - g > 20 && r - b > 20, `${id}:${hex}`).toBe(true); }
+      for (const hex of theme.palette.roof) { const [r, , b] = rgbOf(hex); expect(b, `${id}:${hex}`).toBeGreaterThan(r); }
+      for (const hex of theme.palette.stone) { const [r, g, b] = rgbOf(hex); expect(Math.max(r, g, b) - Math.min(r, g, b), `${id}:${hex}`).toBeLessThan(12); }
+      const colours = [...Object.values(theme.palette).flat(), theme.light.hemiSky, theme.light.hemiGround, theme.light.sunColor, theme.light.fillColor,
+        theme.fog.color, theme.background, theme.spriteTint, theme.spriteRim, theme.motes.color, theme.mist?.color ?? '#000000'];
+      for (const hex of colours) expect(purple(hex), `${id}:${hex}`).toBe(false);
+      // a banner shows only its own clan's sign: none flies anywhere but in the Arena of Destinies, and never the company's
+      const banners = [...theme.props, ...arenaClutterProps(theme, seeded(9))].filter((prop) => prop.kind === 'banner' || prop.kind === 'clan_mast');
+      if (id === 'finale_destiny_arena' || id === 'finale_arena_breach') {
+        expect(banners.map((prop) => prop.kind), id).toEqual(Array(8).fill('clan_mast'));
+        expect(banners.map((prop) => prop.emblem), id).toEqual([...ARENA_CLAN_ORDER]);
+      } else expect(banners, id).toEqual([]);
+    }
+    // the eight clans' signs, each once; the Lion's gold lion on red is the act's only Lion motif and its only red-and-gold
+    expect(new Set(ARENA_CLAN_ORDER).size).toBe(8);
+    expect([...ARENA_CLAN_ORDER].sort()).toEqual(['bear', 'dragon', 'lion', 'phoenix', 'raven', 'scorpion', 'serpent', 'wolf']);
+    const redAndGold = (clan: keyof typeof CLAN_BANNER_COLOURS) => CLAN_BANNER_COLOURS[clan].cloth.every((hex) => { const [r, g] = rgbOf(hex); return r - g > 30; })
+      && CLAN_BANNER_COLOURS[clan].trim.every((hex) => { const [r, g, b] = rgbOf(hex); return r - b > 30 && g - b > 20; });
+    for (const clan of ARENA_CLAN_ORDER) {
+      expect(redAndGold(clan), clan).toBe(clan === 'lion');
+      for (const hex of [...CLAN_BANNER_COLOURS[clan].cloth, ...CLAN_BANNER_COLOURS[clan].trim]) expect(purple(hex), `${clan}:${hex}`).toBe(false);
+    }
+    // the Tournament's day: the stands full, the sky veiled, no breach, no fire, no ink yet
+    const tournament = kindsOf(ARENA_THEMES.finale_destiny_arena);
+    expect(ARENA_THEMES.finale_destiny_arena.crowd).toBe(true);
+    for (const kind of ['breach_tear', 'fire', 'smoke', 'ink_stain', 'ink_scar', 'brick_house', 'brick_ruin'] as const) expect(tournament.has(kind), kind).toBe(false);
+    expect(tournament.has('arena_stand')).toBe(true);
+    // the night of the breach: the same stands, empty and burning, the breach over the sand, its ink on it
+    const night = ARENA_THEMES.finale_arena_breach;
+    expect(night.crowd).toBeUndefined();
+    expect(night.props.filter((prop) => prop.kind === 'arena_stand').every((prop) => prop.burning)).toBe(true);
+    for (const kind of ['breach_tear', 'ink_stain', 'fire'] as const) expect(kindsOf(night).has(kind), kind).toBe(true);
+    // the city: brick houses and their ruins; the ramparts' wall and round tower; the breach's heart, then its scar
+    for (const id of ['finale_burning_streets', 'finale_smoke_square'] as const) expect(kindsOf(ARENA_THEMES[id]).has('brick_house'), id).toBe(true);
+    expect(ARENA_THEMES.finale_burning_streets.props.filter((prop) => prop.kind === 'brick_house' && prop.burning).length).toBeGreaterThan(3);
+    for (const kind of ['rampart_wall', 'round_tower', 'wall_stair'] as const) expect(kindsOf(ARENA_THEMES.finale_rampart_reserve).has(kind), kind).toBe(true);
+    const heart = kindsOf(ARENA_THEMES.finale_breach_heart), scar = kindsOf(ARENA_THEMES.finale_breach_scar);
+    for (const kind of ['breach_tear', 'ink_stain', 'brick_ruin', 'paving_slabs'] as const) expect(heart.has(kind), kind).toBe(true);
+    // closed: nothing left in the air, no fire, only scars of dried ink
+    for (const kind of ['breach_tear', 'ink_stain', 'fire'] as const) expect(scar.has(kind), kind).toBe(false);
+    expect(scar.has('ink_scar') && scar.has('brick_ruin')).toBe(true);
+    // the breach stands only where it is open
+    for (const id of FINALE_ARENA_IDS) expect(kindsOf(ARENA_THEMES[id]).has('breach_tear'), id).toBe(id === 'finale_arena_breach' || id === 'finale_breach_heart');
+    // the walls of the city close every view: no tree line, ridge, cloud bank or dune crest
+    for (const id of FINALE_ARENA_IDS) expect(ARENA_THEMES[id].horizon, id).toBe('none');
   });
 
   it('dresses the Scorpion’s places in the Scorpion’s signs and the Phoenix’s in the Phoenix’s, never both, never purple', () => {

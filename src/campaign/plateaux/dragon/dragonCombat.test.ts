@@ -5,7 +5,7 @@
  * plateaux keep their arenas, and a scene id is static presentation that never reaches a save.
  */
 import { describe, expect, it } from 'vitest';
-import { ARENA_THEMES, DRAGON_ARENA_IDS, type ArenaSceneId } from '../../../combat/arena/arenaThemes';
+import { ARENA_THEMES, DRAGON_ARENA_IDS, FINALE_ARENA_IDS, type ArenaSceneId } from '../../../combat/arena/arenaThemes';
 import { POST_DEMO_COMBATS, postDemoChapterOf } from '../../../game/postDemoContent';
 import { createInitialState } from '../../../game/store';
 
@@ -39,13 +39,13 @@ describe('Dragon fights in the Dragon arenas', () => {
     expect(scene('dragon_kaelen')).toBe('dragon_hall_esplanade');
   });
 
-  it('keeps its arenas to the Dragon, and the final act in the Lion’s arenas', () => {
+  it('keeps its arenas to the Dragon, and the final act in its own', () => {
     const others = combats.filter((combat) => postDemoChapterOf(combat.id) !== 'dragon');
     expect(others.length).toBeGreaterThan(0);
     for (const combat of others) expect(dragonArenas, combat.id).not.toContain(combat.sceneId);
     const finale = combats.filter((combat) => postDemoChapterOf(combat.id) === 'finale');
     expect(finale.length).toBeGreaterThan(0);
-    for (const combat of finale) expect(['forest_route', 'bois_clair_burning', 'lion_sanctum'], combat.id).toContain(combat.sceneId);
+    for (const combat of finale) expect(FINALE_ARENA_IDS as readonly string[], combat.id).toContain(combat.sceneId);
   });
 
   it('never writes a scene id into the saved state', () => {

@@ -7,7 +7,10 @@ import { ARENA_GROUND_Y, buildProp, type PropContext } from './arenaProps';
 import {
   drawCloudBank, drawDryTuft, drawDuneLine, drawFern, drawGrass, drawRidgeLine, drawRubble, drawSandTuft, drawSnowTuft, drawTreeLine, DECOR_TEXELS_PER_UNIT, type DecorSprite,
 } from './arenaSprites';
-import { drawCavePlate, drawCloudsPlate, drawCourtPlate, drawDunesPlate, drawLairPlate, drawNavePlate, drawPeaksPlate, drawSanctuaryPlate } from './arenaFarPlates';
+import {
+  drawArenaPlate, drawBreachPlate, drawCavePlate, drawCityPlate, drawCloudsPlate, drawCourtPlate, drawDunesPlate, drawLairPlate, drawNavePlate, drawPeaksPlate,
+  drawSanctuaryPlate,
+} from './arenaFarPlates';
 import platesJson from '../../render/generated/combatArenaPlates.json';
 
 interface GeneratedPlate { file: string; aspect: number; width: number; z: number; bottomY: number }
@@ -133,6 +136,7 @@ export class CombatArena {
       rock: this.theme.rock ?? 'granite',
       interior: Boolean(this.theme.interior),
       unlitLamps: Boolean(this.theme.unlitLamps),
+      crowd: Boolean(this.theme.crowd),
     };
   }
 
@@ -582,7 +586,7 @@ export class CombatArena {
   private buildTrampledApron(): void {
     const village = this.theme.ground === 'village_mud';
     const canvas = this.theme.apron === 'flagstone' ? flagApronTexture(this.theme.palette, 1301)
-      : village ? cobbleApronTexture(this.theme.palette, 1301) : trampledGroundTexture(this.theme.palette, 1201 + this.theme.id.length);
+      : village || this.theme.apron === 'cobbles' ? cobbleApronTexture(this.theme.palette, 1301) : trampledGroundTexture(this.theme.palette, 1201 + this.theme.id.length);
     const texture = canvas.toTexture();
     this.ctx.textures.set('apron', texture);
     const { width, depth } = this.platformSize;
@@ -744,7 +748,10 @@ export class CombatArena {
               : p === 'nave' ? drawNavePlate(this.theme)
                 : p === 'sanctuary' ? drawSanctuaryPlate(this.theme)
                   : p === 'court' ? drawCourtPlate(this.theme)
-                    : drawPeaksPlate(this.theme, 7 + this.theme.id.length);
+                    : p === 'arena_day' || p === 'arena_night' ? drawArenaPlate(this.theme, p === 'arena_night')
+                      : p === 'city_night' || p === 'city_smoke' || p === 'ramparts' ? drawCityPlate(this.theme, p === 'city_night' ? 'night' : p === 'city_smoke' ? 'smoke' : 'ramparts')
+                        : p === 'breach_dawn' || p === 'breach_dusk' ? drawBreachPlate(this.theme, p === 'breach_dawn' ? 'dawn' : 'dusk')
+                          : drawPeaksPlate(this.theme, 7 + this.theme.id.length);
       texture = canvas.toTexture();
       painted = canvas.height / canvas.width;
     } else if (!happy && plate.file) {

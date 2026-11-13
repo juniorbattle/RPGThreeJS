@@ -259,12 +259,14 @@ export function tileTopTexture(style: TileStyle, pal: ArenaPalette, seed: number
   if (style === 'sand_flag') return tileLimestone(pal, seed, 'sand');
   // the Phoenix's dressed sandstone and the Scorpion's sun-baked court: the same squared flags, in their own palette
   if (style === 'dressed_limestone' || style === 'dressed_sandstone') return tileDressedLimestone(pal, seed);
+  if (style === 'raked_sand') return tileRakedSand(pal, seed);
+  if (style === 'cobbles' || style === 'shattered_paving') return tileCobbles(pal, seed, style === 'shattered_paving');
   return tileFlagstone(pal, seed);
 }
 
 export function tileSideTexture(style: TileStyle, pal: ArenaPalette): PixelCanvas {
   const pc = new PixelCanvas(TILE_TEXELS, 8);
-  const tones = style === 'packed_earth' ? pal.dirt : pal.stone;
+  const tones = style === 'packed_earth' || style === 'raked_sand' ? pal.dirt : pal.stone;
   for (let y = 0; y < 8; y++) for (let x = 0; x < TILE_TEXELS; x++) {
     pc.set(x, y, shadeTone(tones, y === 0 ? 0.55 : 0.32 - y * 0.03, x, y));
   }
@@ -276,6 +278,11 @@ export function groundTexture(style: GroundStyle, pal: ArenaPalette, seed = 7): 
   const S = 128;
   const pc = new PixelCanvas(S, S);
   const rng = seeded(seed);
+  if (style === 'arena_sand' || style === 'cobbled_street' || style === 'rubble_paving') {
+    finaleGround(style, pal, pc, rng);
+    for (let k = 0; k < 90; k++) pc.setWrap(Math.floor(rng() * S), Math.floor(rng() * S), ramp(style === 'arena_sand' ? pal.dirt : pal.stone, 0.2));
+    return pc;
+  }
   const n1 = makeNoise(rng, 8), n2 = makeNoise(rng, 16), n3 = makeNoise(rng, 32);
   for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
     const big = n1((x / S) * 8, (y / S) * 8), mid = n2((x / S) * 16, (y / S) * 16), fine = n3((x / S) * 32, (y / S) * 32);
@@ -607,11 +614,13 @@ function bearBannerHem(x: number, W: number, H: number): number {
  * their gold border and swallowtail; the Bear's are slate and bone, with an angular band and a three-pointed hem.
  */
 export function bannerTexture(pal: ArenaPalette, seed: number, burning = false, emblem: ArenaEmblem = 'lion'): PixelCanvas {
-  if (emblem === 'bear') return bearBannerTexture(pal, seed);
-  if (emblem === 'dragon') return dragonBannerTexture(pal, seed);
-  if (emblem === 'wolf') return wolfBannerTexture(pal, seed);
-  if (emblem === 'scorpion') return scorpionBannerTexture(pal, seed);
-  if (emblem === 'phoenix') return phoenixBannerTexture(pal, seed);
+  if (emblem !== 'lion') {
+    const own = emblem === 'bear' ? bearBannerTexture(pal, seed) : emblem === 'dragon' ? dragonBannerTexture(pal, seed)
+      : emblem === 'wolf' ? wolfBannerTexture(pal, seed) : emblem === 'scorpion' ? scorpionBannerTexture(pal, seed)
+        : emblem === 'phoenix' ? phoenixBannerTexture(pal, seed) : emblem === 'raven' ? ravenBannerTexture(pal, seed) : serpentBannerTexture(pal, seed);
+    // the other clans' banners burn the way the lion's do (the Arena of Destinies the night of the breach)
+    return burning ? scorchBanner(own, seed) : own;
+  }
   const W = 40, H = 80;
   const pc = new PixelCanvas(W, H);
   const rng = seeded(seed);
@@ -1684,6 +1693,467 @@ export function nicheTexture(pal: ArenaPalette, lit: boolean): PixelCanvas {
       c = lit ? mixRgb(rgb('#140c07'), rgb('#c8803a'), Math.pow(t, 2.2) * across) : mixRgb(rgb('#090807'), rgb(pal.stoneDark[2]), t * 0.5);
     }
     pc.set(x, y, c);
+  }
+  return pc;
+}
+
+// ---------------------------------------------------------------- the final act: the capital of the clans and the breach
+
+/**
+ * The Raven clan's sign on the shared 26×34 grid: a raven standing in profile, facing left, its heavy beak lowered, its
+ * wings folded over its back and the wedge of its tail behind. 0 empty, 1 head, body and legs, 2 the folded wing and the
+ * tail (in shade, their feathers' edges lit).
+ */
+export function ravenShape(px: number, py: number): 0 | 1 | 2 | 3 {
+  if (Math.hypot(px - 8.2, py - 6.9) < 0.55) return 0; // eye
+  if (inEllipse(px, py, 8.6, 7.6, 3.3, 2.9) || inPoly(px, py, [[6.0, 6.2], [1.0, 8.6], [1.8, 9.4], [6.2, 9.8]])) return 1; // head and beak
+  if (inPoly(px, py, [[10.8, 12.8], [16.6, 12.4], [21.0, 16.4], [23.6, 21.8], [19.6, 22.4], [14.6, 20.2], [11.6, 16.8]])) {
+    return Math.sin((px - py * 0.6) * 2.2) > 0.78 ? 1 : 2; // the folded wing, its long feathers
+  }
+  if (inPoly(px, py, [[19.2, 20.0], [25.6, 26.0], [24.4, 27.8], [20.6, 25.4], [17.8, 22.6]])) return 2; // the tail
+  if (inEllipse(px, py, 10.4, 11.2, 3.0, 3.2) || inEllipse(px, py, 14.2, 17.2, 6.2, 5.4) || inStroke(px, py, [[10.6, 12.0], [16.8, 20.6]], 7, 6)) return 1;
+  if (inStroke(px, py, [[13.4, 22.0], [13.0, 28.6]], 1.2, 0.9) || inStroke(px, py, [[15.8, 22.4], [16.2, 28.8]], 1.2, 0.9)) return 1; // legs
+  if (inStroke(px, py, [[13.0, 28.6], [10.6, 29.8]], 0.8, 0.6) || inStroke(px, py, [[13.0, 28.6], [14.2, 30.0]], 0.8, 0.6)
+    || inStroke(px, py, [[16.2, 28.8], [18.4, 30.0]], 0.8, 0.6) || inStroke(px, py, [[16.2, 28.8], [15.6, 30.2]], 0.8, 0.6)) return 1; // claws
+  return 0;
+}
+
+/**
+ * The Serpent clan's sign on the shared grid: a serpent coiled three times on itself, its neck rising in an S to a head
+ * turned to the left, its forked tongue out. 0 empty, 1 the neck, the head and the middle coil, 2 the outer coils (in
+ * shade, banded with scales), 3 the tongue. No legs, no wings: never the Dragon.
+ */
+export function serpentShape(px: number, py: number): 0 | 1 | 2 | 3 {
+  if (Math.hypot(px - 6.6, py - 6.7) < 0.5) return 0; // eye
+  if (inStroke(px, py, [[2.6, 7.6], [0.9, 7.8]], 0.6, 0.5) || inStroke(px, py, [[0.9, 7.8], [0.2, 7.0]], 0.5, 0.4)
+    || inStroke(px, py, [[0.9, 7.8], [0.2, 8.6]], 0.5, 0.4)) return 3; // the forked tongue
+  if (inEllipse(px, py, 7.2, 7.4, 3.0, 2.0) || inPoly(px, py, [[4.6, 6.4], [2.4, 7.4], [4.6, 8.6]])) return 1; // the head
+  if (inStroke(px, py, [[9.4, 8.4], [13.6, 10.2], [15.6, 13.6], [13.4, 17.0], [10.8, 19.6], [12.4, 22.4]], 3.0, 3.8)) return 1; // the neck
+  const coils: ReadonlyArray<readonly [number, number, number, number]> = [[13, 23.8, 6.0, 2.2], [13, 26.9, 7.8, 2.4], [13, 30.1, 9.4, 2.6]];
+  for (let k = 0; k < coils.length; k++) {
+    const [cx, cy, rx, ry] = coils[k]!;
+    if (!inEllipse(px, py, cx, cy, rx, ry)) continue;
+    if (k === 1) return 1;
+    return Math.sin(Math.atan2(py - cy, (px - cx) / 3) * 7) > 0.55 ? 1 : 2; // scale bands round the outer coils
+  }
+  if (inStroke(px, py, [[21.8, 30.6], [24.4, 29.2], [25.4, 27.2]], 1.4, 0.4)) return 2; // the tail's tip
+  return 0;
+}
+
+/**
+ * The Raven's banner (40×80): dark steel-blue cloth with pale steel edges, a band of chevrons like folded feathers above
+ * a hem cut in four feather tips, and the raven in pale steel. Never purple.
+ */
+function ravenBannerTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const W = 40, H = 80;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const local = ((x + 0.5) / (W / 4)) % 1;
+    const hem = H - 2 - Math.abs(local - 0.5) * 2 * 9;
+    if (y > hem) continue;
+    const fold = Math.sin(x * 0.45) * 0.12;
+    let c = shadeTone(pal.cloth, 0.6 + fold + (n(x / 6, y / 6) - 0.5) * 0.2, x, y);
+    const dy = y - (H - 20), chevron = dy >= 0 && dy <= 5 && Math.abs(Math.abs(((x + 4) % 8) - 4) - (5 - dy)) < 0.6;
+    if ((x >= 2 && x <= 3) || (x >= W - 4 && x <= W - 3) || (y >= 4 && y <= 5) || chevron || y > hem - 2) c = shadeTone(pal.trim, x <= 3 || y <= 5 ? 0.8 : 0.5, x, y);
+    pc.set(x, y, c);
+  }
+  paintSigil(pc, ravenShape, 7, 13, pal.trim, { lit: 1, mid: 0.72, shade: 0.36, part2: 0.44, part3: 0.22 });
+  return pc;
+}
+
+/**
+ * The Serpent's banner (40×80): deep green cloth with dull bronze edges, a band of scales above a hem rolling in three
+ * waves, and the coiled serpent in dull bronze. Green and bronze, never the Lion's red-and-gold, never purple.
+ */
+function serpentBannerTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const W = 40, H = 80;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const hem = H - 2 - Math.abs(Math.sin(((x + 0.5) / W) * Math.PI * 3)) * 6;
+    if (y > hem) continue;
+    const fold = Math.sin(x * 0.45) * 0.12;
+    let c = shadeTone(pal.cloth, 0.6 + fold + (n(x / 6, y / 6) - 0.5) * 0.2, x, y);
+    const dy = y - (H - 17), scale = dy >= 0 && dy <= 3 && Math.abs(Math.hypot((x % 6) - 2.5, dy - 0.2) - 2.6) < 0.6;
+    if ((x >= 2 && x <= 3) || (x >= W - 4 && x <= W - 3) || (y >= 4 && y <= 5) || scale || y > hem - 2) c = shadeTone(pal.trim, x <= 3 || y <= 5 ? 0.8 : 0.5, x, y);
+    pc.set(x, y, c);
+  }
+  paintSigil(pc, serpentShape, 7, 13, pal.trim, { lit: 1, mid: 0.72, shade: 0.36, part2: 0.48, part3: 0.9 });
+  return pc;
+}
+
+/** Burns a banner: its hem torn into holes by the fire, a glowing edge with a charred line above it (as the lion's). */
+function scorchBanner(pc: PixelCanvas, seed: number): PixelCanvas {
+  const W = pc.width, H = pc.height;
+  const n = makeNoise(seeded(seed * 31 + 7), 8);
+  for (let y = H - 24; y < H; y++) for (let x = 0; x < W; x++) if (n(x / 4, y / 4) > 0.55 + (H - y) * 0.015) pc.set(x, y, [0, 0, 0], 0);
+  for (let y = 1; y < H; y++) for (let x = 0; x < W; x++) {
+    if (pc.alpha(x, y) && !pc.alpha(x, y + 1) && y > H - 30) { pc.set(x, y, rgb('#ff8a2a')); pc.set(x, y - 1, rgb('#2a120c')); }
+  }
+  return pc;
+}
+
+/**
+ * The capital's red brick (32×32, seamless): bricks in running bond, each its own shade from dark red to rust, a lit top
+ * course and a shaded foot, now and then a burnt header, in a pale lime mortar; `soot` blackens it in patches (the burning
+ * city), 0 to 1.
+ */
+export function brickTexture(pal: ArenaPalette, seed: number, soot = 0): PixelCanvas {
+  const S = 32;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), fine = makeNoise(rng, 16), smut = makeNoise(rng, 4);
+  const shades = Array.from({ length: 8 * 4 }, () => rng());
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const course = Math.floor(y / 4), by = y % 4, shifted = (x + (course % 2) * 4) % S;
+    const bx = shifted % 8, brick = Math.floor(shifted / 8);
+    let c: Rgb;
+    if (by === 3 || bx === 7) c = shadeTone(pal.stone, clamp01(0.62 + (fine(x / 2, y / 2) - 0.5) * 0.2), x, y);
+    else {
+      const t = shades[course * 4 + brick] ?? 0.5;
+      c = shadeTone(pal.plaster, clamp01(0.28 + t * 0.52 + (by === 0 ? 0.12 : by === 2 ? -0.1 : 0) + (fine(x / 2, y / 2) - 0.5) * 0.12), x, y);
+      if (t > 0.93) c = mixRgb(c, rgb(pal.stoneDark[1]), 0.45);
+    }
+    if (soot > 0) {
+      const v = smut(x / 8, y / 8) * 0.6 + n(x / 4, y / 4) * 0.4;
+      if (v < soot) c = mixRgb(c, rgb('#100c0a'), clamp01((soot - v) * 2.4) * 0.8);
+    }
+    pc.set(x, y, c);
+  }
+  return pc;
+}
+
+/** The Arena of Destinies' pale sand raked in long parallel furrows, scuffed by the bouts, on one slab. */
+function tileRakedSand(pal: ArenaPalette, seed: number): PixelCanvas {
+  const pc = new PixelCanvas(TILE_TEXELS, TILE_TEXELS);
+  const rng = seeded(seed);
+  const n1 = makeNoise(rng, 6), n2 = makeNoise(rng, 12);
+  const bow = (rng() - 0.5) * 0.04;
+  for (let y = 0; y < TILE_TEXELS; y++) for (let x = 0; x < TILE_TEXELS; x++) {
+    const furrow = (((y + (x - 24) * (x - 24) * bow + n1(x / 8, y / 8) * 1.5) % 4) + 4) % 4;
+    let level = 0.56 + (n1(x / 6, y / 6) - 0.5) * 0.22 + (n2(x / 2.4, y / 2.4) - 0.5) * 0.1 + (furrow < 1 ? -0.14 : furrow < 2 ? 0.08 : 0);
+    const edge = Math.min(x, y, TILE_TEXELS - 1 - x, TILE_TEXELS - 1 - y);
+    if (edge === 0) level -= 0.22; else if (edge === 1) level += 0.06;
+    pc.set(x, y, shadeTone(pal.moss, clamp01(level), x, y));
+  }
+  // scuffs where a fighter turned on his heel
+  for (let k = 0; k < 2; k++) {
+    const cx = 8 + rng() * 32, cy = 8 + rng() * 32, a = rng() * Math.PI;
+    for (let y = 0; y < TILE_TEXELS; y++) for (let x = 0; x < TILE_TEXELS; x++) {
+      const u = (x - cx) * Math.cos(a) + (y - cy) * Math.sin(a), v = -(x - cx) * Math.sin(a) + (y - cy) * Math.cos(a);
+      if ((u / 4) ** 2 + (v / 2) ** 2 < 1 && bayer(x, y) < 0.7) pc.set(x, y, shadeTone(pal.dirt, 0.62, x, y));
+    }
+  }
+  return pc;
+}
+
+/**
+ * Paving setts of pale grey stone in staggered rows (48×48), domed and lit up-left, dark joints of the palette's earth;
+ * `shattered`: the setts cracked and heaved, some gone, the Shadows' black ink lying in the gaps (the heart of the breach).
+ */
+function tileCobbles(pal: ArenaPalette, seed: number, shattered: boolean): PixelCanvas {
+  const pc = new PixelCanvas(TILE_TEXELS, TILE_TEXELS);
+  const rng = seeded(seed);
+  const n1 = makeNoise(rng, 6), n2 = makeNoise(rng, 12);
+  const cell = 6;
+  const jitter = Array.from({ length: 10 * 10 }, () => [rng(), rng(), rng()] as const);
+  for (let y = 0; y < TILE_TEXELS; y++) for (let x = 0; x < TILE_TEXELS; x++) {
+    const row = Math.floor(y / cell), sx = x + (row % 2) * (cell / 2), col = Math.floor(sx / cell);
+    const j = jitter[row * 10 + col] ?? [0.5, 0.5, 0.5];
+    const lx = (sx % cell) - cell / 2 + 0.5 + (j[0] - 0.5) * 0.8, ly = (y % cell) - cell / 2 + 0.5 + (j[1] - 0.5) * 0.5;
+    const d = Math.hypot(lx / 2.7, ly / 2.5);
+    const missing = shattered && j[2] < 0.16;
+    let c: Rgb;
+    if (d > 1 || missing) {
+      c = missing && n2(x / 3, y / 3) > 0.45 ? rgb(pal.ink) : shadeTone(pal.dirt, clamp01(0.3 + (n2(x / 3, y / 3) - 0.5) * 0.3), x, y);
+    } else {
+      const heave = shattered && j[2] > 0.84 ? -0.16 : 0;
+      const level = 0.46 + j[2] * 0.2 - (lx + ly) * 0.06 - d * 0.14 + (n1(x / 3, y / 3) - 0.5) * 0.12 + heave;
+      c = shadeTone(pal.stone, clamp01(level), x, y);
+    }
+    const edge = Math.min(x, y, TILE_TEXELS - 1 - x, TILE_TEXELS - 1 - y);
+    if (edge === 0) c = mixRgb(c, rgb(pal.stoneDark[0]), 0.4);
+    if (n1(x / 9 + 3, y / 9) > 0.8) c = mixRgb(c, rgb(pal.stoneDark[0]), 0.45); // soot
+    pc.set(x, y, c);
+  }
+  if (shattered) for (let k = 0; k < 3; k++) crack(pc, rng, 4 + Math.floor(rng() * 40), 2 + Math.floor(rng() * 10), 14 + Math.floor(rng() * 18), rgb(pal.ink), { x: 1, y: 1, w: 46, h: 46 });
+  return pc;
+}
+
+/**
+ * The capital's ground around the arena of a fight (128×128, seamless): the Arena of Destinies' raked sand, the paved
+ * street with soot and ash in its joints, or the crater's broken paving strewn with brick and veined with ink.
+ */
+function finaleGround(style: 'arena_sand' | 'cobbled_street' | 'rubble_paving', pal: ArenaPalette, pc: PixelCanvas, rng: Rng): void {
+  const S = pc.width;
+  const n1 = makeNoise(rng, 8), n2 = makeNoise(rng, 16), n3 = makeNoise(rng, 32);
+  const jitter = Array.from({ length: 16 * 16 }, () => [rng(), rng(), rng()] as const);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const big = n1((x / S) * 8, (y / S) * 8), mid = n2((x / S) * 16, (y / S) * 16), fine = n3((x / S) * 32, (y / S) * 32);
+    if (style === 'arena_sand') {
+      const furrow = (((y + Math.sin((x / S) * Math.PI * 4) * 3 + mid * 2) % 4) + 4) % 4;
+      const trampled = big < 0.32;
+      const level = 0.56 + (mid - 0.5) * 0.24 + (fine - 0.5) * 0.1 + (trampled ? 0 : furrow < 1 ? -0.14 : furrow < 2 ? 0.08 : 0);
+      pc.set(x, y, trampled ? shadeTone(pal.dirt, clamp01(level + 0.12), x, y) : shadeTone(pal.moss, clamp01(level), x, y));
+      continue;
+    }
+    // setts of 8 texels in staggered rows (whole rows and columns, so the tile repeats)
+    const row = Math.floor(y / 8), sx = (x + (row % 2) * 4) % S, col = Math.floor(sx / 8);
+    const j = jitter[row * 16 + col] ?? [0.5, 0.5, 0.5];
+    const lx = (sx % 8) - 3.5 + (j[0] - 0.5), ly = (y % 8) - 3.5 + (j[1] - 0.5) * 0.6;
+    const d = Math.hypot(lx / 3.4, ly / 3.2);
+    const broken = style === 'rubble_paving' && (j[2] < 0.3 || big < 0.3);
+    let c: Rgb;
+    if (d > 1 || broken) {
+      c = shadeTone(pal.dirt, clamp01(0.32 + (fine - 0.5) * 0.4), x, y);
+      if (style === 'rubble_paving' && mid > 0.62) c = shadeTone(pal.plaster, clamp01(0.3 + fine * 0.5), x, y); // brick fallen from the houses
+      else if (style === 'cobbled_street' && mid > 0.7) c = shadeTone(pal.moss, clamp01(0.4 + fine * 0.4), x, y); // ash in the joints
+    } else {
+      c = shadeTone(pal.stone, clamp01(0.44 + j[2] * 0.2 - (lx + ly) * 0.05 - d * 0.14 + (fine - 0.5) * 0.12), x, y);
+    }
+    if (big > 0.72) c = mixRgb(c, rgb(pal.stoneDark[0]), 0.5); // soot
+    // the breach's ink running in veins across the broken paving
+    if (style === 'rubble_paving' && Math.abs(n2((x / S) * 16 + 5, (y / S) * 16) - 0.5) < 0.035) c = rgb(pal.ink);
+    pc.set(x, y, c);
+  }
+}
+
+/**
+ * A round-arched window of the capital's houses (40×44, alpha-cut): an arch of pale stone voussoirs with its keystone, a
+ * stone sill, dark panes behind a mullion and a transom, and dark wooden shutters folded back on either side. Burning,
+ * the panes glow with the fire inside. Returns the face and an emissive mask holding only the panes.
+ */
+export function archWindowTextures(pal: ArenaPalette, burning: boolean): { face: PixelCanvas; glow: PixelCanvas } {
+  const W = 40, H = 44;
+  const face = new PixelCanvas(W, H), glow = new PixelCanvas(W, H);
+  glow.fill([0, 0, 0]);
+  const cx = 19.5, cy = 18, r = 9;
+  const glass = ['#0e1116', '#161b22', '#20262e'].map((h) => rgb(h));
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const inArch = y < cy ? Math.hypot(x - cx, y - cy) < r : x >= 11 && x <= 28 && y <= 39;
+    const dist = Math.hypot(x - cx, Math.min(0, y - cy));
+    const shutter = (x >= 1 && x <= 8) || (x >= 31 && x <= 38);
+    if (inArch) {
+      const mullion = Math.abs(x - cx) < 1 || y === 25;
+      if (mullion) { face.set(x, y, shadeTone(pal.wood, 0.3, x, y)); continue; }
+      if (burning) {
+        const t = clamp01((y - 8) / 32);
+        const c = mixRgb(rgb('#e0601c'), rgb('#ffd890'), t * (0.6 + bayer(x, y) * 0.4));
+        face.set(x, y, c);
+        glow.set(x, y, c);
+      } else {
+        const streak = Math.abs((x - 11) - (39 - y) * 0.5) < 1.2 && (x + y) % 3 !== 0;
+        face.set(x, y, streak ? rgb('#323a46') : glass[(x * 3 + y * 5) % 7 === 0 ? 2 : y < 20 ? 0 : 1]!);
+      }
+      continue;
+    }
+    if (y <= cy && dist < r + 2.2 && y >= 6) {
+      // voussoirs round the arch: joints every so often, a keystone at the crown
+      const a = Math.atan2(y - cy, x - cx);
+      const keystone = Math.abs(x - cx) < 1.6 && y < 9;
+      const joint = !keystone && Math.abs(((a + Math.PI) / (Math.PI / 7)) % 1 - 0.5) > 0.42;
+      face.set(x, y, joint ? rgb(pal.stoneDark[1]) : shadeTone(pal.stone, keystone ? 0.86 : dist < r + 1 ? 0.7 : 0.5, x, y));
+      continue;
+    }
+    if ((x === 9 || x === 10 || x === 29 || x === 30) && y >= cy && y <= 39) { face.set(x, y, shadeTone(pal.stone, x < 20 ? 0.74 : 0.48, x, y)); continue; }
+    if (y >= 40 && y <= 42 && x >= 8 && x <= 31) { face.set(x, y, shadeTone(pal.stone, y === 40 ? 0.82 : y === 41 ? 0.5 : 0.22, x, y)); continue; }
+    if (shutter && y >= 14 && y <= 40) {
+      const board = (x - (x < 20 ? 1 : 31)) % 3 === 0;
+      const batten = y === 18 || y === 36;
+      face.set(x, y, shadeTone(pal.wood, batten ? 0.7 : board ? 0.18 : 0.42 + (y % 5 === 0 ? 0.06 : 0), x, y));
+    }
+  }
+  return { face, glow };
+}
+
+/** A round-arched doorway (40×64, alpha-cut): the pale stone arch and jambs, a door of dark planks with iron bands and studs. */
+export function archDoorTexture(pal: ArenaPalette): PixelCanvas {
+  const W = 40, H = 64;
+  const pc = new PixelCanvas(W, H);
+  const cx = 19.5, cy = 18, r = 9;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const inArch = y < cy ? Math.hypot(x - cx, y - cy) < r : x >= 11 && x <= 28;
+    if (inArch) {
+      const band = y === 26 || y === 50;
+      const stud = band && x % 4 === 1;
+      const plank = (x - 11) % 4 === 0;
+      pc.set(x, y, stud ? rgb('#5a5650') : band ? rgb('#24221f') : shadeTone(pal.wood, plank ? 0.12 : 0.38 + (y % 7 === 0 ? 0.05 : 0), x, y));
+      continue;
+    }
+    const d = y < cy ? Math.hypot(x - cx, y - cy) : 0;
+    if (y < cy && d < r + 2.2 && y >= 6) {
+      const keystone = Math.abs(x - cx) < 1.6 && y < 9;
+      pc.set(x, y, shadeTone(pal.stone, keystone ? 0.86 : d < r + 1 ? 0.7 : 0.5, x, y));
+      continue;
+    }
+    if ((x === 9 || x === 10 || x === 29 || x === 30) && y >= cy) pc.set(x, y, shadeTone(pal.stone, x < 20 ? 0.74 : 0.48, x, y));
+  }
+  return pc;
+}
+
+/** A wrought-iron railing (32×16, alpha-cut): top and bottom rails, balusters and a row of C-scrolls between them. */
+export function railingTexture(): PixelCanvas {
+  const W = 32, H = 16;
+  const pc = new PixelCanvas(W, H);
+  const iron = rgb('#1e1c1a'), lit = rgb('#45403a');
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const rail = y <= 1 || y >= 14;
+    const baluster = x % 4 === 0;
+    const scroll = Math.abs(Math.hypot((x % 8) - 4, y - 8) - 2.4) < 0.6 && y > 4 && y < 12;
+    if (rail || baluster || scroll) pc.set(x, y, rail && y === 0 ? lit : iron);
+  }
+  return pc;
+}
+
+/** The iron grille of a great gate (32×48): a dark passage behind a lattice of riveted iron bars, its foot spiked. */
+export function grilleTexture(): PixelCanvas {
+  const W = 32, H = 48;
+  const pc = new PixelCanvas(W, H);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const vertical = x % 6 <= 1, horizontal = y % 8 <= 1 && y < H - 4;
+    let c: Rgb = mixRgb(rgb('#060505'), rgb('#1a1714'), y / H);
+    if (vertical || horizontal) c = (vertical && x % 6 === 0) || (horizontal && y % 8 === 0) ? rgb('#4a4540') : rgb('#2a2724');
+    if (vertical && horizontal) c = rgb('#5a5650');
+    pc.set(x, y, c);
+  }
+  return pc;
+}
+
+/**
+ * The stands of the Arena of Destinies (64×32, one bench row per repeat, seamless): pale grey stone benches, each with a
+ * lit edge and a shaded front; `crowd` seats a dense crowd on them, hooded and capped heads over shoulders in muted
+ * cloth, no face showing (OD-2026-11-11-G), never on the sand; empty, the benches are bare and `soot` blackens them.
+ */
+export function standsTexture(pal: ArenaPalette, seed: number, crowd: boolean, soot = 0): PixelCanvas {
+  const W = 64, H = 32;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), smut = makeNoise(rng, 4);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    let level: number;
+    if (y >= 22 && y <= 24) level = 0.64; // the bench's lit edge
+    else if (y >= 25) level = 0.46 - (y - 25) * 0.03; // its front
+    else level = 0.34 + (y / 22) * 0.12; // the tread and the step behind, in the shade of the row above
+    let c = shadeTone(pal.stone, clamp01(level + (n(x / 4, y / 4) - 0.5) * 0.1), x, y);
+    if (soot > 0 && smut(x / 16, y / 8) * 0.7 + n(x / 8, y / 8) * 0.3 < soot) c = mixRgb(c, rgb('#0e0b09'), 0.7);
+    pc.set(x, y, c);
+  }
+  if (crowd) {
+    const cloths = ['#2e323a', '#463c30', '#56402e', '#33402f', '#5a2e26', '#5e5442', '#262c38', '#6a5c44', '#3a3630', '#4a2a22', '#2c3a44'];
+    for (let x0 = Math.floor(rng() * 3); x0 < W; x0 += 7 + Math.floor(rng() * 2)) {
+      if (rng() < 0.06) continue; // an empty seat now and then
+      const cloth = rgb(cloths[Math.floor(rng() * cloths.length)]), hood = rgb(cloths[Math.floor(rng() * cloths.length)]);
+      const cx = x0 + 4, top = 3 + Math.floor(rng() * 3);
+      for (let y = top; y < 23; y++) for (let x = cx - 5; x <= cx + 5; x++) {
+        const head = Math.hypot(x - cx, (y - (top + 3)) * 1.05) < 3.1;
+        const body = y >= top + 5 && Math.abs(x - cx) <= 5 - (y < top + 7 ? 1 : 0);
+        if (!head && !body) continue;
+        const lit = x < cx - 1 ? 1.15 : x > cx + 1 ? 0.8 : 1;
+        let c: Rgb = head ? hood : cloth;
+        if (head && y >= top + 2 && Math.abs(x - cx) <= 1) c = rgb('#141210'); // the shadow under the hood: no face
+        pc.setWrap(x, y, [Math.min(255, c[0] * lit), Math.min(255, c[1] * lit), Math.min(255, c[2] * lit)]);
+      }
+    }
+  }
+  return pc;
+}
+
+/**
+ * The breach (80×320, alpha-cut): a tall narrow tear in the air, a void of cold black ink outlined by a thin cold white
+ * rim, its edge ragged with black ink licking out of it, droplets flung off, and at its foot the ink seeping out over
+ * the ground. Nothing shows inside it. Never a purple glow.
+ */
+export function breachTearTexture(seed: number): PixelCanvas {
+  const W = 80, H = 320;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 16), fine = makeNoise(rng, 32);
+  const voidInk = rgb('#040506'), ink = rgb('#08090b'), rim = rgb('#eef4ff'), pale = rgb('#a8bccf');
+  for (let y = 0; y < H; y++) {
+    const t = y / H;
+    const bend = Math.sin(t * Math.PI * 1.6 + seed) * 6 * Math.sin(t * Math.PI);
+    const half = 21 * Math.pow(Math.sin(Math.PI * Math.min(1, 0.04 + t * 1.0)), 0.8) * (0.78 + n(seed * 3, t * 12) * 0.44) + 0.5;
+    const centre = W / 2 + bend;
+    for (let x = 0; x < W; x++) {
+      const d = Math.abs(x - centre) - half + (fine(x / 3, y / 3) - 0.5) * 3.5;
+      if (d < -1.8) pc.set(x, y, (x * 7 + y * 13) % 97 === 0 ? rgb('#0c1218') : voidInk);
+      else if (d < 0.2) pc.set(x, y, rim);
+      else if (d < 1.2 && bayer(x, y) < 0.5) pc.set(x, y, pale);
+      else if (d < 4.5 && fine(x / 2 + 9, y / 4) > 0.5 + d * 0.06) pc.set(x, y, ink); // the ink licking out of the tear
+    }
+  }
+  // droplets flung off its edges
+  for (let k = 0; k < 40; k++) {
+    const y = Math.floor(rng() * H * 0.9), side = rng() < 0.5 ? -1 : 1;
+    const x = Math.round(W / 2 + side * (12 + rng() * 22));
+    pc.set(x, y, ink); if (rng() < 0.5) pc.set(x, y + 1, ink);
+  }
+  // the ink seeping out at its foot
+  for (let y = H - 26; y < H; y++) for (let x = 0; x < W; x++) {
+    const spread = 10 + (y - (H - 26)) * 1.2 + (n(x / 4, y / 3) - 0.5) * 10;
+    if (Math.abs(x - W / 2) < spread && !pc.alpha(x, y)) pc.set(x, y, ink);
+  }
+  return pc;
+}
+
+/**
+ * Where the breach stood (128×48, alpha-cut): a long scar of the Shadows' ink dried on the stones, dull grey-black and
+ * cracked like old lacquer, flaking at its ragged edges. Nothing glows.
+ */
+export function driedInkTexture(seed: number): PixelCanvas {
+  const W = 128, H = 48;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), fine = makeNoise(rng, 16), cells = makeNoise(rng, 32);
+  const tones = ['#303234', '#3c3f42', '#484b4f', '#55585c'].map((h) => rgb(h));
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const centre = H / 2 + Math.sin((x / W) * Math.PI * 2 + seed) * 4;
+    const half = 10 * Math.pow(Math.sin((Math.PI * (x + 0.5)) / W), 0.6) * (0.7 + n(x / 10, seed) * 0.6);
+    const d = Math.abs(y - centre) - half + (fine(x / 2, y / 2) - 0.5) * 3;
+    if (d > 0) continue;
+    const crackle = Math.abs(cells(x / 4, y / 4) - 0.5) < 0.04;
+    pc.set(x, y, crackle ? rgb('#62666a') : tones[d > -1.5 ? 2 : (x + y * 3) % 11 === 0 ? 1 : 0]!);
+  }
+  for (let k = 0; k < 30; k++) {
+    const x = Math.floor(rng() * W), y = Math.round(H / 2 + (rng() - 0.5) * H * 0.9);
+    if (!pc.alpha(x, y)) pc.set(x, y, tones[1]!);
+  }
+  return pc;
+}
+
+/**
+ * Fallen masonry (32×32, seamless): broken bricks, shards of blue-black slate and pale stone chips on a bed of grit and
+ * plaster dust, for the heaps of the collapsed houses.
+ */
+export function rubbleTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const S = 32;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const fine = makeNoise(rng, 16);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) pc.set(x, y, shadeTone(pal.dirt, clamp01(0.4 + (fine(x / 2, y / 2) - 0.5) * 0.5), x, y));
+  for (let k = 0; k < 26; k++) {
+    const kind = rng(), w = 3 + Math.floor(rng() * 4), h = 2 + Math.floor(rng() * 2);
+    const x0 = Math.floor(rng() * S), y0 = Math.floor(rng() * S);
+    const tones = kind < 0.55 ? pal.plaster : kind < 0.8 ? pal.roof : pal.stone;
+    const base = 0.35 + rng() * 0.4;
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) {
+      pc.setWrap(x0 + i, y0 + j, shadeTone(tones, clamp01(base + (j === 0 ? 0.2 : j === h - 1 ? -0.18 : 0)), x0 + i, y0 + j));
+    }
+  }
+  return pc;
+}
+
+/** The honour stand's awning (32×32, seamless): stripes of undyed linen and slate grey (the palette's trim and cloth), a faint weave. */
+export function honourAwningTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const S = 32;
+  const pc = new PixelCanvas(S, S);
+  const n = makeNoise(seeded(seed), 8);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const weave = (x + y) % 2 ? 0.04 : -0.04;
+    pc.set(x, y, shadeTone(Math.floor(x / 4) % 2 ? pal.cloth : pal.trim, clamp01(0.6 + weave + (n(x / 4, y / 4) - 0.5) * 0.2), x, y));
   }
   return pc;
 }

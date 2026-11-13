@@ -22,18 +22,31 @@
  * are of ash-coloured cut sandstone, round columns and niches carved with phoenixes, lamps lit in daylight, ward
  * circles and the saffron flame with a white heart, under the phoenix's. A Phoenix place shows no scorpion and a
  * Scorpion place no phoenix; the wild dune crest at dusk shows neither, only the Shadows' cold black ink.
+ *
+ * The final act has seven, coded only as well, on its validated identity (the only city of the game, a capital of the
+ * clans on a hill): red brick with pale stone dressings, blue-black slate roofs, iron lanterns and paved streets. The
+ * Arena of Destinies on the Tournament's day under a veiled sky, its raked sand ringed by stands of brick arcades and the
+ * eight clans' banners, each showing only its own sign (the Lion's gold lion on red is the only Lion motif in the act);
+ * the same arena by night, its empty stands burning and the breach risen over the sand; the capital's burning streets,
+ * its great square and its ramparts under the next day's smoke; the heart of the breach in the lower city before dawn,
+ * a crater of shattered paving where the breach stands, a tall tear of cold black ink with a thin cold white rim; and
+ * the same crater at dusk once it has closed, with only a long scar of dried ink. Never purple; never the company's own
+ * banner, whose emblem is an open operator decision.
  */
 export type ArenaSceneId =
   | 'forest_route' | 'bois_clair_burning' | 'lion_sanctum'
   | 'bear_mountain_pass' | 'bear_mine_galleries' | 'bear_hall_terrace'
   | 'dragon_peak_trail' | 'dragon_snowy_summit' | 'dragon_hall_esplanade' | 'dragon_wolf_cave'
   | 'scorpion_dune_track' | 'scorpion_dune_crest' | 'scorpion_phoenix_ruins' | 'scorpion_phoenix_temple' | 'scorpion_ash_sanctuary'
-  | 'scorpion_records_court';
+  | 'scorpion_records_court'
+  | 'finale_destiny_arena' | 'finale_arena_breach' | 'finale_burning_streets' | 'finale_smoke_square' | 'finale_rampart_reserve'
+  | 'finale_breach_heart' | 'finale_breach_scar';
 
 export type TileStyle = 'mossy_flagstone' | 'packed_earth' | 'sanctum_marble' | 'hewn_granite' | 'snowy_granite'
-  | 'limestone_flag' | 'snowy_limestone' | 'dressed_limestone' | 'cave_flag' | 'sand_flag' | 'dressed_sandstone';
+  | 'limestone_flag' | 'snowy_limestone' | 'dressed_limestone' | 'cave_flag' | 'sand_flag' | 'dressed_sandstone'
+  | 'raked_sand' | 'cobbles' | 'shattered_paving';
 export type GroundStyle = 'forest_floor' | 'village_mud' | 'sanctum_rubble' | 'snow_scree' | 'mine_floor' | 'snow_terrace' | 'dry_grass_snow'
-  | 'desert_sand';
+  | 'desert_sand' | 'arena_sand' | 'cobbled_street' | 'rubble_paving';
 
 export type ArenaPropKind =
   | 'tree' | 'pine' | 'dead_tree' | 'bush' | 'fern' | 'rock' | 'grass'
@@ -55,12 +68,17 @@ export type ArenaPropKind =
   | 'phoenix_column' | 'fallen_column' | 'ruin_wall' | 'phoenix_stele' | 'ward_circle' | 'flame_hearth' | 'niche_wall' | 'ash_basin'
   | 'phoenix_relief'
   // the Shadows' mark
-  | 'ink_stain' | 'loose_leaves';
+  | 'ink_stain' | 'loose_leaves'
+  // the capital of the clans: its brick houses and their ruins, its paving, the Arena of Destinies, its ramparts
+  | 'brick_house' | 'brick_ruin' | 'rubble' | 'paving_slabs' | 'iron_lantern' | 'arena_stand' | 'clan_mast' | 'rampart_wall' | 'round_tower'
+  | 'wall_stair'
+  // the breach
+  | 'breach_tear' | 'ink_scar';
 
 /** The sound family a scene plays: a new arena borrows an existing one, since new sound awaits the operator's ear. */
 export type ArenaSoundFamily = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum';
 /** The clan sign on an arena's banners and carved reliefs. */
-export type ArenaEmblem = 'lion' | 'bear' | 'dragon' | 'wolf' | 'scorpion' | 'phoenix';
+export type ArenaEmblem = 'lion' | 'bear' | 'dragon' | 'wolf' | 'scorpion' | 'phoenix' | 'raven' | 'serpent';
 /** What grows or lies at the foot of the platform and of the masonry. */
 export type ArenaFringe = 'vegetation' | 'alpine' | 'snow' | 'rubble' | 'grass' | 'sand';
 
@@ -76,6 +94,11 @@ export interface ArenaProp {
   v?: number;
   /** Lit/burning variant for houses, trees and banners. */
   burning?: boolean;
+  /**
+   * The clan whose banner this one is, in its own colours (the Arena of Destinies' masts); a banner without one shows the
+   * arena's sign in the arena's cloth.
+   */
+  emblem?: ArenaEmblem;
 }
 
 export interface ArenaLightRig {
@@ -121,7 +144,8 @@ export interface ArenaTheme {
    */
   farPlate: {
     file?: string;
-    procedural?: 'peaks' | 'cave' | 'clouds_day' | 'clouds_dusk' | 'lair' | 'dunes_day' | 'dunes_dusk' | 'ruins_day' | 'nave' | 'sanctuary' | 'court';
+    procedural?: 'peaks' | 'cave' | 'clouds_day' | 'clouds_dusk' | 'lair' | 'dunes_day' | 'dunes_dusk' | 'ruins_day' | 'nave' | 'sanctuary' | 'court'
+      | 'arena_day' | 'arena_night' | 'city_night' | 'city_smoke' | 'ramparts' | 'breach_dawn' | 'breach_dusk';
     width: number; bottomY: number; z: number; tint: string;
   };
   /** Ambience and sound mapping the scene plays (its own id for the Lion's arenas). */
@@ -138,7 +162,7 @@ export interface ArenaTheme {
    * Apron around the platform: worn earth by default, cobbles in the village, flags on a terrace (with whatever the
    * palette's "moss" is in the joints: snow before Borin's hall, dry grass before Kaelen's).
    */
-  apron?: 'flagstone';
+  apron?: 'flagstone' | 'cobbles';
   /** The living rock of cliffs, boulders and outcrops: the Bear's granite by default, the Dragon's pale limestone, the desert's red sandstone. */
   rock?: 'granite' | 'limestone' | 'sandstone';
   /**
@@ -148,6 +172,8 @@ export interface ArenaTheme {
   horizon?: 'clouds' | 'dunes' | 'none';
   /** The lamps in the niches and on the steles are cold, smoke-blackened (the Phoenix's sanctuary); lit by default. */
   unlitLamps?: boolean;
+  /** The stands are full (the Arena of Destinies on the Tournament's day); empty by default. */
+  crowd?: boolean;
   /** Multiplier applied to pixel sprites so they sit in the arena light. */
   spriteTint: string;
   spriteRim: string;
@@ -824,6 +850,277 @@ const PHOENIX_ASH_PALETTE: ArenaPalette = {
   ink: '#14100c',
 };
 
+/**
+ * Every clan's banner in its own colours, for the place where the clans' banners fly together (the Arena of Destinies):
+ * the Lion's gold on red (the forest route's cloth), the Bear's bone on slate, the Dragon's pale jade on deep jade, the
+ * Wolf's bone on soot, the Scorpion's linen on umber, the Phoenix's ash on saffron, the Raven's pale steel on dark steel
+ * blue and the Serpent's dull bronze on deep green. Never purple.
+ */
+export const CLAN_BANNER_COLOURS: Readonly<Record<ArenaEmblem, { cloth: readonly string[]; trim: readonly string[] }>> = Object.freeze({
+  lion: { cloth: ['#3d0f12', '#63181b', '#8e2622', '#b43a2b'], trim: ['#5b4317', '#8a6a25', '#c39a3c', '#e8c766'] },
+  bear: { cloth: BEAR_SNOW_PALETTE.cloth, trim: BEAR_SNOW_PALETTE.trim },
+  dragon: { cloth: DRAGON_PEAK_PALETTE.cloth, trim: DRAGON_PEAK_PALETTE.trim },
+  wolf: { cloth: ['#121110', '#1c1a18', '#272421', '#33302c'], trim: ['#55504a', '#807a70', '#b0a999', '#ddd6c6'] },
+  scorpion: { cloth: SCORPION_DESERT_PALETTE.cloth, trim: SCORPION_DESERT_PALETTE.trim },
+  phoenix: { cloth: PHOENIX_ASH_PALETTE.cloth, trim: PHOENIX_ASH_PALETTE.trim },
+  raven: { cloth: ['#10161e', '#18222e', '#22303e', '#2e3e50'], trim: ['#565e68', '#848c96', '#b2b9c2', '#e0e5ea'] },
+  serpent: { cloth: ['#0e1a12', '#16261a', '#203424', '#2c4430'], trim: ['#4a3a1e', '#6c5830', '#8e7642', '#ae9458'] },
+});
+
+/** The eight clans' signs in the order their masts stand round the Arena of Destinies, each once. */
+export const ARENA_CLAN_ORDER: readonly ArenaEmblem[] = Object.freeze(['lion', 'bear', 'dragon', 'scorpion', 'raven', 'wolf', 'phoenix', 'serpent']);
+
+/** The Arena of Destinies: three runs of stands across the sand and one on each flank, the honour stand in the middle. */
+function destinyArenaProps(night: boolean): ArenaProp[] {
+  const burning = night || undefined;
+  return [
+    // Back: the stands across the sand, a great gate in each side run, the honour stand at the middle of the centre one.
+    { kind: 'arena_stand', x: -10.6, z: -7.2, v: 1, burning },
+    { kind: 'arena_stand', x: 0, z: -7.4, v: 2, burning },
+    { kind: 'arena_stand', x: 10.6, z: -7.2, v: 4, burning },
+    // The flanks: the stands curving round toward us.
+    { kind: 'arena_stand', x: -12.6, z: -0.2, r: Math.PI / 2, v: 3, burning },
+    { kind: 'arena_stand', x: 12.6, z: -0.2, r: -Math.PI / 2, v: 6, burning },
+    // The eight clans' masts in one row along the wall, each sign once and none larger than another; by night every
+    // other banner burns.
+    ...ARENA_CLAN_ORDER.map((emblem, i): ArenaProp => ({
+      kind: 'clan_mast', x: -9.8 + i * 2.8, z: -6.3, v: i + 1, emblem, burning: night && i % 2 === 1 ? true : undefined,
+    })),
+  ];
+}
+
+const DESTINY_ARENA_PROPS: ArenaProp[] = [
+  ...destinyArenaProps(false),
+  // On the sand by the wall: water barrels and crates for the bouts.
+  { kind: 'barrel', x: -6.4, z: -4.6, s: 0.9, v: 1 },
+  { kind: 'barrel', x: -5.9, z: -5.3, s: 0.8, v: 2 },
+  { kind: 'crate', x: 6.3, z: -4.9, s: 0.8, r: 0.3, v: 1 },
+  { kind: 'barrel', x: 7.4, z: -1.4, s: 0.9, v: 4 },
+  { kind: 'crate', x: -7.6, z: 1.8, s: 0.8, r: -0.2, v: 3 },
+  // Foreground framing (blurred by the tilt-shift band).
+  { kind: 'barrel', x: -7.0, z: 5.6, s: 1.1, v: 3 },
+  { kind: 'crate', x: 7.2, z: 5.8, s: 1.0, r: 0.2, v: 2 },
+  { kind: 'barrel', x: 6.4, z: 6.2, s: 0.9, v: 5 },
+];
+
+/** The same arena the night of the betrayal: its stands empty and burning, torn banners on fire, the breach risen over the sand. */
+const ARENA_BREACH_PROPS: ArenaProp[] = [
+  ...destinyArenaProps(true),
+  // The breach in the middle of the sand behind the fight, its ink seeping across the sand toward it.
+  { kind: 'breach_tear', x: 0.6, z: -4.9, s: 0.9, v: 1 },
+  { kind: 'ink_stain', x: 0.2, z: -4.1, s: 1.2, v: 1 },
+  { kind: 'ink_stain', x: -2.3, z: -3.9, s: 0.8, v: 2 },
+  { kind: 'ink_stain', x: 2.9, z: -4.0, s: 0.9, v: 3 },
+  { kind: 'ink_stain', x: -6.4, z: 0.4, s: 0.8, v: 4 },
+  { kind: 'ink_stain', x: 6.6, z: -1.2, s: 0.9, v: 5 },
+  // What fell from the stands burns on the sand.
+  { kind: 'debris', x: -6.8, z: -4.6, s: 0.9, v: 1 },
+  { kind: 'fire', x: -6.6, z: -4.9, s: 0.9, v: 1 },
+  { kind: 'debris', x: 6.6, z: -4.0, s: 0.9, v: 2 },
+  { kind: 'fire', x: 7.0, z: -4.3, s: 1.0, v: 2 },
+  { kind: 'smoke', x: -9.0, z: -12.5, s: 2.2, v: 1 },
+  { kind: 'smoke', x: 4.0, z: -13.0, s: 2.0, v: 2 },
+  { kind: 'smoke', x: 12.0, z: -11.5, s: 2.4, v: 3 },
+  // Foreground framing.
+  { kind: 'debris', x: -7.0, z: 5.6, s: 1.1, v: 3 },
+  { kind: 'ink_stain', x: 3.4, z: 6.2, s: 0.9, v: 6 },
+];
+
+/** The capital's streets the night it burns: tall brick houses either side, some on fire, one fallen into the street. */
+const CAPITAL_STREET_PROPS: ArenaProp[] = [
+  // Back: the street running down between the houses toward the lower city, the breach far above its roofs.
+  { kind: 'brick_house', x: -7.6, z: -12.4, r: 0.12, v: 1, burning: true },
+  { kind: 'brick_house', x: 7.8, z: -12.8, r: -0.1, v: 2 },
+  { kind: 'brick_house', x: -11.4, z: -13.8, r: 0.2, v: 3 },
+  { kind: 'brick_house', x: 11.6, z: -14.4, r: -0.2, v: 4, burning: true },
+  // The left side of the street, the facades toward it.
+  { kind: 'brick_house', x: -8.8, z: -8.4, r: Math.PI / 2, v: 5 },
+  { kind: 'brick_house', x: -8.8, z: -4.8, r: Math.PI / 2, v: 6, burning: true },
+  { kind: 'brick_house', x: -8.8, z: -1.2, r: Math.PI / 2, v: 7 },
+  { kind: 'brick_house', x: -8.8, z: 2.4, r: Math.PI / 2, v: 8 },
+  // The right side, a house collapsed into the street.
+  { kind: 'brick_house', x: 8.8, z: -8.6, r: -Math.PI / 2, v: 9, burning: true },
+  { kind: 'brick_house', x: 8.8, z: -5.0, r: -Math.PI / 2, v: 10 },
+  { kind: 'brick_ruin', x: 8.6, z: -1.2, r: -Math.PI / 2, v: 1 },
+  { kind: 'brick_house', x: 8.8, z: 2.6, r: -Math.PI / 2, v: 11, burning: true },
+  // In the street: iron lanterns still lit, an abandoned cart, barrels, what fell from the roofs, fires in the debris.
+  { kind: 'iron_lantern', x: -6.5, z: -2.9, v: 1 },
+  { kind: 'iron_lantern', x: 6.5, z: -6.8, r: Math.PI, v: 2 },
+  { kind: 'cart', x: -6.3, z: -6.5, r: 0.4, v: 1 },
+  { kind: 'barrel', x: 6.2, z: -3.4, v: 1 },
+  { kind: 'barrel', x: 6.7, z: -2.8, s: 0.9, v: 2 },
+  { kind: 'crate', x: -6.4, z: 0.7, s: 0.8, r: 0.3, v: 1 },
+  { kind: 'rubble', x: 6.3, z: 0.8, v: 1 },
+  { kind: 'debris', x: 2.6, z: -5.0, v: 1 },
+  { kind: 'debris', x: -3.2, z: -5.6, v: 2 },
+  { kind: 'fire', x: -5.9, z: -4.5, s: 0.9, v: 4 },
+  { kind: 'fire', x: 3.2, z: -5.3, s: 0.8, v: 5 },
+  { kind: 'smoke', x: -7.6, z: -13.6, v: 1 },
+  { kind: 'smoke', x: 11.6, z: -15.2, v: 2 },
+  { kind: 'smoke', x: -10.0, z: -5.0, v: 3 },
+  { kind: 'smoke', x: 10.2, z: -9.0, v: 4 },
+  // Foreground framing.
+  { kind: 'rubble', x: -6.8, z: 5.8, s: 1.2, v: 2 },
+  { kind: 'barrel', x: 7.0, z: 5.6, s: 1.1, v: 3 },
+  { kind: 'debris', x: 3.6, z: 6.4, s: 0.9, v: 3 },
+];
+
+/** The capital's great square the next morning under the smoke: soot-blackened houses all round, one still burning. */
+const CAPITAL_SQUARE_PROPS: ArenaProp[] = [
+  // Back: the houses across the square, a street leaving it at the far end toward the breach.
+  { kind: 'brick_house', x: -4.6, z: -11.2, v: 12 },
+  { kind: 'brick_house', x: -8.4, z: -11.0, v: 13, burning: true },
+  { kind: 'brick_house', x: -12.2, z: -11.4, v: 14 },
+  { kind: 'brick_house', x: 4.8, z: -11.4, v: 15 },
+  { kind: 'brick_house', x: 8.6, z: -11.2, v: 16 },
+  { kind: 'brick_house', x: 12.4, z: -11.0, v: 17 },
+  // The sides of the square.
+  { kind: 'brick_house', x: -11.4, z: -6.0, r: Math.PI / 2, v: 18 },
+  { kind: 'brick_ruin', x: -11.2, z: -2.2, r: Math.PI / 2, v: 2 },
+  { kind: 'brick_house', x: -11.4, z: 1.6, r: Math.PI / 2, v: 19 },
+  { kind: 'brick_house', x: 11.4, z: -6.2, r: -Math.PI / 2, v: 20 },
+  { kind: 'brick_house', x: 11.4, z: -2.4, r: -Math.PI / 2, v: 21 },
+  { kind: 'brick_house', x: 11.4, z: 1.4, r: -Math.PI / 2, v: 22, burning: true },
+  // On the square: the lanterns out, a cart left behind, barrels and crates, rubble and charred beams.
+  { kind: 'iron_lantern', x: -7.4, z: -6.4, v: 3 },
+  { kind: 'iron_lantern', x: 7.6, z: -1.2, r: Math.PI, v: 4 },
+  { kind: 'cart', x: 7.0, z: -6.6, r: -0.6, v: 2 },
+  { kind: 'barrel', x: -6.4, z: -3.2, v: 4 },
+  { kind: 'crate', x: -6.9, z: -2.4, s: 0.9, r: 0.4, v: 4 },
+  { kind: 'rubble', x: -7.6, z: -0.2, s: 1.1, v: 3 },
+  { kind: 'rubble', x: 7.6, z: 3.4, v: 4 },
+  { kind: 'debris', x: 2.2, z: -6.2, v: 4 },
+  { kind: 'debris', x: -2.8, z: -7.0, s: 0.9, v: 5 },
+  { kind: 'fire', x: -7.8, z: -8.6, s: 0.8, v: 6 },
+  { kind: 'smoke', x: -8.4, z: -12.4, v: 5 },
+  { kind: 'smoke', x: 12.2, z: 1.0, v: 6 },
+  { kind: 'smoke', x: 2.6, z: -16.0, s: 1.4, v: 7 },
+  // Foreground framing.
+  { kind: 'rubble', x: -6.9, z: 5.8, s: 1.2, v: 5 },
+  { kind: 'crate', x: 7.1, z: 5.7, s: 1.0, r: 0.3, v: 5 },
+  { kind: 'barrel', x: 6.3, z: 6.3, s: 0.9, v: 6 },
+];
+
+/** The foot of the ramparts by the reserve: the brick curtain wall, its round tower, the stair to the wall walk, the stores. */
+const RAMPART_RESERVE_PROPS: ArenaProp[] = [
+  // Back: the curtain wall of the same brick, a round tower with a flat crenellated top, the stair up to the wall walk.
+  { kind: 'rampart_wall', x: -4.4, z: -9.4, v: 1 },
+  { kind: 'rampart_wall', x: 3.8, z: -9.6, v: 2 },
+  { kind: 'rampart_wall', x: 12.0, z: -9.4, v: 3 },
+  { kind: 'rampart_wall', x: -16.6, z: -9.6, v: 4 },
+  { kind: 'round_tower', x: -10.6, z: -9.0, v: 1 },
+  { kind: 'wall_stair', x: 4.6, z: -8.1, v: 1 },
+  // The reserve's stores along the wall: barrels, crates, a cart.
+  { kind: 'barrel', x: -6.4, z: -6.0, v: 5 },
+  { kind: 'barrel', x: -7.1, z: -5.3, s: 0.9, v: 6 },
+  { kind: 'barrel', x: -5.7, z: -5.2, s: 0.95, v: 7 },
+  { kind: 'crate', x: 6.6, z: -5.4, s: 1.0, r: 0.2, v: 6 },
+  { kind: 'crate', x: 7.5, z: -4.6, s: 0.8, r: -0.3, v: 7 },
+  { kind: 'crate', x: 0.6, z: -6.3, s: 0.9, r: 0.1, v: 8 },
+  { kind: 'cart', x: -6.7, z: 0.4, r: 1.3, v: 3 },
+  { kind: 'barrel', x: 6.4, z: 1.6, v: 8 },
+  { kind: 'iron_lantern', x: -6.3, z: -2.8, v: 5 },
+  // The flanks: houses of the town inside the walls, one of them fallen.
+  { kind: 'brick_house', x: 11.4, z: -2.2, r: -Math.PI / 2, v: 24 },
+  { kind: 'brick_house', x: 11.4, z: 1.6, r: -Math.PI / 2, v: 25, burning: true },
+  { kind: 'brick_ruin', x: -11.2, z: -1.6, r: Math.PI / 2, v: 3 },
+  { kind: 'rubble', x: -7.6, z: 2.8, v: 6 },
+  { kind: 'debris', x: 2.8, z: -5.6, v: 6 },
+  { kind: 'smoke', x: -6.0, z: -14.0, s: 1.4, v: 8 },
+  { kind: 'smoke', x: 6.0, z: -15.0, s: 1.6, v: 9 },
+  { kind: 'smoke', x: 12.6, z: 1.2, v: 10 },
+  // Foreground framing.
+  { kind: 'crate', x: -7.0, z: 5.8, s: 1.1, r: 0.3, v: 9 },
+  { kind: 'barrel', x: 7.2, z: 5.6, s: 1.1, v: 9 },
+  { kind: 'rubble', x: 3.6, z: 6.4, s: 0.9, v: 7 },
+];
+
+/**
+ * The crater at the heart of the breach in the lower city: collapsed houses round it, upturned paving, fallen brick. Open,
+ * the breach stands over it and its ink runs across the stones; closed, nothing is left in the air, only scars of dried ink.
+ */
+function breachHeartProps(open: boolean): ArenaProp[] {
+  const ring: ArenaProp[] = [
+    // Back: the collapsed houses closing the crater, fallen brick heaped where the breach stands.
+    { kind: 'brick_ruin', x: -7.4, z: -10.0, r: 0.15, v: 3 },
+    { kind: 'brick_ruin', x: 7.6, z: -10.4, r: -0.2, v: 4 },
+    { kind: 'brick_ruin', x: -12.4, z: -13.2, r: 0.3, v: 5 },
+    { kind: 'brick_ruin', x: 12.8, z: -13.8, r: -0.3, v: 6 },
+    { kind: 'rubble', x: -1.8, z: -7.4, s: 1.3, v: 3 },
+    { kind: 'rubble', x: 2.6, z: -7.8, s: 1.2, v: 4 },
+    { kind: 'paving_slabs', x: -5.4, z: -4.6, v: 1 },
+    { kind: 'paving_slabs', x: 4.8, z: -4.4, v: 2 },
+    // The flanks: houses fallen across the street, one still standing with its lantern.
+    { kind: 'brick_ruin', x: -9.4, z: -3.6, r: Math.PI / 2, v: 7 },
+    { kind: 'brick_ruin', x: 9.6, z: -2.8, r: -Math.PI / 2, v: 8 },
+    { kind: 'brick_house', x: -9.8, z: 1.8, r: Math.PI / 2, v: 23 },
+    { kind: 'iron_lantern', x: -7.2, z: 0.4, v: 6 },
+    { kind: 'paving_slabs', x: -6.4, z: 3.0, s: 0.9, v: 3 },
+    { kind: 'paving_slabs', x: 6.6, z: 2.6, v: 4 },
+    { kind: 'rubble', x: 7.0, z: 0.6, v: 5 },
+    { kind: 'debris', x: -6.6, z: -1.4, s: 0.9, v: 7 },
+    // Foreground framing.
+    { kind: 'rubble', x: -7.0, z: 5.8, s: 1.3, v: 6 },
+    { kind: 'debris', x: 6.8, z: 6.0, v: 8 },
+  ];
+  const breach: ArenaProp[] = open ? [
+    // the breach, a tall tear of cold black ink over the crater, its ink running across the paving toward the fight
+    { kind: 'breach_tear', x: 0.4, z: -8.6, s: 1.15, v: 2 },
+    { kind: 'ink_stain', x: -0.6, z: -5.6, s: 1.3, v: 1 },
+    { kind: 'ink_stain', x: 1.5, z: -4.3, s: 1.0, v: 2 },
+    { kind: 'ink_stain', x: -2.6, z: -4.0, s: 0.8, v: 3 },
+    { kind: 'ink_stain', x: 6.4, z: -0.8, s: 0.9, v: 4 },
+    { kind: 'ink_stain', x: -3.4, z: 6.2, s: 0.9, v: 5 },
+    // the fires still burning far behind
+    { kind: 'fire', x: -10.4, z: -15.0, s: 1.1, v: 1 },
+    { kind: 'fire', x: 11.2, z: -16.0, s: 1.2, v: 2 },
+    { kind: 'smoke', x: -10.6, z: -16.0, s: 1.6, v: 1 },
+    { kind: 'smoke', x: 11.0, z: -17.0, s: 1.6, v: 2 },
+  ] : [
+    // where the breach stood, nothing in the air: long scars of dried ink across the stones, a thinning smoke
+    { kind: 'ink_scar', x: 0.2, z: -5.8, s: 1.3, v: 1 },
+    { kind: 'ink_scar', x: -6.4, z: 1.0, s: 0.8, r: 1.2, v: 2 },
+    { kind: 'ink_scar', x: 2.8, z: 6.2, s: 0.7, r: -0.3, v: 3 },
+    { kind: 'smoke', x: -10.6, z: -16.0, s: 1.4, v: 3 },
+    { kind: 'smoke', x: 9.0, z: -17.0, s: 1.2, v: 4 },
+  ];
+  return [...ring, ...breach];
+}
+
+/**
+ * The capital's red brick with pale grey stone dressings, blue-black slate roofs and dark wooden shutters. The "plaster"
+ * is the brick, the "roof" the slate, the "cloth" and "trim" the slate grey and undyed linen of the honour stand's
+ * awning; the arena's "moss" and "dirt" are its pale raked sand. Never red-and-gold, never purple.
+ */
+const DESTINY_ARENA_PALETTE: ArenaPalette = {
+  stone: ['#4a4844', '#64615c', '#7f7c76', '#9b9891', '#b8b5ae', '#d4d1ca'],
+  stoneDark: ['#1c1b19', '#2a2826', '#3a3835'],
+  moss: ['#8c7c62', '#a6967a', '#bfb092', '#d6c9ac', '#e8dec6'],
+  dirt: ['#6a5a44', '#857358', '#a08e70', '#b9a888'],
+  // straw and dust, never a lush green
+  grass: ['#4a4232', '#625842', '#7c7052', '#968a64', '#b0a478', '#c8bc8e'],
+  foliage: ['#1e1e1a', '#2a2a24', '#383830', '#46463c', '#555548', '#646456', '#747464'],
+  bark: ['#18120e', '#261c16', '#36281e', '#483628', '#5a4634'],
+  wood: ['#1c1612', '#2a201a', '#3a2e24', '#4c3e30'],
+  cloth: ['#262c34', '#343c46', '#46505c', '#5a6470'],
+  trim: ['#6e675a', '#958d7c', '#bdb4a0', '#e2dac6'],
+  plaster: ['#4a2018', '#682c20', '#86392a', '#a04a34', '#b85e44'],
+  roof: ['#161a20', '#20262e', '#2c333d', '#3a424e'],
+  ink: '#0c0b0a',
+};
+
+/** The burning city: the same brick blackened with soot, ash in the joints of the paving, soot and mud in the gutters. */
+const CAPITAL_PALETTE: ArenaPalette = {
+  ...DESTINY_ARENA_PALETTE,
+  stone: ['#3a3836', '#52504c', '#6c6964', '#87847e', '#a3a09a', '#bfbcb6'],
+  stoneDark: ['#141312', '#1e1c1b', '#2a2826'],
+  moss: ['#3a3836', '#504e4a', '#686560', '#807c76', '#9a968f'],
+  dirt: ['#1a1614', '#28221e', '#38302a', '#4a4038'],
+  grass: ['#2a2826', '#3a3734', '#4c4844', '#5e5a55', '#726d67', '#88827b'],
+  plaster: ['#2e1612', '#47201a', '#622c22', '#7c3a2c', '#944a38'],
+  ink: '#080707',
+};
+
 export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.freeze({
   forest_route: {
     id: 'forest_route',
@@ -1369,7 +1666,196 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
     motes: { color: '#fff0d0', count: 40, rise: 0.03, size: 0.05, glow: false },
     mist: { color: '#f2e8d2', opacity: 0.08, layers: [[-11, 1.2, 46], [-16, 2.2, 60]] },
   },
+  finale_destiny_arena: {
+    id: 'finale_destiny_arena',
+    // the open-air bed of the day: wind over the stands (no crickets, no night bell, no fire)
+    sound: 'forest_route',
+    label: 'Arène des Destins — la piste du Tournoi',
+    tile: 'raked_sand',
+    ground: 'arena_sand',
+    palette: DESTINY_ARENA_PALETTE,
+    light: {
+      // the even veil of grey-white cloud: a cool silvery light, soft shadows, the banners the only bright colours
+      hemiSky: '#e4e8ee', hemiGround: '#8a7c68', hemiIntensity: 2.1,
+      sunColor: '#eef1f6', sunIntensity: 3.4, sunPosition: [-6, 18, 8],
+      fillColor: '#c4ccd8', fillIntensity: 1.1, exposure: 0.98,
+    },
+    fog: { color: '#c6c9ce', density: 0.009 },
+    background: '#d6d9de',
+    farPlate: { procedural: 'arena_day', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#f4f4f2',
+    spriteRim: '#5a5e66',
+    props: DESTINY_ARENA_PROPS,
+    crowd: true,
+    horizon: 'none',
+    fringe: 'rubble',
+    motes: { color: '#e8e0cc', count: 36, rise: 0.02, size: 0.05, glow: false },
+  },
+  finale_arena_breach: {
+    id: 'finale_arena_breach',
+    // the burning village's bed: the fires' roar, crackles, a distant collapse
+    sound: 'bois_clair_burning',
+    label: 'Arène des Destins en flammes — la brèche',
+    tile: 'raked_sand',
+    ground: 'arena_sand',
+    palette: DESTINY_ARENA_PALETTE,
+    light: {
+      // night: the fires' orange from the stands, the breach's cold white rim over the sand
+      hemiSky: '#3a4658', hemiGround: '#3a1e12', hemiIntensity: 1.5,
+      sunColor: '#ff9c5c', sunIntensity: 3.6, sunPosition: [8, 11, -3],
+      fillColor: '#d6e2f4', fillIntensity: 1.2, exposure: 1.1,
+    },
+    fog: { color: '#2a1e1a', density: 0.017 },
+    background: '#0c0d12',
+    farPlate: { procedural: 'arena_night', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#f6e8dc',
+    spriteRim: '#7a3a1e',
+    props: ARENA_BREACH_PROPS,
+    horizon: 'none',
+    fringe: 'rubble',
+    motes: { color: '#ffa04a', count: 130, rise: 0.4, size: 0.07, glow: true },
+    mist: { color: '#3a2a24', opacity: 0.42, layers: [[-9.5, 1.6, 48], [-14.5, 2.8, 62]] },
+  },
+  finale_burning_streets: {
+    id: 'finale_burning_streets',
+    sound: 'bois_clair_burning',
+    label: 'La capitale en flammes — les rues de brique',
+    tile: 'cobbles',
+    ground: 'cobbled_street',
+    palette: CAPITAL_PALETTE,
+    light: {
+      hemiSky: '#3c4658', hemiGround: '#3a1c10', hemiIntensity: 1.6,
+      sunColor: '#ff9256', sunIntensity: 4.2, sunPosition: [7, 10, -5],
+      fillColor: '#8a9cc0', fillIntensity: 0.8, exposure: 1.08,
+    },
+    fog: { color: '#3a2620', density: 0.02 },
+    background: '#120e0e',
+    farPlate: { procedural: 'city_night', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#fff0de',
+    spriteRim: '#7a3014',
+    props: CAPITAL_STREET_PROPS,
+    horizon: 'none',
+    fringe: 'rubble',
+    apron: 'cobbles',
+    clutter: { kinds: ['rubble', 'debris', 'rubble'], count: 8, z: [-3.8, -7.0], halfWidth: 6.2, scale: [0.6, 0.9], gap: 5.4 },
+    motes: { color: '#ffa54d', count: 140, rise: 0.42, size: 0.075, glow: true },
+    mist: { color: '#4a3028', opacity: 0.48, layers: [[-11.5, 2.2, 56], [-17, 3.4, 66]] },
+  },
+  finale_smoke_square: {
+    id: 'finale_smoke_square',
+    sound: 'bois_clair_burning',
+    label: 'La capitale sous la fumée — la grande place',
+    tile: 'cobbles',
+    ground: 'cobbled_street',
+    palette: CAPITAL_PALETTE,
+    light: {
+      // a grey morning under the smoke: a dull warm light, soft shadows
+      hemiSky: '#bab6ae', hemiGround: '#4a3e36', hemiIntensity: 1.9,
+      sunColor: '#eadccb', sunIntensity: 3.2, sunPosition: [-8, 15, 6],
+      fillColor: '#9ca6b2', fillIntensity: 0.85, exposure: 1.02,
+    },
+    fog: { color: '#8e8a84', density: 0.015 },
+    background: '#9a968f',
+    farPlate: { procedural: 'city_smoke', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#f4f0ea',
+    spriteRim: '#5a524a',
+    props: CAPITAL_SQUARE_PROPS,
+    horizon: 'none',
+    fringe: 'rubble',
+    apron: 'cobbles',
+    unlitLamps: true,
+    clutter: { kinds: ['rubble', 'debris', 'rubble'], count: 10, z: [-3.8, -8.0], halfWidth: 8, scale: [0.6, 0.9], gap: 5.6 },
+    motes: { color: '#b8b2aa', count: 70, rise: -0.06, size: 0.06, glow: false },
+    mist: { color: '#8a847c', opacity: 0.4, layers: [[-11.5, 2.0, 56], [-17, 3.2, 66]] },
+  },
+  finale_rampart_reserve: {
+    id: 'finale_rampart_reserve',
+    sound: 'bois_clair_burning',
+    label: 'Les remparts — la réserve',
+    tile: 'cobbles',
+    ground: 'cobbled_street',
+    palette: CAPITAL_PALETTE,
+    light: {
+      hemiSky: '#b6b4ae', hemiGround: '#4a3e36', hemiIntensity: 1.9,
+      sunColor: '#e8dccc', sunIntensity: 3.3, sunPosition: [-9, 15, 7],
+      fillColor: '#9ca6b2', fillIntensity: 0.85, exposure: 1.02,
+    },
+    fog: { color: '#8c8a86', density: 0.014 },
+    background: '#9c9a94',
+    farPlate: { procedural: 'ramparts', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#f4f0ea',
+    spriteRim: '#5a524a',
+    props: RAMPART_RESERVE_PROPS,
+    horizon: 'none',
+    fringe: 'rubble',
+    apron: 'cobbles',
+    unlitLamps: true,
+    motes: { color: '#b8b2aa', count: 60, rise: -0.05, size: 0.06, glow: false },
+    mist: { color: '#8a847c', opacity: 0.32, layers: [[-12.5, 2.0, 56], [-17.5, 3.0, 66]] },
+  },
+  finale_breach_heart: {
+    id: 'finale_breach_heart',
+    // the night bed the breach played under before (wind, a far bell): new sound awaits the operator's ear
+    sound: 'lion_sanctum',
+    label: 'Le cœur de la brèche — la ville basse avant l’aube',
+    tile: 'shattered_paving',
+    ground: 'rubble_paving',
+    palette: CAPITAL_PALETTE,
+    light: {
+      // before dawn: the breach's thin white rim is the scene's main light, the fires still burning far behind
+      hemiSky: '#56647a', hemiGround: '#1a1614', hemiIntensity: 1.55,
+      sunColor: '#e6eefa', sunIntensity: 3.6, sunPosition: [-4, 14, -6],
+      fillColor: '#ffb070', fillIntensity: 0.55, exposure: 1.12,
+    },
+    fog: { color: '#1e2430', density: 0.02 },
+    background: '#121822',
+    farPlate: { procedural: 'breach_dawn', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#e8eef8',
+    spriteRim: '#3a4a64',
+    props: breachHeartProps(true),
+    horizon: 'none',
+    fringe: 'rubble',
+    clutter: { kinds: ['rubble', 'debris', 'rubble', 'paving_slabs'], count: 10, z: [-3.8, -8.0], halfWidth: 8, scale: [0.6, 0.9], gap: 5.6 },
+    motes: { color: '#c8ccd2', count: 70, rise: 0.06, size: 0.055, glow: false },
+    mist: { color: '#2c3240', opacity: 0.44, layers: [[-10.5, 1.6, 50], [-15.5, 2.8, 64]] },
+  },
+  finale_breach_scar: {
+    id: 'finale_breach_scar',
+    sound: 'lion_sanctum',
+    label: 'Le cœur de la brèche refermée — au crépuscule',
+    tile: 'shattered_paving',
+    ground: 'rubble_paving',
+    palette: CAPITAL_PALETTE,
+    light: {
+      // dusk: a long low warm light, a thinning smoke, nothing left in the air
+      hemiSky: '#b89c86', hemiGround: '#2e2622', hemiIntensity: 1.7,
+      sunColor: '#ffb88a', sunIntensity: 3.8, sunPosition: [-10, 7, 5],
+      fillColor: '#8a96b0', fillIntensity: 0.8, exposure: 1.04,
+    },
+    fog: { color: '#6e5a50', density: 0.014 },
+    background: '#8a7262',
+    farPlate: { procedural: 'breach_dusk', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#fbe8d6',
+    spriteRim: '#4a5470',
+    props: breachHeartProps(false),
+    horizon: 'none',
+    fringe: 'rubble',
+    unlitLamps: true,
+    clutter: { kinds: ['rubble', 'debris', 'rubble', 'paving_slabs'], count: 10, z: [-3.8, -8.0], halfWidth: 8, scale: [0.6, 0.9], gap: 5.6 },
+    motes: { color: '#e0c8b0', count: 40, rise: 0.02, size: 0.05, glow: false },
+    mist: { color: '#8a6e60', opacity: 0.3, layers: [[-10.5, 1.4, 50], [-15.5, 2.6, 64]] },
+  },
 });
+
+/**
+ * The arenas of the final act, one per place its fights take place: the Arena of Destinies on the Tournament's day and
+ * the night of the breach, the burning streets, the great square and the ramparts under the smoke, the heart of the
+ * breach before dawn and the same crater at dusk once the breach has closed.
+ */
+export const FINALE_ARENA_IDS = Object.freeze([
+  'finale_destiny_arena', 'finale_arena_breach', 'finale_burning_streets', 'finale_smoke_square', 'finale_rampart_reserve', 'finale_breach_heart',
+  'finale_breach_scar',
+] as const);
 
 /**
  * The arenas of the Scorpion plateau, one per place its fights take place: the dune track, the dune crest at dusk,

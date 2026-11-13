@@ -238,5 +238,11 @@ describe('the sample bank and instruments', () => {
     expect(ambienceForScene('scorpion_phoenix_temple')).toBe('lion_sanctum');
     expect(ambienceForScene('scorpion_ash_sanctuary')).toBe('lion_sanctum');
     expect(ambienceForScene('scorpion_dune_crest')).toBe('lion_sanctum');
+    // and the final act's: the open air of the Tournament's day, the burning village's fires for the burning city, the
+    // night the breach played under before
+    expect(ambienceForScene('finale_destiny_arena')).toBe('forest_route');
+    for (const id of ['finale_arena_breach', 'finale_burning_streets', 'finale_smoke_square', 'finale_rampart_reserve']) expect(ambienceForScene(id), id).toBe('bois_clair_burning');
+    expect(ambienceForScene('finale_breach_heart')).toBe('lion_sanctum');
+    expect(ambienceForScene('finale_breach_scar')).toBe('lion_sanctum');
   });
 });
