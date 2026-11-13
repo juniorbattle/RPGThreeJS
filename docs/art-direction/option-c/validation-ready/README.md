@@ -1,5 +1,7 @@
 # Option C — références historiques minimales
 
+> Déplacé depuis `public/assets/characters/pixel/validation/ready/` le 2026-11-13 (OD-2026-11-13-F, C6), pour ne plus partir dans le build. Le contenu n'a pas changé ; les chemins relatifs ci-dessous décrivent l'ancien emplacement.
+
 Ce dossier ne constitue plus une étape de promotion vers le runtime. Les
 identités canoniques restent exclusivement dans `../../full/`.
 

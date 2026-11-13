@@ -137,6 +137,6 @@ Cette échelle ne concerne que les recettes partagées : attaques de base avec a
 - `tools/combat-arena/shots.sh <dossier>` : les trois arènes. `action-shots.mjs` : images d'une action dans le temps. `campaign-harness.mjs <combatId>` : démarrage réel via le protocole de la campagne. `probe.mjs` : évaluation d'expressions dans la page.
 - Art généré en local : [mission locale](LOCAL_ART_MISSION.md).
 
-## Assets devenus inutilisés (UNKNOWN_REVIEW, rien n'est supprimé)
+## Assets devenus inutilisés
 
-`public/assets/combat-stage/poses/` (43 Mo, anciennes planches 4×1 du Stage), les fonds `combatStageScenes` de `assetManifest.ts` et `src/render/combatBackgrounds.ts` (le combat n'utilise plus `BackgroundLayerSystem`). Leur retrait demande une revue des dépendances et l'accord de l'opérateur (règle d'ingénierie 8).
+Les anciennes planches 4×1 du Stage (`public/assets/combat-stage/poses/`, 43 Mo) sont supprimées le 2026-11-13 avec l'accord de l'opérateur (OD-2026-11-13-F, C1) ; Git les garde. Les fonds `combatStageScenes` de `assetManifest.ts` et `src/render/combatBackgrounds.ts` (le combat n'utilise plus `BackgroundLayerSystem`) restent jusqu'à l'étape « dette technique », décidée le même jour (C2), parce que leur retrait touche le code et un test.
