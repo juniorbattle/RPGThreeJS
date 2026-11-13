@@ -135,3 +135,10 @@ Remarque de l'opérateur, rapportée par la session de récit : les héros recru
 - **En attente de l'opérateur**, sur une fiche privée de la session de récit (https://claude.ai/artifact/R9fw53FQzStpwffR6GdC1q) :
   - les 13 retouches mot à mot de la dernière passe narrative, qui couvre 35 moments à enjeu (`docs/content/drafts/HIGH_STAKES_NARRATIVE_PASS_DRAFT_2026-11-13.md`) ;
   - sa demande de figurants civils dans les événements. Selon le gardien des contrats, des passants dans les tableaux ordinaires demandent un amendement de `PRESENTATION_AND_MEDIA`, car la règle des figurants ne vaut que pour les tableaux vivants ; des variantes générées demandent sa décision.
+
+## Dernière passe narrative (même jour)
+
+L'opérateur a rempli la fiche de la session de récit (https://claude.ai/artifact/R9fw53FQzStpwffR6GdC1q) et l'a dit : « Fiche remplie ». Ses choix, relus dans la base de la fiche, sont les suivants.
+
+- **Les 13 retouches mot à mot sont acceptées**, sans note : A1 à A5, B1, B2, C1 à C4, D1 et D2. Elles viennent de la dernière passe sur 35 moments à enjeu (`docs/content/drafts/HIGH_STAKES_MOMENTS_INVENTORY_2026-11-13.md`, `docs/content/drafts/HIGH_STAKES_NARRATIVE_PASS_DRAFT_2026-11-13.md`). La session de récit les applique.
+- **E1, figurants : « Amendement, sprites existants ».** Une tâche dédiée d'amendement de contrats (session « Amendement des figurants dans les tableaux ») propose le texte de l'amendement et la liste des dialogues à habiller. Elle n'utilise que les sprites civils existants, avec les plafonds des tableaux vivants. L'opérateur valide le texte mot à mot, puis vient la relecture indépendante, le commit d'amendement et le commit de baseline.
