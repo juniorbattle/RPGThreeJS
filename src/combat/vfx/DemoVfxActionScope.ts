@@ -176,15 +176,15 @@ const POST_DEMO_BOSS_COMBAT_SKILLS: Readonly<Record<string, readonly string[]>> 
   dragon_lair_assault: ['enemy_heavy_strike', 'boss_fortify', 'boss_pin', 'boss_slam'],
   dragon_lair_seizure: ['enemy_heavy_strike', 'boss_fortify', 'boss_pin', 'boss_slam'],
   dragon_shadow_shaman: ['enemy_dark_bolt', 'boss_guard', 'boss_freeze', 'boss_apocalypse'],
-  dragon_kaelen: ['enemy_dragon_breath', 'boss_regen', 'boss_quake', 'boss_inferno'],
+  dragon_kaelen: ['enemy_dragon_breath', 'boss_regen', 'boss_celestial_bolt', 'boss_inferno'],
   scorpion_temple_assault: ['enemy_heavy_strike', 'boss_regen', 'boss_pin', 'boss_titan_slam'],
   scorpion_temple_seizure: ['enemy_heavy_strike', 'boss_regen', 'boss_pin', 'boss_titan_slam'],
   scorpion_shadow_prophet: ['enemy_hex', 'boss_fortify', 'boss_freeze', 'boss_inferno'],
-  scorpion_inquisitor: ['enemy_dark_bolt', 'boss_regen', 'boss_pin', 'boss_apocalypse'],
+  scorpion_inquisitor: ['enemy_dark_bolt', 'boss_regen', 'boss_sentence', 'boss_apocalypse'],
   finale_serpent_final: ['enemy_venom_strike', 'boss_fortify', 'boss_pin', 'boss_flurry'],
-  finale_arena_assault: ['enemy_hex', 'boss_regen', 'boss_pin', 'boss_inferno'],
+  finale_arena_assault: ['enemy_hex', 'boss_regen', 'boss_freeze', 'boss_titan_slam'],
   // The breach's first phase (Maelor); its second phase (the entity) is checked by its own phase.
-  finale_breach: ['enemy_dark_bolt', 'boss_fortify', 'boss_freeze', 'boss_inferno'],
+  finale_breach: ['enemy_dark_bolt', 'boss_fortify', 'boss_broken_oath', 'boss_inferno'],
 });
 
 /** Boss combats launched by the Lion finale (`resolveLionFinaleExecution`). */

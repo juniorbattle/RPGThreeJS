@@ -184,6 +184,7 @@ export const ENEMY_SKILL_IDS = [
   'boss_slam', 'boss_roar', 'boss_quake', 'boss_guard', 'boss_apocalypse',
   'boss_regen', 'boss_fortify', 'boss_freeze', 'boss_pin', 'boss_execution',
   'boss_flurry', 'boss_inferno', 'boss_titan_slam',
+  'boss_celestial_bolt', 'boss_sentence', 'boss_broken_oath', 'boss_breach_grip',
 ] as const;
 
 export type EnemySkillId = (typeof ENEMY_SKILL_IDS)[number];
@@ -213,6 +214,11 @@ export const ENEMY_SKILL_PRESENTATION: Readonly<Record<EnemySkillId, SkillPresen
   boss_flurry: bossSignature('melee_heavy', 'boss_flurry', 'strike', 'impact'),
   boss_inferno: bossSignature('magic_cast', 'skill_boss_inferno', 'areaCast', 'impact', { orientation: 'center_on_target', visualScale: 1.04 }),
   boss_titan_slam: bossSignature('melee_heavy', 'boss_titan_slam', 'areaCast', 'impact', { orientation: 'center_on_aoe_origin', visualScale: 1.04 }),
+  // OD-2026-11-13-F (C3, C4): magic heavy attacks, presented like Gel; each plays its own procedural recipe (fxSkills.ts).
+  boss_celestial_bolt: presentation('magic_cast', 'shadow_lightning_bolt', 'rangedShot', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: 'boss', visualScale: 1 }),
+  boss_sentence: presentation('magic_cast', 'status_curse_mark', 'rangedShot', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: 'boss', visualScale: 1 }),
+  boss_broken_oath: presentation('magic_cast', 'shadow_lightning_bolt', 'rangedShot', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: 'boss', visualScale: 1 }),
+  boss_breach_grip: presentation('magic_cast', 'root_vines', 'rangedShot', 'impact', undefined, undefined, { orientation: 'center_on_target', scaleTier: 'boss', visualScale: 1 }),
 });
 
 export function getSkillPresentation(spec?: { key?: string }): SkillPresentation | undefined {
