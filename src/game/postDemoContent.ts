@@ -5,7 +5,7 @@
  * recalibrated and never counted by the demo's audits. A plateau's entries are playable DRAFTS, identifiable as such,
  * until the operator approves the plateau (the Bear since OD-2026-11-08-B, the Dragon since OD-2026-11-08-C, the Scorpion since
  * OD-2026-11-08-D, the final act since OD-2026-11-09-A, its endings since OD-2026-11-09-B); they reach `dev` only on the operator's
- * order. Every post-demo plateau shows provisional images until the final-image lot.
+ * order. Every post-demo plateau shows its final images since 2026-11-13 (`POST_DEMO_FINAL_ART_CHAPTERS`).
  */
 import { BEAR_DIALOGUES, BEAR_SCENE_BUILDERS } from '../campaign/plateaux/bear/bearDialogues';
 import { BEAR_FINALE } from '../campaign/plateaux/bear/bearFinale';

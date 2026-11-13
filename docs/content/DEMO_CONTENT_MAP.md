@@ -1,5 +1,7 @@
 # Demo content map
 
+> **SUPERSEDED, historical (2026-11-13, OD-2026-11-13-F, Q2).** This map records the Lion demo at `main @ 6ff5f4c` and the state of 2026-10-02; it is no longer current and is kept unchanged below as history. Since then the Traversal legs are retired (OD-2026-10-15-A), the game ships zero active video, its eight historical identities kept with static dialogues and tableaux (OD-2026-10-24-A), and the post-demo plateaux, the final act and its three endings are integrated (OD-2026-11-09-C). Current authority: the [game source and registries](README.md), [current project status](../project/CURRENT_STATUS.md), and the part-by-part content table of the [completeness review of 2026-11-13](../reports/game-completeness-review-2026-11-13.md) (§1).
+
 Baseline: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`. Status describes current implementation and release work, not a new browser acceptance result. **DEMO_REQUIRED** rows are validation or demonstrated gaps, not authorization for new mechanics.
 
 2026-10-02 CURRENT FACT on `dev`: [locked contracts](../contracts/README.md) supersede older undecided scope labels. T0/T1/T3 are production-active, T2/T4 are retired playable legs and the eight-video structure is ready. The older baseline above is retained as audit history; full continuous demo acceptance remains open.

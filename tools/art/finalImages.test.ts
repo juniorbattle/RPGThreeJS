@@ -33,10 +33,11 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
     }
   });
 
-  it('keeps the six-image Bear pilot in the plan, with the proposed looks marked for confirmation', () => {
+  it('keeps the six-image Bear pilot in the plan, its looks approved and no longer marked as proposals (OD-2026-11-13-F)', () => {
     expect(PILOT_IDS).toHaveLength(6);
     for (const id of PILOT_IDS) expect(plan.some((item) => item.id === id), id).toBe(true);
-    expect(plan.find((item) => item.id === 'bear:actor:borin')!.notes).toMatch(/^PROPOSAL, to confirm/);
+    expect(plan.find((item) => item.id === 'bear:actor:borin')!.notes).toMatch(/^A human elder chieftain of the Bear clan/);
+    for (const item of plan) expect(item.notes, item.id).not.toMatch(/PROPOSAL|to confirm/i);
   });
 
   it('tells every brief to keep the references’ style but not their Lion heraldry, and names the clan’s own sign', () => {
@@ -114,7 +115,7 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
     expect(backdrops).toHaveLength(28);
     expect(backdrops.filter((item) => !STAGING[item.id]).map((item) => item.id)).toEqual([]);
     for (const item of dragon.filter((candidate) => candidate.kind === 'character')) {
-      expect(item.notes, item.id).toMatch(/^PROPOSAL, to confirm/);
+      expect(item.notes, item.id).not.toBe('');
     }
     expect(IDENTITY.dragon).toContain('never a purple glow');
     expect(IDENTITY.dragon).toContain('Never the Bear’s');
@@ -240,7 +241,8 @@ describe('final images tool: fixes learned from the Bear and Dragon runs (2026-1
     expect(prompt('scorpion:actor:phoenix_guardian_chief')).toContain('« Lance de flamme » (a spear)');
     expect(prompt('scorpion:enemy:phoenix_guardian')).toContain('« Lance du temple » (a spear)');
     expect(prompt('scorpion:actor:scorpion_scholar')).toContain('« Bâton » (a staff)');
-    expect(prompt('scorpion:actor:grand_inquisitor')).toContain('fights with magic (« Sceau »)');
+    expect(prompt('scorpion:actor:grand_inquisitor')).toContain('« Bâton de l’Inquisiteur » (a staff): show that weapon clearly in hand');
+    expect(prompt('dragon:actor:kaelen')).toContain('« Bâton du Dragon » (a staff): show that weapon clearly in hand');
     expect(prompt('scorpion:actor:shadow_prophet')).toContain('fights with magic (« Onde froide »)');
     expect(prompt('finale:enemy:serpent_champion')).toContain('« Lame Serpent » (a blade)');
     expect(prompt('finale:enemy:demon_brute')).toContain('its own claws');

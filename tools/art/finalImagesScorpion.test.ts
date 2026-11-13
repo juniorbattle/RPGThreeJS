@@ -64,10 +64,10 @@ describe('Scorpion final images, prepared for the operator’s validation (OD-20
     for (const id of open) expect(STAGING[id]!.line, id).toMatch(/no (view of any )?landscape/);
   });
 
-  it('marks every character’s look as a proposal, with a covered face, its combat weapon and nothing that passes for the codex', () => {
+  it('gives every character its approved look, with a covered face, its combat weapon and nothing that passes for the codex', () => {
     expect(characters).toHaveLength(9);
     for (const item of characters) {
-      expect(item.notes, item.id).toMatch(/^PROPOSAL, to confirm: /);
+      expect(item.notes, item.id).not.toMatch(/PROPOSAL|to confirm/i);
       expect(item.notes, item.id).toBe(STAGED_LOOKS[item.id]);
       expect(item.prompt, item.id).toContain(COVERED_FACE_RULE);
       expect(item.prompt, item.id).toContain(SACRED_OBJECT_RULES.scorpion!);
@@ -79,7 +79,7 @@ describe('Scorpion final images, prepared for the operator’s validation (OD-20
       'scorpion:actor:phoenix_guardian_chief': [/spear whose blade burns/, '« Lance de flamme » (a spear)'],
       'scorpion:enemy:phoenix_guardian': [/temple spear/, '« Lance du temple » (a spear)'],
       'scorpion:actor:scorpion_scholar': [/wooden staff in hand/, '« Bâton » (a staff)'],
-      'scorpion:actor:grand_inquisitor': [/staff .* the focus of his magic/, 'fights with magic (« Sceau »)'],
+      'scorpion:actor:grand_inquisitor': [/staff .* the focus of his magic/, '« Bâton de l’Inquisiteur » (a staff)'],
       'scorpion:actor:shadow_prophet': [/wave of cold black ink, his weapon/, 'fights with magic (« Onde froide »)'],
       'scorpion:enemy:phoenix_flamekeeper': [/temple’s flame burns .* his weapon/, 'fights with magic (« Flamme du temple »)'],
       'scorpion:enemy:shadow_zealot': [/wave of cold black ink .* the weapon/, 'fights with magic (« Onde froide »)'],

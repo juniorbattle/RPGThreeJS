@@ -22,6 +22,20 @@ function runtimeTempo() {
   };
 }
 
+type AuthoredUnit = { id: string; name: string; boss?: boolean; elite?: boolean; skills: string[] };
+
+/** Every boss and elite the runtime authors: the BOSS_DEFS and the visual templates flagged boss or elite. */
+function authoredBossesAndElites(): AuthoredUnit[] {
+  const literal = (start: string, end: string, name: string) =>
+    new Function(`${runtime.slice(runtime.indexOf(start), runtime.indexOf(end))};return ${name};`)();
+  const bossDefs = literal('const BOSS_DEFS=[', '\nfor(const bossDef of BOSS_DEFS)', 'BOSS_DEFS') as Omit<AuthoredUnit, 'id'>[];
+  const templates = literal('const VISUAL_UNIT_TEMPLATES={', '\nconst ENEMY_VISUAL_POSITIONS=', 'VISUAL_UNIT_TEMPLATES') as Record<string, Omit<AuthoredUnit, 'id'>>;
+  return [
+    ...bossDefs.map(def => ({ ...def, id: def.name })),
+    ...Object.entries(templates).filter(([, def]) => def.boss || def.elite).map(([id, def]) => ({ ...def, id })),
+  ];
+}
+
 /**
  * Mirrors beginTurn (regen, then cooldown decrement), the AI budget and endTurn (Souffle) over a number of turns.
  * Each turn spends what the runtime budget allows: the ultimate when ready, the heavy skill on its turn, else light actions.
@@ -102,6 +116,23 @@ describe('boss and elite tempo (operator playtest 2026-11-11)', () => {
       const log = simulate(kit, 8);
       expect(log.filter(t => t.action === 'ultimate').map(t => t.turn), kit.join(',')).toEqual([4, 8]);
       expect(log.filter(t => t.endAp === 0 && t.action !== 'ultimate'), kit.join(',')).toEqual([]);
+    }
+  });
+
+  it('gives every authored boss and elite the heavy step of its four-turn cycle (OD-2026-11-13-F, C1)', () => {
+    const tempo = runtimeTempo();
+    const units = authoredBossesAndElites();
+    // The fifteen bosses of BOSS_DEFS plus the Lion champion's visual, and the sixteen elite visuals.
+    expect(units.filter(u => u.boss).length).toBe(16);
+    expect(units.filter(u => u.elite).length).toBe(16);
+    for (const unit of units) {
+      const profile = tempo.bossTempoOf({ boss: unit.boss, elite: unit.elite, skills: unit.skills, ap: 0, maxap: 5, _ultCooldown: BOSS_ULTIMATE_COOLDOWN });
+      expect(profile?.ultimateCost, unit.id).toBe(5);
+      expect(profile?.heavyCost, unit.id).toBe(4);
+      const log = simulate(unit.skills, 8);
+      expect(log.slice(0, 4).map(t => t.action === 'heavy' || t.action === 'ultimate' ? t.action : 'light'), unit.id)
+        .toEqual(['light', 'heavy', 'light', 'ultimate']);
+      expect(log.filter(t => t.action === 'heavy').map(t => t.turn), unit.id).toEqual([2, 6]);
     }
   });
 

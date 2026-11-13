@@ -245,14 +245,17 @@ const darkMage: Record<string, () => FxRecipe> = {
   n_flame_wave: () => {
     const steps: Steps = [s(0, 'glow', 'sourceChest', { size: 1.6, duration: 0.4 }, { element: 'fire' })];
     for (let i = 0; i < 5; i++) steps.push(s(0.05 + i * 0.07, 'burst', 'sourceChest', { count: 22, speed: 9, cone: 0.55, life: 0.5, size: 0.16, spray: 'point' }, { element: 'fire' }));
+    // A heavy skill (4 AP): taller flames than the dragons' 3 AP breath, and the Dark Mage's own shadow embers rising
+    // from the cone, so the two fire cones no longer read alike (rank audit, OD-2026-11-13-F remark).
     steps.push(
-      s(0.2, 'flame', 'targetGround', { width: 1.02, height: 2.1, duration: 0.85, stagger: 0.06 }, { cells: true }),
-      s(0.34, 'star', 'targetChest', { size: 1.2 }, { element: 'fire', each: true }),
+      s(0.2, 'flame', 'targetGround', { width: 1.04, height: 2.7, duration: 0.9, stagger: 0.06 }, { cells: true }),
+      s(0.34, 'star', 'targetChest', { size: 1.5 }, { element: 'fire', each: true }),
+      s(0.4, 'burst', 'point', { count: 22, speed: 0.9, up: 2.6, gravity: -0.3, size: 0.1, life: 0.9, spread: 1.2, soft: true }, { element: 'shadow' }),
       s(0.5, 'smoke', 'far', { count: 12, spread: 1 }),
-      lit(0.3, 'fire', 26, 0.8, 'point'),
-      shake(0.34, 0.24, 0.26),
+      lit(0.3, 'fire', 36, 0.8, 'point'),
+      shake(0.34, 0.32, 0.28),
     );
-    return skill('n_flame_wave', 'fire', 0.34, 1.2, steps);
+    return skill('n_flame_wave', 'fire', 0.34, 1.25, steps);
   },
   // a seal under the zone, a burning rock, one blast. Then only smoke and embers.
   n_dark_meteor: () => ultimate('n_dark_meteor', 'fire', 0.02, 1.9, [
@@ -373,14 +376,17 @@ const enchanter: Record<string, () => FxRecipe> = {
     s(0.34, 'glow', 'targetChest', { size: 1.7, duration: 0.6 }, { element: 'gold' }),
     lit(0.34, 'arcane', 10, 0.5),
   ]),
-  // chains of light from the seal lock each foe in place
-  e_binding_seal: () => skill('e_binding_seal', 'arcane', 0.36, 1.2, [
+  // chains of light from the seal lock each foe in place. A heavy skill (4 AP): thicker chains, runes that close round
+  // each foe and a firmer lock (rank audit, OD-2026-11-13-F remark).
+  e_binding_seal: () => skill('e_binding_seal', 'arcane', 0.36, 1.3, [
     s(0, 'circle', 'point', { radius: 2, duration: 0.85, spin: -1.3 }, { element: 'arcane' }),
-    s(0.24, 'bolt', 'targetChest', { duration: 0.3, width: 0.05 }, { to: 'point', element: 'arcane', each: true }),
-    s(0.34, 'shards', 'targetGround', { count: 7, radius: 0.62, height: 1, duration: 0.8 }, { element: 'arcane', each: true }),
-    s(0.36, 'star', 'targetChest', { size: 1 }, { element: 'arcane', each: true }),
-    lit(0.36, 'arcane', 14, 0.5, 'point'),
-    shake(0.36, 0.1, 0.12),
+    s(0.24, 'bolt', 'targetChest', { duration: 0.32, width: 0.075 }, { to: 'point', element: 'arcane', each: true }),
+    s(0.34, 'shards', 'targetGround', { count: 9, radius: 0.66, height: 1.35, duration: 0.85 }, { element: 'arcane', each: true }),
+    s(0.36, 'orbit', 'target', { count: 10, radius: 0.62, duration: 0.7, rise: 0.5, spin: -8 }, { element: 'gold', each: true }),
+    s(0.36, 'star', 'targetChest', { size: 1.4 }, { element: 'arcane', each: true }),
+    s(0.37, 'burst', 'targetChest', { count: 12, speed: 2.6, size: 0.09 }, { element: 'arcane', each: true }),
+    lit(0.36, 'arcane', 20, 0.55, 'point'),
+    shake(0.36, 0.2, 0.16),
   ]),
   // no blow at all: a slow seal, a thread of light to each ally, rune orbits and domes
   e_absolute_harmony: () => ultimate('e_absolute_harmony', 'arcane', 0.9, 2.05, [
@@ -411,12 +417,17 @@ const archer: Record<string, () => FxRecipe> = {
     s(0, 'orbit', 'source', { count: 8, radius: 0.6, duration: 0.7, rise: 1.8, spin: 6 }, { element: 'wind' }),
     s(0.05, 'glow', 'sourceChest', { size: 1.3, duration: 0.45 }, { element: 'wind' }),
   ]),
-  // three arrows go up, the volley falls on every cell of the zone
-  a_arrow_rain: () => skill('a_arrow_rain', 'wind', 0.5, 1.1, [
-    ...[0, 0.06, 0.12].map((at, i) => s(at, 'streak', 'sourceChest', { width: 0.12, duration: 0.2, ox: (i - 1) * 0.4 }, { to: 'sourceSky', element: 'wind' })),
-    s(0.34, 'rain', 'targetGround', { count: 3, gap: 0.07, width: 0.1, stagger: 0.03, origin: 'point' }, { cells: true, element: 'wind' }),
-    s(0.5, 'star', 'targetChest', { size: 0.9, duration: 0.2 }, { element: 'wind', each: true }),
-    shake(0.5, 0.16, 0.2),
+  // three arrows go up, the volley falls on every cell of the zone. A heavy skill (4 AP): a denser volley, every cell
+  // kicks up dust and sparks, and the zone lights up on the blow (rank audit, OD-2026-11-13-F remark).
+  a_arrow_rain: () => skill('a_arrow_rain', 'wind', 0.5, 1.25, [
+    s(0, 'glow', 'sourceChest', { size: 1.2, duration: 0.3 }, { element: 'wind' }),
+    ...[0, 0.06, 0.12].map((at, i) => s(at, 'streak', 'sourceChest', { width: 0.14, duration: 0.2, ox: (i - 1) * 0.4 }, { to: 'sourceSky', element: 'wind' })),
+    s(0.34, 'rain', 'targetGround', { count: 5, gap: 0.05, width: 0.12, stagger: 0.03, origin: 'point' }, { cells: true, element: 'wind' }),
+    s(0.48, 'burst', 'targetGround', { count: 12, speed: 2.4, up: 1.4, gravity: 6, size: 0.13, stagger: 0.03, origin: 'point', soft: true }, { cells: true, element: 'earth' }),
+    s(0.5, 'star', 'targetChest', { size: 1.3, duration: 0.22 }, { element: 'wind', each: true }),
+    s(0.5, 'burst', 'targetChest', { count: 14, speed: 3.2, size: 0.09 }, { element: 'wind', each: true }),
+    lit(0.5, 'wind', 18, 0.5, 'point'),
+    shake(0.5, 0.28, 0.24),
   ]),
   // one arrow into the sky. Silence. A star high up. It comes back, alone.
   a_zenith_arrow: () => ultimate('a_zenith_arrow', 'wind', 1.05, 1.9, [
@@ -738,25 +749,30 @@ const enemies: Record<string, () => FxRecipe> = {
     s(0.35, 'star', 'sourceChest', { size: 1.1, duration: 0.22 }, { element: 'blood' }),
     lit(0.35, 'blood', 14, 0.6, 'sourceChest'),
   ]),
-  // a lance of ice, and frost crystals growing around the victim
-  boss_freeze: () => skill('boss_freeze', 'ice', 0.4, 1.2, [
-    s(0, 'glow', 'sourceMouth', { size: 1.1, duration: 0.3 }, { element: 'ice' }),
-    s(0.04, 'shot', 'sourceMouth', { size: 0.6, duration: 0.36, arc: 0.4, streak: true }, { to: 'targetChest', element: 'ice' }),
-    s(0.38, 'shards', 'targetGround', { count: 9, radius: 0.8, height: 1.7, duration: 0.8 }, { element: 'ice' }),
-    s(0.4, 'star', 'targetChest', { size: 1.4 }, { element: 'ice' }),
-    s(0.42, 'burst', 'targetChest', { count: 18, speed: 3, gravity: 8, size: 0.1 }, { element: 'ice' }),
-    s(0.46, 'motes', 'target', { count: 12, radius: 0.7, rise: 0.8 }, { element: 'ice' }),
-    lit(0.4, 'ice', 14, 0.5),
-    shake(0.4, 0.2, 0.16),
+  // a lance of ice, and frost crystals growing around the victim. A heavy skill (4 AP): a thicker lance, taller crystals
+  // and a colder flash, clearly above the light actions (rank audit, OD-2026-11-13-F remark).
+  boss_freeze: () => skill('boss_freeze', 'ice', 0.4, 1.3, [
+    s(0, 'glow', 'sourceMouth', { size: 1.3, duration: 0.32 }, { element: 'ice' }),
+    s(0.04, 'shot', 'sourceMouth', { size: 0.8, duration: 0.36, arc: 0.4, streak: true }, { to: 'targetChest', element: 'ice' }),
+    s(0.38, 'shards', 'targetGround', { count: 11, radius: 0.85, height: 2.1, duration: 0.85 }, { element: 'ice' }),
+    s(0.4, 'star', 'targetChest', { size: 1.8 }, { element: 'ice' }),
+    s(0.42, 'burst', 'targetChest', { count: 24, speed: 3.4, gravity: 8, size: 0.11 }, { element: 'ice' }),
+    s(0.46, 'motes', 'target', { count: 14, radius: 0.75, rise: 0.9 }, { element: 'ice' }),
+    lit(0.4, 'ice', 20, 0.55),
+    shake(0.4, 0.3, 0.2),
   ]),
-  // two thrown blades nail the target to the spot
-  boss_pin: () => skill('boss_pin', 'steel', 0.26, 0.9, [
-    s(0, 'shot', 'sourceChest', { size: 0.8, duration: 0.2, arc: 0.1, streak: true, ox: -0.2 }, { to: 'targetChest', element: 'steel' }),
-    s(0.06, 'shot', 'sourceChest', { size: 0.8, duration: 0.2, arc: 0.1, streak: true, ox: 0.2 }, { to: 'targetChest', element: 'steel' }),
-    s(0.24, 'shards', 'targetGround', { count: 4, radius: 0.35, height: 1, duration: 0.6 }, { element: 'steel' }),
-    s(0.26, 'star', 'targetChest', { size: 1 }, { element: 'blood' }),
-    s(0.27, 'burst', 'targetChest', { count: 12, speed: 3, size: 0.09 }, { element: 'blood' }),
-    shake(0.26, 0.22, 0.14),
+  // two thrown blades nail the target to the spot. A heavy skill (4 AP): a glint as the arm draws back, heavier blades,
+  // and the impact flashes and cracks the ground under the pinned foe, no longer the size of a light shot (rank audit).
+  boss_pin: () => skill('boss_pin', 'steel', 0.3, 1.1, [
+    s(0, 'star', 'sourceChest', { size: 1, duration: 0.18 }, { element: 'steel' }),
+    s(0.04, 'shot', 'sourceChest', { size: 1.1, duration: 0.22, arc: 0.1, streak: true, ox: -0.2 }, { to: 'targetChest', element: 'steel' }),
+    s(0.1, 'shot', 'sourceChest', { size: 1.1, duration: 0.22, arc: 0.1, streak: true, ox: 0.2 }, { to: 'targetChest', element: 'steel' }),
+    s(0.28, 'shards', 'targetGround', { count: 6, radius: 0.45, height: 1.4, duration: 0.7 }, { element: 'steel' }),
+    s(0.3, 'star', 'targetChest', { size: 1.6 }, { element: 'blood' }),
+    s(0.31, 'burst', 'targetChest', { count: 18, speed: 3.6, size: 0.1 }, { element: 'blood' }),
+    s(0.32, 'burst', 'targetGround', { count: 10, speed: 2, up: 1, gravity: 6, size: 0.12, soft: true }, { element: 'earth' }),
+    lit(0.3, 'steel', 16, 0.4),
+    shake(0.3, 0.32, 0.18),
   ]),
   // the light drops, the blade rises, then a single cut from top to bottom
   boss_execution: () => ultimate('boss_execution', 'blood', 0.9, 1.7, [
@@ -771,9 +787,14 @@ const enemies: Record<string, () => FxRecipe> = {
     s(0.92, 'burst', 'targetChest', { count: 34, speed: 4.4, up: 1.2, gravity: 8, size: 0.12 }, { element: 'blood' }),
     s(0.96, 'motes', 'target', { count: 16, radius: 0.5, sink: true }, { element: 'shadow' }),
   ]),
-  // a stream of thrown blades, each one sparking on the target
+  // a stream of thrown blades, each one sparking on the target. An ultimate: steel glints gather on the boss first, and
+  // the last blade lands with the weight of the other boss ultimates (ring, flash, shake), not as a spark (rank audit).
   boss_flurry: () => {
-    const steps: Steps = [s(0.02, 'burst', 'sourceGround', { count: 16, speed: 2, up: 0.5, gravity: 3, size: 0.13, soft: true }, { element: 'earth' })];
+    const steps: Steps = [
+      s(0.02, 'burst', 'sourceGround', { count: 16, speed: 2, up: 0.5, gravity: 3, size: 0.13, soft: true }, { element: 'earth' }),
+      s(0.05, 'converge', 'source', { count: 30, radius: 2.2, duration: 0.36, height: 1.6 }, { element: 'steel' }),
+      s(0.3, 'star', 'sourceChest', { size: 1.4, duration: 0.18 }, { element: 'gold' }),
+    ];
     for (let i = 0; i < 6; i++) {
       const at = 0.42 + i * 0.07;
       steps.push(
@@ -783,13 +804,17 @@ const enemies: Record<string, () => FxRecipe> = {
       );
     }
     steps.push(
-      s(0.92, 'star', 'targetChest', { size: 2.2, duration: 0.3 }, { element: 'steel' }),
-      s(0.92, 'slowmo', undefined, { scale: 0.35, duration: 0.18 }),
-      s(0.92, 'punch', 'targetChest', { duration: 0.42, hold: true }),
-      lit(0.92, 'gold', 22, 0.5),
-      s(0.94, 'burst', 'targetChest', { count: 26, speed: 4.6, size: 0.1, gravity: 8 }, { element: 'gold' }),
+      s(0.92, 'star', 'targetChest', { size: 2.8, duration: 0.34 }, { element: 'steel' }),
+      s(0.92, 'ring', 'targetGround', { radius: 1.9, duration: 0.42 }, { element: 'gold' }),
+      s(0.92, 'flash', undefined, { opacity: 0.16 }, { element: 'gold' }),
+      s(0.92, 'slowmo', undefined, { scale: 0.3, duration: 0.24 }),
+      s(0.92, 'punch', 'targetChest', { duration: 0.46, hold: true }),
+      shake(0.92, 0.5, 0.3),
+      lit(0.92, 'gold', 32, 0.6),
+      s(0.94, 'burst', 'targetChest', { count: 36, speed: 4.8, size: 0.11, gravity: 8 }, { element: 'gold' }),
+      s(0.96, 'shards', 'targetGround', { count: 6, radius: 0.55, height: 1.4, duration: 0.7 }, { element: 'steel' }),
     );
-    return ultimate('boss_flurry', 'steel', 0.92, 1.55, steps);
+    return ultimate('boss_flurry', 'steel', 0.92, 1.7, steps);
   },
   // fire from below: the seal cracks open and a column of flame takes the zone
   boss_inferno: () => ultimate('boss_inferno', 'fire', 0.85, 2.05, [
@@ -958,9 +983,21 @@ export function skillMoveFxRecipe(skillId: string, phase: FxMovePhase): FxRecipe
   return recipe ? withMoveSound(recipe, phase) : null;
 }
 
+/**
+ * Weapons renamed after what their master holds (OD-2026-11-13-F, C5) keep the effect of their former name, and so its
+ * sound: Kaelen's and the Grand Inquisitor's staves strike with the seal's magic, the Raven champion's daggers fly as the
+ * thrown blades they were.
+ */
+const RENAMED_WEAPON_EFFECTS: Readonly<Record<string, string>> = {
+  'Bâton du Dragon': 'Sceau',
+  'Bâton de l’Inquisiteur': 'Sceau',
+  'Dagues du Corbeau': 'Lames de jet',
+};
+
 /** The basic attack of an enemy that fights with teeth, claws, breath or stones. */
 export function enemyAttackFxRecipe(weaponName: string | undefined): FxRecipe | null {
-  const recipe = weaponName ? ENEMY_ATTACKS[weaponName]?.() : null;
+  const key = weaponName ? RENAMED_WEAPON_EFFECTS[weaponName] ?? weaponName : undefined;
+  const recipe = key ? ENEMY_ATTACKS[key]?.() : null;
   return recipe ? withSoundMarks(recipe) : null;
 }
 

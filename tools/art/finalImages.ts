@@ -193,12 +193,12 @@ const BACKDROP_STYLE_REFS = [
 export const COVERED_FACE_RULE = 'If the character is a person, the face stays fully covered, as for every character of this game: a closed helmet, a mask, or a hood whose shadow hides the face, with at most two small glowing eyes inside the shadow. No visible facial features: no nose, mouth, cheeks, skin of the face, beard or hair on the face.';
 
 /**
- * Looks the canon does not describe yet: PROPOSALS for the operator to confirm or rewrite before a run (a new
- * character's look is part of the final-image lot led with the operator). They go into the brief's notes.
+ * Looks the canon does not describe, written with the operator in the final-image lot and approved with the Bear's images
+ * (OD-2026-11-11-F, F1, integrated 2026-11-12). They go into the brief's notes.
  */
 const PROPOSED_LOOKS: Record<string, string> = {
-  'bear:actor:borin': 'PROPOSAL, to confirm: a human elder chieftain of the Bear clan (a man, not an animal), broad-shouldered and slightly stooped with age, a heavy grey-streaked bear-fur mantle over worn stone-grey armour, a closed helm crowned with a bear’s head that hides his face, a war hammer.',
-  'bear:actor:bear_warrior': 'PROPOSAL, to confirm: a human warrior of the Bear clan, a closed helmet, fur-lined mail, round wooden shield and spear, mountain colours (stone grey, brown, snow white).',
+  'bear:actor:borin': 'A human elder chieftain of the Bear clan (a man, not an animal), broad-shouldered and slightly stooped with age, a heavy grey-streaked bear-fur mantle over worn stone-grey armour, a closed helm crowned with a bear’s head that hides his face, a war hammer.',
+  'bear:actor:bear_warrior': 'A human warrior of the Bear clan, a closed helmet, fur-lined mail, round wooden shield and spear, mountain colours (stone grey, brown, snow white).',
 };
 const CHARACTER_STYLE_REFS = [
   'public/assets/characters/pixel/masters/alistair.png',

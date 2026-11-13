@@ -2,7 +2,7 @@
 
 Baseline: `main @ 6ff5f4c78b9bacb945b9c20d5ce39d6222b68aa0`.
 
-- [Current demo content map](DEMO_CONTENT_MAP.md)
+- [Demo content map](DEMO_CONTENT_MAP.md), historical since 2026-11-13 (superseded by the [completeness review](../reports/game-completeness-review-2026-11-13.md), §1)
 - [Authoring guide](AUTHORING_GUIDE.md)
 - [Narrative roadmap](feuille_de_route_narrative_condensee.md): the operator's roadmap for the whole game ([PDF](feuille_de_route_narrative_condensee.md.pdf)), a direction reference where established demo facts prevail (OD-2026-11-04-C)
 - [Demo and post-demo scope](../project/DEMO_ROADMAP.md)

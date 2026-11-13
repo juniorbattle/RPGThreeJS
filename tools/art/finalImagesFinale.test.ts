@@ -141,10 +141,10 @@ describe('final act images, prepared for the operator’s validation (OD-2026-11
     for (const item of finale) expect(item.prompt, item.id).not.toContain(NO_CLAN_RULE);
   });
 
-  it('marks every character’s look as a proposal, with a covered face, its combat weapon and nothing that passes for a Seal or the artefact', () => {
+  it('gives every character its approved look, with a covered face, its combat weapon and nothing that passes for a Seal or the artefact', () => {
     expect(characters).toHaveLength(14);
     for (const item of characters) {
-      expect(item.notes, item.id).toMatch(/^PROPOSAL, to confirm: /);
+      expect(item.notes, item.id).not.toMatch(/PROPOSAL|to confirm/i);
       expect(item.notes, item.id).toBe(STAGED_LOOKS[item.id]);
       expect(item.prompt, item.id).toContain(COVERED_FACE_RULE);
       expect(item.prompt, item.id).toContain(SACRED_OBJECT_RULES.finale!);
@@ -153,7 +153,7 @@ describe('final act images, prepared for the operator’s validation (OD-2026-11
     }
     // Each fighter's look carries the weapon it fights with (src/combat/legacyCombatRuntime.js), and its brief says so.
     const weapons: Record<string, [RegExp, string]> = {
-      'finale:enemy:raven_champion': [/throwing knife held in each hand, his weapon/, '« Lames de jet » (throwing knives)'],
+      'finale:enemy:raven_champion': [/a dagger held in each hand, his weapon/, '« Dagues du Corbeau » (a dagger)'],
       'finale:enemy:phoenix_champion': [/temple spear .* his weapon/, '« Lance du temple » (a spear)'],
       'finale:enemy:serpent_champion': [/curved blade .* his weapon/, '« Lame Serpent » (a blade)'],
       'finale:enemy:demon_champion': [/great black claws, his weapon/, '« Griffes » (its own claws)'],
@@ -171,7 +171,7 @@ describe('final act images, prepared for the operator’s validation (OD-2026-11
       expect(STAGED_LOOKS[`finale:actor:finale_${clan}_champion`], clan).toBe(STAGED_LOOKS[`finale:enemy:${clan}_champion`]);
     }
     // The Wolf's champion fights with the Dragon's champion sprite: his portrait names the same throwing knives.
-    expect(STAGED_LOOKS['finale:actor:finale_wolf_champion']).toContain('the same elite champion of the Wolf clan');
+    expect(STAGED_LOOKS['finale:actor:finale_wolf_champion']).toContain('The same elite champion of the Wolf clan');
     expect(STAGED_LOOKS['finale:actor:finale_wolf_champion']).toContain('throwing knives');
     // Each champion shows his own clan's sign.
     for (const [clan, sign] of [['raven', 'raven'], ['phoenix', 'phoenix'], ['serpent', 'serpent']]) {
@@ -227,9 +227,11 @@ describe('final act images, prepared for the operator’s validation (OD-2026-11
   it('leaves the Bear’s, the Dragon’s and the Scorpion’s 125 briefs byte-identical', () => {
     // Fingerprint taken before and after the final act's entries (2026-11-12); a deliberate change to those briefs updates it.
     // 2026-11-13 (OD-2026-11-13-D): four Raven weapons renamed after their masters, so only those four weapon sentences changed.
+    // 2026-11-13 (OD-2026-11-13-F, C5 and Q2): Kaelen's and the Grand Inquisitor's staves named in their weapon sentences, and the
+    // « PROPOSAL, to confirm » mark taken off the 23 approved looks; restoring both gives back the previous fingerprint.
     const others = plan.filter((item) => item.chapter !== 'finale')
       .map((item) => ({ id: item.id, prompt: item.prompt, notes: item.notes, references: item.references, samePlaceAs: item.samePlaceAs ?? null }));
     expect(others).toHaveLength(125);
-    expect(createHash('sha256').update(JSON.stringify(others)).digest('hex')).toBe('cd31cf0bf7e7987a994fbc0c8d434da76c7ffaa242f595818a4edc55051562c2');
+    expect(createHash('sha256').update(JSON.stringify(others)).digest('hex')).toBe('f42466ef7e32219c9d400ac4beba5cb1cd119258b38c84f9ba88a49760132d05');
   });
 });

@@ -100,6 +100,11 @@ describe('skill signatures', () => {
     }
     expect(enemyAttackFxRecipe('Morsure')!.id).toBe('attack_bite');
     expect(enemyAttackFxRecipe('Épée rouillée')).toBeNull();
+    // Weapons renamed after their masters (OD-2026-11-13-F, C5) keep the effect and the sound of their former name.
+    for (const [renamed, former] of [['Bâton du Dragon', 'Sceau'], ['Bâton de l’Inquisiteur', 'Sceau'], ['Dagues du Corbeau', 'Lames de jet']] as const) {
+      expect(enemyAttackFxRecipe(renamed), renamed).toEqual(enemyAttackFxRecipe(former));
+    }
+    expect(listEnemyAttackWeapons()).not.toContain('Dagues du Corbeau');
     expect(enemyAttackFxRecipe(undefined)).toBeNull();
   });
 
