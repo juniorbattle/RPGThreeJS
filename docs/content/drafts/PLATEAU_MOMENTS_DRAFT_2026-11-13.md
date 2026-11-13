@@ -1,6 +1,8 @@
 # Tableaux vivants de l’après-démo — brouillon à valider (2026-11-13)
 
-Statut : **À VALIDER**. Rien n’est codé dans le jeu avant ta validation. Seule une maquette, l’arrivée chez Borin, est jouable dans le laboratoire QA (voir « Maquette »).
+Statut : **VALIDÉ** par l’opérateur le 2026-11-13, tel quel (« Valider tel quel »). Chaque question ci-dessous prend donc sa recommandation (voir « Questions à trancher »).
+
+Seule une maquette, l’arrivée chez Borin, est jouable dans le laboratoire QA (voir « Maquette »).
 
 Tu as demandé que les moments animés soient traités proprement sur tous les plateaux : « cela concerne tous les chapitres/plateaux concernant les moments animés ». Ce brouillon propose donc :
 - les tables des moments de l’Ours, du Dragon et du Scorpion, sur le modèle de `FINALE_MOMENTS` ;
@@ -31,6 +33,21 @@ Tu as demandé que les moments animés soient traités proprement sur tous les p
 - le Grand Inquisiteur, sous son masque de cuivre.
 
 ## Questions à trancher
+
+**Tranchées le 2026-11-13** : tu as validé la fiche telle quelle. Chaque question prend sa recommandation :
+- les trois tables des plateaux telles qu’écrites, avec le chef vaincu aux issues de force et les figurants lointains aux arrivées (1 A) ;
+- la trahison tenue au contrat, sur l’arène de la finale, finie sur le coup de vent (2 A) ;
+- les épilogues tenus au contrat, avec un même souffle sur la capitale au matin, la brèche encore ouverte (3 A) ;
+- la maquette de l’arrivée chez Borin, que tu juges en mouvement avant les douze autres séquences (4 A) ;
+- une clé d’humeur pour les dialogues qui suivent une séquence, d’après leur pendant du Lion (5 A) ;
+- les tableaux marqués « approuvés » en phase 2, liés au registre d’art (6 A).
+
+**Suite.** La phase 2 commence par ce qui ne dépend pas de ton verdict sur la maquette :
+- les quatre tables dans le code, approuvées, et la bascule des tableaux ;
+- les clés d’humeur ;
+- les déclencheurs dans le jeu et les fonds animés.
+
+Tant qu’aucun script n’est inscrit, chaque moment va droit à son dialogue. Les douze autres séquences, et l’entrée de l’arrivée chez Borin dans le jeu, attendent que tu juges la maquette en mouvement (4 A).
 
 1. **Les tables de l’Ours, du Dragon et du Scorpion.**
    - **A. Les valider telles qu’écrites ci-dessous (recommandé).** Elles suivent le modèle du Lion :
