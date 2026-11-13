@@ -573,7 +573,7 @@
     "breach_demon": {
       "group": "finale",
       "master": "public/assets/characters/pixel/post-demo/finale/breach_demon.png",
-      "worldHeight": 2.2,
+      "worldHeight": 1.95,
       "masterSha256": "71789a373b32071af3567fa86a2d8d56440e9f7930e0a22f977cea8bac765b8f",
       "masterFigureHeightPx": 345,
       "storeScale": 1.0,

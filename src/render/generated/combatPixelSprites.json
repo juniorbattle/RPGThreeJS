@@ -673,12 +673,12 @@
     "breach_demon": {
       "file": "/assets/characters/pixel/combat-sprites/breach_demon.png",
       "cell": [
-        121,
-        115
+        108,
+        101
       ],
       "anchor": [
-        30,
-        113
+        43,
+        98
       ],
       "presenceScale": 1.0,
       "cells": [
@@ -772,12 +772,12 @@
         "attack": "c3507697e37ee37a80fd264cb52563a7e550dd556318df0fe5c24431399b1764",
         "cast": "cfc143be0e133450387dd7e010b62215efa8720e11be74b619368484189f63e9"
       },
-      "figureHeightPx": 88,
+      "figureHeightPx": 78,
       "idleBoundsPx": {
-        "left": 15,
-        "top": 25,
-        "right": 90,
-        "bottom": 114
+        "left": 13,
+        "top": 20,
+        "right": 79,
+        "bottom": 98
       },
       "colors": 41,
       "characterBoundFx": {
@@ -785,7 +785,7 @@
         "attack": false,
         "cast": true
       },
-      "sha256": "cd01c2a0bd2cd3d64dbe98f00e46000e4f44449e48117e4030e865d178bb10ae"
+      "sha256": "581cd9f44dc03ab6695c2e250c6e9e1dc6ced5434944bc56f9068c49620a688f"
     },
     "breach_entity": {
       "file": "/assets/characters/pixel/combat-sprites/breach_entity.png",
