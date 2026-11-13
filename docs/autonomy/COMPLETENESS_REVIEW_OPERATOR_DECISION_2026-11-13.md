@@ -73,3 +73,21 @@ L'opérateur a validé le découpage en quatre lots (« sinon pour le reste je v
 4. Le test final sur PC.
 5. La passe mobile.
 6. La dette technique.
+
+## Fiche de la seconde phase : couleurs et nettoyage (même jour)
+
+La session de présentation a soumis ses options sur une fiche privée (https://claude.ai/artifact/ScehruYEVzu6FGSRk4h8Js), avec des aperçus calculés et l’inventaire `docs/audits/global-cleanup-inventory-2026-11-13.md`. L’opérateur l’a remplie et a dit « fiche remplie ». Ses choix ont été relus dans la base de la fiche : chaque recommandation est retenue, sans note.
+
+- **T1, Talon ardoise.** Le bleu de Talon passe en gris ardoise sombre sur son portrait et sa planche de combat, par un traitement de palette qui garde son dessin et l’argent de ses plaques. Kestrel garde le bleu nuit choisi le 2026-11-11 (F3).
+- **N1, supprimer** les 9 fichiers jetables de la catégorie A de l’inventaire.
+- **C1, supprimer** les anciennes poses du Combat Stage (`public/assets/combat-stage/poses/`, 41,8 Mo).
+- **C3, supprimer** les atlas POI V2 remplacés (`public/assets/generated/lion-phase/poi-v2/`).
+- **C4, déplacer vers `docs/`** les neuf rapports JSON de migration rangés dans `public/`.
+- **C5, déplacer vers `docs/media/`** l’écoute `combat-fx-v1/preview-all.wav`.
+- **C6, déplacer hors de `public/`** les références Option C (`characters/pixel/validation/ready/`).
+- **C7, supprimer** les quatre pilotes QA de l’époque UI-SYSTEM-1 et ajuster le skill qa-evidence.
+- **C9, supprimer** les huit scripts de revue de `tools/dialogue` ; les pages de preuve restent.
+- **C15, ajouter une garde** aux cas de `spritesheetPng.test.ts` qui lisent les PNG locaux du megapack.
+- **Reporter à la dette technique** : reste du Combat Stage, TravelView, CombatSfx, lab du Composer et chaîne de lecture vidéo (C2, C13, C14, C18).
+- **Garder** : C8, C10 à C12, C16 et C17.
+- **Principes.** Les preuves des rapports ne sont pas compactées (P1). Les candidats cinématiques restent sous OD-2026-10-24-A (P2). L’historique Git n’est pas réécrit.

@@ -100,6 +100,21 @@ Critères : aucune référence depuis `src`, les tests ou un outil encore utilis
 | C16 Petits docs isolés : `docs/narrative/judgement-and-accusation-doctrine-draft.md`, `docs/cinematics/storylight-narrative-reference.md`, `docs/audits/asset-bible-sprites.md`, `docs/audits/combat-action-presentation-v2-audit.md` | 4 | 0,04 Mo | 2026-09-18 | Seulement l'inventaire `project-continuity-audit-1.json` et 1 rapport | Notes de doctrine et audits de juillet à septembre. Le brouillon de doctrine du jugement peut servir la passe narrative. | Garder (gain négligeable). |
 | C17 `docs/art-direction/option-c/**` et `docs/references/traversal/t0/**` | 66 | 33,5 Mo | 2026-10-01 | 9 docs et 1 outil pour Option C. `docs/traversal` (historique) pour les références T0. Aucune dans `src`. | Direction artistique Option C (6 planches de référence, 17,8 Mo) et références approuvées de la route T0 retirée (13,2 Mo). Les remasters restent gelés. | Garder : références artistiques, hors build. |
 
+## Complément : pistes de l’audit final (C3 à C5)
+
+Ajouté le même jour sur les pistes transmises par la session parente (`docs/reports/final-audit-2026-11-11.md`, C3 à C5).
+
+| Chemin | Fichiers | Références | Enjeu | Recommandation |
+| --- | ---: | --- | --- | --- |
+| C18 Chaîne de lecture vidéo : `src/cinematics/CinematicPlayer.ts`, `CinematicOverlay.ts`, `CinematicPreloader.ts`, `JourneySession.ts` | 4 et leurs tests | Importée par `GameApp.ts`, `NarrativeStage.ts`, `JourneyCampaignBoundary.ts`, `JourneyQaScenarios.ts` ; zéro emplacement vidéo actif (OD-2026-10-24-A) | Code encore branché : les attentes et la frontière d’agency de Journey passent par elle. La retirer touche GameApp, NarrativeStage, des tests et le validateur de retrait vidéo ; les huit identifiants historiques restent. | Reporter à l’étape « dette technique », après une revue des contrats. |
+| C13 (complété) `src/combat/audio/CombatSfx.ts` | 1 | Aucun importeur de production, 2 tests | Module de sons de combat retiré (audit final C4). | Avec C13, à l’étape « dette technique ». |
+
+Les autres pistes de l’audit sont déjà couvertes :
+- les JSON de `docs/reports` importés par le morceau combat : B3 et C14 ;
+- `tools/traversal` : C12 ;
+- `docs/autonomy` : B11 ;
+- les brouillons de `docs/content/drafts` : B15, textes approuvés ou en cours dans les sessions de récit et de combat, à ne pas toucher.
+
 ## Observations sans suppression
 
 - `docs/README.md` annonçait encore « Current set **1.4.0** » : corrigé en 1.23.0 dans la passe Q2 du même jour.

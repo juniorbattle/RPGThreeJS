@@ -6932,7 +6932,7 @@
         "/assets/characters/pixel/archive/non-demo/talon.png"
       ],
       "source": {
-        "master": "e27a6d2daca531c2a112875094bf91cc36cde056fa46d8bb64cfbc739fd0440f",
+        "master": "8a41d0d88698738ff6d8eab4e3dafb9172145e4cd78bb74697ee7eb8c0cac9e4",
         "dash": "3b09f877d97e0ae4aad49364ec714fd6c2990606164e06c8879a192b2ec95c1d",
         "attack": "67ca681fca04b1376f2795b99093e012db131fbddfd3343fff823d63f92930fb",
         "cast": "6187dc432ddd353b99bd1c81d2a57b1c21aa1ba782f40ecc77780b58d709d89d"
@@ -6950,7 +6950,7 @@
         "attack": true,
         "cast": true
       },
-      "sha256": "573b4ad4917f9c7b3c874a4dc23d514d4f08dee418d2f4c5d0926b14e5aee036"
+      "sha256": "216c9bc53b379d296bf244a35516a47119a8637988c94bd63c79c41f62b44e5c"
     },
     "troll": {
       "file": "/assets/characters/pixel/combat-sprites/troll.png",

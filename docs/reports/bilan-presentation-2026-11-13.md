@@ -185,3 +185,27 @@ Les remarques de l'opérateur, enregistrées dans la décision le même jour, co
 
   Le dépôt Git (6 Go) ne maigrit pas sans réécriture de l'historique, que OD-2026-11-11-E exclut. Le levier concret est le build : environ 60 Mo de `public/` que le jeu ne lit jamais partent à chaque version.
 - **`docs/README.md`** annonçait encore le jeu de contrats 1.4.0 ; il donne maintenant 1.23.0 et sa baseline.
+
+## Choix de l’opérateur appliqués (même jour)
+
+L’opérateur a rempli la fiche et retenu chaque recommandation, sans note. Ses choix sont consignés dans la décision (section « Fiche de la seconde phase »), puis appliqués, un commit par groupe :
+
+- **T1, Talon ardoise.** Le portrait et la planche de combat de Talon passent en gris ardoise par un traitement de palette exact. 93 923 et 10 890 pixels bleus changent ; l’alpha et les autres pixels restent identiques.
+  - Les empreintes de provenance de `combatPixelSprites.json` et `poses.json` sont mises à jour, ainsi que la palette déclarée.
+  - Les sources de poses `tools/pixel-sprites/poses/talon/*.webp` gardent le bleu. Une reconstruction de sa planche doit relancer `tools/pixel-sprites/recolor-talon-slate.cjs`, et la description de ses poses dans `tools/art/combatPosesTable.ts` (session de combat) parle encore de bleu.
+  - L’archive `archive-manifest.json` garde l’empreinte d’origine, comme trace de l’archivage.
+- **N1, C7, C9.** 21 outils jetables supprimés ; le skill qa-evidence nomme les pilotes de combat gardés.
+- **C1, C3.** Les poses du Combat Stage (100 fichiers) et les atlas POI V2 sont supprimés de `public/`.
+- **C4 à C6, déplacés hors du build.** Les neuf rapports JSON vont dans `docs/project/asset-migration-reports/`, l’écoute des sons de combat dans `docs/media/audio/combat-fx-v1/`, les références Option C dans `docs/art-direction/option-c/validation-ready/`.
+- **C15.** Les cinq cas megapack de `spritesheetPng.test.ts` sautent quand les PNG locaux manquent.
+- **Reportés ou gardés.** C2, C13, C14 et C18 vont à l’étape « dette technique » ; P1 et P2 ne changent rien.
+
+**Vérification.** Contrôles lancés sur l’arbre fusionné :
+
+| Contrôle | Résultat |
+| --- | --- |
+| `tsc` | aucune erreur |
+| vitest | 3 436 réussis, 5 sautés, 5 échecs hérités des tests historiques de `tools/cinematics/`, dont les masters locaux manquent dans ce worktree |
+| node:test | 26 sur 26 |
+| build | réussi |
+| `contracts:validate` et garde | validé, garde vide |
