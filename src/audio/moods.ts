@@ -32,4 +32,20 @@ export const SCENE_MOODS: Readonly<Record<string, NarrativeMood>> = Object.fromE
   ...refuge.map((id) => [id, 'refuge']), ...tension.map((id) => [id, 'tension']), ...drama.map((id) => [id, 'drama']),
 ]);
 
-export const sceneMood = (dialogueId: string | null | undefined): NarrativeMood => (dialogueId ? SCENE_MOODS[dialogueId] : undefined) ?? 'refuge';
+/**
+ * Set 1.20.0 ("Post-demo moments", "Music"): keys for new post-demo dialogues, under the same rules. Validated by the
+ * operator on 2026-11-13 (PLATEAU_MOMENTS_DRAFT_2026-11-13, question 5 A): the dialogues that follow a living tableau, or
+ * keep its backdrop, take the mood of their Lion counterpart, so a sequence and its dialogue share it. The audiences as
+ * `lion_briefing`, the post-combat dialogues and epilogues as `serpent_general_aftermath` and `epilogue`, the betrayal as
+ * `shadow_signs`. Every other post-demo dialogue keeps the refuge context.
+ */
+export const POST_DEMO_SCENE_MOODS: Readonly<Record<string, NarrativeMood>> = Object.freeze({
+  bear_audience: 'tension', dragon_audience: 'tension', scorpion_audience: 'tension', finale_betrayal: 'tension',
+  bear_master_spy_aftermath: 'drama', bear_trial_aftermath: 'drama', bear_epilogue: 'drama',
+  dragon_shaman_aftermath: 'drama', dragon_trial_aftermath: 'drama', dragon_epilogue: 'drama',
+  scorpion_prophet_aftermath: 'drama', scorpion_trial_aftermath: 'drama', scorpion_epilogue: 'drama',
+  finale_epilogue_respect: 'drama', finale_epilogue_fear: 'drama', finale_epilogue_balance: 'drama',
+});
+
+export const sceneMood = (dialogueId: string | null | undefined): NarrativeMood =>
+  (dialogueId ? SCENE_MOODS[dialogueId] ?? POST_DEMO_SCENE_MOODS[dialogueId] : undefined) ?? 'refuge';

@@ -11,6 +11,7 @@
  */
 import { LION_POI_POSITIONS, LION_POI_REGION_EXITS, lionPoiPathBends } from '../../LionPoiMap';
 import { BEAR_POI_METADATA } from './bearTopology';
+import type { PostDemoMoment } from '../postDemoMoments';
 
 const FINAL_IMAGES = '/assets/generated/post-demo/bear';
 const FINAL_CHARACTERS = '/assets/characters/pixel/post-demo/bear';
@@ -173,3 +174,20 @@ const BEAR_SCENE_BRIEFS: Readonly<Record<string, { environmentContext: string; a
 export const BEAR_PROVISIONAL_SCENES: Readonly<Record<string, { environmentContext: string; awaitedFinal: string; image?: string }>> = Object.freeze(
   Object.fromEntries(Object.entries(BEAR_SCENE_BRIEFS).map(([key, scene]) => [key, Object.freeze({ ...scene, image: `${FINAL_IMAGES}/scenes/${key}.webp` })])),
 );
+
+/**
+ * Set 1.20.0 (PRESENTATION_AND_MEDIA "Post-demo moments") — the Bear's moment table, validated by the operator on
+ * 2026-11-13 (PLATEAU_MOMENTS_DRAFT_2026-11-13, « Valider tel quel »): the arrival before Borin's audience, and the honour
+ * and force outcomes after their post-combat dialogues, before the epilogue. Each lists the established facts its living
+ * tableau may show, never what the following dialogue says first. The tableaux are the plateau's integrated final images.
+ */
+export const BEAR_MOMENTS: readonly PostDemoMoment[] = Object.freeze([
+  { id: 'bear_arrival_moment', beforeDialogueId: 'bear_audience', sceneId: 'bear_audience', maxSeconds: 30, status: 'approved', tableau: 'approved',
+    facts: ['La compagnie arrive dans les Montagnes de la Résilience', 'L’Ancien Ours Borin la reçoit dans sa salle taillée dans la montagne'] },
+  { id: 'bear_honour_moment', afterDialogueId: 'bear_master_spy_aftermath', beforeDialogueId: 'bear_epilogue', sceneId: 'bear_master_spy_aftermath', maxSeconds: 30,
+    status: 'approved', tableau: 'approved',
+    facts: ['Le Maître Espion du Corbeau est vaincu dans les hautes galeries', 'Les Ombres se tenaient derrière le Corbeau'] },
+  { id: 'bear_force_moment', afterDialogueId: 'bear_trial_aftermath', beforeDialogueId: 'bear_epilogue', sceneId: 'bear_trial_aftermath', maxSeconds: 30,
+    status: 'approved', tableau: 'approved',
+    facts: ['La compagnie a vaincu Borin et ses guerriers selon la loi de la montagne', 'Borin et ses guerriers l’ont vu'] },
+] satisfies PostDemoMoment[]);

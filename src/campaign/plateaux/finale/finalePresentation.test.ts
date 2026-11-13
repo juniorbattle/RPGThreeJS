@@ -84,14 +84,14 @@ describe('final-act scenes on their final tableaux (set 1.20.0, Lot 4; final ima
     expect([isDraftContent('finale_last_stand'), provisionalMark('finale_last_stand')]).toEqual([false, null]);
   });
 
-  it('holds the approved moment table of the betrayal and the three epilogues, whose living tableaux wait for the finishing pass', () => {
+  it('holds the moment table of the betrayal and the three epilogues, held to the contract and on approved tableaux', () => {
     expect(FINALE_MOMENTS.map((moment) => moment.beforeDialogueId)).toEqual(['finale_betrayal', 'finale_epilogue_respect', 'finale_epilogue_fear', 'finale_epilogue_balance']);
     for (const moment of FINALE_MOMENTS) {
       expect(resolvePostDemoDialogue(moment.beforeDialogueId, createInitialState()), moment.id).toBeDefined();
       expect(moment.facts.length, moment.id).toBeGreaterThan(0);
-      // The painted tableaux are integrated; the moments' living tableaux belong to the finishing pass, so none plays yet.
-      expect([moment.status, moment.tableau, finaleMomentPlays(moment)], moment.id).toEqual(['approved', 'provisional', false]);
-      expect(publicFile(FINALE_PROVISIONAL_SCENES[moment.beforeDialogueId]!.image!), moment.id).toBe(true);
+      // The painted tableaux are integrated and the table was validated on 2026-11-13: each moment may play once registered.
+      expect([moment.status, moment.tableau, finaleMomentPlays(moment)], moment.id).toEqual(['approved', 'approved', true]);
+      expect(publicFile(FINALE_PROVISIONAL_SCENES[moment.sceneId]!.image!), moment.id).toBe(true);
     }
     expect(finaleMomentPlays({ ...FINALE_MOMENTS[1]!, status: 'proposed', tableau: 'approved' })).toBe(false);
     expect(finaleMomentPlays({ ...FINALE_MOMENTS[1]!, status: 'approved', tableau: 'approved' })).toBe(true);

@@ -1,5 +1,5 @@
 import type { ShotPainter } from '../opening/openingPainters';
-import { IMAGE_HEIGHT, IMAGE_WIDTH, type ViewCamera } from '../opening/openingShots';
+import { OPENING_FRAME, type ImageFrame, type ViewCamera } from '../opening/openingShots';
 import './living-tableau.css';
 
 /**
@@ -18,7 +18,8 @@ export class LivingBackdrop {
   private ratio = 1;
   private disposed = false;
 
-  constructor(private readonly host: HTMLElement, private readonly painter: ShotPainter, private readonly reduced: boolean) {
+  /** `size` is the painting's size: the Lion's 1672 × 941 by default, a post-demo tableau's 1536 × 1024. */
+  constructor(private readonly host: HTMLElement, private readonly painter: ShotPainter, private readonly reduced: boolean, private readonly size: ImageFrame = OPENING_FRAME) {
     this.canvas.className = 'living-backdrop';
     this.canvas.setAttribute('aria-hidden', 'true');
     this.ctx = this.canvas.getContext('2d');
@@ -46,9 +47,10 @@ export class LivingBackdrop {
   };
 
   /** The painting as the layer shows it: `background-size: cover`, centred. */
-  private camera(): ViewCamera {
-    const scale = Math.max(this.width / IMAGE_WIDTH, this.height / IMAGE_HEIGHT);
-    return { scale, x: (this.width - IMAGE_WIDTH * scale) / 2, y: (this.height - IMAGE_HEIGHT * scale) / 2 };
+  camera(): ViewCamera {
+    const { width, height } = this.size;
+    const scale = Math.max(this.width / width, this.height / height);
+    return { scale, x: (this.width - width * scale) / 2, y: (this.height - height * scale) / 2 };
   }
 
   private readonly tick = (now: number): void => {

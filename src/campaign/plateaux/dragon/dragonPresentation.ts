@@ -12,6 +12,7 @@
 import { LION_POI_POSITIONS, LION_POI_REGION_EXITS, lionPoiPathBends } from '../../LionPoiMap';
 import type { ProvisionalActor, ProvisionalAtlasRegion } from '../bear/bearPresentation';
 import { DRAGON_POI_METADATA } from './dragonTopology';
+import type { PostDemoMoment } from '../postDemoMoments';
 
 const FINAL_IMAGES = '/assets/generated/post-demo/dragon';
 const FINAL_CHARACTERS = '/assets/characters/pixel/post-demo/dragon';
@@ -145,3 +146,18 @@ const DRAGON_SCENE_BRIEFS: Readonly<Record<string, { environmentContext: string;
 export const DRAGON_PROVISIONAL_SCENES: Readonly<Record<string, { environmentContext: string; awaitedFinal: string; image?: string }>> = Object.freeze(
   Object.fromEntries(Object.entries(DRAGON_SCENE_BRIEFS).map(([key, scene]) => [key, Object.freeze({ ...scene, image: `${FINAL_IMAGES}/scenes/${key}.webp` })])),
 );
+
+/**
+ * Set 1.20.0 (PRESENTATION_AND_MEDIA "Post-demo moments") — the Dragon's moment table, validated by the operator on
+ * 2026-11-13 (PLATEAU_MOMENTS_DRAFT_2026-11-13, « Valider tel quel »), on the Bear's model.
+ */
+export const DRAGON_MOMENTS: readonly PostDemoMoment[] = Object.freeze([
+  { id: 'dragon_arrival_moment', beforeDialogueId: 'dragon_audience', sceneId: 'dragon_audience', maxSeconds: 30, status: 'approved', tableau: 'approved',
+    facts: ['La compagnie arrive aux Pics Célestes', 'L’Ancien Dragon Kaelen la reçoit dans sa salle ouverte sur le ciel'] },
+  { id: 'dragon_honour_moment', afterDialogueId: 'dragon_shaman_aftermath', beforeDialogueId: 'dragon_epilogue', sceneId: 'dragon_shaman_aftermath', maxSeconds: 30,
+    status: 'approved', tableau: 'approved',
+    facts: ['Le Chaman des Ombres est vaincu sur l’arête des cimes', 'Les Ombres se tenaient derrière le Loup'] },
+  { id: 'dragon_force_moment', afterDialogueId: 'dragon_trial_aftermath', beforeDialogueId: 'dragon_epilogue', sceneId: 'dragon_trial_aftermath', maxSeconds: 30,
+    status: 'approved', tableau: 'approved',
+    facts: ['La compagnie a vaincu Kaelen et ses gardiens sur l’esplanade', 'Les Pics l’ont vu'] },
+] satisfies PostDemoMoment[]);

@@ -5,9 +5,10 @@
  * operator's decisions only: no clan, place, character, object or lore beyond them. The entity stays unnamed.
  *
  * R4 decides which epilogue plays (RunSystem, `campaignRelations.ts`); each epilogue names its causes: the four Seals,
- * each confided or taken, the allied and enemy clans, and the civilians of the arena. While their tableaux are
- * provisional, the epilogues' living tableaux do not play and each moment goes straight to its dialogue
- * (PRESENTATION_AND_MEDIA "Post-demo moments"). The Fear ending's choice belongs to the dialogue that follows.
+ * each confided or taken, the allied and enemy clans, and the civilians of the arena. Each epilogue's living tableau, when
+ * one is registered, plays before its dialogue and never shows what it says first (PRESENTATION_AND_MEDIA "Post-demo
+ * moments", `FINALE_MOMENTS`); without one, the moment goes straight to its dialogue. The Fear ending's choice belongs to
+ * the dialogue that follows.
  *
  * Content only: these builders read the saved state they are given and decide nothing.
  */

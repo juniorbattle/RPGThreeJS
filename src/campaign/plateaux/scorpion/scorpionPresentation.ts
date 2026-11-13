@@ -12,6 +12,7 @@
 import { LION_POI_POSITIONS, LION_POI_REGION_EXITS, lionPoiPathBends } from '../../LionPoiMap';
 import type { ProvisionalActor, ProvisionalAtlasRegion } from '../bear/bearPresentation';
 import { SCORPION_POI_METADATA } from './scorpionTopology';
+import type { PostDemoMoment } from '../postDemoMoments';
 
 const FINAL_IMAGES = '/assets/generated/post-demo/scorpion';
 const FINAL_CHARACTERS = '/assets/characters/pixel/post-demo/scorpion';
@@ -142,3 +143,18 @@ const SCORPION_SCENE_BRIEFS: Readonly<Record<string, { environmentContext: strin
 export const SCORPION_PROVISIONAL_SCENES: Readonly<Record<string, { environmentContext: string; awaitedFinal: string; image?: string }>> = Object.freeze(
   Object.fromEntries(Object.entries(SCORPION_SCENE_BRIEFS).map(([key, scene]) => [key, Object.freeze({ ...scene, image: `${FINAL_IMAGES}/scenes/${key}.webp` })])),
 );
+
+/**
+ * Set 1.20.0 (PRESENTATION_AND_MEDIA "Post-demo moments") — the Scorpion's moment table, validated by the operator on
+ * 2026-11-13 (PLATEAU_MOMENTS_DRAFT_2026-11-13, « Valider tel quel »), on the Bear's model.
+ */
+export const SCORPION_MOMENTS: readonly PostDemoMoment[] = Object.freeze([
+  { id: 'scorpion_arrival_moment', beforeDialogueId: 'scorpion_audience', sceneId: 'scorpion_audience', maxSeconds: 30, status: 'approved', tableau: 'approved',
+    facts: ['La compagnie arrive aux Déserts Arides', 'Le Grand Inquisiteur la reçoit dans sa salle des archives'] },
+  { id: 'scorpion_honour_moment', afterDialogueId: 'scorpion_prophet_aftermath', beforeDialogueId: 'scorpion_epilogue', sceneId: 'scorpion_prophet_aftermath', maxSeconds: 30,
+    status: 'approved', tableau: 'approved',
+    facts: ['Le Prophète des Ombres est vaincu sur la crête des dunes', 'Les Ombres se tenaient derrière le Phénix'] },
+  { id: 'scorpion_force_moment', afterDialogueId: 'scorpion_trial_aftermath', beforeDialogueId: 'scorpion_epilogue', sceneId: 'scorpion_trial_aftermath', maxSeconds: 30,
+    status: 'approved', tableau: 'approved',
+    facts: ['La compagnie a vaincu le Grand Inquisiteur et ses érudits dans la cour', 'Ses érudits ont consigné l’épreuve'] },
+] satisfies PostDemoMoment[]);
