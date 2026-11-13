@@ -46,8 +46,10 @@ const CROP_OVERRIDES: Readonly<Record<string, Partial<Omit<DialoguePortrait, 'sr
 
 export function resolveDialoguePortrait(actorId: string | undefined): DialoguePortrait | undefined {
   if (!actorId) return undefined;
-  const profile = (assets.characterProfiles as Record<string, { ui?: string } | undefined>)[actorId];
-  const src = resolveCharacterAsset(actorId, 'ui') ?? profile?.ui;
+  const profile = (assets.characterProfiles as Record<string, { ui?: string; tableau?: string } | undefined>)[actorId];
+  // A recruitable hero speaks with its rest pose, framed like the company's masters so the default crop shows its head
+  // and shoulders, not its action master (operator, 2026-11-13: « Oui, les deux »).
+  const src = profile?.tableau ?? resolveCharacterAsset(actorId, 'ui') ?? profile?.ui;
   if (!src?.startsWith('/')) return undefined;
   return { src, cropX: '50%', cropY: '88%', scale: 4.3, ...CROP_OVERRIDES[actorId] };
 }
