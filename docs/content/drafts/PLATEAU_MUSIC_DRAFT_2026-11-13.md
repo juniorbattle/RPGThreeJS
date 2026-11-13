@@ -1,6 +1,14 @@
 # Musique propre à chaque plateau : brouillon à valider (2026-11-13)
 
-Statut : **À VALIDER**, à l’oreille, puis par l’approbation d’un amendement.
+Statut : **VALIDÉ** par l’opérateur le 2026-11-13, tel quel (« J’écoute et je valide »). Chaque question ci-dessous prend donc sa recommandation (voir « Questions à trancher »), dont l’approbation du texte d’amendement 1.23.0.
+
+**Reste à faire, hors de cette session.** Appliquer l’amendement est une tâche dédiée :
+1. relecture indépendante du diff réel ;
+2. commit d’amendement des contrats ;
+3. décision opérateur dans `docs/autonomy/` ;
+4. commit opérationnel qui inscrit la nouvelle baseline immuable.
+
+Ensuite seulement, le jeu demande les pistes des plateaux : `PLATEAU_MUSIC_IN_GAME = true`, puis une vérification dans le navigateur. Jusque-là, le jeu joue la musique du Lion partout.
 
 Tu as demandé : « on va travailler l’ambiance sonore et la musique pour chaque plateau, cela donne une identité propre à chaque partie du jeu ». Ce brouillon propose :
 - un verdict sur le contrat, avec le texte d’amendement à approuver ;
@@ -185,6 +193,20 @@ Le set 1.20.0 demande qu’on te les propose. Je propose deux niveaux.
 Ces esquisses ne sont pas dans la table et le jeu ne les lit pas. Elles sont rendues hors ligne en WAV pour l’écoute (voir « Comment écouter »).
 
 ## Questions à trancher
+
+**Tranchées le 2026-11-13** : tu as validé le brouillon tel quel. Chaque question prend sa recommandation :
+- l’amendement 1.23.0 tel que rédigé, puis le branchement d’une ligne (1 A) ;
+- les quatre identités telles qu’écrites (2) ;
+- les mesures à 5 et à 7 gardées en combat (3 A) ;
+- les fanfares et le titre communs (4 A, 5 A) ;
+- le Tournoi pour les combats de l’arène seulement, la Brèche partout ailleurs (6 A) ;
+- les entrées musicales seules pour les signatures de boss, sans toucher à la table des sons ; l’option B de l’amendement n’est pas retenue (7 A) ;
+- le motif de l’entité dans le pont de la brèche (8 A) ;
+- les chefs secondaires sur l’entrée générale de leur partie (9 A) ;
+- les ambiances de carte et de refuge communes (10 A) ;
+- les timbres tels quels, à retoucher un par un si l’un ne convainc pas en jeu (11).
+
+Le texte appliqué sera donc celui de `PRESENTATION_AND_MEDIA`, `AUTHORING_AND_QA`, `README` et du manifeste, sans la puce de `COMBAT_AND_VFX`, et sans la mention de l’option B dans `README`.
 
 1. **Amendement.** A : l’amendement 1.23.0 tel que rédigé, puis le branchement d’une ligne (**recommandé**). B : brancher seulement les combats sur l’identifiant de scène, sans amendement (déconseillé : la lecture de « reuse » est discutable).
 2. **Identités.** Valides-tu, à l’oreille, chaque partie telle qu’écrite ? Le laboratoire a une case Bien / À revoir et une note par piste ; l’avis se copie en bas de la fenêtre.

@@ -7,7 +7,7 @@
 | BASELINE | `3be080ab`, `dev` |
 | BRANCH | `claude/confident-noether-c84d79`, published to `origin/dev` |
 | HEAD | the commit that records this evidence (after `ae22c173`) |
-| STATUS | review: awaiting the operator's listening and the approval of the drafted amendment |
+| STATUS | validated: the operator validated the draft as is on 2026-11-13 (« J’écoute et je valide »); awaiting the dedicated task that applies amendment 1.23.0 |
 | MERGED_IN | `dev` |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |
@@ -66,7 +66,7 @@ No browser check of the game itself: nothing in play changes while the switch is
 
 ## Limits and next steps
 
-- `UNDECIDED` Every question of the draft (amendment, identities by ear, odd metres in combat, fanfares, the final act's two faces, boss signatures A/B/C, the entity, other bosses' entries, per-plateau map and refuge ambience, timbres).
-- After approval: a dedicated amendment task applies set 1.23.0 and records its baseline; then `PLATEAU_MUSIC_IN_GAME = true`, the two wiring tests updated if they then see a second argument, and one browser check with a real gesture through one map, one dialogue, one combat and one boss of each part.
-- Option B of the signatures also needs, on the FX side, a recipe variant per boss: a mark's identity is fixed by its recipe, and the post-demo bosses share their signature skills.
+- `APPROVED DECISION` (2026-11-13, the draft validated as is) Every question takes its recommendation: amendment 1.23.0 as worded without option B; the four identities as written; odd metres kept in combat; shared fanfares and title; the Tournament for the arena's fights only; boss signatures as musical entries only, the cue table untouched; the entity's motif in the breach's bridge; secondary bosses on their part's entry; shared map and refuge ambiences; timbres as they are. The parent session records the operator decision.
+- Next: a dedicated amendment task applies set 1.23.0 (PRESENTATION_AND_MEDIA, AUTHORING_AND_QA, README and manifest; no COMBAT_AND_VFX bullet) and records its baseline; then `PLATEAU_MUSIC_IN_GAME = true`, the two wiring tests updated if they then see a second argument, and one browser check with a real gesture through one map, one dialogue, one combat and one boss of each part.
+- Option B of the signatures, not retained, would also need, on the FX side, a recipe variant per boss: a mark's identity is fixed by its recipe, and the post-demo bosses share their signature skills.
 - The ambiences of the six new biomes belong to the parallel session; `ambience.ts` and `arenaThemes.ts` were not touched.
