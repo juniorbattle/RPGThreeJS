@@ -108,3 +108,19 @@ La session de présentation a soumis ses options sur une fiche privée (https://
 - **Encore ouverts pour l'opérateur.**
   - L'arme de la Bête corrompue : « Charge » est proposée au lieu de « Griffes ».
   - Le libellé « PURIFIÉ », repris de la dissipation existante, s'affiche quand Serment rompu retire les protections d'un héros.
+
+## Validations du lot récit (même jour)
+
+Les textes sont dans `docs/content/drafts/PLATEAU_FORKS_AND_MAELOR_LINES_DRAFT_2026-11-13.md`. Le rapport est `docs/reports/bilan-recit-2026-11-13.md`, livré en dc8b2f58. Le gardien des contrats a relu le plan avant l'implémentation et n'a trouvé aucun conflit. Réponses de l'opérateur, question par question :
+
+- **N1, embranchements de combat : « Valider tel quel »** pour l'Ours, le Dragon et le Scorpion. Trois choix existants lancent maintenant un combat :
+  - « Saisir le minerai pour le clan », au convoi de l'Ours ;
+  - « Monter la garde et repousser le prochain raid », au hameau du Dragon ;
+  - « Libérer le fidèle du Phénix », chez les érudits du Scorpion.
+
+  Après la victoire, la scène se rouvre sur la rencontre du héros de cette branche. Les verdicts, la réputation et la sauvegarde ne changent pas ; trois faits techniques de victoire s'ajoutent.
+- **N2, trahison : « Réplique Bois-Clair ».** Maelor rappelle Bois-Clair, avec trois variantes selon les choix du Lion (butin, témoins réduits au silence).
+- **N3, clôture : « Varie selon la fin ».** Le sort de Maelor est dit dans chacun des trois épilogues.
+- **N5, crédits : « Trame complète ».** La trame compte dix rubriques, sans aucun nom. Rien n'est écrit dans `src/ui/credits.ts` : le texte final viendra de l'opérateur, mot à mot.
+
+La dernière passe narrative sur les moments à forte tension se poursuit dans la même session. Ses propositions seront soumises mot à mot.
