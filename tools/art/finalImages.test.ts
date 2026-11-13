@@ -105,7 +105,7 @@ describe('final images plan (OD-2026-11-11-F, F1)', () => {
       else expect(item.prompt, id).not.toContain('icy');
     }
     expect(Object.keys(ATLAS_LAYOUTS)).toEqual(['bear:atlas:1', 'bear:atlas:2', 'bear:atlas:3', 'dragon:atlas:1', 'dragon:atlas:2', 'dragon:atlas:3',
-      'scorpion:atlas:1', 'scorpion:atlas:2', 'scorpion:atlas:3']);
+      'scorpion:atlas:1', 'scorpion:atlas:2', 'scorpion:atlas:3', 'finale:atlas:1']);
   });
 
   it('prepares every Dragon image with its own identity, staging and proposed looks, for the operator to validate', () => {

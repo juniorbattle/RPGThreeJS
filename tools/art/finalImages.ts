@@ -24,7 +24,7 @@ import * as scorpion from '../../src/campaign/plateaux/scorpion/scorpionPresenta
 import * as finale from '../../src/campaign/plateaux/finale/finalePresentation';
 import { loadEnv } from 'vite';
 import { demoEnvironmentPlateForContext } from '../../src/render/demoEnvironmentPack';
-import { ATLAS_LAYOUTS, CIVILIAN_IDS, CIVILIAN_REFS, CREATURE_IDS, CREATURE_REFS, IDENTITY, LIGHT_REFS, STAGED_LOOKS, STAGING } from './finalImagesStaging';
+import { ATLAS_LAYOUTS, BREACH_CREATURE_IDS, CIVILIAN_IDS, CIVILIAN_REFS, CREATURE_IDS, CREATURE_REFS, IDENTITY, LIGHT_REFS, STAGED_LOOKS, STAGING } from './finalImagesStaging';
 
 type Chapter = 'bear' | 'dragon' | 'scorpion' | 'finale';
 type Kind = 'backdrop' | 'atlas' | 'character';
@@ -85,6 +85,11 @@ const namesClan = (text: string, name: string) => new RegExp(`(^|[^\\p{L}])${nam
 /** A place whose staging gives it no clan (the Scorpion's caravan shelter, open to any traveller). */
 const NO_CLAN = /no emblem of any clan/i;
 export const NO_CLAN_RULE = 'This place belongs to no clan: no banner, shield, medallion, carving, relief or painted emblem of any clan on any wall, pillar or object; never a lion.';
+/**
+ * The final act's demons and entity (BREACH_CREATURE_IDS) belong to no clan. The finale has no host clan, so its general
+ * sentence asks for banners mixing the clans' signs, which a demon's sprite should not carry.
+ */
+export const OUT_OF_BREACH_RULE = 'What comes out of the breach belongs to no clan: no banner, shield, medallion or emblem of any clan; never a lion.';
 
 export function heraldryFor(chapter: Chapter, awaitedFinal: string): string {
   // The Scorpion's caravan shelter, staged with no emblem of any clan, came out with scorpions carved on its pillars: the
@@ -121,6 +126,9 @@ const NAMES_SHADOWS = /(^|[^\p{L}])(Ombres?|Shadows?|corrupt\p{L}*|corromp\p{L}*
 export const SACRED_OBJECT_RULES: Readonly<Partial<Record<Chapter, string>>> = Object.freeze({
   dragon: 'The character holds and carries nothing that could pass for the Echo Crystal: no crystal, orb or glowing gem in hand, on a staff or at the belt.',
   scorpion: 'The character holds and carries nothing that could pass for the Phoenix’s prophetic codex: no book, codex, tome or bound pages in hand or at the belt.',
+  // The final act's canon objects: the company's four Seals and the artefact Maelor opens the breach with; neither has a
+  // canon look, so no character carries anything that could be taken for them.
+  finale: 'The character holds and carries nothing that could pass for one of the four Seals or for the artefact Maelor opens the breach with: no seal, medallion, amulet, orb, crystal, gem or glowing relic in hand, on a staff or at the belt.',
 });
 
 export interface CombatWeapon { name: string; type: 'phys' | 'mag' }
@@ -218,13 +226,25 @@ const sentences = (...parts: (string | false | null | undefined)[]) => parts.fil
 
 /**
  * What the streams of a Lion layout become on each plateau's atlas. The sentence was written for the Bear's mountains and
- * fits the Dragon's peaks; the Scorpion's desert has no water but its oasis. The finale has no atlas layout yet.
+ * fits the Dragon's peaks; the Scorpion's desert has no water but its oasis; the final act's capital channels its water
+ * through the city (a proposal awaiting the operator's validation).
  */
 export const ATLAS_STREAMS: Readonly<Partial<Record<Chapter, string>>> = Object.freeze({
   bear: 'Streams of the layout become icy mountain torrents.',
   dragon: 'Streams of the layout become icy mountain torrents.',
   scorpion: 'Streams, rivers and waterfalls of the layout become dry wadis: beds of cracked pale clay and sand with no water at all.',
+  finale: 'Streams, rivers and waterfalls of the layout become narrow stone-lined channels of dark water stepping down through the city, crossed by its bridges.',
 });
+
+/**
+ * The opening of a staged backdrop. The Arena of Destinies during the Tournament (`crowd`) keeps its crowd, far away in
+ * the stands and never a figure on the ground; every other backdrop stays empty of people.
+ */
+function emptyOfPeople(staging: { crowd?: boolean }): string {
+  return staging.crowd
+    ? 'A wide environment tableau with no characters, no creatures and no silhouettes on the arena floor or in the foreground (characters are staged over it as separate sprites); the only people are the distant crowd in the stands, a dense, indistinct mass of tiny figures and specks of colour, never a readable figure.'
+    : 'A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites).';
+}
 
 function promptFor(id: string, kind: Kind, chapter: Chapter, awaitedFinal: string, weapon: CombatWeapon | null = null): string {
   const look = PROPOSED_LOOKS[id] ?? STAGED_LOOKS[id] ?? '';
@@ -235,7 +255,7 @@ function promptFor(id: string, kind: Kind, chapter: Chapter, awaitedFinal: strin
   if (kind === 'character') {
     return sentences(`${STYLE} One single full-body character sprite, standing in a three-quarter view, centred, feet near the bottom edge, on a fully transparent background, at the same pixel scale as the reference sprites. ${COVERED_FACE_RULE} Subject: ${awaitedFinal}.`,
       weapon && weaponRule(weapon), SACRED_OBJECT_RULES[chapter], shadows,
-      `Setting of the character: ${SETTINGS[chapter]} ${heraldryFor(chapter, awaitedFinal)}`);
+      `Setting of the character: ${SETTINGS[chapter]} ${BREACH_CREATURE_IDS.includes(id) ? OUT_OF_BREACH_RULE : heraldryFor(chapter, awaitedFinal)}`);
   }
   const layout = ATLAS_LAYOUTS[id];
   if (layout) {
@@ -252,7 +272,7 @@ function promptFor(id: string, kind: Kind, chapter: Chapter, awaitedFinal: strin
     // A closed interior stays closed; an exterior or a hall open onto the sky shows nothing built far away that the
     // staging does not name.
     const closed = staging.light === 'interior' && !staging.skyVisible;
-    return sentences(`${STYLE} A wide environment tableau, empty of people: no characters, no creatures, no silhouettes (characters are staged over it as separate sprites). Keep open, readable ground in the lower third for them. Staging: ${staging.line} ${IDENTITY[chapter] ?? SETTINGS[chapter]}`,
+    return sentences(`${STYLE} ${emptyOfPeople(staging)} Keep open, readable ground in the lower third for them. Staging: ${staging.line} ${IDENTITY[chapter] ?? SETTINGS[chapter]}`,
       closed ? CLOSED_INTERIOR_RULE : NOTHING_BUILT_FAR_RULE, shadows,
       `No banners, flags or emblems unless the staging names them. ${heraldryFor(chapter, `${awaitedFinal} ${staging.line}`)}`);
   }
@@ -260,9 +280,9 @@ function promptFor(id: string, kind: Kind, chapter: Chapter, awaitedFinal: strin
     shadows, heraldryFor(chapter, awaitedFinal));
 }
 
-/** Style references: by light for a staged backdrop, beasts for a creature, civilians for a civilian. */
+/** Style references: by light for a staged backdrop, beasts for a creature or a demon, civilians for a civilian. */
 function referencesFor(id: string, kind: Kind): readonly string[] {
-  if (CREATURE_IDS.includes(id)) return CREATURE_REFS;
+  if (CREATURE_IDS.includes(id) || BREACH_CREATURE_IDS.includes(id)) return CREATURE_REFS;
   if (CIVILIAN_IDS.includes(id)) return CIVILIAN_REFS;
   if (kind === 'character') return CHARACTER_STYLE_REFS;
   if (ATLAS_LAYOUTS[id]) return [ATLAS_LAYOUTS[id]!.lionAtlas];

@@ -393,6 +393,43 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
   - dans le dépôt principal, après la fusion : 3 433 tests sans échec, ainsi que le validateur narratif, les contrats, les types et le build. Les 10 échecs vus dans le worktree venaient de médias ignorés par Git, absents d’un worktree neuf.
 - **Non vérifié** : le rendu sur un vrai GPU, le mouvement réduit du jeu activé, les autres combats du Scorpion en jeu (couverts par le test d’affectation) et le mobile. Dans la cour, le bandeau de tour cache le haut de la bannière tant qu’il est affiché. Le jugement artistique revient à l’opérateur.
 
+## Préparation de l’acte final (2026-11-12)
+
+`PROPOSED FUTURE DESIGN` — à valider par l’opérateur. Une session parallèle a préparé l’acte final dans le dépôt principal, qui a la clé OpenAI, avec la méthode de l’Ours, du Dragon et du Scorpion. Rien n’est généré au-delà des trois témoins d’identité, et rien n’est intégré.
+- **Fiche** : `docs/content/drafts/FINALE_STAGING_DRAFT_2026-11-12.md`, statut « À VALIDER ». Elle contient :
+  - **l’identité** : la seule ville du jeu, une vieille capitale à remparts en brique rouge cuite, avec des chaînages de pierre pâle et des toits d’ardoise bleu-noir. L’Arène des Destins est un amphithéâtre rond où flottent les bannières des huit clans. Le jour du Tournoi est sous un ciel voilé, les bannières seules en couleurs vives ; viennent ensuite le feu de la ville et la brèche ;
+  - **la brèche** : une déchirure d’encre noire et froide au liseré blanc, née au cœur de l’arène, qui grandit jusqu’au-dessus de la ville basse, où est son cœur. C’est la marque des Ombres, jamais violette ;
+  - 22 lignes de mise en scène tirées des répliques, 14 aspects de personnages proposés, chacun avec son arme de combat, et l’atlas sur le tracé `judgement` du Lion, dont les points de l’acte final gardent déjà les coordonnées.
+- **Onze questions ouvertes**, chacune avec sa recommandation :
+  - l’aspect et la place de la brèche ;
+  - les démons, faits de l’encre de la brèche ;
+  - l’entité, une haute forme d’encre sans visage ;
+  - le terrain du Tournoi, un amphithéâtre ;
+  - une foule lointaine dans les gradins ;
+  - la brique rouge et le ciel voilé ;
+  - les champions aux couleurs de leurs clans ;
+  - les maîtres existants du champion du Loup et de Maelor repris sans génération, et une seule image par champion ;
+  - aucune bannière de la compagnie, puisque l’emblème d’Alistair reste ouvert ;
+  - les canaux d’eau sombre de l’atlas ;
+  - l’identité telle qu’écrite.
+- **Outil**, sans changer un octet des 125 briefs de l’Ours, du Dragon et du Scorpion (vérifié par une empreinte dans les tests) :
+  - les entrées dans `tools/art/finalImagesStaging.ts` ;
+  - dans `tools/art/finalImages.ts` :
+    - la phrase des ruisseaux de l’atlas propre à l’acte final ;
+    - la règle de l’objet sacré (les Sceaux et l’artefact de Maelor) ;
+    - une règle sans clan et les références de bêtes pour les démons et l’entité ;
+    - une exception de foule lointaine, limitée aux huit décors du Tournoi.
+  - Tests : `tools/art/finalImagesFinale.test.ts`.
+- **Témoins** :
+  - les décors choisis : l’arène vue des gradins, la capitale en flammes vue des portes de l’arène, le cœur de la brèche ;
+  - deux reprises :
+    - l’arène tirait vers le Lion : ciel bleu doré, fanions rouge et or sans clan, toits pointus, aqueduc ;
+    - la vue sur la capitale portait une bannière inventée ;
+  - leurs lignes sont corrigées, et les premières versions sont dans `tmp/final-images/out-v1/` ;
+  - l’identité tient face aux trois plateaux intégrés (`tmp/final-images/sheets/finale-identity-vs-bear-dragon-scorpion.jpg`) ;
+  - reste un défaut de détail : la reprise de l’arène a deux loups et pas de lion. Je propose de la reprendre au début du lot.
+- **Suite** : l’opérateur valide la fiche ou la corrige. Ensuite, le lot de l’acte final se génère (22 décors, 14 personnages moins les reprises de maîtres choisies, 1 atlas), est relu, puis intégré sur son ordre.
+
 ## Rencontres des six héros (2026-11-11, nuit)
 
 `CURRENT FACT` — l’opérateur a approuvé les répliques mot à mot (« Textes approuvés ») ; le brouillon `docs/content/drafts/SIX_HEROES_MEETINGS_DRAFT_2026-11-11.md` est intégré tel quel.
@@ -410,5 +447,5 @@ Le modèle par défaut est celui des images OpenAI déjà approuvées par le pro
 `PROPOSED FUTURE DESIGN`, à confirmer par l’opérateur :
 - **Portraits** : les maîtres Character V2 des six héros entreront dans le lot des images finales, après le pilote.
 - **Essai en jeu** : les six rencontres et leurs secondes chances sont à juger lors du test PC final.
-- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Le Dragon est intégré depuis le 2026-11-12 ; les 40 images du Scorpion sont générées, relues et intégrées le même jour ; l’acte final vient ensuite.
+- **Dragon, Scorpion, acte final** : chaque chapitre reçoit, avant son lancement, une identité propre et une ligne de mise en scène par décor, soumises à l’opérateur comme pour l’Ours. Le Dragon est intégré depuis le 2026-11-12 ; les 40 images du Scorpion sont générées, relues et intégrées le même jour ; l’identité et la mise en scène de l’acte final sont soumises à l’opérateur depuis le 2026-11-12.
 - **Arènes du Scorpion et de l’acte final** : leurs combats jouent encore dans les arènes codées du Lion. Chacun pourra recevoir les siennes, comme l’Ours et le Dragon, à la demande de l’opérateur.
