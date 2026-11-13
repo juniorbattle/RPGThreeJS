@@ -399,11 +399,16 @@ describe('R6 runtime ownership and ordering lock', () => {
       [LION_FINALE_TRIAL_SELECTED_FLAG]: true,
     })).toBe('lion_chief');
 
+    // OD-2026-11-13-F (Q1): the effect's state change moved unchanged to narrativeEffects.ts; GameApp saves on its `saveNow`.
+    const effects = readFileSync(resolve(process.cwd(), 'src/game/narrativeEffects.ts'), 'utf8');
+    const finaleCase = effects.slice(effects.indexOf("case 'resolveLionFinale':"), effects.indexOf("case 'finishChapter':"));
+    expect(finaleCase.indexOf('resolveSelectedLionFinaleCombat(state.flags)')).toBeGreaterThan(-1);
+    expect(finaleCase.indexOf('resolveSelectedLionFinaleCombat(state.flags)'))
+      .toBeLessThan(finaleCase.indexOf('resolveLionFinaleExecution(state, effect.intent)'));
+    expect(finaleCase).toContain('saveNow: true');
     const source = readFileSync(resolve(process.cwd(), 'src/game/GameApp.ts'), 'utf8');
-    const finaleCase = source.slice(source.indexOf("case 'resolveLionFinale':"), source.indexOf("case 'finishChapter':"));
-    expect(finaleCase.indexOf('resolveSelectedLionFinaleCombat(this.state.flags)'))
-      .toBeLessThan(finaleCase.indexOf('resolveLionFinaleExecution(this.state, effect.intent)'));
-    expect(finaleCase).toContain('this.saves.saveAuto(this.state)');
+    const applyEffects = source.slice(source.indexOf('private async applyEffects'), source.indexOf('private async flushPendingCombat'));
+    expect(applyEffects).toContain('if (outcome.saveNow) this.saves.saveAuto(this.state)');
 
     const continueMethod = source.slice(
       source.indexOf('private async continueChronicle'),
