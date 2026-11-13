@@ -98,6 +98,15 @@ Les trois combats sont de rang normal et rapportent 0 de réputation (échelle d
 - La dernière passe narrative sur les moments à forte tension, ajoutée par l'opérateur au même lot, suit dans un brouillon séparé.
 - Remarque de l'opérateur pendant la vérification : les sprites de Lyra et de Gunnar paraissent trop grands dans les tableaux par rapport à la compagnie, et leur pose de repos semble inadaptée. Voir la section suivante.
 
+## Limite de quatre acteurs visibles (constat transmis par la session parente)
+
+`CURRENT FACT`. La session parente signalait que `createGenericNarrativeTableau` garde jusqu'à sept acteurs (`.slice(0, 7)`), et que `dragon_wolf_traps` en montrerait cinq. J'ai calculé chaque composition que le jeu met en scène, par le même chemin que `GameApp` (tableau du dialogue, puis `applyFinalDialoguePresentationPlan`) :
+- 75 dialogues du Lion ;
+- 130 versions des dialogues de l'après-démo (scènes construites sous deux états, scènes rouvertes des embranchements comprises) ;
+- les rassemblements de refuge, avec la compagnie ajoutée comme le fait `GameApp`.
+
+Aucune composition ne dépasse quatre acteurs. Le tableau générique à sept n'est qu'une base, que le plan remplace toujours par des groupes d'au plus quatre (`DRAFT_VISIBLE_ACTOR_CAP`, `PostDemoPresentationPlans.ts`). Le fond de `dragon_wolf_traps` ne contient aucun personnage peint. Le « cinquième » vu à l'écran est vraisemblablement le portrait de l'orateur dans la boîte de dialogue, qui relève de l'interface. Aucune correction n'était donc à faire. Le test `src/cinematics/visibleActorCap.test.ts` protège désormais la limite pour tous ces dialogues ; il échoue bien quand le plafond du plan est relevé à six.
+
 ## Remarque de l'opérateur : taille et pose des héros dans les tableaux
 
 `CURRENT FACT`, taille corrigée.

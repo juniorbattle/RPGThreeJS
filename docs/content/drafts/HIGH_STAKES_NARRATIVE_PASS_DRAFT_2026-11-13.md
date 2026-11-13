@@ -11,6 +11,32 @@ Méthode :
   - qui pose la question finale de la Crainte (statut d'Alistair) ;
   - les rappels des pactes de plateau à la trahison.
 
+## Grille des moments à enjeu
+
+La session parente a précisé la demande de l'opérateur : juger chaque moment sur cinq critères. Ce sont la clarté de l'enjeu, le rythme et la longueur, la force de la dernière réplique avant le choix ou le combat, le rappel des choix passés et la cohérence avec ce qui précède. L'inventaire complet (35 fiches, répliques citées, formules répétées) est en annexe : [HIGH_STAKES_MOMENTS_INVENTORY_2026-11-13.md](HIGH_STAKES_MOMENTS_INVENTORY_2026-11-13.md).
+
+Légende : ✔ tient, ~ à resserrer, ✘ défaut. La dernière colonne renvoie aux retouches ci-dessous ; un tiret signale qu'aucune retouche n'est proposée dans ce lot.
+
+| Moment | Enjeu | Rythme | Dernière réplique | Rappel des choix | Cohérence | Retouche |
+| --- | --- | --- | --- | --- | --- | --- |
+| Ouverture (M01) | ✔ | ~ « Bois-Clair brûle » trois fois | ✔ | sans objet | ~ doublon panneau / Maelor | — (prologue animé, hors lot) |
+| Bois-Clair, le choix (M03) | ✔ | ✔ | ✔ « Qu’allez-vous sauver ? » | sans objet | ✘ coffres qui brûlent puis partent | D2 |
+| Témoins de Bois-Clair (M05) | ✔ | ✔ | ✔ | ✔ lit le choix du village | ✔ | — |
+| Jugement d'Alaric (M08) | ✔ | ✔ | ✔ | ✔ | ✔ | — (référence du gabarit) |
+| Décisions-clés des plateaux (M12, M17, M22) | ✔ | ~ même ossature trois fois | ~ une seule réplique avant le combat | ✔ pactes lus | ✔ | — (N1 ajoute un combat à un autre temps) |
+| Témoins des plateaux (M13, M18, M23) | ✔ | ✔ | ✔ | ✔ chaîne des témoins | ~ réplique d'escorte recopiée | D1 |
+| Jugements des chefs (M14, M19, M24) | ✔ | ~ gabarit commun | ✔ | ✔ actes nommés | ~ formules répétées | — (moteur commun, à revoir après le test sur PC) |
+| Épreuves des chefs (M15, M20, M25) | ~ | ✔ | ✘ « Nous l’assumerons. » trois fois | ✘ refus et demande confondus | ~ | C2, C3 |
+| Verdicts des champions (M27) | ✔ | ~ mêmes répliques trois fois | ✔ | ✔ | ✔ | — |
+| Finale contre le Serpent (M28) | ~ | ✘ deux répliques | ~ | ✘ le Lion oublié | ✔ | C1 |
+| Trahison (M29) | ~ mobile dans une variante sur cinq | ~ | ~ « Maelor ! » seul | ~ (N2 ajoute Bois-Clair) | ✔ | A1, A2 |
+| Arène et capitale (M30) | ✔ | ✔ | ✔ | ~ | ~ fuite et combat identiques | — |
+| Ralliement et veillée (M31) | ✔ | ~ « tiennent parole » quatre fois | ✔ | ✔ | ~ chefs à la troisième personne | C4 |
+| Brèche (M32) | ✔ | ✘ quatre répliques | ✘ « Alors venez. » | ~ la question de Maelor sans réponse | ✔ | A3, A4, A5 |
+| Fin du Respect (M33) | ✔ | ✔ | ✔ | ✔ (N3 dit le sort de Maelor) | ✘ « Votre clan » | B1 |
+| Fin de l'Équilibre (M34) | ~ | ✔ | ✔ | ✔ | ✘ « Votre clan » | B1 |
+| Fin de la Crainte (M35) | ✔ | ✔ | ✔ | ✔ | ~ victoire annoncée à plat | B2 |
+
 ## A. Trahison et brèche (impact haut)
 
 **A1. Le mobile de Maelor dans toutes les variantes** (`finale_betrayal`, étape `advice`). Aujourd'hui, seule la variante « aucun conseil suivi » dit pourquoi il lui fallait l'arène.
