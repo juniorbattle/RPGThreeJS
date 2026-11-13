@@ -57,9 +57,12 @@ describe('the Lion stays as it is', () => {
     }
   });
 
-  it('asks the Lion tracks in game until the amendment is in force', () => {
-    expect(PLATEAU_MUSIC_IN_GAME).toBe(false);
-    expect(gameMusicWhere('bear_audience')).toEqual({});
+  it("asks each part's tracks in game since set 1.23.0, and the Lion's everywhere with the switch off", () => {
+    expect(PLATEAU_MUSIC_IN_GAME).toBe(true);
+    expect(gameMusicWhere('bear_audience')).toEqual({ part: 'bear', scene: null });
+    expect(gameMusicWhere('lion_briefing')).toEqual({ part: 'lion', scene: null });
+    expect(gameMusicWhere(null)).toEqual({ part: 'lion', scene: null });
+    expect(gameMusicWhere('bear_audience', null, false)).toEqual({});
     expect(gameMusicWhere('bear-poi-pass', null, true)).toEqual({ part: 'bear', scene: null });
     expect(gameMusicWhere('finale_destiny_arena', 'finale_destiny_arena', true)).toEqual({ part: 'finale', scene: 'finale_destiny_arena' });
   });

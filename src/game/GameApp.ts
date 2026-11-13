@@ -2148,8 +2148,8 @@ export class GameApp {
     // (CombatBridge). It is optional presentation: a failure never blocks the transition.
     try {
       const music = surface.mood ?? MODE_MUSIC[mode];
-      // PLATEAU_MUSIC_DRAFT_2026-11-13, off until its amendment is in force: the part of the game is the prefix of the
-      // presented id, the authored dialogue's or else the POI whose atlas the map shows; nothing else, nothing saved.
+      // Set 1.23.0 (OD-2026-11-13-E): the part of the game is the prefix of the presented id, the authored dialogue's
+      // or else the POI whose atlas the map shows; nothing else, nothing saved. Title and fanfares stay shared.
       const where = PLATEAU_MUSIC_IN_GAME ? gameMusicWhere(surface.musicId ?? (this.state ? getRunNode(this.state.run)?.id : null)) : {};
       if (music) { if (where.part) this.uiSounds.setMusicContext(music, where); else this.uiSounds.setMusicContext(music); }
       if (mode !== 'COMBAT' && mode !== 'MANAGEMENT') this.uiSounds.setMusicScene(surface.ambience ?? MODE_AMBIENCE[mode] ?? null);

@@ -63,7 +63,7 @@ export class CombatBridge {
     try { this.audio?.player.beginCombat(this.audioSession); } catch { /* Audio never prevents mounting combat. */ }
     try {
       // Music reads only the hand-off: the encounter rank and the arena scene (OD-2026-10-29-B). The scene's prefix names
-      // the part of the game once the plateau amendment is in force (PLATEAU_MUSIC_DRAFT_2026-11-13); off until then.
+      // the part of the game, and the scene a chief's entry or the Tournament's arena (set 1.23.0, OD-2026-11-13-E).
       const context = session.config.encounterRank === 'boss' ? 'boss' : 'combat';
       const where = gameMusicWhere(session.config.sceneId, session.config.sceneId);
       if (where.part) this.audio?.player.setMusicContext(context, where); else this.audio?.player.setMusicContext(context);

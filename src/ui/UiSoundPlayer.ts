@@ -245,7 +245,7 @@ export class UiSoundPlayer {
 
   /**
    * The presentation context selects the track; audio still waits for a real gesture. `where` comes only from the
-   * durable id prefix of what is presented (parts.ts); the game sends none until the plateau amendment is in force.
+   * durable id prefix of what is presented (parts.ts, set 1.23.0); the Lion's part asks the host as before.
    */
   setMusicContext(id: MusicContextId | null, where: MusicWhere = {}): void {
     this.musicContext = id;

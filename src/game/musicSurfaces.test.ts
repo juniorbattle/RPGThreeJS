@@ -2,6 +2,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import { GameApp } from './GameApp';
 
+const LION = { part: 'lion', scene: null };
+
 function surface() {
   const uiSounds = { setMusicContext: vi.fn(), setMusicScene: vi.fn() };
   const app = { soundSettings: { close: vi.fn() }, uiSounds, statusHud: null };
@@ -12,10 +14,20 @@ function surface() {
 describe('music follows the surface (OD-2026-11-01-B)', () => {
   it('lets the scene choose its mood and keeps the refuge context for the rest', () => {
     const { uiSounds, setMode } = surface();
-    setMode('NARRATIVE', { mood: 'drama' }); expect(uiSounds.setMusicContext).toHaveBeenLastCalledWith('drama');
-    setMode('NARRATIVE', { mood: 'tension' }); expect(uiSounds.setMusicContext).toHaveBeenLastCalledWith('tension');
-    setMode('NARRATIVE'); expect(uiSounds.setMusicContext).toHaveBeenLastCalledWith('refuge');
-    setMode('PROLOGUE'); expect(uiSounds.setMusicContext).toHaveBeenLastCalledWith('drama');
+    setMode('NARRATIVE', { mood: 'drama' }); expect(uiSounds.setMusicContext).toHaveBeenLastCalledWith('drama', LION);
+    setMode('NARRATIVE', { mood: 'tension' }); expect(uiSounds.setMusicContext).toHaveBeenLastCalledWith('tension', LION);
+    setMode('NARRATIVE'); expect(uiSounds.setMusicContext).toHaveBeenLastCalledWith('refuge', LION);
+    setMode('PROLOGUE'); expect(uiSounds.setMusicContext).toHaveBeenLastCalledWith('drama', LION);
+  });
+
+  it('names the part of the game from the presented dialogue id only (set 1.23.0)', () => {
+    const { uiSounds, setMode } = surface();
+    setMode('NARRATIVE', { mood: 'tension', musicId: 'bear_audience' });
+    expect(uiSounds.setMusicContext).toHaveBeenLastCalledWith('tension', { part: 'bear', scene: null });
+    setMode('NARRATIVE', { mood: 'drama', musicId: 'finale_betrayal' });
+    expect(uiSounds.setMusicContext).toHaveBeenLastCalledWith('drama', { part: 'finale', scene: null });
+    setMode('NARRATIVE', { mood: 'drama', musicId: 'lion_briefing' });
+    expect(uiSounds.setMusicContext).toHaveBeenLastCalledWith('drama', LION);
   });
 
   it('plays the map ambience on the map, the refuge ambience on its hub only, and leaves combat to the bridge', () => {

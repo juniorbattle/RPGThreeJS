@@ -73,7 +73,12 @@ it('selects combat or boss music and the arena ambience from the hand-off only (
   bridge = new CombatBridge(root, { player: player as unknown as UiSoundPlayer, openSettings: vi.fn() });
   const session = (rank: string, sceneId: string) => ({ config: { id: 'test', encounterLabel: 'Test', encounterRank: rank, sceneId } as CombatConfig, clan: [], inventory: {}, preferredUnitIds: [], reducedGraphics: false });
   bridge.start(session('normal', 'forest_route'));
-  expect(player.setMusicContext).toHaveBeenLastCalledWith('combat'); expect(player.setMusicScene).toHaveBeenLastCalledWith('forest_route');
+  expect(player.setMusicContext).toHaveBeenLastCalledWith('combat', { part: 'lion', scene: 'forest_route' }); expect(player.setMusicScene).toHaveBeenLastCalledWith('forest_route');
   bridge.start(session('boss', 'lion_sanctum'));
-  expect(player.setMusicContext).toHaveBeenLastCalledWith('boss'); expect(player.setMusicScene).toHaveBeenLastCalledWith('lion_sanctum');
+  expect(player.setMusicContext).toHaveBeenLastCalledWith('boss', { part: 'lion', scene: 'lion_sanctum' }); expect(player.setMusicScene).toHaveBeenLastCalledWith('lion_sanctum');
+  // set 1.23.0: the scene's prefix names the part, and the scene a chief's own entry or the Tournament's arena
+  bridge.start(session('boss', 'bear_hall_terrace'));
+  expect(player.setMusicContext).toHaveBeenLastCalledWith('boss', { part: 'bear', scene: 'bear_hall_terrace' });
+  bridge.start(session('normal', 'finale_destiny_arena'));
+  expect(player.setMusicContext).toHaveBeenLastCalledWith('combat', { part: 'finale', scene: 'finale_destiny_arena' });
 });

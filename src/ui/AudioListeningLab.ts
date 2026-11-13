@@ -23,7 +23,7 @@ const AMBIENCES: ReadonlyArray<{ id: string; label: string }> = [
   { id: 'map', label: 'Carte' }, { id: 'refuge', label: 'Refuge' },
 ];
 /**
- * Sketches of the plateaux's own music (PLATEAU_MUSIC_DRAFT_2026-11-13), dev only and not wired into the game: each
+ * The plateaux's own music (PLATEAU_MUSIC_DRAFT_2026-11-13), in game since set 1.23.0 and listed here in dev only: each
  * part's six tracks, and the tracks a combat scene asks instead. Only the operator's ear validates them.
  */
 const SKETCH_PARTS: ReadonlyArray<{ id: Exclude<MusicPart, 'lion'>; label: string }> = [
@@ -117,7 +117,7 @@ export class AudioListeningLab {
     const skillRows: Row[] = listSkillFxRecipes().map(id => ({ key: `compétence:${id}`, label: skillLabel(id), buttons: [{ act: `skill:${id}`, text: 'Jouer' }] }));
     const attackRows: Row[] = listEnemyAttackWeapons().map(name => ({ key: `attaque:${name}`, label: name, buttons: [{ act: `attack:${name}`, text: 'Jouer' }] }));
     const table = (title: string, rows: readonly Row[]) => `<h3 class="ui-sound-settings__group">${title}</h3><div class="audio-lab__table"><table><tbody>${rows.map(row => `<tr data-row="${row.key}" data-label="${row.label}"><th scope="row">${row.label}</th><td>${row.buttons.map(button => `<button type="button" data-act="${button.act}" aria-label="${button.text} : ${row.label}">${button.text}</button>`).join(' ')}</td><td><select data-verdict aria-label="Avis : ${row.label}"><option value="">—</option><option value="bien">Bien</option><option value="à revoir">À revoir</option></select></td><td><input data-note type="text" aria-label="Note : ${row.label}"></td></tr>`).join('')}</tbody></table></div>`;
-    element.innerHTML = `<section class="ui-sound-settings audio-lab" role="dialog" aria-modal="true" aria-labelledby="audio-lab-title"><h2 id="audio-lab-title">Laboratoire d'écoute</h2><p data-lab-status role="status"></p><p><button type="button" data-act="stop">Arrêter tout</button></p>${table('Musiques', trackRows)}${table('Esquisses : identités des plateaux (non branchées au jeu, à valider à l’oreille)', sketchRows)}${table('Ambiances', ambienceRows)}${table('Ambiances des plateaux', plateauRows)}${table('Compétences', skillRows)}${table('Attaques ennemies', attackRows)}<label for="audio-lab-summary">Avis à me transmettre</label><textarea id="audio-lab-summary" readonly rows="5"></textarea><button type="button" data-lab-close>Fermer</button></section>`;
+    element.innerHTML = `<section class="ui-sound-settings audio-lab" role="dialog" aria-modal="true" aria-labelledby="audio-lab-title"><h2 id="audio-lab-title">Laboratoire d'écoute</h2><p data-lab-status role="status"></p><p><button type="button" data-act="stop">Arrêter tout</button></p>${table('Musiques', trackRows)}${table('Esquisses : identités des plateaux (dans le jeu, à valider à l’oreille)', sketchRows)}${table('Ambiances', ambienceRows)}${table('Ambiances des plateaux', plateauRows)}${table('Compétences', skillRows)}${table('Attaques ennemies', attackRows)}<label for="audio-lab-summary">Avis à me transmettre</label><textarea id="audio-lab-summary" readonly rows="5"></textarea><button type="button" data-lab-close>Fermer</button></section>`;
     this.root.append(element); this.element = element;
     this.restore = () => {
       for (const { child, inert } of siblings) if (child.isConnected) child.inert = inert;

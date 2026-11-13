@@ -1,5 +1,5 @@
 /**
- * Which track a context plays (sketch, PLATEAU_MUSIC_DRAFT_2026-11-13): the Lion's nine tracks unchanged, and for each
+ * Which track a context plays (set 1.23.0, OD-2026-11-13-E): the Lion's nine tracks unchanged, and for each
  * other part its own map, refuge, tension, drama, combat and boss. Title, victory and defeat stay shared. A combat
  * scene may ask its own track: a chief's entry before the shared boss loop, the Tournament's arena in the final act.
  */

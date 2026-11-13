@@ -1,5 +1,5 @@
 /**
- * The parts of the game for music (sketch, PLATEAU_MUSIC_DRAFT_2026-11-13): the Lion, the Bear, the Dragon, the
+ * The parts of the game for music (set 1.23.0, OD-2026-11-13-E): the Lion, the Bear, the Dragon, the
  * Scorpion and the final act. A part is read only from the durable id prefix of what is presented: the POI id that
  * already chooses the atlas (`bear-…`), the authored dialogue id of the mood table and the combat scene id handed to
  * CombatBridge (`bear_…`). Never from route, choice, reputation, relations, resources or outcome, and never saved.
@@ -20,13 +20,12 @@ export function musicPartOf(id: string | null | undefined): MusicPart {
 }
 
 /**
- * Off until the operator approves the amendment drafted in PLATEAU_MUSIC_DRAFT_2026-11-13 and it is applied: set 1.20.0
- * says the plateaux "reuse the nine music contexts", so the game keeps asking the Lion's tracks. Only the dev listening
- * lab plays the plateaux's sketches meanwhile.
+ * On since set 1.23.0 (PRODUCTION-CONTRACTS-PLATEAU-MUSIC-1, OD-2026-11-13-E, baseline 6228a34f): each part of the game
+ * asks its own map, refuge, tension, drama, combat and boss tracks. Turned off, the game asks the Lion's tracks everywhere.
  */
-export const PLATEAU_MUSIC_IN_GAME = false;
+export const PLATEAU_MUSIC_IN_GAME = true;
 
-/** What the game asks: the part of the presented id once the amendment is in force, the Lion's tracks before. */
+/** What the game asks: the part of the presented id while the switch is on, the Lion's tracks when it is off. */
 export function gameMusicWhere(id: string | null | undefined, scene: string | null = null, enabled = PLATEAU_MUSIC_IN_GAME): MusicWhere {
   return enabled ? { part: musicPartOf(id), scene } : {};
 }
