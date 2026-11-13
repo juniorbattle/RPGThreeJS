@@ -6,7 +6,7 @@
 | DOMAIN | media (music, synthesized by code) |
 | BASELINE | `3be080ab`, `dev` |
 | BRANCH | `claude/confident-noether-c84d79`, published to `origin/dev` |
-| HEAD | the commit that adds this report |
+| HEAD | the commit that records this evidence (after `ae22c173`) |
 | STATUS | review: awaiting the operator's listening and the approval of the drafted amendment |
 | MERGED_IN | `dev` |
 | SUPERSEDES | NONE |
@@ -39,7 +39,30 @@ The operator wants each part of the game to have its own sound and musical ident
 
 ## Evidence
 
-MEASURES_PLACEHOLDER
+Machine results on the operator's host (Windows, Chromium via Playwright, dev server on 5178). They prove the scenario measured, not the music: only the operator's ear accepts it.
+
+| Check | Result |
+| --- | --- |
+| Lion byte-identical | `plateauMusic.test.ts`: tracks, two rounds of generated passes, voices, every computed sample and every room equal their digests at `3be080ab`; the ambience session's `lionAudioUnchanged.test.ts` also passes after the merge |
+| Plateau tracks under the existing rules | whole bars, the Seals motif in every track, a bridge that changes tempo, key or metre and a return on the dominant (or the lowered second), map and combat loops of 60–120 s with a passage without melody, both levels in combat and boss only, every boss entry ≤ 6 s (5.0–5.7 s), reproducible passes, pitches inside each instrument |
+| Parts and wiring | prefixes `bear-`/`bear_` … read as their part, every demo id as the Lion; scene tracks for the five chiefs and the Tournament; with the switch off the game calls `setMusicContext(id)` exactly as before (existing wiring tests unchanged) |
+| Loudness (integrated LUFS, default volume, engine recorded) | every plateau track within 0.8 LU of the Lion's same context: map -23.0 (Lion -22.9), refuge -26.7 to -26.9 (-26.8), tension -25.4 to -25.9 (-25.7), drama -26.0 to -26.3 (-26.1), combat reflection -26.2 to -27.5 (-26.7), combat action -22.4 to -23.2 (-22.5), boss -22.0 to -22.2 (-22.1). The first render was 5–8 dB low for the Bear and the Dragon's reflection sat above its action; gains and reflection voices were corrected and re-rendered |
+| Limiter | each part's boss at action, music volume 1, through `createMix`: sample peak -1.4 (Bear), -3.0 (Dragon), -2.4 (Scorpion), -3.4 dBFS (final act), under the -1 dBFS ceiling |
+| Main thread | `tools/audio/plateau-check.mjs`: 31 tracks played in turn, levels moved, each part's bank and room computed on first need: no long task; three cold starts: no long task |
+| Boss signature sketches | charge 1.35–1.72 s, blow 0.85–2.05 s, wave 1.65–2.30 s, all ≤ 2.5 s; cue table unchanged at 158 identities |
+| Contracts | LOCKED gate prints nothing; `contracts:validate` passes |
+
+Renders (ignored path, worktree): `tmp/plateau-music/wav` (45 files), `tmp/plateau-music/lion` (7 Lion references), `tmp/plateau-music/signatures` (6), `tmp/plateau-music/ecoute` (one listening tour per part, the boss entries, the signatures).
+
+Validation after merging `origin/dev` (the post-demo combat ambiences and plateau poses; one conflict in `AudioListeningLab.ts`, resolved by keeping both the music sketches and the plateau ambiences):
+- LOCKED gate: prints nothing. `npm run -s contracts:validate`: passes.
+- `npx tsc --noEmit`: clean.
+- `npx vitest run`: 3429 passed, 10 failed in 4 files, all the known missing Git-ignored media of a fresh worktree (`spritesheetPng.test.ts` megapack PNGs, `cin6c_p1_production`, `cin6ea3_pilot_e_regate`, `minimax_task_checkpoint`); no audio, UI or wiring test fails.
+- `node --test tools/qa/qa-job.test.mjs`, alone: 26 passed.
+- `npm run -s build`: passes. The lazily loaded music chunk (`MusicDirector-*.js`) is 122 kB, 31.5 kB gzip, the plateaux's tracks included; it still loads only on the first real gesture.
+- `git diff --check`: clean.
+
+No browser check of the game itself: nothing in play changes while the switch is off. The lab section was driven by its unit test and the engine by the offline renders above.
 
 ## Limits and next steps
 
