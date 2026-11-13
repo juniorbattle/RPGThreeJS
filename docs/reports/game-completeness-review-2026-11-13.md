@@ -7,7 +7,7 @@
 | BASELINE | `43d6afe0` sur `dev` (jeu de contrats 1.23.0, baseline immuable `6228a34fd69a01406ecf0fb7168a53f92a267d7b`) |
 | BRANCH | `dev` |
 | HEAD | le commit de ce rapport |
-| STATUS | review : bilan livré à l'opérateur le 2026-11-13 avec une fiche d'arbitrages ; rien n'est corrigé avant ses choix |
+| STATUS | review : bilan livré à l'opérateur le 2026-11-13 ; ses 16 arbitrages sont tranchés le même jour (OD-2026-11-13-F, `docs/autonomy/COMPLETENESS_REVIEW_OPERATOR_DECISION_2026-11-13.md`) |
 | MERGED_IN | NONE (rapport seul) |
 | SUPERSEDES | NONE (fait suite à `final-audit-2026-11-11.md`, dont les arbitrages B sont décidés par OD-2026-11-11-E) |
 | SUPERSEDED_BY | NONE |
