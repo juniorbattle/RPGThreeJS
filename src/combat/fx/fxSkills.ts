@@ -958,9 +958,21 @@ export function skillMoveFxRecipe(skillId: string, phase: FxMovePhase): FxRecipe
   return recipe ? withMoveSound(recipe, phase) : null;
 }
 
+/**
+ * Weapons renamed after what their master holds (OD-2026-11-13-F, C5) keep the effect of their former name, and so its
+ * sound: Kaelen's and the Grand Inquisitor's staves strike with the seal's magic, the Raven champion's daggers fly as the
+ * thrown blades they were.
+ */
+const RENAMED_WEAPON_EFFECTS: Readonly<Record<string, string>> = {
+  'Bâton du Dragon': 'Sceau',
+  'Bâton de l’Inquisiteur': 'Sceau',
+  'Dagues du Corbeau': 'Lames de jet',
+};
+
 /** The basic attack of an enemy that fights with teeth, claws, breath or stones. */
 export function enemyAttackFxRecipe(weaponName: string | undefined): FxRecipe | null {
-  const recipe = weaponName ? ENEMY_ATTACKS[weaponName]?.() : null;
+  const key = weaponName ? RENAMED_WEAPON_EFFECTS[weaponName] ?? weaponName : undefined;
+  const recipe = key ? ENEMY_ATTACKS[key]?.() : null;
   return recipe ? withSoundMarks(recipe) : null;
 }
 
