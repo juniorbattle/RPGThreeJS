@@ -111,7 +111,9 @@ describe('Dragon scenes on their final tableaux (set 1.20.0, Lot 2, canon since 
       expect(enemy.master, enemy.unitId).toBe(`/assets/characters/pixel/post-demo/dragon/${enemy.unitId}.png`);
       expect(publicFile(enemy.master!), enemy.unitId).toBe(true);
       expect(resolvePixelSheet(enemy.master)?.unitId, enemy.unitId).toBe(enemy.unitId);
-      expect(resolvePixelSheet(enemy.master)?.masterOnly, enemy.unitId).toBe(true);
+      // OD-2026-11-13-A: each fighter of the Dragon has its four combat poses, its master as prepare plus dash, attack and cast.
+      expect(resolvePixelSheet(enemy.master)?.masterOnly, enemy.unitId).toBeUndefined();
+      expect(resolvePixelSheet(enemy.master)?.cells, enemy.unitId).toEqual(['idle', 'idle_b', 'dash', 'attack', 'cast']);
     }
   });
 });

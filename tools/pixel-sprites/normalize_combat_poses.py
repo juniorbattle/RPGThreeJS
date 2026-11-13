@@ -260,6 +260,12 @@ def main() -> int:
             # they agree within 25 %; with none, the canvas factor stands.
             expected = refs.get(unit_id, {}).get('factor')
             measures = m['measures']
+            if expected:
+                # A template can snag at the bottom of its sweep (0.65 where 1.5 is drawn): only measures in a plausible
+                # window around the canvas factor count (the model draws from 0.8 to 1.45 times it).
+                measures = [s for s in measures if 0.8 * expected <= s <= 1.45 * expected]
+                m['kept'] = measures
+                m['scale'] = round(float(np.median(measures)), 4) if measures else m['scale']
             if override:
                 scale, basis = float(override), 'override'
             elif len(measures) >= 2 or not expected:

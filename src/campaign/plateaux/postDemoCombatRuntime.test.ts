@@ -66,9 +66,12 @@ describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 4)', (
       for (const skillId of list(line, 'skills')) expect(skillFxRecipe(skillId), skillId).not.toBeNull();
     }
     // Natural attacks (claws, stones, thrown blades) play their own recipe; weapons keep the shared weapon sounds.
-    for (const id of ['raven_scout', 'corrupted_beast', 'depth_beast', 'wolf_hunter', 'wolf_champion', 'shadow_wyrm', 'shadow_zealot']) {
+    for (const id of ['corrupted_beast', 'depth_beast', 'wolf_hunter', 'wolf_champion', 'shadow_wyrm', 'shadow_zealot']) {
       expect(enemyAttackFxRecipe(weaponName(templateLine(id))), id).not.toBeNull();
     }
+    // The Raven scout fights with the sword its master holds (OD-2026-11-13-D): a weapon, so the shared effect.
+    expect(weaponName(templateLine('raven_scout'))).toBe('Épée d’éclaireur');
+    expect(enemyAttackFxRecipe(weaponName(templateLine('raven_scout')))).toBeNull();
   });
 
   it('stands every new family on its final sprite, each listed with the brief it was made from', () => {

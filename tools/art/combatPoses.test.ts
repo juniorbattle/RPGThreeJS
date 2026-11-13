@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { buildPoseBriefs, COVERED_FACE_RULE, poseOut, SHADOWS_COLOUR_RULE } from './finalImages';
+import { buildPlan, buildPoseBriefs, COVERED_FACE_RULE, poseOut, SHADOWS_COLOUR_RULE } from './finalImages';
 import { effectColours, hasFx, POSE_UNITS, POSES, poseReference, poseSize, unitsOf } from './combatPosesTable';
 
 const ROOT = join(__dirname, '..', '..');
@@ -74,5 +74,19 @@ describe('combat poses of the new units (OD-2026-11-13-A)', () => {
   it('draws every pose on one square canvas, wide only for a four-legged beast', () => {
     for (const pose of POSES) expect(poseSize(POSE_UNITS.lyra!, pose)).toBe('1024x1024');
     for (const pose of POSES) expect(poseSize(POSE_UNITS.shadow_wyrm!, pose)).toBe('1536x1024');
+  });
+
+  it('names in combat the weapon each Bear master holds, as its poses draw it (OD-2026-11-12-A, OD-2026-11-13-D)', () => {
+    const plan = buildPlan();
+    const WEAPONS: Record<string, [name: string, noun: string]> = {
+      borin: ['Marteau de l’Ours', 'hammer'], bear_warrior: ['Lance de guerre', 'spear'],
+      raven_miner_chief: ['Marteau de guerre', 'hammer'], raven_foreman: ['Épée de contremaître', 'sword'],
+      raven_master_spy: ['Épée du Maître Espion', 'sword'], raven_scout: ['Épée d’éclaireur', 'sword'],
+    };
+    for (const [unitId, [name, noun]] of Object.entries(WEAPONS)) {
+      const brief = plan.find((item) => item.id.endsWith(`:${unitId}`))!.prompt;
+      expect(brief, unitId).toMatch(new RegExp(`fights with « ${name} » \\((?:an? )?(?:war )?${noun}\\)`));
+      expect(POSE_UNITS[unitId]!.look, unitId).toMatch(new RegExp(`\\b${noun}\\b`));
+    }
   });
 });

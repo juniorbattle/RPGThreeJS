@@ -226,9 +226,10 @@ describe('final act images, prepared for the operator’s validation (OD-2026-11
 
   it('leaves the Bear’s, the Dragon’s and the Scorpion’s 125 briefs byte-identical', () => {
     // Fingerprint taken before and after the final act's entries (2026-11-12); a deliberate change to those briefs updates it.
+    // 2026-11-13 (OD-2026-11-13-D): four Raven weapons renamed after their masters, so only those four weapon sentences changed.
     const others = plan.filter((item) => item.chapter !== 'finale')
       .map((item) => ({ id: item.id, prompt: item.prompt, notes: item.notes, references: item.references, samePlaceAs: item.samePlaceAs ?? null }));
     expect(others).toHaveLength(125);
-    expect(createHash('sha256').update(JSON.stringify(others)).digest('hex')).toBe('f9190fc98937556d0d49acb3c5a27959378918b8115409e4107ed005f2a6ff9c');
+    expect(createHash('sha256').update(JSON.stringify(others)).digest('hex')).toBe('cd31cf0bf7e7987a994fbc0c8d434da76c7ffaa242f595818a4edc55051562c2');
   });
 });
