@@ -144,12 +144,12 @@ const ENEMY_VISUAL_SKILLS: Readonly<Record<string, readonly string[]>> = Object.
   dragon_guardian: ['enemy_heavy_strike'],
   // Set 1.20.0, post-demo Lot 3 — DRAFT Scorpion families, outside the demo scope as well.
   phoenix_guardian: ['enemy_heavy_strike'],
-  phoenix_flamekeeper: ['enemy_dragon_breath', 'boss_guard', 'boss_regen', 'boss_inferno'],
-  shadow_zealot: ['enemy_dark_bolt', 'boss_fortify', 'boss_freeze', 'boss_execution'],
+  phoenix_flamekeeper: ['enemy_dragon_breath', 'boss_freeze', 'boss_regen', 'boss_inferno'],
+  shadow_zealot: ['enemy_dark_bolt', 'boss_fortify', 'boss_freeze', 'boss_apocalypse'],
   scorpion_scholar: ['enemy_dark_bolt', 'enemy_hex'],
   // Set 1.20.0, post-demo Lot 4 — DRAFT final-act families, outside the demo scope as well.
   raven_champion: ['enemy_binding_shot', 'boss_fortify', 'boss_pin', 'boss_flurry'],
-  phoenix_champion: ['enemy_heavy_strike', 'boss_guard', 'boss_regen', 'boss_inferno'],
+  phoenix_champion: ['enemy_heavy_strike', 'boss_pin', 'boss_regen', 'boss_inferno'],
   breach_demon: ['enemy_hex'],
   demon_brute: ['enemy_hex', 'boss_guard', 'boss_quake', 'boss_slam'],
 });
