@@ -1,0 +1,2737 @@
+{
+  "version": 1,
+  "storePxPerMetre": 160,
+  "units": {
+    "aldric": {
+      "group": "heroes",
+      "master": "public/assets/characters/pixel/archive/non-demo/aldric.png",
+      "worldHeight": 2.08,
+      "masterSha256": "f7f6613eb5df339831a55331c5c2a6f1512b5a794b9452776498d96bd554bb12",
+      "masterFigureHeightPx": 646,
+      "storeScale": 0.51517,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/aldric/dash.webp",
+          "sha256": "1f53518b627cdb1f9bc921540586b5bc15f5e9636572a9394ca929eee8ceb4e6",
+          "sizePx": [
+            369,
+            312
+          ],
+          "anchor": [
+            271.52,
+            304.59
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.1,
+          "measured": {
+            "scale": 1.0875,
+            "measures": [
+              1.002,
+              1.073,
+              1.088,
+              1.101,
+              1.187
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.073,
+                39
+              ],
+              [
+                1.101,
+                23
+              ],
+              [
+                1.002,
+                18
+              ],
+              [
+                1.187,
+                15
+              ],
+              [
+                1.085,
+                8
+              ]
+            ],
+            "headTemplate": [
+              0.713,
+              1.088
+            ]
+          },
+          "override": 1.1,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/aldric__dash.png",
+            "sha256": "6510c1232d96666394126cd625d6c2281afeaa2465493e68ec76138411b6ba15"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/aldric/attack.webp",
+          "sha256": "5ce6849a589c22928c082eee95fe206ab94deeae87cf7479f7db695c31a3f413",
+          "sizePx": [
+            511,
+            342
+          ],
+          "anchor": [
+            264.2,
+            334.93
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.2443,
+          "measured": {
+            "scale": 1.2139,
+            "measures": [
+              1.089,
+              1.165,
+              1.263,
+              1.519
+            ],
+            "uncertain": true,
+            "siftClusters": [
+              [
+                1.165,
+                10
+              ],
+              [
+                1.519,
+                8
+              ],
+              [
+                1.089,
+                6
+              ],
+              [
+                0.957,
+                5
+              ]
+            ],
+            "headTemplate": [
+              0.724,
+              1.263
+            ]
+          },
+          "override": 1.245,
+          "edit": {
+            "editScale": 0.9995,
+            "editInliers": 568,
+            "editShift": [
+              -7.6,
+              -29.8
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/aldric__attack__fx.png",
+            "sha256": "879c9608445456ceb3e431cdc523ef89aa7d2b844f6b1ac0e69ff8528dcd8ded"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/aldric/cast.webp",
+          "sha256": "8c85e1ae3ac8af24b713354f55eb16d97c3c46106e27d798397eec2558aa9468",
+          "sizePx": [
+            388,
+            475
+          ],
+          "anchor": [
+            209.4,
+            443.93
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.0984,
+          "measured": {
+            "scale": 1.0593,
+            "measures": [
+              0.7,
+              1.015,
+              1.055,
+              1.064,
+              1.179,
+              1.201
+            ],
+            "uncertain": true,
+            "siftClusters": [
+              [
+                1.055,
+                56
+              ],
+              [
+                1.179,
+                26
+              ],
+              [
+                1.201,
+                26
+              ],
+              [
+                1.015,
+                15
+              ],
+              [
+                1.064,
+                15
+              ]
+            ],
+            "headTemplate": [
+              0.636,
+              0.7
+            ]
+          },
+          "override": 1.1,
+          "edit": {
+            "editScale": 0.9986,
+            "editInliers": 437,
+            "editShift": [
+              -0.0,
+              1.7
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/aldric__cast__fx.png",
+            "sha256": "0e11a288e6f414e964544b0a9e3419f90c5e6b2fd53350aa767b465dc14cfc3a"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "bear_warrior": {
+      "group": "bear",
+      "master": "public/assets/characters/pixel/post-demo/bear/bear_warrior.png",
+      "worldHeight": 2.2,
+      "masterSha256": "d72beb84a7f246323c6db7738f4cf53344164b155342fcb30d4dbe6be0a31804",
+      "masterFigureHeightPx": 344,
+      "storeScale": 1.0,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/bear_warrior/dash.webp",
+          "sha256": "21f87ba701d74986c46a3dc1cea81c0e287687f9dbccc6d6703008c2a540b228",
+          "sizePx": [
+            454,
+            289
+          ],
+          "anchor": [
+            47.79,
+            282.06
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.7625,
+          "measured": {
+            "scale": 1.7625,
+            "measures": [
+              1.763,
+              1.763
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.763,
+                29
+              ],
+              [
+                1.853,
+                12
+              ]
+            ],
+            "headTemplate": [
+              0.764,
+              1.763
+            ],
+            "expected": 1.84023,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/bear_warrior__dash.png",
+            "sha256": "d1f4d88c230bf28dd7fd3e991c470756bd2f701744af476750c1e6fadeef1783"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/bear_warrior/attack.webp",
+          "sha256": "da4c7940bb55ba4647d73c826d5f1ca0e278f8caf3fe5026ec7de05bf2329d3f",
+          "sizePx": [
+            476,
+            256
+          ],
+          "anchor": [
+            161.52,
+            249.12
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.932,
+          "measured": {
+            "scale": 1.932,
+            "measures": [
+              1.865,
+              1.932,
+              1.963
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.865,
+                10
+              ],
+              [
+                1.932,
+                10
+              ]
+            ],
+            "headTemplate": [
+              0.775,
+              1.963
+            ],
+            "expected": 1.84023,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/bear_warrior__attack.png",
+            "sha256": "a21ab86c483ebfcff066fdeabcb521c03b295829652cbe953cf2c4dd23ffc662"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/bear_warrior/cast.webp",
+          "sha256": "d01e1c2327e6d24838253c6f8c9b3b156e13ee5e9dc7e0c9c19d7b825b2ebdfd",
+          "sizePx": [
+            350,
+            500
+          ],
+          "anchor": [
+            187.29,
+            470.42
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.9514,
+          "measured": {
+            "scale": 1.9495,
+            "measures": [
+              1.888,
+              1.95,
+              1.964
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.964,
+                47
+              ],
+              [
+                1.95,
+                33
+              ],
+              [
+                1.97,
+                12
+              ],
+              [
+                2.05,
+                10
+              ],
+              [
+                2.612,
+                5
+              ]
+            ],
+            "headTemplate": [
+              0.848,
+              1.888
+            ],
+            "expected": 1.84023,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.001,
+            "editInliers": 827,
+            "editShift": [
+              -0.6,
+              -0.4
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/bear_warrior__cast__fx.png",
+            "sha256": "e0323382bac352aca77baaf0d1b73ac94a8e028142a672af1604f68c9e6034d3"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "borin": {
+      "group": "bear",
+      "master": "public/assets/characters/pixel/post-demo/bear/borin.png",
+      "worldHeight": 4.3,
+      "masterSha256": "df0c311a680fe422d59f2a72a358f5628b24b5a00d8297e0a4cbbc981f578290",
+      "masterFigureHeightPx": 410,
+      "storeScale": 1.0,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/borin/dash.webp",
+          "sha256": "daabf7f228d58a645d1cc55b7c397a7719e0ee82143d967d8a6808c669434cc8",
+          "sizePx": [
+            436,
+            372
+          ],
+          "anchor": [
+            220.18,
+            365.89
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.6126,
+          "measured": {
+            "scale": 1.6126,
+            "measures": [
+              1.608,
+              1.617
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.617,
+                26
+              ],
+              [
+                1.608,
+                20
+              ],
+              [
+                1.591,
+                14
+              ],
+              [
+                1.78,
+                9
+              ],
+              [
+                1.418,
+                5
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54097,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/borin__dash.png",
+            "sha256": "feabfaea53fdd3f9939aa1b13a622da73f69c9b2ec8845134d902f89024ecfa4"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/borin/attack.webp",
+          "sha256": "565d8dfd2692583c2a49664047f8a8628963923da87e3f7e26c42fc9800f36d8",
+          "sizePx": [
+            388,
+            533
+          ],
+          "anchor": [
+            239.92,
+            526.9
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.6463,
+          "measured": {
+            "scale": 1.6463,
+            "measures": [
+              1.617,
+              1.675
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.675,
+                24
+              ],
+              [
+                1.617,
+                14
+              ],
+              [
+                1.634,
+                5
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54097,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/borin__attack.png",
+            "sha256": "b2e1816cc665cc55290def8562e33f182f0e5ea5fcf5b8de947b0796e86949ee"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/borin/cast.webp",
+          "sha256": "a8426f1f098a170666f2e922aa20fd0ad998841774a8d06f8d4575a336ee7d22",
+          "sizePx": [
+            430,
+            413
+          ],
+          "anchor": [
+            222.09,
+            370.33
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.9707,
+          "measured": {
+            "scale": 1.6363,
+            "measures": [
+              1.585,
+              1.636,
+              1.672
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.585,
+                57
+              ],
+              [
+                1.636,
+                26
+              ],
+              [
+                1.672,
+                25
+              ],
+              [
+                1.841,
+                9
+              ],
+              [
+                1.669,
+                8
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54097,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.2044,
+            "editInliers": 323,
+            "editShift": [
+              -157.1,
+              -163.3
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/borin__cast__fx.png",
+            "sha256": "94876743df71b0740fcf52ecb936d78fa9103afdda92613a30338cb2edb24299"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "corrupted_beast": {
+      "group": "bear",
+      "master": "public/assets/characters/pixel/post-demo/bear/corrupted_beast.png",
+      "worldHeight": 3,
+      "masterSha256": "af77b202e257616bea8c2d3a10c13b3e1c794f36967023400122c61532a14ef8",
+      "masterFigureHeightPx": 330,
+      "storeScale": 1.0,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/corrupted_beast/dash.webp",
+          "sha256": "635b9048be35cb4a3df687e13a72a4451b2c4cb0b63366000236682501f02f40",
+          "sizePx": [
+            617,
+            334
+          ],
+          "anchor": [
+            524.48,
+            326.67
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.6605,
+          "measured": {
+            "scale": 1.6605,
+            "measures": [
+              1.54,
+              1.597,
+              1.724,
+              1.931
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.54,
+                30
+              ],
+              [
+                1.724,
+                22
+              ],
+              [
+                1.931,
+                15
+              ],
+              [
+                1.597,
+                15
+              ],
+              [
+                1.55,
+                9
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54217,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/corrupted_beast__dash.png",
+            "sha256": "1646425b9e50c52e361aaf78a50a977ab55e8582beb8d7aa0ad283687b3c1df5"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/corrupted_beast/attack.webp",
+          "sha256": "67e3f33b0e651d8ca879e164373e1e661ab45381efe97a2a48a81d262cc6668f",
+          "sizePx": [
+            485,
+            300
+          ],
+          "anchor": [
+            102.38,
+            293.74
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.9757,
+          "measured": {
+            "scale": 1.9757,
+            "measures": [
+              1.482,
+              1.95,
+              1.976,
+              2.073,
+              2.161
+            ],
+            "uncertain": true,
+            "siftClusters": [
+              [
+                1.976,
+                17
+              ],
+              [
+                1.95,
+                14
+              ],
+              [
+                1.482,
+                9
+              ],
+              [
+                2.073,
+                8
+              ],
+              [
+                2.161,
+                6
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54217,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/corrupted_beast__attack.png",
+            "sha256": "226a80d3a759d6efecc6dd182a37610997daa747d07d86c84697ba500d2f2d1e"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/corrupted_beast/cast.webp",
+          "sha256": "68455fb297d7ef375b913aa730818c7087e8cadf8c1110642a238aae2cc006c8",
+          "sizePx": [
+            481,
+            555
+          ],
+          "anchor": [
+            151.88,
+            547.15
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.6501,
+          "measured": {
+            "scale": 1.6474,
+            "measures": [
+              1.631,
+              1.632,
+              1.663,
+              1.855
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.631,
+                19
+              ],
+              [
+                1.855,
+                10
+              ],
+              [
+                1.663,
+                7
+              ],
+              [
+                1.632,
+                6
+              ],
+              [
+                1.94,
+                5
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54217,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.0017,
+            "editInliers": 1104,
+            "editShift": [
+              -1.1,
+              -0.8
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/corrupted_beast__cast__fx.png",
+            "sha256": "89e99224d7a90ca10c8b8d10306fd5ad31d3c1cae7fd5dfbb5a727a5f9c7b19e"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "depth_beast": {
+      "group": "bear",
+      "master": "public/assets/characters/pixel/post-demo/bear/depth_beast.png",
+      "worldHeight": 2.7,
+      "masterSha256": "ed4c8deeaa3b1e97684c1bff731db41f2e53559694979aa2607e4bd1305a293b",
+      "masterFigureHeightPx": 362,
+      "storeScale": 1.0,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/depth_beast/dash.webp",
+          "sha256": "d3768b495ba290be010ffe862e7b729d3b72129f407e968d574d53d79aa8a526",
+          "sizePx": [
+            532,
+            342
+          ],
+          "anchor": [
+            426.58,
+            334.71
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.4999,
+          "measured": {
+            "scale": 1.4999,
+            "measures": [
+              1.379,
+              1.5,
+              1.517
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.379,
+                63
+              ],
+              [
+                1.5,
+                31
+              ],
+              [
+                1.517,
+                23
+              ],
+              [
+                1.389,
+                13
+              ],
+              [
+                1.55,
+                12
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.41047,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/depth_beast__dash.png",
+            "sha256": "a6762cc59a6559021cb8c9e5f9923d498b655da45bce4f445021a3fbb9142cac"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/depth_beast/attack.webp",
+          "sha256": "c427e0bfa435bf78384343d19faacd7b93ba3b2b5fc9f251a49b6f0b1a4ecb64",
+          "sizePx": [
+            694,
+            398
+          ],
+          "anchor": [
+            65.09,
+            390.85
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.4392,
+          "measured": {
+            "scale": 1.4392,
+            "measures": [
+              1.306,
+              1.572
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.306,
+                31
+              ],
+              [
+                1.572,
+                19
+              ],
+              [
+                1.305,
+                12
+              ],
+              [
+                1.303,
+                11
+              ],
+              [
+                1.502,
+                8
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.41047,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/depth_beast__attack.png",
+            "sha256": "ddff190d500d91dfff697cca210c74676ae64b140aa584565e5cd0b793cbbb99"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/depth_beast/cast.webp",
+          "sha256": "60fe54bd389cfac0fb70e13271e19e7419659c1bf82c1246eaf65affc6efde34",
+          "sizePx": [
+            595,
+            547
+          ],
+          "anchor": [
+            401.53,
+            499.06
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.6158,
+          "measured": {
+            "scale": 1.4989,
+            "measures": [
+              1.464,
+              1.499,
+              1.629
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.499,
+                87
+              ],
+              [
+                1.464,
+                18
+              ],
+              [
+                1.629,
+                16
+              ],
+              [
+                1.54,
+                12
+              ],
+              [
+                1.654,
+                11
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.41047,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.078,
+            "editInliers": 369,
+            "editShift": [
+              -63.2,
+              -104.4
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/depth_beast__cast__fx.png",
+            "sha256": "2cd56e94db092565e5157a0caeec3844d3bc7975cc83194ae17906b936996102"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "eldwin": {
+      "group": "heroes",
+      "master": "public/assets/characters/pixel/archive/non-demo/eldwin.png",
+      "worldHeight": 2.04,
+      "masterSha256": "b29568751a1a7195ca116054d5b4b77073f9ae6bd7d0ab7f29db535d370cab16",
+      "masterFigureHeightPx": 648,
+      "storeScale": 0.5037,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/eldwin/dash.webp",
+          "sha256": "94884a08fb425491c21eb1f17351ced63f150e7ebfe094d61ec081843205e2cc",
+          "sizePx": [
+            368,
+            300
+          ],
+          "anchor": [
+            198.44,
+            292.94
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 0.987,
+          "measured": {
+            "scale": 0.987,
+            "measures": [
+              0.962,
+              1.013
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                0.962,
+                9
+              ]
+            ],
+            "headTemplate": [
+              0.791,
+              1.013
+            ],
+            "expected": 0.97225,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/eldwin__dash.png",
+            "sha256": "ea8a3f4ad5bceea4ec9591bbd1fd826d81e5215c45b0e518b7ba4c8195744a00"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 3,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/eldwin/attack.webp",
+          "sha256": "0097858225d53eeb7885a80765f7f2ebb30abfa091c64f022c385eb050fd3b16",
+          "sizePx": [
+            433,
+            289
+          ],
+          "anchor": [
+            192.09,
+            281.66
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.0549,
+          "measured": {
+            "scale": 1.1375,
+            "measures": [
+              1.138
+            ],
+            "uncertain": true,
+            "siftClusters": [
+              [
+                0.0,
+                5
+              ],
+              [
+                0.974,
+                5
+              ],
+              [
+                0.043,
+                5
+              ]
+            ],
+            "headTemplate": [
+              0.699,
+              1.138
+            ],
+            "expected": 0.97225,
+            "basis": "measure and reference canvas"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 0.9998,
+            "editInliers": 572,
+            "editShift": [
+              0.5,
+              0.2
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/eldwin__attack__fx.png",
+            "sha256": "575d82f0aaa0ab0cb20ad40abcc02a2f90d5facb53656130acee19d327edd68d"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 691,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/eldwin/cast.webp",
+          "sha256": "64d9e34404a8b82bbb59f108ccbdbad71752ea72db41a3bbfaa9c2397fdf1579",
+          "sizePx": [
+            338,
+            465
+          ],
+          "anchor": [
+            195.76,
+            436.22
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.0669,
+          "measured": {
+            "scale": 1.0663,
+            "measures": [
+              0.95,
+              1.183
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.183,
+                7
+              ],
+              [
+                1.169,
+                5
+              ]
+            ],
+            "headTemplate": [
+              0.754,
+              0.95
+            ],
+            "expected": 0.97225,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.0006,
+            "editInliers": 631,
+            "editShift": [
+              0.0,
+              -0.3
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/eldwin__cast__fx.png",
+            "sha256": "123049012f4e417bfad62fd4513ee95cba6d5f6ae03e27beb3523065a5135b0b"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 187,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "gunnar": {
+      "group": "heroes",
+      "master": "public/assets/characters/pixel/archive/non-demo/gunnar.png",
+      "worldHeight": 2.06,
+      "masterSha256": "4d10124f7292e1245688f7489f178d239b7c66950f423b8587bd406e656a4c87",
+      "masterFigureHeightPx": 645,
+      "storeScale": 0.51101,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/gunnar/dash.webp",
+          "sha256": "5d102f53c759f093587cb1a9e0e246ae81ebe85d739ca440e0db792bcb280ef0",
+          "sizePx": [
+            378,
+            333
+          ],
+          "anchor": [
+            260.05,
+            327.17
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 0.9193,
+          "measured": {
+            "scale": 0.9193,
+            "measures": [
+              0.874,
+              0.964
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                0.964,
+                35
+              ],
+              [
+                0.874,
+                8
+              ],
+              [
+                0.797,
+                5
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 0.97524,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/gunnar__dash.png",
+            "sha256": "1a0f94edbff60157ec337feaf824cd4aa621325989b38b41dd97a72106098085"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/gunnar/attack.webp",
+          "sha256": "4f7b5671653ee5f84cee918bffc025ea46fd1e09a2c59e92efb103ccd68526fe",
+          "sizePx": [
+            431,
+            321
+          ],
+          "anchor": [
+            186.54,
+            314.23
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.0196,
+          "measured": {
+            "scale": 1.0199,
+            "measures": [
+              1.01,
+              1.03
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.01,
+                14
+              ],
+              [
+                1.03,
+                7
+              ],
+              [
+                0.0,
+                5
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 0.97524,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 0.9997,
+            "editInliers": 516,
+            "editShift": [
+              0.6,
+              0.2
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/gunnar__attack__fx.png",
+            "sha256": "31ba3ad84feb09f29428ec1e272f6ce9e9866266c14f19eaac4195dbfc887392"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/gunnar/cast.webp",
+          "sha256": "e4077a0d7c4b2675e52b9558a638bbc3fd97da7be3ced39b69bf7c187b21c2bd",
+          "sizePx": [
+            355,
+            421
+          ],
+          "anchor": [
+            220.85,
+            412.2
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.1399,
+          "measured": {
+            "scale": 1.0484,
+            "measures": [
+              1.015,
+              1.082
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.015,
+                25
+              ],
+              [
+                1.082,
+                18
+              ],
+              [
+                0.948,
+                14
+              ],
+              [
+                1.023,
+                14
+              ],
+              [
+                0.942,
+                13
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 0.97524,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.0873,
+            "editInliers": 274,
+            "editShift": [
+              -41.4,
+              -56.3
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/gunnar__cast__fx.png",
+            "sha256": "adc00426d920cd6842476d751e46a1c89cbf36ea9c59de6e7bc7bad80d036d20"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "lyra": {
+      "group": "heroes",
+      "master": "public/assets/characters/pixel/archive/non-demo/lyra.png",
+      "worldHeight": 2.02,
+      "masterSha256": "bc6ea819babe9160744406afe235614cb737cd32f5b7a6de274b8204bc550bfd",
+      "masterFigureHeightPx": 639,
+      "storeScale": 0.50579,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/lyra/dash.webp",
+          "sha256": "0d92a87448942135cc5868b91596ff45efe4336b096260461dc8f77fe98cbd8b",
+          "sizePx": [
+            397,
+            248
+          ],
+          "anchor": [
+            184.66,
+            240.86
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.1917,
+          "measured": {
+            "scale": 1.1917,
+            "measures": [
+              1.146,
+              1.238
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.146,
+                9
+              ],
+              [
+                0.838,
+                5
+              ]
+            ],
+            "headTemplate": [
+              0.679,
+              1.238
+            ],
+            "expected": 0.98584,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/lyra__dash.png",
+            "sha256": "485c63e76cb5edc8655faffa375601a281cd04ae92aec370ca70d906d367c98d"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/lyra/attack.webp",
+          "sha256": "cd9ee2f41ccbee29517cf9bf4c294e12910a7a0fd505283c61ab92429e3233b6",
+          "sizePx": [
+            441,
+            249
+          ],
+          "anchor": [
+            188.55,
+            241.97
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.1258,
+          "measured": {
+            "scale": 1.1258,
+            "measures": [
+              1.052,
+              1.2
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.052,
+                11
+              ]
+            ],
+            "headTemplate": [
+              0.665,
+              1.2
+            ],
+            "expected": 0.98584,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.0,
+            "editInliers": 511,
+            "editShift": [
+              -0.0,
+              0.4
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/lyra__attack__fx.png",
+            "sha256": "80b167a3d445c3a815596b1542b03383b8c3a5fbfb44f76930acf42fe89c782f"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/lyra/cast.webp",
+          "sha256": "b36eb903bb337c86989b44760d93c87e092dc86d3ba11cc0de9b30a4f4ba0170",
+          "sizePx": [
+            327,
+            372
+          ],
+          "anchor": [
+            180.86,
+            342.89
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.2509,
+          "measured": {
+            "scale": 1.2516,
+            "measures": [
+              1.228,
+              1.275
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.228,
+                6
+              ]
+            ],
+            "headTemplate": [
+              0.665,
+              1.275
+            ],
+            "expected": 0.98584,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 0.9994,
+            "editInliers": 404,
+            "editShift": [
+              0.9,
+              0.7
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/lyra__cast__fx.png",
+            "sha256": "73465da9a03c3b42111b72f9e8201841d4002df67e840cba25c5d1cf030302f5"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "morvan": {
+      "group": "heroes",
+      "master": "public/assets/characters/pixel/archive/non-demo/morvan.png",
+      "worldHeight": 2.12,
+      "masterSha256": "d318169144b2113835597c68e478a3ab9aeb412dba243b03e768ab2839b1a212",
+      "masterFigureHeightPx": 648,
+      "storeScale": 0.52346,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/morvan/dash.webp",
+          "sha256": "fae55e605dd8f18429b465921754e7b5853f8a2d0c7602df910e0f62847f7dae",
+          "sizePx": [
+            381,
+            216
+          ],
+          "anchor": [
+            212.43,
+            209.67
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.15,
+          "measured": {
+            "scale": 1.0,
+            "measures": [],
+            "uncertain": true,
+            "siftClusters": [],
+            "headTemplate": null,
+            "expected": 0.97524,
+            "basis": "override"
+          },
+          "override": 1.15,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/morvan__dash.png",
+            "sha256": "c22f7236761f966cbaf19fe79787dfa1f06fc326bc595ffe1152dad75def258c"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/morvan/attack.webp",
+          "sha256": "037a4cf0a1f31bf3b016c30825c01ddf949013c25f24c9a43cf477878c2865bf",
+          "sizePx": [
+            450,
+            362
+          ],
+          "anchor": [
+            195.97,
+            354.49
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.1701,
+          "measured": {
+            "scale": 1.1468,
+            "measures": [
+              1.147
+            ],
+            "uncertain": true,
+            "siftClusters": [
+              [
+                1.147,
+                9
+              ],
+              [
+                1.026,
+                5
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 0.97524,
+            "basis": "override"
+          },
+          "override": 1.17,
+          "edit": {
+            "editScale": 1.0001,
+            "editInliers": 286,
+            "editShift": [
+              0.2,
+              0.4
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/morvan__attack__fx.png",
+            "sha256": "dc50fd9bd19b6630be71260cadbc13373990411ead79a4d68bfba9188f473208"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/morvan/cast.webp",
+          "sha256": "45d471a65d66f71de6bef9300bc0d04d0997c839040c4069e693f9e14bd3acd0",
+          "sizePx": [
+            310,
+            408
+          ],
+          "anchor": [
+            177.6,
+            390.48
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.1995,
+          "measured": {
+            "scale": 0.9806,
+            "measures": [
+              0.981
+            ],
+            "uncertain": true,
+            "siftClusters": [
+              [
+                0.981,
+                8
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 0.97524,
+            "basis": "override"
+          },
+          "override": 1.2,
+          "edit": {
+            "editScale": 0.9996,
+            "editInliers": 275,
+            "editShift": [
+              0.7,
+              0.6
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/morvan__cast__fx.png",
+            "sha256": "f55c9a7c273884bb0703da75cddc1a0ce173582f363b1bffaa3cb1d545c3a39a"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "raven_foreman": {
+      "group": "bear",
+      "master": "public/assets/characters/pixel/post-demo/bear/raven_foreman.png",
+      "worldHeight": 4,
+      "masterSha256": "428867829103a8ecb408b6d4328dd090abf4d122a29c147ec9ed57045698db5e",
+      "masterFigureHeightPx": 410,
+      "storeScale": 1.0,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/raven_foreman/dash.webp",
+          "sha256": "d1beca568740d8932a4955829f876655156d3148346717918a4ce71767423f53",
+          "sizePx": [
+            419,
+            332
+          ],
+          "anchor": [
+            214.12,
+            325.62
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.7522,
+          "measured": {
+            "scale": 1.7522,
+            "measures": [
+              1.554,
+              1.673,
+              1.832,
+              1.982
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.832,
+                12
+              ],
+              [
+                1.554,
+                8
+              ],
+              [
+                1.673,
+                8
+              ],
+              [
+                1.982,
+                7
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54097,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_foreman__dash.png",
+            "sha256": "e55142c1fa24c2a88d56c3c6f53fbc0711059951fbb6dc846d657534ebd09144"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/raven_foreman/attack.webp",
+          "sha256": "a6caa1b280d1883ef7852dfa2562c56507bea64105ce12604f6331f34f6c187b",
+          "sizePx": [
+            535,
+            419
+          ],
+          "anchor": [
+            265.3,
+            411.35
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.7938,
+          "measured": {
+            "scale": 1.7918,
+            "measures": [
+              1.753,
+              1.792,
+              1.893
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.753,
+                11
+              ],
+              [
+                1.893,
+                8
+              ],
+              [
+                1.792,
+                8
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54097,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.0011,
+            "editInliers": 663,
+            "editShift": [
+              -0.6,
+              -0.3
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_foreman__attack__fx.png",
+            "sha256": "404df56e3e4b41c412aa30e89c3eeb621df51ef02daffc18be551ff287a368f0"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/raven_foreman/cast.webp",
+          "sha256": "2be333b402287a9d87fb03dba3fa1bc031f06c3be7f19727c7e22bab5ae5f1ac",
+          "sizePx": [
+            503,
+            521
+          ],
+          "anchor": [
+            270.94,
+            511.75
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.6074,
+          "measured": {
+            "scale": 1.583,
+            "measures": [
+              1.384,
+              1.545,
+              1.583,
+              1.657,
+              1.745
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.745,
+                16
+              ],
+              [
+                1.384,
+                11
+              ],
+              [
+                1.583,
+                7
+              ],
+              [
+                1.545,
+                7
+              ],
+              [
+                1.657,
+                6
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54097,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.0154,
+            "editInliers": 290,
+            "editShift": [
+              -10.5,
+              -32.7
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_foreman__cast__fx.png",
+            "sha256": "32bdc96551ba1e95b42293c4b30525eb68d8ffccc714b71183a60b31486f70cd"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "raven_master_spy": {
+      "group": "bear",
+      "master": "public/assets/characters/pixel/post-demo/bear/raven_master_spy.png",
+      "worldHeight": 4.1,
+      "masterSha256": "6148c3495a01cb6decb46ffb219269c130db2b43abc8da83eee3506455d1dc07",
+      "masterFigureHeightPx": 410,
+      "storeScale": 1.0,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/raven_master_spy/dash.webp",
+          "sha256": "ec56ded00f635177eba54a39fcde74894c8a50e81a43b5ca46d85f8fd984e9d7",
+          "sizePx": [
+            504,
+            362
+          ],
+          "anchor": [
+            181.6,
+            355.25
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.5828,
+          "measured": {
+            "scale": 1.5828,
+            "measures": [
+              1.388,
+              1.528,
+              1.638,
+              1.643
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.643,
+                13
+              ],
+              [
+                1.528,
+                10
+              ],
+              [
+                1.388,
+                9
+              ],
+              [
+                1.638,
+                8
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54097,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_master_spy__dash.png",
+            "sha256": "01ae0d4d6d7870caf14d488d43b4a6c654c4a221481cb411f9cb14e32ac23782"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/raven_master_spy/attack.webp",
+          "sha256": "b06ac0409542c3a8c8b65c9d292dc9d6e2bd69bea63a150ac8e9faae8d0d53cf",
+          "sizePx": [
+            586,
+            374
+          ],
+          "anchor": [
+            295.92,
+            366.41
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.7049,
+          "measured": {
+            "scale": 1.7031,
+            "measures": [
+              1.623,
+              1.783
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.783,
+                15
+              ],
+              [
+                1.623,
+                10
+              ],
+              [
+                1.499,
+                5
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54097,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.001,
+            "editInliers": 783,
+            "editShift": [
+              -0.4,
+              -0.3
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_master_spy__attack__fx.png",
+            "sha256": "ceff07f0e3a4726b5d207164df1398a31ca5638d8e65510777d3fb899ab889d2"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/raven_master_spy/cast.webp",
+          "sha256": "ff2f7506f15cbb716188d20c71fe6c07cd08c54a923cde11556028dcf5d1cba6",
+          "sizePx": [
+            439,
+            558
+          ],
+          "anchor": [
+            226.62,
+            550.47
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.6027,
+          "measured": {
+            "scale": 1.6,
+            "measures": [
+              1.52,
+              1.595,
+              1.605,
+              1.651
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.595,
+                15
+              ],
+              [
+                1.651,
+                12
+              ],
+              [
+                1.52,
+                9
+              ],
+              [
+                1.605,
+                6
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54097,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.0017,
+            "editInliers": 367,
+            "editShift": [
+              -0.6,
+              -1.6
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_master_spy__cast__fx.png",
+            "sha256": "f12af7c846107806f3cdbda0a27201e24097d19531f55ca4e2e4b31568518bf0"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "raven_miner": {
+      "group": "bear",
+      "master": "public/assets/characters/pixel/post-demo/bear/raven_miner.png",
+      "worldHeight": 2.2,
+      "masterSha256": "787481c1b6e91b499b2aa81539c527173413d07f6e45647edd8aaec349355b6c",
+      "masterFigureHeightPx": 343,
+      "storeScale": 1.0,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/raven_miner/dash.webp",
+          "sha256": "cd8b5fd5cd0797700f74dde54efe1993036f759435c332e3aa5e54c4b3f17862",
+          "sizePx": [
+            363,
+            315
+          ],
+          "anchor": [
+            291.87,
+            307.67
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 2.0496,
+          "measured": {
+            "scale": 2.0496,
+            "measures": [
+              1.879,
+              2.22
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.879,
+                25
+              ],
+              [
+                2.22,
+                15
+              ],
+              [
+                1.895,
+                12
+              ],
+              [
+                1.97,
+                8
+              ],
+              [
+                1.981,
+                9
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.84023,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_miner__dash.png",
+            "sha256": "3c962498b254d6a93c5d2e66a4ea35a954cd751f5984e32b9a260a6f1d2987aa"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/raven_miner/attack.webp",
+          "sha256": "063c1cf51e581d94b86a1763f7f7203524f72e97b15ecb6c42c0964e0f7afb0d",
+          "sizePx": [
+            351,
+            272
+          ],
+          "anchor": [
+            199.49,
+            265.89
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 2.0842,
+          "measured": {
+            "scale": 2.0842,
+            "measures": [
+              1.972,
+              2.196
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                2.196,
+                8
+              ],
+              [
+                1.972,
+                7
+              ],
+              [
+                1.813,
+                5
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.84023,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_miner__attack.png",
+            "sha256": "b7a17445fd81d5d0d5e310cb6914c3d0cc49018f25cb05dbd2e5ec875cf8e5e8"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/raven_miner/cast.webp",
+          "sha256": "c7f7b7ba2cb58e25d40f37ab66c902c65ec9ee29af35a651363915cecde59c39",
+          "sizePx": [
+            419,
+            396
+          ],
+          "anchor": [
+            242.79,
+            352.97
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.9443,
+          "measured": {
+            "scale": 1.884,
+            "measures": [
+              1.835,
+              1.933
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.835,
+                34
+              ],
+              [
+                1.933,
+                20
+              ],
+              [
+                1.813,
+                11
+              ],
+              [
+                1.896,
+                10
+              ],
+              [
+                2.269,
+                8
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.84023,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.032,
+            "editInliers": 551,
+            "editShift": [
+              -13.6,
+              -105.2
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_miner__cast__fx.png",
+            "sha256": "76a3473372b5fc7e17b90b8830b86c3f75e48029e03552bcca49599e783933eb"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "raven_miner_chief": {
+      "group": "bear",
+      "master": "public/assets/characters/pixel/post-demo/bear/raven_miner_chief.png",
+      "worldHeight": 4.2,
+      "masterSha256": "b65aeae1a29c965d13571c1859ef573eada0fe21ab274d822e3bd3e681dacae5",
+      "masterFigureHeightPx": 410,
+      "storeScale": 1.0,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/raven_miner_chief/dash.webp",
+          "sha256": "abbe54d699de784eb3a7eec73819b8dc05406918cdd45b6b450899d788f25c41",
+          "sizePx": [
+            440,
+            379
+          ],
+          "anchor": [
+            118.47,
+            373.13
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.6407,
+          "measured": {
+            "scale": 1.6407,
+            "measures": [
+              1.536,
+              1.641,
+              1.793
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.641,
+                16
+              ],
+              [
+                1.536,
+                9
+              ],
+              [
+                1.793,
+                8
+              ],
+              [
+                2.016,
+                5
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54097,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_miner_chief__dash.png",
+            "sha256": "6bf78447092aafa98d74cfde89ff6890c22068382bd75730338018b39a612989"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/raven_miner_chief/attack.webp",
+          "sha256": "b9312af44641cfff8ab9be289d01813f9fb2f99e4b30a01ee751987974c8f274",
+          "sizePx": [
+            362,
+            499
+          ],
+          "anchor": [
+            184.6,
+            492.27
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.701,
+          "measured": {
+            "scale": 1.701,
+            "measures": [
+              1.449,
+              1.953
+            ],
+            "uncertain": true,
+            "siftClusters": [
+              [
+                1.953,
+                10
+              ],
+              [
+                1.449,
+                8
+              ],
+              [
+                1.899,
+                5
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54097,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_miner_chief__attack.png",
+            "sha256": "74a0e4a6481029c7d850a78262eaeef2f3040f9bc63c2291c6ac39ca539a3f80"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/raven_miner_chief/cast.webp",
+          "sha256": "b8a0397f165437c6f9a2cc114009492bb07b95cc4d3bce40027a0ff2144085f3",
+          "sizePx": [
+            485,
+            462
+          ],
+          "anchor": [
+            271.49,
+            397.02
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.7577,
+          "measured": {
+            "scale": 1.645,
+            "measures": [
+              1.366,
+              1.61,
+              1.68,
+              1.709
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.61,
+                24
+              ],
+              [
+                1.709,
+                13
+              ],
+              [
+                1.68,
+                8
+              ],
+              [
+                1.366,
+                6
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.54097,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.0685,
+            "editInliers": 415,
+            "editShift": [
+              -30.5,
+              -136.7
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_miner_chief__cast__fx.png",
+            "sha256": "9d7902cf6b74ce95bb8d303ef50bb29a38e7b16e82a04eff38deec1d14c5c83d"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "raven_scout": {
+      "group": "bear",
+      "master": "public/assets/characters/pixel/post-demo/bear/raven_scout.png",
+      "worldHeight": 2.1,
+      "masterSha256": "ab34fcc5ce415fb74b29696a4c93e7a3dd9002a3bcc3facdad9c21431f78543e",
+      "masterFigureHeightPx": 343,
+      "storeScale": 0.97959,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/raven_scout/dash.webp",
+          "sha256": "095b3a83d83925ee3bcd97659c7e95b5530c3a8205b2e8b0dd1efc400450a34a",
+          "sizePx": [
+            411,
+            272
+          ],
+          "anchor": [
+            245.85,
+            265.04
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.779,
+          "measured": {
+            "scale": 1.779,
+            "measures": [
+              1.649,
+              1.779,
+              2.087
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.649,
+                12
+              ],
+              [
+                1.779,
+                10
+              ],
+              [
+                2.087,
+                6
+              ],
+              [
+                1.746,
+                5
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.84023,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_scout__dash.png",
+            "sha256": "acc9736be1e81fd5afbcfb79e6e7b5d7856e1c7371328b7c1ba0820a477d68ab"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/raven_scout/attack.webp",
+          "sha256": "22fd5559b00b8326e57f82f87abf02dbbd6264c0825132ad64a003c41abaeebc",
+          "sizePx": [
+            525,
+            347
+          ],
+          "anchor": [
+            253.1,
+            339.9
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.8691,
+          "measured": {
+            "scale": 1.8688,
+            "measures": [
+              1.852,
+              1.886
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.852,
+                11
+              ],
+              [
+                1.886,
+                6
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.84023,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.0001,
+            "editInliers": 712,
+            "editShift": [
+              -0.2,
+              0.3
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_scout__attack__fx.png",
+            "sha256": "c0e585f352db8769d1a27d4438b889248b1475a97a7a336b5f3e8917994b95ad"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/raven_scout/cast.webp",
+          "sha256": "6202d534412b9957c21e864b40658ca528dc2addec19853abe2af59614395d05",
+          "sizePx": [
+            395,
+            435
+          ],
+          "anchor": [
+            204.08,
+            421.24
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.8078,
+          "measured": {
+            "scale": 1.7734,
+            "measures": [
+              1.773
+            ],
+            "uncertain": true,
+            "siftClusters": [
+              [
+                1.773,
+                7
+              ],
+              [
+                1.749,
+                5
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.84023,
+            "basis": "measure and reference canvas"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.0006,
+            "editInliers": 541,
+            "editShift": [
+              -0.8,
+              0.6
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/raven_scout__cast__fx.png",
+            "sha256": "89e7cf423e30f10dca22b0b55cddbbe2152ada4d02a7000ba69dc5619a272ab3"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    },
+    "talon": {
+      "group": "heroes",
+      "master": "public/assets/characters/pixel/archive/non-demo/talon.png",
+      "worldHeight": 2.05,
+      "masterSha256": "e27a6d2daca531c2a112875094bf91cc36cde056fa46d8bb64cfbc739fd0440f",
+      "masterFigureHeightPx": 580,
+      "storeScale": 0.56552,
+      "poses": {
+        "dash": {
+          "src": "tools/pixel-sprites/poses/talon/dash.webp",
+          "sha256": "3b09f877d97e0ae4aad49364ec714fd6c2990606164e06c8879a192b2ec95c1d",
+          "sizePx": [
+            419,
+            317
+          ],
+          "anchor": [
+            105.14,
+            310.05
+          ],
+          "characterBoundFx": false,
+          "scaleVsMaster": 1.0892,
+          "measured": {
+            "scale": 1.0892,
+            "measures": [
+              1.059,
+              1.119
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.059,
+                31
+              ],
+              [
+                1.119,
+                19
+              ],
+              [
+                1.072,
+                12
+              ],
+              [
+                1.205,
+                9
+              ],
+              [
+                1.289,
+                7
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.08712,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": null,
+          "generated": {
+            "file": "tmp/combat-poses/out/talon__dash.png",
+            "sha256": "e5577c6cba26c267bef9c4c0049c9a691a6d63a2340ccfcce16e93be82348be0"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "attack": {
+          "src": "tools/pixel-sprites/poses/talon/attack.webp",
+          "sha256": "67ca681fca04b1376f2795b99093e012db131fbddfd3343fff823d63f92930fb",
+          "sizePx": [
+            487,
+            316
+          ],
+          "anchor": [
+            30.91,
+            308.8
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.0849,
+          "measured": {
+            "scale": 1.0848,
+            "measures": [
+              0.935,
+              1.067,
+              1.085,
+              1.128,
+              1.151
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.151,
+                16
+              ],
+              [
+                1.067,
+                10
+              ],
+              [
+                0.935,
+                8
+              ],
+              [
+                1.085,
+                8
+              ],
+              [
+                1.128,
+                7
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.08712,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.0001,
+            "editInliers": 500,
+            "editShift": [
+              0.1,
+              0.1
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/talon__attack__fx.png",
+            "sha256": "a0a3a9b7b79e223e8988163326a761f3ea87f24bff6664feb70d6f7beacab4d9"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        },
+        "cast": {
+          "src": "tools/pixel-sprites/poses/talon/cast.webp",
+          "sha256": "6187dc432ddd353b99bd1c81d2a57b1c21aa1ba782f40ecc77780b58d709d89d",
+          "sizePx": [
+            376,
+            327
+          ],
+          "anchor": [
+            54.04,
+            320.19
+          ],
+          "characterBoundFx": true,
+          "scaleVsMaster": 1.1569,
+          "measured": {
+            "scale": 1.1559,
+            "measures": [
+              1.1,
+              1.105,
+              1.156,
+              1.223,
+              1.268
+            ],
+            "uncertain": false,
+            "siftClusters": [
+              [
+                1.268,
+                26
+              ],
+              [
+                1.223,
+                14
+              ],
+              [
+                1.1,
+                12
+              ],
+              [
+                1.156,
+                9
+              ],
+              [
+                1.105,
+                9
+              ]
+            ],
+            "headTemplate": null,
+            "expected": 1.08712,
+            "basis": "measured"
+          },
+          "override": null,
+          "edit": {
+            "editScale": 1.0009,
+            "editInliers": 509,
+            "editShift": [
+              0.1,
+              -0.5
+            ]
+          },
+          "generated": {
+            "file": "tmp/combat-poses/out/talon__cast__fx.png",
+            "sha256": "8efc6f69107107b18d3b88df004ac3a858cdf6eb8989a7ef80735ab194c521a3"
+          },
+          "qc": {
+            "cornersTransparent": true,
+            "magentaPx": 0,
+            "solidPxOnEdges": 0
+          }
+        }
+      }
+    }
+  }
+}

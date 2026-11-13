@@ -13,6 +13,10 @@
  *     project's Git-ignored .env.local (only the OPENAI_ variables are loaded). The tool never prints or stores it. It writes tmp/final-images/out/<id>.png, log.json and review.html (current stand-in
  *     beside the generated image). Nothing is integrated: only images the operator accepts are integrated afterwards.
  *
+ *   npx vite-node tools/art/finalImages.ts -- poses --group heroes --step pose|fx   (combat poses, OD-2026-11-13-A)
+ *     Draws the three combat poses of the units of tools/art/combatPosesTable.ts (--group or --units id1,id2), then adds
+ *     their baked effects (--step fx), into tmp/combat-poses/out/. --poses dash,attack limits the poses, --force redoes them.
+ *
  * Options for run: --model <name> (default: the project's earlier approved image model), --quality <low|medium|high> (default high), --force (redo
  * images already generated), --concurrency <1-6> (requests at once, default 1). tmp/ is ignored by Git.
  */
@@ -25,6 +29,7 @@ import * as finale from '../../src/campaign/plateaux/finale/finalePresentation';
 import { loadEnv } from 'vite';
 import { demoEnvironmentPlateForContext } from '../../src/render/demoEnvironmentPack';
 import { ATLAS_LAYOUTS, BREACH_CREATURE_IDS, CIVILIAN_IDS, CIVILIAN_REFS, CREATURE_IDS, CREATURE_REFS, IDENTITY, LIGHT_REFS, STAGED_LOOKS, STAGING } from './finalImagesStaging';
+import { effectColours, hasFx, POSE_UNITS, POSES, poseReference, poseSize, unitsOf, type PoseGroup, type PoseName } from './combatPosesTable';
 
 type Chapter = 'bear' | 'dragon' | 'scorpion' | 'finale';
 type Kind = 'backdrop' | 'atlas' | 'character';
@@ -399,14 +404,19 @@ function referencesOf(item: FinalImageBrief): string[] {
 }
 
 async function generate(item: FinalImageBrief, key: string, model: string, quality: string): Promise<Buffer> {
+  return requestImage(item.notes ? `${item.prompt} ${item.notes}` : item.prompt, item.size, item.transparent, referencesOf(item), key, model, quality);
+}
+
+/** One call to the OpenAI image edit endpoint; references are repository paths. */
+async function requestImage(prompt: string, size: string, transparent: boolean, references: readonly string[], key: string, model: string, quality: string): Promise<Buffer> {
   const form = new FormData();
   form.append('model', model);
-  form.append('prompt', item.notes ? `${item.prompt} ${item.notes}` : item.prompt);
-  form.append('size', item.size);
+  form.append('prompt', prompt);
+  form.append('size', size);
   form.append('quality', quality);
   form.append('n', '1');
-  if (item.transparent) form.append('background', 'transparent');
-  for (const reference of referencesOf(item)) {
+  if (transparent) form.append('background', 'transparent');
+  for (const reference of references) {
     const bytes = readFileSync(join(ROOT, reference));
     form.append('image[]', new Blob([bytes], { type: 'image/png' }), reference.split('/').pop());
   }
@@ -416,6 +426,126 @@ async function generate(item: FinalImageBrief, key: string, model: string, quali
   const body = await response.json() as { data?: { b64_json?: string }[]; error?: { message?: string } };
   if (!response.ok || !body.data?.[0]?.b64_json) throw new Error(`OpenAI ${response.status}: ${body.error?.message ?? 'no image returned'}`);
   return Buffer.from(body.data[0].b64_json, 'base64');
+}
+
+/**
+ * Combat poses (OD-2026-11-13-A, tools/art/combatPosesTable.ts). Two steps per unit: `pose` draws dash, then attack and
+ * cast with the accepted dash as a second reference, all without effects so that their scale can be measured on the
+ * master; `fx` adds the baked effect of attack and cast by editing those poses, which leaves the drawing in place.
+ * Outputs go to tmp/combat-poses/out/ (ignored by Git); tools/pixel-sprites/normalize_combat_poses.py takes them from there.
+ */
+export const POSE_DIR = join(ROOT, 'tmp', 'combat-poses');
+export const poseOut = (unitId: string, pose: PoseName, fx = false) => ['tmp', 'combat-poses', 'out', `${unitId}__${pose}${fx ? '__fx' : ''}.png`].join('/');
+
+export interface PoseBrief {
+  unitId: string;
+  pose: PoseName;
+  step: 'pose' | 'fx';
+  size: '1024x1024' | '1536x1024';
+  prompt: string;
+  references: string[];
+  out: string;
+}
+
+const NO_EFFECTS = 'Absolutely no visual effects: no glow, no aura, no light rays, no sparks, no particles, no motion trails, no speed lines, no magic circle, no shadow on the ground. Effects are added later.';
+const NO_OTHER_EFFECTS = 'No other visual effect: no glow, no aura, no light rays, no sparks, no particles, no motion trails, no speed lines, no magic circle, no shadow on the ground. Effects are added later.';
+
+export function posePrompt(unitId: string, pose: PoseName, withDash: boolean): string {
+  const unit = POSE_UNITS[unitId]!;
+  return sentences(STYLE,
+    `The first attached image is our own game character: ${unit.look}`,
+    withDash && 'The second attached image shows the same character in its dash pose, already accepted: keep exactly the same look.',
+    'Draw this exact same character again in a new combat pose. Keep everything identical to the reference: the same body, armour and clothes, the same colours, the same proportions and the same weapon, held the same way.',
+    unit.weapon, unit.intrinsic,
+    'Keep the character at exactly the size it has in the first image, with its feet on the same ground line near the bottom of the canvas. One single full-body sprite, never cropped, with empty space all around it, on a fully transparent background.',
+    unit.body !== 'quadruped' && COVERED_FACE_RULE,
+    unit.body === 'person' && 'The helmet, mask or hood stays in place in this pose, even when the head turns or bends.',
+    unit.colour === 'ink' && SHADOWS_COLOUR_RULE,
+    `Pose: ${unit.actions[pose]}. The character faces and moves to the RIGHT.`,
+    unit.intrinsic ? NO_OTHER_EFFECTS : NO_EFFECTS);
+}
+
+export function poseFxPrompt(unitId: string, pose: PoseName): string {
+  const unit = POSE_UNITS[unitId]!;
+  return sentences(STYLE,
+    'The first attached image is our own combat pose of this character; the second is its master illustration.',
+    'Keep the character exactly as in the first image: the same pose, the same size, the same position on the canvas, the same look and the same weapon. Do not redraw or move it.',
+    `Add only one effect attached to the action, drawn in the same pixel-art technique as the character, as on the other combat poses of our game: ${unit.fx[pose as 'attack' | 'cast']}.`,
+    effectColours(pose === 'cast' && unit.castColour ? unit.castColour : unit.colour),
+    unit.body !== 'quadruped' && COVERED_FACE_RULE,
+    'The effect stays close to the character, light and thin, and never hides the character; it stays fully inside the canvas, never cropped. Fully transparent background around the character and the effect; no shadow on the ground, no text.');
+}
+
+/** The briefs of one step for some units; `exists` tells which outputs are already there (the dash reference, the poses to edit). */
+export function buildPoseBriefs(unitIds: readonly string[], step: 'pose' | 'fx', exists: (path: string) => boolean = (path) => existsSync(join(ROOT, path))): PoseBrief[] {
+  return unitIds.flatMap((unitId) => {
+    const unit = POSE_UNITS[unitId];
+    if (!unit) throw new Error(`Not a pose unit: ${unitId}`);
+    return POSES.filter((pose) => step === 'pose' || hasFx(unit, pose)).map((pose): PoseBrief => {
+      if (step === 'fx') return { unitId, pose, step, size: poseSize(unit, pose), prompt: poseFxPrompt(unitId, pose), references: [poseOut(unitId, pose), unit.master], out: poseOut(unitId, pose, true) };
+      const withDash = pose !== 'dash' && exists(poseOut(unitId, 'dash'));
+      const reference = poseReference(unitId, pose);
+      return { unitId, pose, step, size: poseSize(unit, pose), prompt: posePrompt(unitId, pose, withDash),
+        references: withDash ? [reference, poseOut(unitId, 'dash')] : [reference], out: poseOut(unitId, pose) };
+    });
+  });
+}
+
+/** The table as the normalizer reads it (tmp/combat-poses/units.json): master, height, group and the poses with an effect. */
+export function writePoseTable(): void {
+  mkdirSync(POSE_DIR, { recursive: true });
+  const table = Object.fromEntries(Object.entries(POSE_UNITS).map(([id, unit]) => [id, {
+    group: unit.group, master: unit.master, worldHeight: unit.worldHeight, body: unit.body,
+    fxPoses: POSES.filter((pose) => hasFx(unit, pose)),
+  }]));
+  writeFileSync(join(POSE_DIR, 'units.json'), `${JSON.stringify(table, null, 2)}\n`);
+}
+
+async function runPoses(args: string[], option: (name: string) => string | undefined): Promise<void> {
+  writePoseTable();
+  const found = openAiKey();
+  if (!found) throw new Error('No OPENAI_API_KEY in this terminal or in .env.local; the tool never prints or stores it.');
+  console.log(`OpenAI access: ${found.source} (value never shown).`);
+  const group = option('--group') as PoseGroup | undefined;
+  const units = group ? unitsOf(group) : (option('--units') ?? '').split(',').map((id) => id.trim()).filter(Boolean);
+  if (!units.length) throw new Error('Choose units with --group heroes|bear|dragon|scorpion|finale or --units id1,id2.');
+  const step = (option('--step') ?? 'pose') as 'pose' | 'fx';
+  const only = option('--poses')?.split(',') as PoseName[] | undefined;
+  const model = option('--model') ?? 'gpt-image-2.5-sunburst-2026-09-08';
+  const quality = option('--quality') ?? 'high';
+  const concurrency = Math.max(1, Math.min(6, Number(option('--concurrency') ?? 4) || 4));
+  mkdirSync(join(POSE_DIR, 'out'), { recursive: true });
+  const logPath = join(POSE_DIR, 'log.json');
+  const pending = (briefs: PoseBrief[]) => briefs.filter((brief) => (!only || only.includes(brief.pose))
+    && (args.includes('--force') || !existsSync(join(ROOT, brief.out))));
+  let failed = 0;
+  const runAll = async (briefs: PoseBrief[]) => {
+    let next = 0;
+    const worker = async () => {
+      while (next < briefs.length) {
+        const brief = briefs[next++]!;
+        try {
+          writeFileSync(join(ROOT, brief.out), await requestImage(brief.prompt, brief.size, true, brief.references, found.key, model, quality));
+          appendToLog(logPath, [{ ...brief, model, quality, at: new Date().toISOString() }]);
+          console.log(`done: ${brief.out}`);
+        } catch (error) {
+          failed += 1;
+          console.log(`failed: ${brief.out}: ${error instanceof Error ? error.message : String(error)}`);
+        }
+      }
+    };
+    await Promise.all(Array.from({ length: Math.min(concurrency, briefs.length) }, worker));
+  };
+  if (step === 'pose') {
+    const missing = units.filter((id) => POSES.some((pose) => !existsSync(join(ROOT, poseReference(id, pose)))));
+    if (missing.length) throw new Error(`No reference canvas for ${missing.join(', ')}: run py -3 tools/pixel-sprites/normalize_combat_poses.py --prepare-refs --units ${missing.join(',')}`);
+    // Dash first: attack and cast take the accepted dash as their second reference.
+    await runAll(pending(buildPoseBriefs(units, 'pose')).filter((brief) => brief.pose === 'dash'));
+    await runAll(pending(buildPoseBriefs(units, 'pose')).filter((brief) => brief.pose !== 'dash'));
+  } else {
+    await runAll(pending(buildPoseBriefs(units, 'fx')).filter((brief) => existsSync(join(ROOT, brief.references[0]!))));
+  }
+  console.log(`Finished${failed ? ` with ${failed} failed` : ''}. Outputs in tmp/combat-poses/out/.`);
 }
 
 function reviewPage(items: FinalImageBrief[]): string {
@@ -441,7 +571,9 @@ async function main(): Promise<void> {
     console.log(`Pilot: ${PILOT_IDS.join(', ')}`);
     return;
   }
-  if (command !== 'run') throw new Error(`Unknown command "${command}": use plan or run.`);
+  if (command === 'poses') return runPoses(args, option);
+  if (command === 'poses-table') { writePoseTable(); console.log('Pose table written: tmp/combat-poses/units.json'); return; }
+  if (command !== 'run') throw new Error(`Unknown command "${command}": use plan, run or poses.`);
   const found = openAiKey();
   if (!found) throw new Error('No OPENAI_API_KEY in this terminal or in .env.local; the tool never prints or stores it.');
   const key = found.key;

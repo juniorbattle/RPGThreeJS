@@ -5,33 +5,40 @@
     "aldric": {
       "file": "/assets/characters/pixel/combat-sprites/aldric.png",
       "cell": [
-        74,
-        90
+        130,
+        118
       ],
       "anchor": [
-        37,
-        87
+        69,
+        110
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -40,28 +47,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -87,19 +98,26 @@
       "aliases": [
         "/assets/characters/pixel/archive/non-demo/aldric.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "f7f6613eb5df339831a55331c5c2a6f1512b5a794b9452776498d96bd554bb12"
+        "master": "f7f6613eb5df339831a55331c5c2a6f1512b5a794b9452776498d96bd554bb12",
+        "dash": "1f53518b627cdb1f9bc921540586b5bc15f5e9636572a9394ca929eee8ceb4e6",
+        "attack": "5ce6849a589c22928c082eee95fe206ab94deeae87cf7479f7db695c31a3f413",
+        "cast": "8c85e1ae3ac8af24b713354f55eb16d97c3c46106e27d798397eec2558aa9468"
       },
-      "figureHeightPx": 85,
+      "figureHeightPx": 84,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 72,
-        "bottom": 88
+        "left": 13,
+        "top": 26,
+        "right": 83,
+        "bottom": 112
       },
       "colors": 41,
-      "sha256": "21e29bdeb89c8ac5c94f1f699d305176bb82587ac9d9535c1bd1a84a45d3d7fa"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": true,
+        "cast": true
+      },
+      "sha256": "e0bdc07eb96c7fb289c25ceb24afc9a530b4393cf1d0145ae182692fd8f0863c"
     },
     "alistair": {
       "file": "/assets/characters/pixel/combat-sprites/alistair.png",
@@ -421,33 +439,40 @@
     "bear_warrior": {
       "file": "/assets/characters/pixel/combat-sprites/bear_warrior.png",
       "cell": [
-        59,
-        93
+        154,
+        129
       ],
       "anchor": [
-        29,
-        90
+        49,
+        122
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -456,28 +481,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -503,50 +532,64 @@
       "aliases": [
         "/assets/characters/pixel/post-demo/bear/bear_warrior.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "d72beb84a7f246323c6db7738f4cf53344164b155342fcb30d4dbe6be0a31804"
+        "master": "d72beb84a7f246323c6db7738f4cf53344164b155342fcb30d4dbe6be0a31804",
+        "dash": "21f87ba701d74986c46a3dc1cea81c0e287687f9dbccc6d6703008c2a540b228",
+        "attack": "da4c7940bb55ba4647d73c826d5f1ca0e278f8caf3fe5026ec7de05bf2329d3f",
+        "cast": "d01e1c2327e6d24838253c6f8c9b3b156e13ee5e9dc7e0c9c19d7b825b2ebdfd"
       },
       "figureHeightPx": 88,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 57,
-        "bottom": 91
+        "left": 19,
+        "top": 34,
+        "right": 74,
+        "bottom": 123
       },
       "colors": 41,
-      "sha256": "24452b9c0b8e640f6e6a552bce853bfcf4b5a319be8991d1e632b2a6f21035ae"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": false,
+        "cast": true
+      },
+      "sha256": "33b84fda202a9ba4b51447023f9575f42faa69a9475734e977b6a5a65c925ff8"
     },
     "borin": {
       "file": "/assets/characters/pixel/combat-sprites/borin.png",
       "cell": [
-        117,
-        178
+        192,
+        238
       ],
       "anchor": [
-        58,
-        175
+        101,
+        222
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -555,28 +598,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -602,19 +649,26 @@
       "aliases": [
         "/assets/characters/pixel/post-demo/bear/borin.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "df0c311a680fe422d59f2a72a358f5628b24b5a00d8297e0a4cbbc981f578290"
+        "master": "df0c311a680fe422d59f2a72a358f5628b24b5a00d8297e0a4cbbc981f578290",
+        "dash": "daabf7f228d58a645d1cc55b7c397a7719e0ee82143d967d8a6808c669434cc8",
+        "attack": "565d8dfd2692583c2a49664047f8a8628963923da87e3f7e26c42fc9800f36d8",
+        "cast": "a8426f1f098a170666f2e922aa20fd0ad998841774a8d06f8d4575a336ee7d22"
       },
       "figureHeightPx": 173,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 115,
-        "bottom": 176
+        "left": 30,
+        "top": 49,
+        "right": 143,
+        "bottom": 223
       },
       "colors": 41,
-      "sha256": "03197c2aa8cdcb80ccf7a3ec290c1d88a796265236b2fe00fe1a9e30d34d86d4"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": false,
+        "cast": true
+      },
+      "sha256": "c9ebac9c52e738fafae592c9b72490b03fca055feaf75af4ed1658921c792807"
     },
     "breach_demon": {
       "file": "/assets/characters/pixel/combat-sprites/breach_demon.png",
@@ -1035,33 +1089,40 @@
     "corrupted_beast": {
       "file": "/assets/characters/pixel/combat-sprites/corrupted_beast.png",
       "cell": [
-        161,
-        126
+        332,
+        201
       ],
       "anchor": [
-        80,
-        123
+        192,
+        197
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -1070,28 +1131,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -1117,19 +1182,26 @@
       "aliases": [
         "/assets/characters/pixel/post-demo/bear/corrupted_beast.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "af77b202e257616bea8c2d3a10c13b3e1c794f36967023400122c61532a14ef8"
+        "master": "af77b202e257616bea8c2d3a10c13b3e1c794f36967023400122c61532a14ef8",
+        "dash": "635b9048be35cb4a3df687e13a72a4451b2c4cb0b63366000236682501f02f40",
+        "attack": "67e3f33b0e651d8ca879e164373e1e661ab45381efe97a2a48a81d262cc6668f",
+        "cast": "68455fb297d7ef375b913aa730818c7087e8cadf8c1110642a238aae2cc006c8"
       },
       "figureHeightPx": 121,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 159,
-        "bottom": 124
+        "left": 111,
+        "top": 76,
+        "right": 268,
+        "bottom": 198
       },
       "colors": 41,
-      "sha256": "38bc6bcfa9170c5e1dd370a0adef54bc3ebd8d40e63b8bbf8a14df8b97c0fd1e"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": false,
+        "cast": true
+      },
+      "sha256": "eb137aa2517dd04e7a95a05cc4afdcd9ecb2a594add67627b9930dd5ef0e0c4e"
     },
     "dark_mage": {
       "file": "/assets/characters/pixel/combat-sprites/dark_mage.png",
@@ -1441,33 +1513,40 @@
     "depth_beast": {
       "file": "/assets/characters/pixel/combat-sprites/depth_beast.png",
       "cell": [
-        134,
-        114
+        317,
+        163
       ],
       "anchor": [
-        67,
-        111
+        129,
+        150
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -1476,28 +1555,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -1523,19 +1606,26 @@
       "aliases": [
         "/assets/characters/pixel/post-demo/bear/depth_beast.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "ed4c8deeaa3b1e97684c1bff731db41f2e53559694979aa2607e4bd1305a293b"
+        "master": "ed4c8deeaa3b1e97684c1bff731db41f2e53559694979aa2607e4bd1305a293b",
+        "dash": "d3768b495ba290be010ffe862e7b729d3b72129f407e968d574d53d79aa8a526",
+        "attack": "c427e0bfa435bf78384343d19faacd7b93ba3b2b5fc9f251a49b6f0b1a4ecb64",
+        "cast": "60fe54bd389cfac0fb70e13271e19e7419659c1bf82c1246eaf65affc6efde34"
       },
       "figureHeightPx": 109,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 132,
-        "bottom": 112
+        "left": 34,
+        "top": 41,
+        "right": 164,
+        "bottom": 151
       },
       "colors": 41,
-      "sha256": "b2cb9d2c915715b62ef6e7e263206fcf56ce43db5296b72302e727baa2376afd"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": false,
+        "cast": true
+      },
+      "sha256": "bcc84c15eb31ff3cad4ada4b07e673f784571a82d7f345f807f0008a23bfef73"
     },
     "dragon_guardian": {
       "file": "/assets/characters/pixel/combat-sprites/dragon_guardian.png",
@@ -1837,33 +1927,40 @@
     "eldwin": {
       "file": "/assets/characters/pixel/combat-sprites/eldwin.png",
       "cell": [
-        67,
-        82
+        112,
+        117
       ],
       "anchor": [
-        33,
-        79
+        51,
+        111
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -1872,28 +1969,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -1919,19 +2020,26 @@
       "aliases": [
         "/assets/characters/pixel/archive/non-demo/eldwin.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "b29568751a1a7195ca116054d5b4b77073f9ae6bd7d0ab7f29db535d370cab16"
+        "master": "b29568751a1a7195ca116054d5b4b77073f9ae6bd7d0ab7f29db535d370cab16",
+        "dash": "94884a08fb425491c21eb1f17351ced63f150e7ebfe094d61ec081843205e2cc",
+        "attack": "0097858225d53eeb7885a80765f7f2ebb30abfa091c64f022c385eb050fd3b16",
+        "cast": "64d9e34404a8b82bbb59f108ccbdbad71752ea72db41a3bbfaa9c2397fdf1579"
       },
-      "figureHeightPx": 77,
+      "figureHeightPx": 76,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 65,
-        "bottom": 80
+        "left": 8,
+        "top": 35,
+        "right": 71,
+        "bottom": 113
       },
       "colors": 41,
-      "sha256": "e4784e1b8da79c38cb8e6e00e16b4ba8c61e8a8e4735de2510423d1f805550ae"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": true,
+        "cast": true
+      },
+      "sha256": "faed5f8be91924dcee941041ed78ea13019e0bc1c16e4f74d8fed84e737ac543"
     },
     "finale_citizen": {
       "file": "/assets/characters/pixel/combat-sprites/finale_citizen.png",
@@ -2669,33 +2777,40 @@
     "gunnar": {
       "file": "/assets/characters/pixel/combat-sprites/gunnar.png",
       "cell": [
-        74,
-        89
+        129,
+        106
       ],
       "anchor": [
-        37,
-        86
+        67,
+        103
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -2704,28 +2819,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -2751,19 +2870,26 @@
       "aliases": [
         "/assets/characters/pixel/archive/non-demo/gunnar.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "4d10124f7292e1245688f7489f178d239b7c66950f423b8587bd406e656a4c87"
+        "master": "4d10124f7292e1245688f7489f178d239b7c66950f423b8587bd406e656a4c87",
+        "dash": "5d102f53c759f093587cb1a9e0e246ae81ebe85d739ca440e0db792bcb280ef0",
+        "attack": "4f7b5671653ee5f84cee918bffc025ea46fd1e09a2c59e92efb103ccd68526fe",
+        "cast": "e4077a0d7c4b2675e52b9558a638bbc3fd97da7be3ced39b69bf7c187b21c2bd"
       },
       "figureHeightPx": 84,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 72,
-        "bottom": 87
+        "left": 17,
+        "top": 19,
+        "right": 87,
+        "bottom": 104
       },
       "colors": 41,
-      "sha256": "88b453e9fa11c42e03b321616d7d3a9a798a327a78875acca0aa210eb06c5dac"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": true,
+        "cast": true
+      },
+      "sha256": "44b2f397dd63009ba900ab5846830fd3c24f3072f4526eda0197993ffac03f7f"
     },
     "kaelen": {
       "file": "/assets/characters/pixel/combat-sprites/kaelen.png",
@@ -3085,33 +3211,40 @@
     "lyra": {
       "file": "/assets/characters/pixel/combat-sprites/lyra.png",
       "cell": [
-        70,
-        84
+        115,
+        92
       ],
       "anchor": [
-        35,
-        81
+        52,
+        85
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -3120,28 +3253,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -3167,19 +3304,26 @@
       "aliases": [
         "/assets/characters/pixel/archive/non-demo/lyra.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "bc6ea819babe9160744406afe235614cb737cd32f5b7a6de274b8204bc550bfd"
+        "master": "bc6ea819babe9160744406afe235614cb737cd32f5b7a6de274b8204bc550bfd",
+        "dash": "0d92a87448942135cc5868b91596ff45efe4336b096260461dc8f77fe98cbd8b",
+        "attack": "cd9ee2f41ccbee29517cf9bf4c294e12910a7a0fd505283c61ab92429e3233b6",
+        "cast": "b36eb903bb337c86989b44760d93c87e092dc86d3ba11cc0de9b30a4f4ba0170"
       },
       "figureHeightPx": 79,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 68,
-        "bottom": 82
+        "left": 3,
+        "top": 6,
+        "right": 69,
+        "bottom": 86
       },
       "colors": 41,
-      "sha256": "b0a842f93e3447bce1777917b5b6512e1676db75854b8fb759a14a6fd6cfe666"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": true,
+        "cast": true
+      },
+      "sha256": "3ac98b4c1e3820a5db2d3687aaee2f5137b112a6143c9cfac093a4c11df09391"
     },
     "marsh_toad": {
       "file": "/assets/characters/pixel/combat-sprites/marsh_toad.png",
@@ -3293,33 +3437,40 @@
     "morvan": {
       "file": "/assets/characters/pixel/combat-sprites/morvan.png",
       "cell": [
-        72,
-        90
+        121,
+        102
       ],
       "anchor": [
-        36,
-        87
+        56,
+        97
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -3328,28 +3479,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -3375,19 +3530,26 @@
       "aliases": [
         "/assets/characters/pixel/archive/non-demo/morvan.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "d318169144b2113835597c68e478a3ab9aeb412dba243b03e768ab2839b1a212"
+        "master": "d318169144b2113835597c68e478a3ab9aeb412dba243b03e768ab2839b1a212",
+        "dash": "fae55e605dd8f18429b465921754e7b5853f8a2d0c7602df910e0f62847f7dae",
+        "attack": "037a4cf0a1f31bf3b016c30825c01ddf949013c25f24c9a43cf477878c2865bf",
+        "cast": "45d471a65d66f71de6bef9300bc0d04d0997c839040c4069e693f9e14bd3acd0"
       },
       "figureHeightPx": 85,
       "idleBoundsPx": {
         "left": 2,
-        "top": 2,
+        "top": 12,
         "right": 70,
-        "bottom": 88
+        "bottom": 98
       },
       "colors": 41,
-      "sha256": "b4ddfa3f623f447677cc28feb489cdf580487954a3c63543bd90a8a90c455805"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": true,
+        "cast": true
+      },
+      "sha256": "0456af18c042d6c6f653bdf3bac6cb043d8a8ce7648ce26c2e335e996ee550c1"
     },
     "phoenix_captive": {
       "file": "/assets/characters/pixel/combat-sprites/phoenix_captive.png",
@@ -4085,33 +4247,40 @@
     "raven_foreman": {
       "file": "/assets/characters/pixel/combat-sprites/raven_foreman.png",
       "cell": [
-        104,
-        166
+        213,
+        204
       ],
       "anchor": [
-        52,
-        163
+        106,
+        200
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -4120,28 +4289,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -4167,50 +4340,64 @@
       "aliases": [
         "/assets/characters/pixel/post-demo/bear/raven_foreman.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "428867829103a8ecb408b6d4328dd090abf4d122a29c147ec9ed57045698db5e"
+        "master": "428867829103a8ecb408b6d4328dd090abf4d122a29c147ec9ed57045698db5e",
+        "dash": "d1beca568740d8932a4955829f876655156d3148346717918a4ce71767423f53",
+        "attack": "a6caa1b280d1883ef7852dfa2562c56507bea64105ce12604f6331f34f6c187b",
+        "cast": "2be333b402287a9d87fb03dba3fa1bc031f06c3be7f19727c7e22bab5ae5f1ac"
       },
-      "figureHeightPx": 161,
+      "figureHeightPx": 162,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 102,
-        "bottom": 164
+        "left": 44,
+        "top": 38,
+        "right": 144,
+        "bottom": 200
       },
       "colors": 41,
-      "sha256": "06e5da87db2636606a730fc03d6505050380806e5218256c60afab4c548017e7"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": true,
+        "cast": true
+      },
+      "sha256": "f8b2f289cef618136b121d3cf603fdfa8cf4187f3bfd125a7259dd962c1238a9"
     },
     "raven_master_spy": {
       "file": "/assets/characters/pixel/combat-sprites/raven_master_spy.png",
       "cell": [
-        119,
-        170
+        248,
+        224
       ],
       "anchor": [
-        59,
-        167
+        119,
+        221
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -4219,28 +4406,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -4266,19 +4457,26 @@
       "aliases": [
         "/assets/characters/pixel/post-demo/bear/raven_master_spy.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "6148c3495a01cb6decb46ffb219269c130db2b43abc8da83eee3506455d1dc07"
+        "master": "6148c3495a01cb6decb46ffb219269c130db2b43abc8da83eee3506455d1dc07",
+        "dash": "ec56ded00f635177eba54a39fcde74894c8a50e81a43b5ca46d85f8fd984e9d7",
+        "attack": "b06ac0409542c3a8c8b65c9d292dc9d6e2bd69bea63a150ac8e9faae8d0d53cf",
+        "cast": "ff2f7506f15cbb716188d20c71fe6c07cd08c54a923cde11556028dcf5d1cba6"
       },
       "figureHeightPx": 165,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 117,
-        "bottom": 168
+        "left": 50,
+        "top": 56,
+        "right": 165,
+        "bottom": 222
       },
       "colors": 41,
-      "sha256": "7287afd11b40f8ebb3069545f86e8c623b8cc2ea1f28470ae02249994198667c"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": true,
+        "cast": true
+      },
+      "sha256": "22af04312a103863213268d48bcc57d4a024305690be88968b9662e841134141"
     },
     "raven_messenger": {
       "file": "/assets/characters/pixel/combat-sprites/raven_messenger.png",
@@ -4382,33 +4580,40 @@
     "raven_miner": {
       "file": "/assets/characters/pixel/combat-sprites/raven_miner.png",
       "cell": [
-        62,
-        94
+        120,
+        104
       ],
       "anchor": [
-        31,
-        91
+        76,
+        92
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -4417,28 +4622,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -4464,50 +4673,64 @@
       "aliases": [
         "/assets/characters/pixel/post-demo/bear/raven_miner.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "787481c1b6e91b499b2aa81539c527173413d07f6e45647edd8aaec349355b6c"
+        "master": "787481c1b6e91b499b2aa81539c527173413d07f6e45647edd8aaec349355b6c",
+        "dash": "cd8b5fd5cd0797700f74dde54efe1993036f759435c332e3aa5e54c4b3f17862",
+        "attack": "063c1cf51e581d94b86a1763f7f7203524f72e97b15ecb6c42c0964e0f7afb0d",
+        "cast": "c7f7b7ba2cb58e25d40f37ab66c902c65ec9ee29af35a651363915cecde59c39"
       },
       "figureHeightPx": 89,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 60,
-        "bottom": 92
+        "left": 42,
+        "top": 3,
+        "right": 100,
+        "bottom": 93
       },
       "colors": 41,
-      "sha256": "a253be4a1a878291096fe767e770f0dca0a5112e9b5cc967b44446b6244f5401"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": false,
+        "cast": true
+      },
+      "sha256": "e6d6b292c6bd22417b811e465f30c7e9ab98ba2489572e7a6c5bf53f92d591ed"
     },
     "raven_miner_chief": {
       "file": "/assets/characters/pixel/combat-sprites/raven_miner_chief.png",
       "cell": [
-        113,
-        175
+        243,
+        229
       ],
       "anchor": [
-        56,
-        172
+        112,
+        202
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -4516,28 +4739,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -4563,50 +4790,64 @@
       "aliases": [
         "/assets/characters/pixel/post-demo/bear/raven_miner_chief.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "b65aeae1a29c965d13571c1859ef573eada0fe21ab274d822e3bd3e681dacae5"
+        "master": "b65aeae1a29c965d13571c1859ef573eada0fe21ab274d822e3bd3e681dacae5",
+        "dash": "abbe54d699de784eb3a7eec73819b8dc05406918cdd45b6b450899d788f25c41",
+        "attack": "b9312af44641cfff8ab9be289d01813f9fb2f99e4b30a01ee751987974c8f274",
+        "cast": "b8a0397f165437c6f9a2cc114009492bb07b95cc4d3bce40027a0ff2144085f3"
       },
-      "figureHeightPx": 170,
+      "figureHeightPx": 169,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 111,
-        "bottom": 173
+        "left": 47,
+        "top": 33,
+        "right": 156,
+        "bottom": 204
       },
       "colors": 41,
-      "sha256": "5c771f4b14d9944b66b5b7bfea3e304506ffc2a429f54b49e055f97bc29b6cf9"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": false,
+        "cast": true
+      },
+      "sha256": "c68dd9dc3f07a2a7ac7d880480cbe03cba22f88bfef4db6374a9e879686d5b9b"
     },
     "raven_scout": {
       "file": "/assets/characters/pixel/combat-sprites/raven_scout.png",
       "cell": [
-        55,
-        90
+        133,
+        111
       ],
       "anchor": [
-        27,
-        87
+        65,
+        107
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -4615,28 +4856,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -4662,19 +4907,26 @@
       "aliases": [
         "/assets/characters/pixel/post-demo/bear/raven_scout.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "ab34fcc5ce415fb74b29696a4c93e7a3dd9002a3bcc3facdad9c21431f78543e"
+        "master": "ab34fcc5ce415fb74b29696a4c93e7a3dd9002a3bcc3facdad9c21431f78543e",
+        "dash": "095b3a83d83925ee3bcd97659c7e95b5530c3a8205b2e8b0dd1efc400450a34a",
+        "attack": "22fd5559b00b8326e57f82f87abf02dbbd6264c0825132ad64a003c41abaeebc",
+        "cast": "6202d534412b9957c21e864b40658ca528dc2addec19853abe2af59614395d05"
       },
       "figureHeightPx": 85,
       "idleBoundsPx": {
-        "left": 2,
-        "top": 2,
-        "right": 53,
-        "bottom": 88
+        "left": 35,
+        "top": 22,
+        "right": 86,
+        "bottom": 108
       },
       "colors": 41,
-      "sha256": "5fa9136fda18ba7ebcbdabf9f4948f25200160c783b16b2e6213f2f068335b78"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": true,
+        "cast": true
+      },
+      "sha256": "0f16120a60f89595798fd553b730006504d42859aa2987148a5faf2d96249926"
     },
     "rogue": {
       "file": "/assets/characters/pixel/combat-sprites/rogue.png",
@@ -6145,33 +6397,40 @@
     "talon": {
       "file": "/assets/characters/pixel/combat-sprites/talon.png",
       "cell": [
-        81,
+        143,
         88
       ],
       "anchor": [
-        40,
+        28,
         85
       ],
       "presenceScale": 1.0,
       "cells": [
         "idle",
-        "idle_b"
+        "idle_b",
+        "dash",
+        "attack",
+        "cast"
       ],
       "anims": {
         "idle": {
           "frames": [
             "idle",
+            "idle",
+            "idle_b",
             "idle_b"
           ],
           "ms": [
-            680,
-            680
+            420,
+            260,
+            420,
+            260
           ],
           "loop": true
         },
         "move": {
           "frames": [
-            "idle_b"
+            "dash"
           ],
           "ms": [
             120
@@ -6180,28 +6439,32 @@
         },
         "windup": {
           "frames": [
-            "idle_b"
+            "idle_b",
+            "dash"
           ],
           "ms": [
+            90,
             120
           ],
           "loop": false
         },
         "attack": {
           "frames": [
-            "idle"
+            "attack"
           ],
           "ms": [
-            200
+            360
           ],
           "loop": false
         },
         "cast": {
           "frames": [
-            "idle"
+            "idle_b",
+            "cast"
           ],
           "ms": [
-            200
+            110,
+            520
           ],
           "loop": false
         },
@@ -6227,19 +6490,26 @@
       "aliases": [
         "/assets/characters/pixel/archive/non-demo/talon.png"
       ],
-      "masterOnly": true,
       "source": {
-        "master": "e27a6d2daca531c2a112875094bf91cc36cde056fa46d8bb64cfbc739fd0440f"
+        "master": "e27a6d2daca531c2a112875094bf91cc36cde056fa46d8bb64cfbc739fd0440f",
+        "dash": "3b09f877d97e0ae4aad49364ec714fd6c2990606164e06c8879a192b2ec95c1d",
+        "attack": "67ca681fca04b1376f2795b99093e012db131fbddfd3343fff823d63f92930fb",
+        "cast": "6187dc432ddd353b99bd1c81d2a57b1c21aa1ba782f40ecc77780b58d709d89d"
       },
       "figureHeightPx": 83,
       "idleBoundsPx": {
-        "left": 2,
+        "left": 17,
         "top": 2,
-        "right": 79,
+        "right": 94,
         "bottom": 86
       },
       "colors": 41,
-      "sha256": "bf7c7175aa8d1f053fc69d2e8696b002fab7aa0152ff77ff837ea79f49f4d2a2"
+      "characterBoundFx": {
+        "dash": false,
+        "attack": true,
+        "cast": true
+      },
+      "sha256": "573b4ad4917f9c7b3c874a4dc23d514d4f08dee418d2f4c5d0926b14e5aee036"
     },
     "troll": {
       "file": "/assets/characters/pixel/combat-sprites/troll.png",

@@ -1,0 +1,13 @@
+{
+  "_note": "Scales set by eye or by a finer measure when the automatic one is uncertain (normalize_combat_poses.py). Aldric: the pilot's measure with helm and mace templates (draft COMBAT_POSES_SCOPE_2026-11-13, section 8). Morvan: by eye on the helm, his dark armour giving almost no measure.",
+  "aldric": {
+    "dash": 1.1,
+    "attack": 1.245,
+    "cast": 1.1
+  },
+  "morvan": {
+    "dash": 1.15,
+    "attack": 1.17,
+    "cast": 1.2
+  }
+}

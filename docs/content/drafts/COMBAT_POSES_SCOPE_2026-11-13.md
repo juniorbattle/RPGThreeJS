@@ -1,6 +1,6 @@
 # Poses de combat des nouvelles unités : cadrage
 
-Statut : **VALIDÉ** le 2026-11-13 (OD-2026-11-13-A). À « Valides-tu ce périmètre et le pilote sur Aldric ? », tu as répondu « Oui, lance Aldric » ; je lis les six recommandations comme retenues, et tu peux en changer au verdict du pilote. Le pilote d'Aldric est fait (§8) ; le lot attend ton verdict. Brouillon du 2026-11-13 (runs `claude-combat-poses-scope-20261113T0638Z`, `claude-combat-poses-pilot-20261113T0653Z`). Rien n'est intégré.
+Statut : **VALIDÉ** le 2026-11-13 (OD-2026-11-13-A). À « Valides-tu ce périmètre et le pilote sur Aldric ? », tu as répondu « Oui, lance Aldric » ; je lis les six recommandations comme retenues, sauf Q4 : tu as choisi les effets incrustés comme la démo (§8). Puis « Oui, lance les héros » et « travail sans arrêt » : **les 6 héros et les 9 combattants de l'Ours ont leurs 4 poses en jeu (§9)**. Les 23 autres unités attendent des crédits OpenAI : le compte n'en a plus (§9). Runs `claude-combat-poses-scope-20261113T0638Z`, `claude-combat-poses-pilot-20261113T0653Z`, `claude-combat-poses-heroes-20261113T0734Z`.
 
 Ta demande : « les nouveaux personnages/unités utilisés en combat doivent avoir leurs 4 poses nécessaires comme ceux déjà présents ». Ce document dit quelles unités sont concernées, comment les 27 unités de la démo ont eu leurs poses, les méthodes possibles, ce que ça coûte et la décision qu'il te faut prendre. Six questions t'attendent à la fin, chacune avec ma recommandation.
 
@@ -300,3 +300,63 @@ Ta réponse : « Oui, lance Aldric ». Planche : [`assets/COMBAT_POSES_PILOT_ALD
   4. **Frange** : le fond transparent du modèle laisse un liseré semi-transparent, que le seuil d'alpha du constructeur retire. Rien à reprendre à la main.
 - **Rien n'est intégré** : aucune planche du jeu, aucun fichier de `public/` ou de `src/`, aucun outil suivi par Git n'a changé.
 - **Suite, après ton verdict** : j'ajoute le type `pose` à l'outil (pose, puis effet par retouche), le normaliseur et la table des unités posées. J'intègre Aldric et le vérifie en combat, puis je lance les cinq autres héros.
+
+## 9. Lot des héros et de l'Ours (2026-11-13)
+
+Tes consignes : « Oui, lance les héros », puis faire les héros avec la direction du pilote, enchaîner sur les ennemis comme les poses ennemies de la démo, et travailler sans arrêt jusqu'au bout.
+
+### En jeu
+
+- **15 unités** ont désormais leurs 4 poses dans leur planche de combat (`idle`, `idle_b`, `dash`, `attack`, `cast`), à leur taille d'avant à l'écran.
+  - Les 6 héros : Aldric, Morvan, Lyra, Eldwin, Talon, Gunnar.
+  - Les 9 combattants de l'Ours : Borin, le chef des mineurs, le Maître Espion, le contremaître, la bête corrompue, la bête des profondeurs, le guerrier de l'Ours, l'éclaireur et le mineur du Corbeau.
+- **Effets** :
+  - les héros les ont sur `attack` et `cast`, ta direction du pilote ;
+  - les ennemis suivent la démo, où chaque `cast` a son effet et où l'attaque en a un pour les lames et la magie, pas pour les lances, les armes contondantes, les frondes ni les griffes (relevé dans `characterSystemV2Manifest.json`) ;
+  - les couleurs sont celles de chaque unité : poussière et pierre pour l'Ours, plumes de corbeau et acier pour le Corbeau, venin vert pour la bête corrompue.
+- **Vérifié en combat**, dans le navigateur, sur l'épreuve de Borin et sur la traque du Maître Espion, les six héros recrutés dans la compagnie : chaque unité joue ses poses gelées tour à tour (repos, déplacement, attaque, incantation) à côté des unités de la démo, sans erreur de console.
+- **Tests** : la suite complète passe. `tools/art/combatPoses.test.ts` vérifie le périmètre, les maîtres, les hauteurs, les visages, les Ombres, les effets et les références. `bearPresentation.test.ts` attend désormais les poses des combattants de l'Ours.
+
+### Outils (suivis par Git)
+
+- `tools/art/combatPosesTable.ts` : les 38 unités, chacune avec son apparence, son arme, ses trois gestes, sa couleur d'effet et ses effets.
+- `npx vite-node tools/art/finalImages.ts -- poses --group <groupe> --step pose|fx` : d'abord les trois poses sans effet (`dash`, puis `attack` et `cast` avec la `dash` en référence), ensuite les effets, par retouche de la pose. Les sorties vont dans `tmp/combat-poses/`, ignoré.
+- `py -3 tools/pixel-sprites/normalize_combat_poses.py` :
+  - `--prepare-refs` pose chaque maître sur la toile de la pose, à une taille connue ;
+  - ensuite, il ramène chaque pose à l'échelle du maître, la contrôle et la range dans `tools/pixel-sprites/poses/<unité>/` en WebP sans perte, hors de `public/` (7,5 Mo pour 15 unités), avec `poses.json` ;
+  - les corrections faites à l'œil sont dans `overrides.json`.
+- `tools/pixel-sprites/build_combat_sprites.py` construit ces unités depuis `poses.json` : le maître sert de `prepare`, la hauteur d'avant est gardée, les alias du maître aussi. Sa ligne de `MASTER_ONLY` est alors ignorée.
+- **Inchangés** : `CombatPoseRegistry.ts`, `characterSystemV2Manifest.json`, le moteur de combat, les sauvegardes et les planches de la démo.
+
+### Ce que le lot a appris
+
+1. **L'échelle se donne avant de se mesurer.** Envoyé seul, le maître laisse le modèle choisir sa taille : 1,3 à 1,7 fois le maître, sans régularité. J'ai donc repris la méthode du pilote : le maître posé à taille connue sur une toile carrée, un peu à gauche pour l'attaque. Le modèle dessine alors à 5 à 25 % de cette taille. La mesure prend la médiane dès qu'elle a deux valeurs, et chaque lot passe par une planche à une seule échelle. Les 25 images des héros et les 27 de l'Ours faites depuis le maître seul ont été refaites ; les premières versions sont dans `tmp/combat-poses/out-v1/`.
+2. **Les maîtres des héros se mesurent mal.** Ce sont d'anciennes illustrations de 640×768, peintes autrement que les poses. Les mesures sont rares pour Lyra et Eldwin, et nulles pour Morvan, dont l'armure noire et pourpre n'offre presque aucun repère. Aldric (mesure fine du pilote) et Morvan (à l'œil sur le heaume) sont réglés dans `overrides.json`. Les maîtres de l'Ours, en 512×512, se mesurent bien.
+3. **Une retouche d'effet peut recadrer.** La retouche de l'incantation de Borin a agrandi l'image de 1,2 fois. Le normaliseur compare chaque version avec effet à sa pose sans effet et corrige l'écart ; les pieds restent ceux de la pose sans effet.
+4. **Reprises** :
+   - la faux de Morvan a eu deux lames, deux fois, jusqu'à une consigne de géométrie explicite ;
+   - la fumée de Talon est sortie verte, parce que sa couleur de venin l'emportait ; une couleur d'incantation à part règle ça.
+5. **Les planches de la démo ne se reconstruisent pas à l'identique sur ce poste.** Elles ont été faites dans la session cloud d'octobre, avec d'autres versions de bibliothèques. Le constructeur n'est donc lancé qu'avec `--only` sur les unités posées. J'ai vérifié que ma réorganisation du code donne exactement les mêmes octets que le code d'origine.
+
+### À trancher à la fin
+
+- **Armes du Corbeau.** Quatre maîtres tiennent une autre arme que celle du moteur de combat, et les poses suivent le maître, celui que le joueur voit :
+  - l'éclaireur et le Maître Espion tiennent une épée, là où le moteur dit « Lames de jet » ;
+  - le contremaître tient une épée, là où il dit « Masse de contremaître » ;
+  - le chef des mineurs tient un marteau, là où il dit « Pioche de guerre ».
+
+  Comme pour Borin et le guerrier (OD-2026-11-12-A), on pourrait renommer ces armes ; ce serait à toi de le décider.
+- **Eldwin** est le seul effet violet : rose et violet arcane, la couleur de ses propres sorts. Toutes les Ombres restent en encre noire.
+
+### Bloqué : plus de crédits OpenAI
+
+- Au lancement des 23 dernières unités (Dragon, Scorpion, acte final et Maelor), l'API a répondu « 429 : You have no credits remaining ». 57 appels ont échoué.
+- Avant l'arrêt, 12 `dash` étaient faits : les 8 du Dragon et 4 du Scorpion. Ils sont gardés.
+- Reste environ 98 appels, plus les reprises : 11 `dash`, 46 `attack` et `cast`, et 41 effets.
+- Ajouter des crédits sur le compte OpenAI ne peut venir que de toi. Une fois fait, la même commande reprend là où elle s'est arrêtée, puisque l'outil saute ce qui existe déjà :
+
+```bash
+npx vite-node tools/art/finalImages.ts -- poses --units kaelen,wolf_chief,shadow_shaman,wolf_champion,shadow_wyrm,dragon_guardian,wolf_raider,wolf_hunter,grand_inquisitor,phoenix_guardian_chief,shadow_prophet,phoenix_flamekeeper,shadow_zealot,phoenix_guardian,scorpion_scholar,serpent_champion,demon_champion,breach_entity,raven_champion,phoenix_champion,demon_brute,breach_demon,maelor --step pose --concurrency 6
+```
+
+- Viendront ensuite `--step fx`, la normalisation, la relecture à une seule échelle, la construction, les tests de présentation du Dragon, du Scorpion et de l'acte final (et Maelor, qui recevra sa première planche de combat), puis le contrôle en combat.

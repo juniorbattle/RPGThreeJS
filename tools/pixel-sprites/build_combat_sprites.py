@@ -38,6 +38,9 @@ ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / 'src/render/generated/characterSystemV2Manifest.json'
 OUT_DIR = ROOT / 'public/assets/characters/pixel/combat-sprites'
 OUT_JSON = ROOT / 'src/render/generated/combatPixelSprites.json'
+# OD-2026-11-13-A: units with a master and three generated poses (tools/pixel-sprites/normalize_combat_poses.py). They
+# replace their MASTER_ONLY line below.
+POSED_MANIFEST = ROOT / 'tools/pixel-sprites/poses/poses.json'
 PUBLIC_PREFIX = '/assets/characters/pixel/combat-sprites'
 
 # 40 art px per world unit: a 2.17 m hero (Alistair) is ~87 px tall, the same
@@ -238,7 +241,29 @@ def build_unit(unit: dict, hero_height: float) -> tuple[np.ndarray, dict]:
     anchors: dict[str, tuple[float, float]] = {}
     for pose in POSES:
         frames[pose], anchors[pose] = pose_frame(unit, pose, factor)
+    sheet, cell = assemble(frames, anchors)
+    entry = {
+        'file': f"{PUBLIC_PREFIX}/{unit['unitId']}.png",
+        **cell,
+        'presenceScale': round(presence, 4),
+        'cells': ['idle', 'idle_b', 'dash', 'attack', 'cast'],
+        'anims': default_anims(unit),
+        'source': {pose: unit['poses'][pose]['sha256'] for pose in POSES},
+    }
+    return sheet, order_entry(entry)
 
+
+ENTRY_ORDER = ('file', 'cell', 'anchor', 'presenceScale', 'cells', 'anims', 'aliases', 'source', 'figureHeightPx', 'idleBoundsPx', 'colors')
+
+
+def order_entry(entry: dict) -> dict:
+    """Keeps the key order the sheet contract always had, so a rebuild leaves untouched units byte-identical."""
+    return {k: entry[k] for k in ENTRY_ORDER if k in entry} | {k: v for k, v in entry.items() if k not in ENTRY_ORDER}
+
+
+def assemble(frames: dict[str, np.ndarray], anchors: dict[str, tuple[float, float]]) -> tuple[np.ndarray, dict]:
+    """Shared palette, outline and one common cell for the four poses (prepare, dash, attack, cast), each placed so that
+    its feet anchor lands on the same point; idle_b is the breath of prepare."""
     pal = shared_palette(list(frames.values()), PALETTE_SIZE)
     for k in frames:
         frames[k] = add_outline(apply_palette(frames[k], pal))
@@ -272,20 +297,51 @@ def build_unit(unit: dict, hero_height: float) -> tuple[np.ndarray, dict]:
     cells['idle_b'] = breathe(cells['prepare'], cay, int(ys.min()))
     order = ['prepare', 'idle_b', 'dash', 'attack', 'cast']
     sheet = np.concatenate([cells[k] for k in order], axis=1)
-
-    entry = {
-        'file': f"{PUBLIC_PREFIX}/{unit['unitId']}.png",
+    return sheet, {
         'cell': [cw, ch],
         'anchor': [cax, cay],
-        'presenceScale': round(presence, 4),
-        'cells': ['idle', 'idle_b', 'dash', 'attack', 'cast'],
-        'anims': default_anims(unit),
-        'source': {pose: unit['poses'][pose]['sha256'] for pose in POSES},
         'figureHeightPx': int(cay - ys.min()),
         'idleBoundsPx': idle_bounds(cells['prepare']),
         'colors': int(len(np.unique((sheet[sheet[..., 3] > 0.5][:, :3] * 255).astype(np.uint8), axis=0))),
     }
-    return sheet, entry
+
+
+def feet_anchor(rgba: np.ndarray) -> tuple[float, float]:
+    """Lowest solid row, and the centre of the solid pixels in the lowest 6 % of the figure (normalize_combat_poses.py)."""
+    ys, xs = np.nonzero(rgba[..., 3] > 0.5)
+    bottom, top = ys.max(), ys.min()
+    band = ys >= bottom - 0.06 * (bottom - top)
+    return float(xs[band].mean()), float(bottom + 1)
+
+
+def build_posed_final(unit_id: str, unit: dict) -> tuple[np.ndarray, dict]:
+    """A unit whose master is its prepare pose and whose dash, attack and cast were generated (OD-2026-11-13-A), stored by
+    tools/pixel-sprites/normalize_combat_poses.py at its master's scale. It keeps the height of its former master-only
+    sheet (`worldHeight`), so it does not change size on screen."""
+    master = np.asarray(Image.open(ROOT / unit['master']).convert('RGBA'), dtype=np.float32) / 255.0
+    factor = unit['worldHeight'] * PX_PER_UNIT / unit['masterFigureHeightPx']
+    frames = {'prepare': clean_specks(binarize(downscale(master, factor)))}
+    ax, ay = feet_anchor(master)
+    anchors = {'prepare': (ax * factor, ay * factor)}
+    for pose in POSES[1:]:
+        p = unit['poses'][pose]
+        f = factor / unit['storeScale']
+        rgba = np.asarray(Image.open(ROOT / p['src']).convert('RGBA'), dtype=np.float32) / 255.0
+        frames[pose] = clean_specks(binarize(downscale(rgba, f)))
+        anchors[pose] = (p['anchor'][0] * f, p['anchor'][1] * f)
+    sheet, cell = assemble(frames, anchors)
+    alias = '/' + Path(unit['master']).relative_to('public').as_posix()
+    entry = {
+        'file': f'{PUBLIC_PREFIX}/{unit_id}.png',
+        **cell,
+        'presenceScale': 1.0,
+        'cells': ['idle', 'idle_b', 'dash', 'attack', 'cast'],
+        'anims': default_anims({'scaleFamily': 'STANDARD_HUMANOID'}),
+        'aliases': [alias],
+        'source': {'master': unit['masterSha256'], **{pose: unit['poses'][pose]['sha256'] for pose in POSES[1:]}},
+        'characterBoundFx': {pose: unit['poses'][pose]['characterBoundFx'] for pose in POSES[1:]},
+    }
+    return sheet, order_entry(entry)
 
 
 def idle_bounds(cell: np.ndarray) -> dict:
@@ -373,8 +429,20 @@ def main() -> int:
         result['units'][unit['unitId']] = entry
         previews.append(png)
         print(f"{unit['unitId']:26s} cell {entry['cell']} figure {entry['figureHeightPx']}px colors {entry['colors']} presence {entry['presenceScale']}")
-    for unit_id, (rel, height) in MASTER_ONLY.items():
+    posed = json.loads(POSED_MANIFEST.read_text())['units'] if POSED_MANIFEST.exists() else {}
+    for unit_id, unit in posed.items():
         if only and unit_id not in only:
+            continue
+        sheet, entry = build_posed_final(unit_id, unit)
+        png = Image.fromarray((sheet * 255).round().astype(np.uint8), 'RGBA')
+        out = OUT_DIR / f'{unit_id}.png'
+        png.save(out, optimize=True)
+        entry['sha256'] = hashlib.sha256(out.read_bytes()).hexdigest()
+        result['units'][unit_id] = entry
+        previews.append(png)
+        print(f"{unit_id:26s} cell {entry['cell']} figure {entry['figureHeightPx']}px colors {entry['colors']} (generated poses)")
+    for unit_id, (rel, height) in MASTER_ONLY.items():
+        if (only and unit_id not in only) or unit_id in posed:
             continue
         sheet, entry = build_master_only(unit_id, rel, height)
         png = Image.fromarray((sheet * 255).round().astype(np.uint8), 'RGBA')

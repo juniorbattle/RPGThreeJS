@@ -117,7 +117,9 @@ describe('Bear scenes on their final tableaux (set 1.20.0, Lot 1, canon since OD
     for (const enemy of BEAR_PROVISIONAL_ENEMIES) {
       expect(publicFile(enemy.master!), enemy.unitId).toBe(true);
       expect(resolvePixelSheet(enemy.master)?.unitId, enemy.unitId).toBe(enemy.unitId);
-      expect(resolvePixelSheet(enemy.master)?.masterOnly, enemy.unitId).toBe(true);
+      // OD-2026-11-13-A: each Bear fighter has its four combat poses, its master as prepare plus dash, attack and cast.
+      expect(resolvePixelSheet(enemy.master)?.masterOnly, enemy.unitId).toBeUndefined();
+      expect(resolvePixelSheet(enemy.master)?.cells, enemy.unitId).toEqual(['idle', 'idle_b', 'dash', 'attack', 'cast']);
     }
   });
 });
