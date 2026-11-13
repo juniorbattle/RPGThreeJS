@@ -433,10 +433,11 @@ describe('VfxResourceManager — Preservation', () => {
     expect(typeof resolveCandidateAvailability).toBe('function');
   });
 
-  it('33. 83-action inventory unchanged', async () => {
+  // OD-2026-11-13-F (C3, C4): four magic heavy attacks of the magic bosses join the inventory (83 + 4).
+  it('33. 87-action inventory unchanged', async () => {
     const { getActionCount } = await import('./CombatVfxLab');
     const counts = getActionCount();
-    expect(counts.total).toBe(83);
+    expect(counts.total).toBe(87);
   });
 
   it('34. 2769 metadata catalogue unchanged', async () => {

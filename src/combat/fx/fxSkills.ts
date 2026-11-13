@@ -774,6 +774,62 @@ const enemies: Record<string, () => FxRecipe> = {
     lit(0.3, 'steel', 16, 0.4),
     shake(0.3, 0.32, 0.18),
   ]),
+  // OD-2026-11-13-F (C3, C4): the magic heavy attacks of the magic bosses, approved with their effects. Heavy attacks: set like
+  // Gel (impact near 0.4 s, a 0.3 shake, a light), under the ultimates (no slow motion, no camera) and above the light actions.
+  // Kaelen's lightning: his staff lights up ice blue, clouds gather above the target and one white bolt falls on it.
+  boss_celestial_bolt: () => skill('boss_celestial_bolt', 'arcane', 0.42, 1.3, [
+    s(0, 'glow', 'sourceChest', { size: 1.3, duration: 0.36 }, { element: 'ice' }),
+    s(0.05, 'orbit', 'targetSky', { count: 14, radius: 0.9, duration: 0.42, rise: 0.2, spin: 4, soft: true }, { element: 'smoke' }),
+    s(0.3, 'star', 'targetSky', { size: 1.2, duration: 0.14 }, { element: 'lightning' }),
+    s(0.36, 'bolt', 'targetChest', { duration: 0.32, width: 0.11 }, { to: 'targetSky', element: 'lightning' }),
+    s(0.42, 'star', 'targetChest', { size: 1.9 }, { element: 'lightning' }),
+    s(0.42, 'flash', undefined, { opacity: 0.08 }, { element: 'lightning' }),
+    s(0.43, 'burst', 'targetChest', { count: 24, speed: 4, gravity: 6, size: 0.1 }, { element: 'sky' }),
+    s(0.44, 'burst', 'targetGround', { count: 10, speed: 2, up: 1, gravity: 6, size: 0.12, soft: true }, { element: 'earth' }),
+    lit(0.42, 'lightning', 22, 0.5),
+    shake(0.42, 0.3, 0.2),
+  ]),
+  // the Grand Inquisitor's sentence: a circle of copper lines under the target, sand whirling, then a sting of amber light
+  // strikes from above and amber dust settles round the silenced foe.
+  boss_sentence: () => skill('boss_sentence', 'fire', 0.42, 1.3, [
+    s(0, 'glow', 'sourceChest', { size: 1.2, duration: 0.34 }, { element: 'gold' }),
+    s(0.02, 'circle', 'targetGround', { radius: 1, duration: 0.5, spin: 1.6 }, { element: 'gold' }),
+    s(0.08, 'orbit', 'target', { count: 16, radius: 0.85, duration: 0.42, rise: 1.2, spin: 6, soft: true }, { element: 'earth' }),
+    s(0.34, 'streak', 'targetSky', { width: 0.45, duration: 0.1 }, { to: 'targetChest', element: 'gold' }),
+    s(0.4, 'pillar', 'targetGround', { radius: 0.32, height: 3.2, duration: 0.36 }, { element: 'gold' }),
+    s(0.42, 'star', 'targetChest', { size: 2.1 }, { element: 'fire' }),
+    s(0.43, 'burst', 'targetChest', { count: 22, speed: 3.6, gravity: 7, size: 0.1 }, { element: 'gold' }),
+    s(0.46, 'motes', 'target', { count: 16, radius: 0.8, sink: true }, { element: 'earth' }),
+    lit(0.42, 'gold', 20, 0.5),
+    shake(0.42, 0.3, 0.2),
+  ]),
+  // Maelor's broken oath: cold black ink leaps from his open hand to the target, the bonds of light of its protections
+  // shatter into white shards round it, then the ink closes on it and fades. Ink and cold white, never purple.
+  boss_broken_oath: () => skill('boss_broken_oath', 'blood', 0.4, 1.3, [
+    s(0, 'smoke', 'sourceChest', { count: 6, spread: 0.3, size: 0.5 }),
+    s(0.04, 'shot', 'sourceChest', { size: 1.1, duration: 0.34, arc: 0.3, streak: true }, { to: 'targetChest', element: 'smoke' }),
+    s(0.34, 'orbit', 'target', { count: 12, radius: 0.75, duration: 0.3, rise: 0.6, spin: 7 }, { element: 'ice' }),
+    s(0.4, 'star', 'targetChest', { size: 2 }, { element: 'ice' }),
+    s(0.41, 'burst', 'targetChest', { count: 30, speed: 4.2, gravity: 6, size: 0.11 }, { element: 'ice' }),
+    s(0.42, 'orb', 'targetChest', { radius: 1.25, duration: 0.5, implode: true, dark: true }, { element: 'smoke' }),
+    s(0.5, 'smoke', 'target', { count: 12, spread: 0.5, size: 0.75 }),
+    lit(0.4, 'ice', 18, 0.5),
+    shake(0.4, 0.3, 0.2),
+  ]),
+  // the breach entity's grip: ribbons of black ink rise from the ground under the target and wind round it, rimmed with
+  // the breach's cold white, tighten, then dissolve into drops.
+  boss_breach_grip: () => skill('boss_breach_grip', 'ice', 0.42, 1.35, [
+    s(0, 'glow', 'sourceChest', { size: 1.2, duration: 0.3 }, { element: 'ice' }),
+    s(0.06, 'burst', 'targetGround', { count: 14, speed: 0.6, up: 2.4, gravity: -0.2, size: 0.14, life: 0.6, spread: 0.5, soft: true }, { element: 'smoke' }),
+    s(0.14, 'orbit', 'target', { count: 26, radius: 0.9, duration: 0.5, rise: 2, spin: -5, size: 0.14 }, { element: 'smoke' }),
+    s(0.2, 'orbit', 'target', { count: 14, radius: 0.95, duration: 0.45, rise: 1.8, spin: -5, size: 0.08 }, { element: 'ice' }),
+    s(0.4, 'orb', 'targetChest', { radius: 1.1, duration: 0.45, implode: true, dark: true }, { element: 'smoke' }),
+    s(0.42, 'star', 'targetChest', { size: 1.9 }, { element: 'ice' }),
+    s(0.43, 'shards', 'targetGround', { count: 10, radius: 0.65, height: 1.9, duration: 0.85 }, { element: 'smoke' }),
+    s(0.6, 'motes', 'target', { count: 16, radius: 0.7, sink: true }, { element: 'smoke' }),
+    lit(0.42, 'ice', 18, 0.5),
+    shake(0.42, 0.3, 0.22),
+  ]),
   // the light drops, the blade rises, then a single cut from top to bottom
   boss_execution: () => ultimate('boss_execution', 'blood', 0.9, 1.7, [
     s(0.05, 'converge', 'source', { count: 34, radius: 2.4, duration: 0.7, height: 2.4 }, { element: 'blood' }),

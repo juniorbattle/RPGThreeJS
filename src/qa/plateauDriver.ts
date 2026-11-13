@@ -1,48 +1,53 @@
 /**
- * Set 1.20.0, post-demo — QA driver of a built post-demo chapter (the Bear, the Dragon, the Scorpion, the final act).
+ * Set 1.20.0, post-demo — QA driver of a chronicle chapter: the Lion, the Bear, the Dragon, the Scorpion, the final act.
  *
- * Plays a plateau from the end of the previous one to its epilogue through the real owners: RunSystem for movement, refuges,
- * guardians, the closing of the plateau and the campaign record; the game's dialogue resolution for every scene,
- * state-built ones included; the plateau finale for the judgement. It applies dialogue effects and fight rewards as
- * GameApp does, and stands in for the tactical runtime only by declaring each fight won. A policy chooses each answer
- * by the durable fact it records, so a scenario reads as the choices a player makes.
+ * Plays a chapter through the real owners: RunSystem for movement, refuges, guardians, the closing of the plateau and
+ * the campaign record; the game's dialogue resolution for every scene, state-built ones included; the plateau finale
+ * for the judgement. Since OD-2026-11-13-F (Q1) it applies every dialogue effect through `applyNarrativeEffect`, the
+ * function GameApp applies, resolves each answer as the dialogue view does (`resolveContestOutcome`) and follows
+ * GameApp's order for a POI: its content, then its contextual scenes, then the Lion's reputation event. The Lion is
+ * played from a new chronicle, the later chapters from the save the previous one leaves. It stands in for the tactical
+ * runtime only by declaring each fight won. A policy chooses each answer by the durable fact it records, so a scenario
+ * reads as the choices a player makes.
  *
  * QA tooling: it never runs in the game and owns no truth.
  */
-import { createRecruitInstance } from '../game/catalog';
-import { canRecruit } from '../game/refugeRecruitment';
-import { combatVictoryFacts, completePlateauChronicle, continueCampaign, plateauEpilogueDialogueId, plateauFinaleOf } from '../game/plateauProgression';
-import { resolvePlateauFinaleExecution, resolvePendingPlateauFinaleCombat } from '../game/plateauFinale';
+import { combatVictoryFacts, continueCampaign, pendingPlateauFinaleCombat, plateauEpilogueDialogueId, plateauFinaleOf, runPlateauId } from '../game/plateauProgression';
 import { resolveGameAteRules, resolveGameDialogue } from '../game/contextualDialogueContent';
+import { ateSeenFlag } from '../game/contextualDialogue';
+import { isChoiceBlocked, resolveContestOutcome } from '../game/contestResolution';
 import { selectGameReputationEvent } from '../game/reputationEventContent';
-import { playableCombatConfig } from '../game/playableContent';
-import { getItemCategory } from '../game/catalog';
-import { changeReputation } from '../game/reputation';
+import { recordReputationEventSelection } from '../game/reputationEventDirector';
+import { anyCombatConfig, playableCombatConfig } from '../game/playableContent';
+import { changeReputation, getReputationRule } from '../game/reputation';
+import { applyNarrativeEffect } from '../game/narrativeEffects';
 import { createPoiChestAdapter } from '../game/poiContentAdapters';
-import { POST_DEMO_REFUGE_GATHERINGS } from '../campaign/plateaux/postDemoRefuges';
+import { createInitialState } from '../game/store';
+import { resolveRefugePresentation } from '../ui/RefugePresentation';
 import {
   commitPoiEliteFight,
+  createRunState,
   creditRunReward,
   enterPoi,
   getRunNode,
+  isPoiNeutralized,
   resolvePoiEliteVictory,
   secureRunLoot,
   selectPoiMap,
-  setClanRelation,
   settlePoiNavigation,
   travelToResolvedPoi,
 } from '../game/runSystem';
-import { requirePlateauCampaign } from '../campaign/plateaux/PlateauRegistry';
-import type { PostDemoSealPlateauId } from '../game/plateauFinale';
+import { requirePlateauCampaign, type CampaignChapterId } from '../campaign/plateaux/PlateauRegistry';
 import {
-  completeCampaignEnding, finalActCombatConfig, isEpilogueCombat, isTournamentNodeId, nextEpilogueStep, nextTournamentStep, tournamentBoard,
+  finalActCombatConfig, isEpilogueCombat, isTournamentNodeId, nextEpilogueStep, nextTournamentStep, tournamentBoard,
 } from '../game/finalAct';
 import { FINALE_TOURNAMENT_ARRIVAL, type TournamentEntry } from '../campaign/plateaux/finale/finaleTournament';
 import finaleMap from '../campaign/consequences/finale.consequences.json';
+import lionMap from '../campaign/consequences/lion.consequences.json';
 import type { CombatConfig, DialogueChoice, DialogueSequence, GameState, NarrativeEffect, RunNode } from '../game/types';
 
-/** A post-demo chapter the driver plays: a Seal plateau, or the final act. */
-export type DrivenChapterId = PostDemoSealPlateauId | 'finale';
+/** A chapter the driver plays: the Lion, a post-demo Seal plateau, or the final act. */
+export type DrivenChapterId = CampaignChapterId;
 
 export type FinaleIntent = 'claim_recognition' | 'request_trial';
 
@@ -70,6 +75,10 @@ export interface PlateauPlaythrough {
   fights: string[];
   /** Every fight as RunSystem prepared it before the tactical runtime (the final act's supports and enemy-clan foes). */
   configs: CombatConfig[];
+  /** The Lion's reputation events (R4) played after a POI, as GameApp plays them. */
+  reputationEvents: string[];
+  /** The route POIs in the order the company entered them. */
+  visited: string[];
   reputationStart: number;
 }
 
@@ -77,12 +86,89 @@ function flagsSetBy(choice: DialogueChoice): string[] {
   return choice.effects.flatMap((effect) => effect.type === 'setFlag' && effect.value ? [effect.key] : []);
 }
 
-function available(choice: DialogueChoice, state: GameState): boolean {
-  return !(choice.requiresGold !== undefined && state.gold < choice.requiresGold)
-    && !(choice.requiresFlag !== undefined && !state.flags[choice.requiresFlag])
-    && !(choice.excludesFlag !== undefined && state.flags[choice.excludesFlag])
-    && !(choice.requiresReputationMin !== undefined && state.reputation < choice.requiresReputationMin)
-    && !(choice.requiresReputationMax !== undefined && state.reputation > choice.requiresReputationMax);
+const choosesIntent = (choice: DialogueChoice, intent: FinaleIntent) => choice.effects.some((effect) =>
+  (effect.type === 'resolvePlateauFinale' || effect.type === 'resolveLionFinale') && effect.intent === intent);
+
+/** The honour and force facts a consequence map names for its chapter's major choices. */
+function pathFacts(map: { majorChoices: readonly { options: readonly { path: string; sets: readonly string[] }[] }[] }, path: string): Set<string> {
+  return new Set(map.majorChoices.flatMap((choice) => choice.options).filter((option) => option.path === path).flatMap((option) => option.sets));
+}
+
+interface PolicyFacts { merits: ReadonlySet<string>; greed: ReadonlySet<string> }
+const POLICY_FACTS = new Map<DrivenChapterId, PolicyFacts>();
+
+/** The facts each policy prefers in a chapter: its honour and its force facts. */
+function policyFacts(chapterId: DrivenChapterId): PolicyFacts {
+  const known = POLICY_FACTS.get(chapterId);
+  if (known) return known;
+  let facts: PolicyFacts;
+  if (chapterId === 'finale' || chapterId === 'lion') {
+    // The Lion's and the final act's consequence maps name the facts of each policy in their honour and force options.
+    const map = chapterId === 'lion' ? lionMap : finaleMap;
+    facts = { merits: pathFacts(map, 'honour'), greed: pathFacts(map, 'force') };
+  } else {
+    const finale = plateauFinaleOf(chapterId)!;
+    facts = {
+      merits: new Set([...finale.deeds.filter((deed) => deed.kind === 'merit').map((deed) => deed.flag),
+        finale.honourFact, finale.witnesses.supportiveFlag, finale.evidence.flag]),
+      greed: new Set([...finale.deeds.filter((deed) => deed.kind !== 'merit').map((deed) => deed.flag),
+        ...finale.forceFacts, finale.witnesses.silencedFlag]),
+    };
+  }
+  POLICY_FACTS.set(chapterId, facts);
+  return facts;
+}
+
+/**
+ * The answer a scenario gives at a dialogue step: the judgement's intent, an explicit answer, else the first open answer
+ * that records a fact of its preference. An answer the dialogue view would refuse is never chosen; a contested answer is
+ * chosen only while it is open.
+ */
+export function chooseAnswer(state: GameState, scenario: PlateauScenario, sequence: DialogueSequence, stepId: string,
+  choices: readonly DialogueChoice[]): DialogueChoice {
+  const open = choices.filter((choice) => !isChoiceBlocked(choice, state));
+  if (!open.length) throw new Error(`No available answer in ${sequence.id}:${stepId}`);
+  const finaleChoice = open.find((choice) => choosesIntent(choice, scenario.intent));
+  if (finaleChoice) return finaleChoice;
+  const wanted = scenario.answers?.[sequence.id];
+  if (wanted) {
+    const answer = open.find((choice) => flagsSetBy(choice).includes(wanted));
+    if (!answer) throw new Error(`${sequence.id}: no available answer records '${wanted}'`);
+    return answer;
+  }
+  const { merits, greed } = policyFacts(runPlateauId(state));
+  const preferred = scenario.prefer === 'merit' ? merits : greed;
+  return open.find((choice) => flagsSetBy(choice).some((flag) => preferred.has(flag))) ?? open[0]!;
+}
+
+/** A fork whose branches share no prefix (the final act's): the event for merit, the fight for greed. */
+function forkByType(state: GameState, scenario: PlateauScenario, nodeIds: readonly string[], key: string): string {
+  const branches = selectPoiMap(state).nodes.filter((node) => node.canMove && nodeIds.includes(node.id));
+  const wanted = scenario.forks?.[key] ?? (scenario.prefer === 'merit' ? 'event' : 'combat');
+  return branches.find((node) => node.kind === wanted || (wanted === 'combat' && node.kind === 'elite'))?.id
+    ?? branches.find((node) => (wanted === 'event') === (node.kind !== 'combat'))?.id ?? branches[0]!.id;
+}
+
+/** A fork: the first branch RunSystem lets the company move to that the scenario's policy would take. */
+function forkBranch(state: GameState, scenario: PlateauScenario, prefix: string): string {
+  const branches = selectPoiMap(state).nodes.filter((node) => node.canMove && node.id.startsWith(prefix)).map((node) => node.id);
+  const event = branches.find((id) => id.endsWith('-event'));
+  const combat = branches.find((id) => id.endsWith('-combat'));
+  const wanted = scenario.forks?.[prefix.replace(/-$/, '')] ?? (scenario.prefer === 'merit' ? 'event' : 'combat');
+  return (wanted === 'event' ? event : combat) ?? branches[0]!;
+}
+
+/** The POI a route step names for this scenario: the step's own POI, or the branch it takes at a fork. */
+function stepPoi(state: GameState, scenario: PlateauScenario, step: string | readonly string[]): string {
+  if (Array.isArray(step)) return forkByType(state, scenario, step, 'finale-fork');
+  return (step as string).endsWith('-trial') ? forkBranch(state, scenario, `${step}-`) : step as string;
+}
+
+/** The route POI a scenario moves to next on the map of the current chapter, or null once the route is resolved. */
+export function nextRoutePoi(state: GameState, scenario: PlateauScenario): string | null {
+  const chapterId = runPlateauId(state);
+  const step = playOrder(state, chapterId).find((candidate) => !stepResolved(state, candidate));
+  return step === undefined ? null : stepPoi(state, scenario, step);
 }
 
 class PlateauDriver {
@@ -90,72 +176,17 @@ class PlateauDriver {
   readonly decisions: PlateauPlaythrough['decisions'] = [];
   readonly fights: string[] = [];
   readonly configs: CombatConfig[] = [];
+  readonly reputationEvents: string[] = [];
+  readonly visited: string[] = [];
   private pendingCombatId: string | null = null;
-  private readonly merits: ReadonlySet<string>;
-  private readonly greed: ReadonlySet<string>;
 
-  constructor(private readonly state: GameState, private readonly scenario: PlateauScenario,
-    private readonly chapterId: DrivenChapterId) {
-    if (chapterId === 'finale') {
-      // The final act has no judgement: its consequence map's honour and force options name the facts of each policy.
-      const options = finaleMap.majorChoices.flatMap((choice) => choice.options);
-      this.merits = new Set(options.filter((option) => option.path === 'honour').flatMap((option) => option.sets));
-      this.greed = new Set(options.filter((option) => option.path === 'force').flatMap((option) => option.sets));
-      return;
-    }
-    const finale = plateauFinaleOf(chapterId)!;
-    this.merits = new Set([...finale.deeds.filter((deed) => deed.kind === 'merit').map((deed) => deed.flag),
-      finale.honourFact, finale.witnesses.supportiveFlag, finale.evidence.flag]);
-    this.greed = new Set([...finale.deeds.filter((deed) => deed.kind !== 'merit').map((deed) => deed.flag),
-      ...finale.forceFacts, finale.witnesses.silencedFlag]);
-  }
+  constructor(private readonly state: GameState, private readonly scenario: PlateauScenario) {}
 
-  private choose(sequence: DialogueSequence, stepId: string, choices: readonly DialogueChoice[]): DialogueChoice {
-    const open = choices.filter((choice) => available(choice, this.state));
-    if (!open.length) throw new Error(`No available answer in ${sequence.id}:${stepId}`);
-    const finaleChoice = open.find((choice) => choice.effects.some((effect) =>
-      effect.type === 'resolvePlateauFinale' && effect.intent === this.scenario.intent));
-    if (finaleChoice) return finaleChoice;
-    const wanted = this.scenario.answers?.[sequence.id];
-    if (wanted) {
-      const answer = open.find((choice) => flagsSetBy(choice).includes(wanted));
-      if (!answer) throw new Error(`${sequence.id}: no available answer records '${wanted}'`);
-      return answer;
-    }
-    const preferred = this.scenario.prefer === 'merit' ? this.merits : this.greed;
-    return open.find((choice) => flagsSetBy(choice).some((flag) => preferred.has(flag))) ?? open[0]!;
-  }
-
+  /** As GameApp: the state change is the game's own; a fight an effect names waits for the dialogue's end. */
   private applyEffects(effects: readonly NarrativeEffect[]): void {
     for (const effect of effects) {
-      switch (effect.type) {
-        case 'setFlag': this.state.flags[effect.key] = effect.value; break;
-        case 'addGold':
-          if (effect.amount >= 0) creditRunReward(this.state, { gold: effect.amount });
-          else this.state.gold = Math.max(0, this.state.gold - Math.abs(effect.amount));
-          break;
-        case 'addReputation': changeReputation(this.state, effect.amount, 'narrative'); break;
-        case 'addItem':
-          creditRunReward(this.state, { category: getItemCategory(effect.itemId) ?? 'consumables', itemId: effect.itemId, quantity: effect.quantity });
-          break;
-        case 'startCombat': this.pendingCombatId = effect.combatId; break;
-        case 'setClanRelation': setClanRelation(this.state, effect.clan, effect.stance, effect.cause); break;
-        case 'resolvePlateauFinale': {
-          const finale = plateauFinaleOf(effect.plateauId)!;
-          const existing = resolvePendingPlateauFinaleCombat(finale, this.state.flags);
-          if (existing) { this.pendingCombatId = existing; break; }
-          const execution = resolvePlateauFinaleExecution(finale, this.state, effect.intent);
-          Object.assign(this.state.flags, execution.flagChanges);
-          if (execution.reputationDelta) changeReputation(this.state, execution.reputationDelta, `${effect.plateauId}-finale`);
-          this.pendingCombatId = execution.combatId;
-          break;
-        }
-        case 'completePlateau': completePlateauChronicle(this.state, effect.plateauId); break;
-        case 'completeEpilogue': completeCampaignEnding(this.state); break;
-        // OD-2026-11-11-F (F2): a hero met in a plateau joins as in the game, under the same recruitment rule.
-        case 'recruitUnit': if (canRecruit(this.state, effect.unitId)) this.state.clan.members.push(createRecruitInstance(effect.unitId)); break;
-        default: throw new Error(`The Bear driver does not expect a '${effect.type}' effect.`);
-      }
+      const outcome = applyNarrativeEffect(this.state, effect);
+      if (outcome.combatId !== undefined) this.pendingCombatId = outcome.combatId;
     }
   }
 
@@ -171,10 +202,12 @@ class PlateauDriver {
       this.applyEffects(step.effects);
       let next = step.next;
       if (step.choices?.length) {
-        const choice = this.choose(sequence, step.id, step.choices);
+        const choice = chooseAnswer(this.state, this.scenario, sequence, step.id, step.choices);
         this.decisions.push({ dialogueId, stepId: step.id, text: choice.text });
-        this.applyEffects(choice.effects);
-        next = choice.next;
+        const outcome = resolveContestOutcome(choice, this.state);
+        if (outcome.type === 'blocked') throw new Error(`${dialogueId}:${step.id}: the chosen answer is refused`);
+        this.applyEffects(outcome.effects);
+        next = outcome.next;
       }
       step = next ? sequence.steps.find((candidate) => candidate.id === next) : undefined;
     }
@@ -185,30 +218,42 @@ class PlateauDriver {
     const playable = playableCombatConfig(combatId);
     if (!playable) throw new Error(`Missing fight '${combatId}'`);
     const config = finalActCombatConfig(this.state, playable);
-    if (config.preCombatDialogueId) this.playDialogue(config.preCombatDialogueId);
+    if (config.preCombatDialogueId) {
+      this.playDialogue(config.preCombatDialogueId);
+      if (this.pendingCombatId) { this.flush(node); return; }
+    }
     this.fights.push(combatId);
     this.configs.push(config);
+    // As GameApp: a Tournament fight belongs to the board, the Fear ending's last stand to the epilogue, not to the map.
+    const onBoard = isTournamentNodeId(node.id);
+    const inEpilogue = isEpilogueCombat(combatId);
+    if (!onBoard && !inEpilogue) this.state.currentNodeId = node.id;
     creditRunReward(this.state, { gold: config.rewards.gold });
     for (const [itemId, quantity] of Object.entries(config.rewards.materials ?? {})) {
       creditRunReward(this.state, { category: 'materials', itemId, quantity });
     }
     changeReputation(this.state, config.rewards.reputation, `combat:${combatId}`);
     Object.assign(this.state.flags, combatVictoryFacts(combatId));
-    // As GameApp: the Fear ending's last stand belongs to the epilogue, after the run has ended (Lot 5).
-    if (isEpilogueCombat(combatId)) return;
-    // As GameApp: a Tournament fight belongs to the board, not to the map.
-    if (!isTournamentNodeId(node.id)) this.markResolved(node.id);
+    if (inEpilogue) return;
+    if (!onBoard) this.markResolved(node.id);
     if (node.type === 'boss') {
       this.state.run.status = 'completed';
       secureRunLoot(this.state);
-      if (config.postCombatDialogueId) this.playDialogue(config.postCombatDialogueId);
+      if (config.postCombatDialogueId) {
+        this.playDialogue(config.postCombatDialogueId);
+        if (this.pendingCombatId) { this.flush(node); return; }
+      }
       this.scenario.beforeClosing?.(this.state);
       this.playDialogue(plateauEpilogueDialogueId(this.state));
       this.playEpilogue(node);
       return;
     }
-    if (config.postCombatDialogueId) this.playDialogue(config.postCombatDialogueId);
-    this.flush(node);
+    if (config.postCombatDialogueId) {
+      this.playDialogue(config.postCombatDialogueId);
+      if (this.pendingCombatId) { this.flush(node); return; }
+    }
+    // A Tournament fight returns to the board, which names the next step itself.
+    if (!onBoard) this.postNode(node);
   }
 
   /** As GameApp (Lot 5): each epilogue step RunSystem names, until the chronicle closes. */
@@ -222,20 +267,66 @@ class PlateauDriver {
     throw new Error('The epilogue did not close.');
   }
 
-  private flush(node: RunNode): void {
+  /** The fight a dialogue named, as GameApp's flushPendingCombat. Returns true when one was fought. */
+  private flush(node: RunNode): boolean {
     const combatId = this.pendingCombatId;
     this.pendingCombatId = null;
-    if (combatId) this.fight(combatId, node);
+    if (!combatId) return false;
+    this.fight(combatId, node);
+    return true;
   }
 
   private markResolved(nodeId: string): void {
     if (!this.state.resolvedNodeIds.includes(nodeId)) this.state.resolvedNodeIds.push(nodeId);
   }
 
+  /** As GameApp's playPostNodeNarrative: the contextual scenes, then the reputation event, each of which may lead to a fight. */
   private postNode(node: RunNode): void {
-    for (const rule of resolveGameAteRules(node.id, this.state)) this.playDialogue(rule.dialogueId);
-    const event = selectGameReputationEvent(node.id, this.state);
-    if (event?.selectedEvent) throw new Error(`A Lion reputation event fired at ${node.id}`);
+    for (const rule of resolveGameAteRules(node.id, this.state)) {
+      this.playDialogue(rule.dialogueId);
+      if (rule.once) this.state.flags[ateSeenFlag(rule)] = true;
+    }
+    if (this.flush(node)) return;
+    const selection = selectGameReputationEvent(node.id, this.state);
+    if (selection?.selectedEvent) {
+      this.playDialogue(selection.selectedEvent.dialogueId);
+      recordReputationEventSelection(this.state, selection);
+      this.reputationEvents.push(selection.selectedEvent.dialogueId);
+    }
+    this.flush(node);
+  }
+
+  /** As GameApp's resolveRunNode for an entered POI: a chest, a refuge, a fight, or its scene. */
+  resolveNode(node: RunNode): void {
+    const pendingFinale = node.type === 'boss' ? pendingPlateauFinaleCombat(this.state) : null;
+    if (node.type !== 'refuge' && !pendingFinale
+      && (this.state.resolvedNodeIds.includes(node.id) || isPoiNeutralized(this.state, node.id))) return;
+    if (node.type === 'chest') { createPoiChestAdapter()(this.state, node.id); return; }
+    if (node.type === 'refuge') {
+      const securedFlag = `refugeSecured:${node.id}`;
+      if (!this.state.flags[securedFlag]) {
+        if (getReputationRule(this.state.reputation).min >= 60) {
+          creditRunReward(this.state, { category: 'consumables', itemId: 'potion', quantity: 1 });
+        }
+        secureRunLoot(this.state);
+        this.state.flags[securedFlag] = true;
+      }
+      const gathering = resolveRefugePresentation(node)?.gatheringDialogueId;
+      if (gathering && !this.state.flags[`clanArrival:${node.id}`]) {
+        this.playDialogue(gathering);
+        this.state.flags[`clanArrival:${node.id}`] = true;
+      }
+      this.markResolved(node.id);
+      this.postNode(node);
+      return;
+    }
+    if (node.type === 'shop') { this.markResolved(node.id); return; }
+    if (pendingFinale) { this.fight(pendingFinale, node); return; }
+    if ((node.type === 'combat' || node.type === 'boss') && anyCombatConfig(node.contentId)) { this.fight(node.contentId, node); return; }
+    this.playDialogue(node.contentId);
+    if (this.flush(node)) return;
+    this.markResolved(node.id);
+    this.postNode(node);
   }
 
   /** Arrives at a POI through RunSystem and resolves its content as GameApp routes it by type. */
@@ -244,7 +335,6 @@ class PlateauDriver {
     const entered = enterPoi(this.state, nodeId) ?? travelToResolvedPoi(this.state, nodeId);
     if (!entered) throw new Error(`RunSystem refused ${nodeId} from ${this.state.run.currentNodeId}`);
     this.state.currentNodeId = this.state.run.currentNodeId;
-    const node = getRunNode(this.state.run, nodeId)!;
     if ('interception' in entered && entered.interception) {
       const encounter = this.state.run.poiExpedition!.encounter!;
       const combatId = commitPoiEliteFight(this.state, encounter.id)!;
@@ -255,32 +345,22 @@ class PlateauDriver {
       this.visit(nodeId);
       return;
     }
-    // As GameApp: a resolved POI (refuges aside) is only a place to stand; its content never plays again.
-    if (node.type !== 'refuge' && this.state.resolvedNodeIds.includes(node.id)) return;
-    if (node.type === 'chest') { createPoiChestAdapter()(this.state, node.id); return; }
-    if (node.type === 'refuge') {
-      if (!this.state.flags[`refugeSecured:${node.id}`]) { secureRunLoot(this.state); this.state.flags[`refugeSecured:${node.id}`] = true; }
-      const gathering = POST_DEMO_REFUGE_GATHERINGS[this.chapterId]?.[node.id];
-      if (gathering && !this.state.flags[`clanArrival:${node.id}`]) {
-        this.playDialogue(gathering);
-        this.state.flags[`clanArrival:${node.id}`] = true;
-      }
-      this.markResolved(node.id);
-      this.postNode(node);
-      return;
-    }
-    if ((node.type === 'combat' || node.type === 'boss') && playableCombatConfig(node.contentId)) { this.fight(node.contentId, node); this.postNode(node); return; }
-    this.playDialogue(node.contentId);
-    if (this.pendingCombatId) { this.flush(node); this.postNode(node); return; }
-    this.markResolved(node.id);
-    this.postNode(node);
+    this.visited.push(nodeId);
+    // As GameApp: an arrival that activates nothing (a resolved POI, refuges aside) is only a place to stand.
+    if (!entered.activate) return;
+    this.resolveNode(entered.node);
   }
 
-  /** The plateau's first POI, played on arrival as GameApp plays it after the campaign continues. */
+  /** A post-demo plateau's first POI, played on arrival as GameApp plays it after the campaign continues. */
   arrive(): void {
-    const start = getRunNode(this.state.run)!;
-    this.playDialogue(start.contentId);
-    this.markResolved(start.id);
+    this.resolveNode(getRunNode(this.state.run)!);
+  }
+
+  /** As GameApp's opening once the prologue ends: the act's opening scene and the camp's departure, then the map. */
+  openLion(): void {
+    this.state.flags.prologueSeen = true;
+    this.playDialogue('acte_ouverture');
+    this.playDialogue(getRunNode(this.state.run)!.contentId);
   }
 
   /**
@@ -299,23 +379,6 @@ class PlateauDriver {
     }
     return true;
   }
-
-  /** A fork whose branches share no prefix (the final act's): the event for merit, the fight for greed. */
-  forkByType(nodeIds: readonly string[], key: string): string {
-    const branches = selectPoiMap(this.state).nodes.filter((node) => node.canMove && nodeIds.includes(node.id));
-    const wanted = this.scenario.forks?.[key] ?? (this.scenario.prefer === 'merit' ? 'event' : 'combat');
-    return branches.find((node) => node.kind === wanted || (wanted === 'combat' && node.kind === 'elite'))?.id
-      ?? branches.find((node) => (wanted === 'event') === (node.kind !== 'combat'))?.id ?? branches[0]!.id;
-  }
-
-  /** A fork: the first branch RunSystem lets the company move to that the scenario's policy would take. */
-  forkBranch(prefix: string): string {
-    const branches = selectPoiMap(this.state).nodes.filter((node) => node.canMove && node.id.startsWith(prefix)).map((node) => node.id);
-    const event = branches.find((id) => id.endsWith('-event'));
-    const combat = branches.find((id) => id.endsWith('-combat'));
-    const wanted = this.scenario.forks?.[prefix.replace(/-$/, '')] ?? (this.scenario.prefer === 'merit' ? 'event' : 'combat');
-    return (wanted === 'event' ? event : combat) ?? branches[0]!;
-  }
 }
 
 /** A Tournament entry as the place its fight and scenes happen (not a POI). */
@@ -323,9 +386,13 @@ function boardNode(entry: TournamentEntry): RunNode {
   return { id: entry.nodeId, type: 'combat', depth: 0, links: [], contentId: entry.combatId, label: entry.label, icon: '⚔', x: 0, z: 0 };
 }
 
-/** The route in play order: one entry per depth, a fork named by its common prefix (`bear-first-trial`) or its nodes. */
-function playOrder(chapterId: DrivenChapterId): (string | readonly string[])[] {
-  const route = requirePlateauCampaign(chapterId).topology.route ?? [];
+/**
+ * The route in play order, read from the run's own graph without its optional POIs: one entry per depth, a fork named
+ * by its common prefix (`bear-first-trial`) or its nodes.
+ */
+function playOrder(state: GameState, chapterId: DrivenChapterId): (string | readonly string[])[] {
+  const optional = new Set(requirePlateauCampaign(chapterId).optionalNodeIds);
+  const route = state.run.graph.nodes.filter((node) => !optional.has(node.id));
   const depths = [...new Set(route.map((node) => node.depth))].sort((a, b) => a - b).slice(1);
   return depths.map((depth) => {
     const nodes = route.filter((node) => node.depth === depth);
@@ -344,33 +411,83 @@ function chestsAfter(chapterId: DrivenChapterId): Record<string, string> {
   }));
 }
 
-/**
- * Plays a plateau from the completed run of the previous one to its epilogue under a scenario, or up to (not into)
- * `stopBefore`, which leaves a mid-plateau state to save and resume.
- */
-export function playPlateau(chapterId: DrivenChapterId, previousEnd: GameState, scenario: PlateauScenario, seed = 20261108,
-  stopBefore?: string): PlateauPlaythrough {
-  const state = structuredClone(previousEnd);
-  if (!continueCampaign(state, seed)) throw new Error(`The campaign did not continue into ${chapterId}.`);
-  if (!state.run.id.startsWith(`${chapterId}-`)) throw new Error(`The campaign continued into ${state.run.id}, not ${chapterId}.`);
-  const reputationStart = state.reputation;
-  const driver = new PlateauDriver(state, scenario, chapterId);
+/** A route step the saved state already resolved: its POI, or one branch of its fork. */
+function stepResolved(state: GameState, step: string | readonly string[]): boolean {
+  const ids = Array.isArray(step) ? step : [step as string, `${step}-event`, `${step}-combat`];
+  return ids.some((id) => state.resolvedNodeIds.includes(id));
+}
+
+/** Walks the chapter's route past the steps already resolved, up to (not into) `stopBefore`. */
+function walkRoute(driver: PlateauDriver, state: GameState, chapterId: DrivenChapterId, scenario: PlateauScenario, stopBefore?: string): void {
   const chests = chestsAfter(chapterId);
-  const done = (): PlateauPlaythrough => ({ state, lines: driver.lines, decisions: driver.decisions, fights: driver.fights,
-    configs: driver.configs, reputationStart });
-  // The final act opens on its Tournament; the capital's first POI follows once the arena is left.
-  if (chapterId === 'finale' && !driver.playTournament(stopBefore)) return done();
-  driver.arrive();
-  for (const step of playOrder(chapterId)) {
+  for (const step of playOrder(state, chapterId)) {
     if (step === stopBefore || (Array.isArray(step) && step.includes(stopBefore ?? ''))) break;
-    const nodeId = Array.isArray(step) ? driver.forkByType(step, 'finale-fork')
-      : (step as string).endsWith('-trial') ? driver.forkBranch(`${step}-`) : step as string;
-    driver.visit(nodeId);
+    if (stepResolved(state, step)) continue;
+    driver.visit(stepPoi(state, scenario, step));
     const chest = typeof step === 'string' ? chests[step] : undefined;
     if (chest && scenario.guardianChests?.includes(chest)) {
       driver.visit(chest);
       driver.visit(step as string);
     }
   }
-  return done();
+}
+
+/** The chapter as it stands when GameApp next returns to the campaign surface and saves: the map settled first. */
+function playthrough(driver: PlateauDriver, state: GameState, reputationStart: number): PlateauPlaythrough {
+  settlePoiNavigation(state);
+  return { state, lines: driver.lines, decisions: driver.decisions, fights: driver.fights, configs: driver.configs,
+    reputationEvents: driver.reputationEvents, visited: driver.visited, reputationStart };
+}
+
+/**
+ * Plays the Lion from a new chronicle, as GameApp starts one, to its epilogue under a scenario, or up to (not into)
+ * `stopBefore`. The finished state is the one GameApp saves as the chronicle ends; the Bear continues from it.
+ */
+export function playLion(scenario: PlateauScenario, seed = 20261113, stopBefore?: string): PlateauPlaythrough {
+  const state = createInitialState();
+  const run = createRunState(seed);
+  Object.assign(state, { run, currentNodeId: run.currentNodeId, visitedNodeIds: [...run.visitedNodeIds] });
+  const reputationStart = state.reputation;
+  const driver = new PlateauDriver(state, scenario);
+  driver.openLion();
+  walkRoute(driver, state, 'lion', scenario, stopBefore);
+  return playthrough(driver, state, reputationStart);
+}
+
+/**
+ * Plays a post-demo chapter from the completed run of the previous one to its epilogue under a scenario, or up to (not
+ * into) `stopBefore`, which leaves a mid-plateau state to save and resume.
+ */
+export function playPlateau(chapterId: Exclude<DrivenChapterId, 'lion'>, previousEnd: GameState, scenario: PlateauScenario, seed = 20261108,
+  stopBefore?: string): PlateauPlaythrough {
+  const state = structuredClone(previousEnd);
+  if (!continueCampaign(state, seed)) throw new Error(`The campaign did not continue into ${chapterId}.`);
+  if (!state.run.id.startsWith(`${chapterId}-`)) throw new Error(`The campaign continued into ${state.run.id}, not ${chapterId}.`);
+  const reputationStart = state.reputation;
+  const driver = new PlateauDriver(state, scenario);
+  // The final act opens on its Tournament; the capital's first POI follows once the arena is left.
+  if (chapterId === 'finale' && !driver.playTournament(stopBefore)) return playthrough(driver, state, reputationStart);
+  driver.arrive();
+  walkRoute(driver, state, chapterId, scenario, stopBefore);
+  return playthrough(driver, state, reputationStart);
+}
+
+/**
+ * Resumes a chapter from a state saved mid-route (a reload of `playPlateau(…, stopBefore)` or `playLion(…, stopBefore)`),
+ * as GameApp's resumeSavedCampaign does: an unresolved current POI (or a selected finale boss) plays first, then the
+ * route goes on from the first step the save has not resolved, with the same scenario.
+ */
+export function resumeChapter(chapterId: DrivenChapterId, saved: GameState, scenario: PlateauScenario): PlateauPlaythrough {
+  const state = structuredClone(saved);
+  const reputationStart = state.reputation;
+  const driver = new PlateauDriver(state, scenario);
+  if (chapterId === 'finale' && !driver.playTournament()) return playthrough(driver, state, reputationStart);
+  const current = getRunNode(state.run);
+  if (current && (current.depth > 0 || chapterId !== 'lion')
+    && (pendingPlateauFinaleCombat(state) !== null || (!state.resolvedNodeIds.includes(current.id)
+      && !isPoiNeutralized(state, current.id) && !state.run.bypassedRouteNodeIds?.includes(current.id)))) {
+    driver.resolveNode(current);
+  }
+  walkRoute(driver, state, chapterId, scenario);
+  return playthrough(driver, state, reputationStart);
 }
