@@ -22,6 +22,7 @@
 Validations de l'opérateur dans cette session :
 - **C3 et C4.** À « Valides-tu les quatre nouvelles attaques lourdes et le Démon, comme dans le brouillon ? », il a répondu « Yes, all four ».
 - **Démon de la brèche.** Il a signalé : « le demon semble prendre beaucoup de place sur la zone de tuile ( il depasse sa zone ) », puis « si c'est un demon qui se deplace sur la grid combat il est trop large ou sinon son sprite n'est pas suffisamment optimale ».
+- **Bête corrompue.** À « Renommer l'arme de la Bête corrompue en « Charge » ? », il a répondu « Yes, « Charge » ».
 
 ## Ce qui change en jeu
 
@@ -50,7 +51,11 @@ Validations de l'opérateur dans cette session :
    - Transpercement et Gel ;
    - Pluie de Flèches et Sceau de Lien ;
    - Vague de Flammes, qui prend des braises d'ombre pour ne plus ressembler au souffle des dragons.
-7. **Démon de la brèche.** Il est recentré sur sa case et un peu plus bas (2,2 → 1,95).
+7. **Bête corrompue.** Elle combat avec « Charge » ◆ au lieu de « Griffes », comme son image (cornes et sabots).
+   - Statistiques et portée identiques.
+   - Effet de coup de bélier du sanglier. Le son au lancement ne change pas ; la marque sonore à l'impact suit l'effet (coup lourd, terre).
+   - Le test arme/image couvre maintenant les 38 unités, sans exception.
+8. **Démon de la brèche.** Il est recentré sur sa case et un peu plus bas (2,2 → 1,95).
    - L'ancre de ses pieds passe entre ses deux pieds, au lieu de rester sous la griffe la plus basse.
    - Sa silhouette passe de 1,6 à 1,4 case de large, le centre à 3 px de l'ancre au lieu de 22.
 
@@ -87,9 +92,11 @@ Validations de l'opérateur dans cette session :
 | L'arène en flammes | Le Démon joue Gel en manche 2 ; son kit est Gel + Frappe du Titan | normal |
 
 - **Console** : aucune erreur.
+- **Bête corrompue** : « Charge » ◆ lu dans l'état du jeu. En quatre manches, elle a joué Onde de Choc puis gardé sa CHARGE, sans attaque de base.
 - **Non vu en jeu :**
   - l'attaque de base « Dagues du Corbeau », faute de héros à portée ; l'égalité des recettes est testée ;
-  - la Frappe du Titan du Démon en manche 4 ; c'est un ultime existant, déjà vu chez Borin.
+  - la Frappe du Titan du Démon en manche 4 ; c'est un ultime existant, déjà vu chez Borin ;
+  - l'attaque de base « Charge » de la Bête corrompue ; l'effet est celui du sanglier, fixé par un test.
 
 ## Vérifications
 
@@ -110,6 +117,5 @@ Validations de l'opérateur dans cette session :
 
 ## Ouvert
 
-- **La Bête corrompue** combat avec « Griffes », alors que son image montre des cornes et des sabots. Proposition : « Charge », un nom d'arme existant, avec l'effet de coup de bélier. Elle est en attente de l'opérateur ; le test arme/image la garde en exception.
 - **Le libellé « PURIFIÉ »**, en vert, s'affiche quand Serment rompu retire les protections d'un héros. C'est le libellé existant de la dissipation, le même que pour Casse-Faille. Un libellé propre, par exemple « DISSIPÉ », demanderait un texte nouveau, donc l'accord de l'opérateur.
 - **Les boss larges débordent de leurs 2×2** jusqu'à 1,5 à 1,6 fois, comme le Général Serpent de la démo, qui fait référence. Rien n'est changé sans retour de l'opérateur.
