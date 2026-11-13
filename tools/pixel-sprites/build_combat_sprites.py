@@ -112,7 +112,9 @@ MASTER_ONLY = {
     'raven_champion': ('post-demo/finale/raven_champion.png', 4.0),
     'phoenix_champion': ('post-demo/finale/phoenix_champion.png', 4.0),
     'demon_brute': ('post-demo/finale/demon_brute.png', 3.4),
-    'breach_demon': ('post-demo/finale/breach_demon.png', 2.2),
+    # The breach demon, crouched with long arms and claws spread, stands a little lower than a man so that it keeps to
+    # its single cell (operator, 2026-11-13: « il dépasse sa zone »).
+    'breach_demon': ('post-demo/finale/breach_demon.png', 1.95),
     'finale_civilian': ('post-demo/finale/finale_civilian.png', 2.05),
     'finale_citizen': ('post-demo/finale/finale_citizen.png', 2.05),
 }
@@ -314,6 +316,12 @@ def feet_anchor(rgba: np.ndarray) -> tuple[float, float]:
     return float(xs[band].mean()), float(bottom + 1)
 
 
+# Feet point corrections, in master pixels: the feet anchor is the centre of the lowest pixels, and a crouched stance whose
+# lowest pixels are one foot only puts it under that foot. The breach demon's left foot reaches lowest (master x 142-200,
+# right foot 278-346): its anchor moves between both feet, so the demon stands centred on its cell (operator, 2026-11-13).
+ANCHOR_SHIFT_MASTER_PX = {'breach_demon': 71.0}
+
+
 def build_posed_final(unit_id: str, unit: dict) -> tuple[np.ndarray, dict]:
     """A unit whose master is its prepare pose and whose dash, attack and cast were generated (OD-2026-11-13-A), stored by
     tools/pixel-sprites/normalize_combat_poses.py at its master's scale. It keeps the height of its former master-only
@@ -329,6 +337,8 @@ def build_posed_final(unit_id: str, unit: dict) -> tuple[np.ndarray, dict]:
         rgba = np.asarray(Image.open(ROOT / p['src']).convert('RGBA'), dtype=np.float32) / 255.0
         frames[pose] = clean_specks(binarize(downscale(rgba, f)))
         anchors[pose] = (p['anchor'][0] * f, p['anchor'][1] * f)
+    shift = ANCHOR_SHIFT_MASTER_PX.get(unit_id, 0.0) * factor
+    anchors = {pose: (x + shift, y) for pose, (x, y) in anchors.items()}
     sheet, cell = assemble(frames, anchors)
     alias = '/' + Path(unit['master']).relative_to('public').as_posix()
     entry = {

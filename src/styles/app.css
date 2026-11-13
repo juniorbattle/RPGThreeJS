@@ -2683,6 +2683,11 @@ button:disabled { cursor: not-allowed; opacity: .35; }
 .journey-overlay__header { min-width:0; }
 .journey-overlay--single { place-items:end end; }
 .journey-overlay--single .journey-overlay__panel { width:min(440px,100%); padding:12px 14px; }
+/* A chapter's or the chronicle's end: a compact card centred under the company, not a full-width band (operator, 2026-11-13). */
+.journey-overlay--terminal .journey-overlay__panel { width:min(500px,100%); padding:14px 22px 16px; text-align:center; }
+.journey-overlay--terminal .journey-overlay__caption { max-width:44ch; margin-inline:auto; }
+.journey-overlay--terminal .journey-overlay__choices { grid-template-columns:minmax(min(100%,280px),max-content); justify-content:center; margin-top:12px; }
+.journey-overlay--terminal .journey-overlay__choice--continue { min-height:40px; padding:8px 18px; }
 .journey-overlay--branch .journey-overlay__panel { width:100%; max-height:none; overflow:visible; padding:0; border:0; background:transparent; box-shadow:none; backdrop-filter:none; }
 .journey-overlay--branch .journey-overlay__header { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 .journey-overlay__eyebrow { margin:0 0 5px; color:#72c7ff; font:700 9px Cinzel,serif; letter-spacing:.18em; text-transform:uppercase; }

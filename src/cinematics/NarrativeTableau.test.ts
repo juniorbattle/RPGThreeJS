@@ -41,6 +41,24 @@ describe('Narrative Tableau presentation data', () => {
     }
   });
 
+  it('ends the final act without Maelor, who betrayed at the Tournament and fled through the breach (OD-2026-11-13-F, Q1)', () => {
+    const end = resolveNarrativeBoundaryTableau('node:finale-breach:arrival')!;
+    expect(end.cast.visualActors).toEqual(['alistair', 'sage_seraphine']);
+    expect(end.cast.eventActors).not.toContain('maelor');
+    expect(end.cast.justifiedOffscreen.map((actor) => actor.actorId)).toEqual(['maelor']);
+    expect(Object.keys(end.sceneCastPlacement!)).toEqual(['alistair', 'sage_seraphine']);
+    expect(end.phases?.length).toBeGreaterThan(0);
+    for (const phase of end.phases ?? []) {
+      expect(phase.staticCast.map((actor) => actor.actorId)).toEqual(['alistair', 'sage_seraphine']);
+      expect(phase.mediaSubjects).not.toContain('maelor');
+    }
+    // The Seal plateaux still end with the intendant beside the company, as the Lion does.
+    for (const node of ['bear-judgement', 'dragon-judgement', 'scorpion-judgement']) {
+      expect(resolveNarrativeBoundaryTableau(`node:${node}:arrival`)!.cast.visualActors).toEqual(CHRONICLE_END_TABLEAU.cast.visualActors);
+    }
+    expect(CHRONICLE_END_TABLEAU.cast.visualActors).toContain('maelor');
+  });
+
   it('keeps the post-audience company departure on its static tableau', () => {
     expect(AUDIENCE_ROAD_DEPARTURE_TABLEAU).toMatchObject({
       grammar: 'DEPARTURE',

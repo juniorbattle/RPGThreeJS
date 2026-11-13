@@ -1,31 +1,29 @@
 import { combatConfigs } from './content';
 import { createInitialState, SaveRepository } from './store';
 import type { CombatConfig, CombatResult, DialogueSequence, GameState, NarrativeEffect, RunNode, UnitInstance } from './types';
-import { createRecruitInstance, createUnitInstance, getItemCategory, toCombatant, itemById } from './catalog';
+import { createUnitInstance, toCombatant, itemById } from './catalog';
 import { applyCombatProgress } from './combatProgress';
+import { applyNarrativeEffect } from './narrativeEffects';
 import {
   creditRunReward, enterRunNode,
   getAvailableRunNodes, getRunNode, secureRunLoot, travelToResolvedPoi,
   selectPoiMap, enterPoi, bypassPoi, isPoiNeutralized, settlePoiNavigation,
   commitPoiEliteFight, resolvePoiEliteVictory, runNodesAllowedByCommitment, creditChallengePrime, challengeVerdict,
-  setClanRelation, topologyForRun, type ChallengeVerdict } from './runSystem';
+  topologyForRun, type ChallengeVerdict } from './runSystem';
 import { createPoiChestAdapter } from './poiContentAdapters';
 import { beginPoiEliteEncounter, retreatPoiElite } from './poiExpedition';
 import { areLionFinalRefugeServicesOpen } from '../campaign/LionFinalRefugeServices';
 import { PoiEncounterView } from '../ui/PoiEncounterView';
 import { changeReputation, getReputationRule } from './reputation';
-import { calibrateLionAmount } from './lionReputationCalibration';
 import { anyCombatConfig, playableCombatConfig } from './playableContent';
 import {
-  closeCurrentPlateau, combatVictoryFacts, completePlateauChronicle, continueCampaign, nextPlayablePlateau,
-  pendingPlateauFinaleCombat, plateauEpilogueDialogueId, plateauFinaleOf, runPlateauId,
+  combatVictoryFacts, continueCampaign, nextPlayablePlateau,
+  pendingPlateauFinaleCombat, plateauEpilogueDialogueId, runPlateauId,
 } from './plateauProgression';
-import { resolvePlateauFinaleExecution, resolvePendingPlateauFinaleCombat } from './plateauFinale';
 import { isDraftContent, POST_DEMO_COMBATS } from './postDemoContent';
 import { loadBearEndForDragonQa, loadDragonEndForScorpionQa, loadEpilogueStartQa, loadLionEndForBearQa, loadScorpionEndForFinaleQa } from '../qa/postDemoQaSaves';
 import { CampaignStatusHud, selectCampaignStatus } from '../ui/CampaignStatusHud';
 import { resolveCharacterUnitId } from '../render/CharacterVisualRegistry';
-import { resolveLionFinaleExecution, resolveSelectedLionFinaleCombat } from './lionFinale';
 import { ateSeenFlag } from './contextualDialogue';
 import { resolveGameAteRules, resolveGameDialogue } from './contextualDialogueContent';
 import { selectGameReputationEvent } from './reputationEventContent';
@@ -40,7 +38,7 @@ import { ManagementView } from '../ui/ManagementView';
 import { PoiMapView } from '../ui/PoiMapView';
 import { openTournamentBoard } from '../ui/TournamentBoardView';
 import {
-  completeCampaignEnding, finalActCombatConfig, isEpilogueCombat, isTournamentComplete, isTournamentNodeId, nextEpilogueStep,
+  finalActCombatConfig, isEpilogueCombat, isTournamentComplete, isTournamentNodeId, nextEpilogueStep,
   nextTournamentStep, tournamentBoard, tournamentEntryOfCombat, type EpilogueStep,
 } from './finalAct';
 import { chronicleEndWords, type ChronicleEndWords } from './chronicleEndWords';
@@ -54,7 +52,7 @@ import { prefersReducedMotion } from '../ui/ReducedMotion';
 import type { LivingScript } from '../ui/living/LivingTableauPlayer';
 import { CREDITS_LINES, hasCredits } from '../ui/credits';
 import { RefugeHireView } from '../ui/RefugeHireView';
-import { canRecruit, hireAtRefuge, refugeHireOffers } from './refugeRecruitment';
+import { hireAtRefuge, refugeHireOffers } from './refugeRecruitment';
 import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
 import { readMotionPreference, writeMotionPreference } from '../ui/MotionPreference';
@@ -1753,93 +1751,18 @@ export class GameApp {
     return false;
   }
 
+  /**
+   * The state change belongs to `applyNarrativeEffect` (game truth); GameApp keeps the effect's delay, the fight held until
+   * the dialogue ends, the chapter beat it shows and the save at a durable route selection.
+   */
   private async applyEffects(effects: NarrativeEffect[]): Promise<void> {
     for (const effect of effects) {
       if (effect.delayMs) await new Promise((resolve) => window.setTimeout(resolve, effect.delayMs));
-      switch (effect.type) {
-        case 'setFlag':
-          this.state.flags[effect.key] = effect.value;
-          break;
-        case 'addGold':
-          if (effect.amount >= 0) {
-            creditRunReward(this.state, { gold: effect.amount });
-          } else {
-            const cost = Math.abs(effect.amount);
-            this.state.gold = Math.max(0, this.state.gold - cost);
-          }
-          break;
-        case 'addReputation':
-          changeReputation(this.state, effect.amount, 'narrative');
-          break;
-        case 'addItem':
-          {
-            const category = getItemCategory(effect.itemId) ?? 'consumables';
-            creditRunReward(this.state, {
-              category,
-              itemId: effect.itemId,
-              quantity: effect.quantity,
-            });
-          }
-          break;
-        case 'recruitUnit':
-          // OD-2026-11-11-F (F2): eight recruitable heroes, two per plateau; refugeRecruitment.ts owns the rule.
-          if (canRecruit(this.state, effect.unitId)) this.state.clan.members.push(createRecruitInstance(effect.unitId));
-          break;
-        case 'startCombat':
-          this.pendingCombatId = effect.combatId;
-          break;
-        case 'resolveLionFinale':
-          {
-            const existingCombat = resolveSelectedLionFinaleCombat(this.state.flags);
-            if (existingCombat) {
-              this.pendingCombatId = existingCombat;
-              break;
-            }
-            const execution = resolveLionFinaleExecution(this.state, effect.intent);
-            Object.assign(this.state.flags, execution.flagChanges);
-            if (execution.reputationDelta !== 0) {
-              changeReputation(this.state, calibrateLionAmount({ kind: 'finale', amount: execution.reputationDelta }), `lion-finale:${execution.trialCause ?? execution.route}`);
-            }
-            this.pendingCombatId = execution.combatId;
-            // Route selection is a durable boundary. A reload can now resume
-            // the selected boss without replaying judgement or its effects.
-            this.saves.saveAuto(this.state);
-          }
-          break;
-        case 'finishChapter':
-          this.state.endingId = effect.endingId;
-          this.pendingChapterBeatId = effect.endingId;
-          // Set 1.20.0: RunSystem records the Lion's outcome and relations as the chronicle ends.
-          closeCurrentPlateau(this.state);
-          break;
-        case 'setClanRelation':
-          setClanRelation(this.state, effect.clan, effect.stance, effect.cause);
-          break;
-        case 'resolvePlateauFinale':
-          {
-            const finale = plateauFinaleOf(effect.plateauId);
-            if (!finale) throw new Error(`No finale for plateau '${effect.plateauId}'.`);
-            const existingCombat = resolvePendingPlateauFinaleCombat(finale, this.state.flags);
-            if (existingCombat) {
-              this.pendingCombatId = existingCombat;
-              break;
-            }
-            const execution = resolvePlateauFinaleExecution(finale, this.state, effect.intent);
-            Object.assign(this.state.flags, execution.flagChanges);
-            if (execution.reputationDelta !== 0) {
-              changeReputation(this.state, execution.reputationDelta, `${effect.plateauId}-finale:${execution.trialCause ?? execution.route}`);
-            }
-            this.pendingCombatId = execution.combatId;
-            this.saves.saveAuto(this.state);
-          }
-          break;
-        case 'completePlateau':
-          completePlateauChronicle(this.state, effect.plateauId);
-          break;
-        case 'completeEpilogue':
-          completeCampaignEnding(this.state);
-          break;
-      }
+      const outcome = applyNarrativeEffect(this.state, effect);
+      if (outcome.combatId !== undefined) this.pendingCombatId = outcome.combatId;
+      if (outcome.chapterBeatId !== undefined) this.pendingChapterBeatId = outcome.chapterBeatId;
+      // Route selection is a durable boundary. A reload can now resume the selected boss without replaying judgement or its effects.
+      if (outcome.saveNow) this.saves.saveAuto(this.state);
     }
   }
 
@@ -2002,7 +1925,11 @@ export class GameApp {
     }
     const combatConfig = anyCombatConfig(result.combatId);
     if (combatConfig?.postCombatDialogueId) {
-      await this.playDialogue(combatConfig.postCombatDialogueId, node.label);
+      // OD-2026-11-13-F (Q1, full playthrough): a Tournament fight's aftermath is also its board step. Won live, it opens
+      // live here, so the betrayal after the final plays its approved moment; the board step stays for a resume.
+      const live = onBoard && this.liveBoardDialogueId === combatConfig.postCombatDialogueId;
+      if (live) this.liveBoardDialogueId = null;
+      await this.playDialogue(combatConfig.postCombatDialogueId, node.label, live ? { live: true } : {});
       if (this.pendingCombatId) {
         await this.flushPendingCombat(node);
         return;
