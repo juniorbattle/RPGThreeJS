@@ -1925,7 +1925,11 @@ export class GameApp {
     }
     const combatConfig = anyCombatConfig(result.combatId);
     if (combatConfig?.postCombatDialogueId) {
-      await this.playDialogue(combatConfig.postCombatDialogueId, node.label);
+      // OD-2026-11-13-F (Q1, full playthrough): a Tournament fight's aftermath is also its board step. Won live, it opens
+      // live here, so the betrayal after the final plays its approved moment; the board step stays for a resume.
+      const live = onBoard && this.liveBoardDialogueId === combatConfig.postCombatDialogueId;
+      if (live) this.liveBoardDialogueId = null;
+      await this.playDialogue(combatConfig.postCombatDialogueId, node.label, live ? { live: true } : {});
       if (this.pendingCombatId) {
         await this.flushPendingCombat(node);
         return;

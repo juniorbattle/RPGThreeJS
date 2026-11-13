@@ -47,7 +47,7 @@ interface Owner {
 }
 
 interface Trace {
-  dialogues: { chapter: string; id: string }[];
+  dialogues: { chapter: string; id: string; live: boolean }[];
   fights: { chapter: string; id: string }[];
   terminals: { chapter: string; title?: string; caption?: string; continueLabel?: string }[];
   firstScenes: string[];
@@ -66,8 +66,8 @@ function mountChronicle(plan: ChroniclePlan, lionEnd: GameState): { app: GameApp
   const trace: Trace = { dialogues: [], fights: [], terminals: [], firstScenes: [] };
   const chapter = () => runPlateauId(owner.state);
 
-  owner.playNarrativeDialogue = async (sequence) => {
-    trace.dialogues.push({ chapter: chapter(), id: sequence.id });
+  owner.playNarrativeDialogue = async (sequence, options) => {
+    trace.dialogues.push({ chapter: chapter(), id: sequence.id, live: Boolean((options as { live?: boolean }).live) });
     let step = sequence.steps[0];
     const seen = new Set<string>();
     while (step && !seen.has(step.id)) {
@@ -163,6 +163,12 @@ describe('GameApp after the Lion, from "Continuer" to the end panel (OD-2026-11-
           .toEqual(driven.chapters[chapterId].fights);
       }
       expect(trace.fights).toHaveLength(POST_LION_CHAPTERS.reduce((count, chapterId) => count + driven.chapters[chapterId].fights.length, 0));
+      // The approved moments open live: each plateau's arrival and outcome, the betrayal after the final, the epilogue's.
+      // A live opening is what plays a dialogue's moment (GameApp.playNarrativeDialogue): the betrayal and the epilogue.
+      const live = trace.dialogues.filter((entry) => entry.live).map((entry) => entry.id);
+      expect(live).toContain('finale_betrayal');
+      expect(live).toContain(plan.finale.prefer === 'merit' ? 'finale_epilogue_respect' : 'finale_epilogue_fear');
+      expect(live).toEqual(expect.arrayContaining(['bear_audience', 'dragon_audience', 'scorpion_audience']));
       // No presentation failure fell back silently (a Journey failure logs an error and restores the map).
       expect(errors).not.toHaveBeenCalled();
       const end = owner.state;
