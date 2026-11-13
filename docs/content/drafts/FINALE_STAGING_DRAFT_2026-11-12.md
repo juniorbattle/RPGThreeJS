@@ -1,6 +1,6 @@
 # Identité et mise en scène des images de l’acte final — brouillon à valider (2026-11-12)
 
-Statut : **À VALIDER** par l’opérateur (OD-2026-11-11-F, F1). Rien n’est généré au-delà des trois témoins d’identité, et rien n’est intégré.
+Statut : **VALIDÉ** par l’opérateur le 2026-11-12 (OD-2026-11-11-F, F1), tel quel (« Valider tel quel »), après avoir vu les trois témoins d’identité et leur planche. Chaque question ci-dessous prend donc sa recommandation. Rien n’est généré au-delà des trois témoins, et rien n’est intégré : le lot attend l’ordre de l’opérateur.
 
 On suit la méthode validée pour l’Ours, le Dragon et le Scorpion :
 - une identité propre à l’acte final ;
@@ -13,6 +13,20 @@ Les lignes, traduites en anglais, sont déjà dans `tools/art/finalImagesStaging
 Les mentions **(proposition)** marquent ce que le texte ne dit pas : heure, lieu exact, cadrage, matériau, aspect d’un personnage, aspect de la brèche et des démons. Ce sont des choix de mise en scène à confirmer, pas du canon. La capitale, les hôtes de l’arène, les démons et l’entité restent sans nom, comme le veulent le canon et le contrat `CAMPAIGN_AND_STATE` (« an entity that stays unnamed until the operator decides »).
 
 ## Questions à trancher
+
+**Tranchées le 2026-11-12** : l’opérateur a validé la fiche telle quelle. Chaque question prend sa recommandation :
+- la brèche, une déchirure d’encre noire au liseré blanc, née au cœur de l’arène, dont le cœur est au-dessus de la ville basse (1 A) ;
+- les démons, l’encre de la brèche faite chair (2 A) ;
+- l’entité, une haute forme d’encre sans visage (3 A) ;
+- l’arène, un amphithéâtre rond (4 A) ;
+- une foule lointaine dans les gradins (5 A) ;
+- la brique rouge, l’ardoise et le ciel voilé du Tournoi (6 A) ;
+- les champions aux couleurs des guerriers de leur clan (7) ;
+- les maîtres du champion du Loup et de Maelor repris sans génération, et une seule image par champion pour son portrait et son sprite (8 A) ;
+- aucune bannière de la compagnie (9) ;
+- les canaux d’eau sombre de l’atlas (10) ;
+- l’identité telle qu’écrite (11) ;
+- les points laissés à son jugement après les témoins : l’arène est reprise au début du lot, pour ses huit signes ; la brèche en colonne d’encre et la place jonchée de gravats restent telles quelles.
 
 1. **La brèche : son aspect et sa place.** Le texte dit qu’elle « s’ouvre au cœur de l’arène », qu’elle « grandit encore », que des portes de l’arène on la voit « ouverte au-dessus des toits », que « Maelor nous attend au cœur de la brèche » au bout des « rues qui descendent de l’arène », et que la dernière maison est « à quelques rues de la brèche ».
    - **A. Une déchirure d’encre noire, qui grandit jusqu’au-dessus de la ville basse (recommandé).**
@@ -346,3 +360,21 @@ Elles sont dans `tmp/final-images/out/`, les premières versions dans `tmp/final
   - dans la reprise de l’arène, une bannière jaune porte un loup au lieu du lion : il y a deux loups et pas de lion. La première version avait les huit signes justes. Je propose de reprendre cette seule image au début du lot, avant les huit scènes qui la prennent pour référence ;
   - la brèche ressemble davantage à une colonne d’encre qui s’effiloche qu’à une déchirure aux bords nets ;
   - le « cratère » du cœur de la brèche est plutôt une place jonchée de gravats.
+
+## Lancer le lot
+
+La validation fixe ce qui se génère. Le lot attend ton ordre.
+- **Ne se génèrent pas** (8 A), car leurs maîtres existent déjà :
+  - le portrait du champion du Loup, qui reprend `public/assets/characters/pixel/post-demo/dragon/wolf_champion.png` ;
+  - le sprite de Maelor à la brèche, qui reprend `public/assets/characters/pixel/masters/maelor.png`.
+- **Une seule image par champion** : celle de son sprite (`raven_champion`, `phoenix_champion`, `serpent_champion`), dont le brief porte l’arme de combat, sert aussi à son portrait (`finale_raven_champion`, `finale_phoenix_champion`, `finale_serpent_champion`).
+- **Ordre** :
+  1. reprendre l’arène (`tableau-des-rencontres-du-tournoi`, avec `--force`, après copie dans `out-v1`) et vérifier ses huit signes ;
+  2. générer les deux lieux de référence qui manquent, la vue sur la capitale étant faite : la dernière maison (`finale_last_vigil`) ; puis, avec eux, les images qui ne dépendent d’aucun lieu (le ralliement, les habitants sous les décombres, les neuf personnages à générer, l’atlas) ;
+  3. générer les scènes qui reprennent un lieu : les huit du Tournoi, la fin de l’acte, le refuge, et les six du cœur de la brèche.
+- **L’atlas** demande d’abord son tracé :
+
+  ```bash
+  py -3 tools/art/atlas_layout.py prepare public/assets/generated/lion-phase/poi-lot-e/judgement.png tmp/final-images/layouts/finale__atlas__1.png
+  ```
+- **Total** : 22 décors, dont 2 déjà faits et 1 à reprendre ; 9 personnages (14 moins les 2 maîtres repris et les 3 portraits de champion) ; 1 atlas.

@@ -227,7 +227,7 @@ const sentences = (...parts: (string | false | null | undefined)[]) => parts.fil
 /**
  * What the streams of a Lion layout become on each plateau's atlas. The sentence was written for the Bear's mountains and
  * fits the Dragon's peaks; the Scorpion's desert has no water but its oasis; the final act's capital channels its water
- * through the city (a proposal awaiting the operator's validation).
+ * through the city (validated as is by the operator on 2026-11-12).
  */
 export const ATLAS_STREAMS: Readonly<Partial<Record<Chapter, string>>> = Object.freeze({
   bear: 'Streams of the layout become icy mountain torrents.',
