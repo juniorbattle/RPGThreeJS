@@ -1,6 +1,6 @@
 # Figurants muets dans les tableaux de dialogue ordinaires — brouillon d'amendement (2026-11-13)
 
-Statut : `DRAFT`, soumis à l'opérateur. Rien n'entre dans les contrats ni dans le jeu avant sa validation mot à mot.
+Statut : `VALIDÉ` le 2026-11-13, « Oui, sans option B » ([OD-2026-11-13-G](../../autonomy/TABLEAU_EXTRAS_OPERATOR_DECISION_2026-11-13.md)). Le texte de la section 4 entre dans les contrats mot pour mot (jeu 1.24.0).
 
 Origine : question E1 de la fiche de la dernière passe narrative (https://claude.ai/artifact/R9fw53FQzStpwffR6GdC1q). L'opérateur avait demandé d'« habiller nos événements avec les civils et personnages génériques ». À E1, il a choisi « Amendement, sprites existants » ([OD-2026-11-13-F](../../autonomy/COMPLETENESS_REVIEW_OPERATOR_DECISION_2026-11-13.md), section « Dernière passe narrative »).
 
@@ -165,4 +165,9 @@ Ensuite viennent la relecture indépendante du diff réel, le commit de la déci
 
 ## Validations de l'opérateur
 
-À remplir à sa réponse.
+Le 2026-11-13, l'opérateur répond « Oui, sans option B ». Il valide :
+- le texte d'amendement de la section 4, mot à mot ;
+- la liste de la section 2 ;
+- sans l'option B : les guerriers de l'Ours et les érudits du Scorpion ne sont pas des figurants.
+
+Ensuite, contracts-guardian a relu le diff réel : PASS WITH WARNINGS, aucun changement de fond. Seule précision reprise : le `supersededRule` du manifeste, une métadonnée. La décision est dans [OD-2026-11-13-G](../../autonomy/TABLEAU_EXTRAS_OPERATOR_DECISION_2026-11-13.md).
