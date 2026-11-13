@@ -49,7 +49,7 @@ contracts-guardian a relu le diff réel avant le commit : PASS WITH WARNINGS, au
   - l'identifiant de dialogue porté par le tableau ;
   - au Lion, aucun figurant ne reprend le sprite d'un orateur ;
   - pour la surface : aucun acteur, focus, texte ni contenu lisible ajouté ; le mouvement réduit ; une image absente.
-  
+
   `visibleActorCap.test.ts` reste inchangé et vert.
 
 **Positions ajustées en jeu.** Mêmes dialogues, mêmes figurants, seules quelques places changent. Dans le vrai jeu, une réplique d'Alistair passe à Cédric quand il est dans la compagnie. Cela décale la distribution de `refugee_trial` et de la première composition de `village_choice`. Leurs figurants ont été replacés pour rester visibles dans les deux distributions, et les deux passants de la route traversent maintenant toute la largeur, entre les acteurs. Les maquettes du brouillon montrent les places d'avant.
