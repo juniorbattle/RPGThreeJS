@@ -115,3 +115,7 @@ Tests et validation :
 - **`git diff --check`** est propre.
 
 **Non vérifié.** Le rendu sonore lui-même, c'est-à-dire si chaque ambiance sonne juste, se distingue à l'oreille, colle à son plateau et s'accorde avec la musique : seule l'écoute de l'opérateur en juge. Ni le passage d'un combat à l'autre en jeu complet (fondu enchaîné entre deux lits), ni un appareil mobile n'ont été vérifiés.
+
+## 6. Écoute de l’opérateur
+
+Le 2026-11-13, après avoir écouté les six ambiances dans le laboratoire, l’opérateur a répondu : « tout est bon on reviendra plus tard ». Il ne demande aucune retouche pour l’instant. Les six ambiances et la correspondance des arènes restent telles que construites, y compris les trois écarts de lieu signalés à la section 3 ; aucune septième ambiance n’est proposée. L’opérateur se réserve une nouvelle écoute plus tard : ce retour n’est pas une acceptation artistique définitive. Les retouches qu’il demandera alors suivront la même méthode : mesures hors ligne (`tools/audio/ambience-check.mjs --quick`), test d’identité à l’octet maintenu au vert, contrôle navigateur.
