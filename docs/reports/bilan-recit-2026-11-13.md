@@ -117,8 +117,13 @@ Les trois combats sont de rang normal et rapportent 0 de réputation (échelle d
   - D2 : la villageoise de Bois-Clair.
 - **Cohérence.** Les quatre échos `final_act` du ralliement nomment leur cause par les nouvelles phrases. `narrative:validate` passe sur les cinq cartes.
 - **Tests.** `src/campaign/plateaux/narrativePass.test.ts` (10 tests) fixe chaque retouche dans ses conditions. Les tests qui citaient les anciens textes ont été adaptés : navigation de l'acte final, rotation des héros (par l'étape et non plus par le texte), pilote de l'acte final.
-- **E1.** L'amendement des figurants est une tâche dédiée sur les contrats. Il sort du périmètre de cette session, qui ne touche pas aux contrats ; il est proposé à part.
-- **Limite.** Pas de vérification au navigateur pour ces retouches de texte (le volet était fermé). La couverture vient des tests, des validateurs et des pilotes QA.
+- **Navigateur** (dev, port 5181, sauvegardes du pilote QA). La finale et la brèche ont été lancées et gagnées par de vrais clics, avec le bouton QA « Victoire » ; les répliques ont défilé par script sur le bouton « Continuer ».
+  - C1 : avant la finale, Kestrel dit « Leur général court toujours, depuis les terres du Lion… » (variante du général resté libre).
+  - A1 et A2 : la trahison montre la fin des conseils (« Chaque fois, vous avez servi ceux que je sers, … ») et Marian ferme la scène (« “Je dis seulement…” … »).
+  - A3 et A4 : à la brèche, Marian répond, puis Maelor dit « Alors venez. Je compterai ce qu’il restera de vous. ».
+  - B2 : la Crainte s'ouvre sur « … et personne ne s’en réjouit avec nous. ».
+  - Limite : A5 a joué, mais le défilement a coupé la réplique avant « depuis Bois-Clair ». B1, C2 à C4, D1 et D2 ne sont pas revus au navigateur ; leurs textes exacts sont fixés par `narrativePass.test.ts`.
+- **E1.** La session parente a lancé la tâche dédiée à l'amendement (« Amendement des figurants dans les tableaux »), à partir de la section E du brouillon. Cette section porte maintenant les dialogues pressentis, les sprites civils par lieu et l'état des visages couverts.
 
 ## Limite de quatre acteurs visibles (constat transmis par la session parente)
 

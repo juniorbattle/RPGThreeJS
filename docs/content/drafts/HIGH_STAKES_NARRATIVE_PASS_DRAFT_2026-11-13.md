@@ -117,6 +117,22 @@ L'opérateur a demandé une proposition pour « habiller nos événements avec l
   - la règle des visages couverts vérifiée sur chaque sprite réutilisé ;
   - des variantes générées seulement si la reprise des sprites ne suffit pas.
 
+**Éléments pour la tâche d'amendement** (ajoutés après le choix de l'opérateur, « Amendement, sprites existants » ; la tâche est menée par une session dédiée). Ce sont des pistes à soumettre, pas des décisions.
+- **Dialogues pressentis**, des lieux habités où des passants muets se justifient par le texte déjà écrit :
+  - Lion : `village_choice` (Bois-Clair), `witnesses_on_road` (le camp des survivants), le rassemblement du camp ;
+  - Ours : `bear_outpost_gathering` (l'avant-poste), `bear_trapped_miners`, `bear_miners_testimony` ;
+  - Dragon : `dragon_terrorized_village` (le hameau), `dragon_hermitage_gathering` (l'ermitage), `dragon_freed_pilgrims` ;
+  - Scorpion : `scorpion_oasis_gathering` (l'oasis des érudits), `scorpion_scholars` (le camp), `scorpion_phoenix_faithful`, `scorpion_temple_witnesses` ;
+  - acte final : `finale_capital_arrival`, `finale_trapped_citizens`, `finale_arena_chaos` (la foule de l'arène), `finale_allied_rally`.
+- **Sprites civils existants, par lieu** (`public/assets/characters/pixel/`) :
+  - Lion : `masters/villageois`, `villageoise`, `refugee`, `refugee_mother`, `survivor`, `wounded_merchant` et les trois `village_militia_*` ;
+  - Ours : `post-demo/bear/bear_miner`, `bear_warrior` ;
+  - Dragon : `post-demo/dragon/dragon_villager`, `dragon_pilgrim` ;
+  - Scorpion : `post-demo/scorpion/phoenix_faithful`, `phoenix_captive`, `scorpion_scholar` ;
+  - acte final : `post-demo/finale/finale_citizen`, `finale_civilian`. La spectatrice de l'arène attend un rôle (bilan, §3).
+- **Visages couverts.** Sur planche réduite, les six civils du Lion portent capuche, voile, foulard ou chapeau sur un visage masqué. Les miliciens portent un casque ouvert : leur visage est à vérifier en grand avant tout emploi. Les civils de l'après-démo ont été dessinés avec la règle.
+- **Contrainte de mise en scène.** Les figurants ne passent pas par le plan des tableaux ordinaires (`PostDemoPresentationPlans.ts`) ni par le planificateur relationnel, et `src/cinematics/visibleActorCap.test.ts` doit rester vert.
+
 ## Validations de l'opérateur (2026-11-13)
 
 L'opérateur a rempli la fiche et a dit « Fiche remplie ». Ses choix ont été relus dans la base de la fiche, sans aucune note.
