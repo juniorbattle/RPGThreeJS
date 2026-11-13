@@ -1,5 +1,6 @@
 import { CUE_TABLE_MAX_BYTES, cueFamily, isSignatureCue, isTableCue, SIGNATURE_CUE_MAX_SECONDS } from '../audio/cueTable';
 import { createMix, type MixChain } from '../audio/mix';
+import type { MusicWhere } from '../audio/music/parts';
 import { COMBAT_SOUND_IDS, TABLE_CUE_IDS, UI_SOUND_IDS, isCombatSound, isResultSound, soundPriority, type GameSoundId, type UiSoundId } from './GameSoundCatalog';
 export { UI_SOUND_IDS } from './GameSoundCatalog';
 export type { UiSoundId } from './GameSoundCatalog';
@@ -17,7 +18,8 @@ export type MusicContextId = 'title' | 'map' | 'refuge' | 'tension' | 'drama' | 
 export type MusicLevel = 'reflection' | 'action';
 export type CombatOutcome = 'victory' | 'defeat';
 export interface MusicHost {
-  setContext(id: MusicContextId | null): void;
+  /** `where` names a part of the game and a combat scene; without it, the Lion's tracks play. */
+  setContext(id: MusicContextId | null, where?: MusicWhere): void;
   setAmbience(sceneId: string | null): void;
   setVolume(volume: number): void;
   setLevel(level: MusicLevel): void;
@@ -46,6 +48,8 @@ export class UiSoundPlayer {
   private music: MusicHost | null = null;
   private musicLoading: Promise<void> | null = null;
   private musicContext: MusicContextId | null = null;
+  /** The part and combat scene the context was asked from; empty asks the Lion's tracks. */
+  private musicWhere: MusicWhere = {};
   private musicScene: string | null = null;
   private level: MusicLevel = 'reflection';
   private levelPending: MusicLevel | null = null;
@@ -239,10 +243,20 @@ export class UiSoundPlayer {
     this.music?.seek?.(section);
   }
 
-  /** The presentation context selects the track; audio still waits for a real gesture. */
-  setMusicContext(id: MusicContextId | null): void {
+  /**
+   * The presentation context selects the track; audio still waits for a real gesture. `where` comes only from the
+   * durable id prefix of what is presented (parts.ts); the game sends none until the plateau amendment is in force.
+   */
+  setMusicContext(id: MusicContextId | null, where: MusicWhere = {}): void {
     this.musicContext = id;
-    if (this.musicActive) this.music?.setContext(id);
+    this.musicWhere = where;
+    if (this.musicActive && this.music) this.askTrack(this.music);
+  }
+
+  /** Without a part the host is asked exactly as before the plateaux: the Lion's track for the context. */
+  private askTrack(host: MusicHost): void {
+    if (this.musicWhere.part && this.musicWhere.part !== 'lion') host.setContext(this.musicContext, this.musicWhere);
+    else host.setContext(this.musicContext);
   }
 
   /** Combat scene for the biome ambience (null outside combat). */
@@ -262,7 +276,7 @@ export class UiSoundPlayer {
 
   /** A fanfare is an event, not a place: resuming never replays it. */
   private resumeMusic(): void {
-    if (!isFanfare(this.musicContext)) this.music?.setContext(this.musicContext);
+    if (!isFanfare(this.musicContext) && this.music) this.askTrack(this.music);
     this.music?.setLevel(this.level);
     this.music?.setAmbience(this.musicScene);
   }
@@ -307,7 +321,7 @@ export class UiSoundPlayer {
         if (this.disposed) { host.dispose(); return; }
         this.music = host;
         host.setVolume(this.musicVolume);
-        if (this.musicActive) { host.setContext(this.musicContext); host.setLevel(this.level); host.setAmbience(this.musicScene); }
+        if (this.musicActive) { this.askTrack(host); host.setLevel(this.level); host.setAmbience(this.musicScene); }
       } catch { this.musicLoading = null; /* Music is optional and fails silently. */ }
     })();
     return this.musicLoading;

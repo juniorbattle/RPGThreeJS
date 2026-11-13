@@ -1,4 +1,5 @@
 import type { CombatantPayload, CombatConfig, CombatResult } from '../game/types';
+import { gameMusicWhere } from '../audio/music/parts';
 import { combatAudioMessageSchema } from './CombatAudio';
 import type { UiSoundPlayer } from '../ui/UiSoundPlayer';
 import type { ScaledPlateauId } from './plateauScaling';
@@ -61,8 +62,11 @@ export class CombatBridge {
     try { this.audioSession = globalThis.crypto?.randomUUID?.() ?? this.audioSession; } catch { /* Optional nonce API; mandatory source/origin/frame guards remain. */ }
     try { this.audio?.player.beginCombat(this.audioSession); } catch { /* Audio never prevents mounting combat. */ }
     try {
-      // Music reads only the hand-off: the encounter rank and the arena scene (OD-2026-10-29-B).
-      this.audio?.player.setMusicContext(session.config.encounterRank === 'boss' ? 'boss' : 'combat');
+      // Music reads only the hand-off: the encounter rank and the arena scene (OD-2026-10-29-B). The scene's prefix names
+      // the part of the game once the plateau amendment is in force (PLATEAU_MUSIC_DRAFT_2026-11-13); off until then.
+      const context = session.config.encounterRank === 'boss' ? 'boss' : 'combat';
+      const where = gameMusicWhere(session.config.sceneId, session.config.sceneId);
+      if (where.part) this.audio?.player.setMusicContext(context, where); else this.audio?.player.setMusicContext(context);
       this.audio?.player.setMusicScene(session.config.sceneId);
     } catch { /* Music never prevents mounting combat. */ }
     const iframe = document.createElement('iframe');

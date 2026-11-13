@@ -5,7 +5,9 @@
  */
 import * as I from './instruments';
 
-export type SampledInstrument = 'harp' | 'lute' | 'pizz' | 'timpani' | 'drum' | 'kit' | 'frame' | 'cymbal';
+export type SampledInstrument = 'harp' | 'lute' | 'pizz' | 'timpani' | 'drum' | 'kit' | 'frame' | 'cymbal'
+  /** The plateaux's instruments, computed only when one of their tracks first needs them. */
+  | 'bell' | 'dulcimer' | 'anvil' | 'goblet' | 'zill';
 
 export interface Zone {
   /** MIDI pitch of the computed note (drums: variant number). */
@@ -30,9 +32,17 @@ export const DEFS: Readonly<Record<SampledInstrument, PitchedDef | HitDef>> = {
   kit: { kind: 'hit', variants: 3, synth: I.drumKit },
   frame: { kind: 'hit', variants: 2, synth: I.frameDrum },
   cymbal: { kind: 'hit', variants: 2, synth: I.cymbal },
+  bell: { kind: 'notes', from: 48, to: 88, step: 4, layers: [0.8], sr: PITCHED_SR, synth: I.bell },
+  dulcimer: { kind: 'notes', from: 48, to: 88, step: 4, layers: [0.75], sr: PITCHED_SR, synth: I.dulcimer },
+  anvil: { kind: 'hit', variants: 2, synth: I.anvil },
+  goblet: { kind: 'hit', variants: 3, synth: I.goblet },
+  zill: { kind: 'hit', variants: 2, synth: I.zill },
 };
 
-export const SAMPLED_INSTRUMENTS = Object.keys(DEFS) as SampledInstrument[];
+/** The Lion's bank, loaded when music starts: unchanged by the plateaux. */
+export const SAMPLED_INSTRUMENTS: readonly SampledInstrument[] = ['harp', 'lute', 'pizz', 'timpani', 'drum', 'kit', 'frame', 'cymbal'];
+/** Every sampled instrument, the plateaux's included: their samples are computed on first need. */
+export const ALL_SAMPLED_INSTRUMENTS = Object.keys(DEFS) as SampledInstrument[];
 
 export interface PlanItem { instrument: SampledInstrument; root: number; layer: number }
 

@@ -279,3 +279,131 @@ export function cymbal(sr: number, variant: number): Float32Array<ArrayBuffer> {
   tail(out, sr, 0.25);
   return normalise(out, swell ? 0.55 : 0.7);
 }
+
+// ------------------------------------------------------------------ the plateaux (sketches awaiting the operator's ear)
+// The Lion's instruments above stay as they are; these are computed only when a plateau's track first needs them.
+
+/**
+ * Bronze bell: the strike tone with its hum an octave below, a minor-third tierce, quint, nominal and upper partials,
+ * each pair beating slowly; small bells ring short and bright (the Dragon), large ones long and dark (the capital).
+ */
+export function bell(sr: number, m: number, vel: number): Float32Array<ArrayBuffer> {
+  const f0 = freq(m);
+  const dur = clamp(3.2 - (m - 48) * 0.04, 1.5, 3.2);
+  const out = new Float32Array(samples(sr, dur));
+  const rng = seededRandom(0xbe11 + m * 11);
+  const size = clamp(2 ** (-(m - 60) / 24), 0.45, 1.6);
+  const partials: ReadonlyArray<readonly [number, number, number]> = [[0.5, 0.45, 3.4], [1, 0.5, 2.2], [1.2, 0.34, 2], [1.5, 0.18, 1.2], [2, 0.58, 1.4], [2.5, 0.2, 0.8], [2.67, 0.15, 0.6], [3, 0.12, 0.5], [4, 0.1, 0.4], [5.33, 0.06, 0.3]];
+  for (const [ratio, amp, tau] of partials) {
+    const bright = ratio > 2 ? 0.4 + 0.6 * vel : 1;
+    const fk = f0 * ratio;
+    damped(out, sr, fk, amp * bright * 0.6, tau * size, rng() * TAU);
+    damped(out, sr, fk * (1 + (0.4 + rng() * 0.6) * 1e-3), amp * bright * 0.4, tau * size * 0.9, rng() * TAU);
+  }
+  const strike = noise(samples(sr, 0.02), sr, rng, 0.004);
+  biquad(strike, sr, 'bp', Math.min(sr * 0.4, f0 * 3), 1.2);
+  mix(out, strike, 0.08 * vel);
+  attack(out, sr, 0.0008);
+  tail(out, sr, dur * 0.25);
+  return normalise(out, 0.35 + 0.45 * vel);
+}
+
+/** Hammered dulcimer: a course of three steel strings struck near the end, bright, long and shimmering. */
+export function dulcimer(sr: number, m: number, vel: number): Float32Array<ArrayBuffer> {
+  const f0 = freq(m);
+  const dur = clamp(2.6 - (m - 50) * 0.02, 1.3, 2.6);
+  const out = new Float32Array(samples(sr, dur));
+  const rng = seededRandom(0xd01c + m * 13);
+  const tau0 = clamp(2.2 * 2 ** (-(m - 50) / 30), 0.7, 2.2);
+  const fc = 2600 + 3400 * vel;
+  for (let k = 1; k <= 20; k++) {
+    const fk = k * f0 * Math.sqrt(1 + 0.0001 * k * k);
+    if (fk > sr * 0.44) break;
+    const a = (Math.abs(Math.sin(Math.PI * k * 0.12)) + 0.04) / k / (1 + (fk / fc) ** 2);
+    const tk = tau0 / (1 + 0.3 * (k - 1));
+    for (const cents of [-1.6, 0, 1.6]) damped(out, sr, fk * 2 ** (cents / 1200), a / 3, tk, rng() * TAU);
+  }
+  const hammer = noise(samples(sr, 0.01), sr, rng, 0.002);
+  biquad(hammer, sr, 'bp', 3000, 1);
+  mix(out, hammer, 0.06 * vel);
+  biquad(out, sr, 'pk', 2400, 1, 2);
+  attack(out, sr, 0.0008);
+  tail(out, sr, dur * 0.3);
+  return normalise(out, 0.4 + 0.42 * vel);
+}
+
+/** Anvil and iron (the Bear's forges and mines): variant 0 a hammer ringing on an anvil, 1 a short clank of chain and iron. */
+export function anvil(sr: number, variant: number): Float32Array<ArrayBuffer> {
+  const rng = seededRandom(0xa471 + variant);
+  if (variant === 0) {
+    const out = new Float32Array(samples(sr, 1.2));
+    for (const [ratio, amp, tau] of [[1, 1, 0.9], [2.68, 0.6, 0.5], [5.1, 0.35, 0.3], [7.6, 0.2, 0.2], [9.9, 0.1, 0.12]] as const) damped(out, sr, 1150 * ratio, amp, tau, rng() * TAU);
+    const click = noise(samples(sr, 0.01), sr, rng, 0.002);
+    biquad(click, sr, 'hp', 2000, 0.7);
+    mix(out, click, 0.5);
+    attack(out, sr, 0.0004);
+    tail(out, sr, 0.2);
+    return normalise(out, 0.5);
+  }
+  const out = new Float32Array(samples(sr, 0.4));
+  for (const [at, gain] of [[0, 1], [0.025, 0.6], [0.06, 0.4]] as const) {
+    const from = Math.round(at * sr);
+    const hit = noise(samples(sr, 0.05), sr, rng, 0.012);
+    biquad(hit, sr, 'bp', 2500 + rng() * 1500, 1.4);
+    for (let i = 0; i < hit.length && from + i < out.length; i++) out[from + i]! += hit[i]! * gain;
+    damped(out, sr, 1800 + rng() * 400, 0.2 * gain, 0.06, rng() * TAU, from);
+  }
+  attack(out, sr, 0.0004);
+  tail(out, sr, 0.05);
+  return normalise(out, 0.42);
+}
+
+/** Goblet drum (the Scorpion): 0 the deep "doum" with a falling pitch, 1 the sharp rim "tek", 2 the muted "ka". */
+export function goblet(sr: number, variant: number): Float32Array<ArrayBuffer> {
+  const rng = seededRandom(0x60b1 + variant);
+  const out = new Float32Array(samples(sr, variant === 0 ? 0.5 : variant === 1 ? 0.15 : 0.12));
+  if (variant === 0) {
+    let ph = 0;
+    for (let i = 0; i < out.length; i++) {
+      const t = i / sr;
+      ph += (95 + 35 * Math.exp(-t / 0.03)) / sr;
+      out[i] = Math.sin(TAU * ph) * Math.exp(-t / 0.25);
+    }
+    damped(out, sr, 160, 0.3, 0.1, 0);
+    const skin = noise(out.length, sr, rng, 0.02);
+    biquad(skin, sr, 'lp', 600, 0.7);
+    mix(out, skin, 0.25);
+  } else if (variant === 1) {
+    damped(out, sr, 900, 0.6, 0.025, 0);
+    const rim = noise(out.length, sr, rng, 0.02);
+    biquad(rim, sr, 'bp', 4000, 1);
+    mix(out, rim, 0.9);
+  } else {
+    damped(out, sr, 500, 0.4, 0.015, 0);
+    const ka = noise(out.length, sr, rng, 0.012);
+    biquad(ka, sr, 'bp', 2500, 1);
+    mix(out, ka, 0.8);
+  }
+  attack(out, sr, 0.0005);
+  tail(out, sr, 0.02);
+  return normalise(out, variant === 0 ? 0.72 : variant === 1 ? 0.5 : 0.4);
+}
+
+/** Finger cymbals of copper (the Scorpion's lamps and scholars): 0 a clear ring, 1 a muted touch. */
+export function zill(sr: number, variant: number): Float32Array<ArrayBuffer> {
+  const rng = seededRandom(0x2111 + variant);
+  const muted = variant === 1;
+  const out = new Float32Array(samples(sr, muted ? 0.15 : 1.5));
+  for (const [f, amp, tau] of [[2650, 1, 1.2], [3980, 0.6, 0.8], [5650, 0.4, 0.5], [7900, 0.25, 0.3]] as const) {
+    damped(out, sr, f, amp, muted ? 0.05 : tau, rng() * TAU);
+    damped(out, sr, f * 1.0016, amp * 0.6, muted ? 0.04 : tau * 0.9, rng() * TAU);
+  }
+  if (muted) {
+    const touch = noise(out.length, sr, rng, 0.02);
+    biquad(touch, sr, 'hp', 6000, 0.7);
+    mix(out, touch, 0.5);
+  }
+  attack(out, sr, 0.0004);
+  tail(out, sr, muted ? 0.03 : 0.2);
+  return normalise(out, muted ? 0.3 : 0.36);
+}

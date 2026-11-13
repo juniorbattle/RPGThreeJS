@@ -90,7 +90,8 @@ function ornament(notes: readonly WrittenNote[], section: Section): WrittenNote[
 export function composePass(theme: ThemeDef, pass: number, seed = 1): MusicEvent[] {
   const section = sectionAt(theme, pass);
   const cycle = passCycle(theme, pass);
-  const rng = seededRandom((hash(`${theme.id}/${sectionIndexAt(theme, pass)}`) ^ Math.imul(pass + 1, 0x9e3779b1) ^ seed) >>> 0);
+  // a plateau's track seeds from its own name; the Lion's tracks have none and seed exactly as before
+  const rng = seededRandom((hash(`${theme.track ?? theme.id}/${sectionIndexAt(theme, pass)}`) ^ Math.imul(pass + 1, 0x9e3779b1) ^ seed) >>> 0);
   const bpb = section.beatsPerBar;
   const bars = sectionBars(section);
   const harmony = harmonyOf(section);

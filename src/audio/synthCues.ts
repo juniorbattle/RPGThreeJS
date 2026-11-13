@@ -50,6 +50,18 @@ export function scheduleCue(ctx: BaseAudioContext, out: AudioNode, noise: AudioB
   designOf(id)?.(primitives(ctx, out, noise, t0));
 }
 
+/** Schedules a design outside the table, for offline listening renders only (the post-demo signature sketches). */
+export function scheduleDesign(ctx: BaseAudioContext, out: AudioNode, noise: AudioBuffer, design: (p: Primitives) => void, t0 = 0.002): void {
+  design(primitives(ctx, out, noise, t0));
+}
+
+/** The cues' seeded noise, as a buffer of `seconds` on that context. */
+export function cueNoise(ctx: BaseAudioContext, seconds = 3): AudioBuffer {
+  const noise = ctx.createBuffer(1, Math.round(ctx.sampleRate * seconds), ctx.sampleRate);
+  noise.copyToChannel(seededNoise(noise.length), 0);
+  return noise;
+}
+
 function seededNoise(length: number): Float32Array<ArrayBuffer> {
   const data = new Float32Array(length);
   let s = 0x50a11ce;

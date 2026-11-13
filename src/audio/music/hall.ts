@@ -4,13 +4,20 @@
  */
 import { seededRandom } from './theory';
 
-export type HallId = 'hall' | 'chapel' | 'field';
+export type HallId = 'hall' | 'chapel' | 'field'
+  /** The plateaux's rooms, computed on first need: stone close by, open sky, dry sand, brick streets, the void. */
+  | 'cave' | 'sky' | 'dune' | 'city' | 'void';
 
 interface HallDef { rt60: number; predelay: number; bright: number; dark: number; early: number }
 export const HALLS: Readonly<Record<HallId, HallDef>> = {
   hall: { rt60: 2.4, predelay: 0.025, bright: 8000, dark: 1800, early: 0.35 },
   chapel: { rt60: 3.6, predelay: 0.035, bright: 7000, dark: 1500, early: 0.3 },
   field: { rt60: 1.4, predelay: 0.02, bright: 7500, dark: 2400, early: 0.45 },
+  cave: { rt60: 2.2, predelay: 0.012, bright: 3500, dark: 900, early: 0.55 },
+  sky: { rt60: 4.8, predelay: 0.07, bright: 9000, dark: 3000, early: 0.12 },
+  dune: { rt60: 0.9, predelay: 0.015, bright: 9000, dark: 3500, early: 0.15 },
+  city: { rt60: 2.8, predelay: 0.03, bright: 6500, dark: 1600, early: 0.5 },
+  void: { rt60: 7, predelay: 0.08, bright: 2500, dark: 1200, early: 0.05 },
 };
 
 export function impulseResponse(sr: number, hall: HallId, seed = 47): [Float32Array<ArrayBuffer>, Float32Array<ArrayBuffer>] {

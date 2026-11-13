@@ -6,7 +6,9 @@
 export const freq = (m: number): number => 440 * 2 ** ((m - 69) / 12);
 export const pc = (m: number): number => ((m % 12) + 12) % 12;
 
-export type Mode = 'ionian' | 'dorian' | 'phrygian' | 'lydian' | 'mixolydian' | 'aeolian' | 'harmonicMinor';
+export type Mode = 'ionian' | 'dorian' | 'phrygian' | 'lydian' | 'mixolydian' | 'aeolian' | 'harmonicMinor'
+  /** The plateaux's own colours: the Scorpion's phrygian with a major third, the breach's half-whole scale. */
+  | 'phrygianDominant' | 'octatonic';
 export const MODES: Readonly<Record<Mode, readonly number[]>> = {
   ionian: [0, 2, 4, 5, 7, 9, 11],
   dorian: [0, 2, 3, 5, 7, 9, 10],
@@ -15,6 +17,8 @@ export const MODES: Readonly<Record<Mode, readonly number[]>> = {
   mixolydian: [0, 2, 4, 5, 7, 9, 10],
   aeolian: [0, 2, 3, 5, 7, 8, 10],
   harmonicMinor: [0, 2, 3, 5, 7, 8, 11],
+  phrygianDominant: [0, 1, 4, 5, 7, 8, 10],
+  octatonic: [0, 1, 3, 4, 6, 7, 9, 10],
 };
 
 /** MIDI pitch of a diatonic degree (any integer, negative or beyond the octave) above `tonic`. */
@@ -71,6 +75,8 @@ const QUALITIES: Readonly<Record<string, readonly number[]>> = {
   '': [0, 4, 7], m: [0, 3, 7], dim: [0, 3, 6], sus2: [0, 2, 7], sus4: [0, 5, 7], 5: [0, 7], m6: [0, 3, 7, 9], add9: [0, 4, 7, 14],
   7: [0, 4, 7, 10], maj7: [0, 4, 7, 11], m7: [0, 3, 7, 10], m7b5: [0, 3, 6, 10], '7sus4': [0, 5, 7, 10], '7b9': [0, 4, 10, 13],
   9: [0, 4, 10, 14], maj9: [0, 4, 11, 14], m9: [0, 3, 10, 14],
+  // the plateaux: stacked fourths (the Dragon), cold symmetric chords (the breach)
+  q4: [0, 5, 10], dim7: [0, 3, 6, 9], aug: [0, 4, 8], mMaj7: [0, 3, 7, 11],
 };
 
 export interface Chord { symbol: string; root: number; intervals: readonly number[] }
