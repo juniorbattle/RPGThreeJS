@@ -235,5 +235,24 @@
       "commit": "bb0d8d2a",
       "reason": "same reload"
     }
-  ]
+  ],
+  "shortOnMergedDev": {
+    "run": "pass4-short-fork",
+    "commit": "e41c5441e103a96324cd0423892c8e6d03d5ca64",
+    "start": "lion-end",
+    "plan": "fearLastStand",
+    "osMotion": "no-preference",
+    "pass": true,
+    "durationSeconds": 125,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "failedRequests": 0,
+    "fights": [
+      "bear:bear_pass_beasts",
+      "bear:bear_raven_scouts",
+      "bear:bear_convoy_escort"
+    ],
+    "forkAnswer": "Saisir le minerai pour le clan.",
+    "stoppedAfter": "bear_convoy_escort"
+  }
 }

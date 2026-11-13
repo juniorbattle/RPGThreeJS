@@ -13,7 +13,8 @@
  * Env: FULL_QA_BASE_URL (default http://127.0.0.1:5183), FULL_QA_PLAN (respect | balance | fearLastStand | fearFate),
  * FULL_QA_OUTPUT (under tmp/, never overwritten), FULL_QA_VIEWPORT (1440x810), FULL_QA_OS_MOTION=1 (emulate
  * prefers-reduced-motion: reduce), FULL_QA_START (new | lion-end: a short pass from the save the current Lion writes),
- * FULL_QA_STOP_AFTER (a chapter id: stop once that chapter's first fight is won; default: the ending).
+ * FULL_QA_STOP_AFTER (a chapter id: stop once that chapter's first fight is won; default: the ending), FULL_QA_STOP_AFTER_FIGHT (a
+ * combat id: stop once that fight is won).
  */
 import { mkdir, access, writeFile } from 'node:fs/promises';
 import { execSync } from 'node:child_process';
@@ -24,6 +25,8 @@ const base = process.env.FULL_QA_BASE_URL ?? 'http://127.0.0.1:5183';
 const planKey = process.env.FULL_QA_PLAN ?? 'respect';
 const start = process.env.FULL_QA_START ?? 'new';
 const stopAfter = process.env.FULL_QA_STOP_AFTER ?? null;
+/** A combat id: stop once that fight is won (a short pass up to a given fight). */
+const stopAfterFight = process.env.FULL_QA_STOP_AFTER_FIGHT ?? null;
 const osMotion = process.env.FULL_QA_OS_MOTION === '1' ? 'reduce' : 'no-preference';
 const [width, height] = (process.env.FULL_QA_VIEWPORT ?? '1440x810').split('x').map(Number);
 const stamp = new Date().toISOString().replace(/[:.]/g, '-');
@@ -190,6 +193,7 @@ async function playCombat(state) {
     if (fight) fight.resultClicked = true;
     if (fight && !fight.logged) { fight.logged = true; log(`fight won: ${fight.chapter} ${fight.combatId}`); }
     if (stopAfter && fight?.chapter === stopAfter) stopReached = true;
+    if (stopAfterFight && fight?.combatId === stopAfterFight) stopReached = true;
     return true;
   }
   const victory = frame.locator('[data-qa="victory"]');
@@ -247,8 +251,8 @@ for (let turn = 0; turn < 40000; turn += 1) {
   }
   if (stopReached && state.mode !== 'COMBAT') {
     await page.waitForTimeout(1500);
-    await capture(`${stopAfter}-after-first-fight`);
-    report.end = { stoppedAfter: stopAfter, ...(await live()) };
+    await capture(`${stopAfterFight ?? stopAfter}-after-fight`);
+    report.end = { stoppedAfter: stopAfterFight ?? stopAfter, ...(await live()) };
     report.pass = true;
     break;
   }

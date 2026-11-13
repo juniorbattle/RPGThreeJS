@@ -8,7 +8,7 @@
 | BRANCH | worktree `claude/quizzical-franklin-f2b5e9`, publié sur `dev` |
 | HEAD | le commit de ce rapport |
 | STATUS | merged |
-| MERGED_IN | `dev` (`8fe30774`, `bb0d8d2a`, `bbc93f01`, puis le commit de ce rapport) |
+| MERGED_IN | `dev` (`8fe30774`, `bb0d8d2a`, `bbc93f01`, `e41c5441`, puis le commit de ce rapport) |
 | SUPERSEDES | NONE (applique l'arbitrage Q1 de `docs/autonomy/COMPLETENESS_REVIEW_OPERATOR_DECISION_2026-11-13.md` ; répond au §4 de `docs/reports/game-completeness-review-2026-11-13.md`) |
 | SUPERSEDED_BY | NONE |
 | PRODUCTION_IMPACT | (1) Les effets de dialogue changent l'état dans `src/game/narrativeEffects.ts` au lieu du `switch` de `GameApp.applyEffects` : même comportement, un seul propriétaire. (2) Après un combat du Tournoi gagné, son dialogue d'après-combat s'ouvre « en direct » : la trahison joue enfin son moment approuvé. (3) La fin de chronique de l'acte final ne montre plus Maelor à côté de la compagnie. (4) Le panneau de fin de chapitre et de chronique est une carte compacte au lieu d'une bande de 1040 px. Aucune règle, aucun texte, aucun choix, aucune récompense, aucune donnée de combat, aucun format de sauvegarde changé. |
@@ -93,6 +93,7 @@ Les quatre pilotes de plateau existants et les huit fins du `campaignEndingsDriv
 | 1b | `51dff190` | sauvegarde du Lion actuel, plan Peur | défaut | fin **La Crainte** (dernier carré) en 1 290 s : 30 combats, 31 réponses ; console sans erreur |
 | 2 | `bb0d8d2a` | les deux mêmes | défaut et `reducedMotion: 'reduce'` émulé | interrompues à ~570 s par le rechargement de Vite quand j'ai modifié `GameApp.ts` (correction de la trahison) : ce n'est pas un défaut du jeu, et elles ne comptent pas |
 | 3a | `bbc93f01` | nouvelle chronique, plan Respect | défaut (mouvement non réduit) | fin **Le Respect** en 1 489 s : 5 chapitres, 26 combats, 58 réponses, 113 dialogues, 13 refuges, 73 déplacements sur la carte ; console sans erreur, aucune requête en échec, aucun contrôle masqué |
+| 4 | `e41c5441` (`dev` fusionné, avec le lot récit) | sauvegarde du Lion actuel, plan Peur | défaut | passe courte jusqu'au combat de l'embranchement de l'Ours : « Saisir le minerai pour le clan », puis `bear_convoy_escort` gagné, en 125 s, 3 combats ; console sans erreur, aucune requête en échec |
 | 3b | `bbc93f01` | sauvegarde du Lion actuel, plan Peur (dernier carré) | `reducedMotion: 'reduce'` émulé (réglage du système) | fin **La Crainte** en 1 337 s : 4 chapitres, 30 combats dont le dernier carré, 32 réponses ; console sans erreur, aucune requête en échec |
 
 Le commit final de ce rapport ne diffère de `bbc93f01`, pour le jeu, que par la forme d'un appel (`playDialogue(id, label)` sans option quand l'ouverture n'est pas en direct) : même comportement, alignement de trois tests (section 4).
@@ -138,7 +139,7 @@ Avec elles, `browser-result.json`, le résultat machine compact des passes 3a et
 
 - **Réputation en sortie de Lion.** Le Lion réel finit à 59 en honneur et 19 en force. Les pilotes de plateau partaient de 57 et de 35 ou 40.
 - **Partie « tout force ».** La réputation tombe à 0 dès le Dragon et y reste au Scorpion ; toutes les fins restent atteintes. À juger au test sur PC.
-- **Après le lot récit.** Les embranchements de combat N1 et les répliques N2 et N3 attendent la validation de l'opérateur et ne sont pas encore dans le jeu. Les tests de ce lot les traverseront dès leur arrivée, mais la passe navigateur devra être rejouée après.
+- **Le lot récit est arrivé en fin de travail** (embranchement de combat par plateau, répliques de Maelor). Les tests de ce lot passent sur l'arbre fusionné. Les trois embranchements sont traversés dans leurs deux branches selon le plan : `bear_convoy_escort` en partie force, `dragon_village_raid` et `scorpion_scholars_camp` en Respect, la branche sans combat ailleurs. Dans le navigateur, seule la passe courte 4 les a vus, jusqu'à l'embranchement de l'Ours. Les passes complètes 3a et 3b sont antérieures au lot récit.
 
 ## 6. Vérification
 
