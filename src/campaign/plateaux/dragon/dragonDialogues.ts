@@ -8,7 +8,7 @@
  * Kaelen, the Wolf's pact at the lair, the Wolf warrior who was heard, the inscriptions brought back, the Lion's Shadow
  * evidence and the Bear's dark ore at the altar, the hamlet at the vigil, and the shaman's traces.
  */
-import { LYRA_MEETING, TALON_MEETING, withMeeting } from '../heroMeetings';
+import { LYRA_MEETING, TALON_MEETING, withMeeting, withMeetingPart } from '../heroMeetings';
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../../../game/types';
 
 interface Who { speaker: string; actorId: string; side: 'left' | 'right' }
@@ -79,18 +79,6 @@ export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     say('warned', KESTREL, 'Éclaireuse', 'Je fais porter un message à l’ermitage. Kaelen saura qu’un émissaire du Loup descend jusqu’ici.', null),
     say('pact', ENVOY, 'Pacte', 'Alors nous nous reverrons au repaire. Le Loup tient parole à ceux qui la tiennent.', null),
   ]),
-  scene('dragon_terrorized_village', 'forest_fork', 'Hameau terrorisé', withMeeting([
-    say('1', MARIAN, 'Soigneuse', 'Des portes barricadées, des enfants cachés dans les granges. Ce hameau attend une attaque.', '2', { expression: 'fearful' }),
-    say('2', VILLAGER, 'Contreforts', 'Le Loup descend chaque nuit depuis la disparition du Cristal. Il prend les bêtes, les réserves, et il revient toujours. Le Dragon reste là-haut.', '3', { expression: 'fearful' }),
-    say('3', MAELOR, 'Intendant', 'Ces gens paieraient cher pour dormir tranquilles. Une protection a un prix, et personne d’autre ne la leur offre.', '4'),
-    say('4', SERAPHINE, 'Sage', 'Ils paient déjà le Loup en bêtes et en peur. Leur prendre davantage ferait de nous un deuxième Loup.', 'choice', { expression: 'stern' }),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous pour ce hameau ?', null, { expression: 'stern', choices: [
-      choice('Monter la garde et repousser le prochain raid.', 'protected', [flag('dragonVillageProtected'), reputation(1)], ['Une nuit de garde', 'Le hameau protégé']),
-      choice('Faire payer notre protection.', 'extorted', [flag('dragonVillageExtorted'), gold(60), reputation(-2)], ['60 or', 'Un hameau qui paie deux fois']),
-    ] }),
-    say('protected', VILLAGER, 'Gratitude', 'Le Loup a vu vos feux et il a tourné bride. C’est la première nuit que nous dormons depuis des semaines.', null, { expression: 'grateful' }),
-    say('extorted', MARIAN, 'Soigneuse', 'Ils ont vidé leur dernier coffre pour nous. Ils nous regardent comme ils regardent le Loup.', null, { expression: 'wounded' }),
-  ], LYRA_MEETING)),
   scene('dragon_wolf_traps', 'forest_fork', 'Pièges du Loup', withMeeting([
     say('1', KESTREL, 'Éclaireuse', 'Des collets d’acier sous la neige, en travers du sentier des pèlerins. Le Loup les a posés pour ceux qui montent prier le Dragon.', '2', { expression: 'stern' }),
     say('2', MAELOR, 'Intendant', 'Déplaçons-les sur les sentiers du Loup. Ses patrouilles y tomberont, et le repaire sera moins gardé.', '3'),
@@ -160,6 +148,33 @@ export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
 
 // ---------------------------------------------------------------------------------------------------------------------
 // State-built scenes
+
+/**
+ * OD-2026-11-13-F (N1), lines approved word for word on 2026-11-13: guarding the hamlet costs a fight against the
+ * Wolf's raid; making it pay avoids the fight, and the Wolf turns back for one night only. Once the raid is repelled, the
+ * same scene reopens on the hamlet's first quiet night and Lyra's meeting for that branch.
+ */
+function dragonTerrorizedVillage(state: Readonly<GameState>): DialogueSequence {
+  if (state.flags.dragonVillageRaidRepelled) {
+    return scene('dragon_terrorized_village', 'forest_fork', 'Hameau terrorisé', withMeetingPart([
+      say('protected', VILLAGER, 'Gratitude', 'Le Loup a goûté vos lames et il a tourné bride. C’est la première nuit que nous dormons depuis des semaines.', null, { expression: 'grateful' }),
+    ], LYRA_MEETING, ['protected']));
+  }
+  return scene('dragon_terrorized_village', 'forest_fork', 'Hameau terrorisé', withMeetingPart([
+    say('1', MARIAN, 'Soigneuse', 'Des portes barricadées, des enfants cachés dans les granges. Ce hameau attend une attaque.', '2', { expression: 'fearful' }),
+    say('2', VILLAGER, 'Contreforts', 'Le Loup descend chaque nuit depuis la disparition du Cristal. Il prend les bêtes, les réserves, et il revient toujours. Le Dragon reste là-haut.', '3', { expression: 'fearful' }),
+    say('3', MAELOR, 'Intendant', 'Ces gens paieraient cher pour dormir tranquilles. Une protection a un prix, et personne d’autre ne la leur offre.', '4'),
+    say('4', SERAPHINE, 'Sage', 'Ils paient déjà le Loup en bêtes et en peur. Leur prendre davantage ferait de nous un deuxième Loup.', 'choice', { expression: 'stern' }),
+    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous pour ce hameau ?', null, { expression: 'stern', choices: [
+      choice('Monter la garde et repousser le prochain raid.', 'raid', [flag('dragonVillageProtected'), reputation(1), fight('dragon_village_raid')],
+        ['Combat contre les pillards du Loup', 'Le hameau protégé']),
+      choice('Faire payer notre protection.', 'extorted_night', [flag('dragonVillageExtorted'), gold(60), reputation(-2)], ['60 or', 'Un hameau qui paie deux fois']),
+    ] }),
+    say('raid', KESTREL, 'Éclaireuse', 'Des torches sur le sentier, et des loups devant les hommes. Le Loup descend, comme chaque nuit. Cette fois, nous l’attendons.', null, { expression: 'stern' }),
+    say('extorted_night', KESTREL, 'Éclaireuse', 'Le Loup a vu nos feux et il a tourné bride sans combattre. Pour cette nuit, du moins.', 'extorted'),
+    say('extorted', MARIAN, 'Soigneuse', 'Ils ont vidé leur dernier coffre pour nous. Ils nous regardent comme ils regardent le Loup.', null, { expression: 'wounded' }),
+  ], LYRA_MEETING, ['extorted']));
+}
 
 function dragonAudience(state: Readonly<GameState>): DialogueSequence {
   const flags = state.flags;
@@ -322,6 +337,7 @@ function dragonYoungDragon(state: Readonly<GameState>): DialogueSequence {
 
 export const DRAGON_SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<GameState>) => DialogueSequence>> = Object.freeze({
   dragon_audience: dragonAudience,
+  dragon_terrorized_village: dragonTerrorizedVillage,
   dragon_wolf_lair: dragonWolfLair,
   dragon_shaman_traces: dragonShamanTraces,
   dragon_freed_pilgrims: dragonFreedPilgrims,

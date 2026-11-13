@@ -32,6 +32,11 @@
    "summary": "Un fidèle du Phénix a été laissé aux interrogatoires des érudits du Scorpion."
   },
   {
+   "id": "scorpionScholarsDefeated",
+   "kind": "system",
+   "summary": "Les érudits qui tenaient le fidèle du Phénix ont été vaincus (OD-2026-11-13-F, N1) : fait technique qui rouvre la scène des érudits après le combat ; aucun jugement ne le lit."
+  },
+  {
    "id": "scorpionOathRefused",
    "kind": "flag",
    "summary": "La compagnie n’a rien promis aux fidèles du Phénix."
@@ -224,7 +229,10 @@
      "sets": [
       "scorpionFaithfulFreed"
      ],
-     "reputation": 0
+     "reputation": 0,
+     "leadsTo": [
+      "scorpionScholarsDefeated"
+     ]
     },
     {
      "choiceIndex": 1,

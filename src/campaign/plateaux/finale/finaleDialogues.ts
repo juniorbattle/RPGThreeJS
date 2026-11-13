@@ -5,8 +5,9 @@
  * established by the four plateaux only; no clan, place, character, object or lore beyond them. The capital, the arena's
  * hosts and the demons stay unnamed. Authored at the post-demo reputation scale (OD-2026-11-08-A), the smallest share (R2).
  *
- * Static scenes are plain sequences. State-built scenes carry the echoes that name their cause: Maelor's advice the
- * company followed on the plateaux and the champions humiliated on his counsel at the Tournament, at the betrayal; the allied chiefs and the clans relevés or humiliés, at the rally; the evidence of
+ * Static scenes are plain sequences. State-built scenes carry the echoes that name their cause: the Lion's Bois-Clair
+ * (OD-2026-11-13-F, N2), Maelor's advice the company followed on the plateaux and the champions humiliated on his
+ * counsel at the Tournament, at the betrayal; the allied chiefs and the clans relevés or humiliés, at the rally; the evidence of
  * the Shadows, the civilians and the citizens, at the last vigil.
  */
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../../../game/types';
@@ -215,6 +216,23 @@ function humiliatedChampions(flags: Readonly<Record<string, boolean>>): string |
   return clans.length === 1 ? `le champion ${clans[0]} humilié devant les clans` : `les champions ${listFrench(clans)} humiliés devant les clans`;
 }
 
+/**
+ * OD-2026-11-13-F (N2), lines approved word for word on 2026-11-13: Bois-Clair, where the Lion followed Maelor's
+ * counsel, the coffers taken through the low gate and the witnesses silenced; none when the Lion did neither.
+ */
+function boisClairLine(flags: Readonly<Record<string, boolean>>): string | null {
+  if (flags.missionGreed && flags.silencedWitnesses) {
+    return 'Tout a commencé à Bois-Clair. Je vous ai dit que la porte basse était notre bourse, et vous avez emporté les coffres. Puis, quand les survivants ont voulu parler, vous leur avez imposé le silence.';
+  }
+  if (flags.missionGreed) {
+    return 'Tout a commencé à Bois-Clair. Je vous ai dit que la porte basse était notre bourse, et vous avez emporté les coffres pendant que les captifs partaient au nord.';
+  }
+  if (flags.silencedWitnesses) {
+    return 'Tout a commencé à Bois-Clair. Quand les survivants ont voulu parler, il n’y avait plus de silence à acheter : vous leur avez imposé le silence.';
+  }
+  return null;
+}
+
 function betrayalAdviceLine(flags: Readonly<Record<string, boolean>>): string {
   const advice = followedAdvice(flags);
   const arena = humiliatedChampions(flags);
@@ -223,14 +241,18 @@ function betrayalAdviceLine(flags: Readonly<Record<string, boolean>>): string {
   }
   if (advice.length) return `Vous m’avez écouté plus souvent que vous ne le croyez : ${listFrench(advice)}. Chaque fois, vous avez servi ceux que je sers.`;
   if (arena) return `Dans cette arène, vous m’avez enfin écouté : ${arena}. Vous avez servi ceux que je sers.`;
+  // OD-2026-11-13-F (N2): after the Bois-Clair line, the fallback no longer says he was never heeded.
+  if (boisClairLine(flags)) return 'Depuis, vous ne m’avez plus écouté. Peu importe : il me suffisait d’entrer avec vous dans cette arène.';
   return 'Vous ne m’avez jamais écouté. Peu importe : il me suffisait d’entrer avec vous dans cette arène.';
 }
 
 function finaleBetrayal(state: Readonly<GameState>): DialogueSequence {
   const adviceLine = betrayalAdviceLine(state.flags);
+  const boisClair = boisClairLine(state.flags);
   return scene('finale_betrayal', 'shadow_signs', 'La trahison', [
     say('open', KESTREL, 'Éclaireuse', 'Le champion du Serpent tombe… et Maelor s’avance au milieu de l’arène, un artefact à la main.', 'reveal', { expression: 'fearful' }),
-    say('reveal', MAELOR_TRAITOR, 'Trahison', 'Vous avez cherché les Ombres Silencieuses dans chaque clan. Elles marchaient avec vous depuis le premier Sceau.', 'advice', { expression: 'hostile' }),
+    say('reveal', MAELOR_TRAITOR, 'Trahison', 'Vous avez cherché les Ombres Silencieuses dans chaque clan. Elles marchaient avec vous depuis le premier Sceau.', boisClair ? 'boisclair' : 'advice', { expression: 'hostile' }),
+    ...(boisClair ? [say('boisclair', MAELOR_TRAITOR, 'Bois-Clair', boisClair, 'advice', { expression: 'hostile' })] : []),
     say('advice', MAELOR_TRAITOR, 'Conseils', adviceLine, 'breach', { expression: 'hostile' }),
     say('breach', MAELOR_TRAITOR, 'La brèche', 'Regardez.', 'champion', { expression: 'hostile', effects: [flag('finaleBreachOpened')] }),
     say('champion', SERAPHINE, 'Sage', 'La brèche… Elle s’ouvre au cœur de l’arène. Le champion du Serpent se relève, et ce n’est plus un homme.', 'flee', { expression: 'fearful' }),

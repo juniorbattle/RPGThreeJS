@@ -4,7 +4,7 @@ import { canRecruit, hireAtRefuge, RECRUITABLE_HERO_IDS, refugeHireOffers } from
 import { createInitialState } from '../../game/store';
 import { createRecruitInstance } from '../../game/catalog';
 import type { DialogueSequence, GameState } from '../../game/types';
-import { HERO_MEETINGS } from './heroMeetings';
+import { HERO_MEETINGS, LYRA_MEETING, withMeeting, withMeetingPart } from './heroMeetings';
 
 const HOSTS: Record<string, string> = {
   artillerist: 'bear_ore_convoy', paladin: 'bear_mountain_shrine', red_mage: 'dragon_terrorized_village',
@@ -12,25 +12,74 @@ const HOSTS: Record<string, string> = {
 };
 const sequenceOf = (id: string, state: GameState = createInitialState()): DialogueSequence => resolveGameDialogue(id, state)!.sequence;
 const step = (sequence: DialogueSequence, id: string) => sequence.steps.find((candidate) => candidate.id === id)!;
+/** OD-2026-11-13-F (N1): the branch that fights meets its hero in the same scene, reopened after the victory. */
+const AFTER_FIGHT: Record<string, { host: string; flag: string }> = {
+  artillerist: { host: 'seized', flag: 'bearConvoyEscortDefeated' },
+  red_mage: { host: 'protected', flag: 'dragonVillageRaidRepelled' },
+  enchanter: { host: 'freed2', flag: 'scorpionScholarsDefeated' },
+};
+const afterFight = (unitId: string): GameState => {
+  const state = createInitialState();
+  state.flags[AFTER_FIGHT[unitId]!.flag] = true;
+  return state;
+};
+/** The version of the host scene where an outcome step leads into the meeting. */
+const hostSequence = (unitId: string, host: string): DialogueSequence =>
+  AFTER_FIGHT[unitId]?.host === host ? sequenceOf(HOSTS[unitId]!, afterFight(unitId)) : sequenceOf(HOSTS[unitId]!);
 
 describe('the six heroes’ meetings (OD-2026-11-11-F, F2, lines approved on 2026-11-11)', () => {
   it('leads every outcome of each host scene into its meeting, every original line kept and every link resolved', () => {
     for (const meeting of HERO_MEETINGS) {
-      const sequence = sequenceOf(HOSTS[meeting.unitId]!);
-      const ids = new Set(sequence.steps.map((candidate) => candidate.id));
-      for (const [host, entry] of Object.entries(meeting.links)) expect(step(sequence, host).next, meeting.unitId).toBe(entry);
-      for (const candidate of sequence.steps) {
-        if (candidate.next) expect(ids.has(candidate.next), `${meeting.unitId}:${candidate.id}`).toBe(true);
-        for (const option of candidate.choices ?? []) if (option.next) expect(ids.has(option.next)).toBe(true);
+      for (const [host, entry] of Object.entries(meeting.links)) {
+        const sequence = hostSequence(meeting.unitId, host);
+        const ids = new Set(sequence.steps.map((candidate) => candidate.id));
+        expect(step(sequence, host).next, `${meeting.unitId}:${host}`).toBe(entry);
+        for (const candidate of sequence.steps) {
+          if (candidate.next) expect(ids.has(candidate.next), `${meeting.unitId}:${candidate.id}`).toBe(true);
+          for (const option of candidate.choices ?? []) if (option.next) expect(ids.has(option.next)).toBe(true);
+        }
       }
-      const recruitChoices = sequence.steps.flatMap((candidate) => candidate.choices ?? [])
+      const versions = Object.keys(meeting.links).map((host) => hostSequence(meeting.unitId, host));
+      const recruitChoices = versions.flatMap((sequence) => sequence.steps).flatMap((candidate) => candidate.choices ?? [])
         .filter((option) => option.effects.some((effect) => effect.type === 'recruitUnit' && effect.unitId === meeting.unitId));
       expect(recruitChoices.length, meeting.unitId).toBeGreaterThan(0);
     }
   });
 
+  it('plays the fight branch’s meeting only after the victory, once, and never the other branch’s (OD-2026-11-13-F, N1)', () => {
+    for (const [unitId, { host }] of Object.entries(AFTER_FIGHT)) {
+      const meeting = HERO_MEETINGS.find((candidate) => candidate.unitId === unitId)!;
+      const before = sequenceOf(HOSTS[unitId]!).steps.map((candidate) => candidate.id);
+      const after = sequenceOf(HOSTS[unitId]!, afterFight(unitId)).steps.map((candidate) => candidate.id);
+      expect(before, unitId).not.toContain(meeting.links[host]);
+      expect(after, unitId).toContain(meeting.links[host]);
+      for (const [other, entry] of Object.entries(meeting.links)) if (other !== host) {
+        expect(before, unitId).toContain(entry);
+        expect(after, unitId).not.toContain(entry);
+      }
+      expect(new Set(after).size, unitId).toBe(after.length);
+    }
+  });
+
+  it('splits a meeting by branch (OD-2026-11-13-F, N1): each part keeps its own lines and the shared ones, nothing else', () => {
+    const host = (id: string) => ({ id, speaker: 'Kestrel', actorId: 'kestrel', side: 'left' as const, tag: 't', text: id,
+      expression: 'neutral' as const, portrait: '', next: null, effects: [], choices: [] });
+    const whole = withMeeting([host('protected'), host('extorted')], LYRA_MEETING).map((candidate) => candidate.id);
+    const fought = withMeetingPart([host('protected')], LYRA_MEETING, ['protected']).map((candidate) => candidate.id);
+    const paid = withMeetingPart([host('extorted')], LYRA_MEETING, ['extorted']).map((candidate) => candidate.id);
+    expect(fought).toContain('lyra_react_p');
+    expect(fought).not.toContain('lyra_react_e');
+    expect(paid).toContain('lyra_react_e');
+    expect(paid).not.toContain('lyra_react_p');
+    // The shared steps (the farewell, the welcome) sit in both parts, and the two parts together hold the whole meeting.
+    expect(fought).toEqual(expect.arrayContaining(['lyra_joined', 'lyra_left']));
+    expect(paid).toEqual(expect.arrayContaining(['lyra_joined', 'lyra_left']));
+    expect(new Set([...fought, ...paid])).toEqual(new Set(whole));
+  });
+
   it('keeps the approved conditions: gold for the mercenaries, reputation for the honour heroes, a ceiling for Morvan', () => {
-    const choice = (hostId: string, stepId: string) => step(sequenceOf(hostId), stepId).choices![0]!;
+    const choice = (hostId: string, stepId: string) => step(sequenceOf(hostId), stepId)?.choices?.[0]
+      ?? step(sequenceOf(hostId, afterFight(Object.keys(HOSTS).find((unitId) => HOSTS[unitId] === hostId)!)), stepId).choices![0]!;
     expect(choice('bear_ore_convoy', 'gunnar_choice')).toMatchObject({ text: 'Engager Gunnar — 120 or.', requiresGold: 120 });
     expect(choice('bear_mountain_shrine', 'aldric_choice_h')).toMatchObject({ requiresReputationMin: 55 });
     expect(choice('bear_mountain_shrine', 'aldric_choice_p')).toMatchObject({ text: 'Rendre les 50 or au sanctuaire et accueillir Aldric.', requiresGold: 50, requiresReputationMin: 55 });

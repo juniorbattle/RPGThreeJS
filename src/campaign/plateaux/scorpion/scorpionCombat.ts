@@ -38,6 +38,11 @@ export const SCORPION_STORY_COMBATS: readonly ScorpionCombatInput[] = Object.fre
   { id: 'scorpion_dune_beasts', sceneId: TRACK, objective: 'Repoussez les bêtes qui guettent la première piste.',
     encounterLabel: 'Bêtes des dunes', enemyVisualIds: ['venom_serpent', 'forest_spider', 'cave_rat'],
     rewards: { gold: 30, reputation: 0, materials: {} } },
+  // OD-2026-11-13-F (N1), approved on 2026-11-13: freeing the faithful at « Érudits du Scorpion » costs this fight
+  // against the scholars of the camp on the caravan track. Its aftermath reopens the scholars' scene.
+  { id: 'scorpion_scholars_camp', sceneId: TRACK, objective: 'Arrachez le fidèle du Phénix aux érudits du Scorpion.',
+    encounterLabel: 'Camp des érudits', enemyVisualIds: ['scorpion_scholar', 'scorpion_scholar', 'scorpion_scholar'],
+    postCombatDialogueId: 'scorpion_scholars', rewards: { gold: 30, reputation: 0, materials: {} } },
   { id: 'scorpion_phoenix_scouts', sceneId: TRACK, objective: 'Passez les éclaireurs du Phénix qui gardent le chemin de l’oasis.',
     encounterLabel: 'Éclaireurs du Phénix', enemyVisualIds: ['phoenix_guardian', 'venom_serpent', 'phoenix_guardian'],
     rewards: { gold: 40, reputation: 0, materials: {} } },

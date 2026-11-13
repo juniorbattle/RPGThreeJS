@@ -33,6 +33,11 @@ export const DRAGON_STORY_COMBATS: readonly DragonCombatInput[] = Object.freeze<
   { id: 'dragon_wolf_scouts', sceneId: TRAIL, objective: 'Chassez les éclaireurs du Loup avant qu’ils ne préviennent le repaire.',
     encounterLabel: 'Éclaireurs du Loup', enemyVisualIds: ['wolf_hunter', 'wolf_raider', 'wolf'],
     rewards: { gold: 35, reputation: 0, materials: {} } },
+  // OD-2026-11-13-F (N1), approved on 2026-11-13: guarding the hamlet at « Hameau terrorisé » costs this fight against
+  // the Wolf's nightly raid. Its aftermath reopens the hamlet scene.
+  { id: 'dragon_village_raid', sceneId: TRAIL, objective: 'Repoussez le raid du Loup avant qu’il n’atteigne le hameau.',
+    encounterLabel: 'Raid sur le hameau', enemyVisualIds: ['wolf_raider', 'wolf', 'wolf_raider'],
+    postCombatDialogueId: 'dragon_terrorized_village', rewards: { gold: 25, reputation: 0, materials: {} } },
   { id: 'dragon_crest_creatures', sceneId: TRAIL, objective: 'Repoussez les créatures qui harcèlent la route des terrasses.',
     encounterLabel: 'Créatures des crêtes', enemyVisualIds: ['young_wyrm', 'wild_boar', 'cave_rat'],
     rewards: { gold: 40, reputation: 0, materials: { iron_ore: 1 } } },

@@ -33,6 +33,11 @@ export const BEAR_STORY_COMBATS: readonly BearCombatInput[] = Object.freeze<Bear
   { id: 'bear_raven_patrol', sceneId: MOUNTAIN, objective: 'Ouvrez la route des mines tenue par la patrouille du Corbeau.',
     encounterLabel: 'Route des mines', enemyVisualIds: ['raven_scout', 'raven_miner', 'raven_scout'],
     rewards: { gold: 35, reputation: 0, materials: { iron_ore: 1 } } },
+  // OD-2026-11-13-F (N1), approved on 2026-11-13: seizing the convoy's ore at « Convoi de minerai » costs this fight;
+  // the escort is the scene's two guards and its driver. Its aftermath reopens the convoy scene.
+  { id: 'bear_convoy_escort', sceneId: MOUNTAIN, objective: 'Venez à bout de l’escorte du Corbeau et prenez le minerai du convoi.',
+    encounterLabel: 'Escorte du convoi', enemyVisualIds: ['raven_scout', 'raven_miner', 'raven_scout'],
+    postCombatDialogueId: 'bear_ore_convoy', rewards: { gold: 20, reputation: 0, materials: {} } },
   { id: 'bear_corrupted_beast', sceneId: GALLERIES, objective: 'Abattez la bête rendue folle près des galeries.',
     encounterLabel: 'Bête corrompue', encounterRank: 'elite', enemyVisualIds: ['corrupted_beast', 'cave_rat'],
     rewards: { gold: 60, reputation: 1, materials: { iron_ore: 1 } } },
