@@ -14,15 +14,26 @@
  * verdigris bronze and jade, bronze bells and braziers, carved dragons always winged and four-legged. The trail of the
  * terraces, the snowy summits and the esplanade before Kaelen's hall carry the Dragon's sign; the Wolf's cave carries
  * the Wolf's (hide curtains, stakes, bones, pelts, iron braziers) and none of the Dragon's carvings or bells.
+ *
+ * The Scorpion plateau has six, coded only too, on its validated identity (`IDENTITY.scorpion`): a flat scorched land
+ * of honey dunes, red-brown sandstone and thorn trees under a merciless sun. The Scorpion's places (the desert track,
+ * the court of the Grand Inquisiteur's house of records) are of ochre mud brick, carved wooden lattices and striped
+ * linen, under the scorpion's sign; the Phoenix's (the ruins of its road, its temple, its sanctuary dug into the rock)
+ * are of ash-coloured cut sandstone, round columns and niches carved with phoenixes, lamps lit in daylight, ward
+ * circles and the saffron flame with a white heart, under the phoenix's. A Phoenix place shows no scorpion and a
+ * Scorpion place no phoenix; the wild dune crest at dusk shows neither, only the Shadows' cold black ink.
  */
 export type ArenaSceneId =
   | 'forest_route' | 'bois_clair_burning' | 'lion_sanctum'
   | 'bear_mountain_pass' | 'bear_mine_galleries' | 'bear_hall_terrace'
-  | 'dragon_peak_trail' | 'dragon_snowy_summit' | 'dragon_hall_esplanade' | 'dragon_wolf_cave';
+  | 'dragon_peak_trail' | 'dragon_snowy_summit' | 'dragon_hall_esplanade' | 'dragon_wolf_cave'
+  | 'scorpion_dune_track' | 'scorpion_dune_crest' | 'scorpion_phoenix_ruins' | 'scorpion_phoenix_temple' | 'scorpion_ash_sanctuary'
+  | 'scorpion_records_court';
 
 export type TileStyle = 'mossy_flagstone' | 'packed_earth' | 'sanctum_marble' | 'hewn_granite' | 'snowy_granite'
-  | 'limestone_flag' | 'snowy_limestone' | 'dressed_limestone' | 'cave_flag';
-export type GroundStyle = 'forest_floor' | 'village_mud' | 'sanctum_rubble' | 'snow_scree' | 'mine_floor' | 'snow_terrace' | 'dry_grass_snow';
+  | 'limestone_flag' | 'snowy_limestone' | 'dressed_limestone' | 'cave_flag' | 'sand_flag' | 'dressed_sandstone';
+export type GroundStyle = 'forest_floor' | 'village_mud' | 'sanctum_rubble' | 'snow_scree' | 'mine_floor' | 'snow_terrace' | 'dry_grass_snow'
+  | 'desert_sand';
 
 export type ArenaPropKind =
   | 'tree' | 'pine' | 'dead_tree' | 'bush' | 'fern' | 'rock' | 'grass'
@@ -37,14 +48,21 @@ export type ArenaPropKind =
   | 'rock_needle' | 'twisted_pine' | 'terrace_wall' | 'cairn' | 'bell_post' | 'bronze_brazier' | 'dragon_stele'
   | 'dragon_statue' | 'balustrade' | 'dragon_gate'
   // the Wolf's cave
-  | 'stalagmite' | 'hide_curtain' | 'stakes' | 'bones' | 'pelt';
+  | 'stalagmite' | 'hide_curtain' | 'stakes' | 'bones' | 'pelt'
+  // the Arid Deserts, and the Scorpion's mud brick
+  | 'dune' | 'thorn_tree' | 'thorn_scrub' | 'dry_tuft' | 'awning' | 'clay_jars' | 'mudbrick_arcade' | 'records_gate' | 'dry_basin'
+  // the Phoenix's places
+  | 'phoenix_column' | 'fallen_column' | 'ruin_wall' | 'phoenix_stele' | 'ward_circle' | 'flame_hearth' | 'niche_wall' | 'ash_basin'
+  | 'phoenix_relief'
+  // the Shadows' mark
+  | 'ink_stain' | 'loose_leaves';
 
 /** The sound family a scene plays: a new arena borrows an existing one, since new sound awaits the operator's ear. */
 export type ArenaSoundFamily = 'forest_route' | 'bois_clair_burning' | 'lion_sanctum';
 /** The clan sign on an arena's banners and carved reliefs. */
-export type ArenaEmblem = 'lion' | 'bear' | 'dragon' | 'wolf';
+export type ArenaEmblem = 'lion' | 'bear' | 'dragon' | 'wolf' | 'scorpion' | 'phoenix';
 /** What grows or lies at the foot of the platform and of the masonry. */
-export type ArenaFringe = 'vegetation' | 'alpine' | 'snow' | 'rubble' | 'grass';
+export type ArenaFringe = 'vegetation' | 'alpine' | 'snow' | 'rubble' | 'grass' | 'sand';
 
 export interface ArenaProp {
   kind: ArenaPropKind;
@@ -102,7 +120,9 @@ export interface ArenaTheme {
    * painted in code (`procedural`) for the arenas that have no plate.
    */
   farPlate: {
-    file?: string; procedural?: 'peaks' | 'cave' | 'clouds_day' | 'clouds_dusk' | 'lair'; width: number; bottomY: number; z: number; tint: string;
+    file?: string;
+    procedural?: 'peaks' | 'cave' | 'clouds_day' | 'clouds_dusk' | 'lair' | 'dunes_day' | 'dunes_dusk' | 'ruins_day' | 'nave' | 'sanctuary' | 'court';
+    width: number; bottomY: number; z: number; tint: string;
   };
   /** Ambience and sound mapping the scene plays (its own id for the Lion's arenas). */
   sound: ArenaSoundFamily;
@@ -119,10 +139,15 @@ export interface ArenaTheme {
    * palette's "moss" is in the joints: snow before Borin's hall, dry grass before Kaelen's).
    */
   apron?: 'flagstone';
-  /** The living rock of cliffs, boulders and outcrops: the Bear's granite by default, the Dragon's pale limestone. */
-  rock?: 'granite' | 'limestone';
-  /** Horizon between the band and the far plate: tree lines or ridges by default, the sea of clouds on the Dragon's peaks. */
-  horizon?: 'clouds';
+  /** The living rock of cliffs, boulders and outcrops: the Bear's granite by default, the Dragon's pale limestone, the desert's red sandstone. */
+  rock?: 'granite' | 'limestone' | 'sandstone';
+  /**
+   * Horizon between the band and the far plate: tree lines or ridges by default, the sea of clouds on the Dragon's peaks,
+   * dune crests in the desert, none where walls close the view (the Phoenix's nave, the Scorpion's court).
+   */
+  horizon?: 'clouds' | 'dunes' | 'none';
+  /** The lamps in the niches and on the steles are cold, smoke-blackened (the Phoenix's sanctuary); lit by default. */
+  unlitLamps?: boolean;
   /** Multiplier applied to pixel sprites so they sit in the arena light. */
   spriteTint: string;
   spriteRim: string;
@@ -571,6 +596,234 @@ const DRAGON_PEAK_PALETTE: ArenaPalette = {
   ink: '#14110d',
 };
 
+/** The caravan track across the Scorpion's dunes: honey sand, red sandstone, thorn trees, the track's waymarks under the scorpion. */
+const SCORPION_TRACK_PROPS: ArenaProp[] = [
+  // Back: dunes rolling away to the mesas, a lone thorn tree, the track's waymark.
+  { kind: 'dune', x: -9.6, z: -9.0, s: 1.4, r: 0.2, v: 1 },
+  { kind: 'dune', x: 9.4, z: -10.4, s: 1.6, r: -0.15, v: 2 },
+  { kind: 'dune', x: -2.6, z: -13.6, s: 1.9, r: 0.05, v: 3 },
+  { kind: 'dune', x: 6.0, z: -16.8, s: 2.1, r: -0.1, v: 4 },
+  { kind: 'dune', x: -13.0, z: -17.0, s: 2.2, r: 0.25, v: 5 },
+  { kind: 'dune', x: 1.6, z: -7.4, s: 0.9, r: -0.3, v: 6 },
+  { kind: 'cliff', x: -16.0, z: -13.6, s: 1.5, v: 51 },
+  { kind: 'cliff', x: 16.4, z: -14.6, s: 1.6, v: 52 },
+  { kind: 'thorn_tree', x: -7.6, z: -6.0, s: 1.15, v: 1 },
+  { kind: 'thorn_tree', x: 11.8, z: -8.0, s: 1.3, v: 2 },
+  { kind: 'snow_rock', x: -5.6, z: -4.4, s: 1.0, v: 1 },
+  { kind: 'snow_rock', x: 5.6, z: -4.6, s: 1.15, v: 2 },
+  { kind: 'snow_rock', x: 2.6, z: -5.8, s: 0.7, v: 3 },
+  { kind: 'banner', x: -3.4, z: -4.4, s: 1, v: 1 },
+  { kind: 'thorn_scrub', x: 0.8, z: -4.1, s: 1, v: 1 },
+  { kind: 'dry_tuft', x: -1.8, z: -3.8, s: 1, v: 1 },
+  { kind: 'dry_tuft', x: 3.8, z: -3.8, s: 1, v: 2 },
+  // Flanks: a scholars' shade on the track, water jars and their crates, a second waymark.
+  { kind: 'awning', x: -7.6, z: -0.4, s: 1, r: 0.12, v: 1 },
+  { kind: 'clay_jars', x: -6.4, z: 2.2, s: 1, v: 1 },
+  { kind: 'crate', x: -7.2, z: 3.2, s: 0.8, r: 0.4, v: 1 },
+  { kind: 'snow_rock', x: 7.4, z: -1.2, s: 1.3, v: 4 },
+  { kind: 'banner', x: 7.0, z: 2.2, s: 0.95, v: 2 },
+  { kind: 'thorn_scrub', x: 6.2, z: 0.6, s: 1, v: 2 },
+  { kind: 'thorn_tree', x: 9.8, z: 1.6, s: 1.05, v: 3 },
+  { kind: 'dry_tuft', x: -6.0, z: -2.6, s: 1, v: 3 },
+  { kind: 'dry_tuft', x: 6.1, z: 3.4, s: 1.1, v: 0 },
+  // Foreground framing (blurred by the tilt-shift band).
+  { kind: 'dune', x: -7.4, z: 6.2, s: 1.0, r: 0.1, v: 7 },
+  { kind: 'thorn_scrub', x: 7.2, z: 5.8, s: 1.3, v: 3 },
+  { kind: 'snow_rock', x: 4.2, z: 6.4, s: 0.7, v: 5 },
+  { kind: 'dry_tuft', x: -3.6, z: 6.2, s: 1.2, v: 1 },
+];
+
+/** The knife-edge dune crest at dusk where the Prophet fled: wild and empty, the Shadows' cold ink and loose leaves across the sand. */
+const SCORPION_CREST_PROPS: ArenaProp[] = [
+  // Back: the long crest, the ink of his trail running up it, his leaves scattered along it.
+  { kind: 'dune', x: -8.6, z: -8.4, s: 1.6, r: 0.3, v: 11 },
+  { kind: 'dune', x: 8.8, z: -9.6, s: 1.7, r: -0.2, v: 12 },
+  { kind: 'dune', x: 0.6, z: -12.6, s: 2.3, r: 0.12, v: 13 },
+  { kind: 'dune', x: -13.4, z: -15.4, s: 2.0, r: 0.4, v: 14 },
+  { kind: 'dune', x: 13.6, z: -16.2, s: 2.1, r: -0.3, v: 15 },
+  { kind: 'cliff', x: -17.4, z: -18.0, s: 1.5, v: 53 },
+  { kind: 'cliff', x: 17.8, z: -19.0, s: 1.4, v: 54 },
+  { kind: 'ink_stain', x: -2.4, z: -4.2, s: 1.1, v: 1 },
+  { kind: 'ink_stain', x: 1.2, z: -5.6, s: 0.9, v: 2 },
+  { kind: 'ink_stain', x: 3.8, z: -7.6, s: 1.0, v: 3 },
+  { kind: 'loose_leaves', x: -0.6, z: -4.6, s: 1, v: 1 },
+  { kind: 'loose_leaves', x: 2.8, z: -6.8, s: 1, v: 2 },
+  { kind: 'thorn_tree', x: -7.8, z: -5.4, s: 1.1, v: 4 },
+  { kind: 'snow_rock', x: 5.8, z: -4.4, s: 1.1, v: 6 },
+  { kind: 'thorn_scrub', x: -5.4, z: -3.9, s: 0.9, v: 4 },
+  { kind: 'dry_tuft', x: 4.0, z: -3.9, s: 1, v: 3 },
+  // Flanks.
+  { kind: 'dune', x: -8.4, z: 0.6, s: 1.1, r: 1.3, v: 16 },
+  { kind: 'snow_rock', x: 7.4, z: -1.0, s: 1.3, v: 7 },
+  { kind: 'ink_stain', x: 6.6, z: 1.6, s: 0.8, v: 4 },
+  { kind: 'loose_leaves', x: -6.4, z: 2.4, s: 0.9, v: 3 },
+  { kind: 'thorn_scrub', x: 6.4, z: 3.4, s: 1.1, v: 5 },
+  { kind: 'dry_tuft', x: -6.2, z: -1.6, s: 1, v: 4 },
+  { kind: 'thorn_tree', x: 10.2, z: 2.2, s: 1.0, v: 5 },
+  // Foreground framing.
+  { kind: 'dune', x: 7.0, z: 6.2, s: 1.0, r: -0.2, v: 17 },
+  { kind: 'loose_leaves', x: -3.4, z: 6.0, s: 1.1, v: 4 },
+  { kind: 'thorn_scrub', x: -7.0, z: 5.6, s: 1.2, v: 6 },
+];
+
+/** The road through the Phoenix's ruins: worn flags between broken walls and toppled round columns, a ward circle across it. */
+const PHOENIX_RUINS_PROPS: ArenaProp[] = [
+  // Back: the road runs on between the ruins, a ward circle traced across it, the faithful's carved stones and their lamps.
+  { kind: 'ward_circle', x: -0.4, z: -5.0, s: 1.1, v: 1 },
+  { kind: 'phoenix_stele', x: -3.8, z: -4.2, s: 0.9, v: 1 },
+  { kind: 'phoenix_stele', x: 3.0, z: -4.3, s: 0.9, v: 2 },
+  { kind: 'ruin_wall', x: -6.0, z: -6.6, s: 1, r: 0.08, v: 1 },
+  { kind: 'ruin_wall', x: 5.6, z: -7.0, s: 0.95, r: -0.1, v: 2 },
+  { kind: 'phoenix_column', x: -2.6, z: -8.2, s: 1, v: 2 },
+  { kind: 'phoenix_column', x: 2.2, z: -8.6, s: 1, v: 3 },
+  { kind: 'phoenix_column', x: -9.4, z: -7.4, s: 1.05, v: 4 },
+  { kind: 'phoenix_column', x: 9.2, z: -8.0, s: 1.05, v: 5 },
+  { kind: 'fallen_column', x: 6.6, z: -4.4, s: 1, r: 0.3, v: 1 },
+  { kind: 'dune', x: -12.4, z: -11.4, s: 1.7, r: 0.2, v: 21 },
+  { kind: 'dune', x: 12.8, z: -12.4, s: 1.8, r: -0.2, v: 22 },
+  { kind: 'dune', x: 0.4, z: -14.6, s: 2.0, r: 0.05, v: 23 },
+  { kind: 'ruin_wall', x: -8.6, z: -12.0, s: 1.1, r: 0.3, v: 3 },
+  { kind: 'phoenix_column', x: 7.4, z: -12.8, s: 1.1, v: 7 },
+  { kind: 'dry_tuft', x: -1.6, z: -3.7, s: 0.9, v: 1 },
+  // Flanks.
+  { kind: 'fallen_column', x: -7.2, z: -1.8, s: 1, r: 1.25, v: 2 },
+  { kind: 'phoenix_column', x: -7.6, z: 1.8, s: 0.95, v: 9 },
+  { kind: 'phoenix_stele', x: 6.2, z: -1.4, s: 0.9, v: 3 },
+  { kind: 'ruin_wall', x: 8.6, z: 2.2, s: 0.8, r: 1.45, v: 4 },
+  { kind: 'thorn_scrub', x: 6.4, z: 0.9, s: 0.9, v: 1 },
+  { kind: 'snow_rock', x: -6.4, z: 3.6, s: 0.8, v: 7 },
+  { kind: 'dry_tuft', x: 6.0, z: 3.6, s: 1, v: 2 },
+  // Foreground framing.
+  { kind: 'fallen_column', x: -6.4, z: 5.8, s: 1.1, r: 0.2, v: 3 },
+  { kind: 'dune', x: 7.2, z: 6.0, s: 1.0, r: -0.2, v: 24 },
+  { kind: 'dry_tuft', x: 3.8, z: 6.4, s: 1.2, v: 3 },
+];
+
+/** The nave of the Phoenix's temple: the saffron flame on its round hearth, round columns carved with phoenixes, hangings, lit niches. */
+const PHOENIX_TEMPLE_PROPS: ArenaProp[] = [
+  // Back: the hearth at the heart of the nave in its ward circle, the colonnade and the lamp-lit niches behind.
+  { kind: 'flame_hearth', x: -0.3, z: -6.8, s: 1.05, v: 1 },
+  { kind: 'ward_circle', x: -0.3, z: -6.8, s: 1.9, v: 2 },
+  { kind: 'phoenix_column', x: -3.8, z: -5.0, s: 1.05, v: 2 },
+  { kind: 'phoenix_column', x: 3.2, z: -5.1, s: 1.05, v: 4 },
+  { kind: 'phoenix_column', x: -8.6, z: -5.2, s: 1.1, v: 6 },
+  { kind: 'phoenix_column', x: 8.0, z: -5.4, s: 1.1, v: 8 },
+  { kind: 'banner', x: -6.2, z: -4.7, s: 1.05, v: 1 },
+  { kind: 'banner', x: 5.6, z: -4.9, s: 1.05, v: 2 },
+  { kind: 'niche_wall', x: -4.4, z: -10.2, s: 1, v: 1 },
+  { kind: 'niche_wall', x: 3.8, z: -10.4, s: 1, v: 2 },
+  { kind: 'niche_wall', x: -12.4, z: -9.6, s: 1.1, v: 3 },
+  { kind: 'niche_wall', x: 11.8, z: -9.8, s: 1.1, v: 4 },
+  // Flanks: the nave's colonnade, a hanging between each pair, lamps on their carved stones.
+  { kind: 'phoenix_column', x: -6.8, z: -0.8, s: 1, v: 10 },
+  { kind: 'phoenix_column', x: 6.8, z: -0.6, s: 1, v: 12 },
+  { kind: 'phoenix_column', x: -7.2, z: 3.4, s: 1, v: 14 },
+  { kind: 'phoenix_column', x: 7.2, z: 3.6, s: 1, v: 16 },
+  { kind: 'banner', x: -7.0, z: 1.3, s: 0.95, v: 3 },
+  { kind: 'banner', x: 7.0, z: 1.5, s: 0.95, v: 4 },
+  { kind: 'phoenix_stele', x: -5.8, z: -2.8, s: 0.8, v: 5 },
+  { kind: 'phoenix_stele', x: 5.8, z: -2.6, s: 0.8, v: 6 },
+  // Foreground framing.
+  { kind: 'phoenix_stele', x: -6.2, z: 5.8, s: 0.85, v: 7 },
+  { kind: 'phoenix_stele', x: 6.4, z: 5.8, s: 0.85, v: 8 },
+  { kind: 'clay_jars', x: -3.4, z: 6.4, s: 0.9, v: 2 },
+];
+
+/** The Phoenix's sanctuary dug into the red rock: the basin of sacred ash and its embers, the phoenix carved above, cold niches. */
+const PHOENIX_SANCTUARY_PROPS: ArenaProp[] = [
+  // Back: the great basin, the phoenix carved in the rock above it, smoke-blackened niches either side, the hewn walls.
+  { kind: 'ash_basin', x: -0.3, z: -6.2, s: 1.15, v: 1 },
+  { kind: 'phoenix_relief', x: -0.3, z: -9.8, s: 1.1, v: 1 },
+  { kind: 'cliff', x: -7.8, z: -9.8, s: 1.3, v: 61 },
+  { kind: 'cliff', x: 7.6, z: -10.0, s: 1.3, v: 62 },
+  { kind: 'cliff', x: -14.0, z: -12.2, s: 1.6, v: 63 },
+  { kind: 'cliff', x: 14.4, z: -12.6, s: 1.6, v: 64 },
+  { kind: 'niche_wall', x: -5.0, z: -7.6, s: 0.9, r: 0.15, v: 5 },
+  { kind: 'niche_wall', x: 4.6, z: -7.8, s: 0.9, r: -0.15, v: 6 },
+  { kind: 'snow_rock', x: -5.8, z: -4.4, s: 0.9, v: 8 },
+  { kind: 'ink_stain', x: 3.4, z: -4.4, s: 0.9, v: 5 },
+  { kind: 'ink_stain', x: -2.8, z: -4.0, s: 0.7, v: 6 },
+  // Flanks: the chamber's hewn walls, a carved stone with its cold lamp, the ink of the faithful led astray.
+  { kind: 'cliff', x: -10.0, z: 0.6, s: 1.1, r: Math.PI / 2, v: 65 },
+  { kind: 'cliff', x: 10.2, z: 0.2, s: 1.1, r: -Math.PI / 2, v: 66 },
+  { kind: 'phoenix_stele', x: -6.4, z: -1.4, s: 0.85, v: 4 },
+  { kind: 'niche_wall', x: 7.6, z: 2.4, s: 0.85, r: -Math.PI / 2, v: 7 },
+  { kind: 'snow_rock', x: 7.0, z: -2.0, s: 1, v: 9 },
+  { kind: 'ink_stain', x: 6.0, z: 0.4, s: 0.9, v: 7 },
+  { kind: 'rock', x: -6.6, z: 2.8, s: 1, v: 1 },
+  // Foreground framing.
+  { kind: 'snow_rock', x: -6.8, z: 5.6, s: 1.3, v: 10 },
+  { kind: 'rock', x: 7.0, z: 5.6, s: 1.2, v: 2 },
+  { kind: 'ink_stain', x: -3.2, z: 6.2, s: 0.8, v: 8 },
+];
+
+/** The walled court of the Grand Inquisiteur's house of records: sun-baked flags, shaded mud-brick arcades, the doorway under the scorpion. */
+const SCORPION_COURT_PROPS: ArenaProp[] = [
+  // Back: the doorway of the hall of records under its carved scorpion and its banner, the dry basin before it, the arcades.
+  { kind: 'records_gate', x: -0.4, z: -8.8, s: 1.05, v: 1 },
+  { kind: 'dry_basin', x: -0.4, z: -5.2, s: 1, v: 1 },
+  { kind: 'mudbrick_arcade', x: -8.4, z: -8.4, s: 1, v: 1 },
+  { kind: 'mudbrick_arcade', x: 7.6, z: -8.6, s: 1, v: 2 },
+  { kind: 'mudbrick_arcade', x: -15.0, z: -8.8, s: 1.05, v: 3 },
+  { kind: 'mudbrick_arcade', x: 14.2, z: -9.0, s: 1.05, v: 4 },
+  { kind: 'clay_jars', x: -4.4, z: -4.6, s: 0.9, v: 1 },
+  { kind: 'clay_jars', x: 3.6, z: -4.8, s: 0.85, v: 2 },
+  { kind: 'dry_tuft', x: -2.4, z: -3.8, s: 0.8, v: 1 },
+  // Flanks: the shaded arcades along the court's sides, the scholars' jars and crates.
+  { kind: 'mudbrick_arcade', x: -8.8, z: -0.4, s: 1, r: Math.PI / 2, v: 5 },
+  { kind: 'mudbrick_arcade', x: 8.8, z: -0.2, s: 1, r: -Math.PI / 2, v: 6 },
+  { kind: 'clay_jars', x: -6.2, z: 2.6, s: 1, v: 3 },
+  { kind: 'clay_jars', x: 6.4, z: -2.8, s: 0.9, v: 4 },
+  { kind: 'crate', x: 6.4, z: 2.4, s: 0.8, r: 0.3, v: 1 },
+  { kind: 'crate', x: 6.8, z: 3.3, s: 0.65, r: -0.4, v: 2 },
+  { kind: 'crate', x: -6.4, z: -2.6, s: 0.75, r: 0.2, v: 3 },
+  { kind: 'dry_tuft', x: -6.0, z: 4.2, s: 0.9, v: 2 },
+  { kind: 'dry_tuft', x: 6.2, z: 4.4, s: 0.8, v: 3 },
+  // Foreground framing.
+  { kind: 'clay_jars', x: -6.6, z: 5.8, s: 1.15, v: 5 },
+  { kind: 'crate', x: 6.8, z: 5.6, s: 1.0, r: 0.2, v: 4 },
+  { kind: 'dry_tuft', x: 3.6, z: 6.4, s: 1.0, v: 2 },
+];
+
+/**
+ * Honey sand, red sandstone and dusty thorn scrub for the Scorpion's desert. The "moss" lodged in joints and heaped in
+ * drifts is sand; the cloth is umber and the trim undyed linen, the plaster ochre clay: never red-and-gold, never purple.
+ */
+const SCORPION_DESERT_PALETTE: ArenaPalette = {
+  stone: ['#3e2a1e', '#5c3e2a', '#7c573a', '#9a7250', '#b68e68', '#d0ac84'],
+  stoneDark: ['#1e130c', '#2e2016', '#422c1f'],
+  // honey and amber sand, from the shade of a dune's lee to its sunlit crest
+  moss: ['#6e4a26', '#946632', '#b88544', '#d4a45c', '#e8c27a'],
+  // the cracked clay of the pans, burnt sienna
+  dirt: ['#4a2a18', '#6a3c22', '#8a5230', '#a86a40'],
+  // dry grass and straw, never a lush green
+  grass: ['#4e3c1c', '#6e5628', '#8e7236', '#ae8e48', '#c8a85c', '#ddc078'],
+  // the dusty olive of thorn trees and scrub
+  foliage: ['#1e1e14', '#2c2c1c', '#3c3c26', '#4e4e30', '#62603c', '#787448', '#8e8a58'],
+  bark: ['#1e140c', '#2e2014', '#40301e', '#54402a', '#6a5236'],
+  wood: ['#2a1c10', '#3e2a18', '#563c22', '#6e5030'],
+  cloth: ['#241810', '#36241a', '#4a3324', '#5e4430'],
+  trim: ['#6a6252', '#958c78', '#c2b89e', '#e6dcc4'],
+  plaster: ['#8a5a30', '#a8723e', '#c48c50', '#d8a466'],
+  roof: ['#3a2a1c', '#4e3a28', '#644c34'],
+  ink: '#120b07',
+};
+
+/**
+ * The Phoenix's weathered cut sandstone, the colour of ash and pale sand; the cloth is saffron and the trim ash grey
+ * (no crimson, no gold); sand in the joints of the ruins' road.
+ */
+const PHOENIX_ASH_PALETTE: ArenaPalette = {
+  ...SCORPION_DESERT_PALETTE,
+  stone: ['#4a443c', '#655e54', '#827a6e', '#9e968a', '#b9b2a6', '#d4cec2'],
+  stoneDark: ['#1e1b18', '#2c2824', '#3c3731'],
+  cloth: ['#7a3e0c', '#a85a14', '#d07c1e', '#eda034'],
+  trim: ['#4e4a44', '#7a756c', '#a8a298', '#d8d2c6'],
+  plaster: ['#6e675c', '#8a8276', '#a69e90'],
+  roof: ['#2e2a26', '#423d37', '#58524a'],
+  ink: '#14100c',
+};
+
 export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.freeze({
   forest_route: {
     id: 'forest_route',
@@ -926,7 +1179,205 @@ export const ARENA_THEMES: Readonly<Record<ArenaSceneId, ArenaTheme>> = Object.f
     motes: { color: '#e0a868', count: 70, rise: 0.12, size: 0.06, glow: true },
     mist: { color: '#3c3028', opacity: 0.4, layers: [[-7.5, 1.0, 40], [-12.5, 2.0, 56]] },
   },
+  scorpion_dune_track: {
+    id: 'scorpion_dune_track',
+    sound: 'forest_route',
+    label: 'Déserts Arides — piste des dunes',
+    tile: 'sand_flag',
+    ground: 'desert_sand',
+    palette: SCORPION_DESERT_PALETTE,
+    light: {
+      hemiSky: '#f6ecda', hemiGround: '#6a4a30', hemiIntensity: 1.45,
+      sunColor: '#fff0d0', sunIntensity: 6.0, sunPosition: [-9, 16, 7],
+      fillColor: '#7e94c6', fillIntensity: 0.75, exposure: 0.9,
+    },
+    fog: { color: '#cdb38c', density: 0.008 },
+    background: '#e8dfcc',
+    farPlate: { procedural: 'dunes_day', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#fbf3e4',
+    spriteRim: '#6a4a2a',
+    props: SCORPION_TRACK_PROPS,
+    emblem: 'scorpion',
+    rock: 'sandstone',
+    horizon: 'dunes',
+    fringe: 'sand',
+    band: { kinds: ['dune', 'thorn_scrub', 'dune', 'snow_rock', 'thorn_tree'], count: 18, z: [-9, -20], halfWidth: 26, gap: 5, scale: [0.9, 1.5] },
+    clutter: { kinds: ['dry_tuft', 'thorn_scrub', 'snow_rock', 'dry_tuft', 'rock'], count: 34, z: [-3.6, -16], halfWidth: 16, scale: [0.7, 1.2], gap: 2.4 },
+    motes: { color: '#f2deb2', count: 60, rise: 0.04, size: 0.055, glow: false },
+    mist: { color: '#f4e8cc', opacity: 0.1, layers: [[-10, 1.2, 48], [-16, 2.2, 64]] },
+  },
+  scorpion_dune_crest: {
+    id: 'scorpion_dune_crest',
+    sound: 'lion_sanctum',
+    label: 'Déserts Arides — crête des dunes au crépuscule',
+    tile: 'sand_flag',
+    ground: 'desert_sand',
+    palette: SCORPION_DESERT_PALETTE,
+    light: {
+      hemiSky: '#e0a676', hemiGround: '#4a3c3a', hemiIntensity: 1.75,
+      sunColor: '#ffab64', sunIntensity: 4.6, sunPosition: [-10, 8, 6],
+      fillColor: '#6e82b8', fillIntensity: 1.0, exposure: 1.0,
+    },
+    fog: { color: '#9a7460', density: 0.012 },
+    background: '#c88a62',
+    farPlate: { procedural: 'dunes_dusk', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#fbe8d6',
+    spriteRim: '#4a5470',
+    props: SCORPION_CREST_PROPS,
+    emblem: 'scorpion',
+    rock: 'sandstone',
+    horizon: 'dunes',
+    fringe: 'sand',
+    band: { kinds: ['dune', 'dune', 'thorn_scrub', 'snow_rock'], count: 16, z: [-9, -20], halfWidth: 26, gap: 5, scale: [1.0, 1.6] },
+    clutter: { kinds: ['dry_tuft', 'thorn_scrub', 'snow_rock', 'dry_tuft'], count: 26, z: [-3.6, -16], halfWidth: 16, scale: [0.7, 1.1], gap: 2.4 },
+    motes: { color: '#ffd2a4', count: 70, rise: 0.03, size: 0.055, glow: false },
+    mist: { color: '#d49a74', opacity: 0.26, layers: [[-9.5, 1.3, 48], [-15.5, 2.4, 64]] },
+  },
+  scorpion_phoenix_ruins: {
+    id: 'scorpion_phoenix_ruins',
+    sound: 'forest_route',
+    label: 'Ruines du Phénix — route des sceaux de garde',
+    tile: 'sand_flag',
+    ground: 'desert_sand',
+    palette: PHOENIX_ASH_PALETTE,
+    light: {
+      hemiSky: '#f6ecdc', hemiGround: '#6a4c34', hemiIntensity: 1.5,
+      sunColor: '#fff0d2', sunIntensity: 5.8, sunPosition: [-9, 16, 7],
+      fillColor: '#7e94c6', fillIntensity: 0.75, exposure: 0.9,
+    },
+    fog: { color: '#cbb48e', density: 0.008 },
+    background: '#e6ddca',
+    farPlate: { procedural: 'ruins_day', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#f8f2e6',
+    spriteRim: '#5e5446',
+    props: PHOENIX_RUINS_PROPS,
+    emblem: 'phoenix',
+    rock: 'sandstone',
+    horizon: 'dunes',
+    fringe: 'sand',
+    apron: 'flagstone',
+    band: { kinds: ['phoenix_column', 'dune', 'ruin_wall', 'dune', 'snow_rock'], count: 16, z: [-10, -20], halfWidth: 26, gap: 5, scale: [0.9, 1.3] },
+    clutter: { kinds: ['dry_tuft', 'rock', 'thorn_scrub', 'dry_tuft', 'snow_rock'], count: 28, z: [-3.6, -15], halfWidth: 15, scale: [0.7, 1.1], gap: 2.6 },
+    motes: { color: '#f0dcb0', count: 50, rise: 0.05, size: 0.055, glow: false },
+    mist: { color: '#f2e6ca', opacity: 0.1, layers: [[-10.5, 1.2, 48], [-16, 2.2, 64]] },
+  },
+  scorpion_phoenix_temple: {
+    id: 'scorpion_phoenix_temple',
+    sound: 'lion_sanctum',
+    label: 'Temple du Phénix — la nef de la flamme',
+    tile: 'dressed_sandstone',
+    // the nave's flags, whose "snow" is this palette's grey ash
+    ground: 'snow_terrace',
+    palette: {
+      ...PHOENIX_ASH_PALETTE,
+      // pale ash swept into the joints of the nave, never sand indoors
+      moss: ['#5a5650', '#76716a', '#938e86', '#b0aba2', '#ccc8c0'],
+      dirt: ['#2a2420', '#3c3430', '#4e4640', '#625852'],
+      grass: ['#2a2622', '#3c3732', '#504a44', '#655e56', '#7a726a', '#908880'],
+    },
+    light: {
+      hemiSky: '#c8b090', hemiGround: '#2a2018', hemiIntensity: 1.45,
+      sunColor: '#ffc88a', sunIntensity: 3.0, sunPosition: [-7, 14, 6],
+      fillColor: '#6e6458', fillIntensity: 0.5, exposure: 1.12,
+    },
+    fog: { color: '#2a2018', density: 0.024 },
+    background: '#0e0a08',
+    farPlate: { procedural: 'nave', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#f6e4cc',
+    spriteRim: '#7a4a1e',
+    props: PHOENIX_TEMPLE_PROPS,
+    emblem: 'phoenix',
+    rock: 'sandstone',
+    interior: true,
+    horizon: 'none',
+    fringe: 'rubble',
+    apron: 'flagstone',
+    band: { kinds: ['phoenix_column', 'niche_wall', 'phoenix_column'], count: 12, z: [-11, -18], halfWidth: 20, gap: 5, scale: [1.0, 1.2] },
+    clutter: { kinds: ['clay_jars'], count: 8, z: [-3.8, -9], halfWidth: 12, scale: [0.7, 0.9], gap: 5 },
+    motes: { color: '#ffb458', count: 80, rise: 0.18, size: 0.055, glow: true },
+    mist: { color: '#4e4034', opacity: 0.32, layers: [[-8, 1.2, 40], [-13, 2.2, 56]] },
+  },
+  scorpion_ash_sanctuary: {
+    id: 'scorpion_ash_sanctuary',
+    sound: 'lion_sanctum',
+    label: 'Sanctuaire du Phénix — les cendres sacrées',
+    tile: 'cave_flag',
+    // the hewn floor: packed earth, grit and ash in this palette's "gravel" tones
+    ground: 'mine_floor',
+    palette: {
+      ...PHOENIX_ASH_PALETTE,
+      // the red-brown rock the chamber is hewn from
+      stone: ['#2e1a12', '#44281c', '#5c3826', '#764a32', '#8e5e40', '#a8744e'],
+      stoneDark: ['#100806', '#1a0e0a', '#26150e'],
+      // grey ash in the joints and along the walls
+      moss: ['#3a3634', '#55504c', '#716b66', '#8e8882', '#aaa49e'],
+      dirt: ['#1e120c', '#2e1c12', '#40281a', '#523424'],
+      grass: ['#2a2422', '#3c3532', '#504844', '#655c56', '#7a716a', '#908680'],
+      plaster: ['#5c3826', '#764a32', '#8e5e40'],
+    },
+    light: {
+      hemiSky: '#8a6a5a', hemiGround: '#1a0c08', hemiIntensity: 1.35,
+      sunColor: '#ff9a60', sunIntensity: 2.8, sunPosition: [-6, 13, 6],
+      fillColor: '#4a4c56', fillIntensity: 0.45, exposure: 1.14,
+    },
+    fog: { color: '#1e100a', density: 0.028 },
+    background: '#080504',
+    farPlate: { procedural: 'sanctuary', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#f6dcc8',
+    spriteRim: '#6e2e18',
+    props: PHOENIX_SANCTUARY_PROPS,
+    emblem: 'phoenix',
+    rock: 'sandstone',
+    interior: true,
+    unlitLamps: true,
+    fringe: 'rubble',
+    band: { kinds: ['cliff', 'snow_rock', 'cliff', 'niche_wall'], count: 14, z: [-9, -18], halfWidth: 22, gap: 5, scale: [1.0, 1.4] },
+    clutter: { kinds: ['rock', 'snow_rock', 'rock', 'ink_stain'], count: 20, z: [-3.8, -14], halfWidth: 14, scale: [0.7, 1.1], gap: 5.2 },
+    motes: { color: '#ff8a44', count: 60, rise: 0.12, size: 0.05, glow: true },
+    mist: { color: '#3a2a22', opacity: 0.38, layers: [[-7.5, 1.0, 40], [-12.5, 2.0, 56]] },
+  },
+  scorpion_records_court: {
+    id: 'scorpion_records_court',
+    sound: 'forest_route',
+    label: 'Maison des registres — cour du Grand Inquisiteur',
+    tile: 'dressed_sandstone',
+    // the court's flags under the sun, whose "snow" is this palette's blown sand
+    ground: 'snow_terrace',
+    palette: {
+      ...SCORPION_DESERT_PALETTE,
+      // sun-baked flagstones, paler than the wild rock
+      stone: ['#5e4a34', '#7e6648', '#9e845e', '#bca276', '#d4bc90', '#e8d4ac'],
+      plaster: ['#7e4e28', '#9c6634', '#b88044', '#cf9858', '#e0b070'],
+    },
+    light: {
+      hemiSky: '#f6ecdc', hemiGround: '#6a4a30', hemiIntensity: 1.5,
+      sunColor: '#fff0d4', sunIntensity: 5.8, sunPosition: [-8, 17, 7],
+      fillColor: '#7e94c6', fillIntensity: 0.75, exposure: 0.9,
+    },
+    fog: { color: '#cdb692', density: 0.008 },
+    background: '#e6ddcc',
+    farPlate: { procedural: 'court', width: 46, bottomY: -2.2, z: -27, tint: '#ffffff' },
+    spriteTint: '#fbf2e2',
+    spriteRim: '#6a4c2c',
+    props: SCORPION_COURT_PROPS,
+    emblem: 'scorpion',
+    rock: 'sandstone',
+    horizon: 'none',
+    fringe: 'sand',
+    apron: 'flagstone',
+    clutter: { kinds: ['clay_jars', 'crate', 'dry_tuft', 'clay_jars'], count: 14, z: [-3.8, -7.2], halfWidth: 12, scale: [0.6, 0.9], gap: 5.6 },
+    motes: { color: '#fff0d0', count: 40, rise: 0.03, size: 0.05, glow: false },
+    mist: { color: '#f2e8d2', opacity: 0.08, layers: [[-11, 1.2, 46], [-16, 2.2, 60]] },
+  },
 });
+
+/**
+ * The arenas of the Scorpion plateau, one per place its fights take place: the dune track, the dune crest at dusk,
+ * the Phoenix's ruins, temple and sanctuary, the court of the Grand Inquisiteur's house of records.
+ */
+export const SCORPION_ARENA_IDS = Object.freeze([
+  'scorpion_dune_track', 'scorpion_dune_crest', 'scorpion_phoenix_ruins', 'scorpion_phoenix_temple', 'scorpion_ash_sanctuary', 'scorpion_records_court',
+] as const);
 
 /** The arenas of the Bear plateau, one per place its fights take place. */
 export const BEAR_ARENA_IDS = Object.freeze(['bear_mountain_pass', 'bear_mine_galleries', 'bear_hall_terrace'] as const);

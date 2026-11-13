@@ -1,15 +1,21 @@
 import { describe, expect, it } from 'vitest';
 import {
-  ARENA_PLATFORM, ARENA_THEMES, arenaBandProps, arenaClutterProps, arenaThemeFor, BEAR_ARENA_IDS, DRAGON_ARENA_IDS, propCrowdsPlatform, type ArenaPropKind,
-  type ArenaTheme,
+  ARENA_PLATFORM, ARENA_THEMES, arenaBandProps, arenaClutterProps, arenaThemeFor, BEAR_ARENA_IDS, DRAGON_ARENA_IDS, propCrowdsPlatform, SCORPION_ARENA_IDS,
+  type ArenaPropKind, type ArenaTheme,
 } from './arenaThemes';
 import { seeded } from './pixelArt';
+
+const kindsOf = (theme: ArenaTheme) => new Set([...theme.props, ...arenaBandProps(theme, seeded(9)), ...arenaClutterProps(theme, seeded(9))].map((prop) => prop.kind));
+const rgbOf = (hex: string) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)) as [number, number, number];
+/** Purple, violet or magenta: red and blue both well above green. */
+const purple = (hex: string) => { const [r, g, b] = rgbOf(hex); return r - g > 12 && b - g > 12; };
 
 describe('procedural combat arena themes', () => {
   it('provides one arena per combat scene and falls back to the forest route', () => {
     expect(Object.keys(ARENA_THEMES).sort()).toEqual([
       'bear_hall_terrace', 'bear_mine_galleries', 'bear_mountain_pass', 'bois_clair_burning',
       'dragon_hall_esplanade', 'dragon_peak_trail', 'dragon_snowy_summit', 'dragon_wolf_cave', 'forest_route', 'lion_sanctum',
+      'scorpion_ash_sanctuary', 'scorpion_dune_crest', 'scorpion_dune_track', 'scorpion_phoenix_ruins', 'scorpion_phoenix_temple', 'scorpion_records_court',
     ]);
     expect(arenaThemeFor('unknown').id).toBe('forest_route');
     expect(arenaThemeFor(undefined).id).toBe('forest_route');
@@ -37,12 +43,12 @@ describe('procedural combat arena themes', () => {
     expect([...forest.props, ...arenaBandProps(forest, seeded(9))].filter((prop) => prop.kind === 'pine')).toEqual([]);
   });
 
-  it('ships a far plate for every theme: painted for the Lion, painted in code for the Bear and the Dragon (no arena plate, OD-2026-11-01-C)', () => {
+  it('ships a far plate for every theme: painted for the Lion, painted in code for the Bear, the Dragon and the Scorpion (no arena plate, OD-2026-11-01-C)', () => {
     for (const id of ['forest_route', 'bois_clair_burning', 'lion_sanctum'] as const) {
       expect(ARENA_THEMES[id].farPlate.file).toMatch(/^\/assets\/generated\/combat-arena\/.+-far\.webp$/);
       expect(ARENA_THEMES[id].farPlate.procedural).toBeUndefined();
     }
-    for (const id of [...BEAR_ARENA_IDS, ...DRAGON_ARENA_IDS]) {
+    for (const id of [...BEAR_ARENA_IDS, ...DRAGON_ARENA_IDS, ...SCORPION_ARENA_IDS]) {
       expect(ARENA_THEMES[id].farPlate.file, id).toBeUndefined();
       expect(ARENA_THEMES[id].farPlate.procedural, id).toBeDefined();
     }
@@ -61,6 +67,67 @@ describe('procedural combat arena themes', () => {
     expect(ARENA_THEMES.dragon_hall_esplanade.sound).toBe('forest_route');
     expect(ARENA_THEMES.dragon_snowy_summit.sound).toBe('lion_sanctum');
     expect(ARENA_THEMES.dragon_wolf_cave.sound).toBe('lion_sanctum');
+    // the Scorpion's borrow the bed of the Lion arena most of their fights played in: no new sound either
+    for (const id of ['scorpion_dune_track', 'scorpion_phoenix_ruins', 'scorpion_records_court'] as const) expect(ARENA_THEMES[id].sound, id).toBe('forest_route');
+    for (const id of ['scorpion_phoenix_temple', 'scorpion_ash_sanctuary', 'scorpion_dune_crest'] as const) expect(ARENA_THEMES[id].sound, id).toBe('lion_sanctum');
+  });
+
+  it('dresses the Scorpion’s places in the Scorpion’s signs and the Phoenix’s in the Phoenix’s, never both, never purple', () => {
+    // the Lion’s Gothic masonry, stele, graves and lowland trees; the Bear’s mines and carvings; the Dragon’s carvings,
+    // bells, needles and pines; the Wolf’s lair; and the flowered grass tufts (their petals can be lilac)
+    const forbidden: ArenaPropKind[] = [
+      'arch', 'column', 'broken_column', 'obelisk', 'statue', 'candles', 'gravestone', 'tree', 'bush', 'fern', 'house', 'well', 'haystack', 'log', 'wall', 'pine',
+      'mine_frame', 'minecart', 'rails', 'ore_pile', 'winch', 'bear_pillar', 'hall_gate', 'beam', 'snowdrift',
+      'bell_post', 'bronze_brazier', 'dragon_stele', 'dragon_statue', 'dragon_gate', 'rock_needle', 'twisted_pine', 'terrace_wall', 'balustrade', 'cairn',
+      'stalagmite', 'hide_curtain', 'stakes', 'bones', 'pelt', 'grass',
+    ];
+    const phoenixSigns: ArenaPropKind[] = ['phoenix_column', 'fallen_column', 'phoenix_stele', 'ward_circle', 'flame_hearth', 'niche_wall', 'ash_basin', 'phoenix_relief', 'ruin_wall'];
+    const scorpionSigns: ArenaPropKind[] = ['records_gate', 'mudbrick_arcade', 'awning'];
+    const phoenixPlaces = ['scorpion_phoenix_ruins', 'scorpion_phoenix_temple', 'scorpion_ash_sanctuary'] as const;
+    const scorpionPlaces = ['scorpion_dune_track', 'scorpion_records_court'] as const;
+    for (const id of SCORPION_ARENA_IDS) {
+      const theme = ARENA_THEMES[id];
+      const kinds = kindsOf(theme);
+      for (const kind of forbidden) expect(kinds.has(kind), `${id}:${kind}`).toBe(false);
+      // the desert's red sandstone, never the Bear’s granite or the Dragon’s limestone; never snow
+      expect(theme.rock, id).toBe('sandstone');
+      expect(theme.snow, id).toBeUndefined();
+      // never purple, violet or magenta anywhere: palette, light, fog, sky, mist, motes
+      const colours = [...Object.values(theme.palette).flat(), theme.light.hemiSky, theme.light.hemiGround, theme.light.sunColor, theme.light.fillColor,
+        theme.fog.color, theme.background, theme.spriteTint, theme.spriteRim, theme.motes.color, theme.mist?.color ?? '#000000'];
+      for (const hex of colours) expect(purple(hex), `${id}:${hex}`).toBe(false);
+    }
+    for (const id of phoenixPlaces) {
+      const theme = ARENA_THEMES[id];
+      expect(theme.emblem, id).toBe('phoenix');
+      const kinds = kindsOf(theme);
+      for (const kind of scorpionSigns) expect(kinds.has(kind), `${id}:${kind}`).toBe(false);
+      expect(phoenixSigns.some((kind) => kinds.has(kind)), id).toBe(true);
+      // saffron cloth, an orange-yellow far from the Lion’s crimson (whose green and blue sit together), and ash trim
+      for (const hex of theme.palette.cloth) { const [, g, b] = rgbOf(hex); expect(g - b, `${id}:${hex}`).toBeGreaterThan(40); }
+      for (const hex of theme.palette.trim) { const [r, , b] = rgbOf(hex); expect(r - b, `${id}:${hex}`).toBeLessThan(20); }
+    }
+    for (const id of scorpionPlaces) {
+      const theme = ARENA_THEMES[id];
+      expect(theme.emblem, id).toBe('scorpion');
+      const kinds = kindsOf(theme);
+      for (const kind of phoenixSigns) expect(kinds.has(kind), `${id}:${kind}`).toBe(false);
+      expect(kinds.has('banner') || kinds.has('records_gate'), id).toBe(true);
+      // umber cloth and undyed linen trim: never the Lion’s red-and-gold
+      for (const hex of theme.palette.cloth) { const [r, g] = rgbOf(hex); expect(r - g, `${id}:${hex}`).toBeLessThan(40); }
+      for (const hex of theme.palette.trim) { const [r, g, b] = rgbOf(hex); expect(r - b > 40 && g - b > 25, `${id}:${hex}`).toBe(false); }
+    }
+    // the wild crest at dusk shows no clan’s sign at all, only the Shadows’ ink and the Prophet’s leaves
+    const crest = kindsOf(ARENA_THEMES.scorpion_dune_crest);
+    for (const kind of [...phoenixSigns, ...scorpionSigns, 'banner'] as const) expect(crest.has(kind), `scorpion_dune_crest:${kind}`).toBe(false);
+    expect(crest.has('ink_stain') && crest.has('loose_leaves')).toBe(true);
+    // the temple’s heart: the saffron flame on its hearth, the hangings, its columns standing; the sanctuary’s ash and cold lamps
+    const temple = kindsOf(ARENA_THEMES.scorpion_phoenix_temple);
+    for (const kind of ['flame_hearth', 'phoenix_column', 'banner', 'niche_wall'] as const) expect(temple.has(kind), kind).toBe(true);
+    expect(ARENA_THEMES.scorpion_phoenix_temple.interior).toBe(true);
+    expect(kindsOf(ARENA_THEMES.scorpion_ash_sanctuary).has('ash_basin')).toBe(true);
+    expect(ARENA_THEMES.scorpion_ash_sanctuary.unlitLamps).toBe(true);
+    expect(kindsOf(ARENA_THEMES.scorpion_records_court).has('records_gate')).toBe(true);
   });
 
   it('dresses the Bear’s arenas in its own identity, with none of the Lion’s motifs', () => {
@@ -87,7 +154,6 @@ describe('procedural combat arena themes', () => {
   });
 
   it('dresses the Dragon’s arenas in its identity: limestone, the winged dragon’s sign, and in the Wolf’s cave the Wolf’s', () => {
-    const kindsOf = (theme: ArenaTheme) => new Set([...theme.props, ...arenaBandProps(theme, seeded(9)), ...arenaClutterProps(theme, seeded(9))].map((prop) => prop.kind));
     // the Lion’s Gothic masonry, stele, graves and lowland trees; the Bear’s mines, carvings and plain conifers
     const lionOnly: ArenaPropKind[] = ['arch', 'column', 'broken_column', 'obelisk', 'statue', 'candles', 'gravestone', 'tree', 'bush', 'fern', 'house', 'well', 'haystack', 'log', 'wall'];
     const bearOnly: ArenaPropKind[] = ['mine_frame', 'minecart', 'rails', 'ore_pile', 'winch', 'bear_pillar', 'hall_gate', 'beam', 'pine'];

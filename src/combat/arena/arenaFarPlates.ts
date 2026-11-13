@@ -285,3 +285,267 @@ export function drawCavePlate(theme: ArenaTheme, seed = 11): PixelCanvas {
   fadeFoot(pc, 0.78);
   return pc;
 }
+
+// ---------------------------------------------------------------- the Arid Deserts
+
+/** The desert's red sandstone seen far off: lit face, mid tone, shade. */
+const MESA = { lit: rgb('#b8784c'), mid: rgb('#8a5434'), shade: rgb('#5a3424') };
+
+/** A soft glow of `color` around (cx, cy), stretched `sx` times wider than tall, dithered toward its edge. */
+function sunGlow(pc: PixelCanvas, cx: number, cy: number, r: number, sx: number, color: Rgb, strength: number): void {
+  for (let y = Math.max(0, Math.floor(cy - r)); y < Math.min(pc.height, Math.ceil(cy + r)); y++) {
+    for (let x = Math.max(0, Math.floor(cx - r * sx)); x < Math.min(pc.width, Math.ceil(cx + r * sx)); x++) {
+      const d = Math.hypot((x - cx) / sx, y - cy) / r;
+      if (d < 1 && bayer(x, y) < (1 - d) * 1.2) pc.set(x, y, mixRgb(pc.get(x, y) as unknown as Rgb, color, strength * (1 - d) * (1 - d)));
+    }
+  }
+}
+
+/**
+ * The Arid Deserts seen from the dunes: a sky almost white with heat by day (pale blue only at the zenith), or at dusk a
+ * warm blue-black over copper and amber with the sun sinking on the left; flat-topped mesas of red sandstone sunk in the
+ * haze, then three rows of dunes rising to sharp crests, lit on the face left of each crest, shaded in the lee (blue at
+ * dusk); a shimmer of heat over the far dunes by day. `ruins` adds the Phoenix's broken columns and wall stubs on the
+ * nearer crests, away from the centre.
+ */
+export function drawDunesPlate(theme: ArenaTheme, seed = 19, mode: 'day' | 'dusk' | 'ruins' = 'day'): PixelCanvas {
+  const W = 960, H = 300;
+  const pal = theme.palette;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const dusk = mode === 'dusk';
+  const haze = rgb(theme.background);
+  const zenith = dusk ? rgb('#2e3a5c') : mixRgb(haze, rgb('#8eacd0'), 0.55);
+  const horizon = dusk ? rgb('#f0a560') : mixRgb(haze, rgb('#ffffff'), 0.3);
+  const sky = [0, 0.16, 0.32, 0.48, 0.64, 0.8, 1].map((t) => mixRgb(zenith, horizon, t));
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) pc.set(x, y, pick(sky, y / (H * 0.74), x, y));
+  if (dusk) {
+    const sx = W * 0.2, sy = H * 0.69;
+    sunGlow(pc, sx, sy, 90, 3.4, rgb('#ffc27a'), 0.7);
+    for (let y = Math.floor(sy - 20); y <= sy + 20; y++) for (let x = Math.floor(sx - 20); x <= sx + 20; x++) {
+      const d = Math.hypot(x - sx, y - sy);
+      if (d < 18) pc.set(x, y, d < 13 ? rgb('#fff2cc') : rgb('#ffd08a'));
+    }
+  }
+  // a few long wisps, copper at dusk
+  const wisp = makeNoise(rng, 16);
+  const wispTone = dusk ? rgb('#f2b07a') : rgb('#fbf8f0');
+  for (let y = 12; y < H * 0.3; y++) for (let x = 0; x < W; x++) {
+    const v = wisp(x / 80, y / 5) * (1 - y / (H * 0.3));
+    if (v > 0.6) pc.set(x, y, mixRgb(pc.get(x, y) as unknown as Rgb, wispTone, v > 0.68 ? 0.5 : 0.25));
+  }
+  // the far mesas: flat tops, steep banded faces lit on the left, talus slopes at their feet
+  const shade = dusk ? mixRgb(MESA.shade, rgb('#3e4a70'), 0.4) : MESA.shade;
+  const lit = dusk ? mixRgb(MESA.lit, rgb('#ffb070'), 0.3) : MESA.lit;
+  {
+    const r = seeded(seed * 13 + 5);
+    const fine = makeNoise(r, 64);
+    for (let cx = r() * 120; cx < W + 80; cx += 150 + r() * 160) {
+      const half = 16 + r() * 30, topY = H * (0.64 + r() * 0.03), baseY = H * 0.74;
+      for (let x = Math.max(0, Math.floor(cx - half - 50)); x < Math.min(W, Math.ceil(cx + half + 50)); x++) {
+        const off = Math.abs(x - cx) - half;
+        const top = off < 0 ? topY + (fine(x / 6, cx) - 0.5) * 3 : topY + 6 + off * 1.1;
+        for (let y = Math.max(0, Math.floor(top)); y < baseY; y++) {
+          const band = (y + Math.round(fine(x / 30, 2) * 4)) % 8 === 0;
+          const face = x < cx - half * 0.2 ? 0.85 : 0.25; // a lit face and a face in shade
+          const c = pick([shade, MESA.mid, lit], off > 0 ? face * 0.7 : band ? face - 0.3 : face, x, y);
+          pc.set(x, y, mixRgb(c, haze, 0.5 + ((y - top) / H) * 0.4));
+        }
+      }
+    }
+  }
+  if (!dusk) for (let y = Math.floor(H * 0.7); y < H * 0.76; y++) {
+    const t = 1 - Math.abs(y - H * 0.73) / (H * 0.03);
+    for (let x = 0; x < W; x++) if (bayer(x + (y % 3), y) < t * 0.28) pc.set(x, y, mixRgb(pc.get(x, y) as unknown as Rgb, haze, 0.6));
+  }
+  // three rows of dunes, far to near
+  const sandLit = dusk ? mixRgb(ramp(pal.moss, 1), rgb('#ffb070'), 0.45) : ramp(pal.moss, 0.95);
+  const sandMid = dusk ? mixRgb(ramp(pal.moss, 0.55), rgb('#c07a5a'), 0.3) : ramp(pal.moss, 0.6);
+  const sandShade = dusk ? mixRgb(ramp(pal.moss, 0.1), rgb('#4a5680'), 0.55) : mixRgb(ramp(pal.moss, 0.15), rgb('#7a8aa8'), 0.22);
+  const ruinCrests: Array<{ x: number; y: number }> = [];
+  [{ base: 0.73, amp: 0.03, haze: 0.5, spacing: 70, s: 1 }, { base: 0.79, amp: 0.05, haze: 0.28, spacing: 110, s: 2 }, { base: 0.86, amp: 0.07, haze: 0.08, spacing: 160, s: 3 }].forEach((row) => {
+    const r = seeded(seed * 31 + row.s);
+    const fine = makeNoise(r, 64);
+    const tone = (light: number, x: number, y: number) => mixRgb(pick([sandShade, sandMid, sandLit], light, x, y), haze, row.haze);
+    // the floor of the row, between the dunes
+    const floor = Math.round(H * (row.base + row.amp * 0.9));
+    for (let y = floor; y < H; y++) for (let x = 0; x < W; x++) pc.set(x, y, tone(0.5 - ((y - floor) / H) * 0.6 + (fine(x / 4, y / 3) - 0.5) * 0.1, x, y));
+    // overlapping crescents, left to right: a gentle windward slope lit from the left up to a sharp crest, and the lee
+    // in shade under it, its edge slanting down and back from the crest
+    const crests: Array<{ x: number; y: number }> = [];
+    for (let cx = -row.spacing * 0.5 + r() * row.spacing * 0.4; cx < W + row.spacing; cx += row.spacing * (0.55 + r() * 0.6)) {
+      const w = row.spacing * (1.1 + r() * 0.6), cy = H * (row.base - row.amp * (0.3 + r() * 0.5)), depth = floor - cy + 4, lean = 1.2 + r() * 0.8;
+      crests.push({ x: cx, y: cy });
+      for (let x = Math.max(0, Math.floor(cx - w)); x < Math.min(W, Math.ceil(cx + w * 0.5)); x++) {
+        const windward = x < cx, t = windward ? (cx - x) / w : (x - cx) / (w * 0.5);
+        const top = cy + depth * (windward ? Math.pow(t, 2.4) : Math.pow(t, 0.6));
+        for (let y = Math.floor(top); y <= floor + 2; y++) {
+          const lee = x > cx - (y - cy) * lean;
+          const light = (lee ? 0.18 : 0.88 - t * 0.2) - ((y - cy) / H) * 0.5 + (fine(x / 4, y / 3) - 0.5) * 0.1;
+          pc.set(x, y, tone(light, x, y));
+        }
+      }
+    }
+    if (row.s === 2) for (const fx of [0.12, 0.27, 0.72, 0.87]) {
+      const near = crests.reduce((best, c) => (Math.abs(c.x - W * fx) < Math.abs(best.x - W * fx) ? c : best), crests[0]!);
+      ruinCrests.push({ x: Math.round(near.x), y: Math.round(near.y) });
+    }
+  });
+  if (mode === 'ruins') {
+    const ashLit = mixRgb(ramp(pal.stone, 0.85), haze, 0.3), ashShade = mixRgb(ramp(pal.stone, 0.25), haze, 0.3);
+    const r = seeded(seed * 7 + 3);
+    ruinCrests.forEach(({ x: cx, y: base }, i) => {
+      if (i % 2 === 0) {
+        // a broken round column, its top jagged
+        const w = 6 + Math.round(r() * 4), h = 26 + Math.round(r() * 30);
+        for (let x = cx - w; x <= cx + w; x++) {
+          const top = base - h + Math.round(Math.abs(Math.sin(x * 1.7 + i)) * 4);
+          for (let y = top; y < base + 4; y++) pc.set(x, y, x < cx ? ashLit : ashShade);
+        }
+      } else {
+        // a stub of wall, its courses broken off unevenly
+        const w = 22 + Math.round(r() * 16), h = 10 + Math.round(r() * 8);
+        for (let x = cx - w; x <= cx + w; x++) {
+          const top = base - h + Math.round(Math.abs(Math.sin(x * 0.45 + i)) * 5);
+          for (let y = top; y < base + 3; y++) pc.set(x, y, (y - top) % 5 === 0 ? ashShade : x < cx - w * 0.4 ? ashLit : mixRgb(ashLit, ashShade, 0.5));
+        }
+      }
+    });
+  }
+  fadeFoot(pc, 0.9);
+  return pc;
+}
+
+/**
+ * The far end of the Phoenix's nave: darkness above, two colonnades of round columns receding toward the back wall,
+ * saffron hangings between them, the back wall lined with niches whose lamps burn, and the floor lit by them. No window.
+ */
+export function drawNavePlate(theme: ArenaTheme, seed = 23): PixelCanvas {
+  const W = 640, H = 220;
+  const pal = theme.palette;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 32), fine = makeNoise(rng, 64);
+  const black = rgb('#0a0706');
+  const dark = [black, rgb(pal.stoneDark[0]), rgb(pal.stoneDark[1]), rgb(pal.stone[0]), rgb(pal.stone[1])];
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const low = clamp((y / H - 0.25) / 0.6);
+    pc.set(x, y, pick(dark, (0.3 + (n(x / 16, y / 10) - 0.5) * 0.3 + (fine(x / 3, y / 3) - 0.5) * 0.12) * low, x, y));
+  }
+  const flame = (cx: number, cy: number, r: number) => {
+    for (let y = cy - r; y <= cy + r; y++) for (let x = cx - r; x <= cx + r; x++) {
+      const d = Math.hypot(x - cx, (y - cy) * 1.2) / r;
+      if (d < 1 && bayer(x, y) < (1 - d) * 0.7) pc.set(x, y, mixRgb(pc.get(x, y) as unknown as Rgb, rgb('#e8902e'), 0.55 * (1 - d)));
+    }
+    pc.set(cx, cy, rgb('#fff4dc')); pc.set(cx, cy + 1, rgb('#ffb44a')); pc.set(cx, cy - 1, rgb('#f2a63a'));
+  };
+  // the back wall at the end of the nave: dressed courses and a row of niches, each with its lamp
+  const wallTop = 70, wallBase = 168;
+  for (let y = wallTop; y < wallBase; y++) for (let x = 230; x < 410; x++) {
+    const course = (y - wallTop) % 9 === 0 || (x + Math.floor((y - wallTop) / 9) * 7) % 22 === 0;
+    pc.set(x, y, pick(dark, course ? 0.35 : 0.62 + (fine(x / 3, y / 3) - 0.5) * 0.15, x, y));
+  }
+  for (let i = 0; i < 5; i++) {
+    const cx = 250 + i * 35, top = 112;
+    for (let y = top; y < top + 22; y++) for (let x = cx - 6; x <= cx + 6; x++) pc.set(x, y, y > top + 15 ? mixRgb(black, rgb('#a8642a'), (y - top - 15) / 8) : black);
+    flame(cx, top + 18, 8);
+  }
+  // the colonnades, far to near on both sides, a saffron hanging between each pair
+  const cloth = pal.cloth.map((c) => rgb(c));
+  for (let i = 0; i < 6; i++) {
+    const t = i / 5;
+    const offset = 104 + t * t * 196, w = Math.round(6 + t * 16), base = Math.round(wallBase + 4 + t * 44), top = Math.round(wallTop - 30 - t * 60);
+    for (const side of [-1, 1]) {
+      const cx = W / 2 + side * offset;
+      if (i > 0) {
+        const prev = W / 2 + side * (104 + ((i - 1) / 5) ** 2 * 196);
+        const x0 = Math.round(Math.min(prev, cx) + w * 0.8), x1 = Math.round(Math.max(prev, cx) - w * 0.8);
+        for (let x = x0; x < x1; x++) for (let y = top + 10; y < base - 26 - Math.abs(Math.sin(x * 0.4)) * 4; y++) {
+          const fold = Math.sin(x * 0.5) * 0.25;
+          pc.set(x, y, pick(cloth, 0.4 + fold - (y - top) / (base - top) * 0.3 + t * 0.2, x, y));
+        }
+      }
+      for (let x = Math.round(cx - w); x <= Math.round(cx + w); x++) for (let y = Math.max(0, top); y < base; y++) {
+        const u = (x - (cx - w)) / (2 * w);
+        const towardCentre = side > 0 ? 1 - u : u; // lit on the side facing the nave's lamps
+        pc.set(x, y, pick(dark, (0.25 + towardCentre * 0.6) * clamp((y - top + 40) / 120) + (fine(x / 2, y / 6) - 0.5) * 0.08, x, y));
+      }
+      flame(Math.round(cx - side * (w + 6)), base - 8, 7 + i);
+    }
+  }
+  fadeFoot(pc, 0.8);
+  return pc;
+}
+
+/**
+ * The back of the Phoenix's sanctuary dug into the rock: red-brown rock hewn with chisel marks, falling into darkness
+ * toward the vault, a row of niches blackened by the smoke of old lamps, and the low red glow of the embers on the
+ * floor. No carving here, no stalactite, no hide.
+ */
+export function drawSanctuaryPlate(theme: ArenaTheme, seed = 29): PixelCanvas {
+  const W = 640, H = 220;
+  const pal = theme.palette;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 32), fine = makeNoise(rng, 64);
+  const black = rgb('#070403');
+  const rock = [black, rgb(pal.stoneDark[1]), rgb(pal.stone[0]), rgb(pal.stone[1]), rgb(pal.stone[2])];
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const vault = clamp((y / H - 0.12) / 0.55);
+    const chisel = (x * 2 + y * 3) % 11 === 0 && fine(x / 4, y / 4) > 0.5; // tool marks of the hewing
+    const level = (0.4 + (n(x / 12, y / 9) - 0.5) * 0.36 + (fine(x / 3, y / 3) - 0.5) * 0.12 - (chisel ? 0.18 : 0)) * vault;
+    pc.set(x, y, pick(rock, level, x, y));
+  }
+  for (const cx of [90, 200, 440, 560]) {
+    const top = 98 + Math.round(rng() * 10);
+    for (let y = top; y < top + 26; y++) for (let x = cx - 7; x <= cx + 7; x++) pc.set(x, y, black);
+    // the soot of old lamps licking up from the niche
+    for (let y = top - 30; y < top; y++) for (let x = cx - 9; x <= cx + 9; x++) {
+      const t = (top - y) / 30;
+      if (bayer(x, y) < (1 - t) * (1 - Math.abs(x - cx) / 10) * 0.9) pc.set(x, y, mixRgb(pc.get(x, y) as unknown as Rgb, black, 0.7));
+    }
+  }
+  // the embers' glow on the floor and the foot of the walls
+  for (let y = 120; y < H; y++) for (let x = 0; x < W; x++) {
+    const d = Math.hypot((x - W / 2) / 3.2, y - (H - 30)) / 90;
+    if (d < 1 && bayer(x, y) < (1 - d) * 0.8) pc.set(x, y, mixRgb(pc.get(x, y) as unknown as Rgb, rgb('#a83a18'), 0.45 * (1 - d)));
+  }
+  fadeFoot(pc, 0.78);
+  return pc;
+}
+
+/**
+ * The sky over the walled court of the Grand Inquisiteur's house of records: a pale sky white with heat at the horizon,
+ * and at its foot only the court's own outer wall of ochre mud brick, its stepped parapet and a few dark copper
+ * scorpion finials. No tower, no spire, no roof beyond.
+ */
+export function drawCourtPlate(theme: ArenaTheme, seed = 31): PixelCanvas {
+  const W = 960, H = 300;
+  const pal = theme.palette;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const fine = makeNoise(rng, 64);
+  const haze = rgb(theme.background);
+  const zenith = mixRgb(haze, rgb('#92b0d4'), 0.5), horizon = mixRgb(haze, rgb('#ffffff'), 0.35);
+  const sky = [0, 0.3, 0.6, 1].map((t) => mixRgb(zenith, horizon, t));
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) pc.set(x, y, pick(sky, y / (H * 0.7), x, y));
+  sunGlow(pc, W * 0.18, 0, 140, 2, rgb('#fffaf0'), 0.6);
+  const wallTop = Math.round(H * 0.7);
+  const plaster = pal.plaster.map((c) => rgb(c));
+  const copper = rgb('#5e3420');
+  for (let x = 0; x < W; x++) {
+    const merlon = Math.floor(x / 18) % 2 === 0;
+    const top = wallTop - (merlon ? 6 : 0) - (merlon && x % 18 >= 6 && x % 18 < 12 ? 3 : 0); // stepped merlons
+    for (let y = top; y < H; y++) {
+      const level = 0.62 - (y - top < 2 ? -0.18 : 0) - (y === wallTop + 6 ? 0.25 : 0) + (fine(x / 4, y / 4) - 0.5) * 0.16;
+      pc.set(x, y, mixRgb(pick(plaster, level, x, y), haze, 0.22));
+    }
+  }
+  for (let x = 40 + Math.round(rng() * 40); x < W; x += 150 + Math.round(rng() * 90)) {
+    const top = wallTop - 9;
+    for (let y = top - 8; y < top; y++) pc.set(x, y, copper);
+    pc.set(x + 1, top - 8, copper); pc.set(x + 2, top - 7, copper); pc.set(x + 2, top - 6, copper); pc.set(x + 1, top - 5, copper); // the curled tail
+  }
+  fadeFoot(pc, 0.9);
+  return pc;
+}

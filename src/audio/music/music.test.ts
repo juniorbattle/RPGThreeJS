@@ -231,5 +231,12 @@ describe('the sample bank and instruments', () => {
     expect(ambienceForScene('dragon_hall_esplanade')).toBe('forest_route');
     expect(ambienceForScene('dragon_snowy_summit')).toBe('lion_sanctum');
     expect(ambienceForScene('dragon_wolf_cave')).toBe('lion_sanctum');
+    // and the Scorpion's: the bed of the Lion arena most of its fights there replaced
+    expect(ambienceForScene('scorpion_dune_track')).toBe('forest_route');
+    expect(ambienceForScene('scorpion_phoenix_ruins')).toBe('forest_route');
+    expect(ambienceForScene('scorpion_records_court')).toBe('forest_route');
+    expect(ambienceForScene('scorpion_phoenix_temple')).toBe('lion_sanctum');
+    expect(ambienceForScene('scorpion_ash_sanctuary')).toBe('lion_sanctum');
+    expect(ambienceForScene('scorpion_dune_crest')).toBe('lion_sanctum');
   });
 });

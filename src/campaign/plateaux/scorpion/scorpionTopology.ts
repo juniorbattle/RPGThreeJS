@@ -123,25 +123,35 @@ const encounter = (id: string, region: 0 | 1 | 2, label: string, prerequisiteRes
   };
 };
 
+/**
+ * Each optional fight plays in the Scorpion's coded arena of its region: the dune track (region I), the Phoenix's
+ * ruins (region II), and in region III the sanctuary of the sacred ashes for its guards, the dunes at dusk for the
+ * watch of the sands.
+ */
+const TRACK = 'scorpion_dune_track';
+const RUINS = 'scorpion_phoenix_ruins';
+const SANCTUARY = 'scorpion_ash_sanctuary';
+const CREST = 'scorpion_dune_crest';
+
 /** Twelve optional POIs on the Lot E pattern: six chests and six two-variant encounters, on the Bear's slots. */
 export const SCORPION_OPTIONAL_POIS: readonly FixedPoiDefinition[] = Object.freeze([
   chest('scorpion-poi-dune-supplies', 0, 'Réserve des dunes', ['scorpion-scholars'], ['scorpion-scholars', 'scorpion-poi-dune-serpents'], 40, { potion: 1 }),
   encounter('scorpion-poi-dune-serpents', 0, 'Nid de serpents', ['scorpion-scholars'], ['scorpion-poi-dune-supplies', 'scorpion-phoenix-faithful'],
-    'forest_route', [['venom_serpent', 'venom_serpent'], ['venom_serpent', 'cave_rat', 'venom_serpent']], 35, {}),
+    TRACK, [['venom_serpent', 'venom_serpent'], ['venom_serpent', 'cave_rat', 'venom_serpent']], 35, {}),
   encounter('scorpion-poi-dune-spiders', 0, 'Araignées des sables', ['scorpion-scholars'], ['scorpion-scholars', 'scorpion-poi-dune-cache'],
-    'forest_route', [['forest_spider', 'forest_spider'], ['forest_spider', 'cave_rat']], 30, { iron_ore: 1 }),
+    TRACK, [['forest_spider', 'forest_spider'], ['forest_spider', 'cave_rat']], 30, { iron_ore: 1 }),
   chest('scorpion-poi-dune-cache', 0, 'Cache de la piste', ['scorpion-scholars'], ['scorpion-poi-dune-spiders', 'scorpion-scholars'], 50, { antidote: 1 }),
   chest('scorpion-poi-ruin-supplies', 1, 'Dépôt des ruines', ['scorpion-warded-path'], ['scorpion-warded-path', 'scorpion-poi-ruin-sentinels'], 45, { iron_ore: 2 }),
   encounter('scorpion-poi-ruin-sentinels', 1, 'Ronde du Phénix', ['scorpion-warded-path'], ['scorpion-poi-ruin-supplies', 'scorpion-ruin-road'],
-    'forest_route', [['phoenix_guardian', 'venom_serpent'], ['phoenix_guardian', 'phoenix_guardian']], 40, {}),
+    RUINS, [['phoenix_guardian', 'venom_serpent'], ['phoenix_guardian', 'phoenix_guardian']], 40, {}),
   chest('scorpion-poi-ruin-cache', 1, 'Cache des ruines', ['scorpion-ruin-road'], ['scorpion-ruin-road', 'scorpion-poi-ruin-serpents'], 70, { red_gem: 1, potion: 1 }),
   encounter('scorpion-poi-ruin-serpents', 1, 'Serpents des ruines', ['scorpion-ruin-road'], ['scorpion-poi-ruin-cache', 'scorpion-ruin-road'],
-    'forest_route', [['venom_serpent', 'forest_spider'], ['venom_serpent', 'venom_serpent', 'cave_rat']], 45, { iron_ore: 1 }),
+    RUINS, [['venom_serpent', 'forest_spider'], ['venom_serpent', 'venom_serpent', 'cave_rat']], 45, { iron_ore: 1 }),
   chest('scorpion-poi-sanctum-supplies', 2, 'Réserves du sanctuaire', ['scorpion-prophet-traces'], ['scorpion-prophet-traces', 'scorpion-temple-witnesses'], 50, { ether: 1 }),
   encounter('scorpion-poi-sanctum-guards', 2, 'Gardes du sanctuaire', ['scorpion-temple-witnesses'], ['scorpion-temple-witnesses', 'scorpion-final-trial-event'],
-    'lion_sanctum', [['phoenix_guardian', 'phoenix_guardian', 'venom_serpent'], ['phoenix_guardian', 'forest_spider', 'phoenix_guardian']], 50, {}),
+    SANCTUARY, [['phoenix_guardian', 'phoenix_guardian', 'venom_serpent'], ['phoenix_guardian', 'forest_spider', 'phoenix_guardian']], 50, {}),
   encounter('scorpion-poi-sanctum-watch', 2, 'Veille des sables', ['scorpion-temple-witnesses'], ['scorpion-temple-witnesses', 'scorpion-final-trial-combat'],
-    'lion_sanctum', [['venom_serpent', 'forest_spider', 'cave_rat'], ['forest_spider', 'venom_serpent', 'forest_spider']], 50, { iron_ore: 1 }),
+    CREST, [['venom_serpent', 'forest_spider', 'cave_rat'], ['forest_spider', 'venom_serpent', 'forest_spider']], 50, { iron_ore: 1 }),
   chest('scorpion-poi-sanctum-reserve', 2, 'Réserve du sanctuaire gardée', ['scorpion-corrupted-texts'], ['scorpion-corrupted-texts'], 80, { red_gem: 1, revive_vial: 1 }),
 ]);
 
@@ -150,13 +160,13 @@ export const SCORPION_GUARDIANS: readonly EliteDefinition[] = Object.freeze<Elit
   {
     id: 'scorpion-guardian-ruins', label: 'Gardien de flamme', region: 1, activateAfterResolved: 'scorpion-ruin-road',
     allowedPositions: ['scorpion-poi-ruin-cache'], spawnPosition: 'scorpion-poi-ruin-cache', mode: 'cyclic_patrol',
-    combat: { id: 'scorpion_guardian_flamekeeper', sceneId: 'forest_route', enemies: ['phoenix_flamekeeper', 'phoenix_guardian', 'venom_serpent'],
+    combat: { id: 'scorpion_guardian_flamekeeper', sceneId: RUINS, enemies: ['phoenix_flamekeeper', 'phoenix_guardian', 'venom_serpent'],
       rewards: { temporaryGold: 70, reputation: 1, materials: { iron_ore: 2 } } },
   },
   {
     id: 'scorpion-guardian-sanctum', label: 'Fidèle égaré', region: 2, activateAfterResolved: 'scorpion-temple-witnesses',
     allowedPositions: ['scorpion-poi-sanctum-reserve'], spawnPosition: 'scorpion-poi-sanctum-reserve', mode: 'cyclic_patrol',
-    combat: { id: 'scorpion_guardian_zealot', sceneId: 'lion_sanctum', enemies: ['shadow_zealot', 'phoenix_guardian', 'forest_spider'],
+    combat: { id: 'scorpion_guardian_zealot', sceneId: SANCTUARY, enemies: ['shadow_zealot', 'phoenix_guardian', 'forest_spider'],
       rewards: { temporaryGold: 80, reputation: 1, materials: { red_gem: 1 } } },
   },
 ]);

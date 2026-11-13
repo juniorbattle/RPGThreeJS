@@ -1,12 +1,16 @@
 import * as THREE from 'three';
 import { seeded, type Rng } from './pixelArt';
-import type { ArenaPalette, ArenaProp } from './arenaThemes';
+import type { ArenaEmblem, ArenaPalette, ArenaProp } from './arenaThemes';
 import {
-  bannerTexture, barkTexture, barrelLidTexture, bearReliefTexture, burlapTexture, coalsTexture, columnTexture, dragonReliefTexture, graniteTexture, gravestoneTexture, hideTexture,
-  lanternTexture, limestoneTexture, lionReliefTexture, logEndTexture, metalTexture, oreTexture, peltTexture, plankTexture, plasterTexture, roofTexture, snowTexture, stoneBlockTexture,
-  strawTexture, verdigrisTexture, windowTextures,
+  ashEmberTextures, awningTexture, bannerTexture, barkTexture, barrelLidTexture, bearReliefTexture, burlapTexture, coalsTexture, columnTexture, dragonReliefTexture, graniteTexture,
+  gravestoneTexture, hideTexture, inkStainTexture, jarTexture, lanternTexture, latticeTexture, leafTexture, limestoneTexture, lionReliefTexture, logEndTexture, metalTexture,
+  mudBrickTexture, nicheTexture, oreTexture, peltTexture, phoenixReliefTexture, plankTexture, plasterTexture, roofTexture, sandstoneTexture, sandTexture, scorpionReliefTexture,
+  snowTexture, stoneBlockTexture, strawTexture, verdigrisTexture, wardCircleTexture, windowTextures,
 } from './arenaTextures';
-import { DECOR_TEXELS_PER_UNIT, drawBush, drawDeadTree, drawDragonStatue, drawFern, drawGrass, drawPine, drawTree, drawTwistedPine, type DecorSprite } from './arenaSprites';
+import {
+  DECOR_TEXELS_PER_UNIT, drawBush, drawDeadTree, drawDragonStatue, drawDryTuft, drawFern, drawGrass, drawPine, drawThornScrub, drawThornTree, drawTree, drawTwistedPine,
+  type DecorSprite,
+} from './arenaSprites';
 
 /** Shared, per-arena caches and animated hooks collected while building props. */
 export interface PropContext {
@@ -29,20 +33,26 @@ export interface PropContext {
   /** Snow on rocks, conifers and the tops of masonry (the Bear's mountains). */
   snow?: boolean;
   /** Sign on the banners: the lion unless the arena says otherwise. */
-  emblem?: 'lion' | 'bear' | 'dragon' | 'wolf';
-  /** The living rock of cliffs and boulders: the Bear's granite unless the arena says otherwise (the Dragon's limestone). */
-  rock?: 'granite' | 'limestone';
+  emblem?: ArenaEmblem;
+  /** The living rock of cliffs and boulders: the Bear's granite unless the arena says otherwise (the Dragon's limestone, the desert's sandstone). */
+  rock?: 'granite' | 'limestone' | 'sandstone';
+  /** Indoors (the Phoenix's nave): every column stands, no sand drifts against the masonry. */
+  interior?: boolean;
+  /** The lamps of the niches and steles are cold and sooted (the Phoenix's sanctuary). */
+  unlitLamps?: boolean;
 }
 
 /** Height of the ground around the raised battle platform (tile tops stay at y = 0). */
 export const ARENA_GROUND_Y = -0.16;
 
-const BILLBOARD_CONTACT: Partial<Record<ArenaProp['kind'], number>> = { tree: 1.0, pine: 0.85, dead_tree: 0.7, bush: 0.75, fern: 0.5, twisted_pine: 0.8 };
-const NO_CONTACT = new Set<ArenaProp['kind']>(['fire', 'smoke', 'grass', 'rails', 'snowdrift', 'pelt']);
+const BILLBOARD_CONTACT: Partial<Record<ArenaProp['kind'], number>> = { tree: 1.0, pine: 0.85, dead_tree: 0.7, bush: 0.75, fern: 0.5, twisted_pine: 0.8, thorn_tree: 0.8, thorn_scrub: 0.55 };
+const NO_CONTACT = new Set<ArenaProp['kind']>(['fire', 'smoke', 'grass', 'rails', 'snowdrift', 'pelt', 'dry_tuft', 'dune', 'ward_circle', 'ink_stain', 'loose_leaves']);
 const WEEDS_PER_KIND: Partial<Record<ArenaProp['kind'], number>> = {
   house: 9, wall: 5, arch: 4, column: 3, broken_column: 3, stairs: 3, statue: 4, obelisk: 3, well: 3, gravestone: 2, barrel: 1, crate: 1, rock: 2,
   cliff: 6, snow_rock: 2, bear_pillar: 3, hall_gate: 8, mine_frame: 3, winch: 2, minecart: 1, ore_pile: 1,
   rock_needle: 4, terrace_wall: 5, cairn: 2, bell_post: 1, dragon_stele: 3, dragon_statue: 2, balustrade: 3, dragon_gate: 8, stalagmite: 2, stakes: 2,
+  phoenix_column: 3, fallen_column: 2, ruin_wall: 5, phoenix_stele: 2, niche_wall: 4, flame_hearth: 3, phoenix_relief: 4, clay_jars: 1, awning: 1,
+  mudbrick_arcade: 6, records_gate: 8, dry_basin: 2,
 };
 const _box = new THREE.Box3();
 
@@ -181,8 +191,8 @@ export const FIRE_TEXELS_PER_UNIT = 40;
  * `pixels` is the texel grid of the plane; `tongues` draws several flames
  * side by side; `brightness` lifts FX flames above decor fires.
  */
-export function createFireMaterial(seed: number, pixels: [number, number], brightness = 1.55, options: { tongues?: number; taper?: number } = {}): THREE.ShaderMaterial {
-  return new THREE.ShaderMaterial({
+export function createFireMaterial(seed: number, pixels: [number, number], brightness = 1.55, options: { tongues?: number; taper?: number; saffron?: boolean } = {}): THREE.ShaderMaterial {
+  const material = new THREE.ShaderMaterial({
     uniforms: {
       uTime: { value: 0 }, uSeed: { value: seed * 3.17 }, uPower: { value: 1 }, uBright: { value: brightness },
       uTongues: { value: options.tongues ?? 1 }, uTaper: { value: options.taper ?? 0.55 },
@@ -232,6 +242,16 @@ export function createFireMaterial(seed: number, pixels: [number, number], brigh
     fog: false,
     side: THREE.DoubleSide,
   });
+  // The Phoenix's flame: saffron-orange bands round a wider white-hot heart, never crimson (the default flame is untouched).
+  if (options.saffron) {
+    material.fragmentShader = material.fragmentShader
+      .replace('if (f > 0.16) c = vec4(0.86, 0.27, 0.08, 0.78);', 'if (f > 0.16) c = vec4(0.94, 0.5, 0.12, 0.8);')
+      .replace('if (f > 0.3) c = vec4(0.96, 0.45, 0.12, 1.0);', 'if (f > 0.3) c = vec4(1.0, 0.62, 0.16, 1.0);')
+      .replace('if (f > 0.46) c = vec4(1.0, 0.66, 0.22, 1.0);', 'if (f > 0.44) c = vec4(1.0, 0.76, 0.28, 1.0);')
+      .replace('if (f > 0.64) c = vec4(1.0, 0.85, 0.45, 1.0);', 'if (f > 0.58) c = vec4(1.0, 0.9, 0.58, 1.0);')
+      .replace('if (f > 0.8) c = vec4(1.0, 0.97, 0.84, 1.0);', 'if (f > 0.7) c = vec4(1.0, 1.0, 0.95, 1.0);');
+  }
+  return material;
 }
 
 /**
@@ -289,20 +309,21 @@ export function createSmokeMaterial(seed: number, tint: string, pixels: [number,
   });
 }
 
-function fireBillboard(ctx: PropContext, seed: number, w: number, h: number, light?: { color: string; intensity: number; distance: number }): THREE.Object3D {
+function fireBillboard(ctx: PropContext, seed: number, w: number, h: number, light?: { color: string; intensity: number; distance: number }, saffron = false): THREE.Object3D {
   // Wide fires read as several tongues of flame rather than one fat blob.
   if (w > 1.2) {
     const group = new THREE.Group();
     const tongues = Math.min(4, Math.round(w / 0.6));
     for (let i = 0; i < tongues; i++) {
       const k = tongues === 1 ? 0 : i / (tongues - 1) - 0.5;
-      const tongue = fireBillboard(ctx, seed * 7 + i, w * 0.48, h * (0.75 + Math.abs(Math.sin(seed + i * 2.3)) * 0.35), i === 0 ? light : undefined);
+      const tongue = fireBillboard(ctx, seed * 7 + i, w * 0.48, h * (0.75 + Math.abs(Math.sin(seed + i * 2.3)) * 0.35), i === 0 ? light : undefined, saffron);
       tongue.position.set(k * w * 0.62, 0, (i % 2) * 0.04);
       group.add(tongue);
     }
     return group;
   }
-  const material = createFireMaterial(seed, [Math.round(w * FIRE_TEXELS_PER_UNIT), Math.round(h * FIRE_TEXELS_PER_UNIT)]);
+  const pixels: [number, number] = [Math.round(w * FIRE_TEXELS_PER_UNIT), Math.round(h * FIRE_TEXELS_PER_UNIT)];
+  const material = saffron ? createFireMaterial(seed, pixels, 1.55, { saffron: true }) : createFireMaterial(seed, pixels);
   const geometry = new THREE.PlaneGeometry(w, h);
   geometry.translate(0, h / 2, 0);
   const m = new THREE.Mesh(geometry, material);
@@ -310,6 +331,7 @@ function fireBillboard(ctx: PropContext, seed: number, w: number, h: number, lig
   m.raycast = () => {};
   // the warm halo behind the flame lights what surrounds it
   const halo = createFireHaloMaterial(seed, w < 0.3 ? 0.18 : 0.3);
+  if (saffron) halo.uniforms.uColor!.value.set('#ffaa44');
   const haloGeo = new THREE.PlaneGeometry(w * 2.8 + 0.4, h * 1.9 + 0.3);
   haloGeo.translate(0, h * 0.45, -0.02);
   const glow = new THREE.Mesh(haloGeo, halo);
@@ -1134,12 +1156,15 @@ function brazier(ctx: PropContext, seed: number): THREE.Group {
 /** Distance from the pole's axis to the cloth: past the pole's 0.08 radius plus half the bar's depth. */
 const BANNER_HANG = 0.125;
 
-function banner(ctx: PropContext, seed: number, burning: boolean): THREE.Group {
+function banner(ctx: PropContext, seed: number, burning: boolean, withPole = true): THREE.Group {
   const g = new THREE.Group();
   const wood = woodMaterial(ctx, true);
-  const pole = mesh(new THREE.CylinderGeometry(0.07, 0.08, 4.2, 6), wood, ctx);
-  pole.position.y = 2.1;
-  g.add(pole);
+  // without its pole, the bar is fixed to a wall (the Scorpion's banner over the doorway of the hall of records)
+  if (withPole) {
+    const pole = mesh(new THREE.CylinderGeometry(0.07, 0.08, 4.2, 6), wood, ctx);
+    pole.position.y = 2.1;
+    g.add(pole);
+  }
   // the bar is fixed to the front of the pole and the cloth hangs from it, so the pole stays behind the cloth
   const bar = mesh(boxGeometry(1.5, 0.08, 0.08, 1), wood, ctx);
   bar.position.set(0, 3.9, BANNER_HANG);
@@ -1264,6 +1289,7 @@ function hash3(x: number, y: number, z: number, seed: number): number {
 
 function graniteMaterial(ctx: PropContext, seed: number): THREE.MeshStandardMaterial {
   if (ctx.rock === 'limestone') return limestoneMaterial(ctx, seed);
+  if (ctx.rock === 'sandstone') return sandstoneMaterial(ctx, seed);
   const key = `granite-${seed % 3}`;
   const texture = repeatTexture(ctx, key, () => graniteTexture(ctx.palette, 500 + (seed % 3)).toTexture({ repeat: true }));
   return cached(ctx.materials, `${key}-flat`, () => new THREE.MeshStandardMaterial({ map: texture, roughness: 1, flatShading: true })) as THREE.MeshStandardMaterial;
@@ -2007,6 +2033,580 @@ function pelt(ctx: PropContext, seed: number): THREE.Group {
   return g;
 }
 
+// ---------------------------------------------------------------- the Arid Deserts and the Scorpion's mud brick
+
+function sandstoneMaterial(ctx: PropContext, seed: number): THREE.MeshStandardMaterial {
+  const key = `sandstone-${seed % 3}`;
+  const texture = repeatTexture(ctx, key, () => sandstoneTexture(540 + (seed % 3)).toTexture({ repeat: true }));
+  return cached(ctx.materials, `${key}-flat`, () => new THREE.MeshStandardMaterial({ map: texture, roughness: 1, flatShading: true })) as THREE.MeshStandardMaterial;
+}
+
+function sandMaterial(ctx: PropContext): THREE.MeshStandardMaterial {
+  return litMaterial(ctx, 'sand', repeatTexture(ctx, 'sand', () => sandTexture(ctx.palette, 43).toTexture({ repeat: true })), { roughness: 1 });
+}
+
+function mudBrickMaterial(ctx: PropContext, seed: number): THREE.MeshStandardMaterial {
+  const key = `mudbrick-${seed % 2}`;
+  return litMaterial(ctx, key, repeatTexture(ctx, key, () => mudBrickTexture(ctx.palette, 560 + (seed % 2)).toTexture({ repeat: true })));
+}
+
+function latticeMaterial(ctx: PropContext): THREE.MeshStandardMaterial {
+  return litMaterial(ctx, 'lattice', cached(ctx.textures, 'lattice', () => latticeTexture(ctx.palette).toTexture()), { alphaTest: 0.5, side: THREE.DoubleSide });
+}
+
+function copperMaterial(ctx: PropContext): THREE.MeshStandardMaterial {
+  return litMaterial(ctx, 'copper-dark', null, { color: '#6a3c22', metalness: 0.55, roughness: 0.5 });
+}
+
+function jarMaterial(ctx: PropContext): THREE.MeshStandardMaterial {
+  return litMaterial(ctx, 'clay-jar', repeatTexture(ctx, 'clay-jar', () => jarTexture(53).toTexture({ repeat: true })), { roughness: 0.92 });
+}
+
+/** A box standing on y = 0 whose top pulls in by `taper`: the thick, battered walls of sun-dried brick. */
+function taperedBox(w: number, h: number, d: number, taper: number): THREE.BufferGeometry {
+  const g = boxGeometry(w, h, d, 1.6);
+  g.translate(0, h / 2, 0);
+  const pos = g.attributes.position as THREE.BufferAttribute;
+  for (let i = 0; i < pos.count; i++) if (pos.getY(i) > h * 0.99) pos.setXYZ(i, pos.getX(i) * taper, pos.getY(i), pos.getZ(i) * taper);
+  g.computeVertexNormals();
+  return g;
+}
+
+/** A drift of sand heaped against stone: a low lopsided mound, longer on its lee side. */
+function sandDrift(ctx: PropContext, seed: number): THREE.Mesh {
+  const geometry = new THREE.SphereGeometry(1, 12, 5, 0, Math.PI * 2, 0, Math.PI / 2);
+  const pos = geometry.attributes.position as THREE.BufferAttribute;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
+    const k = 0.85 + hash3(x, y, z, seed) * 0.3;
+    pos.setXYZ(i, x * 1.5 * k * (x < 0 ? 1 : 1.35), y * 0.34 * k, z * 0.9 * k);
+  }
+  const uv = geometry.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * 5, uv.getY(i) * 1.2);
+  geometry.computeVertexNormals();
+  const drift = mesh(geometry, sandMaterial(ctx), ctx, false);
+  drift.position.y = -0.04;
+  return drift;
+}
+
+/**
+ * A dune of the Arid Deserts: a long swell of wind-rippled sand rising gently from the front to a sharp crest near its
+ * back and falling steeply in its lee, its edges sunk under the ground so it grows out of the desert floor.
+ */
+function dune(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const L = 6, D = 3.4, H = 1.15, crest = -0.6;
+  const geometry = new THREE.PlaneGeometry(L, D, 20, 12);
+  geometry.rotateX(-Math.PI / 2);
+  const pos = geometry.attributes.position as THREE.BufferAttribute, uv = geometry.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i), z = pos.getZ(i);
+    const along = Math.pow(Math.max(0, 1 - (x / (L / 2)) ** 2), 0.7);
+    const across = z > crest ? 1 - Math.pow((z - crest) / (D / 2 - crest), 1.5) : 1 - (crest - z) / (D / 2 + crest);
+    const wobble = 1 + (hash3(x, 0, z, seed) - 0.5) * 0.08;
+    pos.setY(i, H * along * Math.max(0, across) * wobble - 0.07);
+    uv.setXY(i, x / 1.6, z / 1.6);
+  }
+  geometry.computeVertexNormals();
+  g.add(mesh(geometry, sandMaterial(ctx), ctx));
+  return g;
+}
+
+/** A water jar of unglazed clay: a round belly on a small foot, a narrow neck and a rolled lip, dark within. */
+function clayJar(ctx: PropContext, height: number): THREE.Group {
+  const g = new THREE.Group();
+  const H = height;
+  const profile = [[0.0, 0], [0.16, 0], [0.3, 0.12], [0.36, 0.34], [0.34, 0.56], [0.24, 0.74], [0.13, 0.84], [0.12, 0.94], [0.15, 0.98], [0.11, 1.0]]
+    .map(([r, y]) => new THREE.Vector2(r! * H, y! * H));
+  const geometry = new THREE.LatheGeometry(profile, 12);
+  const pos = geometry.attributes.position as THREE.BufferAttribute, uv = geometry.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i), pos.getY(i) / H);
+  g.add(mesh(geometry, jarMaterial(ctx), ctx));
+  const mouth = mesh(new THREE.CircleGeometry(0.105 * H, 10), darkMaterial(ctx), ctx, false);
+  mouth.rotation.x = -Math.PI / 2;
+  mouth.position.y = 0.975 * H;
+  g.add(mouth);
+  return g;
+}
+
+/** A few water jars set together, one lying on its side. */
+function clayJars(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const spots: Array<[number, number, number]> = [[0, 0, 0.95], [0.62, 0.22, 0.72], [-0.5, 0.34, 0.6], [0.2, -0.5, 0.55]];
+  const count = 3 + (seed % 2);
+  for (let i = 0; i < count; i++) {
+    const [x, z, h] = spots[i]!;
+    const jar = clayJar(ctx, h * (0.92 + rng() * 0.16));
+    if (i === count - 1 && seed % 3 === 0) {
+      jar.rotation.z = Math.PI / 2;
+      jar.position.set(x + 0.2, 0.34 * h, z);
+    } else {
+      jar.position.set(x, 0, z);
+      jar.rotation.y = rng() * Math.PI;
+    }
+    g.add(jar);
+  }
+  return g;
+}
+
+/** A small dark copper finial in the shape of a scorpion's raised tail, for the corners of the Scorpion's roofs. */
+function scorpionFinial(ctx: PropContext): THREE.Group {
+  const g = new THREE.Group();
+  const copper = copperMaterial(ctx);
+  g.add(at(mesh(new THREE.CylinderGeometry(0.05, 0.09, 0.14, 6), copper, ctx), 0, 0.07, 0));
+  const tail = mesh(new THREE.TorusGeometry(0.11, 0.025, 4, 8, Math.PI * 1.3), copper, ctx, false);
+  tail.position.set(0, 0.24, 0);
+  tail.rotation.z = -0.4;
+  g.add(tail);
+  const sting = mesh(new THREE.ConeGeometry(0.03, 0.09, 4), copper, ctx, false);
+  sting.position.set(-0.1, 0.33, 0);
+  sting.rotation.z = 0.9;
+  g.add(sting);
+  return g;
+}
+
+/** A scholars' shade on the track: striped linen stretched on four poles, sagging a little, a water jar and a rolled mat beneath. */
+function awning(ctx: PropContext): THREE.Group {
+  const g = new THREE.Group();
+  const wood = woodMaterial(ctx, true);
+  const W = 3.0, D = 2.0, front = 2.3, back = 1.9;
+  for (const [x, z, h] of [[-W / 2, D / 2, front], [W / 2, D / 2, front], [-W / 2, -D / 2, back], [W / 2, -D / 2, back]] as const) {
+    g.add(at(mesh(new THREE.CylinderGeometry(0.05, 0.06, h + 0.12, 5), wood, ctx), x, (h + 0.12) / 2, z));
+  }
+  const cloth = litMaterial(ctx, 'awning-cloth', repeatTexture(ctx, 'awning', () => awningTexture(47).toTexture({ repeat: true })), { side: THREE.DoubleSide, roughness: 1 });
+  const CW = W + 0.3, CD = D + 0.3;
+  const geometry = new THREE.PlaneGeometry(CW, CD, 6, 4);
+  geometry.rotateX(-Math.PI / 2);
+  const pos = geometry.attributes.position as THREE.BufferAttribute, uv = geometry.attributes.uv as THREE.BufferAttribute;
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i), z = pos.getZ(i), tz = (z + CD / 2) / CD;
+    pos.setY(i, back + 0.1 + (front - back) * tz - Math.sin((x / CW + 0.5) * Math.PI) * Math.sin(tz * Math.PI) * 0.12);
+    uv.setXY(i, x + CW / 2, z + CD / 2);
+  }
+  geometry.computeVertexNormals();
+  g.add(mesh(geometry, cloth, ctx));
+  const jar = clayJar(ctx, 0.55);
+  jar.position.set(-0.7, 0, -0.3);
+  g.add(jar);
+  const mat = mesh(cylinderGeometry(0.16, 0.16, 1.2, 8, 1), sackMaterial(ctx), ctx);
+  mat.rotation.z = Math.PI / 2;
+  mat.position.set(0.6, 0.16, 0.1);
+  g.add(mat);
+  return g;
+}
+
+/**
+ * A shaded arcade of the Scorpion's mud brick, along x: a back wall with two deep windows behind carved lattices,
+ * thick piers battered toward the top, a timber lintel, the flat roof whose beams jut out under its parapet, and on odd
+ * variants a dark copper scorpion finial at each end. No arch.
+ */
+function mudbrickArcade(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const brick = mudBrickMaterial(ctx, seed), wood = woodMaterial(ctx), dark = darkMaterial(ctx);
+  const L = 6, H = 3.2, wallZ = -1.0, wallD = 0.5, pierZ = 0.95;
+  const face = wallZ + wallD / 2;
+  g.add(at(mesh(boxGeometry(L, H, wallD, 1.6), brick, ctx), 0, H / 2, wallZ));
+  for (const x of [-1.5, 1.5]) {
+    g.add(at(mesh(new THREE.PlaneGeometry(0.7, 0.9), dark, ctx, false), x, 1.9, face + 0.006));
+    g.add(at(mesh(new THREE.PlaneGeometry(0.7, 0.9), latticeMaterial(ctx), ctx, false), x, 1.9, face + 0.03));
+    g.add(at(mesh(boxGeometry(0.86, 0.08, 0.16, 1), wood, ctx), x, 1.41, face + 0.08));
+  }
+  for (const x of [-2.7, -0.9, 0.9, 2.7]) g.add(at(mesh(taperedBox(0.62, 2.7, 0.62, 0.86), brick, ctx), x, 0, pierZ));
+  g.add(at(mesh(boxGeometry(L + 0.1, 0.28, 0.42, 1), wood, ctx), 0, 2.84, pierZ));
+  // the flat roof over the arcade, from the back wall to the lintel, and its parapet
+  const roofFront = pierZ + 0.26;
+  g.add(at(mesh(boxGeometry(L + 0.3, 0.36, roofFront + 1.25, 1.6), brick, ctx), 0, 3.16, (roofFront - 1.25) / 2));
+  g.add(at(mesh(boxGeometry(L + 0.2, 0.3, 0.2, 1.6), brick, ctx), 0, 3.49, roofFront - 0.12));
+  const beam = woodMaterial(ctx, true);
+  for (let x = -2.6; x <= 2.61; x += 0.65) {
+    const viga = mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.5, 6), beam, ctx);
+    viga.rotation.x = Math.PI / 2;
+    viga.position.set(x, 3.06, roofFront + 0.2);
+    g.add(viga);
+  }
+  if (seed % 2 === 1) for (const x of [-3.0, 3.0]) g.add(at(scorpionFinial(ctx), x, 3.64, roofFront - 0.12));
+  return g;
+}
+
+/**
+ * The doorway of the Grand Inquisiteur's hall of records: a lofty façade of ochre mud brick, a battered plinth along
+ * its foot, a tall doorway into darkness framed in timber, the carved scorpion over it and the clan's single banner
+ * above the carving, small lattice windows high up, roof beams jutting out under a stepped parapet, and dark copper
+ * scorpion finials on the corners.
+ */
+function recordsGate(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const brick = mudBrickMaterial(ctx, seed), wood = woodMaterial(ctx), post = woodMaterial(ctx, true), dark = darkMaterial(ctx);
+  const doorW = 2.4, doorH = 2.8, D = 1.4, H = 6.0, front = D / 2;
+  for (const side of [-1, 1]) {
+    g.add(at(mesh(boxGeometry(3.0, H, D, 1.6), brick, ctx), side * (doorW / 2 + 1.5), H / 2, 0));
+    // a battered plinth along the foot of the wall
+    g.add(at(mesh(taperedBox(3.0, 0.9, 0.5, 0.94), brick, ctx), side * (doorW / 2 + 1.5), 0, front + 0.2));
+    for (const dx of [-0.6, 0.6]) {
+      const x = side * (doorW / 2 + 1.5) + dx;
+      g.add(at(mesh(new THREE.PlaneGeometry(0.5, 0.7), dark, ctx, false), x, 4.0, front + 0.006));
+      g.add(at(mesh(new THREE.PlaneGeometry(0.5, 0.7), latticeMaterial(ctx), ctx, false), x, 4.0, front + 0.03));
+    }
+  }
+  g.add(at(mesh(boxGeometry(doorW, H - doorH, D, 1.6), brick, ctx), 0, doorH + (H - doorH) / 2, 0));
+  g.add(at(mesh(boxGeometry(doorW, doorH, 0.2, 1), dark, ctx, false), 0, doorH / 2, -front + 0.3));
+  for (const side of [-1, 1]) g.add(at(mesh(boxGeometry(0.22, doorH, 0.3, 1), post, ctx), side * (doorW / 2 - 0.11), doorH / 2, front + 0.05));
+  // the lintel hangs 3 cm into the opening, so its underside never shares a plane with the masonry above the door
+  g.add(at(mesh(boxGeometry(doorW + 0.8, 0.32, 0.36, 1), wood, ctx), 0, doorH + 0.13, front + 0.06));
+  const reliefKey = `scorpion-relief-${seed % 2}`;
+  const relief = litMaterial(ctx, reliefKey, cached(ctx.textures, reliefKey, () => scorpionReliefTexture(ctx.palette, 96 + (seed % 2)).toTexture()), { roughness: 0.95 });
+  g.add(at(mesh(new THREE.PlaneGeometry(1.2, 1.0), relief, ctx, false), 0, doorH + 0.3 + 0.5, front + 0.006));
+  const flag = banner(ctx, seed + 30, false, false);
+  flag.scale.setScalar(0.5);
+  flag.position.set(0, doorH + 1.42 - 1.36 * 0.5, front + 0.02); // the cloth hangs just above the carving
+  g.add(flag);
+  const beam = woodMaterial(ctx, true);
+  for (let x = -3.9; x <= 3.91; x += 0.6) {
+    if (Math.abs(x) < 0.7) continue; // the banner hangs here
+    const viga = mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.5, 6), beam, ctx);
+    viga.rotation.x = Math.PI / 2;
+    viga.position.set(x, H - 0.35, front + 0.2);
+    g.add(viga);
+  }
+  for (let i = -4; i <= 4; i++) {
+    const h = 0.36 + (i % 2 ? 0 : 0.22);
+    g.add(at(mesh(boxGeometry(0.5, h, 0.3, 1.6), brick, ctx), i * 0.9, H + h / 2 + 0.002, front - 0.2));
+  }
+  for (const side of [-1, 1]) {
+    const finial = scorpionFinial(ctx);
+    finial.position.set(side * 4.05, H + 0.002, front - 0.2);
+    finial.scale.setScalar(1.6);
+    g.add(finial);
+  }
+  return g;
+}
+
+/** The court's dry basin: a square curb of dressed stone round a bottom of cracked, sun-dried clay. */
+function dryBasin(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = stoneMaterial(ctx, seed, 0.2);
+  const S = 2.2, T = 0.3, Hc = 0.55;
+  for (const z of [-1, 1]) g.add(at(mesh(boxGeometry(S, Hc, T, 1.6), stone, ctx), 0, Hc / 2, z * (S / 2 - T / 2)));
+  for (const x of [-1, 1]) g.add(at(mesh(boxGeometry(T, Hc - 0.03, S - 2 * T, 1.6), stone, ctx), x * (S / 2 - T / 2), (Hc - 0.03) / 2, 0));
+  g.add(at(mesh(boxGeometry(S - 2 * T, 0.12, S - 2 * T, 1), litMaterial(ctx, 'dry-clay', null, { color: ctx.palette.dirt[2], roughness: 1 }), ctx, false), 0, 0.06, 0));
+  return g;
+}
+
+// ---------------------------------------------------------------- the Phoenix's places
+
+function dressedStoneMaterial(ctx: PropContext, seed: number): THREE.MeshStandardMaterial {
+  const key = `dressed-${seed % 3}`;
+  return litMaterial(ctx, key, repeatTexture(ctx, key, () => limestoneTexture(ctx.palette, 580 + (seed % 3)).toTexture({ repeat: true })));
+}
+
+function phoenixReliefMaterial(ctx: PropContext, seed: number): THREE.MeshStandardMaterial {
+  const sooty = Boolean(ctx.unlitLamps);
+  const key = `phoenix-relief-${seed % 2}${sooty ? '-sooty' : ''}`;
+  return litMaterial(ctx, key, cached(ctx.textures, key, () => phoenixReliefTexture(ctx.palette, 100 + (seed % 2), sooty).toTexture()), { roughness: 0.92 });
+}
+
+/** A small clay oil lamp: lit, a saffron flame burns at its spout even by day; cold, only the burnt wick is left. */
+function oilLamp(ctx: PropContext, seed: number, lit: boolean): THREE.Group {
+  const g = new THREE.Group();
+  const clay = jarMaterial(ctx);
+  const body = mesh(new THREE.SphereGeometry(0.12, 8, 5), clay, ctx, false);
+  body.scale.set(1.2, 0.55, 0.9);
+  body.position.y = 0.06;
+  g.add(body);
+  const spout = mesh(new THREE.ConeGeometry(0.04, 0.14, 5), clay, ctx, false);
+  spout.rotation.z = -Math.PI / 2;
+  spout.position.set(0.16, 0.07, 0);
+  g.add(spout);
+  if (lit) {
+    const flame = fireBillboard(ctx, seed * 13 + 5, 0.14, 0.26, { color: '#ffb04a', intensity: 2.6, distance: 4.5 }, true);
+    flame.position.set(0.22, 0.08, 0);
+    g.add(flame);
+  } else {
+    g.add(at(mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.03, 4), darkMaterial(ctx), ctx, false), 0.22, 0.1, 0));
+  }
+  return g;
+}
+
+/**
+ * A great round column of the Phoenix: a square plinth and a round base, a smooth shaft of ash-coloured sandstone with a
+ * phoenix carved in a band on its face, a round capital under its abacus. Outdoors odd variants stand broken off, a
+ * drum fallen beside them and sand drifted at their foot; indoors every column stands.
+ */
+function phoenixColumn(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = dressedStoneMaterial(ctx, seed), block = stoneMaterial(ctx, seed, ctx.interior ? 0.1 : 0.6);
+  const broken = !ctx.interior && seed % 2 === 1;
+  const R = 0.55, shaftH = broken ? 1.5 + rng() * 1.2 : 4.4;
+  g.add(at(mesh(boxGeometry(1.5, 0.36, 1.5, 1.6), block, ctx), 0, 0.18, 0));
+  g.add(at(mesh(cylinderGeometry(0.72, 0.76, 0.24, 16, 1.6), stone, ctx), 0, 0.48, 0));
+  g.add(at(mesh(cylinderGeometry(R * 0.96, R, shaftH, 16, 1.6), stone, ctx), 0, 0.6 + shaftH / 2, 0));
+  if (!broken) {
+    // the carved band: the phoenix on a curved panel just proud of the shaft, facing the court
+    const relief = mesh(new THREE.CylinderGeometry(R + 0.012, R + 0.012, 1.8, 10, 1, true, -0.9, 1.8), phoenixReliefMaterial(ctx, seed), ctx, false);
+    relief.position.y = 2.8;
+    g.add(relief);
+  }
+  if (broken) {
+    for (let i = 0; i < 3; i++) {
+      const shard = mesh(boxGeometry(0.34 + rng() * 0.16, 0.22 + rng() * 0.3, 0.3 + rng() * 0.14, 1.6), stone, ctx);
+      const a = (i / 3) * Math.PI * 2 + rng();
+      shard.position.set(Math.cos(a) * 0.2, 0.6 + shaftH + 0.06, Math.sin(a) * 0.2);
+      shard.rotation.set((rng() - 0.5) * 0.5, rng() * 3, (rng() - 0.5) * 0.5);
+      g.add(shard);
+    }
+    const drum = new THREE.Group();
+    const body = mesh(cylinderGeometry(R * 0.95, R * 0.95, 1.0, 14, 1.6), stone, ctx);
+    body.rotation.z = Math.PI / 2;
+    drum.add(body);
+    drum.position.set(1.15 + rng() * 0.3, R * 0.75, 0.7 + rng() * 0.4);
+    drum.rotation.y = rng() * 0.8 - 0.4;
+    g.add(drum);
+    const drift = sandDrift(ctx, seed);
+    drift.position.set(-0.5, -0.04, 0.5);
+    drift.scale.set(0.7, 0.8, 0.6);
+    g.add(drift);
+  } else {
+    g.add(at(mesh(cylinderGeometry(R * 1.32, R * 0.96, 0.3, 16, 1.6), stone, ctx), 0, 0.6 + shaftH + 0.15, 0));
+    g.add(at(mesh(boxGeometry(1.5, 0.32, 1.5, 1.6), block, ctx), 0, 0.6 + shaftH + 0.46, 0));
+  }
+  return g;
+}
+
+/** Toppled drums of a Phoenix column half sunk in the sand, the capital's abacus tipped beside them, sand drifted against them. */
+function fallenColumn(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = dressedStoneMaterial(ctx, seed), block = stoneMaterial(ctx, seed, 0.6);
+  const R = 0.53;
+  for (let i = 0; i < 3; i++) {
+    const holder = new THREE.Group();
+    const drum = mesh(cylinderGeometry(R, R, 1.0 + rng() * 0.2, 14, 1.6), stone, ctx);
+    drum.rotation.z = Math.PI / 2;
+    holder.add(drum);
+    holder.position.set(i * 1.25 - 1.25 + (rng() - 0.5) * 0.1, R * 0.78, (rng() - 0.5) * 0.25 + i * 0.06);
+    holder.rotation.y = (rng() - 0.5) * 0.3;
+    g.add(holder);
+  }
+  const abacus = mesh(boxGeometry(1.4, 0.3, 1.4, 1.6), block, ctx);
+  abacus.position.set(2.3, 0.2, 0.4);
+  abacus.rotation.set(0.12, 0.6, 0.18);
+  g.add(abacus);
+  const drift = sandDrift(ctx, seed + 1);
+  drift.position.set(-0.4, -0.04, 0.6);
+  drift.scale.set(0.8, 0.9, 0.6);
+  g.add(drift);
+  return g;
+}
+
+/** A broken wall of the Phoenix's ruins: courses of ash sandstone broken off unevenly, sand drifted against its foot. */
+function ruinWall(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = wall(ctx, rng, seed);
+  const drift = sandDrift(ctx, seed + 3);
+  drift.position.set((rng() - 0.5) * 1.4, -0.04, 0.6);
+  drift.scale.set(0.9, 0.8, 0.5);
+  g.add(drift);
+  return g;
+}
+
+/**
+ * A carved standing stone of the Phoenix's ways: a slim slab on its base, the phoenix in relief front and back, a clay
+ * oil lamp on its cap burning saffron in broad daylight (cold in the sanctuary).
+ */
+function phoenixStele(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = stoneMaterial(ctx, seed, ctx.interior ? 0 : 0.4);
+  g.add(at(mesh(boxGeometry(1.2, 0.3, 0.8, 1.6), stone, ctx), 0, 0.15, 0));
+  const W = 0.72, H = 1.5, D = 0.34, foot = 0.3;
+  g.add(at(mesh(boxGeometry(W, H, D, 1.6), stone, ctx), 0, foot + H / 2, 0));
+  for (const side of [1, -1]) {
+    const panel = mesh(new THREE.PlaneGeometry(0.62, 1.12), phoenixReliefMaterial(ctx, seed), ctx, false);
+    panel.position.set(0, foot + H / 2, side * (D / 2 + 0.006));
+    if (side < 0) panel.rotation.y = Math.PI;
+    g.add(panel);
+  }
+  g.add(at(mesh(boxGeometry(W + 0.12, 0.1, D + 0.12, 1.6), stone, ctx), 0, foot + H + 0.05, 0));
+  g.add(at(oilLamp(ctx, seed, !ctx.unlitLamps), -0.08, foot + H + 0.1, 0));
+  return g;
+}
+
+/** A ward circle of the Phoenix traced on the ground: saffron lines that smoulder and breathe, a faint glow over them. */
+function wardCircle(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const key = `ward-circle-${seed % 2}`;
+  const texture = cached(ctx.textures, key, () => wardCircleTexture(seed % 2).toTexture());
+  const material = cached(ctx.materials, key, () => new THREE.MeshBasicMaterial({
+    map: texture, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false, fog: false,
+    polygonOffset: true, polygonOffsetFactor: -6, polygonOffsetUnits: -6,
+  })) as THREE.MeshBasicMaterial;
+  const geometry = new THREE.PlaneGeometry(2.4, 2.4);
+  geometry.rotateX(-Math.PI / 2);
+  const m = new THREE.Mesh(geometry, material);
+  m.position.y = 0.035;
+  m.renderOrder = 2;
+  m.raycast = () => {};
+  m.userData.dynamic = true; // its glow breathes
+  g.add(m);
+  const anchor = new THREE.Object3D();
+  anchor.position.y = 0.4;
+  g.add(anchor);
+  ctx.lights.push({ anchor, color: '#ffa040', intensity: 1.6, distance: 4, flicker: 0.1 });
+  const phase = seed * 1.7;
+  ctx.animated.push((t) => { material.color.setScalar(0.85 + Math.sin(t * 1.3 + phase) * 0.2); });
+  return g;
+}
+
+/**
+ * The hearth at the heart of the Phoenix's nave: a round stepped dais of ash sandstone, a round stone hearth with its
+ * rim and bed of coals, and the tall flame, saffron-orange with a white-hot heart, that lights the whole nave.
+ */
+function flameHearth(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const stone = dressedStoneMaterial(ctx, seed);
+  g.add(at(mesh(cylinderGeometry(1.6, 1.68, 0.26, 24, 1.6), stone, ctx), 0, 0.13, 0));
+  g.add(at(mesh(cylinderGeometry(1.22, 1.28, 0.26, 20, 1.6), stone, ctx), 0, 0.392, 0));
+  const top = 0.98;
+  g.add(at(mesh(cylinderGeometry(0.82, 0.9, 0.46, 18, 1.6), stoneMaterial(ctx, seed, 0), ctx), 0, 0.752, 0));
+  const rim = mesh(new THREE.TorusGeometry(0.82, 0.06, 5, 20), stone, ctx, false);
+  rim.rotation.x = Math.PI / 2;
+  rim.position.y = top + 0.01;
+  g.add(rim);
+  const coals = new THREE.Mesh(new THREE.CircleGeometry(0.78, 16), new THREE.MeshBasicMaterial({ map: cached(ctx.textures, 'coals', () => coalsTexture(7).toTexture()), toneMapped: false, fog: false }));
+  coals.rotation.x = -Math.PI / 2;
+  coals.position.y = top + 0.012;
+  coals.raycast = () => {};
+  g.add(coals);
+  ctx.animated.push((t) => { (coals.material as THREE.MeshBasicMaterial).color.setScalar(1.15 + Math.sin(t * 3.1 + seed) * 0.15); });
+  const flame = fireBillboard(ctx, seed + 40, 1.15, 2.6, { color: '#ffb24a', intensity: 11, distance: 13 }, true);
+  flame.position.y = top + 0.02;
+  g.add(flame);
+  return g;
+}
+
+/**
+ * A wall of the Phoenix's ash sandstone with three niches under a cornice, a small phoenix carved over the middle one:
+ * lit, a clay lamp burns on each sill, even by day; cold, the niches are blackened by the smoke of old lamps.
+ */
+function nicheWall(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const lit = !ctx.unlitLamps;
+  const stone = stoneMaterial(ctx, seed, ctx.interior ? 0.1 : 0.5);
+  const L = 4.2, H = 3.4, D = 0.9, front = D / 2;
+  g.add(at(mesh(boxGeometry(L, H, D, 1.6), stone, ctx), 0, H / 2, 0));
+  g.add(at(mesh(boxGeometry(L + 0.24, 0.22, D + 0.2, 1.6), stone, ctx), 0, H + 0.11, 0));
+  const nicheKey = `niche-${lit ? 'lit' : 'cold'}`;
+  const niche = litMaterial(ctx, nicheKey, cached(ctx.textures, nicheKey, () => nicheTexture(ctx.palette, lit).toTexture()), { roughness: 1 });
+  [-1.3, 0, 1.3].forEach((x, i) => {
+    g.add(at(mesh(new THREE.PlaneGeometry(0.62, 0.93), niche, ctx, false), x, 1.75, front + 0.006));
+    g.add(at(mesh(boxGeometry(0.8, 0.1, 0.22, 1.6), stone, ctx), x, 1.25, front + 0.1));
+    const lamp = oilLamp(ctx, seed * 3 + i + 20, lit);
+    lamp.position.set(x - 0.1, 1.3, front + 0.12);
+    lamp.scale.setScalar(0.9);
+    g.add(lamp);
+  });
+  g.add(at(mesh(new THREE.PlaneGeometry(0.62, 1.12), phoenixReliefMaterial(ctx, seed), ctx, false), 0, 2.81, front + 0.006));
+  return g;
+}
+
+/**
+ * The great round basin of the Phoenix's sanctuary, cut into the rock floor: a low curb of red rock round a bed of grey
+ * sacred ash where red embers still glow and breathe, a thread of smoke rising from it, its red light on everything.
+ */
+function ashBasin(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const curb = stoneMaterial(ctx, seed, 0.2);
+  const R = 1.6, T = 0.26, Hc = 0.3;
+  g.add(at(mesh(new THREE.CylinderGeometry(R + T, R + T + 0.05, Hc, 28, 1, true), curb, ctx), 0, Hc / 2, 0));
+  const lip = mesh(new THREE.RingGeometry(R, R + T, 28, 1), curb, ctx);
+  lip.rotation.x = -Math.PI / 2;
+  lip.position.y = Hc;
+  g.add(lip);
+  const inner = mesh(new THREE.CylinderGeometry(R, R, Hc, 28, 1, true), litMaterial(ctx, 'basin-inner', curb.map, { side: THREE.BackSide }), ctx, false);
+  inner.position.y = Hc / 2;
+  g.add(inner);
+  const ash = cached(ctx.materials, 'sacred-ash', () => {
+    const { face, glow } = ashEmberTextures(70 + (seed % 2));
+    const map = face.toTexture(), emissiveMap = glow.toTexture();
+    ctx.textures.set('sacred-ash', map);
+    ctx.textures.set('sacred-ash-embers', emissiveMap);
+    return new THREE.MeshStandardMaterial({ map, emissiveMap, emissive: '#ffffff', emissiveIntensity: 0.9, roughness: 1 });
+  }) as THREE.MeshStandardMaterial;
+  const bed = mesh(new THREE.CircleGeometry(R, 28), ash, ctx, false);
+  bed.rotation.x = -Math.PI / 2;
+  bed.position.y = Hc - 0.08;
+  g.add(bed);
+  ctx.animated.push((t) => { ash.emissiveIntensity = 0.75 + Math.sin(t * 1.1 + seed) * 0.18 + Math.sin(t * 2.7 + seed * 2) * 0.07; });
+  const anchor = new THREE.Object3D();
+  anchor.position.y = 0.7;
+  g.add(anchor);
+  ctx.lights.push({ anchor, color: '#ff5a24', intensity: 9, distance: 11, flicker: 0.12 });
+  if (!ctx.reduced) {
+    const wisp = smoke(ctx, seed, '#4a4440', 1.4, 5);
+    wisp.position.y = Hc - 0.06;
+    g.add(wisp);
+  }
+  return g;
+}
+
+/** The phoenix carved in the sanctuary's rock wall: a dressed panel set into a mass of living red rock, darkened by smoke. */
+function phoenixReliefWall(ctx: PropContext, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const rock = graniteMesh(ctx, cragGeometry(6.4, 5.2, 1.6, seed * 7), seed, 0.5);
+  rock.position.set(0, 0, -0.4);
+  g.add(rock);
+  const slab = stoneMaterial(ctx, seed, 0);
+  g.add(at(mesh(boxGeometry(2.9, 0.6, 0.8, 1.6), slab, ctx), 0, 0.3, 0.5));
+  g.add(at(mesh(boxGeometry(2.5, 3.4, 0.5, 1.6), slab, ctx), 0, 0.6 + 1.7, 0.5));
+  g.add(at(mesh(new THREE.PlaneGeometry(1.8, 3.24), phoenixReliefMaterial(ctx, seed), ctx, false), 0, 2.3, 0.756));
+  return g;
+}
+
+/** The Shadows' mark on the ground: a splash of cold black ink, a dull sheen where it pools, never a glow. */
+function inkStain(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const key = `ink-stain-${seed % 3}`;
+  const texture = cached(ctx.textures, key, () => inkStainTexture(seed % 3).toTexture());
+  const material = cached(ctx.materials, key, () => new THREE.MeshStandardMaterial({
+    map: texture, alphaTest: 0.5, roughness: 0.35, metalness: 0.1, polygonOffset: true, polygonOffsetFactor: -5, polygonOffsetUnits: -5,
+  }));
+  const geometry = new THREE.PlaneGeometry(1.8, 1.8);
+  geometry.rotateX(-Math.PI / 2);
+  const m = new THREE.Mesh(geometry, material);
+  m.position.y = 0.03;
+  m.rotation.y = rng() * Math.PI * 2;
+  m.renderOrder = 2;
+  m.receiveShadow = ctx.shadows;
+  m.raycast = () => {};
+  g.add(m);
+  return g;
+}
+
+/** The Prophet's loose leaves scattered on the sand, each at its own height, two lifting and fluttering in the wind. */
+function looseLeaves(ctx: PropContext, rng: Rng, seed: number): THREE.Group {
+  const g = new THREE.Group();
+  const key = `leaf-${seed % 2}`;
+  const material = litMaterial(ctx, key, cached(ctx.textures, key, () => leafTexture(seed % 2).toTexture()), { side: THREE.DoubleSide, roughness: 0.9 });
+  const count = 6 + (seed % 3);
+  for (let i = 0; i < count; i++) {
+    const geometry = new THREE.PlaneGeometry(0.24, 0.32);
+    geometry.rotateX(-Math.PI / 2);
+    const leaf = mesh(geometry, material, ctx, false);
+    const a = rng() * Math.PI * 2, r = 0.2 + rng() * 0.9;
+    leaf.position.set(Math.cos(a) * r, 0.02 + i * 0.007, Math.sin(a) * r * 0.7);
+    leaf.rotation.y = rng() * Math.PI;
+    if (i < 2) {
+      leaf.userData.dynamic = true;
+      const base = leaf.position.clone(), yaw = leaf.rotation.y, phase = rng() * 6 + seed;
+      ctx.animated.push((t) => {
+        leaf.position.set(base.x + Math.sin(t * 0.7 + phase) * 0.12, base.y + 0.18 + Math.sin(t * 1.9 + phase) * 0.08, base.z);
+        leaf.rotation.set(Math.sin(t * 2.3 + phase) * 0.6, yaw, Math.cos(t * 1.7 + phase) * 0.4);
+      });
+    } else {
+      leaf.rotation.x = (rng() - 0.5) * 0.08;
+    }
+    g.add(leaf);
+  }
+  return g;
+}
+
 // ---------------------------------------------------------------- dispatch
 
 export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | null {
@@ -2085,13 +2685,33 @@ export function buildProp(ctx: PropContext, prop: ArenaProp): THREE.Object3D | n
     case 'stakes': object = stakes(ctx, rng, seed); break;
     case 'bones': object = bones(ctx, rng, seed); break;
     case 'pelt': object = pelt(ctx, seed); break;
+    case 'dune': object = dune(ctx, seed); break;
+    case 'thorn_tree': object = billboard(ctx, `thorn-tree-${seed % 4}`, (k) => drawThornTree(ctx.palette, seed % 4, k), s, true); break;
+    case 'thorn_scrub': object = billboard(ctx, `thorn-scrub-${seed % 4}`, (k) => drawThornScrub(ctx.palette, seed % 4, k), s, false); break;
+    case 'dry_tuft': object = billboard(ctx, `dry-tuft-${seed % 3}`, (k) => drawDryTuft(ctx.palette, seed % 3, k), s, false); break;
+    case 'awning': object = awning(ctx); break;
+    case 'clay_jars': object = clayJars(ctx, rng, seed); break;
+    case 'mudbrick_arcade': object = mudbrickArcade(ctx, seed); break;
+    case 'records_gate': object = recordsGate(ctx, seed); break;
+    case 'dry_basin': object = dryBasin(ctx, seed); break;
+    case 'phoenix_column': object = phoenixColumn(ctx, rng, seed); break;
+    case 'fallen_column': object = fallenColumn(ctx, rng, seed); break;
+    case 'ruin_wall': object = ruinWall(ctx, rng, seed); break;
+    case 'phoenix_stele': object = phoenixStele(ctx, seed); break;
+    case 'ward_circle': object = wardCircle(ctx, seed); break;
+    case 'flame_hearth': object = flameHearth(ctx, seed); break;
+    case 'niche_wall': object = nicheWall(ctx, seed); break;
+    case 'ash_basin': object = ashBasin(ctx, seed); break;
+    case 'phoenix_relief': object = phoenixReliefWall(ctx, seed); break;
+    case 'ink_stain': object = inkStain(ctx, rng, seed); break;
+    case 'loose_leaves': object = looseLeaves(ctx, rng, seed); break;
     default: object = null;
   }
   if (!object) return null;
   // props stand on the ground, a centimetre sunk so no seam shows at their foot
   object.position.set(prop.x, ARENA_GROUND_Y - 0.01, prop.z);
   if (prop.kind !== 'fire' && prop.kind !== 'smoke' && !ctx.billboards.includes(object)) object.rotation.y = prop.r ?? 0;
-  const sizedByBuilder = ['tree', 'pine', 'dead_tree', 'bush', 'fern', 'grass', 'fire', 'twisted_pine'].includes(prop.kind);
+  const sizedByBuilder = ['tree', 'pine', 'dead_tree', 'bush', 'fern', 'grass', 'fire', 'twisted_pine', 'thorn_tree', 'thorn_scrub', 'dry_tuft'].includes(prop.kind);
   if (!sizedByBuilder) object.scale.setScalar(s);
   object.name = `arena-prop:${prop.kind}`;
   groundProp(ctx, prop, object, rng);

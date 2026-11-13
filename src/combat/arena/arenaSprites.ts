@@ -478,3 +478,142 @@ export function drawRidgeLine(pal: ArenaPalette, seed: number, snow: boolean, wi
   }
   return { canvas: pc, anchor: [Math.round(width / 2), height - 1] };
 }
+
+// ---------------------------------------------------------------- the Arid Deserts
+
+/**
+ * A lone thorn tree of the Arid Deserts: a short trunk forking into a few crooked limbs that spread wide, each carrying
+ * a flat, layered crown of dusty olive leaves, lit on top and dark beneath, with pale thorns on the bare twigs.
+ */
+export function drawThornTree(pal: ArenaPalette, seed: number, scale = 1): DecorSprite {
+  const k = scale;
+  const W = Math.round(160 * k), H = Math.round(140 * k);
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed * 6151 + 29);
+  const n = makeNoise(rng, 16);
+  const base = { x: W / 2 + (rng() - 0.5) * 12 * k, y: H - 3 };
+  const fork = { x: base.x + (rng() - 0.5) * 10 * k, y: H * 0.62 };
+  paintTrunk(pc, rng, base, fork, 10 * k, 6 * k, pal.bark);
+  const pads: Array<{ x: number; y: number; rx: number; ry: number }> = [];
+  const limbs = 3 + Math.floor(rng() * 2);
+  for (let i = 0; i < limbs; i++) {
+    const spread = (i / (limbs - 1) - 0.5) * 2;
+    const ex = fork.x + spread * (34 + rng() * 10) * k, ey = H * (0.3 + rng() * 0.1) + Math.abs(spread) * 6 * k;
+    paintLimb(pc, fork.x, fork.y, ex, ey, 5 * k, 2 * k, pal.bark);
+    // bare twigs with their thorns past the crown's edge
+    const tx = ex + Math.sign(spread || 1) * (8 + rng() * 6) * k, ty = ey - (2 + rng() * 4) * k;
+    paintLimb(pc, ex, ey, tx, ty, 1.6 * k, 1 * k, pal.bark);
+    for (let t = 0; t < 3; t++) pc.set(ex + (tx - ex) * (0.3 + t * 0.25), ey + (ty - ey) * (0.3 + t * 0.25) - 1, rgb(pal.grass[pal.grass.length - 1]));
+    pads.push({ x: ex, y: ey - 3 * k, rx: (18 + rng() * 8) * k, ry: (5 + rng() * 2) * k });
+  }
+  pads.push({ x: fork.x, y: H * 0.26, rx: 40 * k, ry: 7 * k });
+  const ft = pal.foliage;
+  for (const pad of pads.sort((a, b) => a.y - b.y)) {
+    for (let y = Math.floor(pad.y - pad.ry - 3 * k); y <= Math.ceil(pad.y + pad.ry); y++) for (let x = Math.floor(pad.x - pad.rx - 3); x <= Math.ceil(pad.x + pad.rx + 3); x++) {
+      const dx = (x - pad.x) / pad.rx, dy = (y - pad.y) / pad.ry;
+      if (dx * dx + (dy < 0 ? dy * dy * 1.3 : dy * dy * 2.2) > 1 + (n(x / 4, y / 3) - 0.5) * 0.5) continue;
+      const light = 0.64 - dy * 0.4 - dx * 0.18 + (n(x / 2, y / 2) - 0.5) * 0.26;
+      pc.set(x, y, tone(ft, Math.max(0, Math.min(1, light)), x, y, 0, ft.length - 1));
+    }
+  }
+  pc.outline(rgb(ft[0]));
+  return { canvas: pc, anchor: [Math.round(base.x), base.y] };
+}
+
+/** Thorny desert scrub: a low tangle of grey twigs fanning from the sand, a few dusty olive leaves, pale thorns. */
+export function drawThornScrub(pal: ArenaPalette, seed: number, scale = 1): DecorSprite {
+  const k = scale;
+  const W = Math.round(60 * k), H = Math.round(38 * k);
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed * 2741 + 11);
+  const twigs = 9 + Math.floor(rng() * 5);
+  const leaves: Array<[number, number]> = [];
+  for (let i = 0; i < twigs; i++) {
+    const a = -Math.PI / 2 + (rng() - 0.5) * 2.4, len = (14 + rng() * 16) * k;
+    const sx = W / 2 + (rng() - 0.5) * 8 * k, sy = H - 2;
+    const ex = sx + Math.cos(a) * len, ey = sy + Math.sin(a) * len * 0.9;
+    paintLimb(pc, sx, sy, ex, ey, 2 * k, 1 * k, pal.bark);
+    leaves.push([ex, ey], [sx + (ex - sx) * 0.6, sy + (ey - sy) * 0.6]);
+    if (rng() < 0.6) pc.set(ex + 1, ey - 1, rgb(pal.grass[pal.grass.length - 1]));
+  }
+  for (const [lx, ly] of leaves) {
+    if (rng() < 0.35) continue;
+    const r = (1.6 + rng() * 1.6) * k;
+    for (let y = Math.floor(ly - r); y <= Math.ceil(ly + r); y++) for (let x = Math.floor(lx - r); x <= Math.ceil(lx + r); x++) {
+      if (Math.hypot(x - lx, (y - ly) * 1.4) > r) continue;
+      pc.set(x, y, tone(pal.foliage, Math.max(0, Math.min(1, 0.6 - (y - ly) / r * 0.3 - (x - lx) / r * 0.15)), x, y, 1, pal.foliage.length - 1));
+    }
+  }
+  pc.outline(rgb(pal.ink));
+  return { canvas: pc, anchor: [Math.round(W / 2), H - 2] };
+}
+
+/** A tuft of dry desert grass with a pebble at its foot (no flower: the desert grows none). */
+export function drawDryTuft(pal: ArenaPalette, seed: number, scale = 1): DecorSprite {
+  const k = scale;
+  const W = Math.round(40 * k), H = Math.round(22 * k);
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed * 1931 + 7);
+  for (let b = 0; b < 14; b++) {
+    const x0 = (6 + rng() * 28) * k, h = (5 + rng() * 13) * k, lean = (rng() - 0.5) * 9 * k;
+    for (let i = 0; i < h; i++) {
+      const t = i / h;
+      pc.set(x0 + lean * t * t, H - 2 - i, tone(pal.grass, 0.3 + t * 0.66, Math.round(x0), i));
+    }
+  }
+  const px = (8 + rng() * 24) * k, r = (2 + rng() * 1.6) * k;
+  for (let y = Math.floor(H - 2 - r); y <= H - 2; y++) for (let x = Math.floor(px - r * 1.3); x <= Math.ceil(px + r * 1.3); x++) {
+    if (Math.hypot((x - px) / 1.3, y - (H - 2)) > r) continue;
+    pc.set(x, y, tone(pal.stone, Math.max(0, Math.min(1, 0.62 - (x - px) / r * 0.2 + (y - (H - 2)) / r * 0.3)), x, y));
+  }
+  return { canvas: pc, anchor: [Math.round(W / 2), H - 2] };
+}
+
+/** A little drift of sand banked against the foot of a stone, lit up-left, a dry stalk or two poking through. */
+export function drawSandTuft(pal: ArenaPalette, seed: number, scale = 1): DecorSprite {
+  const k = scale;
+  const W = Math.round(40 * k), H = Math.round(14 * k);
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed * 1777 + 19);
+  const n = makeNoise(rng, 8);
+  const lumps = 2 + Math.floor(rng() * 2);
+  for (let i = 0; i < lumps; i++) {
+    const cx = (10 + (i / Math.max(1, lumps - 1)) * 20 + (rng() - 0.5) * 4) * k, r = (4 + rng() * 3) * k;
+    for (let y = Math.floor(H - 2 - r); y <= H - 2; y++) for (let x = Math.floor(cx - r * 1.8); x <= Math.ceil(cx + r * 1.8); x++) {
+      const dx = (x - cx) / (r * 1.8), dy = (y - (H - 2)) / r;
+      if (dx * dx + dy * dy > 1 + (n(x / 3, y / 3) - 0.5) * 0.25) continue;
+      pc.set(x, y, tone(pal.moss, Math.max(0, Math.min(1, 0.72 - dx * 0.28 + dy * 0.3)), x, y));
+    }
+  }
+  for (let b = 0; b < 2; b++) {
+    const x0 = (8 + rng() * 24) * k, h = (4 + rng() * 6) * k;
+    for (let i = 0; i < h; i++) pc.set(x0 + (rng() - 0.5), H - 3 - i, tone(pal.grass, 0.35 + (i / h) * 0.5, Math.round(x0), i));
+  }
+  pc.outline(rgb(pal.moss[0]));
+  return { canvas: pc, anchor: [Math.round(W / 2), H - 2] };
+}
+
+/**
+ * Distant dune crests for the desert's horizon: smooth swells rising to sharp crests, the face left of each crest in
+ * the light of the arena's key, the lee in shade; the fog takes them into the heat haze or the dusk.
+ */
+export function drawDuneLine(pal: ArenaPalette, seed: number, width = 720, height = 96): DecorSprite {
+  const pc = new PixelCanvas(width, height);
+  const rng = seeded(seed * 3301 + 37);
+  const fine = makeNoise(rng, 64);
+  // overlapping crescents, left to right: a gentle windward slope in the light up to a sharp crest, the lee in shade
+  // under it, its edge slanting down and back from the crest (never a vertical seam)
+  for (let cx = -40 + rng() * 30; cx < width + 60; cx += 40 + rng() * 50) {
+    const w = 60 + rng() * 50, cy = height * (0.2 + rng() * 0.35), lean = 1.4 + rng() * 1.0;
+    for (let x = Math.max(0, Math.floor(cx - w)); x < Math.min(width, Math.ceil(cx + w * 0.5)); x++) {
+      const windward = x < cx, t = windward ? (cx - x) / w : (x - cx) / (w * 0.5);
+      const top = cy + (height - cy) * (windward ? Math.pow(t, 2.2) : Math.pow(t, 0.6));
+      for (let y = Math.floor(top); y < height; y++) {
+        const lee = x > cx - (y - cy) * lean;
+        const light = (lee ? 0.3 : 0.8 - t * 0.15) - ((y - cy) / height) * 0.4 + (fine(x / 4, y / 3) - 0.5) * 0.1;
+        pc.set(x, y, tone(pal.moss, Math.max(0, Math.min(1, light)), x, y));
+      }
+    }
+  }
+  return { canvas: pc, anchor: [Math.round(width / 2), height - 1] };
+}

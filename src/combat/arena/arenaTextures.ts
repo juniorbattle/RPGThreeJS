@@ -1,5 +1,5 @@
 import { bayer, makeNoise, mixRgb, PixelCanvas, ramp, rgb, seeded, type Rgb, type Rng } from './pixelArt';
-import type { ArenaPalette, GroundStyle, TileStyle } from './arenaThemes';
+import type { ArenaEmblem, ArenaPalette, GroundStyle, TileStyle } from './arenaThemes';
 
 /** Texels per tile edge: 48 px over 1.18 m ≈ the 40 px/m of the unit sprites. */
 export const TILE_TEXELS = 48;
@@ -188,9 +188,9 @@ function tileHewnGranite(pal: ArenaPalette, seed: number, snow: boolean): PixelC
 /**
  * Limestone slab for the Dragon's arenas: pale flags of uneven size, smooth and weathered, with what the place lays in
  * their joints: yellowed grass on the terraces' trail, powder snow on the summits, ash in the Wolf's cave (darkened
- * there, with a few wet glints).
+ * there, with a few wet glints). The Scorpion's old roads take the same worn flags, half drowned in drifting sand.
  */
-function tileLimestone(pal: ArenaPalette, seed: number, joint: 'grass' | 'snow' | 'ash'): PixelCanvas {
+function tileLimestone(pal: ArenaPalette, seed: number, joint: 'grass' | 'snow' | 'ash' | 'sand'): PixelCanvas {
   const pc = new PixelCanvas(TILE_TEXELS, TILE_TEXELS);
   const rng = seeded(seed);
   pc.fill(rgb(pal.stoneDark[0]));
@@ -203,7 +203,7 @@ function tileLimestone(pal: ArenaPalette, seed: number, joint: 'grass' | 'snow' 
     pc.set(x, y, rgb(pal.stoneDark[2])); pc.set(x, y + 1, ramp(pal.stone, 0.85));
   }
   const n = makeNoise(rng, 6), wet = makeNoise(rng, 4);
-  const offset = joint === 'snow' ? 0.22 : joint === 'grass' ? 0.1 : 0.06;
+  const offset = joint === 'snow' ? 0.22 : joint === 'grass' ? 0.1 : joint === 'sand' ? 0.26 : 0.06;
   for (let y = 0; y < TILE_TEXELS; y++) for (let x = 0; x < TILE_TEXELS; x++) {
     const stone = stones.find((s) => x >= s.x && x < s.x + s.w && y >= s.y && y < s.y + s.h);
     if (!stone) continue;
@@ -217,6 +217,7 @@ function tileLimestone(pal: ArenaPalette, seed: number, joint: 'grass' | 'snow' 
     if (v <= 0.62) continue;
     if (joint === 'grass') pc.set(x, y, shadeTone(pal.grass, Math.min(1, 0.3 + (v - 0.62) * 1.6), x, y));
     else if (joint === 'snow') pc.set(x, y, shadeTone(pal.moss, Math.min(1, 0.55 + (v - 0.62) * 1.6), x, y));
+    else if (joint === 'sand') pc.set(x, y, shadeTone(pal.moss, Math.min(1, 0.42 + (v - 0.62) * 1.4), x, y));
     else pc.set(x, y, shadeTone(pal.moss, 0.25 + (v - 0.62) * 1.2, x, y));
   }
   return pc;
@@ -255,7 +256,9 @@ export function tileTopTexture(style: TileStyle, pal: ArenaPalette, seed: number
   if (style === 'limestone_flag') return tileLimestone(pal, seed, 'grass');
   if (style === 'snowy_limestone') return tileLimestone(pal, seed, 'snow');
   if (style === 'cave_flag') return tileLimestone(pal, seed, 'ash');
-  if (style === 'dressed_limestone') return tileDressedLimestone(pal, seed);
+  if (style === 'sand_flag') return tileLimestone(pal, seed, 'sand');
+  // the Phoenix's dressed sandstone and the Scorpion's sun-baked court: the same squared flags, in their own palette
+  if (style === 'dressed_limestone' || style === 'dressed_sandstone') return tileDressedLimestone(pal, seed);
   return tileFlagstone(pal, seed);
 }
 
@@ -309,6 +312,16 @@ export function groundTexture(style: GroundStyle, pal: ArenaPalette, seed = 7): 
       if (big < 0.26) pc.set(x, y, shadeTone(pal.stone, Math.max(0, Math.min(1, 0.46 + (fine - 0.5) * 0.5 + (mid - 0.5) * 0.4)), x, y));
       else if (big > 0.7 && mid > 0.5) pc.set(x, y, shadeTone(pal.moss, Math.max(0, Math.min(1, 0.62 + (fine - 0.5) * 0.3)), x, y));
       else pc.set(x, y, shadeTone(pal.grass, Math.max(0, Math.min(1, 0.54 + (big - 0.5) * 0.3 + (mid - 0.5) * 0.25 + (fine - 0.5) * 0.3)), x, y));
+    } else if (style === 'desert_sand') {
+      // the Arid Deserts: honey sand rippled by the wind, a cracked clay pan in the hollows (seamless: whole periods only)
+      const ripple = Math.sin(((x * 3 + y * 2) / S) * Math.PI * 12 + n1((x / S) * 8, (y / S) * 8) * 4);
+      if (big < 0.24) {
+        const crack = Math.abs(Math.sin((x / S) * Math.PI * 28 + mid * 5)) < 0.09 || Math.abs(Math.sin((y / S) * Math.PI * 24 + fine * 5)) < 0.09;
+        pc.set(x, y, crack ? rgb(pal.dirt[0]) : shadeTone(pal.dirt, Math.max(0, Math.min(1, 0.62 + (fine - 0.5) * 0.3 - (big < 0.12 ? 0.1 : 0))), x, y));
+      } else {
+        const level = 0.56 + (mid - 0.5) * 0.3 + (fine - 0.5) * 0.12 + (ripple > 0.8 ? 0.16 : ripple < -0.72 ? -0.14 : 0) - (big < 0.3 ? 0.08 : 0);
+        pc.set(x, y, shadeTone(pal.moss, Math.max(0, Math.min(1, level)), x, y));
+      }
     } else if (style === 'village_mud') {
       const rut = Math.abs(((y + n1(x / 16, 0) * 10) % 32) - 16) < 2;
       let level = 0.42 + (mid - 0.5) * 0.45 + (fine - 0.5) * 0.25 - (rut ? 0.2 : 0);
@@ -593,10 +606,12 @@ function bearBannerHem(x: number, W: number, H: number): number {
  * Heraldic banner (40×80, the decor's 32 texels/m): house cloth, border and the house sign. The lion's banners keep
  * their gold border and swallowtail; the Bear's are slate and bone, with an angular band and a three-pointed hem.
  */
-export function bannerTexture(pal: ArenaPalette, seed: number, burning = false, emblem: 'lion' | 'bear' | 'dragon' | 'wolf' = 'lion'): PixelCanvas {
+export function bannerTexture(pal: ArenaPalette, seed: number, burning = false, emblem: ArenaEmblem = 'lion'): PixelCanvas {
   if (emblem === 'bear') return bearBannerTexture(pal, seed);
   if (emblem === 'dragon') return dragonBannerTexture(pal, seed);
   if (emblem === 'wolf') return wolfBannerTexture(pal, seed);
+  if (emblem === 'scorpion') return scorpionBannerTexture(pal, seed);
+  if (emblem === 'phoenix') return phoenixBannerTexture(pal, seed);
   const W = 40, H = 80;
   const pc = new PixelCanvas(W, H);
   const rng = seeded(seed);
@@ -1247,4 +1262,428 @@ export function lionReliefTexture(pal: ArenaPalette, seed: number): { face: Pixe
     if (gold.get(x - 1, y - 1)[0] > 0 && gold.get(x, y)[0] === 0 && Math.min(x, y, W - 1 - x, H - 1 - y) > 3) face.set(x, y, rgb(pal.stoneDark[0]));
   }
   return { face, gold };
+}
+
+// ---------------------------------------------------------------- the Scorpion's and the Phoenix's signs
+
+const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+
+const SCORPION_TAIL: ReadonlyArray<readonly [number, number]> = [[13, 20.6], [13.0, 24.4], [14.0, 28.0], [16.4, 30.8], [19.4, 31.0], [21.6, 29.0], [22.4, 26.2]];
+const SCORPION_LEGS: ReadonlyArray<ReadonlyArray<readonly [number, number]>> = [
+  [[10.4, 12.0], [7.0, 10.4], [4.6, 12.6]], [[10.2, 13.8], [6.6, 13.0], [3.8, 15.6]],
+  [[10.2, 15.6], [6.8, 15.8], [4.2, 19.0]], [[10.6, 17.4], [7.6, 18.4], [6.0, 21.2]],
+];
+
+/**
+ * The Scorpion clan's sign, seen from above on the shared 26×34 grid: the head between two open pincers, four legs a
+ * side, the banded abdomen, and the tail curling round and up to its raised stinger. 0 empty, 1 body, claws and legs,
+ * 2 the abdomen's bands and every other tail segment (in shade), 3 the stinger.
+ */
+export function scorpionShape(px: number, py: number): 0 | 1 | 2 | 3 {
+  const mx = px > 13 ? 26 - px : px; // the claws and the legs are symmetric
+  if (Math.hypot(Math.abs(px - 13) - 0.8, py - 9.4) < 0.5) return 0; // eyes
+  if (inEllipse(px, py, 22.0, 24.6, 1.4, 1.3) || inPoly(px, py, [[21.2, 23.6], [19.0, 23.4], [21.0, 25.2]])) return 3;
+  for (let i = 0; i < SCORPION_TAIL.length - 1; i++) {
+    const w = 2.8 - i * 0.18;
+    if (inStroke(px, py, [SCORPION_TAIL[i]!, SCORPION_TAIL[i + 1]!], w, w - 0.18)) return i % 2 ? 2 : 1;
+  }
+  if (inEllipse(px, py, 13, 10.6, 2.9, 2.6)) return 1;
+  if (inEllipse(px, py, 13, 16.6, 3.4, 4.6)) return Math.sin(py * 1.7) > 0.82 ? 2 : 1;
+  if (inStroke(mx, py, [[11.2, 9.6], [8.0, 8.6], [6.2, 6.0]], 1.9, 1.5) || inEllipse(mx, py, 5.4, 4.4, 2.0, 1.7)
+    || inStroke(mx, py, [[4.4, 3.4], [3.8, 0.8]], 1.1, 0.5) || inStroke(mx, py, [[6.4, 3.2], [6.8, 0.8]], 1.1, 0.5)) return 1;
+  if (SCORPION_LEGS.some((leg) => inStroke(mx, py, leg, 1.1, 0.7))) return 1;
+  return 0;
+}
+
+const PHOENIX_WING: ReadonlyArray<readonly [number, number]> = [
+  [11.4, 13.0], [9.0, 10.6], [6.6, 7.4], [4.2, 4.0], [1.6, 1.6], [1.0, 3.8], [2.2, 5.4], [0.6, 6.8], [2.0, 8.6], [0.8, 10.4],
+  [2.8, 11.8], [1.8, 13.6], [4.4, 14.4], [4.0, 16.2], [7.2, 16.0], [10.6, 16.6],
+];
+const PHOENIX_FLAMES: ReadonlyArray<readonly [number, number]> = [
+  [5.6, 33.6], [7.4, 28.4], [8.8, 30.6], [10.4, 25.6], [12.0, 29.6], [13.0, 24.4], [14.0, 29.6], [15.6, 25.6], [17.2, 30.6], [18.6, 28.4], [20.4, 33.6],
+];
+
+/**
+ * The Phoenix clan's sign on the shared 26×34 grid: a phoenix rising with its wings spread wide above the flames, its
+ * crested head turned to the left, three long plumes falling into the fire. 0 empty, 1 body, head and wings, 2 the
+ * wings' feathers, the crest and the plumes (in shade), 3 the flames it rises from.
+ */
+export function phoenixShape(px: number, py: number): 0 | 1 | 2 | 3 {
+  const mx = px > 13 ? 26 - px : px; // the wings are symmetric
+  if (Math.hypot(px - 12.8, py - 5.6) < 0.42) return 0; // eye
+  if (inEllipse(px, py, 13.2, 6.0, 1.7, 1.6) || inPoly(px, py, [[11.8, 5.4], [9.8, 6.6], [11.8, 7.0]])) return 1;
+  if (inStroke(px, py, [[13.6, 4.6], [13.0, 1.2]], 1.0, 0.4) || inStroke(px, py, [[14.2, 4.8], [15.4, 1.6]], 1.0, 0.4)
+    || inStroke(px, py, [[14.6, 5.4], [17.0, 3.4]], 1.0, 0.4)) return 2;
+  if (inStroke(px, py, [[13.2, 7.4], [13.0, 11.4]], 2.2, 3.0) || inEllipse(px, py, 13, 14.4, 2.6, 3.4)) return 1;
+  if (inPoly(mx, py, PHOENIX_WING)) return Math.sin(Math.atan2(py - 15, mx - 12) * 9) > 0.55 ? 2 : 1;
+  if (inStroke(px, py, [[13, 17], [13.2, 21.5], [12.4, 26]], 2.2, 0.9) || inStroke(mx, py, [[12, 17.2], [9.6, 21.4], [7.8, 25.2]], 1.8, 0.7)) return 2;
+  if (inPoly(px, py, PHOENIX_FLAMES)) return 3;
+  return 0;
+}
+
+/** The Phoenix's flame: ember at the edge, saffron within, a white-hot heart; never crimson. */
+const PHOENIX_FLAME = ['#8a3a10', '#c45e18', '#f2a63a', '#fff4dc'] as const;
+/** The same flame worn into stone as an old saffron pigment. */
+const PHOENIX_PIGMENT = ['#5a3014', '#7e4a1e', '#a8682a', '#c8883e'] as const;
+
+/** Paints the phoenix at (ox, oy): body and wings in `tones`, the flames by depth (ember edge, saffron, white heart). */
+function paintPhoenix(pc: PixelCanvas, ox: number, oy: number, tones: readonly string[], scale: number, flameTones: readonly string[],
+  onPixel?: (x: number, y: number) => void): void {
+  const body = (px: number, py: number) => { const p = phoenixShape(px, py); return p === 3 ? 0 : p; };
+  paintSigil(pc, body, ox, oy, tones, { lit: 1, mid: 0.72, shade: 0.36, part2: 0.5, part3: 0 }, scale, false, onPixel);
+  const W = Math.round(SIGIL_W * scale), H = Math.round(SIGIL_H * scale);
+  const flame = (x: number, y: number) => x >= 0 && y >= 0 && x < W && y < H && phoenixShape((x + 0.5) / scale, (y + 0.5) / scale) === 3;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    if (!flame(x, y)) continue;
+    let depth = 0;
+    for (const d of [1, 2]) if ([[d, 0], [-d, 0], [0, d], [0, -d]].every(([dx, dy]) => flame(x + dx!, y + dy!))) depth = d;
+    pc.set(ox + x, oy + y, rgb(flameTones[Math.min(flameTones.length - 1, depth + 1)]));
+    onPixel?.(ox + x, oy + y);
+  }
+}
+
+/**
+ * The Scorpion's banner (40×80): umber cloth with undyed linen edges, a band of linked lozenges like the segments of
+ * the tail above a hem cut in square tabs, and the scorpion in linen. Never red-and-gold.
+ */
+function scorpionBannerTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const W = 40, H = 80;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    if (y >= H - 5 && Math.floor(x / 5) % 2 === 1) continue;
+    const fold = Math.sin(x * 0.45) * 0.12;
+    let c = shadeTone(pal.cloth, 0.6 + fold + (n(x / 6, y / 6) - 0.5) * 0.2, x, y);
+    const dy = y - (H - 17);
+    const lozenge = dy >= 0 && dy <= 6 && Math.abs(((x + 3) % 6) - 3) + Math.abs(dy - 3) === 3;
+    if ((x >= 2 && x <= 3) || (x >= W - 4 && x <= W - 3) || (y >= 4 && y <= 5) || lozenge || y >= H - 6) c = shadeTone(pal.trim, x <= 3 || y <= 5 ? 0.8 : 0.5, x, y);
+    pc.set(x, y, c);
+  }
+  paintSigil(pc, scorpionShape, 7, 13, pal.trim, { lit: 1, mid: 0.72, shade: 0.36, part2: 0.5, part3: 0.26 });
+  return pc;
+}
+
+/**
+ * The Phoenix's hanging (40×80): saffron cloth with ash-grey edges, a band of ash flickers, a hem falling in four
+ * tongues of flame, and the phoenix in pale ash rising from its flame. No crimson, no gold.
+ */
+function phoenixBannerTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const W = 40, H = 80;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const hem = H - 2 - Math.abs(Math.sin(((x + 0.5 - 5) / W) * Math.PI * 4)) * 7;
+    if (y > hem) continue;
+    const fold = Math.sin(x * 0.45) * 0.12;
+    let c = shadeTone(pal.cloth, 0.62 + fold + (n(x / 6, y / 6) - 0.5) * 0.2, x, y);
+    const wave = Math.abs(y - (H - 17) - Math.round(Math.sin(x * 0.8) * 1.5)) < 1;
+    if ((x >= 2 && x <= 3) || (x >= W - 4 && x <= W - 3) || (y >= 4 && y <= 5) || wave || y > hem - 2) c = shadeTone(pal.trim, x <= 3 || y <= 5 ? 0.8 : 0.5, x, y);
+    pc.set(x, y, c);
+  }
+  paintPhoenix(pc, 7, 12, pal.trim, 1, PHOENIX_FLAME);
+  return pc;
+}
+
+/**
+ * Carved panel of the Phoenix's columns, steles and sanctuary: a dressed sandstone face with a bevelled frame, a band
+ * of flame waves cut above and below, the phoenix in relief at 1.3 times the banner's size with its flames in an old
+ * saffron pigment, its shadow to the lower right; `sooty` darkens it with the smoke of the sanctuary's lamps.
+ */
+export function phoenixReliefTexture(pal: ArenaPalette, seed: number, sooty = false): PixelCanvas {
+  const W = 40, H = 72;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const edge = Math.min(x, y, W - 1 - x, H - 1 - y);
+    let level = 0.46 + (n(x / 4, y / 4) - 0.5) * 0.16;
+    if (edge < 3) level = edge === 0 ? 0.14 : x < W - 3 && y < H - 3 && (x < 3 || y < 3) ? 0.8 : 0.3;
+    else if (edge === 3) level = 0.24;
+    let c = shadeTone(pal.stone, level, x, y);
+    if (edge > 3 && rng() < 0.04) c = rgb(pal.stoneDark[2]);
+    pc.set(x, y, c);
+  }
+  for (const top of [7, H - 9]) for (let x = 6; x < W - 6; x++) {
+    const y = top - Math.round(Math.abs(Math.sin(x * 0.52)) * 2.4);
+    pc.set(x, y, rgb(pal.stoneDark[1]));
+    pc.set(x, y + 1, ramp(pal.stone, 0.88));
+  }
+  const relief = new Set<number>();
+  const scale = 1.3, ox = Math.round((W - SIGIL_W * scale) / 2), oy = 14;
+  paintPhoenix(pc, ox, oy, pal.stone, scale, PHOENIX_PIGMENT, (x, y) => relief.add(y * W + x));
+  for (let y = H - 2; y > 0; y--) for (let x = W - 2; x > 0; x--) {
+    if (relief.has((y - 1) * W + x - 1) && !relief.has(y * W + x) && Math.min(x, y, W - 1 - x, H - 1 - y) > 3) pc.set(x, y, rgb(pal.stoneDark[1]));
+  }
+  if (sooty) for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const soot = clamp01((1 - y / (H * 0.7)) * 0.3 + (n(x / 3 + 4, y / 5) - 0.5) * 0.2);
+    if (soot > 0.12) pc.set(x, y, mixRgb(pc.get(x, y) as unknown as Rgb, rgb(pal.stoneDark[0]), soot));
+  }
+  return pc;
+}
+
+/**
+ * Carved lintel panel of the Scorpion's buildings (48×40): ochre clay with a bevelled frame, stepped bands cut down
+ * both sides, and the scorpion in relief stained dark copper, its shadow to the lower right. No phoenix, no gold.
+ */
+export function scorpionReliefTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const W = 48, H = 40;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const edge = Math.min(x, y, W - 1 - x, H - 1 - y);
+    let level = 0.5 + (n(x / 4, y / 4) - 0.5) * 0.16;
+    if (edge < 2) level = edge === 0 ? 0.12 : x < W - 2 && y < H - 2 && (x < 2 || y < 2) ? 0.82 : 0.28;
+    pc.set(x, y, shadeTone(pal.plaster, level, x, y));
+  }
+  // stepped bands down both sides: a dark cut with a lit lip
+  for (const x0 of [4, W - 9]) for (let y = 4; y < H - 4; y++) {
+    const step = Math.floor(y / 4) % 2 ? 2 : 0;
+    pc.set(x0 + step, y, rgb(pal.stoneDark[0]));
+    pc.set(x0 + step + 1, y, ramp(pal.plaster, 0.9));
+  }
+  const relief = new Set<number>();
+  paintSigil(pc, scorpionShape, Math.round((W - SIGIL_W) / 2), 3, ['#2a160c', '#4a2a16', '#6e4024', '#8e5832', '#a8704a'],
+    { lit: 1, mid: 0.6, shade: 0.2, part2: 0.36, part3: 0.1 }, 1, false, (x, y) => relief.add(y * W + x));
+  for (let y = H - 2; y > 0; y--) for (let x = W - 2; x > 0; x--) {
+    if (relief.has((y - 1) * W + x - 1) && !relief.has(y * W + x) && Math.min(x, y, W - 1 - x, H - 1 - y) > 2) pc.set(x, y, ramp(pal.plaster, 0.1));
+  }
+  return pc;
+}
+
+// ---------------------------------------------------------------- the Arid Deserts
+
+/** The desert's living rock, whatever the arena's masonry: red-brown sandstone, rust to burnt sienna. */
+const SANDSTONE_ROCK = ['#3c2016', '#56301f', '#74432b', '#925838', '#ae7049', '#c68a5e'] as const;
+
+/** Red-brown sandstone for mesas, outcrops and boulders: wind-scoured bedding, a hard band standing proud (seamless). */
+export function sandstoneTexture(seed: number): PixelCanvas {
+  const S = 32;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), fine = makeNoise(rng, 16);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const strata = Math.sin((y / S) * Math.PI * 2 * 5 + (n(x / 4 + 3, y / 4) - 0.5) * 2.4);
+    let level = 0.5 + strata * 0.12 + (n(x / 4, y / 4) - 0.5) * 0.24 + (fine(x / 2, y / 2) - 0.5) * 0.1;
+    if (strata > 0.86) level += 0.12;
+    else if (strata < -0.9) level -= 0.16;
+    let c = shadeTone(SANDSTONE_ROCK, clamp01(level), x, y);
+    if (rng() < 0.02) c = rgb(SANDSTONE_ROCK[0]);
+    pc.set(x, y, c);
+  }
+  return pc;
+}
+
+/** Wind-rippled sand for dunes and drifts, in the palette's sand ramp (its "moss"), a few bright grains (seamless). */
+export function sandTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const S = 32;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), fine = makeNoise(rng, 16);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const ripple = Math.sin(((x * 2 + y) / S) * Math.PI * 2 * 3 + (n(x / 4, y / 4) - 0.5) * 3);
+    const level = 0.58 + (n(x / 4, y / 4) - 0.5) * 0.22 + (fine(x / 2, y / 2) - 0.5) * 0.08 + (ripple > 0.78 ? 0.14 : ripple < -0.7 ? -0.12 : 0);
+    pc.set(x, y, shadeTone(pal.moss, clamp01(level), x, y));
+  }
+  for (let k = 0; k < 8; k++) pc.set(Math.floor(rng() * S), Math.floor(rng() * S), rgb(pal.moss[pal.moss.length - 1]));
+  return pc;
+}
+
+/**
+ * The Scorpion's walls: ochre clay plaster over sun-dried mud brick, faint dust streaks, and where the plaster has
+ * flaked away the bricks show in their courses (seamless).
+ */
+export function mudBrickTexture(pal: ArenaPalette, seed: number): PixelCanvas {
+  const S = 32;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), flake = makeNoise(rng, 4), fine = makeNoise(rng, 16);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const f = flake(x / 8, y / 8);
+    let c: Rgb;
+    if (f > 0.82) {
+      // the bricks show where the plaster has flaked: sun-dried clay a shade darker than the plaster, dark joints
+      const row = Math.floor(y / 4), bx = (x + (row % 2) * 4) % 8, by = y % 4;
+      c = bx === 0 || by === 0 ? ramp(pal.plaster, 0.1) : shadeTone(pal.plaster, clamp01(0.36 + (fine(x / 2, y / 2) - 0.5) * 0.2 + (by === 1 ? 0.1 : 0)), x, y);
+    } else {
+      const streak = Math.abs(Math.sin((x / S) * Math.PI * 2 * 5 + n(x / 4, 1) * 2)) < 0.1 ? 0.06 : 0;
+      const level = 0.6 + (n(x / 4, y / 4) - 0.5) * 0.18 + (fine(x / 2, y / 2) - 0.5) * 0.08 - streak - (f > 0.78 ? 0.1 : 0);
+      c = shadeTone(pal.plaster, clamp01(level), x, y);
+    }
+    pc.set(x, y, c);
+  }
+  return pc;
+}
+
+/** A carved wooden lattice screen (32×32, alpha-cut): a lozenge grid of bars inside its frame, lit up-left. */
+export function latticeTexture(pal: ArenaPalette): PixelCanvas {
+  const S = 32;
+  const pc = new PixelCanvas(S, S);
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const a = (x + y) % 8, b = (x - y + 64) % 8;
+    const frame = x <= 1 || y <= 1 || x >= S - 2 || y >= S - 2;
+    if (!frame && a > 1 && b > 1) continue;
+    const lit = frame ? (x <= 1 || y <= 1 ? 0.8 : 0.3) : a === 0 || b === 0 ? 0.75 : 0.4;
+    pc.set(x, y, shadeTone(pal.wood, lit, x, y));
+  }
+  return pc;
+}
+
+/** Striped awning cloth: bands of undyed linen and brown, a faint weave (seamless). */
+export function awningTexture(seed: number): PixelCanvas {
+  const S = 32;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8);
+  const linen = ['#8e8470', '#b4a88e', '#d4c8ac', '#ece2c8'], brown = ['#3e2a1a', '#56402a', '#6e543a', '#86684a'];
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const weave = (x + y) % 2 ? 0.04 : -0.04;
+    pc.set(x, y, shadeTone(Math.floor(x / 4) % 2 ? brown : linen, clamp01(0.62 + weave + (n(x / 4, y / 4) - 0.5) * 0.2), x, y));
+  }
+  return pc;
+}
+
+/** Unglazed clay of the water jars (16×32, u around, v up): tan clay, two painted umber bands and a zigzag at the shoulder. */
+export function jarTexture(seed: number): PixelCanvas {
+  const W = 16, H = 32;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 4);
+  const clay = ['#5e3a20', '#7e5030', '#9c6a42', '#b88658', '#cc9e70'];
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    let c = shadeTone(clay, clamp01(0.58 + (n(x / 4, y / 8) - 0.5) * 0.24), x, y);
+    if (y === 9 || y === 13 || (y >= 10 && y <= 12 && Math.abs((x % 4) - 1.5) + Math.abs(y - 11) <= 1.5)) c = rgb('#3a2214');
+    pc.set(x, y, c);
+  }
+  return pc;
+}
+
+// ---------------------------------------------------------------- the Phoenix's fire and the Shadows' ink
+
+/**
+ * A ward circle of the Phoenix traced on the flagstones (96×96, alpha-cut): a double outer ring around a band of
+ * interlaced signs, three interlaced rings within and a white-hot heart; saffron lines that smoulder, brighter in
+ * places, fading in others. No crimson, never purple.
+ */
+export function wardCircleTexture(seed: number): PixelCanvas {
+  const S = 96, c = 47.5;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 16);
+  const tones = [rgb('#b24c16'), rgb('#ffa83a'), rgb('#fff0c4')] as const;
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const d = Math.hypot(x - c, y - c), a = Math.atan2(y - c, x - c);
+    let t = 0;
+    if (Math.abs(d - 44) < 1.0 || Math.abs(d - 38) < 0.8 || Math.abs(d - 24) < 0.9) t = 2;
+    else if (d > 38.8 && d < 43.2) {
+      const turn = ((a + Math.PI) / (Math.PI * 2)) * 24, glyph = Math.floor(turn);
+      const u = turn - glyph, v = (d - 38.8) / 4.4, g = (glyph * 7 + seed) % 4;
+      const r = Math.hypot(u - 0.5, v - 0.5);
+      const stroke = g === 0 ? Math.abs(u - 0.5) < 0.12 : g === 1 ? Math.abs(u - v) < 0.14 || Math.abs(u - (1 - v)) < 0.14
+        : g === 2 ? Math.abs(v - 0.5) < 0.16 && u > 0.2 && u < 0.8 : r < 0.3 && r > 0.14;
+      if (stroke) t = 2;
+    } else if (d < 24 && [0, 1, 2].some((k) => Math.abs(Math.hypot(x - c - Math.cos(k * Math.PI * 2 / 3 + 0.5) * 10, y - c - Math.sin(k * Math.PI * 2 / 3 + 0.5) * 10) - 12) < 0.75)) t = 2;
+    if (Math.abs(d - 4) < 0.9 || d < 1.6) t = 3;
+    if (!t) continue;
+    const v = n(x / 6, y / 6);
+    if (v < 0.3) t -= 1;
+    else if (v > 0.8) t = 3;
+    if (t <= 0) continue;
+    pc.set(x, y, tones[t - 1]!, t >= 2 ? 255 : 190);
+  }
+  return pc;
+}
+
+/**
+ * The Shadows' mark (64×64, alpha-cut): a splash of cold black ink with tendrils reaching out and droplets around it, a
+ * cold blue-grey sheen where it pools thickest. Never a glow, never purple.
+ */
+export function inkStainTexture(seed: number): PixelCanvas {
+  const S = 64, c = 31.5;
+  const pc = new PixelCanvas(S, S);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), fine = makeNoise(rng, 16);
+  const ink = ['#050608', '#0b0d11', '#151a20', '#26303a'].map((h) => rgb(h));
+  const tendrils = Array.from({ length: 4 }, () => ({ a: rng() * Math.PI * 2, len: 14 + rng() * 14, w: 2 + rng() * 2 }));
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const dx = x - c, dy = y - c, d = Math.hypot(dx, dy), a = Math.atan2(dy, dx);
+    let inside = d < 12 + (n(x / 8 + 2, y / 8) - 0.5) * 9 + Math.sin(a * 5 + seed) * 2;
+    for (const t of tendrils) {
+      const along = dx * Math.cos(t.a) + dy * Math.sin(t.a), across = Math.abs(-dx * Math.sin(t.a) + dy * Math.cos(t.a));
+      if (along > 0 && along < t.len && across < t.w * (1 - along / t.len) + (fine(x / 2, y / 2) - 0.5) * 1.5) inside = true;
+    }
+    if (!inside) continue;
+    const sheen = n(x / 4, y / 4) > 0.72 && d < 10;
+    pc.set(x, y, sheen ? ink[3]! : ink[(x * 3 + y) % 7 === 0 ? 2 : d > 14 ? 1 : 0]!);
+  }
+  for (let k = 0; k < 12; k++) {
+    const a = rng() * Math.PI * 2, r = 18 + rng() * 12, x = Math.round(c + Math.cos(a) * r), y = Math.round(c + Math.sin(a) * r);
+    pc.set(x, y, ink[0]!);
+    if (rng() < 0.5) pc.set(x + 1, y, ink[1]!);
+  }
+  return pc;
+}
+
+/** A loose leaf of the Prophet's writings (12×16): pale paper crowded with lines of cramped black writing, unreadable. */
+export function leafTexture(seed: number): PixelCanvas {
+  const W = 12, H = 16;
+  const pc = new PixelCanvas(W, H);
+  const rng = seeded(seed);
+  const paper = ['#a89c82', '#c8bea4', '#e0d8c2'];
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    let c = shadeTone(paper, x + y > W + H - 6 ? 0.2 : 0.62 + (rng() - 0.5) * 0.1, x, y);
+    if (y >= 2 && y <= H - 3 && y % 2 === 0 && x >= 1 && x <= W - 2 && rng() < 0.72) c = rgb('#16130f');
+    pc.set(x, y, c);
+  }
+  return pc;
+}
+
+/**
+ * The sacred ash of the Phoenix's sanctuary (64×64): grey ash, darker toward the rim, red embers glowing along its
+ * cracks and a few coals breaking through. Returns the face and an emissive mask holding only the embers.
+ */
+export function ashEmberTextures(seed: number): { face: PixelCanvas; glow: PixelCanvas } {
+  const S = 64;
+  const face = new PixelCanvas(S, S), glow = new PixelCanvas(S, S);
+  glow.fill([0, 0, 0]);
+  const rng = seeded(seed);
+  const n = makeNoise(rng, 8), crack = makeNoise(rng, 16), fine = makeNoise(rng, 32);
+  const ash = ['#262220', '#3c3734', '#55504b', '#706a64', '#8c857e', '#a8a199'];
+  for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+    const d = Math.hypot(x - 31.5, y - 31.5) / 31.5;
+    face.set(x, y, shadeTone(ash, clamp01(0.56 + (n(x / 6, y / 6) - 0.5) * 0.4 + (fine(x / 2, y / 2) - 0.5) * 0.12 - d * 0.18), x, y));
+    const v = Math.abs(crack(x / 5, y / 5) - 0.5);
+    if (v < 0.035 && d < 0.92) {
+      const hot = v < 0.012;
+      face.set(x, y, rgb(hot ? '#ff9a3a' : '#c43a14'));
+      glow.set(x, y, rgb(hot ? '#ffb050' : '#d0401a'));
+    } else if (n(x / 3 + 7, y / 3) > 0.82 && d < 0.8) {
+      face.set(x, y, rgb('#ff7a2a'));
+      glow.set(x, y, rgb('#ff8a3a'));
+    }
+  }
+  return { face, glow };
+}
+
+/**
+ * The inside of a niche (16×24): a stepped head, a lit left reveal and a shaded right one; lit, the lamp on its sill
+ * warms the bottom; unlit, the smoke of old lamps has blackened it.
+ */
+export function nicheTexture(pal: ArenaPalette, lit: boolean): PixelCanvas {
+  const W = 16, H = 24;
+  const pc = new PixelCanvas(W, H);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    let c: Rgb;
+    if (y < 3 && (x < 3 || x > W - 4)) c = ramp(pal.stone, 0.4);
+    else if (x === 0 || (y === 3 && (x < 3 || x > W - 4))) c = ramp(pal.stone, 0.62);
+    else if (x === W - 1 || y === 0) c = rgb(pal.stoneDark[0]);
+    else {
+      const t = y / H, across = 1 - Math.abs(x - 7.5) / 9;
+      c = lit ? mixRgb(rgb('#140c07'), rgb('#c8803a'), Math.pow(t, 2.2) * across) : mixRgb(rgb('#090807'), rgb(pal.stoneDark[2]), t * 0.5);
+    }
+    pc.set(x, y, c);
+  }
+  return pc;
 }

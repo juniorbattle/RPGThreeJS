@@ -39,13 +39,13 @@ describe('Dragon fights in the Dragon arenas', () => {
     expect(scene('dragon_kaelen')).toBe('dragon_hall_esplanade');
   });
 
-  it('keeps its arenas to the Dragon, and the Scorpion and the final act in the arenas they had', () => {
+  it('keeps its arenas to the Dragon, and the final act in the Lion’s arenas', () => {
     const others = combats.filter((combat) => postDemoChapterOf(combat.id) !== 'dragon');
     expect(others.length).toBeGreaterThan(0);
     for (const combat of others) expect(dragonArenas, combat.id).not.toContain(combat.sceneId);
-    const lionOrFinale = combats.filter((combat) => ['scorpion', 'finale'].includes(postDemoChapterOf(combat.id) ?? ''));
-    expect(lionOrFinale.length).toBeGreaterThan(0);
-    for (const combat of lionOrFinale) expect(['forest_route', 'bois_clair_burning', 'lion_sanctum'], combat.id).toContain(combat.sceneId);
+    const finale = combats.filter((combat) => postDemoChapterOf(combat.id) === 'finale');
+    expect(finale.length).toBeGreaterThan(0);
+    for (const combat of finale) expect(['forest_route', 'bois_clair_burning', 'lion_sanctum'], combat.id).toContain(combat.sceneId);
   });
 
   it('never writes a scene id into the saved state', () => {

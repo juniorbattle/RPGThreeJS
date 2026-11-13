@@ -7,6 +7,12 @@
  * lost under the Shadows' influence, and the Grand Inquisiteur's scholars on the force path. Bosses: the chief of the
  * Phénix's guardians at the temple, then the Prophète des Ombres on the honour path; the Grand Inquisiteur and his
  * scholars on the force path. Provisional sprites (see `scorpionPresentation.ts`); the tactical runtime resolves every fight.
+ *
+ * Each fight plays in the Scorpion plateau's own coded arena (`src/combat/arena/arenaThemes.ts`), where its scene stages
+ * it: the dune track of region I, the road through the Phoenix's ruins (region II, up to the flame warden who bars the
+ * way to the temple), the temple's nave for the codex, the sanctuary of the sacred ashes the lost faithful guard, the
+ * dune crest at dusk where the Prophet is run down, the court of the house of records for the Grand Inquisiteur's
+ * trial. Presentation only: a scene id is never saved.
  */
 import type { ChallengeDeclaration } from '../../../game/challenges';
 import type { CombatConfig } from '../../../game/types';
@@ -15,20 +21,30 @@ import { SCORPION_GUARDIANS, SCORPION_OPTIONAL_POIS } from './scorpionTopology';
 type ScorpionCombatInput = Omit<CombatConfig, 'enemyVisualIds' | 'escortVisualIds' | 'encounterRank' | 'maxPlayerUnits'>
   & Partial<Pick<CombatConfig, 'enemyVisualIds' | 'escortVisualIds' | 'encounterRank' | 'maxPlayerUnits'>>;
 
-const DUNES = 'forest_route';
-const TEMPLE = 'lion_sanctum';
+/** Region I: the caravan track across the dunes, toward the scholars' oasis. */
+const TRACK = 'scorpion_dune_track';
+/** Region II: the road through the Phoenix's ruins, behind its ward circles, up to the temple. */
+const RUINS = 'scorpion_phoenix_ruins';
+/** The nave of the Phoenix's temple, where the codex rests before the flame. */
+const TEMPLE = 'scorpion_phoenix_temple';
+/** Region III: the Phoenix's sanctuary of the sacred ashes, dug into the rock. */
+const SANCTUARY = 'scorpion_ash_sanctuary';
+/** The deep dunes at dusk, where the Prophet of the Shadows fled (`scorpion_prophet_pre_combat`). */
+const CREST = 'scorpion_dune_crest';
+/** The walled court of the Grand Inquisiteur's house of records (`scorpion_inquisitor_pre_combat`). */
+const COURT = 'scorpion_records_court';
 
 export const SCORPION_STORY_COMBATS: readonly ScorpionCombatInput[] = Object.freeze<ScorpionCombatInput[]>([
-  { id: 'scorpion_dune_beasts', sceneId: DUNES, objective: 'Repoussez les bêtes qui guettent la première piste.',
+  { id: 'scorpion_dune_beasts', sceneId: TRACK, objective: 'Repoussez les bêtes qui guettent la première piste.',
     encounterLabel: 'Bêtes des dunes', enemyVisualIds: ['venom_serpent', 'forest_spider', 'cave_rat'],
     rewards: { gold: 30, reputation: 0, materials: {} } },
-  { id: 'scorpion_phoenix_scouts', sceneId: DUNES, objective: 'Passez les éclaireurs du Phénix qui gardent le chemin de l’oasis.',
+  { id: 'scorpion_phoenix_scouts', sceneId: TRACK, objective: 'Passez les éclaireurs du Phénix qui gardent le chemin de l’oasis.',
     encounterLabel: 'Éclaireurs du Phénix', enemyVisualIds: ['phoenix_guardian', 'venom_serpent', 'phoenix_guardian'],
     rewards: { gold: 40, reputation: 0, materials: {} } },
-  { id: 'scorpion_temple_sentinels', sceneId: DUNES, objective: 'Ouvrez la route des ruines tenue par les sentinelles du Phénix.',
+  { id: 'scorpion_temple_sentinels', sceneId: RUINS, objective: 'Ouvrez la route des ruines tenue par les sentinelles du Phénix.',
     encounterLabel: 'Sentinelles du temple', enemyVisualIds: ['phoenix_guardian', 'phoenix_guardian', 'venom_serpent'],
     rewards: { gold: 45, reputation: 0, materials: { iron_ore: 1 } } },
-  { id: 'scorpion_flamekeeper', sceneId: TEMPLE, objective: 'Venez à bout du gardien de flamme du Phénix.',
+  { id: 'scorpion_flamekeeper', sceneId: RUINS, objective: 'Venez à bout du gardien de flamme du Phénix.',
     encounterLabel: 'Gardien de flamme', encounterRank: 'elite', enemyVisualIds: ['phoenix_flamekeeper', 'phoenix_guardian'],
     rewards: { gold: 70, reputation: 0, materials: { iron_ore: 1 } } },
   { id: 'scorpion_temple_assault', sceneId: TEMPLE, objective: 'Entrez dans le Temple du Phénix et prenez le codex pour le Grand Inquisiteur.',
@@ -39,14 +55,14 @@ export const SCORPION_STORY_COMBATS: readonly ScorpionCombatInput[] = Object.fre
     encounterLabel: 'Prise du codex', encounterRank: 'boss', isBoss: true, bossVisualId: 'phoenix_guardian_chief',
     escortVisualIds: ['phoenix_guardian', 'phoenix_guardian'], preCombatDialogueId: 'scorpion_pre_temple_seizure',
     postCombatDialogueId: 'scorpion_temple_seizure_aftermath', rewards: { gold: 160, reputation: -1, materials: { iron_ore: 2 } } },
-  { id: 'scorpion_lost_faithful', sceneId: TEMPLE, objective: 'Frayez-vous un passage parmi les fidèles égarés sous l’emprise des Ombres.',
+  { id: 'scorpion_lost_faithful', sceneId: SANCTUARY, objective: 'Frayez-vous un passage parmi les fidèles égarés sous l’emprise des Ombres.',
     encounterLabel: 'Fidèles égarés', encounterRank: 'elite', enemyVisualIds: ['shadow_zealot', 'venom_serpent', 'forest_spider'],
     rewards: { gold: 70, reputation: 0, materials: { red_gem: 1 } } },
-  { id: 'scorpion_shadow_prophet', sceneId: TEMPLE, objective: 'Traquez le Prophète des Ombres avant qu’il ne répande d’autres prophéties.',
+  { id: 'scorpion_shadow_prophet', sceneId: CREST, objective: 'Traquez le Prophète des Ombres avant qu’il ne répande d’autres prophéties.',
     encounterLabel: 'Prophète des Ombres', encounterRank: 'boss', isBoss: true, bossVisualId: 'shadow_prophet',
     escortVisualIds: ['phoenix_guardian', 'venom_serpent'], preCombatDialogueId: 'scorpion_prophet_pre_combat',
     postCombatDialogueId: 'scorpion_prophet_aftermath', rewards: { gold: 120, reputation: 0, materials: { red_gem: 1 } } },
-  { id: 'scorpion_inquisitor', sceneId: DUNES, objective: 'Affrontez le Grand Inquisiteur et ses érudits pour le Sceau du Scorpion.',
+  { id: 'scorpion_inquisitor', sceneId: COURT, objective: 'Affrontez le Grand Inquisiteur et ses érudits pour le Sceau du Scorpion.',
     encounterLabel: 'Épreuve du Scorpion', encounterRank: 'boss', isBoss: true, bossVisualId: 'grand_inquisitor',
     escortVisualIds: ['scorpion_scholar', 'scorpion_scholar'], preCombatDialogueId: 'scorpion_inquisitor_pre_combat',
     postCombatDialogueId: 'scorpion_trial_aftermath', rewards: { gold: 100, reputation: 0, materials: {} } },

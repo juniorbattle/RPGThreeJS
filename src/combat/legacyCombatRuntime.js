@@ -122,6 +122,13 @@ const SCENE_AMBIENCE={
   dragon_snowy_summit:{fog:0xa9a6c4,density:0.01,count:130,color:0xfff4ec,size:0.065,opacity:0.48,area:[9.4,5.4],y:[0.1,4.6],rise:[-0.5,-0.28],drift:0.55,wind:0.8,glow:0.08,glowColor:0xffc8a0,mistColor:0xf4e6ea,mistOpacity:0.1,rayColor:0xffd6b4,rayOpacity:0.05},
   dragon_hall_esplanade:{fog:0xb9c6d6,density:0.01,count:40,color:0xfff3d0,size:0.055,opacity:0.38,area:[9.2,5.2],y:[0.2,4.2],rise:[0.02,0.07],drift:0.45,wind:0.35,glow:0.06,glowColor:0xfff0d0,mistColor:0xf4f6fa,mistOpacity:0.08,rayColor:0xfff2d6,rayOpacity:0.06},
   dragon_wolf_cave:{fog:0x1c1612,density:0.014,count:70,color:0xe0a868,size:0.06,opacity:0.42,area:[9.0,5.0],y:[0.2,3.6],rise:[0.08,0.2],drift:0.24,glow:0.08,glowColor:0xd98a3a,mistColor:0x4a3a30,mistOpacity:0.16,rayColor:0xffb070,rayOpacity:0},
+  // The Scorpion's arenas: sand and dust on the wind over the dunes, the ruins and the court, sand at dusk on the crest, saffron sparks rising in the Phoenix's nave, embers over the sanctuary's ash.
+  scorpion_dune_track:{fog:0xdccaa8,density:0.01,count:70,color:0xf2deb2,size:0.05,opacity:0.4,area:[9.4,5.4],y:[0.05,2.6],rise:[0.0,0.05],drift:0.7,wind:0.9,glow:0.04,glowColor:0xfff0d0,mistColor:0xf4e8cc,mistOpacity:0.1,rayColor:0xfff0d2,rayOpacity:0.05},
+  scorpion_dune_crest:{fog:0x9a7460,density:0.011,count:70,color:0xffd2a4,size:0.05,opacity:0.42,area:[9.4,5.4],y:[0.05,2.8],rise:[0.0,0.05],drift:0.6,wind:0.8,glow:0.06,glowColor:0xffb070,mistColor:0xd49a74,mistOpacity:0.12,rayColor:0xffc890,rayOpacity:0.05},
+  scorpion_phoenix_ruins:{fog:0xd8c8aa,density:0.01,count:60,color:0xf0dcb0,size:0.05,opacity:0.4,area:[9.4,5.4],y:[0.05,2.8],rise:[0.0,0.06],drift:0.6,wind:0.7,glow:0.05,glowColor:0xffc070,mistColor:0xf2e6ca,mistOpacity:0.1,rayColor:0xfff0d2,rayOpacity:0.05},
+  scorpion_phoenix_temple:{fog:0x2a2018,density:0.014,count:90,color:0xffb458,size:0.055,opacity:0.5,area:[9.0,5.0],y:[0.2,3.8],rise:[0.12,0.3],drift:0.22,glow:0.14,glowColor:0xffa040,mistColor:0x5a4636,mistOpacity:0.14,rayColor:0xffc070,rayOpacity:0},
+  scorpion_ash_sanctuary:{fog:0x1e100a,density:0.015,count:70,color:0xff8a44,size:0.05,opacity:0.45,area:[9.0,5.0],y:[0.2,3.6],rise:[0.08,0.22],drift:0.2,glow:0.1,glowColor:0xff5a24,mistColor:0x3a2a22,mistOpacity:0.16,rayColor:0xff8040,rayOpacity:0},
+  scorpion_records_court:{fog:0xdccab0,density:0.01,count:40,color:0xfff0d0,size:0.045,opacity:0.35,area:[9.2,5.2],y:[0.2,3.6],rise:[0.01,0.05],drift:0.35,wind:0.3,glow:0.04,glowColor:0xfff0d0,mistColor:0xf2e8d2,mistOpacity:0.08,rayColor:0xfff2d6,rayOpacity:0.06},
 };
 let REQUESTED_REDUCED_GRAPHICS=campaignParams.get('reduced')==='1';
 let REDUCED_GRAPHICS=prefersReducedMotion(REQUESTED_REDUCED_GRAPHICS);
