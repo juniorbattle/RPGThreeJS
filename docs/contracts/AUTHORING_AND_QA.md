@@ -106,3 +106,7 @@ The listening lab is the operator's acceptance surface. Its existence, and any m
 ## Plateau music evidence — OD-2026-11-13-E
 
 Dedicated `PRODUCTION-CONTRACTS-PLATEAU-MUSIC-1`, set 1.23.0. Required before acceptance, in addition to the audio direction evidence: the Lion's tracks, voices, samples and rooms byte-identical, by a fingerprint test; the part of every presented surface and combat scene, read from its id prefix only; every plateau track under the existing rules of sections, bridges, levels, a boss entry of at most 6 seconds and the fanfare rules; the -1 dBFS peak measured on each part's loudest mix; one browser check with a real gesture through one map, one dialogue, one combat and one boss of each part. The listening lab is the acceptance surface; the operator accepts each part by ear.
+
+## Tableau extras evidence — OD-2026-11-13-G
+
+Dedicated `PRODUCTION-CONTRACTS-TABLEAU-EXTRAS-1`, set 1.24.0. Required before acceptance: a focused test that every dressed dialogue exists, lists at most twelve extras drawn from its own part's civilian masters, and names the painting that its tableau shows; the four-actor test unchanged and green; a surface test that extras add no actor, focus or text and that reduced motion keeps only those who stand; types, the suite and a build; one browser check with a real gesture through several dressed dialogues of each dressed part, in normal and reduced motion. Operator artistic acceptance is by viewing.

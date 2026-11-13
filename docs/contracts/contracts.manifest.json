@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "lockId": "PRODUCTION-CONTRACTS-LOCK-1",
   "lockedAt": "2026-10-01",
-  "contractSetVersion": "1.23.0",
+  "contractSetVersion": "1.24.0",
   "approvedAmendments": [
     {
       "taskId": "PRODUCTION-CONTRACTS-MANUAL-PLAYTEST-1",
@@ -350,6 +350,19 @@
       "constitutionChanged": false,
       "supersededRule": "The sentence \"The plateaux and the final act reuse the nine music contexts\" of the set 1.20.0 \"Music.\" bullet, so the game played the Lion's tracks in every part (its mood-table sentence is kept); the Lion, the Bear, the Dragon, the Scorpion and the final act now each have their own POI map, refuge, tension, drama, combat and boss tracks, the part read only from the durable id prefix of the presented POI, authored dialogue or combat scene through a presentation-side table, never computed from route, choice, reputation, relations, resources or outcome and never saved, with title, victory and defeat shared, the Lion's tracks byte-identical and the nine contexts, the closed cue table and every other audio direction rule unchanged",
       "implementationAcceptance": "PENDING; switch on in game, scoped evidence, one browser check per part and operator acceptance by ear"
+    },
+    {
+      "taskId": "PRODUCTION-CONTRACTS-TABLEAU-EXTRAS-1",
+      "operatorDecisionId": "OD-2026-11-13-G",
+      "operatorDecisionPath": "docs/autonomy/TABLEAU_EXTRAS_OPERATOR_DECISION_2026-11-13.md",
+      "approvedAt": "2026-11-13",
+      "changedContracts": [
+        "AUTHORING_AND_QA",
+        "PRESENTATION_AND_MEDIA"
+      ],
+      "constitutionChanged": false,
+      "supersededRule": "Extras only in the code-animated living tableaux and their animated backdrops (the implicit scope of the \"Cast\" and \"Animated backdrop\" bullets of sets 1.13.0, 1.14.0 and 1.20.0), the ordinary dialogue tableaux showing only their speakers; ordinary dialogue tableaux approved by id may now show at most twelve silent extras behind the narrative actors, from the existing civilian masters of their part only, never carrying game truth and never saved",
+      "implementationAcceptance": "PENDING; runtime, tests, browser check per dressed part and operator acceptance by viewing"
     }
   ],
   "status": "LOCKED",
