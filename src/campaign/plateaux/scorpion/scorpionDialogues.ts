@@ -8,7 +8,7 @@
  * the Grand Inquisiteur, the oath sworn to the Phénix at its temple, the freed faithful at the Prophet's cell, the Bear's
  * dark ore and the Dragon's altar shard beside the soiled page, the Phénix's wards at the vigil, and the Prophet's traces.
  */
-import { ELDWIN_MEETING, MORVAN_MEETING, withMeeting } from '../heroMeetings';
+import { ELDWIN_MEETING, MORVAN_MEETING, withMeeting, withMeetingPart } from '../heroMeetings';
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../../../game/types';
 
 interface Who { speaker: string; actorId: string; side: 'left' | 'right' }
@@ -63,21 +63,6 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
     say('2', SERAPHINE, 'Sage', 'Le Clan du Scorpion garde ici des secrets plus anciens que ses dunes. Ses érudits savent beaucoup, et ils ne disent jamais tout.', null, { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Un clan qui collectionne les secrets. Voyons ce qu’il est prêt à échanger contre les nôtres.'),
   ])),
-  scene('scorpion_scholars', 'mystery_ambush', 'Érudits du Scorpion', withMeeting([
-    say('1', KESTREL, 'Éclaireuse', 'Un camp d’érudits du Scorpion sur la piste du temple. Ils ont attaché un fidèle du Phénix au pied d’une tente, et ils l’interrogent depuis l’aube.', '2', { expression: 'stern' }),
-    say('2', SCHOLAR, 'Scorpion', 'Il connaît les passages du temple. Il finira par les dire. Le Grand Inquisiteur nous a laissé le temps qu’il faudra.', '3'),
-    say('3', CAPTIVE, 'Phénix', 'Je ne dirai rien du temple. Faites de moi ce que vous voudrez.', '4', { expression: 'hostile' }),
-    say('4', MAELOR, 'Intendant', 'Laissons les érudits travailler. Ce qu’il dira nous servira autant qu’à eux, et le Scorpion saura que nous ne le gênons pas.', '5'),
-    say('5', MARIAN, 'Soigneuse', 'Ils le privent d’eau depuis l’aube. Il ne tiendra pas jusqu’au soir.', 'choice', { expression: 'stern' }),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous ?', null, { expression: 'stern', choices: [
-      choice('Libérer le fidèle du Phénix.', 'freed', [flag('scorpionFaithfulFreed')], ['Un fidèle libre', 'Le Grand Inquisiteur l’apprendra']),
-      choice('Le laisser aux érudits.', 'abandoned', [flag('scorpionFaithfulAbandoned'), gold(50), reputation(-2)], ['50 or des érudits', 'Un acte que le Scorpion consignera']),
-    ] }),
-    say('freed', CAPTIVE, 'Aveu', 'Vous n’êtes pas des leurs ? Alors écoutez : au temple, un étranger parle à nos gardiens depuis des lunes. Il prophétise, et ils l’écoutent.', 'freed2', { expression: 'wounded' }),
-    say('freed2', SCHOLAR, 'Scorpion', 'Le Grand Inquisiteur saura qui nous a pris notre témoin.', null, { expression: 'hostile' }),
-    say('abandoned', SCHOLAR, 'Scorpion', 'Prenez ceci pour la route. Le Scorpion sait remercier ceux qui ne le gênent pas.', 'abandoned2'),
-    say('abandoned2', MARIAN, 'Soigneuse', 'Il nous a regardés partir. Je n’oublierai pas ce regard.', null, { expression: 'wounded' }),
-  ], ELDWIN_MEETING)),
   scene('scorpion_phoenix_faithful', 'witnesses_on_road', 'Fidèles du Phénix', [
     say('1', KESTREL, 'Éclaireuse', 'Des fidèles du Phénix gardent la route de leur temple. Ils ne portent pas d’armes, seulement des lampes allumées en plein jour.', '2', { expression: 'stern' }),
     say('2', FAITHFUL, 'Phénix', 'Vous marchez vers le temple, et nous savons qui vous envoie. Le Scorpion veut notre codex depuis toujours. Il le lirait comme il lit tout : pour s’en servir.', '3'),
@@ -171,6 +156,35 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
 
 // ---------------------------------------------------------------------------------------------------------------------
 // State-built scenes
+
+/**
+ * OD-2026-11-13-F (N1), lines approved word for word on 2026-11-13: freeing the faithful costs a fight against the
+ * scholars who hold him; leaving him to them avoids it at its unchanged price. Once the scholars are beaten, the same
+ * scene reopens on the faithful's confession and Eldwin's meeting for that branch.
+ */
+function scorpionScholars(state: Readonly<GameState>): DialogueSequence {
+  if (state.flags.scorpionScholarsDefeated) {
+    return scene('scorpion_scholars', 'mystery_ambush', 'Érudits du Scorpion', withMeetingPart([
+      say('freed', CAPTIVE, 'Aveu', 'Vous n’êtes pas des leurs ? Alors écoutez : au temple, un étranger parle à nos gardiens depuis des lunes. Il prophétise, et ils l’écoutent.', 'freed2', { expression: 'wounded' }),
+      say('freed2', SCHOLAR, 'Scorpion', 'Le Grand Inquisiteur saura qui nous a pris notre témoin.', null, { expression: 'wounded' }),
+    ], ELDWIN_MEETING, ['freed2']));
+  }
+  return scene('scorpion_scholars', 'mystery_ambush', 'Érudits du Scorpion', withMeetingPart([
+    say('1', KESTREL, 'Éclaireuse', 'Un camp d’érudits du Scorpion sur la piste du temple. Ils ont attaché un fidèle du Phénix au pied d’une tente, et ils l’interrogent depuis l’aube.', '2', { expression: 'stern' }),
+    say('2', SCHOLAR, 'Scorpion', 'Il connaît les passages du temple. Il finira par les dire. Le Grand Inquisiteur nous a laissé le temps qu’il faudra.', '3'),
+    say('3', CAPTIVE, 'Phénix', 'Je ne dirai rien du temple. Faites de moi ce que vous voudrez.', '4', { expression: 'hostile' }),
+    say('4', MAELOR, 'Intendant', 'Laissons les érudits travailler. Ce qu’il dira nous servira autant qu’à eux, et le Scorpion saura que nous ne le gênons pas.', '5'),
+    say('5', MARIAN, 'Soigneuse', 'Ils le privent d’eau depuis l’aube. Il ne tiendra pas jusqu’au soir.', 'choice', { expression: 'stern' }),
+    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous ?', null, { expression: 'stern', choices: [
+      choice('Libérer le fidèle du Phénix.', 'refusal', [flag('scorpionFaithfulFreed'), fight('scorpion_scholars_camp')],
+        ['Combat contre les érudits du Scorpion', 'Un fidèle libre', 'Le Grand Inquisiteur l’apprendra']),
+      choice('Le laisser aux érudits.', 'abandoned', [flag('scorpionFaithfulAbandoned'), gold(50), reputation(-2)], ['50 or des érudits', 'Un acte que le Scorpion consignera']),
+    ] }),
+    say('refusal', SCHOLAR, 'Scorpion', 'Ce témoin appartient au Grand Inquisiteur. Si vous le voulez, il faudra nous le prendre.', null, { expression: 'hostile' }),
+    say('abandoned', SCHOLAR, 'Scorpion', 'Prenez ceci pour la route. Le Scorpion sait remercier ceux qui ne le gênent pas.', 'abandoned2'),
+    say('abandoned2', MARIAN, 'Soigneuse', 'Il nous a regardés partir. Je n’oublierai pas ce regard.', null, { expression: 'wounded' }),
+  ], ELDWIN_MEETING, ['abandoned2']));
+}
 
 function scorpionAudience(state: Readonly<GameState>): DialogueSequence {
   const flags = state.flags;
@@ -308,6 +322,7 @@ function scorpionProphetPreCombat(state: Readonly<GameState>): DialogueSequence 
 /** The Scorpion's state-built scenes, by dialogue ID. The judgement and epilogue come from the plateau finale engine. */
 export const SCORPION_SCENE_BUILDERS: Readonly<Record<string, (state: Readonly<GameState>) => DialogueSequence>> = Object.freeze({
   scorpion_audience: scorpionAudience,
+  scorpion_scholars: scorpionScholars,
   scorpion_phoenix_temple: scorpionPhoenixTemple,
   scorpion_prophet_traces: scorpionProphetTraces,
   scorpion_temple_witnesses: scorpionTempleWitnesses,

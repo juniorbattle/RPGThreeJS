@@ -7,7 +7,7 @@
  * Bois-Clair before Borin, Maelor's memory of the coffers, the witnesses and the Shadow altar, the Raven's pact at the
  * mines, the rescued miners, and the Master Spy's orders.
  */
-import { ALDRIC_MEETING, GUNNAR_MEETING, withMeeting } from '../heroMeetings';
+import { ALDRIC_MEETING, GUNNAR_MEETING, withMeeting, withMeetingPart } from '../heroMeetings';
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../../../game/types';
 
 interface Who { speaker: string; actorId: string; side: 'left' | 'right' }
@@ -194,20 +194,31 @@ function bearAudience(state: Readonly<GameState>): DialogueSequence {
   ]);
 }
 
+/**
+ * OD-2026-11-13-F (N1), lines approved word for word on 2026-11-13: seizing the ore costs a fight against the convoy's
+ * escort; marking it avoids the fight and gives up the loot. Once the escort is beaten, the same scene reopens on the
+ * seized carts and Gunnar's meeting for that branch, so his reaction follows what has really happened.
+ */
 function bearOreConvoy(state: Readonly<GameState>): DialogueSequence {
+  if (state.flags.bearConvoyEscortDefeated) {
+    return scene('bear_ore_convoy', 'reserve_trail', 'Convoi de minerai', withMeetingPart([
+      say('seized', KESTREL, 'Éclaireuse', 'Les chariots sont à nous. Ce minerai sent la pierre froide… et autre chose.', null),
+    ], GUNNAR_MEETING, ['seized']));
+  }
   const greed = state.flags.missionGreed
     ? ' À Bois-Clair, la bourse du clan nous a tenus debout. Je ne vois pas pourquoi la montagne serait différente.' : '';
-  return scene('bear_ore_convoy', 'reserve_trail', 'Convoi de minerai', withMeeting([
+  return scene('bear_ore_convoy', 'reserve_trail', 'Convoi de minerai', withMeetingPart([
     say('open', KESTREL, 'Éclaireuse', 'Un convoi descend des galeries : des chariots bâchés, chargés de pierres noires qui ne brillent pas. Escorte légère, deux gardes et un conducteur.', 'maelor', { expression: 'stern' }),
     say('maelor', MAELOR, 'Intendant', `Du minerai volé à l’Ours. Si nous le prenons, personne ne le rendra jamais à Borin de toute façon. Autant qu’il serve à quelqu’un.${greed}`, 'seraphine'),
     say('seraphine', SERAPHINE, 'Sage', 'Ce minerai ne ressemble à rien de ce que j’ai vu. Borin doit savoir ce que le Corbeau emporte, avant que nous décidions de ce qu’il vaut.', 'choice', { expression: 'mystical' }),
     say('choice', ALISTAIR, 'Décision', 'Le convoi passe bientôt.', null, { choices: [
       choice('Marquer le convoi et prévenir Borin.', 'reported', [flag('bearConvoyReported'), reputation(1)], ['Borin saura ce que le Corbeau emporte']),
-      choice('Saisir le minerai pour le clan.', 'seized', [flag('bearConvoySeized'), item('iron_ore', 3), gold(40), reputation(-1)], ['3 minerais et 40 or', 'Un convoi détourné']),
+      choice('Saisir le minerai pour le clan.', 'escort', [flag('bearConvoySeized'), item('iron_ore', 3), gold(40), reputation(-1), fight('bear_convoy_escort')],
+        ['3 minerais et 40 or', 'Combat contre l’escorte du Corbeau', 'Un convoi détourné']),
     ] }),
     say('reported', KESTREL, 'Éclaireuse', 'Je les suis jusqu’au pont et je laisse notre signe sur la dernière borne. Les éclaireurs de l’Ours sauront où chercher.', null),
-    say('seized', KESTREL, 'Éclaireuse', 'Les gardes s’enfuient sans combattre. Les chariots sont à nous. Ce minerai sent la pierre froide… et autre chose.', null),
-  ], GUNNAR_MEETING));
+    say('escort', KESTREL, 'Éclaireuse', 'Les gardes ne s’enfuient pas. Ils se serrent autour des chariots, lames tirées.', null, { expression: 'stern' }),
+  ], GUNNAR_MEETING, ['reported']));
 }
 
 function bearSacredMines(state: Readonly<GameState>): DialogueSequence {

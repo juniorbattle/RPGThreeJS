@@ -1,6 +1,6 @@
 # Nouvelles compétences de boss : brouillon (C3 et C4)
 
-Statut : **BROUILLON**, en attente de ta validation des noms et des effets (OD-2026-11-13-F, C3 et C4). Rien n'est écrit dans le jeu tant que tu n'as pas répondu. Run `claude-bilan-combat-20261113T1644Z`.
+Statut : **VALIDÉ** le 2026-11-13 et **en jeu** (OD-2026-11-13-F, C3 et C4) : voir « Validations de l'opérateur » en fin de document et le rapport `docs/reports/bilan-combat-2026-11-13.md`. Run `claude-bilan-combat-20261113T1644Z`.
 
 Déjà fait dans ce lot, sans attendre :
 - **C1** : le Gardien de flamme a Gel, le Champion du Phénix a Transpercement, et un test exige l'attaque lourde chez les 32 boss et élites ;
@@ -104,7 +104,7 @@ Elles restent visiblement en dessous de l'ultime du même boss, mais au-dessus d
   3. l'encre se referme sur elle puis se dissipe.
   - Couleurs : noir d'encre et blanc froid, jamais de violet, comme les Ombres de ses poses.
 - **Pourquoi** : l'intendant connaît les défenses de la compagnie, et c'est lui qui a rompu son serment. Le Prophète, lui, garde le Gel.
-- **Son** : `fx.cast.shadow.m`, qui existe déjà.
+- **Son** : `fx.cast.blood.h`, qui existe déjà. Le brouillon proposait d'abord `fx.cast.shadow.m`, mais cette composition n'existe pas en poids lourd.
 
 ### D. Entité de la brèche : « Étreinte de la brèche »
 
@@ -165,7 +165,7 @@ Résultat :
 
 ## 8. Sons, effets et contrats
 
-- **Table des sons fermée** : 158 identités sur 160 aujourd'hui (`src/audio/cueTable.ts`). Les quatre compétences prennent des compositions qui existent déjà : incantation × arcane, feu, ombre, glace. **Aucune identité nouvelle**, donc la table reste à 158.
+- **Table des sons fermée** : 158 identités sur 160 aujourd'hui (`src/audio/cueTable.ts`). Les quatre compétences prennent des compositions qui existent déjà : incantation × arcane, feu, sang, glace. **Aucune identité nouvelle**, donc la table reste à 158.
 - **Pas de signature** : ce ne sont pas des signatures de boss. Le contrat en fixe huit (`COMBAT_AND_VFX.md`, « Signature cues ») ; en ajouter une demanderait un amendement. Elles ne sont pas des ultimes non plus. Elles se composent comme le Gel et le Transpercement.
 - **Son au lancement** : la famille « incantation », celle de tout sort ennemi.
 - **Effets** : chaque compétence a sa recette propre dans `src/combat/fx/fxSkills.ts`, comme le veut OD-2026-11-01-A, et le jeu 1.20.0 pour les compétences ennemies nouvelles (« New enemy skills get procedural FX recipes and signatures under the existing rules »).
@@ -201,4 +201,23 @@ Je n'ai rien changé : un nom d'arme est à toi. Le test le note comme exception
 
 ## Validations de l'opérateur
 
-*(à remplir avec tes réponses, mot à mot)*
+À « Valides-tu les quatre nouvelles attaques lourdes et le Démon, comme dans le brouillon ? », l'opérateur a répondu le 2026-11-13 : « Yes, all four ».
+
+**Retenu, et mis en jeu tel quel :**
+- les quatre attaques lourdes magiques, avec leurs noms, descriptions, chiffres, statuts et effets (§4) ;
+- pour la Sentence, le Mutisme, et non la variante ;
+- le Démon avec Gel + Frappe du Titan (§5).
+
+Le tableau du §6 est verrouillé par un test (`combatBossTempo.test.ts`).
+
+**Deux précisions faites en implémentant :**
+- **Son de « Serment rompu ».** Il prend `fx.cast.blood.h` et non `fx.cast.shadow.m` : la composition ombre n'existe pas en poids lourd, et une attaque lourde doit sonner lourd. La table reste à 158 identités.
+- **Trois effets renforcés.** À l'écran, la Sentence, Serment rompu et l'Étreinte se lisaient sous le Gel. Je les ai renforcés sans changer leur dessin : un pilier de lumière ambrée pour le dard de la Sentence, une encre plus visible pour les deux autres.
+
+**La Bête corrompue (§9).** À « Renommer l'arme de la Bête corrompue en « Charge » ? », l'opérateur a répondu le 2026-11-13 : « Yes, « Charge » ».
+- La bête combat avec « Charge » ◆ au lieu de « Griffes ».
+- Les statistiques et la portée (1 à 2) ne changent pas.
+- L'attaque de base prend l'effet de coup de bélier du sanglier.
+- Le son au lancement ne change pas.
+- La marque sonore à l'impact suit l'effet : coup lourd, terre, au lieu de la morsure des griffes. Le §9 disait « son inchangé » : ce n'est vrai que du son au lancement.
+- Le test arme/image n'a plus d'exception.

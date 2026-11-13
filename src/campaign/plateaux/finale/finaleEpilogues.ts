@@ -127,6 +127,18 @@ function sealsStep(flags: Readonly<Record<string, boolean>>): DialogueStep {
   return say('seals', SERAPHINE, 'Les Sceaux', text, { expression: 'mystical' });
 }
 
+/**
+ * OD-2026-11-13-F (N3), lines approved word for word on 2026-11-13: Maelor's fate after the breach, told by Kestrel, who
+ * saw him fall in it. The first sentence is shared; the rest says how the clans see the company through its traitor.
+ */
+const MAELOR_FATE: Readonly<Record<EpilogueEndingId, string>> = Object.freeze({
+  respect: 'Maelor n’est pas ressorti de la brèche. Elle s’est refermée sur lui, et les clans ne retiendront de lui qu’un nom qu’on ne prononce plus.',
+  balance: 'Maelor n’est pas ressorti de la brèche. Elle s’est refermée sur lui, mais certains clans se demandent encore combien de ses conseils nous avons suivis.',
+  fear: 'Maelor n’est pas ressorti de la brèche. Elle s’est refermée sur lui. Pour les clans, il était des nôtres jusqu’au bout, et c’est aussi pour cela qu’ils nous craignent.',
+});
+
+const maelorStep = (ending: EpilogueEndingId): DialogueStep => say('maelor', KESTREL, 'Maelor', MAELOR_FATE[ending], { expression: 'stern' });
+
 function civiliansStep(flags: Readonly<Record<string, boolean>>, protectedText: string, abandonedText: string): DialogueStep | null {
   if (flags.finaleCiviliansProtected) return say('civilians', MARIAN, 'L’arène', protectedText, { expression: 'grateful' });
   if (flags.finaleCiviliansAbandoned) return say('civilians', MARIAN, 'L’arène', abandonedText, { expression: 'wounded' });
@@ -152,6 +164,7 @@ function epilogueRespect(state: Readonly<GameState>): DialogueSequence {
       ? `Autour de la brèche, les bannières tiennent la ligne jusqu’au bout : ${banners(allies)}.`
       : 'Autour de la brèche, la compagnie tient la ligne jusqu’au bout.', { expression: 'stern' }),
     sealsStep(flags),
+    maelorStep('respect'),
     chief
       ? say('acclaim', chief.who, chief.tag, 'Les clans vous doivent d’être encore debout. Qu’ils se rassemblent sous votre bannière pour reconstruire ce que la brèche a brûlé.', { expression: 'grateful' })
       : say('acclaim', KESTREL, 'Les clans', 'Les clans vous acclament. Ils se rassemblent sous votre bannière pour reconstruire ce que la brèche a brûlé.', { expression: 'grateful' }),
@@ -182,6 +195,7 @@ function epilogueBalance(state: Readonly<GameState>): DialogueSequence {
     say('breach', SERAPHINE, 'La brèche', 'La brèche se referme. Le monde tient encore, mais il ne sera plus jamais le même.', { expression: 'mystical' }),
     say('banners', KESTREL, 'Les clans', sides || 'Les bannières des clans se tiennent à distance, et attendent.', { expression: 'stern' }),
     sealsStep(flags),
+    maelorStep('balance'),
     say('why', SERAPHINE, 'L’Équilibre', why),
     civiliansStep(flags, 'Dans la capitale, les civils sauvés de l’arène parlent de nous avec gratitude. D’autres, avec méfiance.',
       'Dans la capitale, on parle encore de la foule abandonnée de l’arène.'),
@@ -201,6 +215,7 @@ function epilogueFear(state: Readonly<GameState>): DialogueSequence {
       ? `Peu de bannières sont restées, et elles se tiennent à distance : ${banners(allies)}.`
       : 'Autour de nous, aucune bannière alliée. Personne n’a voulu tenir la ligne à nos côtés.', { expression: 'stern' }),
     sealsStep(flags),
+    maelorStep('fear'),
     civiliansStep(flags, 'Même les civils sauvés de l’arène nous regardent comme on regarde un incendie.',
       'Personne n’a oublié la foule abandonnée de l’arène.'),
     say('approach', KESTREL, 'Les clans', enemies.length

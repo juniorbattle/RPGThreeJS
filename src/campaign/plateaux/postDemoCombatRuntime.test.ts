@@ -72,6 +72,9 @@ describe('post-demo fights in the tactical runtime (set 1.20.0, Lots 1 to 4)', (
     // The Raven scout fights with the sword its master holds (OD-2026-11-13-D): a weapon, so the shared effect.
     expect(weaponName(templateLine('raven_scout'))).toBe('Épée d’éclaireur');
     expect(enemyAttackFxRecipe(weaponName(templateLine('raven_scout')))).toBeNull();
+    // The corrupted beast, drawn with horns and hooves, charges like the boar (operator's choice of 2026-11-13).
+    expect(weaponName(templateLine('corrupted_beast'))).toBe('Charge');
+    expect(enemyAttackFxRecipe('Charge')!.id).toBe('attack_ram');
     // Three weapons renamed after what their masters hold (OD-2026-11-13-F, C5) keep the effect of their former name.
     expect(weaponName(templateLine('raven_champion'))).toBe('Dagues du Corbeau');
     expect(enemyAttackFxRecipe(weaponName(templateLine('raven_champion')))!.id).toBe('attack_thrown_blades');

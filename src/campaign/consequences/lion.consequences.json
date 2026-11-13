@@ -748,6 +748,20 @@
       "missionGreed": true
      },
      "causePhrase": "À Bois-Clair, la bourse du clan nous a tenus debout"
+    },
+    {
+     "id": "lion.bois_clair.sacrificed.betrayal",
+     "fact": "missionGreed",
+     "scope": "final_act",
+     "status": "implemented",
+     "chapterId": "finale",
+     "nodeId": "finale-bout-serpent",
+     "dialogueId": "finale_betrayal",
+     "stepId": "boisclair",
+     "state": {
+      "missionGreed": true
+     },
+     "causePhrase": "vous avez emporté les coffres"
     }
    ]
   },
@@ -829,6 +843,20 @@
       "silencedWitnesses": true
      },
      "causePhrase": "Les témoins de Bois-Clair se sont tus sous nos lames"
+    },
+    {
+     "id": "lion.witnesses.silenced.betrayal",
+     "fact": "silencedWitnesses",
+     "scope": "final_act",
+     "status": "implemented",
+     "chapterId": "finale",
+     "nodeId": "finale-bout-serpent",
+     "dialogueId": "finale_betrayal",
+     "stepId": "boisclair",
+     "state": {
+      "silencedWitnesses": true
+     },
+     "causePhrase": "vous leur avez imposé le silence"
     }
    ]
   },

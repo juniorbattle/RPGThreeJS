@@ -82,6 +82,8 @@ export const SCORPION_FINALE: PlateauFinaleDefinition = Object.freeze<PlateauFin
   flags: { trialRequested: 'scorpionTrialRequested', honourSelected: 'scorpionFinaleHonourSelected', trialSelected: 'scorpionFinaleTrialSelected', seal: 'scorpionSealAcknowledged' },
   combats: { honour: 'scorpion_shadow_prophet', force: 'scorpion_inquisitor' },
   victoryFacts: Object.freeze({
+    // OD-2026-11-13-F (N1): a technical fact that reopens the scholars' scene after the fight; no judgement reads it.
+    scorpion_scholars_camp: Object.freeze({ scorpionScholarsDefeated: true }),
     scorpion_temple_assault: Object.freeze({ scorpionGuardianChiefDefeated: true }),
     scorpion_temple_seizure: Object.freeze({ scorpionGuardianChiefDefeated: true }),
     scorpion_shadow_prophet: Object.freeze({ scorpionShadowProphetDefeated: true, scorpionSealAcknowledged: true }),
