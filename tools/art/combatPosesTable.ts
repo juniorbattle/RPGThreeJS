@@ -159,7 +159,8 @@ export const POSE_UNITS: Readonly<Record<string, PoseUnit>> = Object.freeze({
     fx: { attack: 'a burst of arcane light leaving the orb of the scepter toward the right, with a few small sparkles',
       cast: 'a few thin ribbons of arcane light spiralling around him, small floating runes, and a faint ring of light on the ground at his feet' } },
   talon: { group: 'heroes', master: hero('talon'), worldHeight: 2.05, body: 'person',
-    look: 'Talon, a ninja hero: dark blue cloth and light blue-steel armour plates, a deep blue hood and a mask covering the face, long blue scarf ends flowing, and a large four-pointed steel shuriken.',
+    // OD-2026-11-13-F (T1): Talon's blue turned to dark slate on his portrait and combat sheet (recolor-talon-slate.cjs).
+    look: 'Talon, a ninja hero: dark slate-grey cloth and silver steel armour plates, a deep slate-grey hood and a mask covering the face, long slate-grey scarf ends flowing, and a large four-pointed steel shuriken.',
     weapon: 'He throws a large four-pointed steel shuriken, as in the reference, and carries no blade.',
     actions: {
       dash: 'a very fast, low ninja sprint toward the right, the body leaning far forward, one arm back holding the shuriken, the scarf streaming behind',
