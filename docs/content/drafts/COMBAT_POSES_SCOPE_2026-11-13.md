@@ -1,6 +1,6 @@
 # Poses de combat des nouvelles unités : cadrage
 
-Statut : **À VALIDER**. Brouillon du 2026-11-13 (run `claude-combat-poses-scope-20261113T0638Z`). Rien n'est généré, rien n'est intégré.
+Statut : **VALIDÉ** le 2026-11-13 (OD-2026-11-13-A). À « Valides-tu ce périmètre et le pilote sur Aldric ? », tu as répondu « Oui, lance Aldric » ; je lis les six recommandations comme retenues, et tu peux en changer au verdict du pilote. Le pilote d'Aldric est fait (§8) ; le lot attend ton verdict. Brouillon du 2026-11-13 (runs `claude-combat-poses-scope-20261113T0638Z`, `claude-combat-poses-pilot-20261113T0653Z`). Rien n'est intégré.
 
 Ta demande : « les nouveaux personnages/unités utilisés en combat doivent avoir leurs 4 poses nécessaires comme ceux déjà présents ». Ce document dit quelles unités sont concernées, comment les 27 unités de la démo ont eu leurs poses, les méthodes possibles, ce que ça coûte et la décision qu'il te faut prendre. Six questions t'attendent à la fin, chacune avec ma recommandation.
 
@@ -265,3 +265,22 @@ F1 remplace cette route pour les images finales. Prompts et références n'aurai
 | Q6 | Quel pilote ? | **Aldric**, 3 images, à côté d'Alistair. | Le guerrier de l'Ours. |
 
 Note libre :
+
+## 8. Pilote d'Aldric (2026-11-13)
+
+Ta réponse : « Oui, lance Aldric ». Planche : [`assets/COMBAT_POSES_PILOT_ALDRIC_2026-11-13.jpg`](assets/COMBAT_POSES_PILOT_ALDRIC_2026-11-13.jpg).
+
+- **Production** : 3 images, `gpt-image-2.5-sunburst-2026-09-08`, qualité haute, fond transparent. `dash` et `cast` en 1024×1024, `attack` en 1536×1024. Toutes ont pour référence le maître d'Aldric, posé sur le canevas de sortie ; `attack` et `cast` ont en plus la `dash` acceptée. Aucune reprise sur les 2 prévues.
+- **Outil** : un script jetable, `tmp/combat-poses-pilot/pilot.ts`, qui reprend les règles de `tools/art/finalImages.ts` (visage couvert, règle d'arme, lecture de la clé jamais affichée) sans le modifier. Les sorties et le journal (prompt, empreintes des références et des images, jetons) sont dans `tmp/combat-poses-pilot/`, ignoré par Git.
+- **La planche montre** :
+  - les HD d'Aldric (son maître en `prepare`, puis ses 3 poses) au-dessus des 4 poses d'Alistair ;
+  - la planche pixel d'Aldric, construite avec les fonctions de `build_combat_sprites.py` : une palette de 41 couleurs, une seule échelle, les pieds alignés, une figure de 84 px (85 aujourd'hui) ;
+  - à côté, la planche d'Alistair et la planche « maître seul » actuelle d'Aldric.
+- **Ce qui tient** : dans les 3 poses, la même identité (heaume fermé à couronne solaire, armure blanc et or, tabard et cape bleu et or, bouclier bleu à croix d'or, masse à tête en cage), le visage couvert et la même arme. Les poses vont vers la droite, sans aucun effet. Le contrôle donne des coins transparents, aucun pixel magenta et aucun pixel plein sur les bords.
+- **Ce qu'il faut savoir** :
+  1. **Échelle** : le modèle a dessiné les poses environ 15 % plus petites que le maître (0,80 à 0,87 selon la surface pleine), bien que le maître ait été posé à l'échelle voulue sur le canevas. Un facteur unique pour l'unité (la médiane, 0,846) les ramène à la bonne taille. Le normaliseur du lot fera de même, jamais pose par pose. L'écart entre les poses (±4 %) tient en partie à la cape.
+  2. **Repos et incantation se ressemblent** : le maître d'Aldric lève déjà sa masse, et sa pose `cast` aussi. C'est le cas que Q3 évoque pour les héros, dont les maîtres sont en action : une `prepare` plus calme les distinguerait, pour une image de plus par héros.
+  3. **Effets** : les poses d'Alistair portent leurs effets (traînée de feu, aura), celles d'Aldric n'en ont pas (Q4). En combat, les effets procéduraux de ses compétences les remplacent.
+  4. **Frange** : le fond transparent du modèle laisse un liseré semi-transparent, que le seuil d'alpha du constructeur retire. Rien à reprendre à la main.
+- **Rien n'est intégré** : aucune planche du jeu, aucun fichier de `public/` ou de `src/`, aucun outil suivi par Git n'a changé.
+- **Suite, après ton verdict** : j'ajoute le type `pose` à l'outil, le normaliseur et la table des unités posées. J'intègre Aldric et le vérifie en combat, puis je lance les cinq autres héros.
