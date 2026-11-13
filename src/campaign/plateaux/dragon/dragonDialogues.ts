@@ -17,6 +17,7 @@ const SERAPHINE: Who = { speaker: 'Sage Séraphine', actorId: 'sage_seraphine', 
 const MAELOR: Who = { speaker: 'Intendant Maelor', actorId: 'maelor', side: 'left' };
 const MARIAN: Who = { speaker: 'Marian', actorId: 'marian', side: 'left' };
 const KESTREL: Who = { speaker: 'Kestrel', actorId: 'kestrel', side: 'left' };
+const ELARA: Who = { speaker: 'Elara', actorId: 'elara', side: 'left' };
 const KAELEN: Who = { speaker: 'Ancien Dragon Kaelen', actorId: 'kaelen', side: 'right' };
 const VILLAGER: Who = { speaker: 'Villageois des contreforts', actorId: 'dragon_villager', side: 'right' };
 const ENVOY: Who = { speaker: 'Émissaire du Loup', actorId: 'wolf_envoy', side: 'right' };
@@ -60,7 +61,7 @@ function chained(steps: (DialogueStep | null)[]): DialogueStep[] {
 
 export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze([
   scene('dragon_arrival', 'forest_fork', 'Pied des Pics Célestes', chained([
-    say('1', ALISTAIR, 'Pics Célestes', 'Les Pics Célestes. Deux Sceaux dans notre coffre, et la montagne la plus haute que nous ayons jamais gravie.', null, { expression: 'stern' }),
+    say('1', ELARA, 'Pics Célestes', 'Les Pics Célestes. Deux Sceaux dans notre coffre, et la montagne la plus haute que nous ayons jamais gravie.', null, { expression: 'stern' }),
     say('2', SERAPHINE, 'Sage', 'Le Clan du Dragon garde ici des savoirs plus anciens que tous les clans des plaines. Il écoute peu, et il pèse longtemps ce qu’il entend.', null, { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Un clan si sage qu’il n’a besoin de personne. Voyons ce qu’il nous demandera quand même.'),
   ])),
@@ -150,7 +151,7 @@ export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
   ])),
   scene('dragon_kaelen_pre_combat', 'lion_finale_judgement', 'Épreuve du Dragon', chained([
     say('1', KAELEN, 'Ancien Dragon', 'Vous voulez mon Sceau sans le mériter. Alors prouvez votre force à ceux qui gardent l’équilibre : mes gardiens et moi, contre votre compagnie.', null, { expression: 'hostile' }),
-    say('2', ALISTAIR, 'Épreuve', 'Nous l’assumerons.', null, { expression: 'stern' }),
+    say('2', ELARA, 'Épreuve', 'Nous l’assumerons.', null, { expression: 'stern' }),
   ])),
   scene('dragon_trial_aftermath', 'lion_finale_judgement', 'Le Sceau arraché', chained([
     say('1', KAELEN, 'Ancien Dragon', 'Le Sceau est à vous. Les Pics l’ont vu. Ne comptez plus sur la sagesse du Dragon le jour où vous en aurez besoin.', null, { expression: 'wounded' }),
@@ -173,7 +174,7 @@ function dragonAudience(state: Readonly<GameState>): DialogueSequence {
     say('request', KAELEN, 'Requête', 'Le Dragon ne demande pas d’aide ; il en accepte, quand elle est digne. Rapportez le Cristal, et le Sceau du Dragon entendra votre nom.', 'seraphine', { expression: 'stern' }),
     say('seraphine', SERAPHINE, 'Sage', 'Un artefact qui tient des montagnes ne se manie pas sans danger, Ancien Kaelen. Et un clan qui le vole sait peut-être ce qu’il fait, ou quelqu’un le sait pour lui. Comprenons le Loup avant de le frapper.', 'maelor', { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', 'Ou laissons le Loup et le Dragon s’user l’un contre l’autre. Le Cristal ira à qui le tiendra à la fin… Je dis seulement ce que chacun pense en regardant ces pics.', 'alistair'),
-    say('alistair', ALISTAIR, 'Clan sans terre', 'Nous ne sommes pas venus vendre l’équilibre d’un autre clan.', 'mandate', { expression: 'stern' }),
+    say('alistair', ELARA, 'Clan sans terre', 'Nous ne sommes pas venus vendre l’équilibre d’un autre clan.', 'mandate', { expression: 'stern' }),
     say('mandate', KAELEN, 'Mandat', 'Alors, étrangers. Rapporterez-vous le Cristal d’Écho ?', null, { expression: 'stern', choices: [
       choice('Rapporter le Cristal sans rien exiger.', 'accepted', [flag('dragonMandateHonour'), reputation(1)], ['Parole claire devant le Dragon', 'Kaelen observe votre conduite']),
       choice('Exiger un prix pour notre aide.', 'price', [flag('dragonMandatePrice'), gold(60), reputation(-1)], ['60 or d’avance', 'Le prix pèsera dans le jugement']),
@@ -276,7 +277,7 @@ function dragonVigil(state: Readonly<GameState>): DialogueSequence {
     ? 'Les gens du hameau ont fait monter du pain et du bois jusqu’ici. Ils n’ont rien demandé en retour.'
     : 'Personne ne monte jusqu’ici. Le froid, ce soir, nous appartient à nous seuls.';
   return scene('dragon_vigil', 'lion_refuge', 'Veillée sur les Pics', chained([
-    say('1', ALISTAIR, 'Veillée', 'Kaelen nous attend demain. Tout ce que nous avons fait sur ces pics sera posé devant lui.', null, { expression: 'stern' }),
+    say('1', ELARA, 'Veillée', 'Kaelen nous attend demain. Tout ce que nous avons fait sur ces pics sera posé devant lui.', null, { expression: 'stern' }),
     say('village', MARIAN, 'Soigneuse', village, null),
     say('2', SERAPHINE, 'Sage', 'Le Dragon pèse lentement. Il ne nous jugera pas sur nos mots, mais sur ce que les Pics ont retenu de nous.', null, { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Trois Sceaux, bientôt. Il viendra un jour où quelqu’un voudra savoir à quoi ils nous servent vraiment. J’aimerais avoir la réponse avant lui.'),

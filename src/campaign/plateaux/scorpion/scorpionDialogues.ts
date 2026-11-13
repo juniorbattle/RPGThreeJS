@@ -59,7 +59,7 @@ function chained(steps: (DialogueStep | null)[]): DialogueStep[] {
 
 export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze([
   scene('scorpion_arrival', 'forest_fork', 'Bord des Déserts Arides', chained([
-    say('1', ALISTAIR, 'Déserts Arides', 'Les Déserts Arides. Trois Sceaux dans notre coffre, et un soleil qui ne pardonne rien.', null, { expression: 'stern' }),
+    say('1', KESTREL, 'Déserts Arides', 'Les Déserts Arides. Trois Sceaux dans notre coffre, et un soleil qui ne pardonne rien.', null, { expression: 'stern' }),
     say('2', SERAPHINE, 'Sage', 'Le Clan du Scorpion garde ici des secrets plus anciens que ses dunes. Ses érudits savent beaucoup, et ils ne disent jamais tout.', null, { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Un clan qui collectionne les secrets. Voyons ce qu’il est prêt à échanger contre les nôtres.'),
   ])),
@@ -162,7 +162,7 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
   ])),
   scene('scorpion_inquisitor_pre_combat', 'lion_finale_judgement', 'Épreuve du Scorpion', chained([
     say('1', INQUISITOR, 'Grand Inquisiteur', 'Vous voulez mon Sceau par la force plutôt que par ma confiance. Soit. Seule la vérité, même amère, peut sauver ce monde ; voyons ce que vaut la vôtre. Mes érudits et moi, contre votre compagnie.', null, { expression: 'hostile' }),
-    say('2', ALISTAIR, 'Épreuve', 'Nous l’assumerons.', null, { expression: 'stern' }),
+    say('2', KESTREL, 'Épreuve', 'Nous l’assumerons.', null, { expression: 'stern' }),
   ])),
   scene('scorpion_trial_aftermath', 'lion_finale_judgement', 'Le Sceau arraché', chained([
     say('1', INQUISITOR, 'Grand Inquisiteur', 'Le Sceau est à vous. Mes érudits l’ont consigné. Ne comptez plus sur le savoir du Scorpion le jour où vous en aurez besoin.', null, { expression: 'wounded' }),
@@ -185,7 +185,7 @@ function scorpionAudience(state: Readonly<GameState>): DialogueSequence {
     say('request', INQUISITOR, 'Requête', 'Le Phénix est trop idéaliste pour comprendre ce qu’il garde. Il prie devant ses flammes purificatrices et laisse dormir le seul texte qui pourrait nous armer. Rapportez-moi ce codex, et le Sceau du Scorpion entendra votre nom.', 'seraphine', { expression: 'stern' }),
     say('seraphine', SERAPHINE, 'Sage', 'Un savoir interdit l’est rarement sans raison, Grand Inquisiteur. Et un texte lu par un seul clan ne dit que ce que ce clan veut y lire. Cherchons la vérité par nous-mêmes avant de la confier à qui que ce soit.', 'maelor', { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', 'Ou lisons ce codex avant tout le monde. Un savoir que tous les clans convoitent vaut plus que n’importe quel Sceau, pour qui sait à qui le vendre… Je dis seulement ce que chacun pense devant ce marché.', 'alistair'),
-    say('alistair', ALISTAIR, 'Clan sans terre', 'Nous sommes venus chercher un Sceau, pas un savoir à revendre.', 'mandate', { expression: 'stern' }),
+    say('alistair', KESTREL, 'Clan sans terre', 'Nous sommes venus chercher un Sceau, pas un savoir à revendre.', 'mandate', { expression: 'stern' }),
     say('mandate', INQUISITOR, 'Mandat', 'Alors. Me rapporterez-vous le codex prophétique ?', null, { expression: 'stern', choices: [
       choice('Rapporter le codex sans marchander.', 'accepted', [flag('scorpionMandateHonour'), reputation(1)], ['Parole claire devant le Scorpion', 'Le Grand Inquisiteur observe votre conduite']),
       choice('Exiger de lire le codex avant lui.', 'terms', [flag('scorpionMandateTerms'), reputation(-1)], ['Le codex lu avant lui', 'L’exigence pèsera dans le jugement']),
@@ -287,7 +287,7 @@ function scorpionVigil(state: Readonly<GameState>): DialogueSequence {
     ? 'Des fidèles du Phénix ont laissé une lampe à notre porte. Ils n’ont pas dit un mot ; ils savent que nous avons respecté leurs sceaux.'
     : 'Personne ne s’approche de notre feu. Le désert, ce soir, nous laisse seuls.';
   return scene('scorpion_vigil', 'lion_refuge', 'Veillée au désert', chained([
-    say('1', ALISTAIR, 'Veillée', 'Le Grand Inquisiteur nous attend demain. Tout ce que nous avons fait dans ce désert sera consigné devant lui.', null, { expression: 'stern' }),
+    say('1', KESTREL, 'Veillée', 'Le Grand Inquisiteur nous attend demain. Tout ce que nous avons fait dans ce désert sera consigné devant lui.', null, { expression: 'stern' }),
     say('wards', MARIAN, 'Soigneuse', wards, null),
     say('2', SERAPHINE, 'Sage', 'Le Scorpion n’oublie rien. Il ne nous jugera pas sur nos mots, mais sur ce que ses érudits ont noté de nous.', null, { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Quatre Sceaux, bientôt. Et un codex qui parle des Ombres… Un jour, quelqu’un voudra savoir ce que nous en avons appris. J’aimerais savoir quoi lui répondre.'),
