@@ -87,7 +87,7 @@ describe('combat poses of the new units (OD-2026-11-13-A)', () => {
     const WEAPONS: Record<string, [name: string, noun: RegExp]> = {
       borin: ['Marteau de l’Ours', /\bhammer\b/], raven_miner_chief: ['Marteau de guerre', /\bhammer\b/],
       raven_master_spy: ['Épée du Maître Espion', /\bsword\b/], raven_foreman: ['Épée de contremaître', /\bsword\b/],
-      corrupted_beast: ['Griffes', /\bclaws?\b/], depth_beast: ['Jet de pierre', /\bstones?\b/],
+      corrupted_beast: ['Charge', /\bhorns\b/], depth_beast: ['Jet de pierre', /\bstones?\b/],
       bear_warrior: ['Lance de guerre', /\bspear\b/], raven_scout: ['Épée d’éclaireur', /\bsword\b/], raven_miner: ['Pic de mineur', /\bpick/],
       kaelen: ['Bâton du Dragon', /\bstaff\b/], wolf_chief: ['Grande hache', /\baxe\b/], shadow_shaman: ['Onde froide', /\bmagic\b/],
       wolf_champion: ['Lames de jet', /\bthrowing knives\b/], shadow_wyrm: ['Souffle court', /\bbreath\b/],
@@ -99,9 +99,9 @@ describe('combat poses of the new units (OD-2026-11-13-A)', () => {
       raven_champion: ['Dagues du Corbeau', /\bdaggers?\b/], phoenix_champion: ['Lance du temple', /\bspear\b/],
       demon_brute: ['Griffes', /\bclaws\b/], breach_demon: ['Griffes', /\bclaws\b/], maelor: ['Onde froide', /\bmagic\b/],
     };
-    // A gap the extended test found, left for the operator to decide (docs/reports/bilan-combat-2026-11-13.md): the
-    // corrupted beast fights with « Griffes » (the claws effect), while its master shows horns and hooves.
-    const AWAITING_OPERATOR = new Set(['corrupted_beast']);
+    // The corrupted beast, drawn with horns and hooves, charges (« Charge », the operator's choice of 2026-11-13) instead of
+    // the « Griffes » this test found (docs/reports/bilan-combat-2026-11-13.md). No gap is left awaiting the operator.
+    const AWAITING_OPERATOR = new Set<string>();
     expect(Object.keys({ ...HERO_WEAPONS, ...WEAPONS }).sort()).toEqual(Object.keys(POSE_UNITS).sort());
     for (const [unitId, [type, noun]] of Object.entries(HERO_WEAPONS)) {
       const hero = units.find((unit) => unit.visualProfileId === unitId)!;

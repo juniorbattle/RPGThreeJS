@@ -214,4 +214,10 @@ Le tableau du §6 est verrouillé par un test (`combatBossTempo.test.ts`).
 - **Son de « Serment rompu ».** Il prend `fx.cast.blood.h` et non `fx.cast.shadow.m` : la composition ombre n'existe pas en poids lourd, et une attaque lourde doit sonner lourd. La table reste à 158 identités.
 - **Trois effets renforcés.** À l'écran, la Sentence, Serment rompu et l'Étreinte se lisaient sous le Gel. Je les ai renforcés sans changer leur dessin : un pilier de lumière ambrée pour le dard de la Sentence, une encre plus visible pour les deux autres.
 
-**Pas encore tranché :** la Bête corrompue (§9, « Charge » ou garder « Griffes »). Le test arme/image la garde en exception.
+**La Bête corrompue (§9).** À « Renommer l'arme de la Bête corrompue en « Charge » ? », l'opérateur a répondu le 2026-11-13 : « Yes, « Charge » ».
+- La bête combat avec « Charge » ◆ au lieu de « Griffes ».
+- Les statistiques et la portée (1 à 2) ne changent pas.
+- L'attaque de base prend l'effet de coup de bélier du sanglier.
+- Le son au lancement ne change pas.
+- La marque sonore à l'impact suit l'effet : coup lourd, terre, au lieu de la morsure des griffes. Le §9 disait « son inchangé » : ce n'est vrai que du son au lancement.
+- Le test arme/image n'a plus d'exception.
