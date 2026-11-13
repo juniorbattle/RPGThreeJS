@@ -59,6 +59,8 @@ Les quatre pilotes de plateau existants et les huit fins du `campaignEndingsDriv
 | `src/game/narrativeEffects.test.ts` | 3 | Le module d'effets : la finale du Lion se choisit une seule fois et demande la sauvegarde ; la fin de chapitre ferme le plateau. |
 | `src/game/GameAppPostDemoMoments.test.ts` | mis à jour | La trahison s'ouvre en direct juste après la finale ; un verdict s'ouvre en direct sans moment. |
 | `src/cinematics/NarrativeTableau.test.ts` | +1 | La fin de l'acte final est sans Maelor ; les trois plateaux gardent la distribution du Lion. |
+| `src/campaign/plateaux/finale/finalePresentation.test.ts` | mis à jour | La fin de l'acte final garde les places de la mise en scène du Lion, sans Maelor. Choix de présentation voulu : il a trahi au Tournoi et fui par la brèche (section 4, point 2). |
+| `src/game/GameAppLivingTableaux.test.ts`, `src/game/cin67NarrativeStageIntegration.test.ts` | inchangés, verts | Ils attendent l'appel d'origine `playDialogue(id, label)` : `GameApp` le garde partout, sauf pour l'après-combat d'un combat du Tournoi gagné en direct (`{ live: true }`). Le moment de Bois-Clair sacrifié joue toujours après un raid gagné. |
 | `src/game/r6FullRouteIntegration.test.ts` | mis à jour | Le garde-fou de texte lit l'ordre « boss déjà choisi, puis exécution » dans `narrativeEffects.ts`, et la sauvegarde immédiate dans `GameApp.applyEffects`. |
 
 ### Ce que les parties du pilote montrent (graines fixes)
@@ -148,7 +150,11 @@ Avec elles, `browser-result.json`, le résultat machine compact des passes 3a et
 - `npm run contracts:validate` : 8 contrats LOCKED validés.
 - `npm run cinematics:validate-narrative-staging` : OK.
 - Garde `git diff --exit-code 6228a34fd69a01406ecf0fb7168a53f92a267d7b HEAD -- docs/contracts docs/game/GAME_CONSTITUTION.md` : vide.
-- `npm test`, partie vitest : 245 fichiers sur 248, 3 469 tests réussis, 5 ignorés (garde du megapack, `ebb47016`), 5 échecs. Les 5 échecs sont dans trois tests historiques de `tools/cinematics` (`cin6c_p1_production`, `cin6ea3_pilot_e_regate`, `minimax_task_checkpoint`) qui lisent des médias de `tmp/cinematics/`, ignorés par Git et absents d'un worktree neuf : environnement, pas régression. Les sessions combat et présentation ont relevé les mêmes.
+- `npx vitest run` sur `90491f4b` (worktree neuf) : 247 fichiers sur 250, 3 481 tests réussis, 5 ignorés (garde du megapack, `ebb47016`), 5 échecs, tous hérités de l'environnement du worktree, fichier par fichier :
+  - `tools/cinematics/cin6c_p1_production.test.mjs` (1 test) : `ffprobe` introuvable, la chaîne d'outils ignorée `tmp/cinematics/toolchain` n'existe que dans le dossier principal ;
+  - `tools/cinematics/cin6ea3_pilot_e_regate.test.mjs` (4 tests) : `ENOENT` sur trois médias de `tmp/cinematics/cin6ea*`, ignorés et absents du worktree ;
+  - `tools/cinematics/minimax_task_checkpoint.test.mjs` (fichier entier) : « Invalid or unexpected token » à l'import de `minimax_h3_generate.mjs`, qui commence par une ligne `#!`. Le worktree l'a extrait en CRLF (`core.autocrlf=true`, `i/lf w/crlf`), alors que le dossier principal l'a en LF.
+- Les trois échecs vus par la session parente sur `2e1b56db` (`GameAppLivingTableaux`, `cin67NarrativeStageIntegration`, `finalePresentation`) sont corrigés par `ade7eec5`, poussé dans `e41c5441` ; `2e1b56db` ne le contient pas. Sur `90491f4b`, ces trois fichiers passent (25 tests sur 25).
 - `npm test`, partie `node --test tools/qa/qa-job.test.mjs` (lancée à part, puisque vitest sort en échec) : 26 sur 26.
 
 ## 7. Non fait, limites
