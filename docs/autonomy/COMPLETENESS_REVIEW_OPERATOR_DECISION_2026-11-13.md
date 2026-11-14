@@ -200,3 +200,5 @@ La session parente a revérifié sur `dev` : garde vide, 3 654 tests vitest, `na
   - `mystery_shrine` : même défaut, trouvé en vérifiant, même correction.
 - La vérification visuelle s'est faite sur la page de preuve, avec les vrais composants, pas dans une partie réelle.
 - Défaut d'outillage à reprendre : le générateur du verrou de présentation (`FinalDialoguePresentation.generated.ts`) ne tourne plus (« Missing staging authority for first_refuge_gathering »). Le fichier généré n'a donc pas été régénéré.
+
+- **Générateur réparé** (2026-11-14). Une régénération à vide redonne le verrou à l’octet (91384e27). Les trois corrections du Lion sont désormais écrites dans le verrou par le générateur (6b67c458), et  est supprimé. Le placement en jeu ne change pas. Revérifié par la session parente : 3 663 tests, validateur de mise en scène,  et garde au vert.
