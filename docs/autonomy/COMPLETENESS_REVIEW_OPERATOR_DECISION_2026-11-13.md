@@ -192,3 +192,11 @@ Les répliques sont écrites mot à mot (eb917939) : la chute provoquée, le cla
 - Pas encore revus : les dialogues du Lion, dont les plans sont générés et verrouillés par le validateur de mise en scène.
 
 La session parente a revérifié sur `dev` : garde vide, 3 654 tests vitest, `narrative:validate` et `cinematics:validate-narrative-staging` au vert.
+
+**Placement au Lion.** La session a demandé « Corriger le placement des deux scènes du Lion (troll, villageoise) ? », et l'opérateur a répondu « Oui, corrige-les ».
+- Trois segments verrouillés sont corrigés au moment où leur plan est résolu, par le module `src/cinematics/LockedStagingCorrections.ts` (f8b101c9) :
+  - `village_choice` : la compagnie à gauche, la villageoise au centre, le pillard seul à droite ; dans sa variante, Cédric passe lui aussi à gauche ;
+  - `mystery_troll_crossing` : la compagnie à gauche, le troll à droite ;
+  - `mystery_shrine` : même défaut, trouvé en vérifiant, même correction.
+- La vérification visuelle s'est faite sur la page de preuve, avec les vrais composants, pas dans une partie réelle.
+- Défaut d'outillage à reprendre : le générateur du verrou de présentation (`FinalDialoguePresentation.generated.ts`) ne tourne plus (« Missing staging authority for first_refuge_gathering »). Le fichier généré n'a donc pas été régénéré.
