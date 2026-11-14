@@ -11,7 +11,7 @@
 | MERGED_IN | `dev` |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |
-| PRODUCTION_IMPACT | Texte seulement, plus une règle de mise en scène. **La trahison :** Maelor avoue tout son plan (trois répliques nouvelles, et « Regardez. » complété). **Cinq indices :** au Lion, à l'Ours, au Dragon, au Scorpion et au Tournoi. **Quatre retouches de cohérence.** **La mise en scène des dialogues d'après la démo** suit maintenant le côté sur lequel chaque réplique est écrite. Maelor se tient donc seul face à la compagnie après sa trahison, et Marian, Kestrel et Elara restent du côté de la compagnie. Aucun drapeau, choix, combat, récompense ni champ de sauvegarde ne change, et aucun acteur n'entre dans une scène. Les dialogues du Lion gardent leurs étapes, ce qui respecte le verrou de présentation généré. |
+| PRODUCTION_IMPACT | Texte seulement, plus une règle de mise en scène. **La trahison :** Maelor avoue tout son plan (trois répliques nouvelles, et « Regardez. » complété). **Cinq indices :** au Lion, à l'Ours, au Dragon, au Scorpion et au Tournoi. **Quatre retouches de cohérence.** **La mise en scène des dialogues d'après la démo** suit maintenant le côté sur lequel chaque réplique est écrite. Maelor se tient donc seul face à la compagnie après sa trahison, et Marian, Kestrel et Elara restent du côté de la compagnie. Aucun drapeau, choix, combat, récompense ni champ de sauvegarde ne change, et aucun acteur n'entre dans une scène. Les dialogues du Lion gardent leurs étapes, ce qui respecte le verrou de présentation généré. **Trois segments verrouillés du Lion** reçoivent une correction de mise en scène écrite, sans toucher au fichier généré : la demande de Bois-Clair, le troll et le sanctuaire. |
 | CANONICAL_DOCS_UPDATED | `docs/content/drafts/MAELOR_ARC_DRAFT_2026-11-13.md` (brouillon validé). Ni contrat, ni `AGENTS.md`, ni état, ni `OPERATOR_DECISIONS.md` : la session parente consigne les validations. |
 | EVIDENCE | Tests ciblés et suite complète, `tsc`, build, `narrative:validate`, `cinematics:validate-narrative-staging`, `contracts:validate`, garde vide (section « Vérification »). Navigateur : vrai jeu sur le serveur de dev du port 5185, avec de vrais gestes, labo QA `/?qa=1&cin6a=golden`. Six captures sélectionnées dans `docs/reports/maelor-arc-2026-11-13/`. |
 
@@ -96,6 +96,37 @@ Sur 80 segments, 7 sont signalés :
   - `village_choice`, segment 1 : Marian et Kestrel sont à gauche. La villageoise qui demande de l'aide est à droite, à côté du pillard Serpent.
 
 Corriger ces deux plans demande de régénérer le verrou de présentation. Ce choix revient à l'opérateur.
+
+## La correction des scènes du Lion
+
+`APPROVED DECISION`. À la question « Corriger le placement des deux scènes du Lion (troll, villageoise) ? », l'opérateur a répondu « Oui, corrige-les ».
+
+`CURRENT FACT`.
+
+**Le générateur ne tourne plus.** `tools/cinematics/generate_cin6ea4_dialogue_lock.ts` s'arrête sur « Missing staging authority for first_refuge_gathering », un dialogue ajouté après lui. Le fichier verrouillé a d'ailleurs déjà été complété à la main une fois (`7b26af55`). La règle du domaine interdit de le modifier à la main. Il n'est donc pas touché, et le générateur non plus, puisqu'on ne peut pas vérifier sa sortie.
+
+**La correction.** Un module écrit, `src/cinematics/LockedStagingCorrections.ts`, corrige les segments qu'il nomme, au moment où `resolveFinalDialoguePresentationPlan` résout le plan. Il s'applique à toutes les variantes de leur dialogue, et ne touche ni les répliques, ni la distribution, ni le nombre d'acteurs. La règle :
+
+- la compagnie tient la gauche ;
+- un civil menacé se tient au centre, entre la compagnie et l'ennemi ;
+- celui que la compagnie affronte tient la droite ;
+- chaque orateur se tourne vers celui à qui sa réplique s'adresse.
+
+**Les segments corrigés :**
+
+- `village_choice`, segment 1 : Marian et Kestrel sont à gauche, la villageoise au centre, tournée vers elles, et le pillard seul à droite. Dans la variante où Cédric prend la réplique de Kestrel, Cédric passe lui aussi à gauche : le plan verrouillé le plaçait tout à droite, à côté du pillard.
+- `mystery_troll_crossing`, segment 1 : Séraphine et Maelor sont à gauche, le troll seul à droite. Le troll passe dans le groupe des ennemis : le plan verrouillé le laissait neutre, parce que le générateur ne connaissait que `forest_troll`.
+- `mystery_shrine`, segment 1 : même défaut que le troll, trouvé en vérifiant les autres segments verrouillés de même configuration, et même correction. L'apparition reste neutre, à droite.
+
+**La vérification :**
+
+- `src/cinematics/LockedStagingCorrections.test.ts` (7 tests) contrôle toutes les variantes des trois dialogues. Il vérifie aussi que tout autre plan verrouillé est rendu tel quel et que la résolution du jeu applique la correction.
+- `npx vitest run src/cinematics src/campaign src/ui src/game` : 140 fichiers et 1505 tests verts. Suite complète : 3529 tests verts, avec les mêmes échecs hérités de `tools/cinematics`.
+- `tsc` et le build sont verts. `cinematics:validate-narrative-staging` répond `ok`, avec les deux mêmes étapes inaccessibles.
+- Navigateur : la page de preuve `tools/dialogue/static-tableau-v2-proof.html` affiche ces dialogues avec les vrais composants du jeu (`NarrativeSceneSurface`, `DialogueView`, plan résolu). Les trois scènes y sont corrigées (captures 07, 08 et 09).
+- Non vérifié dans la partie réelle :
+  - ces trois scènes du Lion, qui demandent de rejouer le chapitre ;
+  - la variante avec Cédric, fixée par le test.
 
 ## Vérification
 
