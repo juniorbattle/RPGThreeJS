@@ -170,3 +170,25 @@ Ce qui manque :
 Sur la réponse « Oui, lance-la », la session « Arc complet de Maelor : confession et indices » rédige la confession complète et trois à six indices discrets, du Lion à l'acte final. Chaque réplique est soumise mot à mot à l'opérateur avant d'entrer dans le jeu.
 
 Reste aussi à l'opérateur le texte des crédits (N5). La trame en dix rubriques est prête, et l'écran reste caché tant que le texte manque.
+
+## Arc de Maelor : livré (2026-11-14)
+
+La session « Arc complet de Maelor » a soumis son brouillon (`docs/content/drafts/MAELOR_ARC_DRAFT_2026-11-13.md`) question par question. L'opérateur a pris l'option recommandée à chaque fois :
+- C1, la confession à la trahison : « Oui, telles quelles (Recommandé) » ;
+- R1, « À Bois-Clair déjà » : « Retoucher (Recommandé) » ;
+- R2, Alistair à la brèche : « Retoucher (Recommandé) » ;
+- I1, au Lion, Alaric et une esquive de Maelor : « Oui, les deux (Recommandé) » ;
+- I2, à l'Ours, Marian : « Oui (Recommandé) » ;
+- I3, au Dragon, Kaelen : « Oui (Recommandé) » ;
+- I4, au Scorpion, les archives et une esquive : « Discrète (Recommandé) » ;
+- I5, au Tournoi, « Enfin. » : « Oui (Recommandé) » ;
+- R3, la veillée, « menés » : « Retoucher (Recommandé) » ;
+- R4, le Maître Espion : « Retoucher (Recommandé) ».
+
+Les répliques sont écrites mot à mot (eb917939) : la chute provoquée, le clan rejoint, les Sceaux comme clé de la faille. Le rapport est `docs/reports/maelor-arc-2026-11-13.md`.
+
+**Placement des personnages.** Pendant la vérification, l'opérateur a demandé, mot à mot : « dans cette scene maelor doit etre seul face au auxtre vu que c'est une trahison et de maniere general on doit bien positionner les personnages durant les static dialogue car c'est parfois confus et mal etabli ».
+- Livré pour l'après-démo (116f920a) : chaque acteur se tient du côté où ses répliques sont écrites, et Maelor traître se tient seul face à la compagnie.
+- Pas encore revus : les dialogues du Lion, dont les plans sont générés et verrouillés par le validateur de mise en scène.
+
+La session parente a revérifié sur `dev` : garde vide, 3 654 tests vitest, `narrative:validate` et `cinematics:validate-narrative-staging` au vert.
