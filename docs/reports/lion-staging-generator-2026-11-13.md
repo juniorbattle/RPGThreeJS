@@ -6,12 +6,12 @@
 | DOMAIN | Outillage (générateur du verrou), présentation narrative (mise en scène des dialogues du Lion) |
 | BASELINE | `a20e6438` sur `dev` (contrats 1.24.0, baseline `133814bac45cc31c8eda7aa0fa1acb16a9ca7e35`) |
 | BRANCH | worktree `claude/vigilant-chatterjee-156e12`, publié sur `dev` |
-| HEAD | le commit de ce rapport, après `91384e27` (réparation) et `6b67c458` (corrections) |
+| HEAD | le commit qui ajoute la section sur le regard d'Alaric, après `91384e27` (réparation), `6b67c458` (corrections) et `87902ce2` (première version de ce rapport) |
 | STATUS | merged : livré sur `origin/dev` |
 | MERGED_IN | `dev` |
 | SUPERSEDES | NONE. Complète la section « La correction des scènes du Lion » de [l'arc de Maelor](maelor-arc-2026-11-13.md). |
 | SUPERSEDED_BY | NONE |
-| PRODUCTION_IMPACT | Aucun changement visible. Le placement des trois scènes corrigées est écrit dans le verrou au lieu d'être appliqué à la résolution. Le plan que le jeu résout est identique octet pour octet pour tous les dialogues du Lion et toutes leurs variantes. Aucune réplique, aucun choix, aucun acteur ni aucun champ de sauvegarde ne change. |
+| PRODUCTION_IMPACT | **La réparation et les trois corrections :** aucun changement visible. Le placement des trois scènes corrigées est écrit dans le verrou au lieu d'être appliqué à la résolution. Le plan que le jeu résout est resté identique octet pour octet pour tous les dialogues du Lion et toutes leurs variantes. **Le regard d'Alaric :** dans deux variantes du jugement, Alaric se tourne vers le champion au lieu du vide quand il répond à un mensonge éhonté. Dans cinq autres, sa cible devient Séraphine au lieu de Maelor, absent, et l'image ne change pas. Aucune réplique, aucun choix, aucun acteur ni aucun champ de sauvegarde ne change. |
 | CANONICAL_DOCS_UPDATED | `.agents/skills/cinematics-journey/SKILL.md` : le skill attribuait le verrou à `generate_cin6d6_runtime_registry.ts`, qui n'écrit que `FinalPresentationRegistry.generated.ts`. Je n'ai touché ni l'état, ni `AGENTS.md`, ni les décisions : la session parente les consolide. |
 | EVIDENCE | `tsc`, suite complète, build, `cinematics:validate-narrative-staging`, `contracts:validate`, garde vide. Instantané du placement effectif avant et après, identique. Navigateur : planche avant/après et résultat JSON dans `docs/reports/lion-staging-generator-2026-11-13/`. |
 
@@ -73,10 +73,28 @@ Ce n'était pas le seul obstacle. Le script imposait aussi 73 dialogues, 251 ét
   - `npm run contracts:validate` : vert. La garde est vide.
 - **Non vérifié :** les trois scènes dans une vraie partie, qui demande de rejouer le chapitre. La variante avec Cédric est fixée par les tests.
 
+## Le regard d'Alaric face au mensonge éhonté
+
+`APPROVED DECISION` : « Oui, corrige-le » (2026-11-13), à la question « Corriger le regard d'Alaric vers Maelor absent dans les 7 variantes du jugement ? ».
+
+**Le défaut.** Dans 7 variantes atteignables du jugement, celles retouchées à la main le 2026-09-18 (`2fb6988c`), la réplique `brazen-lie-rebuked` s'adressait à Maelor, qui n'est pas en scène. La réplique dit : « Assez. Vous ne discutez plus l'interprétation des faits : vous niez des rapports… ». En jeu, elle suit directement le choix fait à `record`, et jamais la réplique du champion.
+
+**La correction.** Sur cette réplique, Alaric parle à la personne à qui il s'adressait à `record`, la réplique qui ouvre le choix. Les 7 plans sont corrigés dans `dialogue_presentation_authored_plans.json`, avec une note dans leur origine, puis le verrou est régénéré. Son diff se limite à ces 7 lignes :
+
+- dans les 2 variantes où seuls Alaric et le champion sont en scène, Alaric se retourne vers le champion, comme pendant tout le reste de la scène. Avant, il regardait vers la gauche, où personne ne se tient ;
+- dans les 5 variantes où Séraphine est en scène, Alaric la regardait déjà. Seule sa cible passe de Maelor à Séraphine, et l'image ne change pas.
+
+**Le garde-fou.** Le générateur refuse désormais toute réplique adressée à un acteur absent de la scène, y compris dans les plans écrits à la main. Un test de `LionStagingCorrections.test.ts` vérifie la règle sur toutes les variantes jouables du jugement.
+
+**La vérification.** Une page de preuve temporaire, sous `tmp/` (ignoré), rend ces variantes avec les vrais composants du jeu. Elle tourne sur le serveur de dev du port 5187. Seule la réplique `brazen-lie-rebuked` change, comme prévu. `record` est identique avant et après, avec et sans mouvement réduit (`result.json`, bloc `alaricRebuke`). Planche : `alaric-rebuke-before-after.jpg`. Ces variantes n'ont pas été jouées dans une vraie partie.
+
+**Les commandes, après cette correction :**
+- `npm test` : vitest donne 3532 tests verts, avec les mêmes échecs hérités ; `qa-job` donne 26/26.
+- `tsc`, le build, `cinematics:validate-narrative-staging` (`ok`, avec les deux mêmes étapes inaccessibles), `contracts:validate` et `cinematics:generate-dialogue-lock -- --check` sont verts. La garde est vide.
+
 ## Constats non corrigés
 
 `UNDECIDED`. Ils relèvent de l'opérateur.
 
-- **Alaric s'adresse à Maelor absent.** Dans 7 variantes atteignables du jugement d'Alaric, celles du mensonge éhonté retouchées à la main le 2026-09-18, la réplique `brazen-lie-rebuked` s'adresse à Maelor alors qu'il n'est pas en scène. Alaric se tourne vers la gauche, vers personne. Ces plans sont recopiés tels quels pour ne rien changer au jeu. Les corriger revient à les retirer de `dialogue_presentation_authored_plans.json` et à régénérer, ce qui demande un nouveau contrôle visuel.
 - **La spécification de mise en scène reste figée.** `narrative_dialogue_staging.json` garde ses 71 entrées. Le générateur ne la lit plus. `npm run cinematics:validate-narrative-staging -- --write` la régénérerait.
 - **Deux paragraphes de décision sont dépassés.** Les lignes 197 à 202 de `docs/autonomy/COMPLETENESS_REVIEW_OPERATOR_DECISION_2026-11-13.md` décrivent encore le module et le générateur en panne. C'est à la session parente de les mettre à jour.

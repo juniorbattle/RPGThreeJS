@@ -198,5 +198,89 @@
         "x": 872
       }
     ]
+  },
+  "alaricRebuke": {
+    "approval": "« Oui, corrige-le » (2026-11-13)",
+    "page": "temporary proof page under ignored tmp/ rendering the runtime variants of lion_finale_judgement with the game components, dev server port 5187, Playwright 1600x900",
+    "variants": {
+      "duo": "…breaches@lion_champion@0|witnesses@alaric@0|intent@alaric@2",
+      "seraphine": "…merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|intent@alaric@2"
+    },
+    "before": {
+      "no-preference:duo:record": [
+        "alaric@LEFT/RIGHT>lion_champion",
+        "lion_champion@RIGHT/LEFT>alaric"
+      ],
+      "no-preference:duo:brazen-lie-rebuked": [
+        "alaric@LEFT/LEFT>maelor",
+        "lion_champion@RIGHT/LEFT>alaric"
+      ],
+      "no-preference:seraphine:record": [
+        "sage_seraphine@LEFT/RIGHT>alaric",
+        "alaric@CENTER_RIGHT/LEFT>sage_seraphine",
+        "lion_champion@FAR_RIGHT/LEFT>alaric"
+      ],
+      "no-preference:seraphine:brazen-lie-rebuked": [
+        "sage_seraphine@LEFT/RIGHT>alaric",
+        "alaric@CENTER_RIGHT/LEFT>maelor",
+        "lion_champion@FAR_RIGHT/LEFT>alaric"
+      ],
+      "reduce:duo:record": [
+        "alaric@LEFT/RIGHT>lion_champion",
+        "lion_champion@RIGHT/LEFT>alaric"
+      ],
+      "reduce:duo:brazen-lie-rebuked": [
+        "alaric@LEFT/LEFT>maelor",
+        "lion_champion@RIGHT/LEFT>alaric"
+      ],
+      "reduce:seraphine:record": [
+        "sage_seraphine@LEFT/RIGHT>alaric",
+        "alaric@CENTER_RIGHT/LEFT>sage_seraphine",
+        "lion_champion@FAR_RIGHT/LEFT>alaric"
+      ],
+      "reduce:seraphine:brazen-lie-rebuked": [
+        "sage_seraphine@LEFT/RIGHT>alaric",
+        "alaric@CENTER_RIGHT/LEFT>maelor",
+        "lion_champion@FAR_RIGHT/LEFT>alaric"
+      ]
+    },
+    "after": {
+      "no-preference:duo:record": [
+        "alaric@LEFT/RIGHT>lion_champion",
+        "lion_champion@RIGHT/LEFT>alaric"
+      ],
+      "no-preference:duo:brazen-lie-rebuked": [
+        "alaric@LEFT/RIGHT>lion_champion",
+        "lion_champion@RIGHT/LEFT>alaric"
+      ],
+      "no-preference:seraphine:record": [
+        "sage_seraphine@LEFT/RIGHT>alaric",
+        "alaric@CENTER_RIGHT/LEFT>sage_seraphine",
+        "lion_champion@FAR_RIGHT/LEFT>alaric"
+      ],
+      "no-preference:seraphine:brazen-lie-rebuked": [
+        "sage_seraphine@LEFT/RIGHT>alaric",
+        "alaric@CENTER_RIGHT/LEFT>sage_seraphine",
+        "lion_champion@FAR_RIGHT/LEFT>alaric"
+      ],
+      "reduce:duo:record": [
+        "alaric@LEFT/RIGHT>lion_champion",
+        "lion_champion@RIGHT/LEFT>alaric"
+      ],
+      "reduce:duo:brazen-lie-rebuked": [
+        "alaric@LEFT/RIGHT>lion_champion",
+        "lion_champion@RIGHT/LEFT>alaric"
+      ],
+      "reduce:seraphine:record": [
+        "sage_seraphine@LEFT/RIGHT>alaric",
+        "alaric@CENTER_RIGHT/LEFT>sage_seraphine",
+        "lion_champion@FAR_RIGHT/LEFT>alaric"
+      ],
+      "reduce:seraphine:brazen-lie-rebuked": [
+        "sage_seraphine@LEFT/RIGHT>alaric",
+        "alaric@CENTER_RIGHT/LEFT>sage_seraphine",
+        "lion_champion@FAR_RIGHT/LEFT>alaric"
+      ]
+    }
   }
 }
