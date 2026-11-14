@@ -457,7 +457,7 @@ function makeSegments(dialogueId: string, steps: readonly ShapeStep[], media: Me
  * and at Bois-Clair the villager pleading for help on the right beside the Serpent raider (with Cédric there too in
  * the variant where he speaks for the company). In every shape of the named segments: the company holds the left, a
  * single civilian under threat stands at the centre between it and the foe, the one it faces holds the right, and
- * each speaker turns toward the one their line addresses. Until 2026-11-14 `src/cinematics/LockedStagingCorrections.ts`
+ * each speaker turns toward the one their line addresses. Until `6b67c458`, `src/cinematics/LockedStagingCorrections.ts`
  * applied them at runtime. They change no line, cast member or actor count.
  */
 export const STAGING_CORRECTED_SEGMENTS: readonly string[] = Object.freeze([

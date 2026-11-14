@@ -1,6 +1,6 @@
 /**
  * The three Lion segments restaged on the operator's « Oui, corrige-les » (2026-11-13) keep exactly the placement
- * validated then. Since 2026-11-14 the generator writes it into the lock (`STAGING_CORRECTED_SEGMENTS` in
+ * validated then. Since `6b67c458` the generator writes it into the lock (`STAGING_CORRECTED_SEGMENTS` in
  * `tools/cinematics/dialoguePresentationLock.ts`); the game shows the lock as written, with no runtime correction.
  */
 import { describe, expect, it } from 'vitest';

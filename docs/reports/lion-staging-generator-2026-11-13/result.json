@@ -1,0 +1,202 @@
+{
+  "task": "claude-staging-generator-20261114T0347Z",
+  "page": "tools/dialogue/static-tableau-v2-proof.html on the dev server, port 5187, 1600x900, Playwright, reducedMotion no-preference and reduce",
+  "beforeCommit": "a20e6438 (runtime correction module)",
+  "afterCommit": "6b67c458 (corrections written into the lock, module removed)",
+  "domPlacementIdentical": true,
+  "effectivePresentationSnapshot": {
+    "entries": 494,
+    "byteIdentical": true,
+    "covers": "resolveFinalDialoguePresentationPlan (canonical, by id, every runtime variant), applyFinalDialoguePresentationPlan tableaux, createNarrativeStagingAudit"
+  },
+  "dryRegeneration": {
+    "commit": "91384e27",
+    "byteIdenticalToCommittedLock": true
+  },
+  "domPlacement": {
+    "no-preference:lion-village-request": [
+      {
+        "id": "marian",
+        "pos": "FAR_LEFT",
+        "facing": "RIGHT",
+        "x": -56
+      },
+      {
+        "id": "kestrel",
+        "pos": "CENTER_LEFT",
+        "facing": "RIGHT",
+        "x": 301
+      },
+      {
+        "id": "villageoise",
+        "pos": "CENTER",
+        "facing": "LEFT",
+        "x": 503
+      },
+      {
+        "id": "serpent_raider",
+        "pos": "RIGHT",
+        "facing": "LEFT",
+        "x": 875
+      }
+    ],
+    "no-preference:lion-village-raider": [
+      {
+        "id": "marian",
+        "pos": "FAR_LEFT",
+        "facing": "RIGHT",
+        "x": -56
+      },
+      {
+        "id": "kestrel",
+        "pos": "CENTER_LEFT",
+        "facing": "RIGHT",
+        "x": 301
+      },
+      {
+        "id": "villageoise",
+        "pos": "CENTER",
+        "facing": "LEFT",
+        "x": 503
+      },
+      {
+        "id": "serpent_raider",
+        "pos": "RIGHT",
+        "facing": "LEFT",
+        "x": 875
+      }
+    ],
+    "no-preference:lion-troll-crossing": [
+      {
+        "id": "sage_seraphine",
+        "pos": "FAR_LEFT",
+        "facing": "RIGHT",
+        "x": -56
+      },
+      {
+        "id": "maelor",
+        "pos": "CENTER_LEFT",
+        "facing": "RIGHT",
+        "x": 301
+      },
+      {
+        "id": "forest_troll_elite",
+        "pos": "RIGHT",
+        "facing": "LEFT",
+        "x": 816
+      }
+    ],
+    "no-preference:lion-shrine": [
+      {
+        "id": "sage_seraphine",
+        "pos": "FAR_LEFT",
+        "facing": "RIGHT",
+        "x": -9
+      },
+      {
+        "id": "maelor",
+        "pos": "CENTER_LEFT",
+        "facing": "RIGHT",
+        "x": 363
+      },
+      {
+        "id": "shrine_apparition",
+        "pos": "RIGHT",
+        "facing": "LEFT",
+        "x": 872
+      }
+    ],
+    "reduce:lion-village-request": [
+      {
+        "id": "marian",
+        "pos": "FAR_LEFT",
+        "facing": "RIGHT",
+        "x": -56
+      },
+      {
+        "id": "kestrel",
+        "pos": "CENTER_LEFT",
+        "facing": "RIGHT",
+        "x": 301
+      },
+      {
+        "id": "villageoise",
+        "pos": "CENTER",
+        "facing": "LEFT",
+        "x": 503
+      },
+      {
+        "id": "serpent_raider",
+        "pos": "RIGHT",
+        "facing": "LEFT",
+        "x": 875
+      }
+    ],
+    "reduce:lion-village-raider": [
+      {
+        "id": "marian",
+        "pos": "FAR_LEFT",
+        "facing": "RIGHT",
+        "x": -56
+      },
+      {
+        "id": "kestrel",
+        "pos": "CENTER_LEFT",
+        "facing": "RIGHT",
+        "x": 301
+      },
+      {
+        "id": "villageoise",
+        "pos": "CENTER",
+        "facing": "LEFT",
+        "x": 503
+      },
+      {
+        "id": "serpent_raider",
+        "pos": "RIGHT",
+        "facing": "LEFT",
+        "x": 875
+      }
+    ],
+    "reduce:lion-troll-crossing": [
+      {
+        "id": "sage_seraphine",
+        "pos": "FAR_LEFT",
+        "facing": "RIGHT",
+        "x": -56
+      },
+      {
+        "id": "maelor",
+        "pos": "CENTER_LEFT",
+        "facing": "RIGHT",
+        "x": 301
+      },
+      {
+        "id": "forest_troll_elite",
+        "pos": "RIGHT",
+        "facing": "LEFT",
+        "x": 816
+      }
+    ],
+    "reduce:lion-shrine": [
+      {
+        "id": "sage_seraphine",
+        "pos": "FAR_LEFT",
+        "facing": "RIGHT",
+        "x": -9
+      },
+      {
+        "id": "maelor",
+        "pos": "CENTER_LEFT",
+        "facing": "RIGHT",
+        "x": 363
+      },
+      {
+        "id": "shrine_apparition",
+        "pos": "RIGHT",
+        "facing": "LEFT",
+        "x": 872
+      }
+    ]
+  }
+}
