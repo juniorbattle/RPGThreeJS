@@ -84,7 +84,18 @@ Après les répliques de conseils (`advice`), trois étapes nouvelles, puis l'é
 
 **La correction.** Chaque acteur se tient du côté sur lequel ses répliques sont écrites (`side`), un côté que les données portent déjà partout. La compagnie parle à gauche. Les chefs, les rencontres et les ennemis parlent à droite, et Maelor aussi une fois qu'il a trahi. La liste figée ne sert plus qu'en secours, pour une réplique écrite sans côté. Les acteurs de gauche regardent à droite, ceux de droite à gauche. Le groupe de l'acteur suit son côté : `PLAYER_COMPANY` à gauche, `ANTAGONIST` pour Maelor traître. Une scène où toute la compagnie est du même côté garde la répartition habituelle. La limite de quatre acteurs et le découpage en groupes ne changent pas.
 
-**Ce qui reste hors de ce lot.** Les dialogues du Lion ont leurs plans générés et verrouillés (`FinalDialoguePresentation.generated.ts`) : ce lot ne les touche pas. La remarque générale de l'opérateur sur les dialogues statiques « parfois confus et mal établis » demande une revue scène par scène de ces plans-là. C'est une tâche à part, proposée à l'opérateur.
+**Ce qui reste hors de ce lot.** Les dialogues du Lion ont leurs plans générés et verrouillés (`FinalDialoguePresentation.generated.ts`) : ce lot ne les touche pas.
+
+**L'audit des plans du Lion** (`CURRENT FACT`, lecture seule). Pour chaque segment, le script compare la position à l'écran de chaque acteur au côté écrit de ses répliques. Il ne regarde que les segments où les deux côtés sont présents.
+
+Sur 80 segments, 7 sont signalés :
+
+- **Cinq faux positifs.** Ce sont les quatre scènes « pendant ce temps » (`ate_alaric_reports`, `ate_lion_council_doubt`, `ate_serpent_retreat_order`, `ate_serpent_scout_report`) et le refuge final (`final_refuge`). Un même camp y converse, et le côté écrit n'y fait qu'alterner les portraits.
+- **Deux scènes à regarder :**
+  - `mystery_troll_crossing`, segment 1 : le troll est à gauche, tourné vers Séraphine et Maelor, à droite. La scène est inversée, mais l'opposition reste lisible.
+  - `village_choice`, segment 1 : Marian et Kestrel sont à gauche. La villageoise qui demande de l'aide est à droite, à côté du pillard Serpent.
+
+Corriger ces deux plans demande de régénérer le verrou de présentation. Ce choix revient à l'opérateur.
 
 ## Vérification
 
