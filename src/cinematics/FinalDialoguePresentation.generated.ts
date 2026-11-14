@@ -2602,39 +2602,39 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
         "forbiddenSpeakers": [],
         "actors": [
           {
-            "actorId": "shrine_apparition",
+            "actorId": "sage_seraphine",
             "screenPosition": "FAR_LEFT",
             "scale": 1,
             "facing": "RIGHT",
-            "lookTarget": "sage_seraphine",
-            "group": "NEUTRAL",
-            "dramaticSide": "LEFT",
-            "depth": 3,
-            "narrativeRole": "LISTENER",
-            "entryEffect": "FADE_IN"
-          },
-          {
-            "actorId": "sage_seraphine",
-            "screenPosition": "CENTER",
-            "scale": 1,
-            "facing": "FORWARD",
-            "lookTarget": "maelor",
+            "lookTarget": "shrine_apparition",
             "group": "PLAYER_COMPANY",
-            "dramaticSide": "CENTER",
+            "dramaticSide": "LEFT",
             "depth": 3,
             "narrativeRole": "ADVISER",
             "entryEffect": "FADE_IN"
           },
           {
             "actorId": "maelor",
-            "screenPosition": "FAR_RIGHT",
+            "screenPosition": "CENTER_LEFT",
             "scale": 1,
-            "facing": "LEFT",
-            "lookTarget": "sage_seraphine",
+            "facing": "RIGHT",
+            "lookTarget": "shrine_apparition",
             "group": "PLAYER_COMPANY",
-            "dramaticSide": "RIGHT",
+            "dramaticSide": "LEFT",
             "depth": 3,
             "narrativeRole": "ADVISER",
+            "entryEffect": "FADE_IN"
+          },
+          {
+            "actorId": "shrine_apparition",
+            "screenPosition": "RIGHT",
+            "scale": 1,
+            "facing": "LEFT",
+            "lookTarget": "maelor",
+            "group": "NEUTRAL",
+            "dramaticSide": "RIGHT",
+            "depth": 3,
+            "narrativeRole": "LISTENER",
             "entryEffect": "FADE_IN"
           }
         ],
@@ -2645,7 +2645,7 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
             "speakerId": "shrine_apparition",
             "addressedTo": "sage_seraphine",
             "lookTarget": "sage_seraphine",
-            "facing": "RIGHT",
+            "facing": "LEFT",
             "resolution": "OPPOSING_GROUP"
           },
           {
@@ -2653,7 +2653,7 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
             "speakerId": "sage_seraphine",
             "addressedTo": "shrine_apparition",
             "lookTarget": "shrine_apparition",
-            "facing": "LEFT",
+            "facing": "RIGHT",
             "resolution": "DIRECT_RESPONSE"
           },
           {
@@ -2666,7 +2666,7 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
           }
         ],
         "transitionFromPrevious": "VIDEO_TO_TABLEAU",
-        "rationale": "The shrine_reveal_context video ends cleanly; the canonical-sprite tableau is visible before dialogue step 1."
+        "rationale": "The shrine_reveal_context video ends cleanly; the canonical-sprite tableau is visible before dialogue step 1. Corrected (operator, 2026-11-13): the company holds the left, a threatened civilian stands between, the one faced holds the right."
       }
     ]
   },
@@ -2803,39 +2803,39 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
         "forbiddenSpeakers": [],
         "actors": [
           {
-            "actorId": "forest_troll_elite",
+            "actorId": "sage_seraphine",
             "screenPosition": "FAR_LEFT",
             "scale": 1,
             "facing": "RIGHT",
-            "lookTarget": "sage_seraphine",
-            "group": "NEUTRAL",
-            "dramaticSide": "LEFT",
-            "depth": 3,
-            "narrativeRole": "LISTENER",
-            "entryEffect": "FADE_IN"
-          },
-          {
-            "actorId": "sage_seraphine",
-            "screenPosition": "CENTER",
-            "scale": 1,
-            "facing": "FORWARD",
-            "lookTarget": "maelor",
+            "lookTarget": "forest_troll_elite",
             "group": "PLAYER_COMPANY",
-            "dramaticSide": "CENTER",
+            "dramaticSide": "LEFT",
             "depth": 3,
             "narrativeRole": "ADVISER",
             "entryEffect": "FADE_IN"
           },
           {
             "actorId": "maelor",
-            "screenPosition": "FAR_RIGHT",
+            "screenPosition": "CENTER_LEFT",
             "scale": 1,
-            "facing": "LEFT",
-            "lookTarget": "sage_seraphine",
+            "facing": "RIGHT",
+            "lookTarget": "forest_troll_elite",
             "group": "PLAYER_COMPANY",
-            "dramaticSide": "RIGHT",
+            "dramaticSide": "LEFT",
             "depth": 3,
             "narrativeRole": "ADVISER",
+            "entryEffect": "FADE_IN"
+          },
+          {
+            "actorId": "forest_troll_elite",
+            "screenPosition": "RIGHT",
+            "scale": 1,
+            "facing": "LEFT",
+            "lookTarget": "maelor",
+            "group": "ANTAGONIST",
+            "dramaticSide": "RIGHT",
+            "depth": 3,
+            "narrativeRole": "LISTENER",
             "entryEffect": "FADE_IN"
           }
         ],
@@ -2846,7 +2846,7 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
             "speakerId": "forest_troll_elite",
             "addressedTo": "sage_seraphine",
             "lookTarget": "sage_seraphine",
-            "facing": "RIGHT",
+            "facing": "LEFT",
             "resolution": "OPPOSING_GROUP"
           },
           {
@@ -2854,7 +2854,7 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
             "speakerId": "sage_seraphine",
             "addressedTo": "forest_troll_elite",
             "lookTarget": "forest_troll_elite",
-            "facing": "LEFT",
+            "facing": "RIGHT",
             "resolution": "DIRECT_RESPONSE"
           },
           {
@@ -2867,7 +2867,7 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
           }
         ],
         "transitionFromPrevious": "NONE",
-        "rationale": "This focused group preserves every speaker while leaving breathing room between canonical sprites."
+        "rationale": "This focused group preserves every speaker while leaving breathing room between canonical sprites. Corrected (operator, 2026-11-13): the company holds the left, a threatened civilian stands between, the one faced holds the right."
       }
     ]
   },
@@ -6836,7 +6836,7 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
             "screenPosition": "FAR_LEFT",
             "scale": 1,
             "facing": "RIGHT",
-            "lookTarget": "kestrel",
+            "lookTarget": "villageoise",
             "group": "PLAYER_COMPANY",
             "dramaticSide": "LEFT",
             "depth": 3,
@@ -6857,22 +6857,22 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
           },
           {
             "actorId": "villageoise",
-            "screenPosition": "CENTER_RIGHT",
+            "screenPosition": "CENTER",
             "scale": 1,
             "facing": "LEFT",
             "lookTarget": "kestrel",
             "group": "LOCAL_CIVILIAN",
-            "dramaticSide": "RIGHT",
+            "dramaticSide": "CENTER",
             "depth": 3,
             "narrativeRole": "LISTENER",
             "entryEffect": "FADE_IN"
           },
           {
             "actorId": "serpent_raider",
-            "screenPosition": "FAR_RIGHT",
+            "screenPosition": "RIGHT",
             "scale": 1,
             "facing": "LEFT",
-            "lookTarget": "villageoise",
+            "lookTarget": "kestrel",
             "group": "ANTAGONIST",
             "dramaticSide": "RIGHT",
             "depth": 3,
@@ -6935,7 +6935,7 @@ export const FINAL_DIALOGUE_PRESENTATION_PLANS = Object.freeze({
           }
         ],
         "transitionFromPrevious": "VIDEO_TO_TABLEAU",
-        "rationale": "The bois_clair_arrival video ends cleanly; the canonical-sprite tableau is visible before dialogue step 1."
+        "rationale": "The bois_clair_arrival video ends cleanly; the canonical-sprite tableau is visible before dialogue step 1. Corrected (operator, 2026-11-13): the company holds the left, a threatened civilian stands between, the one faced holds the right."
       },
       {
         "id": "village_choice:segment-2",
@@ -18842,7 +18842,19 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
           "actors": [
             {
               "actorId": "marian",
-              "screenPosition": "LEFT",
+              "screenPosition": "FAR_LEFT",
+              "scale": 1,
+              "facing": "RIGHT",
+              "lookTarget": "villageoise",
+              "group": "PLAYER_COMPANY",
+              "dramaticSide": "LEFT",
+              "depth": 3,
+              "narrativeRole": "LISTENER",
+              "entryEffect": "FADE_IN"
+            },
+            {
+              "actorId": "cedric",
+              "screenPosition": "CENTER_LEFT",
               "scale": 1,
               "facing": "RIGHT",
               "lookTarget": "villageoise",
@@ -18854,12 +18866,12 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
             },
             {
               "actorId": "villageoise",
-              "screenPosition": "CENTER_RIGHT",
+              "screenPosition": "CENTER",
               "scale": 1,
               "facing": "LEFT",
-              "lookTarget": "serpent_raider",
+              "lookTarget": "cedric",
               "group": "LOCAL_CIVILIAN",
-              "dramaticSide": "RIGHT",
+              "dramaticSide": "CENTER",
               "depth": 3,
               "narrativeRole": "LISTENER",
               "entryEffect": "FADE_IN"
@@ -18869,20 +18881,8 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
               "screenPosition": "RIGHT",
               "scale": 1,
               "facing": "LEFT",
-              "lookTarget": "villageoise",
+              "lookTarget": "cedric",
               "group": "ANTAGONIST",
-              "dramaticSide": "RIGHT",
-              "depth": 3,
-              "narrativeRole": "LISTENER",
-              "entryEffect": "FADE_IN"
-            },
-            {
-              "actorId": "cedric",
-              "screenPosition": "FAR_RIGHT",
-              "scale": 1,
-              "facing": "LEFT",
-              "lookTarget": "serpent_raider",
-              "group": "RECRUIT_CANDIDATE",
               "dramaticSide": "RIGHT",
               "depth": 3,
               "narrativeRole": "LISTENER",
@@ -18905,7 +18905,7 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
             {
               "actorId": "cedric",
               "kind": "STAGE_OUT",
-              "effect": "SLIDE_OUT_RIGHT",
+              "effect": "SLIDE_OUT_LEFT",
               "reason": "Visual focus changes; the actor remains narratively present unless source dialogue states otherwise."
             }
           ],
@@ -18939,12 +18939,12 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
               "speakerId": "cedric",
               "addressedTo": "serpent_raider",
               "lookTarget": "serpent_raider",
-              "facing": "LEFT",
+              "facing": "RIGHT",
               "resolution": "DIRECT_RESPONSE"
             }
           ],
           "transitionFromPrevious": "VIDEO_TO_TABLEAU",
-          "rationale": "The bois_clair_arrival video ends cleanly; the canonical-sprite tableau is visible before dialogue step 1."
+          "rationale": "The bois_clair_arrival video ends cleanly; the canonical-sprite tableau is visible before dialogue step 1. Corrected (operator, 2026-11-13): the company holds the left, a threatened civilian stands between, the one faced holds the right."
         },
         {
           "id": "village_choice:segment-2",

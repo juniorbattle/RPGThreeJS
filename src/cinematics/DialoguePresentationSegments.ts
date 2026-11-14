@@ -23,7 +23,6 @@ import {
 import type { CinematicReductionClassification } from './CinematicReductionPolicy';
 import { postDemoChapterOf } from '../game/postDemoContent';
 import { postDemoDraftPresentationPlan } from './PostDemoPresentationPlans';
-import { correctLockedStaging } from './LockedStagingCorrections';
 
 export type DialoguePresentationSegmentMode = 'STATIC_TABLEAU';
 export type DialoguePreludeTransition = 'NONE' | 'VIDEO_TO_TABLEAU' | 'TRAVEL_TO_TABLEAU' | 'HOLD_TO_TABLEAU' | 'TABLEAU_RESTAGE';
@@ -100,11 +99,9 @@ export function resolveFinalDialoguePresentationPlan(
     if (!runtimePlan) {
       throw new Error(`No authoritative runtime presentation plan for ${dialogueId} shape '${signature}'.`);
     }
-    // Operator, 2026-11-13: a few locked Lion segments get their authored staging corrections (company left).
-    return correctLockedStaging(runtimePlan);
+    return runtimePlan;
   }
-  const plan = PLANS[dialogueId];
-  return plan ? correctLockedStaging(plan) : plan;
+  return PLANS[dialogueId];
 }
 
 function phaseForSegment(

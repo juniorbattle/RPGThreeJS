@@ -451,6 +451,75 @@ function makeSegments(dialogueId: string, steps: readonly ShapeStep[], media: Me
   return segments;
 }
 
+/**
+ * Staging corrections approved by the operator on 2026-11-13 (« Oui, corrige-les », `docs/reports/maelor-arc-2026-11-13.md`).
+ * The audit of the locked Lion segments found the troll crossing and the shrine mirrored, the creature on the left,
+ * and at Bois-Clair the villager pleading for help on the right beside the Serpent raider (with Cédric there too in
+ * the variant where he speaks for the company). In every shape of the named segments: the company holds the left, a
+ * single civilian under threat stands at the centre between it and the foe, the one it faces holds the right, and
+ * each speaker turns toward the one their line addresses. Until 2026-11-14 `src/cinematics/LockedStagingCorrections.ts`
+ * applied them at runtime. They change no line, cast member or actor count.
+ */
+export const STAGING_CORRECTED_SEGMENTS: readonly string[] = Object.freeze([
+  'village_choice:segment-1',
+  'mystery_troll_crossing:segment-1',
+  'mystery_shrine:segment-1',
+]);
+/** Who speaks for the company in these segments, Cédric included when he takes a companion's line. */
+const CORRECTION_COMPANY: ReadonlySet<string> = new Set(['alistair', 'sage_seraphine', 'maelor', 'marian', 'kestrel', 'elara', 'cedric']);
+const CIVILIAN_GROUPS: ReadonlySet<ActorGroup> = new Set<ActorGroup>(['LOCAL_CIVILIAN', 'REFUGEE']);
+/** Creatures `actorGroup` leaves NEUTRAL (it knows only `forest_troll`) although the company faces them as foes. */
+const CORRECTION_FOES: ReadonlySet<string> = new Set(['forest_troll_elite']);
+const CORRECTION_LEFT_SLOTS: Readonly<Record<number, readonly ScreenPosition[]>> = { 1: ['LEFT'], 2: ['FAR_LEFT', 'CENTER_LEFT'], 3: ['FAR_LEFT', 'LEFT', 'CENTER_LEFT'] };
+const CORRECTION_RIGHT_SLOTS: Readonly<Record<number, readonly ScreenPosition[]>> = { 1: ['RIGHT'], 2: ['CENTER_RIGHT', 'FAR_RIGHT'], 3: ['CENTER_RIGHT', 'RIGHT', 'FAR_RIGHT'] };
+
+function correctSegment(segment: LockSegment): LockSegment {
+  const company = segment.actors.filter((actor) => CORRECTION_COMPANY.has(actor.actorId));
+  const rest = segment.actors.filter((actor) => !CORRECTION_COMPANY.has(actor.actorId));
+  const civilians = rest.filter((actor) => CIVILIAN_GROUPS.has(actor.group));
+  const faced = rest.filter((actor) => !CIVILIAN_GROUPS.has(actor.group));
+  // A single civilian stands between the company and a foe; without a foe, the civilian is the one faced.
+  const between = civilians.length === 1 && faced.length > 0 ? civilians : [];
+  const across = rest.filter((actor) => !between.includes(actor));
+  const leftSlots = CORRECTION_LEFT_SLOTS[company.length];
+  const rightSlots = CORRECTION_RIGHT_SLOTS[across.length];
+  if (!company.length || !across.length || !leftSlots || !rightSlots) {
+    throw new Error(`The staging correction of ${segment.id} no longer applies to its cast ${segment.visibleCast.join(', ')}.`);
+  }
+  const position = new Map<string, ScreenPosition>();
+  company.forEach((actor, index) => position.set(actor.actorId, leftSlots[index]!));
+  between.forEach((actor) => position.set(actor.actorId, 'CENTER'));
+  across.forEach((actor, index) => position.set(actor.actorId, rightSlots[index]!));
+  const nearestAcross = (between[0] ?? across[0])!.actorId;
+  const nearestCompany = company.at(-1)!.actorId;
+  return {
+    ...segment,
+    actors: [...company, ...between, ...across].map((actor) => {
+      const screenPosition = position.get(actor.actorId)!;
+      const onLeft = company.includes(actor);
+      return {
+        ...actor,
+        screenPosition,
+        // The company faces across; the civilian between turns to the company she pleads with, the foe faces it too.
+        facing: onLeft ? 'RIGHT' : 'LEFT',
+        lookTarget: onLeft ? nearestAcross : nearestCompany,
+        group: CORRECTION_COMPANY.has(actor.actorId) ? 'PLAYER_COMPANY' : CORRECTION_FOES.has(actor.actorId) ? 'ANTAGONIST' : actor.group,
+        dramaticSide: dramaticSide(screenPosition),
+      };
+    }),
+    exits: segment.exits.map((exit) => {
+      const at = position.get(exit.actorId);
+      return at && exit.effect.startsWith('SLIDE_OUT_') ? { ...exit, effect: exitingEffect(at) } : exit;
+    }),
+    stepDirections: segment.stepDirections.map((direction) => {
+      const from = position.get(direction.speakerId);
+      if (!from) return direction;
+      return { ...direction, facing: facingToward(from, direction.addressedTo ? position.get(direction.addressedTo) : undefined) };
+    }),
+    rationale: `${segment.rationale} Corrected (operator, 2026-11-13): the company holds the left, a threatened civilian stands between, the one faced holds the right.`,
+  };
+}
+
 function planFor(dialogueId: string, steps: readonly ShapeStep[], media: MediaSource): LockPlan {
   return {
     dialogueId,
@@ -465,7 +534,7 @@ function planFor(dialogueId: string, steps: readonly ShapeStep[], media: MediaSo
     finalFrameCastReferenceOnly: true,
     allowedHoldSpeakers: [],
     forbiddenHoldSpeakers: unique(steps.map((step) => step.actorId)),
-    segments: makeSegments(dialogueId, steps, media),
+    segments: makeSegments(dialogueId, steps, media).map((segment) => STAGING_CORRECTED_SEGMENTS.includes(segment.id) ? correctSegment(segment) : segment),
   };
 }
 
@@ -612,10 +681,13 @@ export function validateDialoguePresentationLock(lock: DialoguePresentationLock)
       const hasCompany = segment.actors.some((actor) => actor.group === 'PLAYER_COMPANY');
       const hasCounterpart = segment.actors.some((actor) => !['PLAYER_COMPANY', 'NEUTRAL'].includes(actor.group));
       if (hasCompany && hasCounterpart) {
+        const foeOnTheRight = segment.actors.some((actor) => actor.dramaticSide === 'RIGHT' && !CIVILIAN_GROUPS.has(actor.group) && actor.group !== 'PLAYER_COMPANY');
         for (const actor of segment.actors) {
+          // A threatened civilian may stand at the centre, between the company and the foe it faces.
+          const between = CIVILIAN_GROUPS.has(actor.group) && actor.dramaticSide === 'CENTER' && foeOnTheRight;
           const misplaced = actor.group === 'PLAYER_COMPANY'
             ? actor.dramaticSide !== 'LEFT'
-            : actor.group !== 'NEUTRAL' && actor.dramaticSide !== 'RIGHT';
+            : actor.group !== 'NEUTRAL' && actor.dramaticSide !== 'RIGHT' && !between;
           if (misplaced) errors.push(`${segment.id} (${label}): ${actor.actorId} (${actor.group}) stands ${actor.dramaticSide}`);
         }
       }
