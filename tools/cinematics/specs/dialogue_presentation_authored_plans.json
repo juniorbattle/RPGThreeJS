@@ -1082,7 +1082,7 @@
       "dialogueId": "lion_finale_judgement",
       "shape": "open@alaric@0|record@alaric@3|lie-rebuked@lion_champion@0|brazen-lie-rebuked@alaric@0|outcome@alaric@0|breaches@lion_champion@0|witnesses@alaric@0|intent@alaric@2",
       "runtime": true,
-      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated.",
+      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated. Line brazen-lie-rebuked readdressed on the operator’s « Oui, corrige-le » (2026-11-13): Maelor is not on stage, so Alaric speaks to whoever he spoke to at record.",
       "plan": {
         "dialogueId": "lion_finale_judgement",
         "originalMode": "CINEMATIC_HOLD",
@@ -1180,10 +1180,10 @@
               {
                 "stepId": "brazen-lie-rebuked",
                 "speakerId": "alaric",
-                "addressedTo": "maelor",
-                "lookTarget": "maelor",
-                "facing": "LEFT",
-                "resolution": "OPPOSING_GROUP"
+                "addressedTo": "lion_champion",
+                "lookTarget": "lion_champion",
+                "facing": "RIGHT",
+                "resolution": "AUTHORED_CONVERSATION_TARGET"
               },
               {
                 "stepId": "outcome",
@@ -1228,7 +1228,7 @@
       "dialogueId": "lion_finale_judgement",
       "shape": "open@alaric@0|record@alaric@3|lie-rebuked@lion_champion@0|brazen-lie-rebuked@alaric@0|outcome@alaric@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
       "runtime": true,
-      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated.",
+      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated. Line brazen-lie-rebuked readdressed on the operator’s « Oui, corrige-le » (2026-11-13): Maelor is not on stage, so Alaric speaks to whoever he spoke to at record.",
       "plan": {
         "dialogueId": "lion_finale_judgement",
         "originalMode": "CINEMATIC_HOLD",
@@ -1327,10 +1327,10 @@
               {
                 "stepId": "brazen-lie-rebuked",
                 "speakerId": "alaric",
-                "addressedTo": "maelor",
-                "lookTarget": "maelor",
-                "facing": "LEFT",
-                "resolution": "OPPOSING_GROUP"
+                "addressedTo": "lion_champion",
+                "lookTarget": "lion_champion",
+                "facing": "RIGHT",
+                "resolution": "AUTHORED_CONVERSATION_TARGET"
               },
               {
                 "stepId": "outcome",
@@ -1383,7 +1383,7 @@
       "dialogueId": "lion_finale_judgement",
       "shape": "open@alaric@0|record@alaric@3|lie-rebuked@lion_champion@0|brazen-lie-rebuked@alaric@0|outcome@alaric@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
       "runtime": true,
-      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated.",
+      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated. Line brazen-lie-rebuked readdressed on the operator’s « Oui, corrige-le » (2026-11-13): Maelor is not on stage, so Alaric speaks to whoever he spoke to at record.",
       "plan": {
         "dialogueId": "lion_finale_judgement",
         "originalMode": "CINEMATIC_HOLD",
@@ -1497,8 +1497,8 @@
               {
                 "stepId": "brazen-lie-rebuked",
                 "speakerId": "alaric",
-                "addressedTo": "maelor",
-                "lookTarget": "maelor",
+                "addressedTo": "sage_seraphine",
+                "lookTarget": "sage_seraphine",
                 "facing": "LEFT",
                 "resolution": "OPPOSING_GROUP"
               },
@@ -2356,7 +2356,7 @@
       "dialogueId": "lion_finale_judgement",
       "shape": "open@alaric@0|record@alaric@3|lie-rebuked@lion_champion@0|brazen-lie-rebuked@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|intent@alaric@2",
       "runtime": true,
-      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated.",
+      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated. Line brazen-lie-rebuked readdressed on the operator’s « Oui, corrige-le » (2026-11-13): Maelor is not on stage, so Alaric speaks to whoever he spoke to at record.",
       "plan": {
         "dialogueId": "lion_finale_judgement",
         "originalMode": "CINEMATIC_HOLD",
@@ -2470,8 +2470,8 @@
               {
                 "stepId": "brazen-lie-rebuked",
                 "speakerId": "alaric",
-                "addressedTo": "maelor",
-                "lookTarget": "maelor",
+                "addressedTo": "sage_seraphine",
+                "lookTarget": "sage_seraphine",
                 "facing": "LEFT",
                 "resolution": "OPPOSING_GROUP"
               },
@@ -2526,7 +2526,7 @@
       "dialogueId": "lion_finale_judgement",
       "shape": "open@alaric@0|record@alaric@3|lie-rebuked@lion_champion@0|brazen-lie-rebuked@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@alaric@0|intent@alaric@2",
       "runtime": true,
-      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated.",
+      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated. Line brazen-lie-rebuked readdressed on the operator’s « Oui, corrige-le » (2026-11-13): Maelor is not on stage, so Alaric speaks to whoever he spoke to at record.",
       "plan": {
         "dialogueId": "lion_finale_judgement",
         "originalMode": "CINEMATIC_HOLD",
@@ -2641,8 +2641,8 @@
               {
                 "stepId": "brazen-lie-rebuked",
                 "speakerId": "alaric",
-                "addressedTo": "maelor",
-                "lookTarget": "maelor",
+                "addressedTo": "sage_seraphine",
+                "lookTarget": "sage_seraphine",
                 "facing": "LEFT",
                 "resolution": "OPPOSING_GROUP"
               },
@@ -2705,7 +2705,7 @@
       "dialogueId": "lion_finale_judgement",
       "shape": "open@alaric@0|record@alaric@3|lie-rebuked@lion_champion@0|brazen-lie-rebuked@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@alaric@2|intent@alaric@2",
       "runtime": true,
-      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated.",
+      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated. Line brazen-lie-rebuked readdressed on the operator’s « Oui, corrige-le » (2026-11-13): Maelor is not on stage, so Alaric speaks to whoever he spoke to at record.",
       "plan": {
         "dialogueId": "lion_finale_judgement",
         "originalMode": "CINEMATIC_HOLD",
@@ -2820,8 +2820,8 @@
               {
                 "stepId": "brazen-lie-rebuked",
                 "speakerId": "alaric",
-                "addressedTo": "maelor",
-                "lookTarget": "maelor",
+                "addressedTo": "sage_seraphine",
+                "lookTarget": "sage_seraphine",
                 "facing": "LEFT",
                 "resolution": "OPPOSING_GROUP"
               },
@@ -2884,7 +2884,7 @@
       "dialogueId": "lion_finale_judgement",
       "shape": "open@alaric@0|record@alaric@3|lie-rebuked@lion_champion@0|brazen-lie-rebuked@alaric@0|outcome@alaric@0|merits@sage_seraphine@0|breaches@lion_champion@0|witnesses@alaric@0|shadow@sage_seraphine@0|intent@alaric@2",
       "runtime": true,
-      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated.",
+      "origin": "2fb6988c (2026-09-18, Narrative Polish Pass): the bluff steps were inserted into this variant by hand, not regenerated. Line brazen-lie-rebuked readdressed on the operator’s « Oui, corrige-le » (2026-11-13): Maelor is not on stage, so Alaric speaks to whoever he spoke to at record.",
       "plan": {
         "dialogueId": "lion_finale_judgement",
         "originalMode": "CINEMATIC_HOLD",
@@ -2999,8 +2999,8 @@
               {
                 "stepId": "brazen-lie-rebuked",
                 "speakerId": "alaric",
-                "addressedTo": "maelor",
-                "lookTarget": "maelor",
+                "addressedTo": "sage_seraphine",
+                "lookTarget": "sage_seraphine",
                 "facing": "LEFT",
                 "resolution": "OPPOSING_GROUP"
               },

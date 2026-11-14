@@ -646,7 +646,8 @@ export function buildDialoguePresentationLock(reference: DialoguePresentationLoc
 
 /**
  * The checks the lock must pass before it is written. Returns one message per failure. Every plan covers its steps in
- * order, shows each speaker before their line and at most four actors. A generated plan also turns each speaker
+ * order, shows each speaker before their line and at most four actors, and no line addresses an actor who is not on
+ * stage. A generated plan also turns each speaker
  * toward their addressee and keeps the company on the left, the one it faces on the right; the plans written by hand
  * are kept as they were reviewed.
  */
@@ -669,6 +670,11 @@ export function validateDialoguePresentationLock(lock: DialoguePresentationLock)
         const speaker = steps.find((step) => step.id === stepId)?.actorId;
         if (!speaker || !segment.visibleCast.includes(speaker) || !segment.allowedSpeakers.includes(speaker)) {
           errors.push(`${segment.id} (${label}): speaker of step ${stepId} is not visible`);
+        }
+      }
+      for (const direction of segment.stepDirections) {
+        for (const target of [direction.addressedTo, direction.lookTarget]) {
+          if (target && !segment.visibleCast.includes(target)) errors.push(`${segment.id} (${label}): step ${direction.stepId} addresses ${target}, who is not on stage`);
         }
       }
       if (written.has(label)) continue;

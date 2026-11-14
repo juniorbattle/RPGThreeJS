@@ -12365,10 +12365,10 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
             {
               "stepId": "brazen-lie-rebuked",
               "speakerId": "alaric",
-              "addressedTo": "maelor",
-              "lookTarget": "maelor",
-              "facing": "LEFT",
-              "resolution": "OPPOSING_GROUP"
+              "addressedTo": "lion_champion",
+              "lookTarget": "lion_champion",
+              "facing": "RIGHT",
+              "resolution": "AUTHORED_CONVERSATION_TARGET"
             },
             {
               "stepId": "outcome",
@@ -12506,10 +12506,10 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
             {
               "stepId": "brazen-lie-rebuked",
               "speakerId": "alaric",
-              "addressedTo": "maelor",
-              "lookTarget": "maelor",
-              "facing": "LEFT",
-              "resolution": "OPPOSING_GROUP"
+              "addressedTo": "lion_champion",
+              "lookTarget": "lion_champion",
+              "facing": "RIGHT",
+              "resolution": "AUTHORED_CONVERSATION_TARGET"
             },
             {
               "stepId": "outcome",
@@ -12670,8 +12670,8 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
             {
               "stepId": "brazen-lie-rebuked",
               "speakerId": "alaric",
-              "addressedTo": "maelor",
-              "lookTarget": "maelor",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
               "facing": "LEFT",
               "resolution": "OPPOSING_GROUP"
             },
@@ -13613,8 +13613,8 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
             {
               "stepId": "brazen-lie-rebuked",
               "speakerId": "alaric",
-              "addressedTo": "maelor",
-              "lookTarget": "maelor",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
               "facing": "LEFT",
               "resolution": "OPPOSING_GROUP"
             },
@@ -13778,8 +13778,8 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
             {
               "stepId": "brazen-lie-rebuked",
               "speakerId": "alaric",
-              "addressedTo": "maelor",
-              "lookTarget": "maelor",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
               "facing": "LEFT",
               "resolution": "OPPOSING_GROUP"
             },
@@ -13951,8 +13951,8 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
             {
               "stepId": "brazen-lie-rebuked",
               "speakerId": "alaric",
-              "addressedTo": "maelor",
-              "lookTarget": "maelor",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
               "facing": "LEFT",
               "resolution": "OPPOSING_GROUP"
             },
@@ -14124,8 +14124,8 @@ export const FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS = Object.freeze({
             {
               "stepId": "brazen-lie-rebuked",
               "speakerId": "alaric",
-              "addressedTo": "maelor",
-              "lookTarget": "maelor",
+              "addressedTo": "sage_seraphine",
+              "lookTarget": "sage_seraphine",
               "facing": "LEFT",
               "resolution": "OPPOSING_GROUP"
             },

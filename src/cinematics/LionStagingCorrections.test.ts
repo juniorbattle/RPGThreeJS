@@ -2,12 +2,14 @@
  * The three Lion segments restaged on the operator's « Oui, corrige-les » (2026-11-13) keep exactly the placement
  * validated then. Since `6b67c458` the generator writes it into the lock (`STAGING_CORRECTED_SEGMENTS` in
  * `tools/cinematics/dialoguePresentationLock.ts`); the game shows the lock as written, with no runtime correction.
+ * The same night, « Oui, corrige-le » readdressed Alaric's rebuke of a brazen lie where Maelor is not on stage.
  */
 import { describe, expect, it } from 'vitest';
 import { FINAL_DIALOGUE_PRESENTATION_PLANS, FINAL_DIALOGUE_RUNTIME_PRESENTATION_PLANS } from './FinalDialoguePresentation.generated';
 import { resolveFinalDialoguePresentationPlan, type FinalDialoguePresentationPlan, type FinalDialoguePresentationSegment } from './DialoguePresentationSegments';
 import { STAGING_CORRECTED_SEGMENTS } from '../../tools/cinematics/dialoguePresentationLock';
 import { resolveGameDialogue } from '../game/contextualDialogueContent';
+import { createRuntimeDialogueReachability } from '../game/RuntimeDialogueReachability';
 import { createInitialState } from '../game/store';
 import type { GameState } from '../game/types';
 
@@ -108,6 +110,28 @@ describe('the Lion segments restaged on the operator’s « Oui, corrige-les »'
     for (const id of ['village_choice', 'mystery_troll_crossing', 'mystery_shrine']) {
       expect(resolveFinalDialoguePresentationPlan(id)).toBe(canonical[id]);
     }
+  });
+
+  it('turns Alaric toward someone on stage when he rebukes a brazen lie (« Oui, corrige-le »)', () => {
+    const rebukes = createRuntimeDialogueReachability().variants
+      .filter((variant) => variant.dialogueId === 'lion_finale_judgement' && variant.sequence.steps.some((step) => step.id === 'brazen-lie-rebuked'))
+      .map((variant) => resolveFinalDialoguePresentationPlan(variant.dialogueId, variant.sequence)!.segments[0]!);
+    expect(rebukes.length).toBeGreaterThanOrEqual(7);
+    const withoutMaelor = rebukes.filter((segment) => !segment.visibleCast.includes('maelor'));
+    expect(withoutMaelor).toHaveLength(7);
+    for (const segment of rebukes) {
+      const rebuke = segment.stepDirections.find((direction) => direction.stepId === 'brazen-lie-rebuked')!;
+      expect(segment.visibleCast).toContain(rebuke.addressedTo);
+    }
+    // Maelor absent: Alaric speaks to whoever he spoke to when he offered the choice (`record`), and faces them.
+    for (const segment of withoutMaelor) {
+      const rebuke = segment.stepDirections.find((direction) => direction.stepId === 'brazen-lie-rebuked')!;
+      const record = segment.stepDirections.find((direction) => direction.stepId === 'record')!;
+      expect([rebuke.addressedTo, rebuke.lookTarget, rebuke.facing]).toEqual([record.addressedTo, record.lookTarget, record.facing]);
+    }
+    expect(withoutMaelor.map((segment) => segment.stepDirections.find((direction) => direction.stepId === 'brazen-lie-rebuked')!)
+      .map((direction) => `${direction.addressedTo}/${direction.facing}`).sort())
+      .toEqual(['lion_champion/RIGHT', 'lion_champion/RIGHT', 'sage_seraphine/LEFT', 'sage_seraphine/LEFT', 'sage_seraphine/LEFT', 'sage_seraphine/LEFT', 'sage_seraphine/LEFT']);
   });
 
   it('marks only these segments as corrected in the lock', () => {
