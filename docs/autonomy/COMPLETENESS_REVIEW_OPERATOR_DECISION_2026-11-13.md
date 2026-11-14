@@ -147,3 +147,7 @@ L'opérateur a rempli la fiche de la session de récit (https://claude.ai/artifa
 
 - **Les 13 retouches sont écrites mot à mot dans le jeu** (573732a0). Le test `src/campaign/plateaux/narrativePass.test.ts` les fixe. `narrative:validate` passe.
 - **Poses de repos hors combat, étendues au registre de compagnie et au portrait de celui qui parle.** La session de combat a demandé s'il fallait aussi les utiliser dans ces deux écrans. L'opérateur a répondu « Oui, les deux ». Les poses y sont à la stature et au cadrage de la compagnie ; le combat garde les maîtres (187f5072).
+
+## Libellé de la dissipation (même jour)
+
+L'opérateur a reçu la question « Quand Serment rompu retire les protections d'un héros : « PURIFIÉ » ou « DISSIPÉ » ? » ; il a répondu « Passer à DISSIPÉ ». Une dissipation qui retire des protections affiche désormais « DISSIPÉ », dans la couleur d'un état néfaste. Un nettoyage d'altérations garde « PURIFIÉ » en vert. La règle porte sur le type de dissipation, pas sur la compétence : Casse-Faille, qui retire elle aussi les protections de ses cibles, affiche donc « DISSIPÉ » comme Serment rompu. Aucun son ni aucune règle ne change. Les tests de source du moteur fixent le libellé ; l'affichage n'a pas été vu en combat dans le navigateur.

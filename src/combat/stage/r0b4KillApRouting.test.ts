@@ -260,7 +260,7 @@ describe('R0B.4 P1 tactical feedback preservation', () => {
   });
 
   it('dispel floatText is guarded by if(!G.stage) — allows tactical feedback', () => {
-    expect(runtimeSource).toContain("if(!G.stage)floatText(t,n?'PURIFIÉ'");
+    expect(runtimeSource).toContain("if(!G.stage)floatText(t,n?dispelLabel:'—'");
   });
 
   it('cure floatText is guarded by if(!G.stage) — allows tactical feedback', () => {

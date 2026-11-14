@@ -2159,7 +2159,9 @@ async function executeActionCore(u,spec,cx,cz){ if(spec.item&&itemsForbidden())r
       } else if(eff.kind==='revive'){
         for(const t of etgts){ if(!t.alive&&t.downed)reviveUnit(t,Math.round(t.maxhp*(spec.power||0.5))); }
       } else if(eff.kind==='dispel'){
-        for(const t of etgts){ let n=0; for(const s in t.statuses){ const neg=isNegative(s),pos=!neg; if((eff.dispelType==='negative'&&neg)||(eff.dispelType==='positive'&&pos)||(eff.dispelType==='all')){ delete t.statuses[s]; n++; } } if(n)combatCue('support','cleanse',t.id); if(!G.stage)floatText(t,n?'PURIFIÉ':'—',n?'#7ed957':'#cfd6e6',true); refreshPanel(t); }
+        // Removing protections reads DISSIPÉ, in the colour of a harmful status; cleansing ailments stays PURIFIÉ (OD-2026-11-13-F).
+        const stripped=eff.dispelType==='positive', dispelLabel=stripped?'DISSIPÉ':'PURIFIÉ', dispelColor=stripped?'#ff9a4a':'#7ed957';
+        for(const t of etgts){ let n=0; for(const s in t.statuses){ const neg=isNegative(s),pos=!neg; if((eff.dispelType==='negative'&&neg)||(eff.dispelType==='positive'&&pos)||(eff.dispelType==='all')){ delete t.statuses[s]; n++; } } if(n)combatCue('support','cleanse',t.id); if(!G.stage)floatText(t,n?dispelLabel:'—',n?dispelColor:'#cfd6e6',true); refreshPanel(t); }
       } else if(eff.kind==='lifesteal'){
         // processed after all damage effects
       } else if(eff.kind==='ap_restore'){

@@ -21,7 +21,11 @@ describe('R0B.3 P0 feedback deduplication', () => {
   });
 
   it('dispel effect suppresses floatText when G.stage is true', () => {
-    expect(runtimeSource).toContain("if(!G.stage)floatText(t,n?'PURIFIÉ'");
+    expect(runtimeSource).toContain("if(!G.stage)floatText(t,n?dispelLabel:'—'");
+  });
+
+  it('a dispel that strips protections reads DISSIPÉ, a cleanse stays PURIFIÉ (OD-2026-11-13-F)', () => {
+    expect(runtimeSource).toContain("const stripped=eff.dispelType==='positive', dispelLabel=stripped?'DISSIPÉ':'PURIFIÉ'");
   });
 
   it('cure action suppresses floatText when G.stage is true', () => {
