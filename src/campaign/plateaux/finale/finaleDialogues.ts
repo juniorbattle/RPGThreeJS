@@ -101,7 +101,8 @@ export const FINALE_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
       { expression: 'stern', effects: [flag('finaleTournamentEntered')] }),
     say('2', KESTREL, 'Éclaireuse', 'Le Corbeau, le Loup et le Phénix ont envoyé leurs champions. Le Serpent attend en finale, comme toujours.', null),
     say('3', SERAPHINE, 'Sage', 'Ne laissez pas l’orgueil choisir à votre place. Ce Tournoi est une épreuve de force, mais aussi de sagesse. Et quelque chose de sombre plane sur cette arène : je le sens depuis que nous avons passé les portes.', null, { expression: 'mystical' }),
-    say('4', MAELOR, 'Intendant', 'Écrasez-les tous, sans pitié. Personne ne se souvient de la manière, seulement de la victoire.', null),
+    // Maelor's arc (I5), approved word for word by the operator on 2026-11-13: one word says he was waiting for this.
+    say('4', MAELOR, 'Intendant', 'Enfin. Écrasez-les tous, sans pitié. Personne ne se souvient de la manière, seulement de la victoire.', null),
     say('5', ALISTAIR, 'Clan sans terre', 'Nous nous souviendrons, nous.', null, { expression: 'stern' }),
   ])),
 ]);
@@ -172,7 +173,8 @@ const FINALE_STATIC_TAIL: readonly DialogueSequence[] = Object.freeze([
     say('2', SERAPHINE, 'Sage', 'Ce qui se tient derrière lui n’a aucun nom que je connaisse. Il faudra l’abattre quand même.', null, { expression: 'fearful' }),
     // Last narrative pass (A3, A4), approved word for word on 2026-11-13: Maelor's question answered, his last words his own.
     say('2b', MARIAN, 'Soigneuse', 'Ils nous servaient à refermer ce que tu ouvres.', null, { expression: 'stern' }),
-    say('3', ALISTAIR, 'Clan sans terre', 'Tu as marché avec nous depuis le début, Maelor. Ici, ça s’arrête.', null, { expression: 'stern' }),
+    // Maelor's arc (R2), approved word for word by the operator on 2026-11-13: Alistair answers the confession.
+    say('3', ALISTAIR, 'Clan sans terre', 'Tu nous as fait tomber, puis tu as marché avec nous, Maelor. Ici, ça s’arrête.', null, { expression: 'stern' }),
     say('4', MAELOR_TRAITOR, 'Maelor', 'Alors venez. Je compterai ce qu’il restera de vous.', null, { expression: 'hostile' }),
   ])),
   scene('finale_breach_aftermath', 'serpent_general_aftermath', 'La brèche vacille', chained([
@@ -217,17 +219,19 @@ function humiliatedChampions(flags: Readonly<Record<string, boolean>>): string |
 
 /**
  * OD-2026-11-13-F (N2), lines approved word for word on 2026-11-13: Bois-Clair, where the Lion followed Maelor's
- * counsel, the coffers taken through the low gate and the witnesses silenced; none when the Lion did neither.
+ * counsel, the coffers taken through the low gate and the witnesses silenced; none when the Lion did neither. Maelor's
+ * arc (R1), approved the same day: « À Bois-Clair déjà » instead of « Tout a commencé à Bois-Clair », since the
+ * confession that follows puts the beginning at the clan's fall.
  */
 function boisClairLine(flags: Readonly<Record<string, boolean>>): string | null {
   if (flags.missionGreed && flags.silencedWitnesses) {
-    return 'Tout a commencé à Bois-Clair. Je vous ai dit que la porte basse était notre bourse, et vous avez emporté les coffres. Puis, quand les survivants ont voulu parler, vous leur avez imposé le silence.';
+    return 'À Bois-Clair déjà, je vous ai dit que la porte basse était notre bourse, et vous avez emporté les coffres. Puis, quand les survivants ont voulu parler, vous leur avez imposé le silence.';
   }
   if (flags.missionGreed) {
-    return 'Tout a commencé à Bois-Clair. Je vous ai dit que la porte basse était notre bourse, et vous avez emporté les coffres pendant que les captifs partaient au nord.';
+    return 'À Bois-Clair déjà, je vous ai dit que la porte basse était notre bourse, et vous avez emporté les coffres pendant que les captifs partaient au nord.';
   }
   if (flags.silencedWitnesses) {
-    return 'Tout a commencé à Bois-Clair. Quand les survivants ont voulu parler, il n’y avait plus de silence à acheter : vous leur avez imposé le silence.';
+    return 'À Bois-Clair déjà, quand les survivants ont voulu parler, il n’y avait plus de silence à acheter : vous leur avez imposé le silence.';
   }
   return null;
 }
@@ -252,8 +256,13 @@ function finaleBetrayal(state: Readonly<GameState>): DialogueSequence {
     say('open', KESTREL, 'Éclaireuse', 'Le champion du Serpent tombe… et Maelor s’avance au milieu de l’arène, un artefact à la main.', 'reveal', { expression: 'fearful' }),
     say('reveal', MAELOR_TRAITOR, 'Trahison', 'Vous avez cherché les Ombres Silencieuses dans chaque clan. Elles marchaient avec vous depuis le premier Sceau.', boisClair ? 'boisclair' : 'advice', { expression: 'hostile' }),
     ...(boisClair ? [say('boisclair', MAELOR_TRAITOR, 'Bois-Clair', boisClair, 'advice', { expression: 'hostile' })] : []),
-    say('advice', MAELOR_TRAITOR, 'Conseils', adviceLine, 'breach', { expression: 'hostile' }),
-    say('breach', MAELOR_TRAITOR, 'La brèche', 'Regardez.', 'champion', { expression: 'hostile', effects: [flag('finaleBreachOpened')] }),
+    say('advice', MAELOR_TRAITOR, 'Conseils', adviceLine, 'why', { expression: 'hostile' }),
+    // Maelor's arc (C1), approved word for word by the operator on 2026-11-13: his whole plan, the fall he caused, the
+    // clan he joined and the Seals as its worth and as the key of the sealed rift. The breach opens on the same step.
+    say('why', ALISTAIR, 'Clan sans terre', 'Pourquoi nous ?', 'fall', { expression: 'stern' }),
+    say('fall', MAELOR_TRAITOR, 'La chute', 'Parce qu’il me fallait un clan à terre. Votre chute, c’est moi : j’ai soufflé à chaque clan ce qu’il voulait croire de vous, et vos alliés ont rompu leurs serments l’un après l’autre.', 'join', { expression: 'hostile' }),
+    say('join', MAELOR_TRAITOR, 'Le plan', 'Puis je suis venu tenir vos comptes. Un clan déchu fait tout pour se relever ; je n’avais qu’à faire des Sceaux la mesure de votre valeur. Aucun seigneur ne me les aurait remis. À vous, ils les ont donnés un à un.', 'breach', { expression: 'hostile' }),
+    say('breach', MAELOR_TRAITOR, 'La brèche', 'Vos Sceaux : votre réussite, votre valeur… et la clé de la faille où les démons sont scellés. Regardez.', 'champion', { expression: 'hostile', effects: [flag('finaleBreachOpened')] }),
     say('champion', SERAPHINE, 'Sage', 'La brèche… Elle s’ouvre au cœur de l’arène. Le champion du Serpent se relève, et ce n’est plus un homme.', 'flee', { expression: 'fearful' }),
     say('flee', MAELOR_TRAITOR, 'Maelor', 'Nous nous reverrons au cœur de la brèche.', 'alistair', { expression: 'hostile' }),
     say('alistair', ALISTAIR, 'Clan sans terre', 'Maelor !', 'marian', { expression: 'stern' }),
@@ -323,8 +332,9 @@ function finaleLastVigil(state: Readonly<GameState>): DialogueSequence {
     flags.dragonShadowEvidence ? 'l’éclat de la souillure du Cristal' : null,
     flags.scorpionShadowEvidence ? 'la page souillée du codex' : null,
   ].filter((item): item is string => item !== null);
+  // Maelor's arc (R3), approved word for word on 2026-11-13: after the confession, he led them (« menés », not « suivis »).
   const evidenceLine = evidence.length
-    ? `Voici ce que nous savons des Ombres : ${listFrench(evidence)}. La même marque, partout où Maelor nous a suivis.`
+    ? `Voici ce que nous savons des Ombres : ${listFrench(evidence)}. La même marque, partout où Maelor nous a menés.`
     : 'Nous n’avons gardé aucune preuve des Ombres. Il faudra comprendre la brèche en y entrant.';
   const civilians = flags.finaleCiviliansProtected
     ? 'Des nouvelles des portes : les civils que vous avez couverts dans l’arène ont trouvé refuge hors des murs.'

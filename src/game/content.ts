@@ -314,7 +314,8 @@ const rawDialogues = [
         actorId: 'alaric',
         expression: 'stern',
         tag: 'Conditions du Lion',
-        text: 'Je ne demande pas une parade. Ouvrez la route, atteignez le village et revenez répondre de vos décisions. Mes éclaireurs, les survivants et le Sceau lui-même distingueront un secours d’un pillage opportuniste.',
+        // Maelor's arc (I1), approved word for word by the operator on 2026-11-13: the Lion remembers a strange fall.
+        text: 'Je me souviens de votre chute. Vos alliés ont rompu leurs serments l’un après l’autre, comme si on leur avait soufflé les mêmes mots. Ici, je ne demande pas une parade : revenez répondre de vos décisions. Mes éclaireurs, les survivants et le Sceau lui-même distingueront un secours d’un pillage.',
         side: 'right',
         next: '1b',
         effects: [],
@@ -350,7 +351,8 @@ const rawDialogues = [
         actorId: 'maelor',
         expression: 'neutral',
         tag: 'Intendant',
-        text: 'Un serment ne nourrit pas une compagnie. Si Alaric exige que nous sauvions son village, demander de quoi tenir la route n’est pas une offense : c’est dire honnêtement ce que notre clan peut encore payer.',
+        // Maelor's arc (I1), approved word for word on 2026-11-13: he sweeps the old oaths aside.
+        text: 'Laissons les vieux serments où ils sont : ils ne nourrissent pas une compagnie. Si Alaric exige que nous sauvions son village, demander de quoi tenir la route n’est pas une offense : c’est dire honnêtement ce que notre clan peut encore payer.',
         side: 'left',
         effects: [],
         choices: [

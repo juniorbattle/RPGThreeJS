@@ -150,7 +150,8 @@ export const BEAR_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze(
     say('3', MAELOR, 'Intendant', 'Deux Sceaux, bientôt. Plus nous en portons, plus les clans nous regardent comme une menace. Il faudra un jour décider à quoi ils nous servent vraiment.'),
   ])),
   scene('bear_master_spy_aftermath', 'lion_finale_judgement', 'Le Maître Espion vaincu', chained([
-    say('1', SPY, 'Vaincu', 'Le minerai… n’en était qu’une part. Ceux que nous servons ont besoin de bien d’autres choses, et vos Sceaux n’y changeront rien.', null, { expression: 'wounded' }),
+    // Maelor's arc (R4), approved word for word by the operator on 2026-11-13: the Seals are what the Shadows need.
+    say('1', SPY, 'Vaincu', 'Le minerai… n’en était qu’une part. Ceux que nous servons ont besoin de bien d’autres choses. De vos Sceaux, par exemple.', null, { expression: 'wounded' }),
     say('2', SERAPHINE, 'Sage', 'Les Ombres, encore, derrière un autre clan. Le Corbeau n’était qu’une main de plus.', null, { expression: 'mystical' }),
   ])),
   scene('bear_trial_aftermath', 'lion_finale_judgement', 'Le Sceau arraché', chained([
@@ -180,7 +181,8 @@ function bearAudience(state: Readonly<GameState>): DialogueSequence {
     say('request', BORIN, 'Requête', 'Repoussez le Corbeau hors des galeries, et le Sceau de l’Ours entendra votre nom. Échouez, ou servez-vous en chemin, et la montagne s’en souviendra.', 'seraphine', { expression: 'stern' }),
     say('seraphine', SERAPHINE, 'Sage', 'Ces mines ne sont pas qu’un trésor, Ancien Borin. Si le Corbeau creuse au-delà de ce que la montagne supporte, l’équilibre de ces vallées tombera avec ses galeries. Avant de tirer l’épée, sachons pourquoi il creuse si profond.', 'maelor', { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', 'Ou laissons l’Ours et le Corbeau s’user l’un contre l’autre. Deux clans affaiblis devant des mines ouvertes… Je dis seulement ce que tout le monde pensera en voyant ces galeries.', 'alistair'),
-    say('alistair', MARIAN, 'Clan sans terre', 'Nous ne sommes pas venus vider la montagne d’un autre clan.', 'mandate', { expression: 'stern' }),
+    // Maelor's arc (I2), approved word for word by the operator on 2026-11-13: his advice is how the clan fell.
+    say('alistair', MARIAN, 'Clan sans terre', 'Nous ne sommes pas venus vider la montagne d’un autre clan. Des clans dressés l’un contre l’autre : c’est ainsi que le nôtre est tombé.', 'mandate', { expression: 'stern' }),
     say('mandate', BORIN, 'Mandat', 'Alors, étrangers. Défendrez-vous les mines de l’Ours ?', null, { expression: 'stern', choices: [
       choice('Défendre les mines sans condition.', 'accepted', [flag('bearMandateHonour'), reputation(1)], ['Parole claire devant l’Ours', 'Borin observe votre conduite']),
       choice('Accepter, contre une part du minerai repris.', 'share', [flag('bearMandateOreShare'), gold(50), reputation(-1)], ['50 or d’avance', 'Chaque part réclamée pèsera dans le jugement']),

@@ -185,7 +185,9 @@ function dragonAudience(state: Readonly<GameState>): DialogueSequence {
     say('request', KAELEN, 'Requête', 'Le Dragon ne demande pas d’aide ; il en accepte, quand elle est digne. Rapportez le Cristal, et le Sceau du Dragon entendra votre nom.', 'seraphine', { expression: 'stern' }),
     say('seraphine', SERAPHINE, 'Sage', 'Un artefact qui tient des montagnes ne se manie pas sans danger, Ancien Kaelen. Et un clan qui le vole sait peut-être ce qu’il fait, ou quelqu’un le sait pour lui. Comprenons le Loup avant de le frapper.', 'maelor', { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', 'Ou laissons le Loup et le Dragon s’user l’un contre l’autre. Le Cristal ira à qui le tiendra à la fin… Je dis seulement ce que chacun pense en regardant ces pics.', 'alistair'),
-    say('alistair', ELARA, 'Clan sans terre', 'Nous ne sommes pas venus vendre l’équilibre d’un autre clan.', 'mandate', { expression: 'stern' }),
+    say('alistair', ELARA, 'Clan sans terre', 'Nous ne sommes pas venus vendre l’équilibre d’un autre clan.', 'seal', { expression: 'stern' }),
+    // Maelor's arc (I3), approved word for word by the operator on 2026-11-13: what a Seal opens, it can close.
+    say('seal', KAELEN, 'Le Sceau', 'Un Sceau ne se vend pas non plus. Ce qu’il ouvre, il peut aussi le refermer, et le Dragon veille à qui il le confie.', 'mandate', { expression: 'stern' }),
     say('mandate', KAELEN, 'Mandat', 'Alors, étrangers. Rapporterez-vous le Cristal d’Écho ?', null, { expression: 'stern', choices: [
       choice('Rapporter le Cristal sans rien exiger.', 'accepted', [flag('dragonMandateHonour'), reputation(1)], ['Parole claire devant le Dragon', 'Kaelen observe votre conduite']),
       choice('Exiger un prix pour notre aide.', 'price', [flag('dragonMandatePrice'), gold(60), reputation(-1)], ['60 or d’avance', 'Le prix pèsera dans le jugement']),

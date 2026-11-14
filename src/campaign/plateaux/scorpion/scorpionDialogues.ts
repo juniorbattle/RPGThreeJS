@@ -191,7 +191,10 @@ function scorpionAudience(state: Readonly<GameState>): DialogueSequence {
       : 'Trois Sceaux vous ont menés jusqu’ici. Ce qu’ils valent, mes érudits le consigneront.';
   return scene('scorpion_audience', 'lion_briefing', 'Audience du Grand Inquisiteur', [
     say('open', INQUISITOR, 'Grand Inquisiteur', 'Le Clan du Phénix garde dans son temple un codex prophétique, plus ancien que nos deux clans. Il pourrait révéler la vraie nature des Ombres Silencieuses.', 'seals', { expression: 'stern' }),
-    say('seals', INQUISITOR, 'Trois Sceaux', sealsLine, 'request', { expression: 'stern' }),
+    say('seals', INQUISITOR, 'Trois Sceaux', sealsLine, 'archives', { expression: 'stern' }),
+    // Maelor's arc (I4), approved word for word by the operator on 2026-11-13: the archives doubt the fall, Maelor dodges.
+    say('archives', INQUISITOR, 'Archives', 'Nos archives gardent aussi la chute de votre clan. Vos alliés se sont tous retournés contre vous, sur la foi des mêmes rumeurs. Le Scorpion n’a jamais cru à ce hasard-là.', 'dodge', { expression: 'stern' }),
+    say('dodge', MAELOR, 'Intendant', 'Les archives gardent ce qu’on leur raconte, Grand Inquisiteur. Parlons plutôt du codex.', 'request'),
     say('request', INQUISITOR, 'Requête', 'Le Phénix est trop idéaliste pour comprendre ce qu’il garde. Il prie devant ses flammes purificatrices et laisse dormir le seul texte qui pourrait nous armer. Rapportez-moi ce codex, et le Sceau du Scorpion entendra votre nom.', 'seraphine', { expression: 'stern' }),
     say('seraphine', SERAPHINE, 'Sage', 'Un savoir interdit l’est rarement sans raison, Grand Inquisiteur. Et un texte lu par un seul clan ne dit que ce que ce clan veut y lire. Cherchons la vérité par nous-mêmes avant de la confier à qui que ce soit.', 'maelor', { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', 'Ou lisons ce codex avant tout le monde. Un savoir que tous les clans convoitent vaut plus que n’importe quel Sceau, pour qui sait à qui le vendre… Je dis seulement ce que chacun pense devant ce marché.', 'alistair'),

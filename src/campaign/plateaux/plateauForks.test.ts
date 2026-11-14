@@ -190,9 +190,10 @@ describe('both branches of each fork, played end to end by the QA driver (OD-202
 
 describe('Maelor recalls Bois-Clair at the betrayal (OD-2026-11-13-F, N2)', () => {
   const betrayal = (flags: Record<string, boolean>) => sequenceOf('finale_betrayal', withFlags(flags));
-  const BOTH = 'Tout a commencé à Bois-Clair. Je vous ai dit que la porte basse était notre bourse, et vous avez emporté les coffres. Puis, quand les survivants ont voulu parler, vous leur avez imposé le silence.';
-  const GREED = 'Tout a commencé à Bois-Clair. Je vous ai dit que la porte basse était notre bourse, et vous avez emporté les coffres pendant que les captifs partaient au nord.';
-  const SILENCE = 'Tout a commencé à Bois-Clair. Quand les survivants ont voulu parler, il n’y avait plus de silence à acheter : vous leur avez imposé le silence.';
+  // Maelor's arc (R1), approved word for word on 2026-11-13: « À Bois-Clair déjà » instead of « Tout a commencé à Bois-Clair ».
+  const BOTH = 'À Bois-Clair déjà, je vous ai dit que la porte basse était notre bourse, et vous avez emporté les coffres. Puis, quand les survivants ont voulu parler, vous leur avez imposé le silence.';
+  const GREED = 'À Bois-Clair déjà, je vous ai dit que la porte basse était notre bourse, et vous avez emporté les coffres pendant que les captifs partaient au nord.';
+  const SILENCE = 'À Bois-Clair déjà, quand les survivants ont voulu parler, il n’y avait plus de silence à acheter : vous leur avez imposé le silence.';
 
   it('says the approved line for each Lion fact, between the reveal and the advice, and nothing when the Lion did neither', () => {
     for (const [flags, text] of [
