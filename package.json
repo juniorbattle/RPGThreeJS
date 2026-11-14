@@ -12,6 +12,7 @@
     "contracts:validate": "node tools/contracts/validate-contracts.mjs",
     "test:r7-simulation": "vite-node tools/r7/run-r7-simulation.ts",
     "cinematics:validate-narrative-staging": "vite-node tools/cinematics/validate_narrative_dialogue_staging.ts",
+    "cinematics:generate-dialogue-lock": "vite-node tools/cinematics/generate_cin6ea4_dialogue_lock.ts",
     "narrative:validate": "vite-node --config tools/cinematics/vite-node.config.ts tools/narrative/validate-coherence.ts",
     "narrative:text-sheet": "vite-node --config tools/cinematics/vite-node.config.ts tools/narrative/plateau-text-sheet.ts",
     "vfx:sync-runtime": "node tools/vfx/sync-runtime-vfx.mjs",
