@@ -151,3 +151,22 @@ L'opérateur a rempli la fiche de la session de récit (https://claude.ai/artifa
 ## Libellé de la dissipation (même jour)
 
 L'opérateur a reçu la question « Quand Serment rompu retire les protections d'un héros : « PURIFIÉ » ou « DISSIPÉ » ? » ; il a répondu « Passer à DISSIPÉ ». Une dissipation qui retire des protections affiche désormais « DISSIPÉ », dans la couleur d'un état néfaste. Un nettoyage d'altérations garde « PURIFIÉ » en vert. La règle porte sur le type de dissipation, pas sur la compétence : Casse-Faille, qui retire elle aussi les protections de ses cibles, affiche donc « DISSIPÉ » comme Serment rompu. Aucun son ni aucune règle ne change. Les tests de source du moteur fixent le libellé ; l'affichage n'a pas été vu en combat dans le navigateur.
+
+## Arc de Maelor : intention de l'opérateur (même jour)
+
+L'opérateur a fixé l'arc de Maelor, mot à mot : « on est bien sur une subitlite de maelor qui nous fait comprendre indirectement qu'il est en mission cache et nous avoue a la fin lors de sa trahison tout son plan et la necessite d'integrer notre groupe pour arriver a ses fins donc il est a provoque la chute du clan en conspirant et retournant les autres clans contre nous pour la decheance puis a integrer notre clan dans cette quete de renouveau en determinant que les sceaux seront le success de notre reussite et valeur mais aussi la cle pour ouvrir la faille scelle des demons ».
+
+Ce que le jeu écrit déjà :
+- Maelor, l'intendant, pose la quête des Sceaux.
+- Ses conseils de garder pour le clan reviennent à chaque plateau, et son « Je dis seulement… » sert d'indice.
+- À la trahison, il avoue que les Ombres marchaient avec la compagnie depuis le premier Sceau, puis que ses Sceaux lui ont ouvert l'arène.
+
+Ce qui manque :
+- qu'il a provoqué la chute du clan ;
+- qu'il l'a rejoint pour la quête ;
+- que les Sceaux sont la clé de la faille scellée ;
+- des indices sur sa mission cachée.
+
+Sur la réponse « Oui, lance-la », la session « Arc complet de Maelor : confession et indices » rédige la confession complète et trois à six indices discrets, du Lion à l'acte final. Chaque réplique est soumise mot à mot à l'opérateur avant d'entrer dans le jeu.
+
+Reste aussi à l'opérateur le texte des crédits (N5). La trame en dix rubriques est prête, et l'écran reste caché tant que le texte manque.
