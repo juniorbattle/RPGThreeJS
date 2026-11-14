@@ -7,6 +7,7 @@
  * fight, reward or saved field changes, and no actor joins a scene.
  */
 import { describe, expect, it } from 'vitest';
+import { resolveFinalDialoguePresentationPlan } from '../../cinematics/DialoguePresentationSegments';
 import { resolveGameDialogue } from '../../game/contextualDialogueContent';
 import { createInitialState } from '../../game/store';
 import type { DialogueSequence, GameState } from '../../game/types';
@@ -122,6 +123,49 @@ describe('the discreet hints (I1 to I5)', () => {
     for (const id of ['dragon_audience', 'scorpion_audience']) {
       const choices = sequenceOf(id).steps.filter((candidate) => candidate.choices?.length);
       expect(choices.map((candidate) => [candidate.id, candidate.choices!.length])).toEqual([['mandate', 2]]);
+    }
+  });
+});
+
+describe('the staging follows the side each line is written on (operator remark of 2026-11-13)', () => {
+  const LEFT = ['FAR_LEFT', 'LEFT', 'CENTER_LEFT'];
+  const RIGHT = ['CENTER_RIGHT', 'RIGHT', 'FAR_RIGHT'];
+  const segmentWith = (id: string, stepId: string, flags?: Record<string, boolean>) => {
+    const sequence = sequenceOf(id, flags);
+    return resolveFinalDialoguePresentationPlan(id, sequence)!.segments.find((segment) => segment.stepIds.includes(stepId))!;
+  };
+
+  it('stands Maelor alone on the right, facing the company, from his reveal to the breach', () => {
+    const variants: readonly Record<string, boolean>[] = [{}, { missionGreed: true, bearMinesSeized: true }];
+    for (const flags of variants) {
+      for (const stepId of ['reveal', 'advice', 'why', 'fall', 'join', 'breach']) {
+        const segment = segmentWith('finale_betrayal', stepId, flags);
+        const maelor = segment.actors.find((actor) => actor.actorId === 'maelor')!;
+        expect(maelor).toMatchObject({ facing: 'LEFT', group: 'ANTAGONIST' });
+        expect(RIGHT).toContain(maelor.screenPosition);
+        const company = segment.actors.filter((actor) => actor.actorId !== 'maelor');
+        expect(company.length).toBeGreaterThan(0);
+        for (const actor of company) {
+          expect(LEFT).toContain(actor.screenPosition);
+          expect(actor).toMatchObject({ facing: 'RIGHT', group: 'PLAYER_COMPANY' });
+        }
+        expect(segment.actors.length).toBeLessThanOrEqual(4);
+      }
+    }
+  });
+
+  it('faces Maelor alone at the breach too', () => {
+    const segment = segmentWith('finale_breach_confrontation', '1');
+    expect(segment.actors.filter((actor) => RIGHT.includes(actor.screenPosition)).map((actor) => actor.actorId)).toEqual(['maelor']);
+  });
+
+  it('keeps Marian, Elara and Kestrel with the company at the chiefs’ audiences, the chief alone across', () => {
+    for (const [id, hero, chief] of [['bear_audience', 'marian', 'borin'], ['dragon_audience', 'elara', 'kaelen'],
+      ['scorpion_audience', 'kestrel', 'grand_inquisitor']] as const) {
+      const segment = segmentWith(id, 'alistair');
+      const across = segment.actors.filter((actor) => RIGHT.includes(actor.screenPosition)).map((actor) => actor.actorId);
+      expect(across).toEqual([chief]);
+      expect(LEFT).toContain(segment.actors.find((actor) => actor.actorId === hero)!.screenPosition);
     }
   });
 });

@@ -11,18 +11,38 @@ import { stageActors, type NarrativeActorGroup, type NarrativeScreenPosition } f
 
 export const DRAFT_VISIBLE_ACTOR_CAP = 4;
 
-const COMPANY: readonly string[] = Object.freeze(['sage_seraphine', 'maelor', 'alistair']);
+/** Fallback only, for a line written without a side: the company's own members. */
+const COMPANY: readonly string[] = Object.freeze(['sage_seraphine', 'maelor', 'alistair', 'marian', 'kestrel', 'elara']);
 
-function groupOf(actorId: string): NarrativeActorGroup {
-  if (COMPANY.includes(actorId)) return 'PLAYER_COMPANY';
-  if (actorId.startsWith('raven_')) return 'ANTAGONIST';
+type Side = 'left' | 'right';
+
+/**
+ * Maelor's arc (operator remark of 2026-11-13: « Maelor doit être seul face aux autres » at the betrayal, and the
+ * characters well placed in every static dialogue): each actor stands on the side its lines are written on. The company
+ * speaks from the left, the plateau's people, its chiefs and its foes from the right, and Maelor from the right once he
+ * has betrayed it. Before, only Séraphine, Maelor and Alistair held the left, so Marian, Kestrel and Elara stood beside
+ * the chief or the enemy they were facing.
+ */
+function sidesOf(sequence: DialogueSequence): ReadonlyMap<string, Side> {
+  const sides = new Map<string, Side>();
+  for (const step of sequence.steps) {
+    if (!step.actorId || sides.has(step.actorId)) continue;
+    sides.set(step.actorId, step.side === 'left' || step.side === 'right'
+      ? step.side : COMPANY.includes(step.actorId) ? 'left' : 'right');
+  }
+  return sides;
+}
+
+function groupOf(actorId: string, side: Side): NarrativeActorGroup {
+  if (side === 'left') return 'PLAYER_COMPANY';
+  if (actorId === 'maelor' || actorId.startsWith('raven_')) return 'ANTAGONIST';
   if (actorId === 'bear_miner') return 'LOCAL_CIVILIAN';
   return 'NEUTRAL';
 }
 
-/** Company first, so `stageActors` places it on the left and the plateau's people on the right. */
-function ordered(cast: readonly string[]): string[] {
-  return [...cast.filter((id) => COMPANY.includes(id)), ...cast.filter((id) => !COMPANY.includes(id))];
+/** The left side first, so `stageActors` places it on the left and the right side on the right. */
+function ordered(cast: readonly string[], sides: ReadonlyMap<string, Side>): string[] {
+  return [...cast.filter((id) => sides.get(id) === 'left'), ...cast.filter((id) => sides.get(id) !== 'left')];
 }
 
 const LEFT_SLOTS: Readonly<Record<number, readonly NarrativeScreenPosition[]>> = Object.freeze({
@@ -36,9 +56,9 @@ const RIGHT_SLOTS: Readonly<Record<number, readonly NarrativeScreenPosition[]>> 
  * When the company faces the plateau's people, it holds the left and they hold the right, each side looking across.
  * A company alone among itself keeps the generic spread. Null when no facing applies.
  */
-function facingPlacement(cast: readonly string[], actorId: string): { screenPosition: NarrativeScreenPosition; facing: 'LEFT' | 'RIGHT'; lookTarget: string } | null {
-  const company = cast.filter((id) => COMPANY.includes(id));
-  const others = cast.filter((id) => !COMPANY.includes(id));
+function facingPlacement(cast: readonly string[], actorId: string, sides: ReadonlyMap<string, Side>): { screenPosition: NarrativeScreenPosition; facing: 'LEFT' | 'RIGHT'; lookTarget: string } | null {
+  const company = cast.filter((id) => sides.get(id) === 'left');
+  const others = cast.filter((id) => sides.get(id) !== 'left');
   if (!company.length || !others.length) return null;
   const mine = company.includes(actorId);
   const side = mine ? company : others;
@@ -67,17 +87,18 @@ function groups(sequence: DialogueSequence): { stepIds: string[]; cast: string[]
 }
 
 export function postDemoDraftPresentationPlan(sequence: DialogueSequence): FinalDialoguePresentationPlan {
+  const sides = sidesOf(sequence);
   const segments: FinalDialoguePresentationSegment[] = groups(sequence).map((group, index) => {
-    const cast = ordered(group.cast);
+    const cast = ordered(group.cast, sides);
     const actors = stageActors(cast).map((actor) => {
-      const placed = facingPlacement(cast, actor.actorId);
+      const placed = facingPlacement(cast, actor.actorId, sides);
       const staged = placed ? { ...actor, ...placed } : actor;
       return {
         ...staged,
         scale: 1,
         lookTarget: staged.lookTarget ?? null,
         entryEffect: staged.entryEffect ?? 'NONE' as const,
-        group: groupOf(staged.actorId),
+        group: groupOf(staged.actorId, sides.get(staged.actorId) ?? 'right'),
         dramaticSide: staged.facing === 'RIGHT' ? 'LEFT' as const : staged.facing === 'LEFT' ? 'RIGHT' as const : 'CENTER' as const,
         depth: staged.depth ?? 2,
         narrativeRole: staged.narrativeRole ?? 'LISTENER',
