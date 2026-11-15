@@ -3,6 +3,7 @@ import { createShotPainter } from './openingPainters';
 import { resolveCharacterVisualProfile } from '../../render/CharacterVisualRegistry';
 import { pixelFigure } from './openingLayer';
 import { prefersReducedMotion } from '../ReducedMotion';
+import { tr } from '../../i18n/i18n';
 import { cameraAt, OPENING_ADVISERS, OPENING_BARS_OPEN_AT, OPENING_CAST, OPENING_POLE_LANDS_AT, OPENING_SHEETS, OPENING_SHOTS, type OpeningShot, type ViewCamera } from './openingShots';
 import './opening-sequence.css';
 
@@ -208,7 +209,8 @@ export class OpeningSequence {
     if (shot.id === 'prologue_fall' && !this.reduced) camera.y += this.landingShake();
     this.placePlate(shot, camera, progress);
     element.querySelector<HTMLElement>('[data-veil]')!.classList.toggle('is-down', !last && remaining < CUT_SECONDS || this.seconds < 0.05);
-    const text = this.reduced ? shot.lines.map(line => line.text).join(' ') : shot.lines.filter(line => line.at <= this.seconds).at(-1)?.text ?? '';
+    // OD-2026-11-15-C: each line is translated before the reduced-motion join.
+    const text = this.reduced ? shot.lines.map(line => tr(line.text)).join(' ') : tr(shot.lines.filter(line => line.at <= this.seconds).at(-1)?.text ?? '');
     const line = element.querySelector<HTMLElement>('[data-line]')!;
     if (text !== this.lineText) {
       this.lineText = text;
