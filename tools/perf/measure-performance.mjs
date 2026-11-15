@@ -19,12 +19,21 @@
  * of: load, journey, fight-serpent, fight-prophet, fight-breach, fight-village, fight-breach-reduced, leak, mobile, dpr,
  * sprites), PERF_LABEL (before | after), PERF_SAVES (tmp/perf/saves), PERF_HEADED=1 (visible window instead of headless),
  * PERF_SHOTS=1 (captures of the journey's first screens and of each battlefield), PERF_OS_MOTION=reduce (the browser's
- * prefers-reduced-motion emulated; the game's own setting stays off by default).
+ * prefers-reduced-motion emulated; the game's own setting stays off by default), PERF_DEVTOOLS_NETWORK_BUFFERS=default
+ * (Chromium's default DevTools Network buffers, as the first audit measured them; for comparison only).
+ *
+ * M1 (2026-11-15): Playwright's sessions and this driver's CDP session enable DevTools Network with zero buffers, or
+ * the renderer keeps the content of every response for the page's lifetime and the memory curve measures DevTools, not
+ * the game (+18 to +33 MB per fight; `devtoolsNetworkBuffers.mjs`, docs/reports/combat-memory-2026-11-15.md).
  */
 import { execSync } from 'node:child_process';
 import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { isAbsolute, relative, resolve } from 'node:path';
-import { chromium } from 'playwright';
+import { ZERO_NETWORK_BUFFERS, zeroPlaywrightNetworkBuffers } from './devtoolsNetworkBuffers.mjs';
+
+const zeroNetworkBuffers = process.env.PERF_DEVTOOLS_NETWORK_BUFFERS !== 'default';
+const networkBufferPatch = zeroNetworkBuffers ? zeroPlaywrightNetworkBuffers() : null;
+const { chromium } = await import('playwright');
 
 const base = process.env.PERF_BASE_URL ?? 'http://127.0.0.1:5187';
 const label = process.env.PERF_LABEL ?? 'before';
@@ -49,7 +58,10 @@ const NETWORKS = {
 };
 
 const report = { schemaVersion: 1, label, recordedAt: new Date().toISOString(), base, commit: execSync('git rev-parse HEAD').toString().trim(),
-  method: 'PRODUCTION_PREVIEW_REAL_UI_INPUTS_READ_ONLY_APP_SNAPSHOTS', scenarios: {}, errors: [] };
+  method: 'PRODUCTION_PREVIEW_REAL_UI_INPUTS_READ_ONLY_APP_SNAPSHOTS', scenarios: {}, errors: [],
+  devtoolsNetworkBuffers: zeroNetworkBuffers ? { mode: 'zero', ...networkBufferPatch } : { mode: 'default' } };
+// A Playwright release whose bundle no longer matches would silently measure DevTools again: say so in the report.
+if (zeroNetworkBuffers && (networkBufferPatch.bundles !== 1 || networkBufferPatch.calls < 1)) report.errors.push(`devtools network buffers not zeroed: ${JSON.stringify(networkBufferPatch)}`);
 const started = Date.now();
 const log = (line) => console.log(`[${String(Math.round((Date.now() - started) / 1000)).padStart(5)}s] ${line}`);
 const sleep = (ms) => new Promise((done) => setTimeout(done, ms));
@@ -162,7 +174,7 @@ async function newSession({ profile = DESKTOP, saveText = null, gameMotion = nul
   if (gameMotion) await context.addInitScript(([reduced]) => { localStorage.setItem('rpg-threejs:motion-preference:v1', JSON.stringify({ reduced })); }, [gameMotion === 'reduce']);
   const page = await context.newPage();
   const cdp = await context.newCDPSession(page);
-  await cdp.send('Network.enable'); await cdp.send('Performance.enable');
+  await cdp.send('Network.enable', zeroNetworkBuffers ? ZERO_NETWORK_BUFFERS : {}); await cdp.send('Performance.enable');
   const net = { bytes: 0, requests: 0, byType: {}, urls: new Map() };
   cdp.on('Network.responseReceived', (e) => { net.urls.set(e.requestId, { url: e.response.url, type: e.type, status: e.response.status, fromCache: e.response.fromDiskCache || e.response.fromMemoryCache || e.response.status === 304 }); });
   cdp.on('Network.loadingFinished', (e) => { const u = net.urls.get(e.requestId); net.bytes += e.encodedDataLength; net.requests += 1;
@@ -566,7 +578,7 @@ async function memoryInfra() {
       for (const [index, d] of dumps.entries()) {
         const rows = {};
         for (const e of kept) if (e.ph === 'v' && e.id === ids[index] && (/Renderer/i.test(names.get(e.pid) ?? '') || !names.has(e.pid))) {
-          for (const [k, v] of Object.entries(e.args?.dumps?.allocators ?? {})) { if (k.split('/').length > 2) continue; const size = parseInt(v.attrs?.size?.value ?? '0', 16); rows[k] = Math.round(((rows[k] ?? 0) + size / 2 ** 20) * 10) / 10; }
+          for (const [k, v] of Object.entries(e.args?.dumps?.allocators ?? {})) { if (k.split('/').length > 2 && !k.startsWith('partition_alloc/partitions/')) continue; if (k.split('/').length > 3) continue; const size = parseInt(v.attrs?.size?.value ?? '0', 16); rows[k] = Math.round(((rows[k] ?? 0) + size / 2 ** 20) * 10) / 10; }
         }
         out[d.name] = rows;
       }
