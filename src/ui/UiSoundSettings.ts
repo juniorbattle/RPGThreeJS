@@ -1,4 +1,5 @@
 import { UiSoundPlayer } from './UiSoundPlayer';
+import type { Language } from '../i18n/language';
 import './ui-sound.css';
 
 /** Reduced motion as the settings menu sees it; the game owns the value (OD-2026-11-05-B). */
@@ -7,8 +8,15 @@ export interface MotionSettingAccess {
   set(reduced: boolean): void;
 }
 
+/** The game language as the settings menu sees it; the i18n module owns the value and the choice stays outside the saves (OD-2026-11-15-C). */
+export interface LanguageSettingAccess {
+  get(): Language;
+  set(language: Language): void | Promise<unknown>;
+}
+
 export interface SettingsMenuOptions {
   motion?: MotionSettingAccess;
+  language?: LanguageSettingAccess;
 }
 
 
@@ -27,17 +35,18 @@ export class UiSoundSettings {
     const siblings = [...this.root.children].map(child => ({ child: child as HTMLElement, inert: (child as HTMLElement).inert }));
     for (const { child } of siblings) child.inert = true;
     const motion = this.options.motion;
+    const language = this.options.language;
     const element = document.createElement('div'); element.className = 'ui-sound-backdrop';
-    const tabs: ReadonlyArray<readonly [string, string]> = [['sound', 'Son'], ...(motion ? [['display', 'Affichage'] as const] : []), ['controls', 'Commandes']];
+    const tabs: ReadonlyArray<readonly [string, string]> = [['sound', 'Son'], ...(motion || language ? [['display', 'Affichage'] as const] : []), ['controls', 'Commandes']];
     const panel = (id: string, body: string) => `<div class="ui-settings__panel" role="tabpanel" id="ui-settings-panel-${id}" aria-labelledby="ui-settings-tab-${id}"${id === 'sound' ? '' : ' hidden'}>${body}</div>`;
     element.innerHTML = `<section class="ui-sound-settings ui-settings" role="dialog" aria-modal="true" aria-labelledby="ui-sound-title">`
       + `<h2 id="ui-sound-title">Réglages</h2>`
       + `<div class="ui-settings__tabs" role="tablist" aria-label="Rubriques des réglages">${tabs.map(([id, label]) => `<button type="button" role="tab" id="ui-settings-tab-${id}" data-settings-tab="${id}" aria-controls="ui-settings-panel-${id}" aria-selected="${id === 'sound'}" tabindex="${id === 'sound' ? 0 : -1}">${label}</button>`).join('')}</div>`
       + panel('sound', `<h3 class="ui-sound-settings__group">Effets sonores</h3><p>Sons des menus, de la campagne et des combats. Ils sont actifs et démarrent à votre première action. Vous pouvez jouer entièrement sans son.</p><button type="button" data-sound-toggle aria-pressed="${this.player.enabled}"></button><label for="ui-sound-volume">Volume des sons <output id="ui-sound-value"></output></label><input id="ui-sound-volume" type="range" min="0" max="100" step="5" value="${Math.round(this.player.volume * 100)}">`
         + `<h3 class="ui-sound-settings__group">Musique</h3><p>Musique générée par le jeu. Elle ne démarre qu'après votre première action.</p><button type="button" data-music-toggle aria-pressed="${this.player.musicEnabled}"></button><label for="ui-music-volume">Volume de la musique <output id="ui-music-value"></output></label><input id="ui-music-volume" type="range" min="0" max="100" step="5" value="${Math.round(this.player.musicVolume * 100)}">`)
-      // The display tab is grouped like the sound tab. The language choice « Français / English » takes its own group
-      // here, above « Mouvement », once the translation work wires it (title screen pass 2026-11-15); no control before.
-      + (motion ? panel('display', `<h3 class="ui-sound-settings__group">Mouvement</h3><p>Le mouvement réduit garde une caméra fixe, remplace les déplacements par des fondus et allège les effets des combats. Il s’applique aussi au combat en cours.</p><button type="button" data-motion-toggle aria-pressed="${motion.get()}"></button>`) : '')
+      // The display tab is grouped like the sound tab: the language choice « Français / English » (OD-2026-11-15-C), then movement.
+      // The names of the two languages and the group title stay as written: a player lost in the wrong language finds them.
+      + (motion || language ? panel('display', (language ? `<h3 class="ui-sound-settings__group" translate="no">Langue · Language</h3><p>Choisissez la langue du jeu. Le changement s’applique tout de suite, sauf dans un combat en cours, où il attend le prochain.</p><div class="ui-settings__languages" role="group" aria-label="Langue · Language" translate="no"><button type="button" lang="fr" data-language="fr" aria-pressed="false">Français</button><button type="button" lang="en" data-language="en" aria-pressed="false">English</button></div>` : '') + (motion ? `<h3 class="ui-sound-settings__group">Mouvement</h3><p>Le mouvement réduit garde une caméra fixe, remplace les déplacements par des fondus et allège les effets des combats. Il s’applique aussi au combat en cours.</p><button type="button" data-motion-toggle aria-pressed="${motion.get()}"></button>` : '')) : '')
       + panel('controls', `<dl class="ui-settings__controls">`
         + `<dt>Clavier</dt><dd>Flèches ou Tabulation pour se déplacer, Entrée pour valider, Échap pour revenir.</dd>`
         + `<dt>Manette</dt><dd>Croix ou stick gauche pour se déplacer, A ou Croix pour valider, B ou Rond pour revenir, LB/RB ou L1/R1 pour la commande voisine, Start ou Options pour le menu de la carte.</dd>`
@@ -52,6 +61,7 @@ export class UiSoundSettings {
     const toggle = element.querySelector<HTMLButtonElement>('[data-sound-toggle]')!;
     const musicToggle = element.querySelector<HTMLButtonElement>('[data-music-toggle]')!;
     const motionToggle = element.querySelector<HTMLButtonElement>('[data-motion-toggle]');
+    const languageButtons = [...element.querySelectorAll<HTMLButtonElement>('[data-language]')];
     const refresh = () => {
       toggle.textContent = this.player.enabled ? 'Couper les sons' : 'Activer les sons';
       toggle.setAttribute('aria-pressed', String(this.player.enabled));
@@ -59,6 +69,7 @@ export class UiSoundSettings {
       musicToggle.textContent = this.player.musicEnabled ? 'Couper la musique' : 'Activer la musique';
       musicToggle.setAttribute('aria-pressed', String(this.player.musicEnabled));
       element.querySelector('#ui-music-value')!.textContent = `${Math.round(this.player.musicVolume * 100)} %`;
+      for (const button of languageButtons) button.setAttribute('aria-pressed', String(language?.get() === button.dataset.language));
       if (motionToggle && motion) {
         const reduced = motion.get();
         motionToggle.textContent = reduced ? 'Mouvement réduit : activé' : 'Mouvement réduit : désactivé';
@@ -69,6 +80,14 @@ export class UiSoundSettings {
     element.querySelector<HTMLInputElement>('#ui-sound-volume')!.addEventListener('input', event => { this.player.setVolume(Number((event.target as HTMLInputElement).value) / 100); refresh(); });
     musicToggle.addEventListener('click', event => { this.player.setMusicEnabled(!this.player.musicEnabled, event); refresh(); });
     element.querySelector<HTMLInputElement>('#ui-music-volume')!.addEventListener('input', event => { this.player.setMusicVolume(Number((event.target as HTMLInputElement).value) / 100); refresh(); });
+    for (const button of languageButtons) {
+      button.addEventListener('click', () => {
+        const chosen = button.dataset.language as Language;
+        if (!language || language.get() === chosen) return;
+        this.player.play('confirm');
+        void Promise.resolve(language.set(chosen)).then(() => { if (this.element === element) refresh(); });
+      });
+    }
     motionToggle?.addEventListener('click', () => { if (!motion) return; motion.set(!motion.get()); this.player.play('confirm'); refresh(); });
     const tabButtons = [...element.querySelectorAll<HTMLButtonElement>('[data-settings-tab]')];
     const select = (tab: HTMLButtonElement, focus = true) => {

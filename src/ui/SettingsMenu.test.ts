@@ -141,3 +141,33 @@ describe('title screen pass 2026-11-15', () => {
     settings.close();
   });
 });
+
+describe('language choice (OD-2026-11-15-C)', () => {
+  it('puts « Français / English » in the display tab above the movement group and hands the choice to its owner', async () => {
+    let current: 'fr' | 'en' = 'fr';
+    const set = vi.fn((language: 'fr' | 'en') => { current = language; });
+    new UiSoundSettings(root, player, { motion: { get: () => false, set: vi.fn() }, language: { get: () => current, set } }).open();
+    const panel = root.querySelector<HTMLElement>('#ui-settings-panel-display')!;
+    const headings = [...panel.querySelectorAll('h3')].map(heading => heading.textContent);
+    expect(headings).toEqual(['Langue · Language', 'Mouvement']);
+    const [french, english] = [...panel.querySelectorAll<HTMLButtonElement>('[data-language]')];
+    expect([french!.textContent, english!.textContent]).toEqual(['Français', 'English']);
+    expect([french!.getAttribute('lang'), english!.getAttribute('lang')]).toEqual(['fr', 'en']);
+    expect([french!.getAttribute('aria-pressed'), english!.getAttribute('aria-pressed')]).toEqual(['true', 'false']);
+    english!.click();
+    await Promise.resolve(); await Promise.resolve();
+    expect(set).toHaveBeenCalledWith('en');
+    expect([french!.getAttribute('aria-pressed'), english!.getAttribute('aria-pressed')]).toEqual(['false', 'true']);
+    english!.click();
+    expect(set).toHaveBeenCalledTimes(1);
+  });
+
+  it('shows the display tab for the language alone and no language group without an owner', () => {
+    new UiSoundSettings(root, player, { language: { get: () => 'fr', set: vi.fn() } }).open();
+    expect([...root.querySelectorAll('[role="tab"]')].map(tab => tab.textContent)).toEqual(['Son', 'Affichage', 'Commandes']);
+    expect(root.querySelector('[data-motion-toggle]')).toBeNull();
+    root.replaceChildren();
+    new UiSoundSettings(root, player, { motion: { get: () => false, set: vi.fn() } }).open();
+    expect(root.querySelector('[data-language]')).toBeNull();
+  });
+});

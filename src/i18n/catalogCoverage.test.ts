@@ -6,10 +6,9 @@ import { GLOSSARY } from './glossary';
 
 /**
  * OD-2026-11-15-C (A4): every French text a player can see has its English text, with the same holes, and the
- * glossary forms; no English entry outlives its French. Sources enter TRANSLATED_SCOPE as their zone is translated;
- * once it covers every player source, the last test requires it.
+ * glossary forms; no English entry outlives its French. Every player source is in scope, the whole game being translated.
  */
-const TRANSLATED_SCOPE: readonly RegExp[] = [];
+const TRANSLATED_SCOPE: readonly RegExp[] = [/./];
 
 const root = path.resolve(__dirname, '../..');
 const keys = extractAll(root);

@@ -31,7 +31,6 @@
   "Chroniques d'Élyndra": "Chronicles of Élyndra",
   "La Voie": "The Way",
   "des Sceaux": "of the Seals",
-  "Un RPG tactique où chaque serment laisse une trace.": "A tactical RPG where every oath leaves its mark.",
   "Nouvelle chronique": "New Chronicle",
   "Crédits": "Credits",
   "QA rencontres": "QA encounters",
@@ -671,5 +670,11 @@
   "Prologue": "Prologue",
   "Or insuffisant": "Not enough gold",
   "Forger · {0} or": "Forge · {0} gold",
-  "Forger {0} · {1} or": "Forge {0} · {1} gold"
+  "Forger {0} · {1} or": "Forge {0} · {1} gold",
+  "Honneur ou force : chaque Sceau se gagne à votre façon.": "Honour or strength: each Seal is won in your own way.",
+  "Langue · Language": "Language · Langue",
+  "Choisissez la langue du jeu. Le changement s’applique tout de suite, sauf dans un combat en cours, où il attend le prochain.": "Choose the game’s language. The change applies at once, except in a battle already under way, where it waits for the next one.",
+  "Français": "Français",
+  "English": "English",
+  "Mouvement": "Motion"
 }

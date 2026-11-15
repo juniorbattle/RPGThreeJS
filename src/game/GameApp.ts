@@ -55,6 +55,7 @@ import { RefugeHireView } from '../ui/RefugeHireView';
 import { hireAtRefuge, refugeHireOffers } from './refugeRecruitment';
 import { UiSoundPlayer, type MusicContextId } from '../ui/UiSoundPlayer';
 import { UiSoundSettings } from '../ui/UiSoundSettings';
+import { currentLanguage, setLanguage } from '../i18n/i18n';
 import { readMotionPreference, writeMotionPreference } from '../ui/MotionPreference';
 import { ExplorationView, type ExplorationAction } from '../ui/ExplorationView';
 import { resolveFinalRefugeServicesPresentation, resolveRefugePresentation, type RefugePresentation } from '../ui/RefugePresentation';
@@ -228,6 +229,7 @@ export class GameApp {
   ) {
     this.soundSettings = new UiSoundSettings(root, this.uiSounds, {
       motion: { get: () => this.state.settings.reducedGraphics, set: reduced => this.setReducedMotion(reduced) },
+      language: { get: currentLanguage, set: setLanguage },
     });
     this.applyMotionPreference();
     if (import.meta.env.DEV) Object.assign(window, { __rpgMusic: () => this.uiSounds.musicSnapshot() });
