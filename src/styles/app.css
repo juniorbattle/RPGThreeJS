@@ -108,17 +108,25 @@ button { font: inherit; }
 .title-screen__lead { max-width: 560px; margin: 0 0 30px; color: #c8d2e4; font: 400 17px/1.72 Inter, sans-serif; }
 .title-screen__actions { display: flex; gap: 12px; }
 .title-screen button {
+  min-width: 44px;
+  min-height: 48px;
   border: 1px solid rgba(244, 217, 139, .5);
   border-radius: 4px;
-  padding: 12px 22px;
+  padding: 12px 24px;
   background: linear-gradient(180deg, rgba(53, 61, 84, .9), rgba(17, 23, 40, .95));
   color: var(--cream);
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: .09em;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
+  transition: border-color var(--ui-motion-fast) ease, box-shadow var(--ui-motion-fast) ease;
 }
+/* Title screen pass 2026-11-15: 48 px targets, a brass focus ring readable on the painting, and a content fade. */
+.title-screen button:hover:not(:disabled) { border-color: var(--ui-color-gold-bright); box-shadow: 0 0 18px rgba(246, 219, 145, .22); }
+.title-screen button:focus-visible { outline: 2px solid var(--ui-color-gold-bright); outline-offset: 3px; box-shadow: 0 0 0 5px rgba(4, 6, 12, .55); }
+@keyframes title-content-in { from { opacity: 0; } to { opacity: 1; } }
+.title-screen:not(.title-screen--recovery) > * { animation: title-content-in .32s ease-out both; }
 .title-screen__credits { max-height: 52vh; overflow-y: auto; margin: 0 0 24px; text-align: center; color: #e4dcc8; font: 400 15px/1.7 Inter, sans-serif; }
 .title-screen__credits p { margin: 0; }
 .title-screen__confirm { display: grid; justify-items: center; gap: 14px; max-width: 560px; }
@@ -133,32 +141,6 @@ button { font: inherit; }
 .title-screen button.is-primary { color: #15100a; background: linear-gradient(#f4d98b, #b88c38); }
 .title-screen button.title-screen__qa { color: #d9eaff; border-color: rgba(105,215,255,.56); background: linear-gradient(180deg, rgba(24,55,79,.94), rgba(8,18,33,.98)); }
 button:disabled { cursor: not-allowed; opacity: .35; }
-.title-screen small { display: none; }
-.title-screen__nav {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 14px 40px;
-  border-top: 1px solid rgba(244,217,139,.16);
-}
-.title-screen__nav-link {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 30px;
-  color: #8a95ac;
-  font: 700 10px Cinzel, serif;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  cursor: default;
-  transition: color .18s;
-}
-.title-screen__nav-link:hover { color: var(--gold-bright); }
-.title-screen__nav-sep { width: 1px; height: 14px; background: rgba(244,217,139,.22); }
 
 .qa-lab { position:absolute; inset:0; overflow:auto; pointer-events:auto; padding:clamp(28px,5vw,76px); color:var(--cream); background:linear-gradient(180deg,rgba(3,7,14,.84),rgba(3,7,14,.96)),url('/assets/generated/forest-pilot/forest-dawn-far.webp') center/cover no-repeat; }
 .qa-lab__header { display:flex; align-items:end; justify-content:space-between; gap:24px; max-width:1120px; margin:0 auto 10px; padding-bottom:18px; border-bottom:1px solid rgba(244,217,139,.26); }

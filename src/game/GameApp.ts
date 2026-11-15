@@ -328,7 +328,11 @@ export class GameApp {
     this.prologue.close();
   }
 
-  private renderTitle(): void {
+  /**
+   * `focusAction` names the title entry that takes focus, so leaving the credits or the new-chronicle confirmation
+   * gives focus back to the entry that opened them (title screen pass 2026-11-15).
+   */
+  private renderTitle(focusAction?: 'new' | 'credits'): void {
     this.poiEncounter.close();
     this.poiMap.close();
     delete document.body.dataset.campaignSurface;
@@ -363,14 +367,16 @@ export class GameApp {
     this.chrome.querySelector('[data-action="settings"]')?.addEventListener('click', () => this.openSettings());
     this.chrome.querySelector('[data-action="credits"]')?.addEventListener('click', () => this.showCredits());
     this.chrome.querySelector('[data-action="qa"]')?.addEventListener('click', () => this.renderQaLab());
-    (this.chrome.querySelector<HTMLButtonElement>('[data-action="continue"]:not(:disabled)')
+    ((focusAction ? this.chrome.querySelector<HTMLButtonElement>(`[data-action="${focusAction}"]`) : null)
+      ?? this.chrome.querySelector<HTMLButtonElement>('[data-action="continue"]:not(:disabled)')
       ?? this.chrome.querySelector<HTMLButtonElement>('[data-action="new"]'))?.focus();
   }
 
   /** The credits, from the operator's text only (OD-2026-11-11-E, final audit B9); Retour or Escape goes back. */
   private showCredits(): void {
     const section = document.createElement('section');
-    section.className = 'title-screen title-screen--credits ui-screen';
+    // Same backdrop as the title: only the content fades, so entering and leaving the credits is never a hard cut.
+    section.className = 'title-screen title-screen--credits';
     section.setAttribute('aria-labelledby', 'credits-title');
     const title = document.createElement('h1');
     title.id = 'credits-title';
@@ -387,10 +393,10 @@ export class GameApp {
     const back = document.createElement('button');
     back.type = 'button';
     back.textContent = 'Retour';
-    back.addEventListener('click', () => this.renderTitle());
+    back.addEventListener('click', () => this.renderTitle('credits'));
     actions.append(back);
     section.append(title, list, actions);
-    section.addEventListener('keydown', (event) => { if (event.key === 'Escape') { event.preventDefault(); this.renderTitle(); } });
+    section.addEventListener('keydown', (event) => { if (event.key === 'Escape') { event.preventDefault(); this.renderTitle('credits'); } });
     this.chrome.replaceChildren(section);
     back.focus();
   }
@@ -411,7 +417,7 @@ export class GameApp {
         </div>
       </div>`;
     const panel = this.chrome.querySelector<HTMLElement>('.title-screen__confirm');
-    const keep = () => { this.uiSounds.play('back'); this.renderTitle(); };
+    const keep = () => { this.uiSounds.play('back'); this.renderTitle('new'); };
     panel?.querySelector('[data-action="confirm-new"]')?.addEventListener('click', () => void this.startNewChronicle());
     panel?.querySelector('[data-action="keep-chronicle"]')?.addEventListener('click', keep);
     panel?.addEventListener('keydown', (event) => {

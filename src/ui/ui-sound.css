@@ -24,3 +24,13 @@
 .ui-settings .ui-settings__tabs button[aria-selected="true"]{border:0;border-bottom:2px solid var(--ui-color-gold-bright);background:transparent;color:var(--ui-color-gold-bright)}
 .ui-settings .ui-settings__note{border-left-color:rgba(230,199,126,.5);background:rgba(0,0,0,.24);color:var(--ui-color-muted-strong)}
 .ui-settings__controls dt{color:#e3c47e}
+/* Title screen pass 2026-11-15: the dialog opens and closes with a short fade, never a hard cut; reduced motion keeps the fade and drops the lift. */
+@keyframes ui-settings-in{from{opacity:0}to{opacity:1}}
+@keyframes ui-settings-out{from{opacity:1}to{opacity:0}}
+@keyframes ui-settings-lift{from{transform:translateY(8px)}to{transform:none}}
+.ui-sound-backdrop{animation:ui-settings-in .18s ease-out both}
+.ui-sound-backdrop.is-leaving{animation:ui-settings-out .14s ease-in both;pointer-events:none}
+.ui-sound-backdrop:not(.is-leaving)>.ui-sound-settings{animation:ui-settings-lift .22s cubic-bezier(.2,.8,.2,1) both}
+body.motion-reduced .ui-sound-backdrop:not(.is-leaving)>.ui-sound-settings{animation:none}
+/* On a phone the dialog keeps its top edge when a tab of another height is chosen. */
+@media (max-width:600px){.ui-sound-backdrop{align-items:start}}

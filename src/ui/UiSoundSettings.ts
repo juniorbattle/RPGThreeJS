@@ -35,7 +35,9 @@ export class UiSoundSettings {
       + `<div class="ui-settings__tabs" role="tablist" aria-label="Rubriques des réglages">${tabs.map(([id, label]) => `<button type="button" role="tab" id="ui-settings-tab-${id}" data-settings-tab="${id}" aria-controls="ui-settings-panel-${id}" aria-selected="${id === 'sound'}" tabindex="${id === 'sound' ? 0 : -1}">${label}</button>`).join('')}</div>`
       + panel('sound', `<h3 class="ui-sound-settings__group">Effets sonores</h3><p>Sons des menus, de la campagne et des combats. Ils sont actifs et démarrent à votre première action. Vous pouvez jouer entièrement sans son.</p><button type="button" data-sound-toggle aria-pressed="${this.player.enabled}"></button><label for="ui-sound-volume">Volume des sons <output id="ui-sound-value"></output></label><input id="ui-sound-volume" type="range" min="0" max="100" step="5" value="${Math.round(this.player.volume * 100)}">`
         + `<h3 class="ui-sound-settings__group">Musique</h3><p>Musique générée par le jeu. Elle ne démarre qu'après votre première action.</p><button type="button" data-music-toggle aria-pressed="${this.player.musicEnabled}"></button><label for="ui-music-volume">Volume de la musique <output id="ui-music-value"></output></label><input id="ui-music-volume" type="range" min="0" max="100" step="5" value="${Math.round(this.player.musicVolume * 100)}">`)
-      + (motion ? panel('display', `<p>Le mouvement réduit garde une caméra fixe, remplace les déplacements par des fondus et allège les effets des combats. Il s’applique aussi au combat en cours.</p><button type="button" data-motion-toggle aria-pressed="${motion.get()}"></button>`) : '')
+      // The display tab is grouped like the sound tab. The language choice « Français / English » takes its own group
+      // here, above « Mouvement », once the translation work wires it (title screen pass 2026-11-15); no control before.
+      + (motion ? panel('display', `<h3 class="ui-sound-settings__group">Mouvement</h3><p>Le mouvement réduit garde une caméra fixe, remplace les déplacements par des fondus et allège les effets des combats. Il s’applique aussi au combat en cours.</p><button type="button" data-motion-toggle aria-pressed="${motion.get()}"></button>`) : '')
       + panel('controls', `<dl class="ui-settings__controls">`
         + `<dt>Clavier</dt><dd>Flèches ou Tabulation pour se déplacer, Entrée pour valider, Échap pour revenir.</dd>`
         + `<dt>Manette</dt><dd>Croix ou stick gauche pour se déplacer, A ou Croix pour valider, B ou Rond pour revenir, LB/RB ou L1/R1 pour la commande voisine, Start ou Options pour le menu de la carte.</dd>`
@@ -102,5 +104,28 @@ export class UiSoundSettings {
   }
 
   /** Restoring may redraw the screen behind, which closes this menu again: the restore runs once, after the menu is gone. */
-  close(): void { const restore = this.restore; this.restore = null; this.element?.remove(); this.element = null; restore?.(); }
+  close(): void {
+    const restore = this.restore, element = this.element;
+    this.restore = null; this.element = null;
+    if (element) fadeOut(element);
+    restore?.();
+  }
+}
+
+/**
+ * The dialog leaves at once for focus, input and queries, then its picture fades out (title screen pass 2026-11-15):
+ * the leaving copy keeps no role, id or hook and takes no input, and it is gone after the fade.
+ */
+function fadeOut(element: HTMLElement): void {
+  const view = element.ownerDocument.defaultView;
+  if (!element.isConnected || !view || typeof view.getComputedStyle !== 'function') { element.remove(); return; }
+  for (const node of [element, ...element.querySelectorAll<HTMLElement>('*')]) {
+    for (const name of [...node.getAttributeNames()]) if (name === 'id' || name === 'role' || name.startsWith('aria-') || name.startsWith('data-') || name === 'for' || name === 'tabindex') node.removeAttribute(name);
+  }
+  element.inert = true;
+  element.setAttribute('aria-hidden', 'true');
+  element.classList.add('is-leaving');
+  const done = () => element.remove();
+  element.addEventListener('animationend', done, { once: true });
+  view.setTimeout(done, 240);
 }

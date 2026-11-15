@@ -107,3 +107,37 @@ describe('closing the menu', () => {
     expect(root.querySelector('[role="dialog"]')).toBeNull();
   });
 });
+
+describe('title screen pass 2026-11-15', () => {
+  it('fades the closed menu out as an inert picture without role, id or hook, then removes it', () => {
+    vi.useFakeTimers();
+    try {
+      const opener = document.createElement('button');
+      root.append(opener); opener.focus();
+      const settings = new UiSoundSettings(root, player, { motion: { get: () => false, set: () => {} } });
+      settings.open();
+      settings.close();
+      expect(document.activeElement).toBe(opener);
+      const leaving = root.querySelector<HTMLElement>('.ui-sound-backdrop.is-leaving');
+      expect(leaving).not.toBeNull();
+      expect(leaving!.inert).toBe(true);
+      expect(leaving!.querySelector('[id], [role], [data-sound-toggle], [data-settings-tab], [tabindex]')).toBeNull();
+      expect(root.querySelector('[role="dialog"], #ui-sound-volume')).toBeNull();
+      settings.open();
+      expect(root.querySelectorAll('#ui-sound-volume')).toHaveLength(1);
+      settings.close();
+      vi.advanceTimersByTime(300);
+      expect(root.querySelector('.ui-sound-backdrop')).toBeNull();
+    } finally { vi.useRealTimers(); }
+  });
+
+  it('groups the display tab under « Mouvement », leaving room for the language group and no placeholder control', () => {
+    const settings = new UiSoundSettings(root, player, { motion: { get: () => false, set: () => {} } });
+    settings.open();
+    const display = root.querySelector<HTMLElement>('#ui-settings-panel-display')!;
+    expect([...display.querySelectorAll('h3')].map((heading) => heading.textContent)).toEqual(['Mouvement']);
+    expect(display.querySelectorAll('button')).toHaveLength(1);
+    expect(root.textContent).not.toMatch(/English|Langue/);
+    settings.close();
+  });
+});

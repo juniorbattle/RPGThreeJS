@@ -38,10 +38,13 @@ describe('Nouvelle chronique asks before erasing a chronicle in progress (final 
     root.querySelector<HTMLButtonElement>('[data-action="keep-chronicle"]')!.click();
     expect(root.querySelector('.title-screen__confirm')).toBeNull();
     expect(root.querySelector('[data-action="continue"]')).not.toBeNull();
+    // Title screen pass 2026-11-15: focus goes back to the entry that opened the confirmation.
+    expect(document.activeElement).toBe(root.querySelector('[data-action="new"]'));
 
     root.querySelector<HTMLButtonElement>('[data-action="new"]')!.click();
     root.querySelector('.title-screen__confirm')!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     expect(root.querySelector('.title-screen__confirm')).toBeNull();
+    expect(document.activeElement).toBe(root.querySelector('[data-action="new"]'));
     expect(start).not.toHaveBeenCalled();
     expect(localStorage.getItem(AUTO_KEY)).toBe(bytes);
     app.dispose();
