@@ -2,7 +2,7 @@
 
 | Champ | Valeur |
 | --- | --- |
-| TASK | Focus caméra gradué des actions de combat (run `claude-combat-skill-camera-20261115T1738Z`, identifiant réservé OD-2026-11-15-B, non consigné dans le registre) |
+| TASK | Focus caméra gradué des actions de combat (run `claude-combat-skill-camera-20261115T1738Z`, OD-2026-11-15-B) |
 | DOMAIN | Combat, présentation (caméra d'action de l'arène) |
 | BASELINE | `901ba350` sur `dev`, rebasé sur `9bc10292` (contrats 1.24.0, baseline `133814bac45cc31c8eda7aa0fa1acb16a9ca7e35`) |
 | BRANCH | `claude/combat-skill-camera-ce2e06`, publié sur `dev` |
@@ -48,4 +48,3 @@ L'action démarre toujours après 0,32 s ; la caméra continue de glisser pendan
 
 - Pas de test sur le navigateur ou le GPU de l'opérateur ; acceptation artistique en jeu par l'opérateur.
 - Les combats lancés depuis `data-qa-postdemo` (sauvegardes chargées) n'ont pas été parcourus ; un combat de l'après-démo l'a été par sa carte du labo.
-- OD-2026-11-15-B n'est pas consigné dans `OPERATOR_DECISIONS.md` (limite d'usage atteinte).
