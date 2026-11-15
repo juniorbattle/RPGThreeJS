@@ -33,6 +33,12 @@ export const MANUAL_KEYS = Object.freeze([
   'or',
 ]);
 
+/** The skill lines of src/game/skillFacts.ts build these from conditionals the heuristics cannot see. */
+export const MANUAL_ITEM_KEYS = Object.freeze([
+  'physiques', 'magiques', 'soi', 'case', 'cases', '(soi compris)', 'critique {0}', 'critique {0} (plafond)',
+  '{0} {1} tour ({2})', '{0} {1} tours ({2})',
+]);
+
 const FR_WORDS = new Set(('le la les de des du un une et est vous votre vos pour sur dans au aux ne pas à qui que ' +
   'il elle ils elles nous son sa ses leur leurs ce cette ces se en par avec sans plus mais ou où tout tous toute ' +
   'mon ma mes ton ta tes je tu on lui y être avoir fait été sont était ici déjà encore jamais rien chaque très puis ' +
@@ -41,7 +47,7 @@ const EN_WORDS = new Set(('the and of to is for with from not this that should m
   'failed are was be by on in at as it its an no has have unit units into when then than both while above below her his ' +
   'their they them without remain remains stays keep keeps can cannot will would only every after before over under through ' +
   'which who what where receives same each other one two any all may might never always stage stands left right wide card ' +
-  'focus shot lower upper behind facing floor empty fork company scene').split(' '));
+  'focus shot lower upper behind facing floor empty fork company scene response conditional purchase story tribute reparation requires sources media gold').split(' '));
 const englishMorphology = (word) => (word.length >= 6 && /(ed|ing)$/.test(word)) || /'s$/.test(word);
 const ACCENT = /[àâäçéèêëîïôöùûüÿœæÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŒÆ’]/;
 const ID_PROPERTIES = new Set(['id', 'key', 'type', 'kind', 'className', 'class', 'icon', 'actorId', 'sceneArtId', 'combatId',
@@ -320,5 +326,6 @@ export function extractAll(root, files = listPlayerSources(root)) {
     }
   }
   for (const key of MANUAL_KEYS) if (!keys.has(key)) keys.set(key, { zone: 'combat', sites: ['MANUAL_KEYS'] });
+  for (const key of MANUAL_ITEM_KEYS) if (!keys.has(key)) keys.set(key, { zone: 'items', sites: ['MANUAL_ITEM_KEYS'] });
   return keys;
 }

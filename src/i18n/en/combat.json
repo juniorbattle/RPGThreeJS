@@ -556,5 +556,6 @@
   "END": "END",
   "CHA": "CHA",
   "PV": "HP",
-  "PA": "AP"
+  "PA": "AP",
+  "or": "gold"
 }

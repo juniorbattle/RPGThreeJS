@@ -1,6 +1,7 @@
 export interface ExtractedKey { zone: string; sites: string[] }
 export const DEV_ONLY_SOURCES: readonly RegExp[];
 export const MANUAL_KEYS: readonly string[];
+export const MANUAL_ITEM_KEYS: readonly string[];
 export const ZONES: readonly string[];
 export function normalizeKey(text: string): string;
 export function isFrenchText(text: string): boolean;

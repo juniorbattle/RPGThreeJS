@@ -668,5 +668,8 @@
   "Arrivée chez le Grand Inquisiteur": "Arrival at the Grand Inquisitor’s",
   "Après la chute du Prophète des Ombres": "After the Fall of the Shadow Prophet",
   "Après l’épreuve du Scorpion": "After the Trial of the Scorpion",
-  "Prologue": "Prologue"
+  "Prologue": "Prologue",
+  "Or insuffisant": "Not enough gold",
+  "Forger · {0} or": "Forge · {0} gold",
+  "Forger {0} · {1} or": "Forge {0} · {1} gold"
 }

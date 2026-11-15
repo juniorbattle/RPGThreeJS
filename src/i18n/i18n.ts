@@ -14,7 +14,7 @@ import { readLanguagePreference, writeLanguagePreference, type Language } from '
 export type { Language } from './language';
 
 type CatalogPart = Record<string, string>;
-interface Template { regex: RegExp; anchor: string; english: string; weight: number }
+interface Template { regex: RegExp; anchor: string; english: string; weight: number; literal: number }
 
 const loaders = import.meta.glob<CatalogPart>('./en/*.json', { import: 'default' });
 const SHARED_CATALOG = '__rpgThreeJsEnglishCatalog';
@@ -65,7 +65,14 @@ export function joinList(items: readonly string[]): string {
   return `${items.slice(0, -1).join(', ')}${and}${items.at(-1)}`;
 }
 
+/** What this text and the ones inside it are worth, kept for the length of one translation. */
+let memo = new Map<string, { english: string; left: number } | null>();
+/** Holes that stayed French (names, or texts without an English one): fewer is a better reading of a line. */
+let leftovers = 0;
+/** Texts always get shorter on the way down, so this only bounds the work. */
+const MAX_DEPTH = 12;
 function translateText(text: string, depth: number): string {
+  if (depth === 0) { memo = new Map(); leftovers = 0; }
   const lead = /^\s*/.exec(text)![0];
   const trail = /\s*$/.exec(text)![0];
   const norm = normalizeText(text);
@@ -82,9 +89,66 @@ function translateText(text: string, depth: number): string {
 function lookup(norm: string, depth: number): string | null {
   const exact = catalog!.get(norm);
   if (exact !== undefined) return exact;
-  if (depth > 4) return null;
-  // Glued sentences first, so a template's last hole never swallows the next sentence.
-  return fromSentences(norm, depth) ?? fromTemplate(norm, depth) ?? fromCase(norm) ?? fromAffixes(norm, depth) ?? fromSegments(norm, depth);
+  if (depth > MAX_DEPTH) return null;
+  const known = memo.get(norm);
+  if (known !== undefined) {
+    if (known) leftovers += known.left;
+    return known ? known.english : null;
+  }
+  // Glued sentences first, so a template's last hole never swallows the next sentence; joined pieces before symbols, so
+  // « 8, critique 15 % » is two pieces and not « critique » between two affixes. A reading that leaves holes in French
+  // gives way to one that does not.
+  const start = leftovers;
+  let best: { english: string; left: number } | null = null;
+  for (const read of [fromSentences, fromTemplate, fromCase, fromSegments, fromAffixes, fromConcatenation]) {
+    leftovers = start;
+    const english = read(norm, depth);
+    if (english === null) continue;
+    const left = leftovers - start;
+    if (best === null || left < best.left) best = { english, left };
+    if (left === 0) break;
+  }
+  leftovers = start + (best?.left ?? 0);
+  memo.set(norm, best);
+  return best ? best.english : null;
+}
+
+/**
+ * Known texts laid end to end, cut at spaces and commas (« 9 cases » + « autour de la cible » + « , alliés compris »,
+ * the zone line of a skill): the cover with the fewest pieces wins, and every piece must be known.
+ */
+function fromConcatenation(text: string, depth: number): string | null {
+  if (depth > MAX_DEPTH - 2 || text.length > 160) return null;
+  const cuts = [0];
+  for (let i = 1; i < text.length; i += 1) if (text[i] === ' ' || text[i] === ',') cuts.push(i);
+  cuts.push(text.length);
+  if (cuts.length < 3) return null;
+  const pieceOf = (from: number, to: number): string | null => {
+    if (from === 0 && to === text.length) return null;
+    const piece = text.slice(cuts[from]!, cuts[to]!);
+    const norm = normalizeText(piece);
+    if (!norm) return piece;
+    const lead = /^\s*/.exec(piece)![0];
+    const trail = /\s*$/.exec(piece)![0];
+    const english = hasLetter(norm) ? lookupItem(norm, depth + 1) : englishNumbers(norm);
+    return english === null ? null : lead + english + trail;
+  };
+  const memo = new Map<number, string[] | null>();
+  const cover = (from: number): string[] | null => {
+    if (from === cuts.length - 1) return [];
+    if (memo.has(from)) return memo.get(from)!;
+    let best: string[] | null = null;
+    for (let to = from + 1; to < cuts.length; to += 1) {
+      const piece = pieceOf(from, to);
+      if (piece === null) continue;
+      const rest = cover(to);
+      if (rest && (best === null || rest.length + 1 < best.length)) best = [piece, ...rest];
+    }
+    memo.set(from, best);
+    return best;
+  };
+  const pieces = cover(0);
+  return pieces && pieces.length > 1 ? pieces.join('') : null;
 }
 
 function translateHole(value: string, depth: number): string {
@@ -93,7 +157,9 @@ function translateHole(value: string, depth: number): string {
   const lead = /^\s*/.exec(value)![0];
   const trail = /\s*$/.exec(value)![0];
   if (!hasLetter(norm)) return lead + englishNumbers(norm) + trail;
-  return lead + (lookup(norm, depth) ?? norm) + trail;
+  const english = lookup(norm, depth);
+  if (english === null) leftovers += 1;
+  return lead + (english ?? norm) + trail;
 }
 
 function fromTemplate(norm: string, depth: number): string | null {
@@ -185,7 +251,7 @@ function fromSegments(full: string, depth: number): string | null {
 
 /** A list item: a known text, a template or a known text inside symbols, never a list of its own. */
 function lookupItem(text: string, depth: number): string | null {
-  return catalog!.get(text) ?? (depth > 4 ? null : fromTemplate(text, depth) ?? fromCase(text) ?? fromAffixes(text, depth));
+  return catalog!.get(text) ?? (depth > MAX_DEPTH ? null : fromTemplate(text, depth) ?? fromCase(text) ?? fromAffixes(text, depth));
 }
 
 /**
@@ -251,9 +317,10 @@ function indexCatalog(entries: Map<string, string>): void {
     const anchor = literals.reduce((longest, literal) => (literal.length > longest.length ? literal : longest), '');
     // Holes come back in French order; the English text names them by number.
     const englishByOrder = english.replace(/\{(\d+)\}/g, (_match, index: string) => `{${order.indexOf(Number(index))}}`);
-    templates.push({ regex: new RegExp(`^${pattern}$`), anchor, english: englishByOrder, weight });
+    templates.push({ regex: new RegExp(`^${pattern}$`), anchor, english: englishByOrder, weight, literal: literals.join('').length });
   }
-  templates.sort((a, b) => b.weight - a.weight);
+  // The text that says the most about the line comes first: more letters, then more literal characters.
+  templates.sort((a, b) => b.weight - a.weight || b.literal - a.literal);
 }
 
 /** Merges catalog parts into one French → English map; empty English entries count as missing. */

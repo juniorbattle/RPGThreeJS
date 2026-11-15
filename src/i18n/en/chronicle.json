@@ -129,14 +129,11 @@
   "Réputation insuffisante : {0} demandés.": "Insufficient Reputation: {0} required.",
   "Réputation trop haute : {0} au plus.": "Reputation too high: {0} at most.",
   "Or insuffisant : {0} demandés.": "Insufficient Gold: {0} required.",
-  "Public response": "Public response",
-  "Optional gold cost": "Optional gold cost",
   "Historical information choice": "Historical information choice",
   "Costly request": "Costly request",
   "Public reputation consequence": "Public reputation consequence",
   "Concrete historical accusation": "Concrete historical accusation",
   "Political sponsorship": "Political sponsorship",
-  "Public memorial response": "Public memorial response",
   "Concrete social grievance": "Concrete social grievance",
   "Les familles que vous avez aidées viennent d’arriver. Grâce à ce qu’elles racontent, le refuge peut vous céder une caisse de remèdes à prix réduit — ou la garder pour les voyageurs qui suivront votre route.": "The families you helped have just arrived. Thanks to what they tell, the refuge can let you have a crate of remedies at a reduced price — or keep it for the travellers who will follow your road.",
   "Des familles disent que votre compagnie leur a pris plus qu’elle n’a donné. Le refuge vous propose pourtant une caisse de remèdes à prix réduit — ou la possibilité publique de la laisser à ceux qui arriveront après.": "Some families say your company took more from them than it gave. The refuge still offers you a crate of remedies at a reduced price — or the public choice of leaving it to those who arrive after you.",
@@ -156,5 +153,8 @@
   "Votre nom ouvre les portes et attire les regards. Nos familles ont besoin de provisions pour franchir la route. Que vaut cette renommée quand on vous demande d’en porter le coût ?": "Your name opens doors and draws eyes. Our families need provisions to cross the road. What is that renown worth when you are asked to bear its cost?",
   "Je viens de Bois-Clair. J’ai vu votre compagnie choisir les réserves pendant que nos familles fuyaient les flammes. Votre renommée n’effacera pas ce fait. Que répondez-vous devant ceux qui ont survécu ?": "I come from Clearwood. I saw your company choose the reserves while our families fled the flames. Your renown will not erase that fact. What do you answer before those who survived?",
   "Les témoins de Bois-Clair se taisent parce que leur parole a été étouffée. Je parlerai à leur place. Votre renommée n’achète pas notre silence.": "The witnesses of Clearwood are silent because their word was smothered. I will speak in their place. Your renown does not buy our silence.",
-  "Les récits de la route portent votre bannière et trop de gens blessés. Votre renommée attire les regards ; elle ne transforme pas ces traces en actes honorables.": "The stories from the road carry your banner and too many wounded people. Your renown draws eyes; it does not turn those traces into honourable deeds."
+  "Les récits de la route portent votre bannière et trop de gens blessés. Votre renommée attire les regards ; elle ne transforme pas ces traces en actes honorables.": "The stories from the road carry your banner and too many wounded people. Your renown draws eyes; it does not turn those traces into honourable deeds.",
+  "Engager Gunnar — 120 or.": "Hire Gunnar — 120 gold.",
+  "Engager Talon — 150 or.": "Hire Talon — 150 gold.",
+  "Engager Morvan — 180 or.": "Hire Morvan — 180 gold."
 }
