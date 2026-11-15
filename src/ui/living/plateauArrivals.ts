@@ -25,14 +25,14 @@ export const bearHallDepth: DepthScale = (y) => (y < 560 ? 1.2 : 1.2 + (y - 560)
  * never a giant. His closed, bear-crowned helm covers his face (OD-2026-11-11-G); he faces the hall as he was drawn.
  */
 export const BORIN_STATURE = 0.56;
-const BORIN: Walker = { id: 'borin', at: 0.2, from: [1020, 516], to: [1020, 516], facing: 'RIGHT', speed: 60, stature: BORIN_STATURE };
+const BORIN: Walker = { id: 'borin', at: 0.05, from: [1020, 516], to: [1020, 516], facing: 'RIGHT', speed: 60, stature: BORIN_STATURE };
 
 /** Borin, and Marian, Séraphine and Maelor, the company of the audience (Marian accompanies the advisers on the Bear's plateau). */
 export const BEAR_ARRIVAL_ACTORS: readonly Walker[] = [
   BORIN,
-  { id: 'marian', at: 1.0, from: [760, 1090], to: [858, 668], facing: 'RIGHT', speed: 80 },
-  { id: 'sage_seraphine', at: 1.6, from: [1300, 1095], to: [1186, 676], facing: 'LEFT', speed: 80 },
-  { id: 'maelor', at: 2.2, from: [620, 1095], to: [716, 700], facing: 'RIGHT', speed: 80 },
+  { id: 'marian', at: 0.3, from: [760, 1090], to: [858, 668], facing: 'RIGHT', speed: 80 },
+  { id: 'sage_seraphine', at: 0.8, from: [1300, 1095], to: [1186, 676], facing: 'LEFT', speed: 80 },
+  { id: 'maelor', at: 1.3, from: [620, 1095], to: [716, 700], facing: 'RIGHT', speed: 80 },
 ];
 
 /**
@@ -40,10 +40,10 @@ export const BEAR_ARRIVAL_ACTORS: readonly Walker[] = [
  * they never come forward, and they are drawn smaller than the floor would make them, behind the company.
  */
 export const BEAR_HALL_WARRIORS: readonly Extra[] = [
-  { id: 'bear_warrior', at: 0.3, seconds: 1, from: [648, 594], to: [648, 594] },
-  { id: 'bear_warrior', at: 0.5, seconds: 1, from: [744, 592], to: [744, 592] },
-  { id: 'bear_warrior', at: 0.7, seconds: 1, from: [1296, 592], to: [1296, 592] },
-  { id: 'bear_warrior', at: 0.9, seconds: 1, from: [1392, 596], to: [1392, 596] },
+  { id: 'bear_warrior', at: 0.1, seconds: 1, from: [648, 594], to: [648, 594] },
+  { id: 'bear_warrior', at: 0.2, seconds: 1, from: [744, 592], to: [744, 592] },
+  { id: 'bear_warrior', at: 0.3, seconds: 1, from: [1296, 592], to: [1296, 592] },
+  { id: 'bear_warrior', at: 0.4, seconds: 1, from: [1392, 596], to: [1392, 596] },
 ];
 export const bearWarriorDepth: DepthScale = (y) => bearHallDepth(y) * 0.55;
 
@@ -90,10 +90,10 @@ export const BEAR_ARRIVAL = momentScript({
   label: 'Arrivée chez Borin',
   scene: HALL_SCENE,
   shots: [
-    // The empty hall in its firelight: the camera glides low over the flagstones toward the steps.
-    { id: 'bear_hall', seconds: 10, from: { x: 760, y: 760, zoom: 1.34 }, to: { x: 1010, y: 470, zoom: 1.26 }, vanishing: { x: 1010, y: 560 } },
+    // The hall in its firelight, Borin already waiting and his warriors far off (OD-2026-11-14-A): the camera glides low over the flagstones toward the steps.
+    { id: 'bear_hall', seconds: 6, from: { x: 760, y: 760, zoom: 1.34 }, to: { x: 1010, y: 470, zoom: 1.26 }, vanishing: { x: 1010, y: 560 }, cast: 'waiting' },
     // Borin waits before his stone seat; the company walks in from the viewer and stops at the foot of the steps.
-    { id: 'bear_steps', seconds: 16, from: { x: 980, y: 700, zoom: 1.14 }, to: { x: 1000, y: 610, zoom: 1.05 }, vanishing: { x: 1010, y: 560 }, cast: true },
+    { id: 'bear_steps', seconds: 11, from: { x: 980, y: 700, zoom: 1.14 }, to: { x: 1000, y: 610, zoom: 1.05 }, vanishing: { x: 1010, y: 560 }, cast: true },
   ],
   actors: BEAR_ARRIVAL_ACTORS,
   extras: BEAR_HALL_WARRIORS,

@@ -16,14 +16,14 @@ export const AUDIENCE_IMAGE = '/assets/generated/lion-phase/environments/demo-en
 /** The floor recedes to the foot of the stairs; the dais is raised, so whoever stands on it keeps one size. */
 export const audienceDepth: DepthScale = (y) => (y < 500 ? 1.55 : 1.9 * (y - 380) / 200);
 
-const ALARIC: Walker = { id: 'alaric', at: 0.2, from: [1245, 452], to: [1245, 452], facing: 'LEFT', speed: 60 };
+const ALARIC: Walker = { id: 'alaric', at: 0.05, from: [1245, 452], to: [1245, 452], facing: 'LEFT', speed: 60 };
 
 /** Alaric, and Alistair, Séraphine and Maelor, the company of the briefing's first lines: four narrative actors. */
 export const AUDIENCE_ACTORS: readonly Walker[] = [
   ALARIC,
-  { id: 'alistair', at: 1.0, from: [880, 980], to: [1095, 612], facing: 'RIGHT', speed: 80 },
-  { id: 'sage_seraphine', at: 1.6, from: [1480, 990], to: [1420, 624], facing: 'LEFT', speed: 80 },
-  { id: 'maelor', at: 2.2, from: [760, 990], to: [960, 642], facing: 'RIGHT', speed: 80 },
+  { id: 'alistair', at: 0.3, from: [880, 980], to: [1095, 612], facing: 'RIGHT', speed: 80 },
+  { id: 'sage_seraphine', at: 0.8, from: [1480, 990], to: [1420, 624], facing: 'LEFT', speed: 80 },
+  { id: 'maelor', at: 1.3, from: [760, 990], to: [960, 642], facing: 'RIGHT', speed: 80 },
 ];
 
 /**
@@ -31,10 +31,10 @@ export const AUDIENCE_ACTORS: readonly Walker[] = [
  * forward. They are drawn smaller than the floor would make them, to stay in the distance behind the company.
  */
 export const AUDIENCE_GUARDS: readonly Extra[] = [
-  { id: 'village_militia_spearman', at: 0.3, seconds: 1, from: [500, 510], to: [500, 510] },
-  { id: 'village_militia_spearman', at: 0.5, seconds: 1, from: [622, 516], to: [622, 516] },
-  { id: 'village_militia_spearman', at: 0.7, seconds: 1, from: [762, 538], to: [762, 538] },
-  { id: 'village_militia_spearman', at: 0.9, seconds: 1, from: [1500, 556], to: [1500, 556] },
+  { id: 'village_militia_spearman', at: 0.1, seconds: 1, from: [500, 510], to: [500, 510] },
+  { id: 'village_militia_spearman', at: 0.2, seconds: 1, from: [622, 516], to: [622, 516] },
+  { id: 'village_militia_spearman', at: 0.3, seconds: 1, from: [762, 538], to: [762, 538] },
+  { id: 'village_militia_spearman', at: 0.4, seconds: 1, from: [1500, 556], to: [1500, 556] },
 ];
 export const guardDepth: DepthScale = (y) => audienceDepth(y) * 0.75;
 
@@ -94,15 +94,15 @@ export const ALARIC_AUDIENCE: LivingScript = {
   id: 'alaric_audience_arrival',
   label: 'Audience d’Alaric',
   shots: [
-    // The empty hall in daylight: the camera glides up the carpet toward the throne.
-    { id: 'audience_hall', image: AUDIENCE_IMAGE, seconds: 10, from: { x: 900, y: 660, zoom: 1.36 }, to: { x: 1200, y: 400, zoom: 1.28 }, vanishing: { x: 1200, y: 470 } },
+    // The hall in daylight, Alaric already waiting and his guards far off (OD-2026-11-14-A): the camera glides up the carpet toward the throne.
+    { id: 'audience_hall', image: AUDIENCE_IMAGE, seconds: 6, from: { x: 900, y: 660, zoom: 1.36 }, to: { x: 1200, y: 400, zoom: 1.28 }, vanishing: { x: 1200, y: 470 } },
     // Alaric waits before his throne; the company walks up the carpet and stops at the foot of the stairs.
-    { id: 'audience_carpet', image: AUDIENCE_IMAGE, seconds: 16, from: { x: 1100, y: 640, zoom: 1.15 }, to: { x: 1160, y: 560, zoom: 1.06 }, vanishing: { x: 1200, y: 470 } },
+    { id: 'audience_carpet', image: AUDIENCE_IMAGE, seconds: 11, from: { x: 1100, y: 640, zoom: 1.15 }, to: { x: 1160, y: 560, zoom: 1.06 }, vanishing: { x: 1200, y: 470 } },
   ],
   sheets: ['alistair', 'village_militia_spearman'],
   portraits: ['alaric', 'sage_seraphine', 'maelor'],
   painter(shotId, sheets) {
-    return shotId === 'audience_hall' ? audiencePainter(sheets, [], [], 4101) : audiencePainter(sheets, AUDIENCE_ACTORS, AUDIENCE_GUARDS, 4111);
+    return shotId === 'audience_hall' ? audiencePainter(sheets, [ALARIC], AUDIENCE_GUARDS, 4101) : audiencePainter(sheets, AUDIENCE_ACTORS, AUDIENCE_GUARDS, 4111);
   },
   backdrop() {
     return audiencePainter(new Map(), [], [], 4121);

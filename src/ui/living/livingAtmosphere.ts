@@ -89,6 +89,19 @@ export function lightShafts(shafts: readonly Shaft[], color: Rgb, alpha: number)
 
 export interface Banner { x: number; y: number; width: number; height: number; amplitude: number }
 
+/** How long the wind already in the cloth when a shot opens takes to settle. */
+export const OPENING_GUST_SECONDS = 2.5;
+
+/**
+ * The wind already in the cloth when a shot opens (2026-11-14): the sway starts four times as wide and settles back to
+ * its usual stir over OPENING_GUST_SECONDS, so the first image moves. Weather only: no fact, and wind may stay animated
+ * under reduced motion.
+ */
+export function openingGust(seconds: number): number {
+  const p = Math.min(1, Math.max(0, seconds / OPENING_GUST_SECONDS));
+  return 1 + 3 * (1 - p * p * (3 - 2 * p));
+}
+
 /**
  * Painted banners stirring in the wind: the picture's own cloth, redrawn row by row and shifted by a wave that grows
  * from the pole to the hem. A few pixels at most, on the tableau's grain, so the painting stays the painting.

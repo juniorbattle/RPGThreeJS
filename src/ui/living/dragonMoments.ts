@@ -55,19 +55,19 @@ export const DRAGON_ARRIVAL = momentScript({
   label: 'Arrivée chez Kaelen',
   scene: HALL_SCENE,
   shots: [
-    // The hall open on the sky: the camera glides over the floor's rosette toward the steps.
-    { id: 'dragon_hall', seconds: 10, from: { x: 600, y: 760, zoom: 1.32 }, to: { x: 1150, y: 470, zoom: 1.24 }, vanishing: { x: 1150, y: 560 } },
+    // The hall open on the sky, Kaelen already waiting and his guardians far off (OD-2026-11-14-A): the camera glides over the floor's rosette toward the steps.
+    { id: 'dragon_hall', seconds: 6, from: { x: 600, y: 760, zoom: 1.32 }, to: { x: 1150, y: 470, zoom: 1.24 }, vanishing: { x: 1150, y: 560 }, cast: 'waiting' },
     // Kaelen waits before his seat between the two bronze dragons; the company walks in and stops at the foot of the steps.
-    { id: 'dragon_steps', seconds: 16, from: { x: 1150, y: 700, zoom: 1.14 }, to: { x: 1180, y: 600, zoom: 1.05 }, vanishing: { x: 1150, y: 560 }, cast: true },
+    { id: 'dragon_steps', seconds: 11, from: { x: 1150, y: 700, zoom: 1.14 }, to: { x: 1180, y: 600, zoom: 1.05 }, vanishing: { x: 1150, y: 560 }, cast: true },
   ],
   actors: [
-    standing('kaelen', 0.2, 1255, 444, 'RIGHT', CHIEF_STATURE),
-    { id: 'elara', at: 1.0, from: [1000, 1090], to: [1098, 680], facing: 'RIGHT', speed: 80 },
-    { id: 'sage_seraphine', at: 1.6, from: [1500, 1095], to: [1412, 690], facing: 'LEFT', speed: 80 },
-    { id: 'maelor', at: 2.2, from: [860, 1095], to: [958, 714], facing: 'RIGHT', speed: 80 },
+    standing('kaelen', 0.05, 1255, 444, 'RIGHT', CHIEF_STATURE),
+    { id: 'elara', at: 0.3, from: [1000, 1090], to: [1098, 680], facing: 'RIGHT', speed: 80 },
+    { id: 'sage_seraphine', at: 0.8, from: [1500, 1095], to: [1412, 690], facing: 'LEFT', speed: 80 },
+    { id: 'maelor', at: 1.3, from: [860, 1095], to: [958, 714], facing: 'RIGHT', speed: 80 },
   ],
   // A few Dragon guardians far off by the columns, as scenery: no line names them.
-  extras: [still('dragon_guardian', 0.3, 470, 604), still('dragon_guardian', 0.5, 640, 598), still('dragon_guardian', 0.7, 836, 596), still('dragon_guardian', 0.9, 1486, 604)],
+  extras: [still('dragon_guardian', 0.1, 470, 604), still('dragon_guardian', 0.2, 640, 598), still('dragon_guardian', 0.3, 836, 596), still('dragon_guardian', 0.4, 1486, 604)],
   sheets: ['elara', 'kaelen', 'dragon_guardian'],
   portraits: ['sage_seraphine', 'maelor'],
   seed: 7301,
@@ -105,12 +105,12 @@ export const DRAGON_HONOUR = momentScript({
   scene: RIDGE_SCENE,
   shots: [
     // The sun sets over the sea of clouds; the camera comes down to the ridge.
-    { id: 'dragon_clouds', seconds: 12, from: { x: 1040, y: 260, zoom: 1.45 }, to: { x: 800, y: 520, zoom: 1.2 }, vanishing: { x: 760, y: 560 } },
+    { id: 'dragon_clouds', seconds: 5, from: { x: 1040, y: 260, zoom: 1.45 }, to: { x: 800, y: 520, zoom: 1.2 }, vanishing: { x: 760, y: 560 }, openingGust: true },
     // The company stands still on the ridge; the camera draws back.
-    { id: 'dragon_ridge', seconds: 16, from: { x: 700, y: 640, zoom: 1.18 }, to: { x: 760, y: 560, zoom: 1.05 }, vanishing: { x: 760, y: 560 }, cast: true },
+    { id: 'dragon_ridge', seconds: 12, from: { x: 700, y: 640, zoom: 1.18 }, to: { x: 760, y: 560, zoom: 1.05 }, vanishing: { x: 760, y: 560 }, cast: true },
   ],
   // No Shaman: his fate is not told. No Kaelen, no Crystal, no Seal.
-  actors: [standing('elara', 0.4, 640, 690, 'RIGHT'), standing('sage_seraphine', 0.8, 820, 700, 'LEFT'), standing('maelor', 1.2, 490, 730, 'RIGHT')],
+  actors: [standing('elara', 0.05, 640, 690, 'RIGHT'), standing('sage_seraphine', 0.25, 820, 700, 'LEFT'), standing('maelor', 0.45, 490, 730, 'RIGHT')],
   sheets: ['elara'],
   portraits: ['sage_seraphine', 'maelor'],
   seed: 7401,
@@ -158,16 +158,16 @@ export const DRAGON_FORCE = momentScript({
   label: 'Après l’épreuve du Dragon',
   scene: ESPLANADE_SCENE,
   shots: [
-    { id: 'dragon_sunset', seconds: 12, from: { x: 1300, y: 270, zoom: 1.45 }, to: { x: 800, y: 480, zoom: 1.2 }, vanishing: { x: 520, y: 600 } },
+    { id: 'dragon_sunset', seconds: 5, from: { x: 1300, y: 270, zoom: 1.45 }, to: { x: 800, y: 480, zoom: 1.2 }, vanishing: { x: 520, y: 600 }, openingGust: true },
     // Kaelen on the steps of his hall, two guardians at the doors, the company on the esplanade facing him.
-    { id: 'dragon_esplanade', seconds: 16, from: { x: 520, y: 640, zoom: 1.15 }, to: { x: 500, y: 590, zoom: 1.06 }, vanishing: { x: 520, y: 600 }, cast: true },
+    { id: 'dragon_esplanade', seconds: 12, from: { x: 520, y: 640, zoom: 1.15 }, to: { x: 500, y: 590, zoom: 1.06 }, vanishing: { x: 520, y: 600 }, cast: true },
   ],
   // Nobody steps aside: the epilogue says the guardians let the company pass.
   actors: [
-    standing('kaelen', 0.2, 250, 456, 'RIGHT', CHIEF_STATURE),
-    standing('elara', 0.6, 520, 690, 'LEFT'), standing('sage_seraphine', 1.0, 700, 706, 'LEFT'), standing('maelor', 1.4, 840, 736, 'LEFT'),
+    standing('kaelen', 0.05, 250, 456, 'RIGHT', CHIEF_STATURE),
+    standing('elara', 0.15, 520, 690, 'LEFT'), standing('sage_seraphine', 0.3, 700, 706, 'LEFT'), standing('maelor', 0.45, 840, 736, 'LEFT'),
   ],
-  extras: [still('dragon_guardian', 0.3, 120, 458), still('dragon_guardian', 0.5, 410, 462)],
+  extras: [still('dragon_guardian', 0.1, 120, 458), still('dragon_guardian', 0.2, 410, 462)],
   sheets: ['elara', 'kaelen', 'dragon_guardian'],
   portraits: ['sage_seraphine', 'maelor'],
   seed: 7501,

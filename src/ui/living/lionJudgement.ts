@@ -18,14 +18,14 @@ const IMAGE = '/assets/generated/lion-phase/environments/demo-environment-pack-v
  */
 export const hallDepth: DepthScale = (y) => (y < 500 ? 1.6 : 1.6 * (y - 360) / 200);
 
-const ALARIC: Walker = { id: 'alaric', at: 0.2, from: [836, 446], to: [836, 446], facing: 'RIGHT', speed: 60 };
+const ALARIC: Walker = { id: 'alaric', at: 0.05, from: [836, 446], to: [836, 446], facing: 'RIGHT', speed: 60 };
 
 /** Alaric, and three of the company: Alistair, Séraphine and Maelor, as at the audience. Four narrative actors. */
 export const JUDGEMENT_ACTORS: readonly Walker[] = [
   ALARIC,
-  { id: 'alistair', at: 0.6, from: [650, 935], to: [680, 642], facing: 'RIGHT', speed: 80 },
-  { id: 'sage_seraphine', at: 1.2, from: [1045, 935], to: [1005, 652], facing: 'LEFT', speed: 80 },
-  { id: 'maelor', at: 1.8, from: [470, 945], to: [515, 690], facing: 'RIGHT', speed: 80 },
+  { id: 'alistair', at: 0.25, from: [650, 935], to: [680, 642], facing: 'RIGHT', speed: 80 },
+  { id: 'sage_seraphine', at: 0.65, from: [1045, 935], to: [1005, 652], facing: 'LEFT', speed: 80 },
+  { id: 'maelor', at: 1.05, from: [470, 945], to: [515, 690], facing: 'RIGHT', speed: 80 },
 ];
 
 const BRAZIERS: readonly FireSpot[] = [
@@ -68,9 +68,9 @@ export const LION_JUDGEMENT: LivingScript = {
   label: 'Jugement du Lion',
   shots: [
     // The banners and the throne: Alaric waits.
-    { id: 'judgement_throne', image: IMAGE, seconds: 10, from: { x: 836, y: 290, zoom: 1.38 }, to: { x: 836, y: 420, zoom: 1.16 }, vanishing: { x: 836, y: 560 } },
+    { id: 'judgement_throne', image: IMAGE, seconds: 6, from: { x: 836, y: 290, zoom: 1.38 }, to: { x: 836, y: 420, zoom: 1.16 }, vanishing: { x: 836, y: 560 } },
     // The hall from its entrance: the company walks in and stops at the foot of the stairs.
-    { id: 'judgement_hall', image: IMAGE, seconds: 18, from: { x: 836, y: 640, zoom: 1.12 }, to: { x: 836, y: 600, zoom: 1.03 }, vanishing: { x: 836, y: 560 } },
+    { id: 'judgement_hall', image: IMAGE, seconds: 10, from: { x: 836, y: 640, zoom: 1.12 }, to: { x: 836, y: 590, zoom: 1.0 }, vanishing: { x: 836, y: 560 } },
   ],
   sheets: ['alistair'],
   portraits: ['alaric', 'sage_seraphine', 'maelor'],

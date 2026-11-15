@@ -30,23 +30,23 @@ const SAVED_LIGHT: FigureLight = {
  * comes a few steps towards them; some villagers keep their distance; the last Serpents run off through the gate, between the fallen fence and the cart.
  */
 export const SAVED_ACTORS: readonly Walker[] = [
-  { id: 'alistair', at: 0.4, from: [1060, 662], to: [1060, 662], facing: 'LEFT', speed: 60 },
-  { id: 'maelor', at: 0.9, from: [1180, 648], to: [1180, 648], facing: 'LEFT', speed: 60 },
-  { id: 'villageoise', at: 5.5, from: [600, 636], to: [740, 640], facing: 'RIGHT', speed: 45 },
+  { id: 'alistair', at: 0.05, from: [1060, 662], to: [1060, 662], facing: 'LEFT', speed: 60 },
+  { id: 'maelor', at: 0.3, from: [1180, 648], to: [1180, 648], facing: 'LEFT', speed: 60 },
+  { id: 'villageoise', at: 4.2, from: [600, 636], to: [740, 640], facing: 'RIGHT', speed: 45 },
 ];
 export const SAVED_EXTRAS: readonly Extra[] = [
-  { id: 'serpent_raider', at: 0.4, seconds: 5, from: [820, 560], to: [955, 438], pace: 7 },
-  { id: 'serpent_raider', at: 1.6, seconds: 5, from: [1000, 548], to: [948, 436], pace: 7 },
-  { id: 'serpent_brute', at: 2.8, seconds: 5.5, from: [880, 580], to: [950, 440], pace: 6 },
-  { id: 'villageois', at: 3, seconds: 1, from: [430, 560], to: [430, 560] },
-  { id: 'refugee', at: 3.6, seconds: 1, from: [1290, 548], to: [1290, 548] },
-  { id: 'survivor', at: 4.2, seconds: 1, from: [1340, 560], to: [1340, 560] },
+  { id: 'serpent_raider', at: 0.1, seconds: 5, from: [820, 560], to: [955, 438], pace: 7 },
+  { id: 'serpent_raider', at: 1.0, seconds: 5, from: [1000, 548], to: [948, 436], pace: 7 },
+  { id: 'serpent_brute', at: 2.0, seconds: 5.5, from: [880, 580], to: [950, 440], pace: 6 },
+  { id: 'villageois', at: 2.4, seconds: 1, from: [430, 560], to: [430, 560] },
+  { id: 'refugee', at: 3.0, seconds: 1, from: [1290, 548], to: [1290, 548] },
+  { id: 'survivor', at: 3.6, seconds: 1, from: [1340, 560], to: [1340, 560] },
 ];
 
 export const BOIS_CLAIR_SAVED: LivingScript = {
   id: 'bois_clair_saved',
   label: 'Bois-Clair sauvé',
-  shots: [{ id: 'saved_square', image: BOIS_CLAIR_TABLEAUX.saved, seconds: 20, from: { x: 960, y: 560, zoom: 1.16 }, to: { x: 920, y: 590, zoom: 1.05 }, vanishing: { x: 948, y: 430 } }],
+  shots: [{ id: 'saved_square', image: BOIS_CLAIR_TABLEAUX.saved, seconds: 12, from: { x: 960, y: 560, zoom: 1.16 }, to: { x: 920, y: 590, zoom: 1.05 }, vanishing: { x: 948, y: 430 } }],
   sheets: ['alistair', 'serpent_raider', 'serpent_brute'],
   portraits: ['maelor', 'villageoise', 'villageois', 'refugee', 'survivor'],
   painter(_shotId, sheets) {
@@ -84,19 +84,19 @@ const RUIN_LIGHT: FigureLight = {
  * by the cart; the villager keeps apart; villagers watch from afar. Nobody loads or hands out anything.
  */
 export const SACRIFICED_ACTORS: readonly Walker[] = [
-  { id: 'maelor', at: 0.6, from: [1010, 600], to: [1010, 600], facing: 'LEFT', speed: 60 },
-  { id: 'villageoise', at: 3.5, from: [600, 640], to: [640, 640], facing: 'RIGHT', speed: 30 },
+  { id: 'maelor', at: 0.05, from: [1010, 600], to: [1010, 600], facing: 'LEFT', speed: 60 },
+  { id: 'villageoise', at: 2.5, from: [600, 640], to: [640, 640], facing: 'RIGHT', speed: 30 },
 ];
 export const SACRIFICED_EXTRAS: readonly Extra[] = [
-  { id: 'villageois', at: 2, seconds: 1, from: [560, 540], to: [560, 540] },
-  { id: 'refugee', at: 2.6, seconds: 1, from: [760, 520], to: [760, 520] },
-  { id: 'survivor', at: 3.2, seconds: 1, from: [1150, 560], to: [1150, 560] },
+  { id: 'villageois', at: 1.0, seconds: 1, from: [560, 540], to: [560, 540] },
+  { id: 'refugee', at: 1.6, seconds: 1, from: [760, 520], to: [760, 520] },
+  { id: 'survivor', at: 2.2, seconds: 1, from: [1150, 560], to: [1150, 560] },
 ];
 
 export const BOIS_CLAIR_SACRIFICED: LivingScript = {
   id: 'bois_clair_sacrificed',
   label: 'Bois-Clair sacrifié',
-  shots: [{ id: 'sacrificed_square', image: BOIS_CLAIR_TABLEAUX.sacrificed, seconds: 20, from: { x: 948, y: 470, zoom: 1.18 }, to: { x: 930, y: 560, zoom: 1.05 }, vanishing: { x: 948, y: 430 } }],
+  shots: [{ id: 'sacrificed_square', image: BOIS_CLAIR_TABLEAUX.sacrificed, seconds: 11, from: { x: 948, y: 470, zoom: 1.18 }, to: { x: 930, y: 560, zoom: 1.05 }, vanishing: { x: 948, y: 430 } }],
   sheets: [],
   portraits: ['maelor', 'villageoise', 'villageois', 'refugee', 'survivor'],
   painter(_shotId, sheets) {

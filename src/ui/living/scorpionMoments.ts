@@ -46,19 +46,19 @@ export const SCORPION_ARRIVAL = momentScript({
   label: 'Arrivée chez le Grand Inquisiteur',
   scene: ARCHIVES_SCENE,
   shots: [
-    // The hall of records: dust turns in the shafts of sun; the camera glides along the carpet to the dais.
-    { id: 'scorpion_hall', seconds: 10, from: { x: 760, y: 800, zoom: 1.32 }, to: { x: 1035, y: 520, zoom: 1.24 }, vanishing: { x: 1035, y: 640 } },
+    // The hall of records, the Grand Inquisiteur already waiting and his scholars far off (OD-2026-11-14-A): dust turns in the shafts of sun; the camera glides along the carpet to the dais.
+    { id: 'scorpion_hall', seconds: 6, from: { x: 760, y: 800, zoom: 1.32 }, to: { x: 1035, y: 520, zoom: 1.24 }, vanishing: { x: 1035, y: 640 }, cast: 'waiting' },
     // The Grand Inquisiteur waits before his seat; the company walks in and stops at the foot of the steps.
-    { id: 'scorpion_steps', seconds: 16, from: { x: 1035, y: 760, zoom: 1.14 }, to: { x: 1035, y: 660, zoom: 1.05 }, vanishing: { x: 1035, y: 640 }, cast: true },
+    { id: 'scorpion_steps', seconds: 11, from: { x: 1035, y: 760, zoom: 1.14 }, to: { x: 1035, y: 660, zoom: 1.05 }, vanishing: { x: 1035, y: 640 }, cast: true },
   ],
   actors: [
-    standing('grand_inquisitor', 0.2, 1035, 566, 'RIGHT', CHIEF_STATURE),
-    { id: 'kestrel', at: 1.0, from: [780, 1090], to: [872, 714], facing: 'RIGHT', speed: 80 },
-    { id: 'sage_seraphine', at: 1.6, from: [1300, 1095], to: [1200, 720], facing: 'LEFT', speed: 80 },
-    { id: 'maelor', at: 2.2, from: [640, 1095], to: [736, 746], facing: 'RIGHT', speed: 80 },
+    standing('grand_inquisitor', 0.05, 1035, 566, 'RIGHT', CHIEF_STATURE),
+    { id: 'kestrel', at: 0.3, from: [780, 1090], to: [872, 714], facing: 'RIGHT', speed: 80 },
+    { id: 'sage_seraphine', at: 0.8, from: [1300, 1095], to: [1200, 720], facing: 'LEFT', speed: 80 },
+    { id: 'maelor', at: 1.3, from: [640, 1095], to: [736, 746], facing: 'RIGHT', speed: 80 },
   ],
   // A few scholars far off among the desks and shelves, still: the arrival names the clan's scholars, none speaks.
-  extras: [still('scorpion_scholar', 0.3, 560, 652), still('scorpion_scholar', 0.5, 650, 648), still('scorpion_scholar', 0.7, 1290, 650), still('scorpion_scholar', 0.9, 1400, 656)],
+  extras: [still('scorpion_scholar', 0.1, 560, 652), still('scorpion_scholar', 0.2, 650, 648), still('scorpion_scholar', 0.3, 1290, 650), still('scorpion_scholar', 0.4, 1400, 656)],
   sheets: ['kestrel', 'grand_inquisitor', 'scorpion_scholar'],
   portraits: ['sage_seraphine', 'maelor'],
   seed: 7601,
@@ -91,12 +91,12 @@ export const SCORPION_HONOUR = momentScript({
   label: 'Après la chute du Prophète des Ombres',
   scene: CREST_SCENE,
   shots: [
-    { id: 'scorpion_sunset', seconds: 12, from: { x: 1095, y: 220, zoom: 1.45 }, to: { x: 900, y: 480, zoom: 1.2 }, vanishing: { x: 900, y: 480 } },
+    { id: 'scorpion_sunset', seconds: 5, from: { x: 1095, y: 220, zoom: 1.45 }, to: { x: 900, y: 480, zoom: 1.2 }, vanishing: { x: 900, y: 480 } },
     // The company stands still on the crest.
-    { id: 'scorpion_crest', seconds: 16, from: { x: 820, y: 640, zoom: 1.16 }, to: { x: 860, y: 560, zoom: 1.05 }, vanishing: { x: 900, y: 480 }, cast: true },
+    { id: 'scorpion_crest', seconds: 12, from: { x: 820, y: 640, zoom: 1.16 }, to: { x: 860, y: 560, zoom: 1.05 }, vanishing: { x: 900, y: 480 }, cast: true },
   ],
   // No Prophet: his fate is not told. No Grand Inquisiteur, no codex, no Seal.
-  actors: [standing('kestrel', 0.4, 830, 612, 'RIGHT'), standing('sage_seraphine', 0.8, 980, 640, 'LEFT'), standing('maelor', 1.2, 690, 690, 'RIGHT')],
+  actors: [standing('kestrel', 0.05, 830, 612, 'RIGHT'), standing('sage_seraphine', 0.25, 980, 640, 'LEFT'), standing('maelor', 0.45, 690, 690, 'RIGHT')],
   sheets: ['kestrel'],
   portraits: ['sage_seraphine', 'maelor'],
   seed: 7701,
@@ -139,15 +139,15 @@ export const SCORPION_FORCE = momentScript({
   label: 'Après l’épreuve du Scorpion',
   scene: COURTYARD_SCENE,
   shots: [
-    { id: 'scorpion_walls', seconds: 12, from: { x: 1160, y: 200, zoom: 1.42 }, to: { x: 860, y: 420, zoom: 1.2 }, vanishing: { x: 860, y: 620 } },
+    { id: 'scorpion_walls', seconds: 5, from: { x: 1160, y: 200, zoom: 1.42 }, to: { x: 860, y: 420, zoom: 1.2 }, vanishing: { x: 860, y: 620 }, openingGust: true },
     // The Grand Inquisiteur before his shut doors, two scholars under the arcades, the company in the courtyard.
-    { id: 'scorpion_courtyard', seconds: 16, from: { x: 860, y: 700, zoom: 1.15 }, to: { x: 860, y: 620, zoom: 1.05 }, vanishing: { x: 860, y: 620 }, cast: true },
+    { id: 'scorpion_courtyard', seconds: 12, from: { x: 860, y: 700, zoom: 1.15 }, to: { x: 860, y: 620, zoom: 1.05 }, vanishing: { x: 860, y: 620 }, cast: true },
   ],
   actors: [
-    standing('grand_inquisitor', 0.2, 860, 592, 'RIGHT', CHIEF_STATURE),
-    standing('kestrel', 0.6, 680, 790, 'RIGHT'), standing('sage_seraphine', 1.0, 1040, 800, 'LEFT'), standing('maelor', 1.4, 540, 824, 'RIGHT'),
+    standing('grand_inquisitor', 0.05, 860, 592, 'RIGHT', CHIEF_STATURE),
+    standing('kestrel', 0.15, 680, 790, 'RIGHT'), standing('sage_seraphine', 0.3, 1040, 800, 'LEFT'), standing('maelor', 0.45, 540, 824, 'RIGHT'),
   ],
-  extras: [still('scorpion_scholar', 0.3, 330, 602), still('scorpion_scholar', 0.5, 1350, 604)],
+  extras: [still('scorpion_scholar', 0.1, 330, 602), still('scorpion_scholar', 0.2, 1350, 604)],
   sheets: ['kestrel', 'grand_inquisitor', 'scorpion_scholar'],
   portraits: ['sage_seraphine', 'maelor'],
   seed: 7801,

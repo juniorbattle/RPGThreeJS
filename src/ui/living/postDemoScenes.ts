@@ -3,7 +3,7 @@ import { ash, embers, paintedFires, paintLights } from '../opening/openingPainte
 import { PropLayer, rgba, type Light, type Rgb } from '../opening/openingLayer';
 import type { CameraKey, ImageFrame } from '../opening/openingShots';
 import type { LivingScript, LivingShot } from './LivingTableauPlayer';
-import { bannerSway, lightShafts, type Banner, type Shaft } from './livingAtmosphere';
+import { bannerSway, lightShafts, openingGust, type Banner, type Shaft } from './livingAtmosphere';
 import { ExtraCrowd, FigureCast, placeCast, type DepthScale, type Extra, type FigureLight, type Walker } from './livingFigures';
 
 /**
@@ -93,8 +93,25 @@ export const still = (id: string, at: number, x: number, y: number): Extra => ({
 /** A chief drawn from a boss sheet two cells high stands at a tall man's height (Borin, Kaelen, the Grand Inquisiteur). */
 export const CHIEF_STATURE = 0.56;
 
-/** A shot of a moment; `scene` lets one shot change what lives in the same painting (the betrayal's rising wind). */
-export interface MomentShot { id: string; seconds: number; from: CameraKey; to: CameraKey; vanishing: { x: number; y: number }; cast?: boolean; scene?: MomentScene }
+/**
+ * A shot of a moment; `scene` lets one shot change what lives in the same painting (the betrayal's rising wind).
+ * `cast`: `true` shows the actors and extras; `'waiting'` only those already in place before the company comes in, the
+ * actors who stand where they are and the extras (an arrival's chief and his guards, 2026-11-14). `openingGust` puts
+ * the wind in the painting's cloth from the first image, settling over its first seconds.
+ */
+export interface MomentShot { id: string; seconds: number; from: CameraKey; to: CameraKey; vanishing: { x: number; y: number }; cast?: boolean | 'waiting'; openingGust?: boolean; scene?: MomentScene }
+
+/** The actors a shot shows: all of them, those already in place, or none. */
+export function castOf(shot: Pick<MomentShot, 'cast'>, actors: readonly Walker[]): readonly Walker[] {
+  if (shot.cast === 'waiting') return actors.filter((actor) => actor.from[0] === actor.to[0] && actor.from[1] === actor.to[1]);
+  return shot.cast ? actors : [];
+}
+
+/** The same scene with the wind of a shot's first seconds on top of its own. */
+function withOpeningGust(scene: MomentScene): MomentScene {
+  const own = scene.gust;
+  return { ...scene, gust: (seconds) => (own ? own(seconds) : 1) * openingGust(seconds) };
+}
 
 /** A post-demo living tableau, with what its tests read: the scene, its actors and its extras. */
 export interface MomentScript extends LivingScript {
@@ -109,14 +126,14 @@ export function momentScript(options: {
 }): MomentScript {
   const { scene, seed } = options;
   const actors = options.actors ?? [], extras = options.extras ?? [];
-  const shots: readonly (LivingShot & { cast?: boolean; scene: MomentScene })[] = options.shots.map(({ cast, scene: own, ...shot }) =>
+  const shots: readonly (LivingShot & { cast?: boolean | 'waiting'; openingGust?: boolean; scene: MomentScene })[] = options.shots.map(({ cast, scene: own, ...shot }) =>
     ({ ...shot, image: (own ?? scene).image, frame: POST_DEMO_FRAME, cast, scene: own ?? scene }));
   return {
     id: options.id, label: options.label, shots, sheets: options.sheets, portraits: options.portraits, scene, actors, extras,
     painter(shotId, sheets) {
       const index = Math.max(0, shots.findIndex((shot) => shot.id === shotId));
       const shot = shots[index]!;
-      return momentPainter(shot.scene, sheets, shot.cast ? actors : [], shot.cast ? extras : [], seed + index * 10);
+      return momentPainter(shot.openingGust ? withOpeningGust(shot.scene) : shot.scene, sheets, castOf(shot, actors), shot.cast ? extras : [], seed + index * 10);
     },
     backdrop() {
       return momentPainter(scene, new Map(), [], [], seed + 90);

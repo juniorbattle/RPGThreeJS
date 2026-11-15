@@ -2,7 +2,7 @@ import type { FireSpot, SheetBook, ShotPainter } from '../opening/openingPainter
 import { ash, CANDLE, FIRE, paintedFires, paintLights } from '../opening/openingPainters';
 import { PropLayer, type Light, type Rgb } from '../opening/openingLayer';
 import type { LivingScript } from './LivingTableauPlayer';
-import { bannerSway, celestialGlow, driftingPuffs, risingSpray, type Banner } from './livingAtmosphere';
+import { bannerSway, celestialGlow, driftingPuffs, openingGust, risingSpray, type Banner } from './livingAtmosphere';
 import { FigureCast, placeCast, type DepthScale, type FigureLight, type Walker } from './livingFigures';
 
 /**
@@ -29,9 +29,9 @@ interface EndingScene {
   dust: Rgb;
 }
 
-function endingPainter(scene: EndingScene, sheets: SheetBook, actors: readonly Walker[], seed: number): ShotPainter {
+function endingPainter(scene: EndingScene, sheets: SheetBook, actors: readonly Walker[], seed: number, gust = false): ShotPainter {
   const sky = scene.sky(seed);
-  const banners = bannerSway(scene.image, scene.banners, seed);
+  const banners = bannerSway(scene.image, scene.banners, seed, undefined, gust ? openingGust : undefined);
   const fires = paintedFires(scene.fires, seed);
   const layer = new PropLayer();
   const cast = new FigureCast(scene.light);
@@ -82,24 +82,24 @@ const RUINS: EndingScene = {
 
 /** Alistair, Séraphine and Maelor on the mosaic, still. No artefact in view: in one branch the proof went to Alaric. */
 export const SERPENT_ENDING_ACTORS: readonly Walker[] = [
-  standing('alistair', 0.4, 885, 680, 'RIGHT'),
-  standing('sage_seraphine', 0.8, 1055, 690, 'LEFT'),
-  standing('maelor', 1.2, 725, 705, 'RIGHT'),
+  standing('alistair', 0.05, 885, 680, 'RIGHT'),
+  standing('sage_seraphine', 0.25, 1055, 690, 'LEFT'),
+  standing('maelor', 0.45, 725, 705, 'RIGHT'),
 ];
 
 export const SERPENT_ROUTE_ENDING: LivingScript = {
   id: 'serpent_route_ending',
   label: 'Fin de la poursuite Serpent',
   shots: [
-    // The moon behind passing clouds; the camera comes down to the esplanade.
-    { id: 'serpent_moon', image: SERPENT_ENDING_IMAGE, seconds: 12, from: { x: 1035, y: 250, zoom: 1.5 }, to: { x: 920, y: 470, zoom: 1.22 }, vanishing: { x: 905, y: 500 } },
+    // The moon behind passing clouds, the torn banner already in the wind (OD-2026-11-14-A); the camera comes down to the esplanade.
+    { id: 'serpent_moon', image: SERPENT_ENDING_IMAGE, seconds: 5, from: { x: 1035, y: 250, zoom: 1.5 }, to: { x: 920, y: 470, zoom: 1.22 }, vanishing: { x: 905, y: 500 } },
     // The company stands on the mosaic under the torn banner; the camera rises back toward the moon.
-    { id: 'serpent_esplanade', image: SERPENT_ENDING_IMAGE, seconds: 20, from: { x: 920, y: 620, zoom: 1.25 }, to: { x: 990, y: 400, zoom: 1.12 }, vanishing: { x: 905, y: 500 } },
+    { id: 'serpent_esplanade', image: SERPENT_ENDING_IMAGE, seconds: 14, from: { x: 920, y: 620, zoom: 1.25 }, to: { x: 990, y: 400, zoom: 1.12 }, vanishing: { x: 905, y: 500 } },
   ],
   sheets: ['alistair'],
   portraits: ['sage_seraphine', 'maelor'],
   painter(shotId, sheets) {
-    return shotId === 'serpent_moon' ? endingPainter(RUINS, sheets, [], 5101) : endingPainter(RUINS, sheets, SERPENT_ENDING_ACTORS, 5111);
+    return shotId === 'serpent_moon' ? endingPainter(RUINS, sheets, [], 5101, true) : endingPainter(RUINS, sheets, SERPENT_ENDING_ACTORS, 5111);
   },
   backdrop() {
     return endingPainter(RUINS, new Map(), [], 5121);
@@ -141,25 +141,25 @@ const TERRACE: EndingScene = {
 
 /** Alaric on the stairs; Alistair, Séraphine and Maelor on the lion mosaic. The champion does not appear. */
 export const TRIAL_ENDING_ACTORS: readonly Walker[] = [
-  standing('alaric', 0.2, 838, 392, 'LEFT'),
-  standing('alistair', 0.6, 790, 650, 'RIGHT'),
-  standing('sage_seraphine', 1.0, 965, 660, 'LEFT'),
-  standing('maelor', 1.4, 635, 685, 'RIGHT'),
+  standing('alaric', 0.05, 838, 392, 'LEFT'),
+  standing('alistair', 0.15, 790, 650, 'RIGHT'),
+  standing('sage_seraphine', 0.3, 965, 660, 'LEFT'),
+  standing('maelor', 0.45, 635, 685, 'RIGHT'),
 ];
 
 export const LION_TRIAL_ROUTE_ENDING: LivingScript = {
   id: 'lion_trial_route_ending',
   label: 'Fin de l’épreuve du Lion',
   shots: [
-    // The sun going down behind the hills; the camera comes down to the terrace.
-    { id: 'trial_sunset', image: TRIAL_ENDING_IMAGE, seconds: 12, from: { x: 1150, y: 260, zoom: 1.45 }, to: { x: 838, y: 420, zoom: 1.18 }, vanishing: { x: 838, y: 470 } },
+    // The sun going down behind the hills, the star banner already in the wind (OD-2026-11-14-A); the camera comes down to the terrace.
+    { id: 'trial_sunset', image: TRIAL_ENDING_IMAGE, seconds: 5, from: { x: 1150, y: 260, zoom: 1.45 }, to: { x: 838, y: 420, zoom: 1.18 }, vanishing: { x: 838, y: 470 } },
     // Alaric on the stairs, the company on the mosaic.
-    { id: 'trial_terrace', image: TRIAL_ENDING_IMAGE, seconds: 18, from: { x: 838, y: 560, zoom: 1.18 }, to: { x: 838, y: 520, zoom: 1.06 }, vanishing: { x: 838, y: 470 } },
+    { id: 'trial_terrace', image: TRIAL_ENDING_IMAGE, seconds: 13, from: { x: 838, y: 560, zoom: 1.18 }, to: { x: 838, y: 500, zoom: 1.0 }, vanishing: { x: 838, y: 470 } },
   ],
   sheets: ['alistair'],
   portraits: ['alaric', 'sage_seraphine', 'maelor'],
   painter(shotId, sheets) {
-    return shotId === 'trial_sunset' ? endingPainter(TERRACE, sheets, [], 5201) : endingPainter(TERRACE, sheets, TRIAL_ENDING_ACTORS, 5211);
+    return shotId === 'trial_sunset' ? endingPainter(TERRACE, sheets, [], 5201, true) : endingPainter(TERRACE, sheets, TRIAL_ENDING_ACTORS, 5211);
   },
   backdrop() {
     return endingPainter(TERRACE, new Map(), [], 5221);

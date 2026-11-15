@@ -53,12 +53,12 @@ export const BEAR_HONOUR = momentScript({
   scene: GALLERY_SCENE,
   shots: [
     // The sun goes down behind the peaks; the camera comes down to the gallery.
-    { id: 'bear_peaks', seconds: 12, from: { x: 1300, y: 260, zoom: 1.45 }, to: { x: 1000, y: 520, zoom: 1.2 }, vanishing: { x: 1000, y: 560 } },
+    { id: 'bear_peaks', seconds: 5, from: { x: 1300, y: 260, zoom: 1.45 }, to: { x: 1000, y: 520, zoom: 1.2 }, vanishing: { x: 1000, y: 560 }, openingGust: true },
     // The company stands still among the overturned crates; the camera draws back toward the dark gallery.
-    { id: 'bear_gallery', seconds: 16, from: { x: 900, y: 640, zoom: 1.2 }, to: { x: 740, y: 600, zoom: 1.05 }, vanishing: { x: 1000, y: 560 }, cast: true },
+    { id: 'bear_gallery', seconds: 12, from: { x: 900, y: 640, zoom: 1.2 }, to: { x: 740, y: 600, zoom: 1.05 }, vanishing: { x: 1000, y: 560 }, cast: true },
   ],
   // No Master Spy: his fate is not told. No Borin, no Seal, no ore.
-  actors: [standing('marian', 0.4, 770, 690, 'RIGHT'), standing('sage_seraphine', 0.8, 940, 678, 'LEFT'), standing('maelor', 1.2, 616, 720, 'RIGHT')],
+  actors: [standing('marian', 0.05, 770, 690, 'RIGHT'), standing('sage_seraphine', 0.25, 940, 678, 'LEFT'), standing('maelor', 0.45, 616, 720, 'RIGHT')],
   sheets: ['marian'],
   portraits: ['sage_seraphine', 'maelor'],
   seed: 7101,
@@ -107,16 +107,16 @@ export const BEAR_FORCE = momentScript({
   scene: TERRACE_SCENE,
   shots: [
     // The sunset over the peaks; the camera comes down onto the terrace.
-    { id: 'bear_sunset', seconds: 12, from: { x: 1200, y: 300, zoom: 1.45 }, to: { x: 800, y: 480, zoom: 1.2 }, vanishing: { x: 500, y: 560 } },
+    { id: 'bear_sunset', seconds: 5, from: { x: 1200, y: 300, zoom: 1.45 }, to: { x: 800, y: 480, zoom: 1.2 }, vanishing: { x: 500, y: 560 }, openingGust: true },
     // Borin on the last step before his shut doors, two warriors at the doors, the company among the broken spears.
-    { id: 'bear_terrace', seconds: 16, from: { x: 560, y: 620, zoom: 1.15 }, to: { x: 540, y: 580, zoom: 1.06 }, vanishing: { x: 500, y: 560 }, cast: true },
+    { id: 'bear_terrace', seconds: 12, from: { x: 560, y: 620, zoom: 1.15 }, to: { x: 540, y: 580, zoom: 1.06 }, vanishing: { x: 500, y: 560 }, cast: true },
   ],
   // Nobody steps aside, nothing is handed over: the epilogue says the warriors let the company pass.
   actors: [
-    standing('borin', 0.2, 410, 456, 'RIGHT', CHIEF_STATURE),
-    standing('marian', 0.6, 640, 690, 'LEFT'), standing('sage_seraphine', 1.0, 830, 704, 'LEFT'), standing('maelor', 1.4, 960, 730, 'LEFT'),
+    standing('borin', 0.05, 410, 456, 'RIGHT', CHIEF_STATURE),
+    standing('marian', 0.15, 640, 690, 'LEFT'), standing('sage_seraphine', 0.3, 830, 704, 'LEFT'), standing('maelor', 0.45, 960, 730, 'LEFT'),
   ],
-  extras: [still('bear_warrior', 0.3, 268, 452), still('bear_warrior', 0.5, 556, 456)],
+  extras: [still('bear_warrior', 0.1, 268, 452), still('bear_warrior', 0.2, 556, 456)],
   sheets: ['marian', 'borin', 'bear_warrior'],
   portraits: ['sage_seraphine', 'maelor'],
   seed: 7201,

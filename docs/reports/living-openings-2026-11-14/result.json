@@ -1,0 +1,1334 @@
+{
+ "decision": "OD-2026-11-14-A",
+ "method": "tools/living-openings/probe.ts at 1366x768, 30 fps, figure >= 30 px tall, camera >= 15 px/s, gap = more than 2 s with nothing new",
+ "opening": [
+  {
+   "shot": "prologue_fall",
+   "seconds": 9,
+   "firstEvent": {
+    "t": 0.9,
+    "label": "légende « Votre nom fut jadis prononcé… »"
+   },
+   "gaps": []
+  },
+  {
+   "shot": "prologue_seals",
+   "seconds": 12,
+   "firstEvent": {
+    "t": 0.8,
+    "label": "légende « Les Sceaux ne répondent ni a… »"
+   },
+   "gaps": []
+  },
+  {
+   "shot": "prologue_lion",
+   "seconds": 12,
+   "firstEvent": {
+    "t": 0.05,
+    "label": "pillard 1 sort de la porte"
+   },
+   "gaps": []
+  },
+  {
+   "shot": "prologue_shadow",
+   "seconds": 10,
+   "firstEvent": {
+    "t": 0.05,
+    "label": "silhouettes sur l’aqueduc (en marche dès l’image 1)"
+   },
+   "gaps": []
+  },
+  {
+   "shot": "prologue_departure",
+   "seconds": 12,
+   "firstEvent": {
+    "t": 0.4,
+    "label": "alistair entre"
+   },
+   "gaps": []
+  }
+ ],
+ "before": {
+  "bois_clair_arrival": [
+   {
+    "shot": "arrival_village",
+    "seconds": 9,
+    "firstEvent": {
+     "t": 0.63,
+     "label": "figurant serpent_raider apparaît"
+    },
+    "firstFigure": 0.63,
+    "firstCamera": 1.3,
+    "gaps": []
+   },
+   {
+    "shot": "arrival_square",
+    "seconds": 14,
+    "firstEvent": {
+     "t": 0.53,
+     "label": "figurant serpent_raider apparaît"
+    },
+    "firstFigure": 0.53,
+    "firstCamera": null,
+    "gaps": []
+   }
+  ],
+  "bois_clair_saved": [
+   {
+    "shot": "saved_square",
+    "seconds": 20,
+    "firstEvent": {
+     "t": 0.63,
+     "label": "figurant serpent_raider apparaît"
+    },
+    "firstFigure": 0.63,
+    "firstCamera": null,
+    "gaps": [
+     [
+      8.67,
+      20
+     ]
+    ]
+   }
+  ],
+  "bois_clair_sacrificed": [
+   {
+    "shot": "sacrificed_square",
+    "seconds": 20,
+    "firstEvent": {
+     "t": 0.83,
+     "label": "maelor apparaît"
+    },
+    "firstFigure": 0.83,
+    "firstCamera": 8.57,
+    "gaps": [
+     [
+      4.9,
+      8.57
+     ],
+     [
+      10.43,
+      20
+     ]
+    ]
+   }
+  ],
+  "lion_judgement": [
+   {
+    "shot": "judgement_throne",
+    "seconds": 10,
+    "firstEvent": {
+     "t": 0.43,
+     "label": "alaric apparaît"
+    },
+    "firstFigure": 0.43,
+    "firstCamera": 2.13,
+    "gaps": []
+   },
+   {
+    "shot": "judgement_hall",
+    "seconds": 18,
+    "firstEvent": {
+     "t": 0.43,
+     "label": "alaric apparaît"
+    },
+    "firstFigure": 0.43,
+    "firstCamera": null,
+    "gaps": [
+     [
+      5.1,
+      18
+     ]
+    ]
+   }
+  ],
+  "alaric_audience_arrival": [
+   {
+    "shot": "audience_hall",
+    "seconds": 10,
+    "firstEvent": {
+     "t": 0.87,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.87,
+    "gaps": []
+   },
+   {
+    "shot": "audience_carpet",
+    "seconds": 16,
+    "firstEvent": {
+     "t": 0.43,
+     "label": "alaric apparaît"
+    },
+    "firstFigure": 0.43,
+    "firstCamera": null,
+    "gaps": [
+     [
+      7.27,
+      16
+     ]
+    ]
+   }
+  ],
+  "serpent_route_ending": [
+   {
+    "shot": "serpent_moon",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 1.53,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 1.53,
+    "gaps": []
+   },
+   {
+    "shot": "serpent_esplanade",
+    "seconds": 20,
+    "firstEvent": {
+     "t": 0.63,
+     "label": "alistair apparaît"
+    },
+    "firstFigure": 0.63,
+    "firstCamera": 7.5,
+    "gaps": [
+     [
+      1.83,
+      7.5
+     ],
+     [
+      15.37,
+      20
+     ]
+    ]
+   }
+  ],
+  "lion_trial_route_ending": [
+   {
+    "shot": "trial_sunset",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 1.6,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 1.6,
+    "gaps": []
+   },
+   {
+    "shot": "trial_terrace",
+    "seconds": 18,
+    "firstEvent": {
+     "t": 0.43,
+     "label": "alaric apparaît"
+    },
+    "firstFigure": 0.43,
+    "firstCamera": null,
+    "gaps": [
+     [
+      2.03,
+      18
+     ]
+    ]
+   }
+  ],
+  "bear_arrival_moment": [
+   {
+    "shot": "bear_hall",
+    "seconds": 10,
+    "firstEvent": {
+     "t": 0.93,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.93,
+    "gaps": []
+   },
+   {
+    "shot": "bear_steps",
+    "seconds": 16,
+    "firstEvent": {
+     "t": 0.43,
+     "label": "borin apparaît"
+    },
+    "firstFigure": 0.43,
+    "firstCamera": null,
+    "gaps": [
+     [
+      7.33,
+      16
+     ]
+    ]
+   }
+  ],
+  "bear_honour_moment": [
+   {
+    "shot": "bear_peaks",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 1.73,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 1.73,
+    "gaps": []
+   },
+   {
+    "shot": "bear_gallery",
+    "seconds": 16,
+    "firstEvent": {
+     "t": 0.63,
+     "label": "marian apparaît"
+    },
+    "firstFigure": 0.63,
+    "firstCamera": 3.13,
+    "gaps": [
+     [
+      12.83,
+      16
+     ]
+    ]
+   }
+  ],
+  "bear_force_moment": [
+   {
+    "shot": "bear_sunset",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 1.23,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 1.23,
+    "gaps": []
+   },
+   {
+    "shot": "bear_terrace",
+    "seconds": 16,
+    "firstEvent": {
+     "t": 0.43,
+     "label": "borin apparaît"
+    },
+    "firstFigure": 0.43,
+    "firstCamera": null,
+    "gaps": [
+     [
+      2.03,
+      16
+     ]
+    ]
+   }
+  ],
+  "dragon_arrival_moment": [
+   {
+    "shot": "dragon_hall",
+    "seconds": 10,
+    "firstEvent": {
+     "t": 0.47,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.47,
+    "gaps": []
+   },
+   {
+    "shot": "dragon_steps",
+    "seconds": 16,
+    "firstEvent": {
+     "t": 0.43,
+     "label": "kaelen apparaît"
+    },
+    "firstFigure": 0.43,
+    "firstCamera": null,
+    "gaps": [
+     [
+      7.17,
+      16
+     ]
+    ]
+   }
+  ],
+  "dragon_honour_moment": [
+   {
+    "shot": "dragon_clouds",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 1.73,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 1.73,
+    "gaps": []
+   },
+   {
+    "shot": "dragon_ridge",
+    "seconds": 16,
+    "firstEvent": {
+     "t": 0.63,
+     "label": "elara apparaît"
+    },
+    "firstFigure": 0.63,
+    "firstCamera": 5.17,
+    "gaps": [
+     [
+      1.83,
+      5.17
+     ],
+     [
+      10.87,
+      16
+     ]
+    ]
+   }
+  ],
+  "dragon_force_moment": [
+   {
+    "shot": "dragon_sunset",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 1.73,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 1.73,
+    "gaps": []
+   },
+   {
+    "shot": "dragon_esplanade",
+    "seconds": 16,
+    "firstEvent": {
+     "t": 0.43,
+     "label": "kaelen apparaît"
+    },
+    "firstFigure": 0.43,
+    "firstCamera": null,
+    "gaps": [
+     [
+      2.03,
+      16
+     ]
+    ]
+   }
+  ],
+  "scorpion_arrival_moment": [
+   {
+    "shot": "scorpion_hall",
+    "seconds": 10,
+    "firstEvent": {
+     "t": 0.87,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.87,
+    "gaps": []
+   },
+   {
+    "shot": "scorpion_steps",
+    "seconds": 16,
+    "firstEvent": {
+     "t": 0.43,
+     "label": "grand_inquisitor apparaît"
+    },
+    "firstFigure": 0.43,
+    "firstCamera": null,
+    "gaps": [
+     [
+      6.77,
+      16
+     ]
+    ]
+   }
+  ],
+  "scorpion_honour_moment": [
+   {
+    "shot": "scorpion_sunset",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 1.73,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 1.73,
+    "gaps": []
+   },
+   {
+    "shot": "scorpion_crest",
+    "seconds": 16,
+    "firstEvent": {
+     "t": 0.63,
+     "label": "kestrel apparaît"
+    },
+    "firstFigure": 0.63,
+    "firstCamera": 8.13,
+    "gaps": [
+     [
+      1.83,
+      8.13
+     ],
+     [
+      10.67,
+      16
+     ]
+    ]
+   }
+  ],
+  "scorpion_force_moment": [
+   {
+    "shot": "scorpion_walls",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 1.93,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 1.93,
+    "gaps": []
+   },
+   {
+    "shot": "scorpion_courtyard",
+    "seconds": 16,
+    "firstEvent": {
+     "t": 0.43,
+     "label": "grand_inquisitor apparaît"
+    },
+    "firstFigure": 0.43,
+    "firstCamera": null,
+    "gaps": [
+     [
+      2.03,
+      16
+     ]
+    ]
+   }
+  ],
+  "finale_betrayal_moment": [
+   {
+    "shot": "finale_banners",
+    "seconds": 14,
+    "firstEvent": {
+     "t": 2.5,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 2.5,
+    "gaps": [
+     [
+      0,
+      2.5
+     ]
+    ]
+   },
+   {
+    "shot": "finale_sand",
+    "seconds": 16,
+    "firstEvent": {
+     "t": 0.63,
+     "label": "alistair apparaît"
+    },
+    "firstFigure": 0.63,
+    "firstCamera": 3.67,
+    "gaps": [
+     [
+      12.23,
+      16
+     ]
+    ]
+   }
+  ],
+  "finale_respect_moment": [
+   {
+    "shot": "finale_breach_sky",
+    "seconds": 10,
+    "firstEvent": {
+     "t": 0.77,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.77,
+    "gaps": []
+   },
+   {
+    "shot": "finale_esplanade",
+    "seconds": 14,
+    "firstEvent": {
+     "t": 0.63,
+     "label": "alistair apparaît"
+    },
+    "firstFigure": 0.63,
+    "firstCamera": 3.23,
+    "gaps": []
+   }
+  ],
+  "finale_fear_moment": [
+   {
+    "shot": "finale_breach_sky",
+    "seconds": 10,
+    "firstEvent": {
+     "t": 0.77,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.77,
+    "gaps": []
+   },
+   {
+    "shot": "finale_esplanade",
+    "seconds": 14,
+    "firstEvent": {
+     "t": 0.63,
+     "label": "alistair apparaît"
+    },
+    "firstFigure": 0.63,
+    "firstCamera": 3.23,
+    "gaps": []
+   }
+  ],
+  "finale_balance_moment": [
+   {
+    "shot": "finale_breach_sky",
+    "seconds": 10,
+    "firstEvent": {
+     "t": 0.77,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.77,
+    "gaps": []
+   },
+   {
+    "shot": "finale_esplanade",
+    "seconds": 14,
+    "firstEvent": {
+     "t": 0.63,
+     "label": "alistair apparaît"
+    },
+    "firstFigure": 0.63,
+    "firstCamera": 3.23,
+    "gaps": []
+   }
+  ]
+ },
+ "after": {
+  "bois_clair_arrival": [
+   {
+    "shot": "arrival_village",
+    "seconds": 6,
+    "firstEvent": {
+     "t": 0.43,
+     "label": "figurant serpent_raider apparaît"
+    },
+    "firstFigure": 0.43,
+    "firstCamera": 0.57,
+    "gaps": []
+   },
+   {
+    "shot": "arrival_square",
+    "seconds": 14,
+    "firstEvent": {
+     "t": 0.53,
+     "label": "figurant serpent_raider apparaît"
+    },
+    "firstFigure": 0.53,
+    "firstCamera": null,
+    "gaps": []
+   }
+  ],
+  "bois_clair_saved": [
+   {
+    "shot": "saved_square",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "alistair apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 3.43,
+    "gaps": [
+     [
+      8.93,
+      12
+     ]
+    ]
+   }
+  ],
+  "bois_clair_sacrificed": [
+   {
+    "shot": "sacrificed_square",
+    "seconds": 11,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "maelor apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 2.73,
+    "gaps": [
+     [
+      8.93,
+      11
+     ]
+    ]
+   }
+  ],
+  "lion_judgement": [
+   {
+    "shot": "judgement_throne",
+    "seconds": 6,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "alaric apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 0.77,
+    "gaps": []
+   },
+   {
+    "shot": "judgement_hall",
+    "seconds": 10,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "alaric apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 3.57,
+    "gaps": [
+     [
+      6.83,
+      10
+     ]
+    ]
+   }
+  ],
+  "alaric_audience_arrival": [
+   {
+    "shot": "audience_hall",
+    "seconds": 6,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "alaric apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 0.33,
+    "gaps": []
+   },
+   {
+    "shot": "audience_carpet",
+    "seconds": 11,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "alaric apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 3.67,
+    "gaps": [
+     [
+      7.63,
+      11
+     ]
+    ]
+   }
+  ],
+  "serpent_route_ending": [
+   {
+    "shot": "serpent_moon",
+    "seconds": 5,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.3,
+    "gaps": []
+   },
+   {
+    "shot": "serpent_esplanade",
+    "seconds": 14,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "alistair apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 4.43,
+    "gaps": [
+     [
+      1.07,
+      4.43
+     ],
+     [
+      11.57,
+      14
+     ]
+    ]
+   }
+  ],
+  "lion_trial_route_ending": [
+   {
+    "shot": "trial_sunset",
+    "seconds": 5,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.3,
+    "gaps": []
+   },
+   {
+    "shot": "trial_terrace",
+    "seconds": 13,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "alaric apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 3.97,
+    "gaps": [
+     [
+      1.07,
+      3.97
+     ],
+     [
+      9.63,
+      13
+     ]
+    ]
+   }
+  ],
+  "bear_arrival_moment": [
+   {
+    "shot": "bear_hall",
+    "seconds": 6,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "borin apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 0.37,
+    "gaps": []
+   },
+   {
+    "shot": "bear_steps",
+    "seconds": 11,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "borin apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 3.63,
+    "gaps": [
+     [
+      7.7,
+      11
+     ]
+    ]
+   }
+  ],
+  "bear_honour_moment": [
+   {
+    "shot": "bear_peaks",
+    "seconds": 5,
+    "firstEvent": {
+     "t": 0.33,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.33,
+    "gaps": []
+   },
+   {
+    "shot": "bear_gallery",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "marian apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 1.77,
+    "gaps": []
+   }
+  ],
+  "bear_force_moment": [
+   {
+    "shot": "bear_sunset",
+    "seconds": 5,
+    "firstEvent": {
+     "t": 0.23,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.23,
+    "gaps": []
+   },
+   {
+    "shot": "bear_terrace",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "borin apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 4.37,
+    "gaps": [
+     [
+      1.07,
+      4.37
+     ],
+     [
+      7.9,
+      12
+     ]
+    ]
+   }
+  ],
+  "dragon_arrival_moment": [
+   {
+    "shot": "dragon_hall",
+    "seconds": 6,
+    "firstEvent": {
+     "t": 0.2,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": 0.57,
+    "firstCamera": 0.2,
+    "gaps": []
+   },
+   {
+    "shot": "dragon_steps",
+    "seconds": 11,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "kaelen apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 3.63,
+    "gaps": [
+     [
+      8.63,
+      11
+     ]
+    ]
+   }
+  ],
+  "dragon_honour_moment": [
+   {
+    "shot": "dragon_clouds",
+    "seconds": 5,
+    "firstEvent": {
+     "t": 0.33,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.33,
+    "gaps": []
+   },
+   {
+    "shot": "dragon_ridge",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "elara apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 2.67,
+    "gaps": [
+     [
+      9.4,
+      12
+     ]
+    ]
+   }
+  ],
+  "dragon_force_moment": [
+   {
+    "shot": "dragon_sunset",
+    "seconds": 5,
+    "firstEvent": {
+     "t": 0.33,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.33,
+    "gaps": []
+   },
+   {
+    "shot": "dragon_esplanade",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "kaelen apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 4.07,
+    "gaps": [
+     [
+      1.07,
+      4.07
+     ],
+     [
+      8.17,
+      12
+     ]
+    ]
+   }
+  ],
+  "scorpion_arrival_moment": [
+   {
+    "shot": "scorpion_hall",
+    "seconds": 6,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "grand_inquisitor apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 0.33,
+    "gaps": []
+   },
+   {
+    "shot": "scorpion_steps",
+    "seconds": 11,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "grand_inquisitor apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 3.63,
+    "gaps": [
+     [
+      7.7,
+      11
+     ]
+    ]
+   }
+  ],
+  "scorpion_honour_moment": [
+   {
+    "shot": "scorpion_sunset",
+    "seconds": 5,
+    "firstEvent": {
+     "t": 0.33,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.33,
+    "gaps": []
+   },
+   {
+    "shot": "scorpion_crest",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "kestrel apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 3.27,
+    "gaps": [
+     [
+      1.07,
+      3.27
+     ],
+     [
+      9.33,
+      12
+     ]
+    ]
+   }
+  ],
+  "scorpion_force_moment": [
+   {
+    "shot": "scorpion_walls",
+    "seconds": 5,
+    "firstEvent": {
+     "t": 0.37,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.37,
+    "gaps": []
+   },
+   {
+    "shot": "scorpion_courtyard",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "grand_inquisitor apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 3.87,
+    "gaps": [
+     [
+      1.07,
+      3.87
+     ],
+     [
+      8.47,
+      12
+     ]
+    ]
+   }
+  ],
+  "finale_betrayal_moment": [
+   {
+    "shot": "finale_banners",
+    "seconds": 6,
+    "firstEvent": {
+     "t": 0.47,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.47,
+    "gaps": []
+   },
+   {
+    "shot": "finale_sand",
+    "seconds": 12,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "alistair apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 2,
+    "gaps": [
+     [
+      9.83,
+      12
+     ]
+    ]
+   }
+  ],
+  "finale_respect_moment": [
+   {
+    "shot": "finale_breach_sky",
+    "seconds": 5,
+    "firstEvent": {
+     "t": 0.2,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.2,
+    "gaps": []
+   },
+   {
+    "shot": "finale_esplanade",
+    "seconds": 11,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "alistair apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 1.97,
+    "gaps": []
+   }
+  ],
+  "finale_fear_moment": [
+   {
+    "shot": "finale_breach_sky",
+    "seconds": 5,
+    "firstEvent": {
+     "t": 0.2,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.2,
+    "gaps": []
+   },
+   {
+    "shot": "finale_esplanade",
+    "seconds": 11,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "alistair apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 1.97,
+    "gaps": []
+   }
+  ],
+  "finale_balance_moment": [
+   {
+    "shot": "finale_breach_sky",
+    "seconds": 5,
+    "firstEvent": {
+     "t": 0.2,
+     "label": "la caméra se voit bouger"
+    },
+    "firstFigure": null,
+    "firstCamera": 0.2,
+    "gaps": []
+   },
+   {
+    "shot": "finale_esplanade",
+    "seconds": 11,
+    "firstEvent": {
+     "t": 0.3,
+     "label": "alistair apparaît"
+    },
+    "firstFigure": 0.3,
+    "firstCamera": 1.97,
+    "gaps": []
+   }
+  ]
+ },
+ "qaLab": [
+  {
+   "mode": "default",
+   "id": "alaric_audience_arrival",
+   "firstShot": "audience_hall",
+   "reduced": "false",
+   "osReduce": false,
+   "fade": "0.7s"
+  },
+  {
+   "mode": "default",
+   "id": "serpent_route_ending",
+   "firstShot": "serpent_moon",
+   "reduced": "false",
+   "osReduce": false,
+   "fade": "0.7s"
+  },
+  {
+   "mode": "default",
+   "id": "bear_arrival_moment",
+   "firstShot": "bear_hall",
+   "reduced": "false",
+   "osReduce": false,
+   "fade": "0.7s"
+  },
+  {
+   "mode": "default",
+   "id": "finale_betrayal_moment",
+   "firstShot": "finale_banners",
+   "reduced": "false",
+   "osReduce": false,
+   "fade": "0.7s"
+  },
+  {
+   "mode": "default",
+   "id": "bois_clair_sacrificed",
+   "fullPlaySeconds": 11.133
+  },
+  {
+   "mode": "game-reduced",
+   "id": "alaric_audience_arrival",
+   "firstShot": "audience_hall",
+   "reduced": "true",
+   "osReduce": false,
+   "fade": "0.7s"
+  },
+  {
+   "mode": "game-reduced",
+   "id": "serpent_route_ending",
+   "firstShot": "serpent_moon",
+   "reduced": "true",
+   "osReduce": false,
+   "fade": "0.7s"
+  },
+  {
+   "mode": "game-reduced",
+   "id": "bear_arrival_moment",
+   "firstShot": "bear_hall",
+   "reduced": "true",
+   "osReduce": false,
+   "fade": "0.7s"
+  },
+  {
+   "mode": "game-reduced",
+   "id": "finale_betrayal_moment",
+   "firstShot": "finale_banners",
+   "reduced": "true",
+   "osReduce": false,
+   "fade": "0.7s"
+  },
+  {
+   "mode": "game-reduced",
+   "id": "bois_clair_sacrificed",
+   "fullPlaySeconds": 11.141
+  },
+  {
+   "mode": "os-reduce",
+   "id": "alaric_audience_arrival",
+   "firstShot": "audience_hall",
+   "reduced": "false",
+   "osReduce": true,
+   "fade": "0.7s"
+  },
+  {
+   "mode": "os-reduce",
+   "id": "serpent_route_ending",
+   "firstShot": "serpent_moon",
+   "reduced": "false",
+   "osReduce": true,
+   "fade": "0.7s"
+  },
+  {
+   "mode": "os-reduce",
+   "id": "bear_arrival_moment",
+   "firstShot": "bear_hall",
+   "reduced": "false",
+   "osReduce": true,
+   "fade": "0.7s"
+  },
+  {
+   "mode": "os-reduce",
+   "id": "finale_betrayal_moment",
+   "firstShot": "finale_banners",
+   "reduced": "false",
+   "osReduce": true,
+   "fade": "0.7s"
+  },
+  {
+   "mode": "os-reduce",
+   "id": "bois_clair_sacrificed",
+   "fullPlaySeconds": 11.195
+  }
+ ],
+ "inGame": [
+  {
+   "mode": "default",
+   "before": [
+    "acte_ouverture",
+    "camp_departure"
+   ],
+   "living": {
+    "id": "alaric_audience_arrival",
+    "shot": "audience_hall",
+    "reduced": "false"
+   },
+   "playedSeconds": 17.179,
+   "fade": "0.7s",
+   "next": "lion_briefing",
+   "errors": 0
+  },
+  {
+   "mode": "game-reduced",
+   "before": [
+    "acte_ouverture",
+    "camp_departure"
+   ],
+   "living": {
+    "id": "alaric_audience_arrival",
+    "shot": "audience_hall",
+    "reduced": "true"
+   },
+   "playedSeconds": 17.022,
+   "fade": "0.7s",
+   "next": "lion_briefing",
+   "errors": 0
+  },
+  {
+   "mode": "os-reduce",
+   "before": [
+    "acte_ouverture",
+    "camp_departure"
+   ],
+   "living": {
+    "id": "alaric_audience_arrival",
+    "shot": "audience_hall",
+    "reduced": "false"
+   },
+   "playedSeconds": 17.092,
+   "fade": "0.7s",
+   "next": "lion_briefing",
+   "errors": 0
+  }
+ ]
+}

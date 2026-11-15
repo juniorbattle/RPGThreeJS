@@ -83,10 +83,10 @@ export const ARRIVAL_ACTORS: readonly Walker[] = [
 /** Raiders with torches coming out of the gate and crossing the square, then passing at its back once the company is there, always in front of the cart they pass: extras, never actors. */
 export const ARRIVAL_EXTRAS: Readonly<Record<'arrival_village' | 'arrival_square', readonly Extra[]>> = {
   arrival_village: [
-    { id: 'serpent_raider', at: 0.3, seconds: 7, from: [930, 440], to: [560, 600], torch: true },
-    { id: 'serpent_raider', at: 1.6, seconds: 7, from: [950, 438], to: [1180, 610], torch: true },
-    { id: 'serpent_raider', at: 3.0, seconds: 7, from: [420, 580], to: [880, 620] },
-    { id: 'serpent_raider', at: 4.4, seconds: 7, from: [940, 440], to: [700, 640], torch: true },
+    { id: 'serpent_raider', at: 0.1, seconds: 7, from: [930, 440], to: [560, 600], torch: true },
+    { id: 'serpent_raider', at: 0.9, seconds: 7, from: [950, 438], to: [1180, 610], torch: true },
+    { id: 'serpent_raider', at: 1.8, seconds: 7, from: [420, 580], to: [880, 620] },
+    { id: 'serpent_raider', at: 2.7, seconds: 7, from: [940, 440], to: [700, 640], torch: true },
   ],
   arrival_square: [
     { id: 'serpent_raider', at: 0.2, seconds: 7, from: [940, 434], to: [690, 500], torch: true },
@@ -106,7 +106,7 @@ export const BOIS_CLAIR_ARRIVAL: LivingScript = {
   label: 'Arrivée à Bois-Clair',
   shots: [
     // The hill and the roofs burn; the camera comes down to the gate. A different path from the opening's shot of this tableau.
-    { id: 'arrival_village', image: BOIS_CLAIR_TABLEAUX.burning, seconds: 9, from: { x: 1010, y: 250, zoom: 1.32 }, to: { x: 930, y: 410, zoom: 1.14 }, vanishing: { x: 948, y: 430 } },
+    { id: 'arrival_village', image: BOIS_CLAIR_TABLEAUX.burning, seconds: 6, from: { x: 1010, y: 250, zoom: 1.32 }, to: { x: 930, y: 410, zoom: 1.14 }, vanishing: { x: 948, y: 430 } },
     // The square, from the gap in the fence: the company comes in, the villager steps out.
     { id: 'arrival_square', image: BOIS_CLAIR_TABLEAUX.burning, seconds: 14, from: { x: 1010, y: 660, zoom: 1.12 }, to: { x: 900, y: 610, zoom: 1.04 }, vanishing: { x: 948, y: 430 } },
   ],

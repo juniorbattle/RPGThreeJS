@@ -46,11 +46,11 @@ const ARENA_SCENE: MomentScene = {
 };
 
 /** The wind rises at the end of the second shot: the banners whip, sand lifts, the light turns cold. No fact: weather. */
-const gust = (seconds: number) => smooth((seconds - 7) / 3);
+const gust = (seconds: number) => smooth((seconds - 5) / 3);
 const GUST_SCENE: MomentScene = {
   ...ARENA_SCENE,
   gust: (seconds) => 1 + 3 * gust(seconds),
-  turn: { color: [64, 78, 104], alpha: (seconds) => 0.2 * smooth((seconds - 7) / 4) },
+  turn: { color: [64, 78, 104], alpha: (seconds) => 0.2 * smooth((seconds - 5) / 4) },
   weather: (seed) => {
     const sky = ARENA_SCENE.weather!(seed);
     const sand = driftingPuffs({ seed: seed + 3, count: 14, region: { x0: 0, x1: 1536, y0: 700, y1: 1000 }, size: [120, 260], speed: 60, color: [226, 210, 180], alpha: 0.22 });
@@ -64,13 +64,13 @@ export const FINALE_BETRAYAL = momentScript({
   scene: ARENA_SCENE,
   shots: [
     // The banners on their masts, the full stands, long shadows on the raked sand; the camera comes down along the axis.
-    { id: 'finale_banners', seconds: 14, from: { x: 768, y: 200, zoom: 1.35 }, to: { x: 768, y: 380, zoom: 1.0 }, vanishing: { x: 800, y: 660 } },
+    { id: 'finale_banners', seconds: 6, from: { x: 768, y: 200, zoom: 1.35 }, to: { x: 768, y: 380, zoom: 1.0 }, vanishing: { x: 800, y: 660 } },
     // The company on the sand facing the far gate; the wind rises and the light turns, before Maelor steps forward.
     // The camera widens as the wind rises, so the banners it whips are in view.
-    { id: 'finale_sand', seconds: 16, from: { x: 790, y: 580, zoom: 1.14 }, to: { x: 790, y: 400, zoom: 1.0 }, vanishing: { x: 800, y: 660 }, cast: true, scene: GUST_SCENE },
+    { id: 'finale_sand', seconds: 12, from: { x: 790, y: 580, zoom: 1.14 }, to: { x: 790, y: 400, zoom: 1.0 }, vanishing: { x: 800, y: 660 }, cast: true, scene: GUST_SCENE },
   ],
   // No Maelor, no artefact, no breach, no champion changed: the dialogue says them first. The defeated champion does not appear.
-  actors: [standing('alistair', 0.4, 790, 712, 'RIGHT'), standing('sage_seraphine', 0.8, 930, 716, 'LEFT'), standing('kestrel', 1.2, 650, 722, 'RIGHT')],
+  actors: [standing('alistair', 0.05, 790, 712, 'RIGHT'), standing('sage_seraphine', 0.25, 930, 716, 'LEFT'), standing('kestrel', 0.45, 650, 722, 'RIGHT')],
   sheets: ['alistair', 'kestrel'],
   portraits: ['sage_seraphine'],
   seed: 7901,
@@ -120,14 +120,14 @@ function epilogueBreath(id: string, seed: number) {
     scene: DAWN_SCENE,
     shots: [
       // The breach high over the burning capital; the camera comes down over the roofs to the esplanade.
-      { id: 'finale_breach_sky', seconds: 10, from: { x: 1165, y: 160, zoom: 1.45 }, to: { x: 1000, y: 330, zoom: 1.05 }, vanishing: { x: 900, y: 740 } },
+      { id: 'finale_breach_sky', seconds: 5, from: { x: 1165, y: 160, zoom: 1.45 }, to: { x: 1000, y: 330, zoom: 1.05 }, vanishing: { x: 900, y: 740 } },
       // The company on the esplanade faces the breach; the camera rises toward it and stops before it closes.
       // Ends with the company at the foot of the frame and the breach above it, before it closes.
-      { id: 'finale_esplanade', seconds: 14, from: { x: 880, y: 700, zoom: 1.15 }, to: { x: 980, y: 460, zoom: 1.0 }, vanishing: { x: 900, y: 740 }, cast: true },
+      { id: 'finale_esplanade', seconds: 11, from: { x: 880, y: 700, zoom: 1.15 }, to: { x: 980, y: 460, zoom: 1.0 }, vanishing: { x: 900, y: 740 }, cast: true },
     ],
     actors: [
-      standing('alistair', 0.4, 790, 782, 'RIGHT'), standing('sage_seraphine', 0.8, 940, 786, 'RIGHT'),
-      standing('kestrel', 1.2, 640, 790, 'RIGHT'), standing('marian', 1.6, 1090, 792, 'RIGHT'),
+      standing('alistair', 0.05, 790, 782, 'RIGHT'), standing('sage_seraphine', 0.2, 940, 786, 'RIGHT'),
+      standing('kestrel', 0.35, 640, 790, 'RIGHT'), standing('marian', 0.5, 1090, 792, 'RIGHT'),
     ],
     sheets: ['alistair', 'kestrel', 'marian'],
     portraits: ['sage_seraphine'],
