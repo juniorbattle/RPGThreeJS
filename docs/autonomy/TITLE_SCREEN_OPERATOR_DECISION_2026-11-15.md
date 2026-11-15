@@ -6,7 +6,7 @@ Le 2026-11-15, la session principale confie à une session latérale une passe s
 
 ## L'audit et les corrections déjà faites
 
-Les défauts évidents sont corrigés avant la fiche (commit `105cb41b`, rapport [title-screen-pass-2026-11-15](../reports/title-screen-pass-2026-11-15.md)) :
+Les défauts évidents sont corrigés avant la fiche (rapport [title-screen-pass-2026-11-15](../reports/title-screen-pass-2026-11-15.md)) :
 - les boutons du titre passent de 40 à 48 px de haut sur PC ;
 - le focus clavier et manette prend un anneau laiton au lieu de l'anneau gris du navigateur ;
 - le focus revient sur « Nouvelle chronique » après la confirmation, sur « Crédits » en sortant des crédits ;
