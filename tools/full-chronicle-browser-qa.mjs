@@ -13,7 +13,8 @@
  * Env: FULL_QA_BASE_URL (default http://127.0.0.1:5183), FULL_QA_PLAN (respect | balance | fearLastStand | fearFate),
  * FULL_QA_OUTPUT (under tmp/, never overwritten), FULL_QA_VIEWPORT (1440x810), FULL_QA_OS_MOTION=1 (emulate
  * prefers-reduced-motion: reduce), FULL_QA_START (new | lion-end: a short pass from the save the current Lion writes),
- * FULL_QA_STOP_AFTER (a chapter id: stop once that chapter's first fight is won; default: the ending), FULL_QA_STOP_AFTER_FIGHT (a
+ * FULL_QA_LANGUAGE (fr | en: the language stored before the page opens, OD-2026-11-15-C; in en the report lists the French
+ * texts no English text was found for), FULL_QA_STOP_AFTER (a chapter id: stop once that chapter's first fight is won; default: the ending), FULL_QA_STOP_AFTER_FIGHT (a
  * combat id: stop once that fight is won).
  */
 import { mkdir, access, writeFile } from 'node:fs/promises';
@@ -27,6 +28,7 @@ const start = process.env.FULL_QA_START ?? 'new';
 const stopAfter = process.env.FULL_QA_STOP_AFTER ?? null;
 /** A combat id: stop once that fight is won (a short pass up to a given fight). */
 const stopAfterFight = process.env.FULL_QA_STOP_AFTER_FIGHT ?? null;
+const language = process.env.FULL_QA_LANGUAGE === 'en' ? 'en' : 'fr';
 const osMotion = process.env.FULL_QA_OS_MOTION === '1' ? 'reduce' : 'no-preference';
 const [width, height] = (process.env.FULL_QA_VIEWPORT ?? '1440x810').split('x').map(Number);
 const stamp = new Date().toISOString().replace(/[:.]/g, '-');
@@ -38,7 +40,7 @@ await mkdir(output, { recursive: true });
 
 const report = {
   schemaVersion: 1, recordedAt: new Date().toISOString(), commit: execSync('git rev-parse HEAD').toString().trim(),
-  base, plan: planKey, start, stopAfter, osMotion, viewport: { width, height },
+  base, plan: planKey, start, stopAfter, language, osMotion, viewport: { width, height },
   method: 'REAL_UI_INPUTS_QA_POLICY_COMBATS_WON_BY_RUNTIME_QA_VICTORY',
   chapters: [], choices: [], moves: [], fights: [], dialogues: [], livingSkipped: [], panels: [], refuges: [], board: [],
   captures: [], consoleErrors: [], pageErrors: [], failedRequests: [], warnings: 0, end: null, pass: false,
@@ -48,6 +50,7 @@ const log = (line) => console.log(`[${((Date.now() - started) / 1000).toFixed(0)
 
 const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({ viewport: { width, height }, reducedMotion: osMotion });
+if (language === 'en') await context.addInitScript(() => localStorage.setItem('rpg-threejs:language-preference:v1', JSON.stringify({ language: 'en' })));
 const page = await context.newPage();
 page.on('console', (message) => {
   if (message.type() === 'error') report.consoleErrors.push(message.text().slice(0, 400));
@@ -64,6 +67,26 @@ await page.route('**/src/main.ts*', async (route) => {
   if (!pattern.test(source)) throw new Error('DEV bootstrap observation hook missing');
   await route.fulfill({ response, body: source.replace(pattern, (match) => `${match}window.__fullQaApp = app;`) });
 });
+
+/** The page's own translation functions, read for the answers on screen and for the texts left in French. */
+async function installI18n() {
+  await page.evaluate(async () => {
+    const i18n = await import('/src/i18n/i18n.ts');
+    window.__fullQaTr = i18n.tr;
+    window.__fullQaMissing = i18n.missingTranslations;
+  });
+}
+const missingFrench = new Set();
+async function collectMissing() {
+  if (language !== 'en') return;
+  const fromPage = await page.evaluate(() => (window.__fullQaMissing ? window.__fullQaMissing() : [])).catch(() => []);
+  for (const text of fromPage) missingFrench.add(text);
+  for (const frame of page.frames()) {
+    if (frame === page.mainFrame() || !frame.url().includes('legacy-combat.html')) continue;
+    const fromFrame = await frame.evaluate(async () => (await import('/src/i18n/i18n.ts')).missingTranslations()).catch(() => []);
+    for (const text of fromFrame) missingFrench.add(text);
+  }
+}
 
 async function capture(name) {
   const file = `${String(report.captures.length + 1).padStart(2, '0')}-${name}.png`;
@@ -82,6 +105,7 @@ const live = () => page.evaluate(() => {
 
 await page.goto(`${base}/?qa=1&cin6a=golden`, { waitUntil: 'domcontentloaded' });
 await page.waitForFunction(() => Boolean(window.__fullQaApp), null, { timeout: 30000 });
+await installI18n();
 // The QA policy, from the same modules the unit tests use, evaluated on the live state.
 await page.evaluate(async (key) => {
   const chain = await import('/src/qa/fullCampaignChain.ts');
@@ -114,6 +138,7 @@ if (start === 'lion-end') {
   }, planKey);
   await page.reload({ waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => Boolean(window.__fullQaApp), null, { timeout: 30000 });
+  await installI18n();
   await page.evaluate(async (key) => {
     const chain = await import('/src/qa/fullCampaignChain.ts');
     const driver = await import('/src/qa/plateauDriver.ts');
@@ -241,6 +266,7 @@ for (let turn = 0; turn < 40000; turn += 1) {
   try {
   const state = await live();
   if (!state) { await page.waitForTimeout(250); continue; }
+  if (turn % 25 === 0) await collectMissing();
   const signature = JSON.stringify(state) + report.dialogues.length + report.choices.length + report.fights.length + (report.steps ?? 0);
   if (signature !== lastSignature) { lastSignature = signature; lastProgress = Date.now(); }
   if (Date.now() - lastProgress > 90000) {
@@ -312,7 +338,8 @@ for (let turn = 0; turn < 40000; turn += 1) {
     if (choices.length && choices.every((choice) => choice.disabled)) { await page.waitForTimeout(120); continue; }
     if (choices.length) {
       const wanted = await page.evaluate(([sequence, step]) => window.__fullQaPolicy.answer(sequence, step), [sequenceId, stepId]);
-      const key = (wanted ?? '').replace(/\s+/g, ' ').trim().slice(0, 40).toLocaleLowerCase('fr');
+      const shown = language === 'en' && wanted ? await page.evaluate((text) => window.__fullQaTr(text), wanted) : wanted;
+      const key = (shown ?? '').replace(/\s+/g, ' ').trim().slice(0, 40).toLocaleLowerCase('fr');
       const index = wanted ? choices.findIndex((choice) => choice.text.toLocaleLowerCase('fr').includes(key)) : 0;
       if (index < 0) throw new Error(`Answer not on screen in ${sequenceId}:${stepId}: ${wanted} | on screen: ${JSON.stringify(choices.map((choice) => choice.text))}`);
       if (choices[index].disabled) throw new Error(`Chosen answer disabled in ${sequenceId}:${stepId}`);
@@ -332,7 +359,7 @@ for (let turn = 0; turn < 40000; turn += 1) {
     const panelText = (await page.locator('body').innerText()).slice(0, 2000);
     report.panels.push({ chapter, label: seen.journey, ending: state.ending, stage: state.stage });
     await capture(`${chapter}-panel-${report.panels.length}`);
-    if (/Fin de la chronique/i.test(panelText)) report.endPanel = { chapter, label: seen.journey, text: panelText.split(String.fromCharCode(10)).filter(Boolean).slice(0, 12) };
+    if (/Fin de la chronique|End of the chronicle/i.test(panelText)) report.endPanel = { chapter, label: seen.journey, text: panelText.split(String.fromCharCode(10)).filter(Boolean).slice(0, 12) };
     await page.locator('[data-journey-continue]:visible:not(:disabled)').first().click({ timeout: 4000 });
     continue;
   }
@@ -382,6 +409,9 @@ for (let turn = 0; turn < 40000; turn += 1) {
   await capture('failure').catch(() => undefined);
 }
 
+await collectMissing();
+report.missingFrench = [...missingFrench];
+if (language === 'en') log(`texts left in French: ${missingFrench.size}`);
 report.durationSeconds = Math.round((Date.now() - started) / 1000);
 report.final = await live().catch(() => null);
 report.consoleClean = report.consoleErrors.length === 0 && report.pageErrors.length === 0;
