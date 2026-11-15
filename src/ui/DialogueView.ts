@@ -1,5 +1,6 @@
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import { hasReadLine, markLineRead } from './ReadLines';
+import { tr } from '../i18n/i18n';
 import { provisionalMark } from '../game/postDemoContent';
 import { assets } from '../render/assetManifest';
 import type { Contest, DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../game/types';
@@ -263,24 +264,25 @@ export class DialogueView {
     left.classList.toggle('is-visible', showLegacyStagePortrait && step.side === 'left');
     right.classList.toggle('is-visible', showLegacyStagePortrait && step.side === 'right');
     center.classList.toggle('is-visible', showLegacyStagePortrait && step.side === 'center');
-    speaker.textContent = step.speaker;
-    tag.textContent = step.tag;
+    // OD-2026-11-15-C: the box is translated whole here, before the typewriter, so its accessible name reads one language.
+    speaker.textContent = tr(step.speaker);
+    tag.textContent = tr(step.tag);
     tag.hidden = !step.tag;
     choices.replaceChildren();
     outcomes.replaceChildren(...this.createOutcomeBadges(this.describeEffects(step.effects)));
     outcomes.hidden = outcomes.childElementCount === 0;
-    this.displaySegments = presentation.displaySegments?.length
+    this.displaySegments = (presentation.displaySegments?.length
       ? presentation.displaySegments
-      : [presentation.displayText ?? step.text];
+      : [presentation.displayText ?? step.text]).map(tr);
     this.displaySegmentIndex = 0;
     this.overlay.dataset.dialogueSegment = `1/${this.displaySegments.length}`;
     const stagedChoiceSequence = narrativeStage && Boolean(step.choices?.length);
     continueLabel.hidden = Boolean(step.choices?.length) && !stagedChoiceSequence;
-    continueLabel.textContent = this.displaySegments.length > 1
+    continueLabel.textContent = tr(this.displaySegments.length > 1
       ? 'Lire la suite ◆'
       : stagedChoiceSequence
         ? 'Choisir ◆'
-        : 'Continuer ◆';
+        : 'Continuer ◆');
     this.typeText(text, this.displaySegments[0]!);
     this.updateAccessibleLabel(box);
     this.syncFastForward();
@@ -362,7 +364,7 @@ export class DialogueView {
     body.className = 'dialogue-choice__body';
 
     const label = document.createElement('strong');
-    label.textContent = choice.text;
+    label.textContent = tr(choice.text);
     body.append(label);
 
     const meta = document.createElement('span');
@@ -516,7 +518,7 @@ export class DialogueView {
     const icon = document.createElement('b');
     icon.textContent = descriptor.icon;
     const label = document.createElement('span');
-    label.textContent = descriptor.label;
+    label.textContent = tr(descriptor.label);
     badge.append(icon, label);
     return badge;
   }
@@ -573,9 +575,9 @@ export class DialogueView {
       const finalSegment = this.displaySegmentIndex === this.displaySegments.length - 1;
       this.overlay.dataset.dialogueSegment = `${this.displaySegmentIndex + 1}/${this.displaySegments.length}`;
       continueLabel.hidden = false;
-      continueLabel.textContent = finalSegment
+      continueLabel.textContent = tr(finalSegment
         ? this.current.choices?.length ? 'Choisir ◆' : 'Continuer ◆'
-        : 'Lire la suite ◆';
+        : 'Lire la suite ◆');
       const box = this.overlay.querySelector<HTMLButtonElement>('.dialogue__box');
       if (box) this.updateAccessibleLabel(box);
       return;

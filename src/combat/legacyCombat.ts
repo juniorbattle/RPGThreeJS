@@ -7,6 +7,11 @@
  */
 import './legacyCombatRuntime.js';
 import { installGamepadNavigator } from '../ui/GamepadNavigator';
+import { initLanguage } from '../i18n/i18n';
+
+// OD-2026-11-15-C: the frame reads the same stored language and borrows the parent's catalog, so a fight opens in
+// the language chosen before it; a change during the fight applies to the next one.
+void initLanguage();
 
 // OD-2026-11-05-A: the combat frame reads the controller itself while it holds focus.
 const gamepad = installGamepadNavigator(window);
