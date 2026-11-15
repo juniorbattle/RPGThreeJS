@@ -3,8 +3,10 @@
  * OD-2026-11-15-C translation workbench. French stays the key; English lives in `src/i18n/en/<zone>.json`.
  *
  *   node tools/i18n/report.mjs status                  keys, translated and missing per zone, orphans
- *   node tools/i18n/report.mjs todo <zone> [regex] [n] untranslated keys of a zone (optionally only from sources
- *                                                      matching regex), numbered, written to tmp/i18n/todo/<zone>.json
+ *   node tools/i18n/report.mjs todo <zone> [regex] [n] [tag]
+ *                                                      untranslated keys of a zone (optionally only from sources
+ *                                                      matching regex; n=0 for all), numbered, mapping written to
+ *                                                      tmp/i18n/todo/<zone>[~tag].json
  *   node tools/i18n/report.mjs merge <file.tsv>        merges `id<TAB>English` lines into the zone catalogs
  *   node tools/i18n/report.mjs orphans                 catalog entries whose French no longer exists
  */
@@ -56,20 +58,22 @@ if (command === 'status') {
   console.log(rows.join('\n'));
   console.log(`orphans: ${[...catalog.keys()].filter((key) => !keys.has(key)).length}`);
 } else if (command === 'todo') {
-  const [zone, pattern, limit] = args;
+  // A tag names a separate list, so several translators can share a zone: ids `<zone>~<tag>-0001`.
+  const [zone, pattern, limit, tag] = args;
   if (!ZONES.includes(zone)) throw new Error(`zone must be one of ${ZONES.join(', ')}`);
+  const list = tag ? `${zone}~${tag}` : zone;
   const filter = pattern ? new RegExp(pattern) : null;
   const todo = [...keys].filter(([key, entry]) => entry.zone === zone && !catalog.has(key) && (!filter || entry.sites.some((site) => filter.test(site))))
-    .slice(0, limit ? Number(limit) : undefined);
+    .slice(0, limit && limit !== '0' ? Number(limit) : undefined);
   const mapping = {};
   const lines = todo.map(([key, entry], index) => {
-    const id = `${zone}-${String(index + 1).padStart(4, '0')}`;
+    const id = `${list}-${String(index + 1).padStart(4, '0')}`;
     mapping[id] = key;
     const speaker = speakerOf(entry.sites[0]);
     return `${id}\t${speaker ? `[${speaker}] ` : ''}${key}`;
   });
   fs.mkdirSync(todoDir, { recursive: true });
-  fs.writeFileSync(path.join(todoDir, `${zone}.json`), JSON.stringify(mapping, null, 1));
+  fs.writeFileSync(path.join(todoDir, `${list}.json`), JSON.stringify(mapping, null, 1));
   console.log(lines.join('\n'));
   console.log(`# ${todo.length} keys`);
 } else if (command === 'merge') {
@@ -82,8 +86,9 @@ if (command === 'status') {
     if (tab < 0) throw new Error(`no tab in line: ${line}`);
     const id = line.slice(0, tab).trim();
     const english = line.slice(tab + 1).trim();
-    const zone = id.replace(/-\d+$/, '');
-    const mappingFile = path.join(todoDir, `${zone}.json`);
+    const list = id.replace(/-\d+$/, '');
+    const zone = list.split('~')[0];
+    const mappingFile = path.join(todoDir, `${list}.json`);
     const mapping = JSON.parse(fs.readFileSync(mappingFile, 'utf8'));
     const french = mapping[id];
     if (!french) throw new Error(`unknown id ${id}`);

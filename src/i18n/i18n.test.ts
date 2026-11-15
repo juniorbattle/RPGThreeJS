@@ -72,6 +72,29 @@ describe('i18n lookup (OD-2026-11-15-C)', () => {
     expect(joinList(['a', 'b', 'c'])).toBe('a, b and c');
   });
 
+  it('covers the lines the judgement and the epilogues build from pieces', () => {
+    useCatalogForTests({
+      'Vos mérites, pour la montagne :': 'Your merits, for the mountain:',
+      'les mineurs sauvés': 'the miners saved', 'le convoi rendu, sans un coffre ouvert': 'the convoy returned, without a coffer opened',
+      'les témoins écoutés': 'the witnesses heard',
+      'Quatre Sceaux': 'Four Seals', 'le Sceau du Lion, qu’Alaric nous a confié': 'the Seal of the Lion, which Alaric entrusted to us',
+      'le Sceau de l’Ours, arraché à Borin': 'the Seal of the Bear, wrested from Borin',
+      'Certaines bannières se tiennent à nos côtés : {0}.': 'Some banners stand at our side: {0}.',
+      'celles {0}': 'those of {0}', 'du Lion': 'the Lion', 'de l’Ours': 'the Bear',
+      'D’autres nous observent de loin : {0}.': 'Others watch us from afar: {0}.', 'du Corbeau': 'the Raven',
+      'Alaric rend son verdict. Le Sceau est à vous.': 'Alaric gives his verdict. The Seal is yours.',
+      'Les noms des morts sont lus. Personne ne les oublie.': 'The names of the dead are read. No one forgets them.',
+    });
+    expect(tr('Vos mérites, pour la montagne : les mineurs sauvés, le convoi rendu, sans un coffre ouvert et les témoins écoutés.'))
+      .toBe('Your merits, for the mountain: the miners saved, the convoy returned, without a coffer opened and the witnesses heard.');
+    expect(tr('Quatre Sceaux : le Sceau du Lion, qu’Alaric nous a confié ; le Sceau de l’Ours, arraché à Borin.'))
+      .toBe('Four Seals: the Seal of the Lion, which Alaric entrusted to us; the Seal of the Bear, wrested from Borin.');
+    expect(tr('Certaines bannières se tiennent à nos côtés : celles du Lion et de l’Ours. D’autres nous observent de loin : celles du Corbeau.'))
+      .toBe('Some banners stand at our side: those of the Lion and the Bear. Others watch us from afar: those of the Raven.');
+    expect(tr('Alaric rend son verdict. Le Sceau est à vous. Les noms des morts sont lus. Personne ne les oublie.'))
+      .toBe('Alaric gives his verdict. The Seal is yours. The names of the dead are read. No one forgets them.');
+  });
+
   it('keeps the language choice outside the saves, on its own key', () => {
     expect(readLanguagePreference()).toBeNull();
     writeLanguagePreference('en');

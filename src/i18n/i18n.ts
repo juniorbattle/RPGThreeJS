@@ -83,7 +83,8 @@ function lookup(norm: string, depth: number): string | null {
   const exact = catalog!.get(norm);
   if (exact !== undefined) return exact;
   if (depth > 4) return null;
-  return fromTemplate(norm, depth) ?? fromCase(norm) ?? fromAffixes(norm, depth) ?? fromSegments(norm, depth);
+  // Glued sentences first, so a template's last hole never swallows the next sentence.
+  return fromSentences(norm, depth) ?? fromTemplate(norm, depth) ?? fromCase(norm) ?? fromAffixes(norm, depth) ?? fromSegments(norm, depth);
 }
 
 function translateHole(value: string, depth: number): string {
@@ -130,32 +131,93 @@ function fromAffixes(norm: string, depth: number): string | null {
   return english === null ? null : englishNumbers(before) + english + englishNumbers(after);
 }
 
-const SEPARATORS: ReadonlyArray<readonly [string | RegExp, string]> = [
-  ['\n', '\n'], [' · ', ' · '], [' — ', ' — '], [' – ', ' – '], [' / ', ' / '], [' | ', ' | '], [' : ', ': '],
-  [/(?<=[.!?…»])\s+(?=[A-ZÀ-Ý«])/, ' '], [', ', ', '],
+const SEPARATORS: ReadonlyArray<readonly [string, string]> = [
+  ['\n', '\n'], [' · ', ' · '], [' — ', ' — '], [' – ', ' – '], [' / ', ' / '], [' | ', ' | '], [' : ', ': '], [' ; ', '; '], [', ', ', '],
 ];
 
-/** Joined pieces, each known: « Brûlure, Poison », « Coffre · Gardien », and French lists « a, b et c ». */
-function fromSegments(norm: string, depth: number): string | null {
-  const list = /^(.+), (.+) et (.+)$/.exec(norm) ?? /^(.+) et (.+)$/.exec(norm);
-  if (list) {
-    const items = list.slice(1).flatMap((item) => item.split(', '));
-    const english = items.map((item) => lookup(item, depth + 1));
-    if (english.every((item): item is string => item !== null)) {
-      return english.length < 2 ? english.join('') : `${english.slice(0, -1).join(', ')} and ${english.at(-1)}`;
+/** Sentences glued after one another (a line and its echo): the first cover made of known texts wins. */
+function fromSentences(text: string, depth: number): string | null {
+  const ends = [...text.matchAll(/(?<=[.!?…»])\s+(?=[A-ZÀ-Ý«“])/g)].map((match) => ({ at: match.index!, length: match[0].length }));
+  if (!ends.length) return null;
+  const memo = new Map<number, string[] | null>();
+  const cover = (start: number): string[] | null => {
+    if (memo.has(start)) return memo.get(start)!;
+    let result: string[] | null = null;
+    if (start > 0) {
+      const whole = lookup(text.slice(start), depth + 1);
+      if (whole !== null) result = [whole];
     }
+    for (const end of ends) {
+      if (result || end.at <= start) continue;
+      const piece = lookup(text.slice(start, end.at), depth + 1);
+      const rest = piece === null ? null : cover(end.at + end.length);
+      if (piece !== null && rest) result = [piece, ...rest];
+    }
+    memo.set(start, result);
+    return result;
+  };
+  return cover(0)?.join(' ') ?? null;
+}
+
+/** Joined pieces, each known: « Brûlure, Poison », « Coffre · Gardien », and French lists « a, b et c ». */
+function fromSegments(full: string, depth: number): string | null {
+  // A closing stop belongs to the whole text: « Mérites : a, b et c. » is the list « a, b et c » with its stop.
+  const stop = /[.!?…]+$/.exec(full)?.[0] ?? '';
+  if (stop && full.length > stop.length) {
+    const english = fromSegments(full.slice(0, -stop.length), depth);
+    if (english !== null) return english + stop;
   }
+  const norm = full;
+  const listed = fromFrenchList(norm, depth);
+  if (listed !== null) return listed;
   for (const [separator, joiner] of SEPARATORS) {
-    if (typeof separator === 'string' ? !norm.includes(separator) : !separator.test(norm)) continue;
+    if (!norm.includes(separator)) continue;
     const parts = norm.split(separator);
     if (parts.length < 2) continue;
-    const english = parts.map((part) => (part.trim() === '' || !hasLetter(part) ? englishNumbers(part) : lookup(part.trim(), depth + 1)));
+    // A lead that ends with its colon (« Vos mérites : ») is a key with the colon; English keeps one colon.
+    const lookupPart = (part: string, index: number): string | null => lookup(part, depth + 1)
+      ?? (separator === ' : ' && index < parts.length - 1 ? lookup(`${part} :`, depth + 1)?.replace(/\s*:$/, '') ?? null : null);
+    const english = parts.map((part, index) => (part.trim() === '' || !hasLetter(part) ? englishNumbers(part) : lookupPart(part.trim(), index)));
     if (english.every((part): part is string => part !== null)) return english.join(joiner);
   }
   return null;
 }
 
-const FRENCH_MARKERS = /(^|[\s(«“'’])(le|la|les|des|du|une|est|vous|nous|pour|avec|dans|sur|pas|qui|que|et|à|au|aux)(?=[\s,.;:!?»”)]|$)/i;
+/** A list item: a known text, a template or a known text inside symbols, never a list of its own. */
+function lookupItem(text: string, depth: number): string | null {
+  return catalog!.get(text) ?? (depth > 4 ? null : fromTemplate(text, depth) ?? fromCase(text) ?? fromAffixes(text, depth));
+}
+
+/**
+ * « a, b et c » as known items, even when an item holds its own comma: every cut at « , » or « et » is tried, the
+ * last cut being « et », and the first cover made of known texts wins.
+ */
+function fromFrenchList(text: string, depth: number): string | null {
+  if (!text.includes(' et ')) return null;
+  const cuts = [...text.matchAll(/, | et /g)].map((match) => ({ at: match.index!, length: match[0].length, and: match[0] === ' et ' }));
+  const memo = new Map<number, string[] | null>();
+  const cover = (start: number): string[] | null => {
+    if (memo.has(start)) return memo.get(start)!;
+    let result: string[] | null = null;
+    const whole = lookupItem(text.slice(start), depth + 1);
+    if (whole !== null && start > 0) result = [whole];
+    for (const cut of cuts) {
+      if (result || cut.at <= start) continue;
+      const item = lookupItem(text.slice(start, cut.at), depth + 1);
+      if (item === null) continue;
+      const rest = cover(cut.at + cut.length);
+      const lastCutIsAnd = cuts.filter((other) => other.at > cut.at).length === 0 ? cut.and : true;
+      if (rest && lastCutIsAnd) result = [item, ...rest];
+    }
+    memo.set(start, result);
+    return result;
+  };
+  const items = cover(0);
+  if (!items || items.length < 2) return null;
+  return `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`;
+}
+
+const FRENCH_MARKERS =/(^|[\s(«“'’])(le|la|les|des|du|une|est|vous|nous|pour|avec|dans|sur|pas|qui|que|et|à|au|aux)(?=[\s,.;:!?»”)]|$)/i;
 
 function noteMissing(norm: string): void {
   if (missing.has(norm) || !FRENCH_MARKERS.test(norm)) return;

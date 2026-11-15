@@ -29,14 +29,16 @@ export const DEV_ONLY_SOURCES = [
 export const MANUAL_KEYS = Object.freeze([
   'DOS !', 'DOUBLE !', 'GARDE +', 'FURIE', 'ULTIME', 'CHARGE', 'K.O.', 'SIGNATURE', 'BOSS',
   'FOR', 'MAG', 'END', 'DEX', 'CHA', 'PV', 'PA', 'DÉPL',
-  'BRI', 'ESS', 'FUR', 'ENT', 'BRU', 'POI', 'REG', 'RAL', 'AFF', 'BAR', 'MAL', 'AVE', 'MUT', 'PRO', 'GAR',
+  // « 80 or » : the gold after a number, translated around its number at runtime.
+  'or',
 ]);
 
 const FR_WORDS = new Set(('le la les de des du un une et est vous votre vos pour sur dans au aux ne pas à qui que ' +
   'il elle ils elles nous son sa ses leur leurs ce cette ces se en par avec sans plus mais ou où tout tous toute ' +
-  'mon ma mes ton ta tes je tu on lui y être avoir fait été sont était ici déjà encore jamais rien chaque très puis').split(' '));
+  'mon ma mes ton ta tes je tu on lui y être avoir fait été sont était ici déjà encore jamais rien chaque très puis ' +
+  'celles ceux celui celle cela ceci aussi alors comme dont').split(' '));
 const EN_WORDS = new Set(('the and of to is for with from not this that should must missing unknown invalid expected ' +
-  'failed are was be by on in at as it its or an no has have unit units into when then than both while above below her his ' +
+  'failed are was be by on in at as it its an no has have unit units into when then than both while above below her his ' +
   'their they them without remain remains stays keep keeps can cannot will would only every after before over under through ' +
   'which who what where receives same each other one two any all may might never always stage stands left right wide card ' +
   'focus shot lower upper behind facing floor empty fork company scene').split(' '));
@@ -65,8 +67,24 @@ export function normalizeKey(text) {
   return text.replace(/\s+/g, ' ').trim();
 }
 
+const ACCENTED = { a: 'àáâä', e: 'èéêë', i: 'ìíîï', o: 'òóôö', u: 'ùúûü', c: 'ç', y: 'ÿ' };
+const ACCENT_NAMES = { grave: 0, acute: 1, circ: 2, uml: 3 };
+
 function decodeEntities(text) {
-  return text.replace(/&[a-z#0-9]+;/gi, (entity) => ENTITIES[entity] ?? entity);
+  return text.replace(/&[a-z#0-9]+;/gi, (entity) => {
+    if (ENTITIES[entity]) return ENTITIES[entity];
+    const accented = /^&([a-zA-Z])(grave|acute|circ|uml|cedil);$/.exec(entity);
+    if (accented) {
+      const [, letter, accent] = accented;
+      const forms = ACCENTED[letter.toLowerCase()] ?? '';
+      const char = accent === 'cedil' ? forms : forms[ACCENT_NAMES[accent]];
+      if (char) return letter === letter.toUpperCase() ? char.toUpperCase() : char;
+    }
+    if (/^&(oelig|OElig);$/.test(entity)) return entity[1] === 'O' ? 'Œ' : 'œ';
+    const code = /^&#(x?)([0-9a-f]+);$/i.exec(entity);
+    if (code) return String.fromCodePoint(parseInt(code[2], code[1] ? 16 : 10));
+    return entity;
+  });
 }
 
 /** Whether a normalized text (holes allowed) reads as French player text. */
@@ -126,9 +144,10 @@ function renumber(piece) {
 function addKey(out, raw, file, line, kind) {
   for (const piece of domPieces(raw)) {
     const key = renumber(normalizeKey(decodeEntities(piece)));
-    if (!isFrenchText(key)) continue;
     const bare = key.replace(/\{\d+\}/g, '').replace(/[^A-Za-zÀ-ÿ]/g, '');
     if (bare.length < 2) continue;
+    // Static HTML is player text by definition: every piece with letters counts, even « zone bleue » or « 5 PA ».
+    if (!isFrenchText(key) && kind !== 'html') continue;
     out.push({ key, file, line, kind });
   }
 }
