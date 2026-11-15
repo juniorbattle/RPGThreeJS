@@ -10,7 +10,7 @@
 | STATUS | merged : livré sur `origin/dev` |
 | MERGED_IN | `dev` |
 | SUPERSEDES | NONE |
-| SUPERSEDED_BY | NONE |
+| SUPERSEDED_BY | Pour le seul constat mémoire (environ 40 Mo par combat, M1) : [combat-memory-2026-11-15.md](combat-memory-2026-11-15.md), qui montre qu'il venait des tampons DevTools `Network` du pilote, pas du jeu. Le reste du rapport tient. |
 | PRODUCTION_IMPACT | Le build de production ne contient plus 138 images que le jeu ne demande jamais, ni les PNG maîtresses de 29 grandes images peintes, que le jeu charge désormais en WebP qualité 95 à résolution identique. Le combat n'attend plus que les sprites des unités qu'il peut montrer, et son JavaScript ne porte plus les tables du lab VFX. Aucune image nouvelle ni retouche, aucun texte, aucun champ de sauvegarde, aucune vérité de jeu. |
 | CANONICAL_DOCS_UPDATED | `docs/autonomy/OPERATOR_DECISIONS.md` (OD-2026-11-15-A), `docs/autonomy/PERFORMANCE_OPERATOR_DECISION_2026-11-15.md` |
 | EVIDENCE | Pilote Playwright `tools/perf/measure-performance.mjs` sur le build de production, avant et après en A/B (sorties ignorées sous `tmp/perf/`). Test de garde `tools/build/productionExcludedPublicAssets.test.ts`, suite complète (5 échecs hérités de l'environnement du worktree), `tsc`, build, `contracts:validate`, validateur de mise en scène, garde vide. Limites dans « Ce qui n'est pas vérifié ». |
