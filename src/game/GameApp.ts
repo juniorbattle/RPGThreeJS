@@ -344,15 +344,17 @@ export class GameApp {
     this.prologue.close();
     this.combat.close();
     this.canvas.hidden = true;
+    // OD-2026-11-15-D: a centred column under the brass title lockup; « Continuer » leads when a chronicle exists and
+    // is absent without one, so no dead entry is shown. The tagline is the operator's, word for word.
+    const hasSave = this.saves.hasSave();
     this.chrome.innerHTML = `
       <section class="title-screen">
-        <div class="title-screen__sigil">✦</div>
         <p class="eyebrow">Chroniques d'Élyndra</p>
         <h1>La Voie<br><span>des Sceaux</span></h1>
-        <p class="title-screen__lead">Un RPG tactique où chaque serment laisse une trace.</p>
+        <p class="title-screen__lead">Honneur ou force : chaque Sceau se gagne à votre façon.</p>
         <div class="title-screen__actions">
-          <button type="button" data-action="new" class="${this.saves.hasSave() ? '' : 'is-primary'}">Nouvelle chronique</button>
-          <button type="button" data-action="continue" class="${this.saves.hasSave() ? 'is-primary' : ''}" ${this.saves.hasSave() ? '' : 'disabled'}>Continuer</button>
+          ${hasSave ? '<button type="button" data-action="continue" class="is-primary">Continuer</button>' : ''}
+          <button type="button" data-action="new" class="${hasSave ? '' : 'is-primary'}">Nouvelle chronique</button>
           <button type="button" data-action="settings">Réglages</button>
           ${hasCredits() ? '<button type="button" data-action="credits">Crédits</button>' : ''}
           ${this.qaEnabled ? '<button type="button" class="title-screen__qa" data-action="qa">QA rencontres</button>' : ''}
