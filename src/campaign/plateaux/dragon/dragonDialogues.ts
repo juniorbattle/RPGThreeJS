@@ -12,6 +12,7 @@ import { LYRA_MEETING, TALON_MEETING, withMeeting, withMeetingPart } from '../he
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../../../game/types';
 
 interface Who { speaker: string; actorId: string; side: 'left' | 'right' }
+/** OD-2026-11-14-B (C1): Elara, the plateau’s hero, asks the questions before the choices, words unchanged; Alistair keeps the refuge line. */
 const ALISTAIR: Who = { speaker: 'Alistair', actorId: 'alistair', side: 'left' };
 const SERAPHINE: Who = { speaker: 'Sage Séraphine', actorId: 'sage_seraphine', side: 'left' };
 const MAELOR: Who = { speaker: 'Intendant Maelor', actorId: 'maelor', side: 'left' };
@@ -71,7 +72,7 @@ export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     say('3', ENVOY, 'Offre', 'Prenez cet or en gage. Montez jusqu’au repaire, et le jour venu, souvenez-vous de qui vous a parlé le premier.', '4'),
     say('4', MAELOR, 'Intendant', 'Le Dragon et le Loup se disputent ces pics depuis toujours. Qu’ils s’affaiblissent l’un l’autre, et le plus fort au bout sera peut-être celui qui n’a pas choisi trop tôt.', '5'),
     say('5', SERAPHINE, 'Sage', 'Un clan qui vole un artefact puis achète le silence de ceux qui le cherchent… Je voudrais savoir pourquoi le Loup a eu besoin de ce Cristal, avant de croire à son partage.', 'offer', { expression: 'mystical' }),
-    say('offer', ALISTAIR, 'Réponse', 'Votre réponse, alors.', null, { expression: 'stern', choices: [
+    say('offer', ELARA, 'Réponse', 'Votre réponse, alors.', null, { expression: 'stern', choices: [
       choice('Repousser l’émissaire et prévenir Kaelen.', 'refused', [flag('dragonWolfOfferRefused')], ['Kaelen saura ce que le Loup a tenté']),
       choice('Accepter l’or et le pacte du Loup.', 'pact', [flag('dragonWolfPact'), gold(90), reputation(-2)], ['90 or', 'Un pacte avec le Loup']),
     ] }),
@@ -83,7 +84,7 @@ export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     say('1', KESTREL, 'Éclaireuse', 'Des collets d’acier sous la neige, en travers du sentier des pèlerins. Le Loup les a posés pour ceux qui montent prier le Dragon.', '2', { expression: 'stern' }),
     say('2', MAELOR, 'Intendant', 'Déplaçons-les sur les sentiers du Loup. Ses patrouilles y tomberont, et le repaire sera moins gardé.', '3'),
     say('3', MARIAN, 'Soigneuse', 'Les pèlerins passent aussi par là. Un collet ne distingue pas un loup d’un enfant.', 'choice', { expression: 'stern' }),
-    say('choice', ALISTAIR, 'Décision', 'Que fait-on de ces pièges ?', null, { choices: [
+    say('choice', ELARA, 'Décision', 'Que fait-on de ces pièges ?', null, { choices: [
       choice('Désarmer les pièges du sentier des pèlerins.', 'disarmed', [flag('dragonTrapsDisarmed'), reputation(1)], ['Le sentier des pèlerins sûr']),
       choice('Les retourner contre les patrouilles du Loup.', 'turned', [flag('dragonTrapsTurned'), item('grenade_entravante', 1), reputation(-1)], ['1 grenade entravante', 'Au risque des pèlerins']),
     ] }),
@@ -100,7 +101,7 @@ export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     say('2', CAPTIVE, 'Loup', 'Achevez-moi ou laissez-moi. Je ne dirai rien du repaire.', '3', { expression: 'hostile' }),
     say('3', MAELOR, 'Intendant', 'Il dira tout, avec un peu d’encouragement. Le repaire est gardé, et nous ne savons rien de ses défenses.', '4'),
     say('4', SERAPHINE, 'Sage', 'Écoutons-le d’abord. Un clan qui vole un artefact sacré n’agit pas toujours de lui-même ; ce guerrier sait peut-être pourquoi.', 'choice', { expression: 'mystical' }),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous de lui ?', null, { expression: 'stern', choices: [
+    say('choice', ELARA, 'Décision', 'Que faisons-nous de lui ?', null, { expression: 'stern', choices: [
       choice('Soigner ses blessures, l’écouter, puis le relâcher.', 'heard', [flag('dragonWolfHeard'), reputation(1)], ['Un ennemi épargné', 'Peut-être une vérité']),
       choice('Lui arracher ce qu’il sait.', 'tortured', [flag('dragonWolfTortured'), reputation(-2)], ['Les gardes du repaire', 'Un acte que les Pics retiendront']),
     ] }),
@@ -112,7 +113,7 @@ export const DRAGON_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     say('1', SERAPHINE, 'Sage', 'Une paroi gravée par les anciens du Dragon. Elle parle du Cristal d’Écho : il tient l’équilibre des Pics, mais une main qui saurait le tourner pourrait en faire une arme.', '2', { expression: 'mystical' }),
     say('2', MAELOR, 'Intendant', 'Une arme qui tient des montagnes en équilibre. Ce savoir vaut plus que tout l’or du Loup. Pourquoi le rendre à un clan qui le garde pour lui seul ?', '3'),
     say('3', MARIAN, 'Soigneuse', 'Parce que ce n’est pas à nous de décider qui tient les montagnes.', 'choice', { expression: 'stern' }),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous de ces inscriptions ?', null, { choices: [
+    say('choice', ELARA, 'Décision', 'Que faisons-nous de ces inscriptions ?', null, { choices: [
       choice('Copier les inscriptions pour Kaelen.', 'shared', [flag('dragonCluesShared')], ['Kaelen saura ce que dit la paroi']),
       choice('Garder pour nous le secret du Cristal.', 'hidden', [flag('dragonCluesHidden'), item('ether', 1), reputation(-1)], ['1 éther (poussière de cristal)', 'Un secret gardé pour le clan']),
     ] }),
@@ -161,7 +162,7 @@ function dragonTerrorizedVillage(state: Readonly<GameState>): DialogueSequence {
     say('2', VILLAGER, 'Contreforts', 'Le Loup descend chaque nuit depuis la disparition du Cristal. Il prend les bêtes, les réserves, et il revient toujours. Le Dragon reste là-haut.', '3', { expression: 'fearful' }),
     say('3', MAELOR, 'Intendant', 'Ces gens paieraient cher pour dormir tranquilles. Une protection a un prix, et personne d’autre ne la leur offre.', '4'),
     say('4', SERAPHINE, 'Sage', 'Ils paient déjà le Loup en bêtes et en peur. Leur prendre davantage ferait de nous un deuxième Loup.', 'choice', { expression: 'stern' }),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous pour ce hameau ?', null, { expression: 'stern', choices: [
+    say('choice', ELARA, 'Décision', 'Que faisons-nous pour ce hameau ?', null, { expression: 'stern', choices: [
       choice('Monter la garde et repousser le prochain raid.', 'raid', [flag('dragonVillageProtected'), reputation(1), fight('dragon_village_raid')],
         ['Combat contre les pillards du Loup', 'Le hameau protégé']),
       choice('Faire payer notre protection.', 'extorted_night', [flag('dragonVillageExtorted'), gold(60), reputation(-2)], ['60 or', 'Un hameau qui paie deux fois']),
@@ -206,7 +207,7 @@ function dragonWolfLair(state: Readonly<GameState>): DialogueSequence {
       : say('chief', WOLF_CHIEF, 'Loup', 'Encore des étrangers au service du Dragon. Il a gardé ces pics trop longtemps. Le Cristal ira à qui saura s’en servir.', null, { expression: 'hostile' }),
     say('seraphine', SERAPHINE, 'Sage', 'Ce Cristal appartient à l’équilibre des Pics, et cet autel n’a rien d’un autel du Loup. Reprenons-le, et rapportons-le à Kaelen.', null, { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', 'Ou reprenons-le pour nous. Celui qui tient le Cristal tient le Dragon.', null),
-    say('choice', ALISTAIR, 'Décision', 'Le repaire attend notre réponse.', null, { expression: 'stern', choices: [
+    say('choice', ELARA, 'Décision', 'Le repaire attend notre réponse.', null, { expression: 'stern', choices: [
       choice('Prendre le repaire et rapporter le Cristal à Kaelen.', null, [flag('dragonCrystalRecovered'), reputation(1), fight('dragon_lair_assault')],
         ['Combat contre le chef du Clan du Loup', 'Le Cristal rapporté au Dragon']),
       choice('Prendre le repaire et garder le Cristal pour le clan.', null, [flag('dragonCrystalKept'), reputation(-2), fight('dragon_lair_seizure')],
@@ -247,7 +248,7 @@ function dragonFreedPilgrims(state: Readonly<GameState>): DialogueSequence {
     say('request', PILGRIM, 'Témoignage', 'Nous voulons le dire nous-mêmes à l’Ancien Kaelen.', 'seraphine'),
     say('seraphine', SERAPHINE, 'Sage', witnesses, 'maelor', { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', fear, 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous d’eux ?', null, { expression: 'stern', choices: [
+    say('choice', ELARA, 'Décision', 'Que faisons-nous d’eux ?', null, { expression: 'stern', choices: [
       choice('Escorter les pèlerins jusqu’à Kaelen.', 'protected', [flag('dragonPilgrimsProtected'), reputation(1)], ['Des témoins libres devant Kaelen']),
       choice('Les faire taire, quel qu’en soit le prix.', 'silenced', [flag('dragonPilgrimsSilenced'), reputation(-2)], ['Aucun témoin devant Kaelen', 'Un acte que les Pics retiendront']),
     ] }),
@@ -277,7 +278,7 @@ function dragonCrystalAltar(state: Readonly<GameState>): DialogueSequence {
     say('clues', SERAPHINE, 'Sage', clues, 'lion', { expression: 'mystical' }),
     say('lion', SERAPHINE, 'Les Ombres', lion, 'ore', { expression: 'mystical' }),
     say('ore', MAELOR, 'Intendant', ore, 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous de cette souillure ?', null, { choices: [
+    say('choice', ELARA, 'Décision', 'Que faisons-nous de cette souillure ?', null, { choices: [
       choice('En sceller un éclat comme preuve.', 'sealed', [flag('dragonShadowEvidence')], ['Une preuve à montrer à Kaelen']),
       choice('L’effacer sur-le-champ.', 'purged', [flag('dragonShadowPurged'), reputation(-1)], ['L’autel nettoyé', 'Aucune preuve à montrer']),
     ] }),
@@ -339,7 +340,7 @@ function dragonYoungDragon(state: Readonly<GameState>): DialogueSequence {
     say('2', SERAPHINE, 'Sage', 'La même énergie sombre que sur les créatures des crêtes. Il peut guérir, si nous l’aidons.', lionNest ? 'lion' : '3', { expression: 'mystical' }),
     ...(lionNest ? [lionNest] : []),
     say('3', MAELOR, 'Intendant', 'Ses écailles valent une armure entière chez un bon forgeron. Il ne les sentira pas.', 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous ?', null, { choices: [
+    say('choice', ELARA, 'Décision', 'Que faisons-nous ?', null, { choices: [
       choice('Soigner le jeune dragon.', 'tended', [flag('dragonYoungDragonTended')], ['Le jeune dragon soigné']),
       choice('Prendre ses écailles.', 'scales', [flag('dragonScalesTaken'), item('red_gem', 1), reputation(-1)], ['Une gemme rouge', 'Un jeune dragon dépouillé']),
     ] }),

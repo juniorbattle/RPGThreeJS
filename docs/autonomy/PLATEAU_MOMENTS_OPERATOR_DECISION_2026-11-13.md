@@ -50,3 +50,5 @@ Pendant la même session, l’opérateur a ajouté une règle : à chaque platea
   Il entre aussi dans les tableaux vivants de son plateau.
 - **Ce qui ne change pas** : le texte. Alistair garde les décisions de la route.
 - **Livré** : commit `b88e31cf`, présentation seule.
+
+**Amendé le 2026-11-14 par [OD-2026-11-14-B](ALISTAIR_ROLE_OPERATOR_DECISION_2026-11-14.md)** : Alistair ne garde plus les décisions de la route. Le héros du plateau pose aussi les questions de choix, sans changer un mot, et le pion de carte et le panneau de fin montrent le héros de la partie.

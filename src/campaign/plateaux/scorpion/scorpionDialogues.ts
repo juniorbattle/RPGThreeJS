@@ -12,6 +12,7 @@ import { ELDWIN_MEETING, MORVAN_MEETING, withMeeting, withMeetingPart } from '..
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../../../game/types';
 
 interface Who { speaker: string; actorId: string; side: 'left' | 'right' }
+/** OD-2026-11-14-B (C1): Kestrel, the plateau’s hero, asks the questions before the choices, words unchanged; Alistair keeps the refuge line. */
 const ALISTAIR: Who = { speaker: 'Alistair', actorId: 'alistair', side: 'left' };
 const SERAPHINE: Who = { speaker: 'Sage Séraphine', actorId: 'sage_seraphine', side: 'left' };
 const MAELOR: Who = { speaker: 'Intendant Maelor', actorId: 'maelor', side: 'left' };
@@ -69,7 +70,7 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
     say('3', FAITHFUL, 'Serment', 'Jurez que vous ne le lui livrerez pas, et le Phénix se souviendra de vous.', '4'),
     say('4', SERAPHINE, 'Sage', 'Le Phénix garde ses flammes et ses textes avec la même foi. Un serment ici nous lierait autant qu’une dette. Ne promettons que ce que nous tiendrons.', '5', { expression: 'mystical' }),
     say('5', MAELOR, 'Intendant', 'Un serment ne coûte rien à prononcer. Ce qu’on en fait ensuite, c’est une autre affaire.', 'oath'),
-    say('oath', ALISTAIR, 'Décision', 'Que leur répondons-nous ?', null, { expression: 'stern', choices: [
+    say('oath', KESTREL, 'Décision', 'Que leur répondons-nous ?', null, { expression: 'stern', choices: [
       choice('Ne rien leur promettre.', 'refused', [flag('scorpionOathRefused')], ['Aucune parole donnée au Phénix']),
       choice('Jurer de ne pas livrer le codex au Grand Inquisiteur.', 'sworn', [flag('scorpionPhoenixOath')], ['Un serment au Phénix', 'Le Grand Inquisiteur l’apprendra']),
     ] }),
@@ -81,7 +82,7 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
     say('1', SERAPHINE, 'Sage', 'Une porte de pierre, couverte de signes anciens. Une énigme y est gravée ; les textes du Phénix en donnent la réponse à qui prend le temps de les lire.', '2', { expression: 'mystical' }),
     say('2', KESTREL, 'Éclaireuse', 'Ou il y a un levier de bronze derrière la pierre, à portée de lame. Le mécanisme céderait en un coup.', '3'),
     say('3', MAELOR, 'Intendant', 'Le temps, c’est ce qui nous manque. Brisons-le.', 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Comment passons-nous ?', null, { choices: [
+    say('choice', KESTREL, 'Décision', 'Comment passons-nous ?', null, { choices: [
       choice('Chercher la réponse dans les textes.', 'solved', [flag('scorpionRiddleSolved')], ['La porte intacte']),
       choice('Briser le mécanisme.', 'forced', [flag('scorpionRiddleForced'), gold(40), reputation(-1)], ['40 or dans la niche du mécanisme', 'Une porte du Phénix brisée']),
     ] }),
@@ -97,7 +98,7 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
     say('1', KESTREL, 'Éclaireuse', 'Des sceaux de garde tracés au sol, en travers de la route des ruines. Le premier qui marche dessus s’embrase.', '2', { expression: 'fearful' }),
     say('2', SERAPHINE, 'Sage', 'Ce sont des sceaux du Phénix. Ils se lèvent selon un rite que je sais lire : il y faut du temps, et du respect.', '3', { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Ou un bon coup de marteau. Un sceau brisé ne brûle plus personne.', 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous de ces sceaux ?', null, { choices: [
+    say('choice', KESTREL, 'Décision', 'Que faisons-nous de ces sceaux ?', null, { choices: [
       choice('Les lever selon leur rite.', 'respected', [flag('scorpionWardsRespected')], ['La route ouverte selon le rite du Phénix']),
       choice('Les briser sans attendre.', 'broken', [flag('scorpionWardsBroken'), reputation(-1)], ['La route ouverte tout de suite', 'Des sceaux du Phénix brisés']),
     ] }),
@@ -109,7 +110,7 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
     say('2', SERAPHINE, 'Sage', 'Des siècles de textes. Les déplacer les tuerait ; les lire ici prendrait des années.', '3', { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Quelques rouleaux bien choisis valent une fortune chez les érudits du Scorpion. Ils ne demanderont pas d’où ils viennent.', '4'),
     say('4', MARIAN, 'Soigneuse', 'Ce sont les souvenirs d’un clan. On ne vend pas les souvenirs des autres.', 'choice', { expression: 'stern' }),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous de cette bibliothèque ?', null, { choices: [
+    say('choice', KESTREL, 'Décision', 'Que faisons-nous de cette bibliothèque ?', null, { choices: [
       choice('La laisser intacte.', 'respected', [flag('scorpionLibraryRespected')], ['La bibliothèque laissée au Phénix']),
       choice('Emporter des rouleaux pour les vendre.', 'looted', [flag('scorpionLibraryLooted'), gold(80), reputation(-1)], ['80 or', 'Des rouleaux du Phénix vendus']),
     ] }),
@@ -134,7 +135,7 @@ export const SCORPION_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.fre
     say('1', KESTREL, 'Éclaireuse', 'Un sanctuaire creusé dans la roche. Les cendres sacrées du Phénix y couvent encore ; des braises rouges luisent sous la cendre grise.', '2'),
     say('2', SERAPHINE, 'Sage', 'Les flammes purificatrices du Phénix naissent ici. Ce lieu n’est pas à nous.', '3', { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Des braises qui ne s’éteignent jamais. Un forgeron en donnerait une fortune, et un érudit davantage.', 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous ?', null, { choices: [
+    say('choice', KESTREL, 'Décision', 'Que faisons-nous ?', null, { choices: [
       choice('Respecter les cendres sacrées.', 'respected', [flag('scorpionAshesRespected')], ['Le sanctuaire intact']),
       choice('Emporter des braises.', 'taken', [flag('scorpionAshesTaken'), item('red_gem', 1), reputation(-1)], ['Une gemme rouge', 'Un sanctuaire du Phénix pillé']),
     ] }),
@@ -171,7 +172,7 @@ function scorpionScholars(state: Readonly<GameState>): DialogueSequence {
     say('3', CAPTIVE, 'Phénix', 'Je ne dirai rien du temple. Faites de moi ce que vous voudrez.', '4', { expression: 'hostile' }),
     say('4', MAELOR, 'Intendant', 'Laissons les érudits travailler. Ce qu’il dira nous servira autant qu’à eux, et le Scorpion saura que nous ne le gênons pas.', '5'),
     say('5', MARIAN, 'Soigneuse', 'Ils le privent d’eau depuis l’aube. Il ne tiendra pas jusqu’au soir.', 'choice', { expression: 'stern' }),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous ?', null, { expression: 'stern', choices: [
+    say('choice', KESTREL, 'Décision', 'Que faisons-nous ?', null, { expression: 'stern', choices: [
       choice('Libérer le fidèle du Phénix.', 'refusal', [flag('scorpionFaithfulFreed'), fight('scorpion_scholars_camp')],
         ['Combat contre les érudits du Scorpion', 'Un fidèle libre', 'Le Grand Inquisiteur l’apprendra']),
       choice('Le laisser aux érudits.', 'abandoned', [flag('scorpionFaithfulAbandoned'), gold(50), reputation(-2)], ['50 or des érudits', 'Un acte que le Scorpion consignera']),
@@ -219,7 +220,7 @@ function scorpionPhoenixTemple(state: Readonly<GameState>): DialogueSequence {
       ? say('seraphine', SERAPHINE, 'Sage', 'Nous avons promis ce codex au Grand Inquisiteur, et juré au Phénix de ne pas le lui livrer. L’une de ces deux paroles va se briser ici.', null, { expression: 'stern' })
       : say('seraphine', SERAPHINE, 'Sage', 'Le Grand Inquisiteur attend ce codex, et notre parole le lui promet. Mais souvenez-vous : celui qui lira ces pages leur fera dire ce qu’il voudra.', null, { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', 'Ou gardons-le. Le seul texte qui parle des Ombres, entre nos mains : le Scorpion devra traiter avec nous, et le Phénix aussi.', null),
-    say('choice', ALISTAIR, 'Décision', 'Le temple attend notre réponse.', null, { expression: 'stern', choices: [
+    say('choice', KESTREL, 'Décision', 'Le temple attend notre réponse.', null, { expression: 'stern', choices: [
       choice('Prendre le codex pour le Grand Inquisiteur.', null, [flag('scorpionCodexDelivered'), reputation(1), fight('scorpion_temple_assault')],
         ['Combat contre le chef des gardiens du Phénix', 'Le codex rapporté au Scorpion']),
       choice('Prendre le codex et le garder pour le clan.', null, [flag('scorpionCodexKept'), reputation(-2), fight('scorpion_temple_seizure')],
@@ -262,7 +263,7 @@ function scorpionTempleWitnesses(state: Readonly<GameState>): DialogueSequence {
     say('request', FAITHFUL, 'Témoignage', 'Nous voulons le dire nous-mêmes au Grand Inquisiteur. Que le Scorpion sache que le Phénix n’a pas choisi cette haine seul.', 'seraphine'),
     say('seraphine', SERAPHINE, 'Sage', witnesses, 'maelor', { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', fear, 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous d’eux ?', null, { expression: 'stern', choices: [
+    say('choice', KESTREL, 'Décision', 'Que faisons-nous d’eux ?', null, { expression: 'stern', choices: [
       choice('Escorter les fidèles jusqu’au Grand Inquisiteur.', 'protected', [flag('scorpionWitnessesProtected'), reputation(1)], ['Des témoins libres devant le Grand Inquisiteur']),
       choice('Les réduire au silence, quel qu’en soit le prix.', 'silenced', [flag('scorpionWitnessesSilenced'), reputation(-2)], ['Aucun témoin devant le Grand Inquisiteur', 'Un acte que le désert retiendra']),
     ] }),
@@ -287,7 +288,7 @@ function scorpionCorruptedTexts(state: Readonly<GameState>): DialogueSequence {
     say('reading', SERAPHINE, 'Sage', 'Quelqu’un a écrit entre les lignes du codex. Pas une prophétie : un ordre, glissé dans la foi des autres.', 'traces', { expression: 'mystical' }),
     say('traces', SERAPHINE, 'Les Ombres', traces, 'maelor', { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', 'Une page que personne ne devrait lire. Brûlons-la, et n’en parlons plus.', 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous de cette page ?', null, { choices: [
+    say('choice', KESTREL, 'Décision', 'Que faisons-nous de cette page ?', null, { choices: [
       choice('La sceller comme preuve.', 'sealed', [flag('scorpionShadowEvidence')], ['Une preuve à montrer au Grand Inquisiteur']),
       choice('La brûler sur-le-champ.', 'burned', [flag('scorpionShadowBurned'), reputation(-1)], ['La page détruite', 'Aucune preuve à montrer']),
     ] }),

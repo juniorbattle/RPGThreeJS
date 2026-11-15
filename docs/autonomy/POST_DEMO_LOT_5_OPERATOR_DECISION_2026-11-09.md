@@ -12,6 +12,8 @@
 | 4 | Table des moments de l’acte final | Approuvée : la trahison au Tournoi et les trois épilogues, chacun avec ses faits établis ; elle ne joue que sur des tableaux approuvés |
 | 5 | Écran de fin | « Fin de la chronique », le nom de la fin, puis « Quatre Sceaux, la brèche refermée : la Voie des Sceaux s’achève ici. » |
 
+**Amendé le 2026-11-14 par [OD-2026-11-14-B](ALISTAIR_ROLE_OPERATOR_DECISION_2026-11-14.md)** : au point 2, c’est l’héritier, le « vous » du prologue, qui se livre aux clans, et non Alistair. Le clan vit toujours, déchu une fois de plus.
+
 ## Conséquences
 
 - **Canon.** Les fins ne sont plus marquées brouillon. Les ajouts aux cinq cartes des conséquences sont canon : leur liste `draftIds` est retirée, et aucune carte ne garde d’écho prévu.

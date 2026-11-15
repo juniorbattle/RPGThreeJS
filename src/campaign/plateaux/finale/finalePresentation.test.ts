@@ -138,8 +138,11 @@ describe('final-act scenes on their final tableaux (set 1.20.0, Lot 4; final ima
     // Tournament and fled through the breach (OD-2026-11-13-F, Q1).
     const end = resolveNarrativeBoundaryTableau('node:finale-breach:arrival')!;
     expect(end.stillImage).toBe(FINALE_CHRONICLE_END_IMAGE);
+    // Without Maelor (OD-2026-11-13-F); Alistair and Séraphine keep the Lion's places, Kestrel and Marian stand beside them
+    // as in the endings' living tableaux (OD-2026-11-14-B, C2).
     const { maelor: _traitor, ...lionCompany } = resolveNarrativeBoundaryTableau('node:lion-final-judgement:arrival')!.sceneCastPlacement!;
-    expect(end.sceneCastPlacement).toEqual(lionCompany);
+    expect(end.sceneCastPlacement).toMatchObject(lionCompany);
+    expect(Object.keys(end.sceneCastPlacement!)).toEqual(['kestrel', 'alistair', 'sage_seraphine', 'marian']);
   });
 
   it('shows the final act’s characters on their own masters: dialogue portrait, staged figure and combat sheet', () => {

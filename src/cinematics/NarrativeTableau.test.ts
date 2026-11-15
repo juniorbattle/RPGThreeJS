@@ -42,19 +42,26 @@ describe('Narrative Tableau presentation data', () => {
   });
 
   it('ends the final act without Maelor, who betrayed at the Tournament and fled through the breach (OD-2026-11-13-F, Q1)', () => {
+    // OD-2026-11-14-B (C2): the company of the endings' living tableaux stands there, Alistair one of four.
+    const COMPANY = ['kestrel', 'alistair', 'sage_seraphine', 'marian'];
     const end = resolveNarrativeBoundaryTableau('node:finale-breach:arrival')!;
-    expect(end.cast.visualActors).toEqual(['alistair', 'sage_seraphine']);
+    expect(end.cast.visualActors).toEqual(COMPANY);
     expect(end.cast.eventActors).not.toContain('maelor');
     expect(end.cast.justifiedOffscreen.map((actor) => actor.actorId)).toEqual(['maelor']);
-    expect(Object.keys(end.sceneCastPlacement!)).toEqual(['alistair', 'sage_seraphine']);
+    expect(Object.keys(end.sceneCastPlacement!)).toEqual(COMPANY);
+    for (const actorId of COMPANY) expect(end.sceneCastPlacement![actorId]!.bottomVh).toBeGreaterThanOrEqual(24);
     expect(end.phases?.length).toBeGreaterThan(0);
     for (const phase of end.phases ?? []) {
-      expect(phase.staticCast.map((actor) => actor.actorId)).toEqual(['alistair', 'sage_seraphine']);
+      expect(phase.staticCast.map((actor) => actor.actorId)).toEqual(COMPANY);
       expect(phase.mediaSubjects).not.toContain('maelor');
     }
-    // The Seal plateaux still end with the intendant beside the company, as the Lion does.
-    for (const node of ['bear-judgement', 'dragon-judgement', 'scorpion-judgement']) {
-      expect(resolveNarrativeBoundaryTableau(`node:${node}:arrival`)!.cast.visualActors).toEqual(CHRONICLE_END_TABLEAU.cast.visualActors);
+    // The Seal plateaux still end with the intendant beside the company, as the Lion does, their own hero in Alistair's place
+    // (OD-2026-11-14-B, C2).
+    for (const [node, hero] of [['bear-judgement', 'marian'], ['dragon-judgement', 'elara'], ['scorpion-judgement', 'kestrel']] as const) {
+      const plateauEnd = resolveNarrativeBoundaryTableau(`node:${node}:arrival`)!;
+      expect(plateauEnd.cast.visualActors).toEqual(['maelor', hero, 'sage_seraphine']);
+      expect(plateauEnd.sceneCastPlacement![hero]).toEqual(CHRONICLE_END_TABLEAU.sceneCastPlacement!.alistair);
+      expect(plateauEnd.cast.playerRepresentatives).toEqual([hero]);
     }
     expect(CHRONICLE_END_TABLEAU.cast.visualActors).toContain('maelor');
   });

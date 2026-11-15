@@ -10,11 +10,11 @@
 import type { DialogueChoice, DialogueStep, NarrativeEffect } from '../../game/types';
 
 interface Who { speaker: string; actorId: string; side: 'left' | 'right' }
-const ALISTAIR: Who = { speaker: 'Alistair', actorId: 'alistair', side: 'left' };
 const SERAPHINE: Who = { speaker: 'Sage Séraphine', actorId: 'sage_seraphine', side: 'left' };
 const MAELOR: Who = { speaker: 'Intendant Maelor', actorId: 'maelor', side: 'left' };
 const MARIAN: Who = { speaker: 'Marian', actorId: 'marian', side: 'left' };
 const KESTREL: Who = { speaker: 'Kestrel', actorId: 'kestrel', side: 'left' };
+const ELARA: Who = { speaker: 'Elara', actorId: 'elara', side: 'left' };
 const GUNNAR: Who = { speaker: 'Gunnar', actorId: 'gunnar', side: 'right' };
 const ALDRIC: Who = { speaker: 'Aldric', actorId: 'aldric', side: 'right' };
 const LYRA: Who = { speaker: 'Lyra', actorId: 'lyra', side: 'right' };
@@ -87,7 +87,7 @@ export const GUNNAR_MEETING: HeroMeeting = Object.freeze({
     say('gunnar_react_s', GUNNAR, 'Artilleur', 'Vous avez pris le minerai. Bonne prise. Moi, je ne vole rien : je me loue.', 'gunnar_price'),
     say('gunnar_price', GUNNAR, 'Artilleur', 'Cent vingt pièces, et mon canon est à vous jusqu’au dernier Sceau.', 'gunnar_maelor'),
     say('gunnar_maelor', MAELOR, 'Intendant', 'Un homme qui donne son prix avant son nom. Au moins, nous savons ce qu’il vaut.', 'gunnar_choice'),
-    say('gunnar_choice', ALISTAIR, 'Décision', 'Que répondons-nous à Gunnar ?', null, { expression: 'stern', choices: [
+    say('gunnar_choice', MARIAN, 'Décision', 'Que répondons-nous à Gunnar ?', null, { expression: 'stern', choices: [
       { text: 'Engager Gunnar — 120 or.', next: 'gunnar_hired', requiresGold: 120, effects: [gold(-120), recruit('artillerist')] },
       { text: 'Décliner.', next: 'gunnar_declined', effects: [] },
     ] }),
@@ -108,14 +108,14 @@ export const ALDRIC_MEETING: HeroMeeting = Object.freeze({
     ]),
     say('aldric_react_h', ALDRIC, 'Paladin', 'J’ai vu ce que vous avez laissé à la montagne. Je ne demande pas d’or. Je cherche une bannière qui mérite qu’on la suive jusqu’au jugement de Borin, et plus loin s’il le faut.', 'aldric_marian'),
     say('aldric_marian', MARIAN, 'Soigneuse', 'Un homme qui garde des prières que personne ne vient compter. Il me plaît déjà.', 'aldric_choice_h', { expression: 'grateful' }),
-    say('aldric_choice_h', ALISTAIR, 'Décision', 'Que répondons-nous à Aldric ?', null, { expression: 'stern', choices: [
+    say('aldric_choice_h', MARIAN, 'Décision', 'Que répondons-nous à Aldric ?', null, { expression: 'stern', choices: [
       { text: 'Accueillir Aldric dans la compagnie.', next: 'aldric_joined', requiresReputationMin: 55,
         blockedText: 'Réputation insuffisante — Aldric ne suit pas les clans sans honneur.', effects: [recruit('paladin')] },
       { text: 'Décliner.', next: 'aldric_left', effects: [] },
     ] }),
     say('aldric_react_p', ALDRIC, 'Paladin', 'J’ai vu ce que vous avez pris. Ce n’étaient pas vos prières. Je ne suivrai pas une bannière qui vide les autels. Rendez à la montagne ce qui lui appartient, ou passez votre chemin.', 'aldric_maelor', { expression: 'stern' }),
     say('aldric_maelor', MAELOR, 'Intendant', 'Cinquante pièces pour un chevalier. Le compte est vite fait.', 'aldric_choice_p'),
-    say('aldric_choice_p', ALISTAIR, 'Décision', 'Que répondons-nous à Aldric ?', null, { expression: 'stern', choices: [
+    say('aldric_choice_p', MARIAN, 'Décision', 'Que répondons-nous à Aldric ?', null, { expression: 'stern', choices: [
       { text: 'Rendre les 50 or au sanctuaire et accueillir Aldric.', next: 'aldric_joined', requiresGold: 50, requiresReputationMin: 55,
         blockedText: 'Réputation insuffisante — Aldric ne suit pas les clans sans honneur.', effects: [gold(-50), reputation(1), recruit('paladin')] },
       { text: 'Garder l’or et repartir.', next: 'aldric_left', effects: [] },
@@ -140,14 +140,14 @@ export const LYRA_MEETING: HeroMeeting = Object.freeze({
     ]),
     say('lyra_react_p', LYRA, 'Mage Rouge', 'Cette nuit, vous avez monté la garde avec moi. C’est plus que ce que le Dragon a fait en un mois. Je n’ai pas besoin d’or : si votre route monte jusqu’au Cristal, ma lame monte avec vous.', 'lyra_kestrel', { expression: 'grateful' }),
     say('lyra_kestrel', KESTREL, 'Éclaireuse', 'Elle se bat seule depuis trois nuits. Elle saura se battre avec nous.', 'lyra_choice_p'),
-    say('lyra_choice_p', ALISTAIR, 'Décision', 'Que répondons-nous à Lyra ?', null, { expression: 'stern', choices: [
+    say('lyra_choice_p', ELARA, 'Décision', 'Que répondons-nous à Lyra ?', null, { expression: 'stern', choices: [
       { text: 'Accueillir Lyra dans la compagnie.', next: 'lyra_joined', requiresReputationMin: 45,
         blockedText: 'Réputation insuffisante — Lyra ne suit pas les clans sans honneur.', effects: [recruit('red_mage')] },
       { text: 'Décliner.', next: 'lyra_left', effects: [] },
     ] }),
     say('lyra_react_e', LYRA, 'Mage Rouge', 'Cette nuit, vous avez fait payer ces gens pour une protection que je leur donnais pour rien. Rendez-leur leur or, et je vous suivrai jusqu’au Cristal. Gardez-le, et nous n’avons plus rien à nous dire.', 'lyra_seraphine', { expression: 'hostile' }),
     say('lyra_seraphine', SERAPHINE, 'Sage', 'Elle nous offre de réparer ce que nous avons pris. C’est plus que nous ne méritons.', 'lyra_choice_e', { expression: 'stern' }),
-    say('lyra_choice_e', ALISTAIR, 'Décision', 'Que répondons-nous à Lyra ?', null, { expression: 'stern', choices: [
+    say('lyra_choice_e', ELARA, 'Décision', 'Que répondons-nous à Lyra ?', null, { expression: 'stern', choices: [
       { text: 'Rendre les 60 or au hameau et accueillir Lyra.', next: 'lyra_joined', requiresGold: 60, requiresReputationMin: 45,
         blockedText: 'Réputation insuffisante — Lyra ne suit pas les clans sans honneur.', effects: [gold(-60), reputation(1), recruit('red_mage')] },
       { text: 'Garder l’or.', next: 'lyra_left', effects: [] },
@@ -172,7 +172,7 @@ export const TALON_MEETING: HeroMeeting = Object.freeze({
     say('talon_price', TALON, 'Ninja', 'Je vends mes lames, pas mes raisons. Cent cinquante pièces, et le Loup ne verra jamais d’où viennent les coups.', 'talon_maelor'),
     say('talon_maelor', MAELOR, 'Intendant', 'Enfin quelqu’un qui parle comme un marchand.', 'talon_kestrel'),
     say('talon_kestrel', KESTREL, 'Éclaireuse', 'Ou comme un assassin.', 'talon_choice', { expression: 'stern' }),
-    say('talon_choice', ALISTAIR, 'Décision', 'Que répondons-nous à Talon ?', null, { expression: 'stern', choices: [
+    say('talon_choice', ELARA, 'Décision', 'Que répondons-nous à Talon ?', null, { expression: 'stern', choices: [
       { text: 'Engager Talon — 150 or.', next: 'talon_hired', requiresGold: 150, effects: [gold(-150), recruit('ninja')] },
       { text: 'Décliner.', next: 'talon_declined', effects: [] },
     ] }),
@@ -196,7 +196,7 @@ export const ELDWIN_MEETING: HeroMeeting = Object.freeze({
     ]),
     say('eldwin_react_f', ELDWIN, 'Enchanteur', 'Vous avez détaché cet homme quand je n’ai fait que regarder. Je ne veux plus regarder. Mes runes protègent et lient ; je n’ai besoin que d’une route qui ne passe pas par une tente comme celle-ci.', 'eldwin_seraphine'),
     say('eldwin_seraphine', SERAPHINE, 'Sage', 'Des runes de cette sorte valent bien des lames, si elles sont tracées pour les bonnes raisons.', 'eldwin_choice', { expression: 'mystical' }),
-    say('eldwin_choice', ALISTAIR, 'Décision', 'Que répondons-nous à Eldwin ?', null, { expression: 'stern', choices: [
+    say('eldwin_choice', KESTREL, 'Décision', 'Que répondons-nous à Eldwin ?', null, { expression: 'stern', choices: [
       { text: 'Accueillir Eldwin dans la compagnie.', next: 'eldwin_joined', requiresReputationMin: 60,
         blockedText: 'Réputation insuffisante — Eldwin hésite à suivre votre bannière.', effects: [recruit('enchanter')] },
       { text: 'Décliner.', next: 'eldwin_declined', effects: [] },
@@ -222,7 +222,7 @@ export const MORVAN_MEETING: HeroMeeting = Object.freeze({
     say('morvan_react_l', MORVAN, 'Chevalier Noir', 'Vous avez vendu les souvenirs d’un clan. Moi, je vends ma faux. Nous nous comprendrons.', 'morvan_price'),
     say('morvan_price', MORVAN, 'Chevalier Noir', 'Cent quatre-vingts pièces. Et pas de sermon : ceux qui se croient purs ne me gardent jamais longtemps.', 'morvan_marian'),
     say('morvan_marian', MARIAN, 'Soigneuse', 'Une faux qui ne demande jamais pourquoi. C’est exactement ce qui me fait peur.', 'morvan_choice', { expression: 'fearful' }),
-    say('morvan_choice', ALISTAIR, 'Décision', 'Que répondons-nous à Morvan ?', null, { expression: 'stern', choices: [
+    say('morvan_choice', KESTREL, 'Décision', 'Que répondons-nous à Morvan ?', null, { expression: 'stern', choices: [
       { text: 'Engager Morvan — 180 or.', next: 'morvan_hired', requiresGold: 180, requiresReputationMax: 65,
         blockedText: 'Votre renommée est trop pure — Morvan ne suit pas les clans qui se croient au-dessus de la mêlée.', effects: [gold(-180), recruit('dark_knight')] },
       { text: 'Décliner.', next: 'morvan_declined', effects: [] },

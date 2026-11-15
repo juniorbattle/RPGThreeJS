@@ -7,13 +7,13 @@
 | BASELINE | `c21c4c32` sur `dev` (jeu de contrats 1.24.0, baseline `133814bac45cc31c8eda7aa0fa1acb16a9ca7e35`) |
 | BRANCH | worktree `claude/sharp-yonath-9c7174`, publié sur `dev` |
 | HEAD | le commit de ce rapport |
-| STATUS | review : inventaire livré, [fiche d’arbitrages](https://claude.ai/artifact/F7fRCUi47UADQaRnuL5teo) publiée, aucune réplique changée |
+| STATUS | merged : inventaire livré, [fiche d’arbitrages](https://claude.ai/artifact/F7fRCUi47UADQaRnuL5teo) remplie par l’opérateur (toutes les recommandations, sans note), décision [OD-2026-11-14-B](../autonomy/ALISTAIR_ROLE_OPERATOR_DECISION_2026-11-14.md) appliquée sur `dev` |
 | MERGED_IN | `dev` |
 | SUPERSEDES | NONE |
 | SUPERSEDED_BY | NONE |
-| PRODUCTION_IMPACT | NONE. Lecture seule : aucune réplique, aucune mise en scène, aucun champ de sauvegarde ne change avant l’accord mot à mot de l’opérateur. |
-| CANONICAL_DOCS_UPDATED | NONE : rien n’est décidé. Les choix de l’opérateur seront consignés dans une nouvelle décision une fois la fiche remplie. |
-| EVIDENCE | Extraction par script de toutes les répliques jouables (`tmp/alistair-audit/dump.ts`, ignoré) : 896 étapes de dialogue, scènes construites selon l’état comprises (états initial, d’honneur, de cupidité, et les deux branches de la Crainte). Fiches de texte des quatre parties de l’après-démo (`npm run narrative:text-sheet`). Lecture du code de présentation. Pas de passage dans le navigateur : rien n’a changé à l’écran. |
+| PRODUCTION_IMPACT | Fin de la Crainte : trois textes approuvés mot à mot retirent le nom d’Alistair (B1). Après-démo : 37 questions de choix changent d’orateur, sans changer un mot (C1). Le pion de carte et les panneaux de fin des plateaux et de l’acte final montrent le héros de la partie (C2). Huit tags « Clan sans terre » deviennent « Bouclier » (D1). Aucun champ de sauvegarde, aucune vérité de jeu, aucune image ni aucun personnage nouveau. |
+| CANONICAL_DOCS_UPDATED | `docs/autonomy/ALISTAIR_ROLE_OPERATOR_DECISION_2026-11-14.md` (nouveau), `docs/autonomy/OPERATOR_DECISIONS.md` (OD-2026-11-14-B, et les amendements d’OD-2026-11-09-B et d’OD-2026-11-13-C), notes d’amendement dans `POST_DEMO_LOT_5_OPERATOR_DECISION_2026-11-09.md` et `PLATEAU_MOMENTS_OPERATOR_DECISION_2026-11-13.md`. |
+| EVIDENCE | Extraction par script de toutes les répliques jouables (`tmp/alistair-audit/dump.ts`, ignoré) : 896 étapes de dialogue, scènes construites selon l’état comprises (états initial, d’honneur, de cupidité, et les deux branches de la Crainte). Fiches de texte des quatre parties de l’après-démo (`npm run narrative:text-sheet`). Lecture du code de présentation. Livraison : tests ciblés, suite complète, `narrative:validate`, `cinematics:validate-narrative-staging`, `tsc`, build, contrats et garde ; navigateur sur le labo QA (fin de la Crainte, panneaux de fin de l’Ours et de l’acte final, pion du Dragon), voir « Décision et livraison ». |
 
 ## La question
 
@@ -25,7 +25,7 @@ L’opérateur, le 2026-11-14, mot à mot : « j’ai l’impression que certain
 
 `CURRENT FACT`. L’écart vient de l’après-démo, à deux endroits :
 
-1. **Les choix.** Au Lion, les 33 choix sont posés par 24 voix différentes. Alistair n’en pose qu’un : l’adieu à une colporteuse. Dans l’après-démo, il pose **39 des 45 choix**. Dans chacune de ces 39 scènes, il ne dit rien d’autre que la question (« Que faisons-nous ? »). Son nom s’affiche donc au-dessus de presque chaque décision du joueur.
+1. **Les choix.** Au Lion, les 33 choix sont posés par 24 voix différentes. Alistair n’en pose qu’un : l’adieu à une colporteuse. Dans l’après-démo, il pose **41 des 47 choix**. Dans chacune de ces 41 scènes, il ne dit rien d’autre que la question (« Que faisons-nous ? »). Son nom s’affiche donc au-dessus de presque chaque décision du joueur.
 2. **La fin de la Crainte.** La feuille de route dit : « le joueur [...] doit soit se battre seul contre tous, soit accepter son destin ». Le texte écrit a mis Alistair à la place du joueur : les clans exigent qu’on leur livre Alistair, et le joueur choisit « Accepter mon destin » sous le nom d’Alistair. C’est le seul choix à la première personne du singulier de tout le jeu. L’opérateur a accepté cette conséquence le 2026-11-09 (OD-2026-11-09-B, question 2 du Lot 5).
 
 `PROPOSED FUTURE DESIGN`. Recommandation : revenir au canon du Lion. Le joueur reste le « vous », l’héritier jamais montré. Aucun héros n’est son avatar, et Alistair redevient un héros parmi les autres. Coût : trois retouches de texte dans la fin de la Crainte, qui ne font que retirer le nom d’Alistair, et le passage des questions de choix au héros de chaque plateau, sans changer un mot. La fiche d’arbitrages porte ces choix (section « Fiche »).
@@ -100,13 +100,13 @@ L’écran de fin de la chronique ([chronicleEndWords.ts](../../src/game/chronic
 | --- | --- | --- | --- |
 | Lion | 33 | 1 (l’adieu à la colporteuse) | 24 voix : villageois, réfugiés, Maelor (4), Alaric (4), Séraphine (3), Kestrel, Cedric, ennemis… |
 | Ours | 14 | 12 | Borin (2) |
-| Dragon | 13 | 11 | Kaelen (2) |
-| Scorpion | 12 | 10 | le Grand Inquisiteur (2) |
+| Dragon | 14 | 12 | Kaelen (2) |
+| Scorpion | 13 | 11 | le Grand Inquisiteur (2) |
 | Acte final et fins | 6 | 6 | — |
 
 Au Lion, celui qui apporte le dilemme pose la question, et le joueur répond en « vous ». Dans l’après-démo, les conseillers exposent le dilemme, puis Alistair entre dans la scène pour une seule réplique : la question. OD-2026-11-13-C a ensuite écrit la règle telle quelle : « Alistair garde les décisions de la route ».
 
-Ces répliques sont collectives (« Que faisons-nous ? ») ou s’adressent au joueur (« Votre réponse, alors. »). Aucune n’a besoin d’Alistair. Les 39 questions, avec la proposition de l’option C1 (héros du plateau ; à l’acte final, Marian pour les civils, Kestrel pour les habitants, Alistair garde les trois verdicts de l’arène) :
+Ces répliques sont collectives (« Que faisons-nous ? ») ou s’adressent au joueur (« Votre réponse, alors. »). Aucune n’a besoin d’Alistair. Les 41 questions, avec la proposition de l’option C1 (héros du plateau ; à l’acte final, Marian pour les civils, Kestrel pour les habitants, Alistair garde les trois verdicts de l’arène) :
 
 | # | Scène#étape | Réplique d’Alistair | Choix proposés | Proposition C1 |
 | --- | --- | --- | --- | --- |
@@ -129,28 +129,30 @@ Ces répliques sont collectives (« Que faisons-nous ? ») ou s’adressent au j
 | 17 | `dragon_crystal_clues#choice` | « Que faisons-nous de ces inscriptions ? » | Copier les inscriptions pour Kaelen. / Garder pour nous le secret du Cristal. | Elara |
 | 18 | `dragon_terrorized_village#choice` | « Que faisons-nous pour ce hameau ? » | Monter la garde et repousser le prochain raid. / Faire payer notre protection. | Elara |
 | 19 | `dragon_terrorized_village#lyra_choice_e` | « Que répondons-nous à Lyra ? » | Rendre les 60 or au hameau et accueillir Lyra. / Garder l’or. | Elara |
-| 20 | `dragon_wolf_lair#choice` | « Le repaire attend notre réponse. » | Prendre le repaire et rapporter le Cristal à Kaelen. / Prendre le repaire et garder le Cristal pour le clan. / Tenir parole au Loup et lui laisser le Cristal. | Elara |
-| 21 | `dragon_freed_pilgrims#choice` | « Que faisons-nous d’eux ? » | Escorter les pèlerins jusqu’à Kaelen. / Les faire taire, quel qu’en soit le prix. | Elara |
-| 22 | `dragon_crystal_altar#choice` | « Que faisons-nous de cette souillure ? » | En sceller un éclat comme preuve. / L’effacer sur-le-champ. | Elara |
-| 23 | `dragon_young_dragon#choice` | « Que faisons-nous ? » | Soigner le jeune dragon. / Prendre ses écailles. | Elara |
-| 24 | `scorpion_phoenix_faithful#oath` | « Que leur répondons-nous ? » | Ne rien leur promettre. / Jurer de ne pas livrer le codex au Grand Inquisiteur. | Kestrel |
-| 25 | `scorpion_sand_riddle#choice` | « Comment passons-nous ? » | Chercher la réponse dans les textes. / Briser le mécanisme. | Kestrel |
-| 26 | `scorpion_warded_path#choice` | « Que faisons-nous de ces sceaux ? » | Les lever selon leur rite. / Les briser sans attendre. | Kestrel |
-| 27 | `scorpion_buried_library#choice` | « Que faisons-nous de cette bibliothèque ? » | La laisser intacte. / Emporter des rouleaux pour les vendre. | Kestrel |
-| 28 | `scorpion_buried_library#morvan_choice` | « Que répondons-nous à Morvan ? » | Engager Morvan — 180 or. / Décliner. | Kestrel |
-| 29 | `scorpion_sacred_ashes#choice` | « Que faisons-nous ? » | Respecter les cendres sacrées. / Emporter des braises. | Kestrel |
-| 30 | `scorpion_scholars#choice` | « Que faisons-nous ? » | Libérer le fidèle du Phénix. / Le laisser aux érudits. | Kestrel |
-| 31 | `scorpion_phoenix_temple#choice` | « Le temple attend notre réponse. » | Prendre le codex pour le Grand Inquisiteur. / Prendre le codex et le garder pour le clan. / Tenir notre serment et laisser le codex au Phénix. | Kestrel |
-| 32 | `scorpion_temple_witnesses#choice` | « Que faisons-nous d’eux ? » | Escorter les fidèles jusqu’au Grand Inquisiteur. / Les réduire au silence, quel qu’en soit le prix. | Kestrel |
-| 33 | `scorpion_corrupted_texts#choice` | « Que faisons-nous de cette page ? » | La sceller comme preuve. / La brûler sur-le-champ. | Kestrel |
-| 34 | `finale_arena_chaos#choice` | « Que faisons-nous ? » | Couvrir la fuite des civils. / Fuir par les tribunes, sans les attendre. | Marian |
-| 35 | `finale_trapped_citizens#choice` | « Que faisons-nous ? » | Dégager les habitants. / Les laisser et gagner la brèche. | Kestrel |
-| 36 | `finale_raven_verdict#choice` | « Toute l’arène attend notre geste. » | Relever le champion du Corbeau. / L’humilier devant les clans. | Alistair (inchangé) |
-| 37 | `finale_wolf_verdict#choice` | « Toute l’arène attend notre geste. » | Relever le champion du Loup. / L’humilier devant les clans. | Alistair (inchangé) |
-| 38 | `finale_phoenix_verdict#choice` | « Toute l’arène attend notre geste. » | Relever le champion du Phénix. / L’humilier devant les clans. | Alistair (inchangé) |
-| 39 | `finale_epilogue_fear#choice` | « Alors ? » | Nous battre, seuls contre tous. / Accepter mon destin. | voir B1 |
+| 20 | `dragon_terrorized_village#lyra_choice_p` | « Que répondons-nous à Lyra ? » | Accueillir Lyra dans la compagnie. / Décliner. | Elara |
+| 21 | `dragon_wolf_lair#choice` | « Le repaire attend notre réponse. » | Prendre le repaire et rapporter le Cristal à Kaelen. / Prendre le repaire et garder le Cristal pour le clan. / Tenir parole au Loup et lui laisser le Cristal. | Elara |
+| 22 | `dragon_freed_pilgrims#choice` | « Que faisons-nous d’eux ? » | Escorter les pèlerins jusqu’à Kaelen. / Les faire taire, quel qu’en soit le prix. | Elara |
+| 23 | `dragon_crystal_altar#choice` | « Que faisons-nous de cette souillure ? » | En sceller un éclat comme preuve. / L’effacer sur-le-champ. | Elara |
+| 24 | `dragon_young_dragon#choice` | « Que faisons-nous ? » | Soigner le jeune dragon. / Prendre ses écailles. | Elara |
+| 25 | `scorpion_phoenix_faithful#oath` | « Que leur répondons-nous ? » | Ne rien leur promettre. / Jurer de ne pas livrer le codex au Grand Inquisiteur. | Kestrel |
+| 26 | `scorpion_sand_riddle#choice` | « Comment passons-nous ? » | Chercher la réponse dans les textes. / Briser le mécanisme. | Kestrel |
+| 27 | `scorpion_warded_path#choice` | « Que faisons-nous de ces sceaux ? » | Les lever selon leur rite. / Les briser sans attendre. | Kestrel |
+| 28 | `scorpion_buried_library#choice` | « Que faisons-nous de cette bibliothèque ? » | La laisser intacte. / Emporter des rouleaux pour les vendre. | Kestrel |
+| 29 | `scorpion_buried_library#morvan_choice` | « Que répondons-nous à Morvan ? » | Engager Morvan — 180 or. / Décliner. | Kestrel |
+| 30 | `scorpion_sacred_ashes#choice` | « Que faisons-nous ? » | Respecter les cendres sacrées. / Emporter des braises. | Kestrel |
+| 31 | `scorpion_scholars#choice` | « Que faisons-nous ? » | Libérer le fidèle du Phénix. / Le laisser aux érudits. | Kestrel |
+| 32 | `scorpion_scholars#eldwin_choice` | « Que répondons-nous à Eldwin ? » | Accueillir Eldwin dans la compagnie. / Décliner. | Kestrel |
+| 33 | `scorpion_phoenix_temple#choice` | « Le temple attend notre réponse. » | Prendre le codex pour le Grand Inquisiteur. / Prendre le codex et le garder pour le clan. / Tenir notre serment et laisser le codex au Phénix. | Kestrel |
+| 34 | `scorpion_temple_witnesses#choice` | « Que faisons-nous d’eux ? » | Escorter les fidèles jusqu’au Grand Inquisiteur. / Les réduire au silence, quel qu’en soit le prix. | Kestrel |
+| 35 | `scorpion_corrupted_texts#choice` | « Que faisons-nous de cette page ? » | La sceller comme preuve. / La brûler sur-le-champ. | Kestrel |
+| 36 | `finale_arena_chaos#choice` | « Que faisons-nous ? » | Couvrir la fuite des civils. / Fuir par les tribunes, sans les attendre. | Marian |
+| 37 | `finale_trapped_citizens#choice` | « Que faisons-nous ? » | Dégager les habitants. / Les laisser et gagner la brèche. | Kestrel |
+| 38 | `finale_raven_verdict#choice` | « Toute l’arène attend notre geste. » | Relever le champion du Corbeau. / L’humilier devant les clans. | Alistair (inchangé) |
+| 39 | `finale_wolf_verdict#choice` | « Toute l’arène attend notre geste. » | Relever le champion du Loup. / L’humilier devant les clans. | Alistair (inchangé) |
+| 40 | `finale_phoenix_verdict#choice` | « Toute l’arène attend notre geste. » | Relever le champion du Phénix. / L’humilier devant les clans. | Alistair (inchangé) |
+| 41 | `finale_epilogue_fear#choice` | « Alors ? » | Nous battre, seuls contre tous. / Accepter mon destin. | voir B1 |
 
-Deux de ces scènes donneraient deux répliques de suite au même héros, si on applique C1 : `bear_mountain_shrine#choice` et `#aldric_choice_h`, qui suivent une réplique de Marian. Les deux restent lisibles. Dans aucune des 39 scènes le nombre d’orateurs n’augmente : Alistair n’y dit rien d’autre que la question, et quand le héros du plateau parle déjà dans la scène, il y a un orateur de moins.
+Deux de ces scènes donneraient deux répliques de suite au même héros, si on applique C1 : `bear_mountain_shrine#choice` et `#aldric_choice_h`, qui suivent une réplique de Marian. Les deux restent lisibles. Dans aucune des 41 scènes le nombre d’orateurs n’augmente : Alistair n’y dit rien d’autre que la question, et quand le héros du plateau parle déjà dans la scène, il y a un orateur de moins.
 
 ### 4. La mise en scène
 
@@ -199,7 +201,7 @@ Nombre de répliques par partie (compagnie seulement) : Alistair ne parle pas pl
 
 | Cadre | Ce que voit le joueur | Coût | Risque de canon |
 | --- | --- | --- | --- |
-| **A. Le « vous » du prologue, l’héritier jamais montré** (recommandé) | Personne n’est son avatar : les héros lui parlent, lui demandent l’ordre et portent sa volonté à tour de rôle. Alistair est le bouclier, un héros parmi les autres. | Fin de la Crainte : 3 étapes, des mots retirés seulement (B1). Questions de choix : 35 étapes changent d’orateur, aucun mot ne change (C1). En option, le pion de carte (C2) et 8 tags (D1). | Faible. On revient au canon du Lion et à la feuille de route (« le joueur »). Seule OD-2026-11-09-B question 2 est amendée, par l’opérateur. |
+| **A. Le « vous » du prologue, l’héritier jamais montré** (recommandé) | Personne n’est son avatar : les héros lui parlent, lui demandent l’ordre et portent sa volonté à tour de rôle. Alistair est le bouclier, un héros parmi les autres. | Fin de la Crainte : 3 étapes, des mots retirés seulement (B1). Questions de choix : 37 étapes changent d’orateur, aucun mot ne change (C1). En option, le pion de carte (C2) et 8 tags (D1). | Faible. On revient au canon du Lion et à la feuille de route (« le joueur »). Seule OD-2026-11-09-B question 2 est amendée, par l’opérateur. |
 | B. La compagnie entière, sans personne derrière le « vous » | Pareil à l’écran, mais le « vous » ne désigne plus personne. | Tout le cadre A, plus deux répliques du Lion à retoucher (« Dans la salle de votre père », « Un héritier sans terre »). Et la fin de la Crainte n’a plus personne à livrer : il faudrait la réécrire. | Moyen. Le Lion est la partie la plus aboutie, et sa fin de la Crainte demanderait un fait nouveau. |
 | C. Alistair, protagoniste assumé | Alistair est le joueur, partout. | Alistair n’est pas l’héritier (« J’étais à la porte [...] Je suis resté »). Il faudrait réécrire le prologue et l’échange de la colporteuse, défaire la rotation d’OD-2026-11-13-C et trancher son origine. | Fort : on contredit le Lion et on invente une biographie. |
 
@@ -235,9 +237,9 @@ Variante B2, si l’opérateur veut garder « Alistair se livre » (OD-2026-11-0
 
 ### C1 — Les questions de choix passent au héros du plateau
 
-Aucun mot ne change : seul l’orateur change, comme pour la rotation du 2026-11-13. Les 33 questions des plateaux passent au héros du plateau. À l’acte final, `finale_arena_chaos#choice` passe à Marian, qui vient de parler des civils, et `finale_trapped_citizens#choice` à Kestrel, qui a trouvé la rue effondrée. Alistair garde les trois verdicts de l’arène, où il tient la première ligne, et « Alors ? » de la Crainte (B1). Il garde ainsi 4 des 45 questions de l’après-démo, au lieu de 39. Tableau complet en section 3.
+Aucun mot ne change : seul l’orateur change, comme pour la rotation du 2026-11-13. Les 35 questions des plateaux, rencontres des héros recrutables comprises, passent au héros du plateau. À l’acte final, `finale_arena_chaos#choice` passe à Marian, qui vient de parler des civils, et `finale_trapped_citizens#choice` à Kestrel, qui a trouvé la rue effondrée. Alistair garde les trois verdicts de l’arène, où il tient la première ligne, et « Alors ? » de la Crainte (B1). Il garde ainsi 4 des 47 questions de l’après-démo, au lieu de 41. Tableau complet en section 3.
 
-Variante, comme au Lion : supprimer les 39 questions et afficher les choix sous la dernière réplique qui expose le dilemme. Elle ne demande aucun mot nouveau, mais retire 39 répliques approuvées, et Maelor porterait alors la plupart des choix.
+Variante, comme au Lion : supprimer les 41 questions et afficher les choix sous la dernière réplique qui expose le dilemme. Elle ne demande aucun mot nouveau, mais retire 41 répliques approuvées, et Maelor porterait alors la plupart des choix.
 
 ### C2 — La figure de la compagnie : pion de carte et panneau de fin
 
@@ -254,13 +256,33 @@ Recommandation : ne rien changer. Alistair y parle en « nous », à côté de S
 ## Observations hors du périmètre
 
 - **Elara n’a aucune réplique dans l’acte final et ses fins**, ni à l’Ours ni au Scorpion, et elle n’entre pas dans les tableaux vivants de l’acte final. OD-2026-11-13-C prévoit pourtant « toute la compagnie » à l’acte final. Ce point relève d’une autre tâche, qui demanderait du texte nouveau.
-- Le commentaire du code du pion de carte (« The company's leader ») devra suivre la décision C2.
+- Le commentaire du code du pion de carte (« The company's leader ») devra suivre la décision C2. Fait : il parle désormais de la compagnie et du héros de la partie.
+
 ## Vérification et limites
 
-- Extraction : 896 étapes, 166 scènes. Les scènes construites selon l’état ont été lues sous les états initial, d’honneur et de cupidité de chaque plateau, et sous les deux branches de la Crainte. Une variante qui ne paraît que dans un autre état peut manquer. Les comptages de choix ne dépendent pas de l’état : l’orateur de chaque étape à choix est fixe.
-- Garde LOCKED vide sur ce commit. Aucun test à lancer : aucun code ni contenu de jeu n’a changé.
-- Non fait : passage dans le navigateur, puisque rien n’a changé à l’écran.
+- Extraction : 896 étapes, 166 scènes. Les scènes construites selon l’état ont été lues sous les états initial, d’honneur et de cupidité de chaque plateau, et sous les deux branches de la Crainte. Une variante qui ne paraît que dans un autre état peut manquer, et c’est arrivé : la première version de ce rapport et la fiche comptaient 39 questions sur 45, faute d’avoir vu deux questions de rencontre propres à une branche (`lyra_choice_p`, `eldwin_choice`). Le compte est corrigé ici à 41 sur 47, en relisant toutes les définitions dans le code source. Le choix de l’opérateur n’en dépend pas.
+- Audit (commit `f2917079`) : garde LOCKED vide, validateur des contrats vert ; aucun test, puisque rien n’avait changé dans le jeu.
 
 ## Fiche
 
 [Fiche d’arbitrages « Alistair et le joueur »](https://claude.ai/artifact/F7fRCUi47UADQaRnuL5teo) : A1 (cadre), B1 (fin de la Crainte), C1 (questions de choix), C2 (pion de carte), D1 (tag), D2 (dernier mot des fins), E1 (emblème et origine). Une fois la fiche remplie, les choix iront dans une décision de l’opérateur (OD-2026-11-14-B), puis les textes approuvés seront appliqués, testés (tests ciblés, `narrative:validate`, `cinematics:validate-narrative-staging`, `tsc`, build, contrats) et poussés sur `dev`.
+
+## Décision et livraison
+
+`APPROVED DECISION`. Le 2026-11-14, l’opérateur a écrit « Fiche remplie ». Il a retenu les sept recommandations, sans note : A1 le « vous », l’héritier jamais montré ; B1 te livrer, toi, l’héritier ; C1 le héros du plateau ; C2 le héros de la partie ; D1 « Bouclier » ; D2 ne rien changer ; E1 laisser ouvert. Décision consignée : [OD-2026-11-14-B](../autonomy/ALISTAIR_ROLE_OPERATOR_DECISION_2026-11-14.md).
+
+`CURRENT FACT`. Livré sur `dev` :
+
+- **B1** ([finaleEpilogues.ts](../../src/campaign/plateaux/finale/finaleEpilogues.ts)) : « Ils vous craignent plus que la brèche. Ils exigent qu’on vous livre, pour acheter leur paix. », l’aperçu « Vous vous livrez aux clans », et « Vous avez accepté votre destin, pour que les autres vivent. ». La fin de la Crainte ne nomme plus Alistair, ni dans la demande ni dans la clôture.
+- **C1** : les 35 questions des plateaux passent à Marian (Ours, 12), Elara (Dragon, 12) et Kestrel (Scorpion, 11), rencontres des six héros recrutables comprises ([heroMeetings.ts](../../src/campaign/plateaux/heroMeetings.ts)). À l’acte final, Marian pose la question des civils et Kestrel celle des habitants. Alistair garde les trois verdicts et « Alors ? ».
+- **C2** : le pion de carte lit la partie sur le préfixe du POI présenté ([PoiMapView.ts](../../src/ui/PoiMapView.ts), `pawnHeroFor`). Le panneau de fin de chaque plateau met son héros à la place d’Alistair, et celui de l’acte final montre Kestrel, Alistair, Séraphine et Marian ([NarrativeTableau.ts](../../src/cinematics/NarrativeTableau.ts)).
+- **D1** : « Bouclier » sur les huit répliques ([finaleDialogues.ts](../../src/campaign/plateaux/finale/finaleDialogues.ts), [finaleEpilogues.ts](../../src/campaign/plateaux/finale/finaleEpilogues.ts)).
+
+Vérification :
+
+- **Tests ciblés** : nouveau [alistairRole.test.ts](../../src/campaign/plateaux/alistairRole.test.ts) (8 tests : orateurs des questions par plateau et par rencontre, les quatre questions d’Alistair à l’acte final, les textes exacts de B1, les tags, le pion). Tests mis à jour : `heroRotation`, `campaignEndingsDriver`, `NarrativeTableau`, et les tests de présentation des quatre parties pour le panneau de fin.
+- **Suite complète** : seuls restent les 5 échecs connus de la chaîne vidéo retirée, dans `tools/cinematics/` (`ffprobe` et médias absents du worktree), les mêmes que dans [living-openings-2026-11-14.md](living-openings-2026-11-14.md).
+- **Suite `node:test`** (`tools/qa/qa-job.test.mjs`) : 26 sur 26 au second passage ; au premier, lancé seul juste après, un test avait échoué sans laisser de trace.
+- **Validateurs et build** : `narrative:validate`, `cinematics:validate-narrative-staging`, `tsc --noEmit`, `npm run build`, `contracts:validate`, garde LOCKED vide.
+- **Navigateur** (serveur de développement sur le port 5181, labo QA `/?qa=1`, 1366 × 768, aucune erreur de console) : « Fin · la Crainte » montre la demande sans le nom d’Alistair, l’aperçu « Vous vous livrez aux clans », puis « Vous avez accepté votre destin, pour que les autres vivent. ». Le panneau « Fin de la chronique · La Crainte » montre Kestrel, Alistair, Séraphine et Marian sur le sol, au-dessus du cartouche. Le panneau « Fin de chapitre » de l’Ours montre Maelor, Marian et Séraphine. Sur la carte des Pics Célestes, le pion est Elara (`data-pawn-hero="elara"`).
+- **Non vérifié** : le rendu sur le poste de l’opérateur et en mouvement réduit (aucune transition n’a changé), les panneaux du Dragon et du Scorpion et les pions de l’Ours et du Scorpion à l’écran (couverts par les tests), et le mobile.

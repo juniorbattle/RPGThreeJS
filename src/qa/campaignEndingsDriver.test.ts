@@ -72,11 +72,13 @@ describe('complete campaigns reach the ending R4 decides (set 1.20.0, Lot 5)', (
     expect(said(run, 'finale_fear_close')).toContain('Le clan sans terre n’existe plus');
   });
 
-  it('all force, fate accepted: Fear, Alistair gives himself up and the clan lives on, fallen once more', () => {
+  // OD-2026-11-14-B (B1): the heir, the « vous » of the prologue, gives himself up, not Alistair.
+  it('all force, fate accepted: Fear, the heir gives himself up and the clan lives on, fallen once more', () => {
     const run = finale(allForce, { prefer: 'greed', answers: { finale_epilogue_fear: 'finaleFearFateAccepted' } });
     expect(run.state.endingId).toBe('ending-fear-fate');
     expect(run.fights).not.toContain('finale_last_stand');
-    expect(said(run, 'finale_fear_close')).toContain('Vous avez accepté votre destin, Alistair');
+    expect(said(run, 'finale_fear_close')).toContain('Vous avez accepté votre destin, pour que les autres vivent.');
+    expect(said(run, 'finale_fear_close')).not.toContain('Alistair');
     expect(said(run, 'finale_fear_close')).toContain('votre clan vivra, mais déchu');
   });
 

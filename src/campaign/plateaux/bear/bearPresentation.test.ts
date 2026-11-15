@@ -91,7 +91,9 @@ describe('Bear scenes on their final tableaux (set 1.20.0, Lot 1, canon since OD
     expect(BEAR_PROVISIONAL_SURFACES.map((surface) => surface.image)).toEqual([BEAR_CHRONICLE_END_IMAGE]);
     const end = resolveNarrativeBoundaryTableau('node:bear-judgement:arrival')!;
     expect(end.stillImage).toBe(BEAR_CHRONICLE_END_IMAGE);
-    expect(end.sceneCastPlacement).toEqual(resolveNarrativeBoundaryTableau('node:lion-final-judgement:arrival')!.sceneCastPlacement);
+    // OD-2026-11-14-B (C2): the Lion's staging, the plateau's hero standing in Alistair's place.
+    const { alistair: lionHero, ...lionPlacement } = resolveNarrativeBoundaryTableau('node:lion-final-judgement:arrival')!.sceneCastPlacement!;
+    expect(end.sceneCastPlacement).toEqual({ ...lionPlacement, marian: lionHero });
     // Every post-demo plateau now has its own chronicle end; a node that ends no chronicle has none.
     expect(resolveNarrativeBoundaryTableau('node:bear-arrival:arrival')).toBeUndefined();
     for (const node of BEAR_ROUTE.filter((candidate) => candidate.type === 'refuge')) {

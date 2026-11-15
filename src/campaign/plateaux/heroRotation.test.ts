@@ -7,6 +7,10 @@ import { resolvePostDemoDialogue } from '../../game/postDemoContent';
  * turn, as Alistair does on the Lion's: Marian on the Bear's, Elara on the Dragon's, Kestrel on the Scorpion's. The hero
  * takes Alistair's lines at the arrival, the audience, the acceptance of the trial and the vigil; the words are unchanged
  * and Alistair keeps the decisions of the road.
+ *
+ * OD-2026-11-14-B (C1): the plateau's hero also asks the road's questions before the choices, words unchanged, and so do the
+ * questions of the recruitable heroes' meetings. In the final act, Marian asks about the arena's civilians and Kestrel about
+ * the citizens; Alistair keeps the Tournament's three verdicts and the Fear ending's « Alors ? ».
  */
 const ROTATION = [
   { plateau: 'bear', hero: 'marian', arrival: 'bear_arrival', audience: 'bear_audience', trial: 'bear_borin_pre_combat', vigil: 'bear_vigil', road: 'bear_sacred_mines' },
@@ -18,14 +22,14 @@ const steps = (id: string) => resolvePostDemoDialogue(id, createInitialState())!
 
 describe('the hero who accompanies the advisers, plateau by plateau', () => {
   for (const { plateau, hero, arrival, audience, trial, vigil, road } of ROTATION) {
-    it(`gives the ${plateau}'s meetings with the chief to ${hero}, and leaves the road's decisions to Alistair`, () => {
+    it(`gives the ${plateau}'s meetings with the chief and the road's questions to ${hero}`, () => {
       expect(steps(arrival)[0]!.actorId).toBe(hero);
       expect(steps(audience).find((step) => step.id === 'alistair')!.actorId).toBe(hero);
       expect(steps(audience).find((step) => step.id === 'alistair')!.tag).toBe('Clan sans terre');
       // The company's answer to the chief's trial (its words differ by plateau since the last narrative pass, C3).
       expect(steps(trial).find((step) => step.id === '2')!.actorId).toBe(hero);
       expect(steps(vigil)[0]!.actorId).toBe(hero);
-      expect(steps(road).find((step) => step.id === 'choice')!.actorId).toBe('alistair');
+      expect(steps(road).find((step) => step.id === 'choice')!.actorId).toBe(hero);
       for (const id of [arrival, audience, trial, vigil]) expect(steps(id).some((step) => step.actorId === 'alistair'), id).toBe(false);
     });
   }

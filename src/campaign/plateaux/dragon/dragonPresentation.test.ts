@@ -86,7 +86,9 @@ describe('Dragon scenes on their final tableaux (set 1.20.0, Lot 2, canon since 
     expect(DRAGON_PROVISIONAL_SURFACES.map((surface) => surface.image)).toEqual([DRAGON_CHRONICLE_END_IMAGE]);
     const end = resolveNarrativeBoundaryTableau('node:dragon-judgement:arrival')!;
     expect(end.stillImage).toBe(DRAGON_CHRONICLE_END_IMAGE);
-    expect(end.sceneCastPlacement).toEqual(resolveNarrativeBoundaryTableau('node:lion-final-judgement:arrival')!.sceneCastPlacement);
+    // OD-2026-11-14-B (C2): the Lion's staging, the plateau's hero standing in Alistair's place.
+    const { alistair: lionHero, ...lionPlacement } = resolveNarrativeBoundaryTableau('node:lion-final-judgement:arrival')!.sceneCastPlacement!;
+    expect(end.sceneCastPlacement).toEqual({ ...lionPlacement, elara: lionHero });
     for (const node of DRAGON_ROUTE.filter((candidate) => candidate.type === 'refuge')) {
       const presentation = resolveRefugePresentation({ ...node, links: [...node.links], x: 0, z: 0 } as never)!;
       const image = (DRAGON_REFUGE_PRESENTATION as Record<string, { image?: string }>)[node.id]!.image!;

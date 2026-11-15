@@ -86,7 +86,9 @@ describe('Scorpion scenes on their final tableaux (set 1.20.0, Lot 2, canon sinc
     expect(SCORPION_PROVISIONAL_SURFACES.map((surface) => surface.image)).toEqual([SCORPION_CHRONICLE_END_IMAGE]);
     const end = resolveNarrativeBoundaryTableau('node:scorpion-judgement:arrival')!;
     expect(end.stillImage).toBe(SCORPION_CHRONICLE_END_IMAGE);
-    expect(end.sceneCastPlacement).toEqual(resolveNarrativeBoundaryTableau('node:lion-final-judgement:arrival')!.sceneCastPlacement);
+    // OD-2026-11-14-B (C2): the Lion's staging, the plateau's hero standing in Alistair's place.
+    const { alistair: lionHero, ...lionPlacement } = resolveNarrativeBoundaryTableau('node:lion-final-judgement:arrival')!.sceneCastPlacement!;
+    expect(end.sceneCastPlacement).toEqual({ ...lionPlacement, kestrel: lionHero });
     for (const node of SCORPION_ROUTE.filter((candidate) => candidate.type === 'refuge')) {
       const presentation = resolveRefugePresentation({ ...node, links: [...node.links], x: 0, z: 0 } as never)!;
       const image = (SCORPION_REFUGE_PRESENTATION as Record<string, { image?: string }>)[node.id]!.image!;

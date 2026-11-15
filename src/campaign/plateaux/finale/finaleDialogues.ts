@@ -13,6 +13,7 @@
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../../../game/types';
 
 interface Who { speaker: string; actorId: string; side: 'left' | 'right' }
+/** OD-2026-11-14-B (D1): his role tag is « Bouclier », after the prologue’s « Le bouclier »; « Clan sans terre » stays at the meetings with a chief. */
 const ALISTAIR: Who = { speaker: 'Alistair', actorId: 'alistair', side: 'left' };
 const SERAPHINE: Who = { speaker: 'Sage Séraphine', actorId: 'sage_seraphine', side: 'left' };
 const MAELOR: Who = { speaker: 'Intendant Maelor', actorId: 'maelor', side: 'left' };
@@ -103,7 +104,7 @@ export const FINALE_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freez
     say('3', SERAPHINE, 'Sage', 'Ne laissez pas l’orgueil choisir à votre place. Ce Tournoi est une épreuve de force, mais aussi de sagesse. Et quelque chose de sombre plane sur cette arène : je le sens depuis que nous avons passé les portes.', null, { expression: 'mystical' }),
     // Maelor's arc (I5), approved word for word by the operator on 2026-11-13: one word says he was waiting for this.
     say('4', MAELOR, 'Intendant', 'Enfin. Écrasez-les tous, sans pitié. Personne ne se souvient de la manière, seulement de la victoire.', null),
-    say('5', ALISTAIR, 'Clan sans terre', 'Nous nous souviendrons, nous.', null, { expression: 'stern' }),
+    say('5', ALISTAIR, 'Bouclier', 'Nous nous souviendrons, nous.', null, { expression: 'stern' }),
   ])),
 ]);
 
@@ -140,7 +141,8 @@ const FINALE_STATIC_TAIL: readonly DialogueSequence[] = Object.freeze([
     say('1', KESTREL, 'Éclaireuse', 'Des démons sortent de la brèche. Dans les tribunes, la foule se piétine pour atteindre les portes.', '2', { expression: 'fearful' }),
     say('2', MARIAN, 'Soigneuse', 'Les civils ne sortiront jamais seuls. Il faut quelqu’un entre eux et ces choses.', '3', { expression: 'fearful' }),
     say('3', SERAPHINE, 'Sage', 'Si nous restons, il faudra tenir l’arène le temps qu’ils passent. Le champion changé en démon ne nous laissera pas partir sans combat.', 'choice', { expression: 'stern' }),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous ?', null, { expression: 'stern', choices: [
+    // OD-2026-11-14-B (C1): Marian, who has just spoken of the civilians, asks the question; the words are unchanged.
+    say('choice', MARIAN, 'Décision', 'Que faisons-nous ?', null, { expression: 'stern', choices: [
       choice('Couvrir la fuite des civils.', null, [flag('finaleCiviliansProtected'), reputation(3), fight('finale_arena_assault')],
         ['Combat contre le champion changé en démon', 'Les civils couverts']),
       choice('Fuir par les tribunes, sans les attendre.', null, [flag('finaleCiviliansAbandoned'), reputation(-2), fight('finale_arena_assault')],
@@ -161,7 +163,8 @@ const FINALE_STATIC_TAIL: readonly DialogueSequence[] = Object.freeze([
     say('2', CITIZEN, 'Capitale', 'Par ici ! Ma famille est dessous, je n’arrive pas à soulever les poutres !', '3', { expression: 'fearful' }),
     say('3', SERAPHINE, 'Sage', 'Chaque heure compte. Mais ce sont ces gens que la brèche dévorera les premiers.', '4', { expression: 'stern' }),
     say('4', MARIAN, 'Soigneuse', 'Donnez-moi une heure. Je les sortirai de là.', 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous ?', null, { expression: 'stern', choices: [
+    // OD-2026-11-14-B (C1): Kestrel, who found the collapsed street, asks the question; the words are unchanged.
+    say('choice', KESTREL, 'Décision', 'Que faisons-nous ?', null, { expression: 'stern', choices: [
       choice('Dégager les habitants.', 'freed', [flag('finaleCitizensFreed'), reputation(1)], ['Une heure perdue', 'Des habitants sauvés']),
       choice('Les laisser et gagner la brèche.', 'left', [flag('finaleCitizensLeft'), reputation(-1)], ['La brèche plus tôt', 'Des voix laissées derrière vous']),
     ] }),
@@ -174,13 +177,13 @@ const FINALE_STATIC_TAIL: readonly DialogueSequence[] = Object.freeze([
     // Last narrative pass (A3, A4), approved word for word on 2026-11-13: Maelor's question answered, his last words his own.
     say('2b', MARIAN, 'Soigneuse', 'Ils nous servaient à refermer ce que tu ouvres.', null, { expression: 'stern' }),
     // Maelor's arc (R2), approved word for word by the operator on 2026-11-13: Alistair answers the confession.
-    say('3', ALISTAIR, 'Clan sans terre', 'Tu nous as fait tomber, puis tu as marché avec nous, Maelor. Ici, ça s’arrête.', null, { expression: 'stern' }),
+    say('3', ALISTAIR, 'Bouclier', 'Tu nous as fait tomber, puis tu as marché avec nous, Maelor. Ici, ça s’arrête.', null, { expression: 'stern' }),
     say('4', MAELOR_TRAITOR, 'Maelor', 'Alors venez. Je compterai ce qu’il restera de vous.', null, { expression: 'hostile' }),
   ])),
   scene('finale_breach_aftermath', 'serpent_general_aftermath', 'La brèche vacille', chained([
     say('1', KESTREL, 'Éclaireuse', 'Maelor est tombé le premier. Il n’a rien dit de plus.', null, { expression: 'stern' }),
     say('2', SERAPHINE, 'Sage', 'L’entité est tombée à son tour. La brèche vacille, mais elle est encore ouverte.', null, { expression: 'mystical' }),
-    say('3', ALISTAIR, 'Clan sans terre', 'Alors il reste une chose à faire.', null, { expression: 'stern' }),
+    say('3', ALISTAIR, 'Bouclier', 'Alors il reste une chose à faire.', null, { expression: 'stern' }),
   ])),
   scene('finale_act_end', 'epilogue', 'Avant les épilogues', chained([
     // Last narrative pass (A5), approved on 2026-11-13: the act closes on the first mission.
@@ -259,13 +262,13 @@ function finaleBetrayal(state: Readonly<GameState>): DialogueSequence {
     say('advice', MAELOR_TRAITOR, 'Conseils', adviceLine, 'why', { expression: 'hostile' }),
     // Maelor's arc (C1), approved word for word by the operator on 2026-11-13: his whole plan, the fall he caused, the
     // clan he joined and the Seals as its worth and as the key of the sealed rift. The breach opens on the same step.
-    say('why', ALISTAIR, 'Clan sans terre', 'Pourquoi nous ?', 'fall', { expression: 'stern' }),
+    say('why', ALISTAIR, 'Bouclier', 'Pourquoi nous ?', 'fall', { expression: 'stern' }),
     say('fall', MAELOR_TRAITOR, 'La chute', 'Parce qu’il me fallait un clan à terre. Votre chute, c’est moi : j’ai soufflé à chaque clan ce qu’il voulait croire de vous, et vos alliés ont rompu leurs serments l’un après l’autre.', 'join', { expression: 'hostile' }),
     say('join', MAELOR_TRAITOR, 'Le plan', 'Puis je suis venu tenir vos comptes. Un clan déchu fait tout pour se relever ; je n’avais qu’à faire des Sceaux la mesure de votre valeur. Aucun seigneur ne me les aurait remis. À vous, ils les ont donnés un à un.', 'breach', { expression: 'hostile' }),
     say('breach', MAELOR_TRAITOR, 'La brèche', 'Vos Sceaux : votre réussite, votre valeur… et la clé de la faille où les démons sont scellés. Regardez.', 'champion', { expression: 'hostile', effects: [flag('finaleBreachOpened')] }),
     say('champion', SERAPHINE, 'Sage', 'La brèche… Elle s’ouvre au cœur de l’arène. Le champion du Serpent se relève, et ce n’est plus un homme.', 'flee', { expression: 'fearful' }),
     say('flee', MAELOR_TRAITOR, 'Maelor', 'Nous nous reverrons au cœur de la brèche.', 'alistair', { expression: 'hostile' }),
-    say('alistair', ALISTAIR, 'Clan sans terre', 'Maelor !', 'marian', { expression: 'stern' }),
+    say('alistair', ALISTAIR, 'Bouclier', 'Maelor !', 'marian', { expression: 'stern' }),
     // Last narrative pass (A2), approved word for word on 2026-11-13: his « Je dis seulement… » of every audience, paid.
     say('marian', MARIAN, 'Soigneuse', '“Je dis seulement…” Il nous l’a répété à chaque Sceau. C’était pour eux qu’il parlait.', null, { expression: 'wounded' }),
   ]);
@@ -319,7 +322,7 @@ function finaleAlliedRally(state: Readonly<GameState>): DialogueSequence {
     rival('wolf', Boolean(flags.finaleWolfSpared), Boolean(flags.finaleWolfHumiliated), 'du Loup'),
     rival('phoenix', Boolean(flags.finalePhoenixSpared), Boolean(flags.finalePhoenixHumiliated), 'du Phénix'),
     say('close', SERAPHINE, 'Sage', 'Ceux qui marchent avec nous et ceux qui nous attendent dans les rues : chaque clan se souvient de la manière dont nous avons avancé.', null, { expression: 'mystical' }),
-    say('go', ALISTAIR, 'Clan sans terre', 'Alors avançons. La brèche n’attendra pas.', null, { expression: 'stern' }),
+    say('go', ALISTAIR, 'Bouclier', 'Alors avançons. La brèche n’attendra pas.', null, { expression: 'stern' }),
   ]));
 }
 

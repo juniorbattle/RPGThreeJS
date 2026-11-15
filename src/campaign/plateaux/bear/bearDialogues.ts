@@ -11,6 +11,7 @@ import { ALDRIC_MEETING, GUNNAR_MEETING, withMeeting, withMeetingPart } from '..
 import type { DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../../../game/types';
 
 interface Who { speaker: string; actorId: string; side: 'left' | 'right' }
+/** OD-2026-11-14-B (C1): Marian, the plateau’s hero, asks the questions before the choices, words unchanged; Alistair keeps the refuge line. */
 const ALISTAIR: Who = { speaker: 'Alistair', actorId: 'alistair', side: 'left' };
 const SERAPHINE: Who = { speaker: 'Sage Séraphine', actorId: 'sage_seraphine', side: 'left' };
 const MAELOR: Who = { speaker: 'Intendant Maelor', actorId: 'maelor', side: 'left' };
@@ -67,7 +68,7 @@ export const BEAR_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze(
     say('3', MESSENGER, 'Offre', 'Prenez cette bourse. Montez, regardez ailleurs quand nos chariots passent, et redescendez avec votre Sceau. Personne n’aura à saigner.', '4'),
     say('4', MAELOR, 'Intendant', 'Personne ne saura qui a regardé ailleurs, et la bourse est lourde. Je ne dis pas d’accepter. Je dis seulement que l’honneur de l’Ours ne nous nourrira pas au prochain col.', '5'),
     say('5', SERAPHINE, 'Sage', 'Un clan qui paie pour qu’on détourne les yeux creuse quelque chose qu’il ne veut pas montrer. Souvenons-nous pourquoi Borin nous a reçus.', 'offer', { expression: 'mystical' }),
-    say('offer', ALISTAIR, 'Réponse', 'Votre réponse, alors.', null, { expression: 'stern', choices: [
+    say('offer', MARIAN, 'Réponse', 'Votre réponse, alors.', null, { expression: 'stern', choices: [
       choice('Refuser l’or et prévenir l’Ours.', 'refused', [flag('bearRavenOfferRefused'), reputation(1)], ['Borin saura ce que le Corbeau a tenté']),
       choice('Prendre la bourse et regarder ailleurs.', 'pact', [flag('bearRavenPact'), gold(80), reputation(-2)], ['80 or', 'Une promesse faite au Corbeau']),
     ] }),
@@ -80,7 +81,7 @@ export const BEAR_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze(
     say('2', MINER, 'Sous l’éboulement', 'Nous sommes quatre ! La galerie s’est effondrée quand les charges du Corbeau ont sauté. L’air manque !', '3', { expression: 'fearful' }),
     say('3', MAELOR, 'Intendant', 'Dégager ces pierres nous coûtera la journée, et le Corbeau ne nous attendra pas. Leurs sacs de minerai sont là, sur le côté. Sous les pierres, ils ne servent plus à personne.', '4'),
     say('4', SERAPHINE, 'Sage', 'Ce sont les mineurs de l’Ours. Borin nous a confié sa montagne ; ses gens en font partie.', 'choice', { expression: 'stern' }),
-    say('choice', ALISTAIR, 'Décision', 'Décidons, et vite.', null, { expression: 'stern', choices: [
+    say('choice', MARIAN, 'Décision', 'Décidons, et vite.', null, { expression: 'stern', choices: [
       choice('Dégager les mineurs, quel qu’en soit le temps.', 'rescued', [flag('bearMinersRescued'), reputation(1)], ['Une journée perdue', 'Des mineurs de l’Ours sauvés']),
       choice('Prendre leur minerai et poursuivre.', 'robbed', [flag('bearMinersRobbed'), item('iron_ore', 2), reputation(-2)], ['2 minerais pour la forge', 'Des mineurs laissés sous les pierres']),
     ] }),
@@ -91,7 +92,7 @@ export const BEAR_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze(
     say('1', KESTREL, 'Éclaireuse', 'Des fils tendus en travers du sentier, et de la poudre dans des outres sous les pierres. Ce sont des pièges du Corbeau, posés pour les patrouilles de l’Ours.', '2', { expression: 'stern' }),
     say('2', MAELOR, 'Intendant', 'Cette poudre vaut de l’or dans une forge, et davantage dans un combat. Le Corbeau l’a payée ; nous pourrions au moins la lui reprendre.', '3'),
     say('3', SERAPHINE, 'Sage', 'Si nous la prenons sans rien dire, les prochains pièges seront posés ailleurs, et l’Ours n’en saura rien.', 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Que fait-on de ces pièges ?', null, { choices: [
+    say('choice', MARIAN, 'Décision', 'Que fait-on de ces pièges ?', null, { choices: [
       choice('Désarmer les pièges et les signaler aux patrouilles.', 'marked', [flag('bearTrapsMarked'), reputation(1)], ['Les patrouilles de l’Ours prévenues']),
       choice('Garder la poudre pour la compagnie.', 'looted', [flag('bearTrapsLooted'), item('bomb', 1), reputation(-1)], ['1 bombe', 'Les pièges suivants resteront secrets']),
     ] }),
@@ -107,7 +108,7 @@ export const BEAR_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze(
     say('1', KESTREL, 'Éclaireuse', 'Cette galerie s’est effondrée il y a longtemps. Sous la poussière, un objet sculpté : un ours dressé, taillé dans une pierre sombre et sertie d’une gemme rouge.', '2'),
     say('2', SERAPHINE, 'Sage', 'C’est un objet sacré du clan. Il appartenait à un sanctuaire de l’Ours ; quelqu’un l’a caché ici, peut-être pour le protéger.', '3', { expression: 'mystical' }),
     say('3', MAELOR, 'Intendant', 'Ou pour le vendre. Un artefact pareil ouvrirait bien des portes, loin d’ici.', 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Et nous, qu’en faisons-nous ?', null, { choices: [
+    say('choice', MARIAN, 'Décision', 'Et nous, qu’en faisons-nous ?', null, { choices: [
       choice('Rendre l’artefact au sanctuaire de l’Ours.', 'returned', [flag('bearRelicReturned'), reputation(1)], ['L’Ours retrouvera son artefact']),
       choice('Garder l’artefact.', 'kept', [flag('bearRelicKept'), item('red_gem', 1), reputation(-1)], ['Une gemme rouge', 'Un objet sacré soustrait à l’Ours']),
     ] }),
@@ -137,7 +138,7 @@ export const BEAR_STATIC_DIALOGUES: readonly DialogueSequence[] = Object.freeze(
     say('1', SERAPHINE, 'Sage', 'Un sanctuaire de l’Ours. Des offrandes laissées à la montagne : des outils de mineur, des pierres polies, une bourse de pièces anciennes.', '2', { expression: 'mystical' }),
     say('2', MAELOR, 'Intendant', 'Personne ne viendra les compter avant des mois. Les offrandes ne nourrissent personne.', '3'),
     say('3', MARIAN, 'Soigneuse', 'Ce sont des prières, Maelor. Pas une caisse.', 'choice', { expression: 'stern' }),
-    say('choice', ALISTAIR, 'Décision', 'Que laissons-nous à la montagne ?', null, { choices: [
+    say('choice', MARIAN, 'Décision', 'Que laissons-nous à la montagne ?', null, { choices: [
       choice('Respecter les offrandes et repartir.', 'honoured', [flag('bearShrineHonoured'), reputation(1)], ['Le sanctuaire intact']),
       choice('Prendre les offrandes.', 'plundered', [flag('bearShrinePlundered'), gold(50), reputation(-1)], ['50 or', 'Un sanctuaire de l’Ours pillé']),
     ] }),
@@ -209,7 +210,7 @@ function bearOreConvoy(state: Readonly<GameState>): DialogueSequence {
     say('open', KESTREL, 'Éclaireuse', 'Un convoi descend des galeries : des chariots bâchés, chargés de pierres noires qui ne brillent pas. Escorte légère, deux gardes et un conducteur.', 'maelor', { expression: 'stern' }),
     say('maelor', MAELOR, 'Intendant', `Du minerai volé à l’Ours. Si nous le prenons, personne ne le rendra jamais à Borin de toute façon. Autant qu’il serve à quelqu’un.${greed}`, 'seraphine'),
     say('seraphine', SERAPHINE, 'Sage', 'Ce minerai ne ressemble à rien de ce que j’ai vu. Borin doit savoir ce que le Corbeau emporte, avant que nous décidions de ce qu’il vaut.', 'choice', { expression: 'mystical' }),
-    say('choice', ALISTAIR, 'Décision', 'Le convoi passe bientôt.', null, { choices: [
+    say('choice', MARIAN, 'Décision', 'Le convoi passe bientôt.', null, { choices: [
       choice('Marquer le convoi et prévenir Borin.', 'reported', [flag('bearConvoyReported'), reputation(1)], ['Borin saura ce que le Corbeau emporte']),
       choice('Saisir le minerai pour le clan.', 'escort', [flag('bearConvoySeized'), item('iron_ore', 3), gold(40), reputation(-1), fight('bear_convoy_escort')],
         ['3 minerais et 40 or', 'Combat contre l’escorte du Corbeau', 'Un convoi détourné']),
@@ -228,7 +229,7 @@ function bearSacredMines(state: Readonly<GameState>): DialogueSequence {
       : say('chief', RAVEN_CHIEF, 'Corbeau', 'Encore des étrangers payés par l’Ours ? Cette montagne ne lui appartient pas plus qu’à nous. Le filon va à qui sait le prendre.', null, { expression: 'hostile' }),
     say('seraphine', SERAPHINE, 'Sage', 'Ces galeries sont sacrées pour l’Ours, et ce filon ne sent pas la pierre honnête. Reprenons-les, et rendons-les à Borin.', null, { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', 'Ou reprenons-les pour nous. Le Corbeau a déjà fait le travail ; il suffirait de changer de bannière à l’entrée.', null),
-    say('choice', ALISTAIR, 'Décision', 'Les galeries attendent notre réponse.', null, { expression: 'stern', choices: [
+    say('choice', MARIAN, 'Décision', 'Les galeries attendent notre réponse.', null, { expression: 'stern', choices: [
       choice('Chasser le Corbeau et rendre les galeries à l’Ours.', null, [flag('bearMinesRestored'), reputation(1), fight('bear_mines_defense')],
         ['Combat contre le chef des mineurs du Corbeau', 'Les galeries rendues à l’Ours']),
       choice('Chasser le Corbeau et garder le filon sombre pour le clan.', null, [flag('bearMinesSeized'), reputation(-2), fight('bear_mines_seizure')],
@@ -258,7 +259,7 @@ function bearMinersTestimony(state: Readonly<GameState>): DialogueSequence {
     say('request', MINER, 'Témoignage', 'Nous voulons le dire nous-mêmes à Borin.', 'seraphine'),
     say('seraphine', SERAPHINE, 'Sage', witnesses, 'maelor', { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', fear, 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous d’eux ?', null, { expression: 'stern', choices: [
+    say('choice', MARIAN, 'Décision', 'Que faisons-nous d’eux ?', null, { expression: 'stern', choices: [
       choice('Escorter les mineurs jusqu’à Borin.', 'protected', [flag('bearMinersProtected'), reputation(1)], ['Des témoins libres devant Borin']),
       choice('Les faire taire, quel qu’en soit le prix.', 'silenced', [flag('bearMinersSilenced'), reputation(-2)], ['Aucun témoin devant Borin', 'Un acte que la montagne retiendra']),
     ] }),
@@ -273,7 +274,7 @@ function bearDarkVein(state: Readonly<GameState>): DialogueSequence {
     say('open', KESTREL, 'Éclaireuse', 'Le filon. Une veine noire dans la roche, qui ne renvoie pas la lumière des torches. Elle semble respirer, quand on la regarde trop longtemps.', 'seraphine', { expression: 'fearful' }),
     say('seraphine', SERAPHINE, 'Sage', `Voilà ce que le Corbeau creusait. Ce minerai n’appartient pas à la montagne.${altar}`, 'maelor', { expression: 'mystical' }),
     say('maelor', MAELOR, 'Intendant', 'Un tel minerai vaut une fortune, ou une malédiction. Peut-être les deux.', 'choice'),
-    say('choice', ALISTAIR, 'Décision', 'Que faisons-nous du filon ?', null, { choices: [
+    say('choice', MARIAN, 'Décision', 'Que faisons-nous du filon ?', null, { choices: [
       choice('En sceller un éclat comme preuve.', 'sealed', [flag('bearDarkOreEvidence'), reputation(1)], ['Une preuve à montrer à Borin']),
       choice('Briser le filon.', 'shattered', [flag('bearDarkOreShattered'), reputation(-1)], ['Le filon détruit', 'Aucune preuve à montrer']),
     ] }),

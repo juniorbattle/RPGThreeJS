@@ -916,7 +916,52 @@ function postDemoChronicleEnd(presentationKey: string): NarrativeTableauSpec | u
   if (!image) return undefined;
   const tableau: NarrativeTableauSpec = { ...CHRONICLE_END_TABLEAU, id: `${nodeId!.replace(/[^a-z0-9]+/gi, '_').toUpperCase()}_CHRONICLE_END_TABLEAU`,
     presentationKey, stillImage: image };
-  return Object.freeze(nodeId === FINAL_ACT_END_NODE_ID ? withoutActor(tableau, FINAL_ACT_END_ABSENT) : tableau);
+  if (nodeId === FINAL_ACT_END_NODE_ID) return Object.freeze(withCompany(withoutActor(tableau, FINAL_ACT_END_ABSENT), FINAL_ACT_END_COMPANY));
+  const hero = PLATEAU_END_HERO[nodeId!];
+  return Object.freeze(hero ? withActorInstead(tableau, 'alistair', hero.actorId, hero.name) : tableau);
+}
+
+/**
+ * OD-2026-11-14-B (C2): no hero is the player's avatar. Each Seal plateau's end panel shows its own hero where the Lion's
+ * shows Alistair (the rotation of OD-2026-11-13-C), and the final act's shows the company of the endings' living tableaux.
+ * Presentation only: the same hall, placements and terminal card.
+ */
+const PLATEAU_END_HERO: Readonly<Record<string, Readonly<{ actorId: string; name: string }>>> = Object.freeze({
+  'bear-judgement': { actorId: 'marian', name: 'Marian' }, 'dragon-judgement': { actorId: 'elara', name: 'Elara' },
+  'scorpion-judgement': { actorId: 'kestrel', name: 'Kestrel' },
+});
+/** Kestrel, Alistair, Séraphine and Marian on the floor, left to right; Alistair and Séraphine keep their places around the gap. */
+const FINAL_ACT_END_COMPANY: Readonly<Record<string, Readonly<{ xPercent: number; bottomVh: number; scale: number }>>> = Object.freeze({
+  kestrel: { xPercent: 30, bottomVh: 25, scale: .8 },
+  alistair: { xPercent: 43, bottomVh: 24, scale: .86 },
+  sage_seraphine: { xPercent: 57, bottomVh: 25.5, scale: .8 },
+  marian: { xPercent: 70, bottomVh: 25, scale: .8 },
+});
+
+/** A tableau whose actor stands in another's place, every placement, region and beat unchanged. */
+function withActorInstead(tableau: NarrativeTableauSpec, actorId: string, replacement: string, name: string): NarrativeTableauSpec {
+  const swap = (ids: readonly string[]) => ids.map((id) => id === actorId ? replacement : id);
+  const placement = Object.fromEntries(Object.entries(tableau.sceneCastPlacement ?? {}).map(([id, at]) => [id === actorId ? replacement : id, at]));
+  return {
+    ...tableau,
+    sceneCastPlacement: placement,
+    cast: { ...tableau.cast, visualActors: swap(tableau.cast.visualActors), eventActors: swap(tableau.cast.eventActors),
+      playerRepresentatives: swap(tableau.cast.playerRepresentatives) },
+    phases: tableau.phases?.map((phase) => ({ ...phase,
+      staticCast: stageActors(swap(phase.staticCast.map((actor) => actor.actorId))), mediaSubjects: swap(phase.mediaSubjects),
+      negativeSpaceIntent: phase.negativeSpaceIntent?.replace('Alistair', name) })),
+  };
+}
+
+/** A tableau with the given company on its stage, left to right in placement order. */
+function withCompany(tableau: NarrativeTableauSpec, company: NonNullable<NarrativeTableauSpec['sceneCastPlacement']>): NarrativeTableauSpec {
+  const ids = Object.keys(company);
+  return {
+    ...tableau,
+    sceneCastPlacement: company,
+    cast: { ...tableau.cast, visualActors: ids, eventActors: ids },
+    phases: tableau.phases?.map((phase) => ({ ...phase, staticCast: stageActors(ids), mediaSubjects: ids })),
+  };
 }
 
 /** The final act's chronicle ends at the breach. */

@@ -172,7 +172,7 @@ function epilogueRespect(state: Readonly<GameState>): DialogueSequence {
       : say('acclaim', KESTREL, 'Les clans', 'Les clans vous acclament. Ils se rassemblent sous votre bannière pour reconstruire ce que la brèche a brûlé.', { expression: 'grateful' }),
     civiliansStep(flags, 'Dans la foule qui vous acclame, il y a les civils sauvés de l’arène.',
       'Ils acclament, mais certains n’oublient pas la foule abandonnée de l’arène.'),
-    say('alistair', ALISTAIR, 'Clan sans terre', 'Nous ne reconstruirons pas seuls. Chaque clan portera sa part du fardeau, et la justice vaudra pour tous.', { expression: 'stern' }),
+    say('alistair', ALISTAIR, 'Bouclier', 'Nous ne reconstruirons pas seuls. Chaque clan portera sa part du fardeau, et la justice vaudra pour tous.', { expression: 'stern' }),
     say('clan', SERAPHINE, 'Le clan', 'Notre clan avait perdu ses terres et sa place. Aujourd’hui, il retrouve son honneur, et devient un pilier de la nouvelle alliance.', { expression: 'grateful' }),
     say('close', ALISTAIR, 'Le Respect', 'Alors rentrons. Il y a tant à reconstruire.', { effects: [COMPLETE] }),
   ]) };
@@ -201,12 +201,14 @@ function epilogueBalance(state: Readonly<GameState>): DialogueSequence {
     say('why', SERAPHINE, 'L’Équilibre', why),
     civiliansStep(flags, 'Dans la capitale, les civils sauvés de l’arène parlent de nous avec gratitude. D’autres, avec méfiance.',
       'Dans la capitale, on parle encore de la foule abandonnée de l’arène.'),
-    say('peace', ALISTAIR, 'Clan sans terre', 'Alors il faudra négocier. Une paix fragile vaut mieux qu’une guerre de plus, même si elle nous coûte une part de ce que nous croyions.', { expression: 'stern' }),
+    say('peace', ALISTAIR, 'Bouclier', 'Alors il faudra négocier. Une paix fragile vaut mieux qu’une guerre de plus, même si elle nous coûte une part de ce que nous croyions.', { expression: 'stern' }),
     say('clan', SERAPHINE, 'Le clan', 'Notre clan regagne une part de son honneur. Le reste, il faudra le mériter, dans un monde encore divisé.'),
     say('close', KESTREL, 'L’Équilibre', 'Respectés, et craints. Il faudra apprendre à marcher entre les deux.', { effects: [COMPLETE] }),
   ]) };
 }
 
+// OD-2026-11-14-B (B1), approved word for word on 2026-11-14: the clans demand the heir, the « vous » of the prologue whom the
+// player embodies, not Alistair; the scene, its choice and its effects are otherwise unchanged.
 function epilogueFear(state: Readonly<GameState>): DialogueSequence {
   const flags = state.flags;
   const allies = clansOf(state, 'ally');
@@ -223,12 +225,12 @@ function epilogueFear(state: Readonly<GameState>): DialogueSequence {
     say('approach', KESTREL, 'Les clans', enemies.length
       ? `Des bannières approchent : ${banners(enemies)}. Elles ne viennent pas nous remercier.`
       : 'Les clans approchent. Ils ne viennent pas nous remercier.', { expression: 'fearful' }),
-    say('demand', SERAPHINE, 'Sage', 'Ils vous craignent plus que la brèche, Alistair. Ils exigent qu’on vous livre, pour acheter leur paix.', { expression: 'fearful' }),
+    say('demand', SERAPHINE, 'Sage', 'Ils vous craignent plus que la brèche. Ils exigent qu’on vous livre, pour acheter leur paix.', { expression: 'fearful' }),
     say('choice', ALISTAIR, 'Décision', 'Alors ?', { expression: 'stern', choices: [
       { text: 'Nous battre, seuls contre tous.', next: null, effects: [{ type: 'setFlag', key: 'finaleFearLastStand', value: true }],
         outcomePreview: { mode: 'soft', hints: ['Un dernier combat, sans aucun soutien', 'Le clan sans terre rayé des clans'] } },
       { text: 'Accepter mon destin.', next: null, effects: [{ type: 'setFlag', key: 'finaleFearFateAccepted', value: true }],
-        outcomePreview: { mode: 'soft', hints: ['Alistair se livre aux clans', 'Le clan, de nouveau déchu, survit'] } },
+        outcomePreview: { mode: 'soft', hints: ['Vous vous livrez aux clans', 'Le clan, de nouveau déchu, survit'] } },
     ] }),
   ]) };
 }
@@ -242,7 +244,7 @@ function fearClose(state: Readonly<GameState>): DialogueSequence {
       say('close', ALISTAIR, 'La Crainte', 'Alors nous marcherons sans nom.', { expression: 'stern', effects: [COMPLETE] }),
     ]
     : [
-      say('fate', SERAPHINE, 'La Crainte', 'Vous avez accepté votre destin, Alistair, pour que les autres vivent.', { expression: 'wounded' }),
+      say('fate', SERAPHINE, 'La Crainte', 'Vous avez accepté votre destin, pour que les autres vivent.', { expression: 'wounded' }),
       say('clan', MARIAN, 'Le clan', 'Les clans tiendront parole : votre clan vivra, mais déchu, une fois de plus.', { expression: 'wounded' }),
       say('close', ALISTAIR, 'La Crainte', 'Qu’il vive. C’est assez.', { effects: [COMPLETE] }),
     ];
