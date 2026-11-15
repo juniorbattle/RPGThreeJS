@@ -42,6 +42,10 @@ La fiche d'arbitrages a été publiée en page privée : [Performances de la Voi
 5. **Sans changement.** Le JavaScript n'est pas découpé davantage (P5), le plafond de résolution du combat reste à 1,5 (F1) et les à-coups uniques restent tels quels (F2).
 6. **Plus tard.** La croissance de 40 Mo par combat devient une tâche dédiée avant la passe mobile (M1). Le reste de la dette (C2, C13, CombatSfx, C18) reste à la passe dette technique (D1, OD-2026-11-13-F). Le profilage du combat sur mobile reste à la passe mobile (MB1).
 
+## Résultat de M1
+
+Livré le même jour (48f684ff, 818bf566, [rapport](../reports/combat-memory-2026-11-15.md)). Les 40 Mo par combat ne venaient pas du jeu : Playwright et le pilote de mesure activaient le domaine DevTools `Network` avec les tampons par défaut de Chromium, qui gardent le contenu de chaque réponse tant que la page vit, et chaque combat recharge l'iframe du combat. Mesuré sans ces tampons, le processus de rendu monte sur les premiers combats puis reste plat. Seuls les outils de mesure changent : aucun fichier du jeu, aucune vérité de jeu, aucune sauvegarde.
+
 ## Cadre
 
 - **Contrats.** Aucun contrat n'est touché.
