@@ -423,16 +423,33 @@ const EXTERNAL_SPRITE_HEIGHTS={
   '/assets/characters/pixel/archive/non-demo/talon.png':2.05,
   '/assets/characters/pixel/masters/lancer.png':2.12
 };
-async function preloadExternalSprites(){
-  const strategicDefinitions=[
+/**
+ * OD-2026-11-15-A (P3): the battlefield waits only for the sprites of the units this fight can show (the company's
+ * roster, the formation and its waves, the boss with its escorts and phases), then the rest of the game's sprites load
+ * in the background. Every other mode (standalone, development QA) keeps waiting for all of them.
+ */
+function allSpriteDefinitions(){
+  return [
     ...CAMPAIGN_SQUAD,
     ...DEFS,
     ...BOSS_DEFS,
     ...Object.values(BOSS_ESCORTS).flat(),
     ...Object.values(VISUAL_UNIT_TEMPLATES),
   ].filter(Boolean);
+}
+function fightSpriteDefinitions(){
+  if(!CAMPAIGN_MODE||QA_ENABLED||CHARACTER_SYSTEM_V2_QA||STAGE_QA_ENABLED)return null;
+  return [
+    ...playerDefinitions(),
+    ...(IS_BOSS_COMBAT?bossEncounterDefs():encounterFoeDefs()),
+    ...COMBAT_PHASES.flatMap((_,index)=>campaignPhaseDefs(index)),
+  ].filter(Boolean);
+}
+async function preloadExternalSprites(){
+  const everything=allSpriteDefinitions();
+  // Which visual a URL stands for never depends on the subset loaded, so a sprite gets the same size either way.
   const strategicVisuals=new Map();
-  for(const definition of strategicDefinitions){
+  for(const definition of everything){
     const visual=strategicVisualFor(definition);
     if(visual)strategicVisuals.set(visual.src,visual);
   }
@@ -440,11 +457,22 @@ async function preloadExternalSprites(){
     const visual=resolveStrategicUnitVisual(portrait);
     if(visual)strategicVisuals.set(visual.src,visual);
   }
+  const fight=fightSpriteDefinitions();
+  if(!fight)return loadSprites(everything,Object.values(BOSS_PORTRAITS),strategicVisuals);
+  await loadSprites(fight,[],strategicVisuals);
+  loadSprites(everything,Object.values(BOSS_PORTRAITS),strategicVisuals).catch(err=>console.warn('Sprites de fond indisponibles',err));
+}
+async function loadSprites(definitions,portraits,strategicVisuals){
   const urls=[...new Set([
-    ...strategicDefinitions.map(unit=>strategicVisualFor(unit)?.src||unit.portrait),
-    ...Object.values(BOSS_PORTRAITS).map(portrait=>resolveStrategicUnitVisual(portrait)?.src||portrait),
+    ...definitions.map(unit=>strategicVisualFor(unit)?.src||unit.portrait),
+    ...portraits.map(portrait=>resolveStrategicUnitVisual(portrait)?.src||portrait),
   ].filter(url=>typeof url==='string'&&(url.startsWith('/assets/characters/pixel/combat/')||url.startsWith('/assets/characters/pixel/masters/'))))];
-  await Promise.all([...[...strategicVisuals.values()].map(visual=>visual.unitId),...strategicDefinitions.map(def=>def.portrait)].map(identity=>preloadPixelSheet(identity)));
+  const sheetIdentities=[
+    ...definitions.map(def=>strategicVisualFor(def)?.unitId),
+    ...portraits.map(portrait=>resolveStrategicUnitVisual(portrait)?.unitId),
+    ...definitions.map(def=>def.portrait),
+  ].filter(Boolean);
+  await Promise.all(sheetIdentities.map(identity=>preloadPixelSheet(identity)));
   if(!urls.length)return;
   await Promise.all(urls.map(async url=>{
     if(externalSpriteCache.has(url))return;
@@ -1235,24 +1263,26 @@ function spawnUnits(){
   }
   if(!IS_BOSS_COMBAT) for(const def of encounterFoeDefs()) createUnit(def);
   if(IS_BOSS_COMBAT&&!BOSS_SPAWNED){
-    // Set 1.20.0: a post-demo boss is chosen by the fights it leads; demo fights keep their own selection unchanged.
-    const bossDef=BOSS_DEFS.find(b=>b.combatIds?.includes(COMBAT_ID)&&(b.phase||1)===1)
-      ||BOSS_DEFS.find(b=>COMBAT_ID==='lion_chief'&&b.name.includes('Champion'))||BOSS_DEFS[0];
-    if(ENCOUNTER_ESCORT_VISUAL_IDS.length){
-      // A boss is the encounter's only major opponent. Ignore any accidental
-      // elite escort so a malformed content entry cannot create boss + elite.
-      ENCOUNTER_ESCORT_VISUAL_IDS.filter(id=>!VISUAL_UNIT_TEMPLATES[id]?.elite)
-        .map((id,index)=>unitDefFromVisual(id,index,ESCORT_VISUAL_POSITIONS))
-        .filter(Boolean)
-        .forEach(def=>createUnit(def));
-    } else {
-      (BOSS_ESCORTS[COMBAT_ID]||[]).forEach((escort,index)=>{
-        const [gx,gz]=ESCORT_VISUAL_POSITIONS[index%ESCORT_VISUAL_POSITIONS.length];
-        createUnit({...escort,gx,gz});
-      });
-    }
-    if(bossDef){ createUnit({...bossDef,combatPoseUnitId:ENCOUNTER_BOSS_VISUAL_ID||null,portrait:BOSS_PORTRAITS[ENCOUNTER_BOSS_VISUAL_ID]||BOSS_PORTRAITS[COMBAT_ID]||bossDef.portrait,gx:6,gz:1,size:2,immobile:true,boss:true}); BOSS_SPAWNED=true; }
+    for(const def of bossEncounterDefs()){ createUnit(def); if(def.boss)BOSS_SPAWNED=true; }
   }
+}
+/** A boss fight's opening line-up, escorts first, then the boss (also read by the sprite preload, OD-2026-11-15-A). */
+function bossEncounterDefs(){
+  // Set 1.20.0: a post-demo boss is chosen by the fights it leads; demo fights keep their own selection unchanged.
+  const bossDef=BOSS_DEFS.find(b=>b.combatIds?.includes(COMBAT_ID)&&(b.phase||1)===1)
+    ||BOSS_DEFS.find(b=>COMBAT_ID==='lion_chief'&&b.name.includes('Champion'))||BOSS_DEFS[0];
+  const defs=ENCOUNTER_ESCORT_VISUAL_IDS.length
+    // A boss is the encounter's only major opponent. Ignore any accidental
+    // elite escort so a malformed content entry cannot create boss + elite.
+    ?ENCOUNTER_ESCORT_VISUAL_IDS.filter(id=>!VISUAL_UNIT_TEMPLATES[id]?.elite)
+      .map((id,index)=>unitDefFromVisual(id,index,ESCORT_VISUAL_POSITIONS))
+      .filter(Boolean)
+    :(BOSS_ESCORTS[COMBAT_ID]||[]).map((escort,index)=>{
+      const [gx,gz]=ESCORT_VISUAL_POSITIONS[index%ESCORT_VISUAL_POSITIONS.length];
+      return {...escort,gx,gz};
+    });
+  if(bossDef)defs.push({...bossDef,combatPoseUnitId:ENCOUNTER_BOSS_VISUAL_ID||null,portrait:BOSS_PORTRAITS[ENCOUNTER_BOSS_VISUAL_ID]||BOSS_PORTRAITS[COMBAT_ID]||bossDef.portrait,gx:6,gz:1,size:2,immobile:true,boss:true});
+  return defs;
 }
 
 // ============================= TURN SYSTEM & PATHFINDING =============================
@@ -2740,16 +2770,22 @@ function enterCampaignWave(){
 // previous phase's foes fall: no result, nothing restored or reset for the company, the round counter keeps running. Its
 // boss is chosen by the fight and its phase, on the free cells nearest its authored cells.
 function enterCampaignPhase(){
-  const phase=COMBAT_PHASES[G.phase-1]; G.phase++;
-  const bossDef=BOSS_DEFS.find(b=>b.combatIds?.includes(COMBAT_ID)&&b.phase===G.phase);
-  if(bossDef){ const cell=freeWaveCell(6,1,2); if(cell)createUnit({...bossDef,combatPoseUnitId:phase.bossVisualId||null,gx:cell.gx,gz:cell.gz,size:2,immobile:true,boss:true}); }
-  (phase.escortVisualIds||[]).filter(id=>!VISUAL_UNIT_TEMPLATES[id]?.elite)
-    .map((id,index)=>unitDefFromVisual(id,index,ESCORT_VISUAL_POSITIONS)).filter(Boolean)
-    .forEach(def=>{ const cell=freeWaveCell(def.gx,def.gz,def.size||1); if(cell)createUnit({...def,gx:cell.gx,gz:cell.gz}); });
+  const phase=COMBAT_PHASES[G.phase-1]; const defs=campaignPhaseDefs(G.phase-1); G.phase++;
+  for(const def of defs){ const cell=freeWaveCell(def.gx,def.gz,def.size||1); if(cell)createUnit({...def,gx:cell.gx,gz:cell.gz}); }
   const text='Phase '+G.phase+' / '+(COMBAT_PHASES.length+1)+' — '+phase.label;
   logMsg('— '+text+' —'); setHint(text);
   const status=byId('combat-cell-status'); if(status)status.textContent=text;
   refreshTurnbar();
+}
+/** The units of COMBAT_PHASES[index] on their authored cells: its boss (fight phase index + 2), then its escorts. */
+function campaignPhaseDefs(index){
+  const phase=COMBAT_PHASES[index]; if(!phase)return [];
+  const bossDef=BOSS_DEFS.find(b=>b.combatIds?.includes(COMBAT_ID)&&b.phase===index+2);
+  return [
+    ...(bossDef?[{...bossDef,combatPoseUnitId:phase.bossVisualId||null,gx:6,gz:1,size:2,immobile:true,boss:true}]:[]),
+    ...(phase.escortVisualIds||[]).filter(id=>!VISUAL_UNIT_TEMPLATES[id]?.elite)
+      .map((id,index)=>unitDefFromVisual(id,index,ESCORT_VISUAL_POSITIONS)).filter(Boolean),
+  ];
 }
 function freeNear(gx,gz){ const c=cellAt(gx,gz); if(c&&c.walkable&&!c.occupant)return c; for(let r=1;r<=7;r++)for(let dx=-r;dx<=r;dx++)for(let dz=-r;dz<=r;dz++){ if(Math.abs(dx)+Math.abs(dz)!==r)continue; const cc=cellAt(gx+dx,gz+dz); if(cc&&cc.walkable&&!cc.occupant)return cc; } return null; }
 function spawnWave(wave){ const k=1+0.18*(wave-1); const foes=DEFS.filter(d=>d.team==='foe'); const list=foes.slice();
