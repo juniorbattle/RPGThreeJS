@@ -205,8 +205,26 @@ describe('In-arena action presentation (Combat Stage retired)', () => {
   });
 
   it('routes ultimates and boss signatures to the spotlight, AoE to a wider shot', () => {
-    expect(runtimeSource).toContain("if(presentation?.ultimate||tuning.tier===6)return 'spotlight';");
-    expect(runtimeSource).toContain("if((spec.radius||0)>=1&&targets.length>1)return 'aoe';");
+    // Graded focus (2026-11-15): the plan comes from camera/actionFocus.ts, from the catalogued action and rank only.
+    expect(runtimeSource).toContain("import { resolveActionFocus } from './camera/actionFocus';");
+    expect(runtimeSource).toContain('ultimate:Boolean(presentation?.ultimate),signature:tuning.tier===6,');
+    expect(runtimeSource).toContain('actorBoss:Boolean(att?.boss),actorElite:Boolean(att?.elite),');
+    expect(runtimeSource).toContain('multiTarget:(spec.radius||0)>=1&&targets.length>1,');
+    expect(runtimeSource).toContain("attack:spec.key==='attack',fury:Boolean(spec.fury),skill:isSkillSpec(spec),");
+  });
+
+  it('never moves the camera under reduced motion and lets the action play on while a skill focus settles', () => {
+    expect(runtimeSource).toContain('if(!plan.moveCamera){ await wait(plan.releaseSeconds); return; }');
+    expect(runtimeSource).toContain('await (plan.releaseSeconds<plan.enterSeconds?Promise.race([move,wait(plan.releaseSeconds)]):move);');
+    expect(runtimeSource).toContain("plan.moveCamera?cameraDirector.frame('spotlight',");
+    expect(runtimeSource).toContain('if(cameraDirector.atRest){ await wait(exitSeconds); return; }');
+    expect(runtimeSource).toContain('cameraDirector.sway=REDUCED_GRAPHICS?0:1;');
+    // the camera never moves on a turn change
+    const start = runtimeSource.indexOf('async function beginTurn(');
+    const beginTurn = runtimeSource.slice(start, start + 1 + runtimeSource.slice(start + 1).search(/\n(?:async )?function /));
+    expect(start).toBeGreaterThan(0);
+    expect(beginTurn.length).toBeGreaterThan(200);
+    expect(beginTurn).not.toMatch(/cameraDirector|restoreCam\(|presentAction/);
   });
 
   it('closes the presentation after gameplay resolution', () => {

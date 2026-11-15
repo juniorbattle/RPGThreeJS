@@ -282,7 +282,11 @@ describe('R0B.4 P1 tactical feedback preservation', () => {
   });
 
   it('non-spotlight actions only frame the camera (no bystander fade, no overlay)', () => {
-    expect(runtimeSource).toContain("if(kind!=='spotlight'){ await cameraDirector.frame(kind,");
+    expect(runtimeSource).toContain('const move=cameraDirector.frame(kind,unitShotPoint(att),unitShotPoint(target),plan.enterSeconds,plan.ease);');
+    const start = runtimeSource.indexOf("if(kind!=='spotlight'){");
+    const block = runtimeSource.slice(start, runtimeSource.indexOf('const feel=resolveCombatFeel', start));
+    expect(block).not.toContain('stageVigEl');
+    expect(block).not.toContain('stageTitleEl');
   });
 
   it('executeAction finally block closes an open presentation before restoring focus', () => {

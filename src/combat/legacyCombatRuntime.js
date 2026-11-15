@@ -31,6 +31,7 @@ import { installUnitMotionWorkbench } from './UnitMotionWorkbench';
 import { COMBAT_RENDER_LAYERS } from './combatRenderLayers';
 import { resolveBossIntentVisualState } from './bossIntentPresentation';
 import { CombatCameraDirector, shotFor } from './camera/CombatCameraDirector';
+import { resolveActionFocus } from './camera/actionFocus';
 import { FxEngine } from './fx/FxEngine';
 import { FxDirector } from './fx/FxDirector';
 import { resolveFxRecipe, withoutGroundMarks } from './fx/fxRecipes';
@@ -2404,17 +2405,25 @@ function focusCam(){ }
 function actionCam(){ }
 function restoreCam(){ return cameraDirector.restore(0.5); }
 // ---- Présentation d'action dans l'arène (remplace le Combat Stage) ----
-// Every action gets a short camera push-in toward actor and target. Ultimates
-// and boss signatures get the spotlight: the arena light dims, bystanders step
-// back, letterbox and title rise and the camera drops low and close.
+// Graded focus (2026-11-15, camera/actionFocus.ts): weapon attacks keep their
+// short push-in, ordinary skills get a light push-in that eases in and out,
+// elite and boss skills and the Fury strike a closer focus with a light edge
+// falloff. Ultimates and boss signatures get the spotlight: the arena light
+// dims, bystanders step back, letterbox and title rise and the camera drops low
+// and close. Under reduced motion the camera stays on the overview; only the
+// light changes. Presentation only: it reads the catalogued action and rank.
 let stageVigEl=null, stageTitleEl=null;
 function buildStageOverlay(){ stageVigEl=document.createElement('div'); stageVigEl.id='stagevig'; document.body.appendChild(stageVigEl);
   stageTitleEl=document.createElement('div'); stageTitleEl.id='stagetitle'; stageTitleEl.innerHTML='<b></b><small></small>'; document.body.appendChild(stageTitleEl); }
-function actionShotKind(spec,targets){
+function actionFocusPlan(att,spec,targets,opts={}){
   const presentation=getSkillPresentation(spec),tuning=getActionPresentationTuning(spec);
-  if(presentation?.ultimate||tuning.tier===6)return 'spotlight';
-  if((spec.radius||0)>=1&&targets.length>1)return 'aoe';
-  return 'action';
+  return resolveActionFocus({
+    attack:spec.key==='attack',fury:Boolean(spec.fury),skill:isSkillSpec(spec),
+    ultimate:Boolean(presentation?.ultimate),signature:tuning.tier===6,
+    actorBoss:Boolean(att?.boss),actorElite:Boolean(att?.elite),
+    multiTarget:(spec.radius||0)>=1&&targets.length>1,
+    forceSpotlight:Boolean(opts.forceSpotlight),reduced:REDUCED_GRAPHICS,
+  });
 }
 function unitShotPoint(u){ return u&&u.grp?{x:u.grp.position.x,y:u.grp.position.y,z:u.grp.position.z}:undefined; }
 // While an action plays only its caster and its targets stay on screen: every other unit is hidden, then brought back on exit.
@@ -2436,11 +2445,20 @@ function stageRevealUnit(u){ if(u&&u._opSnap)stageRestoreUnit(u); }
 function stageRestoreUnits(){ if(!G._stageFaded)return; for(const o of G._stageFaded)stageRestoreUnit(o); G._stageFaded=null; }
 async function presentActionEnter(att,targets,spec,opts={}){
   hideActionPreview();
-  const kind=opts.forceSpotlight?'spotlight':actionShotKind(spec,targets);
+  const plan=actionFocusPlan(att,spec,targets,opts),kind=plan.kind;
   const target=targets.find(t=>t!==att)||targets[0]||null;
-  G.spotlight={kind};
+  G.spotlight={kind,level:plan.level,plan};
   stageIsolateUnits(new Set([att,...targets]));
-  if(kind!=='spotlight'){ await cameraDirector.frame(kind,unitShotPoint(att),unitShotPoint(target),REDUCED_GRAPHICS?0.2:0.32); return; }
+  if(kind!=='spotlight'){
+    // The light of a marked focus may change under reduced motion too; the camera only moves without it.
+    if(plan.vignette!==null){ killTweens(gradePass.uniforms.vig); tween(gradePass.uniforms.vig,{value:plan.vignette},plan.releaseSeconds+0.1,easeInOut); }
+    if(plan.arenaDim!==null&&G.arena)G.arena.setDim(plan.arenaDim,plan.releaseSeconds+0.1);
+    if(!plan.moveCamera){ await wait(plan.releaseSeconds); return; }
+    // The ease may outlast the release: the action plays on while the camera settles, so the turn is not longer.
+    const move=cameraDirector.frame(kind,unitShotPoint(att),unitShotPoint(target),plan.enterSeconds,plan.ease);
+    await (plan.releaseSeconds<plan.enterSeconds?Promise.race([move,wait(plan.releaseSeconds)]):move);
+    return;
+  }
   const feel=resolveCombatFeel({motionPreset:getActionMotionPreset(spec),visualTier:getActionVisualTier(spec),boss:Boolean(att.boss&&spec.offensive),reducedGraphics:REDUCED_GRAPHICS});
   if(!stageTitleEl)buildStageOverlay();
   if(selRing)selRing.visible=false; if(faceArrow)faceArrow.visible=false;
@@ -2450,18 +2468,25 @@ async function presentActionEnter(att,targets,spec,opts={}){
   stageTitleEl.querySelector('b').textContent=spec.name||'Action';
   stageTitleEl.querySelector('small').textContent=att.name+(etgt?'  \u2192  '+etgt.name:'');
   stageVigEl.classList.add('on'); stageTitleEl.classList.add('on'); dom.ui.classList.add('staging');
-  await Promise.all([wait(feel.stageLeadIn||0.3),cameraDirector.frame('spotlight',unitShotPoint(att),unitShotPoint(target),REDUCED_GRAPHICS?0.3:0.5)]);
+  // Reduced motion keeps the overview: the overlay and the dimmed light carry the spotlight, on the same beat.
+  await Promise.all([wait(feel.stageLeadIn||0.3),plan.moveCamera?cameraDirector.frame('spotlight',unitShotPoint(att),unitShotPoint(target),plan.enterSeconds):wait(plan.releaseSeconds)]);
 }
 async function presentActionExit(){
   const active=G.spotlight; if(!active)return;
   if(active.hold)await Promise.race([active.hold,wait(3)]);
   G.spotlight=null; stageRestoreUnits();
+  const plan=active.plan||null,exitSeconds=plan?plan.exitSeconds:(active.kind==='spotlight'?0.6:0.45);
   if(active.kind==='spotlight'){
     killTweens(Grade.uniforms.vig); tween(Grade.uniforms.vig,{value:COMBAT_PRESENTATION.grade.vignette},0.5,easeInOut);
     if(G.arena)G.arena.setDim(1,0.5);
     if(stageVigEl)stageVigEl.classList.remove('on'); if(stageTitleEl)stageTitleEl.classList.remove('on'); if(dom.ui)dom.ui.classList.remove('staging');
+  } else {
+    if(plan&&plan.vignette!==null){ killTweens(gradePass.uniforms.vig); tween(gradePass.uniforms.vig,{value:COMBAT_PRESENTATION.grade.vignette},exitSeconds,easeInOut); }
+    if(plan&&plan.arenaDim!==null&&G.arena)G.arena.setDim(1,exitSeconds);
   }
-  await cameraDirector.restore(active.kind==='spotlight'?0.6:0.45);
+  // A camera that never left the overview (reduced motion) holds the same beat without moving.
+  if(cameraDirector.atRest){ await wait(exitSeconds); return; }
+  await cameraDirector.restore(exitSeconds,plan?plan.ease:'cubic');
 }
 function rotateCam(){ }
 
@@ -2622,7 +2647,7 @@ function renderObjective(){ if(!dom.objective)return; dom.objective.classList.re
   const wasOpen=dom.objective.querySelector('details')?.open;
   dom.objective.innerHTML=renderCombatObjective({title:COMBAT_LABEL||'Combat tactique',condition:COMBAT_OBJECTIVE,challenge:COMBAT_CHALLENGE?{condition:COMBAT_CHALLENGE.condition,prime:COMBAT_CHALLENGE.prime}:undefined,round:roundLabel,foesDone:foeDone,foesTotal:foes.length,squadLabel,squadValue,expanded:wasOpen??deploying}); }
 // ---- Settings (gear) : purely visual toggles, no rules touched ----
-function applyGraphics(){ REDUCED_GRAPHICS=prefersReducedMotion(REQUESTED_REDUCED_GRAPHICS); settleReducedCastMotion(); document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); if(typeof bloom!=='undefined'&&bloom)bloom.enabled=!REDUCED_GRAPHICS; if(typeof tiltPass!=='undefined'&&tiltPass)tiltPass.enabled=!REDUCED_GRAPHICS; }
+function applyGraphics(){ REDUCED_GRAPHICS=prefersReducedMotion(REQUESTED_REDUCED_GRAPHICS); settleReducedCastMotion(); cameraDirector.sway=REDUCED_GRAPHICS?0:1; document.body.classList.toggle('reduced-graphics',REDUCED_GRAPHICS); if(typeof bloom!=='undefined'&&bloom)bloom.enabled=!REDUCED_GRAPHICS; if(typeof tiltPass!=='undefined'&&tiltPass)tiltPass.enabled=!REDUCED_GRAPHICS; }
 function renderSettings(){ if(!dom.settings)return;
   dom.settings.innerHTML='<div class="settings__ttl">Réglages</div>'+
     // OD-2026-11-05-B: in the campaign, sound and motion live in the game's single settings menu.
@@ -3312,8 +3337,9 @@ async function main(){ applyGraphics(); disposeMotionPreference=onReducedMotionC
     _qaHelpers.playFromFoe=async(key,target=0)=>{
       qaPrepareCombat();
       for(let i=0;G.busy&&i<120;i++)await wait(.25);
-      const owner=aliveUnits('foe').find(unit=>unit.size>1)||aliveUnits('foe')[0],mark=aliveUnits('player')[target]; if(!owner||!mark||G.busy||G.over)return null;
-      const spec=key==='attack'?getSpec(owner,'attack',0,0):getSpec(owner,key);
+      const owner=aliveUnits('foe').find(unit=>unit.size>1)||aliveUnits('foe').find(unit=>unit.elite)||aliveUnits('foe')[0],mark=aliveUnits('player')[target]; if(!owner||!mark||G.busy||G.over)return null;
+      // 'fury' plays the Fury strike exactly as furyStrike builds it (set 1.21.0), for the camera check.
+      const spec=key==='attack'?getSpec(owner,'attack',0,0):key==='fury'?{...getSpec(owner,'attack',0,0),ap:0,fury:true}:getSpec(owner,key);
       G.active=owner; owner.ap=Math.max(owner.ap,spec.ap); mark.hp=mark.maxhp;
       await executeAction(owner,spec,spec.self?owner.gx:mark.gx,spec.self?owner.gz:mark.gz);
       return {owner:owner.name,target:mark.name};
@@ -3337,7 +3363,7 @@ async function main(){ applyGraphics(); disposeMotionPreference=onReducedMotionC
     };
     // Frozen FX clock for exact-moment captures: fxFreeze(true), then fxAdvance(seconds) in 1/60 steps.
     _qaHelpers.unitVisuals=()=>G.units.map(u=>({name:u.name,alive:u.alive,vis:u.grp.visible,sprVis:u.spr?.visible,op:+(u.mat?.opacity??-1).toFixed(2),pos:u.grp.position.toArray().map(v=>+v.toFixed(2)),anim:u.pixelRig?.clock?.name??u._pixelAnim??null}));
-    _qaHelpers.spotlightState=()=>({kind:G.spotlight?.kind??null,hold:Boolean(G.spotlight?.hold),fxTime:+fxEngine.time.toFixed(2),camera:cameraDirector.kind,timeScale:G.timeScale||1});
+    _qaHelpers.spotlightState=()=>{ const shot=cameraDirector.shot; return {kind:G.spotlight?.kind??null,level:G.spotlight?.level??null,hold:Boolean(G.spotlight?.hold),fxTime:+fxEngine.time.toFixed(2),camera:cameraDirector.kind,moving:cameraDirector.moving,dist:+shot.dist.toFixed(3),height:+shot.height.toFixed(3),yaw:+shot.yaw.toFixed(3),vignette:+gradePass.uniforms.vig.value.toFixed(3),dim:+(G.arena?.dimLevel??1).toFixed(3),reduced:REDUCED_GRAPHICS,timeScale:G.timeScale||1}; };
     _qaHelpers.fxFreeze=(on=true)=>{ G.fxFrozen=Boolean(on); return G.fxFrozen; };
     _qaHelpers.fxInspect=()=>fxEngine.root.children.filter(o=>o.visible&&!o.isLight).map(o=>({type:o.type,order:o.renderOrder,pos:o.position.toArray().map(v=>+v.toFixed(2)),scale:o.scale.toArray().map(v=>+v.toFixed(2)),uniforms:o.material?.uniforms?Object.fromEntries(Object.entries(o.material.uniforms).filter(([,u])=>typeof u.value==='number').map(([k,u])=>[k,+u.value.toFixed(2)])):null}));
     _qaHelpers.fxAdvance=(seconds)=>{ const steps=Math.max(1,Math.round(seconds*60)); for(let i=0;i<steps;i++)fxEngine.update(seconds/steps); return fxEngine.activeCount; };

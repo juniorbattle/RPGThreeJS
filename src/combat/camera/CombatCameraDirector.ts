@@ -1,8 +1,9 @@
 /**
- * Combat camera director: tactical overview, short action push-ins and the
- * in-arena "spotlight" used for ultimates and boss signatures (it replaces the
- * separate Combat Stage scene). Pure interpolation; the runtime applies the
- * resulting shot to its PerspectiveCamera every frame.
+ * Combat camera director: tactical overview, short action push-ins, the graded
+ * skill focus (`skill` for ordinary skills, `focus` for elite and boss skills
+ * and the Fury strike) and the in-arena "spotlight" used for ultimates and boss
+ * signatures (it replaces the separate Combat Stage scene). Pure interpolation;
+ * the runtime applies the resulting shot to its PerspectiveCamera every frame.
  */
 export interface CameraShot {
   /** Look-at target. */
@@ -18,7 +19,10 @@ export interface CameraShot {
   fov: number;
 }
 
-export type ShotKind = 'tactical' | 'action' | 'aoe' | 'spotlight' | 'impact' | 'field';
+export type ShotKind = 'tactical' | 'action' | 'skill' | 'focus' | 'aoe' | 'spotlight' | 'impact' | 'field';
+
+/** Easing of a camera move: `cubic` (action push-ins, spotlight) or the softer `sine` (skill focus). */
+export type CameraEase = 'cubic' | 'sine';
 
 export interface ShotPoint {
   x: number;
@@ -77,6 +81,32 @@ export function shotFor(kind: ShotKind, base: CameraShot, actor?: ShotPoint, tar
       fov: -1,
     };
   }
+  if (kind === 'skill') {
+    // Ordinary skill: a light push-in, a little closer and lower than a weapon
+    // attack, leaning toward the caster, who is the subject of a skill.
+    return {
+      tx: mx * 0.62 + (actor.x - mx) * 0.1,
+      ty: base.ty - 0.42,
+      tz: mz * 0.55,
+      yaw: clamp(side * 0.07 - mx * 0.012, -0.14, 0.14),
+      dist: base.dist * clamp(0.68 + span * 0.025, 0.68, 0.84),
+      height: base.height * 0.8,
+      fov: -1.5,
+    };
+  }
+  if (kind === 'focus') {
+    // Elite and boss skills, the Fury strike: a marked focus between the skill
+    // push-in and the spotlight, without its title, letterbox or punch.
+    return {
+      tx: mx * 0.72 + (actor.x - mx) * 0.16,
+      ty: base.ty - 0.55,
+      tz: mz * 0.62,
+      yaw: clamp(side * (0.1 + span * 0.006) - mx * 0.01, -0.18, 0.18),
+      dist: base.dist * clamp(0.58 + span * 0.025, 0.58, 0.74),
+      height: base.height * 0.66,
+      fov: -2,
+    };
+  }
   if (kind === 'aoe') {
     return {
       tx: tgt.x * 0.4,
@@ -125,6 +155,8 @@ export function shotFor(kind: ShotKind, base: CameraShot, actor?: ShotPoint, tar
 }
 
 const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+const easeInOutSine = (t: number) => (1 - Math.cos(Math.PI * t)) / 2;
+const EASES: Record<CameraEase, (t: number) => number> = { cubic: easeInOutCubic, sine: easeInOutSine };
 
 export class CombatCameraDirector {
   private current: CameraShot;
@@ -133,8 +165,9 @@ export class CombatCameraDirector {
   private elapsed = 0;
   private duration = 0;
   private resolve: (() => void) | null = null;
+  private ease: (t: number) => number = easeInOutCubic;
   private swayTime = 0;
-  /** Gentle idle drift (HD-2D cameras breathe a little). 0 disables it. */
+  /** Gentle idle drift (HD-2D cameras breathe a little). 0 disables it (reduced motion). */
   sway = 1;
   kind: ShotKind = 'tactical';
 
@@ -165,17 +198,23 @@ export class CombatCameraDirector {
   }
 
   /** Tweens to a framed shot. Resolves when the move ends (or is superseded). */
-  frame(kind: ShotKind, actor?: ShotPoint, target?: ShotPoint, seconds = 0.45): Promise<void> {
-    return this.goTo(shotFor(kind, this.base, actor, target), seconds, kind);
+  frame(kind: ShotKind, actor?: ShotPoint, target?: ShotPoint, seconds = 0.45, ease: CameraEase = 'cubic'): Promise<void> {
+    return this.goTo(shotFor(kind, this.base, actor, target), seconds, kind, ease);
   }
 
-  restore(seconds = 0.6): Promise<void> {
-    return this.goTo(copyShot(this.base), seconds, 'tactical');
+  restore(seconds = 0.6, ease: CameraEase = 'cubic'): Promise<void> {
+    return this.goTo(copyShot(this.base), seconds, 'tactical', ease);
   }
 
-  goTo(shot: CameraShot, seconds: number, kind: ShotKind = 'action'): Promise<void> {
+  /** True when the camera rests on the tactical overview (no move in flight). */
+  get atRest(): boolean {
+    return this.kind === 'tactical' && this.resolve === null;
+  }
+
+  goTo(shot: CameraShot, seconds: number, kind: ShotKind = 'action', ease: CameraEase = 'cubic'): Promise<void> {
     this.resolve?.();
     this.kind = kind;
+    this.ease = EASES[ease] ?? easeInOutCubic;
     this.from = copyShot(this.current);
     this.to = copyShot(shot);
     this.elapsed = 0;
@@ -194,7 +233,7 @@ export class CombatCameraDirector {
     if (this.resolve) {
       this.elapsed += dt;
       const t = this.duration > 0 ? this.elapsed / this.duration : 1;
-      this.current = lerpShot(this.from, this.to, easeInOutCubic(Math.min(1, t)));
+      this.current = lerpShot(this.from, this.to, this.ease(Math.min(1, t)));
       if (t >= 1) {
         const done = this.resolve;
         this.resolve = null;
@@ -203,7 +242,7 @@ export class CombatCameraDirector {
     }
     const out = copyShot(this.current);
     if (this.sway > 0) {
-      const s = this.sway * (this.kind === 'spotlight' ? 0.6 : 1);
+      const s = this.sway * (this.kind === 'spotlight' || this.kind === 'focus' ? 0.6 : 1);
       out.yaw += Math.sin(this.swayTime * 0.21) * 0.006 * s;
       out.height += Math.sin(this.swayTime * 0.33 + 1.3) * 0.05 * s;
     }
