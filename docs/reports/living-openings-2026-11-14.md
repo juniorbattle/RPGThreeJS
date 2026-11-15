@@ -46,7 +46,7 @@ Avant et après, pour chaque tableau vivant. La colonne « 1er événement » do
 | Fin de l'épreuve du Lion | 12 + 18 = 30 s | 1,6 · 0,43 | aucune · 0,43 | 16,0 s | 5 + 13 = 18 s | 0,3 · 0,3 | aucune · 0,3 | 3,4 s |
 | Arrivée chez Borin | 10 + 16 = 26 s | 0,93 · 0,43 | aucune · 0,43 | 8,7 s | 6 + 11 = 17 s | 0,3 · 0,3 | 0,3 · 0,3 | 3,3 s |
 | L'Ours, par l'honneur | 12 + 16 = 28 s | 1,73 · 0,63 | aucune · 0,63 | 3,2 s | 5 + 12 = 17 s | 0,33 · 0,3 | aucune · 0,3 | 0 s |
-| L'Ours, par la force | 12 + 16 = 28 s | 1,23 · 0,43 | aucune · 0,43 | 14,0 s | 5 + 12 = 17 s | 0,23 · 0,3 | aucune · 0,3 | 4,1 s |
+| L'Ours, par la force | 12 + 16 = 28 s | 1,23 · 0,43 | aucune · 0,43 | 14,0 s | 5 + 11 = 16 s | 0,23 · 0,3 | aucune · 0,3 | 3,2 s |
 | Arrivée chez Kaelen | 10 + 16 = 26 s | 0,47 · 0,43 | aucune · 0,43 | 8,8 s | 6 + 11 = 17 s | 0,2 · 0,3 | 0,57 · 0,3 | 2,4 s |
 | Le Dragon, par l'honneur | 12 + 16 = 28 s | 1,73 · 0,63 | aucune · 0,63 | 5,1 s | 5 + 12 = 17 s | 0,33 · 0,3 | aucune · 0,3 | 2,6 s |
 | Le Dragon, par la force | 12 + 16 = 28 s | 1,73 · 0,43 | aucune · 0,43 | 14,0 s | 5 + 12 = 17 s | 0,33 · 0,3 | aucune · 0,3 | 3,8 s |
@@ -56,7 +56,7 @@ Avant et après, pour chaque tableau vivant. La colonne « 1er événement » do
 | La trahison | 14 + 16 = 30 s | 2,5 · 0,63 | aucune · 0,63 | 3,8 s | 6 + 12 = 18 s | 0,47 · 0,3 | aucune · 0,3 | 2,2 s |
 | Avant les trois épilogues (même séquence) | 10 + 14 = 24 s | 0,77 · 0,63 | aucune · 0,63 | 0 s | 5 + 11 = 16 s | 0,2 · 0,3 | aucune · 0,3 | 0 s |
 
-Écart restant : le plus long creux de « L'Ours, par la force » mesure 4,1 s, à la fin de la terrasse, pour une règle à 4 s. Sur demande, un plan plus court d'une seconde le ramène sous le seuil.
+Écart corrigé le même jour : le plus long creux de « L'Ours, par la force » mesurait 4,1 s, à la fin de la terrasse, pour une règle à 4 s. Sur la réponse de l'opérateur « Oui, raccourcis-le », la terrasse passe de 12 à 11 s : le creux tombe à 3,2 s et le tableau dure 16 s. Mesure refaite sur les 20 tableaux : tous restent sous 4 s, le plus long étant « Le Dragon, par la force » (3,8 s). En jeu au labo QA, sans affichage, le tableau reste 17,3 s à l'écran rideau compris, en réglages par défaut comme en mouvement réduit émulé, sans erreur.
 
 ## Ce qui change
 

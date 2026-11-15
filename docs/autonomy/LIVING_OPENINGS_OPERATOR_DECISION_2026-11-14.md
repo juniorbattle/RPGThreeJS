@@ -63,3 +63,7 @@ La fiche d'arbitrages a été publiée en page privée : [Cinématiques dès la 
 - **Mouvement réduit.** Il garde la caméra fixe et fait paraître les figures en fondu. Le vent reste animé, comme le contrat le permet.
 - **Rideau.** Le rideau noir partagé reste à chaque transition.
 - **Mises en scène antérieures.** Cette décision remplace, pour leurs durées et le plan 1 des arrivées, les plans décrits dans [OD-2026-11-04-B](LIVING_TABLEAUX_ENDINGS_OPERATOR_DECISION_2026-11-04.md) (« La salle vide », plans de 10, 12 et 16 s) et dans les tables du [2026-11-13](PLATEAU_MOMENTS_OPERATOR_DECISION_2026-11-13.md). Leurs faits sont inchangés.
+
+## Correctif de « L’Ours, par la force »
+
+La mesure après livraison laissait un creux de 4,1 s à la fin de la terrasse de « L’Ours, par la force », pour une règle à 4 s. L’opérateur répond, mot à mot : « Oui, raccourcis-le ». Le plan de la terrasse passe de 12 à 11 s, sur le même trajet de caméra : le plus long creux tombe à 3,2 s et le tableau dure 16 s au lieu de 17. Les 20 tableaux vivants respectent désormais la règle.

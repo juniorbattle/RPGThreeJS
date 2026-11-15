@@ -109,7 +109,7 @@ export const BEAR_FORCE = momentScript({
     // The sunset over the peaks; the camera comes down onto the terrace.
     { id: 'bear_sunset', seconds: 5, from: { x: 1200, y: 300, zoom: 1.45 }, to: { x: 800, y: 480, zoom: 1.2 }, vanishing: { x: 500, y: 560 }, openingGust: true },
     // Borin on the last step before his shut doors, two warriors at the doors, the company among the broken spears.
-    { id: 'bear_terrace', seconds: 12, from: { x: 560, y: 620, zoom: 1.15 }, to: { x: 540, y: 580, zoom: 1.06 }, vanishing: { x: 500, y: 560 }, cast: true },
+    { id: 'bear_terrace', seconds: 11, from: { x: 560, y: 620, zoom: 1.15 }, to: { x: 540, y: 580, zoom: 1.06 }, vanishing: { x: 500, y: 560 }, cast: true },
   ],
   // Nobody steps aside, nothing is handed over: the epilogue says the warriors let the company pass.
   actors: [
