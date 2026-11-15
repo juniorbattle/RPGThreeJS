@@ -67,3 +67,21 @@ La fiche d'arbitrages a été publiée en page privée : [Cinématiques dès la 
 ## Correctif de « L’Ours, par la force »
 
 La mesure après livraison laissait un creux de 4,1 s à la fin de la terrasse de « L’Ours, par la force », pour une règle à 4 s. L’opérateur répond, mot à mot : « Oui, raccourcis-le ». Le plan de la terrasse passe de 12 à 11 s, sur le même trajet de caméra : le plus long creux tombe à 3,2 s et le tableau dure 16 s au lieu de 17. Les 20 tableaux vivants respectent désormais la règle.
+
+## Personnages ancrés au sol
+
+Le 2026-11-14, l'opérateur écrit, mot à mot : « cinematics dragon force montre un problemen de composition, chef dragon et son adjoint ne sont pas bien integre dns le decors et donne l'impression de flotter... » et « D'autres scenes comme scorpion arrive demontrent un probleme de positionn des personnages direct et indirect ( les ombres ) et souvent donne l'impression de flotter dans les airs car ils sont bien integre au sol du decors... je vais te partager la plys part de cinematics concerne mais a toi de faiire un check et correction generale ».
+
+La revue des 20 tableaux vivants, une image par plan avec les figures en place, a trouvé deux défauts :
+
+- **Placements hors du sol.** Dans « Le Dragon, par la force », Kaelen et ses deux gardiens étaient posés sur les socles des braseros. Dans « L'Ours, par la force », les deux guerriers de Borin étaient perchés sur un poteau et sur un bloc de pierre. Dans la salle du Grand Inquisiteur, les érudits étaient peints par-dessus les tables. Les gardes de l'audience chevauchaient la base des piliers.
+- **Aplats sombres.** Les figurants des salles claires, voulus en « silhouettes sombres » ou « sans lumière », étaient des aplats sans modelé ni ombre. Ils se lisaient comme des découpes collées sur la peinture.
+
+Corrigé, présentation seule :
+
+- **Dragon, par la force.** Kaelen se tient sur les marches de sa salle, et ses deux gardiens sur la marche du haut, devant les portes, comme le dit la table des moments.
+- **Ours, par la force.** Borin et ses deux guerriers se tiennent sur la marche du haut, devant les portes.
+- **Arrivées et audience.** Les guerriers de Borin, les gardiens de Kaelen, les érudits du Grand Inquisiteur et les gardes de l'audience se tiennent sur le sol libre : au pied des marches, devant la balustrade, devant les tables.
+- **Figurants des salles claires.** Ils restent dans l'ombre, nettement plus sombres que la compagnie, mais ils sont modelés et posés au sol avec leur ombre portée et leur ombre de contact, au lieu d'aplats.
+- **Tailles.** Les guerriers, les gardiens et les érudits passent de 55 % à 80 % de l'échelle du sol, puisqu'ils se tiennent désormais à quelques pas devant. Les gardes de l'audience gardent leur taille (75 %), plus petits que la compagnie.
+- **Inchangé.** Les autres scènes étaient déjà ancrées : Bois-Clair, le jugement, les deux fins de route, les issues d'honneur, la cour du Scorpion, la trahison et les épilogues. Aucun fait, aucun personnage, aucune image ni aucun texte nouveau. Aucun champ de sauvegarde. Rapport : [living-grounding-2026-11-14](../reports/living-grounding-2026-11-14.md).

@@ -3,7 +3,7 @@ import { ash, CANDLE, FIRE, paintedFires, paintLights } from '../opening/opening
 import { PropLayer, type Light } from '../opening/openingLayer';
 import type { LivingScript } from './LivingTableauPlayer';
 import { bannerSway, lightShafts, type Banner, type Shaft } from './livingAtmosphere';
-import { ExtraCrowd, FigureCast, placeCast, type DepthScale, type Extra, type FigureLight, type Walker } from './livingFigures';
+import { FigureCast, placeCast, type DepthScale, type Extra, type FigureLight, type Walker } from './livingFigures';
 
 /**
  * `alaric_audience_arrival`, before `lion_briefing` (set 1.14.0, OD-2026-11-04-B). Established by `camp_departure`:
@@ -27,14 +27,14 @@ export const AUDIENCE_ACTORS: readonly Walker[] = [
 ];
 
 /**
- * A few guards standing far off at the back of the hall, unlit, as scenery: no line names them, so they never come
+ * A few guards standing far off at the back of the hall, in shadow, as scenery: no line names them, so they never come
  * forward. They are drawn smaller than the floor would make them, to stay in the distance behind the company.
  */
 export const AUDIENCE_GUARDS: readonly Extra[] = [
-  { id: 'village_militia_spearman', at: 0.1, seconds: 1, from: [500, 510], to: [500, 510] },
-  { id: 'village_militia_spearman', at: 0.2, seconds: 1, from: [622, 516], to: [622, 516] },
-  { id: 'village_militia_spearman', at: 0.3, seconds: 1, from: [762, 538], to: [762, 538] },
-  { id: 'village_militia_spearman', at: 0.4, seconds: 1, from: [1500, 556], to: [1500, 556] },
+  { id: 'village_militia_spearman', at: 0.1, seconds: 1, from: [420, 540], to: [420, 540] },
+  { id: 'village_militia_spearman', at: 0.2, seconds: 1, from: [560, 536], to: [560, 536] },
+  { id: 'village_militia_spearman', at: 0.3, seconds: 1, from: [640, 552], to: [640, 552] },
+  { id: 'village_militia_spearman', at: 0.4, seconds: 1, from: [1440, 572], to: [1440, 572] },
 ];
 export const guardDepth: DepthScale = (y) => audienceDepth(y) * 0.75;
 
@@ -66,23 +66,34 @@ const AUDIENCE_LIGHT: FigureLight = {
   shadowFrom: { x: 1150, y: 160 }, shadowReach: 0.34, shadowAlpha: 0.24,
 };
 
+/**
+ * The far guards, kept in shadow but modelled and grounded with their own shadow, well darker than the company: flat
+ * silhouettes read as cut-outs floating against the bright hall (2026-11-14).
+ * They stand where they are, as extras, drawn before the actors so the company stays in front.
+ */
+const GUARD_LIGHT: FigureLight = {
+  top: [168, 154, 140], middle: [146, 132, 122], bottom: [82, 74, 84], rim: [255, 220, 160], rimAlpha: 0.3, rimOffset: [0, -1],
+  shadowFrom: { x: 1150, y: 160 }, shadowReach: 0.28, shadowAlpha: 0.2,
+};
+
 function audiencePainter(sheets: SheetBook, actors: readonly Walker[], guards: readonly Extra[], seed: number): ShotPainter {
   const fires = paintedFires(BRAZIERS, seed);
   const shafts = lightShafts(SHAFTS, [255, 226, 168], 0.09);
   const banners = bannerSway(AUDIENCE_IMAGE, BANNERS, seed);
   const layer = new PropLayer();
-  const crowd = new ExtraCrowd(sheets, 'rgb(54,44,48)');
+  const guardCast = new FigureCast(GUARD_LIGHT);
+  const standingGuards: readonly Walker[] = guards.map((guard) => ({ id: guard.id, at: guard.at, from: guard.from, to: guard.to, facing: 'RIGHT', speed: 60 }));
   const cast = new FigureCast(AUDIENCE_LIGHT);
   const dust = ash(54, seed + 5, [255, 226, 170]);
   return (frame) => {
-    const { ctx, camera, seconds, dt, reduced } = frame;
+    const { ctx, camera, seconds, reduced } = frame;
     banners(frame);
     shafts(frame);
     paintLights(frame, HALL_LIGHTS);
     fires(frame);
     const props = layer.begin();
     if (props) {
-      crowd.draw(props, guards, seconds, dt, reduced, guardDepth);
+      guardCast.draw(props, placeCast(standingGuards, sheets, seconds, reduced, guardDepth), seconds);
       cast.draw(props, placeCast(actors, sheets, seconds, reduced, audienceDepth), seconds);
       layer.present(ctx, camera);
     }

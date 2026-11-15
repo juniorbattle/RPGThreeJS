@@ -36,16 +36,16 @@ export const BEAR_ARRIVAL_ACTORS: readonly Walker[] = [
 ];
 
 /**
- * A few Bear warriors standing far off at the back of the hall, unlit, as scenery (proposition): no line names them, so
+ * A few Bear warriors standing far off at the back of the hall, in shadow, as scenery (proposition): no line names them, so
  * they never come forward, and they are drawn smaller than the floor would make them, behind the company.
  */
 export const BEAR_HALL_WARRIORS: readonly Extra[] = [
-  { id: 'bear_warrior', at: 0.1, seconds: 1, from: [648, 594], to: [648, 594] },
-  { id: 'bear_warrior', at: 0.2, seconds: 1, from: [744, 592], to: [744, 592] },
-  { id: 'bear_warrior', at: 0.3, seconds: 1, from: [1296, 592], to: [1296, 592] },
-  { id: 'bear_warrior', at: 0.4, seconds: 1, from: [1392, 596], to: [1392, 596] },
+  { id: 'bear_warrior', at: 0.1, seconds: 1, from: [650, 622], to: [650, 622] },
+  { id: 'bear_warrior', at: 0.2, seconds: 1, from: [770, 608], to: [770, 608] },
+  { id: 'bear_warrior', at: 0.3, seconds: 1, from: [1240, 612], to: [1240, 612] },
+  { id: 'bear_warrior', at: 0.4, seconds: 1, from: [1335, 622], to: [1335, 622] },
 ];
-export const bearWarriorDepth: DepthScale = (y) => bearHallDepth(y) * 0.55;
+export const bearWarriorDepth: DepthScale = (y) => bearHallDepth(y) * 0.8;
 
 /** The two braziers at the foot of the stone seat and the fire basket on the right. */
 const HALL_FIRES: readonly FireSpot[] = [
@@ -82,7 +82,11 @@ const HALL_SCENE: MomentScene = {
   fires: HALL_FIRES,
   sway: HALL_BANNERS,
   motes: { count: 40, color: [255, 210, 160], amount: 0.4 },
-  extras: { tint: 'rgb(16,13,18)', depth: bearWarriorDepth },
+  // In shadow but modelled and grounded, well darker than the company, rather than flat silhouettes that read as cut-outs (2026-11-14).
+  extras: {
+    tint: 'rgb(16,13,18)', depth: bearWarriorDepth,
+    lit: { top: [166, 138, 114], middle: [136, 114, 102], bottom: [68, 58, 68], rim: [255, 178, 96], rimAlpha: 0.3, rimOffset: [0, -1], shadowFrom: { x: 1020, y: 400 }, shadowReach: 0.28, shadowAlpha: 0.22 },
+  },
 };
 
 export const BEAR_ARRIVAL = momentScript({

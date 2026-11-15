@@ -113,10 +113,10 @@ export const BEAR_FORCE = momentScript({
   ],
   // Nobody steps aside, nothing is handed over: the epilogue says the warriors let the company pass.
   actors: [
-    standing('borin', 0.05, 410, 456, 'RIGHT', CHIEF_STATURE),
+    standing('borin', 0.05, 384, 460, 'RIGHT', CHIEF_STATURE),
     standing('marian', 0.15, 640, 690, 'LEFT'), standing('sage_seraphine', 0.3, 830, 704, 'LEFT'), standing('maelor', 0.45, 960, 730, 'LEFT'),
   ],
-  extras: [still('bear_warrior', 0.1, 268, 452), still('bear_warrior', 0.2, 556, 456)],
+  extras: [still('bear_warrior', 0.1, 322, 462), still('bear_warrior', 0.2, 446, 462)],
   sheets: ['marian', 'borin', 'bear_warrior'],
   portraits: ['sage_seraphine', 'maelor'],
   seed: 7201,

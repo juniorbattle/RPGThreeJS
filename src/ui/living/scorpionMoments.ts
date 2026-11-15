@@ -38,7 +38,11 @@ const ARCHIVES_SCENE: MomentScene = {
     color: [255, 226, 160], alpha: 0.08,
   },
   motes: { count: 60, color: [255, 232, 180], amount: 0.45 },
-  extras: { tint: 'rgb(46,34,30)', depth: (y) => archivesDepth(y) * 0.55 },
+  // In shadow but modelled and grounded, before the tables rather than drawn over them as flat silhouettes (2026-11-14).
+  extras: {
+    tint: 'rgb(46,34,30)', depth: (y) => archivesDepth(y) * 0.8,
+    lit: { top: [168, 152, 130], middle: [148, 128, 108], bottom: [80, 68, 70], rim: [255, 220, 150], rimAlpha: 0.3, rimOffset: [0, -1], shadowFrom: { x: 1040, y: 60 }, shadowReach: 0.28, shadowAlpha: 0.2 },
+  },
 };
 
 export const SCORPION_ARRIVAL = momentScript({
@@ -58,7 +62,7 @@ export const SCORPION_ARRIVAL = momentScript({
     { id: 'maelor', at: 1.3, from: [640, 1095], to: [736, 746], facing: 'RIGHT', speed: 80 },
   ],
   // A few scholars far off among the desks and shelves, still: the arrival names the clan's scholars, none speaks.
-  extras: [still('scorpion_scholar', 0.1, 560, 652), still('scorpion_scholar', 0.2, 650, 648), still('scorpion_scholar', 0.3, 1290, 650), still('scorpion_scholar', 0.4, 1400, 656)],
+  extras: [still('scorpion_scholar', 0.1, 585, 680), still('scorpion_scholar', 0.2, 700, 676), still('scorpion_scholar', 0.3, 1225, 676), still('scorpion_scholar', 0.4, 1385, 682)],
   sheets: ['kestrel', 'grand_inquisitor', 'scorpion_scholar'],
   portraits: ['sage_seraphine', 'maelor'],
   seed: 7601,

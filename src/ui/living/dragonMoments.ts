@@ -47,7 +47,11 @@ const HALL_SCENE: MomentScene = {
     risingSpray({ seed: seed + 4, count: 6, x: 1372, y: 360, spread: 20, height: 120, size: 50, color: [235, 232, 226], alpha: 0.14 }),
   ],
   motes: { count: 36, color: [255, 240, 204], amount: 0.35 },
-  extras: { tint: 'rgb(40,40,52)', depth: (y) => hallDepth(y) * 0.55 },
+  // In shadow but modelled and grounded, well darker than the company, rather than flat silhouettes that read as cut-outs (2026-11-14).
+  extras: {
+    tint: 'rgb(40,40,52)', depth: (y) => hallDepth(y) * 0.8,
+    lit: { top: [168, 160, 150], middle: [144, 136, 132], bottom: [82, 78, 92], rim: [255, 236, 204], rimAlpha: 0.3, rimOffset: [-1, -1], shadowFrom: { x: 400, y: 150 }, shadowReach: 0.28, shadowAlpha: 0.2 },
+  },
 };
 
 export const DRAGON_ARRIVAL = momentScript({
@@ -67,7 +71,7 @@ export const DRAGON_ARRIVAL = momentScript({
     { id: 'maelor', at: 1.3, from: [860, 1095], to: [958, 714], facing: 'RIGHT', speed: 80 },
   ],
   // A few Dragon guardians far off by the columns, as scenery: no line names them.
-  extras: [still('dragon_guardian', 0.1, 470, 604), still('dragon_guardian', 0.2, 640, 598), still('dragon_guardian', 0.3, 836, 596), still('dragon_guardian', 0.4, 1486, 604)],
+  extras: [still('dragon_guardian', 0.1, 480, 616), still('dragon_guardian', 0.2, 690, 618), still('dragon_guardian', 0.3, 868, 632), still('dragon_guardian', 0.4, 1440, 652)],
   sheets: ['elara', 'kaelen', 'dragon_guardian'],
   portraits: ['sage_seraphine', 'maelor'],
   seed: 7301,
@@ -164,10 +168,10 @@ export const DRAGON_FORCE = momentScript({
   ],
   // Nobody steps aside: the epilogue says the guardians let the company pass.
   actors: [
-    standing('kaelen', 0.05, 250, 456, 'RIGHT', CHIEF_STATURE),
+    standing('kaelen', 0.05, 340, 538, 'RIGHT', CHIEF_STATURE),
     standing('elara', 0.15, 520, 690, 'LEFT'), standing('sage_seraphine', 0.3, 700, 706, 'LEFT'), standing('maelor', 0.45, 840, 736, 'LEFT'),
   ],
-  extras: [still('dragon_guardian', 0.1, 120, 458), still('dragon_guardian', 0.2, 410, 462)],
+  extras: [still('dragon_guardian', 0.1, 205, 470), still('dragon_guardian', 0.2, 292, 470)],
   sheets: ['elara', 'kaelen', 'dragon_guardian'],
   portraits: ['sage_seraphine', 'maelor'],
   seed: 7501,
