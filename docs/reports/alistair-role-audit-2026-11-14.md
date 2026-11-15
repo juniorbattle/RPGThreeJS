@@ -255,7 +255,7 @@ Recommandation : ne rien changer. Alistair y parle en « nous », à côté de S
 
 ## Observations hors du périmètre
 
-- **Elara n’a aucune réplique dans l’acte final et ses fins**, ni à l’Ours ni au Scorpion, et elle n’entre pas dans les tableaux vivants de l’acte final. OD-2026-11-13-C prévoit pourtant « toute la compagnie » à l’acte final. Ce point relève d’une autre tâche, qui demanderait du texte nouveau.
+- **Elara n’a aucune réplique dans l’acte final et ses fins**, ni à l’Ours ni au Scorpion, et elle n’entre pas dans les tableaux vivants de l’acte final. OD-2026-11-13-C prévoit pourtant « toute la compagnie » à l’acte final. Ce point relève d’une autre tâche, qui demanderait du texte nouveau. `APPROVED DECISION` : l’opérateur l’écarte le 2026-11-14, « non une voix n’est pas prevu... surtout pour une seule scene finale en toute fin cela ne vaut pas la peine » (OD-2026-11-14-B).
 - Le commentaire du code du pion de carte (« The company's leader ») devra suivre la décision C2. Fait : il parle désormais de la compagnie et du héros de la partie.
 
 ## Vérification et limites

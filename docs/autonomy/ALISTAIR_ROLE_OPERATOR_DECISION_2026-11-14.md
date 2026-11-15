@@ -31,6 +31,7 @@ L’opérateur, le 2026-11-14, mot à mot : « j’ai l’impression que certain
 - **La figure de la compagnie (C2).** Présentation seule. Le pion de la carte prend la figurine du héros de la partie : Alistair au Lion et à l’acte final, Marian à l’Ours, Elara au Dragon, Kestrel au Scorpion. Au panneau de fin de chaque plateau, le héros du plateau prend la place d’Alistair. Au panneau de fin de l’acte final, la compagnie se tient comme dans les tableaux vivants des fins : Alistair, Séraphine, Kestrel et Marian.
 - **Le tag (D1).** Les huit répliques d’Alistair de l’acte final qui portaient « Clan sans terre » portent « Bouclier ». « Clan sans terre » reste aux quatre rencontres avec un chef (`lion_briefing#1b` et les trois `*_audience#alistair`).
 - **Inchangé.** Le dernier mot des fins (D2). L’emblème et l’origine d’Alistair restent une décision ouverte de l’opérateur (E1, OD-2026-10-01-B). Le pilote narratif d’Alistair reste gelé.
+- **Pas de voix pour Elara à l’acte final.** L’audit avait relevé qu’Elara n’y a aucune réplique. L’opérateur, le 2026-11-14, mot à mot : « non une voix n’est pas prevu... surtout pour une seule scene finale en toute fin cela ne vaut pas la peine ». Ne pas le reproposer.
 
 ## Correction d’un compte de la fiche
 
