@@ -101,7 +101,7 @@ describe('the silent extras of the ordinary tableaux (set 1.24.0)', () => {
   it('shows extras only over the painting they were placed on', () => {
     const entry = TABLEAU_EXTRAS.village_choice!;
     expect(tableauExtrasFor('village_choice', `url("/assets/generated/${entry.image}")`)).toBe(entry);
-    expect(tableauExtrasFor('village_choice', 'url("/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.png")')).toBeUndefined();
+    expect(tableauExtrasFor('village_choice', 'url("/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.webp")')).toBeUndefined();
     expect(tableauExtrasFor('village_choice', undefined)).toBeUndefined();
     expect(tableauExtrasFor('camp_departure', `url("/assets/generated/${entry.image}")`)).toBeUndefined();
   });
@@ -145,7 +145,7 @@ describe('the silent extras of the ordinary tableaux (set 1.24.0)', () => {
     const all = allSequences();
     const dressed = stagedTableau(all.get('village_choice')!);
     const elsewhere = new NarrativeSceneSurface(document.createElement('div'), dressed);
-    elsewhere.mount('/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.png');
+    elsewhere.mount('/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/forest-road-tableau.webp');
     await vi.runAllTimersAsync();
     expect(elsewhere.element.querySelector('.narrative-scene-surface__extras')).toBeNull();
     expect(elsewhere.element.dataset.tableauExtras).toBeUndefined();

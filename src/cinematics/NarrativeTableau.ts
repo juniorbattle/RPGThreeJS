@@ -517,7 +517,7 @@ export function createGenericBoundaryTableau(
     grammar: branch ? 'TWO_PATH_FORK' : 'SINGLE_ROUTE',
     family: 'JOURNEY',
     presentationKey,
-    stillImage: '/assets/backdrops/travel_default.png',
+    stillImage: '/assets/backdrops/travel_default.webp',
     media: [],
     cast: {
       visualActors: ['alistair', 'sage_seraphine', 'maelor'],

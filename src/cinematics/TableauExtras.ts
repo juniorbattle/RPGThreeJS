@@ -73,7 +73,7 @@ const lion = (image: string, light: number, extras: readonly TableauExtra[]): Ta
 const postDemo = (part: Exclude<TableauExtrasPart, 'lion'>, dialogueId: string, light: number, extras: readonly TableauExtra[]): TableauExtrasEntry =>
   Object.freeze({ part, image: `post-demo/${part}/scenes/${dialogueId}.webp`, frame: POST_DEMO_FRAME, light, extras: Object.freeze(extras) });
 
-const BURNING = `${LION_TABLEAU}/bois-clair-tableau-burning.png`;
+const BURNING = `${LION_TABLEAU}/bois-clair-tableau-burning.webp`;
 
 /**
  * The ordinary dialogues dressed with extras, each where its own lines already place civilians on the spot. No extra
@@ -81,7 +81,7 @@ const BURNING = `${LION_TABLEAU}/bois-clair-tableau-burning.png`;
  */
 export const TABLEAU_EXTRAS: Readonly<Record<string, TableauExtrasEntry>> = Object.freeze({
   // Lion. « Une trentaine de personnes avancent sans chariot. »
-  refugee_trial: lion(`${LION_TABLEAU}/refugee-road-tableau.png`, 0.92, [
+  refugee_trial: lion(`${LION_TABLEAU}/refugee-road-tableau.webp`, 0.92, [
     pass('refugee', 1330, 576, 196, 700, 44),
     pass('villageois', 1330, 590, 202, 700, 44, 22),
     stand('survivor', 1520, 642, 222, 'LEFT'),
@@ -112,26 +112,26 @@ export const TABLEAU_EXTRAS: Readonly<Record<string, TableauExtrasEntry>> = Obje
     stand('villageois', 1240, 592, 206, 'LEFT'),
   ]),
   // « La nuit est tombée, mais personne ne dort. Les survivants dressent des listes. »
-  ate_bois_clair_night_watch: lion('lion-phase/environments/corrections/bois-clair-night-watch-v1.png', 0.8, [
+  ate_bois_clair_night_watch: lion('lion-phase/environments/corrections/bois-clair-night-watch-v1.webp', 0.8, [
     stand('villageois', 900, 575, 196, 'RIGHT'),
     stand('refugee_mother', 1010, 585, 202, 'LEFT'),
     stand('survivor', 1420, 610, 214, 'LEFT'),
   ]),
   // Saved: « Les enfants sont sains et saufs. » The villagers of the saved sequence.
-  village_defense_aftermath: lion(`${LION_TABLEAU}/bois-clair-tableau-aftermath-saved.png`, 0.92, [
+  village_defense_aftermath: lion(`${LION_TABLEAU}/bois-clair-tableau-aftermath-saved.webp`, 0.92, [
     stand('villageois', 450, 585, 204, 'RIGHT'),
     stand('refugee_mother', 580, 575, 200, 'RIGHT'),
     stand('refugee', 1120, 575, 198, 'LEFT'),
     stand('survivor', 1240, 590, 206, 'LEFT'),
   ]),
   // Sacrificed: « Mais les villageois… ils ne nous maudiront pas à voix haute. » The villagers of the sacrificed sequence.
-  village_raid_aftermath: lion(`${LION_TABLEAU}/bois-clair-tableau-aftermath-sacrificed.png`, 0.85, [
+  village_raid_aftermath: lion(`${LION_TABLEAU}/bois-clair-tableau-aftermath-sacrificed.webp`, 0.85, [
     stand('villageois', 760, 560, 186, 'RIGHT'),
     stand('refugee', 880, 552, 182, 'LEFT'),
     stand('survivor', 1340, 600, 212, 'LEFT'),
   ]),
   // « Les survivants ont dressé leur camp loin du nôtre. »
-  witnesses_on_road: lion(`${LION_TABLEAU}/witness-road-tableau.png`, 0.92, [
+  witnesses_on_road: lion(`${LION_TABLEAU}/witness-road-tableau.webp`, 0.92, [
     stand('villageois', 990, 430, 110, 'LEFT'),
     stand('refugee', 1040, 425, 106, 'LEFT'),
     stand('villageoise', 1090, 435, 112, 'LEFT'),

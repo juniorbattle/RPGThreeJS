@@ -26,7 +26,9 @@ describe('night watch environment correction', () => {
     const bytes = readFileSync(`public${plate.publicUrl}`);
     expect(plate.assetId).toBe(correction.assetId);
     expect(createHash('sha256').update(bytes).digest('hex')).toBe(plate.sha256);
-    expect([bytes.readUInt32BE(16), bytes.readUInt32BE(20)]).toEqual([plate.width, plate.height]);
+    // Lossy WebP (RIFF … WEBPVP8 ): 14-bit little-endian width and height after the frame tag (OD-2026-11-15-A).
+    expect(bytes.toString('ascii', 0, 4) + bytes.toString('ascii', 8, 16)).toBe('RIFFWEBPVP8 ');
+    expect([bytes.readUInt16LE(26) & 0x3fff, bytes.readUInt16LE(28) & 0x3fff]).toEqual([plate.width, plate.height]);
     expect(demoEnvironmentPlateForContext(correction.contextId)).toEqual(plate);
     expect(() => demoEnvironmentPlateForContext(correction.contextId, 'COMBAT_STAGE')).toThrow();
   });

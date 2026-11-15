@@ -12,8 +12,8 @@ import { FigureCast, placeCast, type DepthScale, type FigureLight, type Walker }
  * epilogue tells first. No caption.
  */
 const TABLEAU = '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/';
-export const SERPENT_ENDING_IMAGE = `${TABLEAU}serpent-finale-tableau-aftermath.png`;
-export const TRIAL_ENDING_IMAGE = `${TABLEAU}lion-trial-tableau-aftermath.png`;
+export const SERPENT_ENDING_IMAGE = `${TABLEAU}serpent-finale-tableau-aftermath.webp`;
+export const TRIAL_ENDING_IMAGE = `${TABLEAU}lion-trial-tableau-aftermath.webp`;
 
 /** A figure who stands where they are from the start of the shot and breathes there. */
 const standing = (id: string, at: number, x: number, y: number, facing: Walker['facing']): Walker => ({ id, at, from: [x, y], to: [x, y], facing, speed: 60 });

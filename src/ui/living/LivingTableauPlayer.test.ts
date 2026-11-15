@@ -33,7 +33,7 @@ describe('Bois-Clair arrival script (set 1.13.0, OD-2026-11-04-A)', () => {
   it('lasts at most 30 seconds, on the burning tableau, and names its moment by the dialogue it precedes', () => {
     expect(BOIS_CLAIR_ARRIVAL.id).toBe('bois_clair_arrival');
     expect(BOIS_CLAIR_ARRIVAL.shots.reduce((sum, shot) => sum + shot.seconds, 0)).toBeLessThanOrEqual(30);
-    for (const shot of BOIS_CLAIR_ARRIVAL.shots) expect(shot.image).toContain('bois-clair-tableau-burning.png');
+    for (const shot of BOIS_CLAIR_ARRIVAL.shots) expect(shot.image).toContain('bois-clair-tableau-burning.webp');
     expect(dialogues.has('village_choice')).toBe(true);
   });
 

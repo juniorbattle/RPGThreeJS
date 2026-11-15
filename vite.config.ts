@@ -38,6 +38,16 @@ const HISTORICAL_CINEMATIC_TESTS = [
  */
 const LOCAL_ONLY_PUBLIC_DIRS = ['assets/vfx/megapack-runtime'];
 
+/**
+ * Public files kept in the repository for tools, tests and the art pipeline that the shipped game never requests
+ * (OD-2026-11-15-A, P1 and P2): unused plates and poses, and the PNG masters of the backdrops now loaded as WebP.
+ */
+const PRODUCTION_EXCLUDED_PUBLIC_FILES: readonly string[] = (
+  JSON.parse(readFileSync(new URL('./tools/build/production-excluded-public-assets.json', import.meta.url), 'utf8')) as {
+    groups: { files: string[] }[];
+  }
+).groups.flatMap((group) => group.files);
+
 function excludeLocalOnlyPublicAssets(): Plugin {
   let outDir = 'dist';
   return {
@@ -46,6 +56,32 @@ function excludeLocalOnlyPublicAssets(): Plugin {
     configResolved(config) { outDir = resolve(config.root, config.build.outDir); },
     closeBundle() {
       for (const dir of LOCAL_ONLY_PUBLIC_DIRS) rmSync(join(outDir, dir), { recursive: true, force: true });
+      for (const file of PRODUCTION_EXCLUDED_PUBLIC_FILES) rmSync(join(outDir, file), { force: true });
+    },
+  };
+}
+
+/**
+ * The VFX Composer lab runs in development only (VFX_LAB_ENABLED) and, since OD-2026-10-29-A, production combat plays
+ * procedural FX recipes. Its three report tables (1.8 MB) would still ride in the combat chunk through the lab's
+ * imports, so the production build reads them as empty tables (OD-2026-11-15-A, P4). Candidate lookups then answer
+ * "unknown", as they already did for the megapack PNGs that never ship; the development lab keeps the real tables.
+ */
+const VFX_LAB_REPORT_STUBS: Readonly<Record<string, string>> = {
+  'docs/reports/vfx-megapack-r1-2-4-corrected-inventory.json': '{"results":[]}',
+  'docs/reports/vfx-megapack-r2-selected-runtime-assets.json': '{"assets":[]}',
+  'docs/reports/vfx-cadence-index.json': '{"index":{}}',
+};
+
+function emptyVfxLabReportsInProduction(): Plugin {
+  return {
+    name: 'empty-vfx-lab-reports-in-production',
+    apply: 'build',
+    enforce: 'pre',
+    load(id) {
+      const file = (id.split('?')[0] ?? id).replaceAll('\\', '/');
+      const key = Object.keys(VFX_LAB_REPORT_STUBS).find((report) => file.endsWith(`/${report}`));
+      return key ? VFX_LAB_REPORT_STUBS[key] : null;
     },
   };
 }
@@ -323,7 +359,7 @@ export default defineConfig(({ mode }) => {
   );
 
   return {
-    plugins: [vfxDevAcquisitionPlugin({ megaPackRoot }), excludeLocalOnlyPublicAssets()],
+    plugins: [vfxDevAcquisitionPlugin({ megaPackRoot }), excludeLocalOnlyPublicAssets(), emptyVfxLabReportsInProduction()],
     build: {
       rollupOptions: {
         input: {

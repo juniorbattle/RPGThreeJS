@@ -33,7 +33,7 @@ describe('Narrative Tableau presentation data', () => {
       castPlacementMode: 'SCENE_INTEGRATED', exit: 'RESOLVED_CAMPAIGN_BOUNDARY', media: [],
       cast: { visualActors: ['maelor', 'alistair', 'sage_seraphine'] },
     });
-    expect(CHRONICLE_END_TABLEAU.stillImage).toContain('lion-judgement-tableau.png');
+    expect(CHRONICLE_END_TABLEAU.stillImage).toContain('lion-judgement-tableau.webp');
     expect(CHRONICLE_END_TABLEAU.boundaryAgency).toBeUndefined();
     for (const actorId of CHRONICLE_END_TABLEAU.cast.visualActors) {
       // Each frame stands on the hall floor above the terminal card, which takes the lowest quarter of the screen.

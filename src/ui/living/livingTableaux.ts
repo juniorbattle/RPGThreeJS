@@ -39,10 +39,10 @@ export const LIVING_BACKDROPS: Readonly<Record<string, string>> = Object.freeze(
  * judgement hall under its own name.
  */
 export const LIVING_BACKDROP_IMAGES: Readonly<Record<string, string>> = Object.freeze({
-  lion_briefing: 'alaric-audience-tableau.png',
-  serpent_general_aftermath: 'serpent-finale-tableau-aftermath.png',
-  lion_trial_aftermath: 'lion-trial-tableau-aftermath.png',
-  epilogue: 'lion-judgement-epilogue-tableau.png',
+  lion_briefing: 'alaric-audience-tableau.webp',
+  serpent_general_aftermath: 'serpent-finale-tableau-aftermath.webp',
+  lion_trial_aftermath: 'lion-trial-tableau-aftermath.webp',
+  epilogue: 'lion-judgement-epilogue-tableau.webp',
 });
 
 /** Whether a dialogue's environment shows the picture its backdrop is drawn for. */

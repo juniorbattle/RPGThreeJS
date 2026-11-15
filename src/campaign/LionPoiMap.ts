@@ -1,8 +1,8 @@
 import {lionPoiRegion} from './LionPoiTopology';
 export const LION_POI_REGIONS = Object.freeze([
-  {shortTitle:'I · Le Lion',title:'Du Camp au Refuge du Lion',image:'/assets/generated/lion-phase/poi-lot-e/lion-opening.png'},
-  {shortTitle:'II · Bois-Clair',title:'La vallée de Bois-Clair',image:'/assets/generated/lion-phase/poi-lot-e/bois-clair.png'},
-  {shortTitle:'III · Le Sceau',title:'Les témoins et le jugement',image:'/assets/generated/lion-phase/poi-lot-e/judgement.png'},
+  {shortTitle:'I · Le Lion',title:'Du Camp au Refuge du Lion',image:'/assets/generated/lion-phase/poi-lot-e/lion-opening.webp'},
+  {shortTitle:'II · Bois-Clair',title:'La vallée de Bois-Clair',image:'/assets/generated/lion-phase/poi-lot-e/bois-clair.webp'},
+  {shortTitle:'III · Le Sceau',title:'Les témoins et le jugement',image:'/assets/generated/lion-phase/poi-lot-e/judgement.webp'},
 ]);
 /** Off-region destinations are anchored at visible outbound trails, not waterfalls. The first region's exit sits on
  * the trail that leaves the refuge's stairs, away from the points already behind the company. */

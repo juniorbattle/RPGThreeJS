@@ -51,13 +51,13 @@ describe('opening script (OD-2026-11-02-A)', () => {
   });
 
   it('opens on a neutral ruin: no tableau that carries a faction\'s banner', () => {
-    expect(OPENING_SHOTS[0]?.image).toContain('dragon-roost-area.png');
+    expect(OPENING_SHOTS[0]?.image).toContain('dragon-roost-area.webp');
     expect(OPENING_POLE_CRACKS_AT).toBeGreaterThan(OPENING_SHOTS[0]!.lines[1]!.at);
     expect(OPENING_POLE_LANDS_AT).toBeLessThan(OPENING_SHOTS[0]!.seconds - 1);
   });
 
   it('ends on the camp of the dialogue that follows, with no more than four heroes', () => {
-    expect(OPENING_SHOTS.at(-1)?.image).toContain('lion-camp-tableau.png');
+    expect(OPENING_SHOTS.at(-1)?.image).toContain('lion-camp-tableau.webp');
     expect(OPENING_SHOTS.at(-1)?.to.zoom).toBe(1);
     expect(OPENING_CAST.map(actor => actor.id)).toEqual(['alistair', 'marian', 'kestrel', 'elara']);
     // On the camp's ground, in the middle of the picture, facing each other.

@@ -19,7 +19,7 @@ describe('Alaric audience script (set 1.14.0, OD-2026-11-04-B)', () => {
   it('lasts at most 30 seconds, on the audience tableau, before the briefing', () => {
     expect(ALARIC_AUDIENCE.id).toBe('alaric_audience_arrival');
     expect(seconds(ALARIC_AUDIENCE)).toBeLessThanOrEqual(30);
-    for (const shot of ALARIC_AUDIENCE.shots) expect(shot.image).toContain('alaric-audience-tableau.png');
+    for (const shot of ALARIC_AUDIENCE.shots) expect(shot.image).toContain('alaric-audience-tableau.webp');
     expect(dialogues.has('lion_briefing')).toBe(true);
   });
 
@@ -51,8 +51,8 @@ describe('route ending scripts (set 1.14.0, OD-2026-11-04-B)', () => {
     expect(LION_TRIAL_ROUTE_ENDING.id).toBe('lion_trial_route_ending');
     expect(seconds(SERPENT_ROUTE_ENDING)).toBeLessThanOrEqual(40);
     expect(seconds(LION_TRIAL_ROUTE_ENDING)).toBeLessThanOrEqual(40);
-    for (const shot of SERPENT_ROUTE_ENDING.shots) expect(shot.image).toContain('serpent-finale-tableau-aftermath.png');
-    for (const shot of LION_TRIAL_ROUTE_ENDING.shots) expect(shot.image).toContain('lion-trial-tableau-aftermath.png');
+    for (const shot of SERPENT_ROUTE_ENDING.shots) expect(shot.image).toContain('serpent-finale-tableau-aftermath.webp');
+    for (const shot of LION_TRIAL_ROUTE_ENDING.shots) expect(shot.image).toContain('lion-trial-tableau-aftermath.webp');
   });
 
   it('show the company standing still, without the champion and within four actors', () => {
@@ -91,9 +91,9 @@ describe('living backdrops of set 1.14.0', () => {
 
   it('draws a backdrop only over the picture it was made for', () => {
     const at = (file: string) => `url("/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/${file}")`;
-    expect(livingBackdropFits('serpent_general_aftermath', at('serpent-finale-tableau-aftermath.png'))).toBe(true);
-    expect(livingBackdropFits('serpent_general_aftermath', at('lion-judgement-tableau.png'))).toBe(false);
-    expect(livingBackdropFits('epilogue', at('lion-judgement-epilogue-tableau.png'))).toBe(true);
+    expect(livingBackdropFits('serpent_general_aftermath', at('serpent-finale-tableau-aftermath.webp'))).toBe(true);
+    expect(livingBackdropFits('serpent_general_aftermath', at('lion-judgement-tableau.webp'))).toBe(false);
+    expect(livingBackdropFits('epilogue', at('lion-judgement-epilogue-tableau.webp'))).toBe(true);
     expect(livingBackdropFits('epilogue', 'url("/assets/generated/lion-phase/dialogue/epilogue.webp")')).toBe(false);
     expect(livingBackdropFits('lion_trial_aftermath', '')).toBe(false);
     // The backdrops of set 1.13.0 keep their behaviour.

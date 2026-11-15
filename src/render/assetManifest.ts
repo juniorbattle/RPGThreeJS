@@ -1,4 +1,4 @@
-const travelDefaultBackdrop = '/assets/backdrops/travel_default.png';
+const travelDefaultBackdrop = '/assets/backdrops/travel_default.webp';
 const travelCityBackdrop = '/assets/backdrops/travel_city.png';
 const travelCastleBackdrop = '/assets/backdrops/travel_castle.png';
 
@@ -373,11 +373,11 @@ export const assets = {
     forest_fork: '/assets/generated/lion-phase/dialogue/forest_fork.webp',
   },
   prologueScenes: {
-    prologue_fall: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/dragon-roost-area.png',
-    prologue_seals: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png',
-    prologue_lion: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.png',
-    prologue_shadow: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.png',
-    prologue_departure: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-camp-tableau.png',
+    prologue_fall: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/dragon-roost-area.webp',
+    prologue_seals: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.webp',
+    prologue_lion: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/bois-clair-tableau-burning.webp',
+    prologue_shadow: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/shadow-ruins-tableau.webp',
+    prologue_departure: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-camp-tableau.webp',
   },
   combatScenes: {
     forest_route: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/strategic/forest-route-strategic.png',
@@ -413,7 +413,7 @@ export const assets = {
     management: {
       // OD-2026-11-13-F (P3): the register and the shop show the refuge of the part in progress (src/ui/companyBackdrop.ts);
       // the Lion's first refuge is only the fallback of a run without a refuge.
-      background: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png',
+      background: '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.webp',
     },
     combat: {
       background: '/assets/generated/lion-phase/combat/forest_route.webp',

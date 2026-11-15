@@ -228,7 +228,7 @@ describe('journey campaign boundary', () => {
     expect([...document.querySelectorAll<HTMLElement>('.narrative-cast__actor')].map(actor => actor.dataset.actorId))
       .toEqual(['maelor', 'alistair', 'sage_seraphine']);
     expect(document.querySelector<HTMLElement>('.narrative-scene-surface__environment')?.style.backgroundImage)
-      .toContain('lion-judgement-tableau.png');
+      .toContain('lion-judgement-tableau.webp');
     expect(document.querySelectorAll('[data-journey-choice]')).toHaveLength(0);
     expect(document.querySelector('[data-journey-continue]')?.textContent).toBe('Retour au menu');
     click('[data-journey-continue]');

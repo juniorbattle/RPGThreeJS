@@ -6,8 +6,8 @@ import { createServer } from 'vite';
 
 const output = 'docs/reports/refuge-hub-continuity-1-browser';
 const base = 'http://127.0.0.1:5198/';
-const firstAsset = '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.png';
-const secondAsset = '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.png';
+const firstAsset = '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/first-refuge-tableau.webp';
+const secondAsset = '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/second-refuge-night-tableau.webp';
 const proof = { passed: false, captures: [], visual: {}, production: null, errors: [] };
 await mkdir(output, { recursive: true });
 const server = await createServer({ server: { host: '127.0.0.1', port: 5198, strictPort: true, watch: null, hmr: false } });

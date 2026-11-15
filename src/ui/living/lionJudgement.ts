@@ -10,7 +10,7 @@ import { FigureCast, placeCast, type DepthScale, type FigureLight, type Walker }
  * and without a gesture of verdict; the sequence ends before he speaks, so his verdict, the choice and the trial stay
  * with the dialogue and the fight. No caption.
  */
-const IMAGE = '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.png';
+const IMAGE = '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/lion-judgement-tableau.webp';
 
 /**
  * The hall's floor recedes to a horizon near the foot of the throne; the dais is raised, so whoever stands on it keeps

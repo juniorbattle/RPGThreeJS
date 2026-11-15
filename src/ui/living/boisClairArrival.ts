@@ -12,9 +12,9 @@ import { ExtraCrowd, FigureCast, placeCast, type DepthScale, type Extra, type Fi
 export const boisClairDepth: DepthScale = (y) => Math.max(0.36, 0.42 + 1.63 * (y - 436) / 264);
 const TABLEAU = '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/';
 export const BOIS_CLAIR_TABLEAUX = {
-  burning: (assets.prologueScenes as Record<string, string>).prologue_lion ?? `${TABLEAU}bois-clair-tableau-burning.png`,
-  saved: `${TABLEAU}bois-clair-tableau-aftermath-saved.png`,
-  sacrificed: `${TABLEAU}bois-clair-tableau-aftermath-sacrificed.png`,
+  burning: (assets.prologueScenes as Record<string, string>).prologue_lion ?? `${TABLEAU}bois-clair-tableau-burning.webp`,
+  saved: `${TABLEAU}bois-clair-tableau-aftermath-saved.webp`,
+  sacrificed: `${TABLEAU}bois-clair-tableau-aftermath-sacrificed.webp`,
 };
 
 /** Smoke rising over the roofs, stamped from one soft puff. */

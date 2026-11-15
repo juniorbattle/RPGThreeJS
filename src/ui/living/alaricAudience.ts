@@ -11,7 +11,7 @@ import { FigureCast, placeCast, type DepthScale, type Extra, type FigureLight, t
  * company walks up the carpet and stops at the foot of the stairs, where Alaric waits before his throne. The sequence
  * ends before he speaks, and shows neither Bois-Clair nor the Seal: his first line says both. No caption.
  */
-export const AUDIENCE_IMAGE = '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.png';
+export const AUDIENCE_IMAGE = '/assets/generated/lion-phase/environments/demo-environment-pack-v1/tableau/alaric-audience-tableau.webp';
 
 /** The floor recedes to the foot of the stairs; the dais is raised, so whoever stands on it keeps one size. */
 export const audienceDepth: DepthScale = (y) => (y < 500 ? 1.55 : 1.9 * (y - 380) / 200);
