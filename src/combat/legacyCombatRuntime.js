@@ -6,6 +6,8 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { UnitFocusController } from './UnitFocusController';
+import { tr } from '../i18n/i18n';
+import { statusShortCode } from '../i18n/statusCodes';
 import { combatGraphicsMessageSchema, combatInitializeMessageSchema } from './protocol';
 import { canStartDeployment, normalizeDeploymentLimit, orderDeploymentCandidates } from './deploymentRules';
 import { getUnitVisualState } from './unitVisualState';
@@ -972,7 +974,7 @@ function statusBadgeTexture(indicator,reduced,overflow=0){
   if(indicator.cue==='cracked_diamond')ctx.rect(-40,-40,80,80); else ctx.arc(0,0,47,0,Math.PI*2);
   ctx.fillStyle=bg; ctx.globalAlpha=reduced ? .94 : .98; ctx.fill(); ctx.lineWidth=6; ctx.strokeStyle=border; ctx.stroke(); ctx.restore();
   ctx.fillStyle=ink; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.font='bold 31px Georgia, serif'; ctx.fillText(overflow?'+'+overflow:statusBadgeGlyph(indicator.cue),64,45);
-  if(!overflow){ ctx.font='bold 21px Arial, sans-serif'; ctx.fillText(indicator.shortCode,64,82); }
+  if(!overflow){ ctx.font='bold 21px Arial, sans-serif'; ctx.fillText(statusShortCode(indicator.shortCode),64,82); }
   const texture=new THREE.CanvasTexture(canvas); texture.colorSpace=THREE.SRGBColorSpace; texture.needsUpdate=true; statusBadgeTextures.set(cacheKey,texture); return texture;
 }
 function statusIndicatorTexture(indicator,reduced){
@@ -1044,8 +1046,8 @@ function bossIntentBadgeTexture(label,boss,breakPercent=0){
   const key=(boss?'boss:':'elite:')+label+':'+breakPercent; if(bossIntentBadgeTextures.has(key))return bossIntentBadgeTextures.get(key);
   const canvas=document.createElement('canvas'); canvas.width=256; canvas.height=96; const ctx=canvas.getContext('2d'),ultimate=label==='ULTIME',accent=ultimate?'#ff6b4a':'#f2c86b';
   ctx.clearRect(0,0,256,96); ctx.fillStyle=boss?'rgba(28,8,8,.9)':'rgba(24,12,18,.86)'; ctx.strokeStyle=accent; ctx.lineWidth=boss?6:4; ctx.beginPath(); ctx.roundRect(9,6,238,84,18); ctx.fill(); ctx.stroke();
-  ctx.fillStyle=accent; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.font=(boss?'700 30px ':'700 27px ')+'Cinzel, Georgia, serif'; ctx.fillText(label,128,36);
-  ctx.fillStyle='#f4ead1'; ctx.font='600 19px Inter, system-ui, sans-serif'; ctx.fillText('Rupture '+breakPercent+' %',128,68);
+  ctx.fillStyle=accent; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.font=(boss?'700 30px ':'700 27px ')+'Cinzel, Georgia, serif'; ctx.fillText(tr(label),128,36);
+  ctx.fillStyle='#f4ead1'; ctx.font='600 19px Inter, system-ui, sans-serif'; ctx.fillText(tr('Rupture '+breakPercent+' %'),128,68);
   const texture=new THREE.CanvasTexture(canvas); texture.colorSpace=THREE.SRGBColorSpace; texture.needsUpdate=true; bossIntentBadgeTextures.set(key,texture); return texture;
 }
 function ensureBossIntentBadge(u){

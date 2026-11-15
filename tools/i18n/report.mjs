@@ -3,7 +3,7 @@
  * OD-2026-11-15-C translation workbench. French stays the key; English lives in `src/i18n/en/<zone>.json`.
  *
  *   node tools/i18n/report.mjs status                  keys, translated and missing per zone, orphans
- *   node tools/i18n/report.mjs todo <zone> [regex] [n] [tag]
+ *   node tools/i18n/report.mjs todo <zone> [regex] [n] [tag] [skip]
  *                                                      untranslated keys of a zone (optionally only from sources
  *                                                      matching regex; n=0 for all), numbered, mapping written to
  *                                                      tmp/i18n/todo/<zone>[~tag].json
@@ -59,12 +59,12 @@ if (command === 'status') {
   console.log(`orphans: ${[...catalog.keys()].filter((key) => !keys.has(key)).length}`);
 } else if (command === 'todo') {
   // A tag names a separate list, so several translators can share a zone: ids `<zone>~<tag>-0001`.
-  const [zone, pattern, limit, tag] = args;
+  const [zone, pattern, limit, tag, skip] = args;
   if (!ZONES.includes(zone)) throw new Error(`zone must be one of ${ZONES.join(', ')}`);
   const list = tag ? `${zone}~${tag}` : zone;
   const filter = pattern ? new RegExp(pattern) : null;
   const todo = [...keys].filter(([key, entry]) => entry.zone === zone && !catalog.has(key) && (!filter || entry.sites.some((site) => filter.test(site))))
-    .slice(0, limit && limit !== '0' ? Number(limit) : undefined);
+    .slice(Number(skip) || 0, limit && limit !== '0' ? (Number(skip) || 0) + Number(limit) : undefined);
   const mapping = {};
   const lines = todo.map(([key, entry], index) => {
     const id = `${list}-${String(index + 1).padStart(4, '0')}`;

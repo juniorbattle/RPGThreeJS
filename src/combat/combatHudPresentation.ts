@@ -1,6 +1,7 @@
 /** Markup only. All values and availability are supplied by the combat runtime. */
 import { assets } from '../render/assetManifest';
 import { resolveCharacterVisualProfile } from '../render/CharacterVisualRegistry';
+import { statusShortCode } from '../i18n/statusCodes';
 
 export type CombatPortraitCrop = 'upper-body' | 'creature' | 'elite' | 'contain';
 export function combatPortraitCrop(portrait: string | undefined): CombatPortraitCrop {
@@ -150,7 +151,7 @@ export function renderCombatStatuses(statuses: readonly CombatHudStatus[], alive
     const turns = status.turns ? `<span class="status-chip__turns">${status.turns}</span>` : '';
     const icon = status.indicatorUrl
       ? `<img src="${combatHudEscape(status.indicatorUrl)}" alt="" />`
-      : `<span class="status-chip__code" aria-hidden="true">${combatHudEscape(status.shortCode)}</span>`;
+      : `<span class="status-chip__code" aria-hidden="true" data-i18n-skip>${combatHudEscape(statusShortCode(status.shortCode))}</span>`;
     return `<span class="status-chip" title="${name}${status.turns ? ` · ${status.turns} tours` : ''}" aria-label="${name}${status.turns ? `, ${status.turns} tours` : ''}" style="--status-color:${combatHudEscape(status.color)};--status-border:${combatHudEscape(status.borderColor)}">${icon}${turns}</span>`;
   }).join('') + '</div>';
 }
