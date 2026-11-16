@@ -1,0 +1,56 @@
+# Traduction anglaise : infrastructure, catalogues et premier passage (2026-11-15)
+
+| Champ | Valeur |
+| --- | --- |
+| TASK | Jouer en français ou en anglais, au choix dans Réglages, [OD-2026-11-15-C](../autonomy/ENGLISH_TRANSLATION_OPERATOR_DECISION_2026-11-15.md) (run `claude-english-translation-20261115T1750Z`) |
+| DOMAIN | UI et contenu : tous les textes vus par le joueur, en affichage seul |
+| BASELINE | `5ec8664a` sur `dev` (jeu de contrats 1.24.0, baseline `133814bac45cc31c8eda7aa0fa1acb16a9ca7e35`) ; la branche est partie de `901ba350` |
+| BRANCH | worktree `claude/english-translation-4912ff`, rebasé sur `dev` |
+| HEAD | le commit de ce rapport |
+| STATUS | review : livré sur `origin/dev`, à vérifier en jeu par l'opérateur |
+| MERGED_IN | `dev` |
+| SUPERSEDES | NONE |
+| SUPERSEDED_BY | NONE |
+| PRODUCTION_IMPACT | Nouveau choix « Langue · Language » dans Réglages › Affichage, gardé hors sauvegarde. En français rien ne change (texte, identifiants et sauvegardes V6 identiques à l'octet). En anglais, le jeu traduit à l'affichage avec des catalogues JSON chargés à la demande. Le protocole `CombatBridge` ne change pas. |
+| CANONICAL_DOCS_UPDATED | `docs/content/ENGLISH_TRANSLATION_GUIDE.md` (registre, glossaire, comment le jeu trouve l'anglais) ; `docs/autonomy/OPERATOR_DECISIONS.md` et le fichier de décision (déjà publiés). L'état (`nextAction`) et la priorité d'`AGENTS.md` reviennent à l'orchestrateur. |
+| EVIDENCE | Tests vitest (`src/i18n/`, réglages, dialogue), `npx tsc --noEmit`, `npm run build`, `contracts:validate`, `cinematics:validate-narrative-staging`, garde vide ; un passage navigateur en anglais jusqu'au premier combat (`tools/full-chronicle-browser-qa.mjs`, `FULL_QA_LANGUAGE=en`, sortie ignorée `tmp/full-chronicle/english-lion-first-fight/`). Limites plus bas. |
+
+## La demande
+
+`APPROVED DECISION`. L'opérateur a retenu les 27 recommandations de la fiche (A1 à A8, G1 à G12, R1 à R4, M1 à M3) : le français reste la source et la langue par défaut ; l'anglais rend fidèlement le français existant, sans aucun canon nouveau ; l'héritier est le « vous » qu'on ne voit pas, rendu par « you » sans genre.
+
+## Ce qui est livré
+
+`CURRENT FACT`.
+
+- **Le moteur** (`src/i18n/`). Le texte français est la clé : `tr()` le traduit au moment d'afficher. Les phrases construites passent par des gabarits à trous `{0}`. Quand aucune entrée exacte n'existe, le moteur recompose : phrases collées, gabarits, majuscules, symboles et nombres autour d'un texte connu, listes « a, b et c », morceaux séparés par `·`, `—`, `:`, `;` ou `,`, et morceaux connus posés bout à bout (lignes de compétence, zones, statuts, étiquettes parlées de la carte). Une lecture qui laisse des trous en français cède la place à une qui n'en laisse pas.
+- **L'écran.** En anglais, un observateur du DOM traduit textes et attributs lisibles (`aria-label`, `title`, `alt`, `placeholder`) et rend le français en revenant. Les zones `translate="no"` et `data-i18n-skip` sont ignorées. `<html lang>` et le titre de l'onglet suivent. La boîte de dialogue traduit la réplique entière puis la découpe en pages : les segments français coupent des phrases françaises auxquelles aucun anglais ne correspond.
+- **Les catalogues** (`src/i18n/en/*.json`, 4 153 textes, chargés seulement en anglais) : interface 679, combat 559, objets et compétences 468, Lion 868, chronique 158, Ours 383, Dragon 357, Scorpion 351, acte final 330. L'extracteur lit l'arbre syntaxique des sources et l'annexe d'écriture des lieux du Lion. Les outils de développement restent en français (M3).
+- **Le test de couverture** exige, pour toute phrase française du joueur, une traduction non vide avec les mêmes trous, aucune entrée orpheline ou en double, les formes du glossaire et la typographie anglaise. Un second test passe la fiche de chaque compétence, à chaque niveau et pour les deux camps, et exige qu'aucun mot français ne survive.
+- **Le combat.** Le moteur du combat garde ses libellés français en interne ; seuls les points d'affichage traduisent. Les codes de statut du canvas et des pastilles (STG, WND, FRY, ROT, SIL, CRS, BRN, PSN, BLD, WKN, SLW, TNT, RGN, MGT, BAR) viennent d'une table par statut, car le code français `FOR` de Force ne doit pas devenir `STR`. Le combat déjà lancé garde sa langue jusqu'au suivant (A7).
+- **Le choix de langue.** Deux boutons, « Français » et « English », chacun écrit dans sa langue, avec l'état pressé. Changer de langue s'applique tout de suite hors combat, dans les deux sens (vérifié sur l'écran titre).
+
+## Vérifié
+
+`CURRENT FACT`, sur le serveur DEV (port 5182) et en test.
+
+- Tests ciblés : `src/i18n/` (15), réglages, dialogue, cinématiques, combat : verts. `tsc`, build (161 Mo), validateurs, `git diff --check` et garde : verts.
+- `npm test` : 3 fichiers en échec, 5 tests, tous des tests historiques de cinématiques que je n'ai pas touchés : artefacts absents de `tmp/` dans ce worktree, `ffprobe` introuvable, un `SyntaxError` dans un fichier hors de ce travail. Ils ne tiennent pas à la traduction. Le reste (263 fichiers, 3 624 tests) passe ; la suite `node:test` passe (26).
+- Navigateur en anglais, de l'écran titre au premier combat gagné : ouverture, carte du Lion, dialogues, choix, combat, sans erreur de console. Le balayage a trouvé 78 textes restés en français ; deux défauts réels, corrigés : les répliques de plusieurs phrases (coupées en français avant traduction) et les noms des lieux facultatifs du Lion (écrits dans l'annexe JSON, hors de l'extracteur). Un dernier fragment (`, vers {0}`) a été ajouté et testé en unité, mais pas rejoué dans le navigateur.
+
+## Pas vérifié
+
+- Le balayage anglais de la chronique entière (le pilote est prêt : `FULL_QA_LANGUAGE=en`, quatre plans) et la relecture route par route.
+- Le débordement du texte anglais à 1366×768, 620 et 390×844, avec et sans mouvement réduit.
+- Le combat joué à la main en anglais (seul le premier combat a été gagné par la commande QA), et le changement de langue depuis le combat.
+- La page de validation côte à côte des répliques approuvées mot à mot (M2) : à faire avant de présenter l'anglais comme validé.
+- L'ensemble des 4 153 textes n'a été relu que par sondage, la traduction ayant été répartie sur plusieurs rédacteurs ; le glossaire et le test de typographie garantissent la cohérence des termes, pas du style.
+
+## À arbitrer ou à signaler
+
+- **Source française d'Elara** (`lion~c1-0073`) : « Je veillerai à ce que nous ne pouvons pas arrêter avec un bouclier » est agrammaticale. Traduite littéralement ; la correction du français reste à l'opérateur.
+- Rendus ambigus, lecture la plus littérale retenue : « Ancien passage » (Old passage), « Constat » (Finding), « Reconnaissance » (Gratitude), « Vous sentir faible » du troll (You smell weak), « distinct(e) » (Separate), « Sceau du Sage » (Sage’s Seal, qui rappelle les Sceaux du récit).
+
+## Suite
+
+`PROPOSED FUTURE DESIGN`. Rejouer en anglais les quatre chroniques avec le pilote et corriger les textes restés en français ; contrôler le débordement aux quatre tailles ; construire la page de validation M2 ; la même méthode (catalogue par zone et test de couverture) sert à ajouter une troisième langue.
