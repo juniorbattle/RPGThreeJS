@@ -42,6 +42,17 @@ const hasLetter = (text: string): boolean => /[A-Za-zÀ-ÿ]/.test(text);
 /** English typography for what surrounds a text: « 6 % » → “6%”, « ! » without its space. */
 const englishNumbers = (text: string): string => text.replace(/(\d)\s%/g, '$1%').replace(/\s+([!?;:])/g, '$1');
 
+/**
+ * A line cut into segments in French, shown in English: the whole line is translated, then cut again by the caller, since
+ * the French segments cut French sentences that no English text follows.
+ */
+export function trSegments(segments: readonly string[], paginate: (text: string) => string[]): string[] {
+  if (language !== 'en' || !catalog) return [...segments];
+  const french = segments.join(' ');
+  const whole = tr(french);
+  return whole === french ? segments.map(tr) : paginate(whole);
+}
+
 /** The English text for a French text, or the text itself in French, for an empty text or when none is known. */
 export function tr(text: string): string {
   if (language === 'fr' || !catalog || !text) return text;

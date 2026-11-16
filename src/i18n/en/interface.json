@@ -676,5 +676,6 @@
   "Choisissez la langue du jeu. Le changement s’applique tout de suite, sauf dans un combat en cours, où il attend le prochain.": "Choose the game’s language. The change applies at once, except in a battle already under way, where it waits for the next one.",
   "Français": "Français",
   "English": "English",
-  "Mouvement": "Motion"
+  "Mouvement": "Motion",
+  ", vers {0}": ", toward {0}"
 }

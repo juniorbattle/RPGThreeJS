@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { afterEach, describe, expect, it } from 'vitest';
 import { DomTranslator } from './domTranslator';
-import { currentLanguage, joinList, tf, tr, useCatalogForTests } from './i18n';
+import { currentLanguage, joinList, tf, tr, trSegments, useCatalogForTests } from './i18n';
 import { LANGUAGE_PREFERENCE_KEY, readLanguagePreference, writeLanguagePreference } from './language';
 
 const ENTRIES = {
@@ -93,6 +93,16 @@ describe('i18n lookup (OD-2026-11-15-C)', () => {
       .toBe('Some banners stand at our side: those of the Lion and the Bear. Others watch us from afar: those of the Raven.');
     expect(tr('Alaric rend son verdict. Le Sceau est à vous. Les noms des morts sont lus. Personne ne les oublie.'))
       .toBe('Alaric gives his verdict. The Seal is yours. The names of the dead are read. No one forgets them.');
+  });
+
+  it('translates a line cut in French as a whole, then cuts the English again', () => {
+    const line = 'Notre clan a perdu ses terres. Nous sommes encore là. Mais rien ne se perd.';
+    const cutInFrench = ['Notre clan a perdu ses terres. Nous sommes encore là.', 'Mais rien ne se perd.'];
+    expect(trSegments(cutInFrench, (text) => [text])).toEqual(cutInFrench);
+    useCatalogForTests({ [line]: 'Our clan lost its lands. We are still here. But nothing is lost.' });
+    const paginate = (text: string) => text.split('. ').map((part, index, all) => (index < all.length - 1 ? part + '.' : part));
+    expect(trSegments(cutInFrench, paginate)).toEqual(['Our clan lost its lands.', 'We are still here.', 'But nothing is lost.']);
+    expect(trSegments(['Une phrase sans traduction.'], paginate)).toEqual(['Une phrase sans traduction.']);
   });
 
   it('keeps the language choice outside the saves, on its own key', () => {

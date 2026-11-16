@@ -65,16 +65,18 @@ await page.route('**/src/main.ts*', async (route) => {
   const source = await response.text();
   const pattern = /const app = new GameApp\(root, canvas\);/;
   if (!pattern.test(source)) throw new Error('DEV bootstrap observation hook missing');
-  await route.fulfill({ response, body: source.replace(pattern, (match) => `${match}window.__fullQaApp = app;`) });
+  // The page's own translation functions come with it: a dynamic import of the module can be another instance after a hot update.
+  const hooked = source.replace(pattern, (match) => `${match}window.__fullQaApp = app; window.__fullQaTr = __fullQaTr; window.__fullQaMissing = __fullQaMissing;`);
+  // The specifier the served bootstrap already uses, so this is the same module instance as the game's.
+  const i18nUrl = /from ["']([^"']*i18n\/i18n[^"']*)["']/.exec(source)?.[1];
+  if (!i18nUrl) throw new Error('DEV bootstrap i18n import missing');
+  await route.fulfill({ response, body: `import { tr as __fullQaTr, missingTranslations as __fullQaMissing } from "${i18nUrl}";
+${hooked}` });
 });
 
 /** The page's own translation functions, read for the answers on screen and for the texts left in French. */
 async function installI18n() {
-  await page.evaluate(async () => {
-    const i18n = await import('/src/i18n/i18n.ts');
-    window.__fullQaTr = i18n.tr;
-    window.__fullQaMissing = i18n.missingTranslations;
-  });
+  await page.waitForFunction(() => typeof window.__fullQaTr === 'function', null, { timeout: 30000 });
 }
 const missingFrench = new Set();
 async function collectMissing() {
@@ -341,7 +343,7 @@ for (let turn = 0; turn < 40000; turn += 1) {
       const shown = language === 'en' && wanted ? await page.evaluate((text) => window.__fullQaTr(text), wanted) : wanted;
       const key = (shown ?? '').replace(/\s+/g, ' ').trim().slice(0, 40).toLocaleLowerCase('fr');
       const index = wanted ? choices.findIndex((choice) => choice.text.toLocaleLowerCase('fr').includes(key)) : 0;
-      if (index < 0) throw new Error(`Answer not on screen in ${sequenceId}:${stepId}: ${wanted} | on screen: ${JSON.stringify(choices.map((choice) => choice.text))}`);
+      if (index < 0) throw new Error(`Answer not on screen in ${sequenceId}:${stepId}: ${wanted} (${language}: ${shown}) | on screen: ${JSON.stringify(choices.map((choice) => choice.text))}`);
       if (choices[index].disabled) throw new Error(`Chosen answer disabled in ${sequenceId}:${stepId}`);
       report.choices.push({ sequence: sequenceId, step: stepId, text: (wanted ?? choices[index].text).slice(0, 120) });
       await page.locator('.dialogue .dialogue-choice:visible').nth(index).click({ timeout: 4000 });

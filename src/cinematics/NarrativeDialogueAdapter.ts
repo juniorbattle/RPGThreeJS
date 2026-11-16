@@ -12,6 +12,8 @@ export interface NarrativeDialogueStepPresentation {
   anchorId?: string;
   displayText?: string;
   displaySegments?: readonly string[];
+  /** The pagination limit of the segments, so a translated line is cut the same way (OD-2026-11-15-C). */
+  maxCharactersPerSegment?: number;
   classification?: NarrativeTextClassification;
   showPortrait: boolean;
   phaseId?: string;
@@ -127,6 +129,7 @@ export function createNarrativeDialogueResolver(
       anchorId,
       displayText,
       displaySegments: segmentNarrativeText(displayText, decision.maxCharactersPerSegment || 168),
+      maxCharactersPerSegment: decision.maxCharactersPerSegment || 168,
       showPortrait: false,
       phaseId: decision.currentVisualState,
       layoutProfile: decision.layoutProfile,

@@ -33,6 +33,12 @@ export const MANUAL_KEYS = Object.freeze([
   'or',
 ]);
 
+/** Interface fragments the heuristics cannot see (all lowercase, no accent): the map markers' spoken label. */
+export const MANUAL_INTERFACE_KEYS = Object.freeze([', vers {0}']);
+
+/** The annex whose labels name the Lion's optional places and guardians (src/campaign/LionPoiAuthoring.ts imports it). */
+const LOT_E_ANNEX = 'docs/project/RPGThreeJS_LOT_E_MANIFEST_AUTHORING_FINAL_2026-10-15.json';
+
 /** The skill lines of src/game/skillFacts.ts build these from conditionals the heuristics cannot see. */
 export const MANUAL_ITEM_KEYS = Object.freeze([
   'physiques', 'magiques', 'soi', 'case', 'cases', '(soi compris)', 'critique {0}', 'critique {0} (plafond)',
@@ -327,5 +333,14 @@ export function extractAll(root, files = listPlayerSources(root)) {
   }
   for (const key of MANUAL_KEYS) if (!keys.has(key)) keys.set(key, { zone: 'combat', sites: ['MANUAL_KEYS'] });
   for (const key of MANUAL_ITEM_KEYS) if (!keys.has(key)) keys.set(key, { zone: 'items', sites: ['MANUAL_ITEM_KEYS'] });
+  for (const key of MANUAL_INTERFACE_KEYS) if (!keys.has(key)) keys.set(key, { zone: 'interface', sites: ['MANUAL_INTERFACE_KEYS'] });
+  // The Lion's optional places and guardians are named in the operator's authoring annex, read as data by the game.
+  const annex = path.join(root, LOT_E_ANNEX);
+  if (fs.existsSync(annex)) {
+    const data = JSON.parse(fs.readFileSync(annex, 'utf8'));
+    for (const entry of [...(data.fixedPoiCandidates ?? []), ...(data.mobileEliteActors ?? [])]) {
+      if (typeof entry.label === 'string' && !keys.has(entry.label)) keys.set(entry.label, { zone: 'lion', sites: [LOT_E_ANNEX] });
+    }
+  }
   return keys;
 }

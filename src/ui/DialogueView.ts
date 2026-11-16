@@ -1,6 +1,7 @@
 import { applyScreenEnvironment } from '../render/screenBackgroundRegistry';
 import { hasReadLine, markLineRead } from './ReadLines';
-import { tr } from '../i18n/i18n';
+import { tr, trSegments } from '../i18n/i18n';
+import { segmentNarrativeText } from '../cinematics/DialogueStagingDirector';
 import { provisionalMark } from '../game/postDemoContent';
 import { assets } from '../render/assetManifest';
 import type { Contest, DialogueChoice, DialogueSequence, DialogueStep, GameState, NarrativeEffect } from '../game/types';
@@ -271,9 +272,9 @@ export class DialogueView {
     choices.replaceChildren();
     outcomes.replaceChildren(...this.createOutcomeBadges(this.describeEffects(step.effects)));
     outcomes.hidden = outcomes.childElementCount === 0;
-    this.displaySegments = (presentation.displaySegments?.length
+    this.displaySegments = trSegments(presentation.displaySegments?.length
       ? presentation.displaySegments
-      : [presentation.displayText ?? step.text]).map(tr);
+      : [presentation.displayText ?? step.text], (text) => segmentNarrativeText(text, presentation.maxCharactersPerSegment || 168));
     this.displaySegmentIndex = 0;
     this.overlay.dataset.dialogueSegment = `1/${this.displaySegments.length}`;
     const stagedChoiceSequence = narrativeStage && Boolean(step.choices?.length);
