@@ -677,5 +677,8 @@
   "Français": "Français",
   "English": "English",
   "Mouvement": "Motion",
-  ", vers {0}": ", toward {0}"
+  ", vers {0}": ", toward {0}",
+  "sur {0}": "on {0}",
+  ", position actuelle": ", current position",
+  ", voyage rapide possible": ", fast travel available"
 }

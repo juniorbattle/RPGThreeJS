@@ -31,10 +31,12 @@ export const MANUAL_KEYS = Object.freeze([
   'FOR', 'MAG', 'END', 'DEX', 'CHA', 'PV', 'PA', 'DÉPL',
   // « 80 or » : the gold after a number, translated around its number at runtime.
   'or',
+  // Spoken labels of the combat chips.
+  ', actif',
 ]);
 
 /** Interface fragments the heuristics cannot see (all lowercase, no accent): the map markers' spoken label. */
-export const MANUAL_INTERFACE_KEYS = Object.freeze([', vers {0}']);
+export const MANUAL_INTERFACE_KEYS = Object.freeze([', vers {0}', ', position actuelle', ', voyage rapide possible']);
 
 /** The annex whose labels name the Lion's optional places and guardians (src/campaign/LionPoiAuthoring.ts imports it). */
 const LOT_E_ANNEX = 'docs/project/RPGThreeJS_LOT_E_MANIFEST_AUTHORING_FINAL_2026-10-15.json';
@@ -120,6 +122,8 @@ export function isFrenchText(text) {
   if (enHits >= 2 && enHits > frHits) return false;
   if (words.length === 1) {
     const word = words[0];
+    // « celles {0} » : a French word that leads a hole is player text, even alone.
+    if (/\{\d+\}/.test(text) && FR_WORDS.has(word.toLowerCase())) return true;
     if (/^[A-Z0-9_]+$/.test(word.replace(/[^A-Za-z0-9_]/g, '')) && !accent) return false;
     if (/^[a-z][A-Za-z0-9]*[A-Z]/.test(word) || /[_]/.test(word)) return false;
     if (/^[A-ZÀ-Ý][a-zà-ÿ’'-]{2,}/.test(word)) return true;

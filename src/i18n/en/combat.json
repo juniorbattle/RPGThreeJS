@@ -557,5 +557,6 @@
   "CHA": "CHA",
   "PV": "HP",
   "PA": "AP",
-  "or": "gold"
+  "or": "gold",
+  ", actif": ", active"
 }

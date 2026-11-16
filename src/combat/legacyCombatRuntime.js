@@ -2639,7 +2639,7 @@ function bindInput(){ const el=renderer.domElement;
 const ROLE={knight:'Guerrier',cleric:'Mage Blanc',mage:'Mage Noir',archer:'Archer',brigand:'Brigand',brute:'Brute',darkmage:'Mage Noir'};
 const ESC_MAP={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
 function escHTML(v){ return String(v==null?'':v).replace(/[&<>"']/g,ch=>ESC_MAP[ch]); }
-function setHint(t){ const text=String(t||''),parts=text.split(/\s+[—–·]\s+/); if(parts.length>1){ const lead=parts.shift(); dom.hint.innerHTML='<span class="hint__lead">'+escHTML(lead)+'</span><span class="hint__sep">—</span><span class="hint__copy">'+escHTML(parts.join(' — '))+'</span>'; } else dom.hint.innerHTML='<span class="hint__copy">'+escHTML(text)+'</span>'; }
+function setHint(t){ const text=tr(String(t||'')),parts=text.split(/\s+[—–·]\s+/); if(parts.length>1){ const lead=parts.shift(); dom.hint.innerHTML='<span class="hint__lead">'+escHTML(lead)+'</span><span class="hint__sep">—</span><span class="hint__copy">'+escHTML(parts.join(' — '))+'</span>'; } else dom.hint.innerHTML='<span class="hint__copy">'+escHTML(text)+'</span>'; }
 function toast(t){ setHint('⚠ '+t); }
 // ---- Objective (compact / collapsible) ----
 function renderObjective(){ if(!dom.objective)return; dom.objective.classList.remove('hidden');

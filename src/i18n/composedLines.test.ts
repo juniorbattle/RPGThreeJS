@@ -42,4 +42,15 @@ describe('lines the game composes from pieces, in English (OD-2026-11-15-C)', ()
       .toBe('Physical damage, power 8, ignores 30% of defence, crit 15%');
     expect(tr('Ennemi à 1-2 (ou case libre : déplacement seul)')).toBe('Enemy at range 1-2 (or free tile: move only)');
   });
+
+  it('speaks a map marker and an epilogue banner list in English, as the whole chronicle plays them', () => {
+    useCatalogForTests(wholeCatalog());
+    expect(tr('Refuge du Lion, Jalon principal, Refuge, Étape de l’histoire, Fait, services réutilisables, voyage rapide possible'))
+      .toBe('Lion Refuge, Main milestone, Refuge, Story step, Done, reusable services, fast travel available');
+    expect(tr('Chemin des réserves, Étape structurante, Rencontre, Étape de l’histoire, Fermé, vers II · Bois-Clair'))
+      .toBe('Path of the Reserves, Key step, Encounter, Story step, Closed, toward II · Clearwood');
+    expect(tr('Déploiement — choisissez une unité puis une case disponible')).toBe('Deployment — choose a unit, then an available tile');
+    const banners = tr('celles du Lion, de l’Ours, du Corbeau, du Dragon, du Loup, du Scorpion et du Phénix');
+    expect(banners).toBe('those of the Lion, the Bear, the Raven, the Dragon, the Wolf, the Scorpion and the Phoenix');
+  });
 });
