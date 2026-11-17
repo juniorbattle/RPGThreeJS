@@ -120,36 +120,52 @@ function lookup(norm: string, depth: number): string | null {
     if (left === 0) break;
   }
   leftovers = start + (best?.left ?? 0);
-  memo.set(norm, best);
+  if (!concatenating) memo.set(norm, best);
   return best ? best.english : null;
 }
 
+/** Set while known texts are being laid end to end, so a piece never starts a cover of its own. */
+let concatenating = false;
+
 /**
  * Known texts laid end to end, cut at spaces and commas (« 9 cases » + « autour de la cible » + « , alliés compris »,
- * the zone line of a skill): the cover with the fewest pieces wins, and every piece must be known.
+ * the zone line of a skill; a lead and its French list, « Mes comptes gardent aussi » + « a, b et c »): the cover with
+ * the fewest pieces wins, and every piece must be known.
  */
 function fromConcatenation(text: string, depth: number): string | null {
-  if (depth > MAX_DEPTH - 2 || text.length > 160) return null;
+  if (concatenating || depth > MAX_DEPTH - 2 || text.length > 260) return null;
   const cuts = [0];
   for (let i = 1; i < text.length; i += 1) if (text[i] === ' ' || text[i] === ',') cuts.push(i);
   cuts.push(text.length);
   if (cuts.length < 3) return null;
+  const last = cuts.length - 1;
   const pieceOf = (from: number, to: number): string | null => {
-    if (from === 0 && to === text.length) return null;
+    if (from === 0 && to === last) return null;
     const piece = text.slice(cuts[from]!, cuts[to]!);
     const norm = normalizeText(piece);
     if (!norm) return piece;
     const lead = /^\s*/.exec(piece)![0];
     const trail = /\s*$/.exec(piece)![0];
-    const english = hasLetter(norm) ? lookupItem(norm, depth + 1) : englishNumbers(norm);
+    if (!hasLetter(norm)) return lead + englishNumbers(norm) + trail;
+    // « , Point secondaire » is the text « Point secondaire » after a comma; a French list can only close the line.
+    const comma = /^([,;])\s*/.exec(norm);
+    const bare = comma ? norm.slice(comma[0].length) : norm;
+    // The list that closes a line carries the line's own stop.
+    const readList = (item: string): string | null => {
+      const tail = /[.!?…]+$/.exec(item)?.[0] ?? '';
+      const list = fromFrenchList(tail ? item.slice(0, -tail.length) : item, depth + 1);
+      return list === null ? null : list + tail;
+    };
+    const read = (item: string): string | null => lookupItem(item, depth + 1) ?? (to === last ? readList(item) : null);
+    const english = read(norm) ?? (comma && bare ? (() => { const inner = read(bare); return inner === null ? null : `${comma[1]} ${inner}`; })() : null);
     return english === null ? null : lead + english + trail;
   };
   const memo = new Map<number, string[] | null>();
   const cover = (from: number): string[] | null => {
-    if (from === cuts.length - 1) return [];
+    if (from === last) return [];
     if (memo.has(from)) return memo.get(from)!;
     let best: string[] | null = null;
-    for (let to = from + 1; to < cuts.length; to += 1) {
+    for (let to = from + 1; to <= last; to += 1) {
       const piece = pieceOf(from, to);
       if (piece === null) continue;
       const rest = cover(to);
@@ -158,8 +174,13 @@ function fromConcatenation(text: string, depth: number): string | null {
     memo.set(from, best);
     return best;
   };
-  const pieces = cover(0);
-  return pieces && pieces.length > 1 ? pieces.join('') : null;
+  concatenating = true;
+  try {
+    const pieces = cover(0);
+    return pieces && pieces.length > 1 ? pieces.join('') : null;
+  } finally {
+    concatenating = false;
+  }
 }
 
 function translateHole(value: string, depth: number): string {
@@ -189,7 +210,7 @@ function fromCase(norm: string): string | null {
   const first = norm[0]!;
   if (first !== first.toUpperCase()) {
     const capital = catalog!.get(first.toUpperCase() + norm.slice(1));
-    if (capital !== undefined) return /^The /.test(capital) ? `the${capital.slice(3)}` : capital;
+    if (capital !== undefined) return /^The /.test(capital) ? `the${capital.slice(3)}` : /^[A-Z][a-z]+( |$)/.test(capital) ? capital[0]!.toLowerCase() + capital.slice(1) : capital;
   }
   if (norm === norm.toUpperCase() && norm.length > 3) {
     const upper = upperIndex.get(norm);
@@ -252,8 +273,13 @@ function fromSegments(full: string, depth: number): string | null {
     const parts = norm.split(separator);
     if (parts.length < 2) continue;
     // A lead that ends with its colon (« Vos mérites : ») is a key with the colon; English keeps one colon.
-    const lookupPart = (part: string, index: number): string | null => lookup(part, depth + 1)
-      ?? (separator === ' : ' && index < parts.length - 1 ? lookup(`${part} :`, depth + 1)?.replace(/\s*:$/, '') ?? null : null);
+    // After a comma, a fragment that has its own text with the comma (« , prochaine étape ») reads as that text.
+    const lookupPart = (part: string, index: number): string | null => {
+      const fragment = separator === ', ' && index > 0 ? lookup(`, ${part}`, depth + 1) : null;
+      if (fragment !== null && /^,\s*/.test(fragment)) return fragment.replace(/^,\s*/, '');
+      return lookup(part, depth + 1)
+        ?? (separator === ' : ' && index < parts.length - 1 ? lookup(`${part} :`, depth + 1)?.replace(/\s*:$/, '') ?? null : null);
+    };
     const english = parts.map((part, index) => (part.trim() === '' || !hasLetter(part) ? englishNumbers(part) : lookupPart(part.trim(), index)));
     if (english.every((part): part is string => part !== null)) return english.join(joiner);
   }

@@ -53,4 +53,25 @@ describe('lines the game composes from pieces, in English (OD-2026-11-15-C)', ()
     const banners = tr('celles du Lion, de l’Ours, du Corbeau, du Dragon, du Loup, du Scorpion et du Phénix');
     expect(banners).toBe('those of the Lion, the Bear, the Raven, the Dragon, the Wolf, the Scorpion and the Phoenix');
   });
+
+  it('reads a lead and its list, and a marker whose texts hold commas, as the other chronicles play them', () => {
+    useCatalogForTests(wholeCatalog());
+    const started = Date.now();
+    expect(tr('Mes comptes gardent aussi le prix exigé pour votre aide et la souillure effacée avant qu’on puisse l’étudier.'))
+      .toBe('My accounts also record the price demanded for your help and the taint erased before anyone could study it.');
+    expect(tr('Mes comptes gardent aussi le droit de lire le codex avant le Grand Inquisiteur, exigé à l’audience, les sceaux du Phénix brisés sans leur rite et la page souillée brûlée avant qu’on puisse l’étudier.'))
+      .toMatch(/^My accounts also record .+, .+ and .+.$/);
+    expect(tr('Bêtes sous l’emprise des Ombres, Point secondaire, Élite, Au choix, une seule branche, À faire, prochaine étape, défi : Victoire en 8 manches, prime 2 gemmes rouges'))
+      .toBe('Beasts in the Shadows’ Grip, Side point, Elite, Your choice, one branch only, To do, next step, challenge: Victory in 8 rounds, bounty 2 red gems');
+    expect(Date.now() - started).toBeLessThan(1500);
+  });
+
+  it('reads the map tooltip, a place, its kind, its state and its description laid end to end', () => {
+    useCatalogForTests(wholeCatalog());
+    for (const french of [
+      'Camp du Lion · Jalon principal · À faire La compagnie se rassemble avant de demander le premier Sceau.',
+      'Réserve forestière · Point secondaire · Fermé Réserves facultatives · Récompenses utilisables immédiatement, une seule ouverture.',
+      'Piste des bêtes · Étape structurante · À faire Des créatures affamées rôdent sur la première piste.',
+    ]) expect(FRENCH.test(tr(french)), tr(french)).toBe(false);
+  });
 });

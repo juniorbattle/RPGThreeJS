@@ -13,7 +13,7 @@
 | SUPERSEDED_BY | NONE |
 | PRODUCTION_IMPACT | Nouveau choix « Langue · Language » dans Réglages › Affichage, gardé hors sauvegarde. En français rien ne change (texte, identifiants et sauvegardes V6 identiques à l'octet). En anglais, le jeu traduit à l'affichage avec des catalogues JSON chargés à la demande. Le protocole `CombatBridge` ne change pas. |
 | CANONICAL_DOCS_UPDATED | `docs/content/ENGLISH_TRANSLATION_GUIDE.md` (registre, glossaire, comment le jeu trouve l'anglais) ; `docs/autonomy/OPERATOR_DECISIONS.md` et le fichier de décision (déjà publiés). L'état (`nextAction`) et la priorité d'`AGENTS.md` reviennent à l'orchestrateur. |
-| EVIDENCE | Tests vitest (`src/i18n/`, réglages, dialogue), `npx tsc --noEmit`, `npm run build`, `contracts:validate`, `cinematics:validate-narrative-staging`, garde vide ; un passage navigateur en anglais jusqu'au premier combat (`tools/full-chronicle-browser-qa.mjs`, `FULL_QA_LANGUAGE=en`, sortie ignorée `tmp/full-chronicle/english-lion-first-fight/`). Limites plus bas. |
+| EVIDENCE | Tests vitest (`src/i18n/`, réglages, dialogue), `npx tsc --noEmit`, `npm run build`, `contracts:validate`, `cinematics:validate-narrative-staging`, garde vide ; les quatre chroniques jouées en anglais dans le navigateur (`tools/full-chronicle-browser-qa.mjs`, `FULL_QA_LANGUAGE=en`) et le contrôle du débordement (`tools/i18n/english-overflow-qa.mjs`), sorties ignorées sous `tmp/`. Limites plus bas. |
 
 ## La demande
 
@@ -34,15 +34,16 @@
 
 `CURRENT FACT`, sur le serveur DEV (port 5182) et en test.
 
-- Tests ciblés : `src/i18n/` (15), réglages, dialogue, cinématiques, combat : verts. `tsc`, build (161 Mo), validateurs, `git diff --check` et garde : verts.
+- Tests ciblés : `src/i18n/` (19), réglages, dialogue, cinématiques, combat : verts. `tsc`, build (161 Mo), validateurs, `git diff --check` et garde : verts.
 - `npm test` : 3 fichiers en échec, 5 tests, tous des tests historiques de cinématiques que je n'ai pas touchés : artefacts absents de `tmp/` dans ce worktree, `ffprobe` introuvable, un `SyntaxError` dans un fichier hors de ce travail. Ils ne tiennent pas à la traduction. Le reste (263 fichiers, 3 624 tests) passe ; la suite `node:test` passe (26).
-- Navigateur en anglais, de l'écran titre au premier combat gagné : ouverture, carte du Lion, dialogues, choix, combat, sans erreur de console. Le balayage a trouvé 78 textes restés en français ; deux défauts réels, corrigés : les répliques de plusieurs phrases (coupées en français avant traduction) et les noms des lieux facultatifs du Lion (écrits dans l'annexe JSON, hors de l'extracteur). Un dernier fragment (`, vers {0}`) a été ajouté et testé en unité, mais pas rejoué dans le navigateur.
+- **Les quatre chroniques jouées en anglais dans le navigateur**, de l'écran titre à la fin, par le pilote `tools/full-chronicle-browser-qa.mjs` (`FULL_QA_LANGUAGE=en`, vrais clics, combats gagnés par la commande QA) : respect (28 combats, 58 choix), équilibre (30 combats, 51 choix), crainte avec dernier carré (40 combats, 44 choix) et crainte par le destin (39 combats, 44 choix), sans aucune erreur de console. Le pilote relève chaque texte passé au traducteur sans anglais et portant des marques du français. Premier balayage : 78 textes en français au premier combat, puis 43, 6 et 6 sur les chroniques entières. Défauts réels trouvés et corrigés : les répliques de plusieurs phrases (coupées en français avant traduction), les noms des lieux facultatifs du Lion (écrits dans l'annexe JSON, hors de l'extracteur), les étiquettes parlées des repères de la carte (`, voyage rapide possible`, `, position actuelle`, `, vers …`), la liste des bannières de l'épilogue (`celles {0}`), les indications du déploiement (coupées en deux au tiret avant traduction), les puces `, actif` du combat, et deux lignes de Maelor faites d'une amorce et d'une liste française. Après ces corrections : la chronique « crainte par le destin » rejouée en entier et le premier combat du Lion donnent **0 texte resté en français**. Les trois autres chroniques n'ont pas été rejouées en entier après les dernières corrections, qui sont couvertes par des tests.
+- **Débordement** (`tools/i18n/english-overflow-qa.mjs`) : titre, Réglages (trois onglets), fin de l'ouverture et quatorze pages de dialogue avec leurs choix, à 1366×768, 620×780 et 390×844, réglages par défaut puis `reducedMotion: 'reduce'` émulé : 114 écrans, aucun défilement latéral, aucun texte hors de l'écran ni rogné.
 
 ## Pas vérifié
 
-- Le balayage anglais de la chronique entière (le pilote est prêt : `FULL_QA_LANGUAGE=en`, quatre plans) et la relecture route par route.
-- Le débordement du texte anglais à 1366×768, 620 et 390×844, avec et sans mouvement réduit.
-- Le combat joué à la main en anglais (seul le premier combat a été gagné par la commande QA), et le changement de langue depuis le combat.
+- La relecture route par route (cohérence du style et des voix) : le balayage ne vérifie que l'absence de français, pas la qualité de l'anglais.
+- Le débordement de la carte, du refuge, de la forge et de l'interface du combat en anglais (le pilote couvre le titre, les Réglages, l'ouverture et les dialogues).
+- Le combat joué à la main en anglais (les combats sont gagnés par la commande QA), et le changement de langue depuis le combat.
 - La page de validation côte à côte des répliques approuvées mot à mot (M2) : à faire avant de présenter l'anglais comme validé.
 - L'ensemble des 4 153 textes n'a été relu que par sondage, la traduction ayant été répartie sur plusieurs rédacteurs ; le glossaire et le test de typographie garantissent la cohérence des termes, pas du style.
 
@@ -53,4 +54,6 @@
 
 ## Suite
 
-`PROPOSED FUTURE DESIGN`. Rejouer en anglais les quatre chroniques avec le pilote et corriger les textes restés en français ; contrôler le débordement aux quatre tailles ; construire la page de validation M2 ; la même méthode (catalogue par zone et test de couverture) sert à ajouter une troisième langue.
+`PROPOSED FUTURE DESIGN`. Construire la page de validation M2 ; faire relire l'anglais route par route ; contrôler le débordement de la carte et du combat en anglais ; la même méthode (catalogue par zone et test de couverture) sert à ajouter une troisième langue.
+
+Note de méthode : ne pas modifier `src/` pendant un passage du pilote sur le serveur DEV. Un rechargement à chaud remet le jeu à l'écran titre, et le pilote prend alors le titre pour la fin de la chronique (une première passe « crainte par le destin » a échoué ainsi, à tort).
