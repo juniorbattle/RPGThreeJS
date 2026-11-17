@@ -44,7 +44,7 @@
 - La relecture route par route (cohérence du style et des voix) : le balayage ne vérifie que l'absence de français, pas la qualité de l'anglais.
 - Le débordement de la carte, du refuge, de la forge et de l'interface du combat en anglais (le pilote couvre le titre, les Réglages, l'ouverture et les dialogues).
 - Le combat joué à la main en anglais (les combats sont gagnés par la commande QA), et le changement de langue depuis le combat.
-- La page de validation côte à côte des répliques approuvées mot à mot (M2) : à faire avant de présenter l'anglais comme validé.
+- La validation de l'opérateur sur la page M2 (choix M2 de la fiche) : la page est publiée, privée, avec les 49 répliques approuvées mot à mot (confession et indices de Maelor, sort de Maelor aux épilogues, retouches des moments à enjeu, textes de l'héritier), le français figé à côté de l'anglais ; les choix s'y enregistrent (collection `decisions`). Aucun choix n'est encore relu : l'anglais n'est pas présenté comme validé avant.
 - L'ensemble des 4 153 textes n'a été relu que par sondage, la traduction ayant été répartie sur plusieurs rédacteurs ; le glossaire et le test de typographie garantissent la cohérence des termes, pas du style.
 
 ## À arbitrer ou à signaler
@@ -54,6 +54,6 @@
 
 ## Suite
 
-`PROPOSED FUTURE DESIGN`. Construire la page de validation M2 ; faire relire l'anglais route par route ; contrôler le débordement de la carte et du combat en anglais ; la même méthode (catalogue par zone et test de couverture) sert à ajouter une troisième langue.
+`PROPOSED FUTURE DESIGN`. Relire les choix de la page M2 et reprendre les répliques à retoucher ; faire relire l'anglais route par route ; contrôler le débordement de la carte et du combat en anglais ; la même méthode (catalogue par zone et test de couverture) sert à ajouter une troisième langue.
 
 Note de méthode : ne pas modifier `src/` pendant un passage du pilote sur le serveur DEV. Un rechargement à chaud remet le jeu à l'écran titre, et le pilote prend alors le titre pour la fin de la chronique (une première passe « crainte par le destin » a échoué ainsi, à tort).
