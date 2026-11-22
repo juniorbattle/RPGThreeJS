@@ -65,6 +65,10 @@ La fiche d'arbitrages a été publiée en page privée : [Arbitrages traduction 
 6. **Registre (R1–R4).** Épique sobre, contractions réservées aux voix familières ; orthographe britannique ; le joueur est « you » et l'héritier n'est jamais genré ; typographie anglaise.
 7. **Méthode (M1–M3).** La tranche jouable comprend l'écran titre, les Réglages, l'ouverture, la carte du Lion, les dialogues du camp jusqu'à Bois-Clair et ses suites, toute l'interface du combat et le premier combat. Les répliques approuvées mot à mot en français (confession et indices de Maelor, les 13 retouches, les textes de l'héritier, les épilogues) passent par une page de validation côte à côte avant intégration. Les labos et outils de développement restent en français.
 
+## Validation des répliques approuvées (M2), 2026-11-19
+
+La page « Validation de l’anglais » présentait les 49 répliques approuvées mot à mot en français, avec leur anglais : la confession de Maelor (8), ses indices (12), son sort aux épilogues (3), les treize retouches des moments à enjeu (23) et les trois textes de l’héritier (3). L’opérateur les a **toutes validées** (49 sur 49), sans retouche ni note. Les catalogues anglais restent donc inchangés pour ces répliques.
+
 ## Cadre
 
 - **Contrats.** Aucun contrat n'est touché ; la garde reste vide.

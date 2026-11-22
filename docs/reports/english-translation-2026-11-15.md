@@ -39,12 +39,13 @@
 - **Les quatre chroniques jouées en anglais dans le navigateur**, de l'écran titre à la fin, par le pilote `tools/full-chronicle-browser-qa.mjs` (`FULL_QA_LANGUAGE=en`, vrais clics, combats gagnés par la commande QA) : respect (28 combats, 58 choix), équilibre (30 combats, 51 choix), crainte avec dernier carré (40 combats, 44 choix) et crainte par le destin (39 combats, 44 choix), sans aucune erreur de console. Le pilote relève chaque texte passé au traducteur sans anglais et portant des marques du français. Premier balayage : 78 textes en français au premier combat, puis 43, 6 et 6 sur les chroniques entières. Défauts réels trouvés et corrigés : les répliques de plusieurs phrases (coupées en français avant traduction), les noms des lieux facultatifs du Lion (écrits dans l'annexe JSON, hors de l'extracteur), les étiquettes parlées des repères de la carte (`, voyage rapide possible`, `, position actuelle`, `, vers …`), la liste des bannières de l'épilogue (`celles {0}`), les indications du déploiement (coupées en deux au tiret avant traduction), les puces `, actif` du combat, et deux lignes de Maelor faites d'une amorce et d'une liste française. Après ces corrections : la chronique « crainte par le destin » rejouée en entier et le premier combat du Lion donnent **0 texte resté en français**. Les trois autres chroniques n'ont pas été rejouées en entier après les dernières corrections, qui sont couvertes par des tests.
 - **Débordement** (`tools/i18n/english-overflow-qa.mjs`) : titre, Réglages (trois onglets), fin de l'ouverture et quatorze pages de dialogue avec leurs choix, à 1366×768, 620×780 et 390×844, réglages par défaut puis `reducedMotion: 'reduce'` émulé : 114 écrans, aucun défilement latéral, aucun texte hors de l'écran ni rogné.
 
+- **Page M2, validée le 2026-11-19.** Les 49 répliques approuvées mot à mot (confession et indices de Maelor, sort de Maelor aux épilogues, retouches des moments à enjeu, textes de l'héritier) ont été validées en anglais par l'opérateur, 49 sur 49, sans retouche ni note.
+
 ## Pas vérifié
 
 - La relecture route par route (cohérence du style et des voix) : le balayage ne vérifie que l'absence de français, pas la qualité de l'anglais.
 - Le débordement de la carte, du refuge, de la forge et de l'interface du combat en anglais (le pilote couvre le titre, les Réglages, l'ouverture et les dialogues).
 - Le combat joué à la main en anglais (les combats sont gagnés par la commande QA), et le changement de langue depuis le combat.
-- La validation de l'opérateur sur la page M2 (choix M2 de la fiche) : la page est publiée, privée, avec les 49 répliques approuvées mot à mot (confession et indices de Maelor, sort de Maelor aux épilogues, retouches des moments à enjeu, textes de l'héritier), le français figé à côté de l'anglais ; les choix s'y enregistrent (collection `decisions`). Aucun choix n'est encore relu : l'anglais n'est pas présenté comme validé avant.
 - L'ensemble des 4 153 textes n'a été relu que par sondage, la traduction ayant été répartie sur plusieurs rédacteurs ; le glossaire et le test de typographie garantissent la cohérence des termes, pas du style.
 
 ## À arbitrer ou à signaler
@@ -54,6 +55,6 @@
 
 ## Suite
 
-`PROPOSED FUTURE DESIGN`. Relire les choix de la page M2 et reprendre les répliques à retoucher ; faire relire l'anglais route par route ; contrôler le débordement de la carte et du combat en anglais ; la même méthode (catalogue par zone et test de couverture) sert à ajouter une troisième langue.
+`PROPOSED FUTURE DESIGN`. Faire relire l'anglais route par route ; contrôler le débordement de la carte et du combat en anglais ; la même méthode (catalogue par zone et test de couverture) sert à ajouter une troisième langue.
 
 Note de méthode : ne pas modifier `src/` pendant un passage du pilote sur le serveur DEV. Un rechargement à chaud remet le jeu à l'écran titre, et le pilote prend alors le titre pour la fin de la chronique (une première passe « crainte par le destin » a échoué ainsi, à tort).
