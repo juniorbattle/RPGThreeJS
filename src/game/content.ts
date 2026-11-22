@@ -158,7 +158,7 @@ const rawDialogues = [
         actorId: 'elara',
         expression: 'neutral',
         tag: 'L’arcane',
-        text: 'Je veillerai à ce que nous ne pouvons pas arrêter avec un bouclier. Depuis la chute, je sens parfois quelque chose répondre aux Sceaux. Je ne sais pas quoi, et nous ne les avons pas encore obtenus. Je préfère vous dire mon doute que vous vendre une certitude.',
+        text: 'Je m’occuperai de ce que nous ne pouvons pas arrêter avec un bouclier. Depuis la chute, je sens parfois quelque chose répondre aux Sceaux. Je ne sais pas quoi, et nous ne les avons pas encore obtenus. Je préfère vous dire mon doute que vous vendre une certitude.',
         side: 'left',
         next: '7',
         effects: [],

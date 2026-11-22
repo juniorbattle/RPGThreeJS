@@ -69,6 +69,10 @@ La fiche d'arbitrages a été publiée en page privée : [Arbitrages traduction 
 
 La page « Validation de l’anglais » présentait les 49 répliques approuvées mot à mot en français, avec leur anglais : la confession de Maelor (8), ses indices (12), son sort aux épilogues (3), les treize retouches des moments à enjeu (23) et les trois textes de l’héritier (3). L’opérateur les a **toutes validées** (49 sur 49), sans retouche ni note. Les catalogues anglais restent donc inchangés pour ces répliques.
 
+## Correction de la ligne d’Elara (`lion~c1-0073`), 2026-11-21
+
+Le français de la réplique d’Elara au briefing du Lion (« Je veillerai à ce que nous ne pouvons pas arrêter avec un bouclier ») était agrammatical. Entre deux corrections proposées, l’opérateur a retenu, sur « Je m’occuperai de » : « Je m’occuperai de ce que nous ne pouvons pas arrêter avec un bouclier. » Le reste de la réplique est inchangé. L’anglais suit : « I will deal with what we cannot stop with a shield. » Corrigé dans `src/game/content.ts` et `src/i18n/en/lion.json`, rien d’autre ne change : aucun identifiant, aucun choix, aucun champ de sauvegarde.
+
 ## Cadre
 
 - **Contrats.** Aucun contrat n'est touché ; la garde reste vide.

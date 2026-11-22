@@ -50,7 +50,7 @@
 
 ## À arbitrer ou à signaler
 
-- **Source française d'Elara** (`lion~c1-0073`) : « Je veillerai à ce que nous ne pouvons pas arrêter avec un bouclier » est agrammaticale. Traduite littéralement ; la correction du français reste à l'opérateur.
+- **Source française d'Elara** (`lion~c1-0073`) : « Je veillerai à ce que nous ne pouvons pas arrêter avec un bouclier » est agrammaticale. Traduite littéralement ; la correction du français reste à l'opérateur. **Corrigée le 2026-11-21** sur l'accord de l'opérateur : « Je m’occuperai de ce que nous ne pouvons pas arrêter avec un bouclier » (anglais : « I will deal with what we cannot stop with a shield »), voir la décision.
 - Rendus ambigus, lecture la plus littérale retenue : « Ancien passage » (Old passage), « Constat » (Finding), « Reconnaissance » (Gratitude), « Vous sentir faible » du troll (You smell weak), « distinct(e) » (Separate), « Sceau du Sage » (Sage’s Seal, qui rappelle les Sceaux du récit).
 
 ## Suite
